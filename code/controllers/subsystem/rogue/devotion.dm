@@ -8,8 +8,8 @@
 #define CLERIC_REQ_0 0
 #define CLERIC_REQ_1 100
 #define CLERIC_REQ_2 250
-#define CLERIC_REQ_3 500
-#define CLERIC_REQ_4 750
+#define CLERIC_REQ_3 750
+#define CLERIC_REQ_4 1000
 
 // Cleric Holder Datums
 
@@ -25,7 +25,7 @@
 	/// Current progression (experience)
 	var/progression = 0
 	/// Maximum progression (experience) we can achieve
-	var/max_progression = CLERIC_REQ_4
+	var/max_progression = CLERIC_REQ_2
 	/// Current spell tier, basically
 	var/level = CLERIC_T0
 	/// How much devotion is gained per process call

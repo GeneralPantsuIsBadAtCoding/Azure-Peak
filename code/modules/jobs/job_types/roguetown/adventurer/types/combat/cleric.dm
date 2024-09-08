@@ -63,6 +63,11 @@
 			H.change_stat("strength", 1)
 			H.change_stat("constitution", 2)
 			H.change_stat("endurance", 2)
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/mage
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+			pants = /obj/item/clothing/under/roguetown/trou/leather
+
 		if("War Cleric")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a cleric of the war domain. Experienced in both the granting of life and the taking of it. Unfortunately your study of warcraft has weakened your divine abilities..."))
@@ -89,21 +94,21 @@
 			H.change_stat("constitution", 2)
 			H.change_stat("endurance", 2) // Stronger but less intelligent/quick compared to life clerics.
 			H.change_stat("speed", -1)
+			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			armor = /obj/item/clothing/suit/roguetown/armor/plate/half
+			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+			backr = /obj/item/rogueweapon/shield/wood
+			pants = /obj/item/clothing/under/roguetown/trou/leather
+			wrists = /obj/item/clothing/wrists/roguetown/bracers
 
-	armor = /obj/item/clothing/suit/roguetown/armor/plate
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/mace
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+	beltl = /obj/item/flashlight/flare/torch/lantern
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backr = /obj/item/rogueweapon/shield/wood
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife)
 
-
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_spells(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
