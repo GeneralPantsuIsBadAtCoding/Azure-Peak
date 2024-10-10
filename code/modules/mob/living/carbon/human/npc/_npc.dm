@@ -22,6 +22,7 @@
 	var/next_seek = 0
 	var/flee_in_pain = FALSE
 	var/stand_attempts = 0
+	var/ai_currently_active = FALSE
 
 	var/returning_home = FALSE
 
@@ -52,18 +53,19 @@
 			walk_to(src,0)
 			resist()
 			resisting = FALSE
-		if(!(mobility_flags & MOBILITY_STAND) && (stand_attempts < 3))
-			resisting = TRUE
-			npc_stand()
-			resisting = FALSE
-		else
-			stand_attempts = 0
-			if(!handle_combat())
-				if(mode == AI_IDLE && !pickupTarget)
-					npc_idle()
-					if(del_on_deaggro && last_aggro_loss && (world.time >= last_aggro_loss + del_on_deaggro))
-						if(deaggrodel())
-							return TRUE
+		if(!resisting)
+			if(!(mobility_flags & MOBILITY_STAND) && (stand_attempts < 3))
+				resisting = TRUE
+				npc_stand()
+				resisting = FALSE
+			else
+				stand_attempts = 0
+				if(!handle_combat())
+					if(mode == AI_IDLE && !pickupTarget)
+						npc_idle()
+						if(del_on_deaggro && last_aggro_loss && (world.time >= last_aggro_loss + del_on_deaggro))
+							if(deaggrodel())
+								return TRUE
 	else
 		walk_to(src,0)
 		return TRUE

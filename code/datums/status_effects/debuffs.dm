@@ -117,7 +117,7 @@
 			healing -= 0.1
 			break //Only count the first bedsheet
 		if(health_ratio > 0.8)
-			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
+			owner.adjustToxLoss(healing * 0.5, FALSE, TRUE)
 		owner.adjustStaminaLoss(healing)
 	if(human_owner && human_owner.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
