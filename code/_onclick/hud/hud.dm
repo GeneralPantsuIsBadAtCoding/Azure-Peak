@@ -30,8 +30,6 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	var/atom/movable/screen/devil/soul_counter/devilsouldisplay
 
 	var/atom/movable/screen/act_intent/action_intent
-	var/atom/movable/screen/grain
-	var/atom/movable/screen/scannies
 	var/atom/movable/screen/act_intent/rogintent/magic/spell_intent
 	var/atom/movable/screen/zone_sel/zone_select
 	var/atom/movable/screen/pull_icon
@@ -100,14 +98,6 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 		var/atom/movable/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
-
-/datum/hud/new_player/New(mob/owner)
-	..()
-	scannies = new /atom/movable/screen/scannies
-	scannies.hud = src
-	static_inventory += scannies
-	if(owner.client?.prefs?.crt == TRUE)
-		scannies.alpha = 70
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
