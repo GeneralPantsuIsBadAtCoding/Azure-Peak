@@ -32,7 +32,8 @@
 		TRAIT_IGNOREDAMAGESLOWDOWN,
 		TRAIT_HARDDISMEMBER, //Decapping Volfs causes them to bug out, badly, and need admin intervention to fix. Bandaid fix.
 		TRAIT_PIERCEIMMUNE, //Prevents weapon dusting and caltrop effects due to them transforming when killed/stepping on shards.
-		TRAIT_IGNORESLOWDOWN
+		TRAIT_IGNORESLOWDOWN,
+		TRAIT_SHARPCLAW_EXTREME //Replaces their spell claws.
 	)
 	inherent_biotypes = MOB_HUMANOID
 	armor = 30
