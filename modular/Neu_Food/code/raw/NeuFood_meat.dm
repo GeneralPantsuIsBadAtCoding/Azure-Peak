@@ -51,24 +51,24 @@
 		long_cooktime = (100 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*10))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince))
 		if(isturf(loc)&& (found_table))
-			to_chat(user, "<span class='notice'>Stuffing a wiener...</span>")
+			to_chat(user, span_notice("Stuffing a wiener..."))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
 			if(do_after(user,long_cooktime, target = src))
 				new /obj/item/reagent_containers/food/snacks/rogue/meat/sausage(loc)
 				qdel(I)
 				qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/fat))
 		if(isturf(loc)&& (found_table))
-			to_chat(user, "<span class='notice'>Stuffing a wiener...</span>")
+			to_chat(user, span_notice("Stuffing a wiener..."))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
 			if(do_after(user,long_cooktime, target = src))
 				new /obj/item/reagent_containers/food/snacks/rogue/meat/sausage(loc)
 				qdel(I)
 				qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 

@@ -105,7 +105,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a fish pie...</span>")
+			to_chat(user, span_notice("Starting on a fish pie..."))
 			name = "unfinished fish pie"
 			process_step += 1
 			fishy = TRUE
@@ -113,13 +113,13 @@
 			qdel(I)
 			return
 		if(fishy && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the fish pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the fish pie. Needs more."))
 			process_step += 1
 			update_icon()
 			qdel(I)
 			return
 		if(fishy && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the fish pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the fish pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			update_icon()
 			qdel(I)
@@ -130,7 +130,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a meat pie...</span>")
+			to_chat(user, span_notice("Starting on a meat pie..."))
 			name = "unfinished meat pie"
 			process_step += 1
 			meaty = TRUE
@@ -138,13 +138,13 @@
 			qdel(I)
 			return
 		if(meaty && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the meat pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the meat pie. Needs more."))
 			process_step += 1
 			update_icon()
 			qdel(I)
 			return
 		if(meaty && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the meat pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the meat pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			update_icon()
 			qdel(I)
@@ -155,7 +155,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a pot pie...</span>")
+			to_chat(user, span_notice("Starting on a pot pie..."))
 			name = "unfinished pot pie"
 			process_step += 1
 			potpie = TRUE
@@ -164,14 +164,14 @@
 			qdel(I)
 			return
 		if(potpie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the pot pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the pot pie. Needs more."))
 			process_step += 1
 			var/mutable_appearance/pot2 = mutable_appearance(icon, "fill_pot2")
 			add_overlay(pot2)
 			qdel(I)
 			return
 		if(potpie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the pot pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the pot pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			var/mutable_appearance/pot3 = mutable_appearance(icon, "fill_pot3")
 			add_overlay(pot3)
@@ -183,7 +183,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a pot pie...</span>")
+			to_chat(user, span_notice("Starting on a pot pie..."))
 			name = "unfinished pot pie"
 			process_step += 1
 			potpie = TRUE
@@ -192,14 +192,14 @@
 			qdel(I)
 			return
 		if(potpie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the pot pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the pot pie. Needs more."))
 			process_step += 1
 			var/mutable_appearance/egg2 = mutable_appearance(icon, "fill_egg2")
 			add_overlay(egg2)
 			qdel(I)
 			return
 		if(potpie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the pot pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the pot pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			var/mutable_appearance/egg3 = mutable_appearance(icon, "fill_egg3")
 			add_overlay(egg3)
@@ -211,7 +211,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a pot pie...</span>")
+			to_chat(user, span_notice("Starting on a pot pie..."))
 			name = "unfinished pot pie"
 			process_step += 1
 			potpie = TRUE
@@ -220,14 +220,14 @@
 			qdel(I)
 			return
 		if(potpie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the pot pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the pot pie. Needs more."))
 			process_step += 1
 			var/mutable_appearance/animal2 = mutable_appearance(icon, "fill_fish2")
 			add_overlay(animal2)
 			qdel(I)
 			return
 		if(potpie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the pot pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the pot pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			var/mutable_appearance/animal3 = mutable_appearance(icon, "fill_fish3")
 			add_overlay(animal3)
@@ -246,7 +246,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a crab pie... You consider that shredded cabbage could be used as filler for one of the remaining ingredients. </span>")
+			to_chat(user, span_notice("Starting on a crab pie... You consider that shredded cabbage could be used as filler for one of the remaining ingredients. "))
 			name = "unfinished crab pie"
 			process_step += 1
 			crabby = TRUE
@@ -254,13 +254,13 @@
 			qdel(I)
 			return
 		if(crabby && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the crab pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the crab pie. Needs more."))
 			process_step += 1
 			update_icon()
 			qdel(I)
 			return
 		if(crabby && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the crab pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the crab pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			update_icon()
 			qdel(I)
@@ -270,11 +270,11 @@
 		if (process_step > 4 || process_step == 1)
 			return
 		if (substitute == TRUE)
-			to_chat(user, "<span class='notice'>There is too much cabbage in this pie already.</span>")
+			to_chat(user, span_notice("There is too much cabbage in this pie already."))
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(crabby && process_step >= 2 && process_step <= 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Substituting cabbage for crab meat in the crab pie...</span>")
+			to_chat(user, span_notice("Substituting cabbage for crab meat in the crab pie..."))
 			process_step += 1
 			substitute = TRUE
 			update_icon()
@@ -287,7 +287,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on an apple pie...</span>")
+			to_chat(user, span_notice("Starting on an apple pie..."))
 			name = "unfinished apple pie"
 			process_step += 1
 			applepie = TRUE
@@ -295,13 +295,13 @@
 			qdel(I)
 			return
 		if(applepie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the apple pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the apple pie. Needs more."))
 			process_step += 1
 			update_icon()
 			qdel(I)
 			return
 		if(applepie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the apple pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the apple pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			update_icon()
 			qdel(I)
@@ -312,7 +312,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a berry pie...</span>")
+			to_chat(user, span_notice("Starting on a berry pie..."))
 			name = "unfinished berrypie"
 			process_step += 1
 			berrypie = TRUE
@@ -321,14 +321,14 @@
 			qdel(I)
 			return
 		if(berrypie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the berry pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the berry pie. Needs more."))
 			process_step += 1
 			poisoning = TRUE
 			update_icon()
 			qdel(I)
 			return
 		if(berrypie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the berry pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the berry pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			poisoning = TRUE
 			update_icon()
@@ -340,7 +340,7 @@
 			return
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 		if(process_step == 1 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Starting on a berry pie...</span>")
+			to_chat(user, span_notice("Starting on a berry pie..."))
 			name = "unfinished berrypie"
 			process_step += 1
 			berrypie = TRUE
@@ -348,13 +348,13 @@
 			qdel(I)
 			return
 		if(berrypie && process_step == 2 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Adding filling to the berry pie. Needs more.</span>")
+			to_chat(user, span_notice("Adding filling to the berry pie. Needs more."))
 			process_step += 1
 			update_icon()
 			qdel(I)
 			return
 		if(berrypie && process_step == 3 && do_after(user,short_cooktime, target = src))
-			to_chat(user, "<span class='notice'>Filling the berry pie to the brim. Still lacks a pie roof.</span>")
+			to_chat(user, span_notice("Filling the berry pie to the brim. Still lacks a pie roof."))
 			process_step += 1
 			update_icon()
 			qdel(I)
@@ -456,7 +456,7 @@
 		if(stunning)
 			L.Paralyze(20) //splat!
 		L.adjust_blurriness(1)
-		L.visible_message("<span class='warning'>[L] is hit by [src]!</span>", "<span class='danger'>I'm hit by [src]!</span>")
+		L.visible_message(span_warning("[L] is hit by [src]!"), span_danger("I'm hit by [src]!"))
 	if(is_type_in_typecache(hit_atom, GLOB.creamable))
 		hit_atom.AddComponent(/datum/component/creamed, src)
 	qdel(src)

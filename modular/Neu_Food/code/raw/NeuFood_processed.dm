@@ -20,14 +20,14 @@
 		long_cooktime = (100 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*10))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince))
 		if(isturf(loc)&& (found_table))
-			to_chat(user, "<span class='notice'>Stuffing a wiener...</span>")
+			to_chat(user, span_notice("Stuffing a wiener..."))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
 			if(do_after(user,long_cooktime, target = src))
 				new /obj/item/reagent_containers/food/snacks/rogue/meat/sausage(loc)
 				qdel(I)
 				qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 
@@ -278,9 +278,9 @@
 		long_cooktime = (120 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*10))
 	if(istype(I, /obj/item/reagent_containers/powder/salt))
 		if(!reagents.has_reagent(/datum/reagent/consumable/milk, 15))
-			to_chat(user, "<span class='warning'>Not enough milk.</span>")
+			to_chat(user, span_warning("Not enough milk."))
 			return
-		to_chat(user, "<span class='warning'>Adding salt to the milk.</span>")
+		to_chat(user, span_warning("Adding salt to the milk."))
 		playsound(src, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
 		if(do_after(user,2 SECONDS, target = src))
 			reagents.remove_reagent(/datum/reagent/consumable/milk, 15)
@@ -293,9 +293,9 @@
 		long_cooktime = (200 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*20))
 	if(istype(I, /obj/item/kitchen/spoon))
 		if(!reagents.has_reagent(/datum/reagent/consumable/milk/salted, 15))
-			to_chat(user, "<span class='warning'>Not enough salted milk.</span>")
+			to_chat(user, span_warning("Not enough salted milk."))
 			return
-		user.visible_message("<span class='info'>[user] churns butter...</span>")
+		user.visible_message(span_info("[user] churns butter..."))
 		playsound(get_turf(user), 'modular/Neu_Food/sound/churn.ogg', 100, TRUE, -1)
 		if(do_after(user,long_cooktime, target = src))
 			reagents.remove_reagent(/datum/reagent/consumable/milk/salted, 15)
@@ -352,7 +352,7 @@
 		long_cooktime = (100 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*10))
 	if(istype(I, /obj/item/natural/cloth))
 		if(reagents.has_reagent(/datum/reagent/consumable/milk/salted, 5))
-			user.visible_message("<span class='info'>[user] strains fresh cheese...</span>")
+			user.visible_message(span_info("[user] strains fresh cheese..."))
 			playsound(src, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
 			if(do_after(user,long_cooktime, target = src))
 				reagents.remove_reagent(/datum/reagent/consumable/milk/salted, 5)
@@ -366,12 +366,12 @@
 			if(!reagents.has_reagent(/datum/reagent/water, 5))
 				removereg = /datum/reagent/water/gross
 				if(!reagents.has_reagent(/datum/reagent/water/gross, 5))
-					to_chat(user, "<span class='warning'>No water to soak in.</span>")
+					to_chat(user, span_warning("No water to soak in."))
 					return
 			wash_atom(T)
 			playsound(src, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
 			reagents.remove_reagent(removereg, 5)
-			user.visible_message("<span class='info'>[user] soaks [T] in [src].</span>")
+			user.visible_message(span_info("[user] soaks [T] in [src]."))
 			return
 	..()
 
@@ -383,7 +383,7 @@
 	var/found_table = locate(/obj/structure/table) in (loc)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
 		if(isturf(loc)&& (found_table))
-			user.visible_message("<span class='info'>[user] starts packing the cloth with fresh cheese...</span>")
+			user.visible_message(span_info("[user] starts packing the cloth with fresh cheese..."))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 			if(do_after(user,3 SECONDS, target = src))
 				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start(loc)
@@ -391,7 +391,7 @@
 				qdel(src)
 			return
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	..()
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start
@@ -411,7 +411,7 @@
 				qdel(I)
 				qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 
@@ -432,7 +432,7 @@
 				qdel(I)
 				qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 
@@ -456,7 +456,7 @@
 				desc = "Slowly solidifying, best left alone a bit longer."
 				addtimer(CALLBACK(src, mature_proc), 5 MINUTES)
 		else
-			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
+			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 

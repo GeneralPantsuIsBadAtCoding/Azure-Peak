@@ -309,7 +309,7 @@
 			!(locate(/obj/structure/table) in src.loc) && \
 			!(locate(/obj/structure/table/optable) in src.loc) && \
 			!(locate(/obj/item/storage/bag/tray) in src.loc))
-			to_chat(user, "<span class='warning'>I need to use a table.</span>")
+			to_chat(user, span_warning("I need to use a table."))
 			return FALSE
 
 		if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))

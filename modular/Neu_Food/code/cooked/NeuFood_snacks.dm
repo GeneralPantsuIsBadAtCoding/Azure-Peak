@@ -23,7 +23,7 @@
 		!(locate(/obj/structure/table) in src.loc) && \
 		!(locate(/obj/structure/table/optable) in src.loc) && \
 		!(locate(/obj/item/storage/bag/tray) in src.loc))
-		to_chat(user, "<span class='warning'>I need to use a table.</span>")
+		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	if(user.mind)
 		short_cooktime = (60 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*5))
@@ -45,14 +45,14 @@
 
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/onion_fried))
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-		to_chat(user, "<span class='notice'>Adding onions...</span>")
+		to_chat(user, span_notice("Adding onions..."))
 		if(do_after(user,short_cooktime, target = src))
 			new /obj/item/reagent_containers/food/snacks/rogue/onionsteak(loc)
 			qdel(I)
 			qdel(src)
 
 	else
-		to_chat(user, "<span class='warning'>You need to put [src] on a table to knead in the spice.</span>")
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
 
 
 /*	.............   Grenzelbun   ................ */
