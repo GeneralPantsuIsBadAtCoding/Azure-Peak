@@ -77,18 +77,6 @@
 		return TRUE
 	if(flags_inv == NONE)
 		return TRUE
-	var/list/worn_items = get_all_worn_items(human)
-	for(var/obj/item/item as anything in worn_items)
-		if(item.flags_inv & flags_inv)
-			return FALSE
-	return TRUE
-
-/proc/get_all_worn_items(mob/living/carbon/human/human)
-	var/static/list/all_item_slots = ALL_ITEM_SLOTS
-	var/list/worn_items = list()
-	for(var/slot in all_item_slots)
-		var/obj/item/item = human.get_item_by_slot(slot)
-		if(!item)
-			continue
-		worn_items += item
-	return worn_items
+	// this previously monumentally sucked and iterated over every item in a person's inventory every time their appearance needed to be checked, which was often.
+	// replaced it by checking what hide slots are obscured at any given point in a /mob/'s `obscured_flags` var, so we check that instead
+	return !(human.obscured_flags & flags_inv)

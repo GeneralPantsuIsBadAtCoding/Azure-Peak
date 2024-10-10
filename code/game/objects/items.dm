@@ -683,7 +683,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			wield(user)
 		else
 			ungrip(user)
-
+	
+	if (flags_inv)
+		user.obscured_flags |= flags_inv
+	
 	update_transform()
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
