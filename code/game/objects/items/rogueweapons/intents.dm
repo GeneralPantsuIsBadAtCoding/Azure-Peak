@@ -376,7 +376,31 @@
 
 /datum/intent/unarmed/claw
 	blade_class = BCLASS_CUT
+	icon_state = "incut"
 	item_d_type = "slash"
+	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
+	name = "claw slash"
+	attack_verb = list("slashes", "gores", "mauls", "cuts")
+	miss_text = "swings a clawed fist at the air!"
+	miss_sound = "bluntwooshlarge"
+
+/datum/intent/unarmed/claw/medium
+	blade_class = BCLASS_CUT
+	item_d_type = "slash"
+	damfactor = 1.1 //10% more dmg.
+	penfactor = 8 //Reduce if a little too strong.
+
+/datum/intent/unarmed/claw/high
+	blade_class = BCLASS_CUT
+	item_d_type = "slash"
+	damfactor = 1.2 //20% more dmg.
+	penfactor = 11 //Reduce if a little too strong.
+
+/datum/intent/unarmed/claw/extreme
+	blade_class = BCLASS_CUT
+	item_d_type = "slash"
+	damfactor = 1.6 //60% more dmg. Scales with STR.
+	penfactor = 30 //Reduce if a little too strong.
 
 /datum/intent/unarmed/shove
 	name = "shove"

@@ -557,6 +557,11 @@
 	if(isliving(src))
 		L = src
 	var/client/client = L.client
+	var/list/traits_to_hold = list(TRAIT_SHARPCLAW_DANGEROUS,TRAIT_SHARPCLAW_EXTREME,TRAIT_SHARPCLAW_LETHAL,TRAIT_SHARPCLAW_NORMAL)
+	var/datum/additional_intent
+	for(var/TRAIT in traits_to_hold) //Ensure to do a trait check. Expensive.
+		if(HAS_TRAIT(L,TRAIT)) 
+			additional_intent = text2path("[TRAIT]")
 	if(L.IsSleeping() || L.surrendering)
 		if(cmode)
 			playsound_local(src, 'sound/misc/comboff.ogg', 100)
@@ -569,12 +574,20 @@
 	if(cmode)
 		playsound_local(src, 'sound/misc/comboff.ogg', 100)
 		SSdroning.play_area_sound(get_area(src), client)
+		if(additional_intent)
+			L.possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
+			L.base_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM) //Shartcode. TO-DO: Add a way to track base-intents better.
+			L.update_a_intents()
 		cmode = FALSE
 		if(client && HAS_TRAIT(src, TRAIT_SCREENSHAKE))
 			animate(client, pixel_y)
 	else
 		cmode = TRUE
 		playsound_local(src, 'sound/misc/combon.ogg', 100)
+		if(additional_intent)
+			L.base_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, additional_intent)
+			L.possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, additional_intent)
+			L.update_a_intents()
 		if(L.cmode_music)
 			SSdroning.play_combat_music(L.cmode_music, client)
 		if(client && HAS_TRAIT(src, TRAIT_SCHIZO_AMBIENCE))
