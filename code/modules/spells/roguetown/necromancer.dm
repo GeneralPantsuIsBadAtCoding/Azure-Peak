@@ -82,7 +82,7 @@
 	var/turf/T = get_turf(targets[1])
 	if(isopenturf(T))
 		var/mob/living/carbon/human/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
-		var/list/candidates = pollCandidatesForMob("Do you want to play as a Necromancer's skeleton?", null, null, null, 100, target, POLL_IGNORE_NECROMANCER_SKELETON)
+		var/list/candidates = pollCandidatesForMob("Do you want to play as a Necromancer's skeleton?", ROLE_NECRO_SKELETON, null, null, 100, target, POLL_IGNORE_NECROMANCER_SKELETON)
 		if(LAZYLEN(candidates))
 			var/mob/C = pick(candidates)
 			if(istype(C,/mob/dead/new_player))
