@@ -44,48 +44,56 @@
     text-align: center;
 }
 
-.command {
-    background-color: #948f02;
+.nobles {
+    background-color: #aa83b9;
+    color: #443a39;
 }
 
-.security {
-    background-color: #a30000;
+.courtier {
+    background-color: #81adc8;
+    color: #443a39;
 }
 
-.engineering {
-    background-color: #fb5613;
+.church {
+    background-color: #c0ba8d;
+    color: #443a39;
 }
 
-.medical {
-    background-color: #337296;
+.garrison {
+    background-color: #b18484;
+    color: #443a39;
 }
 
-.science {
-    background-color: #993399;
+.yeomen {
+    background-color: #819e82;
+    color: #443a39;
 }
 
-.supply {
-    background-color: #a8732b;
+.peasants {
+    background-color: #b09262;
+    color: #443a39;
 }
 
-.silicon {
-    background-color: #ff00ff;
+.mercenaries {
+    background-color: #c86e3a;
+    color: #443a39;
+}
+
+.youngfolk {
+    background-color: #ffc0cb;
+    color: #443a39;
 }
 
 .abstract {
-    background-color: #708090;
-}
-
-.civilian {
-    background-color: #6eaa2c;
+    background-color: #374048;
 }
 
 .ghostandotherroles {
-    background-color: #5c00e6;
+    background-color: #2e0073;
 }
 
 .antagonistpositions {
-    background-color: #6d3f40;
+    background-color: #361f1f;
 }
 
 .inputbox {
