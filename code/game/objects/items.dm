@@ -680,6 +680,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			wield(user)
 		else
 			ungrip(user)
+	
+	if (isliving(user) && slot != ITEM_SLOT_HANDS)
+		var/mob/living/living_user = user
+		living_user.rebuild_obscured_flags() // AZURE EDIT: cache our equipped items `flags_inv` values
 
 	update_transform()
 

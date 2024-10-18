@@ -77,18 +77,16 @@
 		return TRUE
 	if(flags_inv == NONE)
 		return TRUE
-	var/list/worn_items = get_all_worn_items(human)
-	for(var/obj/item/item as anything in worn_items)
-		if(item.flags_inv & flags_inv)
-			return FALSE
-	return TRUE
+	// this previously monumentally sucked and iterated over every item in a person's inventory every time their appearance needed to be checked, which was often.
+	// replaced it by checking what hide slots are obscured at any given point in a /mob/'s `obscured_flags` var, so we check that instead
+	return !(human.obscured_flags & flags_inv)
 
-/proc/get_all_worn_items(mob/living/carbon/human/human)
-	var/static/list/all_item_slots = ALL_ITEM_SLOTS
-	var/list/worn_items = list()
-	for(var/slot in all_item_slots)
-		var/obj/item/item = human.get_item_by_slot(slot)
-		if(!item)
-			continue
-		worn_items += item
-	return worn_items
+/mob/living/proc/rebuild_obscured_flags()
+	// we do this when we equip and unequip anything to make sure all our flags are set properly
+	var/list/equipped_items = get_equipped_items(FALSE)
+	var/new_flags = NONE
+	for(var/obj/item/thing in equipped_items)
+		if (thing.flags_inv)
+			new_flags |= thing.flags_inv
+	
+	obscured_flags = new_flags

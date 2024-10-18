@@ -350,6 +350,7 @@
 		if(!QDELETED(src))
 			update_inv_mouth()
 
+
 //	if(!QDELETED(src))
 //		if(I.eweight)
 //			encumbrance -= I.eweight

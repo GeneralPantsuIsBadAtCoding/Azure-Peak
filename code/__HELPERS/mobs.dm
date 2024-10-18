@@ -228,6 +228,7 @@ GLOBAL_LIST_EMPTY(species_list)
 /mob
 	var/doing = 0
 	var/pronouns = null // LETHALSTONE ADDITION: this is cheap so i'm doing it. preferences in human will set this appropriately
+	var/obscured_flags = NONE
 
 /proc/do_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
 	if(!user)
