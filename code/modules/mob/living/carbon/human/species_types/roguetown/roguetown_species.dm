@@ -58,11 +58,6 @@
 
 	message = treat_message_accent(message, strings("accent_universal.json", "universal"), REGEX_FULLWORD)
 
-	message = treat_message_accent(message, get_accent(source), REGEX_FULLWORD)
-	message = treat_message_accent(message, get_accent_start(source), REGEX_STARTWORD)
-	message = treat_message_accent(message, get_accent_end(source), REGEX_ENDWORD)
-	message = treat_message_accent(message, get_accent_any(source), REGEX_ANY)
-
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 
