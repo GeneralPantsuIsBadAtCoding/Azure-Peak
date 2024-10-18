@@ -421,3 +421,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TIMESTOP_TRAIT "timestop"
 #define HUGBOX_TRAIT "hugbox"
 #define ADVENTURER_TRAIT "adventurer"
+
+
+//Claws/Melee traits - WARNING: DO NOT DO THIS.
+#define TRAIT_SHARPCLAW_NORMAL "/datum/intent/unarmed/claw" //this is where the jank begins. Store a datum path.
+#define TRAIT_SHARPCLAW_DANGEROUS "/datum/intent/unarmed/claw/medium" //Middle-way. Give this to specific items?
+#define TRAIT_SHARPCLAW_LETHAL "/datum/intent/unarmed/claw/high" //Antag claws (Such as Vampyre Nails)
+#define TRAIT_SHARPCLAW_EXTREME "/datum/intent/unarmed/claw/extreme" //Werewolf Claws.
+
