@@ -54,8 +54,11 @@
 
 	var/farming_skill = user.mind.get_skill_level(/datum/skill/labor/farming)
 	var/is_legendary = FALSE
+	var/can_harvest_special = FALSE
 	if(farming_skill == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
 		is_legendary = TRUE //we do
+	if(plant.trait_required && (HAS_TRAIT(user, plant.trait_required)) && plant.special_harvest)
+		can_harvest_special = TRUE
 	var/chance_to_ruin = 50 - (farming_skill * 25)
 	if(prob(chance_to_ruin))
 		ruin_produce()
@@ -73,7 +76,7 @@
 		modifier += 1
 
 	to_chat(user, span_notice(feedback))
-	yield_produce(modifier, is_legendary)
+	yield_produce(modifier, is_legendary, can_harvest_special)
 
 /obj/structure/soil/proc/try_handle_harvest(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/rogueweapon/sickle))
@@ -597,13 +600,15 @@
 	update_icon()
 
 /// Yields produce on its tile if it's ready for harvest
-/obj/structure/soil/proc/yield_produce(modifier = 0, is_legendary = FALSE)
+/obj/structure/soil/proc/yield_produce(modifier = 0, is_legendary = FALSE, can_harvest_special = FALSE)
 	if(!produce_ready)
 		return
 	var/base_amount = rand(plant.produce_amount_min, plant.produce_amount_max)
 	var/spawn_amount = max(base_amount + modifier, 1)
 	for(var/i in 1 to spawn_amount)
 		new plant.produce_type(loc)
+	if(can_harvest_special)
+		new plant.special_harvest(loc)
 	produce_ready = FALSE
 	if(!plant.perennial)
 		if(is_legendary) //the user has legendary skill

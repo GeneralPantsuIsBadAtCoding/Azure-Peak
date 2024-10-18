@@ -18,6 +18,8 @@
 	var/produce_amount_min = 2
 	/// Amount of maximum produce to make on harvest
 	var/produce_amount_max = 3
+	/// Special items to harvest that require a trait_required
+	var/special_harvest
 	/// How much nutrition will the plant require to mature fully
 	var/maturation_nutrition = 30
 	/// How much nutrition will the plant require to make produce
@@ -32,6 +34,8 @@
 	var/seed_color
 	/// Whether the plant can grow underground
 	var/can_grow_underground = FALSE
+	///If the plant requires a trait to plant, and harvest special items
+	var/trait_required
 
 /datum/plant_def/New()
 	. = ..()
@@ -95,8 +99,13 @@
 	icon = 'icons/roguetown/misc/crops.dmi'
 	icon_state = "fyritius"
 	produce_type = /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius
+	maturation_nutrition = 40
+	produce_nutrition = 40
 	produce_amount_min = 1
 	produce_amount_max = 3
+	perennial = TRUE
+	special_harvest = /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/special
+	trait_required = TRAIT_EXOTIC_GROWER
 
 /datum/plant_def/berry
 	name = "berry bush"

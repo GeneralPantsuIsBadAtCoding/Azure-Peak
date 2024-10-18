@@ -54,6 +54,10 @@
 		return
 	if(!plant_def_type)
 		return
+	var/datum/plant_def/def = GLOB.plant_defs[plant_def_type]
+	if(def.trait_required && !(HAS_TRAIT(user, def.trait_required)))
+		to_chat(user, span_warning("Sowing this exotic plant is beyond me!"))
+		return
 	to_chat(user, span_notice("I plant \the [src] in \the [soil]."))
 	soil.insert_plant(GLOB.plant_defs[plant_def_type])
 	qdel(src)
