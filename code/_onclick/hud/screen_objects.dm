@@ -1905,30 +1905,6 @@
 	screen_loc = rogueui_fat
 	layer = HUD_LAYER+0.1
 
-/atom/movable/screen/grain
-	icon = 'icons/grain.dmi'
-	icon_state = "grain"
-	name = ""
-	screen_loc = "1,1"
-	mouse_opacity = 0
-	alpha = 55 // I DO SEE NOTHING WITH 70 ALPHA
-//	layer = 20.5
-//	plane = 20
-	layer = 13
-	plane = 0
-	blend_mode = 4
-
-/atom/movable/screen/scannies
-	icon = 'icons/mob/roguehudback2.dmi'
-	icon_state = "crt"
-	name = ""
-	screen_loc = ui_backhudl
-	mouse_opacity = 0
-	alpha = 0
-	layer = 24
-	plane = 24
-	blend_mode = BLEND_MULTIPLY
-
 /atom/movable/screen/char_preview
 	name = "Me."
 	icon_state = ""
