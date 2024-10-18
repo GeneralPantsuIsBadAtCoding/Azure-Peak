@@ -253,17 +253,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/otherZ = list()
 
-	#ifndef FASTLOAD
-	//otherZ += load_map_config("_maps/map_files/otherz/smallforest.json")
-	//otherZ += load_map_config("_maps/map_files/otherz/smalldecap.json")
-	//otherZ += load_map_config("_maps/map_files/otherz/smallswamp.json")
-	//otherZ += load_map_config("_maps/map_files/otherz/bog.json")
-	//otherZ += load_map_config("_maps/map_files/otherz/underworld.json") good bye shitty lifeweb reference
-	#endif
 	#ifdef ROGUEWORLD
 	otherZ += load_map_config("_maps/map_files/otherz/rogueworld.json")
 	#endif
-//	otherZ += load_map_config("_maps/map_files/roguetown/otherz/special.json")
 	if(otherZ.len)
 		for(var/datum/map_config/OtherZ in otherZ)
 			LoadGroup(FailedZs, OtherZ.map_name, OtherZ.map_path, OtherZ.map_file, OtherZ.traits, ZTRAITS_STATION)
