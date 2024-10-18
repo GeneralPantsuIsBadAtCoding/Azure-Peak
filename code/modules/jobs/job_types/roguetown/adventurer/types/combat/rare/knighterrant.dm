@@ -4,7 +4,6 @@
 	allowed_races = RACES_ALL_KINDS
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/adventurer/knighterrant
-	maximum_possible_slots = 4
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_NOBLE)
 	category_tags = list(CTAG_ADVENTURER)
 

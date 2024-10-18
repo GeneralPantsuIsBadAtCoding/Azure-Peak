@@ -4,7 +4,6 @@
 	allowed_sexes = list(FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/amazon
-	maximum_possible_slots = 2
 	category_tags = list(CTAG_ADVENTURER)
 
 	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_NOPAINSTUN, TRAIT_STEELHEARTED)
