@@ -1,11 +1,11 @@
 // Lesser miracle
 /obj/effect/proc_holder/spell/invoked/lesser_heal
-	name = "Lesser Miracle"
+	name = "Miracle"
 	overlay_state = "lesserheal"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
-	range = 7
+	range = 4
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/heal.ogg'
@@ -26,20 +26,20 @@
 			target.fire_act(1,10)
 			return TRUE
 		var/conditional_buff = FALSE
-		var/situational_bonus = 10
+		var/situational_bonus = 1
 		//this if chain is stupid, replace with variables on /datum/patron when possible?
 		switch(user.patron.type)
 			if(/datum/patron/old_god)
 				target.visible_message(span_info("A strange stirring feeling pours from [target]!"), span_notice("Sentimental thoughts drive away my pains!"))
 			if(/datum/patron/divine/astrata)
 				target.visible_message(span_info("A wreath of gentle light passes over [target]!"), span_notice("I'm bathed in holy light!"))
-				// during the day, heal 10 more (basic as fuck)
+				// during the day, heal 1 more (basic as fuck)
 				if (GLOB.tod == "day")
 					conditional_buff = TRUE
 			if(/datum/patron/divine/noc)
 				target.visible_message(span_info("A shroud of soft moonlight falls upon [target]!"), span_notice("I'm shrouded in gentle moonlight!"))
-				// during the night, heal 10 more (i wish this was more interesting but they're twins so whatever)
-				if (GLOB.tod == "day")
+				// during the night, heal 1 more (i wish this was more interesting but they're twins so whatever)
+				if (GLOB.tod == "night")
 					conditional_buff = TRUE
 			if(/datum/patron/divine/dendor)
 				target.visible_message(span_info("A rush of primal energy spirals about [target]!"), span_notice("I'm infused with primal energies!"))
@@ -48,7 +48,7 @@
 				// the more natural stuff around US, the more we heal
 				for (var/obj/O in oview(5, user))
 					if (O in natural_stuff)
-						situational_bonus = min(situational_bonus + 1, 25)
+						situational_bonus = min(situational_bonus + 0.1, 2)
 				if (situational_bonus > 0)
 					conditional_buff = TRUE
 			if(/datum/patron/divine/abyssor)
@@ -56,13 +56,13 @@
 				// if our target is standing in water, heal a flat amount extra
 				if (istype(get_turf(target), /turf/open/water))
 					conditional_buff = TRUE
-					situational_bonus = 15
+					situational_bonus = 1.5
 			if(/datum/patron/divine/ravox)
 				target.visible_message(span_info("An air of righteous defiance rises near [target]!"), span_notice("I'm filled with an urge to fight on!"))
 				situational_bonus = 0
 				// the bloodier the area around our target is, the more we heal
 				for (var/obj/effect/decal/cleanable/blood/O in oview(5, target))
-					situational_bonus = min(situational_bonus + 1, 25)
+					situational_bonus = min(situational_bonus + 0.1, 2)
 				conditional_buff = TRUE
 			if(/datum/patron/divine/necra)
 				target.visible_message(span_info("A sense of quiet respite radiates from [target]!"), span_notice("I feel the Undermaiden's gaze turn from me for now!"))
@@ -71,13 +71,13 @@
 					// if the target is "close to death" (at or below 25% health)
 					if (C.health <= (C.maxHealth * 0.25))
 						conditional_buff = TRUE
-						situational_bonus = 25
+						situational_bonus = 2.5
 			if(/datum/patron/divine/xylix)
 				target.visible_message(span_info("A fugue seems to manifest briefly across [target]!"), span_notice("My wounds vanish as if they had never been there! "))
 				// half of the time, heal a little (or a lot) more - flip the coin
 				if (prob(50))
 					conditional_buff = TRUE
-					situational_bonus = rand(1, 25)
+					situational_bonus = rand(1, 2.5)
 			if(/datum/patron/divine/pestra)
 				target.visible_message(span_info("An aura of clinical care encompasses [target]!"), span_notice("I'm sewn back together by sacred medicine!"))
 				// pestra always heals a little more toxin damage and restores a bit more blood
@@ -89,8 +89,8 @@
 				// extra healing for every source of fire/light near us
 				situational_bonus = 0
 				for (var/obj/O in oview(5, user))
-					if (O in firey_stuff)
-						situational_bonus = min(situational_bonus + 5, 25)
+					if (O.type in firey_stuff)
+						situational_bonus = min(situational_bonus + 0.5, 2.5)
 				if (situational_bonus > 0)
 					conditional_buff = TRUE
 			if(/datum/patron/divine/eora)
@@ -99,16 +99,16 @@
 				situational_bonus = 0
 				if (HAS_TRAIT(target, TRAIT_PACIFISM))
 					conditional_buff = TRUE
-					situational_bonus = 25
+					situational_bonus = 2.5
 				if (HAS_TRAIT(user, TRAIT_PACIFISM))
 					conditional_buff = TRUE
-					situational_bonus += 15
+					situational_bonus += 1.5
 			if(/datum/patron/inhumen/zizo)
 				target.visible_message(span_info("Vital energies are sapped towards [target]!"), span_notice("The life around me pales as I am restored!"))
 				// set up a ritual pile of bones (or just cast near a stack of bones whatever) around us for massive bonuses, cap at 50 for 75 healing total (wowie)
 				situational_bonus = 0
 				for (var/obj/item/stack/sheet/bone/O in oview(5, user))
-					situational_bonus = min(situational_bonus + 5, 50)
+					situational_bonus = min(situational_bonus + 0.5, 5)
 				if (situational_bonus > 0)
 					conditional_buff = TRUE
 			if(/datum/patron/inhumen/graggar)
@@ -117,14 +117,14 @@
 				var/toxloss = target.getToxLoss()
 				if (toxloss >= 10)
 					conditional_buff = TRUE
-					situational_bonus = 25
+					situational_bonus = 2.5
 					target.adjustToxLoss(situational_bonus) // remember we do a global toxloss adjust down below so this is okay
 			if(/datum/patron/inhumen/matthios)
 				target.visible_message(span_info("A wreath of... strange light passes over [target]?"), span_notice("I'm bathed in a... strange holy light?"))
 				// COMRADES! WE MUST BAND TOGETHER!
 				if (HAS_TRAIT(target, TRAIT_COMMIE))
 					conditional_buff = TRUE
-					situational_bonus = 25
+					situational_bonus = 2.5
 			if(/datum/patron/inhumen/baotha)
 				target.visible_message(span_info("Hedonistic impulses and emotions throb all about from [target]."), span_notice("An intoxicating rush of narcotic delight wipes away my pains!"))
 				// i wanted to do something with pain here but it doesn't seem like pain is actually parameterized anywhere so... better necra it is - if they're below 50% health, they get 25 extra healing
@@ -132,41 +132,35 @@
 					var/mob/living/carbon/C = target
 					if (C.health <= (C.maxHealth * 0.5))
 						conditional_buff = TRUE
-						situational_bonus = 25
+						situational_bonus = 2.5
 			if(/datum/patron/godless)
 				target.visible_message(span_info("Without any particular cause or reason, [target] is healed!"), span_notice("My wounds close without cause."))
 			else
 				target.visible_message(span_info("A choral sound comes from above and [target] is healed!"), span_notice("I am bathed in healing choral hymns!"))
 
-		var/healing = 25
+		var/healing = 2.5
 		if (conditional_buff)
 			to_chat(user, "Channeling my patron's power is easier in these conditions!")
 			healing += situational_bonus
 
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
-			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-			if(affecting)
-				if(affecting.heal_damage(healing, healing))
-					C.update_damage_overlays()
-				if(affecting.heal_wounds(healing))
-					C.update_damage_overlays()
+			var/datum/status_effect/buff/healing/heal_effect = C.apply_status_effect(/datum/status_effect/buff/healing)
+			heal_effect.healing_on_tick = healing
 		else
-			target.adjustBruteLoss(-healing)
-			target.adjustFireLoss(-healing)
-		target.adjustToxLoss(-healing)
-		target.adjustOxyLoss(-healing)
+			target.adjustBruteLoss(-healing*10)
+			target.adjustFireLoss(-healing*10)
 		return TRUE
 	return FALSE
 
 // Miracle
 /obj/effect/proc_holder/spell/invoked/heal
-	name = "Miracle"
+	name = "Fortify"
 	overlay_state = "astrata"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
-	range = 7
+	range = 4
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 //	chargedloop = /datum/looping_sound/invokeholy
@@ -192,17 +186,9 @@
 		target.visible_message(span_info("A wreath of gentle light passes over [target]!"), span_notice("I'm bathed in holy light!"))
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
-			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-			if(affecting)
-				if(affecting.heal_damage(50, 50))
-					C.update_damage_overlays()
-				if(affecting.heal_wounds(50))
-					C.update_damage_overlays()
+			C.apply_status_effect(/datum/status_effect/buff/fortify)
 		else
 			target.adjustBruteLoss(-50)
 			target.adjustFireLoss(-50)
-		target.adjustToxLoss(-50)
-		target.adjustOxyLoss(-50)
-		target.blood_volume += BLOOD_VOLUME_SURVIVE
 		return TRUE
 	return FALSE

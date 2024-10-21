@@ -175,6 +175,8 @@
 		return FALSE
 	if(mob_timers && amount > 0)
 		mob_timers["lastoxydam"] = world.time
+	if(has_status_effect(/datum/status_effect/buff/fortify) && amount < 0)
+		amount *= 1.5
 	oxyloss = CLAMP((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()

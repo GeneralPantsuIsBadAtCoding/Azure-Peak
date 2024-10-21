@@ -302,6 +302,8 @@
 	name = "healing glow"
 	icon_state = "heal"
 	duration = 15
+	plane = GAME_PLANE_UPPER
+	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/temp_visual/heal/Initialize(mapload, set_color)
 	if(set_color)
