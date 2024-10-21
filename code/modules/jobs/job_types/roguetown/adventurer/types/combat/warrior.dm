@@ -37,15 +37,18 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-			var/weapons = list("Bastard Sword","Mace","Billhook","Battle Axe")
+			var/weapons = list("Bastard Sword & Shield","Greatsword","Mace & Shield","Billhook","Battle Axe")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
 			switch(weapon_choice)
-				if("Bastard Sword")
+				if("Bastard Sword & Shield")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 					beltr = /obj/item/rogueweapon/sword/long
 					backr = /obj/item/rogueweapon/shield/wood
-				if("Mace")
+				if("Greatsword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					r_hand = /obj/item/rogueweapon/greatsword/zwei
+				if("Mace & Shield")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr =/obj/item/rogueweapon/mace/spiked
 					backr = /obj/item/rogueweapon/shield/wood
@@ -86,15 +89,18 @@
 			H.change_stat("intelligence", 1)
 			H.change_stat("speed", 1)
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/scale // No helms for monster hunters.
-			var/weapons = list("Bastard Sword","Mace","Billhook","Battle Axe")
+			var/weapons = list("Bastard Sword & Shield","Greatsword","Mace & Shield","Billhook","Battle Axe")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
 			switch(weapon_choice)
-				if("Bastard Sword")
+				if("Bastard Sword & Shield")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 					beltr = /obj/item/rogueweapon/sword/long
 					backr = /obj/item/rogueweapon/shield/wood
-				if("Mace")
+				if("Greatsword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					r_hand = /obj/item/rogueweapon/greatsword/zwei
+				if("Mace & Shield")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr =/obj/item/rogueweapon/mace/spiked
 					backr = /obj/item/rogueweapon/shield/wood

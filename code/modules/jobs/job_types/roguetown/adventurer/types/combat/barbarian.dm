@@ -12,15 +12,15 @@
 /datum/outfit/job/roguetown/adventurer/barbarian/pre_equip(mob/living/carbon/human/H)
 	..() // Compared to the Warrior the barbarian is more suited to the wilds. But they are able to make use of almost any weapon by talent and killer instinct.
 	H.adjust_blindness(-3)
-	var/classes = list("Warrior","Hunter Killer","Ravager")
+	var/classes = list("Brute","Hunter Killer","Ravager")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
-		if("Warrior")
+		if("Brute")
 			H.set_blindness(0)
 			to_chat(H, span_warning("Barbarians are great warriors of the outlands, often regarded as the strongest of their tribes -- should they have any that live. These incredible titans of strength and brutality are motivated most often by a single... all consuming instinct. SURVIVE."))
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
@@ -33,14 +33,12 @@
 			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-			beltr = /obj/item/rogueweapon/sword/iron
 			belt = /obj/item/storage/belt/rogue/leather
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-			beltl = /obj/item/rogueweapon/huntingknife
 			backl = /obj/item/storage/backpack/rogue/satchel
 			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -52,6 +50,21 @@
 			H.change_stat("constitution", 3)
 			H.change_stat("endurance", 2)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+			var/weapons = list("Shortsword & Knife (Default)","Bastard Sword","Axe")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			H.set_blindness(0)
+			switch(weapon_choice)
+				if("Shortsword & Knife (Default)")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+					beltr = /obj/item/rogueweapon/sword/iron
+					beltl = /obj/item/rogueweapon/huntingknife
+				if("Bastard Sword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					r_hand = /obj/item/rogueweapon/sword/long
+				if("Axe")
+					H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+					beltr = /obj/item/rogueweapon/stoneaxe/woodcut
 		if("Hunter Killer")
 			H.set_blindness(0)
 			to_chat(H, span_warning("Barbarians are great warriors of the outlands, often regarded as the strongest of their tribes -- should they have any that live. These incredible titans of strength and brutality are motivated most often by a single... all consuming instinct. SURVIVE."))
