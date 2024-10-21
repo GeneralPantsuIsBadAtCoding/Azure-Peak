@@ -33,8 +33,11 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
-	H.change_stat("intelligence", 3)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // Mad doctor/duelist. Surgical precision strikes, no light armor. Feint/Dodge sorta fighter
+	H.change_stat("intelligence", 4)
 	H.change_stat("fortune", 1)
+	H.change_stat("speed", 3)
 	if(H.age == AGE_OLD)
 		H.change_stat("speed", -1)
 		H.change_stat("intelligence", 1)

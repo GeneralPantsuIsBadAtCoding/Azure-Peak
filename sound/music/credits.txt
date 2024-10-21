@@ -28,3 +28,5 @@ guitar (8).ogg: https://youtu.be/8B6jOUzBKYc
 guitar (9).ogg: https://youtu.be/tux7GLWmV2M
 guitar (10).ogg: https://open.spotify.com/track/37yQRGfndzGwUUScYOBMyk?si=d2d8c73cb7eb4723
 roundend-vote-sound.ogg: A snippet of Thief Gold Soundtrack: Track 3 - Lord Bafford's Manor
+banditcamp.ogg: Tooth and Tail OST (2017) - Fuel For The Firebrand
+traitor.ogg: Tooth and Tail OST (2017) - Bellafide (Firebrand of The Longcoats)

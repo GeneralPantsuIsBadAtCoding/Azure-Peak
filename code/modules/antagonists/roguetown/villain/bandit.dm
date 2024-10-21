@@ -11,8 +11,8 @@
 		"I WILL NOT FOLLOW YOUR RULES!",
 	)
 	rogue_enabled = TRUE
-	var/tri_amt
-	var/contrib
+	var/favor = 150
+	var/totaldonated = 0
 
 /datum/antagonist/bandit/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
 	if(istype(examined_datum, /datum/antagonist/bandit))
@@ -27,7 +27,7 @@
 	finalize_bandit()
 
 /datum/antagonist/bandit/proc/finalize_bandit()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/music/traitor.ogg', 80, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/music/traitor.ogg', 60, FALSE, pressure_affected = FALSE)
 	var/mob/living/carbon/human/H = owner.current
 	ADD_TRAIT(H, TRAIT_BANDITCAMP, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
@@ -75,12 +75,11 @@
 
 /datum/antagonist/bandit/roundend_report()
 	if(owner?.current)
-		var/amt = tri_amt
 		var/the_name = owner.name
 		if(ishuman(owner.current))
 			var/mob/living/carbon/human/H = owner.current
 			the_name = H.real_name
-		if(!amt)
+		if(!totaldonated)
 			to_chat(world, "[the_name] was a bandit.")
 		else
-			to_chat(world, "[the_name] was a bandit. He stole [amt] triumphs worth of loot.")
+			to_chat(world, "[the_name] was a bandit. Their band stole [totaldonated] mammons worth of loot!")

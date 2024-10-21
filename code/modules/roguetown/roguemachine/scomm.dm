@@ -466,7 +466,7 @@
 	muteinmouth = TRUE
 	var/listening = TRUE
 	var/speaking = TRUE
-	sellprice = 100
+	sellprice = 0
 
 /obj/item/mattcoin/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_COMMIE))

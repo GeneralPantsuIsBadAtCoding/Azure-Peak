@@ -27,9 +27,7 @@
 				spawn(5)
 				say("Blueblood for the Freefolk!")
 				playsound(src, 'sound/vo/mobs/ghost/laugh (5).ogg', 100, TRUE)
-				return
-			else
-				
+				return			
 	if(H in SStreasury.bank_accounts)
 		var/amt = SStreasury.bank_accounts[H]
 		if(!amt)
@@ -69,7 +67,8 @@
 		budget2change(coin_amt*mod, user, selection)
 	else
 		to_chat(user, span_warning("The machine bites my finger."))
-		icon_state = "atm-b"
+		if(!drilled)
+			icon_state = "atm-b"
 		H.flash_fullscreen("redflash3")
 		playsound(H, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
 		SStreasury.create_bank_account(H)
@@ -143,16 +142,19 @@
 		drilled = TRUE
 		drilling = FALSE
 	else
-		loc.visible_message(span_warning("A horrible scraping sound emanates from the Crown as it does its work..."))
-		playsound(src, 'sound/misc/TheDrill.ogg', 70, TRUE)
-		spawn(100) // The time it takes to complete an interval. If you adjust this, please adjust the sound too. It's 'about' perfect at 100. Anything less It'll start overlapping.
-			loc.visible_message(span_warning("The meister spills its bounty!"))
-			SStreasury.treasury_value -= 50 // Takes from the treasury
-			mammonsiphoned += 50
-			budget2change(50, src, "SILVER")
-			playsound(src, 'sound/misc/coindispense.ogg', 70, TRUE)
-			SStreasury.log_to_steward("-[50] exported mammon to the Freefolks!")
-			drill(src)
+		if(drilling)
+			loc.visible_message(span_warning("A horrible scraping sound emanates from the Crown as it does its work..."))
+			playsound(src, 'sound/misc/TheDrill.ogg', 70, TRUE)
+			spawn(100) // The time it takes to complete an interval. If you adjust this, please adjust the sound too. It's 'about' perfect at 100. Anything less It'll start overlapping.
+				loc.visible_message(span_warning("The meister spills its bounty!"))
+				SStreasury.treasury_value -= 50 // Takes from the treasury
+				mammonsiphoned += 50
+				budget2change(50, src, "SILVER")
+				playsound(src, 'sound/misc/coindispense.ogg', 70, TRUE)
+				SStreasury.log_to_steward("-[50] exported mammon to the Freefolks!")
+				drill(src)
+		else
+			return
 
 /obj/structure/roguemachine/atm/attack_right(mob/living/carbon/human/user)
 	if(drilling)
