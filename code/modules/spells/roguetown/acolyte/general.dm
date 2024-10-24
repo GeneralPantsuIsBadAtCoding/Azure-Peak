@@ -108,9 +108,10 @@
 				// set up a ritual pile of bones (or just cast near a stack of bones whatever) around us for massive bonuses, cap at 50 for 75 healing total (wowie)
 				situational_bonus = 0
 				for (var/obj/item/stack/sheet/bone/O in oview(5, user))
-					situational_bonus = min(situational_bonus + 5, 50)
+					situational_bonus += (O.amount * 5)
 				if (situational_bonus > 0)
 					conditional_buff = TRUE
+					situational_bonus = min(situational_bonus, 50)
 			if(/datum/patron/inhumen/graggar)
 				target.visible_message(span_info("Foul fumes billow outward as [target] is restored!"), span_notice("A noxious scent burns my nostrils, but I feel better!"))
 				// if you've got lingering toxin damage, you get healed more, but your bonus healing doesn't affect toxin
