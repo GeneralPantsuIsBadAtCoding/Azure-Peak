@@ -25,8 +25,6 @@
 			return strings("spanish_replacement.json", type)
 		if("Half Orc accent")
 			return strings("middlespeak.json", type)
-		if("Urban Orc accent")
-			return strings("norf_replacement.json", type)
 		if("Hissy accent")
 			return strings("hissy_replacement.json", type)
 		if("Inzectoid accent")
