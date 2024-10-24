@@ -56,6 +56,7 @@
 	ADD_TRAIT(L, TRAIT_CRITICAL_RESISTANCE, "[type]")
 	ADD_TRAIT(L, TRAIT_HEAVYARMOR, "[type]")
 	ADD_TRAIT(L, TRAIT_CABAL, "[type]")
+	ADD_TRAIT(L, TRAIT_DEATHSIGHT, "[type]")
 	L.cmode_music = 'sound/music/combat_cult.ogg'
 	L.faction = list("undead")
 	if(L.charflaw)
