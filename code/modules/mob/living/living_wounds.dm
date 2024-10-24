@@ -58,6 +58,8 @@
 /// Loops through our list of wounds healing them until we run out of healing or all wounds are healed
 /mob/living/proc/heal_wounds(heal_amount)
 	var/healed_any = FALSE
+	if(has_status_effect(/datum/status_effect/buff/fortify))
+		heal_amount *= 1.5
 	for(var/datum/wound/wound as anything in get_wounds())
 		if(heal_amount <= 0)
 			continue
