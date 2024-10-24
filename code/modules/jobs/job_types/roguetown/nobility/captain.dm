@@ -94,6 +94,7 @@
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"
 	desc = "Recruit someone to your cause."
+	overlay_state = "recruit_bog"
 	antimagic_allowed = TRUE
 	charge_max = 100
 	/// Role given if recruitment is accepted
@@ -168,6 +169,7 @@
 /obj/effect/proc_holder/spell/self/convertrole/guard
 	name = "Recruit Guardsmen"
 	new_role = "Watchman"
+	overlay_state = "recruit_guard"
 	recruitment_faction = "Watchman"
 	recruitment_message = "Serve the town guard, %RECRUIT!"
 	accept_message = "FOR THE KING!"

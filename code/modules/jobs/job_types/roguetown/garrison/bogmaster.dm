@@ -80,6 +80,7 @@
 /obj/effect/proc_holder/spell/self/convertrole/bog
 	name = "Recruit Bogmen"
 	new_role = "Bog Guard"
+	overlay_state = "recruit_bog"
 	recruitment_faction = "Bog Guard"
 	recruitment_message = "Serve the bog, %RECRUIT!"
 	accept_message = "FOR THE BOG!"
