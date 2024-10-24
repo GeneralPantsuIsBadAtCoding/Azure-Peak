@@ -94,29 +94,21 @@ SUBSYSTEM_DEF(overlays)
 		. = iconbro.appearance
 		icon_cache[icon] = .
 
-/atom/proc/build_appearance_list(old_overlays)
-	var/static/image/appearance_bro = new()
-	var/list/new_overlays = list()
-	if (!islist(old_overlays))
-		old_overlays = list(old_overlays)
-	for (var/overlay in old_overlays)
+/atom/proc/build_appearance_list(list/build_overlays)
+	if (!islist(build_overlays))
+		build_overlays = list(build_overlays)
+	for (var/overlay in build_overlays)
 		if(!overlay)
+			build_overlays -= overlay
 			continue
 		if (istext(overlay))
-			new_overlays += iconstate2appearance(icon, overlay)
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = iconstate2appearance(icon, overlay)
 		else if(isicon(overlay))
-			new_overlays += icon2appearance(overlay)
-		else
-			if(isloc(overlay))
-				var/atom/A = overlay
-				if (A.flags_1 & OVERLAY_QUEUED_1)
-					COMPILE_OVERLAYS(A)
-			appearance_bro.appearance = overlay //this works for images and atoms too!
-			if(!ispath(overlay))
-				var/image/I = overlay
-				appearance_bro.dir = I.dir
-			new_overlays += appearance_bro.appearance
-	return new_overlays
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = icon2appearance(overlay)
+
+	return build_overlays
 
 #define NOT_QUEUED_ALREADY (!(flags_1 & OVERLAY_QUEUED_1))
 #define QUEUE_FOR_COMPILE flags_1 |= OVERLAY_QUEUED_1; SSoverlays.queue += src;
