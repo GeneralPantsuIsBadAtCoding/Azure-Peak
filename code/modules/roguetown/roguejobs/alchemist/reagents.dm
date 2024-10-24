@@ -159,3 +159,19 @@
 		M.adjust_fire_stacks(1)
 		M.IgniteMob()
 	return ..()
+
+//toxin of the special pyroclastic crop harvest, just a stronger fyritius nectar
+/datum/reagent/toxin/fyritiusnectar_special
+	name = "pure fyritius extract"
+	description = "oh no"
+	reagent_state = LIQUID
+	color = "#ffc400"
+	metabolization_rate = 0.5
+
+/datum/reagent/toxin/fyritiusnectar_special/on_mob_life(mob/living/carbon/M)
+	if(volume > 0.99)
+		M.add_nausea(9)
+		M.adjustFireLoss(4, 0)
+		M.adjust_fire_stacks(2)
+		M.IgniteMob()
+	return ..()

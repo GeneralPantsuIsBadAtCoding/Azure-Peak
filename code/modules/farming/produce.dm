@@ -199,6 +199,15 @@
 	throw_speed = 1
 	throw_range = 3
 
+//special pyroclastic crop item
+/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/special
+	name = "special pyrotechnic item"
+	seed = null
+	desc = "special pyrotechnic item"
+	icon_state = "fyritius_special"
+	tastes = list("tastes like searing magma" = 1)
+	list_reagents = list(/datum/reagent/toxin/fyritiusnectar_special = 10)
+
 /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf
 	seed = /obj/item/seeds/sweetleaf
 	name = "swampweed"
