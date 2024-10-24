@@ -44,4 +44,5 @@
 	beltl = /obj/item/quiver/arrows
 	H.change_stat("perception", 5)
 	H.change_stat("endurance", 2)
+    H.change_stat("speed", 2)
 	H.ambushable = FALSE
