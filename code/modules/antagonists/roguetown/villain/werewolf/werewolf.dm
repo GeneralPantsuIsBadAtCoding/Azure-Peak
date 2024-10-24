@@ -41,12 +41,14 @@
 		forge_werewolf_objectives()
 
 	wolfname = "[pick(GLOB.wolf_prefixes)] [pick(GLOB.wolf_suffixes)]"
+	ADD_TRAIT(owner, TRAIT_GOODLOVER, "Werewolf")
 	return ..()
 
 /datum/antagonist/werewolf/on_removal()
 	if(!silent && owner.current)
 		to_chat(owner.current,span_danger("I am no longer a [special_role]!"))
 	owner.special_role = null
+	REMOVE_TRAIT(owner, TRAIT_GOODLOVER, "Werewolf")
 	return ..()
 
 /datum/antagonist/werewolf/proc/add_objective(datum/objective/O)
