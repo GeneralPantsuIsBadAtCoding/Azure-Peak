@@ -11,6 +11,10 @@
 	bloody_icon_state = "shoeblood"
 	equip_delay_self = 30
 	resistance_flags = FIRE_PROOF
+	sewrepair = TRUE
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
+	fiber_salvage = FALSE
 
 /obj/item/clothing/shoes/roguetown/boots
 	name = "dark boots"
@@ -20,7 +24,6 @@
 	gender = PLURAL
 	icon_state = "blackboots"
 	item_state = "blackboots"
-	sewrepair = TRUE
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/shoes/roguetown/psydonboots
@@ -38,7 +41,6 @@
 	gender = PLURAL
 	icon_state = "nobleboots"
 	item_state = "nobleboots"
-	sewrepair = TRUE
 	armor = list("blunt" = 35, "slash" = 15, "stab" = 25, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/shoes/roguetown/shortboots
@@ -48,7 +50,6 @@
 	gender = PLURAL
 	icon_state = "shortboots"
 	item_state = "shortboots"
-	sewrepair = TRUE
 
 /obj/item/clothing/shoes/roguetown/ridingboots
 	name = "riding boots"
@@ -57,7 +58,6 @@
 	gender = PLURAL
 	icon_state = "ridingboots"
 	item_state = "ridingboots"
-	sewrepair = TRUE
 
 ///obj/item/clothing/shoes/roguetown/ridingboots/Initialize()
 //	. = ..()
@@ -69,7 +69,6 @@
 	gender = PLURAL
 	icon_state = "simpleshoe"
 	item_state = "simpleshoe"
-	sewrepair = TRUE
 	resistance_flags = null
 	color = "#473a30"
 
@@ -105,7 +104,6 @@
 	gender = PLURAL
 	icon_state = "sandals"
 	item_state = "sandals"
-	sewrepair = TRUE
 
 /obj/item/clothing/shoes/roguetown/shalal
 	name = "babouche"
@@ -113,7 +111,6 @@
 	gender = PLURAL
 	icon_state = "shalal"
 	item_state = "shalal"
-	sewrepair = TRUE
 
 /obj/item/clothing/shoes/roguetown/boots/leather
 	name = "leather boots"
@@ -122,7 +119,6 @@
 	gender = PLURAL
 	icon_state = "leatherboots"
 	item_state = "leatherboots"
-	sewrepair = TRUE
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/shoes/roguetown/boots/armor
@@ -139,6 +135,7 @@
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
+	sewrepair = FALSE
 
 /obj/item/clothing/shoes/roguetown/boots/armor/iron
 	name = "iron plated boots"
@@ -158,7 +155,7 @@
 	name = "funny shoes"
 	icon_state = "jestershoes"
 	resistance_flags = null
-	sewrepair = TRUE
+	salvage_result = /obj/item/natural/cloth 
 
 /obj/item/clothing/shoes/roguetown/grenzelhoft
 	name = "grenzelhoft boots"
@@ -173,8 +170,8 @@
 	gender = PLURAL
 	icon_state = "furlinedboots"
 	item_state = "furlinedboots"
-	sewrepair = TRUE
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 	name = "fur lined anklets"
@@ -182,9 +179,9 @@
 	gender = PLURAL
 	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
-	sewrepair = TRUE
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	is_barefoot = TRUE
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/shoes/roguetown/boots/clothlinedanklets
 	name = "cloth lined anklets"
@@ -193,7 +190,7 @@
 	icon_state = "clothlinedanklets"
 	item_state = "furlinedanklets"
 	is_barefoot = TRUE
-	sewrepair = TRUE
+	salvage_result = /obj/item/natural/cloth
 	armor = list("blunt" = 5, "slash" = 5, "stab" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //Thinks its fair for a piece of cloth and fiber.
 
 
@@ -214,4 +211,5 @@
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/blacksteel
+	sewrepair = FALSE
 	resistance_flags = FIRE_PROOF

@@ -71,6 +71,7 @@
 /obj/item/clothing/under/roguetown/tights/vagrant
 	r_sleeve_status = SLEEVE_TORN
 	body_parts_covered = GROIN|LEG_LEFT
+	torn_sleeve_number = 1
 
 /obj/item/clothing/under/roguetown/tights/vagrant/l
 	r_sleeve_status = SLEEVE_NORMAL
@@ -93,6 +94,7 @@
 	item_state = "webs"
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/under/roguetown/trou
 	name = "work trousers"
@@ -109,6 +111,8 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/under/roguetown/trou/leather
 	name = "leather trousers"
@@ -134,6 +138,8 @@
 	l_sleeve_status = SLEEVE_NOMOD
 	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
 	name = "heavy leather shorts"
@@ -148,6 +154,8 @@
 	name = "mourning trousers"
 	icon_state = "leathertrou"
 	color = "#151615"
+	fiber_salvage = FALSE
+	salvage_amount = 1
 
 /obj/item/clothing/under/roguetown/trou/shadowpants
 	name = "silk tights"
@@ -250,6 +258,9 @@
 //	adjustable = CAN_CADJUST
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
+	sewrepair = TRUE
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/cloth
 
 /obj/item/clothing/under/roguetown/loincloth/brown
 	color = CLOTHING_BROWN

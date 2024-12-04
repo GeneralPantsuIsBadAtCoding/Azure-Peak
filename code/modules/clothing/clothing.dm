@@ -36,6 +36,17 @@
 
 	var/clothing_flags = NONE
 
+	/// This is what we get when we either tear up or salvage a piece of clothing
+	var/obj/item/salvage_result = /obj/item/natural/cloth
+
+	/// The ammout of salvage ammout we get out of salvaging with scissors
+	var/salvage_amount = 2 //This will be more accurate when sewing recipes get sorted
+
+	/// Temporary snowflake var to be used in the rare cases clothing doesn't require fibers to sew, to avoid material duping
+	var/fiber_salvage = TRUE
+
+	/// Number of torn sleves, important for salvaging calculations and examine text
+	var/torn_sleeve_number = 0
 
 	var/toggle_icon_state = TRUE //appends _t to our icon state when toggled
 
@@ -87,81 +98,56 @@
 		if(armor_class == ARMOR_CLASS_LIGHT)
 			to_chat(usr, "AC: <b>LIGHT</b>")
 
+/obj/item/clothing/examine(mob/user)
+	. = ..()
+	if(torn_sleeve_number)
+		if(torn_sleeve_number == 1)
+			. += span_notice("It has one torn sleeve.")
+		else
+			. += span_notice("Both its sleeves have been torn!")
+
 /obj/item/proc/get_detail_tag() //this is for extra layers on clothes
 	return detail_tag
 
 /obj/item/proc/get_detail_color() //this is for extra layers on clothes
 	return detail_color
 
+/obj/item/clothing/attacked_by(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/rogueweapon/huntingknife/scissors) && sewrepair) // We can only salvage objects which can be sewn!
+		if(!do_after(user, 20, target = user))
+			return
+		if(fiber_salvage)
+			new /obj/item/natural/fibers(get_turf(src))
+		var/skill_level = user.mind.get_skill_level(/datum/skill/misc/sewing)
+		if(prob(50 - (skill_level * 10))) // We are dumb and we failed!
+			to_chat(user, span_info("I ruined some of the materials due to my lack of skill..."))
+			playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
+			qdel(src)
+			user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT)) //Getting exp for failing
+			return TRUE //We are returning early if the skill check fails!
+		salvage_amount -= torn_sleeve_number
+		for(var/i = 1; i <= salvage_amount; i++) // We are spawning salvage result for the salvage amount minus the torn sleves!
+			new salvage_result(get_turf(src))
+		user.visible_message(span_notice("[user] salvages [src] into usable materials."))
+		playsound(src, 'sound/items/flint.ogg', 100, TRUE) //In my mind this sound was more fitting for a scissor
+		qdel(src)
+		user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT)) //We're getting experience for salvaging!
+		return TRUE
+	..()	
+
 /obj/item/clothing/MiddleClick(mob/user, params)
 	..()
-	var/shiftheld
+	var/mob/living/L = user
+	var/altheld //Is the user pressing alt?
 	var/list/modifiers = params2list(params)
 	if(modifiers["alt"])
-		shiftheld = TRUE
+		altheld = TRUE
 	if(!isliving(user))
 		return
 	if(nodismemsleeves)
 		return
-	var/mob/living/L = user
-	if(user.zone_selected == r_sleeve_zone)
-		if(r_sleeve_status == SLEEVE_NOMOD)
-			return
-		if(r_sleeve_status == SLEEVE_TORN)
-			to_chat(user, span_info("It's torn away."))
-			return
-		if(!shiftheld)
-			if(!do_after(user, 20, target = user))
-				return
-			if(prob(L.STASTR * 8))
-				r_sleeve_status = SLEEVE_TORN
-				user.visible_message(span_notice("[user] tears [src]."))
-				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
-				if(r_sleeve_zone == BODY_ZONE_R_ARM)
-					body_parts_covered &= ~ARM_RIGHT
-				if(r_sleeve_zone == BODY_ZONE_R_LEG)
-					body_parts_covered &= ~LEG_RIGHT
-				var/obj/item/natural/cloth/C = new get_turf(src)
-				C.color = color
-				user.put_in_hands(C)
-			else
-				user.visible_message(span_warning("[user] tries to tear [src]."))
-		else
-			if(r_sleeve_status == SLEEVE_ROLLED)
-				if(r_sleeve_zone == BODY_ZONE_R_ARM)
-					body_parts_covered |= ARM_RIGHT
-				if(r_sleeve_zone == BODY_ZONE_R_LEG)
-					body_parts_covered |= LEG_RIGHT
-				r_sleeve_status = SLEEVE_NORMAL
-			else
-				if(r_sleeve_zone == BODY_ZONE_R_ARM)
-					body_parts_covered &= ~ARM_RIGHT
-				if(r_sleeve_zone == BODY_ZONE_R_LEG)
-					body_parts_covered &= ~LEG_RIGHT
-				r_sleeve_status = SLEEVE_ROLLED
-	if(user.zone_selected == l_sleeve_zone)
-		if(l_sleeve_status == SLEEVE_NOMOD)
-			return
-		if(l_sleeve_status == SLEEVE_TORN)
-			to_chat(user, span_info("It's torn away."))
-			return
-		if(!shiftheld) //tear
-			if(!do_after(user, 20, target = user))
-				return
-			if(prob(L.STASTR * 8))
-				l_sleeve_status = SLEEVE_TORN
-				user.visible_message(span_notice("[user] tears [src]."))
-				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
-				if(l_sleeve_zone == BODY_ZONE_L_ARM)
-					body_parts_covered &= ~ARM_LEFT
-				if(l_sleeve_zone == BODY_ZONE_L_LEG)
-					body_parts_covered &= ~LEG_LEFT
-				var/obj/item/natural/cloth/C = new get_turf(src)
-				C.color = color
-				user.put_in_hands(C)
-			else
-				user.visible_message(span_warning("[user] tries to tear [src]."))
-		else
+	if(altheld)
+		if(user.zone_selected == l_sleeve_zone)
 			if(l_sleeve_status == SLEEVE_ROLLED)
 				l_sleeve_status = SLEEVE_NORMAL
 				if(l_sleeve_zone == BODY_ZONE_L_ARM)
@@ -174,6 +160,70 @@
 				if(l_sleeve_zone == BODY_ZONE_L_LEG)
 					body_parts_covered &= ~LEG_LEFT
 				l_sleeve_status = SLEEVE_ROLLED
+			return
+		else if(user.zone_selected == r_sleeve_zone)
+			if(r_sleeve_status == SLEEVE_ROLLED)
+				if(r_sleeve_zone == BODY_ZONE_R_ARM)
+					body_parts_covered |= ARM_RIGHT
+				if(r_sleeve_zone == BODY_ZONE_R_LEG)
+					body_parts_covered |= LEG_RIGHT
+				r_sleeve_status = SLEEVE_NORMAL
+			else
+				if(r_sleeve_zone == BODY_ZONE_R_ARM)
+					body_parts_covered &= ~ARM_RIGHT
+				if(r_sleeve_zone == BODY_ZONE_R_LEG)
+					body_parts_covered &= ~LEG_RIGHT
+				r_sleeve_status = SLEEVE_ROLLED
+			return
+	else
+		if(user.zone_selected == r_sleeve_zone)
+			if(r_sleeve_status == SLEEVE_NOMOD)
+				return
+			if(r_sleeve_status == SLEEVE_TORN)
+				to_chat(user, span_info("It's torn away."))
+				return
+			if(!do_after(user, 20, target = user))
+				return
+			if(prob(L.STASTR * 8))
+				torn_sleeve_number += 1
+				r_sleeve_status = SLEEVE_TORN
+				user.visible_message(span_notice("[user] tears [src]."))
+				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
+				if(r_sleeve_zone == BODY_ZONE_R_ARM)
+					body_parts_covered &= ~ARM_RIGHT
+				if(r_sleeve_zone == BODY_ZONE_R_LEG)
+					body_parts_covered &= ~LEG_RIGHT
+				var/obj/item/natural/cloth/C = new get_turf(src)
+				C.color = color
+				user.put_in_hands(C)
+				return
+			else
+				user.visible_message(span_warning("[user] tries to tear [src]."))
+				return
+		if(user.zone_selected == l_sleeve_zone)
+			if(l_sleeve_status == SLEEVE_NOMOD)
+				return
+			if(l_sleeve_status == SLEEVE_TORN)
+				to_chat(user, span_info("It's torn away."))
+				return
+			if(!do_after(user, 20, target = user))
+				return
+			if(prob(L.STASTR * 8))
+				torn_sleeve_number += 1
+				l_sleeve_status = SLEEVE_TORN
+				user.visible_message(span_notice("[user] tears [src]."))
+				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
+				if(l_sleeve_zone == BODY_ZONE_L_ARM)
+					body_parts_covered &= ~ARM_LEFT
+				if(l_sleeve_zone == BODY_ZONE_L_LEG)
+					body_parts_covered &= ~LEG_LEFT
+				var/obj/item/natural/cloth/C = new get_turf(src)
+				C.color = color
+				user.put_in_hands(C)
+				return
+			else
+				user.visible_message(span_warning("[user] tries to tear [src]."))
+				return
 
 	if(loc == L)
 		L.regenerate_clothes()

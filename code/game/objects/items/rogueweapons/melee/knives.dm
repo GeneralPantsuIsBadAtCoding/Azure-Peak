@@ -172,6 +172,21 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	penfactor = 30
 
+/obj/item/rogueweapon/huntingknife/scissors
+	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/cut)
+	max_integrity = 100
+	name = "iron scissors"
+	desc = "Scissors made of iron that may be used to salvage usable materials from clothing."
+	icon_state = "iscissors"
+
+/obj/item/rogueweapon/huntingknife/scissors/steel
+	force = 14
+	max_integrity = 150
+	name = "steel scissors"
+	desc = "Scissors made of solid steel that may be used to salvage usable materials from clothing, more durable and a tad more deadly than their iron conterpart."
+	icon_state = "sscissors"
+	smeltresult = /obj/item/ingot/steel
+
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick)
 	force = 15

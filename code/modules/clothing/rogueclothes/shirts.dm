@@ -91,6 +91,7 @@
 	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor
 	icon_state = "sailorblues"
@@ -101,11 +102,13 @@
 /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 	r_sleeve_status = SLEEVE_TORN
 	body_parts_covered = CHEST|ARM_LEFT|VITALS
+	torn_sleeve_number = 1
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_TORN
 	body_parts_covered = CHEST|ARM_RIGHT|VITALS
+	torn_sleeve_number = 1
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/Initialize()
 	color = pick("#6b5445", "#435436", "#704542", "#79763f")
@@ -287,6 +290,8 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	body_parts_covered = CHEST|ARMS|VITALS
 	color = null
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/suit/roguetown/shirt/jester
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -366,9 +371,11 @@
 	desc = "A dress woven of only the finest, softest silks. Golden thread is inlaid with a deep royal crimson, expressing the owner's exquisitve wealth."
 	icon_state = "stewarddress"
 	item_state = "stewarddress"
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
 	name = "ornate silk tunic"
 	desc = "A billowing tunic made of the finest silks and softest fabrics. Inlaid with golden thread, this is the height of fashion for the wealthiest of wearers."
 	icon_state = "stewardtunic"
 	item_state = "stewardtunic"
+	salvage_result = /obj/item/natural/silk

@@ -25,7 +25,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 	beltl = /obj/item/needle
-	beltr = /obj/item/rogueweapon/huntingknife/idagger
+	beltr = /obj/item/rogueweapon/huntingknife/scissors
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 						/obj/item/natural/cloth = 2,

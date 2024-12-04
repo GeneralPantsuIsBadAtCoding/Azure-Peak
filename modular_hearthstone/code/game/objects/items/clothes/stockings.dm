@@ -8,6 +8,8 @@
 	l_sleeve_status = SLEEVE_NOMOD
 	body_parts_covered = null
 	flags_inv = null
+	sewrepair = TRUE
+	salvage_amount = 1
 
 /obj/item/clothing/under/roguetown/tights/stockings/random/Initialize()
 	. = ..()
@@ -34,6 +36,7 @@
 	name = "silk stockings"
 	desc = "A legwear made just for the pure aesthetics. Made out of thin silk. Popular among nobles."
 	icon_state = "silk"
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/under/roguetown/tights/stockings/silk/random/Initialize()
 	. = ..()

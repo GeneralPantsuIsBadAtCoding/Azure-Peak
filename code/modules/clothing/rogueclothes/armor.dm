@@ -329,6 +329,8 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	icon_state = "armordressalt"
@@ -349,6 +351,7 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_amount = 3
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	name = "light gambeson"
@@ -356,6 +359,7 @@
 	armor = list("blunt" = 30, "slash" = 15, "stab" = 20, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = null // It won't help, like, at all.
 	sellprice = 10
+	salvage_amount = 2
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	name = "padded gambeson"
@@ -364,6 +368,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = list("blunt" = 60, "slash" = 40, "stab" = 50, "bullet" = 20, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	sellprice = 30
+	salvage_amount = 5
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
@@ -397,6 +402,7 @@
 	max_integrity = 150
 	sellprice = 20
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide
 	name = "hide armor"
@@ -404,6 +410,7 @@
 	icon_state = "hidearmor"
 	max_integrity = 230
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded
 	name = "studded leather armor"
@@ -419,6 +426,7 @@
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy
 	name = "heavy leather armor"
@@ -430,6 +438,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP)
 	max_integrity = 300
 	sellprice = 25
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/belted
 	name = "belted heavy leather armor"
@@ -451,6 +460,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP)
 	max_integrity = 200
 	sellprice = 25
+	salvage_amount = 3
 
 /obj/item/clothing/suit/roguetown/armor/leather/bikini
 	name = "leather bikini"
@@ -460,6 +470,7 @@
 	item_state = "leatherkini"
 	allowed_sex = list(FEMALE)
 	allowed_race = CLOTHED_RACES_TYPES
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
 	name = "studded leather bikini"
@@ -497,6 +508,7 @@
 	sleevetype = null
 	sleeved = null
 	armor_class = ARMOR_CLASS_LIGHT
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
 	name = "sea jacket"
@@ -607,6 +619,7 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = CLOTHED_RACES_TYPES
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/suit/roguetown/armor/silkcoat/Initialize()
 	. = ..()
@@ -637,6 +650,7 @@
 	equip_delay_other = 3 SECONDS
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
+	sewrepair = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/blacksteel/cuirass
 	slot_flags = ITEM_SLOT_ARMOR
@@ -655,6 +669,7 @@
 	smeltresult = /obj/item/ingot/blacksteel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+	sewrepair = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/hierophant
 	name = "hierophant's shawl"

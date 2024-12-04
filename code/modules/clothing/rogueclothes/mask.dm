@@ -4,6 +4,8 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/masks.dmi'
 	body_parts_covered = FACE
 	slot_flags = ITEM_SLOT_MASK
+	salvage_amount = 1
+	sewrepair = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
@@ -54,11 +56,14 @@
 	block2add = FOV_RIGHT
 	body_parts_covered = EYES
 	sewrepair = TRUE
+	salvage_amount = 1
 
 /obj/item/clothing/mask/rogue/eyepatch/left
 	desc = "An eyepatch, fitted for the left eye."
 	icon_state = "eyepatch_l"
 	block2add = FOV_LEFT
+	sewrepair = TRUE
+	salvage_amount = 1
 
 /obj/item/clothing/mask/rogue/lordmask
 	name = "golden halfmask"

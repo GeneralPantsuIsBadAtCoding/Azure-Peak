@@ -642,6 +642,8 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	detail_tag = "_det"
 	detail_color = CLOTHING_AZURE
+	salvage_result = /obj/item/natural/fur
+	salvage_amount = 4
 
 /obj/item/clothing/cloak/lordcloak/update_icon()
 	cut_overlays()
@@ -701,6 +703,7 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/darkcloak/ComponentInitialize()
 	. = ..()
@@ -724,6 +727,7 @@
 	desc = "Made from the finest, warmest bear pelt. It might be worth more than your life."
 	icon_state = "bear_cloak"
 	item_state = "bear_cloak"
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/darkcloak/bear/light
 	icon_state = "bbear_cloak"
@@ -759,6 +763,7 @@
 	body_parts_covered = CHEST|GROIN
 	armor = list("blunt" = 25, "slash" = 5, "stab" = 15, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 24, "acid" = 0)
 	boobed = TRUE
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/cloak/apron/brown
 	color = CLOTHING_BROWN
@@ -819,6 +824,7 @@
 	inhand_mod = TRUE
 	hoodtype = /obj/item/clothing/head/hooded/rainhood
 	toggle_icon_state = FALSE
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/wash_act(clean)
 	. = ..()
@@ -890,6 +896,8 @@
 	icon_state = "furgrey"
 	inhand_mod = FALSE
 	hoodtype = /obj/item/clothing/head/hooded/rainhood/furhood
+	salvage_result = /obj/item/natural/fur
+	salvage_amount = 1
 
 /obj/item/clothing/cloak/raincloak/furcloak/crafted/Initialize()
 	. = ..()
@@ -1013,6 +1021,7 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	sellprice = 50
 	nodismemsleeves = TRUE
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/cloak/heartfelt
 	name = "red cloak"
@@ -1026,6 +1035,7 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	sellprice = 50
 	nodismemsleeves = TRUE
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/cloak/half
 	name = "halfcloak"
@@ -1045,6 +1055,7 @@
 	color = CLOTHING_BLACK
 	allowed_sex = list(MALE, FEMALE)
 	flags_inv = null
+	salvage_result = /obj/item/natural/silk
 
 /obj/item/clothing/cloak/half/ComponentInitialize()
 	. = ..()
@@ -1310,6 +1321,7 @@
 	resistance_flags = FIRE_PROOF
 	sellprice = 666
 	static_price = TRUE
+	sewrepair = FALSE
 	var/active_item = FALSE
 
 /obj/item/clothing/neck/roguetown/blkknight/equipped(mob/living/user)
@@ -1358,6 +1370,7 @@
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
 	sleeved = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
+	sewrepair = FALSE
 
 /obj/item/clothing/shoes/roguetown/boots/armor/blkknight
 	name = "darkened steel boots"

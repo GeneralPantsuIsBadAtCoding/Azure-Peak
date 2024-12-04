@@ -32,7 +32,7 @@
 	pants = /obj/item/clothing/under/roguetown/tights
 	belt = /obj/item/storage/belt/rogue/leather/cloth
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
-	beltl = /obj/item/rogueweapon/huntingknife/idagger
+	beltl = /obj/item/rogueweapon/huntingknife/scissors
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/needle, /obj/item/roguekey/tailor)

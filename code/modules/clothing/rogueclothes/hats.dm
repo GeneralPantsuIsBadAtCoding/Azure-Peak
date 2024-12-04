@@ -55,6 +55,8 @@
 	toggle_icon_state = TRUE
 	max_integrity = 100
 	sewrepair = TRUE
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
@@ -78,6 +80,7 @@
 	blocksound = SOFTHIT
 	max_integrity = 100
 	sewrepair = TRUE
+	salvage_result = /obj/item/natural/cloth
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -220,6 +223,7 @@
 	desc = "Keeps the sun off your head while toiling the fields."
 	icon_state = "strawhat"
 	sewrepair = TRUE
+	salvage_result = /obj/item/natural/fibers
 
 /obj/item/clothing/head/roguetown/puritan
 	name = "buckled hat"
@@ -276,6 +280,7 @@
 	icon_state = "fisherhat"
 	item_state = "fisherhat"
 	sewrepair = TRUE
+	salvage_result = /obj/item/natural/fibers
 //	color = "#fbc588"
 	//dropshrink = 0.75
 
@@ -354,6 +359,8 @@
 	icon_state = "headband"
 	item_state = "headband"
 	sewrepair = TRUE
+	fiber_salvage = FALSE
+	salvage_amount = 1
 	//dropshrink = 0.75
 	dynamic_hair_suffix = null
 
@@ -483,6 +490,7 @@
 	smeltresult = /obj/item/ingot/steel
 	blocksound = PLATEHIT
 	max_integrity = 200
+	sewrepair = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
@@ -1065,6 +1073,8 @@
 	anvilrepair = null
 	smeltresult = null
 	sewrepair = TRUE
+	salvage_result = /obj/item/natural/hide
+	salvage_amount = 1
 	blocksound = SOFTHIT
 
 /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
@@ -1079,6 +1089,8 @@
 	anvilrepair = null
 	sewrepair = TRUE
 	blocksound = SOFTHIT
+	salvage_amount = 2
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/head/roguetown/helmet/leather/saiga
 	name = "saiga skull"
@@ -1293,6 +1305,8 @@
 /obj/item/clothing/head/roguetown/helmet/tricorn/skull
 	icon_state = "tricorn_skull"
 	desc = "It has a skull sewn onto it. Clear sign of piracy"
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide
 
 /obj/item/clothing/head/roguetown/helmet/tricorn/lucky
 	name = "lucky tricorn"
