@@ -54,38 +54,9 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	if(user.client)
-		if(user.gas_scan && atmosanalyzer_scan(user, src))
-			return TRUE
-		else if(IsAdminGhost(user))
-			attack_ai(user)
-		else if(user.client.prefs.inquisitive_ghost)
+		if(user.client.prefs.inquisitive_ghost)
 			user.examinate(src)
 	return FALSE
 
 /mob/living/attack_ghost(mob/dead/observer/user)
-	if(user.client && user.health_scan)
-		healthscan(user, src, 1, TRUE)
-	return ..()
-
-// ---------------------------------------
-// And here are some good things for free:
-// Now you can click through portals, wormholes, gateways, and teleporters while observing. -Sayu
-
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user)
-	if(awaygate)
-		user.forceMove(awaygate.loc)
-	else
-		to_chat(user, span_boldwarning("[src] has no destination."))
-	return ..()
-
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user)
-	if(stationgate)
-		user.forceMove(stationgate.loc)
-	else
-		to_chat(user, span_boldwarning("[src] has no destination."))
-	return ..()
-
-/obj/machinery/teleport/hub/attack_ghost(mob/user)
-	if(power_station && power_station.engaged && power_station.teleporter_console && power_station.teleporter_console.target)
-		user.forceMove(get_turf(power_station.teleporter_console.target))
 	return ..()

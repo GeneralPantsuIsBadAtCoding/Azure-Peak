@@ -10,10 +10,6 @@
 	if(turf_loc_check && (!isturf(loc) || NeverShouldHaveComeHere(loc)))
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/decal/blob_act(obj/structure/blob/B)
-	if(B && B.loc == loc)
-		qdel(src)
-
 /obj/effect/decal/proc/NeverShouldHaveComeHere(turf/T)
 	return isclosedturf(T) || isgroundlessturf(T)
 

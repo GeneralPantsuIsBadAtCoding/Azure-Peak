@@ -19,21 +19,21 @@ GLOBAL_VAR(restart_counter)
 	//Zirok was here
 
 /**
-  * World creation
-  *
-  * Here is where a round itself is actually begun and setup, lots of important config changes happen here
-  * * db connection setup
-  * * config loaded from files
-  * * loads admins
-  * * Sets up the dynamic menu system
-  * * and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up
-  *
-  * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
-  * but they have not been Initialized at this point, only their New proc has run
-  *
-  * Nothing happens until something moves. ~Albert Einstein
-  *
-  */
+ * World creation
+ *
+ * Here is where a round itself is actually begun and setup, lots of important config changes happen here
+ * * db connection setup
+ * * config loaded from files
+ * * loads admins
+ * * Sets up the dynamic menu system
+ * * and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up
+ *
+ * Note this happens after the Master subsystem is created (as that is a global datum), this means all the subsystems exist,
+ * but they have not been Initialized at this point, only their New proc has run
+ *
+ * Nothing happens until something moves. ~Albert Einstein
+ *
+ */
 
 /world/New()
 
@@ -64,7 +64,6 @@ GLOBAL_VAR(restart_counter)
 	else // We got a db connected, GLOB.round_id ticks up based on where its at on the db.
 		GLOB.rogue_round_id = "[pick(GLOB.roundid)][GLOB.round_id]-[timestamp]"
 	SetupLogs()
-	load_poll_data()
 	if(CONFIG_GET(string/channel_announce_new_game_message))
 		send2chat(new /datum/tgs_message_content(CONFIG_GET(string/channel_announce_new_game_message)), CONFIG_GET(string/chat_announce_new_game))
 
@@ -92,7 +91,7 @@ GLOBAL_VAR(restart_counter)
 
 //	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
-	GLOB.timezoneOffset = world.timezone * 36000
+	GLOB.timezoneOffset = 16 * 36000
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -101,13 +100,13 @@ GLOBAL_VAR(restart_counter)
 	if(NO_INIT_PARAMETER in params)
 		return
 
+	. = ..()
+
 	Master.Initialize(10, FALSE, TRUE)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
-
-	update_status()
-
+#ifdef UNIT_TESTS
+	HandleTestRun()
+#endif
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
@@ -173,12 +172,17 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
 	GLOB.character_list_log = "[GLOB.log_directory]/character_list.log"
+	GLOB.hunted_log = "[GLOB.log_directory]/hunted.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 	GLOB.tgui_log = "[GLOB.log_directory]/tgui.log"
 
+#ifdef UNIT_TESTS
+	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_pda_log)
@@ -190,6 +194,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_job_debug_log)
 	start_log(GLOB.tgui_log)
 	start_log(GLOB.character_list_log)
+	start_log(GLOB.hunted_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
@@ -236,7 +241,7 @@ GLOBAL_VAR(restart_counter)
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = span_announce("PR: [announcement]")
+	var/final_composed = "<span class='announce'>PR: [announcement]</span>"
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -266,17 +271,15 @@ GLOBAL_VAR(restart_counter)
 //		if (usr)
 //			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 //			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-//		to_chat(world, span_boldannounce("Rebooting World immediately due to host request."))
+//		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
 //	else
-//	to_chat(world, span_boldannounce("<b><u><a href='byond://winset?command=.reconnect'>CLICK TO RECONNECT</a></u></b>"))
+//	to_chat(world, "<span class='boldannounce'><b><u><a href='byond://winset?command=.reconnect'>CLICK TO RECONNECT</a></u></b></span>")
 
-	var/round_end_sound = pick(
-		'sound/roundend/knave.ogg',
-		'sound/roundend/twohours.ogg',
-		'sound/roundend/rest.ogg',
-		'sound/roundend/gather.ogg',
-		'sound/roundend/dwarfs.ogg',
-	)
+	var/round_end_sound = pick('sound/roundend/knave.ogg',
+	'sound/roundend/twohours.ogg',
+	'sound/roundend/rest.ogg',
+	'sound/roundend/gather.ogg',
+	'sound/roundend/dwarfs.ogg')
 	for(var/client/thing in GLOB.clients)
 		if(!thing)
 			continue
@@ -287,9 +290,10 @@ GLOBAL_VAR(restart_counter)
 
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+#endif
 
 	if(TgsAvailable())
 		send2chat(new /datum/tgs_message_content("Round ending!"), CONFIG_GET(string/chat_announce_new_game))
@@ -321,40 +325,28 @@ GLOBAL_VAR(restart_counter)
 	..()
 
 /world/proc/update_status()
-	var/list/features = list()
+	var/s = ""
+	s += "<center><a href=\"https://discord.gg/zNAGFDcQ\">"
+#ifdef MATURESERVER
+	s += "<big><b>Vanderlin - IN-DEVELOPMENT PLAYTEST (Hosted by Monkestation)</b></big></a><br>"
+	s += "<b>Dark Medieval Fantasy Roleplay<b><br>"
 
-	var/new_status = ""
-	var/hostedby
-	if(config)
-		var/server_name = CONFIG_GET(string/servername)
-		if (server_name)
-			new_status += "<b>[server_name]</b> &#8212; "
-		hostedby = CONFIG_GET(string/hostedby)
+#else
+	s += "<big><b>ROGUEWORLD</b></big></a><br>"
+	s += "<b>Fantasy Computer Survival Game</b></center><br>"
+#endif
+//	s += "<img src=\"https://i.imgur.com/shj547T.jpg\"></a></center>"
 
-	new_status += " ("
-	new_status += "<a href=\"[CONFIG_GET(string/discordurl)]\">"
-	new_status += "Discord"
-	new_status += ")\]"
-	new_status += "<br>[CONFIG_GET(string/servertagline)]"
-
-	var/players = GLOB.clients.len
-
+//	s += "! <b>UPDATE 4.4</b> 4/22/2022<br><br>"
+#ifdef MATURESERVER
+	s += "\["
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		new_status += "<br>GAME STATUS: <b>IN LOBBY</b><br>"
+		s += "<b>GAME STATUS:</b> IN LOBBY"
 	else
-		new_status += "<br>GAME STATUS: <b>PLAYING</b><br>"
-
-	if (SSticker.HasRoundStarted())
-		new_status += "Round Time: <b>[time2text(STATION_TIME_PASSED(), "hh:mm", 0)]</b>"
-	else
-		new_status += "Round Time: <b>NEW ROUND STARTING</b>"
-	new_status += "<br>Player[players == 1 ? "": "s"]: <b>[players]</b>"
-	new_status += "</a>"
-
-	if (!host && hostedby)
-		features += "hosted by <b>[hostedby]</b>"
-
-	status = new_status
+		s += "<b>GAME STATUS:</b> PLAYING"
+#endif
+	status = s
+	return s
 /*
 /world/proc/update_status()
 

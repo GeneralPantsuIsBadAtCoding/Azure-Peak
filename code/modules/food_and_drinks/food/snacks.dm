@@ -169,31 +169,38 @@ All foods are distributed among various categories. Use common sense.
 		if(cooking < cooktime)
 			cooking = cooking + input
 			if(cooking >= cooktime)
-				return microwave_act(A)
+				return heating_act(A)
 			warming = 5 MINUTES
 			return
 	burning(input)
 
-/obj/item/reagent_containers/food/snacks/microwave_act(atom/A)
-	if(istype(A,/obj/machinery/light/rogue/oven))
-		var/obj/item/result
-		if(cooked_type)
-			result = new cooked_type(A)
-		else
-			result = new /obj/item/reagent_containers/food/snacks/badrecipe(A)
-		initialize_cooked_food(result, 1)
-		return result
-	if(istype(A,/obj/machinery/light/rogue/hearth) || istype(A,/obj/machinery/light/rogue/firebowl) || istype(A,/obj/machinery/light/rogue/campfire))
-		var/obj/item/result
-		if(fried_type)
-			result = new fried_type(A)
-		else
-			result = new /obj/item/reagent_containers/food/snacks/badrecipe(A)
-		initialize_cooked_food(result, 1)
-		return result
-	var/obj/item/result = new /obj/item/reagent_containers/food/snacks/badrecipe(A)
-	initialize_cooked_food(result, 1)
-	return result
+/obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user , proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(istype(target)) //A dispenser. Transfer FROM it TO us.
+
+		if(!target.reagents.total_volume)
+			to_chat(user, span_warning("[target] is empty!"))
+			return
+
+		if(reagents.total_volume >= reagents.maximum_volume)
+			to_chat(user, span_warning("[src] is full!"))
+			return
+
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
+		to_chat(user, span_notice("I fill [src] with [trans] units of the contents of [target]."))
+
+	//Something like a glass or a food item. Player probably wants to transfer TO it.
+	else if(target.is_drainable() || istype(target, /obj/item/reagent_containers/food/snacks))
+		if(!reagents.total_volume)
+			to_chat(user, span_warning("[src] is empty!"))
+			return
+		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+			to_chat(user, span_warning("you can't add anymore to [target]!"))
+			return
+		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
+		to_chat(user, span_notice("I transfer [trans] units of the condiment to [target]."))
 
 /obj/item/proc/burning(input as num)
 	return
@@ -545,7 +552,7 @@ All foods are distributed among various categories. Use common sense.
 	S.filling_color = filling_color
 	S.update_snack_overlays(src)
 /*
-/obj/item/reagent_containers/food/snacks/microwave_act(obj/machinery/microwave/M)
+/obj/item/reagent_containers/food/snacks/heating_act(obj/machinery/microwave/M)
 	var/turf/T = get_turf(src)
 	var/obj/item/result
 
@@ -589,7 +596,7 @@ All foods are distributed among various categories. Use common sense.
 	. = ..()
 	if(!dunkable || !proximity)
 		return
-	if(istype(M, /obj/item/reagent_containers/glass) || istype(M, /obj/item/reagent_containers/food/drinks))	//you can dunk dunkable snacks into beakers or drinks
+	if(istype(M, /obj/item/reagent_containers/glass))	//you can dunk dunkable snacks into beakers or drinks
 		if(!M.is_drainable())
 			to_chat(user, span_warning("[M] is unable to be dunked in!"))
 			return

@@ -4,7 +4,6 @@
 
 /datum/controller/subsystem/ticker/proc/gather_roundend_feedback()
 	gather_antag_data()
-	record_nuke_disk_location()
 	var/json_file = file("[GLOB.log_directory]/round_end_data.json")
 	var/list/file_data = list("escapees" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "abandoned" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "ghosts" = list(), "additional data" = list())
 	var/num_survivors = 0
@@ -32,15 +31,6 @@
 					var/mob/living/carbon/human/H = L
 					category = "humans"
 					mob_data += list("job" = H.mind.assigned_role, "species" = H.dna.species.name)
-				else if(issilicon(L))
-					category = "silicons"
-					if(isAI(L))
-						mob_data += list("module" = "AI")
-					if(isAI(L))
-						mob_data += list("module" = "pAI")
-					if(iscyborg(L))
-						var/mob/living/silicon/robot/R = L
-						mob_data += list("module" = R.module)
 			else
 				category = "others"
 				mob_data += list("typepath" = m.type)
@@ -52,7 +42,7 @@
 					num_shuttle_escapees++
 			else
 				escaped = "abandoned"
-		if(!m.mind && (!ishuman(m) || !issilicon(m)))
+		if(!m.mind && (!ishuman(m)))
 			var/list/npc_nest = file_data["[escaped]"]["npcs"]
 			if(npc_nest.Find(initial(m.name)))
 				file_data["[escaped]"]["npcs"]["[initial(m.name)]"] += 1
@@ -68,10 +58,6 @@
 					mob_data += list("name" = m.name, "typepath" = m.type)
 				var/pos = length(file_data["[escaped]"]["[category]"]) + 1
 				file_data["[escaped]"]["[category]"]["[pos]"] = mob_data
-	var/datum/station_state/end_state = new /datum/station_state()
-	end_state.count()
-	var/station_integrity = min(PERCENT(GLOB.start_state.score(end_state)), 100)
-	file_data["additional data"]["station integrity"] = station_integrity
 	WRITE_FILE(json_file, json_encode(file_data))
 	SSblackbox.record_feedback("nested tally", "round_end_stats", num_survivors, list("survivors", "total"))
 	SSblackbox.record_feedback("nested tally", "round_end_stats", num_escapees, list("escapees", "total"))
@@ -81,7 +67,6 @@
 	.[POPCOUNT_SURVIVORS] = num_survivors
 	.[POPCOUNT_ESCAPEES] = num_escapees
 	.[POPCOUNT_SHUTTLE_ESCAPEES] = num_shuttle_escapees
-	.["station_integrity"] = station_integrity
 
 /datum/controller/subsystem/ticker/proc/gather_antag_data()
 	var/team_gid = 1
@@ -111,53 +96,6 @@
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
 				antag_info["objectives"] += list(list("objective_type"=O.type,"text"=O.explanation_text,"result"=result))
 		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
-
-/datum/controller/subsystem/ticker/proc/record_nuke_disk_location()
-	var/obj/item/disk/nuclear/N = locate() in GLOB.poi_list
-	if(N)
-		var/list/data = list()
-		var/turf/T = get_turf(N)
-		if(T)
-			data["x"] = T.x
-			data["y"] = T.y
-			data["z"] = T.z
-		var/atom/outer = get_atom_on_turf(N,/mob/living)
-		if(outer != N)
-			if(isliving(outer))
-				var/mob/living/L = outer
-				data["holder"] = L.real_name
-			else
-				data["holder"] = outer.name
-
-		SSblackbox.record_feedback("associative", "roundend_nukedisk", 1 , data)
-
-/datum/controller/subsystem/ticker/proc/gather_newscaster()
-	var/json_file = file("[GLOB.log_directory]/newscaster.json")
-	var/list/file_data = list()
-	var/pos = 1
-	for(var/V in GLOB.news_network.network_channels)
-		var/datum/newscaster/feed_channel/channel = V
-		if(!istype(channel))
-			stack_trace("Non-channel in newscaster channel list")
-			continue
-		file_data["[pos]"] = list("channel name" = "[channel.channel_name]", "author" = "[channel.author]", "censored" = channel.censored ? 1 : 0, "author censored" = channel.authorCensor ? 1 : 0, "messages" = list())
-		for(var/M in channel.messages)
-			var/datum/newscaster/feed_message/message = M
-			if(!istype(message))
-				stack_trace("Non-message in newscaster channel messages list")
-				continue
-			var/list/comment_data = list()
-			for(var/C in message.comments)
-				var/datum/newscaster/feed_comment/comment = C
-				if(!istype(comment))
-					stack_trace("Non-message in newscaster message comments list")
-					continue
-				comment_data += list(list("author" = "[comment.author]", "time stamp" = "[comment.time_stamp]", "body" = "[comment.body]"))
-			file_data["[pos]"]["messages"] += list(list("author" = "[message.author]", "time stamp" = "[message.time_stamp]", "censored" = message.bodyCensor ? 1 : 0, "author censored" = message.authorCensor ? 1 : 0, "photo file" = "[message.photo_file]", "photo caption" = "[message.caption]", "body" = "[message.body]", "comments" = comment_data))
-		pos++
-	if(GLOB.news_network.wanted_issue.active)
-		file_data["wanted"] = list("author" = "[GLOB.news_network.wanted_issue.scannedUser]", "criminal" = "[GLOB.news_network.wanted_issue.criminal]", "description" = "[GLOB.news_network.wanted_issue.body]", "photo file" = "[GLOB.news_network.wanted_issue.photo_file]")
-	WRITE_FILE(json_file, json_encode(file_data))
 
 /mob/proc/do_game_over()
 	if(SSticker.current_state != GAME_STATE_FINISHED)
@@ -415,19 +353,12 @@
 
 	CHECK_TICK
 
-	//AI laws
-	parts += law_report()
-
-	CHECK_TICK
-
 	//Antagonists
 	parts += antag_report()
 
 	CHECK_TICK
 	//Medals
 	parts += medal_report()
-	//Station Goals
-	parts += goal_report()
 
 	listclearnulls(parts)
 
@@ -527,51 +458,6 @@
 		show_roundend_report(C, FALSE)
 		give_show_report_button(C)
 		CHECK_TICK
-
-/datum/controller/subsystem/ticker/proc/law_report()
-	var/list/parts = list()
-	var/borg_spacer = FALSE //inserts an extra linebreak to seperate AIs from independent borgs, and then multiple independent borgs.
-	//Silicon laws report
-	for (var/i in GLOB.ai_list)
-		var/mob/living/silicon/ai/aiPlayer = i
-		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
-			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
-
-		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
-
-		if (aiPlayer.connected_robots.len)
-			var/borg_num = aiPlayer.connected_robots.len
-			parts += "<br><b>[aiPlayer.real_name]</b>'s minions were:"
-			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				borg_num--
-				if(robo.mind)
-					parts += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]"
-		if(!borg_spacer)
-			borg_spacer = TRUE
-
-	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
-		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
-
-			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
-				parts += robo.laws.get_law_list(include_zeroth=TRUE)
-
-			if(!borg_spacer)
-				borg_spacer = TRUE
-
-	if(parts.len)
-		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
-	else
-		return ""
-
-/datum/controller/subsystem/ticker/proc/goal_report()
-	var/list/parts = list()
-	if(mode.station_goals.len)
-		for(var/V in mode.station_goals)
-			var/datum/station_goal/G = V
-			parts += G.get_result()
-		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"
 
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
@@ -708,9 +594,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>[objective.flavor] #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
 		else
-			objective_parts += "<b>[objective.flavor] #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
 		count++
 	return objective_parts.Join("<br>")
 

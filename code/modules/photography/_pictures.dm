@@ -79,12 +79,6 @@
 		picture_name = input["name"]
 	return src
 
-/proc/load_photo_from_disk(id, location)
-	var/datum/picture/P = load_picture_from_disk(id)
-	if(istype(P))
-		var/obj/item/photo/old/p = new(location, P)
-		return p
-
 /proc/load_picture_from_disk(id)
 	var/pathstring = log_path_from_picture_ID(id)
 	if(!pathstring)

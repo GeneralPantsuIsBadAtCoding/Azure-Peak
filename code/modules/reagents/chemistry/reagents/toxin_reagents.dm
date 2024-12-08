@@ -38,10 +38,6 @@
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
 		M.randmuti()
-		if(prob(98))
-			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
-		else
-			M.easy_randmut(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	..()
@@ -60,12 +56,6 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
-
-/datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
-	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
-		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
-	C.adjustPlasma(20)
-	return ..()
 
 /datum/reagent/toxin/plasma/on_temp_change()
 	if(holder.chem_temp < LIQUID_PLASMA_BP)
@@ -232,10 +222,7 @@
 	taste_mult = 1
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, reac_volume)
-	if(istype(O, /obj/structure/alien/weeds))
-		var/obj/structure/alien/weeds/alien_weeds = O
-		alien_weeds.take_damage(rand(15,35), BRUTE, 0) // Kills alien weeds pretty fast
-	else if(istype(O, /obj/structure/glowshroom)) //even a small amount is enough to kill it
+	if(istype(O, /obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
 	else if(istype(O, /obj/structure/spacevine))
 		var/obj/structure/spacevine/SV = O
@@ -758,8 +745,6 @@
 
 /datum/reagent/toxin/anacea/on_mob_life(mob/living/carbon/M)
 	var/remove_amt = 5
-	if(holder.has_reagent(/datum/reagent/medicine/calomel) || holder.has_reagent(/datum/reagent/medicine/pen_acid))
-		remove_amt = 0.5
 	for(var/datum/reagent/medicine/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,remove_amt)
 	return ..()

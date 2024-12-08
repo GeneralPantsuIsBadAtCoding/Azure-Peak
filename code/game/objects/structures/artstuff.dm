@@ -21,7 +21,7 @@
 		painting = C
 		C.forceMove(get_turf(src))
 		C.layer = layer+0.1
-		user.visible_message(span_notice("[user] puts \the [C] on \the [src]."),span_notice("I place \the [C] on \the [src]."))
+		user.visible_message("<span class='notice'>[user] puts \the [C] on \the [src].</span>","<span class='notice'>I place \the [C] on \the [src].</span>")
 	else
 		return ..()
 
@@ -113,10 +113,6 @@ GLOBAL_LIST_INIT(globalBlankCanvases, new(AMT_OF_CANVASES))
 			DrawPixelOn(theOriginalPix,pixX,pixY)
 		qdel(masterpiece)
 
-	//Drawing one pixel with a crayon
-	else if(istype(I, /obj/item/toy/crayon))
-		var/obj/item/toy/crayon/C = I
-		DrawPixelOn(C.paint_color, pixX, pixY)
 	else
 		return ..()
 
@@ -129,7 +125,7 @@ GLOBAL_LIST_INIT(globalBlankCanvases, new(AMT_OF_CANVASES))
 	if(blank)
 		//it's basically a giant etch-a-sketch
 		icon = blank
-		user.visible_message(span_notice("[user] cleans the canvas."),span_notice("I clean the canvas."))
+		user.visible_message("<span class='notice'>[user] cleans the canvas.</span>","<span class='notice'>I clean the canvas.</span>")
 
 
 #undef AMT_OF_CANVASES

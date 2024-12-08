@@ -69,16 +69,6 @@
 	if(!(mobility_flags & MOBILITY_UI) && . == UI_INTERACTIVE)
 		return UI_UPDATE
 
-/mob/living/silicon/ai/shared_ui_interaction(src_object)
-	if(lacks_power()) // Disable UIs if the AI is unpowered.
-		return UI_DISABLED
-	return ..()
-
-/mob/living/silicon/robot/shared_ui_interaction(src_object)
-	if(!cell || cell.charge <= 0 || lockcharge) // Disable UIs if the Borg is unpowered or locked.
-		return UI_DISABLED
-	return ..()
-
 /**
   * public
   *
@@ -117,6 +107,4 @@
 	return UI_CLOSE // Otherwise, we got nothing.
 
 /mob/living/carbon/human/shared_living_ui_distance(atom/movable/src_object)
-	if(dna.check_mutation(TK) && tkMaxRangeCheck(src, src_object))
-		return UI_INTERACTIVE
 	return ..()

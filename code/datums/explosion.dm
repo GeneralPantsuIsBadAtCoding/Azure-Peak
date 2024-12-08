@@ -4,9 +4,8 @@ GLOBAL_LIST_EMPTY(explosions)
 //Against my better judgement, I will return the explosion datum
 //If I see any GC errors for it I will find you
 //and I will gib you
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE, soundin)
-	return new /datum/explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke, soundin)
-
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, hotspot_range = 0, silent = FALSE, visfx, smoke = FALSE, soundin)
+	return new /datum/explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, hotspot_range, silent, visfx, smoke, soundin)
 //This datum creates 3 async tasks
 //1 GatherSpiralTurfsProc runs spiral_range_turfs(tick_checked = TRUE) to populate the affected_turfs list
 //2 CaculateExplosionBlock adds the blockings to the cached_exp_block list
@@ -33,7 +32,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		EX_PREPROCESS_EXIT_CHECK\
 	}
 
-/datum/explosion/New(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke, soundin = 'sound/misc/explode/explosion.ogg')
+/datum/explosion/New(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, hotspot_range, silent, visfx = "explosion", smoke, soundin = 'sound/misc/explode/explosion.ogg')
 	set waitfor = FALSE
 
 	var/id = ++id_counter
@@ -47,6 +46,8 @@ GLOBAL_LIST_EMPTY(explosions)
 	GLOB.explosions += src
 	if(isnull(flame_range))
 		flame_range = light_impact_range
+	if(isnull(hotspot_range))
+		hotspot_range = devastation_range
 	if(isnull(flash_range))
 		flash_range = devastation_range
 
@@ -68,6 +69,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
 		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
 		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
+		hotspot_range = min(GLOB.MAX_EX_HEAVY_RANGE * cap_multiplier, hotspot_range)
 
 	//DO NOT REMOVE THIS STOPLAG, IT BREAKS THINGS
 	//not sleeping causes us to ex_act() the thing that triggered the explosion
@@ -85,14 +87,14 @@ GLOBAL_LIST_EMPTY(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
-		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [hotspot_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
+		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [hotspot_range], [flame_range]) in [loc_name(epicenter)]")
 
 	var/x0 = epicenter.x
 	var/y0 = epicenter.y
 	var/z0 = epicenter.z
 	var/area/areatype = get_area(epicenter)
-	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = areatype.type, "time" = time_stamp("YYYY-MM-DD hh:mm:ss", 1)))
+	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "hotspot" = hotspot_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = areatype.type, "time" = time_stamp("YYYY-MM-DD hh:mm:ss", 1)))
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -141,13 +143,25 @@ GLOBAL_LIST_EMPTY(explosions)
 	SSlighting.postpone(postponeCycles)
 	SSmachines.postpone(postponeCycles)
 
-	var/datum/effect_system/explosion/E
-	if(smoke)
-		E = new /datum/effect_system/explosion/smoke
-	else
-		E = new
-	E.set_up(epicenter)
-	E.start()
+	// Pick custom effects from code/game/objects/effects/
+	var/datum/effect_system/E
+	switch(visfx)
+		if("explosion")
+			if(smoke)
+				E = new /datum/effect_system/explosion/smoke
+			E = new /datum/effect_system/explosion
+			E.set_up(epicenter)
+			E.start()
+		if("firespark")
+			E = new /datum/effect_system/spark_spread()
+			E.set_up(1, 1, epicenter)
+			E.start()
+		else
+			E = new /datum/effect_system/explosion
+			if(smoke)
+				E = new /datum/effect_system/explosion/smoke
+			E.set_up(epicenter)
+			E.start()
 
 	EX_PREPROCESS_CHECK_TICK
 
@@ -184,7 +198,7 @@ GLOBAL_LIST_EMPTY(explosions)
 				Trajectory = get_step_towards(Trajectory, epicenter)
 				dist += cached_exp_block[Trajectory]
 
-		var/flame_dist = dist < flame_range
+		var/hotspot_dist = dist < hotspot_range
 		var/throw_dist = dist
 
 		if(dist < devastation_range)
@@ -198,6 +212,7 @@ GLOBAL_LIST_EMPTY(explosions)
 
 		//------- EX_ACT AND TURF FIRES -------
 
+		var/atom/target
 		if(T == epicenter) // Ensures explosives detonating from bags trigger other explosives in that bag
 			var/list/items = list()
 			for(var/I in T)
@@ -207,25 +222,25 @@ GLOBAL_LIST_EMPTY(explosions)
 			for(var/O in items)
 				var/atom/A = O
 				if(!QDELETED(A))
-					A.ex_act(dist)
+					A.ex_act(dist, target, epicenter, devastation_range, heavy_impact_range, light_impact_range, flame_range)
 
-		if(flame_dist && !isspaceturf(T))
-			new /obj/effect/hotspot(T) //Mostly for ambience!
+		if(hotspot_dist)
+			new /obj/effect/hotspot(T)		//Burning turf
 
 		if(dist > EXPLODE_NONE)
 			T.explosion_level = max(T.explosion_level, dist)	//let the bigger one have it
 			T.explosion_id = id
-			T.ex_act(dist)
+			T.ex_act(dist, target, epicenter, devastation_range, heavy_impact_range, light_impact_range, flame_range)
 			exploded_this_tick += T
 
-		//--- THROW STUFF AROUND ---
+		//--- THROW ITEMS AROUND ---
 
 		var/throw_dir = get_dir(epicenter,T)
-		for(var/atom/movable/A in T)
-			if(!A.anchored)
+		for(var/obj/item/I in T)
+			if(!I.anchored)
 				var/throw_range = rand(throw_dist, max_range)
-				var/turf/throw_at = get_ranged_target_turf(A, throw_dir, throw_range)
-				A.throw_at(throw_at, throw_range, EXPLOSION_THROW_SPEED)
+				var/turf/throw_at = get_ranged_target_turf(I, throw_dir, throw_range)
+				I.throw_at(throw_at, throw_range, EXPLOSION_THROW_SPEED)
 
 		//wait for the lists to repop
 		var/break_condition
@@ -281,12 +296,6 @@ GLOBAL_LIST_EMPTY(explosions)
 	//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes to explosion code using this please so we can compare
 	if(GLOB.Debug2)
 		log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
-
-	if(running)	//if we aren't in a hurry
-		//Machines which report explosions.
-		for(var/array in GLOB.doppler_arrays)
-			var/obj/machinery/doppler_array/A = array
-			A.sense_explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, took,orig_dev_range, orig_heavy_range, orig_light_range)
 
 	++stopped
 	qdel(src)

@@ -22,51 +22,15 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 	var/hsbinfo = null
 	//items that shouldn't spawn on the floor because they would bug or act weird
 	var/static/list/spawn_forbidden = list(
-		/obj/item/tk_grab, /obj/item/implant, // not implanter, the actual thing that is inside you
-		/obj/item/assembly, /obj/item/onetankbomb, /obj/item/pda/ai,
-		/obj/item/smallDelivery, /obj/projectile,
-		/obj/item/borg/sight, /obj/item/borg/stun, /obj/item/robot_module)
+		/obj/item/tk_grab,
+		/obj/projectile)
 
 /datum/hSB/proc/update()
 	var/static/list/hrefs = list(
 			"Space Gear",
-			"Suit Up (Space Travel Gear)"		= "hsbsuit",
-			"Spawn Gas Mask"					= "hsbspawn&path=[/obj/item/clothing/mask/gas]",
-			"Spawn Emergency Air Tank"			= "hsbspawn&path=[/obj/item/tank/internals/emergency_oxygen/double]",
 
-			"Standard Tools",
-			"Spawn Flashlight"					= "hsbspawn&path=[/obj/item/flashlight]",
-			"Spawn Toolbox"						= "hsbspawn&path=[/obj/item/storage/toolbox/mechanical]",
-			"Spawn Light Replacer"				= "hsbspawn&path=[/obj/item/lightreplacer]",
-			"Spawn Medical Kit"					= "hsbspawn&path=[/obj/item/storage/firstaid/regular]",
-			"Spawn All-Access ID"				= "hsbaaid",
+			"Standard Tools")
 
-			"Building Supplies",
-			"Spawn 50 Wood"                     = "hsbwood",
-			"Spawn 50 Metal"					= "hsbmetal",
-			"Spawn 50 Plasteel"					= "hsbplasteel",
-			"Spawn 50 Reinforced Glass"         = "hsbrglass",
-			"Spawn 50 Glass"					= "hsbglass",
-			"Spawn Full Cable Coil"				= "hsbspawn&path=[/obj/item/stack/cable_coil]",
-			"Spawn Hyper Capacity Power Cell"	= "hsbspawn&path=[/obj/item/stock_parts/cell/hyper]",
-			"Spawn Inf. Capacity Power Cell"	= "hsbspawn&path=[/obj/item/stock_parts/cell/infinite]",
-			"Spawn Rapid Construction Device"	= "hsbrcd",
-			"Spawn RCD Ammo"					= "hsb_safespawn&path=[/obj/item/rcd_ammo]",
-			"Spawn Airlock"						= "hsbairlock",
-
-			"Miscellaneous",
-			"Spawn Air Scrubber"				= "hsbscrubber",
-			"Spawn Welding Fuel Tank"			= "hsbspawn&path=[/obj/structure/reagent_dispensers/fueltank]",
-			"Spawn Water Tank"					= "hsbspawn&path=[/obj/structure/reagent_dispensers/watertank]",
-
-			"Bots",
-			"Spawn Cleanbot"					= "hsbspawn&path=[/mob/living/simple_animal/bot/cleanbot]",
-			"Spawn Floorbot"					= "hsbspawn&path=[/mob/living/simple_animal/bot/floorbot]",
-			"Spawn Medbot"						= "hsbspawn&path=[/mob/living/simple_animal/bot/medbot]",
-
-			"Canisters",
-			"Spawn O2 Canister" 				= "hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/oxygen]",
-			"Spawn Air Canister"				= "hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/air]")
 
 
 	if(!hsbinfo)
@@ -75,11 +39,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 			hsbinfo += "<b>Administration</b><br>"
 			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbtobj'>Toggle Object Spawning</a><br>"
 			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbtac'>Toggle Item Spawn Panel Auto-close</a><br>"
-			hsbinfo += "<b>Canister Spawning</b><br>"
-			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/toxins]'>Spawn Plasma Canister</a><br>"
-			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/carbon_dioxide]'>Spawn CO2 Canister</a><br>"
-			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/nitrogen]'>Spawn Nitrogen Canister</a><br>"
-			hsbinfo += "- <a href='?src=[REF(src)];hsb=hsbspawn&path=[/obj/machinery/portable_atmospherics/canister/nitrous_oxide]'>Spawn N2O Canister</a><hr>"
 		else
 			hsbinfo += "<i>Some item spawning may be disabled by the administrators.</i><br>"
 			hsbinfo += "<i>Only administrators may spawn dangerous canisters.</i><br>"
@@ -129,99 +88,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					to_chat(world, "<span class='danger'>Sandbox:</span> <b>\black [usr.key] has added a limiter to object spawning. The window will now auto-close after use.</b>")
 				CONFIG_SET(flag/sandbox_autoclose, !sbac)
 				return
-			//
-			// Spacesuit with full air jetpack set as internals
-			//
-			if("hsbsuit")
-				var/mob/living/carbon/human/P = usr
-				if(!istype(P)) return
-				if(P.wear_armor)
-					P.wear_armor.forceMove(P.drop_location())
-					P.wear_armor.layer = initial(P.wear_armor.layer)
-					P.wear_armor.plane = initial(P.wear_armor.plane)
-					P.wear_armor = null
-				P.wear_armor = new/obj/item/clothing/suit/space(P)
-				P.wear_armor.layer = ABOVE_HUD_LAYER
-				P.wear_armor.plane = ABOVE_HUD_PLANE
-				P.update_inv_wear_suit()
-				if(P.head)
-					P.head.forceMove(P.drop_location())
-					P.head.layer = initial(P.head.layer)
-					P.head.plane = initial(P.head.plane)
-					P.head = null
-				P.head = new/obj/item/clothing/head/helmet/space(P)
-				P.head.layer = ABOVE_HUD_LAYER
-				P.head.plane = ABOVE_HUD_PLANE
-				P.update_inv_head()
-				if(P.wear_mask)
-					P.wear_mask.forceMove(P.drop_location())
-					P.wear_mask.layer = initial(P.wear_mask.layer)
-					P.wear_mask.plane = initial(P.wear_mask.plane)
-					P.wear_mask = null
-				P.wear_mask = new/obj/item/clothing/mask/gas(P)
-				P.wear_mask.layer = ABOVE_HUD_LAYER
-				P.wear_mask.plane = ABOVE_HUD_PLANE
-				P.update_inv_wear_mask()
-				if(P.back)
-					P.back.forceMove(P.drop_location())
-					P.back.layer = initial(P.back.layer)
-					P.back.plane = initial(P.back.plane)
-					P.back = null
-				P.back = new/obj/item/tank/jetpack/oxygen(P)
-				P.back.layer = ABOVE_HUD_LAYER
-				P.back.plane = ABOVE_HUD_PLANE
-				P.update_inv_back()
-				P.internal = P.back
-				P.update_internals_hud_icon(1)
-
-			if("hsbscrubber") // This is beyond its normal capability but this is sandbox and you spawned one, I assume you need it
-				var/obj/hsb = new/obj/machinery/portable_atmospherics/scrubber{volume_rate=50*ONE_ATMOSPHERE;on=1}(usr.loc)
-				hsb.update_icon() // hackish but it wasn't meant to be spawned I guess?
-
-			//
-			// Stacked Materials
-			//
-
-			if("hsbrglass")
-				new/obj/item/stack/sheet/rglass{amount=50}(usr.loc)
-
-			if("hsbmetal")
-				new/obj/item/stack/sheet/metal{amount=50}(usr.loc)
-
-			if("hsbplasteel")
-				new/obj/item/stack/sheet/plasteel{amount=50}(usr.loc)
-
-			if("hsbglass")
-				new/obj/item/stack/sheet/glass{amount=50}(usr.loc)
-
-			if("hsbwood")
-				new/obj/item/stack/sheet/mineral/wood{amount=50}(usr.loc)
-
-			//
-			// All access ID
-			//
-			if("hsbaaid")
-				var/obj/item/card/id/gold/ID = new(usr.loc)
-				ID.registered_name = usr.real_name
-				ID.assignment = "Sandbox"
-				ID.access = get_all_accesses()
-				ID.update_label()
-
-			//
-			// RCD - starts with full clip
-			// Spawn check due to grief potential (destroying floors, walls, etc)
-			//
-			if("hsbrcd")
-				if(!GLOB.hsboxspawn) return
-
-				new/obj/item/construction/rcd/combat(usr.loc)
-
-			//
-			// New sandbox airlock maker
-			//
-			if("hsbairlock")
-				new /datum/airlock_maker(usr.loc)
-
 			//
 			// Object spawn window
 			//

@@ -16,17 +16,14 @@
 /datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), PROC_REF(play_squeak))
+	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_PARENT_ATTACKBY), PROC_REF(play_squeak))
 	if(ismovableatom(parent))
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), PROC_REF(play_squeak))
 		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, PROC_REF(play_squeak_crossed))
 		RegisterSignal(parent, COMSIG_ITEM_WEARERCROSSED, PROC_REF(play_squeak_crossed))
-		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposing_react))
 		if(isitem(parent))
 			RegisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_HIT_REACT), PROC_REF(play_squeak))
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(use_squeak))
-			RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
-			RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 			if(istype(parent, /obj/item/clothing))
 				RegisterSignal(parent, COMSIG_CLOTHING_STEP_ACTION, PROC_REF(step_squeak))
 
@@ -78,16 +75,6 @@
 		last_use = world.time
 		play_squeak()
 
-/datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
-	RegisterSignal(equipper, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposing_react), TRUE)
-
-/datum/component/squeak/proc/on_drop(datum/source, mob/user)
-	UnregisterSignal(user, COMSIG_MOVABLE_DISPOSING)
-
-// Disposal pipes related shit
-/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
-	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
-	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(holder_dir_change))
 
 /datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
 	//If the dir changes it means we're going through a bend in the pipes, let's pretend we bumped the wall

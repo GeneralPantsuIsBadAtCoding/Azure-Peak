@@ -14,7 +14,6 @@
 	randomspread = 1
 	spread = 0
 	can_parry = TRUE
-	pin = /obj/item/firing_pin
 	force = 10
 	var/cocked = FALSE
 	cartridge_wording = "bolt"
@@ -22,7 +21,6 @@
 	fire_sound = 'sound/combat/Ranged/crossbow-small-shot-02.ogg'
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
-	var/damfactor = 2
 	resistance_flags = FIRE_PROOF
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/getonmobprop(tag)

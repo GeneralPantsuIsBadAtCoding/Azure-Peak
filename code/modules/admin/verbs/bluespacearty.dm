@@ -12,10 +12,7 @@
 
 	var/turf/open/floor/T = get_turf(target)
 	if(istype(T))
-		if(prob(80))
-			T.break_tile_to_plating()
-		else
-			T.break_tile()
+		T.break_tile()
 
 	if(target.health <= 1)
 		target.gib(1, 1)
@@ -23,4 +20,3 @@
 		target.adjustBruteLoss(min(99,(target.health - 1)))
 		target.Paralyze(400)
 		target.stuttering = 20
-

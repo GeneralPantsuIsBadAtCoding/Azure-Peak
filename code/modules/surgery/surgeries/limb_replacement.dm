@@ -13,7 +13,6 @@
 	name = "Replace limb"
 	implements = list(
 		/obj/item/bodypart = 80,
-		/obj/item/organ_storage = 80,
 	)
 	time = 3.2 SECONDS
 	surgery_flags = SURGERY_INCISED | SURGERY_RETRACTED | SURGERY_BROKEN
@@ -21,8 +20,6 @@
 	skill_median = SKILL_LEVEL_EXPERT
 
 /datum/surgery_step/replace_limb/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
-	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
-		tool = tool.contents[1]
 	var/obj/item/bodypart/aug = tool
 	if(!istype(aug) || aug.status != BODYPART_ROBOTIC)
 		to_chat(user, span_warning("That's not an augment, silly!"))
@@ -43,11 +40,6 @@
 /datum/surgery_step/replace_limb/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/existing = target.get_bodypart(check_zone(target_zone))
 	if(existing)
-		if(istype(tool, /obj/item/organ_storage))
-			tool.icon_state = initial(tool.icon_state)
-			tool.desc = initial(tool.desc)
-			tool.cut_overlays()
-			tool = tool.contents[1]
 		var/obj/item/bodypart/bodypart = tool
 		if(istype(bodypart) && user.temporarilyRemoveItemFromInventory(bodypart))
 			if(bodypart.replace_limb(target, special = TRUE) && bodypart.attach_wound)

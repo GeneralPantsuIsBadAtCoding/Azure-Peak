@@ -60,7 +60,12 @@
 /datum/intent/shield/bash
 	name = "bash"
 	icon_state = "inbash"
+	hitsound = list('sound/combat/shieldbash_wood.ogg')
 	chargetime = 0
+	item_d_type = "blunt"
+
+/datum/intent/shield/bash/metal
+	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
 
 /datum/intent/shield/block
 	name = "block"
@@ -68,7 +73,12 @@
 	tranged = 1 //we can't attack directly with this intent, but we can charge it
 	tshield = 1
 	chargetime = 1
+	hitsound = list('sound/combat/shieldbash_wood.ogg')
 	warnie = "shieldwarn"
+	item_d_type = "blunt"
+
+/datum/intent/shield/block/metal
+	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
 
 /obj/item/rogueweapon/shield/wood
 	name = "wooden shield"

@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	roundend_category = "Vampires"
 	antagpanel_category = "Vampire"
 	job_rank = ROLE_VAMPIRE
-	antag_hud_type = ANTAG_HUD_VAMPIRE
-	antag_hud_name = "Vlord"
+	antag_hud_type = ANTAG_HUD_TRAITOR
+	antag_hud_name = "vampire lord"
 	confess_lines = list(
 		"I AM ANCIENT",
 		"I AM THE LAND",
@@ -581,9 +581,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /obj/structure/vampire/portal/Initialize()
 	. = ..()
-	set_light(3, 20, LIGHT_COLOR_BLOOD_MAGIC)
+	set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
 	playsound(loc, 'sound/misc/portalopen.ogg', 100, FALSE, pressure_affected = FALSE)
-	sleep(600)
 	visible_message(span_boldnotice("[src] shudders before rapidly closing."))
 	qdel(src)
 
@@ -594,7 +593,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /obj/structure/vampire/bloodpool/Initialize()
 	. = ..()
-	set_light(3, 20, LIGHT_COLOR_BLOOD_MAGIC)
+	set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
 
 /obj/structure/vampire/bloodpool/examine(mob/user)
 	. = ..()

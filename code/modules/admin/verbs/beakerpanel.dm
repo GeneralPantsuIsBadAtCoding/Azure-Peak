@@ -20,31 +20,6 @@
 			var/containerdata = json_decode(href_list["container"])
 			var/obj/item/reagent_containers/container = beaker_panel_create_container(containerdata, get_turf(usr))
 			log_game("[key_name(usr)] spawned a [container] containing [pretty_string_from_reagent_list(container.reagents.reagent_list)]")
-		if ("spawngrenade")
-			var/obj/item/grenade/chem_grenade/grenade = new(get_turf(usr))
-			var/containersdata = json_decode(href_list["containers"])
-			var/reagent_string
-			for (var/i in 1 to 2)
-				grenade.beakers += beaker_panel_create_container(containersdata[i], grenade)
-				reagent_string += " ([grenade.beakers[i].name] [i] : " + pretty_string_from_reagent_list(grenade.beakers[i].reagents.reagent_list) + ");"
-			grenade.stage_change(GRENADE_READY)
-			var/grenadedata = json_decode(href_list["grenadedata"])
-			switch (href_list["grenadetype"])
-				if ("normal") // Regular cable coil-timed grenade
-					var/det_time = text2num(grenadedata["grenade-timer"])
-					if (det_time)
-						grenade.det_time = det_time
-			log_game("[key_name(usr)] spawned a [grenade] containing: [reagent_string]")
-
-/datum/admins/proc/beaker_panel_prep_assembly(obj/item/assembly/towrap, grenade)
-	var/obj/item/assembly/igniter/igniter = new
-	igniter.secured = FALSE
-	var/obj/item/assembly_holder/assholder = new(grenade)
-	towrap.forceMove(assholder)
-	igniter.forceMove(assholder)
-	assholder.assemble(igniter, towrap, usr)
-	assholder.master = grenade
-	return assholder
 
 /datum/admins/proc/beaker_panel_create_container(list/containerdata, location)
 	var/containertype = text2path(containerdata["container"])
@@ -69,9 +44,9 @@
 	var/dat = {"
 		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html>
-			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<head>
+				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+				<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 				<link rel='stylesheet' type='text/css' href='common.css'>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.full.min.js"></script>
@@ -89,9 +64,9 @@
 					}
 
 					ul li {
-					  margin-top: -1px; /* Prevent double borders */
-					  padding: 12px; /* Add some padding */
-					  color: #ffffff;
+						margin-top: -1px; /* Prevent double borders */
+						padding: 12px; /* Add some padding */
+						color: #ffffff;
 						text-decoration: none;
 						background: #40628a;
 						border: 1px solid #161616;
@@ -100,7 +75,7 @@
 					}
 
 					.remove-reagent {
-					 background-color: #d03000;
+					background-color: #d03000;
 					}
 
 					.container-control {
@@ -259,15 +234,15 @@
 					<div class='uiContent'>
 
 		<div class="width: 100%">
-		  <button id="spawn-grenade">
+		<button id="spawn-grenade">
 		<i class="fas fa-bomb"></i>&nbsp;Spawn grenade
-		  </button>
+		</button>
 			<label for="grenade-type">Grenade type: </label>
-		 <select id="grenade-type">
-			 <option value="normal">Normal</option>
-		 </select>
-		 <div class="grenade-data normal">
-		 </div>
+		<select id="grenade-type">
+			<option value="normal">Normal</option>
+		</select>
+		<div class="grenade-data normal">
+		</div>
 			<br />
 <small>note: beakers recommended, other containers may have issues</small>
 		</div>
@@ -287,25 +262,25 @@
 			<div>
 			<button class="spawn-container">
 			<i class="fas fa-cog"></i>&nbsp;Spawn
-			  </button>
-			  &nbsp;&nbsp;&nbsp;
+				</button>
+				&nbsp;&nbsp;&nbsp;
 				<button class="import-reagents">
 			<i class="fas fa-file-import"></i>&nbsp;Import
-			  </button>
-			  &nbsp;&nbsp;&nbsp;
-			  <button class="export-reagents">
+				</button>
+				&nbsp;&nbsp;&nbsp;
+				<button class="export-reagents">
 			<i class="fas fa-file-export"></i>&nbsp;Export
-			  </button>
+				</button>
 
 			</div>
-				 <ul>
-			  <li>
+				<ul>
+				<li>
 
-			    <select class="select-new-reagent"></select><div class="reagent-div"><input style="width: 50%" type="text" name="newreagent" value="40" />&nbsp;&nbsp;<button class="add-reagent">
-			  <i class="fas fa-plus"></i>&nbsp;Add
-			  </button>
+					<select class="select-new-reagent"></select><div class="reagent-div"><input style="width: 50%" type="text" name="newreagent" value="40" />&nbsp;&nbsp;<button class="add-reagent">
+				<i class="fas fa-plus"></i>&nbsp;Add
+				</button>
 
-			  </div>
+				</div>
 			</li>
 			</ul>
 			</div>

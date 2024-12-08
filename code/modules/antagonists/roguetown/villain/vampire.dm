@@ -144,11 +144,19 @@
 	vitae = CLAMP(vitae, 0, 1666)
 
 	if(vitae > 0)
-		H.blood_volume = BLOOD_VOLUME_NORMAL
+		H.blood_volume = BLOOD_VOLUME_MAXIMUM
 		if(vitae < 200)
 			if(disguised)
-				to_chat(H, span_warning("My disguise fails!"))
+				to_chat(H, "<span class='warning'>My disguise fails!</span>")
 				H.vampire_undisguise(src)
+		vitae -= 1
+	else
+		to_chat(H, "<span class='userdanger'>I RAN OUT OF VITAE!</span>")
+		var/obj/shapeshift_holder/SS = locate() in H
+		if(SS)
+			SS.shape.dust()
+		H.dust()
+		return
 
 /mob/living/carbon/human/proc/disguise_button()
 	set name = "Disguise"
