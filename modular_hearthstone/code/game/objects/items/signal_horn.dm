@@ -6,6 +6,7 @@
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_NORMAL
 
+
 /obj/item/signal_horn/attack_self(mob/living/user)
 	. = ..()
 	user.visible_message(span_warning("[user] is about to sound the [src]!"))
@@ -112,3 +113,43 @@
 			else
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/signalhorn.ogg', 35, FALSE, pressure_affected = FALSE)
 				to_chat(player, span_warning("I hear the signal horn somewhere[disttext], [dirtext],[placetext]"))
+
+
+/obj/item/magic_horn
+	name = "enchanted signal horn"
+	desc = "Imbued with magicks, this horn can be used to relay a single message to a designated person from great distances. The horn will be destroyed upon successful use."
+	icon = 'modular_hearthstone/icons/obj/items/signalhorn.dmi'
+	icon_state = "magichorn"
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/magic_horn/attack_self(mob/living/user)
+	. = ..()
+	user.visible_message(span_warning("[user] is about to sound [src]!"))
+	if(do_after(user, 15))
+		sound_magic_horn(user)
+
+/obj/item/magic_horn/proc/sound_magic_horn(mob/living/user)
+	user.visible_message(span_warning("[user] raises [src] to their mouth, whispering into it!"))
+	var/input = input(user, "Who are you trying to contact?")
+	if(!input)
+		return
+	if(!user.key)
+		to_chat(user, span_warning("I sense a body, but the mind does not seem to be there."))
+		return
+	if(!user.mind || !user.mind.do_i_know(name=input))
+		to_chat(user, span_warning("I don't know anyone by that name."))
+		return
+	for(var/mob/living/carbon/human/HL in GLOB.human_list)
+		if(HL.real_name == input)
+			var/message = input(user, "The horn has made a connection. What are you trying to say?")
+			if(!message)
+				return
+			to_chat(HL, "A loud, booming sound echoes through my mind, resolving into the voice of [user]. <font color=#7246ff>[message]</font>")
+			user.visible_message("[src] carries arcyne whispers through the air, before crumbling away to dust.")
+			user.whisper(message)
+			log_game("[key_name(user)] sent a message to [key_name(HL)] with contents [message]")
+			qdel(src)
+			return TRUE
+	to_chat(user, span_warning("The enchanted horn can't seem to find [input]."))
+	return

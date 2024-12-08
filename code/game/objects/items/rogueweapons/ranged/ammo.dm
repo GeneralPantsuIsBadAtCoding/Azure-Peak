@@ -9,13 +9,13 @@
 	dropshrink = 0.6
 	max_integrity = 10
 	force = 10
-/*
+
 /obj/item/ammo_casing/caseless/rogue/bolt/poison
 	name = "poisoned bolt"
 	desc = "A durable iron bolt that will pierce a skull easily. This one is coated in a clear liquid."
 	projectile_type = /obj/projectile/bullet/reusable/bolt/poison
 	icon_state = "arrow_poison"
-*/
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -47,7 +47,7 @@
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/crossbows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/crossbows, L.STAINT * skill_multiplier)
 
-/*
+
 /obj/projectile/bullet/reusable/bolt/poison
 	name = "poisoned bolt"
 	damage = 50
@@ -59,7 +59,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 7) //not gonna kill anyone, but they will be quite quiet
-*/
+
 /obj/item/ammo_casing/caseless/rogue/arrow
 	name = "arrow"
 	desc = "A wooden shaft with a pointy iron end."

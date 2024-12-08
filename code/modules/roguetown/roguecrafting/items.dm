@@ -373,6 +373,8 @@
 				/datum/reagent/berrypoison = 5
 				)
 	req_table = TRUE
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/poisonarrow_stone
 	name = "poisoned stone arrow"
@@ -382,16 +384,20 @@
 				/datum/reagent/berrypoison = 5
 				)
 	req_table = TRUE
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
 
-/*
-/datum/crafting_recipe/roguetown/poisonbolt //Coded, but commented out pending balance discussion.
+
+/datum/crafting_recipe/roguetown/poisonbolt
 	name = "poisoned bolt"
 	result = /obj/item/ammo_casing/caseless/rogue/bolt/poison
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/bolt = 1,
 				/datum/reagent/berrypoison = 5)
 
 	req_table = TRUE
-*/
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
+
 /datum/crafting_recipe/roguetown/poisonarrow_five //Arrows and bolts can be smithed in batches of five. Makes sense for them to be dipped in batches of five, too
 	name = "poisoned arrow (x5)"
 	result = list(
@@ -407,16 +413,20 @@
 				)
 
 	req_table = TRUE
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
 
-/*
-/datum/crafting_recipe/roguetown/poisonbolt_five //Coded, but commented out pending balance discussion.
+
+/datum/crafting_recipe/roguetown/poisonbolt_five
 	name = "poisoned bolts (x5)"
 	result = list(/obj/item/ammo_casing/caseless/rogue/bolt/poison = 5)
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/bolt = 5,
 				/datum/reagent/berrypoison = 25)
 
 	req_table = TRUE
-*/
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
+
 /datum/crafting_recipe/roguetown/poisonarrow_five_stone
 	name = "poisoned stone arrow (x5)"
 	result = list(
@@ -432,6 +442,8 @@
 				)
 
 	req_table = TRUE
+	craftdiff = 4
+	skillcraft = /datum/skill/craft/engineering
 
 //pyro arrow crafting, from stonekeep
 /datum/crafting_recipe/roguetown/pyrobolt
@@ -440,7 +452,7 @@
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/bolt = 1,
 				/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 1)
 	req_table = TRUE
-	craftdiff = 1
+	craftdiff = 4
 	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/pyrobolt_five
@@ -455,7 +467,7 @@
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/bolt = 5,
 				/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 5)
 	req_table = TRUE
-	craftdiff = 1
+	craftdiff = 4
 	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/pyroarrow
@@ -464,7 +476,7 @@
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/arrow/iron = 1,
 				/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 1)
 	req_table = TRUE
-	craftdiff = 1
+	craftdiff = 4
 	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/pyroarrow_five
@@ -479,7 +491,7 @@
 	reqs = list(/obj/item/ammo_casing/caseless/rogue/arrow/iron = 5,
 				/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 5)
 	req_table = TRUE
-	craftdiff = 1
+	craftdiff = 4
 	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/mortar

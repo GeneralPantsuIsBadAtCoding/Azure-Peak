@@ -96,7 +96,7 @@
 		var/obj/item/ammo_casing/caseless/rogue/bolt/A = new()
 		arrows += A
 	update_icon()
-/*
+
 /obj/item/quiver/Parrows/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
@@ -110,5 +110,5 @@
 		var/obj/item/ammo_casing/caseless/rogue/bolt/poison/A = new()
 		arrows += A
 	update_icon()
-*/
+
 

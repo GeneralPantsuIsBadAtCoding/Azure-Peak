@@ -1125,6 +1125,42 @@
 	flags_cover = HEADCOVERSEYES
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
 
+/obj/item/clothing/head/roguetown/helmet/kettle/miner
+	name = "reinforced miners helmet"
+	desc = "A steel kettle helmet with a headlamp on the front, fueled by magiks."
+	icon_state = "minerslampsteel"
+	var/brightness_on = 6
+	var/on = FALSE
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+
+/obj/item/clothing/head/roguetown/helmet/kettle/miner/attack_self(mob/living/user)
+	toggle_helmet_light(user)
+
+/obj/item/clothing/head/roguetown/helmet/kettle/miner/proc/toggle_helmet_light(mob/living/user)
+	on = !on
+	if(on)
+		turn_on(user)
+	else
+		turn_off(user)
+	update_icon()
+
+/obj/item/clothing/head/roguetown/helmet/kettle/miner/update_icon()
+	icon_state = "minerslampsteel[on]"
+	item_state = "minerslampsteel[on]"
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		H.update_inv_head()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon(force = TRUE)
+	..()
+
+/obj/item/clothing/head/roguetown/helmet/kettle/miner/proc/turn_on(mob/user)
+	set_light(brightness_on)
+
+/obj/item/clothing/head/roguetown/helmet/kettle/miner/proc/turn_off(mob/user)
+	set_light(0)
+
 /obj/item/clothing/head/roguetown/helmet/leather/minershelm
 	name = "leather miners helmet"
 	desc = "A leather kettle-like helmet with a headlamp, fueled by magiks."
