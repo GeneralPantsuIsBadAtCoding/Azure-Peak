@@ -704,7 +704,8 @@
 		add_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE, multiplicative_slowdown = SOFTCRIT_ADD_SLOWDOWN)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE)
-
+	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
+	
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
 	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat)

@@ -41,8 +41,15 @@
 	attack_same = 1
 	retreat_health = 0.3
 	aggressive = 1
-	stat_attack = UNCONSCIOUS
+
 	remains_type = /obj/effect/decal/remains/bigrat
+
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/big_rat
+
+	stat_attack = UNCONSCIOUS
 
 /obj/effect/decal/remains/bigrat
 	name = "remains"
@@ -55,6 +62,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/Initialize()
 	. = ..()
 	gender = MALE
+	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.3)
 	if(prob(33))
 		gender = FEMALE
 	if(gender == FEMALE)
@@ -62,6 +70,7 @@
 		icon_living = "Frat"
 		icon_dead = "Frat1"
 	update_icon()
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/death(gibbed)

@@ -44,6 +44,11 @@
 						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 1)
 	aggressive = 1
 
+//new ai, old ai off
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc
+
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2
 	icon_state = "savageorc2"
 	icon_living = "savageorc2"
@@ -215,6 +220,17 @@
 	maxHealth = 50
 	health = 50
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc_ranged
+
 /mob/living/simple_animal/hostile/retaliate/orc/death(gibbed)
 	..()
 	update_icon()
+
+
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/original
+	AIStatus = AI_ON
+	can_have_ai = TRUE
+
+
