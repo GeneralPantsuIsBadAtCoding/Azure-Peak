@@ -124,37 +124,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/rogueweapon/huntingknife/chefknife
-	force = 15
-	name = "chef's knife"
-	desc = "Keep it in the kitchen!"
-	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/thrust)
-	icon_state = "chefsknife"
-	icon = 'icons/roguetown/weapons/32.dmi'
-	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
-	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
-	throwforce = 15
-	slot_flags = ITEM_SLOT_HIP
-	thrown_bclass = BCLASS_CUT
-	w_class = WEIGHT_CLASS_SMALL
-	smeltresult = /obj/item/ingot/steel
-
-/obj/item/rogueweapon/huntingknife/cleaver/combat
-	force = 16
-	name = "seax"
-	desc = "A fighting knife used amongst the Grenzels and Northerners for centuries, serving dual purpose as a \
-	tool of daily life and as a capable fighting knife."
-	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch,)
-	icon_state = "combatknife"
-	icon = 'icons/roguetown/weapons/32.dmi'
-	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
-	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
-	throwforce = 16
-	slot_flags = ITEM_SLOT_HIP
-	thrown_bclass = BCLASS_CHOP
-	w_class = WEIGHT_CLASS_NORMAL
-	smeltresult = /obj/item/ingot/steel
-
 /obj/item/rogueweapon/huntingknife/cleaver/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -183,6 +152,44 @@
 "eflip" = 0)
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/obj/item/rogueweapon/huntingknife/chefknife
+	force = 15
+	name = "chef's knife"
+	desc = "Keep it in the kitchen!"
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/thrust)
+	icon_state = "chefsknife"
+	icon = 'icons/roguetown/weapons/32.dmi'
+	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
+	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
+	throwforce = 15
+	slot_flags = ITEM_SLOT_HIP
+	thrown_bclass = BCLASS_CUT
+	w_class = WEIGHT_CLASS_SMALL
+	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/huntingknife/combat
+	force = 16
+	name = "seax"
+	desc = "A fighting knife used amongst the Grenzels and Northerners for centuries, serving dual purpose as a \
+	tool of daily life and as a capable fighting knife."
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch,)
+	icon_state = "combatknife"
+	icon = 'icons/roguetown/weapons/32.dmi'
+	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
+	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
+	throwforce = 16
+	slot_flags = ITEM_SLOT_HIP
+	thrown_bclass = BCLASS_CHOP
+	w_class = WEIGHT_CLASS_NORMAL
+	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/huntingknife/combat/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -9,"sy" = 0,"nx" = 10,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 21,"sturn" = -29,"wturn" = -29,"eturn" = 33,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)

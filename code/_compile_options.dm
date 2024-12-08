@@ -4,7 +4,7 @@
 //#define DATUMVAR_DEBUGGING_MODE	//Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
 
 #define MATURESERVER
-//#define TESTSERVER
+//#define TESTSERVER //UNCOMMENT TO ENABLE IN-GAME INHAND TRANSFORMATION EDITING AND OTHER DEBUG OPTIONS
 #define ALLOWPLAY
 
 #define RESPAWNTIME 0
