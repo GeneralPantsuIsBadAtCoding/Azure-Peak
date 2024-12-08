@@ -10,7 +10,8 @@
 	animname = "cut"
 	blade_class = BCLASS_CUT
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = 0
+	penfactor = 60
+	damfactor = 0.9
 	chargetime = 0
 	swingdelay = 0
 	clickcd = 10
@@ -23,7 +24,7 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 40
+	penfactor = 60
 	chargetime = 0
 	clickcd = 8
 	item_d_type = "stab"
@@ -33,7 +34,7 @@
 	icon_state = "inpick"
 	attack_verb = list("stabs", "impales")
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 80
+	penfactor = 70
 	clickcd = 14
 	swingdelay = 12
 	damfactor = 1.1
@@ -46,7 +47,8 @@
 	animname = "strike"
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
-	damfactor = 0.5
+	damfactor = 1
+	penfactor = 60
 	clickcd = 14
 	recovery = 10
 	item_d_type = "blunt"
@@ -60,7 +62,7 @@
 	animname = "chop"
 	blade_class = BCLASS_CHOP
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = 10
+	penfactor = 60
 	damfactor = 1.5
 	swingdelay = 5
 	clickcd = 10
@@ -68,7 +70,6 @@
 
 /datum/intent/dagger/chop/cleaver
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = 30
 
 //knife and dagger objs ฅ^•ﻌ•^ฅ
 
@@ -110,7 +111,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/huntingknife/cleaver
-	force = 15
+	force = 13
 	name = "cleaver"
 	desc = "Chop, chop, chop!"
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver)
@@ -125,7 +126,7 @@
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/chefknife
-	force = 15
+	force = 13
 	name = "chef's knife"
 	desc = "Keep it in the kitchen!"
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/thrust)
@@ -140,7 +141,7 @@
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/cleaver/combat
-	force = 16
+	force = 15
 	name = "seax"
 	desc = "A fighting knife used amongst the Grenzels and Northerners for centuries, serving dual purpose as a \
 	tool of daily life and as a capable fighting knife."
@@ -186,7 +187,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
-	force = 15
+	force = 14
 	max_integrity = 100
 	name = "iron dagger"
 	desc = "This is a common dagger of iron."
@@ -197,7 +198,7 @@
 	name = "steel dagger"
 	desc = "This is a dagger made of solid steel, more durable."
 	icon_state = "sdagger"
-	force = 20
+	force = 15
 	max_integrity = 150
 	smeltresult = /obj/item/ingot/steel
 
@@ -205,13 +206,13 @@
 	name = "'De Tace'"
 	desc = "The right hand of the right hand, this narrow length of steel serves as a quick solution to petty greviences."
 	icon_state = "stiletto"
-	force = 25
+	force = 20
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
 	name = "steel parrying dagger"
-	force = 12
+	force = 14
 	throwforce = 12
 	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard. It's a bit more dull, however."
 	icon_state = "spdagger"
@@ -296,7 +297,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	name = "elvish dagger"
 	desc = "This beautiful dagger is of intricate, elvish design. Sharper, too."
-	force = 22
+	force = 16
 	icon_state = "elfdagger"
 	item_state = "elfdag"
 	last_used = 0
@@ -305,7 +306,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/drow
 	name = "dark elvish dagger"
 	desc = "A vicious wave-bladed dagger from the Underdark."
-	force = 25
+	force = 17
 	last_used = 0
 	is_silver = TRUE
 
@@ -324,7 +325,7 @@
 	extended = !extended
 	playsound(src.loc, 'sound/blank.ogg', 50, TRUE)
 	if(extended)
-		force = 20
+		force = 16
 		wdefense = 6
 		w_class = WEIGHT_CLASS_NORMAL
 		throwforce = 23

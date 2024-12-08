@@ -1,5 +1,5 @@
 /obj/item/rogueweapon/flail
-	force = 25
+	force = 23
 	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smash)
 	name = "flail"
 	desc = "This is a swift, iron flail. Strikes hard and far."
@@ -25,7 +25,7 @@
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
-	penfactor = 5
+	penfactor = 50
 	icon_state = "instrike"
 	item_d_type = "slash"
 
@@ -36,7 +36,7 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 5
 	recovery = 15
-	penfactor = 5
+	penfactor = 55
 	reach = 2
 	icon_state = "instrike"
 	item_d_type = "slash"
@@ -45,10 +45,8 @@
 	name = "smash"
 	chargetime = 5
 	no_early_release = TRUE
-	penfactor = 80
+	penfactor = 60
 	recovery = 10
-	swingdelay = 7
-	damfactor = 1.2
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"
@@ -61,9 +59,9 @@
 	name = "ranged smash"
 	chargetime = 25
 	no_early_release = TRUE
-	penfactor = 50
+	penfactor = 60
 	recovery = 30
-	damfactor = 1.5
+	damfactor = 1.0
 	reach = 2
 	swingdelay = 8
 	chargedloop = /datum/looping_sound/flailswing
@@ -85,7 +83,7 @@
 
 
 /obj/item/rogueweapon/flail/sflail
-	force = 30
+	force = 25
 	icon_state = "flail"
 	desc = "This is a swift, steel flail. Strikes hard and far."
 	smeltresult = /obj/item/ingot/steel
@@ -111,7 +109,7 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
 	recovery = 10
-	penfactor = 40
+	penfactor = 55
 	reach = 3
 	icon_state = "incrack"
 	item_d_type = "slash"
@@ -168,7 +166,7 @@
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10
-	force_wielded = 35
+	force_wielded = 27
 	possible_item_intents = list(/datum/intent/flail/strike)
 	gripped_intents = list(/datum/intent/flail/strikerange, /datum/intent/flail/strike/smashrange)
 	name = "peasant war flail"

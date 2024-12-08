@@ -21,7 +21,7 @@
 	resistance_flags = FLAMMABLE
 	can_parry = TRUE
 	associated_skill = /datum/skill/combat/shields		//Trained via blocking or attacking dummys with; makes better at parrying w/ shields.
-	wdefense = 5										//Was 15, lowered to 5 - Reason: Shield skill now handles your better parrying w/ shields.
+	wdefense = 11										//All weapon skill makes you better at parrying equally. Shields should still have the best defence.
 	var/coverage = 90
 	parrysound = "parrywood"
 	attacked_sound = "parrywood"
@@ -113,7 +113,7 @@
 	throw_range = 3
 	wlength = WLENGTH_NORMAL
 	resistance_flags = FLAMMABLE
-	wdefense = 6
+	wdefense = 12
 	coverage = 70
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	max_integrity = 200
@@ -138,7 +138,7 @@
 	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
-	wdefense = 8
+	wdefense = 14
 	coverage = 70
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
