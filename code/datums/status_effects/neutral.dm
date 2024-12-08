@@ -157,3 +157,89 @@
 	. = ..()
 	if(.)
 		listening_in = tracker
+
+//Xylix Gambling
+var/wheeleffect
+/datum/status_effect/wheel
+	id = "lucky(?)"
+	status_type = STATUS_EFFECT_UNIQUE
+	effectedstats = list("fortune" = "?")
+	duration = 3000 //five minutes
+	
+/datum/status_effect/wheel/on_apply()
+	. = ..()
+	switch(pick(-5,-4,-3,-2,-1,0,1,2,3,4,5))
+		if(-5)
+			owner.change_stat("fortune", -5)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+			wheeleffect = -5
+		if(-4)
+			owner.change_stat("fortune", -4)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+			wheeleffect = -4
+		if(-3)
+			owner.change_stat("fortune", -3)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+			wheeleffect = -3
+		if(-2)
+			owner.change_stat("fortune", -2)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+			wheeleffect = -2
+		if(-1)
+			owner.change_stat("fortune", -1)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+			wheeleffect = -1
+		if(0)
+			owner.change_stat("fortune", 0)
+			to_chat(owner, span_boldnotice("My heart beats, I feel as though nothing has changed at all..."))
+			wheeleffect = 0
+		if(1)
+			owner.change_stat("fortune", 1)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+			wheeleffect = 1
+		if(2)
+			owner.change_stat("fortune", 2)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+			wheeleffect = 2
+		if(3)
+			owner.change_stat("fortune", 3)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+			wheeleffect = 3
+		if(4)
+			owner.change_stat("fortune", 4)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+			wheeleffect = 4
+		if(5)
+			owner.change_stat("fortune", 5)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+			wheeleffect = 5									
+
+/datum/status_effect/wheel/on_remove()
+	. = ..()
+	if(wheeleffect == -5)
+		owner.change_stat("fortune", 5)
+	if(wheeleffect == -4)
+		owner.change_stat("fortune", 4)
+	if(wheeleffect == -3)
+		owner.change_stat("fortune", 3)
+	if(wheeleffect == -2)
+		owner.change_stat("fortune", 2)
+	if(wheeleffect == -1)
+		owner.change_stat("fortune", 1)
+	if(wheeleffect == 0)
+		owner.change_stat("fortune", 0)
+	if(wheeleffect == 1)
+		owner.change_stat("fortune", -1)
+	if(wheeleffect == 2)
+		owner.change_stat("fortune", -2)
+	if(wheeleffect == 3)
+		owner.change_stat("fortune", -3)
+	if(wheeleffect == 4)
+		owner.change_stat("fortune", -4)
+	if(wheeleffect == 5)
+		owner.change_stat("fortune", -5)
+
+/atom/movable/screen/alert/status_effect/wheel
+	name = "Lucky(?)"
+	desc = "I feel different since my fortune was changed..."
+	icon_state = "asleep"	
