@@ -47,6 +47,11 @@
 
 	var/spell_points
 	var/used_spell_points
+	var/movemovemovetext = "Move!!"
+	var/takeaimtext = "Take aim!!"
+	var/holdtext = "Hold!!"
+	var/onfeettext = "On your feet!!"
+	var/focustargettext = "Focus target!!"
 
 	var/linglink
 	var/datum/martial_art/martial_art

@@ -893,10 +893,6 @@
 /obj/effect/landmark/start/monk,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church/chapel)
-"aHV" = (
-/obj/effect/landmark/start/manorguardsman,
-/turf/open/floor/rogue/carpet/lord/left,
-/area/rogue/indoors/town/manor)
 "aIp" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -8071,9 +8067,7 @@
 "hpA" = (
 /obj/item/book/rogue/law,
 /obj/structure/bed/rogue,
-/obj/effect/landmark/start/guardsman{
-	dir = 8
-	},
+/obj/effect/landmark/start/manorguardsman,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -12075,6 +12069,7 @@
 /area/rogue/outdoors/rtfield)
 "kTB" = (
 /obj/machinery/light/rogue/wallfire/candle,
+/obj/effect/landmark/start/sergeant,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -14035,12 +14030,6 @@
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/indoors/town)
-"mIm" = (
-/obj/effect/landmark/start/manorguardsman,
-/turf/open/floor/rogue/tile/masonic{
-	dir = 4
-	},
-/area/rogue/indoors/town/manor)
 "mIn" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/naturalstone,
@@ -14399,10 +14388,6 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/bath)
-"nac" = (
-/obj/effect/landmark/start/manorguardsman,
-/turf/open/floor/rogue/tile/masonic/single,
-/area/rogue/indoors/town/manor)
 "nan" = (
 /obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -14850,9 +14835,7 @@
 /area/rogue/indoors/town/church)
 "nrC" = (
 /obj/structure/bed/rogue,
-/obj/effect/landmark/start/guardsman{
-	dir = 8
-	},
+/obj/effect/landmark/start/manorguardsman,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -16908,12 +16891,6 @@
 "phM" = (
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town/roofs/keep)
-"phW" = (
-/obj/effect/landmark/start/manorguardsman,
-/turf/open/floor/rogue/tile/masonic{
-	dir = 8
-	},
-/area/rogue/indoors/town/manor)
 "phZ" = (
 /obj/structure/fluff/railing/border{
 	dir = 6
@@ -19310,10 +19287,6 @@
 /obj/structure/roguemachine/atm,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
-"rrf" = (
-/obj/effect/landmark/start/manorguardsman,
-/turf/open/floor/rogue/carpet/lord/right,
-/area/rogue/indoors/town/manor)
 "rrL" = (
 /obj/structure/fluff/clock,
 /turf/open/floor/rogue/blocks/stonered/tiny,
@@ -21425,7 +21398,7 @@
 "tiq" = (
 /obj/machinery/light/rogue/torchholder/c,
 /obj/structure/bed/rogue,
-/obj/effect/landmark/start/guardsman,
+/obj/effect/landmark/start/manorguardsman,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -21788,13 +21761,6 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
-"tzi" = (
-/obj/structure/bed/rogue,
-/obj/effect/landmark/start/guardsman,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
-/area/rogue/indoors/town/garrison)
 "tzP" = (
 /turf/closed/wall/mineral/rogue/wooddark/end,
 /area/rogue/under/town/basement)
@@ -26477,7 +26443,7 @@
 /area/rogue/indoors/town)
 "xOg" = (
 /obj/structure/toilet,
-/obj/effect/landmark/start/guardsman,
+/obj/effect/landmark/start/manorguardsman,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
 "xOq" = (
@@ -26937,9 +26903,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "yfZ" = (
-/obj/effect/landmark/start/guardsman{
-	dir = 4
-	},
+/obj/effect/landmark/start/manorguardsman,
 /obj/structure/bed/rogue,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -69876,8 +69840,8 @@ fAW
 wKp
 cYQ
 xuJ
-nac
-mIm
+tca
+eNS
 xuJ
 tca
 eNS
@@ -70033,8 +69997,8 @@ nJG
 jbx
 nJG
 nJG
-aHV
-aHV
+nJG
+nJG
 nJG
 nJG
 nJG
@@ -70347,8 +70311,8 @@ boY
 eTw
 boY
 boY
-rrf
-rrf
+boY
+boY
 boY
 boY
 boY
@@ -70504,8 +70468,8 @@ fAW
 rkv
 kpC
 ffK
-nac
-phW
+tca
+cSR
 ffK
 tca
 cSR
@@ -93453,7 +93417,7 @@ tYX
 tYX
 jsn
 jsn
-tzi
+nrC
 vSF
 yfZ
 gkl

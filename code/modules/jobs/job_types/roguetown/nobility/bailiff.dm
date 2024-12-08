@@ -98,7 +98,7 @@
 
 /mob/living/carbon/human/proc/request_law()
 	set name = "Request Law"
-	set category = "Sheriff"
+	set category = "Voice of Command"
 	if(stat)
 		return
 	var/inputty = input("Write a new law", "SHERIFF") as text|null
@@ -114,7 +114,7 @@
 
 /mob/living/carbon/human/proc/request_law_removal()
 	set name = "Request Law Removal"
-	set category = "Sheriff"
+	set category = "Voice of Command"
 	if(stat)
 		return
 	var/inputty = input("Remove a law", "SHERIFF") as text|null
@@ -131,7 +131,7 @@
 
 /mob/living/carbon/human/proc/request_purge()
 	set name = "Request Purge"
-	set category = "Sheriff"
+	set category = "Voice of Command"
 	if(stat)
 		return
 	if(hasomen(OMEN_NOLORD))
@@ -145,7 +145,7 @@
 
 /mob/living/carbon/human/proc/request_outlaw()
 	set name = "Request Outlaw"
-	set category = "Sheriff"
+	set category = "Voice of Command"
 	if(stat)
 		return
 	var/inputty = input("Outlaw a person", "SHERIFF") as text|null

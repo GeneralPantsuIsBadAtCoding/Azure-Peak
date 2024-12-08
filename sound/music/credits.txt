@@ -7,7 +7,7 @@ combat_bandit.ogg: Deus Ex - Battery Park Combat
 combat_bandit2.ogg: Evanora Unlimited - Mithlond (Instrumental)
 combat_werewolf.ogg: Filmmaker - Federal Bestiary
 combat_guard.ogg: Deus Ex - Desolation Combat
-combat_guard2.ogg: Deus Ex - NYC Streets Combat
+combat_guard2.ogg: Thronebreaker Unreleased Soundtrack - Caldwell Battle Theme
 combat_physician.ogg: Pathologic (Classic) - Utroba Aggression
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
 combat_knight.ogg: Dragon's Dogma OST: Tense Combat
