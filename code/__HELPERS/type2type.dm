@@ -298,56 +298,69 @@
 
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)
+//^ I did.
 /proc/body_parts_covered2organ_names(bpc)
 	var/list/covered_parts = list()
 
 	if(!bpc)
 		return 0
 
-	if(bpc & FULL_BODY)
-		covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM,BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
-
+	if(bpc & HEAD)
+		covered_parts |= list(READABLE_ZONE_HEAD)
+	if(bpc & NECK)
+		covered_parts |= list(READABLE_ZONE_NECK)
+	if(bpc & FACE)
+		covered_parts |= list(READABLE_ZONE_FACE)
 	else
-		if(bpc & HEAD)
-			covered_parts |= list(BODY_ZONE_HEAD)
-		if(bpc & CHEST)
-			covered_parts |= list(BODY_ZONE_CHEST)
-		if(bpc & GROIN)
-			covered_parts |= list(BODY_ZONE_CHEST)
+		if(bpc & MOUTH)
+			covered_parts |= list(READABLE_ZONE_MOUTH)
+		if(bpc & NOSE)
+			covered_parts |= list(READABLE_ZONE_NOSE)
+		if(bpc & EYES)
+			covered_parts |= list(READABLE_ZONE_EYES)
 
-		if(bpc & ARMS)
-			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
-		else
-			if(bpc & ARM_LEFT)
-				covered_parts |= list(BODY_ZONE_L_ARM)
-			if(bpc & ARM_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_ARM)
+	if(bpc & CHEST)
+		covered_parts |= list(READABLE_ZONE_CHEST)
+	if(bpc & VITALS)
+		covered_parts |= list(READABLE_ZONE_VITALS)
+	if(bpc & GROIN)
+		covered_parts |= list(READABLE_ZONE_GROIN)
 
-		if(bpc & HANDS)
-			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
-		else
-			if(bpc & HAND_LEFT)
-				covered_parts |= list(BODY_ZONE_L_ARM)
-			if(bpc & HAND_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_ARM)
+	if(bpc & ARMS)
+		covered_parts |= list(READABLE_ZONE_ARMS)
+	else
+		if(bpc & ARM_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_ARM)
+		if(bpc & ARM_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_ARM)
 
-		if(bpc & LEGS)
-			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
-		else
-			if(bpc & LEG_LEFT)
-				covered_parts |= list(BODY_ZONE_L_LEG)
-			if(bpc & LEG_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_LEG)
+	if(bpc & HANDS)
+		covered_parts |= list(READABLE_ZONE_HANDS)
+	else
+		if(bpc & HAND_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_HAND)
+		if(bpc & HAND_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_HAND)
 
-		if(bpc & FEET)
-			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
-		else
-			if(bpc & FOOT_LEFT)
-				covered_parts |= list(BODY_ZONE_L_LEG)
-			if(bpc & FOOT_RIGHT)
-				covered_parts |= list(BODY_ZONE_R_LEG)
+	if(bpc & LEGS)
+		covered_parts |= list(READABLE_ZONE_LEGS)
+	else
+		if(bpc & LEG_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_LEG)
+		if(bpc & LEG_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_LEG)
+
+	if(bpc & FEET)
+		covered_parts |= list(READABLE_ZONE_FEET)
+	else
+		if(bpc & FOOT_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_FOOT)
+		if(bpc & FOOT_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_FOOT)
 
 	return covered_parts
+
+
 
 /proc/slot2body_zone(slot)
 	switch(slot)

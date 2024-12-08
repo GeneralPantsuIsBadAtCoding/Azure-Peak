@@ -22,6 +22,30 @@
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
+//user-readable body parts
+#define READABLE_ZONE_HEAD 		"Head"
+#define READABLE_ZONE_CHEST		"Chest"
+#define READABLE_ZONE_ARMS		"Arms"
+#define READABLE_ZONE_L_ARM		"Left arm"
+#define READABLE_ZONE_R_ARM		"Right arm"
+#define READABLE_ZONE_LEGS		"Legs"
+#define READABLE_ZONE_L_LEG		"Left leg"
+#define READABLE_ZONE_R_LEG		"Right leg"
+
+#define READABLE_ZONE_NOSE		"Nose"
+#define READABLE_ZONE_MOUTH		"Mouth"
+#define READABLE_ZONE_EYES		"Eyes"
+#define READABLE_ZONE_NECK		"Neck"
+#define READABLE_ZONE_FACE		"Face"
+#define READABLE_ZONE_VITALS	"Stomach"
+#define READABLE_ZONE_GROIN		"Groin"
+#define READABLE_ZONE_HANDS		"Hands"
+#define READABLE_ZONE_L_HAND	"Left hand"
+#define READABLE_ZONE_R_HAND	"Right hand"
+#define READABLE_ZONE_FEET		"Feet"
+#define READABLE_ZONE_L_FOOT	"Left foot"
+#define READABLE_ZONE_R_FOOT	"Right foot"
+
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
