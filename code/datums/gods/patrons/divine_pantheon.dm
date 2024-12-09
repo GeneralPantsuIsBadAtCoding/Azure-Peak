@@ -91,6 +91,8 @@
 	desc = "The Laughing God, both famous and infamous for his sway over the forces of luck. Xylix is known for the inspiration of many a bards lyric. Speaks through his gift to man; the Tarot deck."
 	worshippers = "Gamblers, Bards, Artists, and the Silver-Tongued"
 	mob_traits = list(TRAIT_XYLIX)
+	t1 = /obj/effect/proc_holder/spell/invoked/wheel
+	t2 = /obj/effect/proc_holder/spell/invoked/mockery
 	confess_lines = list(
 		"ASTRATA IS MY LIGHT!",
 		"NOC IS NIGHT!",
