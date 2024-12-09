@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/orc
 	name = "Savage Orc"
-	desc = ""
+	desc = "A fierce, brutish looking creature."
 	icon = 'modular_hearthstone/icons/mob/simple_orcs.dmi'
 	icon_state = "savageorc"
 	icon_living = "savageorc"
@@ -43,6 +43,11 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
 						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 1)
 	aggressive = 1
+
+//new ai, old ai off
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2
 	icon_state = "savageorc2"
@@ -197,8 +202,8 @@
 	speed = 2
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged
-	name = "savage orc archer"
-	desc = ""
+	name = "Savage Orc Archer"
+	desc = "A fierce, brutish looking creature. This one has a bow."
 	icon_state = "orcbow"
 	icon_living = "orcbow"
 	icon_dead = "orcbow"
@@ -215,6 +220,17 @@
 	maxHealth = 50
 	health = 50
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc_ranged
+
 /mob/living/simple_animal/hostile/retaliate/orc/death(gibbed)
 	..()
 	update_icon()
+
+
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/original
+	AIStatus = AI_ON
+	can_have_ai = TRUE
+
+

@@ -26,7 +26,10 @@
 	attack_same = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	blood_volume = BLOOD_VOLUME_NORMAL
-	food_type = list(/obj/item/reagent_containers/food/snacks/grown)
+	food_type = list(
+		/obj/item/reagent_containers/food/snacks/grown
+		)
+	var/food_max = 50
 	var/obj/item/udder/udder = null
 	footstep_type = FOOTSTEP_MOB_SHOE
 	var/milkies = FALSE
@@ -40,6 +43,14 @@
 	var/eat_forever
 	candodge = TRUE
 
+	//If the creature is doing something they should STOP MOVING.
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/retaliate/rogue/Move()
+	//If you cant act and dont have a player stop moving.
+	if(!can_act && !client)
+		return FALSE
+	..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
 	..()
@@ -102,6 +113,12 @@
 			Goto(T,move_to_delay,0)
 			return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/retaliate/rogue/AttackingTarget()
+	//If you can't act and dont have a player stop moving.
+	if(!can_act && !client)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/proc/eat_bodies()
 	var/mob/living/L

@@ -110,6 +110,9 @@ Key procs
 				continue
 		. += amt
 	cached_multiplicative_slowdown = .
+
+	SEND_SIGNAL(src, COMSIG_MOB_MOVESPEED_UPDATED)
+	
 	if(updating_glide_size)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 

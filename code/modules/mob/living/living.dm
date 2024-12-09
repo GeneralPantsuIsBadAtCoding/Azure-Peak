@@ -767,6 +767,7 @@
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
+	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
 //Proc used to resuscitate a mob, for full_heal see fully_heal()
 /mob/living/proc/revive(full_heal = FALSE, admin_revive = FALSE)
