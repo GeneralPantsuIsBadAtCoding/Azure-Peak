@@ -431,7 +431,7 @@
 	if(blessed_time > 0)
 		. += span_good("The soil seems blessed.")
 	if(fertilized_time > 0)
-		. += span_good("The soil has special fertilzier mixed in.")
+		. += span_good("The soil has special fertilizer mixed in.")
 
 #define BLESSING_WEED_DECAY_RATE 10 / (1 MINUTES)
 #define WEED_GROWTH_RATE 3 / (1 MINUTES)

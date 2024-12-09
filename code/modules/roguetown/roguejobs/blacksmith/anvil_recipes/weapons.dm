@@ -76,14 +76,14 @@
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/iron/bardiche
-	name = "Bardiche (+ iron) (+1 Small Log)"
+	name = "Bardiche (+1 Iron, +1 Small Log)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/halberd/bardiche
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/iron/lucerne
-	name = "Lucerne (+ iron) (+1 Small Log)"
+	name = "Lucerne (+1 Iron, +1 Small Log)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/eaglebeak/lucerne
@@ -96,7 +96,7 @@
 	created_item = /obj/item/rogueweapon/mace/goden
 
 /datum/anvil_recipe/weapons/iron/tossblade
-	name = "Iron Tossblades (four)"
+	name = "Iron Tossblades 4x"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/iron
 	craftdiff = 0
@@ -235,15 +235,15 @@
 	created_item = /obj/item/rogueweapon/spear/billhook
 	craftdiff = 2
 
-/datum/anvil_recipe/weapons/steel/halbert
-	name = "Halberd (+1 Steel) (+1 Small Log)"
+/datum/anvil_recipe/weapons/steel/halberd
+	name = "Halberd (+1 Steel, +1 Small Log)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/halberd
 	craftdiff = 4
 
 /datum/anvil_recipe/weapons/steel/eaglebeak
-	name = "Eagle's Beak (+1 Steel) (+1 Small Log)"
+	name = "Eagle's Beak (+1 Steel, +1 Small Log)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/eaglebeak
@@ -257,8 +257,8 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/weapons/steel/tossblade
-	name = "Steel Tossblades (four)"
-	req_bar = /obj/item/ingot/steel
+	name = "Steel Tossblades 4x"
+	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	craftdiff = 0
 	createditem_num = 4
@@ -350,7 +350,7 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/weapons/silver/tossblade
-	name = "Silver Tossblades (four)"
+	name = "Silver Tossblades 4x"
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/psydon
 	craftdiff = 3
@@ -373,7 +373,7 @@
 
 /// SHIELDS
 /datum/anvil_recipe/weapons/steel/kiteshield
-	name = "Kite Shield (+1 Steel +1 Hide)"
+	name = "Kite Shield (+1 Steel, +1 Hide)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/hide)
 	created_item = /obj/item/rogueweapon/shield/tower/metal
@@ -395,7 +395,7 @@
 
 /// CROSSBOWS
 /datum/anvil_recipe/weapons/steel/xbow
-	name = "Crossbow (+1 Small Log) (+1 Fiber)"
+	name = "Crossbow (+1 Small Log, +1 Fiber)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/small, /obj/item/natural/fibers)
 	created_item = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
@@ -420,7 +420,7 @@
 
 //Rarity
 /datum/anvil_recipe/valuables/steel/execution
-	name = "Execution Sword (+ 1 Steel, + 1 Iron)"
+	name = "Execution Sword (+1 Steel, +1 Iron)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/iron, /obj/item/ingot/steel)
 	created_item = /obj/item/rogueweapon/sword/long/exe

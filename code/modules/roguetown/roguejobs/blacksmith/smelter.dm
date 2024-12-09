@@ -172,6 +172,7 @@
 					var/steelalloy
 					var/bronzealloy
 //					var/blacksteelalloy
+
 					for(var/obj/item/I in ore)
 						if(I.smeltresult == /obj/item/rogueore/coal)
 							steelalloy = steelalloy + 1
@@ -185,8 +186,10 @@
 //							blacksteelalloy = blacksteelalloy + 1
 //						if(I.smeltresult == /obj/item/ingot/steel)
 //							blacksteelalloy = blacksteelalloy + 2
+
 					if(steelalloy == 7)
 						testing("STEEL ALLOYED")
+						maxore = 3 // 3 iron + 1 coal = 3 steel
 						alloy = /obj/item/ingot/steel
 					else if(bronzealloy == 7)
 						testing("BRONZE ALLOYED")
@@ -196,6 +199,7 @@
 //						alloy = /obj/item/ingot/blacksteel
 					else
 						alloy = null
+
 					if(alloy)
 						// The smelting quality of all ores added together, divided by the number of ores, and then rounded to the lowest integer (this isn't done until after the for loop)
 						var/floor_mean_quality = SMELTERY_LEVEL_SPOIL
@@ -216,7 +220,9 @@
 								ore -= I
 								ore += R
 								qdel(I)
+
 					playsound(src,'sound/misc/smelter_fin.ogg', 100, FALSE)
 					visible_message(span_notice("\The [src] finished smelting."))
+					maxore = initial(maxore)
 					cooking = 31
 					actively_smelting = FALSE

@@ -3,26 +3,26 @@
 /obj/item/natural/hide
 	name = "hide"
 	icon_state = "hide"
-	desc = "Hide from one of Gott's creachers."
+	desc = "Hide from one of Dendor's creachers."
 	dropshrink = 0.50
 	force = 0
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sellprice = 20
+	sellprice = 8
 
 /obj/item/natural/fur
 	name = "fur"
 	icon_state = "wool1"
-	desc = "Fur from one of Gott's creachers."
+	desc = "Fur from one of Dendor's creachers."
 	force = 0
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	color = "#5c5243"
-	sellprice = 40
+	sellprice = 18
 
 //RTD make this a storage item and make clickign on animals with things put it in storage
 /obj/item/natural/saddle
