@@ -1,5 +1,5 @@
 //////Kitchen Spike
-#define VIABLE_MOB_CHECK(X) (isliving(X) && !issilicon(X) && !isbot(X))
+#define VIABLE_MOB_CHECK(X) (isliving(X))
 
 /obj/structure/kitchenspike_frame
 	name = "meatspike frame"
@@ -9,32 +9,6 @@
 	density = TRUE
 	anchored = FALSE
 	max_integrity = 200
-
-/obj/structure/kitchenspike_frame/attackby(obj/item/I, mob/user, params)
-	add_fingerprint(user)
-	if(default_unfasten_wrench(user, I))
-		return
-	else if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = I
-		if(R.get_amount() >= 4)
-			R.use(4)
-			to_chat(user, span_notice("I add spikes to the frame."))
-			var/obj/F = new /obj/structure/kitchenspike(src.loc)
-			transfer_fingerprints_to(F)
-			qdel(src)
-	else if(I.tool_behaviour == TOOL_WELDER)
-		if(!I.tool_start_check(user, amount=0))
-			return
-		to_chat(user, span_notice("I begin cutting \the [src] apart..."))
-		if(I.use_tool(src, user, 50, volume=50))
-			visible_message(span_notice("[user] slices apart \the [src]."),
-				span_notice("I cut \the [src] apart with \the [I]."),
-				span_hear("I hear welding."))
-			new /obj/item/stack/sheet/metal(src.loc, 4)
-			qdel(src)
-		return
-	else
-		return ..()
 
 /obj/structure/kitchenspike
 	name = "meat spike"
@@ -136,14 +110,5 @@
 		for(var/mob/living/L in buckled_mobs)
 			release_mob(L)
 	return ..()
-
-/obj/structure/kitchenspike/deconstruct(disassembled = TRUE)
-	if(disassembled)
-		var/obj/F = new /obj/structure/kitchenspike_frame(src.loc)
-		transfer_fingerprints_to(F)
-	else
-		new /obj/item/stack/sheet/metal(src.loc, 4)
-	new /obj/item/stack/rods(loc, 4)
-	qdel(src)
 
 #undef VIABLE_MOB_CHECK

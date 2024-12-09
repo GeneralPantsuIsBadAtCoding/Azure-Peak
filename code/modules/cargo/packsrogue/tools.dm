@@ -79,15 +79,6 @@
 					/obj/item/reagent_containers/glass/bottle/rogue,
 				)
 
-/datum/supply_pack/rogue/tools/matches
-	name = "Box of Matches"
-	cost = 15
-	contains = list(
-					/obj/item/storage/box/matches,
-					/obj/item/storage/box/matches,
-					/obj/item/storage/box/matches,
-				)
-
 /datum/supply_pack/rogue/tools/pipes
 	name = "Pipe"
 	cost = 15

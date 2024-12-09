@@ -76,46 +76,6 @@
 	if(islist(icon_states && icon_states.len))
 		icon_state = pick(icon_states)
 
-/obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
-	desc = ""
-	icon_state = "pine_c"
-	icon_states = null
-
-/obj/structure/flora/tree/pine/xmas/presents
-	icon_state = "pinepresents"
-	desc = ""
-	var/gift_type = /obj/item/a_gift/anything
-	var/unlimited = FALSE
-	var/static/list/took_presents //shared between all xmas trees
-
-/obj/structure/flora/tree/pine/xmas/presents/Initialize()
-	. = ..()
-	if(!took_presents)
-		took_presents = list()
-
-/obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(!user.ckey)
-		return
-
-	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, span_warning("There are no presents with your name on."))
-		return
-	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
-
-	if(!unlimited)
-		took_presents[user.ckey] = TRUE
-
-	var/obj/item/G = new gift_type(src)
-	user.put_in_hands(G)
-
-/obj/structure/flora/tree/pine/xmas/presents/unlimited
-	desc = ""
-	unlimited = TRUE
-
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	desc = ""
@@ -376,7 +336,7 @@
 	desc = ""
 	icon_state = "plant-09"
 	light_color = "#2cb2e8"
-	light_range = 3
+	light_outer_range = 3
 
 
 //a rock is flora according to where the icon file is

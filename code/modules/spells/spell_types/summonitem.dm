@@ -38,7 +38,7 @@
 				if(hand_items)
 					message = span_warning("I'm not holding anything that can be marked for recall!")
 				else
-					message = span_warning("I must hold the desired item in your hands to mark it for recall!")
+					message = span_warning("I must hold the desired item in my hands to mark it for recall!")
 
 		else if(marked_item && (marked_item in hand_items)) //unlinking item to the spell
 			message = span_notice("I remove the mark on [marked_item] to use elsewhere.")
@@ -46,7 +46,7 @@
 			marked_item = 		null
 
 		else if(marked_item && QDELETED(marked_item)) //the item was destroyed at some point
-			message = span_warning("I sense your marked item has been destroyed!")
+			message = span_warning("I sense my marked item has been destroyed!")
 			name = "Instant Summons"
 			marked_item = 		null
 
@@ -69,15 +69,7 @@
 							break
 					if(ismob(item_to_retrieve.loc)) //If its on someone, properly drop it
 						var/mob/M = item_to_retrieve.loc
-
-						if(issilicon(M)) //Items in silicons warp the whole silicon
-							M.loc.visible_message(span_warning("[M] suddenly disappears!"))
-							M.forceMove(L.loc)
-							M.loc.visible_message(span_warning("[M] suddenly appears!"))
-							item_to_retrieve = null
-							break
 						M.dropItemToGround(item_to_retrieve)
-
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
 							for(var/X in C.bodyparts)
@@ -86,20 +78,10 @@
 									part.remove_embedded_object(item_to_retrieve)
 									to_chat(C, span_warning("The [item_to_retrieve] that was embedded in your [L] has mysteriously vanished. How fortunate!"))
 									break
-
-					else
-						if(istype(item_to_retrieve.loc, /obj/machinery/portable_atmospherics/)) //Edge cases for moved machinery
-							var/obj/machinery/portable_atmospherics/P = item_to_retrieve.loc
-							P.disconnect()
-							P.update_icon()
-
 						item_to_retrieve = item_to_retrieve.loc
-
 					infinite_recursion += 1
-
 			if(!item_to_retrieve)
 				return
-
 			if(item_to_retrieve.loc)
 				item_to_retrieve.loc.visible_message(span_warning("The [item_to_retrieve.name] suddenly disappears!"))
 			if(!L.put_in_hands(item_to_retrieve))
@@ -109,7 +91,5 @@
 			else
 				item_to_retrieve.loc.visible_message(span_warning("The [item_to_retrieve.name] suddenly appears in [L]'s hand!"))
 				playsound(get_turf(L), 'sound/blank.ogg', 50, TRUE)
-
-
 		if(message)
 			to_chat(L, message)

@@ -60,8 +60,3 @@
 	if(istype(C))
 		if(C.vampire_werewolf() == "vampire")
 			return TRUE
-
-/datum/objective/maniac
-	name = "WAKE UP"
-	explanation_text = "FOLLOWING my HEART shall be the WHOLE of the law."
-	flavor = "Dream"

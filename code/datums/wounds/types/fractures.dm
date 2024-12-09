@@ -17,7 +17,7 @@
 	disabling = TRUE
 	critical = TRUE
 	sleep_healing = 0 // no sleep healing that is silly
-	zombie_infection_probability = 0
+
 	werewolf_infection_probability = 0
 	/// Whether or not we can be surgically set
 	var/can_set = TRUE

@@ -62,23 +62,19 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 
 	if(ttime >= GLOB.round_timer)
 		if(roundvoteend)
-			if(ttime >= round_ends_at)
+			if(ttime >= (GLOB.round_timer + 15 MINUTES) )
+				for(var/mob/living/carbon/human/H in GLOB.human_list)
+					if(H.stat != DEAD)
+						if(H.allmig_reward)
+							H.adjust_triumphs(H.allmig_reward)
+							H.allmig_reward = 0
 				return TRUE
 		else
-			if(!SSvote.mode && SSticker.autovote)
-				SSvote.initiate_vote("endround", "the Gods")
+			if(!SSvote.mode)
+				SSvote.initiate_vote("endround", pick("Zlod", "Sun King", "Gaia", "Moon Queen", "Aeon", "Gemini", "Aries"))
 
 	if(headrebdecree)
-		if(reb_end_time == 0)
-			to_chat(world, span_boldannounce("The peasant rebels took control of the throne, hail the new community!"))
-			if(ttime >= INITIAL_ROUND_TIMER)
-				reb_end_time = ttime + REBEL_RULE_TIME
-				to_chat(world, span_boldwarning("The round will end in 15 minutes."))
-			else
-				reb_end_time = INITIAL_ROUND_TIMER
-				to_chat(world, span_boldwarning("The round will end at the 2:30 hour mark."))
-		if(ttime >= reb_end_time)
-			return TRUE
+		return TRUE
 
 	check_for_lord()
 /*

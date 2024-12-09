@@ -133,8 +133,6 @@
 			if(A.density)
 				. = 0
 				break
-	if(!allowAtomsOnSpace && (isspaceturf(T)))
-		. = 0
 
 
 ///////////////////////////////////////////////////////////

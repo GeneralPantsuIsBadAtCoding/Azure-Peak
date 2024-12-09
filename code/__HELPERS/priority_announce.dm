@@ -33,19 +33,6 @@
 				if(sound)
 					M.playsound_local(M, s, 100)
 
-/proc/print_command_report(text = "", title = null, announce=TRUE)
-	if(!title)
-		title = "Classified [command_name()] Update"
-
-	if(announce)
-		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/blank.ogg')
-
-	var/datum/comm_message/M  = new
-	M.title = title
-	M.content =  text
-
-	SScommunications.send_message(M)
-
 /proc/minor_announce(message, title = "", alert)
 	if(!message)
 		return

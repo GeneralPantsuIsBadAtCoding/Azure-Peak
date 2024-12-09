@@ -78,14 +78,6 @@
 		if(istype(I))
 			O.set_equipement_by_slot(s,I.type)
 
-	//Copy access
-	O.stored_access = list()
-	var/obj/item/id_slot = get_item_by_slot(SLOT_RING)
-	if(id_slot)
-		O.stored_access |= id_slot.GetAccess()
-		var/obj/item/card/id/ID = id_slot.GetID()
-		if(ID && ID.registered_name == real_name)
-			O.update_id_name = TRUE
 	//Copy hands
 	if(held_items.len >= 2) //Not in the mood to let outfits transfer amputees
 		var/obj/item/left_hand = held_items[1]
@@ -114,10 +106,6 @@
 				typecounts[I.type] = 1
 		O.backpack_contents = typecounts
 		//TODO : Copy varedits from backpack stuff too.
-	//Copy implants
-	O.implants = list()
-	for(var/obj/item/implant/I in implants)
-		O.implants |= I.type
 	//Copy to outfit cache
 	var/outfit_name = stripped_input(usr,"Enter the outfit name")
 	O.name = outfit_name
@@ -139,15 +127,6 @@
 				I = H.get_item_by_slot(text2num(slot))
 		for(var/vname in edits)
 			I.vv_edit_var(vname,edits[vname])
-	//Apply access
-	var/obj/item/id_slot = H.get_item_by_slot(SLOT_RING)
-	if(id_slot)
-		var/obj/item/card/id/card = id_slot.GetID()
-		if(istype(card))
-			card.access |= stored_access
-		if(update_id_name)
-			card.registered_name = H.real_name
-			card.update_label()
 
 /datum/outfit/varedit/get_json_data()
 	. = .. ()

@@ -210,12 +210,6 @@
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj/machinery/door))
-		for(var/obj/machinery/door/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
 	else if (ispath(T, /obj/machinery))
 		for(var/obj/machinery/thing in world)
 			if (typecache[thing.type])

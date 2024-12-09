@@ -24,16 +24,12 @@
 	attack_sound = 'sound/blank.ogg'
 	speak_emote = list("weeps")
 	deathmessage = "wails, disintegrating into a pile of ectoplasm!"
-	loot = list(/obj/item/ectoplasm)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
 	movement_type = FLYING
 	pressure_resistance = 300
 	gold_core_spawnable = NO_SPAWN //too spooky for science
-	light_system = MOVABLE_LIGHT
-	light_range = 1 // same glowing as visible player ghosts
-	light_power = 2
 	var/ghost_hairstyle
 	var/ghost_hair_color
 	var/mutable_appearance/ghost_hair
@@ -45,6 +41,7 @@
 /mob/living/simple_animal/hostile/retaliate/ghost/Initialize()
 	. = ..()
 	give_hair()
+	set_light(1, 1, 2) // same glowing as visible player ghosts
 	if(random)
 		switch(rand(0,1))
 			if(0)
@@ -91,7 +88,6 @@
 	attack_sound = 'sound/blank.ogg'
 	speak_emote = list("wails")
 	deathmessage = "wails, disintegrating into a pile of ectoplasm!"
-	loot = list(/obj/item/ectoplasm)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
@@ -102,7 +98,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/gaseousform/Initialize()
 	. = ..()
-	set_light(1, 2)
+	set_light(1, 1, 2)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/retaliate/gaseousform, revert), "VAMPIRE LORD"), 10 SECONDS)
 
 /mob/living/simple_animal/hostile/retaliate/gaseousform/proc/revert()

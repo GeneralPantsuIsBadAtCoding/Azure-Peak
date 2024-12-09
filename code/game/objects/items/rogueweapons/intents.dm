@@ -150,7 +150,7 @@
 	if(mastermob)
 		if(chargedloop)
 			if(!istype(chargedloop))
-				chargedloop = new chargedloop(list(mastermob))
+				chargedloop = new chargedloop(mastermob)
 
 /datum/intent/proc/on_charge_start() //what the fuck is going on here lol
 	if(mastermob.curplaying)
@@ -158,10 +158,10 @@
 		mastermob.curplaying = null
 	if(chargedloop)
 		if(!istype(chargedloop, /datum/looping_sound))
-			chargedloop = new chargedloop(list(mastermob))
+			chargedloop = new chargedloop(mastermob)
 		else
 			chargedloop.stop()
-		chargedloop.start(chargedloop.output_atoms)
+		chargedloop.start(chargedloop.parent)
 		mastermob.curplaying = src
 
 /datum/intent/proc/on_mouse_up()

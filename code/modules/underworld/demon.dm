@@ -105,7 +105,7 @@
 
 /mob/living/simple_animal/hostile/rogue/demon/Initialize()
 	. = ..()
-	set_light(2, 2, "#c0523f")
+	set_light(2, 2, 2, l_color = "#c0523f")
 	ADD_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
@@ -159,4 +159,4 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	chargetime = 0
 	penfactor = 10
-	swingdelay = 8
+	swingdelay = 3

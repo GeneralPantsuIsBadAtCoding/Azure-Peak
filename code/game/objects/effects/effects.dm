@@ -18,14 +18,6 @@
 /obj/effect/acid_act()
 	return
 
-/obj/effect/mech_melee_attack(obj/mecha/M)
-	return 0
-
-/obj/effect/blob_act(obj/structure/blob/B)
-	return
-
-/obj/effect/attack_hulk(mob/living/carbon/human/user)
-	return FALSE
 
 /obj/effect/experience_pressure_difference()
 	return
@@ -44,9 +36,6 @@
 				if(prob(25))
 					qdel(src)
 
-/obj/effect/singularity_act()
-	qdel(src)
-	return 0
 
 /obj/effect/ConveyorMove()
 	return
@@ -54,17 +43,5 @@
 /obj/effect/abstract/ex_act(severity, target)
 	return
 
-/obj/effect/abstract/singularity_pull()
-	return
-
-/obj/effect/abstract/singularity_act()
-	return
-
 /obj/effect/abstract/has_gravity(turf/T)
 	return FALSE
-
-/obj/effect/dummy/singularity_pull()
-	return
-
-/obj/effect/dummy/singularity_act()
-	return

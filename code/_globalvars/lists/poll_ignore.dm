@@ -2,7 +2,6 @@
 
 #define POLL_IGNORE_SENTIENCE_POTION "sentience_potion"
 #define POLL_IGNORE_POSSESSED_BLADE "possessed_blade"
-#define POLL_IGNORE_ALIEN_LARVA "alien_larva"
 #define POLL_IGNORE_SYNDICATE "syndicate"
 #define POLL_IGNORE_HOLOPARASITE "holoparasite"
 #define POLL_IGNORE_POSIBRAIN "posibrain"
@@ -27,7 +26,6 @@
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SENTIENCE_POTION = "Sentience potion",
 	POLL_IGNORE_POSSESSED_BLADE = "Possessed blade",
-	POLL_IGNORE_ALIEN_LARVA = "Xenomorph larva",
 	POLL_IGNORE_SYNDICATE = "Syndicate",
 	POLL_IGNORE_HOLOPARASITE = "Holoparasite",
 	POLL_IGNORE_POSIBRAIN = "Positronic brain",

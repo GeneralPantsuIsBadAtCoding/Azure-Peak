@@ -12,7 +12,7 @@
 
 
 /obj/item/paper/scroll/attackby(obj/item/P, mob/living/carbon/human/user, params)
-	if(istype(P, /obj/item/pen) || istype(P, /obj/item/natural/thorn) || istype(P, /obj/item/natural/feather))
+	if(istype(P, /obj/item/natural/thorn) || istype(P, /obj/item/natural/feather))
 		if(!open)
 			to_chat(user, span_warning("Open me."))
 			return

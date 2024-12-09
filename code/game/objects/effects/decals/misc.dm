@@ -23,9 +23,6 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	layer = FLY_LAYER
 
-/obj/effect/decal/chempuff/blob_act(obj/structure/blob/B)
-	return
-
 /obj/effect/decal/fakelattice
 	name = "lattice"
 	desc = ""

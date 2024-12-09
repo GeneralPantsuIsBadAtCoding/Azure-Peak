@@ -334,8 +334,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		listening |= M
 		the_dead[M] = TRUE
 
-	log_seen(src, null, listening, original_message, SEEN_LOG_SAY)
-
 	var/eavesdropping
 	var/eavesrendered
 	if(eavesdrop_range)
@@ -434,15 +432,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return message
 
 /mob/living/proc/radio(message, message_mode, list/spans, language)
-	var/obj/item/implant/radio/imp = locate() in src
-	if(imp && imp.radio.on)
-		if(message_mode == MODE_HEADSET)
-			imp.radio.talk_into(src, message, , spans, language)
-			return ITALICS | REDUCE_RANGE
-		if(message_mode == MODE_DEPARTMENT || (message_mode in imp.radio.channels))
-			imp.radio.talk_into(src, message, message_mode, spans, language)
-			return ITALICS | REDUCE_RANGE
-
 	switch(message_mode)
 		if(MODE_WHISPER)
 			return ITALICS
@@ -456,11 +445,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 				if (l_hand)
 					return l_hand.talk_into(src, message, , spans, language)
 				return ITALICS | REDUCE_RANGE
-
-		if(MODE_INTERCOM)
-			for (var/obj/item/radio/intercom/I in view(1, null))
-				I.talk_into(src, message, , spans, language)
-			return ITALICS | REDUCE_RANGE
 
 		if(MODE_BINARY)
 			return ITALICS | REDUCE_RANGE //Does not return 0 since this is only reached by humans, not borgs or AIs.

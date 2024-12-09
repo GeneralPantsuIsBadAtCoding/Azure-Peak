@@ -151,7 +151,7 @@
 						var/mob/M = pickupTarget.loc
 						if(!pickpocketing)
 							pickpocketing = TRUE
-							M.visible_message(span_warning("[src] starts trying to take [pickupTarget] from [M]!"), span_danger("[src] tries to take [pickupTarget]!"))
+							M.visible_message("<span class='warning'>[src] starts trying to take [pickupTarget] from [M]!</span>", "<span class='danger'>[src] tries to take [pickupTarget]!</span>")
 							INVOKE_ASYNC(src, PROC_REF(pickpocket), M)
 			return TRUE
 
@@ -165,12 +165,6 @@
 							battle_screech()
 							retaliate(L)
 							return TRUE
-						else
-							bodyDisposal = locate(/obj/machinery/disposal/) in around
-							if(bodyDisposal)
-								target = L
-								mode = MONKEY_DISPOSE
-								return TRUE
 
 			// pickup any nearby objects
 			if(!pickupTarget)
@@ -267,7 +261,7 @@
 		if(MONKEY_DISPOSE)
 
 			// if can't dispose of body go back to idle
-			if(!target || !bodyDisposal || frustration >= MONKEY_DISPOSE_FRUSTRATION_LIMIT)
+			if(!target  || frustration >= MONKEY_DISPOSE_FRUSTRATION_LIMIT)
 				back_to_idle()
 				return TRUE
 
@@ -285,20 +279,6 @@
 					else
 						frustration = 0
 
-			else if(!disposing_body)
-				INVOKE_ASYNC(src, PROC_REF(walk2derpless), bodyDisposal.loc)
-
-				if(Adjacent(bodyDisposal))
-					disposing_body = TRUE
-					addtimer(CALLBACK(src, PROC_REF(stuff_mob_in)), 5)
-
-				else
-					var/turf/olddist = get_dist(src, bodyDisposal)
-					if((get_dist(src, bodyDisposal)) >= (olddist))
-						frustration++
-					else
-						frustration = 0
-
 			return TRUE
 
 	return IsStandingStill()
@@ -307,21 +287,15 @@
 	if(do_mob(src, M, MONKEY_ITEM_SNATCH_DELAY) && pickupTarget)
 		for(var/obj/item/I in M.held_items)
 			if(I == pickupTarget)
-				M.visible_message(span_danger("[src] snatches [pickupTarget] from [M]."), span_danger("[src] snatched [pickupTarget]!"))
+				M.visible_message("<span class='danger'>[src] snatches [pickupTarget] from [M].</span>", "<span class='danger'>[src] snatched [pickupTarget]!</span>")
 				if(M.temporarilyRemoveItemFromInventory(pickupTarget))
 					if(!QDELETED(pickupTarget) && !equip_item(pickupTarget))
 						pickupTarget.forceMove(drop_location())
 				else
-					M.visible_message(span_danger("[src] tried to snatch [pickupTarget] from [M], but failed!"), span_danger("[src] tried to grab [pickupTarget]!"))
+					M.visible_message("<span class='danger'>[src] tried to snatch [pickupTarget] from [M], but failed!</span>", "<span class='danger'>[src] tried to grab [pickupTarget]!</span>")
 	pickpocketing = FALSE
 	pickupTarget = null
 	pickupTimer = 0
-
-/mob/living/carbon/monkey/proc/stuff_mob_in()
-	if(bodyDisposal && target && Adjacent(bodyDisposal))
-		bodyDisposal.stuff_mob_in(target, src)
-	disposing_body = FALSE
-	back_to_idle()
 
 /mob/living/carbon/monkey/proc/back_to_idle()
 
@@ -394,13 +368,13 @@
 		retaliate(user)
 
 /mob/living/carbon/monkey/bullet_act(obj/projectile/Proj)
-	if(istype(Proj , /obj/projectile/beam)||istype(Proj, /obj/projectile/bullet))
+	if(istype(Proj, /obj/projectile/bullet))
 		if((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE))
 			if(!Proj.nodamage && Proj.damage < src.health && isliving(Proj.firer))
 				retaliate(Proj.firer)
 	. = ..()
 
-/mob/living/carbon/monkey/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum, d_type = "blunt")
+/mob/living/carbon/monkey/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum, damage_type = "blunt")
 	if(istype(AM, /obj/item))
 		var/obj/item/I = AM
 		if(I.throwforce < src.health && I.thrownby && ishuman(I.thrownby))
@@ -422,7 +396,7 @@
 		dropItemToGround(A, TRUE)
 		update_icons()
 
-/mob/living/carbon/monkey/grabbedby(mob/living/carbon/user)
+/mob/living/carbon/monkey/grabbedby(mob/living/carbon/user, supress_message = FALSE, item_override)
 	. = ..()
 	if(!IsDeadOrIncap() && pulledby && (mode != MONKEY_IDLE || prob(MONKEY_PULL_AGGRO_PROB))) // nuh uh you don't pull me!
 		if(Adjacent(pulledby))

@@ -50,7 +50,7 @@
 
 /obj/item/hot_potato/proc/detonate()
 	var/atom/location = loc
-	location.visible_message(span_danger("[src] [detonate_explosion? "explodes" : "activates"]!"), span_danger("[src] activates! You've ran out of time!"))
+	location.visible_message("<span class='danger'>[src] [detonate_explosion? "explodes" : "activates"]!</span>", "<span class='danger'>[src] activates! You've ran out of time!</span>")
 	if(detonate_explosion)
 		explosion(src, detonate_dev_range, detonate_heavy_range, detonate_light_range, detonate_flash_range, flame_range = detonate_fire_range)
 	deactivate()
@@ -62,8 +62,8 @@
 
 /obj/item/hot_potato/attack_self(mob/user)
 	if(activate(timer, user))
-		user.visible_message(span_boldwarning("[user] squeezes [src], which promptly starts to flash red-hot colors!"), span_boldwarning("I squeeze [src], activating its countdown and attachment mechanism!"),
-		span_boldwarning("I hear a mechanical click and a loud beeping!"))
+		user.visible_message("<span class='boldwarning'>[user] squeezes [src], which promptly starts to flash red-hot colors!</span>", "<span class='boldwarning'>I squeeze [src], activating its countdown and attachment mechanism!</span>",
+		"<span class='boldwarning'>I hear a mechanical click and a loud beeping!</span>")
 		return
 	return ..()
 
@@ -77,20 +77,19 @@
 			L.SetImmobilized(0)
 			L.SetParalyzed(0)
 			L.SetUnconscious(0)
-			L.reagents.add_reagent(/datum/reagent/medicine/muscle_stimulant, CLAMP(5 - L.reagents.get_reagent_amount(/datum/reagent/medicine/muscle_stimulant), 0, 5))	//If you don't have legs or get bola'd, tough luck!
 			colorize(L)
 
 /obj/item/hot_potato/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_warning("[src] is flashing red-hot! You should probably get rid of it!")
+		. += "<span class='warning'>[src] is flashing red-hot! You should probably get rid of it!</span>"
 		if(show_timer)
-			. += span_warning("[src]'s timer looks to be at [DisplayTimeText(activation_time - world.time)]!")
+			. += "<span class='warning'>[src]'s timer looks to be at [DisplayTimeText(activation_time - world.time)]!</span>"
 
 /obj/item/hot_potato/equipped(mob/user)
 	. = ..()
 	if(active)
-		to_chat(user, span_danger("I have a really bad feeling about [src]!"))
+		to_chat(user, "<span class='danger'>I have a really bad feeling about [src]!</span>")
 
 /obj/item/hot_potato/afterattack(atom/target, mob/user, adjacent, params)
 	. = ..()
@@ -102,9 +101,9 @@
 	if(!istype(victim) || user != loc || victim == user)
 		return FALSE
 	if(!victim.client)
-		to_chat(user, span_boldwarning("[src] refuses to attach to a non-sapient creature!"))
+		to_chat(user, "<span class='boldwarning'>[src] refuses to attach to a non-sapient creature!</span>")
 	if(victim.stat != CONSCIOUS || !victim.get_num_legs())
-		to_chat(user, span_boldwarning("[src] refuses to attach to someone incapable of using it!"))
+		to_chat(user, "<span class='boldwarning'>[src] refuses to attach to someone incapable of using it!</span>")
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	. = FALSE
 	if(!victim.put_in_hands(src))
@@ -120,11 +119,11 @@
 		. = TRUE
 	if(.)
 		log_combat(user, victim, "forced a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_danger("[user] forces [src] onto [victim]!"), span_danger("I force [src] onto [victim]!"), span_boldwarning("I hear a mechanical click and a beep."))
+		user.visible_message("<span class='danger'>[user] forces [src] onto [victim]!</span>", "<span class='danger'>I force [src] onto [victim]!</span>", "<span class='boldwarning'>I hear a mechanical click and a beep.</span>")
 		colorize(null)
 	else
 		log_combat(user, victim, "tried to force a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
-		user.visible_message(span_boldwarning("[user] tried to force [src] onto [victim], but it could not attach!"), span_boldwarning("I try to force [src] onto [victim], but it is unable to attach!"), span_boldwarning("I hear a mechanical click and two buzzes."))
+		user.visible_message("<span class='boldwarning'>[user] tried to force [src] onto [victim], but it could not attach!</span>", "<span class='boldwarning'>I try to force [src] onto [victim], but it is unable to attach!</span>", "<span class='boldwarning'>I hear a mechanical click and two buzzes.</span>")
 		user.put_in_hands(src)
 
 /obj/item/hot_potato/dropped(mob/user)

@@ -69,18 +69,18 @@
 	if(length(dna))
 		. = AddComponent(/datum/component/forensics, null, null, dna)
 
-/obj/item/clothing/gloves/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+/obj/item/clothing/gloves/add_blood_DNA(list/blood_dna)
 	. = ..()
 	transfer_blood = rand(2, 4)
 
-/turf/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+/turf/add_blood_DNA(list/blood_dna)
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in src
 	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(src, diseases)
+		B = new /obj/effect/decal/cleanable/blood/splatter(src)
 	B.add_blood_DNA(blood_dna) //give blood info to the blood decal.
 	return TRUE //we bloodied the floor
 
-/mob/living/carbon/human/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
+/mob/living/carbon/human/add_blood_DNA(list/blood_dna)
 	if(cloak)
 		cloak.add_blood_DNA(blood_dna)
 		update_inv_cloak()

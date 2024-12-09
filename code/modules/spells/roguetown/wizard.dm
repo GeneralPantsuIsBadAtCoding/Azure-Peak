@@ -34,7 +34,7 @@
 	speed = 0.3
 	flag = "magic"
 	light_color = "#ffffff"
-	light_range = 7
+	light_outer_range = 7
 
 /obj/projectile/magic/lightning/on_hit(target)
 	. = ..()
@@ -85,7 +85,7 @@
 	speed = 0.3
 	flag = "magic"
 	light_color = "#802121"
-	light_range = 7
+	light_outer_range = 7
 
 /obj/projectile/magic/bloodlightning/on_hit(target)
 	. = ..()
@@ -133,7 +133,7 @@
 	speed = 0.3
 	flag = "magic"
 	light_color = "#e74141"
-	light_range = 7
+	light_outer_range = 7
 	var/mob/living/carbon/human/sender
 
 /obj/projectile/magic/bloodsteal/on_hit(target)

@@ -19,8 +19,6 @@
 	var/lifetime = 40
 	var/reagent_divisor = 7
 	var/static/list/blacklisted_turfs = typecacheof(list(
-	/turf/open/space/transit,
-	/turf/open/chasm,
 	/turf/open/lava))
 	var/slippery_foam = TRUE
 
@@ -120,8 +118,6 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	if(metal)
 		var/turf/T = get_turf(src)
-		if(isspaceturf(T)) //Block up any exposed space
-			T.PlaceOnTop(/turf/open/floor/plating/foam, flags = CHANGETURF_INHERIT_AIR)
 		for(var/direction in GLOB.cardinals)
 			var/turf/cardinal_turf = get_step(T, direction)
 			if(get_area(cardinal_turf) != get_area(T)) //We're at an area boundary, so let's block off this turf!
@@ -287,7 +283,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-	to_chat(user, span_warning("I hit [src] but bounce off it!"))
+	to_chat(user, "<span class='warning'>I hit [src] but bounce off it!</span>")
 	playsound(src.loc, 'sound/blank.ogg', 100, TRUE)
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target)
@@ -323,11 +319,6 @@
 				G_gases[I][MOLES] = 0
 			G.garbage_collect()
 			O.air_update_turf()
-		for(var/obj/machinery/atmospherics/components/unary/U in O)
-			if(!U.welded)
-				U.welded = TRUE
-				U.update_icon()
-				U.visible_message(span_danger("[U] sealed shut!"))
 		for(var/mob/living/L in O)
 			L.ExtinguishMob()
 		for(var/obj/item/Item in O)

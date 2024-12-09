@@ -6,9 +6,9 @@
 
 /mob/living/carbon/human/spawn_gibs(with_bodyparts)
 	if(with_bodyparts)
-		new /obj/effect/gibspawner/human(drop_location(), src, get_static_viruses())
+		new /obj/effect/gibspawner/human(drop_location(), src)
 	else
-		new /obj/effect/gibspawner/human/bodypartless(drop_location(), src, get_static_viruses())
+		new /obj/effect/gibspawner/human/bodypartless(drop_location(), src)
 
 /mob/living/carbon/human/spawn_dust(just_ash = FALSE)
 	if(just_ash)
@@ -58,10 +58,7 @@
 				return
 
 	if(!gibbed)
-		var/datum/antagonist/zombie/zomble = mind?.has_antag_datum(/datum/antagonist/zombie)
-		if(zomble)
-			addtimer(CALLBACK(zomble, TYPE_PROC_REF(/datum/antagonist/zombie, wake_zombie)), 5 SECONDS)
-		else if(can_death_zombify(src))
+		if(!is_in_roguetown(src))
 			zombie_check()
 
 	if(client || mind)
@@ -125,19 +122,11 @@
 
 	dizziness = 0
 	jitteriness = 0
-
-	if(ismecha(loc))
-		var/obj/mecha/M = loc
-		if(M.occupant == src)
-			M.go_out()
-
 	dna.species.spec_death(gibbed, src)
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
-	if(is_devil(src))
-		INVOKE_ASYNC(is_devil(src), TYPE_PROC_REF(/datum/antagonist/devil, beginResurrectionCheck), src)
 
 /mob/living/carbon/human/revive(full_heal, admin_revive)
 	. = ..()
@@ -149,6 +138,21 @@
 		if("Priest")
 			removeomen(OMEN_NOPRIEST)
 
+/mob/living/carbon/human/proc/zombie_check()
+	if(!mind)
+		return
+	if(mind.has_antag_datum(/datum/antagonist/vampirelord))
+		return
+	if(mind.has_antag_datum(/datum/antagonist/werewolf))
+		return
+	if(mind.has_antag_datum(/datum/antagonist/zombie))
+		return
+	if(mind.has_antag_datum(/datum/antagonist/skeleton))
+		return
+	if(HAS_TRAIT(src, TRAIT_ZOMBIE_IMMUNE))
+		return
+	return mind.add_antag_datum(/datum/antagonist/zombie)
+
 /mob/living/carbon/human/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
 	for(var/mob/living/carbon/human/CA in viewers(7, src))
 		if(CA != src && !HAS_TRAIT(CA, TRAIT_BLIND))
@@ -158,22 +162,3 @@
 				CA.adjust_triumphs(-1)
 			CA.add_stress(/datum/stressevent/viewgib)
 	return ..()
-
-/mob/living/carbon/human/proc/makeSkeleton()
-	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
-	set_species(/datum/species/skeleton)
-	return TRUE
-
-/mob/living/carbon/proc/Drain()
-	become_husk(CHANGELING_DRAIN)
-	ADD_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
-	blood_volume = 0
-	return TRUE
-
-/mob/living/carbon/proc/makeUncloneable()
-	ADD_TRAIT(src, TRAIT_BADDNA, MADE_UNCLONEABLE)
-	blood_volume = 0
-	return TRUE
-
-/proc/can_death_zombify(mob/living/carbon/human)
-	return hasomen(OMEN_NOPRIEST) || !is_in_roguetown(human)

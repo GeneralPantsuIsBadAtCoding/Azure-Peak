@@ -10,7 +10,12 @@
 	var/skel_fragile = FALSE
 	ambushable = FALSE
 	rot_type = null
+	base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
+	a_intent = INTENT_HELP
+	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
+	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/aimed, /datum/rmb_intent/strong, /datum/rmb_intent/weak)
 	possible_rmb_intents = list()
+	stand_attempts = 4
 	cmode_music = 'sound/music/combat_weird.ogg'
 
 /mob/living/carbon/human/species/skeleton/npc
@@ -26,7 +31,8 @@
 /mob/living/carbon/human/species/skeleton/Initialize()
 	. = ..()
 	cut_overlays()
-	addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
+	spawn(10)
+		after_creation()
 
 /mob/living/carbon/human/species/skeleton/after_creation()
 	..()

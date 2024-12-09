@@ -1,7 +1,6 @@
 /obj/machinery/computer/shuttle/ferry
 	name = "transport ferry console"
 	desc = ""
-	circuit = /obj/item/circuitboard/computer/ferry
 	shuttleId = "ferry"
 	possible_destinations = "ferry_home;ferry_away"
 	req_access = list(ACCESS_CENT_GENERAL)
@@ -15,15 +14,8 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/computer/shuttle/ferry/attack_ai()
-	return allow_silicons ? ..() : FALSE
-
-/obj/machinery/computer/shuttle/ferry/attack_robot()
-	return allow_silicons ? ..() : FALSE
-
 /obj/machinery/computer/shuttle/ferry/request
 	name = "ferry console"
-	circuit = /obj/item/circuitboard/computer/ferry/request
 	var/last_request //prevents spamming admins
 	var/cooldown = 600
 	possible_destinations = "ferry_home;ferry_away"

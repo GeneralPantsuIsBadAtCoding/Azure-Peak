@@ -57,6 +57,14 @@
 		if(!has_gravity(loc))
 			return
 
+		if(hostage) // If we have a hostage.
+			hostage.hostagetaker = null
+			hostage = null
+			to_chat(src, "<span class='danger'>I need to stand still to make sure I don't lose concentration on my hostage!</span>")
+
+		if(hostagetaker) // If we are TAKEN hostage. Confusing vars at first but then it makes sense.
+			attackhostage()
+
 		if(wear_armor)
 			if(mobility_flags & MOBILITY_STAND)
 				var/obj/item/clothing/C = wear_armor
