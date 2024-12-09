@@ -1129,19 +1129,23 @@
 	name = "leather miners helmet"
 	desc = "A leather kettle-like helmet with a headlamp, fueled by magiks."
 	icon_state = "minerslamp"
-	var/brightness_on = 4 //less than a torch; basically good for one person.
 	var/on = FALSE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+	light_range = 4 //less than a torch; basically good for one person.
+	light_power = 1
+	light_color = LIGHT_COLOR_ORANGE
+	light_system = MOVABLE_LIGHT
 
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/attack_self(mob/living/user)
+/obj/item/clothing/head/roguetown/helmet/leather/minershelm/MiddleClick(mob/user)
+	if(.)
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	playsound(loc, 'sound/misc/toggle_lamp.ogg', 100)
 	toggle_helmet_light(user)
+	to_chat(user, span_info("I toggle [src] [on ? "on" : "off"]."))
 
 /obj/item/clothing/head/roguetown/helmet/leather/minershelm/proc/toggle_helmet_light(mob/living/user)
 	on = !on
-	if(on)
-		turn_on(user)
-	else
-		turn_off(user)
+	set_light_on(on)
 	update_icon()
 
 /obj/item/clothing/head/roguetown/helmet/leather/minershelm/update_icon()
@@ -1154,12 +1158,6 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon(force = TRUE)
 	..()
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/proc/turn_on(mob/user)
-	set_light(brightness_on)
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/proc/turn_off(mob/user)
-	set_light(0)
 
 /obj/item/clothing/head/roguetown/wizhat
 	name = "wizard hat"
