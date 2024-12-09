@@ -78,6 +78,7 @@
 #define ADMIN_PUNISHMENT_BRAZIL "Send to Brazil"
 #define ADMIN_PUNISHMENT_CBT "CBT"
 #define ADMIN_PUNISHMENT_NECKSNAP "Snap Neck"
+#define ADMIN_PUNISHMENT_LIAM "Trey Liam'd"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2

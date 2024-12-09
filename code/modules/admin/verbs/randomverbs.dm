@@ -1049,18 +1049,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 	var/static/list/punishment_list = list(
-		ADMIN_PUNISHMENT_LIGHTNING, 
-		ADMIN_PUNISHMENT_BRAINDAMAGE, 
-		ADMIN_PUNISHMENT_GIB, 
-		ADMIN_PUNISHMENT_BSA, 
-		ADMIN_PUNISHMENT_FIREBALL, 
-		ADMIN_PUNISHMENT_ROD, 
-		ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, 
-		ADMIN_PUNISHMENT_SUPPLYPOD, 
-		ADMIN_PUNISHMENT_MAZING, 
+		ADMIN_PUNISHMENT_LIGHTNING,
+		ADMIN_PUNISHMENT_BRAINDAMAGE,
+		ADMIN_PUNISHMENT_GIB,
+		ADMIN_PUNISHMENT_BSA,
+		ADMIN_PUNISHMENT_FIREBALL,
+		ADMIN_PUNISHMENT_ROD,
+		ADMIN_PUNISHMENT_SUPPLYPOD_QUICK,
+		ADMIN_PUNISHMENT_SUPPLYPOD,
+		ADMIN_PUNISHMENT_MAZING,
 		ADMIN_PUNISHMENT_BRAZIL,
 		ADMIN_PUNISHMENT_CBT,
 		ADMIN_PUNISHMENT_NECKSNAP,
+		ADMIN_PUNISHMENT_LIAM,
 	)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in sortList(punishment_list)
@@ -1169,6 +1170,37 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(usr,span_warning("Target must have a head!"))
 				return
 			affecting.add_wound(/datum/wound/fracture/neck)
+		if(ADMIN_PUNISHMENT_LIAM)
+			if(!ishuman(target))
+				to_chat(usr,span_warning("NO...IT COULDN'T BE... (Needs to be a carbon!)"))
+				return
+			var/mob/living/carbon/human/humie = target
+			playsound(src, 'sound/villain/dreamer_win.ogg', 100, FALSE, -1)
+			humie.gender = MALE
+			humie.skin_tone = "ffe0d1"
+			humie.hair_color = "999999"
+			humie.hairstyle = "Plain Long"
+			humie.facial_hair_color = "999999"
+			humie.facial_hairstyle = "Knowledge"
+			humie.age = AGE_OLD
+			humie.equipOutfit(/datum/outfit/treyliam)
+			humie.regenerate_icons()
+			humie.SetSleeping(25 SECONDS)
+			humie.add_stress(/datum/stressevent/maniac_woke_up)
+			to_chat(humie, span_deadsay("<span class='reallybig'>... WHERE AM I? ...</span>"))
+			var/static/list/slop_lore = list(
+				span_deadsay("... Azure Peak? No ... It doesn't exist ..."),
+				span_deadsay("... My name is Trey. Trey Liam, Liamtific Troverseer ..."),
+				span_deadsay("... I'm on NT Liam, a self Treystaining ship, used to Treyserve what Liamains of roguemanity ..."),
+				span_deadsay("... Launched into the Grim Darkness, War and Grim Darkness preserves their grimness ... Their edge ..."),
+				span_deadsay("... Keeps them alive in the grimdark future, where there is only war  ..."),
+				span_deadsay("... There is no hope left. Only the Space Station 13 (TRADEMARK TITLE DROP) lets me live in the Trey Liam ..."),
+				span_deadsay("... What have I done!? ..."),
+				span_reallybig("... OH SHIT WHY IS THERE A TALKING DOG?! ..."),
+		)
+			for(var/slop in slop_lore)
+				to_chat(humie, slop)
+				sleep(3 SECONDS)
 	punish_log(target, punishment)
 
 /client/proc/punish_log(whom, punishment)

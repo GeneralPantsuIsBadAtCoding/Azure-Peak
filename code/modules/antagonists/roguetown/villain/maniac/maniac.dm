@@ -239,7 +239,7 @@
 		)
 		for(var/slop in slop_lore)
 			to_chat(trey_liam, slop)
-			sleep(3 SECONDS)
+			sleep(5 SECONDS)
 	else
 		INVOKE_ASYNC(src, PROC_REF(cant_wake_up), dreamer)
 	sleep(15 SECONDS)
