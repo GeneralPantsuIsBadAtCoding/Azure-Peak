@@ -1368,6 +1368,7 @@
 	desc = "A hood worn by those who favor Psydon. Forever enduring!"
 	icon_state = "psydonhood"
 	item_state = "psydonhood"
+	color = null
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_HEAD
 	dynamic_hair_suffix = ""

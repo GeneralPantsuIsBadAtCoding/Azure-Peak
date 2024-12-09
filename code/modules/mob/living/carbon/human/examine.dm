@@ -98,6 +98,9 @@
 		var/heretic_text = get_heretic_text(user)
 		if(heretic_text)
 			. += span_notice(heretic_text)
+		var/inquisition_text =get_inquisition_text(user)
+		if(inquisition_text)
+			. +=span_notice(inquisition_text)
 
 	if(leprosy == 1)
 		. += span_necrosis("A LEPER...")
@@ -577,6 +580,15 @@
 		heretic_text += "♥"
 	
 	return heretic_text
+
+
+// Used for Inquisition tags
+/mob/living/proc/get_inquisition_text(mob/examiner)
+	var/inquisition_text
+	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
+		inquisition_text += "Fellow Member of the Inquisition"
+
+	return inquisition_text
 
 /// Returns antagonist-related examine text for the mob, if any. Can return null.
 /mob/living/proc/get_villain_text(mob/examiner)

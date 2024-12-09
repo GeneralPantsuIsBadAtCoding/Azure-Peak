@@ -1227,6 +1227,7 @@
 #include "code\game\objects\items\rogueitems\dmusicbox.dm"
 #include "code\game\objects\items\rogueitems\flintsparker.dm"
 #include "code\game\objects\items\rogueitems\gems.dm"
+#include "code\game\objects\items\rogueitems\inquisitionrelics.dm"
 #include "code\game\objects\items\rogueitems\instruments.dm"
 #include "code\game\objects\items\rogueitems\keyrings.dm"
 #include "code\game\objects\items\rogueitems\keys.dm"

@@ -1542,6 +1542,7 @@
 	icon_state = "longtable"
 	},
 /obj/item/natural/feather,
+/obj/item/psydonmusicbox,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/town/basement)
 "bjK" = (
