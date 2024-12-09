@@ -196,6 +196,11 @@
 	desc = ""
 	icon_state = "noc"
 
+/obj/item/clothing/neck/roguetown/psicross/abyssor
+	name = "amulet of Abyssor"
+	desc = ""
+	icon_state = "abyssor"
+
 /obj/item/clothing/neck/roguetown/psicross/dendor
 	name = "amulet of Dendor"
 	desc = ""
