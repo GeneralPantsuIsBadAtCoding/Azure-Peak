@@ -428,9 +428,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/obj/item/clothing/C = src
 			if(C.prevent_crits)
 				if(C.prevent_crits.len)
-					inspec += "\n<b>DEFENSE</b>"
+					inspec += "\n<b>DEFENSE:</b>"
 					for(var/X in C.prevent_crits)
 						inspec += "\n<b>[X] damage</b>"
+
+			if(C.body_parts_covered)
+				inspec += "\n<b>COVERAGE:</b>"
+				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+					inspec += "\n<b>[zone]</b>"
 
 //**** General durability
 
