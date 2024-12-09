@@ -6,7 +6,7 @@
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = 15
+	penfactor = 55
 	swingdelay = 0
 	icon_state = "instrike"
 	item_d_type = "blunt"
@@ -16,8 +16,8 @@
 	blade_class = BCLASS_SMASH
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
-	penfactor = 80
-	damfactor = 1.1
+	penfactor = 70
+	damfactor = 1.0
 	swingdelay = 10
 	icon_state = "insmash"
 	item_d_type = "blunt"
@@ -33,7 +33,7 @@
 	recovery = 30
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 25
+	penfactor = 55
 	damfactor = 0.9
 	item_d_type = "stab"
 
@@ -41,7 +41,7 @@
 
 /obj/item/rogueweapon/mace
 	force = 20
-	force_wielded = 25
+	force_wielded = 22
 	possible_item_intents = list(/datum/intent/mace/strike)
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 	name = "mace"
@@ -68,8 +68,8 @@
 	blade_dulling = DULLING_BASHCHOP
 
 /obj/item/rogueweapon/mace/church
-	force = 25
-	force_wielded = 30
+	force = 20
+	force_wielded = 21
 	name = "bell ringer"
 	desc = "This heavy hammer is used to ring the church's bell."
 	icon_state = "churchmace"
@@ -79,8 +79,8 @@
 	wdefense = 3
 
 /obj/item/rogueweapon/mace/steel
-	force = 25
-	force_wielded = 32
+	force = 21
+	force_wielded = 23
 	name = "steel mace"
 	desc = "This steel mace is objectively superior to an iron one."
 	icon_state = "smace"
@@ -94,7 +94,7 @@
 	name = "silver war hammer"
 	desc = "A light war hammer forged of silver."
 	icon_state = "silverhammer"
-	force = 24
+	force = 23
 	gripped_intents = null
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 	wdefense = 4
@@ -174,19 +174,19 @@
 
 /datum/intent/mace/strike/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = 10
+	penfactor = 53
 
 /datum/intent/mace/smash/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = 20
+	penfactor = 65
 
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
 	desc = "A stubby little club for brigands."
-	force = 25
+	force = 21
 	icon_state = "cudgel"
-	force_wielded = 25
+	force_wielded = 21
 	gripped_intents = list(/datum/intent/mace/strike,/datum/intent/mace/smash)
 	smeltresult = /obj/item/ash
 	wlength = WLENGTH_SHORT
@@ -199,9 +199,9 @@
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"
 	desc = "The icon of the right of office of the Marshal. While mostly ceremonial in design, it serves it's purpose in dishing out some much needed justice."
-	force = 30
+	force = 25
 	icon_state = "justice"
-	force_wielded = 30
+	force_wielded = 25
 	gripped_intents = list(/datum/intent/mace/strike,/datum/intent/mace/smash)
 	smeltresult = /obj/item/ingot/steel
 	wlength = WLENGTH_SHORT
@@ -290,7 +290,7 @@
 
 /obj/item/rogueweapon/mace/goden
 	force = 15
-	force_wielded = 30
+	force_wielded = 25
 	possible_item_intents = list(/datum/intent/mace/strike)
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/rangedthrust)
 	name = "Goedendag"
@@ -331,7 +331,7 @@
 	desc = "Good morning, sire."
 	icon_state = "polemace"
 	force = 15
-	force_wielded = 35
+	force_wielded = 26
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
@@ -342,7 +342,7 @@
 	icon_state = "morningstar"
 
 /obj/item/rogueweapon/mace/warhammer
-	force = 20
+	force = 21
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick)
 	gripped_intents = null
 	name = "warhammer"
@@ -354,7 +354,7 @@
 	wdefense = 3
 
 /obj/item/rogueweapon/mace/warhammer/steel
-	force = 25
+	force = 22
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
 	name = "steel warhammer"
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
@@ -383,8 +383,8 @@
 	animname = "stab"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	no_early_release = TRUE
-	penfactor = 20
-	damfactor = 0.8
+	penfactor = 55
+	damfactor = 0.9
 	item_d_type = "stab"
 
 /datum/intent/mace/warhammer/pick
@@ -396,6 +396,6 @@
 	chargetime = 14
 	misscost = 1
 	no_early_release = TRUE
-	penfactor = 80
-	damfactor = 0.9
+	penfactor = 70
+	damfactor = 1
 	item_d_type = "stab"

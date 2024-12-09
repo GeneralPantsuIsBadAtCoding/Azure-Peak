@@ -9,7 +9,8 @@
 	chargetime = 0
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	swingdelay = 0
-	damfactor = 1.1
+	penfactor = 55
+	damfactor = 1.0
 	item_d_type = "slash"
 
 /datum/intent/sword/cut/sabre
@@ -22,7 +23,7 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 20
+	penfactor = 55
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
@@ -35,9 +36,9 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = 20
+	penfactor = 55
 	swingdelay = 5
-	damfactor = 0.8
+	damfactor = 0.9
 	item_d_type = "blunt"
 
 /datum/intent/sword/chop
@@ -47,7 +48,7 @@
 	animname = "chop"
 	blade_class = BCLASS_CHOP
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = 30
+	penfactor = 65
 	swingdelay = 8
 	damfactor = 1.0
 	item_d_type = "slash"
@@ -57,7 +58,7 @@
 /obj/item/rogueweapon/sword
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	force = 22
-	force_wielded = 25
+	force_wielded = 23
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	name = "sword"
@@ -138,8 +139,8 @@
 	wdefense = 4
 
 /obj/item/rogueweapon/sword/long
-	force = 25
-	force_wielded = 30
+	force = 23
+	force_wielded = 24
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "longsword"
@@ -179,8 +180,8 @@
 
 
 /obj/item/rogueweapon/sword/long/heirloom
-	force = 20
-	force_wielded = 32
+	force = 22
+	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "heirloom"
@@ -217,8 +218,8 @@
 
 
 /obj/item/rogueweapon/sword/long/judgement
-	force = 40
-	force_wielded = 55
+	force = 30
+	force_wielded = 35
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "judgement"
@@ -256,8 +257,8 @@
 			if("onbelt") return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/judgement/ascendant //meant to be insanely OP; solo antag wep
-	force = 50
-	force_wielded = 70
+	force = 30
+	force_wielded = 35
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "crucified"
@@ -288,8 +289,8 @@
 
 
 /obj/item/rogueweapon/sword/long/vlord
-	force = 40
-	force_wielded = 55
+	force = 28
+	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "vlord"
@@ -328,8 +329,8 @@
 			if("onbelt") return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/rider
-	force = 26
-	force_wielded = 31
+	force = 23
+	force_wielded = 24
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "tabi"
@@ -367,8 +368,8 @@
 				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/marlin
-	force = 26
-	force_wielded = 31
+	force = 23
+	force_wielded = 24
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "marlin"
@@ -457,7 +458,7 @@
 	wdefense = 3
 
 /obj/item/rogueweapon/sword/iron/short/chipped
-	force = 17
+	force = 19
 	desc = "An ancient-looking iron sword."
 	icon_state = "iswordshort_d"
 	max_integrity = 75
@@ -488,7 +489,7 @@
 	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 5
-	wdefense = 6
+	wdefense = 9
 	wbalance = 1
 
 /obj/item/rogueweapon/sword/sabre/dec
@@ -516,7 +517,7 @@
 		)
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 6
-	wdefense = 7
+	wdefense = 6
 	wbalance = 1
 
 /obj/item/rogueweapon/sword/rapier/getonmobprop(tag)
@@ -599,8 +600,7 @@
 
 /datum/intent/sword/thrust/rapier
 	clickcd = 8
-	damfactor = 1.1
-	penfactor = 30
+	damfactor = 0.9
 
 /obj/item/rogueweapon/sword/rapier/dec
 	icon_state = "decrapier"
@@ -642,7 +642,7 @@
 	wdefense = 2
 
 /obj/item/rogueweapon/sword/sabre/elf
-	force = 25
+	force = 23
 	name = "elvish saber"
 	desc = "This finely crafted saber is of elven design."
 	icon_state = "esaber"
@@ -655,7 +655,7 @@
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/sword/silver
-	force = 24
+	force = 22
 	name = "silver sword"
 	desc = "A sword forged of pure silver. The guard is fashioned into a cross."
 	icon_state = "silversword"
@@ -666,8 +666,8 @@
 	max_integrity = 200
 
 /obj/item/rogueweapon/sword/long/blackflamb
-	force = 20
-	force_wielded = 32
+	force = 23
+	force_wielded = 26
 	icon_state = "blackflamb"
 	name = "blacksteel flamberge"
 	desc = "A strange sword with a winding blade forged of blacksteel and a rontz pommel."

@@ -180,7 +180,7 @@
 					attacker_skill = U.mind.get_skill_level(intenty.masteritem.associated_skill)
 					prob2defend -= (attacker_skill * 20)
 					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
+						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 5) )
 				else
 					attacker_skill = U.mind.get_skill_level(/datum/skill/combat/unarmed)
 					prob2defend -= (attacker_skill * 20)
@@ -385,9 +385,9 @@
 		prob2defend = prob2defend - (U.STASPD * 10)
 	if(I)
 		if(I.wbalance > 0 && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
-			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
+			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 5) )
 		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
-			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
+			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 5) )
 		if(UH?.mind)
 			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)
 	if(H)

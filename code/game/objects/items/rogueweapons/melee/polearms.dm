@@ -10,7 +10,7 @@
 	chargetime = 1
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 50
+	penfactor = 55
 	item_d_type = "stab"
 
 /datum/intent/spear/bash
@@ -18,8 +18,8 @@
 	blade_class = BCLASS_BLUNT
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = 10
-	damfactor = 0.8
+	penfactor = 50
+	damfactor = 0.9
 	item_d_type = "blunt"
 
 /datum/intent/spear/cut
@@ -27,14 +27,16 @@
 	blade_class = BCLASS_CUT
 	attack_verb = list("cuts", "slashes")
 	icon_state = "incut"
-	damfactor = 0.8
+	penfactor = 50
+	damfactor = 0.9
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	reach = 2
 	item_d_type = "slash"
 
 /datum/intent/spear/cut/halberd
-	damfactor = 0.9
-	swingdelay = 10
+	penfactor = 55
+	damfactor = 1
+	chargetime = 1
 
 /datum/intent/sword/cut/zwei
 	reach = 2
@@ -44,7 +46,6 @@
 
 /datum/intent/sword/thrust/estoc
 	name = "thrust"
-	penfactor = 50
 	recovery = 20
 	clickcd = 10
 
@@ -56,8 +57,8 @@
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	reach = 2
-	penfactor = 30
-	damfactor = 1.2
+	penfactor = 55
+	damfactor = 1
 	chargetime = 5
 	recovery = 20
 	clickcd = 10
@@ -65,8 +66,8 @@
 //polearm objs ฅ^•ﻌ•^ฅ
 
 /obj/item/rogueweapon/woodstaff
-	force = 10
-	force_wielded = 15
+	force = 18
+	force_wielded = 19
 	possible_item_intents = list(SPEAR_BASH)
 	gripped_intents = list(SPEAR_BASH,/datum/intent/mace/smash/wood)
 	name = "wooden staff"
@@ -107,8 +108,8 @@
 /obj/item/rogueweapon/woodstaff/aries
 	name = "staff of the shepherd"
 	desc = "This staff makes you look important to any peasante."
-	force = 25
-	force_wielded = 28
+	force = 20
+	force_wielded = 25
 	icon_state = "aries"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	pixel_y = 0
@@ -131,7 +132,7 @@
 
 /obj/item/rogueweapon/spear
 	force = 18
-	force_wielded = 30
+	force_wielded = 25
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
@@ -168,7 +169,7 @@
 				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
 /obj/item/rogueweapon/spear/bonespear
-	force = 18
+	force = 17
 	force_wielded = 22
 	name = "bone spear"
 	desc = "A spear made of bones..."
@@ -203,7 +204,7 @@
 
 /obj/item/rogueweapon/spear/improvisedbillhook
 	force = 12
-	force_wielded = 25
+	force_wielded = 22
 	name = "improvised billhook"
 	desc = "Looks hastily made."
 	icon_state = "billhook"
@@ -237,7 +238,7 @@
 
 /obj/item/rogueweapon/halberd
 	force = 15
-	force_wielded = 30
+	force_wielded = 26
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
@@ -285,7 +286,7 @@
 
 /obj/item/rogueweapon/eaglebeak
 	force = 15
-	force_wielded = 30
+	force_wielded = 25
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/mace/smash/eaglebeak, SPEAR_BASH)
 	name = "eagle's beak"
@@ -354,7 +355,7 @@
 
 /obj/item/rogueweapon/greatsword
 	force = 12
-	force_wielded = 30
+	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/sword/strike)
 	name = "greatsword"
@@ -493,6 +494,6 @@
 	name = "naledian warstaff"
 	desc = "A staff carrying the crescent moon of Psydon's knowledge, as well as the black and gold insignia of the war scholars."
 	icon_state = "naledistaff"
-	force = 18
-	force_wielded = 22
+	force = 17
+	force_wielded = 20
 	max_integrity = 250

@@ -198,7 +198,7 @@
 
 /obj/item/rogueweapon/katar
 	slot_flags = ITEM_SLOT_HIP
-	force = 16
+	force = 19
 	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust)
 	name = "katar"
 	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
@@ -230,7 +230,8 @@
 	animname = "cut"
 	blade_class = BCLASS_CUT
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = 0
+	penfactor = 55
+	damfactor = 0.9
 	chargetime = 0
 	swingdelay = 0
 	clickcd = 8
@@ -243,7 +244,7 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 40
+	penfactor = 55
 	chargetime = 0
 	clickcd = 8
 	item_d_type = "stab"
