@@ -1,7 +1,7 @@
 //Look Sir, free crabs!
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab
 	name = "mudcrab"
-	desc = ""
+	desc = "A mudcrab."
 	icon_state = "mudcrab"
 	icon_living = "mudcrab"
 	icon_dead = "mudcrab_dead"
@@ -25,6 +25,11 @@
 	var/obj/item/inventory_head
 	var/obj/item/inventory_mask
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/mudcrab
+	
 
 /mob/living/simple_animal/mudcrabcrab/Life()
 	..()

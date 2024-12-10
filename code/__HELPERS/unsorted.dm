@@ -473,22 +473,26 @@ Turf and target are separate in case you want to teleport some distance from a t
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
-	var/steps = 1
-	if(current != target_turf)
-		current = get_step_towards(current, target_turf)
-		while(current != target_turf)
-			if(steps > length)
-				return 0
-			if(current.opacity)
-				return 0
-			for(var/thing in current)
-				var/atom/A = thing
-				if(A.opacity)
-					return 0
-			current = get_step_towards(current, target_turf)
-			steps++
+	if (get_dist(source, target) > length) //If further than the length/dist then we can assume false
+		return FALSE
+	if(current == target_turf)	
+		return TRUE
 
-	return 1
+	var/steps = 1
+
+	current = get_step_towards(current, target_turf)
+	while(current != target_turf)
+		if(steps > length)
+			return FALSE
+		if(current.opacity)
+			return FALSE
+		for(var/thing in current) //crix - probably can do this better
+			var/atom/A = thing
+			if(A.opacity)
+				return FALSE
+		current = get_step_towards(current, target_turf)
+		steps++
+	return TRUE
 
 /proc/is_blocked_turf(turf/T, exclude_mobs)
 	if(T.density)
