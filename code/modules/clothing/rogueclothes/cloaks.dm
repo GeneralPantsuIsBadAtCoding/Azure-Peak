@@ -221,6 +221,10 @@
 	color = CLOTHING_RED
 	detail_color = CLOTHING_YELLOW
 
+/obj/item/clothing/cloak/tabard/crusader/abyssor
+	color = "#373f69"
+	detail_color = "#974305"
+
 /obj/item/clothing/cloak/tabard/crusader/dendor
 	color = "#4B5637"
 	detail_color = "#3D1D1C"

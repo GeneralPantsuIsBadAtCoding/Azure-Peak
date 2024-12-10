@@ -39,6 +39,12 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 
+/mob/living/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
+	. = ..()
+	if(user)
+		friends += user.name
+		if (townercrab)
+			faction = "Station"
 /mob/living/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
 	switch(input)
 		if("idle")
