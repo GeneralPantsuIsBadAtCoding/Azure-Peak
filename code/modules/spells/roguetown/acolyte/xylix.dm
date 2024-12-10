@@ -1,3 +1,28 @@
+/obj/effect/proc_holder/spell/invoked/wheel
+	name = "The Wheel"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 3
+	range = 1
+	no_early_release = TRUE
+	movement_interrupt = TRUE
+	chargedloop = /datum/looping_sound/invokeholy
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	sound = 'sound/misc/letsgogambling.ogg'
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	charge_max = 5 MINUTES
+	
+/obj/effect/proc_holder/spell/invoked/wheel/cast(list/targets, mob/user = usr)
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		if(target.anti_magic_check(TRUE, TRUE))
+			return FALSE
+		target.apply_status_effect(/datum/status_effect/wheel)		
+		return TRUE
+	revert_cast()
+	return FALSE
+
 /obj/effect/proc_holder/spell/invoked/mockery
 	name = "Vicious Mockery"
 	releasedrain = 50

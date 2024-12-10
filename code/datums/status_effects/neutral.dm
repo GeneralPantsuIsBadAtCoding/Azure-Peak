@@ -157,3 +157,31 @@
 	. = ..()
 	if(.)
 		listening_in = tracker
+
+//Xylix Gambling
+/datum/status_effect/wheel
+	id = "lucky(?)"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3000 //Lasts five minutes
+	var/wheeleffect
+	
+/datum/status_effect/wheel/on_apply()
+	. = ..()
+	wheeleffect = rand(-5,5)
+	owner.change_stat("fortune", wheeleffect)
+	switch(wheeleffect)
+		if(-5 to -1)
+			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
+		if(0)
+			to_chat(owner, span_boldnotice("My heart beats, I feel as though nothing has changed at all..."))
+		if(1 to 5)
+			to_chat(owner, span_boldnotice("My heart flutters, I feel as though I won the lottery!"))
+
+/datum/status_effect/wheel/on_remove()
+	. = ..()
+	owner.change_stat("fortune", -wheeleffect)
+
+/atom/movable/screen/alert/status_effect/wheel
+	name = "Lucky(?)"
+	desc = "I feel different since my fortune was changed..."
+	icon_state = "asleep"
