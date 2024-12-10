@@ -121,28 +121,28 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/halfplate
-	name = "Half-Plate Armour (+2 Steel)"
+	name = "Half-Plate Armour (+2 Steel, +1 Hide)"
 	req_bar = /obj/item/ingot/steel
-	additional_items = list(/obj/item/ingot/steel,/obj/item/ingot/steel)
+	additional_items = list(/obj/item/ingot/steel,/obj/item/ingot/steel,/obj/item/natural/hide)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/fullplate
-	name = "Full-Plate Armour (+3 Steel)"
+	name = "Full-Plate Armour (+3 Steel, +1 Hide)"
 	req_bar = /obj/item/ingot/steel
-	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/ingot/steel)
+	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/natural/hide)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full
 	craftdiff = 4
 
 /datum/anvil_recipe/armor/steel/platebikini
-	name = "Half-Plate Bikini (+1 Steel +1 Hide)"
+	name = "Half-Plate Bikini (+1 Steel, +1 Hide)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/hide)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/bikini
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/fullplatebikini
-	name = "Full-Plate Bikini (+2 Steel +1 Hide)"
+	name = "Full-Plate Bikini (+2 Steel, +1 Hide)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/natural/hide)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
@@ -156,7 +156,7 @@
 	craftdiff = 2
 
 /datum/anvil_recipe/armor/steel/steel/brigandine
-	name = "Brigandine (+1 Steel +2 Cloth)"
+	name = "Brigandine (+1 Steel, +2 Cloth)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/cloth, /obj/item/natural/cloth)
 	created_item = /obj/item/clothing/suit/roguetown/armor/brigandine

@@ -109,10 +109,10 @@
 	desc = "Stripped hide from animals."
 	item_type = /obj/item/natural/hide
 	held_items = list(0, 0)
-	payout_price = 10
-	withdraw_price = 15
-	transport_fee = 3
-	export_price = 15
+	payout_price = 5
+	withdraw_price = 8
+	transport_fee = 2
+	export_price = 8
 	importexport_amt = 5
 	passive_generation = 2
 
@@ -121,10 +121,10 @@
 	desc = "Hide with a long winter coat from animals."
 	item_type = /obj/item/natural/fur
 	held_items = list(0, 0)
-	payout_price = 15
-	withdraw_price = 23
-	transport_fee = 5
-	export_price = 23
+	payout_price = 10
+	withdraw_price = 15
+	transport_fee = 4
+	export_price = 15
 	importexport_amt = 5
 	passive_generation = 1
 
@@ -225,7 +225,7 @@
 
 /datum/roguestock/stockpile/tallow
 	name = "Tallow"
-	desc = "Shelf-stabilized fatty tissue"
+	desc = "Shelf-stabilized fatty tissue."
 	item_type = /obj/item/reagent_containers/food/snacks/tallow
 	held_items = list(0, 0)
 	payout_price = 1
