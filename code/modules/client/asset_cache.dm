@@ -27,50 +27,56 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/last_asset_job = 0 // Last job done.
 
 //This proc sends the asset to the client, but only if it needs it.
-//This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset(client/client, asset_name, verify = TRUE)
+//This proc blocks(sleeps)
+/proc/send_asset(client/client, asset_name)
+	if(!send_asset_internal(client, asset_name))
+		return FALSE
+	client.sending |= asset_name
+	var/job = client.browse_queue_flush()
+	if(!isnull(job) && client) // if job is null we runtimed somehow
+		client.sending -= asset_name
+		client.cache |= asset_name
+		client.completed_asset_jobs -= job
+
+//This proc doesn't
+/proc/send_asset_async(client/client, asset_name)
+	if(!send_asset_internal(client, asset_name))
+		return FALSE
+	client.cache += asset_name
+	return TRUE
+
+/proc/send_asset_internal(client/client, asset_name)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
 			if(M.client)
 				client = M.client
-
 			else
-				return 0
-
+				return FALSE
 		else
-			return 0
+			return FALSE
 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
-		return 0
+		return FALSE
 
 	log_asset("Sending asset [asset_name] to client [client]")
 	client << browse_rsc(SSassets.cache[asset_name], asset_name)
-	if(!verify)
-		client.cache += asset_name
-		return 1
+	return TRUE // sent, but not necessarily received
 
-	client.sending |= asset_name
-	var/job = ++client.last_asset_job
-
-	client << browse({"
+/client/proc/browse_queue_flush()
+	var/job = ++last_asset_job
+	var/t = 0
+	var/timeout_time = (ASSET_CACHE_SEND_TIMEOUT * sending.len) + ASSET_CACHE_SEND_TIMEOUT
+	src << browse({"
 	<script>
 		window.location.href="?asset_cache_confirm_arrival=[job]"
 	</script>
 	"}, "window=asset_cache_browser")
-
-	var/t = 0
-	var/timeout_time = (ASSET_CACHE_SEND_TIMEOUT * client.sending.len) + ASSET_CACHE_SEND_TIMEOUT
-	while(client && !client.completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
+	while(!completed_asset_jobs.Find(job) && t < timeout_time) // Reception is handled in Topic()
 		stoplag(1) // Lock up the caller until this is received.
 		t++
 
-	if(client)
-		client.sending -= asset_name
-		client.cache |= asset_name
-		client.completed_asset_jobs -= job
-
-	return 1
+	return job
 
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset_list(client/client, list/asset_list, verify = TRUE)
@@ -136,7 +142,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 			send_asset(client, file)
 		else
 			concurrent_tracker++
-			send_asset(client, file, verify=FALSE)
+			send_asset_async(client, file)
 
 		stoplag(0) //queuing calls like this too quickly can cause issues in some client versions
 
@@ -369,7 +375,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 				continue
 			asset = fcopy_rsc(asset) //dedupe
 			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]." : ""
-			var/asset_name = SANITIZE_FILENAME("[prefix].[prefix2][icon_state_name].png")
+			var/asset_name = sanitize_filename("[prefix].[prefix2][icon_state_name].png")
 			if (generic_icon_names)
 				asset_name = "[generate_asset_name(asset)].png"
 

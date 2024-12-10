@@ -1,5 +1,39 @@
 //Eora content from Stonekeep
 
+/obj/item/clothing/head/peaceflower
+	name = "eoran bud"
+	desc = "A flower of gentle petals, associated with Eora or Necra. Usually adorned as a headress or laid at graves as a symbol of love or peace."
+	icon = 'icons/roguetown/items/produce.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	icon_state = "peaceflower"
+	item_state = "peaceflower"
+	dropshrink = 0.9
+	slot_flags = ITEM_SLOT_HEAD
+	body_parts_covered = NONE
+	dynamic_hair_suffix = ""
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 1
+	throw_range = 3
+
+/obj/item/clothing/head/peaceflower/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_HEAD)
+		ADD_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
+
+/obj/item/clothing/head/peaceflower/dropped(mob/living/carbon/human/user)
+	..()
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
+
+/obj/item/clothing/head/peaceflower/attack_hand(mob/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(src == C.head)
+			to_chat(user, "<span class='warning'>I feel at peace. <b style='color:pink'>Why would you want anything else?</b></span>")
+			return
+	return ..()
+
 /obj/effect/proc_holder/spell/invoked/bud
 	name = "Eoran Bloom"
 	desc = ""

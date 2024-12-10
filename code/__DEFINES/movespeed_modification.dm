@@ -80,6 +80,7 @@
 #define MOVESPEED_ID_DAMAGE_SLOWDOWN                    "DAMAGE"
 #define MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING				"FLYING"
 #define MOVESPEED_ID_LENTURI                            "LENTURI_SLOWDOWN"
+#define MOVESPEED_ID_NET_SLOWDOWN                       "NET"
 
 #define MOVESPEED_ID_LIVING_SLOWDOWN_STATUS             "LSS"
 

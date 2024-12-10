@@ -28,7 +28,7 @@
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.5
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
@@ -182,7 +182,7 @@
 	hitsound = 'sound/blank.ogg'
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.3
 
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
@@ -231,7 +231,7 @@
 	hitsound = 'sound/blank.ogg'
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.4
 
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
@@ -278,7 +278,7 @@
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
-	flag = "bullet"
+	flag = "piercing"
 	armor_penetration = 200
 	speed = 0.1
 

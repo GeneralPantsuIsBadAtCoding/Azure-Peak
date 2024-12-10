@@ -20,7 +20,6 @@
 	sleep_healing = 0
 	embed_chance = 75
 
-	zombie_infection_probability = 100
 	werewolf_infection_probability = 100
 
 /datum/wound/artery/can_stack_with(datum/wound/other)

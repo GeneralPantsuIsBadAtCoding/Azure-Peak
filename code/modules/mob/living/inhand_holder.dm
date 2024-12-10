@@ -68,17 +68,3 @@
 
 /obj/item/clothing/head/mob_holder/container_resist()
 	release()
-
-/obj/item/clothing/head/mob_holder/drone/deposit(mob/living/L)
-	. = ..()
-	if(!isdrone(L))
-		qdel(src)
-	name = "drone (hiding)"
-	desc = ""
-
-/obj/item/clothing/head/mob_holder/drone/update_visuals(mob/living/L)
-	var/mob/living/simple_animal/drone/D = L
-	if(!D)
-		return ..()
-	icon = 'icons/mob/drone.dmi'
-	icon_state = "[D.visualAppearence]_hat"

@@ -8,7 +8,7 @@
 	var/beauty = 0
 	obj_flags = CAN_BE_HIT
 
-/obj/effect/decal/cleanable/Initialize(mapload, list/datum/disease/diseases)
+/obj/effect/decal/cleanable/Initialize(mapload)
 	. = ..()
 	if (random_icon_states && (icon_state == initial(icon_state)) && length(random_icon_states) > 0)
 		icon_state = pick(random_icon_states)
@@ -18,14 +18,6 @@
 			if(C != src && C.type == type && !QDELETED(C))
 				if (replace_decal(C))
 					return INITIALIZE_HINT_QDEL
-
-	if(LAZYLEN(diseases))
-		var/list/datum/disease/diseases_to_add = list()
-		for(var/datum/disease/D in diseases)
-			if(D.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
-				diseases_to_add += D
-		if(LAZYLEN(diseases_to_add))
-			AddComponent(/datum/component/infective, diseases_to_add)
 
 //	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, AddComponent), /datum/component/beauty, beauty), 0)
 
@@ -44,7 +36,7 @@
 		return TRUE
 
 /obj/effect/decal/cleanable/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/reagent_containers/glass) || istype(W, /obj/item/reagent_containers/food/drinks))
+	if(istype(W, /obj/item/reagent_containers/glass))
 		if(src.reagents && W.reagents)
 			. = 1 //so the containers don't splash their content on the src while scooping.
 			if(!src.reagents.total_volume)

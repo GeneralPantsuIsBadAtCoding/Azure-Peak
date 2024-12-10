@@ -62,6 +62,8 @@
 /mob/living/proc/update_turf_movespeed(turf/open/T)
 	if(isopenturf(T))
 		var/usedslow = T.get_slowdown(src)
+		if(HAS_TRAIT(src, TRAIT_TRAM_MOVER))
+			usedslow = 0
 		if(usedslow != 0)
 			add_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD, update=TRUE, priority=100, multiplicative_slowdown=usedslow, movetypes=GROUND)
 		else

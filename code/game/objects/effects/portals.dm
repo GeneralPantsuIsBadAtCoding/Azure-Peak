@@ -87,12 +87,6 @@
 	if(isturf(hard_target_override))
 		hard_target = hard_target_override
 
-/obj/effect/portal/singularity_pull()
-	return
-
-/obj/effect/portal/singularity_act()
-	return
-
 /obj/effect/portal/proc/link_portal(obj/effect/portal/newlink)
 	linked = newlink
 	if(atmos_link)
@@ -151,15 +145,13 @@
 		return ..()
 
 /obj/effect/portal/proc/teleport(atom/movable/M, force = FALSE)
-	if(!force && (!istype(M) || iseffect(M) || (ismecha(M) && !mech_sized) || (!isobj(M) && !ismob(M)))) //Things that shouldn't teleport.
+	if(!force && (!istype(M) || iseffect(M) || (!isobj(M) && !ismob(M)))) //Things that shouldn't teleport.
 		return
 	var/turf/real_target = get_link_target_turf()
 	if(!istype(real_target))
 		return FALSE
-	if(!force && (!ismecha(M) && !istype(M, /obj/projectile) && M.anchored && !allow_anchored))
+	if(!force && (!istype(M, /obj/projectile) && M.anchored && !allow_anchored))
 		return
-	if(ismegafauna(M))
-		message_admins("[M] has used a portal at [ADMIN_VERBOSEJMP(src)] made by [usr].")
 	var/no_effect = FALSE
 	if(last_effect == world.time)
 		no_effect = TRUE

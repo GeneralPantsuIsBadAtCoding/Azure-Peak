@@ -2,8 +2,8 @@
 	name = "Imaginary Friend"
 	desc = ""
 	scan_desc = ""
-	gain_text = span_notice("I feel in good company, for some reason.")
-	lose_text = span_warning("I feel lonely again.")
+	gain_text = "<span class='notice'>I feel in good company, for some reason.</span>"
+	lose_text = "<span class='warning'>I feel lonely again.</span>"
 	var/mob/camera/imaginary_friend/friend
 	var/friend_initialized = FALSE
 
@@ -82,9 +82,9 @@
 	Show()
 
 /mob/camera/imaginary_friend/proc/greet()
-		to_chat(src, span_notice("<b>I are the imaginary friend of [owner]!</b>"))
-		to_chat(src, span_notice("I are absolutely loyal to your friend, no matter what."))
-		to_chat(src, span_notice("I cannot directly influence the world around you, but you can see what [owner] cannot."))
+		to_chat(src, "<span class='notice'><b>I are the imaginary friend of [owner]!</b></span>")
+		to_chat(src, "<span class='notice'>I are absolutely loyal to your friend, no matter what.</span>")
+		to_chat(src, "<span class='notice'>I cannot directly influence the world around you, but you can see what [owner] cannot.</span>")
 
 /mob/camera/imaginary_friend/Initialize(mapload, _trauma)
 	. = ..()
@@ -93,7 +93,7 @@
 	owner = trauma.owner
 	copy_known_languages_from(owner, TRUE)
 
-	setup_friend()
+	INVOKE_ASYNC(src, PROC_REF(setup_friend))
 
 	join = new
 	join.Grant(src)
@@ -142,14 +142,14 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_boldwarning("I cannot send IC messages (muted)."))
+			to_chat(src, "<span class='boldwarning'>I cannot send IC messages (muted).</span>")
 			return
 		if (!(ignore_spam || forced) && src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
 	friend_talk(message)
 
-/mob/camera/imaginary_friend/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+/mob/camera/imaginary_friend/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	to_chat(src, compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode))
 
 /mob/camera/imaginary_friend/proc/friend_talk(message)
@@ -160,8 +160,8 @@
 
 	src.log_talk(message, LOG_SAY, tag="imaginary friend")
 
-	var/rendered = span_say("<span class='name'>[name]</span> <span class='message'>[say_quote(message)]</span>")
-	var/dead_rendered = span_say("<span class='name'>[name] (Imaginary friend of [owner])</span> <span class='message'>[say_quote(message)]</span>")
+	var/rendered = "<span class='say'><span class='name'>[name]</span> <span class='message'>[say_quote(message)]</span></span>"
+	var/dead_rendered = "<span class='say'><span class='name'>[name] (Imaginary friend of [owner])</span> <span class='message'>[say_quote(message)]</span></span>"
 
 	to_chat(owner, "[rendered]")
 	to_chat(src, "[rendered]")
@@ -261,9 +261,9 @@
 	desc = ""
 
 /mob/camera/imaginary_friend/trapped/greet()
-	to_chat(src, span_notice("<b>I have managed to hold on as a figment of the new host's imagination!</b>"))
-	to_chat(src, span_notice("All hope is lost for you, but at least you may interact with your host. You do not have to be loyal to them."))
-	to_chat(src, span_notice("I cannot directly influence the world around you, but you can see what the host cannot."))
+	to_chat(src, "<span class='notice'><b>I have managed to hold on as a figment of the new host's imagination!</b></span>")
+	to_chat(src, "<span class='notice'>All hope is lost for you, but at least you may interact with your host. You do not have to be loyal to them.</span>")
+	to_chat(src, "<span class='notice'>I cannot directly influence the world around you, but you can see what the host cannot.</span>")
 
 /mob/camera/imaginary_friend/trapped/setup_friend()
 	real_name = "[owner.real_name]?"

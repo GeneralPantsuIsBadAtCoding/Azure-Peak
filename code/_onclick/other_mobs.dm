@@ -15,7 +15,8 @@
 		return
 
 	if(check_arm_grabbed(used_hand))
-		to_chat(src, span_warning("Someone is grabbing my arm!"))
+		to_chat(src, "<span class='warning'>Someone is grabbing my arm!</span>")
+		resist_grab()
 		return
 
 	// Special glove functions:
@@ -78,8 +79,6 @@
 	if(check_arm_grabbed(used_hand))
 		to_chat(src, span_warning("[pulledby] is restraining my arm!"))
 		return
-
-	A.attack_right(src, params)
 
 /mob/living/attack_right(mob/user, params)
 	. = ..()
@@ -188,15 +187,18 @@
 		var/armor_block = run_armor_check(user.zone_selected, "stab",blade_dulling=BCLASS_BITE)
 		if(!apply_damage(dam2do, BRUTE, def_zone, armor_block, user))
 			nodmg = TRUE
-			next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+			next_attack_msg += span_warning("Armor stops the damage.")
 
-	var/datum/wound/caused_wound
 	if(!nodmg)
-		caused_wound = affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)
+		affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)
 	visible_message(span_danger("[user] bites [src]'s [parse_zone(user.zone_selected)]![next_attack_msg.Join()]"), \
 					span_userdanger("[user] bites my [parse_zone(user.zone_selected)]![next_attack_msg.Join()]"))
 
 	next_attack_msg.Cut()
+
+	var/datum/wound/caused_wound
+	if(!nodmg)
+		caused_wound = affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)
 
 	if(!nodmg)
 		playsound(src, "smallslash", 100, TRUE, -1)
@@ -208,10 +210,8 @@
 					caused_wound?.werewolf_infect_attempt()
 					if(prob(30))
 						user.werewolf_feed(src, 10)
-			if(user.mind.has_antag_datum(/datum/antagonist/zombie))
-				var/datum/antagonist/zombie/existing_zomble = mind?.has_antag_datum(/datum/antagonist/zombie)
-				if(caused_wound?.zombie_infect_attempt() && !existing_zomble)
-					user.mind.adjust_triumphs(1)
+				if(user.mind.has_antag_datum(/datum/antagonist/zombie) && !src.mind.has_antag_datum(/datum/antagonist/zombie))
+					INVOKE_ASYNC(TYPE_PROC_REF(/mob/living/carbon/human, zombie_infect_attempt))
 
 	var/obj/item/grabbing/bite/B = new()
 	user.equip_to_slot_or_del(B, SLOT_MOUTH)
@@ -252,8 +252,9 @@
 					return
 				if(A == src)
 					return
-				if(isliving(A))
-					if(!(mobility_flags & MOBILITY_STAND) && pulledby)
+				if(ismob(A))
+					var/mob/M = A
+					if(lying && M.pulling != src)
 						return
 				if(IsOffBalanced())
 					to_chat(src, span_warning("I haven't regained my balance yet."))
@@ -287,15 +288,14 @@
 							H.dna.species.kicked(src, H)
 						else
 							M.onkick(src)
+							OffBalance(15) // Off balance for human enemies moved to dna.species.onkick
 				else
 					A.onkick(src)
-				OffBalance(30)
+					OffBalance(10)
 				return
 			if(INTENT_JUMP)
 				if(istype(src.loc, /turf/open/water))
-					to_chat(src, span_warning("I'm floating in [get_turf(src)]."))
-					return
-				if(!A || QDELETED(A) || !A.loc)
+					to_chat(src, span_warning("I can't jump while floating."))
 					return
 				if(A == src || A == src.loc)
 					return
@@ -303,14 +303,16 @@
 					return
 				if(pulledby && pulledby != src)
 					to_chat(src, span_warning("I'm being grabbed."))
+					resist_grab()
 					return
 				if(IsOffBalanced())
 					to_chat(src, span_warning("I haven't regained my balance yet."))
 					return
-				if(!(mobility_flags & MOBILITY_STAND))
-					if(!HAS_TRAIT(src, TRAIT_LEAPER))// The Jester cares not for such social convention.
-						to_chat(src, span_warning("I should stand up first."))
-						return
+				if(lying)
+					to_chat(src, span_warning("I should stand up first."))
+					return
+				if(!isatom(A))
+					return
 				if(A.z != src.z)
 					if(!HAS_TRAIT(src, TRAIT_ZJUMP))
 						return
@@ -327,8 +329,7 @@
 					OffBalance(30)
 					jadded = 15
 					jrange = 3
-					if(!HAS_TRAIT(src, TRAIT_LEAPER))// The Jester lands where the Jester wants.
-						jextra = TRUE
+					jextra = TRUE
 				else
 					OffBalance(20)
 					jadded = 10
@@ -336,7 +337,7 @@
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
 					jadded += H.get_complex_pain()/50
-					if(!H.check_armor_skill() || H.legcuffed)
+					if(!H.check_armor_skill())
 						jadded += 50
 						jrange = 1
 				if(rogfat_add(min(jadded,100)))
@@ -436,21 +437,6 @@
 							else
 								exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion
 								to_chat(src, span_warning("I didn't find anything there. Perhaps I should look elsewhere."))
-						else
-							to_chat(src, "<span class='warning'>They can see me!")
-					if(stealroll <= 4)
-						V.log_message("has had an attempted pickpocket by [key_name(U)]", LOG_ATTACK, color="black")
-						U.log_message("has attempted to pickpocket [key_name(V)]", LOG_ATTACK, color="black")
-						to_chat(V, span_danger("Someone tried pickpocketing me!"))
-					if(stealroll < targetperception)
-						V.log_message("has had an attempted pickpocket by [key_name(U)]", LOG_ATTACK, color="black")
-						U.log_message("has attempted to pickpocket [key_name(V)]", LOG_ATTACK, color="black")
-						to_chat(src, span_danger("I failed to pick the pocket!"))
-						exp_to_gain /= 5 // these can be removed or changed on reviewer's discretion
-					// If we're pickpocketing someone else, and that person is conscious, grant XP
-					if(src != V && V.stat == CONSCIOUS)
-						mind.add_sleep_experience(/datum/skill/misc/stealing, exp_to_gain, FALSE)
-					changeNext_move(mmb_intent.clickcd)
 				return
 			if(INTENT_SPELL)
 				if(ranged_ability?.InterceptClickOn(src, params, A))
@@ -569,7 +555,7 @@
 	A.attack_animal(src)
 
 /atom/proc/attack_animal(mob/user)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
 
 /mob/living/RestrainedClickOn(atom/A)
 	return
@@ -614,59 +600,10 @@
 			to_chat(name, span_danger("I bite [ML]!"))
 			if(armor >= 2)
 				return
-			for(var/thing in diseases)
-				var/datum/disease/D = thing
-				ML.ForceContractDisease(D)
 		else
 			ML.visible_message(span_danger("[src]'s bite misses [ML]!"), \
 							span_danger("I avoid [src]'s bite!"), span_hear("I hear jaws snapping shut!"), COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("My bite misses [ML]!"))
-
-/*
-	Aliens
-	Defaults to same as monkey in most places
-*/
-/mob/living/carbon/alien/UnarmedAttack(atom/A)
-	A.attack_alien(src)
-
-/atom/proc/attack_alien(mob/living/carbon/alien/user)
-	attack_paw(user)
-	return
-
-/mob/living/carbon/alien/RestrainedClickOn(atom/A)
-	return
-
-// Babby aliens
-/mob/living/carbon/alien/larva/UnarmedAttack(atom/A)
-	A.attack_larva(src)
-/atom/proc/attack_larva(mob/user)
-	return
-
-
-/*
-	Slimes
-	Nothing happening here
-*/
-/mob/living/simple_animal/slime/UnarmedAttack(atom/A)
-	A.attack_slime(src)
-/atom/proc/attack_slime(mob/user)
-	return
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
-
-/*
-	Drones
-*/
-/mob/living/simple_animal/drone/UnarmedAttack(atom/A)
-	A.attack_drone(src)
-
-/atom/proc/attack_drone(mob/living/simple_animal/drone/user)
-	attack_hand(user) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
-
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
 
 /*
 	True Devil
@@ -681,15 +618,6 @@
 
 /mob/living/brain/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
 	return
-
-
-/*
-	pAI
-*/
-
-/mob/living/silicon/pai/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
-	return
-
 
 /*
 	Simple animals

@@ -30,9 +30,6 @@
 	if(ranged_ability)
 		ranged_ability.add_ranged_ability(src, span_notice("I currently have <b>[ranged_ability]</b> active!"))
 
-	var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-	if(changeling)
-		changeling.regain_powers()
 
 /mob/living/proc/login_fade()
 	set waitfor = FALSE

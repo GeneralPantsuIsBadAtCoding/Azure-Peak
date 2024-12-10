@@ -34,28 +34,26 @@
 	if(healed_this_iteration && !reaping && prob(0.0001)) //janken with the grim reaper!
 		reaping = TRUE
 		var/list/RockPaperScissors = list("rock" = "paper", "paper" = "scissors", "scissors" = "rock") //choice = loses to
-		if(M.apply_status_effect(/datum/status_effect/necropolis_curse,CURSE_BLINDING))
-			helbent = TRUE
-		to_chat(M, span_hierophant("Malevolent spirits appear before you, bartering your life in a 'friendly' game of rock, paper, scissors. Which do you choose?"))
+		to_chat(M, "<span class='hierophant'>Malevolent spirits appear before you, bartering your life in a 'friendly' game of rock, paper, scissors. Which do you choose?</span>")
 		var/timeisticking = world.time
 		var/RPSchoice = input(M, "Janken Time! You have 60 Seconds to Choose!", "Rock Paper Scissors",null) as null|anything in RockPaperScissors
 		if(QDELETED(M) || (timeisticking+(1.1 MINUTES) < world.time))
 			reaping = FALSE
 			return //good job, you ruined it
 		if(!RPSchoice)
-			to_chat(M, span_hierophant("I decide to not press your luck, but the spirits remain... hopefully they'll go away soon."))
+			to_chat(M, "<span class='hierophant'>I decide to not press your luck, but the spirits remain... hopefully they'll go away soon.</span>")
 			reaping = FALSE
 			return
 		var/grim = pick(RockPaperScissors)
 		if(grim == RPSchoice) //You Tied!
-			to_chat(M, span_hierophant("I tie, and the malevolent spirits disappear... for now."))
+			to_chat(M, "<span class='hierophant'>I tie, and the malevolent spirits disappear... for now.</span>")
 			reaping = FALSE
 		else if(RockPaperScissors[RPSchoice] == grim) //You lost!
-			to_chat(M, span_hierophant("I lose, and the malevolent spirits smirk eerily as they surround your body."))
+			to_chat(M, "<span class='hierophant'>I lose, and the malevolent spirits smirk eerily as they surround your body.</span>")
 			M.dust()
 			return
 		else //VICTORY ROYALE
-			to_chat(M, span_hierophant("I win, and the malevolent spirits fade away as well as your wounds."))
+			to_chat(M, "<span class='hierophant'>I win, and the malevolent spirits fade away as well as your wounds.</span>")
 			M.client.give_award(/datum/award/achievement/misc/helbitaljanken, M)
 			M.revive(full_heal = TRUE, admin_revive = FALSE)
 			M.reagents.del_reagent(type)
@@ -63,18 +61,6 @@
 
 	..()
 	return
-
-/datum/reagent/medicine/C2/helbital/overdose_process(mob/living/carbon/M)
-	if(!helbent)
-		M.apply_necropolis_curse(CURSE_WASTING | CURSE_BLINDING)
-		helbent = TRUE
-	..()
-	return TRUE
-
-/datum/reagent/medicine/C2/helbital/on_mob_delete(mob/living/L)
-	if(helbent)
-		L.remove_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE)
-	..()
 
 /datum/reagent/medicine/C2/libital //messes with your liber
 	name = "Libital"
@@ -339,7 +325,7 @@
 			var/burnies = min(Carbies.getFireLoss(),Carbies.adjustFireLoss(-1.25 * reac_volume)*-1)
 			Carbies.adjustToxLoss((harmies+burnies)*0.66)
 			if(show_message)
-				to_chat(Carbies, span_danger("I feel your burns and bruises healing! It stings like hell!"))
+				to_chat(Carbies, "<span class='danger'>I feel your burns and bruises healing! It stings like hell!</span>")
 			SEND_SIGNAL(Carbies, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 	return TRUE

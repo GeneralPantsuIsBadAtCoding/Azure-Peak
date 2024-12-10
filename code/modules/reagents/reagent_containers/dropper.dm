@@ -45,9 +45,6 @@
 					to_chat(user, span_notice("I transfer [trans] unit\s of the solution."))
 					update_icon()
 					return
-			else if(isalien(target)) //hiss-hiss has no eyes!
-				to_chat(target, span_danger("[target] does not seem to have any eyes!"))
-				return
 
 			target.visible_message(span_danger("[user] squirts something into [target]'s eyes!"), \
 									span_danger("[user] squirts something into your eyes!"))

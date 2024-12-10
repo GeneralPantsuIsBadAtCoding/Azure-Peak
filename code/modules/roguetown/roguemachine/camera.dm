@@ -28,7 +28,7 @@
 
 /obj/structure/roguemachine/camera/Initialize()
 	. = ..()
-	set_light(1, 1, "#ff0d0d")
+	set_light(1, 1, 1, l_color = "#ff0d0d")
 	SSroguemachine.cameras += src
 	number = SSroguemachine.cameras.len
 	name = "face #[number]"

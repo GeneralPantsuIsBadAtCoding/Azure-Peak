@@ -119,7 +119,6 @@
 			update_inv_belt()
 		if(SLOT_RING)
 			wear_ring = I
-			sec_hud_set_ID()
 			update_inv_wear_id()
 		if(SLOT_WRISTS)
 
@@ -162,7 +161,6 @@
 		if(SLOT_PANTS)
 
 			wear_pants = I
-			update_suit_sensors()
 			update_inv_pants()
 		if(SLOT_SHIRT)
 
@@ -222,7 +220,6 @@
 	if(!not_handled)
 		I.equipped(src, slot, initial)
 
-
 	if(hud_used)
 		hud_used.throw_icon?.update_icon()
 		hud_used.give_intent?.update_icon()
@@ -264,7 +261,6 @@
 //			if(belt)
 //				dropItemToGround(belt)
 		wear_pants = null
-		update_suit_sensors()
 		if(!QDELETED(src))
 			update_inv_pants()
 	else if(I == gloves)
@@ -302,7 +298,6 @@
 			update_inv_belt()
 	else if(I == wear_ring)
 		wear_ring = null
-		sec_hud_set_ID()
 		if(!QDELETED(src))
 			update_inv_wear_id()
 	else if(I == wear_wrists)
@@ -360,12 +355,8 @@
 /mob/living/carbon/human/wear_mask_update(obj/item/I, toggle_off = 1)
 	if((I.flags_inv & (HIDEHAIR|HIDEFACIALHAIR)) || (initial(I.flags_inv) & (HIDEHAIR|HIDEFACIALHAIR)))
 		update_hair()
-	if(toggle_off && internal && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		update_internals_hud_icon(0)
-		internal = null
 	if(I.flags_inv & HIDEEYES)
 		update_inv_glasses()
-	sec_hud_set_security_status()
 	..()
 
 /mob/living/carbon/human/head_update(obj/item/I, forced)
@@ -379,7 +370,6 @@
 		update_inv_glasses()
 	if(I.flags_inv & HIDEEARS || forced)
 		update_body()
-	sec_hud_set_security_status()
 	..()
 
 /mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)

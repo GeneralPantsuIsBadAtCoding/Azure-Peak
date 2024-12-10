@@ -89,12 +89,9 @@
 	P.info += "<h4>Stamp below to confirm receipt of goods:</h4>"
 
 	if(P.errors & MANIFEST_ERROR_ITEM)
-		if(istype(C, /obj/structure/closet/crate/secure) || istype(C, /obj/structure/closet/crate/large))
-			P.errors &= ~MANIFEST_ERROR_ITEM
-		else
-			var/lost = max(round(C.contents.len / 10), 1)
-			while(--lost >= 0)
-				qdel(pick(C.contents))
+		var/lost = max(round(C.contents.len / 10), 1)
+		while(--lost >= 0)
+			qdel(pick(C.contents))
 
 	P.update_icon()
 	P.forceMove(C)

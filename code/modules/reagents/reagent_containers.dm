@@ -9,7 +9,6 @@
 	var/volume = 30
 	var/reagent_flags
 	var/list/list_reagents = null
-	var/spawned_disease = null
 	var/disease_amount = 20
 	var/spillable = FALSE
 	var/list/fill_icon_thresholds = null
@@ -27,10 +26,6 @@
 	if(isnum(vol) && vol > 0)
 		volume = vol
 	create_reagents(volume, reagent_flags)
-	if(spawned_disease)
-		var/datum/disease/F = new spawned_disease()
-		var/list/data = list("viruses"= list(F))
-		reagents.add_reagent(/datum/reagent/blood, disease_amount, data)
 
 	add_initial_reagents()
 
@@ -129,7 +124,7 @@
 
 	reagents.clear_reagents()
 
-/obj/item/reagent_containers/microwave_act(obj/machinery/microwave/M)
+/obj/item/reagent_containers/heating_act()
 	reagents.expose_temperature(1000)
 	..()
 

@@ -149,15 +149,7 @@
 	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
 	cleanspeed = initial(cleanspeed) - (skill_level * 3) // 3 cleanspeed per skill level, from 35 down to a maximum of 17 (pretty quick)
 
-	if (istype(target, /obj/structure/window))
-		user.visible_message(span_notice("[user] gestures at \the [target.name], tiny motes of arcyne power running across its surface..."), span_notice("I begin to clean \the [target.name] with my arcyne power..."))
-		if (do_after(user, src.cleanspeed, target = target))
-			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			target.set_opacity(initial(target.opacity))
-			to_chat(user, span_notice("I render \the [target.name] clean."))
-			return TRUE
-		return FALSE
-	else if (istype(target, /obj/effect/decal/cleanable))
+	if (istype(target, /obj/effect/decal/cleanable))
 		user.visible_message(span_notice("[user] gestures at \the [target.name], arcyne power slowly scouring it away..."), span_notice("I begin to scour \the [target.name] away with my arcyne power..."))
 		if (do_after(user, src.cleanspeed, target = target))
 			to_chat(user, span_notice("I expunge \the [target.name] with my mana."))
@@ -181,7 +173,7 @@
 	name = "minor magelight mote"
 	desc = "A tiny display of arcyne power used to illuminate."
 	pixel_x = 20
-	light_range = 4
+	light_outer_range = 4
 	light_flags = NONE
 	light_color = "#3FBAFD"
 
@@ -507,7 +499,7 @@
 /obj/effect/temp_visual/trap
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "trap"
-	light_range = 2
+	light_outer_range = 2
 	duration = 14
 	layer = MASSIVE_OBJ_LAYER
 
@@ -1017,7 +1009,7 @@
 /obj/effect/temp_visual/trapice
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "blueshatter"
-	light_range = 2
+	light_outer_range = 2
 	light_color = "#4cadee"
 	duration = 6
 	layer = MASSIVE_OBJ_LAYER
@@ -1224,7 +1216,7 @@
 	randomdir = FALSE
 	duration = 3 SECONDS
 	layer = MASSIVE_OBJ_LAYER
-	light_range = 2
+	light_outer_range = 2
 	light_color = COLOR_PALE_PURPLE_GRAY
 
 

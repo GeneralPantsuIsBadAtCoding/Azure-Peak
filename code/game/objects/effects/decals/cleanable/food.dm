@@ -20,6 +20,7 @@
 	desc = ""
 	icon_state = "smashed_egg1"
 	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
+	alpha = 200
 
 /obj/effect/decal/cleanable/food/pie_smudge //honk
 	name = "smashed pie"
@@ -30,12 +31,6 @@
 	name = "salt pile"
 	desc = ""
 	icon_state = "salt_pile"
-
-/obj/effect/decal/cleanable/food/salt/CanPass(atom/movable/AM, turf/target)
-	if(is_species(AM, /datum/species/snail))
-		to_chat(AM, span_danger("My path is obstructed by <span class='phobia'>salt</span>."))
-		return FALSE
-	return TRUE
 
 /obj/effect/decal/cleanable/food/flour
 	name = "flour"

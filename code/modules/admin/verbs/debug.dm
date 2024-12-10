@@ -25,48 +25,6 @@ Because if you select a player mob as owner it tries to do the proc for
 /mob/living/carbon/human/ instead. And that gives a run-time error.
 But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
 */
-
-/client/proc/Cell()
-	set category = "Debug"
-	set name = "Air Status in Location"
-	if(!mob)
-		return
-	var/turf/T = get_turf(mob)
-	if(!isturf(T))
-		return
-	atmosanalyzer_scan(usr, T, TRUE)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Air Status In Location") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_robotize(mob/M in GLOB.mob_list)
-	set category = "Fun"
-	set name = "Make Robot"
-
-	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has robotized [M.key].")
-		var/mob/living/carbon/human/H = M
-		INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon/human, Robotize))
-
-	else
-		alert("Invalid mob")
-
-/client/proc/cmd_admin_blobize(mob/M in GLOB.mob_list)
-	set category = "Fun"
-	set name = "Make Blob"
-
-	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		log_admin("[key_name(src)] has blobized [M.key].")
-		var/mob/living/carbon/human/H = M
-		H.become_overmind()
-	else
-		alert("Invalid mob")
-
-
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
@@ -85,71 +43,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	log_admin("[key_name(src)] has animalized [M.key].")
 	INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, Animalize))
-
-
-/client/proc/makepAI(turf/T in GLOB.mob_list)
-	set category = "Fun"
-	set name = "Make pAI"
-	set desc = ""
-
-	var/list/available = list()
-	for(var/mob/C in GLOB.mob_list)
-		if(C.key)
-			available.Add(C)
-	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in sortNames(available)
-	if(!choice)
-		return 0
-	if(!isobserver(choice))
-		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank him out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
-		if(confirm != "Yes")
-			return 0
-	var/obj/item/paicard/card = new(T)
-	var/mob/living/silicon/pai/pai = new(card)
-
-	var/chosen_name = input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text|null
-
-	if (isnull(chosen_name))
-		return
-
-	pai.name = chosen_name
-	pai.real_name = pai.name
-	pai.key = choice.key
-	card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in SSpai.candidates)
-		if(candidate.key == choice.key)
-			SSpai.candidates.Remove(candidate)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make pAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_alienize(mob/M in GLOB.mob_list)
-	set category = "Fun"
-	set name = "Make Alien"
-
-	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob/living/carbon/human, Alienize))
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Alien") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into an alien at [AREACOORD(M)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] made [ADMIN_LOOKUPFLW(M)] into an alien."))
-	else
-		alert("Invalid mob")
-
-/client/proc/cmd_admin_slimeize(mob/M in GLOB.mob_list)
-	set category = "Fun"
-	set name = "Make slime"
-
-	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		INVOKE_ASYNC(M, TYPE_PROC_REF(/mob/living/carbon/human, slimeize))
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Slime") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		log_admin("[key_name(usr)] made [key_name(M)] into a slime at [AREACOORD(M)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] made [ADMIN_LOOKUPFLW(M)] into a slime."))
-	else
-		alert("Invalid mob")
-
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all(object as text)
@@ -175,57 +68,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		message_admins("[key_name_admin(src)] has deleted all ([counter]) instances of [hsbitem].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/cmd_debug_make_powernets()
-	set category = "Debug"
-	set name = "Make Powernets"
-	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Powernets") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_grantfullaccess(mob/M in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Grant Full Access"
-
-	if(!SSticker.HasRoundStarted())
-		alert("Wait until the game starts")
-		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/worn = H.wear_ring
-		var/obj/item/card/id/id = null
-		if(worn)
-			id = worn.GetID()
-		if(id)
-			id.icon_state = "gold"
-			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
-		else
-			id = new /obj/item/card/id/gold(H.loc)
-			id.access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
-			id.registered_name = H.real_name
-			id.assignment = "Captain"
-			id.update_label()
-
-			if(worn)
-				if(istype(worn, /obj/item/pda))
-					var/obj/item/pda/PDA = worn
-					PDA.id = id
-					id.forceMove(PDA)
-				else if(istype(worn, /obj/item/storage/wallet))
-					var/obj/item/storage/wallet/W = worn
-					W.front_id = id
-					id.forceMove(W)
-					W.update_icon()
-			else
-				H.equip_to_slot(id,SLOT_RING)
-
-	else
-		alert("Invalid mob")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Grant Full Access") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins(span_adminnotice("[key_name_admin(usr)] has granted [M.key] full access."))
-
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
@@ -245,42 +87,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		qdel(adminmob)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Assume Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_test_atmos_controllers()
-	set category = "Mapping"
-	set name = "Test Atmos Monitoring Consoles"
-
-	var/list/dat = list()
-
-	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(usr, "Game still loading, please hold!")
-		return
-
-	message_admins(span_adminnotice("[key_name_admin(usr)] used the Test Atmos Monitor debug command."))
-	log_admin("[key_name(usr)] used the Test Atmos Monitor debug command.")
-
-	var/bad_shit = 0
-	for(var/obj/machinery/computer/atmos_control/tank/console in GLOB.atmos_air_controllers)
-		dat += "<h1>[console] at [AREACOORD(console)]:</h1><br>"
-		if(console.input_tag == console.output_tag)
-			dat += "Error: input_tag is the same as the output_tag, \"[console.input_tag]\"!<br>"
-			bad_shit++
-		if(!LAZYLEN(console.input_info))
-			dat += "Failed to find a valid outlet injector as an input with the tag [console.input_tag].<br>"
-			bad_shit++
-		if(!LAZYLEN(console.output_info))
-			dat += "Failed to find a valid siphon pump as an outlet with the tag [console.output_tag].<br>"
-			bad_shit++
-		if(!bad_shit)
-			dat += "<B>STATUS:</B> NORMAL"
-		else
-			bad_shit = 0
-		dat += "<br>"
-		CHECK_TICK
-
-	var/datum/browser/popup = new(usr, "testatmoscontroller", "Test Atmos Monitoring Consoles", 500, 750)
-	popup.set_content(dat.Join())
-	popup.open()
-
 /client/proc/cmd_admin_areatest(on_station)
 	set category = "Mapping"
 	set name = "Test Areas"
@@ -295,7 +101,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/list/areas_with_LS = list()
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
-	var/list/station_areas_blacklist = typecacheof(list(/area/holodeck/rec_center, /area/shuttle, /area/engine/supermatter, /area/science/test_area, /area/space, /area/solar, /area/mine, /area/ruin, /area/asteroid))
+	var/list/station_areas_blacklist = typecacheof(list(/area/shuttle, /area/engine/supermatter, /area/science/test_area, /area/space, /area/solar, /area/mine, /area/ruin, /area/asteroid))
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(usr, "Game still loading, please hold!")
@@ -321,35 +127,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			areas_all.Add(A.type)
 		CHECK_TICK
 
-	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
-		var/area/A = APC.area
-		if(!A)
-			dat += "Skipped over [APC] in invalid location, [APC.loc]."
-			continue
-		if(!(A.type in areas_with_APC))
-			areas_with_APC.Add(A.type)
-		else if(A.type in areas_all)
-			areas_with_multiple_APCs.Add(A.type)
-		CHECK_TICK
-
-	for(var/obj/machinery/airalarm/AA in GLOB.machines)
-		var/area/A = get_area(AA)
-		if(!A) //Make sure the target isn't inside an object, which results in runtimes.
-			dat += "Skipped over [AA] in invalid location, [AA.loc].<br>"
-			continue
-		if(!(A.type in areas_with_air_alarm))
-			areas_with_air_alarm.Add(A.type)
-		CHECK_TICK
-
-	for(var/obj/machinery/requests_console/RC in GLOB.machines)
-		var/area/A = get_area(RC)
-		if(!A)
-			dat += "Skipped over [RC] in invalid location, [RC.loc].<br>"
-			continue
-		if(!(A.type in areas_with_RC))
-			areas_with_RC.Add(A.type)
-		CHECK_TICK
-
 	for(var/obj/machinery/light/L in GLOB.machines)
 		var/area/A = get_area(L)
 		if(!A)
@@ -357,33 +134,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			continue
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
-		CHECK_TICK
-
-	for(var/obj/machinery/light_switch/LS in GLOB.machines)
-		var/area/A = get_area(LS)
-		if(!A)
-			dat += "Skipped over [LS] in invalid location, [LS.loc].<br>"
-			continue
-		if(!(A.type in areas_with_LS))
-			areas_with_LS.Add(A.type)
-		CHECK_TICK
-
-	for(var/obj/item/radio/intercom/I in GLOB.machines)
-		var/area/A = get_area(I)
-		if(!A)
-			dat += "Skipped over [I] in invalid location, [I.loc].<br>"
-			continue
-		if(!(A.type in areas_with_intercom))
-			areas_with_intercom.Add(A.type)
-		CHECK_TICK
-
-	for(var/obj/machinery/camera/C in GLOB.machines)
-		var/area/A = get_area(C)
-		if(!A)
-			dat += "Skipped over [C] in invalid location, [C.loc].<br>"
-			continue
-		if(!(A.type in areas_with_camera))
-			areas_with_camera.Add(A.type)
 		CHECK_TICK
 
 	var/list/areas_without_APC = areas_all - areas_with_APC
@@ -491,13 +241,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	H.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [dresscode].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] changed the equipment of [ADMIN_LOOKUPFLW(H)] to [dresscode]."))
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] changed the equipment of [ADMIN_LOOKUPFLW(H)] to [dresscode].</span>")
 
 /client/proc/robust_dress_shop()
 
-	var/list/baseoutfits = list("Naked","Custom","As Job...", "As Plasmaman...", "As Roguetown Job...")
+	var/list/baseoutfits = list("Naked","Custom", "As Roguetown Job...")
 	var/list/outfits = list()
-	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman) - typesof(/datum/outfit/job/roguetown)
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)  - typesof(/datum/outfit/job/roguetown)
 
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
@@ -510,32 +260,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if (outfits[dresscode])
 		dresscode = outfits[dresscode]
-
-	if (dresscode == "As Job...")
-		var/list/job_paths = subtypesof(/datum/outfit/job)
-		var/list/job_outfits = list()
-		for(var/path in job_paths)
-			var/datum/outfit/O = path
-			if(initial(O.can_be_admin_equipped))
-				job_outfits[initial(O.name)] = path
-
-		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in sortList(job_outfits)
-		dresscode = job_outfits[dresscode]
-		if(isnull(dresscode))
-			return
-
-	if (dresscode == "As Plasmaman...")
-		var/list/plasmaman_paths = subtypesof(/datum/outfit/plasmaman)
-		var/list/plasmaman_outfits = list()
-		for(var/path in plasmaman_paths)
-			var/datum/outfit/O = path
-			if(initial(O.can_be_admin_equipped))
-				plasmaman_outfits[initial(O.name)] = path
-
-		dresscode = input("Select plasmeme equipment", "Robust quick dress shop") as null|anything in sortList(plasmaman_outfits)
-		dresscode = plasmaman_outfits[dresscode]
-		if(isnull(dresscode))
-			return
 
 	if (dresscode == "Custom")
 		var/list/custom_names = list()
@@ -562,64 +286,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 
 	return dresscode
-
-/client/proc/startSinglo()
-
-	set category = "Debug"
-	set name = "Start Singularity"
-	set desc = ""
-
-	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
-		return
-
-	for(var/obj/machinery/power/emitter/E in GLOB.machines)
-		if(E.anchored)
-			E.active = 1
-
-	for(var/obj/machinery/field/generator/F in GLOB.machines)
-		if(F.active == 0)
-			F.active = 1
-			F.state = 2
-			F.power = 250
-			F.anchored = TRUE
-			F.warming_up = 3
-			F.start_fields()
-			F.update_icon()
-
-	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in GLOB.machines)
-			if(G.anchored)
-				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
-//				qdel(G)
-				S.energy = 1750
-				S.current_size = 7
-				S.icon = 'icons/effects/224x224.dmi'
-				S.icon_state = "singularity_s7"
-				S.pixel_x = -96
-				S.pixel_y = -96
-				S.grav_pull = 0
-				//S.consume_range = 3
-				S.dissipate = 0
-				//S.dissipate_delay = 10
-				//S.dissipate_track = 0
-				//S.dissipate_strength = 10
-
-	for(var/obj/machinery/power/rad_collector/Rad in GLOB.machines)
-		if(Rad.anchored)
-			if(!Rad.loaded_tank)
-				var/obj/item/tank/internals/plasma/Plasma = new/obj/item/tank/internals/plasma(Rad)
-				Plasma.air_contents.assert_gas(/datum/gas/plasma)
-				Plasma.air_contents.gases[/datum/gas/plasma][MOLES] = 70
-				Rad.drainratio = 0
-				Rad.loaded_tank = Plasma
-				Plasma.forceMove(Rad)
-
-			if(!Rad.active)
-				Rad.toggle_power()
-
-	for(var/obj/machinery/power/smes/SMES in GLOB.machines)
-		if(SMES.anchored)
-			SMES.input_attempt = 1
 
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
@@ -725,50 +391,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		usr.forceMove(get_turf(landmark))
 		to_chat(usr, span_name("[template.name]"))
 		to_chat(usr, span_italics("[template.description]"))
-
-/client/proc/place_ruin()
-	set category = "Debug"
-	set name = "Spawn Ruin"
-	set desc = ""
-	if (!holder)
-		return
-
-	var/list/exists = list()
-	for(var/landmark in GLOB.ruin_landmarks)
-		var/obj/effect/landmark/ruin/L = landmark
-		exists[L.ruin_template] = landmark
-
-	var/list/names = list()
-	names += "---- Space Ruins ----"
-	for(var/name in SSmapping.space_ruins_templates)
-		names[name] = list(SSmapping.space_ruins_templates[name], ZTRAIT_SPACE_RUINS, /area/space)
-	names += "---- Lava Ruins ----"
-	for(var/name in SSmapping.lava_ruins_templates)
-		names[name] = list(SSmapping.lava_ruins_templates[name], ZTRAIT_LAVA_RUINS, /area/lavaland/surface/outdoors/unexplored)
-
-	var/ruinname = input("Select ruin", "Spawn Ruin") as null|anything in sortList(names)
-	var/data = names[ruinname]
-	if (!data)
-		return
-	var/datum/map_template/ruin/template = data[1]
-	if (exists[template])
-		var/response = alert("There is already a [template] in existence.", "Spawn Ruin", "Jump", "Place Another", "Cancel")
-		if (response == "Jump")
-			usr.forceMove(get_turf(exists[template]))
-			return
-		else if (response == "Cancel")
-			return
-
-	var/len = GLOB.ruin_landmarks.len
-	seedRuins(SSmapping.levels_by_trait(data[2]), max(1, template.cost), data[3], list(ruinname = template))
-	if (GLOB.ruin_landmarks.len > len)
-		var/obj/effect/landmark/ruin/landmark = GLOB.ruin_landmarks[GLOB.ruin_landmarks.len]
-		log_admin("[key_name(src)] randomly spawned ruin [ruinname] at [COORD(landmark)].")
-		usr.forceMove(get_turf(landmark))
-		to_chat(src, span_name("[template.name]"))
-		to_chat(src, span_italics("[template.description]"))
-	else
-		to_chat(src, span_warning("Failed to place [template.name]."))
 
 /client/proc/clear_dynamic_transit()
 	set category = "Debug"

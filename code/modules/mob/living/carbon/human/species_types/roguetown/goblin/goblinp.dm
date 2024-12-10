@@ -22,7 +22,7 @@
 	custom_clothes = TRUE
 	use_f = TRUE
 	clothes_id = "dwarf"
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
 		ORGAN_SLOT_HEART = /obj/item/organ/heart,

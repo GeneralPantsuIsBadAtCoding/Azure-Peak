@@ -25,27 +25,11 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job", hand_first = TRUE)
-	var/obj/item/card/id/id = get_idcard(hand_first)
-	if(id)
-		. = id.assignment
-	else
-		var/obj/item/pda/pda = wear_ring
-		if(istype(pda))
-			. = pda.ownjob
-		else
-			return if_no_id
-	if(!.)
-		return if_no_job
+	return if_no_job
 
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
-	var/obj/item/card/id/id = get_idcard(FALSE)
-	if(id)
-		return id.registered_name
-	var/obj/item/pda/pda = wear_ring
-	if(istype(pda))
-		return pda.owner
 	return if_no_id
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a separate proc as it'll be useful elsewhere
@@ -80,62 +64,8 @@
 //gets name from ID or PDA itself, ID inside PDA doesn't matter
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
-	var/obj/item/storage/wallet/wallet = wear_ring
-	var/obj/item/pda/pda = wear_ring
-	var/obj/item/card/id/id = wear_ring
-	var/obj/item/modular_computer/tablet/tablet = wear_ring
-	if(istype(wallet))
-		id = wallet.front_id
-	if(istype(id))
-		. = id.registered_name
-	else if(istype(pda))
-		. = pda.owner
-	else if(istype(tablet))
-		var/obj/item/computer_hardware/card_slot/card_slot = tablet.all_components[MC_CARD]
-		if(card_slot && (card_slot.stored_card2 || card_slot.stored_card))
-			if(card_slot.stored_card2) //The second card is the one used for authorization in the ID changing program, so we prioritize it here for consistency
-				. = card_slot.stored_card2.registered_name
-			else
-				if(card_slot.stored_card)
-					. = card_slot.stored_card.registered_name
-	if(!.)
-		. = if_no_id	//to prevent null-names making the mob unclickable
+	. = if_no_id	//to prevent null-names making the mob unclickable
 	return
-
-//Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
-/mob/living/carbon/human/get_idcard(hand_first = TRUE)
-	//Check hands
-	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
-	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
-
-	if(id_card)
-		if(hand_first)
-			return id_card
-		else
-			. = id_card
-
-	//Check inventory slots
-	if(wear_ring)
-		id_card = wear_ring.GetID()
-		if(id_card)
-			return id_card
-	else if(belt)
-		id_card = belt.GetID()
-		if(id_card)
-			return id_card
-
-/mob/living/carbon/human/get_id_in_hand()
-	var/obj/item/held_item = get_active_held_item()
-	if(!held_item)
-		return
-	return held_item.GetID()
 
 /mob/living/carbon/human/IsAdvancedToolUser()
 	if(HAS_TRAIT(src, TRAIT_MONKEYLIKE))
@@ -148,8 +78,6 @@
 
 
 /mob/living/carbon/human/can_track(mob/living/user)
-	if(wear_ring && istype(wear_ring.GetID(), /obj/item/card/id/syndicate))
-		return 0
 	if(istype(head, /obj/item/clothing/head))
 		var/obj/item/clothing/head/hat = head
 		if(hat.blockTracking)
@@ -166,17 +94,6 @@
 	if(HAS_TRAIT(src, TRAIT_NOGUNS))
 		to_chat(src, span_warning("I can't bring myself to use a ranged weapon!"))
 		return FALSE
-
-/mob/living/carbon/human/proc/get_bank_account()
-	RETURN_TYPE(/datum/bank_account)
-	var/datum/bank_account/account
-	var/obj/item/card/id/I = get_idcard()
-
-	if(I && I.registered_account)
-		account = I.registered_account
-		return account
-
-	return FALSE
 
 /mob/living/carbon/human/get_policy_keywords()
 	. = ..()

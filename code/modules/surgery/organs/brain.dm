@@ -32,13 +32,6 @@
 
 	name = "brain"
 
-	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
-		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
-			to_chat(brainmob, "<span class= danger>I can't feel my body! I'm still just a brain!</span>")
-		forceMove(C)
-		C.update_hair()
-		return
-
 	if(brainmob)
 //		if(C.key)
 //			testing("UHM BASED?? [C]")
@@ -71,7 +64,7 @@
 	C.update_hair()
 
 /obj/item/organ/brain/prepare_eat(mob/living/carbon/human/H)
-	if(iszombie(H) || HAS_TRAIT(H, TRAIT_ROTMAN))//braaaaaains... otherwise, too important to eat.
+	if( HAS_TRAIT(H, TRAIT_ROTMAN))//braaaaaains... otherwise, too important to eat.
 		return ..()
 	return FALSE
 
@@ -90,29 +83,17 @@
 		if(!brainmob.stored_dna)
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
-		if(HAS_TRAIT(L, TRAIT_BADDNA))
-			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
-		var/obj/item/organ/zombie_infection/ZI = L.getorganslot(ORGAN_SLOT_ZOMBIE)
-		if(ZI)
-			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
-//	if(L.mind?.current)
-//		L.mind.transfer_to(brainmob)
-//	to_chat(brainmob, span_notice("I feel slightly disoriented. That's normal when you're just a brain."))
+	if(L.mind?.current)
+		L.mind.transfer_to(brainmob)
+//	to_chat(brainmob, "<span class='notice'>I feel slightly disoriented. That's normal when you're just a brain.</span>")
 
 /obj/item/organ/brain/attackby(obj/item/O, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 
-	if(istype(O, /obj/item/organ_storage))
-		return //Borg organ bags shouldn't be killing brains
-
-	if((organ_flags & ORGAN_FAILING) && O.is_drainable() && O.reagents.has_reagent(/datum/reagent/medicine/mannitol)) //attempt to heal the brain
+	if((organ_flags & ORGAN_FAILING) && O.is_drainable()) //attempt to heal the brain
 		. = TRUE //don't do attack animation.
 		if(brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
 			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
-			return
-
-		if(!O.reagents.has_reagent(/datum/reagent/medicine/mannitol, 10))
-			to_chat(user, span_warning("There's not enough mannitol in [O] to restore [src]!"))
 			return
 
 		user.visible_message(span_notice("[user] starts to pour the contents of [O] onto [src]."), span_notice("I start to slowly pour the contents of [O] onto [src]."))

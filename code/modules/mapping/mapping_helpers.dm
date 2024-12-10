@@ -18,7 +18,7 @@
 
 /obj/effect/baseturf_helper/LateInitialize()
 	if(!baseturf_to_replace)
-		baseturf_to_replace = typecacheof(list(/turf/open/space,/turf/baseturf_bottom))
+		baseturf_to_replace = typecacheof(list(/turf/baseturf_bottom))
 	else if(!length(baseturf_to_replace))
 		baseturf_to_replace = list(baseturf_to_replace = TRUE)
 	else if(baseturf_to_replace[baseturf_to_replace[1]] != TRUE) // It's not associative
@@ -48,36 +48,6 @@
 	else
 		thing.PlaceOnBottom(null, baseturf)
 
-
-
-/obj/effect/baseturf_helper/space
-	name = "space baseturf editor"
-	baseturf = /turf/open/space
-
-/obj/effect/baseturf_helper/asteroid
-	name = "asteroid baseturf editor"
-	baseturf = /turf/open/floor/plating/asteroid
-
-/obj/effect/baseturf_helper/asteroid/airless
-	name = "asteroid airless baseturf editor"
-	baseturf = /turf/open/floor/plating/asteroid/airless
-
-/obj/effect/baseturf_helper/asteroid/basalt
-	name = "asteroid basalt baseturf editor"
-	baseturf = /turf/open/floor/plating/asteroid/basalt
-
-/obj/effect/baseturf_helper/asteroid/snow
-	name = "asteroid snow baseturf editor"
-	baseturf = /turf/open/floor/plating/asteroid/snow
-
-/obj/effect/baseturf_helper/beach/sand
-	name = "beach sand baseturf editor"
-	baseturf = /turf/open/floor/plating/beach/sand
-
-/obj/effect/baseturf_helper/beach/water
-	name = "water baseturf editor"
-	baseturf = /turf/open/floor/plating/beach/water
-
 /obj/effect/baseturf_helper/lava
 	name = "lava baseturf editor"
 	baseturf = /turf/open/lava/smooth
@@ -95,64 +65,6 @@
 /obj/effect/mapping_helpers/Initialize()
 	..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
-
-
-//airlock helpers
-/obj/effect/mapping_helpers/airlock
-	layer = DOOR_HELPER_LAYER
-
-/obj/effect/mapping_helpers/airlock/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		log_mapping("[src] spawned outside of mapload!")
-		return
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(!airlock)
-		log_mapping("[src] failed to find an airlock at [AREACOORD(src)]")
-	else
-		payload(airlock)
-
-/obj/effect/mapping_helpers/airlock/proc/payload(obj/machinery/door/airlock/payload)
-	return
-
-/obj/effect/mapping_helpers/airlock/cyclelink_helper
-	name = "airlock cyclelink helper"
-	icon_state = "airlock_cyclelink_helper"
-
-/obj/effect/mapping_helpers/airlock/cyclelink_helper/payload(obj/machinery/door/airlock/airlock)
-	if(airlock.cyclelinkeddir)
-		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-	else
-		airlock.cyclelinkeddir = dir
-
-
-/obj/effect/mapping_helpers/airlock/locked
-	name = "airlock lock helper"
-	icon_state = "airlock_locked_helper"
-
-/obj/effect/mapping_helpers/airlock/locked/payload(obj/machinery/door/airlock/airlock)
-	if(airlock.locked)
-		log_mapping("[src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
-	else
-		airlock.locked = TRUE
-
-
-/obj/effect/mapping_helpers/airlock/unres
-	name = "airlock unresctricted side helper"
-	icon_state = "airlock_unres_helper"
-
-/obj/effect/mapping_helpers/airlock/unres/payload(obj/machinery/door/airlock/airlock)
-	airlock.unres_sides ^= dir
-
-/obj/effect/mapping_helpers/airlock/abandoned
-	name = "airlock abandoned helper"
-	icon_state = "airlock_abandoned"
-
-/obj/effect/mapping_helpers/airlock/abandoned/payload(obj/machinery/door/airlock/airlock)
-	if(airlock.abandoned)
-		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
-	else
-		airlock.abandoned = TRUE
 
 
 //needs to do its thing before spawn_rivers() is called
@@ -194,18 +106,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/component_injector/proc/build_args()
 	return list(component_type)
 
-/obj/effect/mapping_helpers/component_injector/infective
-	name = "Infective Injector"
-	icon_state = "component_infective"
-	component_type = /datum/component/infective
-	var/disease_type
-
-/obj/effect/mapping_helpers/component_injector/infective/build_args()
-	if(!ispath(disease_type,/datum/disease))
-		CRASH("Wrong disease type passed in.")
-	var/datum/disease/D = new disease_type()
-	return list(component_type,D)
-
 /obj/effect/mapping_helpers/dead_body_placer
 	name = "Dead Body placer"
 	late = TRUE
@@ -213,17 +113,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/bodycount = 2 //number of bodies to spawn
 
 /obj/effect/mapping_helpers/dead_body_placer/LateInitialize()
-	var/area/a = get_area(src)
 	var/list/trays = list()
-	for (var/i in a.contents)
-		if (istype(i, /obj/structure/bodycontainer/morgue))
-			trays += i
 	if(!trays.len)
 		log_mapping("[src] at [x],[y] could not find any morgues.")
 		return
 	for (var/i = 1 to bodycount)
-		var/obj/structure/bodycontainer/morgue/j = pick(trays)
-		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
+		var/mob/living/carbon/human/h = new /mob/living/carbon/human(get_turf(src), 1)
 		h.death()
 		for (var/part in h.internal_organs) //randomly remove organs from each body, set those we keep to be in stasis
 			if (prob(40))
@@ -231,110 +126,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 			else
 				var/obj/item/organ/O = part
 				O.organ_flags |= ORGAN_FROZEN
-		j.update_icon()
 	qdel(src)
-
-
-//On Ian's birthday, the hop's office is decorated.
-/obj/effect/mapping_helpers/ianbirthday
-	name = "Ian's Bday Helper"
-	late = TRUE
-	icon_state = "iansbdayhelper"
-	var/balloon_clusters = 2
-
-/obj/effect/mapping_helpers/ianbirthday/LateInitialize()
-//	if(locate(/datum/holiday/ianbirthday) in SSevents.holidays)
-//		birthday()
-	qdel(src)
-
-/obj/effect/mapping_helpers/ianbirthday/proc/birthday()
-	var/area/a = get_area(src)
-	var/list/table = list()//should only be one aka the front desk, but just in case...
-	var/list/openturfs = list()
-
-	//confetti and a corgi balloon! (and some list stuff for more decorations)
-	for(var/thing in a.contents)
-		if(istype(thing, /obj/structure/table/reinforced))
-			table += thing
-		if(isopenturf(thing))
-			new /obj/effect/decal/cleanable/confetti(thing)
-			if(locate(/obj/structure/bed/dogbed/ian) in thing)
-				new /obj/item/toy/balloon/corgi(thing)
-			else
-				openturfs += thing
-	//cake + knife to cut it!
-	var/turf/food_turf = get_turf(pick(table))
-	new /obj/item/kitchen/knife(food_turf)
-	var/obj/item/reagent_containers/food/snacks/store/cake/birthday/iancake = new(food_turf)
-	iancake.desc = ""
-	//some balloons! this picks an open turf and pops a few balloons in and around that turf, yay.
-	for(var/i in 1 to balloon_clusters)
-		var/turf/clusterspot = pick_n_take(openturfs)
-		new /obj/item/toy/balloon(clusterspot)
-		var/balloons_left_to_give = 3 //the amount of balloons around the cluster
-		var/list/dirs_to_balloon = GLOB.cardinals.Copy()
-		while(balloons_left_to_give > 0)
-			balloons_left_to_give--
-			var/chosen_dir = pick_n_take(dirs_to_balloon)
-			var/turf/balloonstep = get_step(clusterspot, chosen_dir)
-			var/placed = FALSE
-			if(isopenturf(balloonstep))
-				var/obj/item/toy/balloon/B = new(balloonstep)//this clumps the cluster together
-				placed = TRUE
-				if(chosen_dir == NORTH)
-					B.pixel_y -= 10
-				if(chosen_dir == SOUTH)
-					B.pixel_y += 10
-				if(chosen_dir == EAST)
-					B.pixel_x -= 10
-				if(chosen_dir == WEST)
-					B.pixel_x += 10
-			if(!placed)
-				new /obj/item/toy/balloon(clusterspot)
-	//remind me to add wall decor!
-
-/obj/effect/mapping_helpers/ianbirthday/admin//so admins may birthday any room
-	name = "generic birthday setup"
-	icon_state = "bdayhelper"
-
-/obj/effect/mapping_helpers/ianbirthday/admin/LateInitialize()
-	birthday()
-	qdel(src)
-
-//lets mappers place notes on airlocks with custom info or a pre-made note from a path
-/obj/effect/mapping_helpers/airlock_note_placer
-	name = "Airlock Note Placer"
-	late = TRUE
-	icon_state = "airlocknoteplacer"
-	var/note_info //for writing out custom notes without creating an extra paper subtype
-	var/note_name //custom note name
-	var/note_path //if you already have something wrote up in a paper subtype, put the path here
-
-/obj/effect/mapping_helpers/airlock_note_placer/LateInitialize()
-	var/turf/turf = get_turf(src)
-	if(note_path && !istype(note_path, /obj/item/paper)) //don't put non-paper in the paper slot thank you
-		log_mapping("[src] at [x],[y] had an improper note_path path, could not place paper note.")
-		qdel(src)
-	if(locate(/obj/machinery/door/airlock) in turf)
-		var/obj/machinery/door/airlock/found_airlock = locate(/obj/machinery/door/airlock) in turf
-		if(note_path)
-			found_airlock.note = note_path
-			found_airlock.update_icon()
-			qdel(src)
-		if(note_info)
-			var/obj/item/paper/paper = new /obj/item/paper(src)
-			if(note_name)
-				paper.name = note_name
-			paper.info = "[note_info]"
-			found_airlock.note = paper
-			paper.forceMove(found_airlock)
-			found_airlock.update_icon()
-			qdel(src)
-		log_mapping("[src] at [x],[y] had no note_path or note_info, cannot place paper note.")
-		qdel(src)
-	log_mapping("[src] at [x],[y] could not find an airlock on current turf, cannot place paper note.")
-	qdel(src)
-
 
 //This is our map object, which just gets placed anywhere on the map. A .dm file is linked to it to set the templates list.
 //If there's only one template in the list, it will only pick that (useful for editing parts of maps without editing the WHOLE map)

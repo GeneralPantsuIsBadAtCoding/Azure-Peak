@@ -27,11 +27,6 @@
 	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
 		add_collar(O, user)
 		return
-
-	if(istype(O, /obj/item/newspaper))
-		if(!stat)
-			user.visible_message(span_notice("[user] baps [name] on the nose with the rolled up [O]."))
-			dance_rotate(src)
 	else
 		..()
 

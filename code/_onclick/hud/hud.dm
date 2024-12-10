@@ -24,9 +24,6 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 
 	var/atom/movable/screen/blobpwrdisplay
 
-	var/atom/movable/screen/alien_plasma_display
-	var/atom/movable/screen/alien_queen_finder
-
 	var/atom/movable/screen/devil/soul_counter/devilsouldisplay
 
 	var/atom/movable/screen/act_intent/action_intent
@@ -139,12 +136,8 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	healths = null
 	healthdoll = null
 	internals = null
-	lingchemdisplay = null
 	devilsouldisplay = null
-	lingstingdisplay = null
 	blobpwrdisplay = null
-	alien_plasma_display = null
-	alien_queen_finder = null
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	QDEL_LIST(screenoverlays)
@@ -254,12 +247,6 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 		return
 	var/mob/screenmob = viewmob || mymob
 	hidden_inventory_update(screenmob)
-
-/datum/hud/robot/show_hud(version = 0, mob/viewmob)
-	. = ..()
-	if(!.)
-		return
-	update_robot_modules_display()
 
 /datum/hud/proc/hidden_inventory_update()
 	return

@@ -109,10 +109,6 @@
 	flare_message = span_warning("[src] snaps shut!")
 
 /obj/structure/trap/stun/hunter/Crossed(atom/movable/AM)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(!L.mind?.has_antag_datum(/datum/antagonist/fugitive))
-			return
 	caught = TRUE
 	. = ..()
 
@@ -130,15 +126,10 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bounty_trap_off"
 	var/obj/structure/trap/stun/hunter/stored_trap
-	var/obj/item/radio/radio
 	var/datum/effect_system/spark_spread/spark_system
 
 /obj/item/bountytrap/Initialize(mapload)
 	. = ..()
-	radio = new(src)
-	radio.subspace_transmission = TRUE
-	radio.canhear_range = 0
-	radio.recalculateChannels()
 	spark_system = new
 	spark_system.set_up(4,1,src)
 	spark_system.attach(src)
@@ -150,7 +141,6 @@
 /obj/item/bountytrap/proc/announce_fugitive()
 	spark_system.start()
 	playsound(src, 'sound/blank.ogg', 50, TRUE)
-	radio.talk_into(src, "Fugitive has triggered this trap in the [get_area_name(src)]!", RADIO_CHANNEL_COMMON)
 
 /obj/item/bountytrap/attack_self(mob/living/user)
 	var/turf/T = get_turf(src)
@@ -162,7 +152,6 @@
 
 /obj/item/bountytrap/Destroy()
 	qdel(stored_trap)
-	QDEL_NULL(radio)
 	QDEL_NULL(spark_system)
 	. = ..()
 
@@ -212,14 +201,3 @@
 /obj/structure/trap/ward/Initialize()
 	. = ..()
 	QDEL_IN(src, time_between_triggers)
-
-/obj/structure/trap/cult
-	name = "unholy trap"
-	desc = ""
-	icon_state = "trap-cult"
-
-/obj/structure/trap/cult/trap_effect(mob/living/L)
-	to_chat(L, span_danger("<B>With a crack, the hostile constructs come out of hiding, stunning you!</B>"))
-	L.electrocute_act(10, src, flags = SHOCK_NOGLOVES) // electrocute act does a message.
-	L.Paralyze(20)
-	QDEL_IN(src, 30)

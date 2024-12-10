@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(biggates)
 
 /obj/structure/gate/preopen/Initialize()
 	. = ..()
-	open()
+	INVOKE_ASYNC(src, PROC_REF(open))
 
 /obj/structure/gate/bars
 	icon_state = "bar1"
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(biggates)
 
 /obj/structure/gate/bars/preopen/Initialize()
 	. = ..()
-	open()
+	INVOKE_ASYNC(src, PROC_REF(open))
 
 /obj/gblock
 	name = ""

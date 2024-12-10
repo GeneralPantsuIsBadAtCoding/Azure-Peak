@@ -4,7 +4,7 @@
 	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0
 	see_in_dark = 8
-	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
+	hud_possible = list(ANTAG_HUD)
 	pressure_resistance = 10
 
 	var/resize = 1 //Badminnery resize

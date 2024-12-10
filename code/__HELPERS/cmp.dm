@@ -89,27 +89,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 	else
 		return A.layer - B.layer
 
-/proc/cmp_advdisease_resistance_asc(datum/disease/advance/A, datum/disease/advance/B)
-	return A.totalResistance() - B.totalResistance()
-
-/proc/cmp_quirk_asc(datum/quirk/A, datum/quirk/B)
-	var/a_sign = num2sign(initial(A.value) * -1)
-	var/b_sign = num2sign(initial(B.value) * -1)
-
-	// Neutral traits go last.
-	if(a_sign == 0)
-		a_sign = 2
-	if(b_sign == 0)
-		b_sign = 2
-
-	var/a_name = initial(A.name)
-	var/b_name = initial(B.name)
-
-	if(a_sign != b_sign)
-		return a_sign - b_sign
-	else
-		return sorttext(b_name, a_name)
-
 /proc/cmp_job_display_asc(datum/job/A, datum/job/B)
 	return A.display_order - B.display_order
 
@@ -118,12 +97,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_typepaths_asc(A, B)
 	return sorttext("[B]","[A]")
-
-/proc/cmp_pdaname_asc(obj/item/pda/A, obj/item/pda/B)
-	return sorttext(B.owner, A.owner)
-
-/proc/cmp_pdajob_asc(obj/item/pda/A, obj/item/pda/B)
-	return sorttext(B.ownjob, A.ownjob)
 
 /proc/cmp_assignedrole_asc(mob/living/A, mob/living/B)
 	if(!GLOB.job_assignment_order)

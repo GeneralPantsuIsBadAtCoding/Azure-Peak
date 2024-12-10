@@ -160,10 +160,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 
 	report.total_value[src] += the_cost
 
-	if(istype(O, /datum/export/material))
-		report.total_amount[src] += amount*MINERAL_MATERIAL_AMOUNT
-	else
-		report.total_amount[src] += amount
+	report.total_amount[src] += amount
 
 	if(!dry_run)
 		if(apply_elastic)

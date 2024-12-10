@@ -13,7 +13,7 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
 	body_parts_covered = NECK|HAIR|EARS|HEAD
-	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
@@ -47,7 +47,7 @@
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
-	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "fire" = 0, "acid" = 0)
 
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
@@ -129,7 +129,7 @@
 /obj/item/clothing/neck/roguetown/bevor
 	name = "bevor"
 	icon_state = "bevor"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
@@ -143,7 +143,7 @@
 /obj/item/clothing/neck/roguetown/gorget
 	name = "gorget"
 	icon_state = "gorget"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150

@@ -43,11 +43,7 @@
 		for(var/datum/antagonist/A in mind.antag_datums)
 			A.on_life(src)
 
-	if(!IS_IN_STASIS(src))
-		if(.) //not dead
-			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
-				HM.on_life()
-
+	if(mode == AI_OFF)
 		handle_vamp_dreams()
 		if(IsSleeping())
 			if(health > 0)
@@ -139,43 +135,6 @@
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
 	return ..()
-
-/mob/living/carbon/human/handle_mutations_and_radiation()
-	if(!dna || !dna.species.handle_mutations_and_radiation(src))
-		..()
-
-/mob/living/carbon/human/breathe()
-	if(!dna.species.breathe(src))
-		..()
-
-/mob/living/carbon/human/check_breath(datum/gas_mixture/breath)
-
-	var/L = getorganslot(ORGAN_SLOT_LUNGS)
-
-	if(!L)
-		if(health >= crit_threshold)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
-
-		failed_last_breath = 1
-
-		var/datum/species/S = dna.species
-
-		if(S.breathid == "o2")
-			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy)
-		else if(S.breathid == "tox")
-			throw_alert("not_enough_tox", /atom/movable/screen/alert/not_enough_tox)
-		else if(S.breathid == "co2")
-			throw_alert("not_enough_co2", /atom/movable/screen/alert/not_enough_co2)
-		else if(S.breathid == "n2")
-			throw_alert("not_enough_nitro", /atom/movable/screen/alert/not_enough_nitro)
-
-		return FALSE
-	else
-		if(istype(L, /obj/item/organ/lungs))
-			var/obj/item/organ/lungs/lun = L
-			lun.check_breath(breath,src)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)

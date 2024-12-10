@@ -54,7 +54,7 @@
 		if(!ispath(path, /datum/supply_pack))
 			message_admins("silly MOTHERFUCKER [usr.key] IS TRYING TO BUY A [path] WITH THE HOARDMASTER")
 			return
-		var/datum/supply_pack/PA = SSshuttle.supply_packs[path]
+		var/datum/supply_pack/PA = SSmerchant.supply_packs[path]
 		var/cost = PA.cost
 		if(B.favor >= cost)
 			B.favor -= cost
@@ -116,8 +116,8 @@
 		contents += "<center>[current_cat]<BR></center>"
 		contents += "<center><a href='?src=[REF(src)];changecat=1'>\[RETURN\]</a><BR><BR></center>"
 		var/list/pax = list()
-		for(var/pack in SSshuttle.supply_packs)
-			var/datum/supply_pack/PA = SSshuttle.supply_packs[pack]
+		for(var/pack in SSmerchant.supply_packs)
+			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == current_cat)
 				pax += PA
 		for(var/datum/supply_pack/PA in sortList(pax))

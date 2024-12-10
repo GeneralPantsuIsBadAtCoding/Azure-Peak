@@ -36,6 +36,9 @@
 	var/water_color = "#6a9295"
 	var/water_reagent = /datum/reagent/water
 	var/water_reagent_purified = /datum/reagent/water // If put through a water filtration device, provides this reagent instead
+	var/mapped = TRUE // infinite source of water
+	var/water_volume = 100 // 100 is 1 bucket
+	var/water_maximum = 100
 	water_level = 2
 	var/wash_in = TRUE
 	var/swim_skill = FALSE

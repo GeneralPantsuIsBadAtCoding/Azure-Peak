@@ -1,5 +1,3 @@
-
-
 /mob/living/carbon/monkey
 
 
@@ -27,43 +25,6 @@
 						emote(pick("scratch","jump","roll","tail"))
 			else
 				walk_to(src,0)
-
-/mob/living/carbon/monkey/handle_mutations_and_radiation()
-	if(radiation)
-		if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
-			if(!IsParalyzed())
-				emote("collapse")
-			Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
-			to_chat(src, span_danger("I feel weak."))
-		if(radiation > RAD_MOB_MUTATE)
-			if(prob(1))
-				to_chat(src, span_danger("I mutate!"))
-				easy_randmut(NEGATIVE+MINOR_NEGATIVE)
-				emote("gasp")
-				domutcheck()
-
-				if(radiation > RAD_MOB_MUTATE * 2 && prob(50))
-					gorillize()
-					return
-		if(radiation > RAD_MOB_VOMIT && prob(RAD_MOB_VOMIT_PROB))
-			vomit(10, TRUE)
-	return ..()
-
-/mob/living/carbon/monkey/handle_breath_temperature(datum/gas_mixture/breath)
-	if(abs(BODYTEMP_NORMAL - breath.temperature) > 50)
-		switch(breath.temperature)
-			if(-INFINITY to 120)
-				adjustFireLoss(3)
-			if(120 to 200)
-				adjustFireLoss(1.5)
-			if(200 to 260)
-				adjustFireLoss(0.5)
-			if(360 to 400)
-				adjustFireLoss(2)
-			if(400 to 1000)
-				adjustFireLoss(3)
-			if(1000 to INFINITY)
-				adjustFireLoss(8)
 
 /mob/living/carbon/monkey/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -97,19 +58,16 @@
 					apply_damage(HEAT_DAMAGE_LEVEL_2, BURN)
 
 	else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
-		if(!istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
-			switch(bodytemperature)
-				if(200 to 260)
-					throw_alert("temp", /atom/movable/screen/alert/cold, 1)
-					apply_damage(COLD_DAMAGE_LEVEL_1, BURN)
-				if(120 to 200)
-					throw_alert("temp", /atom/movable/screen/alert/cold, 2)
-					apply_damage(COLD_DAMAGE_LEVEL_2, BURN)
-				if(-INFINITY to 120)
-					throw_alert("temp", /atom/movable/screen/alert/cold, 3)
-					apply_damage(COLD_DAMAGE_LEVEL_3, BURN)
-		else
-			clear_alert("temp")
+		switch(bodytemperature)
+			if(200 to 260)
+				throw_alert("temp", /atom/movable/screen/alert/cold, 1)
+				apply_damage(COLD_DAMAGE_LEVEL_1, BURN)
+			if(120 to 200)
+				throw_alert("temp", /atom/movable/screen/alert/cold, 2)
+				apply_damage(COLD_DAMAGE_LEVEL_2, BURN)
+			if(-INFINITY to 120)
+				throw_alert("temp", /atom/movable/screen/alert/cold, 3)
+				apply_damage(COLD_DAMAGE_LEVEL_3, BURN)
 
 	else
 		clear_alert("temp")
