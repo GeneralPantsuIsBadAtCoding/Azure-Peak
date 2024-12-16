@@ -249,6 +249,13 @@
 	item_state = "fancyhat"
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/fedora
+	name = "archeologist's hat"
+	desc = "A strangely shaped hat with dust caked onto its aged leather."
+	icon_state = "curator"
+	item_state = "curator"
+	sewrepair = TRUE
+
 /obj/item/clothing/head/roguetown/hatfur
 	name = "fur hat"
 	desc = "A comfortable warm hat lined with fur."
