@@ -189,6 +189,10 @@ GLOBAL_VAR_INIT(underworld_coins, 0)
 	canparry = TRUE
 	retreat_health = null
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/dragger
+
 /mob/living/simple_animal/hostile/rogue/dragger/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
 	return FALSE
 

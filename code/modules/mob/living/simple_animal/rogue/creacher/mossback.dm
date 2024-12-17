@@ -39,6 +39,11 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/mossback
+
+
 /mob/living/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
 	switch(input)
 		if("idle")

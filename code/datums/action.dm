@@ -19,6 +19,14 @@
 	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/overlay_state = null
+
+	/// Toggles whether this action is usable or not
+	var/action_disabled = FALSE
+
+	/// If False, the owner of this action does not get a hud and cannot activate it on their own
+	var/owner_has_control = TRUE
+
+	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
 	var/mob/owner
 
 /datum/action/New(Target)
@@ -598,49 +606,7 @@
 /datum/action/innate/proc/Deactivate()
 	return
 
-//Preset for an action with a cooldown
 
-/datum/action/cooldown
-	check_flags = NONE
-	transparent_when_unavailable = FALSE
-	var/cooldown_time = 0
-	var/next_use_time = 0
-
-/datum/action/cooldown/New()
-	..()
-	button.maptext = ""
-	button.maptext_x = 8
-	button.maptext_y = 0
-	button.maptext_width = 24
-	button.maptext_height = 12
-
-/datum/action/cooldown/IsAvailable()
-	return next_use_time <= world.time
-
-/datum/action/cooldown/proc/StartCooldown()
-	next_use_time = world.time + cooldown_time
-	button.maptext = "<b>[round(cooldown_time/10, 0.1)]</b>"
-	UpdateButtonIcon()
-	START_PROCESSING(SSfastprocess, src)
-
-/datum/action/cooldown/process()
-	if(!owner)
-		button.maptext = ""
-		STOP_PROCESSING(SSfastprocess, src)
-	var/timeleft = max(next_use_time - world.time, 0)
-	if(timeleft == 0)
-		button.maptext = ""
-		UpdateButtonIcon()
-		STOP_PROCESSING(SSfastprocess, src)
-	else
-		button.maptext = "<b>[round(timeleft/10, 0.1)]</b>"
-
-/datum/action/cooldown/Grant(mob/M)
-	..()
-	if(owner)
-		UpdateButtonIcon()
-		if(next_use_time > world.time)
-			START_PROCESSING(SSfastprocess, src)
 
 
 //Stickmemes

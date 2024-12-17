@@ -8,10 +8,10 @@
 	emote_hear = null
 	emote_see = null
 	speak_chance = 1
-	turns_per_move = 3
+	turns_per_move = 4
 	see_in_dark = 10
-	move_to_delay = 3
-	base_intents = list(/datum/intent/unarmed/punch)
+	move_to_delay = 2
+	base_intents = list(/datum/intent/unarmed/punch/troll_fists)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 15,
 						/obj/item/natural/hide = 15, /obj/item/natural/bundle/bone/full = 3)
 	faction = list("trolls")
@@ -26,7 +26,11 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, /obj/item/bodypart, /obj/item/organ)
+	food_type = list(/obj/item/reagent_containers/food/snacks, 
+					/obj/item/bodypart, 
+					/obj/item/organ, 
+					/obj/item/natural/bone, 
+					/obj/item/natural/hide)
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	pooptype = null
 	STACON = 18
@@ -41,7 +45,16 @@
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 	dodgetime = 0
 	aggressive = 1
+
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/troll
+	
 //	stat_attack = UNCONSCIOUS
+/mob/living/simple_animal/hostile/retaliate/rogue/cavetroll/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_LONGSTRIDER, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/cavetroll/death(gibbed)
 	..()
@@ -111,3 +124,6 @@
 			return "foreleg"
 	return ..()
 
+/datum/intent/unarmed/punch/troll_fists
+	clickcd = CLICK_CD_MELEE * 0.80 //It is a troll so it can probably swing fast.
+	penfactor = 30 // A troll punching you with it's troll hands.

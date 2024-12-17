@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur
+/*/mob/living/simple_animal/hostile/retaliate/rogue/minotaur
 	icon = 'icons/roguetown/mob/monster/minotaur.dmi'
 	name = "Minotaur"
 	icon_state = "Gor"
@@ -103,3 +103,4 @@
 			return "foreleg"
 	return ..()
 
+*/
