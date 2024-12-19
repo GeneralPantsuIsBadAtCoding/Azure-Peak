@@ -978,7 +978,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 
-/obj/effect/proc_holder/spell/invoked/fortitude/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/invoked/guidance/cast(list/targets, mob/user)
 	var/atom/A = targets[1]
 	if(!isliving(A))
 		revert_cast()
