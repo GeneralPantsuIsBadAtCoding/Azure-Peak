@@ -217,9 +217,13 @@
 
 			if(weapon_parry == TRUE)
 				if(do_parry(used_weapon, drained, user)) //show message
+					if ((mobility_flags & MOBILITY_STAND))
+						var/skill_target = attacker_skill
+						if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
+							skill_target -= SKILL_LEVEL_NOVICE
+						if (can_train_combat_skill(src, used_weapon.associated_skill, skill_target))
+							mind.add_sleep_experience(used_weapon.associated_skill, max(round(STAINT*exp_multi), 0), FALSE)
 
-					if((mobility_flags & MOBILITY_STAND) && can_train_combat_skill(src, used_weapon.associated_skill, attacker_skill - SKILL_LEVEL_NOVICE))
-						mind.add_sleep_experience(used_weapon.associated_skill, max(round(STAINT*exp_multi), 0), FALSE)
 					var/obj/item/AB = intenty.masteritem
 
 					//attacker skill gain
@@ -230,8 +234,12 @@
 							attacker_skill_type = AB.associated_skill
 						else
 							attacker_skill_type = /datum/skill/combat/unarmed
-						if((U.mobility_flags & MOBILITY_STAND) && can_train_combat_skill(U, attacker_skill_type, defender_skill - SKILL_LEVEL_NOVICE))
-							U.mind.add_sleep_experience(attacker_skill_type, max(round(STAINT*exp_multi), 0), FALSE)
+						if ((mobility_flags & MOBILITY_STAND))
+							var/skill_target = defender_skill
+							if(!HAS_TRAIT(src, TRAIT_GOODTRAINER))
+								skill_target -= SKILL_LEVEL_NOVICE
+							if (can_train_combat_skill(U, attacker_skill_type, skill_target))
+								U.mind.add_sleep_experience(attacker_skill_type, max(round(STAINT*exp_multi), 0), FALSE)
 
 					if(prob(66) && AB)
 						if((used_weapon.flags_1 & CONDUCT_1) && (AB.flags_1 & CONDUCT_1))
@@ -255,8 +263,12 @@
 
 			if(weapon_parry == FALSE)
 				if(do_unarmed_parry(drained, user))
-					if((mobility_flags & MOBILITY_STAND) && can_train_combat_skill(H, /datum/skill/combat/unarmed, attacker_skill - SKILL_LEVEL_NOVICE))
-						H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
+					if((mobility_flags & MOBILITY_STAND))
+						var/skill_target = attacker_skill
+						if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
+							skill_target -= SKILL_LEVEL_NOVICE
+						if(can_train_combat_skill(H, /datum/skill/combat/unarmed, skill_target))
+							H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
 					flash_fullscreen("blackflash2")
 					return TRUE
 				else
