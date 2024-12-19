@@ -7,7 +7,6 @@
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	chargedloop = /datum/looping_sound/invokeholy
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/misc/letsgogambling.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
