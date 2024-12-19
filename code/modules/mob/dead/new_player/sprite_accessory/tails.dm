@@ -341,3 +341,10 @@
 	icon_state = "hearttail"
 	color_key_defaults = list(KEY_SKIN_COLOR)
 	can_wag = TRUE
+
+/datum/sprite_accessory/tail/rattlesnake
+	name = "Rattlesnake"
+	icon_state = "rattlesnake"
+	color_keys = 2
+	color_key_names = list("Tail", "Tip")
+	can_wag = TRUE
