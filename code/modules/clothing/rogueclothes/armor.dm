@@ -435,7 +435,6 @@
 	name = "arming jacket"
 	icon_state = "dgamb"
 	allowed_sex = list(MALE, FEMALE)
-	allowed_race = NON_DWARVEN_RACE_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/shadowrobe
 	name = "stalker robe"
