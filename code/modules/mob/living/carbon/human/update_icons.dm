@@ -282,8 +282,6 @@ There are several things that need to be remembered:
 		update_inv_shirt()
 		update_inv_mouth()
 		update_transform()
-		//mutations
-		update_mutations_overlay()
 		//damage overlays
 		update_damage_overlays()
 
@@ -1752,9 +1750,8 @@ generate/load female uniform sprites matching all previously decided variables
 /mob/living/carbon/human/generate_icon_render_key()
 	. = "[dna.species.limbs_id]"
 
-	if(dna.check_mutation(HULK))
-		. += "-coloured-hulk"
-	else if(dna.species.use_skintones)
+
+	if(dna.species.use_skintones)
 		. += "-coloured-[skin_tone]"
 	else if(dna.species.fixed_mut_color)
 		. += "-coloured-[dna.species.fixed_mut_color]"

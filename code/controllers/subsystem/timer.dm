@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(timer)
 	if (!length(alltimers))
 		return
 
-	sortTim(alltimers, GLOBAL_PROC_REF(cmp_timer))
+	sortTim(alltimers, PROC_REF(cmp_timer))
 
 	var/datum/timedevent/head = alltimers[1]
 
@@ -456,22 +456,19 @@ SUBSYSTEM_DEF(timer)
 		. = "[callBack.object.type]"
 
 /**
-  * Create a new timer and insert it in the queue
-  *
-  * Arguments:
-  * * callback the callback to call on timer finish
-  * * wait deciseconds to run the timer for
-  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
-  */
+ * Create a new timer and insert it in the queue
+ *
+ * Arguments:
+ * * callback the callback to call on timer finish
+ * * wait deciseconds to run the timer for
+ * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+ */
 /proc/addtimer(datum/callback/callback, wait = 0, flags = 0)
 	if (!callback)
 		CRASH("addtimer called without a callback")
 
 	if (wait < 0)
 		stack_trace("addtimer called with a negative wait. Converting to [world.tick_lag]")
-
-	if (callback.object != GLOBAL_PROC && QDELETED(callback.object) && !QDESTROYING(callback.object))
-		stack_trace("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not be supported and may refuse to run or run with a 0 wait")
 
 	wait = max(CEILING(wait, world.tick_lag), world.tick_lag)
 
@@ -508,11 +505,11 @@ SUBSYSTEM_DEF(timer)
 	return timer.id
 
 /**
-  * Delete a timer
-  *
-  * Arguments:
-  * * id a timerid or a /datum/timedevent
-  */
+ * Delete a timer
+ *
+ * Arguments:
+ * * id a timerid or a /datum/timedevent
+ */
 /proc/deltimer(id)
 	if (!id)
 		return FALSE
@@ -530,11 +527,11 @@ SUBSYSTEM_DEF(timer)
 	return FALSE
 
 /**
-  * Get the remaining deciseconds on a timer
-  *
-  * Arguments:
-  * * id a timerid or a /datum/timedevent
-  */
+ * Get the remaining deciseconds on a timer
+ *
+ * Arguments:
+ * * id a timerid or a /datum/timedevent
+ */
 /proc/timeleft(id)
 	if (!id)
 		return null

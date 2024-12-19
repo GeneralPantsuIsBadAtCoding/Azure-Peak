@@ -131,13 +131,6 @@
 		bandage = null
 
 	if(!special)
-		if(was_owner.dna)
-			//some mutations require having specific limbs to be kept.
-			for(var/datum/mutation/human/mutation as anything in was_owner.dna.mutations)
-				if(mutation.limb_req != body_zone)
-					continue
-				was_owner.dna.force_lose(mutation)
-
 		for(var/obj/item/organ/organ as anything in was_owner.internal_organs) //internal organs inside the dismembered limb are dropped.
 			var/org_zone = check_zone(organ.zone)
 			if(org_zone != body_zone)
@@ -292,11 +285,6 @@
 
 	qdel(owner.GetComponent(/datum/component/creamed)) //clean creampie overlay
 
-	//Make sure de-zombification happens before organ removal instead of during it
-	var/obj/item/organ/zombie_infection/ooze = owner.getorganslot(ORGAN_SLOT_ZOMBIE)
-	if(istype(ooze))
-		ooze.transfer_to_limb(src, owner)
-
 	name = "[owner.real_name]'s head"
 	. = ..()
 	if(brainmob)
@@ -373,7 +361,6 @@
 	//Transfer some head appearance vars over
 	if(brain)
 		if(brainmob)
-			brainmob.container = null //Reset brainmob head var.
 			brainmob.forceMove(brain) //Throw mob into brain.
 			brain.brainmob = brainmob //Set the brain to use the brainmob
 			brainmob = null //Set head brainmob var to null

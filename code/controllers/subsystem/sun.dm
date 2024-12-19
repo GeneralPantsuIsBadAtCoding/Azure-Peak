@@ -34,16 +34,3 @@ SUBSYSTEM_DEF(sun)
 		dx = s / abs(s)
 		dy = c / abs(s)
 
-	//now tell the solar control computers to update their status and linked devices
-	for(var/obj/machinery/power/solar_control/SC in solars)
-		if(!SC.powernet)
-			solars.Remove(SC)
-			continue
-		SC.update()
-
-
-
-
-
-
-

@@ -1,5 +1,3 @@
-#define BLESSINGOFLIGHT_FILTER "bol_glow"
-
 /obj/effect/proc_holder/spell/targeted/touch/orison
 	name = "Orison"
 	overlay_state = "thaumaturgy"
@@ -80,6 +78,8 @@
 				user.devotion?.update_devotion(-fatigue_used)
 				qdel(src)
 
+#define BLESSINGOFLIGHT_FILTER "bol_glow"
+
 /atom/movable/screen/alert/status_effect/light_buff
 	name = "Miraculous Light"
 	desc = "A blessing of light wards off the darkness surrounding me."
@@ -91,45 +91,29 @@
 	duration = 5 MINUTES
 	status_type = STATUS_EFFECT_REFRESH
 	examine_text = "SUBJECTPRONOUN is surrounded by an aura of gentle light."
-	var/potency = 1
-	var/outline_colour = "#f5edda"
+	var/outline_colour = "#ffffff"
 	var/list/mobs_affected
-
-/datum/status_effect/light_buff/on_creation(mob/living/new_owner, light_power)
-	potency = light_power
-	return ..()
+	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
 
 /datum/status_effect/light_buff/refresh()
-	// stack this up as much as we can be bothered to cast it
-	duration += initial(duration)
+	duration += initial(duration) // stack this up as much as we can be bothered to cast it
 
 /datum/status_effect/light_buff/on_apply()
+	. = ..()
+	if (!.)
+		return
 	to_chat(owner, span_notice("Light blossoms into being around me!"))
+	playsound(owner, 'sound/magic/whiteflame.ogg', 75, FALSE)
 	var/filter = owner.get_filter(BLESSINGOFLIGHT_FILTER)
 	if (!filter)
 		owner.add_filter(BLESSINGOFLIGHT_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
-	add_light(owner)
+	mob_light_obj = owner.mob_light(7, 7, _color ="#f5edda")
 	return TRUE
-
-/datum/status_effect/light_buff/proc/add_light(mob/living/source)
-	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = source.mob_light(potency)
-	LAZYSET(mobs_affected, source, mob_light_obj)
-	RegisterSignal(source, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
-
-/datum/status_effect/light_buff/proc/remove_light(mob/living/source)
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = LAZYACCESS(mobs_affected, source)
-	LAZYREMOVE(mobs_affected, source)
-	if(mob_light_obj)
-		qdel(mob_light_obj)
-
-/datum/status_effect/light_buff/proc/on_living_holder_deletion(mob/living/M)
-	remove_light(M)
 
 /datum/status_effect/light_buff/on_remove()
 	to_chat(owner, span_notice("The miraculous light surrounding me has fled..."))
 	owner.remove_filter(BLESSINGOFLIGHT_FILTER)
-	remove_light(owner)
+	QDEL_NULL(mob_light_obj)
 
 /obj/item/melee/touch_attack/orison/proc/cast_light(atom/thing, mob/living/carbon/human/user)
 	var/holy_skill = user.mind?.get_skill_level(attached_spell.associated_skill)
@@ -161,6 +145,7 @@
 		to_chat(user, span_notice("Only living creachers can bear the blessing of [user.patron.name]'s light."))
 		return
 
+#undef BLESSINGOFLIGHT_FILTER
 /atom/movable/screen/alert/status_effect/thaumaturgy
 	name = "Thaumaturgical Voice"
 	desc = "The power of my god will make the next thing I say carry much further!"
@@ -344,5 +329,3 @@
 			return water_moisten
 	else
 		to_chat(user, span_info("I'll need to find a container that can hold water."))
-
-#undef BLESSINGOFLIGHT_FILTER

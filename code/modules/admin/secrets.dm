@@ -44,7 +44,6 @@
 		dat += {"
 			<B>Fun Secrets</B><BR>
 			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=virus'>Trigger a Virus Outbreak</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=monkey'>Turn all humans into monkeys</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=anime'>Chinese Cartoons</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=allspecies'>Change the species of all humans</A><BR>
@@ -108,36 +107,6 @@
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank.name]<br>"
 				usr << browse(dat, "window=showadmins;size=600x500")
-
-		if("tdomereset")
-			if(!check_rights(R_ADMIN))
-				return
-			var/delete_mobs = alert("Clear all mobs?","Confirm","Yes","No","Cancel")
-			if(delete_mobs == "Cancel")
-				return
-
-			log_admin("[key_name(usr)] reset the thunderdome to default with delete_mobs==[delete_mobs].", 1)
-			message_admins(span_adminnotice("[key_name_admin(usr)] reset the thunderdome to default with delete_mobs==[delete_mobs]."))
-
-			var/area/thunderdome = GLOB.areas_by_type[/area/tdome/arena]
-			if(delete_mobs == "Yes")
-				for(var/mob/living/mob in thunderdome)
-					qdel(mob) //Clear mobs
-			for(var/obj/obj in thunderdome)
-				if(!istype(obj, /obj/machinery/camera) && !istype(obj, /obj/effect/abstract/proximity_checker))
-					qdel(obj) //Clear objects
-
-			var/area/template = GLOB.areas_by_type[/area/tdome/arena_source]
-			template.copy_contents_to(thunderdome)
-
-		if("clear_virus")
-
-			var/choice = input("Are you sure you want to cure all disease?") in list("Yes", "Cancel")
-			if(choice == "Yes")
-				message_admins("[key_name_admin(usr)] has cured all diseases.")
-				for(var/thing in SSdisease.active_diseases)
-					var/datum/disease/D = thing
-					D.cure(0)
 		if("set_name")
 			if(!check_rights(R_ADMIN))
 				return
@@ -146,7 +115,7 @@
 				return
 			set_station_name(new_name)
 			log_admin("[key_name(usr)] renamed the station to \"[new_name]\".")
-			message_admins(span_adminnotice("[key_name_admin(usr)] renamed the station to: [new_name]."))
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] renamed the station to: [new_name].</span>")
 			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
 		if("night_shift_set")
 			if(!check_rights(R_ADMIN))
@@ -172,7 +141,7 @@
 			var/new_name = new_station_name()
 			set_station_name(new_name)
 			log_admin("[key_name(usr)] reset the station name.")
-			message_admins(span_adminnotice("[key_name_admin(usr)] reset the station name."))
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] reset the station name.</span>")
 			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
 
 		if("list_bombers")
@@ -234,11 +203,7 @@
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, span_admin("There is no arrivals shuttle."))
-		if("showailaws")
-			if(!check_rights(R_ADMIN))
-				return
-			output_ai_laws()
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle.</span>")
 		if("showgm")
 			if(!check_rights(R_ADMIN))
 				return
@@ -301,36 +266,6 @@
 					var/mob/living/carbon/human/H = i
 					H.set_species(newtype)
 
-		if("tripleAI")
-			if(!check_rights(R_FUN))
-				return
-			usr.client.triple_ai()
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Triple AI"))
-
-		if("power")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All APCs"))
-			log_admin("[key_name(usr)] made all areas powered", 1)
-			message_admins(span_adminnotice("[key_name_admin(usr)] made all areas powered"))
-			power_restore()
-
-		if("unpower")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Depower All APCs"))
-			log_admin("[key_name(usr)] made all areas unpowered", 1)
-			message_admins(span_adminnotice("[key_name_admin(usr)] made all areas unpowered"))
-			power_failure()
-
-		if("quickpower")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Power All SMESs"))
-			log_admin("[key_name(usr)] made all SMESs powered", 1)
-			message_admins(span_adminnotice("[key_name_admin(usr)] made all SMESs powered"))
-			power_restore_quick()
-
 		if("traitor_all")
 			if(!check_rights(R_FUN))
 				return
@@ -342,9 +277,7 @@
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
 			for(var/mob/living/H in GLOB.player_list)
-				if(!(ishuman(H)||istype(H, /mob/living/silicon/)))
-					continue
-				if(H.stat == DEAD || !H.mind || ispAI(H))
+				if(H.stat == DEAD || !H.mind)
 					continue
 				if(is_special_character(H))
 					continue
@@ -355,7 +288,7 @@
 				new_objective.explanation_text = objective
 				T.add_objective(new_objective)
 				H.mind.add_antag_datum(T)
-			message_admins(span_adminnotice("[key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]"))
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]</span>")
 			log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
 
 		if("changebombcap")
@@ -367,7 +300,7 @@
 			if (!CONFIG_SET(number/bombcap, newBombCap))
 				return
 
-			message_admins(span_boldannounce("[key_name_admin(usr)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]"))
+			message_admins("<span class='boldannounce'>[key_name_admin(usr)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]</span>")
 			log_admin("[key_name(usr)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
 
 		if("blackout")
@@ -377,46 +310,6 @@
 			message_admins("[key_name_admin(usr)] broke all lights")
 			for(var/obj/machinery/light/L in GLOB.machines)
 				L.break_light_tube()
-
-		if("anime")
-			if(!check_rights(R_FUN))
-				return
-			var/animetype = alert("Would you like to have the clothes be changed?",,"Yes","No","Cancel")
-
-			var/droptype
-			if(animetype =="Yes")
-				droptype = alert("Make the uniforms Nodrop?",,"Yes","No","Cancel")
-
-			if(animetype == "Cancel" || droptype == "Cancel")
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Chinese Cartoons"))
-			message_admins("[key_name_admin(usr)] made everything kawaii.")
-			for(var/i in GLOB.human_list)
-				var/mob/living/carbon/human/H = i
-				SEND_SOUND(H, sound('sound/blank.ogg'))
-
-				if(H.dna.species.id == "human" || H.dna.species.id == "humen")
-					if(H.dna.features["tail_human"] == "None" || H.dna.features["ears"] == "None")
-						var/obj/item/organ/ears/cat/ears = new
-						var/obj/item/organ/tail/cat/tail = new
-						ears.Insert(H, drop_if_replaced=FALSE)
-						tail.Insert(H, drop_if_replaced=FALSE)
-					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san"), "[PLURAL]" = list("san")) //John Robust -> Robust-kun
-					var/list/names = splittext(H.real_name," ")
-					var/forename = names.len > 1 ? names[2] : names[1]
-					var/newname = "[forename]-[pick(honorifics["[H.gender]"])]"
-					H.fully_replace_character_name(H.real_name,newname)
-					if(animetype == "Yes")
-						var/seifuku = pick(typesof(/obj/item/clothing/under/costume/schoolgirl))
-						var/obj/item/clothing/under/costume/schoolgirl/I = new seifuku
-						var/olduniform = H.wear_pants
-						H.temporarilyRemoveItemFromInventory(H.wear_pants, TRUE, FALSE)
-						H.equip_to_slot_or_del(I, SLOT_PANTS)
-						qdel(olduniform)
-						if(droptype == "Yes")
-							ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
-				else
-					to_chat(H, span_warning("You're not kawaii enough for this!"))
 
 		if("whiteout")
 			if(!check_rights(R_FUN))
@@ -429,33 +322,6 @@
 		if("floorlava")
 			SSweather.run_weather(/datum/weather/floor_is_lava)
 
-		if("virus")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Virus Outbreak"))
-			switch(alert("Do you want this to be a random disease or do you have something in mind?",,"Make Your Own","Random","Choose"))
-				if("Make Your Own")
-					AdminCreateVirus(usr.client)
-				if("Random")
-					var/datum/round_event_control/disease_outbreak/DC = locate(/datum/round_event_control/disease_outbreak) in SSevents.control
-					E = DC.runEvent()
-				if("Choose")
-					var/virus = input("Choose the virus to spread", "BIOHAZARD") as null|anything in sortList(typesof(/datum/disease, GLOBAL_PROC_REF(cmp_typepaths_asc)))
-					var/datum/round_event_control/disease_outbreak/DC = locate(/datum/round_event_control/disease_outbreak) in SSevents.control
-					var/datum/round_event/disease_outbreak/DO = DC.runEvent()
-					DO.virus_type = virus
-					E = DO
-
-		if("eagles")//SCRAW
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Egalitarian Station"))
-			for(var/obj/machinery/door/airlock/W in GLOB.machines)
-				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
-					W.req_access = list()
-			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/blank.ogg')
-
 		if("ancap")
 			if(!check_rights(R_FUN))
 				return
@@ -467,53 +333,6 @@
 			else
 				priority_announce("The NAP has been revoked.", null, 'sound/blank.ogg')
 
-
-
-
-		if("guns")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Guns"))
-			var/survivor_probability = 0
-			switch(alert("Do you want this to create survivors antagonists?",,"No Antags","Some Antags","All Antags!"))
-				if("Some Antags")
-					survivor_probability = 25
-				if("All Antags!")
-					survivor_probability = 100
-
-			rightandwrong(SUMMON_GUNS, usr, survivor_probability)
-
-		if("magic")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Magic"))
-			var/survivor_probability = 0
-			switch(alert("Do you want this to create survivors antagonists?",,"No Antags","Some Antags","All Antags!"))
-				if("Some Antags")
-					survivor_probability = 25
-				if("All Antags!")
-					survivor_probability = 100
-
-			rightandwrong(SUMMON_MAGIC, usr, survivor_probability)
-
-		if("events")
-			if(!check_rights(R_FUN))
-				return
-			if(!SSevents.wizardmode)
-				if(alert("Do you want to toggle summon events on?",,"Yes","No") == "Yes")
-					summonevents()
-					SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Activate"))
-
-			else
-				switch(alert("What would you like to do?",,"Intensify Summon Events","Turn Off Summon Events","Nothing"))
-					if("Intensify Summon Events")
-						summonevents()
-						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Intensify"))
-					if("Turn Off Summon Events")
-						SSevents.toggleWizardmode()
-						SSevents.resetFrequency()
-						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Disable"))
-
 		if("dorf")
 			if(!check_rights(R_FUN))
 				return
@@ -523,137 +342,6 @@
 				B.facial_hairstyle = "Dward Beard"
 				B.update_hair()
 			message_admins("[key_name_admin(usr)] activated dorf mode")
-
-		if("onlyone")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("There Can Be Only One"))
-			usr.client.only_one()
-			sound_to_playing_players('sound/blank.ogg')
-
-		if("delayed_onlyone")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("There Can Be Only One"))
-			usr.client.only_one_delayed()
-			sound_to_playing_players('sound/blank.ogg')
-
-		if("maint_access_brig")
-			if(!check_rights(R_DEBUG))
-				return
-			for(var/obj/machinery/door/airlock/maintenance/M in GLOB.machines)
-				M.check_access()
-				if (ACCESS_MAINT_TUNNELS in M.req_access)
-					M.req_access = list(ACCESS_BRIG)
-			message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
-		if("maint_access_engiebrig")
-			if(!check_rights(R_DEBUG))
-				return
-			for(var/obj/machinery/door/airlock/maintenance/M in GLOB.machines)
-				M.check_access()
-				if (ACCESS_MAINT_TUNNELS in M.req_access)
-					M.req_access = list()
-					M.req_one_access = list(ACCESS_BRIG,ACCESS_ENGINE)
-			message_admins("[key_name_admin(usr)] made all maint doors engineering and brig access-only.")
-		if("infinite_sec")
-			if(!check_rights(R_DEBUG))
-				return
-			var/datum/job/J = SSjob.GetJob("Security Officer")
-			if(!J)
-				return
-			J.total_positions = -1
-			J.spawn_positions = -1
-			message_admins("[key_name_admin(usr)] has removed the cap on security officers.")
-
-		if("ctfbutton")
-			if(!check_rights(R_ADMIN))
-				return
-			toggle_all_ctf(usr)
-		if("masspurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_purrbation()
-			message_admins("[key_name_admin(usr)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(usr)] has put everyone on purrbation.")
-		if("massremovepurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_remove_purrbation()
-			message_admins("[key_name_admin(usr)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(usr)] has removed everyone from purrbation.")
-
-		if("customportal")
-			if(!check_rights(R_FUN))
-				return
-
-			var/list/settings = list(
-				"mainsettings" = list(
-					"typepath" = list("desc" = "Path to spawn", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = /mob/living/simple_animal/hostile/carp),
-					"humanoutfit" = list("desc" = "Outfit if human", "type" = "datum", "path" = "/datum/outfit", "subtypesonly" = TRUE, "value" = /datum/outfit),
-					"amount" = list("desc" = "Number per portal", "type" = "number", "value" = 1),
-					"portalnum" = list("desc" = "Number of total portals", "type" = "number", "value" = 10),
-					"offerghosts" = list("desc" = "Get ghosts to play mobs", "type" = "boolean", "value" = "No"),
-					"minplayers" = list("desc" = "Minimum number of ghosts", "type" = "number", "value" = 1),
-					"playersonly" = list("desc" = "Only spawn ghost-controlled mobs", "type" = "boolean", "value" = "No"),
-					"ghostpoll" = list("desc" = "Ghost poll question", "type" = "string", "value" = "Do you want to play as %TYPE% portal invader?"),
-					"delay" = list("desc" = "Time between portals, in deciseconds", "type" = "number", "value" = 50),
-					"color" = list("desc" = "Portal color", "type" = "color", "value" = "#00FF00"),
-					"playlightning" = list("desc" = "Play lightning sounds on announcement", "type" = "boolean", "value" = "Yes"),
-					"announce_players" = list("desc" = "Make an announcement", "type" = "boolean", "value" = "Yes"),
-					"announcement" = list("desc" = "Announcement", "type" = "string", "value" = "Massive bluespace anomaly detected en route to %STATION%. Brace for impact."),
-				)
-			)
-
-			message_admins("[key_name(usr)] is creating a custom portal storm...")
-			var/list/prefreturn = presentpreflikepicker(usr,"Customize Portal Storm", "Customize Portal Storm", Button1="Ok", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
-
-			if (prefreturn["button"] == 1)
-				var/list/prefs = settings["mainsettings"]
-
-				if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-					to_chat(usr, span_warning("Number of portals and mobs to spawn must be at least 1."))
-					return
-
-				var/mob/pathToSpawn = prefs["typepath"]["value"]
-				if (!ispath(pathToSpawn))
-					pathToSpawn = text2path(pathToSpawn)
-
-				if (!ispath(pathToSpawn))
-					to_chat(usr, span_notice("Invalid path [pathToSpawn]."))
-					return
-
-				var/list/candidates = list()
-
-				if (prefs["offerghosts"]["value"] == "Yes")
-					candidates = pollGhostCandidates(replacetext(prefs["ghostpoll"]["value"], "%TYPE%", initial(pathToSpawn.name)), ROLE_TRAITOR)
-
-				if (prefs["playersonly"]["value"] == "Yes" && length(candidates) < prefs["minplayers"]["value"])
-					message_admins("Not enough players signed up to create a portal storm, the minimum was [prefs["minplayers"]["value"]] and the number of signups [length(candidates)]")
-					return
-
-				if (prefs["announce_players"]["value"] == "Yes")
-					portalAnnounce(prefs["announcement"]["value"], (prefs["playlightning"]["value"] == "Yes" ? TRUE : FALSE))
-
-				var/mutable_appearance/storm = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "energy_ball_fast", FLY_LAYER)
-				storm.color = prefs["color"]["value"]
-
-				message_admins("[key_name_admin(usr)] has created a customized portal storm that will spawn [prefs["portalnum"]["value"]] portals, each of them spawning [prefs["amount"]["value"]] of [pathToSpawn]")
-				log_admin("[key_name(usr)] has created a customized portal storm that will spawn [prefs["portalnum"]["value"]] portals, each of them spawning [prefs["amount"]["value"]] of [pathToSpawn]")
-
-				var/outfit = prefs["humanoutfit"]["value"]
-				if (!ispath(outfit))
-					outfit = text2path(outfit)
-
-				for (var/i in 1 to prefs["portalnum"]["value"])
-					if (length(candidates)) // if we're spawning players, gotta be a little tricky and also not spawn players on top of NPCs
-						var/ghostcandidates = list()
-						for (var/j in 1 to min(prefs["amount"]["value"], length(candidates)))
-							ghostcandidates += pick_n_take(candidates)
-							addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(doPortalSpawn), get_random_station_turf(), pathToSpawn, length(ghostcandidates), storm, ghostcandidates, outfit), i*prefs["delay"]["value"])
-					else if (prefs["playersonly"]["value"] != "Yes")
-						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(doPortalSpawn), get_random_station_turf(), pathToSpawn, prefs["amount"]["value"], storm, null, outfit), i*prefs["delay"]["value"])
 
 	if(E)
 		E.processing = FALSE

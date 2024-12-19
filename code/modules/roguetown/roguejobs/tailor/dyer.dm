@@ -9,28 +9,7 @@
 	var/activecolor = "#FFFFFF"
 	/// Allow holder'd mobs
 	var/allow_mobs = TRUE
-/*
-	var/list/allowed_types = list(
-			/obj/item/clothing/suit/roguetown/shirt/robe,
-			/obj/item/clothing/suit/roguetown/shirt/dress,
-			/obj/item/clothing/suit/roguetown/shirt/undershirt,
-			/obj/item/clothing/suit/roguetown/shirt/shortshirt,
-			/obj/item/clothing/suit/roguetown/shirt/tunic,
-			/obj/item/clothing/under/roguetown/tights,
-			/obj/item/clothing/cloak/raincloak,
-			/obj/item/clothing/cloak/cape,
-			/obj/item/clothing/cloak/half,
-			/obj/item/clothing/head/roguetown/roguehood,
-			/obj/item/clothing/head/roguetown/headband,
-			/obj/item/clothing/head/roguetown/armingcap,
-			/obj/item/clothing/head/roguetown/chaperon,
-			/obj/item/storage/belt/rogue/leather/rope,
-			/obj/item/storage/belt/rogue/leather/cloth,
-			/obj/item/clothing/shoes/roguetown/simpleshoes,
-			/obj/item/clothing/suit/roguetown/armor/gambeson
-			)
-*/
-	//EVIL CODE !!
+
 	var/list/allowed_types = list(
 			/obj/item/clothing,
 			/obj/item/storage,
@@ -73,6 +52,7 @@
 		"Chestnut" = "#613613",
 		"Russet" = "#7f461b"
 		)
+		
 /obj/machinery/gear_painter/Destroy()
 	inserted.forceMove(drop_location())
 	return ..()
@@ -99,15 +79,19 @@
 		user.visible_message("<span class='notice'>[user] inserts [I] into [src]'s receptable.</span>")
 
 		inserted = I
+		ui_interact(user)
 	else
 		return ..()
 
 /obj/machinery/gear_painter/AllowDrop()
 	return FALSE
 
+/obj/machinery/gear_painter/attack_hand(mob/living/user)
+	ui_interact(user)
+
 /obj/machinery/gear_painter/ui_interact(mob/user)
 	if(!is_operational())
-		return
+		return ..()
 	user.set_machine(src)
 	var/list/dat = list("<TITLE>Dye Bin</TITLE><BR>")
 	if(!inserted)
@@ -125,7 +109,7 @@
 	menu.open()
 
 /obj/machinery/gear_painter/Topic(href, href_list)
-	if((. = ..()))
+	if(!(. = ..()))
 		return
 
 	add_fingerprint(usr)

@@ -83,7 +83,7 @@
 #define SUPERMATTER_NOTIFY 2		// Ambient temp > 80% of CRITICAL_TEMPERATURE
 #define SUPERMATTER_WARNING 3		// Ambient temp > CRITICAL_TEMPERATURE OR integrity damaged
 #define SUPERMATTER_DANGER 4		// Integrity < 50%
-#define SUPERMATTER_EMERGENCY 5		// Integrity < 25%
+#define SUPERMATTER_EMERGENCY 5		// Integrity < 25%	
 #define SUPERMATTER_DELAMINATING 6	// Pretty obvious.
 
 //Nuclear bomb stuff

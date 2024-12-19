@@ -5,6 +5,8 @@
 	icon_state = "lottery"
 	density = FALSE
 	pixel_y = 32
+	light_outer_range = 5
+	light_color = "#1b7bf1"
 	var/gamblingprice = 0
 	var/checkchatter = 0
 	var/chatterbox = 0

@@ -79,16 +79,6 @@
 	else
 		return ..()
 
-
-/mob/living/simple_animal/hostile/retaliate/goat/AttackingTarget()
-	. = ..()
-	if(. && ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(istype(H.dna.species, /datum/species/pod))
-			var/obj/item/bodypart/NB = pick(H.bodyparts)
-			H.visible_message(span_warning("[src] takes a big chomp out of [H]!"), \
-								  span_danger("[src] takes a big chomp out of your [NB]!"))
-			NB.dismember()
 //cow
 /mob/living/simple_animal/cow
 	name = "cow"

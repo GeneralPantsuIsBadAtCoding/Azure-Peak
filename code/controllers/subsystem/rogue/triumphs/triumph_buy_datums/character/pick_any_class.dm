@@ -46,4 +46,3 @@
 
 	var/datum/advclass/C = input(H.client, "What is my class?", "Adventure") as null|anything in possible_classes
 	C.equipme(H)
-

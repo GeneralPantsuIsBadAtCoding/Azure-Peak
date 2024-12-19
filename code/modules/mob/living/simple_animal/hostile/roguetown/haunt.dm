@@ -122,7 +122,7 @@
 
 /obj/structure/bonepile/Initialize()
 	. = ..()
-	soundloop = new(list(src), FALSE)
+	soundloop = new(src, FALSE)
 	soundloop.start()
 //	for(var/i in 1 to maxhaunts)
 	spawn_haunt()
@@ -177,7 +177,7 @@
 
 /mob/living/simple_animal/hostile/rogue/haunt/Initialize()
 	. = ..()
-	set_light(2, 2, "#c0523f")
+	set_light(2, 2, 2, l_color = "#c0523f")
 	ADD_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 

@@ -1,9 +1,7 @@
 
-
 /obj/machinery/light/rogue/oven
 	icon = 'icons/roguetown/misc/lighting.dmi'
-	name = "stone oven"
-	desc = "Stands sentinel against hunger and darkness when lit."
+	name = "oven"
 	icon_state = "oven1"
 	base_state = "oven"
 	density = FALSE
@@ -15,8 +13,8 @@
 	var/need_underlay_update = TRUE
 
 /obj/machinery/light/rogue/oven/OnCrafted(dirin)
-	dirin = turn(dirin, 180)
-	. = ..(dirin)
+	dir = turn(dirin, 180)
+	. = ..()
 	update_icon()
 
 /obj/machinery/light/rogue/oven/attackby(obj/item/W, mob/living/user, params)

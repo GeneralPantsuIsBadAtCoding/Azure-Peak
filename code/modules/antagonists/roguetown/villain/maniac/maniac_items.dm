@@ -37,7 +37,6 @@
 	head = /obj/item/clothing/head/roguetown/cyberdeck
 	shirt = /obj/item/clothing/suit/roguetown/shirt/formal
 	pants = /obj/item/clothing/under/roguetown/tights/formal
-	shoes = /obj/item/clothing/shoes/laceup
 
 /obj/effect/landmark/treyliam
 	name = "trey"

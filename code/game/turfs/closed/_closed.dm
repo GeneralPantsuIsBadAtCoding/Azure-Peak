@@ -4,8 +4,6 @@
 	opacity = 1
 	density = TRUE
 	blocks_air = TRUE
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-	rad_insulation = RAD_MEDIUM_INSULATION
 	baseturfs = list(/turf/open/floor/rogue/naturalstone, /turf/open/transparent/openspace)
 	var/above_floor
 	var/wallpress = TRUE
@@ -223,9 +221,6 @@
 /turf/closed/indestructible/Melt()
 	to_be_destroyed = FALSE
 	return src
-
-/turf/closed/indestructible/singularity_act()
-	return
 
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"

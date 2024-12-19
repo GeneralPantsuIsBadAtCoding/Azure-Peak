@@ -20,32 +20,3 @@
 
 /datum/surgery/advanced
 	name = "advanced surgery"
-
-/obj/item/disk/surgery
-	name = "Surgery Procedure Disk"
-	desc = ""
-	icon_state = "datadisk1"
-	custom_materials = list(/datum/material/iron=300, /datum/material/glass=100)
-	/// Surgery steps made available by this disk
-	var/list/surgery_steps
-
-/obj/item/disk/surgery/debug
-	name = "Debug Surgery Disk"
-	desc = ""
-	icon_state = "datadisk1"
-	custom_materials = list(/datum/material/iron=300, /datum/material/glass=100)
-
-/obj/item/disk/surgery/debug/Initialize()
-	. = ..()
-	surgery_steps = list()
-	for(var/datum/surgery_step/surgery_step as anything in subtypesof(/datum/surgery))
-		if(initial(surgery_step.requires_tech))
-			surgery_steps += surgery_step
-
-/**
- * Check /mob/living/carbon/attackby for how surgery progresses, and also /mob/living/carbon/attack_hand.
- * Other important variables are:
- * var/list/surgeries (/mob/living)
- * var/list/internal_organs (/mob/living/carbon)
- * var/list/bodyparts (/mob/living/carbon)
- */

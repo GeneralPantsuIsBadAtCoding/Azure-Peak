@@ -17,9 +17,6 @@
 /obj/effect/dummy/phased_mob/slaughter/bullet_act()
 	return BULLET_ACT_FORCE_PIERCE
 
-/obj/effect/dummy/phased_mob/slaughter/singularity_act()
-	return
-
 /mob/living/proc/phaseout(obj/effect/decal/cleanable/B)
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
@@ -93,12 +90,7 @@
 /mob/living/proc/bloodcrawl_consume(mob/living/victim)
 	to_chat(src, span_danger("I begin to feast on [victim]... You can not move while you are doing this."))
 
-	var/sound
-	if(istype(src, /mob/living/simple_animal/slaughter))
-		var/mob/living/simple_animal/slaughter/SD = src
-		sound = SD.feast_sound
-	else
-		sound = 'sound/blank.ogg'
+	var/sound = 'sound/blank.ogg'
 
 	for(var/i in 1 to 3)
 		playsound(get_turf(src),sound, 50, TRUE)

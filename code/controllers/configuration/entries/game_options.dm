@@ -156,12 +156,6 @@
 
 /datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
 
-/datum/config_entry/flag/no_summon_guns	//No
-
-/datum/config_entry/flag/no_summon_magic	//Fun
-
-/datum/config_entry/flag/no_summon_events	//Allowed
-
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
 /datum/config_entry/number/arrivals_shuttle_dock_window	//Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station
@@ -209,10 +203,6 @@
 	value_mode = VALUE_MODE_NUM
 	config_entry_value = list(			//DEFAULTS
 	/mob/living/simple_animal = 1,
-	/mob/living/silicon/pai = 1,
-	/mob/living/carbon/alien/humanoid/hunter = -1,
-	/mob/living/carbon/alien/humanoid/royal/praetorian = 1,
-	/mob/living/carbon/alien/humanoid/royal/queen = 3
 	)
 
 /datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()
@@ -256,19 +246,11 @@
 
 /datum/config_entry/number/outdated_movedelay/human_delay
 	movedelay_type = /mob/living/carbon/human
-/datum/config_entry/number/outdated_movedelay/robot_delay
-	movedelay_type = /mob/living/silicon/robot
 /datum/config_entry/number/outdated_movedelay/monkey_delay
 	movedelay_type = /mob/living/carbon/monkey
-/datum/config_entry/number/outdated_movedelay/alien_delay
-	movedelay_type = /mob/living/carbon/alien
-/datum/config_entry/number/outdated_movedelay/slime_delay
-	movedelay_type = /mob/living/simple_animal/slime
 /datum/config_entry/number/outdated_movedelay/animal_delay
 	movedelay_type = /mob/living/simple_animal
 /////////////////////////////////////////////////
-
-/datum/config_entry/flag/virtual_reality	//Will virtual reality be loaded
 
 /datum/config_entry/flag/roundstart_away	//Will random away mission be loaded.
 

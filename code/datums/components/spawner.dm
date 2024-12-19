@@ -1,5 +1,5 @@
 /datum/component/spawner
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
+	var/mob_types = list(/mob/living/simple_animal/hostile/rogue/werewolf)
 	var/spawn_time = 300 //30 seconds default
 	var/list/spawned_mobs = list()
 	var/spawn_delay = 0
@@ -48,4 +48,4 @@
 	spawned_mobs += L
 	L.nest = src
 	L.faction = src.faction
-	P.visible_message(span_danger("[L] [spawn_text] [P]."))
+	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")

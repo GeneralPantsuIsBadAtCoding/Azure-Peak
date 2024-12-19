@@ -389,14 +389,13 @@
 	LAZYADD(embedded_objects, embedder)
 	embedder.is_embedded = TRUE
 	embedder.forceMove(src)
-	embedder.on_embed(src)
 	if(owner)
 		embedder.add_mob_blood(owner)
 		if(!silent)
 			owner.emote("embed")
 			playsound(owner, 'sound/combat/newstuck.ogg', 100, vary = TRUE)
 		if(crit_message)
-			owner.next_attack_msg += " <span class='userdanger'>[embedder] is stuck in [owner]'s [src]!</span>"
+			owner.next_attack_msg += " <span class='userdanger'>[embedder] runs through [owner]'s [src]!</span>"
 		update_disabled()
 	return TRUE
 

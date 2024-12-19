@@ -59,7 +59,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	var/list/headwear = typesof(/obj/item/clothing/head)
 	var/list/glasses = typesof(/obj/item/clothing/glasses)
 	var/list/masks = typesof(/obj/item/clothing/mask)
-	var/list/ids = typesof(/obj/item/card/id)
 
 	var/uniform_select = "<select name=\"outfit_uniform\"><option value=\"\">None</option>"
 	for(var/path in uniforms)
@@ -96,11 +95,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		mask_select += "<option value=\"[path]\">[path]</option>"
 	mask_select += "</select>"
 
-	var/id_select = "<select name=\"outfit_id\"><option value=\"\">None</option>"
-	for(var/path in ids)
-		id_select += "<option value=\"[path]\">[path]</option>"
-	id_select += "</select>"
-
 	var/dat = {"
 	<html><head><title>Create Outfit</title></head><body>
 	<form name="outfit" action="byond://?src=[REF(src)];[HrefToken()]" method="get">
@@ -117,7 +111,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		<tr>
 			<th>Uniform:</th>
 			<td>
-			   [uniform_select]
+			[uniform_select]
 			</td>
 		</tr>
 		<tr>
@@ -172,12 +166,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			<th>Glasses:</th>
 			<td>
 				[glasses_select]
-			</td>
-		</tr>
-		<tr>
-			<th>ID:</th>
-			<td>
-				[id_select]
 			</td>
 		</tr>
 		<tr>

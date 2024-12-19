@@ -12,14 +12,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	pass_flags = PASSTABLE | PASSGRILLE
 	anchored = TRUE
 
-/obj/effect/particle_effect/Initialize()
-	. = ..()
-	GLOB.cameranet.updateVisibility(src)
-
-/obj/effect/particle_effect/Destroy()
-	GLOB.cameranet.updateVisibility(src)
-	return ..()
-
 /obj/effect/particle_effect/newtonian_move() // Prevents effects from getting registered for SSspacedrift
 	return TRUE
 

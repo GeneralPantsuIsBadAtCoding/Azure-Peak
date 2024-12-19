@@ -85,7 +85,7 @@ require only minor tweaks.
 #define CAMERA_LOCK_CENTCOM 4
 
 //Reserved/Transit turf type
-#define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
+#define RESERVED_TURF_TYPE /turf/open/floor/rogue/blocks			//What the turf is when not being used
 
 //Ruin Generation
 
@@ -97,3 +97,10 @@ require only minor tweaks.
 #define PLACE_LAVA_RUIN "lavaland" //On lavaland ruin z levels(s)
 #define PLACE_BELOW "below" //On z levl below - centered on same tile
 #define PLACE_ISOLATED "isolated" //On isolated ruin z level
+
+// Defines for SSmapping's multiz_levels
+/// TRUE if we're ok with going up
+#define Z_LEVEL_UP 1
+/// TRUE if we're ok with going down
+#define Z_LEVEL_DOWN 2
+#define LARGEST_Z_LEVEL_INDEX Z_LEVEL_DOWN

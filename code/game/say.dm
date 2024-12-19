@@ -1,5 +1,5 @@
 /*
- 	Miauw's big Say() rewrite.
+	Miauw's big Say() rewrite.
 	This file has the basic atom/movable level speech procs.
 	And the base of the send_speech() proc, which is the core of saycode.
 */
@@ -28,17 +28,17 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		language = get_default_language()
 	send_speech(message, 7, src, , spans, message_language=language)
 
-/atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+/atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
 /atom/movable/proc/can_speak()
 	return TRUE
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, message_mode, original_message)
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, message_mode)
 	var/rendered = compose_message(src, message_language, message, , spans, message_mode)
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
-		AM.Hear(rendered, src, message_language, message, , spans, message_mode, original_message)
+		AM.Hear(rendered, src, message_language, message, , spans, message_mode)
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.
@@ -90,17 +90,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 					arrowpart = " ⇙"
 				if(SOUTHEAST)
 					arrowpart = " ⇘"
-			if(istype(speaker, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = speaker
-				var/appellation
-				switch(H.voice_type)
-					if(VOICE_TYPE_FEM)
-						appellation = "Woman"
-					if(VOICE_TYPE_MASC)
-						appellation = "Man"
-					else
-						appellation = "Person"
-				namepart = "Unknown [appellation]"
+			if(istype(speaker, /mob/living))
+				var/mob/living/L = speaker
+				namepart = "Unknown [(L.gender == FEMALE) ? "Woman" : "Man"]"
 			else
 				namepart = "Unknown"
 			spanpart1 = "<span class='smallyell'>"
@@ -119,8 +111,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return ""
 
 /atom/movable/proc/say_mod(input, message_mode)
-	var/ending = copytext_char(input, length_char(input))
-	if(copytext_char(input, length_char(input) - 1) == "!!")
+	var/ending = copytext(input, length(input))
+	if(copytext(input, length(input) - 1) == "!!")
 		return verb_yell
 	else if(ending == "?")
 		return verb_ask
@@ -133,7 +125,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!input)
 		input = "..."
 
-	if(copytext_char(input, length_char(input) - 1) == "!!")
+	if(copytext(input, length(input) - 1) == "!!")
 		spans |= SPAN_YELL
 
 	var/spanned = attach_spans(input, spans)
@@ -144,8 +136,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "[say_mod(input, message_mode)], \"[spanned]\""
 
 /atom/movable/proc/quoteless_say_quote(input, list/spans = list(speech_span), message_mode)
-	var/pos = findtext_char(input, "*")
-	return pos? copytext_char(input, pos + 1) : input
+	var/pos = findtext(input, "*")
+	return pos? copytext(input, pos + 1) : input
 
 /atom/movable/proc/check_language_hear(language)
 	return FALSE
@@ -176,6 +168,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /proc/get_radio_name(freq)
 	return freq
+/* 	var/returntext = GLOB.reverseradiochannels["[freq]"]
+	if(returntext)
+		return returntext
+	return "[copytext("[freq]", 1, 4)].[copytext("[freq]", 4, 5)]" */
 
 /proc/attach_spans(input, list/spans)
 	return "[message_spans_start(spans)][input]</span>"
@@ -188,7 +184,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return output
 
 /proc/say_test(text)
-	var/ending = copytext_char(text, length_char(text))
+	var/ending = copytext(text, length(text))
 	if (ending == "?")
 		return "1"
 	if (ending == "!")
@@ -241,13 +237,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 			job = "Unknown"
 	else if(iscarbon(M))  // Carbon nonhuman
 		job = "No ID"
-	else if(isAI(M))  // AI
-		job = "AI"
-	else if(iscyborg(M))  // Cyborg
-		var/mob/living/silicon/robot/B = M
-		job = "[B.designation] Cyborg"
-	else if(istype(M, /mob/living/silicon/pai))  // Personal AI (pAI)
-		job = "Personal AI"
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
 	else  // Unidentifiable mob
@@ -258,6 +247,3 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 /atom/movable/virtualspeaker/GetSource()
 	return source
-
-/atom/movable/virtualspeaker/GetRadio()
-	return radio

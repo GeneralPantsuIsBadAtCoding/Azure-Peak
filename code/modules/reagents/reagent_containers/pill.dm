@@ -32,22 +32,22 @@
 		return FALSE
 
 	if(M == user)
-		M.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
+		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src].</span>")
 		if(self_delay)
 			if(!do_mob(user, M, self_delay))
 				return FALSE
-		to_chat(M, span_notice("I [apply_method] [src]."))
+		to_chat(M, "<span class='notice'>I [apply_method] [src].</span>")
 
 	else
-		M.visible_message(span_danger("[user] attempts to force [M] to [apply_method] [src]."), \
-							span_danger("[user] attempts to force you to [apply_method] [src]."))
+		M.visible_message("<span class='danger'>[user] attempts to force [M] to [apply_method] [src].</span>", \
+							"<span class='danger'>[user] attempts to force you to [apply_method] [src].</span>")
 		if(!do_mob(user, M))
 			return FALSE
-		M.visible_message(span_danger("[user] forces [M] to [apply_method] [src]."), \
-							span_danger("[user] forces you to [apply_method] [src]."))
+		M.visible_message("<span class='danger'>[user] forces [M] to [apply_method] [src].</span>", \
+							"<span class='danger'>[user] forces you to [apply_method] [src].</span>")
 
 	if(icon_state == "pill4" && prob(5)) //you take the red pill - you stay in Wonderland, and I show you how deep the rabbit hole goes
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), M, span_notice("[pick(strings(REDPILL_FILE, "redpill_questions"))]")), 50)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), M, "<span class='notice'>[pick(strings(REDPILL_FILE, "redpill_questions"))]</span>"), 50)
 
 	if(reagents.total_volume)
 		reagents.trans_to(M, reagents.total_volume, transfered_by = user, method = apply_type)
@@ -62,14 +62,14 @@
 	if(!dissolvable || !target.is_refillable())
 		return
 	if(target.is_drainable() && !target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty! There's nothing to dissolve [src] in."))
+		to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
 		return
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_warning("[target] is full."))
+		to_chat(user, "<span class='warning'>[target] is full.</span>")
 		return
 
-	user.visible_message(span_warning("[user] slips something into [target]!"), span_notice("I dissolve [src] in [target]."), null, 2)
+	user.visible_message("<span class='warning'>[user] slips something into [target]!</span>", "<span class='notice'>I dissolve [src] in [target].</span>", null, 2)
 	reagents.trans_to(target, reagents.total_volume, transfered_by = user)
 	qdel(src)
 
@@ -85,117 +85,6 @@
 	desc = ""
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
-
-/obj/item/reagent_containers/pill/adminordrazine
-	name = "adminordrazine pill"
-	desc = ""
-	icon_state = "pill16"
-	list_reagents = list(/datum/reagent/medicine/adminordrazine = 50)
-
-/obj/item/reagent_containers/pill/morphine
-	name = "morphine pill"
-	desc = ""
-	icon_state = "pill8"
-	list_reagents = list(/datum/reagent/medicine/morphine = 30)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/stimulant
-	name = "stimulant pill"
-	desc = ""
-	icon_state = "pill19"
-	list_reagents = list(/datum/reagent/medicine/ephedrine = 10, /datum/reagent/medicine/antihol = 10, /datum/reagent/consumable/coffee = 30)
-
-/obj/item/reagent_containers/pill/salbutamol
-	name = "salbutamol pill"
-	desc = ""
-	icon_state = "pill16"
-	list_reagents = list(/datum/reagent/medicine/salbutamol = 30)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/multiver
-	name = "multiver pill"
-	desc = ""
-	icon_state = "pill17"
-	list_reagents = list(/datum/reagent/medicine/C2/multiver = 5, /datum/reagent/medicine/granibitaluri = 5)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/epinephrine
-	name = "epinephrine pill"
-	desc = ""
-	icon_state = "pill5"
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/mannitol
-	name = "mannitol pill"
-	desc = ""
-	icon_state = "pill17"
-	list_reagents = list(/datum/reagent/medicine/mannitol = 50)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/mutadone
-	name = "mutadone pill"
-	desc = ""
-	icon_state = "pill20"
-	list_reagents = list(/datum/reagent/medicine/mutadone = 50)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/salicylic
-	name = "salicylic acid pill"
-	desc = ""
-	icon_state = "pill9"
-	list_reagents = list(/datum/reagent/medicine/sal_acid = 24)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/oxandrolone
-	name = "oxandrolone pill"
-	desc = ""
-	icon_state = "pill11"
-	list_reagents = list(/datum/reagent/medicine/oxandrolone = 24)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/insulin
-	name = "insulin pill"
-	desc = ""
-	icon_state = "pill18"
-	list_reagents = list(/datum/reagent/medicine/insulin = 50)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/psicodine
-	name = "psicodine pill"
-	desc = ""
-	list_reagents = list(/datum/reagent/medicine/psicodine = 10)
-	icon_state = "pill22"
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/penacid
-	name = "pentetic acid pill"
-	desc = ""
-	list_reagents = list(/datum/reagent/medicine/pen_acid = 10)
-	icon_state = "pill22"
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/neurine
-	name = "neurine pill"
-	desc = ""
-	list_reagents = list(/datum/reagent/medicine/neurine = 10)
-	icon_state = "pill22"
-	rename_with_volume = TRUE
-
-///////////////////////////////////////// this pill is used only in a legion mob drop
-/obj/item/reagent_containers/pill/shadowtoxin
-	name = "black pill"
-	desc = ""
-	icon_state = "pill9"
-	color = "#454545"
-	list_reagents = list(/datum/reagent/mutationtoxin/shadow = 1)
-
-//////////////////////////////////////// drugs
-/obj/item/reagent_containers/pill/zoom
-	name = "yellow pill"
-	desc = ""
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/drug/nicotine = 10, /datum/reagent/drug/methamphetamine = 1)
-	icon_state = "pill7"
 
 
 /obj/item/reagent_containers/pill/happy
@@ -238,20 +127,6 @@
 	name = pick(names)
 	if(prob(20))
 		desc = pick(descs)
-
-/obj/item/reagent_containers/pill/potassiodide
-	name = "potassium iodide pill"
-	desc = ""
-	icon_state = "pill9"
-	list_reagents = list(/datum/reagent/medicine/potass_iodide = 15)
-	rename_with_volume = TRUE
-
-/obj/item/reagent_containers/pill/trophazole
-	name = "trophazole pill"
-	desc = ""
-	icon_state = "pill9"
-	list_reagents = list(/datum/reagent/medicine/trophazole = 15)
-	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/iron
 	name = "iron pill"

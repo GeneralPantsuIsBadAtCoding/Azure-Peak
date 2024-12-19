@@ -36,30 +36,34 @@ SUBSYSTEM_DEF(role_class_handler)
 		CTAG_ALLCLASS = list(every single class datum that exists outside of the parent)
 */
 	var/list/sorted_class_categories = list()
-	/// Whether bandits have been injected in the game
+
+
+		/// Whether bandits have been injected in the game
 	var/bandits_in_round = FALSE
 
-
+/*
+	We init and build the ass lists
+*/
 /datum/controller/subsystem/role_class_handler/Initialize()
-	build_dumbass_category_lists()
+	build_category_lists()
 
 	initialized = TRUE
 
 	return ..()
 
 
-// This covers both adventurer classes
-/datum/controller/subsystem/role_class_handler/proc/build_dumbass_category_lists()
+// This covers both class datums and drifter waves
+/datum/controller/subsystem/role_class_handler/proc/build_category_lists()
 	var/list/all_classes = list()
 	init_subtypes(/datum/advclass, all_classes) // Init all the classes
 	sorted_class_categories[CTAG_ALLCLASS] = all_classes
 
-	//Time to sort these silly buggers, and sort them we shall.
-	for(var/datum/advclass/silly_datum in all_classes)
-		for(var/ctag in silly_datum.category_tags)
+	//Time to sort these classes, and sort them we shall.
+	for(var/datum/advclass/class in all_classes)
+		for(var/ctag in class.category_tags)
 			if(!sorted_class_categories[ctag]) // New cat
 				sorted_class_categories[ctag] = list()
-			sorted_class_categories[ctag] += silly_datum
+			sorted_class_categories[ctag] += class
 
 	//Well that about covers it really.
 
@@ -79,17 +83,17 @@ SUBSYSTEM_DEF(role_class_handler)
 	var/datum/class_select_handler/XTRA_MEATY = new()
 	XTRA_MEATY.linked_client = H.client
 
-	// Hack for Migrants
+		// Hack for Migrants
 	if(advclass_rolls_override)
 		XTRA_MEATY.class_cat_alloc_attempts = advclass_rolls_override
-		XTRA_MEATY.PQ_boost_divider = 10
+		//XTRA_MEATY.PQ_boost_divider = 10
 	else
 		var/datum/job/roguetown/RT_JOB = SSjob.GetJob(H.job)
 		if(RT_JOB.advclass_cat_rolls.len)
 			XTRA_MEATY.class_cat_alloc_attempts = RT_JOB.advclass_cat_rolls
 
-		if(RT_JOB.PQ_boost_divider)
-			XTRA_MEATY.PQ_boost_divider = RT_JOB.PQ_boost_divider
+		//if(RT_JOB.PQ_boost_divider)
+			//XTRA_MEATY.PQ_boost_divider = RT_JOB.PQ_boost_divider
 
 	if(H.client.ckey in special_session_queue)
 		XTRA_MEATY.special_session_queue = list()
@@ -144,12 +148,8 @@ SUBSYSTEM_DEF(role_class_handler)
 
 	if(!(target_datum.maximum_possible_slots == -1)) // Is the class not set to infinite?
 		if((target_datum.total_slots_occupied >= target_datum.maximum_possible_slots)) // We just hit a cap, iterate all the class handlers and inform them.
-			for(var/class_handler in class_select_handlers)
-				var/datum/class_select_handler/found_menu = class_select_handlers[class_handler]
+			for(var/HANDLER in class_select_handlers)
+				var/datum/class_select_handler/found_menu = class_select_handlers[HANDLER]
 
 				if(target_datum in found_menu.rolled_classes) // We found the target datum in one of the classes they rolled aka in the list of options they got visible,
 					found_menu.rolled_class_is_full(target_datum) //  inform the datum of its error.
-
-
-
-

@@ -103,7 +103,7 @@
 	var/total_transfered = 0
 	var/current_list_element = 1
 
-	testing("removeany called")
+	//testing("removeany called")
 
 	current_list_element = rand(1, cached_reagents.len)
 
@@ -194,7 +194,7 @@
 		R = target.reagents
 		target_atom = target
 
-	testing("trans to [target_atom]")
+	//testing("trans to [target_atom]")
 
 	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
 	var/trans_data = null
@@ -286,7 +286,7 @@
 	if(amount < 0)
 		return
 
-	testing("transidto")
+	//testing("transidto")
 
 	var/datum/reagents/R = target.reagents
 	if(src.get_reagent_amount(reagent)<amount)
@@ -312,8 +312,6 @@
 	var/list/cached_addictions = addiction_list
 	if(C)
 		expose_temperature(C.bodytemperature, 0.25)
-		if(HAS_TRAIT(C, TRAIT_CRACKHEAD))
-			can_overdose = FALSE
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -333,7 +331,7 @@
 				if(can_overdose)
 					if(R.overdose_threshold)
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
-							R.overdosed = TRUE
+							R.overdosed = 1
 							need_mob_update += R.overdose_start(C)
 							log_game("[key_name(C)] has started overdosing on [R.name] at [R.volume] units.")
 					if(R.addiction_threshold)
@@ -378,7 +376,7 @@
 	update_total()
 
 /datum/reagents/proc/remove_addiction(datum/reagent/R)
-	to_chat(my_atom, span_notice("I feel like you've gotten over your need for [R.name]."))
+	to_chat(my_atom, "<span class='notice'>I feel like you've gotten over your need for [R.name].</span>")
 	SEND_SIGNAL(my_atom, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
 	addiction_list.Remove(R)
 	qdel(R)
@@ -463,11 +461,6 @@
 					if(!C.required_other)
 						matching_other = 1
 
-					else if(istype(cached_my_atom, /obj/item/slime_extract))
-						var/obj/item/slime_extract/M = cached_my_atom
-
-						if(M.Uses > 0) // added a limit to slime cores -- Muskets requested this
-							matching_other = 1
 				else
 					if(!C.required_container)
 						matching_container = 1
@@ -514,16 +507,7 @@
 
 					if(selected_reaction.mix_message)
 						for(var/mob/M in seen)
-							to_chat(M, span_notice("[iconhtml] [selected_reaction.mix_message]"))
-
-				if(istype(cached_my_atom, /obj/item/slime_extract))
-					var/obj/item/slime_extract/ME2 = my_atom
-					ME2.Uses--
-					if(ME2.Uses <= 0) // give the notification that the slime core is dead
-						for(var/mob/M in seen)
-							to_chat(M, span_notice("[iconhtml] \The [my_atom]'s power is consumed in the reaction."))
-							ME2.name = "used slime extract"
-							ME2.desc = ""
+							to_chat(M, "<span class='notice'>[iconhtml] [selected_reaction.mix_message]</span>")
 
 			my_atom?.on_reagent_change(REACT_REAGENTS)
 			selected_reaction.on_reaction(src, multiplier)
@@ -577,7 +561,7 @@
 		var/datum/reagent/R = reagent
 		del_reagent(R.type)
 	if(my_atom)
-		testing("[src]  clear reagents [my_atom]")
+		//testing("[src]  clear reagents [my_atom]")
 		my_atom.on_reagent_change(CLEAR_REAGENTS)
 	return 0
 
@@ -834,18 +818,6 @@
 		return current_reagent.data
 
 	var/list/trans_data = current_reagent.data.Copy()
-
-	// We do this so that introducing a virus to a blood sample
-	// doesn't automagically infect all other blood samples from
-	// the same donor.
-	//
-	// Technically we should probably copy all data lists, but
-	// that could possibly eat up a lot of memory needlessly
-	// if most data lists are read-only.
-	if(trans_data["viruses"])
-		var/list/v = trans_data["viruses"]
-		trans_data["viruses"] = v.Copy()
-
 	return trans_data
 
 /datum/reagents/proc/get_reagent(type)
@@ -870,7 +842,7 @@
 						tastes[taste] += amount
 					else
 						tastes[taste] = amount
-			else if(R.taste_description)
+			else
 				var/taste_desc = R.taste_description
 				var/taste_amount = R.volume * R.taste_mult
 				if(taste_desc in tastes)

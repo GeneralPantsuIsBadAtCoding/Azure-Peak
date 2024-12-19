@@ -1,13 +1,8 @@
-
 //returns TRUE if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
 		return TRUE
-	if(issilicon(M))
-		if(ispAI(M))
-			return FALSE
-		return TRUE	//AI can do whatever it wants
 	if(IsAdminGhost(M))
 		//Access can't stop the abuse
 		return TRUE
@@ -18,14 +13,14 @@
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_held_item()) || src.check_access(H.wear_ring))
 			return TRUE
-	else if(ismonkey(M) || isalienadult(M))
+	else if(ismonkey(M))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
 		if(check_access(george.get_active_held_item()))
 			return TRUE
 	else if(isanimal(M))
 		var/mob/living/simple_animal/A = M
-		if(check_access(A.get_active_held_item()) || check_access(A.access_card))
+		if(check_access(A.get_active_held_item()))
 			return TRUE
 	return FALSE
 
@@ -89,9 +84,6 @@
 				return TRUE
 		return FALSE
 	return TRUE
-
-/obj/proc/check_access_ntnet(datum/netdata/data)
-	return check_access_list(data.passkey)
 
 /proc/get_centcom_access(job)
 	switch(job)
@@ -366,14 +358,3 @@
 
 /proc/get_all_centcom_jobs()
 	return list("VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Death Commando","Research Officer","Special Ops Officer","Admiral","CentCom Commander","Emergency Response Team Commander","Security Response Officer","Engineer Response Officer", "Medical Response Officer","CentCom Bartender")
-
-/obj/item/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/card/id/I = GetID()
-	if(!I)
-		return
-	var/jobName = I.assignment
-	if(jobName in get_all_job_icons()) //Check if the job has a hud icon
-		return jobName
-	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job
-		return "CentCom"
-	return "Unknown" //Return unknown if none of the above apply

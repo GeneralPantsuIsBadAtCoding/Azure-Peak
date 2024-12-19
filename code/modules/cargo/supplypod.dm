@@ -12,7 +12,7 @@
 	allow_dense = TRUE
 	delivery_icon = null
 	can_weld_shut = FALSE
-	armor = list("blunt" = 30, "slash" = 40, "stab" = 50, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	armor = list("blunt" = 30, "slash" = 30, "stab" = 30,  "piercing" = 50, "fire" = 100, "acid" = 80)
 	anchored = TRUE //So it cant slide around after landing
 	anchorable = FALSE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
@@ -71,10 +71,6 @@
 /obj/structure/closet/supplypod/proc/specialisedPod()
 	return 1
 
-/obj/structure/closet/supplypod/extractionpod/specialisedPod(atom/movable/holder)
-	holder.forceMove(pick(GLOB.holdingfacility)) // land in ninja jail
-	open(holder, forced = TRUE)
-
 /obj/structure/closet/supplypod/Initialize()
 	. = ..()
 	setStyle(style, TRUE) //Upon initialization, give the supplypod an iconstate, name, and description based on the "style" variable. This system is important for the centcom_podlauncher to function correctly
@@ -119,7 +115,7 @@
 	opened = FALSE
 	INVOKE_ASYNC(holder, PROC_REF(setClosed)) //Use the INVOKE_ASYNC proc to call setClosed() on whatever the holder may be, without giving the atom/movable base class a setClosed() proc definition
 	for (var/atom/movable/O in get_turf(holder))
-		if ((ismob(O) && !isliving(O)) || (is_type_in_typecache(O, GLOB.blacklisted_cargo_types) && !isliving(O))) //We dont want to take ghosts with us, and we don't want blacklisted items going, but we allow mobs.
+		if ((ismob(O) && !isliving(O))  && !isliving(O)) //We dont want to take ghosts with us, and we don't want blacklisted items going, but we allow mobs.
 			continue
 		O.forceMove(holder) //Put objects inside before we close
 	var/obj/effect/temp_visual/risingPod = new /obj/effect/DPfall(get_turf(holder), src) //Make a nice animation of flying back up
@@ -136,7 +132,7 @@
 		bluespace = TRUE //Make it so that the pod doesn't stay in centcom forever
 
 		QDEL_IN(risingPod, 10)
-		audible_message(span_notice("The pod hisses, closing quickly and launching itself away from the station."), span_notice("The ground vibrates, the nearby pod launching away from the station."))
+		audible_message("<span class='notice'>The pod hisses, closing quickly and launching itself away from the station.</span>", "<span class='notice'>The ground vibrates, the nearby pod launching away from the station.</span>")
 
 		stay_after_drop = FALSE
 		specialisedPod(holder) // Do special actions for specialised pods - this is likely if we were already doing manual launches
@@ -182,12 +178,7 @@
 	if (effectMissile) //If we are acting like a missile, then right after we land and finish fucking shit up w explosions, we should delete
 		opened = TRUE //We set opened to TRUE to avoid spending time trying to open (due to being deleted) during the Destroy() proc
 		qdel(src)
-	if (style == STYLE_GONDOLA) //Checks if we are supposed to be a gondola pod. If so, create a gondolapod mob, and move this pod to nullspace. I'd like to give a shout out, to my man oranges
-		var/mob/living/simple_animal/pet/gondola/gondolapod/benis = new(get_turf(src), src)
-		benis.contents |= contents //Move the contents of this supplypod into the gondolapod mob.
-		moveToNullspace()
-		addtimer(CALLBACK(src, PROC_REF(open), benis), openingDelay) //After the openingDelay passes, we use the open proc from this supplyprod while referencing the contents of the "holder", in this case the gondolapod mob
-	else if (style == STYLE_SEETHROUGH)
+	if (style == STYLE_SEETHROUGH)
 		open(src)
 	else
 		addtimer(CALLBACK(src, PROC_REF(open), src), openingDelay) //After the openingDelay passes, we use the open proc from this supplypod, while referencing this supplypod's contents
@@ -289,7 +280,7 @@
 	icon = 'icons/mob/actions/actions_items.dmi'
 	icon_state = "sniper_zoom"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
-	light_range = 2
+	light_outer_range =  2
 	var/obj/effect/temp_visual/fallingPod //Temporary "falling pod" that we animate
 	var/obj/structure/closet/supplypod/pod //The supplyPod that will be landing ontop of this target
 
@@ -351,12 +342,3 @@
 		M.forceMove(pod)
 	pod.preOpen() //Begin supplypod open procedures. Here effects like explosions, damage, and other dangerous (and potentially admin-caused, if the centcom_podlauncher datum was used) memes will take place
 	qdel(src) //The target's purpose is complete. It can rest easy now
-
-//------------------------------------UPGRADES-------------------------------------//
-/obj/item/disk/cargo/bluespace_pod //Disk that can be inserted into the Express Console to allow for Advanced Bluespace Pods
-	name = "Bluespace Drop Pod Upgrade"
-	desc = ""
-	icon = 'icons/obj/module.dmi'
-	icon_state = "cargodisk"
-	item_state = "card-id"
-	w_class = WEIGHT_CLASS_SMALL

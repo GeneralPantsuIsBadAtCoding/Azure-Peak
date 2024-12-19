@@ -3,18 +3,17 @@
 	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	var/obj_flags = CAN_BE_HIT
-	/// ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
-	var/set_obj_flags 
+	/// This Var ensures the object ignores all object flags, which is extremely important for contraptions (which are supposed ot interact with all objects even if it does not produce a result)
+	var/obj_flags_ignore = FALSE
+	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
 	var/damtype = BRUTE
 	var/force = 0
 
 	var/datum/armor/armor
-	///defaults to max_integrity
-	var/obj_integrity
+	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
-	///0 if we have no special broken behavior, otherwise is a percentage of at what point the obj breaks. 0.5 being 50%
-	var/integrity_failure = 0 
+	var/integrity_failure = 0 //0 if we have no special broken behavior, otherwise is a percentage of at what point the obj breaks. 0.5 being 50%
 	///Damage under this value will be completely ignored
 	var/damage_deflection = 0
 	var/obj_broken = FALSE
@@ -22,15 +21,11 @@
 
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
-	///how much acid is on that obj
-	var/acid_level = 0 
+	var/acid_level = 0 //how much acid is on that obj
 
-	///have something WAY too amazing to live to the next round? Set a new path here. Overuse of this var will make me upset.
-	var/persistence_replacement 
-	///Has the item been reskinned?
-	var/current_skin            
-	///List of options to reskin.
-	var/list/unique_reskin      
+	var/persistence_replacement //have something WAY too amazing to live to the next round? Set a new path here. Overuse of this var will make me upset.
+	var/current_skin //Has the item been reskinned?
+	var/list/unique_reskin //List of options to reskin.
 
 	// Access levels, used in modules\jobs\access.dm
 	var/list/req_access
@@ -38,11 +33,9 @@
 	var/list/req_one_access
 	var/req_one_access_txt = "0"
 
-	///set when a player uses a pen on a renamable object
-	var/renamedByPlayer = FALSE 
+	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
 
-	/// Amont of multiplicative slowdown applied if pulled. >1 makes you slower, <1 makes you faster.
-	var/drag_slowdown 
+	var/drag_slowdown // Amont of multiplicative slowdown applied if pulled. >1 makes you slower, <1 makes you faster.
 
 	var/blade_dulling = DULLING_BASHCHOP
 
@@ -92,10 +85,6 @@
 				obj_flags &= ~string_to_objflag[flag]
 			else
 				obj_flags |= string_to_objflag[flag]
-	if((obj_flags & ON_BLUEPRINTS) && isturf(loc))
-		var/turf/T = loc
-		T.add_blueprints_preround(src)
-
 
 /obj/Destroy(force=FALSE)
 	if(!ismachinery(src))
@@ -108,9 +97,9 @@
 	anchored = anchorvalue
 
 /obj/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
-	. = ..()
+	..()
 	if(obj_flags & FROZEN)
-		visible_message(span_danger("[src] shatters into a million pieces!"))
+		visible_message("<span class='danger'>[src] shatters into a million pieces!</span>")
 		qdel(src)
 
 
@@ -153,21 +142,12 @@
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
 				ui_interact(M)
-		if(issilicon(usr) || IsAdminGhost(usr))
+		if(IsAdminGhost(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = TRUE
 					ui_interact(usr)
 
-		// check for TK users
-
-		if(ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			if(!(usr in nearby))
-				if(usr.client && usr.machine==src)
-					if(H.dna.check_mutation(TK))
-						is_in_use = TRUE
-						ui_interact(usr)
 		if (is_in_use)
 			obj_flags |= IN_USE
 		else
@@ -182,12 +162,8 @@
 				if ((M.client && M.machine == src))
 					is_in_use = TRUE
 					src.interact(M)
-		var/ai_in_use = FALSE
-		if(update_ais)
-			ai_in_use = AutoUpdateAI(src)
-
-		if(update_viewers && update_ais) //State change is sure only if we check both
-			if(!ai_in_use && !is_in_use)
+		if(update_viewers) //State change is sure only if we check both
+			if(!is_in_use)
 				obj_flags &= ~IN_USE
 
 
@@ -224,11 +200,6 @@
 /obj/proc/hide(h)
 	return
 
-/obj/singularity_pull(S, current_size)
-	..()
-	if(!anchored || current_size >= STAGE_FIVE)
-		step_towards(src,S)
-
 /obj/get_dumping_location(datum/component/storage/source,mob/user)
 	return get_turf(src)
 
@@ -243,7 +214,6 @@
 	VV_DROPDOWN_OPTION("", "---")
 	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
 	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
-	VV_DROPDOWN_OPTION(VV_HK_ARMOR_MOD, "Modify armor values")
 
 /obj/vv_do_topic(list/href_list)
 	if(!(. = ..()))
@@ -251,31 +221,6 @@
 	if(href_list[VV_HK_OSAY])
 		if(check_rights(R_FUN, FALSE))
 			usr.client.object_say(src)
-	if(href_list[VV_HK_ARMOR_MOD])
-		var/list/pickerlist = list()
-		var/list/armorlist = armor.getList()
-
-		for (var/i in armorlist)
-			pickerlist += list(list("value" = armorlist[i], "name" = i))
-
-		var/list/result = presentpicker(usr, "Modify armor", "Modify armor: [src]", Button1="Save", Button2 = "Cancel", Timeout=FALSE, inputtype = "text", values = pickerlist)
-
-		if (islist(result))
-			if (result["button"] != 2) // If the user pressed the cancel button
-				// text2num conveniently returns a null on invalid values
-				armor = armor.setRating(blunt = text2num(result["values"]["blunt"]),\
-								slash = text2num(result["values"]["slash"]),\
-								stab = text2num(result["values"]["stab"]),\
-								bullet = text2num(result["values"]["bullet"]),\
-								laser = text2num(result["values"]["laser"]),\
-								energy = text2num(result["values"]["energy"]),\
-								bomb = text2num(result["values"]["bomb"]),\
-								bio = text2num(result["values"]["bio"]),\
-								rad = text2num(result["values"]["rad"]),\
-								fire = text2num(result["values"]["fire"]),\
-								acid = text2num(result["values"]["acid"]))
-				log_admin("[key_name(usr)] modified the armor on [src] ([type]) to blunt: [armor.blunt], slash: [armor.slash], stab:[armor.stab], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]")
-				message_admins(span_notice("[key_name_admin(usr)] modified the armor on [src] ([type]) to blunt: [armor.blunt], slash: [armor.slash], stab:[armor.stab], bullet: [armor.bullet], laser: [armor.laser], energy: [armor.energy], bomb: [armor.bomb], bio: [armor.bio], rad: [armor.rad], fire: [armor.fire], acid: [armor.acid]"))
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(check_rights(R_DEBUG|R_SERVER))
 			var/action_type = alert("Strict type ([type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
@@ -301,7 +246,7 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
+					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
 				if("Type and subtypes")
 					var/i = 0
 					for(var/obj/Obj in world)
@@ -313,14 +258,14 @@
 						to_chat(usr, "No objects of this type exist")
 						return
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
+					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
 
 /obj/examine(mob/user)
 	. = ..()
 //	if(obj_flags & UNIQUE_RENAME)
-//		. += span_notice("Use a pen on it to rename it or change its description.")
+//		. += "<span class='notice'>Use a pen on it to rename it or change its description.</span>"
 	if(unique_reskin && !current_skin)
-		. += span_notice("Alt-click it to reskin it.")
+		. += "<span class='notice'>Alt-click it to reskin it.</span>"
 
 /obj/AltClick(mob/user)
 	. = ..()
@@ -342,14 +287,6 @@
 		current_skin = choice
 		icon_state = unique_reskin[choice]
 		to_chat(M, "[src] is now skinned as '[choice].'")
-
-/obj/analyzer_act(mob/living/user, obj/item/I)
-	if(atmosanalyzer_scan(user, src))
-		return TRUE
-	return ..()
-
-/obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
-	return
 
 // Should move all contained objects to it's location.
 /obj/proc/dump_contents()

@@ -1,9 +1,9 @@
 /**
-  * A holder for simple behaviour that can be attached to many different types
-  *
-  * Only one element of each type is instanced during game init.
-  * Otherwise acts basically like a lightweight component.
-  */
+ * A holder for simple behaviour that can be attached to many different types
+ *
+ * Only one element of each type is instanced during game init.
+ * Otherwise acts basically like a lightweight component.
+ */
 /datum/element
 	/// Option flags for element behaviour
 	var/element_flags = NONE

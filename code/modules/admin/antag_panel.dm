@@ -63,17 +63,6 @@ GLOBAL_VAR(antag_prototypes)
 	var/common_commands = "<span>Common Commands:</span>"
 	if(ishuman(current))
 		common_commands += "<a href='?src=[REF(src)];common=undress'>undress</a>"
-	else if(iscyborg(current))
-		var/mob/living/silicon/robot/R = current
-		if(R.emagged)
-			common_commands += "<a href='?src=[REF(src)];silicon=Unemag'>Unemag</a>"
-	else if(isAI(current))
-		var/mob/living/silicon/ai/A = current
-		if (A.connected_robots.len)
-			for (var/mob/living/silicon/robot/R in A.connected_robots)
-				if (R.emagged)
-					common_commands += "<a href='?src=[REF(src)];silicon=unemagcyborgs'>Unemag slaved cyborgs</a>"
-					break
 	return common_commands
 
 /datum/mind/proc/get_special_statuses()
@@ -82,11 +71,6 @@ GLOBAL_VAR(antag_prototypes)
 		result += span_bad("No body!")
 	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
 		result += span_good("Mindshielded")
-	//Move these to mob
-	if(iscyborg(current))
-		var/mob/living/silicon/robot/robot = current
-		if (robot.emagged)
-			result += span_bad("Emagged")
 	return result.Join(" | ")
 
 /datum/mind/proc/traitor_panel()
@@ -190,21 +174,6 @@ GLOBAL_VAR(antag_prototypes)
 
 	out += "<br>"
 
-	//Uplink
-	if(ishuman(current))
-		var/uplink_info = "<i><b>Uplink</b></i>:"
-		var/datum/component/uplink/U = find_syndicate_uplink()
-		if(U)
-			uplink_info += "<a href='?src=[REF(src)];common=takeuplink'>take</a>"
-			if (check_rights(R_FUN, 0))
-				uplink_info += ", <a href='?src=[REF(src)];common=crystals'>[U.telecrystals]</a> TC"
-			else
-				uplink_info += ", [U.telecrystals] TC"
-		else
-			uplink_info += "<a href='?src=[REF(src)];common=uplink'>give</a>"
-		uplink_info += "." //hiel grammar
-
-		out += uplink_info + "<br>"
 	//Common Memory
 	var/common_memory = "<span>Common Memory:</span>"
 	common_memory += memory

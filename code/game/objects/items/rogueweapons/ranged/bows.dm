@@ -20,12 +20,10 @@
 	randomspread = 0
 	spread = 0
 	can_parry = TRUE
-	pin = /obj/item/firing_pin
 	force = 10
 	verbage = "nock"
 	cartridge_wording = "arrow"
 	load_sound = 'sound/foley/nockarrow.ogg'
-	var/damfactor = 1
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/getonmobprop(tag)
 	. = ..()

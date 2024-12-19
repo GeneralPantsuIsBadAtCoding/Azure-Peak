@@ -1,3 +1,11 @@
+#define ARROW_DAMAGE		33
+#define BOLT_DAMAGE			44
+#define BULLET_DAMAGE		80
+#define ARROW_PENETRATION	25
+#define BOLT_PENETRATION	50
+#define BULLET_PENETRATION	100
+
+
 /obj/item/ammo_casing/caseless/rogue/bolt
 	name = "bolt"
 	desc = "A durable iron bolt that will pierce a skull easily."
@@ -28,7 +36,7 @@
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.5
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
@@ -96,7 +104,7 @@
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.4
 
 /obj/projectile/bullet/reusable/arrow/on_hit(atom/target)
@@ -182,7 +190,7 @@
 	hitsound = 'sound/blank.ogg'
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.3
 
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
@@ -231,7 +239,7 @@
 	hitsound = 'sound/blank.ogg'
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
-	flag = "bullet"
+	flag = "piercing"
 	speed = 0.4
 
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
@@ -278,7 +286,7 @@
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
-	flag = "bullet"
+	flag = "piercing"
 	armor_penetration = 200
 	speed = 0.1
 
@@ -292,3 +300,11 @@
 	dropshrink = 0.5
 	possible_item_intents = list(/datum/intent/use)
 	max_integrity = 0.1
+
+
+#undef ARROW_DAMAGE
+#undef BOLT_DAMAGE
+#undef BULLET_DAMAGE
+#undef ARROW_PENETRATION
+#undef BOLT_PENETRATION
+#undef BULLET_PENETRATION

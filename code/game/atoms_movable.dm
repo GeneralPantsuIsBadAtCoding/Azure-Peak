@@ -16,6 +16,7 @@
 	var/verb_ask = "asks"
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
+	var/verb_sing = "sings"
 	var/verb_yell = "yells"
 	var/speech_span
 	var/inertia_dir = 0
@@ -42,16 +43,6 @@
 	var/can_be_z_moved = TRUE
 	var/jumping = FALSE
 	var/zfalling = FALSE
-
-	///Lazylist to keep track on the sources of illumination.
-	var/list/affected_dynamic_lights
-	///Highest-intensity light affecting us, which determines our visibility.
-	var/affecting_dynamic_lumi = 0
-
-/atom/movable/Initialize(mapload)
-	. = ..()
-	if(light_system == MOVABLE_LIGHT)
-		AddComponent(/datum/component/overlay_lighting)
 
 /atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
 	if(!direction)
@@ -168,8 +159,8 @@
 		if(M.doing)
 			M.doing = FALSE
 		if(!supress_message)
-			M.visible_message(span_warning("[src] grabs [M]."), \
-				span_danger("[src] grabs you."))
+			M.visible_message("<span class='warning'>[src] grabs [M].</span>", \
+				"<span class='danger'>[src] grabs you.</span>")
 	return TRUE
 
 /atom/movable/proc/stop_pulling(forced = TRUE)
@@ -575,7 +566,7 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 	return hit_atom.hitby(src, throwingdatum=throwingdatum)
 
-/atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum, d_type = "blunt")
+/atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
 	if(!anchored && hitpush && (!throwingdatum || (throwingdatum.force >= (move_resist * MOVE_FORCE_PUSH_RATIO))))
 		step(src, AM.dir)
 	..()
@@ -587,10 +578,6 @@
 
 /atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = FALSE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, extra = FALSE) //If this returns FALSE then callback will not be called.
 	. = FALSE
-
-	if(QDELETED(src))
-		CRASH("Qdeleted thing being thrown around.")
-
 	if (!target || speed <= 0)
 		return
 
@@ -626,13 +613,20 @@
 
 	. = TRUE // No failure conditions past this point.
 
-	var/target_zone
-	if(QDELETED(thrower))
-		thrower = null //Let's not pass a qdeleting reference if any.
-	else
-		target_zone = thrower.zone_selected
-
-	var/datum/thrownthing/TT = new(src, target, get_turf(target), get_dir(src, target), range, speed, thrower, diagonals_first, force, callback, target_zone, extra)
+	var/datum/thrownthing/TT = new()
+	TT.thrownthing = src
+	TT.target = target
+	TT.target_turf = get_turf(target)
+	TT.init_dir = get_dir(src, target)
+	TT.maxrange = range
+	TT.speed = speed
+	TT.thrower = thrower
+	TT.diagonals_first = diagonals_first
+	TT.force = force
+	TT.callback = callback
+	TT.extra = extra
+	if(!QDELETED(thrower))
+		TT.target_zone = thrower.zone_selected
 
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
@@ -666,6 +660,7 @@
 			var/turf/above = get_step_multiz(curloc, UP)
 			if(istype(above, /turf/open/transparent/openspace))
 				forceMove(above)
+	spin = FALSE
 	if(spin)
 		SpinAnimation(5, 1)
 
@@ -692,12 +687,12 @@
 /atom/movable/proc/force_push(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.force_pushed(src, force, direction)
 	if(!silent && .)
-		visible_message(span_warning("[src] forcefully pushes against [AM]!"), span_warning("I forcefully push against [AM]!"))
+		visible_message("<span class='warning'>[src] forcefully pushes against [AM]!</span>", "<span class='warning'>I forcefully push against [AM]!</span>")
 
 /atom/movable/proc/move_crush(atom/movable/AM, force = move_force, direction, silent = FALSE)
 	. = AM.move_crushed(src, force, direction)
 	if(!silent && .)
-		visible_message(span_danger("[src] crushes past [AM]!"), span_danger("I crush [AM]!"))
+		visible_message("<span class='danger'>[src] crushes past [AM]!</span>", "<span class='danger'>I crush [AM]!</span>")
 
 /atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
@@ -854,12 +849,11 @@
 	if(throwing)
 		return
 	if(on && !(movement_type & FLOATING))
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
-		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
+		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
+		animate(pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
 		setMovetype(movement_type | FLOATING)
 	else if (!on && (movement_type & FLOATING))
-		animate(src, pixel_y = initial(pixel_y), time = 10)
+		animate(src, pixel_y = initial(pixel_y), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 /* Language procs */

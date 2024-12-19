@@ -5,7 +5,7 @@
 	panel = "Mime"
 	summon_type = list(/obj/effect/forcefield/mime)
 	invocation_type = "emote"
-	invocation_emote_self = span_notice("I form a wall in front of myself.")
+	invocation_emote_self = "<span class='notice'>I form a wall in front of myself.</span>"
 	summon_lifespan = 300
 	charge_max = 300
 	clothes_req = FALSE
@@ -21,7 +21,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall/Click()
 	if(usr && usr.mind)
 		if(!usr.mind.miming)
-			to_chat(usr, span_warning("I must dedicate myself to silence first!"))
+			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a wall is in front of [usr.p_them()]."
 	else
@@ -35,7 +35,7 @@
 	panel = "Mime"
 	summon_type = list(/obj/structure/chair/mime)
 	invocation_type = "emote"
-	invocation_emote_self = span_notice("I conjure an invisible chair and sit down.")
+	invocation_emote_self = "<span class='notice'>I conjure an invisible chair and sit down.</span>"
 	summon_lifespan = 250
 	charge_max = 300
 	clothes_req = FALSE
@@ -51,7 +51,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/Click()
 	if(usr && usr.mind)
 		if(!usr.mind.miming)
-			to_chat(usr, span_warning("I must dedicate myself to silence first!"))
+			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
 			return
 		invocation = "<B>[usr.real_name]</B> pulls out an invisible chair and sits down."
 	else
@@ -65,44 +65,6 @@
 		if (is_type_in_list(A, summon_type))
 			A.setDir(user.dir)
 			A.buckle_mob(user)
-
-/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box
-	name = "Invisible Box"
-	desc = ""
-	school = "mime"
-	panel = "Mime"
-	summon_type = list(/obj/item/storage/box/mime)
-	invocation_type = "emote"
-	invocation_emote_self = span_notice("I conjure up an invisible box, large enough to store a few things.")
-	summon_lifespan = 500
-	charge_max = 300
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
-	range = 0
-	cast_sound = null
-	human_req = TRUE
-
-	action_icon = 'icons/mob/actions/actions_mime.dmi'
-	action_icon_state = "invisible_box"
-	action_background_icon_state = "bg_mime"
-
-/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/cast(list/targets,mob/user = usr)
-	..()
-	var/turf/T = user.loc
-	for (var/obj/item/storage/box/mime/B in T)
-		user.put_in_hands(B)
-		B.alpha = 255
-		addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/item/storage/box/mime, emptyStorage), FALSE), (summon_lifespan - 1))
-
-/obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/Click()
-	if(usr && usr.mind)
-		if(!usr.mind.miming)
-			to_chat(usr, span_warning("I must dedicate myself to silence first!"))
-			return
-		invocation = "<B>[usr.real_name]</B> moves [usr.p_their()] hands in the shape of a cube, pressing a box out of the air."
-	else
-		invocation_type ="none"
-	..()
 
 
 /obj/effect/proc_holder/spell/targeted/mime/speak
@@ -128,20 +90,20 @@
 		return
 	var/mob/living/carbon/human/H = usr
 	if(H.mind.miming)
-		still_recharging_msg = span_warning("I can't break your vow of silence that fast!")
+		still_recharging_msg = "<span class='warning'>I can't break your vow of silence that fast!</span>"
 	else
-		still_recharging_msg = span_warning("You'll have to wait before you can give your vow of silence again!")
+		still_recharging_msg = "<span class='warning'>You'll have to wait before you can give your vow of silence again!</span>"
 	..()
 
 /obj/effect/proc_holder/spell/targeted/mime/speak/cast(list/targets,mob/user = usr)
 	for(var/mob/living/carbon/human/H in targets)
 		H.mind.miming=!H.mind.miming
 		if(H.mind.miming)
-			to_chat(H, span_notice("I make a vow of silence."))
+			to_chat(H, "<span class='notice'>I make a vow of silence.</span>")
 			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "vow")
 		else
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "vow", /datum/mood_event/broken_vow)
-			to_chat(H, span_notice("I break your vow of silence."))
+			to_chat(H, "<span class='notice'>I break your vow of silence.</span>")
 
 // These spells can only be gotten from the "Guide for Advanced Mimery series" for Mime Traitors.
 
@@ -152,7 +114,7 @@
 	panel = "Mime"
 	wall_type = /obj/effect/forcefield/mime/advanced
 	invocation_type = "emote"
-	invocation_emote_self = span_notice("I form a blockade in front of myself.")
+	invocation_emote_self = "<span class='notice'>I form a blockade in front of myself.</span>"
 	charge_max = 600
 	sound =  null
 	clothes_req = FALSE
@@ -167,60 +129,11 @@
 /obj/effect/proc_holder/spell/targeted/forcewall/mime/Click()
 	if(usr && usr.mind)
 		if(!usr.mind.miming)
-			to_chat(usr, span_warning("I must dedicate myself to silence first!"))
+			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a blockade is in front of [usr.p_them()]."
 	else
 		invocation_type ="none"
-	..()
-
-/obj/effect/proc_holder/spell/aimed/finger_guns
-	name = "Finger Guns"
-	desc = ""
-	school = "mime"
-	panel = "Mime"
-	charge_max = 300
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
-	invocation_type = "emote"
-	invocation_emote_self = span_danger("I fire your finger gun!")
-	range = 20
-	projectile_type = /obj/projectile/bullet/mime
-	projectile_amount = 3
-	sound = null
-	active_msg = "You draw your fingers!"
-	deactive_msg = "You put your fingers at ease. Another time."
-	active = FALSE
-
-	action_icon = 'icons/mob/actions/actions_mime.dmi'
-	action_icon_state = "finger_guns0"
-	action_background_icon_state = "bg_mime"
-	base_icon_state = "finger_guns"
-
-
-/obj/effect/proc_holder/spell/aimed/finger_guns/Click()
-	var/mob/living/carbon/human/owner = usr
-	if(owner.incapacitated())
-		to_chat(owner, span_warning("I can't properly point your fingers while incapacitated."))
-		return
-	if(usr && usr.mind)
-		if(!usr.mind.miming)
-			to_chat(usr, span_warning("I must dedicate myself to silence first!"))
-			return
-		invocation = "<B>[usr.real_name]</B> fires [usr.p_their()] finger gun!"
-	else
-		invocation_type ="none"
-	..()
-
-/obj/effect/proc_holder/spell/aimed/finger_guns/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(caller.incapacitated())
-		to_chat(caller, span_warning("I can't properly point your fingers while incapacitated."))
-		if(charge_type == "recharge")
-			var/refund_percent = current_amount/projectile_amount
-			charge_counter = charge_max * refund_percent
-			start_recharge()
-		remove_ranged_ability()
-		on_deactivation(caller)
 	..()
 
 /obj/item/book/granter/spell/mimery_blockade
@@ -232,21 +145,6 @@
 	remarks = list("...")
 
 /obj/item/book/granter/spell/mimery_blockade/attack_self(mob/user)
-	. = ..()
-	if(!.)
-		return
-	if(!locate(/obj/effect/proc_holder/spell/targeted/mime/speak) in user.mind.spell_list)
-		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak)
-
-/obj/item/book/granter/spell/mimery_guns
-	spell = /obj/effect/proc_holder/spell/aimed/finger_guns
-	spellname = "Finger Guns"
-	name = "Guide to Advanced Mimery Vol 2"
-	desc = ""
-	icon_state ="bookmime"
-	remarks = list("...")
-
-/obj/item/book/granter/spell/mimery_guns/attack_self(mob/user)
 	. = ..()
 	if(!.)
 		return

@@ -41,10 +41,6 @@
 /obj/docking_port/take_damage()
 	return
 
-/obj/docking_port/singularity_pull()
-	return
-/obj/docking_port/singularity_act()
-	return 0
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
@@ -271,8 +267,6 @@
 
 	var/list/ripples = list()
 	var/engine_coeff = 1 //current engine coeff
-	var/current_engines = 0 //current engine power
-	var/initial_engines = 0 //initial engine power
 	var/list/engine_list = list()
 	var/can_move_docking_ports = FALSE //if this shuttle can move docking ports other than the one it is docked at
 	var/list/hidden_turfs = list()
@@ -305,9 +299,6 @@
 		var/area/cur_area = curT.loc
 		if(istype(cur_area, area_type))
 			shuttle_areas[cur_area] = TRUE
-
-	initial_engines = count_engines()
-	current_engines = initial_engines
 
 	#ifdef DOCKING_PORT_HIGHLIGHT
 	highlight("#0f0")
@@ -483,9 +474,6 @@
 	for(var/t in return_turfs())
 		var/turf/T = t
 		for(var/mob/living/M in T.GetAllContents())
-			// If they have a mind and they're not in the brig, they escaped
-			if(M.mind && !istype(t, /turf/open/floor/plasteel/shuttle/red) && !istype(t, /turf/open/floor/mineral/plastitanium/red/brig))
-				M.mind.force_escaped = TRUE
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			M.notransform = TRUE
 			M.ghostize(FALSE)
@@ -520,10 +508,6 @@
 		ripple_turfs += T1
 
 	return ripple_turfs
-
-/obj/docking_port/mobile/proc/check_poddoors()
-	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-		pod.check()
 
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)
@@ -648,6 +632,16 @@
 /obj/docking_port/mobile/proc/timeLeft(divisor)
 	//rtstuff
 	return max(0, timer - world.time)
+/* 	if(divisor <= 0)
+		divisor = 10
+
+	var/ds_remaining
+	if(!timer)
+		ds_remaining = callTime * engine_coeff
+	else
+		ds_remaining = max(0, timer - world.time)
+
+	. = round(ds_remaining / divisor, 1) */
 
 // returns 3-letter mode string, used by status screens and mob status panel
 /obj/docking_port/mobile/proc/getModeStr()
@@ -676,7 +670,14 @@
 		return "--:--"
 
 	var/timeleft = timeLeft()
-	return "[timeleft]" // RTCHANGE
+	return "[timeleft]"
+//	if(timeleft > 1 HOURS)
+//		return "--:--"
+//	else if(timeleft > 0)
+/* 	if(timeleft > 0)
+		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
+	else
+		return "00:00" */
 
 
 /obj/docking_port/mobile/proc/getStatusText()
@@ -716,45 +717,14 @@
 	else
 		. = "unknown"
 
-
-// attempts to locate /obj/machinery/computer/shuttle with matching ID inside the shuttle
-/obj/docking_port/mobile/proc/getControlConsole()
-	for(var/place in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		for(var/obj/machinery/computer/shuttle/S in shuttle_area)
-			if(S.shuttleId == id)
-				return S
-	return null
-
 /obj/docking_port/mobile/proc/hyperspace_sound(phase, list/areas)
-/*	var/selected_sound
-	switch(phase)
-		if(HYPERSPACE_WARMUP)
-			selected_sound = "hyperspace_begin"
-		if(HYPERSPACE_LAUNCH)
-			selected_sound = "hyperspace_progress"
-		if(HYPERSPACE_END)
-			selected_sound = "hyperspace_end"
-		else
-			CRASH("Invalid hyperspace sound phase: [phase]")*/
+
 	// This previously was played from each door at max volume, and was one of the worst things I had ever seen.
 	// Now it's instead played from the nearest engine if close, or the first engine in the list if far since it doesn't really matter.
 	// Or a door if for some reason the shuttle has no engine, fuck oh hi daniel fuck it
 	var/range = (engine_coeff * max(width, height))
 	var/long_range = range * 2.5
 	var/atom/distant_source
-//	if(engine_list[1])
-//		distant_source = engine_list[1]
-//	else
-//		for(var/A in areas)
-//			distant_source = locate(/obj/machinery/door) in A
-//			if(distant_source)
-//				break
-
-	for(var/A in areas)
-		distant_source = locate(/obj/structure/boatbell) in A
-		if(distant_source)
-			break
 
 	if(distant_source)
 		for(var/mob/M in SSmobs.clients_by_zlevel[z])
@@ -780,40 +750,10 @@
 	if(mod == 0)
 		return
 	var/old_coeff = engine_coeff
-	engine_coeff = get_engine_coeff(current_engines,mod)
-	current_engines = max(0,current_engines + mod)
+	engine_coeff = 1
 	if(in_flight())
 		var/delta_coeff = engine_coeff / old_coeff
 		modTimer(delta_coeff)
-
-/obj/docking_port/mobile/proc/count_engines()
-	. = 0
-	for(var/thing in shuttle_areas)
-		var/area/shuttle/areaInstance = thing
-		for(var/obj/structure/shuttle/engine/E in areaInstance.contents)
-			if(!QDELETED(E))
-				engine_list += E
-				. += E.engine_power
-
-// Double initial engines to get to 0.5 minimum
-// Lose all initial engines to get to 2
-//For 0 engine shuttles like BYOS 5 engines to get to doublespeed
-/obj/docking_port/mobile/proc/get_engine_coeff(current,engine_mod)
-	var/new_value = max(0,current + engine_mod)
-	if(new_value == initial_engines)
-		return 1
-	if(new_value > initial_engines)
-		var/delta = new_value - initial_engines
-		var/change_per_engine = (1 - ENGINE_COEFF_MIN) / ENGINE_DEFAULT_MAXSPEED_ENGINES // 5 by default
-		if(initial_engines > 0)
-			change_per_engine = (1 - ENGINE_COEFF_MIN) / initial_engines // or however many it had
-		return CLAMP(1 - delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
-	if(new_value < initial_engines)
-		var/delta = initial_engines - new_value
-		var/change_per_engine = 1 //doesn't really matter should not be happening for 0 engine shuttles
-		if(initial_engines > 0)
-			change_per_engine = (ENGINE_COEFF_MAX -  1) / initial_engines //just linear drop to max delay
-		return CLAMP(1 + delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
 
 
 /obj/docking_port/mobile/proc/in_flight()

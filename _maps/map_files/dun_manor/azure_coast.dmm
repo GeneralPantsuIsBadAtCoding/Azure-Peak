@@ -56,7 +56,7 @@
 "aj" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
 /obj/structure/fluff/statue/small,
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
 "ak" = (
@@ -78,7 +78,7 @@
 /area/rogue/under/cave/orcdungeon)
 "an" = (
 /obj/structure/closet/crate/chest/wicker,
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/food,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
@@ -401,7 +401,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/outdoors/beach)
 "bN" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/structure/table/wood,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -1424,10 +1424,6 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
-"kF" = (
-/obj/structure/statue/bone/skull,
-/turf/open/water/ocean/deep,
-/area/rogue/outdoors/beach)
 "kJ" = (
 /obj/structure/rack/rogue,
 /obj/item/reagent_containers/glass/bucket/wooden,
@@ -3337,7 +3333,7 @@
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/under/cave/dukecourt)
 "AK" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
 "AL" = (
@@ -3603,7 +3599,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "CI" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/cave)
 "CJ" = (
@@ -3640,7 +3636,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/cave)
 "CW" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/item/roguebin/water/gross,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
@@ -3657,7 +3653,7 @@
 	icon_state = "stairs";
 	dir = 1
 	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/beach/forest)
 "Dp" = (
@@ -4188,10 +4184,6 @@
 "HI" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter)
-"HP" = (
-/obj/structure/statue/bone/rib,
-/turf/open/water/ocean,
-/area/rogue/outdoors/beach)
 "HS" = (
 /obj/item/book/rogue/arcyne,
 /obj/structure/bookcase/random/archive,
@@ -4249,7 +4241,7 @@
 /obj/item/flint{
 	pixel_y = 40
 	},
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/structure/rack/rogue/shelf,
 /obj/item/reagent_containers/glass/cup/wooden,
 /turf/open/floor/rogue/blocks,
@@ -4682,7 +4674,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
 "Ld" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -5530,13 +5522,6 @@
 "Se" = (
 /obj/structure/fluff/railing/wood,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/beach/forest)
-"Sg" = (
-/obj/effect/landmark/mapGenerator/sunlights{
-	endTurfX = 128;
-	endTurfY = 128
-	},
-/turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/beach/forest)
 "Sh" = (
 /obj/structure/fluff/railing/border{
@@ -17112,7 +17097,7 @@ yW
 yW
 yW
 yW
-kF
+yW
 yW
 gG
 gG
@@ -17636,7 +17621,7 @@ yW
 yW
 yW
 gG
-HP
+gG
 gG
 gG
 bf
@@ -17767,7 +17752,7 @@ yW
 yW
 yW
 gG
-HP
+gG
 gG
 bf
 Qe
@@ -17898,7 +17883,7 @@ yW
 yW
 gG
 gG
-HP
+gG
 bf
 Qe
 Qe
@@ -56618,7 +56603,7 @@ pZ
 pZ
 pZ
 pZ
-Sg
+pZ
 "}
 (3,1,4) = {"
 pZ
