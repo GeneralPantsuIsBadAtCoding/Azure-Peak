@@ -28,8 +28,6 @@
 					theirskill = L.mind.get_skill_level(I.associated_skill)
 		perc += (ourskill - theirskill)*15 	//skill is of the essence
 		perc += (user.STAINT - L.STAINT)*10	//but it's also mostly a mindgame
-	if(L.d_intent == INTENT_DODGE)
-		perc = 0
 	if(!L.cmode)
 		perc = 0
 	if(L.has_status_effect(/datum/status_effect/debuff/feinted))
