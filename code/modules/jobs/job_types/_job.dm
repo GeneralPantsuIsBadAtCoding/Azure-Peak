@@ -213,6 +213,8 @@
 
 	if(!H.mind.special_role)
 		GLOB.actors_list[H.mobid] = "[H.real_name] as [H.mind.assigned_role]<BR>"
+	if(H.mind.special_role == "Court Agent")		//For obfuscating Court Agents in Actors list
+		GLOB.actors_list[H.mobid] = "[H.real_name] as Adventurer<BR>"
 
 /client/verb/set_mugshot()
 	set category = "OOC"

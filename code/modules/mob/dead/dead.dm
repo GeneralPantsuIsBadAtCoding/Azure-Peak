@@ -77,6 +77,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	dat += "</center>"
 
 	for(var/datum/job/job in SSjob.occupations)
+		if(istype(job, /datum/job/roguetown/adventurer/courtagent))
+			continue
 		if(!job)
 			continue
 		var/readiedas = 0
@@ -108,11 +110,13 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 			else
 				PL2 += "[PL[i]], "
 
+		var/str_job = job.title
+
 		if(readiedas)
 			if(PL2.len)
-				dat += "<B>[job.title]</B> ([readiedas]) - [PL2.Join()]<br>"
+				dat += "<B>[str_job]</B> ([readiedas]) - [PL2.Join()]<br>"
 			else
-				dat += "<B>[job.title]</B> ([readiedas])<br>"
+				dat += "<B>[str_job]</B> ([readiedas])<br>"
 	var/datum/browser/popup = new(src, "lobby_window", "<div align='center'>LOBBY</div>", 330, 430)
 	popup.set_window_options("can_close=1;can_minimize=0;can_maximize=0;can_resize=1;")
 	popup.set_content(dat.Join())

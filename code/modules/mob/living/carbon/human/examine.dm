@@ -91,6 +91,11 @@
 		if(name in GLOB.outlawed_players)
 			. += span_userdanger("OUTLAW!")
 
+		if(name in GLOB.court_agents)
+			var/datum/job/J = SSjob.GetJob(user.mind.assigned_role)
+			if(J.department_flag & GARRISON || J.department_flag & NOBLEMEN)
+			//if(GLOB.noble_positions.Find(J.title) || GLOB.garrison_positions.Find(J.title))
+				. += span_greentext("<b>[m1] an agent of the court!</b>")
 
 		var/villain_text = get_villain_text()
 		if(villain_text)
