@@ -34,8 +34,8 @@
 	)
 	var/initial_sl
 	var/list/possible_enhancements
-	var/renamed_name
 	resistance_flags = FIRE_PROOF
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/rogueweapon/Initialize()
 	. = ..()
