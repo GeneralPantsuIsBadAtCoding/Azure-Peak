@@ -62,7 +62,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backpack_contents = list(/obj/item/signal_horn = 1)
+	id = /obj/item/scomstone/bad/garrison
 
 /datum/advclass/knight/heavy
 	name = "Heavy Knight"
