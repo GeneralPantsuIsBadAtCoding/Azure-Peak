@@ -80,7 +80,7 @@
 	if (!eyes)
 		return
 	eyes.see_in_dark = 12
-	eyes.lighting_alpha = min(eyes.lighting_alpha, LIGHTING_PLANE_ALPHA_NOCVISION)
+	eyes.lighting_alpha = 225
 	recipient.update_sight()
 
 /datum/virtue/utility/learned
