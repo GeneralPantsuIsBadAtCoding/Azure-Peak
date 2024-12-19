@@ -20,10 +20,6 @@
 	var/next_battle_screech = 0
 	var/battle_screech_cooldown = 50
 
-/mob/living/carbon/spirit/Initialize()
-	status_traits |= TRAIT_STUNIMMUNE
-	. = ..()
-
 /mob/living/carbon/spirit/proc/IsStandingStill()
 	return resisting || pickpocketing || disposing_body
 
@@ -121,16 +117,10 @@
 		return TRUE
 
 	// target non-monkey mobs when aggressive, with a small probability of monkey v monkey
-	if(aggressive && (!istype(L, /mob/living/carbon/spirit) || prob(MONKEY_AGGRESSIVE_MVM_PROB)))
+	if(aggressive && (!istype(L, /mob/living/carbon/spirit/) || prob(MONKEY_AGGRESSIVE_MVM_PROB)))
 		return TRUE
 
 	return FALSE
-
-/mob/living/carbon/spirit/proc/stuff_mob_in()
-	if(bodyDisposal && target && Adjacent(bodyDisposal))
-		bodyDisposal.stuff_mob_in(target, src)
-	disposing_body = FALSE
-	back_to_idle()
 
 /mob/living/carbon/spirit/proc/back_to_idle()
 

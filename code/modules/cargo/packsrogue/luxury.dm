@@ -11,11 +11,6 @@
 	cost = 3
 	contains = list(/obj/item/clothing/mask/cigarette/rollie/nicotine)
 
-/datum/supply_pack/rogue/luxury/tarot_deck
-	name = "Tarot Deck"
-	cost = 5
-	contains = list(/obj/item/toy/cards/deck/tarot)
-
 /datum/supply_pack/rogue/luxury/ozium
 	name = "Ozium"
 	cost = 5

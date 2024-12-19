@@ -63,30 +63,3 @@
 				acid_level = max(0, acid_level - acid_used*10)
 				playsound(L, 'sound/blank.ogg', 50, TRUE)
 				to_chat(L, span_danger("[src] burns you!"))
-
-//xenomorph corrosive acid
-/obj/effect/acid/alien
-	var/target_strength = 30
-
-
-/obj/effect/acid/alien/process()
-	. = ..()
-	if(.)
-		if(prob(45))
-			playsound(loc, 'sound/blank.ogg', 100, TRUE)
-		target_strength--
-		if(target_strength <= 0)
-			target.visible_message(span_warning("[target] collapses under its own weight into a puddle of goop and undigested debris!"))
-			target.acid_melt()
-			qdel(src)
-		else
-
-			switch(target_strength)
-				if(24)
-					visible_message(span_warning("[target] is holding up against the acid!"))
-				if(16)
-					visible_message(span_warning("[target] is being melted by the acid!"))
-				if(8)
-					visible_message(span_warning("[target] is struggling to withstand the acid!"))
-				if(4)
-					visible_message(span_warning("[target] begins to crumble under the acid!"))

@@ -287,27 +287,6 @@
 		return L.resist_fire() //I just want to start a flame in your hearrrrrrtttttt.
 
 
-//ALIENS
-
-/atom/movable/screen/alert/alien_tox
-	name = "Plasma"
-	desc = ""
-	icon_state = "alien_tox"
-	alerttooltipstyle = "alien"
-
-/atom/movable/screen/alert/alien_fire
-// This alert is temporarily gonna be thrown for all hot air but one day it will be used for literally being on fire
-	name = "Too Hot"
-	desc = ""
-	icon_state = "alien_fire"
-	alerttooltipstyle = "alien"
-
-/atom/movable/screen/alert/alien_vulnerable
-	name = "Severed Matriarchy"
-	desc = ""
-	icon_state = "alien_noqueen"
-	alerttooltipstyle = "alien"
-
 //BLOBS
 
 /atom/movable/screen/alert/nofactory
@@ -315,115 +294,6 @@
 	desc = ""
 	icon_state = "blobbernaut_nofactory"
 	alerttooltipstyle = "blob"
-
-// BLOODCULT
-
-/atom/movable/screen/alert/bloodsense
-	name = "Blood Sense"
-	desc = ""
-	icon_state = "cult_sense"
-	alerttooltipstyle = "cult"
-	var/static/image/narnar
-	var/angle = 0
-	var/mob/living/simple_animal/hostile/construct/Cviewer = null
-
-/atom/movable/screen/alert/bloodsense/Initialize()
-	. = ..()
-	narnar = new('icons/mob/screen_alert.dmi', "mini_nar")
-	START_PROCESSING(SSprocessing, src)
-
-/atom/movable/screen/alert/bloodsense/Destroy()
-	Cviewer = null
-	STOP_PROCESSING(SSprocessing, src)
-	return ..()
-
-/atom/movable/screen/alert/bloodsense/process()
-	var/atom/blood_target
-
-	if(!mob_viewer.mind)
-		return
-
-	var/datum/antagonist/cult/antag = mob_viewer.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!antag)
-		return
-	var/datum/objective/sacrifice/sac_objective = locate() in antag.cult_team.objectives
-
-	if(antag.cult_team.blood_target)
-		if(!get_turf(antag.cult_team.blood_target))
-			antag.cult_team.blood_target = null
-		else
-			blood_target = antag.cult_team.blood_target
-	if(Cviewer && Cviewer.seeking && Cviewer.master)
-		blood_target = Cviewer.master
-		desc = ""
-	if(!blood_target)
-		if(sac_objective && !sac_objective.check_completion())
-			if(icon_state == "runed_sense0")
-				return
-			animate(src, transform = null, time = 1, loop = 0)
-			angle = 0
-			cut_overlays()
-			icon_state = "runed_sense0"
-			desc = ""
-			add_overlay(sac_objective.sac_image)
-		else
-			var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
-			if(!summon_objective)
-				return
-			desc = ""
-			if(icon_state == "runed_sense1")
-				return
-			animate(src, transform = null, time = 1, loop = 0)
-			angle = 0
-			cut_overlays()
-			icon_state = "runed_sense1"
-			add_overlay(narnar)
-		return
-	var/turf/P = get_turf(blood_target)
-	var/turf/Q = get_turf(mob_viewer)
-	if(!P || !Q || (P.z != Q.z)) //The target is on a different Z level, we cannot sense that far.
-		icon_state = "runed_sense2"
-		desc = ""
-		return
-//	if(isliving(blood_target))
-//		var/mob/living/real_target = blood_target
-//		desc = ""
-//	else
-//		desc = ""
-	var/target_angle = Get_Angle(Q, P)
-	var/target_dist = get_dist(P, Q)
-	cut_overlays()
-	switch(target_dist)
-		if(0 to 1)
-			icon_state = "runed_sense2"
-		if(2 to 8)
-			icon_state = "arrow8"
-		if(9 to 15)
-			icon_state = "arrow7"
-		if(16 to 22)
-			icon_state = "arrow6"
-		if(23 to 29)
-			icon_state = "arrow5"
-		if(30 to 36)
-			icon_state = "arrow4"
-		if(37 to 43)
-			icon_state = "arrow3"
-		if(44 to 50)
-			icon_state = "arrow2"
-		if(51 to 57)
-			icon_state = "arrow1"
-		if(58 to 64)
-			icon_state = "arrow0"
-		if(65 to 400)
-			icon_state = "arrow"
-	var/difference = target_angle - angle
-	angle = target_angle
-	if(!difference)
-		return
-	var/matrix/final = matrix(transform)
-	final.Turn(difference)
-	animate(src, transform = final, time = 5, loop = 0)
-
 
 //GUARDIANS
 
@@ -445,76 +315,12 @@
 	icon_state = "guardian_instealth"
 	alerttooltipstyle = "parasite"
 
-//SILICONS
-
-/atom/movable/screen/alert/nocell
-	name = "Missing Power Cell"
-	desc = ""
-	icon_state = "nocell"
-
-/atom/movable/screen/alert/emptycell
-	name = "Out of Power"
-	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged. \
-Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
-	icon_state = "emptycell"
-
-/atom/movable/screen/alert/lowcell
-	name = "Low Charge"
-	desc = ""
-	icon_state = "lowcell"
-
 //Ethereal
 
 /atom/movable/screen/alert/etherealcharge
 	name = "Low Blood Charge"
 	desc = ""
 	icon_state = "etherealcharge"
-
-//Need to cover all use cases - emag, illegal upgrade module, malf AI hack, traitor cyborg
-/atom/movable/screen/alert/hacked
-	name = "Hacked"
-	desc = ""
-	icon_state = "hacked"
-
-/atom/movable/screen/alert/locked
-	name = "Locked Down"
-	desc = "Unit has been remotely locked down. Usage of a Robotics Control Console like the one in the Research Director's \
-office by your AI master or any qualified human may resolve this matter. Robotics may provide further assistance if necessary."
-	icon_state = "locked"
-
-/atom/movable/screen/alert/newlaw
-	name = "Law Update"
-	desc = "Laws have potentially been uploaded to or removed from this unit. Please be aware of any changes \
-so as to remain in compliance with the most up-to-date laws."
-	icon_state = "newlaw"
-	timeout = 300
-
-/atom/movable/screen/alert/hackingapc
-	name = "Hacking APC"
-	desc = "An Area Power Controller is being hacked. When the process is \
-		complete, you will have exclusive control of it, and you will gain \
-		additional processing time to unlock more malfunction abilities."
-	icon_state = "hackingapc"
-	timeout = 600
-	var/atom/target = null
-
-/atom/movable/screen/alert/hackingapc/Click()
-	if(!usr || !usr.client)
-		return
-	if(!target)
-		return
-	var/mob/living/silicon/ai/AI = usr
-	var/turf/T = get_turf(target)
-	if(T)
-		AI.eyeobj.setLoc(T)
-
-//MECHS
-
-/atom/movable/screen/alert/low_mech_integrity
-	name = "Mech Damaged"
-	desc = ""
-	icon_state = "low_mech_integrity"
-
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages

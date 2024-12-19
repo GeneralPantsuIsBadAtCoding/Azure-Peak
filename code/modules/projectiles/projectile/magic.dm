@@ -8,6 +8,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	flag = "magic"
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
+	var/mob/living/carbon/human/sender
 
 /obj/projectile/magic/death
 	name = "bolt of death"
@@ -112,239 +113,6 @@
 			var/datum/effect_system/smoke_spread/smoke = new
 			smoke.set_up(0, t)
 			smoke.start()
-
-/obj/projectile/magic/door
-	name = "bolt of door creation"
-	icon_state = "energy"
-	damage = 0
-	damage_type = OXY
-	nodamage = TRUE
-	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/plasma, /obj/structure/mineral_door/transparent/diamond)
-
-/obj/projectile/magic/door/on_hit(atom/target)
-	. = ..()
-	if(istype(target, /obj/machinery/door))
-		OpenDoor(target)
-	else
-		var/turf/T = get_turf(target)
-		if(isclosedturf(T) && !isindestructiblewall(T))
-			CreateDoor(T)
-
-/obj/projectile/magic/door/proc/CreateDoor(turf/T)
-	var/door_type = pick(door_types)
-	var/obj/structure/mineral_door/D = new door_type(T)
-	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-	D.Open()
-
-/obj/projectile/magic/door/proc/OpenDoor(obj/machinery/door/D)
-	if(istype(D, /obj/machinery/door/airlock))
-		var/obj/machinery/door/airlock/A = D
-		A.locked = FALSE
-	D.open()
-
-/obj/projectile/magic/change
-	name = "bolt of change"
-	icon_state = "ice_1"
-	damage = 0
-	damage_type = BURN
-	nodamage = TRUE
-
-/obj/projectile/magic/change/on_hit(atom/change)
-	. = ..()
-	if(ismob(change))
-		var/mob/M = change
-		if(M.anti_magic_check())
-			M.visible_message(span_warning("[src] fizzles on contact with [M]!"))
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	wabbajack(change)
-	qdel(src)
-
-/proc/wabbajack(mob/living/M)
-	if(!istype(M) || M.stat == DEAD || M.notransform || (GODMODE & M.status_flags))
-		return
-
-	M.notransform = TRUE
-	M.mobility_flags = NONE
-	M.icon = null
-	M.cut_overlays()
-	M.invisibility = INVISIBILITY_ABSTRACT
-
-	var/list/contents = M.contents.Copy()
-
-	if(iscyborg(M))
-		var/mob/living/silicon/robot/Robot = M
-		if(Robot.mmi)
-			qdel(Robot.mmi)
-		Robot.notify_ai(NEW_BORG)
-	else
-		for(var/obj/item/W in contents)
-			if(!M.dropItemToGround(W))
-				qdel(W)
-
-	var/mob/living/new_mob
-
-	var/randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
-	switch(randomize)
-		if("monkey")
-			new_mob = new /mob/living/carbon/monkey(M.loc)
-
-		if("robot")
-			var/robot = pick(200;/mob/living/silicon/robot,
-							/mob/living/silicon/robot/modules/syndicate,
-							/mob/living/silicon/robot/modules/syndicate/medical,
-							/mob/living/silicon/robot/modules/syndicate/saboteur,
-							200;/mob/living/simple_animal/drone/polymorphed)
-			new_mob = new robot(M.loc)
-			if(issilicon(new_mob))
-				new_mob.gender = M.gender
-				new_mob.invisibility = 0
-				new_mob.job = "Cyborg"
-				var/mob/living/silicon/robot/Robot = new_mob
-				Robot.lawupdate = FALSE
-				Robot.connected_ai = null
-				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
-				Robot.clear_inherent_laws(0)
-				Robot.clear_zeroth_law(0)
-
-		if("slime")
-			new_mob = new /mob/living/simple_animal/slime/random(M.loc)
-
-		if("xeno")
-			var/Xe
-			if(M.ckey)
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
-			else
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
-			new_mob = new Xe(M.loc)
-
-		if("animal")
-			var/path = pick(/mob/living/simple_animal/hostile/carp,
-							/mob/living/simple_animal/hostile/bear,
-							/mob/living/simple_animal/hostile/mushroom,
-							/mob/living/simple_animal/hostile/statue,
-							/mob/living/simple_animal/hostile/retaliate/bat,
-							/mob/living/simple_animal/hostile/retaliate/goat,
-							/mob/living/simple_animal/hostile/killertomato,
-							/mob/living/simple_animal/hostile/poison/giant_spider,
-							/mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
-							/mob/living/simple_animal/hostile/carp/ranged,
-							/mob/living/simple_animal/hostile/carp/ranged/chaos,
-							/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-							/mob/living/simple_animal/hostile/asteroid/goliath/beast,
-							/mob/living/simple_animal/hostile/headcrab,
-							/mob/living/simple_animal/hostile/morph,
-							/mob/living/simple_animal/hostile/stickman,
-							/mob/living/simple_animal/hostile/stickman/dog,
-							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
-							/mob/living/simple_animal/hostile/gorilla,
-							/mob/living/simple_animal/parrot,
-							/mob/living/simple_animal/pet/dog/corgi,
-							/mob/living/simple_animal/crab,
-							/mob/living/simple_animal/pet/dog/pug,
-							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
-							/mob/living/simple_animal/chicken,
-							/mob/living/simple_animal/cow,
-							/mob/living/simple_animal/hostile/lizard,
-							/mob/living/simple_animal/pet/fox,
-							/mob/living/simple_animal/butterfly,
-							/mob/living/simple_animal/pet/cat/cak,
-							/mob/living/simple_animal/chick)
-			new_mob = new path(M.loc)
-
-		if("humanoid")
-			new_mob = new /mob/living/carbon/human(M.loc)
-
-			if(prob(50))
-				var/list/chooseable_races = list()
-				for(var/speciestype in subtypesof(/datum/species))
-					var/datum/species/S = speciestype
-					if(initial(S.changesource_flags) & WABBAJACK)
-						chooseable_races += speciestype
-
-				if(chooseable_races.len)
-					new_mob.set_species(pick(chooseable_races))
-
-			var/datum/preferences/A = new()	//Randomize appearance for the human
-			A.copy_to(new_mob, icon_updates=0)
-
-			var/mob/living/carbon/human/H = new_mob
-			H.update_body()
-			H.update_hair()
-			H.update_body_parts()
-			H.dna.update_dna_identity()
-
-	if(!new_mob)
-		return
-	new_mob.grant_language(/datum/language/common)
-
-	// Some forms can still wear some items
-	for(var/obj/item/W in contents)
-		new_mob.equip_to_appropriate_slot(W)
-
-	M.log_message("became [new_mob.real_name]", LOG_ATTACK, color="orange")
-
-	new_mob.a_intent = INTENT_HARM
-
-	M.wabbajack_act(new_mob)
-
-	to_chat(new_mob, span_warning("My form morphs into that of a [randomize]."))
-
-	var/poly_msg = get_policy(POLICY_POLYMORPH)
-	if(poly_msg)
-		to_chat(new_mob, poly_msg)
-
-	M.transfer_observers_to(new_mob)
-
-	qdel(M)
-	return new_mob
-
-/obj/projectile/magic/animate
-	name = "bolt of animation"
-	icon_state = "red_1"
-	damage = 0
-	damage_type = BURN
-	nodamage = TRUE
-
-/obj/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
-	target.animate_atom_living(firer)
-	..()
-
-/atom/proc/animate_atom_living(mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
-		if(istype(src, /obj/structure/statue/petrified))
-			var/obj/structure/statue/petrified/P = src
-			if(P.petrified_mob)
-				var/mob/living/L = P.petrified_mob
-				var/mob/living/simple_animal/hostile/statue/S = new(P.loc, owner)
-				S.name = "statue of [L.name]"
-				if(owner)
-					S.faction = list("[REF(owner)]")
-				S.icon = P.icon
-				S.icon_state = P.icon_state
-				S.copy_overlays(P, TRUE)
-				S.color = P.color
-				S.atom_colours = P.atom_colours.Copy()
-				if(L.mind)
-					L.mind.transfer_to(S)
-					if(owner)
-						to_chat(S, span_danger("I are an animate statue. You cannot move when monitored, but are nearly invincible and deadly when unobserved! Do not harm [owner], my creator."))
-				P.forceMove(S)
-				return
-		else
-			var/obj/O = src
-			if(istype(O, /obj/item/gun))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(loc, src, owner)
-			else
-				new /mob/living/simple_animal/hostile/mimic/copy(loc, src, owner)
-
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
-		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
-		if(owner)
-			C.ChangeOwner(owner)
 
 /obj/projectile/magic/spellblade
 	name = "blade energy"
@@ -643,42 +411,6 @@
 				return Bump(L)
 	..()
 
-/obj/projectile/magic/aoe/lightning
-	name = "lightning bolt"
-	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
-	damage = 15
-	damage_type = BURN
-	nodamage = FALSE
-	speed = 0.3
-	flag = "magic"
-	light_color = "#ffffff"
-	light_range = 2
-
-	var/tesla_power = 20000
-	var/tesla_range = 15
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
-	var/chain
-	var/mob/living/caster
-
-/obj/projectile/magic/aoe/lightning/fire(setAngle)
-	if(caster)
-		chain = caster.Beam(src, icon_state = "lightning[rand(1, 12)]", time = INFINITY, maxdistance = INFINITY)
-	..()
-
-/obj/projectile/magic/aoe/lightning/on_hit(target)
-	. = ..()
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			visible_message(span_warning("[src] fizzles on contact with [target]!"))
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
-	qdel(src)
-
-/obj/projectile/magic/aoe/lightning/Destroy()
-	qdel(chain)
-	. = ..()
 
 /obj/projectile/magic/aoe/fireball
 	name = "bolt of fireball"
@@ -687,7 +419,7 @@
 	damage_type = BRUTE
 	nodamage = FALSE
 	light_color = "#f8af07"
-	light_range = 2
+	light_outer_range =  2
 
 	//explosion values
 	var/exp_heavy = 0
@@ -731,15 +463,3 @@
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
-
-//still magic related, but a different path
-
-/obj/projectile/temp/chill
-	name = "bolt of chills"
-	icon_state = "ice_2"
-	damage = 0
-	damage_type = BURN
-	nodamage = FALSE
-	armor_penetration = 100
-	temperature = 50
-	flag = "magic"

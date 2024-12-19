@@ -120,36 +120,6 @@
 	if(!requires_tech && !replaced_by)
 		return TRUE
 
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/robot = user
-		var/obj/item/surgical_processor/surgical_processor = locate() in robot.module?.modules
-		// No early return for !surgical_processor since we want to check optable should this not exist.
-		if(surgical_processor)
-			if(replaced_by in surgical_processor.advanced_surgery_steps)
-				return FALSE
-			if(type in surgical_processor.advanced_surgery_steps)
-				return TRUE
-
-	var/turf/target_turf = get_turf(target)
-
-	// Get the relevant operating computer
-	var/obj/machinery/computer/operating/opcomputer
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable) in target_turf
-	if(table?.computer)
-		opcomputer = table.computer
-	else
-		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis) in target_turf
-		if(the_stasis_bed?.op_computer)
-			opcomputer = the_stasis_bed.op_computer
-
-	if(!opcomputer || (opcomputer.stat & (NOPOWER | BROKEN)))
-		if(!requires_tech)
-			return TRUE
-		return FALSE
-	if(replaced_by in opcomputer.advanced_surgery_steps)
-		return FALSE
-	if(!(type in opcomputer.advanced_surgery_steps))
-		return FALSE
 	return TRUE
 
 /datum/surgery_step/proc/validate_user(mob/user, mob/living/target, target_zone, datum/intent/intent)
@@ -239,7 +209,7 @@
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	SHOULD_CALL_PARENT(TRUE)
 	var/implement_type = FALSE
-	if(accept_hand && (!tool || iscyborg(user)))
+	if(accept_hand && (!tool))
 		implement_type = TOOL_HAND
 
 	if(tool)
@@ -315,7 +285,7 @@
 		return FALSE
 
 	LAZYREMOVE(target.surgeries, target_zone)
-	var/success = !try_to_fail && ((iscyborg(user) && !silicons_obey_prob) || prob(success_prob)) && chem_check(target)
+	var/success = !try_to_fail && (prob(success_prob)) && chem_check(target)
 	if(success && success(user, target, target_zone, tool, intent))
 		if(ishuman(user))
 			var/mob/living/carbon/human/doctor = user

@@ -24,9 +24,8 @@
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "sparks"
 	anchored = TRUE
-	light_system = MOVABLE_LIGHT
-	light_range = 2
-	light_power = 0.5
+	light_power = 1.3
+	light_outer_range =  MINIMUM_USEFUL_LIGHT_RANGE
 	light_color = LIGHT_COLOR_FIRE
 	pixel_x = -16
 	pixel_y = -16

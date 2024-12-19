@@ -1,9 +1,9 @@
 /mob/living/proc/update_rogfat() //update hud and regen after last_fatigued delay on taking
 	maxrogfat = maxrogstam / 10
 
-	if(world.time > last_fatigued + 30) //regen fatigue
+	if(world.time > last_fatigued + 20) //regen fatigue
 		var/added = rogstam / maxrogstam
-		added = round(-10+ (added*-30))
+		added = round(-10+ (added*-40))
 		if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 			added = round(added * 0.5, 1)
 		if(rogfat >= 1)
@@ -151,10 +151,10 @@
 		emote("breathgasp", forced = TRUE)
 		addtimer(CALLBACK(src, PROC_REF(adjustOxyLoss), 110), 30)
 
-/mob/living/proc/freak_out() // currently solely used for vampire snowflake stuff
+/mob/living/proc/freak_out()
 	return
 
-/mob/proc/do_freakout_scream() // currently solely used for vampire snowflake stuff
+/mob/proc/do_freakout_scream()
 	emote("scream", forced=TRUE)
 
 /mob/living/carbon/freak_out() // currently solely used for vampire snowflake stuff

@@ -5,7 +5,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
 	slot_flags = ITEM_SLOT_ICLOTHING
-	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	equip_sound = 'sound/blank.ogg'
 	drop_sound = 'sound/blank.ogg'
 	pickup_sound =  'sound/blank.ogg'
@@ -33,12 +33,6 @@
 			. += accessory_overlay
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
-	if((has_sensor == BROKEN_SENSORS) && istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = I
-		C.use(1)
-		has_sensor = HAS_SENSORS
-		to_chat(user,span_notice("I repair the suit sensors on [src] with [C]."))
-		return 1
 	if(!attach_accessory(I, user))
 		return ..()
 
@@ -63,7 +57,7 @@
 		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
+			to_chat(M,"<span class='warning'>The sensors on the [src] change rapidly!</span>")
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
@@ -105,7 +99,7 @@
 		var/obj/item/clothing/accessory/A = I
 		if(attached_accessory)
 			if(user)
-				to_chat(user, span_warning("[src] already has an accessory."))
+				to_chat(user, "<span class='warning'>[src] already has an accessory.</span>")
 			return
 		else
 
@@ -117,7 +111,7 @@
 				return
 
 			if(user && notifyAttach)
-				to_chat(user, span_notice("I attach [I] to [src]."))
+				to_chat(user, "<span class='notice'>I attach [I] to [src].</span>")
 
 			var/accessory_color = attached_accessory.icon_state
 			accessory_overlay = mutable_appearance('icons/mob/clothing/accessories.dmi', "[accessory_color]")
@@ -141,9 +135,9 @@
 		var/obj/item/clothing/accessory/A = attached_accessory
 		attached_accessory.detach(src, user)
 		if(user.put_in_hands(A))
-			to_chat(user, span_notice("I detach [A] from [src]."))
+			to_chat(user, "<span class='notice'>I detach [A] from [src].</span>")
 		else
-			to_chat(user, span_notice("I detach [A] from [src] and it falls on the floor."))
+			to_chat(user, "<span class='notice'>I detach [A] from [src] and it falls on the floor.</span>")
 
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc

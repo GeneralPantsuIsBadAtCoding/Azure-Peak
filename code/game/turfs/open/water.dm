@@ -36,6 +36,9 @@
 	var/water_color = "#6a9295"
 	var/water_reagent = /datum/reagent/water
 	var/water_reagent_purified = /datum/reagent/water // If put through a water filtration device, provides this reagent instead
+	var/mapped = TRUE // infinite source of water
+	var/water_volume = 100 // 100 is 1 bucket
+	var/water_maximum = 100
 	water_level = 2
 	var/wash_in = TRUE
 	var/swim_skill = FALSE
@@ -91,7 +94,7 @@
 					user.Immobilize(30)
 					addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, Knockdown), 30), 10)
 
-/turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, d_type = "blunt")
+/turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
 	..()
 	playsound(src, pick('sound/foley/water_land1.ogg','sound/foley/water_land2.ogg','sound/foley/water_land3.ogg'), 100, FALSE)
 
@@ -212,7 +215,7 @@
 	if(water_top_overlay)
 		QDEL_NULL(water_top_overlay)
 
-/turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, d_type = "blunt")
+/turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
 	if(isobj(AM))
 		var/obj/O = AM
 		O.extinguish()
@@ -374,6 +377,9 @@
 /turf/open/water/river/proc/process_river()
 	river_processing = null
 	for(var/atom/movable/A in contents)
+		for(var/obj/structure/S in src)
+			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
+				return
 		if((A.loc == src) && A.has_gravity())
 			A.ConveyorMove(dir)
 
@@ -406,6 +412,7 @@
 	icon_state = "pond"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
+	water_color = "#367e94"
 	slowdown = 3
 	swim_skill = TRUE
 	wash_in = TRUE

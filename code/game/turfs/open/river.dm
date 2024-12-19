@@ -4,7 +4,7 @@
 #define RANDOM_LOWER_X 50
 #define RANDOM_LOWER_Y 50
 
-/proc/spawn_rivers(target_z, nodes = 4, turf_type = /turf/open/lava/smooth/lava_land_surface, whitelist_area = /area/lavaland/surface/outdoors/unexplored, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs)
+/proc/spawn_rivers(target_z, nodes = 4, turf_type = /turf/open/water/swamp, whitelist_area = /area/rogue/outdoors/river, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs)
 	var/list/river_nodes = list()
 	var/num_spawned = 0
 	var/list/possible_locs = block(locate(min_x, min_y, target_z), locate(max_x, max_y, target_z))
@@ -36,9 +36,9 @@
 				if(prob(20))
 					detouring = 0
 					cur_dir = get_dir(cur_turf, target_turf)
-			else if(prob(20))
+			else if(prob(50))
 				detouring = 1
-				if(prob(50))
+				if(prob(60))
 					cur_dir = turn(cur_dir, 45)
 				else
 					cur_dir = turn(cur_dir, -45)
@@ -75,7 +75,7 @@
 	for(var/F in RANGE_TURFS(1, src) - src)
 		var/turf/T = F
 		var/area/new_area = get_area(T)
-		if(!T || (T.density && !ismineralturf(T)) || istype(T, /turf/open/indestructible) || (whitelisted_area && !istype(new_area, whitelisted_area)) || (T.flags_1 & NO_LAVA_GEN_1) )
+		if(!T || (T.density && !ismineralturf(T)) || (whitelisted_area && !istype(new_area, whitelisted_area)) || (T.flags_1 & NO_LAVA_GEN_1) )
 			continue
 
 		if(!logged_turf_type && ismineralturf(T))

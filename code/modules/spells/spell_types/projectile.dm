@@ -63,21 +63,21 @@
 	var/proj_type =  /obj/projectile/magic/spell //IMPORTANT use only subtypes of this
 
 
-	var/update_projectile = FALSE //So you want to admin abuse magic bullets ? This is for you
+	var/update_projectile = TRUE //So you want to admin abuse magic bullets ? This is for you
 	//Below only apply if update_projectile is true
 	var/proj_icon = 'icons/obj/projectiles.dmi'
 	var/proj_icon_state = "spell"
-	var/proj_name = "a spell projectile"
-	var/proj_trail = FALSE //if it leaves a trail
-	var/proj_trail_lifespan = 0 //deciseconds
+	var/proj_name = "Magic Missle"
+	var/proj_trail = TRUE //if it leaves a trail
+	var/proj_trail_lifespan = 3 //deciseconds
 	var/proj_trail_icon = 'icons/obj/wizard.dmi'
 	var/proj_trail_icon_state = "trail"
 	var/proj_lingering = FALSE //if it lingers or disappears upon hitting an obstacle
-	var/proj_homing = TRUE //if it follows the target
+	var/proj_homing = FALSE //if it follows the target
 	var/proj_insubstantial = FALSE //if it can pass through dense objects or not
 	var/proj_trigger_range = 0 //the range from target at which the projectile triggers cast(target)
 	var/proj_lifespan = 15 //in deciseconds * proj_step_delay
-	var/proj_step_delay = 1 //lower = faster
+	var/proj_step_delay = 3 //lower = faster
 	var/list/ignore_factions = list() //Faction types that will be ignored
 	var/check_antimagic = TRUE
 	var/check_holy = FALSE

@@ -6,20 +6,6 @@
 		. = ..()
 
 /mob/living/carbon/human/GetVoice()
-	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))
-		var/obj/item/clothing/mask/chameleon/V = wear_mask
-		if(V.vchange && wear_ring)
-			var/obj/item/card/id/idcard = wear_ring.GetID()
-			if(istype(idcard))
-				return idcard.registered_name
-			else
-				return real_name
-		else
-			return real_name
-	if(mind)
-		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(changeling && changeling.mimicing )
-			return changeling.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
 	return real_name
@@ -43,14 +29,6 @@
 
 /mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
-
-/mob/living/carbon/human/binarycheck()
-	if(ears)
-		var/obj/item/radio/headset/dongle = ears
-		if(!istype(dongle))
-			return FALSE
-		if(dongle.translate_binary)
-			return TRUE
 
 /mob/living/carbon/human/radio(message, message_mode, list/spans, language)
 	. = ..()

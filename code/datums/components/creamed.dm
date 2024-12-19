@@ -31,8 +31,6 @@ GLOBAL_LIST_INIT(creamable, typecacheof(list(
 		creamface.icon_state = "creampie_monkey"
 	else if(iscorgi(parent))
 		creamface.icon_state = "creampie_corgi"
-	else if(isAI(parent))
-		creamface.icon_state = "creampie_ai"
 
 	var/atom/A = parent
 	A.add_overlay(creamface)

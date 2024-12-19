@@ -67,12 +67,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		remove_ranged_ability()
 	return ..()
 
-/obj/effect/proc_holder/singularity_act()
-	return
-
-/obj/effect/proc_holder/singularity_pull()
-	return
-
 /obj/effect/proc_holder/proc/InterceptClickOn(mob/living/caller, params, atom/A)
 	if(caller.ranged_ability != src || ranged_ability_user != caller) //I'm not actually sure how these would trigger, but, uh, safety, I guess?
 		to_chat(caller, span_info("<b>[caller.ranged_ability.name]</b> has been disabled."))
@@ -147,7 +141,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
 
 	var/clothes_req = FALSE //see if it requires clothes
-	var/cult_req = FALSE //SPECIAL SNOWFLAKE clothes required for cult only spells
 	var/human_req = FALSE //spell can only be cast by humans
 	var/nonabstract_req = FALSE //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to 1 for ghostpells
@@ -275,27 +268,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			to_chat(user, span_warning("I can't get the words out!"))
 			return FALSE
 
-		var/list/casting_clothes = typecacheof(list(/obj/item/clothing/suit/wizrobe,
-		/obj/item/clothing/suit/space/hardsuit/wizard,
-		/obj/item/clothing/head/wizard,
-		/obj/item/clothing/head/helmet/space/hardsuit/wizard,
-		/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
-		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard))
-
-		if(clothes_req) //clothes check
-			if(!is_type_in_typecache(H.wear_armor, casting_clothes))
-				to_chat(H, span_warning("I don't feel strong enough without your robe!"))
-				return FALSE
-			if(!is_type_in_typecache(H.head, casting_clothes))
-				to_chat(H, span_warning("I don't feel strong enough without your hat!"))
-				return FALSE
-		if(cult_req) //CULT_REQ CLOTHES CHECK
-			if(!istype(H.wear_armor, /obj/item/clothing/suit/magusred) && !istype(H.wear_armor, /obj/item/clothing/suit/space/hardsuit/cult))
-				to_chat(H, span_warning("I don't feel strong enough without your armor."))
-				return FALSE
-			if(!istype(H.head, /obj/item/clothing/head/magus) && !istype(H.head, /obj/item/clothing/head/helmet/space/hardsuit/cult))
-				to_chat(H, span_warning("I don't feel strong enough without your helmet."))
-				return FALSE
 		if(miracle && !H.devotion?.check_devotion(src))
 			to_chat(H, span_warning("I don't have enough devotion!"))
 			return FALSE
@@ -303,7 +275,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if(clothes_req || human_req)
 			to_chat(user, span_warning("This spell can only be cast by humans!"))
 			return FALSE
-		if(nonabstract_req && (isbrain(user) || ispAI(user)))
+		if(nonabstract_req && (isbrain(user)))
 			to_chat(user, span_warning("This spell can only be cast by physical beings!"))
 			return FALSE
 
@@ -652,7 +624,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(!ishuman(user))
 		if(clothes_req || human_req)
 			return FALSE
-		if(nonabstract_req && (isbrain(user) || ispAI(user)))
+		if(nonabstract_req && (isbrain(user)))
 			return FALSE
 	if((invocation_type == "whisper" || invocation_type == "shout") && isliving(user))
 		var/mob/living/living_user = user

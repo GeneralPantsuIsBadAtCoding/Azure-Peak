@@ -36,32 +36,46 @@
 	. = ..()
 
 /obj/structure/guillotine/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/stack/sheet/plasteel))
-		to_chat(user, span_notice("I start repairing the guillotine with the plasteel..."))
-		if(blade_sharpness<10)
-			if(do_after(user,100,target=user))
-				blade_sharpness = min(10,blade_sharpness+3)
-				I.use(1)
-				to_chat(user, span_notice("I repair the guillotine with the plasteel."))
+	if (istype(I, /obj/item/natural/stone))
+		add_fingerprint(user)
+		if (blade_status == GUILLOTINE_BLADE_SHARPENING)
+			return
+
+		if (blade_status == GUILLOTINE_BLADE_RAISED)
+			if (blade_sharpness < GUILLOTINE_BLADE_MAX_SHARP)
+				blade_status = GUILLOTINE_BLADE_SHARPENING
+				if(do_after(user, 7, target = src))
+					blade_status = GUILLOTINE_BLADE_RAISED
+					user.visible_message("<span class='notice'>[user] sharpens the large blade of the guillotine.</span>",
+						              "<span class='notice'>I sharpen the large blade of the guillotine.</span>")
+					blade_sharpness += 1
+					playsound(src, 'sound/items/sharpen_long1.ogg', 100, TRUE)
+					return
+				else
+					blade_status = GUILLOTINE_BLADE_RAISED
+					return
 			else
-				to_chat(user, span_notice("I stop repairing the guillotine with the plasteel."))
+				to_chat(user, "<span class='warning'>The blade is sharp enough!</span>")
+				return
 		else
-			to_chat(user, span_warning("The guillotine is already fully repaired!"))
+			to_chat(user, "<span class='warning'>I need to raise the blade in order to sharpen it!</span>")
+			return
+	else
+		return ..()
 
-/obj/structure/guillotine/examine(mob/user)
-	. = ..()
+/obj/structure/guillotine/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+	if (!anchored)
+		return FALSE
 
-	var/msg = "It is [anchored ? "wrenched to the floor." : "unsecured. A wrench should fix that."]<br/>"
+	if (!istype(M, /mob/living/carbon/human))
+		to_chat(usr, "<span class='warning'>It doesn't look like [M.p_they()] can fit into this properly!</span>")
+		return FALSE // Can't decapitate non-humans
 
-	if (blade_status == GUILLOTINE_BLADE_RAISED)
-		msg += "The blade is raised, ready to fall, and"
+	if (blade_status != GUILLOTINE_BLADE_RAISED)
+		to_chat(usr, "<span class='warning'>I need to raise the blade before placing someone!</span>")
+		return FALSE
 
-		if (blade_sharpness >= GUILLOTINE_DECAP_MIN_SHARP)
-			msg += " looks sharp enough to decapitate without any resistance."
-		else
-			msg += " doesn't look particularly sharp. Perhaps a whetstone can be used to sharpen it."
-
-	. += msg
+	return ..(M, force, FALSE)
 
 /obj/structure/guillotine/attack_hand(mob/user)
 	add_fingerprint(user)

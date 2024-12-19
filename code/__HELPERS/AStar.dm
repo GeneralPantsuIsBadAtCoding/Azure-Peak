@@ -20,7 +20,6 @@ Actual Adjacent procs :
 
 	/turf/proc/reachableAdjacentTurfs : returns reachable turfs in cardinal directions (uses simulated_only)
 
-	/turf/proc/reachableAdjacentAtmosTurfs : returns turfs in cardinal directions reachable via atmos
 
 */
 #define PF_TIEBREAKER 0.005
@@ -172,36 +171,25 @@ Actual Adjacent procs :
 //Returns adjacent turfs in cardinal directions that are reachable
 //simulated_only controls whether only simulated turfs are considered or not
 
-/turf/proc/reachableAdjacentTurfs(caller, ID, simulated_only)
+/turf/proc/reachableAdjacentTurfs(caller, ID)
 	var/list/L = new()
 	var/turf/T
-	var/static/space_type_cache = typecacheof(/turf/open/space)
 
 	for(var/k in 1 to GLOB.cardinals.len)
 		T = get_step(src,GLOB.cardinals[k])
-		if(!T || (simulated_only && space_type_cache[T.type]))
+		if(!T)
 			continue
 		if(!T.density && !LinkBlockedWithAccess(T,caller, ID))
 			L.Add(T)
 	return L
 
-/turf/proc/reachableTurftest(caller, turf/T, ID, simulated_only)
-	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+/turf/proc/reachableTurftest(caller, turf/T, ID)
+	if(T && !T.density && !LinkBlockedWithAccess(T,caller, ID))
 		return TRUE
-
-//Returns adjacent turfs in cardinal directions that are reachable via atmos
-/turf/proc/reachableAdjacentAtmosTurfs()
-	return atmos_adjacent_turfs
 
 /turf/proc/LinkBlockedWithAccess(turf/T, caller, ID)
 	var/adir = get_dir(src, T)
 	var/rdir = ((adir & MASK_ODD)<<1)|((adir & MASK_EVEN)>>1)
-	for(var/obj/structure/window/W in src)
-		if(!W.CanAStarPass(ID, adir))
-			return TRUE
-	for(var/obj/machinery/door/window/W in src)
-		if(!W.CanAStarPass(ID, adir))
-			return TRUE
 	for(var/obj/O in T)
 		if(!O.CanAStarPass(ID, rdir, caller))
 			return TRUE

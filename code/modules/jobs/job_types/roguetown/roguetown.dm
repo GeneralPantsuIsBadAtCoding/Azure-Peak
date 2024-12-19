@@ -37,9 +37,6 @@
 	back = null
 	shoes = null
 	box = null
-	backpack = null
-	satchel  = null
-	duffelbag = null
 	/// List of patrons we are allowed to use
 	var/list/allowed_patrons
 	/// Default patron in case the patron is not allowed

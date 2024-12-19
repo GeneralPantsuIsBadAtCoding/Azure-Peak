@@ -156,12 +156,6 @@
 	results = list(/datum/reagent/consumable/ethanol/beepsky_smash = 5)
 	required_reagents = list(/datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol/quadruple_sec = 2, /datum/reagent/iron = 1)
 
-/datum/chemical_reaction/doctor_delight
-	name = "The Doctor's Delight"
-	id = "doctordelight"
-	results = list(/datum/reagent/consumable/doctor_delight = 5)
-	required_reagents = list(/datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/medicine/cryoxadone = 1)
-
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"
 	id = /datum/reagent/consumable/ethanol/irish_cream
@@ -365,12 +359,6 @@
 	results = list(/datum/reagent/consumable/ethanol/amasec = 10)
 	required_reagents = list(/datum/reagent/iron = 1, /datum/reagent/consumable/ethanol/wine = 5, /datum/reagent/consumable/ethanol/vodka = 5)
 
-/datum/chemical_reaction/changelingsting
-	name = "Changeling Sting"
-	id = /datum/reagent/consumable/ethanol/changelingsting
-	results = list(/datum/reagent/consumable/ethanol/changelingsting = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/screwdrivercocktail = 1, /datum/reagent/consumable/lemon_lime = 2)
-
 /datum/chemical_reaction/aloe
 	name = "Aloe"
 	id = /datum/reagent/consumable/ethanol/aloe
@@ -382,12 +370,6 @@
 	id = /datum/reagent/consumable/ethanol/andalusia
 	results = list(/datum/reagent/consumable/ethanol/andalusia = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 1, /datum/reagent/consumable/ethanol/whiskey = 1, /datum/reagent/consumable/lemonjuice = 1)
-
-/datum/chemical_reaction/neurotoxin
-	name = "Neurotoxin"
-	id = /datum/reagent/consumable/ethanol/neurotoxin
-	results = list(/datum/reagent/consumable/ethanol/neurotoxin = 2)
-	required_reagents = list(/datum/reagent/consumable/ethanol/gargle_blaster = 1, /datum/reagent/medicine/morphine = 1)
 
 /datum/chemical_reaction/snowwhite
 	name = "Snow White"
@@ -653,12 +635,6 @@
 	required_reagents = list(/datum/reagent/consumable/hot_coco = 6, /datum/reagent/consumable/ethanol/creme_de_cacao = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/menthol = 1)
 	mix_message = "The coco turns mint green just as the strong scent hits your nose."
 
-/datum/chemical_reaction/alexander
-	name = "Alexander"
-	id = /datum/reagent/consumable/ethanol/alexander
-	results = list(/datum/reagent/consumable/ethanol/alexander = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/cognac = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1, /datum/reagent/consumable/cream = 1)
-
 /datum/chemical_reaction/sidecar
 	name = "Sidecar"
 	id = /datum/reagent/consumable/ethanol/sidecar
@@ -738,12 +714,6 @@
 	id = /datum/reagent/consumable/ethanol/turbo
 	results = list(/datum/reagent/consumable/ethanol/turbo = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/moonshine = 2, /datum/reagent/nitrous_oxide = 1, /datum/reagent/consumable/ethanol/sugar_rush = 1, /datum/reagent/consumable/pwr_game = 1)
-
-/datum/chemical_reaction/old_timer
-	name = "Old Timer"
-	id = /datum/reagent/consumable/ethanol/old_timer
-	results = list(/datum/reagent/consumable/ethanol/old_timer = 6)
-	required_reagents = list(/datum/reagent/consumable/ethanol/whiskeysoda = 3, /datum/reagent/consumable/parsnipjuice = 2, /datum/reagent/consumable/ethanol/alexander = 1)
 
 /datum/chemical_reaction/rubberneck
 	name = "Rubberneck"

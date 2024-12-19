@@ -7,7 +7,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
-	custom_materials = list(/datum/material/iron = 500)
+
 	var/fire_sound = null						//What sound should play when this ammo is fired
 	var/caliber = null							//Which kind of guns it can be loaded into
 	var/projectile_type = null					//The bullet type to create when New() is called
@@ -43,7 +43,7 @@
 
 /obj/item/ammo_casing/update_icon()
 	..()
-	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
+	icon_state = "[initial(icon_state)]"
 	desc = ""
 
 //proc to magically refill a casing with a new projectile
@@ -66,9 +66,9 @@
 					continue
 			if (boolets > 0)
 				box.update_icon()
-				to_chat(user, span_notice("I collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s."))
+				to_chat(user, "<span class='notice'>I collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s.</span>")
 			else
-				to_chat(user, span_warning("I fail to collect anything!"))
+				to_chat(user, "<span class='warning'>I fail to collect anything!</span>")
 	else
 		return ..()
 

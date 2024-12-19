@@ -225,29 +225,12 @@
 						M_job = M.get_role_title()
 					else if(ismonkey(M))
 						M_job = "Monkey"
-					else if(isalien(M)) //aliens
-						if(islarva(M))
-							M_job = "Alien larva"
-						else
-							M_job = ROLE_ALIEN
 					else
 						M_job = "Carbon-based"
-
-				else if(issilicon(M)) //silicon
-					if(isAI(M))
-						M_job = "AI"
-					else if(ispAI(M))
-						M_job = ROLE_PAI
-					else if(iscyborg(M))
-						M_job = "Cyborg"
-					else
-						M_job = "Silicon-based"
 
 				else if(isanimal(M)) //simple animals
 					if(iscorgi(M))
 						M_job = "Corgi"
-					else if(isslime(M))
-						M_job = "slime"
 					else
 						M_job = "Animal"
 

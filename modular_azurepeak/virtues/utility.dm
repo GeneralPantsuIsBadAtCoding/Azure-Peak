@@ -79,8 +79,7 @@
 	var/obj/item/organ/eyes/eyes = recipient.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return
-	eyes.see_in_dark = 12
-	eyes.lighting_alpha = min(eyes.lighting_alpha, LIGHTING_PLANE_ALPHA_NOCVISION)
+	eyes.lighting_alpha = min(eyes.lighting_alpha, LIGHTING_PLANE_ALPHA_DARKVISION)
 	recipient.update_sight()
 
 /datum/virtue/utility/learned

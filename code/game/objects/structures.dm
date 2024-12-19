@@ -17,7 +17,7 @@
 
 /obj/structure/Initialize()
 	if (!armor)
-		armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+		armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 50, "acid" = 50)
 	. = ..()
 	if(smooth)
 		queue_smooth(src)
@@ -26,7 +26,6 @@
 	if(redstone_id)
 		GLOB.redstone_objs += src
 		. = INITIALIZE_HINT_LATELOAD
-	GLOB.cameranet.updateVisibility(src)
 
 /obj/structure/Bumped(atom/movable/AM)
 	..()
@@ -43,7 +42,6 @@
 
 
 /obj/structure/Destroy()
-	GLOB.cameranet.updateVisibility(src)
 	if(isturf(loc))
 		for(var/mob/living/user in loc)
 			if(climb_offset)
@@ -100,8 +98,6 @@
 			return
 	if(!istype(O, /obj/item) || user.get_active_held_item() != O)
 		return
-	if(iscyborg(user))
-		return
 	if(!user.dropItemToGround(O))
 		return
 	if (O.loc != src.loc)
@@ -125,7 +121,7 @@
 	adjusted_climb_time -= user.STASPD * 2
 	adjusted_climb_time = max(adjusted_climb_time, 0)
 //	if(adjusted_climb_time)
-//		user.visible_message(span_warning("[user] starts climbing onto [src]."), span_warning("I start climbing onto [src]..."))								
+//		user.visible_message(span_warning("[user] starts climbing onto [src]."), span_warning("I start climbing onto [src]..."))
 	structureclimber = user
 	if(do_mob(user, user, adjusted_climb_time))
 		if(src.loc) //Checking if structure has been destroyed

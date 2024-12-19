@@ -33,9 +33,9 @@
 		A.fire_act()
 
 /obj/item/candle/Crossed(H as mob|obj)
-	if(ishuman(H) || issilicon(H)) //i guess carp and shit shouldn't set them off
+	if(ishuman(H)) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
-		if(issilicon(H) || M.m_intent == MOVE_INTENT_RUN)
+		if(M.m_intent == MOVE_INTENT_RUN)
 			wax = 100
 			put_out_candle()
 

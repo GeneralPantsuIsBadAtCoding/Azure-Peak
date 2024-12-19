@@ -89,10 +89,6 @@
 	throw_icon.hud = src
 	hotkeybuttons += throw_icon
 
-	internals = new /atom/movable/screen/internals()
-	internals.hud = src
-	infodisplay += internals
-
 	healths = new /atom/movable/screen/healths()
 	healths.hud = src
 	infodisplay += healths
@@ -103,15 +99,6 @@
 	pull_icon.screen_loc = ui_above_movement
 	pull_icon.hud = src
 	static_inventory += pull_icon
-
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
-	lingchemdisplay.hud = src
-	infodisplay += lingchemdisplay
-
-	lingstingdisplay = new /atom/movable/screen/ling/sting()
-	lingstingdisplay.hud = src
-	infodisplay += lingstingdisplay
-
 
 	zone_select = new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style

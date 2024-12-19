@@ -194,7 +194,7 @@ GLOBAL_VAR(moneymaster)
 	if(obj_broken)
 		set_light(0)
 		return
-	set_light(1, 1, "#1b7bf1")
+	set_light(1, 1, 1, l_color = "#1b7bf1")
 
 /obj/structure/roguemachine/money/Destroy()
 	set_light(0)
@@ -231,4 +231,4 @@ GLOBAL_VAR(moneymaster)
 		add_overlay(mutable_appearance(icon, "[icon_state]-e"))
 	else
 		add_overlay(mutable_appearance(icon, "[icon_state]-b"))
-	set_light(1, 1, "#1b7bf1")
+	set_light(1, 1, 1, l_color = "#1b7bf1")
