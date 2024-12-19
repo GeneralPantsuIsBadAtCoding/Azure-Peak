@@ -112,7 +112,7 @@
 	spitoutmouth = FALSE
 	bundletype = /obj/item/natural/bundle/cloth
 	var/wet = 0
-	/// Effectiveness when used as a bandage, how much bloodloss we can tampon
+	/// Effectiveness when used as a bandage, how much bloodloss we can staunch
 	var/bandage_effectiveness = 0.9
 
 /obj/item/natural/cloth/attack_right(mob/user)

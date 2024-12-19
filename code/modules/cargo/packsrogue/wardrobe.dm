@@ -4,45 +4,6 @@
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
-/datum/supply_pack/rogue/wardrobe/cloaks/bhalfcloaks
-	name = "Half-Cloaks"
-	cost = 20
-	contains = list(
-					/obj/item/clothing/cloak/half,
-					/obj/item/clothing/cloak/half,
-				)
-
-/datum/supply_pack/rogue/wardrobe/cloaks/bcloaks
-	name = "Blue Cloaks"
-	cost = 20
-	contains = list(
-					/obj/item/clothing/cloak/raincloak/blue,
-					/obj/item/clothing/cloak/raincloak/blue,
-				)
-
-/datum/supply_pack/rogue/wardrobe/cloaks/rcloaks
-	name = "Red Cloaks"
-	cost = 20
-	contains = list(
-					/obj/item/clothing/cloak/raincloak/red,
-					/obj/item/clothing/cloak/raincloak/red,
-				)
-
-/datum/supply_pack/rogue/wardrobe/cloaks/gcloaks
-	name = "Green Cloaks"
-	cost = 20
-	contains = list(
-					/obj/item/clothing/cloak/raincloak/green,
-					/obj/item/clothing/cloak/raincloak/green,
-				)
-
-/datum/supply_pack/rogue/wardrobe/gloves/fgloves
-	name = "Fingerless Gloves"
-	cost = 5
-	contains = list(
-					/obj/item/clothing/gloves/roguetown/fingerless,
-					/obj/item/clothing/gloves/roguetown/fingerless,
-				)
 
 /datum/supply_pack/rogue/wardrobe/hat/witchhat
 	name = "Witch-Hunter's Hats"
@@ -76,20 +37,50 @@
 					/obj/item/clothing/head/roguetown/bardhat,
 				)
 
-/datum/supply_pack/rogue/wardrobe/shoes/shalal
-	name = "Shalal Shoes"
-	cost = 10
+/datum/supply_pack/rogue/wardrobe/masks/specs
+	name = "Spectacles"
+	cost = 25
 	contains = list(
-					/obj/item/clothing/shoes/roguetown/shalal,
-					/obj/item/clothing/shoes/roguetown/shalal,
+					/obj/item/clothing/mask/rogue/spectacles,
 				)
 
-/datum/supply_pack/rogue/wardrobe/shoes/sandals
-	name = "Sandals"
-	cost = 5
+/datum/supply_pack/rogue/wardrobe/masks/goldspecs
+	name = "Golden Spectacles"
+	cost = 60
 	contains = list(
-					/obj/item/clothing/shoes/roguetown/gladiator,
-					/obj/item/clothing/shoes/roguetown/gladiator,
+					/obj/item/clothing/mask/rogue/spectacles/golden,
+				)
+
+/datum/supply_pack/rogue/wardrobe/cloaks/bhalfcloaks
+	name = "Half-Cloaks"
+	cost = 20
+	contains = list(
+					/obj/item/clothing/cloak/half,
+					/obj/item/clothing/cloak/half,
+				)
+
+/datum/supply_pack/rogue/wardrobe/cloaks/bcloaks
+	name = "Blue Cloaks"
+	cost = 20
+	contains = list(
+					/obj/item/clothing/cloak/raincloak/blue,
+					/obj/item/clothing/cloak/raincloak/blue,
+				)
+
+/datum/supply_pack/rogue/wardrobe/cloaks/rcloaks
+	name = "Red Cloaks"
+	cost = 20
+	contains = list(
+					/obj/item/clothing/cloak/raincloak/red,
+					/obj/item/clothing/cloak/raincloak/red,
+				)
+
+/datum/supply_pack/rogue/wardrobe/cloaks/gcloaks
+	name = "Green Cloaks"
+	cost = 20
+	contains = list(
+					/obj/item/clothing/cloak/raincloak/green,
+					/obj/item/clothing/cloak/raincloak/green,
 				)
 
 /datum/supply_pack/rogue/wardrobe/suits/blackdress
@@ -134,6 +125,14 @@
 					/obj/item/clothing/suit/roguetown/shirt/undershirt/puritan,
 				)
 
+/datum/supply_pack/rogue/wardrobe/gloves/fgloves
+	name = "Fingerless Gloves"
+	cost = 5
+	contains = list(
+					/obj/item/clothing/gloves/roguetown/fingerless,
+					/obj/item/clothing/gloves/roguetown/fingerless,
+				)
+
 /datum/supply_pack/rogue/wardrobe/pants/formal
 	name = "Formal Pants"
 	cost = 20
@@ -150,16 +149,18 @@
 					/obj/item/clothing/shoes/roguetown/nobleboot,
 				)
 
-/datum/supply_pack/rogue/wardrobe/masks/specs
-	name = "Spectacles"
-	cost = 25
+/datum/supply_pack/rogue/wardrobe/shoes/shalal
+	name = "Shalal Shoes"
+	cost = 10
 	contains = list(
-					/obj/item/clothing/mask/rogue/spectacles,
+					/obj/item/clothing/shoes/roguetown/shalal,
+					/obj/item/clothing/shoes/roguetown/shalal,
 				)
 
-/datum/supply_pack/rogue/wardrobe/masks/goldspecs
-	name = "Golden Spectacles"
-	cost = 60
+/datum/supply_pack/rogue/wardrobe/shoes/sandals
+	name = "Sandals"
+	cost = 5
 	contains = list(
-					/obj/item/clothing/mask/rogue/spectacles/golden,
+					/obj/item/clothing/shoes/roguetown/gladiator,
+					/obj/item/clothing/shoes/roguetown/gladiator,
 				)
