@@ -245,18 +245,20 @@
 	if(!L.used_intent.can_charge())
 		return
 	L.used_intent.prewarning()
-	if(!charging)
-		charging = 1
+
+	if(!charging) //This is for spell charging
+		charging = 1 
 		L.used_intent.on_charge_start()
 		L.update_charging_movespeed(L.used_intent)
 //		L.update_warning(L.used_intent)
-		progress = 0
-//		if(L.used_intent.charge_invocation)
+		progress = 0 
+
+//		if(L.used_intent.charge_invocation) 
 //			sections = 100/L.used_intent.charge_invocation.len
 //		else
 //			sections = null
-		sections = null //commented
-		goal = L.used_intent.get_chargetime()
+		sections = null //commented //From what I can tell, this used to be for the mouse icon changing per % of the cast.
+		goal = L.used_intent.get_chargetime() //How much charge to get in order to cast
 		part = 1
 		lastplayed = 0
 		doneset = 0
@@ -286,12 +288,12 @@
 	//		mouseprog = round(text2num("[((progress / goal) * 20)]"), 1)
 	//		mouse_pointer_icon = GLOB.mouseicons_human[mouseprog]
 	//		testing("mouse[mouseprog]")
-//			if(sections && chargedprog > lastplayed)
+//			if(sections && chargedprog > lastplayed) //used for changing icon based on action progress
 //				L.say(L.used_intent.charge_invocation[part])
 //				part++
 //				lastplayed = sections * part
-		else
-			if(!doneset)
+		else //Fully charged spell
+			if(!doneset) 
 				doneset = 1
 //				if(sections)
 //					L.say(L.used_intent.charge_invocation[L.used_intent.charge_invocation.len])
