@@ -774,7 +774,7 @@
 	if(full_heal)
 		fully_heal(admin_revive = admin_revive)
 	if(stat == DEAD && (admin_revive || can_be_revived())) //in some cases you can't revive (e.g. no brain)
-		GLOB.dead_mob_list -= src
+		GLOB.dead_mob_list -= src  //If any more forms of revival are added, better to use a proc to do this - easier to search
 		GLOB.alive_mob_list += src
 		set_suicide(FALSE)
 		stat = CONSCIOUS

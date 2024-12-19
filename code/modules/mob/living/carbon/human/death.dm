@@ -63,6 +63,8 @@
 			addtimer(CALLBACK(zomble, TYPE_PROC_REF(/datum/antagonist/zombie, wake_zombie)), 5 SECONDS)
 		else if(can_death_zombify(src))
 			zombie_check()
+			to_chat(src, span_userdanger("..is this to be my end..?"))
+			to_chat(src, span_danger("The cold consumes the flicker of hope in your chest, slowly seeping into your limbs...")) 
 
 	if(client || mind)
 		SSticker.deaths++

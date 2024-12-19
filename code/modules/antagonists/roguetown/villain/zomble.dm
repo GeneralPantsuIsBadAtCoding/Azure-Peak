@@ -1,5 +1,5 @@
 /datum/antagonist/zombie
-	name = "Zomble"
+	name = "Deadite"
 	antag_hud_type = ANTAG_HUD_TRAITOR
 	antag_hud_name = "zombie"
 	show_in_roundend = FALSE
@@ -9,17 +9,22 @@
 	var/zombie_start
 	var/revived = FALSE
 	var/next_idle_sound
+
 	// CACHE VARIABLES SO ZOMBIFICATION CAN BE CURED
 	var/was_i_undead = FALSE
 	var/special_role
 	var/ambushable = TRUE
 	var/soundpack_m
 	var/soundpack_f
+
 	var/STASTR
 	var/STASPD
 	var/STAINT
+	var/STACON
+	var/STAEND
 	var/cmode_music
 	var/list/base_intents
+
 	/// Whether or not we have been turned
 	var/has_turned = FALSE
 	/// Last time we bit someone - Zombies will try to bite after 10 seconds of not biting
@@ -68,6 +73,10 @@
 	if(istype(examined_datum, /datum/antagonist/skeleton))
 		return span_boldnotice("Another deadite.")
 
+//Housekeeping/saving variables from pre-zombie 
+
+//Death transformation process goes death -> can_death_zombify -> zombie_check -> zombie.gain() -> rotting -> time -> zombie.wake() -> transform
+//Infection transformation process goes -> infection -> timered transform in zombie_infect_attempt() -> /datum/antagonist/zombie/proc/wake_zombie -> zombietransform
 /datum/antagonist/zombie/on_gain()
 	var/mob/living/carbon/human/zombie = owner?.current
 	if(zombie)
@@ -83,18 +92,24 @@
 		soundpack_m = zombie.dna.species.soundpack_m
 		soundpack_f = zombie.dna.species.soundpack_f
 	base_intents = zombie.base_intents
-	STASTR = zombie.STASTR
-	STASPD = zombie.STASPD
-	STAINT = zombie.STAINT
+
+	src.STASTR = zombie.STASTR
+	src.STASPD = zombie.STASPD
+	src.STAINT = zombie.STAINT
+	src.STACON = zombie.STACON
+	src.STAEND = zombie.STAEND
 	cmode_music = zombie.cmode_music
 	return ..()
 
+//Removal of zombification
 /datum/antagonist/zombie/on_removal()
 	var/mob/living/carbon/human/zombie = owner?.current
 	if(zombie)
+
 		zombie.verbs -= /mob/living/carbon/human/proc/zombie_seek
 		zombie.mind?.special_role = special_role
 		zombie.ambushable = ambushable
+		
 		if(zombie.dna?.species)
 			zombie.dna.species.soundpack_m = soundpack_m
 			zombie.dna.species.soundpack_f = soundpack_f
@@ -105,13 +120,30 @@
 		if(zombie.charflaw)
 			zombie.charflaw.ephemeral = FALSE
 		zombie.update_body()
-		zombie.STASTR = STASTR
-		zombie.STASPD = STASPD
-		zombie.STAINT = STAINT
+
+		//pre zombification stats
+		zombie.STASTR = src.STASTR
+		zombie.STASPD = src.STASPD
+		zombie.STAINT = src.STAINT
+		zombie.STACON = src.STACON
+		zombie.STAEND = src.STAEND
+
+/*
+
+	CHECK HERE IF ANY ZOMBIFICATION ISSUES. DEADITE.
+
+*/
+
+		GLOB.dead_mob_list -= zombie // Remove it from global dead/alive mob list here here, if they're a zombie they probably died.
+									 // There is a better way to maintain it but needs overhaul. Will cover the two methods of zombie
+		GLOB.alive_mob_list += zombie// in both cure rot and medicine. 
+
 		zombie.cmode_music = cmode_music
+
 		for(var/trait in traits_zombie)
 			REMOVE_TRAIT(zombie, trait, "[type]")
 		zombie.remove_client_colour(/datum/client_colour/monochrome)
+
 		if(has_turned && become_rotman)
 			zombie.STACON = max(zombie.STACON - 2, 1) //ur rotting bro
 			zombie.STASPD = max(zombie.STASPD - 3, 1)
@@ -128,7 +160,8 @@
 			zombie.regenerate_organs()
 			if(has_turned)
 				to_chat(zombie, span_green("I no longer crave for flesh..."))
-		for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts)
+
+		for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts) //Cure all limbs
 			zombie_part.rotted = FALSE
 			zombie_part.update_disabled()
 			zombie_part.update_limb()
@@ -140,17 +173,19 @@
 			ghost.can_reenter_corpse = TRUE
 	return ..()
 
+//Housekeeping's done. Transform into zombie.
 /datum/antagonist/zombie/proc/transform_zombie()
 	var/mob/living/carbon/human/zombie = owner.current
 	if(!zombie)
 		qdel(src)
 		return
 	var/obj/item/bodypart/head = zombie.get_bodypart(BODY_ZONE_HEAD)
-	if(!head)
+	if(!head) //If no head then unable to become zombie
 		qdel(src)
 		return
+
 	revived = TRUE //so we can die for real later
-	zombie.add_client_colour(/datum/client_colour/monochrome)
+	
 	for(var/trait_applied in traits_zombie)
 		ADD_TRAIT(zombie, trait_applied, "[type]")
 	if(zombie.mind)
@@ -181,7 +216,24 @@
 		if(!zombie_part.rotted && !zombie_part.skeletonized)
 			zombie_part.rotted = TRUE
 		zombie_part.update_disabled()
+
+	zombie.add_client_colour(/datum/client_colour/monochrome)
+	var/obj/item/organ/eyes/eyes = zombie.getorganslot(ORGAN_SLOT_EYES) //Add zombie eyes(nightivision)
+	if(eyes)
+		eyes.Remove(zombie,1)
+		QDEL_NULL(eyes)
+	eyes = new /obj/item/organ/eyes/night_vision/zombie
+	eyes.Insert(zombie)
+
+//Drop held items
+
+	zombie.dropItemToGround(zombie.get_active_held_item(), TRUE)
+	zombie.dropItemToGround(zombie.get_inactive_held_item(), TRUE)
+
+//Add claws here if wanted.
+
 	zombie.update_body()
+	to_chat(zombie, span_userdanger("I CRAVE FLESH!"))
 	zombie.cmode_music = 'sound/music/combat_weird.ogg'
 
 
@@ -196,7 +248,7 @@
 		SLOT_HEAD,
 		SLOT_WEAR_MASK,
 		SLOT_MOUTH,
-		SLOT_NECK,
+		//SLOT_NECK,
 	)
 	for(var/slot in removed_slots)
 		zombie.dropItemToGround(zombie.get_item_by_slot(slot), TRUE)
@@ -216,7 +268,7 @@
 
 //Infected wake param is just a transition from living to zombie, via zombie_infect()
 //Previously you just died without warning in 3 minutes, now you just become an antag
-/datum/antagonist/zombie/proc/wake_zombie(infected_wake = FALSE)
+/datum/antagonist/zombie/proc/wake_zombie(infected_wake = FALSE, converted = FALSE)
 	testing("WAKEZOMBIE")
 	if(!owner.current)
 		return
@@ -238,7 +290,7 @@
 	zombie.blood_volume = BLOOD_VOLUME_NORMAL
 	zombie.setOxyLoss(0, updating_health = FALSE, forced = TRUE) //zombles dont breathe
 	zombie.setToxLoss(0, updating_health = FALSE, forced = TRUE) //zombles are immune to poison
-	if(!infected_wake) //if we died, heal all of this too
+	if(!infected_wake || converted) //if we died or were converted, heal all of this too. The power of undeath
 		zombie.adjustBruteLoss(-INFINITY, updating_health = FALSE, forced = TRUE)
 		zombie.adjustFireLoss(-INFINITY, updating_health = FALSE, forced = TRUE)
 		zombie.heal_wounds(INFINITY) //Heal every wound that is not permanent
@@ -304,6 +356,10 @@
  * This occurs when one zombie infects a living human, going into instadeath from here is kind of shit and confusing
  * We instead just transform at the end
  */
+ /*
+  No longer used, now infection by wounds. See the_only_cure.dm
+ */
+/*
 /mob/living/carbon/human/proc/zombie_infect_attempt()
 	var/datum/antagonist/zombie/zombie_antag = zombie_check()
 	if(!zombie_antag)
@@ -315,6 +371,7 @@
 	vomit(1, blood = TRUE, stun = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(wake_zombie)), 1 MINUTES)
 	return zombie_antag
+*/
 
 /mob/living/carbon/human/proc/wake_zombie()
 	var/datum/antagonist/zombie/zombie_antag = mind?.has_antag_datum(/datum/antagonist/zombie)
@@ -324,5 +381,5 @@
 	to_chat(src, span_danger("It hurts... Is this really the end for me?"))
 	emote("scream") // heres your warning to others bro
 	Knockdown(1)
-	zombie_antag.wake_zombie(TRUE)
+	zombie_antag.wake_zombie(infected_wake = TRUE, converted = FALSE)
 	return TRUE
