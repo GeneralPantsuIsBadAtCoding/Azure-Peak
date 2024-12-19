@@ -25,7 +25,7 @@
 	..()
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	r_hand = /obj/item/bath/soap
+	r_hand = /obj/item/soap/herbal
 	belt =	/obj/item/storage/belt/rogue/leather/cloth
 	beltl = /obj/item/roguekey/nightmaiden
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
@@ -58,7 +58,7 @@
 
 // Washing Implements
 
-/obj/item/bath/soap
+/obj/item/soap/herbal
 	name = "herbal soap"
 	desc = "A soap made from various herbs"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -70,14 +70,14 @@
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 7
-	var/cleanspeed = 35 //slower than mop
-	var/uses = 10
+	cleanspeed = 35 //slower than mop
+	uses = 10
 
-/obj/item/bath/soap/ComponentInitialize()
+/obj/item/soap/herbal/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 
-/obj/item/bath/soap/examine(mob/user)
+/obj/item/soap/examine(mob/user)
 	. = ..()
 	var/max_uses = initial(uses)
 	var/msg = "It looks like it was freshly made."
@@ -96,7 +96,7 @@
 				msg = "It's seen some light use, but it's still pretty fresh."
 	. += span_notice("[msg]")
 
-/obj/item/bath/soap/attack(mob/target, mob/user)
+/obj/item/soap/attack(mob/target, mob/user)
 	var/turf/bathspot = get_turf(target)
 	if(!istype(bathspot, /turf/open/water/bath))
 		to_chat(user, span_warning("They must be in the bath water!"))

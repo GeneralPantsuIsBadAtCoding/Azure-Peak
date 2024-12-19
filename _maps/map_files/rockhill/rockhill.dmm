@@ -12567,8 +12567,8 @@
 /area/rogue/indoors/town/shop)
 "myB" = (
 /obj/structure/closet/crate/chest/crafted,
-/obj/item/bath/soap,
-/obj/item/bath/soap,
+/obj/item/soap/herbal,
+/obj/item/soap/herbal,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},

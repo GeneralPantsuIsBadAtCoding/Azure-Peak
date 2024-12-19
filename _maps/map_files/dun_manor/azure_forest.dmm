@@ -6132,7 +6132,7 @@
 /obj/item/reagent_containers/glass/bucket/wooden{
 	pixel_y = 15
 	},
-/obj/item/bath/soap,
+/obj/item/soap/herbal,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "Vx" = (

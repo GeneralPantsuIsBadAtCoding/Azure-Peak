@@ -227,10 +227,9 @@
 
 /mob/living/carbon/human/handle_inwater()
 	. = ..()
-	if(!(mobility_flags & MOBILITY_STAND))
-		if(istype(loc, /turf/open/water/bath))
-			if(!wear_armor && !wear_shirt && !wear_pants)
-				add_stress(/datum/stressevent/bathwater)
+	if(istype(loc, /turf/open/water/bath))
+		if(!wear_armor && !wear_shirt && !wear_pants)
+			add_stress(/datum/stressevent/bathwater)
 
 /mob/living/carbon/proc/get_complex_pain()
 	var/amt = 0
