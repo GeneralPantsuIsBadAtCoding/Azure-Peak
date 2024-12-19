@@ -5,14 +5,15 @@
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
 	if (!recipient.mind?.get_skill_level(/datum/skill/magic/arcane)) // we can do this because apply_to is always called first
-		recipient.mind?.adjust_spellpoints(-6) // no martial-arcyne for you - not the intent of this virtue!
+		recipient.mind?.adjust_spellpoints(-4) // Limits skill gain through for non-initial arcynes
 		if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation))
 			recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	else
 		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT))
 			recipient.mind?.adjust_spellpoints(1) // 1 extra spellpoint if you're already arcane
 		else
-			to_chat(recipient, span_notice("I'm too trained in defensive tactics for my Virtue to benefit my spell knowledge any further."))
+			recipient.mind?.adjust_spellpoints(2) // This lessons the -6 that applies to martial classes by default (currently only pontifex at time of change).
+			to_chat(recipient, span_notice("My virtue lessens the limitations of my magical reach."))
 
 /datum/virtue/combat/devotee
 	name = "Devotee"
