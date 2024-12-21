@@ -11,39 +11,40 @@
 /proc/check_zone(zone)
 	if(!zone)
 		return BODY_ZONE_CHEST
+		
 	switch(zone)
 		if(BODY_ZONE_PRECISE_R_EYE)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_L_EYE)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_NOSE)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_MOUTH)
-			zone = BODY_ZONE_HEAD
+			return  BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_SKULL)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_EARS)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_NECK)
-			zone = BODY_ZONE_HEAD
+			return BODY_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_L_HAND)
-			zone = BODY_ZONE_L_ARM
+			return BODY_ZONE_L_ARM
 		if(BODY_ZONE_PRECISE_R_HAND)
-			zone = BODY_ZONE_R_ARM
+			return BODY_ZONE_R_ARM
 		if(BODY_ZONE_PRECISE_L_FOOT)
-			zone = BODY_ZONE_L_LEG
+			return BODY_ZONE_L_LEG
 		if(BODY_ZONE_PRECISE_R_FOOT)
-			zone = BODY_ZONE_R_LEG
+			return BODY_ZONE_R_LEG
 		if(BODY_ZONE_PRECISE_GROIN)
-			zone = BODY_ZONE_CHEST
+			return BODY_ZONE_CHEST
 		if(BODY_ZONE_PRECISE_STOMACH)
-			zone = BODY_ZONE_CHEST
+			return BODY_ZONE_CHEST
 		if(BODY_ZONE_PRECISE_R_INHAND)
-			zone = BODY_ZONE_R_ARM
+			return BODY_ZONE_R_ARM
 		if(BODY_ZONE_PRECISE_L_INHAND)
-			zone = BODY_ZONE_L_ARM
+			return BODY_ZONE_L_ARM
 
-	return zone
+	return BODY_ZONE_CHEST
 
 /**
   * Return the zone or randomly, another valid zone
