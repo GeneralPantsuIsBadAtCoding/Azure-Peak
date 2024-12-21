@@ -443,6 +443,7 @@
 				zombie_antag.last_bite = world.time
 				var/datum/antagonist/zombie/existing_zomble = C.mind?.has_antag_datum(/datum/antagonist/zombie)
 				if(caused_wound?.zombie_infect_attempt() && !existing_zomble)
+					to_chat(user, span_danger("Your gift trickles into their wound...")) //maybe too much?
 					user.mind.adjust_triumphs(1)
 	else
 		C.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
