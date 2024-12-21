@@ -25,7 +25,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/keyring/guardcastle
-
+	id = /obj/item/scomstone/bad/garrison
 /datum/job/roguetown/squire/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
