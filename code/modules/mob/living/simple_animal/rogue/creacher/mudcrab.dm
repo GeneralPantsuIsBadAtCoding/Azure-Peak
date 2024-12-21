@@ -1,7 +1,7 @@
 //Look Sir, free crabs!
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab
 	name = "mudcrab"
-	desc = ""
+	desc = "A mudcrab."
 	icon_state = "mudcrab"
 	icon_living = "mudcrab"
 	icon_dead = "mudcrab_dead"
@@ -11,6 +11,7 @@
 	speak_chance = 1
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/crab = 2)
+	food_type = list(/obj/item/reagent_containers/food/snacks)
 	faction = list("crabs")
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
@@ -25,6 +26,11 @@
 	var/obj/item/inventory_head
 	var/obj/item/inventory_mask
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/mudcrab
+	
 
 /mob/living/simple_animal/mudcrabcrab/Life()
 	..()

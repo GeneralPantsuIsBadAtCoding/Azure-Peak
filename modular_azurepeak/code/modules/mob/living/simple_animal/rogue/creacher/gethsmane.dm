@@ -9,6 +9,10 @@
 	color = "#485775"
 	attack_same = 0
 
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/fretensis
+
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))

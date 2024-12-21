@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/orc
 	name = "Savage Orc"
-	desc = ""
+	desc = "A fierce, brutish looking creature."
 	icon = 'modular_hearthstone/icons/mob/simple_orcs.dmi'
 	icon_state = "savageorc"
 	icon_living = "savageorc"
@@ -44,6 +44,11 @@
 						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 1)
 	aggressive = 1
 
+//new ai, old ai off
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc
+
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2
 	icon_state = "savageorc2"
 	icon_living = "savageorc2"
@@ -57,6 +62,8 @@
 	icon_state = "orcmarauder"
 	icon_living = "orcmarauder"
 	icon_dead = "orcmarauder"
+	base_intents = list(/datum/intent/sword/cut)
+	ai_controller = /datum/ai_controller/elite_orc
 	melee_damage_lower = 30
 	melee_damage_upper = 35
 	armor_penetration = 35
@@ -70,7 +77,8 @@
 	icon_state = "orcmarauder_spear"
 	icon_living = "orcmarauder_spear"
 	icon_dead = "orcmarauder_spear"
-	base_intents = list(/datum/intent/simple/spear)
+	base_intents = list(/datum/intent/spear/thrust/orcthrust)
+	ai_controller = /datum/ai_controller/elite_orc
 	loot = list(/obj/effect/mob_spawn/human/orc/corpse/orcmarauder,
 			/obj/item/rogueweapon/spear,
 			/obj/effect/decal/cleanable/blood)
@@ -79,6 +87,7 @@
 	icon_state = "orcravager"
 	icon_living = "orcravager"
 	icon_dead = "orcravager"
+	ai_controller = /datum/ai_controller/elite_orc
 	melee_damage_lower = 40
 	melee_damage_upper = 50
 	armor_penetration = 40
@@ -92,7 +101,8 @@
 	icon_state = "savageorc_spear"
 	icon_living = "savageorc_spear"
 	icon_dead = "savageorc_spear"
-	base_intents = list(/datum/intent/simple/spear)
+	ai_controller = /datum/ai_controller/elite_orc
+	base_intents = list(/datum/intent/spear/thrust/orcthrust)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	armor_penetration = 35
@@ -110,9 +120,15 @@
 	icon_state = "savageorc_spear2"
 	icon_living = "savageorc_spear2"
 	icon_dead = "savageorc_spear2"
+	ai_controller = /datum/ai_controller/elite_orc
+	base_intents = list(/datum/intent/spear/thrust/orcthrust)
 	loot = list(/obj/effect/mob_spawn/human/orc/corpse/savageorc2,
 			/obj/item/rogueweapon/spear/bonespear,
 			/obj/effect/decal/cleanable/blood)
+
+/datum/intent/spear/thrust/orcthrust
+	clickcd = CLICK_CD_MELEE + 2.5
+	//slower swing timer because it has 2 reach
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/get_sound(input)
 	switch(input)
@@ -197,8 +213,8 @@
 	speed = 2
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged
-	name = "savage orc archer"
-	desc = ""
+	name = "Savage Orc Archer"
+	desc = "A fierce, brutish looking creature. This one has a bow."
 	icon_state = "orcbow"
 	icon_living = "orcbow"
 	icon_dead = "orcbow"
@@ -215,6 +231,17 @@
 	maxHealth = 50
 	health = 50
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/orc_ranged
+
 /mob/living/simple_animal/hostile/retaliate/orc/death(gibbed)
 	..()
 	update_icon()
+
+
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/original
+	AIStatus = AI_ON
+	can_have_ai = TRUE
+
+

@@ -46,6 +46,11 @@
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/mole
 
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/mole
+
 /obj/effect/decal/remains/mole
 	name = "remains"
 	gender = PLURAL

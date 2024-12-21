@@ -50,12 +50,12 @@
 	cmode = 1
 	update_cone_show()
 	if(stat == CONSCIOUS)
-		if(on_fire || buckled || restrained() || pulledby)
+		if(on_fire || buckled || restrained() || pulledby)  //Resist
 			resisting = TRUE
 			walk_to(src,0)
 			resist()
 			resisting = FALSE
-		if(!resisting)
+		if(!resisting)										// Try stand
 			if(!(mobility_flags & MOBILITY_STAND) && (stand_attempts < 3))
 				npc_stand()
 			else

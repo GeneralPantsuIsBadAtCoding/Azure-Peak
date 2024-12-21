@@ -11,13 +11,13 @@
 	turns_per_move = 3
 	see_in_dark = 10
 	move_to_delay = 3
-	base_intents = list(/datum/intent/unarmed/punch)
+	base_intents = list(/datum/intent/unarmed/punch/troll_fists)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 15,
 						/obj/item/natural/hide = 15, /obj/item/natural/bundle/bone/full = 3)
 	faction = list("trolls")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 150
-	maxHealth = 200
+	health = 200
+	maxHealth = 250
 	melee_damage_lower = 45
 	melee_damage_upper = 70
 	vision_range = 2
@@ -26,7 +26,11 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, /obj/item/bodypart, /obj/item/organ)
+	food_type = list(/obj/item/reagent_containers/food/snacks, 
+					/obj/item/bodypart, 
+					/obj/item/organ, 
+					/obj/item/natural/bone, 
+					/obj/item/natural/hide)
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	pooptype = null
 	STACON = 18
@@ -41,6 +45,11 @@
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 	dodgetime = 0
 	aggressive = 1
+
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/troll
 //	stat_attack = UNCONSCIOUS
 
 /mob/living/simple_animal/hostile/retaliate/rogue/bogtroll/death(gibbed)

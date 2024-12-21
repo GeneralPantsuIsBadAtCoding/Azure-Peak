@@ -26,7 +26,10 @@
 	attack_same = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	blood_volume = BLOOD_VOLUME_NORMAL
-	food_type = list(/obj/item/reagent_containers/food/snacks/grown)
+	food_type = list(
+		/obj/item/reagent_containers/food/snacks/grown
+		)
+	var/food_max = 50
 	var/obj/item/udder/udder = null
 	footstep_type = FOOTSTEP_MOB_SHOE
 	var/milkies = FALSE
@@ -40,6 +43,14 @@
 	var/eat_forever
 	candodge = TRUE
 
+	//If the creature is doing something they should STOP MOVING.
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/retaliate/rogue/Move()
+	//If you cant act and dont have a player stop moving.
+	if(!can_act && !client)
+		return FALSE
+	..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
 	..()
@@ -102,6 +113,12 @@
 			Goto(T,move_to_delay,0)
 			return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/retaliate/rogue/AttackingTarget()
+	//If you can't act and dont have a player stop moving.
+	if(!can_act && !client)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/proc/eat_bodies()
 	var/mob/living/L
@@ -184,7 +201,7 @@
 	. = ..()
 	if(.)
 		if(enemies.len)
-			if(prob(5))
+			if(prob(4))
 				emote("cidle")
 			if(prob(deaggroprob))
 				if(mob_timers["aggro_time"])
@@ -195,14 +212,9 @@
 				else
 					mob_timers["aggro_time"] = world.time
 		else
-			if(prob(8))
+			if(prob(2)) //Plays an idle sound
 				emote("idle")
-//			for(var/direction in shuffle(list(1,2,4,8,5,6,9,10)))
-//				var/step = get_step(src, direction)
-//				if(step)
-//					var/obj/item/reagent_containers/food/I = locate(/obj/item/reagent_containers/food) in step
-//					if(is_type_in_list(I, food_type))
-//						Move(step, get_dir(src, step))
+
 			if(adult_growth)
 				growth_prog += 0.5
 				if(growth_prog >= 100)
