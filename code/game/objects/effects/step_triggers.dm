@@ -20,13 +20,6 @@
 		return
 	Trigger(H)
 
-
-/obj/effect/step_trigger/singularity_act()
-	return
-
-/obj/effect/step_trigger/singularity_pull()
-	return
-
 /* Sends a message to mob when triggered*/
 
 /obj/effect/step_trigger/message

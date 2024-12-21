@@ -75,6 +75,15 @@
 	verbage_simple = "braid"
 	verbage = "braids"
 
+/datum/crafting_recipe/roguetown/net
+	name = "net"
+	result = /obj/item/net
+	craftdiff = 2
+	reqs = list(/obj/item/rope = 2,
+				/obj/item/natural/stone = 3)
+	verbage_simple = "braid"
+	verbage = "braids"
+
 /datum/crafting_recipe/roguetown/bowstring
 	name = "fiber bowstring"
 	result = /obj/item/natural/bowstring
@@ -576,6 +585,13 @@
 /obj/item/rogueweapon/shovel/small/crafted
 	sellprice = 5
 
+/datum/crafting_recipe/roguetown/broom
+	name = "broom"
+	result = /obj/item/broom
+	reqs = list(/obj/item/natural/fibers = 1,
+			/obj/item/grown/log/tree/stick = 4)
+	craftdiff = 1
+
 /datum/crafting_recipe/roguetown/book_crafting_kit
 	name = "book crafting kit"
 	result = /obj/item/book_crafting_kit
@@ -666,28 +682,28 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 2
 
-/datum/crafting_recipe/roguetown/prosthetic/woodleft
+/datum/crafting_recipe/roguetown/prosthetic/woodleftarm
 	name = "wood arm (L)"
 	result = list(/obj/item/bodypart/l_arm/prosthetic/woodleft)
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	skillcraft = /datum/skill/craft/crafting
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/prosthetic/woodright
+/datum/crafting_recipe/roguetown/prosthetic/woodrightarm
 	name = "wood arm (R)"
 	result = list(/obj/item/bodypart/r_arm/prosthetic/woodright)
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	skillcraft = /datum/skill/craft/crafting
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/prosthetic/woodleft
+/datum/crafting_recipe/roguetown/prosthetic/woodleftleft
 	name = "wood leg (L)"
 	result = list(/obj/item/bodypart/l_leg/prosthetic)
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	skillcraft = /datum/skill/craft/crafting
 	craftdiff = 3
 
-/datum/crafting_recipe/roguetown/prosthetic/woodright
+/datum/crafting_recipe/roguetown/prosthetic/woodrightleg
 	name = "wood leg (R)"
 	result = list(/obj/item/bodypart/r_leg/prosthetic)
 	reqs = list(/obj/item/grown/log/tree/small = 1)

@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	roundend_category = "Vampires"
 	antagpanel_category = "Vampire"
 	job_rank = ROLE_VAMPIRE
-	antag_hud_type = ANTAG_HUD_VAMPIRE
-	antag_hud_name = "Vlord"
+	antag_hud_type = ANTAG_HUD_TRAITOR
+	antag_hud_name = "vampire lord"
 	confess_lines = list(
 		"I AM ANCIENT",
 		"I AM THE LAND",
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	icon_state = "vpants"
 	item_state = "vpants"
 	sewrepair = FALSE
-	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "piercing" = 0, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	do_sound = FALSE
@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	body_parts_covered = CHEST|GROIN|VITALS
 	icon_state = "vplate"
 	item_state = "vplate"
-	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "piercing" = 100, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	nodismemsleeves = TRUE
 	max_integrity = 500
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	color = null
 	blocksound = PLATEHIT
-	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "bullet" = 100, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 100, "slash" = 100, "stab" = 90, "piercing" = 100, "fire" = 0, "acid" = 0)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/roguetown/helmet/heavy/vampire
@@ -581,9 +581,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /obj/structure/vampire/portal/Initialize()
 	. = ..()
-	set_light(3, 20, LIGHT_COLOR_BLOOD_MAGIC)
+	set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
 	playsound(loc, 'sound/misc/portalopen.ogg', 100, FALSE, pressure_affected = FALSE)
-	sleep(600)
 	visible_message(span_boldnotice("[src] shudders before rapidly closing."))
 	qdel(src)
 
@@ -594,7 +593,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /obj/structure/vampire/bloodpool/Initialize()
 	. = ..()
-	set_light(3, 20, LIGHT_COLOR_BLOOD_MAGIC)
+	set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
 
 /obj/structure/vampire/bloodpool/examine(mob/user)
 	. = ..()

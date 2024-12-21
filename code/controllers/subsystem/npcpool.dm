@@ -1,5 +1,6 @@
 SUBSYSTEM_DEF(npcpool)
 	name = "NPC Pool"
+	wait  = 1 SECONDS //doubles ai responsiveness
 	flags = SS_POST_FIRE_TIMING|SS_NO_INIT|SS_BACKGROUND
 	priority = FIRE_PRIORITY_NPC
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME

@@ -84,7 +84,7 @@
 /area/rogue/under/cave/goblinfort)
 "bN" = (
 /obj/machinery/light/rogue/smelter/great,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "bS" = (
@@ -502,7 +502,6 @@
 	pixel_x = 6;
 	pixel_y = 11
 	},
-/obj/item/rogueweapon/huntingknife/cleaver/combat,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
 "gU" = (
@@ -730,12 +729,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"jH" = (
-/obj/structure/statue/bone/skull/half{
-	dir = 1
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/outdoors/mountains/decap/stepbelow)
 "jO" = (
 /turf/open/water/sewer,
 /area/rogue/outdoors/mountains/decap)
@@ -772,10 +765,6 @@
 "kg" = (
 /obj/effect/decal/remains/bigrat,
 /turf/open/floor/rogue/cobble,
-/area/rogue/outdoors/mountains/decap/stepbelow)
-"ki" = (
-/obj/structure/statue/bone/skull/half,
-/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "kw" = (
 /obj/effect/decal/cleanable/blood,
@@ -856,7 +845,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /obj/item/roguebin/trash,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -1239,10 +1228,6 @@
 	icon_state = "plating2"
 	},
 /area/rogue/outdoors/mountains/decap)
-"rb" = (
-/obj/structure/statue/bone/rib,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/dragonden)
 "rl" = (
 /obj/structure/fluff/railing/border{
 	dir = 6
@@ -1270,7 +1255,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "rR" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/structure/rack/rogue,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/cobble,
@@ -1541,10 +1526,6 @@
 "vt" = (
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"vw" = (
-/obj/item/clothing/head/helmet/skull,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/dragonden)
 "vx" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/naturalstone,
@@ -1867,10 +1848,6 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/clothing,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
-"yR" = (
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/rogue/cobble,
-/area/rogue/outdoors/mountains/decap/stepbelow)
 "yY" = (
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/cobble,
@@ -1891,7 +1868,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "zm" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -1922,10 +1899,6 @@
 "zI" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/mountains/decap)
-"zJ" = (
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/mountains/decap/stepbelow)
 "zL" = (
 /obj/structure/rack/rogue,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
@@ -2451,10 +2424,6 @@
 "Gt" = (
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"GD" = (
-/obj/effect/decal/cleanable/blood/bubblegum,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/mountains/decap/stepbelow)
 "GE" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/rogue/dirt/road,
@@ -2505,7 +2474,7 @@
 	dir = 8;
 	icon_state = "largetable"
 	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/church,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Ht" = (
@@ -2678,7 +2647,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Jk" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /obj/structure/bed/rogue/inn/wooldouble,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -2758,7 +2727,7 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Km" = (
 /obj/structure/table/wood/crafted,
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/item/rogueweapon/pick,
 /obj/item/natural/feather,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -2893,10 +2862,6 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/ruinedwood/herringbone,
-/area/rogue/outdoors/mountains/decap/stepbelow)
-"MJ" = (
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "MM" = (
 /obj/machinery/light/rogue/firebowl/standing/blue,
@@ -3034,12 +2999,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap)
-"OJ" = (
-/obj/structure/statue/bone/rib{
-	dir = 1
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/dragonden)
 "OP" = (
 /obj/item/natural/stone,
 /turf/open/floor/rogue/cobble,
@@ -3152,10 +3111,6 @@
 /obj/item/storage/belt/rogue/pouch/coins/mid,
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/undeadmanor)
-"Qp" = (
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/outdoors/mountains/decap/stepbelow)
 "Qx" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/cooking/pan,
@@ -3780,7 +3735,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/goblinfort)
 "Zw" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Zy" = (
@@ -6886,7 +6841,7 @@ Ki
 Ki
 Ki
 SJ
-yR
+LR
 lD
 lD
 lD
@@ -7043,7 +6998,7 @@ pX
 Jk
 Gt
 SJ
-Qp
+SJ
 SJ
 Ki
 bX
@@ -7147,7 +7102,7 @@ Ki
 CF
 CF
 fg
-ki
+fg
 fg
 tO
 pX
@@ -7277,7 +7232,7 @@ Ki
 CF
 CF
 fg
-jH
+fg
 fg
 LR
 pX
@@ -11038,9 +10993,9 @@ pd
 pd
 pd
 pd
-MJ
+SJ
 lD
-zJ
+lD
 SW
 SW
 SW
@@ -13209,12 +13164,12 @@ gb
 gb
 AX
 Dq
-OJ
 Dq
 Dq
 Dq
 Dq
-vw
+Dq
+Dq
 Dq
 Dq
 Dq
@@ -13475,7 +13430,7 @@ Za
 Dq
 Dq
 Dq
-OJ
+Dq
 Dq
 Dq
 Dq
@@ -13860,7 +13815,7 @@ gb
 AX
 Dq
 Dq
-rb
+Dq
 Dq
 Dq
 Dq
@@ -14059,7 +14014,7 @@ bX
 pX
 Ki
 CF
-GD
+CF
 pX
 pX
 pX

@@ -6,16 +6,20 @@
 	race = /datum/species/goblin
 	gender = MALE
 	bodyparts = list(/obj/item/bodypart/chest/goblin, /obj/item/bodypart/head/goblin, /obj/item/bodypart/l_arm/goblin,
-					 /obj/item/bodypart/r_arm/goblin, /obj/item/bodypart/r_leg/goblin, /obj/item/bodypart/l_leg/goblin)
+					/obj/item/bodypart/r_arm/goblin, /obj/item/bodypart/r_leg/goblin, /obj/item/bodypart/l_leg/goblin)
 	rot_type = /datum/component/rot/corpse/goblin
 	var/gob_outfit = /datum/outfit/job/roguetown/npc/goblin
 	ambushable = FALSE
 	base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
-	possible_rmb_intents = list()
+	a_intent = INTENT_HELP
+	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
+	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/swift, /datum/rmb_intent/riposte, /datum/rmb_intent/weak)
+	flee_in_pain = TRUE
+	stand_attempts = 6
 	vitae_pool = 250 // Small, frail creechers with not so much vitality to gain from.
 
 /mob/living/carbon/human/species/goblin/npc
-	aggressive = 1
+	aggressive=1
 	mode = AI_IDLE
 	dodgetime = 30 //they can dodge easily, but have a cooldown on it
 	flee_in_pain = TRUE
@@ -23,28 +27,34 @@
 	wander = FALSE
 
 /mob/living/carbon/human/species/goblin/npc/ambush
-
 	wander = TRUE
+	attack_speed = 2
 
 /mob/living/carbon/human/species/goblin/hell
 	name = "hell goblin"
 	race = /datum/species/goblin/hell
+
 /mob/living/carbon/human/species/goblin/npc/hell
 	race = /datum/species/goblin/hell
+
 /mob/living/carbon/human/species/goblin/npc/ambush/hell
 	race = /datum/species/goblin/hell
+
 /datum/species/goblin/hell
-	id = "goblin_hell"
 	name = "hell goblin"
+	id = "goblin_hell"
 	raceicon = "goblin_hell"
 
 /mob/living/carbon/human/species/goblin/cave
 	name = "cave goblin"
 	race = /datum/species/goblin/cave
+
 /mob/living/carbon/human/species/goblin/npc/cave
 	race = /datum/species/goblin/cave
+
 /mob/living/carbon/human/species/goblin/npc/ambush/cave
 	race = /datum/species/goblin/cave
+
 /datum/species/goblin/cave
 	id = "goblin_cave"
 	raceicon = "goblin_cave"
@@ -57,8 +67,8 @@
 /mob/living/carbon/human/species/goblin/npc/ambush/sea
 	race = /datum/species/goblin/sea
 /datum/species/goblin/sea
-	id = "goblin_sea"
 	raceicon = "goblin_sea"
+	id = "goblin_sea"
 
 /mob/living/carbon/human/species/goblin/moon
 	name = "moon goblin"
@@ -73,7 +83,7 @@
 
 /datum/species/goblin/moon/spec_death(gibbed, mob/living/carbon/human/H)
 	new /obj/item/reagent_containers/powder/moondust_purest(get_turf(H))
-	H.visible_message(span_blue("Moondust falls from [H]!"))
+	H.visible_message("<span class='blue'>Moondust falls from [H]!</span>")
 //	qdel(H)
 
 /obj/item/bodypart/chest/goblin
@@ -110,17 +120,7 @@
 	sexes = 1
 	offset_features = list(OFFSET_HANDS = list(0,-4), OFFSET_HANDS_F = list(0,-4))
 	damage_overlay_type = ""
-	organs = list(
-		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
-		ORGAN_SLOT_HEART = /obj/item/organ/heart,
-		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs,
-		ORGAN_SLOT_EYES = /obj/item/organ/eyes,
-		ORGAN_SLOT_EARS = /obj/item/organ/ears,
-		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue,
-		ORGAN_SLOT_LIVER = /obj/item/organ/liver,
-		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
-		ORGAN_SLOT_APPENDIX = /obj/item/organ/appendix,
-		)
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	var/raceicon = "goblin"
 
 /datum/species/goblin/regenerate_icons(mob/living/carbon/human/H)
@@ -197,9 +197,7 @@
 
 /mob/living/carbon/human/species/goblin/Initialize()
 	. = ..()
-	spawn(10)
-		after_creation()
-	//addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
+	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 
 /mob/living/carbon/human/species/goblin/handle_combat()
 	if(mode == AI_HUNT)
@@ -223,8 +221,9 @@
 	if(eyes)
 		eyes.Remove(src,1)
 		QDEL_NULL(eyes)
-	eyes = new /obj/item/organ/eyes/night_vision/wild_goblin
+	eyes = new /obj/item/organ/eyes/night_vision/nightmare
 	eyes.Insert(src)
+	src.underwear = "Nude"
 	if(src.charflaw)
 		QDEL_NULL(src.charflaw)
 	update_body()
@@ -233,7 +232,7 @@
 	real_name = "goblin"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 //	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 //	blue breathes underwater, need a new specific one for this maybe organ cheque
 //	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
@@ -321,8 +320,9 @@
 			if(prob(80))
 				head = /obj/item/clothing/head/roguetown/helmet/leather/goblin
 		if(5) //heavy armored sword/flail/shields
+			ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			if(prob(30))
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 			else
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/goblin
 			if(prob(80))
@@ -357,7 +357,7 @@
 
 /obj/structure/gob_portal/Initialize()
 	. = ..()
-	soundloop = new(list(src), FALSE)
+	soundloop = new(src, FALSE)
 	soundloop.start()
 	spawn_gob()
 
@@ -367,7 +367,7 @@
 	if(!in_range(src, user))
 		return
 	if(gobs >= (maxgobs+1))
-		to_chat(user, span_danger("Too many Gobs."))
+		to_chat(user, "<span class='danger'>Too many Gobs.</span>")
 		return
 	gobs++
 	var/mob/living/carbon/human/species/goblin/npc/N = new (get_turf(src))
@@ -393,6 +393,8 @@
 		new /mob/living/carbon/human/species/goblin/npc(get_turf(src))
 	gobs++
 	update_icon()
+	if(living_player_count() < 10)
+		maxgobs = 1
 	if(gobs < maxgobs)
 		spawn_gob()
 
@@ -403,12 +405,8 @@
 		return
 	spawning = TRUE
 	update_icon()
-	spawn(2 SECONDS)
-		creategob()
-	//addtimer(CALLBACK(src, PROC_REF(creategob)), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(creategob)), 2 SECONDS)
 
 /obj/structure/gob_portal/Destroy()
 	soundloop.stop()
 	. = ..()
-
-

@@ -54,50 +54,44 @@
 		icon_regular_floor = "floor"
 	else
 		icon_regular_floor = icon_state
-	if(mapload && prob(33))
-		MakeDirty()
 
-/turf/open/floor/ex_act(severity, target)
+/turf/open/floor/ex_act(severity, target, epicenter, devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/shielded = is_shielded()
 	..()
 	if(severity != 1 && shielded && target != src)
 		return
 	if(target == src)
 		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+		take_damage(INFINITY, BRUTE, "blunt", 0)
 		return
-	if(target != null)
-		severity = 3
+	var/ddist = devastation_range
+	var/hdist = heavy_impact_range
+	var/ldist = light_impact_range
+	var/fdist = flame_range
+	var/fodist = get_dist(src, epicenter)
+	var/brute_loss = 0
+	var/dmgmod = round(rand(0.1, 2), 0.1)
 
-	switch(severity)
-		if(1)
-			ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-		if(2)
-			switch(pick(1,2;75,3))
-				if(1)
-					if(!length(baseturfs))
-						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-					else
-						ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-				if(2)
-					ScrapeAway(2, flags = CHANGETURF_INHERIT_AIR)
-				if(3)
-					if(prob(80))
-						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-					else
-						break_tile()
-					hotspot_expose(1000,CELL_VOLUME)
-		if(3)
-			if (prob(50))
-				src.break_tile()
-				src.hotspot_expose(1000,CELL_VOLUME)
+	switch (severity)
+		if (EXPLODE_DEVASTATE)
+			brute_loss = ((250 * ddist) - (250 * fodist) * dmgmod)
+
+		if (EXPLODE_HEAVY)
+			brute_loss = ((100 * hdist) - (100 * fodist) * dmgmod)
+
+		if(EXPLODE_LIGHT)
+			brute_loss = ((25 * ldist) - (25 * fodist) * dmgmod)
+
+	take_damage(brute_loss, BRUTE, "blunt", 0)
+
+	if(fdist && !QDELETED(src))
+		var/stacks = ((fdist - fodist) * 2)
+		fire_act(stacks)
 
 /turf/open/floor/is_shielded()
 	for(var/obj/structure/A in contents)
 		if(A.level == 3)
 			return 1
-
-/turf/open/floor/blob_act(obj/structure/blob/B)
-	return
 
 /turf/open/floor/update_icon()
 	. = ..()
@@ -108,12 +102,6 @@
 
 /turf/open/floor/proc/gets_drilled()
 	return
-
-/turf/open/floor/proc/break_tile_to_plating()
-	var/turf/open/floor/plating/T = make_plating()
-	if(!istype(T))
-		return
-	T.break_tile()
 
 /turf/open/floor/proc/break_tile()
 	if(broken)
@@ -151,28 +139,7 @@
 		return 1
 	if(..())
 		return 1
-	if(intact && istype(C, /obj/item/stack/tile))
-		try_replace_tile(C, user, params)
 	return 0
-
-/turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(intact && pry_tile(I, user))
-		return TRUE
-
-/turf/open/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
-	if(T.turf_type == type)
-		return
-	var/obj/item/crowbar/CB = user.is_holding_item_of_type(/obj/item/crowbar)
-	if(!CB)
-		return
-	var/turf/open/floor/plating/P = pry_tile(CB, user, TRUE)
-	if(!istype(P))
-		return
-	P.attackby(T, user, params)
-
-/turf/open/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
-	I.play_tool_sound(src, 80)
-	return remove_tile(user, silent)
 
 /turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
 	if(broken || burnt)
@@ -187,104 +154,5 @@
 			new floor_tile(src)
 	return make_plating()
 
-/turf/open/floor/singularity_pull(S, current_size)
-	..()
-	if(current_size == STAGE_THREE)
-		if(prob(30))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size == STAGE_FOUR)
-		if(prob(50))
-			if(floor_tile)
-				new floor_tile(src)
-				make_plating()
-	else if(current_size >= STAGE_FIVE)
-		if(floor_tile)
-			if(prob(70))
-				new floor_tile(src)
-				make_plating()
-		else if(prob(50))
-			ReplaceWithLattice()
-
-/turf/open/floor/narsie_act(force, ignore_mobs, probability = 20)
-	. = ..()
-	if(.)
-		ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
-
 /turf/open/floor/acid_melt()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-
-/turf/open/floor/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
-	switch(the_rcd.mode)
-		if(RCD_FLOORWALL)
-			return list("mode" = RCD_FLOORWALL, "delay" = 20, "cost" = 16)
-		if(RCD_AIRLOCK)
-			if(the_rcd.airlock_glass)
-				return list("mode" = RCD_AIRLOCK, "delay" = 50, "cost" = 20)
-			else
-				return list("mode" = RCD_AIRLOCK, "delay" = 50, "cost" = 16)
-		if(RCD_DECONSTRUCT)
-			return list("mode" = RCD_DECONSTRUCT, "delay" = 50, "cost" = 33)
-		if(RCD_WINDOWGRILLE)
-			return list("mode" = RCD_WINDOWGRILLE, "delay" = 10, "cost" = 4)
-		if(RCD_MACHINE)
-			return list("mode" = RCD_MACHINE, "delay" = 20, "cost" = 25)
-		if(RCD_COMPUTER)
-			return list("mode" = RCD_COMPUTER, "delay" = 20, "cost" = 25)
-	return FALSE
-
-/turf/open/floor/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
-	switch(passed_mode)
-		if(RCD_FLOORWALL)
-			to_chat(user, span_notice("I build a wall."))
-			PlaceOnTop(/turf/closed/wall)
-			return TRUE
-		if(RCD_AIRLOCK)
-			if(locate(/obj/machinery/door/airlock) in src)
-				return FALSE
-			to_chat(user, span_notice("I build an airlock."))
-			var/obj/machinery/door/airlock/A = new the_rcd.airlock_type(src)
-
-			A.electronics = new/obj/item/electronics/airlock(A)
-
-			if(the_rcd.conf_access)
-				A.electronics.accesses = the_rcd.conf_access.Copy()
-			A.electronics.one_access = the_rcd.use_one_access
-
-			if(A.electronics.one_access)
-				A.req_one_access = A.electronics.accesses
-			else
-				A.req_access = A.electronics.accesses
-			A.autoclose = TRUE
-			return TRUE
-		if(RCD_DECONSTRUCT)
-			if(!ScrapeAway(flags = CHANGETURF_INHERIT_AIR))
-				return FALSE
-			to_chat(user, span_notice("I deconstruct [src]."))
-			return TRUE
-		if(RCD_WINDOWGRILLE)
-			if(locate(/obj/structure/grille) in src)
-				return FALSE
-			to_chat(user, span_notice("I construct the grille."))
-			var/obj/structure/grille/G = new(src)
-			G.anchored = TRUE
-			return TRUE
-		if(RCD_MACHINE)
-			if(locate(/obj/structure/frame/machine) in src)
-				return FALSE
-			var/obj/structure/frame/machine/M = new(src)
-			M.state = 2
-			M.icon_state = "box_1"
-			M.anchored = TRUE
-			return TRUE
-		if(RCD_COMPUTER)
-			if(locate(/obj/structure/frame/computer) in src)
-				return FALSE
-			var/obj/structure/frame/computer/C = new(src)
-			C.anchored = TRUE
-			C.state = 1
-			C.setDir(the_rcd.computer_dir)
-			return TRUE
-
-	return FALSE

@@ -45,9 +45,12 @@
 		rewind_type = PROC_REF(rewind_living)
 
 	if(iscarbon(parent))
-		var/mob/living/carbon/C = parent
-		saved_bodyparts = C.save_bodyparts()
-		rewind_type = PROC_REF(rewind_carbon)
+		var/mob/living/L = parent
+		clone_loss = L.getCloneLoss()
+		tox_loss = L.getToxLoss()
+		oxy_loss = L.getOxyLoss()
+		brain_loss = L.getOrganLoss(ORGAN_SLOT_BRAIN)
+		rewind_type = PROC_REF(rewind_living)
 
 	else if(isanimal(parent))
 		var/mob/living/simple_animal/M = parent
@@ -63,7 +66,6 @@
 
 /datum/component/dejavu/Destroy()
 	starting_turf = null
-	saved_bodyparts = null
 	return ..()
 
 /datum/component/dejavu/proc/rewind()
@@ -90,9 +92,6 @@
 	rewind()
 
 /datum/component/dejavu/proc/rewind_carbon()
-	if(saved_bodyparts)
-		var/mob/living/carbon/master = parent
-		master.apply_saved_bodyparts(saved_bodyparts)
 	rewind_living()
 
 /datum/component/dejavu/proc/rewind_animal()

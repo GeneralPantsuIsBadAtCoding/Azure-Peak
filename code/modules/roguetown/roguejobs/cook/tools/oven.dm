@@ -1,9 +1,7 @@
 
-
 /obj/machinery/light/rogue/oven
 	icon = 'icons/roguetown/misc/lighting.dmi'
-	name = "stone oven"
-	desc = "Stands sentinel against hunger and darkness when lit."
+	name = "oven"
 	icon_state = "oven1"
 	base_state = "oven"
 	density = FALSE

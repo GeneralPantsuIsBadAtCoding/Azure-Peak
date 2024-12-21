@@ -83,10 +83,9 @@
 				return
 
 			if(istype(user.used_intent, /datum/intent/lord_silence))
-				HU.visible_message(span_warning("[HU] silences [H] with the [src]."))
-				H.dna.add_mutation(/datum/mutation/human/mute)
-				addtimer(CALLBACK(H.dna, TYPE_PROC_REF(/datum/dna/, remove_mutation), /datum/mutation/human/mute), 20 SECONDS)
-				to_chat(H, span_danger("I'm silenced by the scepter!"))
+				HU.visible_message("<span class='warning'>[HU] silences [H] with \the [src].</span>")
+				H.set_silence(20 SECONDS)
+				to_chat(H, "<span class='danger'>I'm silenced by the scepter!</span>")
 				return
 
 /obj/item/rogueweapon/mace/stunmace

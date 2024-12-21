@@ -2,7 +2,7 @@
 	var/list/played_loops = list() //uses dlink to link to the sound
 
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat = FALSE)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -14,9 +14,9 @@
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
-	channel = channel || open_sound_channel()
+	channel = channel || SSsounds.random_available_channel()
 
- 	// Looping through the player list has the added bonus of working for mobs inside containers
+	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = soundin
 	if(!istype(S))
 		S = sound(get_sfx(soundin))
@@ -32,14 +32,15 @@
 	if(soundping)
 		ping_sound(source)
 
+	var/list/muffled_listeners = list() //this is very rudimentary list of muffled listeners above and below to mimic sound muffling (this is done through modifying the playsounds for them)
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
 
-		if(above_turf && istransparentturf(above_turf))
-			listeners += hearers(maxdistance,above_turf)
+		if(above_turf)
+			muffled_listeners += hearers(maxdistance,above_turf)
 
-		if(below_turf && istransparentturf(turf_source))
-			listeners += hearers(maxdistance,below_turf)
+		if(below_turf)
+			muffled_listeners += hearers(maxdistance,below_turf)
 
 	else
 		if(above_turf)
@@ -49,14 +50,18 @@
 		if(below_turf)
 			listeners += SSmobs.clients_by_zlevel[below_turf.z]
 			listeners += SSmobs.dead_players_by_zlevel[below_turf.z]
-	
-	listeners += SSmobs.dead_players_by_zlevel[source_z]
 
+	listeners += SSmobs.dead_players_by_zlevel[source_z]
 	. = list()
 
 	for(var/mob/M as anything in listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
 			if(M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S, repeat))
+				. += M
+
+	for(var/mob/M as anything in muffled_listeners)
+		if(get_dist(M, turf_source) <= maxdistance)
+			if(M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S, repeat, muffled = TRUE))
 				. += M
 
 
@@ -86,7 +91,7 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
 */
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel, pressure_affected = TRUE, sound/S, repeat)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel, pressure_affected = TRUE, sound/S, repeat, muffled)
 	if(!client || !can_hear())
 		return FALSE
 
@@ -94,7 +99,15 @@
 		S = sound(get_sfx(soundin))
 
 	S.wait = 0 //No queue
-	S.channel = channel || open_sound_channel()
+	S.channel = channel || SSsounds.random_available_channel()
+
+	if(muffled)
+		S.environment = 11
+		if(falloff)
+			falloff *= 1.5
+		else
+			falloff = FALLOFF_SOUNDS * 1.5
+		vol *= 0.75
 
 	var/vol2use = vol
 	if(client.prefs)
@@ -199,14 +212,13 @@
 			var/mob/M = m
 			M.playsound_local(M, null, volume, vary, frequency, falloff, channel, pressure_affected, S)
 
-/proc/open_sound_channel()
-	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
-	. = ++next_channel
-	if(next_channel > CHANNEL_HIGHEST_AVAILABLE)
-		next_channel = 1
-
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
+
+/mob/proc/set_sound_channel_volume(channel, volume)
+	var/sound/S = sound(null, FALSE, FALSE, channel, volume)
+	S.status = SOUND_UPDATE
+	SEND_SOUND(src, S)
 
 /mob/proc/mute_sound_channel(chan)
 	for(var/sound/S in client.SoundQuery())
@@ -305,10 +317,22 @@
 				soundin = pick('sound/foley/cloth_wipe (1).ogg','sound/foley/cloth_wipe (2).ogg','sound/foley/cloth_wipe (3).ogg')
 			if ("glassbreak")
 				soundin = pick('sound/combat/hits/onglass/glassbreak (1).ogg','sound/combat/hits/onglass/glassbreak (2).ogg','sound/combat/hits/onglass/glassbreak (3).ogg')
+			if ("parrywood")
+				soundin = pick('sound/combat/parry/wood/parrywood (1).ogg', 'sound/combat/parry/wood/parrywood (2).ogg', 'sound/combat/parry/wood/parrywood (3).ogg')
 			if ("unarmparry")
 				soundin = pick('sound/combat/parry/pugilism/unarmparry (1).ogg','sound/combat/parry/pugilism/unarmparry (2).ogg','sound/combat/parry/pugilism/unarmparry (3).ogg')
-			if ("bladedmedium")
+			if ("dagger")
+				soundin = pick('sound/combat/parry/bladed/bladedsmall (1).ogg', 'sound/combat/parry/bladed/bladedsmall (2).ogg', 'sound/combat/parry/bladed/bladedsmall (3).ogg')
+			if ("rapier")
+				soundin = pick('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
+			if ("sword")
 				soundin = pick('sound/combat/parry/bladed/bladedmedium (1).ogg', 'sound/combat/parry/bladed/bladedmedium (2).ogg', 'sound/combat/parry/bladed/bladedmedium (3).ogg')
+			if ("largeblade")
+				soundin = pick('sound/combat/parry/bladed/bladedlarge (1).ogg', 'sound/combat/parry/bladed/bladedlarge (2).ogg', 'sound/combat/parry/bladed/bladedlarge (3).ogg')
+			if ("unsheathe_sword")
+				soundin = pick('sound/foley/equip/swordsmall1.ogg', 'sound/foley/equip/swordsmall2.ogg')
+			if ("brandish_blade")
+				soundin = pick('sound/foley/equip/swordlarge1.ogg', 'sound/foley/equip/swordlarge2.ogg')
 			if ("burn")
 				soundin = pick('sound/combat/hits/burn (1).ogg','sound/combat/hits/burn (2).ogg')
 			if ("nodmg")
@@ -356,5 +380,9 @@
 				soundin = pick('sound/combat/wooshes/blunt/wooshlarge (1).ogg','sound/combat/wooshes/blunt/wooshlarge (2).ogg','sound/combat/wooshes/blunt/wooshlarge (3).ogg')
 			if("punchwoosh")
 				soundin = pick('sound/combat/wooshes/punch/punchwoosh (1).ogg','sound/combat/wooshes/punch/punchwoosh (2).ogg','sound/combat/wooshes/punch/punchwoosh (3).ogg')
+
+
+
+
 
 	return soundin

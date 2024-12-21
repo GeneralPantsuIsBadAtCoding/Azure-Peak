@@ -13,6 +13,8 @@
 #define UNSETEMPTY(L) if (L && !length(L)) L = null
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = list(); } }
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
@@ -585,3 +587,29 @@
 			return FALSE
 
 	return TRUE
+
+//Scales a range (i.e 1,100) and picks an item from the list based on your passed value
+//i.e in a list with length 4, a 25 in the 1-100 range will give you the 2nd item
+//This assumes your ranges start with 1, I am not good at math and can't do linear scaling
+/proc/scale_range_pick(min,max,value,list/L)
+	if(!length(L))
+		return null
+	var/index = 1 + (value * (length(L) - 1)) / (max - min)
+	if(index > length(L))
+		index = length(L)
+	return L[index]
+
+GLOBAL_LIST_EMPTY(string_lists)
+
+/**
+ * Caches lists with non-numeric stringify-able values (text or typepath).
+ */
+/proc/string_list(list/values)
+	var/string_id = values.Join("-")
+
+	. = GLOB.string_lists[string_id]
+
+	if(.)
+		return
+
+	return GLOB.string_lists[string_id] = values

@@ -5,18 +5,17 @@
 	item_state = "shrunkenlamp"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	light_range = 4
+	light_outer_range = 4
 	light_power = 20
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 
 /obj/item/flashlight/lantern/shrunken/update_brightness(mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light_on(TRUE)
+		set_light(3, 3, 20, l_color = LIGHT_COLOR_BLOOD_MAGIC)
 	else
 		icon_state = initial(icon_state)
-		set_light_on(FALSE)
-
+		set_light(0)
 
 /obj/structure/underworld/carriageman
 	name = "The Carriageman"
@@ -30,7 +29,7 @@
 
 /obj/structure/underworld/carriageman/Initialize()
 	. = ..()
-	set_light(5, 30, LIGHT_COLOR_BLUE)
+	set_light(5, 4, 30, l_color = LIGHT_COLOR_BLUE)
 
 /obj/structure/underworld/carriageman/attack_hand(mob/living/carbon/spirit/user)
 	if(!user.paid)
@@ -85,7 +84,7 @@
 
 /obj/structure/underworld/carriage/Initialize()
 	. = ..()
-	set_light(5, 30, LIGHT_COLOR_BLUE)
+	set_light(5, 3, 30, l_color = LIGHT_COLOR_BLUE)
 
 /obj/structure/underworld/carriage/attack_hand(mob/living/carbon/spirit/user)
 	if(user.paid)
@@ -142,12 +141,12 @@ GLOBAL_VAR_INIT(underworld_coins, 0)
 
 // why not also some mob stuff too
 /mob/living/simple_animal/hostile/rogue/dragger
-	name = "dragger"
-	desc = ""
 	icon = 'icons/roguetown/underworld/enigma_dragger.dmi'
 	icon_state = "dragger"
 	icon_living = "dragger"
 	icon_dead = "dragger_dead"
+	name = "dragger"
+	desc = ""
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	movement_type = GROUND
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -160,8 +159,6 @@ GLOBAL_VAR_INIT(underworld_coins, 0)
 	response_help_simple = "pass through"
 	maxHealth = 215
 	health = 215
-	layer = 16
-	plane = 16
 	spacewalk = FALSE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
@@ -247,7 +244,7 @@ GLOBAL_VAR_INIT(underworld_coins, 0)
 
 /mob/living/simple_animal/hostile/rogue/dragger/Initialize()
 	. = ..()
-	set_light(2, 2, "#c0523f")
+	set_light(2, 2, 2, l_color = "#c0523f")
 	ADD_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
@@ -280,6 +277,17 @@ GLOBAL_VAR_INIT(underworld_coins, 0)
 		C.visible_message(span_danger("\The [src] paralyzes \the [C] in fear!"), \
 				span_danger("\The [src] paralyzes me!"))
 		emote("laugh")
+
+/datum/intent/simple/slash
+	name = "chop"
+	icon_state = "inchop"
+	attack_verb = list("cuts", "slashes")
+	animname = "cut"
+	blade_class = BCLASS_CHOP
+	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
+	chargetime = 0
+	penfactor = 10
+	swingdelay = 3
 
 /obj/effect/landmark/underworldsafe/Crossed(atom/movable/AM, oldloc)
 	if(istype(AM, /mob/living/simple_animal/hostile/rogue/dragger))

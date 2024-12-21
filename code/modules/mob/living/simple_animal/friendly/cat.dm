@@ -37,7 +37,6 @@
 	STASPD = 3
 	STACON = 3
 	var/turns_since_scan = 0
-	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 
 	footstep_type = FOOTSTEP_MOB_CLAW
@@ -78,12 +77,11 @@
 	else
 		return
 
-
-/mob/living/simple_animal/pet/cat/inn
+/mob/living/simple_animal/pet/cat/rogue/inn
 	name = "inn cat"
 	desc = "This old, fat cat keeps the inn free of rats... allegedly. It seems like he mostly lazes about in the sun and asks for treats."
 
-/mob/living/simple_animal/pet/cat/black
+/mob/living/simple_animal/pet/cat/rogue/black
 	name = "black cat"
 	desc = "Possessed of lamplike eyes and a meow that sounds like the rattle of bones. Black cats are sacred to Necra, said to bring wandering spirits to the Carriageman."
 	gender = FEMALE
@@ -100,7 +98,6 @@
 	icon_state = "original"
 	icon_living = "original"
 	icon_dead = "original_dead"
-	collar_type = null
 	unique_pet = TRUE
 
 /mob/living/simple_animal/pet/cat/kitten
@@ -112,7 +109,6 @@
 	density = FALSE
 	pass_flags = PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	collar_type = "kitten"
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/pet/cat/Runtime
@@ -204,71 +200,35 @@
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
 			icon_state = "[icon_living]_rest"
-			collar_type = "[initial(collar_type)]_rest"
 			set_resting(TRUE)
 		else if (prob(1))
 			emote("me", 1, pick("sits down.", "crouches on its hind legs.", "looks alert."))
 			icon_state = "[icon_living]_sit"
-			collar_type = "[initial(collar_type)]_sit"
 			set_resting(TRUE)
 		else if (prob(2))
 			if (resting)
 				emote("me", 1, pick("gets up and meows.", "walks around.", "stops resting."))
 				icon_state = "[icon_living]"
-				collar_type = "[initial(collar_type)]"
 				set_resting(FALSE)
 			else
 				emote("me", 1, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."))
-
-	//MICE!
-	if((src.loc) && isturf(src.loc))
-		if(!stat && !resting && !buckled)
-			for(var/mob/living/simple_animal/mouse/M in view(1,src))
-				if(!M.stat && Adjacent(M))
-					emote("me", 1, "splats \the [M]!")
-					M.splat()
-					movement_target = null
-					stop_automated_movement = 0
-					break
-			for(var/obj/item/toy/cattoy/T in view(1,src))
-				if (T.cooldown < (world.time - 400))
-					emote("me", 1, "bats \the [T] around with its paw!")
-					T.cooldown = world.time
-
 	..()
 
 	make_babies()
 
-	if(!stat && !resting && !buckled)
-		turns_since_scan++
-		if(turns_since_scan > 5)
-			walk_to(src,0)
-			turns_since_scan = 0
-			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
-				movement_target = null
-				stop_automated_movement = 0
-			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
-				movement_target = null
-				stop_automated_movement = 0
-				for(var/mob/living/simple_animal/mouse/snack in oview(src,3))
-					if(isturf(snack.loc) && !snack.stat)
-						movement_target = snack
-						break
-			if(movement_target)
-				stop_automated_movement = 1
-				walk_to(src,movement_target,0,3)
-
+// Life proc inherent to roguecats only
+/mob/living/simple_animal/pet/cat/rogue/Life()
+	..()
 	// Gato Basado - catches RT rats too when not too lazy
 	if((src.loc) && isturf(src.loc))
-		if(!stat && !resting && !buckled)
+		if(!resting && !buckled && stat != DEAD)
 			for(var/obj/item/reagent_containers/food/snacks/smallrat/M in view(1,src))
 				if(Adjacent(M))
 					if(!M.dead)
 						walk_towards(src, M, 1)
 						sleep(3)
-						visible_message("<span class='notice'>The cat kills the rat!</span>")
+						visible_message("<span class='notice'>\The [src] kills the rat!</span>")
 						M.obj_destruction()
-						movement_target = null
 						stop_automated_movement = 0
 						break
 
@@ -276,7 +236,7 @@
 
 
 
-/mob/living/simple_animal/pet/cat/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/pet/cat/rogue/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	if( (isdarkelf(M)) ) // l´cursed bonbonbon
 		wuv(-1, M)
@@ -300,54 +260,6 @@
 		else
 			if(M && stat != DEAD)
 				emote("me", 1, "hisses!")
-
-/mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
-	name = "Keeki"
-	desc = ""
-	icon_state = "cak"
-	icon_living = "cak"
-	icon_dead = "cak_dead"
-	health = 50
-	maxHealth = 50
-	gender = FEMALE
-	harm_intent_damage = 10
-	butcher_results = list(/obj/item/organ/brain = 1, /obj/item/organ/heart = 1, /obj/item/reagent_containers/food/snacks/cakeslice/birthday = 3,  \
-	/obj/item/reagent_containers/food/snacks/meat/slab = 2)
-	response_harm_continuous = "takes a bite out of"
-	response_harm_simple = "take a bite out of"
-	attacked_sound = 'sound/blank.ogg'
-	deathmessage = "loses its false life and collapses!"
-	deathsound = "bodyfall"
-
-/mob/living/simple_animal/pet/cat/cak/CheckParts(list/parts)
-	..()
-	var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in contents
-	if(!B || !B.brainmob || !B.brainmob.mind)
-		return
-	B.brainmob.mind.transfer_to(src)
-	to_chat(src, "<span class='big bold'>I are a cak!</span><b> You're a harmless cat/cake hybrid that everyone loves. People can take bites out of you if they're hungry, but you regenerate health \
-	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
-	free cake to the station!</b>")
-	var/new_name = stripped_input(src, "Enter my name, or press \"Cancel\" to stick with Keeki.", "Name Change")
-	if(new_name)
-		to_chat(src, "<span class='notice'>My name is now <b>\"new_name\"</b>!</span>")
-		name = new_name
-
-/mob/living/simple_animal/pet/cat/cak/Life()
-	..()
-	if(stat)
-		return
-	if(health < maxHealth)
-		adjustBruteLoss(-8) //Fast life regen
-	for(var/obj/item/reagent_containers/food/snacks/donut/D in range(1, src)) //Frosts nearby donuts!
-		if(!D.is_decorated)
-			D.decorate_donut()
-
-/mob/living/simple_animal/pet/cat/cak/attack_hand(mob/living/L)
-	..()
-	if(L.used_intent.type == INTENT_HARM && L.reagents && !stat)
-		L.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
-		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
 
 
 

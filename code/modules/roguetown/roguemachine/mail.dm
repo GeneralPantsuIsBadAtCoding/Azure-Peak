@@ -123,7 +123,7 @@
 				playsound(loc, 'sound/magic/hallelujah.ogg', 100, FALSE, -1)
 				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 		return
-	if(istype(P, /obj/item/paper) || istype(P, /obj/item/smallDelivery))
+	if(istype(P, /obj/item/paper))
 		if(alert(user, "Send Mail?",,"YES","NO") == "YES")
 			var/send2place = input(user, "Where to? (Person or #number)", "ROGUETOWN", null)
 			var/sentfrom = input(user, "Who is this from?", "ROGUETOWN", null)
@@ -210,10 +210,10 @@
 	cut_overlays()
 	if(coin_loaded)
 		add_overlay(mutable_appearance(icon, "mail-f"))
-		set_light(1, 1, "#ff0d0d")
+		set_light(1, 1, 1, l_color = "#ff0d0d")
 	else
 		add_overlay(mutable_appearance(icon, "mail-s"))
-		set_light(1, 1, "#1b7bf1")
+		set_light(1, 1, 1, l_color = "#1b7bf1")
 
 /obj/structure/roguemachine/mail/examine(mob/user)
 	. = ..()
@@ -260,7 +260,7 @@
 		icon_state = "mailspecial-get"
 	else
 		icon_state = "mailspecial"
-	set_light(1, 1, "#ff0d0d")
+	set_light(1, 1, 1, l_color = "#ff0d0d")
 
 /obj/item/roguemachine/mastermail/ComponentInitialize()
 	. = ..()

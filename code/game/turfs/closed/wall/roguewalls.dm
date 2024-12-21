@@ -9,6 +9,18 @@
 	wallclimb = TRUE
 	icon = 'icons/turf/roguewall.dmi'
 
+/turf/closed/wall/mineral/rogue/examine()
+	. += ..()
+	if(max_integrity)
+		var/healthpercent = (turf_integrity/max_integrity) * 100
+		switch(healthpercent)
+			if(50 to 99)
+				. += "It looks slightly damaged."
+			if(25 to 50)
+				. += "It appears heavily damaged."
+			if(1 to 25)
+				. +=  "<span class='warning'>It's falling apart!</span>"
+
 /turf/closed/wall/mineral/rogue/Initialize()
 	if(smooth_icon)
 		icon = smooth_icon

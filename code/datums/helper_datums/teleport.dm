@@ -13,7 +13,6 @@
 	var/static/list/delete_atoms = typecacheof(list(
 		/obj/effect,
 		)) - typecacheof(list(
-		/obj/effect/dummy/chameleon,
 		/obj/effect/wisp,
 		/obj/effect/mob_spawn,
 		))
@@ -28,17 +27,6 @@
 
 	switch(channel)
 		if(TELEPORT_CHANNEL_BLUESPACE)
-			if(istype(teleatom, /obj/item/storage/backpack/holding))
-				precision = rand(1,100)
-
-			var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding)
-			var/list/bagholding = typecache_filter_list(teleatom.GetAllContents(), bag_cache)
-			if(bagholding.len)
-				precision = max(rand(1,100)*bagholding.len,100)
-				if(isliving(teleatom))
-					var/mob/living/MM = teleatom
-					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
-
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)
 				var/datum/effect_system/spark_spread/sparks = new
@@ -77,8 +65,6 @@
 	if (success)
 		log_game("[key_name(teleatom)] has teleported from [loc_name(curturf)] to [loc_name(destturf)]")
 		tele_play_specials(teleatom, destturf, effectout, asoundout)
-		if(ismegafauna(teleatom))
-			message_admins("[teleatom] [ADMIN_FLW(teleatom)] has teleported from [ADMIN_VERBOSEJMP(curturf)] to [ADMIN_VERBOSEJMP(destturf)].")
 
 	if(ismob(teleatom))
 		var/mob/M = teleatom

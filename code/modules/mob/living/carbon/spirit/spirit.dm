@@ -42,7 +42,7 @@
 	icon_state = "spiritpart"
 
 /mob/living/carbon/spirit/Initialize(mapload, cubespawned=FALSE, mob/spawner)
-	set_light(2, 2, "#547fa4")
+	set_light(2, 2, l_color= "#547fa4")
 	coin_upkeep()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down

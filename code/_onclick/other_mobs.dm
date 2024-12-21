@@ -188,7 +188,7 @@
 		var/armor_block = run_armor_check(user.zone_selected, "stab",blade_dulling=BCLASS_BITE)
 		if(!apply_damage(dam2do, BRUTE, def_zone, armor_block, user))
 			nodmg = TRUE
-			next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+			next_attack_msg += span_warning("Armor stops the damage.")
 
 	var/datum/wound/caused_wound
 	if(!nodmg)
@@ -208,10 +208,8 @@
 					caused_wound?.werewolf_infect_attempt()
 					if(prob(30))
 						user.werewolf_feed(src, 10)
-			if(user.mind.has_antag_datum(/datum/antagonist/zombie))
-				var/datum/antagonist/zombie/existing_zomble = mind?.has_antag_datum(/datum/antagonist/zombie)
-				if(caused_wound?.zombie_infect_attempt() && !existing_zomble)
-					user.mind.adjust_triumphs(1)
+				if(user.mind.has_antag_datum(/datum/antagonist/zombie) && !src.mind.has_antag_datum(/datum/antagonist/zombie))
+					INVOKE_ASYNC(TYPE_PROC_REF(/mob/living/carbon/human, zombie_infect_attempt))
 
 	var/obj/item/grabbing/bite/B = new()
 	user.equip_to_slot_or_del(B, SLOT_MOUTH)
@@ -569,7 +567,7 @@
 	A.attack_animal(src)
 
 /atom/proc/attack_animal(mob/user)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
 
 /mob/living/RestrainedClickOn(atom/A)
 	return
@@ -614,59 +612,10 @@
 			to_chat(name, span_danger("I bite [ML]!"))
 			if(armor >= 2)
 				return
-			for(var/thing in diseases)
-				var/datum/disease/D = thing
-				ML.ForceContractDisease(D)
 		else
 			ML.visible_message(span_danger("[src]'s bite misses [ML]!"), \
 							span_danger("I avoid [src]'s bite!"), span_hear("I hear jaws snapping shut!"), COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("My bite misses [ML]!"))
-
-/*
-	Aliens
-	Defaults to same as monkey in most places
-*/
-/mob/living/carbon/alien/UnarmedAttack(atom/A)
-	A.attack_alien(src)
-
-/atom/proc/attack_alien(mob/living/carbon/alien/user)
-	attack_paw(user)
-	return
-
-/mob/living/carbon/alien/RestrainedClickOn(atom/A)
-	return
-
-// Babby aliens
-/mob/living/carbon/alien/larva/UnarmedAttack(atom/A)
-	A.attack_larva(src)
-/atom/proc/attack_larva(mob/user)
-	return
-
-
-/*
-	Slimes
-	Nothing happening here
-*/
-/mob/living/simple_animal/slime/UnarmedAttack(atom/A)
-	A.attack_slime(src)
-/atom/proc/attack_slime(mob/user)
-	return
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
-
-/*
-	Drones
-*/
-/mob/living/simple_animal/drone/UnarmedAttack(atom/A)
-	A.attack_drone(src)
-
-/atom/proc/attack_drone(mob/living/simple_animal/drone/user)
-	attack_hand(user) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
-
-/mob/living/simple_animal/slime/RestrainedClickOn(atom/A)
-	return
-
 
 /*
 	True Devil
@@ -681,15 +630,6 @@
 
 /mob/living/brain/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
 	return
-
-
-/*
-	pAI
-*/
-
-/mob/living/silicon/pai/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
-	return
-
 
 /*
 	Simple animals

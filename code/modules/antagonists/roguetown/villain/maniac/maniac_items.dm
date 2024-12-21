@@ -5,7 +5,7 @@
 	icon = 'icons/roguetown/maniac/clothing.dmi'
 	mob_overlay_icon = 'icons/roguetown/maniac/clothing_mob.dmi'
 	icon_state = "cyberdeck"
-	armor = list("blunt" = 25, "slash" = 25, "stab" = 25, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 25, "slash" = 25, "stab" = 25, "piercing" = 0, "fire" = 0, "acid" = 0)
 	tint = TINT_BLIND //it covers ya eyes
 
 /obj/item/clothing/head/roguetown/cyberdeck/equipped(mob/living/carbon/human/user, slot)
@@ -37,7 +37,6 @@
 	head = /obj/item/clothing/head/roguetown/cyberdeck
 	shirt = /obj/item/clothing/suit/roguetown/shirt/formal
 	pants = /obj/item/clothing/under/roguetown/tights/formal
-	shoes = /obj/item/clothing/shoes/laceup
 
 /obj/effect/landmark/treyliam
 	name = "trey"

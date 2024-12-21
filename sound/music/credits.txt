@@ -12,6 +12,8 @@ combat_physician.ogg: Pathologic (Classic) - Utroba Aggression
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
 combat_knight.ogg: Dragon's Dogma OST: Tense Combat
 combat_duelist.ogg: Medieval Total War 2 OST: Spanish Battle Theme
+combat_cult.ogg: Igor Kornelyuk - Воланд
+combat_druid.ogg: The Witcher 3: Wild Hunt - Hunt or Be Hunted
 title1.ogg: Aphex Twin - Stone In Focus
 bath.ogg: Mabisyo - No Baby (Cropped to 1:00)
 tav_tune.ogg: Divinity Original Sin 2 - Black Bull Tavern

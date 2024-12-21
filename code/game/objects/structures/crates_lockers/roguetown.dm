@@ -43,7 +43,6 @@
 		/obj/item/reagent_containers/food/snacks/butter=22,
 		/obj/item/clothing/mask/cigarette/pipe=10,
 		/obj/item/clothing/mask/cigarette/pipe/westman=10,
-		/obj/item/storage/box/matches=33,
 		/obj/item/storage/backpack/rogue/satchel=33,
 		/obj/item/storage/roguebag=33,
 		/obj/item/roguegem=1,

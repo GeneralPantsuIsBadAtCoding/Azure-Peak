@@ -123,6 +123,19 @@
 		return
 	qdel(src)
 
+/mob/living/carbon/human
+	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
+	var/mob/living/carbon/human/hostage //What hostage we have
+
+/mob/living/carbon/human/proc/attackhostage()
+	if(!istype(hostagetaker.get_active_held_item(), /obj/item/rogueweapon))
+		return
+	var/obj/item/rogueweapon/WP = hostagetaker.get_active_held_item()
+	WP.attack(src, hostagetaker)
+	hostagetaker.visible_message("<span class='danger'>\The [hostagetaker] attacks \the [src] reflexively!</span>")
+	hostagetaker.hostage = null
+	hostagetaker = null
+
 /obj/item/grabbing/attack(mob/living/M, mob/living/user)
 	if(M != grabbed)
 		return FALSE
@@ -438,12 +451,22 @@
 				caused_wound?.werewolf_infect_attempt()
 				if(prob(30))
 					user.werewolf_feed(C)
-			var/datum/antagonist/zombie/zombie_antag = user.mind.has_antag_datum(/datum/antagonist/zombie)
-			if(zombie_antag)
-				zombie_antag.last_bite = world.time
-				var/datum/antagonist/zombie/existing_zomble = C.mind?.has_antag_datum(/datum/antagonist/zombie)
-				if(caused_wound?.zombie_infect_attempt() && !existing_zomble)
-					user.mind.adjust_triumphs(1)
+			if(user.mind.has_antag_datum(/datum/antagonist/zombie))
+				var/mob/living/carbon/human/H = C
+				if(istype(H))
+					INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon/human, zombie_infect_attempt))
+				if(C.stat)
+					if(istype(limb_grabbed, /obj/item/bodypart/head))
+						var/obj/item/bodypart/head/HE = limb_grabbed
+						if(HE.brain)
+							QDEL_NULL(HE.brain)
+							C.visible_message("<span class='danger'>[user] consumes [C]'s brain!</span>", \
+								"<span class='userdanger'>[user] consumes my brain!</span>", "<span class='hear'>I hear a sickening sound of chewing!</span>", COMBAT_MESSAGE_RANGE, user)
+							to_chat(user, "<span class='boldnotice'>Braaaaaains!</span>")
+							if(!user.mob_timers["zombie_tri"])
+								user.mob_timers["zombie_tri"] = world.time
+							playsound(C.loc, 'sound/combat/fracture/headcrush (2).ogg', 100, FALSE, -1)
+							return
 	else
 		C.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 	C.visible_message(span_danger("[user] bites [C]'s [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]"), \

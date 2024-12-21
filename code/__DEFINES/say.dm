@@ -33,7 +33,6 @@
 #define MODE_DEADMIN "deadmin"
 #define MODE_KEY_DEADMIN "d"
 
-#define MODE_ALIEN "alientalk"
 #define MODE_HOLOPAD "holopad"
 
 #define MODE_CHANGELING "changeling"

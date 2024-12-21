@@ -13,9 +13,6 @@
 	if(timeleft)
 		QDEL_IN(src, timeleft)
 
-/obj/effect/forcefield/singularity_pull()
-	return
-
 /obj/effect/forcefield/cult
 	desc = ""
 	name = "glowing wall"

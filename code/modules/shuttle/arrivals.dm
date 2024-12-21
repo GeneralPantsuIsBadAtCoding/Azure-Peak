@@ -66,19 +66,12 @@
 	if(damaged)
 		if(!CheckTurfsPressure())
 			damaged = FALSE
-			if(console)
-				console.say("Repairs complete, launching soon.")
 		return
 
 //If this proc is high on the profiler add a cooldown to the stuff after this line
 
 	else if(CheckTurfsPressure())
 		damaged = TRUE
-		if(console)
-			console.say("Alert, hull breach detected!")
-		var/obj/machinery/announcement_system/announcer = safepick(GLOB.announcement_systems)
-		if(!QDELETED(announcer))
-			announcer.announce("ARRIVALS_BROKEN", channels = list())
 		if(mode != SHUTTLE_CALL)
 			sound_played = FALSE
 			mode = SHUTTLE_IDLE
@@ -86,7 +79,7 @@
 			SendToStation()
 		return
 
-	var/found_awake = PersonCheck() || NukeDiskCheck()
+	var/found_awake = PersonCheck()
 	if(mode == SHUTTLE_CALL)
 		if(found_awake)
 			SendToStation()
@@ -119,17 +112,9 @@
 				return TRUE
 	return FALSE
 
-/obj/docking_port/mobile/arrivals/proc/NukeDiskCheck()
-	for (var/obj/item/disk/nuclear/N in GLOB.poi_list)
-		if (get_area(N) in areas)
-			return TRUE
-	return FALSE
-
 /obj/docking_port/mobile/arrivals/proc/SendToStation()
 	var/dockTime = CONFIG_GET(number/arrivals_shuttle_dock_window)
 	if(mode == SHUTTLE_CALL && timeLeft(1) > dockTime)
-		if(console)
-			console.say(damaged ? "Initiating emergency docking for repairs!" : "Now approaching: [station_name()].")
 		hyperspace_sound(HYPERSPACE_LAUNCH, areas)	//for the new guy
 		setTimer(dockTime)
 
@@ -141,18 +126,12 @@
 			var/cancel_reason
 			if(PersonCheck())
 				cancel_reason = "lifeform dectected on board"
-			else if(NukeDiskCheck())
-				cancel_reason = "critical station device detected on board"
 			if(cancel_reason)
 				mode = SHUTTLE_IDLE
-				if(console)
-					console.say("Launch cancelled, [cancel_reason].")
 				return
 		force_depart = FALSE
 	. = ..()
 	if(!. && !docked && !damaged)
-		if(console)
-			console.say("Welcome to your new life, employees!")
 		for(var/L in queued_announces)
 			var/datum/callback/C = L
 			C.Invoke()
@@ -173,8 +152,6 @@
 	if(pickingup)
 		force_depart = TRUE
 	if(mode == SHUTTLE_IDLE)
-		if(console)
-			console.say(pickingup ? "Departing immediately for new employee pickup." : "Shuttle departing.")
 		var/obj/docking_port/stationary/target = target_dock
 		if(QDELETED(target))
 			target = SSshuttle.getDock("arrivals_stationary")

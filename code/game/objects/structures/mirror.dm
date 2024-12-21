@@ -86,7 +86,7 @@
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "[icon_state]1"
 		if(!mapload)
-			new /obj/item/shard (get_turf(src))
+			new /obj/item/natural/glass/shard (get_turf(src))
 		broken = TRUE
 	..()
 
@@ -209,7 +209,6 @@
 			H.update_body()
 			H.update_hair()
 			H.update_body_parts()
-			H.update_mutations_overlay() // no hulk lizard
 
 		if("gender")
 			if(!(H.gender in list("male", "female"))) //blame the patriarchy
@@ -233,7 +232,6 @@
 					return
 			H.dna.update_ui_block(DNA_GENDER_BLOCK)
 			H.update_body()
-			H.update_mutations_overlay() //(hulk male/female)
 
 		if("hair")
 			var/hairchoice = alert(H, "Hairstyle or hair color?", "Change Hair", "Style", "Color")

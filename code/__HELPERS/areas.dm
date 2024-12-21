@@ -1,10 +1,5 @@
 #define BP_MAX_ROOM_SIZE 300
 
-GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/engineering, \
-															    /area/engine/supermatter, \
-															    /area/engine/atmospherics_engine, \
-															    /area/ai_monitored/turret_protected/ai))
-
 // Gets an atmos isolated contained space
 // Returns an associative list of turf|dirs pairs
 // The dirs are connected turfs in the same space
@@ -43,7 +38,6 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 /proc/create_area(mob/creator)
 	// Passed into the above proc as list/break_if_found
 	var/static/area_or_turf_fail_types = typecacheof(list(
-		/turf/open/space,
 		/area/shuttle,
 		))
 	// Ignore these areas and dont let people expand them. They can expand into them though
@@ -52,24 +46,24 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 		))
 	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
-		to_chat(creator, span_warning("The new area must be completely airtight and not a part of a shuttle."))
+		to_chat(creator, "<span class='warning'>The new area must be completely airtight and not a part of a shuttle.</span>")
 		return
 	if(turfs.len > BP_MAX_ROOM_SIZE)
-		to_chat(creator, span_warning("The room you're in is too big. It is [turfs.len >= BP_MAX_ROOM_SIZE *2 ? "more than 100" : ((turfs.len / BP_MAX_ROOM_SIZE)-1)*100]% larger than allowed."))
+		to_chat(creator, "<span class='warning'>The room you're in is too big. It is [turfs.len >= BP_MAX_ROOM_SIZE *2 ? "more than 100" : ((turfs.len / BP_MAX_ROOM_SIZE)-1)*100]% larger than allowed.</span>")
 		return
 	var/list/areas = list("New Area" = /area)
 	for(var/i in 1 to turfs.len)
 		var/area/place = get_area(turfs[i])
 		if(blacklisted_areas[place.type])
 			continue
-		if(!place.requires_power || place.noteleport || place.hidden)
+		if(place.noteleport || place.hidden)
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 	var/area_choice = input(creator, "Choose an area to expand or make a new area.", "Area Expansion") as null|anything in areas
 	area_choice = areas[area_choice]
 
 	if(!area_choice)
-		to_chat(creator, span_warning("No choice selected. The area remains undefined."))
+		to_chat(creator, "<span class='warning'>No choice selected. The area remains undefined.</span>")
 		return
 	var/area/newA
 	var/area/oldA = get_area(get_turf(creator))
@@ -78,7 +72,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 		if(!str || !length(str)) //cancel
 			return
 		if(length(str) > 50)
-			to_chat(creator, span_warning("The given name is too long. The area remains undefined."))
+			to_chat(creator, "<span class='warning'>The given name is too long. The area remains undefined.</span>")
 			return
 		newA = new area_choice
 		newA.setup(str)
@@ -95,12 +89,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 
 	newA.reg_in_areas_in_z()
 
-	var/list/firedoors = oldA.firedoors
-	for(var/door in firedoors)
-		var/obj/machinery/door/firedoor/FD = door
-		FD.CalculateAffectingAreas()
-
-	to_chat(creator, span_notice("I have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	to_chat(creator, "<span class='notice'>I have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered.</span>")
 	return TRUE
 
 #undef BP_MAX_ROOM_SIZE

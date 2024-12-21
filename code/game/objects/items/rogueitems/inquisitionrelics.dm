@@ -41,7 +41,7 @@
 		user.remove_status_effect(/datum/status_effect/buff/cranking_soulchurner)
 
 /obj/item/psydonmusicbox/Initialize()
-	soundloop = new(list(src), FALSE)
+	soundloop = new(src, FALSE)
 	. = ..()
 
 /obj/item/psydonmusicbox/Destroy()
@@ -179,9 +179,3 @@
 						to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
 						to_chat(H, (span_cultsmall(pick(ravoxlines))))		
 						H.add_stress(/datum/stressevent/soulchurner)
-
-/datum/looping_sound/psydonmusicboxsound
-	mid_sounds = list('sound/magic/psydonmusicbox.ogg')
-	mid_length = 320
-	volume = 50
-	extra_range = 10

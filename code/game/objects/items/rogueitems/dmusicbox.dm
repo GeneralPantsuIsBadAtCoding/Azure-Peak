@@ -2,16 +2,18 @@
 /datum/looping_sound/dmusloop
 	mid_sounds = list()
 	mid_length = 60
-	volume = 80
-	extra_range = 3
+	volume = 100
+	falloff = 2
+	extra_range = 5
 	var/stress2give = /datum/stressevent/music
 	persistent_loop = TRUE
+	channel = CHANNEL_MUSIC
 
 /datum/looping_sound/dmusloop/on_hear_sound(mob/M)
 	. = ..()
 	if(stress2give)
 		if(isliving(M))
-			var/mob/living/L = M
+			var/mob/living/carbon/L = M
 			L.add_stress(stress2give)
 
 /obj/item/dmusicbox
@@ -34,7 +36,7 @@
 	anvilrepair = /datum/skill/craft/blacksmithing
 
 /obj/item/dmusicbox/Initialize()
-	soundloop = new(list(src), FALSE)
+	soundloop = new(src, FALSE)
 //	soundloop.start()
 	update_icon()
 	. = ..()

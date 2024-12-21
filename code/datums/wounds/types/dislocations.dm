@@ -19,7 +19,7 @@
 	critical = TRUE
 	passive_healing = 0.25
 	qdel_on_droplimb = TRUE
-	zombie_infection_probability = 0
+
 	werewolf_infection_probability = 0
 	/// Whether or not we can be surgically relocated
 	var/can_relocate = TRUE

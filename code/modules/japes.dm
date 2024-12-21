@@ -51,7 +51,6 @@
 		/obj/item/natural/stone,
 		/obj/item/natural/poo,
 		/obj/item/natural/feather,
-		/obj/item/reagent_containers/food/snacks/cracker,
 		/obj/item/natural/worms/leech,
 		)
 	

@@ -27,7 +27,6 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
-	var/chew_probability = 1
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -64,21 +63,6 @@
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
 	..()
-
-/mob/living/simple_animal/mouse/handle_automated_action()
-	if(prob(chew_probability))
-		var/turf/open/floor/F = get_turf(src)
-		if(istype(F) && !F.intact)
-			var/obj/structure/cable/C = locate() in F
-			if(C && prob(15))
-				if(C.avail())
-					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
-					playsound(src, 'sound/blank.ogg', 100, TRUE)
-					C.deconstruct()
-					death(toast=1)
-				else
-					C.deconstruct()
-					visible_message(span_warning("[src] chews through the [C]."))
 
 /*
  * Mouse types

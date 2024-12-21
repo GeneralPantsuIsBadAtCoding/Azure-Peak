@@ -598,4 +598,3 @@
 				KE.name = src.holdname
 			to_chat(user, span_notice("You add [src] to [K]."))
 			qdel(src)
-

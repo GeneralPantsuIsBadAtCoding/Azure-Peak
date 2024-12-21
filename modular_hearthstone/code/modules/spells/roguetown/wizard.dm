@@ -21,7 +21,7 @@
 	name = "\improper prestidigitating touch"
 	desc = "You recall the following incantations you've learned:\n \
 	<b>Touch</b>: Use your arcyne powers to scrub an object or something clean, like using soap. Also known as the Apprentice's Woe.\n \
-	<b>Shove</b>: Will forth a spark on an item of your choosing (or in front of you, if used on the ground) to ignite flammable items and things like torches, lanterns or campfires. \n \
+	<b>Shove</b>: Will forth a spark <i>in front of you</i> to ignite flammable items and things like torches, lanterns or campfires. \n \
 	<b>Use</b>: Conjure forth an orbiting mote of magelight to light your way."
 	catchphrase = null
 	possible_item_intents = list(INTENT_HELP, INTENT_DISARM, /datum/intent/use)
@@ -58,7 +58,7 @@
 				handle_xp(user, fatigue_used, TRUE) // cleaning ignores the xp cooldown because it awards comparatively little
 		if (INTENT_DISARM) // Snap your fingers and produce a spark
 			fatigue_used = handle_cost(user, PRESTI_SPARK)
-			if (create_spark(user, target))
+			if (create_spark(user))
 				handle_xp(user, fatigue_used)
 		if (/datum/intent/use) // Summon an orbiting arcane mote for light
 			fatigue_used = handle_cost(user, PRESTI_MOTE)
@@ -86,7 +86,7 @@
 
 	return fatigue_used
 
-/obj/item/melee/touch_attack/prestidigitation/proc/handle_xp(mob/living/carbon/human/user, fatigue, ignore_cooldown = FALSE)
+/obj/item/melee/touch_attack/prestidigitation/proc/handle_xp(mob/living/carbon/human/user, fatigue, ignore_cooldown = TRUE)
 	if (!ignore_cooldown)
 		if (world.time < xp_cooldown + xp_interval)
 			return
@@ -105,14 +105,13 @@
 	//let's adjust the light power based on our skill, too
 	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
 	var/mote_power = clamp(4 + (skill_level - 3), 4, 7) // every step above journeyman should get us 1 more tile of brightness
-	mote.set_light_range(mote_power)
-	if(mote.light_system == STATIC_LIGHT)
-		mote.update_light()
+	mote.light_outer_range =  mote_power
+	mote.update_light()
 
 	if (mote.loc == src)
 		user.visible_message(span_notice("[user] holds open the palm of [user.p_their()] hand and concentrates..."), span_notice("I hold open the palm of my hand and concentrate on my arcyne power..."))
 		if (do_after(user, src.motespeed, target = user))
-			mote.orbit(user, 1, TRUE, 0, 48, TRUE)
+			mote.orbit(user, 18, pick(list(TRUE, FALSE)), 2000, 48, TRUE)
 			return TRUE
 		return FALSE
 	else
@@ -120,27 +119,20 @@
 		mote.forceMove(src)
 		return TRUE
 
-/obj/item/melee/touch_attack/prestidigitation/proc/create_spark(mob/living/carbon/human/user, atom/thing)
+/obj/item/melee/touch_attack/prestidigitation/proc/create_spark(mob/living/carbon/human/user)
 	// adjusted from /obj/item/flint
 	if (world.time < spark_cd + sparkspeed)
-		return FALSE
+		return
 	spark_cd = world.time
-
 	playsound(user, 'sound/foley/finger-snap.ogg', 100, FALSE)
-	user.flash_fullscreen("whiteflash")
+	user.visible_message(span_notice("[user] snaps [user.p_their()] fingers, producing a spark!"), span_notice("I will forth a tiny spark with a snap of my fingers."))
 	flick("flintstrike", src)
 
-	if (isturf(thing) || !user.Adjacent(thing))
-		var/datum/effect_system/spark_spread/S = new()
-		var/turf/front = get_step(user, user.dir)
-		S.set_up(1, 1, front)
-		S.start()
-		user.visible_message(span_notice("[user] snaps [user.p_their()] fingers, producing a spark!"), span_notice("I will forth a tiny spark with a snap of my fingers."))
-	else
-		thing.spark_act()
-		user.visible_message(span_notice("[user] snaps [user.p_their()] fingers, and a spark leaps forth towards [thing]!"), span_notice("I will forth a tiny spark and direct it towards [thing]."))
-
-	return TRUE
+	user.flash_fullscreen("whiteflash")
+	var/datum/effect_system/spark_spread/S = new()
+	var/turf/front = get_step(user, user.dir)
+	S.set_up(1, 1, front)
+	S.start()
 
 /obj/item/melee/touch_attack/prestidigitation/proc/clean_thing(atom/target, mob/living/carbon/human/user)
 	// adjusted from /obj/item/soap in clown_items.dm, some duplication unfortunately (needed for flavor)
@@ -149,15 +141,7 @@
 	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
 	cleanspeed = initial(cleanspeed) - (skill_level * 3) // 3 cleanspeed per skill level, from 35 down to a maximum of 17 (pretty quick)
 
-	if (istype(target, /obj/structure/window))
-		user.visible_message(span_notice("[user] gestures at \the [target.name], tiny motes of arcyne power running across its surface..."), span_notice("I begin to clean \the [target.name] with my arcyne power..."))
-		if (do_after(user, src.cleanspeed, target = target))
-			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			target.set_opacity(initial(target.opacity))
-			to_chat(user, span_notice("I render \the [target.name] clean."))
-			return TRUE
-		return FALSE
-	else if (istype(target, /obj/effect/decal/cleanable))
+	if (istype(target, /obj/effect/decal/cleanable))
 		user.visible_message(span_notice("[user] gestures at \the [target.name], arcyne power slowly scouring it away..."), span_notice("I begin to scour \the [target.name] away with my arcyne power..."))
 		if (do_after(user, src.cleanspeed, target = target))
 			to_chat(user, span_notice("I expunge \the [target.name] with my mana."))
@@ -181,9 +165,11 @@
 	name = "minor magelight mote"
 	desc = "A tiny display of arcyne power used to illuminate."
 	pixel_x = 20
-	light_range = 4
-	light_flags = NONE
+	light_outer_range =  4
 	light_color = "#3FBAFD"
+
+	icon = 'icons/roguetown/items/lighting.dmi'
+	icon_state = "wisp"
 
 //A spell to choose new spells, upon spawning or gaining levels
 /obj/effect/proc_holder/spell/self/learnspell
@@ -509,7 +495,7 @@
 /obj/effect/temp_visual/trap
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "trap"
-	light_range = 2
+	light_outer_range = 2
 	duration = 14
 	layer = MASSIVE_OBJ_LAYER
 
@@ -1019,7 +1005,7 @@
 /obj/effect/temp_visual/trapice
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "blueshatter"
-	light_range = 2
+	light_outer_range = 2
 	light_color = "#4cadee"
 	duration = 6
 	layer = MASSIVE_OBJ_LAYER
@@ -1227,7 +1213,7 @@
 	randomdir = FALSE
 	duration = 3 SECONDS
 	layer = MASSIVE_OBJ_LAYER
-	light_range = 2
+	light_outer_range = 2
 	light_color = COLOR_PALE_PURPLE_GRAY
 
 

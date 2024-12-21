@@ -14,18 +14,11 @@
 /datum/hud/proc/create_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
-//	return //disabled parallax
 	if (!apply_parallax_pref(viewmob)) //don't want shit computers to crash when specing someone with insane parallax, so use the viewer's pref
 		return
 
 	if(!length(C.parallax_layers_cached))
 		C.parallax_layers_cached = list()
-//		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, C.view)
-//		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, C.view)
-//		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, C.view)
-//		if(SSparallax.random_layer)
-//			C.parallax_layers_cached += new SSparallax.random_layer
-//		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/rogue(null, C.view)
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/rogue/fog(null, C.view)
 
@@ -149,7 +142,7 @@
 		deltimer(C.parallax_animate_timer)
 	var/datum/callback/CB = CALLBACK(src, PROC_REF(update_parallax_motionblur), C, animatedir, new_parallax_movedir, newtransform)
 	if(skip_windups)
-		CB.Invoke()
+		CB.InvokeAsync()
 	else
 		C.parallax_animate_timer = addtimer(CB, min(shortesttimer, PARALLAX_LOOP_TIME), TIMER_CLIENT_TIME|TIMER_STOPPABLE)
 
@@ -316,6 +309,7 @@
 	icon_state = "space gas"
 
 /atom/movable/screen/parallax_layer/random/space_gas/Initialize(mapload, view)
+	. = ..()
 	src.add_atom_colour(SSparallax.random_parallax_color, ADMIN_COLOUR_PRIORITY)
 
 /atom/movable/screen/parallax_layer/random/asteroids

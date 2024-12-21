@@ -25,7 +25,7 @@
 	/// How much blood we suck on on_embed_life()
 	var/blood_sucking = 2
 	/// How much toxin damage we heal on on_embed_life()
-	var/toxin_healing = 2
+	var/toxin_healing = -2
 	/// Amount of blood we have stored
 	var/blood_storage = 0
 	/// Maximum amount of blood we can store
@@ -49,7 +49,7 @@
 		return FALSE
 	if(!host)
 		return FALSE
-	host.adjustToxLoss(-toxin_healing)
+	host.adjustToxLoss(toxin_healing)
 	var/obj/item/bodypart/bp = loc
 	if(giving)
 		var/blood_given = min(BLOOD_VOLUME_MAXIMUM - host.blood_volume, blood_storage, blood_sucking)
@@ -70,6 +70,32 @@
 				bp.remove_embedded_object(src)
 			else
 				host.simple_remove_embedded_object(src)
+			return TRUE
+	return FALSE
+
+/obj/item/natural/worms/leech/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
+	if(!user)
+		return
+	user.adjustToxLoss(toxin_healing)
+	if(giving)
+		var/blood_given = min(BLOOD_VOLUME_MAXIMUM - user.blood_volume, blood_storage, blood_sucking)
+		user.blood_volume += blood_given
+		blood_storage = max(blood_storage - blood_given, 0)
+		if((blood_storage <= 0) || (user.blood_volume >= BLOOD_VOLUME_MAXIMUM))
+			if(bodypart)
+				bodypart.remove_embedded_object(src)
+			else
+				user.simple_remove_embedded_object(src)
+			return TRUE
+	else
+		var/blood_extracted = min(blood_maximum - blood_storage, user.blood_volume, blood_sucking)
+		user.blood_volume = max(user.blood_volume - blood_extracted, 0)
+		blood_storage += blood_extracted
+		if((blood_storage >= blood_maximum) || (user.blood_volume <= 0))
+			if(bodypart)
+				bodypart.remove_embedded_object(src)
+			else
+				user.simple_remove_embedded_object(src)
 			return TRUE
 	return FALSE
 
@@ -185,7 +211,7 @@
 				var/picked_desc = pickweight(possible_descs)
 				possible_descs -= picked_desc
 				descs += pickweight(possible_descs)
-	toxin_healing = max(round((MAX_LEECH_EVILNESS - evilness_rating)/MAX_LEECH_EVILNESS * 2 * initial(toxin_healing), 0.1), 1)
+	toxin_healing = min(round((MAX_LEECH_EVILNESS - evilness_rating)/MAX_LEECH_EVILNESS * 2 * initial(toxin_healing), 0.1), -1)
 	blood_sucking = max(round(evilness_rating/MAX_LEECH_EVILNESS * 2 * initial(blood_sucking), 0.1), 1)
 	if(evilness_rating < 10)
 		color = pickweight(all_colors)
@@ -203,7 +229,7 @@
 	consistent = TRUE
 	drainage = 0
 	blood_sucking = 5
-	toxin_healing = 2
+	toxin_healing = -2
 	blood_storage = BLOOD_VOLUME_SURVIVE
 	blood_maximum = BLOOD_VOLUME_BAD
 

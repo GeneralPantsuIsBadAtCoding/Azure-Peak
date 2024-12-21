@@ -15,8 +15,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_load_marks = list() //The game scans thru the map and looks for marks, then adds them to this list for caching
 
 	var/list/ruins_templates = list()
-	var/list/space_ruins_templates = list()
-	var/list/lava_ruins_templates = list()
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
 
 	var/list/shuttle_templates = list()
@@ -24,7 +22,6 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/areas_in_z = list()
 
-	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
 	var/list/datum/turf_reservations		//list of turf reservations
 	var/list/used_turfs = list()				//list of turf = datum/turf_reservation
@@ -56,17 +53,6 @@ SUBSYSTEM_DEF(mapping)
 		config = load_map_config(error_if_missing = FALSE)
 #endif
 
-/datum/controller/subsystem/mapping/proc/spawn_random_travel_tiles()
-	spawn_random_travel_transition("vampexit", "vampin", TRAIT_VAMPMANSION)
-	spawn_random_travel_transition("banditexit", "banditin", TRAIT_BANDITCAMP)
-
-/datum/controller/subsystem/mapping/proc/spawn_random_travel_transition(travel_id, travel_goes_to_id, required_trait)
-	var/atom/location = get_free_travel_spawn_point()
-	if(!location)
-		log_world("Unable to find spot for random travel transition: [travel_id] [travel_goes_to_id]")
-		return
-	create_travel_tiles(location, travel_id, travel_goes_to_id, required_trait)
-
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()
 	if(initialized)
@@ -75,7 +61,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to Box Station"))
+			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Box Station</span>")
 			config = old_config
 	loadWorld()
 	repopulate_sorted_areas()
@@ -95,36 +81,13 @@ SUBSYSTEM_DEF(mapping)
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
 
-	// Load the virtual reality hub
-	if(CONFIG_GET(flag/virtual_reality))
-		to_chat(world, span_boldannounce("Loading virtual reality..."))
-		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
-		to_chat(world, span_boldannounce("Virtual reality loaded."))
-
-	// Generate mining ruins
-	loading_ruins = TRUE
-	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
-	if (lava_ruins.len)
-		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), /area/lavaland/surface/outdoors/unexplored, lava_ruins_templates)
-		for (var/lava_z in lava_ruins)
-			spawn_rivers(lava_z)
-
-	// Generate deep space ruins
-	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
-	if (space_ruins.len)
-		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
-	loading_ruins = FALSE
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
-	// Set up Z-level transitions.
-	setup_map_transitions()
-	generate_station_area_list()
 	initialize_reserved_level(transit.z_value)
 	generate_z_level_linkages()
 	calculate_default_z_level_gravities()
-	spawn_random_travel_tiles()
 	return ..()
 
 /datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()
@@ -155,9 +118,6 @@ SUBSYSTEM_DEF(mapping)
 		return FALSE
 
 	var/max_gravity = 0
-
-	for(var/obj/machinery/gravity_generator/main/grav_gen as anything in GLOB.gravity_generators["[z_level_number]"])
-		max_gravity = max(grav_gen.setting, max_gravity)
 
 	max_gravity = max_gravity || level_trait(z_level_number, ZTRAIT_GRAVITY) || 0//just to make sure no nulls
 	gravity_by_z_level["[z_level_number]"] = max_gravity
@@ -192,34 +152,11 @@ SUBSYSTEM_DEF(mapping)
 		returning += M
 		qdel(T, TRUE)
 
-/* Nuke threats, for making the blue tiles on the station go RED
-   Used by the AI doomsday and the self destruct nuke.
-*/
-
-/datum/controller/subsystem/mapping/proc/add_nuke_threat(datum/nuke)
-	nuke_threats[nuke] = TRUE
-	check_nuke_threats()
-
-/datum/controller/subsystem/mapping/proc/remove_nuke_threat(datum/nuke)
-	nuke_threats -= nuke
-	check_nuke_threats()
-
-/datum/controller/subsystem/mapping/proc/check_nuke_threats()
-	for(var/datum/d in nuke_threats)
-		if(!istype(d) || QDELETED(d))
-			nuke_threats -= d
-
-	for(var/N in nuke_tiles)
-		var/turf/open/floor/circuit/C = N
-		C.update_icon()
-
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	ruins_templates = SSmapping.ruins_templates
-	space_ruins_templates = SSmapping.space_ruins_templates
-	lava_ruins_templates = SSmapping.lava_ruins_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -232,9 +169,8 @@ SUBSYSTEM_DEF(mapping)
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
 
 	z_list = SSmapping.z_list
-	multiz_levels = SSmapping.multiz_levels
 
-#define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, "<span class='boldannounce'>[X]</span>"); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -341,23 +277,6 @@ SUBSYSTEM_DEF(mapping)
 		// And as the file is now removed set the next map to default.
 		next_map_config = load_map_config(default_to_box = TRUE)
 
-GLOBAL_LIST_EMPTY(the_station_areas)
-
-/datum/controller/subsystem/mapping/proc/generate_station_area_list()
-	var/list/station_areas_blacklist = typecacheof(list(/area/space, /area/mine, /area/ruin, /area/asteroid/nearstation))
-	for(var/area/A in world)
-		if (is_type_in_typecache(A, station_areas_blacklist))
-			continue
-		if (!A.contents.len || !A.unique)
-			continue
-		var/turf/picked = A.contents[1]
-		if (is_station_level(picked.z))
-			GLOB.the_station_areas += A.type
-
-	if(!GLOB.the_station_areas.len)
-		log_world("ERROR: Station areas list failed to generate!")
-
-
 
 /datum/controller/subsystem/mapping/proc/maprotate()
 	if(map_voted)
@@ -411,7 +330,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	message_admins("Randomly rotating map to [VM.map_name]")
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
-		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
+		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
 
 /datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
@@ -437,108 +356,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/template = new item()
 		map_templates[template.id] = template
 
-	//These are obsolete, since there are no ss13 templates, but they are harmless enough to stay
-	preloadRuinTemplates()
-	preloadShuttleTemplates()
-	preloadShelterTemplates()
-
-/datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
-	// Still supporting bans by filename
-	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
-	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
-
-	for(var/item in sortList(subtypesof(/datum/map_template/ruin), GLOBAL_PROC_REF(cmp_ruincost_priority)))
-		var/datum/map_template/ruin/ruin_type = item
-		// screen out the abstract subtypes
-		if(!initial(ruin_type.id))
-			continue
-		var/datum/map_template/ruin/R = new ruin_type()
-
-		if(banned.Find(R.mappath))
-			continue
-
-		map_templates[R.id] = R
-		ruins_templates[R.id] = R
-
-/datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
-	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
-
-	for(var/item in subtypesof(/datum/map_template/shuttle))
-		var/datum/map_template/shuttle/shuttle_type = item
-		if(!(initial(shuttle_type.suffix)))
-			continue
-
-		var/datum/map_template/shuttle/S = new shuttle_type()
-		if(unbuyable.Find(S.mappath))
-			S.can_be_bought = FALSE
-
-		shuttle_templates[S.shuttle_id] = S
-		map_templates[S.shuttle_id] = S
-
-/datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
-	for(var/item in subtypesof(/datum/map_template/shelter))
-		var/datum/map_template/shelter/shelter_type = item
-		if(!(initial(shelter_type.mappath)))
-			continue
-		var/datum/map_template/shelter/S = new shelter_type()
-
-		shelter_templates[S.shelter_id] = S
-		map_templates[S.shelter_id] = S
-
-//Manual loading of away missions.
-/client/proc/admin_away()
-	set name = "Load Away Mission"
-	set category = "Fun"
-	set hidden = 1
-
-	if(!holder ||!check_rights(R_FUN))
-		return
-
-
-	if(!GLOB.the_gateway)
-		if(alert("There's no home gateway on the station. You sure you want to continue ?", "Uh oh", "Yes", "No") != "Yes")
-			return
-
-	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
-	var/away_name
-	var/datum/space_level/away_level
-
-	var/answer = input("What kind ? ","Away") as null|anything in possible_options
-	switch(answer)
-		if("Custom")
-			var/mapfile = input("Pick file:", "File") as null|file
-			if(!mapfile)
-				return
-			away_name = "[mapfile] custom"
-			to_chat(usr,span_notice("Loading [away_name]..."))
-			var/datum/map_template/template = new(mapfile, "Away Mission")
-			away_level = template.load_new_z()
-		else
-			if(answer in GLOB.potentialRandomZlevels)
-				away_name = answer
-				to_chat(usr,span_notice("Loading [away_name]..."))
-				var/datum/map_template/template = new(away_name, "Away Mission")
-				away_level = template.load_new_z()
-			else
-				return
-
-	message_admins("Admin [key_name_admin(usr)] has loaded [away_name] away mission.")
-	log_admin("Admin [key_name(usr)] has loaded [away_name] away mission.")
-	if(!away_level)
-		message_admins("Loading [away_name] failed!")
-		return
-
-
-	if(GLOB.the_gateway)
-		//Link any found away gate with station gate
-		var/obj/machinery/gateway/centeraway/new_gate
-		for(var/obj/machinery/gateway/centeraway/G in GLOB.machines)
-			if(G.z == away_level.z_value) //I'll have to refactor gateway shitcode before multi-away support.
-				new_gate = G
-				break
-		//Link station gate with away gate and remove wait time.
-		GLOB.the_gateway.awaygate = new_gate
-		GLOB.the_gateway.wait = world.time
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
 	UNTIL((!z || reservation_ready["[z]"]) && !clearing_reserved_turfs)

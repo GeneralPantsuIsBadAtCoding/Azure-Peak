@@ -2,8 +2,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
 	var/fire_resist = T0C+100
-	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
-	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0,  "piercing" = 0, "fire" = 0, "acid" = 0)
 	drop_sound = 'sound/blank.ogg'
 	pickup_sound =  'sound/blank.ogg'
 	slot_flags = ITEM_SLOT_OCLOTHING
@@ -15,10 +14,6 @@
 /obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
 	. = list()
 	if(!isinhands)
-//		if(damaged_clothes)
-//			. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]")
-//		if(HAS_BLOOD_DNA(src))
-//			. += mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
 		var/mob/living/carbon/human/M = loc
 		if(ishuman(M) && M.wear_pants)
 			var/obj/item/clothing/under/U = M.wear_pants
@@ -31,6 +26,5 @@
 	..()
 	if(ismob(loc))
 		var/mob/M = loc
-//		M.update_inv_wear_suit()
 		M.update_inv_shirt()
 		M.update_inv_armor()

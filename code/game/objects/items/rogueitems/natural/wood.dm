@@ -19,7 +19,7 @@
 	var/lumber_amount = 1
 
 /obj/item/grown/log/tree/attacked_by(obj/item/I, mob/living/user) //This serves to reward woodcutting
-	if(user.used_intent.blade_class == BCLASS_CHOP && lumber_amount)
+	if(user.used_intent.blade_class == BCLASS_CHOP && lumber_amount && lumber)
 		var/skill_level = user.mind.get_skill_level(/datum/skill/labor/lumberjacking)
 		var/lumber_time = (40 - (skill_level * 5))
 		var/minimum = 1

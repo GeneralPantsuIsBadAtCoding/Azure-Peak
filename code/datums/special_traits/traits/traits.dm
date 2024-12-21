@@ -408,15 +408,6 @@
 /datum/special_trait/outlaw/on_apply(mob/living/carbon/human/character, silent)
 	make_outlaw(character.real_name, TRUE)
 
-/datum/special_trait/sillyvoice
-	name = "Annoying"
-	greet_text = span_sans("People really hate my voice for some reason.")
-	weight = 100
-
-/datum/special_trait/sillyvoice/on_apply(mob/living/carbon/human/character)
-	ADD_TRAIT(character, TRAIT_COMICSANS, "[type]")
-	character.dna.add_mutation(WACKY)
-
 /datum/special_trait/unlucky
 	name = "Unlucky"
 	greet_text = span_boldwarning("Ever since you knocked over that glass vase, you just feel... off")

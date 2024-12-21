@@ -7,7 +7,7 @@
 	icon_state       = "transparent"
 	color            = null //we manually set color in init instead
 	plane            = LIGHTING_PLANE
-	mouse_opacity 	 = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer            = LIGHTING_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
 
@@ -27,18 +27,17 @@
 	myturf.lighting_object = src
 	myturf.luminosity = 0
 
-
 	needs_update = TRUE
 	SSlighting.objects_queue += src
 
 /atom/movable/lighting_object/Destroy(force)
-	if(force)
+	if (force)
 		SSlighting.objects_queue -= src
-		if(loc != myturf)
+		if (loc != myturf)
 			var/turf/oldturf = get_turf(myturf)
 			var/turf/newturf = get_turf(loc)
 			stack_trace("A lighting object was qdeleted with a different loc then it is suppose to have ([COORD(oldturf)] -> [COORD(newturf)])")
-		if(isturf(myturf))
+		if (isturf(myturf))
 			myturf.lighting_object = null
 			myturf.luminosity = 1
 		myturf = null
@@ -49,8 +48,8 @@
 		return QDEL_HINT_LETMELIVE
 
 /atom/movable/lighting_object/proc/update()
-	if(loc != myturf)
-		if(loc)
+	if (loc != myturf)
+		if (loc)
 			var/turf/oldturf = get_turf(myturf)
 			var/turf/newturf = get_turf(loc)
 			warning("A lighting object realised it's loc had changed in update() ([myturf]\[[myturf ? myturf.type : "null"]]([COORD(oldturf)]) -> [loc]\[[ loc ? loc.type : "null"]]([COORD(newturf)]))!")
@@ -74,7 +73,7 @@
 	var/datum/lighting_corner/cg = dummy_lighting_corner
 	var/datum/lighting_corner/cb = dummy_lighting_corner
 	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if(corners) //done this way for speed
+	if (corners) //done this way for speed
 		cr = corners[3] || dummy_lighting_corner
 		cg = corners[2] || dummy_lighting_corner
 		cb = corners[4] || dummy_lighting_corner
@@ -122,7 +121,16 @@
 			ar, ag, ab, 00,
 			00, 00, 00, 01
 		)
-
+/*		if(color)
+			animate(src, color = list(rr, rg, rb,00,gr, gg, gb, 00,br, bg, bb, 00,ar, ag, ab, 00,00, 00, 00, 01), time = 5)
+		else
+			color = list(
+				rr, rg, rb, 00,
+				gr, gg, gb, 00,
+				br, bg, bb, 00,
+				ar, ag, ab, 00,
+				00, 00, 00, 01
+			)*/
 	luminosity = set_luminosity
 
 // Variety of overrides so the overlays don't get affected by weird things.
@@ -130,19 +138,10 @@
 /atom/movable/lighting_object/ex_act(severity)
 	return 0
 
-/atom/movable/lighting_object/singularity_act()
-	return
-
-/atom/movable/lighting_object/singularity_pull()
-	return
-
-/atom/movable/lighting_object/blob_act(obj/structure/blob/B)
-	return
-
 /atom/movable/lighting_object/onTransitZ()
 	return
 
 // Override here to prevent things accidentally moving around overlays.
-/atom/movable/lighting_object/forceMove(atom/destination, no_tp = FALSE, harderforce = FALSE)
+/atom/movable/lighting_object/forceMove(atom/destination, no_tp=FALSE, harderforce = FALSE)
 	if(harderforce)
 		. = ..()

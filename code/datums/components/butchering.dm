@@ -82,23 +82,3 @@
 
 /datum/component/butchering/proc/ButcherEffects(mob/living/meat) //extra effects called on butchering, override this via subtypes
 	return
-
-///Special snowflake component only used for the recycler.
-/datum/component/butchering/recycler
-
-/datum/component/butchering/recycler/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt)
-	if(!istype(parent, /obj/machinery/recycler)) //EWWW
-		return COMPONENT_INCOMPATIBLE
-	. = ..()
-	if(. == COMPONENT_INCOMPATIBLE)
-		return
-	RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, PROC_REF(onCrossed))
-
-/datum/component/butchering/recycler/proc/onCrossed(datum/source, mob/living/L)
-	if(!istype(L))
-		return
-	var/obj/machinery/recycler/eater = parent
-	if(eater.safety_mode || (eater.stat & (BROKEN|NOPOWER))) //I'm so sorry.
-		return
-	if(L.stat == DEAD && (L.butcher_results || L.guaranteed_butcher_results))
-		Butcher(parent, L)

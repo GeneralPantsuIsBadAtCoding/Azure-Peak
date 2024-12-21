@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(biggates)
 
 /obj/structure/gate/preopen/Initialize()
 	. = ..()
-	open()
+	INVOKE_ASYNC(src, PROC_REF(open))
 
 /obj/structure/gate/bars
 	icon_state = "bar1"
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(biggates)
 
 /obj/structure/gate/bars/preopen/Initialize()
 	. = ..()
-	open()
+	INVOKE_ASYNC(src, PROC_REF(open))
 
 /obj/gblock
 	name = ""
@@ -178,4 +178,3 @@ GLOBAL_LIST_EMPTY(biggates)
 		playsound(src, 'sound/foley/winch.ogg', 100, extrarange = 3)
 		if(do_after(user, used_time, target = user))
 			attached_gate.toggle()
-

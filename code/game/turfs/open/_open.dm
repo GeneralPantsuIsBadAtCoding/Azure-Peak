@@ -55,107 +55,6 @@
 /turf/open/zAirOut(direction, turf/source)
 	return (direction == UP)
 
-/turf/open/indestructible
-	name = "floor"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "floor"
-	footstep = FOOTSTEP_FLOOR
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_HARD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = TRUE
-
-/turf/open/indestructible/Melt()
-	to_be_destroyed = FALSE
-	return src
-
-/turf/open/indestructible/singularity_act()
-	return
-
-/turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
-	return
-
-/turf/open/indestructible/sound
-	name = "squeaky floor"
-	footstep = null
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-	var/sound
-
-/turf/open/indestructible/sound/Entered(mob/AM)
-	..()
-	if(istype(AM))
-		playsound(src,sound,50,TRUE)
-
-/turf/open/indestructible/necropolis
-	name = "necropolis floor"
-	desc = ""
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "necro1"
-	baseturfs = /turf/open/indestructible/necropolis
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-	footstep = FOOTSTEP_LAVA
-	barefootstep = FOOTSTEP_LAVA
-	clawfootstep = FOOTSTEP_LAVA
-	heavyfootstep = FOOTSTEP_LAVA
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/necropolis/Initialize()
-	. = ..()
-	if(prob(12))
-		icon_state = "necro[rand(2,3)]"
-
-/turf/open/indestructible/necropolis/air
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-
-/turf/open/indestructible/boss //you put stone tiles on this and use it as a base
-	name = "necropolis floor"
-	icon = 'icons/turf/boss_floors.dmi'
-	icon_state = "boss"
-	baseturfs = /turf/open/indestructible/boss
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-
-/turf/open/indestructible/boss/air
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
-
-/turf/open/indestructible/hierophant
-	icon = 'icons/turf/floors/hierophant_floor.dmi'
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-	baseturfs = /turf/open/indestructible/hierophant
-	smooth = SMOOTH_TRUE
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/hierophant/two
-
-/turf/open/indestructible/hierophant/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-	return FALSE
-
-/turf/open/indestructible/paper
-	name = "notebook floor"
-	desc = ""
-	icon_state = "paperfloor"
-	footstep = null
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-	tiled_dirt = FALSE
-
-/turf/open/indestructible/binary
-	name = "tear in the fabric of reality"
-	CanAtmosPass = ATMOS_PASS_NO
-	baseturfs = /turf/open/indestructible/binary
-	icon_state = "binary"
-	footstep = null
-	barefootstep = null
-	clawfootstep = null
-	heavyfootstep = null
-
-/turf/open/indestructible/airblock
-	icon_state = "bluespace"
-	blocks_air = TRUE
-	baseturfs = /turf/open/indestructible/airblock
-
 /turf/open/Initalize_Atmos(times_fired)
 	excited = 0
 	update_visuals()
@@ -195,13 +94,7 @@
 /turf/open/proc/water_vapor_gas_act()
 	MakeSlippery(TURF_WET_WATER, min_wet_time = 100, wet_time_to_add = 50)
 
-	for(var/mob/living/simple_animal/slime/M in src)
-		M.apply_water()
-
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-	for(var/obj/effect/O in src)
-		if(is_cleanable(O))
-			qdel(O)
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
@@ -219,7 +112,7 @@
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, span_notice("I slipped[ O ? " on the [O.name]" : ""]!"))
+			to_chat(C, "<span class='notice'>I slipped[ O ? " on the [O.name]" : ""]!</span>")
 			playsound(C.loc, 'sound/blank.ogg', 50, TRUE, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)

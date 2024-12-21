@@ -39,9 +39,12 @@
 /obj/item/roguecoin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	playsound(loc, 'sound/foley/coins1.ogg', 100, TRUE, -2)
 	scatter(get_turf(src))
-	..()
+	..() 
 
 /obj/item/roguecoin/proc/scatter(turf/T)
+	if(istransparentturf(T))
+		scatter(GET_TURF_BELOW(T))
+		return
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-5, 5)
 	if(isturf(T) && quantity > 1)

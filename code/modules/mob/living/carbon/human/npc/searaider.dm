@@ -1,4 +1,3 @@
-GLOBAL_LIST_INIT(searaider_quotes, world.file2list("strings/rt/searaiderlines.txt"))
 GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggrolines.txt"))
 
 /mob/living/carbon/human/species/human/northern/searaider
@@ -8,6 +7,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
+	stand_attempts = 6
 	possible_rmb_intents = list()
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
@@ -35,9 +35,8 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 /mob/living/carbon/human/species/human/northern/searaider/Initialize()
 	. = ..()
 	set_species(/datum/species/human/northern)
-	spawn(10)
-		after_creation()
-	//addtimer(CALLBACK(src, PROC_REF(after_creation)), 10)
+	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
+	is_silent = TRUE
 
 
 /mob/living/carbon/human/species/human/northern/searaider/after_creation()
@@ -69,20 +68,12 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 			face_atom(get_step(src,pick(GLOB.cardinals)))
 	if(!wander && prob(10))
 		face_atom(get_step(src,pick(GLOB.cardinals)))
-	if(!is_silent && prob(12))
-		say(pick(GLOB.searaider_quotes))
-	if(!is_silent && prob(12))
-		emote(pick("laugh","burp","yawn","grumble","mumble","blink_r","clap"))
 
 /mob/living/carbon/human/species/human/northern/searaider/handle_combat()
 	if(mode == AI_HUNT)
 		if(prob(50)) // ignores is_silent because they should at least still be able to scream at people!
 			emote("rage")
 	. = ..()
-
-/// This version of sea raider actually stays quiet and doesn't yell. Great for admin spawn events if you don't want to destroy your players' chat logs!
-/mob/living/carbon/human/species/human/northern/searaider/silent
-	is_silent = TRUE
 
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/pre_equip(mob/living/carbon/human/H)
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
