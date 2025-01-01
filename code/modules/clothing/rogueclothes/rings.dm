@@ -18,10 +18,16 @@
 	icon_state = "ring_s"
 	sellprice = 33
 
+/obj/item/clothing/ring/silver/worn
+	sellprice = 2
+
 /obj/item/clothing/ring/gold
 	name = "gold ring"
 	icon_state = "ring_g"
 	sellprice = 45
+
+obj/item/clothing/ring/gold/worn
+	sellprice = 2
 
 /obj/item/clothing/ring/active
 	var/active = FALSE

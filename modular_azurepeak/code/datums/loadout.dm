@@ -76,6 +76,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Halfcloak"
 	path = /obj/item/clothing/cloak/half
 
+/datum/loadout_item/desertcape
+	name = "Desert Cape"
+	path = /obj/item/clothing/cloak/cape/crusader
+
 /datum/loadout_item/ridercloak
 	name = "Rider Cloak"
 	path = /obj/item/clothing/cloak/half/rider
@@ -203,3 +207,11 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/feather
 	name = "Feather"
 	path = /obj/item/natural/feather
+
+/datum/loadout_item/silverring
+	name = "Worn Silver Ring"
+	path = /obj/item/clothing/ring/silver/worn
+
+/datum/loadout_item/goldring
+	name = "Worn Golden Ring"
+	path = /obj/item/clothing/ring/gold/worn
