@@ -203,3 +203,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/feather
 	name = "Feather"
 	path = /obj/item/natural/feather
+
+/datum/loadout_item/instrument
+	name = "Instrument"
+	path = /obj/item/rogue/instrument
