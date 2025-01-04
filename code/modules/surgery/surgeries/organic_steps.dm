@@ -55,7 +55,7 @@
 		span_notice("[user] clamps the bleeders in [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] clamps the bleeders in [target]'s [parse_zone(target_zone)]."))
 	var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(target_zone))
-	bodypart?.add_embedded_object(tool, crit_message = FALSE)
+	bodypart?.add_embedded_object(tool, silent = TRUE, crit_message = FALSE)
 	return TRUE
 
 /// Retracting
@@ -84,7 +84,7 @@
 		span_notice("[user] retract [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] retract [target]'s [parse_zone(target_zone)]."))
 	var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(target_zone))
-	bodypart?.add_embedded_object(tool, crit_message = FALSE)
+	bodypart?.add_embedded_object(tool, silent = TRUE, crit_message = FALSE)
 	return TRUE
 
 /// Cauterize
