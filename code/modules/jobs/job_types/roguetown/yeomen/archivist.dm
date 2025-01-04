@@ -17,8 +17,6 @@
 	max_pq = null
 	round_contrib_points = 3
 
-	cmode_music = 'sound/music/combat_fancy.ogg'
-
 /datum/outfit/job/roguetown/archivist/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)

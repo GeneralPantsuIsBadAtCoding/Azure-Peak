@@ -587,7 +587,12 @@
 /mob
 	var/last_aimhchange = 0
 	var/aimheight = 11
-	var/cmode_music = 'sound/music/combat.ogg'
+	var/cmode_music = list(
+						'sound/music/combat.ogg',
+						'sound/music/combat2.ogg',
+						'sound/music/combat_HEAVY_METAL.ogg',
+						'sound/music/combat_weird.ogg',
+						)
 
 /mob/proc/aimheight_change(input)
 	var/old_zone = zone_selected
