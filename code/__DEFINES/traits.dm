@@ -17,6 +17,7 @@
 #define TRAIT_MEDIUMARMOR "Maille Training"
 #define TRAIT_HEAVYARMOR "Plate Training"
 #define TRAIT_DODGEEXPERT "Fast Reflexes"
+#define TRAIT_DODGEADEPT "Solid Reflexes"
 #define TRAIT_DECEIVING_MEEKNESS "Deceiving Meekness"
 #define TRAIT_CRITICAL_RESISTANCE "Critical Resistance"
 #define TRAIT_CRITICAL_WEAKNESS "Critical Weakness"
@@ -128,7 +129,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BREADY = "Defensive stance does not passively fatigue me.",
 	TRAIT_MEDIUMARMOR = "I can move freely in medium armor.",
 	TRAIT_HEAVYARMOR = "I can move freely in heavy armor.",
-	TRAIT_DODGEEXPERT = "I can dodge easily while only wearing light armor.",
+	TRAIT_DODGEEXPERT = "I can dodge easily in light armor, and nearly as well in medium armor.",
+	TRAIT_DODGEADEPT = "I can dodge well in light armor.",
 	TRAIT_DECEIVING_MEEKNESS = "People look at me and think I am a weakling. They are mistaken.",
 	TRAIT_CRITICAL_RESISTANCE = "I am resistant to wounds that would be life threatening to others.",
 	TRAIT_CRITICAL_WEAKNESS = span_danger("I am weak to wounds that others could survive."),

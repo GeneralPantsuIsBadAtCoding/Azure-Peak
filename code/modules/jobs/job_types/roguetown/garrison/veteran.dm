@@ -363,7 +363,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			H.change_stat("perception", 2)
 	H.verbs |= /mob/proc/haltyell
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // You should really be parrying anyways, you have legendary/master skills....
+	ADD_TRAIT(H, TRAIT_DODGEADEPT, TRAIT_GENERIC) // You should really be parrying anyways, you have legendary/master skills....
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
 	H.cmode_music = 'sound/music/combat_rogue.ogg'
