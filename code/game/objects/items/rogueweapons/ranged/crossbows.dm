@@ -101,7 +101,7 @@
 	else
 		if(!cocked)
 			to_chat(user, span_info("I step on the stirrup and use all my might..."))
-			if(do_after(user, 50 - user.STASTR, target = user))
+			if(do_after(user, (55 - user.STASTR) - (user.mind.get_skill_level(/datum/skill/combat/crossbows)*4), target = user))
 				playsound(user, 'sound/combat/Ranged/crossbow_medium_reload-01.ogg', 100, FALSE)
 				cocked = TRUE
 		else
