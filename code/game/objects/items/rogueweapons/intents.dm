@@ -530,7 +530,7 @@
 /datum/intent/simple/spear
 	name = "spear"
 	icon_state = "instrike"
-	attack_verb = list("stabs", "skewers", "bashes")
+	attack_verb = list("stabs", "skewers")
 	animname = "blank22"
 	blade_class = BCLASS_CUT
 	hitsound = list("genthrust", "genstab")

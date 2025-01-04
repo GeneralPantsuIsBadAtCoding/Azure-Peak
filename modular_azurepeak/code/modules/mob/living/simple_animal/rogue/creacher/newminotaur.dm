@@ -5,34 +5,41 @@
 	icon_living = "MinotaurMale"
 	icon_dead = "MinotaurMale_dead"
 	gender = MALE
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	emote_hear = null
 	emote_see = null
 	speak_chance = 1
 	turns_per_move = 2
 	see_in_dark = 10
 	move_to_delay = 3
+
+	STACON = 19
+	STASTR = 16
+	STASPD = 5
 	base_intents = list(/datum/intent/simple/minotaur_unarmed)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 10,
 						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 2)
 	faction = list("caves")
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 500
-	maxHealth = 600
+
+	health = MINOTAUR_HEALTH
+	maxHealth = MINOTAUR_HEALTH
 	melee_damage_lower = 55
 	melee_damage_upper = 80
 	vision_range = 3
 	aggro_vision_range = 8
+	limb_destroyer = 0 // seems strong
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 1
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, /obj/item/bodypart, /obj/item/organ)
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
+	//obj/item/bodypart, 
+	//obj/item/organ
+	)
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	pooptype = null
-	STACON = 19
-	STASTR = 16
-	STASPD = 5
+
 	deaggroprob = 0
 	defprob = 40
 	defdrain = 10
@@ -41,8 +48,21 @@
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 	dodgetime = 0
 	aggressive = 1
+
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/minotaur
+
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/item/rogueweapon/stoneaxe/battle
+
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/Initialize()
+	. = ..()
+	update_icon()
+	AddElement(/datum/element/ai_retaliate)
+	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BASHDOORS, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/female
 	icon_state = "MinotaurFem"
@@ -145,6 +165,7 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "stab"
+	clickcd = MINOTAUR_ATTACK_SPEED
 
 /datum/intent/simple/minotaur_axe
 	name = "minotaur axe"
@@ -158,4 +179,10 @@
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
+	reach = 2 
 	item_d_type = "stab"
+	clickcd = MINOTAUR_ATTACK_SPEED
+
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/original
+	AIStatus = AI_ON
+	can_have_ai = TRUE

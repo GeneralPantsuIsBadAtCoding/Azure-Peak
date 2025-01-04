@@ -94,6 +94,7 @@
 
 	. = ..()
 
+	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed) 
 	if(client)
 		client.move_delay = initial(client.move_delay)
 		var/atom/movable/screen/gameover/hog/H = new()

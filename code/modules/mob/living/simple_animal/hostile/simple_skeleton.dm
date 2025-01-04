@@ -13,8 +13,8 @@
 	STACON = 9
 	STASTR = 9
 	STASPD = 8
-	maxHealth = 100
-	health = 100
+	maxHealth = SKELETON_HEALTH
+	health = SKELETON_HEALTH
 	harm_intent_damage = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 25
@@ -23,7 +23,7 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	limb_destroyer = 1
-	base_intents = list(/datum/intent/simple/claw/skeleton_unarmed)
+	base_intents = list(/datum/intent/simple/claw/skeleton)
 	attack_verb_continuous = "hacks"
 	attack_verb_simple = "hack"
 	attack_sound = 'sound/blank.ogg'
@@ -37,34 +37,37 @@
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	del_on_death = TRUE
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/simple_skeleton
+
 /mob/living/simple_animal/hostile/rogue/skeleton/axe
 	name = "Skeleton"
 	desc = ""
 	icon = 'modular_hearthstone/icons/mob/skeletons.dmi'
-	base_intents = list(/datum/intent/simple/axe)
+	base_intents = list(/datum/intent/simple/axe/skeleton)
 	icon_state = "skeleton_axe"
 	icon_living = "skeleton_axe"
 	icon_dead = ""
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/stoneaxe/woodcut, /obj/item/skull)
 
-
-
 /mob/living/simple_animal/hostile/rogue/skeleton/spear
 	name = "Skeleton"
 	desc = ""
 	icon = 'modular_hearthstone/icons/mob/skeletons.dmi'
-	base_intents = list(/datum/intent/simple/spear)
+	base_intents = list(/datum/intent/simple/spear/skeleton)
 	icon_state = "skeleton_spear"
 	icon_living = "skeleton_spear"
 	icon_dead = ""
 	attack_sound = 'sound/foley/pierce.ogg'
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/spear, /obj/item/skull)
+	ai_controller = /datum/ai_controller/skeleton_spear
 
 /mob/living/simple_animal/hostile/rogue/skeleton/guard
 	name = "Skeleton"
 	desc = ""
 	icon = 'modular_hearthstone/icons/mob/skeletons.dmi'
-	base_intents = list(/datum/intent/simple/axe)
+	base_intents = list(/datum/intent/simple/axe/skeleton)
 	icon_state = "skeleton_guard"
 	icon_living = "skeleton_guard"
 	icon_dead = ""
@@ -88,6 +91,7 @@
 	check_friendly_fire = 1
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone, /obj/item/skull, /obj/item/gun/ballistic/revolver/grenadelauncher/bow,
 			 /obj/item/ammo_casing/caseless/rogue/arrow,  /obj/item/ammo_casing/caseless/rogue/arrow,  /obj/item/ammo_casing/caseless/rogue/arrow)
+	ai_controller = /datum/ai_controller/skeleton_ranged
 
 /mob/living/simple_animal/hostile/rogue/skeleton/get_sound(input)
 	switch(input)
@@ -175,3 +179,15 @@
 	woundclass = BCLASS_STAB
 	flag = "piercing"
 	speed = 2
+
+/datum/intent/simple/axe/skeleton
+	clickcd = SKELETON_ATTACK_SPEED
+
+/datum/intent/simple/claw/skeleton
+	clickcd = SKELETON_ATTACK_SPEED
+	
+/datum/intent/simple/spear/skeleton
+	reach = 2
+	clickcd = SKELETON_ATTACK_SPEED
+	chargetime = 1
+	animname = "stab"
