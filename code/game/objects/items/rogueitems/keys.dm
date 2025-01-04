@@ -126,6 +126,12 @@
 	icon_state = "cheesekey"
 	lockid = "sheriff"
 
+/obj/item/roguekey/armory
+	name = "armory key"
+	desc = "This key opens the garrison's armory."
+	icon_state = "hornkey"
+	lockid = "armory"
+
 /obj/item/roguekey/merchant
 	name = "merchant's key"
 	desc = "A merchant's key."
