@@ -562,7 +562,10 @@
 			/*else
 				villain_text = span_userdanger("BANDIT!")*/
 		if(mind.special_role == "Vampire Lord")
-			villain_text += span_userdanger("A MONSTER!")
+			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
+			if(VD) 
+				if(!VD.disguised)
+					villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 
