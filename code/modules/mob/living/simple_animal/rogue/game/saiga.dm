@@ -257,7 +257,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/update_icon()
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/update_icon()
 	cut_overlays()
 	..()
 	if(stat != DEAD)
@@ -271,7 +271,7 @@
 			add_overlay(mounted)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -282,19 +282,19 @@
 		if("idle")
 			return pick('sound/vo/mobs/saiga/idle (1).ogg','sound/vo/mobs/saiga/idle (2).ogg','sound/vo/mobs/saiga/idle (3).ogg','sound/vo/mobs/saiga/idle (4).ogg','sound/vo/mobs/saiga/idle (5).ogg','sound/vo/mobs/saiga/idle (6).ogg','sound/vo/mobs/saiga/idle (7).ogg')
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/Initialize()
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/Initialize()
 	. = ..()
 	if(tame)
 		tamed()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/taunted(mob/user)
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/taunted(mob/user)
 	emote("aggro")
 	Retaliate()
 	GiveTarget(user)
 	return
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tamed()
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/tamed()
 	..()
 	deaggroprob = 20
 	if(can_buckle)
@@ -305,11 +305,11 @@
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/death()
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/death()
 	unbuckle_all_mobs()
 	.=..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/eat_plants()
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/eat_plants()
 	//..()
 	var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
 	if(SV)
@@ -317,7 +317,7 @@
 		food = max(food + 30, 100)
 
 
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/simple_limb_hit(zone)
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/simple_limb_hit(zone)
 	if(!zone)
 		return ""
 	switch(zone)
@@ -356,6 +356,48 @@
 		if(BODY_ZONE_L_ARM)
 			return "foreleg"
 	return ..()
+
+
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/apply_damage(def_zone, blocked, forced)
+	if(buckled_mobs.len)	//If we're a mount and are hit while sprinting, throw our rider off
+		for(var/mob/living/carbon/human/H in buckled_mobs)
+			if(H.m_intent == MOVE_INTENT_RUN)
+				var/mob/living/simple_animal/M = src
+				M.violent_dismount(H)
+	..()
+
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
+	icon = 'icons/roguetown/mob/monster/saiga.dmi'
+	name = "saiga"
+	desc = ""
+	gender = MALE
+	icon_state = "saigaboy"
+	icon_living = "saigaboy"
+	icon_dead = "saigaboy_dead"
+	icon_gib = "saigaboy_gib"
+	animal_species = null
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1, /obj/item/natural/bone = 3)
+	base_intents = list(/datum/intent/simple/headbutt)
+	health = 20
+	maxHealth = 20
+	pass_flags = PASSTABLE | PASSMOB
+	mob_size = MOB_SIZE_SMALL
+	milkies = FALSE
+	melee_damage_lower = 1
+	melee_damage_upper = 6
+	STACON = 5
+	STASTR = 5
+	STASPD = 5
+	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/saigabuck
+	tame = TRUE
+	can_buckle = FALSE
+	aggressive = 1
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame
+	tame = TRUE
+
+/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/tame
+	tame = TRUE
+
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled/Initialize()
 	. = ..()
