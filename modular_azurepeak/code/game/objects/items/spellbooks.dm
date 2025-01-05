@@ -26,6 +26,14 @@
 	var/stored_gem = FALSE
 	var/picked // if the book has had it's style picked or not
 	var/born_of_rock = FALSE // was a magical stone used to make it instead of a gem?
+	var/grimoire = FALSE
+
+/obj/item/book/granter/spellbook/grimoire
+	icon_state = "spellbooksteel_0"
+	base_icon_state = "spellbooksteel"
+	name = "\improper magister grimoire"
+	desc = "A tome of incredible power. Its text sear eyes, its binding blisters skin, all to protect the ancient power held within from but worthiest of scholars."
+	grimoire = TRUE
 
 /obj/item/book/granter/spellbook/getonmobprop(tag)
 	. = ..()
@@ -133,6 +141,9 @@
 	to_chat(user, span_notice("Arcyne mysteries abound in this enigmatic tome, gift of Noc..."))
 
 /obj/item/book/granter/spellbook/on_reading_finished(mob/user)
+	if(!isarcyne(user))
+		to_chat(user, span_notice("As hard as I may try, I cannot descern anything from these texts. I've not the arcyne ability to do so."))
+		return
 	var/mob/living/carbon/human/gamer = user
 	if(gamer != owner && !allowed_readers.Find(gamer))
 		to_chat(user, span_notice("What was that gibberish? Even for the arcyne it was completely illegible!"))
@@ -152,36 +163,34 @@
 		to_chat(user, span_smallnotice("I can feel the magical energies imbued within the crystaline dust scattered upon my tome resonate with the arcyne..."))
 		chance2learn += stored_gem
 		stored_gem = FALSE
-	if(!isarcyne(user))
-		if (gamer != owner) // if you didn't make this book, get fucked.
-			chance2learn = 1
-		else
-			chance2learn *= 0.5
-			chance2learn = min(chance2learn, 15) 
 	if (born_of_rock)
 		// the rock tomes are a *lot* easier to make, so we make them worse by them reducing your chances by 20%
 		chance2learn *= 0.8
 	testing("chance to learn is [chance2learn]")
-	if(prob(chance2learn))
-		user.visible_message(span_warning("[user] is filled with arcyne energy! You witness [user.p_their()] body convulse and spark brightly."), \
-			span_notice("Noc blesses me. I have been granted knowledge and wisdom beyond my years, this tome's mysteries unveiled one at a time."))
-		var/currentlevel = user.mind?.get_skill_level(/datum/skill/magic/arcane)
-		var/expgain = get_arcyne_exp(currentlevel)
-		testing("exp to be gained is [expgain]")
-		user.mind?.add_sleep_experience(/datum/skill/magic/arcane, expgain, TRUE)
-		user.log_message("successfully studied their spellbook and gained a spell point", LOG_ATTACK, color="orange")
-		onlearned(user)
-	else
-		if(prob(55))
-			to_chat(user, span_notice("Confounded arcyne mysteries, what fool wrote this drivel!? I must sleep before I can bring myself to open this damned thing again..."))
-			to_chat(user, span_small("Some of those words I've heard before, but never read. I must meditate on their meaning..."))
-			user.mind?.add_sleep_experience(/datum/skill/misc/reading, reader.STAINT*10)
+	var/currentlevel = user.mind?.get_skill_level(/datum/skill/magic/arcane)
+	if(currentlevel < 4 || grimoire == TRUE)
+		if(prob(chance2learn))
+			user.visible_message(span_warning("[user] is filled with arcyne energy! You witness [user.p_their()] body convulse and spark brightly."), \
+				span_notice("Noc blesses me. I have been granted knowledge and wisdom beyond my years, this tome's mysteries unveiled one at a time."))
+			var/expgain = get_arcyne_exp(currentlevel)
+			testing("exp to be gained is [expgain]")
+			user.mind?.add_sleep_experience(/datum/skill/magic/arcane, expgain, TRUE)
+			user.log_message("successfully studied their spellbook and gained a spell point", LOG_ATTACK, color="orange")
+			onlearned(user)
 		else
-			to_chat(user, span_phobia("THIS KNOWLEDGE IS NOT FOR ME IT PERVADES MY MIND MY THOUGHTS MY WILL I AM NOT WORTHY I AM NOT WORTHY I AM NOT"))
-			var/mob/living/carbon/freaky = user
-			freaky.freak_out()
+			if(prob(55))
+				to_chat(user, span_notice("Confounded arcyne mysteries, what fool wrote this drivel!? I must sleep before I can bring myself to open this damned thing again..."))
+				to_chat(user, span_small("Some of those words I've heard before, but never read. I must meditate on their meaning..."))
+				user.mind?.add_sleep_experience(/datum/skill/misc/reading, reader.STAINT*10)
+			else
+				to_chat(user, span_phobia("THIS KNOWLEDGE IS NOT FOR ME IT PERVADES MY MIND MY THOUGHTS MY WILL I AM NOT WORTHY I AM NOT WORTHY I AM NOT"))
+				var/mob/living/carbon/freaky = user
+				freaky.freak_out()
 		return
-	
+	else
+		to_chat(user, span_notice("I've learned all I can from this tome.. perhaps I should seek out a tutor to further my knowledge."))
+		user.mind?.has_studied = FALSE
+		return
 /obj/item/book/granter/spellbook/onlearned(mob/user)
 	used = FALSE
 
@@ -290,21 +299,8 @@
 					qdel(P)
 					qdel(src)
 				else
-					if(prob(1))
-						playsound(loc, 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100, TRUE)
-						user.visible_message(span_warning("[user] crushes [user.p_their()] [P]! Its powder seeps into the [src]."), \
-							span_notice("By the Ten! That gem just exploded -- and my useless tome is filled with gleaming energy and strange letters!"))
-						var/obj/item/book/granter/spellbook/newbook = new /obj/item/book/granter/spellbook(loc)
-						newbook.owner = user
-						newbook.desc += " Traces of [P] dust linger in its margins."
-						qdel(P)
-						qdel(src)
-					else
-						playsound(loc, 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100, TRUE)
-						user.visible_message(span_warning("[user] crushes [user.p_their()] [P]! Its powder just kind of sits on top of the [src]. Awkward."), \
-							span_notice("... why and how did I just crush this gem into a worthless scroll-book? What a WASTE of mammon!"))
-						qdel(P)
-					return ..()
+					to_chat(user, span_notice("I press the gem into the cover of the book. What a pretty design this would make!"))
+				return ..()
 		else
 			to_chat(user, "<span class='warning'>You need to put [src] on a table to work on it.</span>")
 	else if (istype(P, /obj/item/natural/stone))
@@ -325,22 +321,8 @@
 						qdel(P)
 						qdel(src)
 					else
-						if (prob(the_rock.magic_power)) // for reference, this is never higher than 15 and usually significantly lower
-							playsound(loc, 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100, TRUE)
-							user.visible_message(span_warning("[user] carefully sets down [the_rock] upon [src]. Nothing happens for a moment or three, then suddenly, the glow surrounding the stone becomes as liquid, seeps down and soaks into the tome!"), \
-							span_notice("I knew this stone was special! Its colourful magick has soaked into my tome and given me gift of mystery!"))
-							to_chat(user, span_notice("...what in the world does any of this scribbling possibly mean?"))
-							var/obj/item/book/granter/spellbook/newbook = new /obj/item/book/granter/spellbook(loc)
-							newbook.owner = user
-							newbook.born_of_rock = TRUE
-							newbook.desc += " Traces of multicolored stone limn its margins."
-							qdel(P)
-							qdel(src)
-						else
-							user.visible_message(span_warning("[user] sets down [the_rock] upon the surface of [src] and watches expectantly. Without warning, the rock violently pops like a squashed gourd!"), \
-							span_notice("No! My precious stone! It musn't have wanted to share its mysteries with me..."))
-							user.electrocute_act(5, src)
-							qdel(P)
+						to_chat(user, span_notice("I press the colorful stone to the lump of parchment with no effect. Without proper knowledge of the arcyne, this technique is lost to me."))
+							
 		else
 			to_chat(user, span_notice("This is a mere rock - it has no arcyne potential. Bah!"))
 			return ..()
@@ -462,7 +444,7 @@
 	animate(src, transform = matrix(), alpha = 255, time = 0, flags = ANIMATION_END_NOW)
 	qdel(src)
 
-/obj/item/book/granter/spellbook/magician/Initialize()
+/obj/item/book/granter/spellbook/grimoire/magician/Initialize()
 	. = ..()
 	var/mob/living/carbon/human/L = loc
 	owner = L
