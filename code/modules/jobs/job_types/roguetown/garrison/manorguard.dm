@@ -47,7 +47,7 @@
 	beltl = /obj/item/storage/keyring/guardcastle
 	belt = /obj/item/storage/belt/rogue/leather/black
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backpack_contents = list(/obj/item/signal_horn = 1)
+	id = /obj/item/scomstone/bad/garrison
 
 // Maces + Axes + Shield	-	Better armor, typical Man-at-Arms loadout
 /datum/advclass/manorguard/footsman

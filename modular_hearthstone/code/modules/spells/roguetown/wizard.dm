@@ -1210,7 +1210,7 @@
 				playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 				return 
 
-			if(L.STASTR <= 13)
+			if(L.STASTR <= 11)
 				L.adjustBruteLoss(30)
 				L.Knockdown(5)
 				to_chat(L, "<span class='userdanger'>You're magically weighed down, losing your footing!</span>")
@@ -1244,7 +1244,8 @@
 	active = FALSE
 	releasedrain = 7
 	chargedrain = 0
-	chargetime = 0
+	chargetime = 20
+	charge_max = 15 SECONDS
 	warnie = "spellwarning"
 	overlay_state = "fetch"
 	no_early_release = TRUE

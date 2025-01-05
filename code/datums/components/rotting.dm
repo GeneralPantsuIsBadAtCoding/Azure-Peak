@@ -1,3 +1,5 @@
+#define DEAD_TO_ZOMBIE_TIME 3 MINUTES ///Time before death -> raised as zombie (when outside of the city)
+
 /datum/component/rot
 	var/amount = 0
 	var/last_process = 0
@@ -21,18 +23,26 @@
 	. = ..()
 
 /datum/component/rot/process()
-	var/amt2add = 10 //1 second
-	if(last_process)
-		amt2add = ((world.time - last_process)/10) * amt2add
-	last_process = world.time
-	amount += amt2add
+
+	var/amt2add = 10 // 1 Second. Base increment. 
+	var/current_time = world.time
+    
+	// time elapsed since the last rot/process
+	var/elapsed_time = last_process ? (current_time - last_process) : 0
+	last_process = current_time
+
+	// Add amount based on the time elapsed. This is used to calculate when to wake/decompose
+	amount += (elapsed_time / 10) * amt2add 
+
 	return
 
 /datum/component/rot/corpse/Initialize()
 	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
-
+/*
+	ZOMBIFICATION
+*/
 /datum/component/rot/corpse/process()
 	..()
 	var/mob/living/carbon/C = parent
@@ -50,11 +60,11 @@
 		qdel(src)
 		return
 	
-	if(amount > 4 MINUTES)
+	if(amount > DEAD_TO_ZOMBIE_TIME)
 		if(is_zombie)
 			var/datum/antagonist/zombie/Z = C.mind.has_antag_datum(/datum/antagonist/zombie)
 			if(Z && !Z.has_turned && !Z.revived && C.stat == DEAD)
-				Z.wake_zombie()
+				wake_zombie(C, infected_wake = TRUE, converted = FALSE)
 
 	var/findonerotten = FALSE
 	var/shouldupdate = FALSE
@@ -62,13 +72,13 @@
 	for(var/obj/item/bodypart/B in C.bodyparts)
 		if(!B.skeletonized && B.is_organic_limb())
 			if(!B.rotted)
-				if(amount > 10 MINUTES)
+				if(amount > 20 MINUTES)
 					B.rotted = TRUE
 					findonerotten = TRUE
 					shouldupdate = TRUE
 					C.change_stat("constitution", -8, "rottenlimbs")
 			else
-				if(amount > 25 MINUTES)
+				if(amount > 40 MINUTES)
 					if(!is_zombie)
 						B.skeletonize()
 						if(C.dna && C.dna.species)
@@ -77,7 +87,7 @@
 						shouldupdate = TRUE
 				else
 					findonerotten = TRUE
-		if(amount > 35 MINUTES)
+		if(amount > 35 MINUTES)  // Code to delete a corpse after 35 minutes if it's not a zombie and not skeletonized. Possible failsafe.
 			if(!is_zombie)
 				if(B.skeletonized)
 					dustme = TRUE
@@ -131,3 +141,5 @@
 	mid_length = 60
 	volume = 50
 	extra_range = 0
+
+#undef DEAD_TO_ZOMBIE_TIME

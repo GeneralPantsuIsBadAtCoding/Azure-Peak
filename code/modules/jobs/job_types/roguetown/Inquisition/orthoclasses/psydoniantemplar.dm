@@ -18,7 +18,7 @@
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	backl = /obj/item/storage/backpack/rogue/satchel/black
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-	shoes = /obj/item/clothing/shoes/roguetown/psydonboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	belt = /obj/item/storage/belt/rogue/leather/black

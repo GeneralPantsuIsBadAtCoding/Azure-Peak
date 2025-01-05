@@ -819,19 +819,22 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			if(user.mind)
 				var/amt = user.mind.get_skill_level(/datum/skill/misc/riding)
 				if(amt)
-					riding_datum.vehicle_move_delay -= 5
+					riding_datum.vehicle_move_delay -= 5 + amt/6
 				else
 					riding_datum.vehicle_move_delay -= 3
 			if(loc != oldloc)
 				var/obj/structure/mineral_door/MD = locate() in loc
 				if(MD && !MD.ridethrough)
-					if(isliving(user))
-						var/mob/living/L = user
-						unbuckle_mob(L)
-						L.Paralyze(50)
-						L.Stun(50)
-						playsound(L.loc, 'sound/foley/zfall.ogg', 100, FALSE)
-						L.visible_message(span_danger("[L] falls off [src]!"))
+					violent_dismount(user)
+
+/mob/living/simple_animal/proc/violent_dismount(mob/living/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		unbuckle_mob(L)
+		L.Paralyze(50)
+		L.Stun(50)
+		playsound(L.loc, 'sound/foley/zfall.ogg', 100, FALSE)
+		L.visible_message(span_danger("[L] falls off [src]!"))
 
 /mob/living/simple_animal/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
 	. = ..()

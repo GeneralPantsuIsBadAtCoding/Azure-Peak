@@ -167,6 +167,9 @@
 	if(brokenstate)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
+	if(HAS_TRAIT(user, TRAIT_BASHDOORS))
+		src.take_damage(15)
+		return
 	src.visible_message(span_info("[user] knocks on [src]."))
 	add_fingerprint(user)
 	playsound(src, 'sound/misc/glassknock.ogg', 100)

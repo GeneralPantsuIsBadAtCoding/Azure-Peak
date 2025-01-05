@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	if(closed)
 		reagent_flags = TRANSPARENT
 		reagents.flags = reagent_flags
-		to_chat(user, span_notice("You carefully press the cork back into the mouth of the [src]."))
+		to_chat(user, span_notice("You carefully press the cork back into the mouth of [src]."))
 		spillable = FALSE
 		if(!fancy)
 			desc = "A bottle with a cork."

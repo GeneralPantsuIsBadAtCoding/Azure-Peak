@@ -679,8 +679,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!disable_warning)
 			to_chat(M, span_warning("[src] is too bulky to carry with anything but my hands!"))
 		return 0
-
 	if(!M)
+		return FALSE
+	if(HAS_TRAIT(M, TRAIT_CHUNKYFINGERS) && (!equipper || equipper == M) && src.type != /obj/item/grabbing/bite) //If a zombie's trying to put something on without assistance that's not a bite
+		to_chat(M, span_warning("...What?"))
 		return FALSE
 
 	return M.can_equip(src, slot, disable_warning, bypass_equip_delay_self)

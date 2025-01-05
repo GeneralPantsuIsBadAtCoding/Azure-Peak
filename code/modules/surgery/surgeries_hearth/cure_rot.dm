@@ -29,42 +29,19 @@
 		span_notice("[user] begins to burn the rot from [target]'s heart."))
 	return TRUE
 
-// most of this is copied from the Cure Rot spell
+// calls the remove_rot which is shared with the pestra prayer to remove rot
 /datum/surgery_step/burn_rot/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	var/burndam = 20
 	if(user.mind)
 		burndam -= (user.mind.get_skill_level(/datum/skill/misc/medicine) * 3)
-	var/unzombification_pq = PQ_GAIN_UNZOMBIFY
-	var/datum/antagonist/zombie/was_zombie = target.mind?.has_antag_datum(/datum/antagonist/zombie)
-	var/has_rot = was_zombie
-	if(!has_rot && iscarbon(target))
-		var/mob/living/carbon/stinky = target
-		for(var/obj/item/bodypart/bodypart as anything in stinky.bodyparts)
-			if(bodypart.rotted || bodypart.skeletonized)
-				has_rot = TRUE
-				break
-	if(was_zombie)
-		was_zombie.become_rotman = FALSE
-		target.mind.remove_antag_datum(/datum/antagonist/zombie)
-		target.Unconscious(20 SECONDS)
-		target.emote("breathgasp")
-		target.Jitter(100)
-		if(unzombification_pq && !HAS_TRAIT(target, TRAIT_IWASUNZOMBIFIED) && user?.ckey)
-			adjust_playerquality(unzombification_pq, user.ckey)
-			ADD_TRAIT(target, TRAIT_IWASUNZOMBIFIED, "[type]")
-	var/datum/component/rot/rot = target.GetComponent(/datum/component/rot)
-	if(rot)
-		rot.amount = 0
-	if(iscarbon(target))
-		var/mob/living/carbon/stinky = target
-		for(var/obj/item/bodypart/rotty in stinky.bodyparts)
-			rotty.rotted = FALSE
-			rotty.skeletonized = FALSE
-			rotty.update_limb()
-			rotty.update_disabled()
-	target.update_body()
-	display_results(user, target, span_notice("You burn away the rot inside of [target]."),
+
+	if(remove_rot(target = target, user = user, method = "surgery", damage = burndam,
+		success_message = "You burn away the rot inside of [target].",
+		fail_message = "The surgery fails to remove the rot."))
+
+		display_results(user, target, span_notice("You burn away the rot inside of [target]."),
 		"[user] burns the rot within [target].",
 		"[user] takes a [tool] to [target]'s innards.")
-	target.take_bodypart_damage(null, burndam)
+
+		return TRUE
 	return TRUE

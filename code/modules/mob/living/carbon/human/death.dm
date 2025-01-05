@@ -60,8 +60,13 @@
 
 
 	if(!gibbed)
+		/*
+			ZOMBIFICATION BY DEATH BEGINS HERE
+		*/
 		if(!is_in_roguetown(src))
-			zombie_check()
+			zombie_check() //Gives the dead unit the zombie antag flag
+			to_chat(src, span_userdanger("..is this to be my end..?"))
+			to_chat(src, span_danger("The cold consumes the final flicker of warmth in your chest and begins to seep into your limbs...")) 
 
 	if(client || mind)
 		SSticker.deaths++
@@ -139,21 +144,6 @@
 			removeomen(OMEN_NOLORD)
 		if("Priest")
 			removeomen(OMEN_NOPRIEST)
-
-/mob/living/carbon/human/proc/zombie_check()
-	if(!mind)
-		return
-	if(mind.has_antag_datum(/datum/antagonist/vampirelord))
-		return
-	if(mind.has_antag_datum(/datum/antagonist/werewolf))
-		return
-	if(mind.has_antag_datum(/datum/antagonist/zombie))
-		return
-	if(mind.has_antag_datum(/datum/antagonist/skeleton))
-		return
-	if(HAS_TRAIT(src, TRAIT_ZOMBIE_IMMUNE))
-		return
-	return mind.add_antag_datum(/datum/antagonist/zombie)
 
 /mob/living/carbon/human/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
 	for(var/mob/living/carbon/human/CA in viewers(7, src))

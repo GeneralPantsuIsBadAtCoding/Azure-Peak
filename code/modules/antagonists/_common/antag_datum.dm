@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/admin_add(datum/mind/new_owner,mob/admin)
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
-	new_owner.add_antag_datum(src)
+	new_owner.add_antag_datum(datum_type_or_instance = src, team = null, admin_panel = TRUE)
 
 //Called when removing antagonist using admin tools
 /datum/antagonist/proc/admin_remove(mob/user)

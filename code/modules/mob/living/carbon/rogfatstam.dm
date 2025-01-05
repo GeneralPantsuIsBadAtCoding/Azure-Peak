@@ -30,7 +30,7 @@
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
 		return TRUE
-	if(m_intent == MOVE_INTENT_RUN)
+	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
 		mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
 	rogstam += added
 	if(rogstam > maxrogstam)

@@ -6,10 +6,6 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/C = user
 
-		if(!(src in C.held_items) && !allow_self_unequip)
-			to_chat(C, span_warning("I need help taking this off!"))
-			return FALSE
-
 		if(!(src in C.held_items) && unequip_delay_self)
 			if(unequip_delay_self >= 10)
 				C.visible_message(span_smallnotice("[C] starts taking off [src]..."), span_smallnotice("I start taking off [src]..."))
@@ -34,8 +30,8 @@
 
 	if(ishuman(usr))
 		var/mob/living/carbon/human/C = usr
-
-		if(!(src in C.held_items) && !allow_self_unequip)
+//Zombie fingers don't take things off.
+		if(!(src in C.held_items) && (!allow_self_unequip || HAS_TRAIT(C, TRAIT_CHUNKYFINGERS)))
 			to_chat(C, span_warning("I need help taking this off!"))
 			return FALSE
 

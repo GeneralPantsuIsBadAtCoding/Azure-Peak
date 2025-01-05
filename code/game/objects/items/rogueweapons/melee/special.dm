@@ -78,6 +78,7 @@
 
 			if(istype(user.used_intent, /datum/intent/lord_electrocute))
 				HU.visible_message(span_warning("[HU] electrocutes [H] with the [src]."))
+				user.Beam(target,icon_state="lightning[rand(1,12)]",time=5)
 				H.electrocute_act(5, src)
 				to_chat(H, span_danger("I'm electrocuted by the scepter!"))
 				return

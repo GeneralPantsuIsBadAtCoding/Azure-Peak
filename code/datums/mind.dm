@@ -451,7 +451,7 @@
 	memory = null
 
 // Datum antag mind procs
-/datum/mind/proc/add_antag_datum(datum_type_or_instance, team)
+/datum/mind/proc/add_antag_datum(datum_type_or_instance, team, admin_panel)
 	if(!datum_type_or_instance)
 		return
 	var/datum/antagonist/A
@@ -475,7 +475,10 @@
 	var/datum/team/antag_team = A.get_team()
 	if(antag_team)
 		antag_team.add_member(src)
-	A.on_gain()
+	if(admin_panel) //Admin panelled has special behaviour with zombie
+		A.on_gain(TRUE)
+	else
+		A.on_gain()
 	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 

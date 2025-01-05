@@ -16212,16 +16212,16 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/tavern)
 "oBw" = (
-/obj/item/scomstone,
 /obj/item/storage/belt/rogue/pouch/coins/mid,
 /obj/item/roguegem/diamond,
-/obj/item/scomstone,
 /obj/structure/closet/crate/drawer/random{
 	pixel_y = 0
 	},
 /obj/structure/fluff/walldeco/painting{
 	pixel_y = 32
 	},
+/obj/item/scomstone/garrison,
+/obj/item/scomstone/garrison,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
