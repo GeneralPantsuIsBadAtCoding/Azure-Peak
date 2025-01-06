@@ -141,9 +141,6 @@
 	to_chat(user, span_notice("Arcyne mysteries abound in this enigmatic tome, gift of Noc..."))
 
 /obj/item/book/granter/spellbook/on_reading_finished(mob/user)
-	if(!isarcyne(user))
-		to_chat(user, span_notice("As hard as I may try, I cannot descern anything from these texts. I've not the arcyne ability to do so."))
-		return
 	var/mob/living/carbon/human/gamer = user
 	if(gamer != owner && !allowed_readers.Find(gamer))
 		to_chat(user, span_notice("What was that gibberish? Even for the arcyne it was completely illegible!"))
@@ -163,6 +160,12 @@
 		to_chat(user, span_smallnotice("I can feel the magical energies imbued within the crystaline dust scattered upon my tome resonate with the arcyne..."))
 		chance2learn += stored_gem
 		stored_gem = FALSE
+	if(!isarcyne(user))
+		if (gamer != owner) // if you didn't make this book, get fucked.
+			chance2learn = 1
+		else
+			chance2learn *= 0.5
+			chance2learn = min(chance2learn, 15)
 	if (born_of_rock)
 		// the rock tomes are a *lot* easier to make, so we make them worse by them reducing your chances by 20%
 		chance2learn *= 0.8
