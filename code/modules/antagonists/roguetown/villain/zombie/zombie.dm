@@ -81,7 +81,7 @@
 /*Death transformation process goes:
 	death -> 
 	/mob/living/carbon/human/death(gibbed) -> 
-	zombie_check -> 
+	zombie_check_can_convert() -> 
 	zombie.on_gain() -> 
 	rotting.dm process -> 
 	time passes -> 
@@ -103,7 +103,7 @@
 	time passes -> 
 	wake_zombie
 
-	Infection transformation process goes -> infection -> timered transform in zombie_infect_attempt() -> /datum/antagonist/zombie/proc/wake_zombie -> zombietransform
+	Infection transformation process goes -> infection -> timered transform in zombie_infect_attempt() [drink red/holy water and kill timer?] -> /datum/antagonist/zombie/proc/wake_zombie -> zombietransform
 */
 /datum/antagonist/zombie/on_gain(admin_granted = FALSE)
 	var/mob/living/carbon/human/zombie = owner?.current
@@ -120,6 +120,10 @@
 		soundpack_m = zombie.dna.species.soundpack_m
 		soundpack_f = zombie.dna.species.soundpack_f
 	base_intents = zombie.base_intents
+
+	//Just need to clear it to snapshot. May get things we don't want to get.
+	for(var/status_effect in zombie.status_effects)
+		zombie.remove_status_effect(status_effect)
 
 	src.STASTR = zombie.STASTR
 	src.STASPD = zombie.STASPD
@@ -327,7 +331,7 @@
 			flash_fullscreen("redflash3")
 			to_chat(victim, span_danger("Ow! It hurts. I feel horrible... REALLY horrible..."))
 
-	victim.zombie_check() //They are given zombie antag mind here
+	victim.zombie_check_can_convert() //They are given zombie antag mind here unless they're already an antag.
 
 //Delay on waking up as a zombie. /proc/wake_zombie(mob/living/carbon/zombie, infected_wake = FALSE, converted = FALSE)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wake_zombie), victim, FALSE, TRUE), wake_delay, TIMER_STOPPABLE)
@@ -396,7 +400,7 @@
 		zombie.Knockdown(1)
 
 ///Making sure they're not any other antag as well as adding the zombie datum to their mind
-/mob/living/carbon/human/proc/zombie_check()
+/mob/living/carbon/human/proc/zombie_check_can_convert()
 	if(!mind)
 		return
 	if(mind.has_antag_datum(/datum/antagonist/vampirelord))

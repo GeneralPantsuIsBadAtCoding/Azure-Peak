@@ -146,6 +146,8 @@
 							break
 					return
 	if(W.firefuel)
+		if (alert(usr, "Fuel the [src] with [W]?", "ROGUETOWN", "Fuel", "Smelt") != "Fuel")
+			return TRUE //returns true if the answer is no, we don't want to feed it
 		if(initial(fueluse))
 			if(fueluse > initial(fueluse) - 5 SECONDS)
 				to_chat(user, "<span class='warning'>[src] is fully fueled.</span>")
@@ -153,8 +155,6 @@
 		else
 			if(!on)
 				return
-		if (alert(usr, "Feed [W] to the fire?", "ROGUETOWN", "Yes", "No") != "Yes")
-			return
 		qdel(W)
 		user.visible_message("<span class='warning'>[user] feeds [W] to [src].</span>")
 		if(initial(fueluse))

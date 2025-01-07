@@ -1219,6 +1219,9 @@
 		if(L.surrendering)
 			surrender_mod = 0.5
 
+	if(!who.Adjacent(src))
+		return
+		
 	who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
 					span_danger("[src] tries to remove my [what.name]."), null, null, src)
 	to_chat(src, span_danger("I try to remove [who]'s [what.name]..."))

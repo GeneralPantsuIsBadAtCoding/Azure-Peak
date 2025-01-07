@@ -373,7 +373,7 @@
 
 /datum/status_effect/buff/guidance/on_apply()
 	. = ..()
-	to_chat(owner, span_warning("I have better control over my accuracy!"))
+	to_chat(owner, span_warning("The arcyne aides me in battle."))
 	ADD_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
 
 /datum/status_effect/buff/guidance/on_remove()

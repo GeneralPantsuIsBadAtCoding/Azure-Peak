@@ -52,7 +52,7 @@
 			return
 
 	if(W.firefuel)
-		if (..())
+		if(!(..())) //False/null if using the item as fuel. If true, we want to try smelt it so go onto next segment.
 			return
 	if(W.smeltresult)
 		if(ore.len < maxore)

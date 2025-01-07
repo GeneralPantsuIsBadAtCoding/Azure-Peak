@@ -64,9 +64,9 @@
 			ZOMBIFICATION BY DEATH BEGINS HERE
 		*/
 		if(!is_in_roguetown(src))
-			zombie_check() //Gives the dead unit the zombie antag flag
-			to_chat(src, span_userdanger("..is this to be my end..?"))
-			to_chat(src, span_danger("The cold consumes the final flicker of warmth in your chest and begins to seep into your limbs...")) 
+			if(!zombie_check_can_convert()) //Gives the dead unit the zombie antag flag
+				to_chat(src, span_userdanger("..is this to be my end..?"))
+				to_chat(src, span_danger("The cold consumes the final flicker of warmth in your chest and begins to seep into your limbs...")) 
 
 	if(client || mind)
 		SSticker.deaths++

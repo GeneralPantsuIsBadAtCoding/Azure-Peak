@@ -283,7 +283,6 @@
 	on_damage = 5
 	fuel = 120 MINUTES
 	should_self_destruct = FALSE
-	smeltresult = /obj/item/ingot/iron
 
 /obj/item/flashlight/flare/torch/lantern/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
@@ -322,7 +321,6 @@
 	light_outer_range = 8
 	light_color ="#4ac77e"
 	on = FALSE
-	smeltresult = /obj/item/ingot/bronze
 
 /obj/item/flashlight/flare/torch/lantern/copper
 	name = "copper lamptern"

@@ -223,6 +223,7 @@
 	new_body.real_name = old_body.name
 	new_body.dna.real_name = old_body.real_name
 	new_body.mob_biotypes |= MOB_UNDEAD
+	new_body.faction = list("undead")
 	new_body.set_patron(/datum/patron/inhumen/zizo)
 	new_body.mind.grab_ghost(force = TRUE)
 

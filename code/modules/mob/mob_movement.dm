@@ -615,10 +615,10 @@
 /mob/proc/toggle_rogmove_intent(intent, silent = FALSE)
 	var/is_mounted = FALSE
 	if(buckled && intent != MOVE_INTENT_SNEAK)
-		if(istype(buckled, /mob/living/simple_animal/hostile/retaliate/rogue/saigabuck))
+		if(istype(buckled, /mob/living/simple_animal/hostile/retaliate/rogue/saiga))
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				var/mob/living/simple_animal/hostile/retaliate/rogue/saigabuck/S = buckled
+				var/mob/living/simple_animal/hostile/retaliate/rogue/saiga/S = buckled
 				is_mounted = TRUE
 				if(H.m_intent == MOVE_INTENT_WALK)
 					H.visible_message(span_notice("[H] digs their heels into \the [S], preparing to gallop!"))
