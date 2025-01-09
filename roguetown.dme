@@ -578,6 +578,7 @@
 #include "code\datums\sexcon\sex_actions\oral\crotch_nuzzle.dm"
 #include "code\datums\sexcon\sex_actions\oral\cunnilingus.dm"
 #include "code\datums\sexcon\sex_actions\oral\foot_lick.dm"
+#include "code\datums\sexcon\sex_actions\oral\kissing.dm"
 #include "code\datums\sexcon\sex_actions\oral\nuzzle_armpit.dm"
 #include "code\datums\sexcon\sex_actions\oral\rimming.dm"
 #include "code\datums\sexcon\sex_actions\oral\suck_balls.dm"

@@ -398,7 +398,7 @@
 			process_step += 1
 			update_icon()
 			qdel(I)
-		if(meaty && process_step == 4 && do_after(user,short_cooktime, target = src))
+		else if(meaty && process_step == 4 && do_after(user,short_cooktime, target = src))
 			name = "uncooked meat pie"
 			icon_state = "meatpie_raw"
 			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/meat/meat
@@ -406,35 +406,35 @@
 			process_step += 1
 			update_icon()
 			qdel(I)
-		if(potpie && process_step == 4 && do_after(user,short_cooktime, target = src))
+		else if(potpie && process_step == 4 && do_after(user,short_cooktime, target = src))
 			name = "uncooked pot pie"
 			filling_color = "#755430"
 			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/pot
 			process_step += 1
 			update_icon()
 			qdel(I)
-		if(applepie && process_step == 4 && do_after(user,short_cooktime, target = src))
+		else if(applepie && process_step == 4 && do_after(user,short_cooktime, target = src))
 			name = "uncooked apple pie"
 			filling_color = "#947a4b"
 			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/apple
 			process_step += 1
 			update_icon()
 			qdel(I)
-		if(berrypie && process_step == 4 && do_after(user,short_cooktime, target = src))
-			name = "uncooked berry pie"
-			filling_color = "#4a62cf"
-			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/berry
-			process_step += 1
-			update_icon()
-			qdel(I)
-		if(poisoning && process_step == 4 && do_after(user,short_cooktime, target = src))
+		else if(poisoning && process_step == 4 && do_after(user,short_cooktime, target = src))
 			name = "uncooked berry pie"
 			filling_color = "#4a62cf"
 			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/poison
 			process_step += 1
 			update_icon()
 			qdel(I)
-		if(crabby && process_step == 4 && do_after(user,short_cooktime, target = src))
+		else if(berrypie && process_step == 4 && do_after(user,short_cooktime, target = src))
+			name = "uncooked berry pie"
+			filling_color = "#4a62cf"
+			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/berry
+			process_step += 1
+			update_icon()
+			qdel(I)
+		else if(crabby && process_step == 4 && do_after(user,short_cooktime, target = src))
 			name = "uncooked crab pie"
 			filling_color = "#f1e0cb"
 			cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/crab

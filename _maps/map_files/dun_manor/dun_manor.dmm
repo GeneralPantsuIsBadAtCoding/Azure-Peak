@@ -644,7 +644,9 @@
 /area/rogue/indoors/town/magician)
 "auX" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/bars/grille,
+/obj/structure/bars/grille{
+	density = 1
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/garrison)
 "avT" = (
@@ -6903,7 +6905,7 @@
 	dir = 4;
 	lockid = "garrison"
 	},
-/turf/closed,
+/turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
 "gii" = (
 /obj/structure/fluff/railing/border{
@@ -23784,7 +23786,9 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "vqp" = (
-/obj/structure/bars/grille,
+/obj/structure/bars/grille{
+	density = 1
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "vqB" = (
@@ -25286,8 +25290,10 @@
 /obj/effect/decal/cobbleedge{
 	dir = 8
 	},
-/obj/structure/bars/grille,
 /obj/machinery/light/rogue/wallfire/candle/l,
+/obj/structure/bars/grille{
+	density = 1
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "wLy" = (

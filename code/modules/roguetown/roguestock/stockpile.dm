@@ -187,6 +187,18 @@
 	importexport_amt = 5
 	passive_generation = 2
 
+/datum/roguestock/stockpile/fishmince
+	name = "Fish Mince"
+	desc = "Descaled and ground fish meat."
+	item_type = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish
+	held_items = list(0, 0)
+	payout_price = 2
+	withdraw_price = 4
+	transport_fee = 1
+	export_price = 3
+	importexport_amt = 10
+	passive_generation = 2
+
 /datum/roguestock/stockpile/poultry
 	name = "Bird Meat"
 	desc = "Edible flesh harvested from birds."
