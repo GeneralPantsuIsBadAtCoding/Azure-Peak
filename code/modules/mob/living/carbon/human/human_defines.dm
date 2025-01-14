@@ -33,7 +33,8 @@
 	var/eye_color = "000"
 
 	var/voice_color = "a0a0a0"
-
+	var/nickname = "Please Change Me"
+	var/highlight_color = "#FF0000"
 	var/detail_color = "000"
 
 	var/skin_tone = "caucasian1"	//Skin tone

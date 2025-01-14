@@ -97,7 +97,7 @@
 
 /datum/emote/living/meditate
 	key = "meditate"
-	key_third_person = "meditate"
+	key_third_person = "meditates"
 	message = "meditates."
 	restraint_check = FALSE
 	emote_type = EMOTE_VISIBLE
@@ -109,13 +109,10 @@
 	emote("meditate", intentional = TRUE)
 
 /datum/emote/living/meditate/run_emote(mob/user, params, type_override, intentional)
-	if(isliving(user))
-		if(!COOLDOWN_FINISHED(user, schizohelp_cooldown))
-			to_chat(user, span_warning("I need to wait before meditating again."))
-			return
-		var/msg = input("Say your meditation:", "Voices in your head") as text|null
-		if(msg)
-			user.schizohelp(msg)
+	. = ..()
+	if(do_after(user, 1 MINUTES))
+		user.add_stress(/datum/stressevent/meditation)
+		to_chat(user, span_green("My meditations were rewarding."))
 
 /datum/emote/living/bow
 	key = "bow"

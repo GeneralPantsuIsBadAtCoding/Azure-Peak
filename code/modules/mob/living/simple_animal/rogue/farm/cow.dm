@@ -256,3 +256,10 @@
 	STASTR = 5
 	STASPD = 5
 	adult_growth = /mob/living/simple_animal/hostile/retaliate/rogue/bull
+
+/mob/living/simple_animal/hostile/retaliate/rogue/cow/test/Initialize()
+	. = ..()
+	AddElement(/datum/element/ai_retaliate)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
+
+

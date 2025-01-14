@@ -1422,6 +1422,8 @@
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
+		if(HAS_TRAIT(src, TRAIT_NOFIRE) && prob(90)) // Nofire is described as nonflammable, not immune. 90% chance of avoiding ignite
+			return
 		testing("ignis")
 		on_fire = 1
 		src.visible_message(span_warning("[src] catches fire!"), \

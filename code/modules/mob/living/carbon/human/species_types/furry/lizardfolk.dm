@@ -9,7 +9,7 @@
 	Their flesh is covered in scales varying in color from dark green to shades of brown and gray. \
 	Taller than humans and powerfully built, sisseans are often between 6 and 7 feet tall. \
 	Sisseans have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
-	They also have sharp claws and teeth.<br> \
+	They also have sharp claws and teeth.<br>\
 	(+1 Constitution)"
 	skin_tone_wording = "Skin Colors"
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)

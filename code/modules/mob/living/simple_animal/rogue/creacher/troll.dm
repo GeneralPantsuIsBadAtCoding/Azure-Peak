@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll
 	icon = 'icons/roguetown/mob/monster/trolls.dmi'
 	name = "troll"
-	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs."
+	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
 	icon_state = "Troll"
 	icon_living = "Troll"
 	icon_dead = "Trolld"
@@ -23,8 +23,8 @@
 	aggro_vision_range = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 15,
 						/obj/item/natural/hide = 15, /obj/item/natural/bundle/bone/full = 3)
-	health = 400
-	maxHealth = 350
+	health = TROLL_HEALTH * 1.1
+	maxHealth = TROLL_HEALTH
 	food_type = list(
 					/obj/item/bodypart,
 					/obj/item/organ)
@@ -52,6 +52,11 @@
 	aggressive = TRUE
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/troll
+	
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/troll
+
 
 	var/critvuln = FALSE
 
@@ -59,6 +64,8 @@
 	. = ..()
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+	AddElement(/datum/element/ai_retaliate)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/death(gibbed)
 	..()
@@ -137,3 +144,7 @@
 	name = "remains"
 	gender = PLURAL
 	icon_state = "Trolld"
+	
+/datum/intent/unarmed/claw/troll
+	clickcd = TROLL_ATTACK_SPEED
+	penfactor = 20

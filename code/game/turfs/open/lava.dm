@@ -28,6 +28,8 @@
 /turf/open/lava/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)
 
+/turf/open/lava/can_traverse_safely(atom/movable/traveler)
+	return FALSE
 
 /turf/open/lava/ex_act(severity, target)
 	contents_explosion(severity, target)

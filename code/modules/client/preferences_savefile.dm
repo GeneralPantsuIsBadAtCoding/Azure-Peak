@@ -385,6 +385,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_ethcolor"]	>> features["ethcolor"]
 	S["pronouns"]			>> pronouns
 	S["voice_type"]			>> voice_type
+	S["nickname"]			>> nickname
+	S["highlight_color"]	>> highlight_color
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
@@ -579,6 +581,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_mcolor2"]					, features["mcolor2"])
 	WRITE_FILE(S["feature_mcolor3"]					, features["mcolor3"])
 	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
+	WRITE_FILE(S["nickname"]			, nickname)
+	WRITE_FILE(S["highlight_color"]		, highlight_color)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

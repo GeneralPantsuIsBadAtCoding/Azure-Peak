@@ -210,6 +210,8 @@
 					neck = /obj/item/clothing/neck/roguetown/psicross/malum
 				if(/datum/patron/divine/eora) //Eora content from Stonekeep
 					neck = /obj/item/clothing/neck/roguetown/psicross/eora
+				if(/datum/patron/inhumen/zizo)
+					neck = /obj/item/roguekey/inhumen
 			H.change_stat("strength", 1)
 			H.change_stat("intelligence", 2)
 			H.change_stat("perception", 1)

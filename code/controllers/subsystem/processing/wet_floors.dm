@@ -5,3 +5,4 @@ PROCESSING_SUBSYSTEM_DEF(wet_floors)
 	stat_tag = "WFP" //Used for logging
 	var/temperature_coeff = 2
 	var/time_ratio = 1.5 SECONDS
+	flags = SS_BACKGROUND //just in case

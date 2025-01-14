@@ -61,7 +61,7 @@
 	set desc = ""
 	set category = "Admin"
 	if(mob)
-		var/msg = input("Say your meditation:", "Voices in your head") as text|null
+		var/msg = input("Submit your question to the Voices:", "Mentorhelp Input") as text|null
 		if(msg)
 			mob.schizohelp(msg)
 	else

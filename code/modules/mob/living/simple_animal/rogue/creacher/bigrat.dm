@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat
 	icon = 'icons/roguetown/mob/monster/bigrat.dmi'
 	name = "rous"
+	desc = "This is a big rat with beady red eyes, drawn to decay and filth."
 	icon_state = "rat"
 	icon_living = "rat"
 	icon_dead = "rat1"
@@ -15,7 +16,7 @@
 	pixel_y = -8
 	vision_range = 5
 	aggro_vision_range = 9
-	base_intents = list(/datum/intent/simple/bite)
+	base_intents = list(/datum/intent/simple/bite/bigrat)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 					/obj/item/natural/hide = 1, /obj/item/natural/bone = 2)
 	faction = list("rats")
@@ -29,7 +30,11 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks, /obj/item/bodypart, /obj/item/organ)
+	food_type = list(/obj/item/reagent_containers/food/snacks, 
+//					/obj/item/bodypart, 
+//					/obj/item/organ, 
+					/obj/item/natural/bone, 
+					/obj/item/natural/hide)
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	pooptype = null
 	STACON = 6
@@ -41,8 +46,16 @@
 	attack_same = 1
 	retreat_health = 0.3
 	aggressive = 1
-	stat_attack = UNCONSCIOUS
+
 	remains_type = /obj/effect/decal/remains/bigrat
+	eat_forever = TRUE
+
+//new ai, old ai off
+	AIStatus = AI_OFF
+	can_have_ai = FALSE
+	ai_controller = /datum/ai_controller/big_rat
+
+	stat_attack = UNCONSCIOUS
 
 /obj/effect/decal/remains/bigrat
 	name = "remains"
@@ -55,6 +68,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/Initialize()
 	. = ..()
 	gender = MALE
+	AddElement(/datum/element/ai_flee_while_injured, 0.75, 0.3)
 	if(prob(33))
 		gender = FEMALE
 	if(gender == FEMALE)
@@ -62,6 +76,7 @@
 		icon_living = "Frat"
 		icon_dead = "Frat1"
 	update_icon()
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/death(gibbed)
@@ -143,3 +158,5 @@
 			return "foreleg"
 	return ..()
 
+/datum/intent/simple/bite/bigrat
+	clickcd = RAT_ATTACK_SPEED

@@ -13,12 +13,12 @@
 	turns_per_move = 3
 	see_in_dark = 10
 	move_to_delay = 3
-	base_intents = list(/datum/intent/simple/claw)
+	base_intents = list(/datum/intent/simple/claw/mossback)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/crab = 5)
 	faction = list("crabs")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 150
-	maxHealth = 200
+	health = MOSSBACK_HEALTH
+	maxHealth = MOSSBACK_HEALTH
 	melee_damage_lower = 35
 	melee_damage_upper = 50
 	vision_range = 4
@@ -26,7 +26,10 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE
-	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, /obj/item/bodypart, /obj/item/organ)
+	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat, 
+	//obj/item/bodypart, 
+	//obj/item/organ
+	)
 	pooptype = null
 	deaggroprob = 0
 	defprob = 40
@@ -39,8 +42,14 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/mossback
+
 /mob/living/simple_animal/hostile/retaliate/rogue/mossback/Initialize(mapload, mob/user, townercrab = FALSE)
 	. = ..()
+	AddElement(/datum/element/ai_retaliate)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 	if(user)
 		friends += user.name
 		if (townercrab)
@@ -111,3 +120,6 @@
 		if(BODY_ZONE_L_ARM)
 			return "foreleg"
 	return ..()
+
+/datum/intent/simple/claw/mossback
+	clickcd = MOSSBACK_ATTACK_SPEED

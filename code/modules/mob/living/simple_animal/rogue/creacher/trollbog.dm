@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/trollbog
 	icon = 'icons/roguetown/mob/monster/trolls.dmi'
 	name = "bog troll"
-	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs."
+	desc = "Elven legends say these monsters were servants of Dendor tasked to guard his realm; nowadays they are sometimes found in the company of orcs. It's said that fire curbs their almost magical regeneration."
 	icon_state = "Trolls"
 	icon_living = "Troll"
 	icon_dead = "Trolld"
@@ -24,13 +24,14 @@
 	aggro_vision_range = 6
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 15,
 						/obj/item/natural/hide = 15, /obj/item/natural/bundle/bone/full = 3)
-	health = 400
-	maxHealth = 350
+	health = TROLLBOG_HEALTH * 1.1
+	maxHealth = TROLLBOG_HEALTH
 	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat,
-					/obj/item/bodypart,
-					/obj/item/organ)
+					//obj/item/bodypart,
+					//obj/item/organ
+					)
 
-	base_intents = list(/datum/intent/simple/headbutt, /datum/intent/simple/bite)
+	base_intents = list(/datum/intent/simple/headbutt, /datum/intent/unarmed/claw/trollbog)
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 	melee_damage_lower = 30
 	melee_damage_upper = 50
@@ -55,6 +56,10 @@
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/troll // Placeholder until Troll remains are sprited.
 
+	can_have_ai = FALSE //disable native ai
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/troll
+
 	var/critvuln = FALSE
 
 
@@ -63,6 +68,8 @@
 	if(critvuln)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC)	// bogtroll does not mind kneestingers
+	AddElement(/datum/element/ai_retaliate)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/trollbog/death(gibbed)
 	..()
@@ -161,3 +168,7 @@
 		QDEL_NULL(eyes)
 	eyes = new /obj/item/organ/eyes/night_vision/nightmare
 	eyes.Insert(src)
+
+/datum/intent/unarmed/claw/trollbog
+	clickcd = TROLLBOG_ATTACK_SPEED //It is a troll so it can probably swing fast.
+	penfactor = 20 // A troll punching you with it's troll hands.

@@ -333,7 +333,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			continue
 		listening |= M
 		the_dead[M] = TRUE
-
 	log_seen(src, null, listening, original_message, SEEN_LOG_SAY)
 
 	var/eavesdropping
@@ -348,8 +347,17 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		if(!Zs_too && !isobserver(AM))
 			if(AM.z != src.z)
 				continue
+
+		var/highlighted_message
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			var/name_to_highlight = H.nickname
+			if(name_to_highlight && name_to_highlight != "" && name_to_highlight != "Please Change Me")	//We don't need to highlight an unset or blank one.
+				highlighted_message = replacetext_char(message, name_to_highlight, "<b><font color = #[H.highlight_color]>[name_to_highlight]</font></b>")
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode, original_message)
+		else if(highlighted_message)
+			AM.Hear(rendered, src, message_language, highlighted_message, , spans, message_mode, original_message)
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mode, original_message)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)

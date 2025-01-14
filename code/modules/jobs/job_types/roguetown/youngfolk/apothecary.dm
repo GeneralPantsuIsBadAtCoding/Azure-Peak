@@ -49,3 +49,4 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	H.change_stat("intelligence", 3)
 	H.change_stat("perception", 2)
+	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)

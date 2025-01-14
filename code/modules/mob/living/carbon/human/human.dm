@@ -410,6 +410,12 @@
 	if(!(mobility_flags & MOBILITY_UI))
 		to_chat(src, span_warning("I can't do that right now!"))
 		return FALSE
+	if(incapacitated())
+		to_chat(src, span_warning("I can't do that right now!"))
+		return FALSE
+	if(be_close && !in_range(M, src))
+		to_chat(src, span_warning("I am too far away!"))
+		return FALSE
 	return TRUE
 
 /mob/living/carbon/human/resist_restraints()
