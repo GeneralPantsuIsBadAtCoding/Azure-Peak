@@ -408,6 +408,7 @@
 #include "code\datums\achievements\_awards.dm"
 #include "code\datums\achievements\boss_achievements.dm"
 #include "code\datums\achievements\misc_achievements.dm"
+#include "code\datums\ai\subtrees\being_a_minion.dm"
 
 #include "code\datums\atmosphere\_atmosphere.dm"
 #include "code\datums\atmosphere\planetary.dm"
@@ -955,6 +956,7 @@
 #include "code\modules\admin\verbs\BrokenInhands.dm"
 #include "code\modules\admin\verbs\cinematic.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
+#include "code\modules\admin\verbs\direct_mob_faction.dm"
 #include "code\modules\admin\verbs\debug.dm"
 #include "code\modules\admin\verbs\diagnostics.dm"
 #include "code\modules\admin\verbs\fix_air.dm"
@@ -1926,6 +1928,7 @@
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\minotaur.dm"
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\dragon.dm"
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\gethsmane.dm"
+#include "modular_azurepeak\code\modules\spells\minion_order.dm"
 #include "modular_azurepeak\code\modules\spells\orison.dm"
 #include "modular_azurepeak\code\modules\spells\warscholar.dm"
 #include "modular_azurepeak\code\modules\spells\pantheon\divine\necra.dm"

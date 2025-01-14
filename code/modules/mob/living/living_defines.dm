@@ -148,6 +148,10 @@
 
 	var/list/next_attack_msg = list()
 
+	///The mob's summoner and probable master; high up.
+	var/summoner = null
+
+
 	var/datum/component/personal_crafting/craftingthing
 
 	var/obj/item/grabbing/r_grab = null

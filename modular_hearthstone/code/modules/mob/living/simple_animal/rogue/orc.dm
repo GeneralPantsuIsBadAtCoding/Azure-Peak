@@ -250,3 +250,20 @@
 	..()
 	update_icon()
 
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/event
+	ai_controller = /datum/ai_controller/orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2/event
+	ai_controller = /datum/ai_controller/orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/event
+	ai_controller = /datum/ai_controller/orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear/event
+	ai_controller = /datum/ai_controller/elite_orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager/event
+	ai_controller = /datum/ai_controller/elite_orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear/event
+	ai_controller = /datum/ai_controller/orc/event
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2/event
+	ai_controller = /datum/ai_controller/orc/event
+	
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged/event
+	ai_controller = /datum/ai_controller/orc_ranged/event

@@ -17,6 +17,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/admin_sleep,
 	/client/proc/jumptoarea,
 	/client/proc/jumptokey,
+	/client/proc/mass_direct,
 	/datum/admins/proc/checkpq,
 	/datum/admins/proc/adjustpq,
 	/client/proc/jumptomob,
