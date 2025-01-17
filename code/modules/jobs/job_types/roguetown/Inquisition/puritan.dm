@@ -15,6 +15,7 @@
 
 	outfit = /datum/outfit/job/roguetown/puritan
 	display_order = JDO_PURITAN
+	advclass_cat_rolls = list(CTAG_PURITAN = 20)
 	give_bank_account = 30
 	min_pq = 10
 	max_pq = null
@@ -25,7 +26,156 @@
 	jobtype = /datum/job/roguetown/puritan
 	allowed_patrons = list(/datum/patron/old_god)
 
-/datum/outfit/job/roguetown/puritan/pre_equip(mob/living/carbon/human/H)
+/datum/job/roguetown/puritan/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+
+////Classic Inquisitor with a much more underground twist. Use listening devices, sneak into places to gather evidence, track down suspicious individuals. Has relatively the same utility stats as Confessor, but fulfills a different niche in terms of their combative job as the head honcho. 
+
+/datum/advclass/puritan/inspector
+	name = "The Eye of Psydon"
+	tutorial = "Your eternal service to fighting the FORCES OF HERESY has manifested within you into a profession of underground connections of Confessors, away from the prying eyes of others. Stop HERESY in their tracks, predict their movements, collect evidence through listening devices and, when the time comes - strike with impunity with your blade and swift dodging prowess."
+	outfit = /datum/outfit/job/roguetown/puritan/inspector
+
+	category_tags = list(CTAG_PURITAN)
+
+/datum/outfit/job/roguetown/puritan/inspector/pre_equip(mob/living/carbon/human/H)
+	..()
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+	neck = /obj/item/clothing/neck/roguetown/psicross/silver
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	cloak = /obj/item/clothing/cloak/cape/puritan
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	head = /obj/item/clothing/head/roguetown/puritan
+	gloves = /obj/item/clothing/gloves/roguetown/leather
+	beltl = /obj/item/rogueweapon/sword/rapier
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver)
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE) //Keeping it up with Confessor
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) //Keeping it up with Confessor
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) //Keeping it up with Confessor
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE) //Keeping it up with Confessor
+		H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE) ///Ortho Confessor gets master in every stealth skill. Insane. 
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE) //To track down heretics to their evil lairs... 
+		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE) //Always thought it was crazy they got listening devices but NO means to effectively sneak them into places.
+		if(H.age == AGE_MIDDLEAGED)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+		if(H.age == AGE_OLD)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+			H.change_stat("strength", 2) //to offset the age
+		H.change_stat("strength", 1) ///They deserve the whips too actually
+		H.change_stat("endurance", 2) ///Who the fuck gave Confessor 3 Endurance lmao
+		H.change_stat("perception", 3)
+		H.change_stat("speed", 2) //NVM I don't want to get lynched by devs for this 
+		H.change_stat("intelligence", 3)
+	H.verbs |= /mob/living/carbon/human/proc/faith_test
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim
+	ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
+
+///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more. 
+
+/datum/advclass/puritan/muscle
+	name = "The Fist of Psydon"
+	tutorial = "Your specialty in the Inquisition was never fruitful in terms of espionage and stealth or the mystic miracles of PSYDON. You had a unique talent in busting down doors to secret churches and worship spots, extracting confessions on the spot out of those who did not yield to PSYDON, and driving out the children of ASCENDANT FILTH with a silver blade. Face down the FORCES OF EVIL with whips and chains. You are the Fist of Psydon."
+	outfit = /datum/outfit/job/roguetown/puritan/muscle
+	cmode_music = 'sound/music/templarofpsydonia.ogg'
+
+	category_tags = list(CTAG_PURITAN)
+
+/datum/outfit/job/roguetown/puritan/muscle/pre_equip(mob/living/carbon/human/H)
+	..()
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
+	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/clothing/neck/roguetown/psicross/silver
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	pants = /obj/item/clothing/under/roguetown/chainlegs/blk
+	cloak = /obj/item/clothing/cloak/psydontabard
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	head = /obj/item/clothing/head/roguetown/roguehood/psydon
+	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
+	beltl = /obj/item/rogueweapon/mace/silver
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver)
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE) /// Swords? When you should be bashing skulls?
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		if(H.age == AGE_MIDDLEAGED)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+		if(H.age == AGE_OLD)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+			H.change_stat("strength", 2) //to offset the age
+		H.change_stat("strength", 2)	///Templar stats but with perception and intelligence.
+		H.change_stat("endurance", 2) 
+		H.change_stat("constitution", 2) ///Theo said stats too good
+		H.change_stat("speed", -1)
+
+	H.verbs |= /mob/living/carbon/human/proc/faith_test
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim
+	ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
+
+/obj/item/clothing/gloves/roguetown/chain/blk
+		color = CLOTHING_GREY
+
+/obj/item/clothing/under/roguetown/chainlegs/blk
+		color = CLOTHING_GREY
+
+/obj/item/clothing/suit/roguetown/armor/plate/blk
+		color = CLOTHING_GREY
+
+/obj/item/clothing/shoes/roguetown/boots/armor/blk
+		color = CLOTHING_GREY
+
+
+///So people don't get angry I removed the old Inquisitor
+
+/datum/advclass/puritan/gangster
+	name = "The SOUL of Psydon"
+	tutorial = "You do everything, everywhere, all at once. You have no specialty, you have no specialized skill but what PSYDON has willed into your earthly flesh and bones. Only your faith guides you. RISE."
+	outfit = /datum/outfit/job/roguetown/puritan/gangster
+
+	category_tags = list(CTAG_PURITAN)
+
+/datum/outfit/job/roguetown/puritan/gangster/pre_equip(mob/living/carbon/human/H)
 	..()
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon

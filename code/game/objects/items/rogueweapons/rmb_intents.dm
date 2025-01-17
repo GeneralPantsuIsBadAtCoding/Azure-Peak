@@ -34,6 +34,10 @@
 		perc = 0
 	if(user.has_status_effect(/datum/status_effect/debuff/feintcd))
 		perc -= rand(10,30)
+	if(HAS_TRAIT(L,TRAIT_DECEIVING_MEEKNESS))
+		perc -= rand(20,40)
+	if(HAS_TRAIT(user,TRAIT_DECEIVING_MEEKNESS))
+		perc += rand(10,20)
 	user.apply_status_effect(/datum/status_effect/debuff/feintcd)
 	perc = CLAMP(perc, 0, 90)
 	if(prob(perc)) //feint intent increases the immobilize duration significantly

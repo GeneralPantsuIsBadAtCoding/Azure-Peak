@@ -1262,6 +1262,21 @@
 	icon_state = "curseblob"
 	range = 15
 
+/obj/effect/proc_holder/spell/invoked/projectile/cast(list/targets, mob/living/user)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/proj = H.get_active_held_item()
+		if(isobj(proj))
+			var/obj/I = proj
+			if(I && H.in_throw_mode)
+				var/atom/throw_target = get_edge_target_turf(H, get_dir(user,get_step(user,user.dir)))
+				if(throw_target)
+					H.dropItemToGround(I)
+					if(I)	//In case it's something that gets qdel'd on drop
+						I.throw_at(throw_target, 7, 4)
+						H.throw_mode_off()
+
 /obj/projectile/magic/repel/on_hit(target)
 
 	var/atom/throw_target = get_edge_target_turf(firer, get_dir(firer, target)) //ill be real I got no idea why this worked.

@@ -205,20 +205,6 @@
 			return "left arm"
 	return ..()
 
-/obj/projectile/bullet/reusable/arrow/orc
-	damage = 20
-	damage_type = BRUTE
-	armor_penetration = 40
-	icon = 'icons/roguetown/weapons/ammo.dmi'
-	icon_state = "arrow_proj"
-	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow
-	range = 15
-	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
-	embedchance = 100
-	woundclass = BCLASS_STAB
-	flag = "piercing"
-	speed = 2
-
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged
 	name = "Savage Orc Archer"
 	desc = "A fierce, brutish looking creature. This one has a bow."
@@ -233,9 +219,14 @@
 	minimum_distance = 5
 	ranged_cooldown_time = 60
 	check_friendly_fire = 1
-	loot = list(/obj/effect/mob_spawn/human/orc/corpse/savageorc2,
+	loot = list(
+			/obj/effect/mob_spawn/human/orc/corpse/savageorc2,
 			/obj/item/gun/ballistic/revolver/grenadelauncher/bow,
-			/obj/item/ammo_casing/caseless/rogue/arrow,	/obj/item/ammo_casing/caseless/rogue/arrow, /obj/item/ammo_casing/caseless/rogue/arrow,	/obj/effect/decal/cleanable/blood)
+			/obj/item/ammo_casing/caseless/rogue/arrow/stone,
+			/obj/item/ammo_casing/caseless/rogue/arrow/stone,
+			/obj/item/ammo_casing/caseless/rogue/arrow/stone,
+			/obj/effect/decal/cleanable/blood,
+			)
 	maxHealth = ORC_HEALTH * 0.5
 	health = ORC_HEALTH * 0.5
 

@@ -336,10 +336,7 @@
 			if(prob(20))
 				r_hand = /obj/item/rogueweapon/flail
 				l_hand = /obj/item/rogueweapon/shield/wood
-
-	//H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
-	//H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-
+        
 //////////////////   INVADER ZIM	//////////////////
 
 /obj/structure/gob_portal

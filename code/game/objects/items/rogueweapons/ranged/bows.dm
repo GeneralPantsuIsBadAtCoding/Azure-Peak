@@ -1,3 +1,80 @@
+//intent datums ฅ^•ﻌ•^ฅ
+
+/datum/intent/shoot/bow
+	chargetime = 1 //used for edge cases only, /datum/intent/shoot/bow/get_chargetime handles the actual number
+	chargedrain = 2
+	charging_slowdown = 3
+
+/datum/intent/shoot/bow/can_charge()
+	if(mastermob)
+		if(mastermob.get_num_arms(FALSE) < 2)
+			return FALSE
+		if(mastermob.get_inactive_held_item())
+			return FALSE
+	return TRUE
+
+/datum/intent/shoot/bow/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] draws [masteritem]!"))
+		playsound(mastermob, pick('sound/combat/Ranged/bow-draw-01.ogg'), 100, FALSE)
+
+/datum/intent/shoot/bow/get_chargetime() //this handles how long it takes for us to fully aim our bow. damage is handled below in /obj/item/gun/ballistic/revolver/grenadelauncher/bow/process_fire
+	if(mastermob && chargetime)
+		var/newtime = 0
+		newtime = ((newtime + 10) - (mastermob.mind.get_skill_level(/datum/skill/combat/bows) * (2)))
+		if(strength_check == TRUE)
+			newtime = ((newtime + 10) - (mastermob.STASTR / 2))
+		else
+			newtime = newtime 
+		newtime = ((newtime + 20) - (mastermob.STAPER))
+		if(newtime > 1)
+			return newtime //this value is how fast we can accurately shoot a bow. most builds will turn up with about 6 - 12 on non heavy bows.
+		else
+			return 1 //our floor for how quickly you can fire an accurate shot if you somehow break the calcs above. you need about 18 PER and master bows to reach this
+	else
+		return chargetime //if a bow somehow gets drawn by something that doesn't fulfill the above we can use the intent value
+
+/datum/intent/shoot/bow/heavy
+	strength_check = TRUE
+
+/datum/intent/arc/bow
+	chargetime = 1
+	chargedrain = 2
+	charging_slowdown = 3
+
+/datum/intent/arc/bow/can_charge()
+	if(mastermob)
+		if(mastermob.get_num_arms(FALSE) < 2)
+			return FALSE
+		if(mastermob.get_inactive_held_item())
+			return FALSE
+	return TRUE
+
+/datum/intent/arc/bow/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] draws [masteritem] in an arc!"))
+		playsound(mastermob, pick('sound/combat/Ranged/bow-draw-01.ogg'), 100, FALSE)
+
+/datum/intent/arc/bow/get_chargetime() //same calc as above, but with a higher absolute floor for how fast you can shoot
+	if(mastermob && chargetime)
+		var/newtime = 0
+		newtime = ((newtime + 10) - (mastermob.mind.get_skill_level(/datum/skill/combat/bows) * (2)))
+		if(strength_check == TRUE)
+			newtime = ((newtime + 10) - (mastermob.STASTR / 2))
+		else
+			newtime = newtime 
+		newtime = ((newtime + 20) - (mastermob.STAPER))
+		if(newtime > 3)
+			return newtime
+		else
+			return 3
+	else
+		return chargetime
+
+/datum/intent/arc/bow/heavy
+	strength_check = TRUE
+
+//bow objs ฅ^•ﻌ•^ฅ
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow
 	name = "crude selfbow"
@@ -25,6 +102,19 @@
 	cartridge_wording = "arrow"
 	load_sound = 'sound/foley/nockarrow.ogg'
 	obj_flags = UNIQUE_RENAME
+	var/heavy_bow = FALSE //used for adding a STR check to the charge time of a bow
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/Initialize()
+	. = ..()
+	if(heavy_bow == TRUE)
+		src.possible_item_intents = list(
+									/datum/intent/shoot/bow/heavy,
+									/datum/intent/arc/bow/heavy,
+									INTENT_GENERIC,
+									)
+		desc += " <b>Has a heavy draw.</b>"
+	else
+		return
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/getonmobprop(tag)
 	. = ..()
@@ -135,10 +225,10 @@
 		var/obj/projectile/BB = CB.BB
 		if(user.client.chargedprog < 100)
 			BB.damage = BB.damage - (BB.damage * (user.client.chargedprog / 100))
-			BB.embedchance = 5
+			BB.embedchance = roll(4 , 10) //mean 22
 		else
 			BB.damage = BB.damage
-			BB.embedchance = 100
+			BB.embedchance = 95
 		BB.damage = BB.damage * (user.STAPER / 10) * damfactor
 	. = ..()
 
@@ -157,89 +247,12 @@
 	max_ammo = 1
 	start_empty = TRUE
 
-/datum/intent/shoot/bow
-	chargetime = 1
-	chargedrain = 2
-	charging_slowdown = 3
-
-/datum/intent/shoot/bow/can_charge()
-	if(mastermob)
-		if(mastermob.get_num_arms(FALSE) < 2)
-			return FALSE
-		if(mastermob.get_inactive_held_item())
-			return FALSE
-	return TRUE
-
-/datum/intent/shoot/bow/prewarning()
-	if(mastermob)
-		mastermob.visible_message(span_warning("[mastermob] draws [masteritem]!"))
-		playsound(mastermob, pick('sound/combat/Ranged/bow-draw-01.ogg'), 100, FALSE)
-
-/datum/intent/shoot/bow/get_chargetime()
-	if(mastermob && chargetime)
-		var/newtime = 0
-		//skill block
-		newtime = newtime + 10
-		newtime = newtime - (mastermob.mind.get_skill_level(/datum/skill/combat/bows) * (10/6))
-		//str block //rtd replace 10 with drawdiff on bows that are hard and scale str more (10/20 = 0.5)
-		newtime = newtime + 10
-		newtime = newtime - (mastermob.STASTR * (10/20))
-		//per block
-		newtime = newtime + 20
-		newtime = newtime - (mastermob.STAPER * 1) //20/20 is 1
-		if(newtime > 0)
-			return newtime
-		else
-			return 0.1
-	return chargetime
-
-/datum/intent/arc/bow
-	chargetime = 1
-	chargedrain = 2
-	charging_slowdown = 3
-
-/datum/intent/arc/bow/can_charge()
-	if(mastermob)
-		if(mastermob.get_num_arms(FALSE) < 2)
-			return FALSE
-		if(mastermob.get_inactive_held_item())
-			return FALSE
-	return TRUE
-
-/datum/intent/arc/bow/prewarning()
-	if(mastermob)
-		mastermob.visible_message(span_warning("[mastermob] draws [masteritem]!"))
-		playsound(mastermob, pick('sound/combat/Ranged/bow-draw-01.ogg'), 100, FALSE)
-
-/datum/intent/arc/bow/get_chargetime()
-	if(mastermob && chargetime)
-		var/newtime = 0
-		//skill block
-		newtime = newtime + 10
-		newtime = newtime - (mastermob.mind.get_skill_level(/datum/skill/combat/bows) * (10/6))
-		//str block //rtd replace 10 with drawdiff on bows that are hard and scale str more (10/20 = 0.5)
-		newtime = newtime + 10
-		newtime = newtime - (mastermob.STASTR * (10/20))
-		//per block
-		newtime = newtime + 20
-		newtime = newtime - (mastermob.STAPER * 1) //20/20 is 1
-		if(newtime > 0)
-			return newtime
-		else
-			return 1
-	return chargetime
-
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 	name = "recurve bow"
 	desc = "A medium length composite bow of glued horn, wood, and sinew with good shooting \
 	characteristics."
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "recurve_bow"
-	possible_item_intents = list(
-		/datum/intent/shoot/bow/recurve,
-		/datum/intent/arc/bow/recurve,
-		INTENT_GENERIC,
-		)
 	force = 9
 	pixel_y = -16
 	pixel_x = -16
@@ -333,16 +346,6 @@
 		var/mob/M = loc
 		M.update_inv_hands()
 
-/datum/intent/shoot/bow/recurve
-	chargetime = 0.8
-	chargedrain = 2
-	charging_slowdown = 2.5
-
-/datum/intent/arc/bow/recurve
-	chargetime = 0.8
-	chargedrain = 2
-	charging_slowdown = 2.5
-
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 	name = "yew longbow"
 	desc = "A sturdy warbow made of a tillered yew stave. It's difficult to handle, but the \
@@ -357,6 +360,7 @@
 	inhand_y_dimension = 64
 	bigboy = TRUE
 	dropshrink = 0.8
+	heavy_bow = TRUE
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow/getonmobprop(tag)
 	. = ..()

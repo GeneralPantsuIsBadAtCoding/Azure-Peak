@@ -130,6 +130,14 @@
 	if(H.advsetup)
 		return
 
+	if(world.time % 5)
+		if(GLOB.tod != "night")
+			if(isturf(H.loc))
+				var/turf/T = H.loc
+				if(T.can_see_sky())
+					if(T.get_lumcount() > 0.15)
+						if(!disguised)
+							H.fire_act(1,5)
 
 	if(H.on_fire)
 		if(disguised)
@@ -352,12 +360,12 @@
 	if(silver_curse_status)
 		to_chat(src, span_warning("My BANE is not letting me REGEN!."))
 		return
-	if(VD.vitae < 200)
+	if(VD.vitae < 300)
 		to_chat(src, span_warning("Not enough vitae."))
 		return
 	to_chat(src, span_greentext("! REGENERATE !"))
 	src.playsound_local(get_turf(src), 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
-	VD.handle_vitae(-200)
+	VD.handle_vitae(-300)
 	fully_heal()
 	regenerate_limbs()
 

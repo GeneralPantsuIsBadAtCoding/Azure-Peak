@@ -50,6 +50,7 @@
 	var/repair_skill = null
 	damage_deflection = 10
 	var/mob/last_bumper = null
+	var/smashable = FALSE
 
 /obj/structure/mineral_door/onkick(mob/user)
 	if(isSwitchingStates)
@@ -582,6 +583,7 @@
 	repair_cost_first = /obj/item/grown/log/tree/small
 	repair_cost_second = /obj/item/grown/log/tree/small	
 	repair_skill = /datum/skill/craft/carpentry
+	smashable = TRUE
 
 /obj/structure/mineral_door/wood/Initialize()
 	if(icon_state =="woodhandle")
@@ -645,6 +647,7 @@
 	repair_cost_second = /obj/item/grown/log/tree/small	
 	repair_skill = /datum/skill/craft/carpentry
 	ridethrough = TRUE
+	smashable = TRUE
 
 /obj/structure/mineral_door/wood/window
 	opacity = FALSE
@@ -652,11 +655,13 @@
 	windowed = TRUE
 	desc = ""
 	over_state = "woodwindowopen"
+	smashable = TRUE
 
 /obj/structure/mineral_door/wood/fancywood
 	icon_state = "fancy_wood"
 	desc = ""
 	over_state = "fancy_woodopen"
+	smashable = TRUE
 
 /obj/structure/mineral_door/wood/deadbolt
 	desc = "This door comes with a deadbolt."
@@ -669,6 +674,7 @@
 	kickthresh = 10
 	openSound = 'sound/foley/doors/shittyopen.ogg'
 	closeSound = 'sound/foley/doors/shittyclose.ogg'
+	smashable = TRUE
 
 /obj/structure/mineral_door/wood/deadbolt/OnCrafted(dirin)
 	dir = turn(dirin, 180)

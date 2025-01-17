@@ -114,21 +114,28 @@
 			return
 		switch(select)
 			if("Withdraw Cut")
-				options = list("To Bank", "Direct")
+				if(secret_budget < 1)
+					say("There is no mammon to move, Master.")
+					return
+				options = list("To Bank (Taxed)", "Direct")
 				select = input(usr, "Please select an option.", "", null) as null|anything in options
 				if(!select)
 					return
 				if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 					return
+				if(secret_budget < 1)
+					say("There is no mammon to move, Master.")
+					return
 				switch(select)
-					if("To Bank")
+					if("To Bank (Taxed)")
 						var/mob/living/carbon/human/H = usr
-						SStreasury.generate_money_account(secret_budget, H)
+						if(!(SStreasury.generate_money_account(floor(secret_budget), H))) //We returned false on executing the transfer
+							say("I could not put your cut in your account, Master. My apologies.")
+							return
 						secret_budget = 0
 					if("Direct")
-						if(secret_budget > 0)
-							budget2change(secret_budget, usr)
-							secret_budget = 0
+						budget2change(floor(secret_budget), usr)
+						secret_budget = 0
 			if("Enable Paying Taxes")
 				drugrade_flags &= ~DRUGRADE_NOTAX
 				playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
@@ -180,9 +187,11 @@
 	var/mob/living/carbon/human/H = user
 	if(H.job == "Bathmaster")
 		if(canread)
-			contents = "<a href='?src=[REF(src)];secrets=1'>Secrets</a>"
+			contents += "<a href='?src=[REF(src)];secrets=1'>Secrets</a><BR>"
+			contents += "Mammon Washing: [recent_payments] -- Your cut, Master! [secret_budget]<BR>"
 		else
-			contents = "<a href='?src=[REF(src)];secrets=1'>[stars("Secrets")]</a>"
+			contents += "<a href='?src=[REF(src)];secrets=1'>[stars("Secrets")]</a><BR>"
+			contents += "[stars("Mammon Washing:")] [recent_payments] -- [stars("Your cut, Master!")] [secret_budget]<BR>"
 
 	contents += "</center>"
 

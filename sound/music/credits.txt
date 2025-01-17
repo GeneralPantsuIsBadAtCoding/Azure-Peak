@@ -24,7 +24,6 @@ combat_bandit_brigand: Silent Scream - Lateralis
 combat_bandit_mage: Timestopper Tactics - corru.works
 combat_ascended: TO PIERCE THE BLACK SKY /// ENVY INTERLUDE - UNFORTUNATE DEVELOPMENT
 warscholar.ogg: Butcher's Boulevard - Kristjan Thomas Haaristo
-combat_fancy.ogg: Eric Heberling - Wilderness (Piano)
 guitar (7).ogg: https://youtu.be/to2iDSr6_KA
 guitar (8).ogg: https://youtu.be/8B6jOUzBKYc
 guitar (9).ogg: https://youtu.be/tux7GLWmV2M
@@ -36,3 +35,4 @@ Iconoclast.ogg: Valley of Judgement- Lateralis
 dragonden.ogg: Ash Lake Theme - Dark Souls
 inquisitorcombat.ogg: Hellsing OST RAID Track 15 Survival on the Street of Insincerity
 templarofpsydon.ogg: 26 - Duty and Honor II (with Ryan Patrick Buckley) - Chivalry 2 (Original Game Soundtrack)
+combat_HEAVY_METAL.ogg: Soyuz - The Great War has come

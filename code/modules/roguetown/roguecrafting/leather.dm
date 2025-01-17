@@ -307,7 +307,7 @@
 	result = /obj/item/rogue/instrument/drum
 	reqs = list(/obj/item/natural/hide = 1,/obj/item/grown/log/tree/small = 1)
 
-/datum/crafting_recipe/roguetown/leather/vest
+/datum/crafting_recipe/roguetown/leather/vest/sailor
 	name = "leather sea jacket"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
 	reqs = list(/obj/item/natural/hide = 2)

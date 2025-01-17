@@ -1,10 +1,15 @@
-#define ARROW_DAMAGE		33
-#define BOLT_DAMAGE			44
+#define ARROW_DAMAGE		50
+#define BOLT_DAMAGE			70
 #define BULLET_DAMAGE		80
-#define ARROW_PENETRATION	25
+#define ARROW_PENETRATION	40
 #define BOLT_PENETRATION	50
 #define BULLET_PENETRATION	100
 
+//parent of all bolts and arrows ฅ^•ﻌ•^ฅ
+/obj/item/ammo_casing/caseless/rogue/
+	firing_effect_type = null
+
+//bolts ฅ^•ﻌ•^ฅ
 
 /obj/item/ammo_casing/caseless/rogue/bolt
 	name = "bolt"
@@ -17,13 +22,7 @@
 	dropshrink = 0.6
 	max_integrity = 10
 	force = 10
-/*
-/obj/item/ammo_casing/caseless/rogue/bolt/poison
-	name = "poisoned bolt"
-	desc = "A durable iron bolt that will pierce a skull easily. This one is coated in a clear liquid."
-	projectile_type = /obj/projectile/bullet/reusable/bolt/poison
-	icon_state = "arrow_poison"
-*/
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -55,42 +54,28 @@
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/crossbows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/crossbows, L.STAINT * skill_multiplier)
 
-/*
-/obj/projectile/bullet/reusable/bolt/poison
-	name = "poisoned bolt"
-	damage = 50
-	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/poison
+//arrows ฅ^•ﻌ•^ฅ
 
-
-/obj/projectile/bullet/reusable/bolt/poison/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 7) //not gonna kill anyone, but they will be quite quiet
-*/
 /obj/item/ammo_casing/caseless/rogue/arrow
 	name = "arrow"
-	desc = "A wooden shaft with a pointy iron end."
+	desc = "Some devices are so simple in their nature and austere in their scope \
+	that they feel as if they've sprung into being without mortal intervention. \
+	Consult your gods."
 	projectile_type = /obj/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow"
-	force = 30
+	force = 10
 	dropshrink = 0.6
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	max_integrity = 20
 
 /obj/item/ammo_casing/caseless/rogue/arrow/iron
 	name = "iron arrow"
-	desc = "A wooden shaft with a pointy iron end."
+	desc = "Bundles of steam straightened dowels are notched at one end and fastened \
+	to razor heads on another. With flight feathers lashed it will fly true to its \
+	shooters will."
 	projectile_type = /obj/projectile/bullet/reusable/arrow/iron
-	caliber = "arrow"
-	icon = 'icons/roguetown/weapons/ammo.dmi'
-	icon_state = "arrow"
-	force = 30
-	dropshrink = 0.6
-	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
-	max_integrity = 20
 
 /obj/projectile/bullet/reusable/arrow
 	name = "arrow"
@@ -133,21 +118,25 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/stone
 	name = "stone arrow"
-	desc = "A wooden shaft with a jagged rock on the end."
+	desc = "A simple dowel sports lashed flint knapped and honed to a razor edge. Folk \
+	wisdom holds that these cut finer than iron heads, but they tend to shatter \
+	on impact with armor."
 	icon_state = "stonearrow"
 	max_integrity = 5
 	projectile_type = /obj/projectile/bullet/reusable/arrow/stone
 
 /obj/item/ammo_casing/caseless/rogue/arrow/poison
 	name = "poisoned arrow"
-	desc = "A wooden shaft with a pointy iron end. This one is stained green with floral toxins."
+	desc = "Bundles of steam straightened dowels are notched at one end and fastened \
+	to razor heads on another. Furrels cut into "
 	projectile_type = /obj/projectile/bullet/reusable/arrow/poison
 	icon_state = "arrow_poison"
 	max_integrity = 20 // same as normal arrow; usually breaks on impact with a mob anyway
 
 /obj/item/ammo_casing/caseless/rogue/arrow/stone/poison
 	name = "poisoned stone arrow"
-	desc = "A wooden shaft with a jagged rock on the end. This one is stained green with floral toxins."
+	desc = "A simple dowel sports lashed flint honed to a razor edge and knapped \
+	with furrels for carrying poison residue."
 	projectile_type = /obj/projectile/bullet/reusable/arrow/poison/stone
 	icon_state = "stonearrow_poison"
 
@@ -215,6 +204,7 @@
 	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire, soundin = explode_sound)
 
 //pyro arrows
+
 /obj/item/ammo_casing/caseless/rogue/arrow/pyro
 	name = "pyroclastic arrow"
 	desc = "An arrow with its tip drenched in a flammable tincture."
@@ -301,6 +291,36 @@
 	possible_item_intents = list(/datum/intent/use)
 	max_integrity = 0.1
 
+
+//mob projectiles
+
+/obj/projectile/bullet/reusable/arrow/orc
+	damage = 20
+	damage_type = BRUTE
+	armor_penetration = 25
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "arrow_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 100
+	woundclass = BCLASS_STAB
+	flag = "bullet"
+	speed = 2
+
+/obj/projectile/bullet/reusable/arrow/ancient
+	damage = 10
+	damage_type = BRUTE
+	armor_penetration = 25
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "arrow_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 100
+	woundclass = BCLASS_STAB
+	flag = "bullet"
+	speed = 2
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

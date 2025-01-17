@@ -468,11 +468,6 @@
 	icon_state = "brownkey"
 	lockid = "stable2"
 
-/obj/item/roguekey/apartments/stable3
-	name = "stable iii key"
-	icon_state = "brownkey"
-	lockid = "stable3"
-
 //custom key
 /obj/item/roguekey/custom
 	name = "custom key"

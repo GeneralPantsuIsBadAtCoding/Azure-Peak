@@ -77,8 +77,11 @@
 		if(GLOB.lord_titles[name])
 			. += span_notice("[m3] been granted the title of \"[GLOB.lord_titles[name]]\".")
 
-		if(HAS_TRAIT(src, TRAIT_NOBLE) && HAS_TRAIT(user, TRAIT_NOBLE))
-			. += span_notice("A fellow noble.")
+		if(HAS_TRAIT(src, TRAIT_NOBLE))
+			if(HAS_TRAIT(user, TRAIT_NOBLE))
+				. += span_notice("A fellow noble.")
+			else
+				. += span_notice("A noble!")
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -450,7 +453,7 @@
 		var/mob/living/L = user
 		var/final_str = STASTR
 		if(HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
-			final_str = 10
+			final_str = L.STASTR - rand(1,2)
 		var/strength_diff = final_str - L.STASTR
 		switch(strength_diff)
 			if(5 to INFINITY)
@@ -562,7 +565,10 @@
 			/*else
 				villain_text = span_userdanger("BANDIT!")*/
 		if(mind.special_role == "Vampire Lord")
-			villain_text += span_userdanger("A MONSTER!")
+			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
+			if(VD) 
+				if(!VD.disguised)
+					villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 

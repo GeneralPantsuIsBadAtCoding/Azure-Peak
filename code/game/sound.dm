@@ -33,15 +33,8 @@
 		ping_sound(source)
 
 	var/list/muffled_listeners = list() //this is very rudimentary list of muffled listeners above and below to mimic sound muffling (this is done through modifying the playsounds for them)
-	if(!ignore_walls) //these sounds don't carry through walls
+	if(!ignore_walls) //these sounds don't carry through walls or vertically
 		listeners = listeners & hearers(maxdistance,turf_source)
-
-		if(above_turf)
-			muffled_listeners += hearers(maxdistance,above_turf)
-
-		if(below_turf)
-			muffled_listeners += hearers(maxdistance,below_turf)
-
 	else
 		if(above_turf)
 			listeners += SSmobs.clients_by_zlevel[above_turf.z]

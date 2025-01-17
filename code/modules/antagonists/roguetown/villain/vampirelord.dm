@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	roundend_category = "Vampires"
 	antagpanel_category = "Vampire"
 	job_rank = ROLE_VAMPIRE
+	var/list/inherent_traits = list(TRAIT_STRONGBITE, TRAIT_NOBLE, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_NOPAIN, TRAIT_TOXIMMUNE, TRAIT_STEELHEARTED, TRAIT_NOSLEEP, TRAIT_VAMPMANSION, TRAIT_VAMP_DREAMS, TRAIT_NOROGSTAM, TRAIT_HEAVYARMOR)
 	antag_hud_type = ANTAG_HUD_TRAITOR
 	antag_hud_name = "vampire lord"
 	confess_lines = list(
@@ -58,17 +59,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	C.vampires |= owner
 	. = ..()
 	owner.special_role = name
-	ADD_TRAIT(owner.current, TRAIT_STRONGBITE, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_NOHUNGER, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_NOBREATH, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_NOPAIN, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_TOXIMMUNE, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_STEELHEARTED, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_NOSLEEP, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_VAMPMANSION, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_VAMP_DREAMS, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_NOROGSTAM, "[type]")
-	ADD_TRAIT(owner.current, TRAIT_HEAVYARMOR, "[type]")
+	for(var/inherited_trait in inherent_traits)
+		ADD_TRAIT(owner.current, inherited_trait, "[type]")
 	owner.current.cmode_music = 'sound/music/combat_vamp.ogg'
 	var/obj/item/organ/eyes/eyes = owner.current.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
@@ -79,6 +71,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	owner.current.AddSpell(new /obj/effect/proc_holder/spell/targeted/transfix)
 	owner.current.verbs |= /mob/living/carbon/human/proc/vamp_regenerate
 	owner.current.verbs |= /mob/living/carbon/human/proc/vampire_telepathy
+	owner.current.verbs |= /mob/living/carbon/human/proc/disguise_button
 	vamp_look()
 	if(isspawn)
 		owner.current.verbs |= /mob/living/carbon/human/proc/disguise_button
@@ -346,6 +339,24 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		vitae = mypool.current
 	if(ascended)
 		return
+	if(world.time % 5)
+		if(GLOB.tod != "night")
+			if(isturf(H.loc))
+				var/turf/T = H.loc
+				if(T.can_see_sky())
+					if(T.get_lumcount() > 0.15)
+						if(!isspawn)
+							if(!disguised)
+								to_chat(H, span_warning("Astrata spurns me! I must get out of her rays!")) // VLord is more punished for daylight excursions.
+								var/turf/N = H.loc
+								if(N.can_see_sky())
+									if(N.get_lumcount() > 0.15)
+										H.fire_act(3)
+										handle_vitae(-300)
+								to_chat(H, span_warning("That was too close. I must avoid the sun."))
+						else if (isspawn && !disguised)
+							H.fire_act(1,5)
+							handle_vitae(-10)
 	if(H.on_fire)
 		if(disguised)
 			last_transform = world.time
@@ -452,6 +463,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 /datum/antagonist/vampirelord/lesser
 	name = "Vampire Spawn"
 	antag_hud_name = "Vspawn"
+	inherent_traits = list(TRAIT_STRONGBITE, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_NOPAIN, TRAIT_TOXIMMUNE, TRAIT_STEELHEARTED, TRAIT_NOSLEEP, TRAIT_VAMPMANSION, TRAIT_VAMP_DREAMS)
 	confess_lines = list(
 		"THE CRIMSON CALLS!",
 		"MY MASTER COMMANDS",

@@ -1821,7 +1821,6 @@
 /area/rogue/indoors/town/church)
 "buJ" = (
 /obj/structure/rack/rogue,
-/obj/item/roguekey/apartments/stable3,
 /obj/item/roguekey/apartments/stable2,
 /obj/item/roguekey/apartments/stable1,
 /turf/open/floor/rogue/blocks/stonered/tiny,
@@ -5535,6 +5534,12 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/magician)
+"eQJ" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame{
+	gender = "male"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/town)
 "eRp" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -7894,6 +7899,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 6
 	},
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "hcO" = (
@@ -9371,6 +9377,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 10
 	},
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "iwx" = (
@@ -10964,8 +10971,8 @@
 /obj/structure/mineral_door/swing_door{
 	keylock = 1;
 	locked = 1;
-	lockid = "stable3";
-	name = "stable iii"
+	lockid = "merc";
+	name = "Mercenary stable"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
@@ -64714,7 +64721,7 @@ cxb
 oyZ
 ugU
 nNJ
-qyk
+eQJ
 qyk
 qyk
 iSc

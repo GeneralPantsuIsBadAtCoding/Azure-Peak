@@ -39,7 +39,7 @@
 
 /datum/virtue/combat/devotee
 	name = "Devotee"
-	desc = "Though not officially of the Church, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings."
+	desc = "Though not officially of the Church, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings. I've also kept a psycross of my deity."
 	added_skills = list(/datum/skill/magic/holy = 1)
 
 /datum/virtue/combat/devotee/apply_to_human(mob/living/carbon/human/recipient)
@@ -69,21 +69,51 @@
 				our_faith.max_progression = CLERIC_REQ_4
 			if (CLERIC_REQ_4)
 				our_faith.passive_devotion_gain += 1
+	switch(recipient.patron?.type)
+		if(/datum/patron/divine/astrata)
+			recipient.mind?.special_items["Astrata Psycross"] = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/divine/abyssor)
+			recipient.mind?.special_items["Abyssor Psycross"] = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/divine/dendor)
+			recipient.mind?.special_items["Dendor Psycross"] = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/divine/necra)
+			recipient.mind?.special_items["Necra Psycross"] = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/divine/pestra)
+			recipient.mind?.special_items["Pestra Psycross"] = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/divine/eora) 
+			recipient.mind?.special_items["Eora Psycross"] = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/divine/noc)
+			recipient.mind?.special_items["Noc Psycross"] = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/divine/ravox)
+			recipient.mind?.special_items["Ravox Psycross"] =/obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/divine/malum)
+			recipient.mind?.special_items["Malum Psycross"] = /obj/item/clothing/neck/roguetown/psicross/malum
 
 /datum/virtue/combat/duelist
 	name = "Duelist Apprentice"
-	desc = "I have trained under a duelist of considerable skill, and always have my trusty rapier close at hand."
-	added_skills = list(list(/datum/skill/combat/swords, 1, 4)) // increase swords by one to a maximum of 4
+	desc = "I have trained under a duelist of considerable skill, and always have my trusty rapier close at hand. (+1 to Swords, Up to Expert, Minimum Apprentice)"
 	added_stashed_items = list("Rapier" = /obj/item/rogueweapon/sword/rapier)
+
+/datum/virtue/combat/duelist/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.mind?.get_skill_level(/datum/skill/combat/swords) < SKILL_LEVEL_APPRENTICE)
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		added_skills = list(list(/datum/skill/combat/swords, 1, 4))
+		handle_skills(recipient)
 
 /datum/virtue/combat/bowman
 	name = "Toxophilite"
-	desc = "I have studied underneath a bowman of considerable skill, and always have my trusty bow and a quiver of arrows close at hand."
-	added_skills = list(list(/datum/skill/combat/bows, 1, 4))
+	desc = "I have studied underneath a bowman of considerable skill, and always have my trusty bow and a quiver of arrows close at hand. (+1 to Bows, Up to Legendary, Minimum Apprentice)"
 	added_stashed_items = list("Recurve Bow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
 								"Quiver (Arrows)" = /obj/item/quiver/arrows
 	)
 
+/datum/virtue/combat/bowman/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.mind?.get_skill_level(/datum/skill/combat/bows) < SKILL_LEVEL_APPRENTICE)
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		added_skills = list(list(/datum/skill/combat/bows, 1, 6))
+		handle_skills(recipient)
 /*/datum/virtue/combat/tavern_brawler
 	name = "Tavern Brawler"
 	desc = "I've never met a problem my fists couldn't solve."
@@ -91,13 +121,13 @@
 
 /datum/virtue/combat/guarded
 	name = "Guarded"
-	desc = "I have long kept my true capabilities a secret. Sometimes being deceptively weak can save one's life."
+	desc = "I have long kept my true capabilities a secret. Sometimes being deceptively weak can save one's life. Such a virtue allows me to see and avoid feints easier."
 	added_traits = list(TRAIT_DECEIVING_MEEKNESS)
 
-/datum/virtue/combat/impervious
+/*/datum/virtue/combat/impervious
 	name = "Impervious"
 	desc = "I've spent years shoring up my weakspots, and have become difficult to wound with critical blows."
-	added_traits = list(TRAIT_CRITICAL_RESISTANCE)
+	added_traits = list(TRAIT_CRITICAL_RESISTANCE)*/
 
 /datum/virtue/combat/rotcured
 	name = "Rotcured"

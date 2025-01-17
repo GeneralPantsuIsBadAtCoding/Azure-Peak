@@ -556,7 +556,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/livings = list()
 	for(var/i in GLOB.new_player_list)
 		var/mob/dead/new_player/player = i
-		var/mob/living = player.transfer_character()
+		var/mob/living = player?.transfer_character()
 		if(living)
 			qdel(player)
 			living.notransform = TRUE
@@ -566,6 +566,8 @@ SUBSYSTEM_DEF(ticker)
 			livings += living
 			if(ishuman(living))
 				try_apply_character_post_equipment(living)
+		else
+			message_admins("DEBUG: null player found in new_player_list")
 
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
