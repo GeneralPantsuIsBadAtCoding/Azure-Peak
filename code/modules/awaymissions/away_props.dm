@@ -24,11 +24,6 @@
 	. = ..()
 	START_PROCESSING(SSobj,src)
 
-/obj/effect/wind/process()
-	var/turf/open/T = get_turf(src)
-	if(istype(T))
-		T.consider_pressure_difference(get_step(T,dir),strength)
-
 //Keep these rare due to cost of doing these checks
 /obj/effect/path_blocker
 	name = "magic barrier"

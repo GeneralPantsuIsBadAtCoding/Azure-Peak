@@ -18,10 +18,6 @@
 /obj/effect/acid_act()
 	return
 
-
-/obj/effect/experience_pressure_difference()
-	return
-
 /obj/effect/ex_act(severity, target)
 	if(target == src)
 		qdel(src)

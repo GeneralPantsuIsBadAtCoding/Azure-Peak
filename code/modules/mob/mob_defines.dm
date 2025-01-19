@@ -13,7 +13,6 @@
 	animate_movement = SLIDE_STEPS
 	flags_1 = HEAR_1
 	hud_possible = list(ANTAG_HUD)
-	pressure_resistance = 8
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	throwforce = 10
 	vis_flags = VIS_INHERIT_PLANE

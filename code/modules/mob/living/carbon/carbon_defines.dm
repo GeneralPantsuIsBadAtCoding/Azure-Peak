@@ -1,7 +1,6 @@
 /mob/living/carbon
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gender = MALE
-	pressure_resistance = 15
 	base_intents = list(INTENT_HELP, INTENT_HARM)
 	hud_possible = list(ANTAG_HUD)
 	has_limbs = 1

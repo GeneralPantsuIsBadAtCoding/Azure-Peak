@@ -708,6 +708,3 @@
 		QDEL_IN(thing, duration)
 	if(cleanup)
 		cleanup_beam_segments()
-
-/obj/projectile/experience_pressure_difference()
-	return

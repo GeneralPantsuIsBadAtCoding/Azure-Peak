@@ -19,14 +19,6 @@
 				return 0
 	return ..()
 
-/mob/living/carbon/human/experience_pressure_difference()
-	playsound(src, 'sound/blank.ogg', 50, TRUE)
-	if(shoes && istype(shoes, /obj/item/clothing))
-		var/obj/item/clothing/S = shoes
-		if (S.clothing_flags & NOSLIP)
-			return 0
-	return ..()
-
 /mob/living/carbon/human/mob_has_gravity()
 	. = ..()
 	if(!.)

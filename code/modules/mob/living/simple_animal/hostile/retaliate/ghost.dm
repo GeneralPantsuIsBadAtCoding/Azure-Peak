@@ -28,7 +28,6 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 	movement_type = FLYING
-	pressure_resistance = 300
 	gold_core_spawnable = NO_SPAWN //too spooky for science
 	var/ghost_hairstyle
 	var/ghost_hair_color
@@ -92,7 +91,6 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 	movement_type = FLYING
-	pressure_resistance = 300
 	gold_core_spawnable = NO_SPAWN //too spooky for science
 	var/random = TRUE //if you want random names for ghosts or not
 
