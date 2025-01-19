@@ -466,6 +466,24 @@
 				. += span_warning("[t_He] look[p_s()] weaker than I.")
 			if(-INFINITY to -5)
 				. += span_warning("<B>[t_He] look[p_s()] much weaker than I.</B>")
+			
+	if((HAS_TRAIT(user,TRAIT_INTELLECTUAL)))
+		var/mob/living/L = user
+		var/final_int = STAINT
+		if(HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
+			final_int = L.STAINT
+		var/int_diff = final_int - L.STAINT
+		switch(int_diff)
+			if(5 to INFINITY)
+				. += span_revenwarning("[t_He] look[p_s()] far more intelligent than I.")
+			if(2 to 5)
+				. += span_revenminor("[t_He] look[p_s()] smarter than I.")
+			if(-1 to 1)
+				. += "[t_He] look[p_s()] about as intelligent as I."
+			if(-5 to -2)
+				. += span_revennotice("[t_He] look[p_s()] dumber than I.")
+			if(-INFINITY to -5)
+				. += span_revennotice("[t_He] look[p_s()] as blunt-minded as a rock.")
 
 	if(maniac)
 		var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
@@ -496,6 +514,9 @@
 
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
+
+	if(HAS_TRAIT(user,TRAIT_INTELLECTUAL) && get_dist(src, user) <= 2 && (!obscure_name || client?.prefs.masked_examine))
+		. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
 
 	var/list/lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
 	for(var/line in lines)
