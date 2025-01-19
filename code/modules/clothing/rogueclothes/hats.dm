@@ -586,7 +586,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()
@@ -632,7 +632,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()
@@ -682,7 +682,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()
@@ -865,7 +865,7 @@
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -913,7 +913,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()
@@ -977,7 +977,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()
@@ -1114,7 +1114,7 @@
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1164,7 +1164,7 @@
 
 		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
-		qdel(W)
+		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colors[choice]
 		detail_tag = "_detail"
 		update_icon()

@@ -101,6 +101,17 @@
 		shiftheld = TRUE
 	if(!isliving(user))
 		return
+	if(detail_tag && contents.len)
+		detail_tag = null
+		detail_color = null
+		update_icon()
+		for(var/obj/item/I in contents)
+			user.put_in_hands(I, FALSE, FALSE, FALSE)
+			user.visible_message(span_warning("[user] removes [I] from [src]."))
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+		return
 	if(nodismemsleeves)
 		return
 	var/mob/living/L = user
