@@ -6,9 +6,19 @@
 	icon = 'icons/roguetown/items/surgery.dmi'
 	icon_state = "leech"
 	baitpenalty = 0
-	fishloot = list(/obj/item/reagent_containers/food/snacks/fish/carp = 5,
-					/obj/item/reagent_containers/food/snacks/fish/eel = 5,
-					/obj/item/reagent_containers/food/snacks/fish/angler = 1)
+	fishloot = list(
+		/obj/item/reagent_containers/food/snacks/fish/carp = 100,
+		/obj/item/reagent_containers/food/snacks/fish/eel = 100,
+		/obj/item/reagent_containers/food/snacks/fish/angler = 20,
+		/obj/item/grown/log/tree/stick = 3,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/natural/cloth = 1,
+		/obj/item/ammo_casing/caseless/rogue/arrow = 1,
+		/obj/item/clothing/ring/gold = 1,
+		/obj/item/reagent_containers/food/snacks/smallrat = 1, //That's not a fish...?
+		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue = 1,
+	)
 	embedding = list(
 		"embed_chance" = 100,
 		"embedded_unsafe_removal_time" = 0,
