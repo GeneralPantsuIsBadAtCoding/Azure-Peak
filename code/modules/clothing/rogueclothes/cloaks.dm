@@ -1061,6 +1061,7 @@
 	color = CLOTHING_BLACK
 	allowed_sex = list(MALE, FEMALE)
 	flags_inv = null
+	var/flipped = FALSE
 
 /obj/item/clothing/cloak/half/ComponentInitialize()
 	. = ..()
@@ -1078,6 +1079,15 @@
 		var/list/things = STR.contents()
 		for(var/obj/item/I in things)
 			STR.remove_from_storage(I, get_turf(src))
+
+/obj/item/clothing/cloak/half/attack_right(mob/user)
+	if(!flipped)
+		icon_state += "_rev"
+		flipped = TRUE
+	else
+		icon_state = initial(icon_state)
+		flipped = FALSE
+	user.regenerate_icons()
 
 /obj/item/clothing/cloak/half/brown
 	color = CLOTHING_BROWN
