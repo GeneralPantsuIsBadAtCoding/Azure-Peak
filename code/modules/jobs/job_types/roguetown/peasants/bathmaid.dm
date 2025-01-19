@@ -25,7 +25,7 @@
 	..()
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	r_hand = /obj/item/bath/soap
+	r_hand = /obj/item/soap/bath
 	belt =	/obj/item/storage/belt/rogue/leather/cloth
 	beltl = /obj/item/roguekey/nightmaiden
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
@@ -58,7 +58,7 @@
 
 // Washing Implements
 
-/obj/item/bath/soap
+/obj/item/soap/bath
 	name = "herbal soap"
 	desc = "A soap made from various herbs"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -67,50 +67,3 @@
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON
-	throwforce = 0
-	throw_speed = 1
-	throw_range = 7
-	var/cleanspeed = 35 //slower than mop
-	var/uses = 10
-
-/obj/item/bath/soap/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/slippery, 80)
-
-/obj/item/bath/soap/examine(mob/user)
-	. = ..()
-	var/max_uses = initial(uses)
-	var/msg = "It looks like it was freshly made."
-	if(uses != max_uses)
-		var/percentage_left = uses / max_uses
-		switch(percentage_left)
-			if(0 to 0.2)
-				msg = "There's just a tiny bit left of what it used to be, you're not sure it'll last much longer."
-			if(0.21 to 0.4)
-				msg = "It's dissolved quite a bit, but there's still some life to it."
-			if(0.41 to 0.6)
-				msg = "It's past its prime, but it's definitely still good."
-			if(0.61 to 0.85)
-				msg = "It's started to get a little smaller than it used to be, but it'll definitely still last for a while."
-			else
-				msg = "It's seen some light use, but it's still pretty fresh."
-	. += span_notice("[msg]")
-
-/obj/item/bath/soap/attack(mob/target, mob/user)
-	var/turf/bathspot = get_turf(target)
-	if(!istype(bathspot, /turf/open/water/bath))
-		to_chat(user, span_warning("They must be in the bath water!"))
-		return
-	if(istype(target, /mob/living/carbon/human))
-		visible_message(span_info("[user] begins scrubbing [target] with the [src]."))
-		if(do_after(user, 50))
-			if(HAS_TRAIT(user, TRAIT_GOODLOVER))
-				visible_message(span_info("[user] expertly scrubs and soothes [target] with the [src]."))
-				to_chat(target, span_love("I feel so relaxed and clean!"))
-				SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "bathcleaned", /datum/mood_event/bathcleaned)
-			else
-				visible_message(span_info("[user] tries their best to scrub [target] with the [src]."))
-				to_chat(target, span_warning("Ouch! That hurts!"))
-			uses -= 1
-			if(uses == 0)
-				qdel(src)

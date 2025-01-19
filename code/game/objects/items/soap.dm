@@ -84,3 +84,23 @@
 			SEND_SIGNAL(target, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_MEDIUM)
 			decreaseUses(user)
 	return
+
+
+/obj/item/soap/attack(mob/target, mob/user)
+	var/turf/bathspot = get_turf(target)
+	if(!istype(bathspot, /turf/open/water/bath))
+		return
+	if(istype(target, /mob/living/carbon/human))
+		visible_message(span_info("[user] begins washing [target] with the [src]."))
+		if(do_after(user, 50))
+			if(HAS_TRAIT(user, TRAIT_GOODLOVER))
+				visible_message(span_info("[user] expertly cleans and soothes [target] with the [src]."))
+				to_chat(target, span_love("I feel so relaxed and clean!"))
+				target.add_stress(/datum/stressevent/bathcleaned)
+			else
+				visible_message(span_info("[user] tries their best to scrub [target] with the [src]."))
+				to_chat(target, span_warning("That's a bit nicer, I guess."))
+				target.add_stress(/datum/stressevent/bath)
+			uses -= 1
+			if(uses == 0)
+				qdel(src)
