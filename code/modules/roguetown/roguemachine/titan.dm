@@ -309,6 +309,11 @@ GLOBAL_LIST_INIT(laws_of_the_land, initialize_laws_of_the_land())
 			return
 	else
 		return
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.real_name == raw_message)
+			if(HAS_TRAIT(H, TRAIT_OUTLAW))
+				to_chat(user, span_warning("Their bounty extends well beyond this region! I would NEVER think of pardoning such a FOUL criminal!"))
+				return
 	return make_outlaw(raw_message)
 
 /proc/make_outlaw(raw_message)

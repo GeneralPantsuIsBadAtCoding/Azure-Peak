@@ -1,23 +1,25 @@
 /datum/advclass/ranger
 	name = "Ranger"
-	tutorial = "Rangers are a mix of hunters and rogues, staying in the shadows, but often being more friendly to others than a rogue, much more in touch with nature and more skilled in the arts of survival"
+	tutorial = "Rangers prefer to keep their enemies at a distance and rely on bows and ranged weaponry."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/ranger
-	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_OUTDOORSMAN)
-	category_tags = list(CTAG_ADVENTURER)
+	traits_applied = list(TRAIT_OUTLANDER)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	classes = list("Sentinel" = "You are a ranger well-versed in traversing untamed lands, with years of experience taking odd jobs as a pathfinder and bodyguard in areas of wilderness untraversable to common soldiery.",
+					"Assassin" = "You've lived the life of a hired killer and have spent your time training with blades and crossbows alike.",
+					"Bombadier" = "Bombs? You've got them. Plenty of them - and the skills to make more. You've spent years training under skilled alchemists and have found the perfect mix to create some chaos - now go blow something up!")
 
 /datum/outfit/job/roguetown/adventurer/ranger/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	var/classes = list("Ranger","Gloom Stalker",) // Ranger Knight is the unique subclass. Gives you steel breastplate and a sword.
+	var/classes = list("Sentinel","Assassin","Bombadier")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
 	
-		if("Ranger")
-			H.set_blindness(0)
-			to_chat(H, span_warning("Rangers are masters of nature, often hired as pathfinders, bodyguards and mercenaries in areas of wilderness untraversable to common soldiery."))
+		if("Sentinel")
+			to_chat(H, span_warning("You are a ranger well-versed in traversing untamed lands, with years of experience taking odd jobs as a pathfinder and bodyguard in areas of wilderness untraversable to common soldiery."))
 			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -25,93 +27,99 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			belt = /obj/item/storage/belt/rogue/leather
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
-			cloak = /obj/item/clothing/cloak/raincloak/brown
 			cloak = /obj/item/clothing/cloak/raincloak/green
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltr = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(
-								/obj/item/bait = 1,
-								/obj/item/rogueweapon/huntingknife = 1,
-								/obj/item/flashlight/flare/torch = 1,
-								)
-			beltl = /obj/item/quiver/arrows
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
+			backpack_contents = list(/obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1)
+			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/traps, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, rand(1,2), TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/labor/butchering, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-			H.change_stat("perception", 4)
-			H.change_stat("endurance", 2)
-			H.change_stat("speed", 2)
-		if("Gloom Stalker")
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+			var/weapons = list("Recurve Bow","Crossbow")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
-			to_chat(H, span_warning("Rangers are masters of nature, often hired as pathfinders, bodyguards and mercenaries in areas of wilderness untraversable to common soldiery."))
-			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+			switch(weapon_choice)
+				if("Recurve Bow")
+					H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+					backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+					beltl = /obj/item/quiver/arrows
+				if("Crossbow")
+					H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+					backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+					beltl = /obj/item/quiver/bolts
+			H.change_stat("perception", 3)
+			H.change_stat("speed", 2)
+
+		if("Assassin")
+			to_chat(H, span_warning("You've lived the life of a hired killer and have spent your time training with blades and crossbows alike."))
+			shoes = /obj/item/clothing/shoes/roguetown/boots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-			gloves = /obj/item/clothing/gloves/roguetown/leather
-			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			belt = /obj/item/storage/belt/rogue/leather
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+			pants = /obj/item/clothing/under/roguetown/trou/leather
+			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless
+			belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
+			armor = /obj/item/clothing/suit/roguetown/armor/leather
 			cloak = /obj/item/clothing/cloak/raincloak/mortus
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			backl = /obj/item/storage/backpack/rogue/satchel
-			beltr = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(
-								/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-								/obj/item/flashlight/flare/torch = 1,
-								)
-			beltl = /obj/item/quiver/arrows
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
+			beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/traps, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, rand(1,2), TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			H.change_stat("perception", 2)
+			H.change_stat("speed", 1)
+			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
-			H.change_stat("speed", 3)
-		
-	if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
-		pants = /obj/item/clothing/under/roguetown/trou/leather
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	else
-		pants = /obj/item/clothing/under/roguetown/tights/black
+			H.set_blindness(0)
 
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-
+		if("Bombadier")
+			to_chat(H, span_warning("Bombs? You've got them. Plenty of them - and the skills to make more. You've spent years training under skilled alchemists and have found the perfect mix to create some chaos - now go blow something up!"))
+			shoes = /obj/item/clothing/shoes/roguetown/boots
+			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+			head = /obj/item/clothing/head/roguetown/roguehood
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+			pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/mageorange
+			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+			belt = /obj/item/storage/belt/rogue/leather
+			backl = /obj/item/storage/backpack/rogue/satchel
+			beltr = /obj/item/flashlight/flare/torch/lantern
+			beltl = /obj/item/rogueweapon/mace/cudgel
+			backpack_contents = list(/obj/item/bomb = 4)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
+			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			H.change_stat("constitution", 1)
+			H.change_stat("strength", 2)
+			H.change_stat("intelligence", 2)
+			H.set_blindness(0)

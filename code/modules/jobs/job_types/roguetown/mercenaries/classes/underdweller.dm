@@ -10,6 +10,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/underdweller
 	category_tags = list(CTAG_MERCENARY)
+	traits_applied = list(TRAIT_OUTLANDER)
 
 /datum/outfit/job/roguetown/mercenary/underdweller/pre_equip(mob/living/carbon/human/H)
 	..()

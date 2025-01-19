@@ -113,6 +113,7 @@
 		H.change_stat("intelligence", 3)
 		H.change_stat("endurance", 2)
 		H.change_stat("speed", 1)
+		H.cmode_music = 'sound/music/combat_holy.ogg'
 		if(H.patron?.type == /datum/patron/divine/necra)
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)

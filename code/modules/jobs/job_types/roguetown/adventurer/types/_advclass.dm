@@ -1,5 +1,6 @@
 /datum/advclass
 	var/name
+	var/list/classes
 	var/outfit
 	var/tutorial = "Choose me!"
 	var/list/allowed_sexes

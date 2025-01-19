@@ -33,6 +33,7 @@
 	ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_COMMIE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 	to_chat(H, span_alertsyndie("I am a BANDIT!"))
 	to_chat(H, span_boldwarning("Long ago I did a crime worthy of my bounty being hung on the wall outside of the local inn. I live now with fellow free men in reverence to MATTHIOS whose idol grants us boons and wishes when fed the money, treasures, and metals of the civilized wretches. As a member of the free men, I worship MATTHIOS first and foremost, though I may have allegiance to other deities."))
 
