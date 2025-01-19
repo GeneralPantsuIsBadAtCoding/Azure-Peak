@@ -3,8 +3,9 @@
 		return
 	if(user.mind)
 		user.mind.i_know_person(src)
-	if(user.has_flaw(/datum/charflaw/paranoid) && (STASTR - user.STASTR) > 1)
-		user.add_stress(/datum/stressevent/parastr)
+	if(user.has_flaw(/datum/charflaw/paranoid))	//We hate different species, that are stronger than us, and aren't racist themselves
+		if(dna.species.name != user.dna.species.name && (STASTR - user.STASTR) > 1 && !has_flaw(/datum/charflaw/paranoid))
+			user.add_stress(/datum/stressevent/parastr)
 	if(HAS_TRAIT(user, TRAIT_JESTERPHOBIA) && job == "Jester")
 		user.add_stress(/datum/stressevent/jesterphobia)
 	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL))
@@ -98,6 +99,30 @@
 			var/datum/job/J = SSjob.GetJob(user.mind?.assigned_role)
 			if(J?.department_flag & GARRISON || J?.department_flag & NOBLEMEN)
 				. += span_greentext("<b>[m1] an agent of the court!</b>")
+		
+		if(has_flaw(/datum/charflaw/addiction/lovefiend) && user.has_flaw(/datum/charflaw/addiction/lovefiend))
+			. += span_aiprivradio("[m1] as lovesick as I.")
+		
+		if(has_flaw(/datum/charflaw/addiction/junkie) && user.has_flaw(/datum/charflaw/addiction/junkie))
+			. += span_deadsay("[m1] carrying the same dust marks on their nose as I.")
+
+		if(has_flaw(/datum/charflaw/addiction/smoker) && user.has_flaw(/datum/charflaw/addiction/smoker))
+			. += span_suppradio("[m1] enveloped by the familiar, faint stench of smoke. I know it well.")
+
+		if(has_flaw(/datum/charflaw/addiction/alcoholic) && user.has_flaw(/datum/charflaw/addiction/alcoholic))
+			. += span_syndradio("[m1] struggling to hide the hangover, and the stench of spirits. We're alike.")
+
+		if(has_flaw(/datum/charflaw/paranoid) && user.has_flaw(/datum/charflaw/paranoid))
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(dna.species.name == H.dna.species.name)
+					. += span_nicegreen("[m1] privy to the dangers of all these strangers around us. He is just as afraid as I am.")
+				else
+					. += span_nicegreen("[m1] one of the good ones. He is just as afraid as I am.")
+		if(has_flaw(/datum/charflaw/masochist) && user.has_flaw(/datum/charflaw/addiction/sadist))
+			. += span_secradio("[m1] marked by scars inflicted for pleasure. A delectable target for my urges.")
+		if(has_flaw(/datum/charflaw/addiction/sadist) && user.has_flaw(/datum/charflaw/masochist))
+			. += span_secradio("[m1] looking with eyes filled with a desire to inflict pain. So exciting.")
 
 		var/villain_text = get_villain_text()
 		if(villain_text)
