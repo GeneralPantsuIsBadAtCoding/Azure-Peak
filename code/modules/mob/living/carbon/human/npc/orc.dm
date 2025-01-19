@@ -3,7 +3,6 @@
 	skin_tone = SKIN_COLOR_GROONN
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
-	outfit = /datum/outfit/savageorc
 
 	race = /datum/species/orc
 	gender = MALE
@@ -42,7 +41,6 @@
 	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
