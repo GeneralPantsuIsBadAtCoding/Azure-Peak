@@ -86,6 +86,19 @@
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/shalal/hijab
+	name = "Hijab"
+	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
+	item_state = "hijab"
+	icon_state = "deserthood"
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
+	name = "Heavy Hood"
+	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
+	color = CLOTHING_BROWN
+	item_state = "heavyhood"
+	icon_state = "heavyhood"
+
 /obj/item/clothing/head/roguetown/roguehood/astrata
 	name = "sun hood"
 	desc = "A hood worn by those who favor Astrata. Praise the firstborn sun!"

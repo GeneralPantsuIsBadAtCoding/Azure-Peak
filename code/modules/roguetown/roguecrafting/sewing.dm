@@ -533,3 +533,24 @@
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/keffiyeh
+	name = "Keffiyeh"
+	result = list(/obj/item/clothing/head/roguetown/roguehood/shalal)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/hijab
+	name = "Hijab"
+	result = list(/obj/item/clothing/head/roguetown/roguehood/shalal/hijab)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/heavyhood
+	name = "Heavy Hood"
+	result = list(/obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
