@@ -18,15 +18,15 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	mask = /obj/item/clothing/mask/rogue/facemask/psydonmask
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
-	var/classes = list("Otavan Brute", "Nadeli-Trained Scholar")
+	var/classes = list("Otavan Brute", "Naledi-Trained Scholar")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
 		if("Otavan Brute")
 			H.set_blindness(0)
 			brute_equip(H)
-		if("Nadeli-Trained Scholar")
+		if("Naledi-Trained Scholar")
 			H.set_blindness(0)
-			nadeli_equip(H)
+			naledi_equip(H)
 
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
@@ -56,7 +56,7 @@
 		ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
-/datum/outfit/job/roguetown/disciple/proc/nadeli_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/disciple/proc/naledi_equip(mob/living/carbon/human/H)
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
