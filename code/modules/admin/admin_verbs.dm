@@ -191,7 +191,8 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/reload_configuration,
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/returntolobby,
-	/client/proc/set_tod_override
+	/client/proc/set_tod_override,
+	/client/proc/stresstest_chat
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -449,6 +450,35 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.todoverride = null
 		world << "[ckey] has disabled the time of day override."
 	settod()
+
+/client/proc/stresstest_chat()
+	set name = "Stress Chat"
+	set category = "Debug"
+	set hidden = FALSE
+
+	if(!holder)
+		return
+		
+	var/who = usr
+	var/languages = list(
+		"human",
+		"dwarf",
+		"elvish",
+		"sandspeak",
+		"delf",
+		"beast",
+		"orc",
+		"undead",
+		"hellspeak",
+		"reptile",
+		"lupian",
+
+	)
+
+	for(var/i = 1; i <= 500; i++)
+		for(var/lang in languages)
+			to_chat(who, "<span class='say'><span class='name'><span style='color:#ff6600;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'>Jorrel</span></span> <span class='message'>says, \"<span class=' [lang] '>This is me speaking [lang].</span>\"</span></span>")
+
 
 /client/proc/ban_panel()
 	set name = "Banning Panel"

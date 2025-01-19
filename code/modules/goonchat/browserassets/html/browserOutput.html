@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="font-awesome.css" />
 	<link id="sheetofstyles" rel="stylesheet" type="text/css" href="browserOutput.css" />
 	<link rel="stylesheet" type="text/css" href="spritesheet_chat.css" />
+	<script type="text/javascript" src="purify.min.js"></script>
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="json2.min.js"></script>
 </head>
@@ -23,10 +24,10 @@
 
 	</div>
 	<div id="userBar" style="display: none;">
-<!--		<div id="ping">
+		<div id="ping">
 			<i class="fas fa-circle" id="pingDot"></i>
 			<span class="ms" id="pingMs">--ms</span>
-		</div>-->
+		</div>
 <!--		<div id="darkmodething">
 			<a href="#" class="subCell toggle" id="darkmodetoggle" title="Darkmode"><i class="fas fa-adjust"></i></a>
 		</div>-->
@@ -39,13 +40,15 @@
 		<div class="sub" id="subOptions">
 			<a href="#" class="subCell decreaseFont topCell" id="decreaseFont"><span>Decrease font size</span> <i class="fas fa-font"></i></a>
 			<a href="#" class="subCell increaseFont" id="increaseFont"><span>Increase font size</span> <i class="fas fa-font"></i></a>
-			<a href="#" class="subCell decreaseLineHeight" id="decreaseLineHeight"><span>Decrease line height</span> <i class="fas fa-text-height"></i></a>
-			<a href="#" class="subCell increaseLineHeight" id="increaseLineHeight"><span>Increase line height</span> <i class="fas fa-text-height"></i></a>
-<!--			<a href="#" class="subCell togglePing" id="togglePing"><span>Toggle ping display</span> <i class="fas fa-circle"></i></a>-->
-<!--			<a href="#" class="subCell highlightTerm" id="highlightTerm"><span>Highlight string</span> <i class="fas fa-tag"></i></a>-->
-<!--			<a href="#" class="subCell saveLog" id="saveLog"><span>Save chat log</span> <i class="fas fa-save"></i></a>-->
+<!--		<a href="#" class="subCell decreaseLineHeight" id="decreaseLineHeight"><span>Decrease line height</span> <i class="fas fa-text-height"></i></a> -->
+<!--		<a href="#" class="subCell increaseLineHeight" id="increaseLineHeight"><span>Increase line height</span> <i class="fas fa-text-height"></i></a> -->
+			<a href="#" class="subCell togglePing" id="togglePing"><span>Toggle ping display</span> <i class="fas fa-circle"></i></a>
+			<a href="#" class="subCell highlightTerm" id="highlightTerm"><span>Highlight string</span> <i class="fas fa-tag"></i></a>
+			<a href="#" class="subCell saveLog" id="saveLog"><span>Save log as HTML</span> <i class="fas fa-save"></i></a>
+			<a href="#" class="subCell saveLogTxt" id="saveLogTxt"><span>Save log as txt</span> <i class="fas fa-save"></i></a>
+<!-- NYI	<a href="#" class="subCell startLivelogging" id="startLogging"><span>Start a continuous log</span> <i class="fas fa-save"></i></a>-->
 			<a href="#" class="subCell toggleCombine" id="toggleCombine"><span>Toggle line combining</span> <i class="fas fa-filter"></i></a>
-<!--			<a href="#" class="subCell clearMessages" id="clearMessages"><span>Clear all messages</span> <i class="fas fa-eraser"></i></a>-->
+			<a href="#" class="subCell clearMessages" id="clearMessages"><span>Clear all messages</span> <i class="fas fa-eraser"></i></a>
 		</div>
 		<div class="sub" id="subAudio">
 			<span class="subCell topCell" id="musicVolumeSpan"><input type="range" class="hidden" id="musicVolume"><span id="musicVolumeText">Admin music volume</span><i class="fas fa-music"></i></span>

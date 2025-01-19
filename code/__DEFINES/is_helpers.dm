@@ -29,6 +29,9 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 	/area/rogue/indoors/shelter/rtfield
 	)))
 
+
+#define isclient(A) istype(A, /client)
+
 #define isforestsex(A) (is_type_in_typecache(A, GLOB.our_forest_sex))
 
 #define isgroundlessturf(A) (is_type_in_typecache(A, GLOB.turfs_without_ground))
