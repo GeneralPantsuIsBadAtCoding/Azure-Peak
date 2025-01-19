@@ -251,7 +251,7 @@ SUBSYSTEM_DEF(vote)
 						break
 					choices.Add(option)
 			if("endround")
-				initiator_key = pick("Psydon", "Zizo")
+				initiator_key = pick("Psydon", "Zizo", "Baotha", "Graggar","Trey Liam","Level 1 Goblin","Fast Tickrate Volf","Vampyre Lord","Astrata","Noc","Necra","Dendor","Malum","Xylix Xylix Xylix","Xylix","Nothing Ever Happening","Something Happening")
 				choices.Add("Continue Playing","End Round")
 				vote_alert.file = 'sound/roundend/roundend-vote-sound.ogg'
 			else
