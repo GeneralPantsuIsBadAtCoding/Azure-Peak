@@ -208,13 +208,7 @@
 						else
 							thrown_range = 1
 						stop_pulling()
-						if(G.grab_state < GRAB_AGGRESSIVE)		//If we have the Giant Virtue, and aren't throwing another Giant, we can do it w/o aggro grab
-							if(HAS_TRAIT(throwable_mob, TRAIT_BIGGUY))
-								return
-							if(!HAS_TRAIT(src,TRAIT_BIGGUY))
-								return
-						if(HAS_TRAIT(src, TRAIT_PACIFISM))
-							to_chat(src, "<span class='notice'>I gently let go of [throwable_mob].</span>")
+						if(G.grab_state < GRAB_AGGRESSIVE)
 							return
 						var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 						var/turf/end_T = get_turf(target)
