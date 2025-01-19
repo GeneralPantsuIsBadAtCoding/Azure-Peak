@@ -707,6 +707,10 @@
 	icon_state = "chess"
 	},
 /area/rogue/under/cave/dukecourt)
+"eh" = (
+/obj/structure/fluff/psycross/crafted,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/cave)
 "ej" = (
 /obj/structure/mineral_door/wood/red,
 /turf/open/floor/rogue/blocks,
@@ -1315,6 +1319,9 @@
 /obj/item/book/rogue/noc,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/mazedungeon)
+"jj" = (
+/turf/open/floor/rogue/shroud,
+/area/rogue/indoors/cave)
 "jq" = (
 /obj/item/natural/stone,
 /turf/open/floor/rogue/dirt/road,
@@ -1669,6 +1676,10 @@
 "mN" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave/mazedungeon)
+"mO" = (
+/obj/item/clothing/neck/roguetown/psicross/malum,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "mV" = (
 /obj/structure/fluff/traveltile/vampire{
 	aportalid = "vampexit";
@@ -1841,6 +1852,9 @@
 "oj" = (
 /turf/closed/mineral/random/rogue,
 /area/rogue/under/cave/orcdungeon)
+"ol" = (
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "om" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/golden/poison,
@@ -1854,6 +1868,9 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter)
+"op" = (
+/turf/closed/wall/mineral/rogue/pipe,
+/area/rogue/indoors/cave)
 "oq" = (
 /obj/effect/decal/remains/saiga,
 /turf/open/floor/rogue/dirt/road,
@@ -2158,6 +2175,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/cave/dukecourt)
+"qM" = (
+/obj/structure/mineral_door/bars{
+	brokenstate = 1;
+	obj_broken = 1
+	},
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/cave)
 "qR" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/rogue/cobblerock,
@@ -2436,6 +2460,10 @@
 /mob/living/carbon/human/species/skeleton/npc/ambush,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter)
+"sI" = (
+/obj/item/clothing/neck/roguetown/psicross/astrata,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/cave)
 "sJ" = (
 /obj/structure/table/vtable,
 /obj/item/reagent_containers/glass/bottle/rogue/elfred,
@@ -2522,6 +2550,10 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/beach)
+"ts" = (
+/obj/item/clothing/neck/roguetown/psicross/silver,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "tu" = (
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -2683,6 +2715,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
+"vc" = (
+/obj/structure/mineral_door/bars,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/cave)
 "vd" = (
 /turf/closed/wall/mineral/rogue/wooddark/end{
 	icon_state = "endwooddark";
@@ -3558,6 +3594,10 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
+"Cp" = (
+/obj/structure/fluff/psycross,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/cave)
 "Cq" = (
 /obj/item/rogueweapon/sword/sabre/dec,
 /turf/open/water/cleanshallow,
@@ -3627,7 +3667,10 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
 "CT" = (
-/obj/structure/mineral_door/bars,
+/obj/structure/mineral_door/bars{
+	brokenstate = 1;
+	obj_broken = 1
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter)
 "CV" = (
@@ -3762,6 +3805,9 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
+"Ei" = (
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/cave)
 "Ej" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/naturalstone,
@@ -4128,6 +4174,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
+"Ha" = (
+/obj/effect/roguerune,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "Hb" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/rogue/blocks,
@@ -4184,6 +4234,10 @@
 "HI" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter)
+"HQ" = (
+/obj/structure/bars/steel,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/cave)
 "HS" = (
 /obj/item/book/rogue/arcyne,
 /obj/structure/bookcase/random/archive,
@@ -4673,6 +4727,9 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
+"Lc" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/rogue/indoors/cave)
 "Ld" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/ruinedwood{
@@ -5632,7 +5689,10 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "SU" = (
-/obj/structure/mineral_door/bars,
+/obj/structure/mineral_door/bars{
+	brokenstate = 1;
+	obj_broken = 1
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
 "SW" = (
@@ -5778,6 +5838,10 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/tools,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
+"UC" = (
+/obj/item/clothing/neck/roguetown/psicross/necra,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "UJ" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/blocks,
@@ -5903,6 +5967,10 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
+"VC" = (
+/obj/item/clothing/neck/roguetown/psicross/abyssor,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/indoors/cave)
 "VE" = (
 /obj/structure/fluff/statue/scare,
 /turf/open/floor/rogue/dirt,
@@ -5977,6 +6045,9 @@
 /obj/item/candle/yellow/lit,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/shelter)
+"Wk" = (
+/turf/open/lava/airless,
+/area/rogue/indoors/cave)
 "Wn" = (
 /obj/structure/bookcase,
 /obj/item/book/rogue/nitebeast,
@@ -13815,7 +13886,7 @@ RL
 RL
 RL
 ms
-RL
+ms
 RL
 tk
 ms
@@ -13945,7 +14016,7 @@ RL
 RL
 ms
 ms
-RL
+ms
 RL
 tk
 tk
@@ -14074,9 +14145,9 @@ RL
 RL
 RL
 ms
-RL
-RL
-RL
+ms
+ms
+ms
 tk
 tk
 tk
@@ -14202,17 +14273,17 @@ RL
 RL
 RL
 RL
-RL
+sA
+sA
+sA
+sA
 ms
-RL
-RL
-RL
 tk
-sA
-sA
-sA
-sA
-ms
+tk
+tk
+oP
+oP
+oP
 oP
 oP
 oP
@@ -14332,18 +14403,18 @@ ms
 RL
 RL
 RL
-ms
-ms
-RL
-RL
-RL
-tk
 sA
 qq
 yx
 sA
 VV
 sA
+tk
+tk
+oP
+oP
+oP
+oP
 oP
 oP
 oP
@@ -14462,18 +14533,18 @@ ms
 RL
 RL
 RL
-RL
-RL
-RL
-RL
-RL
-tk
 sA
 iZ
 qq
 qq
 qq
 sA
+tk
+tk
+tk
+oP
+oP
+oP
 oP
 oP
 oP
@@ -14592,18 +14663,18 @@ ms
 RL
 RL
 RL
-RL
-RL
-RL
-RL
-RL
+sA
+qq
+qq
+qq
+sA
+sA
 tk
-sA
-qq
-qq
-qq
-sA
-sA
+tk
+tk
+oP
+oP
+oP
 oP
 oP
 oP
@@ -14722,17 +14793,17 @@ ms
 RL
 RL
 RL
-RL
-RL
-RL
-RL
-RL
-RL
 sA
 iZ
 MS
 iZ
 sA
+RL
+tk
+tk
+tk
+oP
+oP
 oP
 oP
 oP
@@ -14852,17 +14923,17 @@ ms
 ms
 RL
 RL
-RL
-RL
-RL
-RL
-RL
-RL
 sA
 sA
 sA
 sA
 sA
+RL
+tk
+tk
+tk
+tk
+oP
 oP
 oP
 oP
@@ -30193,12 +30264,6 @@ RL
 RL
 RL
 RL
-RL
-RL
-ms
-ms
-sT
-sT
 sT
 sT
 ms
@@ -30206,11 +30271,17 @@ ms
 sA
 sA
 sA
-oP
-oP
-oP
-oP
-oP
+op
+op
+op
+op
+op
+op
+op
+op
+op
+op
+op
 FP
 "}
 (56,1,2) = {"
@@ -30323,12 +30394,6 @@ RL
 RL
 RL
 RL
-RL
-RL
-tk
-tk
-ms
-ms
 ms
 bv
 JE
@@ -30336,11 +30401,17 @@ Gb
 In
 Bz
 sA
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Lc
+Lc
+ol
+Lc
+ol
+Lc
+ol
+Lc
+op
 FP
 "}
 (57,1,2) = {"
@@ -30453,12 +30524,6 @@ eJ
 RL
 RL
 RL
-RL
-RL
-tk
-tk
-tk
-tk
 sA
 JE
 vu
@@ -30466,11 +30531,17 @@ Bz
 vu
 JE
 sA
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Lc
+Lc
+UC
+Lc
+Lc
+VC
+Lc
+Lc
+op
 FP
 "}
 (58,1,2) = {"
@@ -30583,12 +30654,6 @@ eJ
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
 sA
 vu
 qU
@@ -30596,11 +30661,17 @@ JE
 JE
 JE
 sA
-oP
-oP
-oP
-oP
-oP
+op
+ol
+ol
+Lc
+Lc
+Lc
+Lc
+Lc
+ol
+Lc
+op
 FP
 "}
 (59,1,2) = {"
@@ -30713,12 +30784,6 @@ eJ
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
 sA
 QA
 sA
@@ -30726,11 +30791,17 @@ sA
 sA
 sA
 sA
-oP
-oP
-oP
-oP
-oP
+op
+ol
+Lc
+Lc
+HQ
+Lc
+HQ
+Lc
+ol
+ol
+op
 FP
 "}
 (60,1,2) = {"
@@ -30843,24 +30914,24 @@ eJ
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
 sA
 vu
 Fx
 vu
 sA
+tk
 oP
-oP
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Ha
+Lc
+Ei
+sI
+Lc
+Lc
+Lc
+ol
+op
 FP
 "}
 (61,1,2) = {"
@@ -30973,24 +31044,24 @@ eJ
 RL
 RL
 RL
-tk
-tk
-tk
-tk
-tk
-tk
 sA
 vu
 xm
 vu
 sA
+tk
 oP
-oP
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+ol
+Lc
+Lc
+qM
+HQ
+Lc
+mO
+ol
+op
 FP
 "}
 (62,1,2) = {"
@@ -31103,24 +31174,24 @@ eJ
 eJ
 RL
 RL
-tk
-tk
-tk
-tk
-tk
-tk
 sA
 Ty
 vu
 Ty
 sA
+tk
 oP
-oP
-oP
-oP
-oP
-oP
-oP
+op
+ol
+ol
+Lc
+Lc
+Ha
+Lc
+Lc
+ol
+Lc
+op
 FP
 "}
 (63,1,2) = {"
@@ -31233,12 +31304,6 @@ kX
 eJ
 RL
 RL
-tk
-tk
-tk
-oP
-oP
-oP
 sA
 sA
 sA
@@ -31246,11 +31311,17 @@ sA
 sA
 oP
 oP
-oP
-oP
-oP
-oP
-oP
+op
+ol
+Lc
+ts
+ol
+ol
+ol
+ol
+Lc
+ol
+op
 FP
 "}
 (64,1,2) = {"
@@ -31370,17 +31441,17 @@ oP
 oP
 oP
 oP
-tk
-tk
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Lc
+ol
+Wk
+ol
+ol
+ol
+ol
+ol
+op
 FP
 "}
 (65,1,2) = {"
@@ -31500,17 +31571,17 @@ oP
 oP
 oP
 oP
-tk
-tk
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
-oP
+op
+op
+op
+op
+op
+op
+Ei
+Ei
+op
+op
+op
 FP
 "}
 (66,1,2) = {"
@@ -31635,10 +31706,10 @@ tk
 tk
 tk
 oP
-oP
-oP
-oP
-oP
+op
+Ei
+Lc
+op
 oP
 oP
 FP
@@ -31764,12 +31835,12 @@ oP
 tk
 tk
 tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+op
+Ei
+Ei
+op
+op
 oP
 FP
 "}
@@ -31894,12 +31965,12 @@ eJ
 oP
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
+op
+Lc
+Ei
+Lc
+Ei
+op
 oP
 FP
 "}
@@ -32023,14 +32094,14 @@ kX
 eJ
 oP
 tk
-tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
+op
+op
+Ei
+Lc
+Ei
+Lc
+op
+op
 FP
 "}
 (70,1,2) = {"
@@ -32153,14 +32224,14 @@ kX
 eJ
 oP
 tk
-tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
+op
+Ei
+Lc
+Ei
+Lc
+Ei
+Ei
+op
 FP
 "}
 (71,1,2) = {"
@@ -32283,14 +32354,14 @@ kX
 eJ
 oP
 oP
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+jj
+Ei
+Lc
+Lc
+Ei
+op
 FP
 "}
 (72,1,2) = {"
@@ -32413,14 +32484,14 @@ kX
 eJ
 oP
 oP
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Ei
+jj
+Ei
+Lc
+Ei
+op
 FP
 "}
 (73,1,2) = {"
@@ -32543,14 +32614,14 @@ kX
 eJ
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Lc
+jj
+jj
+Lc
+Ei
+op
 FP
 "}
 (74,1,2) = {"
@@ -32673,14 +32744,14 @@ nl
 eJ
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+jj
+jj
+Lc
+jj
+jj
+Lc
+op
 FP
 "}
 (75,1,2) = {"
@@ -32803,14 +32874,14 @@ kX
 eJ
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+Lc
+Ei
+jj
+Ei
+Lc
+Ei
+op
 FP
 "}
 (76,1,2) = {"
@@ -32933,14 +33004,14 @@ eJ
 eJ
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+Ei
+Lc
+Ei
+Lc
+Ei
+Lc
+op
 FP
 "}
 (77,1,2) = {"
@@ -33063,14 +33134,14 @@ eJ
 tk
 tk
 tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
-oP
+op
+jj
+Ei
+jj
+jj
+Lc
+Ei
+op
 FP
 "}
 (78,1,2) = {"
@@ -33193,14 +33264,14 @@ tk
 tk
 tk
 tk
-tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
+op
+jj
+Lc
+Lc
+Ei
+Lc
+Ei
+op
 FP
 "}
 (79,1,2) = {"
@@ -33323,14 +33394,14 @@ tk
 tk
 RL
 tk
-tk
-tk
-tk
-tk
-oP
-oP
-oP
-oP
+op
+Lc
+Ei
+Ei
+Ei
+jj
+Lc
+op
 FP
 "}
 (80,1,2) = {"
@@ -33453,14 +33524,14 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-oP
-oP
-oP
-oP
+op
+Ei
+Lc
+Ei
+Ei
+Lc
+Ei
+op
 FP
 "}
 (81,1,2) = {"
@@ -33583,14 +33654,14 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-oP
-oP
-oP
+op
+op
+Ei
+Ei
+Ei
+Lc
+op
+op
 FP
 "}
 (82,1,2) = {"
@@ -33714,12 +33785,12 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-oP
-oP
+op
+Lc
+Lc
+Ei
+Ei
+op
 oP
 FP
 "}
@@ -33844,12 +33915,12 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-oP
-oP
+op
+op
+Ei
+Ei
+op
+op
 oP
 FP
 "}
@@ -33974,12 +34045,12 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-oP
+op
+op
+Ei
+Lc
+op
+op
 oP
 FP
 "}
@@ -34104,12 +34175,12 @@ kM
 kM
 kM
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+op
+Ei
+Lc
+op
+op
 oP
 FP
 "}
@@ -34234,12 +34305,12 @@ RL
 kM
 kM
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+Lc
+Ei
+Lc
+Lc
+op
 tk
 FP
 "}
@@ -34364,12 +34435,12 @@ RL
 RL
 kM
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Lc
+Lc
+op
 tk
 FP
 "}
@@ -34494,12 +34565,12 @@ RL
 RL
 cV
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+Lc
+Lc
+Ei
+Lc
+op
 tk
 FP
 "}
@@ -34624,12 +34695,12 @@ RL
 RL
 kM
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Lc
+Lc
+op
 tk
 FP
 "}
@@ -34754,12 +34825,12 @@ kM
 kM
 kM
 RL
-RL
-RL
-tk
-tk
-tk
-tk
+op
+Lc
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -34884,12 +34955,12 @@ kM
 kM
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
+op
+Lc
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35014,12 +35085,12 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Lc
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35144,12 +35215,12 @@ RL
 RL
 RL
 RL
-RL
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Ei
+Lc
+op
 tk
 FP
 "}
@@ -35273,13 +35344,13 @@ RL
 RL
 RL
 RL
-RL
 tk
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35404,12 +35475,12 @@ RL
 RL
 RL
 tk
-tk
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Lc
+Ei
+op
 tk
 FP
 "}
@@ -35534,12 +35605,12 @@ RL
 RL
 RL
 tk
-tk
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35664,12 +35735,12 @@ RL
 RL
 RL
 tk
-tk
-tk
-tk
-tk
-tk
-tk
+op
+Lc
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35794,12 +35865,12 @@ RL
 RL
 RL
 tk
-tk
-tk
-tk
-tk
-tk
-tk
+op
+Ei
+Ei
+Ei
+Ei
+op
 tk
 FP
 "}
@@ -35924,13 +35995,13 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
-yV
-yV
-yV
-yV
+op
+Ei
+Ei
+Ei
+Ei
+op
+tk
 NX
 "}
 (100,1,2) = {"
@@ -36054,13 +36125,13 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
-yV
-yV
-yV
-yV
+op
+eh
+Ei
+Ei
+Cp
+op
+tk
 NX
 "}
 (101,1,2) = {"
@@ -36184,13 +36255,13 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
-yV
-yV
-yV
-yV
+op
+op
+Ei
+Ei
+op
+op
+tk
 NX
 "}
 (102,1,2) = {"
@@ -36315,12 +36386,12 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
-yV
-yV
-yV
+op
+sT
+sT
+op
+tk
+tk
 NX
 "}
 (103,1,2) = {"
@@ -36445,12 +36516,12 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
-yV
-yV
-yV
+tk
+sT
+sT
+tk
+tk
+tk
 NX
 "}
 (104,1,2) = {"
@@ -36573,14 +36644,14 @@ Xd
 Xd
 Xd
 Xd
-Qe
-Qe
-Qe
-yV
-yV
-yV
-yV
-yV
+Xd
+Xd
+vc
+sT
+sT
+tk
+tk
+tk
 NX
 "}
 (105,1,2) = {"
@@ -36708,9 +36779,9 @@ Qe
 Qe
 Qe
 Qe
-yV
-yV
-yV
+tk
+tk
+tk
 NX
 "}
 (106,1,2) = {"
@@ -36840,7 +36911,7 @@ Qe
 Qe
 Qe
 Qe
-yV
+tk
 NX
 "}
 (107,1,2) = {"
