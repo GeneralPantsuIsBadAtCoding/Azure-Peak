@@ -159,66 +159,6 @@
 	holder.set_opacity(0)
 	holder.alpha = 125
 
-/datum/spacevine_mutation/oxy_eater
-	name = "oxygen consuming"
-	hue = "#ffff88"
-	severity = 3
-	quality = NEGATIVE
-
-/datum/spacevine_mutation/oxy_eater/process_mutation(obj/structure/spacevine/holder)
-	var/turf/open/floor/T = holder.loc
-	if(istype(T))
-		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases[/datum/gas/oxygen])
-			return
-		GM.gases[/datum/gas/oxygen][MOLES] = max(GM.gases[/datum/gas/oxygen][MOLES] - severity * holder.energy, 0)
-		GM.garbage_collect()
-
-/datum/spacevine_mutation/nitro_eater
-	name = "nitrogen consuming"
-	hue = "#8888ff"
-	severity = 3
-	quality = NEGATIVE
-
-/datum/spacevine_mutation/nitro_eater/process_mutation(obj/structure/spacevine/holder)
-	var/turf/open/floor/T = holder.loc
-	if(istype(T))
-		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases[/datum/gas/nitrogen])
-			return
-		GM.gases[/datum/gas/nitrogen][MOLES] = max(GM.gases[/datum/gas/nitrogen][MOLES] - severity * holder.energy, 0)
-		GM.garbage_collect()
-
-/datum/spacevine_mutation/carbondioxide_eater
-	name = "CO2 consuming"
-	hue = "#00ffff"
-	severity = 3
-	quality = POSITIVE
-
-/datum/spacevine_mutation/carbondioxide_eater/process_mutation(obj/structure/spacevine/holder)
-	var/turf/open/floor/T = holder.loc
-	if(istype(T))
-		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases[/datum/gas/carbon_dioxide])
-			return
-		GM.gases[/datum/gas/carbon_dioxide][MOLES] = max(GM.gases[/datum/gas/carbon_dioxide][MOLES] - severity * holder.energy, 0)
-		GM.garbage_collect()
-
-/datum/spacevine_mutation/plasma_eater
-	name = "toxins consuming"
-	hue = "#ffbbff"
-	severity = 3
-	quality = POSITIVE
-
-/datum/spacevine_mutation/plasma_eater/process_mutation(obj/structure/spacevine/holder)
-	var/turf/open/floor/T = holder.loc
-	if(istype(T))
-		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases[/datum/gas/plasma])
-			return
-		GM.gases[/datum/gas/plasma][MOLES] = max(GM.gases[/datum/gas/plasma][MOLES] - severity * holder.energy, 0)
-		GM.garbage_collect()
-
 /datum/spacevine_mutation/thorns
 	name = "thorny"
 	hue = "#666666"

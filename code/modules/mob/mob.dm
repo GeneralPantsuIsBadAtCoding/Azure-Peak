@@ -114,27 +114,6 @@ GLOBAL_VAR_INIT(mobids, 1)
 				hud_list[hud] = I
 
 /**
- * Some kind of debug verb that gives atmosphere environment details
- */
-/mob/proc/Cell()
-	set category = "Admin"
-	set hidden = 1
-
-	if(!loc)
-		return 0
-
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.temperature] \n</span>"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="<span class='notice'>[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] \n</span>"
-
-	to_chat(usr, t)
-
-/**
  * Show a message to this mob (visual or audible)
  */
 /mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)

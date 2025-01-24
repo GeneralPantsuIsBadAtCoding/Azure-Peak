@@ -130,7 +130,7 @@
 	reagents.expose_temperature(1000)
 	..()
 
-/obj/item/reagent_containers/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/reagent_containers/temperature_expose(exposed_temperature, exposed_volume)
 	reagents.expose_temperature(exposed_temperature)
 
 /obj/item/reagent_containers/on_reagent_change(changetype)

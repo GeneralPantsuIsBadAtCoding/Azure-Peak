@@ -48,7 +48,6 @@
 	return
 
 /turf/open/lava/airless
-	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/lava/Entered(atom/movable/AM)
 	if(!AM.throwing)
@@ -79,15 +78,6 @@
 	underlay_appearance.icon = 'icons/turf/floors.dmi'
 	underlay_appearance.icon_state = "basalt"
 	return TRUE
-
-/turf/open/lava/GetHeatCapacity()
-	. = 700000
-
-/turf/open/lava/GetTemperature()
-	. = 5000
-
-/turf/open/lava/TakeTemperature(temp)
-
 
 /turf/open/lava/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things
@@ -173,12 +163,10 @@
 	canSmoothWith = list(/turf/open/lava/smooth)
 
 /turf/open/lava/smooth/lava_land_surface
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-	planetary_atmos = TRUE
+
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 
 /turf/open/lava/smooth/airless
-	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/lava/acid
 	name = "acid"

@@ -136,59 +136,6 @@
 	effect_type = /obj/effect/particle_effect/smoke/bad
 
 /////////////////////////////////////////////
-// Nanofrost smoke
-/////////////////////////////////////////////
-
-/obj/effect/particle_effect/smoke/freezing
-	name = "nanofrost smoke"
-	color = "#B2FFFF"
-	opaque = 0
-
-/datum/effect_system/smoke_spread/freezing
-	effect_type = /obj/effect/particle_effect/smoke/freezing
-	var/blast = 0
-	var/temperature = 2
-	var/weldvents = TRUE
-	var/distcheck = TRUE
-
-/datum/effect_system/smoke_spread/freezing/proc/Chilled(atom/A)
-	if(isopenturf(A))
-		var/turf/open/T = A
-		if(T.air)
-			var/datum/gas_mixture/G = T.air
-			if(!distcheck || get_dist(T, location) < blast) // Otherwise we'll get silliness like people using Nanofrost to kill people through walls with cold air
-				G.temperature = temperature
-			T.air_update_turf()
-			for(var/obj/effect/hotspot/H in T)
-				qdel(H)
-			var/list/G_gases = G.gases
-			if(G_gases[/datum/gas/plasma])
-				G.assert_gas(/datum/gas/nitrogen)
-				G_gases[/datum/gas/nitrogen][MOLES] += (G_gases[/datum/gas/plasma][MOLES])
-				G_gases[/datum/gas/plasma][MOLES] = 0
-				G.garbage_collect()
-		for(var/mob/living/L in T)
-			L.ExtinguishMob()
-		for(var/obj/item/Item in T)
-			Item.extinguish()
-
-/datum/effect_system/smoke_spread/freezing/set_up(radius = 5, loca, blast_radius = 0)
-	..()
-	blast = blast_radius
-
-/datum/effect_system/smoke_spread/freezing/start()
-	if(blast)
-		for(var/turf/T in RANGE_TURFS(blast, location))
-			Chilled(T)
-	..()
-
-/datum/effect_system/smoke_spread/freezing/decon
-	temperature = 293.15
-	distcheck = FALSE
-	weldvents = FALSE
-
-
-/////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
 
