@@ -4,16 +4,38 @@
 	added_skills = list(/datum/skill/magic/arcane = 1)
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
-	if (!recipient.mind?.get_skill_level(/datum/skill/magic/arcane)) // we can do this because apply_to is always called first
-		recipient.mind?.adjust_spellpoints(-4) // Limits skill gain through for non-initial arcynes
-		if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation))
-			recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+	if(!isarcyne(recipient))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+	if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
+		recipient.mind?.adjust_spellpoints(1)
 	else
-		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT))
-			recipient.mind?.adjust_spellpoints(1) // 1 extra spellpoint if you're already arcane
-		else
-			recipient.mind?.adjust_spellpoints(2) // This lessons the -6 that applies to martial classes by default (currently only pontifex at time of change).
-			to_chat(recipient, span_notice("My virtue lessens the limitations of my magical reach."))
+		var/spells = list("Fetch","Spitfire","Forcewall","Message","Ensnare","Nondetection","Feather Fall","Longstrider","Acid Splash","Guidance","Frost bolt","Arcyne Bolt")
+		var/spell_choice = input("Choose your spell.", "TAKE UP ARMS") as anything in spells
+		switch(spell_choice)
+			if("Fetch")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
+			if("Spitfire")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/spitfire)
+			if("Forcewall")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall_weak)
+			if("Ensnare")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe)
+			if("Message")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+			if("Nondetection")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/nondetection)
+			if("Feather Fall")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/featherfall)
+			if("Longstrider")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/longstrider)
+			if("Acid Splash")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e)
+			if("Guidance")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
+			if("Frost bolt")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/frostbolt)
+			if("Arcyne Bolt")
+				recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/arcynebolt)
 
 /datum/virtue/combat/devotee
 	name = "Devotee"

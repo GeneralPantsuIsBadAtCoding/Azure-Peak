@@ -69,7 +69,7 @@
 			H.change_stat("constitution", -1)
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", 3)
-			H.mind.adjust_spellpoints(2)
+			H.mind.adjust_spellpoints(6)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
@@ -93,7 +93,6 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-			H.mind.adjust_spellpoints(-6) //The - is intended.
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 2)
 			H.change_stat("perception", -1)

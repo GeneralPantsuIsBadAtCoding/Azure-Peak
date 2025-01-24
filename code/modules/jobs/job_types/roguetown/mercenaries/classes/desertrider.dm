@@ -101,7 +101,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-			H.mind.adjust_spellpoints(1)
+			H.mind.adjust_spellpoints(5)
 			H.change_stat("endurance", 2)
 			H.change_stat("intelligence", 3)
 			H.change_stat("speed", 3)
