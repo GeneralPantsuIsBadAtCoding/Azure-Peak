@@ -297,3 +297,10 @@
 	gripped_intents = null
 	wdefense = 4
 	is_silver = TRUE
+
+/obj/item/rogueweapon/stoneaxe/silver/psyaxe
+	name = "psydonian war axe"
+	desc = "A one-handed war axe forged in the pain of psydon."
+	icon_state = "psyaxe"
+	wdefense = 5
+	max_blade_int = 450

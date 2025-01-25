@@ -23,13 +23,15 @@
 			to_chat(user, span_info("The reliquary lock takes my key as it opens, I take a moment to ponder what power was delivered to us..."))
 			playsound(loc, 'sound/foley/doors/lock.ogg', 60)
 			to_chat(user,)
-			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip")
+			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip","Inquistorial Armory - Weapons",)
 			var/relicchoice = input(user, "Choose your tool", "RELICS") as anything in relics
 			switch(relicchoice)
 				if("Melancholic Crankbox - Antimagic")
 					user.put_in_hands(new /obj/item/psydonmusicbox(user), TRUE)
 				if("Daybreak - Silver Whip")
 					user.put_in_hands(new /obj/item/rogueweapon/whip/antique/psywhip(user), TRUE)
+				if("Inquistorial Armory - Weapons")
+					user.put_in_hands(new /obj/structure/closet/crate/chest/inqarmory)
 			to_chat(user, span_info("I retrieve the relic, may HE guide my hand."))
 			opened = TRUE
 			icon_state = "chestweird1open"
@@ -215,3 +217,17 @@
 						to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
 						to_chat(H, (span_cultsmall(pick(ravoxlines))))		
 						H.add_stress(/datum/stressevent/soulchurner)
+
+//Inquisitorial armory down here
+
+/obj/structure/closet/crate/chest/inqarmory
+
+/obj/structure/closet/crate/chest/inqarmory/PopulateContents()
+	.=..()
+	new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(src)
+	new /obj/item/rogueweapon/greatsword/psygsword(src)
+	new /obj/item/rogueweapon/halberd/psyhalberd(src)
+	new /obj/item/rogueweapon/spear/psyspear(src)
+	new /obj/item/rogueweapon/sword/psysword(src)
+	new /obj/item/rogueweapon/mace/silver/psymace(src)
+	new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(src)

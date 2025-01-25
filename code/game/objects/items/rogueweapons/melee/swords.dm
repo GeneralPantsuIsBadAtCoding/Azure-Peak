@@ -109,6 +109,17 @@
 	icon_state = "decsword1"
 	sellprice = 140
 
+/obj/item/rogueweapon/sword/psysword
+	name = "psydonian sword"
+	desc = "a silver single handed sword, for the inquisiton."
+	icon_state = "psysword"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	max_blade_int = 200
+	wdefense = 5
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+
 /obj/item/rogueweapon/sword/decorated/Initialize()
 	. = ..()
 	if(icon_state == "decsword1")

@@ -170,6 +170,14 @@
 	throwforce = 25
 	resistance_flags = FLAMMABLE
 
+/obj/item/rogueweapon/spear/psyspear
+	name = "psydonian spear"
+	desc = "Silver spear, crafted to impale those the inquisiton hunts."
+	icon_state = "psyspear"
+	is_silver = TRUE
+	max_blade_int = 150
+	wdefense = 6
+
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -442,6 +450,15 @@
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 200
 
+/obj/item/rogueweapon/halberd/psyhalberd
+	name = "psydonian halberd"
+	desc = "A silver halberd, forged by the inquisiton."
+	max_blade_int = 250
+	icon_state = "psyhalberd"
+	is_silver = TRUE
+	wdefense = 7
+	smeltresult = /obj/item/ingot/silver
+
 /obj/item/rogueweapon/eaglebeak
 	force = 15
 	force_wielded = 30
@@ -561,6 +578,15 @@
 	icon_state = "steelzwei"
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
+
+/obj/item/rogueweapon/greatsword/psygsword
+	name = "psydonian greatsword"
+	desc = "Silverd, and able to cut apart foes of the inquisiton!"
+	icon_state = "psygsword"
+	max_blade_int = 350
+	wdefense = 6
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/estoc
 	name = "estoc"

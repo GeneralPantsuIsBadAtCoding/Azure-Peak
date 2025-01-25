@@ -240,6 +240,15 @@
 	last_used = 0
 	is_silver = TRUE
 
+/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
+	name = "psydonian dagger"
+	desc = "Silver dagger used by the finest of the inquisiton."
+	icon_state = "psydagger"
+	sellprice = 70
+	max_blade_int = 100
+	max_integrity = 210
+	wdefense = 3
+
 /obj/item/rogueweapon/huntingknife/idagger/silver/pickup(mob/user)
 	. = ..()
 	var/mob/living/carbon/human/H = user

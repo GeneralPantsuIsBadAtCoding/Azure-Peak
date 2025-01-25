@@ -102,6 +102,17 @@
 	smelt_bar_num = 2
 	is_silver = TRUE
 
+/obj/item/rogueweapon/mace/silver/psymace
+	name = "psydonian mace"
+	desc = "Silverd mace, used by the inquisiton."
+	icon_state = "psymace"
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+	wdefense = 5
+	max_integrity = 250
+	dropshrink = 0.75
+
+
 /obj/item/rogueweapon/mace/getonmobprop(tag)
 	if(tag)
 		switch(tag)
@@ -334,6 +345,8 @@
 	force_wielded = 35
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+
 
 /obj/item/rogueweapon/mace/spiked
 	icon_state = "spiked_club"
