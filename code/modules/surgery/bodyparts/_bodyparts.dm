@@ -630,12 +630,9 @@
 			if(aux_zone && !hideaux)
 				aux.color = "#[draw_color]"
 	
-	var/draw_organ_features = TRUE
 	var/draw_bodypart_features = TRUE
 	if(owner && owner.dna)
 		var/datum/species/owner_species = owner.dna.species
-		if(NO_ORGAN_FEATURES in owner_species.species_traits)
-			draw_organ_features = FALSE
 		if(NO_BODYPART_FEATURES in owner_species.species_traits)
 			draw_bodypart_features = FALSE
 	
@@ -644,15 +641,6 @@
 		var/list/marking_overlays = get_markings_overlays(override_color)
 		if(marking_overlays)
 			. += marking_overlays
-	
-	// Organ overlays
-	if(!skeletonized && draw_organ_features)
-		for(var/obj/item/organ/organ as anything in get_organs())
-			if(!organ.is_visible())
-				continue
-			var/mutable_appearance/organ_appearance = organ.get_bodypart_overlay(src)
-			if(organ_appearance)
-				. += organ_appearance
 	
 	// Feature overlays
 	if(!skeletonized && draw_bodypart_features)
