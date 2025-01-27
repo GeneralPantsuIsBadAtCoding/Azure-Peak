@@ -206,11 +206,26 @@
 				if(user.loc != M.loc)
 					to_chat(user, span_warning("I must be above them."))
 					return
+				var/stun_dur = max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20)
+				var/pincount = 0
 				user.rogfat_add(rand(1,3))
-				M.visible_message(span_danger("[user] pins [M] to the ground!"), \
-								span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
-				M.Stun(max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20))
-				user.Immobilize(20 - skill_diff)
+				while(M == grabbed && !(M.mobility_flags & MOBILITY_STAND))
+					if(M.IsStun())
+						if(!do_after(user, stun_dur + 1, needhand = 0, target = M))
+							pincount = 0
+							break
+						M.Stun(stun_dur - pincount * 2)	
+						M.Immobilize(stun_dur)	//Made immobile for the whole do_after duration, though
+						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						M.visible_message(span_danger("[user] keeps [M] pinned to the ground!"))
+						pincount += 2
+					else
+						M.Stun(stun_dur - 10)
+						M.Immobilize(stun_dur)
+						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						pincount += 2
+						M.visible_message(span_danger("[user] pins [M] to the ground!"), \
+							span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 			else
 				user.rogfat_add(rand(5,15))
 				if(prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
