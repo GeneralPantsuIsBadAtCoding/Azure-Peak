@@ -36,8 +36,10 @@
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
-	backpack_contents = list(/obj/item/roguekey/inquisition = 1, /obj/item/clothing/cloak/psydontabard/alt)
+	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
+	armor = /obj/item/clothing/suit/roguetown/armor/skin_armor/monk_skin
+	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
@@ -48,8 +50,8 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.change_stat("strength", 3)
-		H.change_stat("endurance", 2)
-		H.change_stat("constitution", 2)
+		H.change_stat("endurance", 4)
+		H.change_stat("constitution", 4)
 		H.change_stat("intelligence", -2)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)

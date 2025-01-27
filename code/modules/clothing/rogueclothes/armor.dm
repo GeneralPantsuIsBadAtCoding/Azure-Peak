@@ -51,6 +51,22 @@
 /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	icon_state = "armordressalt"
 
+//otavan brute skin
+/obj/item/clothing/suit/roguetown/armor/skin_armor/monk_skin/Initialize(mapload)
+	. = ..()
+	name = "monk's skin"
+	resistance_flags = FIRE_PROOF
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	clothing_flags = ITEM_SLOT_ARMOR
+	icon_state = null
+
+/obj/item/clothing/suit/roguetown/armor/skin_armor/monk_skin/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+
+
 //gambeson family
 
 /obj/item/clothing/suit/roguetown/armor/gambeson
