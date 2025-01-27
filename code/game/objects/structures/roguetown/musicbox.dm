@@ -16,6 +16,18 @@
 	"Song 2" = 'sound/music/jukeboxes/gen/tavern2.ogg',\
 	"Song 3" = 'sound/music/jukeboxes/gen/tavern3.ogg'\
 )
+#define MUSIC_TAVCAT_OLDSCHOOL list(\
+	"Autumn Voyage" = 'sound/music/jukeboxes/oldschool/Autumn_Voyage.ogg',\
+	"Fanfare" = 'sound/music/jukeboxes/oldschool/Fanfare.ogg',\
+	"Greatness" = 'sound/music/jukeboxes/oldschool/Greatness.ogg',\
+	"Medieval" = 'sound/music/jukeboxes/oldschool/Medieval.ogg',\
+	"Sea Shanty2" = 'sound/music/jukeboxes/oldschool/Sea_Shanty2.ogg',\
+	"Shine" = 'sound/music/jukeboxes/oldschool/Shine.ogg',\
+	"Spirit" = 'sound/music/jukeboxes/oldschool/Spirit.ogg',\
+	"Still Night" = 'sound/music/jukeboxes/oldschool/Still_Night.ogg',\
+	"Venture" = 'sound/music/jukeboxes/oldschool/Venture.ogg',\
+	"Yesteryear" = 'sound/music/jukeboxes/oldschool/Yesteryear.ogg'\
+)
 
 /datum/looping_sound/musloop
 	mid_sounds = list()
@@ -109,7 +121,7 @@
 		playmusic("TOGGLE")
 	
 	if(button_selection=="Change Song")
-		var/songlists_selection = input(user, "Which song list?", "\The [src]") as null | anything in list("OTHERWORLDLY"=MUSIC_TAVCAT_OTHERWORLDLY, "GENERIC"=MUSIC_TAVCAT_GENERIC)
+		var/songlists_selection = input(user, "Which song list?", "\The [src]") as null | anything in list("OTHERWORLDLY"=MUSIC_TAVCAT_OTHERWORLDLY, "GENERIC"=MUSIC_TAVCAT_GENERIC, "OLDSCHOOL"=MUSIC_TAVCAT_OLDSCHOOL)
 		playsound(loc, pick('sound/misc/keyboard_select (1).ogg','sound/misc/keyboard_select (2).ogg','sound/misc/keyboard_select (3).ogg','sound/misc/keyboard_select (4).ogg'), 100, FALSE, -1)
 		user.visible_message(span_info("[user] presses a button on \the [src]."),span_info("I press a button on \the [src]."))
 		var/chosen_songlists_selection = null
@@ -117,6 +129,8 @@
 			chosen_songlists_selection = MUSIC_TAVCAT_OTHERWORLDLY
 		if(songlists_selection=="GENERIC")
 			chosen_songlists_selection = MUSIC_TAVCAT_GENERIC
+		if(songlists_selection=="OLDSCHOOL")
+			chosen_songlists_selection = MUSIC_TAVCAT_OLDSCHOOL
 		var/song_selection = input(user, "Which song do I play?", "\The [src]") as null | anything in chosen_songlists_selection
 		if(!Adjacent(user))
 			return
