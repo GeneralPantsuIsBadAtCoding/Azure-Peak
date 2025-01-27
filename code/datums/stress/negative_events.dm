@@ -277,7 +277,6 @@
 	desc = span_red("Eating such a meal without a table? Churlish.")
 	timer = 2 MINUTES
 
-
 /datum/stressevent/soulchurnerhorror
 	timer = 10 SECONDS
 	stressadd = 50
@@ -288,8 +287,12 @@
 	stressadd = 10
 	desc = span_red("The horrid wails of the dead call for relief!")
 
-
 /datum/stressevent/soulchurnerpsydon
 	timer = 1 MINUTES
 	stressadd = 1
 	desc = span_red("The horrid wails of the dead call for relief! I can ENDURE such calls...")
+
+/datum/stressevent/sewertouched
+	timer = 5 MINUTES
+	stressadd = 2
+	desc = span_red("Putrid stinking water!")
