@@ -653,4 +653,4 @@
 	verbage_simple = "assemble"
 	verbage = "assembles"
 	skillcraft = /datum/skill/craft/alchemy
-	craftdiff = 2
+	craftdiff = 1
