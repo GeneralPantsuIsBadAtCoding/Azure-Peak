@@ -186,6 +186,10 @@
 	if(mind)
 		skill_diff -= (mind.get_skill_level(/datum/skill/combat/wrestling))
 
+	if(user.IsOffBalanced())
+		to_chat(user, span_warning("I haven't regained my balance yet."))
+		return
+
 	if(user == src)
 		instant = TRUE
 
@@ -205,7 +209,7 @@
 
 	var/probby =  clamp((((4 + (((user.STASTR - STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)
 
-	if(!prob(probby) && !instant && !stat)
+	if(!instant && !stat)
 		visible_message(span_warning("[user] struggles with [src]!"),
 						span_warning("[user] struggles to restrain me!"), span_hear("I hear aggressive shuffling!"), null, user)
 		if(src.client?.prefs.showrolls)
@@ -213,10 +217,14 @@
 		else
 			to_chat(user, span_warning("I struggle with [src]!"))
 		playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
+
+	user.OffBalance(30)
+	if(!do_after(user, 2 SECONDS, target = src))
+		return
+
+	if(!prob(probby) && !instant && !stat) //Failure case
 		user.Immobilize(2 SECONDS)
 		user.changeNext_move(2 SECONDS)
-		src.Immobilize(1 SECONDS)
-		src.changeNext_move(1 SECONDS)
 		return
 
 	if(!instant)
@@ -242,6 +250,8 @@
 		stop_pulling()
 		user.set_pull_offsets(src, user.grab_state)
 	log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
+	user.Immobilize(2 SECONDS)
+	user.changeNext_move(2 SECONDS)
 	return 1
 
 /mob/living/proc/update_grab_intents(mob/living/target)

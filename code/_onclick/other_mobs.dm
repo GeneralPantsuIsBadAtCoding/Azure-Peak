@@ -289,6 +289,8 @@
 							return
 						if(src.incapacitated())
 							return
+						if(src.grabbedby.Find(M))
+							return
 						if(M.checkmiss(src))
 							return
 						if(M.checkdefense(src.used_intent, src))

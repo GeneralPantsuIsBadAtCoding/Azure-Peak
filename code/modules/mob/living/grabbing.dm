@@ -212,14 +212,21 @@
 				M.Stun(max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20))
 				user.Immobilize(20 - skill_diff)
 			else
+				/var/obj/item/grabbing/offhandgrab
+				if(istype(user.get_inactive_held_item(), /obj/item/grabbing))
+					offhandgrab = user.get_inactive_held_item()
+				if(!offhandgrab || !offhandgrab.grab_state) //No offhand grab, or offhand grab isn't aggressive
+					to_chat(user, span_warning("I need to grab them aggressively with my other hand to tackle them!"))
+					return
 				user.rogfat_add(rand(5,15))
+				M.visible_message(span_warning("[user] tries to shove [M]!"), \
+									span_danger("[user] tries to shove me!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)				
+				if(!do_after(user, 3 SECONDS, target = M))
+					return
 				if(prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
 					M.visible_message(span_danger("[user] shoves [M] to the ground!"), \
 									span_userdanger("[user] shoves me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 					M.Knockdown(max(10 + (skill_diff * 2), 1))
-				else
-					M.visible_message(span_warning("[user] tries to shove [M]!"), \
-									span_danger("[user] tries to shove me!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 
 /obj/item/grabbing/proc/twistlimb(mob/living/user) //implies limb_grabbed and sublimb are things
 	var/mob/living/carbon/C = grabbed
