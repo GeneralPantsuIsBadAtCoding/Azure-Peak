@@ -489,3 +489,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 	if(alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", "No", "Yes") == "Yes")
 		config.admin_reload()
+
+/client/proc/stresstest_accent()
+	set category = "Debug"
+	set name = "Say a line"
+	set desc = "Says a line multiple times"
+	set hidden = TRUE
+
+
+	//for dwarf, the longest accent file
+	var/message = "The ability to absorb knowledge is crucial when traveling across a vast land, filled with ancient books, powerful words, and the wisdom of generations. The apprentice, eager to learn, journeys through mountains, forests, and villages, speaking to people in different tongues, absorbing the culture and traditions passed down over centuries. Despite being afraid of failure, the apprentice remains steadfast, seeking guidance from elders, who warn of the dangers that lie ahead. With each step, the apprentice’s wisdom grows, as does their understanding of the world, proving that knowledge is the key to true power. Under a crimson sky, the caravan moved forward, carrying scholars and scribes who recorded the history of great civilizations. The winds whispered through the trees, carrying the voices of ancestors who once walked the same paths. Legends spoke of lost artifacts, hidden beneath the ruins of forgotten cities, waiting to be discovered by those with the courage to seek them. Among the travelers was an alchemist, their hands stained with ink and potion residue, forever searching for the formula that would grant unparalleled insight. As the journey continued, the apprentice reflected on the stories told by the elders, realizing that wisdom was not merely in books, but in the very fabric of the universe itself. Through trials and tribulations, the apprentice would uncover secrets long buried in the sands of time. The echoes of history whispered lessons that only the patient could decipher. Every phrase spoken, every word exchanged, carried echoes of a forgotten past. And so, with unwavering determination, the apprentice continued forward, knowing that the path of knowledge was endless, yet filled with boundless rewards."
+	for(var/x in 1 to 1000)
+		SEND_SIGNAL(usr, COMSIG_MOB_SAY, list(message, null, list(), TRUE, /datum/language/common, FALSE, null))

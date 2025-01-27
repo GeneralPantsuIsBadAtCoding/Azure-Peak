@@ -1,5 +1,5 @@
 {
-    "universal": {
+    "full": {
 		"life": "lyfe",
 		"lantern": "lamptern",
 		"lucifer": "zizo",
@@ -91,5 +91,15 @@
 		"wolfpit": "volfpit",
 		"PQ": "reputation",
 		"sergant":  "sargent"
+    },
+
+	"start": {
+
+    },
+    "end": {
+
+    },
+    "syllable": {
+
     }
 }
