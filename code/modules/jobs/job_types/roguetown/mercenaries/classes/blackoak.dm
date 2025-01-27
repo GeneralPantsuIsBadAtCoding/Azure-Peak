@@ -8,6 +8,7 @@
 		/datum/species/elf/wood,
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
+	cmode_music = 'sound/music/combat_blackoak.ogg'
 	category_tags = list(CTAG_MERCENARY)
 
 /datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
