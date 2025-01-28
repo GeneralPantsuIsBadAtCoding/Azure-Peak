@@ -87,14 +87,14 @@
 	color = CLOTHING_BLACK
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
-	name = "Hijab"
+	name = "hijab"
 	flags_inv = null
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
 	item_state = "hijab"
 	icon_state = "deserthood"
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
-	name = "Heavy Hood"
+	name = "heavy hood"
 	flags_inv = null
 	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
 	color = CLOTHING_BROWN
@@ -109,7 +109,7 @@
 	item_state = "astratahood"
 	icon = 'icons/roguetown/clothing/head.dmi'
 	body_parts_covered = NECK
-	slot_flags = ITEM_SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
@@ -143,7 +143,7 @@
 	item_state = "abyssorhood"
 	icon = 'icons/roguetown/clothing/head.dmi'
 	body_parts_covered = NECK
-	slot_flags = ITEM_SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
@@ -1552,7 +1552,7 @@
 //----------------- BLACKSTEEL ---------------------
 
 /obj/item/clothing/head/roguetown/helmet/blacksteel/bucket
-	name = "Blacksteel Bucket Helm"
+	name = "blacksteel bucket helm"
 	desc = "A bucket helmet forged of durable blacksteel. None shall pass.."
 	body_parts_covered = FULL_HEAD
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'

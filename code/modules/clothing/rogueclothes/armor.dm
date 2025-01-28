@@ -861,7 +861,7 @@
  //--------------- BLACKSTEEL ---------------------
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate
-	name = "Blacksteel Plate Armor"
+	name = "blacksteel plate armor"
 	desc = "A suit of Full Plate smithed of durable blacksteel."
 	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
@@ -880,7 +880,7 @@
 	smelt_bar_num = 4
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
-	name = "Blacksteel Cuirass"
+	name = "blacksteel cuirass"
 	desc = "A basic cuirass forged from blacksteel. It's somewhat more durable than regular steel."
 	body_parts_covered = CHEST|VITALS
 	icon_state = "grenzelcuirass"

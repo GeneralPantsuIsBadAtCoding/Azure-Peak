@@ -166,7 +166,7 @@
 //---------------- BLACKSTEEL ---------------------
 
 /obj/item/clothing/gloves/roguetown/blacksteel/plategloves
-	name = "Blacksteel Plate Gauntlets"
+	name = "blacksteel plate gauntlets"
 	desc = "A set of plate gauntlets forged of blacksteel."
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
