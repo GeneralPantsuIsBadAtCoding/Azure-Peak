@@ -28,7 +28,8 @@
 
 /datum/virtue/utility/linguist
 	name = "Intellectual"
-	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. (+1 INT, 3 Languages, Stashed Book)"
+	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess.(+1 INT, 3 Languages, Stashed Book, Ability to Assess)"
+	added_traits = list(TRAIT_INTELLECTUAL)
 
 /datum/virtue/utility/linguist/apply_to_human(mob/living/carbon/human/recipient)
 	var/list/selectable_languages = list(/datum/language/elvish, /datum/language/dwarvish, /datum/language/orcish, /datum/language/hellspeak, /datum/language/draconic, /datum/language/celestial)

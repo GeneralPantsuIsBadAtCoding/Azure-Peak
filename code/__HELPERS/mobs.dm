@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, double_progress = 0)
 	if(!user || !target)
 		return 0
 
@@ -178,8 +178,11 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
+	var/datum/progressbar/progbartarget
 	if (progress)
 		progbar = new(user, time, target)
+	if (double_progress)
+		progbartarget = new(target, time, user)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
@@ -188,6 +191,8 @@ GLOBAL_LIST_EMPTY(species_list)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
+		if(double_progress)
+			progbartarget.update(world.time - starttime)
 		if(QDELETED(user) || QDELETED(target))
 			. = 0
 			break
@@ -209,6 +214,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	user.doing = 0
 	if (progress)
 		qdel(progbar)
+	if (double_progress)
+		qdel(progbartarget)
 
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
