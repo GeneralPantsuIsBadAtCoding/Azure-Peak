@@ -10,6 +10,7 @@
 	job_reopens_slots_on_death = FALSE
 	always_show_on_latechoices = FALSE
 	show_in_credits = TRUE
+	advclass_cat_rolls = list(CTAG_COURTAGENT = 20)
 
 //Hooking in here does not mess with their equipment procs
 /datum/job/roguetown/adventurer/courtagent/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

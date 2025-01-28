@@ -166,6 +166,39 @@ a.class_desc_YES_LINK:hover
 	color: #ffffff;
 }
 
+.subclassorz{
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 26px;
+    color: #ffffff;
+}
 
+.subclass_title{
+	font-family: "Silkscreen", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	color: #fdf4c5;
 
+	position: relative;
+	display: inline-block;
+}
 
+.subclass_title .subclasses{
+	visibility: hidden;
+	width: 280px;
+	color: #e3c06f;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	background: url("try5.png");
+
+	position: absolute;
+	z-index: 1;
+	top: 100%;
+	left: 50%;
+}
+
+.subclass_title:hover .subclasses{
+    visibility: visible;
+}

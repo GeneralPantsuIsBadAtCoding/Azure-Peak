@@ -279,10 +279,19 @@
 			<link rel='stylesheet' type='text/css' href='slop_menustyle2.css'>
 		</head>
 		<body>
-			<div id="top_bloc">
+            <div id="top_bloc">
 				<span class="title_shit">Class Name:</span> <span class="post_title_shit">[cur_picked_class]</span><br>
-				<span class="title_shit">Description:</span> <span class="post_title_shit">[cur_picked_class.tutorial]</span>
-			</div>
+				<span class="title_shit">Description:</span> <span class="post_title_shit">[cur_picked_class.tutorial]</span>"}
+	if(cur_picked_class.classes)
+		data += {"<br><br><span class="subclassorz">Subclasses:</span>"}
+		for(var/i in cur_picked_class.classes)
+			data += {"
+			<br><div class="subclass_title">[i]
+			<span class="subclasses">[cur_picked_class.classes[i]]</span></div>
+			"}
+		data += "<br>"
+
+	data += {"</div>
 				<div id='button_div'>
 					<a class='class_desc_YES_LINK' href='?src=\ref[src];yes_to_class_select=1;special_class=0;'>This is my background</a><br>
 					<a class='bottom_buttons' href='?src=\ref[src];no_to_class_select=1'>I reject this background</a>
@@ -291,8 +300,10 @@
 		</body>
 	</html>
 	"}
-
-	linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+	if(!cur_picked_class.classes)
+		linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+	else
+		linked_client << browse(data, "window=class_select_yea;size=610x405;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 
 /datum/class_select_handler/Topic(href, href_list)
 	. = ..()

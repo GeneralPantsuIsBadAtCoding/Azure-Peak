@@ -30,6 +30,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.cmode_music = 'sound/music/combat_holy.ogg'
 	neck = /obj/item/clothing/neck/roguetown/psicross
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		head = /obj/item/clothing/head/roguetown/armingcap

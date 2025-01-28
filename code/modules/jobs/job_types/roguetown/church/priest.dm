@@ -44,6 +44,7 @@
 	)
 	ADD_TRAIT(H, TRAIT_CHOSEN, TRAIT_GENERIC)
 	if(H.mind)
+		H.cmode_music = 'sound/music/combat_holy.ogg' 
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)

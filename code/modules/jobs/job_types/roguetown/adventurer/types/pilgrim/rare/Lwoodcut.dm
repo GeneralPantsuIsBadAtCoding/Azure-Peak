@@ -8,10 +8,9 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/masterwoodcutter
-	maxchosen = 1
+	maximum_possible_slots = 1
 	pickprob = 5
-	isvillager = FALSE
-	ispilgrim = TRUE
+	category_tags = list(CTAG_TOWNER)
 	
 	
 /datum/outfit/job/roguetown/adventurer/masterwoodcutter/pre_equip(mob/living/carbon/human/H)

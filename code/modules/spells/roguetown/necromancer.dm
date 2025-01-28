@@ -139,6 +139,10 @@
 		to_chat(user, span_warning("The targeted location is blocked. My summon fails to come forth."))
 		return FALSE
 
+/obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer
+	cabal_affine = TRUE
+	charge_max = 45 SECONDS
+
 /obj/effect/proc_holder/spell/invoked/projectile/sickness
 	name = "Ray of Sickness"
 	desc = ""

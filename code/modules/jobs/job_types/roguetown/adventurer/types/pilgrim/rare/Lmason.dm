@@ -7,7 +7,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/grandmastermason
-	category_tags = list(CTAG_PILGRIM)
+	category_tags = list(CTAG_TOWNER)
 	maximum_possible_slots = 1
 	pickprob = 5
 
