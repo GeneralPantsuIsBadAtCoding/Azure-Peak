@@ -1548,6 +1548,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/list/loadouts_available = list("None")
 					for (var/path as anything in GLOB.loadout_items)
 						var/datum/loadout_item/loadout = GLOB.loadout_items[path]
+						var/donoritem = loadout.donoritem
+						if(donoritem && !loadout.donator_ckey_check(user.ckey))
+							continue
 						if (!loadout.name)
 							continue
 						loadouts_available[loadout.name] = loadout
