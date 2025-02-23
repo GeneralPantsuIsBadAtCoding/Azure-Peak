@@ -406,7 +406,8 @@
 		if("toggle_finished")
 			do_until_finished = !do_until_finished
 		if("set_arousal")
-			var/amount = input(user, "Value above 120 will immediately cause orgasm!", "Set Arousal", arousal) as num
+			var/amount = input(user, "Capped to 100", "Set Arousal", arousal) as num
+			amount = clamp(amount, 0, 100)
 			set_arousal(amount)
 		if("freeze_arousal")
 			arousal_frozen = !arousal_frozen
