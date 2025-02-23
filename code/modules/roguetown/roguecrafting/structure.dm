@@ -577,6 +577,15 @@
 		return FALSE
 	return ..()
 
+/datum/crafting_recipe/roguetown/structure/freedomchair
+	name = "LIBERTAS"
+	result = /obj/structure/chair/freedomchair/crafted
+	reqs = list(/obj/item/ingot/blacksteel = 1, /obj/item/roguegear = 3)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 5
+
 /datum/crafting_recipe/roguetown/structure/wallladder
 	name = "wall ladder"
 	result = /obj/structure/wallladder

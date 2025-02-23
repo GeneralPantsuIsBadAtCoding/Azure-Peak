@@ -78,8 +78,10 @@
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
 			GLOB.outlawed_players += H.real_name
+			var/bounty_total
+			bounty_total = rand(151, 250)
+			add_bounty(H.real_name, bounty_total, FALSE, "Desertion", "The Justiciary of Azuria")
 
-		
 		if("Outlaw")
 			to_chat(H, span_warning("You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you."))
 			pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -131,6 +133,13 @@
 			H.change_stat("endurance", 2)
 			H.change_stat("speed", 3)
 			GLOB.outlawed_players += H.real_name
+			var/my_crime = input(H, "What is your crime?", "Crime") as text|null
+			if (!my_crime)
+				my_crime = "crimes against the Crown"
+			var/bounty_total
+			bounty_total = rand(151, 250)
+			add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
+
 
 		if("Heretic")
 			to_chat(H, span_warning("You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith."))

@@ -32,16 +32,16 @@
 		var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 		if (!my_crime)
 			my_crime = "crimes against the Crown"
-		var/list/bounty_cats = list("Meagre", "Moderate", "Massive")
+		var/list/bounty_cats = list("Meager", "Moderate", "Massive")
 		var/bounty_amount = input(H, "How ample is your bounty?", "Blooded Gold") as anything in bounty_cats
 		var/bounty_total
 		switch (bounty_amount)
-			if ("Meagre")
-				bounty_total = rand(15, 60)
+			if ("Meager")
+				bounty_total = rand(51, 100)
 			if ("Moderate")
-				bounty_total = rand(61, 120)
+				bounty_total = rand(101, 150)
 			if ("Massive")
-				bounty_total = rand(121, 180)
+				bounty_total = rand(150, 200)
 	
-		add_bounty(H.real_name, bounty_total, FALSE, my_crime, "the Justiciary of Azure Peak")
+		add_bounty(H.real_name, bounty_total, FALSE, my_crime, "the Justiciary of Azuria")
 		to_chat(H, span_notice("I'm on the run from the law, and there's a [lowertext(bounty_amount)] sum of mammons out on my head... better lay low."))

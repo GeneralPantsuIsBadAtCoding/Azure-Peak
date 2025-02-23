@@ -14,6 +14,9 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
+	if(HAS_TRAIT(user, TRAIT_OUTLAW))
+		to_chat(H, span_warning("The machine rejects you, sensing your status as an outlaw in these lands."))
+		return
 	if(drilled)
 		if(HAS_TRAIT(H, TRAIT_NOBLE))
 			if(!HAS_TRAIT(H, TRAIT_COMMIE))
@@ -27,7 +30,7 @@
 				spawn(5)
 				say("Blueblood for the Freefolk!")
 				playsound(src, 'sound/vo/mobs/ghost/laugh (5).ogg', 100, TRUE)
-				return			
+				return	
 	if(H in SStreasury.bank_accounts)
 		var/amt = SStreasury.bank_accounts[H]
 		if(!amt)

@@ -118,16 +118,61 @@
 	icon_state = "psydonmask"
 	item_state = "psydonmask"
 
+/obj/item/clothing/mask/rogue/facemask/prisoner
+	name = "cursed mask"
+	desc = "An iron mask that seals around the head, making it impossible to remove. It seems to be enchanted with some kind of vile magic..."
+	var/active_item
+	var/bounty_amount
+
 /obj/item/clothing/mask/rogue/facemask/prisoner/Initialize()
 	. = ..()
-	name = "cursed mask"
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/mask/rogue/facemask/prisoner/dropped(mob/living/carbon/human/user)
 	. = ..()
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+	REMOVE_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
 	if(QDELETED(src))
 		return
 	qdel(src)
+
+/obj/item/clothing/mask/rogue/facemask/prisoner/proc/timerup(mob/living/carbon/human/user)
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+	REMOVE_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
+	visible_message(span_warning("The cursed mask opens with a click, falling off of [user]'s face and clambering apart on the ground, their penance complete."))
+	say("YOUR PENANCE IS COMPLETE.")
+	for(var/name in GLOB.outlawed_players)
+		if(user.real_name == name)
+			GLOB.outlawed_players -= user.real_name
+			priority_announce("[user.real_name] has completed their penance. Justice has been served in the eyes of Ravox.", "PENANCE", 'sound/misc/bell.ogg', "Captain")
+	playsound(src.loc, pick('sound/items/pickgood1.ogg','sound/items/pickgood2.ogg'), 5, TRUE)
+	if(QDELETED(src))
+		return
+	qdel(src)
+	
+
+/obj/item/clothing/mask/rogue/facemask/prisoner/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_WEAR_MASK)
+		active_item = TRUE
+		to_chat(user, span_warning("This accursed mask pacifies me!"))
+		ADD_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+		ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
+
+		var/timer = 30 MINUTES
+
+		if(bounty_amount >= 100)
+			var/additional_time = bounty_amount * 0.1
+			additional_time = round(additional_time)
+			timer += additional_time MINUTES
+
+		var/timer_minutes = timer / 600
+
+		addtimer(CALLBACK(src, PROC_REF(timerup), user), timer)
+		say("YOUR PENANCE WILL BE COMPLETE IN [timer_minutes] MINUTES.")
+	return
 
 /obj/item/clothing/mask/rogue/facemask/steel
 	name = "steel mask"
