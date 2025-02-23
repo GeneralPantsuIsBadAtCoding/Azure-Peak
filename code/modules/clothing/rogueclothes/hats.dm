@@ -209,6 +209,9 @@
 /obj/item/clothing/head/roguetown/roguehood/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/darkgreen
+	color = "#264d26"
+
 /obj/item/clothing/head/roguetown/roguehood/random/Initialize()
 	color = pick("#544236", "#435436", "#543836", "#79763f")
 	..()

@@ -9,6 +9,7 @@
 	category_tags = list(CTAG_ADVENTURER)
 	classes = list("Deserter" = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You live the life of an outlaw, shunned and looked down upon by society.",
 					"Outlaw" = "You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you.",
+					"Poacher" = "You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how that includes yourself!",
 					"Heretic" = "You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith.",
 					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.")
 
@@ -16,7 +17,7 @@
 /datum/outfit/job/roguetown/adventurer/wretch/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	var/classes = list("Deserter","Outlaw","Heretic","Necromancer")
+	var/classes = list("Deserter","Outlaw","Poacher","Heretic","Necromancer")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
@@ -130,6 +131,66 @@
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 2)
 			H.change_stat("speed", 3)
+			GLOB.outlawed_players += H.real_name
+
+
+		if("Poacher")
+			to_chat(H, span_warning("You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how the latter includes yourself!"))
+			head = /obj/item/clothing/head/roguetown/roguehood/darkgreen
+			pants = /obj/item/clothing/under/roguetown/trou/leather
+			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+			cloak = /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+			backl = /obj/item/storage/backpack/rogue/satchel
+			belt = /obj/item/storage/belt/rogue/leather
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+			shoes = /obj/item/clothing/shoes/roguetown/boots
+			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			beltl = /obj/item/quiver/arrows
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1)
+			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
+			//these people live in the forest so let's give them some peasant skills
+			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
+			H.cmode_music = 'sound/music/combat_poacher.ogg'
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_OUTLAW, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+			var/weapons = list("Dagger","Axe", "Cudgel", "My Bow Is Enough")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			H.set_blindness(0)
+			switch(weapon_choice)
+				if("Dagger")
+					H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
+				if("Axe")
+					H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+					beltr = /obj/item/rogueweapon/stoneaxe/woodcut
+				if ("Cudgel")
+					H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+					beltr = /obj/item/rogueweapon/mace/cudgel
+				if ("My Bow Is Enough")
+					H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+					head = /obj/item/clothing/head/roguetown/duelhat
+			H.change_stat("endurance", 1)
+			H.change_stat("perception", 2)
+			H.change_stat("speed", 2)
 			GLOB.outlawed_players += H.real_name
 
 		if("Heretic")
