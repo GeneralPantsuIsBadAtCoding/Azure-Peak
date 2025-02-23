@@ -1,13 +1,16 @@
-// Meant for cave-races, less boons than other mercs but unique weapon + mining skill and helmet-torch combo.
+// Meant for cave-races, some starting smelting, masonry and mining. For your industrial cave-beings.
 /datum/advclass/mercenary/underdweller
 	name = "Underdweller"
 	tutorial = "A member of the Underdwellers, you've taken many of the deadliest contracts known to man in literal underground circles. Drow or Dwarf, you've put your differences aside for coin and adventure."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
-		/datum/species/dwarf/mountain,
-		/datum/species/elf/dark,
-		/datum/species/kobold,
+	/datum/species/dwarf/mountain, 
+	/datum/species/elf/dark,
+	/datum/species/kobold, 
+	/datum/species/anthromorph,
+	/datum/species/anthromorphsmall,
 	)
+	
 	outfit = /datum/outfit/job/roguetown/mercenary/underdweller
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_OUTLANDER)
@@ -37,11 +40,14 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/engineering, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/masonry, 3 TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/smelting, 3 TRUE)
 		H.change_stat("fortune", 1)
 		H.change_stat("strength", 1)
 		H.change_stat("constitution", 2)
