@@ -5,6 +5,8 @@
 		return zone
 	if(zone == BODY_ZONE_CHEST)
 		return zone
+	if(HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
+		return zone
 	if(target.grabbedby == user)
 		if(user.grab_state >= GRAB_AGGRESSIVE)
 			return zone

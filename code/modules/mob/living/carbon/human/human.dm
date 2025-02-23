@@ -811,3 +811,16 @@
 /mob/living/carbon/human/proc/is_virile()
 	var/obj/item/organ/testicles/testicles = getorganslot(ORGAN_SLOT_TESTICLES)
 	return testicles.virility
+
+/mob/living/carbon/human/proc/update_heretic_commune()
+	if(HAS_TRAIT(src, TRAIT_COMMIE) || HAS_TRAIT(src, TRAIT_CABAL) || HAS_TRAIT(src, TRAIT_HORDE) || HAS_TRAIT(src, TRAIT_DEPRAVED))
+		verbs |= /mob/living/carbon/human/verb/commune
+		verbs |= /mob/living/carbon/human/verb/show_heretics
+		verbs |= /mob/living/carbon/human/verb/bad_omen
+	else
+		verbs -= /mob/living/carbon/human/verb/commune
+		verbs -= /mob/living/carbon/human/verb/show_heretics
+		verbs -= /mob/living/carbon/human/verb/bad_omen
+
+/mob/living/carbon/human/Topic(href, href_list)
+	..()

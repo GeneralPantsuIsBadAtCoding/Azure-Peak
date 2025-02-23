@@ -16,6 +16,8 @@
 	var/classes = list("Sentinel","Assassin","Bombadier")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/conjure_bait)
+
 	switch(classchoice)
 	
 		if("Sentinel")

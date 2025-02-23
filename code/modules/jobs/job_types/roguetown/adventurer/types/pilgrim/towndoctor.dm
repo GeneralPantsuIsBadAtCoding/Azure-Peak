@@ -25,6 +25,8 @@
 						/obj/item/natural/worms/leech/cheele = 1,
 						/obj/item/natural/cloth = 2,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/huntingknife/scissors/steel = 1,
+						/obj/item/hair_dye_cream = 3,
 						)
 
 	if(H.mind)

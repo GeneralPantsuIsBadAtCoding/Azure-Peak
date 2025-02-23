@@ -54,6 +54,7 @@
 #define TRAIT_SEA_DRINKER "Denizen of the Deep"
 #define TRAIT_STUDENT		"Student"
 #define TRAIT_INTELLECTUAL "Intellectual"
+#define TRAIT_PURITAN "Puritan"
 
 
 //Hearthstone port (Tracking)
@@ -117,6 +118,7 @@
 #define TRAIT_DUALWIELDER "Dual Wielder"
 #define TRAIT_SENTINELOFWITS "Sentinel of Wits"
 #define TRAIT_KEENEARS "Keen Ears"
+#define TRAIT_MIRROR_MAGIC "Mirror Magic"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -211,6 +213,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_DUALWIELDER = span_info("If I wield two identical weapons, I  roll twice for my attacks, and so will the enemy against me. I do not suffer penalties from using my off-hand in combat."),
 	TRAIT_SENTINELOFWITS = span_info("My Intelligence aids in my defense. Every 2 points above 10 INT become an additional 10% chance to dodge or parry. Does not count positive buffs from potions or substances."),
 	TRAIT_KEENEARS = span_info("I've a good pair of ears, and can tell who is speaking, even when they're out of sight."),
+	TRAIT_PURITAN = span_info("I can hear the secret whispers of the heretics."),
+	TRAIT_MIRROR_MAGIC = span_info("Mirror, mirror on the wall, who's the fairest of them all?")
 ))
 
 // trait accessor defines
@@ -485,8 +489,25 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TIMESTOP_TRAIT "timestop"
 #define HUGBOX_TRAIT "hugbox"
 #define ADVENTURER_TRAIT "adventurer"
+#define TRAIT_MIRROR_MAGIC "mirror_magic"
 
 #define TRAIT_I_AM_INVISIBLE_ON_A_BOAT "invisible_on_tram"
 
 //for ai
 #define TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM "element-required"
+
+/mob/living/proc/on_trait_gain(trait, source)
+	SEND_SIGNAL(src, COMSIG_TRAIT_GAIN, trait, source)
+	switch(trait)
+		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.update_heretic_commune()
+
+/mob/living/proc/on_trait_loss(trait, source)
+	SEND_SIGNAL(src, COMSIG_TRAIT_LOSS, trait, source)
+	switch(trait)
+		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.update_heretic_commune()

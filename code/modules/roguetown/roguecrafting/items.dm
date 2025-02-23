@@ -845,3 +845,11 @@
 	reqs = list(/obj/item/reagent_containers/food/snacks/tallow = 1,
 				/obj/item/alch/rosa = 1,
 				/datum/reagent/water/blessed = 25)
+
+/datum/crafting_recipe/hair_dye
+    name = "Hair Dye Cream"
+    result = /obj/item/hair_dye_cream
+    reqs = list(
+        /obj/item/reagent_containers/glass/bowl = 1,
+        /obj/item/reagent_containers/food/snacks/grown/berries/rogue = 3
+    )

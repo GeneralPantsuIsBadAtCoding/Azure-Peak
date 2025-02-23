@@ -28,6 +28,9 @@
 						)
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+	
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/conjure_bait)
+
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)

@@ -95,6 +95,8 @@
 
 	var/mugshot_set = FALSE
 
+	var/heretic_nickname   // Nickname used for heretic commune
+
 /datum/mind/New(key)
 	src.key = key
 	soulOwner = src

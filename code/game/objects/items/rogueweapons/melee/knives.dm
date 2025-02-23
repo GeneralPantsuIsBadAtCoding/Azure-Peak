@@ -439,7 +439,96 @@
 	releasedrain = 0
 	blade_class = BCLASS_PUNCH
 
-/obj/item/rogueweapon/huntingknife/scissors/attack_obj(obj/O, mob/living/user) //This is scissor action! We're putting this here not to lose sight of it!
+/obj/item/rogueweapon/huntingknife/scissors/attack(mob/living/M, mob/living/user)
+	if(user.used_intent.type == /datum/intent/snip)
+		if(ishuman(M)) // Handle hair styling
+			var/mob/living/carbon/human/H = M
+			var/list/options = list("hairstyle", "facial hairstyle")
+			var/chosen = input(user, "What would you like to style?", "Hair Styling") as null|anything in options
+			if(!chosen)
+				return
+			
+			switch(chosen)
+				if("hairstyle")
+					var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+					var/list/valid_hairstyles = list()
+					for(var/hair_type in hair_choice.sprite_accessories)
+						var/datum/sprite_accessory/hair/head/hair = new hair_type()
+						valid_hairstyles[hair.name] = hair_type
+					
+					var/new_style = input(user, "Choose their hairstyle", "Hair Styling") as null|anything in valid_hairstyles
+					if(new_style)
+						user.visible_message(span_notice("[user] begins styling [H]'s hair..."), span_notice("You begin styling [H == user ? "your" : "[H]'s"] hair..."))
+						if(!do_after(user, 60 SECONDS, target = H))
+							to_chat(user, span_warning("The styling was interrupted!"))
+							return
+						var/datum/bodypart_feature/hair/head/hair_feature = new()
+						// Get the current hair feature to preserve colors and gradients
+						var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						if(head)
+							for(var/datum/bodypart_feature/hair/head/hair in head.bodypart_features)
+								current_hair = hair
+								break
+						
+						// Set the new hairstyle while preserving colors
+						hair_feature.set_accessory_type(valid_hairstyles[new_style], current_hair?.hair_color || H.hair_color, H)
+						if(current_hair)
+							hair_feature.hair_dye_gradient = current_hair.hair_dye_gradient
+							hair_feature.hair_dye_color = current_hair.hair_dye_color
+							hair_feature.natural_gradient = current_hair.natural_gradient
+							hair_feature.natural_color = current_hair.natural_color
+						
+						H.add_bodypart_feature(hair_feature)
+						H.update_hair()
+						H.update_body()
+						H.update_body_parts()
+						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
+						user.visible_message(span_notice("[user] finishes styling [H]'s hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] hair."))
+				
+				if("facial hairstyle")
+					if(H.gender != MALE)
+						to_chat(user, span_warning("They don't have facial hair to style!"))
+						return
+					var/datum/customizer_choice/bodypart_feature/hair/facial/humanoid/facial_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/facial/humanoid)
+					var/list/valid_facial_hairstyles = list()
+					for(var/facial_type in facial_choice.sprite_accessories)
+						var/datum/sprite_accessory/hair/facial/facial = new facial_type()
+						valid_facial_hairstyles[facial.name] = facial_type
+					
+					var/new_style = input(user, "Choose their facial hairstyle", "Hair Styling") as null|anything in valid_facial_hairstyles
+					if(new_style)
+						user.visible_message(span_notice("[user] begins styling [H]'s facial hair..."), span_notice("You begin styling [H == user ? "your" : "[H]'s"] facial hair..."))
+						if(!do_after(user, 60 SECONDS, target = H))
+							to_chat(user, span_warning("The styling was interrupted!"))
+							return
+						var/datum/bodypart_feature/hair/facial/facial_feature = new()
+						// Get the current facial hair feature to preserve colors and gradients
+						var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+						var/datum/bodypart_feature/hair/facial/current_facial = null
+						if(head)
+							for(var/datum/bodypart_feature/hair/facial/facial in head.bodypart_features)
+								current_facial = facial
+								break
+						
+						// Set the new facial hairstyle while preserving colors
+						facial_feature.set_accessory_type(valid_facial_hairstyles[new_style], current_facial?.hair_color || H.facial_hair_color, H)
+						if(current_facial)
+							facial_feature.hair_dye_gradient = current_facial.hair_dye_gradient
+							facial_feature.hair_dye_color = current_facial.hair_dye_color
+							facial_feature.natural_gradient = current_facial.natural_gradient
+							facial_feature.natural_color = current_facial.natural_color
+						
+						H.add_bodypart_feature(facial_feature)
+						H.update_hair()
+						H.update_body()
+						H.update_body_parts()
+						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
+						user.visible_message(span_notice("[user] finishes styling [H]'s facial hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] facial hair."))
+		return
+	return ..()
+
+/obj/item/rogueweapon/huntingknife/scissors/attack_obj(obj/O, mob/living/user)
 	if(user.used_intent.type == /datum/intent/snip && istype(O, /obj/item))
 		var/obj/item/item = O
 		if(item.sewrepair && item.salvage_result) // We can only salvage objects which can be sewn!
@@ -447,6 +536,7 @@
 			salvage_time = (70 - ((user.mind.get_skill_level(/datum/skill/misc/sewing)) * 10))
 			if(!do_after(user, salvage_time, target = user))
 				return
+			
 			if(item.fiber_salvage) //We're getting fiber as base if fiber is present on the item
 				new /obj/item/natural/fibers(get_turf(item))
 			if(istype(item, /obj/item/storage))
@@ -464,7 +554,7 @@
 				var/obj/item/Sr = new item.salvage_result(get_turf(item))
 				Sr.color = item.color
 			user.visible_message(span_notice("[user] salvages [item] into usable materials."))
-			playsound(item, 'sound/items/flint.ogg', 100, TRUE) //In my mind this sound was more fitting for a scissor
+			playsound(item, 'sound/items/flint.ogg', 100, TRUE)
 			qdel(item)
-			user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT)) //We're getting experience for salvaging!
-	..()
+			user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT))
+	return ..()

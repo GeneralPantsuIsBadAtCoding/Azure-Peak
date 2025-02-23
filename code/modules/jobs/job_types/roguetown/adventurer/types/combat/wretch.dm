@@ -10,13 +10,14 @@
 	classes = list("Deserter" = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You live the life of an outlaw, shunned and looked down upon by society.",
 					"Outlaw" = "You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you.",
 					"Heretic" = "You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith.",
-					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.")
+					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.",
+					"Raider" = "You are a savage beyond savages - even the barbarians fear your brutality. You live only to pillage, destroy and revel in bloodshed.")
 
 
 /datum/outfit/job/roguetown/adventurer/wretch/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	var/classes = list("Deserter","Outlaw","Heretic","Necromancer")
+	var/classes = list("Deserter","Outlaw","Heretic","Necromancer","Raider")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
@@ -74,7 +75,6 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 			belt = /obj/item/storage/belt/rogue/leather/steel
-			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
 			GLOB.outlawed_players += H.real_name
@@ -231,6 +231,69 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
 			H.mind.adjust_spellpoints(1)
 			GLOB.excommunicated_players += H.real_name
+
+		if("Raider")
+			to_chat(H, span_warning("You are a savage beyond savages - even the barbarians fear your brutality. You live only to pillage, destroy and revel in bloodshed."))
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
+
+			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/combat_gronn.ogg'
+			H.set_blindness(0)
+			var/weapons = list("Katar","MY BARE HANDS!!!")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if ("Katar")
+					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+					beltr = /obj/item/rogueweapon/katar
+				if ("MY BARE HANDS!!!")
+					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+			H.change_stat("strength", 3)
+			H.change_stat("endurance", 1)
+			H.change_stat("constitution", 2)
+			H.change_stat("intelligence", -2)
+			H.change_stat("perception", -2)
+			H.change_stat("speed", 3)
+			if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
+				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+				shoes = /obj/item/clothing/shoes/roguetown/gladiator
+				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+				backl = /obj/item/storage/backpack/rogue/satchel
+				belt = /obj/item/storage/belt/rogue/leather
+				neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+				beltl = /obj/item/rogueweapon/huntingknife
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+			if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
+				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+				shoes = /obj/item/clothing/shoes/roguetown/gladiator
+				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+				backl = /obj/item/storage/backpack/rogue/satchel
+				belt = /obj/item/storage/belt/rogue/leather
+				neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+				beltl = /obj/item/rogueweapon/huntingknife
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			GLOB.outlawed_players += H.real_name
+			H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+			var/datum/devotion/C = new /datum/devotion(H, H.patron)
+			C.grant_spells_templar(H)
+			START_PROCESSING(SSobj, C)
 
 /obj/item/clothing/gloves/roguetown/chain/blk
 		color = CLOTHING_GREY
