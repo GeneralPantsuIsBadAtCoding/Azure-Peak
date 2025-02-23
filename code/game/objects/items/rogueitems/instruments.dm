@@ -114,7 +114,10 @@
 	"Tip Thine Tankard" = 'sound/music/instruments/lute (4).ogg',
 	"A Reed On the Wind" = 'sound/music/instruments/lute (5).ogg',
 	"Jests On Steel Ears" = 'sound/music/instruments/lute (6).ogg',
-	"Merchant in the Mire" = 'sound/music/instruments/lute (7).ogg')
+	"Merchant in the Mire" = 'sound/music/instruments/lute (7).ogg',
+	"The Power" = 'modular_azurepeak/sound/music/instruments/lute (8).ogg', //Baldur's Gate 3 Song
+	"Bard Dance" = 'modular_azurepeak/sound/music/instruments/lute (9).ogg', //Baldur's Gate 3 Song
+	"Old Time Battles" = 'modular_azurepeak/sound/music/instruments/lute (10).ogg') //Baldur's Gate 3 Song
 
 /obj/item/rogue/instrument/accord
 	name = "accordion"
@@ -167,7 +170,10 @@
 	"Her Boots, So Incandescent" = 'sound/music/instruments/flute (4).ogg',
 	"Moondust Minx" = 'sound/music/instruments/flute (5).ogg',
 	"Quest to the Ends" = 'sound/music/instruments/flute (6).ogg',
-	"Spit Shine" = 'sound/music/instruments/flute (7).ogg')
+	"Spit Shine" = 'sound/music/instruments/flute (7).ogg',
+	"The Power" = 'modular_azurepeak/sound/music/instruments/flute (8).ogg', //Baldur's Gate 3 Song
+	"Bard Dance" = 'modular_azurepeak/sound/music/instruments/flute (9).ogg', //Baldur's Gate 3 Song
+	"Old Time Battles" = 'modular_azurepeak/sound/music/instruments/flute (10).ogg') //Baldur's Gate 3 Song
 
 /obj/item/rogue/instrument/drum
 	name = "drum"
