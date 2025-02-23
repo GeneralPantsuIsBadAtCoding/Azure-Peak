@@ -50,8 +50,8 @@
 #define GLASSES_LAYER			17
 #define NECK_LAYER				16
 #define CLOAK_LAYER				15		//only when looking north or west/east
-#define HAIR_LAYER				14		//TODO: make part of head layer?
-#define MASK_LAYER				13
+#define MASK_LAYER				14
+#define HAIR_LAYER				13		//TODO: make part of head layer?
 #define HAIREXTRA_LAYER			12
 #define MOUTH_LAYER				11
 #define HEAD_LAYER				10
