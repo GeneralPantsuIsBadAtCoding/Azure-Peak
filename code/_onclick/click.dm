@@ -224,6 +224,8 @@
 	if(W)
 		if(ismob(A))
 			if(CanReach(A,W))
+				if(get_dist(get_turf(src), get_turf(A)) <= used_intent.reach)
+					do_attack_animation(get_turf(A), visual_effect_icon = used_intent.animname)
 				resolveAdjacentClick(A,W,params)
 				return
 
@@ -291,7 +293,8 @@
 						resolveAdjacentClick(T,W,params,used_hand) //hit the turf
 					if(!used_intent.noaa)
 						changeNext_move(CLICK_CD_MELEE)
-						do_attack_animation(T, visual_effect_icon = used_intent.animname)
+						if(get_dist(get_turf(src), T) <= used_intent.reach)
+							do_attack_animation(T, visual_effect_icon = used_intent.animname)
 						if(W)
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
 							var/adf = used_intent.clickcd
