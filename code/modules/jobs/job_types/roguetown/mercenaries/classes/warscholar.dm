@@ -154,7 +154,7 @@
 			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife)
 
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_spells_paladin(H)
 			H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 

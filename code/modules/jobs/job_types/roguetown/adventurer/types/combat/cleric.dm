@@ -40,7 +40,7 @@
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_spells_paladin(H)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -150,7 +150,7 @@
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 			H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_spells_paladin(H)
 			var/weapons = list("Bastard Sword","Mace","Flail")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
@@ -183,7 +183,7 @@
 			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/special
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_spells_paladin(H)
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)

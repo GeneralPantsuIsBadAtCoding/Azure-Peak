@@ -132,8 +132,25 @@
 		var/newspell = new spell_type
 		H.mind.AddSpell(newspell)
 		LAZYADD(granted_spells, newspell)
+	level = CLERIC_T1
+	max_devotion = CLERIC_REQ_2 //Better than wandering templars (ie. paladins).
+	max_progression = CLERIC_REQ_2
+
+/datum/devotion/proc/grant_spells_paladin(mob/living/carbon/human/H)
+	if(!H || !H.mind || !patron)
+		return
+
+	var/list/spelllist = list(/obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0)
+	if(istype(patron,/datum/patron/divine))
+		spelllist += /obj/effect/proc_holder/spell/targeted/abrogation
+	for(var/spell_type in spelllist)
+		if(!spell_type || H.mind.has_spell(spell_type))
+			continue
+		var/newspell = new spell_type
+		H.mind.AddSpell(newspell)
+		LAZYADD(granted_spells, newspell)
 	level = CLERIC_T0
-	max_devotion = CLERIC_REQ_1 //Max devotion limit - Paladins are stronger but cannot pray to gain all abilities beyond t1
+	max_devotion = CLERIC_REQ_1 //Worse than the templars in the Church's employ.
 	max_progression = CLERIC_REQ_1
 
 /datum/devotion/proc/grant_spells_churchling(mob/living/carbon/human/H)

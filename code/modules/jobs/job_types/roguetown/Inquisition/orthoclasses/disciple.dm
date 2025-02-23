@@ -32,7 +32,7 @@
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_templar(H)
+	C.grant_spells_paladin(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
