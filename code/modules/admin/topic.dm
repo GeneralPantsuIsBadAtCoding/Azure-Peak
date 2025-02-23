@@ -1669,6 +1669,13 @@
 		popup.set_content(popup_window_data)
 		popup.open()
 
+	else if(href_list["cancelritual"])
+		if(!check_rights(R_ADMIN|R_FUN))
+			for(var/obj/structure/roguemachine/sacrifice/altar in world)
+				if(altar)
+					altar.cancel_due_to_pop = TRUE
+			message_admins("Ritual cancelled by [key_name(usr)]")
+
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
 		return
