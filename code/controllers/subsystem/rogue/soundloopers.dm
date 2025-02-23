@@ -14,23 +14,29 @@ SUBSYSTEM_DEF(soundloopers)
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/current = src.currentrun
+	var/check_clients = FALSE
+	client_ticker++
+
+	if(client_ticker>=5) //this is dumb but necessary- clients update every half tick but sounds themselves need to be updated regularly
+		client_ticker = 0
+		check_clients = TRUE
+	else
+		check_clients = FALSE
 
 	while (current.len)
 		var/datum/looping_sound/thing = current[current.len]
 		current.len--
-		if (!thing || QDELETED(thing))
+		if (!thing || !istype(thing) || QDELETED(thing))
 			processing -= thing
 			if (MC_TICK_CHECK)
 				return
 			continue
 
 		if(world.time > thing.starttime + thing.mid_length) //Make sure we don't try to trigger it while a loop is playing
-			if(thing.sound_loop())
-				STOP_PROCESSING(SSsoundloopers, thing)
+			if(thing.sound_loop()) //returns 1 if it fails for some reason
+				continue
 
-		client_ticker++ //Evaluate on a per client basis, not on a per sound basis, for speed
-		if(client_ticker >= 5) //half a second, no need to spam this insano style
-			client_ticker = 0
+		if(check_clients && thing.persistent_loop)
 			for(var/client/C in GLOB.clients)
 				if(C.mob) //Not in the lobby
 					C.update_sounds()
@@ -46,7 +52,11 @@ SUBSYSTEM_DEF(soundloopers)
 			continue
 
 		var/turf/parent_turf = get_turf(PS.parent)
+		var/turf/mob_turf = get_turf(mob)
 		if(get_dist(get_turf(mob),parent_turf) > world.view + PS.extra_range) //Too far away. get_dist shouldn't be too awful for repeated calcs
+			continue
+
+		if(mob_turf.z - parent_turf.z > 2 || mob_turf.z - parent_turf.z < 2) //for some reason get_dist not checking this properly
 			continue
 
 		//otherwise add it to the client loops and off we go from there
@@ -112,7 +122,9 @@ SUBSYSTEM_DEF(soundloopers)
 					mob.stop_sound_channel(found_sound.channel)
 				continue
 
-			if(source_turf.z == mob.z + 1 || source_turf.z == mob.z - 1) //Some hacks for z-levels
+			//Some hacks for z-levels- this should be get_turf_above and _below
+			//those would require us building a block of turfs though, ehhhh
+			if(source_turf.z == mob.z + 1 || source_turf.z == mob.z - 1)
 				new_volume = new_volume / 2
 			else if (source_turf.z == mob.z + 2 || source_turf.z == mob.z - 2)
 				new_volume = new_volume / 4
@@ -121,18 +133,18 @@ SUBSYSTEM_DEF(soundloopers)
 
 			if(old_volume != new_volume)
 				var/turf/T = get_turf(mob)
-				var/dx = source_turf.x - T.x // Stolen/replicated from sound.dm
+				var/dx = source_turf.x - T.x
 				if(dx <= 1 && dx >= -1)
 					found_sound.x = 0
 				else
 					found_sound.x = dx
-				var/dy = source_turf.y - T.y
-				if(dy <= 1 && dy >= -1)
-					found_sound.y = 0
+				var/dz = source_turf.y - T.y
+				if(dz <= 1 && dz >= -1)
+					found_sound.z = 0
 				else
-					found_sound.y = dy
-				var/dz = (source_turf.z - T.z)
-				found_sound.z = dz
+					found_sound.z = dz
+//				var/dy = source_turf.z - T.z
+//				found_sound.y = dy
 
 				if(loop.persistent_loop && found_loop["MUTESTATUS"] == TRUE) //It was out of range and now back in range, reset it
 					found_loop["MUTESTATUS"] = FALSE

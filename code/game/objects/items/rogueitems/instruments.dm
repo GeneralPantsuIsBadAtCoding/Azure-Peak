@@ -1,4 +1,12 @@
 
+/datum/looping_sound/instrument
+	mid_length = 2400 // 4 minutes for some reason. better would be each song having a specific length
+	volume = 100
+	extra_range = 5
+	persistent_loop = TRUE
+	var/stress2give = /datum/stressevent/music
+	sound_group = /datum/sound_group/instruments //reserves sound channels for up to 10 instruments at a time
+
 /obj/item/rogue/instrument
 	name = ""
 	desc = ""
@@ -9,7 +17,7 @@
 	force = 23
 	throwforce = 7
 	throw_range = 4
-	var/datum/looping_sound/dmusloop/soundloop
+	var/datum/looping_sound/instrument/soundloop
 	var/list/song_list = list()
 	var/playing = FALSE
 	grid_height = 64

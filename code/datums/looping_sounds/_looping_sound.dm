@@ -14,6 +14,10 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 
 /datum/sound_group/fire_loop
 	channel_count = 150
+
+/datum/sound_group/instruments
+	channel_count = 10 //probably more than enough
+
 /*
 	parent	(the source of the sound)			The source the sound comes from
 
@@ -60,9 +64,9 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 	var/starttime // A world.time snapshot of when the loop was started.
 
 /datum/looping_sound/New(_parent, start_immediately=FALSE, _direct=FALSE, _channel = 0)
-	if(!mid_sounds)
-		WARNING("A looping sound datum was created without sounds to play.")
-		return
+/*	if(!mid_sounds)
+		WARNING("A looping sound datum was created without sounds to play.")//Obsolete now, instruments don't start with sounds
+		return*/
 	if(islist(_parent))
 		WARNING("A looping sound datum was created using a list, this is no longer allowed please change to a parent")
 		return
@@ -127,6 +131,7 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 		cursound = get_sound(starttime)
 
 	if(max_loops && cur_num_loops >= max_loops)
+		cur_num_loops = 0
 		stop()
 		return 1
 	else if(max_loops)
@@ -153,7 +158,7 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 	if(direct)
 		if(ismob(thing))
 			var/mob/mob = thing
-			mob.playsound_local(get_turf(mob), S, volume, vary, frequency, falloff, repeat = src, channel = channel)
+			mob.playsound_local(mob, S, volume, vary, frequency, falloff, repeat = src, channel = channel)
 	else
 		var/list/R = playsound(thing, S, volume, vary, extra_range, falloff, frequency, channel, ignore_walls = ignore_walls, repeat = src)
 		if(!R || !R.len)
@@ -193,7 +198,7 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 		play(start_sound)
 		start_wait = start_length
 	addtimer(CALLBACK(src, PROC_REF(begin_loop)), start_wait, TIMER_CLIENT_TIME)
-	if(persistent_loop)
+	if(persistent_loop && !(src in GLOB.persistent_sound_loops))
 		GLOB.persistent_sound_loops += src
 
 /datum/looping_sound/proc/begin_loop()
@@ -205,15 +210,21 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 	STOP_PROCESSING(SSsoundloopers, src)
 	if(persistent_loop)
 		GLOB.persistent_sound_loops -= src
-	for(var/mob/M in thingshearing)
-		if(M.client)
-			var/list/L = M.client.played_loops[src]
-			if(L)
-				var/sound/SD = L["SOUND"]
-				if(SD)
-					M.stop_sound_channel(SD.channel)
-				M.client.played_loops -= src
-				thingshearing -= M
+	if(!direct)
+		for(var/mob/M in thingshearing)
+			if(M.client)
+				var/list/L = M.client.played_loops[src]
+				if(L)
+					var/sound/SD = L["SOUND"]
+					if(SD)
+						M.stop_sound_channel(SD.channel)
+					M.client.played_loops -= src
+					thingshearing -= M
+	else
+		var/mob/P = parent
+		if(P && P.client)
+			P.stop_sound_channel(channel) //This is mostly used for weather
+
 /*
 /mob/proc/stop_all_loops()
 	if(client)

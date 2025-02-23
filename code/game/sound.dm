@@ -84,7 +84,7 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
 */
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel, pressure_affected = TRUE, sound/S, repeat, muffled)
+/mob/proc/playsound_local(atom/turf_source, soundin, vol as num, vary, frequency, falloff, channel, pressure_affected = TRUE, sound/S, repeat, muffled)
 	if(!client || !can_hear())
 		return FALSE
 
@@ -92,7 +92,9 @@
 		S = sound(get_sfx(soundin))
 
 	S.wait = 0 //No queue
-	S.channel = channel || SSsounds.random_available_channel()
+	S.channel = channel
+	if(!S.channel)
+		S.channel = SSsounds.random_available_channel()
 
 	if(muffled)
 		S.environment = 11
@@ -150,47 +152,44 @@
 		if(S.volume <= 0)
 			return FALSE //No sound
 
-		var/dx = turf_source.x - T.x // Hearing from the right/left
-		if(dx <= 1 && dx >= -1) //if we're  close enough we're heard in both ears
+		var/dx = turf_source.x - x
+		if(dx <= 1 && dx >= -1)
 			S.x = 0
 		else
 			S.x = dx
-		var/dy = turf_source.y - T.y // Hearing from infront/behind Edit: someone fucked up. why is this z
-		if(dy <= 1 && dy >= -1) //if we're  close enough we're heard in both ears
-			S.y = 0
+		var/dz = turf_source.y - y
+		if(dz <= 1 && dz >= -1)
+			S.z = 0
 		else
-			S.y = dy
-		var/dz = (turf_source.z - T.z) * 2 // Hearing from  above / below, multiplied by 5 because we assume height is further along coords.
-		S.z = dz
+			S.z = dz
+
+		var/dy = turf_source.z - z
+		S.y = dy
 
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
-	if(repeat)
-		if(istype(repeat, /datum/looping_sound))
-			var/datum/looping_sound/D = repeat
-			if(src in D.thingshearing) //we are already hearing this loop
-				if(client.played_loops[D])
-					var/sound/DS = client.played_loops[D]["SOUND"]
-					if(DS)
-						var/volly = client.played_loops[D]["VOL"]
-						if(volly != S.volume)
-							DS.x = S.x
-							DS.y = S.y
-							DS.z = S.z
-							DS.falloff = S.falloff
-							client.played_loops[D]["VOL"] = S.volume
-							update_sound_volume(DS, S.volume)
-							if(client.played_loops[D]["MUTESTATUS"]) //we have sound so turn this off
-								client.played_loops[D]["MUTESTATUS"] = null
-//							return TRUE
-
+	if(repeat && istype(repeat, /datum/looping_sound))
+		var/datum/looping_sound/D = repeat
+		if(src in D.thingshearing) //we are already hearing this loop
+			if(client.played_loops[D])
+				var/sound/DS = client.played_loops[D]["SOUND"]
+				if(DS)
+					var/volly = client.played_loops[D]["VOL"]
+					if(volly != S.volume)
+						DS.x = S.x
+						DS.y = S.y
+						DS.z = S.z
+						DS.falloff = S.falloff
+						client.played_loops[D]["VOL"] = S.volume
+						update_sound_volume(DS, S.volume)
+						if(client.played_loops[D]["MUTESTATUS"]) //we have sound so turn this off
+							client.played_loops[D]["MUTESTATUS"] = null
+		else
 			D.thingshearing += src
 			client.played_loops[D] = list()
 			client.played_loops[D]["SOUND"] = S
 			client.played_loops[D]["VOL"] = S.volume
 			client.played_loops[D]["MUTESTATUS"] = null
-//			if(D.persistent_loop) //shut up music because we're hearing ingame music
-//				play_ambience(get_area(src))
 			S.repeat = 1
 
 	SEND_SOUND(src, S)
