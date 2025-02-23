@@ -209,8 +209,8 @@
 	..()
 	gender = MALE
 	if(src.dna && src.dna.species)
-		src.dna.species.soundpack_m = new /datum/voicepack/male/goblin()
-		src.dna.species.soundpack_f = new /datum/voicepack/male/goblin()
+		src.dna.species.soundpack_m = new /datum/voicepack/other/goblin()
+		src.dna.species.soundpack_f = new /datum/voicepack/other/goblin()
 		var/obj/item/headdy = get_bodypart("head")
 		if(headdy)
 			headdy.icon = 'icons/roguetown/mob/monster/goblins.dmi'

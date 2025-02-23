@@ -19,7 +19,7 @@
 	dam_icon = 'icons/roguetown/mob/bodies/dam/dam_male.dmi'
 	dam_icon_f = 'icons/roguetown/mob/bodies/dam/dam_female.dmi'
 	soundpack_m = /datum/voicepack/male/goblin
-	soundpack_f = /datum/voicepack/female
+	soundpack_f = /datum/voicepack/female/goblin
 	custom_clothes = TRUE
 	use_f = TRUE
 	clothes_id = "dwarf"
@@ -74,7 +74,7 @@
 		/datum/language/orcish
 	)
 	stress_examine = TRUE
-	stress_desc = span_red("Horrid goblin...")
+	stress_desc = span_red("Horrid little goblin...")
 	descriptor_choices = list(
 		/datum/descriptor_choice/height,
 		/datum/descriptor_choice/body,

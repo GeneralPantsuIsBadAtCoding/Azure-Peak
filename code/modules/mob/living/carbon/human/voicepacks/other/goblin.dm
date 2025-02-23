@@ -1,4 +1,4 @@
-/datum/voicepack/male/goblin/get_sound(soundin, modifiers)
+/datum/voicepack/other/goblin/get_sound(soundin, modifiers)
 	var/used
 	switch(modifiers)
 		if("old")
