@@ -29,8 +29,8 @@
 #define TRAIT_INHUMEN_ANATOMY "Inhumen Anatomy" //can't wear hats and shoes
 #define TRAIT_NASTY_EATER "Inhumen Digestion" //can eat rotten food, organs, poison berries, and drink murky water
 #define TRAIT_WILD_EATER "Beastly Digestion" //can eat raw and rotten food and drink murky water
-#define TRAIT_NOFALLDAMAGE1 "Minor fall damage immunity"
-#define TRAIT_NOFALLDAMAGE2 "Total fall damage immunity"
+#define TRAIT_NOFALLDAMAGE1 "Fall Damage Reduction"
+#define TRAIT_NOFALLDAMAGE2 "Fall Damage Immunity"
 #define TRAIT_MISSING_NOSE "Missing Nose" //halved stamina regeneration
 #define TRAIT_DISFIGURED "Disfigured"
 #define TRAIT_SPELLCOCKBLOCK "Bewitched" //prevents spellcasting
@@ -85,7 +85,7 @@
 #define TRAIT_HORDE "Anointed" //Graggarites also recognize each other
 #define TRAIT_DEPRAVED "Fallen" //Baothans also recognize each other
 
-#define TRAIT_BASHDOORS "bashdoors"
+#define TRAIT_BASHDOORS "Door Basher"
 #define TRAIT_NOMOOD "no_mood"
 #define TRAIT_BAD_MOOD "Bad Mood"
 #define TRAIT_NIGHT_OWL "Night Owl"
@@ -94,13 +94,13 @@
 #define TRAIT_BANDITCAMP "banditcamp"
 #define TRAIT_VAMPMANSION "vampiremansion"
 #define TRAIT_VAMP_DREAMS "vamp_dreams"
-#define TRAIT_LIMPDICK "limp_dick"
+#define TRAIT_LIMPDICK "Limp Dick"
 #define TRAIT_SEXPASS "sexpass"
-#define TRAIT_STEELHEARTED "steelhearted" //no bad mood from dismembering or seeing this
+#define TRAIT_STEELHEARTED "Steelhearted" //no bad mood from dismembering or seeing this
 #define TRAIT_IWASREVIVED "iwasrevived" //prevents PQ gain from reviving the same person twice
 #define TRAIT_IWASUNZOMBIFIED "iwasunzombified" //prevents PQ gain from curing a zombie twice
 #define TRAIT_IWASHAUNTED "iwashaunted" //prevents spawning a haunt from a decapitated body twice
-#define TRAIT_SCHIZO_AMBIENCE "schizo_ambience" //replaces all ambience with creepy shit
+#define TRAIT_SCHIZO_AMBIENCE "Schizo Ambience" //replaces all ambience with creepy shit
 #define TRAIT_SCREENSHAKE "screenshake" //screen will always be shaking, you cannot stop it
 #define TRAIT_NORUN "Decayed Flesh"
 #define TRAIT_PUNISHMENT_CURSE "PunishmentCurse"
@@ -291,10 +291,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DUMB				"dumb"
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
 #define TRAIT_PACIFISM			"pacifism"
-#define TRAIT_IGNORESLOWDOWN	"ignoreslow"
-#define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
-#define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
-#define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
+#define TRAIT_IGNORESLOWDOWN	"Ignore Slow"
+#define TRAIT_IGNOREDAMAGESLOWDOWN "Ignore Damage Slowdown"
+#define TRAIT_DEATHCOMA			"Death Coma" //Causes death-like unconsciousness
+#define TRAIT_FAKEDEATH			"Fake Death" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_STUNRESISTANCE    "stun_resistance"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
@@ -309,14 +309,14 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
 #define TRAIT_RADIMMUNE			"rad_immunity"
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
-#define TRAIT_PIERCEIMMUNE		"pierce_immunity"
-#define TRAIT_NODISMEMBER		"dismember_immunity"
+#define TRAIT_PIERCEIMMUNE		"Pierce Immunity"
+#define TRAIT_NODISMEMBER		"Dismember Immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
-#define TRAIT_NOHUNGER			"no_hunger"
+#define TRAIT_NOHUNGER			"No Hunger"
 #define TRAIT_NOMETABOLISM		"no_metabolism"
-#define TRAIT_TOXIMMUNE			"toxin_immune"
-#define TRAIT_HARDDISMEMBER		"hard_dismember"
+#define TRAIT_TOXIMMUNE			"Toxin Immune"
+#define TRAIT_HARDDISMEMBER		"Hard Dismember"
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
@@ -441,10 +441,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define INNATE_TRAIT "innate"
 
 // unique trait sources, still defines
-#define TRAIT_GUIDANCE "guidance"
-#define TRAIT_FORTITUDE "fortitude"
-#define TRAIT_LONGSTRIDER "longstrider"
-#define TRAIT_DARKVISION "darkvision"
+#define TRAIT_GUIDANCE "Guidance"
+#define TRAIT_FORTITUDE "Fortitude"
+#define TRAIT_LONGSTRIDER "Longstrider"
+#define TRAIT_DARKVISION "Darkvision"
 #define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
