@@ -101,6 +101,7 @@
 	else
 		to_chat(user, span_warning("I don't know anyone."))
 		return
+	eligible_players = sortList(eligible_players)
 	var/target = input(user, "Whose name shall be etched on the wanted list?", src) as null|anything in eligible_players
 	if(isnull(target))
 		say("No target selected.")

@@ -229,6 +229,7 @@
 		return
 	if(!known_people.len)
 		return
+	known_people = sortList(known_people)
 	var/contents = "<center>People that [name] knows:</center><BR>"
 	for(var/P in known_people)
 		var/fcolor = known_people[P]["VCOLOR"]
