@@ -1024,7 +1024,7 @@
 	smelt_bar_num = 2
 	max_integrity = 999
 
-/obj/item/rogueweapon/sword/long/eclipsum/getonmobprop(tag)
+/obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
