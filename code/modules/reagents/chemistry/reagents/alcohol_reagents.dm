@@ -2206,7 +2206,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/beer/murkwine // not Toilet wine
 	name = "mürkwine"
 	boozepwr = 50  // bubba's best
-	taste_description = "hints of questionable choices and a bouqet of murkwater and pure ethanol"
+	taste_description = "hints of questionable choices--a bouqet of murkwater and pure ethanol"
 	color = "#4b1e00"
 
 /datum/reagent/consumable/ethanol/beer/murkwine/on_mob_life(mob/living/carbon/M)
@@ -2230,7 +2230,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/nocshine/on_mob_life(mob/living/carbon/M)
 	M.apply_status_effect(/datum/status_effect/buff/nocshine)
-	M.adjustToxLoss(1.5, 0)
+	if(HAS_TRAIT(M, TRAIT_CRACKHEAD))
+		M.adjustToxLoss(0.1, 0)
+	else
+		M.adjustToxLoss(0.75, 0)
 	..()
 	. = 1
 
