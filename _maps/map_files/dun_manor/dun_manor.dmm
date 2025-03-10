@@ -320,6 +320,17 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"ajM" = (
+/obj/structure/table/cooling,
+/obj/structure/bars{
+	icon_state = "barsbent";
+	layer = 2.81
+	},
+/obj/structure/bars/passage/shutter/open{
+	redstone_id = "innfarmshutter"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "ajW" = (
 /obj/structure/closet/crate/drawer,
 /obj/item/clothing/neck/roguetown/psicross,
@@ -4309,6 +4320,12 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/cow,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
+"dar" = (
+/obj/effect/decal/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/town)
 "dau" = (
 /obj/structure/stairs{
 	dir = 1
@@ -17065,6 +17082,14 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"mvZ" = (
+/obj/structure/mineral_door/wood/donjon{
+	dir = 1;
+	lockid = "tavern";
+	locked = 1
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "mwd" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/hexstone,
@@ -20063,6 +20088,13 @@
 /obj/item/natural/feather,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
+"oyq" = (
+/obj/structure/mineral_door/wood/donjon{
+	lockid = "farm";
+	locked = 1
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "oyy" = (
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/indoors/town/physician)
@@ -23650,6 +23682,13 @@
 /area/rogue/indoors/town/manor)
 "rcN" = (
 /obj/structure/fluff/psycross,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
+"rcW" = (
+/obj/structure/lever/wall{
+	pixel_x = 10;
+	redstone_id = "innfarmshutter"
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "rdm" = (
@@ -30006,6 +30045,12 @@
 /obj/item/bouquet/matricaria,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/outdoors/mountains)
+"vVp" = (
+/obj/structure/bars/passage/shutter/open{
+	redstone_id = "innfarmshutter"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "vVs" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/hexstone,
@@ -63432,7 +63477,7 @@ bOa
 fJa
 fJa
 fJa
-krt
+bOa
 klC
 krt
 mbj
@@ -63586,11 +63631,11 @@ oBn
 xDO
 myR
 xAg
-doE
-fJa
-doE
+rjf
+ajM
+rjf
 cxb
-xdY
+klC
 klC
 mbj
 cqT
@@ -63743,9 +63788,9 @@ jQH
 iiP
 tVC
 cxb
-doE
-iwJ
-doE
+rjf
+ajM
+rjf
 krt
 klC
 owh
@@ -63899,11 +63944,11 @@ hXf
 jQH
 tVC
 ceF
-krt
-waT
-oyZ
-waT
-cxb
+sjt
+fJa
+fJa
+fJa
+xDO
 cxb
 cxb
 waT
@@ -64055,12 +64100,12 @@ hvn
 pcB
 myb
 aGn
+rcW
 cxb
-sjt
-doE
-bKO
-doE
-cxb
+mvZ
+vVp
+oyq
+tVC
 owh
 cxb
 krt
@@ -64217,7 +64262,7 @@ uHq
 doE
 iwJ
 doE
-klC
+dar
 cxb
 cxb
 waT
