@@ -19,6 +19,10 @@
 	description = "<span class='boldwarning'>I'm starving!</span>\n"
 	mood_change = -10
 
+/datum/mood_event/hydrated
+	description = "<span class='nicegreen'>I'm fully hydrated.</span>\n"
+	mood_change = 5
+
 //charge
 /datum/mood_event/charged
 	description = "<span class='nicegreen'>I feel the power in my veins!</span>\n"
