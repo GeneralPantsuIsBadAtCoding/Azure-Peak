@@ -41,6 +41,11 @@
 	feature_slot = BODYPART_FEATURE_ACCESSORY
 	body_zone = BODY_ZONE_HEAD
 
+/datum/bodypart_feature/crest
+	name = "Crest"
+	feature_slot = BODYPART_FEATURE_CREST
+	body_zone = BODY_ZONE_HEAD
+
 /datum/bodypart_feature/underwear
 	name = "Underwear"
 	feature_slot = BODYPART_FEATURE_UNDERWEAR

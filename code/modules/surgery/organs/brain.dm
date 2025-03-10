@@ -223,6 +223,10 @@
 	desc = ""
 	icon_state = "brain-x"
 
+/obj/item/organ/brain/construct
+	name = "construct brain"
+	desc = "The centre of thought for a construct. It crackles with knowledge... and something more sinister."
+	icon_state = "brain-con"
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

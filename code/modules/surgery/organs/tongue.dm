@@ -49,6 +49,13 @@
 /obj/item/organ/tongue/could_speak_in_language(datum/language/dt)
 	return is_type_in_typecache(dt, languages_possible)
 
+/obj/item/organ/tongue/construct
+	name = "construct tongue"
+	desc = "A beast's tongue, preserved through artifice and with crystals embedded in the base. It seems rather dead..."
+	icon_state = "tongue-con"
+	say_mod = "crackles"
+	taste_sensitivity = 30 //It's dead, jim.
+	
 /obj/item/organ/tongue/lizard
 	name = "forked tongue"
 	desc = ""

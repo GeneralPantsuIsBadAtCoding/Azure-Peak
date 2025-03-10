@@ -151,6 +151,11 @@
 	name = "undead eyes"
 	desc = ""
 
+/obj/item/organ/eyes/construct
+	name = "construct eyes"
+	desc = "Some beast's eyes, preserved through artifice and with magical rock embedded in their back. Seems to fit a construct's head."
+	icon_state = "eyeball-con"
+	
 /obj/item/organ/eyes/night_vision/zombie/on_life()
 	. = ..()
 	if (!(owner.mob_biotypes & MOB_UNDEAD))

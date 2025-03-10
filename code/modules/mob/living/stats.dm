@@ -46,6 +46,7 @@
 /datum/species
 	// Associative list of stat (STAT_STRENGTH, etc) bonuses used to differentiate each race. They should ALWAYS be positive.
 	var/list/race_bonus = list()
+	var/construct = 0
 
 /mob/living/proc/roll_stats()
 	STASTR = 10
