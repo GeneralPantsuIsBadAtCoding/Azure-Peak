@@ -221,6 +221,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -234,6 +235,10 @@
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 	if(!H.stat)
 		var/static/list/torture_lines = list(
 			"CONFESS!",
@@ -242,7 +247,14 @@
 			"YOU WILL SPEAK!",
 			"TELL ME!",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(torture_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("antag")
 		qdel(S)
@@ -255,6 +267,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -268,14 +281,26 @@
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
+		return
 	if(!H.stat)
 		var/static/list/faith_lines = list(
-			"DO YOU DENY THE TEN?",
+			"DO YOU DENY THE ALLFATHER?",
 			"WHO IS YOUR GOD?",
 			"ARE YOU FAITHFUL?",
 			"WHO IS YOUR SHEPHERD?",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(faith_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("patron")
 		qdel(S)
