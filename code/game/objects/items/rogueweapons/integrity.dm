@@ -8,7 +8,9 @@
 	/// Required skill to repair the blade integrity
 	var/required_repair_skill = 0
 
-/obj/item/proc/remove_bintegrity(amt as num)
+/obj/item/proc/remove_bintegrity(amt as num, mob/user)
+	if(user && HAS_TRAIT(user, TRAIT_SHARPER_BLADES))
+		amt = amt * 0.7
 	blade_int = blade_int - amt
 	if(blade_int <= 0)
 		blade_int = 0

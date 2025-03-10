@@ -30,6 +30,9 @@
 	desc = "Orc turned deity, said by the Holy Ecclesial to have been blessed by Ravox himself. He took his blessings to rampage and tear down the Old Ten. Though some Graggarites might care for 'honor', most do not- what matters are results, and victory at any cost."
 	worshippers = "Prisoners, Murderers and the Cruel"
 	mob_traits = list(TRAIT_HORDE, TRAIT_ORGAN_EATER)
+	t0 = /obj/effect/proc_holder/spell/self/revel_in_slaughter
+	t1 = /obj/effect/proc_holder/spell/self/call_to_slaughter
+	t2 = /obj/effect/proc_holder/spell/invoked/projectile/blood_net
 	confess_lines = list(
 		"GRAGGAR IS THE BEAST I WORSHIP!",
 		"THROUGH VIOLENCE, DIVINITY!",
@@ -58,23 +61,11 @@
 	desc = "Eora's crueler half, made be from her one true love having been unfaithful. Filled with bitterness, she separated from Eora in spirit and spiraled into a dark hole of crippling hedonism. She teaches her ilk to place their trust in no one, and do only as they please."
 	worshippers = "Perverts, Gamblers, Drunkards, and Bards"
 	mob_traits = list(TRAIT_DEPRAVED, TRAIT_CRACKHEAD)
+	t1 = /obj/effect/proc_holder/spell/invoked/baothablessings
+	t2 = /obj/effect/proc_holder/spell/invoked/projectile/blowingdust
+	t3 = /obj/effect/proc_holder/spell/invoked/painkiller
 	confess_lines = list(
 		"BAOTHA DEMANDS PLEASURE!",
 		"LIVE, LAUGH, LOVE!",
 		"BAOTHA IS MY JOY!",
 	)
-
-
-/* RATWOOD EDIT - Back to the main pantheon
-/datum/patron/inhumen/eora
-	name = "Eora"
-	domain = "Goddess of Degeneracy, Debauchery and Addiction"
-	desc = "The Fallen Daughter of Psydon, once used to be a goddess of love and family but has now fallen from grace as she leads mortals to hedonism."
-	worshippers = "Drunkards, Junkies, Gamblers and Bards"
-	confess_lines = list(
-		"EORA BRINGS ME PLEASURE!",
-		"EORA BRINGS ME LUCK!",
-		"EORA IS MY HAPPINESS!",
-	)
-	t0 = /obj/effect/proc_holder/spell/invoked/lesser_heal
-*/

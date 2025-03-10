@@ -289,3 +289,40 @@
 	name = "Rites Complete"
 	desc = "It will take time before I can next perform a rite."
 	icon_state = "ritesexpended"
+
+/datum/status_effect/debuff/call_to_arms
+	id = "call_to_arms"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/call_to_arms
+	duration = 2.5 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/call_to_arms
+	name = "Ravox's Call to Arms"
+	desc = "His voice keeps ringing in your ears, rocking your soul.."
+	icon_state = "call_to_arms"
+
+/datum/status_effect/debuff/ravox_burden
+	id = "ravox_burden"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ravox_burden
+	effectedstats = list("speed" = -2, "endurance" = -3)
+	duration = 12 SECONDS
+/*
+/datum/status_effect/debuff/ravox_burden/on_apply()
+	if(owner.mob_biotypes & MOB_UNDEAD)
+		effectedstats = list("speed" -= 1,)
+		effectedstats = list("endurance" -= 1)
+	. = ..()
+*/
+/atom/movable/screen/alert/status_effect/debuff/ravox_burden
+	name = "Ravox's Burden"
+	desc = "My arms and legs are restrained by divine chains!\n"
+	icon_state = "restrained"
+
+/datum/status_effect/debuff/call_to_slaughter
+	id = "call_to_slaughter"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/call_to_slaughter
+	effectedstats = list("endurance" = -2, "constitution" = -2)
+
+/atom/movable/screen/alert/status_effect/debuff/call_to_slaughter
+	name = "Call to Slaughter"
+	desc = "A putrid rotting scent fills your nose as Graggar's call for slaughter rattles you to your core.."
+	icon_state = "call_to_slaughter"
