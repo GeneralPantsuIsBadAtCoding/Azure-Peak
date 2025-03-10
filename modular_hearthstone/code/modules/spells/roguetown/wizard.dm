@@ -1,6 +1,7 @@
 #define PRESTI_CLEAN "presti_clean"
 #define PRESTI_SPARK "presti_spark"
 #define PRESTI_MOTE "presti_mote"
+#define COMSIG_LIVING_DAMAGE_TAKEN "living_damage_taken"
 
 /obj/effect/proc_holder/spell/targeted/touch/prestidigitation
 	name = "Prestidigitation"
@@ -228,7 +229,9 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/summon_volf,
+
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -1538,8 +1541,95 @@
 		REMOVE_TRAIT(H, TRAIT_MIRROR_MAGIC, TRAIT_GENERIC)
 		to_chat(H, span_warning("Your connection to mirrors fades away."))
 
+/obj/effect/proc_holder/spell/invoked/summon_volf
+	name = "Summon Volf"
+	desc = "Summons a loyal volf that will protect you. The volf will become hostile to anyone who attacks you."
+	clothes_req = FALSE
+	overlay_state = "summon"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 3 MINUTES
+	invocation = "LUPUS FIDELIS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+	
+	var/mob/living/simple_animal/hostile/retaliate/summoned_volf/current_volf  // Fixed type
+
+/obj/effect/proc_holder/spell/invoked/summon_volf/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return FALSE
+		
+	if(current_volf && !QDELETED(current_volf))
+		to_chat(user, span_warning("You can only have one volf at a time!"))
+		return FALSE
+		
+	var/turf/T = get_turf(targets[1])
+	if(!T || !istype(T))
+		return FALSE
+		
+	current_volf = new /mob/living/simple_animal/hostile/retaliate/summoned_volf(T)  // Fixed type
+	current_volf.friends = list(user) // Set only the caster as friend
+	current_volf.enemies = list() // Clear any default enemies
+	
+	// Register signals for both damage to master and damage to volf
+	RegisterSignal(user, COMSIG_LIVING_DAMAGE_TAKEN, PROC_REF(on_master_attacked))
+	RegisterSignal(current_volf, COMSIG_LIVING_DAMAGE_TAKEN, PROC_REF(on_volf_attacked))
+	
+	user.visible_message(span_notice("[user] summons a volf!"), span_notice("I summon a loyal volf to my side!"))
+	
+	// Despawn after 2 minutes
+	addtimer(CALLBACK(src, PROC_REF(despawn_volf)), 2 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/summon_volf/proc/on_master_attacked(datum/source, mob/living/attacker)
+	SIGNAL_HANDLER
+	
+	if(!current_volf || QDELETED(current_volf))
+		return
+		
+	if(attacker == current_volf) // Don't retaliate against own volf
+		return
+		
+	current_volf.enemies |= attacker // Add attacker to enemies list
+	current_volf.was_attacked = TRUE // Set was_attacked to trigger retaliation
+	current_volf.Retaliate() // Make it target the attacker
+	current_volf.visible_message(span_warning("The volf growls menacingly at [attacker]!"))
+
+/obj/effect/proc_holder/spell/invoked/summon_volf/proc/on_volf_attacked(datum/source, mob/living/attacker)
+	SIGNAL_HANDLER
+	
+	if(!current_volf || QDELETED(current_volf))
+		return
+		
+	if(attacker == current_volf.friends[1]) // Don't retaliate against master
+		return
+		
+	current_volf.enemies |= attacker // Add attacker to enemies list
+	current_volf.was_attacked = TRUE // Set was_attacked to trigger retaliation
+	current_volf.Retaliate() // Make it target the attacker
+
+/obj/effect/proc_holder/spell/invoked/summon_volf/proc/despawn_volf()
+	if(!current_volf || QDELETED(current_volf))
+		return
+		
+	current_volf.visible_message(span_notice("The volf fades away into mist..."))
+	qdel(current_volf)
+
+
 
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
