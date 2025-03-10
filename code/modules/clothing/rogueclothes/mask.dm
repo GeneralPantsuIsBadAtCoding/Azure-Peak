@@ -165,11 +165,6 @@
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 		var/timer = 30 MINUTES
 
-		if(bounty_amount >= 100)
-			var/additional_time = bounty_amount * 0.1
-			additional_time = round(additional_time)
-			timer += additional_time MINUTES
-
 		var/timer_minutes = timer / 600
 
 		addtimer(CALLBACK(src, PROC_REF(timerup), user), timer)
