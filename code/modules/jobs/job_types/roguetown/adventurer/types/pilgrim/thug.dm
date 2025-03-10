@@ -1,6 +1,6 @@
 /datum/advclass/thug
 	name = "Thug"
-	tutorial = "Not everyone manages a practical trade, although you found one in distrupting the monopoly of violence the garrison has. The only thing keeping you from being a brigand is the roof over your head and the taxes you pay; ensure it stays that way, bandits typically lose their heads! You find work where people need a strong back and an imposing figure."
+	tutorial = "You might not have ever been the smartest person in town. But you may have been the sturdiest. Good enough for soilers to pay you to cart around saigashit. Good enough for miners to offload some of their work to you. Good enough for a carpenter who doesnt want to pay top dollar for fine cut wood. And good enough for anyone who just wants a meathead to look scary."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/thug
@@ -9,18 +9,18 @@
 /datum/outfit/job/roguetown/adventurer/thug/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE) 
-	H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/stealing, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE) 
-	H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
 	pants = /obj/item/clothing/under/roguetown/trou
@@ -33,5 +33,6 @@
 	beltr = /obj/item/rogueweapon/mace/cudgel
 	beltl = /obj/item/flashlight/flare/torch
 	H.change_stat("strength", 2)
-	H.change_stat("intelligence", -2)
+	H.change_stat("endurance", 2)
+	H.change_stat("constitution", 2)
 	H.change_stat("speed", -1)
