@@ -1,4 +1,3 @@
-
 /datum/looping_sound/instrument
 	mid_length = 2400 // 4 minutes for some reason. better would be each song having a specific length
 	volume = 100
@@ -17,6 +16,8 @@
 	force = 23
 	throwforce = 7
 	throw_range = 4
+	var/lastfilechange = 0
+	var/curvol = 100
 	var/datum/looping_sound/instrument/soundloop
 	var/list/song_list = list()
 	var/playing = FALSE
@@ -59,36 +60,83 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	if(!playing)
+	if(playing)
+		playing = FALSE
+		soundloop.stop()
+		user.remove_status_effect(/datum/status_effect/buff/playing_music)
+		return
+	else
 		var/note_color = "#7f7f7f" // uses MMO item rarity color grading
-		var/curfile = input(user, "Which song?", "Music", name) as null|anything in song_list
-		if(!user)
+		var/list/options = song_list.Copy()
+		if(user.mind && user.mind.get_skill_level(/datum/skill/misc/music) >= 4)
+			options["Upload New Song"] = "upload"
+		
+		var/choice = input(user, "Which song?", "Music", name) as null|anything in options
+		if(!choice || !user)
+			return
+			
+		if(playing || !(src in user.held_items) || user.get_inactive_held_item())
+			return
+			
+		if(choice == "Upload New Song")
+			if(lastfilechange && world.time < lastfilechange + 3 MINUTES)
+				say("NOT YET!")
+				return
+			playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
+			var/infile = input(user, "CHOOSE A NEW SONG", src) as null|file
+
+			if(!infile)
+				return
+			if(playing || !(src in user.held_items) || user.get_inactive_held_item())
+				return
+
+			var/filename = "[infile]"
+			var/file_ext = lowertext(copytext(filename, -4))
+			var/file_size = length(infile)
+
+			if(file_ext != ".ogg")
+				to_chat(user, span_warning("SONG MUST BE AN OGG."))
+				return
+			if(file_size > 6485760)
+				to_chat(user, span_warning("TOO BIG. 6 MEGS OR LESS."))
+				return
+			lastfilechange = world.time
+			fcopy(infile,"data/jukeboxuploads/[user.ckey]/[filename]")
+			var/curfile = file("data/jukeboxuploads/[user.ckey]/[filename]")
+			var/songname = input(user, "Name your song:", "Song Name") as text|null
+			if(songname)
+				song_list[songname] = curfile
+			return
+		var/curfile = song_list[choice]
+		if(!user || playing || !(src in user.held_items))
 			return
 		if(user.mind)
-			soundloop.stress2give = null
 			switch(user.mind.get_skill_level(/datum/skill/misc/music))
 				if(1)
 					stressevent = /datum/stressevent/music
+					soundloop.stress2give = stressevent
 				if(2)
 					note_color = "#ffffff"
 					stressevent = /datum/stressevent/music/two
+					soundloop.stress2give = stressevent
 				if(3)
 					note_color = "#1eff00"
 					stressevent = /datum/stressevent/music/three
+					soundloop.stress2give = stressevent
 				if(4)
 					note_color = "#0070dd"
 					stressevent = /datum/stressevent/music/four
+					soundloop.stress2give = stressevent
 				if(5)
 					note_color = "#a335ee"
 					stressevent = /datum/stressevent/music/five
+					soundloop.stress2give = stressevent
 				if(6)
 					note_color = "#ff8000"
 					stressevent = /datum/stressevent/music/six
-/*		if(playing) //We already checked this???
-			playing = FALSE
-			soundloop.stop()
-			user.remove_status_effect(/datum/status_effect/buff/playing_music)
-			return*/
+					soundloop.stress2give = stressevent
+				else
+					soundloop.stress2give = stressevent
 		if(!(src in user.held_items))
 			return
 		if(user.get_inactive_held_item())
@@ -97,20 +145,15 @@
 			user.remove_status_effect(/datum/status_effect/buff/playing_music)
 			return
 		if(curfile)
-			curfile = song_list[curfile]
 			playing = TRUE
 			soundloop.mid_sounds = list(curfile)
 			soundloop.cursound = null
 			soundloop.start()
 			user.apply_status_effect(/datum/status_effect/buff/playing_music, stressevent, note_color)
-		/* for(var/mob/living/carbon/human/L in viewers(7)) // this is very simple, shouldn't we pulse this on a regular tick?
-			L.add_stress(stressevent)
-			add_sleep_experience(user, /datum/skill/misc/music, user.STAINT)*/
-		// we handle the above on the status effect now
-	else
-		playing = FALSE
-		soundloop.stop()
-		user.remove_status_effect(/datum/status_effect/buff/playing_music)
+		else
+			playing = FALSE
+			soundloop.stop()
+			user.remove_status_effect(/datum/status_effect/buff/playing_music)
 
 /obj/item/rogue/instrument/lute
 	name = "lute"
