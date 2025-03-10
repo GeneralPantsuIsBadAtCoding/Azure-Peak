@@ -125,7 +125,6 @@
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
-		if(!IS_IN_STASIS(owner))
 			if(prob(10) && owner.health > owner.crit_threshold)
 				owner.emote("snore")
 

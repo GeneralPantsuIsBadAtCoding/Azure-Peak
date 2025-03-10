@@ -96,6 +96,6 @@ SUBSYSTEM_DEF(nightshift)
 			return ..()
 		if(HAS_TRAIT(src, TRAIT_NIGHT_OWL))
 			add_stress(/datum/stressevent/night_owl)
-		else
+		if(tiredness >= 100)
 			apply_status_effect(/datum/status_effect/debuff/sleepytime)
 			add_stress(/datum/stressevent/sleepytime)
