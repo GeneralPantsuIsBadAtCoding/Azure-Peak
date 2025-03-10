@@ -41,6 +41,9 @@
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/simple_skeleton
 
+/mob/living/simple_animal/hostile/rogue/skeleton/necromancer
+	faction = list("necromancer")
+
 /mob/living/simple_animal/hostile/rogue/skeleton/axe
 	name = "Skeleton"
 	desc = ""
@@ -50,6 +53,9 @@
 	icon_living = "skeleton_axe"
 	icon_dead = ""
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/stoneaxe/woodcut, /obj/item/skull)
+
+/mob/living/simple_animal/hostile/rogue/skeleton/axe/necromancer
+	faction = list("necromancer")
 
 /mob/living/simple_animal/hostile/rogue/skeleton/spear
 	name = "Skeleton"
@@ -63,6 +69,10 @@
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/spear, /obj/item/skull)
 	ai_controller = /datum/ai_controller/skeleton_spear
 
+/mob/living/simple_animal/hostile/rogue/skeleton/spear/necromancer
+	faction = list("necromancer")
+
+
 /mob/living/simple_animal/hostile/rogue/skeleton/guard
 	name = "Skeleton"
 	desc = ""
@@ -74,6 +84,10 @@
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/sword/iron, /obj/item/skull)
 	maxHealth = 200
 	health = 200
+
+/mob/living/simple_animal/hostile/rogue/skeleton/guard/necromancer
+	faction = list("necromancer")
+
 
 /mob/living/simple_animal/hostile/rogue/skeleton/bow
 	name = "Skeleton"
@@ -100,6 +114,10 @@
 			/obj/item/ammo_casing/caseless/rogue/arrow/iron,
 			)
 	ai_controller = /datum/ai_controller/skeleton_ranged
+
+/mob/living/simple_animal/hostile/rogue/skeleton/bow/necromancer
+	faction = list("necromancer")
+
 
 /mob/living/simple_animal/hostile/rogue/skeleton/get_sound(input)
 	switch(input)

@@ -142,6 +142,27 @@
 	cabal_affine = TRUE
 	charge_max = 45 SECONDS
 
+/obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer/cast(list/targets, mob/living/user)
+	. = ..()
+	var/turf/T = get_turf(targets[1])
+	var/skeleton_roll = rand(1,100)
+	if(isopenturf(T))
+		switch(skeleton_roll)
+			if(1 to 20)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/axe/necromancer(T, user, cabal_affine)
+			if(21 to 40)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/spear/necromancer(T, user, cabal_affine)
+			if(41 to 60)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/guard/necromancer(T, user, cabal_affine)
+			if(61 to 80)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/bow/necromancer(T, user, cabal_affine)
+			if(81 to 100)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/necromancer(T, user, cabal_affine)
+		return TRUE
+	else
+		to_chat(user, span_warning("The targeted location is blocked. My summon fails to come forth."))
+		return FALSE
+
 /obj/effect/proc_holder/spell/invoked/projectile/sickness
 	name = "Ray of Sickness"
 	desc = ""
