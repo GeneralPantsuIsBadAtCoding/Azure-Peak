@@ -108,11 +108,13 @@
 		if(stage == 3)
 			var/turf/underT = get_step_multiz(src, DOWN)
 			if(underT && isopenturf(underT) && mastert)
-				attacking_shovel.heldclod = new(attacking_shovel)
-				attacking_shovel.update_icon()
-				playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
-				mastert.ChangeTurf(/turf/open/transparent/openspace)
-				return
+				var/area/rogue/underA = underT.loc
+				if((underA && !underA.ceiling_protected) || !underA)
+					attacking_shovel.heldclod = new(attacking_shovel)
+					attacking_shovel.update_icon()
+					playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
+					mastert.ChangeTurf(/turf/open/transparent/openspace)
+					return
 //					for(var/D in GLOB.cardinals)
 //						var/turf/T = get_step(mastert, D)
 //						if(T)
