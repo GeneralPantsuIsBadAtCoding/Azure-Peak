@@ -49,6 +49,7 @@
 	var/neighborlay
 	var/neighborlay_list = list()
 	var/neighborlay_override
+	var/teleport_restricted = FALSE //whether turf teleport spells are forbidden from teleporting to this turf
 
 	vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_ID
 
