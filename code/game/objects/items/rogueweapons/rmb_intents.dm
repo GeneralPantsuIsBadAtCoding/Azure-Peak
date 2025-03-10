@@ -108,3 +108,35 @@
 	name = "weak"
 	desc = "Your attacks have -1 strength and will never critically-hit. Useful for longer punishments, play-fighting, and bloodletting."
 	icon_state = "rmbweak"
+
+/datum/rmb_intent/door_unlock
+	name = "unlock"
+	desc = "Attempt to unlock a door with keys in your possession."
+	icon_state = "rmbunlock"
+
+/datum/rmb_intent/door_unlock/special_attack(mob/living/user, atom/target)
+	if(!istype(target, /obj/structure/mineral_door))
+		return
+	var/obj/structure/mineral_door/door = target
+	if(!door.keylock)
+		return
+	if(door.door_opened || door.isSwitchingStates || door.brokenstate)
+		return
+	
+	// Check user's inventory for keys
+	var/list/user_keys = user.GetAllContents(/obj/item/roguekey)
+	var/list/user_keyrings = user.GetAllContents(/obj/item/storage/keyring)
+	
+	for(var/obj/item/roguekey/K in user_keys)
+		if(K.lockhash == door.lockhash)
+			door.lock_toggle(user)
+			return
+			
+	for(var/obj/item/storage/keyring/R in user_keyrings)
+		for(var/obj/item/roguekey/K in R.contents)
+			if(K.lockhash == door.lockhash)
+				door.lock_toggle(user)
+				return
+		
+	playsound(door, door.rattlesound, 50, TRUE)
+	to_chat(user, span_warning("None of my keys fit this lock."))
