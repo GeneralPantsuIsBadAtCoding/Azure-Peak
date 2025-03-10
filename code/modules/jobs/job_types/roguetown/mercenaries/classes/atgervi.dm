@@ -57,7 +57,7 @@
 			beltl = /obj/item/flashlight/flare/torch
 
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)	
-			H.cmode_music = 'sound/music/combat_vagarian.ogg'
+			H.cmode_music = 'sound/music/combat_varangian.ogg'
 		if("Shaman")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a Shaman of the Northern Empty. Savage combatants who commune with their gods through gut-wrenching violence, rather than idle prayer."))
@@ -96,8 +96,8 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi
-	name = "vagarian hauberk"
-	desc = "The pride of the Hammerhold mercenaries a well crafted blend of chain and leather into a dense protective coat."
+	name = "varangian hauberk"
+	desc = "The pride of the Hammerhold mercenaries. A well crafted blend of chain and leather that coalesces into a dense protective coat."
 	icon_state = "atgervi_raider_mail"
 	item_state = "atgervi_raider_mail"
 
