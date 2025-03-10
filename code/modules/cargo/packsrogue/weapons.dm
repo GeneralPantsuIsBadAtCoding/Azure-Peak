@@ -92,7 +92,7 @@
 	name = "Shamshir"
 	cost = 80
 	contains = list(
-					/obj/item/rogueweapon/sword/long/rider,
+					/obj/item/rogueweapon/sword/sabre/shamshir,
 				)
 
 

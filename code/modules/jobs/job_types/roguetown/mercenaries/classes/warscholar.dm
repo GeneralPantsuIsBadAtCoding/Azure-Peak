@@ -135,7 +135,7 @@
 			H.change_stat("endurance", 2)
 			H.change_stat("intelligence", 2)
 			H.change_stat("speed", 3)
-			r_hand = /obj/item/rogueweapon/sword/long/rider
+			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
 
 			mask = /obj/item/clothing/mask/rogue/lordmask/tarnished

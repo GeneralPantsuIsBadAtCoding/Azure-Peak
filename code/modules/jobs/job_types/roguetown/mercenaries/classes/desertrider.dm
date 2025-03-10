@@ -71,7 +71,7 @@
 			H.change_stat("endurance", 2)
 			H.change_stat("intelligence", 1)
 			H.change_stat("speed", 3)
-			backl = /obj/item/rogueweapon/sword/long/rider
+			backl = /obj/item/rogueweapon/sword/sabre/shamshir
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
@@ -81,7 +81,7 @@
 			H.set_blindness(0)
 			switch(weapon_choice)
 				if("Shamshir")
-					backl = /obj/item/rogueweapon/sword/long/rider
+					backl = /obj/item/rogueweapon/sword/sabre/shamshir
 				if("Whips and Knives")	///They DO enslave people after all
 					r_hand = /obj/item/rogueweapon/whip
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
@@ -109,9 +109,9 @@
 			H.change_stat("speed", 3)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/push_spell)
-			r_hand = /obj/item/rogueweapon/sword/long/rider
+			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
-			backl = /obj/item/rogueweapon/sword/long/rider
+			backl = /obj/item/rogueweapon/sword/sabre/shamshir
 
 			H.grant_language(/datum/language/celestial)
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord

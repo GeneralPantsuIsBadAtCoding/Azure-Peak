@@ -390,35 +390,28 @@
 			if("onbelt") 
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/rogueweapon/sword/long/rider
-	force = 26
-	force_wielded = 31
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
-	icon_state = "tabi"
-	icon = 'icons/roguetown/weapons/64.dmi'
-	item_state = "tabi"
-	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
+/obj/item/rogueweapon/sword/sabre/shamshir
+	force = 24
+	minstr = 5
+	wdefense = 5
+	wbalance = 1
 	name = "shamshir"
 	desc = "A one-handed sword with elegant curves and deadly sharpness."
-	parrysound = "bladedmedium"
-	swingsound = BLADEWOOSH_LARGE
-	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
-	bigboy = 1
-	wlength = WLENGTH_LONG
-	gripsprite = TRUE
+	icon_state = "tabi"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	gripped_intents = null
+	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
+	swingsound = BLADEWOOSH_SMALL
+	bigboy = TRUE
 	pixel_y = -16
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	associated_skill = /datum/skill/combat/swords
-	throwforce = 15
-	thrown_bclass = BCLASS_CUT
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
-
-/obj/item/rogueweapon/sword/long/rider/getonmobprop(tag)
+	
+/obj/item/rogueweapon/sword/sabre/shamshir/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
