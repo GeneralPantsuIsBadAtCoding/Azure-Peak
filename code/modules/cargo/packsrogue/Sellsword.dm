@@ -8,7 +8,7 @@
 /datum/supply_pack/rogue/Sellsword/dridersword
 	name = "Old Zybantine package..."
 	cost = 10
-	contains = list(/obj/item/rogueweapon/sword/long/rider)
+	contains = list(/obj/item/rogueweapon/sword/sabre/shamshir)
 
 
 /datum/supply_pack/rogue/Sellsword/driderhead
