@@ -6516,11 +6516,6 @@
 /obj/structure/closet/crate/roguecloset,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
-"eGG" = (
-/turf/open/water/bath/pool{
-	dir = 9
-	},
-/area/rogue/indoors/town/bath)
 "eGP" = (
 /obj/structure/bed/rogue/inn/double,
 /obj/item/bedsheet/rogue/fabric_double,
@@ -6791,9 +6786,6 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
-"eRs" = (
-/turf/open/water/bath/pool,
-/area/rogue/indoors/town/bath)
 "eRV" = (
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/tile,
@@ -14579,11 +14571,6 @@
 /obj/item/roguekey/dungeon,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
-"kMO" = (
-/turf/open/water/bath/pool{
-	dir = 8
-	},
-/area/rogue/indoors/town/bath)
 "kMW" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/dirt/road,
@@ -19608,11 +19595,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield)
-"oiA" = (
-/turf/open/water/bath/pool{
-	dir = 6
-	},
-/area/rogue/indoors/town/bath)
 "oiN" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -21034,11 +21016,6 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
-"phl" = (
-/turf/open/water/bath/pool{
-	dir = 4
-	},
-/area/rogue/indoors/town/bath)
 "phI" = (
 /obj/structure/table/wood{
 	icon_state = "largetable"
@@ -21773,11 +21750,6 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
-"pJt" = (
-/turf/open/water/bath/pool{
-	dir = 1
-	},
-/area/rogue/indoors/town/bath)
 "pJL" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/effect/decal/cobbleedge{
@@ -31771,11 +31743,6 @@
 /obj/structure/roguetent,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
-"xbG" = (
-/turf/open/water/bath/pool{
-	dir = 10
-	},
-/area/rogue/indoors/town/bath)
 "xcd" = (
 /obj/structure/fluff/walldeco/chains,
 /turf/open/floor/rogue/cobble,
@@ -32442,11 +32409,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
-"xxR" = (
-/turf/open/water/bath/pool{
-	dir = 5
-	},
-/area/rogue/indoors/town/bath)
 "xxZ" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8;
@@ -37353,13 +37315,13 @@ kAA
 hCc
 pUC
 pUC
-eGG
-kMO
-kMO
-kMO
-kMO
-kMO
-xbG
+bUa
+bUa
+bUa
+bUa
+bUa
+bUa
+bUa
 pUC
 oZv
 bYN
@@ -37509,7 +37471,7 @@ kAA
 fTX
 pUC
 pUC
-eGG
+bUa
 bUa
 fpz
 fpz
@@ -37517,7 +37479,7 @@ fpz
 fpz
 fpz
 bUa
-xbG
+bUa
 pUC
 pUC
 bLX
@@ -37665,7 +37627,7 @@ kAA
 gpb
 gJY
 pUC
-eGG
+bUa
 bUa
 fpz
 fpz
@@ -37675,7 +37637,7 @@ fpz
 fpz
 fpz
 bUa
-xbG
+bUa
 pUC
 uEe
 bYN
@@ -37821,7 +37783,7 @@ kAA
 soL
 bLX
 pUC
-eGG
+bUa
 bUa
 fpz
 fpz
@@ -37833,7 +37795,7 @@ fpz
 fpz
 fpz
 bUa
-xbG
+bUa
 cKp
 bYN
 kAA
@@ -37978,7 +37940,7 @@ kAA
 bKy
 pUC
 pUC
-eRs
+bUa
 fpz
 fpz
 fpz
@@ -37990,7 +37952,7 @@ iiU
 fpz
 fpz
 fpz
-pJt
+bUa
 pUC
 pUC
 gpb
@@ -38135,7 +38097,7 @@ kAA
 rZc
 pUC
 pUC
-eRs
+bUa
 fpz
 fpz
 fpz
@@ -38147,7 +38109,7 @@ rkb
 fpz
 fpz
 fpz
-pJt
+bUa
 pUC
 pUC
 bLX
@@ -38292,7 +38254,7 @@ aPv
 bLX
 pUC
 pUC
-eRs
+bUa
 fpz
 fpz
 fpz
@@ -38304,7 +38266,7 @@ fpz
 fpz
 fpz
 fpz
-pJt
+bUa
 pUC
 pUC
 bLX
@@ -38449,7 +38411,7 @@ kAA
 bLX
 pUC
 pUC
-eRs
+bUa
 fpz
 fpz
 fpz
@@ -38461,7 +38423,7 @@ jeA
 fpz
 fpz
 fpz
-pJt
+bUa
 pUC
 pUC
 bLX
@@ -38606,7 +38568,7 @@ kAA
 gpb
 pUC
 pUC
-eRs
+bUa
 fpz
 fpz
 fpz
@@ -38618,7 +38580,7 @@ iiU
 fpz
 fpz
 fpz
-pJt
+bUa
 pUC
 pUC
 gpb
@@ -38763,7 +38725,7 @@ kAA
 kAA
 aQA
 pUC
-xxR
+bUa
 bUa
 fpz
 fpz
@@ -38775,7 +38737,7 @@ fpz
 fpz
 fpz
 bUa
-oiA
+bUa
 pUC
 ffq
 kAA
@@ -38921,7 +38883,7 @@ kAA
 jYN
 pUC
 pUC
-xxR
+bUa
 bUa
 fpz
 fpz
@@ -38931,7 +38893,7 @@ fpz
 fpz
 fpz
 bUa
-oiA
+bUa
 pUC
 pUC
 lvi
@@ -39079,7 +39041,7 @@ kAA
 hCc
 pUC
 pUC
-xxR
+bUa
 bUa
 fpz
 fpz
@@ -39087,7 +39049,7 @@ fpz
 fpz
 fpz
 bUa
-oiA
+bUa
 pUC
 pUC
 lvi
@@ -39237,13 +39199,13 @@ uwQ
 bLX
 pUC
 pUC
-xxR
-phl
-phl
-phl
-phl
-phl
-oiA
+bUa
+bUa
+bUa
+bUa
+bUa
+bUa
+bUa
 pUC
 pUC
 lvi
