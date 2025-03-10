@@ -296,8 +296,13 @@
 	timer = 5 MINUTES
 	stressadd = 2
 	desc = span_red("Putrid stinking water!")
-
+  
 /datum/stressevent/unseemly
 	stressadd = 3
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
+
+/datum/stressevent/ritualfail
+	timer = 999 MINUTES
+	stressadd = 3
+	desc = span_red("The rot has spread. The sun is gone. We are doomed, aren't we?")
