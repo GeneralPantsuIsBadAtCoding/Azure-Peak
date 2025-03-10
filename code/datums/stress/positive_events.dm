@@ -53,6 +53,11 @@
 	stressadd = -1
 	desc = span_green("I'm stuffed! Feels good.")
 
+/datum/stressevent/hydrated
+	timer = 10 MINUTES
+	stressadd = -1
+	desc = span_green("My thirst is quenched. Invigorating.")
+
 /datum/stressevent/prebel
 	timer = 5 MINUTES
 	stressadd = -5
