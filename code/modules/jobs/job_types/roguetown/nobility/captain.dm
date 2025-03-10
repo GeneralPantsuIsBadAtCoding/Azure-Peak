@@ -1,5 +1,5 @@
 /datum/job/roguetown/captain
-	title = "Guard Captain"
+	title = "Knight Captain" //The Knight Captain is clearly not drawn from the ranks of guardsmen, or sergeants. They're drawn from the Knightly ranks and should be treated as such.
 	flag = GUARD_CAPTAIN
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -40,18 +40,21 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.cloak, /obj/item/clothing/cloak/cape/guard))
+		if(istype(H.cloak, /obj/item/clothing/cloak/stabard))
 			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
 			if(index)
 				index = copytext(H.real_name, 1,index)
 			if(!index)
 				index = H.real_name
-			S.name = "captain cape ([index])"
+			S.name = "Captain Tabard ([index])"
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
-		H.real_name = "Captain [prev_real_name]"
-		H.name = "Captain [prev_name]"
+		var/honorary = "Ser"
+		if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+			honorary = "Dame"
+		H.real_name = "[honorary] [prev_real_name]"
+		H.name = "[honorary] [prev_name]"
 
 		for(var/X in peopleknowme)
 			for(var/datum/mind/MF in get_minds(X))
@@ -65,7 +68,7 @@
 
 /datum/advclass/captain/infantry
 	name = "Infantry Captain"
-	tutorial = "You've fought shoulder to shoulder with the realm's worthiest while embedded directly within \
+	tutorial = "You've fought shoulder to shoulder with the realm's worthiest Knights while embedded directly within \
 	massed infantry formations. As a peerless armed combatant and tactician both, you are a formidable presence \
 	on any battlefield."
 	outfit = /datum/outfit/job/roguetown/captain/infantry
@@ -73,7 +76,6 @@
 
 /datum/outfit/job/roguetown/captain/infantry/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
@@ -111,6 +113,7 @@
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	H.adjust_blindness(-3)
 	var/weapons = list(
@@ -144,11 +147,24 @@
 		if("Sabre & Shield")
 			beltr = /obj/item/rogueweapon/sword/sabre
 			backl = /obj/item/rogueweapon/shield/tower/metal
+	var/helmets = list(
+		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
 
 /datum/advclass/captain/cavalry
 	name = "Cavalry Captain"
 	tutorial = "As the first among finest you ride at the speartip of cavalier forces, barreling saiga and blades through \
-	the soft flanks of enemy formations."
+	the soft flanks and hard fronts of enemy formations, remember Agincourt, and do not hit the dirt below."
 	outfit = /datum/outfit/job/roguetown/captain/cavalry
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_CAPTAIN)
@@ -193,10 +209,11 @@
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	H.adjust_blindness(-3)
 	var/weapons = list(
-		"Sword & Recurve Bow",
+		"Bastard Sword & Recurve Bow",
 		"Mace & Crossbow",
 		"Spear & Shield",
 		"Sabre & Shield",
@@ -204,8 +221,8 @@
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
-		if("Sword & Recurve Bow")
-			r_hand = /obj/item/rogueweapon/sword
+		if("Bastard Sword & Recurve Bow")
+			r_hand = /obj/item/rogueweapon/sword/long
 			beltr = /obj/item/quiver/arrows
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 		if("Mace & Crossbow")
@@ -218,6 +235,19 @@
 		if("Sabre & Shield")
 			beltr = /obj/item/rogueweapon/sword/sabre
 			backl = /obj/item/rogueweapon/shield/tower/metal
+	var/helmets = list(
+		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
 
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"

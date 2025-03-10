@@ -114,7 +114,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return		
@@ -176,7 +176,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return
@@ -207,7 +207,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return
@@ -265,7 +265,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return
