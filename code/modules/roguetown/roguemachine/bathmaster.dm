@@ -200,3 +200,42 @@
 //	held_items[/obj/item/dmusicbox] = list("PRICE" = rand(444,777),"NAME" = "Music Box")
 
 #undef UPGRADE_NOTAX
+
+SUBSYSTEM_DEF(BMtreasury)
+	name = "BMtreasury"
+	wait = 1
+	priority = FIRE_PRIORITY_WATER_LEVEL
+	var/treasury_value = 0
+	var/multiple_item_penalty = 0.66
+	var/interest_rate = 0.30 // double the interest, since it's gonna be much harder for the BMaster to get valuables.
+	var/next_treasury_check = 0
+	var/list/vault_accounting = list()
+
+/datum/controller/subsystem/BMtreasury/proc/add_to_vault(var/obj/item/I)
+	if(I.get_real_price() <= 0 || istype(I, /obj/item/roguecoin))
+		return
+	if(!I.submitted_to_stockpile)
+		I.submitted_to_stockpile = TRUE
+	if(I.type in vault_accounting)
+		vault_accounting[I.type] *= multiple_item_penalty
+	else
+		vault_accounting[I.type] = I.get_real_price()
+	return (vault_accounting[I.type]*interest_rate)
+
+/datum/controller/subsystem/BMtreasury/fire(resumed = 0)
+	if(world.time > next_treasury_check)
+		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
+		vault_accounting = list()
+		var/area/A = GLOB.areas_by_type[/area/rogue/outdoors/exposed/bath/vault]
+		var/amt_to_generate = 0
+		for(var/obj/item/I in A)
+			if(!isturf(I.loc))
+				continue
+			amt_to_generate += add_to_vault(I)
+		for(var/obj/structure/closet/C in A)
+			for(var/obj/item/I in C.contents)
+				amt_to_generate += add_to_vault(I)
+		amt_to_generate = round(amt_to_generate)
+		for(var/obj/structure/roguemachine/bathvend/brassface)
+			brassface.budget += amt_to_generate // goes directly into BRASSFACE rather than into any account.
+		send_ooc_note("Income from smuggling hoard to the BRASSFACE: +[amt_to_generate]", job = list("Bathmaster"))
