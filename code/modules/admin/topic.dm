@@ -1114,7 +1114,7 @@
 			return
 
 		usr.client.smite(H)
-
+/*
 	else if(href_list["CentComReply"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1135,7 +1135,7 @@
 
 		var/mob/M = locate(href_list["HeadsetMessage"])
 		usr.client.admin_headset_message(M)
-
+*/
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
 			return

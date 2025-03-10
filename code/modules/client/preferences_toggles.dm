@@ -515,6 +515,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set name = "Show/Hide Radio Chatter"
 	set category = "Prefs - Admin"
 	set desc = ""
+	set hidden = 1
 	if(!holder)
 		return
 	prefs.chat_toggles ^= CHAT_RADIO
@@ -545,7 +546,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Prayer Visibility", "[prefs.chat_toggles & CHAT_PRAYER ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_prayer_sound()
-	set name = "Hear/Silence Prayer Sounds"
+	set name = "Toggle Prayer Sounds"
 	set category = "Prefs - Admin"
 	set desc = ""
 	if(!holder)
@@ -556,7 +557,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Prayer Sounds", "[usr.client.prefs.toggles & SOUND_PRAYERS ? "Enabled" : "Disabled"]"))
 
 /client/proc/colorasay()
-	set name = "Set Admin Say Color"
+	set name = "Set Asay Color"
 	set category = "Prefs - Admin"
 	set desc = ""
 	if(!holder)

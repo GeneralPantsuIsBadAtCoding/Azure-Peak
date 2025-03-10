@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 /client/proc/outfit_manager()
 	set category = "Debug"
 	set name = "Outfit Manager"
+	set hidden = 1 //Not currently functional on RT codebase
 
 	if(!check_rights(R_DEBUG))
 		return

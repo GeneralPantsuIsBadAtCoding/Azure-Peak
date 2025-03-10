@@ -771,7 +771,7 @@
 	playsound_local(src, 'sound/misc/click.ogg', 100)
 
 /client/proc/hearallasghost()
-	set category = "GameMaster"
+	set category = "Prefs - Admin"
 	set name = "HearAllAsAdmin"
 	if(!holder)
 		return

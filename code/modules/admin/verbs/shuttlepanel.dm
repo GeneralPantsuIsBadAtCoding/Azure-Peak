@@ -1,5 +1,5 @@
 /datum/admins/proc/open_shuttlepanel()
-	set category = "Admin"
+	set category = "-Admin-"
 	set name = "Shuttle Manipulator"
 	set desc = ""
 	set hidden = 1

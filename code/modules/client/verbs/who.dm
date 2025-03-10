@@ -96,7 +96,7 @@
 	to_chat(src, msg)
 
 /client/proc/adminwho()
-	set category = "Admin"
+	set category = "-Admin-"
 	set name = "Adminwho"
 	set desc = "Lists all admins currently online."
 
