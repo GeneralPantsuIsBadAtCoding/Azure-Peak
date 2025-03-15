@@ -130,6 +130,12 @@
 	created_item = /obj/item/rogueweapon/katar
 	craftdiff = 2
 
+/datum/anvil_recipe/weapons/steel/steelknuckle
+	name = "Steel Knuckle"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/knuckles
+	craftdiff = 2
+
 /datum/anvil_recipe/weapons/steel/rapier
 	name = "Rapier"
 	req_bar = /obj/item/ingot/steel
@@ -423,6 +429,12 @@
 	additional_items = list(/obj/item/ingot/bronze, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/spear/bronze
 	craftdiff = 0
+
+/datum/anvil_recipe/weapons/bronze/bronzeknuckle
+	name = "Bronze Knuckle"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
+	craftdiff = 2
 
 /// SHIELDS
 /datum/anvil_recipe/weapons/steel/kiteshield
