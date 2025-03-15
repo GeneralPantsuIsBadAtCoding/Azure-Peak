@@ -46,4 +46,10 @@
 				H.add_stress(stress_to_apply)
 				if (prob(50))
 					to_chat(H, stress_to_apply.desc)
+			
+			// Apply Xylix buff to those with the trait who hear the music
+			// Only apply if the hearer is not the one playing the music
+			if (H != owner && HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy))
+				H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+				to_chat(H, span_info("The music brings a smile to my face, and fortune to my steps!"))
 
