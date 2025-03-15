@@ -1,4 +1,3 @@
-
 /datum/crafting_recipe/roguetown/leather
 	tools = list(/obj/item/needle)
 	structurecraft = /obj/machinery/tanningrack
@@ -222,6 +221,15 @@
 	result = /obj/item/clothing/head/roguetown/helmet/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	sellprice = 27
+
+/datum/crafting_recipe/roguetown/leather/helmet/advanced
+	name = "hardened leather helmet"
+	result = /obj/item/clothing/head/roguetown/helmet/leather/advanced
+	reqs = list(/obj/item/natural/hide/cured = 1,
+				/obj/item/natural/fibers = 1,
+				/obj/item/reagent_containers/food/snacks/tallow = 1)
+	craftdiff = 4
+	sellprice = 40
 
 /datum/crafting_recipe/roguetown/leather/bandana
 	name = "leather bandana"
