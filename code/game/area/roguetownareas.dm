@@ -616,6 +616,10 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "bath"
 	droning_sound = 'sound/music/area/bath.ogg'
 
+/area/rogue/outdoors/exposed/bath/vault
+	name = "Bathmaster vault"
+	icon_state = "bath"
+
 /area/rogue/indoors/town/garrison
 	name = "Garrison"
 	icon_state = "garrison"

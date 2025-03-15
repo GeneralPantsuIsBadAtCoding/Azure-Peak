@@ -8530,7 +8530,7 @@
 "giB" = (
 /obj/item/reagent_containers/glass/cup/golden,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "giU" = (
 /obj/structure/stairs{
 	dir = 4
@@ -10374,7 +10374,7 @@
 "hHp" = (
 /obj/structure/closet/crate/chest/gold,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "hHv" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/cooking/pan,
@@ -11205,7 +11205,7 @@
 	lockid = "nightman"
 	},
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "iqf" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
@@ -17109,7 +17109,7 @@
 "mxK" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "mxS" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -22320,6 +22320,10 @@
 /obj/item/natural/cloth,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/town)
+"qev" = (
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/tile,
+/area/rogue/outdoors/exposed/bath/vault)
 "qey" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave)
@@ -23710,7 +23714,7 @@
 /obj/item/clothing/ring/silver,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "rfP" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/grass,
@@ -23894,7 +23898,7 @@
 /obj/structure/closet/crate/chest/gold,
 /obj/item/roguegem/violet,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "rmL" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -26526,6 +26530,9 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)
+"tin" = (
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/outdoors/exposed/bath/vault)
 "tiq" = (
 /obj/machinery/light/rogue/torchholder/c,
 /obj/structure/bed/rogue,
@@ -27355,6 +27362,9 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
+"tKo" = (
+/turf/open/floor/rogue/tile,
+/area/rogue/outdoors/exposed/bath/vault)
 "tKw" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/ruinedwood{
@@ -41576,10 +41586,10 @@ kAA
 kAA
 kAA
 kAA
-kAA
-kAA
-kAA
-kAA
+tin
+tin
+tin
+tin
 qNG
 kyn
 xpt
@@ -41733,10 +41743,10 @@ vXP
 kAA
 lWY
 qUX
-kAA
-qPZ
+tin
+qev
 giB
-kAA
+tin
 mKe
 lmT
 xpt
@@ -41891,9 +41901,9 @@ nJK
 ktR
 ktR
 mxK
-bLX
-bLX
-kAA
+tKo
+tKo
+tin
 qNG
 bBD
 xpt
@@ -42048,9 +42058,9 @@ kAA
 ktR
 ktR
 ipT
-bLX
+tKo
 hHp
-kAA
+tin
 bBD
 bBD
 xpt
@@ -42205,9 +42215,9 @@ kAA
 icN
 icN
 mxK
-bLX
-bLX
-kAA
+tKo
+tKo
+tin
 gdw
 mEu
 oZk
@@ -42361,10 +42371,10 @@ icN
 kAA
 qwu
 xkR
-kAA
+tin
 rfI
 rmy
-kAA
+tin
 gdw
 gHf
 xpt
@@ -42518,10 +42528,10 @@ kAA
 kAA
 kAA
 kAA
-kAA
-kAA
-kAA
-kAA
+tin
+tin
+tin
+tin
 gdw
 gHf
 xpt
