@@ -157,3 +157,9 @@
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
 	craftdiff = 6
+
+/datum/anvil_recipe/roguetown/sewing/goldanklet
+	name = "exotic silk anklets"
+	req_bar =  /obj/item/ingot/gold
+	created_item = list (/obj/item/clothing/shoes/roguetown/anklets)
+	craftdiff = 6

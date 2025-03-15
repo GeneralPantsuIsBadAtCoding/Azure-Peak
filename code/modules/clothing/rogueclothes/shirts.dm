@@ -218,7 +218,7 @@
 	icon = 'icons/roguetown/clothing/shirts_gown.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_gown.dmi'
 	name = "spring gown"
-	desc = "A delicate gown that captures the essence of the season’s renewal."
+	desc = "A delicate gown that captures the essence of the season's renewal."
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 	icon_state = "springgown"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_gown.dmi'
@@ -557,3 +557,14 @@
 	desc = "A dress woven from fine silks, with golden threads inlaid in it. Made for that special day."
 	icon_state = "weddingdress"
 	item_state = "weddingdress"
+
+/obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
+	name = "exotic silk bra"
+	desc = "An exquisite bra crafted from the finest silk and adorned with gold rings. It leaves little to the imagination."
+	icon_state = "exoticsilkbra"
+	item_state = "exoticsilkbra"
+	body_parts_covered = CHEST
+	boobed = TRUE
+	sewrepair = TRUE
+	flags_inv = null
+	slot_flags = ITEM_SLOT_SHIRT
