@@ -1,7 +1,6 @@
-
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	name = "crossbow"
-	desc = "A deadly weapon that shoots a bolt with terrific power."
+	desc = "A deadly weapon that shoots a bolt with terrific power. Left-click while holding to cock and load a bolt from your quiver."
 	icon = 'icons/roguetown/weapons/32.dmi'
 	icon_state = "crossbow0"
 	item_state = "crossbow"
@@ -104,6 +103,42 @@
 			if(do_after(user, 50 - user.STASTR, target = user))
 				playsound(user, 'sound/combat/Ranged/crossbow_medium_reload-01.ogg', 100, FALSE)
 				cocked = TRUE
+				
+				// After cocking, check for a quiver and load a bolt
+				if(cocked)
+					var/obj/item/quiver/quiver = null
+					
+					// Check if the user is holding a quiver in their other hand
+					if(istype(user.get_inactive_held_item(), /obj/item/quiver))
+						quiver = user.get_inactive_held_item()
+					
+					// If not holding a quiver, check inventory for one
+					if(!quiver)
+						for(var/obj/item/quiver/Q in user.contents)
+							if(Q.arrows.len)
+								quiver = Q
+								break
+					
+					if(quiver)
+						var/obj/item/ammo_casing/caseless/rogue/bolt/bolt = null
+						
+						// Find a bolt in the quiver
+						for(var/obj/B in quiver.arrows)
+							if(istype(B, /obj/item/ammo_casing/caseless/rogue/bolt))
+								bolt = B
+								break
+						
+						if(bolt)
+							// Load the bolt
+							quiver.arrows -= bolt
+							if(!chambered)
+								chambered = bolt
+								bolt.forceMove(src)
+								to_chat(user, span_notice("I load a bolt from my quiver."))
+								playsound(src, load_sound, 50, TRUE)
+								quiver.update_icon()
+							else
+								to_chat(user, span_warning("I can't load a bolt right now!"))
 		else
 			to_chat(user, span_warning("I carefully de-cock the crossbow."))
 			cocked = FALSE

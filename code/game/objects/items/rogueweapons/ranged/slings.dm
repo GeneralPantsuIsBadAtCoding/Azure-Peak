@@ -58,7 +58,7 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 	name = "sling"
-	desc = "Twisted fibers manifest into a strung pouch capable of hurling stones afar."
+	desc = "Twisted fibers manifest into a strung pouch capable of hurling stones afar. Left-click while holding to load a stone from your pouch."
 	icon = 'icons/roguetown/weapons/32.dmi'
 	icon_state = "sling"
 	item_state = "sling"
@@ -159,6 +159,57 @@
 		for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 			qdel(CB) //taking the temporary bullet out
 		icon_state = "sling" //manually making it look empty
+		return
+	
+	// If no stone is loaded, check for a pouch and load a stone
+	var/obj/item/quiver/sling/pouch = null
+	
+	// Check if the user is holding a pouch in their other hand
+	if(istype(user.get_inactive_held_item(), /obj/item/quiver/sling))
+		pouch = user.get_inactive_held_item()
+	
+	// If not holding a pouch, check inventory for one
+	if(!pouch)
+		for(var/obj/item/quiver/sling/P in user.contents)
+			if(P.arrows.len)
+				pouch = P
+				break
+	
+	if(!pouch)
+		to_chat(user, span_warning("I don't have a pouch with stones!"))
+		return
+	
+	if(!pouch.arrows.len)
+		to_chat(user, span_warning("My pouch is empty!"))
+		return
+	
+	var/obj/item/natural/stone/stone = null
+	
+	// Find a stone in the pouch
+	for(var/obj/S in pouch.arrows)
+		if(istype(S, /obj/item/natural/stone))
+			stone = S
+			break
+	
+	if(!stone)
+		to_chat(user, span_warning("There are no stones in my pouch!"))
+		return
+	
+	// Load the stone
+	if(temp_stone == null)
+		bonus_stone_force = stone.force - 10 // Base stone force is 10
+		temp_stone = stone
+		pouch.arrows -= stone
+		user.transferItemToLoc(stone, temp_stone)
+		var/obj/item/ammo_casing/caseless/rogue/sling_bullet/bullet = new /obj/item/ammo_casing/caseless/rogue/sling_bullet()
+		chambered = bullet
+		bullet.forceMove(src)
+		to_chat(user, span_notice("I load a stone from my pouch."))
+		playsound(src, load_sound, 50, TRUE)
+		update_icon()
+		pouch.update_icon()
+		return
+	
 	..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/sling/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
