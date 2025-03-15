@@ -57,9 +57,21 @@
 				mod = 6
 
 	var/spdchange = (10-STASPD)*0.1
-	spdchange = clamp(spdchange, -0.5, 1)  //if this is not clamped, maniacs will run at unfathomable speed
+
+	//Checks armor weight, impacts speed - Port of Stonekeep code by Dova
+	var/armorWeight = check_armor_weight()
+	if(armorWeight == "Heavy")
+		spdchange = spdchange + 0.1
+		if(!check_armor_skill())
+			spdchange = spdchange + 0.2		//Extra +0.2 slowdown, so roughly 0.3 if you wear heavy armor without the training.
+	if(armorWeight == "Medium")
+		spdchange = spdchange + 0			//No change, would be too punishing. Mediums aren't that great as is.
+		if(!check_armor_skill())
+			spdchange = spdchange + 0.2		//Extra +0.2 slowdown, so roughly 0.2 if you wear medium armor without the training.
+	
+	//maximum speed is achieved at 15 speed. Don't fo higher than that or you will have insanity.
+	spdchange = clamp(spdchange, -0.5, 1)  //if this is not clamped, it can make you go faster than you should be able to.
 	mod = mod+spdchange
-	//maximum speed is achieved at 15spd, everything else results in insanity
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
 
 /mob/living/proc/update_turf_movespeed(turf/open/T)
