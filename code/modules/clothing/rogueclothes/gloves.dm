@@ -210,3 +210,18 @@
 	desc = "Paper and cloth bandages enscrybed with powerful naledian runes. They do an ample job of protecting their user's hands in combat."
 	icon_state = "clothwraps"
 	item_state = "clothwraps"
+
+//------------ BLACKSTEEL END ---------------------
+
+/obj/item/clothing/gloves/roguetown/elven_gloves
+	name = "woad elven gloves"
+	desc = "The insides are lined with soft, living leaves and soil. They wick away moisture easily."
+	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
+	icon_state = "welfhand"
+	item_state = "welfhand"
+	armor = list("blunt" = 80, "slash" = 10, "stab" = 20, "piercing" = 100, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
+	resistance_flags = FIRE_PROOF
+	blocksound = SOFTHIT
+	max_integrity = 200

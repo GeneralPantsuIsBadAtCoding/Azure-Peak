@@ -243,7 +243,8 @@
 		if(L.m_intent == MOVE_INTENT_SNEAK)
 			return
 		else
-			playsound(A.loc, "plantcross", 100, FALSE, -1)
+			if(!(HAS_TRAIT(L, TRAIT_AZURENATIVE) && L.m_intent != MOVE_INTENT_RUN))
+				playsound(A.loc, "plantcross", 100, FALSE, -1)
 			var/oldx = A.pixel_x
 			animate(A, pixel_x = oldx+1, time = 0.5)
 			animate(pixel_x = oldx-1, time = 0.5)

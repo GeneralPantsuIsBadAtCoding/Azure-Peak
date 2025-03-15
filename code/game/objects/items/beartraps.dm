@@ -49,7 +49,7 @@
 			BP.update_disabled()
 			C.apply_damage(trap_damage, BRUTE, def_zone)
 			C.update_sneak_invis(TRUE)
-			C.consider_ambush()
+			C.consider_ambush(always = TRUE)
 			return FALSE
 		else
 			var/used_time = 10 SECONDS
@@ -75,7 +75,7 @@
 				BP.update_disabled()
 				C.apply_damage(trap_damage, BRUTE, def_zone)
 				C.update_sneak_invis(TRUE)
-				C.consider_ambush()
+				C.consider_ambush(always = TRUE)
 				return FALSE
 	..()
 
@@ -88,7 +88,7 @@
 		if(isliving(user))
 			var/mob/living/L = user
 			L.update_sneak_invis(TRUE)
-			L.consider_ambush()
+			L.consider_ambush(always = TRUE)
 		return
 	..()
 
@@ -179,7 +179,7 @@
 						"<span class='danger'>I trigger \the [src]!</span>")
 				if(L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", damage = trap_damage)))
 					L.Stun(80)
-				L.consider_ambush()
+				L.consider_ambush(always = TRUE)
 	..()
 
 // When craftable beartraps get added, make these the ones crafted.

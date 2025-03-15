@@ -402,4 +402,10 @@
 							'sound/items/jinglebell3.ogg',
 							'sound/items/jinglebell4.ogg',
 							)
+			if(SFX_WOOD_ARMOR)
+				soundin = pick(
+							'sound/foley/footsteps/armor/woodarmor (1).ogg',
+							'sound/foley/footsteps/armor/woodarmor (2).ogg',
+							'sound/foley/footsteps/armor/woodarmor (3).ogg',
+							)
 	return soundin

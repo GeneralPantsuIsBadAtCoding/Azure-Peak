@@ -1790,3 +1790,18 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_head()
 		user.update_fov_angles()
+
+/obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
+	name = "woad elven helm"
+	desc = "An assembly of woven trunk, kept alive by ancient song, now twisted and warped for battle and scorn."
+	armor = list("blunt" = 100, "slash" = 40, "stab" = 20, "piercing" = 100, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
+	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
+	icon_state = "welfhead"
+	item_state = "welfhead"
+	block2add = FOV_BEHIND
+	bloody_icon = 'icons/effects/blood64.dmi'
+	smeltresult = /obj/item/rogueore/coal
+	max_integrity = 300
+	blocksound = SOFTHIT

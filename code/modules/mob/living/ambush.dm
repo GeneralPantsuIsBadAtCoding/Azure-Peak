@@ -10,8 +10,10 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 15 SECONDS) // Cooldown for each in
 		return FALSE
 	return ambushable
 
-/mob/living/proc/consider_ambush()
+/mob/living/proc/consider_ambush(always = FALSE)
 	if(prob(100 - GLOB.ambush_chance_pct))
+		return
+	if(HAS_TRAIT(src, TRAIT_AZURENATIVE) && !always)
 		return
 	if(mob_timers["ambush_check"])
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)

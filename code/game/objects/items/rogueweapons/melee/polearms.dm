@@ -40,6 +40,10 @@
     damfactor = 1.0
     chargetime = 1
 
+/datum/intent/spear/cut/glaive
+	damfactor = 1.2
+	chargetime = 0
+
 /datum/intent/spear/cut/bardiche/scythe
 	reach = 2
 
@@ -540,7 +544,7 @@
 
 /obj/item/rogueweapon/halberd/glaive
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
-	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop, SPEAR_BASH)
+	gripped_intents = list(/datum/intent/spear/thrust/glaive, /datum/intent/spear/cut/glaive, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 	name = "glaive"
 	desc = "A curved blade on a pole, specialised in durability and defence, but expensive to manufacture."
 	icon_state = "glaive"
@@ -616,6 +620,11 @@
 /datum/intent/spear/thrust/eaglebeak
 	penfactor = 20
 	damfactor = 0.9
+
+/datum/intent/spear/thrust/glaive
+	penfactor = 50
+	damfactor = 1.1
+	chargetime = 0
 
 /datum/intent/mace/smash/eaglebeak
 	reach = 2

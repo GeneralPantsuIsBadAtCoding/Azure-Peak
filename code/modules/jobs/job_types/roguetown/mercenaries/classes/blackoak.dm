@@ -12,33 +12,57 @@
 
 /datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
 	..()
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	cloak = /obj/item/clothing/cloak/half/red
-	head = /obj/item/clothing/head/roguetown/helmet/sallet/elven
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
+	cloak = /obj/item/clothing/cloak/forrestercloak
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
+	gloves = /obj/item/clothing/gloves/roguetown/elven_gloves
 	belt = /obj/item/storage/belt/rogue/leather/black
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/elven
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/elven_plate
 	backl = /obj/item/storage/backpack/rogue/satchel
-	r_hand = /obj/item/rogueweapon/halberd/glaive
-	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	backr = /obj/item/gwstrap
-	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor)
-	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-		H.change_stat("endurance", 2)
-		H.change_stat("constitution", 2)
-		H.change_stat("strength", 1)
-		H.change_stat("speed", 1)
+	var/classes = list("Melee (Polearms)", "Ranged (Bows)")
+	var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
+	switch(classchoice)
+		if("Melee (Polearms)")
+			if(H.mind)
+				H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+				H.change_stat("endurance", 2)
+				H.change_stat("constitution", 1)
+				H.change_stat("strength", 3)
+
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
+				r_hand = /obj/item/rogueweapon/halberd/glaive
+				backr = /obj/item/gwstrap
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor)
+		if("Ranged (Bows)")
+			if(H.mind)
+				H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+				H.change_stat("perception", 3)
+				H.change_stat("speed", 3)
+
+				beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				beltl = /obj/item/quiver/arrows
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/steel)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
