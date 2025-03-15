@@ -899,3 +899,13 @@
         /obj/item/reagent_containers/glass/bowl = 1,
         /obj/item/reagent_containers/food/snacks/grown/berries/rogue = 3
     )
+
+/datum/crafting_recipe/roguetown/dwarvenpen
+	name = "dwarven pen"
+	result = /obj/item/dwarvenpen
+	reqs = list(/obj/item/ingot/steel = 1,
+				/obj/item/ingot/silver = 1,
+				/obj/item/roguegem = 1)
+	tools = list(/obj/item/rogueweapon/hammer)
+	skillcraft = /datum/skill/craft/blacksmithing
+	craftdiff = 3
