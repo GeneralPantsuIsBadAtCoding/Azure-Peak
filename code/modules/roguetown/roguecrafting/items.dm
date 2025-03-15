@@ -899,3 +899,7 @@
         /obj/item/reagent_containers/glass/bowl = 1,
         /obj/item/reagent_containers/food/snacks/grown/berries/rogue = 3
     )
+/datum/crafting_recipe/splint
+	name = "Splint"
+	result = /obj/item/medical/splint
+	reqs = list(/obj/item/natural/cloth = 2)
