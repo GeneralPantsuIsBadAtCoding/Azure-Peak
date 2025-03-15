@@ -36,7 +36,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)		//Trust me, they'll need it due to stamina drain on their base-sword.
 			H.change_stat("strength", 2)	//Should give minimum required stats to use Zweihander
 			H.change_stat("endurance", 3)
-			H.change_stat("constitution", 2)
+			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)		//They get heavy armor now + sword option; so lower speed.
 			r_hand = /obj/item/rogueweapon/greatsword/grenz
@@ -59,7 +59,7 @@
 			H.change_stat("strength", 2) //same str, worse end, more speed - actually a good tradeoff, now.
 			H.change_stat("endurance", 2)
 			H.change_stat("constitution", 2)
-			H.change_stat("perception", 1)
+			H.change_stat("perception", -1)
 			H.change_stat("speed", 1)
 			r_hand = /obj/item/rogueweapon/halberd
 

@@ -25,7 +25,8 @@
 		"RED" = "#ED6762",
 		"ORANGE" = "#EDAF6D",
 		"PINK" = "#EDC1D5",
-		"MAROON" = "#5F1F34"
+		"MAROON" = "#5F1F34",
+		"BLACK" = "#242526"
 	))
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
@@ -66,7 +67,8 @@
 				H.change_stat("intelligence", 1)
 				H.change_stat("perception", 1)
 				H.mind.adjust_spellpoints(1)
-			H.change_stat("strength", -1)
+			H.change_stat("endurance", 2)
+			H.change_stat("speed", 2)
 			H.change_stat("constitution", -1)
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", 3)
@@ -81,30 +83,34 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/hierophant
 			shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
 			pants = /obj/item/clothing/under/roguetown/trou/leather
-			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife)
+			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife,/obj/item/spellbook_unfinished/pre_arcyne)
 
 		if("Pontifex")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Naledi Pontifex, a warrior trained into a hybridized style of movement-controlling magic and hand-to-hand combat. Though your abilities in magical fields are lacking, you are far more dangerous than other magi in a straight fight. You manifest your calm, practiced skill into a killing intent that takes the shape of an arcyne blade."))
+			to_chat(H, span_warning("You are a Naledi Pontifex, a scout and spy trained into a hybridized style of movement-controlling shadow magic and hand-to-hand combat. Though your abilities in magical fields are lacking, you are more than equipped to defend yourself should the dark fail to keep you safe."))
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 			H.mind.adjust_spellpoints(-6) //The - is intended.
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 2)
+			H.change_stat("strength", 3)
+			H.change_stat("constitution", -1)
+			H.change_stat("endurance", 1)
 			H.change_stat("perception", -1)
 			H.change_stat("speed", 2)
 			H.grant_language(/datum/language/celestial)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // In an attempt to make them less Possibly Wildly OP, they can't freely pick their spells. Casts at apprentice level, but doesn't get the spellbuy points it'd provide.
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
+			H.mind.AddSpell(new/obj/effect/proc_holder/spell/invoked/projectile/repel)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/shadowstep)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 			head = /obj/item/clothing/head/roguetown/roguehood/pontifex
@@ -113,28 +119,28 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex
 			shirt = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
 			pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
-			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife)
+			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/lockpick = 1,/obj/item/rogueweapon/huntingknife)
 
 		if("Vizier")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Naledi Vizier. You are a healer, trained in both physick and holy practices. Likely of a learned or upper class background, you are a supporting fellow, meant to heal your allies with miracles and surgeries- though you are no stranger to combat."))
+			to_chat(H, span_warning("You are a Naledi Vizier. You are a healer, trained in both physick and holy practices. Likely of a learned or upper class background, you are a supporting fellow, meant to heal your allies with miracles and surgeries."))
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 			H.change_stat("strength", 1)
-			H.change_stat("endurance", 2)
+			H.change_stat("endurance", 1)
 			H.change_stat("intelligence", 2)
-			H.change_stat("speed", 3)
+			H.change_stat("speed", 2)
 			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
 
@@ -157,6 +163,7 @@
 			C.grant_spells_templar(H)
 			H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
 
 
 

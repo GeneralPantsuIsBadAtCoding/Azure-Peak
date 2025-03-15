@@ -41,7 +41,7 @@
 			H.change_stat("endurance", 3)
 			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
-			H.change_stat("speed", -2)	
+			H.change_stat("speed", -1)	
 
 			head = /obj/item/clothing/head/roguetown/helmet/bascinet/atgervi
 			gloves = /obj/item/clothing/gloves/roguetown/angle/atgervi
@@ -71,8 +71,10 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
 
 			H.change_stat("strength", 3) 
-			H.change_stat("endurance", 2)
+			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 2)
+			H.change_stat("intelligence", -1)
+			H.change_stat("perception", -1)
 			H.change_stat("speed", 1)
 
 			head = /obj/item/clothing/head/roguetown/helmet/leather/saiga/atgervi

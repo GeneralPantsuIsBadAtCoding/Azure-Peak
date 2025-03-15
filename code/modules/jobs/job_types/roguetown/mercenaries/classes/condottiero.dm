@@ -23,7 +23,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/navaja)
+	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/navaja, /obj/item/lockpick = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 5, TRUE) //Possibly too high, no idea.
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -41,7 +41,7 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
 		H.change_stat("endurance", 2)
 		H.change_stat("perception", 2)
-		H.change_stat("speed", 3)
+		H.change_stat("speed", 2)
 		H.change_stat("intelligence", 1)
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)

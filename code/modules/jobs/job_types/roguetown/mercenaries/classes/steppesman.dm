@@ -46,8 +46,6 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 	H.change_stat("perception", 3)
-	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 2)
 	H.change_stat("speed", 2)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
