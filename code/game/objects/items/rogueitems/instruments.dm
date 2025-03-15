@@ -256,8 +256,8 @@
 	"Gasgow's Reel" = 'sound/music/instruments/viola (5).ogg')
 
 /obj/item/rogue/instrument/vocals
-	name = "vocalist's talisman"
-	desc = "This talisman eminates a small shimmer of light. When held, it can amplify and even change a bard's voice."
+	name = "Musical talisman"
+	desc = "This talisman eminates a small shimmer of light. When held, it can amplify and even change sound."
 	icon_state = "vtalisman"
 	song_list = list("Harpy's Call (Feminine)" = 'sound/music/instruments/vocalsf (1).ogg',
 	"Necra's Lullaby (Feminine)" = 'sound/music/instruments/vocalsf (2).ogg',
