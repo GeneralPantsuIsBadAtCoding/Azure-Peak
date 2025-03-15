@@ -39,6 +39,38 @@
 	desc = "I'm a resident of Azure Peak. I have an account in the city's treasury and a home in the city."
 	added_traits = list(TRAIT_RESIDENT)
 
+/datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.mind?.assigned_role == "Adventurer")
+		// Find tavern area for spawning
+		var/area/spawn_area
+		for(var/area/A in world)
+			if(istype(A, /area/rogue/indoors/town/tavern))
+				spawn_area = A
+				break
+		
+		if(spawn_area)
+			// Find a suitable spawn point in the tavern
+			var/list/possible_spawns = list()
+			for(var/turf/T in spawn_area)
+				if(T && !T.density && !T.is_blocked_turf(TRUE))
+					possible_spawns += T
+			
+			// If we found suitable spawns, teleport the player there
+			if(length(possible_spawns))
+				var/turf/spawn_loc = pick(possible_spawns)
+				recipient.forceMove(spawn_loc)
+				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern."))
+
+/datum/virtue/utility/failed_squire
+	name = "Failed Squire"
+	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair."
+	added_traits = list(TRAIT_SQUIRE_REPAIR)
+	added_stashed_items = list("Worker's Hammer" = /obj/item/rogueweapon/hammer)
+	
+/datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
+	to_chat(recipient, span_notice("Though you failed to become a knight, your training in equipment maintenance and repair remains useful."))
+	to_chat(recipient, span_notice("You can retrieve your hammer from a tree, statue, or clock."))
+
 /datum/virtue/utility/linguist
 	name = "Intellectual"
 	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess."
