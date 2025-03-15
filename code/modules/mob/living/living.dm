@@ -744,6 +744,9 @@
 		clear_alert("not_enough_oxy")
 		reload_fullscreen()
 		remove_client_colour(/datum/client_colour/monochrome)
+		// Add message about struggling to recall death circumstances
+		to_chat(src, "<span class='notice'><b>As you return to life, you struggle to recall the circumstances of your death...</b></span>")
+		to_chat(src, "<span class='italic'>Your memories of your final moments are hazy and fragmented.</span>")
 		. = TRUE
 		if(mind)
 			if(admin_revive)
