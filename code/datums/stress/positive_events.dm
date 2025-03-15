@@ -198,3 +198,11 @@
 	timer = 30 MINUTES
 	stressadd = -5
 	desc = span_green("All my problems have washed away!")
+
+/datum/stressevent/noble_bowed_to
+	timer = 5 MINUTES
+	stressadd = -3
+	desc = span_green("Someone showed me the respect I deserve as a noble.")
+
+/datum/stressevent/noble_bowed_to/can_apply(mob/living/user)
+	return HAS_TRAIT(user, TRAIT_NOBLE)

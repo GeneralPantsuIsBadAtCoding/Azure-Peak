@@ -249,3 +249,17 @@
 
 	if(intentional && HAS_TRAIT(user, TRAIT_EMOTEMUTE))
 		return FALSE
+
+/datum/emote/proc/get_target(mob/user, list/params)
+	if(!params.len)
+		return null
+	
+	var/target_name = params[1]
+	var/mob/target = null
+	
+	for(var/mob/M in view(user))
+		if(M.name == target_name)
+			target = M
+			break
+	
+	return target
