@@ -12,11 +12,6 @@
 	damfactor = 1.1
 	item_d_type = "slash"
 
-/datum/intent/sword/cut/sabre
-	clickcd = 10
-
-/datum/intent/sword/cut/falx
-	penfactor = 20
 /datum/intent/sword/thrust
 	name = "stab"
 	icon_state = "instab"
@@ -53,6 +48,7 @@
 	swingdelay = 8
 	damfactor = 1.0
 	item_d_type = "slash"
+
 /datum/intent/sword/chop/falx
 	penfactor = 40
 //sword objs ฅ^•ﻌ•^ฅ
@@ -564,13 +560,26 @@
 	name = "sabre"
 	desc = "A swift saber. Parries realiantly and strikes swiftly"
 	icon_state = "saber"
-	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust)
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre)
 	gripped_intents = null
 	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 5
 	wdefense = 6
 	wbalance = 1
+
+/datum/intent/sword/cut/sabre
+	clickcd = 10		//Faster than sword by 2, slower than rapier stab by 2
+	damfactor = 1.15	//Opposite of rapier, 15% better than base
+
+/datum/intent/sword/thrust/sabre
+	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
+	damfactor = 0.9		//10% worse	than base
+	penfactor = 15		//5 less than base
+
+/obj/item/rogueweapon/sword/sabre/dec
+	icon_state = "decsaber"
+	sellprice = 140
 
 /obj/item/rogueweapon/sword/sabre/nockhopesh
 	name = "moonlight khopesh"
@@ -581,9 +590,8 @@
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/chop/falx)
 	max_integrity = 200
 
-/obj/item/rogueweapon/sword/sabre/dec
-	icon_state = "decsaber"
-	sellprice = 140
+/datum/intent/sword/cut/falx
+	penfactor = 20
 
 /obj/item/rogueweapon/sword/rapier
 	name = "rapier"
