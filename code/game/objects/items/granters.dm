@@ -226,6 +226,106 @@
 	icon_state ="scrolldarkred"
 	remarks = list("Mediolanum ventis..", "Sana damnatorum..", "Frigidus ossa mortuorum..")
 
+/obj/item/book/granter/spell/blackstone/acidsplash5e
+	name = "Scroll of Acid Splash"
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e
+	spellname = "Acid Splash"
+	icon_state ="scrolldarkred"
+	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
+
+/obj/item/book/granter/spell/blackstone/spitfire
+	name = "Scroll of Spitfire"
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/spitfire
+	spellname = "Spitfire"
+	icon_state ="scrollred"
+	remarks = list("Ignis et oleum..", "Flammam continere ad momentum..", "Flammam iactare..", "Sit flamma constructum..")
+
+/obj/item/book/granter/spell/blackstone/lesserknock
+	name = "Scroll of Lesser Knock"
+	spell = /obj/effect/proc_holder/spell/targeted/touch/lesserknock
+	spellname = "Lesser Knock"
+	icon_state ="scrollred"
+	remarks = list("Clavis vetusta portam..", "Perdita numquam..", "Manus tremens..")
+
+/obj/item/book/granter/spell/blackstone/repel
+	name = "Scroll of Repel"
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/repel
+	spellname = "Repel"
+	icon_state ="scrolldarkred"
+	remarks = list("Ventos adversos..", "Terra sibilat..", "Lapides vetusti..")
+
+
+/obj/item/book/granter/spell/blackstone/poisonspray5e
+	name = "Scroll of Aerosolize"
+	spell = /obj/effect/proc_holder/spell/invoked/poisonspray5e
+	spellname = "Aerosolize"
+	icon_state ="scrolldarkred"
+	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
+	
+
+/obj/item/book/granter/spell/blackstone/guidance
+	name = "Scroll of Guidance"
+	spell = /obj/effect/proc_holder/spell/invoked/guidance
+	spellname = "Guidance"
+	icon_state ="scrolldarkred"
+	remarks = list("Lux in tenebris..", "Passus certus umbras non timet..", "Anima viam scit..")
+
+/obj/item/book/granter/spell/blackstone/frostbolt
+	name = "Scroll of Frostbolt"
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/frostbolt
+	spellname = "Frostbolt"
+	icon_state ="scrolldarkred"
+	remarks = list("Gelum serpentibus..", "Crystallum in silentio..", "Nullum ardor glaciem..")
+
+/obj/item/book/granter/spell/blackstone/fortitude
+	name = "Scroll of Fortitude"
+	spell = /obj/effect/proc_holder/spell/invoked/fortitude
+	spellname = "Fortitude"
+	icon_state ="scrolldarkred"
+	remarks = list("Animus in adversis..", "Gravitas oneris..", "Vita renascitur..")
+
+/obj/item/book/granter/spell/blackstone/message
+	name = "Scroll of Message"
+	spell = /obj/effect/proc_holder/spell/self/message
+	spellname = "Message"
+	icon_state ="scrolldarkred"
+	remarks = list("Verba volant..", "Vincula inter mentes..", "Inter verba et silentium..")
+
+/obj/item/book/granter/spell/blackstone/ensnare
+	name = "Scroll of Ensnare"
+	spell = /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe
+	spellname = "Ensnare"
+	icon_state ="scrolldarkred"
+	remarks = list("Qui intrat..", "Radices in tenebris..", "Nexus occultus..")
+
+/obj/item/book/granter/spell/blackstone/forcewall_weak
+	name = "Scroll of Forcewall"
+	spell = /obj/effect/proc_holder/spell/invoked/forcewall_weak
+	spellname = "Forcewall"
+	icon_state ="scrolldarkred"
+	remarks = list("Murus non solum hostem..", "Manus invisibiles saxa invicem..", "Infracta moenia..")
+
+/obj/item/book/granter/spell/blackstone/featherfall
+	name = "Scroll of Featherfall"
+	spell = /obj/effect/proc_holder/spell/invoked/featherfall
+	spellname = "Featherfall"
+	icon_state ="scrolldarkred"
+	remarks = list("In silentio cadit..", "Alis levitas..", "Plumis taciti dolores..")
+
+/obj/item/book/granter/spell/blackstone/enlarge
+	name = "Scroll of Enlarge"
+	spell = /obj/effect/proc_holder/spell/invoked/enlarge
+	spellname = "Enlarge"
+	icon_state ="scrolldarkred"
+	remarks = list("Immensum agitur..", "Montes tremunt..", "Quantitas expanditur..")
+
+/obj/item/book/granter/spell/blackstone/leap
+	name = "Scroll of Leap"
+	spell = /obj/effect/proc_holder/spell/invoked/leap
+	spellname = "Leap"
+	icon_state ="scrolldarkred"
+	remarks = list("Altitudinem revelat..", "Cuius pedes in aere volant..", "In levitate audacia..")
+
 //scroll for giving the reader a spell point, this should be dungeon loot
 /obj/item/book/granter/spell_points
 	name = "Arcyne Insight"
