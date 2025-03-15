@@ -5,13 +5,14 @@
 	name = "Tiefling"
 	id = "tiefling"
 	desc = "<b>Tiefling</b><br>\
-	Tieflings, also known as \"Infernal-Spawn\" by the Dwarves, are a relatively new species in the lands. \
-	Having shown up sometime within the past two centuries, very little is known about their culture \
-	as many seem to seamlessly intergrate into whatever society they find themselves in. \
-	Despite this, Tieflings often cause strong disturbances wherever they go due to their fiendish appearances. \
-	Many have claimed that they are the spawn of a succubus (Or incubus) laying with a mortal. \
-	Due to this speculation, their species has suffered vast tragedy throughout their short history, \
-	facing harsh scrutiny, unfair judgement, and even outright genocide in the worst cases. This history of brutal treatment and prejudce has resulted in the damage of many a Tiefling's psyche, causing to most of their kind to seek a solitary life away from the judgemental eyes of others. Tieflings cannot reproduce with mortals, and as a result no half-breed exists. Tieflings tend to be extremely perceptive and paranoid, as luck is rarely on their side, and their unique biology makes them extremely susceptible to injury.<br>\
+	The offspring of demons with mortal races, a consequence of demonic incursions into the mortal realm and dark pacts. \
+	Their origins dating back to the demonic invasion of Archdevil Vheslyn who pillaged and ravaged the mortal lands and its people before being stopped by Psydon. \
+	These offspring of demon and mortal races came to be known as 'Tieflings', largely despised by most people for centuries for their unnatural origins and appearances. \
+	It was only recently that they became more tolerated, even if the Church still watches them with a weary eye. \
+	When a Tiefling has offspring, no matter the race of their partner, the child would always be a pureblooded Tiefling. \
+	The taint of their very being going back generations, and no amount of cleansing can be rid of it. \
+	As over a millennium a simple handful of Tieflings have created extended bloodlines linking back to their infernal progenitors. Some Tieflings embrace their demonic origin, while other shun it. \
+	No matter if they embrace their demonic ancestors or not, Tieflings have formed an importance upon their bloodline and family due to often being shunned and hunted through out time in which only those of their blood and kin they could truly trust. <br>\
 	(+1 Constitution, +1 Intelligence)"
 
 	skin_tone_wording = "Progenitor"
