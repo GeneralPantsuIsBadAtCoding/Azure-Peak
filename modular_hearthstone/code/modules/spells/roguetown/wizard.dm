@@ -228,7 +228,8 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/self/recall
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -1538,6 +1539,63 @@
 	if(!QDELETED(H))
 		REMOVE_TRAIT(H, TRAIT_MIRROR_MAGIC, TRAIT_GENERIC)
 		to_chat(H, span_warning("Your connection to mirrors fades away."))
+
+/obj/effect/proc_holder/spell/self/recall
+	name = "Recall"
+	desc = "Memorize your current location, allowing you to return to it after a delay."
+	school = "transmutation"
+	charge_type = "recharge"
+	charge_max = 3 MINUTES
+	charge_counter = 3 MINUTES
+	clothes_req = FALSE
+	cost = 1
+	invocation = "There's no place like home!"
+	invocation_type = "whisper"
+	cooldown_min = 3 MINUTES
+	associated_skill = /datum/skill/magic/arcane
+	xp_gain = TRUE
+	action_icon_state = "recall"
+	
+	var/turf/marked_location = null
+	var/recall_delay = 10 SECONDS
+
+/obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
+	if(!istype(user, /mob/living/carbon/human))
+		return
+		
+	var/mob/living/carbon/human/H = user
+	
+	// First cast - mark the location
+	if(!marked_location)
+		var/turf/T = get_turf(H)
+		marked_location = T
+		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
+		start_recharge()
+		return
+		
+	// Subsequent casts - begin channeling
+	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
+	if(do_after(H, recall_delay, target = H, progress = TRUE))
+		// Get any grabbed mobs
+		var/list/to_teleport = list(H)
+		if(H.pulling && isliving(H.pulling))
+			to_teleport += H.pulling
+			
+		// Teleport caster and grabbed mob if any
+		for(var/mob/living/L in to_teleport)
+			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+			
+		H.visible_message(span_warning("[H] vanishes in a swirl of energy!"))
+		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
+		
+		// Visual effects at both locations
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(3, marked_location)
+		smoke.start()
+		start_recharge()
+	else
+		to_chat(H, span_warning("Your concentration was broken!"))
+		revert_cast()
 
 
 
