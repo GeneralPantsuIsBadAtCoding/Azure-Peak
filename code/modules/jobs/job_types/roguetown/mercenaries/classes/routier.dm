@@ -7,7 +7,7 @@
 	allowed_races = NON_DWARVEN_RACE_TYPES
 	outfit = /datum/outfit/job/roguetown/mercenary/routier
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED)
 	cmode_music = 'sound/music/combat_routier.ogg'
 
 /datum/outfit/job/roguetown/mercenary/routier/pre_equip(mob/living/carbon/human/H)

@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/warscholar.ogg'
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED)
 
 /datum/outfit/job/roguetown/mercenary/warscholar
 	var/detailcolor

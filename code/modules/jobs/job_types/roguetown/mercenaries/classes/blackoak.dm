@@ -9,6 +9,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
 	category_tags = list(CTAG_MERCENARY)
+	traits_applied = list(TRAIT_STEELHEARTED)
 
 /datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
 	..()
