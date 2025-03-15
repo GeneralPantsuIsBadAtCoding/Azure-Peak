@@ -7,7 +7,7 @@
 	spawn_positions = 6
 
 	allowed_races = RACES_ALL_KINDS
-	allowed_patrons = ALL_ACOLYTE_PATRONS
+	allowed_patrons = ALL_ACOLYTE_PATRONS // This is now 1:1 with ALL_DIVINE_PATRONS, hooray.
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/monk
 	tutorial = "Chores, some more chores- Even more chores.. Oh how the life of a humble acolyte is exhausting… You have faith, but even you know you gave up a life of adventure for that of the security in the Church. Assist the Priest in their daily tasks, maybe today will be the day something interesting happens. (Currently Astrata, Eora, Noc, Necra, Abyssor, and Pestra are supported.)"
@@ -22,7 +22,7 @@
 	name = "Acolyte"
 	jobtype = /datum/job/roguetown/monk
 
-	allowed_patrons = list(/datum/patron/divine/pestra, /datum/patron/divine/astrata, /datum/patron/divine/eora, /datum/patron/divine/noc, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum) //Eora content from Stonekeep
+	allowed_patrons = list(/datum/patron/divine/pestra, /datum/patron/divine/astrata, /datum/patron/divine/eora, /datum/patron/divine/noc, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum, /datum/patron/divine/ravox, /datum/patron/divine/xylix) // Probably could delete this now, actually.
 
 
 /datum/outfit/job/roguetown/monk/pre_equip(mob/living/carbon/human/H)
@@ -84,6 +84,34 @@
 			pants = /obj/item/clothing/under/roguetown/trou
 			cloak = /obj/item/clothing/cloak/templar/malumite
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/vest
+		if(/datum/patron/divine/ravox)
+			head = /obj/item/clothing/head/roguetown/roguehood
+			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+			cloak = /obj/item/clothing/cloak/templar/ravox
+			wrists = /obj/item/clothing/wrists/roguetown/wrappings
+			shoes = /obj/item/clothing/shoes/roguetown/boots
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/white
+		if(/datum/patron/divine/xylix)
+			head = /obj/item/clothing/head/roguetown/roguehood
+			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+			cloak = /obj/item/clothing/cloak/templar/xylix
+			wrists = /obj/item/clothing/wrists/roguetown/wrappings
+			shoes = /obj/item/clothing/shoes/roguetown/sandals
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe
+			var/list/psicross_options = list(
+			/obj/item/clothing/neck/roguetown/psicross,
+			/obj/item/clothing/neck/roguetown/psicross/astrata,
+			/obj/item/clothing/neck/roguetown/psicross/noc,
+			/obj/item/clothing/neck/roguetown/psicross/abyssor,
+			/obj/item/clothing/neck/roguetown/psicross/dendor,
+			/obj/item/clothing/neck/roguetown/psicross/necra,
+			/obj/item/clothing/neck/roguetown/psicross/pestra,
+			/obj/item/clothing/neck/roguetown/psicross/ravox,
+			/obj/item/clothing/neck/roguetown/psicross/malum,
+			/obj/item/clothing/neck/roguetown/psicross/eora,
+			/obj/item/clothing/neck/roguetown/psicross/wood
+			)
+			neck = pick(psicross_options) // Random psicross, as cleric.
 		else
 			head = /obj/item/clothing/head/roguetown/roguehood/astrata
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
