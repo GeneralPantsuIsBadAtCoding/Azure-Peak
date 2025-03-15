@@ -216,7 +216,8 @@
 
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"
-	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result.<br><i>(Incompatible with Wood Arm (R) vice)</i>"
+	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
+	custom_text = "Replaces your Right arm with a prosthetic Bronze one. Incompatible with Wood Arm (R) vice"
 	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
 
 /datum/virtue/utility/bronzearm_r/apply_to_human(mob/living/carbon/human/recipient)
@@ -234,7 +235,8 @@
 
 /datum/virtue/utility/bronzearm_l
 	name = "Bronze Arm (L)"
-	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result.<br><i>(Incompatible with Wood Arm (L) vice)</i>"
+	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
+	custom_text = "Replaces your Left arm with a prosthetic Bronze one. Incompatible with Wood Arm (L) vice"
 	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
 
 /datum/virtue/utility/bronzearm_l/apply_to_human(mob/living/carbon/human/recipient)
