@@ -10,7 +10,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT)
 
-	tutorial = "Your family were zealots. They scolded you with a studded belt and prayed like sinners every waking hour of the day they weren’t toiling in the fields. You escaped them by becoming a churchling--and a guaranteed education isn't so bad."
+	tutorial = "Your family were zealots. They scolded you with a studded belt and prayed like sinners every waking hour of the day they weren't toiling in the fields. You escaped them by becoming a churchling--and a guaranteed education isn't so bad."
 
 	outfit = /datum/outfit/job/roguetown/churchling
 	display_order = JDO_CHURCHLING
@@ -32,11 +32,11 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.cmode_music = 'sound/music/combat_holy.ogg'
 	neck = /obj/item/clothing/neck/roguetown/psicross
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		head = /obj/item/clothing/head/roguetown/armingcap
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	else
+	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/robe
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights

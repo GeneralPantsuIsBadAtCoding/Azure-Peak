@@ -38,10 +38,12 @@
 		var/datum/antagonist/new_antag = new /datum/antagonist/prisoner()
 		H.mind.add_antag_datum(new_antag)
 	ADD_TRAIT(H, TRAIT_BANDITCAMP, TRAIT_GENERIC)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		H.change_stat("strength", -1)
+		pants = /obj/item/clothing/under/roguetown/tights/stockings/random
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/random
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
-	else
+	else if(should_wear_masc_clothes(H))
 		H.change_stat("strength", -1)
 		pants = /obj/item/clothing/under/roguetown/tights/random
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random

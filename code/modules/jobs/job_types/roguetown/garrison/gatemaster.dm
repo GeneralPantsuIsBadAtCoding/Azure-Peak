@@ -72,7 +72,7 @@
 		H.change_stat("constitution", 1)
 		H.change_stat("endurance", 1)
 		H.change_stat("speed", 1)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		var/acceptable = list("Tomboy", "Bob", "Curly Short")
 		if(!(H.hairstyle in acceptable))
 			H.hairstyle = pick(acceptable)

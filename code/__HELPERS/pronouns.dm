@@ -139,7 +139,11 @@
 		switch (pronouns)
 			if (HE_HIM)
 				. = "he"
+			if (HE_HIM_F)
+				. = "he"
 			if (SHE_HER)
+				. = "she"
+			if (SHE_HER_M)
 				. = "she"
 			if (THEY_THEM)
 				. = "they"
@@ -171,7 +175,11 @@
 		switch (pronouns)
 			if (HE_HIM)
 				. = "his"
+			if (HE_HIM_F)
+				. = "his"
 			if (SHE_HER)
+				. = "her"
+			if (SHE_HER_M)
 				. = "her"
 			if (THEY_THEM)
 				. = "their"
@@ -202,7 +210,11 @@
 		switch (pronouns)
 			if (HE_HIM)
 				. = "him"
+			if (HE_HIM_F)
+				. = "him"
 			if (SHE_HER)
+				. = "her"
+			if (SHE_HER_M)
 				. = "her"
 			if (THEY_THEM)
 				. = "them"

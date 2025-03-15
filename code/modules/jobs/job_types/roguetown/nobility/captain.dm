@@ -51,7 +51,7 @@
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Ser"
-		if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+		if(should_wear_femme_clothes(H))
 			honorary = "Dame"
 		H.real_name = "[honorary] [prev_real_name]"
 		H.name = "[honorary] [prev_name]"

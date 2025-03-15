@@ -43,10 +43,10 @@
 	head = /obj/item/clothing/head/roguetown/cookhat
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
-	if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+	if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
-	else
+	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 	H.change_stat("constitution", 2)
 	H.change_stat("strength", 1)

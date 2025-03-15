@@ -49,10 +49,10 @@
 	beltl = /obj/item/storage/keyring/merchant
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	id = /obj/item/clothing/ring/gold
-	if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+	if(should_wear_masc_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
-	else
+	else if(should_wear_femme_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/gladiator
 	H.change_stat("intelligence", 2)
 	H.change_stat("perception", 3)

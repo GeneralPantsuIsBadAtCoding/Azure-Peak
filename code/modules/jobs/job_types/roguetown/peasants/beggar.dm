@@ -93,9 +93,9 @@
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	else
 		gloves = null
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
-	else
+	else if(should_wear_masc_clothes(H))
 		armor = null
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
 		if(prob(50))

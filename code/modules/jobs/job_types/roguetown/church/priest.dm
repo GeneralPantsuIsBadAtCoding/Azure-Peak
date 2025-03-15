@@ -109,13 +109,10 @@
 		//Coronate new King (or Queen)
 		HU.mind.assigned_role = "Grand Duke"
 		HU.job = "Grand Duke"
-		switch(HU.pronouns)
-			if(SHE_HER)
-				SSticker.rulertype = "Grand Duchess"
-			if(THEY_THEM_F)
-				SSticker.rulertype = "Grand Duchess"
-			else
-				SSticker.rulertype = "Grand Duke"
+		if(should_wear_femme_clothes(HU))
+			SSticker.rulertype = "Grand Duchess"
+		else
+			SSticker.rulertype = "Grand Duke"
 		SSticker.rulermob = HU
 		var/dispjob = mind.assigned_role
 		removeomen(OMEN_NOLORD)

@@ -55,13 +55,10 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		else
 			GLOB.lordsurname = "of [L.real_name]"
 		SSticker.rulermob = L
-		switch(L.pronouns)
-			if(SHE_HER)
-				SSticker.rulertype = "Grand Duchess"
-			if(THEY_THEM_F)
-				SSticker.rulertype = "Grand Duchess"
-			else
-				SSticker.rulertype = "Grand Duke"
+		if(should_wear_femme_clothes(L))
+			SSticker.rulertype = "Grand Duchess"
+		else
+			SSticker.rulertype = "Grand Duke"
 		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Azure Peak.</span></span></b>")
 		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
@@ -76,7 +73,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	l_hand = /obj/item/rogueweapon/lordscepter
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	id = /obj/item/clothing/ring/active/nomag
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/royal
@@ -105,7 +102,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 			H.change_stat("perception", 2)
 			H.change_stat("fortune", 5)
 		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black

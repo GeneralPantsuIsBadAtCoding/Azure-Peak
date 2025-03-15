@@ -40,9 +40,9 @@
 		H.change_stat("fortune", 2)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/green
-	else
+	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/cloak/tabard/knight
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 

@@ -140,7 +140,7 @@
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 2)
 			H.change_stat("intelligence", -2)
-			if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+			if(should_wear_masc_clothes(H))
 				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -151,7 +151,7 @@
 				belt = /obj/item/storage/belt/rogue/leather
 				neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 				beltl = /obj/item/rogueweapon/huntingknife
-			if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+			if(should_wear_femme_clothes(H))
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/bikini
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts

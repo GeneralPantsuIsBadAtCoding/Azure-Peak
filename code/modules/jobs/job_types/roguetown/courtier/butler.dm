@@ -41,7 +41,7 @@
 	beltr = /obj/item/storage/keyring/servant
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F) 
+	if(should_wear_femme_clothes(H)) 
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)

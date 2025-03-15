@@ -9,7 +9,11 @@
 	switch(described.pronouns)
 		if(SHE_HER)
 			return "woman"
+		if(SHE_HER_M)
+			return "woman"
 		if(HE_HIM)
+			return "man"
+		if(HE_HIM_F)
 			return "man"
 		if(THEY_THEM)
 			return "person"
@@ -25,7 +29,11 @@
 	switch(described.pronouns)
 		if(SHE_HER)
 			return "gentlewoman"
+		if(SHE_HER_M)
+			return "gentlewoman"
 		if(HE_HIM)
+			return "gentleman"
+		if(HE_HIM_F)
 			return "gentleman"
 		if(THEY_THEM)
 			return "gentleperson"

@@ -20,9 +20,9 @@
 	if(prob(10))
 		cloak = /obj/item/clothing/cloak/raincloak/brown
 
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
-	else
+	else if(should_wear_masc_clothes(H))
 		armor = null
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
 

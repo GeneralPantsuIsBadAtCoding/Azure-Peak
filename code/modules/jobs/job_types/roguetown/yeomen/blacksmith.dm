@@ -36,7 +36,7 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
@@ -46,7 +46,7 @@
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
@@ -100,7 +100,7 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
@@ -110,7 +110,7 @@
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
@@ -167,7 +167,7 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
@@ -177,7 +177,7 @@
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt

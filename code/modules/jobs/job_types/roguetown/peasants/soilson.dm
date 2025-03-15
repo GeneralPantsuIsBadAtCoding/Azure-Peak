@@ -50,7 +50,7 @@
 		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_LONGSTRIDER, TRAIT_GENERIC)
 
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		head = /obj/item/clothing/head/roguetown/armingcap
 //		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
@@ -58,7 +58,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 		belt = /obj/item/storage/belt/rogue/leather/rope
 		beltl = /obj/item/roguekey/farm
-	else
+	else if(should_wear_masc_clothes(H))
 		head = /obj/item/clothing/head/roguetown/roguehood/random
 		if(prob(50))
 			head = /obj/item/clothing/head/roguetown/strawhat

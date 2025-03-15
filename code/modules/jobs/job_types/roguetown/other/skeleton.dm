@@ -80,7 +80,7 @@
 		head = /obj/item/clothing/head/roguetown/helmet/kettle
 	if(prob(50))
 		beltr = /obj/item/rogueweapon/sword
-		if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+		if(should_wear_femme_clothes(H))
 			beltr = /obj/item/rogueweapon/sword/sabre
 	H.STASTR = 10
 	H.STASPD = rand(7,10)
