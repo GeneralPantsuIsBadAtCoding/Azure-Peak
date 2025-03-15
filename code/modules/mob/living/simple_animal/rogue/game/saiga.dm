@@ -1,5 +1,3 @@
-
-
 //the saiga
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga
@@ -24,7 +22,7 @@
 						/obj/item/natural/hide = 4,
 						/obj/item/natural/bundle/bone/full = 1,
 						)
-	base_intents = list(/datum/intent/simple/headbutt)
+	base_intents = list(/datum/intent/simple/headbutt/saiga)
 	health = 156
 	maxHealth = 156
 	food_type = list(
@@ -43,6 +41,7 @@
 	melee_damage_upper = 25
 	retreat_distance = 10
 	minimum_distance = 10
+	rapid_melee = 1
 	STASPD = 15
 	STACON = 8
 	STASTR = 12
@@ -85,6 +84,7 @@
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
+	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
 	name = "saiga buck"
@@ -117,6 +117,7 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	retreat_health = 0.3
+	rapid_melee = 1
 	milkies = FALSE //what the fuck
 	STACON = 15
 	STASTR = 12
@@ -127,6 +128,7 @@
 	bonus_tame_chance = 15
 	aggressive = 1
 	remains_type = /obj/effect/decal/remains/saiga
+	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigaboy
 	name = "saiga calf"
@@ -155,6 +157,7 @@
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
+	base_intents = list(/datum/intent/simple/headbutt/saiga)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame
 	tame = TRUE
@@ -377,7 +380,7 @@
 	icon_gib = "saigaboy_gib"
 	animal_species = null
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1, /obj/item/natural/bone = 3)
-	base_intents = list(/datum/intent/simple/headbutt)
+	base_intents = list(/datum/intent/simple/headbutt/saiga)
 	health = 20
 	maxHealth = 20
 	pass_flags = PASSTABLE | PASSMOB
@@ -392,6 +395,7 @@
 	tame = TRUE
 	can_buckle = FALSE
 	aggressive = 1
+
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame
 	tame = TRUE
 
@@ -410,3 +414,7 @@
 	var/obj/item/natural/saddle/S = new(src)
 	ssaddle = S
 	update_icon()
+
+// Custom headbutt intent for saiga with proper attack speed
+/datum/intent/simple/headbutt/saiga
+	clickcd = SAIGA_ATTACK_SPEED

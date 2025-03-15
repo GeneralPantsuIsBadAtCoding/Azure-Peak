@@ -16,6 +16,7 @@
 #define MUDCRAB_ATTACK_SPEED (CLICK_CD_MELEE * 1.5) // crabs don't have an attack
 #define ORC_ATTACK_SPEED (CLICK_CD_MELEE)
 #define RAT_ATTACK_SPEED (CLICK_CD_MELEE * 1.2)
+#define SAIGA_ATTACK_SPEED (CLICK_CD_MELEE * 1.1) // Saiga should attack at a moderate speed
 
 #define SKELETON_ATTACK_SPEED (CLICK_CD_MELEE)
 
