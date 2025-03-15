@@ -1903,16 +1903,51 @@
 	var/_x = T.x-loc.x
 	var/_y = T.y-loc.y
 	var/dist = get_dist(src, T)
+	var/message = span_info("[src] looks into the distance.")
 	if(dist > 7 || dist  <= 2)
 		return
 	hide_cone()
-	var/ttime = 10
+	var/ttime = 11
 	if(STAPER > 5)
 		ttime = 10 - (STAPER - 5)
 		if(ttime < 0)
-			ttime = 0
+			ttime = 1
+	if(STAPER <= 10)
+		var/offset = (10 - STAPER) * 2
+		if(STAPER == 10)
+			offset = 1
+		else
+			message = span_info("[src] struggles to look ahead.")
+		if(_x > 0)
+			_x -= offset
+			_x = max(0, _x)
+		else if(_x != 0)
+			_x += offset
+			_x = min(0, _x)
+		if(_y > 0)
+			_y -= offset
+			_y = max(0,_y)
+		else if(_y != 0)
+			_y += offset
+			_y = min(0,_y)
+	else if(STAPER > 11)
+		var/offset = STAPER - 10
+		if(offset > 5)	//Caps the bonus at 15 PER, which is a whole extra screen in an orthogonal direction. Anymore will get disorienting.
+			offset = 5
+		if(STAPER >= 12)
+			message = span_info("[src] easily peers afar.")
+		if(_x > 0)
+			_x += offset
+		else if(_x != 0)
+			_x -= offset
+		if(_y > 0)
+			_y += offset
+		else if(_y != 0)
+			_y -= offset
 	if(m_intent != MOVE_INTENT_SNEAK)
-		visible_message(span_info("[src] looks into the distance."))
+		if(_y == 0 && _x == 0)	//Their PER was too low to see anything.
+			message = span_info("[src] oafishly stares in front of themselves.")
+		visible_message(message)
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
 //	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()
