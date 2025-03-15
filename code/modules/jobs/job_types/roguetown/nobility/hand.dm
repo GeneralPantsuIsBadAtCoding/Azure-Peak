@@ -20,7 +20,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 
-/*
+
 /datum/job/roguetown/hand/special_job_check(mob/dead/new_player/player)
 	if(!player)
 		return
@@ -30,7 +30,7 @@
 		if(Lord.mind.assigned_role == "King")
 			if(Lord.brohand == player.ckey)
 				return TRUE
-*/
+
 
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
