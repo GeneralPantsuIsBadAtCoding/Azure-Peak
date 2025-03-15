@@ -93,7 +93,7 @@
 #define TRAIT_DEPRAVED "Fallen" //Baothans also recognize each other
 
 #define TRAIT_BASHDOORS "Door Basher"
-#define TRAIT_NOMOOD "no_mood"
+#define TRAIT_NOMOOD "Moodless"
 #define TRAIT_BAD_MOOD "Bad Mood"
 #define TRAIT_NIGHT_OWL "Night Owl"
 #define TRAIT_BEAUTIFUL "Beautiful"
@@ -250,7 +250,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOHUNGER = span_info("I do not hunger, or thirst."),
 	TRAIT_DARKVISION = span_info("I can see better in the dark."),
 	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Azure Peak."),
-	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking, and can sneak much quicker.")
+	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking, and can sneak much quicker."),
+	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 ))
 
 // trait accessor defines
