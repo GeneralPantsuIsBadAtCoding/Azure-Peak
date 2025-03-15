@@ -257,9 +257,9 @@
 
 
 /datum/outfit/job/roguetown/wretch/heretic/pre_equip(mob/living/carbon/human/H)
-	if (!(istype(H.patron, /datum/patron/inhumen/zizo) || istype(H.patron, /datum/patron/inhumen/matthios)))
+	if (!(istype(H.patron, /datum/patron/inhumen/zizo) || istype(H.patron, /datum/patron/inhumen/matthios) || istype(H.patron, /datum/patron/inhumen/graggar) || istype(H.patron, /datum/patron/inhumen/baotha)))
 		to_chat(H, span_warning("My former deity frowned upon my practices. I have since turned to a new god."))
-		H.set_patron(pick(/datum/patron/inhumen/zizo, /datum/patron/inhumen/matthios))
+		H.set_patron(pick(/datum/patron/inhumen/zizo, /datum/patron/inhumen/matthios, /datum/patron/inhumen/graggar, /datum/patron/inhumen/baotha))
 	H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
