@@ -48,6 +48,7 @@
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
 	if(check_subtler(message, FALSE))
 		return
 	usr.emote("me",1,message,TRUE, custom_me = TRUE)
@@ -68,6 +69,7 @@
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 	message = trim(copytext_char(html_encode(message), 1, MAX_MESSAGE_BIGME))
+	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
 	if(check_subtler(message, FALSE))
 		return
 	usr.emote("me",1,message,TRUE, custom_me = TRUE)

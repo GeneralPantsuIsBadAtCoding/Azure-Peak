@@ -443,25 +443,25 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 			end = temp
 	return end
 
-/proc/parsemarkdown_basic_step1(t, limited=FALSE)
+/proc/parsemarkdown_basic_step1(t, limited=FALSE, barebones=FALSE)
 	if(length(t) <= 0)
 		return
 
 	// This parses markdown with no custom rules
 
 	// Escape backslashed
-
-	t = replacetext(t, "$", "$-")
-	t = replacetext(t, "\\\\", "$1")
-	t = replacetext(t, "\\**", "$2")
-	t = replacetext(t, "\\*", "$3")
-	t = replacetext(t, "\\__", "$4")
-	t = replacetext(t, "\\_", "$5")
-	t = replacetext(t, "\\^", "$6")
-	t = replacetext(t, "\\((", "$7")
-	t = replacetext(t, "\\))", "$8")
-	t = replacetext(t, "\\|", "$9")
-	t = replacetext(t, "\\%", "$0")
+	if(!barebones)
+		t = replacetext(t, "$", "$-")
+		t = replacetext(t, "\\\\", "$1")
+		t = replacetext(t, "\\**", "$2")
+		t = replacetext(t, "\\*", "$3")
+		t = replacetext(t, "\\__", "$4")
+		t = replacetext(t, "\\_", "$5")
+		t = replacetext(t, "\\^", "$6")
+		t = replacetext(t, "\\((", "$7")
+		t = replacetext(t, "\\))", "$8")
+		t = replacetext(t, "\\|", "$9")
+		t = replacetext(t, "\\%", "$0")
 
 	// Escape  single characters that will be used
 
@@ -526,11 +526,11 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		t = replacetext(t, "))", "")
 
 	// Parse headers
-
-	t = replacetext(t, regex("^#(?!#) ?(.+)$", "gm"), "<h2>$1</h2>")
-	t = replacetext(t, regex("^##(?!#) ?(.+)$", "gm"), "<h3>$1</h3>")
-	t = replacetext(t, regex("^###(?!#) ?(.+)$", "gm"), "<h4>$1</h4>")
-	t = replacetext(t, regex("^#### ?(.+)$", "gm"), "<h5>$1</h5>")
+	if(!barebones)
+		t = replacetext(t, regex("^#(?!#) ?(.+)$", "gm"), "<h2>$1</h2>")
+		t = replacetext(t, regex("^##(?!#) ?(.+)$", "gm"), "<h3>$1</h3>")
+		t = replacetext(t, regex("^###(?!#) ?(.+)$", "gm"), "<h4>$1</h4>")
+		t = replacetext(t, regex("^#### ?(.+)$", "gm"), "<h5>$1</h5>")
 
 	// Parse most rules
 
@@ -539,8 +539,10 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	t = replacetext(t, "<i></i>", "!")
 	t = replacetext(t, "</i><i>", "!")
 	t = replacetext(t, regex("\\!(\[^\\!\]+)\\!", "g"), "<b>$1</b>")
-	t = replacetext(t, regex("\\^(\[^\\^\]+)\\^", "g"), "<font size=\"4\">$1</font>")
-	t = replacetext(t, regex("\\|(\[^\\|\]+)\\|", "g"), "<center>$1</center>")
+	if(!barebones)
+		t = replacetext(t, regex("\\^(\[^\\^\]+)\\^", "g"), "<font size=\"4\">$1</font>")
+	if(!barebones)
+		t = replacetext(t, regex("\\|(\[^\\|\]+)\\|", "g"), "<center>$1</center>")
 	t = replacetext(t, "!", "</i><i>")
 
 	return t
@@ -569,8 +571,8 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 	return t
 
-/proc/parsemarkdown_basic(t, limited=FALSE)
-	t = parsemarkdown_basic_step1(t, limited)
+/proc/parsemarkdown_basic(t, limited=FALSE, barebones = FALSE)
+	t = parsemarkdown_basic_step1(t, limited, barebones)
 	t = parsemarkdown_basic_step2(t)
 	return t
 
