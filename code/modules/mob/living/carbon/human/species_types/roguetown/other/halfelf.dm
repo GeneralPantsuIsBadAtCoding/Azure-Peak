@@ -108,7 +108,14 @@
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
 		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
 		"Grezel-Avar" = SKIN_COLOR_GRENZEL_AVAR,
-		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN
+		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN,
+		"Commorah-kin" = SKIN_COLOR_COMMORAH,
+		"Gloomhaven-kin" = SKIN_COLOR_GLOOMHAVEN,
+		"Darkpila-kin" = SKIN_COLOR_DARKPILA,
+		"Sshanntynlan-kin" = SKIN_COLOR_SSHANNTYNLAN,
+		"Llurth Dreir-kin" = SKIN_COLOR_LLURTH_DREIR,
+		"Tafravma-kin" = SKIN_COLOR_TAFRAVMA,
+		"Yuethindrynn-kin" = SKIN_COLOR_YUETHINDRYNN
 	)
 
 /datum/species/human/halfelf/proc/languages(mob/living/carbon/human/literally_him)
