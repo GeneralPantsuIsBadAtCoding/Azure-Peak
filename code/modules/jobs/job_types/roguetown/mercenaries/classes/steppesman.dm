@@ -15,7 +15,10 @@
 	head = /obj/item/clothing/head/roguetown/papakha
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	belt = /obj/item/storage/belt/rogue/leather/black
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	if(H.gender == FEMALE)
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
+	else
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	beltr = /obj/item/rogueweapon/shield/buckler
