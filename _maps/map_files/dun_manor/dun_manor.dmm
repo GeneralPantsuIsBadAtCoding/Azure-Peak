@@ -11725,10 +11725,20 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
 "iLM" = (
-/obj/structure/fluff/psycross{
-	layer = 4.1
-	},
-/turf/open/floor/rogue/church,
+/obj/structure/rack/rogue/shelf/biggest,
+/obj/item/needle/thorn,
+/obj/item/needle/thorn,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "iLW" = (
 /obj/structure/chair/wood/rogue/chair3,
@@ -12480,9 +12490,9 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/physician)
 "jla" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
+/obj/structure/roguemachine/sacrifice,
+/turf/closed/wall/mineral/rogue/decostone/long{
+	dir = 1
 	},
 /area/rogue/indoors/town/church/chapel)
 "jlc" = (
@@ -16272,7 +16282,8 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
 "lSH" = (
-/turf/closed/wall/mineral/rogue/decostone/cand,
+/obj/effect/landmark/start/monk,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "lTh" = (
 /obj/structure/closet/crate/roguecloset,
@@ -20241,7 +20252,7 @@
 /obj/structure/fluff/walldeco/painting{
 	pixel_x = 31
 	},
-/turf/open/floor/rogue/church,
+/turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "oEX" = (
 /obj/structure/flora/roguegrass/herb/salvia,
@@ -20938,7 +20949,7 @@
 /obj/structure/fluff/walldeco/painting/seraphina{
 	pixel_x = 32
 	},
-/turf/open/floor/rogue/church,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "pdx" = (
 /obj/structure/closet/crate/chest/neu,
@@ -22274,9 +22285,11 @@
 /area/rogue/outdoors/rtfield)
 "qao" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
-/obj/structure/chair/wood/rogue/fancy,
 /obj/structure/fluff/walldeco/moon{
 	pixel_y = 32
+	},
+/obj/structure/fluff/statue/astrata{
+	pixel_y = 13
 	},
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/church/chapel)
@@ -23236,10 +23249,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/physician)
 "qPR" = (
-/obj/structure/chair/wood/rogue,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "qPX" = (
 /obj/structure/table/wood/fancy/royalblack,
@@ -23504,8 +23514,20 @@
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/indoors/shelter/woods)
 "qZq" = (
-/obj/machinery/light/rogue/torchholder/r,
-/turf/open/floor/rogue/churchmarble,
+/obj/structure/rack/rogue/shelf/biggest,
+/obj/item/needle/thorn,
+/obj/item/needle/thorn,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/machinery/light/rogue/wallfire/candle/r,
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "qZw" = (
 /obj/structure/fluff/statue/knight/r,
@@ -25765,8 +25787,10 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "sEG" = (
-/obj/structure/fluff/statue/astrata,
-/turf/open/floor/rogue/church,
+/obj/machinery/light/rogue/wallfire/candle{
+	layer = 2.89
+	},
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/church/chapel)
 "sEN" = (
 /obj/effect/decal/cobbleedge{
@@ -90236,11 +90260,11 @@ det
 kXP
 kzm
 det
-sEG
+iLM
+lSH
+kuX
+kuX
 itk
-kuX
-kuX
-mXn
 ixQ
 wzg
 ixQ
@@ -90393,8 +90417,8 @@ det
 ixQ
 ixQ
 det
-mXn
-mXn
+qPR
+qPR
 kuX
 kuX
 mXn
@@ -90547,11 +90571,11 @@ ktP
 ktP
 qhb
 det
-det
-qPR
+ixQ
+mXn
 jla
-kuX
-itk
+sEG
+qPR
 kuX
 kuX
 mXn
@@ -90704,11 +90728,11 @@ ktP
 ktP
 qhb
 det
+ixQ
+mXn
 det
-dTw
-lSH
-kuX
-kuX
+qPR
+qPR
 kuX
 kuX
 kuX
@@ -90861,12 +90885,12 @@ ktP
 ktP
 qhb
 ixQ
+ixQ
+mXn
 det
-qPR
-jla
 qZq
 pcT
-iLM
+kuX
 oEk
 aVA
 det
@@ -91017,7 +91041,7 @@ bAb
 ktP
 ktP
 qhb
-qhb
+ixQ
 ixQ
 qVf
 qVf
