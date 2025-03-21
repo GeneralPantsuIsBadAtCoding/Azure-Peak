@@ -3805,6 +3805,7 @@
 	dir = 8
 	},
 /obj/structure/chair/stool/rogue,
+/obj/effect/landmark/start/gatemaster,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "cBU" = (

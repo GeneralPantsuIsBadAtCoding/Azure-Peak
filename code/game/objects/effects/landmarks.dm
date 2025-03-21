@@ -171,6 +171,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Court Physician"
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/gatemaster
+	name = "Gatemaster"
+	icon_state = "arrow"
+
 /obj/effect/landmark/start/guardsman
 	name = "Watchman"
 	icon_state = "arrow"
