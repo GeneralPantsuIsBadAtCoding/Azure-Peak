@@ -101,6 +101,7 @@
 	mob_traits = list(TRAIT_XYLIX)
 	t1 = /obj/effect/proc_holder/spell/invoked/wheel
 	t2 = /obj/effect/proc_holder/spell/invoked/mockery
+	t3 = /obj/effect/proc_holder/spell/invoked/curse_of_woe
 	confess_lines = list(
 		"ASTRATA IS MY LIGHT!",
 		"NOC IS NIGHT!",
