@@ -237,6 +237,14 @@
 	base_icon_state = "book5"
 	bookfile = "knowledge.json"
 
+/obj/item/book/rogue/grudge
+	name = "Book of Grudges"
+	desc = "A copy you've taken with you. Unfortunately the dampness of Azuria made it unreadable. You can still add new entries, however."
+	icon_state ="knowledge_0"
+	base_icon_state = "knowledge"
+	grid_width = 32
+	grid_height = 32
+
 /obj/item/book/rogue/secret/xylix
 	name = "Book of Gold"
 	desc = "<font color='red'><blink>An ominous book with untold powers.</blink></font>"

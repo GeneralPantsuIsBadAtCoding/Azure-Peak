@@ -8,6 +8,7 @@
 	if((resistance_flags & INDESTRUCTIBLE) || !max_integrity)
 		return
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armor_penetration)
+	SEND_SIGNAL(src, COMSIG_OBJ_TAKE_DAMAGE, damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
 	testing("damamount [damage_amount]")
 	if(damage_amount < DAMAGE_PRECISION)
 		return
