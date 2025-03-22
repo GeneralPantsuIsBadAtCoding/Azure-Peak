@@ -423,3 +423,53 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_hands()
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/attack_self(mob/living/user)
+	if(chambered)
+		return ..()
+	
+	var/obj/item/quiver/quiver = null
+	
+	// Check if the user is holding a quiver in their other hand
+	if(istype(user.get_inactive_held_item(), /obj/item/quiver))
+		quiver = user.get_inactive_held_item()
+	
+	// If not holding a quiver, check inventory for one
+	if(!quiver)
+		for(var/obj/item/quiver/Q in user.contents)
+			if(Q.arrows.len)
+				quiver = Q
+				break
+	
+	if(!quiver)
+		to_chat(user, span_warning("I don't have a quiver with arrows!"))
+		return
+	
+	if(!quiver.arrows.len)
+		to_chat(user, span_warning("My quiver is empty!"))
+		return
+	
+	var/obj/item/ammo_casing/caseless/rogue/arrow/arrow = null
+	
+	// Find an arrow in the quiver
+	for(var/obj/A in quiver.arrows)
+		if(istype(A, /obj/item/ammo_casing/caseless/rogue/arrow))
+			arrow = A
+			break
+	
+	if(!arrow)
+		to_chat(user, span_warning("There are no arrows in my quiver!"))
+		return
+	
+	// Load the arrow
+	quiver.arrows -= arrow
+	if(!chambered)
+		chambered = arrow
+		arrow.forceMove(src)
+		to_chat(user, span_notice("I nock an arrow from my quiver."))
+		playsound(src, load_sound, 50, TRUE)
+		update_icon()
+		quiver.update_icon()
+		return
+	
+	to_chat(user, span_warning("I can't load an arrow right now!"))
