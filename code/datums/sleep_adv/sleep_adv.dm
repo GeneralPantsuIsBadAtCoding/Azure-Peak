@@ -193,7 +193,7 @@
 /datum/sleep_adv/proc/get_skill_cost(skill_type)
 	var/datum/skill/skill = GetSkillRef(skill_type)
 	var/next_level = get_next_level_for_skill(skill_type)
-	return skill.get_dream_cost_for_level(next_level)
+	return skill.get_dream_cost_for_level(next_level, mind.current)
 
 /datum/sleep_adv/proc/get_special_cost()
 	return 3
@@ -207,6 +207,11 @@
 	var/dream_text = skill.get_random_dream()
 	if(dream_text)
 		to_chat(mind.current, span_notice(dream_text))
+	
+	// Notify player if they're benefiting from Malum's blessing for craft skills or sewing
+	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/misc/sewing)))
+		to_chat(mind.current, span_notice("Malum's blessing reduces the dream point cost of your crafting training."))
+	
 	sleep_adv_points -= get_skill_cost(skill_type)
 	adjust_sleep_xp(skill_type, -get_requried_sleep_xp_for_skill(skill_type, 1))
 	mind.adjust_skillrank(skill_type, 1, FALSE)
