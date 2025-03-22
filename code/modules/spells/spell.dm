@@ -58,6 +58,13 @@
 /obj/effect/proc_holder/proc/get_fatigue_drain()
 	return releasedrain
 
+/obj/effect/proc_holder/proc/get_charged_drain()
+	// Special case for all invoked spells to prevent runtime errors
+	if(istype(src, /obj/effect/proc_holder/spell/invoked))
+		// Return a safe value for all invoked spells
+		return 1
+	return chargedrain
+
 GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for the badmin verb for now
 
 /obj/effect/proc_holder/Destroy()
@@ -219,7 +226,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		else
 			return 0.1
 	return releasedrain
-
 
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0, mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 	if(player_lock)

@@ -1,5 +1,3 @@
-
-
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0
@@ -179,3 +177,6 @@
 	var/voice_pitch = 1
 
 	var/domhand = 0
+
+	// Flag for if a mob has a primed spell ready to cast
+	var/primed_spell = FALSE

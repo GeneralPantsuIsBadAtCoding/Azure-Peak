@@ -42,7 +42,7 @@
 	overlay_state = "invisibility"
 	desc = "Make another (or yourself) invisible for fifteen seconds."
 	releasedrain = 30
-	chargedrain = 5
+	chargedrain = 0  // No drain during charging
 	chargetime = 5
 	clothes_req = FALSE
 	charge_max = 30 SECONDS
@@ -54,6 +54,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
 	cost = 2
+	no_early_release = TRUE  // Prevent early release to avoid partial invisibility
 
 /obj/effect/proc_holder/spell/invoked/invisibility/miracle
 	miracle = TRUE

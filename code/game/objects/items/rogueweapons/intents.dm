@@ -165,6 +165,7 @@
 			chargedloop.stop()
 		chargedloop.start(chargedloop.parent)
 		mastermob.curplaying = src
+	keep_looping = TRUE  // Make sure the sound keeps looping
 
 /datum/intent/proc/on_mouse_up()
 	if(chargedloop)

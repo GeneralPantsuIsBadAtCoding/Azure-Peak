@@ -516,6 +516,40 @@
 	var/delay = 14
 	var/damage = 125 //if you get hit by this it's your fault
 	var/area_of_effect = 1
+	var/projectile_behavior = TRUE // Flag to enable projectile-like click and release behavior
+
+/obj/effect/proc_holder/spell/invoked/blade_burst/InterceptClickOn(mob/living/caller, params, atom/target)
+	. = ..()
+	if(.)
+		return FALSE
+	
+	// Basic checks for casting ability
+	if(!can_cast(caller) || !cast_check(FALSE, ranged_ability_user))
+		return FALSE
+	
+	// Get click parameters to detect right-click
+	var/list/modifiers = params2list(params)
+	
+	// Handle right-click to dismiss spell
+	if(modifiers["right"]) 
+		to_chat(caller, span_warning("You dismiss the [src.name] spell."))
+		deactivate(caller)
+		return TRUE
+	
+	// Handle like a projectile spell
+	if(projectile_behavior)
+		// Make sure it's fully charged if no_early_release is true
+		if(no_early_release && !caller.is_spell_fully_charged())
+			to_chat(caller, span_warning("[src.name] was not finished charging! It fizzles."))
+			revert_cast(caller)
+			return FALSE
+			
+		// Cast the spell
+		if(perform(list(target), TRUE, user = ranged_ability_user))
+			deactivate(caller)
+			return TRUE
+	
+	return FALSE
 
 /obj/effect/temp_visual/trap
 	icon = 'icons/effects/effects.dmi'
@@ -1027,6 +1061,40 @@
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
+	var/projectile_behavior = TRUE // Flag to enable projectile-like click and release behavior
+
+/obj/effect/proc_holder/spell/invoked/snap_freeze/InterceptClickOn(mob/living/caller, params, atom/target)
+	. = ..()
+	if(.)
+		return FALSE
+	
+	// Basic checks for casting ability
+	if(!can_cast(caller) || !cast_check(FALSE, ranged_ability_user))
+		return FALSE
+	
+	// Get click parameters to detect right-click
+	var/list/modifiers = params2list(params)
+	
+	// Handle right-click to dismiss spell
+	if(modifiers["right"]) 
+		to_chat(caller, span_warning("You dismiss the [src.name] spell."))
+		deactivate(caller)
+		return TRUE
+	
+	// Handle like a projectile spell
+	if(projectile_behavior)
+		// Make sure it's fully charged if no_early_release is true
+		if(no_early_release && !caller.is_spell_fully_charged())
+			to_chat(caller, span_warning("[src.name] was not finished charging! It fizzles."))
+			revert_cast(caller)
+			return FALSE
+			
+		// Cast the spell
+		if(perform(list(target), TRUE, user = ranged_ability_user))
+			deactivate(caller)
+			return TRUE
+	
+	return FALSE
 
 /obj/effect/temp_visual/trapice
 	icon = 'icons/effects/effects.dmi'

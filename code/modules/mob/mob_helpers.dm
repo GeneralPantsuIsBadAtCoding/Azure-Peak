@@ -521,7 +521,7 @@
 			testing("spellselect [ranged_ability]")
 			mmb_intent = new INTENT_SPELL(src)
 			mmb_intent.releasedrain = ranged_ability.get_fatigue_drain()
-			mmb_intent.chargedrain = ranged_ability.chargedrain
+			mmb_intent.chargedrain = ranged_ability.get_charged_drain()
 			mmb_intent.chargetime = ranged_ability.get_chargetime()
 			mmb_intent.warnie = ranged_ability.warnie
 			mmb_intent.charge_invocation = ranged_ability.charge_invocation
@@ -959,3 +959,29 @@
 		if(J.advjob_examine)
 			used_title = advjob
 	return used_title
+
+/// Add a new proc to check if a spell is fully charged
+/mob/proc/is_spell_fully_charged()
+	if(!client || !ranged_ability || !istype(ranged_ability, /obj/effect/proc_holder/spell))
+		return FALSE
+		
+	// If the client has the doneset flag or progress >= goal, the spell is fully charged
+	if(client.doneset || client.progress >= client.goal)
+		return TRUE
+	return FALSE
+
+// When a spell is attached as a ranged ability, update mmb_intent with its values for chargetime, etc.
+// This makes mmb spellcasting work properly
+/mob/proc/update_mmb_intent_from_ranged_ability()
+	if(!ranged_ability || !istype(ranged_ability, /obj/effect/proc_holder/spell))
+		return FALSE
+	
+	if(!mmb_intent || mmb_intent.type != INTENT_SPELL)
+		return FALSE
+		
+	var/obj/effect/proc_holder/spell/spell = ranged_ability
+	mmb_intent.releasedrain = spell.get_fatigue_drain()  
+	mmb_intent.chargedrain = spell.get_charged_drain()
+	mmb_intent.chargetime = spell.get_chargetime()
+	
+	return TRUE

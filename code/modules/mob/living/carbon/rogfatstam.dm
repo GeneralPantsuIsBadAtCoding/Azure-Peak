@@ -2,6 +2,12 @@
 	maxrogfat = maxrogstam / 10
 
 	var/delay = (HAS_TRAIT(src, TRAIT_APRICITY) && GLOB.tod == "day") ? 13 : 20		//Astrata 
+	// Check if we have a primed spell - don't regenerate stamina if we do
+	if(primed_spell)
+		// Skip stamina regeneration while spell is primed
+		update_health_hud()
+		return
+		
 	if(world.time > last_fatigued + delay) //regen fatigue
 		var/added = rogstam / maxrogstam
 		added = round(-10+ (added*-40))
