@@ -123,30 +123,28 @@
 
 		if("Vizier")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Naledi Vizier. You are a healer, trained in both physick and holy practices. Likely of a learned or upper class background, you are a supporting fellow, meant to heal your allies with miracles and surgeries."))
+			to_chat(H, span_warning("You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, a combination of the saint's power may be similar enough.."))
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("intelligence", 2)
+			H.change_stat("endurance", 2)
+			H.change_stat("intelligence", 3)
 			H.change_stat("speed", 2)
-			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
 
 			mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
 			belt = /obj/item/storage/belt/rogue/leather
-			beltl = /obj/item/storage/belt/rogue/surgery_bag/full
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 			pants = /obj/item/clothing/under/roguetown/trou/leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -158,12 +156,16 @@
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 
 			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife)
-
+			
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_spells_monk(H)
 			H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/lesser_heal)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/regression)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convergence)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stasis)
 
 
 
