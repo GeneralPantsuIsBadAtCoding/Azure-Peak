@@ -261,6 +261,17 @@
 		return
 	return TryToSwitchState(user)
 
+/obj/structure/mineral_door/attack_right(mob/user)
+	if(!keylock)
+		return ..()
+		
+	if(door_opened || isSwitchingStates || brokenstate)
+		return ..()
+		
+	var/datum/rmb_intent/door_unlock/unlock = new()
+	unlock.special_attack(user, src)
+	return TRUE
+
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
