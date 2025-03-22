@@ -175,6 +175,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/associated_skill = /datum/skill/magic/arcane
 	var/miracle = FALSE
 	var/devotion_cost = 0
+	var/devotion_self_refund = 0
 	var/ignore_cockblock = FALSE //whether or not to ignore TRAIT_SPELLCOCKBLOCK
 
 	action_icon_state = "spell0"
@@ -442,8 +443,13 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				smoke.start()
 	if(devotion_cost && ishuman(user))
 		var/mob/living/carbon/human/devotee = user
-		devotee.devotion?.update_devotion(-devotion_cost)
-		to_chat(devotee, "<font color='purple'>I [devotion_cost > 0 ? "lost" : "gained"] [abs(devotion_cost)] devotion.</font>")
+		if(user in targets) //Casting on ourself, check for devotion_self_refund
+			var/refund_calc = devotion_cost - devotion_self_refund
+			devotee.devotion?.update_devotion(-refund_calc)
+			to_chat(devotee, "<font color='purple'>I [refund_calc > 0 ? "lost" : "gained"] [abs(refund_calc)] devotion.</font>")
+		else
+			devotee.devotion?.update_devotion(-devotion_cost)
+			to_chat(devotee, "<font color='purple'>I [devotion_cost > 0 ? "lost" : "gained"] [abs(devotion_cost)] devotion.</font>")
 	//Add xp based on the fatigue used -- AZURE EDIT: REMOVED!! THIS SHIT WAS TINY AND SUUUUCKED
 	/* if(xp_gain)
 		adjust_experience(usr, associated_skill, round(get_fatigue_drain() * MAGIC_XP_MULTIPLIER)) */
