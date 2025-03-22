@@ -49,17 +49,47 @@
 				break
 		
 		if(spawn_area)
-			// Find a suitable spawn point in the tavern
-			var/list/possible_spawns = list()
-			for(var/turf/T in spawn_area)
-				if(T && !T.density && !T.is_blocked_turf(TRUE))
-					possible_spawns += T
+			// Find a suitable chair in the tavern to buckle to - only on the ground floor
+			var/list/possible_chairs = list()
+			var/list/ground_z_levels = list()
 			
-			// If we found suitable spawns, teleport the player there
-			if(length(possible_spawns))
-				var/turf/spawn_loc = pick(possible_spawns)
-				recipient.forceMove(spawn_loc)
-				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern."))
+			// Find stairs first to identify the ground floor z-level
+			for(var/obj/structure/stairs/S in spawn_area)
+				ground_z_levels |= S.z // The level with stairs going up is the ground floor
+			
+			// If we couldn't find stairs, fall back to the lowest z-level in the tavern area
+			if(!length(ground_z_levels))
+				var/lowest_z = INFINITY
+				for(var/atom/movable/AM in spawn_area)
+					if(AM.z < lowest_z)
+						lowest_z = AM.z
+				if(lowest_z != INFINITY)
+					ground_z_levels += lowest_z
+			
+			// Now find chairs only on the ground level
+			for(var/obj/structure/chair/C in spawn_area)
+				if((C.z in ground_z_levels) && (istype(C, /obj/structure/chair/wood/rogue) || istype(C, /obj/structure/chair/stool/rogue)))
+					var/turf/T = get_turf(C)
+					if(T && !T.density && !T.is_blocked_turf(TRUE))
+						possible_chairs += C
+			
+			// If we found chairs, pick one and buckle the player to it
+			if(length(possible_chairs))
+				var/obj/structure/chair/chosen_chair = pick(possible_chairs)
+				recipient.forceMove(get_turf(chosen_chair))
+				chosen_chair.buckle_mob(recipient)
+				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern."))
+			else
+				// Fallback if no chairs found on ground floor
+				var/list/possible_spawns = list()
+				for(var/turf/T in spawn_area)
+					if((T.z in ground_z_levels) && !T.density && !T.is_blocked_turf(TRUE))
+						possible_spawns += T
+				
+				if(length(possible_spawns))
+					var/turf/spawn_loc = pick(possible_spawns)
+					recipient.forceMove(spawn_loc)
+					to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern."))
 
 /datum/virtue/utility/failed_squire
 	name = "Failed Squire"
