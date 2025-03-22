@@ -8,10 +8,18 @@ SUBSYSTEM_DEF(nightshift)
 	var/current_tod = null
 
 	var/nightshift_active = FALSE
+	// New balanced configuration: Day and Night each 50% of the time
+	var/nightshift_start_time = 432000	//6pm (18:00) - Night starts
+	var/nightshift_dawn_start = 396000	//5:30am (05:30) - Dawn starts
+	var/nightshift_day_start = 432000	//6am (06:00) - Day starts
+	var/nightshift_dusk_start = 396000	//5:30pm (17:30) - Dusk starts
+
+	/* Original Rogue Town config
 	var/nightshift_start_time = 576000	//4pm	//702000=7:30 PM, station time
-	var/nightshift_dawn_start = 288000		//198000=    530am
-	var/nightshift_day_start = 360000		//270000=    730am
-	var/nightshift_dusk_start = 504000		//630000=    530pm
+	var/nightshift_dawn_start = 288000	//198000=    530am
+	var/nightshift_day_start = 360000	//270000=    730am
+	var/nightshift_dusk_start = 504000	//630000=    530pm
+	*/
 
 	/* Default STONEKEEP config.
 	var/nightshift_start_time = 756000	//9:00 PM - 2100 hrs
