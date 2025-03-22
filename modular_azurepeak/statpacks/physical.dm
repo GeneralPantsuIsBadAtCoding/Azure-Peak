@@ -24,3 +24,9 @@
 	name = "Toil-hardened"
 	desc = "Your life, hard-lived, has imparted one solitary adage: carry on above all else. And so you endure."
 	stat_array = list(STAT_PERCEPTION = -1, STAT_INTELLIGENCE = -1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 2)
+
+/datum/statpack/physical/brutish
+	name = "Brutish"
+	desc = "You spent your lyfe charging head-first into any situation, powering through it all."
+	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 2, STAT_ENDURANCE = 2, STAT_INTELLIGENCE = -3, STAT_PERCEPTION = -3)
+
