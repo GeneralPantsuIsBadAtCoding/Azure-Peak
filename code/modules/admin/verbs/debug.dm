@@ -26,7 +26,7 @@ Because if you select a player mob as owner it tries to do the proc for
 But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
 */
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "-Fun-"
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
@@ -69,8 +69,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Assume direct control"
+	set category = "-Admin-"
+	set name = "Direct control..."
 	set desc = ""
 
 	if(M.ckey)
@@ -211,7 +211,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	cmd_admin_areatest(FALSE)
 
 /client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
-	set category = "Fun"
+	set category = "-Fun-"
 	set name = "Select equipment"
 	if(!(ishuman(M) || isobserver(M)))
 		alert("Invalid mob")

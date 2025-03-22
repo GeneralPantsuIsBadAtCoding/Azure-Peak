@@ -1,6 +1,6 @@
 /client/proc/play_sound(S as sound)
-	set category = "Fun"
-	set name = "Play Global Sound"
+	set category = "-Fun-"
+	set name = "Sound - Global"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -107,8 +107,8 @@
 */
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Fun"
-	set name = "Play Local Sound"
+	set category = "-Fun-"
+	set name = "Sound - Local"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -118,8 +118,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_local_sound_variable(S as sound)
-	set category = "Fun"
-	set name = "Play Variable Distance Sound"
+	set category = "-Fun-"
+	set name = "Sound - Variable Dist"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -134,8 +134,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_web_sound()
-	set category = "Fun"
-	set name = "Play Internet Sound"
+	set category = "-Fun-"
+	set name = "Sound - Internet"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -216,8 +216,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Fun"
-	set name = "Set Round End Sound"
+	set category = "-Fun-"
+	set name = "Sound - Round End"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -228,8 +228,8 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/stop_sounds()
-	set category = "Debug"
-	set name = "Stop All Playing Sounds"
+	set category = "-Fun-"
+	set name = "Sound - Stop All Playing"
 	if(!src.holder)
 		return
 
