@@ -116,3 +116,125 @@
 		to_chat(user, span_warning("I need a holy cross."))
 		return FALSE
 	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/smite
+	name = "Astrata's Judgment"
+	overlay_state = "smite"
+	releasedrain = 60
+	chargedrain = 0
+	chargetime = 0
+	range = 15
+	warnie = "sydwarning"
+	no_early_release = FALSE
+	movement_interrupt = FALSE
+	chargedloop = null
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	sound = 'sound/magic/heal.ogg'
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	charge_max = 3 MINUTES
+	miracle = TRUE
+	devotion_cost = 70
+	invocation = "By Astrata's burning gaze, let divine judgment rain!"
+	invocation_type = "shout"
+	var/smite_active = FALSE
+	var/smite_target = null
+	var/warning_stage = 0
+	var/last_stack_time = 0
+
+/obj/effect/proc_holder/spell/invoked/smite/cast(list/targets, mob/living/user)
+	if(!..())
+		return FALSE
+
+	if(!isliving(targets[1]))
+		revert_cast()
+		return FALSE
+
+	var/mob/living/L = targets[1]
+	// TODO: Re-add this check after testing
+	// if(L == user)
+	// 	to_chat(user, span_warning("You cannot smite yourself."))
+	// 	return FALSE
+
+	if(GLOB.tod == "night")
+		to_chat(user, span_warning("Astrata's gaze cannot reach during the night."))
+		return FALSE
+
+	var/turf/T = get_turf(L)
+	var/area/A = get_area(T)
+	if(!A.outdoors)
+		to_chat(user, span_warning("The target must be under open sky for Astrata's judgment."))
+		return FALSE
+
+	smite_active = TRUE
+	smite_target = L
+	warning_stage = 0
+	last_stack_time = world.time
+
+	var/area/cast_area = get_area(L)
+	var/location_name = cast_area.name
+	if(cast_area.first_time_text)  // Use the special first_time_text if it exists
+		location_name = cast_area.first_time_text
+	priority_announce("Astrata's gaze has focused dangerously on [uppertext(location_name)]. Her divine wrath draws near.", "Divine Warning", 'sound/misc/astratascream.ogg')
+
+	// Start the smiting process
+	START_PROCESSING(SSobj, src)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/smite/process()
+	if(!smite_active || !smite_target || GLOB.tod == "night")
+		end_smite()
+		return
+
+	var/mob/living/L = smite_target
+	if(!istype(L) || L.stat == DEAD)
+		end_smite()
+		return
+
+	// Check if target is indoors
+	var/turf/T = get_turf(L)
+	var/area/A = get_area(T)
+	if(!A.outdoors)
+		to_chat(L, span_notice("The burning gaze subsides as you find shelter."))
+		end_smite()
+		return
+
+	var/elapsed_time = world.time - last_stack_time
+	
+	// Handle the warning phase (first 10 seconds)
+	if(elapsed_time < 10 SECONDS)
+		var/warning_threshold = (elapsed_time / (10 SECONDS)) * 8  // 8 total warnings over 10 seconds
+		if(warning_stage <= warning_threshold)
+			switch(warning_stage)
+				if(0)
+					L.visible_message(span_warning("The air around [L] begins to shimmer with heat..."))
+				if(1)
+					L.visible_message(span_warning("The temperature rises dramatically around [L]!"))
+				if(2)
+					L.visible_message(span_warning("[L] begins to sweat as Astrata's gaze intensifies!"))
+				if(3)
+					L.visible_message(span_danger("The air crackles with divine fury around [L]!"))
+				if(4)
+					L.visible_message(span_danger("The very air begins to burn!"))
+				if(5)
+					L.visible_message(span_danger("Reality warps as the sun's fury bears down!"))
+				if(6)
+					L.visible_message(span_danger("The sky itself seems to split open with divine light!"))
+				if(7)
+					L.visible_message(span_danger("ASTRATA'S JUDGMENT IS AT HAND!"))
+			warning_stage++
+			return
+	// After 10 seconds, start applying fire stacks
+	else if(world.time >= last_stack_time + 2 SECONDS)  // Apply fire every 2 seconds after the warning phase
+		L.adjust_fire_stacks(10)  // Changed from 2 to 10 for more intense burning
+		L.IgniteMob()
+		last_stack_time = world.time
+		L.visible_message(span_danger("Divine flames engulf [L] as Astrata's judgment rains down!"))
+
+/obj/effect/proc_holder/spell/invoked/smite/proc/end_smite()
+	if(smite_active)  // Only announce if the spell was actually active
+		priority_announce("The sun has resumed its normal cycle.", "Divine Warning")
+	smite_active = FALSE
+	smite_target = null
+	warning_stage = 0
+	STOP_PROCESSING(SSobj, src)
