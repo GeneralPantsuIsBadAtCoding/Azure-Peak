@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/steppesman
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED)
 	cmode_music = 'sound/music/combat_steppe.ogg'
 
 
