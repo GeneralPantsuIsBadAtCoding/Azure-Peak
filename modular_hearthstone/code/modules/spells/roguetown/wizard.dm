@@ -1710,6 +1710,11 @@
 		to_chat(user, span_warning("Invalid target location!"))
 		revert_cast()
 		return
+
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+		revert_cast()
+		return
 	
 	// Check range limit
 	var/distance = get_dist(start, T)

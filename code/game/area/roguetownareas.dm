@@ -373,8 +373,39 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
 	converted_type = /area/rogue/outdoors/caves
 
+/area/rogue/under/underdark
+	name = "The Underdark"
+	icon_state = "cavewet"
+	warden_area = FALSE
+	first_time_text = "The Underdark"
+	ambientsounds = AMB_CAVEWATER
+	ambientnight = AMB_CAVEWATER
+	spookysounds = SPOOKY_CAVE
+	spookynight = SPOOKY_CAVE
+	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	ambush_times = list("night","dawn","dusk","day")
+	ambush_types = list(
+				/turf/open/floor/rogue/dirt)
+	ambush_mobs = list(
+				/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
+				/mob/living/carbon/human/species/elf/dark/drowraider/ambush = 10,
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 25,
+				/mob/living/carbon/human/species/goblin/npc/ambush/moon = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
+	converted_type = /area/rogue/outdoors/caves
+
 /area/rogue/under/cavewet/bogcaves
 	first_time_text = "The Undergrove"
+
+/area/rogue/under/cavewet/bogcaves/sunkencity
+	first_time_text = "MELTED UNDERCITY"
+	spookysounds = SPOOKY_MYSTICAL
+	spookynight = SPOOKY_MYSTICAL
+	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
 
 /area/rogue/under/cave/spider
 	icon_state = "spider"
@@ -418,10 +449,10 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_types = list(
 				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/skeleton/npc = 10,
-				/mob/living/carbon/human/species/goblin/npc/hell = 20,
-				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5)
+				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 10,
+				/mob/living/carbon/human/species/skeleton/npc/ambush = 20,
+				/mob/living/carbon/human/species/goblin/npc/hell = 25,
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 15)
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
@@ -444,6 +475,15 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "smalldungeon1"
 	icon_state = "spider"
 	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+
+/area/rogue/under/cave/licharena
+	name = "licharena"
+	icon_state = "under"
+	first_time_text = "LICH'S DOMAIN"
+	droning_sound = 'sound/music/area/dragonden.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1

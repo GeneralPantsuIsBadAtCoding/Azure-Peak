@@ -223,6 +223,7 @@ SUBSYSTEM_DEF(BMtreasury)
 	return (vault_accounting[I.type]*interest_rate)
 
 /datum/controller/subsystem/BMtreasury/fire(resumed = 0)
+	set background=1
 	if(world.time > next_treasury_check)
 		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
 		vault_accounting = list()
