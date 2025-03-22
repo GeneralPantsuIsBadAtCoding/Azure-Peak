@@ -104,23 +104,12 @@
 	sellprice = 30
 	color = "#976E6B"
 
-/obj/item/clothing/suit/roguetown/armor/gambeson/otavan
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	name = "fencer gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
-	armor = list("blunt" = 80, "slash" = 50, "stab" = 40, "piercing" = 60, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
-	blocksound = SOFTUNDERHIT
-	blade_dulling = DULLING_BASHCHOP
-	break_sound = 'sound/foley/cloth_rip.ogg'
-	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	sewrepair = TRUE
-	r_sleeve_status = SLEEVE_NORMAL
-	l_sleeve_status = SLEEVE_NORMAL
-	armor_class = ARMOR_CLASS_LIGHT
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	color = "#FFFFFF"
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
@@ -711,28 +700,16 @@
 	armor_class = ARMOR_CLASS_HEAVY
 	smelt_bar_num = 4
 
-/obj/item/clothing/suit/roguetown/armor/otavan
-	slot_flags = ITEM_SLOT_ARMOR
+/obj/item/clothing/suit/roguetown/armor/plate/otavan
 	name = "otavan half-plate"
 	desc = "Half-plate armor with pauldrons. Recommended to layer with the otavan gambeson."
 	body_parts_covered = CHEST|GROIN|VITALS
 	icon_state = "corsethalfplate"
 	item_state = "corsethalfplate"
 	adjustable = CAN_CADJUST
-	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 20, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	nodismemsleeves = TRUE
-	max_integrity = 500
-	allowed_sex = list(MALE, FEMALE)
-	anvilrepair = /datum/skill/craft/armorsmithing
-	smeltresult = /obj/item/ingot/steel
-	equip_delay_self = 4 SECONDS
-	unequip_delay_self = 4 SECONDS
-	armor_class = ARMOR_CLASS_HEAVY
-	smelt_bar_num = 3
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
-/obj/item/clothing/suit/roguetown/armor/otavan/AdjustClothes(mob/user)
+/obj/item/clothing/suit/roguetown/armor/plate/otavan/AdjustClothes(mob/user)
 	if(loc == user)
 		playsound(user, "sound/foley/dropsound/cloth_drop.ogg", 100, TRUE, -1)
 		if(adjustable == CAN_CADJUST)

@@ -387,7 +387,7 @@
 
 /datum/crafting_recipe/roguetown/leather/otavanleatherpants
 	name = "otavan leather trousers"
-	result = list(/obj/item/clothing/under/roguetown/trou/otavan)
+	result = list(/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan)
 	reqs = list(/obj/item/reagent_containers/food/snacks/tallow = 1,
 	            /obj/item/natural/fibers = 1,
 	            /obj/item/natural/hide/cured = 2,
