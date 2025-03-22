@@ -68,7 +68,6 @@
 	name = "wheel of aged cheese"
 	desc = "A wheel with intricate patterns of several types of mold with a pungent aroma."
 	icon_state = "blue_cheese"
-	eat_effect = /datum/status_effect/buff/foodbuff //setting a food buff since takes a while to make
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged
 	become_rot_type = null
 	rotprocess = null
@@ -97,7 +96,6 @@
 	name = "wedge of aged cheese"
 	desc = "A dangerous piece of cheese for the brave."
 	icon_state = "blue_cheese_wedge"
-	eat_effect = /datum/status_effect/buff/foodbuff //setting a food buff since takes a while to make
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/cheddarslice/aged
 	become_rot_type = null
 	rotprocess = null
