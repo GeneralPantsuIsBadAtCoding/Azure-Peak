@@ -762,7 +762,7 @@
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
-	armor = list("blunt" = 90, "slash" = 60, "stab" = 70, "piercing" = 10, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	allowed_sex = list(MALE, FEMALE)
 	nodismemsleeves = TRUE
@@ -830,7 +830,7 @@
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 30, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	max_integrity = 250
+	max_integrity = 300
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_HEAVY
@@ -875,8 +875,8 @@
 	icon_state = "light_brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = CHEST|GROIN|VITALS
-	armor = list("blunt" = 60, "slash" = 70, "stab" = 70, "piercing" = 10, "fire" = 0, "acid" = 0)
-	max_integrity = 350
+	armor = list("blunt" = 60, "slash" = 100, "stab" = 70, "piercing" = 20, "fire" = 0, "acid" = 0)
+	max_integrity = 250
 	smeltresult = /obj/item/ingot/iron
 	equip_delay_self = 40
 	armor_class = ARMOR_CLASS_MEDIUM
