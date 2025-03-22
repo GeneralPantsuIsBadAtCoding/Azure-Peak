@@ -120,7 +120,7 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/process()
 	..()
 	if(rotprocess)
-		if(!istype(loc, /obj/structure/closet/crate/chest) && !istype(loc, /obj/structure/roguemachine/vendor) && !istype (loc, /obj/item/storage/backpack/rogue/artibackpack)&& !istype (loc, /obj/structure/table/cooling))
+		if(!istype(loc, /obj/structure/closet/crate/chest) && ! istype(loc, /obj/item/cooking/platter)  && !istype(loc, /obj/structure/roguemachine/vendor) && !istype (loc, /obj/item/storage/backpack/rogue/artibackpack)&& !istype (loc, /obj/structure/table/cooling))
 			if(!locate(/obj/structure/table) in loc)
 				warming -= 20 //ssobj processing has a wait of 20
 			else
@@ -163,6 +163,8 @@ All foods are distributed among various categories. Use common sense.
 		slices_num = 0
 		slice_path = null
 		cooktime = 0
+		if(istype(src.loc, /obj/item/cooking/platter/))
+			src.loc.update_icon()
 		return TRUE
 
 
