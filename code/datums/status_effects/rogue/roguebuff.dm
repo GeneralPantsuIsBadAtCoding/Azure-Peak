@@ -455,10 +455,30 @@
 	desc = "Divine intervention bolsters me and aids my recovery."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/convergence
+	name = "Convergence Miracle"
+	desc = "My body converges to whence it found strength and health."
+	icon_state = "buff"
+
+/atom/movable/screen/alert/status_effect/buff/stasis
+	name = "Stasis Miracle"
+	desc = "A part of me has been put in stasis."
+	icon_state = "buff"
+
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.
 	id = "fortify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortify
 	duration = 1 MINUTES
+
+/datum/status_effect/buff/convergence //Increases all healing while it lasts.
+	id = "convergence"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/convergence
+	duration = 1 MINUTES
+
+/datum/status_effect/buff/stasis //Increases all healing while it lasts.
+	id = "stasis"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/stasis
+	duration = 10 SECONDS
 
 /datum/status_effect/buff/fortitude
 	id = "fortitude"
