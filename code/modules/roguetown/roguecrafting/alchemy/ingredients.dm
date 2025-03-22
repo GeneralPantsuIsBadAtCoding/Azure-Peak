@@ -231,6 +231,33 @@
 	med_pot = /datum/alch_cauldron_recipe/gender_potion
 	minor_pot = /datum/alch_cauldron_recipe/gender_potion
 
+/obj/item/alch/puresalt
+	name = "purified salts"
+	desc = "Salts that have been finely sifted to enchance their healing properties and to bolster its connection to the arcyne."
+	icon_state = "transisdust"
+
+	major_pot = /datum/alch_cauldron_recipe/antidote
+	med_pot = /datum/alch_cauldron_recipe/disease_cure
+	minor_pot = /datum/alch_cauldron_recipe/big_mana_potion
+
+/obj/item/alch/mineraldust
+	name = "mineral dusts"
+	desc = "Elements of gems ground and sifted of impurities to help draw out its useful alchemical minerals."
+	icon_state = "mineraldust"
+
+	major_pot = /datum/alch_cauldron_recipe/doompoison
+	med_pot = /datum/alch_cauldron_recipe/big_mana_potion
+	minor_pot = /datum/alch_cauldron_recipe/big_stam_poison
+
+/obj/item/alch/berrypowder
+	name = "berry powder"
+	desc = "Berries ground and dried into a soft fragrant powder."
+	icon_state = "berrypowder"
+
+	major_pot = /datum/alch_cauldron_recipe/berrypoison
+	med_pot = /datum/alch_cauldron_recipe/mana_potion
+	minor_pot = /datum/alch_cauldron_recipe/big_mana_potion
+
 //BEGIN THE HERBS
 
 /obj/item/alch/atropa
