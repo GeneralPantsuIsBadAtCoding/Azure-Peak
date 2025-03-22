@@ -761,7 +761,7 @@
 	desc = "A coat with plates concealed inside an exterior fabric. The gap between the plates is susceptible to being picked at."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
-	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
+	body_parts_covered = CHEST|GROIN|VITALS|ARMS
 	armor = list("blunt" = 90, "slash" = 60, "stab" = 70, "piercing" = 10, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	allowed_sex = list(MALE, FEMALE)

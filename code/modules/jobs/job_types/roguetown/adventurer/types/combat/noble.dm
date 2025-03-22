@@ -71,12 +71,20 @@
 			var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 			if(helmchoice != "None")
 				head = helmets[helmchoice]
+
+			var/armors = list(
+				"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+				"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+				"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+				)
+			var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+			armor = armors[armorchoice]
+
 			gloves = /obj/item/clothing/gloves/roguetown/chain
 			pants = /obj/item/clothing/under/roguetown/chainlegs
 			cloak = /obj/item/clothing/cloak/stabard
 			neck = /obj/item/clothing/neck/roguetown/bevor
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 			belt = /obj/item/storage/belt/rogue/leather/plaquegold

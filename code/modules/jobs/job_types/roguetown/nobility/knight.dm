@@ -123,7 +123,6 @@
 			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
 			backl = /obj/item/gwstrap
 
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 
@@ -142,6 +141,15 @@
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
+
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1)
 
 /datum/advclass/knight/footknight
@@ -185,8 +193,7 @@
 			beltr = /obj/item/rogueweapon/flail/sflail
 		if ("Warhamer")
 			beltr = /obj/item/rogueweapon/mace/warhammer //Iron warhammer. This is one-handed and pairs well with shields. They can upgrade to steel in-round.
-
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates	
+	
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	backl = /obj/item/rogueweapon/shield/tower/metal
@@ -206,6 +213,14 @@
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
 
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1)
 
@@ -233,6 +248,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
 
@@ -261,7 +277,6 @@
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/rogueweapon/mace/goden/steel
 
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 
@@ -280,6 +295,15 @@
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
+
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1)
 
 
