@@ -28,6 +28,10 @@ SUBSYSTEM_DEF(humannpc)
 
 /datum/controller/subsystem/humannpc/proc/try_process_ai(mob/living/carbon/human/thing)
 	set waitfor = FALSE
+	if(thing.ai_currently_active)
+		return // Already running from another tick, don't do another action!
+	thing.ai_currently_active = TRUE
 	. = thing.process_ai()
+	thing.ai_currently_active = FALSE
 	if(.)
 		STOP_PROCESSING(src, thing)

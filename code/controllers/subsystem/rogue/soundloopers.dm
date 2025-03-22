@@ -15,6 +15,11 @@ SUBSYSTEM_DEF(soundloopers)
 	//cache for sanic speed (lists are references anyways)
 	var/list/current = src.currentrun
 	var/check_clients = FALSE
+	var/static/count = 0
+	if (count) //runtime last run before we could do this.
+		var/c = count
+		count = 0 //so if we runtime on the Cut, we don't try again.
+		current.Cut(1,c+1)
 	client_ticker++
 
 	if(client_ticker>=5) //this is dumb but necessary- clients update every half tick but sounds themselves need to be updated regularly
@@ -23,15 +28,15 @@ SUBSYSTEM_DEF(soundloopers)
 	else
 		check_clients = FALSE
 
-	while (current.len)
-		var/datum/looping_sound/thing = current[current.len]
-		current.len--
-		if (!thing || !istype(thing) || QDELETED(thing))
+	for(var/i in 1 to length(current))
+		var/datum/looping_sound/thing = current[i]
+		count++
+		if (QDELETED(thing)) // !thing is redundant as QDELETED includes an isnull check
 			processing -= thing
 			if (MC_TICK_CHECK)
-				return
+				break
 			continue
-
+		thing.sound_loop()
 		if(world.time > thing.starttime + thing.mid_length) //Make sure we don't try to trigger it while a loop is playing
 			if(thing.sound_loop()) //returns 1 if it fails for some reason
 				continue
@@ -42,7 +47,10 @@ SUBSYSTEM_DEF(soundloopers)
 					C.update_sounds()
 
 		if (MC_TICK_CHECK)
-			return
+			break
+	if (count)
+		current.Cut(1,count+1)
+		count = 0
 
 /client/proc/update_sounds()
 
