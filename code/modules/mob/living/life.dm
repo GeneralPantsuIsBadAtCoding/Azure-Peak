@@ -124,11 +124,13 @@
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)
-		for(var/datum/wound/wound as anything in get_wounds())
-			wound.on_death()
+		for(var/datum/wound/wound in get_wounds())
+			if(wound)
+				wound.on_death()
 		return
-	for(var/datum/wound/wound as anything in get_wounds())
-		wound.on_life()
+	for(var/datum/wound/wound in get_wounds())
+		if(wound)
+			wound.on_life()
 
 /obj/item/proc/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
 	return
