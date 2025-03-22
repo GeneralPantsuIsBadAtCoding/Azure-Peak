@@ -33,18 +33,18 @@
 		if(I.wlength == WLENGTH_SHORT)
 			chance2hit += 10
 
-	if(user.STAPER > 10)
-		chance2hit += ((user.STAPER-10)*3)
+	if(user.STAPER > 11)
+		chance2hit += ((user.STAPER-10)*6)
 
-	if(user.STAPER < 10)
-		chance2hit -= ((10-user.STAPER)*3)
+	if(user.STAPER < 9)
+		chance2hit -= ((10-user.STAPER)*6)
 
 	if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 		chance2hit += 20
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 		chance2hit -= 20
 
-	chance2hit = CLAMP(chance2hit, 5, 99)
+	chance2hit = CLAMP(chance2hit, 5, 95)
 
 	if(prob(chance2hit))
 		return zone
@@ -52,10 +52,12 @@
 		if(prob(chance2hit+5))
 			if(check_zone(zone) == zone)
 				return zone
-			else
+			to_chat(user, span_warning("Accuracy fail! [chance2hit]%"))
+			if(user.STAPER > 11)
 				if(user.client?.prefs.showrolls)
-					to_chat(user, span_warning("Accuracy fail! [chance2hit]%"))
-				return check_zone(zone)
+					return check_zone(zone)
+			else
+				return BODY_ZONE_CHEST
 		else
 			if(user.client?.prefs.showrolls)
 				to_chat(user, span_warning("Double accuracy fail! [chance2hit]%"))
