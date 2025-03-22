@@ -16152,6 +16152,12 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town)
+"lnY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "log" = (
 /turf/open/floor/rogue/grass,
 /turf/open/floor/rogue/grassyel,
@@ -21193,6 +21199,7 @@
 /obj/effect/decal/cobbleedge{
 	icon_state = "cobbleedge-sread"
 	},
+/obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "oLw" = (
@@ -22393,8 +22400,9 @@
 /area/rogue/outdoors/town)
 "pFe" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/halberd/bardiche,
-/obj/machinery/light/rogue/torchholder/c,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
+/obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "pFo" = (
@@ -25472,7 +25480,13 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "rPD" = (
-/turf/closed/mineral/rogue/bedrock,
+/obj/machinery/light/rogue/wallfire/candle/l,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town/garrison)
+"rQi" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd/bardiche,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "rQt" = (
 /obj/machinery/light/rogue/campfire,
@@ -28624,12 +28638,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "tXf" = (
-/obj/effect/decal/cobbleedge{
-	dir = 6
-	},
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/shield/buckler,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "tXs" = (
 /obj/structure/stairs{
@@ -29402,7 +29413,6 @@
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/spear/billhook,
 /obj/item/rogueweapon/spear/billhook,
-/obj/machinery/light/rogue/torchholder/l,
 /obj/effect/decal/cobbleedge{
 	dir = 10
 	},
@@ -50357,7 +50367,7 @@ exi
 exi
 ixc
 rcD
-rcD
+rQi
 pFe
 xYJ
 uzQ
@@ -50672,7 +50682,7 @@ rcD
 rcD
 rcD
 uBp
-iuO
+lnY
 aSd
 kEe
 diY
