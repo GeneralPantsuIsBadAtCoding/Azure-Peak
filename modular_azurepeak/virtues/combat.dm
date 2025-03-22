@@ -78,6 +78,16 @@
 			recipient.mind?.special_items["Ravox Psycross"] =/obj/item/clothing/neck/roguetown/psicross/ravox
 		if(/datum/patron/divine/malum)
 			recipient.mind?.special_items["Malum Psycross"] = /obj/item/clothing/neck/roguetown/psicross/malum
+		if(/datum/patron/inhumen/zizo)
+			recipient.mind?.special_items["Zizo Psycross"] = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/inhumen/graggar)
+			recipient.mind?.special_items["Graggar Psycross"] = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/inhumen/matthios)
+			recipient.mind?.special_items["Matthios Psycross"] = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/inhumen/baotha)
+			recipient.mind?.special_items["Baotha Psycross"] = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/old_god)
+			recipient.mind?.special_items["Psydon Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 
 /datum/virtue/combat/duelist
 	name = "Duelist Apprentice"
