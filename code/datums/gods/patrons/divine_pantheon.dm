@@ -10,8 +10,9 @@
 	worshippers = "The Noble Hearted, Zealots and Farmers"
 	mob_traits = list(TRAIT_APRICITY)
 	t1 = /obj/effect/proc_holder/spell/invoked/sacred_flame_rogue
-	t2 = /obj/effect/proc_holder/spell/invoked/heal
-	t3 = /obj/effect/proc_holder/spell/invoked/revive
+	t2 = /obj/effect/proc_holder/spell/targeted/astrata_projectile
+	t3 = /obj/effect/proc_holder/spell/invoked/flame_shield
+	t4 = /obj/effect/proc_holder/spell/invoked/smite
 	confess_lines = list(
 		"ASTRATA IS MY LIGHT!",
 		"ASTRATA BRINGS LAW!",

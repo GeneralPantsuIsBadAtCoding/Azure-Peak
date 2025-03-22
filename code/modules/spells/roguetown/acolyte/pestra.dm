@@ -185,14 +185,32 @@
 		for(var/obj/structure/fluff/psycross/S in oview(5, user))
 			S.AOE_flash(user, range = 8)
 
+		// Revive the target if they're dead
+		if(target.stat == DEAD)
+			target.revive(full_heal = FALSE)
+			target.grab_ghost(force = TRUE) // even suicides
+			target.emote("breathgasp")
+			target.Jitter(100)
+			target.update_body()
+			target.visible_message(span_notice("[target] is revived by divine light!"), span_green("I awake from the void."))
+			if(target.mind)
+				target.mind.remove_antag_datum(/datum/antagonist/zombie)
+			return TRUE
+		
+		// Otherwise attempt to cure rot
 		if(remove_rot(target = target, user = user, method = "prayer",
 			success_message = "The rot leaves [target]'s body!",
 			fail_message = "Nothing happens."))
 			target.visible_message(span_notice("The rot leaves [target]'s body!"), span_green("I feel the rot leave my body!"))
 			return TRUE
-		else //Attempt failed, no rot
-			target.visible_message(span_warning("The rot fails to leave [target]'s body!"), span_warning("I feel no different..."))
-			return FALSE
+		else //Attempt failed, no rot but also not dead
+			target.visible_message(span_notice("[target]'s body is purified by the light."), span_green("I feel purified by the light."))
+			// Heal some damage anyway
+			target.adjustBruteLoss(-30)
+			target.adjustFireLoss(-30)
+			target.adjustToxLoss(-30)
+			target.adjustOxyLoss(-60)
+			return TRUE
 	revert_cast()
 	return FALSE
 
