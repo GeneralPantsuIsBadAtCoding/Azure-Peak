@@ -1180,7 +1180,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		var/nodmg = FALSE
 
-		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block))
+		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block, FALSE, FALSE, 0, user))
 			nodmg = TRUE
 			target.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 		else
@@ -1558,7 +1558,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		var/weakness = H.check_weakness(I, user)
 		H.next_attack_msg.Cut()
-		if(!apply_damage(Iforce * weakness, I.damtype, def_zone, armor_block, H))
+		if(!apply_damage(Iforce * weakness, I.damtype, def_zone, armor_block, H, FALSE, FALSE, 0, user))
 			nodmg = TRUE
 			H.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 			if(I)
@@ -1655,9 +1655,20 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.forcesay(GLOB.hit_appends)	//forcesay checks stat already.
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, sharpness = 0, mob/living/attacker)
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = 1
+	
+	// Favored enemy trait logic - Matthios worshippers (TRAIT_COMMIE) vs nobility (TRAIT_NOBLE)
+	if(attacker && ishuman(attacker))
+		var/mob/living/carbon/human/human_attacker = attacker
+		// Matthios worshipper attacking a noble
+		if(HAS_TRAIT(human_attacker, TRAIT_COMMIE) && HAS_TRAIT(H, TRAIT_NOBLE))
+			damage *= 1.2 // 20% more damage
+		// Noble attacking a Matthios worshipper
+		else if(HAS_TRAIT(human_attacker, TRAIT_NOBLE) && HAS_TRAIT(H, TRAIT_COMMIE))
+			damage *= 0.8 // 20% less damage
+	
 	damage = max(damage-blocked+armor,0)
 //	var/hit_percent =  (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100

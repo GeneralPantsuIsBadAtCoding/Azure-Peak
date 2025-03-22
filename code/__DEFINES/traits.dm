@@ -87,7 +87,7 @@
 #define TRAIT_JUSTICARSIGHT "Blessing of Ravox" //Allows seeing bounties and crimes when examining outlaws.
 
 // ASCENDANT CULTIST TRAITS (all of them recognize each other)
-#define TRAIT_COMMIE "Blessing of Matthios" //recognized by bandits as an ally
+#define TRAIT_COMMIE "Blessing of Matthios" //recognized by bandits as an ally and deals 20% more damage to nobles (nobles deal 20% less damage to them)
 #define TRAIT_CABAL "Of the Cabal" //Zizo cultists recognize each other too
 #define TRAIT_HORDE "Anointed" //Graggarites also recognize each other
 #define TRAIT_DEPRAVED "Fallen" //Baothans also recognize each other
