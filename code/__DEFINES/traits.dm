@@ -137,6 +137,7 @@
 #define TRAIT_DARKVISION "Darksight"
 #define TRAIT_LIGHT_STEP	"Light Step"
 #define TRAIT_AZURENATIVE "Azure Native"
+#define TRAIT_LUX_SURGERY "Lux Trained"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -254,6 +255,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking, and can sneak much quicker."),
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_AZURENATIVE = span_info("I've grown up and lived all my lyfe in these lands. I can only trigger ambushes if I sprint through them."),
+	TRAIT_LUX_SURGERY = span_info("I've been specially trained in the occult ways of transferring one's Lux into a shell, bringing them lyfe."),
 ))
 
 // trait accessor defines

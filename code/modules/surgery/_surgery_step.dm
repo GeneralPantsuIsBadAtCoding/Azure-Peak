@@ -89,6 +89,12 @@
 	var/success_sound //Sound played if the step succeeded
 	var/failure_sound //Sound played if the step fails
 
+	/// Required trait for the surgery step
+	var/required_trait
+
+	/// Custom message if the user is missing their trait. Optional!
+	var/trait_failure_message
+
 /datum/surgery_step/proc/can_do_step(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent, try_to_fail = FALSE)
 	if(!user || !target)
 		return FALSE
@@ -102,6 +108,10 @@
 		return FALSE
 	if(!validate_target(user, target, target_zone, intent))
 		return FALSE
+	if(required_trait)
+		if(!HAS_TRAIT(user, required_trait))
+			to_chat(user, "[trait_failure_message ? trait_failure_message : "I do not have the necessary trait for this step."]")
+			return FALSE
 
 	return TRUE
 

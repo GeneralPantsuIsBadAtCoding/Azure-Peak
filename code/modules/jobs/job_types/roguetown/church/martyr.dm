@@ -483,6 +483,7 @@
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_LUX_SURGERY, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
 		H.change_stat("strength", 2)
 		H.change_stat("constitution", 3)

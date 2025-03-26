@@ -164,7 +164,7 @@
 			H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
-
+			ADD_TRAIT(H, TRAIT_LUX_SURGERY, TRAIT_GENERIC)
 
 
 /datum/outfit/job/roguetown/mercenary/warscholar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

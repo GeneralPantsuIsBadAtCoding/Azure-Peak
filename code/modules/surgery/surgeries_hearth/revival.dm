@@ -21,6 +21,8 @@
 	skill_min = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
+	required_trait = TRAIT_LUX_SURGERY
+	trait_failure_message = "I am not trained to infuse Lux with corpses."
 
 /datum/surgery_step/infuse_lux/validate_target(mob/user, mob/living/target, target_zone, datum/intent/intent)
 	. = ..()
