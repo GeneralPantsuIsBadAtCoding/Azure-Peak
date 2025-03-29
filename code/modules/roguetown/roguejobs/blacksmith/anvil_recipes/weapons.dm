@@ -524,3 +524,135 @@
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/mace/warhammer
 	i_type = "Weapons"
+
+//Church Weapons forged from Holy Steel
+
+/datum/anvil_recipe/weapons/holy/malum_sword
+	name = "Forgefiend (+1 H. Steel)"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/steelholy)
+	created_item = /obj/item/rogueweapon/sword/long/malumflamm
+	i_type = "Weapons"
+/*
+/datum/anvil_recipe/weapons/holy/abyssor_katar
+	name = "Barotrauma"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/katar/abyssor
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/astrata_exe
+	name = "Solar Judgement (+1 H. Steel)"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/steelholy)
+	created_item = /obj/item/rogueweapon/sword/long/exe/astrata
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/noc_kopesh
+	name = "Moonlight Kopesh"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/sword/sabre/nockhopesh
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/necra_flail
+	name = "Swift End"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/flail/necraflail
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/pestra_dagger
+	name = "Plaguebringer Sickles"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/dendor_scythe
+	name = "Summer Scythe (+1 H. Steel, +1 Small Log)"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/steelholy, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/halberd/bardiche/scythe
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/xylix_whip
+	name = "Cackle Lash"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/whip/xylix
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/ravox_mace
+	name = "Duel Settler (+1 H. Steel)"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/steelholy)
+	created_item = /obj/item/rogueweapon/mace/goden/steel/ravox
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/holy/eora_knuckles
+	name = "Close Caress"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/knuckles/eora
+	i_type = "Weapons"
+*/
+//Psydonian weapon smithing
+/datum/anvil_recipe/weapons/psy/axe
+	name = "Psydonian War Axe (+1 B. Silver, +1 Stick)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/stoneaxe/silver/psyaxe
+	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/grown/log/tree/stick)
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/mace
+	name = "Psydonian Mace (+1 B. Silver, +1 Stick)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/mace/goden/psymace
+	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/grown/log/tree/stick)
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/spear
+	name = "Psydonian Spear (+1 Small Log)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/spear/psyspear
+	additional_items = list(/obj/item/grown/log/tree/small)
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/dagger
+	name = "Psydonian Dagger"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/halberd
+	name = "Psydonian Halberd (+1 B. Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/halberd/psyhalberd
+	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/grown/log/tree/small)
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/gsword
+	name = "Psydonian Greatsword (+1 B. Silver, +1 H. Steel)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/greatsword/psygsword
+	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/ingot/steelholy)
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/sword
+	name = "Psydonian Sword (+1 B. Silver)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/silverblessed)
+	created_item = /obj/item/rogueweapon/sword/long/psysword
+	i_type = "Weapons"

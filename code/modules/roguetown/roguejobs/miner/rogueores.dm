@@ -192,3 +192,16 @@
 	icon_state = "ingotblacksteel"
 	smeltresult = /obj/item/ingot/blacksteel
 	sellprice = 90
+//Blessed Ingots
+/obj/item/ingot/steelholy/
+	name = "holy steel bar"
+	desc = "This ingot of steel has been touched by Malum. It radiates heat, even when outside a forge."
+	icon_state = "ingotsteelholy"
+	smeltresult = /obj/item/ingot/steel //Smelting it removes the blessing
+	sellprice = 60
+/obj/item/ingot/silverblessed/
+	name = "blessed silver bar"
+	desc = "This bar radiates a divine purity. Treasured by the realms and commonly found in Otavan weaponry."
+	icon_state = "ingotsilvblessed"
+	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
+	sellprice = 100
