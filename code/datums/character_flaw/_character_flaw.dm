@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/colorblind
 	name = "Colorblind"
-	desc = "I was cursed with flawed eyesight from birth, and can't discern things others can."
+	desc = "I was cursed with flawed eyesight from birth, and can't discern things others can. Incompatible with Night-eyed virtue."
 
 /datum/charflaw/colorblind/on_mob_creation(mob/user)
 	..()
