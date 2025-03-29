@@ -88,10 +88,27 @@
 				if(outcomes[outcomes[1]] >= 5)
 					var/result_path = outcomes[1]
 					var/datum/alch_cauldron_recipe/found_recipe = new result_path
+					var/amt2raise = lastuser?.STAINT*2
+					var/in_cauldron = src?.reagents?.get_reagent_amount(/datum/reagent/water)
+					// Handle skillgating
+					if(!lastuser)
+						brewing = 0
+						src.visible_message(span_info("The cauldron can't brew anything without an alchemist to guide it."))
+						return
+					if(found_recipe.skill_required > lastuser?.mind?.get_skill_level(/datum/skill/craft/alchemy))
+						brewing = 0
+						src.visible_message(span_warning("The ingredients in the cauldron melds together into a disgusting mess! Perhaps a more skilled alchemist is needed for this recipe."))
+						if(reagents)
+							src.reagents.remove_reagent(/datum/reagent/water, in_cauldron)
+						for(var/obj/item/ing in src.ingredients)
+							qdel(ing)
+						src.reagents.add_reagent(/datum/reagent/yuck, in_cauldron) // 1 to 1 transmutation of yuck
+						// Learn from your failure (Yeah you can technically still grind this way you just blow through a lot of ingredients)
+						lastuser?.mind?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE) 
+						return
 					for(var/obj/item/ing in src.ingredients)
 						qdel(ing)
 					if(reagents)
-						var/in_cauldron = src.reagents.get_reagent_amount(/datum/reagent/water)
 						src.reagents.remove_reagent(/datum/reagent/water, in_cauldron)
 					if(found_recipe.output_reagents.len)
 						src.reagents.add_reagent_list(found_recipe.output_reagents)
@@ -101,7 +118,6 @@
 					//handle player perception and reset for next time
 					src.visible_message("<span class='info'>The cauldron finishes boiling with a faint [found_recipe.smells_like] smell.</span>")
 					//give xp for /datum/skill/craft/alchemy
-					var/amt2raise = lastuser.STAINT*2
 					lastuser?.mind?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE)
 					playsound(src, "bubbles", 100, TRUE)
 					playsound(src,'sound/misc/smelter_fin.ogg', 30, FALSE)
