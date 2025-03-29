@@ -376,9 +376,12 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			str = elaborate ? "<font color = '[color]'>[input] (A+)</font>" : "<font color = '[color]'>[input] (A to A+)</font>"
 		if(100)
 			var/color = "#339dff"
-			str = elaborate ? "<font color = '[color]'>[input] (S)</font>" : "<font color = '[color]'>[input] (S)</font>"
+			str = "<font color = '[color]'>[input] (S)</font>"
+		if(101 to 200)
+			var/color = "#c757af"
+			str = "<font color = '[color]'>[input] (S+)</font>"
 		else
-			str = "[input] (Above 100 or under 0! Contact coders.)"
+			str = "[input] (Under 0 or above 200! Contact coders.)"
 	return str
 
 /proc/defense_report(var/obj/item/clothing/C, var/stupid, var/normal, var/smart, var/stupid_string)
