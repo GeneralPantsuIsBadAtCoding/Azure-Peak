@@ -465,8 +465,13 @@
 				return
 			if(INTENT_SPELL)
 				if(ranged_ability?.InterceptClickOn(src, params, A))
-					changeNext_move(mmb_intent.clickcd)
-					if(mmb_intent.releasedrain)
+					// Check if mmb_intent exists and has a valid clickcd value
+					if(mmb_intent && !isnull(mmb_intent.clickcd))
+						changeNext_move(mmb_intent.clickcd)
+					else
+						changeNext_move(CLICK_CD_MELEE) // Default fallback if clickcd isn't defined
+					
+					if(mmb_intent && mmb_intent.releasedrain)
 						rogfat_add(mmb_intent.releasedrain)
 				return
 

@@ -10,6 +10,7 @@
 	charge_type = "recharge"
 	invocation_type = "shout"
 	var/active_sound
+	// Note: chargedrain is inherited from the parent spell class
 
 /obj/effect/proc_holder/spell/update_icon()
 	if(!action)
@@ -35,6 +36,9 @@
 			user.playsound_local(user,active_sound,100,vary = FALSE)
 		active = TRUE
 		add_ranged_ability(user, null, TRUE)
+		// Update intent values
+		if(user.mmb_intent && user.mmb_intent.type == INTENT_SPELL)
+			user.update_mmb_intent_from_ranged_ability()
 		on_activation(user)
 	update_icon()
 	start_recharge()
@@ -43,31 +47,89 @@
 	..()
 	active = FALSE
 	remove_ranged_ability(null)
+	// Reset client charging state if it exists
+	if(user && user.client)
+		user.client.charging = 0
+		user.client.doneset = 0
+		user.client.chargedprog = 0
+		user.client.progress = 0
+		user.client.mouse_pointer_icon = 'icons/effects/mousemice/human.dmi'
+		STOP_PROCESSING(SSmousecharge, user.client)
+		
+		// Reset the primed_spell flag to allow stamina regeneration again
+		user.primed_spell = FALSE
+		
 	on_deactivation(user)
 
 /obj/effect/proc_holder/spell/invoked/proc/on_activation(mob/user)
 	return
 
 /obj/effect/proc_holder/spell/invoked/proc/on_deactivation(mob/user)
+	if(user)
+		to_chat(user, span_notice("You release the [src.name] spell."))
 	return
 
 /obj/effect/proc_holder/spell/invoked/InterceptClickOn(mob/living/caller, params, atom/target) 
 	. = ..()
 	if(.)
 		return FALSE
+	
+	// Basic checks for casting ability
 	if(!can_cast(caller) || !cast_check(FALSE, ranged_ability_user))
 		return FALSE
-	var/client/client = caller.client
-	var/percentage_progress = client?.chargedprog
-	var/charge_progress = client?.progress // This is in seconds, same unit as chargetime
-	var/goal = src.get_chargetime() //if we have no chargetime then we can freely cast (and no early release flag was not set)
-	if(src.no_early_release) //This is to stop half-channeled spells from casting as the repeated-casts somehow bypass into this function.
-		if(percentage_progress < 100 && charge_progress < goal)//Conditions for failure: a) not 100% progress, b) charge progress less than goal
-			to_chat(usr, span_warning("[src.name] was not finished charging! It fizzles."))
-			src.revert_cast()
-			return FALSE
-	if(perform(list(target), TRUE, user = ranged_ability_user))
+	
+	// Get click parameters to detect right-click
+	var/list/modifiers = params2list(params)
+	
+	// Handle right-click to dismiss spell
+	if(modifiers["right"]) 
+		to_chat(caller, span_warning("You dismiss the [src.name] spell."))
+		deactivate(caller)
 		return TRUE
+	
+	// Check if this is a projectile spell or has projectile behavior
+	var/is_projectile_behavior = FALSE
+	if(istype(src, /obj/effect/proc_holder/spell/invoked/projectile))
+		is_projectile_behavior = TRUE
+	else if(vars && ("projectile_behavior" in vars))
+		is_projectile_behavior = vars["projectile_behavior"]
+	
+	// Projectile spells use the hold/release behavior
+	if(is_projectile_behavior)
+		// For projectile spells, make sure it's fully charged if no_early_release is true
+		if(no_early_release && !caller.is_spell_fully_charged())
+			to_chat(caller, span_warning("[src.name] was not finished charging! It fizzles."))
+			revert_cast(caller)
+			return FALSE
+			
+		// Cast the projectile spell and deactivate only if we have a valid target
+		if(target && target != caller && perform(list(target), TRUE, user = ranged_ability_user))
+			deactivate(caller)
+			// Reset the primed_spell flag after casting
+			caller.primed_spell = FALSE
+			return TRUE
+		
+		// If clicking on nothing or self, don't deactivate - keep spell primed
+		if(!target || target == caller)
+			return TRUE
+	else
+		// Non-projectile spells can use click-to-cast when fully charged
+		if(caller.is_spell_fully_charged() || !no_early_release)
+			// Only cast if we have a valid target
+			if(target && target != caller && perform(list(target), TRUE, user = ranged_ability_user))
+				deactivate(caller)
+				// Reset the primed_spell flag after casting
+				caller.primed_spell = FALSE
+				return TRUE
+			
+			// If clicking on nothing or self, don't deactivate - keep spell primed
+			if(!target || target == caller)
+				return TRUE
+		else
+			to_chat(caller, span_warning("[src.name] is not fully charged yet!"))
+			return TRUE
+	
+	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/projectile
 	var/projectile_type = /obj/projectile/magic/teleport

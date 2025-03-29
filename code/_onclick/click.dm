@@ -50,6 +50,20 @@
 /atom/Click(location,control,params)
 	if(flags_1 & INITIALIZED_1)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
+		
+		// Handle fully charged spells
+		if(ismob(usr))
+			var/mob/M = usr
+			if(M.client && M.is_spell_fully_charged())
+				if(istype(M.ranged_ability, /obj/effect/proc_holder/spell/invoked))
+					var/obj/effect/proc_holder/spell/invoked/spell = M.ranged_ability
+					// Only allow direct clicks for non-projectile spells
+					if(!istype(spell, /obj/effect/proc_holder/spell/invoked/projectile))
+						if(spell.cast_check(FALSE, M))
+							if(spell.perform(list(src), TRUE, user = M))
+								spell.deactivate(M)
+								return // Skip normal click handling
+		
 		usr.ClickOn(src, params)
 	return
 
@@ -773,15 +787,49 @@
 		add_view_range(view)*/
 
 /mob/proc/check_click_intercept(params,A)
+	var/list/modifiers = params2list(params)
+	
+	// Handle right-click dismissal for any spell (charged or not)
+	if(modifiers["right"] && ranged_ability && istype(ranged_ability, /obj/effect/proc_holder/spell))
+		var/obj/effect/proc_holder/spell/spell = ranged_ability
+		to_chat(src, span_warning("You dismiss the [spell.name] spell."))
+		spell.deactivate(src)
+		return TRUE
+
 	//Client level intercept
 	if(client && client.click_intercept)
-		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
-			return TRUE
+		if(istype(client.click_intercept, /obj/effect/proc_holder))
+			var/obj/effect/proc_holder/P = client.click_intercept
+			if(P.InterceptClickOn(src, params, A))
+				return TRUE
 
 	//Mob level intercept
 	if(click_intercept)
-		if(call(click_intercept, "InterceptClickOn")(src, params, A))
-			return TRUE
+		if(istype(click_intercept, /obj/effect/proc_holder))
+			var/obj/effect/proc_holder/P = click_intercept
+			if(P.InterceptClickOn(src, params, A))
+				return TRUE
+
+	// Special handling for fully charged spells
+	if(client && is_spell_fully_charged())
+		var/obj/effect/proc_holder/spell/invoked/spell = ranged_ability
+		if(istype(spell))
+			// Check if this is a projectile spell or has projectile behavior - with safe fallback
+			var/is_projectile_behavior = FALSE
+			if(istype(spell, /obj/effect/proc_holder/spell/invoked/projectile))
+				is_projectile_behavior = TRUE
+			else if(spell.vars && ("projectile_behavior" in spell.vars))
+				is_projectile_behavior = spell.vars["projectile_behavior"]
+			
+			// Let projectile spells handle their own click behavior
+			if(is_projectile_behavior)
+				return FALSE
+			
+			// For non-projectile spells, allow direct clicks when fully charged
+			if(spell.cast_check(FALSE, src))
+				if(spell.perform(list(A), TRUE, user = src))
+					spell.deactivate(src)
+					return TRUE // Skip normal click handling
 
 	return FALSE
 
@@ -794,6 +842,13 @@
 	return
 
 /mob/proc/RightClickOn(atom/A, params)
+	// Special handling for ranged abilities - right-click dismisses
+	if(ranged_ability && istype(ranged_ability, /obj/effect/proc_holder/spell))
+		var/obj/effect/proc_holder/spell/spell = ranged_ability
+		to_chat(src, span_warning("You dismiss the [spell.name] spell."))
+		spell.deactivate(src)
+		return
+		
 	if(A.Adjacent(src))
 		if(A.loc == src && (A == get_active_held_item()) )
 			A.rmb_self(src)
