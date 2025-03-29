@@ -33,3 +33,9 @@
 	if(!dreams)
 		return null
 	return pick(dreams)
+
+/datum/skill/Topic(href, href_list)
+	. = ..()
+
+	if(href_list["skill_detail"])
+		to_chat(usr, desc)

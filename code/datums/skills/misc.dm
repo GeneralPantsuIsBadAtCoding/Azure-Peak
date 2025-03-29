@@ -5,6 +5,7 @@
 
 /datum/skill/misc/alchemy
 	name = "Lesser Alchemy"
+	desc = "Determins whether you can perform transmutation and stone mortar alchemy recipes."
 	dreams = list(
 		"...your mind spins as the great tome before you unfurls. One part in two hundred and fifty is salt, and it can be extracted from the flesh with a bit of ash. You pick up the pestle...",
 		"...a wizened man quaffs a blue liquid from a bottle, letting out a satisfied burp, 'A bottle of blue can sate your manna twice; once when emptied and once when filled with alchemist's spice.' He sets about grinding brimstone into the bottle before stuffing it with some cloth..."
@@ -12,6 +13,7 @@
 
 /datum/skill/misc/athletics
 	name = "Athletics"
+	desc = "Increases your maximum stamina by 5 per point. Decreases chance of consuming nutrition when exerted by 16% per level."
 	dreams = list(
 		"...your lungs burn and you can no longer feel your breath as the pale volf's howling grows distant. You should have collapsed three times over, but the urge to survive pushes you past your bodily limits...",
 		"...the incline before you is steep, and the barrel weighs heavy in your hands but you press on. This is no longer a hill. This is your mountain and with every strained breath, you inch closer to its summit, determined to conquer it..."
@@ -19,6 +21,7 @@
 
 /datum/skill/misc/climbing
 	name = "Climbing"
+	desc = "Increases your climbing speed. A minimum level of 3 is required to climb most stone walls and 4 for mossy walls."
 	dreams = list(
 		"...your elbows are scraped and your hands, calloused but you have a firm hold on the rock wall. With a deep breath and a sudden lunge, you reach upward, searching for another handhold. Your foot slips and gravity pulls at you, your heart racing as you plummet into the void...",
 		"...the meadows are shining green and the sun is behind a covering of clouds. Your childhood friend taunts you, his white toothed grin matching his pale eyes before dashing up a tree. You clamber after him and make your way upwards..."
@@ -26,6 +29,7 @@
 
 /datum/skill/misc/reading
 	name = "Reading"
+	desc = "Increases your chance to read a spellbook successfully by 2% per level. Minimum of 1 is required to be literate and read various things."
 	dreams = list(
 		"...amidst the void, strange symbols and glyphs make their way into your mind. They re-arrange themselves unceasingly, indecipherable truths speaking in silent voices. The clouds part, and they fall still within the moonlight. The meaning of the gift is revealed...",
 		"...you cut into your meal, juices leaking from the edges of the book. Your mind expands throughout your meal, and you are about halfway through the meal when an old, bearded chef asks you how you like his specialty..."
@@ -33,6 +37,7 @@
 
 /datum/skill/misc/swimming
 	name = "Swimming"
+	desc = "Reduces stamina spent swimming slightly per level."
 	dreams = list(
 		"...there is no light in the suffocating dark. You choose a direction and your arms and legs tear at the thick, oily waters in a desperate attempt to reach the surface. Your heart pounds, and your body yearns for another breath...",
 		"...a wave rocks to the side of the boat, and you tumble into the yawning abyss. Lightning splits the sky as the old captain hurls a buoy into the churning sea. Salt water burns your lungs as you thrash and claw, struggling towards your lifeline...",
@@ -42,6 +47,7 @@
 
 /datum/skill/misc/stealing
 	name = "Pickpocketing"
+	desc = "Increases your chance to steal successfully without being caught."
 	dreams = list(
 		"...one moment, you stand in line at the smithy, waiting behind the captain of the guard. The next, you're at the merchant's stall, shadowing a travelling noble. Moments later, cries of 'Thief!' echo throughout town, while you count out hundreds of mammon...",
 		"...a piss-stinking, beggar with wooden-arms and a lice-ridden beard calls out to you, a rotten-toothed smile on his face. 'Spare a zenny for the wretched?' he asks. As you step away from the wretch, you feel strangely light at your waist. A glance down reveals your now empty pouch -- and two wooden arms abandoned on the ground where he had been sitting..."
@@ -49,6 +55,7 @@
 
 /datum/skill/misc/sneaking
 	name = "Sneaking"
+	desc = "Increases your chance of sneaking successfully and not be detected, and reduces your chances of leaving behind tracks."
 	dreams = list(
 		"...the four connected houses, orthogonally aligned, have a small dip at the center of their slanted rooftops. Your crow's nest. Your safe haven. The only light that can reach you here is what Noc takes from Astrata, and this night is particularly veiled. It's concealing and comforting, safe from the town guard, as you curl up to rest...",
 		"...the pale volf gets on its hindlegs, and howls unto the moon. It seeks prey, and you happen to be unfortunate enough to be in its forest. This is the third time it has circled you, as you press yourself tighter into the hollow tree, completely still..."
@@ -56,6 +63,7 @@
 
 /datum/skill/misc/lockpicking
 	name = "Lockpicking"
+	desc = "Speeds up lockpicking and increases success chance."
 	dreams = list(
 		"...your pick feels like an extension of your fingers as you nudge the final pin into place. The chest creaks open, revealing a glint of gold that was never meant to see the light of day...",
 		"...the street and the merchant's shop stands silent in the moonlight as you kneel before the lock. Each quiet click draws you closer to riches--or discovery. With a soft snap, the door opens, allowing you to slip inside...",
@@ -64,6 +72,7 @@
 
 /datum/skill/misc/riding
 	name = "Riding"
+	desc = "Increases the speed you ride a mount at, and the speed at which you can mount and dismount."
 	dreams = list(
 		"...the bog becomes more tolerable when it is not your foot that has to tread upon it. It took some coin, but your travels are much smoother atop your trustworthy steed...",
 		"...the landsknecht thrusts their pole-arm at your steed and it bucks wildly. Lurching forwards, you interpose your shield to the weapon and feel your balance shift. Flexing every muscle in your core and legs, you barely manage to remain mounted..."
@@ -71,6 +80,7 @@
 
 /datum/skill/misc/music
 	name = "Music"
+	desc = "Increases the effects of your music on reducing stresses per level. At Level 4 or above, allows you to play a custom song."
 	dreams = list(
 		"...offstage, anxiety grips you, sweat beading on your brow. But onstage, you are as still as a winter night, your voice steady and clear. Curiosity pulls your audience in as you begin to sing...",
 		"...you raise your hands to the strings and draw the crowds attention unto yourself. The music comes easily out of you, and your lyre is like a second voice...",
@@ -80,6 +90,7 @@
 
 /datum/skill/misc/medicine
 	name = "Medicine"
+	desc = "Increases the speed and success chance of surgeries and suturing wounds."
 	dream_cost_base = 3
 	dreams = list(
 		"...the beak-masked doctor leans over the elven corpse, tugging and slicing at a mass of strange, dark flesh. 'The appendix,' he mutters as he holds it aloft. 'Longer in this species of kin than others, adapted for their plant-rich diets.' He gestures for you to observe more closely, his tone as clinical as his blade...",
@@ -90,6 +101,7 @@
 
 /datum/skill/misc/sewing
 	name = "Sewing"
+	desc = "Determines whether you can craft various sewing-related items and repair them."
 	dreams = list(
 		"...as the years go by, the mantra becomes increasingly oppressive. Stitch, sew, cut ties, stitch, sew, thread the needle twice...",
 		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."

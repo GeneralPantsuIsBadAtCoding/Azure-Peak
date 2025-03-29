@@ -423,9 +423,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(WLENGTH_GREAT)
 					inspec += "Great"
 
-//		if(eweight)
-//			inspec += "\n<b>ENCUMBRANCE:</b> [eweight]"
-
 		if(alt_intents)
 			inspec += "\n<b>ALT-GRIP</b>"
 
