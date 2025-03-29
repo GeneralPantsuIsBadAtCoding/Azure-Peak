@@ -952,7 +952,7 @@
 	color = "#685542"
 
 /obj/item/clothing/cloak/raincloak/furcloak/black
-	color = "#66564d"
+	color = "#2b292e"
 	
 /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
 	color = "#264d26"

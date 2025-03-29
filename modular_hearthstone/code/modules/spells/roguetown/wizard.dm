@@ -1565,8 +1565,12 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		revert_cast()
 		return
 
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+
 	if(T.z != start.z)
 		to_chat(user, span_warning("I can only teleport on the same plane!"))
+
 		revert_cast()
 		return
 	

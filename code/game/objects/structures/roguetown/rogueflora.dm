@@ -513,6 +513,9 @@
     climbable = FALSE
     dir = SOUTH
     debris = list(/obj/item/natural/thorn = 3, /obj/item/grown/log/tree/stick = 1)
+
+/obj/structure/flora/roguegrass/thorn_bush/update_icon()
+	icon_state = "thornbush"
 //WIP
 
 // fyrituis bush -- STONEKEEP PORT
@@ -629,3 +632,50 @@
 			if(!looty3.len)
 				to_chat(user, "<span class='warning'>Picked clean... I should try later.</span>")
 #endif
+
+// cute underdark mushrooms from dreamkeep
+
+/obj/structure/flora/rogueshroom/happy
+	name = "underdark mushroom"
+	icon_state = "happymush1"
+	icon = 'icons/roguetown/misc/foliagetall.dmi'
+	desc = "Mushrooms might be the happiest beings in this god forsaken place."
+
+/obj/structure/flora/rogueshroom/happy/mushroom2
+	icon_state = "happymush2"
+
+/obj/structure/flora/rogueshroom/happy/mushroom3
+	icon_state = "happymush3"
+
+/obj/structure/flora/rogueshroom/happy/mushroom4
+	icon_state = "happymush4"
+
+/obj/structure/flora/rogueshroom/happy/mushroom5
+	icon_state = "happymush5"
+
+/obj/structure/flora/rogueshroom/happy/random
+
+/obj/structure/flora/rogueshroom/happy/random/Initialize()
+	. = ..()
+	icon_state = "happymush[rand(1,5)]"
+
+/obj/structure/flora/rogueshroom/happy/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#5D3FD3")
+
+/obj/structure/flora/mushroomcluster
+	name = "mushroom cluster"
+	desc = "A cluster of mushrooms native to the underdark."
+	icon = 'icons/roguetown/misc/foliage.dmi'
+	icon_state = "mushroomcluster"
+	density = TRUE
+
+/obj/structure/flora/mushroomcluster/New(loc)
+	..()
+	set_light(1.5, 1.5, 1.5, l_color ="#5D3FD3")
+
+/obj/structure/flora/tinymushrooms
+	name = "small mushroom cluster"
+	desc = "A cluster of tiny mushrooms native to the underdark."
+	icon = 'icons/roguetown/misc/foliage.dmi'
+	icon_state = "tinymushrooms"
