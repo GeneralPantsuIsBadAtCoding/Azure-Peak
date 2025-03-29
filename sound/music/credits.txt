@@ -10,7 +10,8 @@ combat_guard.ogg: Deus Ex - Desolation Combat
 combat_guard2.ogg: Thronebreaker Unreleased Soundtrack - Caldwell Battle Theme
 combat_physician.ogg: Pathologic (Classic) - Utroba Aggression
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
-combat_knight.ogg: Dragon's Dogma OST: Tense Combat
+combat_knight.ogg: Kingdom Come II: Deliverence - Combat Theme Loop
+combat_squire.ogg: Dragon's Dogma OST: Tense Combat
 combat_duelist.ogg: Medieval Total War 2 OST: Spanish Battle Theme
 combat_cult.ogg: Igor Kornelyuk - Воланд
 combat_druid.ogg: The Witcher 3: Wild Hunt - Hunt or Be Hunted
