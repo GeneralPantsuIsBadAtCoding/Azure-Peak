@@ -200,7 +200,7 @@
 	desc = "A gold-embroidered dress shirt specially tailored for the monarch's children."
 	icon_state = "prince"
 	boobed = TRUE
-	detail_color = CLOTHING_MAJENTA
+	detail_color = CLOTHING_MAGENTA
 
 // End royal clothes
 

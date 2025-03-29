@@ -55,7 +55,7 @@
 		"Red" = "#a32121",
 		"Royal Red"="#8b2323",
 		"Maroon" = "#550000",
-		"Royal Majenta"="#962e5c",
+		"Royal Magenta"="#962e5c",
 		"Peasant Brown" = "#685542",
 		"Dirt" = "#7c6d5c",
 		"Chestnut" = "#613613",

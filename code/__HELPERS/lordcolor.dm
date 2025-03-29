@@ -32,7 +32,7 @@ GLOBAL_VAR(lordsecondary)
 "AZURE"="#007fff", 	// FOR THE FLAG
 "WHITE"="#ffffff",	//	  I DIE
 "ORANGE"="#df8405",	//I'M PROUD TO BE
-"MAJENTA"="#962e5c")// AN ALBANIAN
+"MAGENTA"="#962e5c")// AN ALBANIAN
 	var/prim
 	var/sec
 	var/choice = input(src, "Choose a Primary Color", "ROGUETOWN") as anything in lordcolors
