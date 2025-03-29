@@ -173,6 +173,10 @@
 	devotion_cost = 30
 	/// Amount of PQ gained for curing zombos
 	var/unzombification_pq = PQ_GAIN_UNZOMBIFY
+	var/is_lethal = TRUE
+
+/obj/effect/proc_holder/spell/invoked/cure_rot/priest
+	is_lethal = FALSE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
@@ -187,7 +191,7 @@
 
 		if(remove_rot(target = target, user = user, method = "prayer",
 			success_message = "The rot leaves [target]'s body!",
-			fail_message = "Nothing happens."))
+			fail_message = "Nothing happens.", lethal = is_lethal))
 			target.visible_message(span_notice("The rot leaves [target]'s body!"), span_green("I feel the rot leave my body!"))
 			return TRUE
 		else //Attempt failed, no rot

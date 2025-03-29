@@ -1,4 +1,4 @@
-/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.")
+/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.", lethal = TRUE)
 	if (!istype(target, /mob/living/carbon/human) || QDELETED(target))
 		return FALSE
 
@@ -28,7 +28,7 @@
 		return FALSE
 
 	if (was_zombie)
-		remove_zombie_antag(target, user, method)
+		remove_zombie_antag(target, user, method, lethal)
 
 	//Doing it out of this proc for now
 	//to_chat(user, span_notice(success_message))
@@ -42,16 +42,19 @@
 	return FALSE
 
 
-/proc/remove_zombie_antag(mob/living/carbon/target, mob/living/user, method)
+/proc/remove_zombie_antag(mob/living/carbon/target, mob/living/user, method, lethal = TRUE)
 	var/datum/antagonist/zombie/was_zombie = target.mind?.has_antag_datum(/datum/antagonist/zombie)
 	if (!was_zombie)
 		return
 
 	was_zombie.become_rotman = FALSE
 	target.mind.remove_antag_datum(/datum/antagonist/zombie)
-	target.Unconscious(20 SECONDS)
-	target.emote("breathgasp")
-	target.Jitter(100)
+	if(!lethal)
+		target.Unconscious(20 SECONDS)
+		target.emote("breathgasp")
+		target.Jitter(100)
+	else
+		target.death()
 
 	if (!HAS_TRAIT(target, TRAIT_IWASUNZOMBIFIED) && user?.ckey)
 		adjust_playerquality(PQ_GAIN_UNZOMBIFY, user.ckey)
