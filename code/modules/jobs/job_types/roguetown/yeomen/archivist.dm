@@ -81,29 +81,57 @@
 	. = ..()
 	var/list/choices = list()
 	var/list/datum/skill/skill_choices = list(
-    /datum/skill/misc/reading,
-    /datum/skill/misc/lockpicking,
-	/datum/skill/misc/tracking,
-    /datum/skill/misc/riding,
+	//skills alphabetically... this will be sloppy based on the descriptive name but easier for devs
+	/datum/skill/craft/alchemy,
+	/datum/skill/misc/alchemy,
+	/datum/skill/craft/armorsmithing,
+
+	/datum/skill/craft/blacksmithing,
+	/datum/skill/labor/butchering,
+
+	/datum/skill/craft/carpentry,
+	/datum/skill/misc/climbing,
+	/datum/skill/craft/cooking,
+	/datum/skill/craft/crafting,
+
+	/datum/skill/craft/engineering,
+
+	/datum/skill/labor/farming,
+	/datum/skill/labor/fishing,
+
+	/datum/skill/misc/lockpicking,
+	/datum/skill/labor/lumberjacking,
+
+    /datum/skill/craft/masonry,
+    /datum/skill/labor/mining,
     /datum/skill/misc/music,
     /datum/skill/misc/medicine,
+
+    /datum/skill/misc/sewing,
+    /datum/skill/craft/smelting,
 	/datum/skill/misc/sneaking,
 	/datum/skill/misc/stealing,
-	/datum/skill/misc/climbing,
 	/datum/skill/misc/swimming,
-    /datum/skill/misc/sewing,
-    /datum/skill/labor/farming,
-	/datum/skill/labor/butchering,
-	/datum/skill/craft/weaponsmithing,
-	/datum/skill/craft/armorsmithing,
+
 	/datum/skill/craft/tanning,
+	/datum/skill/misc/tracking,
 	/datum/skill/craft/traps,
-	/datum/skill/craft/crafting,
-    /datum/skill/craft/blacksmithing,
-    /datum/skill/craft/carpentry,
-    /datum/skill/craft/masonry,
-    /datum/skill/craft/cooking,
-    /datum/skill/craft/engineering
+
+	/datum/skill/misc/reading,
+    /datum/skill/misc/riding,
+
+	/datum/skill/craft/weaponsmithing,
+
+	//Languages
+	/datum/language/celestial,
+	/datum/language/draconic,
+	/datum/language/dwarvish,
+	/datum/language/elvish,
+	/datum/language/grenzelhoftian,
+	/datum/language/hellspeak,
+	/datum/language/orcish
+
+
     )
 	for(var/i = 1, i <= skill_choices.len, i++)
 		choices["[skill_choices[i].name]"] = skill_choices[i]
@@ -128,10 +156,14 @@
 					to_chat(L, span_warning("There's no way I could handle all that knowledge!"))
 					to_chat(usr, span_warning("My student cannot handle that much knowledge at once!"))
 					return // cannot teach the same student twice
-				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/misc/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing)) && L.mind?.get_skill_level(item) < SKILL_LEVEL_NOVICE)
+				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/misc/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing, /datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/grenzelhoftian, /datum/language/hellspeak, /datum/language/orcish)) && L.mind?.get_skill_level(item) < SKILL_LEVEL_NOVICE)
 					to_chat(L, span_warning("I cannot understand the lesson on [item.name], I need to get more skilled first!"))
 					to_chat(usr, span_warning("I try teaching [L] [item.name] but my student couldnt grasp the lesson!"))
 					return // some basic skill will not require you novice level
+				if(L.has_language(item))
+					to_chat(L, span_warning("I already know! [item.name]!"))
+					to_chat(usr, span_warning("They already speak [item.name]!"))
+					return // we won't teach someone a language they already know
 				if(L.mind?.get_skill_level(item) > SKILL_LEVEL_EXPERT)
 					to_chat(L, span_warning("There's nothing I can learn from that person about [item.name]!"))
 					to_chat(usr, span_warning("They know [item.name] better than I do, am I really supposed to be the teacher there?"))
@@ -139,26 +171,39 @@
 				else
 					to_chat(L, span_notice("[usr] starts teaching me about [item.name]!"))
 					to_chat(usr, span_notice("[L] gets to listen carefully to my lesson about [item.name]."))
-					if(L.mind?.get_skill_level(item) < SKILL_LEVEL_APPRENTICE) // +2 skill levels if novice or no skill
+					if((item in list(/datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/grenzelhoftian, /datum/language/hellspeak, /datum/language/orcish)))
 						if(do_after(usr, teachingtime, target = L))
 							user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
-							to_chat(usr, span_notice("My student grows a lot more proficient in [item.name]!"))
-							L.mind?.adjust_skillrank(item, 2, FALSE)
+							to_chat(usr, span_notice("My student Learns the language [item.name]!"))
+							L.grant_language(item)
 							ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
 						else
 							to_chat(usr, span_warning("[L] got distracted and wandered off!"))
 							to_chat(L, span_warning("I must be more focused on my studies!"))
-							return	
-					else  // +1 skill level if apprentice or better
-						if(do_after(usr, teachingtime, target = L))
-							user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
-							to_chat(usr, span_notice("My student grows more proficient in [item.name]!"))
-							L.mind?.adjust_skillrank(item, 1, FALSE)
-							ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
-						else
-							to_chat(usr, span_warning("[L] got distracted and wandered off!"))
-							to_chat(L, span_warning("I must be more focused on my studies!"))
-							return	
+						//teach a language! If this works out, we can make a TRAIT_STUDENT_LANGUAGE later, so a language and a skill can be taught in the same week. small steps for now
+
+
+					else
+						if(L.mind?.get_skill_level(item) < SKILL_LEVEL_APPRENTICE) // +2 skill levels if novice or no skill
+							if(do_after(usr, teachingtime, target = L))
+								user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
+								to_chat(usr, span_notice("My student grows a lot more proficient in [item.name]!"))
+								L.mind?.adjust_skillrank(item, 2, FALSE)
+								ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
+							else
+								to_chat(usr, span_warning("[L] got distracted and wandered off!"))
+								to_chat(L, span_warning("I must be more focused on my studies!"))
+								return
+						else  // +1 skill level if apprentice or better
+							if(do_after(usr, teachingtime, target = L))
+								user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
+								to_chat(usr, span_notice("My student grows more proficient in [item.name]!"))
+								L.mind?.adjust_skillrank(item, 1, FALSE)
+								ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
+							else
+								to_chat(usr, span_warning("[L] got distracted and wandered off!"))
+								to_chat(L, span_warning("I must be more focused on my studies!"))
+								return
 			else
 				to_chat(usr, span_warning("My student can barely hear me from there."))
 				return
