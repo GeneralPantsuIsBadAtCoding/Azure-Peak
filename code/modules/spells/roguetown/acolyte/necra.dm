@@ -32,10 +32,11 @@
 
 /obj/effect/proc_holder/spell/targeted/churn
 	name = "Churn Undead"
-	range = 8
+	range = 4	//Way lower, halved.
 	overlay_state = "necra"
 	releasedrain = 30
-	charge_max = 30 SECONDS
+	chargetime = 2 SECONDS
+	charge_max = 60 SECONDS
 	max_targets = 0
 	cast_without_targets = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
@@ -44,7 +45,7 @@
 	invocation = "The Undermaiden rebukes!"
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	miracle = TRUE
-	devotion_cost = 20
+	devotion_cost = 50
 
 /obj/effect/proc_holder/spell/targeted/churn/cast(list/targets,mob/living/user = usr)
 	var/prob2explode = 100
@@ -64,20 +65,19 @@
 					isvampire = TRUE
 			if(L.mind.has_antag_datum(/datum/antagonist/zombie))
 				iszombie = TRUE
-			if(L.mind.special_role == "Vampire Lord")
+			if(L.mind.special_role == "Vampire Lord" || L.mind.special_role == "Lich")	//Won't detonate Lich's or VLs but will fling them away.
 				user.visible_message(span_warning("[L] overpowers being churned!"), span_userdanger("[L] is too strong, I am churned!"))
 				user.Stun(50)
 				user.throw_at(get_ranged_target_turf(user, get_dir(user,L), 7), 7, 1, L, spin = FALSE)
 				return
 		if((L.mob_biotypes & MOB_UNDEAD) || isvampire || iszombie)
-//			L.visible_message(span_warning("[L] is unmade by PSYDON!"), span_danger("I'm unmade by PSYDON!"))
 			var/vamp_prob = prob2explode
 			if(isvampire)
 				vamp_prob -= 59
 			if(prob(vamp_prob))
+				L.visible_message("<span class='warning'>[L] has been churned by Necra's grip!", "<span class='danger'>I've been churned by Necra's grip!")
 				explosion(get_turf(L), light_impact_range = 1, flame_range = 1, smoke = FALSE)
 				L.Stun(50)
-//				L.throw_at(get_ranged_target_turf(L, get_dir(user,L), 7), 7, 1, L, spin = FALSE)
 			else
 				L.visible_message(span_warning("[L] resists being churned!"), span_userdanger("I resist being churned!"))
 	..()
@@ -102,43 +102,62 @@
 /obj/effect/proc_holder/spell/targeted/soulspeak/cast(list/targets,mob/user = usr)
 	var/mob/living/carbon/spirit/capturedsoul = null
 	var/list/souloptions = list()
-	var/list/itemstorestore = list()
+	var/list/itemstore = list()
 	for(var/mob/living/carbon/spirit/S in GLOB.mob_list)
+		if(S.summoned)
+			continue
+		if(!S.client)
+			continue
 		souloptions += S.livingname
-	var/pickedsoul = input(user, "Which soul should I commune with?", "Available Souls") as null|anything in souloptions
+	var/pickedsoul = input(user, "Which wandering soul shall I commune with?", "Available Souls") as null|anything in souloptions
 	if(!pickedsoul)
+		to_chat(user, span_warning("I was unable to commune with a soul."))
 		return
-	for(var/mob/living/carbon/spirit/P in GLOB.carbon_list)
+	for(var/mob/living/carbon/spirit/P in GLOB.mob_list)
 		if(P.livingname == pickedsoul)
-			to_chat(P, "You feel yourself being pulled out of the underworld.")
+			to_chat(P, "<font color='blue'>You feel yourself being pulled out of the Underworld.</font>")
 			sleep(2 SECONDS)
-			P.loc = user.loc
+			if(QDELETED(P) || P.summoned)
+				to_chat(user, "<font color='blue'>Your connection to the soul suddenly disappears!</font>")
+				return
 			capturedsoul = P
-			P.invisibility = INVISIBILITY_OBSERVER
-			user.grant_language(/datum/language_holder/abyssal)
-			for(var/obj/item/I in P.held_items) // this is big ass, will revisit later
-				. |= P.dropItemToGround(I)
-				if(istype(I, /obj/item/underworld/coin))
-					itemstorestore |= "token"
-				if(istype(I, /obj/item/flashlight/lantern/shrunken))
-					itemstorestore |= "lamp"
-				qdel(I)
 			break
-		to_chat(P, "[itemstorestore]")
 	if(capturedsoul)
-		spawn(2 MINUTES)
-			to_chat(user, "The soul returns to the underworld.")
-			to_chat(capturedsoul, "You feel yourself being pulled back to the underworld.")
-			for(var/obj/effect/landmark/underworld/A in GLOB.landmarks_list)
-				capturedsoul.loc = A.loc
-				capturedsoul.invisibility = initial(capturedsoul.invisibility)
-				for(var/I in itemstorestore)
-					if(I == "token")
-						var/obj/item/underworld/coin/C = new
-						capturedsoul.put_in_hands(C)
-					if(I == "lamp")
-						var/obj/item/flashlight/lantern/shrunken/L = new
-						capturedsoul.put_in_hands(L)
-			user.remove_language(/datum/language_holder/abyssal)
-		to_chat(user, "<font color='blue'>I feel a cold chill run down my spine, a presence has arrived.</font>")
-		capturedsoul.Paralyze(1200)
+		for(var/obj/item/I in capturedsoul.held_items) // this is still ass
+			capturedsoul.temporarilyRemoveItemFromInventory(I, force = TRUE)
+			itemstore += I.type
+			qdel(I)
+		capturedsoul.loc = user.loc
+		capturedsoul.summoned = TRUE
+		capturedsoul.beingmoved = TRUE
+		capturedsoul.invisibility = INVISIBILITY_OBSERVER
+		capturedsoul.status_flags |= GODMODE
+		capturedsoul.Stun(61 SECONDS)
+		capturedsoul.density = FALSE
+		addtimer(CALLBACK(src, PROC_REF(return_soul), user, capturedsoul, itemstore), 60 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(return_soul_warning), user, capturedsoul), 50 SECONDS)
+		to_chat(user, "<font color='blue'>I feel a cold chill run down my spine, a ghastly presence has arrived.</font>")
+		return ..()
+
+/obj/effect/proc_holder/spell/targeted/soulspeak/proc/return_soul_warning(mob/user, mob/living/carbon/spirit/soul)
+	if(!QDELETED(user))
+		to_chat(user, span_warning("The soul is being pulled away..."))
+	if(!QDELETED(soul))
+		to_chat(soul, span_warning("I'm starting to be pulled away..."))
+
+/obj/effect/proc_holder/spell/targeted/soulspeak/proc/return_soul(mob/user, mob/living/carbon/spirit/soul, list/itemstore)
+	to_chat(user, "<font color='blue'>The soul returns to the Underworld.</font>")
+	if(QDELETED(soul))
+		return
+	to_chat(soul, "<font color='blue'>You feel yourself being transported back to the Underworld.</font>")
+	soul.drop_all_held_items()
+	for(var/obj/effect/landmark/underworld/A in shuffle(GLOB.landmarks_list))
+		soul.loc = A.loc
+		for(var/I in itemstore)
+			soul.put_in_hands(new I())
+		break
+	soul.beingmoved = FALSE
+	soul.fully_heal(FALSE)
+	soul.invisibility = initial(soul.invisibility)
+	soul.status_flags &= ~GODMODE
+	soul.density = initial(soul.density)

@@ -16,6 +16,7 @@
 	var/paid = FALSE
 	var/beingmoved = FALSE
 	var/livingname = null
+	var/summoned = FALSE
 
 /obj/item/bodypart/chest/spirit
 	icon = 'icons/roguetown/underworld/underworld.dmi'
