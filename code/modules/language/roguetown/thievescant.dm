@@ -17,3 +17,8 @@
 		"look", "see", "watch", "hear", "peep", "smell", "taste", "no", "yes", "silver", "gold", "sand", "grass", "rock",
 		"mud", "hah", "save", "cave","over", "under", "carkin", "lark", "tosser", "knobhead", "daft", "gnerd", "knave",
 		"fort", "cave","through the","hand","leg","foot","head","arrow","knee","elbow","eye","for a","reach","the","a","an","ask","tell","pray","travel","journey","quest")
+	invisible = TRUE
+
+/datum/language/thievescant/scramble(input)
+	input = ""
+	return input

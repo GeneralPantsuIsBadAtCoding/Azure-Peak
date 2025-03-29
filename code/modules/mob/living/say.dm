@@ -348,6 +348,16 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		var/atom/movable/AM = _AM
 		var/turf/listener_turf = get_turf(AM)
 		var/turf/listener_ceiling = get_step_multiz(listener_turf, UP)
+		var/lang_filter = FALSE
+
+		//Thieves cant language is not sent to those who don't know it.
+		if(message_language)
+			var/datum/language/L = GLOB.language_datum_instances[message_language]
+			if(istype(L, /datum/language/thievescant))
+				lang_filter = TRUE
+				if(!AM.has_language(/datum/language/thievescant))				
+					continue
+
 		if(listener_ceiling)
 			listener_has_ceiling = TRUE
 			if(istransparentturf(listener_ceiling))
@@ -366,6 +376,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			else
 				if(abs((listener_turf.z - speaker_turf.z)) >= 2)	//We're yelling with only one "!", and the listener is 2 or more z levels above or below us.
 					continue
+			if(lang_filter)	//We do not hear special invisible languages across z levels
+				continue
 			var/listener_obstructed = TRUE
 			var/speaker_obstructed = TRUE
 			if(src != AM && !Zs_yell && !HAS_TRAIT(AM, TRAIT_KEENEARS))	//We always hear ourselves. Zs_yell will allow a "!" shout to bypass walls one z level up or below.
@@ -381,6 +393,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 							listener_obstructed = FALSE
 				if(listener_obstructed && speaker_obstructed)
 					continue
+		if(lang_filter)		//If we have a special invisible language, we only hear it if we're in view of the speaker.
+			if(!(AM in viewers(world.view, src.loc)))
+				continue
 		var/highlighted_message
 		var/keenears
 		if(ishuman(AM))

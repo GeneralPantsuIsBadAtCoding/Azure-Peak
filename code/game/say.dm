@@ -141,7 +141,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	else
 		return verb_say
 
-/atom/movable/proc/say_quote(input, list/spans=list(speech_span), message_mode)
+/atom/movable/proc/say_quote(input, list/spans=list(speech_span), message_mode, visible = TRUE)
+	if(!input && !visible)
+		return ""
 	if(!input)
 		input = "..."
 
@@ -154,6 +156,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/mob/living/L = src
 		if(L.cmode)
 			return "— \"[spanned]\""
+			
 	return "[say_mod(input, message_mode)], \"[spanned]\""
 
 /atom/movable/proc/quoteless_say_quote(input, list/spans = list(speech_span), message_mode)
@@ -176,9 +179,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/datum/language/D = GLOB.language_datum_instances[language]
 		raw_message = D.scramble(raw_message)
 		if(AM)
-			return no_quote ? AM.quoteless_say_quote(raw_message, spans, message_mode) : AM.say_quote(raw_message, spans, message_mode)
+			return no_quote ? AM.quoteless_say_quote(raw_message, spans, message_mode) : AM.say_quote(raw_message, spans, message_mode, D.invisible)
 		else
-			return no_quote ? speaker.quoteless_say_quote(raw_message, spans, message_mode) : speaker.say_quote(raw_message, spans, message_mode)
+			return no_quote ? speaker.quoteless_say_quote(raw_message, spans, message_mode) : speaker.say_quote(raw_message, spans, message_mode, D.invisible)
 	else
 		return "makes a strange sound."
 
