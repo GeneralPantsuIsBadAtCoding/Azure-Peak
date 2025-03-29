@@ -206,6 +206,8 @@
 					prob2defend += sentinel
 
 			prob2defend = clamp(prob2defend, 5, 90)
+			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
+				prob2defend = clamp(prob2defend, 5, 70)
 
 			//Dual Wielding
 			var/attacker_dualw

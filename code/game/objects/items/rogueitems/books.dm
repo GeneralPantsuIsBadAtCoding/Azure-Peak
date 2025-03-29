@@ -237,6 +237,7 @@
 	base_icon_state = "book5"
 	bookfile = "knowledge.json"
 
+
 /obj/item/book/rogue/secret/xylix
 	name = "Book of Gold"
 	desc = "<font color='red'><blink>An ominous book with untold powers.</blink></font>"

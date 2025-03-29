@@ -138,6 +138,7 @@
 #define TRAIT_LIGHT_STEP	"Light Step"
 #define TRAIT_AZURENATIVE "Azure Native"
 #define TRAIT_SLEUTH	"Sleuth"
+#define TRAIT_HARDSHELL "Hardshell"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -256,6 +257,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_AZURENATIVE = span_info("I've grown up and lived all my lyfe in these lands. I can only trigger ambushes if I sprint through them."),
 	TRAIT_SLEUTH = span_info("I can spot my tracked Mark's trail without needing to approach it, and can spot them at a distance. I can track more frequently, and the act is not impaired by movement. I can examine tracks right away."),
+  TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
 ))
 
 // trait accessor defines

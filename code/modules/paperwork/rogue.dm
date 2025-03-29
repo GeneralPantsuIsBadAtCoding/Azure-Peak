@@ -118,6 +118,37 @@
 		icon_state = "scroll_closed"
 		name = "scroll"
 
+//Fake reskin of a scroll for the dwarf mercs -- just a fluffy toy
+/obj/item/paper/scroll/grudge
+	name = "Book of Grudges"
+	desc = "A copy you've taken with you. Unfortunately the dampness of Azuria made it unreadable. You can still add new entries, however."
+	icon_state ="grudge_closed"
+	drop_sound = 'sound/foley/dropsound/book_drop.ogg'
+	grid_width = 32
+	grid_height = 32
+
+/obj/item/paper/scroll/grudge/update_icon_state()
+	if(open)
+		if(info)
+			icon_state = "grudgewrite"
+		else
+			icon_state = "grudge"
+	else
+		icon_state = "grudge_closed"
+
+/obj/item/paper/scroll/grudge/attack_right(mob/user)
+	if(!open)
+		slot_flags &= ~ITEM_SLOT_HIP
+		open = TRUE
+		playsound(loc, 'sound/items/book_open.ogg', 100, FALSE, -1)
+	else
+		slot_flags |= ITEM_SLOT_HIP
+		open = FALSE
+		playsound(loc, 'sound/items/book_close.ogg', 100, FALSE, -1)
+	update_icon_state()
+	user.update_inv_hands()
+
+
 /obj/item/paper/scroll/cargo
 	name = "shipping order"
 	icon_state = "contractunsigned"
