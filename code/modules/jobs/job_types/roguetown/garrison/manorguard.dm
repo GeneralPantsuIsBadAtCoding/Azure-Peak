@@ -153,7 +153,7 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Crossbow","Longbow","Sling")
+	var/weapons = list("Crossbow","Recurve Bow","Sling")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
@@ -161,9 +161,9 @@
 			beltr = /obj/item/quiver/bolts
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-		if("Longbow") // They can head down to the armory to sideshift into one of the other bows.
+		if("Recurve Bow")
 			beltr = /obj/item/quiver/arrows
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Sling")
 			beltr = /obj/item/quiver/sling/iron

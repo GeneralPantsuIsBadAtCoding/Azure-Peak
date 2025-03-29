@@ -144,7 +144,7 @@
 	tools = /obj/item/rogueweapon/huntingknife
 	verbage_simple = "carve"
 	verbage = "carves"
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/longbow
 	name = "long bow"
@@ -155,7 +155,7 @@
 		)
 	verbage_simple = "string together"
 	verbage = "strings together"
-	craftdiff = 3
+	craftdiff = 5
 
 /datum/crafting_recipe/roguetown/wickercloak
 	name = "wickercloak"
