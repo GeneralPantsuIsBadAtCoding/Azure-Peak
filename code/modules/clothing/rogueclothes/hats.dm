@@ -839,6 +839,26 @@
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 400
 
+/obj/item/clothing/head/roguetown/helmet/heavy/matthios
+	name = "gilded visage"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	desc = "All that glitters is not gold,"
+	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT|HIDEHAIR|HIDEFACIALHAIR
+	icon_state = "matthioshelm"
+	max_integrity = 600
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	bloody_icon = 'icons/effects/blood64.dmi'
+
+
+/obj/item/clothing/head/roguetown/helmet/heavy/matthios/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_COMMIE))
+		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCH THE VISAGE, CEASE OR BE PUNISHED</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
+
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo
 	name = "darksteel barbute"
 	desc = "A darksteel barbute. This one has an adjustable visor. Called forth from the edge of what should be known. In Her name."

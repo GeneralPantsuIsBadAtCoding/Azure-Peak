@@ -175,6 +175,13 @@
 	createditem_num = 1
 	craftdiff = 2
 
+/datum/anvil_recipe/armor/steel/chainmantle
+	name = "Chain Mantle"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+	createditem_num = 1
+	craftdiff = 2
+
 /datum/anvil_recipe/armor/steel/fullchaincoif
 	name = "Full Chain Coif"
 	req_bar = /obj/item/ingot/steel

@@ -35,6 +35,7 @@
 					/obj/item/needle/thorn = 1,
 					/obj/item/natural/cloth = 1,
 					/obj/item/flashlight/flare/torch = 1,
+					/obj/item/ritechalk = 1,
 					)
 	head = /obj/item/clothing/head/roguetown/roguehood
 	armor = /obj/item/clothing/suit/roguetown/armor/plate
@@ -45,7 +46,7 @@
 	H.change_stat("constitution", 1)
 	H.change_stat("fortune", 2) //We have a total of +12 in stats. 
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC) // We are going to be the lord's first heavy armor unarmed class
-
+	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_spells_monk(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
