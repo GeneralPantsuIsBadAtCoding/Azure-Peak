@@ -34,7 +34,6 @@
 
 /datum/intent/spear/cut/halberd
 	damfactor = 0.9
-	swingdelay = 10
 
 /datum/intent/spear/cut/bardiche
     damfactor = 1.0
