@@ -185,6 +185,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(!loc)
 		stack_trace("Simple animal being instantiated in nullspace")
 	update_simplemob_varspeed()
+	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC) // Because anti-embed code will not work otherwise 
 //	if(dextrous)
 //		AddComponent(/datum/component/personal_crafting)
 

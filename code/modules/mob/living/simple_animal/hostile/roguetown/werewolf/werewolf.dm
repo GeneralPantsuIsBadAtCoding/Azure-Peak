@@ -29,4 +29,3 @@
 /mob/living/simple_animal/hostile/rogue/werewolf/Initialize()
 	. = ..()
 	regenerate_icons()
-	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)

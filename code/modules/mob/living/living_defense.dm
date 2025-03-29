@@ -97,6 +97,8 @@
 	return simple_woundcritroll(P.woundclass, P.damage, null, def_zone, crit_message = TRUE)
 
 /mob/living/proc/check_projectile_embed(obj/projectile/P, def_zone)
+	if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS)) // Just flat out don't allow embed in simple mobs and simplify things
+		return FALSE
 	if(!prob(P.embedchance) || !P.dropped)
 		return FALSE
 	simple_add_embedded_object(P.dropped, crit_message = TRUE)

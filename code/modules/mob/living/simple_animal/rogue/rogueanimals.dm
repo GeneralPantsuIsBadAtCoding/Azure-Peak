@@ -174,7 +174,6 @@
 		udder = new()
 	if(tame)
 		tamed()
-	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/LoseTarget()
 	..()
