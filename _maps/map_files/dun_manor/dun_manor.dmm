@@ -475,7 +475,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter/mountains)
 "anU" = (
-/obj/structure/roguemachine/withdraw,
+/obj/structure/roguemachine/stockpile,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "aoe" = (
@@ -5128,7 +5128,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
 "dtx" = (
-/obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "dtN" = (
@@ -6719,7 +6719,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 6
 	},
-/obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "eBz" = (
@@ -8509,7 +8509,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter/mountains)
 "fSC" = (
-/obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield)
 "fSO" = (
@@ -11030,7 +11030,7 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/kitchen/rollingpin,
-/obj/structure/roguemachine/stockpile{
+/obj/structure/roguemachine/withdraw{
 	pixel_y = 0;
 	pixel_x = -32
 	},
@@ -27413,7 +27413,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "thu" = (
-/obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "thH" = (
@@ -28217,7 +28217,7 @@
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/outdoors/exposed/town/keep)
 "tHr" = (
-/obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "tHu" = (
@@ -70587,7 +70587,7 @@ hvn
 hvn
 hvn
 xqr
-tHr
+anU
 vpP
 vpP
 xqr
@@ -71707,7 +71707,7 @@ pJn
 pJn
 pJn
 xqr
-anU
+tHr
 jlY
 vpP
 vpP
