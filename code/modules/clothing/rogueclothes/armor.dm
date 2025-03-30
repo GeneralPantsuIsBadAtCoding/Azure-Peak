@@ -354,6 +354,16 @@
 	max_integrity = 300
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/trophyfur
+	name = "treated trophy fur robes"
+	desc = "A heavy set of hardened robes, lined with fur. The leather is composed of several creatures that were notably difficult to fell by arrow. A proof or rangership among many."
+	icon_state = "hatanga"
+	item_state = "hatanga"
+	armor = list("blunt" = 90, "slash" = 30, "stab" = 40, "piercing" = 160, "fire" = 0, "acid" = 0)	//Light armor that blocks arrows (even longbow)
+	prevent_crits = list(BCLASS_STAB, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK, BCLASS_TWIST)
+	max_integrity = 300
+	sellprice = 100
+
 /obj/item/clothing/suit/roguetown/armor/leather/bikini
 	name = "leather bikini"
 	desc = "Flexible cowhide armor. Lightweight, better than nothing. Now in tasteful bikini shape."
@@ -938,7 +948,7 @@
 	name = "woad elven plate"
 	desc = "Woven by song and tool of the oldest elven druids. It still creaks and weeps with forlorn reminiscence of a bygone era. It looks like only Elves can fit in it."
 	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
-	armor = list("blunt" = 100, "slash" = 20, "stab" = 100, "piercing" = 40, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 130, "slash" = 20, "stab" = 130, "piercing" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PICK, BCLASS_SMASH)
 	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'

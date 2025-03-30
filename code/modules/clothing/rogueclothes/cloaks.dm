@@ -1600,7 +1600,7 @@
 
 /obj/item/clothing/cloak/wardencloak
 	name = "warden cloak"
-	desc = "A cloak worn by the Veteran Warden of Vanderlin's Forest Guard"
+	desc = "A cloak worn by the Wardens of the Duchy of Azuria."
 	icon_state = "wardencloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK

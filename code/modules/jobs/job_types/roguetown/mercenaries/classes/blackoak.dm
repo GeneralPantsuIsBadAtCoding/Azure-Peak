@@ -33,12 +33,13 @@
 				H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 				H.change_stat("endurance", 2)
 				H.change_stat("constitution", 1)
+				H.change_stat("perception", 1)
+				H.change_stat("intelligence", -1)
 				H.change_stat("strength", 3)
-
 				head = /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/elven_plate
 				neck = /obj/item/clothing/neck/roguetown/chaincoif
@@ -46,10 +47,11 @@
 				r_hand = /obj/item/rogueweapon/halberd/glaive
 				backr = /obj/item/gwstrap
 				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor)
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 		if("Ranged (Bows)")
 			if(H.mind)
 				H.mind.adjust_skillrank(/datum/skill/combat/bows, 5, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
@@ -57,17 +59,24 @@
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-				H.change_stat("perception", 3)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+				H.change_stat("constitution", -1)
+				H.change_stat("endurance", 2)
+				H.change_stat("perception", 2)
 				H.change_stat("speed", 3)
-
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/elven
 				head = /obj/item/clothing/head/roguetown/helmet/sallet/elven
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
 				neck = /obj/item/clothing/neck/roguetown/chaincoif/full
 				beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 				beltl = /obj/item/quiver/arrows
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/navaja)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+
+	//Shared minor skillblock from Wardens
+	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
