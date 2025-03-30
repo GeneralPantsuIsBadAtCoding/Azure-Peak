@@ -233,3 +233,42 @@
 		return TRUE
 	revert_cast()
 	return FALSE
+
+/* /obj/effect/proc_holder/spell/invoked/psydon_endurance
+    name = "Revengeance"
+    overlay_state = "astrata"
+    releasedrain = 30
+    chargedrain = 0
+    chargetime = 0
+    range = 1
+    warnie = "sydwarning"
+    movement_interrupt = FALSE
+//  chargedloop = /datum/looping_sound/invokeholy
+//  chargedloop = null
+    req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+    sound = 'sound/magic/astratascream.ogg'
+    invocation_type = "none"
+    associated_skill = /datum/skill/magic/holy
+    antimagic_allowed = TRUE
+    charge_max = 0 SECONDS
+    miracle = TRUE
+    devotion_cost = 100
+
+/obj/effect/proc_holder/spell/invoked/psydon_endurance/cast(list/targets, mob/living/user)
+    . = ..()
+    if(isliving(targets[1]))
+        var/mob/living/target = targets[1]
+        target.visible_message(span_info("[target] ENDUREs with divine might!"), span_notice("I shall ENDURE for PSYDON!"))
+        if(iscarbon(target))
+            var/mob/living/carbon/C = target
+            C.apply_status_effect(/datum/status_effect/buff/fortify)
+        else
+            target.adjustBruteLoss(-50)
+            target.adjustFireLoss(-50)
+			effectedstats = list("endurance" = 2,"constitution" = 2, "strength" = 2, "perception" = 2)
+            duration = 10 SECONDS
+            var/outline_color = "#cc540e"
+        return TRUE
+    revert_cast()
+    return FALSE
+*/
