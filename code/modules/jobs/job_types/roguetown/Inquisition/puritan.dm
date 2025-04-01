@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_NO_CONSTRUCT		//Not been around long enough to be inquisitor, brand new race to the world.
+	allowed_races = RACES_ALL_KINDS		
 	allowed_patrons = list(/datum/patron/old_god) //You MUST have a Psydonite character to start. Just so people don't get japed into Oops Suddenly Psydon!
 	tutorial = "PSYDON YET LIVES. PSYDON YET ENDURES. You have been sent by the High Bishop of Otava, leader of a radical denomination of the Holy See that still believes in the endurance of PSYDON, and holds him above the Ten. Officially, you are here on diplomatic business. /n /n Unofficially, you work to cast out the sinners from God's house. Heresy of all kinds must be corrected; from Ten-worshippers that stray too far from doctrine, to Ecclesial fools that worship Ascendants. The Duchy tolerates you due to your ability to fight the inhumen, and the Church tolerates you due to your aligned goals...but it is probably best to not let them peer too closely."
 	whitelist_req = TRUE
