@@ -902,7 +902,7 @@
 
 /datum/crafting_recipe/roguetown/sewing/otavangambeson
 	name = "otavan gambeson"
-	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/otavan)
+	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan)
 	reqs = list(/obj/item/natural/cloth = 6,
 	            /obj/item/natural/fibers = 5)
 	tools = list(/obj/item/needle)

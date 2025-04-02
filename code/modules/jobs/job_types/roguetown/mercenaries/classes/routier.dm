@@ -40,27 +40,26 @@
 	switch(classchoice)
 		if("Swordsman")
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-			r_hand = /obj/item/rogueweapon/sword/falchion
+			beltl = /obj/item/rogueweapon/sword/falchion
 		if("Macebearer")
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			r_hand = /obj/item/rogueweapon/mace/steel/morningstar
+			beltl = /obj/item/rogueweapon/mace/steel/morningstar
 		if("Flailman")
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-			r_hand = /obj/item/rogueweapon/flail/sflail
+			beltl = /obj/item/rogueweapon/flail/sflail
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/flashlight/flare/torch
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	neck = /obj/item/clothing/neck/roguetown/fencerguard
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/otavan
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	head = /obj/item/clothing/head/roguetown/helmet/otavan
-	armor = /obj/item/clothing/suit/roguetown/armor/otavan
-	pants = /obj/item/clothing/under/roguetown/trou/otavan
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/otavan
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	shoes = /obj/item/clothing/shoes/roguetown/otavan
 	gloves = /obj/item/clothing/gloves/roguetown/otavan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/rogueweapon/shield/tower/metal
-	backpack_contents = list(/obj/item/roguekey/mercenary)
+	backpack_contents = list(/obj/item/roguekey/mercenary = 1, /obj/item/flashlight/flare/torch = 1)
 
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
