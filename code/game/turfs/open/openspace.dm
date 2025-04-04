@@ -123,7 +123,24 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 		if(user.m_intent != MOVE_INTENT_SNEAK)
 			playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
 		user.visible_message(span_warning("[user] starts to climb down."), span_warning("I start to climb down."))
-		if(do_after(L, 30, target = src))
+		var/climbtime = 30
+		var/heavy = FALSE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(istype(H.wear_armor, /obj/item/clothing))
+				var/obj/item/clothing/CL = H.wear_armor
+				switch(CL.armor_class)
+					if(2)	//ARMOR_CLASS_MEDIUM
+						climbtime = 35
+					if(3)	//ARMOR_CLASS_HEAVY
+						climbtime = 40
+						heavy = TRUE
+		if(HAS_TRAIT(L, TRAIT_CLIMBING_EXPERT))
+			if(!heavy)
+				climbtime = 15
+			else
+				climbtime = 25
+		if(do_after(L, climbtime, target = src))
 			if(user.m_intent != MOVE_INTENT_SNEAK)
 				playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
 			var/pulling = user.pulling

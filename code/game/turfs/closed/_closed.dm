@@ -162,10 +162,30 @@
 							myskill += 8
 							climbsound = 'sound/foley/ladder.ogg'
 
-				if(myskill < climbdiff)
+				if(myskill < climbdiff && !HAS_TRAIT(L, TRAIT_CLIMBING_EXPERT))
 					to_chat(user, span_warning("I'm not capable of climbing this wall."))
 					return
-				used_time = max(70 - (myskill * 10) - (L.STASPD * 3), 30)
+				var/mintime = 30
+				var/maxtime = 70
+				var/heavy = FALSE
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(istype(H.wear_armor, /obj/item/clothing))
+						var/obj/item/clothing/CL = H.wear_armor
+						switch(CL.armor_class)
+							if(2)	//ARMOR_CLASS_MEDIUM
+								maxtime = 100
+							if(3)	//ARMOR_CLASS_HEAVY
+								mintime = 40
+								maxtime = 115
+								heavy = TRUE
+				if(HAS_TRAIT(L, TRAIT_CLIMBING_EXPERT))
+					if(!heavy)
+						mintime = 15
+					else
+						mintime = 25
+					maxtime = 70
+				used_time = max(maxtime - (myskill * 10) - (L.STASPD * 3), mintime)
 			if(user.m_intent != MOVE_INTENT_SNEAK)
 				playsound(user, climbsound, 100, TRUE)
 			user.visible_message(span_warning("[user] starts to climb [src]."), span_warning("I start to climb [src]..."))
@@ -177,8 +197,23 @@
 				user.start_pulling(pulling,supress_message = TRUE)
 				if(user.m_intent != MOVE_INTENT_SNEAK)
 					playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
+				if(L.mind)
+					L.mind.add_sleep_experience(/datum/skill/misc/climbing, (L.STAINT/2), FALSE)
 	else
 		..()
+
+/turf/closed/examine(mob/user)
+	. = ..()
+	if(wallclimb)
+		var/skill = user.mind?.get_skill_level(/datum/skill/misc/climbing)
+		if(skill >= climbdiff)
+			. += span_info("I <b>can</b> climb this wall.")
+		else if(abs(skill - climbdiff) == 1)
+			. += span_info("I cannot climb this wall, but I could with the help of a table or a chair.")
+		else
+			. += span_info("I <b>cannot</b> climb this wall.")
+	else
+		. += span_info("This wall cannot be climbed.")
 
 /turf/closed/attack_ghost(mob/dead/observer/user)
 	if(!user.Adjacent(src))

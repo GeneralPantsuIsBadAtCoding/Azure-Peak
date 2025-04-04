@@ -369,6 +369,14 @@
 	if(!(our_area.town_area))
 		owner.remove_status_effect(/datum/status_effect/buff/guardbuffone)
 
+/datum/status_effect/buff/guardbuffone/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_CLIMBING_EXPERT, TRAIT_GENERIC)
+
+/datum/status_effect/buff/guardbuffone/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_CLIMBING_EXPERT, TRAIT_GENERIC)
+
 /datum/status_effect/buff/wardenbuff/process()
 
 	.=..()
