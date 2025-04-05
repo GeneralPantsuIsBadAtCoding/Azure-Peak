@@ -11,7 +11,8 @@
 	classes = list("Monk" = "You are a wandering acolyte, versed in both miracles and martial arts. You forego the heavy armor paladins wear in favor of a more nimble approach to combat, utilizing your fists.",
 					"Paladin" = "A holy warrior. Where others of the clergy may have spent their free time studying scriptures, you have instead honed your skills with a blade.",
 					"Missionary" = "You are a devout worshipper of the divine with a strong connection to your patron god. You've spent years studying scriptures and serving your deity - now you wander into foreign lands, spreading the word of your faith.",
-					"Cantor" = "You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness.")
+					"Cantor" = "You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness.",
+					"Hexbane" = "You once were a member of the sects sworn against the usages of magicks. Born of a minor Otavan Schism in the preachings of Noc, the reasons as to why you joined only beholden to yourself. But your task remains clear: to intercept the illegal and/or use of magicks across Psydonia.")
 
 /datum/outfit/job/roguetown/adventurer/cleric
 	allowed_patrons = ALL_PATRONS
@@ -26,7 +27,7 @@
 
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
-	var/classes = list("Monk","Paladin","Cantor","Missionary")
+	var/classes = list("Monk","Paladin","Cantor","Missionary","Hexbane")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
@@ -182,6 +183,81 @@
 			H.change_stat("constitution", 2)
 			H.change_stat("endurance", 1)
 
+		if("Hexbane")
+			to_chat(H, span_warning("You attained training under a group of sects sworn against the usages of magicks. Born of a minor Otavan Schism in the preachings of Noc, the reasons as to why you joined only beholden to yourself. But your task remains clear: to intercept the illegal and/or use of magicks across Psydonia."))
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+			wrists = /obj/item/clothing/wrists/roguetown/bracers
+			gloves = /obj/item/clothing/gloves/roguetown/chain
+			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+			shoes = /obj/item/clothing/shoes/roguetown/boots
+			backl = /obj/item/storage/backpack/rogue/satchel
+			belt = /obj/item/storage/belt/rogue/leather
+			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/clothing/neck/roguetown/bevor = 1)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			H.cmode_music = 'sound/music/hexer.ogg'
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.change_stat("intelligence", 1)
+			H.change_stat("endurance", 1)
+			H.change_stat("speed", 2) // its their main way of combat or rather survival afterall
+			switch(H.patron?.type)
+				if(/datum/patron/old_god)
+					cloak = /obj/item/clothing/cloak/templar/psydon
+				if(/datum/patron/divine/astrata)
+					cloak = /obj/item/clothing/cloak/templar/astrata
+				if(/datum/patron/divine/noc)
+					cloak = /obj/item/clothing/cloak/templar/noc
+				if(/datum/patron/divine/abyssor)
+					cloak = /obj/item/clothing/cloak/templar/abyssor
+				if(/datum/patron/divine/dendor)
+					cloak = /obj/item/clothing/cloak/templar/dendor
+				if(/datum/patron/divine/necra)
+					cloak = /obj/item/clothing/cloak/templar/necra
+				if (/datum/patron/divine/malum)
+					cloak = /obj/item/clothing/cloak/templar/malum
+				if (/datum/patron/divine/eora)
+					cloak = /obj/item/clothing/cloak/templar/eora
+				if (/datum/patron/divine/ravox)
+					cloak = /obj/item/clothing/cloak/templar/ravox
+				if (/datum/patron/divine/xylix)
+					cloak = /obj/item/clothing/cloak/templar/xylix
+				if (/datum/patron/divine/pestra)
+					cloak = /obj/item/clothing/cloak/templar/pestra
+				else
+					cloak = /obj/item/clothing/cloak/cape/crusader
+			H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
+			H.set_blindness(0)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/hexbaneimmediate)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/hexbaneorison)
+			var/weapons = list("Bastard Sword","Mace")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if("Bastard Sword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+					beltr = /obj/item/rogueweapon/sword/long
+				if("Mace")
+					H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+					beltr = /obj/item/rogueweapon/mace
+			var/subclasses = list("Hexscholar","Hexpriest")
+			var/subclass_choice = input(H, "Choose your subclass.", "TAKE UP A CREED") as anything in subclasses
+			switch(subclass_choice)
+				if("Hexscholar")
+					H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+					H.mind.adjust_spellpoints(-1)
+				if("Hexpriest")
+					H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+					var/datum/devotion/C = new /datum/devotion(H, H.patron)
+					C.grant_spells_templar(H)
+
 		if("Cantor")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness."))
@@ -311,7 +387,7 @@
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora
 					head = /obj/item/clothing/head/roguetown/eoramask
 				if(/datum/patron/inhumen/zizo)
-					cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
+					cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 					head = /obj/item/clothing/head/roguetown/roguehood
 					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 				else
