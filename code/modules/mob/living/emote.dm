@@ -1725,3 +1725,38 @@
 	else
 		to_chat(usr, span_warning("Your back doesn't do that"))
 		return
+
+/datum/emote/living/fsalute
+	key = "fsalute"
+	key_third_person = "salutes their faith."
+	message = "salutes their faith."
+	emote_type = EMOTE_AUDIBLE
+	show_runechat = TRUE
+
+/datum/emote/living/fsalute/run_emote(mob/living/user, params, type_override, intentional, targetted, animal)
+	. = ..()
+	if(. && !isnull(user.patron) && !HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))	//Guarded doesn't show an icon to anyone.
+		user.play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, MUTATIONS_LAYER, private = user.patron.type, soundin = 'sound/magic/holyshield.ogg', y_offset = 32)
+
+/mob/living/carbon/human/verb/emote_fsalute()
+	set name = "Faith Salute"
+	set category = "Emotes"
+
+	emote("fsalute", intentional =  TRUE)
+
+/datum/emote/living/ffsalute
+	key = "ffsalute"
+	key_third_person = "salutes their faith."
+	message = "salutes their faith."
+	emote_type = EMOTE_AUDIBLE
+	show_runechat = TRUE
+
+/datum/emote/living/ffsalute/run_emote(mob/living/user, params, type_override, intentional, targetted, animal)
+	if(HAS_TRAIT(user, TRAIT_XYLIX))
+		. = ..()
+
+/mob/living/carbon/human/proc/emote_ffsalute()
+	set name = "Fake Faith Salute"
+	set category = "Emotes"
+
+	emote("ffsalute", intentional =  TRUE)
