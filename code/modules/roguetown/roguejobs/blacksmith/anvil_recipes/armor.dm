@@ -80,13 +80,13 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/skullcap
 
 /datum/anvil_recipe/armor/iron/studded
-	name = "Studded Leather Armor (+Leather Armor)"
+	name = "Studded Leather Armor (+ Leather Armor)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/leather)
 	created_item = /obj/item/clothing/suit/roguetown/armor/leather/studded
 
 /datum/anvil_recipe/armor/studdedbikini
-	name = "Studded Leather Bikini (+Leather Bikini)"
+	name = "Studded Leather Corslet (+ Leather Corslet)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/leather)
 	created_item = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
@@ -114,7 +114,7 @@
 	craftdiff = 2
 
 /datum/anvil_recipe/armor/steel/chainkini
-	name = "Chainmail Bikini (+1 Cloth)"
+	name = "Chainmail Corslet (+1 Cloth)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/natural/cloth)
 	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
@@ -141,14 +141,14 @@
 	craftdiff = 4
 
 /datum/anvil_recipe/armor/steel/platebikini
-	name = "Half-Plate Bikini (+1 Steel, +1 Cured Leather)"
+	name = "Half-Plate Corslet (+1 Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/bikini
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/fullplatebikini
-	name = "Full-Plate Bikini (+2 Steel, +1 Cured Leather)"
+	name = "Full-Plate Corslet (+2 Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
@@ -225,7 +225,7 @@
 	created_item = /obj/item/clothing/under/roguetown/chainlegs/skirt
 
 /datum/anvil_recipe/armor/steel/plateskirt
-	name = "Plated Skirt (+1 Steel)"
+	name = "Plate Tassets (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/under/roguetown/platelegs/skirt
