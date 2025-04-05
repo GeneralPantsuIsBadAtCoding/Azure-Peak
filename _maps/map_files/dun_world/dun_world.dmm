@@ -6026,7 +6026,7 @@
 /obj/structure/fluff/walldeco/med{
 	pixel_y = 32
 	},
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -10255,7 +10255,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "epu" = (
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 9;
 	pixel_y = 4
 	},
@@ -24928,7 +24928,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
 "kqF" = (
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /obj/item/pestle,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/rogue/ruinedwood,
@@ -48480,7 +48480,7 @@
 /obj/effect/spawner/lootdrop/potion_ingredient/herb,
 /obj/effect/spawner/lootdrop/potion_ingredient/herb,
 /obj/structure/rack/rogue/shelf/biggest,
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "udL" = (
@@ -49076,7 +49076,7 @@
 /area/rogue/under/town/basement/keep)
 "uoN" = (
 /obj/structure/table/wood/fancy/blue,
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 7;
 	pixel_y = -5
 	},

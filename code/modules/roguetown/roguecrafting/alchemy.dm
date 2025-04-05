@@ -2,7 +2,7 @@
 	req_table = FALSE
 	tools = list(/obj/item/reagent_containers/glass/mortar, /obj/item/pestle)
 	verbage_simple = "mix"
-	skillcraft = /datum/skill/misc/alchemy
+	skillcraft = /datum/skill/craft/alchemy
 	subtype_reqs = TRUE
 	structurecraft = /obj/structure/fluff/alch
 
@@ -180,11 +180,3 @@
 	reqs = list(/obj/item/roguegem/diamond = 2, /obj/item/rogueore/iron = 1, /obj/item/rogueore/coal = 1)
 	craftdiff = 6
 	verbage_simple = "transmute"
-
-/datum/crafting_recipe/roguetown/alchemy/alchmort
-	name = "alchemical mortar"
-	tools = list()
-	result = list(/obj/item/mortar = 1)
-	reqs = list(/obj/item/natural/stone = 3, /obj/item/rogueore/iron = 1)
-	verbage_simple = "fabricate"
-	verbage = "fabricates"

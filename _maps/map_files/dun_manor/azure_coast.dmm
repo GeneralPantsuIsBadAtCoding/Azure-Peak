@@ -1176,7 +1176,7 @@
 /obj/effect/spawner/lootdrop/potion_ingredient/herb,
 /obj/effect/spawner/lootdrop/potion_ingredient/herb,
 /obj/structure/rack/rogue/shelf/biggest,
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "gJ" = (

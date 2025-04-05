@@ -21,7 +21,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
-						/obj/item/mortar = 1,
+						/obj/item/reagent_containers/glass/mortar = 1,
 						/obj/item/pestle = 1,
 						/obj/item/ritechalk = 1,
 						/obj/item/candle/yellow = 2,
@@ -35,7 +35,6 @@
 		pants = /obj/item/clothing/under/roguetown/skirt/red
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)

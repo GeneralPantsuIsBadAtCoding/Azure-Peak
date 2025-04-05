@@ -2552,7 +2552,7 @@
 /area/rogue/indoors/town)
 "bJb" = (
 /obj/structure/table/wood/fancy/blue,
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 7;
 	pixel_y = -5
 	},
@@ -3652,7 +3652,7 @@
 /obj/structure/fluff/walldeco/med{
 	pixel_y = 32
 	},
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 7;
 	pixel_y = 5
 	},
@@ -10993,7 +10993,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "hMJ" = (
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /obj/item/pestle,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/rogue/ruinedwood,

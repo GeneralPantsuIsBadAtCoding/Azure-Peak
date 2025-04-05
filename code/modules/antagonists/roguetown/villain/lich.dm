@@ -108,7 +108,7 @@
 	..()
 
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 5, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)

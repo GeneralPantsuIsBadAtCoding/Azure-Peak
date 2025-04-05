@@ -3395,7 +3395,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "RT" = (
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 9;
 	pixel_y = 4
 	},

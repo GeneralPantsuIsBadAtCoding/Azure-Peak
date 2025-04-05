@@ -3,14 +3,6 @@
 	name = "Misc"
 	desc = ""
 
-/datum/skill/misc/alchemy
-	name = "Lesser Alchemy"
-	desc = "Determins whether you can perform transmutation and stone mortar alchemy recipes."
-	dreams = list(
-		"...your mind spins as the great tome before you unfurls. One part in two hundred and fifty is salt, and it can be extracted from the flesh with a bit of ash. You pick up the pestle...",
-		"...a wizened man quaffs a blue liquid from a bottle, letting out a satisfied burp, 'A bottle of blue can sate your manna twice; once when emptied and once when filled with alchemist's spice.' He sets about grinding brimstone into the bottle before stuffing it with some cloth..."
-	)
-
 /datum/skill/misc/athletics
 	name = "Athletics"
 	desc = "Increases your maximum stamina by 5 per point. Decreases chance of consuming nutrition when exerted by 16% per level."

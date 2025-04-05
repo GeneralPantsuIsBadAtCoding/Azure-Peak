@@ -100,7 +100,7 @@
 	
 /datum/skill/craft/alchemy
 	name = "Alchemy"
-	desc = "Used to help you determine what ingredients do."
+	desc = "Determines what kind of potions you can brew and the types of transmutation and alchemy recipes you have access to"
 	dreams = list(
 		"...the smell of sulfur singes your nostrils... you taste iron... the smoke clears as you stare down at the reflection in your cauldron... the Queen stares back at you... she looks like she's crying..."
 	)

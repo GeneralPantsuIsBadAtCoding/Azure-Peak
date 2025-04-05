@@ -187,7 +187,6 @@
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
-						list(/datum/skill/misc/alchemy, 2, 2),
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
 

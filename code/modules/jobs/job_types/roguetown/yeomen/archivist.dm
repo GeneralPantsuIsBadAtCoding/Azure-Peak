@@ -38,8 +38,7 @@
 
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 6, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
@@ -83,7 +82,6 @@
 	var/list/datum/skill/skill_choices = list(
 	//skills alphabetically... this will be sloppy based on the descriptive name but easier for devs
 	/datum/skill/craft/alchemy,
-	/datum/skill/misc/alchemy,
 	/datum/skill/craft/armorsmithing,
 
 	/datum/skill/craft/blacksmithing,

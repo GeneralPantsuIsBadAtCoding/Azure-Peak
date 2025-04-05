@@ -26,9 +26,9 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		if(H.age == AGE_OLD)
-			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 6, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 6, TRUE)
 		else
-			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 5, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 5, TRUE)
 //Requires a lot of sprites, so this is just a placeholder
 	if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
