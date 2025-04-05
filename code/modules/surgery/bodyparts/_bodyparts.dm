@@ -393,6 +393,8 @@
 	if((rotted || skeletonized) && !(owner.mob_biotypes & MOB_UNDEAD))
 		return BODYPART_DISABLED_ROT
 	for(var/datum/wound/ouchie as anything in wounds)
+		if(isnull(ouchie) || !istype(ouchie, /datum/wound))
+			continue
 		if(!ouchie.disabling)
 			continue
 		return BODYPART_DISABLED_WOUND

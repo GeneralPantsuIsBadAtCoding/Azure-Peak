@@ -34,6 +34,7 @@
 /mob/living/proc/get_wounds()
 	var/list/all_wounds = list()
 	if(length(simple_wounds))
+		listclearnulls(simple_wounds)
 		all_wounds += simple_wounds
 	return all_wounds
 
@@ -61,6 +62,8 @@
 	if(has_status_effect(/datum/status_effect/buff/fortify))
 		heal_amount *= 1.5
 	for(var/datum/wound/wound as anything in get_wounds())
+		if(isnull(wound))
+			continue
 		if(heal_amount <= 0)
 			continue
 		var/amount_healed = wound.heal_wound(heal_amount)
