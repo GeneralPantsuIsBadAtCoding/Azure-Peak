@@ -12,7 +12,6 @@
 		return
 	var/mob/living/L = target
 	user.changeNext_move(CLICK_CD_RAPID)
-	playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
 	user.visible_message(span_danger("[user] feints an attack at [target]!"))
 	var/perc = 50
 	if(user.mind)
@@ -28,33 +27,41 @@
 					theirskill = L.mind.get_skill_level(I.associated_skill)
 		perc += (ourskill - theirskill)*15 	//skill is of the essence
 		perc += (user.STAINT - L.STAINT)*10	//but it's also mostly a mindgame
-	if(!L.cmode)
-		perc = 0
 	if(L.has_status_effect(/datum/status_effect/debuff/feinted))
 		perc = 0
 	if(user.has_status_effect(/datum/status_effect/debuff/feintcd))
-		perc -= rand(10,30)
+		to_chat(user, span_danger("[L] is too on guard for another so soon!"))
+		return
 	if(HAS_TRAIT(L,TRAIT_DECEIVING_MEEKNESS))
-		perc -= rand(20,40)
+		perc -= 30
 	if(HAS_TRAIT(user,TRAIT_DECEIVING_MEEKNESS))
-		perc += rand(10,20)
+		perc += 15
 	user.apply_status_effect(/datum/status_effect/debuff/feintcd)
 	perc = CLAMP(perc, 0, 90)
 	if(prob(perc)) //feint intent increases the immobilize duration significantly
 		if(istype(user.rmb_intent, /datum/rmb_intent/feint))
 			L.apply_status_effect(/datum/status_effect/debuff/feinted)
-			L.changeNext_move(10)
-			L.Immobilize(12)
+			L.changeNext_move(20)
+			L.Immobilize(30)
+			if(L.pulling)
+				L.changeNext_move(CLICK_CD_GRABBING)
+				L.stop_pulling()
 			to_chat(user, span_notice("[L] fell for my feint attack!"))
 			to_chat(L, span_danger("I fall for [user]'s feint attack!"))
+			playsound(user, 'sound/combat/riposte.ogg', 100, TRUE)
 		else
 			L.apply_status_effect(/datum/status_effect/debuff/feinted)
-			L.changeNext_move(4)
-			L.Immobilize(5)
+			L.changeNext_move(10)
+			L.Immobilize(15)
+			if(L.pulling)
+				L.changeNext_move(CLICK_CD_GRABBING)
+				L.stop_pulling()
 			to_chat(user, span_notice("[L] fell for my feint attack!"))
 			to_chat(L, span_danger("I fall for [user]'s feint attack!"))
+			playsound(user, 'sound/combat/riposte.ogg', 100, TRUE)
 	else
 		if(user.client?.prefs.showrolls)
+			playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
 			to_chat(user, span_warning("[L] did not fall for my feint... [perc]%"))
 
 /datum/rmb_intent/aimed
@@ -79,16 +86,16 @@
 
 /datum/rmb_intent/feint
 	name = "feint"
-	desc = "(RMB WHILE DEFENSE IS ACTIVE) A deceptive half-attack with no follow-through, meant to force your opponent to open their guard. Useless against someone who is dodging."
+	desc = "(RMB WHILE DEFENSE IS ACTIVE) A deceptive half-attack with no follow-through, meant to force your opponent to open their guard."
 	icon_state = "rmbfeint"
 
 /datum/status_effect/debuff/feinted
 	id = "nofeint"
-	duration = 50
+	duration = 10 SECONDS
 
 /datum/status_effect/debuff/feintcd
 	id = "feintcd"
-	duration = 100
+	duration = 30 SECONDS
 
 /datum/status_effect/debuff/riposted
 	id = "riposted"
