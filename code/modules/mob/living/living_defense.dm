@@ -97,10 +97,8 @@
 	return simple_woundcritroll(P.woundclass, P.damage, null, def_zone, crit_message = TRUE)
 
 /mob/living/proc/check_projectile_embed(obj/projectile/P, def_zone)
-	if(!prob(P.embedchance) || !P.dropped)
-		return FALSE
-	simple_add_embedded_object(P.dropped, crit_message = TRUE)
-	return TRUE
+	// Disable embeds on simples, allowing it to override on complex.
+	return FALSE
 
 /obj/item/proc/get_volume_by_throwforce_and_or_w_class()
 	if(throwforce && w_class)

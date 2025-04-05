@@ -226,11 +226,6 @@
 		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
 		return TRUE
 
-/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
-	apply_damage(Proj.damage, Proj.damage_type)
-	Proj.on_hit(src)
-	return BULLET_ACT_HIT
-
 /mob/living/simple_animal/ex_act(severity, target, epicenter, devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	..()
 	if(!severity || !epicenter)
