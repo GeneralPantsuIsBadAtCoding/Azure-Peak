@@ -89,6 +89,9 @@
 				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_item]."))
 			else
 				user.visible_message(span_info("[user] repairs [attacked_item]!"))
+				if(attacked_item.body_parts_covered != attacked_item.body_parts_covered_dynamic)
+					user.visible_message(span_info("[user] repairs [attacked_item]'s coverage!"))
+					attacked_item.repair_coverage()
 			if(attacked_item.obj_broken && istype(attacked_item, /obj/item/clothing))
 				var/obj/item/clothing/clothing = attacked_item
 				clothing.obj_fix()

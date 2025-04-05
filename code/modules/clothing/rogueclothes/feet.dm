@@ -6,6 +6,7 @@
 	gender = PLURAL
 	slot_flags = ITEM_SLOT_SHOES
 	body_parts_covered = FEET
+	body_parts_inherent = FEET
 	sleeved = 'icons/roguetown/clothing/onmob/feet.dmi'
 	sleevetype = "leg"
 	bloody_icon_state = "shoeblood"
