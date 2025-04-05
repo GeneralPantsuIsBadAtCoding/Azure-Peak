@@ -75,7 +75,7 @@
 "abF" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/skull{
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena=20);
 	pixel_x = 6;
 	pixel_y = 7
 	},
@@ -14414,6 +14414,8 @@
 /obj/item/roguekey/manor,
 /obj/item/roguekey/manor,
 /obj/item/roguekey/manor,
+/obj/item/roguekey/sergeant,
+/obj/item/roguekey/sergeant,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -22489,6 +22491,8 @@
 "jmW" = (
 /obj/structure/closet/crate/chest/neu,
 /obj/item/flashlight/flare/torch/lantern,
+/obj/item/roguekey/dungeon,
+/obj/item/roguekey/dungeon,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
 "jnb" = (
@@ -23948,7 +23952,7 @@
 /obj/structure/mineral_door/wood{
 	icon_state = "wcr";
 	locked = 1;
-	lockid = "garrison";
+	lockid = "sergeant";
 	name = "Sergent's office"
 	},
 /turf/open/floor/rogue/concrete,
@@ -37983,6 +37987,12 @@
 	pixel_y = -32
 	},
 /obj/structure/closet/crate/roguecloset/dark,
+/obj/item/roguekey/armory,
+/obj/item/storage/keyring,
+/obj/item/roguekey/manor,
+/obj/item/roguekey/walls,
+/obj/item/roguekey/dungeon,
+/obj/item/roguekey/sheriff,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "pJJ" = (
@@ -56143,6 +56153,7 @@
 /obj/item/roguekey/manor,
 /obj/item/roguekey/walls,
 /obj/item/roguekey/dungeon,
+/obj/item/roguekey/sheriff,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "xml" = (

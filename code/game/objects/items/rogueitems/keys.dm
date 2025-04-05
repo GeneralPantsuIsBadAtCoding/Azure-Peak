@@ -104,6 +104,12 @@
 	icon_state = "spikekey"
 	lockid = "garrison"
 
+/obj/item/roguekey/sergeant
+	name = "sergeant key"
+	desc = "This key belongs to the sergeant of the Men-at-Arms."
+	icon_state = "spikekey"
+	lockid = "sergeant"
+
 /obj/item/roguekey/warden
 	name = "watchtower key"
 	desc = "This key belongs to the wardens."

@@ -42,7 +42,7 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/black
-	beltl = /obj/item/storage/keyring/guardcastle
+	beltl = /obj/item/storage/keyring/guardsergeant
 	beltr = /obj/item/rogueweapon/mace/cudgel
 	r_hand = /obj/item/rogueweapon/spear/billhook
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
