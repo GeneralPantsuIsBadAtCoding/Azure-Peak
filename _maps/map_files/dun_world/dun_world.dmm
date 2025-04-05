@@ -40154,7 +40154,7 @@
 "qEG" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = "dungeon"
+	lockid = "warden"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)

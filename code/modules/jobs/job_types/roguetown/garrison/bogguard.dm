@@ -34,7 +34,7 @@ Also given some non-combat skills that a peasent would have, just to support the
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	id = /obj/item/scomstone/bad/garrison
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	beltl = /obj/item/storage/keyring/guard
+	beltl = /obj/item/roguekey/warden
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
 	backr = /obj/item/storage/backpack/rogue/satchel
