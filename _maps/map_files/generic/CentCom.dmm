@@ -1820,6 +1820,10 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
+"sw" = (
+/obj/structure/noose,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/banditcamp)
 "sz" = (
 /obj/effect/landmark/events/testportal{
 	aportalloc = "bandit"
@@ -5783,7 +5787,7 @@ jg
 OC
 PU
 ky
-ky
+sw
 kx
 kx
 kx

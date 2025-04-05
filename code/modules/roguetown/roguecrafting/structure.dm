@@ -18,6 +18,24 @@
 	verbage_simple = "construct"
 	verbage = "constructs"
 
+/datum/crafting_recipe/roguetown/structure/noose
+	name = "noose"
+	result = /obj/structure/noose
+	reqs = list(/obj/item/rope = 1)
+	verbage = "tie"
+	craftsound = 'sound/foley/noose_idle.ogg'
+	ontile = TRUE
+
+/datum/crafting_recipe/roguetown/structure/noose/TurfCheck(mob/user, turf/T)
+	var/turf/checking = get_step_multiz(T, UP)
+	if(!checking)
+		return FALSE
+	if(!isopenturf(checking))
+		return FALSE
+	if(istype(checking,/turf/open/transparent/openspace))
+		return FALSE
+	return TRUE
+
 /datum/crafting_recipe/roguetown/structure/psycrss
 	name = "wooden cross"
 	result = /obj/structure/fluff/psycross/crafted

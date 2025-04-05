@@ -40,6 +40,19 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 			icon_state = "leverfloor[toggled]"
 			playsound(src, 'sound/foley/lever.ogg', 100, extrarange = 3)
 
+/obj/structure/lever/onkick(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		L.changeNext_move(CLICK_CD_MELEE)
+		user.visible_message("<span class='warning'>[user] kicks the lever!</span>")
+		playsound(src, 'sound/combat/hits/onwood/woodimpact (1).ogg', 100)
+		if(prob(L.STASTR * 4))
+			for(var/obj/structure/O in redstone_attached)
+				spawn(0) O.redstone_triggered()
+			toggled = !toggled
+			icon_state = "leverfloor[toggled]"
+			playsound(src, 'sound/foley/lever.ogg', 100, extrarange = 3)
+
 /obj/structure/lever/wall
 	icon_state = "leverwall0"
 
@@ -47,7 +60,9 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	. = ..()
 	icon_state = "leverwall[toggled]"
 
-
+/obj/structure/lever/wall/onkick(mob/user)
+	. = ..()
+	icon_state = "leverwall[toggled]"
 
 /obj/structure/floordoor
 	name = "floorhatch"
