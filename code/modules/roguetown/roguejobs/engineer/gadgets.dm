@@ -87,12 +87,12 @@ Reel teleports the attached atom to the grabbed turf.
 /obj/item/grapplinghook/obj_break(damage_flag)
 	reset_tile()
 	reset_target()
-	. = ..()
+	..()
 
 /obj/item/grapplinghook/obj_destruction(damage_flag)
 	reset_tile()
 	reset_target()
-	. = ..()
+	..()
 	
 
 /obj/item/grapplinghook/attack_self(mob/living/user)

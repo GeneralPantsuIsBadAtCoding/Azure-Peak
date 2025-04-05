@@ -22,7 +22,7 @@
 				if(A.above_suit)
 					. += U.accessory_overlay
 
-/obj/item/clothing/suit/update_clothes_damaged_state(damaging = TRUE)
+/obj/item/clothing/suit/update_damaged_state()
 	..()
 	if(ismob(loc))
 		var/mob/M = loc

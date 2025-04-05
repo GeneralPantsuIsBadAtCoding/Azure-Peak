@@ -12,7 +12,6 @@
 	max_integrity = 200
 	integrity_failure = 0.1
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	var/damaged_clothes = 0 //similar to machine's BROKEN stat and structure's broken var
 	///What level of bright light protection item has.
 	var/flash_protect = FLASH_PROTECTION_NONE
 	var/tint = 0				//Sets the item's level of visual impairment tint, normally set to the same as flash_protect
@@ -341,42 +340,16 @@
 */
 
 /obj/item/clothing/obj_break(damage_flag)
-	if(!damaged_clothes)
-		update_clothes_damaged_state(TRUE)
 	original_armor = armor
-	var/brokemessage = FALSE
 	var/list/armorlist = armor.getList()
 	for(var/x in armorlist)
 		if(armorlist[x] > 0)
-			brokemessage = TRUE
 			armorlist[x] = 0
-	if(ismob(loc) && brokemessage)
-		var/mob/M = loc
-		to_chat(M, "ARMOR BROKEN...!")
 	..()
 
-/obj/item/clothing/proc/obj_fix(damage_flag)
-	obj_broken = FALSE
-	if(damaged_clothes)
-		update_clothes_damaged_state(FALSE)
+/obj/item/clothing/obj_fix()
+	..()
 	armor = original_armor
-/obj/item/clothing/proc/update_clothes_damaged_state(damaging = TRUE)
-	var/index = "[REF(initial(icon))]-[initial(icon_state)]"
-	var/static/list/damaged_clothes_icons = list()
-	if(damaging)
-		damaged_clothes = 1
-		var/icon/damaged_clothes_icon = damaged_clothes_icons[index]
-		if(!damaged_clothes_icon)
-			damaged_clothes_icon = icon(initial(icon), initial(icon_state), , 1)	//we only want to apply damaged effect to the initial icon_state for each object
-			damaged_clothes_icon.Blend("#fff", ICON_ADD) 	//fills the icon_state with white (except where it's transparent)
-			damaged_clothes_icon.Blend(icon('icons/effects/item_damage.dmi', "itemdamaged"), ICON_MULTIPLY) //adds damage effect and the remaining white areas become transparant
-			damaged_clothes_icon = fcopy_rsc(damaged_clothes_icon)
-			damaged_clothes_icons[index] = damaged_clothes_icon
-		add_overlay(damaged_clothes_icon, 1)
-	else
-		damaged_clothes = 0
-		cut_overlay(damaged_clothes_icons[index], TRUE)
-
 
 /*
 SEE_SELF  // can see self, no matter what
@@ -542,27 +515,6 @@ BLIND     // can't see anything
 		if(!user.incapacitated())
 			return 1
 	return 0
-
-
-
-/obj/item/clothing/obj_destruction(damage_flag)
-	if(damage_flag == "acid")
-		obj_destroyed = TRUE
-		acid_melt()
-	else if(damage_flag == "fire")
-		obj_destroyed = TRUE
-		burn()
-	else
-		if(!ismob(loc))
-			obj_destroyed = TRUE
-			if(destroy_sound)
-				playsound(src, destroy_sound, 100, TRUE)
-			if(destroy_message)
-				visible_message(destroy_message)
-			deconstruct(FALSE)
-		else
-			return FALSE
-	return TRUE
 
 /obj/item/clothing/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)

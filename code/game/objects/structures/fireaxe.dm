@@ -25,12 +25,12 @@
 /obj/structure/fireaxecabinet/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		toggle_lock(user)
-	else if(I.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !broken)
+	else if(I.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !obj_broken)
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
 
-	else if(open || broken)
+	else if(open || obj_broken)
 		if(istype(I, /obj/item/rogueweapon/sword/long/heirloom) && !heirloom)
 			var/obj/item/rogueweapon/sword/long/heirloom/F = I
 			if(F.wielded)
@@ -42,7 +42,7 @@
 			to_chat(user, "<span class='notice'>I place the [F.name] back in the [name].</span>")
 			update_icon()
 			return
-		else if(!broken)
+		else if(!obj_broken)
 			toggle_open()
 	else
 		return ..()
@@ -50,7 +50,7 @@
 /obj/structure/fireaxecabinet/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			if(broken)
+			if(obj_broken)
 				playsound(loc, 'sound/blank.ogg', 90, TRUE)
 			else
 				playsound(loc, 'sound/blank.ogg', 90, TRUE)
@@ -65,17 +65,17 @@
 		update_icon()
 
 /obj/structure/fireaxecabinet/obj_break(damage_flag)
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
-		update_icon()
-		broken = TRUE
-		playsound(src, 'sound/blank.ogg', 100, TRUE)
 	..()
+
+	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
+		update_icon()
+		playsound(src, 'sound/blank.ogg', 100, TRUE)
 
 /obj/structure/fireaxecabinet/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(open || broken)
+	if(open || obj_broken)
 		if(heirloom)
 			user.put_in_hands(heirloom)
 			heirloom = null

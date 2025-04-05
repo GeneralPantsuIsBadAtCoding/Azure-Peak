@@ -63,25 +63,25 @@
 	qdel(src)
 
 /obj/structure/displaycase/obj_break(damage_flag)
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
+	..()
+
+	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
-		broken = 1
 		new /obj/item/natural/glass/shard( src.loc )
 		playsound(src, "shatter", 70, TRUE)
 		update_icon()
-	..()
 
 /obj/structure/displaycase/update_icon()
 	return
 
 /obj/structure/displaycase/attackby(obj/item/W, mob/user, params)
-	if(W.GetID() && !broken && openable)
+	if(W.GetID() && !obj_broken && openable)
 		if(allowed(user))
 			to_chat(user,  "<span class='notice'>I [open ? "close":"open"] [src].</span>")
 			toggle_lock(user)
 		else
 			to_chat(user,  "<span class='alert'>Access denied.</span>")
-	else if(W.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !broken)
+	else if(W.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !obj_broken)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
@@ -95,7 +95,7 @@
 			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
 		return
 	else if(!alert && W.tool_behaviour == TOOL_CROWBAR && openable) //Only applies to the lab cage and player made display cases
-		if(broken)
+		if(obj_broken)
 			if(showpiece)
 				to_chat(user, "<span class='warning'>Remove the displayed object first!</span>")
 			else
@@ -126,7 +126,7 @@
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	if (showpiece && (broken || open))
+	if (showpiece && (obj_broken || open))
 		to_chat(user, "<span class='notice'>I deactivate the hover field built into the case.</span>")
 		log_combat(user, src, "deactivates the hover field of")
 		dump()

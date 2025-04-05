@@ -91,7 +91,7 @@
 			add_overlay("[icon_state]_door")
 		if(welded)
 			add_overlay(icon_welded)
-		if(secure && !broken)
+		if(secure && !obj_broken)
 			if(locked)
 				add_overlay("locked")
 			else
@@ -251,7 +251,7 @@
 	qdel(src)
 
 /obj/structure/closet/obj_break(damage_flag)
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
+	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
 		bust_open()
 	..()
 
@@ -282,8 +282,8 @@
 	if(!keylock)
 		to_chat(user, span_warning("There's no lock on this."))
 		return
-	if(broken)
-		to_chat(user, span_warning("The lock is broken."))
+	if(obj_broken)
+		to_chat(user, span_warning("The lock is obj_broken."))
 		return
 	if(istype(I,/obj/item/storage/keyring))
 		var/obj/item/storage/keyring/R = I
@@ -316,8 +316,8 @@
 	if(!keylock)
 		to_chat(user, "<span class='warning'>There's no lock on this.</span>")
 		return
-	if(broken)
-		to_chat(user, "<span class='warning'>The lock is broken.</span>")
+	if(obj_broken)
+		to_chat(user, "<span class='warning'>The lock is obj_broken.</span>")
 		return
 	else
 		var/lockprogress = 0
@@ -484,7 +484,7 @@
 /obj/structure/closet/proc/bust_open()
 	welded = FALSE //applies to all lockers
 	locked = FALSE //applies to critter crates and secure lockers only
-	broken = TRUE //applies to secure lockers only
+	obj_broken = TRUE //applies to secure lockers only
 	open()
 /*
 /obj/structure/closet/AltClick(mob/user)
@@ -518,12 +518,12 @@
 		locked = 1
 
 /obj/structure/closet/emag_act(mob/user)
-	if(secure && !broken)
+	if(secure && !obj_broken)
 		user.visible_message(span_warning("Sparks fly from [src]!"),
 						span_warning("I scramble [src]'s lock, breaking it open!"),
 						span_hear("I hear a faint electrical spark."))
 		playsound(src, "sparks", 50, TRUE)
-		broken = TRUE
+		obj_broken = TRUE
 		locked = FALSE
 		update_icon()
 
@@ -538,7 +538,7 @@
 	if (!(. & EMP_PROTECT_CONTENTS))
 		for(var/obj/O in src)
 			O.emp_act(severity)
-	if(secure && !broken && !(. & EMP_PROTECT_SELF))
+	if(secure && !obj_broken && !(. & EMP_PROTECT_SELF))
 		if(prob(50 / severity))
 			locked = !locked
 			update_icon()

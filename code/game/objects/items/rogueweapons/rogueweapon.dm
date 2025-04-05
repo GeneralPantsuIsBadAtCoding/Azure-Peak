@@ -7,6 +7,7 @@
 	item_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	dam_icon = 'icons/effects/item_damage64.dmi'
 	force = 15
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
@@ -19,10 +20,12 @@
 	sellprice = 1
 	has_inspect_verb = TRUE
 	parrysound = list('sound/combat/parry/parrygen.ogg')
+	break_sound = 'sound/foley/breaksound.ogg'
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
 	blade_dulling = DULLING_BASH
 	max_integrity = 200
+	integrity_failure = 0.2
 	wdefense = 3
 	experimental_onhip = TRUE
 	experimental_onback = TRUE
@@ -38,8 +41,7 @@
 /obj/item/rogueweapon/Initialize()
 	. = ..()
 	if(!destroy_message)
-		var/yea = pick("[src] is broken!", "[src] is useless!", "[src] is destroyed!")
-		destroy_message = span_warning("[yea]")
+		destroy_message = span_warning("\The [src] shatters!")
 
 /obj/item/rogueweapon/get_examine_string(mob/user, thats = FALSE)
 	return "[thats? "That's ":""]<b>[get_examine_name(user)]</b>"
@@ -89,3 +91,25 @@
 	else if(easy_dismember)
 		return probability * 1.5
 	return probability
+
+/obj/item/rogueweapon/obj_break(damage_flag)
+	..()
+	if (force)
+		force /= 5
+	if (armor_penetration)
+		armor_penetration /= 5
+	if (wdefense)
+		wdefense /= 2
+	if (sharpness & IS_SHARP)
+		sharpness = IS_BLUNT
+	if (can_parry)
+		can_parry = FALSE
+
+/obj/item/rogueweapon/obj_fix()
+	..()
+
+	force = initial(force)
+	armor_penetration = initial(armor_penetration)
+	wdefense = initial(wdefense)
+	sharpness = initial(sharpness)
+	can_parry = initial(can_parry)

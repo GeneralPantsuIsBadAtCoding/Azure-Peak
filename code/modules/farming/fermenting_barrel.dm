@@ -90,7 +90,7 @@
 		icon_state = "barrel_open"
 	else
 		icon_state = "barrel"
-	if(broken)
+	if(obj_broken)
 		icon_state = "barrel_destroyed"
 
 /obj/structure/fermenting_barrel/random/water

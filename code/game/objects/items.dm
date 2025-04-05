@@ -165,6 +165,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/bloody_icon = 'icons/effects/blood.dmi'
 	var/bloody_icon_state = "itemblood"
+	var/dam_icon = 'icons/effects/item_damage32.dmi'
+	var/dam_icon_state = "itemdamaged"
 	var/boobed = FALSE
 
 	var/firefuel = 0 //add this idiot
@@ -255,6 +257,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					B.remove()
 					B.generate_appearance()
 					B.apply()
+				if (obj_broken)
+					update_damaged_state()
 			return
 		if(wielded)
 			if(gripsprite)
@@ -264,6 +268,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					B.remove()
 					B.generate_appearance()
 					B.apply()
+				if (obj_broken)
+					update_damaged_state()
 			if(toggle_state)
 				icon_state = "[toggle_state]1"
 			return
@@ -277,6 +283,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				B.remove()
 				B.generate_appearance()
 				B.apply()
+			if (obj_broken)
+				update_damaged_state()
 
 /obj/item/Initialize()
 	if (attack_verb)
@@ -1199,6 +1207,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(user.get_num_arms() < 2)
 		to_chat(user, span_warning("I don't have enough hands."))
 		return
+	if (obj_broken)
+		to_chat(user, span_warning("It's completely broken."))
+		return
 	wielded = TRUE
 	if(force_wielded)
 		force = force_wielded
@@ -1248,3 +1259,50 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		else
 			str += "NO DEFENSE"
 	return str
+
+/obj/item/obj_break(mob/living/carbon/user, damage_flag)
+	..()
+
+	if (wielded)
+		ungrip(user, show_message = FALSE)
+	update_damaged_state()
+	if(!ismob(loc))
+		return
+	var/mob/M = loc
+	to_chat(M, "\The [src] BREAKS...!")
+
+/obj/item/obj_fix()
+	..()
+	update_damaged_state()
+
+/obj/item/obj_destruction(damage_flag)
+	if (damage_flag == "acid")
+		obj_destroyed = TRUE
+		acid_melt()
+		return TRUE
+	if (damage_flag == "fire")
+		obj_destroyed = TRUE
+		burn()
+		return TRUE
+	if (ismob(loc))
+		return FALSE
+
+	obj_destroyed = TRUE
+	if(destroy_sound)
+		playsound(src, destroy_sound, 100, TRUE)
+	if(destroy_message)
+		visible_message(destroy_message)
+	deconstruct(FALSE)
+
+	return TRUE
+
+/obj/item/proc/update_damaged_state()
+	cut_overlays()
+	if (!obj_broken)
+		return
+	var/icon/damaged_icon = icon(initial(icon), icon_state, , TRUE)
+	damaged_icon.Blend("#fff", ICON_ADD)
+	damaged_icon.Blend(icon(dam_icon, dam_icon_state), ICON_MULTIPLY)
+	var/mutable_appearance/damage = new(damaged_icon)
+	damage.alpha = 150
+	add_overlay(damage)

@@ -151,7 +151,7 @@
 
 /obj/machinery/obj_break(damage_flag)
 	SHOULD_CALL_PARENT(TRUE)
-	. = ..()
+	..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)

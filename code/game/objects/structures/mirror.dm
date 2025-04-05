@@ -18,7 +18,7 @@
 
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()
-	if(icon_state == "mirror_broke" && !broken)
+	if(icon_state == "mirror_broke" && !obj_broken)
 		obj_break(null, mapload)
 
 /obj/structure/mirror/attack_hand(mob/user)
@@ -34,7 +34,7 @@
 		to_chat(H, span_warning("You look into the mirror but see only your normal reflection."))
 		return
 	
-	if(broken || !Adjacent(user))
+	if(obj_broken || !Adjacent(user))
 		return
 
 	var/should_update = FALSE
@@ -603,16 +603,16 @@
 		H.update_body_parts()
 
 /obj/structure/mirror/examine_status(mob/user)
-	if(broken)
+	if(obj_broken)
 		return list() // no message spam
 	return ..()
 
 /obj/structure/mirror/obj_break(damage_flag, mapload)
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
+	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "[icon_state]1"
 		if(!mapload)
 			new /obj/item/natural/glass/shard (get_turf(src))
-		broken = TRUE
+		obj_broken = TRUE
 	..()
 
 /obj/structure/mirror/deconstruct(disassembled = TRUE)
@@ -626,7 +626,7 @@
 	if(user.used_intent.type == INTENT_HARM)
 		return FALSE
 
-	if(!broken)
+	if(!obj_broken)
 		return TRUE
 
 	if(!I.tool_start_check(user, amount=0))
@@ -635,7 +635,7 @@
 	to_chat(user, span_notice("I begin repairing [src]..."))
 	if(I.use_tool(src, user, 10, volume=50))
 		to_chat(user, span_notice("I repair [src]."))
-		broken = 0
+		obj_broken = 0
 		icon_state = initial(icon_state)
 		desc = initial(desc)
 

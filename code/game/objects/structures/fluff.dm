@@ -451,7 +451,6 @@
 	break_sound = "glassbreak"
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
-	var/broke = FALSE
 	var/datum/looping_sound/clockloop/soundloop
 	drag_slowdown = 3
 
@@ -466,12 +465,10 @@
 	..()
 
 /obj/structure/fluff/clock/obj_break(damage_flag)
-	if(!broke)
-		broke = TRUE
-		icon_state = "b[initial(icon_state)]"
-		if(soundloop)
-			soundloop.stop()
-		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
+	icon_state = "b[initial(icon_state)]"
+	if(soundloop)
+		soundloop.stop()
+	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 	..()
 
 /obj/structure/fluff/clock/attack_right(mob/user)
@@ -489,24 +486,25 @@
 
 /obj/structure/fluff/clock/examine(mob/user)
 	. = ..()
-	if(!broke)
-		var/day = "... actually, WHAT dae is it?"
-		switch(GLOB.dayspassed)
-			if(1)
-				day = "Moon's dae."
-			if(2)
-				day = "Tiw's dae."
-			if(3)
-				day = "Wedding's dae."
-			if(4)
-				day = "Thule's dae."
-			if(5)
-				day = "Freyja's dae."
-			if(6)
-				day = "Saturn's dae."
-			if(7)
-				day = "Sun's dae."
-		. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
+	if(obj_broken)
+		return
+	var/day = "... actually, WHAT dae is it?"
+	switch(GLOB.dayspassed)
+		if(1)
+			day = "Moon's dae."
+		if(2)
+			day = "Tiw's dae."
+		if(3)
+			day = "Wedding's dae."
+		if(4)
+			day = "Thule's dae."
+		if(5)
+			day = "Freyja's dae."
+		if(6)
+			day = "Saturn's dae."
+		if(7)
+			day = "Sun's dae."
+	. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
 //		if(SSshuttle.emergency.mode == SHUTTLE_DOCKED)
 //			if(SSshuttle.emergency.timeLeft() < 30 MINUTES)
 //				. += span_warning("The last boat will leave in [round(SSshuttle.emergency.timeLeft()/600)] minutes.")
@@ -536,7 +534,6 @@
 	break_sound = "glassbreak"
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
-	var/broke = FALSE
 	pixel_y = 32
 
 /obj/structure/fluff/wallclock/Destroy()
@@ -546,24 +543,25 @@
 
 /obj/structure/fluff/wallclock/examine(mob/user)
 	. = ..()
-	if(!broke)
-		var/day = "... actually, WHAT dae is it?"
-		switch(GLOB.dayspassed)
-			if(1)
-				day = "Moon's dae."
-			if(2)
-				day = "Tiw's dae."
-			if(3)
-				day = "Wedding's dae."
-			if(4)
-				day = "Thule's dae."
-			if(5)
-				day = "Freyja's dae."
-			if(6)
-				day = "Saturn's dae."
-			if(7)
-				day = "Sun's dae."
-		. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
+	if(obj_broken)
+		return
+	var/day = "... actually, WHAT dae is it?"
+	switch(GLOB.dayspassed)
+		if(1)
+			day = "Moon's dae."
+		if(2)
+			day = "Tiw's dae."
+		if(3)
+			day = "Wedding's dae."
+		if(4)
+			day = "Thule's dae."
+		if(5)
+			day = "Freyja's dae."
+		if(6)
+			day = "Saturn's dae."
+		if(7)
+			day = "Sun's dae."
+	. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
 //		testing("mode is [SSshuttle.emergency.mode] should be [SHUTTLE_DOCKED]")
 //		if(SSshuttle.emergency.mode == SHUTTLE_DOCKED)
 //			if(SSshuttle.emergency.timeLeft() < 30 MINUTES)
@@ -575,12 +573,10 @@
 	. = ..()
 
 /obj/structure/fluff/wallclock/obj_break(damage_flag)
-	if(!broke)
-		broke = TRUE
-		icon_state = "b[initial(icon_state)]"
-		if(soundloop)
-			soundloop.stop()
-		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
+	icon_state = "b[initial(icon_state)]"
+	if(soundloop)
+		soundloop.stop()
+	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 	..()
 
 /obj/structure/fluff/wallclock/l
