@@ -1118,3 +1118,10 @@
 	reqs = list(/obj/item/rogueweapon/sword/iron/messer = 1,
 				/obj/item/natural/whetstone = 1)
 	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/bonearrow
+	name = "bone arrow"
+	result = /obj/item/ammo_casing/caseless/rogue/arrow/bone
+	reqs = list(/obj/item/natural/bone = 1)
+	req_table = FALSE
+

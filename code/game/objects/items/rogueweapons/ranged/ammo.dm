@@ -125,6 +125,19 @@
 	max_integrity = 5
 	projectile_type = /obj/projectile/bullet/reusable/arrow/stone
 
+/obj/projectile/bullet/reusable/arrow/bone
+	name = "bone arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/bone
+
+/obj/item/ammo_casing/caseless/rogue/arrow/bone
+	name = "bone arrow"
+	desc = "A simple scrimshaw arrow made from animal bone. Folk \
+	wisdom holds that these cut finer than iron heads, but they tend to shatter \
+	on impact with armor."
+	icon_state = "bonearrow"
+	max_integrity = 5
+	projectile_type = /obj/projectile/bullet/reusable/arrow/bone
+
 /obj/item/ammo_casing/caseless/rogue/arrow/poison
 	name = "poisoned arrow"
 	desc = "Bundles of steam straightened dowels are notched at one end and fastened \
