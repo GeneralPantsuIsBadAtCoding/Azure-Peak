@@ -300,7 +300,7 @@
 	icon_state = "platter_gold"
 	resistance_flags = FIRE_PROOF
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
-	sellprice = 25
+	sellprice = 50
 	smeltresult = /obj/item/ingot/gold
 
 

@@ -259,26 +259,32 @@
 	created_item = /obj/item/reagent_containers/glass/bucket/pot/copper
 
 /datum/anvil_recipe/tools/platter
-	name = "2x Platters (Copper)"
+	name = "Platters (Copper) x3"
 	req_bar = /obj/item/ingot/copper
 	created_item = /obj/item/cooking/platter/copper
+	createditem_num = 3
 	craftdiff = 1
-	createditem_num = 1
 
 /datum/anvil_recipe/tools/platter/tin
-	name = "2x Platters (Tin)"
+	name = "Platters (Tin) x3"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/cooking/platter/pewter
+	createditem_num = 3
+	craftdiff = 1
 
 /datum/anvil_recipe/tools/platter/gold
-	name = "2x Platters (Gold)"
+	name = "Platters (Gold) x3"
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/cooking/platter/gold
+	createditem_num = 3
+	craftdiff = 2
 
 /datum/anvil_recipe/tools/platter/silver
-	name = "2x Platters (Silver)"
+	name = "Platters (Silver) x3"
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/cooking/platter/silver
+	createditem_num = 3
+	craftdiff = 2
 
 /datum/anvil_recipe/tools/spoon
 	name = "Iron Spoon x3"
@@ -291,6 +297,8 @@
 	name = "Tin Spoon x3"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/kitchen/spoon/tin
+	createditem_num = 3
+	craftdiff = 1
 
 /datum/anvil_recipe/tools/fork
 	name = "Iron Fork x3"
@@ -303,6 +311,8 @@
 	name = "Tin Fork x3"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/kitchen/fork/tin
+	createditem_num = 3
+	craftdiff = 1
 
 /datum/anvil_recipe/tools/iron/bowl
 	name = "Iron Bowl"
