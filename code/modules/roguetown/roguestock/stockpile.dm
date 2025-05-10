@@ -367,3 +367,51 @@
 	export_price = 3
 	importexport_amt = 10
 	passive_generation = 2
+
+/datum/roguestock/stockpile/rice
+	name = "Rice"
+	desc = "A grain used for cooking."
+	item_type = /obj/item/reagent_containers/food/snacks/grown/rice
+	held_items = list(0, 0)
+	payout_price = 2
+	withdraw_price = 3
+	transport_fee = 1
+	export_price = 3
+	importexport_amt = 10
+	passive_generation = 2
+
+/datum/roguestock/stockpile/poppy
+	name = "Poppy"
+	desc = "A seed with a sedative effect."
+	item_type = /obj/item/reagent_containers/food/snacks/grown/rogue/poppy
+	held_items = list(0, 0)
+	payout_price = 4
+	withdraw_price = 5
+	transport_fee = 1
+	export_price = 3
+	importexport_amt = 10
+	passive_generation = 2
+
+/datum/roguestock/stockpile/rocknut
+	name = "Rocknut"
+	desc = "A nut with mild stimulant properties."
+	item_type = /obj/item/reagent_containers/food/snacks/grown/nut
+	held_items = list(0, 0)
+	payout_price = 3
+	withdraw_price = 4
+	transport_fee = 1
+	export_price = 3
+	importexport_amt = 10
+	passive_generation = 2
+
+/datum/roguestock/stockpile/coffee
+	name = "Coffee Beans"
+	desc = "The seed of the coffee plant, used to make a stimulating drink."
+	item_type = /obj/item/reagent_containers/food/snacks/grown/coffeebeans
+	held_items = list(0, 0)
+	payout_price = 3
+	withdraw_price = 4
+	transport_fee = 1
+	export_price = 3
+	importexport_amt = 10
+	passive_generation = 2

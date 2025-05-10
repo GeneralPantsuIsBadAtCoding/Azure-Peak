@@ -752,7 +752,7 @@
 /area/rogue/indoors)
 "Do" = (
 /obj/structure/table/cooling,
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /obj/item/pestle,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors)

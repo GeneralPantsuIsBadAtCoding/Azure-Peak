@@ -70,3 +70,14 @@
 	verbage_simple = "roll"
 	verbage = "rolls"
 	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/sigdry
+	name = "rocknut zig"
+	result = /obj/item/clothing/mask/cigarette/rollie/nicotine
+	reqs = list(/obj/item/reagent_containers/powder/rocknut = 1,
+				/obj/item/paper = 1)
+	req_table = TRUE
+	time = 10 SECONDS
+	verbage_simple = "roll"
+	verbage = "rolls"
+	craftdiff = 0

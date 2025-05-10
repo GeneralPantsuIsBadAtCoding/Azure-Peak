@@ -164,6 +164,7 @@
 	produce_type = /obj/item/reagent_containers/food/snacks/grown/potato/rogue
 	produce_amount_min = 3
 	produce_amount_max = 4
+
 /datum/plant_def/poppy
 	name = "poppies"
 	icon_state = "poppy"
@@ -186,3 +187,11 @@
 	maturation_time = 6 MINUTES
 	produce_time = 3 MINUTES
 	water_drain_rate = 1 / (2 MINUTES)
+
+/datum/plant_def/coffee
+	name = "coffee bush"
+	icon = 'icons/roguetown/misc/crops.dmi'
+	icon_state = "coffee"
+	produce_type = /obj/item/reagent_containers/food/snacks/grown/coffee
+	produce_amount_min = 2
+	produce_amount_max = 3

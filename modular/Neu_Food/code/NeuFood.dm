@@ -384,11 +384,9 @@
 
 /* -------------- RICE ----------------- */
 /obj/item/reagent_containers/food/snacks/grown/rice
-	desc = ""
-	gender = PLURAL
 	list_reagents = list(/datum/reagent/floure = 1)
 	volume = 1
-	sellprice = 0
+	sellprice = 3
 	var/water_added
 
 /obj/item/reagent_containers/food/snacks/grown/rice/attackby(obj/item/I, mob/living/user, params)

@@ -2041,6 +2041,7 @@
 #include "modular\Neu_Food\code\cooked\NeuFood_pies.dm"
 #include "modular\Neu_Food\code\cooked\NeuFood_seafood.dm"
 #include "modular\Neu_Food\code\cooked\NeuFood_snacks.dm"
+#include "modular\Neu_Food\code\drinks\drinks_reagents.dm"
 #include "modular\Neu_Food\code\drinks\stew.dm"
 #include "modular\Neu_Food\code\drinks\tea_coffee_drinks.dm"
 #include "modular\Neu_Food\code\raw\NeuFood_dough.dm"

@@ -59,11 +59,6 @@
 	inputs = list(/obj/item/reagent_containers/food/snacks/rogue/meat)
 	output = /datum/reagent/consumable/soup/stew/meat
 
-/datum/stew_recipe/rose_tea
-	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried)
-	output = /datum/reagent/water/rosewater
-	cooktime = STEW_COOKING_TIME / 4 // Ultra fast
-
 // Yet another order issue - specific berries must go before generic. Sigh.
 /datum/stew_recipe/berry_poisoned
 	inputs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue/poison)
@@ -72,5 +67,16 @@
 /datum/stew_recipe/berry
 	inputs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue)
 	output = /datum/reagent/consumable/soup/stew/berry
+
+// DRINKS
+/datum/stew_recipe/rose_tea
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried)
+	output = /datum/reagent/water/rosewater
+	cooktime = STEW_COOKING_TIME / 4 // Ultra fast
+
+/datum/stew_recipe/coffee
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/coffeebeansroasted)
+	output = /datum/reagent/consumable/caffeine/coffee
+	cooktime = STEW_COOKING_TIME / 4
 
 #undef STEW_COOKING_TIME
