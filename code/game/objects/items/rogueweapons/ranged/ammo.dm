@@ -239,6 +239,52 @@
 	M.adjustFireLoss(15)
 	M.IgniteMob()
 
+
+/obj/item/ammo_casing/caseless/rogue/bolt/water
+	name = "water bolt"
+	desc = "A bolt with its tip containing a glass ampule filled with water. It will shatter on impact, useful for taking out pesky lights."
+	projectile_type = /obj/projectile/bullet/bolt/water
+	possible_item_intents = list(/datum/intent/mace/strike)
+	caliber = "regbolt"
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolt_water"
+	dropshrink = 0.8
+	max_integrity = 10
+	force = 0
+
+/obj/projectile/bullet/bolt/water
+	name = "water bolt"
+	desc = "A bolt with its tip containing a glass ampule filled with water. It will shatter on impact, useful for taking out pesky lights."
+	damage = 0
+	damage_type = BRUTE
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "boltwater_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/water
+	range = 15
+	hitsound = 'sound/blank.ogg'
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	flag = "piercing"
+	speed = 0.3
+
+	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
+
+	//explosion values
+	var/exp_heavy = 0
+	var/exp_light = 0
+	var/exp_flash = 0
+	var/exp_fire = 1
+
+/obj/projectile/bullet/bolt/water/on_hit(target)
+	. = ..()
+	if(ismob(target))
+		var/mob/living/M = target
+		for(var/obj/O in M.contents) //Checks for light sources in the mob's inventory
+			O.extinguish() //Extinguishes light sources on the mob you hit with the arrow.
+	var/turf/T = get_turf(target)
+	for(var/obj/O in T)
+		O.extinguish()
+//pyro arrows
 /obj/item/ammo_casing/caseless/rogue/arrow/pyro
 	name = "pyroclastic arrow"
 	desc = "An arrow with its tip drenched in a flammable tincture."
@@ -275,6 +321,46 @@
 	M.adjustFireLoss(10)
 	M.IgniteMob()
 
+/obj/item/ammo_casing/caseless/rogue/arrow/water
+	name = "water arrow"
+	desc = "An arrow with its tip containing a glass ampule filled with water. It will shatter on impact, useful for taking out pesky lights."
+	projectile_type = /obj/projectile/bullet/arrow/water
+	possible_item_intents = list(/datum/intent/mace/strike)
+	caliber = "arrow"
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "arrow_water"
+	dropshrink = 0.8
+	max_integrity = 10
+	force = 0
+
+/obj/projectile/bullet/arrow/water
+	name = "water arrow"
+	desc = "An arrow with its tip containing a glass ampule filled with water. It will shatter on impact, useful for taking out pesky lights."
+	damage = 0
+	damage_type = BRUTE
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "arrowwater_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow
+	range = 15
+	hitsound = 'sound/blank.ogg'
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	flag = "piercing"
+	speed = 0.4
+
+
+/obj/projectile/bullet/arrow/water/on_hit(target)
+	. = ..()
+	if(ismob(target))
+		var/mob/living/M = target
+		for(var/obj/O in M.contents) //Checks for light sources in the mob's inventory.
+			O.extinguish() //Extinguishes light sources on the mob you hit with the arrow.
+	var/turf/T = get_turf(target)
+	for(var/obj/O in T)
+		O.extinguish()
+/obj/projectile/bullet/reusable/arrow/poison/stone
+	name = "stone arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
 
 // GUNPOWDER AMMO
 

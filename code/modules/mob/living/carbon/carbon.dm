@@ -1086,13 +1086,14 @@
 	if(itemz)
 		for(var/X in get_equipped_items())
 			var/obj/item/I = X
+			if(I.extinguishable)
+				I.extinguish() //extinguishes our clothes
 			I.acid_level = 0 //washes off the acid on our clothes
-			I.extinguish() //extinguishes our clothes
 		var/obj/item/I = get_active_held_item()
-		if(I)
+		if(I && I.extinguishable)
 			I.extinguish()
 		I = get_inactive_held_item()
-		if(I)
+		if(I && I.extinguishable)
 			I.extinguish()
 	..()
 

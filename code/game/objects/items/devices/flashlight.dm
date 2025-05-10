@@ -273,6 +273,7 @@
 	light_outer_range = 6
 	fuel = 120 MINUTES
 	should_self_destruct = TRUE
+	extinguishable = TRUE
 
 /obj/item/flashlight/flare/torch/metal/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
@@ -294,7 +295,7 @@
 	name = "iron lamptern"
 	icon_state = "lamp"
 	desc = "A light to guide the way."
-	light_outer_range = 7
+	light_outer_range = 5
 	on = FALSE
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_HIP
@@ -304,6 +305,8 @@
 	should_self_destruct = FALSE
 	grid_width = 32
 	grid_height = 64
+	extinguishable = FALSE
+	weather_resistant = TRUE
 
 /obj/item/flashlight/flare/torch/lantern/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
@@ -321,9 +324,6 @@
 	if(!fuel || !on)
 		turn_off()
 		STOP_PROCESSING(SSobj, src)
-
-/obj/item/flashlight/flare/torch/lantern/extinguish()
-	return
 
 /obj/item/flashlight/flare/torch/lantern/getonmobprop(tag)
 	. = ..()

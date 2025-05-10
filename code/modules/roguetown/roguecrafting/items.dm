@@ -499,6 +499,56 @@
 	craftdiff = 1
 	skillcraft = /datum/skill/craft/engineering
 
+/datum/crafting_recipe/roguetown/waterbolt_ten
+	name = "water bolt (x10)"
+	result = list(
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water,
+		/obj/item/ammo_casing/caseless/rogue/bolt/water
+	)
+	reqs = list(/obj/item/natural/glass_shard = 1,
+				/obj/item/grown/log/tree/stick = 10)
+	req_table = TRUE
+	craftdiff = 0
+	skillcraft = /datum/skill/craft/engineering
+
+/datum/crafting_recipe/roguetown/waterbolt_twenty
+	name = "water bolt (x20)"
+	result = list(
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water,
+				/obj/item/ammo_casing/caseless/rogue/bolt/water
+		)
+	reqs = list(/obj/item/natural/glass_shard = 2,
+				/obj/item/grown/log/tree/stick = 10)
+	req_table = TRUE
+	craftdiff = 0
+	skillcraft = /datum/skill/craft/engineering
+
 /datum/crafting_recipe/roguetown/pyroarrow
 	name = "pyroclastic arrow"
 	result = /obj/item/ammo_casing/caseless/rogue/arrow/pyro
@@ -521,6 +571,56 @@
 				/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 5)
 	req_table = TRUE
 	craftdiff = 1
+	skillcraft = /datum/skill/craft/engineering
+
+/datum/crafting_recipe/roguetown/waterarrow_ten
+	name = "water arrow (x10)"
+	result = list(
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water
+				)
+	reqs = list(/obj/item/natural/glass_shard = 1,
+				/obj/item/grown/log/tree/stick = 10)
+	req_table = TRUE
+	craftdiff = 0
+	skillcraft = /datum/skill/craft/engineering
+
+/datum/crafting_recipe/roguetown/waterarrow_twenty
+	name = "water arrow (x20)"
+	result = list(
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water,
+				/obj/item/ammo_casing/caseless/rogue/arrow/water
+				)
+	reqs = list(/obj/item/natural/glass_shard = 2,
+				/obj/item/grown/log/tree/stick = 20)
+	req_table = TRUE
+	craftdiff = 0
 	skillcraft = /datum/skill/craft/engineering
 
 /datum/crafting_recipe/roguetown/mortar

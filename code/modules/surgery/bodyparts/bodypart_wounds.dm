@@ -303,7 +303,7 @@
 		if(HAS_TRAIT(src, TRAIT_BRITTLE))
 			used += 20
 		if(user)
-			if(istype(user.rmb_intent, /datum/rmb_intent/strong))
+			if(istype(user.rmb_intent, /datum/rmb_intent/strong) || (user.m_intent == MOVE_INTENT_SNEAK))
 				used += 10
 		if(!owner.stat && !resistance && (zone_precise in knockout_zones) && (bclass != BCLASS_CHOP) && prob(used))
 			owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out[from_behind ? " FROM BEHIND" : ""]!</span>"

@@ -112,6 +112,17 @@
 	cost = 3
 	contains = list(/obj/item/ammo_casing/caseless/rogue/arrow/steel)
 
+/datum/supply_pack/rogue/Knave/Warrows
+	name = "Water Arrows (x5)"
+	cost = 1
+	contains = list(
+	/obj/item/ammo_casing/caseless/rogue/arrow/water,
+	/obj/item/ammo_casing/caseless/rogue/arrow/water,
+	/obj/item/ammo_casing/caseless/rogue/arrow/water,
+	/obj/item/ammo_casing/caseless/rogue/arrow/water,
+	/obj/item/ammo_casing/caseless/rogue/arrow/water,
+	)
+
 /datum/supply_pack/rogue/Knave/Parrows
 	name = "Poisoned Arrow"
 	cost = 5

@@ -74,17 +74,20 @@
 			cloak = /obj/item/clothing/cloak/raincloak/mortus
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			backl = /obj/item/storage/backpack/rogue/satchel
+			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
 			belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
 			gloves = /obj/item/clothing/gloves/roguetown/fingerless
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			beltl = /obj/item/lockpickring/mundane
-			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			beltl = /obj/item/quiver/Warrows
+			beltr = /obj/item/rogueweapon/mace/cudgel
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/lockpickring/mundane = 1)
 			H.cmode_music = 'sound/music/combat_rogue.ogg'
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)

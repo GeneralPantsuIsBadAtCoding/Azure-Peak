@@ -22,6 +22,8 @@
 	var/obj_broken = FALSE
 	var/obj_destroyed = FALSE
 
+	var/extinguishable = TRUE // flag for torches, lanterns, clothing, and the like.
+
 	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 
 	var/acid_level = 0 //how much acid is on that obj
