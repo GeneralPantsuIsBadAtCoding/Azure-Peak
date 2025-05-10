@@ -35,7 +35,7 @@
 	beltl = /obj/item/rogueweapon/huntingknife/scissors/steel
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backr = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(/obj/item/needle, /obj/item/roguekey/tailor)
+	backpack_contents = list(/obj/item/needle, /obj/item/roguekey/tailor, /obj/item/dye_brush)
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
 	else if(should_wear_masc_clothes(H))

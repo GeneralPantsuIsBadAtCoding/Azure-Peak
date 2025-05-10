@@ -57,23 +57,10 @@
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/list/colors = list(		//Uses same colors as lord colors for simplicty & blending.
-		"PURPLE"="#8747b1", 
-		"RED"="#8b2323", 	
-		"BLACK"="#2b292e", 
-		"BROWN"="#61462c", 	
-		"GREEN"="#264d26", 	
-		"BLUE"="#173266", 	
-		"YELLOW"="#ffcd43", 
-		"TEAL"="#249589", 	
-		"AZURE"="#007fff", 	
-		"WHITE"="#ffffff",	
-		"ORANGE"="#df8405",	
-		"MAGENTA"="#962e5c")
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
-		detail_color = colors[choice]
+		detail_color = colorlist[choice]
 		detail_tag = "_detail"
 		update_icon()
 		if(loc == user && ishuman(user))

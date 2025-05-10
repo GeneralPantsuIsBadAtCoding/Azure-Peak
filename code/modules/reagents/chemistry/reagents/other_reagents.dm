@@ -176,16 +176,25 @@
 /turf/open/proc/update_water()
 	return TRUE
 
-/datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
-	if(!istype(T))
-		return
-	if(reac_volume >= 5)
-		T.add_water(reac_volume * 3) //nuprocet)
+/datum/reagent/water/reaction_turf(turf/T, reac_volume)
+	if(isopenturf(T))
+		var/turf/open/OT = T
+		if(reac_volume >= 5)
+			OT.add_water(reac_volume * 3) //nuprocet)
 
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
-	if(hotspot)
-		new /obj/effect/temp_visual/small_smoke(T)
-		qdel(hotspot)
+		var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
+		if(hotspot)
+			new /obj/effect/temp_visual/small_smoke(T)
+			qdel(hotspot)
+	
+	if(iswallturf(T))
+		if(!T.color)
+			return
+		if(volume < 10)
+			T.visible_message(span_warning("[T] needs more water to clean the <font color=[T.color]>paint</font> away!"))
+			return
+		T.visible_message(span_notice("The <font color=[T.color]>paint</font> on [T] washes away!"))
+		T.color = initial(T.color)
 
 /*
  *	Water reaction to an object
@@ -195,6 +204,14 @@
 	O.extinguish()
 	O.acid_level = 0
 
+	if(isstructure(O))
+		if(!O.color)
+			return
+		if(volume < 10)
+			O.visible_message(span_warning("[O] needs more water to clean the <font color=[O.color]>paint</font> away!"))
+			return
+		O.visible_message(span_notice("The <font color=[O.color]>paint</font> on [O] washes away!"))
+		O.color = initial(O.color)
 
 	if(istype(O, /obj/item/roguebin))
 		var/obj/item/roguebin/RB = O
