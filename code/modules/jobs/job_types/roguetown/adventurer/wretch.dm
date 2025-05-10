@@ -454,7 +454,7 @@
 			beltr = /obj/item/rogueweapon/mace/goden/steel
 		if ("Sword")
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			beltr = /obj/item/rogueweapon/sword/falx
+			beltr = /obj/item/rogueweapon/sword/long
 	H.change_stat("strength", 3)
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 2)
