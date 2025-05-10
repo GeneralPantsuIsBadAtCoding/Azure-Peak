@@ -236,15 +236,16 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/changevoice()
-	set name = "Change Second Voice (Can only use Once!)"
+	set name = "Change Voice"
 	set category = "Virtue"
 
-	var/newcolor = input(src, "Choose your character's SECOND voice color:", "VIRTUE","#a0a0a0") as color|null
+	var/newcolor = input(src, "Choose your character's voice color:", "VIRTUE","#a0a0a0") as color|null
 	if(newcolor)
-		second_voice = sanitize_hexcolor(newcolor)
-		src.verbs -= /mob/living/carbon/human/proc/changevoice
+		voice_color = sanitize_hexcolor(newcolor)
+		to_chat(src, span_info("I've changed my voice perfectly."))
 		return TRUE
 	else
+		to_chat(src, span_info("I've decided to keep my voice for now."))
 		return FALSE
 
 /mob/living/carbon/human/proc/swapvoice()

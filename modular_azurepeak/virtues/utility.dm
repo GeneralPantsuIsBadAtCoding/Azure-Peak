@@ -287,13 +287,12 @@
 		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
 
 /datum/virtue/utility/secondvoice
-	name = "Second Voice"
-	desc = "From performance, deception, or by a need to change yourself in uncanny ways, you've acquired a second, perfect voice. You may switch between them at any point."
-	custom_text = "Grants access to a new 'Virtue' tab. It will have the options for setting and changing your voice."
+	name = "Mimic"
+	desc = "From performance, deception, or by a need to change yourself in uncanny ways, you've warped your vocal chords into the ultimate mimicking tool. Just don't forget how your regular voice sounds..."
+	custom_text = "Grants access to a new 'Virtue' tab. It will have the options for changing your voice."
 
 /datum/virtue/utility/secondvoice/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.verbs += /mob/living/carbon/human/proc/changevoice
-	recipient.verbs += /mob/living/carbon/human/proc/swapvoice
 
 /datum/virtue/utility/keenears
 	name = "Keen Ears"
