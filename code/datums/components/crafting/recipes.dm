@@ -4,6 +4,8 @@
 	var/reqs[] = list() //type paths of items consumed associated with how many are needed
 	var/blacklist[] = list() //type paths of items explicitly not allowed as an ingredient
 	var/result //type path of item resulting from this craft
+	/// String defines of items needed but not consumed. Lazy list.
+	var/list/tool_behaviors
 	var/tools[] = list() //type paths of items needed but not consumed
 	var/time = 0 //time in deciseconds
 	var/parts[] = list() //type paths of items that will be placed in the result

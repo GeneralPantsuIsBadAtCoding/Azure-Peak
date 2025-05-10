@@ -450,7 +450,7 @@ Inquisitorial armory down here
 			I.is_silver = silver
 			I.smeltresult = /obj/item/ingot/silver
 		I.name = "blessed [I.name]"
-		I.AddComponent(/datum/component/metal_glint)
+		I._AddComponent(/datum/component/metal_glint)
 
 /obj/effect/temp_visual/censer_dust
 	icon = 'icons/effects/effects.dmi'

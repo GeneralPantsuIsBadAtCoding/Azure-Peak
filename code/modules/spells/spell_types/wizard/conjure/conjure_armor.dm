@@ -57,34 +57,34 @@
 	var/obj/item/new_helmet = new helmet(target)
 	target.equip_to_slot_or_del(new_helmet, SLOT_HEAD)
 	// Passing all these vars are necessary to override the owner because equip_to_slot_or_del don't actually assign an owner on equip
-	new_helmet.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_helmet._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 	
 	var/obj/item/new_shirt = new shirt(target)
 	target.equip_to_slot_or_del(new_shirt, SLOT_SHIRT)
-	new_shirt.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_shirt._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 	
 	var/obj/item/new_wrists = new wrists(target)
 	target.equip_to_slot_or_del(new_wrists, SLOT_WRISTS)
-	new_wrists.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_wrists._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_gloves = new gloves(target)
 	target.equip_to_slot_or_del(new_gloves, SLOT_GLOVES)
-	new_gloves.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_gloves._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_neck = new neck(target)
 	target.equip_to_slot_or_del(new_neck, SLOT_NECK)
-	new_neck.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_neck._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_shoes = new shoes(target)
 	target.equip_to_slot_or_del(new_shoes, SLOT_SHOES)
-	new_shoes.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_shoes._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_armor = new armor(target)
 	target.equip_to_slot_or_del(new_armor, SLOT_ARMOR)
-	new_armor.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_armor._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_pants = new pants(target)
 	target.equip_to_slot_or_del(new_pants, SLOT_PANTS)
-	new_pants.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	new_pants._AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
 
 #undef CONJURE_DURATION

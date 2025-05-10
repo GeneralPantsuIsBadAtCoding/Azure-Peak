@@ -767,7 +767,7 @@
 		target.visible_message(span_warning("[target] really can't seem to mount [src]..."))
 		return
 	buckle_lying = lying_buckle
-	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
+	var/datum/component/riding/human/riding_datum = _LoadComponent(/datum/component/riding/human)
 	if(target_hands_needed)
 		riding_datum.ride_check_rider_restrained = TRUE
 	if(buckled_mobs && ((target in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled)

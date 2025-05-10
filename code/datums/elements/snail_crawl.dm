@@ -1,5 +1,5 @@
 /datum/element/snailcrawl
-	element_flags = ELEMENT_DETACH
+	element_flags = COMSIG_ELEMENT_ATTACH
 
 /datum/element/snailcrawl/Attach(datum/target)
 	. = ..()

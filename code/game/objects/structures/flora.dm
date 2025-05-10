@@ -274,7 +274,7 @@
 /obj/item/twohanded/required/kirbyplants/Initialize()
 	. = ..()
 	AddComponent(/datum/component/tactical)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, AddComponent), /datum/component/beauty, 500), 0)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, _AddComponent), /datum/component/beauty, 500), 0)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon_state = "random_plant"

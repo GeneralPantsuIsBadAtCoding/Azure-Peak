@@ -19,7 +19,7 @@
 	..()
 	deaggroprob = 50
 	if(can_buckle)
-		var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+		var/datum/component/riding/D = _LoadComponent(/datum/component/riding)
 		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-2, 6), TEXT_WEST = list(2, 6)))
 		D.set_vehicle_dir_layer(SOUTH, MOB_LAYER+0.1)
 		D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
@@ -268,7 +268,7 @@
 	..()
 	deaggroprob = 20
 	if(can_buckle)
-		var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+		var/datum/component/riding/D = _LoadComponent(/datum/component/riding)
 		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-2, 6), TEXT_WEST = list(2, 6)))
 		D.set_vehicle_dir_layer(SOUTH, MOB_LAYER+0.1)
 		D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)

@@ -1,5 +1,5 @@
 /datum/element/earhealing
-	element_flags = ELEMENT_DETACH
+	element_flags = COMSIG_ELEMENT_ATTACH 
 	var/list/user_by_item = list()
 
 /datum/element/earhealing/New()

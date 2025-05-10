@@ -148,7 +148,7 @@
 	if(!istype(A) || !get_turf(A) || A == src)
 		return
 
-	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
+	return A._AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
 	return // We're just a simple hook

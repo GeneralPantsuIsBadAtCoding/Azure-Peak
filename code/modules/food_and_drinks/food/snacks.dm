@@ -193,7 +193,7 @@ All foods are distributed among various categories. Use common sense.
 		if(cooked_type)
 			result = new cooked_type(A)
 			if(cooked_smell)
-				result.AddComponent(/datum/component/temporary_pollution_emission, cooked_smell, 20, 5 MINUTES)
+				result._AddComponent(/datum/component/temporary_pollution_emission, cooked_smell, 20, 5 MINUTES)
 		else
 			result = new /obj/item/reagent_containers/food/snacks/badrecipe(A)
 		initialize_cooked_food(result, 1)
@@ -203,7 +203,7 @@ All foods are distributed among various categories. Use common sense.
 		if(fried_type)
 			result = new fried_type(A)
 			if(cooked_smell)
-				result.AddComponent(/datum/component/temporary_pollution_emission, cooked_smell, 20, 5 MINUTES)
+				result._AddComponent(/datum/component/temporary_pollution_emission, cooked_smell, 20, 5 MINUTES)
 		else
 			result = new /obj/item/reagent_containers/food/snacks/badrecipe(A)
 		initialize_cooked_food(result, 1)

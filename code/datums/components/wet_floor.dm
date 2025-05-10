@@ -95,7 +95,7 @@
 			qdel(parent.GetComponent(/datum/component/slippery))
 			return
 
-	parent.LoadComponent(/datum/component/slippery, intensity, lube_flags, CALLBACK(src, PROC_REF(AfterSlip)))
+	parent._LoadComponent(/datum/component/slippery, intensity, lube_flags, CALLBACK(src, PROC_REF(AfterSlip)))
 
 /datum/component/wet_floor/proc/dry(datum/source, strength = TURF_WET_WATER, immediate = FALSE, duration_decrease = INFINITY)
 	for(var/i in time_left_list)

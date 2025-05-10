@@ -89,3 +89,12 @@
 	click_gather = FALSE
 	allow_quick_gather = FALSE
 	allow_quick_empty = FALSE
+
+/datum/component/storage/concrete/roguetown/saddle
+	screen_max_rows = 4
+	screen_max_columns = 4
+	max_w_class = WEIGHT_CLASS_NORMAL
+
+/datum/component/storage/tray
+	insert_preposition = "on"
+	max_w_class = WEIGHT_CLASS_NORMAL

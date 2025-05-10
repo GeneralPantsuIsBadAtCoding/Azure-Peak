@@ -46,7 +46,7 @@
 		if(!enchant_type)
 			return
 		enchant_type = enchant_types[enchant_type]
-		I.AddComponent(/datum/component/enchanted_weapon, ENCHANT_DURATION, TRUE, /datum/skill/magic/arcane, user, enchant_type)
+		I._AddComponent(/datum/component/enchanted_weapon, ENCHANT_DURATION, TRUE, /datum/skill/magic/arcane, user, enchant_type)
 		user.visible_message("[user] enchants the [I], enveloping it in a magical glow.")
 		return TRUE
 	else

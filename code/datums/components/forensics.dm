@@ -171,4 +171,4 @@
 		return
 	if(!length(blood_DNA))
 		return
-	parent.LoadComponent(/datum/component/decal/blood)
+	parent._LoadComponent(/datum/component/decal/blood)

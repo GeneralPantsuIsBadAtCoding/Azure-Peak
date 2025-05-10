@@ -350,7 +350,7 @@
   * If this tries to add an component to an incompatible type, the component will be deleted and the result will be `null`. This is very unperformant, try not to do it
   * Properly handles duplicate situations based on the `dupe_mode` var
   */
-/datum/proc/AddComponent(new_type, ...)
+/datum/proc/_AddComponent(new_type, ...)
 	var/datum/component/nt = new_type
 	var/dm = initial(nt.dupe_mode)
 	var/dt = initial(nt.dupe_type)
@@ -411,10 +411,10 @@
   * * component_type The typepath of the component to create or return
   * * ... additional arguments to be passed when creating the component if it does not exist
   */
-/datum/proc/LoadComponent(component_type, ...)
+/datum/proc/_LoadComponent(component_type, ...)
 	. = GetComponent(component_type)
 	if(!.)
-		return AddComponent(arglist(args))
+		return _AddComponent(arglist(args))
 
 /**
   * Removes the component from parent, ends up with a null parent
@@ -449,7 +449,7 @@
 			qdel(target)
 			CRASH("Incompatible [c_type] transfer attempt to a [type]!")
 
-	if(target == AddComponent(target))
+	if(target == _AddComponent(target))
 		target._JoinParent()
 
 /**

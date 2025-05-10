@@ -11,10 +11,23 @@
 
 /obj/item/storage/Initialize()
 	. = ..()
+	create_storage(component_type)
 	PopulateContents()
 
-/obj/item/storage/ComponentInitialize()
-	AddComponent(component_type)
+	for (var/obj/item/item in src)
+		item.item_flags |= IN_STORAGE
+	
+/obj/item/storage/create_storage(
+	max_items,
+	max_w_class,
+	max_combined_w_class,
+	list/canhold,
+	list/canthold,
+	component_type,
+)
+	// If no type was passed in, default to what we already have
+	component_type ||= src.component_type
+	return ..()
 
 /obj/item/storage/AllowDrop()
 	return FALSE
