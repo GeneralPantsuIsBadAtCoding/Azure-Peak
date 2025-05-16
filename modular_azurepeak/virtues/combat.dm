@@ -140,6 +140,23 @@
 	else
 		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
+/datum/virtue/combat/shepherd
+	name = "Capable Shepherd"
+	desc = "Years of protecting my herd from brigands and thieves have taught me how to use the simplest of weapons in self-defense."
+	custom_text = "+1 to Staves and Slings, Up to Journeyman, Minimum Apprentice."
+	added_stashed_items = list("Iron Quarterstaff" = /obj/item/rogueweapon/woodstaff/quarterstaff/iron,
+								"Sling" = /obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+								"Pouch of Iron Sling Bullets" = /obj/item/quiver/sling/iron)
+
+/datum/virtue/combat/shepherd/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.mind?.get_skill_level(/datum/skill/combat/staves) < SKILL_LEVEL_APPRENTICE)
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	if(recipient.mind?.get_skill_level(/datum/skill/combat/slings) < SKILL_LEVEL_APPRENTICE)
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/slings, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/slings, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/bowman
 	name = "Toxophilite"

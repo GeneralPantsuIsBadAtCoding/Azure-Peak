@@ -55,6 +55,7 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/staves, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/masonry, 3, TRUE)

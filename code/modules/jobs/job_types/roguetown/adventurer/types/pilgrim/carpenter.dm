@@ -18,6 +18,7 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE) 
+		H.mind.adjust_skillrank(/datum/skill/combat/staves, 2, TRUE) 
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE) // They work at great heights.
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)

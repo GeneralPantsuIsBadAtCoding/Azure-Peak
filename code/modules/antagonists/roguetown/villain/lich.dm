@@ -112,7 +112,7 @@
 	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/staves, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)

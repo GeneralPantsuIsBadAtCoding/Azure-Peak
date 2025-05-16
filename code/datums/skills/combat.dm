@@ -111,3 +111,14 @@
 	"...the perched archers ruthlessly repel the peasant rebellion. Hope for fairness is almost forlorn, until with a soft crack, a hailing of iron bullets clatter against the foe's helmets...",
 	"...your arm tires from the toils of practice. Swinging rapidly has left your arm numb. With weary eyes, you glance aside to witness a hunter practice their craft with a brief overhand toss. Absorbing the technique, you mimic it, and effortlessly cast a powerful stone square onto the target..."
 	)
+
+/datum/skill/combat/staves
+	name = "Staves"
+	desc = "Increases your chance to successfully parry and bypass your opponent's parry by 20% with staves, and your chance to bypass dodge by 10%."
+	dreams = list(
+	"...your reflection in the stream ripples as you train. Each motion a part of an ancient pattern, half-forgotten. Each strike, each parry, each feint, makes the water's surface split like silk. Psydonia listens...",
+	"...you walk the forgotten road, your staff tapping against stone. When the brigands step forth, grinning, you do not break stride. The staff spins, a flicker of old instinct, and one falls. The others hesitate, seeing not an old, weary traveler, but a lesson long unlearned...",
+	"...a dying monk presses a bloodied quarterstaff into your grasp. 'The world is not stone,' he rasps, 'but water.' You strike, and the staff seems to flow, finding paths you did not see before...",
+	"...amidst flickering torchlight, you spar with a silent figure. Their staff moves like a serpent, coiling, striking, vanishing - before it all goes dark. You wake, trying to recall the shape of their final blow...",
+	"...cattle thieves descend upon the homestead. You have no sword, only a sturdy branch. One by one they fall, the staff cracking through bone and flesh alike. Violence, you realize, is a language spoken in every tongue..."
+	)

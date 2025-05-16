@@ -29,7 +29,7 @@
 
 	r_hand = /obj/item/rogueweapon/woodstaff/diamond
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE) // Jman Polearms, for better parrying without making them bandit level 
+		H.mind.adjust_skillrank(/datum/skill/combat/staves, 3, TRUE) // Jman Staves, for better parrying without making them bandit level 
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE) // They get apprentice in a wide spread of weapons for synergy with conjuration, especially if they take virtues
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)

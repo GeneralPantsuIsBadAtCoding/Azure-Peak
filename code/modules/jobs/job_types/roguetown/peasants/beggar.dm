@@ -61,7 +61,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, rand(2,5), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE) //very good reading he is wise
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, rand(2,5), TRUE) // dog beating staff
+			H.mind.adjust_skillrank(/datum/skill/combat/staves, rand(2,5), TRUE) // dog beating staff
 			H.STASTR = rand(1, 20)
 			H.STAINT = rand(5, 20)
 			H.STALUC = rand(1, 20)
