@@ -592,6 +592,103 @@
 	QDEL_NULL(boilloop)
 	. = ..()
 
+/obj/machinery/light/rogue/hearth/mobilestove // thanks to Reen and Ppooch for their help on this. If any of this is slopcode, its my slopcode, not theirs. They only made improvements.
+	name = "mobile stove"
+	desc = "A portable bronze stovetop. The underside is covered in an esoteric pattern of small tubes. Whatever heats the hob is hidden inside the body of the device"
+	icon_state = "hobostove1"
+	base_state = "hobostove"
+	brightness = 4
+	bulb_colour ="#4ac77e"
+	density = FALSE
+	anchored = TRUE
+	climbable = FALSE
+	climb_offset = FALSE
+	layer = TABLE_LAYER
+	on = FALSE
+	no_refuel = TRUE
+	status = LIGHT_BURNED
+	crossfire = FALSE
+	soundloop = /datum/looping_sound/blank  //datum path is a blank.ogg
+
+/obj/machinery/light/rogue/hearth/mobilestove/MiddleClick(mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(!food)
+				if(!user.put_in_active_hand(attachment))
+					attachment.forceMove(user.loc)
+				attachment = null
+				update_icon()
+				return
+			if(!user.put_in_active_hand(food))
+				food.forceMove(user.loc)
+			food = null
+			update_icon()
+			return
+		if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			if(!user.put_in_active_hand(attachment))
+				attachment.forceMove(user.loc)
+			attachment = null
+			update_icon()
+			boilloop.stop()
+	else
+		if(!on)
+			user.visible_message(span_notice("[user] begins packing up \the [src]."))
+			if(!do_after(user, 2 SECONDS, TRUE, src))
+				return
+			var/obj/item/mobilestove/new_mobilestove = new /obj/item/mobilestove(get_turf(src))
+			new_mobilestove.color = src.color
+			qdel(src)
+			return
+
+		var/mob/living/carbon/human/H = user
+		if(!istype(user))
+			return
+		H.visible_message(span_notice("[user] begins packing up \the [src]. It's still hot!"))
+		if(!do_after(H, 40, target = src))
+			return
+		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+		to_chat(H, span_warning("HOT! I burned myself!"))
+		if(affecting && affecting.receive_damage( 0, 5 ))        // 5 burn damage
+			H.update_damage_overlays()
+		var/obj/item/mobilestove/new_mobilestove = new /obj/item/mobilestove(get_turf(src))
+		new_mobilestove.color = src.color
+		burn_out()
+		qdel(src)
+		return
+
+/obj/item/mobilestove
+	name = "packed stove"
+	desc = "A portable bronze stovetop. The underside is covered in an esoteric pattern of small tubes. Whatever heats the hob is hidden inside the body of the device"
+	icon = 'icons/roguetown/misc/lighting.dmi'
+	icon_state = "hobostovep"
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
+	grid_width = 32
+	grid_height = 64
+
+/obj/item/mobilestove/attack_self(mob/user, params)
+	..()
+	var/turf/T = get_turf(loc)
+	if(!isfloorturf(T))
+		to_chat(user, span_warning("I need ground to plant this on!"))
+		return
+	for(var/obj/A in T)
+		if(istype(A, /obj/structure))
+			to_chat(user, span_warning("I need some free space to deploy a [src] here!"))
+			return
+		if(A.density && !(A.flags_1 & ON_BORDER_1))
+			to_chat(user, span_warning("There is already something here!</span>"))
+			return
+	user.visible_message(span_notice("[user] begins placing \the [src] down on the ground."))
+	if(do_after(user, 2 SECONDS, TRUE, src))
+		var/obj/machinery/light/rogue/hearth/mobilestove/new_mobilestove = new /obj/machinery/light/rogue/hearth/mobilestove(get_turf(src))
+		new_mobilestove.color = src.color
+		qdel(src)
+
 /obj/machinery/light/rogue/campfire
 	name = "campfire"
 	icon_state = "badfire1"

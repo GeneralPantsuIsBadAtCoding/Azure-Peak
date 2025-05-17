@@ -80,3 +80,9 @@
 	mid_length = 320
 	volume = 50
 	extra_range = 10
+
+/datum/looping_sound/blank // datum call for a blank soundloop. Useful for avoiding qdel runtimes on machines and potentially structures
+	mid_sounds = list('sound/blank.ogg')
+	mid_length = 0
+	volume = 0
+	extra_range = 0

@@ -87,6 +87,13 @@
 	additional_items = list(/obj/item/roguegear, /obj/item/storage/backpack/rogue/backpack)
 	craftdiff = 5
 
+/datum/anvil_recipe/engineering/bronze/mobilestove
+	name = "Mobile Stove (+Cog +Tin)" // capitalized to fall in line with the rest of engineering recipes T_T
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/mobilestove
+	additional_items = list(/obj/item/roguegear, /obj/item/ingot/tin)
+	craftdiff = 4
+
 /datum/anvil_recipe/engineering/bronze/smokebomb
 	name = "Smoke Bomb 2x (+Cog, +Ash)"
 	req_bar = /obj/item/ingot/bronze
