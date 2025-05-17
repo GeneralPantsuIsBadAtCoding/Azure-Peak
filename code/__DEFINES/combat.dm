@@ -149,6 +149,8 @@
 #define SPEAR_BASH			/datum/intent/spear/bash
 #define SPEAR_CUT			/datum/intent/spear/cut
 #define SPEAR_CAST          /datum/intent/spear/cast
+#define PARTIZAN_REND		/datum/intent/rend/reach/partizan
+#define PARTIZAN_PEEL		/datum/intent/partizan/peel
 
 #define MESSER_CHOP			/datum/intent/sword/chop/messer
 

@@ -103,7 +103,7 @@
 	H.change_stat("speed", -1)
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Zweihander","Great Mace","Battle Axe","Greataxe","Estoc","Lucerne")
+	var/weapons = list("Zweihander","Great Mace","Battle Axe","Greataxe","Estoc","Lucerne", "Partizan")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
@@ -122,6 +122,9 @@
 			backl = /obj/item/gwstrap
 		if("Lucerne")
 			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
+			backl = /obj/item/gwstrap
+		if("Partizan")
+			r_hand = /obj/item/rogueweapon/spear/partizan
 			backl = /obj/item/gwstrap
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
