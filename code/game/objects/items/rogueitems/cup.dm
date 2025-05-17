@@ -44,6 +44,17 @@
 	icon_state = "steel"
 	sellprice = 10
 
+/obj/item/reagent_containers/glass/cup/aalloymug
+	name = "decrepit mug"
+	desc = "A decrepit mug. Aeon's grasp is upon its form."
+	icon_state = "amug"
+
+/obj/item/reagent_containers/glass/cup/aalloygob
+	name = "decrepit goblet"
+	desc = "A decrepit goblet. Aeon's grasp is upon its form."
+	icon_state = "agoblet"
+	sellprice = 0
+
 /obj/item/reagent_containers/glass/cup/silver
 	name = "silver goblet"
 	desc = "A silver goblet, its surface adorned with intricate carvings and runes."

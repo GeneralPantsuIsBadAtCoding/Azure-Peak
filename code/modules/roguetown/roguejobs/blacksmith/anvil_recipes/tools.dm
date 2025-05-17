@@ -38,6 +38,124 @@
 	i_type = "Tools"
 
 
+// --------- ANCIENT ALLOY -----------
+
+/datum/anvil_recipe/tools/aalloy/thresher
+	name = "Decrepit Thresher (+1 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/thresher/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/hoe
+	name = "Decrepit Hoe (+2 Sticks)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick,/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/hoe/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/pitchfork
+	name = "Decrepit Pitchfork (+2 Sticks)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick,/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pitchfork/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/hammer
+	name = "Decrepit Hammer (+1 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/hammer/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/sickle
+	name = "Decrepit Sickle (+1 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/sickle/aalloy
+	i_type = "Tools"
+
+
+/datum/anvil_recipe/tools/aalloy/tongs
+	name = "Decrepit Tongs"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/tongs/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/pick
+	name = "Decrepit Pickaxe (+1 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pick/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/shovel
+	name = "Decrepit Shovel (+2 Sticks)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick,/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/shovel/aalloy
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/aalloy/sewingneedle
+	name = "Decrepit Needles x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/needle/aalloy
+	createditem_num = 3
+	craftdiff = 0
+
+/datum/anvil_recipe/tools/aalloy/pan
+	name = "Decrepit Frypan"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/cooking/pan/aalloy
+	craftdiff = 0
+
+/datum/anvil_recipe/tools/aalloy/agobs
+	name = "Decrepit Goblets x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/cup/aalloygob
+	createditem_num = 3
+
+/datum/anvil_recipe/tools/aalloy/amugs
+	name = "Decrepit Mugs x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/cup/aalloymug
+	createditem_num = 3
+
+
+/datum/anvil_recipe/tools/aalloy/pot
+	name = "Decrepit Cooking Pot"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/bucket/pot/aalloy
+
+
+/datum/anvil_recipe/tools/platter
+	name = "Decrepit Platter x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/cooking/platter/aalloy
+	craftdiff = 1
+	createditem_num = 3
+
+/datum/anvil_recipe/tools/aalloy/bowl
+	name = "Decrepit Bowl"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/reagent_containers/glass/bowl/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/tools/aalloy/fork
+	name = "Decrepit Fork x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/kitchen/fork/aalloy
+	createditem_num = 3
+	craftdiff = 1
+
+/datum/anvil_recipe/tools/aalloy/spoon
+	name = "Decrepit Spoon x3"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/kitchen/spoon/aalloy
+	createditem_num = 3
+	craftdiff = 1
+
+
 // --------- IRON -----------
 
 /datum/anvil_recipe/tools/iron/blowrod

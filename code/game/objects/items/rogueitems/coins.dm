@@ -1,6 +1,7 @@
 #define CTYPE_GOLD "g"
 #define CTYPE_SILV "s"
 #define CTYPE_COPP "c"
+#define CTYPE_ANCIENT "a"
 #define MAX_COIN_STACK_SIZE 20
 
 /obj/item/roguecoin
@@ -224,6 +225,19 @@
 	sellprice = 1
 	base_type = CTYPE_COPP
 	plural_name = "zennies"
+
+// Ancient - Valueless
+/obj/item/roguecoin/aalloy
+	name = "psilen"
+	desc = "Withered empires can never endure."
+	icon_state = "a1"
+	sellprice = 0
+	base_type = CTYPE_ANCIENT
+	plural_name = "psila"
+
+/obj/item/roguecoin/aalloy/pile/Initialize()
+	. = ..()
+	set_quantity(rand(4,19))
 
 /obj/item/roguecoin/copper/pile/Initialize()
 	. = ..()

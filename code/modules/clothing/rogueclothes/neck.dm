@@ -35,6 +35,7 @@
 	toggle_icon_state = TRUE
 	sewrepair = TRUE
 
+
 /obj/item/clothing/neck/roguetown/coif/AdjustClothes(mob/user)
 	if(loc == user)
 		if(adjustable == CAN_CADJUST)
@@ -76,7 +77,6 @@
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
 	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "piercing" = 20, "fire" = 0, "acid" = 0)
-
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
@@ -87,6 +87,13 @@
 	blocksound = CHAINHIT
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
+
+
+/obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	name = "ancient coif"
+	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
 	if(loc == user)
@@ -146,6 +153,15 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = 150
+
+
+/obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
+	name = "decrepit coif"
+	desc = "a decrepit old coif. Aeon's grasp is upon it."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 100
+
 
 /obj/item/clothing/neck/roguetown/chaincoif/full
 	name = "full chain coif"
@@ -213,6 +229,13 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 
+/obj/item/clothing/neck/roguetown/gorget/aalloy
+	name = "decrepit gorget"
+	desc = "a decrepit, worn out gorget. Aeon's grasp is upon it."
+	icon_state = "ancientgorget"
+	max_integrity = 100
+	smeltresult = /obj/item/ingot/aalloy
+
 /obj/item/clothing/neck/roguetown/gorget/copper
 	name = "neck protector"
 	icon_state = "copperneck"
@@ -245,6 +268,13 @@
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 300
 	icon_state = "sgorget"
+
+/obj/item/clothing/neck/roguetown/gorget/paalloy
+	name = "ancient gorget"
+	desc = "A gorget made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancientgorget"
+	max_integrity = 300
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
 	. = ..()
@@ -296,6 +326,17 @@
 		sleeved = initial(sleeved)
 	
 	return TRUE
+
+/obj/item/clothing/neck/roguetown/psicross/aalloy
+	name = "decrepit psicross"
+	desc = "Surely this one endures?"
+	icon_state = "psycross_a"
+
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy
+	name = "decrepit zcross"
+	desc = "A symbol of progress from a era with reason to believe in it."
+	icon_state = "zcross_a"
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"

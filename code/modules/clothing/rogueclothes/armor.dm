@@ -610,6 +610,19 @@
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle)
 
+/obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+	name = "decrepit chainmail"
+	desc = "Decrepit old chainmail. Aeon's grasp is upon it."
+	icon_state = "ancientchain"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 50
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	name = "ancient chainmail"
+	desc = "Chainmail formed of ancient alloys. Aeon's grasp has been lifted from it."
+	icon_state = "ancientchain"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	icon_state = "ichainmail"
 	name = "chainmaille"
@@ -628,6 +641,19 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+	name = "decrepit hauberk"
+	desc = "A hauberk worn out by time. Aeon's grasp is upon it."
+	icon_state = "ancienthauberk"
+	max_integrity = 50
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
+	name = "ancient hauberk"
+	desc = "A hauberk formed out of ancient alloys. Aeon's grasp is upon it."
+	icon_state = "ancienthauberk"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate
 	slot_flags = ITEM_SLOT_ARMOR
@@ -680,6 +706,20 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
+	name = "decrepit cuirass"
+	desc = "A withered cuirass. Aeon's grasp is upon its form."
+	icon_state = "ancientcuirass"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 150
+
+/obj/item/clothing/suit/roguetown/armor/plate/half/paalloy
+	name = "ancient cuirass"
+	desc = "A cuirass of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancientcuirass"
+	smeltresult = /obj/item/ingot/aaslag
+
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
@@ -760,6 +800,22 @@
 /obj/item/clothing/suit/roguetown/armor/plate/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
+
+/obj/item/clothing/suit/roguetown/armor/plate/aalloy
+	name = "decrepit half-plate"
+	desc = "Worn out and decrepit halfplate. Aeon's grasp is upon it."
+	icon_state = "ancientplate"
+	item_state = "ancientplate"
+	max_integrity = 150
+	smeltresult = /obj/item/ingot/aalloy
+
+
+/obj/item/clothing/suit/roguetown/armor/plate/paalloy
+	name = "ancient half-plate"
+	desc = "Plate formed out of ancient alloys. Aeon's grasp has been lifted from it."
+	icon_state = "ancientplate"
+	item_state = "ancientplate"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted
 	name = "fluted half-plate"

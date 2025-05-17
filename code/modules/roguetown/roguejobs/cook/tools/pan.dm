@@ -24,3 +24,9 @@
 
 /datum/intent/mace/strike/pan
 	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
+
+
+/obj/item/cooking/pan/aalloy
+	name = "decrepit pan"
+	desc = "A decrepit old pan. Aeon's grasp is upon it."
+	icon_state = "apan"

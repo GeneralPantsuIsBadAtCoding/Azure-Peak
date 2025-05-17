@@ -114,6 +114,13 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
+/obj/item/clothing/mask/rogue/facemask/aalloy
+	name = "decrepit mask"
+	desc = "A decrepit creepy old mask. Aeon's grasp is upon it."
+	icon_state = "ancientmask"
+	max_integrity = 75
+	smeltresult = /obj/item/ingot/aalloy
+
 /obj/item/clothing/mask/rogue/facemask/copper
 	name = "copper mask"
 	icon_state = "cmask"
@@ -207,6 +214,12 @@
 	icon_state = "smask"
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/clothing/mask/rogue/facemask/steel/paalloy
+	name = "ancient mask"
+	desc = "A mask forged of ancient alloys. Aeon's grasp has been lifted from its form."
+	icon_state = "ancientmask"
+
 
 /obj/item/clothing/mask/rogue/facemask/steel/hound
 	name = "steel hound mask"

@@ -4,6 +4,238 @@
 	craftdiff = 1
 	i_type = "Weapons"
 
+// Decrepit Alloy and Purified Decrepit Alloy
+
+/datum/anvil_recipe/weapons/aalloy/flail
+	name = "Decrepit Alloy Flail"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/flail/aflail
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/flail/
+	name = "Purified Alloy Flail"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/flail/sflail/paflail
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/aalloy/dagger
+	name = "Decrepit Alloy Dagger"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/huntingknife/idagger/adagger
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/dagger
+	name = "Purified Alloy Dagger"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/knuckles
+	name = "Decrepit Alloy Knuckles"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/knuckles/aknuckles
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/knuckles
+	name = "Purified Alloy Knuckles"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/knuckles/paknuckles
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/gladius
+	name = "Decrepit Alloy Gladius"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/sword/iron/short/gladius/agladius
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/gladius
+	name = "Purified Alloy Gladius"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/shortsword
+	name = "Decrepit Alloy Shortsword"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/sword/iron/short/ashort
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/shortsword
+	name = "Purified Alloy Shortsword"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/sword/short/pashortsword
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/khopesh
+	name = "Decrepit Alloy Khopesh"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/sword/sabre/alloy
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/khopesh
+	name = "Purified Alloy Khopesh"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/sword/sabre/palloy
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/handaxe
+	name = "Decrepit Alloy Axe"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/handaxe
+	name = "Purified Alloy Axe"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/steel/paaxe
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/mace
+	name = "Decrepit Alloy Mace"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/mace/alloy
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/mace
+	name = "Purified Alloy Mace"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/mace/steel/palloy
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/warhammer
+	name = "Decrepit Alloy Warhammer"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/mace/warhammer/alloy
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/warhammer
+	name = "Purified Alloy Warhammer"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/mace/warhammer/steel/paalloy
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/tossblade
+	name = "Ancient Tossblades 4x"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/aalloy
+	craftdiff = 0
+	createditem_num = 4
+
+/datum/anvil_recipe/weapons/paalloy/tossblade
+	name = "Purified Alloy Tossblades 4x"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/steel/palloy
+	craftdiff = 0
+	createditem_num = 4
+
+/datum/anvil_recipe/weapons/aalloy/gsw
+	name = "Decrepit Alloy Greatsword(+2 Alloy)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/greatsword/aalloy
+	additional_items = list(/obj/item/ingot/aalloy, /obj/item/ingot/aalloy)
+	craftdiff = 3
+
+
+/datum/anvil_recipe/weapons/paalloy/gsw
+	name = "Purified Alloy Greatsword(+2 Purified Alloy)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/greatsword/paalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy, /obj/item/ingot/purifiedaalloy)
+	craftdiff = 4
+
+
+/datum/anvil_recipe/weapons/aalloy/bardiche
+	name = "Decrepit Alloy Bardiche(+1 log, +1 Alloy)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/rogueweapon/halberd/bardiche/aalloy
+	additional_items = list(/obj/item/ingot/iron, /obj/item/grown/log/tree/small)
+	craftdiff = 0
+
+
+/datum/anvil_recipe/weapons/paalloy/bardiche
+	name = "Purified Alloy Bardiche(+1 log, +1 Purified Alloy)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/rogueweapon/halberd/bardiche/paalloy
+	additional_items = list(/obj/item/ingot/iron, /obj/item/grown/log/tree/small)
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/grandmace
+	name = "Decrepit Grand Mace (+1 Alloy, +1 Small Log)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/mace/goden/aalloy
+	craftdiff = 2
+
+/datum/anvil_recipe/weapons/paalloy/grandmace
+	name = "Decrepit Alloy Grand Mace (+1 Purified Alloy, +1 Small Log)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/mace/goden/steel/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/weapons/aalloy/spear
+	name = "Decrepit Alloy Spear (+1 Small Log)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/aalloy
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/paalloy/spear
+	name = "Purified Alloy Spear (+1 Small Log)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/paalloy
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/javelin
+	name = "2x Decrepit Alloy Javelin (+1 Small Log)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/aalloy
+	createditem_num = 2
+	craftdiff = 1
+
+/datum/anvil_recipe/weapons/paalloy/javelin
+	name = "2x Purified Alloy Javelin (+1 Small Log)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
+	createditem_num = 2
+	craftdiff = 1
+
+
 /// COPPER WEAPONS
 /datum/anvil_recipe/weapons/copper/caxe
 	name = "Copper Hatchet (+1 Copper)"
@@ -516,6 +748,20 @@
 	created_item = /obj/item/rogueweapon/shield/tower/metal
 	craftdiff = 3
 
+/datum/anvil_recipe/weapons/alloy/shield
+	name = "Decrepit Alloy Shield (+1 Alloy, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy, /obj/item/natural/hide/cured)
+	created_item = /obj/item/rogueweapon/shield/tower/metal/alloy
+	craftdiff = 1
+
+/datum/anvil_recipe/weapons/alloy/shield
+	name = "Purified Alloy Shield (+1 Purified Alloy, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy, /obj/item/natural/hide/cured)
+	created_item = /obj/item/rogueweapon/shield/tower/metal/palloy
+	craftdiff = 3
+
 /datum/anvil_recipe/weapons/iron/towershield
 	name = "Tower Shield (+1 Small Log)"
 	req_bar = /obj/item/ingot/iron
@@ -545,6 +791,22 @@
 	createditem_num = 10
 	i_type = "Ammo"
 
+/datum/anvil_recipe/weapons/aalloy/bolts
+	name = "Decrepit Crossbow Bolts 10x (+2 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
+	createditem_num = 10
+	i_type = "Ammo"
+
+/datum/anvil_recipe/weapons/paalloy/bolts
+	name = "Ancient Crossbow Bolts 10x (+2 Stick)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
+	createditem_num = 10
+	i_type = "Ammo"
+
 /// BOWS
 /datum/anvil_recipe/weapons/iron/arrows
 	name = "Iron Broadhead Arrows 10x (+2 Stick)"
@@ -555,6 +817,17 @@
 	i_type = "Ammo"
 	craftdiff = 1
 
+/datum/anvil_recipe/weapons/aalloy/arrows
+	name = "Decrepit Broadhead Arrows 10x (+2 Stick)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
+	createditem_num = 10
+	i_type = "Ammo"
+	craftdiff = 1
+
+
+
 /datum/anvil_recipe/weapons/steel/arrows
 	name = "Steel Bodkin Arrows 10x (+2 Stick)"
 	req_bar = /obj/item/ingot/steel
@@ -564,11 +837,36 @@
 	i_type = "Ammo"
 	craftdiff = 2
 
+/datum/anvil_recipe/weapons/paalloy/arrows
+	name = "Ancient Bodkin Arrows 10x (+2 Stick)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
+	createditem_num = 10
+	i_type = "Ammo"
+	craftdiff = 2
+
 /// SLINGS
 /datum/anvil_recipe/weapons/iron/slingbullets
 	name = "Iron Sling Bullets 10x"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
+	createditem_num = 10
+	i_type = "Ammo"
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/aalloy/slingbullets
+	name = "Decrepit Sling Bullets 10x"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
+	createditem_num = 10
+	i_type = "Ammo"
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/paalloy/slingbullets
+	name = "Ancient Sling Bullets 10x"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
 	createditem_num = 10
 	i_type = "Ammo"
 	craftdiff = 0

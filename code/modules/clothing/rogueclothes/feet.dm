@@ -47,7 +47,12 @@
 			holdingknife = null
 			playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
 			return TRUE
-	
+
+/obj/item/clothing/shoes/roguetown/boots/aalloy
+	name = "decrepit boots"
+	desc = "decrepit old leather boots."
+	max_integrity = 40
+	icon_state = "ancientboots"
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	name = "psydonian boots"
@@ -143,6 +148,11 @@
 	icon_state = "sandals"
 	item_state = "sandals"
 	sewrepair = TRUE
+
+/obj/item/clothing/shoes/roguetown/sandals/aalloy
+	name = "decrepit sandals"
+	desc = "Surely Psydon himself could've worn these sandals."
+	icon_state = "ancientsandals"
 
 /obj/item/clothing/shoes/roguetown/shalal
 	name = "babouche"

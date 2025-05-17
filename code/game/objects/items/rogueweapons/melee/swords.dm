@@ -207,6 +207,13 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/sword/short/pashortsword
+	name = "ancient shortsword"
+	desc = "A sword made of ancient alloys. Aeon's grasp has been lifted from its form."
+	icon_state = "ashortsword"
+	smeltresult = /obj/item/ingot/aaslag
+
+
 /obj/item/rogueweapon/sword/long
 	force = 25
 	force_wielded = 30
@@ -577,12 +584,36 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/sword/iron/short/ashort
+	name = "decrepit short sword"
+	desc = "A decrepit old short sword. Aeon's grasp has withered its form."
+	icon_state = "ashortsword"
+	max_integrity = 75
+	force = 18
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
 /obj/item/rogueweapon/sword/iron/short/gladius
 	name = "gladius"
 	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
 	icon_state = "gladius"
 	max_integrity = 200
 	wdefense = 3
+
+/obj/item/rogueweapon/sword/iron/short/gladius/agladius
+	name = "decrepit gladius"
+	desc = "A decrepit old gladius. Aeon's grasp is upon its form."
+	force = 18
+	max_integrity = 150
+	icon_state = "agladius"
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/sword/iron/short/gladius/pagladius
+	name = "ancient gladius"
+	desc = "A gladius made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "agladius"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/rogueweapon/sword/iron/short/chipped
 	force = 17
@@ -664,6 +695,22 @@
 	force = 25	//Base is 22
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	max_integrity = 200
+
+/obj/item/rogueweapon/sword/sabre/alloy
+	name = "decrepit khopesh"
+	desc = "A decrepit old khopesh. Aeon's grasp is upon its form."
+	smeltresult = /obj/item/ingot/aalloy
+	force = 18
+	max_integrity = 115
+	icon_state = "akhopesh"
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/sword/sabre/palloy
+	name = "ancient khopesh"
+	desc = "A ancient alloy khopesh. Aeon's grasp has been lifted from its form."
+	smeltresult = /obj/item/ingot/aaslag
+	icon_state = "akhopesh"
+
 
 /obj/item/rogueweapon/sword/sabre/elf
 	name = "elvish saber"

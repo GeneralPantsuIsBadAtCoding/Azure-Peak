@@ -26,6 +26,19 @@
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/clothing/wrists/roguetown/bracers/aalloy
+	name = "decrepit bracers"
+	desc = "Decrepit old bracers. Aeon's grasp is upon them."
+	max_integrity = 150
+	icon_state = "ancientbracers"
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/clothing/wrists/roguetown/bracers/paalloy
+	name = "ancient bracers"
+	desc = "Bracers formed of ancient alloys. Aeon's grasp is lifted from their form."
+	icon_state = "ancientbracers"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/wrists/roguetown/bracers/leather
 	name = "leather bracers"
 	desc = "Standard leather bracers that offer some meager protection for the arms."

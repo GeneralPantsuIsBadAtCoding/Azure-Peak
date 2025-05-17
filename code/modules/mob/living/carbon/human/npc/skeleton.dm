@@ -67,6 +67,7 @@
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LIMBATTACHMENT, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	if(skel_fragile)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	var/obj/item/organ/eyes/eyes = src.getorganslot(ORGAN_SLOT_EYES)
@@ -85,31 +86,76 @@
 
 /datum/outfit/job/roguetown/npc/skeleton/pre_equip(mob/living/carbon/human/H)
 	..()
-	if(prob(50))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	if(prob(10))
-		armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
-	if(prob(30))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
-		if(prob(50))
-			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
-	if(prob(30))
-		pants = /obj/item/clothing/under/roguetown/tights/vagrant
-		if(prob(50))
-			pants = /obj/item/clothing/under/roguetown/tights/vagrant/l
-	if(prob(10))
-		head = /obj/item/clothing/head/roguetown/helmet/leather
-	if(prob(10))
-		head = /obj/item/clothing/head/roguetown/roguehood
 	H.STASTR = rand(14,16)
 	H.STASPD = 8
 	H.STACON = 4
 	H.STAEND = 15
 	H.STAINT = 1
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword
-	else
-		r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
+
+	var/skeletonclass = rand(1,11)
+	if(skeletonclass < 4) // basic ass skele. Kinda sucks.
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		if(prob(50))
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
+		else
+			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+		return
+	if(skeletonclass < 6) // Skeletal Pirate. Avast ye.
+		head =  /obj/item/clothing/head/roguetown/helmet/tricorn
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		pants = /obj/item/clothing/under/roguetown/tights/sailor
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		if(prob(50))
+			r_hand = /obj/item/rogueweapon/huntingknife/idagger/adagger
+		else
+			r_hand = /obj/item/rogueweapon/knuckles/aknuckles
+		return
+	if(skeletonclass < 9) // Skeletal MAA Equal. Getting kinda up there in being dangerous.
+		cloak = /obj/item/clothing/cloak/stabard/surcoat/guard // Ooo Spooky Old Dead MAA
+		head = /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
+		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+		pants = /obj/item/clothing/under/roguetown/platelegs/aalloy
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
+		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
+		l_hand = /obj/item/rogueweapon/shield/tower/metal/alloy
+		r_hand = /obj/item/rogueweapon/spear/aalloy
+		return
+	if(skeletonclass <= 10) // Skeletal Khopesh wielders(kinda spooky cultist sorta vibes idk?)
+		cloak = /obj/item/clothing/cloak/hierophant
+		mask = /obj/item/clothing/mask/rogue/facemask/aalloy
+		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
+		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
+		r_hand = /obj/item/rogueweapon/sword/sabre/palloy
+		l_hand = /obj/item/rogueweapon/sword/sabre/palloy
+		return
+	if(skeletonclass == 11) // Withered Dread Knight
+		cloak = /obj/item/clothing/cloak/tabard/blkknight
+		head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/aalloy
+		armor = /obj/item/clothing/suit/roguetown/armor/plate/aalloy
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+		pants = /obj/item/clothing/under/roguetown/platelegs/aalloy
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
+		gloves = /obj/item/clothing/gloves/roguetown/plate/aalloy
+		if(prob(50))
+			r_hand = /obj/item/rogueweapon/greatsword/aalloy
+		else
+			r_hand = /obj/item/rogueweapon/mace/goden/aalloy
+		return
+		
 
 /datum/outfit/job/roguetown/greater_skeleton/pre_equip(mob/living/carbon/human/H) //equipped onto Summon Greater Undead player skeletons only after the mind is added
 	..()

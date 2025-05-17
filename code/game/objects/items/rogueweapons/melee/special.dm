@@ -361,6 +361,21 @@
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
+/obj/item/rogueweapon/knuckles/aknuckles
+	name = "decrepit knuckles"
+	desc = "a set of knuckles made of ancient metals, Aeon's grasp wither their form."
+	icon_state = "aknuckle"
+	force = 12
+	max_integrity = 225
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/knuckles/paknuckles
+	name = "ancient knuckles"
+	desc = "a set of knuckles made of ancient metals, Aeon's grasp has been lifted from their form."
+	icon_state = "aknuckle"
+	smeltresult = /obj/item/ingot/aaslag
+
 
 /obj/item/rogueweapon/knuckles/eora
 	name = "close caress"

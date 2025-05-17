@@ -94,6 +94,21 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 
+/obj/item/rogueweapon/flail/aflail
+	name = "decrepit flail"
+	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp is upon its form."
+	icon_state = "aflail"
+	force = 22
+	max_integrity = 175
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/flail/sflail/paflail
+	name = "ancient flail"
+	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp has been molded away from its form."
+	icon_state = "aflail"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/rogueweapon/flail/sflail
 	force = 30
 	icon_state = "flail"

@@ -53,6 +53,17 @@
 	. = ..()
 	icon_state = "ststatue[pick(1,2)]"
 
+/obj/item/roguestatue/aalloy
+	name = "decrepit statue"
+	desc = "A statue of withering metal"
+	icon_state = "astatue1"
+	smeltresult = /obj/item/ingot/aalloy
+	sellprice = 5
+
+/obj/item/roguestatue/aalloy/Initialize()
+	. = ..()
+	icon_state = "astatue[pick(1,2)]"
+
 /obj/item/roguestatue/iron
 	name = "iron statue"
 	desc = "A forged statue of cast iron!"

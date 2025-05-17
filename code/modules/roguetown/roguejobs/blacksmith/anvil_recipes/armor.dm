@@ -43,6 +43,187 @@
 	craftdiff = 0
 
 
+// --------- Decrepit Alloy RECIPES -----------
+
+/datum/anvil_recipe/armor/aalloy/barbute
+	name = "Decrepit Alloy Barbute(+1 Alloy)"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/barbute
+	name = "Purified Alloy Barbute(+1 Alloy)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
+	additional_items = /obj/item/ingot/aalloy
+	craftdiff = 3
+
+
+/datum/anvil_recipe/armor/aalloy/savoyard
+	name = "Decrepit Alloy Savoyard(+1 Alloy)"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/savoyard
+	name = "Purified Alloy Savoyard(+1 Purified Alloy)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
+	additional_items = /obj/item/ingot/purifiedaalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/mask
+	name = "Decrepit Alloy Mask"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/mask/rogue/facemask/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/mask
+	name = "Purified Alloy Mask"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/coif
+	name = "Decrepit Alloy Coif"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/coif
+	name = "Purified Alloy Coif"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/gorget
+	name = "Decrepit Alloy Gorget"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/neck/roguetown/gorget/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/gorget
+	name = "Purified Alloy Gorget"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/neck/roguetown/gorget/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/cuirass
+	name = "Decrepit Alloy Cuirass (+1 Alloy)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/cuirass
+	name = "Purified Alloy Cuirass (+1 Purified Alloy)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/halfplate
+	name = "Decrepit Alloy Half-Plate Armour (+2 Alloy, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy,/obj/item/ingot/aalloy,/obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/halfplate
+	name = "Purified Alloy Half-Plate Armour (+2 Purified Alloy, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy,/obj/item/ingot/purifiedaalloy,/obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/chainmail
+	name = "Decrepit Alloy Chainmail"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/chainmail
+	name = "Purified Alloy Chainmail"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/hauberk
+	name = "Decrepit Alloy Hauberk(+1 Alloy)"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+	additional_items = list(/obj/item/ingot/aalloy)
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/hauberk
+	name = "Purified Alloy Hauberk(+1 Purified Alloy)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy)
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/bracers
+	name = "Decrepit Alloy Bracers"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/bracers
+	name = "Purified Alloy Bracers"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/wrists/roguetown/bracers/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/chaingaunts
+	name = "Decrepit Alloy Chain Gauntlets"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/gloves/roguetown/chain/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/chaingaunts
+	name = "Purified Alloy Chain Gauntlets"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/gloves/roguetown/chain/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/plategaunts
+	name = "Decrepit Alloy Plate Gauntlets"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/gloves/roguetown/plate/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/plategaunts
+	name = "Purified Alloy Plate Gauntlets"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/gloves/roguetown/plate/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/chainkilt
+	name = "Decrepit Alloy Chainkilt"
+	req_bar = /obj/item/ingot/aalloy
+	created_item = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/chainkilt
+	name = "Purified Alloy Chainkilt"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	created_item = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	craftdiff = 3
+
+/datum/anvil_recipe/armor/aalloy/platelegs
+	name = "Decrepit Alloy Plated Chausses (+1 Steel)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy)
+	created_item = /obj/item/clothing/under/roguetown/platelegs/aalloy
+	craftdiff = 1
+
+/datum/anvil_recipe/armor/paalloy/platelegs
+	name = "Purified Alloy Plated Chausses (+1 Steel)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy)
+	created_item = /obj/item/clothing/under/roguetown/platelegs/paalloy
+	craftdiff = 3
+
 // --------- IRON RECIPES -----------
 
 /datum/anvil_recipe/armor/iron/chainmail

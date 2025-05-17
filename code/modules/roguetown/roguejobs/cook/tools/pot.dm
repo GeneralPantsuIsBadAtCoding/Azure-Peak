@@ -40,6 +40,12 @@
 			reagents.trans_to(I, reagents.total_volume)
 	return TRUE
 
+/obj/item/reagent_containers/glass/bucket/pot/aalloy
+	name = "decrepit pot"
+	desc = "A decrepit old pot. Aeon's grasp is upon it."
+	icon_state = "apote"
+	volume = 99
+
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"
 	desc = "A pot made out of stone. It can hold less than a metal pot."

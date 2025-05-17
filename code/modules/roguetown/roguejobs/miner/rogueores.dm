@@ -224,3 +224,26 @@
 	icon_state = "ingotsilvblessed"
 	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
 	sellprice = 100
+
+/obj/item/ingot/aalloy
+	name = "ancient alloy"
+	desc = "An old, decrepit slab of metal. Aeon has withered it's strength."
+	icon_state = "ingotancient"
+	smeltresult = /obj/item/ingot/aalloy
+	sellprice = 5
+
+
+/obj/item/ingot/purifiedaalloy
+	name = "purified ancient alloy"
+	desc = "An old slab of metal, sparked to life by Malum's craft."
+	icon_state = "ingotancient"
+	smeltresult = /obj/item/ingot/aaslag
+	sellprice = 100
+
+
+/obj/item/ingot/aaslag
+	name = "ancient slag"
+	desc = "What was once great, cannot be maintained forever."
+	icon_state = "ancientslag"
+	smeltresult = /obj/item/ingot/aaslag
+	sellprice = 0

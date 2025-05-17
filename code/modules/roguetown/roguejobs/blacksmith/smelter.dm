@@ -174,6 +174,7 @@
 					var/alloy //moving each alloy to it's own var allows for possible additions later
 					var/steelalloy
 					var/bronzealloy
+					var/purifiedalloy
 //					var/blacksteelalloy
 
 					for(var/obj/item/I in ore)
@@ -185,6 +186,10 @@
 							bronzealloy = bronzealloy + 1
 						if(I.smeltresult == /obj/item/ingot/copper)
 							bronzealloy = bronzealloy + 2
+						if(I.smeltresult == /obj/item/ingot/aalloy)
+							purifiedalloy = purifiedalloy + 3
+						if(I.smeltresult == /obj/item/ingot/gold)
+							purifiedalloy = purifiedalloy + 2
 //						if(I.smeltresult == /obj/item/ingot/silver)
 //							blacksteelalloy = blacksteelalloy + 1
 //						if(I.smeltresult == /obj/item/ingot/steel)
@@ -197,6 +202,8 @@
 					else if(bronzealloy == 7)
 						testing("BRONZE ALLOYED")
 						alloy = /obj/item/ingot/bronze
+					else if(purifiedalloy == 10)
+						alloy = /obj/item/ingot/purifiedaalloy // 2 aalloy, 2 gold, makes 3 purified alloy.
 //					else if(blacksteelalloy == 15)
 //						testing("BLACKSTEEL ALLOYED")
 //						alloy = /obj/item/ingot/blacksteel

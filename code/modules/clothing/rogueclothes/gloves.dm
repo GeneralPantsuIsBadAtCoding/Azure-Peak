@@ -96,6 +96,19 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/clothing/gloves/roguetown/chain/aalloy
+	name = "decrepit chain gauntlets"
+	desc = "Decrepit old chain gauntlets. Aeon's grasp is upon them."
+	icon_state = "acgloves"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 125
+
+/obj/item/clothing/gloves/roguetown/chain/paalloy
+	name = "ancient chain gauntlets"
+	desc = "Chain gauntlets formed out of ancient alloys. Aeon's grasp is lifted from them."
+	icon_state = "acgloves"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/gloves/roguetown/chain/psydon
 	name = "psydonian gloves"
 	desc = "Blacksteel-bound gauntlets. These ritualistic restraints, when left to dangle-and-sway, assist in the deflection of unpredictable blows."
@@ -150,6 +163,19 @@
 
 	grid_width = 64
 	grid_height = 32
+
+/obj/item/clothing/gloves/roguetown/plate/aalloy
+	name = "decrepit plate gauntlets"
+	desc = "Decrepit old plate gauntlets. Aeon's grasp is upon them."
+	icon_state = "agauntlets"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 150
+
+/obj/item/clothing/gloves/roguetown/plate/paalloy
+	name = "ancient plate gauntlets"
+	desc = "Ancient plate gauntlets. Aeon's grasp lifed from them."
+	icon_state = "agauntlets"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/gloves/roguetown/plate/matthios
 	name = "gilded gauntlets"

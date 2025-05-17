@@ -69,6 +69,17 @@
 	blade_dulling = DULLING_SHAFT_METAL
 	intdamage_factor = 1.35
 
+/obj/item/rogueweapon/mace/alloy
+	name = "decrepit mace"
+	desc = "A decrepit old mace. Aeon's grasp is upon it."
+	icon_state = "amace"
+	smeltresult = /obj/item/ingot/aalloy
+	force = 17
+	force_wielded = 21
+	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+
 /obj/item/rogueweapon/mace/church
 	force = 25
 	force_wielded = 30
@@ -89,6 +100,13 @@
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3
 	smelt_bar_num = 2
+
+/obj/item/rogueweapon/mace/steel/palloy
+	name = "ancient alloy mace"
+	desc = "A ancient mace. Aeon's grasp has been lifted from it."
+	icon_state = "amace"
+	smeltresult = /obj/item/ingot/aaslag
+
 
 /obj/item/rogueweapon/mace/silver
 	name = "silver war hammer"
@@ -346,6 +364,15 @@
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/mace/goden/aalloy
+	name = "decrepit grand mace"
+	desc = "A decrepit old grand mace. Aeon's grasp is upon it."
+	force = 12
+	force_wielded = 22
+	icon_state = "ancient_supermace"
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
 /obj/item/rogueweapon/mace/goden/steel
 	name = "grand mace"
 	desc = "Good morning, sire."
@@ -355,6 +382,13 @@
 	smeltresult = /obj/item/ingot/steel
 	blade_dulling = DULLING_SHAFT_METAL
 	smelt_bar_num = 2
+
+/obj/item/rogueweapon/mace/goden/steel/paalloy
+	name = "ancient grand mace"
+	desc = "A grand mace formed out of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancient_supermace"
+	smeltresult = /obj/item/ingot/aaslag
+
 
 /obj/item/rogueweapon/mace/goden/deepduke
 	name = "deep duke's staff"
@@ -409,6 +443,15 @@
 	wdefense = 3
 	intdamage_factor = 1.2
 
+/obj/item/rogueweapon/mace/warhammer/alloy
+	name = "decrepit warhammer"
+	desc = "A decrepit old warhammer. Aeon's grasp is upon it."
+	icon_state = "awarhammer"
+	smeltresult = /obj/item/ingot/aalloy
+	force = 17
+	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
+
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
@@ -430,7 +473,11 @@
 				return list("shrink" = 0.4,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 	return ..()
 
-
+/obj/item/rogueweapon/mace/warhammer/steel/paalloy
+	name = "ancient alloy warhammer"
+	desc = "A warhammer crafted of ancient alloys. Aeon's grasp has been lifted from it."
+	icon_state = "awarhammer"
+	smeltresult = /obj/item/ingot/aaslag
 
 /datum/intent/mace/warhammer/stab
 	name = "thrust"

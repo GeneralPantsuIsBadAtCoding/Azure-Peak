@@ -94,6 +94,10 @@
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/kitchen/spoon/aalloy
+	name = "decrepit spoon"
+	icon_state = "aspoon"
+
 /obj/item/kitchen/spoon/iron
 	name = "iron spoon"
 	icon_state = "spoon_iron"
@@ -118,6 +122,10 @@
 	icon_state = "fork_wooden"
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/kitchen/fork/aalloy
+	name = "decrepit fork"
+	icon_state = "afork"
 
 /obj/item/kitchen/fork/iron
 	name = "iron fork"
@@ -174,6 +182,10 @@
 	drinksounds = list('sound/items/drink_cup (1).ogg','sound/items/drink_cup (2).ogg','sound/items/drink_cup (3).ogg','sound/items/drink_cup (4).ogg','sound/items/drink_cup (5).ogg')
 	fillsounds = list('sound/items/fillcup.ogg')
 	var/in_use // so you can't spam eating with spoon
+
+/obj/item/reagent_containers/glass/bowl/aalloy
+	name = "decrepit bowl"
+	icon_state = "abowl"
 
 /obj/item/reagent_containers/glass/bowl/iron
 	name = "iron bowl"
@@ -301,6 +313,11 @@
 	grid_width = 64
 	grid_height = 32
 	var/datum/platter_sprites/sprite_choice = new /datum/platter_sprites/
+
+/obj/item/cooking/platter/aalloy
+	name = "decrepit platter"
+	desc = "A decrepit old platter. Aeon's grasp is upon its form."
+	icon_state = "aplatter"
 
 /obj/item/cooking/platter/copper
 	name = "copper platter"

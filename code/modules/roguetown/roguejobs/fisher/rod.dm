@@ -197,3 +197,8 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_hands()
+
+
+/obj/item/fishingrod/aalloy
+	name = "decrepit fishing rod"
+	icon_state = "arod"
