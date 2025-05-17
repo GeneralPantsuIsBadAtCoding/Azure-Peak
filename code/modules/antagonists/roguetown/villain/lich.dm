@@ -110,9 +110,9 @@
 
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 5, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 6, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
@@ -122,13 +122,14 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.mind.adjust_spellpoints(5)
+	H.mind.adjust_spellpoints(8)
 
-	H.change_stat("strength", -1)
+	// Give it decent combat stats to make up for loss of 2 extra lives
+	H.change_stat("strength", 3)
 	H.change_stat("intelligence", 5)
 	H.change_stat("constitution", 5)
-	H.change_stat("endurance", -1)
-	H.change_stat("speed", -1)
+	H.change_stat("perception", 3)
+	H.change_stat("speed", 1)
 
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead)
@@ -154,11 +155,11 @@
 /datum/outfit/job/roguetown/lich/post_equip(mob/living/carbon/human/H)
 	..()
 	var/datum/antagonist/lich/lichman = H.mind.has_antag_datum(/datum/antagonist/lich)
-	for(var/i in 1 to 3)
-		var/obj/item/phylactery/new_phylactery = new(H.loc)
-		lichman.phylacteries += new_phylactery
-		new_phylactery.possessor = lichman
-		H.equip_to_slot_or_del(new_phylactery,SLOT_IN_BACKPACK, TRUE)
+	// One phylactery instead of 3 so that they don't need to get chased down non-stop.
+	var/obj/item/phylactery/new_phylactery = new(H.loc)
+	lichman.phylacteries += new_phylactery
+	new_phylactery.possessor = lichman
+	H.equip_to_slot_or_del(new_phylactery,SLOT_IN_BACKPACK, TRUE)
 
 /datum/antagonist/lich/proc/consume_phylactery(timer = 10 SECONDS)
 	if(phylacteries.len == 0)
