@@ -23,7 +23,7 @@
 	glow_intensity = GLOW_INTENSITY_HIGH
 	gesture_required = TRUE
 	ignore_los = FALSE
-	var/delay = 14
+	var/delay = 12
 	var/damage = 125 //if you get hit by this it's your fault
 	var/area_of_effect = 1
 
@@ -31,7 +31,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "trap"
 	light_outer_range = 2
-	duration = 14
+	duration = 12
 	layer = MASSIVE_OBJ_LAYER
 
 /obj/effect/temp_visual/blade_burst

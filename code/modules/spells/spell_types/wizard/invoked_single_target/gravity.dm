@@ -21,7 +21,7 @@
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	gesture_required = TRUE
 	range = 7
-	var/delay = 3
+	var/delay = 7
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
 
@@ -36,8 +36,13 @@
 			
 
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		new /obj/effect/temp_visual/gravity(affected_turf)
+	
+		new /obj/effect/temp_visual/gravity_trap(affected_turf)
+	
 		playsound(T, 'sound/magic/gravity.ogg', 80, TRUE, soundping = FALSE)
+
+		sleep(delay)
+		new /obj/effect/temp_visual/gravity(affected_turf)
 		for(var/mob/living/L in affected_turf.contents) 
 			if(L.anti_magic_check())
 				visible_message(span_warning("The gravity fades away around you [L] "))  //antimagic needs some testing
@@ -65,3 +70,13 @@
 	layer = MASSIVE_OBJ_LAYER
 	light_outer_range = 2
 	light_color = COLOR_PALE_PURPLE_GRAY
+
+/obj/effect/temp_visual/gravity_trap
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "hierophant_blast"
+	dir = NORTH
+	name = "rippling arcyne energy"
+	desc = "Get out of the way!"
+	randomdir = FALSE
+	duration = 7 SECONDS
+	layer = MASSIVE_OBJ_LAYER
