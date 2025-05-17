@@ -24,7 +24,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/combat_bog.ogg'
+	cmode_music = 'sound/music/combat_guard_bog.ogg'
 
 /datum/outfit/job/roguetown/bogguardsman
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler

@@ -6,8 +6,11 @@ combat_jester.ogg: OFF - Pepper Steak
 combat_bandit.ogg: Deus Ex - Battery Park Combat
 combat_bandit2.ogg: Evanora Unlimited - Mithlond (Instrumental)
 combat_werewolf.ogg: Filmmaker - Federal Bestiary
-combat_guard.ogg: Deus Ex - Desolation Combat
+combat_guard.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - Hong Kong Canal Combat Theme
 combat_guard2.ogg: Thronebreaker Unreleased Soundtrack - Caldwell Battle Theme
+combat_guard3.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - UNATCO Combat Theme
+combat_guard4.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - NYC Combat Theme
+combat_guard_bog.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - UNATCO HQ Combat Theme
 combat_physician.ogg: Pathologic (Classic) - Utroba Aggression
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
 combat_knight.ogg: Kingdom Come II: Deliverence - Combat Theme Loop

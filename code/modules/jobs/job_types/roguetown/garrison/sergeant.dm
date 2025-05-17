@@ -21,9 +21,7 @@
 	give_bank_account = 50
 	min_pq = 6
 	max_pq = null
-	cmode_music = 'sound/music/combat_guard2.ogg'
-
-
+	cmode_music = 'sound/music/combat_guard4.ogg'
 
 /datum/job/roguetown/sergeant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
