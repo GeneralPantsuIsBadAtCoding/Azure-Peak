@@ -84,7 +84,7 @@
 			if("wilderness")
 				placetext = " in the The Azure Grove!"
 			if("bog", "dense bog")
-				placetext = " in the The Terrorbog!"
+				placetext = " in SYON'S Rest!"
 			if("coast", "coastforest")
 				placetext = " on the Azure Coast!"
 			if("indoors", "Shop", "Physician", "outdoors", "roofs")

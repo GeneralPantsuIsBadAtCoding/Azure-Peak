@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				new /datum/ambush_config/mirespiders_crawlers = 25,
 				new /datum/ambush_config/mirespiders_aragn = 10,
 				new /datum/ambush_config/mirespiders_unfair = 5)
-	first_time_text = "THE TERRORBOG"
+	first_time_text = "SYON'S REST"
 	converted_type = /area/rogue/indoors/shelter/bog
 
 /area/rogue/indoors/shelter/bog
