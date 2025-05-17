@@ -252,7 +252,7 @@
 					slot_examine = " over its shoulders."
 				if(SLOT_MANNEQUIN_RING)
 					slot_examine = " around its finger."
-			msg += "Wearing [cloth_to_examine][slot_examine].<br>"
+			msg += "Wearing [cloth_to_examine][slot_examine]<br>"
 	/*
 	* This is placed here due to the fact
 	* that some clothing is gender locked.

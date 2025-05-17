@@ -61,7 +61,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/steel
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	id = /obj/item/scomstone/bad/garrison
-	backpack_contents = list(/obj/item/storage/keyring/guardcastle = 1)
+	backpack_contents = list(/obj/item/storage/keyring/guardknight = 1)
 
 /datum/outfit/job/roguetown/knight/pre_equip(mob/living/carbon/human/H)
 	..()

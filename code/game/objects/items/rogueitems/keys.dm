@@ -222,6 +222,12 @@
 	icon_state = "hornkey"
 	lockid = "armory"
 
+/obj/item/roguekey/knight
+	name = "knight's key"
+	desc = "This is a key to the knight's chambers."
+	icon_state = "ekey"
+	lockid = "knight"
+
 /obj/item/roguekey/merchant
 	name = "merchant's key"
 	desc = "A merchant's key."
