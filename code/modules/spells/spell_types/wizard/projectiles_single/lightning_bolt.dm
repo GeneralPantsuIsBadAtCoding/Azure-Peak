@@ -21,7 +21,7 @@
 	spell_tier = 2
 	invocation = "Fulmen!"
 	invocation_type = "shout"
-	cost = 2
+	cost = 1
 	xp_gain = TRUE
 
 /obj/projectile/magic/lightning
@@ -32,7 +32,7 @@
 	hitscan = TRUE
 	movement_type = UNSTOPPABLE
 	light_color = LIGHT_COLOR_WHITE
-	damage = 15
+	damage = 25
 	damage_type = BURN
 	accuracy = 40 // Base accuracy is lower for burn projectiles because they bypass armor
 	nodamage = FALSE
@@ -52,10 +52,19 @@
 			return BULLET_ACT_BLOCK
 		if(isliving(target))
 			var/mob/living/L = target
-			if(L.STACON <= 14)
-				L.electrocute_act(2, src, 2, SHOCK_NOSTUN)
-				L.Paralyze(10)
+			var/immobduration = 2 SECONDS
+			if(L.client)
+				if(L.STACON >= 10)
+					var/extra_con = L.STACON - 10
+					immobduration = max(0, 2 SECONDS - extra_con * 5) //Default immobilization duration is 2 seconds (20), for each point of con above 1 on the target, the duration is reduced by 5 ticks.
+					L.Immobilize(immobduration)
+					if(immobduration >= 1)
+						L.electrocute_act(2, src, 2, SHOCK_NOSTUN)
+					else
+						L.electrocute_act(1, src, 1, SHOCK_NOSTUN)
+						to_chat(L, span_warning("I shrug off the lightning bolt!"))
+						L.visible_message(span_danger("[L] shrugs off the lightning bolt!"))
 			else
-				L.electrocute_act(1, src, 1, SHOCK_NOSTUN)
 				L.Paralyze(10)
+				L.electrocute_act(2, src, 2, SHOCK_NOSTUN)
 	qdel(src)
