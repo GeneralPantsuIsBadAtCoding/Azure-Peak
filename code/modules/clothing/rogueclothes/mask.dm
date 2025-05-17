@@ -315,6 +315,9 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_wear_mask()
 
+/obj/item/clothing/mask/rogue/ragmask/red //predyed mask for NPCs
+	color = CLOTHING_RED
+
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
 	item_state = "naledimask"

@@ -1577,6 +1577,8 @@
 #include "code\modules\mob\living\carbon\human\npc\drow.dm"
 #include "code\modules\mob\living\carbon\human\npc\dwarfskeleton.dm"
 #include "code\modules\mob\living\carbon\human\npc\goblin.dm"
+#include "code\modules\mob\living\carbon\human\npc\highwayman.dm"
+#include "code\modules\mob\living\carbon\human\npc\militia.dm"
 #include "code\modules\mob\living\carbon\human\npc\orc.dm"
 #include "code\modules\mob\living\carbon\human\npc\searaider.dm"
 #include "code\modules\mob\living\carbon\human\npc\skeleton.dm"
