@@ -1107,23 +1107,6 @@
 
 		return TRUE
 
-/mob/living/carbon/human/resist_grab(moving_resist)
-	var/mob/living/L = pulledby
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(HAS_TRAIT(H, TRAIT_NOSEGRAB) && !HAS_TRAIT(src, TRAIT_MISSING_NOSE))
-			var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
-			for(var/obj/item/grabbing/G in grabbedby)
-				if(G.limb_grabbed == head)
-					if(G.grabbee == pulledby)
-						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
-							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
-											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
-							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
-							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
-							return FALSE
-	return ..()
-
 /mob/living/proc/resist_buckle()
 	buckled.user_unbuckle_mob(src,src)
 	return TRUE

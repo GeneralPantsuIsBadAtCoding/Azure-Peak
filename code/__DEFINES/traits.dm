@@ -9,7 +9,6 @@
 #define TRAIT_XENOPHOBIC "Xenophobic"
 #define TRAIT_TOLERANT "Tolerant"
 #define TRAIT_LEAPER "Leaper"
-#define TRAIT_NOSEGRAB "Nosey"
 #define TRAIT_NUTCRACKER "Nutcracker"
 #define TRAIT_SEEPRICES "Skilled Appraiser"
 #define TRAIT_SEEPRICES_SHITTY "Appraiser"
@@ -172,7 +171,6 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BEAUTIFUL = span_info("People love looking at my face"),
 	TRAIT_BAD_MOOD = span_warning("Everything just seems to piss me off"),
 	TRAIT_LEAPER = "I can leap like a frog, landing where I want.",
-	TRAIT_NOSEGRAB = "I love to grab idiots by their noses!",
 	TRAIT_NUTCRACKER = "I love kicking idiots on the nuts!",
 	TRAIT_SEEPRICES = "I can tell the prices of things down to the zenny.",
 	TRAIT_SEEPRICES_SHITTY = "I can tell the prices of things... <i>Kind of</i>.",
