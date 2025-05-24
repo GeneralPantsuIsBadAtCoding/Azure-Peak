@@ -362,6 +362,11 @@
 	desc = "I've trekked these woods for some time now. I find traversal easier here."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/dungeoneerbuff
+	name = "Ruthless Jailor"
+	desc = "This is my sanctuary. I can overpower any opposition that dares breach it."
+	icon_state = "buff"
+
 /datum/status_effect/buff/wardenbuff
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
@@ -384,6 +389,11 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guardbuffone
 	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "perception" = 2) 
 
+/datum/status_effect/buff/dungeoneerbuff
+	id = "dungeoneerbuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/dungeoneerbuff
+	effectedstats = list("constitution" = 1,"endurance" = 1, "strength" = 2)//This only works in 2 small areas on the entire map
+
 /datum/status_effect/buff/guardbuffone/process()
 
 	.=..()
@@ -405,6 +415,21 @@
 /datum/status_effect/buff/wardenbuff/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_LONGSTRIDER, TRAIT_GENERIC)
+
+/datum/status_effect/buff/dungeoneerbuff/process()
+
+	.=..()
+	var/area/rogue/our_area = get_area(owner)
+	if(!(our_area.cell_area))
+		owner.remove_status_effect(/datum/status_effect/buff/dungeoneerbuff)
+
+/datum/status_effect/buff/dungeoneerbuff/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+
+/datum/status_effect/buff/dungeoneerbuff/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 
 /atom/movable/screen/alert/status_effect/buff/healing
 	name = "Healing Miracle"

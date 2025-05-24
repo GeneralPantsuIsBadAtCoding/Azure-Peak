@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	var/keep_area = FALSE
 	var/tavern_area = FALSE
 	var/warden_area = FALSE
+	var/cell_area = FALSE
 	var/ceiling_protected = FALSE //Prevents tunneling into these from above
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
@@ -38,6 +39,12 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	. = ..()
 	if((src.warden_area == TRUE) && HAS_TRAIT(guy, TRAIT_WOODSMAN) && !guy.has_status_effect(/datum/status_effect/buff/wardenbuff)) // Warden
 		guy.apply_status_effect(/datum/status_effect/buff/wardenbuff)
+
+/area/rogue/Entered(mob/living/carbon/human/guy)
+
+	. = ..()
+	if((src.cell_area == TRUE) && HAS_TRAIT(guy, TRAIT_DUNGEONMASTER) && !guy.has_status_effect(/datum/status_effect/buff/dungeoneerbuff)) // Dungeoneer
+		guy.apply_status_effect(/datum/status_effect/buff/dungeoneerbuff)
 
 /area/rogue/indoors
 	name = "indoors rt"
@@ -759,7 +766,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/manorgarri
 	keep_area = TRUE
-
+	cell_area = TRUE
 
 /area/rogue/indoors/town/tavern
 	name = "tavern"

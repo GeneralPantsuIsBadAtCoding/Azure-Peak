@@ -262,6 +262,7 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	color = "#999999"
 	//dropshrink = 0.75
 
 /obj/item/clothing/head/roguetown/menacing/bandit
