@@ -233,6 +233,13 @@
 			move_delay = world.time + 10
 			to_chat(src, span_warning("I can't move!"))
 			return TRUE
+	if(mob.pulling && isliving(mob.pulling))
+		var/mob/living/L = mob.pulling
+		var/mob/living/M = mob
+		if(L.cmode && !L.resting && !L.incapacitated() && M.grab_state < GRAB_AGGRESSIVE)
+			move_delay = world.time + 10
+			to_chat(src, span_warning("[L] still has footing! I need a stronger grip!"))
+			return TRUE    
 
 /**
   * Allows mobs to ignore density and phase through objects
