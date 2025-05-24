@@ -219,7 +219,7 @@
 	. = ..()
 	var/mob/living/carbon/human/target = targets[1]
 
-	if( target.mind == null || !istype(target))
+	if(!istype(target, /mob/living/carbon/human) || target.mind == null)
 		to_chat(user, span_warning("This spell only works on creatures capable of dreaming!"))
 		revert_cast()
 		return FALSE
