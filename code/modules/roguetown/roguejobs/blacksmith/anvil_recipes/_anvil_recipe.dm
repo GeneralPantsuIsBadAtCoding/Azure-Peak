@@ -1,6 +1,7 @@
 /datum/anvil_recipe
 	abstract_type = /datum/anvil_recipe
 	var/name
+	var/category = "Misc"
 	var/list/additional_items = list()
 	var/material_quality = 0 // Quality of the bar(s) used. Accumulated per added ingot.
 	var/num_of_materials = 1 // Total number of materials used. Quality divided among them.
@@ -172,7 +173,7 @@
 			@import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap');
 			body {
 				font-family: "Charm", cursive;
-				font-size: 1.2em;
+				font-size: 1em;
 				text-align: center;
 				margin: 20px;
 				background-color: #f4efe6;

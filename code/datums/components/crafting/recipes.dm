@@ -11,7 +11,7 @@
 	var/time = 0 //time in deciseconds
 	var/parts[] = list() //type paths of items that will be placed in the result
 	var/chem_catalysts[] = list() //like tools but for reagents
-	var/category = CAT_NONE //where it shows up in the crafting UI
+	var/category = "Misc" // Where it shows in the recipe books
 	var/subcategory = CAT_NONE
 	var/always_availible = FALSE //Set to FALSE if it needs to be learned first.
 	var/ontile = FALSE		//crafted on our tile instead of in front of us
@@ -57,7 +57,7 @@
 			@import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap');
 			body {
 				font-family: "Charm", cursive;
-				font-size: 1.2em;
+				font-size: 1em;
 				text-align: center;
 				margin: 20px;
 				background-color: #f4efe6;
