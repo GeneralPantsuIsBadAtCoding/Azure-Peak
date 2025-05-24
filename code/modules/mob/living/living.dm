@@ -1055,73 +1055,83 @@
 	update_charging_movespeed()
 
 /mob/proc/resist_grab(moving_resist)
-	return 1 //returning 0 means we successfully broke free
+	return TRUE //returning 0 means we successfully broke free
 
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 
 	var/wrestling_diff = 0
-	var/resist_chance = 40
+	var/resist_chance = 55
 	var/mob/living/L = pulledby
 	var/combat_modifier = 1
+	var/agg_grab = FALSE
 
 	if(mind)
 		wrestling_diff += (mind.get_skill_level(/datum/skill/combat/wrestling)) //NPCs don't use this
 	if(L.mind)
 		wrestling_diff -= (L.mind.get_skill_level(/datum/skill/combat/wrestling))
+	if(L.grab_state > GRAB_PASSIVE)
+		agg_grab = TRUE
 
 	if(restrained())
 		combat_modifier -= 0.25
-
 	if(!(L.mobility_flags & MOBILITY_STAND) && mobility_flags & MOBILITY_STAND)
 		combat_modifier += 0.2
-
 	if(cmode && !L.cmode)
 		combat_modifier += 0.3
 	else if(!cmode && L.cmode)
 		combat_modifier -= 0.3
+	if(agg_grab)
+		combat_modifier -= 0.3
 
-	resist_chance = clamp((((4 + (((STASTR - L.STASTR)/2) + wrestling_diff)) * 10 + rand(-5, 10)) * combat_modifier), 5, 95)
+	resist_chance += max((wrestling_diff * 10), -20)
+	resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
+	resist_chance *= combat_modifier
+	resist_chance = clamp(resist_chance, 5, 95)
 
 	if(moving_resist && client) //we resisted by trying to move
 		client.move_delay = world.time + 20
-	if(prob(resist_chance))
-		rogfat_add(rand(5,15))
-		visible_message(span_warning("[src] breaks free of [pulledby]'s grip!"), \
-						span_notice("I break free of [pulledby]'s grip!"), null, null, pulledby)
-		to_chat(pulledby, span_danger("[src] breaks free of my grip!"))
-		log_combat(pulledby, src, "broke grab")
-		pulledby.changeNext_move(CLICK_CD_GRABBING)
-		playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
-		pulledby.stop_pulling()
-		return FALSE
-	else
-		rogfat_add(rand(5,15))
-		var/shitte = ""
-//		if(client?.prefs.showrolls)
-//			shitte = " ([resist_chance]%)"
-		visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
-						span_warning("I struggle against [pulledby]'s grip![shitte]"), null, null, pulledby)
+	rogfat_add(rand(5,15))
+
+	if(!prob(resist_chance))
+		var/rchance = ""
+		if(client?.prefs.showrolls)
+			rchance = " ([resist_chance]%)"
+		visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
+						span_warning("I struggle against [L]'s grip![rchance]"), null, null, L)
 		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 		to_chat(pulledby, span_warning("[src] struggles against my grip!"))
+		return FALSE
 
-		return TRUE
+	visible_message(span_warning("[src] breaks free of [L]'s grip!"), \
+					span_notice("I break free of [L]'s grip!"), null, null, L)
+	to_chat(L, span_danger("[src] breaks free of my grip!"))
+	log_combat(L, src, "broke grab")
+	L.changeNext_move(agg_grab ? CLICK_CD_GRABBING : CLICK_CD_GRABBING + 1 SECONDS)
+	playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
+	L.stop_pulling()
+	return TRUE
 
 /mob/living/carbon/human/resist_grab(moving_resist)
 	var/mob/living/L = pulledby
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(HAS_TRAIT(H, TRAIT_NOSEGRAB) && !HAS_TRAIT(src, TRAIT_MISSING_NOSE))
-			var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
-			for(var/obj/item/grabbing/G in grabbedby)
-				if(G.limb_grabbed == head)
-					if(G.grabbee == pulledby)
-						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
-							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
-											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
-							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
-							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
-							return FALSE
+	if(!ishuman(L))
+		return ..()
+	var/mob/living/carbon/human/H = L
+	for(var/obj/item/grabbing/G in grabbedby)
+		var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+		if(G.limb_grabbed == head)
+			if(G.grabbee != pulledby)
+				continue
+			if(!HAS_TRAIT(H, TRAIT_NOSEGRAB) && HAS_TRAIT(src, TRAIT_MISSING_NOSE))
+				return ..()
+			if(G.sublimb_grabbed != BODY_ZONE_PRECISE_NOSE)
+				continue
+			visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
+							span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
+			playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
+			to_chat(pulledby, span_warning("[src] struggles against my grip!"))
+			return FALSE
+
 	return ..()
 
 /mob/living/proc/resist_buckle()
