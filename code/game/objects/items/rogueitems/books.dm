@@ -612,3 +612,26 @@
 	desc = "Apply on a written manuscript to create a book."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "book_crafting_kit"
+
+/obj/item/book/rogue/swatchbook
+	name = "Tailor's Swatchbook"
+	desc = "Allows you to pick out an exact hue and shade from the Tailors Guild's inordinately exhaustive all-encompassing selection of known colors. Once selected, use with a dyeing bin to apply the exact swatch."
+	icon_state = "book7_0"
+	base_icon_state = "book7"
+	title = "swatchbook"
+	var/swatchbookcolor = "#000000"
+
+/obj/item/book/rogue/swatchbook/read(mob/user)
+	if(istype(user, /mob/living) && src.loc == user)
+		if(!user.client || !user.hud_used)
+			return
+		else
+			var/hexcolor = "#FFFFFF"
+			hexcolor = sanitize_hexcolor(color_pick_sanitized_lumi(usr, "Choose your dye:", "Dyes"))
+			if(hexcolor == "#000000")
+				swatchbookcolor = "#FFFFFF"
+			else
+				swatchbookcolor = hexcolor
+			updateUsrDialog()
+	else
+		return

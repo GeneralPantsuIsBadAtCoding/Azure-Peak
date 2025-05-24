@@ -46,6 +46,7 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
 	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+	ADD_TRAIT(H, TRAIT_DYES, TRAIT_GENERIC)
 	H.change_stat("intelligence", 2)
 	H.change_stat("perception", 1)
 	H.change_stat("speed", 1)

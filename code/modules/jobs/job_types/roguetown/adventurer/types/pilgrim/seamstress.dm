@@ -33,6 +33,7 @@
 						/obj/item/recipe_book/sewing = 1, 
 						/obj/item/recipe_book/leatherworking = 1
 						)
+	ADD_TRAIT(H, TRAIT_DYES, TRAIT_GENERIC)
 	H.change_stat("intelligence", 2)
 	H.change_stat("speed", 2)
 	H.change_stat("perception", 1)
