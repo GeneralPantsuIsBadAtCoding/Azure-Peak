@@ -439,6 +439,10 @@
 	item_state = "chap_alt"
 	color = "#7dcea0"
 
+/obj/item/clothing/head/roguetown/chaperon/greyscale/elder
+	name = "elder's chaperon hat"
+	color = "#007fff"
+
 /obj/item/clothing/head/roguetown/chef
 	name = "chef's hat"
 	desc = "A hat which designates one as well-versed in the arts of cooking."

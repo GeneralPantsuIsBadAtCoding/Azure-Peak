@@ -1655,6 +1655,9 @@
 	GLOB.lordcolor -= src
 	return ..()
 
+/obj/item/clothing/cloak/stabard/guardhood/elder
+	name = "elder's hood"	
+
 /obj/item/clothing/cloak/hierophant
 	name = "hierophant's sash"
 	icon_state = "naledisash"

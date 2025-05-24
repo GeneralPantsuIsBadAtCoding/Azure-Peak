@@ -1352,7 +1352,7 @@
 #include "code\modules\jobs\job_types\roguetown\garrison\sergeant.dm"
 #include "code\modules\jobs\job_types\roguetown\garrison\townguard.dm"
 #include "code\modules\jobs\job_types\roguetown\garrison\veteran.dm"
-#include "code\modules\jobs\job_types\roguetown\garrison\villagechief.dm"
+#include "code\modules\jobs\job_types\roguetown\yeomen\villagechief.dm"
 #include "code\modules\jobs\job_types\roguetown\Inquisition\orthodoxist.dm"
 #include "code\modules\jobs\job_types\roguetown\Inquisition\puritan.dm"
 #include "code\modules\jobs\job_types\roguetown\Inquisition\orthoclasses\confessor.dm"
