@@ -93,6 +93,65 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
 
+//// The Arbiter, Judge of witches and other heretical casters. Meant for characters who deal with the arcyne and lead investigations from the sidelines.  Same gear as inq, but with some innate spells and some combat skills.
+
+/datum/advclass/puritan/arbiter
+	name = "Arbiter"
+	tutorial = "Arbiters are gifted members of either Naledi or Otavan culture who became members of his Inquisition. You have been tasked to hunt down monsters and judge others amongst this fief. Ideal for those who wish to be magical casters within the Inquisition."
+	outfit = /datum/outfit/job/roguetown/puritan/arbiter
+	cmode_music = 'sound/music/combat_inqordinator.ogg'
+
+	category_tags = list(CTAG_PURITAN)
+
+/datum/outfit/job/roguetown/puritan/arbiter/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE) 
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
+		H.change_stat("perception", 2)
+		H.change_stat("intelligence", 2)
+		H.change_stat("endurance", 1)
+		H.change_stat("speed", 1) // you get 6 stats but 3 spell  points
+	H.verbs |= /mob/living/carbon/human/proc/faith_test
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim
+	H.mind.adjust_spellpoints(3)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // Pre-set spell list
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/counterspell)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
+	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC) // you dont get dodge expert.
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+	neck = /obj/item/clothing/neck/roguetown/coif
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+	backr = /obj/item/storage/backpack/rogue/satchel
+	backl = /obj/item/rogueweapon/woodstaff/diamond
+	head = /obj/item/clothing/head/roguetown/inqhat
+	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
+	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
+	beltl =  /obj/item/book/spellbook
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/lesserinqcoat
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
 
 ///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more. 
 
