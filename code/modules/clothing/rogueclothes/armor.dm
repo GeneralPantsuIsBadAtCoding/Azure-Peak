@@ -724,7 +724,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
 	icon_state = "flutedcuirass"
-	desc = "A sturdily made steel cuirass with tassets. Made to sustain, supposedly; though maybe not crossbow bolts."
+	desc = "A sturdy steel cuirass with tassets. Supposedly protective, though maybe not against crossbow bolts."
 
 	body_parts_covered = CHEST | VITALS | LEGS
 	max_integrity = 350
@@ -781,7 +781,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "steel half-plate"
-	desc = "\'Adventurer-fit\' plate armor with pauldrons. Not going to stop any daggers or bolts getting into the small gaps, recommended to layer with a gambeson."
+	desc = "\'Adventurer-fit\' plate armor with pauldrons. The poor fitting leaves many small gaps for daggers and bolts to pierce something vital, so a gambeson is recommended."
 	body_parts_covered = CHEST|GROIN|VITALS
 	icon_state = "halfplate"
 	item_state = "halfplate"
@@ -1029,7 +1029,7 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "brigandine"
-	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn into dyed leather fitted with a wide skirt at the bottom, to cover the knight's groin."
+	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn with dyed leather and fitted with a wide skirt at the bottom to cover the groin."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
@@ -1095,7 +1095,7 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "coat of plates"
-	desc = "A leather coat with plates attached to it to increase protection while retaining mobility. The leather below might catch a dagger picking at it."
+	desc = "A leather coat with plates attached to increase protection while retaining mobility. The leather below might catch a dagger picking at it."
 	icon_state = "coat_of_plates"
 	blocksound = PLATEHIT
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
@@ -1107,7 +1107,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
 	name = "coat of the commander"
-	desc = "A thick boiled leather surcoat with plates concealed in it's many great folds. It weighs a ton and takes a great man to wear."
+	desc = "A thick boiled leather surcoat with enough plates concealed within the folds. It weighs a ton and takes a great man to wear."
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
 	var/picked = FALSE
@@ -1154,7 +1154,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
-	desc = "Metal plates reinforce this heavy coat, only the finest for the inquisition."
+	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
 	body_parts_covered = CHEST|VITALS|GROIN|LEGS|ARMS
 	allowed_sex = list(MALE, FEMALE)
 	icon_state = "inqcoat"
@@ -1175,7 +1175,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate
 	name = "blacksteel plate armor"
-	desc = "A suit of Full Plate smithed of durable blacksteel. With an internally layered gambeson, the piercing and blunt protection is unmatched among its heavy-plated peers."
+	desc = "A suit of Full Plate smithed from durable blacksteel. With an internally layered gambeson, the piercing and blunt protection is unmatched among its heavy-plated peers."
 	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'

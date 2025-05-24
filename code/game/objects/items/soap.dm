@@ -1,6 +1,6 @@
 /obj/item/soap
 	name = "soap"
-	desc = ""
+	desc = "One of Pestra's more humble and unassuming gifts. Take care not to slip!"
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "soap"
@@ -22,12 +22,12 @@
 /obj/item/soap/examine(mob/user)
 	. = ..()
 	var/max_uses = initial(uses)
-	var/msg = "It looks like it was just made."
+	var/msg = "It looks freshly-made."
 	if(uses != max_uses)
 		var/percentage_left = uses / max_uses
 		switch(percentage_left)
 			if(0 to 0.15)
-				msg = "There's just a tiny bit left of what it used to be, you're not sure it'll last much longer."
+				msg = "There's just a tiny bit left of what it used to be; You're not sure it'll last much longer."
 			if(0.15 to 0.30)
 				msg = "It's dissolved quite a bit, but there's still some life to it."
 			if(0.30 to 0.50)

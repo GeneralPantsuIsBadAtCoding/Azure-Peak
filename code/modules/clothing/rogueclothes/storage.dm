@@ -26,7 +26,7 @@
 
 /obj/item/storage/belt/rogue/leather
 	name = "belt"
-	desc = ""
+	desc = "A fine leather strap notched with holes for a buckle to secure itself."
 	icon_state = "leather"
 	item_state = "leather"
 	equip_sound = 'sound/blank.ogg'

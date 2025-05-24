@@ -255,6 +255,7 @@
 
 /obj/item/clothing/shoes/roguetown/jester
 	name = "funny shoes"
+	desc = "The bells add a jostling jingle jangle to each step."
 	icon_state = "jestershoes"
 	detail_tag = "_detail"
 	resistance_flags = null

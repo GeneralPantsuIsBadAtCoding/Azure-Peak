@@ -276,6 +276,7 @@
 
 /obj/item/reagent_containers/peppermill // new with some animated art
 	name = "pepper mill"
+	desc = "Let the lord have his snack; Twist the head until it cracks."
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
 	icon_state = "peppermill"
 	layer = CLOSED_BLASTDOOR_LAYER // obj layer + a little, small obj layering above convenient

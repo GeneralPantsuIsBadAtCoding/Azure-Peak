@@ -155,6 +155,7 @@
 
 /obj/item/clothing/head/roguetown/necrahood
 	name = "death shroud"
+	desc = "Wisps of dark fabric that cover your entire head and flutter gently in the breeze. Often worn by those who usher the dead to the afterlife."
 	color = null
 	icon_state = "necrahood"
 	item_state = "necrahood"
@@ -179,7 +180,7 @@
 
 /obj/item/clothing/head/roguetown/necramask
 	name = "death mask"
-	desc = "A hood with a decorated jaw bone at the chin,normally worn by some followers of Necra as a form of devotion"
+	desc = "A hood with a decorated jaw bone at the chin, normally worn by some followers of Necra as a form of devotion"
 	color = null
 	icon_state = "deathface"
 	item_state = "deathface"
@@ -195,7 +196,7 @@
 
 /obj/item/clothing/head/roguetown/dendormask
 	name = "briarmask"
-	desc = "A mask of wood worn by druids in service to Dendor."
+	desc = "A mask of wood and thorns worn by druids in service to Dendor."
 	color = null
 	icon_state = "dendormask"
 	item_state = "dendormask"
@@ -256,7 +257,7 @@
 
 /obj/item/clothing/head/roguetown/menacing
 	name = "sack hood"
-	desc = "A hood commonly worn by executioners. Hides the face, the stigma of pulling that lever makes many executioners outcasts in their own right."
+	desc = "A hood commonly worn by executioners to hide their face; The stigma of such a role, and all the grisly work it entails, makes many executioners outcasts in their own right."
 	icon_state = "menacing"
 	item_state = "menacing"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -309,7 +310,7 @@
 
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
-	desc = "Keeps the sun off your head while toiling the fields."
+	desc = "It's scratchy and rustic, but at least it keeps the sun off your head while you toil in the fields."
 	icon_state = "strawhat"
 	sewrepair = TRUE
 
@@ -343,7 +344,7 @@
 
 /obj/item/clothing/head/roguetown/fedora
 	name = "archeologist's hat"
-	desc = "A strangely shaped hat with dust caked onto its aged leather."
+	desc = "A strangely-shaped hat with dust caked onto its aged leather."
 	icon_state = "curator"
 	item_state = "curator"
 	sewrepair = TRUE
@@ -388,7 +389,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon
 	name = "chaperon hat"
-	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
+	desc = "A utilitarian yet fashionable hat traditionally made from a hood. Usually worn as a status symbol."
 	icon_state = "chaperon"
 	item_state = "chaperon"
 	sewrepair = TRUE
@@ -403,14 +404,14 @@
 
 /obj/item/clothing/head/roguetown/chaperon/greyscale
 	name = "chaperon hat"
-	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
+	desc = "A utilitarian yet fashionable hat traditionally made from a hood. This one has been treated to take dyes more easily."
 	icon_state = "chap_alt"
 	item_state = "chap_alt"
 	color = "#dbcde0"
 
 /obj/item/clothing/head/roguetown/chaperon/noble
 	name = "noble's chaperon"
-	desc = "A decorated chaperon worn by those more influential in society."
+	desc = "A decorated chaperon worn by the more influential members of society."
 	icon_state = "noblechaperon"
 	item_state = "noblechaperon"
 	detail_tag = "_detail"
@@ -560,6 +561,7 @@
 
 /obj/item/clothing/head/roguetown/nun
 	name = "nun's veil"
+	desc = "A humble hat for the faithful."
 	icon_state = "nun"
 	sellprice = 5
 	sewrepair = TRUE
@@ -624,7 +626,7 @@
 // Copper lamellar cap
 /obj/item/clothing/head/roguetown/helmet/coppercap
 	name = "lamellar cap"
-	desc = "A heavy lamellar cap made out of copper, a primitive material with an effective design to keep the head safe"
+	desc = "A heavy lamellar cap made out of copper. Despite the primitive material, it's an effective design that keeps the head safe."
 	icon_state = "lamellar"
 	smeltresult = /obj/item/ingot/copper
 	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0)
@@ -1163,7 +1165,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 	name = "noc helmet"
-	desc = "Headwear commonly worn by Templars in service to Noc. Without the night there can be no day, without Noc there can be no light in the dark hours."
+	desc = "Headwear commonly worn by Templars in service to Noc. Without the night there can be no day; without Noc there can be no light in the dark hours."
 	icon_state = "nochelm"
 	item_state = "nochelm"
 	emote_environment = 3
@@ -1175,7 +1177,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm
 	name = "necra helmet"
-	desc = "Headwear commonly worn by Templars in service to Necra. Let its skeletal features remind you of the only thing which is guaranteed in life. You will die."
+	desc = "Headwear commonly worn by Templars in service to Necra. Let its skeletal features remind you of the only thing which is guaranteed in life: You will die."
 	icon_state = "necrahelm"
 	item_state = "necrahelm"
 	emote_environment = 3
@@ -1208,7 +1210,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
-	desc = "A steel bascinet helmet without a visor protecting the the head and ears."
+	desc = "A steel bascinet helmet. Though it lacks a visor, it still protects the head and ears."
 	icon_state = "bascinet_novisor"
 	item_state = "bascinet_novisor"
 	emote_environment = 3
@@ -1220,7 +1222,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface
 	name = "pigface bascinet"
-	desc = "A steel bascinet helmet with a pigface visor protecting the head, ears, nose, mouth, and eyes. Add a feather to show the colors of your family or allegiance."
+	desc = "A steel bascinet helmet with a pigface visor that protects the entire head and face. Add a feather to show the colors of your family or allegiance."
 	icon_state = "hounskull"
 	item_state = "hounskull"
 	adjustable = CAN_CADJUST
@@ -1259,7 +1261,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull
 	name = "hounskull bascinet"
-	desc = "A bascinet with a conical visor, prominent amongst those who remain unburdened with snouts and whiskers. Nestle a feather onto the rim to bare your pride."
+	desc = "A bascinet with a conical visor, favored by those with snouts and whiskers. Nestle a feather onto the rim to display your allegiance."
 	icon_state = "bascinet"
 
 
@@ -1308,7 +1310,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
 	name = "\improper Etruscan bascinet"
-	desc = "A steel bascinet helmet of Etruscan origin, though also widely used in Grenzelhoft. Bears a straight visor, or \"klappvisier\", which can greatly reduce visibility."
+	desc = "A steel bascinet helmet with a straight visor, or \"klappvisier\", which can greatly reduce visibility. Though it was first developed in Etrusca, it is also widely used in Grenzelhoft."
 	icon_state = "klappvisier"
 	item_state = "klappvisier"
 	adjustable = CAN_CADJUST
@@ -1347,7 +1349,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. Covers not just the head, but the neck as well. Add a cloth to show the colors of your family or allegiance."
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the entire head and face, but the neck as well. Add a cloth to show the colors of your family or allegiance."
 	icon_state = "frogmouth"
 	item_state = "frogmouth"
 	emote_environment = 3
@@ -1382,7 +1384,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
-	desc = "A steel bascinet helmet without a visor protecting the the head and ears."
+	desc = "A steel bascinet helmet. Though it lacks a visor for the face, it still protects the head and ears."
 	icon_state = "bascinet_novisor"
 	item_state = "bascinet_novisor"
 	emote_environment = 3
@@ -1408,7 +1410,7 @@
 /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	name = "volf helmet"
-	desc = "A leather helmet fashioned from a volf's pelt."
+	desc = "A leather helmet fashioned from a volf's head."
 	body_parts_covered = HEAD|HAIR|EARS
 	icon_state = "volfhead"
 	item_state = "volfhead"
@@ -1421,7 +1423,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/leather/saiga
 	name = "saiga skull"
-	desc = "Skull from big game. Looks like it could withstand some damage."
+	desc = "The skull of a fearsome saiga. Looks like it could withstand some damage."
 	icon_state = "saigahead"
 	item_state = "saigahead"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
@@ -1519,14 +1521,14 @@
 //............... Eora Helmet ............... //
 /obj/item/clothing/head/roguetown/helmet/sallet/eoran
 	name = "eora helmet"
-	desc = "A standard helmet forged in the style typical of Eoran worshippers, a simple yet practical protective piece of equipment. Upon it lays several laurels of flowers and other colorful ornaments, followed by several symbols and standards of the user's chapter, accomplishments or even punishment"
+	desc = "A simple yet protective helmet forged in the style typical of Eoran worshippers. Upon it lays several laurels of flowers and other colorful ornaments followed by symbols noting the accomplishments and punishments of the owner's chapter."
 	icon_state = "eorahelmsallet"
 	item_state = "eorahelmsallet"
 
 //................ Briar Thorns ............... //	- Dendor Briar
 /obj/item/clothing/head/roguetown/padded/briarthorns
 	name = "briar thorns"
-	desc = "The pain it causes perhaps can distract from the whispers of a mad God overpowering your sanity..."
+	desc = "The pain of wearing it might distract you from the whispers of a mad God overpowering your sanity..."
 	icon_state = "briarthorns"
 
 /obj/item/clothing/head/roguetown/padded/briarthorns/pickup(mob/living/user)
@@ -1561,7 +1563,7 @@
 // Grenzel unique drip head. Pretend it is a secrete (A type of hat with a hidden helmet underneath). Same stats as kettle
 /obj/item/clothing/head/roguetown/grenzelhofthat
 	name = "grenzelhoft plume hat"
-	desc = "Slaying monsters or fair maidens: Grenzelhoft stands. Contains a hidden metallic cap underneath to protect the head from blows."
+	desc = "Whether it's monsters or fair maidens, a true Grenzelhoftian slays both. This hat contains a hidden metallic cap underneath to protect the head from blows."
 	icon_state = "grenzelhat"
 	item_state = "grenzelhat"
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -1602,7 +1604,7 @@
 
 /obj/item/clothing/head/roguetown/eoramask
 	name = "eoran mask"
-	desc = "A silver rabbit mask worn by the faithful of Eora, usually during their rituals."
+	desc = "A silver mask in the likeness of a rabbit. Usually worn by the faithful of Eora during their rituals, but it's not like anyone's going to stop you. Right?"
 	color = null
 	icon_state = "eoramask"
 	item_state = "eoramask"
@@ -1648,7 +1650,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/tricorn/skull
 	icon_state = "tricorn_skull"
-	desc = "It has a skull sewn onto it. Clear sign of piracy"
+	desc = "It has a skull sewn onto it. A clear sign of piracy"
 
 /obj/item/clothing/head/roguetown/helmet/tricorn/lucky
 	name = "lucky tricorn"
