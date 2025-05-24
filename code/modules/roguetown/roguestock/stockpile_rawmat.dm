@@ -119,7 +119,7 @@
 	item_type = /obj/item/natural/cloth
 	held_items = list(0, 2)
 	payout_price = 3
-	withdraw_price = 5
+	withdraw_price = 3
 	transport_fee = 2
 	export_price = 5
 	importexport_amt = 10
@@ -132,7 +132,7 @@
 	item_type = /obj/item/natural/fibers
 	held_items = list(0, 2)
 	payout_price = 1
-	withdraw_price = 3
+	withdraw_price = 1
 	transport_fee = 1
 	export_price = 3
 	importexport_amt = 10
@@ -145,7 +145,7 @@
 	item_type = /obj/item/natural/silk
 	held_items = list(0, 2)
 	payout_price = 2
-	withdraw_price = 3
+	withdraw_price = 2
 	transport_fee = 1
 	export_price = 4
 	importexport_amt = 10
@@ -159,7 +159,7 @@
 	item_type = /obj/item/natural/hide/cured
 	held_items = list(2, 0)
 	payout_price = 3
-	withdraw_price = 7
+	withdraw_price = 3
 	transport_fee = 3
 	export_price = 7
 	importexport_amt = 10
@@ -172,7 +172,7 @@
 	item_type = /obj/item/natural/hide
 	held_items = list(0, 0)
 	payout_price = 8
-	withdraw_price = 12
+	withdraw_price = 8
 	transport_fee = 2
 	export_price = 12
 	importexport_amt = 5
@@ -185,7 +185,7 @@
 	item_type = /obj/item/natural/fur
 	held_items = list(0, 0)
 	payout_price = 10
-	withdraw_price = 15
+	withdraw_price = 10
 	transport_fee = 4
 	export_price = 15
 	importexport_amt = 5

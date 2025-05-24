@@ -113,9 +113,11 @@
 				if(sound == TRUE)
 					playsound(loc, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 				if(nopay)
+					SStreasury.economic_output += R.export_price * B.amount // Still count
 					say("Stockpile is full, no payment.")
 				else
 					var/amt = R.payout_price * B.amount
+					SStreasury.economic_output += R.export_price * B.amount
 					if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 						say("No account found. Submit your fingers to a Meister for inspection.")
 			continue
@@ -145,9 +147,12 @@
 				if(sound == TRUE)
 					playsound(loc, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			var/true_value = I.get_real_price()
 			if(nopay)
+				SStreasury.economic_output += true_value // Still count as economic output hah
 				say("Stockpile is full, no payment.")
 			else if(amt)
+				SStreasury.economic_output += true_value
 				if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 					say("No account found. Submit your fingers to a Meister for inspection.")
 			return

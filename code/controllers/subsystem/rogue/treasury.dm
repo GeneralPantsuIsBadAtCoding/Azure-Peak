@@ -34,7 +34,12 @@ SUBSYSTEM_DEF(treasury)
 	var/next_treasury_check = 0
 	var/list/log_entries = list()
 	var/list/vault_accounting = list() //used for the vault count, cleared every fire()
-
+	var/economic_output = 0
+	var/total_deposit_tax = 0
+	var/total_vault_income = 0
+	var/total_noble_income = 0
+	var/total_import = 0
+	var/total_export = 0
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(500,1000)
@@ -76,6 +81,7 @@ SUBSYSTEM_DEF(treasury)
 		amt_to_generate = amt_to_generate - (amt_to_generate * queens_tax)
 		amt_to_generate = round(amt_to_generate)
 		give_money_treasury(amt_to_generate, "wealth hoard")
+		total_vault_income += amt_to_generate
 		for(var/obj/structure/roguemachine/vaultbank/VB in A)
 			if(istype(VB))
 				VB.update_icon()
@@ -222,6 +228,7 @@ SUBSYSTEM_DEF(treasury)
 	for(var/mob/living/welfare_dependant in noble_incomes)
 		var/how_much = noble_incomes[welfare_dependant]
 		give_money_treasury(how_much, silent = TRUE)
+		total_noble_income += how_much
 		if(welfare_dependant.job == "Merchant")
 			give_money_account(how_much, welfare_dependant, "The Guild")
 		else

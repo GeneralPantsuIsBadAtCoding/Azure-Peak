@@ -102,6 +102,7 @@
 				if(!HAS_TRAIT(H, TRAIT_NOBLE))
 					var/T = round(P.get_real_price() * SStreasury.tax_value)
 					if(T != 0)
+						SStreasury.total_deposit_tax += T
 						say("Your deposit was taxed [T] mammon.")
 				qdel(P)
 				playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)

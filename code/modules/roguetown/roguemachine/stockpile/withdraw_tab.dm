@@ -79,6 +79,7 @@
 		else
 			D.held_items[source_stockpile]--
 			budget -= total_price
+			SStreasury.economic_output -= D.export_price // Prevent GDP double counting
 			SStreasury.give_money_treasury(D.withdraw_price, "stockpile withdraw")
 			var/obj/item/I = new D.item_type(parent_structure.loc)
 			var/mob/user = usr
