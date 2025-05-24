@@ -263,7 +263,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = null
 	minstr = 9
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
 	anvilrepair = /datum/skill/craft/carpentry
@@ -288,4 +288,4 @@
 	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smash/militia)
 	force = 27
 	wdefense = 3
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY

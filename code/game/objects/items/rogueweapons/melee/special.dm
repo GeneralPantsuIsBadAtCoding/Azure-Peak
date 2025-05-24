@@ -108,7 +108,7 @@
 	gripped_intents = null
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_item_intents = list(/datum/intent/mace/strike/stunner, /datum/intent/mace/smash/stunner)
-	wbalance = 0
+	wbalance = WBALANCE_NORMAL
 	minstr = 5
 	wdefense = 0
 	var/charge = 100
@@ -225,7 +225,7 @@
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
 	throwforce = 12
 	wdefense = 4
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	thrown_bclass = BCLASS_CUT
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -293,7 +293,7 @@
 	associated_skill = /datum/skill/combat/unarmed
 	throwforce = 12
 	wdefense = 4
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	blade_dulling = DULLING_SHAFT_WOOD
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -328,7 +328,7 @@
 	associated_skill = /datum/skill/combat/unarmed
 	throwforce = 12
 	wdefense = 5
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	blade_dulling = DULLING_SHAFT_WOOD
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
@@ -422,7 +422,7 @@
 	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/rogueore/coal
 	wdefense = 4
-	wbalance = -1
+	wbalance = WBALANCE_NORMAL
 
 /obj/item/rogueweapon/spear/militia
 	force = 18
@@ -620,7 +620,7 @@
 	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 1
-	wbalance = 0
+	wbalance = WBALANCE_HEAVY
 
 /obj/item/rogueweapon/pick/militia/steel
 	force = 25
@@ -634,7 +634,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 5
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 
 /obj/item/rogueweapon/sword/falchion/militia
 	name = "maciejowski"
@@ -647,5 +647,5 @@
 	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	intdamage_factor = 0.6

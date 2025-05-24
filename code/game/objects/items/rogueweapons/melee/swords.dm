@@ -438,7 +438,7 @@
 /obj/item/rogueweapon/sword/sabre/shamshir
 	force = 24
 	wdefense = 6	//Has chop mode, so slightly less defense. Slightly.
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	name = "shamshir"
 	desc = "A one-handed sword with elegant curves and deadly sharpness."
 	icon_state = "tabi"
@@ -672,7 +672,7 @@
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 5
 	wdefense = 7		//Same as rapier
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 
 /datum/intent/sword/cut/sabre
 	clickcd = 8		//Faster than sword by 4
@@ -747,7 +747,7 @@
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 6
 	wdefense = 7
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 
 /obj/item/rogueweapon/sword/rapier/vaquero
 	desc = "A fairly new development originating in Etrusca, the cup hilt design of this weapon is both simpler to produce and more protective than the traditional 'swept' design more common in these lands."
@@ -875,8 +875,7 @@
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/chop, /datum/intent/sword/peel)
 	gripped_intents = null
 	wdefense = 6
-	wbalance = 1
-	
+	wbalance = WBALANCE_SWIFT
 
 /obj/item/rogueweapon/sword/silver
 	force = 24

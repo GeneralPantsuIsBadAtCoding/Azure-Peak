@@ -5,6 +5,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
+#define WBALANCE_NORMAL 0
+#define WBALANCE_HEAVY -1
+#define WBALANCE_SWIFT 1
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -148,7 +152,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/dropshrink = 0
 
 	var/wlength = WLENGTH_NORMAL		//each weapon length class has its own inherent dodge properties
-	var/wbalance = 0
+	var/wbalance = WBALANCE_NORMAL
 	var/wdefense = 0 //better at defending
 	var/minstr = 0  //for weapons
 	var/intdamage_factor = 0	//%-age of our raw damage that is dealt to armor or weapon on hit / parry.
@@ -422,9 +426,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(wbalance)
 			inspec += "\n<b>BALANCE: </b>"
-			if(wbalance < 0)
+			if(wbalance == WBALANCE_HEAVY)
 				inspec += "Heavy"
-			if(wbalance > 0)
+			if(wbalance == WBALANCE_SWIFT)
 				inspec += "Swift"
 
 		if(wlength != WLENGTH_NORMAL)

@@ -33,7 +33,7 @@
 	associated_skill = /datum/skill/combat/unarmed
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
 	wdefense = 4
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 
 /obj/item/melee/touch_attack/rogueweapon/attack_self()
 	attached_spell.remove_hand()

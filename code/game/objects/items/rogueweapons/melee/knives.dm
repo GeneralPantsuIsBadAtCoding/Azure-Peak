@@ -96,7 +96,7 @@
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
 	throwforce = 12
 	wdefense = 3
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	thrown_bclass = BCLASS_CUT
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron

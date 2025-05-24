@@ -718,7 +718,7 @@
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	walking_stick = TRUE
 	wdefense = 5
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	sellprice = 60
 	intdamage_factor = 1.2
 

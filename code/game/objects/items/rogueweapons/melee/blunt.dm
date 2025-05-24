@@ -65,7 +65,7 @@
 	swingsound = BLUNTWOOSH_MED
 	minstr = 7
 	wdefense = 2
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	blade_dulling = DULLING_SHAFT_METAL
 	intdamage_factor = 1.35
 
@@ -86,7 +86,7 @@
 	name = "bell ringer"
 	desc = "This heavy hammer is used to ring the church's bell."
 	icon_state = "churchmace"
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3
 
@@ -96,7 +96,7 @@
 	name = "steel mace"
 	desc = "This steel mace is objectively superior to an iron one."
 	icon_state = "smace"
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3
 	smelt_bar_num = 2
@@ -178,7 +178,7 @@
 	desc = "A primitive cudgel carved of a stout piece of treefall."
 	icon_state = "club1"
 	//dropshrink = 0.75
-	wbalance = 0
+	wbalance = WBALANCE_NORMAL
 	wdefense = 1
 	possible_item_intents = list(/datum/intent/mace/strike/wood)
 	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
@@ -214,7 +214,7 @@
 	smeltresult = /obj/item/ash
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
-	wbalance = 0
+	wbalance = WBALANCE_NORMAL
 	minstr = 7
 	wdefense = 1
 	resistance_flags = FLAMMABLE
@@ -242,7 +242,7 @@
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
 	blade_dulling = DULLING_SHAFT_REINFORCED
-	wbalance = 4
+	wbalance = WBALANCE_NORMAL
 	minstr = 7
 	wdefense = 5
 
@@ -267,7 +267,7 @@
 	smeltresult = /obj/item/ash
 	minstr = 7
 	wdefense = 5
-	wbalance = 0
+	wbalance = WBALANCE_NORMAL
 	associated_skill = /datum/skill/combat/swords
 	anvilrepair = /datum/skill/craft/carpentry
 	blade_dulling = DULLING_SHAFT_REINFORCED
@@ -415,7 +415,7 @@
 	icon_state = "psymace"
 	force = 25
 	force_wielded = 32
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	dropshrink = 0.75
 	slot_flags = ITEM_SLOT_BACK //Looks better on back
 	smelt_bar_num = 2
@@ -437,7 +437,7 @@
 	name = "warhammer"
 	desc = "Made to punch through armor and skull alike."
 	icon_state = "iwarhammer"
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	wdefense = 3

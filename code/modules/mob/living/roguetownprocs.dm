@@ -337,13 +337,29 @@
 					else
 						flash_fullscreen("blackflash2")
 
-					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
+					var/dam2take = round((get_complex_damage(AB, user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
 						if(!user.mind)
 							dam2take = dam2take * 0.25
-						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
+						var/obj/item/attI
+						if(intenty.masteritem)
+							attI = intenty.masteritem
+						if(dam2take > 0 && attI?.intdamage_factor)
 							dam2take = dam2take * intenty.masteritem?.intdamage_factor
-						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
+						used_weapon.take_damage(max(dam2take,1), BRUTE, attI.d_type)
+						if(used_weapon.wbalance == WBALANCE_HEAVY && !isnull(attI))	//Defender has a Heavy Balanced weapon.
+							var/riposte_damage = used_weapon.force / 2
+							if(used_weapon.intdamage_factor)
+								riposte_damage *= used_weapon.intdamage_factor
+							switch(attI.wbalance)
+								if(WBALANCE_HEAVY)	//Heavy-balanced weapons take even less damage from Heavy weapon ripostes.
+									riposte_damage = riposte_damage / 3
+								if(WBALANCE_NORMAL, WBALANCE_SWIFT)	//Other weapons take half.
+									riposte_damage = riposte_damage / 2
+							attI.take_damage(max(riposte_damage,1), BRUTE, used_weapon.d_type)
+							if(prob(10))
+								to_chat(U, span_warning("\The [attI] is getting damaged by the parries!"))
+
 					return TRUE
 				else
 					return FALSE
@@ -500,9 +516,9 @@
 	if(U)
 		prob2defend = prob2defend - (U.STASPD * 10)
 	if(I)
-		if(I.wbalance > 0 && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
+		if(I.wbalance == WBALANCE_SWIFT && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
 			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
-		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
+		if(I.wbalance == WBALANCE_HEAVY && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		if(UH?.mind)
 			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)

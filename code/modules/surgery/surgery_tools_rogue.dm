@@ -11,7 +11,7 @@
 	force = 12
 	throwforce = 12
 	wdefense = 3
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	max_blade_int = 100
 	max_integrity = 175
 	thrown_bclass = BCLASS_CUT
@@ -53,7 +53,7 @@
 	force = 16
 	throwforce = 16
 	wdefense = 3
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	w_class = WEIGHT_CLASS_NORMAL
 	thrown_bclass = BCLASS_CHOP
 	tool_behaviour = TOOL_SAW
@@ -94,7 +94,7 @@
 	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
 	wdefense = 3
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	sharpness = IS_BLUNT
 	w_class = WEIGHT_CLASS_NORMAL
 	thrown_bclass = BCLASS_BLUNT
@@ -125,7 +125,7 @@
 	force = 18
 	throwforce = 18
 	wdefense = 3
-	wbalance = -1
+	wbalance = WBALANCE_NORMAL
 	associated_skill = /datum/skill/combat/maces
 	sharpness = IS_BLUNT
 	w_class = WEIGHT_CLASS_NORMAL
