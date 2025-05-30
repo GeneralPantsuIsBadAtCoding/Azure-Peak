@@ -109,3 +109,15 @@
 	/obj/item/natural/worms/leech,
 	/obj/item/cooking/pan
 	)
+
+/obj/item/storage/roguebag/soilson //Basic seeds
+	populate_contents = list(
+	/obj/item/seeds/wheat,
+	/obj/item/seeds/wheat,
+	/obj/item/seeds/wheat/oat,
+	/obj/item/seeds/wheat/oat,
+	/obj/item/seeds/apple,
+	/obj/item/seeds/apple,
+	/obj/item/seeds/berryrogue,
+	/obj/item/seeds/berryrogue
+	)
