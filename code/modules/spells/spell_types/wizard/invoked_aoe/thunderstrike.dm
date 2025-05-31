@@ -1,69 +1,80 @@
 /obj/effect/proc_holder/spell/invoked/thunderstrike
 	name = "Thunderstrike"
-	desc = "Lashes out a walking barrage of lightning that strikes a line up to 7 tiles long in front of you."
-	cost = 3
+	desc = "Call a high-damage strike of lightning onto an area, followed by lesser aftershocks that ripple outwards in concentric layers."
+	cost = 6 // High damage AOE
+	range = 7
 	releasedrain = 50
-	overlay_state = "thunderstrike" // Literally just sparks effect placeholder with 1 frame
-	chargedrain = 5
-	chargetime = 1 SECONDS // This is a point blank spell and need low charge time
+	overlay_state = "thunderstrike"
+	chargedrain = 1
+	chargetime = 35
 	recharge_time = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	charging_slowdown = 2
+	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokelightning
 	associated_skill = /datum/skill/magic/arcane
-	gesture_required = TRUE // Offensive spell
-	spell_tier = 3 // AOE
-	invocation = "Fulmen Percutio!"
+	gesture_required = TRUE
+	spell_tier = 3
+	invocation = "Fulmen Cadite!"
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_HIGH
-	var/delay = 6
-	var/strike_delay = 3 // delay between each individual strike. 3 delays seems to make someone stupid able to walk into every single strikes.
-	var/strikerange = 7 // how many tiles the strike can reach
-	var/damage = 65
+	var/damage = 80 // reduced with each successive step outwards
+	var/delay1 = 4 // Fast initial strike
+	var/delay2 = 8 // Slower follow-ups
+	var/delay3 = 12
 
 /obj/effect/proc_holder/spell/invoked/thunderstrike/cast(list/targets, mob/user = usr)
-	var/turf/T = get_turf(targets[1])
+	var/turf/centerpoint = get_turf(targets[1])
 
-	var/turf/source_turf = get_turf(user)
-	
-	if(T.z != user.z)
+	if(centerpoint.z != user.z) // Inherited from original Thunderstrike; do we even care about this? I assume yes.
 		to_chat(span_warning("You can't cast this spell on a different z-level!"))
 		return FALSE
 
-	var/list/affected_turfs = getline(source_turf, T)
+	new /obj/effect/temp_visual/trap/thunderstrike(centerpoint) // Setup warning icon
+	addtimer(CALLBACK(src, PROC_REF(thunderstrike_damage), centerpoint, 1), wait = delay1) // Prepare damage proc on a timer, baseline damage
 
-	for(var/i = 1, i < affected_turfs.len, i++)
-		var/turf/affected_turf = affected_turfs[i]
-		if(affected_turf == source_turf) // Don't zap yourself
+	for(var/turf/effect_layer_one in view(1, centerpoint)) // Borrowed from Arcyne Prison for grabbing a hollow square of tiles around a centerpoint
+		if(!(effect_layer_one in view(centerpoint)))
 			continue
-		if(!(affected_turf in view(source_turf)))
+		if(get_dist(centerpoint, effect_layer_one) != 1)
 			continue
-		var/tile_delay = strike_delay * (i - 1) + delay
-		new /obj/effect/temp_visual/trap/thunderstrike(affected_turf, tile_delay)
-		addtimer(CALLBACK(src, PROC_REF(strike), affected_turf), wait = tile_delay)
+		new /obj/effect/temp_visual/trap/thunderstrike/layer_one(effect_layer_one)
+		addtimer(CALLBACK(src, PROC_REF(thunderstrike_damage), effect_layer_one, 0.5), wait = delay2) // Second layer, damage mod for the damage proc is halved
+
+	for(var/turf/effect_layer_two in view(2, centerpoint))
+		if(!(effect_layer_two in view(centerpoint)))
+			continue
+		if(get_dist(centerpoint, effect_layer_two) != 2)
+			continue
+		new /obj/effect/temp_visual/trap/thunderstrike/layer_two(effect_layer_two)
+		addtimer(CALLBACK(src, PROC_REF(thunderstrike_damage), effect_layer_two, 0.25), wait = delay3) // Third layer, halved again
 	return TRUE
 
-/obj/effect/proc_holder/spell/invoked/thunderstrike/proc/strike(var/turf/damage_turf)
-	new /obj/effect/temp_visual/thunderstrike_actual(damage_turf)
-	playsound(damage_turf, 'sound/magic/lightning.ogg', 50)
-	for(var/mob/living/L in damage_turf.contents)
+/obj/effect/proc_holder/spell/invoked/thunderstrike/proc/thunderstrike_damage(var/turf/effect_layer, damage_mod)
+	new /obj/effect/temp_visual/thunderstrike_actual(effect_layer)
+	playsound(effect_layer, 'sound/magic/lightning.ogg', 50)
+	for(var/mob/living/L in effect_layer.contents)
 		if(L.anti_magic_check())
-			visible_message(span_warning("The magic fades away around you [L] "))  //antimagic needs some testing
-			playsound(damage_turf, 'sound/magic/magic_nulled.ogg', 100)
-			return
-		L.electrocute_act(damage, src, 1, SHOCK_NOSTUN)
+			visible_message(span_warning("The magic fades away around you [L] "))
+			playsound(effect_layer, 'sound/magic/magic_nulled.ogg', 100)
+			continue
+		L.electrocute_act(damage * damage_mod, src, 1, SHOCK_NOSTUN) // Hopefully the SHOCK_NOSTUN handles any CC effects this might otherwise cause
 		return
-
 
 /obj/effect/temp_visual/trap/thunderstrike
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "trap"
 	light_outer_range = 2
-	duration = 1 SECONDS
+	duration = 4
 	layer = MASSIVE_OBJ_LAYER
+
+/obj/effect/temp_visual/trap/thunderstrike/layer_one
+	duration = 8
+
+/obj/effect/temp_visual/trap/thunderstrike/layer_two
+	duration = 12
 
 /obj/effect/temp_visual/thunderstrike_actual
 	icon = 'icons/effects/effects.dmi'
@@ -76,4 +87,3 @@
 	if(duration_override)
 		duration = duration_override
 	. = ..() // Call parent AFTER setting duration
-	
