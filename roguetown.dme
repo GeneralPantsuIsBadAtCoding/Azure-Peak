@@ -1311,7 +1311,6 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\cheesemaker.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\drunkard.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\fisher.dm"
-#include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\herald.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\hunter.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\miner.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\minstrel.dm"
