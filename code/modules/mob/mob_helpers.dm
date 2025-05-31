@@ -589,6 +589,10 @@
 	if(hud_used)
 		if(hud_used.cmode_button)
 			hud_used.cmode_button.update_icon()
+	on_cmode()
+
+/mob/proc/on_cmode()
+	return
 
 /mob
 	var/last_aimhchange = 0

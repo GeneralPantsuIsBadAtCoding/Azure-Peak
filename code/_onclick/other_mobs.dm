@@ -38,6 +38,11 @@
 //			src.emote("attackgrunt")
 		if(used_intent.releasedrain)
 			rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+		if(L.has_status_effect(/datum/status_effect/buff/clash) && L.get_active_held_item() && ishuman(L))
+			var/mob/living/carbon/human/H = L
+			var/obj/item/IM = L.get_active_held_item()
+			H.process_clash(src, IM)
+			return
 		if(L.checkmiss(src))
 			return
 		if(!L.checkdefense(used_intent, src))
@@ -93,21 +98,22 @@
 	. = ..()
 //	if(!user.Adjacent(src)) //alreadyu checked in rmb_on
 //		return
-	user.changeNext_move(CLICK_CD_MELEE)
 	user.face_atom(src)
 	if(user.cmode)
 		if(user.rmb_intent)
 			user.rmb_intent.special_attack(user, src)
 	else
+		user.changeNext_move(CLICK_CD_MELEE)
 		ongive(user, params)
 
 /turf/attack_right(mob/user, params)
 	. = ..()
-	user.changeNext_move(CLICK_CD_MELEE)
 	user.face_atom(src)
 	if(user.cmode)
 		if(user.rmb_intent)
 			user.rmb_intent.special_attack(user, src)
+	else
+		user.changeNext_move(CLICK_CD_MELEE)
 
 /atom/proc/ongive(mob/user, params)
 	return
@@ -298,6 +304,12 @@
 						playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
 
 						sleep(src.used_intent.swingdelay)
+						if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
+							var/mob/living/carbon/human/H = src
+							H.bad_guard(span_warning("The kick throws my stance off!"))
+						if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
+							var/mob/living/carbon/human/HT = M
+							HT.bad_guard(span_warning("The kick throws my stance off!"))
 						if(QDELETED(src) || QDELETED(M))
 							return
 						if(!M.Adjacent(src))

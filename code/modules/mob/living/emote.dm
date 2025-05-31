@@ -789,6 +789,13 @@
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
 
+/datum/emote/living/scream/strain
+	key = "strain"
+	message = "strains themselves!"
+	emote_type = EMOTE_AUDIBLE
+	only_forced_audio = TRUE
+	show_runechat = FALSE
+
 /datum/emote/living/scream/agony
 	key = "agony"
 	message = "screams in agony!"

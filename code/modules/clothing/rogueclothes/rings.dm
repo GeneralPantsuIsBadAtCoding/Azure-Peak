@@ -138,34 +138,34 @@
 
 //silver rings
 /obj/item/clothing/ring/emeralds
-    name = "gemerald ring"
-    icon_state = "s_ring_emerald"
-    sellprice = 155
+	name = "gemerald ring"
+	icon_state = "s_ring_emerald"
+	sellprice = 155
 
 /obj/item/clothing/ring/rubys
-    name = "rontz ring"
-    icon_state = "s_ring_ruby"
-    sellprice = 215
+	name = "rontz ring"
+	icon_state = "s_ring_ruby"
+	sellprice = 215
 
 /obj/item/clothing/ring/topazs
-    name = "toper ring"
-    icon_state = "s_ring_topaz"
-    sellprice = 140
+	name = "toper ring"
+	icon_state = "s_ring_topaz"
+	sellprice = 140
 
 /obj/item/clothing/ring/quartzs
-    name = "blortz ring"
-    icon_state = "s_ring_quartz"
-    sellprice = 205
+	name = "blortz ring"
+	icon_state = "s_ring_quartz"
+	sellprice = 205
 
 /obj/item/clothing/ring/sapphires
-    name = "saffira ring"
-    icon_state = "s_ring_sapphire"
-    sellprice = 160
+	name = "saffira ring"
+	icon_state = "s_ring_sapphire"
+	sellprice = 160
 
 /obj/item/clothing/ring/diamonds
-    name = "dorpel ring"
-    icon_state = "s_ring_diamond"
-    sellprice = 230
+	name = "dorpel ring"
+	icon_state = "s_ring_diamond"
+	sellprice = 230
 
 /obj/item/clothing/ring/dragon_ring
 	name = "Dragon Ring"
@@ -196,3 +196,8 @@
 		active_item = FALSE
 	return
 
+/obj/item/clothing/ring/duelist
+	name = "duelist's ring"
+	desc = "Born out of duelists desire for theatrics, this ring denotes a proposal — an honorable duel, with stakes set ahigh.\nIf both duelists wear this ring, successful baits will off balance them, and clashing disarms will never be unlikely.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
+	icon_state = "ring_duel"
+	sellprice = 10

@@ -471,3 +471,80 @@
 		to_chat(owner, fake_msg)
 
 	msg_stage++
+
+/datum/status_effect/debuff/baited
+	id = "bait"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/baited
+	duration = 20 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/baited
+	name = "Baited"
+	desc = "I fell for it. I'm exposed. I won't fall for it again. For now."
+	icon_state = "bait"
+
+/atom/movable/screen/alert/status_effect/debuff/baitedcd
+	name = "Bait Cooldown"
+	desc = "I used it. I must wait."
+	icon_state = "baitcd"
+
+/datum/status_effect/debuff/baitcd
+	id = "baitcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/baitedcd
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/feintcd
+	name = "Feint Cooldown"
+	desc = "I used it. I must wait, or risk a lower chance of success."
+	icon_state = "feintcd"
+
+
+/atom/movable/screen/alert/status_effect/debuff/clashcd
+	name = "Guard Cooldown"
+	desc = "I used it. I must wait."
+	icon_state = "guardcd"
+
+/datum/status_effect/debuff/clashcd
+	id = "clashcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/clashcd
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/exposed
+	name = "Exposed"
+	desc = "My defenses are exposed. I can be hit through my parry and dodge!"
+	icon_state = "exposed"
+
+/datum/status_effect/debuff/exposed
+	id = "nofeint"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/exposed
+	duration = 10 SECONDS
+
+/datum/status_effect/debuff/exposed/on_creation(mob/living/new_owner, new_dur)
+	if(new_dur)
+		duration = new_dur
+	return ..()
+
+/datum/status_effect/debuff/feintcd
+	id = "feintcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/feintcd
+	duration = 30 SECONDS
+
+//Unused
+/datum/status_effect/debuff/riposted
+	id = "riposted"
+	duration = 3 SECONDS
+
+/datum/status_effect/debuff/clickcd
+	id = "clickcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/clickcd
+	duration = 3 SECONDS
+
+/datum/status_effect/debuff/clickcd/on_creation(mob/living/new_owner, new_dur)
+	if(new_dur)
+		duration = new_dur
+	new_owner.changeNext_move(duration)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/debuff/clickcd
+	name = "Action Delayed"
+	desc = "I cannot take another action."
+	icon_state = "clickcd"

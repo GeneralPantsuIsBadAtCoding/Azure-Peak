@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 /obj/item/reagent_containers/glass/bottle/rmb_self(mob/user)
 	. = ..()
 	closed = !closed
-	user.changeNext_move(CLICK_CD_RAPID)
+	user.changeNext_move(CLICK_CD_RAPID, override = TRUE)
 	if(closed)
 		reagent_flags = TRANSPARENT
 		reagents.flags = reagent_flags

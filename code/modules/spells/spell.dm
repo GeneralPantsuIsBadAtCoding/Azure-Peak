@@ -453,6 +453,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if(sound)
 			playMagSound()
 		after_cast(targets, user = user)
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.has_status_effect(/datum/status_effect/buff/clash))
+				var/mob/living/carbon/human/H = user
+				H.bad_guard(span_warning("I can't focus while casting spells!"), cheesy = TRUE)
 		if(action)
 			action.UpdateButtonIcon()
 		return TRUE

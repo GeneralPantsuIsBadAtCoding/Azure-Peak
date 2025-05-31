@@ -78,7 +78,7 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		var/time2mount = CLAMP((L.STASTR * 2), 1, 99)
-		user.changeNext_move(CLICK_CD_RAPID)
+		user.changeNext_move(CLICK_CD_FAST, override = TRUE)
 		if(user != M)
 			if(prob(time2mount))
 				..()

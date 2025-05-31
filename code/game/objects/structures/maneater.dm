@@ -143,7 +143,7 @@
 		var/time2mount = CLAMP((L.STASTR * 2), 1, 99)
 		if(istype(src, /obj/structure/flora/roguegrass/maneater/real/juvenile)) //Easier to escape juvenile
 			time2mount = CLAMP(time2mount * 3, 1, 99)
-		user.changeNext_move(CLICK_CD_RAPID)
+		user.changeNext_move(CLICK_CD_FAST, override = TRUE)
 		if(user != M)
 			if(prob(time2mount))
 				..()

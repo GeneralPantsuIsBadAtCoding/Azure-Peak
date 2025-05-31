@@ -22,7 +22,7 @@
 			apply_overlay(OBJ_LAYER)
 			addtimer(CALLBACK(humie, PROC_REF(clear_overhead_indicator), appearance), clear_time)
 			playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
-		if(!ispath(private, /datum/patron))	//Trait-exclusivity. At the moment it's only TRAIT_EMPATH for stress indicators.
+		if(!ispath(private, /datum/patron) && private)	//Trait-exclusivity. At the moment it's only TRAIT_EMPATH for stress indicators.
 			var/list/can_see = list(src)
 			for(var/mob/M in viewers(world.view, src))
 				if(HAS_TRAIT(M, private))

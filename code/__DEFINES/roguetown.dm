@@ -355,3 +355,13 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define TRIUMPH_CAT_CHARACTER "CHARACTER"
 #define TRIUMPH_CAT_MISC "MISC!"
 #define TRIUMPH_CAT_ACTIVE_DATUMS "ACTIVE"
+
+#define ARMOR_CLASS_NONE 0
+#define ARMOR_CLASS_LIGHT 1
+#define ARMOR_CLASS_MEDIUM 2
+#define ARMOR_CLASS_HEAVY 3
+
+#define BASE_PARRY_STAMINA_DRAIN 5 // Unmodified stamina drain for parry, now a var instead of setting on simplemobs
+#define BAD_GUARD_FATIGUE_DRAIN 20 //Percentage of your green bar lost on letting a guard expire.
+#define GUARD_PEEL_REDUCTION 2	//How many Peel stacks to lose if a Guard is hit.
+#define BAIT_PEEL_REDUCTION 1	//How many Peel stacks to lose if we perfectly bait.

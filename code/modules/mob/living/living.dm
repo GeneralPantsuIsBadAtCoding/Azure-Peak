@@ -201,7 +201,16 @@
 				self_points -= 99
 				instafail = TRUE
 				to_chat(src, span_warning("I changed direction too late!"))
-
+			var/clash_blocked
+			if(L.has_status_effect(/datum/status_effect/buff/clash) && !instafail)
+				self_points -= 99
+				L.remove_status_effect(/datum/status_effect/buff/clash)
+				to_chat(src, span_warning("[L] was ready for me!"))
+				if(prob(10))
+					playsound(src, 'sound/combat/clash_charge_meme.ogg', 100)
+				else
+					playsound(src, 'sound/combat/clash_charge.ogg', 100)
+				clash_blocked = TRUE
 			if(self_points > target_points)
 				L.Knockdown(1)
 			if(self_points < target_points)
@@ -209,19 +218,22 @@
 			if(self_points == target_points)
 				L.Knockdown(1)
 				Knockdown(30)
-			Immobilize(30)
+			Immobilize(10)
 			var/playsound = FALSE
-			if(apply_damage(15, BRUTE, "head", run_armor_check("head", "blunt", damage = 20)))
+			if(L.apply_damage(15, BRUTE, "chest", L.run_armor_check("chest", "blunt", damage = 10)))
 				playsound = TRUE
-			if(!instafail)
-				if(L.apply_damage(15, BRUTE, "chest", L.run_armor_check("chest", "blunt", damage = 10)))
+			if(instafail)
+				if(apply_damage(15, BRUTE, "head", run_armor_check("head", "blunt", damage = 20)))
 					playsound = TRUE
 			if(playsound)
 				playsound(src, "genblunt", 100, TRUE)
-			if(!instafail)
-				visible_message(span_warning("[src] charges into [L]!"), span_warning("I charge into [L]!"))
+			if(instafail || clash_blocked)
+				if(instafail)
+					visible_message(span_warning("[src] smashes into [L] with no headstart!"), span_warning("I charge into [L] too early!"))
+				if(clash_blocked)
+					visible_message(span_warning("[src] gets tripped by [L]!"), span_warning("I get tripped by [L]!"))
 			else
-				visible_message(span_warning("[src] smashes into [L] with no headstart!"), span_warning("I charge into [L] too early!"))
+				visible_message(span_warning("[src] charges into [L]!"), span_warning("I charge into [L]!"))
 			return TRUE
 
 	//okay, so we didn't switch. but should we push?

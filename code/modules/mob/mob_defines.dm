@@ -110,7 +110,7 @@
 	/// The current intent of the mob
 	var/datum/intent/a_intent = INTENT_HELP//Living
 	var/datum/intent/o_intent = INTENT_HELP
-	var/datum/rmb_intent/rmb_intent//Living
+	var/datum/rmb_intent/rmb_intent //Living
 	var/datum/intent/used_intent
 	var/datum/intent/mmb_intent
 	var/datum/intent/used_rmb_intent
