@@ -267,6 +267,11 @@
 	desc = span_red("This fare is really beneath me. I deserve better than this...")
 	timer = 5 MINUTES
 
+/datum/stressevent/tortured/on_apply(mob/living/user)
+	. = ..()
+	if(user.client)
+		GLOB.azure_round_stats[STATS_TORTURES]++
+
 /datum/stressevent/noble_bad_manners
 	stressadd = 1
 	desc = span_red("I should've used a spoon...")
@@ -276,6 +281,11 @@
 	stressadd = 1
 	desc = span_red("Eating such a meal without a table? Churlish.")
 	timer = 2 MINUTES
+
+/datum/stressevent/graggar_culling_unfinished
+	stressadd = 1
+	desc = span_red("I must eat my opponent's heart before he eats MINE!")
+	timer = INFINITY
 
 /datum/stressevent/soulchurnerhorror
 	timer = 10 SECONDS

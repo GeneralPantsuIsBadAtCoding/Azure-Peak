@@ -127,7 +127,10 @@
 	if(!(mobility_flags & MOBILITY_STAND))
 		if(HAS_TRAIT(src, TRAIT_NOBREATH) || HAS_TRAIT(src, TRAIT_WATERBREATHING))
 			return TRUE
-		adjustOxyLoss(5)
+		if(stat == DEAD && client)
+			GLOB.azure_round_stats[STATS_PEOPLE_DROWNED]++
+		var/drown_damage = has_world_trait(/datum/world_trait/abyssor_rage) ? 10 : 5
+		adjustOxyLoss(drown_damage)
 		emote("drown")
 
 /mob/living/carbon/human/handle_inwater()

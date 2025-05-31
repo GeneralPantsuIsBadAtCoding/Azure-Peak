@@ -19,3 +19,6 @@
 
 /datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce
 	location_key = BB_BASIC_MOB_REINFORCEMENT_TARGET
+
+/datum/ai_planning_subtree/travel_to_point/and_clear_target/wander
+	location_key = BB_WANDER_POINT

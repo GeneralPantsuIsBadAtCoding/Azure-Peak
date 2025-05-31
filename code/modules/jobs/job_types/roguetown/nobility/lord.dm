@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	give_bank_account = 1000
 	required = TRUE
 	cmode_music = 'sound/music/combat_noble.ogg'
-	allowed_patrons = NON_PSYDON_PATRONS		//No Psydonites - Lore reason: Town is Astratan town, you are crowned by Astrata for right to rule. (Inhumen people pose as Ten worshipers.)
+	//allowed_patrons = NON_PSYDON_PATRONS		//No Psydonites - Lore reason: Town is Astratan town, you are crowned by Astrata for right to rule. (Inhumen people pose as Ten worshipers.) - Commented out for now, we now have storyteller tension to cause issues for psydonites.
 
 /datum/job/roguetown/exlord //just used to change the lords title
 	title = "Duke Emeritus"
@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	spawn_positions = 0
 	display_order = JDO_LADY
 	give_bank_account = TRUE
+
+/datum/outfit/job/roguetown/lord
+	job_bitflag = BITFLAG_ROYALTY
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

@@ -108,10 +108,6 @@
 	return
 
 /datum/weather/proc/start()
-	var/datum/game_mode/chaosmode/C = SSticker.mode
-	if(istype(C))
-		if(C.roguefight)
-			return
 	if(stage >= MAIN_STAGE)
 		return
 	stage = MAIN_STAGE

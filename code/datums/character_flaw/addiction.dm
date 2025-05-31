@@ -36,8 +36,8 @@
 /datum/charflaw/addiction/flaw_on_life(mob/user)
 	if(!ishuman(user))
 		return
-	if(user.mind.antag_datums)
-		for(var/datum/antagonist/D in user.mind.antag_datums)
+	if(user.mind?.antag_datums)
+		for(var/datum/antagonist/D in user.mind?.antag_datums)
 			if(istype(D, /datum/antagonist/vampirelord) || istype(D, /datum/antagonist/werewolf) || istype(D, /datum/antagonist/skeleton) || istype(D, /datum/antagonist/zombie) || istype(D, /datum/antagonist/lich))
 				return
 	var/mob/living/carbon/human/H = user

@@ -154,6 +154,7 @@ All foods are distributed among various categories. Use common sense.
 			qdel(src)
 			if(!location || !SEND_SIGNAL(location, COMSIG_TRY_STORAGE_INSERT, NU, null, TRUE, TRUE))
 				NU.forceMove(get_turf(NU.loc))
+			GLOB.azure_round_stats[STATS_FOOD_ROTTED]++
 			return TRUE
 	else
 		color = "#6c6897"
@@ -166,6 +167,7 @@ All foods are distributed among various categories. Use common sense.
 		cooktime = 0
 		if(istype(src.loc, /obj/item/cooking/platter/))
 			src.loc.update_icon()
+		GLOB.azure_round_stats[STATS_FOOD_ROTTED]++
 		return TRUE
 
 
@@ -297,6 +299,8 @@ All foods are distributed among various categories. Use common sense.
 	eater.taste(reagents)
 
 	if(!reagents.total_volume)
+		if(eat_effect == /datum/status_effect/debuff/rotfood)
+			SEND_SIGNAL(eater, COMSIG_ROTTEN_FOOD_EATEN, src)
 		var/mob/living/location = loc
 		var/obj/item/trash_item = generate_trash(location)
 		qdel(src)

@@ -23,6 +23,9 @@
 
 	cmode_music = 'sound/music/combat_knight.ogg'
 
+/datum/outfit/job/roguetown/knight
+	job_bitflag = BITFLAG_GARRISON
+
 /datum/job/roguetown/knight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
 	if(ishuman(L))

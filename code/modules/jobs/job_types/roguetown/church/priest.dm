@@ -26,7 +26,8 @@
 	virtue_restrictions = list(/datum/virtue/utility/noble)
 
 /datum/outfit/job/roguetown/priest
-	allowed_patrons = list(/datum/patron/divine/astrata)
+	job_bitflag = BITFLAG_CHURCH
+	allowed_patrons = list(/datum/patron/divine/astrata)	//We lock this cus head of church, acktully
 
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -78,6 +79,13 @@
 	H.verbs |= /mob/living/carbon/human/proc/churchannouncement
 //	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)		- You are literally disinherited. Begone......
 
+/datum/job/priest/vice //just used to change the priest title
+	title = "Vice Priest"
+	f_title = "Vice Priestess"
+	flag = PRIEST
+	department_flag = CHURCHMEN
+	total_positions = 0
+	spawn_positions = 0
 
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"

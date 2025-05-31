@@ -3,19 +3,12 @@
 	explanation_text = "Feed valuables to the idol."
 
 /datum/objective/bandit/check_completion()
-	if(SSticker.mode)
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		if(C.banditcontrib >= C.banditgoal)
-			return TRUE
+	if(SSmapping.retainer.bandit_contribute >= SSmapping.retainer.bandit_goal)
+		return TRUE
 
 /datum/objective/bandit/update_explanation_text()
 	..()
-	if(SSticker.mode)
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		if(C)
-			explanation_text = "Feed [C.banditgoal] mammon to an idol of greed."
-		else
-			explanation_text = "Pray to ZIZO."
+	explanation_text = "Feed [SSmapping.retainer.bandit_goal] mammon to an idol of greed."
 
 
 /datum/objective/delf
@@ -23,19 +16,12 @@
 	explanation_text = "Feed honeys to the mother."
 
 /datum/objective/delf/check_completion()
-	if(SSticker.mode)
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		if(C.delfcontrib >= C.delfgoal)
-			return TRUE
+	if(SSmapping.retainer.delf_contribute >= SSmapping.retainer.delf_goal)
+		return TRUE
 
 /datum/objective/delf/update_explanation_text()
 	..()
-	if(SSticker.mode)
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		if(C)
-			explanation_text = "Feed [C.delfgoal] honeys to the mother."
-		else
-			explanation_text = "Pray to ZIZO."
+	explanation_text = "Feed [SSmapping.retainer.delf_goal] honeys to the mother."
 
 /datum/objective/werewolf
 	name = "conquer"
@@ -44,10 +30,8 @@
 	triumph_count = 5
 
 /datum/objective/werewolf/check_completion()
-	var/datum/game_mode/chaosmode/C = SSticker.mode
-	if(istype(C))
-		if(C.vampire_werewolf() == "werewolf")
-			return TRUE
+	if(vampire_werewolf() == "werewolf")
+		return TRUE
 
 /datum/objective/vampire
 	name = "conquer"
@@ -56,7 +40,5 @@
 	triumph_count = 5
 
 /datum/objective/vampire/check_completion()
-	var/datum/game_mode/chaosmode/C = SSticker.mode
-	if(istype(C))
-		if(C.vampire_werewolf() == "vampire")
-			return TRUE
+	if(vampire_werewolf() == "vampire")
+		return TRUE

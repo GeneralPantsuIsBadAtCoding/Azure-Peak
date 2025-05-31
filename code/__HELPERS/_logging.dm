@@ -203,6 +203,10 @@
 /proc/log_tgui(text)
 	WRITE_LOG(GLOB.tgui_log, "\[[logtime]] [text]")
 
+/* storyteller logging */
+/proc/log_storyteller(text, list/data)
+	WRITE_LOG(GLOB.world_game_log, "STORYTELLERS: [text]")
+
 /* For logging round startup. */
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.rogue_round_id].\n-------------------------")

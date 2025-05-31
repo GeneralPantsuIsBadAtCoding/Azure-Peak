@@ -38,6 +38,8 @@
 
 	var/processing_flag = PROCESSING_DEFAULT
 
+	var/lazy_load = TRUE
+
 //Do not override
 ///datum/controller/subsystem/New()
 

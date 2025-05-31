@@ -13,6 +13,8 @@
 	var/revived = FALSE
 	var/next_idle_sound
 
+	antag_flags = FLAG_FAKE_ANTAG
+
 	// CACHE VARIABLES SO ZOMBIFICATION CAN BE CURED
 	var/was_i_undead = FALSE
 	var/special_role
@@ -394,6 +396,7 @@
 		qdel(zombie)
 		return
 
+	GLOB.azure_round_stats[STATS_DEADITES_WOKEN_UP]++
 	// Heal the zombie
 	zombie.blood_volume = BLOOD_VOLUME_NORMAL
 	zombie.setOxyLoss(0, updating_health = FALSE, forced = TRUE) // Zombies don't breathe

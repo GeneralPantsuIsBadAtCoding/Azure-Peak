@@ -149,16 +149,16 @@ SUBSYSTEM_DEF(vote)
 			if("endround")
 				if(. == "Continue Playing")
 					log_game("LOG VOTE: CONTINUE PLAYING AT [REALTIMEOFDAY]")
-					//addomen(OMEN_ROUNDSTART) not fun or roleplay having random goblins spawn every time round gets extended
 					GLOB.round_timer = GLOB.round_timer + ROUND_EXTENSION_TIME
 				else
 					log_game("LOG VOTE: ELSE  [REALTIMEOFDAY]")
-					var/datum/game_mode/C = SSticker.mode
-					if(istype(C))
-						log_game("LOG VOTE: ROUNDVOTEEND [REALTIMEOFDAY]")
-						to_chat(world, "\n<font color='purple'>[ROUND_END_TIME_VERBAL] remain.</font>")
-						C.roundvoteend = TRUE
-						C.round_ends_at = GLOB.round_timer + ROUND_END_TIME
+					log_game("LOG VOTE: ROUNDVOTEEND [REALTIMEOFDAY]")
+					to_chat(world, "\n<font color='purple'>[ROUND_END_TIME_VERBAL]</font>")
+					SSgamemode.roundvoteend = TRUE
+					SSgamemode.round_ends_at = GLOB.round_timer + ROUND_END_TIME
+			if("storyteller")
+				SSgamemode.storyteller_vote_result(.)
+
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
@@ -257,12 +257,16 @@ SUBSYSTEM_DEF(vote)
 				initiator_key = pick("Psydon", "Zizo")
 				choices.Add("Continue Playing","End Round")
 				vote_alert.file = 'sound/roundend/roundend-vote-sound.ogg'
+			if("storyteller")
+				choices.Add(SSgamemode.storyteller_vote_choices())
 			else
 				return 0
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator]."
+		if(mode == "storyteller")
+			text = initiator
 		if(mode == "custom")
 			text += "\n[question]"
 		log_vote(text)

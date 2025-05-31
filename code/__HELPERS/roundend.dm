@@ -92,8 +92,11 @@
 /mob/proc/do_game_over()
 	if(SSticker.current_state != GAME_STATE_FINISHED)
 		return
+	status_flags |= GODMODE
+	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	if(client)
-		client.verbs += /client/proc/lobbyooc
+		client.verbs |= /client/proc/lobbyooc
+		client.verbs |= /client/proc/view_stats
 		client.show_game_over()
 
 /mob/living/do_game_over()
@@ -168,37 +171,15 @@
 
 	gamemode_report()
 
+	to_chat(world, personal_objectives_report())
+
 	sleep(10 SECONDS)
 
 	players_report()
 
-	stats_report()
-
-//	for(var/client/C in GLOB.clients)
-//		if(!C.credits)
-//			C.RollCredits()
-//		C.playtitlemusic(40)
-
-//	var/popcount = gather_roundend_feedback()
-//	display_report(popcount)
-
 	CHECK_TICK
 
-//	// Add AntagHUD to everyone, see who was really evil the whole time!
-//	for(var/datum/atom_hud/antag/H in GLOB.huds)
-//		for(var/m in GLOB.player_list)
-//			var/mob/M = m
-//			H.add_hud_to(M)
-
-	CHECK_TICK
-
-	//Set news report and mode result
-//	mode.set_round_result()
-
-//	send2irc("Server", "Round just ended.")
-
-//	if(length(CONFIG_GET(keyed_list/cross_server)))
-//		send_news_report()
+	SSgamemode.store_roundend_data()
 
 	CHECK_TICK
 
@@ -223,9 +204,7 @@
 
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
-	//Collects persistence features
-	if(mode.allow_persistence_save)
-		SSpersistence.CollectData()
+	SSpersistence.CollectData()
 
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
@@ -238,25 +217,22 @@
 /datum/controller/subsystem/ticker/proc/get_end_reason()
 	var/end_reason
 
-	if(istype(SSticker.mode, /datum/game_mode/chaosmode))
-		var/datum/game_mode/chaosmode/C = SSticker.mode
-		end_reason = pick("So concluded another chapter of the story. Another begins shortly.",
-						"A blank page is filled; a new canvas presented.",
-						"Our actors hang up their masks. A new cast begins to rehearse.",
-						"Thus the week's events have taken place. Eventful or mundane, life continues.",
-						"Pawns of gods, preachers of nite, all come together to recite this tale.",
-						"Whether with loss or life, the duchy survives... for now.",
-						"The people of Azure prepare to look forward; their actions locked in the impermeable past.")
-//		if(C.not_enough_players)
-//			end_reason = "The town was abandoned."
+	if(!check_for_lord())
+		end_reason = pick("Without a Monarch, they were doomed to become slaves of Zizo.",
+						"Without a Monarch, they were doomed to be eaten by nite creachers.",
+						"Without a Monarch, they were doomed to become victims of Gehenna.",
+						"Without a Monarch, they were doomed to enjoy a mass-suicide.",
+						"Without a Monarch, the Lich made them his playthings.",
+						"Without a Monarch, some jealous rival reigned in tyranny.",
+						"Without a Monarch, the town was abandoned.")
 
-		if(C.vampire_werewolf() == "vampire")
-			end_reason = "When the Vampires finished sucking the town dry, they moved on to the next one."
-		if(C.vampire_werewolf() == "werewolf")
-			end_reason = "The Werevolves formed an unholy clan, marauding Azure Peak until the end of its daes."
+	if(vampire_werewolf() == "vampire")
+		end_reason = "When the Vampires finished sucking the town dry, they moved on to the next one."
+	if(vampire_werewolf() == "werewolf")
+		end_reason = "The Werevolves formed an unholy clan, marauding Azure Peak until the end of its daes."
 
-		if(C.headrebdecree)
-			end_reason = "The peasant rebels took control of the throne, hail the new community!"
+	if(SSmapping.retainer.head_rebel_decree)
+		end_reason = "The peasant rebels took control of the throne, hail the new community!"
 
 
 	if(end_reason)
@@ -267,6 +243,13 @@
 /datum/controller/subsystem/ticker/proc/gamemode_report()
 	var/list/all_teams = list()
 	var/list/all_antagonists = list()
+
+	var/list/header_parts
+	if(GLOB.antagonist_teams.len || GLOB.antagonists.len)
+		header_parts += "<br>"
+		header_parts += "<div style='text-align: center; font-size: 1.2em;'>VILLAINS:</div>"
+		header_parts += "<hr class='paneldivider'>"
+		to_chat(world, header_parts)
 
 	for(var/datum/team/A in GLOB.antagonist_teams)
 		if(!A.members)
@@ -311,28 +294,9 @@
 
 	return
 
-/datum/controller/subsystem/ticker/proc/stats_report()
-	var/list/shit = list()
-	shit += "<br><span class='bold'>Δ--------------------Δ</span><br>"
-	shit += "<br><font color='#9b6937'><span class='bold'>Deaths:</span></font> [deaths]"
-	shit += "<br><font color='#af2323'><span class='bold'>Blood spilt:</span></font> [round(blood_lost / 100, 1)]L"
-	shit += "<br><font color='#36959c'><span class='bold'>TRIUMPH(s) Awarded:</span></font> [tri_gained]"
-	shit += "<br><font color='#a02fa4'><span class='bold'>TRIUMPH(s) Stolen:</span></font> [tri_lost * -1]"
-	shit += "<br><font color='#ffd4fd'><span class='bold'>Pleasures:</span></font> [cums]"
-	if(GLOB.confessors.len)
-		shit += "<br><font color='#93cac7'><span class='bold'>Confessors:</span></font> "
-		for(var/x in GLOB.confessors)
-			shit += "[x]"
-	shit += "<br><br><span class='bold'>∇--------------------∇</span>"
-	to_chat(world, "[shit.Join()]")
-	return
-
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
-		if(mode.station_was_nuked)
-			Reboot("Station destroyed by Nuclear Device.", "nuke")
-		else
-			Reboot("Round ended.", "proper completion")
+		Reboot("Round ended.", "proper completion")
 	else
 		CRASH("Attempted standard reboot without ticker roundend completion")
 
@@ -340,13 +304,15 @@
 /datum/controller/subsystem/ticker/proc/build_roundend_report()
 	var/list/parts = list()
 
-	//Gamemode specific things. Should be empty most of the time.
-	parts += mode.special_report()
-
 	CHECK_TICK
 
 	//Antagonists
 	parts += antag_report()
+
+	CHECK_TICK
+
+	//Personal objectives
+	parts += personal_objectives_report()
 
 	CHECK_TICK
 	//Medals
@@ -378,13 +344,6 @@
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
 				parts += "[FOURSPACES]<i>Nobody died this shift!</i>"
-	if(istype(SSticker.mode, /datum/game_mode/dynamic))
-		var/datum/game_mode/dynamic/mode = SSticker.mode
-		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
-		parts += "[FOURSPACES]Threat left: [mode.threat]"
-		parts += "[FOURSPACES]Executed rules:"
-		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -454,6 +413,66 @@
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	return ""
 
+/datum/controller/subsystem/ticker/proc/personal_objectives_report()
+	var/list/parts = list()
+	var/failed_chosen = 0
+	var/has_any_objectives = FALSE
+
+	// Header
+	parts += "<div class='panel stationborder'>"
+	if(GLOB.personal_objective_minds.len)
+		parts += "<div style='text-align: center; font-size: 1.2em;'>GODS' CHAMPIONS:</div>"
+		parts += "<hr class='paneldivider'>"
+
+	// Process all minds with personal objectives
+	var/last_index = length(GLOB.personal_objective_minds)
+	var/current_index = 0
+	for(var/datum/mind/mind as anything in GLOB.personal_objective_minds)
+		current_index++
+		if(!mind.personal_objectives || !mind.personal_objectives.len)
+			continue
+
+		has_any_objectives = TRUE
+		var/any_success = FALSE
+		for(var/datum/objective/objective as anything in mind.personal_objectives)
+			if(objective.check_completion())
+				any_success = TRUE
+				break
+
+		if(!any_success)
+			failed_chosen++
+			continue
+
+		var/name_with_title
+		if(mind.current)
+			name_with_title = printplayer(mind)
+		else
+			name_with_title = "<b>Unknown Champion</b>"
+
+		parts += "[name_with_title]"
+
+		var/obj_count = 1
+		for(var/datum/objective/objective as anything in mind.personal_objectives)
+			var/result = objective.check_completion() ? span_greentext("TRIUMPH!") : span_redtext("FAIL")
+			parts += "<B>Goal #[obj_count]</B>: [objective.explanation_text] - [result]"
+			obj_count++
+
+		if(current_index < last_index)
+			parts += "<br>"
+		CHECK_TICK
+
+	if(!has_any_objectives)
+		parts += "<div style='text-align: center;'>No personal objectives were assigned this round.</div>"
+	else if(failed_chosen > 0)
+		if(failed_chosen == 1)
+			parts += "<div style='text-align: center;'>1 god's chosen has failed to become a champion.</div>"
+		else
+			parts += "<div style='text-align: center;'>[failed_chosen] gods' chosen have failed to become champions.</div>"
+
+	parts += "</div>"
+
+	return parts.Join("<br>")
+
 /datum/controller/subsystem/ticker/proc/antag_report()
 	var/list/result = list()
 	var/list/all_teams = list()
@@ -494,7 +513,7 @@
 			currrent_category = A.roundend_category
 			previous_category = A
 		result += A.roundend_report()
-		result += "<br><br>"
+		result += "<br>"
 		CHECK_TICK
 
 	if(all_antagonists.len)
@@ -516,6 +535,8 @@
 /datum/controller/subsystem/ticker/proc/give_show_playerlist_button(client/C)
 	set waitfor = 0
 	to_chat(C,"<a href='?src=[C];playerlistrogue=1'>* SHOW PLAYER LIST *</a>")
+	to_chat(C,"<a href='byond://?src=[C];viewstats=1'>* View Statistics *</a>")
+	C.show_round_stats(pick_assoc(GLOB.featured_stats))
 	C.commendsomeone(forced = TRUE)
 
 /datum/action/report

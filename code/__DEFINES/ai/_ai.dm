@@ -66,6 +66,8 @@
 
 #define BB_BASIC_MOB_TAMED "BB_basic_mob_tamed"
 
+#define BB_WANDER_POINT "BB_wander_point"
+
 //farm animals ai
 #define BB_CHICKEN_LAY_EGG "BB_chicken_lay_egg"
 #define BB_CHICKEN_NESTING_BOX "BB_chicken_nest_box"

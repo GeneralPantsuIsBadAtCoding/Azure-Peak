@@ -14,11 +14,16 @@
 	static_debris = list(/obj/item/grown/log/tree = 1)
 	obj_flags = CAN_BE_HIT | BLOCK_Z_IN_UP | BLOCK_Z_OUT_DOWN
 	max_integrity = 400
+	//If the tree has been burn beforehand.
+	var/burnt = FALSE
 
 /obj/structure/flora/newtree/fire_act(added, maxstacks)
-	if(added <= 5)
-		return
-	return ..()
+	. = ..()
+	if(.)
+		burnt = TRUE
+		if(icon_state != "burnt")
+			name = "burnt tree"
+			update_icon()
 
 /obj/structure/flora/newtree/attack_right(mob/user)
 	if(user.mind && isliving(user))
@@ -37,6 +42,8 @@
 	var/turf/NT = get_turf(src)
 	var/turf/UPNT = get_step_multiz(src, UP)
 	src.obj_flags = CAN_BE_HIT | BLOCK_Z_IN_UP //so the logs actually fall when pulled by zfall
+	if(burnt)
+		damage_flag = "fire"
 
 	for(var/obj/structure/flora/newtree/D in UPNT)//theoretically you'd be able to break trees through a floor but no one is building floors under a tree so this is probably fine
 		D.obj_destruction(damage_flag)
@@ -110,8 +117,20 @@
 			if(L.mind) // idk just following whats going on above
 				L.mind.add_sleep_experience(/datum/skill/misc/climbing, exp_to_gain, FALSE)
 
+/obj/structure/flora/newtree/attacked_by(obj/item/I, mob/living/user)
+	var/was_destroyed = obj_destroyed
+	. = ..()
+	if(.)
+		if(!was_destroyed && obj_destroyed)
+			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
+			GLOB.azure_round_stats[STATS_TREES_CUT]++
+
 /obj/structure/flora/newtree/update_icon()
 	icon_state = ""
+	if(burnt)
+		icon_state = "burnt"
+		cut_overlays()
+		return
 	cut_overlays()
 	var/mutable_appearance/M
 	if(base_state)

@@ -144,8 +144,11 @@
 			return FALSE
 	return TRUE
 
-/atom/proc/OnCrafted(dirin, user)
+/atom/proc/OnCrafted(dirin, mob/user)
+	SEND_SIGNAL(user, COMSIG_ITEM_CRAFTED, user, type)
 	dir = dirin
+	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
+	record_featured_object_stat(FEATURED_STATS_CRAFTED_ITEMS, name)
 	return
 
 /obj/item/OnCrafted(dirin)

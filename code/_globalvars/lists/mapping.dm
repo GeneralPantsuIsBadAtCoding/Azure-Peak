@@ -40,6 +40,7 @@ GLOBAL_LIST_EMPTY(underworldspawn)
 GLOBAL_LIST_EMPTY(hauntstart)
 GLOBAL_LIST_EMPTY(testportals)
 GLOBAL_LIST_EMPTY(traveltiles)
+GLOBAL_LIST_EMPTY(migrationpoints)
 GLOBAL_LIST_EMPTY(secequipment) //sec equipment lockers that scale with the number of sec players
 GLOBAL_LIST_EMPTY(deathsquadspawn)
 GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)

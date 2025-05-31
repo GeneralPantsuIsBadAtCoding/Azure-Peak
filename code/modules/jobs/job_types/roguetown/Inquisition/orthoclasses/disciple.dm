@@ -6,6 +6,9 @@
 	outfit = /datum/outfit/job/roguetown/disciple
 	category_tags = list(CTAG_INQUISITION)
 
+/datum/outfit/job/roguetown/disciple
+	job_bitflag = BITFLAG_CHURCH
+
 /datum/outfit/job/roguetown/disciple/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver

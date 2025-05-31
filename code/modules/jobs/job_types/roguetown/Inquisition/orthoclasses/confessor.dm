@@ -7,6 +7,9 @@
 	category_tags = list(CTAG_INQUISITION)
 	cmode_music = 'sound/music/combat_rogue.ogg'
 
+/datum/outfit/job/roguetown/confessor
+	job_bitflag = BITFLAG_CHURCH
+
 /datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE) // Cudgellin - Nonlethals

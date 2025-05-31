@@ -223,3 +223,59 @@
 	ingredient_size = 1
 	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked
+
+/*	........   Fish sounds   ................ */
+/obj/item/reagent_containers/food/snacks/fish
+	chopping_sound = TRUE
+	slices_num = 2
+	/// Number representing how rare the fish is, 0 is the lowest common fish
+	var/rarity_rank = 0
+
+/* ............. fish chop ................*/
+/obj/item/reagent_containers/food/snacks/rogue/meat/fish
+	name = "fish filet"
+	desc = "A filet of fish. All of them are the same inside."
+	icon_state = "fish_filet"
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/fish/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/fish/fried
+	slices_num = 1
+	ingredient_size = 1
+
+/* .........   Shellfish    ................. */
+/obj/item/reagent_containers/food/snacks/rogue/meat/shellfish
+	name = "shellfish meat"
+	desc = "Meat from a crustacean. Salty with a different texture than most fishmeat. Chop to create mince, bake or fry to make fried shellfish meat"
+	icon_state = "shellfish_meat"
+	rotprocess = SHELFLIFE_LONG
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish
+	slices_num = 1
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/shellfish/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/shellfish/fried
+
+/obj/item/reagent_containers/food/snacks/rogue/meat/shellfish/fried
+	eat_effect = null
+	slices_num = 0
+	name = "fried shellfish"
+	desc = "Fried shellfish meat. A bit salty, but delicious."
+	faretype = FARE_NEUTRAL
+	icon_state = "shellfish_meat_cooked"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = MEATSLAB_NUTRITION)
+
+/* ............. Cabbit Meat ................*/
+/obj/item/reagent_containers/food/snacks/rogue/meat/rabbit
+	name = "raw cabbit meat"
+	icon_state = "cabbitcutlet"
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/rabbit
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/rabbit/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/rabbit/fried
+	slices_num = 1
+	ingredient_size = 1
+
+/* ............. Volf Meat ................*/
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf
+	name = "raw volf meat"
+	icon_state = "volfstrip"
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/beef		//Honestly, we don't need our own minced type on this one.
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf/fried

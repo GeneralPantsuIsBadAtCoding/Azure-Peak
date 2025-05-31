@@ -444,6 +444,8 @@
 	//Dual wielder is there to stand-in for ambidextrous in case they activate their sword in their off-hand.
 	virtue_restrictions = list(/datum/virtue/utility/noble, /datum/virtue/combat/rotcured, /datum/virtue/utility/deadened, /datum/virtue/utility/deathless, /datum/virtue/heretic/seer, /datum/virtue/combat/dualwielder)
 
+/datum/outfit/job/roguetown/martyr
+	job_bitflag = BITFLAG_CHURCH
 
 /datum/outfit/job/roguetown/martyr/pre_equip(mob/living/carbon/human/H)
 	..()

@@ -443,6 +443,8 @@
 		if(H.rogfat_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
+			if(src.client)
+				GLOB.azure_round_stats[STATS_PARRIES]++
 			if(istype(rmb_intent, /datum/rmb_intent/riposte))
 				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
@@ -462,11 +464,15 @@
 		if(H.rogfat_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
+			if(src.client)
+				GLOB.azure_round_stats[STATS_PARRIES]++
 			return TRUE
 		else
 			to_chat(src, span_boldwarning("I'm too tired to parry!"))
 			return FALSE
 	else
+		if(src.client)
+			GLOB.azure_round_stats[STATS_PARRIES]++
 		playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 		return TRUE
 
@@ -682,6 +688,21 @@
 	var/datum/atom_hud/antag/hud = GLOB.huds[antag_hud_type]
 	hud.leave_hud(src)
 	set_antag_hud(src, null)
+
+/mob/living/carbon/human/proc/is_noble()
+	var/noble = FALSE
+	if (job in GLOB.noble_positions)
+		noble = TRUE
+	if (HAS_TRAIT(src, TRAIT_NOBLE))
+		noble = TRUE
+
+	return noble
+
+/mob/living/carbon/human/proc/is_yeoman()
+	return job in GLOB.yeoman_positions
+
+/mob/living/carbon/human/proc/is_courtier()
+	return job in GLOB.courtier_positions
 
 /mob/living/carbon/human/proc/calculate_sentinel_bonus()
 	if(STAINT > 10)

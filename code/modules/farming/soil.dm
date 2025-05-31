@@ -72,6 +72,12 @@
 		feedback = "I harvest the produce well."
 		modifier += 1
 
+	if(has_world_trait(/datum/world_trait/dendor_fertility))
+		feedback = "Praise Dendor for our harvest is bountiful."
+		modifier += 3
+
+	record_featured_stat(FEATURED_STATS_FARMERS, user)
+	GLOB.azure_round_stats[STATS_PLANTS_HARVESTED]++
 	to_chat(user, span_notice(feedback))
 	yield_produce(modifier, is_legendary)
 
@@ -522,6 +528,16 @@
 	if(blessed_time > 0 || fertilized_time > 0)
 		growth_multiplier *= 2.0
 		nutriment_eat_mutliplier *= 0.4
+	if(has_world_trait(/datum/world_trait/dendor_fertility))
+		growth_multiplier *= 2.0
+		nutriment_eat_mutliplier *= 0.4
+
+	if(has_world_trait(/datum/world_trait/fertility))
+		growth_multiplier *= 1.5
+
+	if(has_world_trait(/datum/world_trait/dendor_drought))
+		growth_multiplier *= 0.4
+		nutriment_eat_mutliplier *= 2
 	// If there's too many weeds, they hamper the growth of the plant
 	if(weeds >= MAX_PLANT_WEEDS * 0.3)
 		growth_multiplier *= 0.75

@@ -265,3 +265,20 @@
 /mob/living/proc/goodluck(multi = 3)
 	if(STALUC > 10)
 		return prob((STALUC - 10) * multi)
+
+/mob/living/proc/get_stat_level(stat_keys)
+	switch(stat_keys)
+		if(STATKEY_STR)
+			return STASTR
+		if(STATKEY_PER)
+			return STAPER
+		if(STATKEY_END)
+			return STAEND
+		if(STATKEY_CON)
+			return STACON
+		if(STATKEY_INT)
+			return STAINT
+		if(STATKEY_SPD)
+			return STASPD
+		if(STATKEY_LCK)
+			return STALUC

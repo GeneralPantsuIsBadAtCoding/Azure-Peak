@@ -26,6 +26,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/increase_votepwr = TRUE
 	var/rogue_enabled = FALSE
 
+	///flags used by storytellers
+	var/antag_flags = NONE
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
@@ -174,6 +177,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	else
 		testing("redtext")
 		report += span_redtextbig("The [name] has failed!")
+	report += "<br>"
 
 	return report.Join("<br>")
 

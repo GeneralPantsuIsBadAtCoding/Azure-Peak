@@ -27,6 +27,8 @@ GLOBAL_LIST_EMPTY(preference_patrons)
 	/// Assoc list of miracles it grants. Type = Cleric_Tier
 	var/list/miracles = list()
 
+	var/datum/storyteller/storyteller
+
 /datum/patron/proc/on_gain(mob/living/pious)
 	for(var/trait in mob_traits)
 		ADD_TRAIT(pious, trait, "[type]")

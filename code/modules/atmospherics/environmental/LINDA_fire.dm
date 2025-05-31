@@ -161,4 +161,44 @@
 	light_color = LIGHT_COLOR_FIRE
 	light_outer_range =  LIGHT_RANGE_FIRE
 
+/obj/effect/hotspot/proc/handle_automatic_spread()
+	///maybe add sound probably not
+
+	for(var/obj/object in loc)
+		if(QDELETED(object) || isnull(object))
+			continue
+		var/can_break = TRUE
+		if((object.resistance_flags & INDESTRUCTIBLE) || (object.resistance_flags & FIRE_PROOF))
+			can_break = FALSE
+		if(!can_break)
+			continue
+		object.fire_act(temperature * firelevel)
+
+	var/burn_power = 0
+	var/modifier = 1
+	if(SSParticleWeather.runningWeather?.target_trait == PARTICLEWEATHER_RAIN) //this does apply to indoor turfs but w/e
+		var/turf/floor= get_turf(src)
+		if(!floor?.outdoor_effect?.weatherproof)
+			modifier = 0.5
+	if(isfloorturf(get_turf(src)))
+		var/turf/floor= get_turf(src)
+		floor.burn_power = max(0, floor.burn_power - (1 * firelevel))
+		if(floor.burn_power == 0)
+			extinguish()
+		burn_power += floor.burn_power
+		if(prob(floor.spread_chance * modifier))
+			change_firelevel(min(3, firelevel+1))
+
+		if(burn_power)
+			for(var/turf/ranged_floor in range(1, src))
+				if(ranged_floor == src || !ranged_floor.burn_power)
+					continue
+				var/obj/effect/hotspot/located_fire = locate() in ranged_floor
+				if(prob(ranged_floor.spread_chance * modifier) && !located_fire)
+					new /obj/effect/hotspot(ranged_floor, volume, temperature)
+
+/obj/effect/hotspot/proc/change_firelevel(level = 1)
+	firelevel = level
+	icon_state = "[firelevel]"
+
 #undef INSUFFICIENT

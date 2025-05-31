@@ -20,6 +20,9 @@
 	round_contrib_points = 2
 	cmode_music = 'sound/music/combat_noble.ogg'
 
+/datum/outfit/job/roguetown/councillor
+	job_bitflag = BITFLAG_ROYALTY
+
 /datum/outfit/job/roguetown/councillor/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich

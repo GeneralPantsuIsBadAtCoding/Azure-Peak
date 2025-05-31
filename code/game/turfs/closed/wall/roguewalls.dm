@@ -131,6 +131,9 @@
 	neighborlay = "dirtedge"
 	climbdiff = 3
 
+	burn_power = 20
+	spread_chance = 4
+
 /turf/closed/wall/mineral/rogue/wood/window
 	name = "wooden window"
 	desc = "A window with a rough-hewn wood frame."
@@ -164,6 +167,9 @@
 	neighborlay = "dirtedge"
 	climbdiff = 1
 
+	burn_power = 20
+	spread_chance = 9
+
 /turf/closed/wall/mineral/rogue/wooddark
 	name = "dark wood wall"
 	desc = "Made from durable, somewhat darker wood." // i am not sure if the wood is really dark
@@ -179,6 +185,8 @@
 	baseturfs = list(/turf/open/floor/rogue/ruinedwood)
 	neighborlay = "dirtedge"
 	climbdiff = 3
+	burn_power = 20
+	spread_chance = 4
 
 /turf/closed/wall/mineral/rogue/wooddark/horizontal
 	icon_state = "horizwooddark"
@@ -216,6 +224,8 @@
 	baseturfs = list(/turf/open/floor/rogue/ruinedwood)
 	neighborlay = "dirtedge"
 	climbdiff = 3
+	burn_power = 20
+	spread_chance = 4
 
 /turf/closed/wall/mineral/rogue/roofwall/center
 	icon_state = "roofTurf_I"
@@ -244,6 +254,8 @@
 	baseturfs = list(/turf/open/floor/rogue/ruinedwood)
 	neighborlay = "dirtedge"
 	climbdiff = 3
+	burn_power = 20
+	spread_chance = 4
 
 /turf/closed/wall/mineral/rogue/decowood/Initialize()
 	. = ..()

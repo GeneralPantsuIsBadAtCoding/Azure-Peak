@@ -1138,7 +1138,7 @@
 	if(owner.mind)
 		if(owner.mind.has_antag_datum(/datum/antagonist/obsessed))
 			return
-	SSticker.cums++
+	GLOB.azure_round_stats[STATS_PLEASURES]++
 	blueballs = FALSE
 	adjust_horny(-350)
 	switch(source)

@@ -5,4 +5,4 @@
 			used = 'sound/vo/male/wizard/laugh.ogg'
 	if(!used)
 		used = ..(soundin, modifiers)
-	return used
+	return

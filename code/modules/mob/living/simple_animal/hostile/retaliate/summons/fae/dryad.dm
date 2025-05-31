@@ -93,7 +93,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/vine()
 	target.visible_message(span_boldwarning("Vines spread out from [src]!"))
 	for(var/turf/turf as anything in RANGE_TURFS(3,src.loc))
-		new /obj/structure/spacevine(turf)
+		new /obj/structure/vine(turf)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
 	..()

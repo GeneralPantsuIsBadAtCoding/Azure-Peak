@@ -31,6 +31,12 @@
 	grid_width = 32
 	grid_height = 64
 
+//Destroyer of knowledge - for storytellers
+/obj/item/book/fire_act()
+	GLOB.azure_round_stats[STATS_BOOKS_BURNED]++
+	..()
+
+
 /obj/item/book/attack_self(mob/user)
 	if(!user.can_read(src))
 		return

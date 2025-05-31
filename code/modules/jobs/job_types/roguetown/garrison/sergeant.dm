@@ -23,6 +23,9 @@
 	max_pq = null
 	cmode_music = 'sound/music/combat_guard4.ogg'
 
+/datum/outfit/job/roguetown/sergeant
+	job_bitflag = BITFLAG_GARRISON
+
 /datum/job/roguetown/sergeant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))

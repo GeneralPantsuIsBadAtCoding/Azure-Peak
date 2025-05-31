@@ -270,3 +270,10 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 		if(19 to INFINITY)
 			return STRESS_THRESHOLD_FREAKING_OUT
 
+/mob/living/carbon/add_stress_list(list/event_list)
+	for(var/event_type in event_list)
+		add_stress(event_type)
+
+/mob/living/carbon/remove_stress_list(list/event_list)
+	for(var/event_type in event_list)
+		remove_stress(event_type)

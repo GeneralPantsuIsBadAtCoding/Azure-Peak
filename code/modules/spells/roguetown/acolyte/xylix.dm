@@ -38,7 +38,9 @@
 		if(!target.can_hear()) // Vicious mockery requires people to be able to hear you.
 			revert_cast()
 			return FALSE
-		target.apply_status_effect(/datum/status_effect/debuff/viciousmockery)	
+		target.apply_status_effect(/datum/status_effect/debuff/viciousmockery)
+		SEND_SIGNAL(user, COMSIG_VICIOUSLY_MOCKED, target)
+		GLOB.azure_round_stats[STATS_PEOPLE_MOCKED]++
 		return TRUE
 	revert_cast()
 	return FALSE

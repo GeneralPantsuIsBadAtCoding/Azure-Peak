@@ -23,6 +23,9 @@
 
 	cmode_music = 'sound/music/combat_guard.ogg'
 
+/datum/outfit/job/roguetown/guardsman
+	job_bitflag = BITFLAG_GARRISON
+
 /datum/job/roguetown/guardsman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))

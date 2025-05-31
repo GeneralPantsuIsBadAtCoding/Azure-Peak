@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/items/ore.dmi'
 	icon_state = "ore"
 	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FIRE_PROOF
 	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
@@ -93,6 +94,7 @@
 	icon_state = "ingot"
 	w_class = WEIGHT_CLASS_NORMAL
 	smeltresult = null
+	resistance_flags = FIRE_PROOF
 	smelted = TRUE
 	var/datum/anvil_recipe/currecipe
 	var/quality = SMELTERY_LEVEL_NORMAL

@@ -86,6 +86,10 @@
 					if(baited)
 						var/bp = baited.baitpenalty // Penalty to fishing chance based on how good bait is. Lower is better.
 						var/fishchance = 100 // Total fishing chance, deductions applied below
+						if(has_world_trait(/datum/world_trait/fishing_decrease))
+							fishchance -= 25
+						if(has_world_trait(/datum/world_trait/fishing_increase))
+							fishchance += 40
 						if(user.mind)
 							if(!sl) // If we have zero fishing skill...
 								fishchance -= 50 // 50% chance to fish base
@@ -167,6 +171,8 @@
 										new A(user.loc)
 										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
+										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
+										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
 									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
 									if(prob(80 - (sl * 10))) // Higher skill levels make you less likely to lose your bait
 										to_chat(user, "<span class='warning'>Damn, it ate my bait.</span>")

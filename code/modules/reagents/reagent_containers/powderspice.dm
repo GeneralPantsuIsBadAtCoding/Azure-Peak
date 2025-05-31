@@ -90,6 +90,7 @@
 		if(canconsume(C, silent = TRUE))
 			if(reagents.total_volume)
 				playsound(C, 'sound/items/sniff.ogg', 100, FALSE)
+				GLOB.azure_round_stats[STATS_DRUGS_SNORTED]++
 				reagents.trans_to(C, 1, transfered_by = thrownthing.thrower, method = "swallow")
 	qdel(src)
 
@@ -115,9 +116,13 @@
 				return FALSE
 
 	playsound(M, 'sound/items/sniff.ogg', 100, FALSE)
+	GLOB.azure_round_stats[STATS_DRUGS_SNORTED]++
 
 	if(reagents.total_volume)
 		reagents.trans_to(M, reagents.total_volume, transfered_by = user, method = "swallow")
+		SEND_SIGNAL(M, COMSIG_DRUG_SNIFFED, user)
+		record_featured_stat(FEATURED_STATS_CRIMINALS, user)
+		GLOB.azure_round_stats[STATS_DRUGS_SNORTED]++
 	qdel(src)
 	return TRUE
 

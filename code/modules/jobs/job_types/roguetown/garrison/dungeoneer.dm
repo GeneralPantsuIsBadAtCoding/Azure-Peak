@@ -34,6 +34,9 @@
 	for(var/X in GLOB.courtier_positions)
 		peopleknowme += X
 
+/datum/outfit/job/roguetown/dungeoneer
+	job_bitflag = BITFLAG_GARRISON
+
 /datum/outfit/job/roguetown/dungeoneer/pre_equip(mob/living/carbon/human/H)
 	..()
 	pants = /obj/item/clothing/under/roguetown/trou/leather/mourning

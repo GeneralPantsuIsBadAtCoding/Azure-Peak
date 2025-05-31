@@ -25,6 +25,9 @@
 	cmode_music = 'sound/music/combat_physician.ogg'
 
 /datum/outfit/job/roguetown/physician
+	job_bitflag = BITFLAG_ROYALTY
+
+/datum/outfit/job/roguetown/physician
 	name = "Physician"
 	jobtype = /datum/job/roguetown/physician
 

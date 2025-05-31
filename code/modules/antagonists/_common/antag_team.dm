@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 			report += span_greentext("The [name] was successful!")
 		else
 			report += span_redtext("The [name] have failed!")
+		report += "<br>"
 
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"

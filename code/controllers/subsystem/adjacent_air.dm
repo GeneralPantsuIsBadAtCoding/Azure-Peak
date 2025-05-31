@@ -47,6 +47,13 @@ SUBSYSTEM_DEF(adjacent_air)
 /turf
 	//list of open turfs adjacent to us
 	var/list/atmos_adjacent_turfs
+	///the chance this turf has to spread, basically 3% by default
+	var/spread_chance = 0
+	///means fires last at base 15 seconds
+	var/burn_power = 0
+	var/obj/effect/abstract/liquid_turf/liquids
+	var/liquid_height = 0
+	var/turf_height = 0
 /turf/open
 	var/obj/effect/hotspot/active_hotspot
 /turf/CanAtmosPass = ATMOS_PASS_NO

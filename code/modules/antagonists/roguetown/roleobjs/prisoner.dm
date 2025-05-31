@@ -2,6 +2,7 @@
 /datum/antagonist/prisoner
 	name = "Prisoner"
 	increase_votepwr = FALSE
+	antag_flags = FLAG_FAKE_ANTAG
 
 /datum/antagonist/prisoner/on_gain()
 	if(!(locate(/datum/objective/escape) in objectives))

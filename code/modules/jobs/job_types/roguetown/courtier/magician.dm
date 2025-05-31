@@ -22,6 +22,9 @@
 	round_contrib_points = 2
 	cmode_music = 'sound/music/combat_bandit_mage.ogg'
 
+/datum/outfit/job/roguetown/magician
+	job_bitflag = BITFLAG_ROYALTY
+
 /datum/outfit/job/roguetown/magician/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/talkstone

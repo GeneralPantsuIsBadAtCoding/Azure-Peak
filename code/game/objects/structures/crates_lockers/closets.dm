@@ -356,6 +356,8 @@
 					add_sleep_experience(L, /datum/skill/misc/lockpicking, L.STAINT/2)
 				if(lockprogress >= locktreshold)
 					to_chat(user, "<span class='deadsay'>The locking mechanism gives.</span>")
+					record_featured_stat(FEATURED_STATS_CRIMINALS, user)
+					GLOB.azure_round_stats[STATS_LOCKS_PICKED]++
 					togglelock(user)
 					break
 				else

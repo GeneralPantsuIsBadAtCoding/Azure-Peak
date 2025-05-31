@@ -34,6 +34,7 @@
 /datum/outfit/job/roguetown/gatemaster
 	name = "Gatemaster"
 	jobtype = /datum/job/roguetown/gatemaster
+	job_bitflag = BITFLAG_GARRISON
 
 /datum/outfit/job/roguetown/gatemaster/pre_equip(mob/living/carbon/human/H)
 	..()

@@ -1,3 +1,12 @@
+// This flag disables certain checks that presume antagonist datums mean 'baddie'.
+#define FLAG_FAKE_ANTAG					(1 << 0)
+//The storyteller will ignore this antag datum as counting against the antag cap.
+#define FLAG_ANTAG_CAP_IGNORE			(1 << 1)
+//  The storyteller will count everyone on this antag's team as a singular antag instead.
+#define FLAG_ANTAG_CAP_TEAM				(1 << 2)
+
+
+//Old-ass TG shit below.
 #define NUKE_RESULT_FLUKE 0
 #define NUKE_RESULT_NUKE_WIN 1
 #define NUKE_RESULT_CREW_WIN 2

@@ -116,7 +116,7 @@
 	user.emote("sexmoanhvy", forced = TRUE)
 	user.playsound_local(user, 'sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time
-	SSticker.cums++
+	GLOB.azure_round_stats[STATS_PLEASURES]++
 
 /datum/sex_controller/proc/after_intimate_climax()
 	if(user == target)
