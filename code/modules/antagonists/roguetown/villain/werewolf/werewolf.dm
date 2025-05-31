@@ -128,6 +128,7 @@
 	desc = ""
 	icon_state = null
 	body_parts_covered = FULL_BODY
+	body_parts_inherent = FULL_BODY
 	armor = ARMOR_WWOLF
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
@@ -162,9 +163,11 @@
 	force = 25
 	block_chance = 0
 	wdefense = 2
+	blade_dulling = DULLING_SHAFT_GRAND
 	armor_penetration = 15
 	associated_skill = /datum/skill/combat/unarmed
 	wlength = WLENGTH_NORMAL
+	wbalance = WBALANCE_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
 	can_parry = TRUE
 	sharpness = IS_SHARP
