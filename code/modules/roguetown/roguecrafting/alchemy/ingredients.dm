@@ -28,15 +28,15 @@
 	if(!isnull(major_pot))
 		var/datum/alch_cauldron_recipe/rec = locate(major_pot) in GLOB.alch_cauldron_recipes
 		major_smell = rec.smells_like
-		major_name = rec.recipe_name
+		major_name = rec.name
 	if(!isnull(med_pot))
 		var/datum/alch_cauldron_recipe/rec = locate(med_pot) in GLOB.alch_cauldron_recipes
 		med_smell = rec.smells_like
-		med_name = rec.recipe_name
+		med_name = rec.name
 	if(!isnull(minor_pot))
 		var/datum/alch_cauldron_recipe/rec = locate(minor_pot) in GLOB.alch_cauldron_recipes
 		minor_smell = rec.smells_like
-		minor_name = rec.recipe_name
+		minor_name = rec.name
 
 /obj/item/alch/examine(mob/user)
 	. = ..()
