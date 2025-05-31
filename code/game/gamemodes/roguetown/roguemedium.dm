@@ -8,7 +8,7 @@
 	required_enemies = 0
 	recommended_enemies = 0
 	enemy_minimum_age = 0
-	votable = TRUE
+	votable = FALSE // Temporarily disabled until we have more antags variety + scale it properly
 	probability = 80
 
 	announce_span = "danger"
