@@ -67,3 +67,10 @@
 	contains = list(
 					/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled,
 				)
+
+/datum/supply_pack/rogue/livestock/queen_bee
+	name = "Queen Bee"
+	cost = 80
+	contains = list(
+					/obj/item/queen_bee,
+				)

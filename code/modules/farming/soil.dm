@@ -36,6 +36,8 @@
 	var/tilled_time = 0
 	/// The time remaining in which the soil was blessed and will help the plant grow, and make weeds decay
 	var/blessed_time = 0
+	/// The time remaining in which the soil is pollinated.
+	var/pollination_time = 0
 	/// Time remaining for the soil to decay and destroy itself, only applicable when its out of water and nutriments and has no plant
 	var/soil_decay_time = SOIL_DECAY_TIME
 	///The time remaining in which the soil was given special fertilizer, effect is similar to being blessed but with less beneficial effects
@@ -439,6 +441,8 @@
 		. += span_good("The soil seems blessed.")
 	if(fertilized_time > 0)
 		. += span_good("The soil has special fertilizer mixed in.")
+	if(pollination_time > 0)
+		. += span_good("The soil has been pollinated.")
 
 #define BLESSING_WEED_DECAY_RATE 10 / (1 MINUTES)
 #define WEED_GROWTH_RATE 3 / (1 MINUTES)
@@ -522,6 +526,9 @@
 	if(blessed_time > 0 || fertilized_time > 0)
 		growth_multiplier *= 2.0
 		nutriment_eat_mutliplier *= 0.4
+	if(pollination_time > 0)
+		growth_multiplier *= 1.75
+		nutriment_eat_mutliplier *= 0.6
 	// If there's too many weeds, they hamper the growth of the plant
 	if(weeds >= MAX_PLANT_WEEDS * 0.3)
 		growth_multiplier *= 0.75
@@ -577,6 +584,7 @@
 		nutrition = 100
 	tilled_time = max(tilled_time - dt, 0)
 	blessed_time = max(blessed_time - dt, 0)
+	pollination_time = max(pollination_time - dt, 0)
 
 /obj/structure/soil/proc/decay_soil()
 	uproot()

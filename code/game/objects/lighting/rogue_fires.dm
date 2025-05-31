@@ -221,6 +221,7 @@
 	icon_state = "floorcandle1"
 	base_state = "floorcandle"
 	pixel_y = 0
+	layer = TABLE_LAYER
 	cookonme = FALSE
 
 /obj/machinery/light/rogue/wallfire/candle/floorcandle/alt

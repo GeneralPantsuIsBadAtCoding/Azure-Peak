@@ -754,7 +754,7 @@
 				qdel(src)
 		else
 			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/honey))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/spiderhoney))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
 			to_chat(user, span_notice("Slathering the cake with delicious spider honey..."))

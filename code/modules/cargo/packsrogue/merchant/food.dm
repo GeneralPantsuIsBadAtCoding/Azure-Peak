@@ -109,9 +109,9 @@
 	name = "Honey"
 	cost = 40
 	contains = list(
-					/obj/item/reagent_containers/food/snacks/rogue/honey,
-					/obj/item/reagent_containers/food/snacks/rogue/honey,
-					/obj/item/reagent_containers/food/snacks/rogue/honey,
+					/obj/item/reagent_containers/food/snacks/rogue/spiderhoney,
+					/obj/item/reagent_containers/food/snacks/rogue/spiderhoney,
+					/obj/item/reagent_containers/food/snacks/rogue/spiderhoney,
 				)
 
 /datum/supply_pack/rogue/food/eel

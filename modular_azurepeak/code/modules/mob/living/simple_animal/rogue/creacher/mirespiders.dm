@@ -186,7 +186,7 @@
 /mob/living/simple_animal/hostile/rogue/mirespider_lurker/death(gibbed)
     ..()
     if(prob(40))
-        new /obj/item/reagent_containers/food/snacks/rogue/honey(loc)
+        new /obj/item/reagent_containers/food/snacks/rogue/spiderhoney(loc)
     if(prob(10))
         new /obj/item/roguegem/violet(loc)
     update_icon()

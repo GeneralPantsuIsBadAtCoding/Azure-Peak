@@ -107,7 +107,7 @@
 		qdel(M)
 
 // -------------- SPIDER HONEY -----------------
-/obj/item/reagent_containers/food/snacks/rogue/honey
+/obj/item/reagent_containers/food/snacks/rogue/spiderhoney
 	name = "spider honey"
 	icon = 'modular/Neu_Food/icons/food.dmi'
 	icon_state = "spiderhoney"

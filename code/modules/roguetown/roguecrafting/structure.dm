@@ -713,3 +713,12 @@
 	result = /obj/structure/curtain
 	reqs = list(/obj/item/natural/cloth = 2)
 	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/structure/apiary
+	name = "apiary"
+	result = /obj/structure/apiary
+	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 4)
+	verbage_simple = "build"
+	verbage = "builds"
+	skillcraft = /datum/skill/craft/carpentry
+	craftdiff = 2

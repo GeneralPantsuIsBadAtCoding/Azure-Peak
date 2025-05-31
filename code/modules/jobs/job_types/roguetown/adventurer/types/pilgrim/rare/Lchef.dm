@@ -50,7 +50,7 @@
 				/obj/item/natural/cloth = 1,
 				/obj/item/reagent_containers/peppermill = 1,
 				/obj/item/reagent_containers/powder/flour = 2,
-				/obj/item/reagent_containers/food/snacks/rogue/honey = 2,
+				/obj/item/reagent_containers/food/snacks/rogue/spiderhoney = 2,
 				/obj/item/reagent_containers/powder/salt = 1,
 				/obj/item/reagent_containers/food/snacks/butter = 1,
 				/obj/item/reagent_containers/food/snacks/rogue/meat/salami = 1,
