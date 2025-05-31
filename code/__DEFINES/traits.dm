@@ -147,6 +147,7 @@
 #define TRAIT_SLEUTH	"Sleuth"
 #define TRAIT_HARDSHELL "Hardshell"
 #define TRAIT_WOODWALKER "Woodwalker"
+#define TRAIT_DYES "Dyemaster"
 #define TRAIT_ARCYNE_T1 "Arcyne Training (Novice)"
 #define TRAIT_ARCYNE_T2 "Arcyne Training (Apprentice)"
 #define TRAIT_ARCYNE_T3 "Arcyne Training (Expert)"
@@ -272,6 +273,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
 	TRAIT_MATTHIOS_EYES = span_notice("I have a sense for what the most valuable item someone has is."),
 	TRAIT_WOODWALKER = span_notice("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely."),
+	TRAIT_DYES = span_notice("I know my way around pigments and shades, and I'm able to create the exact colors I want in a dye station."),
 	TRAIT_ARCYNE_T1 = span_notice("I have received basic training in the Arcyne arts, allowing me access to a small variety of spells useful outside of combat."),
 	TRAIT_ARCYNE_T2 = span_notice("I have received advanced training in the Arcyne arts, allowing me to learn basic combat spells"),
 	TRAIT_ARCYNE_T3 = span_notice("I am a full-fledged mage, and have access to devastating spells that affects a wide area."),

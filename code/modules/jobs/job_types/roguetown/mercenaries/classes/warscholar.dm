@@ -17,24 +17,10 @@
 
 /datum/outfit/job/roguetown/mercenary/warscholar/pre_equip(mob/living/carbon/human/H)
 	..()
-	var/list/naledicolors = sortList(list(
-		"GOLD" = "#C8BE6D",
-		"PALE PURPLE" = "#9E93FF",
-		"BLUE" = "#A7B4F6",
-		"BRICK BROWN" = "#773626",
-		"PURPLE" = "#B542AC",
-		"GREEN" = "#62a85f",
-		"BLUE" = "#A9BFE0",
-		"RED" = "#ED6762",
-		"ORANGE" = "#EDAF6D",
-		"PINK" = "#EDC1D5",
-		"MAROON" = "#5F1F34",
-		"BLACK" = "#242526"
-	))
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
-	detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
-	detailcolor = naledicolors[detailcolor]
+	detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in colorlist
+	detailcolor = colorlist[detailcolor]
 	var/classes = list("Hierophant","Pontifex","Vizier")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
@@ -168,7 +154,7 @@
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 
 			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife)
-			
+
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
 			C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/lesser_heal)
