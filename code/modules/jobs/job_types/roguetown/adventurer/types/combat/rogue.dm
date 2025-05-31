@@ -104,6 +104,7 @@
 			H.change_stat("perception", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 3)
+			H.grant_language(/datum/language/thievescant)
 
 		if("Bard")
 			to_chat(H, span_warning("You make your fortune in brothels, flop houses, and taverns – gaining fame for your songs and legends. If there is any truth to them, that is."))

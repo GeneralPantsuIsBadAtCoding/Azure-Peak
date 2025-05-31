@@ -115,6 +115,7 @@
 			H.change_stat("perception", -1)
 			H.change_stat("speed", 2)
 			H.grant_language(/datum/language/celestial)
+			H.grant_language(/datum/language/thievescant)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // In an attempt to make them less Possibly Wildly OP, they can't freely pick their spells. Casts at apprentice level, but doesn't get the spellbuy points it'd provide.
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/ensnare)

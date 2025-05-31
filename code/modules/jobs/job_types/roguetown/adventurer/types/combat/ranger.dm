@@ -99,6 +99,7 @@
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 2)
 			H.change_stat("endurance", 1)
+			H.grant_language(/datum/language/thievescant)
 			H.set_blindness(0)
 
 		if("Bombadier")

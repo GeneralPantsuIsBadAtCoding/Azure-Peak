@@ -19,6 +19,7 @@
 	smooth = SMOOTH_TRUE
 
 	var/list/dent_decals
+	var/obj/effect/track/thievescant/thiefmessage
 
 /turf/closed/wall/attack_tk()
 	return
@@ -42,6 +43,8 @@
 
 /turf/closed/wall/turf_destruction()
 	visible_message("<span class='notice'>\The [src] crumbles!</span>")
+	if(thiefmessage)
+		qdel(thiefmessage)
 	dismantle_wall(1,0)
 
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
@@ -115,7 +118,7 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
+	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T) || try_thievescant(W, user, T))
 		return
 
 	return ..()
@@ -152,6 +155,25 @@
 				to_chat(user, "<span class='notice'>I remove the outer plating.</span>")
 				dismantle_wall()
 			return TRUE
+
+	return FALSE
+
+/turf/closed/wall/proc/try_thievescant(obj/item/I, mob/user, turf/T)
+	if(user.has_language(/datum/language/thievescant))
+		if(!user.cmode)
+			if((user.used_intent.blade_class == BCLASS_STAB) && (I.wlength == WLENGTH_SHORT))
+				if(thiefmessage)
+					to_chat(user, span_warning("Something is already engraved here."))
+					return
+				else
+					var/inputty = stripped_input(user, "What would you like to engrave here?", "ENGRAVE THE CANT", null, 200)
+					if(inputty && !thiefmessage)
+						playsound(src, 'sound/items/wood_sharpen.ogg', 100)
+						var/obj/effect/track/thievescant/new_track = new(src)
+						new_track.handle_creation(user, inputty)
+						thiefmessage = new_track
+						new_track.add_knower(user)
+				return TRUE
 
 	return FALSE
 

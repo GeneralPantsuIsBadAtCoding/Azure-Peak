@@ -75,7 +75,10 @@
 /datum/language/proc/scramble(input)
 
 	if(!syllables || !syllables.len)
-		return stars(input)
+		if(!signlang_verb || !signlang_verb.len)
+			return stars(input)
+		else
+			return "*[pick(signlang_verb)]"
 
 	// If the input is cached already, move it to the end of the cache and return it
 	var/lookup = check_cache(input)

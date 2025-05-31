@@ -1,19 +1,35 @@
 /datum/language/thievescant
-	name = "Trickster's Tongue"
+	name = "Thieves' Cant"
 	desc = ""
-	speech_verb = "murmurs"
-	ask_verb = "questions"
-	exclaim_verb = "shouts"
+	speech_verb = "says"
+	ask_verb = "asks"
+	exclaim_verb = "yells"
 	key = "x"
-	flags = LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
+	flags = LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD | TONGUELESS_SPEECH | SIGNLANG
 	space_chance = 66
 	default_priority = 80
 	icon_state = "asse"
 	spans = list(SPAN_PAPYRUS)
-	syllables = list("trick", "peasant", "torch", "cards", "gamble", "cottar", "knight", "grove", "mire", "coast", "dice", "dragon", "speak",
-		"limner", "caudle", "fel", "trencher", "volf", "skelelon", "zomble", "kingsfield", "azure peak", "prince", "princess", "trap",
-		"dawn", "dusk", "night", "day", "table", "bench", "tunnel", "roof", "floorboards",
-		"pintle", "drake", "elf", "dwarf", "tall", "short", "frame", "portrait", "lord", "lady", "river", "woods", "axe", "dagger", "sword", "day", "night", "listen",
-		"look", "see", "watch", "hear", "peep", "smell", "taste", "no", "yes", "silver", "gold", "sand", "grass", "rock",
-		"mud", "hah", "save", "cave","over", "under", "carkin", "lark", "tosser", "knobhead", "daft", "gnerd", "knave",
-		"fort", "cave","through the","hand","leg","foot","head","arrow","knee","elbow","eye","for a","reach","the","a","an","ask","tell","pray","travel","journey","quest")
+	signlang_verb = list(
+		"scrunches their nose",
+		"smiles",
+		"grins",
+		"frowns",
+		"smacks their lips",
+		"bites their lip",
+		"yawns",
+		"squints",
+		"winks",
+		"darts their eyes left and right",
+		"stares blankly",
+		"raises an eyebrow",
+		"shrugs",
+		"stretches",
+		"makes a rude gesture",
+		"nods",
+		"nods twice",
+		"nods thrice",
+		"shakes their head",
+		"leans to their left",
+		"leans to their right"
+	)
