@@ -50,7 +50,7 @@
 /obj/structure/roguewindow/stained
 	icon_state = null
 	base_state = null
-	opacity = TRUE
+	opacity = FALSE
 	max_integrity = 200 
 	integrity_failure = 0.5
 

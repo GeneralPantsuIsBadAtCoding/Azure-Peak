@@ -978,6 +978,14 @@
 				return
 	..()
 
+/obj/structure/fluff/statue/plaque
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "plaque"
+	name = "plaque"
+	desc = "PLEASE REPLACE ME, MAPPER!"
+	density = FALSE
+	anchored = TRUE
+
 /obj/structure/fluff/psycross
 	name = "pantheon cross"
 	icon_state = "psycross"
