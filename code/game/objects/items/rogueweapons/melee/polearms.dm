@@ -200,11 +200,11 @@
 
 /obj/item/rogueweapon/woodstaff/wise
 	name = "wise staff"
-	desc = "A staff for keeping the volfs at bay..."
+	desc = "A staff for keeping the volves at bay..."
 
 /obj/item/rogueweapon/woodstaff/aries
 	name = "staff of the shepherd"
-	desc = "This staff makes you look important to any peasante."
+	desc = "This staff makes you look important to any peasant."
 	force = 25
 	force_wielded = 28
 	icon_state = "aries"
@@ -233,7 +233,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
-	desc = "This iron spear is great to impale goblins. However its lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
+	desc = "One of the oldest weapons still in use today, second only to the club. The lack of reinforcements along the shaft leaves it vulnerable to being split in two."
 	icon_state = "spear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
