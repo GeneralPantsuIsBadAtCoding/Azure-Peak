@@ -602,7 +602,6 @@
 	name = "helmet"
 	desc = "A helmet that doesn't get any more simple in design."
 	body_parts_covered = HEAD|HAIR|NOSE
-	flags_inv = HIDEHAIR|HIDEEARS
 	icon_state = "nasal"
 	sleevetype = null
 	sleeved = null
