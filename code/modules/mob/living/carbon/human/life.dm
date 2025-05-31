@@ -140,8 +140,8 @@
 
 	if(!last_fire_update)
 		last_fire_update = fire_stacks
-	if((fire_stacks > 10 && last_fire_update <= 10) || (fire_stacks <= 10 && last_fire_update > 10))
-		last_fire_update = fire_stacks
+	if((fire_stacks + divine_fire_stacks > 10 && last_fire_update <= 10) || (fire_stacks + divine_fire_stacks <= 10 && last_fire_update > 10))
+		last_fire_update = fire_stacks + divine_fire_stacks
 		update_fire()
 
 
@@ -161,7 +161,7 @@
 	//If firestacks are high enough
 	if(!dna || dna.species.CanIgniteMob(src))
 		if(!on_fire)
-			if(fire_stacks > 10)
+			if(fire_stacks + divine_fire_stacks > 10)
 				Immobilize(30)
 				emote("firescream", TRUE)
 			else

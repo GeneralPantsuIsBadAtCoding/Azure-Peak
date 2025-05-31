@@ -2,6 +2,17 @@
 	name = null
 	associated_faith = /datum/faith/divine
 
+// Master for Divine gods - Dendor and Abyssor should probably be allowed to pray elsewhere. The rest should use church/psycross.
+/datum/patron/divine/can_pray(mob/living/follower)
+	// Allows prayer in the church
+	if(istype(get_area(follower), /area/rogue/indoors/town/church))
+		return TRUE
+	// Allows prayer near psycross
+	for(var/obj/structure/fluff/psycross in view(4, get_turf(follower)))
+		return TRUE
+	to_chat(follower, span_danger("I must be nearby a Pantheon Cross or within the church for my prayers to reach the gods..."))
+	return FALSE
+
 /datum/patron/divine/astrata
 	name = "Astrata"
 	domain = "Twinned Goddess of the Sun, Day, and Order"
@@ -58,6 +69,20 @@
 		"I ANSWER THE CALL OF THE WILD!",
 	)
 
+//Dendorite special prayer code.
+/datum/patron/divine/dendor/can_pray(mob/living/follower)
+	// Allows prayer in the druid tower + houses in the forest
+	if(istype(get_area(follower), /area/rogue/indoors/shelter/woods))
+		return TRUE
+	// Allows prayer in outdoors wilderness, such as bog
+	if(istype(get_area(follower), /area/rogue/outdoors/rtfield))
+		return TRUE
+	// Fallback of being allowed to be near a psycross to pray; such as in the church.
+	for(var/obj/structure/fluff/psycross in view(4, get_turf(follower)))
+		return TRUE
+	to_chat(follower, span_danger("I must be in Dendor's wilds or near a Panetheon Cross for Dendor to hear my prays..."))
+	return FALSE
+
 /datum/patron/divine/abyssor
 	name = "Abyssor"
 	domain = "God of the Ocean, Storms and the Tide"
@@ -77,7 +102,7 @@
 		"THE OCEAN'S FURY IS ABYSSOR'S WILL!",
 		"I AM DRAWN BY THE PULL OF THE TIDE!",
 	)
-	
+
 /datum/patron/divine/ravox
 	name = "Ravox"
 	domain = "God of Justice, Glory, Battle"
@@ -177,8 +202,6 @@
 		"TRUE VALUE IS IN THE TOIL!",
 		"I AM AN INSTRUMENT OF CREATION!",
 	)
-
-//Eora content from Stonekeep
 
 /datum/patron/divine/eora
 	name = "Eora"

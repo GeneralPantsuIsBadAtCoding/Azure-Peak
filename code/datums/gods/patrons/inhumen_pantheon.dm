@@ -2,6 +2,7 @@
 	name = null
 	associated_faith = /datum/faith/inhumen
 	undead_hater = FALSE
+	profane_words = list("cock","dick","fuck","shit","pussy","cuck","cunt","asshole", "pintle")	//Same as master but 'Zizo' is allowed now.
 	confess_lines = list(
 		"PSYDON IS THE DEMIURGE!",
 		"THE TEN ARE WORTHLESS COWARDS!",

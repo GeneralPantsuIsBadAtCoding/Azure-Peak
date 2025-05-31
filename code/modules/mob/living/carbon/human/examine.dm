@@ -592,7 +592,7 @@
 				msg += "[m1] looking parched."
 
 	//Fire/water stacks
-	if(fire_stacks > 0)
+	if(fire_stacks + divine_fire_stacks > 0)
 		msg += "[m1] covered in something flammable."
 	else if(fire_stacks < 0)
 		msg += "[m1] soaked."

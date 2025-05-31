@@ -62,7 +62,7 @@
 				msg += span_bloody("[m1] [bleed_wording]!")
 
 	//Fire/water stacks
-	if(fire_stacks > 0)
+	if(fire_stacks + divine_fire_stacks > 0)
 		msg += "[m1] covered in something flammable."
 	else if(fire_stacks < 0)
 		msg += "[m1] soaked."

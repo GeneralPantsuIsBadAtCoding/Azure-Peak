@@ -21,78 +21,27 @@
 
 	emote("pray", intentional = TRUE)
 
+//Also see how prayers work in '/code/datums/gods/_patron.dm' for how patrons hear and filter prayers based on profanity, etc.
 /datum/emote/living/pray/run_emote(mob/user, params, type_override, intentional)
-	if(isliving(user))
-		var/mob/living/L = user
-		var/area/C = get_area(user)
-		var/msg = input("Whisper your prayer:", "Prayer") as text|null
-		if(msg)
-			L.whisper(msg)
-			L.roguepray(msg)
-			if(istype(C, /area/rogue/underworld))
-				L.check_prayer_underworld(L,msg)
-				return
-			L.check_prayer(L,msg)
-			for(var/mob/living/LICKMYBALLS in hearers(2,src))
-				LICKMYBALLS.succumb_timer = world.time
+	var/mob/living/carbon/follower = user
+	var/datum/patron/patron = follower.patron
 
-/mob/living/proc/check_prayer(mob/living/L,message)
-	if(!L || !message || !ishuman(L))
-		return FALSE
-	var/mob/living/carbon/human/M = L
-	if(length(message) > 15)
-		if(L.has_flaw(/datum/charflaw/addiction/godfearing))
-			L.sate_addiction()
-		if(L.mob_timers[MT_PSYPRAY])
-			if(world.time < L.mob_timers[MT_PSYPRAY] + 1 MINUTES)
-				L.mob_timers[MT_PSYPRAY] = world.time
-				return FALSE
-		else
-			L.mob_timers[MT_PSYPRAY] = world.time
+	var/prayer = input("Whisper your prayer:", "Prayer") as text|null
+	if(!prayer)
+		return
+	
+	/* admin stuff - tells you the followers name, key, and what patron they follow */
+	var/follower_ident = "[follower.key]/([follower.real_name]) (follower of [patron])"
+	message_admins("[follower_ident] [ADMIN_SM(follower)] [ADMIN_FLW(follower)] prays: [span_info(prayer)]")
+	user.log_message("(follower of [patron]) prays: [prayer]", LOG_GAME)
 
-		var/patron_name = M?.patron?.name
-		if(!patron_name)
-			CRASH("check_prayer called with null patron")
+	follower.whisper(prayer)
 
-		if(!findtext(message, "[patron_name]"))
-			return FALSE
-		else
-			L.playsound_local(L, 'sound/misc/notice (2).ogg', 100, FALSE)
-			L.add_stress(/datum/stressevent/psyprayer)
-			return TRUE
-	else
-		to_chat(L, span_danger("My prayer was kinda short..."))
+	if(SEND_SIGNAL(follower, COMSIG_CARBON_PRAY, prayer) & CARBON_PRAY_CANCEL)
+		return
 
-/mob/living/proc/check_prayer_underworld(mob/living/L,message)
-	if(!L || !message)
-		return FALSE
-	var/list/bannedwords = list("cock","dick","fuck","shit","pussy","ass","cuck","fucker","fucked","cunt","asshole")
-	var/mob/living/carbon/spirit/M = L
-	for(var/T in bannedwords)
-		var/list/turfs = list()
-		if(findtext(message, T))
-			for(var/turf/U in /area/rogue/underworld)
-				if(U.density)
-					continue
-				turfs.Add(U)
-
-			var/turf/pickedturf = safepick(turfs)
-			if(!pickedturf)
-				return
-			to_chat(L, "<font color='yellow'>INSOLENT WRETCH, YOUR STRUGGLE IS DESERVED.</font>")
-			L.forceMove(pickedturf)
-			return FALSE
-	if(length(message) > 15)
-		if(findtext(message, "[M.patron.name]"))
-			L.playsound_local(L, 'sound/misc/notice (2).ogg', 100, FALSE)
-			to_chat(L, "<font color='yellow'>I, [M.patron.name], have heard your prayer and yet cannot aid you.</font>")
-			/*var/obj/item/underworld/coin/C = new
-			L.put_in_active_hand(C)*/
-			return TRUE
-		else
-			return TRUE
-	else
-		to_chat(L, span_danger("My prayer was kinda short..."))
+	for(var/mob/living/LICKMYBALLS in hearers(2,src))	// Lickmyballs = person in crit.
+		LICKMYBALLS.succumb_timer = world.time			//..succumb timer does nothing rn btw..
 
 /datum/emote/living/meditate
 	key = "meditate"

@@ -408,7 +408,7 @@ var/global/list/anvil_recipe_prices[][]
 		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
 			return FALSE
-		L.adjust_fire_stacks(1)
+		L.adjust_divine_fire_stacks(1)
 		L.IgniteMob()
 		return TRUE
 

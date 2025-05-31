@@ -328,6 +328,7 @@
 	var/toxin = 0
 	var/turf/origin
 	var/firestacks = 0
+	var/divinefirestacks = 0
 	var/blood = 0
 	miracle = TRUE
 	devotion_cost = 30
@@ -343,6 +344,7 @@
 		toxin = target.getToxLoss()
 		origin = get_turf(target)
 		firestacks = target.fire_stacks
+		divinefirestacks = target.divine_fire_stacks
 		blood = target.blood_volume
 		to_chat(target, span_warning("I feel a part of me was left behind..."))
 		play_indicator(target,'icons/mob/overhead_effects.dmi', "timestop", 100, OBJ_LAYER)
@@ -353,6 +355,7 @@
 /obj/effect/proc_holder/spell/invoked/stasis/proc/remove_buff(mob/living/carbon/target)
 	do_teleport(target, origin, no_effects=TRUE)
 	target.adjust_fire_stacks(target.fire_stacks*-1 + firestacks)
+	target.adjust_divine_fire_stacks(target.divine_fire_stacks*-1 + divinefirestacks)
 	var/brutenew = target.getBruteLoss()
 	var/burnnew = target.getFireLoss()
 	var/oxynew = target.getOxyLoss()
