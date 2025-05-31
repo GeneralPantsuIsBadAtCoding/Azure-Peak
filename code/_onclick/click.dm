@@ -225,7 +225,8 @@
 		if(ismob(A))
 			if(CanReach(A,W))
 				if(get_dist(get_turf(src), get_turf(A)) <= used_intent.reach)
-					do_attack_animation(get_turf(A), visual_effect_icon = used_intent.animname)
+					if(!used_intent.noaa)
+						do_attack_animation(get_turf(A), used_intent.animname, W, used_intent = src.used_intent)
 				resolveAdjacentClick(A,W,params)
 				return
 
@@ -285,6 +286,7 @@
 						var/mob/target = pick(mobs_here)
 						if(target)
 							if(target.Adjacent(src))
+								do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 								resolveAdjacentClick(target,W,params,used_hand)
 								atkswinging = null
 								//update_warning()
@@ -294,7 +296,7 @@
 					if(!used_intent.noaa)
 						changeNext_move(CLICK_CD_MELEE)
 						if(get_dist(get_turf(src), T) <= used_intent.reach)
-							do_attack_animation(T, visual_effect_icon = used_intent.animname)
+							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 						if(W)
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
 							var/adf = used_intent.clickcd

@@ -68,6 +68,7 @@
 	wbalance = WBALANCE_HEAVY
 	blade_dulling = DULLING_SHAFT_METAL
 	intdamage_factor = 1.35
+	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/mace/alloy
 	name = "decrepit mace"

@@ -1021,6 +1021,7 @@
 	max_integrity = 250
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	intdamage_factor = 0.6
+	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
 	. = ..()
