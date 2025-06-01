@@ -257,7 +257,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 /datum/game_mode/chaosmode/proc/pick_aspirants()
 	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Knight Captain", "Steward", "Hand", "Knight")
 	var/list/possible_jobs_helpers = list("Knight Captain", "Prince", "Princess", "Hand",  "Steward", "Knight")
-	var/list/rolesneeded = list("Aspirant","Loyalist","Supporter")
+	var/list/rolesneeded = list("Aspirant", "Supporter")
 
 	antag_candidates = get_players_for_role(ROLE_ASPIRANT)
 	for(var/R in rolesneeded)
