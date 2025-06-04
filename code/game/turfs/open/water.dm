@@ -142,6 +142,14 @@
 					if(AM.loc == src)
 						water_overlay.layer = ABOVE_MOB_LAYER
 						water_overlay.plane = GAME_PLANE_UPPER
+		if(!istype(L, /mob/living/carbon/human/species/skeleton))
+			return
+		if(!istype(src, /turf/open/water/sewer))
+			return
+		if(!istype(src, /turf/open/water/swamp))
+			return
+		L.apply_damage(30, BRUTE, BODY_ZONE_CHEST, forced = TRUE)
+		to_chat(L, span_warningbig("The water seeps into my pores. I am crumbling!"))
 
 /turf/open/water/attackby(obj/item/C, mob/user, params)
 	if(user.used_intent.type == /datum/intent/fill)

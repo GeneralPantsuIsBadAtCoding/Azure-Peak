@@ -114,27 +114,21 @@
 		var/obj/item/ammo_casing/caseless/rogue/bolt/A = new()
 		arrows += A
 	update_icon()
+
 /obj/item/quiver/Wbolts/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/ammo_casing/caseless/rogue/bolt/water/A = new()
 		arrows += A
 	update_icon()
-/*
-/obj/item/quiver/Parrows/Initialize()
+
+/obj/item/quiver/bolts/paalloy/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/ammo_casing/caseless/rogue/arrow/poison/A = new()
+		var/obj/item/ammo_casing/caseless/rogue/bolt/paalloy/A = new()
 		arrows += A
 	update_icon()
 
-/obj/item/quiver/Pbolts/Initialize()
-	. = ..()
-	for(var/i in 1 to max_storage)
-		var/obj/item/ammo_casing/caseless/rogue/bolt/poison/A = new()
-		arrows += A
-	update_icon()
-*/
 /obj/item/quiver/Warrows/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
@@ -146,6 +140,13 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/projectile/bullet/reusable/arrow/steel/A = new()
+		arrows += A
+	update_icon()
+
+/obj/item/quiver/bodkin/paalloy/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy/A = new()
 		arrows += A
 	update_icon()
 
@@ -215,6 +216,13 @@
 		arrows += A
 	update_icon()
 
+/obj/item/quiver/javelin/paalloy/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy/A = new()
+		arrows += A
+	update_icon()
+
 /obj/item/quiver/sling
 	name = "sling bullet pouch"
 	desc = "This pouch holds the ouch." //i came up with this line on an impulse
@@ -277,5 +285,12 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/ammo_casing/caseless/rogue/sling_bullet/iron/A = new()
+		arrows += A
+	update_icon()
+
+/obj/item/quiver/sling/paalloy/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy/A = new()
 		arrows += A
 	update_icon()
