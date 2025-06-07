@@ -1486,6 +1486,7 @@
 #include "code\modules\jobs\job_types\roguetown\nobility\steward.dm"
 #include "code\modules\jobs\job_types\roguetown\other\deathknight.dm"
 #include "code\modules\jobs\job_types\roguetown\other\goblin.dm"
+#include "code\modules\jobs\job_types\roguetown\other\greater_skeleton.dm"
 #include "code\modules\jobs\job_types\roguetown\other\skeleton.dm"
 #include "code\modules\jobs\job_types\roguetown\other\tester.dm"
 #include "code\modules\jobs\job_types\roguetown\peasants\bathmaid.dm"
