@@ -51,15 +51,15 @@
 
 /datum/outfit/job/roguetown/vet/battlemaster/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/bevor
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	beltl = /obj/item/rogueweapon/sword/sabre
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	cloak = /obj/item/clothing/cloak/half/vet
 	belt = /obj/item/storage/belt/rogue/leather/black
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	gloves = /obj/item/clothing/gloves/roguetown/plate 
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
@@ -89,6 +89,46 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 			H.change_stat("endurance", 1)
+	H.adjust_blindness(-3)
+	var/weapons = list("Rhomphaia","Great Mace","Warhammer + Buckler","Sabre + Buckler")
+	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if("Rhomphaia")
+			beltl = /obj/item/rogueweapon/sword/long/rhomphaia
+		if("Great Mace")
+			r_hand = /obj/item/rogueweapon/mace/goden/steel
+		if("Warhammer + Buckler")
+			beltr = /obj/item/rogueweapon/mace/warhammer/steel
+			backl = /obj/item/rogueweapon/shield/buckler
+		if("Sabre + Buckler")
+			beltl = /obj/item/rogueweapon/sword/sabre
+			backl = /obj/item/rogueweapon/shield/buckler
+
+	var/helmets = list(
+		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+		"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+		"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
 
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
@@ -109,16 +149,12 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half // Meant to be better than man-at-arms, but worse than knight. No heavy armor!! This is a cuirass, not half-plate.
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	beltl = /obj/item/rogueweapon/sword
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/rogueweapon/shield/tower/metal
-	r_hand = /obj/item/rogueweapon/spear/billhook
 	belt = /obj/item/storage/belt/rogue/leather/black
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1)
@@ -151,6 +187,51 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.adjust_blindness(-3)
+	var/weapons = list("Warhammer & Shield","Sabre & Shield","Axe & Shield","Billhook","Greataxe","Halberd",)
+	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if("Warhammer & Shield")
+			beltr = /obj/item/rogueweapon/mace/warhammer/steel
+			backl = /obj/item/rogueweapon/shield/heater
+		if("Sabre & Shield")
+			beltr = /obj/item/rogueweapon/sword/sabre
+			backl = /obj/item/rogueweapon/shield/heater
+		if("Axe & Shield")
+			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+			backl = /obj/item/rogueweapon/shield/heater
+		if("Billhook")
+			r_hand = /obj/item/rogueweapon/spear/billhook 
+			backl = /obj/item/gwstrap
+		if("Halberd")
+			r_hand = /obj/item/rogueweapon/halberd
+			backl = /obj/item/gwstrap	
+		if("Greataxe")
+			r_hand = /obj/item/rogueweapon/greataxe
+			backl = /obj/item/gwstrap
+	var/helmets = list(
+	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/masks = list(
+	"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
+	"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
+	"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
+	"None"
+	)
+	var/maskchoice = input("Choose your Mask.", "MASK MASK MASK") as anything in masks // Run from it. MASK. MASK. MASK.
+	if(maskchoice != "None")
+		mask = masks[maskchoice]	
+
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -166,9 +247,7 @@
 
 /datum/outfit/job/roguetown/vet/calvaryman/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/	////Former knights should have knightly armour. 
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -217,23 +296,52 @@
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
+	var/weapons = list("Bastard Sword + Crossbow","Billhook + Recurve Bow","Grand Mace + Longbow", "Sabre + Recurve Bow")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
-		if("Sword + Recurve Bow")
+		if("Bastard Sword + Crossbow")
 			r_hand = /obj/item/rogueweapon/sword/long
-			beltl = /obj/item/quiver/arrows
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-
-		if("Axe + Crossbow")
-			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			beltl = /obj/item/quiver/bolts
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+		if("Billhook + Recurve Bow")
+			r_hand = /obj/item/rogueweapon/spear/billhook
+			backl = /obj/item/gwstrap
+			beltl = /obj/item/quiver/arrows
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+		if("Grand Mace + Longbow")
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
+			beltl = /obj/item/quiver/arrows
+			r_hand = /obj/item/rogueweapon/mace/goden/steel
+		if("Sabre + Recurve Bow")
+			r_hand = /obj/item/rogueweapon/sword/sabre
+			backl = /obj/item/quiver/arrows
+			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 
-		if ("Spear + Shield")
-			r_hand = /obj/item/rogueweapon/spear
-			backl = /obj/item/rogueweapon/shield/tower/metal
+	var/helmets = list(
+		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+		"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+		"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
 
 /datum/advclass/veteran/merc
 	name = "Retired Mercenary"
@@ -325,10 +433,8 @@
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	beltl = /obj/item/quiver/arrows
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 	belt = /obj/item/storage/belt/rogue/leather/black
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/storage/keyring/guardcastle = 1)
@@ -342,6 +448,7 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE) // I very rarely see ranged weapons outside of PVE. Maybe this'll fix that?
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/slings, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -364,7 +471,23 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 			H.change_stat("perception", 2)
+	H.adjust_blindness(-3)
+	var/weapons = list("Crossbow","Bow","Sling")
+	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if("Crossbow")
+			beltl = /obj/item/quiver/bolts
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+		if("Bow") // They can head down to the armory to sideshift into one of the other bows.
+			beltl = /obj/item/quiver/arrows
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+		if("Sling")
+			beltl = /obj/item/quiver/sling/iron
+			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
+
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // You should really be parrying anyways, you have legendary/master skills....
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -429,7 +552,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-			H.change_stat("speed", 1) // You get -2 speed from being old. You are still in the negative stat wise from picking old.
+			H.change_stat("speed", 1) // You get -2 speed from being old. You are balanced out stat wise from picking old.
 			H.change_stat("perception", 2) // You get -2 perception from being old. I want you to at least have a positive perception, to represent that you're observant. The highest perception you can get with this is a 13, so I think we'll be okayed.
 	H.verbs |= /mob/proc/haltyell
 	H.grant_language(/datum/language/thievescant)
