@@ -78,10 +78,10 @@
 			recipient.mind?.special_items["Psydon Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 
 /datum/virtue/combat/duelist
-	name = "Duelist Apprentice"
-	desc = "I have trained under a duelist of considerable skill, and always have my trusty rapier close at hand."
+	name = "Duelist's Apprentice"
+	desc = "I have trained under a duelist of considerable skill, and always have my hunting sword close at hand."
 	custom_text = "+1 to Swords and Knives, Up to Journeyman, Minimum Apprentice."
-	added_stashed_items = list("Rapier" = /obj/item/rogueweapon/sword/rapier)
+	added_stashed_items = list("Hunting Sword" = /obj/item/rogueweapon/sword/iron/messer)
 
 /datum/virtue/combat/duelist/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.mind?.get_skill_level(/datum/skill/combat/swords) < SKILL_LEVEL_APPRENTICE)
@@ -94,10 +94,10 @@
 		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/executioner
-	name = "Executioner Apprentice"
-	desc = "I have trained under a skilled executioner, and always have my trusty exeuctioner's axe close at hand."
+	name = "Dungeoneer's Apprentice"
+	desc = "I was set to be a dungeoneer some time ago, and I was taught by one. I have an axe stashed away if the need arises."
 	custom_text = "+1 to Axes and Whips/Flails, Up to Journeyman, Minimum Apprentice."
-	added_stashed_items = list("Battleaxe" = /obj/item/rogueweapon/stoneaxe/battle)
+	added_stashed_items = list("Iron Axe" = /obj/item/rogueweapon/stoneaxe/woodcut)
 
 /datum/virtue/combat/executioner/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.mind?.get_skill_level(/datum/skill/combat/whipsflails) < SKILL_LEVEL_APPRENTICE)
@@ -110,10 +110,10 @@
 		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/militia
-	name = "Militiaman Apprentice"
-	desc = "I have trained under a skilled militiaman, and always have my trusty billhook close at hand."
+	name = "Militiaman"
+	desc = "I have trained with the local garrison in case I'm ever to be levied to fight for my lord. I have a spear stashed away in the event I'm called to arms."
 	custom_text = "+1 to Maces and Polearms, Up to Journeyman, Minimum Apprentice."
-	added_stashed_items = list("Billhook" = /obj/item/rogueweapon/spear/billhook)
+	added_stashed_items = list("Spear" = /obj/item/rogueweapon/spear)
 
 /datum/virtue/combat/militia/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.mind?.get_skill_level(/datum/skill/combat/polearms) < SKILL_LEVEL_APPRENTICE)
@@ -126,7 +126,7 @@
 		recipient.mind?.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/brawler
-	name = "Brawler Apprentice"
+	name = "Brawler's Apprentice"
 	desc = "I have trained under a skilled brawler, and have some experience fighting with my fists."
 	custom_text = "+1 to Unarmed and Wrestling, Up to Journeyman, Minimum Apprentice."
 	added_stashed_items = list("Katar" = /obj/item/rogueweapon/katar)
@@ -144,7 +144,7 @@
 
 /datum/virtue/combat/bowman
 	name = "Toxophilite"
-	desc = "I have studied underneath a bowman of considerable skill, and always have my trusty bow and a quiver of arrows close at hand."
+	desc = "I've had an interest in archery from a young age, and I always keep a spare bow and quiver around."
 	custom_text = "+1 to Bows, Up to Legendary, Minimum Apprentice"
 	added_stashed_items = list("Recurve Bow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
 								"Quiver (Arrows)" = /obj/item/quiver/arrows
