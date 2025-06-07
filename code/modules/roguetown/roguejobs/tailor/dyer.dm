@@ -151,7 +151,7 @@ var/global/list/colorlist = list(
 				return
 			activecolor = used_colors[choice]
 		else
-			activecolor = sanitize_hexcolor(color_pick_sanitized_lumi(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail, 0.2, 0.8), 6, TRUE)
+			activecolor = sanitize_hexcolor(color_pick_sanitized(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail), 6, TRUE)
 			if(activecolor == "#000000")
 				activecolor = "#FFFFFF"
 		updateUsrDialog()
@@ -164,7 +164,7 @@ var/global/list/colorlist = list(
 				return
 			activecolor_detail = used_colors[choice]
 		else
-			activecolor_detail = sanitize_hexcolor(color_pick_sanitized_lumi(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail, 0.2, 0.8), 6, TRUE)
+			activecolor_detail = sanitize_hexcolor(color_pick_sanitized(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail), 6, TRUE)
 			if(activecolor == "#000000")
 				activecolor = "#FFFFFF"
 		updateUsrDialog()
@@ -177,7 +177,7 @@ var/global/list/colorlist = list(
 				return
 			activecolor_altdetail = used_colors[choice]
 		else
-			activecolor_altdetail = sanitize_hexcolor(color_pick_sanitized_lumi(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail, 0.2, 0.8), 6, TRUE)
+			activecolor_altdetail = sanitize_hexcolor(color_pick_sanitized(usr, "Choose your dye:", "Dyes", choice ? choice : activecolor_detail), 6, TRUE)
 			if(activecolor == "#000000")
 				activecolor = "#FFFFFF"
 		updateUsrDialog()
@@ -279,14 +279,15 @@ var/global/list/colorlist = list(
 	..()
 
 	var/hexdye
-	if(!dye)
-		hexdye = sanitize_hexcolor(color_pick_sanitized_lumi(usr, "Choose your dye:", "Dyes", null, 0.08, 0.09), 6, TRUE)
-		if (hexdye == "#000000")
-			return
-		dye = hexdye
-		update_icon()
+	if(dye)
+		to_chat(user, span_warning("[src] is already carrying <font color=[dye]>dye</font>. I need to wash it."))
 		return
-	to_chat(user, span_warning("[src] is already carrying <font color=[dye]>dye</font>. I need to wash it."))
+
+	hexdye = sanitize_hexcolor(color_pick_sanitized(usr, "Choose your dye:", "Dyes", null), 6, TRUE)
+	if (hexdye == "#000000")
+		return
+	dye = hexdye
+	update_icon()
 
 /obj/item/dye_brush/attack_turf(turf/T, mob/living/user)
 	if(!iswallturf(T))

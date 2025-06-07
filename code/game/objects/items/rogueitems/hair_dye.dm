@@ -21,7 +21,7 @@
         
     switch(chosen)
         if("hair color")
-            var/new_hair_color = color_pick_sanitized_lumi(user, "Choose your hair color", "Hair Color", H.hair_color)
+            var/new_hair_color = color_pick_sanitized(user, "Choose your hair color", "Hair Color", H.hair_color)
             if(new_hair_color)
                 if(!do_after(user, 30 SECONDS, target = H))
                     to_chat(user, span_warning("The dyeing was interrupted!"))
@@ -61,7 +61,7 @@
                         user.visible_message(span_notice("[user] dyes [H]'s hair."), span_notice("You dye [H == user ? "your" : "[H]'s"] hair."))
 
         if("facial hair color")
-            var/new_facial_color = color_pick_sanitized_lumi(user, "Choose your facial hair color", "Facial Hair Color", H.facial_hair_color)
+            var/new_facial_color = color_pick_sanitized(user, "Choose your facial hair color", "Facial Hair Color", H.facial_hair_color)
             if(new_facial_color)
                 if(!do_after(user, 30 SECONDS, target = H))
                     to_chat(user, span_warning("The dyeing was interrupted!"))
@@ -132,7 +132,7 @@
                         user.visible_message(span_notice("[user] dyes [H]'s natural gradient."), span_notice("You dye [H == user ? "your" : "[H]'s"] natural gradient."))
 
         if("natural gradient color")
-            var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your natural gradient color", "Natural Gradient Color", H.hair_color)
+            var/new_gradient_color = color_pick_sanitized(user, "Choose your natural gradient color", "Natural Gradient Color", H.hair_color)
             if(new_gradient_color)
                 if(!do_after(user, 30 SECONDS, target = H))
                     to_chat(user, span_warning("The dyeing was interrupted!"))
@@ -204,7 +204,7 @@
                         user.visible_message(span_notice("[user] dyes [H]'s gradient."), span_notice("You dye [H == user ? "your" : "[H]'s"] gradient."))
 
         if("dye gradient color")
-            var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your dye gradient color", "Dye Gradient Color", H.hair_color)
+            var/new_gradient_color = color_pick_sanitized(user, "Choose your dye gradient color", "Dye Gradient Color", H.hair_color)
             if(new_gradient_color)
                 if(!do_after(user, 30 SECONDS, target = H))
                     to_chat(user, span_warning("The dyeing was interrupted!"))

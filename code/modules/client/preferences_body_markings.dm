@@ -30,7 +30,7 @@
 			if(!body_markings[zone] || !body_markings[zone][name])
 				return
 			var/color = body_markings[zone][name]
-			var/new_color = color_pick_sanitized_lumi(user, "Choose your markings color:", "Character Preference","#[color]")
+			var/new_color = color_pick_sanitized(user, "Choose your markings color:", "Character Preference","#[color]")
 			if(new_color)
 				if(!body_markings[zone] || !body_markings[zone][name])
 					return
