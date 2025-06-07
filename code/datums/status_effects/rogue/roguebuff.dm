@@ -890,6 +890,7 @@
 	effectedstats = list("intelligence" = 2, "endurance" = 4, "speed" = -3)
 	duration = 20 SECONDS
 
+
 /datum/status_effect/buff/clash
 	id = "clash"
 	duration = 6 SECONDS
@@ -924,3 +925,40 @@
 	name = "Ready to Clash"
 	desc = span_notice("I am on guard, and ready to clash. If I am hit, I will successfully defend. Attacking will make me lose my focus.")
 	icon_state = "clash"
+
+#define BLOODRAGE_FILTER "bloodrage"
+
+/atom/movable/screen/alert/status_effect/buff/graggar_bloodrage
+	name = "BLOODRAGE"
+	desc = "GRAGGAR! GRAGGAR! GRAGGAR!"
+	icon_state = "bloodrage"
+
+/datum/status_effect/buff/bloodrage
+	id = "bloodrage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/graggar_bloodrage
+	var/outline_color = "#ad0202"
+	duration = 15 SECONDS
+
+/datum/status_effect/buff/bloodrage/on_apply()
+	ADD_TRAIT(owner, TRAIT_STRENGTH_UNCAPPED, TRAIT_MIRACLE)
+	duration = ((15 SECONDS) * owner.mind?.get_skill_level(/datum/skill/magic/holy))
+	var/filter = owner.get_filter(BLOODRAGE_FILTER)
+	if(!filter)
+		owner.add_filter(BLOODRAGE_FILTER, 2, list("type" = "outline", "color" = outline_color, "alpha" = 60, "size" = 2))
+	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+		if(owner.STASTR < STRENGTH_SOFTCAP)
+			effectedstats = list("strength" = (STRENGTH_SOFTCAP - owner.STASTR))
+			return TRUE
+	effectedstats = list("strength" = 2)
+	return TRUE
+
+/datum/status_effect/buff/bloodrage/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_STRENGTH_UNCAPPED, TRAIT_MIRACLE)
+	owner.visible_message(span_warning("[owner] wavers, their rage simmering down."))
+	owner.OffBalance(3 SECONDS)
+	owner.remove_filter(BLOODRAGE_FILTER)
+	owner.emote("breathgasp", forced = TRUE)
+	owner.Slowdown(3)
+
+#undef BLOODRAGE_FILTER

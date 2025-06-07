@@ -202,7 +202,11 @@
 					if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
 						if(prob(25))
 							C.emote("choke")
-						var/choke_damage = user.STASTR * 0.75 // To stop strength-maxing entirely.
+						var/choke_damage
+						if(user.STASTR > STRENGTH_SOFTCAP)
+							choke_damage = STRENGTH_SOFTCAP
+						else
+							choke_damage = user.STASTR * 0.75
 						if(chokehold)
 							choke_damage *= 1.2		//Slight bonus
 						if(C.pulling == user && C.grab_state >= GRAB_AGGRESSIVE)

@@ -50,7 +50,9 @@
 #define HEALTH_THRESHOLD_NEARDEATH -90 //Not used mechanically, but to determine if someone is so close to death they hear the other side
 
 #define DAMAGE_THRESHOLD_FIRE_CRIT 150
-
+#define STRENGTH_SOFTCAP 14	//STR value past which we get diminishing returns in our damage calculations.
+#define STRENGTH_MULT 0.1	//STR multiplier per STR point up to the softcap. Works as a %-age. 0.1 = 10% per point.
+#define STRENGTH_CAPPEDMULT 0.033	//STR multiplier per STR point past the softcap
 //Actual combat defines
 
 //click cooldowns, in tenths of a second, used for various combat actions
