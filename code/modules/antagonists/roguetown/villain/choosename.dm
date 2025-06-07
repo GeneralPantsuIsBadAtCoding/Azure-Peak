@@ -1,4 +1,3 @@
-
 /mob/living/carbon/human/proc/choose_name_popup(input)
 	if(QDELETED(src))
 		return
@@ -31,6 +30,9 @@
 			real_name = "Lady [real_name]"
 		if(gender == MALE)
 			real_name = "Lord [real_name]"
+	if(mind.special_role == "Lich")
+		mind.current.faction += "[real_name]_faction"
+
 	mind.name = real_name
 	var/fakekey = ckey
 	if(ckey in GLOB.anonymize)

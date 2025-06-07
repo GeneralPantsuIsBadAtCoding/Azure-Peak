@@ -123,6 +123,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	recharge_time = 30 SECONDS
 	var/cabal_affine = FALSE
+	var/is_summoned = FALSE
 	hide_charge_effect = TRUE
 
 /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/cast(list/targets, mob/living/user)
@@ -132,15 +133,15 @@
 	if(isopenturf(T))
 		switch(skeleton_roll)
 			if(1 to 20)
-				new /mob/living/simple_animal/hostile/rogue/skeleton/axe(T, user, cabal_affine)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/axe(T, user, cabal_affine, is_summoned)
 			if(21 to 40)
-				new /mob/living/simple_animal/hostile/rogue/skeleton/spear(T, user, cabal_affine)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/spear(T, user, cabal_affine, is_summoned)
 			if(41 to 60)
-				new /mob/living/simple_animal/hostile/rogue/skeleton/guard(T, user, cabal_affine)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/guard(T, user, cabal_affine, is_summoned)
 			if(61 to 80)
-				new /mob/living/simple_animal/hostile/rogue/skeleton/bow(T, user, cabal_affine)
+				new /mob/living/simple_animal/hostile/rogue/skeleton/bow(T, user, cabal_affine, is_summoned)
 			if(81 to 100)
-				new /mob/living/simple_animal/hostile/rogue/skeleton(T, user, cabal_affine)
+				new /mob/living/simple_animal/hostile/rogue/skeleton(T, user, cabal_affine, is_summoned)
 		return TRUE
 	else
 		to_chat(user, span_warning("The targeted location is blocked. My summon fails to come forth."))
@@ -148,6 +149,7 @@
 
 /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer
 	cabal_affine = TRUE
+	is_summoned = TRUE
 	recharge_time = 45 SECONDS
 
 /obj/effect/proc_holder/spell/invoked/projectile/sickness
@@ -220,3 +222,40 @@
 	exp_light = 2
 	exp_flash = 2
 	exp_fire = 0
+
+/obj/effect/proc_holder/spell/invoked/gravemark
+	name = "Gravemark"
+	desc = "Adds or removes a target from the list of allies exempt from your undead's aggression."
+	overlay_state = "raiseskele"
+	range = 7
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	chargedloop = null
+	antimagic_allowed = TRUE
+	recharge_time = 15 SECONDS
+	hide_charge_effect = TRUE
+
+/obj/effect/proc_holder/spell/invoked/gravemark/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/faction_tag = "[user.mind.current.real_name]_faction"
+		if (target == user)
+			to_chat(user, span_warning("It would be unwise to make an enemy of your own skeletons."))
+			return FALSE
+		if(target.mind && target.mind.current)
+			if (faction_tag in target.mind.current.faction)
+				target.mind.current.faction -= faction_tag
+				user.say("Hostis declaratus es.")
+			else
+				target.mind.current.faction += faction_tag
+				user.say("Amicus declaratus es.")
+		else if(istype(target, /mob/living/simple_animal))
+			if (faction_tag in target.faction)
+				target.faction -= faction_tag
+				user.say("Hostis declaratus es.")
+			else
+				target.faction |= faction_tag
+				user.say("Amicus declaratus es.")
+		return TRUE
+	return FALSE

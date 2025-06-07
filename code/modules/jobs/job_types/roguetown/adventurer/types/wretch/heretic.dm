@@ -12,6 +12,7 @@
 	if (!(istype(H.patron, /datum/patron/inhumen/zizo) || istype(H.patron, /datum/patron/inhumen/matthios) || istype(H.patron, /datum/patron/inhumen/graggar) || istype(H.patron, /datum/patron/inhumen/baotha)))
 		to_chat(H, span_warning("My former deity frowned upon my practices. I have since turned to a new god."))
 		H.set_patron(pick(/datum/patron/inhumen/zizo, /datum/patron/inhumen/matthios, /datum/patron/inhumen/graggar, /datum/patron/inhumen/baotha))
+	H.mind.current.faction += "[H.name]_faction"
 	H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -45,6 +46,8 @@
 	H.change_stat("endurance", 1)
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
+		H.mind.current.faction += "[H.name]_faction"
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
