@@ -156,9 +156,6 @@
 	desc = "Some fell magick has rendered me inwardly unliving - I do not hunger, and I do not breathe."
 	added_traits = list(TRAIT_NOHUNGER, TRAIT_NOBREATH)
 
-/*/datum/virtue/utility/deathless/apply_to_human(mob/living/carbon/human/recipient)
-	recipient.mob_biotypes |= MOB_UNDEAD*/
-
 /datum/virtue/utility/blacksmith
 	name = "Blacksmith's Apprentice"
 	desc = "In my youth, I worked under a skilled blacksmith, honing my skills with an anvil."
@@ -356,9 +353,7 @@
 	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
 	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
-//HERETIC VIRTUES
-
-/datum/virtue/heretic/seer
-	name = "(ASCENDANT) Seer"
-	desc = "You've spent your days studying the tales writ and told by the Ecclesiarchy's rejects and priests alike. You've grown to tell the followers by hunch and sight. They give themselves away so easily in this world slowly brewing to a fester."
-	added_traits = list(TRAIT_HERETIC_SEER)
+/datum/virtue/heretic/zchurch_keyholder
+	name = "Heresiarch"
+	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods- and I've stashed away a key to the conclave, for my own use- or to be given to someone else. Secrecy is paramount. If found out, I will surely be killed."
+	added_stashed_items = list("Ancient Key" = /obj/item/roguekey/inhumen)
