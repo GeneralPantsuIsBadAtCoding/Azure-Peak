@@ -17,8 +17,12 @@
 	STASTR = 16
 	STASPD = 5
 	base_intents = list(/datum/intent/simple/minotaur_unarmed)
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 10,
-						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 2)
+	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
+						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 2) // Made in-line w/ troll..
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
+						/obj/item/natural/hide = 3, /obj/item/natural/bundle/bone/full = 2)
+	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 5,
+						/obj/item/natural/hide = 5, /obj/item/natural/bundle/bone/full = 2) // No heads (yet). TBA.
 	faction = list("caves")
 
 	health = MINOTAUR_HEALTH
@@ -70,8 +74,7 @@
 	icon_dead = "MinotaurFem_dead"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 10,
-						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 2, /obj/item/rogueweapon/greataxe/steel/doublehead = 1) //Acquiring an axe from their cold, dead hands.
+	loot = list(/obj/item/rogueweapon/greataxe/steel/doublehead = 1) //Acquiring an axe from their cold, dead hands.
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"
