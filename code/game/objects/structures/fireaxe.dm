@@ -140,3 +140,149 @@
 /obj/structure/fireaxecabinet/south
 	dir = SOUTH
 	pixel_y = 32
+
+
+/obj/structure/shard_holder
+	name = "HOLY FRAGMENT HOLDER"
+	desc = "This stone holder, clearly ancient and decaying, holds within it a cyan glowing shard of true divinity. Guard it with your life, O' Faithful."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "shardholder_empty"
+	anchored = TRUE
+	density = FALSE
+	armor = ARMOR_DISPLAYCASE
+	max_integrity = 9999
+	integrity_failure = 0.33
+	var/locked = FALSE
+	var/open = TRUE
+	var/obj/item/roguegem/cometshard/syon
+
+/obj/structure/shard_holder/Initialize()
+	. = ..()
+	syon = new /obj/item/roguegem/cometshard
+	update_icon()
+
+/obj/structure/shard_holder/Destroy()
+	if(syon)
+		QDEL_NULL(syon)
+	return ..()
+
+/obj/structure/shard_holder/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		toggle_lock(user)
+	else if(I.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !obj_broken)
+		if(obj_integrity < max_integrity)
+			if(!I.tool_start_check(user, amount=2))
+				return
+
+	else if(open || obj_broken)
+		if(istype(I, /obj/item/roguegem/cometshard) && !syon)
+			var/obj/item/roguegem/cometshard/F = I
+			if(!user.transferItemToLoc(F, src))
+				return
+			syon = F
+			to_chat(user, "<span class='notice'>I place the HOLY SHARD back in the [name].</span>")
+			update_icon()
+			return
+		else if(!obj_broken)
+			toggle_open()
+	else
+		return ..()
+
+/obj/structure/shard_holder/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	switch(damage_type)
+		if(BRUTE)
+			if(obj_broken)
+				playsound(loc, 'sound/blank.ogg', 90, TRUE)
+			else
+				playsound(loc, 'sound/blank.ogg', 90, TRUE)
+		if(BURN)
+			playsound(src.loc, 'sound/blank.ogg', 100, TRUE)
+
+/obj/structure/shard_holder/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	if(open)
+		return
+	. = ..()
+	if(.)
+		update_icon()
+
+/obj/structure/shard_holder/obj_break(damage_flag)
+	..()
+
+	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
+		update_icon()
+		playsound(src, 'sound/blank.ogg', 100, TRUE)
+
+/obj/structure/shard_holder/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(open || obj_broken)
+		if(syon)
+			user.put_in_hands(syon)
+			syon = null
+			to_chat(user, "<span class='notice'>I take the HOLY SHARD from the [name].</span>")
+			src.add_fingerprint(user)
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				message_admins("[H.real_name]([key_name(user)]) stole the comet shard. [ADMIN_JMP(src)]")
+				log_admin("[H.real_name]([key_name(user)]) stole the comet shard.")
+			update_icon()
+			divinitystolen()
+			return
+	if(locked)
+		to_chat(user, "<span class='warning'>The [name] won't budge!</span>")
+		return
+	else
+		open = !open
+		update_icon()
+		return
+
+/obj/structure/shard_holder/attack_paw(mob/living/user)
+	return attack_hand(user)
+
+/obj/structure/shard_holder/attack_tk(mob/user)
+	if(locked)
+		to_chat(user, "<span class='warning'>The [name] won't budge!</span>")
+		return
+	else
+		open = !open
+		update_icon()
+		return
+
+/obj/structure/shard_holder/update_icon()
+	cut_overlays()
+	if(syon)
+		add_overlay("shardholder")
+	if(!open)
+
+		if(locked)
+			add_overlay("locked")
+		else
+			add_overlay("unlocked")
+	else
+		add_overlay("glass_raised")
+
+/obj/structure/shard_holder/proc/toggle_lock(mob/user)
+	to_chat(user, "<span class='notice'>Resetting circuitry...</span>")
+	playsound(src, 'sound/blank.ogg', 50, TRUE)
+	if(do_after(user, 20, target = src))
+		to_chat(user, "<span class='notice'>I [locked ? "disable" : "re-enable"] the locking modules.</span>")
+		locked = !locked
+		update_icon()
+
+/obj/structure/shard_holder/verb/toggle_open()
+	set name = "Open/Close"
+	set hidden = 1
+	set src in oview(1)
+
+	if(locked)
+		to_chat(usr, "<span class='warning'>The shard won't budge!</span>")
+		return
+	else
+		open = !open
+		update_icon()
+		return
+
+/obj/structure/shard_holder/south
+	dir = SOUTH
+	pixel_y = 32

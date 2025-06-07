@@ -192,40 +192,44 @@
 		current_holder = user
 
 /datum/component/martyrweapon/proc/altclick(mob/user)
-	if(user == current_holder && !is_active && !is_activating)
-		var/holding = user.get_active_held_item()
-		if(holding == parent)
-			if(world.time > next_activation)
-				if(!allow_all)
-					var/A = get_area(user)
-					if(A)
-						var/area/testarea = A
-						var/success = FALSE
-						for(var/AR in allowed_areas)	//We check if we're in a whitelisted area (Church)
-							if(istype(testarea, AR))
-								success = TRUE
-								break
-						if(success)	//The SAFE option
-							if(alert("You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes")
-								is_activating = TRUE
-								activate(user, STATE_SAFE)
-						else	//The NOT SAFE option
-							if(alert("You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
-								var/choice = alert("You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
-								switch(choice)
-									if("Six")
-										is_activating = TRUE
-										activate(user, STATE_MARTYR)
-									if("Two")
-										is_activating = TRUE
-										activate(user, STATE_MARTYRULT)
-									if("Nevermind")
-										to_chat(user, "You reconsider. It is not the right moment.")
-										return
-				else
-					activate(user)
-		else
-			to_chat(user, span_info("You must be holding the sword in your active hand!"))
+	var/mob/living/carbon/human/H = user
+	if(H.mind.special_role == "Ascendant")
+		return
+	else
+		if(user == current_holder && !is_active && !is_activating)
+			var/holding = user.get_active_held_item()
+			if(holding == parent)
+				if(world.time > next_activation)
+					if(!allow_all)
+						var/A = get_area(user)
+						if(A)
+							var/area/testarea = A
+							var/success = FALSE
+							for(var/AR in allowed_areas)	//We check if we're in a whitelisted area (Church)
+								if(istype(testarea, AR))
+									success = TRUE
+									break
+							if(success)	//The SAFE option
+								if(alert("You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes")
+									is_activating = TRUE
+									activate(user, STATE_SAFE)
+							else	//The NOT SAFE option
+								if(alert("You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
+									var/choice = alert("You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
+									switch(choice)
+										if("Six")
+											is_activating = TRUE
+											activate(user, STATE_MARTYR)
+										if("Two")
+											is_activating = TRUE
+											activate(user, STATE_MARTYRULT)
+										if("Nevermind")
+											to_chat(user, "You reconsider. It is not the right moment.")
+											return
+					else
+						activate(user)
+			else
+				to_chat(user, span_info("You must be holding the sword in your active hand!"))
 
 //IF it gets dropped, somehow (likely delimbing), turn it off immediately.
 /datum/component/martyrweapon/proc/on_drop(datum/source, mob/user)
@@ -532,7 +536,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/datum/job/J = SSjob.GetJob(H.mind?.assigned_role)
-		if(J.title == "Priest" || J.title == "Martyr")
+		if(J.title == "Priest" || J.title == "Martyr" || H.mind.special_role == "Ascendant")
 			return ..()
 		else if (H.job in GLOB.church_positions)
 			to_chat(user, span_warning("You feel a jolt of holy energies just for a split second, and then the sword slips from your grasp! You are not devout enough."))

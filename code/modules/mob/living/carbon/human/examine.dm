@@ -27,8 +27,8 @@
 	var/t_is = p_are()
 	var/obscure_name = FALSE
 	var/race_name = dna.species.name
-	var/datum/antagonist/maniac/maniac = user.mind?.has_antag_datum(/datum/antagonist/maniac)
-	if(maniac && (user != src))
+	var/datum/antagonist/ascendant/ascendant = user.mind?.has_antag_datum(/datum/antagonist/ascendant)
+	if(ascendant && (user != src))
 		race_name = "disgusting pig"
 
 	var/m1 = "[t_He] [t_is]"
@@ -742,11 +742,6 @@
 				. += span_revennotice("[t_He] look[p_s()] dumber than I.")
 			if(-INFINITY to -5)
 				. += span_revennotice("[t_He] look[p_s()] as blunt-minded as a rock.")
-
-	if(maniac)
-		var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-		if(heart?.inscryption && (heart.inscryption_key in maniac.key_nums))
-			. += span_danger("[t_He] know[p_s()] [heart.inscryption_key], I AM SURE OF IT!")
 
 	if(Adjacent(user))
 		if(observer_privilege)
