@@ -3,13 +3,13 @@
 
 /datum/ambush_config/mirespiders_ambush
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 4,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 2,
 		/mob/living/simple_animal/hostile/rogue/mirespider_lurker = 1
 	)
 
 /datum/ambush_config/mirespiders_crawlers
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 7,
+		/mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 4,
 	)
 
 /datum/ambush_config/mirespiders_aragn
