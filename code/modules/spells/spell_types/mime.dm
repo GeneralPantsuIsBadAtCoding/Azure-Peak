@@ -14,17 +14,18 @@
 	cast_sound = null
 	human_req = TRUE
 
-	action_icon_state = "invisible_wall"
-	action_background_icon_state = "bg_mime"
+	overlay_state = "invisible_wall"
+	overlay_alpha = 175
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall/Click()
 	if(usr && usr.mind)
-		if(!usr.mind.miming)
-			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
+		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE)) // If somehow someone gets ahold of this spell...
+			to_chat(usr, span_warning("I am not a mute!"))
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a wall is in front of [usr.p_them()]."
 	else
 		invocation_type ="none"
+	invocation(usr) // force invocation because invocation() only gets called on a specific spell (not aoe_turf)
 	..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair
@@ -43,17 +44,18 @@
 	cast_sound = null
 	human_req = TRUE
 
-	action_icon_state = "invisible_chair"
-	action_background_icon_state = "bg_mime"
+	overlay_state = "invisible_chair"
+	overlay_alpha = 175
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/Click()
 	if(usr && usr.mind)
-		if(!usr.mind.miming)
-			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
+		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE))
+			to_chat(usr, span_warning("I am not a mute!"))
 			return
 		invocation = "<B>[usr.real_name]</B> pulls out an invisible chair and sits down."
 	else
 		invocation_type ="none"
+	invocation(usr)
 	..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/cast(list/targets,mob/user = usr)

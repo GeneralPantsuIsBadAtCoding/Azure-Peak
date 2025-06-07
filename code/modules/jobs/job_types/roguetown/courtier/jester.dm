@@ -14,7 +14,6 @@
 		and someday you'll find yourself at the end of something sharper than you."
 
 	allowed_ages = ALL_AGES_LIST
-	spells = list(/obj/effect/proc_holder/spell/self/telljoke,/obj/effect/proc_holder/spell/self/telltragedy)
 	outfit = /datum/outfit/job/roguetown/jester
 	display_order = JDO_JESTER
 	give_bank_account = TRUE
@@ -46,6 +45,14 @@
 		H.STAINT = rand(1, 20)
 		H.STALUC = rand(1, 20)
 		H.cmode_music = 'sound/music/combat_jester.ogg'
+		// Mime vs Jester. 
+		// As a mute jester you cannot cast Tell Joke/Tragedy, so why even have them?
+		if(HAS_TRAIT(H, TRAIT_PERMAMUTE)) // I considered adding a check for Xylix patron but in the off chance there's a mute non-xylix jester I don't want to fuck them over.
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair)
+		else
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/telljoke)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/telltragedy)
 	H.verbs |= /mob/living/carbon/human/proc/ventriloquate
 	H.verbs |= /mob/living/carbon/human/proc/ear_trick
 	if(!istype(H.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))

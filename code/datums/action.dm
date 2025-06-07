@@ -19,13 +19,13 @@
 	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/overlay_state = null
+	var/overlay_alpha = 255
 
 	/// Toggles whether this action is usable or not
 	var/action_disabled = FALSE
 
 	/// If False, the owner of this action does not get a hud and cannot activate it on their own
 	var/owner_has_control = TRUE
-
 	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
 	var/mob/owner
 
@@ -155,7 +155,9 @@
 		current_button.cut_overlays(TRUE)
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
 		if(overlay_state)
-			current_button.add_overlay(mutable_appearance(icon_icon, overlay_state))
+			var/mutable_appearance/overlaid_icon = mutable_appearance(icon_icon, overlay_state)
+			overlaid_icon.alpha = overlay_alpha
+			current_button.add_overlay(overlaid_icon)
 		current_button.button_icon_state = button_icon_state
 
 
@@ -318,6 +320,7 @@
 	button_icon_state = S.action_icon_state
 	background_icon_state = S.action_background_icon_state
 	button.name = name
+	overlay_alpha = S.alpha
 
 /datum/action/spell_action/Destroy()
 	var/obj/effect/proc_holder/S = target
