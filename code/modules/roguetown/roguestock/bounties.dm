@@ -1,6 +1,6 @@
 /datum/roguestock/bounty/treasure
 	name = "Collectable Treasures"
-	desc = "Treasures are minted for 100% of its value, which is deposited into the treasury\
+	desc = "Treasures are minted for 80% of its value, which is deposited into the treasury\
 	Weapons, ores and clothings are excluded.\
 	Any item worth more than 30 mammons is accepted,\
 	and statues, cups, rings, platters, and candlesticks are always accepted\
