@@ -1486,6 +1486,30 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 
+/obj/item/clothing/cloak/templar/pride
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
+	alternate_worn_layer = TABARD_LAYER
+	boobed = TRUE
+	body_parts_covered = CHEST|GROIN
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
+	name = "eoran pride tabard"
+	desc = "A stylized, rainbow fabric tabard. Its colors represent Eora's indiscriminate love. It's a bit odd to wear this while killing someone, but you do you."
+	icon_state = "gay_tabard"
+
+/obj/item/clothing/cloak/templar/pride/attackby(obj/item/P, mob/user, params)
+	if(ishuman(user))
+		if(istype(P, /obj/item/flashlight/flare/torch))
+			to_chat(usr, span_danger("You feel a vague sense of divine irritation. This is probably a bad idea."))
+			if(do_after(user, 40))
+				user.visible_message("<span class='danger'>[user] suddenly tears open!</span>","<font color='#921e7c'><font size='5'><i>\"...really, now? How petty.\"</i></font>")
+				var/chud_limbs = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+				var/mob/living/carbon/human/chud = user
+				for(var/limb in chud_limbs)
+					var/obj/item/bodypart/chosenlimb = chud.get_bodypart(limb)
+					chosenlimb.add_wound(/datum/wound/artery)
+			else
+				return
+
 // Dumping old black knight stuff here
 /obj/item/clothing/cloak/cape/blkknight
 	name = "blood cape"
