@@ -257,7 +257,7 @@
 									"Yeomen" = GLOB.yeoman_positions,
 									"Youngfolk" = GLOB.youngfolk_positions,
 									"Ghost and Other Roles" = list(ROLE_NECRO_SKELETON),
-									"Antagonist Positions" = list(ROLE_MANIAC, ROLE_WEREWOLF,
+									"Antagonist Positions" = list(ROLE_ASCENDANT, ROLE_WEREWOLF,
 									ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT,
 									ROLE_DELF, ROLE_PREBEL, ROLE_ASPIRANT,
 									ROLE_LICH, ROLE_ASCENDANT, ROLE_WRETCH))
