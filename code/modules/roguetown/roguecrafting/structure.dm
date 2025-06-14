@@ -52,6 +52,16 @@
 	verbage_simple = "construct"
 	verbage = "constructs"
 
+/datum/crafting_recipe/roguetown/structure/zizo_shrine
+	name = "Profane Shrine"
+	always_availible = FALSE	//Has unique assign for certain roles.
+	reqs = list(
+		/obj/item/grown/log/tree/small = 1,
+		/obj/item/natural/stone = 2,
+		/obj/item/grown/log/tree/stake = 2
+	)
+	result = /obj/structure/fluff/psycross/zizocross
+
 /datum/crafting_recipe/roguetown/structure/swing_door
 	name = "swing door"
 	result = /obj/structure/mineral_door/swing_door

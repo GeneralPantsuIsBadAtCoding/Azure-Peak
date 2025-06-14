@@ -833,6 +833,7 @@
 			wound.heal_wound(wound.whp)
 	ExtinguishMob()
 	fire_stacks = 0
+	divine_fire_stacks = 0
 	confused = 0
 	dizziness = 0
 	drowsyness = 0
@@ -1412,7 +1413,7 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if(fire_stacks > 0 && !on_fire)
+	if((fire_stacks > 0 || divine_fire_stacks > 0) && !on_fire)
 		if(HAS_TRAIT(src, TRAIT_NOFIRE) && prob(90)) // Nofire is described as nonflammable, not immune. 90% chance of avoiding ignite
 			return
 		testing("ignis")
@@ -1445,6 +1446,9 @@
 	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
+
+/mob/living/proc/adjust_divine_fire_stacks(add_fire_stacks) //Adjusting the amount of divine_fire_stacks we have on person
+	divine_fire_stacks = CLAMP(divine_fire_stacks + add_fire_stacks, 0, 100)
 
 //Share fire evenly between the two mobs
 //Called in MobBump() and Crossed()
