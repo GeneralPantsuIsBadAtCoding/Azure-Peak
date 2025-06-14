@@ -45,3 +45,8 @@ combat_treasurehunter.ogg: Henry Jackman - Cut To The Chase
 combat_starsugar.ogg: FEMTANYL - DOGMATICA
 combat_ozium.ogg: Light Club - FAHKEET
 combat_shaman2.ogg. Heilung - Elddansurin
+combat_berserker.ogg: Mikolai Stroinski - Eyes of the Wolf
+combat_graggar.ogg: T87-Sulfurhead - Black Powder [https://www.youtube.com/@T87-Sulfurhead]
+combat_baotha.ogg: T87-Sulfurhead - Love Within You (Rough Mix) [https://www.youtube.com/@T87-Sulfurhead]
+combat_heretic.ogg: T87-Sulfurhead - DEMESNE [https://www.youtube.com/@T87-Sulfurhead]
+combat_matthios.ogg: T87-Sulfurhead - Amontillado [https://www.youtube.com/@T87-Sulfurhead]
