@@ -668,13 +668,6 @@
 			to_chat(src, span_danger("My bite misses [ML]!"))
 
 /*
-	True Devil
-*/
-
-/mob/living/carbon/true_devil/UnarmedAttack(atom/A, proximity)
-	A.attack_hand(src)
-
-/*
 	Brain
 */
 
