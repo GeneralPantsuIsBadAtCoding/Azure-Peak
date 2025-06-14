@@ -413,9 +413,9 @@ Inquisitorial armory down here
 		
 /datum/component/psyblessed/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(!is_blessed)
-		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON. Until then, its impure alloying of silver-and-steel cannot blight inhumen foes on its own.</font>")
+		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering SHARD of SYON. Until then, its impure alloying of silver-and-steel cannot blight inhumen foes on its own.</font>")
 	if(is_blessed)
-		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
+		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by the SHARD of SYON.</font>")
 		if(silver)
 			examine_list += span_info("It has been imbued with <b>silver</b>.")
 
@@ -431,7 +431,7 @@ Inquisitorial armory down here
 	if(isitem(parent))
 		var/obj/item/I = parent
 		playsound(I, 'sound/magic/holyshield.ogg', 100)
-		I.visible_message(span_notice("[I] glistens with power as dust of COMET SYON lands upon it!"))
+		I.visible_message(span_notice("[I] glistens with power as dust of the SHARD of SYON lands upon it!"))
 
 /datum/component/psyblessed/proc/apply_bless()
 	if(isitem(parent))

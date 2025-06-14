@@ -9158,6 +9158,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter/woods)
+"diM" = (
+/obj/structure/fluff/statue/psy{
+	name = "heavily worn statue";
+	desc = "You aren't sure what it's depicting, but it's clearly some important figure.."
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/bog)
 "djb" = (
 /obj/structure/fluff/railing/border{
 	dir = 10
@@ -18792,7 +18799,7 @@
 /area/rogue/indoors/town)
 "guD" = (
 /obj/structure/fluff/sellsign{
-	name = "TERRORBOG FORT: DO NOT ENTER"
+	name = "SYON'S REST FORT: DO NOT ENTER"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bog)
@@ -346502,7 +346509,7 @@ hsv
 sLh
 sLh
 qUs
-qUs
+sLh
 qUs
 vQH
 vQH
@@ -346954,8 +346961,8 @@ mrW
 mrW
 sLh
 sLh
-qUs
-qUs
+diM
+sLh
 vQH
 vhs
 vQH
@@ -354640,7 +354647,7 @@ aBB
 aBB
 aBB
 aBB
-vVH
+nWo
 byw
 rub
 rub
