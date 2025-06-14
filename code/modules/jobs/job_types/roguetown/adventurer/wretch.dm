@@ -48,14 +48,14 @@
 		GLOB.excommunicated_players += H.real_name
 	// Felinid said we should gate it at 100 or so on at the lowest, so that wretch cannot ezmode it.
 	var/bounty_severity = input(H, "How severe are your crimes?", "Bounty Amount") as anything in list("Misdeed", "Harm towards lyfe", "Horrific atrocities")
-	var/bounty_total = rand(350, 500) // Just in case
+	var/bounty_total = rand(100, 400) // Just in case
 	switch(bounty_severity)
 		if("Misdeed")
-			bounty_total = rand(130, 200)
+			bounty_total = rand(100, 200)
 		if("Harm towards lyfe")
-			bounty_total = rand(200, 350)
+			bounty_total = rand(200, 300)
 		if("Horrific atrocities")
-			bounty_total = rand(350, 500) // Let's not make it TOO profitable
+			bounty_total = rand(300, 400) // Let's not make it TOO profitable
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
