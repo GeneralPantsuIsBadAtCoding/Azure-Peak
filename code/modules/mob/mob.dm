@@ -992,23 +992,6 @@ GLOBAL_VAR_INIT(mobids, 1)
 	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
 	return TRUE
 
-///Hidden Pixel Shift Verbs, now handled through modularized pixel_shift 
-/mob/verb/eastshift()
-	set hidden = TRUE
-	pixel_shift(EAST)
-
-/mob/verb/westshift()
-	set hidden = TRUE
-	pixel_shift(WEST)
-
-/mob/verb/northshift()
-	set hidden = TRUE
-	pixel_shift(NORTH)
-
-/mob/verb/southshift()
-	set hidden = TRUE
-	pixel_shift(SOUTH)
-
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()
 	return FALSE
