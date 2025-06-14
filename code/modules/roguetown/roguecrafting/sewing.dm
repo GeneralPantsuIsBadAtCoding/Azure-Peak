@@ -685,7 +685,6 @@
 				/obj/item/natural/silk = 1)
 	tools = list(/obj/item/needle)
 	craftdiff = 5
-	sellprice = 35
 
 /datum/crafting_recipe/roguetown/sewing/silktunic
 	name = "ornate silk tunic (2 fibers, 2 cloth, 2 silk)"
@@ -952,7 +951,6 @@
 	            /obj/item/natural/fibers = 5)
 	tools = list(/obj/item/needle)
 	craftdiff = 6
-	sellprice = 24
 
 /datum/crafting_recipe/roguetown/sewing/sleevelessrobe
 	name = "feldsher's robe (2 fibers, 3 cloth)"

@@ -12,38 +12,6 @@
 					/obj/item/clothing/head/roguetown/roguehood/random,
 				)
 
-/datum/supply_pack/rogue/apparel/bags/satchels
-	name = "Satchel"
-	cost = 30
-	contains = list(
-					/obj/item/storage/backpack/rogue/satchel,
-					/obj/item/storage/backpack/rogue/satchel,
-					/obj/item/storage/backpack/rogue/satchel,
-				)
-
-/datum/supply_pack/rogue/apparel/bags/backpacks
-	name = "Backpack"
-	cost = 15
-	contains = list(/obj/item/storage/backpack/rogue/backpack)
-
-/datum/supply_pack/rogue/apparel/bags/pouches
-	name = "Pouch"
-	cost = 10
-	contains = list(
-					/obj/item/storage/belt/rogue/pouch,
-					/obj/item/storage/belt/rogue/pouch,
-					/obj/item/storage/belt/rogue/pouch,
-				)
-
-/datum/supply_pack/rogue/apparel/belts
-	name = "Belt"
-	cost = 10
-	contains = list(
-					/obj/item/storage/belt/rogue/leather,
-					/obj/item/storage/belt/rogue/leather,
-					/obj/item/storage/belt/rogue/leather,
-				)
-
 /datum/supply_pack/rogue/apparel/crosses/silver
 	name = "Silver Cross"
 	cost = 150

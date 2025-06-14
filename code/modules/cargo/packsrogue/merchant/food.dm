@@ -5,7 +5,7 @@
 
 /datum/supply_pack/rogue/food/meat
 	name = "Dry Meat"
-	cost = 18
+	cost = 28
 	contains = list(
 					/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
 					/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
@@ -16,7 +16,7 @@
 
 /datum/supply_pack/rogue/food/hardtack
 	name = "Hardtacks"
-	cost = 15
+	cost = 22
 	contains = list(
 					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,

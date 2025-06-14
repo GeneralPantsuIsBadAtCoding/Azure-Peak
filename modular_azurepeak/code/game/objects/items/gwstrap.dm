@@ -12,6 +12,7 @@
 	unequip_delay_self = 5 SECONDS
 	resistance_flags = NONE
 	max_integrity = 0
+	sellprice = 15
 	experimental_onback = FALSE
 	pixel_y = -16
 	pixel_x = -16

@@ -379,7 +379,7 @@
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/iron/polemace
-	name = "Warclub (+1 Small Log)"
+	name = "Goedendag (+1 Small Log)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/mace/goden
@@ -896,7 +896,7 @@
 // BLACKSTEEL
 
 /datum/anvil_recipe/weapons/blackflamb
-	name = "Flamberge"
+	name = "Blacksteel Flamberge (+1 Blacksteel, +1 Ruby)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/roguegem/ruby)
 	created_item = /obj/item/rogueweapon/sword/long/blackflamb

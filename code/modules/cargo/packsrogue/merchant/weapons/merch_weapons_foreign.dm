@@ -1,6 +1,6 @@
 // Special Mercenary Weapons, at exorbitant prices
 /datum/supply_pack/rogue/merc_weapons
-	group = "Foreign Weapons"
+	group = "Weapons (Foreign)"
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 

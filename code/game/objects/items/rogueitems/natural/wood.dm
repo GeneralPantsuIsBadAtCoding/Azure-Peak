@@ -83,7 +83,7 @@
 	twohands_required = FALSE
 	gripped_intents = null
 	w_class = WEIGHT_CLASS_BULKY
-	smeltresult = /obj/item/rogueore/coal
+	smeltresult = /obj/item/rogueore/coal/charcoal
 	lumber_amount = 0
 
 /obj/item/grown/log/tree/small/Initialize()

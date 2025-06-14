@@ -26,8 +26,9 @@
 	contains = list(/obj/item/reagent_containers/powder/spice)
 
 /datum/supply_pack/rogue/luxury/fancyteaset
-	name = "Fancy Tea Set"
+	name = "Fancy Tea Set (1 Teapot, 4 Cups)"
 	cost = 110
+	no_name_quantity = TRUE
 	contains = list(/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy, 
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy,
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy,
@@ -61,6 +62,7 @@
 
 /datum/supply_pack/rogue/luxury/polishing_kit
 	name = "Polishing Kit"
+	no_name_quantity = TRUE
 	cost = 100
 	contains = list(/obj/item/polishing_cream, /obj/item/armor_brush)
 

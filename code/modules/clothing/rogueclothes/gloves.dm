@@ -57,6 +57,7 @@
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
 	max_integrity = 300
+	sellprice = 12
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
