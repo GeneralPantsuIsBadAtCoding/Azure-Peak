@@ -179,3 +179,153 @@
 	owner.remove_filter(CHURN_FILTER)
 
 #undef CHURN_FILTER
+
+
+/obj/effect/proc_holder/spell/invoked/necra_vow
+	name = "Vow to Necra"
+	range = 1
+	overlay_state = "necra"
+	releasedrain = 30
+	chargedloop = /datum/looping_sound/invokeholy
+	chargetime = 50
+	chargedrain = 0.5
+	recharge_time = 30 SECONDS
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	sound = 'sound/magic/churn.ogg'
+	associated_skill = /datum/skill/magic/holy
+	invocation = "The Undermaiden Protects."
+	invocation_type = "shout" 
+	miracle = TRUE
+	devotion_cost = 100
+
+/obj/effect/proc_holder/spell/invoked/necra_vow/cast(list/targets, mob/living/user = usr)
+	if(ishuman(targets[1]))
+		var/mob/living/carbon/human/H = targets[1]
+		if(HAS_TRAIT(H, TRAIT_ROTMAN) || HAS_TRAIT(H, TRAIT_NOBREATH) || H.mob_biotypes & MOB_UNDEAD)	//No Undead, no Rotcured, no Deathless
+			to_chat(user, span_warning("Necra cares not for the vows of the corrupted."))
+			revert_cast()
+			return FALSE
+		if(H.has_status_effect(/datum/status_effect/buff/necras_vow) || H.patron?.type != /datum/patron/divine/necra)
+			to_chat(user, span_notice("They have already pledged a vow."))
+			revert_cast()
+			return FALSE
+		var/choice = alert(H, "You are being asked to pledge a vow. Your chances of revival or recovery of limb will be greatly reduced. You will harm undeath and heal yourself at a slow rate. Do you agree?", "VOW", "Yes", "No")
+		if(choice != "Yes")
+			to_chat(user, span_notice("They declined."))
+			return TRUE
+		user.visible_message(span_warning("[user] grants [H] the blessing of their promise."))
+		to_chat(H, span_warning("I have committed. There is no going back."))
+		H.apply_status_effect(/datum/status_effect/buff/necras_vow)
+		H.apply_status_effect(/datum/status_effect/buff/healing/necras_vow)
+
+/atom/movable/screen/alert/status_effect/buff/necras_vow
+	name = "Vow to Necra"
+	desc = "I have pledged a promise to Necra. Undeath shall be harmed or lit aflame if they strike me. Rot will not claim me. Lost limbs can only be restored if they are myne."
+	icon_state = "necravow"
+
+#define NECRAVOW_FILTER "necravow_glow"
+
+/datum/status_effect/buff/necras_vow
+	var/outline_colour ="#929186" // A dull grey.
+	id = "necravow"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/necras_vow
+	effectedstats = list("constitution" = 2)
+	duration = -1
+
+/datum/status_effect/buff/necras_vow/on_apply()
+	. = ..()
+	var/filter = owner.get_filter(NECRAVOW_FILTER)
+	if (!filter)
+		owner.add_filter(NECRAVOW_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+	ADD_TRAIT(owner, TRAIT_NECRAS_VOW, TRAIT_MIRACLE)
+	owner.rot_type = null
+	to_chat(owner, span_warning("My limbs feel more alive than ever... I feel whole..."))
+
+/datum/status_effect/buff/necras_vow/on_remove()
+	. = ..()
+	owner.remove_filter(NECRAVOW_FILTER)
+	to_chat(owner, span_warning("My body feels strange... hollow..."))
+
+#undef NECRAVOW_FILTER
+
+/obj/effect/proc_holder/spell/invoked/necras_sight
+	name = "Necra's Sight"
+	desc = "Mark a psycross or a grave marker, and peer through them."
+	releasedrain = 30
+	chargetime = 0 SECONDS
+	recharge_time = 10 SECONDS
+	warnie = "spellwarning"
+	invocation_type = "whisper"
+	invocation = "Undermaiden guide my gaze..."
+	associated_skill = /datum/skill/magic/holy
+	overlay_state = "bigpsy"
+	miracle = TRUE
+	devotion_cost = 30
+	range = 1
+	var/static/list/whitelisted_objects = list(/obj/structure/gravemarker, /obj/structure/fluff/psycross)
+	var/list/marked_objects = list()
+	var/outline_color = "#4ea1e6"
+	var/last_index = 1
+
+/obj/effect/proc_holder/spell/invoked/necras_sight/cast(list/targets, mob/user)
+	if(isobj(targets[1]))
+		var/obj/O = targets[1]
+		if((O.type in whitelisted_objects))
+			add_to_scry(O, user)
+			return TRUE
+	if(isturf(targets[1]))
+		var/turf/T = targets[1]
+		for(var/obj/O in T)
+			if((O.type in whitelisted_objects))
+				add_to_scry(O, user)
+				return TRUE
+		if(length(marked_objects))
+			try_scry(user)
+	if(ismob(targets[1]))
+		if(length(marked_objects))
+			try_scry(user)
+			return TRUE
+	revert_cast()
+	return FALSE
+
+#define GRAVE_SPY "grave_spy"
+
+/obj/effect/proc_holder/spell/invoked/necras_sight/proc/try_scry(mob/living/carbon/human/user)
+	listclearnulls(marked_objects)
+	var/selected_grave = input(user, "Which Grave shall we peer through?", "") as null|anything in marked_objects
+	if(selected_grave)
+		var/obj/structure/gravemarker/spygrave = selected_grave
+		var/filter = spygrave.get_filter(GRAVE_SPY)
+		if(!filter)
+			spygrave.add_filter(GRAVE_SPY, 2, list("type" = "outline", "color" = outline_color, "alpha" = 200, "size" = 1))
+		var/mob/dead/observer/screye/S = user.scry_ghost()
+		spygrave.visible_message(span_warning("[spygrave] shimmers with an eerie glow."))
+		if(!S)
+			return
+		S.ManualFollow(spygrave)
+		user.visible_message(span_danger("[user] blinks, [user.p_their()] eyes rolling back into [user.p_their()] head."))
+		user.playsound_local(get_turf(user), 'sound/magic/necra_sight.ogg', 80)
+		addtimer(CALLBACK(S, TYPE_PROC_REF(/mob/dead/observer, reenter_corpse)), (8 SECONDS))
+		addtimer(CALLBACK(spygrave, TYPE_PROC_REF(/atom/movable, remove_filter), GRAVE_SPY), (8 SECONDS))
+
+#undef GRAVE_SPY
+
+/obj/effect/proc_holder/spell/invoked/necras_sight/proc/add_to_scry(obj/O, mob/living/carbon/human/user)
+	if(O in marked_objects)
+		revert_cast()
+		return
+	var/holyskill = user.mind?.get_skill_level(/datum/skill/magic/holy)
+	if(length(marked_objects) >= holyskill)
+		to_chat(user, span_warning("I'm focusing on too many gravestones already! I will replace this one with the first I recall."))
+		marked_objects[last_index] = O
+		last_index++
+		if(last_index >= holyskill)
+			last_index = 1
+		return
+	to_chat(user, span_info("I incant a whisper and touch the gravestone, marking it for later use..."))
+	for(var/i in 1 to holyskill)
+		if(!LAZYACCESS(marked_objects, i))
+			LAZYADD(marked_objects, O)
+			break
+		else
+			continue

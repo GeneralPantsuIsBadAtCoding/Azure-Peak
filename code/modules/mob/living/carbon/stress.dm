@@ -113,21 +113,24 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 					to_chat(src, span_red("I'm stressed a little less, now."))
 				apply_status_effect(/datum/status_effect/mood/bad)
 			if(STRESS_THRESHOLD_STRESSED_BAD)
-				if(ascending)
-					to_chat(src, span_boldred("I'm getting at my limit..."))
-				else
-					to_chat(src, span_boldred("I'm not freaking out that badly anymore."))
-				apply_status_effect(/datum/status_effect/mood/vbad)
+				if(!HAS_TRAIT(src, TRAIT_EORAN_CALM) && !HAS_TRAIT(src, TRAIT_EORAN_SERENE))
+					if(ascending)
+						to_chat(src, span_boldred("I'm getting at my limit..."))
+					else
+						to_chat(src, span_boldred("I'm not freaking out that badly anymore."))
+					apply_status_effect(/datum/status_effect/mood/vbad)
 			if(STRESS_THRESHOLD_FREAKING_OUT)
 				to_chat(src, span_boldred("I'M FREAKING OUT!!!"))
 				play_mental_break_indicator()
 				apply_status_effect(/datum/status_effect/mood/vbad)
 
 	if(new_stress >=15)
-		random_stress_message()
+		if(!HAS_TRAIT(src, TRAIT_EORAN_CALM) && !HAS_TRAIT(src, TRAIT_EORAN_SERENE))
+			random_stress_message()
 
 	if(new_stress >= 20)
-		roll_streak_freakout()
+		if(!HAS_TRAIT(src, TRAIT_EORAN_CALM) && !HAS_TRAIT(src, TRAIT_EORAN_SERENE))
+			roll_streak_freakout()
 
 	oldstress = new_stress
 	update_stress_visual(new_stress)
@@ -230,6 +233,8 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 		var/stress_amt = event.get_stress(src)
 		if(stress_amt > 0 && HAS_TRAIT(src, TRAIT_BAD_MOOD))
 			stress_amt *= 2
+		if(stress_amt > 0 && HAS_TRAIT(src, TRAIT_EORAN_SERENE))
+			stress_amt = (stress_amt * -1)	//We make the bad things feel good.
 		total_stress += stress_amt
 	return total_stress
 

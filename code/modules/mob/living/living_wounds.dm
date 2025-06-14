@@ -57,7 +57,7 @@
 		return wound
 
 /// Loops through our list of wounds healing them until we run out of healing or all wounds are healed
-/mob/living/proc/heal_wounds(heal_amount)
+/mob/living/proc/heal_wounds(heal_amount, list/specific_types)
 	var/healed_any = FALSE
 	if(has_status_effect(/datum/status_effect/buff/fortify))
 		heal_amount *= 1.5
@@ -66,6 +66,14 @@
 			continue
 		if(heal_amount <= 0)
 			continue
+		if(length(specific_types))
+			var/found = FALSE
+			for(var/woundtype in specific_types)
+				if(istype(wound, woundtype))
+					found = TRUE
+					break
+			if(!found)
+				continue
 		var/amount_healed = wound.heal_wound(heal_amount)
 		if(amount_healed)
 			heal_amount -= amount_healed

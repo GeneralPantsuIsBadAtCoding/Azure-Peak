@@ -253,7 +253,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	name = "Rune of Death"
 	desc = "A Holy Rune of Necra"
 	icon_state = "necra_chalky"
-	var/deathrites = list("Undermaiden's Bargain")
+	var/deathrites = list("Undermaiden's Bargain", "Vow to the Undermaiden")
 
 /obj/structure/ritualcircle/necra/attack_hand(mob/living/user)
 	if((user.patron?.type) != /datum/patron/divine/necra)
@@ -286,12 +286,46 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 						user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 						spawn(120)
 							icon_state = "necra_chalky"
+		if("Vow to the Undermaiden")
+			loc.visible_message(span_warning("[user] sways before the rune, they open their mouth, though no words come out..."))
+			playsound(user, 'sound/vo/mobs/ghost/whisper (3).ogg', 100, FALSE, -1)
+			if(do_after(user, 60))
+				loc.visible_message(span_warning("[user] silently weeps, yet their tears do not flow..."))
+				playsound(user, 'sound/vo/mobs/ghost/whisper (1).ogg', 100, FALSE, -1)
+				if(do_after(user, 60))
+					loc.visible_message(span_warning("[user] locks up, as though someone had just grabbed them..."))
+					to_chat(user,span_danger("You feel cold breath on the back of your neck..."))
+					playsound(user, 'sound/vo/mobs/ghost/death.ogg', 100, FALSE, -1)
+					if(do_after(user, 20))
+						icon_state = "necra_active"
+						user.say("This soul pledges themselves to thee!!")
+						to_chat(user,span_cultsmall("My devotion to the Undermaiden has allowed me to anoint a vow for this soul...."))
+						if(undermaidenvow(src))
+							playsound(loc, 'sound/vo/mobs/ghost/moan (1).ogg', 100, FALSE, -1)
+							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+							spawn(120)
+								icon_state = "necra_chalky"
+						else
+							loc.visible_message(span_warning("Then... nothing. The Undermaiden does not care for the vows of the damned, or those of other faiths."))
+
+
 
 /obj/structure/ritualcircle/necra/proc/undermaidenbargain(src)
 	var/ritualtargets = view(7, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/undermaidenbargain)
 	
+/obj/structure/ritualcircle/necra/proc/undermaidenvow(src)
+	var/ritualtargets = view(1, loc)
+	for(var/mob/living/carbon/human/target in ritualtargets)
+		if(HAS_TRAIT(target, TRAIT_ROTMAN) || HAS_TRAIT(target, TRAIT_NOBREATH) || target.mob_biotypes & MOB_UNDEAD)	//No Undead, no Rotcured, no Deathless
+			return FALSE
+		if(target.patron.type != /datum/patron/divine/necra)
+			return FALSE
+		target.apply_status_effect(/datum/status_effect/buff/necras_vow)
+		target.apply_status_effect(/datum/status_effect/buff/healing/necras_vow)
+		return TRUE
+	return FALSE
 
 /obj/structure/ritualcircle/eora
 	name = "Rune of Love"
