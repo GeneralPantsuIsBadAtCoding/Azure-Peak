@@ -15,6 +15,7 @@
 	var/datum/armor/armor
 	var/last_peeled_limb
 	var/peel_count = 0
+	var/peel_hits = 0 // This should always be an integer. Tracks actual hits by peel on obj. Used to calculate peel_count in items.dm.
 	var/peel_threshold = 3
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
