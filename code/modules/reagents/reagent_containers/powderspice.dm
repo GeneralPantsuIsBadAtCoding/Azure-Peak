@@ -97,7 +97,6 @@
 /obj/item/reagent_containers/powder/attack(mob/M, mob/user, def_zone)
 	if(!canconsume(M, user))
 		return FALSE
-
 	if(M == user)
 		M.visible_message(span_notice("[user] sniffs [src]."))
 	else
@@ -106,6 +105,8 @@
 			var/obj/item/bodypart/CH = C.get_bodypart(BODY_ZONE_HEAD)
 			if(!CH)
 				to_chat(user, span_warning("[C.p_theyre(TRUE)] missing something."))
+			if(!C.can_smell())
+				to_chat(user, span_warning("[C.p_theyre(TRUE)] has no nose!"))
 			user.visible_message(span_danger("[user] attempts to force [C] to inhale [src]."), \
 								span_danger("[user] attempts to force me to inhale [src]!"))
 			if(C.cmode)

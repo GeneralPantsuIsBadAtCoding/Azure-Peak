@@ -150,6 +150,16 @@
 	mortal = FALSE
 	dents_brain = FALSE
 
+/datum/wound/fracture/head/nose/on_mob_gain(mob/living/affected)
+	. = ..()
+	ADD_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
+	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
+
+/datum/wound/fracture/head/nose/on_mob_loss(mob/living/affected)
+	. = ..()
+	REMOVE_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
+	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
+
 /datum/wound/fracture/mouth
 	name = "mandibular fracture"
 	check_name = span_bone("JAW FRACTURE")
@@ -159,8 +169,7 @@
 		"The jaw is shattered!",
 		"The jaw caves in!",
 	)
-	whp = 80
-	sleep_healing = 0
+	whp = 50
 
 /datum/wound/fracture/mouth/on_mob_gain(mob/living/affected)
 	. = ..()
@@ -187,6 +196,7 @@
 /datum/wound/fracture/neck/on_mob_gain(mob/living/affected)
 	. = ..()
 	ADD_TRAIT(affected, TRAIT_PARALYSIS, "[type]")
+	ADD_TRAIT(affected, TRAIT_NOPAIN, "[type]")
 	if(iscarbon(affected))
 		var/mob/living/carbon/carbon_affected = affected
 		carbon_affected.update_disabled_bodyparts()
@@ -196,6 +206,7 @@
 /datum/wound/fracture/neck/on_mob_loss(mob/living/affected)
 	. = ..()
 	REMOVE_TRAIT(affected, TRAIT_PARALYSIS, "[type]")
+	REMOVE_TRAIT(affected, TRAIT_NOPAIN, "[type]")
 	if(iscarbon(affected))
 		var/mob/living/carbon/carbon_affected = affected
 		carbon_affected.update_disabled_bodyparts()
@@ -213,7 +224,7 @@
 
 /datum/wound/fracture/chest/on_mob_gain(mob/living/affected)
 	. = ..()
-	affected.Stun(20)
+	affected.Immobilize(15)
 
 /datum/wound/fracture/chest/on_life()
 	. = ..()

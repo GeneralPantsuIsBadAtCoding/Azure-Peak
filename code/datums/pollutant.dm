@@ -42,6 +42,8 @@
 			continue
 		if(!considered_alive(H.mind))
 			continue
+		if(!H.can_smell())
+			continue
 		if(H.has_stress_event(/datum/stressevent/perfume))
 			continue
 	
