@@ -82,16 +82,6 @@
 	craftdiff = 5
 	sellprice = 23
 
-/datum/crafting_recipe/roguetown/leather/unique/greatcoat
-	name = "coat of the commander (1 cloth, 3 leather, 1 fur)"
-	result = list(/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat)
-	reqs = list(/obj/item/natural/hide/cured = 3,
-				/obj/item/natural/fur = 1,
-	            /obj/item/natural/cloth = 1)
-	tools = list(/obj/item/needle)
-	craftdiff = 5
-	sellprice = 24
-
 /datum/crafting_recipe/roguetown/leather/unique/furlinedjacket
 	name = "artificer jacket (1 cloth, 2 leather, 1 fur)"
 	result = list(/obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket)
