@@ -935,6 +935,7 @@
 #include "code\game\objects\items\rogueweapons\melee\polearms.dm"
 #include "code\game\objects\items\rogueweapons\melee\special.dm"
 #include "code\game\objects\items\rogueweapons\melee\swords.dm"
+#include "code\game\objects\items\rogueweapons\melee\whip.dm"
 #include "code\game\objects\items\rogueweapons\ranged\ammo.dm"
 #include "code\game\objects\items\rogueweapons\ranged\bows.dm"
 #include "code\game\objects\items\rogueweapons\ranged\crossbows.dm"
