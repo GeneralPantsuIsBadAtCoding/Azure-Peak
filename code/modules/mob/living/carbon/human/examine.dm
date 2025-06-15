@@ -121,11 +121,8 @@
 			if(H.marriedto == name)
 				. += span_love("It's my spouse.")
 
-		if(name in GLOB.excommunicated_players)
+		if(name in GLOB.excommunicated_players && HAS_TRAIT(user, TRAIT_INQUISITION))
 			. += span_userdanger("HERETIC! SHAME!")
-
-		if(name in GLOB.outlawed_players)
-			. += span_userdanger("OUTLAW!")
 
 		if(HAS_TRAIT(user, TRAIT_JUSTICARSIGHT) && !HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
 			for(var/datum/bounty/b in GLOB.head_bounties) //I hate this.
@@ -591,11 +588,6 @@
 	//Nutrition and Thirst
 	if(nutrition < (NUTRITION_LEVEL_STARVING - 50))
 		msg += "[m1] looking emaciated."
-//	else if(nutrition >= NUTRITION_LEVEL_FAT)
-//		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-//			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy."
-//		else
-//			msg += "[t_He] [t_is] quite chubby."
 
 	if(HAS_TRAIT(user, TRAIT_EXTEROCEPTION))
 		switch(nutrition)
@@ -697,16 +689,6 @@
 				msg += "[m1] looking a little tired."
 	else
 		msg += "[m1] unconscious."
-//		else
-//			if(HAS_TRAIT(src, TRAIT_DUMB))
-//				msg += "[m3] a stupid expression on [m2] face."
-//			if(InCritical())
-//				msg += "[m1] barely conscious."
-//		if(getorgan(/obj/item/organ/brain))
-//			if(!key)
-//				msg += span_deadsay("[m1] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
-//			else if(!client)
-//				msg += "[m3] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon."
 
 	if(length(msg))
 		. += span_warning("[msg.Join("\n")]")
@@ -878,8 +860,6 @@
 		if(mind.special_role == "Bandit")
 			if(HAS_TRAIT(examiner, TRAIT_COMMIE))
 				villain_text = span_notice("Free man!")
-			/*else
-				villain_text = span_userdanger("BANDIT!")*/
 		if(mind.special_role == "Vampire Lord")
 			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
 			if(VD) 
