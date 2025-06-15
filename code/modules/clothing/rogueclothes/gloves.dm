@@ -265,6 +265,7 @@
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/blacksteel
+	armor_class = ARMOR_CLASS_HEAVY
 
 /obj/item/clothing/gloves/roguetown/angle/pontifex
 	name = "rune-scrybed wrappings"

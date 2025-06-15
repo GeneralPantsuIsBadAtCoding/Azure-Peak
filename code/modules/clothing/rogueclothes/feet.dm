@@ -397,6 +397,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/blacksteel
 	resistance_flags = FIRE_PROOF
+	armor_class = ARMOR_CLASS_HEAVY
 
 // ----------------- BLACKSTEEL END -----------------------
 
