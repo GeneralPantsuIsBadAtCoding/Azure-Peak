@@ -11,7 +11,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "n" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "v" = (

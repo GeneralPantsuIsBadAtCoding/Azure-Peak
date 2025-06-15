@@ -85,3 +85,12 @@
 		/datum/alch_cauldron_recipe
 		)
  
+/obj/item/recipe_book/cooking
+	name = "The Culinary Codex"
+	desc = "A book full of recipes and tips for cooking. This version looks very incomplete, and only contain brewing recipes. Perhaps it will be filled in later?"
+	icon_state = "book2_0"
+	base_icon_state = "book2"
+
+	types = list(
+		/datum/brewing_recipe
+	)

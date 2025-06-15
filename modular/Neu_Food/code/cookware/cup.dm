@@ -132,7 +132,7 @@
 	desc = "Adorned with gemstones, this goblet radiates opulence and grandeur."
 	icon_state = "golden"
 	sellprice = 50
-	list_reagents = list(/datum/reagent/toxin/killersice = 1, /datum/reagent/consumable/ethanol/beer/elfred = 20)
+	list_reagents = list(/datum/reagent/toxin/killersice = 1, /datum/reagent/consumable/ethanol/elfred = 20)
 
 /obj/item/reagent_containers/glass/cup/skull
 	name = "skull goblet"

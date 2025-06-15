@@ -8,7 +8,7 @@
 
 /proc/beakersforbeakers()
 	. = list()
-	for(var/t in subtypesof(/obj/item/reagent_containers) + list(/obj/structure/fermenting_barrel, /obj/item/roguebin))
+	for(var/t in subtypesof(/obj/item/reagent_containers) + list(/obj/structure/fermentation_keg, /obj/item/roguebin))
 		var/obj/item/reagent_containers/C = t
 		. += list(list("id" = t, "text" = initial(C.name), "volume" = initial(C.volume)))
 

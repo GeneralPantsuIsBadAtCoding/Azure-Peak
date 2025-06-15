@@ -34,6 +34,10 @@
 	inputs = list(/obj/item/reagent_containers/food/snacks/rogue/veg/cabbage_sliced)
 	output = /datum/reagent/consumable/soup/veggie/cabbage
 
+/datum/stew_recipe/cabbage
+	inputs = list(/obj/item/reagent_containers/food/snacks/veg/turnip_sliced)
+	output = /datum/reagent/consumable/soup/veggie/turnip
+
 /datum/stew_recipe/fish
 	inputs = list(/obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish)
 	output = /datum/reagent/consumable/soup/stew/fish
@@ -67,6 +71,14 @@
 /datum/stew_recipe/berry
 	inputs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue)
 	output = /datum/reagent/consumable/soup/stew/berry
+
+/datum/stew_recipe/cheese
+	inputs = list(/obj/item/reagent_containers/food/snacks/rogue/cheese, /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge)
+	output = /datum/reagent/consumable/soup/stew/cheese
+
+/datum/stew_recipe/egg
+	inputs = list(/obj/item/reagent_containers/food/snacks/egg)
+	output = /datum/reagent/consumable/soup/stew/egg
 
 // DRINKS
 /datum/stew_recipe/rose_tea

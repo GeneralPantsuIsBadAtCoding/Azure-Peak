@@ -233,7 +233,7 @@
 /turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/cave/dungeon1)
 "eW" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "eX" = (
@@ -851,7 +851,7 @@
 /area/rogue/under/cave/dungeon1)
 "tX" = (
 /obj/effect/decal/cobbleedge,
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "ue" = (
@@ -944,7 +944,7 @@
 /area/rogue/under/cave/dungeon1)
 "vz" = (
 /obj/item/grown/log/tree/stick,
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "vA" = (
@@ -1148,7 +1148,7 @@
 "Ag" = (
 /obj/effect/decal/cobbleedge,
 /obj/item/chair/rogue/crafted,
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "Ai" = (
@@ -1772,7 +1772,7 @@
 /area/rogue/under/cave/dungeon1)
 "ME" = (
 /obj/structure/table/wood,
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/cave/dungeon1)
 "MG" = (
@@ -2183,7 +2183,7 @@
 /obj/structure/chair/wood/rogue{
 	dir = 4
 	},
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "XC" = (

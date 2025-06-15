@@ -123,6 +123,10 @@
 	..()
 	. = 1
 
+/datum/reagent/consumable/sugar/molasses
+	name = "Molasses"
+	color = "#835c5c"
+
 /datum/reagent/consumable/virus_food
 	name = "Virus Food"
 	description = "A mixture of water and milk. Virus cells can use this mixture to reproduce."

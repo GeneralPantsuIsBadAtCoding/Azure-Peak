@@ -42,3 +42,8 @@
 	desc = "A clove of garlick. Don't eat this."
 	tastes = list("pungent umami" = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+
+/obj/item/reagent_containers/food/snacks/veg/turnip_sliced
+	name = "cleaned turnip"
+	icon = 'modular/Neu_Food/icons/raw/raw_veggies.dmi'
+	icon_state = "turnip_sliced"

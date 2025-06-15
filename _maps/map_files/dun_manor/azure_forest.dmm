@@ -78,7 +78,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "aE" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "aF" = (
@@ -577,7 +577,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "er" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
@@ -1572,7 +1572,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
 "mE" = (
-/obj/structure/fermenting_barrel/random,
+/obj/structure/fermentation_keg/random,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "mG" = (
@@ -1604,7 +1604,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet/bogcaves)
 "nb" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
@@ -1922,7 +1922,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
 "pG" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "pL" = (
@@ -2556,7 +2556,7 @@
 /turf/open/water/swamp,
 /area/rogue/under/town/basement)
 "uX" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "uZ" = (
@@ -2583,7 +2583,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains)
 "vg" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -3120,7 +3120,7 @@
 /area/rogue/outdoors/woods)
 "zV" = (
 /obj/machinery/light/rogue/torchholder/c,
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "zX" = (
@@ -4440,7 +4440,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "JF" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "JH" = (
@@ -5080,7 +5080,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/shelter/woods)
 "PD" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "PE" = (
@@ -5165,7 +5165,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/basement)
 "Qs" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/basement)
 "Qt" = (
@@ -5485,7 +5485,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "SL" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /obj/structure/fluff/wallclock{
 	dir = 3
 	},
@@ -5680,7 +5680,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "Um" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "Up" = (

@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	fill_icon_thresholds = list(0, 25, 50, 75, 100)
 	dropshrink = 0.8
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
-	obj_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT|UNIQUE_RENAME
 	spillable = FALSE
 	var/closed = TRUE
 	reagent_flags = TRANSPARENT

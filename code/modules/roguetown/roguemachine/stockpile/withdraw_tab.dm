@@ -3,7 +3,7 @@
 	var/budget = 0
 	var/compact = TRUE
 	var/current_category = "Raw Materials"
-	var/list/categories = list("Raw Materials", "Foodstuffs")
+	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
 	var/obj/structure/roguemachine/parent_structure = null
 
 /datum/withdraw_tab/New(stockpile_param, obj/structure/roguemachine/structure_param)
@@ -34,7 +34,7 @@
 				continue
 			var/remote_stockpile = stockpile_index == 1 ? 2 : 1
 			if(!A.withdraw_disabled)
-				contents += "<b>[A.name]:</b> <a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>LCL: [A.held_items[stockpile_index]] at [A.withdraw_price]m</a> /"
+				contents += "<b>[A.name] (Max: [A.stockpile_limit]):</b> <a href='?src=[REF(parent_structure)];withdraw=[REF(A)]'>LCL: [A.held_items[stockpile_index]] at [A.withdraw_price]m</a> /"
 				contents += "<a href='?src=[REF(parent_structure)];withdraw=[REF(A)];remote=1'>RMT: [A.held_items[remote_stockpile]] at [A.withdraw_price+A.transport_fee]m</a><BR>"
 
 			else

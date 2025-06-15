@@ -43,7 +43,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "Y" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 

@@ -3,9 +3,6 @@
 	dried_type = null
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
-	var/can_distill = FALSE //If FALSE, this object cannot be distilled into an alcohol.
-	var/distill_reagent //If NULL and this object can be distilled, it uses a generic fruit_wine reagent and adjusts its variables.
-	var/distill_amt = 12
 	var/list/pipe_reagents = list()
 	var/seed
 	var/bitesize_mod = 0
@@ -52,9 +49,6 @@
 	bitesize_mod = 2
 	foodtype = GRAIN
 	tastes = list("wheat" = 1)
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer
-	distill_amt = 24
 	grind_results = list(/datum/reagent/floure = 10)
 	mill_result = /obj/item/reagent_containers/powder/flour
 
@@ -69,9 +63,6 @@
 	bitesize_mod = 2
 	foodtype = GRAIN
 	tastes = list("oat" = 1)
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/ale
-	distill_amt = 24
 	grind_results = list(/datum/reagent/floure = 10)
 	mill_result = /obj/item/reagent_containers/powder/flour
 
@@ -86,9 +77,6 @@
 	bitesize_mod = 2
 	foodtype = GRAIN
 	tastes = list("rice" = 1)
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/sake
-	distill_amt = 24
 	grind_results = list(/datum/reagent/floure = 10)
 	mill_result = /obj/item/reagent_containers/powder/flour
 
@@ -109,8 +97,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	worn_y_dimension = 64
 	rotprocess = 20 MINUTES
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer/cider
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/fruit/apple_sliced
 	slices_num = 3
 	chopping_sound = TRUE
@@ -151,6 +137,76 @@
 			if(equippedloc != H.loc)
 				H.dropItemToGround(H.head)
 
+/obj/item/reagent_containers/food/snacks/grown/fruit
+	name = "generic fruit"
+	desc = "Uh oh, this shouldn't be here."
+	bitesize = 2
+	foodtype = FRUIT
+	rotprocess = SHELFLIFE_DECENT
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/pear
+	name = "pear"
+	seed = /obj/item/seeds/pear
+	desc = "A juicy, bell-shaped fruit with a delicate sweetness and soft, grainy flesh."
+	icon_state = "pear"
+	tastes = list("pear" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/lemon
+	name = "lemon"
+	seed = /obj/item/seeds/lemon
+	desc = "A bright yellow citrus fruit, prized for its tart, refreshing juice and fragrant zest."
+	icon_state = "lemon"
+	tastes = list("lemon" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/lime
+	name = "lime"
+	seed = /obj/item/seeds/lime
+	desc = "A small, green citrus fruit with a sharp, tangy flavor, often used to add zest to dishes and drinks."
+	icon_state = "lemon" // Need a real icon
+	tastes = list("lime" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/tangerine
+	name = "tangerine"
+	seed = /obj/item/seeds/tangerine
+	desc = "A small, easy-to-peel citrus fruit with a vibrant orange color and sweet, juicy segments."
+	icon_state = "tangerine"
+	tastes = list("tangerine" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/plum
+	name = "plum"
+	seed = /obj/item/seeds/plum
+	desc = "A smooth-skinned fruit with juicy, sweet-tart flesh and a deep purple or red hue."
+	icon_state = "plum"
+	tastes = list("plum" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/strawberry
+	name = "strawberry"
+	seed = /obj/item/seeds/strawberry
+	desc = "A small, red fruit with a sweet taste. It is often used in desserts."
+	icon_state = "strawberry"
+	tastes = list("strawberry" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/blackberry
+	name = "blackberry"
+	seed = /obj/item/seeds/blackberry
+	desc = "A small, dark fruit with a sweet and slightly tart taste. It is often used in desserts."
+	icon_state = "blackberry"
+	tastes = list("blackberry" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/raspberry
+	name = "raspberry"
+	seed = /obj/item/seeds/raspberry
+	desc = "A small, red fruit with a sweet and slightly tart taste. It is often used in desserts."
+	icon_state = "raspberry"
+	tastes = list("raspberry" = 1)
+
+/obj/item/reagent_containers/food/snacks/grown/fruit/tomato
+	name = "tomato"
+	seed = /obj/item/seeds/tomato
+	desc = "A plump, red fruit with juicy flesh and a balanced sweet-tart flavor, essential in salads and sauces."
+	icon_state = "tomato"
+	tastes = list("tomato" = 1)
+
 /obj/item/reagent_containers/food/snacks/grown/berries/rogue
 	seed = /obj/item/seeds/berryrogue
 	name = "jacksberries"
@@ -162,8 +218,6 @@
 	faretype = FARE_NEUTRAL
 	dropshrink = 0.75
 	var/color_index = "good"
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer/jackberrywine
 	rotprocess = 15 MINUTES
 
 /obj/item/reagent_containers/food/snacks/grown/berries/rogue/Initialize()
@@ -218,6 +272,61 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/acorn_powder = 4, /datum/reagent/drug/nicotine = 1)
 	grind_results = list(/datum/reagent/consumable/acorn_powder = 4)
 	mill_result = /obj/item/reagent_containers/powder/rocknut
+
+/obj/item/reagent_containers/food/snacks/grown/sugarcane
+	seed = /obj/item/seeds/sugarcane
+	name = "sugarcane"
+	desc = "A tall, leafy plant with a thick, fibrous stalk. It can be milled into sugar. Commonly eaten as a snack in part of the former Zhongese dynasty."
+	icon_state = "sugarcane"
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 1
+	throw_range = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 5)
+	dropshrink = 0.8
+	rotprocess = null
+	mill_result = /obj/item/reagent_containers/food/snacks/sugar
+
+/obj/item/reagent_containers/food/snacks/sugar
+	name = "sugar"
+	desc = "Milled sugarcane, sweet as can be."
+	icon = 'icons/roguetown/items/produce.dmi'
+	icon_state = "salt"
+	tastes = list("sweet" = 1)
+	list_reagents = list(/datum/reagent/consumable/sugar = 15)
+
+/obj/item/reagent_containers/food/snacks/grown/vegetable/turnip
+	name = "turnip"
+	desc = "A shield against hunger, naught else."
+	seed = /obj/item/seeds/turnip
+	icon_state = "turnip"
+	tastes = list("dirt" = 1)
+	bitesize = 1
+	slices_num = 1
+	slice_path = /obj/item/reagent_containers/food/snacks/veg/turnip_sliced
+	foodtype = VEGETABLES
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	chopping_sound = TRUE
+	dropshrink = 0.9
+	rotprocess = SHELFLIFE_EXTREME
+
+/*	..................   Sunflower   ................... */
+/obj/item/reagent_containers/food/snacks/grown/sunflower
+	name = "sunflower"
+	desc = "A large, bright yellow flower. Can be worn on the head. Can be roasted directly to make roasted sunflower seeds. Do not attempt to roast its actual seeds."
+	icon_state = "sunflower"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	seed = /obj/item/seeds/sunflower
+	slot_flags = ITEM_SLOT_HEAD
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 1
+	throw_range = 3
+	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
+	dropshrink = 0.8
+	rotprocess = null
+	cooked_type = /obj/item/reagent_containers/food/snacks/roastseeds // Yeah..
+	fried_type = /obj/item/reagent_containers/food/snacks/roastseeds // Whatever I am not refactoring this yet
 
 //pyroclastic flowers - stonekeep port
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius
@@ -281,8 +390,8 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf
-	seed = /obj/item/seeds/sweetleaf
+/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed
+	seed = /obj/item/seeds/swampweed
 	name = "swampweed"
 	desc = "A pipeweed with pungent odor and a sparkling surface."
 	icon_state = "swampweed"
@@ -332,7 +441,7 @@
 		slapcraft_recipes = slapcraft_recipe_list,\
 		)
 
-/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
+/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry
 	seed = null
 	name = "swampweed"
 	desc = "A prepared pipeweed prized for its foggy effects."
@@ -343,7 +452,7 @@
 	grind_results = list(/datum/reagent/drug/space_drugs = 5)
 	eat_effect = /datum/status_effect/debuff/badmeal
 
-/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry/Initialize()
+/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry/Initialize()
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/sigsweet,
@@ -366,8 +475,6 @@
 	tastes = list("spicy sweetness" = 1)
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer/onion
 	rotprocess = null
 	seed = /obj/item/seeds/onion
 
@@ -378,11 +485,9 @@
 	tastes = list("blandness" = 1)
 	bitesize = 10
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	can_distill = TRUE
 	slices_num = 3
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/veg/cabbage_sliced
 	chopping_sound = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer/fireleaf
 	rotprocess = SHELFLIFE_LONG
 	seed = /obj/item/seeds/cabbage
 
@@ -398,8 +503,6 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/veg/potato_sliced
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/preserved/potato_baked
 	chopping_sound = TRUE
-	can_distill = TRUE
-	distill_reagent = /datum/reagent/consumable/ethanol/beer/voddena
 	rotprocess = null
 	seed = /obj/item/seeds/potato
 
@@ -413,7 +516,6 @@
 	tastes = list("pungent umami" = 1)
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1) //add a reagent that harms vampires later
-	can_distill = FALSE
 	rotprocess = null
 	chopping_sound = TRUE
 	seed = /obj/item/seeds/garlick

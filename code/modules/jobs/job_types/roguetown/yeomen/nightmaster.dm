@@ -29,7 +29,7 @@
 	beltl = /obj/item/rogueweapon/whip
 
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry = 2, /obj/item/reagent_containers/powder/moondust = 2, /obj/item/reagent_containers/powder/spice = 1)
+	backpack_contents = list(/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 2, /obj/item/reagent_containers/powder/moondust = 2, /obj/item/reagent_containers/powder/spice = 1)
 	H.grant_language(/datum/language/thievescant)
 	ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, TRAIT_GENERIC)

@@ -23,7 +23,7 @@
 	var/total_deposit = 0
 	var/list/excluded_jobs = list("Wretch","Vagabond","Adventurer")
 	var/current_category = "Raw Materials"
-	var/list/categories = list("Raw Materials", "Foodstuffs")
+	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
 
 
 /obj/structure/roguemachine/steward/attackby(obj/item/P, mob/user, params)

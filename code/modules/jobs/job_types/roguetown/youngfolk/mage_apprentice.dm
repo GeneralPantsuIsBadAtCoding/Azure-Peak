@@ -94,7 +94,7 @@
 /datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
 		/obj/item/roguegem/amethyst = 1, 
-		/obj/item/seeds/sweetleaf = 1, 
+		/obj/item/seeds/swampweed = 1, 
 		/obj/item/seeds/pipeweed = 1,
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1

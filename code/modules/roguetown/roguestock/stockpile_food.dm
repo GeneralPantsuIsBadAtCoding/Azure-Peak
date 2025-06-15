@@ -58,20 +58,6 @@
 	stockpile_limit = 50
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/apple
-	name = "Apple"
-	desc = "Harvested produce."
-	item_type = /obj/item/reagent_containers/food/snacks/grown/apple
-	held_items = list(0, 0)
-	payout_price = 3
-	withdraw_price = 3
-	transport_fee = 1
-	export_price = 5
-	importexport_amt = 5
-	passive_generation = 3
-	stockpile_limit = 50
-	category = "Foodstuffs"
-
 /datum/roguestock/stockpile/meat
 	name = "Meat"
 	desc = "Edible flesh harvested from animals."
@@ -198,24 +184,24 @@
 	passive_generation = 1
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/jacksberry
-	name = "Jacksberries"
-	desc = "Sweet berries, prime for winemaking."
-	item_type = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
+/datum/roguestock/stockpile/onion
+	name = "Onion"
+	desc = "A bulb vegetable."
+	item_type = /obj/item/reagent_containers/food/snacks/grown/onion/rogue
 	held_items = list(0, 0)
 	payout_price = 2
 	withdraw_price = 2
 	transport_fee = 1
 	export_price = 3
 	importexport_amt = 10
-	stockpile_limit = 50 // Jackberries are used to mass produce raisins so higher limit
+	stockpile_limit = 50
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/onion
-	name = "Onion"
-	desc = "A bulb vegetable."
-	item_type = /obj/item/reagent_containers/food/snacks/grown/onion/rogue
+/datum/roguestock/stockpile/turnip
+	name = "Turnip"
+	desc = "A hardy root vegetable suitable for soups. Favored by the poor"
+	item_type = /obj/item/reagent_containers/food/snacks/grown/vegetable/turnip
 	held_items = list(0, 0)
 	payout_price = 2
 	withdraw_price = 2

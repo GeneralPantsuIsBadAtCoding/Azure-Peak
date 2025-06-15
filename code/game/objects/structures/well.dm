@@ -20,7 +20,7 @@
 		if(W.reagents.holder_full())
 			to_chat(user, span_warning("[W] is full."))
 			return
-		if(do_after(user, 30, target = src))
+		if(do_after(user, 1 SECONDS, target = src))
 			var/list/waterl = list(/datum/reagent/water = 200)
 			W.reagents.add_reagent_list(waterl)
 			to_chat(user, "<span class='notice'>I fill [W] from [src].</span>")

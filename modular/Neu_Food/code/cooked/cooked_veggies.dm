@@ -249,3 +249,15 @@
 	faretype = FARE_LAVISH
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
+
+/obj/item/reagent_containers/food/snacks/roastseeds
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	tastes = list("toasted sunflower seeds" = 1)
+	name = "roasted seeds"
+	desc = "Food for birds, treats for humens."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_veggies.dmi'
+	icon_state = "roastseeds"
+	dropshrink = 0.8
+	color = "#e5b175"
+	foodtype = VEGETABLES
+	rotprocess = null

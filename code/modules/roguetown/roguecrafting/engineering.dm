@@ -46,6 +46,15 @@
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
 
+/datum/crafting_recipe/roguetown/engineering/distiller
+	name = "copper distiller"
+	result = /obj/structure/fermentation_keg/distiller
+	reqs = list(/obj/item/ingot/copper = 2, /obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/engineering/freedomchair
 	name = "LIBERTAS"
 	result = /obj/structure/chair/freedomchair/crafted

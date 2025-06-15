@@ -18,8 +18,8 @@
 
 /datum/crafting_recipe/roguetown/survival/dryleaf
 	name = "dry swampweed"
-	result = /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf = 1)
+	result = /obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 1)
 	structurecraft = /obj/machinery/tanningrack
 	time = 2 SECONDS
 	verbage_simple = "dry"
@@ -64,7 +64,7 @@
 	name = "swampweed zig"
 	result = /obj/item/clothing/mask/cigarette/rollie/cannabis
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 1,
 		/obj/item/paper = 1,
 		)
 	time = 10 SECONDS
@@ -76,7 +76,7 @@
 	name = "swampweed cheroot"
 	result = /obj/item/clothing/mask/cigarette/rollie/cannabis/cheroot
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 1,
 		/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry = 1,
 		)
 	time = 10 SECONDS

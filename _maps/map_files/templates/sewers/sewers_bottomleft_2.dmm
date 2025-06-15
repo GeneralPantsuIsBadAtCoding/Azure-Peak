@@ -52,7 +52,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/town/sewer)
 "u" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "x" = (
@@ -87,7 +87,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "J" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "K" = (

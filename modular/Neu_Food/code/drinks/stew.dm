@@ -54,12 +54,28 @@
 	color = "#859e56"
 	taste_description = "watery cabbage"
 
+/datum/reagent/consumable/soup/veggie/turnip
+	name = "turnip soup"
+	color = "#becf9d"
+	taste_description = "boiled turnip"
+
 /datum/reagent/consumable/soup/stew
 	name = "thick stew"
 	description = "All manners of edible bits went into this."
 	reagent_state = LIQUID
 	nutriment_factor = 20
 	taste_mult = 4
+
+/datum/reagent/consumable/soup/stew/egg
+	name = "egg soup"
+	color = "#dedbaf"
+	taste_description = "egg soup"
+
+/datum/reagent/consumable/soup/stew/cheese
+	name = "cheese soup"
+	description = "A thick cheese soup. Creamy and comforting."
+	color = "#c4be70"
+	taste_description = "creamy cheese"
 
 /datum/reagent/consumable/soup/stew/chicken
 	name = "chicken stew"

@@ -29,7 +29,7 @@
 				)
 
 /datum/supply_pack/rogue/seeds/weed
-	name = "Pipe Weed"
+	name = "Pipeweed"
 	cost = 15
 	contains = list(
 					/obj/item/seeds/pipeweed,
@@ -39,14 +39,14 @@
 					/obj/item/seeds/pipeweed,
 				)
 
-/datum/supply_pack/rogue/seeds/sleaf
-	name = "Sweet Leaf"
+/datum/supply_pack/rogue/seeds/swampweed
+	name = "Swampweed"
 	cost = 30
 	contains = list(
-					/obj/item/seeds/sweetleaf,
-					/obj/item/seeds/sweetleaf,
-					/obj/item/seeds/sweetleaf,
-					/obj/item/seeds/sweetleaf,
+					/obj/item/seeds/swampweed,
+					/obj/item/seeds/swampweed,
+					/obj/item/seeds/swampweed,
+					/obj/item/seeds/swampweed,
 				)
 
 /datum/supply_pack/rogue/seeds/berry

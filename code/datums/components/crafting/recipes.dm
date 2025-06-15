@@ -4,7 +4,7 @@
 	var/name = "" //in-game display name
 	var/reqs[] = list() //type paths of items consumed associated with how many are needed
 	var/blacklist[] = list() //type paths of items explicitly not allowed as an ingredient
-	var/result //type path of item resulting from this craft
+	var/result[] = list() //type path of item resulting from this craft
 	/// String defines of items needed but not consumed. Lazy list.
 	var/list/tool_behaviors
 	var/tools[] = list() //type paths of items needed but not consumed
@@ -46,6 +46,20 @@
 	if(!istype(client))
 		client = user.client
 	user << browse_rsc('html/book.png')
+	var/uncrafted_sellprice = 0
+	if(islist(result))
+		var/list/result_list = result
+		if(result_list.len)
+			if(istype(/atom/movable, result[1]))
+				var/atom/movable/AM = result[1]
+				if(AM.sellprice)
+					uncrafted_sellprice = AM.sellprice
+	else if(istype(result, /atom/movable))
+		var/atom/movable/AM = result
+		if(AM.sellprice)
+			uncrafted_sellprice = AM.sellprice
+
+	var/final_sellprice = sellprice || uncrafted_sellprice
 	var/html = {"
 		<!DOCTYPE html>
 		<html lang="en">
@@ -74,9 +88,9 @@
 		else if(ispath(path, /obj)) // Prevent a runtime from happening w/ datum atm until it is
 			var/atom/atom = path
 			if(subtype_reqs)
-				html += "[icon2html(new atom, user)] [count] of any [initial(atom.name)]<br>"
+				html += "- [count] of any [initial(atom.name)]<br>"
 			else
-				html += "[icon2html(new atom, user)] [count] [initial(atom.name)]<br>"
+				html += "- [count] [initial(atom.name)]<br>"
 
 	html += {"
 		</div>
@@ -123,6 +137,11 @@
 	if(wallcraft)
 		html += "<strong class=class='scroll'>start the process next to a wall</strong> <br>"
 
+	if(final_sellprice)
+		html += "<strong class=class='scroll'>You can sell this for [final_sellprice] mammons at a normal quality</strong> <br>"
+	else(
+		html += "<strong class=class='scroll'>This is worthless for export</strong> <br>"
+	)
 
 	html += {"
 		</div>

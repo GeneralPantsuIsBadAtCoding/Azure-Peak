@@ -17,7 +17,7 @@
 	name = "ozium"
 	category = "Table"
 	result = list(/obj/item/reagent_containers/powder/ozium)
-	reqs = list(/obj/item/ash = 2, /datum/reagent/berrypoison = 2, /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry = 1)
+	reqs = list(/obj/item/ash = 2, /datum/reagent/berrypoison = 2, /obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/alchemy/ozium_3x
@@ -26,7 +26,7 @@
 	result = list(/obj/item/reagent_containers/powder/ozium,
 					/obj/item/reagent_containers/powder/ozium,
 					/obj/item/reagent_containers/powder/ozium)
-	reqs = list(/obj/item/ash = 3, /datum/reagent/berrypoison = 3, /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry = 2)
+	reqs = list(/obj/item/ash = 3, /datum/reagent/berrypoison = 3, /obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 2)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/alchemy/moon
@@ -159,7 +159,7 @@
 /datum/crafting_recipe/roguetown/alchemy/w2swa
 	name = "westleach to swampweed"
 	category = "Transmutation"
-	result = list(/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf = 1)
+	result = list(/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 1)
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed = 2)
 	craftdiff = 3
 	verbage_simple = "transmute"

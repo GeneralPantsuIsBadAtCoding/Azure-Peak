@@ -50,6 +50,9 @@
 		pants = /obj/item/clothing/under/roguetown/tights/black
 	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
+	backpack_contents = list(
+		/obj/item/bottle_kit
+	)
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("intelligence", 1)

@@ -11,15 +11,15 @@
 /area/rogue/under/town/sewer)
 "e" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "f" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "h" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "i" = (

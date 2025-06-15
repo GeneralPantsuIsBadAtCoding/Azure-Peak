@@ -1226,7 +1226,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "alk" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church/chapel)
 "alr" = (
@@ -1673,7 +1673,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "aKH" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
 "aLG" = (
@@ -1855,13 +1855,13 @@
 /area/rogue/indoors/shelter/mountains)
 "aUS" = (
 /obj/structure/rack/rogue/shelf,
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/tavern)
 "aVv" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /obj/item/storage/box/matches,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
@@ -2078,7 +2078,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "bke" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "bkq" = (
@@ -2678,7 +2678,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town/roofs)
 "bPc" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -3364,7 +3364,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors)
 "cBG" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
@@ -4006,7 +4006,7 @@
 	},
 /area/rogue/indoors/town)
 "dkI" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "dkS" = (
@@ -4992,7 +4992,7 @@
 	},
 /area/rogue/indoors/town)
 "ejX" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/bath)
 "ejY" = (
@@ -5213,7 +5213,7 @@
 /area/rogue/indoors)
 "evb" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/fermenting_barrel/random,
+/obj/structure/fermentation_keg/random,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town)
 "evo" = (
@@ -6873,7 +6873,7 @@
 	},
 /area/rogue/indoors/town/dwarfin)
 "gpP" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /obj/item/reagent_containers/glass/cup/steel,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/church/chapel)
@@ -6965,7 +6965,7 @@
 /turf/open/floor/rogue/rooftop,
 /area/rogue/outdoors/town)
 "gwL" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/dwarfin)
 "gwN" = (
@@ -6989,7 +6989,7 @@
 /turf/closed/mineral/rogue,
 /area/rogue/under/cavewet/bogcaves)
 "gxv" = (
-/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf,
+/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed,
 /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed,
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/glass/bottle/mercury,
@@ -7107,7 +7107,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "gDi" = (
-/obj/structure/fermenting_barrel/random,
+/obj/structure/fermentation_keg/random,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -7341,7 +7341,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
 "gQn" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/manor)
 "gQp" = (
@@ -7546,7 +7546,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/shop)
 "gZC" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
 "hac" = (
@@ -9713,7 +9713,7 @@
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
 "jij" = (
@@ -9967,7 +9967,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/tavern)
 "jyE" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors)
 "jyI" = (
@@ -11694,7 +11694,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/town)
 "lAy" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "lBP" = (
@@ -11912,7 +11912,7 @@
 	},
 /area/rogue/outdoors/town)
 "lLp" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors)
 "lLE" = (
@@ -13043,7 +13043,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "ner" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/tile{
 	icon_state = "greenstone"
 	},
@@ -13073,7 +13073,7 @@
 	},
 /area/rogue/indoors)
 "nhU" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/twig{
 	dir = 4
 	},
@@ -14983,7 +14983,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/garrison)
 "poT" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/manor)
@@ -16103,7 +16103,7 @@
 /area/rogue/indoors/town)
 "qzH" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "qzV" = (
@@ -16240,7 +16240,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/manor)
 "qHC" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "qIi" = (
@@ -16363,7 +16363,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/rtfield)
 "qRD" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/manor)
 "qRG" = (
@@ -16826,7 +16826,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town)
 "rqm" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "rqP" = (
@@ -17201,7 +17201,7 @@
 /turf/open/floor/rogue/rooftop,
 /area/rogue/outdoors/town)
 "rOy" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/town/manor)
 "rOF" = (
@@ -17715,7 +17715,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/dwarfin)
 "spR" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
 "sqb" = (
@@ -18035,7 +18035,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "sLb" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
 "sLc" = (
@@ -18403,7 +18403,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
 "tbR" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "tbW" = (
@@ -18559,7 +18559,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/tavern)
 "tkQ" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/dwarfin)
 "tkS" = (
@@ -18663,7 +18663,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/indoors/town/shop)
 "tpy" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/tile{
 	icon_state = "tile"
 	},
@@ -18677,7 +18677,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/manor)
 "tqA" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
 "tqH" = (
@@ -19877,7 +19877,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/dwarfin)
 "uHh" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/shop)
 "uHj" = (
@@ -20074,7 +20074,7 @@
 	},
 /area/rogue/under/cavewet/bogcaves)
 "uQp" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -21905,7 +21905,7 @@
 	},
 /area/rogue/outdoors/beach)
 "wPU" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/manor)
 "wPV" = (
@@ -22843,7 +22843,7 @@
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
 "xKz" = (
@@ -23054,7 +23054,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/church/chapel)
 "xVR" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/manor)
 "xWm" = (

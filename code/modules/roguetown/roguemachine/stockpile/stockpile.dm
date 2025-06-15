@@ -8,7 +8,7 @@
 	pixel_y = 32
 	var/stockpile_index = 1
 	var/current_category = "Raw Materials"
-	var/list/categories = list("Raw Materials", "Foodstuffs")
+	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
 	var/datum/withdraw_tab/withdraw_tab = null
 
 /obj/structure/roguemachine/stockpile/Initialize()
@@ -96,7 +96,7 @@
 	else
 		contents = get_directory_contents()
 
-	var/datum/browser/popup = new(user, "VENDORTHING", "", 370, 800)
+	var/datum/browser/popup = new(user, "VENDORTHING", "", 700, 800)
 	popup.set_content(contents)
 	popup.open()
 

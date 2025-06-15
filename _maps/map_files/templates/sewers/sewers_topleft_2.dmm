@@ -3,7 +3,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/town/sewer)
 "b" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
@@ -15,7 +15,7 @@
 /turf/closed/mineral/rogue,
 /area/rogue/under/town/sewer)
 "f" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "h" = (
@@ -28,16 +28,16 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "l" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "n" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "p" = (
-/obj/structure/fermenting_barrel,
+/obj/structure/fermentation_keg,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
@@ -53,7 +53,7 @@
 /turf/closed/mineral/rogue,
 /area/rogue/under/town/sewer)
 "t" = (
-/obj/structure/fermenting_barrel/beer,
+/obj/structure/fermentation_keg/beer,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "y" = (

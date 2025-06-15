@@ -95,10 +95,10 @@
 		// 	temp_recipe = new path()
 		// 	var/datum/pottery_recipe/r = temp_recipe
 		// 	category = r.category
-		// else if(ispath(path, /datum/brewing_recipe))
-		// 	temp_recipe = new path()
-		// 	var/datum/brewing_recipe/r = temp_recipe
-		// 	category = r.category
+		else if(ispath(path, /datum/brewing_recipe))
+			temp_recipe = new path()
+			var/datum/brewing_recipe/r = temp_recipe
+			category = r.category
 		// else if(ispath(path, /datum/runerituals))
 		// 	temp_recipe = new path()
 		// 	var/datum/runerituals/r = temp_recipe
@@ -487,11 +487,11 @@
 	// 	var/datum/pottery_recipe/r = temp_recipe
 	// 	recipe_name = initial(r.name)
 	// 	recipe_html = get_recipe_specific_html(r, user)
-	// else if(ispath(path, /datum/brewing_recipe))
-	// 	temp_recipe = new path()
-	// 	var/datum/brewing_recipe/r = temp_recipe
-	// 	recipe_name = initial(r.name)
-	// 	recipe_html = get_recipe_specific_html(r, user)
+	else if(ispath(path, /datum/brewing_recipe))
+		temp_recipe = new path()
+		var/datum/brewing_recipe/r = temp_recipe
+		recipe_name = initial(r.name)
+		recipe_html = get_recipe_specific_html(r, user)
 	// else if(ispath(path, /datum/runerituals))
 	// 	temp_recipe = new path()
 	// 	var/datum/runerituals/r = temp_recipe
@@ -615,9 +615,9 @@
 		// else if(ispath(path, /datum/pottery_recipe))
 		// 	var/datum/pottery_recipe/real_path = new path
 		// 	real_path.show_menu(current_reader)
-		// else if(ispath(path, /datum/brewing_recipe))
-		// 	var/datum/brewing_recipe/real_path = new path
-		// 	real_path.show_menu(current_reader)
+		else if(ispath(path, /datum/brewing_recipe))
+			var/datum/brewing_recipe/real_path = new path
+			real_path.show_menu(current_reader)
 		// else if(ispath(path, /datum/runerituals))
 		// 	var/datum/runerituals/real_path = new path
 		// 	real_path.show_menu(current_reader)

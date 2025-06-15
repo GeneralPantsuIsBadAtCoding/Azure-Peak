@@ -12,7 +12,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
 "ac" = (
-/obj/structure/fermenting_barrel/water,
+/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
 "ad" = (
@@ -2263,7 +2263,7 @@
 /area/rogue/outdoors/woods)
 "BZ" = (
 /obj/structure/fluff/wallclock/r,
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /obj/structure/fluff/railing/border{
 	dir = 1;
 	icon_state = "border"
@@ -2492,7 +2492,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "Ig" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/tile{
 	icon_state = "chess"
 	},
@@ -2502,7 +2502,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "It" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "IM" = (
@@ -2604,7 +2604,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "LN" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "LS" = (

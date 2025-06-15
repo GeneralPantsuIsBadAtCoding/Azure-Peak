@@ -898,7 +898,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors)
 "Lg" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors)
 "Li" = (
@@ -1128,6 +1128,10 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
+"QS" = (
+/obj/structure/plough,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "Rv" = (
 /obj/machinery/light/rogue/wallfire/candle/blue/l,
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -1842,7 +1846,7 @@ Zp
 Og
 Og
 XX
-HA
+QS
 HA
 HA
 HA

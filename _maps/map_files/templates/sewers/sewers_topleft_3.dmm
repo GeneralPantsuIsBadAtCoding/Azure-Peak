@@ -68,7 +68,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "m" = (
-/obj/structure/fermenting_barrel/random/water,
+/obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "n" = (
@@ -223,7 +223,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "Q" = (
-/obj/structure/fermenting_barrel/random/beer,
+/obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "R" = (

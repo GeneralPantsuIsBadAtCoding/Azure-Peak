@@ -5,7 +5,6 @@
 	var/datum/plant_def/plant_type
 	var/spread_chance = 75
 
-
 /obj/structure/wild_plant/New(loc, datum/plant_def/incoming_type, spread_chance = 75)
 	. = ..()
 	src.plant_type = new incoming_type
