@@ -8,7 +8,7 @@
 /datum/objective/build_zizo_shrine/on_creation()
 	. = ..()
 	if(owner?.current)
-		owner.current.mind.teach_crafting_recipe(/datum/crafting_recipe/zizo_shrine)
+		owner.current.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/structure/zizo_shrine)
 		RegisterSignal(owner.current, COMSIG_ITEM_CRAFTED, PROC_REF(on_item_crafted))
 	update_explanation_text()
 
@@ -36,16 +36,3 @@
 
 /datum/objective/build_zizo_shrine/update_explanation_text()
 	explanation_text = "Construct [target_count] profane shrine[target_count > 1 ? "s" : ""] to spread Zizo's corruption!"
-
-/datum/crafting_recipe/zizo_shrine
-	name = "Profane Shrine"
-	always_availible = FALSE
-	reqs = list(
-		/obj/item/grown/log/tree/small = 1,
-		/obj/item/natural/stone = 2,
-		/obj/item/grown/log/tree/stake = 3
-	)
-	result = /obj/structure/fluff/psycross/zizocross
-	craftdiff = 1
-	verbage = "construct"
-	craftsound = 'sound/foley/Building-01.ogg'
