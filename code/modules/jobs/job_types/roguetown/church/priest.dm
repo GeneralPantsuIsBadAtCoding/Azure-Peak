@@ -92,6 +92,9 @@
 	set category = "Priest"
 	if(!mind)
 		return
+	if(world.time < 30 MINUTES)
+		to_chat(src, span_warning("It is a bad omen to coronate so early in the week."))
+		return FALSE
 	if(!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 		to_chat(src, span_warning("I need to do this in the chapel."))
 		return FALSE
@@ -124,10 +127,15 @@
 		else
 			SSticker.rulertype = "Grand Duke"
 		SSticker.rulermob = HU
+		SSticker.regentmob = null
 		var/dispjob = mind.assigned_role
 		removeomen(OMEN_NOLORD)
 		say("By the authority of the gods, I pronounce you Ruler of all Azuria!")
 		priority_announce("[real_name] the [dispjob] has named [HU.real_name] the inheritor of AZURE PEAK!", title = "Long Live [HU.real_name]!", sound = 'sound/misc/bell.ogg')
+		var/datum/job/roguetown/nomoredukes = SSjob.GetJob("Grand Duke")
+		if(nomoredukes?.total_positions == 1)
+			nomoredukes.total_positions = 0 //We got what we got now.
+
 
 /mob/living/carbon/human/proc/churchexcommunicate()
 	set name = "Curse"

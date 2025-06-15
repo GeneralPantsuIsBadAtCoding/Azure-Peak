@@ -63,12 +63,17 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		else
 			SSticker.rulertype = "Grand Duke"
 		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Azure Peak.</span></span></b>")
+		SSticker.regentmob = null //Time for regent to give up the position.
 		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
 
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/crown/serpcrown
+	if(SSroguemachine.crown == null || (QDELETED(SSroguemachine.crown)))
+		SSroguemachine.crown = null
+		head = /obj/item/clothing/head/roguetown/crown/serpcrown
+	else
+		to_chat(H, span_warning("My crown must be yet in the realm. I shall search it out."))
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	cloak = /obj/item/clothing/cloak/lordcloak
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
