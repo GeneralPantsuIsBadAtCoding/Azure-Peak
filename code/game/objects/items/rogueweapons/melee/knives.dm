@@ -260,6 +260,10 @@
 	icon_state = "pestrasickle"
 	max_integrity = 200
 
+/obj/item/rogueweapon/huntingknife/idagger/steel/freelancer
+	name = "facón"
+	desc = "An ornate traditional Etruscan knife inlaid with silver, passed down through generations of farmhands and warlords alike."
+	icon_state = "facon"
 
 /obj/item/rogueweapon/huntingknife/idagger/dtace
 	name = "'De Tace'"
