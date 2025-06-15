@@ -11,6 +11,7 @@
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	max_integrity = 0
+	sellprice = 2 // Shouldn't have added value lmao
 	equip_sound = 'sound/blank.ogg'
 	bloody_icon_state = "bodyblood"
 	alternate_worn_layer = UNDER_CLOAK_LAYER
@@ -90,7 +91,7 @@
 		return TRUE
 
 /obj/item/quiver/examine(mob/user)
-	..()
+	. = ..()
 	if(arrows.len)
 		. += span_notice("[arrows.len] inside.")
 	. += span_notice("Click on the ground to pick up ammos on the floor.")
@@ -122,6 +123,31 @@
 		arrows += A
 	update_icon()
 
+/obj/item/quiver/pyrobolts/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/bolt/pyro/A = new()
+		arrows += A
+	update_icon()
+
+
+/obj/item/quiver/poisonarrows/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/arrow/poison/A = new()
+		arrows += A
+	update_icon()
+
+/obj/item/quiver/pyroarrows/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/arrow/pyro/A = new()
+		arrows += A
+	update_icon()
+
+/obj/item/quiver/Parrows/Initialize()
+	. = ..()
+
 /obj/item/quiver/bolts/paalloy/Initialize()
 	..()
 	for(var/i in 1 to max_storage)
@@ -139,7 +165,7 @@
 /obj/item/quiver/bodkin/Initialize()
 	..()
 	for(var/i in 1 to max_storage)
-		var/obj/projectile/bullet/reusable/arrow/steel/A = new()
+		var/obj/item/ammo_casing/caseless/rogue/arrow/steel/A = new()
 		arrows += A
 	update_icon()
 
@@ -156,6 +182,7 @@
 	icon_state = "javelinbag0"
 	item_state = "javelinbag"
 	max_storage = 4
+	sellprice = 10
 
 /obj/item/quiver/javelin/attack_turf(turf/T, mob/living/user)
 	if(arrows.len >= max_storage)

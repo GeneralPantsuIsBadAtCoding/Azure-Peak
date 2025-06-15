@@ -523,6 +523,7 @@
 	smeltresult = /obj/item/ingot/gold
 	is_silver = FALSE
 	toggle_state = null
+	is_important = TRUE
 
 /obj/item/rogueweapon/sword/long/martyr/Initialize()
 	AddComponent(/datum/component/martyrweapon)

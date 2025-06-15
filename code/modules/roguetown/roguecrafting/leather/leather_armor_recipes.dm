@@ -78,26 +78,22 @@
 				/obj/item/natural/fibers = 1,
 				/obj/item/reagent_containers/food/snacks/tallow = 1)
 	craftdiff = 4
-	sellprice = 40
 
 /datum/crafting_recipe/roguetown/leather/armor/armor
 	name = "leather armor (2 leather)"
 	result = /obj/item/clothing/suit/roguetown/armor/leather
 	reqs = list(/obj/item/natural/hide/cured = 2)
-	sellprice = 26
 
 /datum/crafting_recipe/roguetown/leather/armor/cuirass
 	name = "leather cuirass"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/cuirass
 	reqs = list(/obj/item/natural/hide/cured = 2)
-	sellprice = 26
 
 /datum/crafting_recipe/roguetown/leather/armor/hidearmor
 	name = "hide armor (2 leather, 1 fur)"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	reqs = list(/obj/item/natural/hide/cured = 2,
 				/obj/item/natural/fur = 1)
-	sellprice = 26
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor
@@ -108,7 +104,6 @@
 		/obj/item/reagent_containers/food/snacks/tallow = 1,
 		/obj/item/natural/fibers = 1,
 		)
-	sellprice = 26
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor/coat
@@ -119,7 +114,6 @@
 		/obj/item/reagent_containers/food/snacks/tallow = 1,
 		/obj/item/natural/fibers = 1,
 		)
-	sellprice = 36
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor/jacket
@@ -130,11 +124,9 @@
 		/obj/item/reagent_containers/food/snacks/tallow = 1,
 		/obj/item/natural/fibers = 1,
 		)
-	sellprice = 36
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/leather/armor/helmet
 	name = "leather helmet (1 leather)"
 	result = /obj/item/clothing/head/roguetown/helmet/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
-	sellprice = 27

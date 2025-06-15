@@ -131,7 +131,7 @@
 	sewrepair = TRUE
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_LEATHER_GOOD
-
+	sellprice = 18
 	blocksound = SOFTHIT
 	max_integrity = 200
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'

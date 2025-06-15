@@ -179,7 +179,7 @@
 	craftdiff = 0
 
 /datum/anvil_recipe/tools/iron/shaft
-	name = "Metal Shaft x2 (+1 Iron)"
+	name = "Metal Shaft x2"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/shaft/metal
 	createditem_num = 2

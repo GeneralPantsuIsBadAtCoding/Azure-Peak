@@ -31,6 +31,7 @@
 	item_state = "leather"
 	equip_sound = 'sound/blank.ogg'
 	sewrepair = TRUE
+	sellprice = 10
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/belt/rogue/leather/plaquegold
@@ -174,6 +175,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	max_integrity = 300
+	sellprice = 10
 	equip_sound = 'sound/blank.ogg'
 	bloody_icon_state = "bodyblood"
 	alternate_worn_layer = UNDER_CLOAK_LAYER
@@ -218,6 +220,7 @@
 	slot_flags = ITEM_SLOT_BACK_L
 	resistance_flags = FIRE_PROOF
 	max_integrity = 300
+	sellprice = 15
 	equip_sound = 'sound/blank.ogg'
 	bloody_icon_state = "bodyblood"
 	sewrepair = TRUE

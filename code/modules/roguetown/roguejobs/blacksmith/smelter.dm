@@ -24,6 +24,15 @@
 	fueluse = 30 MINUTES
 	crossfire = FALSE
 
+/obj/machinery/light/rogue/smelter/examine(mob/user, params)
+	. = ..()
+	. += span_info("It can hold up to [maxore] ores at a time.")
+	. += span_info("Left click to insert an item. If it is a fuel item, a prompt will show on whether you want to fuel or smelt it. Right click on the furnace to put an item inside for smelting only.")
+	if(ore.len)
+		. += span_notice("Peeking inside, you can see:")
+	for(var/obj/item/I in ore)
+		. += span_info("- [I]")
+
 /obj/machinery/light/rogue/smelter/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/rogueweapon/tongs))
 		if(!actively_smelting) // Prevents an exp gain exploit. - Foxtrot
@@ -102,6 +111,20 @@
 			to_chat(user, span_warning("\The [W.name] cannot be smelted."))
 	return ..()
 
+/obj/machinery/light/rogue/smelter/attack_right(mob/user)
+	var/obj/item/I = user.get_active_held_item()
+	if(I && I.smeltresult)
+		if(!I)
+			return
+		if(user.get_active_held_item() != I)
+			to_chat(user, span_warning("That item is no longer in my hand..."))
+			return
+		if(ore.len < maxore)
+			user.dropItemToGround(I)
+			I.forceMove(src)
+			ore += I
+	return ..()
+
 // Gaining experience from just retrieving bars with your hands would be a hard-to-patch exploit.
 /obj/machinery/light/rogue/smelter/attack_hand(mob/user, params)
 	if(on)
@@ -158,7 +181,7 @@
 	base_state = "smelter"
 	anchored = TRUE
 	density = TRUE
-	maxore = 4
+	maxore = 6
 	climbable = FALSE
 
 /obj/machinery/light/rogue/smelter/great/process()
@@ -172,16 +195,21 @@
 			else
 				if(cooking == 30)
 					var/alloy //moving each alloy to it's own var allows for possible additions later
-					var/steelalloy
+					// Steel Alloy requires a 1 coal to 1 iron ratio. Yes. Doesn't make sense but it is to make
+					// Steel more expensive to make
+					var/steelalloycoal
+					var/steelalloyiron
 					var/bronzealloy
 					var/purifiedalloy
-//					var/blacksteelalloy
+					var/blacksteelalloy // Idk why Blacksteel were removed but we don't have an overabundance of steel and such anymore
 
 					for(var/obj/item/I in ore)
 						if(I.smeltresult == /obj/item/rogueore/coal)
-							steelalloy = steelalloy + 1
+							steelalloycoal += 1
+						if(I.smeltresult == /obj/item/rogueore/coal/charcoal)
+							steelalloycoal += 1
 						if(I.smeltresult == /obj/item/ingot/iron)
-							steelalloy = steelalloy + 2
+							steelalloyiron += 1
 						if(I.smeltresult == /obj/item/ingot/tin)
 							bronzealloy = bronzealloy + 1
 						if(I.smeltresult == /obj/item/ingot/copper)
@@ -190,23 +218,25 @@
 							purifiedalloy = purifiedalloy + 3
 						if(I.smeltresult == /obj/item/ingot/gold)
 							purifiedalloy = purifiedalloy + 2
-//						if(I.smeltresult == /obj/item/ingot/silver)
-//							blacksteelalloy = blacksteelalloy + 1
-//						if(I.smeltresult == /obj/item/ingot/steel)
-//							blacksteelalloy = blacksteelalloy + 2
+						if(I.smeltresult == /obj/item/ingot/silver)
+							blacksteelalloy = blacksteelalloy + 1
+						if(I.smeltresult == /obj/item/ingot/steel)
+							blacksteelalloy = blacksteelalloy + 2
 
-					if(steelalloy == 7)
-						testing("STEEL ALLOYED")
-						maxore = 3 // 3 iron + 1 coal = 3 steel
+					if(steelalloycoal && steelalloyiron && steelalloycoal == steelalloyiron)
+						maxore = 0
+						for(var/i = 1 to steelalloycoal)
+							steelalloyiron--
+							steelalloycoal--
+							maxore += 1 // 1 coal + 1 iron = 1 steel
 						alloy = /obj/item/ingot/steel
 					else if(bronzealloy == 7)
 						testing("BRONZE ALLOYED")
 						alloy = /obj/item/ingot/bronze
 					else if(purifiedalloy == 10)
 						alloy = /obj/item/ingot/purifiedaalloy // 2 aalloy, 2 gold, makes 3 purified alloy.
-//					else if(blacksteelalloy == 15)
-//						testing("BLACKSTEEL ALLOYED")
-//						alloy = /obj/item/ingot/blacksteel
+					else if(blacksteelalloy == 7)
+						alloy = /obj/item/ingot/blacksteel
 					else
 						alloy = null
 
