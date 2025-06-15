@@ -77,7 +77,7 @@
 	H.verbs |= /mob/living/carbon/human/proc/coronate_lord
 	H.verbs |= /mob/living/carbon/human/proc/churchexcommunicate
 	H.verbs |= /mob/living/carbon/human/proc/churchannouncement
-//	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)		- You are literally disinherited. Begone......
+	H.verbs |= /mob/living/carbon/human/proc/change_miracle_set
 
 /datum/job/priest/vice //just used to change the priest title
 	title = "Vice Priest"
@@ -86,6 +86,33 @@
 	department_flag = CHURCHMEN
 	total_positions = 0
 	spawn_positions = 0
+
+/mob/living/carbon/human/proc/change_miracle_set(mob/living/user)
+	set name = "Change Miracle Set"
+	set category = "Priest"
+	if(!mind)
+		return
+	var/list/god_choice = list()
+	var/list/god_type = list()
+	for (var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
+		var/datum/patron/patron = GLOB.patronlist[path]
+		god_choice += list("[patron.name]" = icon(icon = 'icons/mob/overhead_effects.dmi', icon_state = "sign_[patron.name]"))
+		god_type[patron.name] = patron
+	var/string_choice = show_radial_menu(src, src, god_choice, require_near = FALSE)
+	if(!string_choice)
+		return
+	var/datum/patron/god = god_type[string_choice]
+	mind.RemoveAllSpells()
+	var/datum/devotion/patrondev = new /datum/devotion(src, god)
+	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
+	if (string_choice == "Astrata")
+		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
+	else
+		to_chat(src, "<font color='yellow'>Thou wieldeth now the power of [string_choice].</font>")
+	to_chat(src, "<font color='yellow'>TThe strain of changing your miracles has consumed all your devotion.</font>")
+	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
 
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"

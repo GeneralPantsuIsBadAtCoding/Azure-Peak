@@ -83,6 +83,120 @@
 	..()
 	return TRUE
 
+/obj/effect/proc_holder/spell/invoked/deaths_door
+	name = "Death's Door"
+	range = 7
+	no_early_release = TRUE
+	charging_slowdown = 1
+	releasedrain = 20
+	chargedrain = 0
+	overlay_state = "speakwithdead"
+	chargetime = 2 SECONDS
+	chargedloop = null
+	sound = 'sound/magic/churn.ogg'
+	invocation = "Necra, show me my destination!"
+	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 180 SECONDS
+	miracle = TRUE
+	devotion_cost = 100
+
+/obj/effect/proc_holder/spell/invoked/deaths_door/cast(list/targets, mob/living/user)
+	..()
+	var/turf/T = get_turf(targets[1])
+	if(!isopenturf(T))
+		to_chat(user, span_warning("The targeted location is blocked. I cannot open a doorway here."))
+		return FALSE
+	for (var/obj/structure/underworld_portal/e_portal in user.contents) // checks if the portal exists, and shits them out
+		if(istype(e_portal))
+			e_portal.spitout_mob(user, T)
+	if(!locate(/obj/structure/underworld_portal) in T)
+		var/obj/structure/underworld_portal/portal = new /obj/structure/underworld_portal
+		portal.caster = user
+		return TRUE
+
+
+/obj/structure/underworld_portal
+	name = "underworld portal"
+	desc = null // see examine
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "shitportal" //get a better sprite for this
+	max_integrity = 50
+	move_resist = MOVE_FORCE_EXTREMELY_STRONG
+	anchored = TRUE
+	density = FALSE
+	var/mob/living/caster // stores the caster. obviously.
+	var/mob/living/trapped // stores the trapped.
+	var/time_id
+
+/obj/structure/underworld_portal/examine(mob/living/carbon/user)
+	. = ..()
+	if(user.mob_biotypes & MOB_UNDEAD)
+		. += "A temporary gateway to the underworld. [span_warning("Faintly, you can see clutching fingers in the dark, reaching for you. If you go through, you won't come back.")]"
+	else
+		. += "A temporary gateway to the underworld. You can hear faint whispers through it. [span_warning("It might be possible to step through.")]"
+
+/obj/structure/underworld_portal/attack_hand(mob/living/carbon/user, list/modifiers)
+	..()
+	if(user == caster)
+		for (var/thing in contents)
+			if (istype(thing, /mob/living/carbon))
+				caster.contents.Add(src)
+				return TRUE
+		qdel(src)
+		return TRUE
+
+	gobble_mob(user, caster)
+	return TRUE
+
+/obj/structure/underworld_portal/proc/gobble_mob(mob/living/carbon/user, mob/living/carbon/caster)
+	if(user.mob_biotypes & MOB_UNDEAD)
+		user.visible_message(
+			span_warning("[user] is suddenly grabbed by a massive hand-and pulled through!"),
+			span_userdanger("Touching the portal, the Carriageman's hand closes around my own! No! NO!")
+			)
+		playsound(user, 'sound/misc/deadbell.ogg', 50, TRUE, -2, ignore_walls = TRUE)
+		new /obj/effect/gibspawner/generic(get_turf(user))
+		qdel(user)
+		return TRUE
+
+	user.visible_message(
+		span_revenwarning("[user] slips through the portal. Silence follows."),
+		span_purple("I touch the doorway. I slip through, and the world is silent and dark. I hear the distant rattle of a passing carriage.")
+		)
+	trapped = user
+	contents.Add(user)
+	user.add_client_colour(/datum/client_colour/monochrome)
+	time_id = addtimer(CALLBACK(src, PROC_REF(spitout_mob), user, null), 5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // 5 mins timer else its spitting you out where the necran is.
+	return TRUE
+
+/obj/structure/underworld_portal/proc/spitout_mob(mob/living/carbon/user, turf/T)
+	if(!trapped)
+		return FALSE
+	if(loc in user.contents)
+		forceMove(T ? T : user.loc)
+	trapped.forceMove(loc)
+	trapped = null
+	if(time_id)
+		deltimer(time_id)
+	user.visible_message(
+		span_revenwarning("[user] slips out from the whispering portal. Shadow roils off their form like smoke."),
+		span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
+		)
+	user.remove_client_colour(/datum/client_colour/monochrome)
+	return TRUE
+
+/obj/structure/underworld_portal/container_resist(mob/living/user)
+	..()
+	if(trapped != user)
+		return
+	var/resist_prob = user.STASTR * 2.5
+	if(!prob(resist_prob))
+		return
+	spitout_mob(caster)
+
+
 /obj/effect/proc_holder/spell/targeted/soulspeak
 	name = "Speak with Soul"
 	range = 5
