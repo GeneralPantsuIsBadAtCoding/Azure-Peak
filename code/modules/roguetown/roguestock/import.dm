@@ -81,8 +81,8 @@
 
 /obj/structure/closet/crate/chest/steward/rotpotion/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/rogue/rotcure(src)
-	new /obj/item/reagent_containers/glass/bottle/rogue/rotcure(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure(src)
 
 
 /datum/roguestock/import/knight

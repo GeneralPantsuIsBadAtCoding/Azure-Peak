@@ -12,8 +12,8 @@
 	name = "Rot Cure Potion"
 	cost = 300
 	contains = list(
-					/obj/item/reagent_containers/glass/bottle/rogue/rotcure,
-					/obj/item/reagent_containers/glass/bottle/rogue/rotcure,
+					/obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure,
+					/obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure,
 				)
 
 /datum/supply_pack/rogue/potions/healthpot
