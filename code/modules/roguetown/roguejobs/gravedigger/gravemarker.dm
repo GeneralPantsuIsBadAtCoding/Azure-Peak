@@ -32,6 +32,7 @@
 	static_debris = list(/obj/item/grown/log/tree/stick = 1)
 	anchored = TRUE
 	layer = 2.91
+	obj_flags = UNIQUE_RENAME
 
 /obj/structure/gravemarker/Destroy()
 	var/turf/T = get_turf(src)

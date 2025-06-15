@@ -59,7 +59,7 @@
 		summoner = user.name
 		if (townercrab)
 			faction = list("neutral")
-			tamed(1)
+			tamed(user)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mossback/get_sound(input)
 	switch(input)

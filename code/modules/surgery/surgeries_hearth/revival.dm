@@ -35,6 +35,9 @@
 	if(target.mind && !target.mind.active)
 		to_chat(user, "[target]'s heart is inert. Maybe it will respond later?")
 		return FALSE
+	if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
+		to_chat(user, "[target] has pledged a vow to Necra. This will not work.")
+		return FALSE
 
 /datum/surgery_step/infuse_lux/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	display_results(user, target, span_notice("I begin to revive [target]... will their heart respond?"),
