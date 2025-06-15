@@ -124,9 +124,10 @@
 
 /obj/item/flashlight/flare/torch
 	name = "torch"
-	desc = "A stick with enough fiber wrapped around the end to burn for a decent amount of time. Mind the rain."
+	desc = "A stick with enough fiber wrapped around the end to burn for a decent amount of time. Mind it \
+	should you choose to ford across water."
 	w_class = WEIGHT_CLASS_NORMAL
-	light_outer_range = 5
+	light_outer_range = 7
 	force = 1
 	icon = 'icons/roguetown/items/lighting.dmi'
 	icon_state = "torch"
@@ -138,13 +139,14 @@
 	flags_1 = null
 	possible_item_intents = list(/datum/intent/use, /datum/intent/hit)
 	slot_flags = ITEM_SLOT_HIP
-	var/datum/looping_sound/torchloop/soundloop = null         //remove the = null to re-add the torch crackle sounds.
-	var/should_self_destruct = TRUE //added for torch burnout
+	//remove the = null to re-add the torch crackle sounds. (???? what the fuck)
+	var/datum/looping_sound/torchloop/soundloop = null
+	//added for torch burnout
+	var/should_self_destruct = TRUE
 	max_integrity = 40
 	fuel = 30 MINUTES
 	light_depth = 0
 	light_height = 0
-
 	grid_width = 32
 	grid_height = 32
 
