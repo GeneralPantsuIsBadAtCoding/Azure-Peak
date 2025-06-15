@@ -426,8 +426,10 @@
 
 /obj/item/grabbing/proc/smashlimb(atom/A, mob/living/user) //implies limb_grabbed and sublimb are things
 	var/mob/living/carbon/C = grabbed
-	var/armor_block = C.run_armor_check(limb_grabbed, d_type)
+	var/armor_block = C.run_armor_check(limb_grabbed, d_type, armor_penetration = BLUNT_DEFAULT_PENFACTOR)
 	var/damage = user.get_punch_dmg()
+	var/unarmed_skill = user.mind?.get_skill_level(/datum/skill/combat/unarmed)
+	damage *= (1 + (unarmed_skill / 10))	//1.X multiplier where X is the unarmed skill.
 	C.next_attack_msg.Cut()
 	if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block))
 		limb_grabbed.bodypart_attacked_by(BCLASS_BLUNT, damage, user, sublimb_grabbed, crit_message = TRUE)
@@ -499,6 +501,7 @@
 /obj/item/grabbing/bite
 	name = "bite"
 	icon_state = "bite"
+	d_type = "stab"
 	slot_flags = ITEM_SLOT_MOUTH
 	bleed_suppressing = 1
 	var/last_drink
