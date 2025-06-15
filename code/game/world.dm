@@ -178,6 +178,10 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 	GLOB.tgui_log = "[GLOB.log_directory]/tgui.log"
+	GLOB.garbage_log = "[GLOB.log_directory]/garbage.log"
+#ifdef REFERENCE_DOING_IT_LIVE
+	GLOB.harddel_log = "[GLOB.log_directory]/harddel.log"
+#endif
 
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
@@ -189,6 +193,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_runtime_log)
 	start_log(GLOB.world_job_debug_log)
 	start_log(GLOB.tgui_log)
+	start_log(GLOB.garbage_log)
 	start_log(GLOB.character_list_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
