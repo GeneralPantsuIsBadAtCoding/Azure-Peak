@@ -96,7 +96,7 @@
 		head = /obj/item/clothing/head/roguetown/helmet
 	if(prob(50))
 		neck = /obj/item/clothing/neck/roguetown/coif
-	gloves = /obj/item/clothing/gloves/roguetown/leather
+	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	if(prob(25))
 		gloves = /obj/item/clothing/gloves/roguetown/angle
 	H.STASTR = rand(10,11) //GENDER EQUALITY!!

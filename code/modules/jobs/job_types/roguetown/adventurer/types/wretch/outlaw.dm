@@ -29,7 +29,7 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
 			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
-			shoes = /obj/item/clothing/shoes/roguetown/boots
+			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/ragmask/black
@@ -80,7 +80,7 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
 			gloves = /obj/item/clothing/gloves/roguetown/angle
-			shoes = /obj/item/clothing/shoes/roguetown/boots
+			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 			neck = /obj/item/clothing/neck/roguetown/gorget 
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/ragmask/black

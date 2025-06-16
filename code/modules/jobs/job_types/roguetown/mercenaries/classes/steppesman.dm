@@ -64,9 +64,9 @@
 		if("Druzhina - Ranged Skirmisher")	//Tl;dr - light armor class for Tatar-style archery. Has 'Druzhina' as a name cus czech/polish influence, couldn't think of better one.
 			H.set_blindness(0)
 			to_chat(H, span_warning("A Druzhina, a commoner of the steppes made into a professional soldier. Hunters, herders, and various nomads from all walks of life. Equal in service, equal behind their bow, and ready to fight."))
-			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 			head = /obj/item/clothing/head/roguetown/helmet
-			gloves = /obj/item/clothing/gloves/roguetown/leather
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -91,9 +91,9 @@
 		if("Kozak - Melee Skirmisher")		//Tl;dr - Old Steppesman whip build, light armor, be the glass canon you always wanted to be. Live your life, king. 
 			H.set_blindness(0)
 			to_chat(H, span_warning("Being a Kozak is not a title one earns, nor is born with. It's a way of life. Known to be esentric, living life on the edge - but living as free as possible. Skilled with whips, these madmen are the bane of civilized warriors."))
-			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 			head = /obj/item/clothing/head/roguetown/papakha	//No helm
-			gloves = /obj/item/clothing/gloves/roguetown/leather
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
 			cloak = /obj/item/clothing/cloak/volfmantle			//Crazed man, gives the look.
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
