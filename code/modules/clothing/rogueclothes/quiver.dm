@@ -321,3 +321,78 @@
 		var/obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy/A = new()
 		arrows += A
 	update_icon()
+
+
+
+
+/obj/item/quiver/mulyeog
+	name = "simple scabard"
+	icon_state = "simplescab0"
+	item_state = "simplescab"
+	desc = "A piece of steel lined with wood. Great for batting away blows."
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_BACK
+	max_storage = 1
+	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK)
+	sharpness = IS_BLUNT
+	wlength = WLENGTH_SHORT
+	resistance_flags = FLAMMABLE
+	can_parry = TRUE
+	wdefense = 9
+	parrysound = "parrywood"
+	attacked_sound = "parrywood"
+	max_integrity = 150
+	blade_dulling = DULLING_BASHCHOP
+	anvilrepair = /datum/skill/craft/blacksmithing
+	COOLDOWN_DECLARE(shield_bang)
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/quiver/mulyeog/attack_turf(turf/T, mob/living/user)
+	if(arrows.len >= max_storage)
+		to_chat(user, span_warning("My [src.name] is full!"))
+		return
+	to_chat(user, span_notice("I search for my sword..."))
+	for(var/obj/item/rogueweapon/sword/sabre/mulyeog in T.contents)
+		if(do_after(user, 1))
+			if(!eatsword(mulyeog))
+				break
+
+/obj/item/quiver/mulyeog/proc/eatsword(obj/A)
+	if(A.type in subtypesof(/obj/item/rogueweapon/sword/sabre/mulyeog))
+		if(arrows.len < max_storage)
+			A.forceMove(src)
+			arrows += A
+			update_icon()
+			return TRUE
+		else
+			return FALSE
+
+
+/obj/item/quiver/mulyeog/attack_right(mob/user)
+	if(arrows.len)
+		var/obj/O = arrows[arrows.len]
+		arrows -= O
+		O.forceMove(user.loc)
+		user.put_in_hands(O)
+		update_icon()
+		return TRUE
+
+/obj/item/quiver/mulyeog/examine(mob/user)
+	. = ..()
+	if(arrows.len)
+		. += span_notice("[arrows.len] inside.")
+	. += span_notice("Click on the ground to pick up ammos on the floor.")
+
+/obj/item/quiver/mulyeog/update_icon()
+	if(arrows.len)
+		icon_state = "simplescab1"
+	else
+		icon_state = "simplescab0"
+
+/obj/item/quiver/mulyeog/Initialize()
+	..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/ammo_casing/caseless/rogue/arrow/iron/A = new()
+		arrows += A
+	update_icon()
+
+

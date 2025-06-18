@@ -1258,3 +1258,63 @@
 /obj/item/clothing/suit/roguetown/armor/plate/elven_plate/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_WOOD_ARMOR)
+
+//the following changes are apart of a kazengite content update, and uses armor values from ratwood
+//i can move the armor protection values into roguetown.dm if it's requested but i really dont think that's necessary for a bunch of custom values
+
+//explanations for armor values & whatever will be sticked at the end of each piece, and they'll be removed if the PR gets merged
+
+/obj/item/clothing/suit/roguetown/armor/basiceast
+	name = "simple dobo robe"
+	desc = "A dirty dobo robe with white lapels."
+	icon_state = "eastsuit3"
+	item_state = "eastsuit3"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	body_parts_covered = CHEST|GROIN|VITALS
+	armor = list("blunt" = 35, "slash" = 75, "stab" = 40, "piercing" = 20, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP)
+	blocksound = SOFTHIT
+	blade_dulling = DULLING_BASHCHOP
+	sewrepair = TRUE
+	nodismemsleeves = TRUE
+	max_integrity = 175 
+	sellprice = 20
+	armor_class = ARMOR_CLASS_LIGHT
+	allowed_race = NON_DWARVEN_RACE_TYPES
+	flags_inv = HIDEBOOB|HIDECROTCH
+
+//less integrity than a leather cuirass, incredibly weak to blunt damage - great against slash - standard leather value against stab
+//the intent for these armors is to create specific weaknesses/strengths for people to play with
+
+/obj/item/clothing/suit/roguetown/armor/eastsuit/crafteast
+	name = "decorated dobo robe"
+	desc = "A dobo robe with a red tassel. Leather inlays are sewn in."
+	icon_state = "eastsuit2"
+	item_state = "eastsuit2"
+	armor = list("blunt" = 50, "slash" = 90, "stab" = 60, "piercing" = 30, "fire" = 0, "acid" = 0)
+	max_integrity = 200
+
+//craftable variation of eastsuit, essentially requiring the presence of a tailor with relevant materials
+//still weak against blunt
+
+/obj/item/clothing/suit/roguetown/armor/eastsuit/mentorsuit
+	name = "old dobo robe"
+	desc = "The scars on your body were once stories of strength and bravado."
+	icon_state = "eastsuit1"
+	item_state = "eastsuit1"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	armor = list("blunt" = 50, "slash" = 90, "stab" = 60, "piercing" = 30, "fire" = 0, "acid" = 0)
+	max_integrity = 200
+
+/obj/item/clothing/suit/roguetown/armor/eastsuit/captainrobe
+	name = "foreign robes"
+	desc = "Flower-styled robes, said to have been infused with magical protection. The Merchant Guild says that this is from the southern Kazengite region."
+	icon_state = "eastsuit4"
+	item_state = "eastsuit4"
+	armor = list("blunt" = 50, "slash" = 90, "stab" = 60, "piercing" = 30, "fire" = 0, "acid" = 0)
+	max_integrity = 300
+	sellprice = 25
+
+// this robe spawns on a role that offers no leg protection nor further upgrades to the loadout, in exchange for better roundstart gear

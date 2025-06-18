@@ -546,3 +546,57 @@
 	sewrepair = TRUE
 	flags_inv = null
 	slot_flags = ITEM_SLOT_SHIRT
+
+//kazengite content
+/obj/item/clothing/suit/roguetown/shirt/eastshirt1
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "black foreign shirt"
+	desc = "A shirt typically used by thugs."
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	icon_state = "eastshirt1"
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	boobed = TRUE
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	flags_inv = HIDECROTCH|HIDEBOOB
+	allowed_race = NON_DWARVEN_RACE_TYPES
+
+/obj/item/clothing/suit/roguetown/shirt/eastshirt2
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "black foreign shirt"
+	desc = "A shirt typically used by foreign gangs."
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	icon_state = "eastshirt2"
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	boobed = TRUE
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	flags_inv = HIDECROTCH|HIDEBOOB
+	allowed_race = NON_DWARVEN_RACE_TYPES
+
+//tattoo code
+/obj/item/clothing/suit/roguetown/shirt/easttats/Initialize(mapload)
+	. = ..()
+	name = "lenticular tattoos"
+	desc = "It's styled into the shapes of clouds. You shudder as the ink moves and condenses into areas where the skin is struck."
+	resistance_flags = FIRE_PROOF
+	icon_state = "easttats"
+	slot_flags = ITEM_SLOT_SHIRT
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	body_parts_covered = CHEST|ARMS
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	allowed_race = NON_DWARVEN_RACE_TYPES
+
+/obj/item/clothing/suit/roguetown/armor/skin_armor/easttats/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)

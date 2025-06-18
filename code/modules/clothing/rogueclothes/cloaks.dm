@@ -1731,3 +1731,32 @@
 	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
 	icon_state = "snowcloak"
 
+//eastern update
+
+/obj/item/clothing/cloak/eastcloak1
+	name = "cloud-cutter's cloak"
+	desc = "A brown cloak with white swirls. Some Kazengites may recognize it as an old militaristic symbol."
+	color = null
+	alternate_worn_layer = CLOAK_BEHIND_LAYER
+	icon_state = "eastcloak1"
+	item_state = "eastcloak1"
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = FALSE
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	allowed_race = NON_DWARVEN_RACE_TYPES
+
+/obj/item/clothing/cloak/eastcloak2
+	name = "leather cloak"
+	desc = "A brown cloak. There's nothing special on it."
+	alternate_worn_layer = CLOAK_BEHIND_LAYER
+	color = null
+	icon_state = "eastcloak2"
+	item_state = "eastcloak2"
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = FALSE
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	allowed_race = NON_DWARVEN_RACE_TYPES

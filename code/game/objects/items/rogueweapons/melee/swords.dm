@@ -1281,3 +1281,27 @@
 	Its blade bears twin inscriptions on either side. One reads, \"THY KINGDOM COME\" while the obverse reads, \"THY WILL BE DONE\"."
 	icon_state = "declongsword"
 	sellprice = 140
+
+// kazengite content
+
+/obj/item/rogueweapon/sword/sabre/mulyeog
+	force = 25
+	name = "foreign straight sword"
+	desc = "A foreign sword used by cut-throats & thugs. There's a red tassel on the hilt."
+	icon_state = "eastsword1"
+	smeltresult = /obj/item/ingot/steel
+	max_integrity = 20
+	wdefense = 5
+
+/obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
+	name = "lenticular straight sword"
+	desc = "A steel sword with cloud patterns on the groove."
+	icon_state = "eastsword2"
+
+/obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
+	force = 30
+	name = "Heiyundao"
+	desc = "A gold-stained with cloud patterns on the groove. One of a kind."
+	icon_state = "eastsword3"
+	max_integrity = 40
+	wdefense = 8
