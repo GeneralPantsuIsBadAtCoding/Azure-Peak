@@ -317,6 +317,12 @@
 	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
 	timer = 15 MINUTES
 
+/datum/stressevent/syoncalamity/stolen
+
+	stressadd = 8
+	desc = span_boldred("By Psydon, the great comet's shard has been stolen! We must get it back!")
+	timer = 3 MINUTES
+
 /datum/stressevent/hithead
 	timer = 2 MINUTES
 	stressadd = 2

@@ -6,7 +6,7 @@
 
 //These are synced with the Database, if you change the values of the defines
 //then you MUST update the database!
-#define ROLE_MANIAC				"Maniac"
+#define ROLE_ASCENDANT			"Ascendant"
 #define ROLE_WEREWOLF			"Werewolf"
 #define ROLE_VAMPIRE			"Vampire"
 #define ROLE_NBEAST				"Vampire Lord"
@@ -15,7 +15,6 @@
 #define ROLE_PREBEL				"Peasant Rebel"
 #define ROLE_ASPIRANT			"Aspirant"
 #define ROLE_LICH				"Lich"
-#define ROLE_ASCENDANT			"Ascendant"
 #define ROLE_WRETCH				"Wretch"
 
 #define ROLE_SYNDICATE			"Syndicate"
@@ -50,7 +49,7 @@
 #define ROLE_LICH_SKELETON		"Lich Skeleton"
 
 GLOBAL_LIST_INIT(special_roles_rogue, list(
-	ROLE_MANIAC = /datum/antagonist/maniac,
+	ROLE_ASCENDANT = /datum/antagonist/ascendant,
 	ROLE_PREBEL = /datum/antagonist/prebel,
 	ROLE_BANDIT = /datum/antagonist/bandit,
 	ROLE_ASPIRANT = /datum/antagonist/aspirant,

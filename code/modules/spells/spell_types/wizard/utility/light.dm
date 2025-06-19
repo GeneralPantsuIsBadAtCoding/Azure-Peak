@@ -64,6 +64,17 @@
 	light_depth = 0
 	light_height = 0
 
+/obj/item/flashlight/flare/light/syon
+	light_color ="#70d1e2"
+	fuel = 999 MINUTES
+
+/obj/item/flashlight/flare/light/syon/Initialize()
+	. = ..()
+	soundloop = new(list(src), FALSE)
+	on = TRUE
+	START_PROCESSING(SSobj, src)
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
+
 /obj/item/flashlight/flare/light5e/getonmobprop(tag)
 	. = ..()
 	if(tag)
