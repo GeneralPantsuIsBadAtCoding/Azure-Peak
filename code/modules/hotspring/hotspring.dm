@@ -15,27 +15,103 @@
 	friction = 0.3
 	grow = 0.037
 
+/obj/effect/overlay/water
+	icon = 'icons/turf/newwater.dmi'
+	icon_state = "springbottom"
+	density = 0
+	mouse_opacity = 0
+	layer = BELOW_MOB_LAYER
+	anchored = TRUE
+
+/obj/effect/overlay/water/top
+	icon_state = "springtop"
+	layer = BELOW_MOB_LAYER
+
 ///these were unfortunately requested to not be smoothed. I will likely create a smooth helper version aswell though
 ///the issue is they would need atleast a 2x2 to smooth proper.
-/obj/structure/hotspring
-	abstract_type = /obj/structure/hotspring
+/turf/open/hotspring
 	nomouseover = TRUE
-	plane = FLOOR_PLANE
 	icon = 'icons/obj/structures/hotspring.dmi'
 	icon_state = "hotspring"
-	object_slowdown = 5
-
-	var/edge = FALSE
-
+	slowdown = 5
 	var/obj/effect/abstract/particle_holder/cached/particle_effect
+	var/obj/effect/overlay/water/water_overlay
+	var/obj/effect/overlay/water/top/water_top_overlay
 
-/obj/structure/hotspring/Initialize()
+/turf/open/hotspring/Initialize()
 	. = ..()
 	particle_effect = new(src, /particles/hotspring_steam, 6)
 	//render the steam over mobs and objects on the game plane
 	particle_effect.vis_flags &= ~VIS_INHERIT_PLANE
+	water_overlay = new(src)
+	water_top_overlay = new(src)
+	update_icon()
 
-/obj/structure/hotspring/Crossed(atom/movable/AM)
+/turf/open/hotspring/update_icon()
+	if(water_overlay)
+		water_overlay.icon_state = "springbottom"
+	if(water_top_overlay)
+		water_top_overlay.icon_state = "springtop"
+
+/turf/open/hotspring/Entered(atom/movable/AM, atom/oldLoc)
+	. = ..()
+	for(var/obj/structure/S in src)
+		if(S.obj_flags & BLOCK_Z_OUT_DOWN)
+			return
+	if(isliving(AM) && !AM.throwing)
+		var/mob/living/L = AM
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			L.SoakMob(BELOW_CHEST)
+		if(water_overlay)
+			if(!istype(oldLoc, type))
+				playsound(AM, 'sound/foley/waterenter.ogg', 100, FALSE)
+			else
+				playsound(AM, pick('sound/foley/watermove (1).ogg','sound/foley/watermove (2).ogg'), 100, FALSE)
+			if(istype(oldLoc, type) && (get_dir(src, oldLoc) != SOUTH))
+				water_overlay.layer = ABOVE_MOB_LAYER
+				water_overlay.plane = GAME_PLANE_UPPER
+			else
+				spawn(6)
+					if(AM.loc == src)
+						water_overlay.layer = ABOVE_MOB_LAYER
+						water_overlay.plane = GAME_PLANE_UPPER
+
+/turf/open/hotspring/Exited(atom/movable/AM, atom/newloc)
+	. = ..()
+	for(var/obj/structure/S in src)
+		if(S.obj_flags & BLOCK_Z_OUT_DOWN)
+			return
+	if(isliving(AM) && !AM.throwing)
+		if(water_overlay)
+			if((get_dir(src, newloc) == SOUTH))
+				water_overlay.layer = BELOW_MOB_LAYER
+				water_overlay.plane = GAME_PLANE
+			else
+				spawn(6)
+					if(!locate(/mob/living) in src)
+						water_overlay.layer = BELOW_MOB_LAYER
+						water_overlay.plane = GAME_PLANE
+		for(var/D in GLOB.cardinals) //adjacent to a floor to hold onto
+			if(istype(get_step(newloc, D), /turf/open/floor))
+				return
+
+/turf/open/hotspring/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
+	..()
+	playsound(src, pick('sound/foley/water_land1.ogg','sound/foley/water_land2.ogg','sound/foley/water_land3.ogg'), 100, FALSE)
+
+/turf/open/hotspring/Destroy()
+	. = ..()
+	if(water_overlay)
+		QDEL_NULL(water_overlay)
+	if(water_top_overlay)
+		QDEL_NULL(water_top_overlay)
+
+/obj/structure/hotspring/border/Initialize()
+	. = ..()
+	particle_effect = new(src, /particles/hotspring_steam, 6)
+	particle_effect.vis_flags &= ~VIS_INHERIT_PLANE
+
+/obj/structure/hotspring/border/Crossed(atom/movable/AM)
 	. = ..()
 	for(var/obj/structure/S in get_turf(src))
 		if(S.obj_flags & BLOCK_Z_OUT_DOWN)
@@ -46,9 +122,11 @@
 
 /obj/structure/hotspring/border
 	name = "hotspring border"
+	icon = 'icons/obj/structures/hotspring.dmi'
 	icon_state = "hotspring_border_1"
 	object_slowdown = 0
-	edge = TRUE
+	var/obj/effect/abstract/particle_holder/cached/particle_effect
+	var/edge = TRUE
 
 /obj/structure/hotspring/border/two
 	icon_state = "hotspring_border_2"
@@ -162,6 +240,8 @@
 	name = "lily petals"
 	icon = 'icons/obj/structures/hotspring.dmi'
 	icon_state = "lilypetals1"
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE_UPPER
 
 /obj/effect/lily_petal/two
 	icon_state = "lilypetals2"
@@ -192,6 +272,8 @@
 	icon = 'icons/obj/structures/sakura_tree.dmi'
 	icon_state = "sakura_tree"
 	obj_flags = CAN_BE_HIT | IGNORE_SINK
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE_UPPER
 
 	bound_height = 128
 	bound_width = 128

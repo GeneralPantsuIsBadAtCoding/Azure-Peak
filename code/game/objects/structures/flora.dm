@@ -401,7 +401,6 @@
 	icon = 'icons/obj/flora/largejungleflora.dmi'
 	pixel_x = -16
 	pixel_y = -12
-	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/structure/flora/rock/pile/largejungle
 	name = "rocks"
@@ -410,6 +409,7 @@
 	density = FALSE
 	pixel_x = -16
 	pixel_y = -16
+	layer = SPACEVINE_LAYER
 
 /obj/structure/flora/rock/pile/largejungle/Initialize()
 	. = ..()
