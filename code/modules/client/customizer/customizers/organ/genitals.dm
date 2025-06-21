@@ -60,6 +60,7 @@
 		/datum/customizer_choice/organ/penis/knotted,
 		/datum/customizer_choice/organ/penis/equine,
 		/datum/customizer_choice/organ/penis/tapered_mammal,
+		/datum/customizer_choice/organ/penis/tapered_double_mammal,
 		/datum/customizer_choice/organ/penis/tapered,
 		/datum/customizer_choice/organ/penis/tapered_double,
 		/datum/customizer_choice/organ/penis/tapered_double_knot,
@@ -112,7 +113,6 @@
 	organ_type = /obj/item/organ/penis/knotted
 	sprite_accessories = list(
 		/datum/sprite_accessory/penis/knotted,
-		/datum/sprite_accessory/penis/knotted2,
 		)
 
 /datum/customizer_choice/organ/penis/equine
@@ -141,6 +141,13 @@
 	organ_type = /obj/item/organ/penis/tapered
 	sprite_accessories = list(
 		/datum/sprite_accessory/penis/hemi,
+		)
+	
+/datum/customizer_choice/organ/penis/tapered_double_mammal
+	name = "Hemi Tapered Penis (Mammal)"
+	organ_type = /obj/item/organ/penis/tapered_mammal
+	sprite_accessories = list(
+		/datum/sprite_accessory/penis/hemi_mammal,
 		)
 
 /datum/customizer_choice/organ/penis/tapered_double_knot
