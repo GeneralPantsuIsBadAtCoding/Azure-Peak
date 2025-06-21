@@ -1272,7 +1272,7 @@
 	blocking_behavior = null
 	max_integrity = 400
 	smeltresult = /obj/item/ingot/blacksteel
-	armor_class = ARMOR_CLASS_MEDIUM
+	armor_class = ARMOR_CLASS_HEAVY //Classes that start with this have heavy anyway
 	smelt_bar_num = 2
 
 /obj/item/clothing/suit/roguetown/armor/plate/elven_plate
