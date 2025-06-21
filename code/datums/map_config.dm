@@ -22,6 +22,9 @@
 	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
 
+	/// List of unit tests that are skipped when running this map
+	var/list/skipped_tests
+
 	var/minetype = "lavaland"
 
 	var/allow_custom_shuttles = TRUE
