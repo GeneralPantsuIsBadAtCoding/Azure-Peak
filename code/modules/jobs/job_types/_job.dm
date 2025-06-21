@@ -223,11 +223,15 @@
 	if(cmode_music)
 		H.cmode_music = cmode_music
 
+	if(!ishuman(H))
+		return
+		
+	var/mob/living/carbon/human/HU = H
 	if (!hidden_job)
 		if (obsfuscated_job)
-			GLOB.actors_list[H.mobid] = "[H.real_name] as Adventurer<BR>"
+			GLOB.actors_list[H.mobid] = "[HU.real_name] as the [HU.dna?.species?.name] Adventurer<BR>"
 		else
-			GLOB.actors_list[H.mobid] = "[H.real_name] as [H.mind.assigned_role]<BR>"
+			GLOB.actors_list[H.mobid] = "[HU.real_name] as the [HU.dna?.species?.name] [HU.mind.assigned_role]<BR>"
 
 /client/verb/set_mugshot()
 	set category = "OOC"
