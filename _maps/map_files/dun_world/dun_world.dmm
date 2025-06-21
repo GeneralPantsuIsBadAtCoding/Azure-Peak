@@ -302,10 +302,6 @@
 /obj/structure/table/wood{
 	icon_state = "map3"
 	},
-/obj/item/rogueweapon/huntingknife/idagger/silver/elvish{
-	name = "royal elvish dagger";
-	sellprice = 150
-	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "afK" = (
@@ -2475,6 +2471,10 @@
 	},
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/town/roofs)
+"aQl" = (
+/obj/effect/spawner/roguemap/stump,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/town)
 "aQp" = (
 /obj/structure/stairs{
 	dir = 4
@@ -6248,6 +6248,12 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
+"cgA" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/town/roofs/keep)
 "cgF" = (
 /obj/structure/ladder,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -18042,13 +18048,6 @@
 /obj/structure/plasticflaps,
 /turf/open/water/bloody,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"gfg" = (
-/obj/structure/mineral_door/bars{
-	locked = 1;
-	lockid = "royal"
-	},
-/turf/open/floor/rogue/blocks/green,
-/area/rogue/under/town/sewer)
 "gfk" = (
 /obj/structure/fluff/railing/border{
 	dir = 6
@@ -18449,6 +18448,15 @@
 "gmR" = (
 /turf/open/floor/carpet/inn,
 /area/rogue/under/town/basement/keep)
+"gmX" = (
+/obj/structure/fluff/railing/wood{
+	layer = 4.51
+	},
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/town/roofs/keep)
 "gmZ" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -32048,6 +32056,9 @@
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
+"kKI" = (
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/town)
 "kKK" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -33430,6 +33441,10 @@
 /obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
+"ljC" = (
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/town/roofs/keep)
 "ljG" = (
 /obj/machinery/light/rogue/oven/south,
 /turf/open/floor/rogue/woodturned,
@@ -36202,6 +36217,13 @@
 /obj/item/natural/clay/clayfancyvase,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/cavewet/bogcaves)
+"mfb" = (
+/obj/structure/mineral_door/bars{
+	locked = 1;
+	lockid = "manor"
+	},
+/turf/open/floor/rogue/blocks/green,
+/area/rogue/under/town/sewer)
 "mfi" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -37525,6 +37547,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter)
+"mDb" = (
+/obj/structure/mineral_door/bars{
+	locked = 1;
+	lockid = "manor"
+	},
+/turf/open/water/swamp,
+/area/rogue/under/town/sewer)
 "mDc" = (
 /obj/structure/mirror,
 /turf/open/floor/carpet/inn,
@@ -44611,6 +44640,10 @@
 "oXp" = (
 /obj/structure/table/wood,
 /obj/item/paper,
+/obj/item/rogueweapon/huntingknife/idagger/silver/elvish{
+	name = "royal elvish dagger";
+	sellprice = 150
+	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/manor)
 "oXr" = (
@@ -45996,6 +46029,14 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"pwl" = (
+/obj/structure/mineral_door/wood/donjon{
+	locked = 1;
+	lockid = "walls";
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "pwr" = (
 /turf/closed/wall/mineral/rogue/decostone/end,
 /area/rogue/outdoors/beach)
@@ -46523,6 +46564,13 @@
 /obj/item/clothing/head/roguetown/roguehood,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
+"pDf" = (
+/obj/structure/mineral_door/wood/donjon{
+	locked = 1;
+	lockid = "walls"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "pDi" = (
 /obj/structure/fluff/statue/femalestatue,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -52491,6 +52539,15 @@
 /obj/item/clothing/neck/roguetown/psicross/malum,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"rAO" = (
+/obj/structure/fluff/railing/wood{
+	layer = 4.51
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/town/roofs/keep)
 "rAR" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -56014,6 +56071,15 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/dukecourt)
+"sHE" = (
+/obj/structure/fluff/railing/wood{
+	layer = 4.51
+	},
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/town/roofs/keep)
 "sHL" = (
 /mob/living/carbon/human/species/skeleton/npc/ambush,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -65737,6 +65803,12 @@
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
+"vNS" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/town/roofs/keep)
 "vOa" = (
 /obj/structure/fluff/statue/knight/r,
 /turf/open/floor/rogue/blocks,
@@ -70776,6 +70848,14 @@
 	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/mountains/decap)
+"xtM" = (
+/obj/structure/mineral_door/wood/donjon{
+	locked = 1;
+	lockid = "garrison";
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "xtZ" = (
 /obj/structure/fluff/railing/wood{
 	dir = 4
@@ -173379,7 +173459,7 @@ ogs
 xAN
 ylh
 mMx
-vVx
+mfb
 mMx
 mMx
 xAN
@@ -177897,7 +177977,7 @@ opX
 opX
 opX
 dlK
-gfg
+mfb
 vVx
 dlK
 utr
@@ -183280,12 +183360,12 @@ ogs
 ogs
 xCK
 xCK
-ozP
+mDb
 xCK
 xCK
 xCK
 xCK
-gfg
+mfb
 mMx
 mMx
 mMx
@@ -290386,7 +290466,7 @@ aZo
 pWT
 ncw
 cDX
-gyu
+hJC
 cDX
 uhI
 uhI
@@ -290838,7 +290918,7 @@ pWT
 oOv
 aFv
 lKo
-pqo
+jdu
 lKo
 rni
 rMf
@@ -291290,7 +291370,7 @@ njB
 aFv
 aFv
 lKo
-lKO
+jdu
 lKo
 nwG
 vlL
@@ -291742,7 +291822,7 @@ qyR
 pWT
 hyp
 cDX
-gyu
+jdu
 cDX
 nwG
 rMf
@@ -292194,7 +292274,7 @@ qyR
 njB
 aFv
 lKo
-pqo
+jdu
 lKo
 pqC
 rMf
@@ -292646,7 +292726,7 @@ pWT
 aFv
 ftO
 lKo
-lKO
+jdu
 lKo
 xyS
 kAx
@@ -293098,7 +293178,7 @@ jiQ
 ftO
 aFv
 cDX
-gyu
+jdu
 cDX
 paw
 mbx
@@ -293550,7 +293630,7 @@ mQr
 pWT
 aFv
 lKo
-pqo
+jdu
 lKo
 vJq
 mbx
@@ -294002,7 +294082,7 @@ pWT
 njB
 njB
 lKo
-lKO
+jdu
 lKo
 akS
 tTc
@@ -294454,7 +294534,7 @@ pWT
 jiQ
 wSh
 cDX
-gyu
+jdu
 cDX
 nwG
 kve
@@ -294906,7 +294986,7 @@ aZo
 daQ
 daQ
 lKo
-pqo
+jdu
 lKo
 nwG
 nAZ
@@ -295358,7 +295438,7 @@ daQ
 daQ
 daQ
 lKo
-lKO
+jdu
 lKo
 nwG
 qer
@@ -295808,11 +295888,11 @@ ftO
 uJY
 uJY
 uJY
-uJY
+aQl
 phl
+pwl
 phl
-phl
-nwG
+mgq
 nwG
 rni
 pqC
@@ -295822,7 +295902,7 @@ rni
 uhI
 rMf
 phl
-kAi
+xtM
 pLh
 rMf
 mgq
@@ -296261,9 +296341,9 @@ gyu
 gyu
 cDX
 phl
-phl
-phl
-phl
+pLh
+jdu
+pLh
 phl
 gyu
 gyu
@@ -296706,26 +296786,26 @@ pcQ
 pcQ
 phl
 tdi
-phl
-phl
-lKo
-lKO
-pqo
-lKo
-phl
-phl
-cDX
-phl
-phl
-lKO
-pqo
-lKO
-lKO
-pqo
-lKO
-pqo
-phl
-phl
+jdu
+jdu
+jdu
+jdu
+jdu
+jdu
+pDf
+jdu
+jdu
+jdu
+pDf
+jdu
+jdu
+jdu
+jdu
+jdu
+jdu
+jdu
+pDf
+jdu
 tSF
 phl
 phl
@@ -297166,8 +297246,8 @@ gyu
 cDX
 pLh
 pLh
-phl
-phl
+tSF
+pLh
 phl
 gyu
 gyu
@@ -297616,11 +297696,11 @@ asY
 asY
 bNc
 moR
-kvV
+bZZ
 pLh
 pLh
 phl
-rZO
+hzG
 rZO
 rZO
 rZO
@@ -297628,11 +297708,11 @@ ebU
 ebU
 ebU
 aoe
-aoe
+kKI
 phl
 phl
 phl
-aoe
+kKI
 aoe
 aoe
 rZO
@@ -360917,7 +360997,7 @@ aBB
 aBB
 bZZ
 bZZ
-aRa
+bZZ
 aBB
 aBB
 aBB
@@ -362733,8 +362813,8 @@ tYj
 tYj
 tYj
 tYj
-tYj
-tYj
+aUO
+aUO
 tYj
 tYj
 tYj
@@ -362765,8 +362845,8 @@ tYj
 tYj
 tYj
 tYj
-tYj
-tYj
+aUO
+aUO
 tYj
 tYj
 tYj
@@ -382220,8 +382300,8 @@ tYj
 tYj
 tYj
 tYj
-tYj
-tYj
+aUO
+aUO
 tYj
 tYj
 tYj
@@ -384942,7 +385022,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -385394,7 +385474,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -393078,7 +393158,7 @@ uBc
 cDX
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 uBc
@@ -393530,7 +393610,7 @@ mPL
 uBc
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 cDX
@@ -396694,7 +396774,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -397146,7 +397226,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -404378,7 +404458,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -404744,7 +404824,7 @@ bGf
 bGf
 vgL
 vVX
-uSi
+sHE
 vmi
 vmi
 vmi
@@ -404830,7 +404910,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -405195,8 +405275,8 @@ bGf
 bGf
 bGf
 iVE
-vVX
-uSi
+vNS
+rAO
 vmi
 vmi
 vmi
@@ -405282,7 +405362,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -405647,8 +405727,8 @@ bGf
 bGf
 bGf
 vgL
-qJz
-uSi
+ljC
+rAO
 vmi
 vmi
 vmi
@@ -406099,8 +406179,8 @@ bGf
 bGf
 bGf
 iVE
-vVX
-uSi
+cgA
+gmX
 vmi
 vmi
 vmi
@@ -408898,7 +408978,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -409350,7 +409430,7 @@ bGf
 bGf
 aDs
 aDs
-skf
+aDs
 aBB
 aBB
 aBB
@@ -412500,13 +412580,13 @@ jWw
 jWw
 tXN
 tXN
+gLt
+gLt
 tXN
 tXN
-tXN
-tXN
-tXN
-tXN
-tXN
+gLt
+gLt
+gLt
 tXN
 tXN
 tXN
