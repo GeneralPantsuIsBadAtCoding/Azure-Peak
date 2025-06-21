@@ -37,7 +37,7 @@
 	del_on_death = TRUE
 
 	can_have_ai = FALSE //disable native ai
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	ai_controller = /datum/ai_controller/simple_skeleton
 	melee_cooldown = SKELETON_ATTACK_SPEED
 

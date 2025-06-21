@@ -13,7 +13,7 @@
 		var/move_dir = pick(GLOB.alldirs)
 		var/turf/target_turf = get_step(living_pawn, move_dir)
 		if(target_turf?.can_traverse_safely(living_pawn))
-			living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+			step_towards(living_pawn, target_turf, living_pawn.cached_multiplicative_slowdown)
 
 	if(prob(8))
 		living_pawn.emote("idle")

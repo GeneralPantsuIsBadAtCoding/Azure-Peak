@@ -252,7 +252,7 @@
 	swingdelay = 5
 	misscost = 20
 	unarmed = TRUE
-	animname = "cut"
+	animname = "kick"
 	pointer = 'icons/effects/mousemice/human_kick.dmi'
 
 /datum/intent/bite
@@ -263,7 +263,8 @@
 	chargetime = 0
 	swingdelay = 0
 	unarmed = TRUE
-	noaa = TRUE
+	noaa = FALSE
+	animname = "bite"
 	attack_verb = list("bites")
 
 /datum/intent/jump
@@ -449,7 +450,8 @@
 	icon_state = "inpunch"
 	attack_verb = list("punches", "jabs", "clocks", "strikes")
 	chargetime = 0
-	animname = "blank22"
+	noaa = FALSE
+	animname = "bite"
 	hitsound = list('sound/combat/hits/punch/punch (1).ogg', 'sound/combat/hits/punch/punch (2).ogg', 'sound/combat/hits/punch/punch (3).ogg')
 	misscost = 5
 	releasedrain = 2	//Lowered for intent stam usage.

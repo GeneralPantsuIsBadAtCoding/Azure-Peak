@@ -24,8 +24,7 @@
 
 		var/turf/target_turf = get_step_towards(movable_pawn, controller.current_movement_target)
 
-
-		if (can_move && target_turf?.can_traverse_safely(movable_pawn))
+		if(can_move && target_turf?.can_traverse_safely(movable_pawn))
 			if(istype(movable_pawn, /mob/living/simple_animal))
 				var/dir_to_target = get_dir(current_loc, target_turf)			
 				for(var/obj/structure/O in get_step(movable_pawn, dir_to_target))

@@ -36,7 +36,7 @@
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 
 	can_have_ai = FALSE 
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 
 	ai_controller = /datum/ai_controller/deepone
 

@@ -2,7 +2,7 @@
 /datum/ai_controller/haunt
 	movement_delay = HAUNT_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

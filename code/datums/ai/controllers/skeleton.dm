@@ -1,7 +1,7 @@
 /datum/ai_controller/simple_skeleton
 	movement_delay = SKELETON_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -22,7 +22,7 @@
 /datum/ai_controller/skeleton_spear
 	movement_delay = SKELETON_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -41,7 +41,7 @@
 /datum/ai_controller/skeleton_ranged
 	movement_delay = SKELETON_MOVEMENT_SPEED * 1.2 //ranged malus
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

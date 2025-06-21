@@ -257,7 +257,7 @@
 		var/mob/living/carbon/human/H = src
 		if(!(H.mobility_flags & MOBILITY_STAND))
 			return hide_cone()
-		if(!H.client && (H.mode != AI_OFF))
+		if(!H.client && (H.mode != NPC_AI_OFF))
 			return hide_cone()
 	return show_cone()
 

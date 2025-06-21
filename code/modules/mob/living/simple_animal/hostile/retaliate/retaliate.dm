@@ -14,7 +14,7 @@
 	var/aggressive = 0
 
 /mob/living/simple_animal/hostile/retaliate/ListTargets()
-	if(!(AIStatus == AI_OFF))
+	if(!(AIStatus == NPC_AI_OFF))
 		if(aggressive)
 			return ..()
 		else
@@ -63,7 +63,7 @@
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
 //	var/list/around = view(src, vision_range)
 	toggle_ai(AI_ON)
-	if(!(AIStatus == AI_OFF))
+	if(!(AIStatus == NPC_AI_OFF))
 		var/list/around = hearers(vision_range, src)
 
 		for(var/atom/movable/A in around)

@@ -260,6 +260,124 @@
 		if(mind)
 			mind.attackedme[user.real_name] = world.time
 		log_combat(user, src, "bit")
+	return TRUE
+
+/mob/living/proc/get_jump_range()
+	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
+		return 1
+	if(m_intent == MOVE_INTENT_RUN)
+		return 3
+	return 2
+
+/// Returns the stamina cost to jump. Will never use more than 100 stam.
+/mob/living/proc/get_jump_stam_cost()
+	. = 10
+	if(m_intent == MOVE_INTENT_RUN)
+		. = 15
+	var/mob/living/carbon/human/H = src
+	if(istype(H))
+		. += H.get_complex_pain()/50
+	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
+		. += 50
+	return clamp(., 0, 100)
+
+/mob/living/proc/get_jump_offbalance_time()
+	if(m_intent == MOVE_INTENT_RUN)
+		return 3 SECONDS
+	return 2 SECONDS
+
+/// Performs a jump. Used by the jump MMB intent. Returns TRUE if a jump was performed.
+/mob/living/proc/can_jump(atom/A)
+	var/turf/our_turf = get_turf(src)
+	if(istype(our_turf, /turf/open/water))
+		to_chat(src, span_warning("I'm floating in [our_turf]."))
+		return FALSE
+	if(!A || QDELETED(A) || !A.loc)
+		return FALSE
+	if(A == src || A == src.loc)
+		return FALSE
+	if(get_num_legs() < 2)
+		return FALSE
+	if(pulledby && pulledby != src)
+		to_chat(src, span_warning("I'm being grabbed."))
+		return FALSE
+	if(IsOffBalanced())
+		to_chat(src, span_warning("I haven't regained my balance yet."))
+		return FALSE
+	if(!(mobility_flags & MOBILITY_STAND) && !HAS_TRAIT(src, TRAIT_LEAPER))// The Jester cares not for such social convention.
+		to_chat(src, span_warning("I should stand up first."))
+		return FALSE
+	if(A.z != z && !HAS_TRAIT(src, TRAIT_ZJUMP))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/can_kick(atom/A, do_message = TRUE)
+	if(get_num_legs() < 2)
+		return FALSE
+	if(!A.Adjacent(src))
+		return FALSE
+	if(A == src)
+		return FALSE
+	if(isliving(A) && !(mobility_flags & MOBILITY_STAND) && pulledby)
+		return FALSE
+	if(IsOffBalanced())
+		if(do_message)
+			to_chat(src, span_warning("I haven't regained my balance yet."))
+		return FALSE
+	if(ismob(A))
+		var/mob/living/M = A
+		if(src.used_intent)
+			src.do_attack_animation(M, visual_effect_icon = src.used_intent.animname)
+			playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
+			sleep(src.used_intent.swingdelay)
+			if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.bad_guard(span_warning("The kick throws my stance off!"))
+			if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
+				var/mob/living/carbon/human/HT = M
+				HT.bad_guard(span_warning("The kick throws my stance off!"))
+			if(M.checkmiss(src))
+				return
+			if(M.checkdefense(src.used_intent, src))
+				return
+	if(QDELETED(src) || QDELETED(A))
+		return FALSE
+	return TRUE
+
+/// Performs a kick. Used by the kick MMB intent. Returns TRUE if a kick was performed.
+/mob/living/proc/try_kick(atom/A)
+	if(!can_kick(A))
+		return FALSE
+	changeNext_move(mmb_intent.clickcd)
+	face_atom(A)
+
+	playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
+	// play the attack animation even when kicking non-mobs
+	if(mmb_intent) // why this would be null and not INTENT_KICK i have no clue, but the check already existed
+		do_attack_animation(A, visual_effect_icon = mmb_intent.animname)
+	// but the rest of the logic is pretty much mob-only
+	if(ismob(A) && mmb_intent)
+		var/mob/living/M = A
+		sleep(mmb_intent.swingdelay)
+		if(QDELETED(src) || QDELETED(M))
+			return FALSE
+		if(!M.Adjacent(src))
+			return FALSE
+		if(src.incapacitated())
+			return FALSE
+		if(M.checkmiss(src))
+			return FALSE
+		if(M.checkdefense(mmb_intent, src))
+			return FALSE
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.dna.species.kicked(src, H)
+		else
+			M.onkick(src)
+	else
+		A.onkick(src)
+	OffBalance(3 SECONDS)
+	return TRUE
 
 /mob/living/MiddleClickOn(atom/A, params)
 	..()
@@ -276,61 +394,7 @@
 //				face_atom(A)
 //				A.ongive(src, params)
 			if(INTENT_KICK)
-				if(src.get_num_legs() < 2)
-					return
-				if(!A.Adjacent(src))
-					return
-				if(A == src)
-					var/list/mobs_here = list()
-					for(var/mob/M in get_turf(src))
-						if(M.invisibility || M == src)
-							continue
-						mobs_here += M
-					if(mobs_here.len)
-						A = pick(mobs_here)
-					if(A == src) //auto aim couldn't select another target
-						return
-				if(IsOffBalanced())
-					to_chat(src, span_warning("I haven't regained my balance yet."))
-					return
-				changeNext_move(mmb_intent.clickcd)
-				face_atom(A)
-
-				if(ismob(A))
-					var/mob/living/M = A
-					if(src.used_intent)
-
-						src.do_attack_animation(M, visual_effect_icon = src.used_intent.animname)
-						playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
-
-						sleep(src.used_intent.swingdelay)
-						if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
-							var/mob/living/carbon/human/H = src
-							H.bad_guard(span_warning("The kick throws my stance off!"))
-						if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
-							var/mob/living/carbon/human/HT = M
-							HT.bad_guard(span_warning("The kick throws my stance off!"))
-						if(QDELETED(src) || QDELETED(M))
-							return
-						if(!M.Adjacent(src))
-							return
-						if(src.incapacitated())
-							return
-						if(M.checkmiss(src))
-							return
-						if(M.checkdefense(src.used_intent, src))
-							return
-					if(M.checkmiss(src))
-						return
-					if(!M.checkdefense(mmb_intent, src))
-						if(ishuman(M))
-							var/mob/living/carbon/human/H = M
-							H.dna.species.kicked(src, H)
-						else
-							M.onkick(src)
-				else
-					A.onkick(src)
-				OffBalance(30)
+				try_kick(A)
 				return
 			if(INTENT_JUMP)
 				jump_action(A)

@@ -634,17 +634,17 @@
 		if(8)
 			zone_selected = BODY_ZONE_R_ARM
 		if(7)
-			zone_selected = BODY_ZONE_PRECISE_R_HAND
-		if(6)
 			zone_selected = BODY_ZONE_L_ARM
+		if(6)
+			zone_selected = BODY_ZONE_PRECISE_R_HAND
 		if(5)
 			zone_selected = BODY_ZONE_PRECISE_L_HAND
 		if(4)
 			zone_selected = BODY_ZONE_R_LEG
 		if(3)
-			zone_selected = BODY_ZONE_PRECISE_R_FOOT
-		if(2)
 			zone_selected = BODY_ZONE_L_LEG
+		if(2)
+			zone_selected = BODY_ZONE_PRECISE_R_FOOT
 		if(1)
 			zone_selected = BODY_ZONE_PRECISE_L_FOOT
 

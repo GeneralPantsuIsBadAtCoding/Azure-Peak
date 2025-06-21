@@ -119,6 +119,11 @@
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
 			. += span_notice("Ctrl-Shift-click [src] to jump inside.")*/
 
+/obj/structure/closet/CanAStarPass(ID, dir, caller)
+	if(wall_mounted)
+		return TRUE
+	return ..()
+
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
 		return TRUE

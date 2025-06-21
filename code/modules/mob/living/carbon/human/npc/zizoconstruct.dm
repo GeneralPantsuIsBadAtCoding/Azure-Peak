@@ -8,9 +8,8 @@ GLOBAL_LIST_INIT(zizoconstruct_aggro, world.file2list("strings/rt/zconstructaggr
 	faction = list("dundead")
 	var/zc_outfit = /datum/outfit/job/roguetown/human/species/construct/metal/zizoconstruct
 	ambushable = FALSE
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	wander = FALSE
-	stand_attempts = 6
 	cmode = 1
 	setparrytime = 30
 	a_intent = INTENT_HELP

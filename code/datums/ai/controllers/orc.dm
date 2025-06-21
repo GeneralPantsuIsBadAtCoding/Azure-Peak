@@ -1,7 +1,7 @@
 /datum/ai_controller/orc
 	movement_delay = ORC_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic(),
@@ -21,7 +21,7 @@
 /datum/ai_controller/orc_ranged
 	movement_delay = ORC_MOVEMENT_SPEED * 1.2 //ranged malus
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -38,7 +38,7 @@
 /datum/ai_controller/spear_orc
 	movement_delay = ORC_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -57,7 +57,7 @@
 /datum/ai_controller/elite_orc
 	movement_delay = ORC_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

@@ -1,10 +1,9 @@
 /mob/living/carbon/human/species/human/northern/thief //I'm a thief, give me your shit
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	faction = list("thieves")
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	a_intent = INTENT_HELP
 	m_intent = MOVE_INTENT_SNEAK
 	d_intent = INTENT_DODGE
@@ -37,7 +36,6 @@
 	job = "Thief"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LIGHT_STEP, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/thief)

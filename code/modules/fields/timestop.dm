@@ -165,7 +165,7 @@
 	walk(L, 0) //stops them mid pathing even if they're stunimmune
 	if(isanimal(L))
 		var/mob/living/simple_animal/S = L
-		S.toggle_ai(AI_OFF)
+		S.toggle_ai(NPC_AI_OFF)
 	if(ishostile(L))
 		var/mob/living/simple_animal/hostile/H = L
 		H.LoseTarget()

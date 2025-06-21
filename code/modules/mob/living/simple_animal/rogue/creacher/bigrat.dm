@@ -65,7 +65,7 @@
 	eat_forever = TRUE
 
 //new ai, old ai off
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/big_rat
 	melee_cooldown = RAT_ATTACK_SPEED

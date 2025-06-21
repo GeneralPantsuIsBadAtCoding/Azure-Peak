@@ -120,13 +120,13 @@
 		else
 			emote(emote_override, forced = force_emote)
 		blur_eyes(2)
-		last_fatigued = world.time + 30 //extra time before fatigue regen sets in
+		last_fatigued = world.time + 3 SECONDS //extra time before fatigue regen sets in
 		stop_attack()
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
 		if(rogstam <= 0)
-			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 10)
-		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 10)
+			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 1 SECONDS)
 		if(iscarbon(src))
 			var/mob/living/carbon/C = src
 			if(C.get_stress_amount() >= 30)

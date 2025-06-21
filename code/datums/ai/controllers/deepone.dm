@@ -1,7 +1,7 @@
 /datum/ai_controller/deepone
 	movement_delay = DEEPONE_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -19,7 +19,7 @@
 /datum/ai_controller/deepone_ranged
 	movement_delay = DEEPONE_MOVEMENT_SPEED * 1.2 //ranged malus
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

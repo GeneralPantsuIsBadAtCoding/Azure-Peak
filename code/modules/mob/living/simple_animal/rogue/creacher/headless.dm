@@ -50,7 +50,7 @@
 	remains_type = null
 
 	ai_controller = /datum/ai_controller/headless
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	can_have_ai = FALSE
 
 	var/mob/living/swallowed_mob

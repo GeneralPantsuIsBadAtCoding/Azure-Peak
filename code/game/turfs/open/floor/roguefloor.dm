@@ -408,23 +408,20 @@
 	var/dirt_amt = 3
 
 /turf/open/floor/rogue/dirt/get_slowdown(mob/user)
-	var/returned = slowdown
+	. = ..()
 	var/negate_slowdown = FALSE
 
-	for(var/obj/item/I in user.held_items)
-		if(I.walking_stick)
-			if(!I.wielded)
-				var/mob/living/L = user
-				if(!L.cmode)
-					negate_slowdown = TRUE
+	for(var/obj/item/stick in user.held_items)
+		if(stick.walking_stick && !stick.wielded && !user.cmode)
+			negate_slowdown = TRUE
+			break
 
 	if(HAS_TRAIT(user, TRAIT_LONGSTRIDER))
 		negate_slowdown = TRUE
 
 	if(negate_slowdown)
-		returned = max(returned-2, 0)
-
-	return returned
+		. -= 2
+	return max(., 0)
 
 
 /turf/open/floor/rogue/dirt/attack_right(mob/user)

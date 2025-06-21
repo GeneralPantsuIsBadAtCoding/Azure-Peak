@@ -15,15 +15,16 @@
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/swift, /datum/rmb_intent/riposte, /datum/rmb_intent/weak)
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	vitae_pool = 250 // Small, frail creechers with not so much vitality to gain from.
 
 /mob/living/carbon/human/species/goblin/npc
 	aggressive=1
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	dodgetime = 30 //they can dodge easily, but have a cooldown on it
 	flee_in_pain = TRUE
-
+	npc_jump_chance = 60
+	npc_jump_distance = 3 // this might make them concheck more often, but it'll also mean it's easier to kick their legs out from under them
+	rude = TRUE
 	wander = FALSE
 
 /mob/living/carbon/human/species/goblin/npc/ambush
@@ -114,7 +115,7 @@
 	name = "goblin"
 	id = "goblin"
 	species_traits = list(NO_UNDERWEAR,NOEYESPRITES)
-	inherent_traits = list(TRAIT_NOROGSTAM, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RADIMMUNE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NASTY_EATER)
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RADIMMUNE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NASTY_EATER)
 	no_equip = list(SLOT_SHIRT, SLOT_WEAR_MASK, SLOT_GLOVES, SLOT_SHOES, SLOT_PANTS, SLOT_S_STORE)
 	nojumpsuit = 1
 	sexes = 1
@@ -200,7 +201,7 @@
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 
 /mob/living/carbon/human/species/goblin/handle_combat()
-	if(mode == AI_HUNT)
+	if(mode == NPC_AI_HUNT)
 		if(prob(2))
 			emote("laugh")
 	. = ..()
@@ -234,9 +235,9 @@
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
-//	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
-//	blue breathes underwater, need a new specific one for this maybe organ cheque
-//	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
+	if(is_species(src, /datum/species/goblin/sea))
+		ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
+		ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	if(gob_outfit)
 		var/datum/outfit/O = new gob_outfit
 		if(O)
@@ -287,10 +288,20 @@
 /datum/outfit/job/roguetown/npc/goblin/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.STASTR = 8
+	var/chance_zjumper = 5
+	var/chance_treeclimber = 30
 	if(is_species(H, /datum/species/goblin/moon))
 		H.STASPD = 16
+		chance_zjumper = 20
+		chance_treeclimber = 70
 	else
 		H.STASPD = 14
+	if(prob(chance_zjumper))
+		ADD_TRAIT(H, TRAIT_ZJUMP, TRAIT_GENERIC)
+		H.find_targets_above = TRUE
+	if(prob(chance_treeclimber))
+		H.tree_climber = TRUE
+		H.find_targets_above = TRUE // so they can taunt
 	H.STACON = 6
 	H.STAEND = 15
 	if(is_species(H, /datum/species/goblin/moon))

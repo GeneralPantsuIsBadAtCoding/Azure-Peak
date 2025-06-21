@@ -46,7 +46,7 @@
 
 	food_type = list(/obj/item/reagent_containers/food/snacks, /obj/item/bodypart)	
 	can_have_ai = FALSE //disable native ai
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	ai_controller = /datum/ai_controller/haunt
 
 /mob/living/simple_animal/hostile/rogue/haunt/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)

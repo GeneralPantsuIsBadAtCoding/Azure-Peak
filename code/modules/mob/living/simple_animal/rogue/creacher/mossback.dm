@@ -47,7 +47,7 @@
 //	stat_attack = UNCONSCIOUS
 
 	can_have_ai = FALSE //disable native ai
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	ai_controller = /datum/ai_controller/mossback
 	melee_cooldown = MOSSBACK_ATTACK_SPEED
 

@@ -45,7 +45,7 @@
 	STASPD = 5
 
 	ai_controller = /datum/ai_controller/mimic
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	can_have_ai = FALSE
 	/// The typepath of the chest this mimic is mimicking.
 	var/obj/structure/closet/crate/chest/mimicking_chest = /obj/structure/closet/crate/chest

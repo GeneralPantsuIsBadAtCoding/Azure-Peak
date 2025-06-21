@@ -102,10 +102,10 @@
 		return !density
 
 /obj/structure/table/CanAStarPass(ID, dir, caller)
-	. = !density
+	. = ..()
 	if(ismovableatom(caller))
 		var/atom/movable/mover = caller
-		. = . || (mover.pass_flags & PASSTABLE)
+		. ||= (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
@@ -400,10 +400,10 @@
 		return 0
 
 /obj/structure/rack/CanAStarPass(ID, dir, caller)
-	. = !density
+	. = ..()
 	if(ismovableatom(caller))
 		var/atom/movable/mover = caller
-		. = . || (mover.pass_flags & PASSTABLE)
+		. ||= (mover.pass_flags & PASSTABLE)
 
 /obj/structure/rack/MouseDrop_T(obj/O, mob/user)
 	. = ..()

@@ -63,7 +63,7 @@
 	
 
 //new ai, old ai off
-	AIStatus = AI_OFF
+	AIStatus = NPC_AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mole
 

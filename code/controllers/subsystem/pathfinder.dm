@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(pathfinder)
 	var/datum/flowcache/circuits
 
 /datum/controller/subsystem/pathfinder/Initialize()
-	mobs = new(10)
+	mobs = new(20)
 	circuits = new(3)
 	return ..()
 

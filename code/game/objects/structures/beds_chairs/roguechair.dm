@@ -42,6 +42,10 @@
 //	M.pixel_x = M.get_standard_pixel_x_offset(M.lying)
 //	M.pixel_y = M.get_standard_pixel_y_offset(M.lying)
 
+/obj/structure/chair/bench/CanAStarPass(ID, travel_dir, caller)
+	if(travel_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/chair/bench/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(mover,loc) == dir)

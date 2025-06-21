@@ -119,6 +119,10 @@
 
 	return dist
 
+/// Returns the squared Euclidean distance, which is cheaper because it doesn't require sqrt.
+/proc/get_dist_euclidean_squared(atom/Loc1, atom/Loc2)
+	return (Loc1.x - Loc2.x)**2 + (Loc1.y - Loc2.y)**2
+
 /proc/circlerangeturfs(center=usr,radius=3)
 
 	var/turf/centerturf = get_turf(center)
@@ -295,9 +299,6 @@
 		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
-
-#define SIGNV(X) ((X<0)?-1:1)
-
 /proc/inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
 	var/turf/T
 	if(X1==X2)
@@ -327,8 +328,47 @@
 			if(T.opacity)
 				return 0
 	return 1
-#undef SIGNV
 
+/// Like inLineOfSight, but it checks density instead of opacity.
+/proc/inLineOfTravel(mob/traveler, atom/target)
+	var/turf/our_turf = get_turf(traveler)
+	var/turf/their_turf = get_turf(target)
+	var/X1 = our_turf.x
+	var/Y1 = our_turf.y
+	var/X2 = their_turf.x
+	var/Y2 = their_turf.y
+	var/Z = our_turf.z
+	var/turf/current_turf = our_turf
+	var/turf/last_turf
+	if(X1==X2)
+		if(Y1==Y2)
+			return TRUE //you're already on the tile
+		else
+			var/s = SIGN(Y2-Y1)
+			Y1+=s
+			while(Y1!=Y2)
+				last_turf = current_turf
+				current_turf = locate(X1,Y1,Z)
+				if(current_turf.density || last_turf.LinkBlockedWithAccess(current_turf, traveler))
+					return FALSE
+				Y1+=s
+	else
+		var/m=(Y2-Y1)/(X2-X1) // slope
+		var/b=(Y1+0.5)-m*(X1+0.5) // y axis offset in tiles
+		var/signX = SIGN(X2-X1)
+		var/signY = SIGN(Y2-Y1)
+		if(X1<X2)
+			b+=m
+		while(X1!=X2 || Y1!=Y2)
+			if(round(m*X1+b-Y1))
+				Y1+=signY //Line exits tile vertically
+			else
+				X1+=signX //Line exits tile horizontally
+			last_turf = current_turf
+			current_turf = locate(X1,Y1,Z)
+			if(current_turf.density || last_turf.LinkBlockedWithAccess(current_turf, traveler))
+				return FALSE
+	return TRUE
 
 /proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)

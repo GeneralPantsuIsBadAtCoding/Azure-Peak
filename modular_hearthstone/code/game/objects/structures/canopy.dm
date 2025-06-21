@@ -35,6 +35,11 @@
 		return 0
 	return !density
 
+/obj/structure/fluff/canopy/booth/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
+
 /obj/structure/fluff/canopy/booth/CheckExit(atom/movable/O, turf/target)
 	if(get_dir(O.loc, target) == dir)
 		return 0

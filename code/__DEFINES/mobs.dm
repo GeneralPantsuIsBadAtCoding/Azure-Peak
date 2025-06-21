@@ -245,10 +245,13 @@
 #define AI_OFF		3
 #define AI_Z_OFF	4
 
-#define AI_COMBAT	5
-#define AI_RETREAT	6
-#define AI_HUNT		7
-#define AI_FLEE		8
+// these are exclusively for hostile humantype mobs
+#define NPC_AI_OFF		0
+#define NPC_AI_IDLE		1
+#define NPC_AI_COMBAT	2
+#define NPC_AI_RETREAT	3
+#define NPC_AI_HUNT		4
+#define NPC_AI_FLEE		5
 
 //determines if a mob can smash through it
 #define ENVIRONMENT_SMASH_NONE			0
@@ -552,3 +555,10 @@
 #define PIXEL_SHIFT_PASSABLE_THRESHOLD 8
 
 #define TYPING_INDICATOR_TIMEOUT 20 MINUTES
+
+// NPC Debugging
+#ifdef NPC_THINK_DEBUG
+#define NPC_THINK(message) visible_message(message, runechat_message = message)
+#else
+#define NPC_THINK(message)
+#endif

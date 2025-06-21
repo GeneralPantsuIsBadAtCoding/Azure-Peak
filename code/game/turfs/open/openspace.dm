@@ -97,6 +97,16 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	return FALSE
 
 /turf/open/transparent/openspace/can_traverse_safely(atom/movable/traveler)
+	var/turf/destination = GET_TURF_BELOW(src)
+	if(!destination)
+		return TRUE // this shouldn't happen, but if it does we can't fall
+	if(!traveler.can_zTravel(destination, DOWN, src)) // something is blocking their fall!
+		return TRUE
+	if(!traveler.can_zFall(src, DOWN, destination)) // they can't fall!
+		return TRUE
+	return FALSE
+
+/turf/open/transparent/openspace/can_traverse_safely(atom/movable/traveler)
 	return FALSE
 
 /turf/open/transparent/openspace/proc/CanCoverUp()

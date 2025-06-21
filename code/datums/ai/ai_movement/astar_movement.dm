@@ -33,11 +33,12 @@
 		var/generate_path = FALSE // set to TRUE when we either have no path, or we failed a step
 		if(length(controller.movement_path))
 			var/turf/next_step = controller.movement_path[1]
-			movable_pawn.Move(next_step)
+			var/dir_to_move = get_dir(movable_pawn, next_step)
+			step(movable_pawn, dir_to_move, controller.movement_delay)
 
 			// this check if we're on exactly the next tile may be overly brittle for dense pawns who may get bumped slightly
 			// to the side while moving but could maybe still follow their path without needing a whole new path
-			if(get_turf(movable_pawn) == next_step)
+			if(get_turf(movable_pawn) == next_step && length(controller.movement_path))
 				controller.movement_path.Cut(1,2)
 			else
 				generate_path = TRUE
@@ -53,7 +54,7 @@
 				continue
 
 			COOLDOWN_START(controller, repath_cooldown, 2 SECONDS)
-			controller.movement_path = get_path_to(movable_pawn, controller.current_movement_target, max_path_distance, minimum_distance, id=controller.get_access())
+			controller.movement_path = get_path_to(movable_pawn, controller.current_movement_target, TYPE_PROC_REF(/turf, Heuristic_cardinal_3d), max_path_distance, max_path_distance, minimum_distance, adjacent = TYPE_PROC_REF(/turf, reachableTurftest3d), id=controller.get_access())
 
 /datum/ai_movement/astar/start_moving_towards(datum/ai_controller/controller, atom/current_movement_target)
 	controller.movement_path = null

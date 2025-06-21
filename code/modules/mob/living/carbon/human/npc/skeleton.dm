@@ -14,15 +14,15 @@
 	a_intent = INTENT_HELP
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/aimed, /datum/rmb_intent/weak)
-	stand_attempts = 4
-
 	cmode_music = 'sound/music/combat_weird.ogg'
 
 /mob/living/carbon/human/species/skeleton/npc
 	aggressive = 1
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	wander = FALSE
 	skel_fragile = TRUE
+	npc_jump_chance = 0 // no jumping skeletons
+	rude = TRUE
 
 /mob/living/carbon/human/species/skeleton/npc/ambush
 
