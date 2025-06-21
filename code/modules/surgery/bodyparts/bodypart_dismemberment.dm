@@ -357,7 +357,7 @@
 	if(brain)
 		if(brainmob)
 			brainmob.forceMove(brain) //Throw mob into brain.
-			brain.brainmob = brainmob //Set the brain to use the brainmob
+			//brain.brainmob = brainmob //Set the brain to use the brainmob
 			brainmob = null //Set head brainmob var to null
 		brain.Insert(C) //Now insert the brain proper
 		brain = null //No more brain in the head

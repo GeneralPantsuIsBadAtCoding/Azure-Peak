@@ -775,3 +775,19 @@
 	verbage = "builds"
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 2
+
+// Here for now until we get a new file for anything trap related.
+/datum/crafting_recipe/roguetown/structure/spike_pit
+	name = "spike pit (3 stakes + Shovel + Dirt Floor)"
+	result = list(/obj/structure/spike_pit)
+	tools = list(/obj/item/rogueweapon/shovel = 1)
+	reqs = list(/obj/item/grown/log/tree/stake = 3)
+	skillcraft = /datum/skill/craft/crafting
+	craftdiff = 1	//Low skill, but at least some. Kinda decently strong after all w/ combat.
+
+/datum/crafting_recipe/roguetown/structure/spike_pit/TurfCheck(mob/user, turf/T)
+	var/turf/to_check = get_step(user.loc, user.dir)
+	if(!istype(to_check, /turf/open/floor/rogue/dirt))
+		to_chat(user, span_info("I need a dirt floor to do this."))
+		return FALSE
+	return TRUE

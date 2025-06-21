@@ -184,3 +184,68 @@
 		damtype = BRUTE
 		tool_behaviour = null
 	update_icon()
+
+/obj/item/rogueweapon/surgery/hammer
+	name = "examination hammer"
+	desc = "A small hammer used to check a patient's reactions and diagnose their condition."
+	icon_state = "kneehammer"
+	possible_item_intents = list(/datum/intent/use, /datum/intent/mace/strike, /datum/intent/mace/smash)
+	slot_flags = ITEM_SLOT_HIP
+	parrysound = list('sound/combat/parry/parrygen.ogg')
+	swingsound = BLUNTWOOSH_MED
+	force = 10
+	throwforce = 8
+	wdefense = 3
+	wbalance = -1
+	associated_skill = /datum/skill/combat/maces
+	sharpness = IS_BLUNT
+	w_class = WEIGHT_CLASS_NORMAL
+	thrown_bclass = BCLASS_BLUNT
+
+/obj/item/rogueweapon/surgery/hammer/pre_attack(atom/A, mob/living/user, params)
+	if(!istype(user.a_intent, /datum/intent/use))
+		return ..()
+	if(user.mind.get_skill_level(/datum/skill/misc/medicine) < 1)
+		return ..()
+	if(ishuman(A))
+		if(A == user)
+			user.visible_message("<span class='info'>[user] begins smacking themself with a small hammer.</span>")
+		else
+			user.visible_message("<span class='info'>[user] begins to smack [A] with a small hammer.</span>")
+		if(do_after(user, 2.5 SECONDS, target = A))
+			A.visible_message("<span class='info'>[A] jerks their knee after the hammer strikes!</span>")
+			if(prob(1))
+				playsound(user, 'sound/misc/bonk.ogg', 100, FALSE, -1)
+			var/mob/living/carbon/human/human_target = A
+			human_target.check_for_injuries(user)
+	return ..()
+
+////////////////////
+//Improvised Tools//
+////////////////////
+
+//All are subtypes of the regular tools with worse behavior success chances.
+/obj/item/rogueweapon/surgery/saw/improv
+	name = "improvised saw"
+	desc = "A tool used to carve through bone crudely, but better than nothing."
+	icon_state = "bonesaw_wood"
+	force = 12
+	throwforce = 12
+	wdefense = 3
+	wbalance = 1
+	tool_behaviour = TOOL_IMPROVISED_SAW
+	sharpness = IS_BLUNT
+
+/obj/item/rogueweapon/surgery/hemostat/improv
+	name = "improvised clamp"
+	desc = "A tool used to clamp down on soft tissue. A poor alternative to metal but better than nothing."
+	icon_state = "forceps_wood"
+	tool_behaviour = TOOL_IMPROVISED_HEMOSTAT
+
+/obj/item/rogueweapon/surgery/retractor/improv
+	name = "improvised retractor"
+	desc = "A tool used to spread tissue open for surgical access in a tentative manner."
+	icon_state = "speculum_wood"
+	wdefense = 3
+	wbalance = 1
+	tool_behaviour = TOOL_IMPROVISED_RETRACTOR

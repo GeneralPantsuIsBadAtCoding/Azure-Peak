@@ -45,7 +45,7 @@
 	range = 15
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
-	woundclass = BCLASS_STAB
+	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.5
 	npc_damage_mult = 2
@@ -133,7 +133,7 @@
 	range = 15
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 25
-	woundclass = BCLASS_STAB
+	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.4
 

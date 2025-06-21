@@ -14,6 +14,7 @@
 	implements = list(
 		TOOL_SUTURE = 80,
 		TOOL_HEMOSTAT = 60,
+		TOOL_IMPROVISED_HEMOSTAT = 50,
 		TOOL_SCREWDRIVER = 50,
 	)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)

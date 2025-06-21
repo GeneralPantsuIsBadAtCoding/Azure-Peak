@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(moldable_organs, list(BODY_ZONE_PRECISE_GROIN=list(ORGAN_SLOT_P
 	/// Implements used to extract an organ - This really should be split into two different steps...
 	var/list/implements_extract = list(
 		TOOL_HEMOSTAT = 80,
+		TOOL_IMPROVISED_HEMOSTAT = 70,
 		TOOL_CROWBAR = 65,
 		TOOL_HAND = 60,
 	)
