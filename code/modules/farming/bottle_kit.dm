@@ -4,6 +4,8 @@
 	icon = 'icons/obj/brewing.dmi'
 	icon_state = "bottler_box"
 	w_class = WEIGHT_CLASS_NORMAL
+	grid_width = 32
+	grid_height = 32
 	var/glass_colour = "brew_bottle"
 	var/fake_glass_name = "Kinda Blue"
 

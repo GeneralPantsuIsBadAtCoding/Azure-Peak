@@ -5,7 +5,7 @@
 	Any item worth more than 30 mammons is accepted,\
 	and statues, cups, rings, platters, and candlesticks are always accepted\
 	regardless of value."
-	item_type = /obj/item
+	item_type = /obj
 	payout_price = 70
 	mint_item = TRUE
 	percent_bounty = TRUE
@@ -25,11 +25,13 @@
 	- Statue, cups, ring, platter and candles  will always be allowed
 	- Otherwise, anything above 30 value can get eaten. 
 */
-/datum/roguestock/bounty/treasure/check_item(obj/item/I)
+/datum/roguestock/bounty/treasure/check_item(obj/I)
 	if(!I)
 		return
-	if(I.is_important)
-		return FALSE
+	if(istype(I, /obj/item))
+		var/obj/item/W = I
+		if(W.is_important)
+			return FALSE
 	if(istype(I, /obj/item/rogueore))
 		return FALSE
 	if(istype(I, /obj/item/bodypart/head))

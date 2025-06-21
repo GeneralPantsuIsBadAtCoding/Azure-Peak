@@ -143,6 +143,7 @@
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	foodtype = FRUIT
+	faretype = FARE_POOR
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/grown/fruit/pear

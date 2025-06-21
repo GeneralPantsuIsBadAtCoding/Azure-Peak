@@ -92,5 +92,6 @@
 	base_icon_state = "book2"
 
 	types = list(
-		/datum/brewing_recipe
+		/datum/brewing_recipe,
+		/datum/book_entry/brewing
 	)

@@ -1,22 +1,19 @@
 /datum/brewing_recipe/cider
-	name = "Apple Cider"
+	name = "Cider, Apple"
+	category = "Fruit"
 	reagent_to_brew = /datum/reagent/consumable/ethanol/cider
-	needed_reagents = list(/datum/reagent/water = 90)
+	needed_reagents = list(/datum/reagent/water = 198)
 	needed_crops = list(/obj/item/reagent_containers/food/snacks/grown/apple = 6)
-	brewed_amount = 3
-	brew_time = 8 MINUTES
-	sell_value = 30
+	brewed_amount = 6
+	brew_time = 5 MINUTES
+	sell_value = 50
 
 /datum/brewing_recipe/cider/pear
-	name = "Pear Cider"
+	name = "Cider, Pear"
 	reagent_to_brew = /datum/reagent/consumable/ethanol/cider/pear
 	needed_crops = list(/obj/item/reagent_containers/food/snacks/grown/fruit/pear = 6)
 
-/datum/brewing_recipe/strawberry_cider
-	name = "Strawberry Cider"
+/datum/brewing_recipe/cider/strawberry
+	name = "Cider, Strawberry"
 	reagent_to_brew = /datum/reagent/consumable/ethanol/cider/strawberry
-	pre_reqs = /datum/reagent/consumable/ethanol/cider
-	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/strawberry = 3)
-	brewed_amount = 3
-	brew_time = 5 MINUTES
-	sell_value = 40
+	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/strawberry = 6)

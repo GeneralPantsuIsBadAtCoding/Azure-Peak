@@ -13,7 +13,7 @@
 	nutriment_factor = 0
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
+	var/boozepwr = 25 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 
 /*
 Boozepwr Chart

@@ -114,21 +114,6 @@
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/gronnmead,900)
 
-
-/obj/structure/fermentation_keg/murkwine
-	desc = "A barrel with a Possumtail Brewery mark. Two Volk tails interlace with eachother upon the seal in a dance. A country tradition from Heartfelt."
-
-/obj/structure/fermentation_keg/murkwine/Initialize()
-	. = ..()
-	reagents.add_reagent(/datum/reagent/consumable/ethanol/murkwine,900)
-
-/obj/structure/fermentation_keg/nocshine
-	desc = "A barrel with a blue, Crescent moon mark. Not the wisest choice of drinks, but certainly the strongest."
-
-/obj/structure/fermentation_keg/nocshine/Initialize()
-	. = ..()
-	reagents.add_reagent(/datum/reagent/consumable/ethanol/nocshine,900)
-
 /obj/structure/fermentation_keg/coffee
 	desc = "A barrel with the mark of a brewed cup of coffee.  A strong, bitter drink that rejuvenates the body and mind."
 

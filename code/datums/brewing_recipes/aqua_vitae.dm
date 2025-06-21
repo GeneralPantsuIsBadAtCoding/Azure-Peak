@@ -1,9 +1,9 @@
 /datum/brewing_recipe/aqua_vitae
 	name = "Aqua Vitae - Apple"
 	category = "Aqua Vitae"
-	brewed_amount = 3
-	brew_time = 8 MINUTES
-	sell_value = 70
+	brewed_amount = 2
+	brew_time = 4 MINUTES
+	sell_value = 120
 	reagent_to_brew = /datum/reagent/consumable/ethanol/aqua_vitae
 	pre_reqs = /datum/reagent/consumable/ethanol/cider
 

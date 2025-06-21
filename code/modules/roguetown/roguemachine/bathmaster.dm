@@ -18,7 +18,6 @@
 	var/lockid = "nightman"
 	var/list/categories = list(
 		"Alcohols", 
-		"Bulk", 
 		"Drugs",
 		"Exotic Apparel",
 		"Instruments",
