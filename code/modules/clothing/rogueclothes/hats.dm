@@ -727,11 +727,13 @@
 /obj/item/clothing/head/roguetown/helmet/kettle/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -756,11 +758,13 @@
 /obj/item/clothing/head/roguetown/helmet/sallet/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -793,11 +797,13 @@
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1111,11 +1117,13 @@
 			var/mob/living/carbon/H = user
 			H.update_inv_head()
 	if(istype(W, /obj/item/natural/cloth) && !altdetail_tag)
-		var/choicealt = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choicealt = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		altdetail_color = colorlist[choicealt]
 		altdetail_tag = "_detailalt"
+		if(choicealt in pridelist)
+			altdetail_tag = "_detailaltp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1162,11 +1170,13 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/bucket/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1244,11 +1254,13 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1423,11 +1435,13 @@
 			var/mob/living/carbon/H = user
 			H.update_inv_head()
 	if(istype(W, /obj/item/natural/cloth) && !altdetail_tag)
-		var/choicealt = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choicealt = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		altdetail_color = colorlist[choicealt]
 		altdetail_tag = "_detailalt"
+		if(choicealt in pridelist)
+			altdetail_tag = "_detailaltp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1466,11 +1480,13 @@
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
@@ -1504,11 +1520,13 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist + pridelist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
 		detail_color = colorlist[choice]
 		detail_tag = "_detail"
+		if(choice in pridelist)
+			detail_tag = "_detailp"
 		update_icon()
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
