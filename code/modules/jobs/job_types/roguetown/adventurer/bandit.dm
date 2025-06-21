@@ -47,3 +47,28 @@
 	H.mind.add_antag_datum(new_antag)
 	H.grant_language(/datum/language/thievescant)
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "BANDIT"), 5 SECONDS)
+	var/wanted = list("I am a notorious criminal", "I am a nobody")
+	var/wanted_choice = input("Are you a known criminal?") as anything in wanted
+	switch(wanted_choice)
+		if("I am a notorious criminal") //Extra challenge for those who want it
+			bandit_select_bounty(H)
+			ADD_TRAIT(H, TRAIT_KNOWNCRIMINAL, TRAIT_GENERIC)
+		if("I am a nobody") //Nothing ever happens
+			return
+
+// Changed up proc from Wretch to suit bandits bit more
+/proc/bandit_select_bounty(mob/living/carbon/human/H)
+	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Azuria", "The Grenzelhoftian Holy See")
+	var/bounty_severity = input(H, "How notorious are you?", "Bounty Amount") as anything in list("Small Fish", "Bay Butcher", "Azurean Boogeyman")
+	var/bounty_total = rand(300, 600) // Just in case
+	switch(bounty_severity)
+		if("Small Fish")
+			bounty_total = rand(300, 400)
+		if("Bay Butcher")
+			bounty_total = rand(400, 500)
+		if("Azurean Boogeyman")
+			bounty_total = rand(500, 600)
+	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
+	if (!my_crime)
+		my_crime = "Brigandry"
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, bounty_poster)
