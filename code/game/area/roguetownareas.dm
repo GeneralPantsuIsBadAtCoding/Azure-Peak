@@ -140,17 +140,23 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "mt decapitation"
 	icon_state = "decap"
 	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
+				/turf/open/floor/rogue/dirt,
+				/turf/open/floor/rogue/dirt/road,
+				/turf/open/floor/rogue/snow,
+				/turf/open/floor/rogue/grasscold,
+				/turf/open/floor/rogue/grass,
+				)
 	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
-				/mob/living/carbon/human/species/goblin/npc/ambush/hell = 20)
+				new /datum/ambush_config/solo_treasure_hunter = 10,
+				new /datum/ambush_config/duo_treasure_hunter = 1
+				)
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "MOUNT DECAPITATION"
 	ambush_times = list("night","dawn","dusk","day")
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
+
 /area/rogue/indoors/shelter/mountains/decap
 	icon_state = "decap"
 	droning_sound = 'sound/music/area/decap.ogg'
@@ -162,11 +168,16 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "mt decapitation inner"
 	icon_state = "decap"
 	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
+				/turf/open/floor/rogue/dirt,
+				/turf/open/floor/rogue/dirt/road,
+				/turf/open/floor/rogue/snow,
+				/turf/open/floor/rogue/grasscold,
+				/turf/open/floor/rogue/grass,
+				)
 	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/skeleton/npc/ambush = 10,
-				/mob/living/carbon/human/species/goblin/npc/ambush/hell = 20)
+				new /datum/ambush_config/solo_treasure_hunter = 5,
+				new /datum/ambush_config/duo_treasure_hunter = 1
+				)
 	droning_sound = 'sound/music/area/decap_deeper.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
@@ -178,10 +189,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "mt decapitation gundu-zirak"
 	icon_state = "decap"
 	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
+				/turf/open/floor/rogue/dirt,
+				/turf/open/floor/rogue/cobble,
+				)
 	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/dwarfskeleton/ambush = 30)
+				new /datum/ambush_config/treasure_hunter_posse = 1,
+				/mob/living/carbon/human/species/dwarfskeleton/ambush = 30,
+				)
 	droning_sound = 'sound/music/area/prospector.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
