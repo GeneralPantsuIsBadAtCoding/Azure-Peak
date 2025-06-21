@@ -136,12 +136,7 @@
 
 #define BARKEEP		(1<<0)
 #define ARCHIVIST	(1<<1)
-#define ARMORSMITH	(1<<2)
-#define WEAPONSMITH (1<<3)
-#define BLACKSMITH  (1<<4)
 #define ALCHEMIST	(1<<5)
-#define ARTIFICER	(1<<6)
-#define TAILOR		(1<<7)
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
 #define ELDER		(1<<10)
@@ -210,12 +205,17 @@
 #define PURITAN		(1<<0)
 #define ORTHODOXIST	(1<<1)
 
+#define GUILDSMEN	(1<<11)
+#define GUILDMASTER (1<<1)
+#define GUILDSMAN  	(1<<2)
+#define TAILOR		(1<<3)
 
 #define JCOLOR_NOBLE "#aa83b9"
 #define JCOLOR_COURTIER "#81adc8"
 #define JCOLOR_CHURCH "#c0ba8d"
 #define JCOLOR_SOLDIER "#b18484"
 #define JCOLOR_YEOMAN "#819e82"
+#define JCOLOR_GUILD "#6e6259"
 #define JCOLOR_PEASANT "#b09262"
 #define JCOLOR_MERCENARY "#c86e3a"
 #define JCOLOR_INQUISITION "#FF0000"
@@ -266,15 +266,11 @@
 #define JDO_GRABBER 17.2
 
 #define JDO_ARCHIVIST 18
-
 #define JDO_CHIEF 18.1
-#define JDO_ARMORER 19.1
-#define JDO_WEAPONSMITH 19.2
-#define JDO_BLACKSMITH 20
-#define JDO_APPRENTICE 21
 
-#define JDO_ARTIFICER 22
-#define JDO_TAILOR 24
+#define JDO_GUILDMASTER 19.1
+#define JDO_GUILDSMAN 19.2
+#define JDO_TAILOR 19.3
 
 #define JDO_BARKEEP 26
 #define JDO_COOK 27
@@ -371,12 +367,10 @@
 	/datum/job/roguetown/niteman,\
 	/datum/job/roguetown/archivist,\
 	/datum/job/roguetown/barkeep,\
-	/datum/job/roguetown/armorsmith,\
-	/datum/job/roguetown/weaponsmith,\
-	/datum/job/roguetown/blacksmith,\
-	/datum/job/roguetown/artificer,\
-	/datum/job/roguetown/merchant,\
+	/datum/job/roguetown/guildsmaster,\
+	/datum/job/roguetown/guildsman,\
 	/datum/job/roguetown/tailor,\
+	/datum/job/roguetown/merchant,\
 	/datum/job/roguetown/scribe
 
 #define WANDERER_ROLES \

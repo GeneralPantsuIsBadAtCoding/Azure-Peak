@@ -613,7 +613,7 @@
 /area/rogue/indoors/shelter/mountains)
 "asx" = (
 /obj/structure/bed/rogue,
-/obj/effect/landmark/start/blacksmith{
+/obj/effect/landmark/start/guildsman{
 	dir = 1
 	},
 /turf/open/floor/rogue/twig,
@@ -4092,7 +4092,7 @@
 /area/rogue/outdoors/town)
 "cMv" = (
 /obj/structure/roguemachine/vendor{
-	keycontrol = "blacksmith"
+	keycontrol = "crafterguild"
 	},
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue/indoors/town/dwarfin)
@@ -6446,11 +6446,6 @@
 /obj/structure/fluff/wallclock{
 	dir = 3
 	},
-/obj/item/roguekey/artificer{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/roguekey/artificer,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "erm" = (
@@ -7710,7 +7705,7 @@
 "flP" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = "blacksmith"
+	lockid = "crafterguild"
 	},
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2"
@@ -11178,7 +11173,7 @@
 /area/rogue/indoors/town/dwarfin)
 "hUK" = (
 /obj/structure/mineral_door/bars{
-	lockid = "blacksmith";
+	lockid = "crafterguild";
 	name = "smithy's iron door"
 	},
 /turf/open/floor/rogue/cobble,
@@ -18300,7 +18295,7 @@
 "mNo" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
-	lockid = "blacksmith"
+	lockid = "crafterguild"
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/dwarfin)
@@ -19534,7 +19529,7 @@
 "nHI" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
-	lockid = "blacksmith"
+	lockid = "crafterguild"
 	},
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/dwarfin)
@@ -22072,7 +22067,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
 "prR" = (
-/obj/effect/landmark/start/artificer{
+/obj/effect/landmark/start/guildsman{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
@@ -27945,7 +27940,7 @@
 	},
 /obj/item/roguekey/manor,
 /obj/item/roguekey/walls,
-/obj/item/roguekey/blacksmith,
+/obj/item/roguekey/guildsman,
 /obj/item/roguekey/steward,
 /obj/item/roguekey/church,
 /obj/item/roguekey/dungeon,
@@ -27955,7 +27950,6 @@
 /obj/item/roguekey/tavern,
 /obj/item/roguekey/merchant,
 /obj/item/roguekey/physician,
-/obj/item/roguekey/artificer,
 /obj/item/roguekey/farm,
 /obj/item/roguekey/tailor,
 /obj/item/roguekey/shop,
@@ -30583,7 +30577,7 @@
 "vyg" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
-	lockid = "blacksmith"
+	lockid = "crafterguild"
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -31499,7 +31493,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
 "wlg" = (
-/obj/effect/landmark/start/artificer{
+/obj/effect/landmark/start/guildsman{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,

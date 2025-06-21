@@ -377,15 +377,17 @@
 	lockid = "mansionvampire"
 //
 
-/obj/item/roguekey/blacksmith
-	name = "blacksmith key"
-	desc = "This key opens a blacksmith's workshop."
+/obj/item/roguekey/crafterguild
+	name = "guild's key"
+	desc = "The key to the Crafter's Guild."
 	icon_state = "brownkey"
-	lockid = "blacksmith"
+	lockid = "crafterguild"
 
-/obj/item/roguekey/blacksmith/town
-	name = "town blacksmith key"
-	lockid = "townblacksmith"
+/obj/item/roguekey/craftermaster
+	name = "guildmaster's key"
+	desc = "The key of the Crafter's Guild Guildmaster."
+	icon_state = "hornkey"
+	lockid = "craftermaster"
 
 /obj/item/roguekey/walls
 	name = "walls key"
@@ -435,11 +437,6 @@
 	icon_state = "rustkey"
 	lockid = "graveyard"
 
-/obj/item/roguekey/artificer
-	name = "artificer's key"
-	desc = "This bronze key should open the Artificer's guild."
-	icon_state = "brownkey"
-	lockid = "artificer"
 
 /obj/item/roguekey/tailor
 	name = "tailor's key"
