@@ -149,6 +149,17 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.bad_guard(span_suicide("I switched stances too quickly! It drains me!"), cheesy = TRUE)
+	if(user.mob_biotypes & MOB_UNDEAD)
+		if(M.has_status_effect(/datum/status_effect/buff/necras_vow))
+			if(isnull(user.mind))
+				user.adjust_fire_stacks(5)
+				user.IgniteMob()
+			else
+				if(prob(30))
+					to_chat(M, span_warning("The foul blessing of the Undermaiden hurts us!"))
+			user.adjust_blurriness(3)
+			user.adjustBruteLoss(5)
+			user.apply_status_effect(/datum/status_effect/churned, M)
 	if(M.checkdefense(user.used_intent, user))
 		return
 

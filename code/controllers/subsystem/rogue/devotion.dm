@@ -12,8 +12,8 @@
 #define CLERIC_REQ_3 500
 #define CLERIC_REQ_4 750
 
-#define CLERIC_REGEN_DEVOTEE 0.15
-#define CLERIC_REGEN_MINOR 0.25
+#define CLERIC_REGEN_DEVOTEE 0.3
+#define CLERIC_REGEN_MINOR 0.5
 #define CLERIC_REGEN_MAJOR 1
 
 // Cleric Holder Datums
@@ -115,6 +115,10 @@
 						to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
 					holder.mind.AddSpell(newspell)
 					LAZYADD(granted_spells, newspell)
+	if(length(patron.traits_tier))
+		for(var/trait in patron.traits_tier)
+			if(patron.traits_tier[trait] <= level)
+				ADD_TRAIT(holder, trait, TRAIT_MIRACLE)
 
 
 //The main proc that distributes all the needed devotion tweaks to the given class.

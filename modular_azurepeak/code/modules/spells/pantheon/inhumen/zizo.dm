@@ -216,3 +216,32 @@
 		user.mind.rituos_spell = item
 		user.mind.AddSpell(new item)
 		return TRUE
+
+
+/obj/effect/proc_holder/spell/self/zizo_snuff
+	name = "Snuff Lights"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 0
+	chargedloop = /datum/looping_sound/invokeholy
+	sound = 'sound/magic/zizo_snuff.ogg'
+	overlay_state = "rune2"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = FALSE
+	recharge_time = 12 SECONDS
+	miracle = TRUE
+	devotion_cost = 30
+	range = 2
+	
+/obj/effect/proc_holder/spell/self/zizo_snuff/cast(list/targets, mob/user = usr)
+	. = ..()
+	if(!ishuman(user))
+		revert_cast()
+		return FALSE
+	var/checkrange = (range + user.mind?.get_skill_level(/datum/skill/magic/holy)) //+1 range per holy skill up to a potential of 8.
+	for(var/obj/O in range(checkrange, user))	
+		O.extinguish()
+	for(var/mob/M in range(checkrange, user))
+		for(var/obj/O in M.contents)
+			O.extinguish()
+	return TRUE

@@ -999,6 +999,7 @@
 	buckle_requires_restraints = 1
 	buckle_prevents_pull = 1
 	var/divine = TRUE
+	obj_flags = UNIQUE_RENAME
 
 /obj/structure/fluff/psycross/post_buckle_mob(mob/living/M)
 	..()

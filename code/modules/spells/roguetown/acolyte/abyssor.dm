@@ -16,23 +16,133 @@
 	recharge_time = 20 SECONDS
 	miracle = TRUE
 	devotion_cost = 15
+	var/base_fatdrain = 10
 
 /obj/effect/proc_holder/spell/invoked/abyssor_bends/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
 		user.visible_message("<font color='yellow'>[user] makes a fist at [target]!</font>")
-		if(target.anti_magic_check(TRUE, TRUE))
-			return FALSE
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon = target
-			carbon.adjustStaminaLoss(-50)
+			if(carbon.patron?.type != /datum/patron/divine/abyssor)
+				var/fatdrain = user.mind?.get_skill_level(associated_skill) * base_fatdrain
+				carbon.rogfat_add(fatdrain)
 		target.Dizzy(10)
 		target.blur_eyes(20)
 		target.emote("drown")
 		return TRUE
 	revert_cast()
 	return FALSE
+
+//T0. Stands the character up, if they can stand.
+/obj/effect/proc_holder/spell/self/abyssor_wind
+	name = "Second Wind"
+	desc = "Rise if fallen, and regain some of your stamina."
+	overlay_state = "abyssor_wind"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 0
+	sound = 'sound/magic/abyssor_splash.ogg'
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = FALSE
+	invocation = "What is drowned shall rise anew!"
+	invocation_type = "shout"
+	recharge_time = 120 SECONDS
+	devotion_cost = 30
+	miracle = TRUE
+	var/stamregenmod = 5	//How many % of stamina we regain after cast, scales with holy skill.
+
+/obj/effect/proc_holder/spell/self/abyssor_wind/cast(list/targets, mob/user)
+	if(!ishuman(user))
+		revert_cast()
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(H.IsStun() || H.IsImmobilized() || H.IsOffBalanced())
+		to_chat(user, span_warning("I am too incapacitated!"))
+		revert_cast()
+		return FALSE
+	var/msg = span_warning("[user] ")
+	if(H.resting)
+		H.set_resting(FALSE, FALSE)
+		msg += span_warning("rises and ")
+	var/regen = (stamregenmod / 100) * H.mind?.get_skill_level(associated_skill)
+	H.rogfat_add(-(regen * H.maxrogfat))
+	H.rogstam_add(regen * H.maxrogstam)
+	msg += span_warning("becomes invigorated!")
+	H.visible_message(msg)
+	return TRUE
+
+//T0 The Fishing
+/obj/effect/proc_holder/spell/invoked/aquatic_compulsion
+	name = "Aquatic Compulsion"
+	overlay_state = "aqua"
+	releasedrain = 15
+	chargedrain = 0
+	chargetime = 0.5 SECONDS
+	range = 3
+	movement_interrupt = FALSE
+	chargedloop = null
+	sound = 'sound/foley/bubb (5).ogg'
+	invocation = "Splash forth."
+	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 10 SECONDS
+	miracle = TRUE
+	devotion_cost = 10
+	//Horrendous carry-over from fishing code
+	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
+	var/salwt = list(/turf/open/water/ocean, /turf/open/water/ocean/deep)
+	var/list/freshfishloot = list(
+		/obj/item/reagent_containers/food/snacks/fish/carp = 225,
+		/obj/item/reagent_containers/food/snacks/fish/sunny = 325,
+		/obj/item/reagent_containers/food/snacks/fish/salmon = 190,
+		/obj/item/reagent_containers/food/snacks/fish/eel = 140,
+		/obj/item/reagent_containers/food/snacks/smallrat = 1, //funny
+		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 20,			
+	)
+	var/list/seafishloot = list(
+		/obj/item/reagent_containers/food/snacks/fish/cod = 190,
+		/obj/item/reagent_containers/food/snacks/fish/plaice = 210,
+		/obj/item/reagent_containers/food/snacks/fish/sole = 340,
+		/obj/item/reagent_containers/food/snacks/fish/angler = 140,
+		/obj/item/reagent_containers/food/snacks/fish/lobster = 150,
+		/obj/item/reagent_containers/food/snacks/fish/bass = 210,
+		/obj/item/reagent_containers/food/snacks/fish/clam = 40,
+		/obj/item/reagent_containers/food/snacks/fish/clownfish = 20,
+		/obj/item/reagent_containers/food/snacks/smallrat = 1, //still funny
+		/mob/living/carbon/human/species/goblin/npc/sea = 10,
+		/mob/living/simple_animal/hostile/rogue/deepone = 3,
+		/mob/living/simple_animal/hostile/rogue/deepone/spit = 3,			
+	)
+
+/obj/effect/proc_holder/spell/invoked/aquatic_compulsion/cast(list/targets, mob/user = usr)
+	. = ..()
+	if(isturf(targets[1]))
+		var/turf/T = targets[1]
+		var/success
+		var/A
+		if(T.type in frwt)
+			A = pickweight(freshfishloot)
+			success = TRUE
+		if(T.type in salwt)
+			A = pickweight(seafishloot)
+			success = TRUE
+		if(success)
+			var/atom/movable/AF = new A(T)
+			AF.throw_at(get_turf(user), 5, 1, null)
+			record_featured_stat(FEATURED_STATS_FISHERS, user)
+			GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+			playsound(T, 'sound/foley/footsteps/FTWAT_1.ogg', 100)
+			user.visible_message("<font color='yellow'>[user] makes a beckoning gesture at [T]!</font>")
+			return TRUE
+		else
+			revert_cast()
+			return FALSE
+	revert_cast()
+	return FALSE
+
 //T2, Abyssal Healing. Totally stole most of this from lesser heal.
 /obj/effect/proc_holder/spell/invoked/abyssheal
 	name = "Abyssal Healing"
@@ -102,10 +212,11 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	recharge_time = 180 SECONDS
+	recharge_time = 10 SECONDS
 	miracle = TRUE
 	devotion_cost = 100
 	var/townercrab = TRUE //I was looking at this for three days and i am utterly stupid for not fixing it
+	var/mob/living/simple_animal/hostile/retaliate/rogue/mossback/summoned
 
 /obj/effect/proc_holder/spell/invoked/call_mossback/cast(list/targets, mob/living/user)
 	. = ..()
@@ -113,7 +224,8 @@
 	if(isopenturf(T))
 		if(!user.mind.has_spell(/obj/effect/proc_holder/spell/invoked/minion_order))
 			user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
-		new /mob/living/simple_animal/hostile/retaliate/rogue/mossback(T, user, townercrab)
+		QDEL_NULL(summoned)
+		summoned = new /mob/living/simple_animal/hostile/retaliate/rogue/mossback(T, user, townercrab)
 		return TRUE
 	else
 		to_chat(user, span_warning("The targeted location is blocked. My call fails to draw a mossback."))

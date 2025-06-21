@@ -48,6 +48,11 @@
 		to_chat(user, span_warning("[tool] isn't the right type for [parse_zone(target_zone)]."))
 		return FALSE
 
+	if(bodypart.original_owner != target)
+		if(target.has_status_effect(/datum/status_effect/buff/necras_vow) || HAS_TRAIT(target, TRAIT_NECRAS_VOW))	//Status effects are cleared upon death, just in case you want to... attach a permakilled corpse's limbs.
+			to_chat(user, span_warning("This one has pledged a vow to Necra. The sinews reject the false flesh. It requires their own flesh and blood."))
+		return FALSE
+
 	display_results(user, target, span_notice("I begin to replace [target]'s [parse_zone(target_zone)] with [tool]..."),
 		span_notice("[user] begins to replace [target]'s [parse_zone(target_zone)] with [tool]."),
 		span_notice("[user] begins to replace [target]'s [parse_zone(target_zone)]."))

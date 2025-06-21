@@ -167,3 +167,66 @@
 	name = "Divine Strike"
 	desc = "Your next attack deals additional damage and slows your target."
 	icon_state = "stressvg"
+
+/obj/effect/proc_holder/spell/invoked/tug_of_war
+	name = "Tug of War"
+	overlay_state = "ravox_tug"
+	recharge_time = 1 MINUTES
+	movement_interrupt = TRUE
+	chargedrain = 0
+	chargetime = 1 SECONDS
+	charging_slowdown = 2
+	chargedloop = null
+	associated_skill = /datum/skill/magic/holy
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	sound = 'sound/magic/timestop.ogg'
+	invocation = "By Ravox, let your sins guide you to justice!"
+	invocation_type = "shout"
+	antimagic_allowed = FALSE
+	miracle = TRUE
+	devotion_cost = 25
+	var/pull_distance = 1
+	var/slowdown = 1
+
+/obj/effect/proc_holder/spell/invoked/tug_of_war/cast(list/targets, mob/living/user)
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/chance = 0
+		if(target.mob_biotypes & MOB_UNDEAD)
+			pull_distance++
+			chance += 20
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			var/strdiff = user.STASTR - H.STASTR
+			var/enddiff = user.STAEND - H.STAEND
+			var/condiff = user.STACON - H.STACON
+			var/spddiff = user.STASPD - H.STASPD
+			var/fordiff = user.STALUC - H.STALUC
+
+			var/list/statdiffs = list(strdiff, enddiff, condiff, spddiff, fordiff)
+			var/count = 0
+			for(var/diff in statdiffs)
+				if(diff > 0)
+					chance += 10
+					count++
+				else if(diff < 0)
+					chance -= 10
+			var/holymod = user.mind?.get_skill_level(/datum/skill/magic/holy) * 10
+			pull_distance += floor((user.mind?.get_skill_level(/datum/skill/magic/holy) - 1) / 2)	//+1 pull dist at Jman and Master Holy skill
+			chance += holymod
+			user.visible_message(span_boldwarning("[user] yanks on a transluscent chain sticking out of [target]!"))
+			if(count > 3)	//More than half of the stats are in our favor.
+				pull_distance++
+				slowdown++
+			if(prob(chance))
+				H.throw_at(user, pull_distance, 1, H, FALSE)
+				H.visible_message(span_warning("[H]'s body moves on its own!"))
+				user.Beam(target,icon_state="chain",time=5)
+			else
+				H.visible_message(span_warning("[H] holds firm!"))
+			H.Slowdown(slowdown)
+			return TRUE
+		revert_cast()
+		return FALSE
+	revert_cast()
+	return FALSE

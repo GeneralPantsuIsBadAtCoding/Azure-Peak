@@ -102,6 +102,10 @@
 		if(!target.mind)
 			revert_cast()
 			return FALSE
+		if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
+			to_chat(user, "This one has pledged themselves whole to Necra. They are Hers.")
+			revert_cast()
+			return FALSE
 		if(!target.mind.active)
 			to_chat(user, "Astrata is not done with [target], yet.")
 			revert_cast()
@@ -162,3 +166,65 @@
 		to_chat(user, span_warning("I need a holy cross."))
 		return FALSE
 	return TRUE
+
+//T0. Removes cone vision for a dynamic duration.
+/obj/effect/proc_holder/spell/self/astrata_gaze
+	name = "Astratan Gaze"
+	overlay_state = "astrata_gaze"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 0
+	chargedloop = /datum/looping_sound/invokeholy
+	sound = 'sound/magic/astrata_choir.ogg'
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = FALSE
+	invocation = "Astrata show me true."
+	invocation_type = "shout"
+	recharge_time = 120 SECONDS
+	devotion_cost = 30
+	miracle = TRUE
+
+/obj/effect/proc_holder/spell/self/astrata_gaze/cast(list/targets, mob/user)
+	if(!ishuman(user))
+		revert_cast()
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	H.apply_status_effect(/datum/status_effect/buff/astrata_gaze, user.mind?.get_skill_level(associated_skill))
+	return TRUE
+
+/atom/movable/screen/alert/status_effect/buff/astrata_gaze
+	name = "Astratan's Gaze"
+	desc = "She shines through me, illuminating all injustice."
+	icon_state = "astrata_gaze"
+
+/datum/status_effect/buff/astrata_gaze
+	id = "astratagaze"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/astrata_gaze
+	duration = 20 SECONDS
+
+/datum/status_effect/buff/astrata_gaze/on_apply(assocskill)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.viewcone_override = TRUE
+		H.hide_cone()
+		H.update_cone_show()
+	var/per_bonus = 0
+	if(assocskill)
+		if(assocskill > SKILL_LEVEL_NOVICE)
+			per_bonus++
+		duration *= assocskill
+	if(GLOB.tod == "day" || GLOB.tod == "dawn")
+		per_bonus++
+		duration *= 2
+	if(per_bonus > 0)
+		effectedstats = list("perception" = per_bonus)
+	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
+	. = ..()
+
+/datum/status_effect/buff/astrata_gaze/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.viewcone_override = FALSE
+		H.hide_cone()
+		H.update_cone_show()

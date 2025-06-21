@@ -1145,6 +1145,18 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/obj/item/IM = target.get_active_held_item()
 			target.process_clash(user, IM)
 			return
+
+		if(user.mob_biotypes & MOB_UNDEAD)
+			if(target.has_status_effect(/datum/status_effect/buff/necras_vow))
+				if(isnull(user.mind))
+					user.adjust_fire_stacks(5)
+					user.IgniteMob()
+				else
+					if(prob(30))
+						to_chat(user, span_warning("The foul blessing of the Undermaiden hurts us!"))
+				user.adjust_blurriness(2)
+				user.adjustBruteLoss(rand(5, 10))
+				user.apply_status_effect(/datum/status_effect/churned, target)
 /*		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
 		if(user.dna.species.punchdamagelow)
 			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided my species deals more than 0 damage)

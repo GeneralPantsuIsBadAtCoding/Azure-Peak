@@ -101,7 +101,6 @@
 		/obj/effect/proc_holder/spell/invoked/projectile/fetch::name 	= /obj/effect/proc_holder/spell/invoked/projectile/fetch,
 		/obj/effect/proc_holder/spell/invoked/aerosolize::name 			= /obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/invoked/blink::name 				= /obj/effect/proc_holder/spell/invoked/blink,
-		/obj/effect/proc_holder/spell/targeted/touch/darkvision::name	= /obj/effect/proc_holder/spell/targeted/touch/darkvision,
 	)
 	var/list/offensive_bundle = list(	//This is not meant to make them combat-capable. A weak offensive, and mostly defensive option.
 		/obj/effect/proc_holder/spell/invoked/projectile/guided_bolt,
@@ -159,3 +158,52 @@
 			user?.mind.AddSpell(new_spell)
 	if(!length(spells))
 		user.mind?.RemoveSpell(src.type)
+
+//15 PER peer-ahead.
+/obj/effect/proc_holder/spell/invoked/noc_sight
+	name = "Noc's Gaze"
+	overlay_state = "noc_sight"
+	desc = "Peer ahead."
+	chargetime = 0
+	chargedrain = 0
+	clothes_req = FALSE
+	recharge_time = 5 SECONDS
+	devotion_cost = 5
+	range = 7
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	invocation = "Noc guide my gaze."
+	invocation_type = "whisper"
+	sound = null
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	hide_charge_effect = TRUE
+	miracle = TRUE
+
+
+//Identical to peering ahead as if you had 15 PER. (the max)
+/obj/effect/proc_holder/spell/invoked/noc_sight/cast(list/targets, mob/user)
+	if(isturf(targets[1]) && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/turf/T = targets[1]
+		var/_x = T.x-H.loc.x
+		var/_y = T.y-H.loc.y
+		var/ttime = 6
+		var/dist = get_dist(H, T)
+		if(dist > 7 || dist  <= 2)
+			return
+		H.hide_cone()
+		var/offset = 5
+		if(_x > 0)
+			_x += offset
+		else if(_x != 0)
+			_x -= offset
+		if(_y > 0)
+			_y += offset
+		else if(_y != 0)
+			_y -= offset
+		animate(H.client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
+		H.update_cone_show()
+		return TRUE
+	revert_cast()
+	return FALSE

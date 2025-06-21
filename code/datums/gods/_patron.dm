@@ -29,6 +29,9 @@ GLOBAL_LIST_EMPTY(preference_patrons)
 	/// List of words that this god considers profane. (Master for all faiths. Inhumen have their own list.)
 	var/list/profane_words = list("zizo","matthios","graggar","baotha","cock","dick","fuck","shit","pussy","cuck","cunt","asshole","pintle")
 
+	/// List of traits associated with rank. Trait = Cleric_Tier
+	var/list/traits_tier = list()
+
 	var/datum/storyteller/storyteller
 
 /datum/patron/proc/on_gain(mob/living/pious)

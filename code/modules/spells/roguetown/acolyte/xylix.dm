@@ -85,3 +85,56 @@
 	name = "Vicious Mockery"
 	desc = "<span class='warning'>THAT ARROGANT BARD! ARGH!</span>\n"
 	icon_state = "muscles"
+
+/obj/effect/proc_holder/spell/self/xylixslip
+	name = "Xylixian Slip"
+	overlay_state = "xylix_slip"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 0
+	chargedloop = /datum/looping_sound/invokeholy
+	sound = null
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = FALSE
+	recharge_time = 12 SECONDS
+	devotion_cost = 30
+	miracle = TRUE
+	var/leap_dist = 4	//3 tiles (+1 to account for origin tile)
+	var/static/list/sounds = list('sound/magic/xylix_slip1.ogg','sound/magic/xylix_slip2.ogg','sound/magic/xylix_slip3.ogg','sound/magic/xylix_slip4.ogg')
+	
+/obj/effect/proc_holder/spell/self/xylixslip/cast(list/targets, mob/user = usr)
+	. = ..()
+	if(!ishuman(user))
+		revert_cast()
+		return FALSE
+
+	var/mob/living/carbon/human/H = user
+
+	if(H.IsImmobilized() || !(H.mobility_flags & MOBILITY_STAND))
+		revert_cast()
+		return FALSE
+
+	if(H.IsOffBalanced())
+		H.visible_message(span_warning("[H] loses their footing!"))
+		var/turnangle = (prob(50) ? 270 : 90)
+		var/turndir = turn(dir, turnangle)
+		var/dist = rand(1, 2)
+		var/current_turf = get_turf(H)
+		var/target_turf = get_ranged_target_turf(current_turf, turndir, dist)
+		H.throw_at(target_turf, dist, 1, H, TRUE)
+		playsound(H,'sound/magic/xylix_slip_fail.ogg', 100)
+		H.Knockdown(10)
+		return TRUE
+	else
+		var/current_turf = get_turf(H)
+		var/turf/target_turf = get_ranged_target_turf(current_turf, H.dir, leap_dist)
+		H.visible_message(span_warning("[H] slips away!"))
+		H.throw_at(target_turf, leap_dist, 1, H, TRUE)
+		if(target_turf.landsound)
+			playsound(target_turf, target_turf.landsound, 100, FALSE)
+		H.emote("jump", forced = TRUE)
+		H.OffBalance(8 SECONDS)
+		if(prob(50))
+			playsound(H, pick(sounds), 100, TRUE)
+		return TRUE
+

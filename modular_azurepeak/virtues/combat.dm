@@ -25,36 +25,14 @@
 	if (!recipient.mind)
 		return
 	if (!recipient.devotion)
-		// only give non-devotionists orison... and t0 for some reason (this is probably a bad idea)
+		// Only give non-devotionists orison... and T0 for some reason (Bad ideas are fun!)
 		var/datum/devotion/new_faith = new /datum/devotion(recipient, recipient.patron)
-		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
-			new_faith.grant_miracles(recipient, cleric_tier = CLERIC_T0, passive_gain = FALSE, devotion_limit = (CLERIC_REQ_1 - 20))	//Capped to T0 miracles.
-		else
-			new_faith.grant_miracles(recipient, cleric_tier = CLERIC_ORI, passive_gain = FALSE, devotion_limit = (CLERIC_REQ_1 - 20))	//Capped to nothing!
+		new_faith.grant_miracles(recipient, cleric_tier = CLERIC_T0, passive_gain = FALSE, devotion_limit = (CLERIC_REQ_1 - 20))	//Capped to T0 miracles.
 	else
-		// for devotionists, bump up their maximum 1 tier and give them a TINY amount of passive devo gain
+		// for devotionists, give them an amount of passive devo gain.
 		var/datum/devotion/our_faith = recipient.devotion
 		our_faith.passive_devotion_gain += CLERIC_REGEN_DEVOTEE
-		switch (our_faith.max_devotion)
-			if (CLERIC_REQ_0)
-				our_faith.max_devotion = CLERIC_REQ_1
-			if (CLERIC_REQ_1)
-				our_faith.max_devotion = CLERIC_REQ_2
-			if (CLERIC_REQ_2)
-				our_faith.max_devotion = CLERIC_REQ_3
-			if (CLERIC_REQ_3)
-				our_faith.max_devotion = CLERIC_REQ_4
-		switch (our_faith.max_progression)
-			if (CLERIC_REQ_0)
-				our_faith.max_progression = CLERIC_REQ_1
-			if (CLERIC_REQ_1)
-				our_faith.max_progression = CLERIC_REQ_2
-			if (CLERIC_REQ_2)
-				our_faith.max_progression = CLERIC_REQ_3
-			if (CLERIC_REQ_3)
-				our_faith.max_progression = CLERIC_REQ_4
-			if (CLERIC_REQ_4)
-				our_faith.passive_devotion_gain += 1
+		START_PROCESSING(SSobj, our_faith)
 	switch(recipient.patron?.type)
 		if(/datum/patron/divine/astrata)
 			recipient.mind?.special_items["Astrata Psycross"] = /obj/item/clothing/neck/roguetown/psicross/astrata
