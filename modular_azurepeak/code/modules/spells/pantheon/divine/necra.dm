@@ -36,7 +36,7 @@
 
 	ADD_TRAIT(living_target, TRAIT_NODEATH, "avert_spell")
 
-	var/our_holy_skill = user.mind?.get_skill_level(associated_skill)
+	var/our_holy_skill = user.get_skill_level(associated_skill)
 	var/tickspeed = 30 + (5 * our_holy_skill)
 
 	while (do_after(user, tickspeed, target = living_target))
@@ -82,7 +82,7 @@
 	. = ..()
 	var/debuff_power = 1
 	if (user && user.mind)
-		debuff_power = clamp((user.mind.get_skill_level(/datum/skill/magic/holy) / 2), 1, 3)
+		debuff_power = clamp((user.get_skill_level(/datum/skill/magic/holy) / 2), 1, 3)
 	
 	var/too_powerful = FALSE
 	var/list/things_to_churn = list()

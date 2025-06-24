@@ -25,11 +25,11 @@
 	r_hand = /obj/item/rogueweapon/woodstaff
 
 	if (H.mind)
-		H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.change_stat("perception", 2)
 		H.change_stat("constitution", -1)
 		H.change_stat("endurance", -1)

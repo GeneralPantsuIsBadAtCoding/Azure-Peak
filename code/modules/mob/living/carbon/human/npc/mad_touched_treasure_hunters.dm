@@ -78,12 +78,12 @@
 		r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow //they're too stupid to use this but it makes the sprite look cool +  simplemobs are lame
 		l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	H.STASTR = rand(14,16)
+	H.STASTR = 14
 	H.STASPD = 18 //you will regret telling me that bows are good for pve
-	H.STACON = rand(14,18)
+	H.STACON = 14
 	H.STAEND = 13
 	H.STAPER = 10
-	H.STAINT = 14
+	H.STAINT = 12
 	H.eye_color = "27becc"
 	H.hair_color = "61310f"
 	H.facial_hair_color = H.hair_color
@@ -91,6 +91,14 @@
 		H.hairstyle =  "Messy (Rogue)"
 	else
 		H.hairstyle = "Messy"
+	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/maces, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/axes, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/shields, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
 
 /obj/item/clothing/head/roguetown/menacing/mad_touched_treasure_hunter //its here so it doesnt wind up on some class' loadout.
 	name = "sack hood"

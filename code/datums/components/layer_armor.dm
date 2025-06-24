@@ -197,7 +197,7 @@
 
 		if(length(repair_skills))
 			for(var/skill in repair_skills)
-				if(H.mind.get_skill_level(skill) < repair_skills[skill])	//Checking their skill level vs skill threshold
+				if(H.get_skill_level(skill) < repair_skills[skill])	//Checking their skill level vs skill threshold
 					can_do = FALSE
 					to_chat(user,span_warn("I'm not skilled enough to repair the layers, but I could be."))
 					return

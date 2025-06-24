@@ -52,7 +52,7 @@
 		var/newtime = chargetime
 		//skill block
 		newtime = newtime + 40
-		newtime = newtime - (mastermob.mind?.get_skill_level(/datum/skill/combat/crossbows) * 4.25) // minus 4.25 per skill point
+		newtime = newtime - (mastermob.get_skill_level(/datum/skill/combat/crossbows) * 4.25) // minus 4.25 per skill point
 		newtime = newtime - ((mastermob.STAPER)) // minus 1 per perception
 		if(newtime > 1)
 			return newtime
@@ -78,7 +78,7 @@
 		var/newtime = chargetime
 		//skill block
 		newtime = newtime + 80
-		newtime = newtime - (mastermob.mind?.get_skill_level(/datum/skill/combat/crossbows) * 20)
+		newtime = newtime - (mastermob.get_skill_level(/datum/skill/combat/crossbows) * 20)
 		//per block
 		newtime = newtime + 20
 		newtime = newtime - ((mastermob.STAPER)*1.5)
@@ -136,7 +136,7 @@
 
 		BB.accuracy += accfactor * (user.STAPER - 8) * 3 // 8+ PER gives +3 per level. Exponential.
 		BB.bonus_accuracy += (user.STAPER - 8) // 8+ PER gives +1 per level. Does not decrease over range.
-		BB.bonus_accuracy += (user.mind.get_skill_level(/datum/skill/combat/crossbows) * 5) // +5 per XBow level.
+		BB.bonus_accuracy += (user.get_skill_level(/datum/skill/combat/crossbows) * 5) // +5 per XBow level.
 		BB.damage *= damfactor
 	cocked = FALSE
 	if(user.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))

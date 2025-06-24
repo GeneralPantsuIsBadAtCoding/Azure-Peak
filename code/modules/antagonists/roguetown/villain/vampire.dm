@@ -56,8 +56,8 @@
 
 /datum/antagonist/vampire/on_gain()
 	if(!is_lesser)
-		owner.adjust_skillrank(/datum/skill/combat/wrestling, 6, TRUE)
-		owner.adjust_skillrank(/datum/skill/combat/unarmed, 6, TRUE)
+		owner.current.adjust_skillrank(/datum/skill/combat/wrestling, 6, TRUE)
+		owner.current.adjust_skillrank(/datum/skill/combat/unarmed, 6, TRUE)
 		ADD_TRAIT(owner.current, TRAIT_NOBLE, TRAIT_GENERIC)
 	owner.special_role = name
 	ADD_TRAIT(owner.current, TRAIT_STRONGBITE, TRAIT_GENERIC)

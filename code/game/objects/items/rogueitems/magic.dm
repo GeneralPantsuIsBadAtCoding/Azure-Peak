@@ -40,7 +40,7 @@
 	if(!user.mind || !user.mind.do_i_know(name=input))
 		to_chat(user, span_warning("I don't know anyone by that name."))
 		return
-	var/arcane_skill = user.mind.get_skill_level(/datum/skill/magic/arcane)
+	var/arcane_skill = user.get_skill_level(/datum/skill/magic/arcane)
 	var/success_chance = 0
 	switch(arcane_skill)
 		if(SKILL_LEVEL_NONE)

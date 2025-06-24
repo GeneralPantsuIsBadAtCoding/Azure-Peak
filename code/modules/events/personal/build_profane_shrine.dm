@@ -22,7 +22,7 @@
 			continue
 		if(!H.patron || !istype(H.patron, /datum/patron/inhumen/zizo))
 			continue
-		if(user.mind.get_skill_level(/datum/skill/craft/crafting) < 1)
+		if(user.get_skill_level(/datum/skill/craft/crafting) < 1)
 			continue
 		return TRUE
 
@@ -37,7 +37,7 @@
 		if(!human_mob.patron || !istype(human_mob.patron, /datum/patron/inhumen/zizo))
 			continue
 		var/mob/living/user = human_mob
-		if(user.mind.get_skill_level(/datum/skill/craft/crafting) < 1)
+		if(user.get_skill_level(/datum/skill/craft/crafting) < 1)
 			continue
 		valid_targets += human_mob
 

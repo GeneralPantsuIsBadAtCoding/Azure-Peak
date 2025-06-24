@@ -20,8 +20,7 @@
 	if(check_zone(zone) == zone)	//Are we targeting a big limb or chest?
 		chance2hit += 10
 
-	if(user.mind)
-		chance2hit += (user.mind.get_skill_level(associated_skill) * 8)
+	chance2hit += (user.get_skill_level(associated_skill) * 8)
 
 	if(used_intent)
 		if(used_intent.blade_class == BCLASS_STAB)
@@ -156,11 +155,11 @@
 
 			if(mainhand)
 				if(mainhand.can_parry)
-					mainhand_defense += (H.mind ? (H.mind.get_skill_level(mainhand.associated_skill) * 20) : 20)
+					mainhand_defense += (H.get_skill_level(mainhand.associated_skill) * 20)
 					mainhand_defense += (mainhand.wdefense_dynamic * 10)
 			if(offhand)
 				if(offhand.can_parry)
-					offhand_defense += (H.mind ? (H.mind.get_skill_level(offhand.associated_skill) * 20) : 20)
+					offhand_defense += (H.get_skill_level(offhand.associated_skill) * 20)
 					offhand_defense += (offhand.wdefense_dynamic * 10)
 
 			if(mainhand_defense >= offhand_defense)
@@ -172,8 +171,8 @@
 			var/defender_skill = 0
 			var/attacker_skill = 0
 
-			if(highest_defense <= (H.mind ? (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 20) : 20))
-				defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
+			if(highest_defense <= (H.get_skill_level(/datum/skill/combat/unarmed) * 20))
+				defender_skill = H.get_skill_level(/datum/skill/combat/unarmed)
 				var/obj/B = H.get_item_by_slot(SLOT_WRISTS)
 				if(istype(B, /obj/item/clothing/wrists/roguetown/bracers))
 					prob2defend += (defender_skill * 30)
@@ -182,21 +181,20 @@
 				weapon_parry = FALSE
 			else
 				if(used_weapon)
-					defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+					defender_skill = H.get_skill_level(used_weapon.associated_skill)
 				else
-					defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
+					defender_skill = H.get_skill_level(/datum/skill/combat/unarmed)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
-			if(U.mind)
-				if(intenty.masteritem)
-					attacker_skill = U.mind.get_skill_level(intenty.masteritem.associated_skill)
-					prob2defend -= (attacker_skill * 20)
-					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
-				else
-					attacker_skill = U.mind.get_skill_level(/datum/skill/combat/unarmed)
-					prob2defend -= (attacker_skill * 20)
+			if(intenty.masteritem)
+				attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
+				prob2defend -= (attacker_skill * 20)
+				if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+					prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
+			else
+				attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
+				prob2defend -= (attacker_skill * 20)
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
 				prob2defend += 20
@@ -539,38 +537,21 @@
 			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
-		if(UH?.mind)
-			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)
+		prob2defend = prob2defend - (UH.get_skill_level(I.associated_skill) * 10)
 	if(H)
 		if(!H?.check_armor_skill() || H?.legcuffed)
 			H.Knockdown(1)
 			return FALSE
-		/* Commented out due to gaping imbalance
-			if(H?.check_dodge_skill())
-				drained = drained - 5  commented out for being too much. It was giving effectively double stamina efficiency compared to everyone else.
-			if(H.mind)
-				drained = drained + max((H.checkwornweight() * 10)-(mind.get_skill_level(/datum/skill/misc/athletics) * 10),0)
-			else
-				drained = drained + (H.checkwornweight() * 10)
-		*/
 		if(I) //the enemy attacked us with a weapon
 			if(!I.associated_skill) //the enemy weapon doesn't have a skill because its improvised, so penalty to attack
 				prob2defend = prob2defend + 10
 			else
-				if(H.mind)
-					prob2defend = prob2defend + (H.mind.get_skill_level(I.associated_skill) * 10)
-				/* Commented out due to encumbrance being seemingly broken and nonfunctional
-				var/thing = H.encumbrance
-				if(thing > 0)
-					drained = drained + (thing * 10)
-				*/
+				prob2defend = prob2defend + (H.get_skill_level(I.associated_skill) * 10)
 		else //the enemy attacked us unarmed or is nonhuman
 			if(UH)
 				if(UH.used_intent.unarmed)
-					if(UH.mind)
-						prob2defend = prob2defend - (UH.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
-					if(H.mind)
-						prob2defend = prob2defend + (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
+					prob2defend = prob2defend - (UH.get_skill_level(/datum/skill/combat/unarmed) * 10)
+					prob2defend = prob2defend + (H.get_skill_level(/datum/skill/combat/unarmed) * 10)
 
 		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
 			prob2defend += 20
@@ -863,12 +844,12 @@
 	//Skill check, very simple. If you're more skilled with your weapon than the opponent is with theirs -> +10% to disarm or vice-versa.
 	var/skilldiff
 	if(IM.associated_skill)
-		skilldiff = mind.get_skill_level(IM.associated_skill)
+		skilldiff = get_skill_level(IM.associated_skill)
 	else
 		instantloss = TRUE	//We are Guarding with a book or something -- no chance for us.
 
 	if(IU.associated_skill)
-		skilldiff = skilldiff - HU.mind?.get_skill_level(IU.associated_skill)
+		skilldiff = skilldiff - HU.get_skill_level(IU.associated_skill)
 	else
 		instantwin = TRUE	//THEY are Guarding with a book or something -- no chance for them.
 	

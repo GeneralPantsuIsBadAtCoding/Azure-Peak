@@ -135,7 +135,7 @@
 				break
 		if(!found_intent)
 			return FALSE
-	if(skill_used && skill_min && (user.mind?.get_skill_level(skill_used) < skill_min))
+	if(skill_used && skill_min && (user.get_skill_level(skill_used) < skill_min))
 		return FALSE
 	return TRUE
 
@@ -392,7 +392,7 @@
 	if(!skill_used)
 		return 1
 	var/modifier = 1
-	var/skill_level = user.mind?.get_skill_level(skill_used) || 0
+	var/skill_level = user.get_skill_level(skill_used) || 0
 	var/skill_difference = skill_level - skill_median
 	if((skill_difference > 0) && length(skill_bonuses))
 		skill_difference = clamp(abs(skill_difference), 0, skill_bonuses.len)

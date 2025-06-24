@@ -73,9 +73,9 @@
 		if(H.dna)
 			if(H.dna.species)
 				if(H.dna.species.name in list("Elf", "Half-Elf"))
-					H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+					H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 				if(H.dna.species.name in list("Metal Construct"))
-					H.mind.adjust_skillrank(/datum/skill/craft/engineering, 2, TRUE)
+					H.adjust_skillrank(/datum/skill/craft/engineering, 2, TRUE)
 	H.update_body()
 
 /datum/outfit/job/roguetown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

@@ -19,7 +19,7 @@
 /mob/living/proc/update_rogstam()
 	var/athletics_skill = 0
 	if(mind)
-		athletics_skill = mind.get_skill_level(/datum/skill/misc/athletics)
+		athletics_skill = get_skill_level(/datum/skill/misc/athletics)
 	maxrogstam = (STAEND + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
@@ -56,7 +56,7 @@
 /mob/living/proc/rogfat_nutrition_mod(amt)
 	// to simulate exertion, we deduct a mob's nutrition whenever it takes an action that would give us fatigue.
 	var/nutrition_amount = amt * 0.15 // nutrition goes up to 1k at max (but constantly ticks down) so we need to work at a slightly bigger scale
-	var/athletics_skill = mind?.get_skill_level(/datum/skill/misc/athletics)
+	var/athletics_skill = get_skill_level(/datum/skill/misc/athletics)
 	var/chip_amt = 2 + ceil(athletics_skill / 2)
 
 	if (amt <= chip_amt)

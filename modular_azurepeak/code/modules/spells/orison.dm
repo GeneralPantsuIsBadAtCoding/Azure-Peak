@@ -99,7 +99,7 @@
 	QDEL_NULL(mob_light_obj)
 
 /obj/item/melee/touch_attack/orison/proc/cast_light(atom/thing, mob/living/carbon/human/user)
-	var/holy_skill = user.mind?.get_skill_level(attached_spell.associated_skill)
+	var/holy_skill = user.get_skill_level(attached_spell.associated_skill)
 	var/cast_time = 35 - (holy_skill * 3)
 	if (!thing.Adjacent(user))
 		to_chat(user, span_info("I need to be next to [thing] to channel a blessing of light!"))
@@ -146,7 +146,7 @@
 	return ..()
 
 /obj/item/melee/touch_attack/orison/proc/thaumaturgy(thing, mob/living/carbon/human/user)
-	var/holy_skill = user.mind?.get_skill_level(attached_spell.associated_skill)
+	var/holy_skill = user.get_skill_level(attached_spell.associated_skill)
 	if (thing == user)
 		// give us a buff that makes our next spoken thing really loud and also cause any linked, un-muted scom to shriek out the phrase at a 15% chance
 		var/cast_time = 50 - (holy_skill * 5)
@@ -278,7 +278,7 @@
 		
 		user.visible_message(span_info("[user] closes [user.p_their()] eyes in prayer and extends a hand over [thing] as water begins to stream from [user.p_their()] fingertips..."), span_notice("I utter forth a plea to [user.patron.name] for succour, and hold my hand out above [thing]..."))
 
-		var/holy_skill = user.mind?.get_skill_level(attached_spell.associated_skill)
+		var/holy_skill = user.get_skill_level(attached_spell.associated_skill)
 		var/drip_speed = 56 - (holy_skill * 8)
 		var/fatigue_spent = 0
 		var/fatigue_used = max(3, holy_skill)
@@ -307,7 +307,7 @@
 		// stupid little easter egg here: you can dampen a cloth to clean with it, because prestidigitation also lets you clean things. also a lot cheaper devotion-wise than filling a bucket
 		var/obj/item/natural/cloth/the_cloth = thing
 		if (!the_cloth.wet)
-			var/holy_skill = user.mind?.get_skill_level(attached_spell.associated_skill)
+			var/holy_skill = user.get_skill_level(attached_spell.associated_skill)
 			the_cloth.wet += holy_skill * 5
 			user.visible_message(span_info("[user] closes [user.p_their()] eyes in prayer, beads of moisture coalescing in [user.p_their()] hands to moisten [the_cloth]."), span_notice("I utter forth a plea to [user.patron.name] for succour, and will moisture into [the_cloth]. I should be able to clean with it properly now."))
 			return water_moisten

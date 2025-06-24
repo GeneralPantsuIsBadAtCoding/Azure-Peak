@@ -9,12 +9,12 @@
 /mob/living/carbon/human/species/wildshape/volf/gain_inherent_skills()
 	. = ..()
 	if(src.mind)
-		src.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE) //'Tracker' transformation
-		src.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE) //Stalking
+		src.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE) //'Tracker' transformation
+		src.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE) //Stalking
 
 		src.STASTR = 7
 		src.STACON = 7

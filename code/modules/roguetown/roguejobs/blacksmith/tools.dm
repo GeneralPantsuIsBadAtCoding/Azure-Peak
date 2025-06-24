@@ -19,7 +19,7 @@
 /obj/item/rogueweapon/hammer/attack_obj(obj/attacked_object, mob/living/user)
 	if(!isliving(user) || !user.mind)
 		return
-	var/datum/mind/blacksmith_mind = user.mind
+	var/mob/living/blacksmith = user
 	var/repair_percent = 0.025 // 2.5% Repairing per hammer smack
 	/// Repairing is MUCH better with an anvil!
 	if(locate(/obj/machinery/anvil) in attacked_object.loc)
@@ -33,13 +33,13 @@
 		if(attacked_prosthetic.obj_integrity >= attacked_prosthetic.max_integrity && attacked_prosthetic.brute_dam == 0 && attacked_prosthetic.burn_dam == 0 && attacked_prosthetic.wounds == null && attacked_prosthetic.disabled == BODYPART_NOT_DISABLED) //A mouthful
 			to_chat(user, span_warning("There is nothing to further repair on [attacked_prosthetic]."))
 			return
-		if(blacksmith_mind.get_skill_level(attacked_prosthetic.anvilrepair) <= 0)
+		if(blacksmith.get_skill_level(attacked_prosthetic.anvilrepair) <= 0)
 			if(prob(30))
 				repair_percent = 0.01
 			else
 				repair_percent = 0
 		else
-			repair_percent *= blacksmith_mind.get_skill_level(attacked_prosthetic.anvilrepair)
+			repair_percent *= blacksmith.get_skill_level(attacked_prosthetic.anvilrepair)
 		playsound(src,'sound/items/bsmith3.ogg', 100, FALSE)
 		if(repair_percent)
 			repair_percent *= attacked_prosthetic.max_integrity
@@ -53,7 +53,7 @@
 				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_prosthetic]."))
 			else
 				user.visible_message(span_info("[user] repairs [attacked_prosthetic]!"))
-			blacksmith_mind.add_sleep_experience(attacked_prosthetic.anvilrepair, exp_gained/2) //We gain as much exp as we fix divided by 2
+			blacksmith.mind.add_sleep_experience(attacked_prosthetic.anvilrepair, exp_gained/2) //We gain as much exp as we fix divided by 2
 			if(do_after(user, CLICK_CD_MELEE, target = attacked_object))
 				attack_obj(attacked_object, user)
 			return
@@ -70,7 +70,7 @@
 			to_chat(user, span_warning("I should put this on a table or an anvil first."))
 			return
 
-		if(blacksmith_mind.get_skill_level(attacked_item.anvilrepair) <= 0)
+		if(blacksmith.get_skill_level(attacked_item.anvilrepair) <= 0)
 			if(HAS_TRAIT(user, TRAIT_SQUIRE_REPAIR))
 				if(locate(/obj/machinery/anvil) in attacked_object.loc)
 					repair_percent = 0.035
@@ -82,7 +82,7 @@
 			else
 				repair_percent = 0
 		else
-			repair_percent *= blacksmith_mind.get_skill_level(attacked_item.anvilrepair)
+			repair_percent *= blacksmith.get_skill_level(attacked_item.anvilrepair)
 
 		playsound(src,'sound/items/bsmithfail.ogg', 40, FALSE)
 		if(repair_percent)
@@ -98,7 +98,7 @@
 					attacked_item.repair_coverage()
 			if(attacked_item.obj_broken && attacked_item.obj_integrity == attacked_item.max_integrity)
 				attacked_item.obj_fix()
-			blacksmith_mind.add_sleep_experience(attacked_item.anvilrepair, exp_gained/2) //We gain as much exp as we fix divided by 2
+			blacksmith.mind.add_sleep_experience(attacked_item.anvilrepair, exp_gained/2) //We gain as much exp as we fix divided by 2
 			if(do_after(user, CLICK_CD_MELEE, target = attacked_object))
 				attack_obj(attacked_object, user)
 			return
@@ -111,13 +111,13 @@
 		var/obj/structure/attacked_structure = attacked_object
 		if(!attacked_structure.hammer_repair || !attacked_structure.max_integrity)
 			return
-		if(blacksmith_mind.get_skill_level(attacked_structure.hammer_repair) <= 0)
+		if(blacksmith.get_skill_level(attacked_structure.hammer_repair) <= 0)
 			to_chat(user, span_warning("I don't know how to repair this.."))
 			return
-		repair_percent *= blacksmith_mind.get_skill_level(attacked_structure.hammer_repair) * attacked_structure.max_integrity
+		repair_percent *= blacksmith.get_skill_level(attacked_structure.hammer_repair) * attacked_structure.max_integrity
 		exp_gained = min(attacked_structure.obj_integrity + repair_percent, attacked_structure.max_integrity) - attacked_structure.obj_integrity
 		attacked_structure.obj_integrity = min(attacked_structure.obj_integrity + repair_percent, attacked_structure.max_integrity)
-		blacksmith_mind.add_sleep_experience(attacked_structure.hammer_repair, exp_gained) //We gain as much exp as we fix
+		blacksmith.mind.add_sleep_experience(attacked_structure.hammer_repair, exp_gained) //We gain as much exp as we fix
 		playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
 		user.visible_message(span_info("[user] repairs [attacked_structure]!"))
 		return
@@ -144,7 +144,7 @@
 			return
 		var/used_time = 70
 		if(user.mind)
-			used_time -= (user.mind.get_skill_level(/datum/skill/craft/engineering) * 10)
+			used_time -= (user.get_skill_level(/datum/skill/craft/engineering) * 10)
 		playsound(loc, 'sound/items/bsmith1.ogg', 100, FALSE)
 		if(!do_mob(user, M, used_time))
 			return
@@ -211,10 +211,10 @@
 		if(T.hammer_repair && T.max_integrity && !T.obj_broken)
 			var/repair_percent = 0.05
 			if(user.mind)
-				if(user.mind.get_skill_level(I.hammer_repair) <= 0)
+				if(user.get_skill_level(I.hammer_repair) <= 0)
 					to_chat(user, span_warning("I don't know how to repair this.."))
 					return
-				repair_percent = max(user.mind.get_skill_level(I.hammer_repair) * 0.05, 0.05)
+				repair_percent = max(user.get_skill_level(I.hammer_repair) * 0.05, 0.05)
 			repair_percent = repair_percent * I.max_integrity
 			I.obj_integrity = min(obj_integrity+repair_percent, I.max_integrity)
 			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)

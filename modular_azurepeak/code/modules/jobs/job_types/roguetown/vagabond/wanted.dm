@@ -23,9 +23,9 @@
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	
 	if (H.mind)
-		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 		H.change_stat("perception", 2)
 		H.change_stat("intelligence", -1)
 		H.change_stat("fortune", rand(-2, 2))

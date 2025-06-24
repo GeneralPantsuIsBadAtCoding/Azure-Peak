@@ -82,7 +82,7 @@
 				if(get_dir(src, newloc) == dir)
 					return
 			if(user.mind && !user.buckled)
-				var/drained = max(15 - (user.mind.get_skill_level(/datum/skill/misc/swimming) * 5), 1)
+				var/drained = max(15 - (user.get_skill_level(/datum/skill/misc/swimming) * 5), 1)
 				user.mind.add_sleep_experience(/datum/skill/misc/swimming, user.STAINT * 0.5)
 //				drained += (user.checkwornweight()*2)
 				if(!user.check_armor_skill())
@@ -238,7 +238,7 @@
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
 	if(user.mind && swim_skill)
-		returned = returned - (user.mind.get_skill_level(/datum/skill/misc/swimming))
+		returned = returned - (user.get_skill_level(/datum/skill/misc/swimming))
 	return returned
 
 //turf/open/water/Initialize()

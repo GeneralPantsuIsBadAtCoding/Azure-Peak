@@ -106,8 +106,7 @@
 		if(!isliving(user) || !user.mind)
 			ore[W] = SMELTERY_LEVEL_SPOIL
 		else
-			var/datum/mind/smelter_mind = user.mind // Who smelted the ore?
-			var/smelter_exp = smelter_mind.get_skill_level(/datum/skill/craft/smelting) // 0 to 6
+			var/smelter_exp = user.get_skill_level(/datum/skill/craft/smelting) // 0 to 6
 			if(smelter_exp < 6)
 				ore[W] = min(6, floor(rand(smelter_exp*15 + 10, max(30, smelter_exp*25))/25)+1) // Math explained below
 			else

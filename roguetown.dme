@@ -419,6 +419,7 @@
 #include "code\datums\ruins.dm"
 #include "code\datums\saymode.dm"
 #include "code\datums\scheduled_event.dm"
+#include "code\datums\skill_holder.dm"
 #include "code\datums\soullink.dm"
 #include "code\datums\spawners_menu.dm"
 #include "code\datums\verbs.dm"

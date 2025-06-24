@@ -100,7 +100,7 @@
 				S.start()
 			QDEL_NULL(to_grind)
 			if(user.mind)
-				user.mind.adjust_experience(/datum/skill/craft/alchemy, user.STAINT, FALSE)
+				user.adjust_experience(/datum/skill/craft/alchemy, user.STAINT, FALSE)
 			return
 	if(istype(I ,/obj/item/reagent_containers/glass))
 		if(user.used_intent.type == INTENT_POUR) //Something like a glass. Player probably wants to transfer TO it.

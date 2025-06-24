@@ -402,10 +402,10 @@
 	if(target.mind)
 		if (world.time < target.mob_timers[MT_INVISIBILITY])
 			// we're invisible as per the spell effect, so use the highest of our arcane magic (or holy) skill instead of our sneaking
-			sneak_bonus = (max(target.mind?.get_skill_level(/datum/skill/magic/arcane), target.mind?.get_skill_level(/datum/skill/magic/holy)) * 10)
+			sneak_bonus = (max(target.get_skill_level(/datum/skill/magic/arcane), target.get_skill_level(/datum/skill/magic/holy)) * 10)
 			probby -= 20 // also just a fat lump of extra difficulty for the npc since spells are hard, you know?
 		else
-			sneak_bonus = (target.mind?.get_skill_level(/datum/skill/misc/sneaking) * 5)
+			sneak_bonus = (target.get_skill_level(/datum/skill/misc/sneaking) * 5)
 		probby -= sneak_bonus
 	if(!target.check_armor_skill())
 		probby += 85 //armor is loud as fuck

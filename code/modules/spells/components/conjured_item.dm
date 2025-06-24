@@ -46,7 +46,7 @@ by Arcyne user after a duration
 		if(isliving(current_user) && refresh_skill)
 			if(!current_user.mind)
 				return
-			var/has_right_skill = current_user?.mind.get_skill_level(refresh_skill)
+			var/has_right_skill = current_user?.get_skill_level(refresh_skill)
 			if(has_right_skill)
 				if(overridden_duration)
 					endtime += overridden_duration

@@ -31,13 +31,13 @@
 	W.after_creation()
 	W.stored_language = new
 	W.stored_language.copy_known_languages_from(src)
-	W.stored_skills = mind.known_skills.Copy()
-	W.stored_experience = mind.skill_experience.Copy()
+	W.stored_skills = ensure_skills().known_skills.Copy()
+	W.stored_experience = ensure_skills().skill_experience.Copy()
 	W.stored_spells = mind.spell_list.Copy()
 	W.voice_color = voice_color
 	mind.transfer_to(W)
-	W.mind.known_skills = list()
-	W.mind.skill_experience = list()
+	skills?.known_skills = list()
+	skills?.skill_experience = list()
 	W.grant_language(/datum/language/beast)
 	W.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB)
 	W.update_a_intents()
@@ -73,8 +73,8 @@
 
 	var/mob/living/carbon/human/species/wildshape/WA = src
 	W.copy_known_languages_from(WA.stored_language)
-	W.mind.known_skills = WA.stored_skills.Copy()
-	W.mind.skill_experience = WA.stored_experience.Copy()
+	skills?.known_skills = WA.stored_skills.Copy()
+	skills?.skill_experience = WA.stored_experience.Copy()
 
 	//Compares the list of spells we had before transformation with those we do now. If there are any that don't match, we remove them
 	for(var/obj/effect/proc_holder/spell/self/originspell in WA.stored_spells)

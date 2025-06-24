@@ -101,11 +101,11 @@
 	W.after_creation()
 	W.stored_language = new
 	W.stored_language.copy_known_languages_from(src)
-	W.stored_skills = mind.known_skills.Copy()
-	W.stored_experience = mind.skill_experience.Copy()
+	W.stored_skills = ensure_skills().known_skills.Copy()
+	W.stored_experience = ensure_skills().skill_experience.Copy()
 	mind.transfer_to(W)
-	W.mind.known_skills = list()
-	W.mind.skill_experience = list()
+	skills?.known_skills = list()
+	skills?.skill_experience = list()
 	W.grant_language(/datum/language/beast)
 
 	W.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB)
@@ -114,9 +114,9 @@
 	to_chat(W, span_userdanger("I transform into a horrible beast!"))
 	W.emote("rage")
 
-	W.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
-	W.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-	W.mind.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
+	W.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+	W.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	W.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
 
 	W.STASTR = 20
 	W.STACON = 20
@@ -176,8 +176,8 @@
 
 	var/mob/living/carbon/human/species/werewolf/WA = src
 	W.copy_known_languages_from(WA.stored_language)
-	W.mind.known_skills = WA.stored_skills.Copy()
-	W.mind.skill_experience = WA.stored_experience.Copy()
+	skills?.known_skills = WA.stored_skills.Copy()
+	skills?.skill_experience = WA.stored_experience.Copy()
 
 	W.RemoveSpell(new /obj/effect/proc_holder/spell/self/howl)
 	W.RemoveSpell(new /obj/effect/proc_holder/spell/self/claws)

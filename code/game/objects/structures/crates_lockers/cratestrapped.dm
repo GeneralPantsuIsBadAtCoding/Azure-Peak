@@ -54,7 +54,7 @@
 			C.visible_message(span_notice("\the [src] is locked."))
 			playsound(src, 'sound/foley/doors/lock.ogg', 100)
 			return FALSE
-		if(C.mind.get_skill_level(/datum/skill/craft/traps) < 1)
+		if(C.get_skill_level(/datum/skill/craft/traps) < 1)
 			bust_open()
 			trap_effect()
 			armed = FALSE
@@ -62,7 +62,7 @@
 		else
 			used_time = 14 SECONDS
 			if(C.mind)
-				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
+				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 				C.visible_message(span_notice("[C] begins disarming \the [src]."), \
 						span_notice("I start disarming \the [src]."))
 			if(do_after(user, used_time, target = src))

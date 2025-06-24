@@ -258,7 +258,7 @@
         revert_cast()
         return FALSE
 
-    var/holy_skill = user.mind?.get_skill_level(associated_skill)
+    var/holy_skill = user.get_skill_level(associated_skill)
     // Add component to both participants without mutual recursion
     user.AddComponent(/datum/component/eora_bond, target, user, holy_skill)
     target.AddComponent(/datum/component/eora_bond/partner, target, user, holy_skill)
@@ -349,14 +349,14 @@
         revert_cast()
         return FALSE
     
-    var/holy_skill = user.mind?.get_skill_level(associated_skill)
+    var/holy_skill = user.get_skill_level(associated_skill)
     target.AddComponent(/datum/component/blessed_food, user, holy_skill)
     to_chat(user, span_notice("You bless [target] with Eora's love!"))
     return TRUE
 
 /obj/effect/proc_holder/spell/invoked/bless_food/start_recharge()
     if(ranged_ability_user)
-        var/holy_skill = ranged_ability_user.mind?.get_skill_level(associated_skill)
+        var/holy_skill = ranged_ability_user.get_skill_level(associated_skill)
         // Reduce recharge by 6 seconds per skill level
         var/skill_reduction = (6 SECONDS) * holy_skill
         recharge_time = base_recharge_time - skill_reduction
@@ -444,7 +444,7 @@
 /obj/structure/eoran_pomegranate_tree/proc/get_farming_skill(mob/user)
     if(!user?.mind)
         return FALSE
-    return user.mind.get_skill_level(/datum/skill/labor/farming)
+    return user.get_skill_level(/datum/skill/labor/farming)
 
 /obj/structure/eoran_pomegranate_tree/proc/update_happiness_tier()
     if(happiness >= 100)

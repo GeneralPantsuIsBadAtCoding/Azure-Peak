@@ -39,40 +39,39 @@
 		/obj/item/recipe_book/alchemy
 	)
 
-	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-		H.mind.adjust_spellpoints(12)
-		H.grant_language(/datum/language/elvish)
-		H.grant_language(/datum/language/dwarvish)
-		H.grant_language(/datum/language/celestial)
-		H.grant_language(/datum/language/hellspeak)
-		H.grant_language(/datum/language/orcish)
-		H.grant_language(/datum/language/grenzelhoftian)
-		H.grant_language(/datum/language/otavan)
-		H.grant_language(/datum/language/etruscan)
-		H.grant_language(/datum/language/gronnic)
-		H.grant_language(/datum/language/kazengunese)
-		H.grant_language(/datum/language/draconic)
-		H.grant_language(/datum/language/aavnic) // All but beast, which is associated with werewolves.
-		ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
-		ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
-		H.change_stat("strength", -1)
-		H.change_stat("constitution", -1)
-		H.change_stat("intelligence", 4)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)
-		if(H.age == AGE_OLD)
-			H.change_stat("speed", -1)
-			H.change_stat("intelligence", 1)
+	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/alchemy, 6, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
+	H?.mind.adjust_spellpoints(12)
+	H.grant_language(/datum/language/elvish)
+	H.grant_language(/datum/language/dwarvish)
+	H.grant_language(/datum/language/celestial)
+	H.grant_language(/datum/language/hellspeak)
+	H.grant_language(/datum/language/orcish)
+	H.grant_language(/datum/language/grenzelhoftian)
+	H.grant_language(/datum/language/otavan)
+	H.grant_language(/datum/language/etruscan)
+	H.grant_language(/datum/language/gronnic)
+	H.grant_language(/datum/language/kazengunese)
+	H.grant_language(/datum/language/draconic)
+	H.grant_language(/datum/language/aavnic) // All but beast, which is associated with werewolves.
+	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
+	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
+	H.change_stat("strength", -1)
+	H.change_stat("constitution", -1)
+	H.change_stat("intelligence", 4)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)
+	if(H.age == AGE_OLD)
+		H.change_stat("speed", -1)
+		H.change_stat("intelligence", 1)
 
 
 //A spell to teach other characters new skills
@@ -163,7 +162,7 @@
 					to_chat(L, span_warning("There's no way I could handle all that knowledge!"))
 					to_chat(usr, span_warning("My student cannot handle that much knowledge at once!"))
 					return // cannot teach the same student twice
-				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/misc/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing, /datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/grenzelhoftian, /datum/language/hellspeak, /datum/language/orcish)) && L.mind?.get_skill_level(item) < SKILL_LEVEL_NOVICE)
+				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/misc/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing, /datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/grenzelhoftian, /datum/language/hellspeak, /datum/language/orcish)) && L.get_skill_level(item) < SKILL_LEVEL_NOVICE)
 					to_chat(L, span_warning("I cannot understand the lesson on [item.name], I need to get more skilled first!"))
 					to_chat(usr, span_warning("I try teaching [L] [item.name] but my student couldnt grasp the lesson!"))
 					return // some basic skill will not require you novice level
@@ -171,7 +170,7 @@
 					to_chat(L, span_warning("I already know! [item.name]!"))
 					to_chat(usr, span_warning("They already speak [item.name]!"))
 					return // we won't teach someone a language they already know
-				if(L.mind?.get_skill_level(item) > SKILL_LEVEL_EXPERT)
+				if(L.get_skill_level(item) > SKILL_LEVEL_EXPERT)
 					to_chat(L, span_warning("There's nothing I can learn from that person about [item.name]!"))
 					to_chat(usr, span_warning("They know [item.name] better than I do, am I really supposed to be the teacher there?"))
 					return // a student with master or legendary skill have nothing to learn from the scholar
@@ -191,11 +190,11 @@
 
 
 					else
-						if(L.mind?.get_skill_level(item) < SKILL_LEVEL_APPRENTICE) // +2 skill levels if novice or no skill
+						if(L.get_skill_level(item) < SKILL_LEVEL_APPRENTICE) // +2 skill levels if novice or no skill
 							if(do_after(usr, teachingtime, target = L))
 								user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
 								to_chat(usr, span_notice("My student grows a lot more proficient in [item.name]!"))
-								L.mind?.adjust_skillrank(item, 2, FALSE)
+								L.adjust_skillrank(item, 2, FALSE)
 								ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
 							else
 								to_chat(usr, span_warning("[L] got distracted and wandered off!"))
@@ -205,7 +204,7 @@
 							if(do_after(usr, teachingtime, target = L))
 								user.visible_message("<font color='yellow'>[user] teaches [L] a lesson.</font>")
 								to_chat(usr, span_notice("My student grows more proficient in [item.name]!"))
-								L.mind?.adjust_skillrank(item, 1, FALSE)
+								L.adjust_skillrank(item, 1, FALSE)
 								ADD_TRAIT(L, TRAIT_STUDENT, "[type]")
 							else
 								to_chat(usr, span_warning("[L] got distracted and wandered off!"))

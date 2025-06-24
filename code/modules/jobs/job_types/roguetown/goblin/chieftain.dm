@@ -27,14 +27,13 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide/goblin
 	head = /obj/item/clothing/head/roguetown/crown/surplus
 	cloak = /obj/item/clothing/cloak/heartfelt
-	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-		H.change_stat("strength", -1)
-		H.change_stat("intelligence", 2)
-		H.change_stat("constitution", 6)
-		H.change_stat("endurance", 1)
-		H.change_stat("speed", -2)
+	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+	H.change_stat("strength", -1)
+	H.change_stat("intelligence", 2)
+	H.change_stat("constitution", 6)
+	H.change_stat("endurance", 1)
+	H.change_stat("speed", -2)
 
 /mob/living/carbon/human/proc/goblinannouncement()
 	set name = "Announcement"

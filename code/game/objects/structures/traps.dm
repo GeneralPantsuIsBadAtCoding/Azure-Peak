@@ -61,13 +61,13 @@
 	if(iscarbon(user) && armed && isturf(loc))
 		if(!BP)
 			return FALSE
-		if(C.mind.get_skill_level(/datum/skill/craft/traps) < 1)
+		if(C.get_skill_level(/datum/skill/craft/traps) < 1)
 			C.visible_message(span_notice("I don't know how to disarm \the [src]."))
 			return FALSE
 		else
 			used_time = 14 SECONDS
 			if(C.mind)
-				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
+				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 				C.visible_message(span_notice("[C] begins disarming \the [src]."), \
 						span_notice("I start disarming \the [src]."))
 			if(do_after(user, used_time, target = src))
@@ -80,13 +80,13 @@
 	if(iscarbon(user) && !armed && isturf(loc))
 		if(!BP)
 			return FALSE
-		if(C.mind.get_skill_level(/datum/skill/craft/traps) < 1)
+		if(C.get_skill_level(/datum/skill/craft/traps) < 1)
 			C.visible_message(span_notice("I don't know how to arm \the [src]."))
 			return FALSE
 		else
 			used_time = 8 SECONDS
 			if(C.mind)
-				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
+				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 			if(do_after(user, used_time, target = src))
 				armed = TRUE
 				update_icon()

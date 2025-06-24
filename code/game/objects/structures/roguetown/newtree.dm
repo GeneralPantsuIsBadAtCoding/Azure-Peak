@@ -92,7 +92,7 @@
 		var/used_time = 0
 		var/exp_to_gain = 0 
 		if(L.mind)
-			var/myskill = L.mind.get_skill_level(/datum/skill/misc/climbing)
+			var/myskill = L.get_skill_level(/datum/skill/misc/climbing)
 			if(HAS_TRAIT(L, TRAIT_WOODWALKER))
 				exp_to_gain = L.STAINT
 			else

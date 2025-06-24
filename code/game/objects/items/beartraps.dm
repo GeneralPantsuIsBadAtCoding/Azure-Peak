@@ -54,7 +54,7 @@
 		else
 			var/used_time = 10 SECONDS
 			if(C.mind)
-				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
+				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 			if(do_after(user, used_time, target = src))
 				armed = FALSE
 				w_class = initial(w_class)

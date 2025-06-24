@@ -1086,9 +1086,9 @@
 	var/agg_grab = FALSE
 
 	if(mind)
-		wrestling_diff += (mind.get_skill_level(/datum/skill/combat/wrestling)) //NPCs don't use this
+		wrestling_diff += (get_skill_level(/datum/skill/combat/wrestling)) //NPCs don't use this
 	if(L.mind)
-		wrestling_diff -= (L.mind.get_skill_level(/datum/skill/combat/wrestling))
+		wrestling_diff -= (L.get_skill_level(/datum/skill/combat/wrestling))
 	if(L.grab_state > GRAB_PASSIVE)
 		agg_grab = TRUE
 
@@ -1781,7 +1781,7 @@
 	changeNext_move(HAS_TRAIT(src, TRAIT_SLEUTH) ? CLICK_CD_SLEUTH : CLICK_CD_TRACKING)
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message(span_info("[src] begins looking around."))
-	var/looktime = 50 - (STAPER * 2) - (mind?.get_skill_level(/datum/skill/misc/tracking) * 5)
+	var/looktime = 50 - (STAPER * 2) - (get_skill_level(/datum/skill/misc/tracking) * 5)
 	looktime = clamp(looktime, 7, 50)
 	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
@@ -1790,14 +1790,14 @@
 				continue
 			if(see_invisible < M.invisibility)
 				continue
-			var/probby = (2 * STAPER) + (mind?.get_skill_level(/datum/skill/misc/tracking)) * 5
+			var/probby = (2 * STAPER) + (get_skill_level(/datum/skill/misc/tracking)) * 5
 			if(M.mob_timers[MT_INVISIBILITY] > world.time) // Check if the mob is affected by the invisibility spell
-				if(mind?.get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_EXPERT)	//Master or Legendary from this point
+				if(get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_EXPERT)	//Master or Legendary from this point
 					continue
 			if(M.mind)	//We find the biggest value and use that, to account for mages / Nocites / sneaky people all at once
-				var/target_sneak = M.mind?.get_skill_level(/datum/skill/misc/sneaking)
-				var/target_holy = M.mind?.get_skill_level(/datum/skill/magic/holy)
-				var/target_arcyne = M.mind?.get_skill_level(/datum/skill/magic/arcane)
+				var/target_sneak = M.get_skill_level(/datum/skill/misc/sneaking)
+				var/target_holy = M.get_skill_level(/datum/skill/magic/holy)
+				var/target_arcyne = M.get_skill_level(/datum/skill/magic/arcane)
 				var/chosen_skill = max(target_sneak, target_holy, target_arcyne)
 				probby -= chosen_skill * 5
 				if(M.STAPER > 10)

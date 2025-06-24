@@ -761,7 +761,7 @@
 	else if(href_list["increase_skill"])
 		var/mob/M = locate(href_list["increase_skill"])
 		var/datum/skill/skill = href_list["skill"]
-		M.mind?.adjust_skillrank(text2path(skill), 1)
+		M.adjust_skillrank(text2path(skill), 1)
 		message_admins(span_danger("Admin [key_name_admin(usr)] increased [key_name_admin(M)]'s [skill]"))
 		log_admin("[usr] increased [M]'s [initial(skill.name)] skill.")
 		show_player_panel_next(M, "skills")
@@ -769,7 +769,7 @@
 	else if(href_list["decrease_skill"])
 		var/mob/M = locate(href_list["decrease_skill"])
 		var/datum/skill/skill = href_list["skill"]
-		M.mind?.adjust_skillrank(text2path(skill), -1)
+		M.adjust_skillrank(text2path(skill), -1)
 		message_admins(span_danger("Admin [key_name_admin(usr)] decreased [key_name_admin(M)]'s [skill]"))
 		log_admin("[usr] decreased [M]'s [initial(skill.name)] skill.")
 		show_player_panel_next(M, "skills")

@@ -33,10 +33,10 @@
 					choice = /obj/item/rogueweapon/whip/antique/psywhip
 				if("Stigmata - Silver Halberd")
 					choice = /obj/item/rogueweapon/halberd/psyhalberd
-					user.mind?.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)	//We make sure the weapon is usable by the Inquisitor.
+					user.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)	//We make sure the weapon is usable by the Inquisitor.
 				if("Apocrypha - Silver Greatsword")
 					choice = /obj/item/rogueweapon/greatsword/psygsword
-					user.mind?.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)		//Ditto.
+					user.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)		//Ditto.
 				if("Golgatha - SYON Shard Censer")
 					choice = /obj/item/flashlight/flare/torch/lantern/psycenser
 			to_chat(user, span_info("I have chosen the relic, may HE guide my hand."))

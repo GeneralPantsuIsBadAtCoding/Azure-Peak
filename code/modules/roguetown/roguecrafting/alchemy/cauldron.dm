@@ -95,7 +95,7 @@
 						brewing = 0
 						src.visible_message(span_info("The cauldron can't brew anything without an alchemist to guide it."))
 						return
-					if(found_recipe.skill_required > lastuser?.mind?.get_skill_level(/datum/skill/craft/alchemy))
+					if(found_recipe.skill_required > lastuser?.get_skill_level(/datum/skill/craft/alchemy))
 						brewing = 0
 						src.visible_message(span_warning("The ingredients in the cauldron melds together into a disgusting mess! Perhaps a more skilled alchemist is needed for this recipe."))
 						if(reagents)
@@ -104,7 +104,7 @@
 							qdel(ing)
 						src.reagents.add_reagent(/datum/reagent/yuck, in_cauldron) // 1 to 1 transmutation of yuck
 						// Learn from your failure (Yeah you can technically still grind this way you just blow through a lot of ingredients)
-						lastuser?.mind?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE) 
+						lastuser?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE) 
 						return
 					for(var/obj/item/ing in src.ingredients)
 						qdel(ing)
@@ -120,7 +120,7 @@
 					record_featured_stat(FEATURED_STATS_ALCHEMISTS, lastuser)
 					GLOB.azure_round_stats[STATS_POTIONS_BREWED]++
 					//give xp for /datum/skill/craft/alchemy
-					lastuser?.mind?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE)
+					lastuser?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE)
 					playsound(src, "bubbles", 100, TRUE)
 					playsound(src,'sound/misc/smelter_fin.ogg', 30, FALSE)
 					ingredients = list()

@@ -54,7 +54,7 @@
 	apply_farming_fatigue(user, 5)
 	add_sleep_experience(user, /datum/skill/labor/farming, user.STAINT * 2)
 
-	var/farming_skill = user.mind.get_skill_level(/datum/skill/labor/farming)
+	var/farming_skill = user.get_skill_level(/datum/skill/labor/farming)
 	var/is_legendary = FALSE
 	if(farming_skill == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
 		is_legendary = TRUE //we do
@@ -114,7 +114,7 @@
 /obj/structure/soil/proc/try_handle_tilling(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/rogueweapon/hoe))
 		var/is_legendary = FALSE
-		if(user.mind.get_skill_level(/datum/skill/labor/farming) == SKILL_LEVEL_LEGENDARY)
+		if(user.get_skill_level(/datum/skill/labor/farming) == SKILL_LEVEL_LEGENDARY)
 			is_legendary = TRUE
 		var/work_time = 4 SECONDS
 		if(is_legendary)

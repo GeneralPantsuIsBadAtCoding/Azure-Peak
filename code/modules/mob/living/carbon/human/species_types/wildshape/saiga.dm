@@ -13,10 +13,10 @@
 /mob/living/carbon/human/species/wildshape/saiga/gain_inherent_skills()
 	. = ..()
 	if(src.mind)
-		src.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
 
 		src.STASTR = 10
 		src.STACON = 13

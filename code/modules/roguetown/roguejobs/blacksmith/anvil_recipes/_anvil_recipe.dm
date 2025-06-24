@@ -32,7 +32,7 @@
 	var/mob/living/L = user
 	var/moveup = 1
 	var/proab = 0 // Probability to not spoil the bar
-	var/skill_level	= user.mind.get_skill_level(appro_skill)
+	var/skill_level	= user.get_skill_level(appro_skill)
 	if(progress >= max_progress)
 		to_chat(user, span_info("It's ready."))
 		user.visible_message(span_warning("[user] strikes the bar!"))

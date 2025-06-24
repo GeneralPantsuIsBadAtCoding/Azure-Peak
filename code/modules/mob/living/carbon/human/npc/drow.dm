@@ -133,14 +133,21 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 		neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/chain/blk
 	shoes = /obj/item/clothing/shoes/roguetown/boots
-	H.STASTR = rand(16,18)
-	H.STASPD = rand(16,18)
-	H.STACON = rand(14,16)
-	H.STAEND = rand(14,16)
-	H.STAPER = rand(12,14)
-	H.STAINT = rand(12,14)
+	H.STASTR = 14 // 8 Points
+	H.STASPD = 11 // +1 - Drow
+	H.STACON = 14 // 4 points
+	H.STAEND = 12 // 2 points - 14 points spread. Equal to 1 more than a KC accounting for Statpack.
+	H.STAPER = 10
+	H.STAINT = 10  
 	if(prob(50))
 		r_hand = /obj/item/rogueweapon/sword/falx
 		l_hand = /obj/item/rogueweapon/shield/tower
 	else
 		r_hand = /obj/item/rogueweapon/halberd/glaive
+	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)

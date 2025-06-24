@@ -177,11 +177,11 @@
 				return
 			var/used_time = 210
 			if(user.mind)
-				used_time -= (user.mind.get_skill_level(/datum/skill/labor/butchering) * 30)
+				used_time -= (user.get_skill_level(/datum/skill/labor/butchering) * 30)
 			visible_message("[user] begins to butcher \the [src].")
 			playsound(src, 'sound/foley/gross.ogg', 100, FALSE)
 			var/steaks = 1
-			switch(user.mind.get_skill_level(/datum/skill/labor/butchering))
+			switch(user.get_skill_level(/datum/skill/labor/butchering))
 				if(3)
 					steaks = 2
 				if(4 to 5)

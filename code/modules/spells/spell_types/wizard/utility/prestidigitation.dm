@@ -74,7 +74,7 @@
 
 	user.rogfat_add(fatigue_used + extra_fatigue)
 
-	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
+	var/skill_level = user.get_skill_level(attached_spell.associated_skill)
 	if (skill_level >= SKILL_LEVEL_EXPERT)
 		fatigue_used = 0 // we do this after we've actually changed fatigue because we're hard-capping the raises this gives to Expert
 
@@ -86,7 +86,7 @@
 		return // should really never happen
 
 	//let's adjust the light power based on our skill, too
-	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
+	var/skill_level = user.get_skill_level(attached_spell.associated_skill)
 	var/mote_power = clamp(4 + (skill_level - 3), 4, 7) // every step above journeyman should get us 1 more tile of brightness
 	mote.set_light_range(mote_power)
 	if(mote.light_system == STATIC_LIGHT)
@@ -129,7 +129,7 @@
 	// adjusted from /obj/item/soap in clown_items.dm, some duplication unfortunately (needed for flavor)
 
 	// let's adjust the clean speed based on our skill level
-	var/skill_level = user.mind?.get_skill_level(attached_spell.associated_skill)
+	var/skill_level = user.get_skill_level(attached_spell.associated_skill)
 	cleanspeed = initial(cleanspeed) - (skill_level * 3) // 3 cleanspeed per skill level, from 35 down to a maximum of 17 (pretty quick)
 
 	if (istype(target, /obj/structure/roguewindow))

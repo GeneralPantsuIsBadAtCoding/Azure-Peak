@@ -69,15 +69,15 @@ var/psydon_ascend = psydon_pool[7]
 				ADD_TRAIT(owner.current, trait, "[type]")
 
 			var/mob/living/carbon/human/dreamer = owner.current
-			var/sword_skill = dreamer.mind.get_skill_level(/datum/skill/combat/swords)
-			var/unarmed_skill = dreamer.mind.get_skill_level(/datum/skill/combat/unarmed)
-			var/wrestling_skill = dreamer.mind.get_skill_level(/datum/skill/combat/wrestling)
+			var/sword_skill = dreamer.get_skill_level(/datum/skill/combat/swords)
+			var/unarmed_skill = dreamer.get_skill_level(/datum/skill/combat/unarmed)
+			var/wrestling_skill = dreamer.get_skill_level(/datum/skill/combat/wrestling)
 			if(sword_skill < 6)
-				owner.adjust_skillrank(/datum/skill/combat/swords, 6 - sword_skill, TRUE)
+				dreamer.adjust_skillrank(/datum/skill/combat/swords, 6 - sword_skill, TRUE)
 			if(unarmed_skill < 6)
-				owner.adjust_skillrank(/datum/skill/combat/unarmed, 6 - unarmed_skill, TRUE)
+				dreamer.adjust_skillrank(/datum/skill/combat/unarmed, 6 - unarmed_skill, TRUE)
 			if(wrestling_skill)
-				owner.adjust_skillrank(/datum/skill/combat/wrestling, 6 - wrestling_skill, TRUE)
+				dreamer.adjust_skillrank(/datum/skill/combat/wrestling, 6 - wrestling_skill, TRUE)
 			STASTR = dreamer.STASTR
 			STACON = dreamer.STACON
 			STAEND = dreamer.STAEND

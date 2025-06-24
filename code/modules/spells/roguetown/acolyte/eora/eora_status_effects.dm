@@ -208,7 +208,7 @@
 	if(owner.patron.type != /datum/patron/divine/eora)
 		str_change = -8
 		perc_change = -8
-	else if (!(owner.mind?.get_skill_level(/datum/skill/magic/holy) >= 1))
+	else if (!(owner.get_skill_level(/datum/skill/magic/holy) >= 1))
 		//Eorans get a slight edge.
 		str_change = -6
 		perc_change = -6

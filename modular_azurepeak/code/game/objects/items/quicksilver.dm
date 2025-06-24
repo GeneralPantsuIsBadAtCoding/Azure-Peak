@@ -34,7 +34,7 @@
 		to_chat(user, span_warning("Upon closer inspection, [M] is already anointed with quicksilver."))
 		return
 
-	if(!inquisitor && !user.mind.get_skill_level(/datum/skill/magic/holy) >= SKILL_EXP_EXPERT)
+	if(!inquisitor && !user.get_skill_level(/datum/skill/magic/holy) >= SKILL_EXP_EXPERT)
 		to_chat(user, span_warning("I do not have the divine knowledge to properly apply [src]."))
 		return
 

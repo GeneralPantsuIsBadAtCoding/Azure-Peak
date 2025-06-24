@@ -155,7 +155,7 @@
 
 		var/competence = user.STAPER
 		if(user.mind)
-			competence += 2 * user.mind.get_skill_level(/datum/skill/misc/tracking)
+			competence += 2 * user.get_skill_level(/datum/skill/misc/tracking)
 
 		if(competence >= diff)
 			success = TRUE
@@ -177,7 +177,7 @@
 		diff += round((world.time - creation_time) / (60 SECONDS), 1) 
 		var/competence = abs(user.STAPER - 5)
 		if(user.mind)
-			competence += 5 * user.mind.get_skill_level(/datum/skill/misc/tracking) //Skill is much more relevant for analysis.
+			competence += 5 * user.get_skill_level(/datum/skill/misc/tracking) //Skill is much more relevant for analysis.
 		switch(competence - diff)
 			if(30 to INFINITY)
 				analysis_result = ANALYSIS_PERFECT
@@ -304,7 +304,7 @@
 		var/mob/living/carbon/human/H = user
 		if(!isnull(H.current_mark) && H.current_mark == creator)
 			. += span_nicegreen("This track belongs to your mark.")
-		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) >= SKILL_LEVEL_EXPERT)
+		if(H.get_skill_level(/datum/skill/misc/tracking) >= SKILL_LEVEL_EXPERT)
 			. += span_nicegreen("<i><font size = 2>Right-click this track to Mark its owner.</font></i>")
 	return .
 
@@ -333,7 +333,7 @@
 			var/skill = I.associated_skill
 			this.tool_used = I.name
 			if(skill)
-				this.skill_level = mind?.get_skill_level(skill)
+				this.skill_level = get_skill_level(skill)
 	else
 		if(!(mobility_flags & MOBILITY_STAND)) //Either pulled or crawling.
 			this_track.track_type = "drag marks"
@@ -395,7 +395,7 @@
 	if(m_intent == MOVE_INTENT_SNEAK)
 		var/remaining_mod = 0.7
 		if(mind)
-			remaining_mod -= 0.1 * mind.get_skill_level(/datum/skill/misc/sneaking)
+			remaining_mod -= 0.1 * get_skill_level(/datum/skill/misc/sneaking)
 		. *= remaining_mod
 	else if(m_intent == MOVE_INTENT_RUN)
 		. *= 3
@@ -470,7 +470,7 @@
 /obj/effect/track/attack_right(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) > SKILL_LEVEL_JOURNEYMAN)	//Expert+
+		if(H.get_skill_level(/datum/skill/misc/tracking) > SKILL_LEVEL_JOURNEYMAN)	//Expert+
 			if(!markable)
 				to_chat(H, span_warning("This is not enough to Mark them. I need proper tracks."))
 			to_chat(H, span_info("You start taking note of the person's gait, weight and other distinct features."))

@@ -23,20 +23,20 @@
 			to_chat(H, span_warning("You were once a venerated and revered knight - now, a traitor who abandoned your liege. You lyve the lyfe of an outlaw, shunned and looked down upon by society."))
 			ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			var/weapons = list(
 				"Estoc",
@@ -139,21 +139,21 @@
 					backl = /obj/item/gwstrap
 			
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) // Better at climbing away than your average MaA. Only slightly.
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE) // Worse at swimming than the above class.
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE) // That saiga was stolen. Probably.
-			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) // Better at climbing away than your average MaA. Only slightly.
+			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE) // Worse at swimming than the above class.
+			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE) // That saiga was stolen. Probably.
+			H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 
 			// Slightly more rounded. These can be nudged as needed.
 			H.change_stat("strength", 2)

@@ -9,13 +9,13 @@
 /mob/living/carbon/human/species/wildshape/cat/gain_inherent_skills()
 	. = ..()
 	if(src.mind)
-		src.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE) //Who's a sneaky fellow?
-		src.mind.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE) //May as well be magical
-		src.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-		src.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE) //Who's a sneaky fellow?
+		src.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE) //May as well be magical
+		src.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
+		src.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 
 		src.STASTR = 2
 		src.STACON = 2
