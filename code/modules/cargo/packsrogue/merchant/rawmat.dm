@@ -43,9 +43,9 @@
 	/obj/item/rogueore/coal)
 
 /datum/supply_pack/rogue/rawmats/silver
-	name = "Silver Ore"
-	cost = 125
-	contains = list(/obj/item/rogueore/silver)
+	name = "Silver Dust"
+	cost = 70
+	contains = list(/obj/item/alch/silverdust)
 
 /datum/supply_pack/rogue/rawmats/cloth
 	name = "Cloth"

@@ -507,8 +507,28 @@
 
 //----------------- BLACKSTEEL---------------------
 
-/obj/item/clothing/under/roguetown/platelegs/blacksteel
+/obj/item/clothing/under/roguetown/platelegs/blacksteel/modern
 	name = "blacksteel plate chausses"
+	desc = "Reinforced leg plates forged of durable blacksteel, using a modern design."
+	gender = PLURAL
+	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
+	sleeved = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
+	icon_state = "bplatelegs"
+	item_state = "bplatelegs"
+	sewrepair = FALSE
+	armor = ARMOR_PLATE_BSTEEL
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
+	blocksound = PLATEHIT
+	max_integrity = 500
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/blacksteel
+	smelt_bar_num = 2
+
+
+/obj/item/clothing/under/roguetown/platelegs/blacksteel
+	name = "ancient blacksteel plate chausses"
 	desc = "Reinforced leg plates forged of durable blacksteel."
 	gender = PLURAL
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
@@ -516,7 +536,7 @@
 	icon_state = "bklegs"
 	item_state = "bklegs"
 	sewrepair = FALSE
-	armor = ARMOR_PLATE_GOOD
+	armor = ARMOR_PLATE_BSTEEL
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	blocksound = PLATEHIT
 	max_integrity = 500
@@ -532,6 +552,11 @@
 	item_state = "monkpants"
 	naledicolor = TRUE
 	salvage_result = /obj/item/natural/hide/cured
+
+/obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen
+	name = "baggy desert pants"
+	desc = "A handmade pair of baggy, thin leather pants. Keeps sand out of your boots, sun off your legs, and a creacher's fangs from piercing your ankles."
+	naledicolor = FALSE
 
 /obj/item/clothing/under/roguetown/trou/eastpants1
 	name = "cut-throat's pants"

@@ -110,6 +110,7 @@
 	withdraw_price = 75
 	transport_fee = 10
 	export_price = 100
+	export_only = TRUE
 	stockpile_limit = 25
 	importexport_amt = 5
 

@@ -239,6 +239,25 @@
 	icon_state = "ancientsh"
 	smeltresult = /obj/item/ingot/purifiedaalloy
 
+/obj/item/rogueweapon/shield/tower/raneshen
+	name = "rider shield"
+	desc = "A shield of Raneshen design. Clever usage of wood, iron, and leather make an impressive match for any weapon."
+	icon_state = "desert_rider"
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK)
+	force = 25
+	throwforce = 25 //for cosplaying captain raneshen
+	wdefense = 11
+	max_integrity = 250 //not fully metal but not fully wood either
+
+/obj/item/rogueweapon/shield/tower/raneshen/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -5,"sy" = -1,"nx" = 6,"ny" = -1,"wx" = 0,"wy" = -2,"ex" = 0,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 1,"eflip" = 0)
+			if("onback")
+				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+
 /obj/item/rogueweapon/shield/buckler
 	name = "buckler shield"
 	desc = "A sturdy buckler shield. Will block anything you can imagine."
