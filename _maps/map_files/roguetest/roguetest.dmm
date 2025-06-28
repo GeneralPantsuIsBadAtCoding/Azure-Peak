@@ -477,6 +477,10 @@
 /obj/item/clothing/shoes/roguetown/boots/leather,
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
+"pY" = (
+/obj/structure/mineral_door/wood/towner/debug3,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "qA" = (
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
@@ -583,6 +587,10 @@
 /obj/structure/table/cooling,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"uH" = (
+/obj/structure/mineral_door/wood/towner/debug6,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors)
 "uO" = (
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
@@ -731,6 +739,10 @@
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
+"Aa" = (
+/obj/structure/mineral_door/wood/towner/debug1,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "BF" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid";
@@ -848,6 +860,10 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"Ib" = (
+/obj/structure/mineral_door/wood/towner/debug2,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "Ie" = (
 /obj/structure/table/optable,
 /obj/item/storage/belt/rogue/surgery_bag/full,
@@ -1023,6 +1039,10 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bull,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
+"NE" = (
+/obj/structure/mineral_door/wood/towner/debug4,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors)
 "NS" = (
 /obj/item/rogueweapon/pick/steel,
 /turf/open/floor/rogue/naturalstone,
@@ -1194,6 +1214,10 @@
 /obj/item/clothing/shoes/roguetown/boots/armor,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
+"UO" = (
+/obj/structure/mineral_door/wood/towner/debug5,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors)
 "UW" = (
 /obj/effect/decal/mossy{
 	dir = 1
@@ -2008,12 +2032,12 @@ wn
 UW
 BJ
 zp
-HA
-BJ
-BJ
-al
-al
-al
+Aa
+Ib
+pY
+NE
+UO
+uH
 al
 BJ
 BJ

@@ -58,6 +58,7 @@
 	if(lockhash)
 		GLOB.lockhashes += lockhash
 	else if(keylock)
+		AddElement(/datum/element/lockpickable, list(/obj/item/lockpick), list(/obj/item/lockpick), lockpick_define_to_lock_difficulty(lock_difficulty))
 		if(lockid)
 			if(GLOB.lockids[lockid])
 				lockhash = GLOB.lockids[lockid]
@@ -266,15 +267,6 @@
 		return
 	if(istype(W, /obj/item/roguekey) || istype(W, /obj/item/storage/keyring))
 		trykeylock(W, user)
-		return
-	if(istype(W, /obj/item/lockpick))
-		trypicklock(W, user)
-		return
-	if(istype(W,/obj/item/lockpickring))
-		var/obj/item/lockpickring/pickring = W
-		if(pickring.picks.len)
-			pickring.removefromring(user)
-			to_chat(user, span_warning("You clumsily drop a lockpick off the ring as you try to pick the lock with it."))
 		return
 	if(src.tool_interact(W,user))
 		return 1 // No afterattack

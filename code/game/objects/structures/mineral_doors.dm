@@ -127,6 +127,7 @@
 	if(lockhash)
 		GLOB.lockhashes += lockhash
 	else if(keylock)
+		AddElement(/datum/element/lockpickable, list(/obj/item/lockpick), list(/obj/item/lockpick), lockpick_define_to_lock_difficulty(lock_difficulty))
 		if(lockid)
 			if(GLOB.lockids[lockid])
 				lockhash = GLOB.lockids[lockid]
@@ -374,16 +375,6 @@
 		else
 			trykeylock(I, user)
 			return
-	if(istype(I, /obj/item/lockpick))
-		trypicklock(I, user)
-	if(istype(I, /obj/item/melee/touch_attack/lesserknock))
-		trypicklock(I, user)
-	if(istype(I,/obj/item/lockpickring))
-		var/obj/item/lockpickring/pickring = I
-		if(pickring.picks.len)
-			pickring.removefromring(user)
-			to_chat(user, span_warning("You clumsily drop a lockpick off the ring as you try to pick the lock with it."))
-		return
 	else
 		if(repairable && (user.mind.get_skill_level(repair_skill) > 0) && ((istype(I, repair_cost_first)) || (istype(I, repair_cost_second)))) // At least 1 skill level needed
 			repairdoor(I,user)
@@ -985,3 +976,27 @@
 
 /obj/structure/mineral_door/wood/bath/courtesan
 	resident_advclass = list(/datum/advclass/nightmaiden/concubine, /datum/advclass/nightmaiden/courtesan)
+
+/obj/structure/mineral_door/wood/towner/debug1
+	name = "iron door (Novice)"
+	lock_difficulty = LOCK_NOVICE
+
+/obj/structure/mineral_door/wood/towner/debug2
+	name = "iron door (Apprentice)"
+	lock_difficulty = LOCK_APPRENTICE
+
+/obj/structure/mineral_door/wood/towner/debug3
+	name = "iron door (Journeyman)"
+	lock_difficulty = LOCK_JOURNEYMAN
+
+/obj/structure/mineral_door/wood/towner/debug4
+	name = "iron door (Expert)"
+	lock_difficulty = LOCK_EXPERT
+
+/obj/structure/mineral_door/wood/towner/debug5
+	name = "iron door (Master)"
+	lock_difficulty = LOCK_MASTER
+
+/obj/structure/mineral_door/wood/towner/debug6
+	name = "iron door (Legendary)"
+	lock_difficulty = LOCK_LEGENDARY
