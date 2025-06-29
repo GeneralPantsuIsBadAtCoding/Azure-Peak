@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/outdoors/beach)
@@ -572,7 +572,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "cP" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "cS" = (
@@ -808,7 +808,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "eC" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/cave)
 "eF" = (
@@ -913,7 +913,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/indoors/cave)
 "fg" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach)
 "fi" = (
@@ -1521,7 +1521,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "jd" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
 "jg" = (
@@ -1588,7 +1588,7 @@
 	},
 /area/rogue/outdoors/beach/forest)
 "jD" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/outdoors/beach)
 "jE" = (
@@ -2229,7 +2229,7 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave/orcdungeon)
 "oC" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter)
 "oD" = (
@@ -2258,7 +2258,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach/forest)
 "oL" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "oN" = (
@@ -2904,7 +2904,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/under/cave/dukecourt)
 "sH" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter)
 "sJ" = (
@@ -3234,7 +3234,7 @@
 /turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/outdoors/beach/forest)
 "vk" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/shelter)
 "vn" = (
@@ -4557,7 +4557,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "DJ" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/town/basement)
 "DO" = (
@@ -4659,7 +4659,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
 "EB" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "EC" = (
@@ -4743,7 +4743,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/under/cave/mazedungeon)
 "Fb" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "Fe" = (
@@ -4858,7 +4858,7 @@
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue/under/cave/mazedungeon)
 "FU" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/cave)
 "FV" = (
@@ -6406,7 +6406,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
 "Qb" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
 "Qe" = (
@@ -6835,7 +6835,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "SN" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
 "SP" = (
@@ -6850,7 +6850,7 @@
 	},
 /area/rogue/under/cave/dukecourt)
 "ST" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "SU" = (
@@ -6878,7 +6878,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/shelter)
 "Tn" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
 "Tr" = (
@@ -7268,7 +7268,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/indoors/cave)
 "VX" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach)
 "VY" = (

@@ -27,6 +27,7 @@
 /mob/living/carbon/human/species/skeleton/npc/ambush
 
 	wander = TRUE
+	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/ambush
 
 /mob/living/carbon/human/species/skeleton/Initialize()
 	. = ..()
@@ -90,7 +91,7 @@
 	H.STAEND = 15
 	H.STAINT = 1
 
-	var/skeletonclass = rand(1,15)
+	var/skeletonclass = rand(1, 15)
 	if(skeletonclass < 4) // basic ass skele. Kinda sucks.
 		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
 		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
@@ -158,88 +159,33 @@
 		else
 			r_hand = /obj/item/rogueweapon/mace/goden/aalloy
 		return
-		
+
+/datum/outfit/job/roguetown/npc/skeleton/ambush/pre_equip(mob/living/carbon/human/H)
+	var/skeletonclass = rand(1, 5)
+	if(skeletonclass < 4) // basic ass skele. Kinda sucks.
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		if(prob(50))
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
+		else
+			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+		return
+	if(skeletonclass < 6) // Skeletal Pirate. Avast ye.
+		head =  /obj/item/clothing/head/roguetown/helmet/tricorn
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+		pants = /obj/item/clothing/under/roguetown/tights/sailor
+		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
+		if(prob(50))
+			r_hand = /obj/item/rogueweapon/huntingknife/idagger/adagger
+		else
+			r_hand = /obj/item/rogueweapon/knuckles/aknuckles
+		return
 
 /mob/living/carbon/human/species/skeleton/npc/no_equipment
     skel_outfit = null
 
 /mob/living/carbon/human/species/skeleton/no_equipment
     skel_outfit = null
-
-/mob/living/carbon/human/species/skeleton/npc/bogguard
-	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/npc/bogguard
-
-/datum/outfit/job/roguetown/npc/skeleton/npc/bogguard/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(prob(50))//WRIST
-		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	if(prob(10))//ARMOUR
-		armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
-	if(prob(50))//SHIRT
-		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
-		if(prob(15))
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-			if(prob(15))
-				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	if(prob(50))//PANTS
-		pants = /obj/item/clothing/under/roguetown/tights/vagrant
-		if(prob(25))
-			pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-			if(prob(25))
-				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-	if(prob(50))//HEAD
-		head = /obj/item/clothing/neck/roguetown/coif
-		if(prob(30))
-			head = /obj/item/clothing/head/roguetown/helmet/kettle
-	if(prob(50))
-		neck= /obj/item/clothing/neck/roguetown/chaincoif
-	if(prob(50))//CLOAK
-		cloak = /obj/item/clothing/cloak/stabard/bog
-	if(prob(45))//HANDS
-		r_hand = /obj/item/rogueweapon/sword
-		if(prob(45))
-			r_hand = /obj/item/rogueweapon/spear
-			if(prob(10))
-				r_hand = /obj/item/rogueweapon/mace
-	H.STASTR = rand(15,16)
-	H.STASPD = 8
-	H.STACON = 4
-	H.STAEND = 15
-	H.STAINT = 1
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
-
-/mob/living/carbon/human/species/skeleton/npc/bogguard/master
-	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/npc/bogguard/master
-
-/datum/outfit/job/roguetown/npc/skeleton/npc/bogguard/master/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	head = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull
-	gloves = /obj/item/clothing/gloves/roguetown/plate
-	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-	cloak = /obj/item/clothing/cloak/stabard/bog
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	belt = /obj/item/storage/belt/rogue/leather
-	r_hand = /obj/item/rogueweapon/halberd
-	H.STASTR = 18
-	H.STASPD = 10
-	H.STACON = 10
-	H.STAEND = 16
-	H.STAINT = 1
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	if(!H.mind)
-		return
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
