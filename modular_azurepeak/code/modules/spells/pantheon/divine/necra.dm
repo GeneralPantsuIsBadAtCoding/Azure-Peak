@@ -5,6 +5,7 @@
 /obj/effect/proc_holder/spell/invoked/avert
 	name = "Borrowed Time"
 	desc = "Shield your fellow man from the Undermaiden's gaze, preventing them from slipping into death for as long as your faith and fatigue may muster."
+	overlay_state = "borrowtime"
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	associated_skill = /datum/skill/magic/holy
 	miracle = TRUE
@@ -28,7 +29,7 @@
 		to_chat(user, span_warning("I must be beside [living_target] to avert Her gaze from [living_target.p_them()]!"))
 		revert_cast()
 		return FALSE
-	
+
 	// add the no-death trait to them....
 	user.visible_message(span_notice("Whispering motes gently bead from [user]'s fingers as [user.p_they()] place a hand near [living_target], scriptures of the Undermaiden spilling from their lips..."), span_notice("I stand beside [living_target] and utter the hallowed words of Aeon's Intercession, staying Her grasp for just a little while longer..."))
 	to_chat(user, span_small("I must remain still and at [living_target]'s side..."))
@@ -54,7 +55,7 @@
 		else
 			to_chat(span_warning("My devotion runs dry - the Intercession fades from my lips!"))
 			break
-	
+
 	REMOVE_TRAIT(living_target, TRAIT_NODEATH, "avert_spell")
 
 	user.visible_message(span_danger("[user]'s concentration breaks, the motes receding from [living_target] and into [user.p_their()] hand once more."), span_danger("My concentration breaks, and the Intercession falls silent."))
@@ -83,7 +84,7 @@
 	var/debuff_power = 1
 	if (user && user.mind)
 		debuff_power = clamp((user.mind.get_skill_level(/datum/skill/magic/holy) / 2), 1, 3)
-	
+
 	var/too_powerful = FALSE
 	var/list/things_to_churn = list()
 	var/list/things_to_stun = list()
@@ -105,7 +106,7 @@
 				break
 		if (L.mob_biotypes & MOB_UNDEAD || is_vampire || is_zombie)
 			things_to_churn += L
-	
+
 	if (!too_powerful)
 		if (LAZYLEN(things_to_churn))
 			user.visible_message(span_warning("A frigid blue glower suddenly erupts in [user]'s eyes as a whispered prayer summons forth a winding veil of ghostly mists!"), span_notice("I perform the sacred rite of Abrogation, bringing forth Her servants to harry and weaken the unliving!"))
@@ -147,7 +148,7 @@
 	if (caster)
 		debuffer = WEAKREF(caster)
 	return ..()
-	
+
 /datum/status_effect/churned/on_apply()
 	var/filter = owner.get_filter(CHURN_FILTER)
 	to_chat(owner, span_warning("Wisps leap from the cloying mists to surround me, their chill disrupting my body! FLEE!"))
@@ -194,7 +195,7 @@
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
 	invocation = "The Undermaiden Protects."
-	invocation_type = "shout" 
+	invocation_type = "shout"
 	miracle = TRUE
 	devotion_cost = 100
 
@@ -258,7 +259,7 @@
 	invocation_type = "whisper"
 	invocation = "Undermaiden guide my gaze..."
 	associated_skill = /datum/skill/magic/holy
-	overlay_state = "bigpsy"
+	overlay_state = "necraeye"
 	miracle = TRUE
 	devotion_cost = 30
 	range = 1
