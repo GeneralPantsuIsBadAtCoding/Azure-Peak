@@ -9,7 +9,8 @@
 	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	allowed_races = RACES_ALL_KINDS
 	allowed_ages = ALL_AGES_LIST
-
+	cmode_music = 'sound/music/cmode/towner/combat_towner3.ogg'
+	
 	outfit = /datum/outfit/job/roguetown/archivist
 	display_order = JDO_ARCHIVIST
 	give_bank_account = 15

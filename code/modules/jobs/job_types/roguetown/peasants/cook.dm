@@ -15,6 +15,7 @@
 	min_pq = -10
 	max_pq = null
 	round_contrib_points = 2
+	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 
 /datum/outfit/job/roguetown/cook/pre_equip(mob/living/carbon/human/H)
 	..()

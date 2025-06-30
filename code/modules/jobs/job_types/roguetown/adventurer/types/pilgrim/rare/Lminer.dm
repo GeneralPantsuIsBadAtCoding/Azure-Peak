@@ -9,7 +9,6 @@
 
 	maximum_possible_slots = 1
 	pickprob = 5
-
 	category_tags = list(CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/minermaster/pre_equip(mob/living/carbon/human/H)
