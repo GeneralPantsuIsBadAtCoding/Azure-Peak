@@ -10,6 +10,7 @@
 
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/simple_find_target/mimic,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/mimic,
 
 		/datum/ai_planning_subtree/find_dead_bodies/mimic,

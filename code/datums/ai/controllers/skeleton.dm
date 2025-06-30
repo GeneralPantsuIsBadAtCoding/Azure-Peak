@@ -11,6 +11,7 @@
 		/datum/ai_planning_subtree/being_a_minion,
 		/datum/ai_planning_subtree/target_retaliate,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/simple_find_target/closest,
 
 		
@@ -32,6 +33,7 @@
 		/datum/ai_planning_subtree/being_a_minion,
 		/datum/ai_planning_subtree/target_retaliate,
 		/datum/ai_planning_subtree/simple_find_target/closest,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/spacing/melee,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/spear,
 	)
@@ -61,6 +63,7 @@
 	planning_subtrees = list(
 
 		/datum/ai_planning_subtree/simple_find_target/closest,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/opportunistic/event_loc,
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target,
 	)
@@ -70,6 +73,7 @@
 	planning_subtrees = list(
 
 		/datum/ai_planning_subtree/simple_find_target/closest,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/opportunistic/event_loc,
 		/datum/ai_planning_subtree/travel_to_point/and_clear_target,
 		/datum/ai_planning_subtree/spacing/melee,
