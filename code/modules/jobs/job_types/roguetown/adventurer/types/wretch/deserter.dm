@@ -71,16 +71,16 @@
 					r_hand = /obj/item/rogueweapon/spear/lance
 					backl = /obj/item/rogueweapon/shield/tower/metal
 			var/helmets = list(
-				"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
-				"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
-				"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
-				"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 				"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-				"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 				"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
-				"Hounskull Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
-				"Etruscan Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
-				"Slitted Kettle"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
+				"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+				"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+				"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+				"Slitted Kettle"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
+				"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+				"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+				"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+				"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 				"None"
 			)
 			var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
