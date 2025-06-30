@@ -11,6 +11,7 @@
 	if(!cmode)	//We just toggled it off.
 		addtimer(CALLBACK(src, PROC_REF(purge_bait)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
+// Rclick override to allow for behaviour that is targetless. It's pretty snowflakey, but covers most bases.
 /mob/living/carbon/human/RightClickOn(atom/A, params)
 	if(rmb_intent && !rmb_intent.adjacency && !istype(A, /obj/item/clothing) && cmode && !istype(src, /mob/living/carbon/human/species/skeleton) && !istype(A, /obj/item/quiver) && !istype(A, /obj/item/storage))
 		var/held = get_active_held_item()
@@ -19,6 +20,7 @@
 			if(I.associated_skill)
 				rmb_intent.special_attack(src, A)
 	else
+		changeNext_move(CLICK_CD_RANGE, null, override = TRUE)
 		. = ..()
 
 /datum/rmb_intent/proc/special_attack(mob/living/user, atom/target)
