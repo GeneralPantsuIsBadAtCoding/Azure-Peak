@@ -74,6 +74,16 @@
 	icon_state = "cavetrollhead"
 	sellprice = 130
 
+/obj/item/natrual/head/minotaur
+	name = "minotaur head"
+	desc = "The head of a dangerous beast of Dendor's madness."
+	icon_state = "minotaurhead"
+	layer = 3.1
+	w_class = WEIGHT_CLASS_NORMAL // We want them to be placeable in headhook
+	grid_height = 96
+	grid_width = 96
+	sellprice = 100
+
 /obj/item/natural/head/dragon/
 	name = "dragon head"
 	desc = "The head of a dragon."

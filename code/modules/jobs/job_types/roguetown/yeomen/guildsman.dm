@@ -185,7 +185,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	beltl = /obj/item/rogueweapon/pick/steel
-	backr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+	backr = /obj/item/rogueweapon/stoneaxe/woodcut/steel/woodcutter
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
 						/obj/item/rogueweapon/hammer/steel = 1,

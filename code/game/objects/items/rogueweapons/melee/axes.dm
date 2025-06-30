@@ -245,7 +245,6 @@
 	icon_state = "chatchet"
 	smeltresult = /obj/item/ingot/copper
 
-
 /obj/item/rogueweapon/stoneaxe/handaxe
 	force = 19
 	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
@@ -274,6 +273,27 @@
 	icon_state = "ahandaxe"
 	smeltresult = /obj/item/ingot/aaslag
 
+/datum/intent/axe/cut/long
+	reach = 2
+
+/datum/intent/axe/chop/long
+	reach = 2
+
+/obj/item/rogueweapon/stoneaxe/woodcut/steel/woodcutter
+	name = "woodcutter's axe"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "woodcutter"
+	desc = "A long-handled axe with a carved grip, made of high quality wood. Perfect for those in the lumber trade."
+	max_integrity = 300		//100 higher than normal; basically it's main difference.
+	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/axe/bash, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/axe/cut/long, /datum/intent/axe/chop/long, /datum/intent/axe/bash, /datum/intent/sword/peel)
+	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_BULKY
+	demolition_mod = 1.5			//Base is 1.25, so 25% extra. Helps w/ caprentry and building kinda.
+	slot_flags = ITEM_SLOT_BACK		//Needs to go on back.
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	
 /obj/item/rogueweapon/stoneaxe/woodcut/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -412,7 +432,6 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
 
-
 /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 	name = "vicious greataxe"
 	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
@@ -429,3 +448,27 @@
 		user.IgniteMob()
 		user.Stun(40)
 	..()
+
+////////////////////////////////////////
+// Unique loot axes; mostly from mobs //
+////////////////////////////////////////
+
+/obj/item/rogueweapon/greataxe/steel/doublehead/minotaur
+	name = "minotaur greataxe"
+	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
+	icon_state = "minotaurgreataxe"
+	blade_dulling = DULLING_SHAFT_WOOD	//Suffer & go upgrade it
+	force = 20							//Same as Graggar axe, only cus it's rare enough. Plus has the high strength req and crap starting-shaft.
+	force_wielded = 40
+	minstr = 15							//Boo-womp
+
+/obj/item/rogueweapon/stoneaxe/woodcut/troll
+	name = "crude heavy axe"
+	desc = "An axe clearly made for some large crecher. Though crude in design, it appears to have a fair amount of weight to it.."
+	icon_state = "trollaxe"
+	force = 25
+	force_wielded = 30					//Basically a slight better steel cutting axe.
+	max_integrity = 150					//50% less than normal axe
+	max_blade_int = 300
+	minstr = 13							//Heavy, but still good.
+	wdefense = 3						//Slightly better than norm, has 6 defense 2 handing it.
