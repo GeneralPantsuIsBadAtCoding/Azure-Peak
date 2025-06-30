@@ -150,10 +150,19 @@
 
 /obj/item/grabbing/attack(mob/living/M, mob/living/user)
 	if(M != grabbed)
-		return FALSE
+		if(!istype(limb_grabbed, /obj/item/bodypart/head))
+			return FALSE
+		if(M != user)
+			return FALSE
+		if(!user.cmode)
+			return FALSE
+		user.changeNext_move(CLICK_CD_RESIST)
+		headbutt(user)
+		return
 	if(!valid_check())
 		return FALSE
 	user.changeNext_move(CLICK_CD_MELEE * 2 - user.STASPD) // 24 - the user's speed
+
 	var/skill_diff = 0
 	var/combat_modifier = 1
 	if(user.mind)
@@ -326,6 +335,30 @@
 					span_userdanger("My prosthetic [parse_zone(sublimb_grabbed)] was twisted off of me![C.next_attack_msg.Join()]"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_warning("I twisted [C]'s prosthetic [parse_zone(sublimb_grabbed)] off.[C.next_attack_msg.Join()]"))
 		limb_grabbed.drop_limb(TRUE)
+
+/obj/item/grabbing/proc/headbutt(mob/living/carbon/human/H)
+	var/mob/living/carbon/C = grabbed
+	var/obj/item/bodypart/Chead = C.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/Hhead = H.get_bodypart(BODY_ZONE_HEAD)
+	var/armor_block = C.run_armor_check(Chead, "blunt")
+	var/armor_block_user = H.run_armor_check(Hhead, "blunt")
+	var/damage = H.get_punch_dmg()
+	C.next_attack_msg.Cut()
+	playsound(C.loc, "genblunt", 100, FALSE, -1)
+	C.apply_damage(damage*1.5, , Chead, armor_block)
+	Chead.bodypart_attacked_by(BCLASS_SMASH, damage*1.5, H, crit_message=TRUE)
+	H.apply_damage(damage, BRUTE, Hhead, armor_block_user)
+	Hhead.bodypart_attacked_by(BCLASS_SMASH, damage/1.2, H, crit_message=TRUE)
+	C.stop_pulling(TRUE)
+	C.Immobilize(10)
+	C.OffBalance(10)
+	H.Immobilize(5)
+
+	C.visible_message("<span class='danger'>[H] headbutts [C]'s [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", \
+					"<span class='userdanger'>[H] headbutts my [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", "<span class='hear'>I hear a sickening sound of pugilism!</span>", COMBAT_MESSAGE_RANGE, H)
+	to_chat(H, "<span class='warning'>I headbutt [C]'s [parse_zone(sublimb_grabbed)].[C.next_attack_msg.Join()]</span>")
+	C.next_attack_msg.Cut()
+	log_combat(H, C, "headbutted ")
 
 /obj/item/grabbing/proc/twistitemlimb(mob/living/user) //implies limb_grabbed and sublimb are things
 	var/mob/living/M = grabbed
