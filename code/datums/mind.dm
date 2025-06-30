@@ -54,6 +54,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/holdtext = "Hold!!"
 	var/onfeettext = "On your feet!!"
 	var/focustargettext = "Focus target!!"
+	var/retreattext = "Fall back!!"
+	var/bolstertext = "Hold the line!!"
+	var/brotherhoodtext = "Stand proud, for the Brotherhood!!"
+	var/chargetext = "Chaaaaaarge!!"
 
 	var/linglink
 	var/datum/martial_art/martial_art
