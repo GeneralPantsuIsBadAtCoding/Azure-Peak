@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(biggates)
 		return
 	if(isliving(user))
 		var/mob/living/L = user
-		L.changeNext_move(CLICK_CD_MELEE)
+		L.changeNext_move(CLICK_CD_INTENTCAP)
 		var/used_time = 105 - (L.STASTR * 10)
 		user.visible_message(span_warning("[user] cranks the winch."))
 		playsound(src, 'sound/foley/winch.ogg', 100, extrarange = 3)

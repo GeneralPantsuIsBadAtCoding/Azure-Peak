@@ -249,7 +249,7 @@
 		return
 	if(brokenstate)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	if(HAS_TRAIT(user, TRAIT_BASHDOORS))
 		src.take_damage(15)
 		return

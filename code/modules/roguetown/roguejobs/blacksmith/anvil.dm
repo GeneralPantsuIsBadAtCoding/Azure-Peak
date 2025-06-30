@@ -69,7 +69,7 @@
 			return
 
 	if(istype(W, /obj/item/rogueweapon/hammer))
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_FAST)
 		if(!hingot)
 			return
 		if(!hingot.currecipe)

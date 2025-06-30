@@ -88,7 +88,7 @@
 //	to_chat(brainmob, "<span class='notice'>I feel slightly disoriented. That's normal when you're just a brain.</span>")
 
 /obj/item/organ/brain/attackby(obj/item/O, mob/user, params)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 
 	if((organ_flags & ORGAN_FAILING) && O.is_drainable()) //attempt to heal the brain
 		. = TRUE //don't do attack animation.

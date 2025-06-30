@@ -427,7 +427,7 @@
 	return newforce
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/newforce = (get_complex_damage(I, user, blade_dulling) * I.demolition_mod)
 	if(!newforce)
 		testing("dam33")
@@ -463,7 +463,7 @@
 		return 0
 	if(user.used_intent.no_attack)
 		return 0
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	log_combat(user, src, "attacked", I)
 	var/verbu = "hits"
 	verbu = pick(user.used_intent.attack_verb)

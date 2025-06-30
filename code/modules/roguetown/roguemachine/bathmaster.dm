@@ -134,7 +134,7 @@
 	if(locked)
 		to_chat(user, span_warning("It's locked. Of course."))
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_FAST)
 	playsound(loc, 'sound/misc/gold_menu.ogg', 100, FALSE, -1)
 	var/canread = user.can_read(src, TRUE)
 	var/contents

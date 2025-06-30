@@ -87,7 +87,7 @@
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	if(dead)
 		..()
 	else

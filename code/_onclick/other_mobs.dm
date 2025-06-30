@@ -116,7 +116,7 @@
 		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_RAPID)
 		ongive(user, params)
 
 /turf/attack_right(mob/user, params)
@@ -126,7 +126,7 @@
 		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_RAPID)
 
 /atom/proc/ongive(mob/user, params)
 	return

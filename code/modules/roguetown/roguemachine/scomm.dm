@@ -72,7 +72,7 @@
 	. = ..()
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(called_by && !calling)
 		calling = called_by
@@ -92,7 +92,7 @@
 /obj/structure/roguemachine/scomm/attack_right(mob/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(called_by && !calling)
 		called_by.say("Jabberline refused.", spans = list("info"))
@@ -129,7 +129,7 @@
 			playsound(loc, 'sound/misc/garrisonscom.ogg', 100, FALSE, -1)
 			update_icon()
 			return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(calling)
 		calling.say("Jabberline severed.", spans = list("info"))
@@ -341,7 +341,7 @@
 	grid_height = 32
 //wip
 /obj/item/scomstone/attack_right(mob/living/carbon/human/user)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(!input_text)
 		return
@@ -362,7 +362,7 @@
 /obj/item/scomstone/MiddleClick(mob/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	listening = !listening
 	speaking = !speaking
@@ -441,7 +441,7 @@
 /obj/item/listenstone/MiddleClick(mob/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	listening = !listening
 	speaking = !speaking
@@ -528,7 +528,7 @@
 	. = ..()
 
 /obj/item/mattcoin/attack_right(mob/living/carbon/human/user)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(input_text)
 		var/usedcolor = user.voice_color
@@ -543,7 +543,7 @@
 /obj/item/mattcoin/MiddleClick(mob/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
 	listening = !listening
 	speaking = !speaking
@@ -647,7 +647,7 @@
 /obj/item/speakerinq/MiddleClick(mob/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	speaking = !speaking
 	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the listener."))
@@ -727,7 +727,7 @@
 	sellprice = 100
 
 /obj/item/scomstone/garrison/attack_right(mob/living/carbon/human/user)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(!input_text)
 		return
@@ -759,7 +759,7 @@
 /obj/item/scomstone/garrison/attack_self(mob/living/user)
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	garrisonline = !garrisonline
 	to_chat(user, span_info("I [garrisonline ? "connect to the garrison SCOMline" : "connect to the general SCOMline"]"))

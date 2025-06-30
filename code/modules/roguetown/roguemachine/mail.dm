@@ -37,7 +37,7 @@
 	. = ..()
 	if(.)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	if(!coin_loaded)
 		to_chat(user, span_warning("The machine doesn't respond. It needs a coin."))
 		return

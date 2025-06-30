@@ -32,7 +32,7 @@
 		to_chat(user, span_warning("Picked clean; but looks healthy. I should try again later."))
 	if(isliving(user))
 		var/mob/living/L = user
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_INTENTCAP)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
 		if(do_after(L, rand(3,5), src))
 			if(!looty.len)

@@ -22,7 +22,7 @@
 /obj/item/roguemachine/navigator/attack_hand(mob/living/user)
 	if(!anchored)
 		return ..()
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 
 	var/contents
 

@@ -34,7 +34,7 @@
 		)
 
 /obj/item/grown/log/tree/attacked_by(obj/item/I, mob/living/user) //This serves to reward woodcutting
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/skill_level = user.mind.get_skill_level(/datum/skill/labor/lumberjacking)
 	var/planking_time = (40 - (skill_level * 5))
 	if(lumber_amount && I.tool_behaviour == TOOL_SAW)
@@ -143,7 +143,7 @@
 /obj/item/grown/log/tree/small/attackby(obj/item/I, mob/living/user, params)
 	if(item_flags & IN_STORAGE)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/skill_level = user.mind.get_skill_level(/datum/skill/craft/carpentry)
 	var/planking_time = (45 - (skill_level * 5))
 	if(I.tool_behaviour == TOOL_SAW)
@@ -298,7 +298,7 @@
 
 
 /obj/item/grown/log/tree/stick/attackby(obj/item/I, mob/living/user, params)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	if(user.used_intent?.blade_class == BCLASS_CUT)
 		playsound(get_turf(src.loc), 'sound/items/wood_sharpen.ogg', 100)
 		user.visible_message(span_notice("[user] starts sharpening [src]."))

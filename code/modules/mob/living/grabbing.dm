@@ -217,7 +217,7 @@
 						to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
 					else
 						to_chat(user, span_warning("I can't reach [C]'s throat!"))
-					user.changeNext_move(CLICK_CD_MELEE)	//Stops spam for choking.
+					user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.
 		if(/datum/intent/grab/hostage)
 			if(user.buckled)
 				to_chat(user, span_warning("I can't do this while buckled!"))
@@ -375,7 +375,7 @@
 /obj/item/grabbing/attack_turf(turf/T, mob/living/user)
 	if(!valid_check())
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_GRABBING)
 	switch(user.used_intent.type)
 		if(/datum/intent/grab/move)
 			if(isturf(T))
@@ -407,7 +407,7 @@
 /obj/item/grabbing/attack_obj(obj/O, mob/living/user)
 	if(!valid_check())
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_GRABBING)
 	if(user.used_intent.type == /datum/intent/grab/smash)
 		if(isstructure(O) && O.blade_dulling != DULLING_CUT)
 			if(!(user.mobility_flags & MOBILITY_STAND))
@@ -534,7 +534,7 @@
 		to_chat(user, span_warning("My mouth has something in it."))
 		return FALSE*/
 
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_GRABBING)
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(sublimb_grabbed, d_type)
 	var/damage = user.get_punch_dmg()
@@ -614,7 +614,7 @@
 			to_chat(user, span_userdanger("SILVER! HISSS!!!"))
 			return
 	last_drink = world.time
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_GRABBING)
 
 	if(user.mind && C.mind)
 		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)

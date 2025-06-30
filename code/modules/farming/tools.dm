@@ -205,7 +205,7 @@
 		if(user.mind.get_skill_level(/datum/skill/labor/farming) == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
 			work_time = 0.5 SECONDS //if legendary skill, do_afters take half a second instead of 3
 
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_INTENTCAP)
 		if(istype(T, /turf/open/floor/rogue/snow) || istype(T, /turf/open/floor/rogue/snowrough) || istype(T, /turf/open/floor/rogue/snowpatchy))
 			playsound(T,'sound/items/dig_shovel.ogg', 100, TRUE)
 			if (do_after(user, work_time, target = src))

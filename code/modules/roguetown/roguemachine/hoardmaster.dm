@@ -80,7 +80,7 @@
 		return
 	if(!ishuman(user))
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/contents
 	contents = "<center>Wishes for the Free<BR>"
 	contents += "<a href='?src=[REF(src)];change=1'>Your favor:</a> [B.favor]<BR>"

@@ -302,7 +302,7 @@
 					if(cmode)
 						resolveAdjacentClick(T,W,params,used_hand) //hit the turf
 					if(!used_intent.noaa)
-						changeNext_move(CLICK_CD_MELEE)
+						changeNext_move(CLICK_CD_RAPID)
 						if(get_dist(get_turf(src), T) <= used_intent.reach)
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 						if(W)
@@ -814,7 +814,7 @@
 			rmb_on(A, params)
 	else if(used_intent.rmb_ranged)
 		used_intent.rmb_ranged(A, src) //get the message from the intent
-	changeNext_move(CLICK_CD_MELEE)
+	changeNext_move(CLICK_CD_RAPID)
 	if(isturf(A.loc))
 		face_atom(A)
 

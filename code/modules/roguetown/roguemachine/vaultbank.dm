@@ -283,7 +283,7 @@
 
 	..()
 
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	if (!og_treasury)
 		og_treasury = SStreasury.treasury_value
 	var/puke_chance = (I.force > 25) ? 75 : 25
