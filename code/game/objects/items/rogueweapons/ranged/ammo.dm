@@ -668,6 +668,7 @@
 	damage = 25
 	damage_type = BRUTE
 	armor_penetration = 0
+	npc_damage_mult = 2
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	range = 15
