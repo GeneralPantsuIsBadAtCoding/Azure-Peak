@@ -1324,6 +1324,9 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32
+	},
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town/bath)
 "avR" = (
@@ -14285,6 +14288,7 @@
 /obj/machinery/light/rogue/oven/south,
 /obj/machinery/light/rogue/hearth,
 /obj/item/cooking/pan,
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "ePP" = (
@@ -17160,6 +17164,8 @@
 "fKO" = (
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/item/rogueweapon/whip,
+/obj/item/storage/roguebag,
+/obj/item/storage/roguebag,
 /turf/open/floor/rogue/tile/harem2,
 /area/rogue/indoors/town/bath)
 "fKS" = (
@@ -40665,6 +40671,15 @@
 /obj/item/grown/log/tree/stick,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains)
+"nxO" = (
+/obj/structure/roguemachine/atm{
+	location_tag = "Bathhouse Lobby";
+	mammonsiphoned = 250;
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/indoors/town/bath)
 "nxV" = (
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak,
@@ -45570,7 +45585,7 @@
 /area/rogue/indoors/town)
 "pgj" = (
 /obj/structure/roguemachine/atm{
-	location_tag = "the Bathhouse";
+	location_tag = "Bathhouse External";
 	mammonsiphoned = 250;
 	pixel_x = 32;
 	pixel_y = 0
@@ -142031,7 +142046,7 @@ klq
 ldV
 wtO
 wtO
-wtO
+nxO
 iuA
 uIl
 uIl
