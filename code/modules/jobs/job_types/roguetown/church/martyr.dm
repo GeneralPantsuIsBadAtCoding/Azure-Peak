@@ -357,7 +357,7 @@
 			user.playsound_local(user, 'sound/misc/martyrcharge.ogg', 100, FALSE)
 		if(STATE_MARTYRULT)
 			user.playsound_local(user, 'sound/misc/martyrultcharge.ogg', 100, FALSE)
-	if(do_after(user, 50))
+	if(do_after(user, 0.5 SECONDS))
 		flash_lightning(user)
 		var/obj/item/I = parent
 		I.damtype = BURN	//Changes weapon damage type to fire
