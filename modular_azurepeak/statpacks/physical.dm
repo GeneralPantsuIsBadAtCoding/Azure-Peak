@@ -8,7 +8,7 @@
 /datum/statpack/physical/muscular
 	name = "Muscular"
 	desc = "Hard labor has honed you into a mass of sinew - a valuable trait in a world where might makes right."
-	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 1, STAT_INTELLIGENCE = -2, STAT_SPEED = -2)
+	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 1, STAT_INTELLIGENCE = 1, STAT_SPEED = -2)
 
 /datum/statpack/physical/tactician
 	name = "Alert"

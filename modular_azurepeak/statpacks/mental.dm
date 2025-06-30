@@ -7,7 +7,7 @@
 /datum/statpack/mental/faithdriven
 	name = "Resolute"
 	desc = "Look ever to the Gods for guidance in these trying times - and so you have, to the exclusion of the world around you."
-	stat_array = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -2)
+	stat_array = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -1, STAT_FORTUNE = -1)
 
 /datum/statpack/mental/zealous
 	name = "Zealous"

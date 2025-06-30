@@ -7,12 +7,12 @@
 /datum/statpack/agile/hardy
 	name = "Hardy"
 	desc = "Uniquely Pestran fortitude affords you the means to shrug off illnesses and poisons that others might not."
-	stat_array = list(STAT_CONSTITUTION = 2, STAT_ENDURANCE = 1, STAT_STRENGTH = -1, STAT_SPEED = -1)
+	stat_array = list(STAT_CONSTITUTION = 3, STAT_ENDURANCE = 3, STAT_STRENGTH = -2, STAT_SPEED = -2)
 
 /datum/statpack/agile/tricky
 	name = "Tricky"
-	desc = "Swift feet with a mind to match and a tiny sliver of the Ten's own luck... or not."
-	stat_array = list(STAT_PERCEPTION = 1, STAT_INTELLIGENCE = 1, STAT_SPEED = 1, STAT_FORTUNE = 1,STAT_ENDURANCE = -1, STAT_STRENGTH = -1)
+	desc = "Swift feet with a mind to match and a tiny sliver of the Ten's own luck."
+	stat_array = list(STAT_PERCEPTION = 1, STAT_INTELLIGENCE = 1, STAT_SPEED = 1, STAT_FORTUNE = 1, STAT_ENDURANCE = -1, STAT_STRENGTH = -1)
 
 /datum/statpack/agile/thug
 	name = "Thuggish"
@@ -22,7 +22,7 @@
 /datum/statpack/agile/wary
 	name = "Wary"
 	desc = "Eyes forward, ever and always. A careful course has always seen you through... so far."
-	stat_array = list(STAT_PERCEPTION = 1, STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1, STAT_STRENGTH = -1, STAT_SPEED = -1)
+	stat_array = list(STAT_PERCEPTION = 3, STAT_INTELLIGENCE = 3, STAT_STRENGTH = -2, STAT_CONSTITUTION = -2)
 
 /datum/statpack/agile/dextrous
 	name = "Dextrous"
