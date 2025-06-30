@@ -592,6 +592,13 @@
 	created_item = /obj/item/rogueweapon/spear/partizan
 	craftdiff = 4
 
+/datum/anvil_recipe/weapons/steel/naginata
+	name = "Naginata (+1 Big Log)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/grown/log/tree/) //looong spear
+	created_item = /obj/item/rogueweapon/spear/naginata
+	craftdiff = 4
+
 /datum/anvil_recipe/weapons/steel/boarspear
 	name = "Boar Spear (+1 Steel, +1 Small Log)"
 	req_bar = /obj/item/ingot/steel

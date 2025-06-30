@@ -8,7 +8,7 @@
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	classes = list("Roughneck" = "You are a foreign swordsman, carrying nothing but your sword and its scabbard.",
-					"Custodian"= "You are an ex-guardian, whenever that be a petty noble, or a small shrine. You excel in defense with quarterstaffs.",)
+					"Custodian"= "You are an ex-guardian, whenever that be a petty noble, or a small shrine. You excel in defense with quarterstaffs, or have taken up the Naginata's offensive martial capabilities.",)
 
 /datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -48,7 +48,7 @@
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
 		if("Custodian")
-			to_chat(H, span_warning("You are an ex-guardian, whenever that be for a petty noble, or a small shrine. You excel in defense with quarterstaffs."))
+			to_chat(H, span_warning("You are an ex-guardian, whenever that be for a petty noble, or a small shrine. You excel in defense with quarterstaffs, or have taken up the Naginata's offensive martial capabilities."))
 			head = /obj/item/clothing/head/roguetown/mentorhat
 			gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
 			pants = /obj/item/clothing/under/roguetown/trou/eastpants1
@@ -58,7 +58,6 @@
 			belt = /obj/item/storage/belt/rogue/leather/
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			backl = /obj/item/storage/backpack/rogue/satchel
-			backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)		
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
@@ -68,10 +67,17 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 			backpack_contents = list(/obj/item/recipe_book/survival = 1)
-			H.change_stat("strength", 3) //exception to the weight guideline - quarterstaffs suck ASS!!!!
+			H.set_blindness(0)
+			var/weapons = list("Naginata","Quarterstaff")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if ("Naginata")
+					r_hand = /obj/item/rogueweapon/spear/naginata
+				if("Quarterstaff")
+					backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
+			H.change_stat("strength", 2) // Took off the weight and moved it to qstaff
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 2)
-			H.set_blindness(0)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
 	H.grant_language(/datum/language/kazengunese)

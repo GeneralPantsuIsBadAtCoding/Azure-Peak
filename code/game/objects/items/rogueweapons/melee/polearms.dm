@@ -63,6 +63,10 @@
 	icon_state = "inuse"
 	no_attack = TRUE
 
+/datum/intent/spear/cut/naginata
+	damfactor = 1.2
+	chargetime = 0
+
 /datum/intent/sword/cut/zwei
 	reach = 2
 
@@ -150,6 +154,8 @@
 	item_d_type = "slash"
 	peel_divisor = 4
 	reach = 2
+
+
 
 /datum/intent/spear/bash/ranged/quarterstaff
 	damfactor = 1
@@ -1065,3 +1071,28 @@
 	gripped_intents = list(/datum/intent/spear/thrust/lance, /datum/intent/lance, SPEAR_BASH)
 	resistance_flags = null
 	blade_dulling = DULLING_SHAFT_REINFORCED
+
+/obj/item/rogueweapon/spear/naginata
+	name = "Naginata"
+	desc = "A traditional Kazengunese polearm, combining the reach of a spear with the cutting power of a curved blade. Due to the brittle quality of Kazengunese bladesmithing, weaponsmiths have adapted its blade to be easily replaceable when broken by a peg upon the end of the shaft."
+	force = 16
+	force_wielded = 30
+	possible_item_intents = list(/datum/intent/spear/cut/naginata, SPEAR_BASH) // no stab for you little chuddy, it's a slashing weapon
+	gripped_intents = list(/datum/intent/rend/reach, /datum/intent/spear/cut/naginata, PARTIZAN_PEEL, SPEAR_BASH)
+	icon_state = "naginata"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	minstr = 7
+	max_blade_int = 50 //Nippon suteeru (dogshit)
+	wdefense = 5
+	throwforce = 12	//Not a throwing weapon. 
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	icon_angle_wielded = 50
+
+/obj/item/rogueweapon/spear/naginata/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
