@@ -252,7 +252,6 @@
 #include "code\_onclick\hud\clickdelay.dm"
 #include "code\_onclick\hud\constructs.dm"
 #include "code\_onclick\hud\credits.dm"
-#include "code\_onclick\hud\devil.dm"
 #include "code\_onclick\hud\fullscreen.dm"
 #include "code\_onclick\hud\generic_dextrous.dm"
 #include "code\_onclick\hud\ghost.dm"

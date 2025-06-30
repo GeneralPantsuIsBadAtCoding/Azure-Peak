@@ -138,7 +138,6 @@
 		if (old_has_opaque_atom != T.has_opaque_atom)
 			T.reconsider_lights()
 
-
 /atom/movable/Moved(atom/OldLoc, Dir)
 	. = ..()
 	var/datum/light_source/L
