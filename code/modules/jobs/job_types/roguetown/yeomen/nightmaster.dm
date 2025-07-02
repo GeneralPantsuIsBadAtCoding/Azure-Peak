@@ -7,6 +7,7 @@
 	spawn_positions = 1
 	f_title = "Bathmatron"
 	allowed_races = RACES_ALL_KINDS
+	cmode_music = 'combat_bathmatron.ogg'
 	tutorial = "You are renting out the bathhouse in a joint operation with the Innkeep. You provide security for the bathwenches and help them to find work--when you're not being a trouble-making rake that others suffer to tolerate."
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/niteman
@@ -53,6 +54,9 @@
 		H.change_stat("intelligence", -1)
 		H.change_stat("constitution", 1)
 		H.change_stat("endurance", 2)
+		switch(H.patron?.type)
+			if(/datum/patron/inhumen/baotha)
+				H.cmode_music = 'sound/music/combat_baotha.ogg'
 
 	if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
