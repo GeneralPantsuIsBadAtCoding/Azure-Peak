@@ -13,6 +13,7 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	
+
 /datum/outfit/job/roguetown/adventurer/mastercarpenter/pre_equip(mob/living/carbon/human/H)
 	..()
 	

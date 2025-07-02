@@ -33,7 +33,7 @@
 	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 4, TRUE)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
-	H.cmode_music = 'sound/music/combat_cult.ogg'
+	H.cmode_music = 'sound/music/combat_heretic.ogg'
 	if(H.age == AGE_OLD)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.mind.adjust_spellpoints(6)

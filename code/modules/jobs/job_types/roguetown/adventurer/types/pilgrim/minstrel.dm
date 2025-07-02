@@ -4,6 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/minstrel
+	
 	category_tags = list(CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/minstrel/pre_equip(mob/living/carbon/human/H)

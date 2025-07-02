@@ -21,7 +21,7 @@
 	advjob_examine = TRUE
 	always_show_on_latechoices = TRUE
 	same_job_respawn_delay = 0
-	cmode_music = 'sound/music/combat_towner.ogg'
+	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
 
 /datum/job/roguetown/villager/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

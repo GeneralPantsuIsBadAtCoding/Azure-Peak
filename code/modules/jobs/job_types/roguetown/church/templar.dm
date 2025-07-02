@@ -90,6 +90,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	if(H.mind)
+		H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
@@ -103,6 +104,7 @@
 		// -- Start of section for god specific bonuses --
 		if(H.patron?.type == /datum/patron/divine/astrata)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 		if(H.patron?.type == /datum/patron/divine/dendor)
 			H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
@@ -116,6 +118,7 @@
 		if(H.patron?.type == /datum/patron/divine/necra)
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
 		if(H.patron?.type == /datum/patron/divine/pestra)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
@@ -123,6 +126,7 @@
 		if(H.patron?.type == /datum/patron/divine/eora)
 			ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
 		if(H.patron?.type == /datum/patron/divine/malum)
 			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
@@ -143,7 +147,6 @@
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 2)
 		H.change_stat("speed", 2)
-		H.cmode_music = 'sound/music/combat_holy.ogg'
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
@@ -172,7 +175,6 @@
 	name = "Templar"
 	tutorial = "You are a templar of the Church, trained in heavy weaponry and zealous warfare. You are the instrument of your God's wrath, clad in steel and faith."
 	outfit = /datum/outfit/job/roguetown/templar/crusader
-
 	category_tags = list(CTAG_TEMPLAR)
 
 /datum/outfit/job/roguetown/templar/crusader/pre_equip(mob/living/carbon/human/H)
@@ -180,6 +182,7 @@
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
+	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg' // this is probably awful. too bad!
 	switch(H.patron?.type)
 		if(/datum/patron/divine/astrata)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
@@ -252,6 +255,7 @@
 		// -- Start of section for god specific bonuses --
 		if(H.patron?.type == /datum/patron/divine/astrata)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 		if(H.patron?.type == /datum/patron/divine/dendor)
 			H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
@@ -263,6 +267,7 @@
 			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/necra)
+			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/pestra)
@@ -270,6 +275,7 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/eora)
+			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
 			ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/malum)
@@ -290,7 +296,6 @@
 		H.change_stat("strength", 2)
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 3)
-		H.cmode_music = 'sound/music/combat_holy.ogg'
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

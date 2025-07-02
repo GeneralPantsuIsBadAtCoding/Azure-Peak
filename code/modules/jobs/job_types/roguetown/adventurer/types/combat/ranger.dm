@@ -52,6 +52,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			var/weapons = list("Recurve Bow","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -96,6 +97,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander.ogg'
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 2)
 			H.change_stat("endurance", 1)
@@ -126,6 +128,7 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.change_stat("constitution", 1)
 			H.change_stat("strength", 2)
@@ -144,7 +147,6 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut // Technical main weapon?
 			backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern = 1)
-			H.cmode_music = 'sound/music/combat_condottiero.ogg'
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE) // Base skill, if not wanted, pick another weapon.
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
@@ -159,6 +161,7 @@
 			H.mind.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // Won't really equate to much.
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			var/weapons = list("Recurve Bow","Billhook","Sling","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
