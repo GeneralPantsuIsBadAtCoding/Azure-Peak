@@ -33,7 +33,7 @@
 			head = /obj/item/clothing/head/roguetown/fedora
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -58,6 +58,7 @@
 				if("Sabre")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 					beltr = /obj/item/rogueweapon/sword/sabre
+					r_hand = /obj/item/scabbard/sword
 				if("Whip")
 					H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/whip
@@ -82,7 +83,7 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			beltl = /obj/item/quiver/Warrows
 			beltr = /obj/item/rogueweapon/mace/cudgel
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/lockpickring/mundane = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/lockpickring/mundane = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 			H.cmode_music = 'sound/music/combat_rogue.ogg'
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -133,7 +134,7 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/vest
 			backl = /obj/item/storage/backpack/rogue/satchel
 			cloak = /obj/item/clothing/cloak/half/red
-			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
@@ -175,7 +176,8 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			beltr = /obj/item/rogueweapon/sword/cutlass
-			backpack_contents = list(/obj/item/bomb = 1, /obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1)
+			r_hand = /obj/item/scabbard/sword
+			backpack_contents = list(/obj/item/bomb = 1, /obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 			H.cmode_music = 'sound/music/jukeboxes/oldschool/Sea_Shanty2.ogg'
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)

@@ -31,7 +31,8 @@
 	switch(weapon_choice)
 		if("Longsword")
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			beltr = /obj/item/rogueweapon/sword/long
+			beltr = /obj/item/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/long
 		if("Mace")
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			beltr = /obj/item/rogueweapon/mace/steel
@@ -63,7 +64,7 @@
 	backr = /obj/item/rogueweapon/shield/tower/metal
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/inhumen
-	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/ritechalk = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
+	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/ritechalk = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1, /obj/item/scabbard/sheath = 1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR)	//Minor regen, can level up to T4.
 	wretch_select_bounty(H)

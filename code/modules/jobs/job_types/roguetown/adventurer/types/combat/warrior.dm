@@ -44,6 +44,7 @@
 				if("Longsword")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					backr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/scabbard/sword
 				if("Mace")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 					beltr = /obj/item/rogueweapon/mace
@@ -58,7 +59,8 @@
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 					backr = /obj/item/rogueweapon/shield/iron
-					beltr = /obj/item/rogueweapon/sword/iron/short
+					l_hand = /obj/item/rogueweapon/sword/iron/short
+					beltl = /obj/item/scabbard/sword
 			var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet")
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 			switch(armor_choice)
@@ -85,7 +87,7 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 
 		if("Duelist")
 			to_chat(H, span_warning("You are an esteemed swordsman who foregoes armor in exchange for a more nimble fighting style."))
@@ -107,10 +109,12 @@
 			switch(weapon_choice)
 				if("Rapier")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-					beltr = /obj/item/rogueweapon/sword/rapier
+					l_hand = /obj/item/rogueweapon/sword/rapier
+					beltl = /obj/item/scabbard/sword
 				if("Dagger")
 					H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
+					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+					beltr = /obj/item/scabbard/sheath
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("intelligence", 2)
@@ -129,7 +133,7 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/buckler
 			belt = /obj/item/storage/belt/rogue/leather
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1, /obj/item/scabbard/sheath = 1)
 
 		if("Barbarian")
 			to_chat(H, span_warning("You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."))
@@ -158,7 +162,8 @@
 					beltr = /obj/item/rogueweapon/stoneaxe/boneaxe
 				if("Sword")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltr = /obj/item/rogueweapon/sword/short
+					r_hand = /obj/item/rogueweapon/sword/short
+					beltr = /obj/item/scabbard/sheath
 				if("Club")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr = /obj/item/rogueweapon/mace/woodclub
@@ -214,7 +219,8 @@
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("intelligence", 1)
-			beltr = /obj/item/rogueweapon/sword/silver
+			beltr = /obj/item/scabbard/sheath
+			r_hand = /obj/item/rogueweapon/sword/silver
 			backr = /obj/item/rogueweapon/sword
 			backl = /obj/item/storage/backpack/rogue/satchel/black
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver

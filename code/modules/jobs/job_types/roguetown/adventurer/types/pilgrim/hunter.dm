@@ -18,7 +18,8 @@
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/quiver/arrows
-	beltl = /obj/item/rogueweapon/sword/iron/messer
+	beltl = /obj/item/scabbard/sword
+	l_hand = /obj/item/rogueweapon/sword/iron/messer
 	backpack_contents = list(
 						/obj/item/flint = 1,
 						/obj/item/bait = 1,
@@ -27,6 +28,7 @@
 						/obj/item/flashlight/flare/torch/lantern = 1,
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/recipe_book/leatherworking = 1,
+						/obj/item/scabbard/sheath = 1
 						)
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)

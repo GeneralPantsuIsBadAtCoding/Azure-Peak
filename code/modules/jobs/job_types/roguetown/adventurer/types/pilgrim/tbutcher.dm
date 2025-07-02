@@ -30,7 +30,8 @@
 						/obj/item/reagent_containers/food/snacks/rogue/truffles,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/recipe_book/survival = 1,
-						/obj/item/reagent_containers/food/snacks/fat = 2 // make sausages :)
+						/obj/item/reagent_containers/food/snacks/fat = 2, // make sausages :)
+						/obj/item/scabbard/sheath = 1
 						)
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random

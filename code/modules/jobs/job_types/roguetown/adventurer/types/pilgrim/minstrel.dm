@@ -30,6 +30,7 @@
 						/obj/item/rogue/instrument/flute = 1,
 						/obj/item/rogue/instrument/drum = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/scabbard/sheath = 1
 						)
 	H.change_stat("speed", 1)  
 	H.change_stat("fortune", 1)

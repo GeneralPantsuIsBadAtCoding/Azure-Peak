@@ -35,7 +35,8 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/spellbook_unfinished/pre_arcyne = 1,
 				/obj/item/roguegem/amethyst = 1,
-				/obj/item/recipe_book/survival = 1
+				/obj/item/recipe_book/survival = 1,
+				/obj/item/scabbard/sheath = 1
 				)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
@@ -99,14 +100,17 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Bastard Sword")
-					beltr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/long
 				if("Falchion & Wooden Shield")
-					beltr = /obj/item/rogueweapon/sword/falchion
+					beltr = /obj/item/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
+					r_hand = /obj/item/rogueweapon/sword/falchion
 					H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 				if("Messer & Wooden Shield")
-					beltr = /obj/item/rogueweapon/sword/iron/messer
+					beltr = /obj/item/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
+					r_hand = /obj/item/rogueweapon/sword/iron/messer
 					H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
@@ -124,7 +128,8 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			beltr = /obj/item/rogueweapon/sword/sabre
+			beltr = /obj/item/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/sabre
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)

@@ -20,7 +20,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rope/chain = 1)
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rope/chain = 1, /obj/item/scabbard/sheath = 1)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
@@ -58,7 +58,8 @@
 			beltr = /obj/item/rogueweapon/mace/goden/steel
 		if ("Sword")
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			beltr = /obj/item/rogueweapon/sword/falx
+			beltr = /obj/item/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/falx
 	H.change_stat("strength", 3) // Literally same stat spread as Atgervi Shaman
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 2)

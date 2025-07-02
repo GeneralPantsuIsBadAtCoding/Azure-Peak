@@ -23,7 +23,7 @@
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 	beltl = /obj/item/quiver/arrows
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
-	backpack_contents = list(/obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
+	backpack_contents = list(/obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1, /obj/item/scabbard/sheath = 1)
 	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
@@ -49,7 +49,8 @@
 	switch(weapon_choice)
 		if("Dagger")
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
+			beltr = /obj/item/scabbard/sheath
+			r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 		if("Axe")
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut

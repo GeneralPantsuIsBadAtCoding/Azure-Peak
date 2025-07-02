@@ -399,6 +399,8 @@
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_back = get_item_by_slot(slot_id)
+	if(equip_scabbard(thing, equipped_back, slot_id))
+		return
 	if(!equipped_back) // We also let you equip a backpack like this
 		if(!thing)
 			to_chat(src, span_warning("I have no backpack to take something out of!"))
@@ -430,6 +432,8 @@
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)
+	if(equip_scabbard(thing, equipped_belt, SLOT_BELT))
+		return
 	if(!equipped_belt) // We also let you equip a belt like this
 		if(!thing)
 			to_chat(src, span_warning("I have no belt to take something out of!"))
@@ -455,3 +459,22 @@
 		return
 	stored.attack_hand(src) // take out thing from belt
 	return
+
+/mob/living/carbon/human/proc/equip_scabbard(var/obj/item/thing, var/obj/item/equipped, slot_id)
+	var/obj/item/use_thing = null
+
+	if(!istype(equipped, /obj/item/scabbard))
+		if(SEND_SIGNAL(equipped, COMSIG_CONTAINS_STORAGE))
+			var/obj/item/stored = equipped.contents[equipped.contents.len]
+			if(!stored || stored.on_found(src))
+				return FALSE
+			if(istype(stored, /obj/item/scabbard))
+				use_thing = stored
+
+	var/obj/item/scabbard/scab = use_thing ? use_thing : equipped
+	if(!thing)
+		scab.attack_right(src)
+		return TRUE
+	scab.attackby(thing, src)
+	return TRUE
+

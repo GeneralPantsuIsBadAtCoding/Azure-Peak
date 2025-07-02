@@ -63,4 +63,5 @@
 		if("Sword & Buckler") //Mercenary on the wrong side of the law
 			backl= /obj/item/rogueweapon/shield/buckler
 			beltr = /obj/item/rogueweapon/sword //steel sword like literally every adventurer gets
+			beltl = /obj/item/scabbard/sword
 			head = /obj/item/clothing/head/roguetown/helmet/sallet

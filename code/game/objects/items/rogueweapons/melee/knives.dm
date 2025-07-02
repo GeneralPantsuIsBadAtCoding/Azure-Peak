@@ -104,6 +104,10 @@
 	grid_height = 64
 	grid_width = 32
 
+	equip_delay_self = 3 SECONDS
+	unequip_delay_self = 3 SECONDS
+	inv_storage_delay = 2 SECONDS
+
 /obj/item/rogueweapon/huntingknife/Initialize()
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
@@ -492,6 +496,7 @@
 	name = "iron scissors"
 	desc = "Scissors made of iron that may be used to salvage usable materials from clothing."
 	icon_state = "iscissors"
+	inv_storage_delay = null
 
 /obj/item/rogueweapon/huntingknife/scissors/steel
 	force = 14

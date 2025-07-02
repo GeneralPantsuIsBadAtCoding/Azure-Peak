@@ -62,7 +62,8 @@
 					r_hand = /obj/item/rogueweapon/estoc
 					backr = /obj/item/gwstrap
 				if("Longsword + Shield")
-					beltr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/long
 					backr = /obj/item/rogueweapon/shield/tower/metal
 				if("Mace + Shield")
 					beltr = /obj/item/rogueweapon/mace/steel
@@ -115,7 +116,7 @@
 			belt = /obj/item/storage/belt/rogue/leather/steel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backl = /obj/item/storage/backpack/rogue/satchel //gwstraps landing on backr asyncs with backpack_contents
-			backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
+			backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1, /obj/item/scabbard/sheath = 1)
 
 
 			wretch_select_bounty(H)
@@ -133,7 +134,8 @@
 					beltr = /obj/item/rogueweapon/mace/warhammer
 					backl = /obj/item/rogueweapon/shield/iron
 				if("Sabre & Shield")
-					beltr = /obj/item/rogueweapon/sword/sabre
+					beltr = /obj/item/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/sabre
 					backl = /obj/item/rogueweapon/shield/wood
 				if("Axe & Shield")
 					beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
@@ -186,7 +188,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			backr = /obj/item/storage/backpack/rogue/satchel
 
-			backpack_contents = list(/obj/item/natural/cloth = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1,)
+			backpack_contents = list(/obj/item/natural/cloth = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/scabbard/sheath = 1)
 			var/helmets = list(
 			"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
 			"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,

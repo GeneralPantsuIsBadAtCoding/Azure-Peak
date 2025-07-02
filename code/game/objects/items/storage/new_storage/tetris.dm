@@ -224,6 +224,9 @@
 												params)
 	if((!force && !can_be_inserted(storing, TRUE, user, worn_check, params = params)) || (storing == parent))
 		return FALSE
+	if(storing.inv_storage_delay)
+		if(!do_after(user, storing.inv_storage_delay, progress = TRUE))
+			return FALSE
 	return handle_item_insertion(storing, silent, user, params = params, storage_click = FALSE)
 
 /datum/component/storage/can_be_inserted(obj/item/storing, stop_messages, mob/user, worn_check = FALSE, params, storage_click = FALSE)
@@ -339,6 +342,11 @@
 /datum/component/storage/signal_take_obj(datum/source, atom/movable/taken, atom/new_location, force = FALSE)
 	if(!(taken in real_location()))
 		return FALSE
+	if(isitem(taken))
+		var/obj/item/taken_item = taken
+		if(taken_item.inv_storage_delay)
+			if(!do_after(usr, taken_item.inv_storage_delay, progress = TRUE))
+				return FALSE
 	return remove_from_storage(taken, new_location)
 
 /datum/component/storage/remove_from_storage(atom/movable/removed, atom/new_location)
@@ -374,6 +382,9 @@
 		if(LAZYLEN(real_location.contents) >= max_items) //don't use items on the backpack if they don't fit
 			return TRUE
 		return FALSE
+	if(attacking_item.inv_storage_delay)
+		if(!do_after(user, attacking_item.inv_storage_delay, progress = TRUE))
+			return FALSE
 	return handle_item_insertion(attacking_item, FALSE, user, params = params, storage_click = storage_click)
 
 /datum/component/storage/proc/on_equipped(obj/item/source, mob/user, slot)

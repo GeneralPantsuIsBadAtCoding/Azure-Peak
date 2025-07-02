@@ -44,6 +44,7 @@
 						/obj/item/ash=1,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/huntingknife = 1,
+						/obj/item/scabbard/sheath = 1
 						)
 	beltl = /obj/item/rogueweapon/sickle
 	beltr = /obj/item/flint

@@ -33,6 +33,7 @@
 						/obj/item/rogueore/iron=2,
 						/obj/item/rogueore/silver=1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/scabbard/sheath = 1
 						)
 	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
 	if(H.pronouns == HE_HIM)

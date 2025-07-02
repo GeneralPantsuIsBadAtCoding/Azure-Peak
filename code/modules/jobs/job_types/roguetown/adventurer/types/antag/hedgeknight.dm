@@ -24,12 +24,14 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blkknight
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/long/death // ow the edge. it's just spraypainted. no weapon choice you MUST use a sword
+	beltl = /obj/item/scabbard/sword
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/rogueweapon/shield/tower/metal
 	id = /obj/item/mattcoin
 	backpack_contents = list(
 					/obj/item/rogueweapon/huntingknife/idagger = 1,
 					/obj/item/flashlight/flare/torch = 1,
+					/obj/item/scabbard/sheath = 1
 					)
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)

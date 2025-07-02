@@ -139,6 +139,10 @@
 	grid_width = 32
 	grid_height = 64
 
+	equip_delay_self = 3 SECONDS
+	unequip_delay_self = 3 SECONDS
+	inv_storage_delay = 3 SECONDS
+
 /obj/item/rogueweapon/sword/Initialize()
 	. = ..()
 	if(icon_state == "sword1")
