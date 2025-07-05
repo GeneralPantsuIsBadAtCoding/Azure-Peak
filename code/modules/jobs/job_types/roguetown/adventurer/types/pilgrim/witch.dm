@@ -55,6 +55,9 @@
 		H.change_stat("fortune", 1)
 		
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
+		if(/datum/patron/inhumen/zizo,
+	  		/datum/patron/inhumen/matthios,
+	   		/datum/patron/inhumen/graggar,
+	   		/datum/patron/inhumen/baotha)
 			H.cmode_music = 'sound/music/combat_cult.ogg'
-			neck = /obj/item/roguekey/inhumen
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)

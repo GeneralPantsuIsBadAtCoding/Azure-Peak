@@ -481,8 +481,8 @@
 	lockid = "inquisition"
 
 /obj/item/roguekey/inhumen
-	name = "ancient key"
-	desc = "A ancient, rusty key. There's no telling where this leads."
+	name = "old cell key"
+	desc = "A ancient, rusty key. Seems like it goes to some kind of cell."
 	icon_state = "rustkey"
 	lockid = "inhumen"
 

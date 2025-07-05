@@ -356,5 +356,5 @@
 
 /datum/virtue/heretic/zchurch_keyholder
 	name = "Heresiarch"
-	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods- and I've stashed away a key to the conclave, for my own use- or to be given to someone else. Secrecy is paramount. If found out, I will surely be killed."
-	added_stashed_items = list("Ancient Key" = /obj/item/roguekey/inhumen)
+	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods - I know the location of the local heretic conclave. Secrecy is paramount. If found out, I will surely be killed."
+	added_traits = list(TRAIT_HERESIARCH)

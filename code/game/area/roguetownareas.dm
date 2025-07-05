@@ -668,6 +668,15 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
 
+/area/rogue/under/cave/inhumen
+	name = "inhumen"
+	icon_state = "cave"
+	first_time_text = "FORSAKEN CATHEDRAL"
+	droning_sound = 'sound/music/unholy.ogg'
+	droning_sound_dusk = 'sound/music/unholy.ogg'
+	droning_sound_night = 'sound/music/unholy.ogg'
+	converted_type = /area/rogue/outdoors/dungeon1
+
 /area/rogue/under/cave/fishmandungeon //idk what the fish guys are called in lore
 	name = "fishmandungeon"
 	icon_state = "under"
