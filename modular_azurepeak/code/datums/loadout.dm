@@ -96,14 +96,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Nun Veil"
 	path = /obj/item/clothing/head/roguetown/nun
 
-/datum/loadout_item/saigaskull
-	name = "Saiga Skull"
-	path = /obj/item/clothing/head/roguetown/helmet/leather/saiga
-
-/datum/loadout_item/volfhelm
-	name = "Volf Helm"
-	path = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
-
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"

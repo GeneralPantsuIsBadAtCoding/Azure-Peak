@@ -52,7 +52,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_SMASH)
 	sewrepair = TRUE
 	sellprice = 10
-	max_integrity = 150
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
 
@@ -63,7 +63,7 @@
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
 	armor = ARMOR_MAILLE
-	max_integrity = 200
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	body_parts_covered = NECK|HAIR|EARS|HEAD
@@ -74,7 +74,6 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
-
 /obj/item/clothing/neck/roguetown/chaincoif/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/chain_equip.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
 
@@ -84,11 +83,17 @@
 	icon_state = "achaincoif"
 	smeltresult = /obj/item/ingot/aaslag
 
+/obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
+	name = "decrepit coif"
+	desc = "a decrepit old coif. Aeon's grasp is upon it."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = ARMOR_INT_SIDE_DECREPIT
+
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	name = "chain mantle"
 	desc = "A thicker and more durable piece of neck protection that also covers the mouth when pulled up."
 	icon_state = "chainmantle"
-	max_integrity = 300
 	armor = ARMOR_MAILLE
 	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_NECK
@@ -103,16 +108,7 @@
 	icon_state = "ichaincoif"
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
-	max_integrity = 150
-
-
-/obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
-	name = "decrepit coif"
-	desc = "a decrepit old coif. Aeon's grasp is upon it."
-	icon_state = "achaincoif"
-	smeltresult = /obj/item/ingot/aalloy
-	max_integrity = 100
-
+	max_integrity = ARMOR_INT_SIDE_IRON
 
 /obj/item/clothing/neck/roguetown/chaincoif/full
 	name = "full chain coif"
@@ -163,12 +159,20 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
-	max_integrity = 300
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK|MOUTH|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
+
+/obj/item/clothing/neck/roguetown/bevor/iron
+	name = "iron bevor"
+	desc = "A series of iron plates designed to protect the neck."
+	icon_state = "ibevor"
+	smeltresult = /obj/item/ingot/iron
+	max_integrity = ARMOR_INT_SIDE_IRON
+	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/neck/roguetown/gorget
 	name = "gorget"
@@ -177,7 +181,7 @@
 	armor = ARMOR_GORGET
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
-	max_integrity = 150
+	max_integrity = ARMOR_INT_SIDE_IRON
 	resistance_flags = FIRE_PROOF
 	body_parts_inherent = NECK
 	slot_flags = ITEM_SLOT_NECK
@@ -189,7 +193,7 @@
 	name = "decrepit gorget"
 	desc = "a decrepit, worn out gorget. Aeon's grasp is upon it."
 	icon_state = "ancientgorget"
-	max_integrity = 100
+	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	smeltresult = /obj/item/ingot/aalloy
 
 /obj/item/clothing/neck/roguetown/gorget/copper
@@ -203,9 +207,9 @@
 	name = "fencing guard"
 	icon_state = "fencercollar"
 	armor = ARMOR_BEVOR
-	smeltresult = /obj/item/ingot/iron
+	smeltresult = /obj/item/ingot/steel
 	anvilrepair = /datum/skill/craft/armorsmithing
-	max_integrity = 150
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	body_parts_inherent = NECK
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
@@ -232,16 +236,16 @@
 	icon_state = "iwolfcollaralt"
 
 /obj/item/clothing/neck/roguetown/gorget/steel
-	name ="steel gorget"
+	name = "steel gorget"
 	smeltresult = /obj/item/ingot/steel
-	max_integrity = 300
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	icon_state = "sgorget"
 
 /obj/item/clothing/neck/roguetown/gorget/paalloy
 	name = "ancient gorget"
 	desc = "A gorget made of ancient alloys. Aeon's grasp lifted from its form."
 	icon_state = "ancientgorget"
-	max_integrity = 300
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
@@ -263,7 +267,7 @@
 	armor = ARMOR_CLOTHING
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
-	max_integrity = 150
+	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK

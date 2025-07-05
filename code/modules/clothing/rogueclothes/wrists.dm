@@ -35,7 +35,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
-	max_integrity = 300
+	max_integrity = ARMOR_INT_SIDE_STEEL
 	anvilrepair = /datum/skill/craft/armorsmithing
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
@@ -43,7 +43,7 @@
 /obj/item/clothing/wrists/roguetown/bracers/aalloy
 	name = "decrepit bracers"
 	desc = "Decrepit old bracers. Aeon's grasp is upon them."
-	max_integrity = 150
+	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	icon_state = "ancientbracers"
 	smeltresult = /obj/item/ingot/aalloy
 
@@ -65,6 +65,7 @@
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
 	anvilrepair = null
+	smeltresult = null
 	sewrepair = TRUE
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -75,7 +76,7 @@
 	icon_state = "albracers"
 	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_CHOP, BCLASS_SMASH)
-	max_integrity = 250
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	sellprice = 10
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -142,12 +143,30 @@
 	body_parts_covered = ARMS
 	icon_state = "splintarms"
 	item_state = "splintarms"
-	armor = ARMOR_LEATHER_STUDDED
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	blocksound = SOFTHIT
-	max_integrity = 250
+	max_integrity = ARMOR_INT_SIDE_IRON
 	anvilrepair = /datum/skill/craft/blacksmithing
 	smeltresult = /obj/item/ingot/iron
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
 	sewrepair = FALSE
+
+/obj/item/clothing/wrists/roguetown/bracers/iron
+	name = "iron bracers"
+	desc = "Iron bracers that protect the arms."
+	body_parts_covered = ARMS
+	icon_state = "ibracers"
+	item_state = "ibracers"
+	max_integrity = ARMOR_INT_SIDE_IRON
+	smeltresult = /obj/item/ingot/iron
+
+/obj/item/clothing/wrists/roguetown/bracers/jackchain
+	name = "jack chains"
+	desc = "Thin strips of steel attached to small shoulder and elbow plates, worn on the outside of the arms to protect against slashes."
+	icon_state = "jackchain"
+	item_state = "jackchain"
+	armor = ARMOR_LEATHER_STUDDED // Please help me make this make sense this has the same stab protection vro.
+	max_integrity = ARMOR_INT_SIDE_LEATHER // Make it slightly worse
+	smeltresult = null
