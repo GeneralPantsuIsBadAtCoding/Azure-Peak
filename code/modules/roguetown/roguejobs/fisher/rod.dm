@@ -6,7 +6,7 @@
 	icon_state = "rod"
 	icon = 'icons/roguetown/weapons/tools.dmi'
 	sharpness = IS_BLUNT
-	wlength = 33
+	wlength = WLENGTH_NORMAL
 	var/obj/item/baited = null
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_HIP
 	w_class = WEIGHT_CLASS_BULKY

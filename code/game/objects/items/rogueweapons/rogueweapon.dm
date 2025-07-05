@@ -16,7 +16,7 @@
 	sharpness = IS_SHARP
 	possible_item_intents = list(SWORD_CUT, SWORD_THRUST)
 	can_parry = TRUE
-	wlength = 45
+	wlength = WLENGTH_NORMAL
 	sellprice = 1
 	has_inspect_verb = TRUE
 	parrysound = list('sound/combat/parry/parrygen.ogg')
