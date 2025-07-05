@@ -8,7 +8,7 @@
 	antimagic_allowed = TRUE
 	recharge_time = 25 SECONDS
 	miracle = TRUE
-	devotion_cost = 100
+	devotion_cost = 80
 	projectile_type = /obj/projectile/magic/lightning/astratablast
 
 /obj/projectile/magic/lightning/astratablast
@@ -23,21 +23,20 @@
 	var/biotype_we_look_for = MOB_UNDEAD
 
 /obj/projectile/magic/lightning/astratablast/on_hit(target)
-	. = ..()
-
-	if(ismob(target))
-		var/mob/living/M = target
-		if(M.anti_magic_check())
-			visible_message(span_warning("[src] fizzles on contact with [target]!"))
-			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
-			qdel(src)
-			return BULLET_ACT_BLOCK
-		if(M.mob_biotypes & biotype_we_look_for || istype(M, /mob/living/simple_animal/hostile/rogue/skeleton))
-			damage *= fuck_that_guy_multiplier
-			M.adjust_fire_stacks(4)
-			M.IgniteMob()
-			visible_message(span_warning("[src] ignites [target] in holy flame!"))
-	return FALSE
+	if(!ismob(target))
+		return FALSE
+	var/mob/living/M = target
+	if(M.anti_magic_check())
+		visible_message(span_warning("[src] fizzles on contact with [target]!"))
+		playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
+		qdel(src)
+		return BULLET_ACT_BLOCK
+	if(M.mob_biotypes & biotype_we_look_for || istype(M, /mob/living/simple_animal/hostile/rogue/skeleton))
+		damage *= fuck_that_guy_multiplier
+	M.adjust_fire_stacks(4)
+	M.IgniteMob()
+	visible_message(span_warning("[src] ignites [target] in holy flame!"))
+	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/ignition
 	name = "Ignition"
@@ -60,7 +59,7 @@
 	devotion_cost = 10
 
 /obj/effect/proc_holder/spell/invoked/sacred_flame_rogue/cast(list/targets, mob/user = usr)
-	. = ..()
+	..()
 	// Spell interaction with ignitable objects (burn wooden things, light torches up)
 	if(isobj(targets[1]))
 		var/obj/O = targets[1]
@@ -95,66 +94,67 @@
 	var/revive_pq = PQ_GAIN_REVIVE
 
 /obj/effect/proc_holder/spell/invoked/revive/cast(list/targets, mob/living/user)
-	. = ..()
-	if(isliving(targets[1]))
-		testing("revived1")
-		var/mob/living/target = targets[1]
-		if(!target.mind)
-			revert_cast()
-			return FALSE
-		if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
-			to_chat(user, "This one has pledged themselves whole to Necra. They are Hers.")
-			revert_cast()
-			return FALSE
-		if(!target.mind.active)
-			to_chat(user, "Astrata is not done with [target], yet.")
-			revert_cast()
-			return FALSE
-		if(target == user)
-			revert_cast()
-			return FALSE
-		if(target.stat < DEAD)
-			to_chat(user, span_warning("Nothing happens."))
-			revert_cast()
-			return FALSE
-		if(GLOB.tod == "night")
-			to_chat(user, span_warning("Let there be light."))
-		for(var/obj/structure/fluff/psycross/S in oview(5, user))
-			S.AOE_flash(user, range = 8)
-		if(target.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
-			target.visible_message(span_danger("[target] is unmade by holy light!"), span_userdanger("I'm unmade by holy light!"))
-			target.gib()
-			return TRUE
-		if(alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
-			target.visible_message(span_notice("Nothing happens. They are not being let go."))
-			return FALSE
-		target.adjustOxyLoss(-target.getOxyLoss()) //Ye Olde CPR
-		if(!target.revive(full_heal = FALSE))
-			to_chat(user, span_warning("Nothing happens."))
-			revert_cast()
-			return FALSE
-		testing("revived2")
-		var/mob/living/carbon/spirit/underworld_spirit = target.get_spirit()
-		//GET OVER HERE!
-		if(underworld_spirit)
-			var/mob/dead/observer/ghost = underworld_spirit.ghostize()
-			qdel(underworld_spirit)
-			ghost.mind.transfer_to(target, TRUE)
-		target.grab_ghost(force = TRUE) // even suicides
-		target.emote("breathgasp")
-		target.Jitter(100)
-		GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]++
-		target.update_body()
-		target.visible_message(span_notice("[target] is revived by holy light!"), span_green("I awake from the void."))
-		if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
-			adjust_playerquality(revive_pq, user.ckey)
-			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
-		target.mind.remove_antag_datum(/datum/antagonist/zombie)
-		target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
-		target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
+	..()
+
+	if(!isliving(targets[1]))
+		revert_cast()
+		return FALSE
+	testing("revived1")
+	var/mob/living/target = targets[1]
+	if(!target.mind)
+		revert_cast()
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
+		to_chat(user, "This one has pledged themselves whole to Necra. They are Hers.")
+		revert_cast()
+		return FALSE
+	if(!target.mind.active)
+		to_chat(user, "Astrata is not done with [target], yet.")
+		revert_cast()
+		return FALSE
+	if(target == user)
+		revert_cast()
+		return FALSE
+	if(target.stat < DEAD)
+		to_chat(user, span_warning("Nothing happens."))
+		revert_cast()
+		return FALSE
+	if(GLOB.tod == "night")
+		to_chat(user, span_warning("Let there be light."))
+	for(var/obj/structure/fluff/psycross/S in oview(5, user))
+		S.AOE_flash(user, range = 8)
+	if(target.mob_biotypes & MOB_UNDEAD) //positive energy harms the undead
+		target.visible_message(span_danger("[target] is unmade by holy light!"), span_userdanger("I'm unmade by holy light!"))
+		target.gib()
 		return TRUE
-	revert_cast()
-	return FALSE
+	if(alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
+		target.visible_message(span_notice("Nothing happens. They are not being let go."))
+		return FALSE
+	target.adjustOxyLoss(-target.getOxyLoss()) //Ye Olde CPR
+	if(!target.revive(full_heal = FALSE))
+		to_chat(user, span_warning("Nothing happens."))
+		revert_cast()
+		return FALSE
+	testing("revived2")
+	var/mob/living/carbon/spirit/underworld_spirit = target.get_spirit()
+	//GET OVER HERE!
+	if(underworld_spirit)
+		var/mob/dead/observer/ghost = underworld_spirit.ghostize()
+		qdel(underworld_spirit)
+		ghost.mind.transfer_to(target, TRUE)
+	target.grab_ghost(force = TRUE) // even suicides
+	target.emote("breathgasp")
+	target.Jitter(100)
+	GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]++
+	target.update_body()
+	target.visible_message(span_notice("[target] is revived by holy light!"), span_green("I awake from the void."))
+	if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
+		adjust_playerquality(revive_pq, user.ckey)
+		ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
+	target.mind.remove_antag_datum(/datum/antagonist/zombie)
+	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
+	target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
+	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/revive/cast_check(skipcharge = 0,mob/user = usr)
 	if(!..())
