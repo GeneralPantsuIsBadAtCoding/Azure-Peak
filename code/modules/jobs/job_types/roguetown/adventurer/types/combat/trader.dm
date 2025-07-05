@@ -34,6 +34,9 @@
 			H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
+
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+
 			head = /obj/item/clothing/head/roguetown/roguehood
 			mask = /obj/item/clothing/mask/rogue/facemask/steel
 			shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -46,9 +49,11 @@
 			beltr = /obj/item/storage/belt/rogue/surgery_bag/full
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			backpack_contents = list(/obj/item/reagent_containers/powder/spice = 2, /obj/item/reagent_containers/powder/ozium = 1, /obj/item/reagent_containers/powder/moondust = 2, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
+			
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 1)
+			H.cmode_music = 'sound/music/combat_physician.ogg'
 
 		if("Brewer")
 			to_chat(H, span_warning("You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch. You have the equipments and know how on how to make your own distiller, too."))
@@ -81,7 +86,8 @@
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/ingot/copper = 2,
 				/obj/item/roguegear = 1, 
-				/obj/item/recipe_book/survival = 1)
+				/obj/item/recipe_book/survival = 1,
+				/obj/item/bottle_kit)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("strength", 1)
@@ -186,7 +192,8 @@
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			backl = /obj/item/storage/backpack/rogue/satchel
 			head = /obj/item/clothing/head/roguetown/jester
-			neck = /obj/item/storage/belt/rogue/pouch/coins/mid
+			r_hand = /obj/item/storage/belt/rogue/pouch/coins/mid
+			neck = /obj/item/clothing/neck/roguetown/coif
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 			backpack_contents = list(/obj/item/smokebomb = 3, /obj/item/storage/pill_bottle/dice = 1, /obj/item/toy/cards/deck = 1, /obj/item/recipe_book/survival = 1)
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
