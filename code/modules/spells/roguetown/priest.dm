@@ -1,4 +1,3 @@
-GLOBAL_LIST_EMPTY(excommunicated_players)
 /*
 /obj/effect/proc_holder/spell/invoked/heal/test
 	name = "Miracle"

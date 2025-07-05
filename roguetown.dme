@@ -608,6 +608,7 @@
 #include "code\datums\event_groups\_base.dm"
 #include "code\datums\gods\_faith.dm"
 #include "code\datums\gods\_patron.dm"
+#include "code\datums\gods\_curses.dm"
 #include "code\datums\gods\faiths\atheism.dm"
 #include "code\datums\gods\faiths\divine_pantheon.dm"
 #include "code\datums\gods\faiths\inhumen_pantheon.dm"
