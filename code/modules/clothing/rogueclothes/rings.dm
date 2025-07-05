@@ -201,3 +201,36 @@
 	desc = "Born out of duelists desire for theatrics, this ring denotes a proposal — an honorable duel, with stakes set ahigh.\nIf both duelists wear this ring, successful baits will off balance them, and clashing disarms will never be unlikely.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
 	icon_state = "ring_duel"
 	sellprice = 10
+
+/obj/item/clothing/ring/fate_weaver
+	name = "fate weaver"
+	desc = "An arcyne creation first theorized by malcontents with the resolution of Xylix's plays. It protects is wearer by tugging things gently toward less fatal potentials."
+	icon_state = "ring_s"
+	max_integrity = 50
+	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
+	armor = ARMOR_MASK_METAL_BAD //even protection against most damage types
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
+	blade_dulling = DULLING_BASHCHOP
+	blocksound = PLATEHIT
+	break_sound = 'sound/foley/breaksound.ogg'
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+
+/obj/item/clothing/ring/fate_weaver/proc/dispel()
+	if(!QDELETED(src))
+		src.visible_message(span_warning("The [src]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		qdel(src)
+
+/obj/item/clothing/ring/fate_weaver/obj_break()
+	. = ..()
+	if(!QDELETED(src))
+		dispel()
+
+/obj/item/clothing/ring/fate_weaver/attack_hand(mob/user)
+	. = ..()
+	if(!QDELETED(src))
+		dispel()
+	
+/obj/item/clothing/ring/fate_weaver/dropped()
+	. = ..()
+	if(!QDELETED(src))
+		dispel()

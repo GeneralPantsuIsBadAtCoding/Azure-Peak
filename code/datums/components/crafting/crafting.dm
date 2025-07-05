@@ -88,6 +88,8 @@
 		. += user.get_item_by_slot(slot)
 
 /obj/item/proc/can_craft_with()
+	if(craft_blocked)
+		return FALSE
 	return TRUE
 
 /datum/component/personal_crafting/proc/get_surroundings(mob/user)

@@ -226,6 +226,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	/// This is what we get when we either tear up or salvage a piece of clothing
 	var/obj/item/salvage_result = null
 
+	var/craft_blocked = FALSE //blocks the item from being used in crafts, such as conjured items
+
 	/// The amount of salvage we get out of salvaging with scissors
 	var/salvage_amount = 0 //This will be more accurate when sewing recipes get sorted
 

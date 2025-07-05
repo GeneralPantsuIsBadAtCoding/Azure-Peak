@@ -1,9 +1,7 @@
-#define CONJURE_DURATION 3 MINUTES
-
 /obj/effect/proc_holder/spell/self/magicians_brick
 	name = "Magician's Brick"
 	desc = "Conjure a magical brick in your hand. Its power scale up to your Intelligence\n\
-	The brick lasts for 3 minutes. This spell has been honed over centuries to bypass anti-magic defenses \n\ "
+	The brick lasts until a new one is summoned or the spell is forgotten. This spell has been honed over centuries to bypass anti-magic defenses."
 	overlay_state = "magicians_brick"
 	sound = list('sound/magic/whiteflame.ogg')
 
@@ -13,7 +11,7 @@
 	warnie = "spellwarning"
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
-	cost = 3
+	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Valtarem!"
@@ -23,10 +21,13 @@
 	glow_intensity = GLOW_INTENSITY_LOW
 
 	gesture_required = TRUE // Don't really matter
+	var/obj/item/rogueweapon/conjured_brick = null
 
 /obj/effect/proc_holder/spell/self/magicians_brick/cast(list/targets, mob/living/user = usr)
+	if(src.conjured_brick)
+		qdel(conjured_brick)
 	var/obj/item/rogueweapon/R = new /obj/item/rogueweapon/magicbrick(user.drop_location())
-	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION)
+	R.AddComponent(/datum/component/conjured_item)
 
 	if(user.STAINT > 10)
 		var/int_scaling = user.STAINT - 10
@@ -34,7 +35,14 @@
 		R.throwforce = R.throwforce + int_scaling * 2 // 2x scaling for throwing. Let's go.
 		R.name = "magician's brick +[int_scaling]"
 	user.put_in_hands(R)
+	src.conjured_brick = R
 	return TRUE
+
+/obj/effect/proc_holder/spell/self/magicians_brick/Destroy()
+	if(src.conjured_brick)
+		conjured_brick.visible_message(span_warning("The [conjured_brick]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		qdel(conjured_brick)
+	return ..()
 
 /obj/item/rogueweapon/magicbrick
 	name = "magician's brick"
@@ -55,6 +63,3 @@
 	possible_item_intents = list(/datum/intent/mace/strike) // Not giving it smash so it don't become competetive with conjure weapon (as a melee weapon)
 	associated_skill = /datum/skill/combat/maces // If it was tied to Arcyne it'd be too strong
 	hitsound = list('sound/combat/hits/blunt/brick.ogg')
-
-
-#undef CONJURE_DURATION
