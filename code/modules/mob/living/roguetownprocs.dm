@@ -194,19 +194,8 @@
 				if(intenty.masteritem)
 					attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
 					prob2defend -= (attacker_skill * 20)
-					if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-						var/spdmod = ((user.STASPD - src.STASPD) * 10)
-						var/permod = ((src.STAPER - user.STAPER) * 10)
-						var/intmod = ((src.STAINT - user.STAINT) * 3)
-						if(mind)
-							if(permod > 0)
-								spdmod -= permod
-							if(intmod > 0)
-								spdmod -= intmod
-						var/finalmod = spdmod
-						if(mind)
-							finalmod = clamp(spdmod, 0, 30)
-						prob2defend -= finalmod
+					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
 				else
 					attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
 					prob2defend -= (attacker_skill * 20)
@@ -573,9 +562,9 @@
 	if(U)
 		prob2defend = prob2defend - (U.STASPD * 10)
 	if(I)
-		if(I.wbalance == WBALANCE_SWIFT && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
+		if(I.wbalance > 0 && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
 			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
-		if(I.wbalance == WBALANCE_HEAVY && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
+		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		prob2defend = prob2defend - (UH.get_skill_level(I.associated_skill) * 10)
 	if(H)
