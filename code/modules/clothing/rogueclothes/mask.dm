@@ -46,11 +46,11 @@
 	lensmoved = TRUE
 
 /obj/item/clothing/mask/rogue/spectacles/inq/equipped(mob/user, slot)
-	. = ..()		
+	..()
+
 	if(slot == SLOT_WEAR_MASK || slot == SLOT_HEAD)
 		if(!lensmoved)
 			ADD_TRAIT(user, TRAIT_NOCSHADES, "redlens")
-		else
 			return
 
 /obj/item/clothing/mask/rogue/spectacles/inq/update_icon(mob/user, slot)	
@@ -63,26 +63,24 @@
 		user.add_overlay(redlenses)	
 
 /obj/item/clothing/mask/rogue/spectacles/inq/attack_right(mob/user, slot)
-	. = ..()
+	..()
+
 	if(!lensmoved)
 		to_chat(user, span_info("You discreetly slide the inner lenses out of the way."))
 		REMOVE_TRAIT(user, TRAIT_NOCSHADES, "redlens")
 		lensmoved = TRUE
-	else
-		to_chat(user, span_info("You discreetly slide the inner lenses back into place."))
-		ADD_TRAIT(user, TRAIT_NOCSHADES, "redlens")
-		lensmoved = FALSE
-
+		return
+	to_chat(user, span_info("You discreetly slide the inner lenses back into place."))
+	ADD_TRAIT(user, TRAIT_NOCSHADES, "redlens")
+	lensmoved = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles/inq/dropped(mob/user, slot)
-	. = ..()		
+	..()		
 	if(slot != SLOT_WEAR_MASK || slot == SLOT_HEAD)
 		if(!lensmoved)
 			REMOVE_TRAIT(user, TRAIT_NOCSHADES, "redlens")
-		else
-			lensmoved = FALSE
 			return
-	
+		lensmoved = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles/golden
 	name = "golden spectacles"
@@ -96,7 +94,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/mask/rogue/spectacles/Initialize()
-	. = ..()
+	..()
 	AddComponent(/datum/component/spill, null, 'sound/blank.ogg')
 
 /obj/item/clothing/mask/rogue/spectacles/Crossed(mob/crosser)
@@ -105,11 +103,11 @@
 	..()
 
 /obj/item/clothing/mask/rogue/equipped(mob/user, slot)
-	. = ..()
+	..()
 	user.update_fov_angles()
 
 /obj/item/clothing/mask/rogue/dropped(mob/user)
-	. = ..()
+	..()
 	user.update_fov_angles()
 
 /obj/item/clothing/mask/rogue/eyepatch

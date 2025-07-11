@@ -395,15 +395,51 @@
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_HATANGA		//Grenzel gets 100+ integrity, I don't see why not give a +50 here.
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
+	slot_flags = ITEM_SLOT_ARMOR
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "inquisitorial duster"
 	name = "inquisitorial duster"
 	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
+	desc = "A heavy coat lined with thin metal plates; only the finest for the inquisition."
 	body_parts_covered = COVERAGE_FULL
+	body_parts_covered = COVERAGE_FULL
+	allowed_sex = list(MALE, FEMALE)
+	allowed_sex = list(MALE, FEMALE)
+	icon_state = "inqcoat"
 	icon_state = "inqcoat"
 	item_state = "inqcoat"
+	item_state = "inqcoat"
 	sleevetype = "shirt"
+	sleevetype = "shirt"
+	max_integrity = 200
+	max_integrity = 200
+	anvilrepair = /datum/skill/craft/armorsmithing
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
+	smeltresult = /obj/item/ingot/iron
+	equip_delay_self = 4 SECONDS
+	equip_delay_self = 4 SECONDS
+	armor_class = ARMOR_CLASS_MEDIUM
+	armor_class = ARMOR_CLASS_LIGHT
+	armor = ARMOR_LEATHER_STUDDED
 	smelt_bar_num = 2
+	smelt_bar_num = 2
+	blocksound = SOFTHIT
 	blocksound = SOFTHIT
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/ComponentInitialize()	//No movement rustle component.
 	return
- 
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "inquisitorial duster"
+	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
+	smeltresult = /obj/item/ingot/steel 
+	icon_state = "inqcoata"
+	item_state = "inqcoata"
+	equip_delay_self = 4 SECONDS
+	max_integrity = 400
+	armor_class = ARMOR_CLASS_MEDIUM
+	armor = ARMOR_CUIRASS
+	smelt_bar_num = 2
+	blocksound = PLATEHIT	

@@ -703,8 +703,6 @@ Inquisitorial armory down here
 		lookat = source.whofedme
 	playsound(L, 'sound/items/blackmirror_use.ogg', 100, FALSE)
 	var/mob/dead/observer/screye/blackmirror/S = L.scry_ghost()
-//	message_admins("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
-//	log_game("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
 	if(!S)
 		return
 	S.ManualFollow(lookat)

@@ -11,104 +11,35 @@
 	var/inqonly = FALSE // Has the Inquisitor locked Marque-spending for lessers?
 	var/keycontrol = "puritan"
 	var/cat_current = "1"
-	var/list/inqsupplies = list()
+	var/list/all_category = list(
+		"✤ RELIQUARY ✤",
+		"✤ SUPPLIES ✤",
+		"✤ ARTICLES ✤",
+		"✤ EQUIPMENT ✤",
+		"✤ WARDROBE ✤"
+	)
 	var/list/category = list(
 		"✤ SUPPLIES ✤",
 		"✤ ARTICLES ✤",
 		"✤ EQUIPMENT ✤",
-		"✤ WARDROBE ✤",
+		"✤ WARDROBE ✤"
 	)
-	var/list/inqcategory = list("✤ RELIQUARY ✤",)
+	var/list/inq_category = list("✤ RELIQUARY ✤")
 	var/ournum
 	var/mailtag
 	var/obfuscated = FALSE
 
-/obj/structure/roguemachine/mail/proc/inqlock()
-	inqonly = !inqonly
-
-/obj/structure/roguemachine/mail/proc/decreaseremaining(datum/inqports/PA)
-	for (PA in inqsupplies)
-		PA.remaining--
-		PA.name = "[initial(PA.name)] ([PA.remaining]/[PA.maximum]) - ᛉ [PA.marquescost] ᛉ"
-		if(PA.remaining == 0)
-			PA.name = "[initial(PA.name)] (OUT OF STOCK) - ᛉ [PA.marquescost] ᛉ"
-		return		
-
-/obj/structure/roguemachine/mail/proc/display_marquette(mob/user)
-	var/contents
-	contents = "<center>✤ ── L'INQUISITION MARQUETTE D'OTAVA ── ✤<BR>"
-	contents += "POUR L'ÉRADICATION DE L'HÉRÉSIE, TANT QUE PSYDON ENDURE.<BR>"
-	if(HAS_TRAIT(user, TRAIT_PURITAN))		
-		contents += "✤ ── <a href='?src=[REF(src)];locktoggle=1]'> PURITAN'S LOCK: [inqonly ? "OUI":"NON"]</a> ── ✤<BR>"
-	else
-		contents += "✤ ── PURITAN'S LOCK: [inqonly ? "OUI":"NON"] ── ✤<BR>"
-	contents += "ᛉ <a href='?src=[REF(src)];eject=1'>MARQUES LOADED:</a> [inqcoins] ᛉ<BR>"
-
-	if(cat_current == "1")
-		contents += "<BR> <table style='width: 100%' line-height: 40px;'>"
-		if(HAS_TRAIT(user, TRAIT_PURITAN))
-			for(var/i = 1, i <= inqcategory.len, i++)
-				contents += "<tr>"
-				contents += "<td style='width: 100%; text-align: center;'>\
-					<a href='?src=[REF(src)];changecat=[inqcategory[i]]'>[inqcategory[i]]</a>\
-					</td>"	
-				contents += "</tr>"
-		for(var/i = 1, i <= category.len, i++)
-			contents += "<tr>"
-			contents += "<td style='width: 100%; text-align: center;'>\
-				<a href='?src=[REF(src)];changecat=[category[i]]'>[category[i]]</a>\
-				</td>"	
-			contents += "</tr>"
-		contents += "</table>"
-	else
-		contents += "<center>[cat_current]<BR></center>"
-		contents += "<center><a href='?src=[REF(src)];changecat=1'>\[RETURN\]</a><BR><BR></center>"			
-		contents += "<center>"			
-		var/list/items = list()
-		for(var/pack in inqsupplies)
-			var/datum/inqports/PA = pack
-			if(PA.category == cat_current)
-				items += PA
-		for(var/datum/inqports/PA in sortNames(items, order=0))
-			var/name = uppertext(PA.name)
-			if(inqonly && !HAS_TRAIT(user, TRAIT_PURITAN) || PA.remaining == 0 ) 
-				contents += "[name]<BR>"
-			else
-				contents += "<a href='?src=[REF(src)];buy=[PA.type]'>[name]</a><BR>"
-		contents += "</center>"			
-	var/datum/browser/popup = new(user, "VENDORTHING", "", 500, 600)
-	popup.set_content(contents)
-	popup.open()	
-
-/obj/structure/roguemachine/mail/Topic(href, href_list)
+/obj/structure/roguemachine/mail/Initialize()
 	. = ..()
-	if(href_list["eject"])
-		if(inqcoins > 0)
-			budget2change(inqcoins, usr, "MARQUE")
-			inqcoins = 0
-	if(href_list["changecat"])
-		cat_current = href_list["changecat"]
-	if(href_list["locktoggle"])
-		playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
-		for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
-			everyhermes.inqlock()
-	if(href_list["buy"])
-		var/mob/M = usr
-		var/path = text2path(href_list["buy"])
-		var/datum/inqports/PA = path
-		var/cost = PA.marquescost
-		if(inqcoins >= cost)
-			inqcoins -= cost
-		else
-			to_chat(M, span_info("It doesn't have enough Marques loaded."))
-			return
+	SSroguemachine.hermailers += src
+	ournum = SSroguemachine.hermailers.len
+	name = "[name] #[ournum]"
+	update_icon()
 
-		if(PA.maximum)	
-			for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
-				everyhermes.decreaseremaining(PA)
-		var/pathi = pick(PA.item_type)
-		new pathi(get_turf(M))		
-	return display_marquette(usr)		
+/obj/structure/roguemachine/mail/Destroy()
+	set_light(0)
+	SSroguemachine.hermailers -= src
+	return ..()
 
 /obj/structure/roguemachine/mail/attack_hand(mob/user)
 	if(SSroguemachine.hermailermaster && ishuman(user))
@@ -227,9 +158,8 @@
 				for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
 					everyhermes.inqlock()
 				return display_marquette(user)
-			else
-				to_chat(user, span_warning("Wrong key."))
-				return
+			to_chat(user, span_warning("Wrong key."))
+			return
 		if(istype(P, /obj/item/storage/keyring))
 			var/obj/item/storage/keyring/K = P
 			if(!K.contents.len)
@@ -341,21 +271,6 @@
 		update_icon()
 		return
 	..()
-
-/obj/structure/roguemachine/mail/Initialize()
-	. = ..()
-	SSroguemachine.hermailers += src
-	ournum = SSroguemachine.hermailers.len
-	name = "[name] #[ournum]"
-	for(var/path in subtypesof(/datum/inqports))
-		var/datum/D = new path
-		inqsupplies += D
-	update_icon()
-
-/obj/structure/roguemachine/mail/Destroy()
-	set_light(0)
-	SSroguemachine.hermailers -= src
-	return ..()
 
 /obj/structure/roguemachine/mail/r
 	pixel_y = 0
@@ -469,3 +384,98 @@
 		if(I.mailedto == name)
 			return TRUE
 	return FALSE
+
+
+/*
+	INQUISITION INTERACTIONS - START
+*/
+
+/obj/structure/roguemachine/mail/proc/inqlock()
+	inqonly = !inqonly
+
+/obj/structure/roguemachine/mail/proc/decreaseremaining(datum/inqports/PA)
+	PA.remaining -= 1
+	PA.name = "[initial(PA.name)] ([PA.remaining]/[PA.maximum]) - ᛉ [PA.marquescost] ᛉ"
+	if(!PA.remaining)
+		PA.name = "[initial(PA.name)] (OUT OF STOCK) - ᛉ [PA.marquescost] ᛉ"
+	return		
+
+/obj/structure/roguemachine/mail/proc/display_marquette(mob/user)
+	var/contents
+	contents = "<center>✤ ── L'INQUISITION MARQUETTE D'OTAVA ── ✤<BR>"
+	contents += "POUR L'ÉRADICATION DE L'HÉRÉSIE, TANT QUE PSYDON ENDURE.<BR>"
+	if(HAS_TRAIT(user, TRAIT_PURITAN))		
+		contents += "✤ ── <a href='?src=[REF(src)];locktoggle=1]'> PURITAN'S LOCK: [inqonly ? "OUI":"NON"]</a> ── ✤<BR>"
+	else
+		contents += "✤ ── PURITAN'S LOCK: [inqonly ? "OUI":"NON"] ── ✤<BR>"
+	contents += "ᛉ <a href='?src=[REF(src)];eject=1'>MARQUES LOADED:</a> [inqcoins] ᛉ<BR>"
+
+	if(cat_current == "1")
+		contents += "<BR> <table style='width: 100%' line-height: 40px;'>"
+		if(HAS_TRAIT(user, TRAIT_PURITAN))
+			for(var/i = 1, i <= inq_category.len, i++)
+				contents += "<tr>"
+				contents += "<td style='width: 100%; text-align: center;'>\
+					<a href='?src=[REF(src)];changecat=[inq_category[i]]'>[inq_category[i]]</a>\
+					</td>"	
+				contents += "</tr>"
+		for(var/i = 1, i <= category.len, i++)
+			contents += "<tr>"
+			contents += "<td style='width: 100%; text-align: center;'>\
+				<a href='?src=[REF(src)];changecat=[category[i]]'>[category[i]]</a>\
+				</td>"	
+			contents += "</tr>"
+		contents += "</table>"
+	else
+		contents += "<center>[cat_current]<BR></center>"
+		contents += "<center><a href='?src=[REF(src)];changecat=1'>\[RETURN\]</a><BR><BR></center>"			
+		contents += "<center>"			
+		var/list/items = list()
+		for(var/pack in GLOB.inqsupplies)
+			var/datum/inqports/PA = pack
+			if(all_category[PA.category] == cat_current)
+				items += GLOB.inqsupplies[pack]
+		for(var/pack in sortNames(items, order=0))
+			var/datum/inqports/PA = pack
+			var/name = uppertext(PA.name)
+			if(inqonly && !HAS_TRAIT(user, TRAIT_PURITAN) || !PA.remaining || inqcoins < PA.marquescost) 
+				contents += "[name]<BR>"
+			else
+				contents += "<a href='?src=[REF(src)];buy=[PA.type]'>[name]</a><BR>"
+		contents += "</center>"			
+	var/datum/browser/popup = new(user, "VENDORTHING", "", 500, 600)
+	popup.set_content(contents)
+	popup.open()	
+
+/obj/structure/roguemachine/mail/Topic(href, href_list)
+	..()
+	if(href_list["eject"])
+		if(inqcoins <= 0)
+			return
+		budget2change(inqcoins, usr, "MARQUE")
+		inqcoins = 0
+
+	if(href_list["changecat"])
+		cat_current = href_list["changecat"]
+
+	if(href_list["locktoggle"])
+		playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
+		for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
+			everyhermes.inqlock()
+
+	if(href_list["buy"])
+		var/mob/M = usr
+		var/path = text2path(href_list["buy"])
+		var/datum/inqports/PA = GLOB.inqsupplies[path]
+
+		inqcoins -= PA.marquescost
+		if(PA.maximum)	
+			decreaseremaining(PA)
+		var/pathi = pick(PA.item_type)
+		new pathi(get_turf(M))
+
+	return display_marquette(usr)		
+
+/*
+	INQUISITION INTERACTIONS - END
+*/

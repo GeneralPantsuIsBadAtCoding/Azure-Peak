@@ -701,6 +701,7 @@
 	var/hidden = FALSE
 	var/active = FALSE
 	var/fullname = "listener"
+	var/datum/status_effect/bugged/effect
 
 /obj/item/listeningdevice/attack_self(mob/living/user)
 	var/input = input(user, "SIX LETTERS", "BEND AN EAR")
@@ -719,10 +720,27 @@
 		alpha = 35
 		name = "thing"
 		hidden = TRUE
-	else
-		alpha = 255
-		name = fullname
-		hidden = FALSE
+		return TRUE
+	alpha = 255
+	name = fullname
+	hidden = FALSE
+	return TRUE
+
+/obj/item/listeningdevice/attack(mob/living/M, mob/living/user)
+	if(!active)
+		to_chat(user, span_warning("[src] is inactive.."))
+		return FALSE
+	
+	to_chat(user, span_notice("I attach [src] to [M]."))
+	effect = M.apply_status_effect(/datum/status_effect/bugged)
+	effect.device = src
+	forceMove(M)
+	M.contents.Add(src)
+
+	if(M.STAPER > user.STASPD)
+		to_chat(M, span_hidden("I feel something brush against mine own self. It stings."))
+
+	..()
 
 /obj/item/listeningdevice/MiddleClick(mob/user)
 	if(.)
@@ -752,10 +770,7 @@
 	if(length(raw_message) > 100)
 		raw_message = "<small>[raw_message]</small>"
 	for(var/obj/item/speakerinq/S in SSroguemachine.scomm_machines)
-		if(label)
-			S.name = "#[label]"
-		else 
-			S.name = "#NOTSET"
+		S.name = label ? "#[label]" : "#NOTSET"
 		S.repeat_message(raw_message, src, usedcolor, message_language)
 		S.name = (S.fakename)
 

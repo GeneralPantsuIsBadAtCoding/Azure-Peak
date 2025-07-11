@@ -131,9 +131,13 @@
 	sellprice = 270
 
 /obj/item/clothing/ring/signet
+	name = "Signet Ring"
 	name = "signet ring"
 	icon_state = "signet"
+	icon_state = "signet"
+	desc = "A large golden ring engraved with the Symbol of Psydon."
 	desc = "A large golden signet ring engraved with the Symbol of Psydon."
+	sellprice = 135
 	sellprice = 135
 	var/tallowed = FALSE
 
