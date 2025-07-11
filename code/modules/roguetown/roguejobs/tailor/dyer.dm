@@ -13,6 +13,9 @@ var/global/list/colorlist = list(
 	"MAGENTA"="#962e5c"	// AN ALBANIAN
 	)
 
+var/global/list/pridelist = list(
+	"RAINBOW" = "#fcfcfc"
+)
 
 // DYE BIN
 
