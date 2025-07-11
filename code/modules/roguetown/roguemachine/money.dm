@@ -143,6 +143,9 @@ GLOBAL_VAR(moneymaster)
 			if("BRONZE")
 				zenars_to_put = budget
 				type_to_put = /obj/item/roguecoin/copper
+			if("MARQUE")
+				zenars_to_put = budget
+				type_to_put = /obj/item/roguecoin/inqcoin
 	else
 		var/highest_found = FALSE
 		var/zenars = floor(budget/10)

@@ -29,6 +29,61 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 //	block2add = FOV_BEHIND
 
+/obj/item/clothing/mask/rogue/spectacles/inq
+	name = "otavan nocshade lens-pair"
+	icon_state = "bglasses"
+	desc = "Made to both ENDURE and incite debate within those few Noc-Sainted within Otava. Noc-lit walks, yae or nae? The lenses look like they can be brushed aside with a carefully guided right-pointer finger led motion."
+	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
+	max_integrity = 300
+	integrity_failure = 0.5
+	resistance_flags = FIRE_PROOF
+	body_parts_covered = EYES
+	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HEAD
+	anvilrepair = /datum/skill/craft/armorsmithing
+	var/lensmoved = FALSE
+
+/obj/item/clothing/mask/rogue/spectacles/inq/spawnpair
+	lensmoved = TRUE
+
+/obj/item/clothing/mask/rogue/spectacles/inq/equipped(mob/user, slot)
+	. = ..()		
+	if(slot == SLOT_WEAR_MASK || slot == SLOT_HEAD)
+		if(!lensmoved)
+			ADD_TRAIT(user, TRAIT_NOCSHADES, "redlens")
+		else
+			return
+
+/obj/item/clothing/mask/rogue/spectacles/inq/update_icon(mob/user, slot)	
+	cut_overlays()
+	..()
+	if(slot == SLOT_WEAR_MASK || slot == SLOT_HEAD)
+		var/mutable_appearance/redlenses = mutable_appearance(mob_overlay_icon, "bglasses_glow")
+		redlenses.layer = 19
+		redlenses.plane = 20
+		user.add_overlay(redlenses)	
+
+/obj/item/clothing/mask/rogue/spectacles/inq/attack_right(mob/user, slot)
+	. = ..()
+	if(!lensmoved)
+		to_chat(user, span_info("You discreetly slide the inner lenses out of the way."))
+		REMOVE_TRAIT(user, TRAIT_NOCSHADES, "redlens")
+		lensmoved = TRUE
+	else
+		to_chat(user, span_info("You discreetly slide the inner lenses back into place."))
+		ADD_TRAIT(user, TRAIT_NOCSHADES, "redlens")
+		lensmoved = FALSE
+
+
+/obj/item/clothing/mask/rogue/spectacles/inq/dropped(mob/user, slot)
+	. = ..()		
+	if(slot != SLOT_WEAR_MASK || slot == SLOT_HEAD)
+		if(!lensmoved)
+			REMOVE_TRAIT(user, TRAIT_NOCSHADES, "redlens")
+		else
+			lensmoved = FALSE
+			return
+	
+
 /obj/item/clothing/mask/rogue/spectacles/golden
 	name = "golden spectacles"
 	icon_state = "goggles"

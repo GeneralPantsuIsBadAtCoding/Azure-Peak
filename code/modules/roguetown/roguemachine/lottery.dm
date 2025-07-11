@@ -35,7 +35,10 @@
 
 	if(src.stopgambling == 1)
 		return
-
+	if(istype(P, /obj/item/roguecoin/aalloy))
+		return
+	if(istype(P, /obj/item/roguecoin/inqcoin))	
+		return
 	if(istype(P, /obj/item/roguecoin))
 		if(src.gamblingprice + (P.sellprice * P.quantity) > src.maxtithing)
 			say("This puts the starting tithe over [src.maxtithing] mammons.")

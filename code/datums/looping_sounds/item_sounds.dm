@@ -81,6 +81,13 @@
 	volume = 50
 	extra_range = 10
 
+
+/datum/looping_sound/blackmirror
+	mid_sounds = list('sound/items/blackmirror_amb.ogg')
+	mid_length = 30
+	volume = 100
+	extra_range = -3
+
 /datum/looping_sound/blank // datum call for a blank soundloop. Useful for avoiding qdel runtimes on machines and potentially structures
 	mid_sounds = list('sound/blank.ogg')
 	mid_length = 0

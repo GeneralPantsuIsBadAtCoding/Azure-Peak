@@ -1,6 +1,7 @@
 #define CTYPE_GOLD "g"
 #define CTYPE_SILV "s"
 #define CTYPE_COPP "c"
+#define CTYPE_ICOIN "i"
 #define CTYPE_ANCIENT "a"
 #define MAX_COIN_STACK_SIZE 20
 
@@ -151,6 +152,22 @@
 		heads_tails = FALSE
 	update_icon()
 
+
+/obj/item/roguecoin/inqcoin/attack_self(mob/living/user)
+	if(quantity > 1 || !base_type)
+		return
+	if(world.time < flip_cd + 30)
+		return
+	flip_cd = world.time
+	playsound(user, 'sound/foley/coinphy (1).ogg', 100, FALSE)	
+	if(prob(50))
+		user.visible_message(span_info("[user] flips the coin. ENDVRE!"))
+		heads_tails = TRUE
+	else
+		user.visible_message(span_info("[user] flips the coin. LYVE!"))
+		heads_tails = FALSE
+	update_icon()
+
 /obj/item/roguecoin/update_icon()
 	..()
 	if(quantity > 1)
@@ -198,6 +215,15 @@
 		return
 	return ..()
 
+//OTAVAN MARQUE - WORTHLESS TO ANYONE BUT INQ.
+/obj/item/roguecoin/inqcoin
+	name = "otavan marque"
+	desc = "A blessed silver coin finished with a unique wash of black dye, bearing the post-kingdom Psycross. Kingsfield has denied the existence of such a coin when queried, as such coinage is rumoured to be used internally by the Otavan Inquisition."
+	icon_state = "i1"
+	sellprice = 0
+	base_type = CTYPE_ICOIN
+	plural_name = "otavan marques"	
+
 //GOLD
 /obj/item/roguecoin/gold
 	name = "zenar"
@@ -235,6 +261,10 @@
 	base_type = CTYPE_ANCIENT
 	plural_name = "psila"
 
+/obj/item/roguecoin/inqcoin/pile/Initialize()
+	. = ..()
+	set_quantity(rand(4,19))
+
 /obj/item/roguecoin/aalloy/pile/Initialize()
 	. = ..()
 	set_quantity(rand(4,19))
@@ -245,7 +275,7 @@
 
 /obj/item/roguecoin/silver/pile/Initialize()
 	. = ..()
-	set_quantity(rand(4,19))
+	set_quantity(rand(4,19))	
 
 /obj/item/roguecoin/gold/pile/Initialize()
 	. = ..()
@@ -258,4 +288,6 @@
 #undef CTYPE_GOLD
 #undef CTYPE_SILV
 #undef CTYPE_COPP
+#undef CTYPE_ANCIENT
+#undef CTYPE_ICOIN
 #undef MAX_COIN_STACK_SIZE

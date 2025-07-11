@@ -168,6 +168,10 @@
 	icon_state = "oxydamageoverlay"
 	layer = BLIND_LAYER
 
+/atom/movable/screen/fullscreen/inqvision
+	icon_state = "inqvision"
+	layer = BLIND_LAYER
+
 /atom/movable/screen/fullscreen/blackimageoverlay
 	icon_state = "blackimageoverlay"
 	layer = BLIND_LAYER

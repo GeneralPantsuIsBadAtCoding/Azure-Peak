@@ -1057,9 +1057,17 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/sword
-	name = "Psydonian Sword (+1 B. Silver)"
+	name = "Psydonian Sword"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
-	additional_items = list(/obj/item/ingot/silverblessed)
 	created_item = /obj/item/rogueweapon/sword/long/psysword
 	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/whip
+	name = "Psydonian Whip (+1 B. Silver, +2 Chain)"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/rope/chain, /obj/item/rope/chain)
+	created_item = /obj/item/rogueweapon/whip/antique/psywhip
+	i_type = "Weapons"
+

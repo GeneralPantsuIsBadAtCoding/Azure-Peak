@@ -596,7 +596,7 @@
 	var/speaking = TRUE
 	sellprice = 20
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "scomite_active"
+	icon_state = "scomite"
 	gripped_intents = null
 	dropshrink = 0.75
 	possible_item_intents = list(INTENT_GENERIC)
@@ -606,8 +606,10 @@
 	experimental_inhand = FALSE
 	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_RING
 	possible_item_intents = list(INTENT_GENERIC)
+	sleeved = 'icons/roguetown/clothing/onmob/neck.dmi'
 	grid_width = 32
 	grid_height = 32
+	var/fakename = "secret whisperer"
 
 /obj/item/speakerinq/proc/repeat_message(message, atom/A, tcolor, message_language)
 	if(A == src)
@@ -635,12 +637,34 @@
 	else
 		send_speech(message, 0, src, , spans, message_language=language)
 
+
+/obj/item/speakerinq/equipped(mob/user, slot)
+	. = ..()
+	switch(slot)
+		if(SLOT_RING)
+			fakename = "silver signet ring"	
+			name = fakename
+		if(SLOT_NECK)
+			fakename = "silver psycross"	
+			name = fakename	
+			mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
+			sleeved = 'icons/roguetown/clothing/onmob/neck.dmi'
+	return TRUE		
+
+
+/obj/item/speakerinq/dropped(mob/user, silent)
+	. = ..()
+	name = initial(name)
+	sleeved = null
+	mob_overlay_icon = null
+
 /obj/item/speakerinq/Destroy()
 	SSroguemachine.scomm_machines -= src
 	return ..()
 
 /obj/item/speakerinq/Initialize()
 	. = ..()
+	icon_state = "scomite_active"
 	update_icon()
 	SSroguemachine.scomm_machines += src
 
@@ -650,7 +674,11 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	speaking = !speaking
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the listener."))
+	to_chat(user, span_info("I [speaking ? "unsilence" : "silence"] the whisperer."))
+	if(speaking)
+		icon_state = "[initial(icon_state)]_active"
+	else
+		icon_state = "[initial(icon_state)]"
 	update_icon()
 
 /obj/item/listeningdevice
@@ -663,46 +691,57 @@
 	possible_item_intents = list(INTENT_GENERIC)
 	force = 10
 	throwforce = 10
+	alpha = 255
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
-
+	flags_1 = HEAR_1
+	var/label = null
+	var/hidden = FALSE
+	var/active = FALSE
+	var/fullname = "listener"
 
 /obj/item/listeningdevice/attack_self(mob/living/user)
-	var/turf/step_turf = get_step(get_turf(user), user.dir)
-	to_chat(user, span_tinynotice("I begin planting the listen-stone..."))
-	if(!do_after(user, 30, src))
+	var/input = input(user, "SIX LETTERS", "BEND AN EAR")
+	if(!input)
+		label = null
+		name = "[initial(name)]"
 		return
-	new /obj/structure/listeningdeviceactive(step_turf)
-	message_admins("[usr.key] has planted a listening device")
-	qdel(src)
+	label = uppertext(trim(input, 7))
+	fullname = "[initial(name)] - [label]"
+	if(!hidden)
+		name = fullname
+	return
 
+/obj/item/listeningdevice/attack_right(mob/living/user)
+	if(!hidden)
+		alpha = 35
+		name = "thing"
+		hidden = TRUE
+	else
+		alpha = 255
+		name = fullname
+		hidden = FALSE
 
-/obj/structure/listeningdeviceactive
-	name = "listener"
-	desc = "An ever attentive ear. A red light blinks upon it..."
-	icon_state = "listenstone_active"
-	icon = 'icons/roguetown/items/misc.dmi'
-	var/listening = TRUE
-	density = FALSE
-	anchored = TRUE
-	flags_1 = HEAR_1
-	alpha = 0
-	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
-
-
-/obj/structure/listeningdeviceactive/attack_right(mob/user)
-	to_chat(user, span_info("I begin dismounting the listen-stone..."))
-	if(!do_after(user, 30, src))
+/obj/item/listeningdevice/MiddleClick(mob/user)
+	if(.)
 		return
-	new /obj/item/listeningdevice(loc)
-	qdel(src)
+	user.changeNext_move(CLICK_CD_MELEE)
+	playsound(loc, 'sound/misc/bug.ogg', 50, FALSE, -1)
+	active = !active
+	if(active)
+		icon_state = "[initial(icon_state)]_active"
+	else
+		icon_state = initial(icon_state)
+	to_chat(user, span_info("I [active ? "undeafen" : "deafen"] the Listener."))
+	update_icon()
+	return
 
-/obj/structure/listeningdeviceactive/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+/obj/item/listeningdevice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+	if(!active)
+		return
 	if(!ishuman(speaker))
-		return
-	if(!listening)
 		return
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
@@ -713,7 +752,12 @@
 	if(length(raw_message) > 100)
 		raw_message = "<small>[raw_message]</small>"
 	for(var/obj/item/speakerinq/S in SSroguemachine.scomm_machines)
+		if(label)
+			S.name = "#[label]"
+		else 
+			S.name = "#NOTSET"
 		S.repeat_message(raw_message, src, usedcolor, message_language)
+		S.name = (S.fakename)
 
 // garrison scoms/listenstones
 

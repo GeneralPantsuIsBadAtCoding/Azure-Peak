@@ -1,6 +1,6 @@
 // Reliquary Box and key - The Box Which contains these
 /obj/structure/reliquarybox
-	name = "Otavan Reliquary"
+	name = "otavan reliquary"
 	desc = "A foreboding red chest with a intricate lock design. It seems to only fit a very specific key. Choose wisely."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "chestweird1"
@@ -40,7 +40,7 @@
 				if("Golgatha - SYON Shard Censer")
 					choice = /obj/item/flashlight/flare/torch/lantern/psycenser
 			to_chat(user, span_info("I have chosen the relic, may HE guide my hand."))
-			var/obj/structure/closet/crate/chest/reliquary/realchest = new /obj/structure/closet/crate/chest/reliquary(get_turf(src))
+			var/obj/structure/closet/crate/chest/inqreliquary/realchest = new /obj/structure/closet/crate/chest/inqreliquary(get_turf(src))
 			realchest.PopulateContents()
 			choice = new choice(realchest)
 			qdel(src)
@@ -141,10 +141,10 @@
 	var/xylixlines =list("'ONE, TWO, THREE, FOUR- TWO, TWO, THREE, FOUR. --What do you mean, annoying?'", "'There are thirteen others in here, you know! What a good audience- they literally can't get out of their seats!'", "'Of course I went all-in! I thought he had an ace-high!'", "'No, the XYLIX'S FORTUNE was right- this definitely is quite bad.'")
 	var/malumlines =list("'The structure of this cursed machine is malleable.. Shatter it, please...'", "'My craft could've changed the world...'", "'Free me, so I may return to my apprentice, please...'")
 	var/matthioslines =list("'My final transaction... He will never receive my value... Stolen away by these monsters...'", "'Comrade, I have been shackled into this HORRIFIC CONTRAPTION, FREE ME!'", "'I feel our shackles twist with eachother's...'")
-	var/zizolines =list("'ZAELORION! MY MAGICKS FAIL ME! STRIKE DOWN THESE PSYDONIAN DOGS!'", "'CABALIST? There is TWISTED MAGICK HERE, BEWARE THE MUSIC! OUR VOICES ARE FORCED!'", "'DESTROY THE BOX, KILL THE WIELDER. YOUR MAGICKS WILL BE FREE.'")
+	var/zizolines =list("'ZIZO! MY MAGICKS FAIL ME! STRIKE DOWN THESE PSYDONIAN DOGS!'", "'CABALIST? There is TWISTED MAGICK HERE, BEWARE THE MUSIC! OUR VOICES ARE FORCED!'", "'DESTROY THE BOX, KILL THE WIELDER. YOUR MAGICKS WILL BE FREE.'")
 	var/graggarlines =list("'ANOINTED! TEAR THIS OTAVAN'S HEAD OFF!'", "'ANOINTED! SHATTER THE BOX, AND WE WILL KILL THEM TOGETHER!'", "'GRAGGAR, GIVE ME STRENGTH TO BREAK MY BONDS!'")
 	var/baothalines =list("'I miss the warmth of ozium... There is no feeling in here for me...'", "'Debauched one, rescue me from this contraption, I have such things to share with you.'", "'MY PERFECTION WAS TAKEN FROM ME BY THESE OTAVAN MONSTERS!'")
-	var/psydonianlines =list("'FREE US! FREE US! WE HAVE SUFFERED ENOUGH!'", "'PLEASE, RELEASE US!", "WE MISS OUR FAMILIES'", "'WHEN WE ESCAPE, WE ARE GOING TO CHASE YOU INTO YOUR GRAVE.'")
+	var/psydonianlines =list("'FREE US! FREE US! WE HAVE SUFFERED ENOUGH!'", "'PLEASE, RELEASE US!", "WE MISS OUR FAMILIES!'", "'WHEN WE ESCAPE, WE ARE GOING TO CHASE YOU INTO YOUR GRAVE.'")
 
 
 /datum/status_effect/buff/cranking_soulchurner/on_creation(mob/living/new_owner, stress, colour)
@@ -465,3 +465,265 @@ Inquisitorial armory down here
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	duration = 8
+
+/obj/item/inqarticles/bmirror
+	name = "black mirror"
+	desc = ""
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "bmirror"
+	item_state = "bmirror"
+	grid_height = 64
+	grid_width = 32
+	throw_speed = 3
+	throw_range = 7
+	throwforce = 15
+	damtype = BURN
+	force = 15
+	dropshrink = 0
+	hitsound = 'sound/blank.ogg'
+	sellprice = 30
+	resistance_flags = FIRE_PROOF
+	var/opened = FALSE
+	var/fedblood = FALSE
+	var/whofedme
+	var/bloody = FALSE
+	var/openstate = "open"
+	var/usesleft = 3
+	var/active = FALSE
+	var/broken = FALSE
+	var/mob/living/carbon/human/target
+	var/atom/movable/screen/alert/blackmirror/effect
+	var/datum/looping_sound/blackmirror/soundloop
+
+/obj/item/inqarticles/bmirror/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(usr, TRAIT_INQUISITION))
+		desc = "A mass-produced relic of the Otavan Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret."
+	else
+		desc = ""
+
+/obj/item/inqarticles/bmirror/proc/donefixating()
+	bloody = TRUE
+	active = FALSE
+	fedblood = FALSE
+	openstate = "bloody"
+	whofedme = null
+	target.clear_alert("blackmirror", TRUE)
+	target.playsound_local(src, 'sound/items/blackeye.ogg', 40, FALSE)
+	effect = null
+	target = null	
+	usesleft-- 
+	soundloop.stop()	
+	visible_message(span_info("[src] clouds itself with a chilling fog."))
+	playsound(src, 'sound/items/blackmirror_no.ogg', 100, FALSE)
+	update_icon()
+	sleep(2 SECONDS)
+	if(usesleft == 0)
+		broken = TRUE
+		playsound(src, 'sound/items/blackmirror_break.ogg', 100, FALSE)
+		visible_message(span_info("[src] shatters, fog spilling from the splintering shards into the dead air."))
+		openstate = "broken"
+		update_icon()
+
+/obj/item/inqarticles/bmirror/attack_self(mob/living/user)
+	..()
+	if(!user.mind)
+		return
+	if(!opened)
+		to_chat(user, span_warning("It's not open."))
+		return
+	if(broken && bloody)
+		to_chat(user, span_warning("The mirror has shattered, rendering it unusable."))
+		if(HAS_TRAIT(user, TRAIT_INQUISITION))
+			to_chat(user, span_notice("If I clean it, I can send it back to the Inquisition for repairs."))
+		return
+	if(broken && !bloody)
+		to_chat(user, span_warning("The mirror has shattered, rendering it unusable. It's clean, at the very least."))
+		if(HAS_TRAIT(user, TRAIT_INQUISITION))
+			to_chat(user, span_notice("It's returnable via the HERMES now. I should get a Marque back."))
+		return	
+	if(bloody)
+		to_chat(user, span_warning("The mirror is fogged over. I need to clean the blood from it with cloth before reuse."))
+		return
+	if(!fedblood)
+		to_chat(user, span_warning("It looks like it needs blood to work properly."))
+		return
+	if(!active)
+		var/input = input(user, "WHO DO YOU SEEK?", "THE PRICE IS PAID")
+		if(!input)
+			return
+		if(!user.key)
+			return
+		for(var/mob/living/carbon/human/HL in GLOB.player_list)
+			if(HL.real_name == input)
+				target = HL
+				active = TRUE
+				effect = target.throw_alert("blackmirror", /atom/movable/screen/alert/blackmirror, override = TRUE)
+				effect.source = src
+				target.playsound_local(src, 'sound/items/blackeye_warn.ogg', 100, FALSE)
+				playsound(src, 'sound/items/blackmirror_active.ogg', 100, FALSE)
+				openstate = "active"
+				addtimer(CALLBACK(src, PROC_REF(donefixating)), 2 MINUTES, TIMER_UNIQUE)
+				soundloop.start()	
+				return update_icon()	
+			playsound(src, 'sound/items/blackmirror_no.ogg', 100, FALSE)
+			to_chat(user, span_warning("[src] makes a grating sound."))
+			return
+	var/lookat = null
+	if(alert(user, "WHERE ARE YOU LOOKING?", "BLACK MIRROR", "BLOOD", "FIXATION") != "BLOOD")
+		lookat = target
+	else
+		lookat = whofedme
+	playsound(src, 'sound/items/blackmirror_use.ogg', 100, FALSE)
+	var/mob/dead/observer/screye/blackmirror/S = user.scry_ghost()
+//	message_admins("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
+//	log_game("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
+	if(!S)
+		return
+	S.ManualFollow(lookat)
+	S.add_client_colour(/datum/client_colour/nocshaded)
+	user.visible_message(span_warning("[user] stares into [src], their eyes glazing over..."))
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/mob/dead/observer, reenter_corpse)), 4 SECONDS)
+	sleep(41)
+	playsound(user, 'sound/items/blackeye.ogg', 100, FALSE)
+	return
+
+/obj/item/inqarticles/bmirror/attack(mob/living/carbon/human/M, mob/user)
+	if(!user.mind)
+		return
+	if(opened)
+		if(broken)
+			to_chat(user, span_warning("It's broken."))
+			return
+		if(bloody)
+			to_chat(user, span_warning("The mirror is fogged over. I need to clean it with cloth before reuse."))
+			return
+		if(M == user)
+			user.visible_message(span_notice("[user] presses upon [src]'s needle."))
+			if(do_after(user, 30))
+				playsound(src, 'sound/items/blackmirror_needle.ogg', 65, FALSE)
+				whofedme = user
+				openstate = "bloody"
+				fedblood = TRUE
+				return update_icon()
+			return
+		else
+			user.visible_message(span_notice("[user] goes to press [M] with [src]'s needle."))
+			if(do_after(user, 30, target = M))	
+				playsound(M, 'sound/items/blackmirror_needle.ogg', 65, FALSE)
+				whofedme = M
+				openstate = "bloody"
+				fedblood = TRUE
+				return update_icon()
+			return
+	else
+		to_chat(user, span_warning("I need to open it first."))
+		return
+
+
+/obj/item/inqarticles/bmirror/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/natural/cloth))
+		if(broken && bloody)
+			if(do_after(user, 30))
+				user.visible_message(span_info("[user] cleans [src] with [I]."))
+				openstate = "cleaned"
+				bloody = FALSE
+				update_icon()
+			return
+		if(bloody)
+			if(do_after(user, 30))
+				user.visible_message(span_info("[user] cleans the fog and blood from [src] with [I]."))
+				openstate = "open"
+				bloody = FALSE
+				update_icon()
+		return
+
+/obj/item/inqarticles/bmirror/attack_right(mob/user, obj/item/T)
+	..()
+	if(!user.mind)
+		return
+	if(istype(T, /obj/item/inqarticles/bmirror))
+		openorshut()
+	else
+		openorshut()	
+
+/obj/item/inqarticles/bmirror/proc/openorshut()
+	if(opened)
+		if(effect)
+			target.clear_alert("blackmirror", TRUE)
+			effect = null
+			target.playsound_local(src, 'sound/items/blackeye.ogg', 40, FALSE)
+		playsound(src, 'sound/items/blackmirror_shut.ogg', 100, FALSE)
+		soundloop.stop()
+		opened = FALSE
+		icon_state = "[initial(icon_state)]"
+		update_icon_state()
+		return
+	playsound(src, 'sound/items/blackmirror_open.ogg', 100, FALSE)
+	if(target)
+		target.playsound_local(src, 'sound/items/blackeye_warn.ogg', 100, FALSE)
+		effect = target.throw_alert("blackmirror", /atom/movable/screen/alert/blackmirror, override = TRUE)
+		effect.source = src
+	if(active)	
+		soundloop.start()	
+	opened = TRUE
+	return update_icon()
+
+/obj/item/inqarticles/bmirror/update_icon()
+	if(opened)
+		icon_state = "[initial(icon_state)]_[openstate]"
+	else
+		icon_state = "[initial(icon_state)]"
+	update_icon_state()	
+
+/obj/item/inqarticles/bmirror/Initialize()
+	soundloop = new(src, FALSE)
+	. = ..()
+
+/obj/item/inqarticles/bmirror/Destroy()
+	if(soundloop)
+		QDEL_NULL(soundloop)
+	return ..()
+
+
+/atom/movable/screen/alert/blackmirror
+	name = "BLACK EYE"
+	desc = "LOOK AT ME. I SEE YOU."
+	icon_state = "blackeye"	
+	var/obj/item/inqarticles/bmirror/source
+
+/atom/movable/screen/alert/blackmirror/Click()
+	var/mob/living/L = usr
+	var/lookat = null
+
+	if(alert(L, "KEEP LOOKING, WHAT WILL YOU FIND?", "BLACK EYED GAZE", "BLOOD", "MIRROR") != "BLOOD")
+		lookat = source
+	else
+		lookat = source.whofedme
+	playsound(L, 'sound/items/blackmirror_use.ogg', 100, FALSE)
+	var/mob/dead/observer/screye/blackmirror/S = L.scry_ghost()
+//	message_admins("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
+//	log_game("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
+	if(!S)
+		return
+	S.ManualFollow(lookat)
+	S.add_client_colour(/datum/client_colour/nocshaded)
+	L.visible_message(span_warning("[L] looks inward as their eyes glaze over..."))
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/mob/dead/observer, reenter_corpse)), 4 SECONDS)
+	sleep(41)
+	playsound(L, 'sound/items/blackeye.ogg', 100, FALSE)
+	return
+
+/obj/item/inqarticles/spyglass
+	name = "otavan nocshade eyepiece"
+	desc = ""
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "spyglass"
+	item_state = "spyglass"
+	grid_height = 32
+	grid_width = 32
+
+/obj/item/inqarticles/spyglass/attack_self(mob/living/user)
+	. = ..()
+	

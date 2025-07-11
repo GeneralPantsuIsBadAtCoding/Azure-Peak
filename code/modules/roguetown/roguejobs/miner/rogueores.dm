@@ -251,6 +251,13 @@
 	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
 	sellprice = 100
 
+/obj/item/ingot/silverblessed/bullion
+	name = "blessed silver bullion"
+	desc = "This bar radiates a divine purity. The Psycross and the words casted into the surface denotes the Otavan Inquisition as the point of it's origin."
+	icon_state = "ingotsilvblessed_psy"
+	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
+	sellprice = 100
+
 /obj/item/ingot/aalloy
 	name = "ancient alloy"
 	desc = "An old, decrepit slab of metal. Aeon has withered it's strength."

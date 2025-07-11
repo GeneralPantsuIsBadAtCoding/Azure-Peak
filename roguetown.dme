@@ -2107,6 +2107,8 @@
 #include "code\modules\roguetown\roguemachine\vaultbank.dm"
 #include "code\modules\roguetown\roguemachine\vendor.dm"
 #include "code\modules\roguetown\roguemachine\withdraw.dm"
+#include "code\modules\roguetown\roguemachine\inqports\_inqports.dm"
+#include "code\modules\roguetown\roguemachine\inqports\inqshop.dm"
 #include "code\modules\roguetown\roguemachine\merchant\goldface.dm"
 #include "code\modules\roguetown\roguemachine\merchant\navigator.dm"
 #include "code\modules\roguetown\roguemachine\questing\questing_components.dm"

@@ -19,6 +19,12 @@
 	return ..()
 
 /obj/structure/roguemachine/withdraw/attackby(obj/item/P, mob/user, params)
+	if(istype(P, /obj/item/roguecoin/aalloy))
+		return
+
+	if(istype(P, /obj/item/roguecoin/inqcoin))	
+		return
+
 	if(istype(P, /obj/item/roguecoin))
 		withdraw_tab.insert_coins(P)
 		return attack_hand(user)

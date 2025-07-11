@@ -131,10 +131,17 @@
 	sellprice = 270
 
 /obj/item/clothing/ring/signet
-	name = "Signet Ring"
+	name = "signet ring"
 	icon_state = "signet"
-	desc = "A large golden ring engraved with the Symbol of Psydon."
+	desc = "A large golden signet ring engraved with the Symbol of Psydon."
 	sellprice = 135
+	var/tallowed = FALSE
+
+/obj/item/clothing/ring/signet/silver
+	name = "silver signet ring"
+	icon_state = "signet_silver"
+	desc = "A large signet ring engraved with the Symbol of Psydon, forged from blessed silver. Typically sourced from Otava."
+	sellprice = 90
 
 //silver rings
 /obj/item/clothing/ring/emeralds
