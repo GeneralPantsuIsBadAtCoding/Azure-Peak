@@ -347,3 +347,95 @@
 		playsound(loc, 'sound/misc/gold_license.ogg', 100, TRUE, -1)
 		say("UNKNOWN CREATURE IN SECURE AREA- ARRETZ-VOUS!!")
 		next_yap = world.time + 6 SECONDS
+
+/obj/structure/fluff/walldeco/vinez // overlay vines for more flexibile mapping
+	icon_state = "vinez"
+
+/obj/structure/fluff/walldeco/vinez/l
+	pixel_x = -32
+
+/obj/structure/fluff/walldeco/vinez/r
+	pixel_x = 32
+
+/obj/structure/fluff/walldeco/vinez/offset
+	icon_state = "vinez"
+	pixel_y = 32
+
+/obj/structure/fluff/walldeco/vinez/blue
+	icon_state = "vinez_blue"
+
+/obj/structure/fluff/walldeco/vinez/red
+	icon_state = "vinez_red"
+
+/obj/structure/fluff/walldeco/bath // suggestive stonework
+	icon_state = "bath1"
+	pixel_x = -32
+	alpha = 210
+
+/obj/structure/fluff/walldeco/bath/two
+	icon_state = "bath2"
+	pixel_x = -29
+
+/obj/structure/fluff/walldeco/bath/three
+	icon_state = "bath3"
+	pixel_x = -29
+
+/obj/structure/fluff/walldeco/bath/four
+	icon_state = "bath4"
+	pixel_y = 32
+	pixel_x = 0
+
+/obj/structure/fluff/walldeco/bath/five
+	icon_state = "bath5"
+	pixel_x = -29
+
+/obj/structure/fluff/walldeco/bath/six
+	icon_state = "bath6"
+	pixel_x = -29
+
+/obj/structure/fluff/walldeco/bath/seven
+	icon_state = "bath7"
+	pixel_x = 32
+
+/obj/structure/fluff/walldeco/bath/gents
+	icon_state = "gents"
+	pixel_x = 0
+	pixel_y = 32
+
+/obj/structure/fluff/walldeco/bath/ladies
+	icon_state = "ladies"
+	pixel_x = 0
+	pixel_y = 32
+
+/obj/structure/fluff/walldeco/bath/wallrope
+	icon_state = "wallrope"
+	layer = WALL_OBJ_LAYER+0.1
+	pixel_x = 0
+	pixel_y = 0
+	color = "#d66262"
+
+/obj/structure/fluff/walldeco/sign/saiga
+	name = "The Drunken Saiga"
+	icon_state = "shopsign_inn_saiga_right"
+	plane = -1
+	pixel_x = 3
+	pixel_y = 16
+
+/obj/structure/fluff/walldeco/sign/saiga/left
+	icon_state = "shopsign_inn_saiga_left"
+
+/obj/structure/fluff/walldeco/sign/trophy
+	name = "saiga trophy"
+	icon_state = "saiga_trophy"
+	pixel_y = 32
+
+/obj/effect/decal/shadow_floor
+	name = ""
+	desc = ""
+	icon = 'icons/roguetown/misc/decoration.dmi'
+	icon_state = "shadow_floor"
+	mouse_opacity = 0
+
+/obj/effect/decal/shadow_floor/corner
+	icon_state = "shad_floorcorn"
+
