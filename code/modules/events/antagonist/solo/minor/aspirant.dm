@@ -15,7 +15,6 @@
 		"Prince",
 		"Princess",
 		"Captain",
-		"Marshal",
 		"Sergeant",
 		"Steward",
 		"Court Magician"

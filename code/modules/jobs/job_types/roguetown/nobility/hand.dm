@@ -35,7 +35,6 @@
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/steel
-	beltr = /obj/item/rogueweapon/sword/rapier/dec
 	job_bitflag = BITFLAG_ROYALTY
 
 /datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
@@ -65,35 +64,42 @@
 
 	category_tags = list(CTAG_HAND)
 
-//Classical hand start - same as before, nothing changed. 
+//Knightly Hand. Bailiff/Marshal's old equipment.
 /datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
+	cloak = /obj/item/clothing/cloak/stabard/surcoat/bailiff
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	backr = /obj/item/storage/backpack/rogue/satchel/black
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	backr = /obj/item/rogueweapon/sword/long/oathkeeper
+	backl = /obj/item/storage/backpack/rogue/satchel/black
+	head = /obj/item/clothing/head/roguetown/chaperon/noble/bailiff
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
 		/obj/item/storage/keyring/hand = 1,
 		)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
-	pants = /obj/item/clothing/under/roguetown/tights/black
 	id = /obj/item/scomstone/garrison
 	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 	H.change_stat("strength", 2)
 	H.change_stat("perception", 3)
 	H.change_stat("intelligence", 3)
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
 
 /datum/advclass/hand/spymaster
 	name = "Spymaster"
@@ -105,6 +111,7 @@
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	backr = /obj/item/storage/backpack/rogue/satchel/black
+	beltr = /obj/item/rogueweapon/sword/rapier/dec
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
 		/obj/item/storage/keyring/hand = 1,
@@ -129,7 +136,7 @@
 	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
@@ -171,6 +178,7 @@
 	id = /obj/item/scomstone/garrison
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)

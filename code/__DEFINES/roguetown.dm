@@ -421,7 +421,6 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_LORD			"CAT_LORD"			// Lord class - Handles Lord class selector
 #define CTAG_SQUIRE			"CAT_SQUIRE"		// Squire class - Handles Squire class selector
 #define CTAG_VETERAN		"CAT_VETERAN"		// Veteran class - Handles Veteran class selector
-#define CTAG_MARSHAL		"CAT_MARSHAL"		// Marshal class
 #define CTAG_SENESCHAL		"CAT_SENESCHAL"		// Seneschal's aesthetic choices. 
 #define CTAG_SERVANT		"CAT_SERVANT"		// Servant's aesthetic choices.
 #define CTAG_CAPTAIN		"CAT_CAPTAIN"		// Handles Captain class selector

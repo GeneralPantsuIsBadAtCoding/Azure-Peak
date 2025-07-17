@@ -1,5 +1,5 @@
 /datum/job/roguetown/captain
-	title = "Knight Captain" //The Knight Captain is clearly not drawn from the ranks of guardsmen, or sergeants. They're drawn from the Knightly ranks and should be treated as such.
+	title = "Guard Captain" //Head of the guard in its entirety.
 	flag = GUARD_CAPTAIN
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -10,7 +10,7 @@
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Your lineage is noble, and generations of strong, loyal knights have come before you. You served your time \
 	gracefully as knight of his royal majesty, and now you've grown into a role which many men can only dream of becoming. \
-	Veteran among knights, you lead the crown's knights to battle and organize the training squires. Obey the Marshal and the Crown. \
+	Veteran among knights, you lead the crown's soldiers to battle and organize their training. Obey the Crown. \
 	Lead your men to victory--and keep them in line--and you will see this realm prosper under a thousand suns."
 	display_order = JDO_GUARD_CAPTAIN
 	advclass_cat_rolls = list(CTAG_CAPTAIN = 20)
@@ -18,8 +18,8 @@
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard)
 	outfit = /datum/outfit/job/roguetown/captain
 
-	give_bank_account = 26
-	noble_income = 16
+	give_bank_account = 40
+	noble_income = 20
 	min_pq = 9
 	max_pq = null
 	round_contrib_points = 3
@@ -82,6 +82,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/signal_horn = 1,
 		)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
@@ -116,7 +117,9 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
-	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+	H.verbs |= list(/mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/living/carbon/human/proc/request_law, /mob/living/carbon/human/proc/request_law_removal, /mob/living/carbon/human/proc/request_purge)
+
 	H.adjust_blindness(-3)
 	var/weapons = list(
 		"Zweihander",
@@ -185,6 +188,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/signal_horn = 1,
 		)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
@@ -323,6 +327,112 @@
 		return FALSE
 	return TRUE
 
+/mob/living/carbon/human/proc/request_law()
+	set name = "Request Law"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Write a new law", "CAPTAIN") as text|null
+	if(inputty)
+		if(hasomen(OMEN_NOLORD))
+			make_law(inputty)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_law_requested), src, lord, inputty)
+			else
+				make_law(inputty)
+
+/mob/living/carbon/human/proc/request_law_removal()
+	set name = "Request Law Removal"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Remove a law", "CAPTAIN") as text|null
+	var/law_index = text2num(inputty) || 0
+	if(law_index && GLOB.laws_of_the_land[law_index])
+		if(hasomen(OMEN_NOLORD))
+			remove_law(law_index)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_law_removal_requested), src, lord, law_index)
+			else
+				remove_law(law_index)
+
+/mob/living/carbon/human/proc/request_purge()
+	set name = "Request Purge"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	if(hasomen(OMEN_NOLORD))
+		purge_laws()
+	else
+		var/lord = find_lord()
+		if(lord)
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_purge_requested), src, lord)
+		else
+			purge_laws()
+
+/mob/living/carbon/human/proc/request_outlaw()
+	set name = "Request Outlaw"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Outlaw a person", "CAPTAIN") as text|null
+	if(inputty)
+		if(hasomen(OMEN_NOLORD))
+			make_outlaw(inputty)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_outlaw_requested), src, lord, inputty)
+			else
+				make_outlaw(inputty)
+
+/proc/find_lord(required_stat = CONSCIOUS)
+	var/mob/living/lord
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(!H.mind || H.job != "Grand Duke" || (H.stat > required_stat))
+			continue
+		lord = H
+		break
+	return lord
+
+/proc/lord_law_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_law)
+	var/choice = alert(lord, "The captain requests a new law!\n[requested_law]", "CAPTAIN LAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a new law!"))
+		return
+	make_law(requested_law)
+
+/proc/lord_law_removal_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_law)
+	if(!requested_law || !GLOB.laws_of_the_land[requested_law])
+		return
+	var/choice = alert(lord, "The captain requests the removal of a law!\n[GLOB.laws_of_the_land[requested_law]]", "CAPTAIN LAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a law removal!"))
+		return
+	remove_law(requested_law)
+
+/proc/lord_purge_requested(mob/living/bailiff, mob/living/carbon/human/lord)
+	var/choice = alert(lord, "The captain requests a purge of all laws!", "CAPTAIN PURGE REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a purge of all laws!"))
+		return
+	purge_laws()
+
+/proc/lord_outlaw_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_outlaw)
+	var/choice = alert(lord, "The captain requests to outlaw someone!\n[requested_outlaw]", "CAPTAIN OUTLAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for declaring an outlaw!"))
+		return
+	make_outlaw(requested_outlaw)
+
 /obj/effect/proc_holder/spell/self/convertrole/proc/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
 	if(QDELETED(recruit) || QDELETED(recruiter))
 		return FALSE
@@ -355,3 +465,8 @@
 	if(!.)
 		return
 	recruit.verbs |= /mob/proc/haltyell
+
+/mob/proc/haltyell()
+	set name = "HALT!"
+	set category = "Noises"
+	emote("haltyell")

@@ -208,7 +208,7 @@
 
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"
-	desc = "The icon of the right of office of the Marshal. While mostly ceremonial in design, it serves it's purpose in dishing out some much needed justice."
+	desc = "The icon of the right of office of the Sergeant. While mostly ceremonial in design, it serves it's purpose in dishing out some much needed justice."
 	force = 30
 	icon_state = "justice"
 	force_wielded = 30

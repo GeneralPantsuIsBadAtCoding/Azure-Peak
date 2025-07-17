@@ -21,7 +21,7 @@
 			playsound(src, 'modular_hearthstone/sound/items/bogguardhorn.ogg', 100, TRUE)
 		if("Town Sheriff", "Watchman", "Sergeant", "Man at Arms")
 			playsound(src, 'modular_hearthstone/sound/items/watchhorn.ogg', 100, TRUE)
-		if("Knight Captain", "Royal Guard")
+		if("Guard Captain", "Knight")
 			playsound(src, 'modular_hearthstone/sound/items/rghorn.ogg', 100, TRUE)
 		else
 			playsound(src, 'modular_hearthstone/sound/items/signalhorn.ogg', 100, TRUE)
@@ -108,7 +108,7 @@
 			if("Marshall", "Watchman", "Sergeant", "Man at Arms")
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/watchhorn.ogg', 35, FALSE, pressure_affected = FALSE)
 				to_chat(player, span_warning("I hear the horn of the Garrison somewhere[disttext],[dirtext],[placetext]"))
-			if("Knight Captain", "Knight")
+			if("Guard Captain", "Knight")
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/rghorn.ogg', 35, FALSE, pressure_affected = FALSE)
 				to_chat(player, span_warning("I hear the horn of the Royal Guard somewhere[disttext],[dirtext],[placetext]"))
 			else

@@ -107,15 +107,15 @@
 		/obj/item/storage/keyring/guardsergeant = 1,
 		)
 	H.adjust_blindness(-3)
-	var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
+	var/weapons = list("Rhomphaia","'Justice' & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
 			backl = /obj/item/rogueweapon/sword/long/rhomphaia
 			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
-			beltr = /obj/item/rogueweapon/flail/sflail
+		if("'Justice' & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Now with the Sheriff cudgel?
+			beltr = /obj/item/rogueweapon/mace/cudgel/justice
 			backl = /obj/item/rogueweapon/shield/tower
 		if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
 			r_hand = /obj/item/rogueweapon/halberd
@@ -155,7 +155,7 @@
 			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Knight Captain")
+		if(user.job == "Guard Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return		
@@ -217,7 +217,7 @@
 			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Knight Captain")
+		if(user.job == "Guard Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return		
@@ -248,7 +248,7 @@
 			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Knight Captain")
+		if(user.job == "Guard Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return		
@@ -306,7 +306,7 @@
 			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Knight Captain")
+		if(user.job == "Guard Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return		
