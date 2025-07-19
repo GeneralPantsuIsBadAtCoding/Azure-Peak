@@ -27,6 +27,11 @@
 	var/static/regex/dmmRegex = new(@'"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}', "g")
 	var/static/regex/trimQuotesRegex = new(@'^[\s\n]+"?|"?[\s\n]+$|^"|"$', "g")
 	var/static/regex/trimRegex = new(@'^[\s\n]+|[\s\n]+$', "g")
+	
+	/// If we've expanded world.maxx
+	var/expanded_y = FALSE
+	/// If we've expanded world.maxy
+	var/expanded_x = FALSE
 
 	#ifdef TESTING
 	var/turfsSkipped = 0
@@ -150,6 +155,7 @@
 		var/zcrd = gset.zcrd + z_offset - 1
 		if(!cropMap && ycrd > world.maxy)
 			world.maxy = ycrd // Expand Y here.  X is expanded in the loop below
+			expanded_y = TRUE
 		var/zexpansion = zcrd > world.maxz
 		if(zexpansion)
 			if(cropMap)
@@ -175,6 +181,7 @@
 							break
 						else
 							world.maxx = xcrd
+							expanded_x = TRUE
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
@@ -207,6 +214,9 @@
 			var/turf/T = t
 			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
+
+	if(expanded_x || expanded_y)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPANDED_WORLD_BOUNDS, expanded_x, expanded_y)
 
 	#ifdef TESTING
 	if(turfsSkipped)
