@@ -32,7 +32,7 @@
 			belt = /obj/item/storage/belt/rogue/leather/black
 			backr = /obj/item/storage/backpack/rogue/satchel
 			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)		//to encourage use of the scabbard as a shield	
+			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)		//to encourage use of the scabbard as a shield	
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)

@@ -325,16 +325,15 @@
 	force = 12
 	throwforce = 12
 	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard. It's a bit more dull, however."
-	icon_state = "spdagger"
 	sheathe_icon = "spdagger"
-	wdefense = 6
+	wdefense = 8		//This way with expert dagger skill you'd have ~12 defense. 1 higher than a kiteshield, but no arrow protection.
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
 	name = "sail dagger"
 	force = 15
 	throwforce = 15
 	desc = "An exceptionally protective parrying dagger popular in the Etruscan Isles, this dagger features a plain metal guard in the shape of a ship's sail."
-	wdefense = 7
+	wdefense = 9		//This way with expert dagger skill you'd have ~13 defense. 2 higher than a kiteshield, but no arrow protection.
 	icon_state = "sail_dagger"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/special
