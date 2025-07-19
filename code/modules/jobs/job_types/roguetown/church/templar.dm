@@ -97,7 +97,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	// if you are looking for unarmed, it was moved down to the weapon choices in an attempt to avoid the "take x apprentince virtue to get unintended legendary" thing
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
@@ -157,24 +157,35 @@
 
 /datum/outfit/job/roguetown/templar/monk/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Katar","Knuckle Dusters")
+	var/weapons = list("Katar","Knuckle Dusters", "Polearm")
 	switch(H.patron?.type)
 		if(/datum/patron/divine/eora)
 			weapons += "Close Caress"
 		if(/datum/patron/divine/abyssor)
 			weapons += "Barotrauma"
+		if(/datum/patron/divine/dendor)
+			weapons += "Summer Scythe"
 
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)// 5 because that's what it was before I touched it
 		if("Knuckle Dusters")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)// ^
 		if("Close Caress")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/eora(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)// ^
 		if("Barotrauma")
 			H.put_in_hands(new /obj/item/rogueweapon/katar/abyssor(H), TRUE)
-
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)// ^
+		if("Summer Scythe")
+			H.put_in_hands(new /obj/item/rogueweapon/halberd/bardiche/scythe(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)// I am hesitant to give them any unarmed 'cause legendary polearms'
+		if("Polearm")
+			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/steel, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
 /datum/advclass/templar/crusader
 	name = "Templar"
 	tutorial = "You are a templar of the Church, trained in heavy weaponry and zealous warfare. You are the instrument of your God's wrath, clad in steel and faith."

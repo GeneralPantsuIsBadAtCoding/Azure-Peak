@@ -50,12 +50,19 @@
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
 			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			var/weapons = list("Quarterstaff","Unarmed")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if ("Unarmed")
+					H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+				if("Quarterstaff")
+					H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+					r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
