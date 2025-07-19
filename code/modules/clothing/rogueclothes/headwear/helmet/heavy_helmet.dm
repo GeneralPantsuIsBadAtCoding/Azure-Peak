@@ -582,3 +582,14 @@
 	. = ..()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
+/obj/item/clothing/head/roguetown/helmet/heavy/bucket/iron
+	name = "iron bucket helm"
+	desc = "A helmet that covers your entire head, offering good protection while making breathing a difficult ordeal."
+	icon_state = "ironplate"
+	item_state = "ironplate"
+	emote_environment = 3
+	max_integrity = ARMOR_INT_HELMET_HEAVY_IRON
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/iron
+	smelt_bar_num = 2

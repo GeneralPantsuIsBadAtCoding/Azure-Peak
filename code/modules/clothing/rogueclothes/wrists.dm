@@ -148,7 +148,23 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	blocksound = SOFTHIT
 	max_integrity = ARMOR_INT_SIDE_IRON
-	anvilrepair = /datum/skill/craft/blacksmithing
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FIRE_PROOF
+	sewrepair = FALSE
+
+/obj/item/clothing/wrists/roguetown/splintarms/iron
+	name = "splint bracers"
+	desc = "A pair of leather sleeves backed with iron splints, couters, and shoulderpieces that protect your arms and remain decently light."
+	body_parts_covered = ARMS
+	icon_state = "ironsplintarms"
+	item_state = "ironsplintarms"
+	armor = ARMOR_LEATHER_STUDDED //not plate armor, is leather + iron bits
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
+	blocksound = SOFTHIT
+	max_integrity = ARMOR_INT_SIDE_LEATHER
+	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF

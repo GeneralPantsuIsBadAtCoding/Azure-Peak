@@ -70,16 +70,22 @@
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 			switch(armor_choice)
 				if("Chainmaille Set")
-					shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+					armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random//giving them something to wear under their armors
 					pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 					neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 					gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 				if("Iron Breastplate")
 					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
-					pants = /obj/item/clothing/under/roguetown/trou/leather
+					neck = /obj/item/clothing/neck/roguetown/coif/heavypadding
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+					pants = /obj/item/clothing/under/roguetown/splintlegs/iron
 					gloves = /obj/item/clothing/gloves/roguetown/angle
 				if("Gambeson & Helmet")
-					shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+					armor = /obj/item/clothing/suit/roguetown/armor/gambeson
+					neck = /obj/item/clothing/neck/roguetown/coif/padded//neck cover
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+					wrists = /obj/item/clothing/wrists/roguetown/splintarms/iron//adding it since this set feels far too weak compared to the other two, gets one helmet and arm cover at least
 					pants = /obj/item/clothing/under/roguetown/trou/leather
 					head = /obj/item/clothing/head/roguetown/helmet/kettle
 					gloves = /obj/item/clothing/gloves/roguetown/angle
