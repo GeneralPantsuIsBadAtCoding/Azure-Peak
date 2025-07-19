@@ -4,9 +4,11 @@
 
 /datum/patron/divine/astrata
 	name = "Astrata"
-	domain = "Twinned Goddess of the Sun, Day, and Order"
-	desc = "The she-form of the Twinned Gods, the combined amalgam of single-bodied Astrata and Noc that opens her eyes at glorious Dae. Men bask under the gift of the Sun. A single form begets two Gods that shift at Dusk and Dawn but always endures, even at night."
+	domain = "Goddess of the Sun, Day, and Order"
+	desc = "The Tyrant of the Ten, sister and rival to Noc - and the eldest of them all. Her radiance keeps the evils at bay during the dae'. Nite', however, is a different tale."
 	worshippers = "The Noble Hearted, Zealots and Farmers"
+	flaws = "Tyrannical, Ill-Tempered, Uncompromising"
+	sins = "Betrayal, Sloth, Witchcraft"
 	mob_traits = list(TRAIT_APRICITY)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/ignition				= CLERIC_T0,
@@ -25,9 +27,11 @@
 
 /datum/patron/divine/noc
 	name = "Noc"
-	domain = "Twinned God of the Moon, Night, and Knowledge"
-	desc = "The he-form of the Twinned Gods, the combined amalgam of single-bodied Noc and Astrata that opens his eyes during pondorous Night. He gifted man knowledge of divinity and magicks. A single form begets two Gods that shift at Dusk and Dawn but always endures, even at dae."
+	domain = "God of the Moon, Books, Night, and Knowledge"
+	desc = "The Nite-Scholar, brother and rival to Astrata. His wisdom paves the way in the moonlight. Tales of esoteric magicka at the destination are sung - in the words of decaying scripts."
 	worshippers = "Wizards and Scholars"
+	flaws = "Resentful, Vindictive, Haughty"
+	sins = "Ignorance, Burning Books, Indulgence of Lust"
 	mob_traits = list(TRAIT_NIGHT_OWL)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/noc_sight				= CLERIC_T0,
@@ -47,9 +51,11 @@
 
 /datum/patron/divine/dendor
 	name = "Dendor"
-	domain = "God of the Earth and Nature"
+	domain = "God of Nature, Madness, Beasts"
 	desc = "The God of Wilds, born from Abyssor's feverish dreams. Spilt forth life from the oceans to land in a wild craze. The Father of Ground-Lyfe. Treefather."
 	worshippers = "Druids, Beasts, Madmen"
+	flaws = "Madness, Rebelliousness, Disorderliness"
+	sins = "Deforestation, Overhunting, Disrespecting Nature"
 	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_LEECHIMMUNE)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/spiderspeak 			= CLERIC_T0,
@@ -68,9 +74,11 @@
 
 /datum/patron/divine/abyssor
 	name = "Abyssor"
-	domain = "The great dreamer, primordial father of the tides. The ancient one, the most warped and potent of the ten."
+	domain = "God of the Sea, Weather, Dreams"
 	desc = "The strongest of the Ten; when awakened, the world flooded for a thousand daes and a thousand nights before he was put to slumber. Resting fitfully did Dendor split from his skull like a gaping wound. Communes rarely with his followers, only offering glimpses in dreams. Gifted primordial Man water. "
 	worshippers = "Men of the Sea, Primitive Aquatics"
+	flaws= "Reckless, Stubborn, Destructive"
+	sins = "Fear, Hubris, Trying to Tame the Seas"
 	mob_traits = list(TRAIT_ABYSSOR_SWIM, TRAIT_SEA_DRINKER)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/aquatic_compulsion	= CLERIC_T0,
@@ -92,9 +100,11 @@
 
 /datum/patron/divine/ravox
 	name = "Ravox"
-	domain = "God of Justice, Glory, Battle"
+	domain = "God of War, Justice, Honor"
 	desc = "Stalwart warrior, glorious justicier; legends say he came down to the Basin to repel the vile hordes of demons with his own hands, and that he seeks warriors for his divine army among mortals."
 	worshippers = "Warriors, Sellswords & those who seek Justice"
+	flaws = "Carelessness, Aggression, Pride"
+	sins = "Cowardice, Cruelty, Stagnation"	
 	mob_traits = list(TRAIT_SHARPER_BLADES, TRAIT_JUSTICARSIGHT)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/tug_of_war			= CLERIC_T0,
@@ -112,9 +122,11 @@
 
 /datum/patron/divine/necra
 	name = "Necra"
-	domain = "Goddess of Death and the Afterlife"
+	domain = "Goddess of Death, Afterlife, Spirits"
 	desc = "Veiled Lady of the underworld, equally feared and respected by mortals. She taught mortals the inevitability of death and cares for them as they reach the afterlife."
 	worshippers = "The Dead, Mourners, Gravekeepers"
+	flaws = "Unchanging, Apathetic, Strict"
+	sins = "Undeath"
 	mob_traits = list(TRAIT_SOUL_EXAMINE, TRAIT_NOSTINK)	//No stink is generic but they deal with dead bodies so.. makes sense, I suppose?
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/necras_sight			= CLERIC_T0,
@@ -135,6 +147,8 @@
 	domain = "God of Trickery, Freedom and Inspiration"
 	desc = "The Laughing God, both famous and infamous for his sway over the forces of luck. Xylix is known for the inspiration of many a bards lyric. Speaks through his gift to man; the Tarot deck."
 	worshippers = "Gamblers, Bards, Artists, and the Silver-Tongued"
+	flaws = "Petulance, Deception, Irreverence"
+	sins = "Boredom, Predictability, Routine"
 	mob_traits = list(TRAIT_XYLIX)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/self/xylixslip				= CLERIC_T0,
@@ -164,9 +178,11 @@
 
 /datum/patron/divine/pestra
 	name = "Pestra"
-	domain = "Goddess of Decay, Disease and Medicine"
+	domain = "Goddess of Decay, Disease, Health, Life"
 	desc = "Goddess that blessed many a saint with healing hands, Pestra taught man the arts of medicine and its benefits."
-	worshippers = "The Sick, Phyicians, Apothecaries"
+	worshippers = "The Sick, Physicians, Apothecaries"
+	flaws = "Drunkenness, Crudeness, Irresponsibility"
+	sins = "´Curing´ Abnormalities, Refusing to Help Unfortunates, Groveling"
 	mob_traits = list(TRAIT_EMPATH, TRAIT_ROT_EATER)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/diagnose				= CLERIC_ORI,
@@ -189,6 +205,8 @@
 	domain = "God of Fire, Destruction and Rebirth"
 	desc = "Opinionless god of the crafts. He teaches that great works for killing or saving are great works, either way. The well-oiled guillotine and the well-sharpened axe are tools, and there is no good and evil to their craft."
 	worshippers = "Smiths, Miners, Engineers"
+	flaws = "Obsessive, Exacting, Overbearing"
+	sins = "Cheating, Shoddy Work, Self-Harm"
 	mob_traits = list(TRAIT_FORGEBLESSED, TRAIT_BETTER_SLEEP)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/malum_flame_rogue 	= CLERIC_T0,
@@ -213,6 +231,8 @@
 	domain = "Goddess of Love, Life and Beauty"
 	desc = "Baotha's fairer half, made from blind, unconditional love. She is without a shred of hate in her heart and taught mankind that true love that even transcends Necra's grasp."
 	worshippers = "Lovers, the romantically inclined, and Doting Grandparents"
+	flaws = "Naivete, Impulsiveness, Ignorance"
+	sins = "Sadism, Hedonism, Ruining Beauty"
 	mob_traits = list(TRAIT_EMPATH, TRAIT_EXTEROCEPTION)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/eora_blessing			= CLERIC_T0,
