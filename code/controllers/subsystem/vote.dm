@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(vote)
 					if(H.stat != DEAD)
 						vote_power += 3
 					if(H.job)
-						var/list/list_of_powerful = list("Grand Duke", "Priest")
+						var/list/list_of_powerful = list("Grand Duke", "Bishop")
 						if(H.job in list_of_powerful)
 							vote_power += 5
 						else

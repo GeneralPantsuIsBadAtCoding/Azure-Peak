@@ -414,7 +414,7 @@
 	lockid = "church"
 
 /obj/item/roguekey/priest
-	name = "priest's key"
+	name = "Bishop's key"
 	desc = "This is the master key of the church."
 	icon_state = "cheesekey"
 	lockid = "priest"
