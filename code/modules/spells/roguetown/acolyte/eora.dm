@@ -398,17 +398,20 @@
 		return FALSE
 
 	var/turf/T = get_turf(targets[1])
-	if(isopenturf(T))
-		to_chat(user, span_notice("I begin growing Eora's sacred tree here. I should stop and reconsider if I don't want my only tree here."))
-		if(do_after(user, 30 SECONDS, FALSE))
-			if(isopenturf(T))
-				var/obj/structure/eoran_pomegranate_tree/tree = new /obj/structure/eoran_pomegranate_tree(T)
-				my_little_tree = tree
-				return TRUE
-	else
+	if(!isopenturf(T))
 		to_chat(user, span_warning("The targeted location is blocked. Eora's seed cannot sprout here."))
-	revert_cast()
-	return FALSE
+		revert_cast()
+		return FALSE
+	if(!(istype(T, /turf/open/floor/rogue/grass) || istype(T, /turf/open/floor/rogue/dirt)))
+		to_chat(user, span_warning("The tree cannot grow here. It must be planted on dirt or grass!"))
+		revert_cast()
+		return FALSE
+
+	to_chat(user, span_notice("I begin growing Eora's sacred tree here. I should stop and reconsider if I don't want my only tree here."))
+	if(do_after(user, 30 SECONDS, FALSE))
+		var/obj/structure/eoran_pomegranate_tree/tree = new /obj/structure/eoran_pomegranate_tree(T)
+		my_little_tree = tree
+		return TRUE
 
 #define SPROUT 0
 #define GROWING 1
