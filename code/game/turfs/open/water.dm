@@ -154,6 +154,11 @@
 		qdel(F)
 	if(isliving(AM) && !AM.throwing)
 		var/mob/living/L = AM
+		if(HAS_TRAIT(L, TRAIT_CURSE_ABYSSOR))
+			L.freak_out()
+			L.visible_message(span_warning("[L] spasms violently upon touching the water!"), span_danger("The water... it burns me!"))
+			L.adjustFireLoss(25)
+			return
 		if(!(L.mobility_flags & MOBILITY_STAND) || water_level == 3)
 			L.SoakMob(FULL_BODY)
 		else

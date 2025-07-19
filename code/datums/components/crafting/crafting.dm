@@ -172,6 +172,9 @@
 
 
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
+	if (HAS_TRAIT(user, TRAIT_CURSE_MALUM))
+		to_chat(user, span_warning("Your cursed hands tremble and fail to craft... Malum forbids it."))
+		return
 	if(user.doing)
 		return
 	var/list/contents = get_surroundings(user)

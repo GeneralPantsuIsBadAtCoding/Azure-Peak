@@ -152,6 +152,9 @@
 
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
 			prob2defend -= 20
+		
+		if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
+			prob2defend -= 40
 
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))

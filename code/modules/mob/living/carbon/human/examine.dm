@@ -125,7 +125,20 @@
 
 		if(name in GLOB.excommunicated_players)
 			. += span_userdanger("HERETIC! SHAME!")
-
+		
+		if(HAS_TRAIT(src, TRAIT_EXCOMMUNICATED))
+			. += span_userdanger("EXCOMMUNICATED! SHAME!")//Temporary, probably going to get rid of the trait since it doesn't fit for us.
+/*
+		if(name in GLOB.excommunicated_players)
+			var/mob/living/carbon/human/H = src
+			switch (H.patron)
+				if (istype(H.patron, /datum/patron/divine))
+					. += span_userdanger("EXCOMMUNICATED! SHAME!")
+				if (istype(H.patron, /datum/patron/inhumen))
+					. += span_userdanger("HERETIC! SHAME!")
+				if (istype(H.patron, /datum/patron/old_god))
+					. += span_userdanger("HEATHEN! SHAME!")
+*/
 		if(name in GLOB.outlawed_players)
 			. += span_userdanger("OUTLAW!")
 

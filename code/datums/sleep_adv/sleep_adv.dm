@@ -92,6 +92,9 @@
 	// Stuff
 	if(!mind.current)
 		return
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_ABYSSOR))
+		to_chat(mind.current, span_notice("His domain is forbidden to the likes of me."))
+		return
 	if(prob(0)) //TODO SLEEP ADV SPECIALS
 		rolled_specials++
 	var/inspirations = 1
@@ -202,6 +205,9 @@
 	if(!can_buy_skill(skill_type))
 		return
 	if(!enough_sleep_xp_to_advance(skill_type, 1))
+		return
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_MALUM))
+		to_chat(mind.current, span_warning("My dreams turn to nitemares."))
 		return
 	var/datum/skill/skill = GetSkillRef(skill_type)
 	var/dream_text = skill.get_random_dream()
