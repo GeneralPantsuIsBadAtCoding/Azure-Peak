@@ -212,6 +212,41 @@
 	max_integrity = 180
 	blade_dulling = DULLING_SHAFT_CONJURED
 
+/obj/item/rogueweapon/stoneaxe/hurlbat
+	name = "hurlbat"
+	desc = "With the sleek, lightweight design of a tossblade, and the stopping power of a battleaxe, the hurlbat's tricky design allows it to strike its targets with deadly efficiency. Although its historic origin is disputed, it is often-seen amongst Varangian Bounty-Hunters and ruthless Steppesmen."
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
+	wlength = WLENGTH_SHORT
+	w_class = WEIGHT_CLASS_SMALL
+	wbalance = WBALANCE_SWIFT
+	minstr = 13 //Better hit those weights or go back to tossblades chuddy!
+	anvilrepair = /datum/skill/craft/weaponsmithing
+	smeltresult = /obj/item/ingot/steel
+	grid_height = 64
+	grid_width = 32
+	force = 20
+	throwforce = 32 //You ever had an axe thrown at you? 
+	throw_speed = 6 //Batarangs, baby.
+	max_integrity = 50 //Brittle design, hits hard, breaks quickly.
+	armor_penetration = 40 //On-par with steel tossblades. 
+	wdefense = 1
+	icon_state = "hurlbat"
+	embedding = list("embedded_pain_multiplier" = 6, "embed_chance" = 50, "embedded_fall_chance" = 30) //high chance at embed, high chance to fall out on its own.
+	possible_item_intents = list(/datum/intent/axe/chop/stone)
+	gripped_intents = null
+	sellprice = 1
+	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
+
+/obj/item/rogueweapon/stoneaxe/hurlbat/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,"sx" = -10,"sy" = -6,"nx" = 11,"ny" = -3,"wx" = -4,"wy" = -3,"ex" = 5,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+
 //Pickaxe-axe ; Technically both a tool and a weapon, but it goes here due to weapon function. Subtype of woodcutter axe, mostly a weapon.
 /obj/item/rogueweapon/stoneaxe/woodcut/pick
 	name = "Pulaski axe"
