@@ -64,11 +64,6 @@
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/species/npc/deadite/npc_should_resist(ignore_grab = TRUE)
-	if(!check_mouth_grabbed())
-		ignore_grab ||= TRUE
-	return ..(ignore_grab = ignore_grab)
-
 /mob/living/carbon/human/proc/npc_should_resist(ignore_grab = FALSE)
 	// zombie antags don't try to resist non-mouthgrabs
 	if(mind?.has_antag_datum(/datum/antagonist/zombie) && !check_mouth_grabbed())
@@ -524,6 +519,50 @@
 
 	return FALSE
 
+/mob/living/carbon/human/proc/npc_try_backstep()
+	// JUKE: backstep after attacking if you're fast and have movement left
+	var/const/base_juke_chance = 5
+	// for every point of STASPD above 10 you get an extra 5% juke chance
+	var/const/min_spd_for_juke = 10
+	var/const/juke_per_overspd = 5
+	if(mind?.has_antag_datum(/datum/antagonist/zombie)) // deadites cannot juke
+		return FALSE
+	if(!target)
+		return FALSE
+	if(steps_moved_this_turn >= maxStepsTick) // no movement left over
+		return FALSE
+	var/juke_spd_bonus = STASPD > min_spd_for_juke ? (STASPD - min_spd_for_juke) * juke_per_overspd : 0
+	if(!prob(base_juke_chance + juke_spd_bonus))
+		NPC_THINK("Failed juke roll ([base_juke_chance + juke_spd_bonus]%)!")
+		return FALSE
+	NPC_THINK("Succeeded juke roll ([base_juke_chance + juke_spd_bonus]%)!")
+	tempfixeye = TRUE //Change icon to 'target' red eye
+	if(!fixedeye) //If fixedeye isn't already enabled, we need to set this var
+		nodirchange = TRUE
+	var/list/newPath = list()
+	var/turf/lastTurf
+	// Use up to half your remaining distance, with a minimum of one tile.
+	var/juke_distance = rand(1, ceil((maxStepsTick - steps_moved_this_turn)/2))
+	for(var/i in 1 to juke_distance)
+		// pick random turfs to juke to until we're out of movement
+		var/list/turf/juke_candidates = get_dodge_destinations(target, lastTurf)
+		if(!length(juke_candidates))
+			break
+		lastTurf = pick(juke_candidates)
+		newPath += lastTurf
+	if(!length(newPath))
+		return FALSE
+	// temporarily force us to use the juke path
+	myPath = newPath
+	var/old_pathfinding_target = pathfinding_target
+	pathfinding_target = myPath[1]
+	steps_moved_this_turn += move_along_path()
+	pathfinding_target = old_pathfinding_target
+	tempfixeye = FALSE
+	if(!fixedeye)
+		nodirchange = FALSE
+	return TRUE // juke succeeded
+
 /mob/living/carbon/human/proc/handle_combat()
 	switch(mode)
 		if(NPC_AI_IDLE)		// idle
@@ -599,30 +638,12 @@
 			if(Adjacent(target) && isturf(target.loc))	// if right next to perp
 				frustration = 0
 				face_atom(target)
-				monkey_attack(target)
+				. = monkey_attack(target)
 				steps_moved_this_turn++ // an attack costs, currently, 1 movement step
-				// JUKE: backstep after attacking if you're fast and have movement left
 				NPC_THINK("Used [steps_moved_this_turn] moves out of [maxStepsTick]!")
-				if(target && (steps_moved_this_turn < maxStepsTick))
-					var/const/base_juke_chance = 5
-					// for every point of STASPD above 10 you get an extra 5% juke chance
-					var/const/min_spd_for_juke = 10
-					var/const/juke_per_overspd = 5
-					var/juke_spd_bonus = STASPD > min_spd_for_juke ? (STASPD - min_spd_for_juke) * juke_per_overspd : 0
-					if(prob(base_juke_chance + juke_spd_bonus))
-						NPC_THINK("Succeeded juke roll ([base_juke_chance + juke_spd_bonus]%)!")
-						// pick a random turf to juke to
-						var/list/turf/juke_candidates = get_dodge_destinations(target)
-						if(length(juke_candidates))
-							// temporarily force us to path to this turf
-							myPath = list(pick(juke_candidates))
-							var/old_pathfinding_target = pathfinding_target
-							pathfinding_target = myPath[1]
-							steps_moved_this_turn += move_along_path()
-							pathfinding_target = old_pathfinding_target
-					else
-						NPC_THINK("Failed juke roll ([base_juke_chance + juke_spd_bonus]%)!")
-				return TRUE
+				if(.) // attack was successful, try to backstep. todo: generalise to post-attack behaviour?
+					npc_try_backstep()
+					return
 			else if(should_frustrate) // not next to perp, and we didn't fail due to reaction time
 				frustration++
 
@@ -824,11 +845,11 @@
 // attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /mob/living/carbon/human/proc/monkey_attack(mob/living/L)
 	if(next_move > world.time)
-		return
+		return FALSE // no time to attack this turn!
 
 	npc_choose_attack_zone(L)
 	NPC_THINK("Aiming for \the [zone_selected]!")
-	do_best_melee_attack(L)
+	return do_best_melee_attack(L)
 
 // get angry at a mob
 /mob/living/carbon/human/proc/retaliate(mob/living/L)

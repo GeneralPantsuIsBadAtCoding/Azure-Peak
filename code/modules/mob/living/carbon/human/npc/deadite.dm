@@ -38,6 +38,14 @@
 	GLOB.antagonists -= zombie_antag
 	update_body()
 
+/mob/living/carbon/human/species/npc/deadite/npc_try_backstep()
+	return FALSE // deadites cannot juke
+
+/mob/living/carbon/human/species/npc/deadite/npc_should_resist(ignore_grab = TRUE)
+	if(!check_mouth_grabbed())
+		ignore_grab ||= TRUE
+	return ..(ignore_grab = ignore_grab)
+
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = null

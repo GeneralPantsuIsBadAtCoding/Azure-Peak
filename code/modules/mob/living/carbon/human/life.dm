@@ -43,51 +43,50 @@
 		for(var/datum/antagonist/A in mind.antag_datums)
 			A.on_life(src)
 
-	if(mode == NPC_AI_OFF)
-		handle_vamp_dreams()
-		if(IsSleeping())
-			if(health > 0)
-				if(has_status_effect(/datum/status_effect/debuff/sleepytime))
-					remove_status_effect(/datum/status_effect/debuff/sleepytime)
-					remove_stress(/datum/stressevent/sleepytime)
-					if(mind)
-						mind.sleep_adv.advance_cycle()
-						allmig_reward++
-						adjust_triumphs(1)
-						to_chat(src, span_danger("Nights Survived: \Roman[allmig_reward]"))
-		if(leprosy == 1)
-			adjustToxLoss(2)
-		else if(leprosy == 2)
-			if(client)
-				if(check_blacklist(client.ckey))
-					ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
-					leprosy = 1
-					var/obj/item/bodypart/B = get_bodypart(BODY_ZONE_HEAD)
-					if(B)
-						B.sellprice = rand(16, 33)
-				else
-					leprosy = 3
-		//heart attack stuff
-		handle_heart()
-		handle_liver()
-		update_stamina()
-		update_energy()
-		if(charflaw && !charflaw.ephemeral && mind)
-			charflaw.flaw_on_life(src)
-		if(health <= 0)
-			adjustOxyLoss(0.5)
-		if(mode == NPC_AI_OFF && !client && !HAS_TRAIT(src, TRAIT_NOSLEEP))
-			if(mob_timers["slo"])
-				if(world.time > mob_timers["slo"] + 90 SECONDS)
-					Sleeping(100)
+	handle_vamp_dreams()
+	if(IsSleeping())
+		if(health > 0)
+			if(has_status_effect(/datum/status_effect/debuff/sleepytime))
+				remove_status_effect(/datum/status_effect/debuff/sleepytime)
+				remove_stress(/datum/stressevent/sleepytime)
+				if(mind)
+					mind.sleep_adv.advance_cycle()
+					allmig_reward++
+					adjust_triumphs(1)
+					to_chat(src, span_danger("Nights Survived: \Roman[allmig_reward]"))
+	if(leprosy == 1)
+		adjustToxLoss(2)
+	else if(leprosy == 2)
+		if(client)
+			if(check_blacklist(client.ckey))
+				ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
+				leprosy = 1
+				var/obj/item/bodypart/B = get_bodypart(BODY_ZONE_HEAD)
+				if(B)
+					B.sellprice = rand(16, 33)
 			else
-				mob_timers["slo"] = world.time
+				leprosy = 3
+	//heart attack stuff
+	handle_heart()
+	handle_liver()
+	update_stamina()
+	update_energy()
+	if(charflaw && !charflaw.ephemeral && mind)
+		charflaw.flaw_on_life(src)
+	if(health <= 0)
+		adjustOxyLoss(0.5)
+	if(mode == NPC_AI_OFF && !client && !HAS_TRAIT(src, TRAIT_NOSLEEP))
+		if(mob_timers["slo"])
+			if(world.time > mob_timers["slo"] + 90 SECONDS)
+				Sleeping(100)
 		else
-			if(mob_timers["slo"])
-				mob_timers["slo"] = null
+			mob_timers["slo"] = world.time
+	else
+		if(mob_timers["slo"])
+			mob_timers["slo"] = null
 
-		if(dna?.species)
-			dna.species.spec_life(src) // for mutantraces
+	if(dna?.species)
+		dna.species.spec_life(src) // for mutantraces
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
