@@ -438,7 +438,7 @@
 		for(var/pack in sortNames(items, order=0))
 			var/datum/inqports/PA = pack
 			var/name = uppertext(PA.name)
-			if(inqonly && !HAS_TRAIT(user, TRAIT_PURITAN) || !PA.remaining || inqcoins < PA.marquescost) 
+			if(inqonly && !HAS_TRAIT(user, TRAIT_PURITAN) || (PA.maximum && !PA.remaining) || inqcoins < PA.marquescost) 
 				contents += "[name]<BR>"
 			else
 				contents += "<a href='?src=[REF(src)];buy=[PA.type]'>[name]</a><BR>"
@@ -471,6 +471,8 @@
 		inqcoins -= PA.marquescost
 		if(PA.maximum)	
 			decreaseremaining(PA)
+		visible_message(span_warning("[usr] sends something."))
+		playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 		var/pathi = pick(PA.item_type)
 		new pathi(get_turf(M))
 

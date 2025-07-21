@@ -2119,8 +2119,6 @@
 #include "code\modules\roguetown\roguemachine\steward\steward.dm"
 #include "code\modules\roguetown\roguemachine\stockpile\stockpile.dm"
 #include "code\modules\roguetown\roguemachine\stockpile\withdraw_tab.dm"
-#include "code\modules\roguetown\roguemachine\inqports\_inqports.dm"
-#include "code\modules\roguetown\roguemachine\inqports\inqshop.dm"
 #include "code\modules\roguetown\roguestock\_roguestock.dm"
 #include "code\modules\roguetown\roguestock\bounties.dm"
 #include "code\modules\roguetown\roguestock\import.dm"
