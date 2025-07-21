@@ -1,0 +1,5 @@
+node_modules
+public
+
+# Running it on tgui.html is fine, however.
+!/public/tgui.html
