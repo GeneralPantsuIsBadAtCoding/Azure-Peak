@@ -13,7 +13,7 @@
 	..()
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
-	beltl = /obj/item/scabbard/rumacaptain
+	beltl = /obj/item/rogueweapon/scabbard/kazengun/gold
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary,

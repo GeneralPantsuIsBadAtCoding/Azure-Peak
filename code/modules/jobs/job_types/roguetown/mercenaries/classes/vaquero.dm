@@ -41,14 +41,17 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	cloak = /obj/item/clothing/cloak/half/rider/red
 	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/rogueweapon/sword/rapier/vaquero
-	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	l_hand = /obj/item/rogueweapon/sword/rapier/vaquero
+	beltr = /obj/item/rogueweapon/scabbard/sheath
+	r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
 	backpack_contents = list(
 					/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 					/obj/item/rogueweapon/huntingknife/idagger/navaja = 1,
 					/obj/item/lockpick = 1,
 					/obj/item/flashlight/flare/torch = 1,
-					/obj/item/roguekey/mercenary = 1
+					/obj/item/roguekey/mercenary = 1,
+					/obj/item/rogueweapon/scabbard/sheath = 1
 					)
 	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons

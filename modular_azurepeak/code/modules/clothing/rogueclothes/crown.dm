@@ -16,7 +16,6 @@
 	var/garrisonline = TRUE
 	var/messagereceivedsound = 'sound/misc/scom.ogg'
 	var/hearrange = 0 // Only hearable by wearer
-	flags_1 = HEAR_1
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/Initialize()
 	. = ..()
@@ -25,6 +24,7 @@
 	else
 		SSroguemachine.crown = src
 		SSroguemachine.scomm_machines += src
+	become_hearing_sensitive()
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/proc/anti_stall()
 	src.visible_message(span_warning("The Crown of Azure Peak crumbles to dust, the ashes spiriting away in the direction of the Keep."))
@@ -34,6 +34,7 @@
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE)
+	visible_message(span_notice ("[user] presses their hands against their crown."))
 	var/input_text = input(user, "Enter your ducal message:", "Crown SCOM")
 	if(input_text)
 		var/usedcolor = user.voice_color
@@ -102,3 +103,7 @@
 		I.send_speech(message, hearrange, I, , spans, message_language=language)
 	else
 		send_speech(message, hearrange, src, , spans, message_language=language)
+
+/obj/item/clothing/head/roguetown/crown/serpcrown/Destroy()
+	lose_hearing_sensitivity()
+	return ..()

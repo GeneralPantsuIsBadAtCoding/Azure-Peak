@@ -118,8 +118,6 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 
 #define isslime(A) (istype(A, /mob/living/simple_animal/slime))
 
-#define isdrone(A) (istype(A, /mob/living/simple_animal/drone))
-
 #define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
 #define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))

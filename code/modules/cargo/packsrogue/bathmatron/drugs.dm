@@ -58,3 +58,4 @@
 	name = "Magickal Whip-Wine"
 	cost = 30
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/beer/whipwine)
+	

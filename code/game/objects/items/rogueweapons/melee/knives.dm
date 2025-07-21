@@ -80,6 +80,7 @@
 	name = "hunting knife"
 	desc = "A hunter's prized possession. Keep it sharp, and it might last you through the wild."
 	icon_state = "huntingknife"
+	sheathe_icon = "huntingknife"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	item_state = "bone_dagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -104,11 +105,16 @@
 	grid_height = 64
 	grid_width = 32
 
+	equip_delay_self = 1 SECONDS
+	unequip_delay_self = 1 SECONDS
+	inv_storage_delay = 1 SECONDS
+	edelay_type = 1
+
 	//flipping knives has a cooldown on to_chat to reduce chatspam
 	COOLDOWN_DECLARE(flip_cooldown)
 
 /obj/item/rogueweapon/huntingknife/Initialize()
-	. = ..()
+	..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/peasantry/maciejowski_knife,
 		)
@@ -232,6 +238,7 @@
 	tool of daily life and as a capable fighting knife."
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch,)
 	icon_state = "combatknife"
+	sheathe_icon = "combatknife"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
 	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
@@ -255,6 +262,7 @@
 	name = "iron dagger"
 	desc = "This is a common dagger of iron."
 	icon_state = "idagger"
+	sheathe_icon = "idagger"
 	smeltresult = /obj/item/ingot/iron
 	blade_dulling = DULLING_SHAFT_REINFORCED
 
@@ -264,6 +272,7 @@
 	force = 12
 	max_integrity = 75
 	icon_state = "adagger"
+	sheathe_icon = "adagger"
 	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
 
@@ -277,6 +286,7 @@
 	name = "steel dagger"
 	desc = "This is a dagger made of solid steel, more durable."
 	icon_state = "sdagger"
+	sheathe_icon = "sdagger"
 	force = 20
 	max_integrity = 150
 	smeltresult = /obj/item/ingot/steel
@@ -287,6 +297,7 @@
 	force = 25
 	max_integrity = 200
 	icon_state = "gsdagger"
+	sheathe_icon = "gsdagger"
 
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
@@ -304,6 +315,7 @@
 	name = "'De Tace'"
 	desc = "The right hand of the right hand, this narrow length of steel serves as a quick solution to petty greviences."
 	icon_state = "stiletto"
+	sheathe_icon = "stiletto"
 	force = 25
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/steel
@@ -313,19 +325,20 @@
 	force = 12
 	throwforce = 12
 	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard. It's a bit more dull, however."
-	icon_state = "spdagger"
-	wdefense = 6
+	sheathe_icon = "spdagger"
+	wdefense = 8		//This way with expert dagger skill you'd have ~12 defense. 1 higher than a kiteshield, but no arrow protection.
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
 	name = "sail dagger"
 	force = 15
 	throwforce = 15
 	desc = "An exceptionally protective parrying dagger popular in the Etruscan Isles, this dagger features a plain metal guard in the shape of a ship's sail."
-	wdefense = 7
+	wdefense = 9		//This way with expert dagger skill you'd have ~13 defense. 2 higher than a kiteshield, but no arrow protection.
 	icon_state = "sail_dagger"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/special
 	icon_state = "sdaggeralt"
+	sheathe_icon = "sdaggeralt"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
 	name = "steel tanto"
@@ -337,6 +350,7 @@
 	name = "silver dagger"
 	desc = "This silver dagger can be the banishment of vampires and werewolves."
 	icon_state = "sildagger"
+	sheathe_icon = "sildagger"
 	sellprice = 50
 	smeltresult = /obj/item/ingot/silver
 	last_used = 0
@@ -346,6 +360,7 @@
 	name = "psydonian dagger"
 	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
+	sheathe_icon = "psydagger"
 	sellprice = 70
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
@@ -614,6 +629,7 @@
 	name = "iron scissors"
 	desc = "Scissors made of iron that may be used to salvage usable materials from clothing."
 	icon_state = "iscissors"
+	inv_storage_delay = null
 
 /obj/item/rogueweapon/huntingknife/scissors/steel
 	force = 14

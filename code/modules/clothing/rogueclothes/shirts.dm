@@ -596,6 +596,8 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	flags_inv = null //free the breast
+	surgery_cover = FALSE // cauterize and surgery through it.
 
 /obj/item/clothing/suit/roguetown/shirt/easttats/easttats/dropped(mob/living/carbon/human/user)
 	. = ..()

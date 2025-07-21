@@ -31,7 +31,8 @@
 	switch(weapon_choice)
 		if("Longsword")
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			beltr = /obj/item/rogueweapon/sword/long
+			beltr = /obj/item/rogueweapon/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/long
 		if("Mace")
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			beltr = /obj/item/rogueweapon/mace/steel
@@ -69,6 +70,7 @@
 		/obj/item/ritechalk = 1,
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 		/obj/item/rope/chain = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR)	//Minor regen, can level up to T4.

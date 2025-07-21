@@ -235,8 +235,7 @@
 	user.set_machine(src)
 	interact(user)
 
-/obj/item/toy/cards/cardhand/ui_interact(mob/user)
-	. = ..()
+/obj/item/toy/cards/cardhand/interact(mob/user)
 	var/dat = "You have:<BR>"
 	for(var/t in currenthand)
 		dat += "<A href='?src=[REF(src)];pick=[t]'>A [t].</A><BR>"

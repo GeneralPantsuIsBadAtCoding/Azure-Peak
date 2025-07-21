@@ -93,7 +93,7 @@
 	weight = 50
 
 /datum/special_trait/duelist/on_apply(mob/living/carbon/human/character, silent)
-	character.cmode_music = 'sound/music/combat_duelist.ogg'
+	character.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 	character.change_stat("speed", 2)
 	character.adjust_skillrank_up_to(/datum/skill/combat/swords, 6, TRUE) //will make a unique trait later on
 	character.mind.special_items["Rapier"] = /obj/item/rogueweapon/sword/rapier

@@ -6,18 +6,10 @@ combat_jester.ogg: OFF - Pepper Steak
 combat_bandit.ogg: Deus Ex - Battery Park Combat
 combat_bandit2.ogg: Evanora Unlimited - Mithlond (Instrumental)
 combat_werewolf.ogg: Filmmaker - Federal Bestiary
-combat_guard.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - Hong Kong Canal Combat Theme
-combat_guard3.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - UNATCO Combat Theme
-combat_guard4.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - NYC Combat Theme
-combat_guard_bog.ogg: Deus Ex The Conspiracy (PS2) / Deus Ex Revision - UNATCO HQ Combat Theme
 combat_physician.ogg: Pathologic (Classic) - Utroba Aggression
 combat_bum.ogg: Pathologic (Classic) - Most Combat Theme
 combat_squire.ogg: Dragon's Dogma OST: Tense Combat
-combat_duelist.ogg: Medieval Total War 2 OST: Spanish Battle Theme
 combat_cult.ogg: Igor Kornelyuk - Воланд
-combat_druid.ogg: The Witcher 3: Wild Hunt - Hunt or Be Hunted
-combat_towner.ogg: Jeremy Soule - TESIV Oblivion - Daedra in Flight
-combat_soilson.ogg: Jeremy Soule - TESIV Oblivion - Death Knell
 title1.ogg: Aphex Twin - Stone In Focus
 bath.ogg: Mabisyo - No Baby (Cropped to 1:00)
 tav_tune.ogg: Divinity Original Sin 2 - Black Bull Tavern
@@ -40,11 +32,9 @@ dragonden.ogg: Ash Lake Theme - Dark Souls
 inquisitorcombat.ogg: Hellsing OST RAID Track 15 Survival on the Street of Insincerity
 templarofpsydon.ogg: 26 - Duty and Honor II (with Ryan Patrick Buckley) - Chivalry 2 (Original Game Soundtrack)
 combat_holy.ogg: Jesper Kyd - Light of the Imperium
-combat_treasurehunter.ogg: Henry Jackman - Cut To The Chase
 combat_starsugar.ogg: FEMTANYL - DOGMATICA
 combat_ozium.ogg: Light Club - FAHKEET
 combat_shaman2.ogg. Heilung - Elddansurin
-combat_berserker.ogg: Mikolai Stroinski - Eyes of the Wolf
 combat_graggar.ogg: T87-Sulfurhead - Black Powder [https://www.youtube.com/@T87-Sulfurhead]
 combat_baotha.ogg: T87-Sulfurhead - Love Within You (Rough Mix) [https://www.youtube.com/@T87-Sulfurhead]
 combat_heretic.ogg: T87-Sulfurhead - DEMESNE [https://www.youtube.com/@T87-Sulfurhead]
@@ -54,3 +44,24 @@ combat_knight.ogg: T87-Sulfurhead - Durandal [https://www.youtube.com/@T87-Sulfu
 combat_warden.ogg: T87-Sulfurhead - Metamorphosis [https://www.youtube.com/@T87-Sulfurhead]
 combat_ManAtArms.ogg: T87-Sulfurhead - Ready or Not [https://www.youtube.com/@T87-Sulfurhead]
 combat_veteran.ogg: T87-Sulfurhead - Good Men Die Young [https://www.youtube.com/@T87-Sulfurhead]
+CombatOutlander.ogg: T-87 SULFURHEAD - Ninth Circle [https://www.youtube.com/@T87-Sulfurhead]
+CombatOutlander2.ogg: T-87 SULFURHEAD - Men at War [https://www.youtube.com/@T87-Sulfurhead]
+CombatOutlander3.ogg: T-87 SULFURHEAD - MORTEM OBIRE [https://www.youtube.com/@T87-Sulfurhead]
+CombatOutlander4.ogg: T-87 SULFURHEAD - Snicker Snacker [https://www.youtube.com/@T87-Sulfurhead]
+combat_towner.ogg: T-87 SULFURHEAD - Catharsis [https://www.youtube.com/@T87-Sulfurhead]
+combat_towner2.ogg: T-87 SULFURHEAD - Burning Hovel [https://www.youtube.com/@T87-Sulfurhead]
+combat_towner3.ogg: T-87 SULFURHEAD - Knowledge & Pain[https://www.youtube.com/@T87-Sulfurhead]
+combat_retired: T-87 SULFURHEAD - How Sausage is Made [https://www.youtube.com/@T87-Sulfurhead]
+combat_courtmage: T-87 SULFURHEAD - MANASURGE[https://www.youtube.com/@T87-Sulfurhead]
+combat_spymaster: T-87 SULFURHEAD - ABedofMoss[https://www.youtube.com/@T87-Sulfurhead]
+combat_astrata: T-87 SULFURHEAD - Heliotrix [https://www.youtube.com/@T87-Sulfurhead]
+combat_eora: T-87 SULFURHEAD - Family Melts Away[https://www.youtube.com/@T87-Sulfurhead] // Do not listen to this one after a breakup.
+combat_necra: T-87 SULFURHEAD - Formerly Known as Toulouse Lautrec[https://www.youtube.com/@T87-Sulfurhead]
+combat_reckoning: T-87 SULFURHEAD - The Reckoning[https://www.youtube.com/@T87-Sulfurhead]
+combat_cutpurse: T-87 SULFURHEAD - Cutpurse[https://www.youtube.com/@T87-Sulfurhead]
+combat_darkstar: T-87 SULFURHEAD - Archetype of the Dark Star[https://www.youtube.com/@T87-Sulfurhead]
+combat_deadlyshadows: T-87 SULFURHEAD - Deadly Shadows[https://www.youtube.com/@T87-Sulfurhead]
+combat_thewall: T-87 SULFURHEAD - The Wall[https://www.youtube.com/@T87-Sulfurhead]
+combat_thrall: T-87 SULFURHEAD - STOLEN SKY[https://www.youtube.com/@T87-Sulfurhead]
+shisha.ogg: T-87 SULFURHEAD - Astral Eyes [https://www.youtube.com/@T87-Sulfurhead]
+combat_acolyte: T-87 SULFURHEAD - Hellions [https://www.youtube.com/@T87-Sulfurhead]

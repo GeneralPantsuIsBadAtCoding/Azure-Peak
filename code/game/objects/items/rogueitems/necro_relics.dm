@@ -28,7 +28,7 @@
 	if(!HAS_TRAIT(user, TRAIT_CABAL))
 		to_chat(user, span_warning("The crystal rejects you! It shatters within your grasp!"))
 		user.flash_fullscreen("redflash1")
-		new /obj/item/natural/glass/shard(get_turf(src))
+		new /obj/item/natural/glass_shard(get_turf(src))
 		playsound(src, "glassbreak", 70, TRUE)
 		qdel(src) 
 		return FALSE
@@ -62,7 +62,7 @@
 
 	to_chat(user, span_notice("The crystal dissipates into dust."))
 	user.flash_fullscreen("redflash1")
-	new /obj/item/natural/glass/shard(get_turf(src))
+	new /obj/item/natural/glass_shard(get_turf(src))
 	playsound(src, "shatter", 70, TRUE)
 	qdel(src) 
 

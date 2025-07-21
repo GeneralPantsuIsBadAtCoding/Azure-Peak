@@ -5,7 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/carpenter
-
+	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/carpenter/pre_equip(mob/living/carbon/human/H)
@@ -46,6 +46,7 @@
 						/obj/item/dye_brush = 1,
 						/obj/item/recipe_book/builder = 1,
 						/obj/item/recipe_book/survival = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	H.change_stat("strength", 1)
 	H.change_stat("endurance", 2)

@@ -1,4 +1,4 @@
-
+#define SEARCHTIME 12 // Standard search cooldown = 1.2 seconds
 //newtree
 
 /obj/structure/flora/roguetree
@@ -359,7 +359,7 @@
 		var/mob/living/L = user
 		user.changeNext_move(CLICK_CD_INTENTCAP)
 		playsound(src.loc, "plantcross", 50, FALSE, -1)
-		if(do_after(L, rand(1,5), target = src))
+		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish()
 			if(prob(50) && looty.len)
@@ -638,7 +638,7 @@
 		var/mob/living/L = user
 		user.changeNext_move(CLICK_CD_INTENTCAP)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
-		if(do_after(L, rand(1,5), target = src))
+		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish2()
 			if(prob(50) && looty.len)
@@ -687,7 +687,7 @@
 		var/mob/living/L = user
 		user.changeNext_move(CLICK_CD_INTENTCAP)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
-		if(do_after(L, rand(1,5), target = src))
+		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish3()
 			if(prob(50) && looty.len)

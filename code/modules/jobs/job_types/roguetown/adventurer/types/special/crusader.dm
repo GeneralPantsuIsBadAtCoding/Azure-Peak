@@ -44,7 +44,8 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	backr = /obj/item/rogueweapon/shield/tower/metal
 	backl = /obj/item/storage/backpack/rogue/satchel
-	beltr = /obj/item/rogueweapon/sword/decorated
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	r_hand = /obj/item/rogueweapon/sword/decorated
 	beltl = /obj/item/clothing/head/roguetown/helmet/heavy/crusader
 	neck = /obj/item/clothing/neck/roguetown/psicross/g
 	backpack_contents = list(
@@ -66,7 +67,8 @@
 				cloak = /obj/item/clothing/cloak/raincloak/furcloak
 				beltl = /obj/item/clothing/head/roguetown/helmet/heavy/crusader/t
 				neck = /obj/item/clothing/neck/roguetown/psicross
-				beltr = /obj/item/rogueweapon/sword/sabre
+				r_hand = /obj/item/rogueweapon/sword/sabre
+				beltr = /obj/item/rogueweapon/scabbard/sword
 				belt = /obj/item/storage/belt/rogue/leather/plaquesilver
 
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
@@ -77,6 +79,7 @@
 							/obj/item/rogueweapon/huntingknife/idagger/silver = 1,
 							/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 							/obj/item/flashlight/flare/torch = 1,
+							/obj/item/rogueweapon/scabbard/sheath = 1
 							)
 		H.change_stat("strength", 1)
 

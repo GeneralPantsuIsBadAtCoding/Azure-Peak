@@ -110,8 +110,9 @@
 
 	H.grant_language(/datum/language/gronnic)
 	backpack_contents = list(
-		/obj/item/roguekey/mercenary,
-		/obj/item/rogueweapon/huntingknife,
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 
 

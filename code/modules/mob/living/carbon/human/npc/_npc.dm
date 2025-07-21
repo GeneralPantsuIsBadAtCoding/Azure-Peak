@@ -372,8 +372,9 @@
 					sleep(time_to_wait)
 				continue
 			// if moving up, go in the direction of the stairs, else go the opposite direction
-			move_dir = next_path_turf.z > z ? the_stairs.dir : GLOB.reverse_dir[the_stairs.dir]
-			next_step = the_stairs.get_target_loc(move_dir)
+			if(the_stairs)
+				move_dir = next_path_turf.z > z ? the_stairs.dir : GLOB.reverse_dir[the_stairs.dir]
+				next_step = the_stairs.get_target_loc(move_dir)
 		if(!next_step)
 			pathing_frustration++
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Unable to find turf to move to! Strike [pathing_frustration]!")

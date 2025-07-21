@@ -13,6 +13,7 @@
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
 
+
 /datum/outfit/job/roguetown/adventurer/masterchef/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)

@@ -758,6 +758,9 @@
 /datum/component/storage/proc/signal_insertion_attempt(datum/source, obj/item/I, mob/M, silent = FALSE, force = FALSE)
 	if((!force && !can_be_inserted(I, TRUE, M)) || (I == parent))
 		return FALSE
+	if(I.inv_storage_delay)
+		if(!move_after(M, I.inv_storage_delay, target = I, progress = TRUE))
+			return FALSE
 	return handle_item_insertion(I, silent, M)
 
 /datum/component/storage/proc/signal_can_insert(datum/source, obj/item/I, mob/M, silent = FALSE)

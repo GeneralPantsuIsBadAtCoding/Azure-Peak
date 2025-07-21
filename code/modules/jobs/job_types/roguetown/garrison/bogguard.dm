@@ -24,7 +24,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/combat_warden.ogg'
+	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 
 /datum/outfit/job/roguetown/bogguardsman
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler
@@ -63,6 +63,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/guard = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE) 
@@ -111,6 +112,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/guard = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)

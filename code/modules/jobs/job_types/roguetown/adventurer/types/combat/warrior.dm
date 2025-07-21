@@ -38,12 +38,14 @@
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			H.set_blindness(0)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			var/weapons = list("Longsword","Mace","Billhook","Battle Axe","Short Sword & Iron Shield","Iron Saber & Wood Shield")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
 					H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					backr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/rogueweapon/scabbard/sword
 				if("Mace")
 					H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 					beltr = /obj/item/rogueweapon/mace
@@ -58,9 +60,11 @@
 					H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 					backr = /obj/item/rogueweapon/shield/iron
-					beltr = /obj/item/rogueweapon/sword/iron/short
+					beltr = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/iron/short
 				if("Iron Saber & Wood Shield")
-					beltr = /obj/item/rogueweapon/sword/iron/saber
+					r_hand = /obj/item/rogueweapon/sword/iron/saber
+					beltr = /obj/item/rogueweapon/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
 			var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet","Light Naledian Armor")
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
@@ -97,6 +101,7 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 
 		if("Duelist")
@@ -113,16 +118,18 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_DECEIVING_MEEKNESS, TRAIT_GENERIC)
 			H.set_blindness(0)
-			H.cmode_music = 'sound/music/combat_duelist.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			var/weapons = list("Rapier","Dagger")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Rapier")
 					H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-					beltr = /obj/item/rogueweapon/sword/rapier
+					l_hand = /obj/item/rogueweapon/sword/rapier
+					beltl = /obj/item/rogueweapon/scabbard/sword
 				if("Dagger")
 					H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
+					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+					beltr = /obj/item/rogueweapon/scabbard/sheath
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("intelligence", 2)
@@ -145,6 +152,7 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 
 		if("Barbarian")
@@ -161,7 +169,7 @@
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/combat_gronn.ogg'
+			H.cmode_music = 'sound/music/cmode/antag/combat_darkstar.ogg'
 			H.set_blindness(0)
 			var/weapons = list("Katar","Axe","Sword","Club","Spear","MY BARE HANDS!!!")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -225,12 +233,13 @@
 			H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/inquisitorcombat.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			H.change_stat("strength", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("intelligence", 1)
-			beltr = /obj/item/rogueweapon/sword/silver
+			beltr = /obj/item/rogueweapon/scabbard/sheath
+			r_hand = /obj/item/rogueweapon/sword/silver
 			backr = /obj/item/rogueweapon/sword
 			backl = /obj/item/storage/backpack/rogue/satchel/black
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver
@@ -272,7 +281,7 @@
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			H.change_stat("constitution", 5)
 			H.change_stat("endurance", 5)
 			H.change_stat("speed", 1)

@@ -21,7 +21,6 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
-	allowed_patrons = NON_PSYDON_PATRONS		//Same reason as lord. See Lord.
 
 
 /datum/job/roguetown/prince/after_spawn(mob/living/H, mob/M, latejoin)

@@ -110,6 +110,7 @@
 	armor = ARMOR_SWORD
 	damage_deflection = 14
 	icon_state = "sword1"
+	sheathe_icon = "sword1"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
@@ -125,7 +126,7 @@
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
 	pickup_sound = 'sound/foley/equip/swordlarge1.ogg'
-	sheathe_sound = 'sound/items/wood_sharpen.ogg'
+	holster_sound = 'sound/items/wood_sharpen.ogg'
 	flags_1 = CONDUCT_1
 	throwforce = 10
 	thrown_bclass = BCLASS_CUT
@@ -139,10 +140,17 @@
 	grid_width = 32
 	grid_height = 64
 
+	equip_delay_self = 1.5 SECONDS
+	unequip_delay_self = 1.5 SECONDS
+	inv_storage_delay = 1.5 SECONDS
+	edelay_type = 1
+
 /obj/item/rogueweapon/sword/Initialize()
 	. = ..()
+	var/rand_icon = "sword[rand(1,3)]"
 	if(icon_state == "sword1")
-		icon_state = "sword[rand(1,3)]"
+		icon_state = "[rand_icon]"
+		sheathe_icon = "[rand_icon]"
 
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
@@ -153,6 +161,7 @@
 	gripped_intents = null
 	minstr = 4
 	wdefense = 6
+	sheathe_icon = "falchion"
 
 /obj/item/rogueweapon/sword/falx
 	name = "falx"
@@ -176,8 +185,10 @@
 
 /obj/item/rogueweapon/sword/decorated/Initialize()
 	. = ..()
+	var/rand_icon = "decsword[rand(1,3)]"
 	if(icon_state == "decsword1")
-		icon_state = "decsword[rand(1,3)]"
+		icon_state = "[rand_icon]"
+		sheathe_icon = "[rand_icon]"
 
 /obj/item/rogueweapon/sword/getonmobprop(tag)
 	. = ..()
@@ -211,6 +222,7 @@
 	force = 19
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
 	icon_state = "swordshort"
+	sheathe_icon = "swordshort"
 	gripped_intents = null
 	minstr = 4
 	wdefense = 4
@@ -223,6 +235,7 @@
 	name = "ancient shortsword"
 	desc = "A sword made of ancient alloys. Aeon's grasp has been lifted from its form."
 	icon_state = "ashortsword"
+	sheathe_icon = "ashortsword"
 	smeltresult = /obj/item/ingot/aaslag
 
 
@@ -238,6 +251,7 @@
 	icon_state = "longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "longsword"
+	sheathe_icon = "longsword"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
@@ -282,13 +296,16 @@
 /obj/item/rogueweapon/sword/long/zizo
 	name = "darksteel longsword"
 	desc = "A wicked, unconventional, and otherwordly blade that was created by no swordsmith - a manifestation of hate for the state of this world that follows no design principles but spite and anger."
+	icon_state = "zizosword"
+	sheathe_icon = "zizosword"
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	force = 30
 	force_wielded = 35
-	icon_state = "zizosword"
 	blade_dulling = DULLING_SHAFT_GRAND
+	equip_delay_self = 0
+	unequip_delay_self = 0
 
 /obj/item/rogueweapon/sword/long/zizo/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_CABAL))
@@ -309,6 +326,7 @@
 	icon_state = "heirloom"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "longsword"
+	sheathe_icon = "heirloom"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
@@ -341,6 +359,7 @@
 	icon_state = "judgement"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "judgement"
+	sheathe_icon = "judgement"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
@@ -382,6 +401,7 @@
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "crucified"
+	sheathe_icon = "crucified"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "judgement"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
@@ -436,6 +456,8 @@
 	smeltresult = /obj/item/ingot/steel
 	sellprice = 363
 	static_price = TRUE
+	equip_delay_self = 0
+	unequip_delay_self = 0
 
 /obj/item/rogueweapon/sword/long/vlord/getonmobprop(tag)
 	. = ..()
@@ -574,12 +596,14 @@
 	name = "old psydonian longsword"
 	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes."
 	icon_state = "psysword"
+	sheathe_icon = "psysword"
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian longsword"
 	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
-		 \"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
+		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
+	sheathe_icon = "psysword"
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
 	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
@@ -594,11 +618,13 @@
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = 100
 	sellprice = 10
+	sheathe_icon = "isword"
 
 /obj/item/rogueweapon/sword/iron/short
 	name = "iron shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers. This iron variant predates them all."
 	icon_state = "iswordshort"
+	sheathe_icon = "iswordshort"
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 4
@@ -612,6 +638,7 @@
 	name = "decrepit short sword"
 	desc = "A decrepit old short sword. Aeon's grasp has withered its form."
 	icon_state = "ashortsword"
+	sheathe_icon = "ashortsword"
 	max_integrity = 75
 	force = 18
 	smeltresult = /obj/item/ingot/aalloy
@@ -621,6 +648,7 @@
 	name = "gladius"
 	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
 	icon_state = "gladius"
+	sheathe_icon = "gladius"
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/bronze
 	wdefense = 3
@@ -645,6 +673,7 @@
 	desc = "A damaged and ancient iron shortsword. It looks duller, and seems less effective."
 	force = 17
 	icon_state = "iswordshort_d"
+	sheathe_icon = "iswordshort_d"
 	max_integrity = 75
 	wlength = WLENGTH_SHORT
 
@@ -712,6 +741,7 @@
 	name = "sabre"
 	desc = "A very popular backsword made for cavalrymen that originated in Naledi and spread its influence further north, reaching Aavnr as a \"Szablya\" and notoriously cementing itself as the preferred weapon of the Potentate's Hussars."
 	icon_state = "saber"
+	sheathe_icon = "saber"
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = null
 	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
@@ -731,6 +761,7 @@
 
 /obj/item/rogueweapon/sword/sabre/dec
 	icon_state = "decsaber"
+	sheathe_icon = "decsaber"
 	sellprice = 140
 
 //Unique church sword - slightly better than regular sabre due to falx chop.
@@ -778,6 +809,7 @@
 		A very young type of fighting technique for this weapon is emerging in the island, aptly named \"Destreza\" for dexterity."
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "rapier"
+	sheathe_icon = "rapier"
 	bigboy = TRUE
 	pixel_y = -16
 	pixel_x = -16
@@ -893,6 +925,7 @@
 	and its blade bears twin inscriptions on either side. One reads, \"CAST IN THE NAME OF GODS\" while the \
 	obverse reads, \"YE NOT GUILTY\"."
 	icon_state = "decrapier"
+	sheathe_icon = "decrapier"
 	sellprice = 140
 
 /obj/item/rogueweapon/sword/rapier/lord
@@ -901,6 +934,7 @@
 	time, where once sharply defined features have been worn down by so many hands. An old rumor ties this implement \
 	to the siege that smashed the Mad Duke's keep to rubble, and burnt the Duke himself to cinders."
 	icon_state = "lordrap"
+	sheathe_icon = "lordrapier"
 	sellprice = 300
 	max_integrity = 300
 	max_blade_int = 300
@@ -911,6 +945,7 @@
 	desc = "A specialty-made bilbo hilt rapier made in service to Lady Eora. For the time when soft words can no longer be spoken, and hearts are to be pierced."
 	icon = 'icons/roguetown/weapons/32.dmi'
 	icon_state = "eorarapier"
+	sheathe_icon = "eorarapier"
 	grid_width = 32
 	grid_height = 64
 	dropshrink = 0
@@ -925,6 +960,7 @@
 	gripped_intents = null
 	wdefense = 6
 	wbalance = WBALANCE_SWIFT
+	sheathe_icon = "cutlass"
 	
 
 /obj/item/rogueweapon/sword/silver
@@ -932,6 +968,7 @@
 	name = "silver sword"
 	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
 	icon_state = "silversword"
+	sheathe_icon = "silversword"
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
@@ -1167,6 +1204,7 @@
 	sellprice = 140
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	icon_state = "kingslayer"
+	sheathe_icon = "kingslayer"
 
 /obj/item/rogueweapon/sword/long/oathkeeper/getonmobprop(tag)
 	. = ..()
@@ -1180,11 +1218,12 @@
 /obj/item/rogueweapon/sword/long/holysee
 	name = "eclipsum sword"
 	desc = "A deadly longsword born of Astratan and Nocite hands, this blade was forged with both silver and gold alike. Blessed to hold strength and bring hope, whether it be during the dae or the nite."
+	icon_state = "eclipsum"
+	sheathe_icon = "eclipsum"
 	force = 34
 	force_wielded = 50
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
-	icon_state = "eclipsum"
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
@@ -1311,6 +1350,7 @@
 	force = 25
 	name = "foreign straight sword"
 	desc = "A foreign sword used by cut-throats & thugs. There's a red tassel on the hilt."
+	sheathe_icon = "mulyeog"
 	icon_state = "eastsword1"
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3

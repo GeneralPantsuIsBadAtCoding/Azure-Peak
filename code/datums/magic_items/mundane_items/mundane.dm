@@ -67,8 +67,7 @@
 	var/obj/item/storage = i
 	var/datum/component/storage/STR = storage.GetComponent(/datum/component/storage)
 
-	STR.screen_max_rows = STR.screen_max_rows * 2
-	STR.screen_max_columns = STR.screen_max_columns * 2
+	STR.screen_max_columns = STR.screen_max_columns + 2
 
 /datum/magic_item/mundane/revealing
 	name = "revealing"

@@ -84,6 +84,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 	set_hydration(rand(HYDRATION_LEVEL_START_MIN, HYDRATION_LEVEL_START_MAX))
 	. = ..()
+	become_hearing_sensitive()
 	update_config_movespeed()
 	update_movespeed(TRUE)
 

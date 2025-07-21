@@ -100,6 +100,7 @@
 		new_mob.faction |= "quest"
 		new_mob.AddComponent(/datum/component/quest_object, quest)
 		add_quest_faction_to_nearby_mobs(spawn_turf)
+		quest.add_tracked_atom(new_mob)
 		sleep(1)
 
 /obj/effect/landmark/quest_spawner/proc/add_quest_faction_to_nearby_mobs(turf/center)
@@ -120,11 +121,13 @@
 	var/list/possible_turfs = list()
 
 	for(var/turf/open/T in view(7, selected_landmark))
-		if(!T.density)
-			for(var/mob/M in view(9, T))
-				if(!M.ckey)
-					possible_turfs += T
-					break
+		if(T.density || istransparentturf(T))
+			continue
+
+		for(var/mob/M in view(9, T))
+			if(!M.ckey)
+				possible_turfs += T
+				break
 
 	return length(possible_turfs) ? pick(possible_turfs) : get_turf(src)
 

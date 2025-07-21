@@ -9,7 +9,6 @@
 
 	maximum_possible_slots = 1
 	pickprob = 5
-
 	category_tags = list(CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/farmermaster/pre_equip(mob/living/carbon/human/H)
@@ -44,6 +43,7 @@
 						/obj/item/ash=1,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/huntingknife = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	beltl = /obj/item/rogueweapon/sickle
 	beltr = /obj/item/flint

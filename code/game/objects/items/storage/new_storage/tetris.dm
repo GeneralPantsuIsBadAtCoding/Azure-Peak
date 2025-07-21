@@ -374,6 +374,9 @@
 		if(LAZYLEN(real_location.contents) >= max_items) //don't use items on the backpack if they don't fit
 			return TRUE
 		return FALSE
+	if(attacking_item.inv_storage_delay)
+		if(!move_after(user, attacking_item.inv_storage_delay, target = attacking_item, progress = TRUE))
+			return FALSE
 	return handle_item_insertion(attacking_item, FALSE, user, params = params, storage_click = storage_click)
 
 /datum/component/storage/proc/on_equipped(obj/item/source, mob/user, slot)

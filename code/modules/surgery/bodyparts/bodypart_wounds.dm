@@ -354,7 +354,11 @@
 		var/fracture_type = /datum/wound/fracture/head
 		var/necessary_damage = 0.9
 		if(resistance)
-			fracture_type = /datum/wound/fracture
+			if(zone_precise == BODY_ZONE_PRECISE_MOUTH) // critically resistant people can still have their jaw broken
+				fracture_type = /datum/wound/fracture/mouth // this is awful implementation. i'm sorry free
+				necessary_damage = 0.8 // they get a bit higher threshold 2 do so. raise it if we need 2.
+			else
+				fracture_type = /datum/wound/fracture // everything else is still a normal fracture doe
 		else if(zone_precise == BODY_ZONE_PRECISE_SKULL)
 			fracture_type = /datum/wound/fracture/head/brain
 		else if(zone_precise== BODY_ZONE_PRECISE_EARS)

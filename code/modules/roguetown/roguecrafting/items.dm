@@ -63,10 +63,10 @@
 	verbage = "unties"
 
 /datum/crafting_recipe/roguetown/survival/clothsash
-	name = "fine sash (3 fibers, 1 goat fur)"
+	name = "fine sash (3 cloth, 1 silk)"
 	result = /obj/item/storage/belt/rogue/leather/sash
-	reqs = list(/obj/item/natural/fibers = 3,
-				/obj/item/natural/fur/goat = 1)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/silk = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/survival/ropebelt

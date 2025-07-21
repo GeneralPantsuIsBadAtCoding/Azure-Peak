@@ -18,24 +18,13 @@
 	min_pq = 9 //The second most powerful person in the realm...
 	max_pq = null
 	round_contrib_points = 3
-	cmode_music = 'sound/music/combat_noble.ogg'
-
-/*
-/datum/job/roguetown/hand/special_job_check(mob/dead/new_player/player)
-	if(!player)
-		return
-	if(!player.ckey)
-		return
-	for(var/mob/dead/new_player/Lord in GLOB.player_list)
-		if(Lord.mind.assigned_role == "King")
-			if(Lord.brohand == player.ckey)
-				return TRUE
-*/
+	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/steel
-	beltr = /obj/item/rogueweapon/sword/rapier/dec
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	beltl = /obj/item/rogueweapon/scabbard/sheath
 	job_bitflag = BITFLAG_ROYALTY
 
 /datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
@@ -69,9 +58,10 @@
 /datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	backr = /obj/item/storage/backpack/rogue/satchel/black
+	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
+	r_hand = /obj/item/rogueweapon/sword/rapier/dec
 	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
-		/obj/item/storage/keyring/hand = 1,
+		/obj/item/storage/keyring/hand = 1
 		)
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -105,10 +95,11 @@
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	backr = /obj/item/storage/backpack/rogue/satchel/black
+	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
+	r_hand = /obj/item/rogueweapon/sword/rapier/dec
 	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
 		/obj/item/storage/keyring/hand = 1,
-		/obj/item/lockpickring/mundane = 1,
+		/obj/item/lockpickring/mundane = 1
 		)
 	if(H.dna.species.type in NON_DWARVEN_RACE_TYPES)
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/shadowrobe
@@ -161,10 +152,11 @@
 /datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	backr = /obj/item/storage/backpack/rogue/satchel/black
+	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
+	r_hand = /obj/item/rogueweapon/sword/rapier/dec
 	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
 		/obj/item/storage/keyring/hand = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1, //starts with a vial of poison, like all wizened evil advisors do!
+		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1 //starts with a vial of poison, like all wizened evil advisors do!
 		)
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black

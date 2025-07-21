@@ -48,8 +48,7 @@
 
 /datum/supply_pack/rogue/armor_iron/fullplate
 	name = "Full Plate"
-	cost = 115 // Uhhh I don't think I should be selling them for 80
-	mandated_public_profit = 1 // Just slap a 100% profit margin on top
+	cost = 220 // Uhhh I don't think I should be selling them for 80
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/iron)
 
 /datum/supply_pack/rogue/armor_iron/rearbraces

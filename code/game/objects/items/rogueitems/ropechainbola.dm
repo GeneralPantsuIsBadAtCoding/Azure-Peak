@@ -99,7 +99,7 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.surrendering)
+	if(C.compliance || C.surrendering)
 		surrender_mod = 0.5
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s arms with [src.name]!"), \
@@ -129,7 +129,7 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.surrendering)
+	if(C.compliance || C.surrendering)
 		surrender_mod = 0.5
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s legs with [src.name]!"), \

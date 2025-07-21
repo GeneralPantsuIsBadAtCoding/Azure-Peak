@@ -4,16 +4,9 @@
 	crate_name = "Gifts from your Past"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
-
-/datum/supply_pack/rogue/Knight/sbelt
-	name = "Steel Belt"
-	cost = 5
-	contains = list(/obj/item/storage/belt/rogue/leather/steel)
-
-/datum/supply_pack/rogue/Knight/froggy
-	name = "Froggemund Helm"
-	cost = 60
-	contains = list(/obj/item/clothing/head/roguetown/helmet/heavy/frogmouth)
+//////////
+// HEAD //
+//////////
 
 /datum/supply_pack/rogue/Knight/wolfhelm
 	name = "Volf Plate Helm"
@@ -40,6 +33,11 @@
 	cost = 40
 	contains = list(/obj/item/clothing/head/roguetown/helmet/heavy/bucket)
 
+/datum/supply_pack/rogue/Knight/froggy
+	name = "Froggemund Helm"
+	cost = 60
+	contains = list(/obj/item/clothing/head/roguetown/helmet/heavy/frogmouth)
+
 /datum/supply_pack/rogue/Knight/mblkstelarmet
 	name = "Blacksteel Armet"
 	cost = 100
@@ -50,35 +48,9 @@
 	cost = 100
 	contains = list(/obj/item/clothing/head/roguetown/helmet/blacksteel/bucket)
 
-/datum/supply_pack/rogue/Knight/Fullplate
-	name = "Steel Full plate"
-	cost = 60
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full)
-
-/datum/supply_pack/rogue/Knight/Fullplate
-	name = "Fluted Full plate"
-	cost = 100
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/fluted)
-
-/datum/supply_pack/rogue/Knight/mblacksteelfullplate
-	name = "Blacksteel Full plate"
-	cost = 150
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/modern/blacksteel_full_plate)
-
-/datum/supply_pack/rogue/Knight/blacksteelfullplate
-	name = "Ancient Blacksteel Full plate"
-	cost = 150
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate)
-
-/datum/supply_pack/rogue/Knight/hauberk
-	name = "Hauberk"
-	cost = 40
-	contains = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk)
-
-/datum/supply_pack/rogue/Knight/Haubergeon
-	name = "Haubergeon"
-	cost = 20
-	contains = list(/obj/item/clothing/suit/roguetown/armor/chainmail)
+//////////
+// NECK //
+//////////
 
 /datum/supply_pack/rogue/Knight/coif/steel
 	name = "Steel Coif"
@@ -100,6 +72,44 @@
 	cost = 30
 	contains = list(/obj/item/clothing/neck/roguetown/gorget/steel)
 
+///////////
+// CHEST //
+///////////
+
+/datum/supply_pack/rogue/Knight/Haubergeon
+	name = "Haubergeon"
+	cost = 20
+	contains = list(/obj/item/clothing/suit/roguetown/armor/chainmail)
+
+/datum/supply_pack/rogue/Knight/hauberk
+	name = "Hauberk"
+	cost = 40
+	contains = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk)
+
+/datum/supply_pack/rogue/Knight/Fullplate
+	name = "Steel Full plate"
+	cost = 60
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full)
+
+/datum/supply_pack/rogue/Knight/Fullplate
+	name = "Fluted Full plate"
+	cost = 100
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/fluted)
+
+/datum/supply_pack/rogue/Knight/mblacksteelfullplate
+	name = "Blacksteel Full plate"
+	cost = 150
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/modern/blacksteel_full_plate)
+
+/datum/supply_pack/rogue/Knight/blacksteelfullplate
+	name = "Ancient Blacksteel Full plate"
+	cost = 150
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate)
+
+///////////////////
+// WRISTS/GLOVES //
+///////////////////
+
 /datum/supply_pack/rogue/Knight/bracers
 	name = "Steel Bracers"
 	cost = 10
@@ -119,6 +129,15 @@
 	name = "Ancient Blacksteel Plate Gauntlets"
 	cost = 50
 	contains = list(/obj/item/clothing/gloves/roguetown/blacksteel/plategloves)
+
+///////////////
+// LEGS/FEET //
+///////////////
+
+/datum/supply_pack/rogue/Knight/sbelt
+	name = "Steel Belt"
+	cost = 5
+	contains = list(/obj/item/storage/belt/rogue/leather/steel)
 
 /datum/supply_pack/rogue/Knight/platechausses
 	name = "Plate Chausses"
@@ -150,21 +169,14 @@
 	cost = 40
 	contains = list(/obj/item/clothing/shoes/roguetown/boots/blacksteel/plateboots)
 
+/////////////
+// WEAPONS //
+/////////////
 
 /datum/supply_pack/rogue/Knight/lsword
 	name = "Longsword"
 	cost = 20
 	contains = list(/obj/item/rogueweapon/sword/long)
-
-/datum/supply_pack/rogue/Knight/estoc
-	name = "Estoc"
-	cost = 50
-	contains = list(/obj/item/rogueweapon/estoc)
-
-/datum/supply_pack/rogue/Knight/greatsword
-	name = "Greatsword"
-	cost = 50
-	contains = list(/obj/item/rogueweapon/greatsword)
 
 /datum/supply_pack/rogue/Knight/Zweihandersword
 	name = "Zweihander"
@@ -176,10 +188,28 @@
 	cost = 60
 	contains = list(/obj/item/rogueweapon/greatsword/grenz)
 
+/datum/supply_pack/rogue/Knight/greatsword
+	name = "Greatsword"
+	cost = 50
+	contains = list(/obj/item/rogueweapon/greatsword)
+
+/datum/supply_pack/rogue/Knight/estoc
+	name = "Estoc"
+	cost = 50
+	contains = list(/obj/item/rogueweapon/estoc)
+
+/////////////
+// SHIELDS //
+/////////////
+
 /datum/supply_pack/rogue/Knight/kiteshield
 	name = "Kite Shield"
 	cost = 20
 	contains = list(/obj/item/rogueweapon/shield/tower/metal)
+
+/////////////
+// UTILITY //
+/////////////
 
 /datum/supply_pack/rogue/Knight/saiga
 	name = "Saiga Buck"

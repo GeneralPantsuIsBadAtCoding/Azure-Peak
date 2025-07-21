@@ -621,6 +621,8 @@
 		L.playsound_local(L, 'sound/misc/click.ogg', 100)
 		if(modifiers["right"])
 			L.submit()
+		else if(modifiers["middle"])
+			L.toggle_compliance()
 		else
 			L.toggle_cmode()
 			update_icon()
@@ -801,7 +803,7 @@
 			iris.icon_state = "oeye_fixed"
 		else
 			iris.icon_state = "oeye"
-	iris.color = "#" + human.eye_color
+	iris.color = human.get_eye_color()
 	. += iris
 
 /atom/movable/screen/eye_intent/proc/toggle(mob/user)
@@ -898,6 +900,8 @@
 	if(modifiers["right"])
 		if(master)
 			var/obj/item/flipper = usr.get_active_held_item()
+			if(!flipper)
+				return
 			if((!usr.Adjacent(flipper) && !usr.DirectAccess(flipper)) || !isliving(usr) || usr.incapacitated())
 				return
 			var/old_width = flipper.grid_width

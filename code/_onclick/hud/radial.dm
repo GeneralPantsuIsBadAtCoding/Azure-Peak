@@ -18,14 +18,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /atom/movable/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_slice_focus"
-	if(tooltips)
-		openToolTip(usr, src, params, title = name)
 
 /atom/movable/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_slice"
-	if(tooltips)
-		closeToolTip(usr)
 
 /atom/movable/screen/radial/slice/Click(location, control, params)
 	if(usr.client == parent.current_user)

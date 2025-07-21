@@ -90,6 +90,9 @@ GLOBAL_LIST_EMPTY(respawncounts)
 //			to_chat(src, span_danger("My previous action was ignored because you've done too many in a second"))
 			return
 
+	// Tgui Topic middleware
+	if(tgui_Topic(href_list))
+		return
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
@@ -983,9 +986,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 
 	//This is down here because of the browse() calls in tooltip/New()
-	if(!tooltips)
-		tooltips = new /datum/tooltip(src)
-
 	var/list/topmenus = GLOB.menulist[/datum/verbs/menu]
 	for (var/thing in topmenus)
 		var/datum/verbs/menu/topmenu = thing
@@ -1585,7 +1585,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	..()
 	fullscreen()
 	if(byond_version >= 516) // Enable 516 compat browser storage mechanisms
-		winset(src, null, "browser-options=find")
+		winset(src, null, "browser-options=find,byondstorage")
 	// byondstorage,devtools <- other options
 
 /client/proc/give_award(achievement_type, mob/user)

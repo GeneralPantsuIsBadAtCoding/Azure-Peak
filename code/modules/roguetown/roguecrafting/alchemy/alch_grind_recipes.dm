@@ -281,3 +281,8 @@
 	name = "Herb Seed (Rosa)"
 	valid_input = /obj/item/alch/rosa
 	valid_outputs = list(/obj/item/herbseed/rosa = 1)
+
+/datum/alch_grind_recipe/manabloom_seed
+	name = "Herb Seed (Manabloom)"
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/manabloom
+	valid_outputs = list(/obj/item/herbseed/manabloom = 1)

@@ -61,7 +61,7 @@
 		to_chat(user, span_boldwarning("You focus your thoughts on the orb, but feel a sharp pain!"))
 		visible_message("\The [src] shatters!")
 		user.flash_fullscreen("redflash1")
-		new /obj/item/natural/glass/shard(get_turf(src))
+		new /obj/item/natural/glass_shard(get_turf(src))
 		playsound(src, "shatter", 70, TRUE)
 		qdel(src)
 		return

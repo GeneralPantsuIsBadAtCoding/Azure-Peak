@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/confessor
 	category_tags = list(CTAG_INQUISITION)
-	cmode_music = 'sound/music/combat_rogue.ogg'
+	cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg'
 
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_CHURCH
@@ -42,8 +42,9 @@
 	backpack_contents = list(
 		/obj/item/roguekey/inquisition = 1,
 		/obj/item/lockpickring/mundane = 1,
-		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger,
-		/obj/item/grapplinghook = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/grapplinghook = 1
 		)
 	H.change_stat("strength", -1) // weasel
 	H.change_stat("endurance", 3)

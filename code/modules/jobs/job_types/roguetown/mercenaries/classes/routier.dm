@@ -40,7 +40,8 @@
 	switch(classchoice)
 		if("Swordsman")
 			H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-			beltl = /obj/item/rogueweapon/sword/falchion
+			beltl = /obj/item/rogueweapon/scabbard/sword
+			l_hand = /obj/item/rogueweapon/sword/falchion
 		if("Macebearer")
 			H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			beltl = /obj/item/rogueweapon/mace/steel/morningstar

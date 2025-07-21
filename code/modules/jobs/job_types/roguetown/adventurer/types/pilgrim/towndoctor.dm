@@ -26,7 +26,7 @@
 						/obj/item/natural/cloth = 2,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/huntingknife/scissors/steel = 1,
-						/obj/item/hair_dye_cream = 3,
+						/obj/item/hair_dye_cream = 3
 						)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)

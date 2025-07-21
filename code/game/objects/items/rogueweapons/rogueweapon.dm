@@ -30,14 +30,15 @@
 	wdefense_wbonus = 3 //Default is 3.
 	experimental_onhip = TRUE
 	experimental_onback = TRUE
+	resistance_flags = FIRE_PROOF
 	embedding = list(
 		"embed_chance" = 20,
 		"embedded_pain_multiplier" = 1,
 		"embedded_fall_chance" = 0,
 	)
-	var/initial_sl
-	var/list/possible_enhancements
-	resistance_flags = FIRE_PROOF
+
+	/// Icon for sheathing. Only null for weapons that are unsheathable.
+	var/sheathe_icon = null
 
 /obj/item/rogueweapon/Initialize()
 	. = ..()

@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/bandit/knave
 	category_tags = list(CTAG_BANDIT)
-	cmode_music = 'sound/music/combat_bandit2.ogg'
+	cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 
 /datum/outfit/job/roguetown/bandit/knave/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -65,11 +65,13 @@
 						/obj/item/natural/cloth = 1,
 						/obj/item/lockpickring/mundane = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1
 						) //rogue gets lockpicks
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 		if("Bow & Sword") //Poacher
 			backl= /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			beltl = /obj/item/rogueweapon/sword/short
+			l_hand = /obj/item/rogueweapon/sword/short
+			beltl = /obj/item/rogueweapon/scabbard/sword
 			beltr = /obj/item/quiver/arrows
 			head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm //cool hat
 			backr = /obj/item/storage/backpack/rogue/satchel

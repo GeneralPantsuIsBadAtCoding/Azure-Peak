@@ -26,6 +26,7 @@
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife,
 		/obj/item/roguekey/mercenary,
+		/obj/item/rogueweapon/scabbard/sheath
 		)
 	
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)

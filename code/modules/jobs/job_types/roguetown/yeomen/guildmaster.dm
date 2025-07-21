@@ -20,6 +20,7 @@
 	min_pq = 5 // Higher PQ requirement as it is a leadership role. Not for total newbie.
 	max_pq = null
 	round_contrib_points = 3
+	cmode_music = 'sound/music/cmode/towner/combat_retired.ogg'
 
 /datum/outfit/job/roguetown/guildmaster/pre_equip(mob/living/carbon/human/H)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)

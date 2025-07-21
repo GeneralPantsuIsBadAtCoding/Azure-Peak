@@ -59,17 +59,19 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 5, TRUE)
-			H.cmode_music = 'sound/music/combat_vaquero.ogg'
+			H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 			var/weapons = list("Rapier","Dagger", "Whip")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
 			switch(weapon_choice)
 				if("Rapier")
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltl = /obj/item/rogueweapon/sword/rapier
+					beltl = /obj/item/rogueweapon/scabbard/sword
+					l_hand = /obj/item/rogueweapon/sword/rapier
 				if("Dagger")
 					H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-					beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special // Why were they spawning with an elven dagger in the first place??? Please LMK.
+					beltl = /obj/item/rogueweapon/scabbard/sheath
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special // Why were they spawning with an elven dagger in the first place??? Please LMK.
 				if ("Whip")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltl = /obj/item/rogueweapon/whip
@@ -113,7 +115,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
-			H.cmode_music = 'sound/music/combat_bandit_brigand.ogg'
+			H.cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 			var/weapons = list("Just A Heater Shield","Dagger + Crossbow", "Militia Warpick + Heater Shield", "Militia Spear + Heater Shield")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -124,7 +126,8 @@
 					backr = /obj/item/rogueweapon/shield/iron
 				if("Dagger + Crossbow")
 					H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-					beltl = /obj/item/rogueweapon/huntingknife/idagger/steel 
+					beltl = /obj/item/rogueweapon/scabbard/sheath
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 					backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 					beltr = /obj/item/quiver/bolts
 				if ("Militia Warpick + Heater Shield")

@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	owner.special_role = name
 	for(var/inherited_trait in inherent_traits)
 		ADD_TRAIT(owner.current, inherited_trait, "[type]")
-	owner.current.cmode_music = 'sound/music/combat_vamp.ogg'
+	owner.current.cmode_music = 'sound/music/cmode/antag/combat_thrall.ogg' // vampire lords get this too... For Now.
 	var/obj/item/organ/eyes/eyes = owner.current.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.Remove(owner.current,1)
@@ -80,7 +80,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 			mypool = mansion
 		equip_spawn()
 		greet()
-		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, spawn_pick_class), "VAMPIRE SPAWN"), 5 SECONDS)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living/carbon/human, equipOutfit), /datum/outfit/job/roguetown/vampthrall), 5 SECONDS)
+
 	else
 		forge_vampirelord_objectives()
 		finalize_vampire()
@@ -131,21 +132,6 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	owner.current.adjust_skillrank(/datum/skill/magic/blood, 2, TRUE)
 	owner.current.ambushable = FALSE
 
-/mob/living/carbon/human/proc/spawn_pick_class()
-	var/list/classoptions = list("Ranger","Blacksmith","Carpenter","Seamstress","Rogue","Mage","Hunter","Trader")
-	var/list/visoptions = list()
-
-	for(var/T in 1 to 5)
-		if(length(classoptions))
-			visoptions += pick_n_take(classoptions)
-
-	var/selected = input(src, "Which class was I?", "VAMPIRE SPAWN") as anything in visoptions
-
-	for(var/datum/advclass/A in SSrole_class_handler.sorted_class_categories[CTAG_ALLCLASS])
-		if(A.name == selected)
-			equipOutfit(A.outfit)
-			return
-
 /datum/outfit/job/roguetown/vamplord/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/magic/blood, 2, TRUE)
@@ -165,6 +151,25 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	backl = /obj/item/storage/backpack/rogue/satchel/black
+	H.ambushable = FALSE
+
+
+
+/datum/outfit/job/roguetown/vampthrall/pre_equip(mob/living/carbon/human/H)
+	H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/swimming, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 4, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 4, TRUE)
 	H.ambushable = FALSE
 
 ////////Outfits////////

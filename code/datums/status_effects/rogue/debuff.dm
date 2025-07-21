@@ -265,7 +265,7 @@
 	owner.remove_movespeed_modifier("SUBMISSIVE")
 
 /atom/movable/screen/alert/status_effect/debuff/submissive
-	name = "Compliant"
+	name = "Conformable"
 	desc = "Falling in line is my only choice."
 
 /datum/status_effect/debuff/chilled

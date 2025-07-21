@@ -51,6 +51,7 @@
 				/obj/item/reagent_containers/powder/moondust = 2,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 2)
@@ -86,6 +87,7 @@
 				/obj/item/reagent_containers/glass/bottle/rogue/elfred = 1, 
 				/obj/item/reagent_containers/glass/bottle/rogue/elfblue = 1, 
 				/obj/item/rogueweapon/huntingknife = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1,
 				/obj/item/ingot/copper = 2,
 				/obj/item/roguegear = 1, 
 				/obj/item/recipe_book/survival = 1)
@@ -126,6 +128,7 @@
 				/obj/item/roguegem/yellow = 1,
 				/obj/item/roguegem/green = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
@@ -162,6 +165,7 @@
 				/obj/item/clothing/neck/roguetown/psicross/wood = 1,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
@@ -199,6 +203,7 @@
 				/obj/item/natural/feather = 1,
 				/obj/item/roguegem/amethyst = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
@@ -222,6 +227,7 @@
 				/obj/item/storage/pill_bottle/dice = 1,
 				/obj/item/toy/cards/deck = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)

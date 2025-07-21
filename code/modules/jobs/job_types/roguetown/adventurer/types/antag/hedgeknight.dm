@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/bandit/hedgeknight
 	category_tags = list(CTAG_BANDIT)
 	maximum_possible_slots = 2 //Too many plate armoured fellas is scawy ...
-	cmode_music = 'sound/music/combat_bandit.ogg'
+	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg' // big chungus gets the wall too
 
 /datum/outfit/job/roguetown/bandit/hedgeknight/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -24,12 +24,14 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blkknight
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/long/death // ow the edge. it's just spraypainted. no weapon choice you MUST use a sword
+	beltl = /obj/item/rogueweapon/scabbard/sword
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/rogueweapon/shield/tower/metal
 	id = /obj/item/mattcoin
 	backpack_contents = list(
 					/obj/item/rogueweapon/huntingknife/idagger = 1,
 					/obj/item/flashlight/flare/torch = 1,
+					/obj/item/rogueweapon/scabbard/sheath = 1
 					)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)

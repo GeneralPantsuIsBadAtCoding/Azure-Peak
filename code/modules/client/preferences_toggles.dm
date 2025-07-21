@@ -71,6 +71,17 @@
 		else
 			to_chat(src, "You will now hear animal sound emotes.")
 
+/client/verb/autoconsume()
+	set category = "Options"
+	set name = "Toggle AutoConsume"
+	if(prefs)
+		prefs.autoconsume = !prefs.autoconsume
+		prefs.save_preferences()
+		if(prefs.autoconsume)
+			to_chat(src, "You will now try to repeatedly consume/feed food/drinks")
+		else
+			to_chat(src, "You will no longer try to repeatedly consume/feed food/drinks")
+
 /client/verb/toggle_ERP() // Alters if other people can use the ERP panel ON you.
 	set category = "Options"
 	set name = "Toggle ERP Panel"
@@ -81,6 +92,17 @@
 			to_chat(src, "Others can play with you.")
 		else
 			to_chat(src, "Others can't touch you.")
+
+/client/verb/toggle_compliance_notifs() // The messages need to be on-by-default while this is in its early stages.
+	set category = "Options"
+	set name = "Compliance Notifs"
+	if(prefs)
+		prefs.compliance_notifs = !prefs.compliance_notifs
+		prefs.save_preferences()
+		if(prefs.compliance_notifs)
+			to_chat(src, "You will receive chat notifications when enabling or disabling Compliance Mode.")
+		else
+			to_chat(src, "You will no longer be notified in chat when toggling Compliance Mode.")
 
 /client/verb/toggle_lobby_music()
 	set name = "Toggle Lobby Music"

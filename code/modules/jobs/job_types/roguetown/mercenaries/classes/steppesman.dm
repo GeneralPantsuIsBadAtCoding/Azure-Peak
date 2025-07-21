@@ -23,6 +23,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel,
 		/obj/item/storage/belt/rogue/pouch/coins/poor,
 		/obj/item/rogueweapon/whip/nagaika,
+		/obj/item/rogueweapon/scabbard/sheath
 		)
 
 	//Universal skills
@@ -51,7 +52,8 @@
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			beltr = /obj/item/rogueweapon/shield/wood
-			beltl= /obj/item/rogueweapon/sword/sabre
+			beltl= /obj/item/rogueweapon/scabbard/sword
+			l_hand = /obj/item/rogueweapon/sword/sabre
 			neck = /obj/item/clothing/neck/roguetown/chaincoif
 			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)

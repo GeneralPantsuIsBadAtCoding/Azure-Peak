@@ -181,3 +181,28 @@
 	name = "Lucky(?)"
 	desc = "I feel different since my fortune was changed..."
 	icon_state = "asleep"
+
+/atom/movable/screen/alert/status_effect/compliance
+	name = "Compliant"
+	desc = "I am currently not resisting any grabs or breakout attempts against me."
+	icon_state = "buckled" // this really needs its own icon
+
+// Sadly we can't rely on /atom/movable/screen/Click() to return TRUE at all.
+// We MUST use the shitcode method of copypasting if both examine and toggle are to work properly.
+/atom/movable/screen/alert/status_effect/compliance/Click(location, control, params)
+	if(!usr || !usr.client)
+		return FALSE
+	var/mob/user = usr
+	var/paramslist = params2list(params)
+	if(paramslist["shift"] && paramslist["left"]) // screen objects don't do the normal Click() stuff so we'll cheat
+		examine_ui(user)
+		return FALSE
+	var/mob/living/L = usr
+	if(!istype(L))
+		return
+	L.playsound_local(L, 'sound/misc/click.ogg', 100)
+	L.toggle_compliance()
+
+/datum/status_effect/compliance
+	id = "compliance"
+	alert_type = /atom/movable/screen/alert/status_effect/compliance

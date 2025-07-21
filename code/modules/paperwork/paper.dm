@@ -150,8 +150,6 @@
 		. += "It's from [mailer], addressed to [mailedto].</a>"
 
 /obj/item/paper/proc/read(mob/user)
-//	var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/paper)
-//	assets.send(user)
 	if(!user.client || !user.hud_used)
 		return
 	if(!user.hud_used.reads)

@@ -162,9 +162,6 @@
 				lobby_players++
 				continue
 			else if(M.stat != DEAD && M.mind && !isbrain(M))
-				if(isdrone(M))
-					drones++
-					continue
 				if(is_centcom_level(M.z))
 					living_skipped++
 					continue

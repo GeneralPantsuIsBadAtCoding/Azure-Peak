@@ -170,7 +170,7 @@
 	if(M.mind)
 		skill_diff -= (M.get_skill_level(/datum/skill/combat/wrestling))
 
-	if(M.surrendering)
+	if(M.compliance || M.surrendering)
 		combat_modifier = 2
 
 	if(M.restrained())
@@ -309,7 +309,7 @@
 							span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 			else
 				user.stamina_add(rand(5,15))
-				if(prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
+				if(M.compliance || prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
 					M.visible_message(span_danger("[user] shoves [M] to the ground!"), \
 									span_userdanger("[user] shoves me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 					M.Knockdown(max(10 + (skill_diff * 2), 1))

@@ -4,6 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/minstrel
+	
 	category_tags = list(CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/minstrel/pre_equip(mob/living/carbon/human/H)
@@ -30,6 +31,7 @@
 						/obj/item/rogue/instrument/flute = 1,
 						/obj/item/rogue/instrument/drum = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	H.change_stat("speed", 1)  
 	H.change_stat("fortune", 1)

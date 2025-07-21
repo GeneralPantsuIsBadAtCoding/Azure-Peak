@@ -72,12 +72,12 @@
 	if(death)
 		stored.death()
 	else if(source.convert_damage)
-		stored.revive(full_heal = TRUE, admin_revive = FALSE)
-
 		var/damage_percent = (shape.maxHealth - shape.health)/shape.maxHealth;
 		var/damapply = stored.maxHealth * damage_percent
-
 		stored.apply_damage(damapply, source.convert_damage_type, forced = TRUE)
+	else
+		stored.revive(full_heal = TRUE, admin_revive = FALSE) // Convert damage FALSE shifts keep the aheal, regenerative shifting?
+
 	qdel(shape)
 	qdel(src)
 

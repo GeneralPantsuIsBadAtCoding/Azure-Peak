@@ -77,6 +77,13 @@
 			to_chat(user, span_notice("I swallow a gulp of [src]."))
 		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, amount_per_gulp, TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
 		playsound(M.loc,pick(drinksounds), 100, TRUE)
+		if(user.client?.prefs.autoconsume)
+			if(M == user && do_after(user, CLICK_CD_MELEE))
+				INVOKE_ASYNC(src, PROC_REF(attack), M, user, target)
+				user.changeNext_move(CLICK_CD_MELEE)
+			else if(M != user)
+				INVOKE_ASYNC(src, PROC_REF(attack), M, user, target)
+				user.changeNext_move(CLICK_CD_MELEE)
 		return
 
 /obj/item/reagent_containers/glass/attack_obj(obj/target, mob/living/user)

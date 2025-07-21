@@ -398,6 +398,13 @@ All foods are distributed among various categories. Use common sense.
 				checkLiked(fraction, M)
 				if(bitecount >= bitesize)
 					qdel(src)
+				else if(user.client?.prefs.autoconsume)
+					if(M == user && do_after(user, CLICK_CD_MELEE))
+						INVOKE_ASYNC(src, PROC_REF(attack), M, user, def_zone)
+						user.changeNext_move(CLICK_CD_MELEE)
+					else if(M != user)
+						INVOKE_ASYNC(src, PROC_REF(attack), M, user, def_zone)
+						user.changeNext_move(CLICK_CD_MELEE)
 				return TRUE
 		playsound(M.loc,'sound/misc/eat.ogg', rand(30,60), TRUE)
 		qdel(src)

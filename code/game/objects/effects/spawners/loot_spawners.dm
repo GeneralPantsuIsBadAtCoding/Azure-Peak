@@ -46,7 +46,7 @@
 		//junk
 		/obj/item/rogue/instrument/flute = 3,
 		/obj/item/ash = 5,
-		/obj/item/natural/glass/shard = 5,
+		/obj/item/natural/glass_shard = 5,
 		/obj/item/candle/yellow = 3,
 		/obj/item/flashlight/flare/torch = 3,
 		/obj/item/reagent_containers/glass/bowl = 4,
@@ -189,7 +189,7 @@
 		//junk
 		/obj/item/rogue/instrument/flute = 3,
 		/obj/item/ash = 5,
-		/obj/item/natural/glass/shard = 5,
+		/obj/item/natural/glass_shard = 5,
 		/obj/item/candle/yellow = 3,
 		/obj/item/flashlight/flare/torch = 3,
 		/obj/item/reagent_containers/glass/bowl = 4,

@@ -12,7 +12,6 @@
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
 	
-	
 /datum/outfit/job/roguetown/adventurer/masterwoodcutter/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/combat/axes, 6, TRUE) // AXE MEN! GIVE ME SPLINTERS!
@@ -43,6 +42,7 @@
 	backpack_contents = list(
 						/obj/item/flint = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	H.change_stat("strength", 4)
 	H.change_stat("constitution", 1)

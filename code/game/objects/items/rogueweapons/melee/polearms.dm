@@ -1017,7 +1017,7 @@
 	force_wielded = 25
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
-	max_integrity = 500
+	max_integrity = 400
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	intdamage_factor = 1.2
 

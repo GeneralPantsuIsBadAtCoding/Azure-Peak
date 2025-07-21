@@ -180,6 +180,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset
 	var/_abstract = /datum/asset
+	var/cached_serialized_url_mappings
 
 /datum/asset/New()
 	GLOB.asset_datums[type] = src
@@ -191,6 +192,15 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/proc/send(client)
 	return
 
+/datum/asset/proc/get_url_mappings()
+	return list()
+
+/// Returns a cached tgui message of URL mappings
+/datum/asset/proc/get_serialized_url_mappings()
+	if(isnull(cached_serialized_url_mappings))
+		cached_serialized_url_mappings = TGUI_CREATE_MESSAGE("asset/mappings", get_url_mappings())
+
+	return cached_serialized_url_mappings
 
 //If you don't need anything complicated.
 /datum/asset/simple
@@ -204,6 +214,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/simple/send(client)
 	send_asset_list(client,assets,verify)
+
+/datum/asset/simple/get_url_mappings()
+	. = list()
+	for (var/asset_name in assets)
+		.[asset_name] = asset_name
 
 
 // For registering or sending multiple others at once
@@ -220,6 +235,30 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		var/datum/asset/A = get_asset_datum(type)
 		A.send(C)
 
+/// A subtype to generate a JSON file from a list
+/datum/asset/json
+	_abstract = /datum/asset/json
+	/// The filename, will be suffixed with ".json"
+	var/name
+
+/datum/asset/json/send(client)
+	return send_asset_list(client, list("[name].json"))
+
+/datum/asset/json/get_url_mappings()
+	return list(
+		"[name].json" = "[name].json",
+	)
+
+/datum/asset/json/register()
+	var/filename = "data/[name].json"
+	fdel(filename)
+	rustg_file_write(json_encode(generate()), filename)
+	register_asset("[name].json", fcopy_rsc(filename))
+	fdel(filename)
+
+/// Returns the data that will be JSON encoded
+/datum/asset/json/proc/generate()
+	CRASH("generate() not implemented for [type]!")
 
 // spritesheet implementation - coalesces various icons into a single .png file
 // and uses CSS to select icons out of that file - saves on transferring some
@@ -242,11 +281,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		CRASH("spritesheet [type] cannot register without a name")
 	ensure_stripped()
 
-	var/res_name = "test.css"
+	var/res_name = "spritesheet_[name].css"
 	var/fname = "data/spritesheets/[res_name]"
 	fdel(fname)
 	text2file(generate_css(), fname)
-	register_asset(res_name, fcopy_rsc(fname))
+	register_asset("spritesheet_[name].css", fcopy_rsc(fname))
 	fdel(fname)
 
 	for(var/size_id in sizes)
@@ -261,6 +300,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		all += "[name]_[size_id].png"
 	send_asset_list(C, all, verify)
 
+/datum/asset/spritesheet/get_url_mappings()
+	if (!name)
+		return
+
+	. = list("spritesheet_[name].css" = "spritesheet_[name].css")
+	for(var/size_id in sizes)
+		.["[name]_[size_id].png"] = "[name]_[size_id].png"
+	
 /datum/asset/spritesheet/proc/ensure_stripped(sizes_to_strip = sizes)
 	for(var/size_id in sizes_to_strip)
 		var/size = sizes[size_id]
@@ -335,6 +382,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/spritesheet/proc/css_tag()
 	return {"<link rel="stylesheet" href="spritesheet_[name].css" />"}
 
+/datum/asset/spritesheet/proc/css_filename()
+	return "spritesheet_[name].css"
+
 /datum/asset/spritesheet/proc/icon_tag(sprite_name)
 	var/sprite = sprites[sprite_name]
 	if (!sprite)
@@ -404,140 +454,23 @@ GLOBAL_LIST_EMPTY(asset_datums)
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
 /datum/asset/simple/tgui
-/*	assets = list(
-		// tgui
-		"tgui.css" = 'tgui/assets/tgui.css',
-		"tgui.js" = 'tgui/assets/tgui.js',
-		// tgui-next
-		"tgui-main.html" = 'tgui-next/packages/tgui/public/tgui-main.html',
-		"tgui-fallback.html" = 'tgui-next/packages/tgui/public/tgui-fallback.html',
-		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/tgui.bundle.css',
-		"shim-html5shiv.js" = 'tgui-next/packages/tgui/public/shim-html5shiv.js',
-		"shim-ie8.js" = 'tgui-next/packages/tgui/public/shim-ie8.js',
-		"shim-dom4.js" = 'tgui-next/packages/tgui/public/shim-dom4.js',
-		"shim-css-om.js" = 'tgui-next/packages/tgui/public/shim-css-om.js',
-	)*/
-
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/fontawesome
+	assets = list(
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
-/datum/asset/simple/headers
-/*	assets = list(
-		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
-		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
-		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
-		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
-		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
-		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
-		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
-		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
-		"charging.gif" 				= 'icons/program_icons/charging.gif',
-		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
-		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
-		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
-		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
-		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
-		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
-		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
-		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
-		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
-		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
-		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
-		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
-		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
-		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
-		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
-		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
-		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif'
-	)*/
-
-/datum/asset/spritesheet/simple/pda
-	name = "pda"
-/*	assets = list(
-		"atmos"			= 'icons/pda_icons/pda_atmos.png',
-		"back"			= 'icons/pda_icons/pda_back.png',
-		"bell"			= 'icons/pda_icons/pda_bell.png',
-		"blank"			= 'icons/pda_icons/pda_blank.png',
-		"boom"			= 'icons/pda_icons/pda_boom.png',
-		"bucket"		= 'icons/pda_icons/pda_bucket.png',
-		"medbot"		= 'icons/pda_icons/pda_medbot.png',
-		"floorbot"		= 'icons/pda_icons/pda_floorbot.png',
-		"cleanbot"		= 'icons/pda_icons/pda_cleanbot.png',
-		"crate"			= 'icons/pda_icons/pda_crate.png',
-		"cuffs"			= 'icons/pda_icons/pda_cuffs.png',
-		"eject"			= 'icons/pda_icons/pda_eject.png',
-		"flashlight"	= 'icons/pda_icons/pda_flashlight.png',
-		"honk"			= 'icons/pda_icons/pda_honk.png',
-		"mail"			= 'icons/pda_icons/pda_mail.png',
-		"medical"		= 'icons/pda_icons/pda_medical.png',
-		"menu"			= 'icons/pda_icons/pda_menu.png',
-		"mule"			= 'icons/pda_icons/pda_mule.png',
-		"notes"			= 'icons/pda_icons/pda_notes.png',
-		"power"			= 'icons/pda_icons/pda_power.png',
-		"rdoor"			= 'icons/pda_icons/pda_rdoor.png',
-		"reagent"		= 'icons/pda_icons/pda_reagent.png',
-		"refresh"		= 'icons/pda_icons/pda_refresh.png',
-		"scanner"		= 'icons/pda_icons/pda_scanner.png',
-		"signaler"		= 'icons/pda_icons/pda_signaler.png',
-		"status"		= 'icons/pda_icons/pda_status.png',
-		"dronephone"	= 'icons/pda_icons/pda_dronephone.png',
-		"emoji"			= 'icons/pda_icons/pda_emoji.png'
-	)*/
-
-/datum/asset/spritesheet/simple/paper
-	name = "paper"
-/*	assets = list(
-		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',
-		"stamp-deny" = 'icons/stamp_icons/large_stamp-deny.png',
-		"stamp-ok" = 'icons/stamp_icons/large_stamp-ok.png',
-		"stamp-hop" = 'icons/stamp_icons/large_stamp-hop.png',
-		"stamp-cmo" = 'icons/stamp_icons/large_stamp-cmo.png',
-		"stamp-ce" = 'icons/stamp_icons/large_stamp-ce.png',
-		"stamp-hos" = 'icons/stamp_icons/large_stamp-hos.png',
-		"stamp-rd" = 'icons/stamp_icons/large_stamp-rd.png',
-		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
-		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
-		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png'
-	)*/
-
-
-/datum/asset/simple/IRV
-/*	assets = list(
-		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
-	)*/
-
-/datum/asset/group/IRV
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/IRV
+/datum/asset/simple/tgui_panel
+	assets = list(
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
 	)
 
-/datum/asset/simple/changelog
-/*	assets = list(
-		"88x31.png" = 'html/88x31.png',
-		"bug-minus.png" = 'html/bug-minus.png',
-		"cross-circle.png" = 'html/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/image-minus.png',
-		"image-plus.png" = 'html/image-plus.png',
-		"music-minus.png" = 'html/music-minus.png',
-		"music-plus.png" = 'html/music-plus.png',
-		"tick-circle.png" = 'html/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/wrench-screwdriver.png',
-		"spell-check.png" = 'html/spell-check.png',
-		"burn-exclamation.png" = 'html/burn-exclamation.png',
-		"chevron.png" = 'html/chevron.png',
-		"chevron-expand.png" = 'html/chevron-expand.png',
-		"scales.png" = 'html/scales.png',
-		"coding.png" = 'html/coding.png',
-		"ban.png" = 'html/ban.png',
-		"chrome-wrench.png" = 'html/chrome-wrench.png',
-		"changelog.css" = 'html/changelog.css'
-	)*/
+/datum/asset/simple/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/static/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/static/tgfont.woff2"),
+		"tgfont.css" = file("tgui/packages/tgfont/static/tgfont.css"),
+	)
 
 /datum/asset/group/goonchat
 	children = list(
@@ -574,12 +507,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/fontawesome
 	verify = FALSE
 	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
-		//"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
+		"fa-regular-400.ttf" = 'html/font-awesome/webfonts/fa-regular-400.ttf',
+		"fa-solid-900.ttf" = 'html/font-awesome/webfonts/fa-solid-900.ttf',
+		"fa-v4compatibility.ttf" = 'html/font-awesome/webfonts/fa-v4compatibility.ttf',
+		"v4shim.css" = 'html/font-awesome/css/v4-shims.min.css',
+		"font-awesome.css" = 'html/font-awesome/css/all.min.css'
 	)
 
 /datum/asset/simple/blackedstone_class_menu_slop_layout
@@ -821,3 +753,46 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"dna_extra.gif" 		= 'html/dna_extra.gif'
 	)*/
 	assets = null
+
+/// Maps icon names to ref values
+/datum/asset/json/icon_ref_map
+	name = "icon_ref_map"
+
+/datum/asset/json/icon_ref_map/generate()
+	var/list/data = list() //"icons/obj/drinks.dmi" => "[0xc000020]"
+
+	//var/start = "0xc000000"
+	var/value = 0
+
+	while(TRUE)
+		value += 1
+		var/ref = "\[0xc[num2text(value,6,16)]\]"
+		var/mystery_meat = locate(ref)
+
+		if(isicon(mystery_meat))
+			if(!isfile(mystery_meat)) // Ignore the runtime icons for now
+				continue
+			var/path = get_icon_dmi_path(mystery_meat) //Try to get the icon path
+			if(path)
+				data[path] = ref
+		else if(mystery_meat)
+			continue; //Some other non-icon resource, ogg/json/whatever
+		else //Out of resources end this, could also try to end this earlier as soon as runtime generated icons appear but eh
+			break;
+
+	return data
+
+/datum/asset/spritesheet/anvil_recipes
+	name = "anvil_recipes"
+
+/datum/asset/spritesheet/anvil_recipes/register()
+	for(var/datum/anvil_recipe/recipe as anything in GLOB.anvil_recipes)
+		var/icon = recipe.created_item::icon
+		var/icon_state = recipe.created_item::icon_state
+
+		if(!icon || !icon_state)
+			continue
+
+		Insert("[sanitize_css_class_name("recipe_[REF(recipe)]")]", icon, icon_state)
+
+	..()

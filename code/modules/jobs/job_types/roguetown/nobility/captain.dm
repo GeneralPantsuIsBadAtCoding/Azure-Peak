@@ -82,6 +82,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
@@ -116,7 +117,11 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
-	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+	H.verbs |= list(
+		/mob/living/carbon/human/proc/request_outlaw, 
+		/mob/proc/haltyell, 
+		/mob/living/carbon/human/mind/proc/setorders
+	)
 	H.adjust_blindness(-3)
 	var/weapons = list(
 		"Zweihander",
@@ -145,13 +150,15 @@
 			r_hand = /obj/item/rogueweapon/estoc
 			backl = /obj/item/gwstrap
 		if("Longsword & Shield")
-			beltr = /obj/item/rogueweapon/sword/long
+			r_hand = /obj/item/rogueweapon/sword/long
+			beltr = /obj/item/rogueweapon/scabbard/sword
 			backl = /obj/item/rogueweapon/shield/tower/metal
 		if("Flail & Shield")
 			beltr = /obj/item/rogueweapon/flail/sflail
 			backl = /obj/item/rogueweapon/shield/tower/metal
 		if("Sabre & Shield")
-			beltr = /obj/item/rogueweapon/sword/sabre
+			beltr = /obj/item/rogueweapon/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/sabre
 			backl = /obj/item/rogueweapon/shield/tower/metal
 	var/helmets = list(
 		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
@@ -185,6 +192,7 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
@@ -233,6 +241,7 @@
 	switch(weapon_choice)
 		if("Longsword & Recurve Bow")
 			r_hand = /obj/item/rogueweapon/sword/long
+			beltl = /obj/item/rogueweapon/scabbard/sword
 			beltr = /obj/item/quiver/arrows
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 		if("Mace & Crossbow")
@@ -243,7 +252,8 @@
 			r_hand = /obj/item/rogueweapon/spear
 			backl = /obj/item/rogueweapon/shield/tower/metal
 		if("Sabre & Shield")
-			beltr = /obj/item/rogueweapon/sword/sabre
+			l_hand = /obj/item/rogueweapon/sword/sabre
+			beltl = /obj/item/rogueweapon/scabbard/sword
 			backl = /obj/item/rogueweapon/shield/tower/metal
 		if("Lance + Kite Shield")
 			r_hand = /obj/item/rogueweapon/spear/lance

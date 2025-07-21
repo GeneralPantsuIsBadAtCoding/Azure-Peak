@@ -1,5 +1,4 @@
 /obj/item
-	var/unequip_delay_self = 1
 	var/allow_self_unequip = TRUE
 
 /obj/item/allow_attack_hand_drop(mob/user)

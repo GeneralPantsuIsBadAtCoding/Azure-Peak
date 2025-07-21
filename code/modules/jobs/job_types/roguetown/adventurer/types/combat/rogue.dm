@@ -33,7 +33,12 @@
 			head = /obj/item/clothing/head/roguetown/fedora
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
+			backpack_contents = list(
+				/obj/item/lockpick = 1, 
+				/obj/item/rogueweapon/huntingknife = 1, 
+				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
+				)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -47,7 +52,7 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
-			H.cmode_music = 'sound/music/combat_treasurehunter.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
@@ -58,6 +63,7 @@
 				if("Sabre")
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 					beltr = /obj/item/rogueweapon/sword/sabre
+					r_hand = /obj/item/rogueweapon/scabbard/sword
 				if("Whip")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/whip
@@ -77,7 +83,14 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			beltl = /obj/item/quiver/Warrows
 			beltr = /obj/item/rogueweapon/mace/cudgel
-			H.cmode_music = 'sound/music/combat_rogue.ogg'
+			backpack_contents = list(
+				/obj/item/flashlight/flare/torch = 1,
+				/obj/item/rogueweapon/huntingknife/idagger/steel = 1,
+				/obj/item/lockpickring/mundane = 1,
+				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
+				)
+			H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 			H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
@@ -119,6 +132,7 @@
 					backpack_contents = list(
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/huntingknife/idagger/steel/kazengun = 1,
+						/obj/item/rogueweapon/scabbard/sheath = 1,
 						/obj/item/lockpickring/mundane = 1,
 						/obj/item/recipe_book/survival = 1,
 						)
@@ -128,11 +142,6 @@
 					shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt1
 					cloak = /obj/item/clothing/cloak/thief_cloak
 					head = /obj/item/clothing/head/roguetown/mentorhat //other armor pieces are nerfed to justify this
-			H.change_stat("strength", -1)
-			H.change_stat("intelligence", 1)
-			H.change_stat("perception", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 3)
 
 		if("Bard")
 			to_chat(H, span_warning("You make your fortune in brothels, flop houses, and taverns – gaining fame for your songs and legends. If there is any truth to them, that is."))
@@ -164,13 +173,14 @@
 			backpack_contents = list(
 				/obj/item/lockpick = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			if(H.mind)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/combat_bard.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -212,6 +222,7 @@
 				/obj/item/lockpick = 1,
 				/obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.cmode_music = 'sound/music/jukeboxes/oldschool/Sea_Shanty2.ogg'
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)

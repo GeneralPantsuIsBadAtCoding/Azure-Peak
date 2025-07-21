@@ -106,10 +106,6 @@
 	seed_identity = "raspberry seeds"
 	plant_def_type = /datum/plant_def/bush/raspberry
 
-/obj/item/seeds/manabloom
-	seed_identity = "manabloom seeds"
-	plant_def_type = /datum/plant_def/manabloom
-
 /obj/item/seeds/tomato
 	seed_identity = "tomato seeds"
 	plant_def_type = /datum/plant_def/bush/tomato

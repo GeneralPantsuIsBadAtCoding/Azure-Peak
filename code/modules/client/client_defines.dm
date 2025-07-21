@@ -84,9 +84,6 @@
 	///Used for ip intel checking to identify evaders, disabled because of issues with traffic
 	var/ip_intel = "Disabled"
 
-	///datum that controls the displaying and hiding of tooltips
-	var/datum/tooltip/tooltips
-
 	///Last ping of the client
 	var/lastping = 0
 	///Average ping of the client

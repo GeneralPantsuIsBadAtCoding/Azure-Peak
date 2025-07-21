@@ -44,6 +44,16 @@
 	cost = 10
 	contains = list(/obj/item/clothing/neck/roguetown/collar)
 
+/datum/supply_pack/rogue/bath_clothes/bell_collar
+	name = "Bell Collar"
+	cost = 20
+	contains = list(/obj/item/clothing/neck/roguetown/collar/bell_collar)
+
+/datum/supply_pack/rogue/bath_clothes/loincloth
+	name = "Loincloth"
+	cost = 10
+	contains = list(/obj/item/clothing/under/roguetown/loincloth)
+
 /datum/supply_pack/rogue/bath_clothes/corset
 	name = "Corset"
 	cost = 15

@@ -128,7 +128,8 @@
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Iron Sword")
-			beltr = /obj/item/rogueweapon/sword/iron
+			beltr = /obj/item/rogueweapon/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/iron
 		if("Cudgel")	
 			beltr = /obj/item/rogueweapon/mace/cudgel
 
@@ -153,6 +154,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger,
 		/obj/item/storage/belt/rogue/pouch,
 		/obj/item/clothing/neck/roguetown/chaincoif,
+		/obj/item/rogueweapon/scabbard/sheath
 		)
 	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)

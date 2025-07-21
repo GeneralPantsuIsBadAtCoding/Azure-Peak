@@ -78,7 +78,7 @@ jobs:
         run: |
           ls -h $HOME/
           source $HOME/BYOND/byond/bin/byondsetup
-          DreamMaker roguetown.dme
+          tools/build/build.sh
 
       - name: Check for errors
         id: check-errors

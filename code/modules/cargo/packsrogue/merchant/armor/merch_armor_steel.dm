@@ -8,7 +8,6 @@
 /datum/supply_pack/rogue/armor_steel
 	group = "Armor (Steel)"
 	crate_name = "merchant guild's crate"
-	mandated_public_profit = 1 // 100% Mandatory Profit Margin on top
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
 // Steel Armor Section. Massive selection here so I am not going to include everything
@@ -34,12 +33,12 @@
 
 /datum/supply_pack/rogue/armor_steel/fullplate
 	name = "Full Plate"
-	cost = 180 // 4 Steel, 1 Cured Leather 
+	cost = 350 // 4 Steel, 1 Cured Leather - x2 cuz it is the best armor
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full)
 
 /datum/supply_pack/rogue/armor_steel/fullplate_fluted
 	name = "Full Plate, Fluted"
-	cost = 210 // 4 Steel, 1 Iron, 1 Cured Leather
+	cost = 380 // 4 Steel, 1 Iron, 1 Cured Leather - x2 cuz it is the best armor
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/fluted)
 
 /datum/supply_pack/rogue/armor_steel/coatplates

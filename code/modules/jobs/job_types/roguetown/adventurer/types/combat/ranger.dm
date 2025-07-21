@@ -36,6 +36,7 @@
 				/obj/item/bait = 1,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -56,6 +57,7 @@
 			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			var/weapons = list("Recurve Bow","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -89,6 +91,7 @@
 			backpack_contents = list(
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -103,6 +106,7 @@
 			H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander.ogg'
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 2)
 			H.change_stat("endurance", 1)
@@ -127,6 +131,7 @@
 				/obj/item/bomb = 4,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
@@ -137,6 +142,7 @@
 			H.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.change_stat("constitution", 1)
 			H.change_stat("strength", 2)
@@ -157,8 +163,8 @@
 			backpack_contents = list(
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/flashlight/flare/torch/lantern = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.cmode_music = 'sound/music/combat_condottiero.ogg'
 			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE) // Base skill, if not wanted, pick another weapon.
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
@@ -173,6 +179,7 @@
 			H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // Won't really equate to much.
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			var/weapons = list("Recurve Bow","Billhook","Sling","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

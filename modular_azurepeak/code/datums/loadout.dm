@@ -60,6 +60,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Fancy Hat"
 	path = /obj/item/clothing/head/roguetown/fancyhat
 
+/datum/loadout_item/furhat
+	name = "Fur Hat"
+	path = /obj/item/clothing/head/roguetown/hatfur
+
 /datum/loadout_item/smokingcap
 	name = "Smoking Cap"
 	path = /obj/item/clothing/head/roguetown/smokingcap
@@ -95,6 +99,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/nunveil
 	name = "Nun Veil"
 	path = /obj/item/clothing/head/roguetown/nun
+
+/datum/loadout_item/papakha
+	name = "Papakha"
+	path = /obj/item/clothing/head/roguetown/papakha
 
 //CLOAKS
 /datum/loadout_item/tabard
@@ -447,6 +455,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/psicross/eora
 	name = "Amulet of Eora"
 	path = /obj/item/clothing/neck/roguetown/psicross/eora
+
+/datum/loadout_item/wedding_band
+	name = "silver wedding band"
+	path = /obj/item/clothing/ring/band
 
 /datum/loadout_item/chaperon
     name = "Chaperon (Normal)"

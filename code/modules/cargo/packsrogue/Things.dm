@@ -4,6 +4,49 @@
 	crate_name = "Gifts of Things"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
+//////////////
+// SUPPLIES //
+//////////////
+
+/datum/supply_pack/rogue/Things/cloth
+	name = "Cloth"
+	cost = 2
+	contains = list(/obj/item/natural/cloth)
+
+/datum/supply_pack/rogue/Things/chain
+	name = "Chain"
+	cost = 5
+	contains = list(/obj/item/rope/chain)
+
+/datum/supply_pack/rogue/Things/needle
+	name = "Needle"
+	cost = 5
+	contains = list(/obj/item/needle)
+
+/datum/supply_pack/rogue/Things/Lamp
+	name = "Lamptern"
+	cost = 5
+	contains = list(/obj/item/flashlight/flare/torch/lantern)
+
+/datum/supply_pack/rogue/Things/hknife
+	name = "Hunting Knife"
+	cost = 5
+	contains = list(/obj/item/rogueweapon/huntingknife)
+
+/datum/supply_pack/rogue/Things/Waterskin
+	name = "Waterskin"
+	cost = 10
+	contains = list(/obj/item/reagent_containers/glass/bottle/waterskin)
+
+/datum/supply_pack/rogue/Things/gwstrap
+	name = "Greatweapon Strap"
+	cost = 15
+	contains = list(/obj/item/gwstrap)
+
+/////////////
+// POTIONS //
+/////////////
+
 /datum/supply_pack/rogue/Things/healthpotnew
 	name = "Health Potion"
 	cost = 10
@@ -19,40 +62,9 @@
 	cost = 10
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/strongstampot)
 
-/datum/supply_pack/rogue/Things/chain
-	name = "Chain"
-	cost = 5
-	contains = list(/obj/item/rope/chain)
-
-/datum/supply_pack/rogue/Things/needle
-	name = "Needle"
-	cost = 5
-	contains = list(/obj/item/needle)
-
-/datum/supply_pack/rogue/Things/hknife
-	name = "Hunting Knife"
-	cost = 5
-	contains = list(/obj/item/rogueweapon/huntingknife)
-
-/datum/supply_pack/rogue/Things/cloth
-	name = "Cloth"
-	cost = 2
-	contains = list(/obj/item/natural/cloth)
-
-/datum/supply_pack/rogue/Things/Waterskin
-	name = "Waterskin"
-	cost = 10
-	contains = list(/obj/item/reagent_containers/glass/bottle/waterskin)
-
-/datum/supply_pack/rogue/Things/gwstrap
-	name = "Greatweapon Strap"
-	cost = 15
-	contains = list(/obj/item/gwstrap)
-
-/datum/supply_pack/rogue/Things/Lamp
-	name = "Lamptern"
-	cost = 5
-	contains = list(/obj/item/flashlight/flare/torch/lantern)
+///////////
+// DRUGS //
+///////////
 
 /datum/supply_pack/rogue/Things/westleach
 	name = "Westleach Zig"
@@ -78,6 +90,10 @@
 	name = "Spice"
 	cost = 15
 	contains = list(/obj/item/reagent_containers/powder/spice)
+
+//////////////
+// UTILITY //
+//////////////
 
 /datum/supply_pack/rogue/Things/rubyband
 	name = "Matthian SCOMSTONE"

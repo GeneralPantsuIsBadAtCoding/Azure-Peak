@@ -1,3 +1,5 @@
+
+
 /*Enchantment scrolls here. Here enchantment scroll has a component. Refer to magic_items.dm, and it's various subfolders for differant enchantment datums.
 T1 Enchantments below here*/
 
@@ -10,15 +12,21 @@ T1 Enchantments below here*/
 	possible_item_intents = list(/datum/intent/use)
 
 /obj/item/enchantmentscroll/attack_obj(obj/item/O, mob/living/user)
-//	if(O.enchanted = TRUE)
-//		return
+	var/datum/component/magic_item/M = O.GetComponent(/datum/component/magic_item, component)
+	if(M)
+		if(length(M.magical_effects) >= M.enchanting_capacity)
+			to_chat(user, span_warning("This item is already enchanted to its full capacity."))
+			return FALSE
+	return TRUE
+
 /obj/item/enchantmentscroll/woodcut
 	name = "enchanting scroll of woodcutting"
 	desc = "A scroll imbued with an enchantment of woodcutting. Good for cutting wood."
 	component = /datum/magic_item/mundane/woodcut
 
 /obj/item/enchantmentscroll/woodcut/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/rogueweapon/stoneaxe))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -35,7 +43,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/mundane/mining
 
 /obj/item/enchantmentscroll/mining/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/rogueweapon/pick))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -52,7 +61,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/mundane/xylix
 
 /obj/item/enchantmentscroll/xylix/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -69,7 +79,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/mundane/unyieldinglight
 
 /obj/item/enchantmentscroll/light/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing)|| istype(O,/obj/item/rogueweapon))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -87,7 +98,8 @@ T1 Enchantments below here*/
 	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/enchantmentscroll/holding/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/storage))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -104,7 +116,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/mundane/revealing
 
 /obj/item/enchantmentscroll/revealing/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/flashlight/flare/torch))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -123,7 +136,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/nightvision
 
 /obj/item/enchantmentscroll/nightvision/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -140,7 +154,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/featherstep
 
 /obj/item/enchantmentscroll/featherstep/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing/shoes)||istype(O,/obj/item/clothing/ring))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -157,7 +172,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/fireresist
 
 /obj/item/enchantmentscroll/fireresist/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -174,7 +190,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/climbing
 
 /obj/item/enchantmentscroll/climbing/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -191,7 +208,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/thievery
 
 /obj/item/enchantmentscroll/thievery/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing/gloves)||istype(O,/obj/item/clothing/ring))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -208,7 +226,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/trekk
 
 /obj/item/enchantmentscroll/trekk/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing/shoes)||istype(O,/obj/item/clothing/ring))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -225,7 +244,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/superior/smithing
 
 /obj/item/enchantmentscroll/smithing/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/rogueweapon/hammer))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -243,7 +263,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/greater/lifesteal
 
 /obj/item/enchantmentscroll/lifesteal/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/rogueweapon))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -260,7 +281,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/greater/frostveil
 
 /obj/item/enchantmentscroll/frostveil/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing)|| istype(O,/obj/item/rogueweapon))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -277,7 +299,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/greater/returningweapon
 
 /obj/item/enchantmentscroll/returningweapon/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing/ring)||istype(O,/obj/item/clothing/gloves))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -294,7 +317,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/greater/archery
 
 /obj/item/enchantmentscroll/archery/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/clothing/ring)||istype(O,/obj/item/clothing/gloves)|| istype(O, /obj/item/clothing/wrists/roguetown/bracers))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component
@@ -311,7 +335,8 @@ T1 Enchantments below here*/
 	component = /datum/magic_item/mythic/briarcurse
 
 /obj/item/enchantmentscroll/briars/attack_obj(obj/item/O, mob/living/user)
-	.=..()
+	if(!..())
+		return
 	if(istype(O,/obj/item/rogueweapon))
 		to_chat(user, span_notice("You open [src] and place [O] within. Moments later, it flashes blue with arcana, and [src] crumbles to dust."))
 		var/magiceffect= new component

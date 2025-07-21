@@ -66,13 +66,22 @@
 	desc = "Haha, im in danger."
 
 /obj/structure/flora/roguegrass/herb/random/Initialize()
-	var/type = pick(list(/obj/structure/flora/roguegrass/herb/atropa,/obj/structure/flora/roguegrass/herb/matricaria,
-	/obj/structure/flora/roguegrass/herb/symphitum,/obj/structure/flora/roguegrass/herb/taraxacum,
-	/obj/structure/flora/roguegrass/herb/euphrasia,/obj/structure/flora/roguegrass/herb/paris,
-	/obj/structure/flora/roguegrass/herb/calendula,/obj/structure/flora/roguegrass/herb/mentha,
-	/obj/structure/flora/roguegrass/herb/urtica,/obj/structure/flora/roguegrass/herb/salvia,
-	/obj/structure/flora/roguegrass/herb/hypericum,/obj/structure/flora/roguegrass/herb/benedictus,
-	/obj/structure/flora/roguegrass/herb/valeriana,/obj/structure/flora/roguegrass/herb/artemisia,/obj/structure/flora/roguegrass/herb/rosa,/obj/structure/flora/roguegrass/swampweed))
+	var/type = pick(list(/obj/structure/flora/roguegrass/herb/atropa,
+	/obj/structure/flora/roguegrass/herb/matricaria,
+	/obj/structure/flora/roguegrass/herb/symphitum,
+	/obj/structure/flora/roguegrass/herb/taraxacum,
+	/obj/structure/flora/roguegrass/herb/euphrasia,
+	/obj/structure/flora/roguegrass/herb/paris,
+	/obj/structure/flora/roguegrass/herb/calendula,
+	/obj/structure/flora/roguegrass/herb/mentha,
+	/obj/structure/flora/roguegrass/herb/urtica,
+	/obj/structure/flora/roguegrass/herb/salvia,
+	/obj/structure/flora/roguegrass/herb/hypericum,
+	/obj/structure/flora/roguegrass/herb/benedictus,
+	/obj/structure/flora/roguegrass/herb/valeriana,
+	/obj/structure/flora/roguegrass/herb/artemisia,
+	/obj/structure/flora/roguegrass/herb/rosa,
+	/obj/structure/flora/roguegrass/swampweed))
 
 	var/obj/structure/flora/roguegrass/herb/boi = new type
 	boi.forceMove(get_turf(src))
@@ -171,3 +180,10 @@
 	icon_state = "rosa"
 
 	herbtype = /obj/item/alch/rosa
+
+/obj/structure/flora/roguegrass/herb/manabloom
+	name = "manabloom"
+	icon = 'icons/roguetown/misc/crops.dmi' // this is awful why am I doing this
+	icon_state = "manabloom2"
+
+	herbtype = /obj/item/reagent_containers/food/snacks/grown/manabloom

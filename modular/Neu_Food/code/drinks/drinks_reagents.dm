@@ -59,6 +59,27 @@
 	metabolization_rate = REAGENTS_METABOLISM
 	alpha = 173
 
+/datum/reagent/consumable/poppy_milk
+	name = "Poppy Milk"
+	description = "Infused liquid of the Poppy, this one leaves your mouth and mind numb after drinking. Drinking more than a cup might not be good for your health..."
+	reagent_state = LIQUID
+	color = "#dbd7d5"
+	taste_description = "instant numbness"
+	metabolization_rate = REAGENTS_METABOLISM
+	overdose_threshold = 25 // one cup is safe, anything more and it's an OD
+	alpha = 173
+
+/datum/reagent/consumable/poppy_milk/on_mob_life(mob/living/carbon/M)
+	if(M.has_flaw(/datum/charflaw/addiction/junkie))
+		M.sate_addiction()
+	M.apply_status_effect(/datum/status_effect/buff/ozium)
+	..()
+
+/datum/reagent/consumable/poppy_milk/overdose_process(mob/living/M)
+	M.adjustToxLoss(3, 0)
+	..()
+	. = 1
+
 // Tea ported from Vanderlin from Misc Fixes PR #862
 /datum/reagent/consumable/golden_calendula_tea
 	name = "Golden Calendula Tea"

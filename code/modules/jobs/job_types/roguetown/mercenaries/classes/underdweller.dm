@@ -34,6 +34,7 @@
 		/obj/item/roguekey/mercenary,
 		/obj/item/storage/belt/rogue/pouch/coins/poor,
 		/obj/item/bomb = 2,
+		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/mining, 4, TRUE)

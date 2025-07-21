@@ -55,7 +55,8 @@
 	switch(weapon_choice)
 		if("Dagger")
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
+			beltr = /obj/item/rogueweapon/scabbard/sheath
+			r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 		if("Axe")
 			H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut

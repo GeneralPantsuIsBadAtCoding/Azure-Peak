@@ -399,6 +399,8 @@
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_back = get_item_by_slot(slot_id)
+	if(equip_scabbard(thing, equipped_back, slot_id))
+		return
 	if(!equipped_back) // We also let you equip a backpack like this
 		if(!thing)
 			to_chat(src, span_warning("I have no backpack to take something out of!"))
@@ -413,6 +415,9 @@
 			to_chat(src, span_warning("I can't fit anything in!"))
 		return
 	if(thing) // put thing in backpack
+		if(thing.inv_storage_delay)
+			if(!move_after(src, thing.inv_storage_delay, target = thing, progress = TRUE))
+				return
 		if(!SEND_SIGNAL(equipped_back, COMSIG_TRY_STORAGE_INSERT, thing, src))
 			to_chat(src, span_warning("I can't fit anything in!"))
 		return
@@ -430,6 +435,8 @@
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)
+	if(equip_scabbard(thing, equipped_belt, SLOT_BELT))
+		return
 	if(!equipped_belt) // We also let you equip a belt like this
 		if(!thing)
 			to_chat(src, span_warning("I have no belt to take something out of!"))
@@ -444,6 +451,9 @@
 			to_chat(src, span_warning("I can't fit anything in!"))
 		return
 	if(thing) // put thing in belt
+		if(thing.inv_storage_delay)
+			if(!move_after(src, thing.inv_storage_delay, target = thing, progress = TRUE))
+				return
 		if(!SEND_SIGNAL(equipped_belt, COMSIG_TRY_STORAGE_INSERT, thing, src))
 			to_chat(src, span_warning("I can't fit anything in!"))
 		return
@@ -455,3 +465,31 @@
 		return
 	stored.attack_hand(src) // take out thing from belt
 	return
+
+/mob/living/carbon/human/proc/equip_scabbard(var/obj/item/thing, var/obj/item/equipped, slot_id)
+	var/obj/item/use_thing = null
+
+	if(!equipped)
+		return FALSE
+	if(!istype(equipped, /obj/item/rogueweapon/scabbard))
+		if(SEND_SIGNAL(equipped, COMSIG_CONTAINS_STORAGE))
+			if(!equipped.contents.len)
+				return FALSE
+			var/obj/item/stored = equipped.contents[equipped.contents.len]
+			if(!stored || stored.on_found(src))
+				return FALSE
+			if(!istype(stored, /obj/item/rogueweapon/scabbard))
+				return FALSE
+			use_thing = stored
+
+	var/obj/item/rogueweapon/scabbard/scab = use_thing ? use_thing : equipped
+	if(!istype(scab))
+		return FALSE
+	if(!thing)
+		if(!scab.sheathed)
+			return FALSE
+		return scab.attack_hand(src)
+	if(!istype(thing, scab.valid_sword))
+		return FALSE
+	return scab.attackby(thing, src)
+

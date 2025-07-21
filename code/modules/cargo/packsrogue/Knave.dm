@@ -4,6 +4,43 @@
 	crate_name = "Gifts of Shadows"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
+//////////
+// HEAD //
+//////////
+
+/datum/supply_pack/rogue/Knave/leather/lhelmet
+	name = "Leather Helmet"
+	cost = 5
+	contains = list(/obj/item/clothing/head/roguetown/helmet/leather)
+
+/datum/supply_pack/rogue/Knave/leather/hlhelmet
+	name = "Hardened Leather Helmet"
+	cost = 10
+	contains = list(/obj/item/clothing/head/roguetown/helmet/leather/advanced)
+
+/datum/supply_pack/rogue/Knave/leather/khelmet
+	name = "Kettle Helmet"
+	cost = 20
+	contains = list(/obj/item/clothing/head/roguetown/helmet/kettle)
+
+//////////
+// NECK //
+//////////
+
+/datum/supply_pack/rogue/Knave/gorget
+	name = "Gorget"
+	cost = 20
+	contains = list(/obj/item/clothing/neck/roguetown/gorget)
+
+/datum/supply_pack/rogue/Knave/gorget
+	name = "Steel Coif"
+	cost = 30
+	contains = list(/obj/item/clothing/neck/roguetown/chaincoif)
+
+///////////
+// CHEST //
+///////////
+
 /datum/supply_pack/rogue/Knave/gambeson
 	name = "Gambeson"
 	cost = 5
@@ -34,15 +71,9 @@
 	cost = 30
 	contains = list(/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat)
 
-/datum/supply_pack/rogue/Knave/gorget
-	name = "Gorget"
-	cost = 20
-	contains = list(/obj/item/clothing/neck/roguetown/gorget)
-
-/datum/supply_pack/rogue/Knave/gorget
-	name = "Steel Coif"
-	cost = 30
-	contains = list(/obj/item/clothing/neck/roguetown/chaincoif)
+///////////////////
+// WRISTS/GLOVES //
+///////////////////
 
 /datum/supply_pack/rogue/Knave/leather/Lbracers
 	name = "Leather Bracers"
@@ -69,6 +100,10 @@
 	cost = 10
 	contains = list(/obj/item/clothing/gloves/roguetown/fingerless_leather)
 
+///////////////
+// LEGS/FEET //
+///////////////
+
 /datum/supply_pack/rogue/Knave/leather/pants
 	name = "Leather Trousers"
 	cost = 10
@@ -79,30 +114,9 @@
 	cost = 20
 	contains = list(/obj/item/clothing/under/roguetown/heavy_leather_pants)
 
-/datum/supply_pack/rogue/Knave/leather/lhelmet
-	name = "Leather Helmet"
-	cost = 5
-	contains = list(/obj/item/clothing/head/roguetown/helmet/leather)
-
-/datum/supply_pack/rogue/Knave/leather/hlhelmet
-	name = "Hardened Leather Helmet"
-	cost = 10
-	contains = list(/obj/item/clothing/head/roguetown/helmet/leather/advanced)
-
-/datum/supply_pack/rogue/Knave/leather/khelmet
-	name = "Kettle Helmet"
-	cost = 20
-	contains = list(/obj/item/clothing/head/roguetown/helmet/kettle)
-
-/datum/supply_pack/rogue/Knave/longbow
-	name = "Longbow"
-	cost = 40
-	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow)
-
-/datum/supply_pack/rogue/Knave/recurvebow
-	name = "Recurve Bow"
-	cost = 20
-	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve)
+/////////////////////
+// WEAPONS - MELEE //
+/////////////////////
 
 /datum/supply_pack/rogue/Knave/dagger
 	name = "Iron Dagger"
@@ -129,20 +143,38 @@
 	cost = 40
 	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver/elvish)
 
-/datum/supply_pack/rogue/Knave/steeltossblades
-	name = "Steel Tossblade Belt"
-	cost = 20
-	contains = list(/obj/item/storage/belt/rogue/leather/knifebelt/black/steel)
+//////////////////////
+// WEAPONS - RANGED //
+//////////////////////
+
+/datum/supply_pack/rogue/Knave/bow
+	name = "Bow"
+	cost = 10
+	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow)
 
 /datum/supply_pack/rogue/Knave/crossbow
 	name = "Crossbow"
 	cost = 20
 	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow)
 
-/datum/supply_pack/rogue/Knave/bow
-	name = "Bow"
-	cost = 10
-	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow)
+/datum/supply_pack/rogue/Knave/recurvebow
+	name = "Recurve Bow"
+	cost = 20
+	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve)
+
+/datum/supply_pack/rogue/Knave/longbow
+	name = "Longbow"
+	cost = 40
+	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow)
+
+/datum/supply_pack/rogue/Knave/steeltossblades
+	name = "Steel Tossblade Belt"
+	cost = 20
+	contains = list(/obj/item/storage/belt/rogue/leather/knifebelt/black/steel)
+
+/////////////////////////////
+// WEAPONS - RANGED - AMMO //
+/////////////////////////////
 
 /datum/supply_pack/rogue/Knave/quiver
 	name = "Empty Quiver"
@@ -189,6 +221,10 @@
 	name = "Pyroclastic bolt"
 	cost = 3
 	contains = list(/obj/item/ammo_casing/caseless/rogue/bolt/pyro)
+
+/////////////
+// UTILITY //
+/////////////
 
 /datum/supply_pack/rogue/Knave/Mancatcher
 	name = "Mancatcher"

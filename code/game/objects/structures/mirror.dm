@@ -611,7 +611,7 @@
 	if(!obj_broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "[icon_state]1"
 		if(!mapload)
-			new /obj/item/natural/glass/shard (get_turf(src))
+			new /obj/item/natural/glass_shard (get_turf(src))
 		obj_broken = TRUE
 	..()
 

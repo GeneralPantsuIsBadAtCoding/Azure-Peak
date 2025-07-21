@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	fillsounds = list('sound/items/fillcup.ogg')
 	poursounds = list('sound/items/fillbottle.ogg')
 	experimental_onhip = TRUE
-	debris = list(/obj/item/natural/glass/shard = 1)
+	debris = list(/obj/item/natural/glass_shard = 1)
 	var/desc_uncorked = "An open bottle. Hopefully the cork is nearby."
 	var/fancy		// for bottles with custom descriptors that you don't want to change when bottle manipulated
 	var/glass_on_impact = TRUE // If TRUE, bottle will generate glass shard on impact. Otherwise it won't.
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	if(istransparentturf(T))
 		shatter(GET_TURF_BELOW(T))
 		return 
-	glass_on_impact && new /obj/item/natural/glass/shard(get_turf(T))
+	glass_on_impact && new /obj/item/natural/glass_shard(get_turf(T))
 	new /obj/effect/decal/cleanable/debris/glassy(get_turf(T))
 	qdel(src)
 

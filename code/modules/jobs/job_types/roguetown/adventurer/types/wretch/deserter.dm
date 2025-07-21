@@ -8,7 +8,7 @@
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_HERESIARCH)
 	
-	cmode_music = 'sound/music/combat_bandit.ogg'
+	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg' // same as new hedgeknight music
 	classes = list("Disgraced" = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You lyve the lyfe of an outlaw, shunned and looked down upon by society.", 
 	"Abandoned Post" = "You had your post. You had your duty. Dissatisfied, lacking in morale, or simply thinking yourself better than it. - You decided to walk. Now it follows you everywhere you go.")
 
@@ -64,7 +64,8 @@
 					r_hand = /obj/item/rogueweapon/estoc
 					backr = /obj/item/gwstrap
 				if("Longsword + Shield")
-					beltr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/long
 					backr = /obj/item/rogueweapon/shield/tower/metal
 				if("Mace + Shield")
 					beltr = /obj/item/rogueweapon/mace/steel
@@ -125,6 +126,7 @@
 				/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 				/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 				/obj/item/rope/chain = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 
 
@@ -143,7 +145,8 @@
 					beltr = /obj/item/rogueweapon/mace/warhammer
 					backl = /obj/item/rogueweapon/shield/iron
 				if("Sabre & Shield")
-					beltr = /obj/item/rogueweapon/sword/sabre
+					beltr = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/sabre
 					backl = /obj/item/rogueweapon/shield/wood
 				if("Axe & Shield")
 					beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
@@ -196,7 +199,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			backr = /obj/item/storage/backpack/rogue/satchel
 
-			backpack_contents = list(/obj/item/natural/cloth = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1,)
+			backpack_contents = list(/obj/item/natural/cloth = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 			var/helmets = list(
 			"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
 			"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,

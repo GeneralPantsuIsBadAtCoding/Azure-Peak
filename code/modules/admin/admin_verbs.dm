@@ -33,6 +33,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/set_context_menu_enabled,
 	/client/proc/delete_player_book,
 	/client/proc/amend_player_book,
+	/client/proc/enable_browser_debug,
 	/client/proc/pull_book_file_names,
 	/client/proc/adminwho,
 	/client/proc/admin_spread_effect,
@@ -84,7 +85,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
-	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
 	/client/proc/check_antagonists,		/*shows all antags*/
 	/client/proc/jumptocoord,			/*we ghost and jump to a coordinate*/
 	/client/proc/Getmob,				/*teleports a mob to our location*/
@@ -885,3 +885,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			message_admins("[ADMIN_LOOKUPFLW(src)] has removed the bounty on [ADMIN_LOOKUPFLW(target_name)]")
 			return
 	to_chat(src, "Error. Bounty no longer active.") 
+
+/client/proc/enable_browser_debug()
+	set category = "Debug"
+	set name = "Enable Browser Debug"
+	if(!holder)
+		return
+
+	to_chat(src, "Browser tools are now enabled.")
+	winset(src, null, "browser-options=devtools,find,byondstorage")
+

@@ -56,6 +56,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ADMIN_SPAWNED_1			    (1<<15)
 /// should not get harmed if this gets caught by an explosion?
 #define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
+#define HOARDMASTER_SPAWNED_1		(1<<17)
+// figure out if thing came from a hoardmaster
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)

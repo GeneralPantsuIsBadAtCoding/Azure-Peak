@@ -24,7 +24,7 @@
 							/obj/item/magic/artifact = 4,
 							/obj/structure/leyline = 1,
 							/obj/structure/voidstoneobelisk = 1,
-							/obj/structure/manaflower = 4,
+							/obj/structure/flora/roguegrass/herb/manabloom = 4,
 							/obj/item/magic/manacrystal = 1,
 							/obj/item/grown/log/tree/stick = 16,
 							/obj/structure/flora/roguetree/stump/log = 3,

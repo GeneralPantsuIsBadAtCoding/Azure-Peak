@@ -36,9 +36,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, message_mode)
 	var/rendered = compose_message(src, message_language, message, , spans, message_mode)
-	for(var/_AM in get_hearers_in_view(range, source))
-		var/atom/movable/AM = _AM
-		AM.Hear(rendered, src, message_language, message, , spans, message_mode)
+	for(var/atom/movable/hearing_movable as anything in get_hearers_in_view(range, source))
+		if(!hearing_movable) // Should not get nulls, but just in case.
+			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
+			continue
+
+		hearing_movable.Hear(rendered, src, message_language, message, , spans, message_mode)
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.

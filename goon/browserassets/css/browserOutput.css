@@ -477,6 +477,7 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .clown					{color: #FF69Bf;	font-size: 3;	font-family: "Comic Sans MS", cursive, sans-serif;	font-weight: bold;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif;	font-style: italic;}
 .hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite;}
+.pulsedeath				{color: #dd0000; animation: deathcolor 1500ms infinite;}
 
 .phobia					{color: #dd0000;	font-weight: bold;}
 
@@ -521,6 +522,23 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 	100%	{color: #f75a5a;}
 }
 */
+@keyframes deathcolor {
+    0% {
+        color: #cc0f0f;
+    }
+    25% {
+        color: #ff0000;
+    }
+    50% {
+        color: #cc0f0f;
+    }
+    75% {
+        color: #ff0000;
+    }
+    100% {
+        color: #cc0f0f;
+    }
+}
 
 .connectionClosed, .fatalError {background: red;	color: white;	padding: 5px;}
 .connectionClosed.restored {background: green;}

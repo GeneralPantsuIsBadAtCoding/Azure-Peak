@@ -319,6 +319,16 @@
 	var/mob/living/carbon/human/M = null
 	for(var/l in buckled_mobs)
 		M = l
+		if(HAS_TRAIT(A, TRAIT_OUTLAW))
+			var/def_zone = "[(A.active_hand_index == 2) ? "r" : "l" ]_arm"
+			playsound(A, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
+			loc.visible_message(span_warning("The castifico snaps at [A]'s hand!"))
+			to_chat(A, span_danger("The machine wants YOU!"))
+			A.flash_fullscreen("redflash3")
+			A.Stun(10)
+			A.apply_damage(10, BRUTE, def_zone)
+			A.emote("whimper")
+			return
 	if(!ismob(M))
 		say("Cannot begin skull structure analysis without a subject buckled to the Castifico.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)

@@ -116,7 +116,7 @@
 				if(grab.sublimb_grabbed == location)
 					return TRUE
 		for(var/obj/item/equipped_item in carbon_victim.get_equipped_items(include_pockets = FALSE, include_beltslots = FALSE))
-			if(zone2covered(location, equipped_item.body_parts_covered))
+			if(zone2covered(location, equipped_item.body_parts_covered) && equipped_item.surgery_cover)
 				return FALSE
 		if(ishuman(carbon_victim))
 			var/mob/living/carbon/human/human_victim = carbon_victim

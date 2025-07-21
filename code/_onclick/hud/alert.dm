@@ -104,17 +104,6 @@
 	var/alert_group = ALERT_STATUS //decides where on the screen the alert shows up, if it's a debuff, status effect, or buff
 	nomouseover = FALSE
 
-/atom/movable/screen/alert/MouseEntered(location,control,params)
-	..()
-//	if(!QDELETED(src))
-//		openToolTip(usr,src,params,title = name,content = desc,theme = alerttooltipstyle)
-
-
-/atom/movable/screen/alert/MouseExited()
-	..()
-//	closeToolTip(usr)
-
-
 //Gas alerts
 /atom/movable/screen/alert/not_enough_oxy
 	name = "Choking"

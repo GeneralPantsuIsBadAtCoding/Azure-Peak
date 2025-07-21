@@ -443,8 +443,8 @@
 	if(user == parent)
 		ui_interact(user)
 
-/datum/component/personal_crafting/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.not_incapacitated_turf_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		cur_category = categories[1]
 		if(islist(categories[cur_category]))
@@ -452,10 +452,9 @@
 			cur_subcategory = subcats[1]
 		else
 			cur_subcategory = CAT_NONE
-		ui = new(user, src, ui_key, "personal_crafting", "Crafting Menu", 700, 800, master_ui, state)
+		ui = new(user, src, "PersonalCrafting", "Crafting Menu", 700, 800)
+		ui.set_state(GLOB.not_incapacitated_turf_state)
 		ui.open()
-
-
 
 /datum/component/personal_crafting/ui_data(mob/user)
 	var/list/data = list()

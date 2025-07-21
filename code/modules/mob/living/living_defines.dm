@@ -136,6 +136,7 @@
 	var/ambushable = 0
 
 	var/surrendering = 0
+	var/compliance = 0 // whether we are choosing to auto-resist grabs and stuff
 
 	var/defprob = 50 //base chance to defend against this mob's attacks, for simple mob combat
 	var/encumbrance = 0

@@ -69,7 +69,7 @@
 	output = /datum/reagent/consumable/soup/stew/berry_poisoned
 
 /datum/stew_recipe/berry
-	inputs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue)
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue, /obj/item/reagent_containers/food/snacks/grown/fruit/strawberry, /obj/item/reagent_containers/food/snacks/grown/fruit/blackberry, /obj/item/reagent_containers/food/snacks/grown/fruit/raspberry)
 	output = /datum/reagent/consumable/soup/stew/berry
 
 /datum/stew_recipe/cheese
@@ -79,6 +79,38 @@
 /datum/stew_recipe/egg
 	inputs = list(/obj/item/reagent_containers/food/snacks/egg)
 	output = /datum/reagent/consumable/soup/stew/egg
+
+/datum/stew_recipe/garlick_soup
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/garlick/rogue)
+	output = /datum/reagent/consumable/soup/stew/garlick_soup
+
+/datum/stew_recipe/cucumber_soup
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/cucumber)
+	output = /datum/reagent/consumable/soup/stew/cucumber_soup
+
+/datum/stew_recipe/eggplant_soup
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/eggplant)
+	output = /datum/reagent/consumable/soup/stew/eggplant_soup
+
+/datum/stew_recipe/carrot_stew
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/carrot)
+	output = /datum/reagent/consumable/soup/stew/carrot_stew
+
+/datum/stew_recipe/nutty_stew
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/nut)
+	output = /datum/reagent/consumable/soup/stew/nutty_stew
+
+/datum/stew_recipe/tomato_soup
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/fruit/tomato)
+	output = /datum/reagent/consumable/soup/stew/tomato_soup
+
+/datum/stew_recipe/plum_soup
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/fruit/plum)
+	output = /datum/reagent/consumable/soup/stew/plum_soup
+
+/datum/stew_recipe/tangerine_marmalade
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/fruit/tangerine)
+	output = /datum/reagent/consumable/soup/stew/tangerine_marmalade
 
 // DRINKS
 /datum/stew_recipe/rose_tea
@@ -96,5 +128,10 @@
 	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_ground)
 	output = /datum/reagent/consumable/caffeine/tea
 	cooktime = STEW_COOKING_TIME / 4
+
+/datum/stew_recipe/poppy_milk
+	inputs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/poppy)
+	output = /datum/reagent/consumable/poppy_milk
+	cooktime = STEW_COOKING_TIME //longer than the other drinks
 
 #undef STEW_COOKING_TIME

@@ -58,7 +58,7 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/combat_holy.ogg'
+			H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
 					cloak = /obj/item/clothing/cloak/psydontabard
@@ -121,7 +121,7 @@
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-			H.cmode_music = 'sound/music/combat_holy.ogg'
+			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
@@ -172,6 +172,7 @@
 						beltr = /obj/item/rogueweapon/sword/long/oldpsysword
 					else
 						beltr = /obj/item/rogueweapon/sword/long
+					r_hand = /obj/item/rogueweapon/scabbard/sword
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 				if("Mace")
 					H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
@@ -203,7 +204,8 @@
 			backpack_contents = list(
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/recipe_book/survival = 1,
-			)
+				/obj/item/rogueweapon/scabbard/sheath = 1
+				)
 			H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -215,7 +217,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/combat_bard.ogg'
+			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
@@ -288,7 +290,7 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-			H.cmode_music = 'sound/music/combat_holy.ogg'
+			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 			H.change_stat("intelligence", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("perception", 2)
@@ -335,15 +337,17 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/astrata)
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 		if(/datum/patron/divine/noc)
 			neck = /obj/item/clothing/neck/roguetown/psicross/noc
 		if(/datum/patron/divine/abyssor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
 		if(/datum/patron/divine/dendor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
-			H.cmode_music = 'sound/music/combat_druid.ogg'
+			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
 		if(/datum/patron/divine/necra)
 			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
 		if(/datum/patron/divine/pestra)
 			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
 		if(/datum/patron/divine/ravox)
@@ -352,6 +356,15 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 		if(/datum/patron/divine/eora)
 			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+		if(/datum/patron/inhumen/zizo)
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
+		if (/datum/patron/inhumen/matthios)
+			H.cmode_music = 'sound/music/combat_matthios.ogg'
+		if (/datum/patron/inhumen/graggar)
+			H.cmode_music = 'sound/music/combat_graggar.ogg'
+		if (/datum/patron/inhumen/baotha)
+			H.cmode_music = 'sound/music/combat_baotha.ogg'
 		if(/datum/patron/divine/xylix)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
@@ -359,5 +372,4 @@
 	  		/datum/patron/inhumen/matthios,
 	   		/datum/patron/inhumen/graggar,
 	   		/datum/patron/inhumen/baotha)
-			H.cmode_music = 'sound/music/combat_cult.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)

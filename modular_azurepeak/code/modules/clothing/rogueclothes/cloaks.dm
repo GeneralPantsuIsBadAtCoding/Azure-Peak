@@ -45,3 +45,5 @@
 	name = "xylixian cloak"
 	desc = "Swirling cloth, jingling bells! Oh, how I love the path to hell!"
 	icon_state = "xylixcloak"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_cloaks.dmi'
+	sleevetype = "shirt"

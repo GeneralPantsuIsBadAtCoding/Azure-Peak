@@ -102,3 +102,23 @@
 	reqs = list(/obj/item/natural/hide/cured = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/leather/container/scabbard/sword
+	name = "sword scabbard (2 leather, 3 fiber, 1 small log, 1 rope)"
+	result = list(/obj/item/rogueweapon/scabbard/sword)
+	reqs = list(
+		/obj/item/natural/hide/cured = 2,
+		/obj/item/natural/fibers = 3,
+		/obj/item/grown/log/tree/small = 1,
+		/obj/item/rope = 1
+	)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/leather/container/scabbard/dagger
+	name = "dagger sheath (2 leather, 2 stick)"
+	result = list(/obj/item/rogueweapon/scabbard/sheath)
+	reqs = list(
+		/obj/item/natural/hide/cured = 2,
+		/obj/item/grown/log/tree/stick = 2,
+	)
+	craftdiff = 2

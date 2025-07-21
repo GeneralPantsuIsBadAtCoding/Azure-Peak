@@ -20,7 +20,7 @@
 	min_pq = 0
 	max_pq = null
 	round_contrib_points = 2
-	cmode_music = 'sound/music/combat_bandit_mage.ogg'
+	cmode_music = 'sound/music/cmode/nobility/combat_courtmage.ogg'
 	advjob_examine = TRUE // So that Court Magicians can know if they're teachin' a Apprentice or if someone's a bit more advanced of a player. Just makes the title show up as the advjob's name.
 
 /datum/outfit/job/roguetown/wapprentice
@@ -84,7 +84,7 @@
 	H.change_stat("speed", 1)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_cult.ogg'
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
 
 /datum/advclass/wapprentice/alchemist
 	name = "Alchemist Associate"
@@ -130,7 +130,7 @@
 	ADD_TRAIT(H, TRAIT_SEEDKNOW, TRAIT_GENERIC)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_cult.ogg'
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
 
 /datum/advclass/wapprentice/apprentice
 	name = "Magician's Apprentice"
@@ -167,4 +167,4 @@
 		H?.mind.adjust_spellpoints(3)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_cult.ogg'
+			H.cmode_music = 'sound/music/combat_heretic.ogg'

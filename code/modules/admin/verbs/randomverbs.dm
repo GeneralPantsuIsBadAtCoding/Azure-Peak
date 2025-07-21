@@ -765,37 +765,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			target.gib(FALSE)	
 		if(ADMIN_PUNISHMENT_BSA)
 			bluespace_artillery(target)
-		/*if(ADMIN_PUNISHMENT_SUPPLYPOD_QUICK) These might be useful someday for another kind of payload send
-			var/target_path = input(usr,"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):" ,"Typepath","/obj/item/reagent_containers/food/snacks/grown/harebell") as null|text
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			pod.damage = 40
-			pod.explosionSize = list(0,0,0,2)
-			pod.effectStun = TRUE
-			if (isnull(target_path)) //The user pressed "Cancel"
-				return
-			if (target_path != "empty")//if you didn't type empty, we want to load the pod with a delivery
-				var/delivery = text2path(target_path)
-				if(!ispath(delivery))
-					delivery = pick_closest_path(target_path)
-					if(!delivery)
-						alert("ERROR: Incorrect / improper path given.")
-						return
-				new delivery(pod)
-			new /obj/effect/DPtarget(get_turf(target), pod)
-		if(ADMIN_PUNISHMENT_SUPPLYPOD)
-			var/datum/centcom_podlauncher/plaunch  = new(usr)
-			if(!holder)
-				return
-			plaunch.specificTarget = target
-			plaunch.launchChoice = 0
-			plaunch.damageChoice = 1
-			plaunch.explosionChoice = 1
-			plaunch.temp_pod.damage = 40//bring the mother fuckin ruckus
-			plaunch.temp_pod.explosionSize = list(0,0,0,2)
-			plaunch.temp_pod.effectStun = TRUE
-			plaunch.ui_interact(usr)
-			return //We return here because punish_log() is handled by the centcom_podlauncher datum
-		*/
 		if(ADMIN_PUNISHMENT_CBT)
 			if(!ishuman(target))
 				to_chat(usr,span_warning("Target must be human!"))

@@ -68,5 +68,9 @@
 		departing_mob.visible_message("<span class='notice'>[user] sends the body of [departing_mob] away. They're someone else's problem now.</span>")
 	else
 		departing_mob.visible_message("<span class='notice'>[departing_mob == user ? "Out of their own volition, " : "Ushered by [user], "][departing_mob] leaves Azure Peak.</span>")
-	qdel(departing_mob)
+	if(departing_mob.has_embedded_objects())
+		var/list/embeds = departing_mob.get_embedded_objects()
+		for(var/thing in embeds)
+			QDEL_NULL(thing)
+	QDEL_NULL(departing_mob)
 

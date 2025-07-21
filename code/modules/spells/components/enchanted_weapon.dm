@@ -24,13 +24,14 @@
 	var/allow_refresh = TRUE // If TRUE, the item will refresh its duration when held by a X user
 	var/refresh_skill = /datum/skill/magic/arcane // The skill that will be used to refresh the item
 	var/overridden_duration = null
-	var/mob/living/current_user = null // The current user of the item
 	var/enchant_type = FORCE_BLADE_ENCHANT // The type of enchantment
 
-/datum/component/enchanted_weapon/Initialize(duration_override, allow_refresh_override, refresh_skill_override, var/mob/living/owner_override, enchant_type_override)
+/datum/component/enchanted_weapon/Initialize(duration_override, allow_refresh_override, refresh_skill_override, enchant_type_override)
 	if(!istype(parent, /obj/item/rogueweapon))
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/I = parent
+
+	var/new_duration = duration_override ? duration_override : DEFAULT_DURATION
 
 	if(duration_override)
 		endtime = world.time += duration_override
@@ -41,8 +42,6 @@
 		allow_refresh = allow_refresh_override
 	if(refresh_skill_override)
 		refresh_skill = refresh_skill_override
-	if(owner_override)
-		current_user = owner_override
 	if(enchant_type_override)
 		enchant_type = enchant_type_override
 	if(enchant_type == FORCE_BLADE_ENCHANT)
@@ -63,35 +62,38 @@
 			I.add_filter(DURABILITY_FILTER, 2, list("type" = "outline", "color" = GLOW_COLOR_METAL, "alpha" = 200, "size" = 1))
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_unequip))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(item_afterattack))
 	RegisterSignal(parent, COMSIG_ROGUEWEAPON_OBJFIX, PROC_REF(on_fix))
 
-	START_PROCESSING(SSdcs, src)
+	addtimer(CALLBACK(src, PROC_REF(refresh_check)), new_duration)
 
-/datum/component/enchanted_weapon/process()
-	if(endtime <= world.time)
-		if(isliving(current_user) && refresh_skill)
-			if(!current_user.mind)
-				return
-			var/has_right_skill = current_user?.get_skill_level(refresh_skill)
-			if(has_right_skill)
-				if(overridden_duration)
-					endtime += overridden_duration
-				else
-					endtime += DEFAULT_DURATION
-				return
+/datum/component/enchanted_weapon/proc/refresh_check()
+	var/obj/item/I = parent
+	var/obj/itemloc = I.loc
+	if(!allow_refresh || !refresh_skill)
 		remove()
 		qdel(src)
 		return
-
-/datum/component/enchanted_weapon/proc/on_equip(datum/source, mob/user, slot)
-	if(isliving(user))
-		current_user = user
-
-/datum/component/enchanted_weapon/proc/on_unequip(datum/source, mob/user, slot)
-	current_user = null
+	if(!istype(itemloc, /mob/living))
+		while(!istype(itemloc, /mob/living))
+			if(isnull(itemloc))
+				remove()
+				qdel(src)
+				return // If the item is not in a mob, remove the refresh
+			itemloc = itemloc.loc
+			if(istype(itemloc, /turf))
+				remove()
+				qdel(src)
+				return // If the item is on the ground, remove the refresh
+	var/mob/living/current_user = itemloc
+	var/has_right_skill = current_user?.get_skill_level(refresh_skill)
+	if(has_right_skill)
+		if(overridden_duration)
+			endtime = world.time += overridden_duration
+			addtimer(CALLBACK(src, PROC_REF(refresh_check)), overridden_duration)
+		else
+			endtime = world.time += DEFAULT_DURATION
+			addtimer(CALLBACK(src, PROC_REF(refresh_check)), DEFAULT_DURATION)
 
 // Called when the enchantment is removed
 /datum/component/enchanted_weapon/proc/remove()
@@ -138,5 +140,8 @@
 	if(enchant_type == FORCE_BLADE_ENCHANT)
 		I.force += FORCE_BLADE_FORCE
 		I.force_wielded += FORCE_BLADE_FORCE
+	if(enchant_type == DURABILITY_ENCHANT)
+		I.max_integrity += DURABILITY_INCREASE
+		I.obj_integrity += DURABILITY_INCREASE
 
 #undef DEFAULT_DURATION

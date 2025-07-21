@@ -66,7 +66,8 @@
 		var/l
 		for(l=1,l<=shoplength,l++)
 			var/pathi = pick(PA.contains)
-			new pathi(get_turf(M))
+			var/atom/hmasteritem = new pathi(get_turf(M))
+			hmasteritem.flags_1 |= HOARDMASTER_SPAWNED_1
 	if(href_list["changecat"])
 		current_cat = href_list["changecat"]
 	return attack_hand(usr)

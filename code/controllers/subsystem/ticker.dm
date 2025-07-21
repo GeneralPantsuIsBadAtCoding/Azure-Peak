@@ -747,3 +747,12 @@ SUBSYSTEM_DEF(ticker)
 	update_everything_flag_in_db()
 
 	text2file(login_music, "data/last_round_lobby_music.txt")
+
+/// Wrapper for setting rulermob and rulertype
+/datum/controller/subsystem/ticker/proc/set_ruler_mob(mob/newruler)
+	rulermob = newruler
+	if(should_wear_femme_clothes(rulermob))
+		SSticker.rulertype = "Grand Duchess"
+	else
+		SSticker.rulertype = "Grand Duke"
+	SEND_GLOBAL_SIGNAL(COMSIG_TICKER_RULERMOB_SET, rulermob)

@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/plate/matthios
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/matthios
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	r_hand = /obj/item/rogueweapon/flail/peasantwarflail/matthios
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/plate/zizo
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/zizo
-	neck = /obj/item/clothing/neck/roguetown/bevor
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	r_hand = /obj/item/rogueweapon/sword/long/zizo
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 
@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	gloves = /obj/item/clothing/gloves/roguetown/plate/graggar
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/graggar
-	neck = /obj/item/clothing/neck/roguetown/bevor
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -272,7 +272,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	gloves = /obj/item/clothing/gloves/roguetown/blacksteel/modern/plategloves
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	head = /obj/item/clothing/head/roguetown/helmet/blacksteel/modern/armet
-	neck = /obj/item/clothing/neck/roguetown/bevor
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	r_hand = /obj/item/rogueweapon/sword/long/blackflamb
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff
-	neck = /obj/item/clothing/neck/roguetown/bevor
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	r_hand = /obj/item/rogueweapon/greatsword/grenz
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	belt = /obj/item/storage/belt/rogue/leather/steel/tasset

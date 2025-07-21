@@ -36,8 +36,9 @@
 				/obj/item/spellbook_unfinished/pre_arcyne = 1,
 				/obj/item/roguegem/amethyst = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1,
 				/obj/item/recipe_book/magic = 1,
-				/obj/item/chalk = 1,
+				/obj/item/chalk = 1
 				)
 			H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
@@ -59,9 +60,10 @@
 			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_cult.ogg'
+					H.cmode_music = 'sound/music/combat_heretic.ogg'
 		if("Spellblade") // They get a unique spell of air slash
 			to_chat(H, span_warning("You are skilled in both the arcyne art and the art of the blade. But you are not a master of either nor could you channel your magick in armor."))
 			head = /obj/item/clothing/head/roguetown/bucklehat
@@ -94,31 +96,35 @@
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 1)
 			H?.mind.adjust_spellpoints(12)
-			H.cmode_music = 'sound/music/combat_bard.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			var/weapons = list("Bastard Sword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Foreign Straight Sword") // Much smaller selection with only three swords. You will probably want to upgrade.
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Bastard Sword")
-					beltr = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/long
 					armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 				if("Falchion & Wooden Shield")
-					beltr = /obj/item/rogueweapon/sword/falchion
+					beltr = /obj/item/rogueweapon/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
+					r_hand = /obj/item/rogueweapon/sword/falchion
 					armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 				if("Messer & Wooden Shield")
-					beltr = /obj/item/rogueweapon/sword/iron/messer
+					beltr = /obj/item/rogueweapon/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
+					r_hand = /obj/item/rogueweapon/sword/iron/messer
 					armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 				if("Foreign Straight Sword")
-					beltr = /obj/item/rogueweapon/sword/sabre/mulyeog //needs to get a scabbard once the sheathening pr is merged - it should NOT receive the special one from the foreigner class
+					r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
+					beltr = /obj/item/rogueweapon/scabbard/sword
 					armor = /obj/item/clothing/suit/roguetown/armor/basiceast
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_cult.ogg'
+					H.cmode_music = 'sound/music/combat_heretic.ogg'
 		if("Spellsinger")
 			to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
 			head = /obj/item/clothing/head/roguetown/spellcasterhat
@@ -132,7 +138,8 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			beltr = /obj/item/rogueweapon/sword/sabre
+			beltr = /obj/item/rogueweapon/scabbard/sword
+			r_hand = /obj/item/rogueweapon/sword/sabre
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			if(H.mind)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
@@ -152,14 +159,14 @@
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
 			H?.mind.adjust_spellpoints(12)
-			H.cmode_music = 'sound/music/combat_bard.ogg'
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_cult.ogg'
+					H.cmode_music = 'sound/music/combat_heretic.ogg'
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)

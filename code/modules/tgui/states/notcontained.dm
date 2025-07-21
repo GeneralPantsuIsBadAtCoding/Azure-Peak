@@ -1,8 +1,14 @@
- /**
-  * tgui state: notcontained_state
-  *
-  * Checks that the user is not inside src_object, and then makes the default checks.
- **/
+/*!
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+/**
+ * tgui state: notcontained_state
+ *
+ * Checks that the user is not inside src_object, and then makes the
+ * default checks.
+ */
 
 GLOBAL_DATUM_INIT(notcontained_state, /datum/ui_state/notcontained_state, new)
 
@@ -22,5 +28,5 @@ GLOBAL_DATUM_INIT(notcontained_state, /datum/ui_state/notcontained_state, new)
 /mob/living/silicon/notcontained_can_use_topic(src_object)
 	return default_can_use_topic(src_object) // Silicons use default bevhavior.
 
-/mob/living/simple_animal/drone/notcontained_can_use_topic(src_object)
+/mob/living/basic/drone/notcontained_can_use_topic(src_object)
 	return default_can_use_topic(src_object) // Drones use default bevhavior.

@@ -15,8 +15,10 @@
 	cloak = /obj/item/clothing/cloak/heartfelt
 	armor = /obj/item/clothing/suit/roguetown/armor/heartfelt/lord
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
-	beltl = /obj/item/rogueweapon/sword/long/marlin
-	beltr = /obj/item/rogueweapon/huntingknife
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	l_hand = /obj/item/rogueweapon/sword/long/marlin
+	r_hand = /obj/item/rogueweapon/huntingknife
+	beltr = /obj/item/rogueweapon/scabbard/sheath
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
 	backl = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone
@@ -69,7 +71,8 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/armordress
 	belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 	beltl = /obj/item/flashlight/flare/torch/lantern
-	beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
+	beltr = /obj/item/rogueweapon/scabbard/sheath
+	r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	id = /obj/item/clothing/ring/silver
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
@@ -106,8 +109,10 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/heartfelt/hand
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	gloves =/obj/item/clothing/gloves/roguetown/angle
-	beltl = /obj/item/rogueweapon/sword/sabre/dec
-	beltr = /obj/item/rogueweapon/huntingknife
+	l_hand = /obj/item/rogueweapon/sword/sabre/dec
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	r_hand = /obj/item/rogueweapon/huntingknife
+	beltr = /obj/item/rogueweapon/scabbard/sheath
 	backr = /obj/item/storage/backpack/rogue/satchel/heartfelt
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	id = /obj/item/scomstone
@@ -224,7 +229,9 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/poison,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 		/obj/item/recipe_book/alchemy,
-		/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne)
+		/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne,
+		/obj/item/rogueweapon/scabbard/sheath
+	)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, "[type]")
 	ADD_TRAIT(H, TRAIT_ARCYNE_T4, TRAIT_GENERIC)
 	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)

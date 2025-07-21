@@ -54,3 +54,30 @@
 
 /datum/antagonist/vampirelord/lesser/migrant/move_to_spawnpoint()
 	return
+
+/datum/round_event_control/antagonist/migrant_wave/unbound_death_knight
+	name = "Death knight (Unbound)"
+	wave_type = /datum/migrant_wave/unbound_death_knight
+
+	weight = 6
+	max_occurrences = 2
+
+	earliest_start = 10 MINUTES
+
+	tags = list(
+		TAG_HAUNTED,
+		TAG_COMBAT,
+		TAG_VILLIAN,
+	)
+
+/datum/migrant_wave/unbound_death_knight
+	name = "Death knight (Unbound)"
+	roles = list(
+		/datum/migrant_role/unbound_death_knight = 1,
+	)
+	can_roll = FALSE
+
+/datum/migrant_role/unbound_death_knight
+	name = "Adventurer"
+	antag_datum = /datum/antagonist/unbound_death_knight
+	advclass_cat_rolls = null

@@ -31,6 +31,7 @@
 			H.change_stat("perception", 2)
 			H.change_stat("constitution", 4)	//+2 CON in place of END, sorry staminachuds!
 			H.change_stat("intelligence", 3)	//To give you an edge in specialty moves like feints and stop you from being feinted
+			l_hand = /obj/item/rogueweapon/scabbard/sword
 			var/weapons = list("Etruscan Longsword", "Kriegsmesser", "Common Longsword")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
@@ -56,7 +57,8 @@
 			H.change_stat("constitution", 3)
 			H.change_stat("speed", -1)
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
-			beltr = /obj/item/rogueweapon/huntingknife/idagger
+			beltr = /obj/item/rogueweapon/scabbard/sheath
+			l_hand = /obj/item/rogueweapon/huntingknife/idagger
 			backl = /obj/item/gwstrap
 			var/weapons = list("Steel Spear", "Lucerne")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

@@ -9,7 +9,7 @@
 
 	maximum_possible_slots = 1
 	pickprob = 5
-
+	
 	category_tags = list(CTAG_TOWNER)
 
 /datum/outfit/job/roguetown/adventurer/fishermaster/pre_equip(mob/living/carbon/human/H)
@@ -57,7 +57,11 @@
 		belt = /obj/item/storage/belt/rogue/leather/rope
 		beltr = /obj/item/fishingrod
 		beltl = /obj/item/rogueweapon/huntingknife
-		backpack_contents = list(/obj/item/natural/worms = 2,/obj/item/rogueweapon/shovel/small=1)
+		backpack_contents = list(
+			/obj/item/natural/worms = 2,
+			/obj/item/rogueweapon/shovel/small=1,
+			/obj/item/rogueweapon/scabbard/sheath = 1
+			)
 		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
