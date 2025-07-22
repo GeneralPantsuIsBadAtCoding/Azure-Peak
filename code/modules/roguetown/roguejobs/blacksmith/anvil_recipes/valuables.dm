@@ -35,22 +35,12 @@
 	name = "Statue, Blacksteel"
 	req_bar = /obj/item/ingot/blacksteel
 	created_item = /obj/item/roguestatue/blacksteel
-/*
-/datum/anvil_recipe/valuables/eargol
-	name = "gold earrings"
-	req_bar = /obj/item/ingot/gold
-	created_item = list(/obj/item/rogueacc/eargold,
-						/obj/item/rogueacc/eargold,
-						/obj/item/rogueacc/eargold)
-	type = "Valuables"
 
-/datum/anvil_recipe/valuables/earsil
-	name = "silver earrings"
-	req_bar = /obj/item/ingot/silver
-	created_item = list(/obj/item/rogueacc/earsilver,
-						/obj/item/rogueacc/earsilver,
-						/obj/item/rogueacc/earsilver)*/
-//	i_type = "Valuables"
+/datum/anvil_recipe/valuables/zcross_iron
+	name = "Inverted Psycross (1 iron)"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
+	craftdiff = 1
 
 /datum/anvil_recipe/valuables/ringg
 	name = "Rings, Gold (x3)"
@@ -211,59 +201,4 @@
 	hides_from_books = TRUE
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
-	craftdiff = SKILL_LEVEL_LEGENDARY
-
-/datum/anvil_recipe/valuables/hope
-	name = "Ring Of Omnipotence (Secret!)"
-	req_bar = /obj/item/ingot/silver
-	hides_from_books = TRUE
-	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
-	created_item = /obj/item/clothing/ring/statdorpel
-	craftdiff = SKILL_LEVEL_LEGENDARY
-
-/datum/anvil_recipe/valuables/daemonslayer
-	name = "Daemonslayer (Secret!)"
-	req_bar = /obj/item/ingot/silver
-	hides_from_books = TRUE
-	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver/, /obj/item/ingot/draconic, /obj/item/ingot/weeping, /obj/item/riddleofsteel, /obj/item/grown/log/tree)
-	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
-	appro_skill = /datum/skill/craft/weaponsmithing
-	craftdiff = SKILL_LEVEL_LEGENDARY
-
-//blacksteel Rings
-/datum/anvil_recipe/valuables/emeringbs
-	name = "Gemerald Ring, Blacksteel (+1 Gemerald)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/green)
-	created_item = /obj/item/clothing/ring/emeraldbs
-
-/datum/anvil_recipe/valuables/rubybs
-	name = "Rontz Ring, Blacksteel (+1 Rontz)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/ruby)
-	created_item = /obj/item/clothing/ring/rubybs
-
-/datum/anvil_recipe/valuables/topazbs
-	name = "Toper Ring, Blacksteel (+1 Toper)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/yellow)
-	created_item = /obj/item/clothing/ring/topazbs
-
-/datum/anvil_recipe/valuables/quartzbs
-	name = "Blortz Ring, Blacksteel (+1 Blortz)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/blue)
-	created_item = /obj/item/clothing/ring/quartzbs
-	i_type = "Valuables"
-
-/datum/anvil_recipe/valuables/sapphirebs
-	name = "Saffira Ring, Blacksteel (+1 Saffira)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/violet)
-	created_item = /obj/item/clothing/ring/sapphirebs
-
-/datum/anvil_recipe/valuables/diamondbs
-	name = "Dorpel Ring, Blacksteel (+1 Dorpel)"
-	req_bar = /obj/item/ingot/blacksteel
-	additional_items = list(/obj/item/roguegem/diamond)
-	created_item = /obj/item/clothing/ring/diamondbs
+	craftdiff = 6
