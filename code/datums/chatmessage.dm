@@ -5,7 +5,6 @@
 #define CHAT_MESSAGE_HEIGHT_DECAY	0.9 // Increase message decay based on the height of the message
 #define CHAT_MESSAGE_APPROX_LHEIGHT	11 // Approximate height in pixels of an 'average' line, used for height decay
 #define CHAT_MESSAGE_WIDTH			96 // pixels
-#define CHAT_MESSAGE_MAX_LENGTH		110 // characters
 //#define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
 #define WXH_TO_HEIGHT(measurement, return_var) \
 	do { \
