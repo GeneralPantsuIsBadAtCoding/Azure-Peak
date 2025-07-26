@@ -1163,6 +1163,7 @@
 #include "code\modules\antagonists\roguetown\villain\aspirant.dm"
 #include "code\modules\antagonists\roguetown\villain\bandit.dm"
 #include "code\modules\antagonists\roguetown\villain\choosename.dm"
+#include "code\modules\antagonists\roguetown\villain\chosen.dm"
 #include "code\modules\antagonists\roguetown\villain\lich.dm"
 #include "code\modules\antagonists\roguetown\villain\peasantrebel.dm"
 #include "code\modules\antagonists\roguetown\villain\unbound_deathknight.dm"
