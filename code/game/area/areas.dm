@@ -110,6 +110,9 @@
 
 	var/converted_type
 
+	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
+	// Try to be deliberately obtuse but not too obtuse.
+
 
 /**
   * A list of teleport locations
