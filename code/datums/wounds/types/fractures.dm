@@ -149,18 +149,22 @@
 		"The ear canal is pierced!",
 	)
 	embed_chance = 100
-	paralysis = TRUE
+	paralysis = FALSE
 	knockout = 25
 	clotting_threshold = 0.3	//Ears gonna bleed worse than just a fracture
 
 /datum/wound/fracture/head/ears/on_mob_gain(mob/living/affected)
 	. = ..()
 	to_chat(affected, span_warning("My ears ring before suddenly cutting out all sound!"))
+	affected.confused += 25	//Drunk-walk effect, basically.
+	affected.dizziness += 25
 	ADD_TRAIT(affected, TRAIT_DEAF, "[type]")
 
 /datum/wound/fracture/head/ears/on_mob_loss(mob/living/affected)
 	. = ..()
 	to_chat(affected, span_notice("Slowly my hearing comes back to me.."))
+	affected.confused -= 25
+	affected.dizziness -= 25
 	REMOVE_TRAIT(affected, TRAIT_DEAF, "[type]")
 
 /datum/wound/fracture/head/nose
@@ -169,28 +173,21 @@
 		"The nasal bone is punctured!",
 		"The nasal bone is pierced!",
 	)
-	embed_chance = 100
-	mortal = FALSE
+	paralysis = FALSE	//Fucks your nose, but won't paralyze you anymore.
+	knockout = 20		//Longer knockout than a normal head-fracture
+	clotting_threshold = 0.3	//Nose bleeds as bad as ears gonna bleed worse than just a fracture
 
 /datum/wound/fracture/head/nose/on_mob_gain(mob/living/affected)
 	. = ..()
+	affected.confused += 15	//Strong-drunk-walk effect, basically.
+	affected.dizziness += 15
 	ADD_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
 	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
 
 /datum/wound/fracture/head/nose/on_mob_loss(mob/living/affected)
 	. = ..()
 	REMOVE_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
-	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
-
-/datum/wound/fracture/head/nose/on_mob_gain(mob/living/affected)
-	. = ..()
-	ADD_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
-	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
-
-/datum/wound/fracture/head/nose/on_mob_loss(mob/living/affected)
-	. = ..()
-	REMOVE_TRAIT(affected, TRAIT_MISSING_NOSE, "[type]")
-	ADD_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
+	REMOVE_TRAIT(affected, TRAIT_DISFIGURED, "[type]")
 
 /datum/wound/fracture/mouth
 	name = "mandibular fracture"
