@@ -38,6 +38,9 @@
 	if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
 		to_chat(user, "[target] has pledged a vow to Necra. This will not work.")
 		return FALSE
+	if(target.revived >= 1)		//If the target has been revived before, and has not had their revived counter reduced at all, they will be unable to be revived.
+		to_chat(user, "[target]'s heart bears the telltale signs of a previous infusion, their soul is too far gone to try again..")
+		return FALSE
 
 /datum/surgery_step/infuse_lux/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	display_results(user, target, span_notice("I begin to revive [target]... will their heart respond?"),
@@ -52,7 +55,7 @@
 			"[user] works the lux into [target]'s innards.",
 			"[user] works the lux into [target]'s innards.")
 		return FALSE
-	if (target.mind)
+	if(target.mind)
 		if(alert(target, "Are you ready to face the world, once more?", "Revival", "I must go on", "Let me rest") != "I must go on")
 			display_results(user, target, span_notice("[target]'s heart refuses the lux. They're only in sweet dreams, now."),
 				"[user] works the lux into [target]'s innards, but nothing happens.",
@@ -85,6 +88,7 @@
 			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
 	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
 	target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, revive_timer)), 2 MINUTES)	//Adds revive counter to prevent future revives.
 	return TRUE
 
 /datum/surgery_step/infuse_lux/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent, success_prob)

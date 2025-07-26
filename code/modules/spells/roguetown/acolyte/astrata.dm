@@ -121,6 +121,10 @@
 		to_chat(user, span_warning("Nothing happens."))
 		revert_cast()
 		return FALSE
+	if(target.revived >= 1)
+		to_chat(user, span_warning("[target]'s soul has already been pried from Necra's grasp once. She shant permit such trespasses twice..."))
+		revert_cast()
+		return FALSE
 	if(GLOB.tod == "night")
 		to_chat(user, span_warning("Let there be light."))
 	for(var/obj/structure/fluff/psycross/S in oview(5, user))
@@ -156,6 +160,7 @@
 	target.mind.remove_antag_datum(/datum/antagonist/zombie)
 	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
 	target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, revive_timer)), 2 MINUTES)
 	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/revive/cast_check(skipcharge = 0,mob/user = usr)
