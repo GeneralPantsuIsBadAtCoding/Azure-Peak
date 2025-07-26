@@ -37,6 +37,48 @@
 	sewn_clotting_threshold = 0.1
 	sew_threshold = 75
 
+/datum/wound/dynamic/slash
+	name = "slash"
+	whp = 15
+	sewn_whp = 5
+	bleed_rate = 1
+	sew_threshold = 25
+	woundpain = 5
+	clotting_rate = 0.1
+	clotting_threshold = 0.25
+
+	sewn_clotting_threshold = null
+	sewn_clotting_rate = null
+	sewn_bleed_rate = null
+	
+	can_sew = TRUE
+	can_cauterize = TRUE
+	severity_names = list(
+		"light" = 20,
+		"deep" = 40,
+		"gnarly" = 80,
+		"lethal" = 120,
+		"impossible" = 200,
+	)
+
+#define SLASH_UPG_BLEEDRATE 0.1
+#define SLASH_UPG_WHPRATE 0.6
+#define SLASH_UPG_SEWRATE 1
+#define SLASH_UPG_PAINRATE 0.25
+
+/datum/wound/dynamic/slash/upgrade(dam)
+	whp += (dam * SLASH_UPG_WHPRATE)
+	bleed_rate += (dam * SLASH_UPG_BLEEDRATE)
+	sew_threshold += (dam * SLASH_UPG_SEWRATE)
+	woundpain += (dam * SLASH_UPG_PAINRATE)
+	update_name()
+	..()
+
+#undef SLASH_UPG_BLEEDRATE
+#undef SLASH_UPG_WHPRATE
+#undef SLASH_UPG_SEWRATE
+#undef SLASH_UPG_PAINRATE
+
 /datum/wound/slash/disembowel
 	name = "disembowelment"
 	check_name = span_userdanger("<B>GUTS</B>")

@@ -168,7 +168,10 @@
 		return FALSE
 	if(blood_volume <= 0)
 		return FALSE
-	
+
+	//For each CON above 10, we bleed slower.
+	//Consequently, for each con under 10 we bleed faster.
+	amt -= amt * ((STACON - 10) * CONSTITUTION_BLEEDRATE_MOD)
 	blood_volume = max(blood_volume - amt, 0)
 	GLOB.azure_round_stats[STATS_BLOOD_SPILT] += amt
 	if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
