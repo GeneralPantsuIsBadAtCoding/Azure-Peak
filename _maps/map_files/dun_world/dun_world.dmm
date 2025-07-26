@@ -59557,8 +59557,6 @@
 	dir = 10;
 	icon_state = "tablewood2"
 	},
-/obj/item/rogueweapon/sword/long/exe/cloth,
-/obj/item/natural/stone,
 /obj/item/storage/belt/rogue/surgery_bag/full,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/cell)
