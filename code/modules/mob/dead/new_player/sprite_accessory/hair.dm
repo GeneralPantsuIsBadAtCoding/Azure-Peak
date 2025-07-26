@@ -1162,6 +1162,394 @@
 	name = "Bubble Braids Alt"
 	icon_state = "bubblebraid_v2"
 
+/datum/sprite_accessory/hair/head/heiress
+	name = "Heiress"
+	icon_state = "heiress"
+
+/datum/sprite_accessory/hair/head/playful
+	name = "Playful"
+	icon_state = "playful"
+
+/datum/sprite_accessory/hair/head/adventurer
+	name = "Adventurer"
+	icon_state = "adventurer"
+
+/datum/sprite_accessory/hair/head/amazon_f
+	name = "Amazon (F)"
+	icon_state = "amazon_f"
+
+/datum/sprite_accessory/hair/head/archivist
+	name = "Archivist"
+	icon_state = "archivist"
+
+/datum/sprite_accessory/hair/head/barbarian_f
+	name = "Barbarian (F)"
+	icon_state = "barbarian_f"
+
+/datum/sprite_accessory/hair/head/beartails_f
+	name = "Beartails (F)"
+	icon_state = "beartails_f"
+
+/datum/sprite_accessory/hair/head/berserker
+	name = "Berserker"
+	icon_state = "berserker"
+
+/datum/sprite_accessory/hair/head/bob_f
+	name = "Bob (F)"
+	icon_state = "bob_f"
+
+/datum/sprite_accessory/hair/head/boss
+	name = "Boss"
+	icon_state = "boss"
+
+/datum/sprite_accessory/hair/head/buns_f
+	name = "Buns (F)"
+	icon_state = "buns_f"
+
+/datum/sprite_accessory/hair/head/cavehead
+	name = "Cavehead"
+	icon_state = "cavehead"
+
+/datum/sprite_accessory/hair/head/conscript
+	name = "Conscript"
+	icon_state = "conscript"
+
+/datum/sprite_accessory/hair/head/courtier
+	name = "Courtier"
+	icon_state = "courtier"
+
+/datum/sprite_accessory/hair/head/curly_f
+	name = "Curly (F)"
+	icon_state = "curly_f"
+
+/datum/sprite_accessory/hair/head/darkknight
+	name = "Darkknight"
+	icon_state = "darkknight"
+
+/datum/sprite_accessory/hair/head/dome
+	name = "Dome"
+	icon_state = "dome"
+
+/datum/sprite_accessory/hair/head/druid
+	name = "Druid"
+	icon_state = "druid"
+
+/datum/sprite_accessory/hair/head/empress_f
+	name = "Empress (F)"
+	icon_state = "empress_f"
+
+/datum/sprite_accessory/hair/head/fancy_elf
+	name = "Fancy Elf"
+	icon_state = "fancy_elf"
+
+/datum/sprite_accessory/hair/head/fancy_elf_f
+	name = "Fancy Elf (F)"
+	icon_state = "fancy_elf_f"
+
+/datum/sprite_accessory/hair/head/forester
+	name = "Forester"
+	icon_state = "forester"
+
+/datum/sprite_accessory/hair/head/foreigner
+	name = "Foreigner"
+	icon_state = "foreigner"
+
+/datum/sprite_accessory/hair/head/forged
+	name = "Forged"
+	icon_state = "forged"
+
+/datum/sprite_accessory/hair/head/forsaken
+	name = "Forsaken"
+	icon_state = "forsaken"
+
+/datum/sprite_accessory/hair/head/grumpy_f
+	name = "Grumpy (F)"
+	icon_state = "grumpy_f"
+
+/datum/sprite_accessory/hair/head/gnomish_f
+	name = "Gnomish (F)"
+	icon_state = "gnomish_f"
+
+/datum/sprite_accessory/hair/head/graceful
+	name = "Graceful"
+	icon_state = "graceful"
+
+/datum/sprite_accessory/hair/head/heroic
+	name = "Heroic"
+	icon_state = "heroic"
+
+/datum/sprite_accessory/hair/head/hearth_f
+	name = "Hearth (F)"
+	icon_state = "hearth_f"
+
+/datum/sprite_accessory/hair/head/hunter
+	name = "Hunter"
+	icon_state = "hunter"
+
+/datum/sprite_accessory/hair/head/homely_f
+	name = "Homely (F)"
+	icon_state = "homely_f"
+
+/datum/sprite_accessory/hair/head/junia_tief_f
+	name = "Junia Tief (F)"
+	icon_state = "junia_tief_f"
+
+/datum/sprite_accessory/hair/head/lady_f
+	name = "Lady (F)"
+	icon_state = "lady_f"
+
+/datum/sprite_accessory/hair/head/landlord
+	name = "Landlord"
+	icon_state = "landlord"
+
+/datum/sprite_accessory/hair/head/lion
+	name = "Lion"
+	icon_state = "lion"
+
+/datum/sprite_accessory/hair/head/loosebraid_f
+	name = "Loosebraid (F)"
+	icon_state = "loosebraid_f"
+
+/datum/sprite_accessory/hair/head/lover_tief_m
+	name = "Lover Tief (M)"
+	icon_state = "lover_tief_m"
+
+/datum/sprite_accessory/hair/head/maid_f
+	name = "Maid (F)"
+	icon_state = "maid_f"
+
+/datum/sprite_accessory/hair/head/maiden_f
+	name = "Maiden (F)"
+	icon_state = "maiden_f"
+
+/datum/sprite_accessory/hair/head/martial
+	name = "Martial"
+	icon_state = "martial"
+
+/datum/sprite_accessory/hair/head/majestic
+	name = "Majestic"
+	icon_state = "majestic"
+
+/datum/sprite_accessory/hair/head/majestic_dwarf
+	name = "Majestic Dwarf"
+	icon_state = "majestic_dwarf"
+
+/datum/sprite_accessory/hair/head/majestic_elf
+	name = "Majestic Elf"
+	icon_state = "majestic_elf"
+
+/datum/sprite_accessory/hair/head/majestic_f
+	name = "Majestic (F)"
+	icon_state = "majestic_f"
+
+/datum/sprite_accessory/hair/head/messy_f
+	name = "Messy (F)"
+	icon_state = "messy_f"
+
+/datum/sprite_accessory/hair/head/monk
+	name = "Monk"
+	icon_state = "monk"
+
+/datum/sprite_accessory/hair/head/miner
+	name = "Miner"
+	icon_state = "miner"
+
+/datum/sprite_accessory/hair/head/mystery_f
+	name = "Mystery (F)"
+	icon_state = "mystery_f"
+
+/datum/sprite_accessory/hair/head/mysterious_elf
+	name = "Mysterious Elf"
+	icon_state = "mysterious_elf"
+
+/datum/sprite_accessory/hair/head/nobility
+	name = "Nobility"
+	icon_state = "nobility"
+
+/datum/sprite_accessory/hair/head/noblesse_f
+	name = "Noblesse (F)"
+	icon_state = "noblesse_f"
+
+/datum/sprite_accessory/hair/head/nomadic
+	name = "Nomadic"
+	icon_state = "nomadic"
+
+/datum/sprite_accessory/hair/head/orc_f
+	name = "Orc (F)"
+	icon_state = "orc_f"
+
+/datum/sprite_accessory/hair/head/performer_tief_f
+	name = "Performer Tief (F)"
+	icon_state = "performer_tief_f"
+
+/datum/sprite_accessory/hair/head/plain_f
+	name = "Plain (F)"
+	icon_state = "plain_f"
+
+/datum/sprite_accessory/hair/head/princely
+	name = "Princely"
+	icon_state = "princely"
+
+/datum/sprite_accessory/hair/head/pixie_f
+	name = "Pixie (F)"
+	icon_state = "pixie_f"
+
+/datum/sprite_accessory/hair/head/scribe
+	name = "Scribe"
+	icon_state = "scribe"
+
+/datum/sprite_accessory/hair/head/soilbride_f
+	name = "Soilbride (F)"
+	icon_state = "soilbride_f"
+
+/datum/sprite_accessory/hair/head/shrine_f
+	name = "Shrine (F)"
+	icon_state = "shrine_f"
+
+/datum/sprite_accessory/hair/head/southern
+	name = "Southern"
+	icon_state = "southern"
+
+/datum/sprite_accessory/hair/head/swain
+	name = "Swain"
+	icon_state = "swain"
+
+/datum/sprite_accessory/hair/head/squire_f
+	name = "Squire (F)"
+	icon_state = "squire_f"
+
+/datum/sprite_accessory/hair/head/squire
+	name = "Squire"
+	icon_state = "squire"
+
+/datum/sprite_accessory/hair/head/tails_f
+	name = "Tails (F)"
+	icon_state = "tails_f"
+
+/datum/sprite_accessory/hair/head/troubadour
+	name = "Troubadour"
+	icon_state = "troubadour"
+
+/datum/sprite_accessory/hair/head/tiedlong
+	name = "Tiedlong"
+	icon_state = "tiedlong"
+
+/datum/sprite_accessory/hair/head/tsidecut
+	name = "Tsidecut"
+	icon_state = "tsidecut"
+
+/datum/sprite_accessory/hair/head/tied_f
+	name = "Tied (F)"
+	icon_state = "tied_f"
+
+/datum/sprite_accessory/hair/head/tiedup_f
+	name = "Tiedup (F)"
+	icon_state = "tiedup_f"
+
+/datum/sprite_accessory/hair/head/updo_f
+	name = "Updo (F)"
+	icon_state = "updo_f"
+
+/datum/sprite_accessory/hair/head/warrior
+	name = "Warrior"
+	icon_state = "warrior"
+
+/datum/sprite_accessory/hair/head/wisp_f
+	name = "Wisp (F)"
+	icon_state = "wisp_f"
+
+/datum/sprite_accessory/hair/head/wildside
+	name = "Wildside"
+	icon_state = "wildside"
+
+/datum/sprite_accessory/hair/head/woodsman_elf
+	name = "Woodsman Elf"
+	icon_state = "woodsman_elf"
+
+/datum/sprite_accessory/hair/head/queenly_f
+	name = "Queenly (F)"
+	icon_state = "queenly_f"
+
+/datum/sprite_accessory/hair/head/zybantu
+	name = "Zybantu"
+	icon_state = "zybantu"
+
+/datum/sprite_accessory/hair/head/chair_ponytail6
+	name = "Chair Ponytail 6"
+	icon_state = "chair_ponytail6"
+
+/datum/sprite_accessory/hair/head/chair_manbun
+	name = "Chair Manbun"
+	icon_state = "chair_manbun"
+
+/datum/sprite_accessory/hair/head/fatherless_elf_f
+	name = "Fatherless Elf (F)"
+	icon_state = "fatherless_elf_f"
+
+/datum/sprite_accessory/hair/head/samurai
+	name = "Samurai"
+	icon_state = "samurai"
+
+/datum/sprite_accessory/hair/head/yakuza
+	name = "Yakuza"
+	icon_state = "yakuza"
+
+/datum/sprite_accessory/hair/head/novice
+	name = "Novice"
+	icon_state = "novice"
+
+/datum/sprite_accessory/hair/head/steppeman
+	name = "Steppeman"
+	icon_state = "steppeman"
+
+/datum/sprite_accessory/hair/head/bishonen
+	name = "Bishonen"
+	icon_state = "bishonen"
+
+/datum/sprite_accessory/hair/head/emperor
+	name = "Emperor"
+	icon_state = "emperor"
+
+/datum/sprite_accessory/hair/head/female
+	name = "Female"
+	icon_state = "female"
+
+/datum/sprite_accessory/hair/head/empress
+	name = "Empress"
+	icon_state = "empress"
+
+/datum/sprite_accessory/hair/head/warlady
+	name = "Warlady"
+	icon_state = "warlady"
+
+/datum/sprite_accessory/hair/head/waterfield
+	name = "Waterfield"
+	icon_state = "waterfield"
+
+/datum/sprite_accessory/hair/head/homewaifu
+	name = "Homewaifu"
+	icon_state = "homewaifu"
+
+/datum/sprite_accessory/hair/head/casual
+	name = "Casual"
+	icon_state = "casual"
+
+/datum/sprite_accessory/hair/head/martyr
+	name = "Martyr"
+	icon_state = "martyr"
+
+/datum/sprite_accessory/hair/head/neuter
+	name = "Neuter"
+	icon_state = "neuter"
+
+/datum/sprite_accessory/hair/head/hprotagonist
+	name = "Hprotagonist"
+	icon_state = "hprotagonist"
+
+/datum/sprite_accessory/hair/head/alsoprotagonist
+	name = "Alsoprotagonist"
+	icon_state = "alsoprotagonist"
+
 /datum/sprite_accessory/hair/head/vulpkian
 	abstract_type = /datum/sprite_accessory/hair/head/vulpkian
 	icon = 'icons/mob/sprite_accessory/hair/vulpkian_hair.dmi'
