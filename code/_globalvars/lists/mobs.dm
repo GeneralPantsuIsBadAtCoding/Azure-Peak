@@ -42,6 +42,11 @@ GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
 
+GLOBAL_LIST_INIT(dangerous_turfs, typecacheof(list(
+	/turf/open/lava,
+	/turf/open/transparent,
+	)))
+
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()
 	var/list/entry_value = CONFIG_GET(keyed_list/multiplicative_movespeed)

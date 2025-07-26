@@ -1,7 +1,7 @@
 /datum/ai_controller/troll
 	movement_delay = TROLL_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic/allow_items()
@@ -31,7 +31,7 @@
 /datum/ai_controller/troll_cave
 	movement_delay = TROLL_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic/allow_items()

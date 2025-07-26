@@ -1,6 +1,6 @@
 /datum/ai_controller/assassin
 	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/blink_if_far,
@@ -19,7 +19,7 @@
 
 /datum/ai_controller/assassin/ancient
 	movement_delay = ANCIENT_DREAMFIEND_MOVEMENT_SPEED
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/blink_if_far,
@@ -267,7 +267,7 @@
 
 /datum/ai_controller/dreamfiend_unbound
 	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/simple_find_target/closest,
@@ -284,7 +284,7 @@
 
 /datum/ai_controller/dreamfiend_unbound_ancient
 	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	planning_subtrees = list(
         /datum/ai_planning_subtree/simple_find_target/closest,

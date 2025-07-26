@@ -49,6 +49,7 @@
 #define BB_BASIC_MOB_FLEE_TARGET_HIDING_LOCATION "BB_basic_flee_target_hiding_location"
 #define BB_FLEE_TARGETTING_DATUM "flee_targetting_datum"
 
+#define BB_FUTURE_MOVEMENT_PATH "BB_future_path"
 
 ///time until we should next eat, set by the generic hunger subtree
 #define BB_NEXT_HUNGRY "BB_NEXT_HUNGRY"
