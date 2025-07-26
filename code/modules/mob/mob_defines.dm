@@ -14,6 +14,8 @@
 	hud_possible = list(ANTAG_HUD)
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	throwforce = 10
+
+	///when this be added to vis_contents of something it inherit something.plane, important for visualisation of mob in openspace.
 	vis_flags = VIS_INHERIT_PLANE
 
 	//FOV STUFF

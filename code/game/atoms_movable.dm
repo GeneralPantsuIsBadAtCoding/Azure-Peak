@@ -309,7 +309,6 @@
 
 //Early override for some cases like diagonal movement
 	if(glide_size_override)
-		testing("GSO 1 [glide_size_override]")
 		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
