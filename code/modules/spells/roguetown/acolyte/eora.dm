@@ -1012,44 +1012,13 @@
 	effect_desc = "Excellent fishing bait that attracts treasure."
 	baitpenalty = 5
 	isbait = TRUE
-	freshfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/carp = 50,
-		/obj/item/reagent_containers/food/snacks/fish/sunny = 50,
-		/obj/item/reagent_containers/food/snacks/fish/salmon = 150,
-		/obj/item/reagent_containers/food/snacks/fish/eel = 50,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 50,
-		/obj/item/storage/belt/rogue/pouch/coins/mid = 10,
-		/obj/item/clothing/ring/gold = 15,
-		/obj/item/reagent_containers/glass/bottle/rogue/wine = 15,	
-	)
-	seafishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/cod = 50,
-		/obj/item/reagent_containers/food/snacks/fish/plaice = 75,
-		/obj/item/reagent_containers/food/snacks/fish/sole = 50,
-		/obj/item/reagent_containers/food/snacks/fish/angler = 100,
-		/obj/item/reagent_containers/food/snacks/fish/lobster = 50,
-		/obj/item/reagent_containers/food/snacks/fish/bass = 50,
-		/obj/item/reagent_containers/food/snacks/fish/clam = 50,
-		/obj/item/reagent_containers/food/snacks/fish/clownfish = 200,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 75,
-		/obj/item/storage/belt/rogue/pouch/coins/mid = 25,
-		/obj/item/storage/belt/rogue/pouch/coins/rich = 10,
-		/obj/item/clothing/ring/gold = 25,
-		/obj/item/reagent_containers/glass/bottle/rogue/wine = 25,		
-	)
-	mudfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/mudskipper = 200,
-		/obj/item/natural/worms/leech = 50,
-		/obj/item/clothing/ring/gold = 1,
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 25,				
-	)
-	// This is super trimmed down from the ratwood list to focus entirely on shellfishes
-	// this is a waste but it's useable. So I'm just not going to encourage it.
-	cageloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/oyster = 214,
-		/obj/item/reagent_containers/food/snacks/fish/shrimp = 214,
-		/obj/item/reagent_containers/food/snacks/fish/crab = 214,
-		/obj/item/reagent_containers/food/snacks/fish/lobster = 214,
+	fishingMods=list(
+		"commonFishingMod" = 0.2,
+		"rareFishingMod" = 1,
+		"treasureFishingMod" = 1,
+		"trashFishingMod" = 0,
+		"dangerFishingMod" = 0,
+		"ceruleanFishingMod" = 1, // 1 on cerulean aril, 0 on everything else
 	)
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/fractal

@@ -66,7 +66,8 @@
 	var/ft = 120 //Time to get a catch, in ticks
 	var/fpp =  100 - (40 + (sl * 10)) // Fishing power penalty based on fishing skill level
 	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
-	var/salwt = list(/turf/open/water/ocean, /turf/open/water/ocean/deep)
+	var/salwt_coast = list(/turf/open/water/ocean)
+	var/salwt_deep = list(/turf/open/water/ocean/deep)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
 	if(user.used_intent.type == SPEAR_BASH)
 		return ..()
@@ -100,11 +101,13 @@
 						if(prob(fishchance)) // Finally, roll the dice to see if we fish.
 							var/A
 							if(target.type in frwt)
-								A = pickweight(baited.freshfishloot)
-							else if(target.type in salwt)
-								A = pickweight(baited.seafishloot)
+								A = pickweightAllowZero(createFreshWaterFishWeightListModlist(baited.fishingMods))
+							else if(target.type in salwt_coast)
+								A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(baited.fishingMods))
+							else if(target.type in salwt_deep)
+								A = pickweightAllowZero(createDeepSeaFishWeightListModlist(baited.fishingMods))
 							else if(target.type in mud)
-								A = pickweight(baited.mudfishloot)
+								A = pickweightAllowZero(createMudFishWeightListModlist(baited.fishingMods))
 							if(A)
 								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 								to_chat(user, "<span class='notice'>Something tugs the line!</span>")

@@ -129,36 +129,17 @@
 	devotion_cost = 10
 	//Horrendous carry-over from fishing code
 	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
-	var/salwt = list(/turf/open/water/ocean, /turf/open/water/ocean/deep)
+	var/salwt_coast = list(/turf/open/water/ocean)
+	var/salwt_deep = list(/turf/open/water/ocean/deep)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
-	var/list/freshfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/carp = 225,
-		/obj/item/reagent_containers/food/snacks/fish/sunny = 325,
-		/obj/item/reagent_containers/food/snacks/fish/salmon = 190,
-		/obj/item/reagent_containers/food/snacks/fish/eel = 140,
-		/obj/item/reagent_containers/food/snacks/smallrat = 1, //funny
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 20,			
+	var/list/fishingMods = list(
+		"commonFishingMod" = 0.8,
+		"rareFishingMod" = 1,
+		"treasureFishingMod" = 0,
+		"trashFishingMod" = 0,
+		"dangerFishingMod" = 0.1,
+		"ceruleanFishingMod" = 0 // 1 on cerulean aril, 0 on everything else
 	)
-	var/list/seafishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/cod = 190,
-		/obj/item/reagent_containers/food/snacks/fish/plaice = 210,
-		/obj/item/reagent_containers/food/snacks/fish/sole = 340,
-		/obj/item/reagent_containers/food/snacks/fish/angler = 140,
-		/obj/item/reagent_containers/food/snacks/fish/lobster = 150,
-		/obj/item/reagent_containers/food/snacks/fish/bass = 210,
-		/obj/item/reagent_containers/food/snacks/fish/clam = 40,
-		/obj/item/reagent_containers/food/snacks/fish/clownfish = 20,
-		/obj/item/reagent_containers/food/snacks/smallrat = 1, //still funny
-		/mob/living/carbon/human/species/goblin/npc/sea = 10,
-		/mob/living/simple_animal/hostile/rogue/deepone = 3,
-		/mob/living/simple_animal/hostile/rogue/deepone/spit = 3,			
-	)
-	var/list/mudfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/mudskipper = 200,
-		/obj/item/natural/worms/leech = 50,
-		/obj/item/reagent_containers/food/snacks/smallrat = 1, //even funnier the third time
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 25,				
-	)	
 
 /obj/effect/proc_holder/spell/invoked/aquatic_compulsion/cast(list/targets, mob/user = usr)
 	. = ..()
@@ -166,11 +147,13 @@
 		var/turf/T = targets[1]
 		var/A
 		if(T.type in frwt)
-			A = pickweight(freshfishloot)
-		else if(T.type in salwt)
-			A = pickweight(seafishloot)
+			A = pickweightAllowZero(createFreshWaterFishWeightListModlist(fishingMods))
+		else if(T.type in salwt_coast)
+			A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(fishingMods))
+		else if(T.type in salwt_deep)
+			A = pickweightAllowZero(createDeepSeaFishWeightListModlist(fishingMods))
 		else if(T.type in mud)
-			A = pickweight(mudfishloot)
+			A = pickweightAllowZero(createMudFishWeightListModlist(fishingMods))
 		if(A)
 			var/atom/movable/AF = new A(T)
 			if(istype(AF, /obj/item/reagent_containers/food/snacks/fish))

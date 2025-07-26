@@ -649,6 +649,12 @@
 		else
 			L1[key] = other_value
 
+/proc/counterlist_ceiling(list/L)
+	var/list/out = list()
+	for(var/key in L)
+		out[key] = ceil(L[key])
+	. = out 
+
 /proc/assoc_list_strip_value(list/input)
 	var/list/ret = list()
 	for(var/key in input)
