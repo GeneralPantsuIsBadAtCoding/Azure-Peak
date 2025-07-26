@@ -4,7 +4,6 @@
 	tutorial = "Disciples of the divine - clerics are blessed with the power of miracles from the gods themselves."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
-	traits_applied = list(TRAIT_OUTLANDER)
 	vampcompat = FALSE
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)

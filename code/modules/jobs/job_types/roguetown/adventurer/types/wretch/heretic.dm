@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/heretic
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_HEAVYARMOR, TRAIT_RITUALIST, TRAIT_OUTLAW, TRAIT_HERESIARCH)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_HEAVYARMOR, TRAIT_RITUALIST, TRAIT_OUTLAW, TRAIT_HERESIARCH)
 	maximum_possible_slots = 3 //Ppl dont like heavy armor antags.
 
 /datum/outfit/job/roguetown/wretch/heretic/pre_equip(mob/living/carbon/human/H)

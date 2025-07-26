@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/outlaw
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_DODGEEXPERT, TRAIT_OUTLAW, TRAIT_HERESIARCH) //Maybe seperate Marmor and DE between the classes but meh
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT, TRAIT_OUTLAW, TRAIT_HERESIARCH) //Maybe seperate Marmor and DE between the classes but meh
 	classes = list("Cutpurse" = "You are the person folk fear at night - use your cunning and speed to strike fast and get out with your spoils before anyone notices.",
 					"Marauder"= "You are a brigand and a pillager - you prefer to get your coins with direct means from unfortunate victims.")
 

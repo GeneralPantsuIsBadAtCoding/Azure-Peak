@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/pyromaniac
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_MEDIUMARMOR, TRAIT_HERESIARCH)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLAW, TRAIT_MEDIUMARMOR, TRAIT_HERESIARCH)
 
 /datum/outfit/job/roguetown/wretch/pyromaniac/pre_equip(mob/living/carbon/human/H)
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff //wear protection :) 
