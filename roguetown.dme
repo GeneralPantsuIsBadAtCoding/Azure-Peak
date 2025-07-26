@@ -1725,6 +1725,7 @@
 #include "code\modules\mob\dead\new_player\body_markings\body_marking_sets.dm"
 #include "code\modules\mob\dead\new_player\body_markings\body_markings.dm"
 #include "code\modules\mob\dead\new_player\body_markings\body_markings_moth.dm"
+#include "code\modules\mob\dead\new_player\body_markings\construct_plating.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessory\_sprite_accessory.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessory\antennas.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessory\back_features.dm"
