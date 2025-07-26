@@ -418,8 +418,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["eye_color"]			>> eye_color
 	S["extra_language"]		>> extra_language
 	S["voice_color"]		>> voice_color
+	S["voice_type_mumble"]	>> voice_type_mumble
+	if(!voice_type_mumble)
+		voice_type_mumble = "neutral_01"
 	S["voice_pitch"]		>> voice_pitch
-	if (!voice_pitch)
+	if(!voice_pitch)
 		voice_pitch = 1
 	S["skin_tone"]			>> skin_tone
 	S["hairstyle_name"]		>> hairstyle

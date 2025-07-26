@@ -86,6 +86,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/extra_language = "None" // Extra language
 	var/voice_color = "a0a0a0"
 	var/voice_pitch = 1
+	var/voice_type_mumble = "male_01"	//Default talking voice
 	var/detail_color = "000"
 	var/datum/species/pref_species = new /datum/species/human/northern()	//Mutant race
 	var/static/datum/species/default_species = new /datum/species/human/northern()
@@ -436,6 +437,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Voice Color: </b><a href='?_src_=prefs;preference=voice;task=input'>Change</a>"
 			dat += "<br><b>Nickname Color: </b> </b><a href='?_src_=prefs;preference=highlight_color;task=input'>Change</a>"
 			dat += "<br><b>Voice Pitch: </b><a href='?_src_=prefs;preference=voice_pitch;task=input'>[voice_pitch]</a>"
+			dat += "<br><b>Voice Type: </b><a href='?_src_=prefs;preference=voice_type_mumble;task=input'>[voice_type_mumble]</a>"
 			//dat += "<br><b>Accent:</b> <a href='?_src_=prefs;preference=char_accent;task=input'>[char_accent]</a>"
 			dat += "<br><b>Features:</b> <a href='?_src_=prefs;preference=customizers;task=menu'>Change</a>"
 			dat += "<br><b>Sprite Scale:</b><a href='?_src_=prefs;preference=body_size;task=input'>[(features["body_size"] * 100)]%</a>"
@@ -1487,7 +1489,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							virtue = new /datum/virtue/none
 							to_chat(user, span_info("Your virtue has been removed due to taking a stat-altering statpack.")) */
 				// LETHALSTONE EDIT: add pronouns
-				if ("pronouns")
+				if("pronouns")
 					var pronouns_input = input(user, "Choose your character's pronouns", "Pronouns") as null|anything in GLOB.pronouns_list
 					if(pronouns_input)
 						pronouns = pronouns_input
@@ -1496,7 +1498,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						to_chat(user, "<font color='red'><b>Your classes have been reset.</b></font>")
 
 				// LETHALSTONE EDIT: add voice type selection
-				if ("voicetype")
+				if("voicetype")
 					var voicetype_input = input(user, "Choose your character's voice type", "Voice Type") as null|anything in GLOB.voice_types_list
 					if(voicetype_input)
 						voice_type = voicetype_input
@@ -1583,6 +1585,38 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							return
 						voice_pitch = new_voice_pitch
 
+				if("voice_type_mumble")
+					var/static/list/selectable_voices = list(
+						"neutral_01",
+						"male_01",
+						"male_02",
+						"male_03",
+						"male_04",
+						"male_05",
+						"male_06",
+						"male_07",
+						"female_01",
+						"female_02",
+						"female_03",
+						"female_04",
+						"female_05",
+						"female_06",
+						"female_07"
+					)
+					var/list/voice_choices = list("None")
+					for(var/voice in selectable_voices)
+						if(voice in pref_species.voice_type_mumble)
+							continue
+						var/datum/language/mumble_voice = new voice_type_mumble()
+						voice_choices[mumble_voice.name] = voice_type_mumble
+					
+					var/chosen_mumble_voice = input(user, "Choose your character's audible voice:", "Character Preference") as null|anything in voice_choices
+					if(chosen_mumble_voice)
+						if(chosen_mumble_voice == "None")
+							chosen_mumble_voice = "None"
+						else
+							chosen_mumble_voice = voice_choices[chosen_mumble_voice]
+					
 				if("highlight_color")
 					var/new_color = input(user, "Choose your character's nickname highlight color:", "Character Preference","#"+highlight_color) as color|null
 					if(new_color)
@@ -2428,6 +2462,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	character.pronouns = pronouns
 	character.voice_type = voice_type
+	character.voice_type_mumble = voice_type_mumble
 
 	// LETHALSTONE ADDITION END
 
