@@ -187,6 +187,8 @@
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	l_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+	
+	H.merctype = 4
 
 
 

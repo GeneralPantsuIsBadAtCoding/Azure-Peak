@@ -59,6 +59,7 @@
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WEBWALK, TRAIT_GENERIC)	//A cave dweller fears no spider.
+	H.merctype = 12
 
 
 //Clothing here to avoid overcrowding the hats.dm with snowflake gear. It's just a kettle with a light.

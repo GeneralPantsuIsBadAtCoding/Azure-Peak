@@ -92,3 +92,4 @@
 	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
+	H.merctype = 2
