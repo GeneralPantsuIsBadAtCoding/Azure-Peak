@@ -362,3 +362,41 @@
 	detail_tag = "_detail"
 	detail_color = COLOR_SILVER
 	sewrepair = TRUE
+
+/obj/item/clothing/mask/rogue/facemask/xylixmask
+	name = "xylixian mask"
+	desc = "A ceramic mask, forever stuck with the joyful smile its patron god favors. While it will shatter easily from blows, its smug countenance shall taunt its foes."
+	max_integrity = 50
+	armor = null
+	prevent_crits = null
+	drop_sound = 'sound/foley/brickdrop.ogg'
+	pickup_sound = 'sound/foley/brickdrop.ogg'
+	icon_state = "xylixmask"
+	item_state = "xylixmask"
+	detail_tag = "_l"
+	altdetail_tag = "_r"
+	color = "#FFFFFF"
+	detail_color = "#4756d8"
+	altdetail_color = "#b8252c"
+	anvilrepair = /datum/skill/misc/ceramics
+	smeltresult = null
+
+/obj/item/clothing/mask/rogue/facemask/xylixmask/Initialize()
+	..()
+	update_icon()
+
+/obj/item/clothing/mask/rogue/facemask/xylixmask/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+	if(get_altdetail_tag())
+		var/mutable_appearance/pic2 = mutable_appearance(icon(icon, "[icon_state][altdetail_tag]"))
+		pic2.appearance_flags = RESET_COLOR
+		if(get_altdetail_color())
+			pic2.color = get_altdetail_color()
+		add_overlay(pic2)

@@ -306,6 +306,12 @@
 	icon_state = "pestrasickle"
 	max_integrity = 200
 
+/obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife
+	name ="devilsknife"
+	desc = "More a sickle than a knife. It is said that Xylix once won these in a game of chance against an archdevil. These are simple reproductions, with jingling bells attached to the blades."
+	icon_state = "devilsknife"
+	max_integrity = 200
+
 /*
 	name = "facón"
 	desc = "An ornate traditional Etruscan knife inlaid with silver, passed down through generations of farmhands and warlords alike."

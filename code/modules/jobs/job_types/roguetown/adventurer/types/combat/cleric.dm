@@ -86,6 +86,7 @@
 					head = /obj/item/clothing/head/roguetown/eoramask
 				if (/datum/patron/divine/xylix)
 					cloak = /obj/item/clothing/cloak/templar/xylix
+					mask = /obj/item/clothing/mask/rogue/facemask/xylixmask
 				else
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 					head = /obj/item/clothing/head/roguetown/roguehood
@@ -322,6 +323,7 @@
 					head = /obj/item/clothing/head/roguetown/eoramask
 				if (/datum/patron/divine/xylix)
 					cloak = /obj/item/clothing/cloak/templar/xylix
+					mask = /obj/item/clothing/mask/rogue/facemask/xylixmask
 				if(/datum/patron/inhumen/zizo)
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
 					head = /obj/item/clothing/head/roguetown/roguehood
