@@ -19,6 +19,7 @@
 	var/obj/structure/roguemachine/scomm/called_by = null
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
+	var/bad_words = list("Zizo", "Graggar", "Boatha", "Matthios", "Zezus Psyst")
 
 /obj/structure/roguemachine/scomm/Initialize()
 	. = ..()
@@ -267,13 +268,18 @@
 			if(calling.calling == src)
 				calling.repeat_message(raw_message, src, usedcolor, message_language)
 			return
+		for(var/bad_word_filter in bad_words)		//Death to LRP, my friends.
+			var/regex/bad_words = regex("([bad_word_filter])", "im")
+			if(bad_words.Find(raw_message))
+				punish_speaker(speaker)
+				return FALSE
 		if(length(raw_message) > 100) //When these people talk too much, put that shit in slow motion, yeah
-			/*if(length(raw_message) > 200)
+			if(length(raw_message) > 250)	//If over 250, WELL over 3 scentences, it'll spawn a mean rous to hurt you..
 				if(!spawned_rat)
 					visible_message(span_warning("An angered rous emerges from the SCOMlines!"))
 					new /mob/living/simple_animal/hostile/retaliate/rogue/bigrat(get_turf(src))
 					spawned_rat = TRUE
-				return*/
+				return
 			raw_message = "<small>[raw_message]</small>"
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
@@ -318,7 +324,29 @@
 		if(S.speaking)
 			S.say(message, spans = list("info"))
 
-
+// Punishes bad behavior, such as saying Zizo, with a HARSH god-smite.
+// Finally........ A code solution to RP standard........
+/obj/structure/roguemachine/scomm/proc/punish_speaker(mob/living/speaker)
+	to_chat(speaker, span_userdanger("Something doesn't feel right.. someone is watching you.."))
+	sleep(60)
+	speaker.psydo_nyte()
+	speaker.playsound_local(speaker, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(20)
+	speaker.psydo_nyte()
+	speaker.playsound_local(speaker, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(15)
+	speaker.psydo_nyte()
+	speaker.playsound_local(speaker, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(10)
+	to_chat(speaker, span_userdanger("HE SAW YOUR SINS!!!!!"))	//Hewwo, Mr. Obama?
+	speaker.Stun(40)											//Help, Mr. Obama!!!
+	speaker.adjust_divine_fire_stacks(200)						//PWEASE-
+	speaker.adjustFireLoss(200)									//Perish..........
+	explosion(get_turf(speaker), light_impact_range = 1, flame_range = 1, smoke = FALSE)
+	speaker.IgniteMob()
+	speaker.add_stress(/datum/stressevent/psycurse)
+	message_admins("[speaker.real_name]([key_name(speaker)]) said a profane word on scoms [src.name]. [ADMIN_JMP(src)]")
+	log_admin("[speaker.real_name]([key_name(speaker)]) said a profane word on scoms [src.name].")
 
 //SCOMSTONE                 SCOMSTONE
 
@@ -341,6 +369,7 @@
 	var/speaking = TRUE
 	var/messagereceivedsound = 'sound/misc/scom.ogg'
 	var/hearrange = 1 // change to 0 if you want your special scomstone to be only hearable by wearer
+	var/bad_words = list("Zizo", "Graggar", "Boatha", "Matthios", "Zezus Psyst")
 	drop_sound = 'sound/foley/coinphy (1).ogg'
 	sellprice = 100
 	grid_width = 32
@@ -358,6 +387,11 @@
 	user.whisper(input_text)
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
+	for(var/bad_word_filter in bad_words)		//Death to LRP, my friends.
+		var/regex/bad_words = regex("([bad_word_filter])", "im")
+		if(bad_words.Find(input_text))
+			punish_speaker(user)
+			return FALSE
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
 	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
@@ -365,6 +399,28 @@
 	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)//make the listenstone hear scomstone
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+
+/obj/item/scomstone/proc/punish_speaker(mob/living/carbon/human/user)
+	to_chat(user, span_userdanger("Something doesn't feel right.. someone is watching you.."))
+	sleep(60)
+	user.psydo_nyte()
+	user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(20)
+	user.psydo_nyte()
+	user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(15)
+	user.psydo_nyte()
+	user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(10)
+	to_chat(user, span_userdanger("HE SAW YOUR SINS!!!!!"))	//Hewwo, Mr. Obama?
+	user.Stun(40)											//Help, Mr. Obama!!!
+	user.adjust_divine_fire_stacks(200)						//PWEASE-
+	user.adjustFireLoss(200)									//Perish..........
+	explosion(get_turf(user), light_impact_range = 1, flame_range = 1, smoke = FALSE)
+	user.IgniteMob()
+	user.add_stress(/datum/stressevent/psycurse)
+	message_admins("[user.real_name]([key_name(user)]) said a profane word on scoms [src.name]. [ADMIN_JMP(src)]")
+	log_admin("[user.real_name]([key_name(user)]) said a profane word on scoms [src.name].")
 
 /obj/item/scomstone/MiddleClick(mob/user)
 	if(.)
@@ -749,6 +805,11 @@
 	user.whisper(input_text)
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
+	for(var/bad_word_filter in bad_words)		//Death to LRP, my friends.
+		var/regex/bad_words = regex("([bad_word_filter])", "im")
+		if(bad_words.Find(input_text))
+			punish_speaker(user)
+			return FALSE
 	if(garrisonline)
 		input_text = "<big><span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
 		for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
