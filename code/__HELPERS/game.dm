@@ -213,41 +213,43 @@
 /proc/inLineOfTravel(mob/traveler, atom/target)
 	var/turf/our_turf = get_turf(traveler)
 	var/turf/their_turf = get_turf(target)
-	var/X1 = our_turf.x
-	var/Y1 = our_turf.y
-	var/X2 = their_turf.x
-	var/Y2 = their_turf.y
-	var/Z = our_turf.z
 	var/turf/current_turf = our_turf
-	var/turf/last_turf
-	if(X1==X2)
-		if(Y1==Y2)
-			return TRUE //you're already on the tile
-		else
-			var/s = SIGN(Y2-Y1)
-			Y1+=s
-			while(Y1!=Y2)
-				last_turf = current_turf
-				current_turf = locate(X1,Y1,Z)
-				if(current_turf.density || last_turf.LinkBlockedWithAccess(current_turf, traveler))
-					return FALSE
-				Y1+=s
+	var/dist_x = their_turf.x-our_turf.x
+	var/dist_y = their_turf.y-our_turf.y
+	var/dir_x = dist_x > 0 ? EAST : WEST
+	var/dir_y = dist_y > 0 ? NORTH : SOUTH
+	dist_x = abs(dist_x)
+	dist_y = abs(dist_y)
+	var/pure_diagonal = dist_x == dist_y
+	var/short_leg
+	var/long_leg
+	var/long_dir
+	if(dist_x < dist_y)
+		short_leg = dist_x
+		long_leg = dist_y
+		long_dir = dir_y
 	else
-		var/m=(Y2-Y1)/(X2-X1) // slope
-		var/b=(Y1+0.5)-m*(X1+0.5) // y axis offset in tiles
-		var/signX = SIGN(X2-X1)
-		var/signY = SIGN(Y2-Y1)
-		if(X1<X2)
-			b+=m
-		while(X1!=X2 || Y1!=Y2)
-			if(round(m*X1+b-Y1))
-				Y1+=signY //Line exits tile vertically
-			else
-				X1+=signX //Line exits tile horizontally
-			last_turf = current_turf
-			current_turf = locate(X1,Y1,Z)
-			if(current_turf.density || last_turf.LinkBlockedWithAccess(current_turf, traveler))
-				return FALSE
+		long_leg = dist_x
+		long_dir = dir_x
+		short_leg = dist_y
+	var/diagonal_error = (long_leg/2) - short_leg
+	var/dist_travelled = 0
+	var/travel_dir = get_dir(our_turf, their_turf)
+	while(current_turf != their_turf && dist_travelled < 255) // no one should ever be leaping through 255 tiles.
+		if(dist_travelled >= long_leg) // we should've arrived by now, so recalculate our dir
+			travel_dir = get_dir(current_turf, their_turf)
+		var/current_dir = travel_dir
+		if(!pure_diagonal)
+			if(diagonal_error >= 0 && long_leg - dist_travelled != 1) // do a step forward unless we're right next to the target
+				current_dir = long_dir
+			diagonal_error += (diagonal_error < 0) ? long_leg/2 : -short_leg
+		var/turf/next_turf = get_step(current_turf, current_dir)
+		if(!next_turf) // went off the edge of the map
+			return FALSE
+		if(next_turf.density || current_turf.LinkSelfBlocked(current_dir, traveler) || current_turf.LinkBlockedWithAccess(next_turf, traveler))
+			return FALSE
+		dist_travelled++
+		current_turf = next_turf
 	return TRUE
 
 /proc/isInSight(atom/A, atom/B)
