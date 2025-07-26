@@ -21,10 +21,20 @@
 					return "slit_1"
 				else
 					return "slit_2"
+
+///Solaris edit to erection sprites
+	if(pp.erect_state == ERECT_STATE_HARD)
+		return "[icon_state]_2"
+	else
+		return "[icon_state]_1"
+	
+///Old Azure code
+ /*
 	if(pp.erect_state == ERECT_STATE_HARD)
 		return "[icon_state]_[min(3,pp.penis_size+1)]"
 	else
 		return "[icon_state]_[pp.penis_size]"
+*/
 
 /datum/sprite_accessory/penis/is_visible(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
 	if(owner.underwear)
@@ -39,12 +49,6 @@
 /datum/sprite_accessory/penis/knotted
 	icon_state = "knotted"
 	name = "Knotted"
-	color_key_defaults = list(null, KEY_CHEST_COLOR)
-	default_colors = list("C52828", null)
-
-/datum/sprite_accessory/penis/knotted2
-	name = "Knotted 2"
-	icon_state = "knotted2"
 	color_key_defaults = list(null, KEY_CHEST_COLOR)
 	default_colors = list("C52828", null)
 
@@ -79,6 +83,12 @@
 	icon_state = "hemi"
 	name = "Hemi"
 	default_colors = list("C52828", "C52828")
+
+/datum/sprite_accessory/penis/hemi_mammal
+	icon_state = "hemi"
+	name = "Hemi"
+	color_key_defaults = list(null, KEY_CHEST_COLOR)
+	default_colors = list("C52828", null)
 
 /datum/sprite_accessory/penis/hemiknot
 	icon_state = "hemiknot"
