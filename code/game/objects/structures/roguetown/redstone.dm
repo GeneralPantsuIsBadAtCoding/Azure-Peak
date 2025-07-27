@@ -64,6 +64,23 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	. = ..()
 	icon_state = "leverwall[toggled]"
 
+/obj/structure/lever/hidden
+	icon = null
+
+/obj/structure/lever/hidden/proc/feel_button(mob/living/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		L.changeNext_move(CLICK_CD_MELEE)
+		user.visible_message(span_warning("[user] presses a hidden button."))
+		user.log_message("pulled the lever with redstone id \"[redstone_id]\"", LOG_GAME)
+		for(var/obj/structure/O in redstone_attached)
+			spawn(0) O.redstone_triggered(user)
+		toggled = !toggled
+		playsound(src, 'sound/foley/lever.ogg', 100, extrarange = 3)
+
+/obj/structure/lever/hidden/onkick(mob/user) // nice try
+	return FALSE
+
 /obj/structure/pressure_plate //vanderlin port
 	name = "pressure plate"
 	desc = "Be careful. Stepping on this could either mean a bomb exploding or a door closing on you."
