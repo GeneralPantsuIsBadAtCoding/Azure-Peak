@@ -696,7 +696,7 @@
 
 /obj/item/rogueweapon/halberd/psyhalberd	
 	name = "psydonian halberd"
-	desc = "FILLTHIS"
+	desc = "A reliable design that has served humenkind to fell the enemy and defend Psydon's flock - now fitted with a lengthier blade and twin, silver-tipped beaks."
 	icon_state = "silverhalberd"
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
@@ -885,7 +885,7 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/
 	name = "psydonian greatsword"
-	desc = "FILLTHIS"
+	desc = "It is said that a Psydonian smith was guided by Saint Malum himself to forge such a formidable blade, and given the task to slay a daemon preying on the Otavan farmlands. The design was retrieved, studied, and only a few replicas made - for they believe it dulls its edge."
 	icon_state = "silverexealt"
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
@@ -902,7 +902,7 @@
 
 /obj/item/rogueweapon/greatsword/bsword/psy
 	name = "old psydonian broadsword"
-	desc = "ERM."
+	desc = "Even the most ignorant of zealots know that the holy silver loses its properties when not blessed by Adjudicators and Priests of the Holy See for an extended period of time. Its edge remains as lethal as ever, however."
 	icon_state = "oldpsybroadsword"
 	force = 25
 	force_wielded = 30
@@ -912,7 +912,7 @@
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic
 	name = "Creed"
-	desc = "ERM."
+	desc = "Psydonian prayers and Tennite smiths, working as one to craft a weapon to slay the Four. A heavy and large blade, favored by Saint Ravox, to lay waste to those who threaten His flock. The crossguard's psycross reflects even the faintest of Noc's light. You're the light - show them the way."
 	icon_state = "psybroadsword"
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic/ComponentInitialize()
@@ -920,8 +920,8 @@
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/rogueweapon/greatsword/bsword/psy/forgotten
-	name = "forgotten blade"
-	desc = "ERM."
+	name = "His Grace"
+	desc = "A blade of an outdated design, yet touched by history and duty - the saiga leather that covers the hilt is worn out, and its edge has seen sharper days. The crossguard, shaped like His crown, evokes the need to endure against the enemy. A silver psycross is fastened around its rainguard. A reminder that the enemy will fall, and we will reign victorious."
 	icon_state = "forgottenblade"
 
 /obj/item/rogueweapon/greatsword/bsword/psy/forgotten/ComponentInitialize()

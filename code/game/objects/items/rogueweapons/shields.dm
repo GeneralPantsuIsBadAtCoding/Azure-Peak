@@ -228,7 +228,7 @@
 
 /obj/item/rogueweapon/shield/tower/metal/psy
 	name = "Covenant"
-	desc = "A psydonian..."
+	desc = "A psydonian endures. A psydonian preserves themselves. A psydonian preserves His flock."
 	icon_state = "psyshield"
 	force = 20
 	throwforce = 10

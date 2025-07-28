@@ -30,7 +30,7 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	cloak = /obj/item/clothing/neck/roguetown/psicross/silver
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor

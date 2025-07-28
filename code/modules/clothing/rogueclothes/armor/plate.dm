@@ -142,8 +142,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/ordinator
 	name = "inquisitorial ordinator's plate"
-	desc = "A sturdily made and ornately fashioned set of full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+	desc = "A relic that is said to have survived the Grenzelhoft-Otavan war, refurbished and repurposed to slay the arch-enemy in the name of Psydon. <br> A fluted cuirass that has been reinforced with thick padding and an additional shoulder piece. You will endure."
 	icon_state = "ordinatorplate"	
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios

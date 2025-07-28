@@ -160,11 +160,12 @@
 
 /obj/item/clothing/mask/rogue/sack/psy
 	name = "psydonian sack mask"
-	desc = "A brown sack with eyeholes cut into it. This one bares HIS cross. UP THE PSY."
+	desc = "An ordinary brown sack. This one has eyeholes cut into it, bearing a crude chalk drawing of Psydon's cross upon its visage. Unsettling for most."
 	icon_state = "sackmask_psy"
 
 /obj/item/clothing/mask/rogue/facemask/steel/confessor
-	name = "confessor mask"
+	name = "strange mask"
+	desc = "It is said that the original mask was used for obscure rituals prior to the fall of the Empire of the Holy Celestia, and now it has been repurposed as a veil for the cunning hand of the Otavan Holy See. <br> Others say it is a piece of heresy, a necessary evil, capable of keeping its user safe from left-handed magicks. You can taste copper whenever you draw breath."
 	icon_state = "confessormask"
 	max_integrity = 200
 	equip_sound = 'sound/items/confessormaskon.ogg'

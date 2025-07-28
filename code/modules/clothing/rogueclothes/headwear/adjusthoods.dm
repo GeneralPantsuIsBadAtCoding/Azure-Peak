@@ -191,8 +191,8 @@
 	max_integrity = 200
 
 /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
-	name = "confessor hood"
-	desc = "A hood worn by the Inquisition's confessors. Made with spell-laced fabric to provide some protection."
+	name = "confessional hood"
+	desc = "A loose-fitting piece of leatherwear that can be tightened on the move. Keeps rain, blood, and the tears of the sullied away."
 	icon_state = "confessorhood"
 	item_state = "confessorhood"
 	color = null

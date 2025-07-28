@@ -365,8 +365,8 @@
 		add_overlay(pic2)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm
-	name = "ordinator's helmet"
-	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	name = "inquisitorial ordinator's helmet"
+	desc = "A design suggested by a Grenzelhoftian smith, an avid follower of Saint Abyssor - implying to base it on the templar's greathelm design, and it was proved worthy of usage: <br> A steel casket with thin slits that allow for deceptively clear vision. The tainted will drown on the blood you will bring their way."
 	icon_state = "ordinatorhelm"
 	item_state = "ordinatorhelm"
 	worn_x_dimension = 64
@@ -407,7 +407,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
 	name = "psydonian conical helm"
-	desc = "Stand tall. ENDURE as the One."
+	desc = "Based on the visage worn by Saint Pestra's order, this cryptic helmet provides its wearer with the satisfaction of reminding heretics that fear is not an emotion easily lost. Even the dead may learn to taste terror again."
 	icon_state = "absolutionisthelm"
 	item_state = "absolutionisthelm"
 	emote_environment = 3
@@ -422,7 +422,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 	name = "psydonian bucket helmet"
-	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	desc = "Worn by the blade-carrying arms of Saint Astrata and Saint Ravox, it is a true-and-tested design. Steel encapsulates your head, and His cross when facing enemies reminds them that you will endure until they meet oblivion. Only then may you rest."
 	icon_state = "psybucket"
 	item_state = "psybucket"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
@@ -431,7 +431,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psysallet
 	name = "psydonian sallet"
-	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	desc = "A boiled leather cap, crowned with steel and veiled with His cross. Fear not - He will show you the way, and He will see your blows well-struck."
 	icon_state = "psysallet"
 	item_state = "psysallet"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT

@@ -110,8 +110,8 @@
 	sellprice = 25
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
-	name = "confessor's coat"
-	desc = "A heavy steerhide jerkin that reaches past the hips and better protects the vitals."
+	name = "confessional coat"
+	desc = "A sturdy raincoat draped atop of a tightly-fastened boiled leather cuirass. Saint Astrata's younglings fashion little pieces of memorabilia and stitch it on the inner pockets of the coat to remind the confessors that their cause is virtuous, and that they mustn't lose sight of what matters."
 	icon_state = "confessorcoat"
 	item_state = "confessorcoat"
 	body_parts_covered = COVERAGE_FULL
