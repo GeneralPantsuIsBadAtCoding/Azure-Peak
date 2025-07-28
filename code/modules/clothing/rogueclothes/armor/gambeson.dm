@@ -87,6 +87,7 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	color = "#5058c1"
 	detail_color = "#e98738"
+	detail_tag = "_detail"
 	shiftable = FALSE
 	sellprice = 30
 	var/picked = FALSE
@@ -104,6 +105,10 @@
 			var/mob/living/carbon/H = user
 			H.update_inv_shirt()
 			H.update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/Initialize()
+	. = ..()		
+	update_icon()
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/update_icon()
 	cut_overlays()
@@ -211,3 +216,13 @@
 	item_state = "monkleather"
 	desc = "Tight boiled leathers that stretch and fit to one's frame perfectly."
 	shiftable = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
+	name = "inquisitiorial leather tunic"
+	desc = "The finest leather tunic. Made to ENDURE, Made to Inquire, come heretic or hellfire."
+	icon_state = "leathertunic"
+	color = null
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
+	armor = ARMOR_PADDED
+	shiftable = FALSE
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS

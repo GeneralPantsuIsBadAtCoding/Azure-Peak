@@ -1,6 +1,6 @@
 /datum/advclass/disciple
 	name = "Disciple"
-	tutorial = "Psydonite monks and Naledian warscholars, trained in the martial arts. The former excels at shrugging off terrible blows while wrestling foes into submission, while the latter - often hired as mercenaries from abroad - amplify their pugilism with acryne might."
+	tutorial = "Psydonite monks trained in the martial arts. They excel at shrugging off terrible blows while wrestling foes into submission."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
@@ -9,39 +9,27 @@
 /datum/outfit/job/roguetown/disciple
 	job_bitflag = BITFLAG_CHURCH
 
+/obj/item/storage/belt/rogue/leather/rope/dark
+	color = "#505050"
+
 /datum/outfit/job/roguetown/disciple/pre_equip(mob/living/carbon/human/H)
 	..()
+	has_loadout = TRUE
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/psythorns
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
-	shoes = /obj/item/clothing/shoes/roguetown/sandals
-	id = /obj/item/clothing/ring/silver
-	backl = /obj/item/storage/backpack/rogue/satchel
-	mask = /obj/item/clothing/mask/rogue/facemask/psydonmask
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	id = /obj/item/clothing/ring/signet/silver
+	backl = /obj/item/storage/backpack/rogue/satchel/otavan
+	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
-	var/classes = list("Otavan Disciple", "Naledi-Trained Scholar")
-	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
-	switch(classchoice)
-		if("Otavan Disciple")
-			H.set_blindness(0)
-			brute_equip(H)
-		if("Naledi-Trained Scholar")
-			H.set_blindness(0)
-			naledi_equip(H)
-
-	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-
-	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles. It's just a self-heal.
-
-/datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
-	belt = /obj/item/storage/belt/rogue/leather/rope
-	pants = /obj/item/clothing/under/roguetown/tights/black
+	belt = /obj/item/storage/belt/rogue/leather/rope/dark
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	H.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -60,39 +48,19 @@
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 	H.grant_language(/datum/language/otavan)
+	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+	var/datum/devotion/C = new /datum/devotion(H, H.patron)
+	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles. It's just a self-heal.
 
-/datum/outfit/job/roguetown/disciple/proc/naledi_equip(mob/living/carbon/human/H)
-	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-	belt = /obj/item/storage/belt/rogue/leather/black
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
-	cloak = /obj/item/clothing/cloak/psydontabard/alt
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) 
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.change_stat("strength", 3)
-	H.change_stat("speed", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", -1)
-	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // Pre-set spell list
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
-		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
-		ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
-		H.grant_language(/datum/language/celestial)
+/datum/outfit/job/roguetown/disciple/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	var/weapons = list("MY BARE HANDS", "Katar", "Knuckles")
+	var/weapon_choice = input(H,"Choose your PSYDONIAN weapon.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	switch(weapon_choice)
+		if("MY BARE HANDS")
+			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
+		if("Katar")
+			H.put_in_hands(new /obj/item/rogueweapon/katar/psydon(H), TRUE)
+		if("Knuckles")
+			H.put_in_hands(new /obj/item/rogueweapon/knuckles/psydon(H), TRUE)
+

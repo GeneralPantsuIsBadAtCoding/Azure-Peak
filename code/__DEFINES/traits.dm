@@ -95,7 +95,9 @@
 #define TRAIT_BETTER_SLEEP	"Better Sleep" //Recover more energy (blue bar) when sleeping
 #define TRAIT_LEECHIMMUNE "Unleechable" //leeches wont attach in bog squares + dendor boon.
 #define TRAIT_LONGSTRIDER "Longstrider"
-#define TRAIT_PSYDONITE "Psydonite Devotion" // Anti-Miracles on a selective basis, anastasis / cure rot and ENDURE still apply. Slow passive wound healing while you have blood.
+#define TRAIT_PSYDONIAN_GRIT "Psydonian Grit" // Pain Tolerance. Through faith, ENDURE.
+#define TRAIT_PSYDONITE "Psydonite's Devotion" // Anti-Miracles on a selective basis, anastasis / cure rot still apply. Slow passive wound healing while you have blood.
+#define TRAIT_BLACKBAGGER "Apprehension Techniques" // Capable of using Garrotes and Blackbags. Apprehension techniques.
 
 // ASCENDANT CULTIST TRAITS (all of them recognize each other)
 #define TRAIT_COMMIE "Blessing of Matthios" //recognized by bandits as an ally
@@ -243,7 +245,9 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_SHARPER_BLADES = span_info("My blades go dull slower, ensuring they stay sharp longer."),
 	TRAIT_CABAL = span_info("In secret, I have studied the ways of Her ascension."),
 	TRAIT_HORDE = span_info("BY BLOOD AND BONE, I AM OF GRAGGAR'S ANOINTED!"),
-	TRAIT_PSYDONITE = span_info("PSYDON LYVES. PSYDON PERSISTS. I can ENDURE and LYVE with wounds better than most. Healing miracles hold no sway over me and others of my faith."),
+	TRAIT_PSYDONITE = span_info("PSYDON LYVES. PSYDON PERSISTS. I can ENDURE and LYVE with wounds better than most. Healing miracles hold no sway over me."),
+	TRAIT_PSYDONIAN_GRIT = span_info("I can shrug off my wounds and maintain composure under duress. My own mortality is proof that I LYVE, as too does HE."),
+	TRAIT_BLACKBAGGER = span_info("I've been trained to properly abduct individuals through the use of seizing garrotes and blackbags."),
 	TRAIT_FORTITUDE = span_info("The typical drain I feel from day to day life is lessened, my athleticism greater."),
 	TRAIT_GUIDANCE = span_info("The arcyne aides me in battle."),
 	TRAIT_DEPRAVED = span_info("The languid scent of Her debauchery is known to me."),
@@ -380,6 +384,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DUMB				"dumb"
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
 #define TRAIT_PACIFISM			"pacifism"
+#define TRAIT_NOTIGHTGRABMESSAGE "notightgrabmessage" // Hides grab tightening messages.
+#define TRAIT_NOSTRUGGLE "nostruggle" // Instant grabs on someone else.
+#define TRAIT_GARROTED "garroted" // Garrote-wired. Used for a snowflaked grab with item relevant tracking.
+#define TRAIT_BAGGED "bagged" // Black-bagged. More snowflaking.
 #define TRAIT_IGNORESLOWDOWN	"Ignore Slow"
 #define TRAIT_IGNOREDAMAGESLOWDOWN "Ignore Damage Slowdown"
 #define TRAIT_RIGIDMOVEMENT		"Ignore Natural Health Slowdown"

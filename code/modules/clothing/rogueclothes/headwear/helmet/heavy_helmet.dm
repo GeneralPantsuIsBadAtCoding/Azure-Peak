@@ -364,6 +364,80 @@
 			pic2.color = get_altdetail_color()
 		add_overlay(pic2)
 
+/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm
+	name = "ordinator's helmet"
+	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	icon_state = "ordinatorhelm"
+	item_state = "ordinatorhelm"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	adjustable = CAN_CADJUST
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY
+	var/plumed = FALSE
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather))
+		user.visible_message(span_warning("[user] starts to fashion plumage using [W] for [src]."))
+		if(do_after(user, 4 SECONDS))
+			var/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/plume/P = new /obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/plume(get_turf(src.loc))
+			if(user.is_holding(src))
+				user.dropItemToGround(src)
+				user.put_in_hands(P)
+			P.obj_integrity = src.obj_integrity
+			qdel(src)
+			qdel(W)
+		else
+			user.visible_message(span_warning("[user] stops fashioning plumage for [src]."))
+		return
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/plume
+	icon_state = "ordinatorhelmplume"
+	item_state = "ordinatorhelmplume"
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/plume/attackby(obj/item/W, mob/living/user, params)
+	if(istype(W, /obj/item/natural/feather))
+		return
+
+/obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
+	name = "psydonian conical helm"
+	desc = "Stand tall. ENDURE as the One."
+	icon_state = "absolutionisthelm"
+	item_state = "absolutionisthelm"
+	emote_environment = 3
+	body_parts_covered = FULL_HEAD|NECK
+	block2add = FOV_RIGHT|FOV_LEFT
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL + ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY // Worst vision. Yes.
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+
+/obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+	name = "psydonian bucket helmet"
+	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	icon_state = "psybucket"
+	item_state = "psybucket"
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	adjustable = CAN_CADJUST
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
+
+/obj/item/clothing/head/roguetown/helmet/heavy/psysallet
+	name = "psydonian sallet"
+	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
+	icon_state = "psysallet"
+	item_state = "psysallet"
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	adjustable = CAN_CADJUST
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL	
+
 /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 	name = "noc helmet"
 	desc = "Headwear commonly worn by Templars in service to Noc. Without the night there can be no day; without Noc there can be no light in the dark hours."

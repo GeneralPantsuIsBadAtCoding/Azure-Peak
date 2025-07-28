@@ -141,6 +141,48 @@
 	desc = "Runes and wards, meant for daemons; the gold has somehow rusted in unnatural, impossible agony. The gold is now worthless, but that is not why the Naledi wear them."
 	sellprice = 20
 
+/obj/item/clothing/mask/rogue/sack
+	name = "sack mask"
+	desc = "A brown sack with eyeholes cut into it."
+	icon_state = "sackmask"
+	blocksound = SOFTHIT
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	max_integrity = 200
+	prevent_crits = list(BCLASS_BLUNT)
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	flags_inv = HIDEFACE|HIDESNOUT|HIDEHAIR|HIDEEARS
+	body_parts_covered = FACE|HEAD
+	block2add = FOV_BEHIND
+	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
+	armor = ARMOR_PADDED 
+	sewrepair = TRUE
+
+/obj/item/clothing/mask/rogue/sack/psy
+	name = "psydonian sack mask"
+	desc = "A brown sack with eyeholes cut into it. This one bares HIS cross. UP THE PSY."
+	icon_state = "sackmask_psy"
+
+/obj/item/clothing/mask/rogue/facemask/steel/confessor
+	name = "confessor mask"
+	icon_state = "confessormask"
+	max_integrity = 200
+	equip_sound = 'sound/items/confessormaskon.ogg'
+	smeltresult = /obj/item/ingot/steel	
+	var/worn = FALSE
+
+/obj/item/clothing/mask/rogue/facemask/steel/confessor/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.wear_mask == src)
+		worn = TRUE
+
+/obj/item/clothing/mask/rogue/facemask/steel/confessor/dropped(mob/user)
+	. = ..()
+	if(worn)
+		playsound(user, 'sound/items/confessormaskoff.ogg', 80)
+		worn = FALSE
+
+
 /obj/item/clothing/mask/rogue/wildguard
 	name = "wild guard"
 	desc = "A mask shaped after the snarling beasts of Dendor."

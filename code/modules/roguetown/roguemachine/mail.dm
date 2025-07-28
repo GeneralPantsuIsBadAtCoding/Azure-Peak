@@ -60,6 +60,9 @@
 	if(!ishuman(user))
 		return	
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))	
+		if(!coin_loaded && !inqcoins)
+			to_chat(user, span_notice("It needs a Marque."))
+			return
 		user.changeNext_move(CLICK_CD_MELEE)
 		display_marquette(usr)
 
@@ -68,9 +71,10 @@
 	. += span_info("Load a coin inside, then right click to send a letter.")
 	. += span_info("Left click with a paper to send a prewritten letter for free.")
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))
-		. += span_info("The MARQUETTE can be accessed via a secret compartment fitted within the HERMES. Place requisitions here.")
-		. += span_info("You can also send arrival slips, accusation slips, or confessions here.")
-		. += span_info("Properly sign them. Include an INDEXER where needed. Stamp them for an added Marque.")
+		. += span_info("<br>The MARQUETTE can be accessed via a secret compartment fitted within the HERMES. Load a Marque to access it.")
+
+		. += span_info("You can send arrival slips, accusation slips, loaded INDEXERs or confessions here.")
+		. += span_info("Properly sign them. Include an INDEXER where needed. Stamp them for an additional Marque.")
 
 /obj/structure/roguemachine/mail/attack_right(mob/user)
 	. = ..()
@@ -80,6 +84,9 @@
 	if(!coin_loaded)
 		to_chat(user, span_warning("The machine doesn't respond. It needs a coin."))
 		return
+	if(inqcoins)
+		to_chat(user, span_warning("The machine doesn't respond."))
+		return	
 	var/send2place = input(user, "Where to? (Person or #number)", "ROGUETOWN", null)
 	if(!send2place)
 		return
@@ -188,11 +195,14 @@
 							GLOB.confessors += "[C.signed]"
 				qdel(C)
 				visible_message(span_warning("[user] sends something."))
-				playsound(loc, 'sound/magic/hallelujah.ogg', 100, FALSE, -1)
+				playsound(loc, 'sound/misc/otavais.ogg', 100, FALSE, -1)
 				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 		return
 
 	if(istype(P, /obj/item/paper))
+		if(inqcoins)
+			to_chat(user, span_warning("The machine doesn't respond."))
+			return	
 		if(alert(user, "Send Mail?",,"YES","NO") == "YES")
 			var/send2place = input(user, "Where to? (Person or #number)", "ROGUETOWN", null)
 			var/sentfrom = input(user, "Who is this from?", "ROGUETOWN", null)
@@ -251,8 +261,12 @@
 
 	if(istype(P, /obj/item/roguecoin/inqcoin))
 		if(HAS_TRAIT(user, TRAIT_INQUISITION))	
+			if(coin_loaded && !inqcoins)
+				return
 			var/obj/item/roguecoin/M = P
+			coin_loaded = TRUE
 			inqcoins += M.quantity
+			update_icon()
 			qdel(M)
 			playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 			return display_marquette(usr)
@@ -282,12 +296,16 @@
 
 /obj/structure/roguemachine/mail/update_icon()
 	cut_overlays()
-	if(coin_loaded)
-		add_overlay(mutable_appearance(icon, "mail-f"))
-		set_light(1, 1, 1, l_color = "#ff0d0d")
+	if(coin_loaded)	
+		if(inqcoins > 0)
+			add_overlay(mutable_appearance(icon, "mail-i"))
+			set_light(1, 1, 1, l_color = "#ffffff")
+		else
+			add_overlay(mutable_appearance(icon, "mail-f"))
+			set_light(1, 1, 1, l_color = "#1b7bf1")
 	else
 		add_overlay(mutable_appearance(icon, "mail-s"))
-		set_light(1, 1, 1, l_color = "#1b7bf1")
+		set_light(1, 1, 1, l_color = "#ff0d0d")
 
 /obj/structure/roguemachine/mail/examine(mob/user)
 	. = ..()
@@ -445,13 +463,19 @@
 		contents += "</center>"			
 	var/datum/browser/popup = new(user, "VENDORTHING", "", 500, 600)
 	popup.set_content(contents)
-	popup.open()	
+	if(inqcoins == 0)
+		popup.close()
+		return
+	else
+		popup.open()
 
 /obj/structure/roguemachine/mail/Topic(href, href_list)
 	..()
 	if(href_list["eject"])
 		if(inqcoins <= 0)
 			return
+		coin_loaded = FALSE
+		update_icon()	
 		budget2change(inqcoins, usr, "MARQUE")
 		inqcoins = 0
 

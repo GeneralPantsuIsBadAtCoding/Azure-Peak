@@ -137,6 +137,7 @@
 // Weapon Armors (Yeah, we have this)
 #define ARMOR_SHIELD list("blunt" = 50, "slash" = 25, "stab" = 0, "piercing" = 0)
 #define ARMOR_GREATSWORD list("blunt" = 20, "slash" = 50, "stab" = 50, "piercing" = 0)
+#define ARMOR_BROADSWORD list("blunt" = 40, "slash" = 50, "stab" = 50, "piercing" = 0)
 #define ARMOR_SWORD list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
 
 //Antag / Special / Unique armor defines
@@ -363,6 +364,9 @@
 GLOBAL_LIST_INIT(lockhashes, list())
 GLOBAL_LIST_INIT(lockids, list())
 GLOBAL_LIST_EMPTY(credits_icons)
+GLOBAL_LIST_EMPTY(inqarrivals)
+GLOBAL_LIST_EMPTY(indexered)
+GLOBAL_LIST_EMPTY(accused)
 GLOBAL_LIST_EMPTY(confessors)
 
 //preference stuff

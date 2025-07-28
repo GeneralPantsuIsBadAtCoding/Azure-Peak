@@ -40,6 +40,43 @@
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/clothing/wrists/roguetown/bracers/psythorns
+	name = "psydonian thorns"
+	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be wrapped around the wrists."
+	body_parts_covered = ARMS
+	icon_state = "psybarbs"
+	item_state = "psybarbs"
+	armor = ARMOR_PLATE_BSTEEL
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
+	blocksound = PLATEHIT
+	resistance_flags = FIRE_PROOF
+	max_integrity = ARMOR_INT_SIDE_BLACKSTEEL
+	anvilrepair = /datum/skill/craft/armorsmithing
+	sewrepair = FALSE
+	alternate_worn_layer = WRISTS_LAYER
+
+/obj/item/clothing/wrists/roguetown/bracers/psythorns/equipped(mob/user, slot)
+	. = ..()
+	user.update_inv_wrists()
+	user.update_inv_gloves()
+	user.update_inv_armor()
+	user.update_inv_shirt()
+
+/obj/item/clothing/wrists/roguetown/bracers/psythorns/attack_self(mob/living/user)
+	. = ..()
+	user.visible_message(span_warning("[user] starts to reshape the [src]."))
+	if(do_after(user, 4 SECONDS))
+		var/obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns/P = new /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns(get_turf(src.loc))
+		if(user.is_holding(src))
+			user.dropItemToGround(src)
+			user.put_in_hands(P)
+		P.obj_integrity = src.obj_integrity
+		user.adjustBruteLoss(25)	
+		qdel(src)
+	else
+		user.visible_message(span_warning("[user] stops reshaping [src]."))
+		return
+
 /obj/item/clothing/wrists/roguetown/bracers/aalloy
 	name = "decrepit bracers"
 	desc = "Decrepit old bracers. Aeon's grasp is upon them."

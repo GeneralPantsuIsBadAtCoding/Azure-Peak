@@ -140,3 +140,57 @@
 /obj/structure/fireaxecabinet/south
 	dir = SOUTH
 	pixel_y = 32
+
+/obj/structure/fireaxecabinet/forgotten
+	name = "Forgotten blade rack"
+	desc = "A fitting resting place for a psydonian sword etched and scratched by tales long past."
+	icon = 'icons/obj/wallmounts.dmi'
+	icon_state = "fireaxe"
+	heirloom = /obj/item/rogueweapon/greatsword/bsword/psy/forgotten/
+
+/obj/structure/fireaxecabinet/forgotten/Initialize()
+	. = ..()
+	heirloom = new /obj/item/rogueweapon/greatsword/bsword/psy/forgotten
+	update_icon()
+
+/obj/structure/fireaxecabinet/forgotten/south
+	dir = SOUTH
+	pixel_y = 32
+
+/obj/structure/fireaxecabinet/forgotten/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		toggle_lock(user)
+	else if(I.tool_behaviour == TOOL_WELDER && user.used_intent.type == INTENT_HELP && !obj_broken)
+		if(obj_integrity < max_integrity)
+			if(!I.tool_start_check(user, amount=2))
+				return
+
+	else if(open || obj_broken)
+		if(istype(I, /obj/item/rogueweapon/greatsword/bsword/psy/forgotten/) && !heirloom)
+			var/obj/item/rogueweapon/greatsword/bsword/psy/forgotten/F = I
+			if(F.wielded)
+				to_chat(user, "<span class='warning'>Unwield the [F.name] first.</span>")
+				return
+			if(!user.transferItemToLoc(F, src))
+				return
+			heirloom = F
+			to_chat(user, "<span class='notice'>I place the [F.name] back in the [name].</span>")
+			update_icon()
+			return
+		else if(!obj_broken)
+			toggle_open()
+	else
+		return ..()
+
+/obj/structure/fireaxecabinet/forgotten/update_icon()
+	cut_overlays()
+	if(heirloom)
+		add_overlay("axe_forgotten")
+	if(!open)
+
+		if(locked)
+			add_overlay("locked")
+		else
+			add_overlay("unlocked")
+	else
+		add_overlay("glass_raised")

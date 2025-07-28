@@ -15,6 +15,7 @@
 #define CLERIC_REGEN_DEVOTEE 0.3
 #define CLERIC_REGEN_MINOR 0.5
 #define CLERIC_REGEN_MAJOR 1
+#define CLERIC_REGEN_ABSOLUTIONIST 5
 
 // Cleric Holder Datums
 

@@ -109,7 +109,7 @@ Reel teleports the attached atom to the grabbed turf.
 		stat = clamp(stat, 10, 70)	//Clamp to a very loud second just in case you're a superhuman engineer
 		user.visible_message(span_info("[user] begins cranking the [src]..."))
 		playsound(user, 'sound/misc/grapple_crank.ogg', 100, FALSE, 3)
-		if(do_after(user, (70 - stat)))
+		if(move_after(user, (70 - stat), FALSE, user))
 			playsound(src, 'sound/foley/trap_arm.ogg', 100, FALSE , 5)
 			to_chat(user, span_info("It's loaded!"))
 			is_loaded = TRUE
@@ -120,8 +120,7 @@ Reel teleports the attached atom to the grabbed turf.
 		if(attached && in_use)
 			if(get_dist(attached, grappled_turf) <= (user.z != grappled_turf.z ? max_range_z : max_range_noz))
 				user.visible_message("[user] reels in the [src]!")
-				if(do_after(user, 10))
-					reel()
+				reel()
 			else
 				to_chat(user, span_info("[attached] is too far!"))
 	else if(!is_loaded && in_use && grappled_turf && tile_effect)	//Reset option.
@@ -203,7 +202,24 @@ Reel teleports the attached atom to the grabbed turf.
 //Successful reel, complete reset.
 /obj/item/grapplinghook/proc/reel()
 	if(attached && in_use && grappled_turf)
+		var/mob/living/grabber
+		var/mob/living/grabby
+		var/grapple_buckled
+		if(isliving(attached))
+			grabber = attached
+			if(grabber && isliving(grabber.pulling))
+				grabby = grabber.pulling
+				if(grabby in grabber.buckled_mobs)
+					grapple_buckled = TRUE
 		if(do_teleport(attached, grappled_turf))
+			if(grabby)
+				do_teleport(grabby, grappled_turf)
+				grabber.start_pulling(grabby, supress_message = TRUE)
+				if(grapple_buckled) 
+					if(grabby.mobility_flags & MOBILITY_STAND)	// piggyback carry
+						grabber.buckle_mob(grabby, TRUE, TRUE, FALSE, 0, 0)
+					else				// fireman carry
+						grabber.buckle_mob(grabby, TRUE, TRUE, 90, 0, 0)
 			playsound(attached, 'sound/misc/grapple_reel.ogg', 100, FALSE)
 			playsound(grappled_turf, 'sound/misc/grapple_reel.ogg', 100, FALSE)
 			destroy_eligible_objects()
@@ -272,12 +288,11 @@ Reel teleports the attached atom to the grabbed turf.
 					safe_to_teleport = FALSE
 			if(safe_to_teleport)
 				to_chat(user, span_info("I begin to attach the hook..."))
-				if(do_after(user, 30))
-					if(target != user)
-						user.visible_message(span_warning("[user] attaches the hook to [target]."))
-					if(target == user)
-						user.visible_message(span_warning("[user] attaches the hook to themselves!"))
-					attach(target)
+				if(target != user)
+					user.visible_message(span_warning("[user] attaches the hook to [target]."))
+				if(target == user)
+					user.visible_message(span_warning("[user] attaches the hook to themselves!"))
+				attach(target)
 			else
 				to_chat(user, span_warning("[target] is too large or unwieldy to attach!"))
 		else

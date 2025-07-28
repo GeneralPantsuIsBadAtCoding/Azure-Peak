@@ -238,6 +238,31 @@
 	sheathe_icon = "ashortsword"
 	smeltresult = /obj/item/ingot/aaslag
 
+/obj/item/rogueweapon/sword/short/psy
+	name = "psydonian shortsword"
+	desc = "A finely made shortsword, fashioned within a ceremonial veneer of ornate silver - made for felling men and monsters alike."
+	force = 19
+	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
+	icon_state = "psyswordshort"
+	sheathe_icon = "psyswordshort"
+	gripped_intents = null
+	minstr = 4
+	wdefense = 4
+	wbalance = WBALANCE_SWIFT
+	wlength = WLENGTH_SHORT
+	w_class = WEIGHT_CLASS_NORMAL
+	grid_width = 32
+	grid_height = 96
+
+/obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
+	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
+
+/obj/item/rogueweapon/sword/short/psy/preblessed
+
+/obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
+	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, TRUE, 3, 100, 50, 1, TRUE)
 
 /obj/item/rogueweapon/sword/long
 	name = "longsword"
@@ -927,6 +952,20 @@
 	icon_state = "decrapier"
 	sheathe_icon = "decrapier"
 	sellprice = 140
+
+/obj/item/rogueweapon/sword/rapier/psy/relic
+	name = "Eucharist"
+	desc = "A royal heirloom whose spiraling basket hilt is inlaid with fine cut gems. It bears the burnish of \
+	time, where once sharply defined features have been worn down by so many hands. An old rumor ties this implement \
+	to the siege that smashed the Mad Duke's keep to rubble, and burnt the Duke himself to cinders."
+	icon_state = "psyrapier"
+	sheathe_icon = "psyrapier"
+	max_integrity = 300
+	max_blade_int = 300
+	wdefense = 7
+
+/obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
+	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/rogueweapon/sword/rapier/lord
 	name = "sword of the Mad Duke"

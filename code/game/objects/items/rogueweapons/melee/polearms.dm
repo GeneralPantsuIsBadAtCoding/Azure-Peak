@@ -686,14 +686,22 @@
 	icon_state = "dendorscythe"
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 
-/obj/item/rogueweapon/halberd/psyhalberd
+/obj/item/rogueweapon/halberd/psyhalberd/relic
 	name = "Stigmata"
 	desc = "Christened in the Siege of Lirvas, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
 	icon_state = "psyhalberd"
 
-/obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
-	. = ..()				//Pre-blessed, +5 force, +100 blade int, +100 int, +2 def, make silver.
+/obj/item/rogueweapon/halberd/psyhalberd/relic/ComponentInitialize()	//Pre-blessed, +5 force, +100 blade int, +100 int, +2 def, make silver.
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
+
+/obj/item/rogueweapon/halberd/psyhalberd	
+	name = "psydonian halberd"
+	desc = "FILLTHIS"
+	icon_state = "silverhalberd"
+
+/obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/rogueweapon/halberd/glaive
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
@@ -875,14 +883,50 @@
 	force = 14
 	force_wielded = 35
 
-/obj/item/rogueweapon/greatsword/psygsword
+/obj/item/rogueweapon/greatsword/psygsword/
+	name = "psydonian greatsword"
+	desc = "FILLTHIS"
+	icon_state = "silverexealt"
+
+/obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
+
+/obj/item/rogueweapon/greatsword/psygsword/relic
 	name = "Apocrypha"
 	desc = "In the Otavan mosaics, Saint Ravox - bare in all but a beaked helmet and loincloth - is often depicted wielding such an imposing greatweapon against the Dark Star, Graggar. Regardless of whether this relic was actually wielded by divinity-or-not, its unparallel strength will nevertheless command even the greatest foes to fall."
 	icon_state = "psygsword"
 
-/obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
-	. = ..()					//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
+/obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
+
+/obj/item/rogueweapon/greatsword/bsword/psy
+	name = "old psydonian broadsword"
+	desc = "ERM."
+	icon_state = "oldpsybroadsword"
+	force = 25
+	force_wielded = 30
+	possible_item_intents = list(/datum/intent/sword/cut,/datum/intent/sword/chop,/datum/intent/stab) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/rend/krieg)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
+
+/obj/item/rogueweapon/greatsword/bsword/psy/relic
+	name = "Creed"
+	desc = "ERM."
+	icon_state = "psybroadsword"
+
+/obj/item/rogueweapon/greatsword/bsword/psy/relic/ComponentInitialize()
+	. = ..()					//Pre-blessed, +5 DMG, +100 Blade int, +100 int, +2 def, make it silver
+	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
+
+/obj/item/rogueweapon/greatsword/bsword/psy/forgotten
+	name = "forgotten blade"
+	desc = "ERM."
+	icon_state = "forgottenblade"
+
+/obj/item/rogueweapon/greatsword/bsword/psy/forgotten/ComponentInitialize()
+	. = ..()					//+50 Blade int, +3 DMG, +50 int, +1 def, make it silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)
 
 /obj/item/rogueweapon/estoc
 	name = "estoc"

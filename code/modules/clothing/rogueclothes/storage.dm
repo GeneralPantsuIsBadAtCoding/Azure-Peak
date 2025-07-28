@@ -194,6 +194,12 @@
 		/obj/item/paper,
 	)
 
+/obj/item/storage/backpack/rogue/satchel/otavan
+	name = "otavan leather satchel"
+	desc = "A made to last leather bag from the psydonian heart of Otava. It's Otava's finest."
+	icon_state = "osatchel"
+	item_state = "osatchel"
+
 /obj/item/storage/backpack/rogue/satchel/mule/PopulateContents()
 	for(var/i in 1 to 3)
 		switch(rand(1,4))

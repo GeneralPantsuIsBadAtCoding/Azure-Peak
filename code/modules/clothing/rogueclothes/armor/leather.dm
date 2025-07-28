@@ -109,6 +109,17 @@
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
+	name = "confessor's coat"
+	desc = "A heavy steerhide jerkin that reaches past the hips and better protects the vitals."
+	icon_state = "confessorcoat"
+	item_state = "confessorcoat"
+	body_parts_covered = COVERAGE_FULL
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	armor = ARMOR_LEATHER_STUDDED
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
+	max_integrity = ARMOR_INT_CHEST_LIGHT_BASE	
+
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 	name = "megarmach scale coat"
 	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."

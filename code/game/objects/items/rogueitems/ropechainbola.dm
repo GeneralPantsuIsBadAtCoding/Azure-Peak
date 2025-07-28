@@ -99,7 +99,7 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.compliance || C.surrendering)
+	if(C.compliance || C.surrendering || HAS_TRAIT(C, TRAIT_BAGGED))
 		surrender_mod = 0.5
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s arms with [src.name]!"), \

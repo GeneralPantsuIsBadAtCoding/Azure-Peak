@@ -204,6 +204,7 @@
 
 #define PURITAN		(1<<0)
 #define ORTHODOXIST	(1<<1)
+#define ABSOLUTIONIST (1<<2)
 
 #define GUILDSMEN	(1<<11)
 #define GUILDMASTER (1<<1)
@@ -307,6 +308,7 @@
 #define JDO_TRIBALSMITH 39
 #define JDO_PURITAN 40
 #define JDO_ORTHODOXIST 40.1
+#define JDO_ABSOLUTIONIST 40.2
 
 #define BITFLAG_CHURCH (1<<0)
 #define BITFLAG_ROYALTY (1<<1)

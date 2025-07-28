@@ -177,16 +177,34 @@
 	icon_state = "psydonhood"
 	item_state = "psydonhood"
 	color = null
-	body_parts_covered = NECK
+	blocksound = SOFTHIT
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	body_parts_covered = NECK | HEAD | HAIR
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
-	max_integrity = 100
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_HEAD_PSYDON
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
-	max_integrity = 100
+	max_integrity = 200
+
+/obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+	name = "confessor hood"
+	desc = "A hood worn by the Inquisition's confessors. Made with spell-laced fabric to provide some protection."
+	icon_state = "confessorhood"
+	item_state = "confessorhood"
+	color = null
+	body_parts_covered = NECK | HEAD | HAIR
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_HEAD_PSYDON
+	dynamic_hair_suffix = ""
+	edelay_type = 1
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
+	max_integrity = 200
 
 /obj/item/clothing/head/roguetown/roguehood/hierophant
 	name = "hierophant's pashmina"

@@ -510,7 +510,13 @@
 	desc = "I am awash with sentimentality."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/psyvived
+	name = "Absolved"
+	desc = "I feel a strange sense of peace."
+	icon_state = "buff"
+
 #define PSYDON_HEALING_FILTER "psydon_heal_glow"
+#define PSYDON_REVIVED_FILTER "psydon_revival_glow"
 
 /datum/status_effect/buff/psyhealing
 	id = "psyhealing"
@@ -544,6 +550,26 @@
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
 		owner.adjustCloneLoss(-healing_on_tick, 0)		
 
+/datum/status_effect/buff/psyvived
+	id = "psyvived"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/psyvived
+	duration = 30 SECONDS
+	examine_text = "SUBJECTPRONOUN moves with an air of ABSOLUTION!"
+	var/outline_colour = "#aa1717"
+
+/datum/status_effect/buff/psyvived/on_creation(mob/living/new_owner)
+	return ..()
+
+/datum/status_effect/buff/psyvived/on_apply()
+	var/filter = owner.get_filter(PSYDON_REVIVED_FILTER)
+	if (!filter)
+		owner.add_filter(PSYDON_REVIVED_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+	return TRUE
+
+/datum/status_effect/buff/psyvived/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/psyheal_rogue(get_turf(owner))
+	H.color = "#aa1717"	
+
 /datum/status_effect/buff/rockmuncher
 	id = "rockmuncher"
 	duration = 10 SECONDS
@@ -574,6 +600,10 @@
 
 /datum/status_effect/buff/psyhealing/on_remove()
 	owner.remove_filter(PSYDON_HEALING_FILTER)
+	owner.update_damage_hud()
+
+/datum/status_effect/buff/psyvived/on_remove()
+	owner.remove_filter(PSYDON_REVIVED_FILTER)
 	owner.update_damage_hud()
 
 /atom/movable/screen/alert/status_effect/buff/fortify

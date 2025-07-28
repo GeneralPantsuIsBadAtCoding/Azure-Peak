@@ -15,17 +15,17 @@
 
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/
-	name = "otavan supply crate"
+	name = "inquisitiorial supply crate"
 
 /obj/structure/closet/crate/chest/inqcrate/articles/
-	name = "inquisitional article crate"
+	name = "inquisitiorial article crate"
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/
 	lockid = "puritan"
 	locked = TRUE
 
 /obj/structure/closet/crate/chest/inqcrate/equipment/
-	name = "inquisitional equipment crate"
+	name = "inquisitiorial equipment crate"
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/
 	name = "otava's finest wardrobe crate"
@@ -194,39 +194,6 @@
 /obj/structure/closet/crate/chest/inqreliquary/relic/crankbox/Initialize()
 	. = ..()
 	new /obj/item/psydonmusicbox(src)
-
-
-/datum/inqports/reliquary/stigmata
-	name = "Stigmata"
-	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/stigmata
-	marquescost = 16
-	maximum = 1
-
-/obj/structure/closet/crate/chest/inqreliquary/relic/stigmata/Initialize()
-	. = ..()
-	new /obj/item/rogueweapon/halberd/psyhalberd(src)
-
-
-/datum/inqports/reliquary/daybreak
-	name = "Daybreak"
-	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/daybreak
-	marquescost = 16
-	maximum = 1
-
-/obj/structure/closet/crate/chest/inqreliquary/relic/daybreak/Initialize()
-	. = ..()
-	new /obj/item/rogueweapon/whip/antique/psywhip(src)	
-
-
-/datum/inqports/reliquary/apocrypha
-	name = "Apocrypha"
-	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/apocrypha
-	marquescost = 16
-	maximum = 1
-
-/obj/structure/closet/crate/chest/inqreliquary/relic/apocrypha/Initialize()
-	. = ..()
-	new /obj/item/rogueweapon/greatsword/psygsword(src)	 	
 
 // ✤ ARTICLES ✤ RIGHT HERE! THAT'S RIGHT!
 

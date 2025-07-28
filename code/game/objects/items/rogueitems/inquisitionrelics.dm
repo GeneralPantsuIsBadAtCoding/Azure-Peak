@@ -466,6 +466,327 @@ Inquisitorial armory down here
 	icon_state = "extinguish"
 	duration = 8
 
+/obj/item/rope/inqarticles/inquirycord
+	name = "inquiry cordage"
+	desc = "A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced. Intended for apprehending foes and rethreading tools at the worst of times."
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "inqcordage"
+	item_state = "inqcordage"
+	throw_speed = 1
+	throw_range = 3
+	throwforce = 5
+	breakouttime = 8 SECONDS
+	slipouttime = 900 // 1:30.
+	possible_item_intents = list(/datum/intent/tie)
+	grid_height = 32
+	grid_width = 32
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	experimental_inhand = TRUE
+	w_class = WEIGHT_CLASS_SMALL
+	intdamage_factor = 0
+	embedding = null
+	sellprice = 0
+
+/obj/item/rope/inqarticles/inquirycord/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 9,"ny" = -6,"wx" = -6,"wy" = -4,"ex" = 4,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 90,"wturn" = 93,"eturn" = -12,"nflip" = 0,"sflip" = 1,"wflip" = 0,"eflip" = 0)
+			if("wielded")	
+				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 9,"ny" = -6,"wx" = -6,"wy" = -4,"ex" = 4,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 90,"wturn" = 93,"eturn" = -12,"nflip" = 0,"sflip" = 1,"wflip" = 0,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+
+/obj/item/inqarticles/garrote
+	name = "\proper seizing garrote"
+	desc = "A macabre instrument favored by the more clandestine of the Psydonian Silver Order; A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced, held and threaded between two iron links. Perfect for apprehension."
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "garrote"
+	item_state = "garrote"
+	gripsprite = TRUE
+	throw_speed = 3
+	throw_range = 7
+	grid_height = 32
+	grid_width = 32
+	throwforce = 15
+	force_wielded = 0
+	force = 0
+	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	experimental_inhand = TRUE
+	wieldsound = TRUE
+	max_integrity = 200
+	w_class = WEIGHT_CLASS_SMALL
+	can_parry = FALSE
+	has_inspect_verb = TRUE
+	break_sound = 'sound/items/garrotebreak.ogg'
+	gripped_intents = list(/datum/intent/garrote/grab, /datum/intent/garrote/choke)
+	var/mob/living/victim
+	var/obj/item/grabbing/currentgrab
+	var/mob/living/lastcarrier
+	var/active = FALSE
+	intdamage_factor = 0
+	var/choke_damage = 7
+	integrity_failure = 0.01
+	embedding = null
+	sellprice = 0
+
+/obj/item/inqarticles/garrote/obj_break(damage_flag)
+	obj_broken = TRUE
+	if(!ismob(loc))
+		return
+	var/mob/M = loc
+	active = FALSE
+	if(altgripped || wielded)
+		ungrip(M, FALSE)
+		wipeslate(lastcarrier)
+		if(lastcarrier.pulling)
+			lastcarrier.stop_pulling()
+	if(break_sound)
+		playsound(get_turf(src), break_sound, 80, TRUE)
+	update_icon()
+	to_chat(M, "\The [src] SNAPS...!")
+	name = "\proper snapped seizing garrote"
+
+/obj/item/inqarticles/garrote/update_damaged_state()
+	icon_angle = initial(icon_angle)	
+	icon_state = "garrote_snap"
+
+/obj/item/inqarticles/garrote/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 9,"ny" = -6,"wx" = -6,"wy" = -4,"ex" = 4,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 90,"wturn" = 93,"eturn" = -12,"nflip" = 0,"sflip" = 1,"wflip" = 0,"eflip" = 0)
+			if("wielded")	
+				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 9,"ny" = -6,"wx" = -6,"wy" = -4,"ex" = 4,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 90,"wturn" = 93,"eturn" = -12,"nflip" = 0,"sflip" = 1,"wflip" = 0,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/datum/intent/garrote/choke
+	name = "choke"
+	icon_state = "inchoke"
+	desc = "Used to begin choking the target out."
+	no_attack = TRUE
+
+/datum/intent/garrote/grab
+	name = "grab"
+	icon_state = "ingrab"
+	desc = "Used to wrap around the target."
+	no_attack = TRUE
+
+/obj/item/inqarticles/garrote/proc/wipeslate(mob/user)
+	if(victim)
+		REMOVE_TRAIT(victim, TRAIT_MUTE, "garroteCordage")
+		REMOVE_TRAIT(victim, TRAIT_GARROTED, TRAIT_GENERIC)
+		victim = null
+		currentgrab = null
+	if(wielded)
+		ungrip(user, FALSE)
+		active = FALSE
+		playsound(loc, 'sound/items/garroteshut.ogg', 65, TRUE)
+
+/obj/item/inqarticles/garrote/attack_self(mob/user)
+	if(obj_broken)
+		to_chat(user, span_warning("It's useless now."))
+		return
+	if(!HAS_TRAIT(user, TRAIT_BLACKBAGGER))
+		to_chat(user, span_warning("\The [src] is wound too tightly."))
+		return
+	if(wielded)
+		ungrip(user, FALSE)
+		active = FALSE
+		if(user.pulling)
+			user.stop_pulling()
+		playsound(loc, 'sound/items/garroteshut.ogg', 65, TRUE)
+		wipeslate(user)
+		return
+	if(gripped_intents)
+		wield(user, FALSE)
+		active = TRUE
+		if(wielded)
+			playsound(loc, pick('sound/items/garrote.ogg', 'sound/items/garrote2.ogg'), 65, TRUE)
+			return
+
+/obj/item/inqarticles/garrote/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	lastcarrier = user
+	wipeslate(lastcarrier)
+	if(active)	
+		if(lastcarrier.pulling)
+			lastcarrier.stop_pulling()
+		playsound(user, 'sound/items/garroteshut.ogg', 65, TRUE)
+		active = FALSE
+	if(!obj_broken)
+		if(icon_state != initial(icon_state))
+			icon_state = initial(icon_state)
+			icon_angle = initial(icon_angle)
+
+/obj/item/inqarticles/garrote/dropped(mob/user, silent)
+	. = ..()
+	wipeslate(lastcarrier)
+	if(active)	
+		if(lastcarrier.pulling)
+			lastcarrier.stop_pulling()
+		playsound(user, 'sound/items/garroteshut.ogg', 65, TRUE)
+		active = FALSE
+	if(!obj_broken)
+		if(icon_state != initial(icon_state))
+			icon_state = initial(icon_state)
+			icon_angle = initial(icon_angle)
+
+/obj/item/inqarticles/garrote/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/rope/inqarticles/inquirycord))
+		user.visible_message(span_warning("[user] starts to rethread the [src] using the [I]."))
+		if(do_after(user, 12 SECONDS))
+			qdel(I)
+			obj_broken = FALSE
+			obj_integrity = max_integrity
+			icon_state = initial(icon_state)
+			icon_angle = initial(icon_angle)
+			name = initial(name)
+		else
+			user.visible_message(span_warning("[user] stops rethreading the [src]."))
+		return
+
+/obj/item/inqarticles/garrote/afterattack(mob/living/target, mob/living/user, proximity_flag, click_parameters)
+	if(istype(user.used_intent, /datum/intent/garrote/grab))	// Grab your target first.
+		if(!iscarbon(target))
+			return
+		if(!proximity_flag)
+			return
+		if(victim == target)
+			return
+		if(user.pulling)
+			user.stop_pulling(FALSE)
+		victim = target	
+		playsound(loc, 'sound/items/garrotegrab.ogg', 100, TRUE)
+		ADD_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)
+		ADD_TRAIT(target, TRAIT_GARROTED, TRAIT_GENERIC)
+		ADD_TRAIT(target, TRAIT_MUTE, "garroteCordage")
+		user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
+		user.visible_message(span_danger("[user] wraps the [src] around [target]'s throat!"))
+		user.changeNext_move(CLICK_CD_GRABBING)
+		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	
+		REMOVE_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
+		var/obj/item/grabbing/I = user.get_inactive_held_item()
+		I.icon_state = null
+		currentgrab = I
+
+	if(istype(user.used_intent, /datum/intent/garrote/choke))	// Get started.
+		if(!victim)
+			to_chat(user, span_warning("Who am I choking? What?"))
+			return
+		if(!proximity_flag)
+			return
+		user.stamina_add(rand(1,3))
+		var/mob/living/carbon/C = victim
+		// if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
+		playsound(loc, pick('sound/items/garrotechoke1.ogg', 'sound/items/garrotechoke2.ogg', 'sound/items/garrotechoke3.ogg', 'sound/items/garrotechoke4.ogg', 'sound/items/garrotechoke5.ogg'), 100, TRUE)
+		if(prob(40))
+			C.emote("choke")
+		C.adjustOxyLoss(choke_damage)
+		C.visible_message(span_danger("[user] [pick("garrotes", "asphyxiates")] [C]!"), \
+		span_userdanger("[user] [pick("garrotes", "asphyxiates")] me!"), span_hear("I hear the sickening sound of cordage!"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("I [pick("garrote", "asphyxiate")] [C]!"))	
+		user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.	
+
+/obj/item/clothing/head/inqarticles/blackbag
+	name = "black bag"
+	desc = "A heavily padded sack intended to muffle the cries made within it. Due to the padding, application and removal of these is usually difficult for the untrained."
+	icon_state = "blackbag"
+	item_state = "blackbag"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi'
+	blocksound = SOFTHIT
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	armor = ARMOR_LEATHER_GOOD
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	unequip_delay_self = 45
+	equip_delay_other = 16 SECONDS // No getting around it. Cheater.
+	equip_delay_self = 16 SECONDS
+	strip_delay = 10
+	slot_flags = ITEM_SLOT_HEAD
+	body_parts_covered = FULL_HEAD
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = NONE
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	max_integrity = 300
+	grid_width = 32
+	grid_height = 64
+	var/worn = FALSE
+
+/obj/item/clothing/head/inqarticles/blackbag/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(!iscarbon(M))
+		return
+	var/headgear = M.get_item_by_slot(SLOT_HEAD)
+	var/trained = FALSE
+	var/timetobag = 16 SECONDS
+	if(HAS_TRAIT(user, TRAIT_BLACKBAGGER))
+		trained = TRUE
+		timetobag = 8 SECONDS
+	user.visible_message(span_danger("[user] goes to [trained ? "expertly" : "clumsily"] black bag [M]!"))
+	if(!M.stat)
+		if(do_after(user, timetobag))
+			M.dropItemToGround(headgear)	
+			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
+	else
+		if(do_after(user, timetobag / 2))
+			M.dropItemToGround(headgear)	
+			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
+
+/obj/item/clothing/head/inqarticles/blackbag/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.head == src)
+		user.become_blind("blindfold_[REF(src)]")
+		worn = TRUE
+		ADD_TRAIT(user, TRAIT_BAGGED, TRAIT_GENERIC)
+
+/obj/item/clothing/head/inqarticles/blackbag/dropped(mob/living/carbon/human/user)
+	..()
+	if(worn == TRUE)
+		user.cure_blind("blindfold_[REF(src)]")
+		worn = FALSE
+		REMOVE_TRAIT(user, TRAIT_BAGGED, TRAIT_GENERIC)
+		user.emote("gasp")
+		return
+
+/obj/item/clothing/head/inqarticles/blackbag/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,
+				"sx" = -4,
+				"sy" = -7,
+				"nx" = 6,
+				"ny" = -6,
+				"wx" = -2,
+				"wy" = -7,
+				"ex" = -1,
+				"ey" = -7,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 0,
+				"eturn" = 0,
+				"nflip" = 8,
+				"sflip" = 0,
+				"wflip" = 0,
+				"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+
 /obj/item/inqarticles/bmirror
 	name = "black mirror"
 	desc = ""
@@ -477,11 +798,10 @@ Inquisitorial armory down here
 	throw_speed = 3
 	throw_range = 7
 	throwforce = 15
-	damtype = BURN
 	force = 15
 	dropshrink = 0
 	hitsound = 'sound/blank.ogg'
-	sellprice = 30
+	sellprice = 0
 	resistance_flags = FIRE_PROOF
 	var/opened = FALSE
 	var/fedblood = FALSE

@@ -139,6 +139,13 @@
 	if(istype(user) && user?.wear_armor == src)
 		user.remove_status_effect(/datum/status_effect/buff/psydonic_endurance)
 
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/ordinator
+	name = "inquisitorial ordinator's plate"
+	desc = "A sturdily made and ornately fashioned set of full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
+			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+	icon_state = "ordinatorplate"	
+
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios
 	name = "gilded fullplate"
 	desc = "Often, you have heard that told,"
@@ -312,6 +319,13 @@
 	icon_state = "fencercuirass"
 	item_state = "fencercuirass"
 
+/obj/item/clothing/suit/roguetown/armor/plate/half/fencer/psydon
+	name = "psydonian chestplate"
+	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
+	smelt_bar_num = 1
+	icon_state = "ornatechestplate"
+	item_state = "ornatechestplate"
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
 	name = "decrepit cuirass"
 	desc = "A withered cuirass. Aeon's grasp is upon its form."
@@ -387,48 +401,57 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
-	name = "inquisitorial duster"
-	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
-	desc = "A heavy coat lined with thin metal plates; only the finest for the inquisition."
-	body_parts_covered = COVERAGE_FULL
+	desc = "A heavy coat lined with thin metal plates; only the finest for the inquisition, complete with space to fit a Psydonian Cuirass."
 	body_parts_covered = COVERAGE_FULL
 	allowed_sex = list(MALE, FEMALE)
 	allowed_sex = list(MALE, FEMALE)
 	icon_state = "inqcoat"
-	icon_state = "inqcoat"
-	item_state = "inqcoat"
 	item_state = "inqcoat"
 	sleevetype = "shirt"
-	sleevetype = "shirt"
-	max_integrity = 200
-	max_integrity = 200
+	max_integrity = 300
 	anvilrepair = /datum/skill/craft/armorsmithing
-	anvilrepair = /datum/skill/craft/armorsmithing
-	smeltresult = /obj/item/ingot/steel
-	smeltresult = /obj/item/ingot/iron
 	equip_delay_self = 4 SECONDS
-	equip_delay_self = 4 SECONDS
-	armor_class = ARMOR_CLASS_MEDIUM
 	armor_class = ARMOR_CLASS_LIGHT
 	armor = ARMOR_LEATHER_STUDDED
+	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 2
-	smelt_bar_num = 2
-	blocksound = SOFTHIT
 	blocksound = SOFTHIT
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/ComponentInitialize()	//No movement rustle component.
 	return
 
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate))
+		user.visible_message(span_warning("[user] starts to fit [W] inside the [src]."))
+		if(do_after(user, 12 SECONDS))
+			var/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored/P = new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored(get_turf(src.loc))
+			if(user.is_holding(src))
+				user.dropItemToGround(src)
+			user.put_in_hands(P)
+			P.obj_integrity = src.obj_integrity
+			qdel(src)
+			qdel(W)
+		else
+			user.visible_message(span_warning("[user] stops fitting [W] inside the [src]."))
+		return
+
+
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored
 	slot_flags = ITEM_SLOT_ARMOR
-	name = "inquisitorial duster"
-	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
+	name = "armored inquisitorial duster"
+	desc = "Metal plates reinforce this heavy coat, worn over the top of the finest Psydonian plate."
 	smeltresult = /obj/item/ingot/steel 
 	icon_state = "inqcoata"
 	item_state = "inqcoata"
 	equip_delay_self = 4 SECONDS
-	max_integrity = 400
+	max_integrity = 300
 	armor_class = ARMOR_CLASS_MEDIUM
 	armor = ARMOR_CUIRASS
 	smelt_bar_num = 2
+	smeltresult = /obj/item/ingot/steel
 	blocksound = PLATEHIT	
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored/ComponentInitialize()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
+	return

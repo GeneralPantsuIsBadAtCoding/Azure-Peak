@@ -197,6 +197,25 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/mace/cudgel/psy
+	name = "psydonian handmace"
+	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
+	wbalance = WBALANCE_SWIFT
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	resistance_flags = FIRE_PROOF
+	icon_state = "psyflangedmace"
+	wdefense = 2
+
+/obj/item/rogueweapon/mace/cudgel/psy/ComponentInitialize()
+	// +3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)	
+
+/obj/item/rogueweapon/mace/cudgel/psy/preblessed
+
+/obj/item/rogueweapon/mace/cudgel/psy/preblessed/ComponentInitialize()
+	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, TRUE, 3, 100, 50, 1, TRUE)	
+
 /obj/item/rogueweapon/mace/cudgel/copper
 	name = "copper bludgeon"
 	desc = "An extremely crude weapon for cruder bastards."
@@ -218,6 +237,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	wbalance = WBALANCE_SWIFT
+	resistance_flags = FIRE_PROOF
 	minstr = 7
 	wdefense = 5
 

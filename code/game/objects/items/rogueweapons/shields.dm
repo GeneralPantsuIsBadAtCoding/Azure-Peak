@@ -226,6 +226,29 @@
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 	return ..()
 
+/obj/item/rogueweapon/shield/tower/metal/psy
+	name = "Covenant"
+	desc = "A psydonian..."
+	icon_state = "psyshield"
+	force = 20
+	throwforce = 10
+	throw_speed = 1
+	throw_range = 3
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
+	wlength = WLENGTH_NORMAL
+	resistance_flags = null
+	flags_1 = CONDUCT_1
+	wdefense = 11
+	coverage = 50
+	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	max_integrity = 300
+	blade_dulling = DULLING_SHAFT_METAL
+
+/obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
+	. = ..()							//+0 force, +100 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, TRUE, 0, FALSE, 100, 1, TRUE)	
+
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"
 	desc = "A decrepit, worn out shield. Aeon's grasp is upon it."

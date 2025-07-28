@@ -276,6 +276,23 @@
 	force = 27	//Its thrust will be able to pen 80 stab armor if the wielder has 17 STR. (With softcap)
 	max_integrity = 120
 
+/obj/item/rogueweapon/katar/psydon
+	name = "psydonian katar"
+	desc = "FILLTHIS"
+	icon_state = "psykatar"
+
+/obj/item/rogueweapon/katar/psydon/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
+
+/obj/item/rogueweapon/knuckles/psydon
+	name = "psydonian knuckles"
+	desc = "FILLTHIS"
+	icon_state = "psyknuckle"
+
+/obj/item/rogueweapon/knuckles/psydon/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/rogueweapon/knuckles
 	name = "steel knuckles"

@@ -1785,3 +1785,34 @@
 	inhand_mod = FALSE
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	allowed_race = NON_DWARVEN_RACE_TYPES
+
+/obj/item/clothing/cloak/ordinatorcape
+	name = "ordinator cape"
+	desc = "A flowing red cape complete with an ornately patterned steel shoulderguard. Made to last. Made to ENDURE. Made to LYVE."
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	icon_state = "ordinatorcape"
+	item_state = "ordinatorcape"
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/ordinatorcape/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/cloak/absolutionistrobe
+	name = "absolutionist's robe"
+	desc = "Absolve them of their pain. Absolve them of their longing. Lyve, as PSYDON lyves."
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	icon_state = "absolutionistrobe"
+	item_state = "absolutionistrobe"
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/absolutionistrobe/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+

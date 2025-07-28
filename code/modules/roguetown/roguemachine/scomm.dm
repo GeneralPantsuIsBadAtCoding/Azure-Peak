@@ -689,10 +689,10 @@
 
 /obj/item/listeningdevice
 	name = "listener"
-	desc = "An ever-attentive ear"
+	desc = "An ever-attentive ear..."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "listenstone"
-	dropshrink = 0.75
+	dropshrink = 0.6
 	gripped_intents = null
 	possible_item_intents = list(INTENT_GENERIC)
 	force = 10
@@ -702,33 +702,50 @@
 	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
-	flags_1 = HEAR_1
 	var/label = null
+	var/inqdesc = null
 	var/hidden = FALSE
 	var/active = FALSE
-	var/fullname = "listener"
 	var/datum/status_effect/bugged/effect
+
+/obj/item/listeningdevice/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_INQUISITION))
+		desc = inqdesc
+	else
+		desc = initial(desc)
+
+/obj/item/listeningdevice/Initialize()
+	. = ..()
+	become_hearing_sensitive()
+	inqdesc = "An ever-attentive ear... [span_notice("This ear hasn't been bent. It's unlabelled.")]"
+
+/obj/item/listeningdevice/Destroy()
+	lose_hearing_sensitivity()
+	return ..()
 
 /obj/item/listeningdevice/attack_self(mob/living/user)
 	var/input = input(user, "SIX LETTERS", "BEND AN EAR")
 	if(!input)
 		label = null
-		name = "[initial(name)]"
+		inqdesc = "An ever-attentive ear... [span_notice("This ear hasn't been bent. It's unlabelled.")]"
+		desc = inqdesc
 		return
 	label = uppertext(trim(input, 7))
-	fullname = "[initial(name)] - [label]"
-	if(!hidden)
-		name = fullname
+	inqdesc = "An ever-attentive ear... [span_notice("This ear's been bent. It's labelled as [label].")]"
+	desc = inqdesc
 	return
 
 /obj/item/listeningdevice/attack_right(mob/living/user)
 	if(!hidden)
-		alpha = 35
+		alpha = 30
 		name = "thing"
+		desc = "What is that thing?.."
 		hidden = TRUE
 		return TRUE
 	alpha = 255
-	name = fullname
+	name = initial(name)
+	desc = initial(desc)
 	hidden = FALSE
 	return TRUE
 

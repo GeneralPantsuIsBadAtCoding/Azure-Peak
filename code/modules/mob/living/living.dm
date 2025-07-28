@@ -554,6 +554,11 @@
 			var/mob/living/M = pulling
 			M.reset_offsets("pulledby")
 			reset_pull_offsets(pulling)
+			if(HAS_TRAIT(M, TRAIT_GARROTED))
+				var/obj/item/inqarticles/garrote/gcord = src.get_active_held_item()
+				if(!gcord)
+					gcord = src.get_inactive_held_item()
+				gcord.wipeslate(src)	
 
 		if(forced) //if false, called by the grab item itself, no reason to drop it again
 			if(istype(get_active_held_item(), /obj/item/grabbing))
@@ -1133,10 +1138,14 @@
 	else if(!cmode && L.cmode)
 		combat_modifier -= 0.3
 	if(agg_grab)
-		combat_modifier -= 0.3
+		if(!HAS_TRAIT(src, TRAIT_GARROTED))
+			combat_modifier -= 0.3
 
 	resist_chance += max((wrestling_diff * 10), -20)
-	resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
+	if(HAS_TRAIT(src, TRAIT_GARROTED))
+		resist_chance += (STACON - L.STASPD) * 5
+	else
+		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
 
@@ -1151,15 +1160,41 @@
 		var/rchance = ""
 		if(client?.prefs.showrolls)
 			rchance = " ([resist_chance]%)"
-		visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
+		if(HAS_TRAIT(src, TRAIT_GARROTED))
+			var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
+			if(!gcord)
+				gcord = L.get_inactive_held_item()
+			to_chat(pulledby, span_warning("[src] struggles against the [gcord]!"))
+			gcord.take_damage(13)
+		if(!HAS_TRAIT(src, TRAIT_GARROTED))	
+			visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
 						span_warning("I struggle against [L]'s grip![rchance]"), null, null, L)
+		else
+			var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
+			if(!gcord)
+				gcord = L.get_inactive_held_item()
+			visible_message(span_warning("[src] struggles to break free from [L]'s [gcord]!"), \
+						span_warning("I struggle against [L]'s [gcord]![rchance]"), null, null, L)					
 		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
-		to_chat(pulledby, span_warning("[src] struggles against my grip!"))
+		if(!HAS_TRAIT(src, TRAIT_GARROTED))
+			to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 		return FALSE
-
-	visible_message(span_warning("[src] breaks free of [L]'s grip!"), \
-					span_notice("I break free of [L]'s grip!"), null, null, L)
-	to_chat(L, span_danger("[src] breaks free of my grip!"))
+	if(!HAS_TRAIT(src, TRAIT_GARROTED))
+		visible_message(span_warning("[src] breaks free of [L]'s grip!"), \
+						span_notice("I break free of [L]'s grip!"), null, null, L)
+		to_chat(L, span_danger("[src] breaks free of my grip!"))
+	else
+		var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
+		if(!gcord)
+			gcord = L.get_inactive_held_item()	
+		visible_message(span_warning("[src] breaks free of [L]'s [gcord]!"), \
+						span_notice("I break free of [L]'s [gcord]!"), null, null, L)
+		to_chat(L, span_danger("[src] breaks free from my [gcord]!"))
+	if(HAS_TRAIT(src, TRAIT_GARROTED))
+		var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
+		if(!gcord)
+			gcord = L.get_inactive_held_item()
+		gcord.wipeslate(src)	
 	log_combat(L, src, "broke grab")
 	L.changeNext_move(agg_grab ? CLICK_CD_GRABBING : CLICK_CD_GRABBING + 1 SECONDS)
 	playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
