@@ -14,6 +14,10 @@
 	randomspread = 1
 	spread = 0
 	can_parry = TRUE
+	var/chargingspeed = 40
+	var/reloadtime = 40
+	var/movingreload = FALSE
+	var/hasloadedsprite = FALSE
 	force = 10
 	var/cocked = FALSE
 	cartridge_wording = "bolt"
@@ -37,6 +41,11 @@
 
 /datum/intent/shoot/crossbow
 	chargedrain = 0 //no drain to aim a crossbow
+	var/basetime = 40
+
+/datum/intent/shoot/crossbow/slurbow
+	chargedrain = 0 //no drain to aim a crossbow
+	basetime = 20
 
 /datum/intent/shoot/crossbow/can_charge()
 	if(mastermob)
@@ -51,7 +60,7 @@
 	if(mastermob && chargetime)
 		var/newtime = chargetime
 		//skill block
-		newtime = newtime + 40
+		newtime = newtime + basetime
 		newtime = newtime - (mastermob.get_skill_level(/datum/skill/combat/crossbows) * 4.25) // minus 4.25 per skill point
 		newtime = newtime - ((mastermob.STAPER)) // minus 1 per perception
 		if(newtime > 1)
@@ -62,7 +71,14 @@
 
 /datum/intent/arc/crossbow
 	chargetime = 1
+	var/basetime = 40
 	chargedrain = 0 //no drain to aim a crossbow
+
+/datum/intent/arc/crossbow/slurbow
+	chargetime = 1
+	basetime = 20
+	chargedrain = 0
+
 
 
 /datum/intent/arc/crossbow/can_charge()
@@ -77,7 +93,7 @@
 	if(mastermob && chargetime)
 		var/newtime = chargetime
 		//skill block
-		newtime = newtime + 80
+		newtime = newtime + basetime
 		newtime = newtime - (mastermob.get_skill_level(/datum/skill/combat/crossbows) * 20)
 		//per block
 		newtime = newtime + 20
@@ -101,9 +117,14 @@
 	else
 		if(!cocked)
 			to_chat(user, span_info("I step on the stirrup and use all my might..."))
-			if(do_after(user, 50 - user.STASTR, target = user))
-				playsound(user, 'sound/combat/Ranged/crossbow_medium_reload-01.ogg', 100, FALSE)
-				cocked = TRUE
+			if(!movingreload)
+				if(do_after(user, reloadtime - user.STASTR, target = user))
+					playsound(user, 'sound/combat/Ranged/crossbow_medium_reload-01.ogg', 100, FALSE)
+					cocked = TRUE
+			else
+				if(move_after(user, reloadtime - user.STASTR, target = user))
+					playsound(user, 'sound/combat/Ranged/crossbow_medium_reload-01.ogg', 100, FALSE)
+					cocked = TRUE
 		else
 			to_chat(user, span_warning("I carefully de-cock the crossbow."))
 			cocked = FALSE
@@ -147,11 +168,14 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/update_icon()
 	. = ..()
 	cut_overlays()
-	icon_state = "crossbow[cocked ? "1" : "0"]"
+	icon_state = "[item_state][cocked ? "1" : "0"]"
 
-	if(chambered)
+	if(chambered && !hasloadedsprite)
 		var/mutable_appearance/ammo = mutable_appearance('icons/roguetown/weapons/ammo.dmi', chambered.icon_state)
 		add_overlay(ammo)
+	if(chambered && hasloadedsprite)
+		icon_state = "[item_state][2]"
+	
 	if(!ismob(loc))
 		return
 	var/mob/M = loc
@@ -162,3 +186,20 @@
 	caliber = "regbolt"
 	max_ammo = 1
 	start_empty = TRUE
+
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
+	name = "slurbow"
+	desc = "A lighter weight crossbow with a distinct barrel shroud holding the bolt in place. Light enough to arm by hand. They're popular among among highywaymen and patrolling lamplighters of Otava."
+	icon = 'icons/roguetown/weapons/32.dmi'
+	icon_state = "slurbow0"
+	item_state = "slurbow"
+	possible_item_intents = list(/datum/intent/shoot/crossbow/slurbow, /datum/intent/arc/crossbow/slurbow, INTENT_GENERIC)
+	chargingspeed = 20
+	damfactor = 0.6
+	accfactor = 1.3
+	reloadtime = 20
+	hasloadedsprite = TRUE
+	movingreload = TRUE
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_HIP
+
