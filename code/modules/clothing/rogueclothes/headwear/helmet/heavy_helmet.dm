@@ -366,7 +366,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm
 	name = "inquisitorial ordinator's helmet"
-	desc = "A design suggested by a Grenzelhoftian smith, an avid follower of Saint Abyssor - implying to base it on the templar's greathelm design, and it was proved worthy of usage: <br> A steel casket with thin slits that allow for deceptively clear vision. The tainted will drown on the blood you will bring their way."
+	desc = "A design suggested by a Grenzelhoftian smith, an avid follower of Saint Abyssor - implying to base it on the templar's greathelm design, and it was proved worthy of usage: A steel casket with thin slits that allow for deceptively clear vision. The tainted will drown on the blood you will bring their way."
 	icon_state = "ordinatorhelm"
 	item_state = "ordinatorhelm"
 	worn_x_dimension = 64
