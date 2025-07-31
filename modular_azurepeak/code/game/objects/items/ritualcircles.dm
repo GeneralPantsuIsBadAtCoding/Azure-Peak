@@ -387,7 +387,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
 		return
 	var/riteselection = input(user, "Rituals of Progress", src) as null|anything in zizorites
-	switch(riteselection) // put ur rite selection here
+	switch(riteselection)
 		if("Rite of Armaments")
 			var/onrune = view(1, loc)
 			var/list/folksonrune = list()
@@ -397,18 +397,22 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			var/target = input(user, "Choose a host") as null|anything in folksonrune
 			if(!target)
 				return
-			if(do_after(user, 50))
-				user.say("ZIZO! ZIZO! DAME OF PROGRESS!!")
-				if(do_after(user, 50))
-					user.say("ZIZO! ZIZO! HEED MY CALL!!")
-					if(do_after(user, 50))
-						user.say("ZIZO! ZIZO! ARMS TO SLAY THE IGNORANT!!")
-						if(do_after(user, 50))
-							icon_state = "zizo_active"
-							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							zizoarmaments(target)
-							spawn(120)
-								icon_state = "zizo_chalky"
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("ZIZO! ZIZO! DAME OF PROGRESS!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("ZIZO! ZIZO! HEED MY CALL!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("ZIZO! ZIZO! ARMS TO SLAY THE IGNORANT!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			icon_state = "zizo_active"
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+			zizoarmaments(target)
+			spawn(120)
+				icon_state = "zizo_chalky"
 
 /obj/structure/ritualcircle/zizo/proc/zizoarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_CABAL))
@@ -449,7 +453,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	name = "Rune of Transaction"
 	desc = "A Holy Rune of Matthios."
 	icon_state = "matthios_chalky"
-	var/matthiosrites = list("Rite of Armaments")
+	var/matthiosrites = list("Rite of Armaments", "Defenestration")
 
 
 /obj/structure/ritualcircle/matthios/attack_hand(mob/living/user)
@@ -473,18 +477,42 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			var/target = input(user, "Choose a host") as null|anything in folksonrune
 			if(!target)
 				return
-			if(do_after(user, 50))
-				user.say("Gold and Silver, he feeds!!")
-				if(do_after(user, 50))
-					user.say("Pieces Tens, Hundreds, Thousands. The transactor feeds 'pon them all!!")
-					if(do_after(user, 50))
-						user.say("Arms to claim, Arms to take!!")
-						if(do_after(user, 50))
-							icon_state = "matthios_active"
-							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							matthiosarmaments(target)
-							spawn(120)
-								icon_state = "matthios_chalky"
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Gold and Silver, he feeds!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Pieces Tens, Hundreds, Thousands. The transactor feeds 'pon them all!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Arms to claim, Arms to take!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			icon_state = "matthios_active"
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+			matthiosarmaments(target)
+			spawn(120)
+				icon_state = "matthios_chalky"
+		if("Defenestration")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("The window is open, the transaction is made!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Pieces Tens, Hundreds, Thousands. The transactor feeds 'pon them all!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("The Transactor, feast upon this gluttonous pig!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			icon_state = "matthios_active"
+			if(defenestration())
+				to_chat(user, span_cultsmall("The ritual is complete, the noble gift of Astrata has been taken!"))
+				user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+			else
+				to_chat(user, span_cultsmall("The ritual fails. A noble must be in the center of the circle!"))
+			spawn(120)
+				icon_state = "matthios_chalky"
 
 /obj/structure/ritualcircle/matthios/proc/matthiosarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_COMMIE))
@@ -503,6 +531,64 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		spawn(40)
 			to_chat(target, span_cult("More to the maw, this shall help feed our greed."))
 
+/// Performs the de-noblification ritual, which requires a noble character in the center of the circle. TRUE on success, FALSE on failure.
+/obj/structure/ritualcircle/matthios/proc/defenestration()
+	var/mob/living/carbon/human/victim = null
+	for(var/mob/living/carbon/human/H in get_turf(src))
+		if(HAS_TRAIT(H, TRAIT_OUTLAW))
+			continue
+
+		if(!H.is_noble() || H.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
+			continue
+
+		victim = H
+		break
+
+	if(!victim)
+		return FALSE
+
+	playsound(loc, 'sound/combat/gib (1).ogg', 100, FALSE, -1)
+	loc.visible_message(span_cult("[victim]'s lux pours from their nose, into the rune... Transforming into freshly mint zennies!"))
+	new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+	new /obj/item/roguecoin/silver/pile(get_turf(src))
+	new /obj/item/roguecoin/silver/pile(get_turf(src))
+	if(victim.mind?.assigned_role in GLOB.noble_positions) // Intentionally stacked with rulermob/regent/prince to get extra payout for royals
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+	// Draining nobility from the duke or the heirs increases payout and causes CHAOS. Astrata weeps!
+	if((victim == SSticker.rulermob) || (victim == SSticker.regentmob) || (victim.mind?.assigned_role in list ("Prince", "Princess")))
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+		new /obj/item/roguecoin/gold/virtuepile(get_turf(src))
+		// Astrata loses her bearing due to this vile ritual
+		priority_announce("The Noble Gift of Astrata was tainted! The Sun, she is weeping!", "Bad Omen", 'sound/misc/evilevent.ogg')
+		var/datum/round_event_control/lightsout/E = new()
+		E.req_omen = FALSE
+		E.earliest_start = 0
+		E.min_players = 0
+		E.runEvent()
+
+		var/datum/round_event_control/haunts/H = new()
+		H.req_omen = FALSE
+		H.earliest_start = 0
+		H.min_players = 0
+		if(LAZYLEN(GLOB.hauntstart))
+			H.runEvent()
+
+	victim.Stun(60)
+	victim.Knockdown(60)
+	to_chat(victim, span_userdanger("UNIMAGINABLE PAIN!"))
+	victim.apply_status_effect(/datum/status_effect/debuff/ritualdefiled)
+
+	to_chat(victim, span_userdanger("ASTRATA WEEPS!"))
+	victim.emote("Agony")
+	REMOVE_TRAIT(victim, TRAIT_NOBLE, TRAIT_GENERIC)
+	REMOVE_TRAIT(victim, TRAIT_NOBLE, TRAIT_VIRTUE)
+	ADD_TRAIT(victim, TRAIT_DEFILED_NOBLE, TRAIT_GENERIC)
+	playsound(loc, 'sound/misc/evilevent.ogg', 100, FALSE, -1)
+	to_chat(victim, span_cult("You feel your Astrata's gift of nobility stripped from you, the inhumen feasting upon it!"))
+	return TRUE
 
 /datum/outfit/job/roguetown/gildedrite/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -524,7 +610,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	name = "Rune of Violence"
 	desc = "A Holy Rune of Graggar."
 	// icon_state = "graggar_chalky"
-	var/graggarrites = list("Rite of Armaments")
+	var/graggarrites = list("Rite of Armaments", "War Ritual")
 
 /obj/structure/ritualcircle/graggar/attack_hand(mob/living/user)
 	if((user.patron?.type) != /datum/patron/inhumen/graggar)
@@ -547,18 +633,39 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			var/target = input(user, "Choose a host") as null|anything in folksonrune
 			if(!target)
 				return
-			if(do_after(user, 50))
-				user.say("MOTIVE FORCE, OH VIOLENCE!!")
-				if(do_after(user, 50))
-					user.say("A GORGEOUS FEAST OF VIOLENCE, FOR YOU, FOR YOU!!")
-					if(do_after(user, 50))
-						user.say("A SLAUGHTER AWAITS!!") // see the numbers taste the violence
-						if(do_after(user, 50))
-							//icon_state = "graggar_active" when we have one
-							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							graggararmor(target)
-							//spawn(120)
-								//icon_state = "graggar_chalky" 
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("MOTIVE FORCE, OH VIOLENCE!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("A GORGEOUS FEAST OF VIOLENCE, FOR YOU, FOR YOU!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("A SLAUGHTER AWAITS!!") // see the numbers taste the violence
+			if(!do_after(user, 5 SECONDS))
+				return
+			//icon_state = "graggar_active" when we have one
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+			graggararmor(target)
+			//spawn(120)
+				//icon_state = "graggar_chalky" 
+		if("War Ritual")
+			to_chat(user, span_userdanger("This rite will get me more tired than usual... I wonder, should I proceed?"))
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Blood for the war god, the circle is drawn!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Let noble flesh be the price for the horde!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Let portals open, let the goblins swarm!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			if(perform_warritual())
+				user.apply_status_effect(/datum/status_effect/debuff/ritesexpended_heavy)
+			else
+				to_chat(user, span_smallred("The ritual fails. A noble, member of the inquisition or a tennite churchling body must be in the center of the circle!"))
 
 /obj/structure/ritualcircle/graggar/proc/graggararmor(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_HORDE))
@@ -576,6 +683,45 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		target.apply_status_effect(/datum/status_effect/debuff/devitalised)
 		spawn(40)
 			to_chat(target, span_cult("Break them."))
+
+/// Performs the war ritual, which requires a noble or inquisition member in the center of the circle. TRUE on success, FALSE on failure.
+/obj/structure/ritualcircle/graggar/proc/perform_warritual()
+	var/mob/living/carbon/human/victim = null
+	for(var/mob/living/carbon/human/H in get_turf(src))
+		if(H.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
+			continue
+
+		if(H.is_noble() || HAS_TRAIT(H, TRAIT_INQUISITION) || (H.mind?.assigned_role in list("Priest", "Templar", "Martyr")))
+			victim = H
+			break
+
+	if(!victim)
+		return FALSE
+
+	playsound(loc, 'sound/combat/gib (1).ogg', 100, FALSE, -1)
+	loc.visible_message(span_cult("[victim]'s lux pours from their nose, into the rune!"))
+	victim.Stun(60)
+	victim.Knockdown(60)
+	to_chat(victim, span_userdanger("UNIMAGINABLE PAIN!"))
+	victim.apply_status_effect(/datum/status_effect/debuff/ritualdefiled)
+	victim.emote("Agony")
+	victim.visible_message(
+		span_danger("[victim] writhes in unimaginable pain!"),
+		span_userdanger("IT HURTS! IT BURNS!")
+	)
+
+	to_chat(world, span_danger("A war ritual has been completed! Goblin portals begin to tear open across the land!"))
+	playsound(loc, 'sound/magic/bloodrage.ogg', 100, FALSE, -1)
+	var/datum/round_event_control/gobinvade/E = new()
+	E.req_omen = FALSE
+	E.earliest_start = 0
+	E.min_players = 0
+	if(LAZYLEN(GLOB.hauntstart))
+		E.runEvent()
+
+	sleep(2 SECONDS)
+	victim.emote("painscream", forced = TRUE)
+	return TRUE
 
 /datum/outfit/job/roguetown/viciousrite/pre_equip(mob/living/carbon/human/H)
 	..()

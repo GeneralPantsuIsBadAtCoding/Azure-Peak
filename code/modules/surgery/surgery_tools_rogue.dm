@@ -26,9 +26,6 @@
 	. = ..()
 	item_flags |= SURGICAL_TOOL //let's not stab patients for fun
 
-/obj/item/rogueweapon/surgery/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', initial(icon_state))
-
 /obj/item/rogueweapon/surgery/scalpel
 	name = "scalpel"
 	desc = "A tool used to carve precisely into the flesh of the sickly."
@@ -72,17 +69,14 @@
 	tool_behaviour = TOOL_HEMOSTAT
 	smeltresult = null
 
-/obj/item/rogueweapon/surgery/hemostat/first //Two different types for the purpose of having 2 slots for forceps in surgery bag.
+/obj/item/rogueweapon/surgery/hemostat/first //Three different types now to allow multiple surgical sites at once.
 	name = "\improper Tarsis forceps"
-
-/obj/item/rogueweapon/surgery/hemostat/first/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', "forceps")
 
 /obj/item/rogueweapon/surgery/hemostat/second
 	name = "\improper Sisrat forceps"
 
-/obj/item/rogueweapon/surgery/hemostat/second/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', "forceps_2")
+/obj/item/rogueweapon/surgery/hemostat/third
+	name = "\improper Medella forceps"
 
 /obj/item/rogueweapon/surgery/retractor
 	name = "speculum"
