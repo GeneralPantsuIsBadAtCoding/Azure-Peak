@@ -433,11 +433,7 @@
 			if(IND.cursedblood)
 				if(alert(user, "DRENCH THE FYRITIUS?", "CURSED BLOOD", "YES", "NO") != "NO")
 					success = TRUE
-					IND.cursedblood = 0
-					IND.working = 0
-					IND.subject = initial(IND.subject)
-					IND.icon_state = "indexer"
-					IND.update_icon()
+					IND.fullreset()
 				else
 					return	
 				if(success)

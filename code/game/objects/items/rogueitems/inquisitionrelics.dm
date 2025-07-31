@@ -554,22 +554,25 @@ Inquisitorial armory down here
 		update_icon()
 		return
 
+/obj/item/inqarticles/indexer/proc/fullreset()
+	cursedblood = initial(cursedblood)
+	working = initial(working)
+	subject = initial(subject)
+	wwblood = initial(wwblood)
+	full = initial(full)
+	timestaken = initial(timestaken)
+	desc = initial(desc)
+	active = FALSE
+	icon_state = "indexer"
+	update_icon()
+
 /obj/item/inqarticles/indexer/attack_right(mob/user) 
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))	
 		if(subject || cursedblood)
 			if(alert(user, "EMPTY THE INDEXER?", "INDEXING...", "YES", "NO") != "NO")
 				playsound(src, 'sound/items/indexer_empty.ogg', 75, FALSE, 3)
 				visible_message(span_warning("[src] boils its contents away!"))
-				cursedblood = initial(cursedblood)
-				working = initial(working)
-				subject = initial(subject)
-				wwblood = initial(wwblood)
-				full = initial(full)
-				timestaken = initial(timestaken)
-				desc = initial(desc)
-				active = FALSE
-				icon_state = "indexer"
-				update_icon()
+				fullreset()
 			else
 				return	
 	else
@@ -607,16 +610,17 @@ Inquisitorial armory down here
 			M.blood_volume = max(M.blood_volume-30, 0)
 			M.handle_blood()
 			icon_state = "indexer_used"
-			if(M.mind.has_antag_datum(/datum/antagonist/werewolf, FALSE))
-				cursedblood = 3
-			if(M.mind.has_antag_datum(/datum/antagonist/werewolf/lesser, FALSE))
-				cursedblood = 2
-			if(M.mind.has_antag_datum(/datum/antagonist/vampire/lesser, FALSE))
-				cursedblood = 1
-			if(M.mind.has_antag_datum(/datum/antagonist/vampire, FALSE))
-				cursedblood = 2
-			if(M.mind.has_antag_datum(/datum/antagonist/vampirelord))
-				cursedblood = 3
+			if(M.mind)
+				if(M.mind.has_antag_datum(/datum/antagonist/werewolf, FALSE))
+					cursedblood = 3
+				if(M.mind.has_antag_datum(/datum/antagonist/werewolf/lesser, FALSE))
+					cursedblood = 2
+				if(M.mind.has_antag_datum(/datum/antagonist/vampire/lesser, FALSE))
+					cursedblood = 1
+				if(M.mind.has_antag_datum(/datum/antagonist/vampire, FALSE))
+					cursedblood = 2
+				if(M.mind.has_antag_datum(/datum/antagonist/vampirelord))
+					cursedblood = 3
 			update_icon()
 			if(!cursedblood)
 				takeblood(M, user)

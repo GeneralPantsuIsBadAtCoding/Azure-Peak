@@ -33,6 +33,7 @@
 	icon = 'modular/Neu_Food/icons/others/fat.dmi'
 	icon_state = "tallow"
 	tastes = list("grease" = 1, "oil" = 1, "regret" =1)
+	obj_flags = CAN_BE_HIT
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
 	eat_effect = /datum/status_effect/debuff/uncookedfood
 	fat_yield = 5 // 5 per animal fat
@@ -65,3 +66,24 @@
 		slapcraft_recipes = slapcraft_recipe_list,\
 		)
 
+/obj/item/reagent_containers/food/snacks/tallow/red
+	name = "redtallow"
+	desc = "Fatty tissue is harvested from slain creachurs and rendered of its membraneous sinew to produce a hard shelf-stable \
+	grease. It has then been soaked in blood or something blood adjacent to make for an easily sourced and rather grim wax substitute. As they say in Otava, Bon Appetit."
+	icon_state = "redtallow"
+	tastes = list("grease" = 1, "oil" = 1, "regret" =1, "blood"=1,)
+
+/obj/item/reagent_containers/food/snacks/tallow/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/inqarticles/indexer))
+		var/obj/item/inqarticles/indexer/IND = I
+		var/success
+		if(HAS_TRAIT(user, TRAIT_INQUISITION))
+			if(IND.full)
+				if(alert(user, "SOAK THE TALLOW?", "IT'S JUST BLOOD", "YES", "NO") != "NO")
+					success = TRUE
+					IND.fullreset()
+				else
+					return	
+				if(success)
+					changefood(/obj/item/reagent_containers/food/snacks/tallow/red, user)		
