@@ -25,7 +25,6 @@
 		"Grand Duke",
 		"Grand Duchess",
 		"Consort",
-		"Dungeoneer",
 		"Sergeant",
 		"Men-at-arms",
 		"Marshal",
