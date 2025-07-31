@@ -158,7 +158,7 @@
 			var/modifier
 			if(H.age == AGE_OLD)
 				modifier = "old"
-			if((!ignore_silent && (H.silent)) || (!ignore_silent && H.mouth?.muteinmouth) || (!ignore_silent && HAS_TRAIT(H, TRAIT_MUTE) ||  (!ignore_silent && HAS_TRAIT(H, TRAIT_BAGGED))))
+			if((!ignore_silent && (H.silent)) || (!ignore_silent && !is_emote_muffled(H)) || (!ignore_silent && HAS_TRAIT(H, TRAIT_MUTE)) ||  (!ignore_silent && HAS_TRAIT(H, TRAIT_BAGGED)))
 				modifier = "silenced"
 			if(user.gender == FEMALE && H.dna.species.soundpack_f)
 				possible_sounds = H.dna.species.soundpack_f.get_sound(key,modifier)
@@ -271,5 +271,14 @@
 		if(M.name == target_name)
 			target = M
 			break
-	
 	return target
+	
+/datum/emote/proc/is_emote_muffled(mob/living/carbon/H) //ONLY for audible emote use
+	if(H.mouth?.muteinmouth)
+		return FALSE
+	for(var/obj/item/grabbing/grab in H.grabbedby)
+		if(grab.sublimb_grabbed == BODY_ZONE_PRECISE_MOUTH)
+			return FALSE
+	if(istype(H.loc, /turf/open/water) && !(H.mobility_flags & MOBILITY_STAND))
+		return FALSE
+	return TRUE

@@ -1133,7 +1133,7 @@ Inquisitorial armory down here
 	playsound(user, 'sound/items/blackeye.ogg', 100, FALSE)
 	return
 
-/obj/item/inqarticles/bmirror/attack(mob/living/carbon/human/M, mob/user)
+/obj/item/inqarticles/bmirror/attack(mob/living/carbon/human/M, mob/living/carbon/human/user)
 	if(!user.mind)
 		return
 	if(opened)
@@ -1146,7 +1146,11 @@ Inquisitorial armory down here
 		if(M == user)
 			user.visible_message(span_notice("[user] presses upon [src]'s needle."))
 			if(do_after(user, 30))
-				playsound(src, 'sound/items/blackmirror_needle.ogg', 65, FALSE)
+				playsound(src, 'sound/items/blackmirror_needle.ogg', 85, FALSE, 3)
+				user.flash_fullscreen("redflash3")
+				user.adjustBruteLoss(40)
+				user.blood_volume = max(user.blood_volume-140, 0)
+				user.handle_blood()
 				whofedme = user
 				openstate = "bloody"
 				fedblood = TRUE
@@ -1155,7 +1159,11 @@ Inquisitorial armory down here
 		else
 			user.visible_message(span_notice("[user] goes to press [M] with [src]'s needle."))
 			if(do_after(user, 30, target = M))	
-				playsound(M, 'sound/items/blackmirror_needle.ogg', 65, FALSE)
+				playsound(M, 'sound/items/blackmirror_needle.ogg', 85, FALSE, 3)
+				M.flash_fullscreen("redflash3")
+				M.blood_volume = max(user.blood_volume-140, 0)
+				M.adjustBruteLoss(40)
+				M.handle_blood()
 				whofedme = M
 				openstate = "bloody"
 				fedblood = TRUE
