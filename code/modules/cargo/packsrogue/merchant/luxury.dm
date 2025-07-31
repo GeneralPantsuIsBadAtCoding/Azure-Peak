@@ -112,3 +112,8 @@
 			/obj/item/magic/manacrystal,
 			/obj/item/magic/manacrystal,
 			)
+
+/datum/supply_pack/rogue/luxury/merctoken
+	name = "Writ of Commendation"
+	cost = 80
+	contains = list(/obj/item/merctoken)

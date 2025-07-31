@@ -111,3 +111,4 @@
 
 	H.grant_language(/datum/language/aavnic)		//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.
 	ADD_TRAIT(H, TRAIT_BADTRAINER, TRAIT_GENERIC)
+	H.merctype = 6

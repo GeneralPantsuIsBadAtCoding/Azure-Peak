@@ -94,6 +94,7 @@
 						backr = /obj/item/rogueweapon/mace/goden/steel
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	H.merctype = 8
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven

@@ -209,14 +209,42 @@
 	if(lay)
 		layer = lay
 
+/obj/structure/fluff/railing/border/north
+	dir = 1
+
+/obj/structure/fluff/railing/border/east
+	dir = 4
+
+/obj/structure/fluff/railing/border/west
+	dir = 8
+
 /obj/structure/fluff/railing/corner
-	icon_state = "railing_corner"
+	icon_state = "border"
 	density = FALSE
+	dir = 9
+
+/obj/structure/fluff/railing/corner/north_east
+	dir = 5
+
+/obj/structure/fluff/railing/corner/south_west
+	dir = 10
+
+/obj/structure/fluff/railing/corner/south_east
+	dir = 6
 
 /obj/structure/fluff/railing/wood
 	icon_state = "woodrailing"
 	blade_dulling = DULLING_BASHCHOP
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/fluff/railing/wood/north
+	dir = 1
+
+/obj/structure/fluff/railing/wood/east
+	dir = 4
+
+/obj/structure/fluff/railing/wood/west
+	dir = 8
 
 /obj/structure/fluff/railing/stonehedge
 	icon_state = "stonehedge"

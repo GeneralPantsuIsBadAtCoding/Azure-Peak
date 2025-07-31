@@ -101,3 +101,4 @@
 
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	H.grant_language(/datum/language/grenzelhoftian)
+	H.merctype = 7
