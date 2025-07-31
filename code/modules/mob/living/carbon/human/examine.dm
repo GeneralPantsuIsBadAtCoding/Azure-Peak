@@ -781,9 +781,9 @@
 		var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
 		if(head?.get_teeth_count() < head.max_teeth_count)
 			. += span_warning("[t_He] is missing some their teeth!")
-		if(head?.teeth_types[/obj/item/natural/tooth/fang] > 0)
+		if(head?.get_teeth_amt(/obj/item/natural/tooth/fang) > 0)
 			. += span_greentext("[t_He] seems to have fangs!")
-		if(head?.teeth_types[/obj/item/natural/tooth/golden] > 0)
+		if(head?.get_teeth_amt(/obj/item/natural/tooth/golden) > 0)
 			. += span_greentext("Their smile brings a lustrous shine to their surroundings!")
 
 	if(Adjacent(user))

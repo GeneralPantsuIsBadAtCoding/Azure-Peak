@@ -444,7 +444,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/obj/item/bodypart/head/head = C.get_bodypart(BODY_ZONE_HEAD)
 	if(istype(head))
-		head.teeth_types = teeth_types
+		for(var/type in teeth_types)
+			head.install_tooth(type, teeth_types[type])
 		head.max_teeth_count = max_teeth_count
 
 	soundpack_m = new soundpack_m()

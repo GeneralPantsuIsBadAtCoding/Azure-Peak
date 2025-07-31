@@ -69,13 +69,11 @@
 /datum/customizer_choice/bodypart_feature/teeth/apply_customizer_to_character(mob/living/carbon/human/human, datum/preferences/prefs, datum/customizer_entry/entry)
 	var/datum/customizer_entry/teeth/teeth_entry = entry
 	var/obj/item/bodypart/head/head = human.get_bodypart(BODY_ZONE_HEAD)
-	head.teeth_types = list(
-		/obj/item/natural/tooth = teeth_entry.normal_teeth_amt,
-		/obj/item/natural/tooth/fang = teeth_entry.fangs_amt,
-		/obj/item/natural/tooth/golden = teeth_entry.golden_teeth_amt,
-		/obj/item/natural/tooth/fang/golden = teeth_entry.golden_fangs_amt,
-		/obj/item/natural/tooth/woooden = teeth_entry.wooden_teeth_amt,
-	)
+	head.install_tooth(/obj/item/natural/tooth, teeth_entry.normal_teeth_amt)
+	head.install_tooth(/obj/item/natural/tooth/fang, teeth_entry.fangs_amt)
+	head.install_tooth(/obj/item/natural/tooth/golden, teeth_entry.golden_teeth_amt)
+	head.install_tooth(/obj/item/natural/tooth/fang/golden, teeth_entry.golden_fangs_amt)
+	head.install_tooth(/obj/item/natural/tooth/woooden, teeth_entry.wooden_teeth_amt)
 
 /datum/customizer_entry/teeth
 	var/normal_teeth_amt = 32

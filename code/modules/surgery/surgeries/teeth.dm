@@ -49,7 +49,7 @@
 	display_results(user, target, span_notice("I successfully install \the [tool] in [target]'s mouth!."),
 		span_notice("[user] successfully installs \the [tool] in [target]'s mouth!"),
 		span_notice("[user] successfully installs \the [tool] in [target]'s mouth!"))
-	head.teeth_types[tool.type]++
+	head.install_tooth(tool.type)
 	user.dropItemToGround(tool, TRUE, TRUE)
 	qdel(tool)
 	return TRUE
@@ -120,7 +120,7 @@
 	if(!target.has_status_effect(/datum/status_effect/buff/drunk) || !HAS_TRAIT(target, TRAIT_NOPAIN))
 		target.flash_fullscreen("redflash1")
 		target.stuttering += 5
-	head.teeth_types[setter.selected_tooth_type]++
+	head.install_tooth(setter.selected_tooth_type, 1)
 	setter.teeth_types[setter.selected_tooth_type]--
 	setter.update_icon()
 	return TRUE

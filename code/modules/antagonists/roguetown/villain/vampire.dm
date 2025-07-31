@@ -89,7 +89,7 @@
 
 	var/obj/item/bodypart/head/head = owner.current.get_bodypart(BODY_ZONE_HEAD)
 	if(istype(head))
-		head.teeth_types[/obj/item/natural/tooth/fang] += 4
+		head.install_tooth(/obj/item/natural/tooth/fang, 4)
 
 	return ..()
 

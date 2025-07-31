@@ -26,7 +26,7 @@
 	/// Maximum teeth count this head can hold
 	var/max_teeth_count = 32
 	/// Assoc list of all teeth in this head. tooth.type = amt
-	var/list/teeth_types
+	VAR_PRIVATE/list/teeth_types = list()
 
 	//Limb appearance info:
 	var/real_name = "" //Replacement name
@@ -252,13 +252,32 @@
 		var/obj/item/natural/tooth/tooth = new tooth_type(get_turf(owner))
 		tooth.add_mob_blood(owner)
 		tooth.make_bloody()
-		teeth_types[tooth_type]--
+		remove_tooth(tooth_type)
 		tooth.throw_at(get_ranged_target_turf(get_turf(owner), pick(GLOB.alldirs), 2), 2, 1, spin = TRUE)
-		owner?.visible_message(span_danger("[owner]'s teeth fly off in an arc!"), \
-					span_danger("My teeth fly off in an arc!"), null, COMBAT_MESSAGE_RANGE)
 
 		if(get_teeth_count() <= 0)
-			return
+			break
+
+	owner?.visible_message(
+		span_danger("[owner]'s teeth fly off in an arc!"), \
+		span_danger("My teeth fly off in an arc!"), null, COMBAT_MESSAGE_RANGE
+	)
+
+/// Setter for teeth_types, accepts typeppath
+/obj/item/bodypart/head/proc/install_tooth(type, amt)
+	if(amt <= 0)
+		return
+
+	teeth_types[type] += amt
+
+/// Use to remove teeth types, accepts typeppath
+/obj/item/bodypart/head/proc/remove_tooth(type, amt)
+	teeth_types[type] -= amt
+	ASSOC_UNSETEMPTY(teeth_types, type)
+
+/// Getter for teeth type count
+/obj/item/bodypart/head/proc/get_teeth_amt(type)
+	return teeth_types[type]
 
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/animal_parts.dmi'

@@ -1047,9 +1047,9 @@
 	if(!istype(head))
 		return ..()
 
-	if(head?.teeth_types[/obj/item/natural/tooth/fang] > 2)
+	if(head?.get_teeth_count(/obj/item/natural/tooth/fang) > 2)
 		. += span_greentext("smiles, baring [user.p_their()] fangs!")
-	if(head?.teeth_types[/obj/item/natural/tooth/golden] > 0)
+	if(head?.get_teeth_count(/obj/item/natural/tooth/golden) > 0)
 		. += span_greentext("smiles, flashing [user.p_their()] golden teeth!")
 
 /mob/living/carbon/human/verb/emote_smile()
