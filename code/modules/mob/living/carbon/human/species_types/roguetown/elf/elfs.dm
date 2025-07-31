@@ -15,7 +15,7 @@
 	Humens, as historically the two races have been rivals in various conflicts and \
 	territorial disputes. This, however, does not stop many Humens and Elves from forming \
 	relationships, which are capable of producing half-elven children. Elves are known for \
-	their agility, affinity for bows, and their uncanny ability to navigate along treetops with ease.\
+	their agility, keen hearing, and their uncanny ability to navigate along treetops with ease.\
 	In these lands, only a handful of the many Elvish tribes are seen.<br>\
 	(+1 Speed)"
 
