@@ -364,6 +364,8 @@
 
 	if(ishuman(target) && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		var/mob/living/carbon/human/victim = target
+		if(victim.cmode)
+			return
 		var/failchance = 5
 		if(!victim.restrained())
 			failchance += 60

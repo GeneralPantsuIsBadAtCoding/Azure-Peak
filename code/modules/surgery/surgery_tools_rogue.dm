@@ -249,3 +249,98 @@
 	wdefense = 3
 	wbalance = 1
 	tool_behaviour = TOOL_IMPROVISED_RETRACTOR
+
+/obj/item/rogueweapon/surgery/toothsetter
+	name = "tooth setter"
+	desc = "A tool used to punch missing teeth back into the gumline. Holds up to 32 teeth and can pick them up quickly!"
+	icon_state = "toothsetter"
+	tool_behaviour = TOOL_TOOTHSETTER
+	possible_item_intents = list(/datum/intent/use)
+	/// Max amount of teeth it can hold
+	var/max_teeth_count = 32
+	/// Assoc list of stored teeth. tooth type = amt
+	var/list/teeth_types = list()
+	var/selected_tooth_type
+	tool_behaviour = TOOL_TOOTHSETTER
+
+/obj/item/rogueweapon/surgery/toothsetter/update_icon()
+	. = ..()
+	if(selected_tooth_type && teeth_types[selected_tooth_type] > 0)
+		icon_state = "toothsetter1_c"
+	else
+		icon_state = "toothsetter_c"
+
+/obj/item/rogueweapon/surgery/toothsetter/examine(mob/user)
+	. = ..()
+	if(get_teeth_count() > 0 && (user.is_holding(src) || get_dist(user, src) <= 1))
+		. += span_info("It holds:")
+		for(var/tooth_type in teeth_types)
+			if(teeth_types[tooth_type] <= 0)
+				continue
+
+			var/obj/item/natural/tooth/typecasted = tooth_type
+			. += span_info("[initial(typecasted.name)], [teeth_types[tooth_type]] stored.")
+
+/obj/item/rogueweapon/surgery/toothsetter/attack_self(mob/user)
+	. = ..()
+	var/list/associated = list()
+	for(var/tooth_type in teeth_types)
+		var/obj/item/natural/tooth/typecasted = tooth_type
+		associated += list("[initial(typecasted.name)], [teeth_types[tooth_type]] stored." = tooth_type)
+	var/list/choices = list()
+	for(var/choice in associated)
+		choices += choice
+	// I am sorry for this byond seems to hate assoc lists in input - Halford
+	var/input = input(user, "Select which type of teeth to load", "Tooth setter") as null|anything in choices
+	if(input)
+		selected_tooth_type = associated[input]
+	update_icon()
+
+/obj/item/rogueweapon/surgery/toothsetter/pre_attack(atom/A, mob/living/user, params)
+	if(istype(A, /obj/item/natural/tooth))
+		if(try_picking_up_tooth(A))
+			to_chat(user, span_notice("I load the tooth in \the [src]."))
+		else
+			to_chat(user, span_notice("\The [src] can't hold more teeth!"))
+		return TRUE
+	else if(isopenturf(A))
+		var/counter = 0
+		for(var/obj/item/natural/tooth/T in A)
+			if(!try_picking_up_tooth(T))
+				break
+
+			counter++
+
+		if(counter > 0)
+			to_chat(user, span_notice("I load \the [src] with [counter == 1 ? "one tooth" : "[counter] teeth"]."))
+			return TRUE
+
+	return ..()
+
+/obj/item/rogueweapon/surgery/toothsetter/attackby(obj/item/W, mob/living/user, params)
+	if(istype(W, /obj/item/natural/tooth))
+		if(try_picking_up_tooth(W))
+			to_chat(user, span_notice("I load the tooth in \the [src]."))
+		else
+			to_chat(user, span_notice("\The [src] can't hold more teeth!"))
+		user.changeNext_move(user.used_intent.clickcd)
+		return TRUE
+
+	return ..()
+
+/// Simply tries to load tooth passed in arg, TRUE on success, FALSE otherwise
+/obj/item/rogueweapon/surgery/toothsetter/proc/try_picking_up_tooth(obj/item/natural/tooth)
+	if(get_teeth_count() + 1 >= max_teeth_count)
+		return FALSE
+
+	teeth_types[tooth.type] += 1
+	qdel(tooth)
+	return TRUE
+
+/// Wrapper to get total amount of teeth, regardless of their type
+/obj/item/rogueweapon/surgery/toothsetter/proc/get_teeth_count()
+	var/amt = 0
+	for(var/type in teeth_types)
+		amt += teeth_types[type]
+
+	return amt

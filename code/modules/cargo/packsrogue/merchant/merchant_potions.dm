@@ -70,3 +70,10 @@
 	name = "Luck Potion"
 	cost = 50
 	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/lucpot)
+
+/datum/supply_pack/rogue/potions/toothsetter
+	name = "Tooth setter"
+	cost = 30
+	contains = list(
+					/obj/item/rogueweapon/surgery/toothsetter,
+				)
