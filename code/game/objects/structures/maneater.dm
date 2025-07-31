@@ -168,10 +168,12 @@
 		if(istype(AM, /mob/living))
 			var/mob/living/L = AM
 			if(!aggroed)
-				if(HAS_TRAIT(L, TRAIT_AZURENATIVE))
+				if(HAS_TRAIT(L, TRAIT_AZURENATIVE) || HAS_TRAIT(L, TRAIT_MANEATER_IMMUNITY))
 					return
 				if(L.m_intent != MOVE_INTENT_RUN)
 					return
+			if(HAS_TRAIT(L, TRAIT_MANEATER_IMMUNITY))
+				return
 			aggroed = world.time
 			last_eat = world.time
 			update_icon()

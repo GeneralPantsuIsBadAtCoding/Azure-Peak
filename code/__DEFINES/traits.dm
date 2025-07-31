@@ -190,6 +190,7 @@
 #define TRAIT_WATERSLEEP "Amphibious"
 #define TRAIT_DRUNK_HEALING "Drunk Healing"
 #define TRAIT_CATLANDING "Graceful Landing"
+#define TRAIT_MANEATER_IMMUNITY "Maneater Immunity"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -344,7 +345,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_CURSE_GRAGGAR = span_warning("I am forsaken by the Warlord. Bloodlust is only thing I know for real."),
 	TRAIT_CURSE_MATTHIOS = span_warning("I am forsaken by the Dragon. Greed will be my only salvation."),
 	TRAIT_CURSE_BAOTHA = span_warning("I am forsaken by the Heartbreaker. I am drowning in her promises."),
-  TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise.")
+	TRAIT_MANEATER_IMMUNITY = span_info("Maneaters will not bite me for fear of Dendor's reprise."),
+	TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise.")
 ))
 
 // trait accessor defines
