@@ -378,7 +378,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/processed_message = message
 	if(!own_message && message_language && !has_language(message_language) && !check_language_hear(message_language))
 		var/skill_level = get_skill_level(message_language.associated_skill)
-		processed_message = message_language.scramble_for_speaker(raw_message, skill_level)
+		var/scrambled = message_language.scramble_for_speaker(raw_message, skill_level)
+		// Reuse the same formatting as the original message, but with the scrambled text.
+		processed_message = compose_message(speaker, message_language, scrambled, radio_freq, spans, message_mode)
 
 	show_message(processed_message, MSG_AUDIBLE, deaf_message, deaf_type)
 	return processed_message

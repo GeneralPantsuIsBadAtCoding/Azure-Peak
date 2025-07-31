@@ -1,6 +1,7 @@
 /datum/skill/language
 	name = "Language"
 	desc = ""
+	randomable_dream_xp = FALSE
 
 /datum/skill/language/grenzelhoftian
 	name = "Grenzelhoftian"
