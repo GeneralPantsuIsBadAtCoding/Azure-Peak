@@ -222,6 +222,179 @@
 		info += "SIGNED,<br/>"
 		info += "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[signedname] the [signedjob] of Azure Peak</font>"
 
+/obj/item/paper/inqslip
+	name = "inquisition slip"
+	var/base_icon_state = "slip"
+	dropshrink = 0.75		
+	icon_state = "slip"
+	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
+	obj_flags = CAN_BE_HIT
+	var/signed
+	var/mob/living/carbon/signee
+	var/marquevalue = 2
+	var/sealed
+	var/waxed
+	var/sliptype = 1
+	var/obj/item/inqarticles/indexer/paired
+
+/obj/item/paper/inqslip/accusation
+	name = "accusation slip"
+	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
+	marquevalue = 4
+	sliptype = 0
+
+/obj/item/paper/inqslip/confession
+	name = "confession"
+	base_icon_state = "confession"
+	marquevalue = 6
+	info = "THIS CONFESSION CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
+	sliptype = 2
+
+/obj/item/paper/inqslip/arrival
+	name = "arrival slip"	
+	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
+
+/obj/item/paper/inqslip/arrival/ortho
+	marquevalue = 4
+
+/obj/item/paper/inqslip/arrival/inq
+	marquevalue = 10
+
+/obj/item/paper/inqslip/arrival/abso
+	marquevalue = 8
+
+/obj/item/paper/inqslip/proc/attemptsign(mob/user, mob/living/carbon/human/M)
+	if(sliptype == 2)
+		if(paired)
+			if(paired.subject != user)
+				to_chat(M, span_warning("Why am I trying to make them sign this with the wrong [paired] paired with it?"))
+				return
+			else if(alert(user, "SIGN THE CONFESSION?", "CONFIRM OR DENY", "YES", "NO") != "NO")
+				signed = TRUE
+				marquevalue += 2
+				signee = user
+				update_icon()
+		else if(alert(user, "SIGN THE CONFESSION?", "CONFIRM OR DENY", "YES", "NO") != "NO")
+			signed = TRUE
+			marquevalue += 2
+			signee = user
+			update_icon()
+		else
+			return
+	else if(alert(user, "SIGN THE SLIP?", "CONFIRM OR DENY", "YES", "NO") != "NO")
+		signed = TRUE
+		signee = user
+		update_icon()
+	else
+		return
+
+/obj/item/paper/inqslip/attack(mob/living/carbon/human/M, mob/user)	
+	if(sealed)
+		return
+	if(signed)
+		to_chat(user, span_warning("It's already been signed."))
+		return
+	if(paired && !paired.full)	
+		to_chat(user, span_warning("I should seperate [paired] from [src] before signing it."))
+		return
+	if(sliptype != 2)
+		if(M != user)
+			to_chat(user, span_warning("This is meant to be signed by the holder."))
+			return
+	if(!M.get_bleed_rate())
+		to_chat(user, span_warning("It must be signed in blood."))
+		return
+	if(sliptype == 1)
+		if(signee == M)
+			attemptsign(user)
+		else	
+			to_chat(user, span_warning("This slip isn't meant for me."))
+	else if(!sliptype)
+		attemptsign(user)
+	else
+		attemptsign(M, user)
+	
+/obj/item/paper/inqslip/attack_self(mob/user)
+	if(!signed)
+		to_chat(user, span_warning("It hasn't been signed yet. Why would I seal it?"))
+		return
+	if(waxed)
+		to_chat(user, span_notice("It's been sealed. It's ready to send back to Otava."))
+		return
+	else if(!sealed)
+		sealed = TRUE	
+		update_icon()
+	else		
+		sealed = FALSE
+		update_icon()
+
+/obj/item/paper/inqslip/update_icon_state()
+	. = ..()
+	throw_range = initial(throw_range)
+	if(!sealed)
+		if(paired)
+			if(!paired.full)
+				icon_state = "[base_icon_state]_indexer"
+			else
+				icon_state = "[base_icon_state]_indexer[signed ? "_signed" : "_blood"]"
+		else
+			icon_state = "[base_icon_state][signed ? "_signed" : ""]"
+	else
+		if(!waxed)
+			icon_state = "[base_icon_state]_unsealed"
+		else
+			icon_state = "[base_icon_state]_sealed"	
+	return		
+
+/obj/item/paper/inqslip/arrival/equipped(mob/user, slot, initial)
+	. = ..()
+	if(!signee)
+		signee = user
+
+/obj/item/paper/inqslip/attacked_by(obj/item/I, mob/living/user)		
+	if(istype(I, /obj/item/clothing/ring/signet))
+		var/obj/item/clothing/ring/signet/S = I
+		if(S.tallowed && sealed)
+			waxed = TRUE
+			update_icon()
+			S.tallowed = FALSE
+			playsound(src, 'sound/items/inqslip_sealed.ogg', 75, TRUE, 4)
+			marquevalue += 2
+		else if(S.tallowed && !sealed)
+			to_chat(user,  span_warning("I need to fold the [src] first."))
+		else
+			to_chat(user,  span_warning("The ring hasn't been waxed."))
+
+	if(sliptype != 1)
+		if(istype(I, /obj/item/inqarticles/indexer))
+			var/obj/item/inqarticles/indexer/Q = I
+			if(!Q.subject)
+				if(signed)
+					to_chat(user, span_warning("I should fill [Q] before pairing it with [src]."))
+					return
+				else
+					paired = Q
+					update_icon()
+			else if(Q.subject && Q.full)
+				if(sliptype == 2)
+					if(Q.subject == signee)
+						paired = Q
+						update_icon()
+					else
+						if(signed)
+							to_chat(user, span_warning("[Q] doesn't contain the blood of the one who signed [src]."))
+						else
+							to_chat(user, span_warning("I should get a signature before pairing [Q] with [src]."))
+						return
+				else
+					paired = Q
+					update_icon()
+			else
+				to_chat(user,  span_warning("[Q] isn't completely full."))		
+
+/obj/item/paper/inqslip/attack_right(mob/user)
+	. = ..()
+
 /obj/item/paper/confession
 	name = "confession"
 	icon_state = "confession"
@@ -230,6 +403,7 @@
 	var/signed = null
 	var/antag = null // The literal name of the antag, like 'Bandit' or 'worshiper of Zizo'
 	var/bad_type = null // The type of the antag, like 'OUTLAW OF THE THIEF-LORD'
+	dropshrink = 0.75
 	textper = 108
 	maxlen = 2000
 	var/confession_type = "antag" //for voluntary confessions

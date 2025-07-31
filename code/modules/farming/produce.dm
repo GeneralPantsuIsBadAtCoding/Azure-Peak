@@ -386,6 +386,7 @@
 	icon_state = "fyritius"
 	filling_color = "#ff5e00"
 	tastes = list("tastes like a burning coal and fire" = 1)
+	obj_flags = CAN_BE_HIT
 	bitesize = 1
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin/fyritiusnectar = 5)
 	dropshrink = 0.8
@@ -422,6 +423,25 @@
 		to_chat(user, span_warning("Their blood is not robust enough to hold to the warmth of [src]."))
 	if(success)
 		changefood(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied, user)
+
+/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/inqarticles/indexer))
+		var/obj/item/inqarticles/indexer/IND = I
+		var/success
+		if(HAS_TRAIT(user, TRAIT_INQUISITION))
+			if(IND.cursedblood)
+				if(alert(user, "DRENCH THE FYRITIUS?", "CURSED BLOOD", "YES", "NO") != "NO")
+					success = TRUE
+					IND.cursedblood = 0
+					IND.working = 0
+					IND.subject = initial(IND.subject)
+					IND.icon_state = "indexer"
+					IND.update_icon()
+				else
+					return	
+				if(success)
+					changefood(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied, user)		
 
 
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied

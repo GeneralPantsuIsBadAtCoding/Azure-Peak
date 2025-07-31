@@ -919,12 +919,12 @@
 	. = ..()					//Pre-blessed, +5 DMG, +100 Blade int, +100 int, +2 def, make it silver
 	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
-/obj/item/rogueweapon/greatsword/bsword/psy/forgotten
-	name = "His Grace"
-	desc = "A blade of an outdated design, yet touched by history and duty - the saiga leather that covers the hilt is worn out, and its edge has seen sharper days. The crossguard, shaped like His crown, evokes the need to endure against the enemy. A silver psycross is fastened around its rainguard. A reminder that the enemy will fall, and we will reign victorious."
+/obj/item/rogueweapon/greatsword/bsword/psy/unforgotten
+	name = "unforgotten blade"
+	desc = "High Inquisitor Archibald once recorded an expedition of seven brave Adjudicators into Gronnian snow-felled wastes to root out evil. Its leader, Holy Ordinator Guillemin, was said to have held on for seven daes and seven nights against darksteel-clad heretics before Psydon acknowledged his endurance. Nothing but his blade remained - his psycross wrapped around its hilt in rememberance."
 	icon_state = "forgottenblade"
 
-/obj/item/rogueweapon/greatsword/bsword/psy/forgotten/ComponentInitialize()
+/obj/item/rogueweapon/greatsword/bsword/psy/unforgotten/ComponentInitialize()
 	. = ..()					//+50 Blade int, +3 DMG, +50 int, +1 def, make it silver
 	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)
 

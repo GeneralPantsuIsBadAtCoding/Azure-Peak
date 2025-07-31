@@ -218,7 +218,7 @@
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-	name = "inquisitiorial leather tunic"
+	name = "inquisitorial leather tunic"
 	desc = "The finest leather tunic. Made to ENDURE, Made to Inquire, come heretic or hellfire."
 	icon_state = "leathertunic"
 	color = null

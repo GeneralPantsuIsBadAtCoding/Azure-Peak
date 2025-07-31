@@ -213,7 +213,7 @@
 			. = message_muffled
 		if(!muzzle_ignore && C.mouth?.muteinmouth && emote_type == EMOTE_AUDIBLE)
 			. = message_muffled
-		if(!muzzle_ignore && emote_type == EMOTE_AUDIBLE)
+		if(!muzzle_ignore && emote_type == EMOTE_AUDIBLE && HAS_TRAIT(C, TRAIT_BAGGED))
 			. = message_muffled	
 	if(user.mind && user.mind.miming && message_mime)
 		. = message_mime

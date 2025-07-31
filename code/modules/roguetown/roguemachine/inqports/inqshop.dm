@@ -15,17 +15,17 @@
 
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/
-	name = "inquisitiorial supply crate"
+	name = "inquisitorial supply crate"
 
 /obj/structure/closet/crate/chest/inqcrate/articles/
-	name = "inquisitiorial article crate"
+	name = "inquisitorial article crate"
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/
 	lockid = "puritan"
 	locked = TRUE
 
 /obj/structure/closet/crate/chest/inqcrate/equipment/
-	name = "inquisitiorial equipment crate"
+	name = "inquisitorial equipment crate"
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/
 	name = "otava's finest wardrobe crate"

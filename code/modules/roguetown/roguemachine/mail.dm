@@ -73,8 +73,8 @@
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))
 		. += span_info("<br>The MARQUETTE can be accessed via a secret compartment fitted within the HERMES. Load a Marque to access it.")
 
-		. += span_info("You can send arrival slips, accusation slips, loaded INDEXERs or confessions here.")
-		. += span_info("Properly sign them. Include an INDEXER where needed. Stamp them for an additional Marque.")
+		. += span_info("You can send arrival slips, accusation slips, fully loaded INDEXERs or confessions here.")
+		. += span_info("Properly sign them. Include an INDEXER where needed. Stamp them for two additional Marques.")
 
 /obj/structure/roguemachine/mail/attack_right(mob/user)
 	. = ..()
@@ -164,20 +164,23 @@
 				playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 				for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
 					everyhermes.inqlock()
-				return display_marquette(user)
+				to_chat(user, span_warning("I [inqonly ? "disable" : "enable"] the Puritan's Lock."))
+				return
 			to_chat(user, span_warning("Wrong key."))
 			return
 		if(istype(P, /obj/item/storage/keyring))
 			var/obj/item/storage/keyring/K = P
 			if(!K.contents.len)
-				return display_marquette(user)
+				return
 			var/list/keysy = K.contents.Copy()
 			for(var/obj/item/roguekey/KE in keysy)
 				if(KE.lockid == keycontrol)
 					playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 					for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
 						everyhermes.inqlock()
-					return display_marquette(user)
+					to_chat(user, span_warning("I [inqonly ? "disable" : "enable"] the Puritan's Lock."))
+					return
+
 	if(istype(P, /obj/item/paper/confession))
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))
 			var/obj/item/paper/confession/C = P
@@ -199,6 +202,225 @@
 				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 		return
 
+	if(istype(P, /obj/item/paper/inqslip/confession))
+		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
+			var/obj/item/paper/inqslip/confession/I = P
+			if(I.signee && I.signed)
+				var/no
+				var/accused
+				var/indexed
+				var/correct
+				if(HAS_TRAIT(I.signee, TRAIT_CABAL) || HAS_TRAIT(I.signee, TRAIT_HORDE) || HAS_TRAIT(I.signee, TRAIT_DEPRAVED) || HAS_TRAIT(I.signee, TRAIT_COMMIE))
+					correct = TRUE
+				if(I.signee.name in GLOB.excommunicated_players)	
+					correct = TRUE
+				if(I.paired.subject && I.paired.full && GLOB.indexed)
+					if(", [I.signee]" in GLOB.indexed)
+						indexed = TRUE
+					if("[I.signee]" in GLOB.indexed)
+						indexed = TRUE
+					if(!indexed)
+						if(GLOB.indexed.len)
+							GLOB.indexed += ", [I.signee]"
+						else
+							GLOB.indexed += "[I.signee]"
+				if(GLOB.accused)
+					if(", [I.signee]" in GLOB.accused)
+						accused = TRUE
+					if("[I.signee]" in GLOB.accused)
+						accused = TRUE
+					if(!accused)
+						if(GLOB.accused.len)
+							GLOB.accused += ", [I.signee]"
+						else
+							GLOB.accused += "[I.signee]"
+				if(GLOB.confessors)
+					if(", [I.signee]" in GLOB.confessors)
+						no = TRUE
+					if("[I.signee]" in GLOB.confessors)
+						no = TRUE
+					if(!no)
+						if(GLOB.confessors.len)
+							GLOB.confessors += ", [I.signee]"
+						else
+							GLOB.confessors += "[I.signee]"			
+				if(no)		
+					if(I.paired)	
+						qdel(I.paired)
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+					to_chat(user, span_notice("They've already confessed."))
+				else
+					if(!indexed && !correct)
+						budget2change(2, user, "MARQUE")
+					else if(correct)	
+						if(!indexed)
+							I.marquevalue += 2
+						if(accused)	
+							I.marquevalue -= 4
+						budget2change(I.marquevalue, user, "MARQUE")
+					if(I.paired)	
+						qdel(I.paired)
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			return	
+
+	if(istype(P, /obj/item/inqarticles/indexer))
+		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
+			var/obj/item/inqarticles/indexer/I = P
+			if(I.cursedblood)
+				var/stopfarming
+				if(GLOB.cursedsamples)
+					if(", [I.subject.mind]" in GLOB.cursedsamples)
+						stopfarming = TRUE
+					if("[I.subject.mind]" in GLOB.cursedsamples)
+						stopfarming = TRUE
+					if(!stopfarming)
+						if(GLOB.cursedsamples.len)
+							GLOB.cursedsamples += ", [I.subject.mind]"
+						else
+							GLOB.cursedsamples += "[I.subject.mind]"
+				if(stopfarming)		
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+					visible_message(span_warning("[user] recieves something."))
+					to_chat(user, span_notice("We've already collected a sample of their accursed blood."))
+					var/obj/item/inqarticles/indexer/replacement = new /obj/item/inqarticles/indexer/
+					user.put_in_hands(replacement)
+				else
+					var/yummers = I.cursedblood * 2	+ 2
+					budget2change(yummers, user, "MARQUE")
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			else if(I.subject && I.full)
+				var/no
+				if(GLOB.indexed)
+					if(", [I.subject]" in GLOB.indexed)
+						no = TRUE
+					if("[I.subject]" in GLOB.indexed)
+						no = TRUE
+					if(!no)
+						if(GLOB.indexed.len)
+							GLOB.indexed += ", [I.subject]"
+						else
+							GLOB.indexed += "[I.subject]"
+				if(no)		
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+					visible_message(span_warning("[user] recieves something."))
+					to_chat(user, span_notice("It appears we already had them INDEXED. I've been issued a replacement."))
+					var/obj/item/inqarticles/indexer/replacement = new /obj/item/inqarticles/indexer/
+					user.put_in_hands(replacement)
+				else	
+					budget2change(2, user, "MARQUE")
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			return
+
+	if(istype(P, /obj/item/paper/inqslip/arrival))
+		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
+			var/obj/item/paper/inqslip/arrival/I = P
+			if(I.signee && I.signed)
+				var/no
+				if(GLOB.indexed)
+					if(", [I.signee]" in GLOB.inqarrivals)
+						no = TRUE
+					if("[I.signee]" in GLOB.inqarrivals)
+						no = TRUE
+					if(!no)
+						if(GLOB.inqarrivals.len)
+							GLOB.inqarrivals += ", [I.signee]"
+						else
+							GLOB.inqarrivals += "[I.signee]"
+				if(no)		
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+					to_chat(user, span_notice("I.. I've already arrived? Surely, it's a clerical error..."))
+				else	
+					budget2change(I.marquevalue, user, "MARQUE")
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			return				
+
+	if(istype(P, /obj/item/paper/inqslip/accusation))
+		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
+			var/obj/item/paper/inqslip/accusation/I = P
+			if(I.signee && I.paired.full && I.paired.subject)
+				var/no
+				var/specialno
+				var/indexed
+				var/correct
+				if(HAS_TRAIT(I.paired.subject, TRAIT_CABAL) || HAS_TRAIT(I.paired.subject, TRAIT_HORDE) || HAS_TRAIT(I.paired.subject, TRAIT_DEPRAVED) || HAS_TRAIT(I.paired.subject, TRAIT_COMMIE))
+					correct = TRUE
+				if(I.paired.subject.name in GLOB.excommunicated_players)	
+					correct = TRUE
+				if(GLOB.indexed)
+					if(", [I.paired.subject]" in GLOB.indexed)
+						indexed = TRUE
+					if("[I.paired.subject]" in GLOB.indexed)
+						indexed = TRUE
+					if(!indexed)
+						if(GLOB.indexed.len)
+							GLOB.indexed += ", [I.paired.subject]"
+						else
+							GLOB.indexed += "[I.paired.subject]"
+				if(GLOB.accused)
+					if(", [I.paired.subject]" in GLOB.accused)
+						no = TRUE
+					if("[I.paired.subject]" in GLOB.accused)
+						no = TRUE
+					if(!no)
+						if(GLOB.accused.len)
+							GLOB.accused += ", [I.paired.subject]"
+						else
+							GLOB.accused += "[I.paired.subject]"
+				if(GLOB.confessors)
+					if(", [I.paired.subject]" in GLOB.confessors)
+						no = TRUE
+						specialno = TRUE
+					if("[I.paired.subject]" in GLOB.confessors)
+						no = TRUE
+						specialno = TRUE
+					if(!no)
+						if(GLOB.confessors.len)
+							GLOB.confessors += ", [I.paired.subject]"
+						else
+							GLOB.confessors += "[I.paired.subject]"			
+				if(no)		
+					qdel(I.paired)
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+					if(specialno)
+						to_chat(user, span_notice("They've confessed."))
+					else
+						to_chat(user, span_notice("They've already been accused."))
+				else
+					if(!indexed && !correct)
+						budget2change(2, user, "MARQUE")
+					else if(correct)	
+						if(!indexed)
+							I.marquevalue += 2
+						budget2change(I.marquevalue, user, "MARQUE")
+					qdel(I.paired)
+					qdel(I)
+					visible_message(span_warning("[user] sends something."))
+					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
+					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+			return							
+		
 	if(istype(P, /obj/item/paper))
 		if(inqcoins)
 			to_chat(user, span_warning("The machine doesn't respond."))

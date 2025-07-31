@@ -412,7 +412,6 @@
 	force_wielded = 32
 	wbalance = WBALANCE_HEAVY
 	dropshrink = 0.75
-	slot_flags = ITEM_SLOT_BACK //Looks better on back
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()

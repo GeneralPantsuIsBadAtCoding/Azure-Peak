@@ -26,11 +26,17 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) // Enduring.
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sewing, 3, TRUE) // A hobbyist.
-
+	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE) // Parry things.
+	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/psythorns
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	beltr = /obj/item/flashlight/flare/torch/lantern/psycenser
-	beltl = /obj/item/storage/belt/rogue/surgery_bag/full
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	cloak = /obj/item/clothing/cloak/absolutionistrobe
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
@@ -43,20 +49,27 @@
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
 	id = /obj/item/clothing/ring/signet/silver
 	backpack_contents = list(
+		/obj/item/book/rogue/bibble/psy = 1,
+		/obj/item/natural/bundle/cloth/roll = 2,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 2,
+		/obj/item/needle = 1,
+		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/roguekey/inquisition = 1,
 		)
-	H.change_stat("strength", 1)
+	H.change_stat("strength", 2)
 	H.change_stat("endurance", 3)
 	H.change_stat("constitution", 7)
-	H.change_stat("intelligence", 1)
+	H.change_stat("perception", 2)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+		H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLUTIONIST, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PACIFISM, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.

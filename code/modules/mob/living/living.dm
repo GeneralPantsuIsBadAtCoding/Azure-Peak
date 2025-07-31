@@ -173,7 +173,8 @@
 			var/sprint_distance = sprinted_tiles
 			var/instafail = FALSE
 			toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
-
+			if(HAS_TRAIT(src, TRAIT_PACIFISM)) // No Con-Checking if you're a pacifist. You aren't MEAN!!!
+				return FALSE
 			var/mob/living/L = M
 
 			var/self_points = FLOOR((STACON + STASTR)/2, 1)

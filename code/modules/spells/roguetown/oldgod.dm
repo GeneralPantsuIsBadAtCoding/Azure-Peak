@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/invoked/psydonlux_tamper
-	name = "WEEP FOR THEM"
+	name = "WEEP"
 	overlay_state = "psydonweeps"
 	releasedrain = 20
 	chargedrain = 0
@@ -18,14 +18,14 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonlux_tamper/cast(list/targets, mob/living/user)
 	if(!ishuman(targets[1]))
-		to_chat(user, span_warning("I cannot tamper with this Lux."))
+		to_chat(user, span_warning("Their Lux doesn't need to be purified."))
 		revert_cast()
 		return FALSE
 	
 	var/mob/living/carbon/human/H = targets[1]
 	
 	if(H == user)
-		to_chat(user, span_warning("I refuse to tamper with my own Lux."))
+		to_chat(user, span_warning("My own Lux maintains purity."))
 		revert_cast()
 		return FALSE
 
@@ -64,7 +64,7 @@
 
 
 	// Visual effects
-	user.visible_message(span_danger("[user] shoulders [H]'s wounds!"))
+	user.visible_message(span_danger("[user] purifies [H]'s wounds!"))
 	playsound(get_turf(user), 'sound/magic/psydonbleeds.ogg', 50, TRUE)
 	
 	new /obj/effect/temp_visual/psyheal_rogue(get_turf(H), "#487e97") 
@@ -75,7 +75,7 @@
 	new /obj/effect/temp_visual/psyheal_rogue(get_turf(user), "#487e97") 
 	
 	// Notify the user and target
-	to_chat(user, span_notice("You feel awash with the merging of your Lux and theirs for a brief moment."))
+	to_chat(user, span_notice("You purify their Lux with the merging of theirs and your own, for a mote."))
 	to_chat(H, span_info("You feel a strange stirring sensation pour over your Lux, stealing your wounds."))
 	return TRUE
 
@@ -95,9 +95,9 @@
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
 	miracle = TRUE
-	devotion_cost = 50
+	devotion_cost = 0
 
-/obj/effect/proc_holder/spell/self/psydonrespite/cast(mob/living/user) // It's a very tame self-heal. Nothing too special.
+/obj/effect/proc_holder/spell/self/psydonrespite/cast(mob/living/carbon/human/user) // It's a very tame self-heal. Nothing too special.
 	. = ..()
 	if(!ishuman(user))
 		revert_cast()
@@ -174,7 +174,8 @@
 		H.adjustFireLoss(burnhealval)
 		if (conditional_buff)
 			to_chat(user, span_info("My pain gives way to a sense of furthered clarity before returning again, dulled."))
-		revert_cast()
+		user.devotion?.update_devotion(-25)
+		to_chat(user, "<font color='purple'>I lose 25 devotion!</font>")
 		cast(user)	
 		return TRUE
 	else
@@ -182,7 +183,7 @@
 		return FALSE					
 
 /obj/effect/proc_holder/spell/invoked/psydonabsolve	
-	name = "ABSOLUTION"
+	name = "ABSOLVE"
 	overlay_state = "psydonabsolves"
 	releasedrain = 20
 	chargedrain = 0
