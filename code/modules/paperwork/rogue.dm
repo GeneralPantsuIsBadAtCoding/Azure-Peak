@@ -261,7 +261,7 @@
 	marquevalue = 10
 
 /obj/item/paper/inqslip/arrival/abso
-	marquevalue = 8
+	marquevalue = 6
 
 /obj/item/paper/inqslip/proc/attemptsign(mob/user, mob/living/carbon/human/M)
 	if(sliptype == 2)
@@ -358,6 +358,7 @@
 			waxed = TRUE
 			update_icon()
 			S.tallowed = FALSE
+			S.update_icon()
 			playsound(src, 'sound/items/inqslip_sealed.ogg', 75, TRUE, 4)
 			marquevalue += 2
 		else if(S.tallowed && !sealed)

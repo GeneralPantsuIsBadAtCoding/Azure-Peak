@@ -147,6 +147,13 @@
 	desc = "A large signet ring engraved with the Symbol of Psydon, forged from blessed silver. Typically sourced from Otava."
 	sellprice = 90
 
+/obj/item/clothing/ring/signet/update_icon()
+	. = ..()
+	if(tallowed)
+		icon_state = "[icon_state]_stamp"
+	else
+		icon_state = initial(icon_state)
+
 //silver rings
 /obj/item/clothing/ring/emeralds
 	name = "gemerald ring"

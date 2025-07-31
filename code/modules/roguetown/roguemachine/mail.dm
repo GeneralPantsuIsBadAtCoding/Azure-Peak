@@ -164,8 +164,8 @@
 				playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 				for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
 					everyhermes.inqlock()
-				to_chat(user, span_warning("I [inqonly ? "disable" : "enable"] the Puritan's Lock."))
-				return
+				to_chat(user, span_warning("I [inqonly ? "enable" : "disable"] the Puritan's Lock."))
+				return display_marquette(user)
 			to_chat(user, span_warning("Wrong key."))
 			return
 		if(istype(P, /obj/item/storage/keyring))
@@ -178,8 +178,8 @@
 					playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 					for(var/obj/structure/roguemachine/mail/everyhermes in SSroguemachine.hermailers)
 						everyhermes.inqlock()
-					to_chat(user, span_warning("I [inqonly ? "disable" : "enable"] the Puritan's Lock."))
-					return
+					to_chat(user, span_warning("I [inqonly ? "enable" : "disable"] the Puritan's Lock."))
+					return display_marquette(user)
 
 	if(istype(P, /obj/item/paper/confession))
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))
