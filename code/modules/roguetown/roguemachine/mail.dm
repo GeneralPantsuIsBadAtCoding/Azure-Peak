@@ -214,16 +214,17 @@
 					correct = TRUE
 				if(I.signee.name in GLOB.excommunicated_players)	
 					correct = TRUE
-				if(I.paired.subject && I.paired.full && GLOB.indexed)
-					if(", [I.signee]" in GLOB.indexed)
-						indexed = TRUE
-					if("[I.signee]" in GLOB.indexed)
-						indexed = TRUE
-					if(!indexed)
-						if(GLOB.indexed.len)
-							GLOB.indexed += ", [I.signee]"
-						else
-							GLOB.indexed += "[I.signee]"
+				if(I.paired)	
+					if(I.paired.subject && I.paired.full && GLOB.indexed)
+						if(", [I.signee]" in GLOB.indexed)
+							indexed = TRUE
+						if("[I.signee]" in GLOB.indexed)
+							indexed = TRUE
+						if(!indexed)
+							if(GLOB.indexed.len)
+								GLOB.indexed += ", [I.signee]"
+							else
+								GLOB.indexed += "[I.signee]"
 				if(GLOB.accused)
 					if(", [I.signee]" in GLOB.accused)
 						accused = TRUE
@@ -252,11 +253,13 @@
 					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 					to_chat(user, span_notice("They've already confessed."))
 				else
-					if(!indexed && !correct)
-						budget2change(2, user, "MARQUE")
+					if(I.paired)
+						if(!indexed && !correct)
+							budget2change(2, user, "MARQUE")
 					else if(correct)	
-						if(!indexed)
-							I.marquevalue += 2
+						if(I.paired)
+							if(!indexed)
+								I.marquevalue += 2
 						if(accused)	
 							I.marquevalue -= 4
 						budget2change(I.marquevalue, user, "MARQUE")
