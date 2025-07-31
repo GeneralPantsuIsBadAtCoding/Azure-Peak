@@ -83,7 +83,7 @@
 					/obj/effect/proc_holder/spell/invoked/abyssor_undertow		= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/abyssheal				= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/call_mossback			= CLERIC_T3,
-					/obj/effect/proc_holder/spell/invoked/call_dreamfiend		= CLERIC_T4,
+					/obj/effect/proc_holder/spell/invoked/call_dreamfiend		= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/abyssal_infusion		= CLERIC_T4,
 					/obj/effect/proc_holder/spell/invoked/resurrect/abyssor		= CLERIC_T4,
 	)

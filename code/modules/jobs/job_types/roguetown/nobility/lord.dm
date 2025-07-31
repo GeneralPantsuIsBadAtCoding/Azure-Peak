@@ -332,6 +332,8 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	//need to see their damn face
 	if(!recruit.get_face_name(null))
 		return FALSE
+	if(HAS_TRAIT(recruit, TRAIT_DEFILED_NOBLE)) // Their lux was tainted by evil matthios rite. They are utterly fucked.
+		return FALSE
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/grant_nobility/proc/grant_nobility(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)

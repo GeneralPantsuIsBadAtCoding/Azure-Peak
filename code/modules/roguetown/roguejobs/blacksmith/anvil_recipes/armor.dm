@@ -234,6 +234,7 @@
 /datum/anvil_recipe/armor/iron/hauberk
 	name = "Hauberk (+1 Iron)"
 	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/iron)
 	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 
 /datum/anvil_recipe/armor/iron/chaincoif

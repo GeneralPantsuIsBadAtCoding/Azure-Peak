@@ -1,7 +1,7 @@
 /datum/ai_controller/mirespider
     movement_delay = MIRESPIDER_MOVEMENT_SPEED
 
-    ai_movement = /datum/ai_movement/astar
+    ai_movement = /datum/ai_movement/hybrid_pathing
 
     blackboard = list(
         BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -25,7 +25,7 @@
 /datum/ai_controller/mirespider_lurker
     movement_delay = MIRESPIDER_MOVEMENT_SPEED
 
-    ai_movement = /datum/ai_movement/astar
+    ai_movement = /datum/ai_movement/hybrid_pathing
 
     blackboard = list(
         BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -44,7 +44,7 @@
 /datum/ai_controller/mirespider_paralytic
     movement_delay = MIRESPIDER_MOVEMENT_SPEED
 
-    ai_movement = /datum/ai_movement/astar
+    ai_movement = /datum/ai_movement/hybrid_pathing
 
     blackboard = list(
         BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

@@ -4,6 +4,8 @@
 		noble = TRUE
 	if (HAS_TRAIT(src, TRAIT_NOBLE))
 		noble = TRUE
+	if(HAS_TRAIT(src, TRAIT_DEFILED_NOBLE))
+		noble = FALSE
 
 	return noble
 

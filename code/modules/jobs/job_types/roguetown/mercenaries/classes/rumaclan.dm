@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/rumaclan
 	name = "Ruma Clan"
-	tutorial = "A band of foreign Kazengites. The Ruma Clan isn't an organized group of soldiers - rather a loose collection of fighters, with strange tattoos that act as armor."
+	tutorial = "A band of foreign outcast Kazengunites. The Ruma Clan were outcasts from the Xinyi Dynasty, believed to be associated with the rebels at the time. The clan departed lest they risked being executed for such suspicions, or worse. It is no organized group of soldiers, but rather a loose collection of experienced fighters."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = NON_DWARVEN_RACE_TYPES //no dwarf sprites
 	outfit = /datum/outfit/job/roguetown/mercenary/rumaclan
@@ -14,13 +14,13 @@
 
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
-	var/classes = list("Kyodai", "Ishu")
+	var/classes = list("Gun-in", "Sasu")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes //probably gonna add in some more classes when i get more sprites
 
 	switch(classchoice)
-		if("Kyodai")
+		if("Gun-in")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are relatively versed in the art of \"swinging a sword until enemy death.\" - You would gladly take up most jobs for money, or a chance to cut loose."))
+			to_chat(H, span_warning("You are well versed and experienced in swordfighting, you have no problem in taking up most jobs so long as the coin is good, for either yourself or the clan and the seonjang."))
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/rogueweapon/scabbard/sword/kazengun/steel
 			beltl = /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
@@ -51,9 +51,9 @@
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)
 
-		if("Ishu")
+		if("Sasu")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are an archer. Pretty good in the art of \"pelting until enemy death.\" - You would gladly take up most jobs for money, or a chance to shoot loose."))
+			to_chat(H, span_warning("You are an archer of the clan, many have called you an true marksman for your skills with the bow. You have no problem in taking up most jobs so long as the coin is good, for either yourself or the clan and the seonjang."))
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/flashlight/flare/torch/lantern

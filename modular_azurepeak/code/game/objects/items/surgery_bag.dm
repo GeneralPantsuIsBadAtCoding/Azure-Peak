@@ -16,8 +16,8 @@
 		/obj/item/rogueweapon/surgery/scalpel,
 		/obj/item/rogueweapon/surgery/saw,
 		/obj/item/rogueweapon/surgery/hemostat/first,
-		/obj/item/rogueweapon/surgery/hemostat/second, //Different types, for the purpose of belt overlays.
-		/obj/item/rogueweapon/surgery/hemostat/second,
+		/obj/item/rogueweapon/surgery/hemostat/second, //Different types for multiple surgery sites. 
+		/obj/item/rogueweapon/surgery/hemostat/third,
 		/obj/item/rogueweapon/surgery/retractor,
 		/obj/item/rogueweapon/surgery/retractor,
 		/obj/item/rogueweapon/surgery/bonesetter,
@@ -31,9 +31,9 @@
 	populate_contents = list(
 	/obj/item/rogueweapon/surgery/scalpel,
 	/obj/item/rogueweapon/surgery/saw,
-	/obj/item/rogueweapon/surgery/hemostat/first,
+	/obj/item/rogueweapon/surgery/hemostat/first,  //Different types for multiple surgery sites. 
 	/obj/item/rogueweapon/surgery/hemostat/second,
-	/obj/item/rogueweapon/surgery/hemostat/second,
+	/obj/item/rogueweapon/surgery/hemostat/third,
 	/obj/item/rogueweapon/surgery/retractor,
 	/obj/item/rogueweapon/surgery/retractor,
 	/obj/item/rogueweapon/surgery/bonesetter,

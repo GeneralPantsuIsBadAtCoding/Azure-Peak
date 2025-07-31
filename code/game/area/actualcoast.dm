@@ -20,6 +20,7 @@
 	ambush_mobs = list(
 		/mob/living/carbon/human/species/human/northern/searaider/ambush = 10,
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea = 20,
+		/mob/living/carbon/human/species/orc/npc/berserker = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/mossback = 40
 	)
 	first_time_text = "NORTHERN COAST"

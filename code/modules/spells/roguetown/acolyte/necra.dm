@@ -121,6 +121,7 @@
 		return FALSE
 	for (var/obj/structure/underworld_portal/e_portal in user.contents) // checks if the portal exists, and shits them out
 		if(istype(e_portal))
+			e_portal.dispelled = FALSE //we are recasting after dispelling, its safe to set this as false.
 			e_portal.spitout_mob(user, T)
 			return TRUE
 	if(!locate(/obj/structure/underworld_portal) in T)
@@ -141,6 +142,7 @@
 	var/mob/living/caster // stores the caster. obviously.
 	var/mob/living/trapped // stores the trapped.
 	var/time_id
+	var/dispelled = FALSE //Safety check
 
 
 /obj/structure/underworld_portal/examine(mob/living/carbon/user)
@@ -150,7 +152,7 @@
 		. += "A temporary gateway to the underworld. [span_warning("Faintly, you can see clutching fingers in the dark, reaching for you. If you go through, you won't come back.")]"
 	else
 		. += "A temporary gateway to the underworld. You can hear faint whispers through it. [span_warning("It might be possible to step through.")]"
-	
+
 	. += "[span_notice("As the caster, click on GRAB to store the portal, provided there are souls inside. Use HARM to destroy the portal.")]"
 	if(trapped)
 		. += "[span_notice("Right-click on the portal to pull trapped souls out.")]"
@@ -184,9 +186,10 @@
 
 
 /obj/structure/underworld_portal/Destroy()
-	visible_message(span_revenwarning("The portal collapses with an angry hiss."))
-	spitout_mob(caster, loc)
-
+	if(dispelled == FALSE)	//Only do this if we DON'T close it ourselves,that means something ELSE -FUNNY- happend.
+							//As we are already calling qdel on:Right click, if you do not have this is gonna to call spitout mob TWICE
+		spitout_mob(caster, loc)
+	visible_message(span_revenwarning("The portal collapses with an angry hiss."))//will keep this outside the if though, its coo
 	..()
 
 /obj/structure/underworld_portal/attack_right(mob/living/carbon/user, list/modifiers)
@@ -253,21 +256,24 @@
 
 	return TRUE
 
-
 /obj/structure/underworld_portal/proc/spitout_mob(mob/living/carbon/user, turf/T)
-	if(loc == user)
+	if(src.loc == user)
 		forceMove(T ? T : user.loc)
 		user.contents.Remove(src)
 
 	if(trapped)
-		trapped.forceMove(loc)
-		contents.Remove(trapped)
-		trapped.remove_client_colour(/datum/client_colour/monochrome)
-		REMOVE_TRAIT(trapped, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
-		REMOVE_TRAIT(trapped, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+		if(dispelled == TRUE)//dispelled at the caster, this is the case of we do not recast out dispelled portal and its been five minutes.
+			user.forceMove(caster.loc)//has to be user i tried doing it as trapped before but the TIMER calls user so that can trip it up.
+			dispelled = FALSE
+		else
+			user.forceMove(src.loc)
+		contents.Remove(user)
+		user.remove_client_colour(/datum/client_colour/monochrome)
+		REMOVE_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		REMOVE_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 		trapped = null
 
-		trapped.visible_message(
+		user.visible_message(
 			span_revenwarning("[trapped] slips out from the whispering portal. Shadow roils off their form like smoke."),
 			span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
 		)

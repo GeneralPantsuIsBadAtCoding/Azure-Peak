@@ -440,6 +440,18 @@
 	var/river_processing
 	swimdir = TRUE
 
+/turf/open/water/river/flow
+	icon_state = "rockwd"
+
+/turf/open/water/river/flow/west
+	dir = 8
+
+/turf/open/water/river/flow/east
+	dir = 4
+
+/turf/open/water/river/flow/north
+	dir = 1
+
 /turf/open/water/river/update_icon()
 	if(water_overlay)
 		water_overlay.color = water_color

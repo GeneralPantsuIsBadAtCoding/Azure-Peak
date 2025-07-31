@@ -779,6 +779,9 @@
 	. = ..()
 	dir = pick(GLOB.cardinals)
 
+/turf/open/floor/rogue/blocks/flipped
+	dir = 8
+
 /turf/open/floor/rogue/blocks/stonered
 	icon_state = "stoneredlarge"
 	name = "large red tiles"
@@ -828,6 +831,24 @@
 
 /turf/open/floor/rogue/greenstone/runed
 	icon_state = "greenstoneruned"
+
+/turf/open/floor/rogue/greenstone/glyph1
+	icon_state = "glyph1"
+
+/turf/open/floor/rogue/greenstone/glyph2
+	icon_state = "glyph2"
+
+/turf/open/floor/rogue/greenstone/glyph3
+	icon_state = "glyph3"
+
+/turf/open/floor/rogue/greenstone/glyph4
+	icon_state = "glyph4"
+
+/turf/open/floor/rogue/greenstone/glyph5
+	icon_state = "glyph5"
+
+/turf/open/floor/rogue/greenstone/glyph6
+	icon_state = "glyph6"
 
 /turf/open/floor/rogue/hexstone
 	icon_state = "hexstone"

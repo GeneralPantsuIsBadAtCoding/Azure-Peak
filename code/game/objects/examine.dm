@@ -10,9 +10,6 @@
 	. += integrity_check()
 
 	var/real_value = get_real_price()
-	for(var/obj/item/I in src.contents) // runs a loop on anytihng that's got contents under our current inv system
-		if(I)
-			real_value += I.get_real_price() // adds the price to the total real_value. simple, but it works!
 	if(real_value > 0)
 		if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
 			. += span_info("Value: [real_value] mammon")

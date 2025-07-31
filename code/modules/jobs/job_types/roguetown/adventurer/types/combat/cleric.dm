@@ -320,6 +320,7 @@
 				if (/datum/patron/divine/eora)
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora
 					head = /obj/item/clothing/head/roguetown/eoramask
+					backpack_contents[/obj/item/reagent_containers/eoran_seed] = 1
 				if (/datum/patron/divine/xylix)
 					cloak = /obj/item/clothing/cloak/templar/xylix
 				if(/datum/patron/inhumen/zizo)
