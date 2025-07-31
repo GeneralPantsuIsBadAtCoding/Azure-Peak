@@ -38,7 +38,7 @@
 	eat_effect = /datum/status_effect/debuff/uncookedfood
 	fat_yield = 5 // 5 per animal fat
 	bitesize = 1
-	dropshrink = 0.3
+	dropshrink = 0.75
 
 /obj/item/reagent_containers/food/snacks/tallow/Initialize()
 	. = ..()

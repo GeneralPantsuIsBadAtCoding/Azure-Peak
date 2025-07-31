@@ -357,69 +357,72 @@
 	if(istype(P, /obj/item/paper/inqslip/accusation))
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
 			var/obj/item/paper/inqslip/accusation/I = P
-			if(I.signee && I.paired.full && I.paired.subject)
-				var/no
-				var/specialno
-				var/indexed
-				var/correct
-				if(HAS_TRAIT(I.paired.subject, TRAIT_CABAL) || HAS_TRAIT(I.paired.subject, TRAIT_HORDE) || HAS_TRAIT(I.paired.subject, TRAIT_DEPRAVED) || HAS_TRAIT(I.paired.subject, TRAIT_COMMIE))
-					correct = TRUE
-				if(I.paired.subject.name in GLOB.excommunicated_players)	
-					correct = TRUE
-				if(GLOB.indexed)
-					if(", [I.paired.subject]" in GLOB.indexed)
-						indexed = TRUE
-					if("[I.paired.subject]" in GLOB.indexed)
-						indexed = TRUE
-					if(!indexed)
-						if(GLOB.indexed.len)
-							GLOB.indexed += ", [I.paired.subject]"
-						else
-							GLOB.indexed += "[I.paired.subject]"
-				if(GLOB.accused)
-					if(", [I.paired.subject]" in GLOB.accused)
-						no = TRUE
-					if("[I.paired.subject]" in GLOB.accused)
-						no = TRUE
-					if(!no)
-						if(GLOB.accused.len)
-							GLOB.accused += ", [I.paired.subject]"
-						else
-							GLOB.accused += "[I.paired.subject]"
-				if(GLOB.confessors)
-					if(", [I.paired.subject]" in GLOB.confessors)
-						no = TRUE
-						specialno = TRUE
-					if("[I.paired.subject]" in GLOB.confessors)
-						no = TRUE
-						specialno = TRUE
-					if(!no)
-						if(GLOB.confessors.len)
-							GLOB.confessors += ", [I.paired.subject]"
-						else
-							GLOB.confessors += "[I.paired.subject]"			
-				if(no)		
-					qdel(I.paired)
-					qdel(I)
-					visible_message(span_warning("[user] sends something."))
-					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-					if(specialno)
-						to_chat(user, span_notice("They've confessed."))
-					else
-						to_chat(user, span_notice("They've already been accused."))
-				else
-					if(!indexed && !correct)
-						budget2change(2, user, "MARQUE")
-					else if(correct)	
+			if(I.paired)
+				if(I.signee && I.paired.full && I.paired.subject)
+					var/no
+					var/specialno
+					var/indexed
+					var/correct
+					if(HAS_TRAIT(I.paired.subject, TRAIT_CABAL) || HAS_TRAIT(I.paired.subject, TRAIT_HORDE) || HAS_TRAIT(I.paired.subject, TRAIT_DEPRAVED) || HAS_TRAIT(I.paired.subject, TRAIT_COMMIE))
+						correct = TRUE
+					if(I.paired.subject.name in GLOB.excommunicated_players)	
+						correct = TRUE
+					if(GLOB.indexed)
+						if(", [I.paired.subject]" in GLOB.indexed)
+							indexed = TRUE
+						if("[I.paired.subject]" in GLOB.indexed)
+							indexed = TRUE
 						if(!indexed)
-							I.marquevalue += 2
-						budget2change(I.marquevalue, user, "MARQUE")
-					qdel(I.paired)
-					qdel(I)
-					visible_message(span_warning("[user] sends something."))
-					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
-					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-			return							
+							if(GLOB.indexed.len)
+								GLOB.indexed += ", [I.paired.subject]"
+							else
+								GLOB.indexed += "[I.paired.subject]"
+					if(GLOB.accused)
+						if(", [I.paired.subject]" in GLOB.accused)
+							no = TRUE
+						if("[I.paired.subject]" in GLOB.accused)
+							no = TRUE
+						if(!no)
+							if(GLOB.accused.len)
+								GLOB.accused += ", [I.paired.subject]"
+							else
+								GLOB.accused += "[I.paired.subject]"
+					if(GLOB.confessors)
+						if(", [I.paired.subject]" in GLOB.confessors)
+							no = TRUE
+							specialno = TRUE
+						if("[I.paired.subject]" in GLOB.confessors)
+							no = TRUE
+							specialno = TRUE
+						if(!no)
+							if(GLOB.confessors.len)
+								GLOB.confessors += ", [I.paired.subject]"
+							else
+								GLOB.confessors += "[I.paired.subject]"			
+					if(no)		
+						qdel(I.paired)
+						qdel(I)
+						visible_message(span_warning("[user] sends something."))
+						playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+						if(specialno)
+							to_chat(user, span_notice("They've confessed."))
+						else
+							to_chat(user, span_notice("They've already been accused."))
+					else
+						if(!indexed && !correct)
+							budget2change(2, user, "MARQUE")
+						else if(correct)	
+							if(!indexed)
+								I.marquevalue += 2
+							budget2change(I.marquevalue, user, "MARQUE")
+						qdel(I.paired)
+						qdel(I)
+						visible_message(span_warning("[user] sends something."))
+						playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
+						playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+				else
+					to_chat(user, span_warning("[I] is missing an INDEXER."))
+				return							
 		
 	if(istype(P, /obj/item/paper))
 		if(inqcoins)
