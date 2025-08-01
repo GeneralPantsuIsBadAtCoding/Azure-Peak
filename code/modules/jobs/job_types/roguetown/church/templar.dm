@@ -339,6 +339,8 @@
 			weapons += "Duel Settler"
 		if(/datum/patron/divine/eora)
 			weapons += "The Heartstring"
+		if(/datum/patron/divine/abyssor)
+			weapons += "Tidecleaver"
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Longsword")
@@ -381,3 +383,6 @@
 		if("The Heartstring")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier/eora(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+		if("Tidecleaver")
+			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/abyssoraxe(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
