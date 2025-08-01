@@ -654,7 +654,7 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/tallowpot
 	name = "tallow pot"
-	desc = "A small metal pot. Used for holding waxes or melted redtallow. Convenient for stampage."
+	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "tallowpot"
 	item_state = "tallowpot"
@@ -665,16 +665,50 @@ Inquisitorial armory down here
 	possible_item_intents = list(/datum/intent/use)
 	grid_height = 32
 	grid_width = 32
+	item_flags = CAN_BE_HIT
 	experimental_inhand = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	intdamage_factor = 0
 	embedding = null
-	var/tallow
+	var/obj/item/reagent_containers/food/snacks/tallow/red/tallow
 	var/remaining
 	var/heatedup
 	sellprice = 0
 
-/obj/item/inqarticles/tallowpot/process()		
+/obj/item/inqarticles/tallowpot/process()
+	if(heatedup)
+		heatedup =- 1
+		remaining = max(remaining - 10, 0)
+	if(remaining == 0)
+		qdel(tallow)
+		tallow = initial(tallow)
+		update_icon()
+
+/obj/item/inqarticles/tallowpot/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/reagent_containers/food/snacks/tallow/red))
+		if(!tallow)
+			tallow = I
+			user.transferItemToLoc(I, tallow)
+			remaining = 200
+			update_icon()
+		else
+			to_chat(user, span_info("The [src] already has redtallow in it."))
+
+	if(istype(I, /obj/item/flashlight/flare/torch/))		
+		heatedup = 25
+		update_icon()
+		
+
+/obj/item/inqarticles/tallowpot/update_icon()
+	. = ..()	
+	if(tallow)
+		icon_state = "[initial(icon_state)]_filled"
+	if(heatedup)
+		icon_state = "[initial(icon_state)]_melted"
+	else
+		icon_state = "[initial(icon_state)]"
+
 
 /obj/item/rope/inqarticles/inquirycord
 	name = "inquiry cordage"
