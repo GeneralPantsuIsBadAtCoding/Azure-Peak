@@ -256,8 +256,6 @@
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
 
-		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
-		qdel(S)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
 
@@ -298,7 +296,6 @@
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
 
-		H.confession_time("patron", src)
 		H.add_stress(/datum/stressevent/tortured)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
