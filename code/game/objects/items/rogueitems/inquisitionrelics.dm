@@ -665,7 +665,7 @@ Inquisitorial armory down here
 	possible_item_intents = list(/datum/intent/use)
 	grid_height = 32
 	grid_width = 32
-	item_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT
 	experimental_inhand = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	intdamage_factor = 0
@@ -675,10 +675,10 @@ Inquisitorial armory down here
 	var/heatedup
 	sellprice = 0
 
-/obj/item/inqarticles/tallowpot/process()
+/obj/item/inqarticles/tallowpot/proc/keepburning()
 	if(heatedup)
-		heatedup =- 1
-		remaining = max(remaining - 10, 0)
+		heatedup =- 5
+		remaining = max(remaining - 20, 0)
 	if(remaining == 0)
 		qdel(tallow)
 		tallow = initial(tallow)
@@ -688,9 +688,9 @@ Inquisitorial armory down here
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/tallow/red))
 		if(!tallow)
-			var/storeme = I
-			user.transferItemToLoc(storeme, src)
-			tallow = storeme
+			var/obj/item/reagent_containers/food/snacks/tallow/red/Q = I
+			tallow = Q
+			user.transferItemToLoc(Q, src, TRUE)
 			remaining = 200
 			update_icon()
 		else
@@ -699,14 +699,20 @@ Inquisitorial armory down here
 	if(istype(I, /obj/item/flashlight/flare/torch/))		
 		heatedup = 25
 		update_icon()
+
+	if(istype(I, /obj/item/clothing/ring/signet))	
+		if(tallow && heatedup)	
+			var/obj/item/clothing/ring/signet/ring = I
+			ring.tallowed = TRUE
+			ring.update_icon()	
 		
 
 /obj/item/inqarticles/tallowpot/update_icon()
 	. = ..()	
 	if(tallow)
 		icon_state = "[initial(icon_state)]_filled"
-	if(heatedup)
-		icon_state = "[initial(icon_state)]_melted"
+		if(heatedup)
+			icon_state = "[initial(icon_state)]_melted"
 	else
 		icon_state = "[initial(icon_state)]"
 
