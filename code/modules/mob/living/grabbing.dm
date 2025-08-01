@@ -574,7 +574,7 @@
 	user.changeNext_move(CLICK_CD_GRABBING)
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(sublimb_grabbed, d_type)
-	var/damage = user.get_punch_dmg()
+	var/damage = 10*(user.STASTR/20)
 	if(HAS_TRAIT(user, TRAIT_STRONGBITE))
 		damage = damage*2
 	C.next_attack_msg.Cut()
