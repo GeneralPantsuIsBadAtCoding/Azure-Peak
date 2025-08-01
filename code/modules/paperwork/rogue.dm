@@ -237,8 +237,27 @@
 	var/sliptype = 1
 	var/obj/item/inqarticles/indexer/paired
 
+/obj/item/paper/inqslip/read(mob/user)
+	if(!user.client || !user.hud_used)
+		return
+	if(!user.hud_used.reads)
+		return
+	if(!user.can_read(src))
+		return
+	if(in_range(user, src) || isobserver(user))
+		if(waxed)
+			to_chat(user, span_notice("This writ has been signed by [signee.real_name], sealed with redtallow, and can now be mailed back through the Hermes. The Archbishop will be pleased with this one."))
+		if(signed)
+			to_chat(user, span_notice("This writ has been signed by [signee.real_name], and can now be mailed back through the Hermes. Sealing it with redtallow would garner more favor from the Archbishop."))
+		else if(signee)
+			to_chat(user, span_notice("This writ is intended to be signed by [signee.real_name]."))
+		else
+			to_chat(user, span_notice("This writ has not yet been signed."))
+		
+
 /obj/item/paper/inqslip/accusation
-	name = "accusation slip"
+	name = "accusation"
+	desc = "A writ of religious suspicion, printed on Otavan parchment: one signed not in ink, but blood. Press the accusation against your own bleeding wound in order to obtain a signature. Then pair it with an INDEXER full of the accused's blood. Once done, it is ready to be mailed back to Otava. Fold and seal it, it's only proper."
 	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 	marquevalue = 4
 	sliptype = 0
@@ -247,6 +266,7 @@
 	name = "confession"
 	base_icon_state = "confession"
 	marquevalue = 6
+	desc = "A writ of religious guilt, printed on Otavan parchment: one signed not in ink, but blood. Press the confession against a suspect's bleeding wound, in order to obtain their signature. Once done, it is ready to be mailed back to Otava. Fold and seal it, it's only proper."
 	info = "THIS CONFESSION CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 	sliptype = 2
 

@@ -610,7 +610,7 @@
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
-	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_RING
+	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_RING
 	possible_item_intents = list(INTENT_GENERIC)
 	sleeved = 'icons/roguetown/clothing/onmob/neck.dmi'
 	grid_width = 32
@@ -650,11 +650,6 @@
 		if(SLOT_RING)
 			fakename = "silver signet ring"	
 			name = fakename
-		if(SLOT_NECK)
-			fakename = "silver psycross"	
-			name = fakename	
-			mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
-			sleeved = 'icons/roguetown/clothing/onmob/neck.dmi'
 	return TRUE		
 
 

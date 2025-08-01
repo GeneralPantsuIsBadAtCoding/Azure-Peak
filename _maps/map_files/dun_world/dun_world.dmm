@@ -3578,6 +3578,10 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/magician)
+"bdW" = (
+/obj/structure/fluff/psycross/psycrucifix/stone,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/rtfield)
 "bdZ" = (
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/mazedungeon)
@@ -9443,10 +9447,15 @@
 /area/rogue/under/town/basement/keep)
 "cYk" = (
 /obj/structure/closet/crate/chest/neu_iron,
-/obj/item/paper/confession,
-/obj/item/paper/confession,
-/obj/item/paper/confession,
-/obj/item/paper/confession,
+/obj/item/paper/inqslip/confession,
+/obj/item/paper/inqslip/confession,
+/obj/item/paper/inqslip/confession,
+/obj/item/paper/inqslip/accusation,
+/obj/item/paper/inqslip/accusation,
+/obj/item/paper/inqslip/accusation,
+/obj/item/inqarticles/indexer,
+/obj/item/inqarticles/indexer,
+/obj/item/inqarticles/indexer,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/office)
 "cYm" = (
@@ -11120,6 +11129,8 @@
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/tallow/red,
+/obj/item/inqarticles/tallowpot,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/inq)
 "dCm" = (
@@ -20458,6 +20469,8 @@
 	pixel_y = 8
 	},
 /obj/item/paper,
+/obj/item/inqarticles/tallowpot,
+/obj/item/reagent_containers/food/snacks/tallow/red,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/inq)
 "gxX" = (
@@ -22037,7 +22050,6 @@
 	icon_state = "longtable_mid"
 	},
 /obj/item/paper,
-/obj/item/roguekey/church,
 /obj/item/roguekey/inquisition,
 /obj/item/roguekey/inquisition,
 /obj/item/roguekey/inquisition,
@@ -30618,6 +30630,8 @@
 	icon_state = "longtable"
 	},
 /obj/item/natural/feather,
+/obj/item/inqarticles/tallowpot,
+/obj/item/reagent_containers/food/snacks/tallow/red,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/office)
 "jCX" = (
@@ -33001,6 +33015,10 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/town)
+"krK" = (
+/obj/structure/fluff/psycross/psycrucifix/stone,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/rtfield)
 "krW" = (
 /obj/structure/table/wood{
 	dir = 6;
@@ -45167,9 +45185,6 @@
 /obj/item/flashlight/flare/torch/metal,
 /obj/item/listeningdevice,
 /obj/item/listeningdevice,
-/obj/item/listeningdevice,
-/obj/item/listeningdevice,
-/obj/item/speakerinq,
 /obj/item/speakerinq,
 /obj/item/speakerinq,
 /obj/structure/fluff/walldeco/psybanner/red{
@@ -45177,8 +45192,6 @@
 	},
 /obj/item/rope/chain,
 /obj/item/rope/chain,
-/obj/item/rope/chain,
-/obj/item/rope,
 /obj/item/rope,
 /obj/item/rope,
 /turf/open/floor/rogue/cobble,
@@ -70199,7 +70212,6 @@
 /obj/structure/closet/crate/chest/neu_iron,
 /obj/item/roguekey/church,
 /obj/item/roguekey/church,
-/obj/item/paper/confession,
 /obj/item/needle/thorn,
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
@@ -244150,12 +244162,12 @@ lKo
 ibp
 pxF
 wuc
-pxF
+krK
 uRH
 asY
 asY
 gwM
-ibp
+bdW
 bsL
 bsL
 cFz
@@ -357600,7 +357612,7 @@ cxA
 cxA
 cxA
 cxA
-aBB
+cxA
 cxA
 cxA
 cxA
@@ -358052,7 +358064,7 @@ cxA
 cxA
 cxA
 cxA
-aBB
+cxA
 cxA
 cxA
 cxA

@@ -1040,6 +1040,34 @@
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	i_type = "Weapons"
 
+/datum/anvil_recipe/weapons/psy/shortsword
+	name = "Psydonian Shortsword"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/sword/short/psy
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/katar
+	name = "Psydonian Katar"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/katar/psydon
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/knuckles
+	name = "Psydonian Knuckles"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/knuckles/psydon
+	i_type = "Weapons"
+
+/datum/anvil_recipe/weapons/psy/cudgel
+	name = "Psydonian Handmace"
+	req_bar = /obj/item/ingot/silverblessed
+	craftdiff = 3
+	created_item = /obj/item/rogueweapon/mace/cudgel/psy
+	i_type = "Weapons"
+
 /datum/anvil_recipe/weapons/psy/halberd
 	name = "Psydonian Halberd (+1 B. Silver, +1 Small Log)"
 	req_bar = /obj/item/ingot/silverblessed
@@ -1049,11 +1077,11 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/gsword
-	name = "Psydonian Greatsword (+1 B. Silver, +1 H. Steel)"
+	name = "Psydonian Greatsword (+1 B. Silver)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/greatsword/psygsword
-	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/ingot/steelholy)
+	additional_items = list(/obj/item/ingot/silverblessed)
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/sword
@@ -1064,10 +1092,9 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/whip
-	name = "Psydonian Whip (+1 B. Silver, +2 Chain)"
+	name = "Psydonian Whip (+2 Cured Leather)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
-	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/rope/chain, /obj/item/rope/chain)
-	created_item = /obj/item/rogueweapon/whip/antique/psywhip
+	created_item = /obj/item/rogueweapon/whip/psywhip_lesser
+	additional_items = list(/obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	i_type = "Weapons"
-

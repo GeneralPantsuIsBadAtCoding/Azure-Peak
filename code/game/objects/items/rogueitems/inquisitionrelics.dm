@@ -468,7 +468,7 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/indexer
 	name = "INDEXER"
-	desc = "A device of dubious origin."
+	desc = "A blessed ampoule with a retractable bladetip, intended further information gathering through hematology. Siphon blood from an individual until the INDEXER clicks shut, then mail it back to Otava for cataloguing."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "indexer"
 	item_state = "indexer"
@@ -585,7 +585,7 @@ Inquisitorial armory down here
 		full = TRUE
 		visible_message(span_warning("[src] finishes!"))
 		active = FALSE
-		desc = span_notice("It's full! It contains the blood of [subject.real_name]!")
+		desc += span_notice("It's full!")
 		if(cursedblood)
 			playsound(src, 'sound/items/indexer_cursed.ogg', 100, FALSE, 3)
 			active = FALSE
@@ -611,7 +611,8 @@ Inquisitorial armory down here
 					M.emote("scream", forced = TRUE)
 				else if(prob(15))
 					M.emote("cry", forced = TRUE)	
-			desc = span_notice("It contains the blood of [subject.real_name]!")
+			desc = initial(desc)
+			desc += span_notice("It contains the blood of [subject.real_name]!")
 			visible_message(span_warning("[src] draws from [M]!"))
 			playsound(M, 'sound/combat/hits/bladed/genstab (1).ogg', 30, FALSE, -1)
 			timestaken++
@@ -675,10 +676,20 @@ Inquisitorial armory down here
 	var/heatedup
 	sellprice = 0
 
-/obj/item/inqarticles/tallowpot/proc/keepburning()
-	if(heatedup)
-		heatedup =- 5
+/obj/item/inqarticles/tallowpot/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)	// For making sure it melts.
+
+/obj/item/inqarticles/tallowpot/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)	
+
+/obj/item/inqarticles/tallowpot/process()
+	if(heatedup > 0)
+		heatedup -= 4
 		remaining = max(remaining - 20, 0)
+	else
+		update_icon()
 	if(remaining == 0)
 		qdel(tallow)
 		tallow = initial(tallow)
@@ -691,13 +702,13 @@ Inquisitorial armory down here
 			var/obj/item/reagent_containers/food/snacks/tallow/red/Q = I
 			tallow = Q
 			user.transferItemToLoc(Q, src, TRUE)
-			remaining = 200
+			remaining = 300
 			update_icon()
 		else
 			to_chat(user, span_info("The [src] already has redtallow in it."))
 
 	if(istype(I, /obj/item/flashlight/flare/torch/))		
-		heatedup = 25
+		heatedup = 28
 		update_icon()
 
 	if(istype(I, /obj/item/clothing/ring/signet))	
