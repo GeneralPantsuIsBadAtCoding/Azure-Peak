@@ -245,7 +245,7 @@
 	recharge_time = 20 MINUTES
 	movement_interrupt = FALSE
 	chargedrain = 0
-	range = 7
+	range = 5
 	chargetime = 3 SECONDS
 	charging_slowdown = 2
 	chargedloop = null
@@ -277,6 +277,9 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		var/originalcmodetarget = target.cmode_music
 		var/turf/storedchallengerturf = get_turf(user)
 		var/turf/storedchallengedturf = get_turf(target)
+		if(user.z != target.z)
+			revert_cast()
+			return FALSE
 		if(target == user)
 			revert_cast()
 			return FALSE

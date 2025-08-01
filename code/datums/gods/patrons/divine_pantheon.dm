@@ -129,6 +129,7 @@
 					/obj/effect/proc_holder/spell/invoked/avert					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/deaths_door			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/targeted/abrogation			= CLERIC_T2,
+					/obj/effect/proc_holder/spell/invoked/raise_spirits_vengeance = CLERIC_T2
 	)
 	confess_lines = list(
 		"ALL SOULS FIND THEIR WAY TO NECRA!",

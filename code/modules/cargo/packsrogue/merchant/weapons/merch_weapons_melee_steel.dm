@@ -86,7 +86,7 @@
 				)
 
 /datum/supply_pack/rogue/steel_weapons/kriegmesser
-	name = "Kriegmesser"
+	name = "Kriegsmesser"
 	cost = 70 // 2 Steel Ingot
 	contains = list(
 					/obj/item/rogueweapon/sword/long/kriegmesser,

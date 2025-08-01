@@ -232,6 +232,16 @@
 	desc = "With some sleep in a coffin I feel like I could become better."
 	icon_state = "sleepy"
 
+/datum/status_effect/debuff/ritualdefiled
+	id = "ritualdefiled"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	effectedstats = list("strength" = -2, "perception" = -1, "intelligence" = -1, "endurance" = -2, "constitution" = -2, "speed" = -1, "fortune" = -1)
+	duration = 2 HOURS // Punishing AS FUCK, but not as punishing as being dead.
+
+/atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	name = "Tainted Lux"
+	desc = "My Lux has been tainted in a vile heretic ritual."
+
 /// SURRENDERING DEBUFFS
 
 /datum/status_effect/debuff/breedable
@@ -288,6 +298,16 @@
 /atom/movable/screen/alert/status_effect/debuff/ritesexpended
 	name = "Rites Complete"
 	desc = "It will take time before I can next perform a rite."
+	icon_state = "ritesexpended"
+
+/datum/status_effect/debuff/ritesexpended_heavy
+	id = "ritesexpended_heavy"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritesexpended_heavy
+	duration = 1 HOURS
+
+/atom/movable/screen/alert/status_effect/debuff/ritesexpended_heavy
+	name = "Rites Complete"
+	desc = "It will take a lot of time before I can perform a next rite. I am drained."
 	icon_state = "ritesexpended"
 
 /datum/status_effect/debuff/call_to_arms

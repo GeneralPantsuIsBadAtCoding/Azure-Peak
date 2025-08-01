@@ -356,6 +356,7 @@
 		/datum/sprite_accessory/hair/head/long_over_eye_alt,
 		/datum/sprite_accessory/hair/head/diagonalbangs,
 		/datum/sprite_accessory/hair/head/sabitsuki,
+		/datum/sprite_accessory/hair/head/sabitsuki_ponytail,
 		/datum/sprite_accessory/hair/head/cotton,
 		/datum/sprite_accessory/hair/head/cottonalt,
 		/datum/sprite_accessory/hair/head/bushy,

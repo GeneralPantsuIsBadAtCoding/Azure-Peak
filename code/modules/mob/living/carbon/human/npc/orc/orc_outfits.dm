@@ -86,7 +86,7 @@
 	H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 // Lightly armored orc in light armor with no pain stun, and grappling oriented weapons
 /datum/outfit/job/roguetown/orc/npc/berserker/pre_equip(mob/living/carbon/human/H)
@@ -117,7 +117,7 @@
 	H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 
 // Heavily armored orc with complete iron protection, heavy armor, and a two hander.
 /datum/outfit/job/roguetown/orc/npc/warlord/pre_equip(mob/living/carbon/human/H)
@@ -159,4 +159,4 @@
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)

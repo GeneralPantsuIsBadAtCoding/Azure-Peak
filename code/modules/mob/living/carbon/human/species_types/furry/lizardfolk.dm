@@ -2,13 +2,13 @@
 	race = /datum/species/lizardfolk
 
 /datum/species/lizardfolk
-	name = "Sissean"
+	name = "Zardman"
 	id = "lizardfolk"
-	desc = "<b>Sissean</b><br>\
-	Sisseans are semi-aquatic reptilian humanoids. \
+	desc = "<b>Zardman</b><br>\
+	Zardmen are semi-aquatic reptilian humanoids. \
 	Their flesh is covered in scales varying in color from dark green to shades of brown and gray. \
-	Taller than humans and powerfully built, sisseans are often between 6 and 7 feet tall. \
-	Sisseans have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
+	Taller than humans and powerfully built, zardmen are often between 6 and 7 feet tall. \
+	Zardmen have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
 	They also have sharp claws and teeth.<br>\
 	(+1 Constitution, +1 Endurance)"
 	skin_tone_wording = "Skin Colors"
@@ -70,7 +70,7 @@
 		/datum/customizer/organ/snout/lizard,
 		/datum/customizer/organ/ears/lizard,
 		/datum/customizer/organ/frills/lizard,
-		/datum/customizer/organ/horns/humanoid/sissean,
+		/datum/customizer/organ/horns/humanoid/zardman,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/animal,

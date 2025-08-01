@@ -17,3 +17,14 @@
 	mob_types = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 2
 	)
+
+/datum/ambush_config/medium_skeleton_party
+	mob_types = list(
+		/mob/living/carbon/human/species/skeleton/npc/medium = 3
+	)
+
+/datum/ambush_config/heavy_skeleton_party
+	mob_types = list(
+		/mob/living/carbon/human/species/skeleton/npc/medium = 1,
+		/mob/living/carbon/human/species/skeleton/npc/hard = 2
+	)

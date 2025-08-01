@@ -100,3 +100,4 @@
 	backpack_contents = list(/obj/item/roguekey/mercenary)
 
 	H.grant_language(/datum/language/aavnic)		//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.
+	H.merctype = 6

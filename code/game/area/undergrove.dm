@@ -14,7 +14,7 @@
 	ambush_types = list(
 				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
-				/mob/living/carbon/human/species/skeleton/npc = 10,
+				/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
 				/mob/living/carbon/human/species/goblin/npc/sea = 20,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20,
