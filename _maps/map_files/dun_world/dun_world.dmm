@@ -25147,7 +25147,6 @@
 /obj/structure/closet/crate/chest/lootbox,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
-/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/shelter/mountains/decap)
 "ihI" = (
@@ -29705,6 +29704,10 @@
 "jFJ" = (
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave)
+"jFN" = (
+/obj/structure/closet/crate/chest/trapped/locked,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/shelter/mountains/decap)
 "jFP" = (
 /obj/structure/table/wood/long_table/right,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/materials,
@@ -49577,6 +49580,11 @@
 /obj/structure/table/wood/large_table/south_east,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
+"qgH" = (
+/obj/structure/closet/crate/chest/lootbox,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/medical,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/beach/forest/north)
 "qgL" = (
 /obj/item/reagent_containers/glass/bottle/rogue/water,
 /turf/open/floor/rogue/naturalstone,
@@ -61699,8 +61707,9 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves/north)
 "ubD" = (
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors/cave/central)
+/obj/structure/closet/crate/chest/trapped/locked,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/beach/forest/north)
 "ubH" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/grasscold,
@@ -62267,6 +62276,7 @@
 /area/rogue/indoors/town)
 "ulp" = (
 /obj/structure/table/wood/fancy/black,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "ulq" = (
@@ -70123,9 +70133,8 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/garrison)
 "wJi" = (
-/obj/structure/closet/crate/chest/gold,
-/obj/item/roguecoin/gold,
-/obj/item/roguecoin/gold,
+/obj/structure/closet/crate/chest,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest/north)
 "wJj" = (
@@ -74566,6 +74575,7 @@
 /area/rogue/indoors/town/tavern)
 "yjV" = (
 /obj/structure/closet/crate/chest/lootbox,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/misc,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest/north)
 "yjW" = (
@@ -140353,10 +140363,10 @@ izz
 izz
 mam
 mam
-mam
-ubD
-ubD
-ubD
+xlz
+xlz
+xlz
+xlz
 mam
 mam
 mam
@@ -140804,7 +140814,7 @@ izz
 izz
 izz
 gTV
-gTV
+mam
 mam
 mam
 mam
@@ -476576,7 +476586,7 @@ nmu
 nmu
 mxK
 smS
-rON
+jFN
 smS
 rON
 nmu
@@ -479796,9 +479806,9 @@ vDl
 vDl
 vDl
 vDl
-kpS
-kpS
 wJi
+kpS
+kpS
 kpS
 kpS
 yjV
@@ -480700,12 +480710,12 @@ ogs
 vDl
 vDl
 vDl
+qgH
 kpS
 kpS
 kpS
 kpS
-kpS
-kpS
+ubD
 vDl
 vDl
 vDl
@@ -481153,7 +481163,7 @@ vDl
 vDl
 vDl
 eQA
-yjV
+kpS
 kpS
 kpS
 kpS
