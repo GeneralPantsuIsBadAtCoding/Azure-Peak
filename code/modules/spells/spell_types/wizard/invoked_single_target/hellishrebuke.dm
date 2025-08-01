@@ -20,6 +20,7 @@
 	glow_intensity = GLOW_INTENSITY_LOW
 	gesture_required = TRUE
 	range = 1
+	ignore_los = FALSE
 
 
 /obj/effect/proc_holder/spell/invoked/rebuke/cast(list/targets, mob/living/user)
@@ -31,3 +32,4 @@
 		target.visible_message(span_warning("[user] makes a rude gesture at [target] and causes them to burst into flames!"), \
 		span_userdanger("[user] makes a rude gesture at you and causes you to burst into flames!"))
 		playsound(get_turf(target), 'sound/misc/explode/incendiary (1).ogg', 100, TRUE)
+
