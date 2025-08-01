@@ -3614,7 +3614,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "blq" = (
-/obj/structure/closet/crate/chest/lootbox,
+/obj/structure/closet/crate/chest/trapped/locked,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter)
 "bls" = (
@@ -7245,6 +7245,7 @@
 /area/rogue/outdoors/mountains)
 "ctE" = (
 /obj/structure/mineral_door/wood/deadbolt,
+/obj/structure/trap/shock,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "ctR" = (
@@ -12166,6 +12167,7 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/clothing,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "ebr" = (
@@ -13828,7 +13830,6 @@
 "ezQ" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/reagent_containers/glass/bucket/pot,
-/obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "ezS" = (
@@ -15116,7 +15117,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog/south)
 "eUh" = (
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/landmark/chest_or_mimic/loot_chest,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
 "eUo" = (
@@ -17261,7 +17262,7 @@
 /obj/item/roguegem/ruby,
 /obj/item/book/granter/spell/blackstone/frostbolt,
 /obj/item/rogueweapon/woodstaff/riddle_of_steel,
-/obj/item/roguecoin/silver/pile,
+/obj/item/storage/belt/rogue/pouch/coins/rich,
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "fDl" = (
@@ -27898,6 +27899,7 @@
 /obj/structure/closet/crate/chest/lootbox,
 /obj/item/storage/belt/rogue/pouch/coins/rich,
 /obj/item/clothing/neck/roguetown/talkstone,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "jbv" = (
@@ -28504,7 +28506,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "jkA" = (
-/obj/effect/landmark/chest_or_mimic/gold,
+/obj/effect/landmark/chest_or_mimic/loot_chest,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/goblinfort)
 "jkK" = (
@@ -34548,7 +34550,7 @@
 /area/rogue/under/cave/dukecourt)
 "liJ" = (
 /obj/effect/decal/cleanable/debris/glassy,
-/obj/item/ingot/blacksteel,
+/obj/item/reagent_containers/glass/cup/silver,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "liK" = (
@@ -46491,14 +46493,10 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves/central)
 "pdY" = (
-/obj/structure/rack/rogue/shelf/big{
-	icon_state = "shelf_biggest";
-	pixel_y = 0
-	},
-/obj/effect/spawner/lootdrop/roguetown/sewers,
-/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
-/turf/open/floor/rogue/greenstone,
-/area/rogue/under/cave/dungeon1/gethsmane/inner)
+/obj/structure/closet/crate/chest,
+/obj/item/natural/bundle/stick,
+/turf/open/floor/rogue/blocks/platform,
+/area/rogue/outdoors/mountains/decap)
 "pec" = (
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/under/underdark/south)
@@ -49414,7 +49412,7 @@
 	pixel_y = 0
 	},
 /obj/effect/spawner/lootdrop/roguetown/dungeon/medical,
-/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
+/obj/item/ingot/bronze,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "qcY" = (
@@ -60221,7 +60219,6 @@
 /area/rogue/indoors/town)
 "tDd" = (
 /obj/item/clothing/suit/roguetown/shirt/robe/merchant,
-/obj/item/roguecoin/silver/pile,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "tDn" = (
@@ -63685,6 +63682,7 @@
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
 	},
+/obj/structure/trap/saw_blades,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "uIk" = (
@@ -67959,12 +67957,6 @@
 /obj/structure/fluff/psycross/copper,
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/church/chapel)
-"vYj" = (
-/obj/machinery/anvil,
-/obj/item/rogueweapon/tongs,
-/obj/item/rogueweapon/hammer/steel,
-/turf/open/floor/rogue/metal,
-/area/rogue/outdoors/mountains/decap)
 "vYk" = (
 /obj/structure/mineral_door/wood/fancywood,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -150529,7 +150521,7 @@ hmi
 vHO
 czG
 wvC
-pdY
+qcs
 wvC
 pfk
 wvC
@@ -153918,7 +153910,7 @@ cSe
 dqQ
 dqQ
 dqQ
-iyf
+dqQ
 shU
 rrI
 shU
@@ -154370,7 +154362,7 @@ cSe
 dqQ
 dqQ
 dqQ
-shU
+dqQ
 shU
 shU
 shU
@@ -154825,8 +154817,8 @@ dqQ
 dqQ
 dqQ
 shU
-shU
 dqQ
+shU
 dqQ
 dqQ
 dqQ
@@ -155276,9 +155268,9 @@ cSe
 dqQ
 dqQ
 dqQ
-dqQ
-dqQ
-dqQ
+shU
+rrI
+shU
 dqQ
 dqQ
 cSe
@@ -155728,9 +155720,9 @@ cSe
 cSe
 cSe
 dqQ
-dqQ
-dqQ
-dqQ
+shU
+shU
+iyf
 dqQ
 cSe
 cSe
@@ -334223,7 +334215,7 @@ xjQ
 tGY
 xwP
 tGY
-vYj
+fFd
 tGY
 vwA
 oMT
@@ -335579,7 +335571,7 @@ mTu
 kdO
 tGY
 tGY
-vYj
+fFd
 tGY
 oYM
 tGY
@@ -344173,7 +344165,7 @@ mTu
 gXq
 luQ
 tGY
-tGY
+pdY
 mTu
 fkB
 fkB
@@ -529485,7 +529477,7 @@ qhh
 qhh
 qhh
 qhh
-blq
+qhh
 nMW
 tDV
 tDV
