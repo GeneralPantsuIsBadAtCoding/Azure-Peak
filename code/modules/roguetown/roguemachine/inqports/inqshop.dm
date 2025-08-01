@@ -21,8 +21,6 @@
 	name = "inquisitorial article crate"
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/
-	lockid = "puritan"
-	locked = TRUE
 
 /obj/structure/closet/crate/chest/inqcrate/equipment/
 	name = "inquisitorial equipment crate"
@@ -33,9 +31,9 @@
 /// ✤ SUPPLIES ✤ START HERE! WOW!	
 
 /datum/inqports/supplies/extrafunding
-	name = "Extra Funding"
+	name = "(80 Silvers) Extra Funding"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/extrafunding
-	marquescost = 10
+	marquescost = 18
 	maximum = 1
 
 /obj/item/roguecoin/silver/inqpile/Initialize()
@@ -49,10 +47,15 @@
 	new /obj/item/roguecoin/silver/inqpile(src)
 	new /obj/item/roguecoin/silver/inqpile(src)
 
+/datum/inqports/supplies/stampstuff
+	name = "1 Lump of Redtallow"
+	item_type = /obj/item/reagent_containers/food/snacks/tallow/red
+	marquescost = 2
+
 /datum/inqports/supplies/medical
 	name = "5 Rolls of Cloth and Needles"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/medical
-	marquescost = 4
+	marquescost = 12
 
 /obj/item/natural/bundle/cloth/roll/Initialize()
 	. = ..()
@@ -72,35 +75,20 @@
 	new /obj/item/natural/bundle/cloth/roll(src)
 	new /obj/item/natural/bundle/cloth/roll(src)
 
-
-/datum/inqports/supplies/rope
-	name = "4 Spools of Rope"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/ropes
-	marquescost = 2
-
-/obj/structure/closet/crate/chest/inqcrate/supplies/ropes/Initialize()
-	. = ..()
-	new /obj/item/rope(src)
-	new /obj/item/rope(src)
-	new /obj/item/rope(src)
-	new /obj/item/rope(src)
-
 /datum/inqports/supplies/chains
-	name = "4 Lengths of Chain"
+	name = "2 Lengths of Chain"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/chains
-	marquescost = 4
+	marquescost = 6
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/chains/Initialize()
 	. = ..()
-	new /obj/item/rope/chain(src)
-	new /obj/item/rope/chain(src)
 	new /obj/item/rope/chain(src)
 	new /obj/item/rope/chain(src)
 
 /datum/inqports/supplies/redpotions
 	name = "3 Bottles of Red"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/redpots
-	marquescost = 4
+	marquescost = 6
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/redpots/Initialize()
 	. = ..()
@@ -112,7 +100,7 @@
 	name = "3 Vials of Strong Red"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/sredvials
 	maximum = 4
-	marquescost = 6
+	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/sredvials/Initialize()
 	. = ..()
@@ -123,7 +111,7 @@
 /datum/inqports/supplies/bluepotions
 	name = "3 Bottles of Blue"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/bluepots
-	marquescost = 6
+	marquescost = 8
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/bluepots/Initialize()
 	. = ..()
@@ -135,7 +123,7 @@
 	name = "3 Vials of Strong Blue"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/sbluevials
 	maximum = 4
-	marquescost = 8
+	marquescost = 16
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/sbluevials/Initialize()
 	. = ..()
@@ -144,14 +132,12 @@
 	new /obj/item/reagent_containers/glass/bottle/alchemical/strongmanapot(src)
 
 /datum/inqports/supplies/smokes
-	name = "6 Smokebombs"
+	name = "4 Smokebombs"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/smokes
-	marquescost = 4
+	marquescost = 8
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/smokes/Initialize()
 	. = ..()
-	new /obj/item/smokebomb(src)
-	new /obj/item/smokebomb(src)
 	new /obj/item/smokebomb(src)
 	new /obj/item/smokebomb(src)
 	new /obj/item/smokebomb(src)
@@ -160,7 +146,7 @@
 /datum/inqports/supplies/bottlebombs
 	name = "3 Bottlebombs"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/bottlebombs
-	marquescost = 6
+	marquescost = 12
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/bottlebombs/Initialize()
 	. = ..()
@@ -168,12 +154,10 @@
 	new /obj/item/bomb(src)
 	new /obj/item/bomb(src)
 
-// ✤ RELIQUARY ✤ GOES HERE! DO THAT!
-
-/datum/inqports/reliquary/bullion
+/datum/inqports/supplies/bullion
 	name = "6 Blessed Silver Bullion"
 	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/bullion/
-	marquescost = 16
+	marquescost = 20
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/bullion/Initialize()
 	. = ..()
@@ -183,9 +167,123 @@
 	new /obj/item/ingot/silverblessed/bullion(src)
 	new /obj/item/ingot/silverblessed/bullion(src)
 	new /obj/item/ingot/silverblessed/bullion(src)
+	
+
+// ✤ ARTICLES ✤ RIGHT HERE! THAT'S RIGHT!
+
+/datum/inqports/articles/quicksilver
+	name = "1 Emergency Poultice"
+	item_type = /obj/item/quicksilver
+	maximum = 1
+	marquescost = 12
+
+/datum/inqports/articles/psycross
+	name = "1 Silver Psycross"
+	item_type = /obj/item/clothing/neck/roguetown/psicross/silver
+	maximum = 1
+	marquescost = 12
+
+/datum/inqports/articles/indexers
+	name = "4 INDEXERs"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/indexers
+	marquescost = 4
+
+/obj/structure/closet/crate/chest/inqcrate/articles/indexers/Initialize()
+	. = ..()
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
+
+/datum/inqports/articles/accusations
+	name = "4 Accusations"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/accusations
+	marquescost = 8
+
+/obj/structure/closet/crate/chest/inqcrate/articles/accusations/Initialize()
+	. = ..()
+	new /obj/item/paper/inqslip/accusation(src)
+	new /obj/item/paper/inqslip/accusation(src)
+	new /obj/item/paper/inqslip/accusation(src)
+	new /obj/item/paper/inqslip/accusation(src)		
+
+/datum/inqports/articles/confessions
+	name = "4 Confessions"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/confessions
+	marquescost = 16
+
+/obj/structure/closet/crate/chest/inqcrate/articles/confessions/Initialize()
+	. = ..()
+	new /obj/item/paper/inqslip/confession(src)
+	new /obj/item/paper/inqslip/confession(src)
+	new /obj/item/paper/inqslip/confession(src)
+	new /obj/item/paper/inqslip/confession(src)	
+
+/datum/inqports/articles/bmirror
+	name = "1 Black Mirror"
+	item_type = /obj/item/inqarticles/bmirror
+	marquescost = 6
+
+/datum/inqports/articles/listener
+	name = "1 Attentive Ear"
+	item_type = /obj/item/listeningdevice
+	marquescost = 4
+
+/datum/inqports/articles/whisperer
+	name = "1 Secret Whisperer"
+	item_type = /obj/item/speakerinq
+	marquescost = 8
 
 
-/datum/inqports/reliquary/crankbox
+// ✤ EQUIPMENT ✤ BELONGS HERE! JUST BELOW!
+
+/datum/inqports/equipment/psydonthorns
+	name = "1 Psydonian Thorns"
+	item_type = /obj/item/clothing/wrists/roguetown/bracers/psythorns
+	marquescost = 16
+
+/datum/inqports/equipment/garrote
+	name = "1 Seizing Garrote"
+	item_type = /obj/item/inqarticles/garrote
+	marquescost = 4
+
+/datum/inqports/equipment/strangemask
+	name = "1 Confessional Mask"
+	item_type = /obj/item/clothing/mask/rogue/facemask/steel/confessor
+	marquescost = 12
+
+/datum/inqports/equipment/otavansatchel
+	name = "1 Otavan Leather Satchel"
+	item_type = /obj/item/storage/backpack/rogue/satchel/otavan
+	marquescost = 10
+
+/datum/inqports/equipment/psysack
+	name = "1 Identity Concealer"
+	item_type = /obj/item/clothing/mask/rogue/sack/psy
+	marquescost = 6
+
+/datum/inqports/equipment/inqcordage
+	name = "2 Spools of Inquiry Cordage"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/inqcordage
+	marquescost = 4
+
+/obj/structure/closet/crate/chest/inqcrate/equipment/inqcordage/Initialize()
+	. = ..()
+	new /obj/item/rope/inqarticles/inquirycord(src)
+	new /obj/item/rope/inqarticles/inquirycord(src)	
+
+/datum/inqports/equipment/blackbags
+	name = "3 Black Bags"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/blackbags
+	marquescost = 8
+	
+/obj/structure/closet/crate/chest/inqcrate/equipment/blackbags/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/inqarticles/blackbag(src)
+	new /obj/item/clothing/head/inqarticles/blackbag(src)
+	new /obj/item/clothing/head/inqarticles/blackbag(src)
+
+/datum/inqports/equipment/crankbox
 	name = "The Crankbox"
 	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/crankbox/
 	marquescost = 16
@@ -195,85 +293,97 @@
 	. = ..()
 	new /obj/item/psydonmusicbox(src)
 
-// ✤ ARTICLES ✤ RIGHT HERE! THAT'S RIGHT!
-
-/datum/inqports/articles/quicksilver
-	name = "Quicksilver Poultice"
-	item_type = /obj/item/quicksilver
-	maximum = 1
-	marquescost = 8
-
-// ✤ EQUIPMENT ✤ BELONGS HERE! JUST BELOW!
-
+/datum/inqports/equipment/nocshades
+	name = "1 Nocshade Lens-Pair"
+	item_type = /obj/item/clothing/mask/rogue/spectacles/inq
+	marquescost = 16
 
 // ✤ WARDROBE ✤ STARTS HERE! YEP!
+
+/obj/item/clothing/neck/roguetown/fencerguard/inq
+	color = "#8b1414"
+	detail_color = "#99b2b1"
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq
+	color = "#8b1414"
+	detail_color = "#99b2b1"
 
 /datum/inqports/wardrobe/fencerset
 	name = "The Otavan Fencer's Finest Set Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencerset
-	marquescost = 8
+	marquescost = 14
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencerset/Initialize()
 	. = ..()
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan(src)
-	new /obj/item/clothing/neck/roguetown/fencerguard(src)
+	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq(src)
+	new /obj/item/clothing/neck/roguetown/fencerguard/inq(src)
 	new /obj/item/clothing/gloves/roguetown/otavan(src)
 	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
 	new /obj/item/clothing/shoes/roguetown/boots/otavan(src)
 
+/datum/inqports/wardrobe/confessionalcombo
+	name = "The Confessional Combination"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/confessionalcombo
+	marquescost = 14
+
+/obj/structure/closet/crate/chest/inqcrate/wardrobe/confessionalcombo/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/roguetown/roguehood/psydon/confessor(src)
+	new /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor(src)
+
+/datum/inqports/wardrobe/inspectorcoat
+	name = "The Inquisition's Finest Coats and Hats"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspectorcoats
+	marquescost = 18	
+
+/obj/structure/closet/crate/chest/inqcrate/wardrobe/inspectorcoats/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/roguetown/inqhat(src)
+	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
+	new /obj/item/clothing/head/roguetown/inqhat(src)
+	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
+	new /obj/item/clothing/head/roguetown/inqhat(src)
+	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
+
 /datum/inqports/wardrobe/inspector
 	name = "The Inquisitorial Inspector's Best Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspector
-	marquescost = 12
+	marquescost = 18
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspector/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/roguetown/inqhat(src)
 	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
 	new /obj/item/clothing/gloves/roguetown/otavan/inqgloves(src)
-	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
 	new /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots(src)
-
-/datum/inqports/wardrobe/paddedgambthree
-	name = "The Padded Gambeson Three-Pack"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/paddedgambthree
-	marquescost = 6
-
-/obj/structure/closet/crate/chest/inqcrate/wardrobe/paddedgambthree/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy(src)
 
 /datum/inqports/wardrobe/fencersthree
 	name = "The Fencer's Gambeson Three-Pack"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencersthree
-	marquescost = 10
+	marquescost = 16
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencersthree/Initialize()
 	. = ..()
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan(src)
+	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq(src)
+	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq(src)
+	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq(src)
 
-/datum/inqports/wardrobe/leatherpantsed
-	name = "The Otavan Leathers Three-Pack"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/leatherpantsed
-	marquescost = 6
+/datum/inqports/wardrobe/psydonianstandard
+	name = "The Inquisitorial Standard"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian
+	marquescost = 12
 
-/obj/structure/closet/crate/chest/inqcrate/wardrobe/leatherpantsed/Initialize()
+/obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian/Initialize()
 	. = ..()
 	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
-	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
-	new /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan(src)
-	new /obj/item/clothing/gloves/roguetown/otavan(src)
-	new /obj/item/clothing/gloves/roguetown/otavan(src)
-	new /obj/item/clothing/gloves/roguetown/otavan(src)
+	new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq(src)
+	new /obj/item/clothing/gloves/roguetown/otavan/psygloves(src)
+	new /obj/item/clothing/shoes/roguetown/boots/psydonboots(src)
 
 /datum/inqports/wardrobe/nobledressup
 	name = "The Cost of Nobility Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/nobledressup
-	marquescost = 14
+	marquescost = 24
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/nobledressup/Initialize()
 	. = ..()
@@ -281,5 +391,5 @@
 	new /obj/item/clothing/cloak/lordcloak(src)
 	new /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat(src)
 	new /obj/item/clothing/suit/roguetown/shirt/dress/royal(src)
-	new /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat(src)
-	new /obj/item/clothing/gloves/roguetown/otavan(src)
+	new /obj/item/clothing/wrists/roguetown/royalsleeves(src)
+	new /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince(src)

@@ -171,6 +171,7 @@
 	equip_sound = 'sound/items/confessormaskon.ogg'
 	smeltresult = /obj/item/ingot/steel	
 	var/worn = FALSE
+	slot_flags = ITEM_SLOT_MASK
 
 /obj/item/clothing/mask/rogue/facemask/steel/confessor/equipped(mob/living/carbon/human/user, slot)
 	. = ..()

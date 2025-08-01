@@ -868,6 +868,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/indoors/town/warehouse/can_craft_here()
 	return FALSE
 
+/area/rogue/indoors/inq/import
+	name = "foreign imports"
+	icon_state = "warehouse"
+
+/area/rogue/indoors/inq/import/can_craft_here()
+	return FALSE
+
 /area/rogue/indoors/town/vault
 	name = "vault"
 	icon_state = "vault"

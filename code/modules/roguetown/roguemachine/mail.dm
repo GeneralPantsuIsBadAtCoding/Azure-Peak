@@ -181,27 +181,6 @@
 					to_chat(user, span_warning("I [inqonly ? "enable" : "disable"] the Puritan's Lock."))
 					return display_marquette(user)
 
-	if(istype(P, /obj/item/paper/confession))
-		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))
-			var/obj/item/paper/confession/C = P
-			if(C.signed)
-				if(GLOB.confessors)
-					var/no
-					if(", [C.signed]" in GLOB.confessors)
-						no = TRUE
-					if("[C.signed]" in GLOB.confessors)
-						no = TRUE
-					if(!no)
-						if(GLOB.confessors.len)
-							GLOB.confessors += ", [C.signed]"
-						else
-							GLOB.confessors += "[C.signed]"
-				qdel(C)
-				visible_message(span_warning("[user] sends something."))
-				playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
-				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-		return
-
 	if(istype(P, /obj/item/paper/inqslip/confession))
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
 			var/obj/item/paper/inqslip/confession/I = P
@@ -209,13 +188,19 @@
 				var/no
 				var/accused
 				var/indexed
+				var/selfreport
 				var/correct
+				if(HAS_TRAIT(I.signee, TRAIT_INQUISITION))
+					selfreport = TRUE
 				if(HAS_TRAIT(I.signee, TRAIT_CABAL) || HAS_TRAIT(I.signee, TRAIT_HORDE) || HAS_TRAIT(I.signee, TRAIT_DEPRAVED) || HAS_TRAIT(I.signee, TRAIT_COMMIE))
 					correct = TRUE
 				if(I.signee.name in GLOB.excommunicated_players)	
 					correct = TRUE
 				if(I.paired)	
-					if(I.paired.subject && I.paired.full && GLOB.indexed)
+					if(HAS_TRAIT(I.paired.subject, TRAIT_INQUISITION))
+						selfreport = TRUE
+						indexed = TRUE
+					if(I.paired.subject && I.paired.full && GLOB.indexed && !selfreport)
 						if(", [I.signee]" in GLOB.indexed)
 							indexed = TRUE
 						if("[I.signee]" in GLOB.indexed)
@@ -225,17 +210,12 @@
 								GLOB.indexed += ", [I.signee]"
 							else
 								GLOB.indexed += "[I.signee]"
-				if(GLOB.accused)
+				if(GLOB.accused && !selfreport)
 					if(", [I.signee]" in GLOB.accused)
 						accused = TRUE
 					if("[I.signee]" in GLOB.accused)
 						accused = TRUE
-					if(!accused)
-						if(GLOB.accused.len)
-							GLOB.accused += ", [I.signee]"
-						else
-							GLOB.accused += "[I.signee]"
-				if(GLOB.confessors)
+				if(GLOB.confessors && !selfreport)
 					if(", [I.signee]" in GLOB.confessors)
 						no = TRUE
 					if("[I.signee]" in GLOB.confessors)
@@ -245,13 +225,21 @@
 							GLOB.confessors += ", [I.signee]"
 						else
 							GLOB.confessors += "[I.signee]"			
-				if(no)		
+				if(no | selfreport)		
 					if(I.paired)	
 						qdel(I.paired)
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-					to_chat(user, span_notice("They've already confessed."))
+					if(no)
+						to_chat(user, span_notice("They've already confessed."))
+					if(selfreport)
+						to_chat(user, span_notice("Why was that confession signed by an inquisition member? What?"))
+						if(indexed)
+							visible_message(span_warning("[user] recieves something."))
+							var/obj/item/inqarticles/indexer/replacement = new /obj/item/inqarticles/indexer/
+							user.put_in_hands(replacement)
+					return		
 				else
 					if(I.paired)
 						if(!indexed && !correct)
@@ -303,7 +291,10 @@
 					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 			else if(I.subject && I.full)
 				var/no
-				if(GLOB.indexed)
+				var/selfreport
+				if(HAS_TRAIT(I.subject, TRAIT_INQUISITION))
+					selfreport = TRUE
+				if(GLOB.indexed && !selfreport)
 					if(", [I.subject]" in GLOB.indexed)
 						no = TRUE
 					if("[I.subject]" in GLOB.indexed)
@@ -313,12 +304,15 @@
 							GLOB.indexed += ", [I.subject]"
 						else
 							GLOB.indexed += "[I.subject]"
-				if(no)		
+				if(no || selfreport)		
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 					visible_message(span_warning("[user] recieves something."))
-					to_chat(user, span_notice("It appears we already had them INDEXED. I've been issued a replacement."))
+					if(selfreport)
+						to_chat(user, span_notice("Why did that INDEXER contain Inquisitional blood? What am I doing?"))
+					else
+						to_chat(user, span_notice("It appears we already had them INDEXED. I've been issued a replacement."))
 					var/obj/item/inqarticles/indexer/replacement = new /obj/item/inqarticles/indexer/
 					user.put_in_hands(replacement)
 				else	
@@ -366,21 +360,24 @@
 					var/specialno
 					var/indexed
 					var/correct
+					var/selfreport
+					if(HAS_TRAIT(I.paired.subject, TRAIT_INQUISITION))
+						selfreport = TRUE
 					if(HAS_TRAIT(I.paired.subject, TRAIT_CABAL) || HAS_TRAIT(I.paired.subject, TRAIT_HORDE) || HAS_TRAIT(I.paired.subject, TRAIT_DEPRAVED) || HAS_TRAIT(I.paired.subject, TRAIT_COMMIE))
 						correct = TRUE
 					if(I.paired.subject.name in GLOB.excommunicated_players)	
 						correct = TRUE
-					if(GLOB.indexed)
+					if(GLOB.indexed && !selfreport)
 						if(", [I.paired.subject]" in GLOB.indexed)
 							indexed = TRUE
 						if("[I.paired.subject]" in GLOB.indexed)
 							indexed = TRUE
-						if(!indexed)
+						if(!indexed && !selfreport)
 							if(GLOB.indexed.len)
 								GLOB.indexed += ", [I.paired.subject]"
 							else
 								GLOB.indexed += "[I.paired.subject]"
-					if(GLOB.accused)
+					if(GLOB.accused && !selfreport)
 						if(", [I.paired.subject]" in GLOB.accused)
 							no = TRUE
 						if("[I.paired.subject]" in GLOB.accused)
@@ -390,27 +387,28 @@
 								GLOB.accused += ", [I.paired.subject]"
 							else
 								GLOB.accused += "[I.paired.subject]"
-					if(GLOB.confessors)
+					if(GLOB.confessors && !selfreport)
 						if(", [I.paired.subject]" in GLOB.confessors)
 							no = TRUE
 							specialno = TRUE
 						if("[I.paired.subject]" in GLOB.confessors)
 							no = TRUE
-							specialno = TRUE
-						if(!no)
-							if(GLOB.confessors.len)
-								GLOB.confessors += ", [I.paired.subject]"
-							else
-								GLOB.confessors += "[I.paired.subject]"			
-					if(no)		
+							specialno = TRUE		
+					if(no || selfreport)		
 						qdel(I.paired)
 						qdel(I)
 						visible_message(span_warning("[user] sends something."))
 						playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 						if(specialno)
 							to_chat(user, span_notice("They've confessed."))
+						else if(selfreport)
+							to_chat(user, span_notice("Why are we accusing our own? What have we come to?"))
+							visible_message(span_warning("[user] recieves something."))
+							var/obj/item/inqarticles/indexer/replacement = new /obj/item/inqarticles/indexer/
+							user.put_in_hands(replacement)
 						else
 							to_chat(user, span_notice("They've already been accused."))
+						return
 					else
 						if(!indexed && !correct)
 							budget2change(2, user, "MARQUE")
@@ -423,8 +421,16 @@
 						visible_message(span_warning("[user] sends something."))
 						playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
 						playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+						return
 				else
-					to_chat(user, span_warning("[I] is missing an INDEXER."))
+					if(!I.paired.full)		
+						to_chat(user, span_warning("[I.paired] needs to be full of the accused's blood."))
+						return
+					else	
+						to_chat(user, span_warning("[I] is missing a signature."))	
+						return
+			else
+				to_chat(user, span_warning("[I] is missing an INDEXER."))
 				return							
 		
 	if(istype(P, /obj/item/paper))
@@ -654,17 +660,17 @@
 		contents += "✤ ── <a href='?src=[REF(src)];locktoggle=1]'> PURITAN'S LOCK: [inqonly ? "OUI":"NON"]</a> ── ✤<BR>"
 	else
 		contents += "✤ ── PURITAN'S LOCK: [inqonly ? "OUI":"NON"] ── ✤<BR>"
-	contents += "ᛉ <a href='?src=[REF(src)];eject=1'>MARQUES LOADED:</a> [inqcoins] ᛉ<BR>"
+	contents += "ᛉ <a href='?src=[REF(src)];eject=1'>MARQUES LOADED: [inqcoins]</a>ᛉ<BR>"
 
 	if(cat_current == "1")
 		contents += "<BR> <table style='width: 100%' line-height: 40px;'>"
-		if(HAS_TRAIT(user, TRAIT_PURITAN))
+/*		if(HAS_TRAIT(user, TRAIT_PURITAN))
 			for(var/i = 1, i <= inq_category.len, i++)
 				contents += "<tr>"
 				contents += "<td style='width: 100%; text-align: center;'>\
 					<a href='?src=[REF(src)];changecat=[inq_category[i]]'>[inq_category[i]]</a>\
 					</td>"	
-				contents += "</tr>"
+				contents += "</tr>"*/
 		for(var/i = 1, i <= category.len, i++)
 			contents += "<tr>"
 			contents += "<td style='width: 100%; text-align: center;'>\
@@ -679,8 +685,10 @@
 		var/list/items = list()
 		for(var/pack in GLOB.inqsupplies)
 			var/datum/inqports/PA = pack
-			if(all_category[PA.category] == cat_current)
+			if(all_category[PA.category] == cat_current && PA.name)
 				items += GLOB.inqsupplies[pack]
+				if(PA.name == "Seizing Garrote" && !HAS_TRAIT(user, TRAIT_BLACKBAGGER))
+					items -= GLOB.inqsupplies[pack]
 		for(var/pack in sortNames(items, order=0))
 			var/datum/inqports/PA = pack
 			var/name = uppertext(PA.name)
@@ -699,6 +707,8 @@
 
 /obj/structure/roguemachine/mail/Topic(href, href_list)
 	..()
+	if(!usr.canUseTopic(src, BE_CLOSE))
+		return
 	if(href_list["eject"])
 		if(inqcoins <= 0)
 			return
@@ -724,11 +734,22 @@
 		if(PA.maximum)	
 			decreaseremaining(PA)
 		visible_message(span_warning("[usr] sends something."))
+		if(!inqcoins)
+			coin_loaded = FALSE
+			update_icon()
 		playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 		var/pathi = pick(PA.item_type)
 		new pathi(get_turf(M))
 
 	return display_marquette(usr)		
+
+/*	var/area/A = GLOB.areas_by_type[/area/rogue/indoors/inq/import] - UNCOMMENT ON AREA ADDITION
+		if(!A)
+			return
+		var/list/turfs = list()
+		for(var/turf/T in A)
+			turfs += T
+		var/turf/T = pick(turfs)*/	
 
 /*
 	INQUISITION INTERACTIONS - END

@@ -327,6 +327,15 @@
 	else		
 		sealed = FALSE
 		update_icon()
+		
+/obj/item/paper/inqslip/attack_right(mob/user)
+	. = ..()
+	if(paired)	
+		if(!user.get_active_held_item())
+			user.put_in_active_hand(paired, user.active_hand_index)
+			paired = null	
+			update_icon()
+		return TRUE
 
 /obj/item/paper/inqslip/update_icon_state()
 	. = ..()
@@ -369,17 +378,21 @@
 	if(sliptype != 1)
 		if(istype(I, /obj/item/inqarticles/indexer))
 			var/obj/item/inqarticles/indexer/Q = I
+			if(paired)
+				return
 			if(!Q.subject)
 				if(signed)
 					to_chat(user, span_warning("I should fill [Q] before pairing it with [src]."))
 					return
 				else
 					paired = Q
+					user.transferItemToLoc(Q, src, TRUE)
 					update_icon()
 			else if(Q.subject && Q.full)
 				if(sliptype == 2)
 					if(Q.subject == signee)
 						paired = Q
+						user.transferItemToLoc(Q, src, TRUE)
 						update_icon()
 					else
 						if(signed)
@@ -389,6 +402,7 @@
 						return
 				else
 					paired = Q
+					user.transferItemToLoc(Q, src, TRUE)
 					update_icon()
 			else
 				to_chat(user,  span_warning("[Q] isn't completely full."))		

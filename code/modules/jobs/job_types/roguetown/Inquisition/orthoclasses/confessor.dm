@@ -24,11 +24,10 @@
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	wrists = /obj/item/rope/inqarticles/inquirycord
+	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	beltr = /obj/item/quiver/bolts
 	neck = /obj/item/clothing/neck/roguetown/gorget
-	cloak = /obj/item/clothing/neck/roguetown/psicross/silver
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
@@ -45,7 +44,8 @@
 		/obj/item/lockpickring/mundane = 1,
 		/obj/item/clothing/head/inqarticles/blackbag = 1,
 		/obj/item/inqarticles/garrote = 1,
-		/obj/item/grapplinghook = 1
+		/obj/item/grapplinghook = 1,
+		/obj/item/paper/inqslip/arrival/ortho = 1
 		)
 	H.change_stat("strength", -1) // weasel
 	H.change_stat("endurance", 3)

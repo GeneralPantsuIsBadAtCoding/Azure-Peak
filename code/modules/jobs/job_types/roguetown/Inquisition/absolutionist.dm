@@ -52,6 +52,7 @@
 		/obj/item/book/rogue/bibble/psy = 1,
 		/obj/item/natural/bundle/cloth/roll = 2,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 2,
+		/obj/item/paper/inqslip/arrival/abso = 1,
 		/obj/item/needle = 1,
 		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/roguekey/inquisition = 1,

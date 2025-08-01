@@ -586,6 +586,14 @@ Inquisitorial armory down here
 		visible_message(span_warning("[src] finishes!"))
 		active = FALSE
 		desc = span_notice("It's full! It contains the blood of [subject.real_name]!")
+		if(cursedblood)
+			playsound(src, 'sound/items/indexer_cursed.ogg', 100, FALSE, 3)
+			active = FALSE
+			working = TRUE
+			icon_state = "indexer_cursed"
+			update_icon()
+			src.say("CURSED BLOOD!")
+			return
 		icon_state = "indexer_primed"
 		update_icon()
 		return
@@ -622,14 +630,7 @@ Inquisitorial armory down here
 				if(M.mind.has_antag_datum(/datum/antagonist/vampirelord))
 					cursedblood = 3
 			update_icon()
-			if(!cursedblood)
-				takeblood(M, user)
-			else
-				playsound(src, 'sound/items/indexer_cursed.ogg', 100, FALSE, 3)
-				active = FALSE
-				icon_state = "indexer_cursed"
-				update_icon()
-				src.say("CURSED BLOOD!")
+			takeblood(M, user)
 		else
 			working = FALSE
 
@@ -638,9 +639,6 @@ Inquisitorial armory down here
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))
 		if(!active)
 			to_chat(user, span_warning("It's not primed."))
-			return
-		if(HAS_TRAIT(M, TRAIT_INQUISITION))
-			to_chat(user, span_warning("The Inquisition already took blood samples from us."))	
 			return
 		if(subject)
 			if(M != subject)
@@ -653,6 +651,30 @@ Inquisitorial armory down here
 			takeblood(M, user)
 		else
 			return
+
+/obj/item/inqarticles/tallowpot
+	name = "tallow pot"
+	desc = "A small metal pot. Used for holding waxes or melted redtallow. Convenient for stampage."
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "tallowpot"
+	item_state = "tallowpot"
+	dropshrink = 0.9
+	throw_speed = 1
+	throw_range = 3
+	throwforce = 5
+	possible_item_intents = list(/datum/intent/use)
+	grid_height = 32
+	grid_width = 32
+	experimental_inhand = TRUE
+	w_class = WEIGHT_CLASS_SMALL
+	intdamage_factor = 0
+	embedding = null
+	var/tallow
+	var/remaining
+	var/heatedup
+	sellprice = 0
+
+/obj/item/inqarticles/tallowpot/process()		
 
 /obj/item/rope/inqarticles/inquirycord
 	name = "inquiry cordage"
@@ -1141,6 +1163,9 @@ Inquisitorial armory down here
 	if(!user.mind)
 		return
 	if(opened)
+		if(whofedme)
+			to_chat(user, span_warning("It's already been fed."))
+			return
 		if(broken)
 			to_chat(user, span_warning("It's broken."))
 			return
@@ -1150,10 +1175,10 @@ Inquisitorial armory down here
 		if(M == user)
 			user.visible_message(span_notice("[user] presses upon [src]'s needle."))
 			if(do_after(user, 30))
-				playsound(src, 'sound/items/blackmirror_needle.ogg', 85, FALSE, 3)
+				playsound(src, 'sound/items/blackmirror_needle.ogg', 95, FALSE, 3)
 				user.flash_fullscreen("redflash3")
 				user.adjustBruteLoss(40)
-				user.blood_volume = max(user.blood_volume-140, 0)
+				user.blood_volume = max(user.blood_volume-240, 0)
 				user.handle_blood()
 				whofedme = user
 				openstate = "bloody"
@@ -1162,10 +1187,10 @@ Inquisitorial armory down here
 			return
 		else
 			user.visible_message(span_notice("[user] goes to press [M] with [src]'s needle."))
-			if(do_after(user, 30, target = M))	
-				playsound(M, 'sound/items/blackmirror_needle.ogg', 85, FALSE, 3)
+			if(do_after(user, 60, target = M))	
+				playsound(M, 'sound/items/blackmirror_needle.ogg', 95, FALSE, 3)
 				M.flash_fullscreen("redflash3")
-				M.blood_volume = max(user.blood_volume-140, 0)
+				M.blood_volume = max(user.blood_volume-240, 0)
 				M.adjustBruteLoss(40)
 				M.handle_blood()
 				whofedme = M
