@@ -865,6 +865,15 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "dock warehouse import"
 	icon_state = "warehouse"
 
+/area/rogue/indoors/inq
+	name = "The Inquisition"
+	icon_state = "chapel"
+	first_time_text = "THE OTAVAN INQUISITION"
+
+/area/rogue/indoors/inq/office
+	name = "The Inquisitor's Office"
+	icon_state = "chapel"
+
 /area/rogue/indoors/town/warehouse/can_craft_here()
 	return FALSE
 

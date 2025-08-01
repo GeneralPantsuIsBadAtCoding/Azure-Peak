@@ -726,7 +726,6 @@
 			everyhermes.inqlock()
 
 	if(href_list["buy"])
-		var/mob/M = usr
 		var/path = text2path(href_list["buy"])
 		var/datum/inqports/PA = GLOB.inqsupplies[path]
 
@@ -738,18 +737,18 @@
 			coin_loaded = FALSE
 			update_icon()
 		playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-		var/pathi = pick(PA.item_type)
-		new pathi(get_turf(M))
-
-	return display_marquette(usr)		
-
-/*	var/area/A = GLOB.areas_by_type[/area/rogue/indoors/inq/import] - UNCOMMENT ON AREA ADDITION
+		var/area/A = GLOB.areas_by_type[/area/rogue/indoors/inq/import]
 		if(!A)
 			return
 		var/list/turfs = list()
 		for(var/turf/T in A)
 			turfs += T
-		var/turf/T = pick(turfs)*/	
+		var/turf/T = pick(turfs)
+		var/pathi = pick(PA.item_type)
+		playsound(T, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+		new pathi(get_turf(T))
+
+	return display_marquette(usr)		
 
 /*
 	INQUISITION INTERACTIONS - END

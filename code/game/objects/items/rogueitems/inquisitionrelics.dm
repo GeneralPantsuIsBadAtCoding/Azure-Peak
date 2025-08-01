@@ -670,7 +670,7 @@ Inquisitorial armory down here
 	w_class = WEIGHT_CLASS_SMALL
 	intdamage_factor = 0
 	embedding = null
-	var/obj/item/reagent_containers/food/snacks/tallow/red/tallow
+	var/tallow
 	var/remaining
 	var/heatedup
 	sellprice = 0
@@ -688,8 +688,9 @@ Inquisitorial armory down here
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/tallow/red))
 		if(!tallow)
-			tallow = I
-			user.transferItemToLoc(I, tallow)
+			var/storeme = I
+			user.transferItemToLoc(storeme, src)
+			tallow = storeme
 			remaining = 200
 			update_icon()
 		else
