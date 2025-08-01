@@ -1228,10 +1228,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
-"avg" = (
-/obj/structure/roguemachine/stockpile,
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "avm" = (
 /obj/structure/flora/roguetree/burnt,
 /turf/open/floor/rogue/dirt/road,
@@ -259828,7 +259824,7 @@ pWT
 noC
 noC
 noC
-avg
+pWT
 njB
 fpx
 fpx
