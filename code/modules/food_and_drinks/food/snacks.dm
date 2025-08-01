@@ -44,6 +44,7 @@ All foods are distributed among various categories. Use common sense.
 	var/slice_path    // for sliceable food. path of the item resulting from the slicing
 	var/slice_bclass = BCLASS_CUT
 	var/slices_num
+	var/slice_name
 	var/slice_batch = TRUE
 	var/eatverb
 	var/dried_type = null
@@ -531,18 +532,15 @@ All foods are distributed among various categories. Use common sense.
 		var/reagents_per_slice = reagents.total_volume/slices_num
 		for(var/i in 1 to slices_num)
 			var/obj/item/reagent_containers/food/snacks/slice = new slice_path(loc)
-			slice.filling_color = filling_color
 			initialize_slice(slice, reagents_per_slice)
 		qdel(src)
 	else
 		var/reagents_per_slice = reagents.total_volume/slices_num
 		var/obj/item/reagent_containers/food/snacks/slice = new slice_path(loc)
-		slice.filling_color = filling_color
 		initialize_slice(slice, reagents_per_slice)
 		slices_num--
 		if(slices_num == 1)
 			slice = new slice_path(loc)
-			slice.filling_color = filling_color
 			initialize_slice(slice, reagents_per_slice)
 			qdel(src)
 			return TRUE
@@ -556,6 +554,7 @@ All foods are distributed among various categories. Use common sense.
 	slice.create_reagents(slice.volume)
 	reagents.trans_to(slice,reagents_per_slice)
 	slice.filling_color = filling_color
+	slice.name = slice_name ? slice_name : slice.name
 	slice.update_snack_overlays(src)
 //	if(name != initial(name))
 //		slice.name = "slice of [name]"

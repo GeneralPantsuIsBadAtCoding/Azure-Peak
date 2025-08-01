@@ -10,6 +10,7 @@
 		"...you feel grass under your feet as you peer onto a meadow, you prepare a campfire and a tent and drift off into deep slumber...",
 		"...you dig through the mud for worms with a spade you made from wood and stone gathered by the lakeside. Your fishing rod stands eager to bring you a meal, just like your grandfather taught you..."
 	)
+	expert_name = "Crafter"
 
 /datum/skill/craft/weaponsmithing
 	name = "Weaponsmithing"
@@ -19,6 +20,7 @@
 		"...sweat drips down your brow and your arms ache with every strike, but at last, the blade is forged. A masterpiece of steel and gold, adorned with rontz gems...",
 		"...an old hunter stands in front of your counter and demands two dozen arrows. He hands you a bundle of sticks with a smile on his face..."
 	)
+	expert_name = "Weaponsmith"
 
 /datum/skill/craft/armorsmithing
 	name = "Armorsmithing"
@@ -27,6 +29,7 @@
 		"...you stand amidst the deadite horde, their tooth and claw unable to dent your armor. Your creation. Your masterpiece...",
 		"...the veteran's armor, battered beyond recognition, mirrors the scars upon his body. Yet, without your craft, he'd have fallen long ago. With skilled hands and a half a day's work, the armor is reborn - stronger than the day it was forged..."
 	)
+	expert_name = "Armorsmith"
 
 /datum/skill/craft/blacksmithing
 	name = "Blacksmithing"
@@ -36,6 +39,7 @@
 		"...you hammer away at a strange blue metal. It tempts you, begging to be formed into a crown of secrets...",
 		"...the furnaces are lit and the forges roar. Today is a good day, and the lord of flame has blessed your smithy, the greatest in all the lands..."
 	)
+	expert_name = "Blacksmith"
 
 /datum/skill/craft/smelting
 	name = "Smelting"
@@ -46,6 +50,7 @@
 		"...you toil endlessly under the heat of the furnace; its fire roars with each sacrifice you offer, gifting you malleable metal in return..."
 
 	)
+	expert_name = "Smelter"
 
 /datum/skill/craft/carpentry
 	name = "Carpentry"
@@ -55,6 +60,7 @@
 		"...with every beam you set, the house takes shape. The smell of fresh wood and sawdust fills the air as walls rise, and the roof begins to form. A shelter born from your hands...",
 		"...you take a seat and there is no noise. None at all. The nightmare of its horrid creak is dispelled, and your thoughts turn to its make..."
 	)
+	expert_name = "Carpenter"
 
 /datum/skill/craft/masonry
 	name = "Masonry"
@@ -63,6 +69,7 @@
 		"...a fortress. Impenetrable. Everlasting. Brick by brick. Layer by layer. Stone upon stone. This is your magnum opus. This is the way of creation...",
 		"...'3, 4 and 5 lead to the corner of 90.' your master, a wizened old elf adrift in the void, shows you how their mason's square indicates straight and strange corners alike..."
 	)
+	expert_name = "Mason"
 
 /datum/skill/craft/traps
 	name = "Trapmaking"
@@ -71,6 +78,7 @@
 		"...you spin a quiet silver wire across a hallway, lying in wait for your prey. The monstrous pale volf approaches. This time, you are prepared...",
 		"...the gleam of the trap's sharp teeth catches the dim light as you conceal it beneath layers of brush and foliage. To the untrained eye, it's nothing more than a harmless patch of grass - but you know better..."
 	)
+	expert_name = "Trapper"
 
 /datum/skill/craft/cooking
 	name = "Cooking"
@@ -80,6 +88,7 @@
 		"...your knife bears down onto a wheel of cheese, and you cut away at the imperfections that lie on its skin. Next would be the eggs and the dough, and they'll roll together into a wonderful meal...",
 		"...a one-eyed chef begins mashing apples in front of you before filling some pie dough. He can barely stop himself from salivating as he teaches you his secret ingredient..."
 	)
+	expert_name = "Cook"
 
 /datum/skill/craft/engineering
 	name = "Engineering"
@@ -89,6 +98,7 @@
 		"...three levers lay before you. One will drop you into acid, another will release toxic gas but only one will free you. The moonlight shines on one of them, and you reach out...",
 		"...with steady hands you shape a new limb, each joint and cog designed to restore what was lost. Your work is a quiet promise; they will walk again..."
 	)
+	expert_name = "Engineer"
 
 /datum/skill/craft/tanning
 	name = "Skincrafting"
@@ -97,6 +107,7 @@
 		"...your knife scrapes away at skin, flesh and fat, cleaning up the piece of hide so that it may be made into a wonderful cloak for the lord...",
 		"...the hunter, their voice as rough as bark and their skin weathered like grain lets out a hearty laugh as he shows you his stitching..."
 	)
+	expert_name = "Tanner"
 	
 /datum/skill/craft/alchemy
 	name = "Alchemy"
@@ -104,6 +115,7 @@
 	dreams = list(
 		"...the smell of sulfur singes your nostrils... you taste iron... the smoke clears as you stare down at the reflection in your cauldron... the Queen stares back at you... she looks like she's crying..."
 	)
+	expert_name = "Alchemist"
 
 /datum/skill/craft/alchemy/skill_level_effect(level, datum/mind/mind)
 	if(level > SKILL_LEVEL_MASTER)

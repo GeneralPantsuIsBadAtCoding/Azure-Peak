@@ -22,6 +22,7 @@
 
 /obj/effect/proc_holder/spell/self/check_boot
 	name = "BOOT-CHECK"
+	desc = "Checks your boot for variety of items."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -132,6 +133,7 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonendure
 	name = "ENDURE"
+	desc = "Mends the wounds of the target."
 	overlay_state = "ENDURE"
 	releasedrain = 20
 	chargedrain = 0

@@ -1,6 +1,7 @@
 // Lesser miracle
 /obj/effect/proc_holder/spell/invoked/lesser_heal
 	name = "Miracle"
+	desc = "Heals target over time, causes damage if something is embedded in target. Burns undead instead of healing them if you worship the Ten.<br>Does not work on those worshipping the dead god."
 	overlay_state = "lesserheal"
 	releasedrain = 30
 	chargedrain = 0
@@ -204,6 +205,7 @@
 // Miracle
 /obj/effect/proc_holder/spell/invoked/heal
 	name = "Fortify"
+	desc = "Improves the targets ability to receive healing, buffing all healing done on them by 50%<br>Burns undead instead of healing them if you worship the Ten."
 	overlay_state = "astrata"
 	releasedrain = 30
 	chargedrain = 0
@@ -249,6 +251,7 @@
 
 /obj/effect/proc_holder/spell/invoked/regression
 	name = "Regression"
+	desc = "Rewinds the target wounds, Healing them over time. If target is under Stasis heals them twice as much."
 	overlay_state = "regression"
 	releasedrain = 30
 	chargedrain = 0
@@ -279,6 +282,7 @@
 
 /obj/effect/proc_holder/spell/invoked/convergence
 	name = "Convergence"
+	desc = "Converges the targets past and present, causing them to heal 50% more."
 	overlay_state = "convergence"
 	releasedrain = 30
 	chargedrain = 0
@@ -316,7 +320,7 @@
 
 /obj/effect/proc_holder/spell/invoked/stasis
 	name = "Stasis"
-	desc = "You capture your target's current state in time, reverting them to such a state several seconds later."
+	desc = "You capture your target's current state in time, reverting them to such a state several seconds later. If under Convergence  when expiring, your target will keep any healing they receive."
 	releasedrain = 35
 	chargedrain = 1
 	chargetime = 30

@@ -18,8 +18,8 @@
 	name = "decrepit chain gauntlets"
 	desc = "Decrepit old chain gauntlets. Aeon's grasp is upon them."
 	icon_state = "acgloves"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	smeltresult = /obj/item/ingot/aalloy
 
 /obj/item/clothing/gloves/roguetown/chain/paalloy
 	name = "ancient chain gauntlets"
@@ -32,6 +32,7 @@
 	desc = "Blacksteel-bound gauntlets. These ritualistic restraints, when left to dangle-and-sway, assist in the deflection of unpredictable blows."
 	icon_state = "psydongloveschain"
 	item_state = "psydongloveschains"
+	smeltresult = null	//So you can't melt down your start gear for blacksteel brigadines etc.
 	var/wrapped = FALSE
 
 /obj/item/clothing/gloves/roguetown/chain/psydon/attack_right(mob/user)

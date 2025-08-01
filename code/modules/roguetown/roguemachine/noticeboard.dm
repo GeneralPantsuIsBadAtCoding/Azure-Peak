@@ -30,6 +30,13 @@
 	marker.desc = "Place completed quest scrolls here to turn them in."
 	marker.layer = ABOVE_OBJ_LAYER
 
+/obj/structure/roguemachine/noticeboard/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	. = .. ()
+	if(istype(P, /obj/item/paper/scroll/quest))
+		turn_in_quest(user, P)
+		return
+	return
+
 /datum/noticeboardpost
 	var/title
 	var/truepostername
@@ -353,6 +360,7 @@
 	attached_quest.quest_type = type_selection
 
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
+	user.put_in_hands(spawned_scroll)
 	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -423,37 +431,45 @@
 
 	return null
 
-/obj/structure/roguemachine/noticeboard/proc/turn_in_quest(mob/user)
+/obj/structure/roguemachine/noticeboard/proc/turn_in_quest(mob/user, obj/item/paper/scroll/quest/scroll_in_hand)
+	var/obj/item/paper/scroll/quest/target_scroll = null
+
+	if(scroll_in_hand)
+		target_scroll = scroll_in_hand
+		turn_in_scroll(user, target_scroll)
+	else
+		for(var/atom/movable/pawnable_loot in input_point)
+			if(istype(pawnable_loot, /obj/item/paper/scroll/quest))
+				target_scroll = pawnable_loot
+				turn_in_scroll(user, target_scroll)
+
+
+/obj/structure/roguemachine/noticeboard/proc/turn_in_scroll(mob/user, obj/item/paper/scroll/quest/scroll)
 	var/reward = 0
 	var/original_reward = 0
 	var/total_deposit_return = 0
-
-	for(var/atom/movable/pawnable_loot in input_point)
-		if(istype(pawnable_loot, /obj/item/paper/scroll/quest))
-			var/obj/item/paper/scroll/quest/turned_in_scroll = pawnable_loot
-			if(turned_in_scroll.assigned_quest?.complete)
-				// Calculate base reward
-				var/base_reward = turned_in_scroll.assigned_quest.reward_amount
-				original_reward += base_reward
-				
-				// Calculate deposit return based on difficulty
-				var/deposit_return = turned_in_scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_EASY ? QUEST_DEPOSIT_EASY : \
-									turned_in_scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_MEDIUM ? QUEST_DEPOSIT_MEDIUM : QUEST_DEPOSIT_HARD
-				total_deposit_return += deposit_return
-				
-				// Apply Steward/Mechant bonus if applicable (only to the base reward)
-				if(user.job == "Steward" || user.job == "Merchant")
-					reward += base_reward * QUEST_HANDLER_REWARD_MULTIPLIER
-				else
-					reward += base_reward
-				
-				// Add deposit return to both reward totals
-				reward += deposit_return
-				original_reward += deposit_return
-				
-				qdel(turned_in_scroll.assigned_quest)
-				qdel(turned_in_scroll)
-				continue
+	if(scroll.assigned_quest?.complete)
+		// Calculate base reward
+		var/base_reward = scroll.assigned_quest.reward_amount
+		original_reward += base_reward
+		
+		// Calculate deposit return based on difficulty
+		var/deposit_return = scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_EASY ? QUEST_DEPOSIT_EASY : \
+							scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_MEDIUM ? QUEST_DEPOSIT_MEDIUM : QUEST_DEPOSIT_HARD
+		total_deposit_return += deposit_return
+		
+		// Apply Steward/Mechant bonus if applicable (only to the base reward)
+		if(user.job == "Steward" || user.job == "Merchant")
+			reward += base_reward * QUEST_HANDLER_REWARD_MULTIPLIER
+		else
+			reward += base_reward
+		
+		// Add deposit return to both reward totals
+		reward += deposit_return
+		original_reward += deposit_return
+		
+		qdel(scroll.assigned_quest)
+		qdel(scroll)
 
 	cash_in(round(reward), original_reward)
 

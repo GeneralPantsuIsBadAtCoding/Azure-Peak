@@ -2,7 +2,7 @@
 
 /datum/statpack/physical/trained
 	name = "Trained"
-	desc = "Years honing your physique has left you with a physical edge, but your faculties have been neglected somewhat."
+	desc = "Years honing your physique has left you with a physical edge, but your faculties have been somewhat neglected."
 	stat_array = list(STAT_STRENGTH = 1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -1, STAT_INTELLIGENCE = -1)
 
 /datum/statpack/physical/muscular
@@ -22,10 +22,15 @@
 
 /datum/statpack/physical/toil
 	name = "Toil-hardened"
-	desc = "Your life, hard-lived, has imparted one solitary adage: carry on above all else. And so you endure."
+	desc = "Your lyfe, hard-lyved, has imparted one solitary adage: carry on above all else. And so you endure."
 	stat_array = list(STAT_ENDURANCE = 2, STAT_CONSTITUTION = 1, STAT_PERCEPTION = -1, STAT_INTELLIGENCE = -1)
 
 /datum/statpack/physical/struggler
 	name = "Struggler"
 	desc = "Lyfe's dealt you a poor hand, so you've opted to simply flip the table instead."
 	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 2, STAT_ENDURANCE = 2, STAT_INTELLIGENCE = -3, STAT_PERCEPTION = -3, STAT_FORTUNE = -2)
+
+/datum/statpack/physical/enduring
+	name = "Enduring"
+	desc = "You've spent yils willingly submitting your body through a most perilous journey. Stalwart in your faith, you've sworn to never flee again."
+	stat_array = list(STAT_CONSTITUTION = 3, STAT_ENDURANCE = 3, STAT_SPEED = -4)

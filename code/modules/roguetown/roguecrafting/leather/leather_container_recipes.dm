@@ -37,7 +37,7 @@
 
 /datum/crafting_recipe/roguetown/leather/container/satchelshort
 	name = "short satchel (1 fibers, 2 leather)"
-	result = /obj/item/storage/backpack/rogue/satchel
+	result = /obj/item/storage/backpack/rogue/satchel/short
 	reqs = list(/obj/item/natural/hide/cured = 2,
 				/obj/item/natural/fibers = 1)
 	sellprice = 15

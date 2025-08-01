@@ -224,11 +224,12 @@
 						maxore = 3
 						alloy = /obj/item/ingot/steel
 					else if(bronzealloy == 7)
-						testing("BRONZE ALLOYED")
 						alloy = /obj/item/ingot/bronze
 					else if(purifiedalloy == 10)
+						maxore = 3
 						alloy = /obj/item/ingot/purifiedaalloy // 2 aalloy, 2 gold, makes 3 purified alloy.
 					else if(blacksteelalloy == 7)
+						maxore = 1 // Blacksteel is supposed to be rare and inefficient. 3 steel and 1 silver into one. 
 						alloy = /obj/item/ingot/blacksteel
 					else
 						alloy = null

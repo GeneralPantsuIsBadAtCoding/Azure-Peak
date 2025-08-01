@@ -169,6 +169,10 @@
 		skill_diff += (user.get_skill_level(/datum/skill/combat/wrestling))
 	if(M.mind)
 		skill_diff -= (M.get_skill_level(/datum/skill/combat/wrestling))
+	if(HAS_TRAIT(M, TRAIT_GRABIMMUNE))
+		if(M.cmode)
+			to_chat(user, span_warning("Can't get a grip on this one!"))
+			return
 
 	if(M.compliance || M.surrendering)
 		combat_modifier = 2
@@ -570,7 +574,7 @@
 	user.changeNext_move(CLICK_CD_GRABBING)
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(sublimb_grabbed, d_type)
-	var/damage = user.get_punch_dmg()
+	var/damage = 10*(user.STASTR/20)
 	if(HAS_TRAIT(user, TRAIT_STRONGBITE))
 		damage = damage*2
 	C.next_attack_msg.Cut()

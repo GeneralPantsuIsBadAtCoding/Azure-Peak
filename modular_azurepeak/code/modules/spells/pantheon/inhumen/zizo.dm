@@ -99,7 +99,7 @@
 
 /obj/effect/proc_holder/spell/invoked/rituos
 	name = "Rituos"
-	desc = "Draw upon the Lesser Work of She Who Is Z, and expunge the trappings of mortal flesh from your form in exchange for power unimaginable. Be warned: indulging in even the first step of this ritual will make you more deadite than not..."
+	desc = "Do a ritual for she of Z that skeletonises a part of your body and bestows upon you arcyne magycks until you next sleep. Once your whole body has become skeletonised you gain full access to the Arcyne, bolstering your knowledge of spells with each additional ritual."
 	clothes_req = FALSE
 	overlay_state = "rituos"
 	associated_skill = /datum/skill/magic/arcane
@@ -220,6 +220,7 @@
 
 /obj/effect/proc_holder/spell/self/zizo_snuff
 	name = "Snuff Lights"
+	desc = "Extinguish all lights in range, with your Miracles skill increasing range."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0

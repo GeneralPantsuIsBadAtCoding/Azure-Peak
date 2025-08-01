@@ -8,7 +8,7 @@
 /obj/item/ash/Initialize()
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
-		/datum/crafting_recipe/boat,
+		/datum/crafting_recipe/roguetown/survival/boat,
 		)
 
 	AddElement(

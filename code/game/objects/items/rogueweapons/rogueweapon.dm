@@ -143,6 +143,8 @@
 	desc = "you should not see this"
 	icon = 'icons/roguetown/misc/shafts.dmi'
 	icon_state = "woodshaft"
+	grid_height = 32
+	grid_width = 32
 
 /obj/item/shaft/wood
 	name = "wood shaft"

@@ -112,7 +112,8 @@
 			return
 
 		var/obj/item/natural/cloth/T = I
-		if(T.wet && !T.return_blood_DNA())
+		if(T.wet >= 10)
+			to_chat(user, span_warning("[T] is already soaked!")) //So we dont waste water if its already at max wetness or higher
 			return
 		else
 			var/removereg = /datum/reagent/water
@@ -245,11 +246,6 @@
 	slice_batch = TRUE
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/cheddarslice
 	become_rot_type = /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged
-	baitpenalty = 0
-	isbait = TRUE
-	fishloot = list(/obj/item/reagent_containers/food/snacks/fish/carp = 10,
-					/obj/item/reagent_containers/food/snacks/fish/eel = 5,
-					/obj/item/reagent_containers/food/snacks/fish/angler = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged
 	name = "wedge of aged cheese"
@@ -274,10 +270,6 @@
 	slices_num = null
 	slice_path = null
 	become_rot_type = null
-	baitpenalty = 0
-	isbait = TRUE
-	fishloot = list(/obj/item/reagent_containers/food/snacks/fish/carp = 10,
-					/obj/item/reagent_containers/food/snacks/fish/eel = 5)
 
 /obj/item/reagent_containers/food/snacks/rogue/cheddarslice/aged
 	name = "slice of aged cheese"

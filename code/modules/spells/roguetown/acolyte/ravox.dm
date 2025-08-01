@@ -3,6 +3,7 @@
 //Divine Strike - Enhance your held weapon to have the next strike do extra damage and slow the target. Undead debuffed more.
 /obj/effect/proc_holder/spell/self/divine_strike
 	name = "Divine Strike"
+	desc = "Bless your next strike to do extra damage and slow the target."
 	overlay = "createlight"
 	recharge_time = 1 MINUTES
 	movement_interrupt = FALSE
@@ -107,6 +108,7 @@
 //Persistence - Harms the shit out of an undead mob/player while causing bleeding/pain wounds to clot at higher rate for living ones. Basically a 'shittier' yet still good greater heal effect.
 /obj/effect/proc_holder/spell/invoked/persistence
 	name = "Persistence"
+	desc = "Harms Undead and encourages the livings wounds to close faster."
 	overlay_state = "astrata"
 	releasedrain = 30
 	chargedrain = 0
@@ -170,6 +172,7 @@
 
 /obj/effect/proc_holder/spell/invoked/tug_of_war
 	name = "Tug of War"
+	desc = "Casts out a chain that tries to pull the target closer."
 	overlay_state = "ravox_tug"
 	recharge_time = 1 MINUTES
 	movement_interrupt = TRUE
@@ -230,3 +233,160 @@
 		return FALSE
 	revert_cast()
 	return FALSE
+
+
+/obj/effect/proc_holder/spell/invoked/challenge
+	name = "Challenge"
+	desc = "Bring an opponent with you to Ravoxian Trial. Engage in 3 minute combat."
+	overlay_icon = 'icons/mob/actions/ravoxmiracles.dmi'
+	overlay_state = "ravoxchallenge"
+	action_icon_state = "ravoxchallenge"
+	action_icon = 'icons/mob/actions/ravoxmiracles.dmi'
+	recharge_time = 20 MINUTES
+	movement_interrupt = FALSE
+	chargedrain = 0
+	range = 5
+	chargetime = 3 SECONDS
+	charging_slowdown = 2
+	chargedloop = null
+	associated_skill = /datum/skill/magic/holy
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	sound = 'sound/magic/timestop.ogg'
+	invocation = "By Ravox, I challenge you!!"
+	chargedloop = /datum/looping_sound/invokeholy
+	invocation_type = "shout"
+	antimagic_allowed = TRUE
+	miracle = TRUE
+	devotion_cost = 100
+
+GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. Since /entered doesnt work on teleported mobs. 
+
+/obj/effect/proc_holder/spell/invoked/challenge/cast(list/targets, mob/living/user)
+	var/area/rogue/indoors/ravoxarena/thearena = GLOB.areas_by_type[/area/rogue/indoors/ravoxarena]
+	var/turf/challengerspawnpoint
+	var/turf/challengedspawnpoint
+	var/arenacount = GLOB.arenafolks.len
+	if(arenacount >= 2)
+		to_chat(user, span_italics("The arena is not yet ready for the next trial! Wait your turn!"))
+		revert_cast()
+		return FALSE
+
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/originalcmodeuser = user.cmode_music
+		var/originalcmodetarget = target.cmode_music
+		var/turf/storedchallengerturf = get_turf(user)
+		var/turf/storedchallengedturf = get_turf(target)
+		if(user.z != target.z)
+			revert_cast()
+			return FALSE
+		if(target == user)
+			revert_cast()
+			return FALSE
+
+		for(var/obj/structure/fluff/ravox/challenger/aflag in thearena)
+			challengerspawnpoint = get_turf(aflag)
+		for(var/obj/structure/fluff/ravox/challenged/bflag in thearena)
+			challengedspawnpoint = get_turf(bflag)
+		
+		do_teleport(user, challengerspawnpoint)
+		do_teleport(target, challengedspawnpoint)
+		GLOB.arenafolks += user
+		GLOB.arenafolks += target
+		storedchallengerturf.visible_message((span_cult("[user] calls upon the Ravoxian rite of Trial! [target] and [user] are brought to Trial!")))
+
+		new /obj/structure/fluff/ravox/challenger/recall(storedchallengerturf)
+		new /obj/structure/fluff/ravox/challenged/recall(storedchallengedturf)
+
+		to_chat(user, span_userdanger("THE TRIAL IS CALLED, IMPRESS US, PROSECUTOR!!"))
+		to_chat(target, span_userdanger("A TRIAL OF RAVOX BEGINS. IMPRESS US, DEFENDANT!!"))
+
+		user.cmode_change('sound/music/ravoxarena.ogg')
+		target.cmode_change('sound/music/ravoxarena.ogg')
+
+		addtimer(CALLBACK(user, GLOBAL_PROC_REF(do_teleport), user, storedchallengerturf), 3 MINUTES)
+		addtimer(CALLBACK(target, GLOBAL_PROC_REF(do_teleport), target, storedchallengedturf), 3 MINUTES)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob, cmode_change), originalcmodeuser), 3 MINUTES)
+		addtimer(CALLBACK(target,TYPE_PROC_REF(/mob, cmode_change), originalcmodetarget), 3 MINUTES)
+		addtimer(CALLBACK(thearena,TYPE_PROC_REF(/area/rogue/indoors/ravoxarena, cleanthearena), storedchallengedturf), 3 MINUTES) // shunt all items from the arena out onto the challenged spot.
+
+		if(iscarbon(target))
+			var/mob/living/carbon/human/spawnprotectiontarget = target
+			addtimer(CALLBACK(spawnprotectiontarget,TYPE_PROC_REF(/mob/living/carbon/human, do_invisibility), 10 SECONDS), 3 MINUTES)
+
+
+		return TRUE
+	revert_cast()
+	return FALSE
+
+
+/obj/structure/fluff/ravox
+	icon = 'icons/roguetown/rav/obj/flags.dmi'
+	density = FALSE
+	anchored = TRUE
+	blade_dulling = DULLING_BASHCHOP
+	layer = BELOW_MOB_LAYER
+	max_integrity = 0
+
+/obj/structure/fluff/ravox/proc/spawnprotection()
+	var/list/thrownatoms = list()
+	var/atom/throwtarget
+	var/distfromflag
+	var/maxthrow = 6
+	var/sparkle_path = /obj/effect/temp_visual/gravpush
+	var/repulse_force = MOVE_FORCE_EXTREMELY_STRONG
+	var/push_range = 3
+
+	playsound(src, 'sound/magic/repulse.ogg', 80, TRUE)
+	for(var/turf/T in view(push_range, src))
+		new /obj/effect/temp_visual/kinetic_blast(T)
+		for(var/atom/movable/AM in T)
+			thrownatoms += AM
+
+	for(var/am in thrownatoms)
+		var/atom/movable/AM = am
+		if(AM == src || AM.anchored)
+			continue
+
+		if(ismob(AM))
+			var/mob/M = AM
+			if(M.anti_magic_check())
+				continue
+
+		throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(AM, src)))
+		distfromflag = get_dist(src, AM)
+		if(distfromflag == 0)
+			if(isliving(AM))
+				var/mob/living/M = AM
+				M.Paralyze(10)
+				M.adjustBruteLoss(20)
+				to_chat(M, "<span class='danger'>You're slammed into the floor by Ravox's strength!!</span>")
+		else
+			new sparkle_path(get_turf(AM), get_dir(src, AM)) //created sparkles will disappear on their own
+			if(isliving(AM))
+				var/mob/living/M = AM
+				M.Paralyze(5)
+				to_chat(M, "<span class='danger'>You're thrown back by Ravox's strength!!</span>")
+			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromflag - 2, 0, distfromflag))), 3, maxthrow))), 1,null, force = repulse_force)
+
+
+/obj/structure/fluff/ravox/challenger
+	name = "Flag of the challenger"
+	desc = "Where the challenger will return after the trial is decided."
+	icon_state = "ravoxchallenger"
+
+/obj/structure/fluff/ravox/challenged
+	name = "Flag of the challenged"
+	desc = "Where the challenged will return after the trial is decided."
+	icon_state = "ravoxchallenged"
+
+
+/obj/structure/fluff/ravox/challenger/recall/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, GLOBAL_PROC_REF(qdel), src), 3 MINUTES)
+	addtimer(CALLBACK(src,TYPE_PROC_REF(/obj/structure/fluff/ravox, spawnprotection)), 179 SECONDS)
+
+/obj/structure/fluff/ravox/challenged/recall/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, GLOBAL_PROC_REF(qdel), src), 3 MINUTES)
+	addtimer(CALLBACK(src,TYPE_PROC_REF(/obj/structure/fluff/ravox, spawnprotection)), 179 SECONDS)

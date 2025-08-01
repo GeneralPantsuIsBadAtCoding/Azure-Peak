@@ -426,6 +426,12 @@
 	created_item = /obj/item/rogueweapon/knuckles
 	craftdiff = 2
 
+/datum/anvil_recipe/weapons/steel/hurlbat
+	name = "Hurlbat"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/stoneaxe/hurlbat
+	craftdiff = 4
+
 /datum/anvil_recipe/weapons/steel/rapier
 	name = "Rapier"
 	req_bar = /obj/item/ingot/steel

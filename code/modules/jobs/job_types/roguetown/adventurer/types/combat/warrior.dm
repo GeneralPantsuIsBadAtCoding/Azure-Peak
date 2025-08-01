@@ -70,16 +70,22 @@
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 			switch(armor_choice)
 				if("Chainmaille Set")
-					shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+					armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random//giving them something to wear under their armors
 					pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 					neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 					gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 				if("Iron Breastplate")
 					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
-					pants = /obj/item/clothing/under/roguetown/trou/leather
+					neck = /obj/item/clothing/neck/roguetown/coif/heavypadding
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+					pants = /obj/item/clothing/under/roguetown/splintlegs/iron
 					gloves = /obj/item/clothing/gloves/roguetown/angle
 				if("Gambeson & Helmet")
-					shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+					armor = /obj/item/clothing/suit/roguetown/armor/gambeson
+					neck = /obj/item/clothing/neck/roguetown/coif/padded//neck cover
+					shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+					wrists = /obj/item/clothing/wrists/roguetown/splintarms/iron//adding it since this set feels far too weak compared to the other two, gets one helmet and arm cover at least
 					pants = /obj/item/clothing/under/roguetown/trou/leather
 					head = /obj/item/clothing/head/roguetown/helmet/kettle
 					gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -125,7 +131,7 @@
 				if("Rapier")
 					H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					l_hand = /obj/item/rogueweapon/sword/rapier
-					beltl = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/scabbard/sword
 				if("Dagger")
 					H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
@@ -182,7 +188,8 @@
 					beltr = /obj/item/rogueweapon/stoneaxe/boneaxe
 				if("Sword")
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltr = /obj/item/rogueweapon/sword/short
+					beltr = /obj/item/rogueweapon/scabbard/sword
+					r_hand = /obj/item/rogueweapon/sword/short
 				if("Club")
 					H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr = /obj/item/rogueweapon/mace/woodclub
@@ -238,7 +245,8 @@
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("intelligence", 1)
-			beltr = /obj/item/rogueweapon/scabbard/sheath
+			beltr = /obj/item/rogueweapon/scabbard/sword
+			beltl = /obj/item/rogueweapon/scabbard/sword
 			r_hand = /obj/item/rogueweapon/sword/silver
 			backr = /obj/item/rogueweapon/sword
 			backl = /obj/item/storage/backpack/rogue/satchel/black
@@ -256,6 +264,7 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			beltl = pick(
 				/obj/item/reagent_containers/glass/bottle/alchemical/strpot,

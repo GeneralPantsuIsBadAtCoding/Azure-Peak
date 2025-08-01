@@ -89,6 +89,7 @@
 		/datum/body_marking/butt,
 		/datum/body_marking/tonage,
 		/datum/body_marking/tiger/dark,
+		/datum/body_marking_set/gradient,
 		/datum/body_marking/nose,
 		/datum/body_marking/bangs,
 		/datum/body_marking/bun,

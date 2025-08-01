@@ -25,8 +25,9 @@
 /obj/item/clothing/suit/roguetown/armor/plate/iron
 	name = "iron half-plate"
 	desc = "A basic half-plate of iron, protective and moderately durable."
-	icon_state = "ihalfplate"
-	item_state = "ihalfplate"
+	icon_state = "ironplate"
+	item_state = "ironplate"
+	boobed = FALSE	//the armor just looks better with this, makes sense and is 8 sprites less
 	max_integrity = ARMOR_INT_CHEST_PLATE_IRON
 	smeltresult = /obj/item/ingot/iron
 
@@ -356,6 +357,7 @@
 	name = "iron breastplate"
 	desc = "A basic cuirass of iron, protective and moderately durable."
 	icon_state = "ibreastplate"
+	boobed = FALSE	//the armor just looks better with this, makes sense and is 8 sprites less
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_IRON
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 2

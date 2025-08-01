@@ -144,3 +144,10 @@
 	. = ..()
 	if(dna?.species?.is_floor_hazard_immune(src))
 		return TRUE
+
+
+/mob/living/carbon/human/proc/do_invisibility(timeinvis)
+	animate(src, alpha = 0, time = 0 SECONDS, easing = EASE_IN)
+	src.mob_timers[MT_INVISIBILITY] = world.time + timeinvis
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, update_sneak_invis), TRUE), timeinvis)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[src] fades back into view."), span_notice("You become visible again.")), timeinvis)

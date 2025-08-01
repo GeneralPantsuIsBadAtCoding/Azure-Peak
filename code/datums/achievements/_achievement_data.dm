@@ -20,12 +20,11 @@
 	initialized = TRUE
 	load_all_achievements() //So we know which achievements we have unlocked so far.
 
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/achievements)
 	AchievementIcons = list()
 	for(var/achievement_type in SSachievements.achievements)
 		var/datum/award/achievement = SSachievements.achievements[achievement_type]
 		var/list/SL = list()
-		SL["htmltag"] = assets.icon_tag(achievement.icon)
+		SL["htmltag"] = null
 		AchievementIcons[achievement.name] += list(SL)
 
 ///Saves any out-of-date achievements to the hub.

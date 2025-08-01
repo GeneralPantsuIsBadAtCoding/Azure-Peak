@@ -20,6 +20,7 @@
 
 /obj/effect/proc_holder/spell/targeted/touch/lesserknock/miracle
 	name = "Matthiosan Knock"
+	desc = "A simple prayer to the free-god that forms into an instrument for lockpicking. Can be dispelled by using it on anything that isn't a locked/unlocked door." //Slightly more appropriate
 	miracle = TRUE
 	devotion_cost = 30
 	invocation = "From One to Many"

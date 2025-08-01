@@ -730,6 +730,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		ADMIN_PUNISHMENT_THROWMOB,
 		ADMIN_PUNISHMENT_CRIPPLE,
 		ADMIN_PUNISHMENT_PSYDON,
+		ADMIN_PUNISHMENT_DIVINE_WRATH,
 	)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in sortList(punishment_list)
@@ -841,6 +842,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			for(var/slop in slop_lore)
 				to_chat(humie, slop)
 				sleep(3 SECONDS)
+		if(ADMIN_PUNISHMENT_DIVINE_WRATH)
+			if(!ishuman(target))
+				to_chat(usr,span_warning("Target must be human!"))
+				return
+			divine_wrath(target)
 	punish_log(target, punishment)
 
 /client/proc/punish_log(whom, punishment)

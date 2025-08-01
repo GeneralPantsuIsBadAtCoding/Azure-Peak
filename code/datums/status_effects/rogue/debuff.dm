@@ -232,6 +232,16 @@
 	desc = "With some sleep in a coffin I feel like I could become better."
 	icon_state = "sleepy"
 
+/datum/status_effect/debuff/ritualdefiled
+	id = "ritualdefiled"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	effectedstats = list("strength" = -2, "perception" = -1, "intelligence" = -1, "endurance" = -2, "constitution" = -2, "speed" = -1, "fortune" = -1)
+	duration = 2 HOURS // Punishing AS FUCK, but not as punishing as being dead.
+
+/atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	name = "Tainted Lux"
+	desc = "My Lux has been tainted in a vile heretic ritual."
+
 /// SURRENDERING DEBUFFS
 
 /datum/status_effect/debuff/breedable
@@ -288,6 +298,16 @@
 /atom/movable/screen/alert/status_effect/debuff/ritesexpended
 	name = "Rites Complete"
 	desc = "It will take time before I can next perform a rite."
+	icon_state = "ritesexpended"
+
+/datum/status_effect/debuff/ritesexpended_heavy
+	id = "ritesexpended_heavy"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritesexpended_heavy
+	duration = 1 HOURS
+
+/atom/movable/screen/alert/status_effect/debuff/ritesexpended_heavy
+	name = "Rites Complete"
+	desc = "It will take a lot of time before I can perform a next rite. I am drained."
 	icon_state = "ritesexpended"
 
 /datum/status_effect/debuff/call_to_arms
@@ -419,3 +439,39 @@
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		C.remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
+
+/datum/status_effect/debuff/excomm
+	id = "Excommunicated!"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/excomm
+	effectedstats = list("fortune" = -2, "intelligence" = -2, "speed" = -1, "endurance" = -1, "constitution" = -1)
+	duration = 999 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/excomm
+	name = "Excommunicated!"
+	desc = "The Ten have forsaken me!"
+	icon_state = "muscles"
+	color ="#6d1313"
+
+/datum/status_effect/debuff/apostasy
+	id = "Apostasy!"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/apostasy
+	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "endurance" = -2, "constitution" = -2)
+	duration = 999 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/apostasy
+	name = "Apostasy!"
+	desc = "Shame upon the member of clergy!"
+	icon_state = "debuff"
+	color ="#7a0606"
+
+/datum/status_effect/debuff/hereticsermon
+	id = "Heretic on sermon!"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/hereticsermon
+	effectedstats = list("intelligence" = -2, "speed" = -2, "fortune" = -2)
+	duration = 20 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/hereticsermon
+	name = "Heretic on sermon!"
+	desc = "I was on the sermon. My patron is not proud of me."
+	icon_state = "debuff"
+	color ="#af9f9f"

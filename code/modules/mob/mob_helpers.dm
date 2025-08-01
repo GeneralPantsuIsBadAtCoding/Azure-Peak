@@ -599,6 +599,11 @@
 	var/aimheight = 11
 	var/cmode_music = list('sound/music/cmode/towner/combat_towner.ogg') //This should minimize the lag it creates by picking from multiple ones
 
+/mob/proc/cmode_change(input) // change cmode music, and shift into it immediately if we're already in cmode.
+	cmode_music = input
+	toggle_cmode()
+	toggle_cmode()
+
 /mob/proc/aimheight_change(input)
 	var/old_zone = zone_selected
 	if(isnum(input))

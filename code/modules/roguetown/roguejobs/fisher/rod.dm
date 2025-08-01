@@ -66,7 +66,8 @@
 	var/ft = 120 //Time to get a catch, in ticks
 	var/fpp =  100 - (40 + (sl * 10)) // Fishing power penalty based on fishing skill level
 	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
-	var/salwt = list(/turf/open/water/ocean, /turf/open/water/ocean/deep)
+	var/salwt_coast = list(/turf/open/water/ocean)
+	var/salwt_deep = list(/turf/open/water/ocean/deep)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
 	if(user.used_intent.type == SPEAR_BASH)
 		return ..()
@@ -98,64 +99,16 @@
 								fishchance -= fpp // Deduct a penalty the lower our fishing level is (-0 at legendary)
 						var/mob/living/fisherman = user
 						if(prob(fishchance)) // Finally, roll the dice to see if we fish.
+							var/A
 							if(target.type in frwt)
-								var/A = pickweight(baited.freshfishloot)
-								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
-								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
-								playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-								if(!do_after(user,ow, target = target))
-									if(ismob(A)) // TODO: Baits with mobs on their fishloot lists OR water tiles with their own fish loot pools
-										var/mob/M = A
-										if(M.type in subtypesof(/mob/living/simple_animal/hostile))
-											new M(target)
-										else
-											new M(user.loc)
-										user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT*2) // High risk high reward
-									else
-										new A(user.loc)
-										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
-										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
-									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
-									if(prob(80 - (sl * 10))) // Higher skill levels make you less likely to lose your bait
-										to_chat(user, "<span class='warning'>Damn, it ate my bait.</span>")
-										qdel(baited)
-										baited = null
-								else
-									to_chat(user, "<span class='warning'>Damn, it got away... I should <b>pull away</b> next time.</span>")
-									if(prob(100 - (sl * 10))) // Higher chance for it to flee with your bait.
-										to_chat(user, "<span class='warning'>...And took my bait, too.</span>")
-										qdel(baited)
-										baited = null
-							if(target.type in salwt)
-								var/A = pickweight(baited.seafishloot)
-								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
-								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
-								playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-								if(!do_after(user,ow, target = target))
-									if(ismob(A)) // TODO: Baits with mobs on their fishloot lists OR water tiles with their own fish loot pools
-										var/mob/M = A
-										if(M.type in subtypesof(/mob/living/simple_animal/hostile))
-											new M(target)
-										else
-											new M(user.loc)
-										user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT*2) // High risk high reward
-									else
-										new A(user.loc)
-										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
-										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
-									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
-									if(prob(80 - (sl * 10))) // Higher skill levels make you less likely to lose your bait
-										to_chat(user, "<span class='warning'>Damn, it ate my bait.</span>")
-										qdel(baited)
-										baited = null
-								else
-									to_chat(user, "<span class='warning'>Damn, it got away... I should <b>pull away</b> next time.</span>")
-									if(prob(100 - (sl * 10))) // Higher chance for it to flee with your bait.
-										to_chat(user, "<span class='warning'>...And took my bait, too.</span>")
-										qdel(baited)
-										baited = null	
-							if(target.type in mud)
-								var/A = pickweight(baited.mudfishloot)
+								A = pickweightAllowZero(createFreshWaterFishWeightListModlist(baited.fishingMods))
+							else if(target.type in salwt_coast)
+								A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(baited.fishingMods))
+							else if(target.type in salwt_deep)
+								A = pickweightAllowZero(createDeepSeaFishWeightListModlist(baited.fishingMods))
+							else if(target.type in mud)
+								A = pickweightAllowZero(createMudFishWeightListModlist(baited.fishingMods))
+							if(A)
 								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
 								playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
@@ -173,7 +126,7 @@
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
 										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
-									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
+										playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
 									if(prob(80 - (sl * 10))) // Higher skill levels make you less likely to lose your bait
 										to_chat(user, "<span class='warning'>Damn, it ate my bait.</span>")
 										qdel(baited)

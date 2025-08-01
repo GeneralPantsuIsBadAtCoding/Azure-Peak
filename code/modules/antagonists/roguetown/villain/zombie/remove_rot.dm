@@ -19,6 +19,9 @@
 	// Remove rot component
 	remove_rot_component(target)
 
+	// Remove Infected var
+	target.infected = FALSE
+
 	// Clean body parts
 	clean_body_parts(target)
 

@@ -37,9 +37,16 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	return sellprice
 
 /atom/movable/proc/get_real_price()
-	if(sellprice == initial(sellprice))
-		randomize_price()
-	return sellprice
+	var/total_sellprice = 0
+	if(length(src.contents)) // this overrides the objects base price but 90% of usecases will not see someone trying to sell a full satchel.
+		for(var/obj/item/I in src.contents) // runs a loop on anytihng that's got contents under our current inv system
+			if(I) // runs the get_real_price recurisvely. please dont runtime.
+				total_sellprice += I.get_real_price()
+		return total_sellprice
+	else // if its not a container, run the original code.
+		if(sellprice == initial(sellprice))
+			randomize_price()
+		return sellprice
 
 /atom/movable/proc/pre_sell()
 	return

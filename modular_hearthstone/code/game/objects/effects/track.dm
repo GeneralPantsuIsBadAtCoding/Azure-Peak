@@ -376,6 +376,8 @@
 /mob/living/proc/check_track_creation(turf/new_turf)
 	if(!new_turf)
 		return //Guh?
+	if(isnull(mind))
+		return
 	if(!(movement_type & GROUND) || (movement_type & (FLOATING|FLYING))) //For some reason some mobs have both ground and flying at once.
 		return
 	var/probability = round(track_creation_prob(new_turf), 0.1) 

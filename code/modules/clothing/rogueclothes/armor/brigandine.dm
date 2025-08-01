@@ -14,7 +14,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	equip_delay_self = 4 SECONDS
-	armor_class = ARMOR_CLASS_HEAVY
+	armor_class = ARMOR_CLASS_MEDIUM //good idea suggested by lamaster
 	sleeved_detail = FALSE
 	boobed_detail = FALSE
 
@@ -71,6 +71,8 @@
 	icon_state = "coat_of_plates"
 	blocksound = PLATEHIT
 	smelt_bar_num = 2
+	armor_class = ARMOR_CLASS_HEAVY
+	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE + 50
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
 	name = "coat of the commander"
@@ -109,11 +111,11 @@
 	icon_state = "light_brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = COVERAGE_TORSO
-	armor = ARMOR_CUIRASS
-	max_integrity = ARMOR_INT_CHEST_MEDIUM_BRIGANDINE
-	smeltresult = /obj/item/ingot/iron
+	armor = ARMOR_LEATHER_STUDDED
+	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE
+	smeltresult = /obj/item/ingot/steel
 	equip_delay_self = 40
-	armor_class = ARMOR_CLASS_MEDIUM
+	armor_class = ARMOR_CLASS_LIGHT//steel version of the studded leather armor now
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/light/attack_right(mob/user)

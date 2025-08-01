@@ -1,7 +1,7 @@
 
 /obj/effect/proc_holder/spell/invoked/projectile/spitfire
 	name = "Spitfire"
-	desc = "Shoot out a low-powered ball of fire that shines brightly on impact, potentially blinding a target. \n\
+	desc = "Shoot out a low-powered ball of fire that ignites a target with a small amount of fire on impact. \n\
 	Damage is increased by 100% versus simple-minded creechurs."
 	clothes_req = FALSE
 	range = 8
@@ -30,12 +30,25 @@
 	name = "spitfire"
 	exp_heavy = 0
 	exp_light = 0
-	exp_flash = 1
+	exp_flash = 0
 	exp_fire = 0
 	damage = 20
 	npc_damage_mult = 2 // Makes it more effective against NPCs.
+	accuracy = 40 // Base accuracy is lower for burn projectiles because they bypass armor
 	damage_type = BURN
 	nodamage = FALSE
 	flag = "magic"
 	hitsound = 'sound/blank.ogg'
 	aoe_range = 0
+
+/obj/projectile/magic/aoe/fireball/rogue2/on_hit(target)
+	. = ..()
+	if(ismob(target))
+		var/mob/living/M = target
+		if(M.anti_magic_check())
+			visible_message(span_warning("[src] fizzles on contact with [target]!"))
+			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
+			qdel(src)
+			return BULLET_ACT_BLOCK
+		M.adjust_fire_stacks(1)
+		M.IgniteMob()

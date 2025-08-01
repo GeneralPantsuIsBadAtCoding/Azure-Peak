@@ -26,7 +26,7 @@
 	wdefense = 10
 	smeltresult = null
 
-/datum/crafting_recipe/oar
+/datum/crafting_recipe/roguetown/survival/oar
 	name = "Oar (1 Log, 2 Fibers)"
 	result = /obj/item/rogueweapon/mace/oar
 	reqs = list(
@@ -35,7 +35,7 @@
 		)
 	time = 15
 
-/datum/crafting_recipe/boat
+/datum/crafting_recipe/roguetown/survival/boat
 	name = "Dinghy (4 Logs, 3 Ash, 5 Fibers)"
 	result = /obj/vehicle/ridden/dinghy
 	reqs = list(

@@ -76,26 +76,55 @@
 	dropshrink = 0.8
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/mushroom
+	name = "raw mushroom handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
-	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | VEGETABLES
 	tastes = list("mushrooms" = 1)
 
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/mince
-	w_class = WEIGHT_CLASS_NORMAL
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/fish
+	name = "raw fish handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/fish
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/fish
+	foodtype = GRAIN | MEAT
+	tastes = list("fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/meat
+	name = "raw meat handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/meat
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/meat
 	foodtype = GRAIN | MEAT
 	tastes = list("meat" = 1)
-	
+
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/crab
+	name = "raw crab handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/crab
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/crab
+	foodtype = GRAIN | MEAT
+	tastes = list("crab" = 1)
+
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/berry
-	w_class = WEIGHT_CLASS_NORMAL
+	name = "raw berry handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/berry
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/berry
 	foodtype = GRAIN | FRUIT
 	tastes = list("berry" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/poison
+	name = "raw berry handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/poison
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/poison
 	list_reagents = list(/datum/reagent/berrypoison = 5)
-	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | FRUIT
 	tastes = list("bitter berry" = 1)
+
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/apple
+	name = "raw apple handpie"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/apple
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/handpie/apple
+	foodtype = GRAIN | FRUIT
+	tastes = list("apple" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/handpie
 	name = "handpie"
@@ -109,6 +138,27 @@
 	tastes = list("crispy dough" = 1)
 	rotprocess = null
 	dropshrink = 0.8
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/mushroom
+	name = "mushroom handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/fish
+	name = "fish handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/meat
+	name = "meat handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/crab
+	name = "crab handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/berry
+	name = "berry handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/poison
+	name = "berry handpie"
+
+/obj/item/reagent_containers/food/snacks/rogue/handpie/apple
+	name = "apple handpie"
 
 /obj/item/reagent_containers/food/snacks/rogue/handpie/On_Consume(mob/living/eater)
 	..()

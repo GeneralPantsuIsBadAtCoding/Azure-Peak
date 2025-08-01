@@ -656,7 +656,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/under/cave)
 "fj" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "fn" = (
@@ -1007,7 +1007,7 @@
 	},
 /area/rogue/under/cavewet/bogcaves)
 "ij" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /obj/structure/fluff/walldeco/church/line,
 /turf/open/floor/rogue/church,
 /area/rogue/under/town/basement)
@@ -1441,7 +1441,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "lM" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/spear,
+/mob/living/carbon/human/species/skeleton/npc/easy,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "lN" = (
@@ -1751,7 +1751,7 @@
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/indoors/shelter/woods)
 "oc" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/spear,
+/mob/living/carbon/human/species/skeleton/npc/easy,
 /obj/machinery/light/rogue/wallfire{
 	pixel_y = 32
 	},
@@ -1788,7 +1788,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "ot" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8;
 	icon_state = "churchslate"
@@ -2057,7 +2057,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/outdoors/mountains)
 "qN" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "qR" = (
@@ -2300,7 +2300,7 @@
 	dir = 8;
 	icon_state = "border"
 	},
-/mob/living/simple_animal/hostile/rogue/skeleton/spear,
+/mob/living/carbon/human/species/skeleton/npc/easy,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter/woods)
 "sR" = (
@@ -2525,7 +2525,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "uI" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "uQ" = (
@@ -3707,7 +3707,7 @@
 /area/rogue/under/cavewet/bogcaves)
 "Ed" = (
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "Ef" = (
@@ -3809,7 +3809,7 @@
 /area/rogue/under/cavewet/bogcaves)
 "Fa" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "Fb" = (
@@ -3972,7 +3972,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "Gn" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
 "Gp" = (
@@ -4042,7 +4042,7 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/basement)
 "GQ" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "GR" = (
@@ -4136,7 +4136,7 @@
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "Ht" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves)
 "Hu" = (
@@ -4646,7 +4646,7 @@
 /turf/closed/wall/mineral/rogue/wooddark/horizontal,
 /area/rogue/indoors/shelter/woods)
 "Ly" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/spear,
+/mob/living/carbon/human/species/skeleton/npc/easy,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter/woods)
 "Lz" = (
@@ -6153,7 +6153,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 9
 	},
-/mob/living/simple_animal/hostile/rogue/skeleton/guard,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/town/basement)
 "Yb" = (

@@ -55,6 +55,9 @@
 
 	var/animate_dmg = TRUE
 
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_state_preview
+
 	vis_flags = VIS_INHERIT_PLANE
 
 /obj/vv_edit_var(vname, vval)

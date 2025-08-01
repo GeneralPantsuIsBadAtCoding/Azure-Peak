@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/wheel
 	name = "The Wheel"
+	desc = "Spins the wheel, either buffing or debuffing the targets fortune."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 3
@@ -24,6 +25,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mastersillusion
 	name = "Set Decoy"
+	desc = "Creates a body double of yourself and makes you invisible, after a delay your clone explodes into smoke."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -86,6 +88,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mockery
 	name = "Vicious Mockery"
+	desc = "Mock your target, reducing their INT, SPD, STR and END for a time."
 	releasedrain = 50
 	associated_skill = /datum/skill/misc/music
 	recharge_time = 2 MINUTES
@@ -150,6 +153,7 @@
 
 /obj/effect/proc_holder/spell/self/xylixslip
 	name = "Xylixian Slip"
+	desc = "Jumps you up to 3 tiles away."
 	overlay_state = "xylix_slip"
 	releasedrain = 10
 	chargedrain = 0

@@ -1,6 +1,7 @@
 // Diagnose
 /obj/effect/proc_holder/spell/invoked/diagnose
 	name = "Diagnose"
+	desc = "Examine anothers vitals."
 	overlay_state = "diagnose"
 	releasedrain = 10
 	chargedrain = 0
@@ -56,6 +57,7 @@
 // Limb or organ attachment
 /obj/effect/proc_holder/spell/invoked/attach_bodypart
 	name = "Bodypart Miracle"
+	desc = "Attach all limbs and organs you or your target is holding, and near your target."
 	overlay_state = "limb_attach"
 	releasedrain = 30
 	chargedrain = 0
@@ -247,6 +249,7 @@
 // Cure rot
 /obj/effect/proc_holder/spell/invoked/cure_rot
 	name = "Cure Rot"
+	desc = "Invoke Pestras will though a Psycross to cast out rot from people or regrow their flesh."
 	overlay_state = "cure_rot"
 	releasedrain = 90
 	chargedrain = 0
@@ -268,6 +271,7 @@
 	var/is_lethal = TRUE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/priest
+	desc = "Burn out the rot by Astratas will."
 	is_lethal = FALSE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/cast(list/targets, mob/living/user)
@@ -315,6 +319,7 @@
 
 /obj/effect/proc_holder/spell/invoked/pestra_leech
 	name = "Leeching Purge"
+	desc = "Manifest leeches inside of target, causing them to puke them out while restoring some blood and curing minor poisoning."
 	overlay_state = "leech_purge"
 	releasedrain = 30
 	chargedrain = 0

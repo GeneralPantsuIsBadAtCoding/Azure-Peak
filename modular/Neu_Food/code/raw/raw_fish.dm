@@ -8,6 +8,7 @@
 	obj_flags = CAN_BE_HIT
 	var/dead = TRUE
 	var/no_rarity_sprite = FALSE // Whether this fish has rarity based sprites. If not, don't change icon states
+	var/sinkable = TRUE
 	max_integrity = 50
 	sellprice = 10
 	dropshrink = 0.6
@@ -78,6 +79,9 @@
 		STOP_PROCESSING(SSobj, src)
 		return 1
 
+/obj/item/reagent_containers/food/snacks/fish/after_throw(datum/callback/callback)
+	. = ..()
+	sinkable = TRUE
 
 /obj/item/reagent_containers/food/snacks/fish/salmon
 	name = "salmon"

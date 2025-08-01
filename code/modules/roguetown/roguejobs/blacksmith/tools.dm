@@ -17,6 +17,13 @@
 	grid_height = 64
 	var/quality = 1
 
+/obj/item/rogueweapon/hammer/attack_hand(mob/living/user)
+	if(HAS_TRAIT(user, TRAIT_CURSE_MALUM))
+		to_chat(user, span_warning("Your cursed hands burn at the touch of the hammer!"))
+		user.freak_out()
+		return
+	. = ..()
+
 /obj/item/rogueweapon/hammer/attack_obj(obj/attacked_object, mob/living/user)
 	if(!isliving(user) || !user.mind)
 		return
@@ -129,7 +136,6 @@
 		return
 
 	. = ..()
-
 
 /obj/item/rogueweapon/hammer/attack(mob/living/M, mob/user)
 	testing("attack")

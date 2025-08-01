@@ -46,8 +46,6 @@
 
 /datum/outfit/job/roguetown/manorguard
 	cloak = /obj/item/clothing/cloak/stabard/surcoat/guard
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	beltl = /obj/item/rogueweapon/mace/cudgel
 	belt = /obj/item/storage/belt/rogue/leather/black
@@ -89,10 +87,9 @@
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		//Bit worse shirt protection than the archer
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection
-	pants = /obj/item/clothing/under/roguetown/chainlegs
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	neck = /obj/item/clothing/neck/roguetown/gorget
+	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd","Greataxe")
@@ -125,11 +122,35 @@
 	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
 	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
 	"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+		"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
+		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
+
+	var/arms = list(
+		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+	)
+	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+	wrists = arms[armschoice]
+
+	var/chausses = list(
+		"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
+		"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
+	)
+	var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
+	pants = chausses[chausseschoice]
 
 // Ranged weapons and daggers on the side - lighter armor, but fleet!
 /datum/advclass/manorguard/skirmisher
@@ -158,20 +179,25 @@
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +2 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+
 
 	//Garrison ranged/speed class. Time to go wild
 	H.change_stat("endurance", 1) // seems kinda lame but remember guardsman bonus!!
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)
 
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord			// Cant wear chainmail anymoooree
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson			// Cant wear chainmail anymoooree
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/trou/leather
+	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Crossbow","Bow","Sling")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/armor_options = list("Light Armor", "Medium Armor")
+	var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armor_options
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Crossbow")
@@ -183,6 +209,22 @@
 		if("Sling")
 			beltr = /obj/item/quiver/sling/iron
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
+
+	switch(armor_choice)
+		if("Light Armor")
+			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+		if("Medium Armor")
+			pants = /obj/item/clothing/under/roguetown/chainlegs
+			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+
+	var/arms = list(
+		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+	)
+	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+	wrists = arms[armschoice]
 
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -198,11 +240,14 @@
 	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
 	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
 	"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+		
 
 /datum/advclass/manorguard/cavalry
 	name = "Cavalryman"
@@ -239,10 +284,11 @@
 	H.change_stat("endurance", 2) // Your name is speed, and speed is running.
 	H.change_stat("intelligence", 1) // No strength to account for the nominally better weapons. We'll see.
 
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		//Bit worse shirt protection than the archer -- as foot soldier.
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson		//Bit worse shirt protection than the archer -- as foot soldier.
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/gorget
+	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Bardiche","Sword & Shield")
@@ -271,8 +317,32 @@
 	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
 	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
 	"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+		"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
+		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
+
+	var/arms = list(
+		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+	)
+	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+	wrists = arms[armschoice]
+
+	var/chausses = list(
+		"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
+		"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
+	)
+	var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
+	pants = chausses[chausseschoice]

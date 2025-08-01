@@ -12,9 +12,6 @@
 	attacked_sound = "parrywood"
 
 	anvilrepair = /datum/skill/craft/blacksmithing
-	force = 7
-	max_integrity = 100
-	sellprice = 3
 
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_BACK
 	possible_item_intents = list(SHIELD_BASH)
@@ -30,7 +27,8 @@
 
 	COOLDOWN_DECLARE(shield_bang)
 
-	var/obj/item/rogueweapon/sword/valid_sword = /obj/item/rogueweapon/sword
+	var/obj/item/rogueweapon/valid_blade
+	var/list/obj/item/rogueweapon/invalid_blades
 	var/obj/item/rogueweapon/sword/sheathed
 	var/sheathe_time = 0.1 SECONDS
 	var/sheathe_sound = 'sound/foley/equip/scabbard_holster.ogg'
@@ -56,9 +54,13 @@
 	if(sheathed)
 		to_chat(user, span_warning("The sheath is occupied!"))
 		return FALSE
-	if(!istype(A, valid_sword))
+	if(!istype(A, valid_blade))
 		to_chat(user, span_warning("[A] won't fit in there.."))
 		return FALSE
+	if(invalid_blades)
+		if(A.type in invalid_blades)
+			to_chat(user, span_warning("[A] won't fit in there.."))
+			return FALSE
 	if(obj_broken)
 		user.visible_message(
 			span_warning("[user] begins to force [A] into [src]!"),
@@ -128,7 +130,7 @@
 
 
 /obj/item/rogueweapon/scabbard/attackby(obj/item/I, mob/user, params)
-	if(istype(I, valid_sword))
+	if(istype(I, valid_blade))
 		return eatsword(user, I)
 
 	..()
@@ -146,7 +148,7 @@
 		icon_state = "[initial(icon_state)]_[sheathed.sheathe_icon]"
 	else
 		icon_state = "[initial(icon_state)]"
-	
+
 	if(user)
 		user.update_inv_hands()
 		user.update_inv_belt()
@@ -208,7 +210,7 @@
 					"eastabove" = 0,
 					"westabove" = 0
 				)
-			if("onbelt") 
+			if("onbelt")
 				return list(
 					"shrink" = 0.5,
 					"sx" = -2,
@@ -247,11 +249,15 @@
 	icon_state = "sheath"
 	item_state = "sheath"
 
-	valid_sword = /obj/item/rogueweapon/huntingknife
+	valid_blade = /obj/item/rogueweapon/huntingknife
 	w_class = WEIGHT_CLASS_SMALL
 
 	grid_width = 32
 	grid_height = 64
+
+	force = 3
+	max_integrity = 50
+	sellprice = 2
 
 /obj/item/rogueweapon/scabbard/sheath/Initialize()
 	..()
@@ -315,7 +321,7 @@
 					"wflip" = 8,
 					"eflip" = 0
 				)
-			if("onbelt") 
+			if("onbelt")
 				return list(
 					"shrink" = 0.5,
 					"sx" = -2,
@@ -355,37 +361,48 @@
 
 	sewrepair = TRUE
 
+	valid_blade = /obj/item/rogueweapon/sword
+	invalid_blades = list(
+		/obj/item/rogueweapon/sword/long/exe
+	)
+
+	force = 7
+	max_integrity = 75
+	sellprice = 3
+
 
 /*
 	KAZENGUN
 */
 
 
-/obj/item/rogueweapon/scabbard/kazengun //Empty scabbard.
+/obj/item/rogueweapon/scabbard/sword/kazengun
 	name = "simple kazengun scabbard"
 	desc = "A piece of steel lined with wood. Great for batting away blows."
 	icon_state = "kazscab"
 	item_state = "kazscab"
-	valid_sword = /obj/item/rogueweapon/sword/sabre/mulyeog
 
+	valid_blade = /obj/item/rogueweapon/sword/sabre/mulyeog
 	associated_skill = /datum/skill/combat/shields
 	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK)
 	can_parry = TRUE
 	wdefense = 9
 
+	max_integrity = 100
 
-/obj/item/rogueweapon/scabbard/kazengun/steel
-	name = "lenticular scabbard"
+
+/obj/item/rogueweapon/scabbard/sword/kazengun/steel
+	name = "hwang scabbard"
 	desc = "A cloud-patterned scabbard with a cloth sash. Used for blocking."
 	icon_state = "kazscab_steel"
 	item_state = "kazscab_steel"
-	valid_sword = /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
+	valid_blade = /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
 
 
-/obj/item/rogueweapon/scabbard/kazengun/gold
-	name = "gold-stained kazengun scabbard"
+/obj/item/rogueweapon/scabbard/sword/kazengun/gold
+	name = "gold-stained Xinyi scabbard"
 	desc = "An ornate, wooden scabbard with a sash. Great for parrying."
 	icon_state = "kazscab_gold"
 	item_state = "kazscab_gold"
-	valid_sword = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
+	valid_blade = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
 	sellprice = 10

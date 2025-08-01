@@ -1,6 +1,7 @@
 // Druid
 /obj/effect/proc_holder/spell/targeted/blesscrop
 	name = "Bless Crops"
+	desc = "Bless up to five crops around you. Revives dead plants, gives them nutrition and water if low and boosts their growth."
 	range = 5
 	overlay_state = "blesscrop"
 	releasedrain = 30
@@ -33,6 +34,7 @@
 //At some point, this spell should Awaken beasts, allowing a ghost to possess them. Not for this PR though.
 /obj/effect/proc_holder/spell/targeted/beasttame
 	name = "Tame Beast"
+	desc = "Tames a targeted saiga, chicken, cow, goat, volf or spider to be non hostile and tamed."
 	range = 5
 	overlay_state = "tamebeast"
 	releasedrain = 30
@@ -67,6 +69,7 @@
 
 /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	name = "Fungal Illumination"
+	desc = "Summons glowing mushrooms that shock people that try moving into them. Dendorites are immune."
 	range = 1
 	overlay_state = "blesscrop"
 	releasedrain = 30
@@ -118,6 +121,7 @@
 
 /obj/effect/proc_holder/spell/invoked/spiderspeak
 	name = "Spider Speak"
+	desc = "Makes spiders not attack the target."
 	overlay_state = "tamebeast"
 	releasedrain = 15
 	chargedrain = 0

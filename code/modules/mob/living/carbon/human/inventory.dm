@@ -489,7 +489,7 @@
 		if(!scab.sheathed)
 			return FALSE
 		return scab.attack_hand(src)
-	if(!istype(thing, scab.valid_sword))
+	if(!istype(thing, scab.valid_blade))
 		return FALSE
 	return scab.attackby(thing, src)
 

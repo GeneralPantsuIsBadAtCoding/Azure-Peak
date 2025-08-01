@@ -34,10 +34,10 @@
 	var/new_duration = duration_override ? duration_override : DEFAULT_DURATION
 
 	if(duration_override)
-		endtime = world.time += duration_override
+		endtime = world.time + duration_override
 		overridden_duration = duration_override
 	else
-		endtime = world.time += DEFAULT_DURATION
+		endtime = world.time + DEFAULT_DURATION
 	if(allow_refresh_override)
 		allow_refresh = allow_refresh_override
 	if(refresh_skill_override)
@@ -89,10 +89,10 @@
 	var/has_right_skill = current_user?.get_skill_level(refresh_skill)
 	if(has_right_skill)
 		if(overridden_duration)
-			endtime = world.time += overridden_duration
+			endtime = world.time + overridden_duration
 			addtimer(CALLBACK(src, PROC_REF(refresh_check)), overridden_duration)
 		else
-			endtime = world.time += DEFAULT_DURATION
+			endtime = world.time + DEFAULT_DURATION
 			addtimer(CALLBACK(src, PROC_REF(refresh_check)), DEFAULT_DURATION)
 
 // Called when the enchantment is removed

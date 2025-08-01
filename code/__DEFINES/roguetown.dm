@@ -31,7 +31,6 @@
 
 // MEDIUM
 #define ARMOR_INT_CHEST_MEDIUM_STEEL 300
-#define ARMOR_INT_CHEST_MEDIUM_BRIGANDINE 225 
 #define ARMOR_INT_CHEST_MEDIUM_HATANGA 250
 #define ARMOR_INT_CHEST_MEDIUM_IRON 225
 #define ARMOR_INT_CHEST_MEDIUM_SCALE 200 // More coverage, less integrity
@@ -107,7 +106,7 @@
 // Glove Armor
 #define ARMOR_GLOVES_LEATHER list("blunt" = 60, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
 #define ARMOR_GLOVES_LEATHER_GOOD list("blunt" = 60, "slash" = 25, "stab" = 40, "piercing" = 10, "fire" = 0, "acid" = 0)
-#define ARMOR_GLOVES_CHAIN list("blunt" = 20, "slash" = 100, "stab" = 80, "piercing" = 20, "fire" = 0, "acid" = 0)
+#define ARMOR_GLOVES_CHAIN list("blunt" = 20, "slash" = 100, "stab" = 70, "piercing" = 20, "fire" = 0, "acid" = 0)
 #define ARMOR_GLOVES_PLATE list("blunt" = 5, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 #define ARMOR_GLOVES_PLATE_GOOD list("blunt" = 20, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 
@@ -277,6 +276,7 @@
 	/datum/species/anthromorphsmall,\
 	/datum/species/demihuman,\
 	/datum/species/halforc,\
+	/datum/species/orc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\

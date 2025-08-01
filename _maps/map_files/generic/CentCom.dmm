@@ -1595,6 +1595,10 @@
 /obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
+"gX" = (
+/obj/structure/fluff/statue/knight/r,
+/turf/open/water/pond,
+/area/rogue/indoors/ravoxarena)
 "hr" = (
 /obj/item/roguebin/water,
 /turf/open/floor/rogue/hexstone,
@@ -1659,6 +1663,9 @@
 /obj/machinery/light/rogue/firebowl,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
+"iE" = (
+/turf/closed/wall/mineral/rogue/decostone,
+/area/rogue/indoors/ravoxarena)
 "iH" = (
 /obj/effect/landmark/start/wretch,
 /turf/open/floor/rogue/blocks,
@@ -1758,6 +1765,10 @@
 "kX" = (
 /turf/open/water/bloody,
 /area/rogue/under/cave/inhumen)
+"lo" = (
+/obj/structure/fluff/ravox/challenged,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/ravoxarena)
 "lq" = (
 /obj/structure/bars/passage{
 	density = 0;
@@ -2090,6 +2101,10 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
+"rz" = (
+/obj/structure/fluff/ravox/challenger,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/ravoxarena)
 "rB" = (
 /obj/structure/closet/crate/chest/old_crate,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
@@ -2103,6 +2118,10 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
+"rH" = (
+/obj/structure/fluff/statue/knight,
+/turf/open/water/pond,
+/area/rogue/indoors/ravoxarena)
 "rN" = (
 /obj/machinery/light/rogue/oven/south,
 /turf/open/floor/rogue/tile{
@@ -2274,6 +2293,9 @@
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
+"va" = (
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/ravoxarena)
 "vb" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/hexstone,
@@ -2883,6 +2905,10 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
+"Fs" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/closed/wall/mineral/rogue/decostone,
+/area/rogue/indoors/ravoxarena)
 "Fu" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/dirt/road,
@@ -3527,6 +3553,10 @@
 	dir = 1
 	},
 /area/rogue/under/cave/inhumen)
+"TT" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/closed,
+/area/rogue)
 "TY" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
 	dir = 1
@@ -3827,6 +3857,13 @@
 /obj/structure/flora/roguetree,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
+"XX" = (
+/turf/open/water/pond,
+/area/rogue/indoors/ravoxarena)
+"Yc" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/ravoxarena)
 "Yk" = (
 /obj/item/rogueweapon/pick,
 /turf/open/floor/rogue/dirt/road,
@@ -16354,14 +16391,14 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+Fs
+iE
+iE
+Fs
+iE
+iE
+TT
 rQ
 rQ
 rQ
@@ -16484,13 +16521,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+rz
+va
+va
+va
+va
+iE
 rQ
 rQ
 rQ
@@ -16614,13 +16651,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+va
+iE
+va
+iE
+va
+iE
 rQ
 rQ
 rQ
@@ -16744,13 +16781,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+va
+rH
+XX
+rH
+va
+iE
 rQ
 rQ
 rQ
@@ -16874,14 +16911,14 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+Yc
+XX
+XX
+XX
+va
+iE
+TT
 rQ
 rQ
 rQ
@@ -17004,13 +17041,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+va
+gX
+XX
+gX
+va
+iE
 rQ
 rQ
 rQ
@@ -17134,13 +17171,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+va
+iE
+va
+iE
+va
+iE
 rQ
 rQ
 rQ
@@ -17264,13 +17301,13 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+va
+va
+va
+va
+lo
+iE
 rQ
 rQ
 rQ
@@ -17394,14 +17431,14 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+iE
+Fs
+iE
+iE
+Fs
+iE
+iE
+TT
 rQ
 rQ
 rQ

@@ -149,11 +149,17 @@
 			return
 	if(istype(AM, /obj/item/reagent_containers/food/snacks/fish))
 		var/obj/item/reagent_containers/food/snacks/fish/F = AM
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_FISH_RELEASED, F.type, F.rarity_rank)
-		F.visible_message("<span class='warning'>[F] dives into \the [src] and disappears!</span>")
-		qdel(F)
+		if (F.sinkable)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_FISH_RELEASED, F.type, F.rarity_rank)
+			F.visible_message("<span class='warning'>[F] dives into \the [src] and disappears!</span>")
+			qdel(F)
 	if(isliving(AM) && !AM.throwing)
 		var/mob/living/L = AM
+		if(HAS_TRAIT(L, TRAIT_CURSE_ABYSSOR))
+			L.freak_out()
+			L.visible_message(span_warning("[L] spasms violently upon touching the water!"), span_danger("The water... it burns me!"))
+			L.adjustFireLoss(25)
+			return
 		if(!(L.mobility_flags & MOBILITY_STAND) || water_level == 3)
 			L.SoakMob(FULL_BODY)
 		else
@@ -433,6 +439,18 @@
 	swim_skill = TRUE
 	var/river_processing
 	swimdir = TRUE
+
+/turf/open/water/river/flow
+	icon_state = "rockwd"
+
+/turf/open/water/river/flow/west
+	dir = 8
+
+/turf/open/water/river/flow/east
+	dir = 4
+
+/turf/open/water/river/flow/north
+	dir = 1
 
 /turf/open/water/river/update_icon()
 	if(water_overlay)

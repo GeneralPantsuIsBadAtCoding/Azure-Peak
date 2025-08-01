@@ -13,6 +13,7 @@
 		"...a flash of steel through the sky, and another, and another. Blades pass between your juggling hands as if you were pulling on singular, thick rope...",
 		"...you tuck the blade away in your cloak, and offer yourself up for inspection. While small, the invisible blade cannot be parried..."
 	)
+	expert_name = "Shanker"
 
 
 /datum/skill/combat/swords
@@ -23,6 +24,7 @@
 		"...a shining length of ivory steel. A token. A symbol. More than just a weapon. Blood runs thick in the wash-bin. Sparks fly from the grindstone. You maintain the blade and it maintains your honour...",
 		"...the rapier dances in your hand, a whisper of steel cutting through the air. Every thrust is precise, every parry and riposte flowing in perfect rhythm, simply awaiting the moment to seal your their fate with a single, fatal strike..."
 	)
+	expert_name = "Swordsman"
 
 /datum/skill/combat/polearms
 	name = "Polearms"
@@ -32,6 +34,7 @@
 	"...armed with your trusty staff, you hike through the muck and mire with ease. It serves not only as a weapon but a tool, its sturdy length offering support as you press onward, unfazed by the thick, unrelenting muck...",
 	"...the billhook hums through the air, its hooked blade striking with chilling precision. It rends through chain and leather. With each twist, your strikes become inevitable, seamless. A relentless dance of destruction, merciless and fluid..."
 	)
+	expert_name = "Polewielder"
 
 /datum/skill/combat/maces
 	name = "Maces"
@@ -42,6 +45,7 @@
 	"...the air trembles with each of your mighty blows, each strike echoing like the final toll of a bell. This is your symphony. Revel in its brutal beauty, its crushing simplicity...",
 	"...'This blade is a masterwork of Malum's craftsmanship,' the elf declared. Moments later his head was abruptly transformed into pavement decor under the crushing weight of your brutish tool..."
 	)
+	expert_name = "Macer"
 
 /datum/skill/combat/axes
 	name = "Axes"
@@ -53,6 +57,7 @@
 	"...the heft of iron pulls upon your arm. It knows where it wishes to be - all you have to do is guide its fall. Knowing this, your axe feels lighter than you remember...",
 	"...despite the insurmountable challenge, you fear nothing, for the axe is thy companion eternal. Problem solving is quite simple, really..."
 	)
+	expert_name = "Axer"
 
 /datum/skill/combat/whipsflails
 	name = "Whips & Flails"
@@ -61,6 +66,7 @@
 	"...the sing-song of your flail cleaves through the air and rouses something primal, but the down swing of your hand quickly puts it to sleep...",
 	"...with a whistle and a snap and a crack, another bruise is left on flesh. With a sharp pull, you strike down again. They will be tamed..."
 	)
+	expert_name = "Whipper"
 
 /datum/skill/combat/bows
 	name = "Archery"
@@ -70,6 +76,7 @@
 	"...your fingers sting as you let loose another arrow and it glances off the pale knight's breastplate. You aim at their visor and pray to whatever gods you hold dear that this one will make it through...",
 	"...it takes half a minute for an experienced arbalist to cock and load a crossbow. You could kill five men with three arrows in half that time..."
 	)
+	expert_name = "Bower"
 
 /datum/skill/combat/crossbows
 	name = "Crossbows"
@@ -78,6 +85,7 @@
 	"...you put your foot down and pull on the string. You wind the crossbow back with all your might. It feels like the thing is mocking you, impossible to pull taut. Only when a seasoned arbalist reminds you to pull from your back, and not your knees, do you make progress...",
 	"...the crossbow is a deadly marvel of engineering, waiting for your guidance. You steady your breath, finger poised on the trigger. The world narrows as you take aim, the perfect shot soon to come..."
 	)
+	expert_name = "Crossbower"
 
 /datum/skill/combat/wrestling
 	name = "Wrestling"
@@ -86,6 +94,7 @@
 	"...you grab him by the shirt and twist your hand with a mighty shove, working your opponent to the ground. The dirt fills your lungs but you feel his resistance give way as he coughs, a smile of approval crossing his face...",
 	"...the dirt gets in your lungs and you can feel your legs quiver. You can't stand. You hear the clanking of plate, and see mighty boots stop in front of you. With a yank at their leg, your would-be killer is brought tumbling to the ground..."
 	)
+	expert_name = "Wrestler"
 
 /datum/skill/combat/unarmed
 	name = "Unarmed"
@@ -94,6 +103,7 @@
 	"...the wet and harsh sound of skin against bone and clattering teeth reaches your ears before your mind processes what just happened. You got knocked out with a mighty blow to the jaw...",
 	"...your nails are claws, your hands are weapons. A silent watcher in pale plate armor nods with approval at your ferocity..."
 	)
+	expert_name = "Puncher"
 
 /datum/skill/combat/shields
 	name = "Shields"
@@ -102,6 +112,7 @@
 	"...a terrible lizard unleashes a torrent of fire upon you. Yet, you stand firm, a living bastion, unyielding and stalwart...",
 	"...the half-moon crest upon your shield shines even in the bright of Astrata's day. You catch a gleam on it, and reflexively pull it upwards. An arrow bounces off..."
 	)
+	expert_name = "Shieldbearer"
 
 /datum/skill/combat/slings
 	name = "Slings"
@@ -111,3 +122,4 @@
 	"...the perched archers ruthlessly repel the peasant rebellion. Hope for fairness is almost forlorn, until with a soft crack, a hailing of iron bullets clatter against the foe's helmets...",
 	"...your arm tires from the toils of practice. Swinging rapidly has left your arm numb. With weary eyes, you glance aside to witness a hunter practice their craft with a brief overhand toss. Absorbing the technique, you mimic it, and effortlessly cast a powerful stone square onto the target..."
 	)
+	expert_name = "Slinger"

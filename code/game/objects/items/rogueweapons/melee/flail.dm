@@ -192,6 +192,7 @@
 	associated_skill = /datum/skill/combat/whipsflails
 	slot_flags = ITEM_SLOT_BACK
 	blade_dulling = DULLING_SHAFT_GRAND
+	anvilrepair = /datum/skill/craft/weaponsmithing
 
 
 /obj/item/rogueweapon/flail/peasantwarflail/matthios/pickup(mob/living/user)

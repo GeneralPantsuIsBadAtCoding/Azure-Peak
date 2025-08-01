@@ -44,9 +44,9 @@
 		if(CUSTOM_PREFIX_HAS_AN)
 			return "%HAVE%"
 		if(CUSTOM_PREFIX_IS)
-			return "is"
+			return "%ARE%"
 		if(CUSTOM_PREFIX_LOOKS)
-			return "looks"
+			return "%LOOK%"
 
 /datum/mob_descriptor/prominent/custom/one
 	name = "Custom #1"
@@ -58,7 +58,7 @@
 
 /datum/mob_descriptor/prominent/hunched_over
 	name = "Hunched Over"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/crooked_nose
 	name = "Crooked Nose"
@@ -67,7 +67,7 @@
 
 /datum/mob_descriptor/prominent/drooling
 	name = "Drooling"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/lazy_eye
 	name = "Lazy Eye"
@@ -88,23 +88,23 @@
 
 /datum/mob_descriptor/prominent/twitchy
 	name = "Twitchy"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/clumsy
 	name = "Clumsy"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/unkempt
 	name = "Unkempt"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/tidy
 	name = "Tidy"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/eloquent
 	name = "Eloquent"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/thick_tail
 	name = "Thick Tail"
@@ -126,7 +126,7 @@
 
 /datum/mob_descriptor/prominent/physically_deformed
 	name = "Physically Deformed"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/extensive_scars
 	name = "Extensive Scarring"
@@ -219,7 +219,7 @@
 
 /datum/mob_descriptor/prominent/ghastly_pale
 	name = "Ghastly Pale"
-	verbage = "is"
+	verbage = "%ARE%"
 
 /datum/mob_descriptor/prominent/elaborate_tattoos
 	name = "Elaborate Tattoos"

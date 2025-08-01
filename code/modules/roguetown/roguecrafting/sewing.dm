@@ -226,6 +226,14 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 1
 
+/datum/crafting_recipe/roguetown/sewing/paddedcoif
+	name = "padded coif(1 fibers, 2 cloth)"
+	result = list(/obj/item/clothing/neck/roguetown/coif/padded)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 1
+
+
 /* craftdif of 2+ */
 
 /datum/crafting_recipe/roguetown/sewing/wrappings
@@ -538,6 +546,13 @@
                 /obj/item/natural/fibers = 4)
     craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/heavypadded
+	name = "heavy padded coif(2 fibers, 3 cloth)"
+	result = list(/obj/item/clothing/neck/roguetown/coif/heavypadding)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/hgambeson/fencer
 	name = "fencing shirt (6 cloth, 2 cured leather)"
 	result = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
@@ -554,11 +569,11 @@
 	sellprice = 14
 
 /datum/crafting_recipe/roguetown/sewing/chaperon/noble
-    name = "noble's chaperon (1 fibers, 4 cloth)"
-    result = list(/obj/item/clothing/head/roguetown/chaperon)
-    reqs = list(/obj/item/natural/cloth = 4,
+	name = "noble's chaperon (1 fibers, 4 cloth)"
+	result = list(/obj/item/clothing/head/roguetown/chaperon/noble)
+	reqs = list(/obj/item/natural/cloth = 4,
                 /obj/item/natural/fibers = 2)
-    craftdiff = 4
+	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/sewing/jupon
 	name = "jupon (1 fibers, 3 cloth)"
@@ -1142,3 +1157,9 @@
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 4)
 	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/sewing/bandithood
+	name = "free man's shroud (3 cloth)"
+	result = list(/obj/item/clothing/head/roguetown/menacing/bandit)
+	reqs = list(/obj/item/natural/cloth = 3)
+	craftdiff = 1

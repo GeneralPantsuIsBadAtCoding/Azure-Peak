@@ -128,7 +128,8 @@
 		/obj/item/natural/hide,
 		/obj/item/alch/sinew,
 		/obj/item/alch/viscera,
-		/obj/item/alch/bone
+		/obj/item/alch/bone,
+		/obj/item/natural/head // this only works for animal heads
 		))
 
 /datum/component/storage/concrete/grid/magebag

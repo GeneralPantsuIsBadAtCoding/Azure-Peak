@@ -8,6 +8,7 @@
 	flee_in_pain = FALSE
 	ambushable = FALSE
 	wander = TRUE
+	infected = TRUE
 
 /mob/living/carbon/human/species/npc/deadite/Initialize()
 	. = ..()
@@ -37,6 +38,14 @@
 	//Make sure deadite NPCs don't show up in the antag listings
 	GLOB.antagonists -= zombie_antag
 	update_body()
+
+/mob/living/carbon/human/species/npc/deadite/npc_try_backstep()
+	return FALSE // deadites cannot juke
+
+/mob/living/carbon/human/species/npc/deadite/npc_should_resist(ignore_grab = TRUE)
+	if(!check_mouth_grabbed())
+		ignore_grab ||= TRUE
+	return ..(ignore_grab = ignore_grab)
 
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -158,6 +167,7 @@
 	to_chat(src, span_danger("I feel horrible... REALLY horrible..."))
 	mob_timers["puke"] = world.time
 	vomit(1, blood = TRUE, stun = FALSE)
+	src.infected = TRUE //Is this in use? Just in case it is
 	addtimer(CALLBACK(src, PROC_REF(wake_zombie)), 1 MINUTES)
 	return zombie_antag
 

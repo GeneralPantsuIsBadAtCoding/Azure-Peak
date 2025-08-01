@@ -36,11 +36,6 @@
 	cost = 35
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/half/iron)
 
-/datum/supply_pack/rogue/armor_iron/brigandine_light
-	name = "Brigandine, Light"
-	cost = 35
-	contains = list(/obj/item/clothing/suit/roguetown/armor/brigandine/light)
-
 /datum/supply_pack/rogue/armor_iron/halfplate
 	name = "Half-Plate Armor"
 	cost = 75 // Uhhh I don't think I should be selling them for 65 LOL
@@ -52,9 +47,9 @@
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/iron)
 
 /datum/supply_pack/rogue/armor_iron/rearbraces
-	name = "Bracers, Brigandine"
-	cost = 25
-	contains = list(/obj/item/clothing/wrists/roguetown/splintarms)
+	name = "Bracers, Splinted"
+	cost = 30 //1 Iron 1 Leather
+	contains = list(/obj/item/clothing/wrists/roguetown/splintarms/iron)
 
 /datum/supply_pack/rogue/armor_iron/bracers
 	name = "Bracers, Plate"
@@ -77,14 +72,19 @@
 	contains = list(/obj/item/clothing/under/roguetown/chainlegs/iron)
 
 /datum/supply_pack/rogue/armor_iron/chausses_brigandine
-	name = "Chausses, Brigandine"
-	cost = 25
-	contains = list(/obj/item/clothing/under/roguetown/splintlegs)
+	name = "Chausses, Splinted"
+	cost = 35 // 1 Iron 2 Leather
+	contains = list(/obj/item/clothing/under/roguetown/splintlegs/iron)
 
 /datum/supply_pack/rogue/armor_iron/chausses_plate
 	name = "Chausses, Plate"
 	cost = 40
 	contains = list(/obj/item/clothing/under/roguetown/platelegs/iron)
+
+/datum/supply_pack/rogue/armor_iron/chainkilt
+	name = "Chain Kilt"
+	cost = 25
+	contains = list(/obj/item/clothing/under/roguetown/chainlegs/iron/kilt)
 
 /datum/supply_pack/rogue/armor_iron/mask_iron
 	name = "Mask"

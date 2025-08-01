@@ -148,6 +148,23 @@ have ways of interacting with a specific atom and control it. They posses a blac
 /datum/ai_controller/proc/reset_ai_status()
 	set_ai_status(get_expected_ai_status())
 
+/datum/ai_controller/proc/can_move()
+	if(QDELETED(pawn))
+		return
+	var/mob/living/living_pawn = pawn
+	if(living_pawn.incapacitated(ignore_restraints = 1))
+		return FALSE
+	if(ai_traits & STOP_MOVING_WHEN_PULLED && living_pawn.pulledby)
+		return FALSE
+	if(!isturf(living_pawn.loc)) //No moving if not on a turf
+		return FALSE
+	if(!(living_pawn.mobility_flags & MOBILITY_MOVE))
+		return FALSE
+	if(living_pawn.pulledby?.grab_state > GRAB_PASSIVE)
+		return FALSE
+
+	return TRUE
+
 /**
  * Gets the AI status we expect the AI controller to be on at this current moment.
  * Returns AI_STATUS_OFF if it's inhabited by a Client and shouldn't be, if it's dead and cannot act while dead, or is on a z level without clients.

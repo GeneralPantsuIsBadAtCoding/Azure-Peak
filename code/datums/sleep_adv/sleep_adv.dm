@@ -29,7 +29,7 @@
 
 /datum/sleep_adv/proc/adjust_sleep_xp(skill, adjust)
 	var/current_xp = get_sleep_xp(skill)
-	var/target_xp = current_xp + adjust
+	var/target_xp = current_xp + (HAS_TRAIT(mind?.current, TRAIT_JACKOFALLTRADES) ? (adjust * 1.5) : adjust)
 	var/cap_exp = get_requried_sleep_xp_for_skill(skill, 2)
 	target_xp = clamp(target_xp, 0, cap_exp)
 	sleep_exp[skill] = target_xp
@@ -91,6 +91,9 @@
 /datum/sleep_adv/proc/advance_cycle()
 	// Stuff
 	if(!mind.current)
+		return
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_ABYSSOR))
+		to_chat(mind.current, span_notice("His domain is forbidden to the likes of me."))
 		return
 	if(prob(0)) //TODO SLEEP ADV SPECIALS
 		rolled_specials++
@@ -202,6 +205,9 @@
 	if(!can_buy_skill(skill_type))
 		return
 	if(!enough_sleep_xp_to_advance(skill_type, 1))
+		return
+	if(HAS_TRAIT(mind.current, TRAIT_CURSE_MALUM))
+		to_chat(mind.current, span_warning("My dreams turn to nitemares."))
 		return
 	var/datum/skill/skill = GetSkillRef(skill_type)
 	var/dream_text = skill.get_random_dream()

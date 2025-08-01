@@ -479,8 +479,10 @@
 	pixel_x = -16
 	layer = 4.81
 	attacked_sound = 'sound/misc/woodhit.ogg'
-	destroy_sound = 'sound/misc/woodhit.ogg'
+	destroy_sound = 'sound/misc/treefall.ogg'
 	static_debris = list( /obj/item/grown/log/tree/small = 1)
+	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE_UPPER
 	dir = SOUTH
 
 /obj/structure/flora/rogueshroom/attack_right(mob/user)
@@ -548,13 +550,16 @@
 	climb_time = 0
 	density = TRUE
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
+	plane = GAME_PLANE
 	layer = TABLE_LAYER
-	blade_dulling = DULLING_PICK
+	blade_dulling = DULLING_CUT
 	static_debris = null
 	debris = null
 	alpha = 255
 	pixel_x = -16
 	climb_offset = 14
+	attacked_sound = 'sound/misc/woodhit.ogg'
+	destroy_sound = 'sound/misc/treefall.ogg'
 
 /obj/structure/flora/shroomstump/Initialize()
 	. = ..()

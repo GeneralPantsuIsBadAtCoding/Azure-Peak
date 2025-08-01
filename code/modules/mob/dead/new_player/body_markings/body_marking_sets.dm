@@ -8,6 +8,12 @@
 	name = "None"
 	body_marking_list = list()
 
+/datum/body_marking_set/gradient
+	name = "Gradient"
+	body_marking_list = list(
+		/datum/body_marking/gradient
+		)
+
 /datum/body_marking_set/socks
 	name = "Socks"
 	body_marking_list = list(

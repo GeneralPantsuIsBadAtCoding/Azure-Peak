@@ -51,3 +51,27 @@
 /datum/status_effect/buff/witherd/on_remove()
 	. = ..()
 	to_chat(owner, span_warning("I feel my physical prowess returning."))
+
+/datum/status_effect/buff/lightningstruck
+	id = "lightningstruck"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/lightningstruck
+	duration = 6 SECONDS
+	effectedstats = list("speed" = -2)
+
+/atom/movable/screen/alert/status_effect/buff/lightningstruck
+	name = "Lightning Struck"
+	desc = "I can feel the electricity coursing through me."
+	icon_state = "debuff"
+	color = "#ffff00"
+
+/datum/status_effect/buff/lightningstruck/on_apply()
+	. = ..()
+	var/mob/living/target = owner
+	target.update_vision_cone()
+	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
+
+/datum/status_effect/buff/lightningstruck/on_remove()
+	. = ..()
+	var/mob/living/target = owner
+	target.update_vision_cone()
+	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)

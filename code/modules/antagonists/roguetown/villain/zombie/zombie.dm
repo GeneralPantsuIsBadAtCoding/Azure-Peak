@@ -136,6 +136,7 @@
 
 	//Special because deadite status is latent as opposed to the others. 
 	if(admin_granted)
+		zombie.infected = TRUE
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wake_zombie), zombie, FALSE, TRUE), 5 SECONDS, TIMER_STOPPABLE)
 	return ..()
 
@@ -147,6 +148,7 @@
 	var/mob/living/carbon/human/zombie = owner?.current
 	if(zombie)
 
+		zombie.infected = FALSE // Makes sure admins removing deadification removes the infected var if they do it before they turn
 		zombie.verbs -= /mob/living/carbon/human/proc/zombie_seek
 		zombie.mind?.special_role = special_role
 		zombie.ambushable = ambushable
@@ -351,6 +353,7 @@
 	var/datum/antagonist/zombie/zombie_antag = source.mind?.has_antag_datum(/datum/antagonist/zombie)
 	if (!zombie_antag || !zombie_antag.has_turned) //Check that the zombie who bit us is real
 		return FALSE
+	victim.infected = TRUE //They are being infected
 
 	//How did the victim get infected
 	switch (infection_type)
@@ -375,6 +378,9 @@
 	Proc for our newly infected to wake up as a zombie
 */
 /proc/wake_zombie(mob/living/carbon/zombie, infected_wake = FALSE, converted = FALSE)
+	if(!zombie.infected) //Ensure they werent cured
+		return
+		
 	if (!zombie || QDELETED(zombie)) 
 		return
 
@@ -411,6 +417,7 @@
 	zombie.update_mobility()
 	zombie.update_sight()
 	zombie.reload_fullscreen()
+	zombie.infected = FALSE //The infection has finished and they are now a zombie
 
 	var/datum/antagonist/zombie/zombie_antag = zombie.mind?.has_antag_datum(/datum/antagonist/zombie)
 	if(zombie_antag)

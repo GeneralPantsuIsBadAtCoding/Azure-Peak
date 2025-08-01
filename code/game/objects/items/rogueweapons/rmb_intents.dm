@@ -53,12 +53,12 @@
 
 	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))
 	HU.apply_status_effect(/datum/status_effect/debuff/baitcd)
-	HU.stamina_add(HU.max_stamina * 0.2)
 
-	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest//Our zones do not match, or we were targeting chest
+	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest | Our zones do not match, or we were targeting chest
 		to_chat(HU, span_danger("It didn't work! Their footing returned!"))
 		to_chat(HT, span_notice("I fooled him! I've regained my footing!"))
 		HU.emote("groan")
+		HU.stamina_add(HU.max_stamina * 0.2)
 		HT.bait_stacks = 0
 		return
 

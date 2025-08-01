@@ -14,6 +14,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_FILLING)
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/pieslice
 	slices_num = 5
+	slice_name = "pie slice"
 	slice_batch = TRUE
 	faretype = FARE_LAVISH //an entire pie! all to yourself!
 	portable = FALSE
@@ -85,6 +86,7 @@
 	icon_state = "meatpie"
 	tastes = list("succulent meat and crispy butterdough" = 1)
 	filling_color = "#b43628"
+	slice_name = "meat pie slice"
 
 // -------------- FISH PIE -----------------
 /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/meat/fish
@@ -93,6 +95,7 @@
 	icon_state = "fishpie"
 	tastes = list("baked fish and crispy butterdough" = 1)
 	filling_color = "#d44197"
+	slice_name = "fish pie slice"
 
 
 // -------------- POT PIE -----------------
@@ -103,6 +106,7 @@
 	tastes = list("succulent filling and crispy butterdough" = 1)
 	filling_color = "#755430"
 	foodtype = GRAIN | DAIRY | MEAT
+	slice_name = "pot pie slice"
 
 // -------------- BERRY PIE -----------------
 /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/berry
@@ -112,6 +116,7 @@
 	slices_num = 4
 	tastes = list("crispy butterdough" = 1, "sweet berries" = 1)
 	filling_color = "#4a62cf"
+	slice_name = "berry pie slice"
 
 // -------------- POISON PIE -----------------
 /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/poison
@@ -121,6 +126,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD, /datum/reagent/berrypoison = 12)
 	tastes = list("crispy butterdough" = 1, "bitter berries" =1)
 	filling_color = "#4a62cf"
+	slice_name = "berry pie slice"
 
 // -------------- APPLE PIE -----------------
 /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/apple
@@ -130,6 +136,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
 	tastes = list("baked apples and crispy butterdough" = 1)
 	filling_color = "#947a4b"
+	slice_name = "apple pie slice"
 
 // -------------- CRAB PIE -----------------
 /obj/item/reagent_containers/food/snacks/rogue/pie/cooked/crab
@@ -139,3 +146,4 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
 	tastes = list("crispy butterdough" = 1, "rich crab meat" = 1)
 	filling_color = "#f1e0cb"
+	slice_name = "crab pie slice"

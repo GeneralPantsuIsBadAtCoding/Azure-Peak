@@ -45,7 +45,6 @@
 	if (nref)
 		ref = nref
 		RegisterSignal(ref, COMSIG_PARENT_QDELETING, PROC_REF(ref_deleted))
-	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
 
 /datum/browser/proc/user_deleted(datum/source)
 	SIGNAL_HANDLER
@@ -68,17 +67,20 @@
 	if (istype(name, /datum/asset/spritesheet))
 		var/datum/asset/spritesheet/sheet = name
 		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
+	else if (istype(name, /datum/asset/spritesheet_batched))
+		var/datum/asset/spritesheet_batched/sheet = name
+		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
 	else
 		var/asset_name = "[name].css"
 
 		stylesheets[asset_name] = file
 
 		if (!SSassets.cache[asset_name])
-			register_asset(asset_name, file)
+			SSassets.transport.register_asset(asset_name, file)
 
 /datum/browser/proc/add_script(name, file)
 	scripts["[ckey(name)].js"] = file
-	register_asset("[ckey(name)].js", file)
+	SSassets.transport.register_asset("[ckey(name)].js", file)
 
 /datum/browser/proc/set_content(ncontent)
 	content = ncontent
@@ -87,22 +89,25 @@
 	content += ncontent
 
 /datum/browser/proc/get_header()
-	var/file
-	for (file in stylesheets)
-		head_content += "<link rel='stylesheet' type='text/css' href='[file]'>"
+	var/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
+	var/list/new_head_content = list()
+	new_head_content += "<link rel='stylesheet' type='text/css' href='[common_asset.get_url_mappings()["common.css"]]'>"
+	for(var/file in stylesheets)
+		new_head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(file)]'>"
 
-	for (file in scripts)
-		head_content += "<script type='text/javascript' src='[file]'></script>"
+	for(var/file in scripts)
+		new_head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
 
+	head_content += new_head_content.Join()
 	var/title_attributes = "class='uiTitle'"
-	if (title_image)
+	if(title_image)
 		title_attributes = "class='uiTitle icon' style='background-image: url([title_image]);'"
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 		[head_content]
 	</head>
 	<body scroll=auto>
@@ -126,6 +131,8 @@
 	"}
 
 /datum/browser/proc/open(use_onclose = TRUE)
+	if(!user)
+		return
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
 		to_chat(user, span_danger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
@@ -133,11 +140,14 @@
 	var/window_size = ""
 	if (width && height)
 		window_size = "size=[width]x[height];"
-	if (stylesheets.len)
-		send_asset_list(user, stylesheets, verify=FALSE)
-	if (scripts.len)
-		send_asset_list(user, scripts, verify=FALSE)
-	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
+
+	var/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
+	common_asset.send(user)
+	if (length(stylesheets))
+		SSassets.transport.send_assets(user, stylesheets)
+	if (length(scripts))
+		SSassets.transport.send_assets(user, scripts)
+	DIRECT_OUTPUT(user, browse(get_content(), "window=[window_id];[window_size][window_options]"))
 	if (use_onclose)
 		setup_onclose()
 

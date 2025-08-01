@@ -102,12 +102,12 @@
 /datum/supply_pack/rogue/tools/prlegl
 	name = "Prosthetic Wood Leg (L)"
 	cost = 15
-	contains = /obj/item/bodypart/l_leg/prosthetic
+	contains = list(/obj/item/bodypart/l_leg/prosthetic)
 
 /datum/supply_pack/rogue/tools/prlegr
 	name = "Prosthetic Wood Leg (R)"
 	cost = 15
-	contains = /obj/item/bodypart/r_leg/prosthetic
+	contains = list(/obj/item/bodypart/r_leg/prosthetic)
 
 /datum/supply_pack/rogue/tools/hoe
 	name = "Hoe"

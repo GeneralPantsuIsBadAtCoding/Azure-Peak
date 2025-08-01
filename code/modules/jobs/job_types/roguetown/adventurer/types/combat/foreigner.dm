@@ -27,7 +27,7 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/basiceast
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-			beltr = /obj/item/rogueweapon/scabbard/kazengun
+			beltr = /obj/item/rogueweapon/scabbard/sword/kazengun
 			beltl = /obj/item/rogueweapon/sword/sabre/mulyeog
 			belt = /obj/item/storage/belt/rogue/leather/black
 			backr = /obj/item/storage/backpack/rogue/satchel

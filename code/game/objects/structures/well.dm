@@ -61,8 +61,8 @@
 	desc = "A slightly more civilized alternative to drinking straight from a river."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "fountain"
-	layer = BELOW_MOB_LAYER
-	layer = -0.1
+	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE_UPPER
 
 /obj/structure/well/fountain/onbite(mob/user)
 	if(isliving(user))

@@ -1,3 +1,10 @@
+#define DULLFACTOR_COUNTERED_BY 1.2 // If a shaft is COUNTERED by a weapon type, this is the damage to go for
+#define DULLFACTOR_NEUTRAL 1 // If a shaft is NEUTRAL to a weapon type, this is the damage to go for
+#define DULLFACTOR_COUNTERS 0.8 // If a shaft COUNTERS a damage type, this is the damage to go for
+#define DULLFACTOR_ANTAG 0.5 // For Grand Shaft. Also for dull blade
+// Previously value were closer to 0.4 - 0.5 and 1.5 - 1.7x, but it felt like it make weapons
+// counter certain shaft type too hard, so now the value is between 0.8 to 1.2x for regular type
+
 /**
   *This is the proc that handles the order of an item_attack.
   *The order of procs called is:
@@ -343,87 +350,87 @@
 			shake_camera(user, 1, 1)
 			miner.mind.add_sleep_experience(/datum/skill/labor/mining, (miner.STAINT*0.2))
 		if(DULLING_SHAFT_CONJURED)
-			dullfactor = 1.2
+			dullfactor = DULLFACTOR_COUNTERED_BY
 		if(DULLING_SHAFT_WOOD)	//Weak to cut / chop. No changes vs stab, resistant to blunt
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0.5
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 1.3
+						dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0.5
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 1.5
+						dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_STAB)
-					dullfactor = 1
+					dullfactor = DULLFACTOR_NEUTRAL
 				if(BCLASS_BLUNT)
-					dullfactor = 0.7
+					dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_SMASH)
-					dullfactor = 0.5
+					dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_PICK)
-					dullfactor = 0.5
+					dullfactor = DULLFACTOR_COUNTERS
 		if(DULLING_SHAFT_REINFORCED)	//Weak to stab. No changes vs blunt, resistant to cut / chop
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 0.5
+						dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 0.7
+						dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_STAB)
-					dullfactor = 1.5
+					dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_BLUNT)
-					dullfactor = 1
+					dullfactor = DULLFACTOR_NEUTRAL
 				if(BCLASS_SMASH)
-					dullfactor = 1
+					dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_PICK)
-					dullfactor = 0.7
-		if(DULLING_SHAFT_METAL)	//Very weak to blunt. No changes vs stab, highly resistant to cut / chop. Pick can actually damage it.
+					dullfactor = DULLFACTOR_COUNTERS
+		if(DULLING_SHAFT_METAL)	//Weak to blunt. No changes vs stab, resistant to cut / chop. Pick can actually damage it.
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 0.25
+						dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						dullfactor = 0
+						dullfactor = DULLFACTOR_ANTAG
 					else
-						dullfactor = 0.4
+						dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_STAB)
-					dullfactor = 0.75
+					dullfactor = DULLFACTOR_COUNTERS
 				if(BCLASS_BLUNT)
-					dullfactor = 1.3
+					dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_SMASH)
-					dullfactor = 1.5
+					dullfactor = DULLFACTOR_COUNTERED_BY
 				if(BCLASS_PICK)
-					dullfactor = 1
+					dullfactor = DULLFACTOR_NEUTRAL
 		if(DULLING_SHAFT_GRAND)	//Resistant to all
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
 						dullfactor = 0
 					else
-						dullfactor = 0.5
+						dullfactor = DULLFACTOR_ANTAG
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
 						dullfactor = 0
 					else
-						dullfactor = 0.5
+						dullfactor = DULLFACTOR_ANTAG
 				if(BCLASS_STAB)
-					dullfactor = 0.5
+					dullfactor = DULLFACTOR_ANTAG
 				if(BCLASS_BLUNT)
-					dullfactor = 0.5
+					dullfactor = DULLFACTOR_ANTAG
 				if(BCLASS_SMASH)
-					dullfactor = 1
+					dullfactor = DULLFACTOR_NEUTRAL
 				if(BCLASS_PICK)
-					dullfactor = 0.5
+					dullfactor = DULLFACTOR_ANTAG
 	var/newdam = (I.force_dynamic * user.used_intent.damfactor) - I.force_dynamic
 	newforce = (newforce + newdam) * dullfactor
 	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)

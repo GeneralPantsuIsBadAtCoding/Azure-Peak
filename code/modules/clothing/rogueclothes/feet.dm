@@ -296,8 +296,8 @@
 	name = "light plated boots"
 	desc = "Boots with iron for added protection."
 	body_parts_covered = FEET
-	icon_state = "armorironboots"
-	item_state = "armorironboots"
+	icon_state = "soldierboots"
+	item_state = "soldierboots"
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	color = null
 	blocksound = PLATEHIT
