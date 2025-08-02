@@ -626,6 +626,7 @@
 #include "code\datums\elements\relay_attackers.dm"
 #include "code\datums\elements\retaliate.dm"
 #include "code\datums\elements\snail_crawl.dm"
+#include "code\datums\elements\tipped_item.dm"
 #include "code\datums\event_groups\_base.dm"
 #include "code\datums\gods\_curses.dm"
 #include "code\datums\gods\_faith.dm"

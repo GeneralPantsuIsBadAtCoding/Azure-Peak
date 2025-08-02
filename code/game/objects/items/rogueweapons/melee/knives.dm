@@ -291,6 +291,16 @@
 	max_integrity = 150
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/rogueweapon/huntingknife/idagger/steel/corroded
+	name = "corroded dagger"
+	desc = "While this is a dagger made of solid steel it has become discolored; the leftovers of the poisons used on this blade.."
+	icon_state = "pdagger"
+	sheathe_icon = "pdagger"
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/corroded/Initialize()
+	. = ..()
+	AddElement(/datum/element/tipped_item)	//Lets you tip your weapon in poison
+
 /obj/item/rogueweapon/huntingknife/idagger/steel/holysee
 	name = "eclipsum dagger"
 	desc = "A blade forged from the Holy metals of the twinned gods Noc and Astrata, Silver and Gold fused under an Eclipse and blessed, these daggers are very grudgingly given out by the Grenzelhoftian See to ordained Priests of the Ten."
@@ -299,17 +309,15 @@
 	icon_state = "gsdagger"
 	sheathe_icon = "gsdagger"
 
-
 /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
 	name ="plaguebringer sickle"
 	desc = "A wicked edge brings feculent delights."
 	icon_state = "pestrasickle"
 	max_integrity = 200
 
-/*
-	name = "facón"
-	desc = "An ornate traditional Etruscan knife inlaid with silver, passed down through generations of farmhands and warlords alike."
-	icon_state = "facon" */
+/obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle/Initialize()
+	. = ..()
+	AddElement(/datum/element/tipped_item)	//Lets you tip your weapon in poison
 
 /obj/item/rogueweapon/huntingknife/idagger/dtace
 	name = "'De Tace'"

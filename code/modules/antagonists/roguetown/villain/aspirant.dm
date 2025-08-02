@@ -1,3 +1,6 @@
+#define CHOICE_POISON_BLADE "poison & knife"
+#define CHOICE_SKILLS "skills"
+
 /datum/antagonist/aspirant
 	name = "Aspirant"
 	roundend_category = "aspirant"
@@ -10,6 +13,30 @@
 	increase_votepwr = FALSE
 	rogue_enabled = TRUE
 	antag_flags = FLAG_FAKE_ANTAG
+
+	var/static/list/equipment_selection = list(
+		"Cloak & Dagger (Poison & Knife)" = CHOICE_POISON_BLADE,
+		"Mace & Lockpicking Skill" = CHOICE_SKILLS
+	)
+
+/datum/antagonist/aspirant/proc/give_equipment_prompt()
+	var/chosen = input(owner.current, "How shall I rise to power?", "YOUR ADVANTAGE") as anything in equipment_selection
+	var/mob/aspirant_mob = owner.current
+	chosen = LAZYACCESS(equipment_selection, chosen)
+	switch(chosen)
+		if(CHOICE_POISON_BLADE)
+			owner.special_items["Poison"] = /obj/item/reagent_containers/glass/bottle/rogue/poison
+			owner.special_items["Killer's Knife"] = /obj/item/rogueweapon/huntingknife/idagger/steel/corroded
+			to_chat(owner, span_notice("I can retrieve my item from a statue, tree or clock by right clicking it."))
+			aspirant_mob.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)	//Expert knives cus you're not getting much else.
+		if(CHOICE_SKILLS)
+			owner.special_items["Mace"] = /obj/item/rogueweapon/mace/cudgel		//Go knock him out lol
+			owner.special_items["Chains"] = /obj/item/rope/chain
+			owner.special_items["Lockpicks"] = /obj/item/lockpickring/mundane
+			to_chat(owner, span_notice("I can retrieve my item from a statue, tree or clock by right clicking it."))
+			aspirant_mob.adjust_skillrank_up_to(/datum/skill/combat/maces, 5)	//Kinda huge with how maces are but - you're kinda not a frag-lord, you're to coup so. Works.
+			aspirant_mob.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 5)
+
 
 /datum/antagonist/aspirant/supporter
 	name = "Supporter"
@@ -24,6 +51,7 @@
 	. = ..()
 	owner.special_role = ROLE_ASPIRANT
 	SSmapping.retainer.aspirants |= owner
+	addtimer(CALLBACK(src, PROC_REF(give_equipment_prompt)), 5 SECONDS)
 
 /datum/antagonist/aspirant/greet()
 	to_chat(owner, span_danger("I have grown weary of being near the throne, but never on it. I have decided that it is time I ruled Enigma."))

@@ -1141,6 +1141,9 @@
 		combat_modifier -= 0.3
 	if(agg_grab)
 		combat_modifier -= 0.3
+	for(var/obj/item/grabbing/G in grabbedby)
+		if(G.chokehold == TRUE)
+			combat_modifier -= 0.15
 
 	resist_chance += max((wrestling_diff * 10), -20)
 	resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
