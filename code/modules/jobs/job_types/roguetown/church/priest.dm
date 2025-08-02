@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	var/datum/patron/god = god_type[string_choice]
 	mind.RemoveAllSpells()
 	var/datum/devotion/patrondev = new /datum/devotion(src, god)
-	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
+	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, devotion_limit = CLERIC_REQ_4)
 	if (string_choice == "Astrata")
 		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
 	else

@@ -270,7 +270,9 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	if(isnull(whp))
 		return 0
 	var/amount_healed = min(whp, round(heal_amount, DAMAGE_PRECISION))
+	var/pain_healed = min(woundpain, round(heal_amount / 2, DAMAGE_PRECISION))
 	whp -= amount_healed
+	woundpain -= pain_healed
 	if(whp <= 0)
 		if(!should_persist())
 			if(bodypart_owner)

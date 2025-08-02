@@ -7,14 +7,14 @@
 #define CLERIC_T4 4
 
 #define CLERIC_REQ_0 0
-#define CLERIC_REQ_1 100
-#define CLERIC_REQ_2 250
-#define CLERIC_REQ_3 500
-#define CLERIC_REQ_4 750
+#define CLERIC_REQ_1 250
+#define CLERIC_REQ_2 400
+#define CLERIC_REQ_3 750
+#define CLERIC_REQ_4 1000
 
 #define CLERIC_REGEN_DEVOTEE 0.3
 #define CLERIC_REGEN_MINOR 0.5
-#define CLERIC_REGEN_MAJOR 1
+#define CLERIC_REGEN_MAJOR 0.8
 
 // Cleric Holder Datums
 
@@ -26,7 +26,7 @@
 	/// Current devotion we are holding
 	var/devotion = 0
 	/// Maximum devotion we can hold at once
-	var/max_devotion = CLERIC_REQ_3 * 2
+	var/max_devotion = CLERIC_REQ_1
 	/// Current progression (experience)
 	var/progression = 0
 	/// Maximum progression (experience) we can achieve
@@ -138,6 +138,7 @@
 		passive_progression_gain = passive_gain
 		START_PROCESSING(SSobj, src)
 	if(start_maxed)		//Mainly for Acolytes & Priests
+		max_devotion = CLERIC_REQ_4
 		devotion = max_devotion
 		update_devotion(max_devotion, CLERIC_REQ_4, silent = TRUE)
 	else
