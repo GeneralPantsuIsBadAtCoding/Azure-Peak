@@ -7661,8 +7661,11 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "cAR" = (
+/obj/structure/bars/passage/steel{
+	redstone_id = "dragonentry"
+	},
 /obj/effect/decal/cleanable/blood,
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "cBf" = (
 /obj/effect/decal/cobbleedge{
@@ -68689,13 +68692,6 @@
 "wlS" = (
 /obj/structure/portal,
 /obj/structure/bars,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/dragonden)
-"wlU" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "wlX" = (
@@ -311947,9 +311943,9 @@ qTf
 qTf
 qTf
 qTf
+qTf
 enr
-wlU
-wlU
+enr
 enr
 enr
 enr
@@ -312399,8 +312395,8 @@ err
 qTf
 qTf
 qTf
-wlU
-qTf
+enr
+enr
 qTf
 qTf
 enr
@@ -312851,7 +312847,7 @@ qTf
 qTf
 qTf
 qTf
-wlU
+enr
 qTf
 fqn
 qTf
@@ -313301,9 +313297,9 @@ enr
 cxm
 cxm
 enr
-wlU
-wlU
-enr
+qTf
+qTf
+mIf
 qTf
 qTf
 qTf
@@ -313755,7 +313751,7 @@ qTf
 enr
 qTf
 qTf
-enr
+cAR
 qTf
 qTf
 rrZ
@@ -314207,7 +314203,7 @@ qTf
 enr
 fqn
 qTf
-cAR
+mIf
 qTf
 qTf
 qTf
@@ -314657,9 +314653,9 @@ enr
 cxm
 cxm
 enr
-wlU
-wlU
-enr
+qTf
+qTf
+mIf
 qTf
 fqn
 qTf
@@ -315111,7 +315107,7 @@ qTf
 qTf
 qTf
 qTf
-wlU
+enr
 qTf
 qTf
 qTf
@@ -315563,8 +315559,8 @@ qTf
 qTf
 qTf
 qTf
-wlU
-qTf
+enr
+enr
 qTf
 qTf
 enr
@@ -316015,9 +316011,9 @@ fqn
 vyS
 qTf
 qTf
+qTf
 enr
-wlU
-wlU
+enr
 enr
 enr
 enr
