@@ -79,6 +79,9 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 		do_teleport(trash, returnzone)
 	GLOB.arenafolks.len = list()
 
+/area/rogue/indoors/eventarea
+	name = "eventarea"
+
 ///// OUTDOORS AREAS //////
 
 /area/rogue/outdoors
