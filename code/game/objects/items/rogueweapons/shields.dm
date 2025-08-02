@@ -296,7 +296,7 @@
 			weapon_parry = TRUE
 	if(istype(mainhand, /obj/item/rogueweapon/shield/buckler))
 		associated_skill = /datum/skill/combat/shields
-	if(weapon_parry && mainhand.associated_skill)
+	if(weapon_parry && mainhand.associated_skill && ispath(mainhand.associated_skill, /datum/skill/combat))
 		associated_skill = mainhand.associated_skill
 	else
 		associated_skill = /datum/skill/combat/shields
