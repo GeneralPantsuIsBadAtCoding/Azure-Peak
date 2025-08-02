@@ -64,7 +64,8 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch,
-		/obj/item/clothing/neck/roguetown/chaincoif
+		/obj/item/clothing/neck/roguetown/chaincoif,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 	)
 	H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
@@ -102,7 +103,8 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch,
-		/obj/item/clothing/neck/roguetown/chaincoif
+		/obj/item/clothing/neck/roguetown/chaincoif,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot
 	)
 	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
@@ -154,7 +156,8 @@
 		/obj/item/rogueweapon/huntingknife/idagger,
 		/obj/item/storage/belt/rogue/pouch,
 		/obj/item/clothing/neck/roguetown/chaincoif,
-		/obj/item/rogueweapon/scabbard/sheath
+		/obj/item/rogueweapon/scabbard/sheath,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot
 		)
 	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
