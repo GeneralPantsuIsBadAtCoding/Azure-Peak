@@ -934,7 +934,7 @@
 	to the siege that smashed the Mad Duke's keep to rubble, and burnt the Duke himself to cinders."
 	icon_state = "lordrap"
 	sheathe_icon = "lordrapier"
-	sellprice = 300
+	sellprice = 100
 	max_integrity = 300
 	max_blade_int = 300
 	wdefense = 7
