@@ -53640,13 +53640,6 @@
 	},
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
-"rxC" = (
-/obj/machinery/light/rogue/wallfire{
-	pixel_x = 32
-	},
-/obj/machinery/light/rogue/smelter/great,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/cave/orcdungeon)
 "rxF" = (
 /obj/structure/table/church/end,
 /turf/open/floor/rogue/churchbrick,
@@ -170107,7 +170100,7 @@ pYt
 pYt
 jDM
 nYS
-rxC
+teM
 teM
 nYS
 jDM
