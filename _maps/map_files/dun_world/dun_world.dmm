@@ -28460,6 +28460,9 @@
 /obj/structure/roguemachine/steward,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
+"jks" = (
+/turf/open/floor/rogue/churchmarble,
+/area/rogue/under/cave/dragonden)
 "jkw" = (
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
@@ -31688,6 +31691,9 @@
 /obj/structure/fluff/railing/border/east,
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/under/town/basement/keep)
+"kmT" = (
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/dragonden)
 "knf" = (
 /obj/structure/globe,
 /turf/open/floor/carpet/stellar,
@@ -41438,6 +41444,10 @@
 	color = "#3b444b"
 	},
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"nuV" = (
+/obj/structure/fluff/psycross/crafted,
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/dragonden)
 "nvd" = (
 /obj/structure/table/wood/poor,
 /obj/item/natural/cloth,
@@ -67461,7 +67471,7 @@
 /area/rogue/indoors)
 "vSK" = (
 /obj/machinery/light/rogue/firebowl/church,
-/turf/open/floor/rogue/naturalstone,
+/turf/open/floor/rogue/church,
 /area/rogue/under/cave/dragonden)
 "vSL" = (
 /obj/structure/flora/roguegrass,
@@ -70000,7 +70010,7 @@
 /area/rogue/outdoors/mountains/decap)
 "wIT" = (
 /obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/naturalstone,
+/turf/open/floor/rogue/church,
 /area/rogue/under/cave/dragonden)
 "wIU" = (
 /obj/structure/hotspring/border/two,
@@ -312844,7 +312854,7 @@ enr
 enr
 dMl
 qTf
-qTf
+enr
 qTf
 qTf
 enr
@@ -313304,7 +313314,7 @@ qTf
 qTf
 qTf
 qTf
-exo
+enr
 exo
 pCZ
 pCZ
@@ -314660,7 +314670,7 @@ qTf
 fqn
 qTf
 qTf
-exo
+enr
 exo
 pCZ
 pCZ
@@ -315104,7 +315114,7 @@ enr
 enr
 dMl
 qTf
-qTf
+enr
 qTf
 qTf
 enr
@@ -427657,10 +427667,10 @@ qlb
 qlb
 enr
 enr
-qTf
-qTf
-qTf
-qTf
+kmT
+nuV
+kmT
+kmT
 enr
 enr
 uUv
@@ -428109,11 +428119,11 @@ qlb
 qlb
 enr
 vSK
-qTf
-lHb
-lHb
-qTf
-qTf
+kmT
+jks
+jks
+jks
+jks
 enr
 dEE
 dEE
@@ -428561,11 +428571,11 @@ qlb
 qlb
 enr
 wIT
+jks
+jks
 lHb
-lHb
-lHb
-lHb
-qTf
+jks
+jks
 mIf
 dEE
 dEE
@@ -429012,12 +429022,12 @@ qlb
 qlb
 qlb
 enr
-qTf
+kmT
+jks
 lHb
 lHb
 lHb
-lHb
-qTf
+jks
 mIf
 vVj
 vVj
@@ -429464,12 +429474,12 @@ qlb
 qlb
 qlb
 enr
-qTf
+kmT
+jks
 lHb
 lHb
 lHb
-lHb
-qTf
+jks
 mIf
 vVj
 vVj
@@ -429917,11 +429927,11 @@ qlb
 qlb
 enr
 wIT
+jks
+jks
 lHb
-lHb
-lHb
-lHb
-qTf
+jks
+jks
 mIf
 dEE
 dEE
@@ -430369,11 +430379,11 @@ qlb
 qlb
 enr
 vSK
-qTf
-lHb
-lHb
-qTf
-qTf
+kmT
+jks
+jks
+jks
+jks
 enr
 dEE
 dEE
@@ -430821,10 +430831,10 @@ qlb
 qlb
 enr
 enr
-qTf
-qTf
-qTf
-qTf
+kmT
+nuV
+kmT
+kmT
 enr
 enr
 uUv
