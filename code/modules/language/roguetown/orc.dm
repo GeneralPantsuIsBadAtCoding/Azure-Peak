@@ -10,6 +10,7 @@
 	default_priority = 80
 	icon_state = "asse"
 	spans = list(SPAN_ORC)
+	associated_skill = /datum/skill/language/orcish
 	syllables = list(
 "AA",
 "AG",

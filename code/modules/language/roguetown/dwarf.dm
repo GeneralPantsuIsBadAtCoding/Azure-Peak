@@ -10,6 +10,7 @@
 	default_priority = 90
 	spans = list(SPAN_DWARF)
 	icon_state = "asse"
+	associated_skill = /datum/skill/language/dwarvish
 	syllables = list(
 "AA",
 "AL",

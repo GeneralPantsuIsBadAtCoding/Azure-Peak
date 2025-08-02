@@ -753,6 +753,7 @@
 #include "code\datums\skills\combat.dm"
 #include "code\datums\skills\craft.dm"
 #include "code\datums\skills\labor.dm"
+#include "code\datums\skills\language.dm"
 #include "code\datums\skills\magic.dm"
 #include "code\datums\skills\misc.dm"
 #include "code\datums\sleep_adv\sleep_adv.dm"

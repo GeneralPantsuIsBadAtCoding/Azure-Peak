@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "lizard"
 	spans = list(SPAN_DRACONIC)
+	associated_skill = /datum/skill/language/draconic
 	syllables = list(
 		"za", "az", "ze", "ez", "zi", "iz", "zo", "oz", "zu", "uz", "zs", "sz",
 		"ha", "ah", "he", "eh", "hi", "ih", "ho", "oh", "hu", "uh", "hs", "sh",

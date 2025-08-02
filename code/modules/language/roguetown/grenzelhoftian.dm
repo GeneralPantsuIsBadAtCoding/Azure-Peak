@@ -9,6 +9,7 @@
 	space_chance = 66
 	default_priority = 90
 	icon_state = "asse"
+	associated_skill = /datum/skill/language/grenzelhoftian
 	spans = list(SPAN_GRENZELHOFTIAN)
 	syllables = list(
 		"auf", "aum", "ach", "an", "auch", "ans", "bech", "bus", "baum", "bauf", "bom",
