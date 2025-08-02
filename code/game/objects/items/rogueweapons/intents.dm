@@ -456,8 +456,8 @@
 	noaa = FALSE
 	animname = "bite"
 	hitsound = list('sound/combat/hits/punch/punch (1).ogg', 'sound/combat/hits/punch/punch (2).ogg', 'sound/combat/hits/punch/punch (3).ogg')
-	misscost = 5
-	releasedrain = 2	//Lowered for intent stam usage.
+	misscost = 4
+	releasedrain = 1
 	swingdelay = 0
 	clickcd = 10
 	rmb_ranged = TRUE
