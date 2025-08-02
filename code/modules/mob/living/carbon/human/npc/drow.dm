@@ -117,24 +117,21 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 	. = ..()
 
 /datum/outfit/job/roguetown/human/species/elf/dark/drowraider/pre_equip(mob/living/carbon/human/H)
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/iron
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/black
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	if(prob(50))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers
-	mask = /obj/item/clothing/mask/rogue/facemask/steel
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
 	if(prob(50))
 		mask = /obj/item/clothing/mask/rogue/ragmask/black
-	head = /obj/item/clothing/head/roguetown/roguehood/black
+	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored/iron
 	if(prob(50))
-		head = /obj/item/clothing/head/roguetown/helmet/kettle
-	neck = /obj/item/clothing/neck/roguetown/bevor
+		head = /obj/item/clothing/head/roguetown/helmet/kettle/iron
+	neck = /obj/item/clothing/neck/roguetown/bevor/iron
 	if(prob(50))
 		neck = /obj/item/clothing/neck/roguetown/gorget
-	gloves = /obj/item/clothing/gloves/roguetown/chain/blk
-	shoes = /obj/item/clothing/shoes/roguetown/boots
+	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	H.STASTR = 14 // 8 Points
 	H.STASPD = 11 // +1 - Drow
 	H.STACON = 14 // 4 points

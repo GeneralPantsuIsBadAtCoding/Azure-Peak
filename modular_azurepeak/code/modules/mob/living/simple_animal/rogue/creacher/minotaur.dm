@@ -76,7 +76,7 @@
 	icon_dead = "MinotaurFem_dead"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
-	loot = list(/obj/item/rogueweapon/greataxe/steel/doublehead/minotaur = 1) //Acquiring an axe from their cold, dead hands.
+	loot = list(/obj/item/rogueweapon/greataxe/minotaur = 1) //Acquiring an axe from their cold, dead hands.
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"

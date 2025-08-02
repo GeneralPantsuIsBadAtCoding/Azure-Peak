@@ -398,6 +398,8 @@
 	anchored = TRUE
 
 /obj/effect/oneway/CanPass(atom/movable/mover, turf/target)
+	if(!(ismob(mover))) //Fixes cart exploit that broke one way boss arena doors. Only mobs can pass through now.
+		return ..() && 0
 	var/turf/T = get_turf(src)
 	var/turf/MT = get_turf(mover)
 	return ..() && (T == MT || get_dir(MT,T) == dir)
