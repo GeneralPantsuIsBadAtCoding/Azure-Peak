@@ -46,3 +46,8 @@
 	name = "left leg stump"
 	check_name = span_danger("<B>LEFT LEG STUMP</B>")
 	mob_overlay = "dis_ll"
+
+/datum/wound/dismemberment/taur
+	name = "taur stump"
+	check_name = span_danger("<B>TAUR STUMP</B>")
+	mob_overlay = "dis_taur"
