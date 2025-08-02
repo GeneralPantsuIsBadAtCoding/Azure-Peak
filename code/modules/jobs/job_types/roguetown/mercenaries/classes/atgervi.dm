@@ -57,8 +57,8 @@
 			backl = /obj/item/storage/backpack/rogue/satchel/black
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel/atgervi
 			belt = /obj/item/storage/belt/rogue/leather
-			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-			beltl = /obj/item/flashlight/flare/torch
+			neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle //They didn't have neck protection before.
+			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
 			C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = FALSE, devotion_limit = CLERIC_REQ_2)	//Capped to T1 miracles.
@@ -153,6 +153,7 @@
 	icon_state = "atgervi_raider"
 	item_state = "atgervi_raider"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/atgervi.dmi'
 	block2add = null
 	worn_x_dimension = 32
