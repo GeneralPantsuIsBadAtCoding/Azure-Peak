@@ -1283,7 +1283,7 @@
 	if(mouth?.muteinmouth)
 		return FALSE
 	for(var/obj/item/grabbing/grab in grabbedby)
-		if(grab.sublimb_grabbed == BODY_ZONE_PRECISE_MOUTH)
+		if((grab.sublimb_grabbed == BODY_ZONE_PRECISE_MOUTH) && (get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH)))
 			return FALSE
 	if(istype(loc, /turf/open/water) && !(mobility_flags & MOBILITY_STAND))
 		return FALSE

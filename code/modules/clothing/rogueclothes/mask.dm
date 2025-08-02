@@ -248,7 +248,6 @@
 	name = "halfmask"
 	icon_state = "shepherd"
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
-	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
@@ -295,7 +294,6 @@
 	name = "rag mask"
 	icon_state = "ragmask"
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
-	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
@@ -322,7 +320,6 @@
 	name = "exotic silk mask"
 	icon_state = "exoticsilkmask"
 	flags_inv = HIDEFACE|HIDEFACIALHAIR
-	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	sewrepair = TRUE
 	adjustable = CAN_CADJUST
