@@ -44,6 +44,5 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
 	else if(should_wear_femme_clothes(H))
 		H.change_stat("strength", -1)
-		pants = /obj/item/clothing/under/roguetown/tights/stockings/random
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/random
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random

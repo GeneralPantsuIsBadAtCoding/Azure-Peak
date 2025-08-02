@@ -36,7 +36,6 @@
 				pants = /obj/item/clothing/under/roguetown/tights/black
 			if(should_wear_femme_clothes(H))
 				shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/purple
-				pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/purple
 				cloak = /obj/item/clothing/cloak/raincloak/purple
 			H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)

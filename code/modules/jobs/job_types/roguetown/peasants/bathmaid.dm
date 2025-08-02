@@ -106,7 +106,6 @@
 		mask = /obj/item/clothing/mask/rogue/exoticsilkmask
 		neck = /obj/item/clothing/neck/roguetown/collar
 		shirt = /obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
-		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk
 		shoes = /obj/item/clothing/shoes/roguetown/anklets
 		belt = /obj/item/storage/belt/rogue/leather/exoticsilkbelt
 	else

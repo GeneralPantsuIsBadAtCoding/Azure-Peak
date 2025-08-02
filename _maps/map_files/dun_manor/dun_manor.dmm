@@ -2308,12 +2308,12 @@
 /area/rogue/under/town/basement)
 "bAL" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
-/obj/item/clothing/under/roguetown/tights/stockings/random,
+/obj/item/legwears/random,
+/obj/item/legwears/random,
+/obj/item/legwears/random,
+/obj/item/legwears/random,
+/obj/item/legwears/random,
+/obj/item/legwears/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy,
@@ -5575,7 +5575,7 @@
 /obj/structure/closet/crate/drawer{
 	pixel_y = 8
 	},
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
+/obj/item/legwears/fishnet/black,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "dJj" = (
@@ -7570,12 +7570,12 @@
 /area/rogue/outdoors/town/roofs)
 "fha" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
@@ -14233,7 +14233,7 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
 /obj/item/clothing/cloak/apron/waist,
-/obj/item/clothing/under/roguetown/tights/stockings,
+/obj/item/legwears,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
 "kcM" = (
@@ -16933,12 +16933,12 @@
 /area/rogue/indoors/town/church/chapel)
 "lTh" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/random,
+/obj/item/legwears/fishnet/random,
+/obj/item/legwears/fishnet/random,
+/obj/item/legwears/fishnet/random,
+/obj/item/legwears/fishnet/random,
+/obj/item/legwears/fishnet/random,
+/obj/item/legwears/fishnet/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/random,
@@ -21368,7 +21368,7 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/shoes/roguetown/shortboots,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/black,
+/obj/item/legwears/silk/black,
 /obj/item/clothing/under/roguetown/tights/black,
 /obj/machinery/light/rogue/wallfire/candle/blue/r,
 /turf/open/floor/rogue/herringbone,
@@ -32463,11 +32463,11 @@
 /area/rogue/under/town/basement/keep)
 "wPY" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
+/obj/item/legwears/fishnet/black,
+/obj/item/legwears/fishnet/black,
+/obj/item/legwears/fishnet/black,
+/obj/item/legwears/fishnet/black,
+/obj/item/legwears/fishnet/black,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black,
