@@ -85,6 +85,12 @@
 	reqs = list(/obj/item/natural/clay = 3)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/ceramics/clay/xylixmask
+	name = "mask (xylixian)"
+	result = list(/obj/item/natural/clay/xylixmask)
+	reqs = list(/obj/item/natural/clay = 3)
+	craftdiff = 3
+
 /* 4 diff */
 
 	// '''Clay''' for making glass.

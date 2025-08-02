@@ -105,6 +105,7 @@
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe
 			neck = /obj/item/clothing/neck/roguetown/luckcharm // For good luck, as Xylix would intend
+			mask = /obj/item/clothing/mask/rogue/facemask/xylixmask
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 		else
 			head = /obj/item/clothing/head/roguetown/roguehood/astrata
