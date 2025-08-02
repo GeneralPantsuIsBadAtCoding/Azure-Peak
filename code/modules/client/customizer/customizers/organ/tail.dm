@@ -15,12 +15,13 @@
 	name = "Vulpkian Tail"
 	organ_type = /obj/item/organ/tail/vulpkanin
 	sprite_accessories = list(
-	/datum/sprite_accessory/tail/fox,
-	/datum/sprite_accessory/tail/fox2,
-	/datum/sprite_accessory/tail/eevee,
-	/datum/sprite_accessory/tail/fennec,
-	/datum/sprite_accessory/tail/tamamo_kitsune
-	)
+		/datum/sprite_accessory/tail/fox,
+		/datum/sprite_accessory/tail/fox2,
+		/datum/sprite_accessory/tail/eevee,
+		/datum/sprite_accessory/tail/fennec,
+		/datum/sprite_accessory/tail/jackal,
+		/datum/sprite_accessory/tail/tamamo_kitsune
+		)
 
 /datum/customizer/organ/tail/lupian
 	customizer_choices = list(/datum/customizer_choice/organ/tail/lupian)

@@ -7,7 +7,7 @@
 //	where you would want the updater procs below to run
 
 //	This also works with decimals.
-#define SAVEFILE_VERSION_MAX	32
+#define SAVEFILE_VERSION_MAX	33
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -143,7 +143,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 				if(species_name == "Sissean")
 					testing("Updating to Zardman.")
 					species_name = "Zardman"
-
+		_load_species(S, species_name)
+	if(current_version < 33)
+		var/species_name
+		S["species"] >> species_name
+		testing("Save version < 33, updating [species_name].")
+		if(species_name)
+			var/newtype = GLOB.species_list[species_name]
+			if(!newtype)
+				if(species_name == "Vulpkian")
+					testing("Your character is now a Venardine.")
+					species_name = "Venardine"
 		_load_species(S, species_name)		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")

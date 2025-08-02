@@ -22,7 +22,7 @@
 	name = "zardman snout"
 
 /obj/item/organ/snout/vulpkanin
-	name = "vulpkian snout"
+	name = "venardine snout"
 
 /obj/item/organ/snout/tajaran
 	name = "tajaran snout"

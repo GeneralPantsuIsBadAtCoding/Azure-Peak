@@ -813,7 +813,7 @@
 			if(3)
 				to_chat(owner, span_cultsmall("A sailor's leg is caught in naval rope. Their last thoughts are of home."))
 			if(4)
-				to_chat(owner, span_cultsmall("She sobbed over the vulpkian's corpse. The Brigand's mace stemmed her tears."))
+				to_chat(owner, span_cultsmall("She sobbed over the Venardine's corpse. The Brigand's mace stemmed her tears."))
 			if(5)
 				to_chat(owner, span_cultsmall("A farm son chokes up his last. At his bedside, a sister and mother weep."))
 			if(6)

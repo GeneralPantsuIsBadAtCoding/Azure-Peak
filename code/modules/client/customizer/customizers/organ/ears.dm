@@ -17,7 +17,13 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/fox,
 		/datum/sprite_accessory/ears/vulp,
-		/datum/sprite_accessory/ears/big/sandfox_large
+		/datum/sprite_accessory/ears/big/sandfox_large,
+		/datum/sprite_accessory/ears/bigwolf,
+		/datum/sprite_accessory/ears/bigwolf_inner,
+		/datum/sprite_accessory/ears/fox,
+		/datum/sprite_accessory/ears/husky,
+		/datum/sprite_accessory/ears/otie,
+		/datum/sprite_accessory/ears/wolf
 		)
 
 /datum/customizer/organ/ears/lupian
