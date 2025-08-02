@@ -18975,11 +18975,11 @@
 /area/rogue/under/town/sewer)
 "nop" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
 /obj/effect/decal/cobbleedge{
 	dir = 4
 	},
@@ -26039,23 +26039,23 @@
 /area/rogue/indoors/town/bath)
 "skE" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -34094,7 +34094,7 @@
 	icon_state = "tablewood1"
 	},
 /obj/structure/rogue/trophy/deer,
-/obj/item/rogueweapon/sword/iron/short{
+/obj/item/rogueweapon/sword/short/iron{
 	pixel_x = 6;
 	pixel_y = 5
 	},

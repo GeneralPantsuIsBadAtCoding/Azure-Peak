@@ -56,7 +56,7 @@
 	name = "Decrepit Alloy Gladius"
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/aalloy
-	created_item = /obj/item/rogueweapon/sword/iron/short/gladius/agladius
+	created_item = /obj/item/rogueweapon/sword/short/gladius/agladius
 	craftdiff = 0
 
 
@@ -64,14 +64,14 @@
 	name = "Purified Alloy Gladius"
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/purifiedaalloy
-	created_item = /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
+	created_item = /obj/item/rogueweapon/sword/short/gladius/pagladius
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/aalloy/shortsword
 	name = "Decrepit Alloy Shortsword"
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/aalloy
-	created_item = /obj/item/rogueweapon/sword/iron/short/ashort
+	created_item = /obj/item/rogueweapon/sword/short/ashort
 	craftdiff = 0
 
 
@@ -265,7 +265,7 @@
 	name = "Copper Messer"
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/copper
-	created_item = /obj/item/rogueweapon/sword/iron/messer/copper
+	created_item = /obj/item/rogueweapon/sword/short/messer/copper
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/copper/cspears
@@ -295,13 +295,13 @@
 /datum/anvil_recipe/weapons/iron/swordshort
 	name = "Short sword"
 	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rogueweapon/sword/iron/short
+	created_item = /obj/item/rogueweapon/sword/short/iron
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/iron/messer
 	name = "Hunting sword (Messer)"
 	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rogueweapon/sword/iron/messer
+	created_item = /obj/item/rogueweapon/sword/short/messer/iron
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/iron/dagger
@@ -751,7 +751,7 @@
 /datum/anvil_recipe/weapons/gladius
 	name = "Gladius"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/sword/iron/short/gladius
+	created_item = /obj/item/rogueweapon/sword/short/gladius
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/bronze/spear
