@@ -610,6 +610,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
 						sleepy_mod = 1.5 //Worse than a bedroll, better than nothing.
+				var/is_water = istype(loc, /turf/open/water) || ispath(loc.type, /turf/open/water)
+				if(HAS_TRAIT(src, TRAIT_WATERSLEEP) && is_water)
+					sleepy_mod = 2 //As good as a bedroll, given it's a unique racial
 		if(sleepy_mod > 0)
 			if(eyesclosed)
 				var/armor_blocked = FALSE
@@ -624,7 +627,12 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						fallingas = TRUE
 				if(!armor_blocked)
 					if(!fallingas)
-						to_chat(src, span_warning("I'll fall asleep soon..."))
+						var/is_water = istype(loc, /turf/open/water) || ispath(loc.type, /turf/open/water)
+						if(HAS_TRAIT(src, TRAIT_WATERSLEEP) && is_water)
+							to_chat(src, span_warning("The water's embrace helps me drift off to sleep...")) //cute fluff
+							fallingas++
+						else
+							to_chat(src, span_warning("I'll fall asleep soon..."))
 					fallingas++
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
 						fallingas++

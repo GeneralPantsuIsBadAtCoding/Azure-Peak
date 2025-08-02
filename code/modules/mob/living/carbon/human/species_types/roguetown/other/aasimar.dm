@@ -11,6 +11,7 @@
 	Most commonly, Aasimar are similar to Humens, albeit taller, and commonly possess an uncanny beauty. \
 	When compared to the average Humen, they have strangely colored skin and are more physically frail. \
 	Because of their upbringing, they make for natural conduits for godly powers. \
+	Their soul-piercing eyes and connection to the Gods are the subject of many fairytales, despite being very much real. \
 	Azure Peak's populace holds them with a mixture of uneasy mixture of fear and respect. \
 	Due to their celestial nature, it is widely believed that an Aasimar's death is a bad omen...<br>\
 	(+1 Fortune)"
@@ -85,6 +86,7 @@
 /datum/species/aasimar/after_creation(mob/living/carbon/C)
 	..()
 	to_chat(C, "<span class='info'>I can speak Celestial with ,c before my speech.</span>")
+	C.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/seektruth)
 
 /datum/species/aasimar/on_species_loss(mob/living/carbon/C)
 	. = ..()
@@ -137,3 +139,38 @@
 
 /datum/species/aasimar/random_surname()
 	return
+
+//refluffed Baotha t0, has some downsides
+/obj/effect/proc_holder/spell/invoked/seektruth
+	name = "Seek Truth"
+	overlay_state = "darkvision"
+	releasedrain = 100 //gotta rest your sharingan
+	chargedrain = 0
+	chargetime = 0
+	range = 2 //gotta really stare at 'em
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	invocation_type = "none"
+	antimagic_allowed = TRUE
+	recharge_time = 5 MINUTES //much higher CD than baotha t0
+	miracle = FALSE
+	var/list/fake_vices = list()
+
+/obj/effect/proc_holder/spell/invoked/seektruth/cast(list/targets, mob/living/user)
+    if(ishuman(targets[1]))
+        var/vice_found
+        var/mob/living/carbon/human/H = targets[1]
+        
+        if(HAS_TRAIT(H, TRAIT_DECEIVING_MEEKNESS) && prob(50)) //50% chance against trait holders instead of holy skillcheck
+            if(!(H in fake_vices))
+                fake_vices[H] = pick(GLOB.character_flaws)
+                vice_found = fake_vices[H]
+            else
+                vice_found = fake_vices[H]
+        else
+            vice_found = H.charflaw.name
+        
+        to_chat(user, span_info("You peer past the mortal shell and find... [span_warning("a [vice_found]!")]"))
+        return TRUE
+    revert_cast()
+    return FALSE

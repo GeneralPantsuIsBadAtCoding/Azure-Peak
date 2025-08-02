@@ -17,6 +17,10 @@
 	if(HAS_TRAIT(src, TRAIT_UNSEEMLY))
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
+	if(HAS_TRAIT(user, TRAIT_TRIBALISM))
+		if(dna.species.name == user.dna.species.name && user != src)
+			user.add_stress(/datum/stressevent/tribalism)
+			user.apply_status_effect(/datum/status_effect/buff/tribalism)
 
 /mob/living/carbon/human/examine(mob/user)
 	var/observer_privilege = isobserver(user)
@@ -221,6 +225,11 @@
 		var/atom/item = get_most_expensive()
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
+	
+	if(user != src && ishuman(user) && HAS_TRAIT(user, TRAIT_TRIBALISM))
+		var/mob/living/carbon/human/H = user
+		if(src.dna.species.name == H.dna.species.name)
+			. += span_nicegreen("A fellow goblin!")
 
 	var/is_stupid = FALSE
 	var/is_smart = FALSE

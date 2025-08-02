@@ -49,6 +49,12 @@
 			if(m_intent == MOVE_INTENT_RUN)
 				toggle_rogmove_intent(MOVE_INTENT_WALK)
 			return
+	if(HAS_TRAIT(src, TRAIT_CATLANDING))
+		if(levels >= 2 && prob(33))
+			Immobilize(15)
+			if(m_intent == MOVE_INTENT_RUN)
+				toggle_rogmove_intent(MOVE_INTENT_WALK)
+			return
 	var/points
 	for(var/i in 2 to levels)
 		i++
@@ -196,6 +202,12 @@
 
 			// Randomize con roll from -1 to +1 to make it less consistent
 			self_points += rand(-1, 1)
+
+			// Half-Orcs get a bonus (equivalent to +2 or +4 stat points depending on the roll)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(istype(H.dna?.species, /datum/species/halforc))
+					self_points += rand(1, 2)
 
 			//Safety check for changing direction at the last step
 			if(src.dir != src.sprint_dir)
@@ -1482,9 +1494,15 @@
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
-	if(on_fire && fire_stacks <= 0)
-		ExtinguishMob()
+    var/final_amount = add_fire_stacks
+    if(istype(src, /mob/living/carbon/human))
+        var/mob/living/carbon/human/H = src
+        if(istype(H.dna?.species, /datum/species/tieberian)) //Tieflings get halved fire_stacks
+            final_amount *= 0.5
+
+    fire_stacks = CLAMP(fire_stacks + final_amount, -20, 20)
+    if(on_fire && fire_stacks <= 0)
+        ExtinguishMob()
 
 /mob/living/proc/adjust_divine_fire_stacks(add_fire_stacks) //Adjusting the amount of divine_fire_stacks we have on person
 	divine_fire_stacks = CLAMP(divine_fire_stacks + add_fire_stacks, 0, 100)

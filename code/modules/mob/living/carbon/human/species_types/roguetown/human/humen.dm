@@ -11,7 +11,7 @@
 	the opposite is true. Humens come from a vast swathe of cultures and ethnicities, most of which \
 	have historically been at odds with one another. Being the eldest creations of the Weeping God, humens \
 	tend to find fortune easier than the other races, and are so diverse that no other racial traits \
-	are dominant in their species.<br>\
+	are dominant in their species. This does, however, make them very fast learners.<br>\
 	(+1 Endurance, +1 Intelligence)"
 
 	skin_tone_wording = "Ancestry"

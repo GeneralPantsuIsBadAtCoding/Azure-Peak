@@ -32,7 +32,7 @@
 			var/mob/living/carbon/human/H = AM
 			if(H.dir == get_dir(H,src) && H.m_intent == MOVE_INTENT_RUN && (H.mobility_flags & MOBILITY_STAND))
 				var/is_bigguy = FALSE
-				if(HAS_TRAIT(H,TRAIT_BIGGUY))
+				if(HAS_TRAIT(H,TRAIT_BIGGUY) || istype(H.dna?.species, /datum/species/halforc))
 					if(istype(src,/obj/structure/mineral_door))
 						var/obj/structure/mineral_door/S = src
 						if(S.smashable)

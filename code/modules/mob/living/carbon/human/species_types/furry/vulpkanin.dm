@@ -4,8 +4,12 @@
 /datum/species/vulpkanin
 	name = "Vulpkian"
 	id = "vulpkanin"
-	desc = "Foxy creatures known for their cleverness and mischief. In ancient history they were Dendor's original champions, but as His madness grew the connect became frey and forgotten, leaving them to their own devices. Or, at least, that's what they say.<br>\
+	desc = "<b>Vulpkian</b><br>\
+	Foxy creatures known for their cleverness and mischief. In ancient history they were Dendor's original champions, \
+	but as His madness grew the connecttion became fray and forgotten, leaving them to their own devices. Or, at least, that's what \
+	they say, given the species' ease around dangerous flora such as kneestingers and maneaters.<br>\
 	(+1 Intelligence, +1 Perception)"
+	
 	default_color = "444"
 	species_traits = list(
 		MUTCOLORS,
@@ -13,6 +17,7 @@
 		LIPS,
 		HAIR,
 	)
+	inherent_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_MANEATER_IMMUNITY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	attack_verb = "slash"
 	liked_food = GROSS | MEAT | FRIED

@@ -5,7 +5,7 @@
 	name = "Zardman"
 	id = "lizardfolk"
 	desc = "<b>Zardman</b><br>\
-	Zardmen are semi-aquatic reptilian humanoids. \
+	Zardmen are semi-aquatic reptilian humanoids, able to live and sleep equally well on water and land. \
 	Their flesh is covered in scales varying in color from dark green to shades of brown and gray. \
 	Taller than humans and powerfully built, zardmen are often between 6 and 7 feet tall. \
 	Zardmen have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
@@ -13,6 +13,7 @@
 	(+1 Constitution, +1 Endurance)"
 	skin_tone_wording = "Skin Colors"
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)
+	inherent_traits = list(TRAIT_WATERBREATHING,TRAIT_STRONGBITE,TRAIT_WATERSLEEP)
 	possible_ages = ALL_AGES_LIST
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mta.dmi'

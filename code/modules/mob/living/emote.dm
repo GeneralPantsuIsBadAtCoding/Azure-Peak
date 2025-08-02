@@ -34,6 +34,10 @@
 	
 	//If God can hear your prayer (long enough, no bad words, etc.)
 	if(patron.hear_prayer(follower, prayer))
+		if(istype(follower, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = follower
+			if(istype(H.dna?.species, /datum/species/aasimar)) //Aasimar get buffies for successful prayers, weird interaction with godfearing but w/e
+				H.apply_status_effect(/datum/status_effect/buff/godspeak)
 		if(follower.has_flaw(/datum/charflaw/addiction/godfearing))
 			// Stops prayers if you don't meet your patron's requirements to pray.
 			if(!patron?.can_pray(follower))

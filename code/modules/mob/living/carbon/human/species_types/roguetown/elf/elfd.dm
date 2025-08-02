@@ -15,7 +15,8 @@
 	reaches of the rest of the surface-dwelling societies. These are a large part of what has earned \
 	the dark elves their notoriety, for in these cities the worship of the ascendant pantheon is \
 	normalized, and their cruel and bloodthirsty culture reflects this. It was rare to see dark \
-	elves outside of their underground homes, but in recent years, more and more of them have fled \
+	elves outside of their underground homes, given they are built to see and navigate quietly in \
+    the dangerous predator-filled depths, but in recent years, more and more of them have fled \
 	to the surface. The reasons for each dark elf fleeing the Underdark vary depending on the \
 	individual, such as a kinder heart fleeing from a brutal society that scorns them for their \
 	less cruel nature. However, not every dark elf seen on the surface can be safely assumed as \
@@ -40,6 +41,7 @@
 	skin_tone_wording = "Origin City-State"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
+	inherent_traits = list(TRAIT_DARKVISION, TRAIT_LIGHT_STEP)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	disliked_food = NONE

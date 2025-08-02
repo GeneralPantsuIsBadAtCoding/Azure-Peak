@@ -13,6 +13,17 @@
 	desc = ""
 	icon_state = "drunk"
 
+/datum/status_effect/buff/drunk/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
+		owner.reagents.add_reagent(/datum/reagent/medicine/healthpot,6)//a sip of weak red every 30 seconds whilst drunk
+		addtimer(CALLBACK(src, PROC_REF(top_up_healing)), 30 SECONDS)
+
+/datum/status_effect/buff/drunk/proc/top_up_healing()//this is hacky as fuck but it doesn't throw up runtimes and just werks so
+	if(!QDELETED(src) && owner && HAS_TRAIT(owner, TRAIT_DRUNK_HEALING))
+		owner.reagents.add_reagent(/datum/reagent/medicine/healthpot,6)
+		addtimer(CALLBACK(src, PROC_REF(top_up_healing)), 30 SECONDS)
+
 /atom/movable/screen/alert/status_effect/buff/drunkmurk
 	name = "Murk-Knowledge"
 	desc = ""
@@ -45,6 +56,59 @@
 	name = "Great Meal"
 	desc = ""
 	icon_state = "foodbuff"
+
+/datum/status_effect/buff/tribalism
+	id = "tribalism"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/tribalism
+	effectedstats = list("endurance" = 1, "speed" = 1)
+	duration = 5 MINUTES //this is to encourage goblins actually sticking together, not just looking at each other once
+
+/atom/movable/screen/alert/status_effect/buff/tribalism
+	name = "Tribalism"
+	desc = "I just saw my kin, and know I am not alone."
+	icon_state = "buff"
+
+/datum/status_effect/buff/burstofspeed
+	id = "burstofspeed"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/burstofspeed
+	duration = 0.5 SECONDS
+	var/speed_modifier_id
+
+/datum/status_effect/buff/burstofspeed/on_apply()
+	. = ..()
+	speed_modifier_id = "burstofspeed"
+	owner.add_movespeed_modifier(speed_modifier_id, TRUE, 100, override = TRUE, multiplicative_slowdown = -1)
+
+/datum/status_effect/buff/burstofspeed/on_remove()
+	owner.remove_movespeed_modifier(speed_modifier_id)
+	return ..()	
+
+/atom/movable/screen/alert/status_effect/buff/burstofspeed
+	name = "Burst of speed"
+	desc = "I am the fastest!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/godspeak
+	id = "godspeak"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/godspeak
+	effectedstats = list("fortune" = 2)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/godspeak
+	name = "Godspeak"
+	desc = "I feel closer to divinity."
+	icon_state = "buff"
+
+/datum/status_effect/buff/mothfire
+	id = "mothfire"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/mothfire
+	effectedstats = list("endurance" = 1, "speed" = 1)
+	duration = 15 MINUTES //short enough to encourage moths looking at fires here and there, long enough to be usable
+
+/atom/movable/screen/alert/status_effect/buff/mothfire
+	name = "Fire-trance"
+	desc = "How the flames dance... "
+	icon_state = "buff"
 
 /datum/status_effect/buff/druqks
 	id = "druqks"
@@ -378,7 +442,7 @@
 /datum/status_effect/buff/barkeepbuff
 	id = "barkeepbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/barkeepbuff
-	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "strength" = 3) 
+	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "strength" = 3)
 
 /datum/status_effect/buff/barkeepbuff/process()
 

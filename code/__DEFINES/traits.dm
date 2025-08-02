@@ -186,6 +186,12 @@
 #define TRAIT_NECRAS_VOW "Necra's Vow"
 // ARMOR / CLOTHING GIVEN TRAITS (GIVEN BY WEARING CLOTHES/ARMOR PIECES)
 #define TRAIT_MONK_ROBE	"Holy Vestatures"
+// UNIQUE RACIAL TRAITS
+#define TRAIT_TRIBALISM "Tribalism"
+#define TRAIT_WATERSLEEP "Amphibious"
+#define TRAIT_DRUNK_HEALING "Drunk Healing"
+#define TRAIT_CATLANDING "Graceful Landing"
+#define TRAIT_MANEATER_IMMUNITY "Maneater Immunity"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -322,6 +328,10 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_EORAN_SERENE = span_greentext("Eora has blessed me with all-encompassing serenity. I feel no more stress."),
 	TRAIT_NECRAS_VOW = span_warning("I've pledged myself to Necra. If I fall, I am Hers."),
 	TRAIT_HERESIARCH = span_warning("I know of sacred sites of worship where followers of the Ascendants convene, and the path to the nearest conclave is etched into my memory."),
+	TRAIT_TRIBALISM = span_info("My confidence is bolstered when I see my own kin."),
+	TRAIT_WATERSLEEP = span_info("I sleep quite soundly in land or water both."),
+	TRAIT_CATLANDING = span_info("I can land safely from any height... Occasionally!"),
+	TRAIT_DRUNK_HEALING = span_info("Alcohol helps my body recover from injury."),
 	TRAIT_CURSE_ASTRATA = span_warning("I am forsaken by the Sun. I will find no rest under Her unwavering gaze."),
 	TRAIT_CURSE_NOC = span_warning("I am forsaken by the Moon. I will find no salvation in His grace."),
 	TRAIT_CURSE_DENDOR = span_warning("I am forsaken by the Treefather. Reason and common sense abandon me."),
@@ -337,7 +347,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_CURSE_GRAGGAR = span_warning("I am forsaken by the Warlord. Bloodlust is only thing I know for real."),
 	TRAIT_CURSE_MATTHIOS = span_warning("I am forsaken by the Dragon. Greed will be my only salvation."),
 	TRAIT_CURSE_BAOTHA = span_warning("I am forsaken by the Heartbreaker. I am drowning in her promises."),
-  TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise.")
+	TRAIT_MANEATER_IMMUNITY = span_info("Maneaters will not bite me for fear of Dendor's reprise."),
+	TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise.")
 ))
 
 // trait accessor defines
@@ -525,7 +536,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
 #define TRAIT_PROSOPAGNOSIA		"prosopagnosia"
-#define TRAIT_DRUNK_HEALING		"drunk_healing"
 #define TRAIT_TAGGER			"tagger"
 #define TRAIT_PHOTOGRAPHER		"photographer"
 #define TRAIT_MUSICIAN			"musician"

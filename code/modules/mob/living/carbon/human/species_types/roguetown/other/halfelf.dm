@@ -14,7 +14,8 @@
 	embodies the term \"melting pot\" quite like the Half-Elves. Due to their half-breed nature, their physical \
 	characteristics can be either more Elvish or more Humen, depending on which of their parents' genes \
 	are more predominant. In terms of cultural identity, a Half-Elf will typically choose to lean more \
-	towards either their Humen or Elvish heritages.<br>\
+	towards either their Humen or Elvish heritages, but they are equally at home in the forest and the town, \
+	being quick to learn as well as survive in the wilds, though not quite as much as their forebearers.<br>\
 	(+1 Constitution, +1 Perception)" 
 
 	skin_tone_wording = "Identity"
@@ -173,3 +174,9 @@
 /datum/species/human/halfelf/random_surname()
 	return ""
 
+/datum/species/human/halfelf/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()
+	C.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+	C.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+	C.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+	C.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)

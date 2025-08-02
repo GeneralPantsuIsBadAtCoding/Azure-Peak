@@ -18,14 +18,17 @@
 	leads their kind towards technological advacement as they continue \
 	to improve their crafts, both in engineering workshops and the forges. \
 	Dwarves are hearty, but are not known for their speed or eyesight... \
-	Each dwarf hails from a ancient fortress named after the most plentiful mineral.<br>\
+	Though they are well adapted to seeing in the dark, and a near-zealous \
+	cultural appreciation of alcohol has made them heal quicker whilst under \
+	it's influence. Each dwarf hails from a ancient fortress named after the \
+	most plentiful mineral, and almost all of them know the basics of mining.<br>\
 	(+1 Constitution, +1 Endurance)"
 
 	skin_tone_wording = "Dwarf Fortress"
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,YOUNGBEARD,STUBBLE,OLDGREY)
-	inherent_traits = list(TRAIT_DRUNK_HEALING)
+	inherent_traits = list(TRAIT_DRUNK_HEALING,TRAIT_DARKVISION)
 	possible_ages = ALL_AGES_LIST
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
@@ -141,3 +144,8 @@
 
 /datum/species/dwarf/mountain/random_surname()
 	return " [pick(world.file2list("strings/rt/names/dwarf/dwarmlast.txt"))]"
+
+/datum/species/dwarf/mountain/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()
+	C.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
+	
