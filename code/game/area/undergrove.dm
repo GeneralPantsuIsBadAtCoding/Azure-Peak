@@ -11,8 +11,6 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
 				/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,

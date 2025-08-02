@@ -11,8 +11,6 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
 				/mob/living/carbon/human/species/elf/dark/drowraider/ambush = 10,
