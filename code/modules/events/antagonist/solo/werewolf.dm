@@ -30,7 +30,7 @@
 		"Men-at-arms",
 		"Marshal",
 		"Merchant",
-		"Priest",
+		"Bishop",
 		"Acolyte",
 		"Martyr",
 		"Templar",
