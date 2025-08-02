@@ -123,6 +123,11 @@
 	cost = 20
 	contains = list(/obj/item/rogueweapon/katar)
 
+/datum/supply_pack/rogue/Iconoclast/punchdagger
+	name = "Punch Dagger"
+	cost = 20
+	contains = list(/obj/item/rogueweapon/katar/punchdagger)
+
 /datum/supply_pack/rogue/Iconoclast/knuckles
 	name = "Steel Knuckles"
 	cost = 20

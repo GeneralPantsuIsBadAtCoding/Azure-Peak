@@ -106,6 +106,15 @@
 		)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/leather/armor/freivest
+	name = "fencing jacket (4 leather, 4 fibers, 2 tallow)"	//Expensive on purpose.
+	result = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
+	reqs = list(
+		/obj/item/natural/hide/cured = 4,
+		/obj/item/reagent_containers/food/snacks/tallow = 2,
+		/obj/item/natural/fibers = 4
+	)
+
 /datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor/coat
 	name = "hardened leather coat (1 fibers, 3 leather, 1 tallow)"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat

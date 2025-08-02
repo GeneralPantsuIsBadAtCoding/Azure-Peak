@@ -204,6 +204,7 @@
 		/obj/item/rogueweapon/sword/rapier = 1,
 		/obj/item/rogueweapon/sword/cutlass = 3,
 		/obj/item/rogueweapon/katar = 1,
+		/obj/item/rogueweapon/katar/punchdagger = 1,
 		/obj/item/rogueweapon/knuckles = 2,
 		/obj/item/rogueweapon/estoc = 1,
 		/obj/item/rogueweapon/woodstaff/quarterstaff/steel = 1,

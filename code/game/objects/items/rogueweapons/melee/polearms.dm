@@ -1010,6 +1010,11 @@
 	wdefense = 6 // A little bit extra
 	max_blade_int = 150 // 50% more sharpness but it barely matter lol
 
+/obj/item/rogueweapon/spear/boar/frei
+	name = "Aavnic lándzsa"
+	desc = "A regional earspoon lance with a carved handle, adorned with the colours of the Freifechters. These are smithed by the legendary armourers of Vyšvou and given to distinguished lancers upon their graduation."
+	icon_state = "praguespear"
+
 /obj/item/rogueweapon/spear/lance
 	name = "lance"
 	desc = "A long polearm designed to be used from horseback, couched under the arm. It has a vambrace to prevent the arm sliding up \
