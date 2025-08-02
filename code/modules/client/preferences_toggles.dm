@@ -147,6 +147,15 @@
 		prefs.save_preferences()
 	to_chat(src, "You will [prefs.toggles & CMODE_STRIPPING ? "" : "not"] be able to open the strip menu in combat mode.")
 
+/client/verb/toggle_mumblebop()
+	set name = "Toggle Mumble Bop"
+	set category = "Options"
+	set desc = ""
+	if(prefs)
+		prefs.toggles ^= TOGGLE_MUMBLEBOOP
+		prefs.save_preferences()
+	to_chat(src, "You will [prefs.toggles & TOGGLE_MUMBLEBOOP ? "" : "not"] be able to hear mumblebops, now.")
+	
 /*
 //toggles
 /datum/verbs/menu/Settings/Ghost/chatterbox
