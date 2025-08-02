@@ -4772,7 +4772,6 @@
 "bDv" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/mountains/decap)
 "bDz" = (
@@ -7305,9 +7304,9 @@
 /area/rogue/outdoors/woods/northeast)
 "cuD" = (
 /obj/structure/gate{
-	gid = "psydoor";
+	gid = "dungeondoor";
 	name = "Temple of the Ten";
-	redstone_id = "psydoor"
+	redstone_id = "dungeondoor"
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/mazedungeon)
@@ -10758,7 +10757,6 @@
 /area/rogue/indoors/town)
 "dDO" = (
 /obj/effect/decal/cobbleedge,
-/obj/item/cooking/platter/gold,
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/indoors/shelter/mountains/decap)
 "dDQ" = (
@@ -14395,7 +14393,7 @@
 "eIX" = (
 /obj/structure/bookcase/random/archive,
 /obj/item/book/rogue/naledi1,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/mazedungeon)
 "eJa" = (
 /obj/structure/table/wood/poor,
@@ -26749,7 +26747,7 @@
 "iIH" = (
 /obj/structure/bookcase/random/archive,
 /obj/item/book/rogue/naledi4,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/mazedungeon)
 "iIP" = (
 /obj/machinery/light/rogue/wallfire/candle/blue{
@@ -30622,7 +30620,7 @@
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/indoors/shelter/woods)
 "jWH" = (
-/obj/structure/closet/crate/chest/gold,
+/obj/structure/closet/crate/chest/trapped/locked,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "jWN" = (
@@ -37074,6 +37072,10 @@
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"lYu" = (
+/obj/structure/bookcase/random/archive,
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/under/cave/mazedungeon)
 "lYB" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/silver,
@@ -44654,7 +44656,7 @@
 "ozV" = (
 /obj/structure/bookcase/random/archive,
 /obj/item/book/rogue/naledi2,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/mazedungeon)
 "ozX" = (
 /obj/item/roguekey/roomiv{
@@ -44787,6 +44789,11 @@
 	dir = 1
 	},
 /area/rogue/indoors/cave/northern)
+"oCv" = (
+/obj/structure/table/wood,
+/obj/item/cooking/platter/gold,
+/turf/open/floor/carpet/red,
+/area/rogue/under/cave/goblinfort)
 "oCw" = (
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -46804,9 +46811,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "pjB" = (
-/obj/structure/flora/roguetree/stump/log,
-/turf/open/floor/rogue/grass,
-/area/rogue/indoors/cave)
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet/red,
+/area/rogue/under/cave/mazedungeon)
 "pjE" = (
 /obj/structure/fluff/railing/fence{
 	dir = 4
@@ -48058,7 +48065,7 @@
 "pGY" = (
 /obj/structure/bookcase/random/archive,
 /obj/item/book/rogue/robber,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/mazedungeon)
 "pGZ" = (
 /obj/structure/well/fountain{
@@ -63857,6 +63864,10 @@
 /mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
+"uMn" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/carpet/red,
+/area/rogue/under/cave/mazedungeon)
 "uMp" = (
 /obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/cobble/mossy,
@@ -134847,11 +134858,11 @@ onF
 onF
 onF
 onF
-clw
-pjB
-clw
-clw
-clw
+lXu
+uFl
+lXu
+lXu
+lXu
 onF
 onF
 onF
@@ -137091,11 +137102,11 @@ xlz
 xlz
 xlz
 bnv
-cHe
-cHe
-cHe
-cHe
-cHe
+oxH
+oxH
+oxH
+oxH
+oxH
 gCP
 iDD
 cHe
@@ -137543,11 +137554,11 @@ nkf
 hqt
 xlz
 mUP
-lHT
+uMn
 oxH
 oxH
 oxH
-cHe
+oxH
 cHe
 cHe
 cHe
@@ -138447,11 +138458,11 @@ hML
 hML
 iet
 cHe
-dvE
+lYu
 vto
 xhL
 vto
-dvE
+lYu
 cHe
 xlz
 cHe
@@ -139351,11 +139362,11 @@ xlz
 xlz
 xlz
 mUP
-bnv
+pjB
 oxH
 oxH
 oxH
-cHe
+oxH
 cHe
 ifT
 dKf
@@ -139803,11 +139814,11 @@ xlz
 mam
 xlz
 cHe
-cHe
-cHe
-cHe
-cHe
-bnv
+oxH
+oxH
+oxH
+oxH
+pjB
 cHe
 xlz
 vod
@@ -144803,7 +144814,7 @@ eVM
 yhQ
 tjf
 tjf
-nmw
+tjf
 nmw
 nmw
 nmw
@@ -145255,7 +145266,7 @@ eVM
 yhQ
 tjf
 tjf
-nmw
+tjf
 nmw
 nmw
 nmw
@@ -145706,7 +145717,7 @@ kRy
 eVM
 yhQ
 tjf
-nmw
+tjf
 tjf
 nmw
 nmw
@@ -146158,7 +146169,7 @@ kRy
 eVM
 yhQ
 tjf
-nmw
+tjf
 nmw
 nmw
 nmw
@@ -146617,7 +146628,7 @@ nmw
 nmw
 nmw
 nmw
-nmw
+cak
 miF
 miF
 miF
@@ -147061,15 +147072,15 @@ kRy
 kRy
 eVM
 yhQ
-nmw
+tjf
 nmw
 nmw
 nmw
 nmw
 gFc
 nmw
-nmw
-nmw
+cak
+cak
 miF
 miF
 miF
@@ -147513,6 +147524,7 @@ kRy
 kRy
 eVM
 yhQ
+tjf
 nmw
 nmw
 nmw
@@ -147520,8 +147532,7 @@ nmw
 nmw
 nmw
 nmw
-nmw
-nmw
+cak
 miF
 miF
 miF
@@ -148425,7 +148436,7 @@ nmw
 nmw
 nmw
 nmw
-nmw
+tjf
 qHj
 qHj
 qHj
@@ -149327,8 +149338,8 @@ aKd
 aKd
 aKd
 aKd
-tjf
-tjf
+nmw
+nmw
 tjf
 tjf
 tjf
@@ -149781,7 +149792,7 @@ tjf
 tjf
 nmw
 nmw
-nmw
+tjf
 tjf
 tjf
 tjf
@@ -150233,7 +150244,7 @@ tjf
 nmw
 nmw
 nmw
-nmw
+tjf
 tjf
 tjf
 tjf
@@ -150685,7 +150696,7 @@ tjf
 nmw
 nmw
 nmw
-nmw
+tjf
 tjf
 tjf
 tjf
@@ -154291,8 +154302,8 @@ tjf
 tjf
 tjf
 nmw
-tjf
-tjf
+nmw
+nmw
 nmw
 nmw
 nmw
@@ -154741,7 +154752,7 @@ cak
 tjf
 tjf
 tjf
-aKy
+nmw
 nmw
 tjf
 tjf
@@ -157450,7 +157461,7 @@ nmw
 nmw
 nmw
 nmw
-nmw
+tjf
 tjf
 nmw
 nmw
@@ -157901,8 +157912,8 @@ cak
 cak
 cak
 tjf
-tjf
 nmw
+aKy
 nmw
 nmw
 tjf
@@ -161516,8 +161527,8 @@ aYF
 aYF
 aYF
 cak
-cak
-cak
+nmw
+nmw
 nmw
 nmw
 nmw
@@ -161966,10 +161977,10 @@ nmw
 nmw
 vPQ
 nmw
-aYF
-aYF
-cak
-cak
+nmw
+nmw
+nmw
+nmw
 tjf
 tjf
 nmw
@@ -162419,8 +162430,8 @@ vPQ
 nmw
 vPQ
 nmw
-aYF
-cak
+nmw
+nmw
 cak
 cak
 tjf
@@ -474705,7 +474716,7 @@ mQP
 mFm
 hxX
 fOg
-ooQ
+oCv
 vjP
 hxX
 vqO
