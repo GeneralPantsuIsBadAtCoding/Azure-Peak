@@ -182,7 +182,7 @@
 	name = "maciejowski (iron messer)"
 	result = /obj/item/rogueweapon/sword/falchion/militia
 	reqs = list(
-		/obj/item/rogueweapon/sword/iron/messer = 1,
+		/obj/item/rogueweapon/sword/short/messer/iron = 1,
 		/obj/item/natural/whetstone = 1,
 		)
 	craftdiff = 2

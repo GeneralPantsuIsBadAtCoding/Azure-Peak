@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	H.STAPER = 10
 	H.STAINT = 10
 	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword/iron/short
+		r_hand = /obj/item/rogueweapon/sword/short/iron
 	else
 		r_hand = /obj/item/rogueweapon/mace/cudgel
 	if(prob(20))

@@ -2712,7 +2712,7 @@
 /area/rogue/outdoors/town)
 "aWW" = (
 /obj/structure/closet/crate/chest/crate,
-/obj/item/rogueweapon/sword/iron/short,
+/obj/item/rogueweapon/sword/short/iron,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/fishmandungeon)
 "aWX" = (
@@ -15374,7 +15374,7 @@
 /area/rogue/outdoors/woods/southwest)
 "eYR" = (
 /obj/structure/closet/crate/roguecloset/inn,
-/obj/item/rogueweapon/sword/iron/short,
+/obj/item/rogueweapon/sword/short/iron,
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
@@ -52712,7 +52712,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "reL" = (
-/obj/item/rogueweapon/sword/iron/short,
+/obj/item/rogueweapon/sword/short/iron,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblindungeon)
 "reM" = (
