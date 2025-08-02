@@ -556,6 +556,7 @@
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\anti_magic.dm"
 #include "code\datums\components\art.dm"
+#include "code\datums\components\baothajoyride.dm"
 #include "code\datums\components\beauty.dm"
 #include "code\datums\components\beetlejuice.dm"
 #include "code\datums\components\butchering.dm"
