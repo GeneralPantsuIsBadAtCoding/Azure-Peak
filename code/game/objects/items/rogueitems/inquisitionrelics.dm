@@ -467,7 +467,7 @@ Inquisitorial armory down here
 	duration = 8
 
 /obj/item/inqarticles/indexer
-	name = "INDEXER"
+	name = "\improper INDEXER"
 	desc = "A blessed ampoule with a retractable bladetip, intended further information gathering through hematology. Siphon blood from an individual until the INDEXER clicks shut, then mail it back to Otava for cataloguing."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "indexer"
@@ -484,7 +484,6 @@ Inquisitorial armory down here
 	intdamage_factor = 0
 	sellprice = 0
 	verb_exclaim = "blares"
-	var/wwblood
 	var/cursedblood	
 	var/active
 	var/mob/living/carbon/subject
@@ -558,7 +557,6 @@ Inquisitorial armory down here
 	cursedblood = initial(cursedblood)
 	working = initial(working)
 	subject = initial(subject)
-	wwblood = initial(wwblood)
 	full = initial(full)
 	timestaken = initial(timestaken)
 	desc = initial(desc)
@@ -583,7 +581,7 @@ Inquisitorial armory down here
 		playsound(src, 'sound/items/indexer_finished.ogg', 75, FALSE, 3)
 		working = FALSE
 		full = TRUE
-		visible_message(span_warning("[src] finishes!"))
+		visible_message(span_warning("[src] finishes drawing blood!"))
 		active = FALSE
 		desc += span_notice("It's full!")
 		if(cursedblood)
@@ -608,9 +606,7 @@ Inquisitorial armory down here
 				if(prob(15))
 					M.emote("whimper", forced = TRUE)
 				else if(prob(15))
-					M.emote("scream", forced = TRUE)
-				else if(prob(15))
-					M.emote("cry", forced = TRUE)	
+					M.emote("painmoan", forced = TRUE)
 			desc = initial(desc)
 			desc += span_notice("It contains the blood of [subject.real_name]!")
 			visible_message(span_warning("[src] draws from [M]!"))
@@ -689,12 +685,14 @@ Inquisitorial armory down here
 		heatedup -= 4
 		remaining = max(remaining - 20, 0)
 	else
-		update_icon()
+		if(tallow)
+			visible_message(span_info("The redtallow in [src] hardens again."))
+			update_icon()
 	if(remaining == 0)
 		qdel(tallow)
 		tallow = initial(tallow)
 		update_icon()
-
+	
 /obj/item/inqarticles/tallowpot/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/tallow/red))
@@ -709,6 +707,7 @@ Inquisitorial armory down here
 
 	if(istype(I, /obj/item/flashlight/flare/torch/))		
 		heatedup = 28
+		visible_message(span_info("[user] warms [src] with [I]."))
 		update_icon()
 
 	if(istype(I, /obj/item/clothing/ring/signet))	

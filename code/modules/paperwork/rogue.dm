@@ -254,7 +254,6 @@
 		else
 			to_chat(user, span_notice("This writ has not yet been signed."))
 		
-
 /obj/item/paper/inqslip/accusation
 	name = "accusation"
 	desc = "A writ of religious suspicion, printed on Otavan parchment: one signed not in ink, but blood. Press the accusation against your own bleeding wound in order to obtain a signature. Then pair it with an INDEXER full of the accused's blood. Once done, it is ready to be mailed back to Otava. Fold and seal it, it's only proper."
@@ -272,6 +271,7 @@
 
 /obj/item/paper/inqslip/arrival
 	name = "arrival slip"	
+	desc = "A special piece of parchment, personally handed to you by the Archbishop. His instructions were simple but important: 'to draw a weeping cut upon thineself, smear the parchment with its tears, and send the sum back to me'. When asked, your Inquisitor described the process in far less flowery terms: 'sign the slip in your blood and mail it to him, he'll send us more coinage to spend.'"
 	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 
 /obj/item/paper/inqslip/arrival/ortho

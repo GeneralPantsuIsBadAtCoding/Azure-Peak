@@ -143,6 +143,24 @@
 	new /obj/item/smokebomb(src)
 	new /obj/item/smokebomb(src)
 
+/datum/inqports/supplies/psybuns
+	name = "The Otavan Bakery Special"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/psybuns
+	marquescost = 10
+
+/obj/structure/closet/crate/chest/inqcrate/supplies/psybuns/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+
 /datum/inqports/supplies/bottlebombs
 	name = "3 Bottlebombs"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/bottlebombs
