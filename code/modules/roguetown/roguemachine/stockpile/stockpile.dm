@@ -21,6 +21,10 @@
 	SSroguemachine.stock_machines -= src
 	return ..()
 
+/obj/structure/roguemachine/stockpile/examine(mob/user)
+	. = ..()
+	. += span_info("Right click to sell everything on your turf into the stockpile.")
+
 /obj/structure/roguemachine/stockpile/Topic(href, href_list)
 	. = ..()
 	if(!usr.canUseTopic(src, BE_CLOSE))
@@ -162,7 +166,7 @@
 
 /obj/structure/roguemachine/stockpile/attack_right(mob/user)
 	if(ishuman(user))
-		for(var/obj/I in get_turf(src))
+		for(var/obj/I in get_turf(user))
 			attemptsell(I, user, FALSE, FALSE)
 		say("Bulk selling in progress...")
 		playsound(loc, 'sound/misc/hiss.ogg', 100, FALSE, -1)
