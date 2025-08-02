@@ -22549,10 +22549,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
-"hrm" = (
-/mob/living/carbon/human/species/orc/npc/berserker,
-/turf/open/floor/rogue/wood,
-/area/rogue/under/cave/orcdungeon)
 "hro" = (
 /obj/effect/decal/cobbleedge{
 	dir = 9
@@ -42160,14 +42156,6 @@
 /obj/structure/fluff/railing/border/north,
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/rtfield)
-"nHH" = (
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_y = 7
-	},
-/mob/living/carbon/human/species/orc/npc/berserker,
-/turf/open/floor/rogue/wood,
-/area/rogue/under/cave/orcdungeon)
 "nHK" = (
 /obj/structure/fluff/walldeco/stone/bronze{
 	pixel_y = 32
@@ -290345,13 +290333,13 @@ qPv
 qPv
 ujm
 jDM
-hrm
+hPd
 jQG
 lWp
 hPd
 hPd
 lWp
-nHH
+vEy
 hPd
 jDM
 ujm
