@@ -2505,6 +2505,10 @@
 /obj/structure/roguemachine/scomm/l,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/bog/south)
+"aRj" = (
+/obj/structure/roguemachine/withdraw,
+/turf/open/floor/rogue/tile/checkeralt,
+/area/rogue/indoors/town)
 "aRn" = (
 /obj/structure/fluff/railing/corner/south_west,
 /turf/open/floor/rogue/wood,
@@ -140015,7 +140019,7 @@ gTV
 gTV
 gTV
 gTV
-gTV
+mam
 wFl
 cHe
 wFl
@@ -140467,7 +140471,7 @@ gTV
 gTV
 gTV
 gTV
-gTV
+mam
 wFl
 cHe
 wFl
@@ -140919,7 +140923,7 @@ gTV
 gTV
 gTV
 gTV
-gTV
+mam
 wFl
 cHe
 wFl
@@ -141353,7 +141357,6 @@ mam
 mam
 dew
 xmZ
-gTV
 mam
 mam
 mam
@@ -141364,14 +141367,15 @@ mam
 mam
 mam
 mam
-gTV
-gTV
-gTV
-gTV
-gTV
-gTV
-gTV
-gTV
+mam
+mam
+mam
+mam
+mam
+mam
+mam
+mam
+mam
 wFl
 cHe
 icO
@@ -143188,7 +143192,7 @@ eVM
 eVM
 sIM
 eVM
-tjf
+yhQ
 tjf
 tjf
 tjf
@@ -144092,7 +144096,7 @@ eVM
 sIM
 eVM
 eVM
-tjf
+yhQ
 tjf
 tjf
 tjf
@@ -144996,7 +145000,7 @@ eVM
 eVM
 uCa
 eVM
-tjf
+yhQ
 tjf
 tjf
 nmw
@@ -145900,7 +145904,7 @@ eVM
 oJZ
 kRy
 eVM
-tjf
+yhQ
 tjf
 nmw
 tjf
@@ -388706,7 +388710,7 @@ xXW
 prx
 dra
 eKH
-yeu
+aRj
 yeu
 taV
 kSK
