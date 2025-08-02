@@ -26304,7 +26304,7 @@
 /area/rogue/outdoors/mountains/decap)
 "iAF" = (
 /obj/structure/table/wood,
-/obj/item/ingot/silver,
+/obj/item/reagent_containers/glass/cup/wooden,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "iAM" = (
@@ -28845,10 +28845,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
-"jry" = (
-/obj/structure/bed/rogue/shit,
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors/shelter)
 "jrD" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
 /turf/open/floor/rogue/concrete,
@@ -30472,7 +30468,7 @@
 /area/rogue/under/cavewet/bogcaves/coastcaves)
 "jUi" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/cup/silver,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "jUj" = (
@@ -55520,6 +55516,7 @@
 /area/rogue/under/cavewet/bogcaves/camp)
 "sfO" = (
 /obj/structure/table/wood,
+/obj/item/candle/yellow,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "sfP" = (
@@ -62207,7 +62204,7 @@
 /area/rogue/indoors/town)
 "ulp" = (
 /obj/structure/table/wood/fancy/black,
-/obj/item/ingot/blacksteel,
+/obj/item/rogueweapon/huntingknife/idagger/silver,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "ulq" = (
@@ -302508,7 +302505,7 @@ uZT
 uZT
 uZT
 uGX
-jry
+iWH
 vno
 iWH
 kGZ
@@ -345873,7 +345870,7 @@ fkB
 fkB
 trr
 lNr
-jVh
+sfO
 tGY
 uWo
 xhc
@@ -346327,7 +346324,7 @@ trr
 lNr
 frg
 tGY
-sfO
+jVh
 tGY
 ucb
 mhv
