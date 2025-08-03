@@ -23312,6 +23312,8 @@
 /obj/machinery/light/rogue/torchholder{
 	dir = 1
 	},
+/obj/item/reagent_containers/glass/bottle/rogue/beer,
+/obj/item/reagent_containers/glass/bottle/rogue/beer,
 /turf/open/floor/rogue/metal{
 	dir = 4
 	},
@@ -38256,6 +38258,7 @@
 /area/rogue/under/cave/skeletoncrypt)
 "mjp" = (
 /obj/structure/table/wood/long_table,
+/obj/item/reagent_containers/glass/cup/silver/small,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "mjr" = (
@@ -59540,6 +59543,7 @@
 /area/rogue/outdoors/mountains)
 "ter" = (
 /obj/structure/table/wood/long_table/right,
+/obj/item/reagent_containers/glass/bottle/rogue/redwine,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "tes" = (
