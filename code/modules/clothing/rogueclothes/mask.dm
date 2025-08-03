@@ -126,10 +126,12 @@
 
 /obj/item/clothing/mask/rogue/facemask/aalloy
 	name = "decrepit mask"
-	desc = "A decrepit creepy old mask. Aeon's grasp is upon it."
+	desc = "Frayed bronze, molded into an unblinking visage. Only the statues, buried within the innards of Mount Decapitation, share its wrinkled lip and sneer of cold command."
 	icon_state = "ancientmask"
 	max_integrity = 75
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/mask/rogue/facemask/copper
 	name = "copper mask"
@@ -228,9 +230,9 @@
 
 /obj/item/clothing/mask/rogue/facemask/steel/paalloy
 	name = "ancient mask"
-	desc = "A mask forged of ancient alloys. Aeon's grasp has been lifted from its form."
+	desc = "Polished gilbranze, molded into an intimidating visage. Touch the cheek; it is warm, like flesh. But it is not flesh. Not yet."
 	icon_state = "ancientmask"
-
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/mask/rogue/facemask/steel/hound
 	name = "steel hound mask"

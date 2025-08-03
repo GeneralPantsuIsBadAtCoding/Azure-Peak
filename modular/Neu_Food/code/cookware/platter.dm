@@ -98,8 +98,10 @@ What it does:
 
 /obj/item/cooking/platter/aalloy
 	name = "decrepit platter"
-	desc = "A decrepit old platter. Aeon's grasp is upon its form."
+	desc = "Wrought bronze, flattened to serve. The edge remains wet with red; spilled merlot, meaty juices, or blood?"
 	icon_state = "aplatter"
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/cooking/platter/copper
 	name = "copper platter"

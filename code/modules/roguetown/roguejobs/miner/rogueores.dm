@@ -252,24 +252,25 @@
 	sellprice = 100
 
 /obj/item/ingot/aalloy
-	name = "ancient alloy"
-	desc = "An old, decrepit slab of metal. Aeon has withered it's strength."
+	name = "decrepit ingot"
+	desc = "A decrepit slab of wrought bronze, uncomfortably cold to the touch. The gales shift into whispers, when held for long enough; 'progress commands sacrifice'."
 	icon_state = "ingotancient"
-	smeltresult = /obj/item/ingot/aalloy
-	sellprice = 5
+	smeltresult = /obj/item/ingot/aaslag
+	color = "#bb9696"
+	sellprice = 33
 
 
 /obj/item/ingot/purifiedaalloy
-	name = "purified ancient alloy"
-	desc = "An old slab of metal, sparked to life by Malum's craft."
+	name = "ancient alloy"
+	desc = "An ingot of polished gilbranze, teeming with forbidden knowledge. The reflection on its surface isn't yours; it smiles back at you with eternal malice."
 	icon_state = "ingotancient"
-	smeltresult = /obj/item/ingot/aaslag
-	sellprice = 100
+	smeltresult = /obj/item/ingot/purifiedaalloy
+	sellprice = 111
 
 
 /obj/item/ingot/aaslag
-	name = "ancient slag"
-	desc = "What was once great, cannot be maintained forever."
+	name = "glimmering slag"
+	desc = "A mass of wrought bronze, rendered lame from the forge's heat. Sometimes, dead is better."
 	icon_state = "ancientslag"
 	smeltresult = /obj/item/ingot/aaslag
-	sellprice = 0
+	sellprice = 1

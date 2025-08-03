@@ -58,6 +58,13 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+			var/weapons = list("Katar","Knuckle Dusters")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if("Katar")
+					backpack_contents += list(/obj/item/rogueweapon/katar = 1)
+				if("Knuckle Dusters")
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 			H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
