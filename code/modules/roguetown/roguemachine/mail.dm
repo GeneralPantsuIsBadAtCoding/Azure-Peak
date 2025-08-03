@@ -299,6 +299,7 @@
 					if(I.paired)
 						if(!indexed && !correct)
 							budget2change(2, user, "MARQUE")
+							GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
 					else if(correct)	
 						if(I.paired)
 							if(!indexed)
@@ -306,6 +307,7 @@
 						if(accused)	
 							I.marquevalue -= 4
 						budget2change(I.marquevalue, user, "MARQUE")
+						GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
 					if(I.paired)	
 						qdel(I.paired)
 					qdel(I)
@@ -340,6 +342,7 @@
 				else
 					var/yummers = I.cursedblood * 2	+ 2
 					budget2change(yummers, user, "MARQUE")
+					GLOB.azure_round_stats[STATS_MARQUES_MADE] += yummers
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
@@ -372,6 +375,7 @@
 					user.put_in_hands(replacement)
 				else	
 					budget2change(2, user, "MARQUE")
+					GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
@@ -400,6 +404,7 @@
 					to_chat(user, span_notice("I.. I've already arrived? Surely, it's a clerical error..."))
 				else	
 					budget2change(I.marquevalue, user, "MARQUE")
+					GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
@@ -467,10 +472,12 @@
 					else
 						if(!indexed && !correct)
 							budget2change(2, user, "MARQUE")
+							GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
 						else if(correct)	
 							if(!indexed)
 								I.marquevalue += 2
 							budget2change(I.marquevalue, user, "MARQUE")
+							GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
 						qdel(I.paired)
 						qdel(I)
 						visible_message(span_warning("[user] sends something."))

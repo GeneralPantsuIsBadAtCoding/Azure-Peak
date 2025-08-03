@@ -468,7 +468,7 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/indexer
 	name = "\improper INDEXER"
-	desc = "A blessed ampoule with a retractable bladetip, intended further information gathering through hematology. Siphon blood from an individual until the INDEXER clicks shut, then mail it back to Otava for cataloguing."
+	desc = "A blessed ampoule with a retractable bladetip, intended to further information gathering through hematology. Siphon blood from an individual until the INDEXER clicks shut, then mail it back to Otava for cataloguing."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "indexer"
 	item_state = "indexer"
@@ -477,8 +477,11 @@ Inquisitorial armory down here
 	grid_height = 32
 	grid_width = 32
 	throwforce = 15
+	force = 4
+	tool_behaviour = TOOL_SCALPEL
 	possible_item_intents = list(/datum/intent/use)
 	slot_flags = ITEM_SLOT_HIP
+	sharpness = IS_SHARP
 	experimental_inhand = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	intdamage_factor = 0
@@ -495,6 +498,8 @@ Inquisitorial armory down here
 	. = ..()
 	if(active)	
 		playsound(user, 'sound/items/indexer_shut.ogg', 65, TRUE)
+		possible_item_intents = list(/datum/intent/use)
+		user.update_a_intents()
 		if(!full)
 			if(!timestaken)
 				active = FALSE
@@ -507,6 +512,8 @@ Inquisitorial armory down here
 /obj/item/inqarticles/indexer/dropped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(active)	
+		possible_item_intents = list(/datum/intent/use)
+		user.update_a_intents()
 		playsound(user, 'sound/items/indexer_shut.ogg', 65, TRUE)
 		if(!full)
 			if(!timestaken)
@@ -532,6 +539,8 @@ Inquisitorial armory down here
 		if(!working)
 			if(!active)
 				if(!full)
+					possible_item_intents = list(/datum/intent/use, /datum/intent/dagger/cut)
+					user.update_a_intents()
 					playsound(src, 'sound/items/indexer_open.ogg', 75, FALSE, 3)
 					if(timestaken)
 						active = TRUE
@@ -543,6 +552,8 @@ Inquisitorial armory down here
 					to_chat(user, span_notice("It's ready to be sent back to Otava."))
 			else
 				playsound(src, 'sound/items/indexer_shut.ogg', 75, FALSE, 3)
+				possible_item_intents = list(/datum/intent/use)
+				user.update_a_intents()
 				if(!full)
 					if(!timestaken)
 						active = FALSE
@@ -553,7 +564,9 @@ Inquisitorial armory down here
 		update_icon()
 		return
 
-/obj/item/inqarticles/indexer/proc/fullreset()
+/obj/item/inqarticles/indexer/proc/fullreset(mob/user)
+	possible_item_intents = list(/datum/intent/use)
+	user.update_a_intents()
 	cursedblood = initial(cursedblood)
 	working = initial(working)
 	subject = initial(subject)
@@ -583,9 +596,11 @@ Inquisitorial armory down here
 		full = TRUE
 		visible_message(span_warning("[src] finishes drawing blood!"))
 		active = FALSE
-		desc += span_notice("It's full!")
+		desc += span_notice(" It's full!")
 		if(cursedblood)
 			playsound(src, 'sound/items/indexer_cursed.ogg', 100, FALSE, 3)
+			possible_item_intents = list(/datum/intent/use)
+			user.update_a_intents()
 			active = FALSE
 			working = TRUE
 			icon_state = "indexer_cursed"
@@ -608,7 +623,7 @@ Inquisitorial armory down here
 				else if(prob(15))
 					M.emote("painmoan", forced = TRUE)
 			desc = initial(desc)
-			desc += span_notice("It contains the blood of [subject.real_name]!")
+			desc += span_notice(" It contains the blood of [subject.real_name]!")
 			visible_message(span_warning("[src] draws from [M]!"))
 			playsound(M, 'sound/combat/hits/bladed/genstab (1).ogg', 30, FALSE, -1)
 			timestaken++
@@ -650,8 +665,8 @@ Inquisitorial armory down here
 			return
 
 /obj/item/inqarticles/tallowpot
-	name = "tallow pot"
-	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint."
+	name = "tallowpot"
+	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint. The warmth of a torch or lamptern should be enough to melt the redtallow for stamping writs."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "tallowpot"
 	item_state = "tallowpot"
@@ -670,6 +685,7 @@ Inquisitorial armory down here
 	var/tallow
 	var/remaining
 	var/heatedup
+	var/messageshown = 1
 	sellprice = 0
 
 /obj/item/inqarticles/tallowpot/Initialize(mapload)
@@ -684,9 +700,12 @@ Inquisitorial armory down here
 	if(heatedup > 0)
 		heatedup -= 4
 		remaining = max(remaining - 20, 0)
+		messageshown = 0
 	else
 		if(tallow)
-			visible_message(span_info("The redtallow in [src] hardens again."))
+			if(!messageshown)
+				visible_message(span_info("The redtallow in [src] hardens again."))
+				messageshown = 1
 			update_icon()
 	if(remaining == 0)
 		qdel(tallow)
@@ -933,7 +952,8 @@ Inquisitorial armory down here
 		ADD_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)
 		ADD_TRAIT(target, TRAIT_GARROTED, TRAIT_GENERIC)
 		ADD_TRAIT(target, TRAIT_MUTE, "garroteCordage")
-		user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
+		if(target != user)
+			user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
 		user.visible_message(span_danger("[user] wraps the [src] around [target]'s throat!"))
 		user.changeNext_move(CLICK_CD_GRABBING)
 		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	

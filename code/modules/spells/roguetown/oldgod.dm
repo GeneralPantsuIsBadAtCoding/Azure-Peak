@@ -205,12 +205,14 @@
 
 	if(!ishuman(targets[1]))
 		to_chat(user, span_warning("ABSOLUTION is for those who walk in HIS image!"))
+		revert_cast()
 		return FALSE
 	
 	var/mob/living/carbon/human/H = targets[1]
 	
 	if(H == user)
 		to_chat(user, span_warning("You cannot ABSOLVE yourself!"))
+		revert_cast()
 		return FALSE
 	
 	// Special case for dead targets

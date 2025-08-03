@@ -149,7 +149,6 @@
 	H.change_stat("endurance", 3)
 	H.change_stat("constitution", 3)
 	H.change_stat("perception", 2)
-	H.change_stat("speed", 0)
 	H.change_stat("intelligence", 2)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1) //Capped to T1 miracles.
@@ -185,6 +184,7 @@
 	switch(weapon_choice)
 		if("Covenant And Creed (Broadsword + Shield)")
 			H.put_in_hands(new /obj/item/rogueweapon/greatsword/bsword/psy/relic(H), TRUE)
+			H.put_in_hands(new /obj/item/paper/inqslip/arrival/inq(H), TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/tower/metal/psy, SLOT_BACK_R, TRUE)
 			var/annoyingbag = H.get_item_by_slot(SLOT_BACK_L)
 			qdel(annoyingbag)
@@ -217,50 +217,6 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/blk
 		color = CLOTHING_GREY
-
-/mob/living/carbon/human/proc/torture_victim()
-	set name = "Extract Confession"
-	set category = "Inquisition"
-	var/obj/item/grabbing/I = get_active_held_item()
-	var/mob/living/carbon/human/H
-	var/obj/item/S = get_inactive_held_item()
-	var/found = null
-	if(!istype(I) || !ishuman(I.grabbed))
-		to_chat(src, span_warning("I don't have a victim in my hands!"))
-		return
-	H = I.grabbed
-	if(H == src)
-		to_chat(src, span_warning("I already torture myself."))
-		return
-	if (!H.restrained())
-		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
-		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
-		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
-		return
-	for(var/obj/structure/fluff/psycross/N in oview(5, src))
-		found = N
-	if(!found)
-		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
-		return	
-	if(!H.stat)
-		var/static/list/torture_lines = list(
-			"CONFESS!",
-			"TELL ME YOUR SECRETS!",
-			"SPEAK!",
-			"YOU WILL SPEAK!",
-			"TELL ME!",
-		)
-		say(pick(torture_lines), spans = list("torture"))
-		H.emote("agony", forced = TRUE)
-
-		if(!(do_mob(src, H, 10 SECONDS)))
-			return
-		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
-		H.confess_sins("antag")
-		qdel(S)
-		return
-	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
 
 /mob/living/carbon/human/proc/faith_test()
 	set name = "Test Faith"
@@ -327,3 +283,47 @@
 		say(pick(confessions), spans = list("torture"))
 		return
 	say(pick(innocent_lines), spans = list("torture"))
+
+/mob/living/carbon/human/proc/torture_victim()
+	set name = "Reveal Allegiance"
+	set category = "Inquisition"
+	var/obj/item/grabbing/I = get_active_held_item()
+	var/mob/living/carbon/human/H
+	var/obj/item/S = get_inactive_held_item()
+	var/found = null
+	if(!istype(I) || !ishuman(I.grabbed))
+		to_chat(src, span_warning("I don't have a victim in my hands!"))
+		return
+	H = I.grabbed
+	if(H == src)
+		to_chat(src, span_warning("I already torture myself."))
+		return
+	if (!H.restrained())
+		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
+		return
+	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
+		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
+		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
+		return	
+	if(!H.stat)
+		var/static/list/torture_lines = list(
+			"CONFESS!",
+			"TELL ME YOUR SECRETS!",
+			"SPEAK!",
+			"YOU WILL SPEAK!",
+			"TELL ME!",
+		)
+		say(pick(torture_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
+		H.confess_sins("antag")
+		qdel(S)
+		return
+	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
