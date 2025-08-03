@@ -801,7 +801,6 @@ Inquisitorial armory down here
 	max_integrity = 200
 	w_class = WEIGHT_CLASS_SMALL
 	can_parry = FALSE
-	has_inspect_verb = TRUE
 	break_sound = 'sound/items/garrotebreak.ogg'
 	gripped_intents = list(/datum/intent/garrote/grab, /datum/intent/garrote/choke)
 	var/mob/living/victim
