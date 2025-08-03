@@ -163,7 +163,6 @@
 		target.devotion.Destroy()
 
 	// Change patron
-	//target.patron = user.patron
 	target.patron = new user.patron.type()
 	to_chat(target, span_userdanger("Your soul now belongs to [user.patron.name]!"))
 
@@ -172,7 +171,6 @@
 	var/datum/devotion/new_devotion = new /datum/devotion(target, target.patron)
 	target.devotion = new_devotion
 	new_devotion.grant_miracles(target, saved_level, saved_devotion_gain, saved_max_progression)
-	//new_devotion.try_add_spells(TRUE)
 
 	// Final conversion
 	ADD_TRAIT(target, TRAIT_HERESIARCH, TRAIT_GENERIC)
