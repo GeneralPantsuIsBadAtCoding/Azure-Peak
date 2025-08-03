@@ -494,7 +494,7 @@
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
 	blade_dulling = DULLING_SHAFT_WOOD
-	minstr = 16	
+	minstr = 15	
 	max_blade_int = 100 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
 
 /obj/item/rogueweapon/stoneaxe/woodcut/troll
