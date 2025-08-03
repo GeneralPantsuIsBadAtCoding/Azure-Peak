@@ -364,7 +364,7 @@
 
 /obj/item/rogueweapon/mace/goden/steel/paalloy
 	name = "ancient grand mace"
-	desc = "A twisting polehammer, forged in polished gilbranze. hat did you think this was all about? This destruction, this war, this sacrifice; it was all to prepare Man for its true ascension."
+	desc = "A twisting polehammer, forged in polished gilbranze. What did you think this was all about? This destruction, this war, this sacrifice; it was all to prepare Man for its true ascension."
 	icon_state = "ancient_supermace"
 	smeltresult = /obj/item/ingot/aaslag
 
