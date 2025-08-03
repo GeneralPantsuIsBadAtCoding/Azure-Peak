@@ -143,9 +143,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "rtfield"
 	soundenv = 19
 	ambush_times = list("night")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt,
-				/turf/open/floor/rogue/grass)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/bobcat = 20,
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 30,
@@ -170,9 +167,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "eora"
 	soundenv = 19
 	ambush_times = list("night")
-	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing = 20,
-				/mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite = 30)
 	first_time_text = "EORAN SHRINE"
 	droning_sound = 'sound/newmusic/lovecraft2.ogg'
 	droning_sound_dusk = 'sound/newmusic/lovecraft2.ogg'
@@ -188,10 +182,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound = 'sound/music/area/morosewaters.ogg'
 	droning_sound_dusk = 'sound/music/area/morosewaters.ogg'
 	droning_sound_night = 'sound/music/area/angrywaters.ogg'
-	ambush_types = list(
-		/turf/open/floor/rogue/grasscold,
-		/turf/open/floor/rogue/dirt
-	)
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/rogue/deepone = 50,
 		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30
@@ -241,8 +231,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 20,
@@ -298,8 +286,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	spookysounds = SPOOKY_CAVE
 	spookynight = SPOOKY_CAVE
 	ambush_times = list("night","dawn","dusk","day")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 10,
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 20,

@@ -18,7 +18,6 @@
 	can_parry = TRUE
 	wlength = WLENGTH_NORMAL
 	sellprice = 1
-	has_inspect_verb = TRUE
 	parrysound = list('sound/combat/parry/parrygen.ogg')
 	break_sound = 'sound/foley/breaksound.ogg'
 	anvilrepair = /datum/skill/craft/weaponsmithing

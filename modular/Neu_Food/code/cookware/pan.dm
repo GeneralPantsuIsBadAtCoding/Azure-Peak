@@ -12,7 +12,6 @@
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	can_parry = TRUE
 	associated_skill = /datum/skill/craft/cooking // This make pan a "viable" weapon for cook with high hit / parry chance. Won't carry them alone ofc.
-	has_inspect_verb = TRUE // For snowflake and allowing you to examine the pan's properties lmao
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	force = 20
