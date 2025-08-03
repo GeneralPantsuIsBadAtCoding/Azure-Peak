@@ -1082,6 +1082,10 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"asl" = (
+/obj/structure/fluff/statue/knight/interior/r,
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/dragonden)
 "asp" = (
 /obj/structure/fluff/railing/border/west,
 /obj/structure/fluff/railing/border/north,
@@ -1596,12 +1600,9 @@
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/town/garrison)
 "aBL" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/structure/fluff/walldeco/painting/seraphina{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/goblinfort)
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/dragonden)
 "aBN" = (
 /obj/structure/fluff/railing/corner/south_west,
 /turf/open/floor/rogue/blocks,
@@ -5879,12 +5880,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods/southwest)
-"bTH" = (
-/obj/structure/fluff/walldeco/painting{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/goblinfort)
 "bTI" = (
 /obj/structure/fluff/railing/wood{
 	pixel_y = -8
@@ -6265,6 +6260,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
+"cbq" = (
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/dragonden)
 "cbr" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner/dir8,
 /area/rogue/indoors/town/dwarfin)
@@ -6852,7 +6851,8 @@
 	redstone_id = "dragonentry"
 	},
 /obj/effect/oneway/baroness{
-	dir = 1
+	dir = 1;
+	opacity = 1
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
@@ -7740,11 +7740,12 @@
 /area/rogue/under/cave/dungeon1/gethsmane)
 "cAR" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/oneway/baroness{
-	dir = 1
-	},
 /obj/structure/bars/passage/steel{
 	redstone_id = "dragonentry"
+	},
+/obj/effect/oneway/baroness{
+	dir = 1;
+	opacity = 1
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
@@ -13679,11 +13680,11 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/magician)
 "exo" = (
-/obj/structure/fluff/railing/border{
-	dir = 4
+/obj/structure/fluff/walldeco/painting{
+	pixel_y = 32
 	},
-/turf/open/floor/rogue/church,
-/area/rogue/under/cave/dragonden)
+/turf/open/floor/rogue/blocks,
+/area/rogue/under/cave/goblinfort)
 "exs" = (
 /obj/structure/stairs/fancy/l{
 	dir = 1
@@ -27887,10 +27888,8 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/goblindungeon)
 "iYH" = (
-/obj/structure/fluff/railing/border{
-	dir = 8
-	},
-/turf/open/floor/rogue/church,
+/obj/structure/bars,
+/turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/dragonden)
 "iYL" = (
 /obj/machinery/light/rogue/forge,
@@ -47768,7 +47767,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/rtfield)
 "pxI" = (
-/obj/structure/fluff/railing/corner/south_west,
+/obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/dragonden)
 "pxY" = (
@@ -48905,10 +48904,6 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
-"pRl" = (
-/obj/structure/fluff/statue/knight/interior/r,
-/turf/open/floor/rogue/church,
-/area/rogue/under/cave/dragonden)
 "pRm" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/ocean,
@@ -49878,8 +49873,10 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
 "qjj" = (
-/obj/structure/stairs/stone,
-/turf/open/floor/rogue/naturalstone,
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/church,
 /area/rogue/under/cave/dragonden)
 "qjk" = (
 /obj/structure/mineral_door/wood{
@@ -50300,9 +50297,12 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "qpS" = (
-/obj/structure/stairs/stone,
-/turf/open/floor/rogue/churchmarble,
-/area/rogue/under/cave/dragonden)
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/fluff/walldeco/painting/seraphina{
+	pixel_y = 32
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/under/cave/goblinfort)
 "qpX" = (
 /obj/effect/decal/mossy{
 	dir = 4
@@ -69328,7 +69328,9 @@
 /turf/closed/wall/mineral/rogue/decostone/long,
 /area/rogue/indoors/town/manor)
 "wsh" = (
-/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/dragonden)
 "wsi" = (
@@ -70321,8 +70323,8 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/mountains/decap)
 "wIT" = (
-/obj/structure/fluff/railing/corner/south_east,
-/turf/open/floor/rogue/church,
+/obj/structure/stairs/stone,
+/turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/dragonden)
 "wIU" = (
 /obj/structure/hotspring/border/two,
@@ -73103,8 +73105,8 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/outdoors/beach/north)
 "xGm" = (
-/obj/machinery/light/rogue/firebowl/church,
-/turf/open/floor/rogue/churchmarble,
+/obj/structure/stairs/stone,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "xGy" = (
 /obj/structure/bed/rogue/inn{
@@ -74848,7 +74850,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "ykb" = (
-/obj/structure/bars,
+/obj/machinery/light/rogue/firebowl/church,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/dragonden)
 "ykl" = (
@@ -310956,7 +310958,7 @@ qTf
 qTf
 qTf
 fZg
-qTf
+mIf
 qTf
 qTf
 qTf
@@ -311408,10 +311410,10 @@ ozJ
 qTf
 qTf
 qTf
-qTf
-qTf
+mIf
 qTf
 pSV
+qTf
 qTf
 enr
 wHi
@@ -311860,7 +311862,7 @@ qTf
 pSV
 qTf
 qTf
-qTf
+mIf
 qTf
 qTf
 qTf
@@ -313670,7 +313672,7 @@ qTf
 cmz
 qTf
 qTf
-qjj
+xGm
 enr
 enr
 wHi
@@ -314122,7 +314124,7 @@ qTf
 cAR
 qTf
 fqn
-qjj
+xGm
 enr
 enr
 wHi
@@ -314574,7 +314576,7 @@ qTf
 cmz
 qTf
 qTf
-qjj
+xGm
 enr
 enr
 wHi
@@ -315026,7 +315028,7 @@ qTf
 cmz
 qTf
 rrZ
-qjj
+xGm
 enr
 enr
 wHi
@@ -316832,7 +316834,7 @@ qTf
 pSV
 qTf
 qTf
-qTf
+mIf
 qTf
 qTf
 qTf
@@ -317284,10 +317286,10 @@ ozJ
 qTf
 qTf
 qTf
-qTf
-qTf
+mIf
 qTf
 pSV
+qTf
 qTf
 enr
 wHi
@@ -317736,7 +317738,7 @@ qTf
 qTf
 qTf
 iTe
-qTf
+mIf
 qTf
 qTf
 qTf
@@ -423035,8 +423037,8 @@ ogs
 (6,1,4) = {"
 qlb
 enr
-ykb
-ykb
+iYH
+iYH
 xij
 jks
 jks
@@ -424391,9 +424393,9 @@ ogs
 (9,1,4) = {"
 qlb
 enr
-ykb
-ykb
-ykb
+iYH
+iYH
+iYH
 jks
 jks
 jks
@@ -424848,7 +424850,7 @@ enr
 enr
 vSK
 kmT
-pRl
+asl
 enr
 dEE
 uUv
@@ -428028,7 +428030,7 @@ enr
 jks
 nuV
 jks
-xGm
+ykb
 enr
 enr
 uUv
@@ -428476,11 +428478,11 @@ qlb
 qlb
 qlb
 enr
-xGm
-wIT
-exo
-exo
-exo
+ykb
+pxI
+wsh
+wsh
+wsh
 kmT
 enr
 dEE
@@ -428929,10 +428931,10 @@ qlb
 qlb
 enr
 nuV
-wsh
+aBL
 lHb
 lHb
-qpS
+wIT
 jks
 mIf
 dEE
@@ -429381,10 +429383,10 @@ qlb
 qlb
 enr
 jks
-wsh
+aBL
 lHb
 lHb
-qpS
+wIT
 jks
 mIf
 vVj
@@ -429833,10 +429835,10 @@ qlb
 qlb
 enr
 jks
-wsh
+aBL
 lHb
 lHb
-qpS
+wIT
 jks
 mIf
 vVj
@@ -430285,10 +430287,10 @@ qlb
 qlb
 enr
 nuV
-wsh
+aBL
 lHb
 lHb
-qpS
+wIT
 jks
 mIf
 dEE
@@ -430736,11 +430738,11 @@ qlb
 qlb
 qlb
 enr
-xGm
-pxI
-iYH
-iYH
-iYH
+ykb
+cbq
+qjj
+qjj
+qjj
 kmT
 enr
 dEE
@@ -431192,7 +431194,7 @@ enr
 jks
 nuV
 jks
-xGm
+ykb
 enr
 enr
 uUv
@@ -474173,7 +474175,7 @@ cmU
 mZf
 uPk
 mQP
-bTH
+exo
 hxX
 yfi
 yfi
@@ -475529,7 +475531,7 @@ cmU
 mJG
 uPk
 mQP
-aBL
+qpS
 hxX
 hwa
 xCS
