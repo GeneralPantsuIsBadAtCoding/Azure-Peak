@@ -45512,7 +45512,6 @@
 /area/rogue/indoors/town)
 "oLz" = (
 /obj/structure/bed/rogue/shit,
-/obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/goblindungeon)
 "oLB" = (
