@@ -6418,6 +6418,12 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
+"cdl" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "cdn" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/dirt,
@@ -21896,6 +21902,13 @@
 /obj/item/chair/stool/bar/rogue,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
+"hbm" = (
+/obj/structure/fluff/railing/corner,
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "hbr" = (
 /obj/structure/flora/roguegrass,
 /obj/structure/flora/ausbushes/brflowers,
@@ -30207,6 +30220,11 @@
 /obj/machinery/light/rogue/wallfire/candle/off/r,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
+"jHq" = (
+/turf/open/floor/rogue/metal{
+	icon_state = "plating2"
+	},
+/area/rogue/outdoors/woods/northeast)
 "jHt" = (
 /obj/structure/closet/crate/chest/neu,
 /turf/open/floor/rogue/cobble,
@@ -53820,6 +53838,9 @@
 "rna" = (
 /obj/structure/fluff/railing/corner{
 	dir = 10
+	},
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
@@ -271323,9 +271344,9 @@ uYI
 uYI
 uYI
 uYI
-rTj
-kZf
-kZf
+bVJ
+jHq
+jHq
 kZf
 kZf
 kZf
@@ -271768,13 +271789,13 @@ ebU
 ebU
 ebU
 acZ
-wSH
+uYI
 fNm
 emI
 emI
 emI
+kud
 uYI
-wSH
 rTj
 kZf
 kZf
@@ -272220,13 +272241,13 @@ ebU
 ebU
 ebU
 acZ
-uYI
+wSH
 wVP
 emI
 emI
 emI
 uYI
-kud
+wSH
 rTj
 kZf
 kZf
@@ -273579,7 +273600,7 @@ iuG
 qaQ
 qaQ
 acZ
-wSH
+uYI
 rTj
 qaQ
 qaQ
@@ -274030,7 +274051,7 @@ ebU
 rPL
 csA
 csA
-bsY
+hbm
 uYI
 rna
 csA
@@ -391552,7 +391573,7 @@ vps
 oUy
 joO
 uYI
-uYI
+cdl
 uYI
 jIT
 mmk
