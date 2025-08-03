@@ -50,9 +50,10 @@
 
 /obj/item/clothing/shoes/roguetown/boots/aalloy
 	name = "decrepit boots"
-	desc = "decrepit old leather boots."
+	desc = "Frayed bronze greaves, shingled atop boots of rotted leather. The toebones of its former legionnaire rattle about with every step taken."
 	max_integrity = 40
 	icon_state = "ancientboots"
+	color = "#bb9696"
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	name = "psydonian boots"
@@ -151,8 +152,9 @@
 
 /obj/item/clothing/shoes/roguetown/sandals/aalloy
 	name = "decrepit sandals"
-	desc = "Surely Psydon himself could've worn these sandals."
+	desc = "Sandals of frayed bronze, bereft of its wooden coverings. The beaches it once walked upon are no more; where there was once pearled sand, only glassy trinitite from SYON's impact remains."
 	icon_state = "ancientsandals"
+	color = "#bb9696"
 
 /obj/item/clothing/shoes/roguetown/shalal
 	name = "babouche"
