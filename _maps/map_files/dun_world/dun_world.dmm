@@ -70282,6 +70282,12 @@
 	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/mountains/decap)
+"wIT" = (
+/obj/structure/bars/passage/steel{
+	redstone_id = "dragonentry"
+	},
+/turf/open/floor/rogue/churchmarble,
+/area/rogue/under/cave/dragonden)
 "wIU" = (
 /obj/structure/hotspring/border/two,
 /turf/open/floor/rogue/grassred,
@@ -428888,7 +428894,7 @@ lHb
 lHb
 kmT
 jks
-mIf
+wIT
 dEE
 dEE
 dEE
@@ -429340,7 +429346,7 @@ lHb
 lHb
 kmT
 jks
-mIf
+wIT
 vVj
 vVj
 vVj
@@ -429792,7 +429798,7 @@ lHb
 lHb
 kmT
 jks
-mIf
+wIT
 vVj
 vVj
 vVj
@@ -430244,7 +430250,7 @@ lHb
 lHb
 kmT
 jks
-mIf
+wIT
 dEE
 dEE
 dEE
