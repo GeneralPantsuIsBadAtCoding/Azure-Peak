@@ -242,6 +242,7 @@
 			if(I.broken && !I.bloody)
 				visible_message(span_warning("[user] sends something."))
 				budget2change(2, user, "MARQUE")
+				qdel(I)
 				GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
 				playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
 				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)	
