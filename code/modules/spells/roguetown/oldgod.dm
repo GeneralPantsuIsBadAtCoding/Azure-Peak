@@ -230,7 +230,9 @@
 				to_chat(user, "This one has pledged themselves whole. There's nothing to ABSOLVE.")
 				revert_cast()
 				return FALSE	
-			if(alert(user, "REACH OUT AND PULL?", "THERE'S NO LUX IN THERE", "YES", "NO") != "NO")	
+				if(alert(user, "REACH OUT AND PULL?", "THERE'S NO LUX IN THERE", "YES", "NO") != "YES")	
+					revert_cast()
+					return
 				to_chat(user, span_warning("You attempt to revive [H] by ABSOLVING them!"))
 				// Dramatic effect
 				user.visible_message(span_danger("[user] grabs [H] by the wrists, attempting to ABSOLVE them!"))
