@@ -8143,6 +8143,10 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/woods/southeast)
+"cGs" = (
+/obj/structure/closet/crate/chest,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors)
 "cGx" = (
 /obj/structure/fluff/railing/corner/north_east,
 /turf/open/floor/rogue/woodturned,
@@ -59910,7 +59914,8 @@
 /obj/structure/fluff/railing/border/west,
 /obj/structure/winch{
 	name = "nautical wheel";
-	desc = "The centerpiece of any ship. You're not going anywhere without it."
+	desc = "The centerpiece of any ship. You're not going anywhere without it.";
+	pixel_x = -3
 	},
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/beach)
@@ -276705,7 +276710,7 @@ bwv
 bwv
 fEn
 qzu
-mmr
+cGs
 bwv
 bwv
 ebU
