@@ -21181,6 +21181,12 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"gRe" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "gRj" = (
 /obj/structure/rack/rogue/shelf,
 /obj/item/reagent_containers/glass/bottle/rogue{
@@ -30399,6 +30405,17 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/town)
+"jLq" = (
+/obj/structure/fluff/railing/border/west{
+	dir = 5;
+	pixel_x = -16
+	},
+/obj/structure/fluff/railing/border/west{
+	dir = 9;
+	pixel_x = 15
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/mountains)
 "jLr" = (
 /obj/structure/table/wood/poor,
 /obj/item/lockpick,
@@ -267186,7 +267203,7 @@ ebU
 acZ
 wVP
 uYI
-uYI
+csA
 uYI
 uYI
 rTj
@@ -381992,7 +382009,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+pOt
 aBB
 aBB
 aBB
@@ -382445,12 +382462,12 @@ aBB
 aBB
 aBB
 aBB
-aBB
-aBB
-aBB
-aBB
-aBB
-aBB
+bSS
+bSS
+jjR
+bSS
+bSS
+jLq
 aBB
 aBB
 aBB
@@ -382896,7 +382913,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+bvq
 aBB
 aBB
 aBB
@@ -390583,7 +390600,7 @@ oUy
 jIT
 uYI
 uYI
-uYI
+gRe
 uYI
 uYI
 wVP
@@ -391035,8 +391052,8 @@ acZ
 lSg
 wVP
 uYI
+csA
 joO
-uYI
 uYI
 lSg
 rTj
@@ -497708,7 +497725,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+ppz
 aBB
 aBB
 aBB
@@ -505841,7 +505858,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+pOt
 aBB
 aBB
 aBB
@@ -506294,12 +506311,12 @@ aBB
 aBB
 aBB
 aBB
-aBB
-aBB
-aBB
-aBB
-aBB
-aBB
+bSS
+bSS
+rep
+bSS
+bSS
+vNk
 aBB
 aBB
 aBB
@@ -506745,7 +506762,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+bvq
 aBB
 aBB
 aBB
