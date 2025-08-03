@@ -262,6 +262,28 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	return TRUE
 
+/mob/living/carbon/human/proc/churchecancurse(var/mob/living/carbon/human/H, apostasy = FALSE)
+	if (!H.devotion && apostasy)
+		to_chat(src, span_warning("This one's connection to the ten is too shallow."))
+		return FALSE
+
+	//Dendor works in mysterious ways.
+	if (istype(H.patron, /datum/patron/divine/dendor))
+		to_chat(src, span_warning("The mad god Dendor is felt strongly. The wolf in this one burns too brightly to be quelled."))
+		return FALSE
+
+	//Abyssor's clergy are gripped by his dream.
+	if (istype(H.patron, /datum/patron/divine/abyssor))
+		to_chat(src, span_warning("The Dreamer, Abyssor has his clutches grasped firmly around this one. The light of the ten does not penetrate the depths."))
+		return FALSE
+
+	//Let's not curse heretical antags.
+	if(HAS_TRAIT(H, TRAIT_HERESIARCH))
+		to_chat(src, span_warning("The patron of this one shields them from being suppressed."))
+		return FALSE
+
+	return TRUE
+
 /mob/living/carbon/human/proc/churcheapostasy(var/mob/living/carbon/human/H in GLOB.player_list)
 	set name = "Apostasy"
 	set category = "Priest"
@@ -304,11 +326,16 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		if (!COOLDOWN_FINISHED(src, priest_apostasy))
 			to_chat(src, span_warning("You must wait until you can mark another."))
 			return
+
+		//Check if we can curse this person.
+		if(!churchecancurse(H))
+			return
+
 		found = TRUE
 		GLOB.apostasy_players += inputty
 		COOLDOWN_START(src, priest_apostasy, PRIEST_APOSTASY_COOLDOWN)
 
-		if (istype(H.patron, /datum/patron/divine) && H.devotion)
+		if (istype(H.patron, /datum/patron/divine))
 			H.devotion.excommunicate()
 			H.apply_status_effect(/datum/status_effect/debuff/apostasy)
 			H.add_stress(/datum/stressevent/apostasy)
@@ -371,7 +398,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	if (H.real_name == inputty)
 		if (!COOLDOWN_FINISHED(src, priest_excommunicate))
 			to_chat(src, span_warning("You must wait until you can excommunicate another."))
-			return
+			return // Anybody can still be excommunicated, so no extra checks here since it's purely RP and not mechanical.
 		found = TRUE
 		ADD_TRAIT(H, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
 		COOLDOWN_START(src, priest_excommunicate, PRIEST_EXCOMMUNICATION_COOLDOWN)
@@ -451,6 +478,11 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 			if (!COOLDOWN_FINISHED(src, priest_curse))
 				to_chat(src, span_warning("You must wait before invoking a curse again."))
 				return
+
+			//Check if we can curse this person.
+			if(!churchecancurse(H))
+				return
+
 			COOLDOWN_START(src, priest_curse, PRIEST_CURSE_COOLDOWN)
 			H.add_curse(curse_type)
 			

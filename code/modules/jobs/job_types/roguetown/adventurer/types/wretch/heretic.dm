@@ -42,6 +42,8 @@
 	H.change_stat("strength", 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
 	H.change_stat("constitution", 2)
 	H.change_stat("endurance", 1)
+	// You can convert those the church has shunned.
+	H.verbs |= /mob/living/carbon/human/proc/absolve_heretic
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
 		if(H.mind)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
@@ -81,3 +83,114 @@
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
 		if(/datum/patron/inhumen/graggar)
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
+
+/mob/living/carbon/human
+	COOLDOWN_DECLARE(heretic_absolve)
+
+/mob/living/carbon/human/proc/absolve_heretic()
+	set name = "Convert The Downtrodden"
+	set category = "Heretic"
+
+	if(stat)
+		return
+
+	if(!HAS_TRAIT(src, TRAIT_HERESIARCH))
+		to_chat(src, span_warning("You lack the dark knowledge for this ritual."))
+		return
+
+	if(!COOLDOWN_FINISHED(src, heretic_absolve))
+		to_chat(src, span_warning("You must wait before performing this ritual again."))
+		return
+
+	var/target_name = input("Absolve a soul from divine punishment", "Target Name") as text|null
+	if(!target_name)
+		return
+
+	if(!mind || !mind.do_i_know(name = target_name))
+		to_chat(src, span_warning("You don't know anyone by that name."))
+		return
+
+	// Find the actual mob if online
+	var/mob/living/carbon/human/target
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(H.real_name == target_name)
+			target = H
+			break
+
+	//Using this to check whether the target is valid for absolving.
+	var/absolved = FALSE
+	//Prevents being able to convert people that weren't excommunicated.
+	if(target_name in GLOB.excommunicated_players && !HAS_TRAIT(target, TRAIT_EXCOMMUNICATED))
+		to_chat(src, span_warning("This one was already freed from injustice long ago."))
+		return
+	else
+		//They were excommunicated, we can accept them into our flock.
+		absolved = TRUE
+
+	// Remove from global lists
+	if(target_name in GLOB.apostasy_players)
+		GLOB.apostasy_players -= target_name
+		absolved = TRUE
+
+	if(!target)
+		to_chat(src, span_warning("Could not find [target_name]."))
+		return
+
+	// Get target's consent
+	var/consent = alert(target, "[src.real_name] is trying to convert you to their patron, [src.patron.name]. Do you accept?", "Conversion Request", "Yes", "No")
+	if(consent != "Yes")
+		to_chat(src, span_warning("[target_name] refused your offer of conversion."))
+		return
+
+	// Remove divine punishments
+	target.remove_status_effect(/datum/status_effect/debuff/apostasy)
+	target.remove_status_effect(/datum/status_effect/debuff/excomm)
+	target.remove_stress(/datum/stressevent/apostasy)
+	target.remove_stress(/datum/stressevent/excommunicated)
+
+	// Remove divine curses
+	for(var/datum/curse/C in target.curses)
+		target.remove_curse(C)
+		absolved = TRUE
+
+	// Save devotion state if exists
+	var/saved_level = CLERIC_T0
+	var/saved_devotion = 0
+	var/saved_progression = 0
+	var/saved_devotion_gain = 0
+	if(target.devotion)
+		saved_level = target.devotion.level
+		saved_devotion = target.devotion.devotion
+		saved_progression = target.devotion.progression
+		saved_devotion_gain = target.devotion.passive_devotion_gain
+		// Remove all granted spells
+		for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
+			target.mind.RemoveSpell(S)
+		qdel(target.devotion)
+
+	// Change patron
+	target.patron = src.patron
+	to_chat(target, span_userdanger("Your soul now belongs to [src.patron.name]!"))
+
+	// Grant new devotion
+	var/datum/devotion/new_devotion = new /datum/devotion(target, target.patron)
+	new_devotion.grant_miracles(
+		target,
+		cleric_tier = saved_level,
+		passive_gain = saved_devotion_gain,
+		start_maxed = FALSE
+	)
+	new_devotion.devotion = saved_devotion
+	new_devotion.progression = saved_progression
+	new_devotion.try_add_spells(silent = TRUE)
+
+	if(absolved)
+		to_chat(src, span_danger("You've converted [target_name] to [src.patron.name] and restored their divine connection!"))
+		//Multiple heretics possible but only one priest, the cooldown should probably be long.
+		COOLDOWN_START(src, heretic_absolve, 60 MINUTES)
+	else
+		to_chat(src, span_danger("You've converted [target_name] to [src.patron.name]!"))
+
+	ADD_TRAIT(target, TRAIT_HERESIARCH, TRAIT_GENERIC)
+	// Just in case let's excommunicate them here again so they actually show up as a heretic..
+	ADD_TRAIT(target, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
