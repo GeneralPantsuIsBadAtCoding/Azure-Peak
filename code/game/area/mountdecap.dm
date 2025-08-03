@@ -82,6 +82,7 @@
 
 /area/rogue/outdoors/mountains/decap/gunduzirak/bossarena
  	name = "Baronness Boss Arena"
+	first_time_text = "THE BARONESS"
 
 
 /area/rogue/outdoors/mountains/decap/gunduzirak/bossarena/can_craft_here()

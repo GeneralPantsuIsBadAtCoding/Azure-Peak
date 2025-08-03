@@ -343,6 +343,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/under/cave/licharena/bossroom
 	name = "licharenaboss"
+	first_time_text = "THE LICH"
 
 /area/rogue/under/cave/licharena/bossroom/can_craft_here()
 	return FALSE
