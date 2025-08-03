@@ -273,4 +273,4 @@
 	desc = "A mass of wrought bronze, rendered lame from the forge's heat. Sometimes, dead is better."
 	icon_state = "ancientslag"
 	smeltresult = /obj/item/ingot/aaslag
-	sellprice = 11
+	sellprice = 1
