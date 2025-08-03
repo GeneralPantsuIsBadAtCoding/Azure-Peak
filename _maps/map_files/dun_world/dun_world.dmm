@@ -10909,10 +10909,6 @@
 /obj/structure/fluff/railing/border/east,
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/garrison)
-"dCR" = (
-/obj/structure/rogue/trophy/deer,
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/woods/northeast)
 "dDb" = (
 /obj/effect/landmark/quest_spawner/medium,
 /turf/open/floor/rogue/twig,
@@ -259968,7 +259964,7 @@ nHD
 ebU
 ebU
 kZf
-dCR
+kZf
 kZf
 kZf
 bhJ
