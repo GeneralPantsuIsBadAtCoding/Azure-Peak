@@ -104,21 +104,21 @@
 	return TRUE
 
 /datum/devotion/proc/try_add_spells(silent = FALSE)
-	if(length(patron.miracles))
+	if(!holder || !holder.mind)
+		return
+
+	if(patron && length(patron.miracles))
 		for(var/spell_type in patron.miracles)
-			if(patron.miracles[spell_type] <= level)
+			var/required_tier = patron.miracles[spell_type]			
+			if(required_tier <= level)
 				if(holder.mind.has_spell(spell_type))
 					continue
-				else
-					var/newspell = new spell_type
-					if(!silent)
-						to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
-					holder.mind.AddSpell(newspell)
-					LAZYADD(granted_spells, newspell)
-	if(length(patron.traits_tier))
-		for(var/trait in patron.traits_tier)
-			if(patron.traits_tier[trait] <= level)
-				ADD_TRAIT(holder, trait, TRAIT_MIRACLE)
+
+				var/obj/effect/proc_holder/spell/newspell = new spell_type
+				if(!silent)
+					to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
+				holder.mind.AddSpell(newspell)
+				LAZYADD(granted_spells, newspell)
 
 
 //The main proc that distributes all the needed devotion tweaks to the given class.
