@@ -25,13 +25,14 @@
 
 /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
 	name = "decrepit bolt"
-	desc = "a decrepit old bolt, the head is nearly in shambles. Aeon's grasp is upon it."
+	desc = "An ancient bolt, tipped with frayed bronze. It lacks the luster that it once held, many centuries ago."
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/aalloy
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
 	name = "ancient bolt"
-	desc = "A ancient bolt. Aeon's grasp has been lifted from its form."
+	desc = "An ancient bolt, tipped with polished gilbranze. Thrice-sharpened, it's certain to punch through most hauberks."
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
 
@@ -110,9 +111,10 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy 
 	name = "decrepit broadhead arrow"
-	desc = "A decrepit old arrow. Seems unlikely to penetrate anything."
+	desc = "An arrow; one end, tipped with flattened and frayed bronze - the other, inlaid with decayed feathers. It sunders flesh, not armor."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/iron/aalloy
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/arrow/steel
 	name = "steel bodkin arrow"
@@ -123,7 +125,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	name = "ancient bodkin arrow"
-	desc = "a bodkin formed of ancient metals. Aeon's grasp lifted from its form."
+	desc = "An arrow; one end, tipped with a sharpened rod of polished gilbranze - the other, inlaid with feathers. It sunders armor, not flesh."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/steel/paalloy
 
@@ -545,11 +547,13 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/aalloy
 	name = "decrepit javelin"
-	desc = "A decrepit old javelin, surely used centuries ago. Aeon's grasp is upon its form."
+	desc = "A spear of frayed bronze, weighted to be thrown - not thrusted."
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aalloy
 	throwforce = 20
 	force = 9
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
@@ -565,7 +569,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
-	desc = "A javelin made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "A spear of polished gilbranze, weighted to be thrown - not thrusted. A favored predecessor to bolts and arrows, championed by Zizo's undying legionnaires."
 	icon_state = "ajavelin"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -643,14 +647,15 @@
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
 	name = "decrepit sling bullet"
-	desc = "A decrepit ball of withered metal."
+	desc = "A pellet of frayed bronze."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/aalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
 	name = "ancient sling bullet"
-	desc = "A ancient ball of re-awakened metal."
+	desc = "A pellet of polished gilbranze, reawakened from its millenia of disuse."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/paalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
