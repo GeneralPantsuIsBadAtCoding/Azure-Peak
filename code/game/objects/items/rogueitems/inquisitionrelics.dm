@@ -948,6 +948,7 @@ Inquisitorial armory down here
 		if(user.pulling)
 			user.stop_pulling(FALSE)
 		if(HAS_TRAIT(target, TRAIT_GRABIMMUNE))
+			playsound(loc, pick('sound/items/garrote.ogg', 'sound/items/garrote2.ogg'), 65, TRUE)
 			user.visible_message(span_danger("[target] slips past [user]'s attempt to [src] them!"))
 			return
 		victim = target	
@@ -1042,6 +1043,7 @@ Inquisitorial armory down here
 	user.visible_message(span_danger("[user] goes to [trained ? "expertly" : "clumsily"] black bag [M]!"))
 	if(HAS_TRAIT(M, TRAIT_GRABIMMUNE))
 		user.visible_message(span_danger("[M] slips past [user]'s attempt to black bag them!"))
+		playsound(M, pick('sound/misc/blackbag.ogg','sound/misc/blackbag2.ogg','sound/misc/blackbag3.ogg','sound/misc/blackbag4.ogg','sound/misc/blackbag5.ogg'), 100, TRUE, 4)
 		return
 	if(!M.stat)
 		if(HAS_TRAIT(user, TRAIT_BLACKBAGGER) && !M.cmode)
