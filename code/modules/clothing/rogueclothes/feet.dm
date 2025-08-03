@@ -50,7 +50,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/aalloy
 	name = "decrepit boots"
-	desc = "Frayed bronze greaves, shingled atop boots of rotted leather. The toebones of its former legionnaire rattle about with every step taken."
+	desc = "Frayed bronze greaves, shingled atop boots of rotted leather. The toebones of its former legionnaire remain within, rattling about with every step taken."
 	max_integrity = 40
 	icon_state = "ancientboots"
 	color = "#bb9696"
@@ -152,7 +152,7 @@
 
 /obj/item/clothing/shoes/roguetown/sandals/aalloy
 	name = "decrepit sandals"
-	desc = "Sandals of frayed bronze, bereft of its wooden coverings. The beaches it once walked upon are no more; where there was once pearled sand, only glassy trinitite from SYON's impact remains."
+	desc = "Frayed bronze platforms, curled about to cradle the feet. The beaches that these sandals once treaded are no more; pearly sands, long since turnt to glass from the Comet Syon's impact."
 	icon_state = "ancientsandals"
 	color = "#bb9696"
 
