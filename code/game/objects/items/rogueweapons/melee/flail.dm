@@ -102,16 +102,18 @@
 
 /obj/item/rogueweapon/flail/aflail
 	name = "decrepit flail"
-	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp is upon its form."
+	desc = "A spiked ball of wrought bronze, chained to a rotwooden handle. Swing it a bit too hard, and there's a chance that the flailhead might completely fly off."
 	icon_state = "aflail"
 	force = 22
 	max_integrity = 175
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/flail/sflail/paflail
 	name = "ancient flail"
-	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp has been molded away from its form."
+	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. Pray to Her with every twirl; both to crumple maille, and to avoid giving yourself an explosive trepanation."
 	icon_state = "aflail"
 	smeltresult = /obj/item/ingot/aaslag
 
