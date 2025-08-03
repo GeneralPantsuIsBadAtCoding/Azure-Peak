@@ -18,12 +18,12 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 		return FALSE
 	return ambushable
 
-/mob/living/proc/consider_ambush(always = FALSE)
-	if(prob(100 - GLOB.ambush_chance_pct))
+/mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE)
+	if(!always && prob(100 - GLOB.ambush_chance_pct))
 		return
 	if(HAS_TRAIT(src, TRAIT_AZURENATIVE) && !always)
 		return
-	if(mob_timers["ambush_check"])
+	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)
 			return
 	mob_timers["ambush_check"] = world.time
