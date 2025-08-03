@@ -204,13 +204,15 @@
 
 /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 	name = "decrepit axe"
-	desc = "An axe which has fallen to Aeon's grasp. Withered and worn."
+	desc = "A hatchet of frayed bronze, weighted for chopping and tossing alike."
 	icon_state = "ahandaxe"
-	smeltresult = /obj/item/ingot/aalloy
 	force = 17
 	force_wielded = 20
 	max_integrity = 180
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/stoneaxe/hurlbat
 	name = "hurlbat"
@@ -304,7 +306,7 @@
 
 /obj/item/rogueweapon/stoneaxe/woodcut/steel/paaxe
 	name = "ancient alloy axe"
-	desc = "An ancient axe, Aeon's grasp has been lifted from it."
+	desc = "A hatchet of polished gilbranze. The palisades and walls of defenders-galore must be torn down, if Her will is to be imposed upon the unenlightened."
 	icon_state = "ahandaxe"
 	smeltresult = /obj/item/ingot/aaslag
 
