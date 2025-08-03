@@ -32,7 +32,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
 	name = "ancient bolt"
-	desc = "An ancient bolt, tipped with polished gilbranze. Thrice-sharpened, it's certain to punch through most hauberks."
+	desc = "An ancient bolt, tipped with polished gilbranze. The razor-thin tip resembles a sabot more than an arrowhead; something that most alloys cannot reliably withstand."
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
 
@@ -111,7 +111,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy 
 	name = "decrepit broadhead arrow"
-	desc = "An arrow; one end, tipped with flattened and frayed bronze - the other, inlaid with decayed feathers. It sunders flesh, not armor."
+	desc = "An arrow; one end, tipped with flattened and frayed bronze - the other, inlaid with decayed feathers. The alloy's decrepity forces it to burst into shrapnel upon impact, shredding flesh."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/iron/aalloy
 	color = "#bb9696"
@@ -125,7 +125,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	name = "ancient bodkin arrow"
-	desc = "An arrow; one end, tipped with a sharpened rod of polished gilbranze - the other, inlaid with feathers. It sunders armor, not flesh."
+	desc = "An arrow; one end, tipped with a sharpened rod of polished gilbranze - the other, inlaid with feathers. The razor-thin tip resembles a sabot; an alloyed sliver that can punch straight through steel."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/steel/paalloy
 
@@ -547,7 +547,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/aalloy
 	name = "decrepit javelin"
-	desc = "A spear of frayed bronze, weighted to be thrown - not thrusted."
+	desc = "A missile of frayed bronze. Before you is your weapon; that which rose Man out of the mud, and brought the Beasts of Old Syon to heel. When were you last aware of any other part of you? Do you recall seeing the world in any other way?"
 	icon_state = "ajavelin"
 	throwforce = 20
 	force = 9
@@ -569,7 +569,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
-	desc = "A spear of polished gilbranze, weighted to be thrown - not thrusted. A favored predecessor to bolts and arrows, championed by Zizo's undying legionnaires."
+	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -647,7 +647,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
 	name = "decrepit sling bullet"
-	desc = "A pellet of frayed bronze."
+	desc = "A pellet of frayed bronze. The alloy flakes apart in your grasp, staining the palm with flecks of brown-and-red."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/aalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
@@ -655,7 +655,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
 	name = "ancient sling bullet"
-	desc = "A pellet of polished gilbranze, reawakened from its millenia of disuse."
+	desc = "A pellet of polished gilbranze. The bigger they are, the harder they'll fall; be it Man or God."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/paalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
