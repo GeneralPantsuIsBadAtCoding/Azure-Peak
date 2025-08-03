@@ -11,7 +11,7 @@
 	)
 	var/list/kill_mobs = list(
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea,
-		/mob/living/carbon/human/species/skeleton/npc/ambush,
+		/mob/living/carbon/human/species/skeleton/npc/medium,
 		/mob/living/carbon/human/species/human/northern/searaider/ambush
 	)
 	var/miniboss_mobs = list(

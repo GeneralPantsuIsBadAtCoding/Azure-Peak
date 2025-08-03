@@ -196,8 +196,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///using spit emote spits the item out of our mouth and falls out after some time
 	var/spitoutmouth = TRUE
 
-	var/has_inspect_verb = FALSE
-
 	///The appropriate skill to repair this obj/item. If null, our object cannot be placed on an anvil to be repaired
 	var/anvilrepair
 	//this should be true or false
@@ -251,9 +249,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!pixel_x && !pixel_y && !bigboy)
 		pixel_x = rand(-5,5)
 		pixel_y = rand(-5,5)
-		
-	if(twohands_required)
-		has_inspect_verb = TRUE
 
 	if(grid_width <= 0)
 		grid_width = (w_class * world.icon_size)
@@ -494,7 +489,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
 		
-		if(intdamage_factor)
+		if(intdamage_factor && force >= 5)
 			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]%"
 
 //**** CLOTHING STUFF
@@ -552,9 +547,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/simpleton_price = FALSE
 
 /obj/item/get_inspect_button()
-	if(has_inspect_verb || (obj_integrity < max_integrity))
-		return " <span class='info'><a href='?src=[REF(src)];inspect=1'>{?}</a></span>"
-	return ..()
+	return " <span class='info'><a href='?src=[REF(src)];inspect=1'>{?}</a></span>"
 
 
 /obj/item/interact(mob/user)

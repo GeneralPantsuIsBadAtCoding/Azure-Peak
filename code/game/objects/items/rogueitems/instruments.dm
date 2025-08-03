@@ -330,3 +330,19 @@
 	"The Power (Whistling)" = 'sound/music/instruments/vocalsx (2).ogg',
 	"Bard Dance (Whistling)" = 'sound/music/instruments/vocalsx (3).ogg',
 	"Old Time Battles (Whistling)" = 'sound/music/instruments/vocalsx (4).ogg')
+
+/obj/item/rogue/instrument/shamisen
+	name = "shamisen"
+	desc = "The shamisen, or simply «three strings», is an kazengunese stringed instrument with a washer, which is usually played with the help of a bachi."
+	icon_state = "shamisen"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	song_list = list(
+	"Cursed Apple" = 'sound/music/instruments/shamisen (1).ogg',
+	"Fire Dance" = 'sound/music/instruments/shamisen (2).ogg',
+	"Lute" = 'sound/music/instruments/shamisen (3).ogg',
+	"Tsugaru Ripple" = 'sound/music/instruments/shamisen (4).ogg',
+	"Tsugaru" = 'sound/music/instruments/shamisen (5).ogg',
+	"Season" = 'sound/music/instruments/shamisen (6).ogg',
+	"Parade" = 'sound/music/instruments/shamisen (7).ogg',
+	"Koshiro" = 'sound/music/instruments/shamisen (8).ogg')

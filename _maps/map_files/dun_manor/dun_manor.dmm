@@ -22907,7 +22907,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "pUJ" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains)
 "pUO" = (

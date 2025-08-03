@@ -1014,6 +1014,10 @@
 	name = "Sabitsuki"
 	icon_state = "sabitsuki"
 
+/datum/sprite_accessory/hair/head/sabitsuki_ponytail
+	name = "Sabitsuki (Ponytail)"
+	icon_state = "sabitsuki_ponytail"
+
 /datum/sprite_accessory/hair/head/cotton
 	name = "Cotton"
 	icon_state = "cotton"

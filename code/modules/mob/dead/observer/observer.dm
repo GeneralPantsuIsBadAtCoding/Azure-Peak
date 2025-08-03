@@ -203,7 +203,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			continue
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
-
+	become_hearing_sensitive()
 	. = ..()
 
 	grant_all_languages()

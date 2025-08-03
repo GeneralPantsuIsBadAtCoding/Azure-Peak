@@ -13,6 +13,7 @@
 	equip_delay_self = 30
 	resistance_flags = FIRE_PROOF
 	experimental_inhand = FALSE
+	salvage_amount = 0
 
 /obj/item/clothing/shoes/roguetown/boots
 	name = "dark boots"
@@ -25,6 +26,7 @@
 	max_integrity = 80
 	sewrepair = TRUE
 	var/atom/movable/holdingknife = null
+	salvage_amount = 1
 	armor = ARMOR_BOOTS_BAD
 
 /obj/item/clothing/shoes/roguetown/boots/attackby(obj/item/W, mob/living/carbon/user, params)

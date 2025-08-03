@@ -7,7 +7,7 @@
 //	where you would want the updater procs below to run
 
 //	This also works with decimals.
-#define SAVEFILE_VERSION_MAX	31
+#define SAVEFILE_VERSION_MAX	32
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -133,6 +133,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			S["facial_style_name"]	>> facial_hairstyle
 	if(current_version < 30)
 		S["voice_color"]		>> voice_color
+	if(current_version < 32) // Update races
+		var/species_name
+		S["species"] >> species_name
+		testing("Save version < 32, updating [species_name].")
+		if(species_name)
+			var/newtype = GLOB.species_list[species_name]
+			if(!newtype)
+				if(species_name == "Sissean")
+					testing("Updating to Zardman.")
+					species_name = "Zardman"
+
+		_load_species(S, species_name)		
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -181,7 +193,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["shake"]				>> shake
 	S["mastervol"]			>> mastervol
 	S["lastclass"]			>> lastclass
-	S["prefer_old_chat"]	>> prefer_old_chat
 
 
 	S["default_slot"]		>> default_slot
@@ -325,14 +336,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["key_bindings"], key_bindings)
-	WRITE_FILE(S["prefer_old_chat"], prefer_old_chat)
 	return TRUE
 
 
-/datum/preferences/proc/_load_species(S)
-	var/species_name
+/datum/preferences/proc/_load_species(S, species_name = null)
 	testing("begin _load_species()")
-	S["species"] >> species_name
+	if(!species_name)
+		S["species"] >> species_name
+
 	if(species_name)
 		var/newtype = GLOB.species_list[species_name]
 		if(newtype)

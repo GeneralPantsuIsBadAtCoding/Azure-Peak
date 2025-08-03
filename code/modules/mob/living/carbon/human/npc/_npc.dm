@@ -46,6 +46,12 @@
 	/// When above this amount of stamina (Stamina is stamina damage), the NPC will not attempt to jump.
 	var/npc_max_jump_stamina = 50
 
+	// RETREATING
+	/// Above this percentage of stamloss, retreat to regain stamina.
+	var/stamina_retreat_threshold = 0.8
+	/// Do not finish retreating until below this percentage of stamina loss.
+	var/stamina_finish_retreat_threshold = 0.6
+
 /mob/living/carbon/human/proc/IsStandingStill()
 	return doing || resisting || pickpocketing
 
@@ -81,9 +87,17 @@
 		if(!ai_when_client)
 			walk_to(src,0)
 			return TRUE //remove us from processing
-	cmode = 1
+	cmode = TRUE
 	update_cone_show()
 	steps_moved_this_turn = 0
+	// Manage mob state here, like mode/movement intent/etc.
+	if(stamina >= (max_stamina * stamina_retreat_threshold))
+		m_intent = MOVE_INTENT_WALK
+		cmode = FALSE // try to regen stamina!
+		// todo: switch_mode() that clears path, resets m_intent, clears autowalk?
+		mode = NPC_AI_RETREAT
+		walk_to(src,0)
+		clear_path()
 	if(resisting) // already busy from a prior turn! stop!
 		walk_to(src, 0)
 		NPC_THINK("Still resisting, passing turn!")
@@ -189,6 +203,9 @@
 
 /// Attempts to jump towards our next pathfinding step if it's far enough, or our target if we don't have a path planned.
 /mob/living/carbon/human/proc/npc_try_jump(force = FALSE)
+	if(throwing)
+		// Don't jump while ALREADY jumping!
+		return FALSE
 	if(!prob(npc_jump_chance))
 		return FALSE
 	if(next_move > world.time) // Jumped too recently!
@@ -305,6 +322,7 @@
 /// progress along an existing path or cancel it
 /// returns # of steps taken
 /mob/living/carbon/human/proc/move_along_path()
+	walk(src, 0) // cancel any other automated movement we're doing
 	if(!length(myPath))
 		// no path, quit early
 		NPC_THINK("Tried to move along a nonexistent path?!")
@@ -340,7 +358,7 @@
 			clear_path()
 			return
 		var/movespeed = cached_multiplicative_slowdown // this is recalculated on Moved() so we don't need to do it ourselves
-		if(!(mobility_flags & MOBILITY_MOVE) || IsDeadOrIncap() || IsStandingStill() || is_move_blocked_by_grab())
+		if(!(mobility_flags & MOBILITY_MOVE) || IsDeadOrIncap() || IsStandingStill() || throwing || is_move_blocked_by_grab())
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Waiting to move!")
 			sleep(1) // wait 1ds to see if we're finished/recovered
 			continue
@@ -647,7 +665,7 @@
 			else if(should_frustrate) // not next to perp, and we didn't fail due to reaction time
 				frustration++
 
-		if(NPC_AI_FLEE)
+		if(NPC_AI_FLEE, NPC_AI_RETREAT)
 			var/const/NPC_FLEE_DISTANCE = 8
 			if(!target || get_dist(src, target) >= NPC_FLEE_DISTANCE)
 				// try to flee from any enemies who aren't incapacitated
@@ -665,10 +683,16 @@
 					// we assume if we want to hurt them they want to hurt us back
 					if(should_target(bystander))
 						target = bystander // We're trying to run from this person now
-			if(!target || get_dist(src, target) >= NPC_FLEE_DISTANCE)
+			if(!target || (mode == NPC_AI_FLEE && get_dist(src, target) >= NPC_FLEE_DISTANCE))
 				NPC_THINK("Done fleeing!")
 				back_to_idle()
-			else if(!is_move_blocked_by_grab()) // try to run offscreen if we aren't being grabbed by someone else
+				return TRUE
+			else if(mode == NPC_AI_RETREAT && (stamina < (max_stamina * stamina_finish_retreat_threshold)))
+				NPC_THINK("Done retreating!")
+				mode = NPC_AI_HUNT // back into the fray!
+				walk_to(src, 0) // stop running off
+				return TRUE
+			else if(!throwing && !is_move_blocked_by_grab()) // try to run offscreen if we aren't being grabbed by someone else
 				NPC_THINK("Fleeing from [target]!")
 				// todo: use A* to find the shortest path to the farthest tile away from the flee target?
 				walk_away(src, target, NPC_FLEE_DISTANCE, cached_multiplicative_slowdown)

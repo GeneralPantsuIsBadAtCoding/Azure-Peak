@@ -197,6 +197,15 @@
 /turf/closed/wall/mineral/rogue/wooddark/end
 	icon_state = "endwooddark"
 
+/turf/closed/wall/mineral/rogue/wooddark/end/east
+	dir = 4
+
+/turf/closed/wall/mineral/rogue/wooddark/end/west
+	dir = 8
+
+/turf/closed/wall/mineral/rogue/wooddark/end/north
+	dir = 1
+
 /turf/closed/wall/mineral/rogue/wooddark/slitted
 	icon_state = "slittedwooddark"
 
@@ -311,6 +320,9 @@
 /turf/closed/wall/mineral/rogue/decostone/long
 	icon_state = "decostone-l"
 
+/turf/closed/wall/mineral/rogue/decostone/long/east_west
+	dir = 1
+
 /obj/structure/thronething
 	name = "decorated stone wall" // what is thronething??
 	icon = 'icons/turf/roguewall.dmi'
@@ -323,6 +335,15 @@
 
 /turf/closed/wall/mineral/rogue/decostone/end
 	icon_state = "decostone-e"
+
+/turf/closed/wall/mineral/rogue/decostone/end/north
+	dir = 1
+
+/turf/closed/wall/mineral/rogue/decostone/end/east
+	dir = 4
+
+/turf/closed/wall/mineral/rogue/decostone/end/west
+	dir = 8
 
 /turf/closed/wall/mineral/rogue/decostone/cand
 	icon_state = "decostone-cand"
@@ -424,6 +445,36 @@
 	baseturfs = list(/turf/open/floor/rogue/concrete)
 	climbdiff = 4
 	damage_deflection = 20
+
+/turf/closed/wall/mineral/rogue/pipe/corners
+	icon_state = "iron_corner"
+
+/turf/closed/wall/mineral/rogue/pipe/corners/one
+	dir = 1
+
+/turf/closed/wall/mineral/rogue/pipe/corners/four
+	dir = 4
+
+/turf/closed/wall/mineral/rogue/pipe/corners/eight
+	dir = 8
+
+/turf/closed/wall/mineral/rogue/pipe/joint
+	icon_state = "iron_joint"
+
+/turf/closed/wall/mineral/rogue/pipe/joint/one
+	dir = 1
+
+/turf/closed/wall/mineral/rogue/pipe/joint/four
+	dir = 4
+
+/turf/closed/wall/mineral/rogue/pipe/joint/eight
+	dir = 8
+
+/turf/closed/wall/mineral/rogue/pipe/line
+	icon_state = "iron_line"
+
+/turf/closed/wall/mineral/rogue/pipe/line/four
+	dir = 4
 
 /turf/closed/wall/mineral/rogue/stone/blue_moss
 	icon = 'icons/turf/walls/blue_mossy.dmi'

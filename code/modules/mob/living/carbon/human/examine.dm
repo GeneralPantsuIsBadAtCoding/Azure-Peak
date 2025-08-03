@@ -98,8 +98,8 @@
 		if(GLOB.lord_titles[name])
 			. += span_notice("[m3] been granted the title of \"[GLOB.lord_titles[name]]\".")
 
-		if(HAS_TRAIT(src, TRAIT_NOBLE))
-			if(HAS_TRAIT(user, TRAIT_NOBLE))
+		if(HAS_TRAIT(src, TRAIT_NOBLE) || HAS_TRAIT(src, TRAIT_DEFILED_NOBLE))
+			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_DEFILED_NOBLE))
 				. += span_notice("A fellow noble.")
 			else
 				. += span_notice("A noble!")

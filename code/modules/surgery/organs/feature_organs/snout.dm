@@ -19,7 +19,7 @@
 	name = "lupian snout"
 
 /obj/item/organ/snout/lizard
-	name = "sissean snout"
+	name = "zardman snout"
 
 /obj/item/organ/snout/vulpkanin
 	name = "vulpkian snout"

@@ -3,6 +3,7 @@
 	desc = "An absolute necessity."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "briefs"
+	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	break_sound = 'sound/foley/cloth_rip.ogg'
@@ -15,6 +16,8 @@
 	var/datum/bodypart_feature/underwear/undies_feature
 	var/covers_breasts = FALSE
 	sewrepair = TRUE
+	grid_height = 32
+	grid_width = 32
 
 /obj/item/undies/attack(mob/M, mob/user, def_zone)
 	if(ishuman(M))

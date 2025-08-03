@@ -337,3 +337,49 @@
 			break
 		else
 			continue
+
+/obj/effect/proc_holder/spell/invoked/raise_spirits_vengeance
+	name = "Avenging Spirits"
+	desc = "Summon rancorous spirits to tear at an opponent!"
+	range = 7
+	sound = list('sound/magic/magnet.ogg')
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	releasedrain = 40
+	chargetime = 30
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargedloop = /datum/looping_sound/invokeholy
+	gesture_required = TRUE 
+	associated_skill = /datum/skill/magic/holy
+	recharge_time = 2 MINUTES
+	hide_charge_effect = TRUE
+	miracle = TRUE
+	devotion_cost = 50
+	overlay_icon = 'icons/mob/actions/necramiracles.dmi'
+	overlay_state = "vengeful_spirit"
+	action_icon_state = "vengeful_spirit"
+	action_icon = 'icons/mob/actions/necramiracles.dmi'
+	invocation_type = "shout"
+	invocation = "Awaken, rancor!!"
+
+
+
+/obj/effect/proc_holder/spell/invoked/raise_spirits_vengeance/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		if(user.dir == SOUTH || user.dir == NORTH)
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, EAST),user)
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, WEST),user)
+		else
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_turf(user),user)
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, NORTH),user)
+			new /mob/living/simple_animal/hostile/rogue/spirit_vengeance(get_step(user, SOUTH),user)
+		for(var/mob/living/simple_animal/hostile/rogue/spirit_vengeance/swarm in view(2, user))
+			swarm.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target) 
+		return TRUE
+	revert_cast()
+	return FALSE
+

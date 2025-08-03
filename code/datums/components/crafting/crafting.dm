@@ -392,8 +392,12 @@
 								B.update_bundle()
 								switch(B.amount)
 									if(1)
-										new B.stacktype(B.loc)
+										var/mob/living/carbon/old_loc = B.loc
 										qdel(B)
+										var/new_item = new B.stacktype(old_loc)
+										// Put in the person's hands if there were holding it.
+										if(ishuman(old_loc))
+											old_loc.put_in_hands(new_item)
 									if(0)
 										qdel(B)
 								amt = 0

@@ -10,10 +10,6 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt,
-				/turf/open/floor/rogue/grass,
-				/turf/open/water)
 	//Minotaurs too strong for the lazy amount of places this area covers
 	ambush_mobs = list(
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 20,

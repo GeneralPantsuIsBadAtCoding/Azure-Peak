@@ -209,14 +209,42 @@
 	if(lay)
 		layer = lay
 
+/obj/structure/fluff/railing/border/north
+	dir = 1
+
+/obj/structure/fluff/railing/border/east
+	dir = 4
+
+/obj/structure/fluff/railing/border/west
+	dir = 8
+
 /obj/structure/fluff/railing/corner
-	icon_state = "railing_corner"
+	icon_state = "border"
 	density = FALSE
+	dir = 9
+
+/obj/structure/fluff/railing/corner/north_east
+	dir = 5
+
+/obj/structure/fluff/railing/corner/south_west
+	dir = 10
+
+/obj/structure/fluff/railing/corner/south_east
+	dir = 6
 
 /obj/structure/fluff/railing/wood
 	icon_state = "woodrailing"
 	blade_dulling = DULLING_BASHCHOP
 	layer = ABOVE_MOB_LAYER
+
+/obj/structure/fluff/railing/wood/north
+	dir = 1
+
+/obj/structure/fluff/railing/wood/east
+	dir = 4
+
+/obj/structure/fluff/railing/wood/west
+	dir = 8
 
 /obj/structure/fluff/railing/stonehedge
 	icon_state = "stonehedge"
@@ -566,6 +594,19 @@
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	pixel_y = 32
+
+/obj/structure/fluff/wallclock/attack_right(mob/user)
+	if(user.mind && isliving(user))
+		if(user.mind.special_items && user.mind.special_items.len)
+			var/item = input(user, "What will I take?", "STASH") as null|anything in user.mind.special_items
+			if(item)
+				if(user.Adjacent(src))
+					if(user.mind.special_items[item])
+						var/path2item = user.mind.special_items[item]
+						user.mind.special_items -= item
+						var/obj/item/I = new path2item(user.loc)
+						user.put_in_hands(I)
+			return
 
 /obj/structure/fluff/wallclock/Destroy()
 	if(soundloop)

@@ -15,12 +15,15 @@
 		has_rot = TRUE
 	else if (istype(target, /mob/living/carbon))
 		has_rot = check_bodyparts_for_rot(target)
+	else if (target.has_status_effect(/datum/status_effect/zombie_infection))
+		has_rot = TRUE
 
 	// Remove rot component
 	remove_rot_component(target)
 
 	// Remove Infected var
 	target.infected = FALSE
+	target.remove_status_effect(/datum/status_effect/zombie_infection)
 
 	// Clean body parts
 	clean_body_parts(target)

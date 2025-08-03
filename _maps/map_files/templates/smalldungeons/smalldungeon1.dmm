@@ -73,7 +73,7 @@
 "bn" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "bq" = (
@@ -178,7 +178,7 @@
 /area/rogue/under/cave/dungeon1)
 "dn" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "dq" = (
@@ -189,7 +189,7 @@
 /area/rogue/under/cave/dungeon1)
 "dA" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "dP" = (
@@ -220,12 +220,12 @@
 /area/rogue/under/cave/dungeon1)
 "eI" = (
 /obj/structure/fluff/walldeco/bigpainting,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "eJ" = (
 /obj/effect/decal/cobbleedge,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "eT" = (
@@ -247,7 +247,7 @@
 /area/rogue/under/cave/dungeon1)
 "fg" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "fl" = (
@@ -339,7 +339,7 @@
 /area/rogue/under/cave/dungeon1)
 "iz" = (
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "iA" = (
@@ -394,7 +394,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "jt" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "jQ" = (
@@ -426,7 +426,7 @@
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree/stick,
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "kT" = (
@@ -449,7 +449,7 @@
 /obj/item/grown/log/tree/stick,
 /obj/item/grown/log/tree/stick,
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "lu" = (
@@ -471,7 +471,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "lI" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/cave/dungeon1)
 "lR" = (
@@ -616,7 +616,7 @@
 /area/rogue/under/cave/dungeon1)
 "oR" = (
 /obj/structure/chair/bench/church/smallbench,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "oU" = (
@@ -798,7 +798,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "su" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/dungeon1)
 "sA" = (
@@ -834,7 +834,7 @@
 /area/rogue/under/cave/dungeon1)
 "tw" = (
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "tx" = (
@@ -960,7 +960,7 @@
 /area/rogue/under/cave/dungeon1)
 "vN" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "vT" = (
@@ -1092,7 +1092,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "ze" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dungeon1)
 "zh" = (
@@ -1375,7 +1375,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dungeon1)
 "Ek" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/under/cave/dungeon1)
 "Ey" = (
@@ -1460,7 +1460,7 @@
 "FH" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "Ge" = (
@@ -2082,7 +2082,7 @@
 "Vk" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/bubblegum,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "Vm" = (
@@ -2257,7 +2257,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dungeon1)
 "Zq" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/cave/dungeon1)
 "Zw" = (

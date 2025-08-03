@@ -148,7 +148,7 @@
 		icon_state = "[initial(icon_state)]_[sheathed.sheathe_icon]"
 	else
 		icon_state = "[initial(icon_state)]"
-	
+
 	if(user)
 		user.update_inv_hands()
 		user.update_inv_belt()
@@ -210,7 +210,7 @@
 					"eastabove" = 0,
 					"westabove" = 0
 				)
-			if("onbelt") 
+			if("onbelt")
 				return list(
 					"shrink" = 0.5,
 					"sx" = -2,
@@ -321,7 +321,7 @@
 					"wflip" = 8,
 					"eflip" = 0
 				)
-			if("onbelt") 
+			if("onbelt")
 				return list(
 					"shrink" = 0.5,
 					"sx" = -2,
@@ -392,7 +392,7 @@
 
 
 /obj/item/rogueweapon/scabbard/sword/kazengun/steel
-	name = "lenticular scabbard"
+	name = "hwang scabbard"
 	desc = "A cloud-patterned scabbard with a cloth sash. Used for blocking."
 	icon_state = "kazscab_steel"
 	item_state = "kazscab_steel"
@@ -400,7 +400,7 @@
 
 
 /obj/item/rogueweapon/scabbard/sword/kazengun/gold
-	name = "gold-stained kazengun scabbard"
+	name = "gold-stained Xinyi scabbard"
 	desc = "An ornate, wooden scabbard with a sash. Great for parrying."
 	icon_state = "kazscab_gold"
 	item_state = "kazscab_gold"

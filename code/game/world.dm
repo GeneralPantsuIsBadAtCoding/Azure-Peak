@@ -462,20 +462,11 @@ GLOBAL_VAR(restart_counter)
 	SStimer?.reset_buckets()
 
 /world/proc/init_byond_tracy()
-	var/library
-
-	switch (system_type)
-		if (MS_WINDOWS)
-			library = "prof.dll"
-		if (UNIX)
-			library = "libprof.so"
-		else
-			CRASH("Unsupported platform: [system_type]")
-
-	var/init_result = call_ext(library, "init")("block")
-	if (init_result != "0")
-		//para_tracy returns the filename on succesful init so this always runtimes, lol
-		CRASH("Error initializing byond-tracy: [init_result]")
+	var/tracy_init = call_ext(world.system_type == MS_WINDOWS ? "prof.dll" : "./libprof.so", "init")() // Setup Tracy integration
+	if(length(tracy_init) != 0 && tracy_init[1] == ".") // it returned the output file
+		log_world("TRACY Enabled, streaming to [tracy_init].")
+	else if(tracy_init != "0")
+		CRASH("Tracy init error: [tracy_init]")
 
 /world/proc/init_debugger()
 	var/dll = GetConfig("env", "AUXTOOLS_DEBUG_DLL")
