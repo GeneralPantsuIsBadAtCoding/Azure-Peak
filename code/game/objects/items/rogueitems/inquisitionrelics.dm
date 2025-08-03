@@ -1138,7 +1138,7 @@ Inquisitorial armory down here
 /obj/item/inqarticles/bmirror/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(usr, TRAIT_INQUISITION))
-		desc = "A mass-produced relic of the Otavan Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret."
+		desc = "A mass-produced relic of the Otavan Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret. One worth dying over, supposedly."
 	else
 		desc = ""
 
@@ -1180,7 +1180,7 @@ Inquisitorial armory down here
 	if(broken && !bloody)
 		to_chat(user, span_warning("The mirror has shattered, rendering it unusable. It's clean, at the very least."))
 		if(HAS_TRAIT(user, TRAIT_INQUISITION))
-			to_chat(user, span_notice("It's returnable via the HERMES now. I should get a Marque back."))
+			to_chat(user, span_notice("It's returnable via the HERMES now. I should get two Marques back."))
 		return	
 	if(bloody)
 		to_chat(user, span_warning("The mirror is fogged over. I need to clean the blood from it with cloth before reuse."))
@@ -1204,6 +1204,8 @@ Inquisitorial armory down here
 				playsound(src, 'sound/items/blackmirror_active.ogg', 100, FALSE)
 				openstate = "active"
 				addtimer(CALLBACK(src, PROC_REF(donefixating)), 2 MINUTES, TIMER_UNIQUE)
+				message_admins("SCRYING: [user.real_name] ([user.ckey]) has fixated on [target.real_name] ([target.ckey]) via black mirror.")
+				log_game("SCRYING: [user.real_name] ([user.ckey]) has fixated on [target.real_name] ([target.ckey]) via black mirror.")
 				soundloop.start()	
 				return update_icon()	
 			playsound(src, 'sound/items/blackmirror_no.ogg', 100, FALSE)
@@ -1217,8 +1219,6 @@ Inquisitorial armory down here
 	playsound(src, 'sound/items/blackmirror_use.ogg', 100, FALSE)
 	ADD_TRAIT(user, TRAIT_NOSSDINDICATOR, "blackmirror")
 	var/mob/dead/observer/screye/blackmirror/S = user.scry_ghost()
-//	message_admins("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
-//	log_game("SCRYING: [user.real_name] ([user.ckey]) looked at [lookat.real_name] ([lookat.ckey]) via black mirror.")
 	if(!S)
 		return
 	S.ManualFollow(lookat)
@@ -1368,6 +1368,7 @@ Inquisitorial armory down here
 	playsound(L, 'sound/items/blackeye.ogg', 100, FALSE)
 	return
 
+// FINISH THIS AT YOUR LEISURE. I'M JUST LEAVING IT HERE UNIMPLEMENTED. IT'S INTENDED TO WORK AS A COMBINATION OF THE NOC FAR-SIGHT AND THE NOCSHADES. HAVE FUN! - YISCHE
 /obj/item/inqarticles/spyglass
 	name = "otavan nocshade eyepiece"
 	desc = ""

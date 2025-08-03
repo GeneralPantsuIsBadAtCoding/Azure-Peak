@@ -236,6 +236,21 @@
 					to_chat(user, span_warning("I [inqonly ? "enable" : "disable"] the Puritan's Lock."))
 					return display_marquette(user)
 
+	if(istype(P, /obj/item/inqarticles/bmirror))		
+		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
+			var/obj/item/inqarticles/bmirror/I = P		
+			if(I.broken && !I.bloody)
+				visible_message(span_warning("[user] sends something."))
+				budget2change(2, user, "MARQUE")
+				GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
+				playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
+				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)	
+			else
+				if(!I.broken)
+					to_chat(user, (span_warning("It isn't broken.")))
+				if(I.broken)
+					to_chat(user, (span_warning("Clean it first.")))
+
 	if(istype(P, /obj/item/paper/inqslip/confession))
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
 			var/obj/item/paper/inqslip/confession/I = P
