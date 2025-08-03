@@ -161,3 +161,5 @@
 /obj/item/fishingrod/aalloy
 	name = "decrepit fishing rod"
 	icon_state = "arod"
+	color = "#bb9696"
+	sellprice = 15
