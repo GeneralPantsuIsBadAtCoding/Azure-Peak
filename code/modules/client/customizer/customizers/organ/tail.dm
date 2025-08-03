@@ -157,6 +157,7 @@
 		/datum/sprite_accessory/tail/lizard/spikes,
 		/datum/sprite_accessory/tail/rattlesnake,
 		/datum/sprite_accessory/tail/lynx,
+		/datum/sprite_accessory/tail/owl,
 		)
 
 /datum/customizer/organ/tail/anthro
@@ -225,4 +226,5 @@
 		/datum/sprite_accessory/tail/lizard/spikes,
 		/datum/sprite_accessory/tail/rattlesnake,
 		/datum/sprite_accessory/tail/lynx,
+		/datum/sprite_accessory/tail/owl,
 		)

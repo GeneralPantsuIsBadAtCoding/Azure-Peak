@@ -42,7 +42,7 @@
 	desc = "A cheap and simple gambeson coif meant to be worn on its own or under a helmet. It's better than nothing."
 	icon_state = "ccoif"
 	item_state = "ccoif"
-	color = null
+	color = "#ad977d"
 	flags_inv = HIDEHAIR
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
@@ -58,7 +58,7 @@
 	desc = "A heavier padded coif meant to be worn on its own or under a helmet. Layered properly, it can last through even the busiest of daes."
 	icon_state = "fullpadded"
 	item_state = "fullpadded"
-	color = null
+	color = "#976E6B"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT

@@ -58,7 +58,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
-	var/prefer_old_chat = FALSE
 
 	var/uses_glasses_colour = 0
 

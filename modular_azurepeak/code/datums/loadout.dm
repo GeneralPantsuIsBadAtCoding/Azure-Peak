@@ -291,6 +291,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Silky Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 
+/datum/loadout_item/noblecoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat
+
 /datum/loadout_item/leathervest
 	name = "Leather Vest"
 	path = /obj/item/clothing/suit/roguetown/armor/leather/vest
