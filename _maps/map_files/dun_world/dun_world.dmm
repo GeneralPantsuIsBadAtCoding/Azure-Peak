@@ -26289,6 +26289,7 @@
 /obj/effect/spawner/lootdrop/potion_stats,
 /obj/item/ingot/blacksteel,
 /obj/item/ingot/blacksteel,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "iyd" = (
