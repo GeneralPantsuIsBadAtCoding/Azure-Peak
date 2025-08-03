@@ -7817,6 +7817,11 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/mazedungeon)
+"cBd" = (
+/obj/structure/closet/crate/roguecloset/inn,
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/indoors)
 "cBf" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -15601,15 +15606,6 @@
 	dir = 4
 	},
 /area/rogue/indoors/shelter/woods)
-"eYX" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	max_integrity = 99999;
-	name = "Storage";
-	lockid = "vesseldeck"
-	},
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/indoors)
 "eZb" = (
 /turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town)
@@ -21524,6 +21520,7 @@
 /area/rogue/indoors/town/manor)
 "gWh" = (
 /obj/structure/globe,
+/obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "gWp" = (
@@ -24373,10 +24370,6 @@
 /obj/machinery/light/rogue/wallfire/candle/blue/r,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/town/bath)
-"hPB" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/closed/wall/mineral/rogue/wooddark,
-/area/rogue/outdoors/beach)
 "hPG" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	name = "Dressing Room"
@@ -30482,12 +30475,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/shelter/mountains/decap)
 "jMQ" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	max_integrity = 99999;
-	name = "Lower Decks";
-	lockid = "vesseldeck"
-	},
+/obj/structure/mineral_door/wood/towner/generic,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "jMU" = (
@@ -34797,6 +34785,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/manor)
+"lfK" = (
+/obj/structure/boatbell,
+/turf/closed/wall/mineral/rogue/wooddark,
+/area/rogue/indoors)
 "lfO" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap)
@@ -38619,10 +38611,6 @@
 	dir = 8
 	},
 /turf/open/floor/rogue/ruinedwood,
-/area/rogue/indoors)
-"mph" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/indoors)
 "mpi" = (
 /obj/structure/fluff/railing/border/west,
@@ -42858,6 +42846,10 @@
 "nJL" = (
 /turf/closed/mineral/random/rogue,
 /area/rogue/outdoors/woods/north)
+"nJM" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors)
 "nJP" = (
 /obj/structure/fluff/railing/wood,
 /obj/machinery/light/rogue/torchholder/l,
@@ -46727,7 +46719,9 @@
 /area/rogue/outdoors/mountains/decap)
 "oYV" = (
 /obj/structure/table/wood/poor,
-/obj/structure/mineral_door/wood/deadbolt/shutter,
+/obj/structure/mineral_door/wood/deadbolt/shutter{
+	dir = 2
+	},
 /turf/closed,
 /area/rogue/indoors)
 "oYX" = (
@@ -52306,6 +52300,12 @@
 /obj/effect/landmark/start/shophand,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/shop)
+"qOd" = (
+/obj/structure/boatbell{
+	alpha = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "qOo" = (
 /obj/structure/fluff/railing/border/east,
 /turf/open/floor/rogue/wood/herringbone,
@@ -55764,7 +55764,8 @@
 "rUU" = (
 /obj/structure/mineral_door/swing_door{
 	lockid = "vesseldeck";
-	name = "kitchen swing door"
+	name = "kitchen swing door";
+	locked = 1
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
@@ -58358,15 +58359,6 @@
 /mob/living/simple_animal/hostile/rogue/mirespider_lurker,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bog/north)
-"sLT" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	max_integrity = 99999;
-	name = "Lower Decks";
-	lockid = "vesseldeck"
-	},
-/turf/closed,
-/area/rogue/indoors)
 "sMc" = (
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/under/cave/goblindungeon)
@@ -69188,6 +69180,12 @@
 /obj/item/natural/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"wdy" = (
+/obj/structure/boatbell{
+	alpha = 0
+	},
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/indoors)
 "wdB" = (
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach)
@@ -74511,13 +74509,6 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/tile,
 /area/rogue/outdoors/town/roofs)
-"xRT" = (
-/obj/structure/mineral_door/wood{
-	name = "Captain's Room";
-	lockid = "vesselcaptain"
-	},
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/indoors)
 "xRV" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/twig,
@@ -155558,7 +155549,7 @@ ika
 aNn
 bwv
 qUO
-eYX
+jMQ
 sco
 bwv
 owh
@@ -158270,7 +158261,7 @@ ika
 usj
 bwv
 jLU
-bwv
+lfK
 jLU
 bwv
 usj
@@ -159173,7 +159164,7 @@ tXb
 bwv
 bwv
 bwv
-sLT
+jMQ
 bwv
 jMQ
 bwv
@@ -267203,7 +267194,7 @@ ebU
 acZ
 wVP
 uYI
-csA
+lSg
 uYI
 uYI
 rTj
@@ -273079,7 +273070,7 @@ acZ
 uYI
 uYI
 uYI
-uYI
+qOd
 uYI
 uYI
 uYI
@@ -273981,11 +273972,11 @@ ebU
 ebU
 rPL
 csA
-hPB
+csA
 bsY
 uYI
 rna
-hPB
+csA
 csA
 aYE
 kZf
@@ -274435,7 +274426,7 @@ bwv
 xWY
 xWY
 bwv
-xRT
+jMQ
 bwv
 xWY
 xWY
@@ -274885,11 +274876,11 @@ ebU
 bwv
 bwv
 qIY
-usj
+gZI
 sJh
 usj
 usj
-mmr
+nJM
 woY
 bwv
 mEf
@@ -275791,7 +275782,7 @@ eyY
 ter
 usj
 usj
-usj
+wdy
 usj
 usj
 dVV
@@ -276241,7 +276232,7 @@ ebU
 ebU
 bwv
 bwv
-dVV
+cBd
 mmr
 mmr
 mmr
@@ -277145,11 +277136,11 @@ ebU
 ebU
 ebU
 ebU
-mph
+bwv
 cYv
 cYv
 cYv
-mph
+bwv
 ebU
 ebU
 kZf
