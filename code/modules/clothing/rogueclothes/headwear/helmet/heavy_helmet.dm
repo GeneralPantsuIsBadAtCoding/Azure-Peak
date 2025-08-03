@@ -14,11 +14,13 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
 	name = "decrepit barbute"
-	desc = "A withered old barbute. Aeon's grasp is upon it."
+	desc = "Frayed bronze plates, pounded into a visored helmet. Scrapes and dents line the curved plating, weathered from centuries of neglect. The remains of a plume's stub hang atop its rim."
 	max_integrity = ARMOR_INT_HELMET_HEAVY_DECREPIT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	smeltresult = /obj/item/ingot/aalloy
 	icon_state = "ancientbarbute"
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/head/roguetown/helmet/heavy/aalloy/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -44,7 +46,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	name = "ancient barbute"
-	desc = "A barbute crafted of ancient alloys. Aeon's grasp has been lifted from its form."
+	desc = "Polished gilbranze plates, pounded to form a visored helmet. Zizo commands progress, and progress commands sacrifice; let these sundered legionnaires rise again, to spill the blood of unenlightened fools. A coiled pocket is perched atop the rim, awaiting to be plumed." 
 	icon_state = "ancientbarbute"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -74,15 +76,17 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/aalloy
 	name = "decrepit savoyard"
-	desc = "A decrepit old savoyard. Aeon's grasp is upon its form."
+	desc = "Frayed bronze plates, molded into a ventilated casket. It reeks of fetid shit, and each breath - labored and strained - is laced with flaked metal."
 	max_integrity = ARMOR_INT_HELMET_HEAVY_DECREPIT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	smeltresult = /obj/item/ingot/aalloy
 	icon_state = "ancientsavoyard"
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
 	name = "ancient savoyard"
-	desc = "A savoyard crafted of ancient materials. Aeon's grasp has been lifted from its form."
+	desc = "Polished gilbranze plates, molded into a bulwark's greathelm. The Comet Syon's glare has been forever burnt into the alloy; a decayed glimpse into the world that was, before Psydon's slumber and Zizo's awakening."
 	icon_state = "ancientsavoyard"
 	smeltresult = /obj/item/ingot/aaslag
 

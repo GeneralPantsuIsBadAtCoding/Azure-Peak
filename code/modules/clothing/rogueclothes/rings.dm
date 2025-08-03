@@ -22,9 +22,9 @@
 
 /obj/item/clothing/ring/aalloy
 	name = "decrepit ring"
-	desc = "A decrepit old ring"
+	desc = "A coil of frayed bronze."
 	icon_state = "ring_a"
-	sellprice = 5
+	sellprice = 11
 
 
 /obj/item/clothing/ring/gold

@@ -910,14 +910,8 @@
 	if(rmb_intent?.adjacency && !Adjacent(A))
 		return FALSE
 
-	var/held = get_active_held_item()
-	if(held && istype(held, /obj/item))
-		var/obj/item/I = held
-		if(!I.associated_skill)
-			return FALSE
-
-		rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
-		return TRUE
+	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
+	return TRUE
 
 /mob/living/carbon/human/species/skeleton/try_special_attack(atom/A, list/modifiers)
 	return FALSE

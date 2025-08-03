@@ -23,6 +23,10 @@
 /obj/effect/proc_holder/spell/invoked/mending/cast(list/targets, mob/living/user)
 	if(istype(targets[1], /obj/item))
 		var/obj/item/I = targets[1]
+		if(!I.anvilrepair && !I.sewrepair)
+			to_chat(user, span_warning("Not even magic can mend this item!"))
+			revert_cast()
+			return
 		if(I.obj_integrity < I.max_integrity)
 			var/repair_percent = 0.25
 			repair_percent *= I.max_integrity

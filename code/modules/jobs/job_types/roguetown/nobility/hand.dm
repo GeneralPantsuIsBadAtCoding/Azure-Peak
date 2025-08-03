@@ -179,14 +179,14 @@
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 	if(H.mind)
-		H?.mind.adjust_spellpoints(15)
+		H.mind.adjust_spellpoints(15)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	if(H.age == AGE_OLD)
 		H.change_stat("speed", -1)
 		H.change_stat("strength", -1)
 		H.change_stat("intelligence", 1)
 		H.change_stat("perception", 1)
-		H?.mind.adjust_spellpoints(3)
+		H.mind?.adjust_spellpoints(3)
 
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 
