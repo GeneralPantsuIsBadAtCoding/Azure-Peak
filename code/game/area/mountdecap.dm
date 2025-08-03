@@ -81,7 +81,7 @@
 	ceiling_protected = TRUE
 
 /area/rogue/outdoors/mountains/decap/gunduzirak/bossarena
- 	name = "Baronness Boss Arena"
+	name = "Baronness Boss Arena"
 	first_time_text = "THE BARONESS"
 
 
