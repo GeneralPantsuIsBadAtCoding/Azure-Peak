@@ -465,11 +465,6 @@
 /obj/item/bedsheet/rogue/cloth,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
-"aim" = (
-/obj/structure/mineral_door/bars,
-/obj/structure/trap/flame,
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/under/cave/scarymaze)
 "aiq" = (
 /obj/machinery/light/rogue/firebowl{
 	pixel_y = 10
@@ -976,6 +971,7 @@
 /obj/structure/bars/passage{
 	redstone_id = "lichdanger"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/licharena)
 "aql" = (
@@ -1521,6 +1517,7 @@
 /area/rogue/outdoors/bog/south)
 "aAy" = (
 /obj/structure/mineral_door/bars,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
 "aAA" = (
@@ -3060,6 +3057,7 @@
 /area/rogue/outdoors/mountains/decap/minotaurfort)
 "bcl" = (
 /obj/structure/mineral_door/wood/deadbolt,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/scarymaze)
 "bco" = (
@@ -3820,7 +3818,7 @@
 	locked = 1;
 	lockid = "mansionvampire"
 	},
-/obj/structure/trap/saw_blades,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/dukecourt)
 "boj" = (
@@ -7276,7 +7274,7 @@
 /area/rogue/outdoors/mountains)
 "ctE" = (
 /obj/structure/mineral_door/wood/deadbolt,
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "ctR" = (
@@ -8828,10 +8826,10 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "cVl" = (
+/obj/effect/spawner/trap,
 /obj/structure/mineral_door/wood{
 	locked = 1
 	},
-/obj/structure/trap/saw_blades,
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "cVm" = (
@@ -8962,7 +8960,7 @@
 /area/rogue/under/cave/goblinfort)
 "cWG" = (
 /obj/structure/mineral_door/wood,
-/obj/structure/trap/saw_blades,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/underdark/north)
 "cWH" = (
@@ -13272,13 +13270,9 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "eqH" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1;
-	locked = 1
-	},
-/obj/structure/trap/shock,
-/turf/open/floor/rogue/blocks/platform,
-/area/rogue/outdoors/mountains/decap/minotaurfort)
+/obj/effect/spawner/trap,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/under/underdark/north)
 "eqJ" = (
 /obj/structure/chair/wood/rogue/throne,
 /obj/structure/bearpelt,
@@ -18591,6 +18585,7 @@
 	dir = 1;
 	locked = 1
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap/minotaurfort)
 "gcr" = (
@@ -20316,7 +20311,7 @@
 /obj/structure/mineral_door/wood{
 	lockid = "mansionvampire"
 	},
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave/dukecourt)
 "gGs" = (
@@ -20377,12 +20372,6 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
-"gHq" = (
-/obj/structure/mineral_door/wood{
-	locked = 1
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors/shelter/mountains/decap)
 "gHr" = (
 /obj/structure/table/wood/poor{
 	pixel_y = -4
@@ -23466,7 +23455,7 @@
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1
 	},
-/obj/structure/trap/flame,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "hER" = (
@@ -23805,6 +23794,7 @@
 	dir = 4;
 	locked = 1
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "hKw" = (
@@ -24296,7 +24286,7 @@
 /obj/structure/mineral_door/wood{
 	locked = 1
 	},
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains/decap)
 "hRZ" = (
@@ -26583,7 +26573,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/goblindungeon)
 "iDN" = (
-/obj/effect/decal/remains/human,
+/obj/structure/closet/crate/chest/trapped/locked,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblinfort)
 "iDT" = (
@@ -27118,7 +27108,7 @@
 /area/rogue/indoors/town/manor)
 "iMV" = (
 /obj/structure/mineral_door/wood/deadbolt,
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/cave/dukecourt)
 "iMX" = (
@@ -28271,6 +28261,7 @@
 	locked = 1;
 	lockid = "mansionvampire"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave/dukecourt)
 "jfm" = (
@@ -28467,12 +28458,12 @@
 /turf/open/floor/rogue/carpet/lord/left,
 /area/rogue/indoors/town/manor)
 "jiB" = (
-/obj/structure/trap/bomb,
 /obj/structure/bookcase{
 	desc = "It seems awfully flimsy, to me.";
 	max_integrity = 50;
 	name = "suspicious bookcase"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/underdark/north)
 "jiD" = (
@@ -28748,6 +28739,7 @@
 /area/rogue/indoors/town/church/basement)
 "jnq" = (
 /obj/structure/mineral_door/wood/window,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/orcdungeon)
 "jnA" = (
@@ -28967,7 +28959,6 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains)
 "jrK" = (
-/obj/structure/trap/bomb,
 /obj/structure/bars{
 	color = "#755f48";
 	name = "rusted bars"
@@ -28976,6 +28967,7 @@
 	density = 0;
 	icon_state = "passage1"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "jrM" = (
@@ -31634,10 +31626,13 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter/woods)
 "kkd" = (
-/obj/structure/stairs/stone,
-/obj/structure/trap/flame,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/cave/orcdungeon)
+/obj/structure/mineral_door/wood/red{
+	locked = 1;
+	lockid = "velder"
+	},
+/obj/effect/spawner/trap,
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/shelter/mountains/decap)
 "kkf" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/blocks,
@@ -33887,7 +33882,7 @@
 /area/rogue/indoors/town/bath)
 "kVz" = (
 /obj/structure/mineral_door/wood/window,
-/obj/structure/trap/bomb,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "kVF" = (
@@ -34998,11 +34993,9 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves/west)
 "log" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/under/cave/dukecourt)
+/obj/effect/decal/remains/human,
+/turf/open/floor/rogue/blocks,
+/area/rogue/under/cave/goblinfort)
 "loj" = (
 /obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -36852,9 +36845,7 @@
 /area/rogue/indoors/town)
 "lRB" = (
 /obj/structure/mineral_door/bars,
-/obj/structure/trap/wall_projectile{
-	dir = 4
-	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/scarymaze)
 "lRC" = (
@@ -37529,6 +37520,7 @@
 	max_integrity = 9000;
 	redstone_id = "orcfort1"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "mdT" = (
@@ -45689,7 +45681,7 @@
 	locked = 1
 	},
 /obj/effect/decal/cleanable/blood/footprints,
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
 "oPy" = (
@@ -55413,13 +55405,6 @@
 "rZX" = (
 /turf/open/water/river/flow/east,
 /area/rogue/outdoors/woods/southwest)
-"sae" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/structure/trap/shock,
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/under/cave/dukecourt)
 "sah" = (
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/machinery/light/rogue/wallfire/candle/r,
@@ -55611,7 +55596,7 @@
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "sef" = (
 /obj/structure/mineral_door/wood,
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains/decap)
 "seg" = (
@@ -58314,9 +58299,9 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/indoors/town/church/basement)
 "sVA" = (
-/obj/structure/trap/wall_projectile,
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/scarymaze)
+/obj/effect/spawner/trap,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "sVD" = (
 /obj/structure/fluff/statue/small,
 /obj/machinery/light/rogue/torchholder/c,
@@ -58619,7 +58604,7 @@
 /area/rogue/indoors/town/church/basement)
 "tag" = (
 /obj/structure/mineral_door/wood/donjon/stone,
-/obj/structure/trap/flame,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "tap" = (
@@ -58950,7 +58935,7 @@
 	name = "reinforced shutter";
 	redstone_id = "meltedcitysmelteralleyway"
 	},
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/underdark/north)
 "teF" = (
@@ -58987,6 +58972,7 @@
 /area/rogue/outdoors/mountains)
 "tfM" = (
 /obj/structure/mineral_door/wood/deadbolt,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap/minotaurfort)
 "tfQ" = (
@@ -59319,6 +59305,7 @@
 /obj/structure/bars/passage/steel{
 	redstone_id = "mazelever"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/scarymaze)
 "tlO" = (
@@ -59977,6 +59964,7 @@
 	density = 0;
 	icon_state = "passage1"
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/licharena)
 "twQ" = (
@@ -60095,6 +60083,7 @@
 /obj/structure/mineral_door/wood{
 	locked = 1
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "tyL" = (
@@ -60538,7 +60527,7 @@
 	locked = 1;
 	lockid = "artificer"
 	},
-/obj/structure/trap/bomb,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains/decap)
 "tGA" = (
@@ -61656,7 +61645,7 @@
 	dir = 4;
 	locked = 1
 	},
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "tYE" = (
@@ -63279,6 +63268,7 @@
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1
 	},
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/minotaurfort)
 "uzN" = (
@@ -63813,7 +63803,7 @@
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
 	},
-/obj/structure/trap/saw_blades,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "uIk" = (
@@ -67488,6 +67478,7 @@
 /area/rogue/indoors/shelter)
 "vPn" = (
 /obj/structure/mineral_door/wood,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/goblinfort)
 "vPq" = (
@@ -67677,6 +67668,7 @@
 /area/rogue/outdoors/exposed/town/keep)
 "vSD" = (
 /obj/structure/mineral_door/wood/window,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors)
 "vSK" = (
@@ -68090,6 +68082,7 @@
 /area/rogue/indoors/town/church/chapel)
 "vYk" = (
 /obj/structure/mineral_door/wood/fancywood,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors)
 "vYl" = (
@@ -68317,7 +68310,7 @@
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 8
 	},
-/obj/structure/trap/shock,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/dukecourt)
 "wcl" = (
@@ -68851,16 +68844,10 @@
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/town/basement/keep)
 "wkz" = (
-/obj/structure/bars{
-	color = "#755f48";
-	name = "rusted bars"
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/orcdungeon)
+/obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
+/turf/open/floor/rogue/dirt,
+/area/rogue/under/cave/goblinfort)
 "wkC" = (
 /obj/structure/bed/rogue/shit,
 /mob/living/carbon/human/species/human/northern/highwayman,
@@ -71136,7 +71123,7 @@
 /obj/structure/mineral_door/wood{
 	lockid = "mansionvampire"
 	},
-/obj/structure/trap/saw_blades,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/dukecourt)
 "wYl" = (
@@ -72515,7 +72502,7 @@
 	density = 0;
 	icon_state = "passage1"
 	},
-/obj/structure/trap/bomb,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/orcdungeon)
 "xyE" = (
@@ -74410,7 +74397,7 @@
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "yeB" = (
-/obj/structure/trap/flame,
+/obj/effect/spawner/trap,
 /turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "yeD" = (
@@ -85754,7 +85741,7 @@ jnQ
 eHe
 xdk
 xNc
-xNc
+sVA
 xNc
 xNc
 xNc
@@ -97045,7 +97032,7 @@ oKd
 wNY
 aHi
 aHi
-xYB
+eqH
 aHi
 aHi
 aHi
@@ -286069,7 +286056,7 @@ ujm
 wCQ
 jDM
 lWp
-kkd
+anL
 mdR
 mMU
 pJR
@@ -286521,7 +286508,7 @@ qPv
 wCQ
 jDM
 lWp
-kkd
+anL
 mdR
 mMU
 mMU
@@ -289239,8 +289226,8 @@ jDM
 hPd
 jDM
 jDM
-wkz
-wkz
+xyC
+xyC
 jDM
 jDM
 hPd
@@ -351543,7 +351530,7 @@ vlv
 mfX
 urS
 urS
-eqH
+gco
 roR
 uWr
 urS
@@ -447005,7 +446992,7 @@ xfP
 qgb
 vPd
 bcl
-sVA
+xfP
 xfP
 eWw
 cxA
@@ -450167,7 +450154,7 @@ eWw
 sua
 eWw
 eWw
-aim
+lRB
 eWw
 vPd
 wRv
@@ -454196,7 +454183,7 @@ jyG
 cFX
 nRt
 nRt
-vqp
+kkd
 nRt
 eAq
 eAq
@@ -465903,7 +465890,7 @@ nvF
 nvF
 fhY
 vTf
-gHq
+hRS
 txW
 txW
 ahh
@@ -466836,7 +466823,7 @@ tyo
 vqO
 vxD
 qea
-vqO
+log
 iDN
 mQP
 tvQ
@@ -467711,7 +467698,7 @@ nvF
 nvF
 kGh
 vTf
-gHq
+hRS
 txW
 kVX
 ahh
@@ -469097,7 +469084,7 @@ wRz
 vqO
 qea
 vqO
-uXU
+wkz
 mQP
 tvQ
 kDP
@@ -469966,9 +469953,9 @@ iHh
 nmu
 sGP
 nmu
-gHq
+hRS
 nmu
-gHq
+hRS
 nmu
 sGP
 mxK
@@ -471319,7 +471306,7 @@ lKn
 nmu
 iHh
 iHh
-gHq
+hRS
 iHh
 fhY
 jqp
@@ -475839,7 +475826,7 @@ txW
 vvw
 iHh
 iHh
-gHq
+hRS
 iHh
 jNZ
 fYs
@@ -485758,7 +485745,7 @@ kpS
 kMe
 cDB
 cDB
-sae
+wYb
 cDB
 kMe
 mDY
@@ -490729,7 +490716,7 @@ mRp
 mRp
 kMe
 cDB
-log
+gGq
 cDB
 kMe
 gbD
