@@ -8,8 +8,8 @@
 	icon_dead = "mimicdead"
 
 	speed = 0
-	maxHealth = 450
-	health = 450
+	maxHealth = MIMIC_HEALTH
+	health = MIMIC_HEALTH
 	gender = NEUTER
 	mob_biotypes = NONE
 	base_intents = list(/datum/intent/simple/bite)
@@ -21,8 +21,8 @@
 
 	damage_coeff = list(BRUTE = 1, BURN = 0, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	harm_intent_damage = 5
-	melee_damage_lower = 24
-	melee_damage_upper = 32
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = list('sound/vo/mobs/mimic/mimic_attack1.ogg',
