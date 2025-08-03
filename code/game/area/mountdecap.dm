@@ -2,13 +2,6 @@
 /area/rogue/outdoors/mountains/decap
 	name = "mt decapitation"
 	icon_state = "decap"
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt,
-				/turf/open/floor/rogue/dirt/road,
-				/turf/open/floor/rogue/snow,
-				/turf/open/floor/rogue/grasscold,
-				/turf/open/floor/rogue/grass,
-				)
 	ambush_mobs = list(
 				new /datum/ambush_config/pair_of_direbear = 10,
 				new /datum/ambush_config/trio_of_highwaymen = 10,
@@ -37,13 +30,6 @@
 /area/rogue/outdoors/mountains/decap/stepbelow
 	name = "Tarichea - Valley of Loss"
 	icon_state = "decap"
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt,
-				/turf/open/floor/rogue/dirt/road,
-				/turf/open/floor/rogue/snow,
-				/turf/open/floor/rogue/grasscold,
-				/turf/open/floor/rogue/grass,
-				)
 	ambush_mobs = list(
 				new /datum/ambush_config/pair_of_direbear = 10,
 				new /datum/ambush_config/trio_of_highwaymen = 10,
@@ -64,10 +50,6 @@
 /area/rogue/outdoors/mountains/decap/gunduzirak
 	name = "Gundu Zirak"
 	icon_state = "decap"
-	ambush_types = list(
-				/turf/open/floor/rogue/dirt,
-				/turf/open/floor/rogue/cobble,
-				)
 	ambush_mobs = list(
 				new /datum/ambush_config/treasure_hunter_posse = 1,
 				/mob/living/carbon/human/species/dwarfskeleton/ambush = 30,

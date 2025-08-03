@@ -118,6 +118,7 @@
 		/datum/body_marking/harlequinreversed,
 		/datum/body_marking/bangs,
 		/datum/body_marking/bun,
+		/datum/body_marking/gradient,
 	)
 	descriptor_choices = list(
 		/datum/descriptor_choice/height,

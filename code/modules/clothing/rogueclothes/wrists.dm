@@ -68,7 +68,7 @@
 	smeltresult = null
 	sewrepair = TRUE
 	smeltresult = null
-	salvage_amount = 1
+	salvage_amount = 0 // sry
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/wrists/roguetown/bracers/leather/heavy

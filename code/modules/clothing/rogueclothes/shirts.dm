@@ -15,6 +15,7 @@
 	sewrepair = TRUE
 	flags_inv = HIDEBOOB
 	experimental_inhand = FALSE
+	salvage_amount = 2
 
 	grid_width = 64
 	grid_height = 64
