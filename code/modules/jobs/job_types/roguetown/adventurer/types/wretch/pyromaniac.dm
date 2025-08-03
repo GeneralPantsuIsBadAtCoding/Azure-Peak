@@ -66,4 +66,5 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/spitfire)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/rebuke)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stoneskin) // To not be instapaincritted if you accidentally hit yourself

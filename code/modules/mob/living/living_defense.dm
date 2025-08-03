@@ -208,6 +208,9 @@
 		combat_modifier += 0.3
 	else if(!user.cmode && cmode)
 		combat_modifier -= 0.3
+	for(var/obj/item/grabbing/G in grabbedby)
+		if(G.chokehold == TRUE)
+			combat_modifier += 0.15
 
 	var/probby
 	if(!compliance)

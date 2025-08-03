@@ -27,7 +27,7 @@ export default defineConfig({
   devtool: false,
   entry: {
     tgui: './packages/tgui',
-    // 'tgui-panel': './packages/tgui-panel',
+    'tgui-panel': './packages/tgui-panel',
     // 'tgui-say': './packages/tgui-say',
   },
   mode: 'production',
@@ -125,6 +125,7 @@ export default defineConfig({
       'tgui-panel': path.resolve(dirname, './packages/tgui-panel'),
       'tgui-say': path.resolve(dirname, './packages/tgui-say'),
       'tgui-dev-server': path.resolve(dirname, './packages/tgui-dev-server'),
+      'roguefont/languages': path.resolve(dirname, "../interface/fonts/languages"),
       'roguefont': path.resolve(dirname, "../interface/fonts"),
     },
   },

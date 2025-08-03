@@ -13,10 +13,6 @@
 
 /area/rogue/outdoors/beach/north
 	name = "Northern Coast"
-	ambush_types = list(
-		/turf/open/floor/rogue/dirt,
-		/turf/open/floor/rogue/grass,
-		/turf/open/floor/rogue/AzureSand)
 	ambush_mobs = list(
 		/mob/living/carbon/human/species/human/northern/searaider/ambush = 10,
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea = 20,
@@ -27,10 +23,6 @@
 
 /area/rogue/outdoors/beach/south
 	name = "Southern Coast"
-	ambush_types = list(
-			/turf/open/floor/rogue/dirt,
-			/turf/open/floor/rogue/grass,
-			/turf/open/floor/rogue/AzureSand)
 	ambush_mobs = list(
 		/mob/living/carbon/human/species/human/northern/searaider/ambush = 5,
 		/mob/living/carbon/human/species/goblin/npc/ambush/sea = 20,

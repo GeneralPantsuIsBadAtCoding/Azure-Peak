@@ -78,9 +78,9 @@
 
 /datum/virtue/combat/executioner
 	name = "Dungeoneer's Apprentice"
-	desc = "I was set to be a dungeoneer some time ago, and I was taught by one. I have an axe stashed away if the need arises."
+	desc = "I was set to be a dungeoneer some time ago, and I was taught by one. I have a whip stashed away if the need arises."
 	custom_text = "+1 to Axes and Whips/Flails, Up to Journeyman, Minimum Apprentice."
-	added_stashed_items = list("Iron Axe" = /obj/item/rogueweapon/stoneaxe/woodcut)
+	added_stashed_items = list("Leather Whip" = /obj/item/rogueweapon/whip)
 
 /datum/virtue/combat/executioner/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.get_skill_level(/datum/skill/combat/whipsflails) < SKILL_LEVEL_APPRENTICE)
