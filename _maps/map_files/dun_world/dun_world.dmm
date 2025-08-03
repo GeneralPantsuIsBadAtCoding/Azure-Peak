@@ -5658,6 +5658,10 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/indoors/town/church/basement)
+"bRp" = (
+/obj/structure/closet/crate/chest/loot_chest,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "bRq" = (
 /obj/machinery/light/rogue/wallfire/candle/blue{
 	pixel_y = -32
@@ -35847,6 +35851,10 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter/mountains/decap)
+"lCQ" = (
+/obj/structure/closet/crate/chest/loot_chest/locked,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "lCS" = (
 /obj/machinery/light/rogue/smelter/hiron,
 /turf/open/floor/rogue/hexstone,
@@ -48139,6 +48147,10 @@
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods/southeast)
+"pHQ" = (
+/obj/structure/closet/crate/chest/trapped/locked,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "pHT" = (
 /obj/effect/decal/mossy{
 	dir = 4
@@ -78714,7 +78726,7 @@ oKd
 oKd
 oKd
 wNY
-xNc
+lCQ
 xNc
 xNc
 xNc
@@ -78729,7 +78741,7 @@ xNc
 dhQ
 xNc
 xNc
-xNc
+bRp
 wNY
 oKd
 oKd
@@ -80974,7 +80986,7 @@ oKd
 oKd
 oKd
 wNY
-xNc
+bRp
 jeF
 xNc
 dhQ
@@ -80989,7 +81001,7 @@ xNc
 xNc
 dhQ
 xNc
-xNc
+pHQ
 wNY
 oKd
 oKd
@@ -84589,7 +84601,7 @@ oKd
 oKd
 oKd
 aHi
-xNc
+bRp
 xNc
 xNc
 aHi
@@ -86414,7 +86426,7 @@ xNc
 xNc
 xNc
 xNc
-xNc
+pHQ
 aHi
 oKd
 oKd
