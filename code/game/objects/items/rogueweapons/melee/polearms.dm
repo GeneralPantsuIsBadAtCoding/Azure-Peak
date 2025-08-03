@@ -283,17 +283,19 @@
 
 /obj/item/rogueweapon/spear/aalloy
 	name = "decrepit spear"
-	desc = "A decrepit old spear. Aeon's grasp is upon it."
+	desc = "A rotting staff, tipped with frayed bronze. After the stone, but before the sword; an interlude for the violence yet to come."
 	icon_state = "ancient_spear"
-	smeltresult = /obj/item/ingot/aalloy
 	force = 13
 	force_wielded = 22
 	max_integrity = 180
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/spear/paalloy
 	name = "ancient spear"
-	desc = "A spear made of ancient alloys. Aeon's grasp has been lifted from it."
+	desc = "A gnarled staff, tipped with polished gilbranze. Millenia may pass, but one facet will always remain unchanged - it hurts to be stabbed with sharpened metal."
 	smeltresult = /obj/item/ingot/aaslag
 	icon_state = "ancient_spear"
 
@@ -619,17 +621,19 @@
 
 /obj/item/rogueweapon/halberd/bardiche/aalloy
 	name = "decrepit bardiche"
-	desc = "A decrepit bardiche. Aeon's grasp upon it."
+	desc = "An imposing poleaxe, wrought from frayed bronze. The metal may be chipped and worn, but the edge remains concerningly sharp."
 	max_integrity = 180
 	force = 12
 	force_wielded = 22
 	icon_state = "ancient_bardiche"
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/halberd/bardiche/paalloy
 	name = "ancient bardiche"
-	desc = "A bardiche made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "A terrifying poleaxe, forged from polished gilbranze. It sunders the chaff that the unenlightened fight-so-feverishly to protect."
 	icon_state = "ancient_bardiche"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -794,18 +798,20 @@
 
 /obj/item/rogueweapon/greatsword/aalloy
 	name = "decrepit greatsword"
-	desc = "A decrepit old greatsword. You'd be lucky if it chopped anything in half. Aeon's grasp is upon its form."
+	desc = "A massive blade, wrought in frayed bronze. It was too big to be called a sword; massive, thick, heavy, and far too rough. Indeed, it was more like a heap of raw metal."
 	force = 10
 	force_wielded = 25
 	max_integrity = 180
 	icon_state = "ancient_gsw"
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 
 /obj/item/rogueweapon/greatsword/paalloy
 	name = "ancient greatsword"
-	desc = "An ancient greatsword. Aeon's grasp lifted from its form."
+	desc = "A massive blade, forged from polished gilbronze. It's said that one of Her champions had slain a hundred knights in the span of just one dae, while wielding nothing more than this very weapon. A tall tale, or a terrible truth?"
 	icon_state = "ancient_gsw"
 	smeltresult = /obj/item/ingot/aaslag
 
