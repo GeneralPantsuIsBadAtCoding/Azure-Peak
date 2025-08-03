@@ -240,7 +240,7 @@
 /datum/inqports/articles/bmirror
 	name = "1 Black Mirror"
 	item_type = /obj/item/inqarticles/bmirror
-	marquescost = 6
+	marquescost = 8
 
 /datum/inqports/articles/listener
 	name = "1 Attentive Ear"
@@ -268,7 +268,7 @@
 /datum/inqports/equipment/strangemask
 	name = "1 Confessional Mask"
 	item_type = /obj/item/clothing/mask/rogue/facemask/steel/confessor
-	marquescost = 12
+	marquescost = 10
 
 /datum/inqports/equipment/otavansatchel
 	name = "1 Otavan Leather Satchel"

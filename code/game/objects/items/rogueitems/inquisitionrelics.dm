@@ -657,6 +657,8 @@ Inquisitorial armory down here
 		if(subject)
 			if(M != subject)
 				return
+		if(HAS_TRAIT(M, TRAIT_BLOODLOSS_IMMUNE))
+			to_chat(user, span_warning("They don't have any blood to sample."))		
 		if(full)
 			to_chat(user, span_warning("It's full."))	
 			return	
