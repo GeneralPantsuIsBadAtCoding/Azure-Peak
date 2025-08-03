@@ -76,6 +76,7 @@ GLOBAL_LIST_EMPTY(preference_patrons)
     for(var/profanity in profane_words)
         var/regex/cussjar = regex("([profanity])", "im")
         if(cussjar.Find(prayer))
+            to_chat(follower, span_userdanger("The gods curse your foul tongue.."))		//Feedback to why you get smited so it's not a "Huh???" moment
             punish_prayer(follower)
             return FALSE
 
