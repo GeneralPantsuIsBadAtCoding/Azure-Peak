@@ -232,7 +232,7 @@
 
 /obj/item/rogueweapon/sword/short/pashortsword
 	name = "ancient shortsword"
-	desc = "A sword made of ancient alloys. Aeon's grasp has been lifted from its form."
+	desc = "A polished sidearm-sword, forged from gilbranze. The design, though weathered by the centuries, still bares the unmistakable motif of Grenzelhoftian balancing."
 	icon_state = "ashortsword"
 	sheathe_icon = "ashortsword"
 	smeltresult = /obj/item/ingot/aaslag
@@ -635,13 +635,15 @@
 
 /obj/item/rogueweapon/sword/iron/short/ashort
 	name = "decrepit short sword"
-	desc = "A decrepit old short sword. Aeon's grasp has withered its form."
+	desc = "A chipped sidearm-sword, wrought from frayed bronze. Or.. is this all that remains of a larger sword?"
 	icon_state = "ashortsword"
 	sheathe_icon = "ashortsword"
 	max_integrity = 75
 	force = 18
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/sword/iron/short/gladius
 	name = "gladius"
@@ -654,16 +656,18 @@
 
 /obj/item/rogueweapon/sword/iron/short/gladius/agladius
 	name = "decrepit gladius"
-	desc = "A decrepit old gladius. Aeon's grasp is upon its form."
+	desc = "A hefty shortsword, wrought from frayed bronze. Once, the sidearm of a proud legionnaire; now, a consequence of progress and sacrifice."
 	force = 18
 	max_integrity = 150
 	icon_state = "agladius"
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
 	name = "ancient gladius"
-	desc = "A gladius made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "A polished shortsword, forged from gilbranze. Favored by the majority of Zizo's undying legionnaires, this antiquated tool serves a simple purpose; to spill the innards of unenlightened fools."
 	icon_state = "agladius"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -774,16 +778,18 @@
 
 /obj/item/rogueweapon/sword/sabre/alloy
 	name = "decrepit khopesh"
-	desc = "A decrepit old khopesh. Aeon's grasp is upon its form."
-	smeltresult = /obj/item/ingot/aalloy
+	desc = "A hooked sword, wrought from frayed bronze. The design is not only baffling, but seems to predate history itself."
 	force = 18
 	max_integrity = 115
 	icon_state = "akhopesh"
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/sword/sabre/palloy
 	name = "ancient khopesh"
-	desc = "A ancient alloy khopesh. Aeon's grasp has been lifted from its form."
+	desc = "A polished hook-sword, forged from gilbronze. The Comet Syon's glare once graced this blade; now, it's wielded by those who can't even remember what came before His sacrifice."
 	smeltresult = /obj/item/ingot/aaslag
 	icon_state = "akhopesh"
 
