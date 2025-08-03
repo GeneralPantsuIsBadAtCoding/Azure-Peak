@@ -11130,6 +11130,13 @@
 /obj/structure/fluff/railing/corner/south_west,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter)
+"dGU" = (
+/obj/structure/bars/grille,
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/outdoors/beach)
 "dGW" = (
 /obj/structure/chair/bench/couch,
 /turf/open/floor/rogue/wood,
@@ -27656,6 +27663,10 @@
 /obj/item/reagent_containers/glass/bucket/pot/stone,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
+"iRX" = (
+/obj/item/chair/stool/bar/rogue,
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/indoors)
 "iSh" = (
 /obj/structure/glowshroom,
 /turf/open/water/swamp/deep,
@@ -32474,6 +32485,10 @@
 /obj/structure/bars/tough,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/goblindungeon)
+"kud" = (
+/obj/item/chair/stool/bar/rogue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "kuf" = (
 /turf/closed/wall/mineral/rogue/decostone/long,
 /area/rogue/indoors/shelter)
@@ -56029,6 +56044,13 @@
 "rZO" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
+"rZR" = (
+/obj/machinery/light/rogue/torchholder{
+	dir = 4
+	},
+/obj/structure/closet/crate/chest/wicker,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "rZX" = (
 /turf/open/water/river/flow/east,
 /area/rogue/outdoors/woods/southwest)
@@ -266738,7 +266760,7 @@ ebU
 kjs
 duA
 pdp
-pdp
+dGU
 bVJ
 ocj
 vBW
@@ -267642,7 +267664,7 @@ ebU
 acZ
 fNm
 uYI
-wSH
+rZR
 rmo
 uYI
 rTj
@@ -272165,7 +272187,7 @@ emI
 emI
 emI
 uYI
-uYI
+kud
 rTj
 kZf
 kZf
@@ -275324,7 +275346,7 @@ ebU
 ebU
 eyY
 mjp
-usj
+iRX
 usj
 usj
 usj
