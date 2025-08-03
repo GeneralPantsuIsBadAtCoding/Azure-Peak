@@ -57,11 +57,13 @@
 
 /obj/item/rogueweapon/thresher/aalloy
 	name = "decrepit thresher"
-	desc = "A withered old thresher. Aeon's grasp is upon it."
+	desc = "A thresher of wrought bronze; from when the wheat was plentiful, and when Man wasn't burdened with the weight of sin."
 	force = 5
 	force_wielded = 7
 	icon_state = "athresh"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 
 /obj/item/rogueweapon/sickle
@@ -95,6 +97,8 @@
 /obj/item/rogueweapon/sickle/aalloy
 	name = "decrepit sickle"
 	icon_state = "asickle"
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/sickle/copper
 	name = "copper sickle"
@@ -126,6 +130,8 @@
 	name = "decrepit hoe"
 	icon_state = "ahoe"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/hoe/copper
 	name = "copper hoe"
@@ -311,6 +317,8 @@
 	name = "decrepit pitchfork"
 	icon_state = "apitchfork"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/pitchfork/copper
 	name = "copper pitchfork"
