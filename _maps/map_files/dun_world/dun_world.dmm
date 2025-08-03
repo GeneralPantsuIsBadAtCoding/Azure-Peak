@@ -47922,11 +47922,6 @@
 	lockid = "vesseldeck";
 	desc = "This is a rusty key. You're not sure where it goes to."
 	},
-/obj/item/roguekey/walls{
-	name = "strange key";
-	lockid = "vesseldeck";
-	desc = "This is a rusty key. You're not sure where it goes to."
-	},
 /obj/item/storage/belt/rogue/pouch/coins/poor,
 /obj/item/clothing/neck/roguetown/psicross/pearl,
 /turf/open/floor/rogue/AzureSand,
