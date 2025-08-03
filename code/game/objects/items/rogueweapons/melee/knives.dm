@@ -280,7 +280,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	name = "ancient dagger"
-	desc = "A short blade, forged from polished gilbranze. It is violence that shepherds progress, and it is progress that will break this world out from mortality's chains. Zizo, Zizo, Zizo; hear me!"
+	desc = "A short blade, forged from polished gilbranze. It is violence that shepherds progress, and it is progress that will free this world from mortality's chains. Zizo, Zizo, Zizo; hear me!"
 	icon_state = "adagger"
 	smeltresult = /obj/item/ingot/aaslag
 
