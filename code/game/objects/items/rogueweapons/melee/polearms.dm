@@ -283,7 +283,7 @@
 
 /obj/item/rogueweapon/spear/aalloy
 	name = "decrepit spear"
-	desc = "A rotting staff, tipped with frayed bronze. After the stone, but before the sword; an interlude for the violence yet to come."
+	desc = "A rotting staff, tipped with frayed bronze. After the stone, but before the sword; an interlude for the violence that would soon engulf His world."
 	icon_state = "ancient_spear"
 	force = 13
 	force_wielded = 22
@@ -295,7 +295,7 @@
 
 /obj/item/rogueweapon/spear/paalloy
 	name = "ancient spear"
-	desc = "A gnarled staff, tipped with polished gilbranze. Millenia may pass, but one facet will always remain unchanged - it hurts to be stabbed with sharpened metal."
+	desc = "A gnarled staff, tipped with polished gilbranze. Your breathing hilts, and your knuckles tighten around the staff; you see what is yet to come, yet your mind refuses to retain it. To know what fate this dying world has - it would drive any man inzane."
 	smeltresult = /obj/item/ingot/aaslag
 	icon_state = "ancient_spear"
 
@@ -621,7 +621,7 @@
 
 /obj/item/rogueweapon/halberd/bardiche/aalloy
 	name = "decrepit bardiche"
-	desc = "An imposing poleaxe, wrought from frayed bronze. The metal may be chipped and worn, but the edge remains concerningly sharp."
+	desc = "An imposing poleaxe, wrought from frayed bronze. Whatever noble purpose this weapon held has long since decayed; for it now persists to sunder the chaff that clings to this dying world."
 	max_integrity = 180
 	force = 12
 	force_wielded = 22
@@ -633,7 +633,7 @@
 
 /obj/item/rogueweapon/halberd/bardiche/paalloy
 	name = "ancient bardiche"
-	desc = "A terrifying poleaxe, forged from polished gilbranze. It sunders the chaff that the unenlightened fight-so-feverishly to protect."
+	desc = "A terrifying poleaxe, forged from polished gilbranze. When Her ascension came, these weapons - bereft of their wielders - sunk deep into the earth. Shadowed hands cradled the blades over the centuries, and would eventually create its steel-tipped successor; the glaive."
 	icon_state = "ancient_bardiche"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -798,7 +798,7 @@
 
 /obj/item/rogueweapon/greatsword/aalloy
 	name = "decrepit greatsword"
-	desc = "A massive blade, wrought in frayed bronze. It was too big to be called a sword; massive, thick, heavy, and far too rough. Indeed, it was more like a heap of raw metal."
+	desc = "A massive blade, wrought in frayed bronze. It is too big to be called a sword; massive, thick, heavy, and far too rough. Indeed, this blade was more like a heap of raw metal."
 	force = 10
 	force_wielded = 25
 	max_integrity = 180
@@ -811,7 +811,7 @@
 
 /obj/item/rogueweapon/greatsword/paalloy
 	name = "ancient greatsword"
-	desc = "A massive blade, forged from polished gilbronze. It's said that one of Her champions had slain a hundred knights in the span of just one dae, while wielding nothing more than this very weapon. A tall tale, or a terrible truth?"
+	desc = "A massive blade, forged from polished gilbronze. Your kind will discover your true nature, in wrath and ruin. You will take to the stars and burn them out, one by one. Only when the last star turns to dust, will you finally realize that She was trying to save you from Man's greatest foe; oblivion."
 	icon_state = "ancient_gsw"
 	smeltresult = /obj/item/ingot/aaslag
 
