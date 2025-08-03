@@ -986,7 +986,7 @@ Inquisitorial armory down here
 
 /obj/item/clothing/head/inqarticles/blackbag
 	name = "black bag"
-	desc = "A heavily padded sack intended to muffle the cries made within it. Due to the heaviness of the materials involved, application and removal of these is usually difficult for the untrained."
+	desc = "A heavily spell-weaved padded sack intended to muffle the cries made within it. Due to the heaviness of the materials involved, application and removal of these is usually difficult for the untrained."
 	icon_state = "blackbag"
 	item_state = "blackbag"
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -1000,6 +1000,7 @@ Inquisitorial armory down here
 	equip_delay_other = 360 SECONDS // No getting around it. Cheater. LEFT CLICK THEM!!!
 	equip_delay_self = 360 SECONDS
 	max_integrity = 10000 // No breaking it. NO CHEAP FRAGS.
+	body_parts_inherent = FULL_HEAD
 	strip_delay = 10
 	slot_flags = ITEM_SLOT_HEAD
 	body_parts_covered = FULL_HEAD
@@ -1071,6 +1072,7 @@ Inquisitorial armory down here
 /obj/item/clothing/head/inqarticles/blackbag/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.head == src)
+		obj_integrity = max_integrity
 		bagging = FALSE
 		user.become_blind("blindfold_[REF(src)]")
 		playsound(user, pick('sound/misc/blackbagequip.ogg', 'sound/misc/blackbagequip2.ogg'), 100, TRUE, 4)
@@ -1083,6 +1085,7 @@ Inquisitorial armory down here
 	if(worn == TRUE)
 		user.cure_blind("blindfold_[REF(src)]")
 		worn = FALSE
+		obj_integrity = max_integrity
 		REMOVE_TRAIT(user, TRAIT_BAGGED, TRAIT_GENERIC)
 		user.equip_to_slot(headgear, SLOT_HEAD)	
 		var/list/datum/wound/w_List = user.get_wounds()
