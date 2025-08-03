@@ -478,7 +478,7 @@ Inquisitorial armory down here
 	grid_width = 32
 	throwforce = 15
 	force = 4
-	tool_behaviour = TOOL_SCALPEL
+	tool_behaviour = null
 	possible_item_intents = list(/datum/intent/use)
 	slot_flags = ITEM_SLOT_HIP
 	sharpness = IS_SHARP
@@ -540,6 +540,7 @@ Inquisitorial armory down here
 			if(!active)
 				if(!full)
 					possible_item_intents = list(/datum/intent/use, /datum/intent/dagger/cut)
+					tool_behaviour = TOOL_SCALPEL
 					user.update_a_intents()
 					playsound(src, 'sound/items/indexer_open.ogg', 75, FALSE, 3)
 					if(timestaken)
@@ -553,6 +554,7 @@ Inquisitorial armory down here
 			else
 				playsound(src, 'sound/items/indexer_shut.ogg', 75, FALSE, 3)
 				possible_item_intents = list(/datum/intent/use)
+				tool_behaviour = initial(tool_behaviour)
 				user.update_a_intents()
 				if(!full)
 					if(!timestaken)
@@ -780,8 +782,8 @@ Inquisitorial armory down here
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 
-/obj/item/inqarticles/garrote
-	name = "\proper seizing garrote"
+/obj/item/inqarticles/garrote // Do not give this item out freely to other classes. Do not subtype this item for other classes. This is intended purely as the Confessor's identifying sidegrade, and as a bonus for the Inspector INQ. I will be very sad if you disregard this comment. Thank you. - Yische.
+	name = "\proper seizing garrote" // It's nonlethal. It's so silly and fun.
 	desc = "A macabre instrument favored by the more clandestine of the Psydonian Silver Order; A length of thick leather inquiry cordage that has been dipped in both holy water and dye before being consecrated and spell-laced, held and threaded between two iron links. Perfect for apprehension."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "garrote"
@@ -945,6 +947,9 @@ Inquisitorial armory down here
 			return
 		if(user.pulling)
 			user.stop_pulling(FALSE)
+		if(HAS_TRAIT(target, TRAIT_GRABIMMUNE))
+			user.visible_message(span_danger("[target] slips past [user]'s attempt to [src] them!"))
+			return
 		victim = target	
 		playsound(loc, 'sound/items/garrotegrab.ogg', 100, TRUE)
 		ADD_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
@@ -989,22 +994,23 @@ Inquisitorial armory down here
 	blocksound = SOFTHIT
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
-	armor = ARMOR_LEATHER_GOOD
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_BLACKBAG
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PICK, BCLASS_PIERCE)
 	unequip_delay_self = 45
 	equip_delay_other = 360 SECONDS // No getting around it. Cheater. LEFT CLICK THEM!!!
 	equip_delay_self = 360 SECONDS
+	max_integrity = 10000 // No breaking it. NO CHEAP FRAGS.
 	strip_delay = 10
 	slot_flags = ITEM_SLOT_HEAD
 	body_parts_covered = FULL_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = NONE
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	max_integrity = 300
 	grid_width = 32
 	grid_height = 64
 	var/worn = FALSE
 	var/bagging = FALSE
+	var/headgear
 
 /obj/item/clothing/head/inqarticles/blackbag/proc/bagsound(mob/living/M)
 	if(bagging)
@@ -1023,18 +1029,24 @@ Inquisitorial armory down here
 	. = ..()
 	if(!iscarbon(M))
 		return
-	var/headgear = M.get_item_by_slot(SLOT_HEAD)
+	if(HAS_TRAIT(M, TRAIT_BAGGED))
+		to_chat(user, span_warning("They've already been bagged."))
+		return
+	headgear = M.get_item_by_slot(SLOT_HEAD)
 	var/trained = FALSE
 	var/timetobag = 12 SECONDS
 	if(HAS_TRAIT(user, TRAIT_BLACKBAGGER))
 		trained = TRUE
 		timetobag = 4 SECONDS
 	user.visible_message(span_danger("[user] goes to [trained ? "expertly" : "clumsily"] black bag [M]!"))
+	if(HAS_TRAIT(M, TRAIT_GRABIMMUNE))
+		user.visible_message(span_danger("[M] slips past [user]'s attempt to black bag them!"))
+		return
 	if(!M.stat)
 		if(HAS_TRAIT(user, TRAIT_BLACKBAGGER) && !M.cmode)
 			bagging = TRUE
 			bagsound(M)
-			M.dropItemToGround(headgear)	
+			M.transferItemToLoc(headgear, src)	
 			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
 			bagging = FALSE
 		else
@@ -1042,7 +1054,7 @@ Inquisitorial armory down here
 			bagcheck(M)
 			if(do_after(user, timetobag, FALSE, M))
 				bagging = FALSE
-				M.dropItemToGround(headgear)	
+				M.transferItemToLoc(headgear, src)	
 				M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
 			else
 				bagging = FALSE
@@ -1051,7 +1063,7 @@ Inquisitorial armory down here
 		bagcheck(M)
 		if(do_after(user, timetobag / 2, FALSE, M))
 			bagging = FALSE
-			M.dropItemToGround(headgear)	
+			M.transferItemToLoc(headgear, src)		
 			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
 		else
 			bagging = FALSE
@@ -1072,6 +1084,14 @@ Inquisitorial armory down here
 		user.cure_blind("blindfold_[REF(src)]")
 		worn = FALSE
 		REMOVE_TRAIT(user, TRAIT_BAGGED, TRAIT_GENERIC)
+		user.equip_to_slot(headgear, SLOT_HEAD)	
+		var/list/datum/wound/w_List = user.get_wounds()
+		if(w_List.len)
+			for(var/datum/wound/targetwound in w_List)
+				if (istype(targetwound, /datum/wound/dismemberment))		
+					user.dropItemToGround(headgear)
+					return		
+		headgear = initial(headgear)
 		playsound(user, pick('sound/misc/blackunbag.ogg'), 100, TRUE, 4)
 		user.emote("gasp", forced = TRUE)
 		return
