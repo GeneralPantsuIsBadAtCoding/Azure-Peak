@@ -1600,11 +1600,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "gR" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "tablewood2"
-	},
-/obj/item/rogueweapon/hammer/iron,
+/obj/machinery/light/rogue/smelter/hiron,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "gX" = (
@@ -2021,6 +2017,7 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cobbleedge,
+/obj/item/roguebin/water/gross,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "oy" = (
@@ -2280,7 +2277,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "sM" = (
-/obj/machinery/anvil,
+/obj/machinery/light/rogue/smelter,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "sP" = (
@@ -2587,7 +2584,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "xA" = (
-/obj/machinery/gear_painter,
+/obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "xC" = (
@@ -3185,9 +3182,8 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "Ht" = (
-/obj/effect/decal/cobbleedge{
-	dir = 4
-	},
+/obj/structure/roguerock,
+/obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "Hy" = (
@@ -3638,11 +3634,13 @@
 /area/rogue/under/cave/inhumen)
 "Qq" = (
 /obj/machinery/light/rogue/wallfire/candle/blue/l,
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "tablewood2"
-	},
-/obj/item/needle/thorn,
+/obj/structure/closet/crate/chest/neu,
+/obj/item/grown/log/tree/small,
+/obj/item/grown/log/tree/small,
+/obj/item/grown/log/tree/small,
+/obj/item/natural/bundle/stick,
+/obj/item/natural/bundle/stick,
+/obj/item/natural/bundle/stick,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "Qr" = (
@@ -3806,7 +3804,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "TD" = (
-/obj/item/roguebin/water/gross,
+/obj/machinery/anvil,
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "TK" = (
@@ -4016,6 +4016,10 @@
 /area/rogue/under/cave/inhumen)
 "WE" = (
 /obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/cave/inhumen)
+"WJ" = (
+/obj/machinery/gear_painter,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "WO" = (
@@ -13879,7 +13883,7 @@ tX
 TS
 ID
 ws
-ws
+WJ
 eJ
 ws
 Iz
@@ -17520,8 +17524,8 @@ TS
 gR
 sM
 Qq
-Ht
-Ht
+qO
+qO
 gw
 TS
 wN
@@ -17650,8 +17654,8 @@ If
 qO
 qO
 qO
-eh
-Iz
+qO
+Ht
 kX
 TS
 wN
@@ -17780,8 +17784,8 @@ tX
 kN
 qO
 qO
-eh
-kX
+qO
+tE
 kX
 kX
 XV
@@ -17910,7 +17914,7 @@ Cv
 qO
 qO
 qO
-tE
+qO
 kX
 kX
 kX
@@ -18039,8 +18043,8 @@ ws
 tX
 kN
 qO
-eh
-kX
+qO
+tE
 kX
 kX
 kX

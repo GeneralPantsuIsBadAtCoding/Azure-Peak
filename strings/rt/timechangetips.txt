@@ -80,11 +80,11 @@ The Sovereignty of Otava is a lush wet country home to the best stoneworkers on 
 A traditional Psydonic greeting or farewell is 'Purity afloat.' The psycross is often held over the chest during this ritual.
 Blacksteel is a pale imitation of the Zizo-blessed Darksteel, which is gifted to Her followers in Her benevolence.
 Blacksteel is a blessed alloy of pure silver and steel. Its recipe was stolen by Zizite heretics and perverted into Darksteel.
-The Gronn Highlands is a mountainous region known for its jagged peaks and terrible blizzards. It is home to a hardy, brutal people who struggle to survive against the land, building fortified stone villages that cling to cliffsides. 
+The Gronn Highlands are a mountainous region known for its jagged peaks and terrible blizzards. It is home to a hardy, brutal people who struggle to survive against the land, building fortified stone villages that cling to cliffsides. 
 Dwarves are renowned for their artifice and craftsmanship, having been least affected by the collapse of the Celestial Empire. They are only mostly dead.
 The Raneshan Empire is a vast dry region primarily made up of sprawling forests and arid lands. It is famous for its rich silks, splendorous gold, and expansive slave trade.
 Most Dwarves hail from Hammerhold, either from above or below. Confusing a surface-dwarf and an underground-dwarf is likely to get you kicked in the shin.
-The Isles of Etrusca is a sun-kissed archipelago nestled in sparkling blue waters. Known for their rich maritime culture, the Etruscans are masterful sailors and traders, navigating the seas with swift, ornate galleons adorned with colorful sails.
+The Isles of Etrusca are a sun-kissed archipelago nestled in sparkling blue waters. Known for their rich maritime culture, the Etruscans are masterful sailors and traders, navigating the seas with swift, ornate galleons adorned with colorful sails.
 ZIZO. ZIZO. ZIZO.
 To seek progress is to paint with your blood. The greater the work, the harsher the price.
 Scent of rot and shit; my feet find fetid ground. A corpse—I am living on a corpse. And then the world is normal again.
@@ -103,3 +103,8 @@ ASTRATA is a VILE TYRANT and must be CONSUMED AND SUBSUMED.
 ASTRATA is law made manifest and must be respected, lest society fall into chaos.
 No pursuit was too perilous, no sacrifice too great. Until, well...
 Under the Heavens and the Many Stars, there are darker things than men may dream of.
+Lupians make exceptional zealots. Ask the Otavan Inquisition.
+Stories tell that Noc stole Dendor's curse to create Humen of his own, and thus Lupians came to be. A poor imitation.
+Stories tell that Noc stole Dendor's blessing to create Humen of his own, and thus Lupians came to be. An honest attempt.
+Solitary Lupians who suffer from gigantism are often mistaken for werevolves and shot without question, so they travel in packs - be it with their own or other peoples.
+Drakian... Fluvian... Lupian... They're all wildkin, why do we bother giving them names?

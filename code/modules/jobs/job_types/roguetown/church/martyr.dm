@@ -176,7 +176,7 @@
 				H.dropItemToGround(parent)
 				return
 			var/datum/job/J = SSjob.GetJob(H.mind?.assigned_role)
-			if(!J.title == "Martyr" && !J.title == "Priest")		//Can't be a Martyr if you're not a Martyr. Or a Priest.
+			if(!J.title == "Martyr" && !J.title == "Bishop")		//Can't be a Martyr if you're not a Martyr. Or a Bishop.
 				to_chat(H, span_warn("It slips from my grasp. I can't get a hold."))
 				H.dropItemToGround(parent)
 				return
@@ -185,7 +185,7 @@
 				current_holder = user
 			if(J.title == "Martyr")
 				to_chat(user, span_warning("The blade binds to you."))
-			if(J.title == "Priest")
+			if(J.title == "Bishop")
 				to_chat(user, span_warning("You feel the shocking sensation as the sword attempts to bind to you. You know it will kill you. You can still drop it, and leave it for the Oathed."))
 	else
 		RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick), override = TRUE)
@@ -556,7 +556,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/datum/job/J = SSjob.GetJob(H.mind?.assigned_role)
-		if(J.title == "Priest" || J.title == "Martyr")
+		if(J.title == "Bishop" || J.title == "Martyr")
 			return ..()
 		else if (H.job in GLOB.church_positions)
 			to_chat(user, span_warning("You feel a jolt of holy energies just for a split second, and then the sword slips from your grasp! You are not devout enough."))

@@ -62,6 +62,14 @@
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	ceiling_protected = TRUE
 
+/area/rogue/outdoors/mountains/decap/gunduzirak/bossarena
+	name = "Baronness Boss Arena"
+	first_time_text = "THE BARONESS"
+
+
+/area/rogue/outdoors/mountains/decap/gunduzirak/bossarena/can_craft_here()
+	return FALSE
+
 /area/rogue/under/cave/dragonden
 	name = "dragonnest"
 	icon_state = "under"
@@ -72,6 +80,9 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
+
+/area/rogue/under/cave/dragonden/can_craft_here()
+	return FALSE
 
 /area/rogue/under/cave/goblinfort
 	name = "goblinfort"
@@ -94,3 +105,14 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
+
+/area/rogue/outdoors/mountains/decap/minotaurfort
+	name = "Minotaur Fort"
+	icon_state = "decap"
+	droning_sound = 'sound/music/area/prospector.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	first_time_text = "ANCIENT DWARVEN FORGE"
+	ambush_times = list("night","dawn","dusk","day")
+	converted_type = /area/rogue/indoors/shelter/mountains/decap
+	ceiling_protected = TRUE

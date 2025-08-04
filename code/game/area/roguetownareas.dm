@@ -331,6 +331,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 
+/area/rogue/under/cave/licharena/bossroom
+	name = "licharenaboss"
+	first_time_text = "THE LICH"
+
+/area/rogue/under/cave/licharena/bossroom/can_craft_here()
+	return FALSE
+
 /area/rogue/under/cave/undeadmanor
 	name = "skelemansion"
 	icon_state = "spidercave"

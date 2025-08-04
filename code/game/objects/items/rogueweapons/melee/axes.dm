@@ -497,14 +497,13 @@
 // Unique loot axes; mostly from mobs //
 ////////////////////////////////////////
 
-/obj/item/rogueweapon/greataxe/steel/doublehead/minotaur
+/obj/item/rogueweapon/greataxe/minotaur
 	name = "minotaur greataxe"
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
-	blade_dulling = DULLING_SHAFT_WOOD	//Suffer & go upgrade it
-	force = 20							//Same as Graggar axe, only cus it's rare enough. Plus has the high strength req and crap starting-shaft.
-	force_wielded = 40
-	minstr = 15							//Boo-womp
+	blade_dulling = DULLING_SHAFT_WOOD
+	minstr = 15	
+	max_blade_int = 100 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
 
 /obj/item/rogueweapon/stoneaxe/woodcut/troll
 	name = "crude heavy axe"
