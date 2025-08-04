@@ -111,15 +111,17 @@
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
 	name = "decrepit chain kilt"
-	desc = "A decrepit old kilt. Aeon's grasp is upon it."
+	desc = "Frayed bronze rings, linked together with bindings of rotting leather to form a waist's drape. The maille jingles with every step, singing the hymn to a cadence once savored by marching legionnaires."
 	icon_state = "achainkilt"
 	sleevetype = "achainkilt"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_LEG_DECREPIT_CHAIN
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
 	name = "ancient chain kilt"
-	desc = "A kilt formed out of ancient alloys. Aeon's grasp lifted from it."
+	desc = "Polished gilbranze rings, linked together with bindings of silk to form a waist's vestment. These undying legionnaires once marched for Vheslyn, and again for Zizo; but now, they are utterly beholden to the whims of their resurrector."
 	icon_state = "achainkilt"
 	smeltresult = /obj/item/ingot/aaslag
 

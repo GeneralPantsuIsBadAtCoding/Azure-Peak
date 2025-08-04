@@ -216,7 +216,9 @@
  * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
  */
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
-	var/list/lookup = target.comp_lookup
+	if (!target || !istype(target) || !target:comp_lookup) //Delinefortune:  If the target is null or not a valid type, we can't unregister
+		return
+	var/list/lookup = target.comp_lookup  
 	if(!signal_procs || !signal_procs[target] || !lookup)
 		return
 	if(!islist(sig_type_or_types))

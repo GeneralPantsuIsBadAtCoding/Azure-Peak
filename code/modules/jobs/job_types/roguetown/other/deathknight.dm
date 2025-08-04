@@ -87,7 +87,7 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
-	H?.mind.adjust_spellpoints(18)
+	H.mind?.adjust_spellpoints(18)
 
 
 	belt = /obj/item/storage/belt/rogue/leather

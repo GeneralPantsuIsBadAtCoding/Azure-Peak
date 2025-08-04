@@ -82,6 +82,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
+				H.mind.adjust_spellpoints(12)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
@@ -95,7 +96,6 @@
 			H.change_stat("intelligence", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 1)
-			H?.mind.adjust_spellpoints(12)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
@@ -146,6 +146,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
+				H.mind.adjust_spellpoints(12)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -158,7 +159,6 @@
 			H.change_stat("intelligence", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
-			H?.mind.adjust_spellpoints(12)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)

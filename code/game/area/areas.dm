@@ -104,7 +104,6 @@
 	/// typecache to limit the areas that atoms in this area can smooth with, used for shuttles IIRC
 	var/list/canSmoothWithAreas
 
-	var/list/ambush_types
 	var/list/ambush_mobs
 	var/list/ambush_times
 

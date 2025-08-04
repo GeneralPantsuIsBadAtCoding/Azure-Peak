@@ -99,6 +99,7 @@
 		/obj/item/rogueweapon/sword/cutlass = 2,
 		/obj/item/rogueweapon/sword/long = 2,
 		/obj/item/rogueweapon/katar = 1,
+		/obj/item/rogueweapon/katar/punchdagger = 1,
 		/obj/item/rogueweapon/flail = 1,
 		/obj/item/rogueweapon/estoc = 1,
 		/obj/item/rogueweapon/greatsword/zwei = 1,

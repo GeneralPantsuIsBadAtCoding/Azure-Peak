@@ -228,16 +228,18 @@
 
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"
-	desc = "A decrepit, worn out shield. Aeon's grasp is upon it."
+	desc = "A hefty tower shield, wrought from frayed bronze. Looped with dried kelp and reeking of saltwater, you'd assume that this had been fished out from the remains of a long-sunken warship.. alongside its former legionnaire."
 	max_integrity = 150
 	wdefense = 9
 	icon_state = "ancientsh"
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/shield/tower/metal/palloy
 	name = "ancient shield"
-	desc = "A ancient, venerable shield. Aeon's grasp has been lifted from it."
+	desc = "A venerable scutum, plated with polished gilbranze. An undying legionnaire's closest friend; that which rebukes arrow-and-bolt alike with unphasing prejudice. It is a reminder - one of many - that Her progress cannot be stopped."
 	icon_state = "ancientsh"
 	smeltresult = /obj/item/ingot/purifiedaalloy
 	blade_dulling = DULLING_SHAFT_METAL
@@ -296,7 +298,7 @@
 			weapon_parry = TRUE
 	if(istype(mainhand, /obj/item/rogueweapon/shield/buckler))
 		associated_skill = /datum/skill/combat/shields
-	if(weapon_parry && mainhand.associated_skill)
+	if(weapon_parry && mainhand.associated_skill && ispath(mainhand.associated_skill, /datum/skill/combat))
 		associated_skill = mainhand.associated_skill
 	else
 		associated_skill = /datum/skill/combat/shields

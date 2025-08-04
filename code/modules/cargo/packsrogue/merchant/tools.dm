@@ -224,3 +224,8 @@
 	name = "Surgeon's bag, Full"
 	cost = 80
 	contains = list(/obj/item/storage/belt/rogue/surgery_bag)
+
+/datum/supply_pack/rogue/tools/scissors
+	name = "Scissors, Iron"
+	cost = 30
+	contains = list(/obj/item/rogueweapon/huntingknife/scissors)

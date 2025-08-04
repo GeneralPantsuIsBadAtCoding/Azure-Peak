@@ -69,13 +69,12 @@
 				H.change_stat("speed", -1)
 				H.change_stat("intelligence", 1)
 				H.change_stat("perception", 1)
-				H?.mind.adjust_spellpoints(6)
+				H.mind?.adjust_spellpoints(6)
 			H.change_stat("endurance", 2)
 			H.change_stat("speed", 2)
 			H.change_stat("constitution", -1)
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", 3)
-			H?.mind.adjust_spellpoints(15)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 			if(H.mind)
@@ -86,6 +85,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/haste)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortitude)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall/greater)
+				H.mind.adjust_spellpoints(15)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
 

@@ -158,15 +158,8 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 	// Promote the selected priest if we found one
 	if(selected_priest)
-		var/male
-		if(selected_priest.gender == FEMALE)
-			selected_priest.job = "Vice Priestess"
-			selected_priest.advjob = "Vice Priestess"
-			male = FALSE
-		else
-			selected_priest.job = "Vice Priest"
-			selected_priest.advjob = "Vice Priest"
-			male = TRUE
+		selected_priest.job = "Vice Bishop"
+		selected_priest.advjob = "Vice Bishop"
 		selected_priest.migrant_type = null
 		var/datum/devotion/D = selected_priest.devotion
 		if(D)
@@ -179,12 +172,12 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 		//selected_priest.verbs |= /mob/living/carbon/human/proc/churchcurse	- Add this back seperate later in a seperate PR. Good feature, PR too big tho.
 		selected_priest.verbs |= /mob/living/carbon/human/proc/churchannouncement
 
-		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new [male ? "Vice Priest" : "Vice Priestess"]! Power sharing begins!", "[male ? "Vice Priest" : "Vice Priestess"] rises", 'sound/magic/inspire_02.ogg')
+		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new Bishop! Power sharing begins!", "Bishop rises", 'sound/magic/inspire_02.ogg')
 
 		if(was_supporter)
-			to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a [male ? "Vice Priest" : "Vice Priestess"]!"))
+			to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a Vice Bishop!"))
 		else
-			to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a [male ? "Vice Priest" : "Vice Priestess"]!"))
+			to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a Vice Bishop!"))
 
 		if(D)
 			to_chat(selected_priest, span_notice("You have gained a passive devotion gain and powers to announce, excommunicate or curse!"))

@@ -808,6 +808,17 @@
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
 	var/list/lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
+	if(lip_style)
+		switch(lip_color)
+			if("red")
+				. += "<span class='info' style='color: #a81324'>[m1] wearing red lipstick.</span>"
+			if("purple")
+				. += "<span class='info' style='color: #800080'>[m1] wearing purple lipstick.</span>"
+			if("lime")
+				. += "<span class='info' style='color: #00FF00'>[m1] wearing lime lipstick.</span>"
+			if("black")
+				. += "<span class='info' style='color: #313131ff'>[m1] wearing black lipstick.</span>"
+			
 	for(var/line in lines)
 		. += span_info(line)
 

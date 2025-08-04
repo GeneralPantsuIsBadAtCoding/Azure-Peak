@@ -85,13 +85,15 @@
 
 /obj/item/rogueweapon/mace/alloy
 	name = "decrepit mace"
-	desc = "A decrepit old mace. Aeon's grasp is upon it."
+	desc = "Frayed bronze, perched atop a rotwooden shaft. His sacrifice had drowned Old Syon, and - in its wake - left Man bereft of all it had accomplished. With all other prayers falling upon deaf ears, Man had crafted this idol in tribute to its new God; violence."
 	icon_state = "amace"
-	smeltresult = /obj/item/ingot/aalloy
 	force = 17
 	force_wielded = 21
 	max_integrity = 180
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 
 /obj/item/rogueweapon/mace/church
@@ -117,7 +119,7 @@
 
 /obj/item/rogueweapon/mace/steel/palloy
 	name = "ancient alloy mace"
-	desc = "A ancient mace. Aeon's grasp has been lifted from it."
+	desc = "Polished gilbranze, perched atop a reinforced shaft. Break the unenlightened into naught-but-giblets; like a potter's vessels, dashed against the rocks."
 	icon_state = "amace"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -341,12 +343,14 @@
 
 /obj/item/rogueweapon/mace/goden/aalloy
 	name = "decrepit grand mace"
-	desc = "A decrepit old grand mace. Aeon's grasp is upon it."
+	desc = "Good nite, sire."
 	force = 12
 	force_wielded = 22
 	icon_state = "ancient_supermace"
-	smeltresult = /obj/item/ingot/aalloy
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/mace/goden/steel
 	name = "grand mace"
@@ -360,7 +364,7 @@
 
 /obj/item/rogueweapon/mace/goden/steel/paalloy
 	name = "ancient grand mace"
-	desc = "A grand mace formed out of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "A twisting polehammer, forged in polished gilbranze. What did you think this was all about? This destruction, this war, this sacrifice; it was all to prepare Man for its true ascension."
 	icon_state = "ancient_supermace"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -420,12 +424,14 @@
 
 /obj/item/rogueweapon/mace/warhammer/alloy
 	name = "decrepit warhammer"
-	desc = "A decrepit old warhammer. Aeon's grasp is upon it."
+	desc = "A macehead of frayed bronze, spiked and perched atop a thin shaft. To see such a knightly implement abandoned to decay and neglect; that wounds the heart greater than any well-poised strike."
 	icon_state = "awarhammer"
-	smeltresult = /obj/item/ingot/aalloy
 	force = 17
 	max_integrity = 180
 	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
@@ -450,7 +456,7 @@
 
 /obj/item/rogueweapon/mace/warhammer/steel/paalloy
 	name = "ancient alloy warhammer"
-	desc = "A warhammer crafted of ancient alloys. Aeon's grasp has been lifted from it."
+	desc = "A macehead of polished gilbranze, spiked and perched atop a reinforced shaft. An elegant weapon from a more civilized age; when Man lived in harmony with one-another, and when 'the undying' was nothing more than a nitemare's thought."
 	icon_state = "awarhammer"
 	smeltresult = /obj/item/ingot/aaslag
 

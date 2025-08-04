@@ -16,14 +16,16 @@
 
 /obj/item/clothing/gloves/roguetown/chain/aalloy
 	name = "decrepit chain gauntlets"
-	desc = "Decrepit old chain gauntlets. Aeon's grasp is upon them."
+	desc = "Frayed bronze rings, interlinked together to form sagging mittens. Fingers, talons, claws; they're all the same, when smothered beneath maille and left to rot away."
 	icon_state = "acgloves"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/gloves/roguetown/chain/paalloy
 	name = "ancient chain gauntlets"
-	desc = "Chain gauntlets formed out of ancient alloys. Aeon's grasp is lifted from them."
+	desc = "Polished gilbranze rings, delicately daisy-chained together into mittens. The filament is ruptured, and it will never heal; Zizo's ascension made sure of that. By the hands of Her disciples, the final obstacle preventing this world's salvation shall be dismantled - lyfe."
 	icon_state = "acgloves"
 	smeltresult = /obj/item/ingot/aaslag
 

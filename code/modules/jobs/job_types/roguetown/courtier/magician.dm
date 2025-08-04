@@ -71,14 +71,14 @@
 	H.change_stat("constitution", -1)
 	H.change_stat("intelligence", 4)
 	if(H.mind)
-		H?.mind.adjust_spellpoints(36)
+		H.mind.adjust_spellpoints(36)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.change_stat("speed", -1)
 		H.change_stat("intelligence", 1)
 		H.change_stat("perception", 1)
-		H?.mind.adjust_spellpoints(6)
+		H.mind?.adjust_spellpoints(6)
 		if(ishumannorthern(H))
 			belt = /obj/item/storage/belt/rogue/leather/plaquegold
 			cloak = null
@@ -87,8 +87,8 @@
 			H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo,
-	  		/datum/patron/inhumen/matthios,
-	   		/datum/patron/inhumen/graggar,
-	   		/datum/patron/inhumen/baotha)
+			/datum/patron/inhumen/matthios,
+			/datum/patron/inhumen/graggar,
+			/datum/patron/inhumen/baotha)
 			H.cmode_music = 'sound/music/combat_heretic.ogg' // to keep things simple, just giving CM demense. fitting 4 the role no matter the patron.
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)

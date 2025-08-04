@@ -420,6 +420,12 @@
 	created_item = /obj/item/rogueweapon/katar
 	craftdiff = 2
 
+/datum/anvil_recipe/weapons/steel/punchdagger
+	name = "Punch Dagger"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/katar/punchdagger
+	craftdiff = 3
+
 /datum/anvil_recipe/weapons/steel/steelknuckle
 	name = "Steel Knuckle"
 	req_bar = /obj/item/ingot/steel

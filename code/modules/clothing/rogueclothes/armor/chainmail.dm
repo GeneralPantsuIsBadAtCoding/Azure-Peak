@@ -28,14 +28,16 @@
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
 	name = "decrepit haubergeon"
-	desc = "Decrepit old haubergeon. Aeon's grasp is upon it."
+	desc = "Frayed bronze rings and rotting leather, woven together to form a short maille-atekon. There's a breach along the rings, where the leather is wet with blackness: the aftermath of a mortal wound, delivered centuries ago."
 	icon_state = "ancientchain"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_DECREPIT
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
 	name = "ancient haubergeon"
-	desc = "Chainmail vest formed of ancient alloys. Aeon's grasp has been lifted from it."
+	desc = "Polished gilbranze rings and silk, woven together to form a short maille-atekon. The death of a million brought forth the ascension of Zizo; and if a million more must perish to complete Her works, then let it be done."
 	icon_state = "ancientchain"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -61,14 +63,16 @@
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
 	name = "decrepit hauberk"
-	desc = "A hauberk worn out by time. Aeon's grasp is upon it."
+	desc = "Frayed bronze rings and rotting leather, woven together to form a sleeved maille-atekon. Once, the armored vestments of a paladin: now, the withered veil of Zizo's undying legionnaires."
 	icon_state = "ancienthauberk"
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_DECREPIT
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
 	name = "ancient hauberk"
-	desc = "A hauberk formed out of ancient alloys. Aeon's grasp is upon it."
+	desc = "Polished gilbranze rings and silk, woven together to form a sleeved maille-atekon. To bring the lyfeless back from decrepity, to elevate them to heights once thought unsurmountable; that is the will of Zizo, made manifest."
 	icon_state = "ancienthauberk"
 	smeltresult = /obj/item/ingot/aaslag
 

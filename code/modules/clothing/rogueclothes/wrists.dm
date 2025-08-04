@@ -42,14 +42,16 @@
 
 /obj/item/clothing/wrists/roguetown/bracers/aalloy
 	name = "decrepit bracers"
-	desc = "Decrepit old bracers. Aeon's grasp is upon them."
+	desc = "Frayed bronze cuffings, bound across the wrists. Don't bother counting the tallies left behind by their former legionnaires; none of them ever returned from the battlefields."
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	icon_state = "ancientbracers"
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/wrists/roguetown/bracers/paalloy
 	name = "ancient bracers"
-	desc = "Bracers formed of ancient alloys. Aeon's grasp is lifted from their form."
+	desc = "Polished gilbranze cuffings, clasped around the wrists. Through ascension, the chains of mortality are broken; and only through death will the spirit be ready to embrace divinity."
 	icon_state = "ancientbracers"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -68,7 +70,7 @@
 	smeltresult = null
 	sewrepair = TRUE
 	smeltresult = null
-	salvage_amount = 1
+	salvage_amount = 0 // sry
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/wrists/roguetown/bracers/leather/heavy

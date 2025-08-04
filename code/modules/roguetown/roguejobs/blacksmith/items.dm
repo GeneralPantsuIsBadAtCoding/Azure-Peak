@@ -55,10 +55,11 @@
 
 /obj/item/roguestatue/aalloy
 	name = "decrepit statue"
-	desc = "A statue of withering metal"
+	desc = "A statue of wrought bronze, forged to venerate an ancient champion."
 	icon_state = "astatue1"
 	smeltresult = /obj/item/ingot/aalloy
-	sellprice = 5
+	sellprice = 77
+	color = "#bb9696"
 
 /obj/item/roguestatue/aalloy/Initialize()
 	. = ..()

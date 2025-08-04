@@ -5,14 +5,13 @@
 	name = "Lupian"
 	id = "lupian"
 	desc = "<b>Lupian</b><br>\
-	Lupians are the sons and daughters of Noc. They are a volf-like people hailing from the Northern Regions of the world. \
-	They are resilient, cunning and fight ready creachures capable of surviving the north thanks to their rugged pelts, \
-	sharp teeth and deep-rooted spirit of community. They are very dutiful individuals and make fantastic and fearsome \
-	warriors to those who earn their loyalty. Thanks to their pack minded nature they are slow to trust the other races \
-	but form deep connections with those they do. In recent years they have been driven from the forests by unrest and pressed \
-	into cohabitation with races they'd deem lesser.<br>\
+	As written by an Archivist from times before yours: Lupians, known by many as Volfmen, are a very prominent type of Beastkin that is easily found all across Psydonia. \
+	They are oft tall and slim, carrying with them a coat of discoloured short or medium length fur. \
+	Their bodies are naturally resilient and their minds as sharp as a Humen's own. \
+	A Lupian will usually display loyalty to a fault, as they are quite factional beings. \
+	Tales of old claim that they came to be when Noc stole Dendor’s curse to create lyfe of his own in an attempt to replicate Psydon’s, instead giving birth to a flawed beast-people.<br>\
 	(+1 Constitution, +1 Intelligence)"
-	skin_tone_wording = "Pack"
+	skin_tone_wording = "Ascendance"
 	species_traits = list(
 		MUTCOLORS,
 		EYECOLOR,
@@ -108,6 +107,7 @@
 		/datum/body_marking/harlequinreversed,
 		/datum/body_marking/bangs,
 		/datum/body_marking/bun,
+		/datum/body_marking/gradient,
 	)
 	descriptor_choices = list(
 		/datum/descriptor_choice/height,
@@ -140,20 +140,15 @@
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 
-/datum/species/lupian/get_skin_list()
+/datum/species/lupian/get_skin_list()		//This is completely, utterly deprecated as far as I know.
 	return list(
-		"Vakran" = "271f1b",
-		"Lanarain" = "271f1c",
-		"Frostfell" = "271f1d",
-		"Varghelm" = "271f1e",
-		"Dawnbreak" = "271f1f",
-		"Bloodmoon" = "271f2a",
-		"Felsaad" = "271f2b",
-		"Hizmut" = "271f2c",
-		"Langqan" = "271f2d",
-		"a tangled lineage" = "271f2e",
-		"disputed" = "271f2f",
-		"bastardized" = "271f3a"
+		"Forester" = "271f1b",
+		"Arctic" = "271f1c",
+		"Desert-dweller" = "271f1d",
+		"City Cur" = "271f1e",
+		"Coaster" = "271f1f",
+		"Islander" = "271f2a",
+		"Bastard" = "271f2b"
 	) // This is a dirty hack that stops me using mob defines, the colors do not do anything, it just a var that relates to their pack name on examine
 
 /datum/species/lupian/get_random_features()

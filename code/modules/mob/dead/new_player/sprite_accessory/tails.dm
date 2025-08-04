@@ -364,3 +364,7 @@
 	icon_state = "lynx"
 	color_keys = 2
 	color_key_names = list("Tail", "Tip")
+
+/datum/sprite_accessory/tail/owl
+	name = "Owl"
+	icon_state = "owl"
