@@ -6985,7 +6985,7 @@
 /area/rogue/outdoors/town)
 "coO" = (
 /obj/structure/winch{
-	gid = "dungeonboss";
+	gid = "psydoor";
 	redstone_id = "psydoor"
 	},
 /turf/open/floor/rogue/blocks,
@@ -72087,6 +72087,13 @@
 /obj/item/cooking/pan,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"xom" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1;
+	locked = 1
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "xon" = (
 /obj/structure/roguewindow/openclose/reinforced,
 /turf/open/floor/rogue/herringbone,
@@ -73902,13 +73909,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter)
-"xUL" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1;
-	locked = 1
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/underdark/north)
 "xUN" = (
 /obj/structure/well,
 /obj/item/reagent_containers/glass/bucket{
@@ -79959,7 +79959,7 @@ hIW
 hwl
 xNc
 xNc
-xUL
+xom
 xNc
 mhf
 wNY
