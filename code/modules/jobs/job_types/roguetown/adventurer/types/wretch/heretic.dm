@@ -155,9 +155,9 @@
 		// Apostasy sets regen to 0, this makes sure they still get some regen, but less than before if they were an Acolyte. Otherwise, take the old gain.
 		if(target.devotion.level != 0)
 			saved_level = target.devotion.level
-		if(target.devotion.passive_devotion_gain != 0)
+		if(target.devotion.passive_devotion_gain < saved_devotion_gain)
 			saved_devotion_gain = target.devotion.passive_devotion_gain
-		if(target.devotion.max_progression != 0)
+		if(target.devotion.max_progression < saved_max_progression)
 			saved_max_progression = target.devotion.max_progression
 		
 		// Remove all granted spells
