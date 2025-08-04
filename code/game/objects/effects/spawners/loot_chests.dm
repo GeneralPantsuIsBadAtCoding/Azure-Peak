@@ -19,7 +19,7 @@
 		/obj/effect/spawner/lootdrop/valuable_tableware_spawner = 1,
 	)
 	/// a string of dice to use when rolling number of contents.
-	var/loot_spawn_dice_string = "1d4+1"
+	var/loot_spawn_dice_string = "1d3+1"
 
 /obj/structure/closet/crate/chest/loot_chest/Initialize()
 	. = ..()
