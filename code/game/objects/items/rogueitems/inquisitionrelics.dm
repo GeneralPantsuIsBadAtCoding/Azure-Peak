@@ -657,8 +657,12 @@ Inquisitorial armory down here
 		if(subject)
 			if(M != subject)
 				return
+		if(!M.mind)		
+			return
 		if(HAS_TRAIT(M, TRAIT_BLOODLOSS_IMMUNE))
 			to_chat(user, span_warning("They don't have any blood to sample."))		
+		if(istype(M, /mob/living/carbon/human/species/skeleton))
+			to_chat(user, span_warning("I don't think the Inquisition values marrow much these daes."))			
 		if(full)
 			to_chat(user, span_warning("It's full."))	
 			return	
@@ -966,8 +970,9 @@ Inquisitorial armory down here
 		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	
 		REMOVE_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
 		var/obj/item/grabbing/I = user.get_inactive_held_item()
-		I.icon_state = null
-		currentgrab = I
+		if(istype(I, /obj/item/grabbing/))
+			I.icon_state = null
+			currentgrab = I
 
 	if(istype(user.used_intent, /datum/intent/garrote/choke))	// Get started.
 		if(!victim)

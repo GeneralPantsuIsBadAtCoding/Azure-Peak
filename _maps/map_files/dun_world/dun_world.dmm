@@ -11080,8 +11080,6 @@
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/tallow/red,
-/obj/item/inqarticles/tallowpot,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/inq)
 "dCm" = (
@@ -22102,6 +22100,8 @@
 	},
 /obj/item/paper/scroll,
 /obj/item/natural/feather,
+/obj/item/reagent_containers/food/snacks/tallow/red,
+/obj/item/inqarticles/tallowpot,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/inq)
 "gZK" = (
@@ -254603,9 +254603,9 @@ njB
 pWT
 oKc
 gTY
-ceD
+bVQ
 gTY
-ceD
+bVQ
 gTY
 oKc
 ckC
