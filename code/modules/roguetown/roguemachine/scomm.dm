@@ -858,7 +858,7 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	churchline = !churchline
-	to_chat(user, span_info("I [churchline ? "connect to the garrison SCOMline" : "connect to the general SCOMline"]"))
+	to_chat(user, span_info("I [churchline ? "connect to the church SCOMline" : "connect to the general SCOMline"]"))
 	update_icon()
 
 /obj/item/scomstone/church/update_icon()
