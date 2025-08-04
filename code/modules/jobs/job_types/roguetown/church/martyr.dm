@@ -457,6 +457,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
 	beltr = /obj/item/storage/keyring/priest
+	id = /obj/item/scomstone/church
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
 	r_hand = /obj/item/rogueweapon/scabbard/sword
 	backr = /obj/item/storage/backpack/rogue/satchel

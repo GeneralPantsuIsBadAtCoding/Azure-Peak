@@ -46,7 +46,7 @@
 	..()
 	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
-	id = /obj/item/clothing/ring/silver
+	id = /obj/item/scomstone/bad/church
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/ritechalk = 1,
@@ -187,7 +187,7 @@
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
-	id = /obj/item/clothing/ring/silver
+	id = /obj/item/scomstone/bad/church
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/ritechalk = 1,

@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	beltl = /obj/item/storage/keyring/priest
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
-	id = /obj/item/clothing/ring/active/nomag
+	id = /obj/item/scomstone/church
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/priest
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
