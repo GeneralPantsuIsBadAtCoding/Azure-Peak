@@ -156,3 +156,12 @@
 	mimic_type = /mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
 	chest_type = /obj/structure/closet/crate/chest/gold
 
+/obj/effect/landmark/loot_chest/locked_or_trapped
+	var/trap_type = /obj/structure/closet/crate/chest/trapped/locked
+	var/chest_type = /obj/structure/closet/crate/chest/loot_chest/locked
+
+/obj/effect/landmark/loot_chest/locked_or_trapped/Initialize()
+	..()
+	var/C = pick(trap_type, chest_type)
+	new C(loc)
+	return INITIALIZE_HINT_QDEL
