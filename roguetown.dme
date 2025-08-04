@@ -1560,6 +1560,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\special\whitecheesemaker.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\berserker.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\deserter.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\evildruid.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\hedgemage.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\heretic.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\necromancer.dm"
