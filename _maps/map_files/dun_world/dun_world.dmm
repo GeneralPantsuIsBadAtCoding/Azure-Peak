@@ -5876,6 +5876,13 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods/southwest)
+"bTH" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1;
+	locked = 1
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "bTI" = (
 /obj/structure/fluff/railing/wood{
 	pixel_y = -8
@@ -73853,7 +73860,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/physician)
 "xTP" = (
-/obj/effect/landmark/chest_or_mimic/loot_chest/locked,
+/obj/structure/closet/crate/chest/loot_chest/locked,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "xTU" = (
@@ -79952,7 +79959,7 @@ hIW
 hwl
 xNc
 xNc
-nFP
+bTH
 xNc
 mhf
 wNY

@@ -1722,10 +1722,6 @@
 /obj/structure/bed/rogue/inn/wool,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"kw" = (
-/obj/machinery/gear_painter,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "kx" = (
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/banditcamp)
@@ -3727,6 +3723,10 @@
 /area/rogue/under/cave/inhumen)
 "WE" = (
 /obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/cave/inhumen)
+"WJ" = (
+/obj/machinery/gear_painter,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "WO" = (
@@ -13578,7 +13578,7 @@ tX
 TS
 ID
 ws
-kw
+WJ
 eJ
 ws
 Iz
@@ -17738,7 +17738,7 @@ ws
 tX
 kN
 qO
-eh
+qO
 tE
 kX
 kX
