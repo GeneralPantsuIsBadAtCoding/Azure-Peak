@@ -128,19 +128,21 @@
 	if(!HAS_TRAIT(user, TRAIT_CHOSEN))	//Requires this cus it's a priest-only thing.
 		return
 	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigorous - empowered by my God!"))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/dropped(mob/living/user)
 	..()
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk
 	name = "monk vestments"
-	desc = "Holy vestments worn by the most faithful."
+	desc = "Nomadic vestments, worn by those who pursue faith above all else. The burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
 	icon_state = "monkvestments"
 	item_state = "monkvestments"
-	armor = ARMOR_PADDED	//Equal to gamby
+	armor = ARMOR_PADDED_GOOD	//Equal to a padded gambeson, like before.
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)	 //Ensures that this inherits the padded gambeson's resistances, too.
+	color = null
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/equipped(mob/living/user, slot)
@@ -148,12 +150,12 @@
 	if(!HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN))	//Requires this cus it's a monk-only thing.
 		return
 	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigorous - empowered by my God!"))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/dropped(mob/living/user)
 	..()
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/courtmage
 	color = "#6c6c6c"

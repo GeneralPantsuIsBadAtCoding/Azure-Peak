@@ -31,15 +31,16 @@
 		return pick(targets)
 
 /mob/living/carbon/has_hand_for_held_index(i, extra_checks)
-	if(i)
-		var/obj/item/bodypart/L = hand_bodyparts[i]
-		if(L && !L.disabled)
-			if(extra_checks)
-				if(!L.fingers || HAS_TRAIT(L, TRAIT_FINGERLESS))
-					return FALSE
-			return L
-	return FALSE
+	if(!isnum(i) || i <= 0 || i > length(hand_bodyparts)) //Delinefortune: if they have no hands, this will return FALSE and nothing going to happen
+		return FALSE
 
+	var/obj/item/bodypart/L = hand_bodyparts[i]
+	if(L && !L.disabled)
+		if(extra_checks)
+			if(!L.fingers || HAS_TRAIT(L, TRAIT_FINGERLESS))
+				return FALSE
+		return L
+	return FALSE
 
 /mob/proc/has_left_hand(check_disabled = TRUE)
 	return TRUE

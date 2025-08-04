@@ -1,25 +1,29 @@
-/obj/item/rogueweapon/lordscepter
-	force = 20
-	force_wielded = 20
-	possible_item_intents = list(/datum/intent/lordbash, /datum/intent/lord_electrocute, /datum/intent/lord_silence)
-	gripped_intents = list(/datum/intent/lordbash)
-	name = "master's rod"
-	desc = "Bend the knee. Can't be used outside of the manor."
-	icon_state = "scepter"
-	icon = 'icons/roguetown/weapons/32.dmi'
-	sharpness = IS_BLUNT
-	//dropshrink = 0.75
-	wlength = WLENGTH_NORMAL
-	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = ITEM_SLOT_HIP
-	associated_skill = /datum/skill/combat/maces
-	smeltresult = /obj/item/ingot/iron
-	swingsound = BLUNTWOOSH_MED
-	minstr = 5
-	blade_dulling = DULLING_SHAFT_WOOD
+/// INTENT DATUMS	v
+/datum/intent/katar/cut
+	name = "cut"
+	icon_state = "incut"
+	attack_verb = list("cuts", "slashes")
+	animname = "cut"
+	blade_class = BCLASS_CUT
+	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
+	penfactor = 0
+	chargetime = 0
+	swingdelay = 0
+	damfactor = 1.3
+	clickcd = CLICK_CD_INTENTCAP
+	item_d_type = "slash"
 
-	grid_height = 96
-	grid_width = 32
+/datum/intent/katar/thrust
+	name = "thrust"
+	icon_state = "instab"
+	attack_verb = list("thrusts")
+	animname = "stab"
+	blade_class = BCLASS_STAB
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 40
+	chargetime = 0
+	clickcd = CLICK_CD_INTENTCAP
+	item_d_type = "stab"
 
 /datum/intent/lordbash
 	name = "bash"
@@ -42,6 +46,56 @@
 	icon_state = "inuse"
 	tranged = TRUE
 	noaa = TRUE
+
+/datum/intent/knuckles/strike
+	name = "punch"
+	blade_class = BCLASS_BLUNT
+	attack_verb = list("punches", "clocks")
+	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
+	chargetime = 0
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	clickcd = 8
+	damfactor = 1.1
+	swingdelay = 0
+	icon_state = "inpunch"
+	item_d_type = "blunt"
+
+/datum/intent/knuckles/smash
+	name = "smash"
+	blade_class = BCLASS_SMASH
+	attack_verb = list("smashes")
+	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.1
+	clickcd = CLICK_CD_MELEE
+	swingdelay = 8
+	intent_intdamage_factor = 1.8
+	icon_state = "insmash"
+	item_d_type = "blunt"
+/// INTENT DATUMS	^
+
+/obj/item/rogueweapon/lordscepter
+	force = 20
+	force_wielded = 20
+	possible_item_intents = list(/datum/intent/lordbash, /datum/intent/lord_electrocute, /datum/intent/lord_silence)
+	gripped_intents = list(/datum/intent/lordbash)
+	name = "master's rod"
+	desc = "Bend the knee. Can't be used outside of the manor."
+	icon_state = "scepter"
+	icon = 'icons/roguetown/weapons/32.dmi'
+	sharpness = IS_BLUNT
+	//dropshrink = 0.75
+	wlength = WLENGTH_NORMAL
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_HIP
+	associated_skill = /datum/skill/combat/maces
+	smeltresult = /obj/item/ingot/iron
+	swingsound = BLUNTWOOSH_MED
+	minstr = 5
+	blade_dulling = DULLING_SHAFT_WOOD
+
+	grid_height = 96
+	grid_width = 32
 
 /obj/item/rogueweapon/lordscepter/getonmobprop(tag)
 	if(tag)
@@ -230,35 +284,6 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 
-/datum/intent/katar
-	clickcd = 8
-
-/datum/intent/katar/cut
-	name = "cut"
-	icon_state = "incut"
-	attack_verb = list("cuts", "slashes")
-	animname = "cut"
-	blade_class = BCLASS_CUT
-	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = 0
-	chargetime = 0
-	swingdelay = 0
-	damfactor = 1.3
-	clickcd = CLICK_CD_INTENTCAP
-	item_d_type = "slash"
-
-/datum/intent/katar/thrust
-	name = "thrust"
-	icon_state = "instab"
-	attack_verb = list("thrusts")
-	animname = "stab"
-	blade_class = BCLASS_STAB
-	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 40
-	chargetime = 0
-	clickcd = CLICK_CD_INTENTCAP
-	item_d_type = "stab"
-
 /obj/item/rogueweapon/katar/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -276,6 +301,23 @@
 	force = 27	//Its thrust will be able to pen 80 stab armor if the wielder has 17 STR. (With softcap)
 	max_integrity = 120
 
+/obj/item/rogueweapon/katar/punchdagger
+	name = "punch dagger"
+	desc = "A weapon that combines the ergonomics of the Ranesheni katar with the capabilities of the Western Psydonian \"knight-killers\". It can be tied around the wrist."
+	slot_flags = ITEM_SLOT_WRISTS
+	max_integrity = 120		//Steel dagger -30
+	force = 15		//Steel dagger -5
+	throwforce = 8
+	wdefense = 1	//Hell no!
+	thrown_bclass = BCLASS_STAB
+	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/thrust/pick)
+	icon_state = "plug"
+
+/obj/item/rogueweapon/katar/punchdagger/frei
+	name = "vývrtka"
+	desc = "A type of punch dagger of Aavnic make initially designed to level the playing field with an orc in fisticuffs, its serrated edges and longer, thinner point are designed to maximize pain for the recipient. It's aptly given the name of \"corkscrew\", and this specific one has the colours of Szöréndnížina. Can be worn on your ring slot."
+	icon_state = "freiplug"
+	slot_flags = ITEM_SLOT_RING
 
 /obj/item/rogueweapon/knuckles
 	name = "steel knuckles"
@@ -335,35 +377,6 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
 	intdamage_factor = 1.2
-
-/datum/intent/knuckles
-	clickcd = 8
-
-/datum/intent/knuckles/strike
-	name = "punch"
-	blade_class = BCLASS_BLUNT
-	attack_verb = list("punches", "clocks")
-	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
-	chargetime = 0
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	clickcd = 8
-	damfactor = 1.1
-	swingdelay = 0
-	icon_state = "inpunch"
-	item_d_type = "blunt"
-
-/datum/intent/knuckles/smash
-	name = "smash"
-	blade_class = BCLASS_SMASH
-	attack_verb = list("smashes")
-	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.1
-	clickcd = CLICK_CD_MELEE
-	swingdelay = 8
-	intent_intdamage_factor = 1.8
-	icon_state = "insmash"
-	item_d_type = "blunt"
 
 /obj/item/rogueweapon/knuckles/aknuckles
 	name = "decrepit knuckles"

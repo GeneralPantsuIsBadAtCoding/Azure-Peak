@@ -2,6 +2,7 @@
 	abstract_type = /datum/skill/craft
 	name = "Craft"
 	desc = ""
+	color = "#4e7bb1"
 
 /datum/skill/craft/crafting
 	name = "Crafting"

@@ -153,7 +153,7 @@
 	name = "lupian ears"
 
 /obj/item/organ/ears/vulpkanin
-	name = "vulpkian ears"
+	name = "venardine ears"
 	accessory_type = /datum/sprite_accessory/ears/fox
 
 /obj/item/organ/ears/tajaran

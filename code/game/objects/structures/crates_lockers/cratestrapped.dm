@@ -84,3 +84,15 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "chest3s"
 	locked = TRUE
+	var/list/loot_weighted_list = list(
+		/obj/effect/spawner/lootdrop/general_loot_hi = 4,
+		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
+	)
+	var/loot_spawn_dice_string = "1d4+1"
+
+/obj/structure/closet/crate/chest/trapped/locked/Initialize()
+	. = ..()
+	var/random_loot_amount = roll(loot_spawn_dice_string)
+	for(var/loot_spawn in 1 to random_loot_amount)
+		var/obj/new_loot = pick(loot_weighted_list)
+		new new_loot(src)

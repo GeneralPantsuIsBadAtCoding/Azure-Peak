@@ -247,6 +247,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tunic"
 	path = /obj/item/clothing/suit/roguetown/shirt/tunic
 
+/datum/loadout_item/stripedtunic
+	name = "Striped Tunic"
+	path = /obj/item/clothing/suit/roguetown/armor/workervest
+
 /datum/loadout_item/dress
 	name = "Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/gen

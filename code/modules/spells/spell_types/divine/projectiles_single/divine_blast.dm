@@ -40,7 +40,7 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/H = target
-		if((H.job in list("Templar", "Acolyte", "Priest", "Priestess", "Martyr")))
+		if((H.job in list("Templar", "Acolyte", "Bishop", "Martyr")))
 			visible_message(span_warning("[src]'s power brushes off of [H] with no harm!"))
 			playsound(get_turf(H), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)

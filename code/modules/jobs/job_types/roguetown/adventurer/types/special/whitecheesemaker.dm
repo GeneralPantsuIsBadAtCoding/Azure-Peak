@@ -36,7 +36,7 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, rand(4,5), TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, rand(1,2), TRUE)
-	H?.mind.adjust_spellpoints(9)
+
 
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -55,5 +55,6 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/lightningbolt)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
+		H.mind.adjust_spellpoints(9)
 
 	H.ambushable = FALSE
