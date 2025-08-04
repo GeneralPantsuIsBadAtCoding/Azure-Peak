@@ -574,6 +574,13 @@
 	},
 /turf/open/floor/rogue/tile/harem2,
 /area/rogue/indoors/town/bath)
+"ajZ" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "akc" = (
 /turf/closed/wall/mineral/rogue/decostone/cand,
 /area/rogue/indoors/town/manor)
@@ -591,6 +598,14 @@
 /obj/structure/fluff/railing/corner,
 /turf/open/water/pond,
 /area/rogue/outdoors/woods/north)
+"akR" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/obj/structure/fluff/walldeco/church/line,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "akS" = (
 /obj/structure/flora/roguegrass/herb/rosa,
 /turf/open/floor/rogue/grassred,
@@ -3328,14 +3343,6 @@
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/skeletoncrypt)
-"bfQ" = (
-/obj/item/roguekey/custom{
-	name = "strange key";
-	lockid = "vesselcaptain";
-	desc = "This is a rusty key. You're not sure where it goes to."
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/outdoors/beach/north)
 "bfR" = (
 /obj/structure/chair/wood/rogue/fancy{
 	dir = 8
@@ -5249,7 +5256,7 @@
 "bJQ" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /obj/structure/flora/roguegrass/water,
-/turf/open/floor/rogue/AzureSand,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/south)
 "bKa" = (
 /obj/machinery/light/rogue/wallfire{
@@ -6418,12 +6425,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
-"cdl" = (
-/obj/machinery/light/rogue/torchholder{
-	dir = 4
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/outdoors/beach)
 "cdn" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/dirt,
@@ -7617,6 +7618,14 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter)
+"cxg" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "cxk" = (
 /obj/item/natural/rock,
 /turf/open/floor/rogue/cobblerock,
@@ -7873,6 +7882,9 @@
 /obj/structure/fluff/railing/border/west{
 	dir = 2
 	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/beach)
 "cBO" = (
@@ -7957,6 +7969,10 @@
 /obj/item/reagent_containers/peppermill,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"cCx" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/beach/south)
 "cCy" = (
 /obj/structure/fluff/clock,
 /turf/open/floor/rogue/ruinedwood/chevron,
@@ -11153,6 +11169,12 @@
 /obj/structure/bars/grille,
 /obj/machinery/light/rogue/torchholder{
 	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
 	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
@@ -15129,6 +15151,10 @@
 	},
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
+"eQG" = (
+/obj/structure/flora/roguegrass/water,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach/south)
 "eQK" = (
 /obj/machinery/light/rogue/firebowl/standing/blue,
 /turf/open/floor/rogue/grasscold,
@@ -18993,6 +19019,9 @@
 /obj/structure/fluff/railing/border/west{
 	dir = 2
 	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
 "gfS" = (
@@ -19686,6 +19715,16 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"grK" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "grO" = (
 /turf/closed/wall/mineral/rogue/wood,
 /area/rogue/under/cave/fishmandungeon)
@@ -20657,6 +20696,17 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/sewer)
+"gHT" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal{
+	icon_state = "plating2"
+	},
+/area/rogue/outdoors/woods/northeast)
 "gIb" = (
 /obj/structure/table/wood/large_table/north,
 /obj/structure/fluff/canopy/green,
@@ -29479,6 +29529,9 @@
 /obj/structure/fluff/railing/border/west{
 	dir = 1
 	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/beach)
 "juB" = (
@@ -30221,6 +30274,13 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "jHq" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2"
 	},
@@ -31257,11 +31317,6 @@
 /area/rogue/indoors/town)
 "jXO" = (
 /obj/structure/closet/crate/chest/lootbox,
-/obj/item/roguekey/walls{
-	name = "strange key";
-	lockid = "vesseldeck";
-	desc = "This is a rusty key. You're not sure where it goes to."
-	},
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/cave/northern)
 "jXP" = (
@@ -38612,6 +38667,12 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
 "mnR" = (
+/obj/structure/closet/dirthole/closed,
+/obj/item/roguekey/walls{
+	name = "strange key";
+	lockid = "vesseldeck";
+	desc = "This is a rusty key. You're not sure where it goes to."
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave/northern)
 "mob" = (
@@ -40575,6 +40636,9 @@
 "mUF" = (
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/natural/cloth,
+/obj/machinery/light/rogue/torchholder{
+	dir = 8
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "mUH" = (
@@ -41006,10 +41070,6 @@
 /obj/item/tablecloth/silk,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
-"nbY" = (
-/obj/item/clothing/head/roguetown/helmet/tricorn,
-/turf/open/floor/rogue/ruinedwood/turned,
-/area/rogue/indoors/cave/northern)
 "ncc" = (
 /obj/item/ammo_casing/caseless/rogue/arrow/stone,
 /turf/open/floor/rogue/grass,
@@ -43735,6 +43795,10 @@
 "nVF" = (
 /turf/closed/wall/mineral/rogue/pipe/corners/one,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"nVO" = (
+/obj/structure/flora/roguegrass/water,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/beach/south)
 "nVU" = (
 /obj/structure/fluff/railing/corner/south_east,
 /obj/effect/decal/cobbleedge{
@@ -44086,6 +44150,13 @@
 /obj/item/natural/feather,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/church/basement)
+"obU" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "ocg" = (
 /obj/structure/chair/wood/rogue/chair5{
 	dir = 4
@@ -47064,6 +47135,15 @@
 /area/rogue/under/cave/goblindungeon)
 "pdp" = (
 /obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
 "pdy" = (
@@ -47769,6 +47849,16 @@
 /obj/structure/table/wood/poor,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"poU" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "ppp" = (
 /obj/structure/flora/newleaf/corner{
 	dir = 6
@@ -49229,6 +49319,11 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/rtfield)
+"pOT" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "pOU" = (
 /obj/structure/chair/wood/rogue/fancy{
 	dir = 4
@@ -50903,14 +50998,6 @@
 "qrI" = (
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/under/town/basement)
-"qrL" = (
-/obj/item/roguekey/walls{
-	name = "strange key";
-	lockid = "vesseldeck";
-	desc = "This is a rusty key. You're not sure where it goes to."
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/outdoors/beach/north)
 "qrN" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/dirt,
@@ -51063,6 +51150,12 @@
 /obj/item/natural/stone,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
+"quQ" = (
+/obj/item/clothing/head/roguetown/helmet/tricorn,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/cave/northern)
 "quV" = (
 /obj/structure/closet/crate/chest/old_crate,
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot,
@@ -55546,6 +55639,16 @@
 	dir = 8
 	},
 /obj/item/roguebin/water,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
 "rSa" = (
@@ -57277,6 +57380,16 @@
 /obj/machinery/light/roguestreet,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
+"srR" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/church/line,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/outdoors/beach)
 "ssc" = (
 /obj/structure/fluff/walldeco/bigpainting{
 	pixel_x = 2;
@@ -57523,7 +57636,6 @@
 /obj/structure/fluff/walldeco/rpainting/forest{
 	pixel_y = 32
 	},
-/obj/item/storage/keyring,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach/north)
 "svO" = (
@@ -59958,6 +60070,9 @@
 	name = "nautical wheel";
 	desc = "The centerpiece of any ship. You're not going anywhere without it.";
 	pixel_x = -3
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
 	},
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/beach)
@@ -62905,6 +63020,15 @@
 /obj/item/reagent_containers/glass/cup/wooden,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"ugI" = (
+/obj/structure/fluff/railing/border/west{
+	dir = 2
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/outdoors/beach)
 "ugJ" = (
 /obj/machinery/light/rogue/wallfire{
 	pixel_y = 33
@@ -64370,7 +64494,14 @@
 	desc = "This is a rusty key. You're not sure where it goes to."
 	},
 /obj/structure/closet/crate/chest/neu_iron,
-/turf/open/floor/rogue/naturalstone,
+/obj/structure/closet/dirthole/closed,
+/obj/item/roguekey/custom{
+	name = "strange key";
+	lockid = "vesselcaptain";
+	desc = "This is a rusty key. You're not sure where it goes to."
+	},
+/obj/item/storage/keyring,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/south)
 "uEQ" = (
 /obj/structure/fluff/walldeco/customflag{
@@ -66807,6 +66938,9 @@
 "vqX" = (
 /obj/structure/ladder,
 /obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
 "vrh" = (
@@ -68061,11 +68195,6 @@
 	},
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
-"vLG" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/rogue/ruinedwood/turned,
-/area/rogue/indoors/cave/northern)
 "vLL" = (
 /obj/machinery/light/rogue/wallfire{
 	pixel_x = 16;
@@ -72268,6 +72397,15 @@
 /obj/item/natural/worms/grubs,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"xdb" = (
+/obj/structure/fluff/railing/border/west{
+	dir = 1
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/outdoors/beach)
 "xdd" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/dirt/road,
@@ -72777,6 +72915,13 @@
 /obj/structure/closet/dirthole/grave,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/goblinfort)
+"xmP" = (
+/obj/structure/bars/grille,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach)
 "xmQ" = (
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/powder/salt,
@@ -74565,6 +74710,9 @@
 "xRp" = (
 /obj/structure/fluff/railing/border/west{
 	dir = 1
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
 	},
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/beach)
@@ -144074,7 +144222,7 @@ vFa
 vFa
 vFa
 hLJ
-mnR
+quQ
 vFa
 vFa
 vFa
@@ -144971,7 +145119,7 @@ rZg
 otQ
 otQ
 jXO
-nbY
+gPh
 otQ
 otQ
 vFa
@@ -145424,7 +145572,7 @@ otQ
 idO
 gPh
 gPh
-vLG
+gPh
 otQ
 vFa
 vFa
@@ -151107,7 +151255,7 @@ tXb
 tXb
 bwv
 bwv
-bwv
+jLU
 bwv
 bwv
 tXb
@@ -180527,7 +180675,7 @@ cLo
 cLo
 qxq
 qxq
-qxq
+bgk
 sBM
 lIE
 bgk
@@ -180978,7 +181126,7 @@ cLo
 cLo
 bgk
 fiX
-bgk
+lIE
 lcN
 lIE
 lIE
@@ -181430,8 +181578,8 @@ cLo
 qxq
 qxq
 lIE
-bgk
-fiX
+lIE
+nVO
 kSW
 lIE
 lIE
@@ -181882,7 +182030,7 @@ cLo
 sBM
 lIE
 gyG
-sBM
+cCx
 bJQ
 lIE
 lIE
@@ -182022,7 +182170,7 @@ neE
 neE
 ske
 svL
-bfQ
+gKH
 oML
 ske
 ipw
@@ -182336,7 +182484,7 @@ lIE
 lIE
 uEO
 bJQ
-bgk
+eQG
 qxq
 qxq
 cLo
@@ -182475,7 +182623,7 @@ neE
 hgt
 oGn
 pot
-qrL
+gKH
 tPR
 vfk
 cyc
@@ -266821,7 +266969,7 @@ kjs
 duA
 pdp
 dGU
-bVJ
+srR
 ocj
 vBW
 ebU
@@ -270887,9 +271035,9 @@ ebU
 rHP
 rTj
 sRV
-xRp
+xdb
 vqX
-gfQ
+ugI
 sRV
 acZ
 rTj
@@ -271345,7 +271493,7 @@ uYI
 uYI
 uYI
 bVJ
-jHq
+gHT
 jHq
 kZf
 kZf
@@ -271791,9 +271939,9 @@ ebU
 acZ
 uYI
 fNm
-emI
-emI
-emI
+grK
+obU
+cxg
 kud
 uYI
 rTj
@@ -272243,9 +272391,9 @@ ebU
 acZ
 wSH
 wVP
+ajZ
 emI
-emI
-emI
+pOT
 uYI
 wSH
 rTj
@@ -272695,9 +272843,9 @@ ebU
 acZ
 rmo
 uYI
-emI
-emI
-emI
+poU
+xmP
+akR
 uYI
 nyJ
 rTj
@@ -391573,7 +391721,7 @@ vps
 oUy
 joO
 uYI
-cdl
+uYI
 uYI
 jIT
 mmk
@@ -507283,13 +507431,13 @@ aBB
 aBB
 aBB
 aBB
-ppz
-ppz
-aBB
-aBB
-aBB
-ppz
-ppz
+uYO
+uYO
+uYO
+uYO
+uYO
+uYO
+uYO
 aBB
 aBB
 aBB
@@ -507736,11 +507884,11 @@ aBB
 aBB
 aBB
 aBB
-ppz
-ppz
-ppz
-ppz
-ppz
+uYO
+uYO
+uYO
+uYO
+uYO
 aBB
 aBB
 aBB
