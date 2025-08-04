@@ -91,6 +91,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/churchpriestcurse //snowflake priests button. Will not sacrifice them
 	H.verbs |= /mob/living/carbon/human/proc/churcheapostasy //punish the lamb reward the wolf
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
+	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic_priest)
 
 /datum/job/priest/vice //just used to change the priest title
 	title = "Vice Priest"
@@ -501,7 +502,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	recharge_time = 60 MINUTES
 	chargetime = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy
-	action_icon_state = "convert_heretic"
+	overlay_state = "convert_heretic"
 
 /obj/effect/proc_holder/spell/invoked/convert_heretic_priest/cast(list/targets, mob/living/carbon/human/user)
 	var/mob/living/carbon/human/target = targets[1]
