@@ -34,9 +34,11 @@
 	locked = TRUE
 	max_integrity = 1000
 	loot_weighted_list = list(
-		/obj/effect/spawner/lootdrop/general_loot_hi = 4,
+		/obj/effect/spawner/lootdrop/general_loot_hi = 2,
 		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
-		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
+		/obj/effect/spawner/lootdrop/valuable_candle_spawner = 2,
+		/obj/effect/spawner/lootdrop/valuable_tableware_spawner = 2,
+		/obj/effect/spawner/lootdrop/valuable_clutter_spawner = 2,
 	)
 	loot_spawn_dice_string = "1d2+1"
 
