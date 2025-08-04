@@ -657,12 +657,14 @@ Inquisitorial armory down here
 		if(subject)
 			if(M != subject)
 				return
-		if(!M.mind)		
-			return
 		if(HAS_TRAIT(M, TRAIT_BLOODLOSS_IMMUNE))
 			to_chat(user, span_warning("They don't have any blood to sample."))		
+			return
 		if(istype(M, /mob/living/carbon/human/species/skeleton))
-			to_chat(user, span_warning("I don't think the Inquisition values marrow much these daes."))			
+			to_chat(user, span_warning("I don't think the Inquisition values marrow much these daes."))	
+			return		
+		if(!M.mind)		
+			return	
 		if(full)
 			to_chat(user, span_warning("It's full."))	
 			return	
