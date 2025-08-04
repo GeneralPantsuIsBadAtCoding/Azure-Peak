@@ -1,5 +1,6 @@
 #define GARRISON_SCOM_COLOR "#FF4242"
 #define CHURCH_SCOM_COLOR "#F5E171"
+#define CHURCH_UPPER_COLOR "#F7994D"
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
@@ -834,7 +835,7 @@
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
 	if(churchline)
-		input_text = "<big><span style='color: [CHURCH_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
+		input_text = "<big><span style='color: [CHURCH_UPPER_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
 		for(var/obj/item/scomstone/bad/church/S in SSroguemachine.scomm_machines)
 			S.repeat_message(input_text, src, usedcolor)
 		for(var/obj/item/scomstone/church/S in SSroguemachine.scomm_machines)
