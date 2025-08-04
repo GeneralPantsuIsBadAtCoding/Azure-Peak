@@ -499,7 +499,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	invocation_type = "whisper"
 	sound = 'sound/magic/bless.ogg'
 	devotion_cost = 100
-	recharge_time = 60 MINUTES
+	recharge_time = 20 MINUTES
 	chargetime = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy
 	overlay_state = "convert_heretic"
