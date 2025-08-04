@@ -1,4 +1,5 @@
 #define GARRISON_SCOM_COLOR "#FF4242"
+#define CHURCH_SCOM_COLOR "#F5E171"
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
@@ -19,6 +20,7 @@
 	var/obj/structure/roguemachine/scomm/called_by = null
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
+	var/churchline = FALSE
 
 /obj/structure/roguemachine/scomm/Initialize()
 	. = ..()
@@ -136,6 +138,13 @@
 			playsound(loc, 'sound/misc/garrisonscom.ogg', 100, FALSE, -1)
 			update_icon()
 			return
+	if((user.job == "Bishop") || (user.job == "Templar") || (user.job == "Acolyte") || (user.job == "Martyr"))
+		if(alert("Would you like to swap lines or connect to a jabberline?",, "swap", "jabberline") != "jabberline")
+			churchline = !churchline
+			to_chat(user, span_info("I [churchline ? "connect to the church SCOMline" : "connect to the general SCOMLINE"]"))
+			playsound(loc, 'sound/misc/garrisonscom.ogg', 100, FALSE, -1)
+			update_icon()
+			return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(calling)
@@ -221,6 +230,8 @@
 	if(garrisonline)
 		icon_state = "scomm2"
 		return
+	if(churchline)
+		icon_state = "scomm2"
 	if(calling)
 		icon_state = "scomm2"
 	else if(listening)
@@ -285,6 +296,16 @@
 				if(S.garrisonline)
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
+			return
+		if(churchline)
+			raw_message = "<span style='color: [CHURCH_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
+			for(var/obj/item/scomstone/church/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/item/scomstone/bad/church/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+				if(S.churchline)
+					S.repeat_message(raw_message, src, usedcolor, message_language)
 			return
 		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 			if(!S.calling)
@@ -783,6 +804,56 @@
 /obj/item/scomstone/bad/garrison
 	name = "houndstone"
 	desc = "A basic metal ring. It has a well-cut, dismal gem embedded - bearing the mark of the Crown."
+	icon_state = "ring_houndscom"
+	listening = FALSE
+	sellprice = 20
+	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
+	hearrange = 0
+
+// CHURCHSTONES
+
+/obj/item/scomstone/church
+	name = "churchstone"
+	icon_state = "ring_crownscom"
+	desc = "Lorem ipsum est"
+	var/churchline = TRUE
+	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
+	hearrange = 0
+	sellprice = 100
+
+/obj/item/scomstone/church/attack_right(mob/living/carbon/human/user)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+	visible_message(span_notice ("[user] presses their ring against their mouth."))
+	var/input_text = input(user, "Enter your message:", "Message")
+	if(!input_text)
+		return
+	var/usedcolor = user.voice_color
+	if(user.voicecolor_override)
+		usedcolor = user.voicecolor_override
+	user.whisper(input_text)
+	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
+		input_text = "<small>[input_text]</small>"
+	if(churchline)
+		input_text = "<big><span style='color: [CHURCH_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
+		for(var/obj/item/scomstone/bad/church/S in SSroguemachine.scomm_machines)
+			S.repeat_message(input_text, src, usedcolor)
+		for(var/obj/item/scomstone/church/S in SSroguemachine.scomm_machines)
+			S.repeat_message(input_text, src, usedcolor)
+		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+			if(S.churchline)
+				S.repeat_message(input_text, src, usedcolor)
+		return
+	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+		S.repeat_message(input_text, src, usedcolor)
+	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+		S.repeat_message(input_text, src, usedcolor)
+	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+		S.repeat_message(input_text, src, usedcolor)
+	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+
+/obj/item/scomstone/bad/church
+	name = "acolytestone"
+	desc = "Lorem ipsum est"
 	icon_state = "ring_houndscom"
 	listening = FALSE
 	sellprice = 20
