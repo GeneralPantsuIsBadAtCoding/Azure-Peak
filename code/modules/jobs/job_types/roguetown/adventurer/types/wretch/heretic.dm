@@ -161,8 +161,9 @@
 			saved_max_progression = target.devotion.max_progression
 		
 		// Remove all granted spells
-		for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
-			target.mind.RemoveSpell(S)
+		if(target.patron != user.patron)
+			for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
+				target.mind.RemoveSpell(S)
 		
 		target.devotion.Destroy()
 
