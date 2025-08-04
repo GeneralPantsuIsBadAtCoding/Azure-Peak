@@ -851,6 +851,18 @@
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
 
+/obj/item/scomstone/church/attack_self(mob/living/user)
+	if(.)
+		return
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
+	churchline = !churchline
+	to_chat(user, span_info("I [churchline ? "connect to the garrison SCOMline" : "connect to the general SCOMline"]"))
+	update_icon()
+
+/obj/item/scomstone/church/update_icon()
+	icon_state = "[initial(icon_state)][churchline ? "_on" : ""]"
+
 /obj/item/scomstone/bad/church
 	name = "acolytestone"
 	desc = "Lorem ipsum est"
