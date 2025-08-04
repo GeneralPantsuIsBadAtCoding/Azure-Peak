@@ -62996,6 +62996,7 @@
 "uuc" = (
 /obj/structure/table/vtable,
 /obj/item/roguegem/random,
+/obj/item/roguegem/random,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/mazedungeon)
 "uud" = (
