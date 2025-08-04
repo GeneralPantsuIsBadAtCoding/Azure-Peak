@@ -27577,7 +27577,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "iUK" = (
-/obj/structure/closet/crate/chest,
+/obj/effect/landmark/chest_or_mimic/loot_chest,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves/camp)
 "iUM" = (
@@ -29094,16 +29094,19 @@
 /area/rogue/indoors)
 "jtk" = (
 /obj/structure/rack/rogue,
-/obj/item/roguekey/dungeon{
-	lockid = "drow"
-	},
-/obj/item/roguekey/dungeon{
-	lockid = "drow"
-	},
-/obj/item/roguekey/dungeon{
-	lockid = "drow"
-	},
 /obj/machinery/light/rogue/wallfire/candle/l,
+/obj/item/roguekey/dungeon{
+	lockid = "drow";
+	name = "cell key"
+	},
+/obj/item/roguekey/dungeon{
+	lockid = "drow";
+	name = "cell key"
+	},
+/obj/item/roguekey/dungeon{
+	lockid = "drow";
+	name = "cell key"
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/underdark/south)
 "jto" = (
@@ -42034,6 +42037,13 @@
 "nCU" = (
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach/north)
+"nDa" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1;
+	locked = 1
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "nDj" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/roguegrass,
@@ -49300,6 +49310,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods/southwest)
+"pYG" = (
+/obj/effect/landmark/chest_or_mimic/loot_chest,
+/turf/open/water/cleanshallow,
+/area/rogue/under/underdark/south)
 "pYJ" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/dirt/road,
@@ -72087,13 +72101,6 @@
 /obj/item/cooking/pan,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
-"xom" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1;
-	locked = 1
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/underdark/north)
 "xon" = (
 /obj/structure/roguewindow/openclose/reinforced,
 /turf/open/floor/rogue/herringbone,
@@ -79277,7 +79284,7 @@ kbp
 kbp
 kbp
 kbp
-kbp
+pYG
 kbp
 kbp
 kbp
@@ -79728,9 +79735,9 @@ kbp
 kbp
 kbp
 kbp
-kbp
-kbp
-kbp
+iOO
+iOO
+iOO
 kbp
 kbp
 kbp
@@ -79959,7 +79966,7 @@ hIW
 hwl
 xNc
 xNc
-xom
+nDa
 xNc
 mhf
 wNY
@@ -80180,7 +80187,7 @@ kbp
 kbp
 kbp
 kbp
-kbp
+iOO
 iOO
 iOO
 iOO
