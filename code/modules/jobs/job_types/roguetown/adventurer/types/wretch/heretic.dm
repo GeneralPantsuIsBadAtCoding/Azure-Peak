@@ -152,9 +152,13 @@
 	var/saved_devotion_gain = CLERIC_REGEN_MINOR
 	
 	if(target.devotion)
-		saved_level = target.devotion.level
-		saved_devotion_gain = target.devotion.passive_devotion_gain
-		saved_max_progression = target.devotion.max_progression
+		// Apostasy sets regen to 0, this makes sure they still get some regen, but less than before if they were an Acolyte. Otherwise, take the old gain.
+		if(target.devotion.level != 0)
+			saved_level = target.devotion.level
+		if(target.devotion.passive_devotion_gain != 0)
+			saved_devotion_gain = target.devotion.passive_devotion_gain
+		if(target.devotion.max_progression != 0)
+			saved_max_progression = target.devotion.max_progression
 		
 		// Remove all granted spells
 		for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
@@ -166,7 +170,6 @@
 	target.patron = new user.patron.type()
 	to_chat(target, span_userdanger("Your soul now belongs to [user.patron.name]!"))
 
-	sleep(1)
 	// Grant new devotion
 	var/datum/devotion/new_devotion = new /datum/devotion(target, target.patron)
 	target.devotion = new_devotion
