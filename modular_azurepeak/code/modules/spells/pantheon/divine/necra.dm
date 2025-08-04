@@ -352,7 +352,7 @@
 	chargedloop = /datum/looping_sound/invokeholy
 	gesture_required = TRUE 
 	associated_skill = /datum/skill/magic/holy
-	recharge_time = 2 MINUTES
+	recharge_time = 90 SECONDS
 	hide_charge_effect = TRUE
 	miracle = TRUE
 	devotion_cost = 50
