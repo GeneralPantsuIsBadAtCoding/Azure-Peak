@@ -36,6 +36,7 @@
 	loot_weighted_list = list(
 		/obj/effect/spawner/lootdrop/general_loot_hi = 4,
 		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
+		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
 	)
 	loot_spawn_dice_string = "1d2+1"
 
