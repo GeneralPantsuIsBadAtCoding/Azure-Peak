@@ -95,7 +95,7 @@
 	// Long to prevent combat casting and forcing popups.
 	chargetime = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy
-	action_icon_state = "convert_heretic"
+	overlay_state = "convert_heretic"
 
 /obj/effect/proc_holder/spell/invoked/convert_heretic/cast(list/targets, mob/living/carbon/human/user)
 	if(!HAS_TRAIT(user, TRAIT_HERESIARCH))
