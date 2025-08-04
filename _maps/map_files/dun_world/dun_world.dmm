@@ -5876,13 +5876,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods/southwest)
-"bTH" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1;
-	locked = 1
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/underdark/north)
 "bTI" = (
 /obj/structure/fluff/railing/wood{
 	pixel_y = -8
@@ -73909,6 +73902,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter)
+"xUL" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1;
+	locked = 1
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/underdark/north)
 "xUN" = (
 /obj/structure/well,
 /obj/item/reagent_containers/glass/bucket{
@@ -79959,7 +79959,7 @@ hIW
 hwl
 xNc
 xNc
-bTH
+xUL
 xNc
 mhf
 wNY
@@ -141498,7 +141498,7 @@ mam
 mam
 dew
 xmZ
-gTV
+mam
 mam
 mam
 mam
