@@ -3520,7 +3520,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/outdoors/town/roofs)
 "bjr" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/underdark/south)
 "bjC" = (
@@ -3649,7 +3649,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "blq" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter)
 "bls" = (
@@ -5177,7 +5177,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/town/basement)
 "bJJ" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "bJK" = (
@@ -9502,7 +9502,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/rtfield)
 "dgJ" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/underdark)
 "dgW" = (
@@ -18512,7 +18512,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "gaf" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach/north)
 "gam" = (
@@ -20557,7 +20557,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/exposed/town/keep)
 "gJz" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "gJF" = (
@@ -21615,7 +21615,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "hay" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/underdark/north)
 "haC" = (
@@ -26613,7 +26613,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/goblindungeon)
 "iDN" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblinfort)
 "iDT" = (
@@ -29831,7 +29831,7 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave)
 "jFN" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/shelter/mountains/decap)
 "jFP" = (
@@ -30790,7 +30790,7 @@
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/indoors/shelter/woods)
 "jWH" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "jWN" = (
@@ -30958,7 +30958,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/beach/forest/south)
 "jYF" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/underdark/north)
 "jYL" = (
@@ -32985,7 +32985,7 @@
 /obj/machinery/light/rogue/wallfire{
 	pixel_y = 32
 	},
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "kEU" = (
@@ -33202,7 +33202,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog/south)
 "kJe" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/metal{
 	dir = 4
 	},
@@ -33561,7 +33561,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
 "kPC" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/orcdungeon)
 "kPG" = (
@@ -36317,7 +36317,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town)
 "lHx" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/underdark/north)
 "lHH" = (
@@ -37142,7 +37142,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "lWG" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
 "lWI" = (
@@ -42408,7 +42408,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "nIt" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/underdark/north)
 "nIx" = (
@@ -55238,7 +55238,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave/east)
 "rVH" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/orcdungeon)
 "rVM" = (
@@ -59717,7 +59717,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town)
 "trc" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
 "trg" = (
@@ -61890,7 +61890,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves/north)
 "ubD" = (
-/obj/effect/landmark/loot_chest/locked_or_trapped,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest/north)
 "ubH" = (
