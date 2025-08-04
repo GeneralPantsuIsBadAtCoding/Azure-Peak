@@ -14,7 +14,7 @@
 	/// our lootspawners. the spawner's lootcount var works additively with our dice string below and must be at least 1.
 	var/list/loot_weighted_list = list(
 		/obj/effect/spawner/lootdrop/general_loot_hi = 6,
-		/obj/effect/spawner/lootdrop/general_loot_mid = 10,
+		/obj/effect/spawner/lootdrop/general_loot_mid = 8,
 		/obj/effect/spawner/lootdrop/valuable_candle_spawner = 1,
 		/obj/effect/spawner/lootdrop/valuable_tableware_spawner = 1,
 	)
