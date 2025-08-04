@@ -816,7 +816,7 @@
 /obj/item/scomstone/church
 	name = "churchstone"
 	icon_state = "ring_crownscom"
-	desc = "Lorem ipsum est"
+	desc = "A lavish golden ring; which used to bear the sigil of the Crown. It has been purified in the oils of the Ten."
 	var/churchline = TRUE
 	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
 	hearrange = 0
@@ -866,7 +866,7 @@
 
 /obj/item/scomstone/bad/church
 	name = "acolytestone"
-	desc = "Lorem ipsum est"
+	desc = "A dingy-old houndstone; that has been anointed in five oils of the Ten. The cross of Astrata marks the outlining gem."
 	icon_state = "ring_houndscom"
 	listening = FALSE
 	sellprice = 20
