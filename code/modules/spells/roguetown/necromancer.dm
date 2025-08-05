@@ -127,7 +127,7 @@
 	invocation = "Hygf'akni'kthakchratah!"
 	invocation_type = "shout"
 	chargedrain = 2
-	recharge_time = 5 MINUTES
+	recharge_time = 1
 
 /obj/effect/proc_holder/spell/invoked/raise_to_skeleton/cast(list/targets, mob/living/carbon/human/user)
 	. = ..()
@@ -186,22 +186,20 @@
 
 	var/offer_refused = FALSE
 
-	target.visible_message(span_warning("[target.real_name]'s body is engulfed by dark energy..."), runechat_message = TRUE)
 	if(target.ckey) //player still inside body
 
-		var/offer = alert(target, "Do you wish to be reanimated as a minion?", "RAISED BY NECROMANCER", "Yes", "No")
+		var/offer = alert(target, "Do you wish to be reanimated as a minion?", "RAISED BY NECROMANCER", "Yes", "GetAnotherSoulToMyBody", "No")
 		var/offer_time = world.time
 
-		if(offer == "No" || world.time > offer_time + 5 SECONDS)
+		if(offer == "GetAnotherSoulToMyBody" || world.time > offer_time + 5 SECONDS)
 			to_chat(target, span_danger("Another soul will take over."))
 			offer_refused = TRUE
 
-		else if(offer == "Yes")
+		if(offer == "Yes")
 			to_chat(target, span_danger("You rise as a minion."))
 			target.turn_to_minion(user, target.ckey)
 			target.visible_message(span_warning("[target.real_name]'s eyes light up with an evil glow."), runechat_message = TRUE)
-		
-		else if(offer == "Let my bodie")
+		else if(offer == "No")
 			to_chat(target, span_danger("Soul wanna to be zombie."))
 			return TRUE
 		
@@ -219,7 +217,7 @@
 				target.turn_to_minion(user, C.ckey)
 				target.visible_message(span_warning("[target.real_name]'s eyes light up with an evil glow."), runechat_message = TRUE)
 				return FALSE
-		return FALSE
+	return FALSE
 
 /mob/living/carbon/human/proc/turn_to_minion(mob/living/carbon/human/master, ckey)
 
@@ -280,8 +278,17 @@
 
 	to_chat(src, span_userdanger("My master is [master.real_name]. I must to obey him as long as he lives and don't let him die"))
 
-	return TRUE
+/datum/antagonist/skeleton/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
+	if(istype(examined_datum, /datum/antagonist/vampirelord))
+		var/datum/antagonist/vampirelord/V = examined_datum
+		if(!V.disguised)
+			return span_boldnotice("Another deadite.")
+	if(istype(examined_datum, /datum/antagonist/zombie))
+		return span_boldnotice("Another deadite.")
+	if(istype(examined_datum, /datum/antagonist/skeleton))
+		return span_boldnotice("Another deadite. My ally.")
 
+	return TRUE
 /obj/effect/proc_holder/spell/invoked/projectile/sickness
 	name = "Ray of Sickness"
 	desc = ""
