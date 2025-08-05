@@ -127,7 +127,7 @@
 	invocation = "Hygf'akni'kthakchratah!"
 	invocation_type = "shout"
 	chargedrain = 2
-	recharge_time = 1
+	recharge_time = 5 MINUTES
 
 /obj/effect/proc_holder/spell/invoked/raise_to_skeleton/cast(list/targets, mob/living/carbon/human/user)
 	. = ..()
