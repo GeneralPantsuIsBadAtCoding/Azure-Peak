@@ -195,11 +195,15 @@
 	maximum = 1
 	marquescost = 12
 
-/datum/inqports/articles/psycross
+/datum/inqports/articles/psycrosssilver
 	name = "1 Silver Psycross"
 	item_type = /obj/item/clothing/neck/roguetown/psicross/silver
-	maximum = 1
-	marquescost = 12
+	marquescost = 14
+
+/datum/inqports/articles/psycross
+	name = "1 Psycross"
+	item_type = /obj/item/clothing/neck/roguetown/psicross
+	marquescost = 6
 
 /datum/inqports/articles/indexers
 	name = "4 INDEXERs"
