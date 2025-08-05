@@ -319,7 +319,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 		if (H.real_name == inputty)
 			if (istype(H.patron, /datum/patron/divine) && H.devotion)
-				H.devotion.recommunicate()
 				H.remove_status_effect(/datum/status_effect/debuff/apostasy)
 				H.remove_stress(/datum/stressevent/apostasy)
 
@@ -341,8 +340,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		var/curse_resist = HAS_TRAIT(H, TRAIT_CURSE_RESIST)
 
 		if (istype(H.patron, /datum/patron/divine))
-			H.devotion.excommunicate(curse_resist)
-			H.apply_status_effect(/datum/status_effect/debuff/apostasy)
+			H.apply_status_effect(/datum/status_effect/debuff/apostasy, curse_resist)
 			H.add_stress(/datum/stressevent/apostasy)
 			to_chat(H, span_warning("A holy silence falls upon you. Your Patron cannot hear you anymore..."))
 		else

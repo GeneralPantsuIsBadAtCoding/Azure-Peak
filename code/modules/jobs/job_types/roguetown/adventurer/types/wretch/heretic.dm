@@ -124,6 +124,10 @@
 	if(HAS_TRAIT(target, TRAIT_EXCOMMUNICATED))
 		absolvable = TRUE
 
+	if(target.has_status_effect(/datum/status_effect/debuff/apostasy))
+		target.remove_status_effect(/datum/status_effect/debuff/apostasy)
+		absolvable = TRUE
+
 	// Remove from global lists
 	if(target.real_name in GLOB.apostasy_players)
 		GLOB.apostasy_players -= target.real_name
@@ -152,13 +156,9 @@
 	var/saved_devotion_gain = CLERIC_REGEN_MINOR
 	
 	if(target.devotion)
-		// Apostasy sets regen to 0, this makes sure they still get some regen, but less than before if they were an Acolyte. Otherwise, take the old gain.
-		if(target.devotion.level != 0)
-			saved_level = target.devotion.level
-		if(target.devotion.passive_devotion_gain < saved_devotion_gain)
-			saved_devotion_gain = target.devotion.passive_devotion_gain
-		if(target.devotion.max_progression < saved_max_progression)
-			saved_max_progression = target.devotion.max_progression
+		saved_level = target.devotion.level
+		saved_devotion_gain = target.devotion.passive_devotion_gain
+		saved_max_progression = target.devotion.max_progression
 		
 		// Remove all granted spells
 		if(target.patron != user.patron)

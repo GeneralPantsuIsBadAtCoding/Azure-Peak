@@ -229,28 +229,3 @@
 		add_client_colour(/datum/client_colour/monochrome)
 	else
 		remove_client_colour(/datum/client_colour/monochrome)
-
-/datum/devotion/proc/excommunicate(mob/living/carbon/human/H, resistant = FALSE)
-    if (!devotion)
-        return
-
-    if(resistant)
-        prayer_effectiveness *= 0.5
-        devotion *= 0.5
-        passive_devotion_gain *= 0.5
-        passive_progression_gain *= 0.5
-    else
-        prayer_effectiveness = 0
-        devotion = 0
-        passive_devotion_gain = 0
-        passive_progression_gain = 0
-
-    to_chat(H, span_boldnotice("I have been excommunicated. I am now unable to gain devotion."))
-
-/datum/devotion/proc/recommunicate(mob/living/carbon/human/H)
-    prayer_effectiveness = 2
-    if (!passive_devotion_gain && !passive_progression_gain)
-        passive_devotion_gain = CLERIC_REGEN_DEVOTEE
-        passive_progression_gain = CLERIC_REGEN_DEVOTEE
-
-    to_chat(H, span_boldnotice("I have been welcomed back to the Church. I am now able to gain devotion again."))
