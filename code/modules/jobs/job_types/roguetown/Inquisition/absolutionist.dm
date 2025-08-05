@@ -62,6 +62,8 @@
 	H.change_stat("constitution", 7)
 	H.change_stat("perception", 2)
 	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonabsolve)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonlux_tamper)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 		H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

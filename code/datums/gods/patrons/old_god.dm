@@ -9,8 +9,6 @@
 					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
-					/obj/effect/proc_holder/spell/invoked/psydonlux_tamper		= CLERIC_T3,
-					/obj/effect/proc_holder/spell/invoked/psydonabsolve			= CLERIC_T4,
 	)
 	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
 	confess_lines = list(

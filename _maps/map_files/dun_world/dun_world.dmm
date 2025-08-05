@@ -25934,6 +25934,10 @@
 /obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods/southeast)
+"iqz" = (
+/obj/structure/flora/roguegrass,
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/mountains)
 "iqF" = (
 /obj/structure/bars/passage{
 	density = 0;
@@ -43151,10 +43155,6 @@
 	},
 /turf/open/floor/rogue/AzureSand,
 /area/rogue/outdoors/beach)
-"nRd" = (
-/obj/structure/flora/roguegrass/water,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave)
 "nRn" = (
 /obj/structure/fluff/railing/fence{
 	dir = 4
@@ -50957,6 +50957,11 @@
 /obj/effect/landmark/mapGenerator/rogue/underdark,
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cavewet/bogcaves/west)
+"qxA" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/obj/structure/flora/roguegrass/water,
+/turf/open/water/pond,
+/area/rogue/outdoors/mountains)
 "qxC" = (
 /obj/machinery/light/rogue/wallfire/candle{
 	pixel_y = -32
@@ -66825,6 +66830,8 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
+/obj/structure/roguemachine/withdraw,
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/inq)
 "vyS" = (
@@ -241318,12 +241325,12 @@ bsL
 bsL
 cFz
 bsL
-vET
+bsL
 bsL
 cFz
 cFz
 bsL
-mGv
+pxF
 pxF
 bsL
 bsL
@@ -241778,7 +241785,7 @@ pxF
 pxF
 faM
 pxF
-mGv
+pxF
 pxF
 pxF
 pxF
@@ -242220,13 +242227,13 @@ eWs
 faM
 pxF
 pxF
-mGv
+pxF
 sNZ
 quW
-seL
 sNZ
 sNZ
-mGv
+sNZ
+pxF
 pxF
 pxF
 pxF
@@ -242681,7 +242688,7 @@ quW
 sNZ
 sNZ
 sNZ
-seL
+sNZ
 sNZ
 lRD
 sNZ
@@ -467316,15 +467323,15 @@ nPN
 hYW
 gTW
 yea
-vvB
-vvB
-vvB
-vvB
-vvB
-vvB
-vvB
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
 oNK
-myN
+kvH
 dNG
 rHa
 kvH
@@ -467768,18 +467775,18 @@ nsT
 nsT
 yff
 yff
-yff
-vvB
-vvB
-vvB
-vvB
-vvB
-vLe
-dNG
-dNG
-dNG
+gTW
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+kvH
+rHa
 dNG
 rHa
+kvH
 rnW
 afK
 mVu
@@ -468222,15 +468229,15 @@ nsT
 xec
 xec
 rnW
-vvB
-uaV
-nRd
-uaV
-uaV
-uaV
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+rHa
 dNG
-dNG
-dNG
+rHa
 rnW
 vBH
 cDX
@@ -468674,16 +468681,16 @@ nsT
 nsT
 bSX
 bSX
-tum
-tum
-tum
-htN
-vvB
-vvB
-kvH
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+qxA
 rHa
-dNG
-vBH
+rHa
+teq
 vBH
 afK
 fIC
@@ -469126,14 +469133,14 @@ bSX
 nsT
 bSX
 rnW
-tum
-uaV
-vvB
-vvB
-vvB
-vvB
-vvB
 rnW
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+xGA
 rnW
 vBH
 vBH
@@ -469578,15 +469585,15 @@ rnW
 nsT
 nsT
 rnW
-uaV
-vvB
-vvB
-vvB
-vvB
-vvB
-gTW
+bSX
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
 xdq
-vBH
+teq
 vBH
 xec
 paa
@@ -470030,14 +470037,14 @@ kBH
 nPN
 nsT
 ozr
-vvB
-vvB
-vvB
-vvB
-vvB
-tCE
-xec
-vBH
+yff
+cxA
+cxA
+cxA
+cxA
+iqz
+cxA
+teq
 xec
 yff
 xec
@@ -470482,13 +470489,13 @@ sHj
 yff
 nsT
 yff
-vvB
-vvB
-vvB
-vvB
 yff
-gTW
-tCE
+cxA
+cxA
+cxA
+cxA
+cxA
+iqz
 ozr
 yff
 gTW
