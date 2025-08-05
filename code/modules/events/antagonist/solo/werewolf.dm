@@ -48,6 +48,7 @@
 		"Court Magician",
 		"Inquisitor",
 		"Orthodoxist",
+		"Absolutionist",
 		"Warden",
 		"Squire",
 		"Veteran",

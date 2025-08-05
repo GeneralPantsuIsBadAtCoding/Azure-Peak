@@ -602,7 +602,7 @@
 	var/speaking = TRUE
 	sellprice = 20
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "scomite_active"
+	icon_state = "scomite"
 	gripped_intents = null
 	dropshrink = 0.75
 	possible_item_intents = list(INTENT_GENERIC)
@@ -610,10 +610,12 @@
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
-	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_RING
+	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_RING
 	possible_item_intents = list(INTENT_GENERIC)
+	sleeved = 'icons/roguetown/clothing/onmob/neck.dmi'
 	grid_width = 32
 	grid_height = 32
+	var/fakename = "secret whisperer"
 
 /obj/item/speakerinq/proc/repeat_message(message, atom/A, tcolor, message_language)
 	if(A == src)
@@ -641,12 +643,29 @@
 	else
 		send_speech(message, 0, src, , spans, message_language=language)
 
+
+/obj/item/speakerinq/equipped(mob/user, slot)
+	. = ..()
+	switch(slot)
+		if(SLOT_RING)
+			fakename = "silver signet ring"	
+			name = fakename
+	return TRUE		
+
+
+/obj/item/speakerinq/dropped(mob/user, silent)
+	. = ..()
+	name = initial(name)
+	sleeved = null
+	mob_overlay_icon = null
+
 /obj/item/speakerinq/Destroy()
 	SSroguemachine.scomm_machines -= src
 	return ..()
 
 /obj/item/speakerinq/Initialize()
 	. = ..()
+	icon_state = "scomite_active"
 	update_icon()
 	SSroguemachine.scomm_machines += src
 
@@ -656,64 +675,109 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	speaking = !speaking
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the listener."))
+	to_chat(user, span_info("I [speaking ? "unsilence" : "silence"] the whisperer."))
+	if(speaking)
+		icon_state = "[initial(icon_state)]_active"
+	else
+		icon_state = "[initial(icon_state)]"
 	update_icon()
 
 /obj/item/listeningdevice
 	name = "listener"
-	desc = "An ever-attentive ear"
+	desc = "An ever-attentive ear..."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "listenstone"
-	dropshrink = 0.75
+	dropshrink = 0.6
 	gripped_intents = null
 	possible_item_intents = list(INTENT_GENERIC)
 	force = 10
 	throwforce = 10
+	alpha = 255
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
+	var/label = null
+	var/inqdesc = null
+	var/hidden = FALSE
+	var/active = FALSE
+	var/datum/status_effect/bugged/effect
 
-/obj/item/listeningdevice/attack_self(mob/living/user)
-	var/turf/step_turf = get_step(get_turf(user), user.dir)
-	to_chat(user, span_tinynotice("I begin planting the listen-stone..."))
-	if(!do_after(user, 30, src))
-		return
-	new /obj/structure/listeningdeviceactive(step_turf)
-	message_admins("[usr.key] has planted a listening device")
-	qdel(src)
+/obj/item/listeningdevice/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_INQUISITION))
+		desc = inqdesc
+	else
+		desc = initial(desc)
 
-
-/obj/structure/listeningdeviceactive
-	name = "listener"
-	desc = "An ever attentive ear. A red light blinks upon it..."
-	icon_state = "listenstone_active"
-	icon = 'icons/roguetown/items/misc.dmi'
-	var/listening = TRUE
-	density = FALSE
-	anchored = TRUE
-	alpha = 0
-	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
-
-/obj/structure/listeningdeviceactive/Initialize()
+/obj/item/listeningdevice/Initialize()
 	. = ..()
 	become_hearing_sensitive()
+	inqdesc = "An ever-attentive ear... [span_notice("This ear hasn't been bent. It's unlabelled.")]"
 
-/obj/structure/listeningdeviceactive/Destroy()
+/obj/item/listeningdevice/Destroy()
 	lose_hearing_sensitivity()
 	return ..()
 
-/obj/structure/listeningdeviceactive/attack_right(mob/user)
-	to_chat(user, span_info("I begin dismounting the listen-stone..."))
-	if(!do_after(user, 30, src))
+/obj/item/listeningdevice/attack_self(mob/living/user)
+	var/input = input(user, "SIX LETTERS", "BEND AN EAR")
+	if(!input)
+		label = null
+		inqdesc = "An ever-attentive ear... [span_notice("This ear hasn't been bent. It's unlabelled.")]"
+		desc = inqdesc
 		return
-	new /obj/item/listeningdevice(loc)
-	qdel(src)
+	label = uppertext(trim(input, 7))
+	inqdesc = "An ever-attentive ear... [span_notice("This ear's been bent. It's labelled as [label].")]"
+	desc = inqdesc
+	return
 
-/obj/structure/listeningdeviceactive/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
-	if(!ishuman(speaker))
+/obj/item/listeningdevice/attack_right(mob/living/user)
+	if(!hidden)
+		alpha = 30
+		name = "thing"
+		desc = "What is that thing?.."
+		hidden = TRUE
+		return TRUE
+	alpha = 255
+	name = initial(name)
+	desc = initial(desc)
+	hidden = FALSE
+	return TRUE
+/* - REVISIT IN A FUTURE PR. ATTACHABLE LISTENERS.
+/obj/item/listeningdevice/attack(mob/living/M, mob/living/user)
+	if(!active)
+		to_chat(user, span_warning("[src] is inactive.."))
+		return FALSE
+	
+	to_chat(user, span_notice("I attach [src] to [M]."))
+	effect = M.apply_status_effect(/datum/status_effect/bugged)
+	effect.device = src
+	forceMove(M)
+	M.contents.Add(src)
+
+	if(M.STAPER > user.STASPD)
+		to_chat(M, span_hidden("I feel something brush against mine own self. It stings."))
+
+	..()
+*/
+/obj/item/listeningdevice/MiddleClick(mob/user)
+	if(.)
 		return
-	if(!listening)
+	user.changeNext_move(CLICK_CD_MELEE)
+	playsound(loc, 'sound/misc/bug.ogg', 50, FALSE, -1)
+	active = !active
+	if(active)
+		icon_state = "[initial(icon_state)]_active"
+	else
+		icon_state = initial(icon_state)
+	to_chat(user, span_info("I [active ? "undeafen" : "deafen"] the Listener."))
+	update_icon()
+	return
+
+/obj/item/listeningdevice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+	if(!active)
+		return
+	if(!ishuman(speaker))
 		return
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
@@ -724,7 +788,9 @@
 	if(length(raw_message) > 100)
 		raw_message = "<small>[raw_message]</small>"
 	for(var/obj/item/speakerinq/S in SSroguemachine.scomm_machines)
+		S.name = label ? "#[label]" : "#NOTSET"
 		S.repeat_message(raw_message, src, usedcolor, message_language)
+		S.name = (S.fakename)
 
 // garrison scoms/listenstones
 

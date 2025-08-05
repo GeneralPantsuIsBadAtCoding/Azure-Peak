@@ -91,6 +91,8 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
+	handle_gas_mask_sound()
+
 	if(sexcon)
 		sexcon.process_sexcon(1 SECONDS)
 
@@ -196,6 +198,29 @@
 //			add_stress(/datum/stressevent/coldfeet)
 
 //END FIRE CODE
+
+
+/mob/living/carbon/human/proc/handle_gas_mask_sound()
+	if(!istype(wear_mask, /obj/item/clothing/mask/rogue/facemask/steel/confessor))
+		if(breathe_tick)
+			breathe_tick = 0
+		return
+	if(stat == DEAD)
+		return
+	if(HAS_TRAIT(src, TRAIT_NOBREATH))
+		return
+	breathe_tick++
+	var/mask_sound
+	if(istype(wear_mask, /obj/item/clothing/mask/rogue/facemask/steel/confessor))
+		if(breathe_tick>=rand(3,5))
+			breathe_tick = 0
+			mask_sound = pick('sound/items/confessormask1.ogg', 'sound/items/confessormask2.ogg', 'sound/items/confessormask3.ogg',
+							'sound/items/confessormask4.ogg', 'sound/items/confessormask5.ogg', 'sound/items/confessormask6.ogg',
+							'sound/items/confessormask7.ogg', 'sound/items/confessormask8.ogg', 'sound/items/confessormask9.ogg',
+					 		'sound/items/confessormask10.ogg')
+			playsound(src, mask_sound, 90, FALSE, 4, 0)
+			return
+			 	
 
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)

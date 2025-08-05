@@ -247,6 +247,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Orthodoxist"
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/absolutionist
+	name = "Absolutionist"
+	icon_state = "arrow"
+
 /obj/effect/landmark/start/sergeant
 	name = "Sergeant"
 	icon_state = "arrow"
