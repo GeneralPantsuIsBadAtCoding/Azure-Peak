@@ -82,7 +82,7 @@
 			if(IND.full)
 				if(alert(user, "SOAK THE TALLOW?", "IT'S JUST BLOOD", "YES", "NO") != "NO")
 					success = TRUE
-					IND.fullreset()
+					IND.fullreset(user)
 				else
 					return	
 				if(success)

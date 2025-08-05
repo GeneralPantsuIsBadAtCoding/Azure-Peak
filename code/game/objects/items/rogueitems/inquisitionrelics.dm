@@ -589,7 +589,7 @@ Inquisitorial armory down here
 			if(alert(user, "EMPTY THE INDEXER?", "INDEXING...", "YES", "NO") != "NO")
 				playsound(src, 'sound/items/indexer_empty.ogg', 75, FALSE, 3)
 				visible_message(span_warning("[src] boils its contents away!"))
-				fullreset()
+				fullreset(user)
 			else
 				return	
 	else

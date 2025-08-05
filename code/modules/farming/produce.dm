@@ -433,7 +433,7 @@
 			if(IND.cursedblood)
 				if(alert(user, "DRENCH THE FYRITIUS?", "CURSED BLOOD", "YES", "NO") != "NO")
 					success = TRUE
-					IND.fullreset()
+					IND.fullreset(user)
 				else
 					return	
 				if(success)
