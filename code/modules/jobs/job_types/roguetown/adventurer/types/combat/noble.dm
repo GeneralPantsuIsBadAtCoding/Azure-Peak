@@ -100,12 +100,8 @@
 				/obj/item/recipe_book/survival = 1,
 				)
 			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
@@ -123,28 +119,28 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
-					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 					beltr = /obj/item/rogueweapon/sword/long
 					r_hand = /obj/item/rogueweapon/scabbard/sword
 				if("Mace + Shield")
-					H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 					beltr = /obj/item/rogueweapon/mace
 					backr = /obj/item/rogueweapon/shield/tower/metal
 				if("Flail + Shield")
-					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 					beltr = /obj/item/rogueweapon/flail
 					backr = /obj/item/rogueweapon/shield/tower/metal
 				if("Billhook")
-					H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 					r_hand = /obj/item/rogueweapon/spear/billhook
 					backr = /obj/item/gwstrap
 				if("Battle Axe")
-					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 					r_hand = /obj/item/rogueweapon/stoneaxe/battle
 				if("Greataxe")
-					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
+					H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 					r_hand = /obj/item/rogueweapon/greataxe
 					backr = /obj/item/gwstrap
 			H.change_stat("strength", 2)
