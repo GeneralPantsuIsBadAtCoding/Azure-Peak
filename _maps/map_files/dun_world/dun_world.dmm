@@ -67774,7 +67774,6 @@
 /obj/structure/closet/crate/chest/neu_iron,
 /obj/item/roguekey/church,
 /obj/item/roguekey/church,
-/obj/item/paper/confession,
 /obj/item/needle/thorn,
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
