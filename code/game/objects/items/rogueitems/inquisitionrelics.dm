@@ -503,9 +503,11 @@ Inquisitorial armory down here
 		if(!full)
 			if(!timestaken)
 				active = FALSE
+				working = FALSE
 				icon_state = "indexer"
 			else
 				icon_state = "indexer_full"
+				working = FALSE
 				active = FALSE
 	update_icon()
 
@@ -675,6 +677,8 @@ Inquisitorial armory down here
 			takeblood(M, user)
 		else
 			return
+	else
+		to_chat(user, span_warning("I don't know how to use this."))		
 
 /obj/item/inqarticles/tallowpot
 	name = "tallowpot"
