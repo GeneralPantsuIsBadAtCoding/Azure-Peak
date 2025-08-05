@@ -127,7 +127,7 @@
 	invocation = "Hygf'akni'kthakchratah!"
 	invocation_type = "shout"
 	chargedrain = 2
-	recharge_time = 4 MINUTES
+	recharge_time = 5 MINUTES
 
 /obj/effect/proc_holder/spell/invoked/raise_to_skeleton/cast(list/targets, mob/living/carbon/human/user)
 	. = ..()
@@ -140,9 +140,21 @@
 		to_chat(user, span_warning("I need to cast this spell on a corpse."))
 		return FALSE
 
-	// no goblins
+	// no goblins, drow, bandits, orcs
 	if(istype(obj, /mob/living/carbon/human/species/goblin))
 		to_chat(user, span_warning("I cannot raise goblins."))
+		return FALSE
+	else if(istype(obj, /mob/living/carbon/human/species/elf/dark/drowraider))
+		to_chat(user, span_warning("I cannot raise this warrior."))
+		return FALSE
+	else if(istype(obj, /mob/living/carbon/human/species/orc/npc))
+		to_chat(user, span_warning("I cannot raise this orc"))
+		return FALSE
+	else if(istype(obj, /mob/living/carbon/human/species/human/northern/searaider))
+		to_chat(user, span_warning("I cannot raise this body, need else"))
+		return FALSE
+	else if(istype(obj, /mob/living/carbon/human/species/human/northern/thief))
+		to_chat(user, span_warning("I cannot raise this body, need else"))
 		return FALSE
 
 	var/mob/living/carbon/human/target = obj
