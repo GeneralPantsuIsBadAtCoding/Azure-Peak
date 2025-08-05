@@ -188,6 +188,9 @@
 			to_chat(target, span_danger("You rise as a minion."))
 			target.turn_to_minion(user, target.ckey)
 			target.visible_message(span_warning("[target.real_name]'s eyes light up with an evil glow."), runechat_message = TRUE)
+		
+		else if(offer == "Let my bodie")
+			to_chat(target, span_danger("Soul wanna to be zombie."))
 			return TRUE
 		
 	if(!target.ckey || offer_refused) //player is not inside body or has refused, poll for candidates	
@@ -226,6 +229,7 @@
 
 	cmode_music = 'sound/music/combat_cult.ogg'
 
+
 	patron = master.patron
 	mob_biotypes |= MOB_UNDEAD
 	faction = list("undead")
@@ -262,7 +266,7 @@
 	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	update_body()
 
-	to_chat(src, span_userdanger("My master is [master.real_name]."))
+	to_chat(src, span_userdanger("My master is [master.real_name]. I must to obey him as long as he lives and don't let him die"))
 
 	return TRUE
 
