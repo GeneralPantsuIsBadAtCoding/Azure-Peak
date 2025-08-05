@@ -203,7 +203,7 @@
 			to_chat(target, span_danger("Soul wanna to be zombie."))
 			return TRUE
 		
-	if(!target.ckey || offer_refused) //player is not inside body or has refused, poll for candidates	
+	if(!target.ckey || offer_refused) //player is not inside body or allowed someone to get his body, or leave in menu	
 		var/list/candidates = pollGhostCandidates("Do you want to play as a Necromancer's skeleton?", ROLE_NECRO_SKELETON, null, null, 10 SECONDS, POLL_IGNORE_NECROMANCER_SKELETON)
 		if(LAZYLEN(candidates))	
 			var/mob/C = pick(candidates)
