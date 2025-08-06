@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/warscholar
 	name = "Naledi Warscholar"
-	tutorial = "Heralded by sigils of black-and-gold and their distinct masks, the Naledi Warscholars once prowled the dunes of their homeland, exterminating daemons in exchange for coin, artifacts, or knowledge. As Naledi's economy falters, the Warscholars travel to foreign lands to seek further business."
+	tutorial = "Heralded by sigils of black-and-gold and their distinct masks, the Naledi Warscholars prowl the dunes of their homeland, exterminating the djinn or demons out of duty. Chasing after the rogue djinn escaping Naledi, they have taken upon jobs of monetary compensation to supply their ultimate duty."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
@@ -9,7 +9,7 @@
 	traits_applied = list(TRAIT_OUTLANDER)
 	classes = list("Hierophant" = "You are a Naledi Hierophant, a magician who studied under cloistered sages, well-versed in all manners of arcyne. You prioritize enhancing your teammates and distracting foes while staying in the backline.",
 					"Pontifex" = "You are a Naledi Pontifex, a warrior trained into a hybridized style of movement-controlling magic and hand-to-hand combat. Though your abilities in magical fields are lacking, you are far more dangerous than other magi in a straight fight. You manifest your calm, practiced skill into a killing intent that takes the shape of an arcyne blade.",
-					"Vizier" = "You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, a combination of the saint's power may be similar enough.")
+					"Vizier" = "You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, you are of the few that have managed such an accomplishment.")
 
 /datum/outfit/job/roguetown/mercenary/warscholar
 	var/detailcolor
@@ -18,15 +18,14 @@
 /datum/outfit/job/roguetown/mercenary/warscholar/pre_equip(mob/living/carbon/human/H)
 	..()
 	var/list/naledicolors = sortList(list(
-		"GOLD" = "#C8BE6D",
-		"PALE PURPLE" = "#9E93FF",
-		"BLUE" = "#A7B4F6",
+		"GOLD" = "#dfb52e",
+		"PALE PURPLE" = "#c5a5f7",
+		"BLUE" = "#3c51bd",
 		"BRICK BROWN" = "#773626",
 		"PURPLE" = "#B542AC",
-		"GREEN" = "#62a85f",
-		"BLUE" = "#A9BFE0",
-		"RED" = "#ED6762",
-		"ORANGE" = "#EDAF6D",
+		"GREEN" = "#2f642d",
+		"RED" = "#b6221d",
+		"ORANGE" = "#e08c33",
 		"PINK" = "#EDC1D5",
 		"MAROON" = "#5F1F34",
 		"BLACK" = "#242526"
@@ -86,7 +85,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortitude)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall/greater)
 				H.mind.adjust_spellpoints(15)
-			r_hand = /obj/item/rogueweapon/woodstaff/naledi
+			r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi
 
 
 			head = /obj/item/clothing/head/roguetown/roguehood/hierophant
@@ -148,7 +147,7 @@
 
 		if("Vizier")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, a combination of the saint's power may be similar enough."))
+			to_chat(H, span_warning("You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, you have managed to accomplish a true miracle."))
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
@@ -157,7 +156,7 @@
 			H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
@@ -165,20 +164,20 @@
 			H.change_stat("endurance", 2)
 			H.change_stat("intelligence", 3)
 			H.change_stat("speed", 2)
-			r_hand = /obj/item/rogueweapon/woodstaff/naledi
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
+			H.grant_language(/datum/language/celestial)
+			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 
-			mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
+			r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi
+			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/vizier
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 			pants = /obj/item/clothing/under/roguetown/trou/leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			gloves = /obj/item/clothing/gloves/roguetown/angle
 			backr = /obj/item/storage/backpack/rogue/satchel/black
-			head = /obj/item/clothing/head/roguetown/roguehood/shalal/black
+			head = /obj/item/clothing/head/roguetown/roguehood/shalal/black/vizier
 			cloak = /obj/item/clothing/cloak/half
-			H.grant_language(/datum/language/celestial)
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
+			shirt = /obj/item/clothing/suit/roguetown/shirt/robe/vizier
 
 			backpack_contents = list(
 				/obj/item/roguekey/mercenary = 1,

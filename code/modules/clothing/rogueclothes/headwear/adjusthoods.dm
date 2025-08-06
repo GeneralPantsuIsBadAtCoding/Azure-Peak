@@ -207,3 +207,11 @@
 	icon_state = "monkhood"
 	item_state = "monkhood"
 	naledicolor = TRUE
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/black/vizier
+	name = "vizier's pashmina"
+	desc = "A protective covering worn by those native to the desert. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
+	max_integrity = 100
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_HEAD_PSYDON
+	naledicolor = TRUE

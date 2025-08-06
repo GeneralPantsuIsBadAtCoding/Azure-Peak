@@ -291,6 +291,15 @@
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
 
+/obj/item/clothing/suit/roguetown/shirt/robe/vizier // needs a resprite later
+	name = "vizier's kandys"
+	desc = "A thin piece of fabric worn under a robe to stop chafing and keep ones dignity if a harsh blow of wind comes through. Despite the light fabric, it offers decent protection."
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
+	armor = ARMOR_PADDED_GOOD
+	icon_state = "desertgown"
+	item_state = "desertgown"
+	color = null
+
 /obj/item/clothing/suit/roguetown/shirt/robe/feld
 	name = "feldsher's robe"
 	desc = "Red to hide the blood."
