@@ -962,14 +962,14 @@
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	intdamage_factor = 1.2
 
-/obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi
+/obj/item/rogueweapon/woodstaff/naledi
 	name = "naledian warstaff"
 	desc = "A staff carrying the crescent moon of Psydon's knowledge, as well as the black and gold insignia of the war scholars."
 	icon_state = "naledistaff"
 	possible_item_intents = list(SPEAR_BASH)
 	gripped_intents = list(/datum/intent/spear/bash/ranged,/datum/intent/mace/smash/wood/ranged)
 
-/obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi/getonmobprop(tag)
+/obj/item/rogueweapon/woodstaff/naledi/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

@@ -85,7 +85,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortitude)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall/greater)
 				H.mind.adjust_spellpoints(15)
-			r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi
+			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
 
 			head = /obj/item/clothing/head/roguetown/roguehood/hierophant
@@ -167,7 +167,7 @@
 			H.grant_language(/datum/language/celestial)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 
-			r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/steel/naledi
+			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/vizier
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
