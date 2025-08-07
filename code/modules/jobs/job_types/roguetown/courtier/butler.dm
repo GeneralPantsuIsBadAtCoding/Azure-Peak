@@ -16,6 +16,7 @@
 	min_pq = 3
 	max_pq = null
 	round_contrib_points = 3
+	advjob_examine = TRUE
 
 /datum/job/roguetown/butler/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
