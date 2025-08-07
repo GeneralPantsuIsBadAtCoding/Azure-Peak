@@ -943,14 +943,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
-"apg" = (
-/obj/structure/fluff/walldeco/church/line,
-/obj/machinery/light/rogue/firebowl/standing,
-/obj/structure/fluff/walldeco/church/line{
-	dir = 4
-	},
-/turf/open/floor/rogue/churchrough,
-/area/rogue/indoors/inq/basement)
 "aph" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/blocks,
@@ -6701,6 +6693,16 @@
 /obj/machinery/gear_painter,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
+"cid" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/obj/structure/fluff/walldeco/church/line,
+/obj/machinery/light/rogue/wallfire/candle{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/churchrough,
+/area/rogue/indoors/inq/basement)
 "cie" = (
 /obj/structure/fluff/railing/border,
 /obj/structure/fluff/railing/border/north,
@@ -20869,9 +20871,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains)
-"gJT" = (
-/turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/indoors/inq/basement)
 "gJX" = (
 /obj/effect/decal/cobbleedge{
 	dir = 9
@@ -29431,10 +29430,9 @@
 /area/rogue/indoors/town/dwarfin)
 "jsC" = (
 /obj/structure/mineral_door/wood/deadbolt{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/concrete,
 /area/rogue/indoors/inq/basement)
 "jsG" = (
 /obj/effect/decal/cobbleedge{
@@ -63971,6 +63969,10 @@
 /obj/structure/mirror,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
+"uwX" = (
+/obj/structure/flora/roguegrass/bush/wall,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/rtfield)
 "uxg" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/cleanshallow,
@@ -68999,6 +69001,13 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors)
+"vXR" = (
+/obj/structure/fluff/walldeco/church/line,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/turf/open/floor/rogue/churchrough,
+/area/rogue/indoors/inq/basement)
 "vXV" = (
 /obj/structure/table/wood/long_table/right,
 /obj/item/natural/feather,
@@ -230176,12 +230185,12 @@ sPj
 sPj
 szI
 szI
-gJT
-gJT
-gJT
-gJT
-gJT
-gJT
+bcd
+bcd
+bcd
+bcd
+bcd
+bcd
 ujm
 ujm
 ujm
@@ -230628,12 +230637,12 @@ sPj
 sPj
 szI
 szI
-gJT
+bcd
 jjX
 tEx
 aUG
 vos
-gJT
+bcd
 ujm
 ujm
 tjU
@@ -231080,12 +231089,12 @@ hMk
 hMk
 szI
 szI
-gJT
+bcd
 jjX
 jPe
 eCt
 eCt
-gJT
+bcd
 ujm
 tjU
 fnC
@@ -231532,12 +231541,12 @@ hMk
 szI
 szI
 szI
-gJT
+bcd
 jjX
 jjX
 lmq
 eCt
-gJT
+bcd
 ujm
 tjU
 fnC
@@ -231982,14 +231991,14 @@ hMk
 hMk
 szI
 szI
-gJT
-gJT
-gJT
+bcd
+bcd
+bcd
 rOc
 jjX
 lmq
 rKl
-gJT
+bcd
 ujm
 ujm
 tjU
@@ -232434,14 +232443,14 @@ ujm
 ujm
 ujm
 ujm
-gJT
+bcd
 oHO
 jsC
 hRX
 hRX
 eCt
 eCt
-gJT
+bcd
 ujm
 ujm
 ujm
@@ -240126,7 +240135,7 @@ lgt
 xxm
 xxm
 xxm
-gHQ
+vXR
 iWW
 bcd
 ujm
@@ -240577,8 +240586,8 @@ hct
 fHK
 myJ
 sYQ
-fHK
-apg
+cid
+bcd
 bcd
 ujm
 ujm
@@ -362169,7 +362178,7 @@ eGx
 eGx
 eGx
 eGx
-hpb
+uwX
 bGf
 bGf
 bGf
@@ -477430,7 +477439,7 @@ qwK
 qwK
 qwK
 qwK
-qwK
+aBB
 bGf
 bGf
 bGf

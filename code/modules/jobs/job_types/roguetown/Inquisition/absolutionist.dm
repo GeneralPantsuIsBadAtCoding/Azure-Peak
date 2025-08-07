@@ -14,12 +14,17 @@
 	min_pq = 3 // Low potential for grief. A pacifist by trade. Also needs to know wtf a PSYDON is.
 	max_pq = null
 	round_contrib_points = 2
-	advclass_cat_rolls = list(CTAG_INQUISITION = 20)
 	wanderer_examine = FALSE
 	advjob_examine = FALSE
 	give_bank_account = 15
 
 // REMEMBER FLAGELLANT? REMEMBER LASZLO? THIS IS HIM NOW. FEEL OLD YET?
+
+/datum/job/roguetown/absolutionist/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.grant_language(/datum/language/otavan)
 
 /datum/outfit/job/roguetown/absolutionist/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -57,10 +62,9 @@
 		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/roguekey/inquisition = 1,
 		)
-	H.change_stat("strength", 2)
 	H.change_stat("endurance", 3)
 	H.change_stat("constitution", 7)
-	H.change_stat("perception", 2)
+	H.change_stat("speed", -2)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonabsolve)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonlux_tamper)
@@ -76,4 +80,3 @@
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
-	H.grant_language(/datum/language/otavan)
