@@ -7,7 +7,7 @@
 	desc = "<b>Venardine</b><br>\
 	Based on the writings of the living Fietje von Zenitstadt: A subspecies of the more common \"Lupian\", found almost exclusively in thick forests.\
 	They are usually shorter and meeker, but in turn more perceptive than their Volf-like brethren. \
-	Their name is quite obvious, coming from the Venards they closely resemble. \
+	Their name is quite obvious, coming from the Venards they closely resemble in both appearance and ability to navigate dangerous flora. \
 	Venardines are often much more solitary than Lupians, lacking the fervent pack mentality of their parent race. \
 	To this dae, their origin is heavily disputed by few archivists across Psydonia - though the rest, perhaps for sanity's sake, consider them to be just Lupians.<br>\
 	(+1 Perception, +1 Intelligence)"
@@ -18,6 +18,7 @@
 		LIPS,
 		HAIR,
 	)
+	inherent_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_MANEATER_IMMUNITY)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	attack_verb = "slash"
 	liked_food = GROSS | MEAT | FRIED

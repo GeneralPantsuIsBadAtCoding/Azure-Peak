@@ -7,7 +7,7 @@
 	desc = "<b>Lupian</b><br>\
 	As written by an Archivist from times before yours: Lupians, known by many as Volfmen, are a very prominent type of Beastkin that is easily found all across Psydonia. \
 	They are oft tall and slim, carrying with them a coat of discoloured short or medium length fur. \
-	Their bodies are naturally resilient and their minds as sharp as a Humen's own. \
+	Their bodies are naturally resilient, with powerful jaws, keen snouts and minds as sharp as a Humen's own. \
 	A Lupian will usually display loyalty to a fault, as they are quite factional beings. \
 	Tales of old claim that they came to be when Noc stole Dendor’s curse to create lyfe of his own in an attempt to replicate Psydon’s, instead giving birth to a flawed beast-people.<br>\
 	(+1 Constitution, +1 Intelligence)"
@@ -18,6 +18,7 @@
 		LIPS,
 		HAIR,
 	)
+	inherent_traits = list(TRAIT_STRONGBITE,TRAIT_PERFECT_TRACKER)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	use_skintones = 1
 	attack_verb = "slash"
@@ -178,3 +179,6 @@
 	returned["mcolor2"] = second_color
 	returned["mcolor3"] = "373330"
 	return returned
+
+/datum/species/lupian/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()

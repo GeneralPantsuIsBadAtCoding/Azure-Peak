@@ -96,6 +96,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/phobia = "spiders"
 	var/shake = TRUE
 	var/sexable = FALSE
+	var/stat_bonus = "None" // This is only for the -kin races.
 	var/compliance_notifs = TRUE
 
 	var/list/custom_names = list()
@@ -220,6 +221,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	pref_species = new_race
 	real_name = pref_species.random_name(gender,1)
 	ResetJobs()
+	if(!istype(pref_species, /datum/species/anthromorph) && \
+		!istype(pref_species, /datum/species/anthromorphsmall) && \
+		!istype(pref_species, /datum/species/demihuman))
+		stat_bonus = "None" //Making -kin stat bonuses not carry over when you change races
+
 	if(user)
 		if(pref_species.desc)
 			to_chat(user, "[pref_species.desc]")
@@ -380,7 +386,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<b>Patron:</b> <a href='?_src_=prefs;preference=patron;task=input'>[selected_patron?.name || "FUCK!"]</a><BR>"
 //			dat += "<b>Family:</b> <a href='?_src_=prefs;preference=family'>Unknown</a><BR>" // Disabling until its working
 			dat += "<b>Dominance:</b> <a href='?_src_=prefs;preference=domhand'>[domhand == 1 ? "Left-handed" : "Right-handed"]</a><BR>"
-
+			if(istype(pref_species, /datum/species/anthromorph) || istype(pref_species, /datum/species/anthromorphsmall) || istype(pref_species, /datum/species/demihuman))
+				dat += "<b>Stat Bonus:</b> <a href='?_src_=prefs;preference=stat_bonus;task=input'>[stat_bonus]</a><BR>"
 /*
 			dat += "<br><br><b>Special Names:</b><BR>"
 			var/old_group
@@ -1918,6 +1925,22 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						features["mcolor3"] = sanitize_hexcolor(new_mutantcolor)
 						try_update_mutant_colors()
 
+				if("stat_bonus") //for -kin races
+					var/list/stat_bonus_choices = list(
+					"None" = "None",
+					"Strength (+1)" = "Strength", 
+					"Speed (+1)" = "Speed",
+					"Constitution (+2)" = "Constitution",
+					"Intelligence (+2)" = "Intelligence",
+					"Endurance (+2)" = "Endurance", 
+					"Perception (+2)" = "Perception",
+					"Fortune (+1)" = "Fortune"
+					)
+					var/list/stat_bonus_display = stat_bonus_choices.Copy()
+					var/new_bonus = input(user, "Choose your character's stat bonus:", "Character Preference") as null|anything in stat_bonus_display
+					if(new_bonus)
+						stat_bonus = stat_bonus_choices[new_bonus]
+
 /*
 				if("color_ethereal")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
@@ -2442,6 +2465,21 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		character.update_body_parts(redraw = TRUE)
 
 	character.char_accent = char_accent
+
+// Stat choice for -kin races
+	if(stat_bonus != "None")
+		var/stat_type
+		var/bonus_value = 1
+		switch(stat_bonus)
+			if("Perception", "Intelligence", "Constitution", "Endurance")
+				stat_type = lowertext(stat_bonus)
+				bonus_value = 2
+			if("Strength", "Speed", "Fortune")
+				stat_type = lowertext(stat_bonus)
+				bonus_value = 1
+
+		if(stat_type)
+			character.dna.species.race_bonus = list("[stat_type]" = bonus_value)
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

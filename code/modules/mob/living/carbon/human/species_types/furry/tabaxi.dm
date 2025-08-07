@@ -12,11 +12,12 @@
 		Like most felines, Tabaxi have long tails and retractable claws. \
 		Tabaxi fur color ranges from light yellow to brownish red. \
 		Tabaxi eyes are slit-pupilled and usually green or yellow. \
-		Tabaxi are competent swimmers and climbers as well as speedy runners. \
+		Tabaxi are known for their athleticism in general, but their leaping ability is unmatched. \
 		They have a good sense of balance and an acute sense of smell.<br>\
 		(+1 Speed)"
 	skin_tone_wording = "Fur Colors"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE, MUTCOLORS)
+	inherent_traits = list(TRAIT_CATLANDING,TRAIT_LEAPER,TRAIT_NOFALLDAMAGE1)
 	possible_ages = ALL_AGES_LIST
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mta.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fma.dmi'

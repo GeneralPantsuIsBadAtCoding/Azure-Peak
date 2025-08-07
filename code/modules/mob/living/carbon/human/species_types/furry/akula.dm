@@ -6,7 +6,8 @@
 	id = "akula"
 	desc = "<b>Axian</b><br>\
 	Axians are a proud, shark-like people that have a heritage founded in maritime trade, \
-	tax evasion, and piracy. They have a strong distaste for the nobility and taxation, \
+	tax evasion, and piracy. Naturally strong swimmers and possessing of a powerful bite, \
+	these water breathing sea-dwellers have a strong distaste for the nobility and taxation, \
 	making them a target of discrimination in the Azurean lands. They are oftentimes scapegoats for crime. \
 	Due to their penchant for trade and travel, they can be found all over the world, oftentimes \
 	seeing places many could not even dream of. They look down at those they considered the 'settled' \
@@ -15,7 +16,7 @@
 	(+1 Constitution, +1 Endurance)"
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)
 	species_traits = list(EYECOLOR,LIPS,STUBBLE,MUTCOLORS)
-	inherent_traits = list(TRAIT_WATERBREATHING, TRAIT_SEA_DRINKER)
+	inherent_traits = list(TRAIT_WATERBREATHING, TRAIT_SEA_DRINKER, TRAIT_STRONGBITE)
 	possible_ages = ALL_AGES_LIST
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mta.dmi'
@@ -168,6 +169,7 @@
 /datum/species/akula/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	C.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 
 /datum/species/akula/on_species_loss(mob/living/carbon/C)
 	. = ..()

@@ -103,6 +103,11 @@
 	var/dream_dust = retained_dust
 	dream_dust += BASE_DREAM_DUST
 
+	var/mob/living/carbon/human/H = mind.current
+	if(istype(H) && H.dna?.species && istype(H.dna.species, /datum/species/human/northern)) //humie bonus
+		dream_dust *= 1.5
+		to_chat(mind.current, span_notice("My dreams are varied and mirthful..."))
+
 	var/int = mind.current.STAINT
 	dream_dust += mind.current.STAINT * DREAM_DUST_PER_INT //25% dream points for each int
 	if(int < 10)
@@ -121,6 +126,10 @@
 		// Stressed, unhappy
 		to_chat(mind.current, span_boldwarning("Bothered by the stresses of the day my dreams are short..."))
 		dream_dust -= 100
+
+	if(istype(H) && H.dna?.species && istype(H.dna.species, /datum/species/human/northern)) //humie bonus 2
+		inspirations++  
+		to_chat(mind.current, span_notice("The infinite Humen potential sprawls out before my mind..."))
 
 	grant_inspiration_xp(inspirations)
 

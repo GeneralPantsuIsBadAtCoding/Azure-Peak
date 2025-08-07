@@ -15,14 +15,15 @@
 	Humens, as historically the two races have been rivals in various conflicts and \
 	territorial disputes. This, however, does not stop many Humens and Elves from forming \
 	relationships, which are capable of producing half-elven children. Elves are known for \
-	their intelligence and sharp eyes, but their graceful nature typically leaves their bodies \
-	more frail and fagile than most. In these lands, only a handful of the many Elvish tribes are seen.<br>\
+	their agility, keen hearing, and their uncanny ability to navigate along treetops with ease.\
+	In these lands, only a handful of the many Elvish tribes are seen.<br>\
 	(+1 Speed)"
 
 	skin_tone_wording = "Tribal Identity"
 
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
+	inherent_traits = list(TRAIT_WOODWALKER,TRAIT_KEENEARS)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	disliked_food = NONE
@@ -179,3 +180,6 @@
 
 /datum/species/elf/wood/random_surname()
 	return " [pick(world.file2list("strings/rt/names/elf/elfwlast.txt"))]"
+
+/datum/species/elf/wood/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	..()

@@ -10,7 +10,7 @@
 	These offspring of demon and mortal races came to be known as 'Tieflings', largely despised by most people for centuries for their unnatural origins and appearances. \
 	It was only recently that they became more tolerated, even if the Church still watches them with a weary eye. \
 	When a Tiefling has offspring, no matter the race of their partner, the child would always be a pureblooded Tiefling. \
-	The taint of their very being going back generations, and no amount of cleansing can be rid of it. \
+	The taint of their very being going back generations, and no amount of cleansing can be rid of it. All of them bear an innate resistance to fire and can curse others with their gaze. \
 	As over a millennium a simple handful of Tieflings have created extended bloodlines linking back to their infernal progenitors. Some Tieflings embrace their demonic origin, while other shun it. \
 	No matter if they embrace their demonic ancestors or not, Tieflings have formed an importance upon their bloodline and family due to often being shunned and hunted through out time in which only those of their blood and kin they could truly trust. <br>\
 	(+1 Constitution, +1 Intelligence)"
@@ -107,6 +107,7 @@
 /datum/species/tieberian/after_creation(mob/living/carbon/C)
 	..()
 	to_chat(C, "<span class='info'>I can speak Infernal with ,h before my speech.</span>")
+	C.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/evileye)
 
 /datum/species/tieberian/on_species_loss(mob/living/carbon/C)
 	. = ..()
@@ -164,3 +165,31 @@
 
 /datum/species/tieberian/random_surname()
 	return " [pick(world.file2list("strings/rt/names/other/tieflast.txt"))]"
+
+// Evil eye racial ability, debuffs someone's mood decently hard
+/obj/effect/proc_holder/spell/invoked/evileye
+	name = "Evil Eye"
+	overlay_state = "transfixmaster" // might sprite something unique but tbh this fits well
+	releasedrain = 50
+	chargetime = 10
+	range = 7
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	chargedloop = null
+	sound = 'sound/magic/necra_sight.ogg'
+	antimagic_allowed = TRUE
+	recharge_time = 30 MINUTES
+	miracle = FALSE
+
+/obj/effect/proc_holder/spell/invoked/evileye/cast(list/targets, mob/living/user)
+	if(user.is_eyes_covered())
+		revert_cast()
+		to_chat(user, span_info("They cannot see my eyes!"))
+		return FALSE
+	if(isliving(targets[1]))
+		var/mob/living/carbon/target = targets[1]
+		target.add_stress(/datum/stressevent/evileye)
+		target.visible_message("<span class='info'>[user] stares at [target] with seething fury!</span>", "<span class='notice'>I feel a great, unknowing dread...</span>")
+		return TRUE
+	revert_cast()
+	return FALSE

@@ -40,13 +40,19 @@
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
-			H.visible_message("<span class='info'>[H] warms [user.p_their()] hand over the fire.</span>")
+			if(istype(H.dna.species, /datum/species/moth)) //moths love fire, campfires not big enough for this buff
+				H.visible_message("<span class='info'>[H] stares deep into the fire, lost in a trance...</span>")
+				if(do_after(H, 90, target = src))
+					H.apply_status_effect(/datum/status_effect/buff/mothfire)
+					to_chat(H, "<span class='info'>A primal satisfaction energizes you.</span>")
+			else
+				H.visible_message("<span class='info'>[H] warms [user.p_their()] hand over the fire.</span>")
 
-			if(do_after(H, 15, target = src))
-				var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-				to_chat(H, "<span class='warning'>HOT!</span>")
-				if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
-					H.update_damage_overlays()
+				if(do_after(H, 15, target = src))
+					var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+					to_chat(H, "<span class='warning'>HOT!</span>")
+					if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
+						H.update_damage_overlays()
 		return TRUE //fires that are on always have this interaction with lmb unless its a torch
 
 	else

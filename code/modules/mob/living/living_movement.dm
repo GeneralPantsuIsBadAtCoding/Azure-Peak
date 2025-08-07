@@ -59,7 +59,13 @@
 		if(MOVE_INTENT_WALK)
 			mod = CONFIG_GET(number/movedelay/walk_delay)
 		if(MOVE_INTENT_RUN)
-			mod = CONFIG_GET(number/movedelay/run_delay)
+			if(istype(src, /mob/living/carbon))
+				var/mob/living/carbon/C = src
+				if(C.dna?.species.name == "Kobold")
+					apply_status_effect(/datum/status_effect/buff/burstofspeed)
+					mod = CONFIG_GET(number/movedelay/run_delay)
+				else	
+					mod = CONFIG_GET(number/movedelay/run_delay)
 		if(MOVE_INTENT_SNEAK)
 			if(HAS_TRAIT(src, TRAIT_LIGHT_STEP))
 				mod = CONFIG_GET(number/movedelay/walk_delay) * 1.3

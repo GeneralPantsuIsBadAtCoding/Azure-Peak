@@ -55,6 +55,13 @@
 
 /datum/skill_holder/proc/adjust_experience(skill, amt, silent = FALSE)
 	var/datum/skill/S = GetSkillRef(skill)
+	var/mob/living/carbon/human/H = current
+	if(istype(H) && istype(H.dna?.species, /datum/species/human/northern)) //Humen xp bonus
+		amt *= 1.5
+	if(istype(H) && istype(H.dna?.species, /datum/species/human/halfelf)) //half elf xp bonus
+		amt *= 1.3
+	if(istype(H) && istype(H.dna?.species, /datum/species/demihuman)) //half-kin xp bonus
+		amt *= 1.3
 	skill_experience[S] = max(0, skill_experience[S] + amt) //Prevent going below 0
 	var/old_level = known_skills[S]
 	switch(skill_experience[S])
