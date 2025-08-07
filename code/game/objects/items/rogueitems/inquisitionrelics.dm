@@ -974,6 +974,7 @@ Inquisitorial armory down here
 		if(target != user)
 			user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
 		user.visible_message(span_danger("[user] wraps the [src] around [target]'s throat!"))
+		user.stamina_add(16)
 		user.changeNext_move(CLICK_CD_GRABBING)
 		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	
 		REMOVE_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
@@ -988,7 +989,7 @@ Inquisitorial armory down here
 			return
 		if(!proximity_flag)
 			return
-		user.stamina_add(rand(1,3))
+		user.stamina_add(8)
 		var/mob/living/carbon/C = victim
 		// if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
 		playsound(loc, pick('sound/items/garrotechoke1.ogg', 'sound/items/garrotechoke2.ogg', 'sound/items/garrotechoke3.ogg', 'sound/items/garrotechoke4.ogg', 'sound/items/garrotechoke5.ogg'), 100, TRUE)

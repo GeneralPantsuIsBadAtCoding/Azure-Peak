@@ -1205,6 +1205,7 @@
 		var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
 		if(!gcord)
 			gcord = L.get_inactive_held_item()
+		gcord.take_damage(26)
 		gcord.wipeslate(src)	
 	log_combat(L, src, "broke grab")
 	L.changeNext_move(agg_grab ? CLICK_CD_GRABBING : CLICK_CD_GRABBING + 1 SECONDS)
