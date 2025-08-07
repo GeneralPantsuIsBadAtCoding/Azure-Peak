@@ -2312,6 +2312,7 @@
 #include "code\modules\surgery\bodyparts\bodypart_wounds.dm"
 #include "code\modules\surgery\bodyparts\head.dm"
 #include "code\modules\surgery\bodyparts\helpers.dm"
+#include "code\modules\surgery\bodyparts\taur.dm"
 #include "code\modules\surgery\bodyparts\bodypart_features\_bodypart_feature.dm"
 #include "code\modules\surgery\bodyparts\bodypart_features\features.dm"
 #include "code\modules\surgery\organs\appendix.dm"
