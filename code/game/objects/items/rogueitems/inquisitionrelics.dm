@@ -1234,7 +1234,7 @@ Inquisitorial armory down here
 			return
 		if(!user.key)
 			return
-		for(var/mob/living/carbon/human/HL in GLOB.player_list) 
+		for(var/mob/living/carbon/human/HL in GLOB.human_list) 
 		//	to_chat(world, "going through mob: [HL] | real_name: [HL.real_name] | input: [input] | [world.time]") Mirror-bugsplatter. Disregard this.
 			if(HL.real_name == input)
 				var/turf/T = get_turf(HL)
