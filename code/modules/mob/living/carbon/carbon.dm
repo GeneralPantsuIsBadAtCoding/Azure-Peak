@@ -255,6 +255,7 @@
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_range, thrown_speed, src, null, null, null, move_force)
+		changeNext_move(CLICK_CD_MELEE)
 		if(!used_sound)
 			used_sound = pick(PUNCHWOOSH)
 		playsound(get_turf(src), used_sound, 60, FALSE)

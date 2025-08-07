@@ -559,6 +559,7 @@
 			oldloc.Exited(src, null)
 			if(old_area)
 				old_area.Exited(src, null)
+			Moved(oldloc, NONE, TRUE)
 		loc = null
 
 /atom/movable/proc/onTransitZ(old_z,new_z)

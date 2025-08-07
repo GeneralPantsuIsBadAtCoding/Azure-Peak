@@ -282,7 +282,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/zizo
 	max_integrity = ARMOR_INT_SIDE_ANTAG
-	name = "darksteel boots"
+	name = "avantyne boots"
 	desc = "Plate boots. Called forth from the edge of what should be known. In Her name."
 	icon_state = "zizoboots"
 	armor = ARMOR_ASCENDANT
