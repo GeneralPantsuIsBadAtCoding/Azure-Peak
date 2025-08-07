@@ -843,7 +843,7 @@ Inquisitorial armory down here
 	if(break_sound)
 		playsound(get_turf(src), break_sound, 80, TRUE)
 	update_icon()
-	to_chat(M, "\The [src] SNAPS...!")
+	to_chat(M, "The [src] SNAPS...!")
 	name = "\proper snapped seizing garrote"
 
 /obj/item/inqarticles/garrote/update_damaged_state()
@@ -974,7 +974,7 @@ Inquisitorial armory down here
 		if(target != user)
 			user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
 		user.visible_message(span_danger("[user] wraps the [src] around [target]'s throat!"))
-		user.stamina_add(20)
+		user.stamina_add(25)
 		user.changeNext_move(CLICK_CD_GRABBING)
 		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	
 		REMOVE_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
