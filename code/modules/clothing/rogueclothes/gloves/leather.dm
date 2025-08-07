@@ -84,6 +84,7 @@
 	icon_state = "psydongloves"
 	item_state = "psydongloves"
 	salvage_result = /obj/item/natural/hide/cured	
+	allowed_race = ALL_RACES_TYPES
 
 // Eastern gloves
 /obj/item/clothing/gloves/roguetown/eastgloves1
