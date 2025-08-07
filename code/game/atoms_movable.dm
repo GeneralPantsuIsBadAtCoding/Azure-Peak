@@ -174,6 +174,9 @@
 		if(!supress_message)
 			M.visible_message("<span class='warning'>[src] grabs [M].</span>", \
 				"<span class='danger'>[src] grabs you.</span>")
+	if(istype(AM, /mob/living/simple_animal))
+		var/mob/living/simple_animal/simple_animal = AM
+		simple_animal.toggle_ai(AI_ON)
 	return TRUE
 
 /atom/movable/proc/stop_pulling(forced = TRUE)

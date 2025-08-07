@@ -250,3 +250,16 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 		if(!M.CanPass(traveler, target))
 			return TRUE
 	return FALSE
+
+/proc/get_dist_3d(atom/source, atom/target)
+	var/turf/source_turf = get_turf(source)
+	return source_turf.Distance3D(get_turf(target))
+
+// Add a helper function to compute 3D Manhattan distance
+/turf/proc/Distance3D(turf/T)
+	if (!T || !istype(T))
+		return 0
+	var/dx = abs(x - T.x)
+	var/dy = abs(y - T.y)
+	var/dz = abs(z - T.z) * 5 // Weight z-level differences higher
+	return (dx + dy + dz)

@@ -421,7 +421,7 @@ GLOBAL_VAR(restart_counter)
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
-
+	SSai_controllers.on_max_z_changed()
 
 /*
 #ifdef TESTING
