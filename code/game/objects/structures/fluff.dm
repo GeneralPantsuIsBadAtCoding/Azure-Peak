@@ -857,10 +857,64 @@
 	icon = 'icons/roguetown/misc/tallandwide.dmi'
 	pixel_x = -16
 
+/obj/structure/fluff/statue/abyssoralt
+	name = "abyssor statue"
+	desc = "A stone statue of the sea God Abyssor. Bless."
+	icon_state = "abyssor_alt"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
 /obj/structure/fluff/statue/abyssor/dolomite
 	name = "abyssor statue"
 	desc = "A rare dolomite statue of the ancient god abyssor. Hewn from bleached rock as if the shimmer makes his faceless gaze any less terrifying."
 	icon_state = "abyssor_dolomite"
+
+/obj/structure/fluff/statue/dendor
+	name = "dendor statue"
+	desc = "A stone statue of the nature God Dendor. Bless."
+	icon_state = "dendor"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/ravox
+	name = "ravox statue"
+	desc = "A stone statue of the justice God Ravox. Bless."
+	icon_state = "ravox"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/pestra
+	name = "pestra statue"
+	desc = "A stone statue of the decay Goddess Pestra. Bless."
+	icon_state = "pestra"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/eora
+	name = "eora statue"
+	desc = "A stone statue of the love Goddess Eora. Bless."
+	icon_state = "eora"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/noc
+	name = "noc statue"
+	desc = "A stone statue of the moon God Noc. Bless."
+	icon_state = "noc"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/xylix
+	name = "xylix statue"
+	desc = "A stone statue of the trickery God Xylix. Bless."
+	icon_state = "xylix"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/necra
+	name = "necra statue"
+	desc = "A stone statue of the death Goddess Necra. Bless."
+	icon_state = "necra"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
+
+/obj/structure/fluff/statue/malum
+	name = "malum statue"
+	desc = "A stone statue of the craft God Malum. Bless."
+	icon_state = "malum"
+	icon = 'icons/roguetown/misc/tallandwide.dmi'
 
 /obj/structure/fluff/statue/knight/r
 	icon_state = "knightstatue_r"
