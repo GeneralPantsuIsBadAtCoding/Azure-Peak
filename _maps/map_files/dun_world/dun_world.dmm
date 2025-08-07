@@ -2867,7 +2867,7 @@
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1;
 	lockid = "inquisition";
-	name = "Absolutionists's Chambers"
+	name = "Absolutionist's Chambers"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/inq/basement)
