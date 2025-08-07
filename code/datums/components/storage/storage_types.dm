@@ -163,6 +163,22 @@
 		/obj/item/reagent_containers/food/snacks/grown/manabloom,
 		/obj/item/magic/manacrystal,
 		/obj/item/ash,
+		/obj/item/magic/artifact,
+		/obj/item/alch/atropa,
+		/obj/item/alch/matricaria,
+		/obj/item/alch/symphitum,
+		/obj/item/alch/taraxacum,
+		/obj/item/alch/euphrasia,
+		/obj/item/alch/paris,
+		/obj/item/alch/calendula,
+		/obj/item/alch/mentha,
+		/obj/item/alch/urtica,
+		/obj/item/alch/salvia,
+		/obj/item/alch/hypericum,
+		/obj/item/alch/benedictus,
+		/obj/item/alch/valeriana,
+		/obj/item/alch/artemisia,
+		/obj/item/alch/rosa
 		))
 
 /datum/component/storage/concrete/roguetown/saddle

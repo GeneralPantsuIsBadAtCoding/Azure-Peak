@@ -265,11 +265,3 @@ GLOBAL_LIST_INIT(ambience_files, list(
 	'sound/music/area/towngen.ogg',
 	'sound/music/area/townstreets.ogg'
 	))
-
-/client/verb/preload_sounds()
-	set category = "Options"
-	set name = "Preload Ambience"
-
-	for(var/music in GLOB.ambience_files)
-		mob.playsound_local(mob, music, 0.1)
-		sleep(10)

@@ -923,17 +923,21 @@
 
 	var/list/mob/living/foes = list()
 	for(var/mob/living/foe_in_turf in T)
+		if(foe_in_turf == src)
+			continue
+
 		var/foe_prio = rand(4, 8)
 		if(foe_in_turf.mobility_flags & MOBILITY_STAND)
 			foe_prio += 10
-		else if(foe_in_turf == src)
-			foe_prio = -10
 		else if(foe_in_turf.stat != CONSCIOUS)
 			foe_prio = 2
 		else if(foe_in_turf.surrendering)
 			foe_prio = -5
 
 		foes[foe_in_turf] = foe_prio
+
+	if(!foes.len)
+		return null
 
 	if(foes.len > 1)
 		sortTim(foes, cmp = /proc/cmp_numeric_dsc, associative = TRUE)

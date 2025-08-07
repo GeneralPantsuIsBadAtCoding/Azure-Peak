@@ -45,6 +45,17 @@
 					underwear.forceMove(get_turf(src))
 					src.put_in_hands(underwear)
 					underwear = null
+		if((user.zone_selected == BODY_ZONE_L_LEG) || (user.zone_selected == BODY_ZONE_R_LEG))
+			if(get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
+				if(!legwear_socks)
+					return
+				src.visible_message(span_notice("[src] begins to take off [legwear_socks]..."))
+				if(do_after(user, 30, needhand = 1, target = src))
+					var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+					chest.remove_bodypart_feature(legwear_socks.legwears_feature)
+					legwear_socks.forceMove(get_turf(src))
+					src.put_in_hands(legwear_socks)
+					legwear_socks = null
 #endif
 
 /mob/living/carbon/human/Initialize()
@@ -271,6 +282,9 @@
 #ifdef MATURESERVER
 	if(get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
 		dat += "<tr><td><BR><B>Underwear:</B> <A href='?src=[REF(src)];undiesthing=1'>[!underwear ? "Nothing" : "Remove"]</A></td></tr>"
+	dat += "<tr><td><hr></td></tr>"
+	if(get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
+		dat += "<tr><td><BR><B>Legwear:</B> <A href='?src=[REF(src)];legwearsthing=1'>[!legwear_socks ? "Nothing" : "Remove"]</A></td></tr>"
 #endif
 
 	dat += {"</table>"}

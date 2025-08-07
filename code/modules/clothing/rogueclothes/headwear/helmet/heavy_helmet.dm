@@ -558,8 +558,8 @@
 	..()
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo
-	name = "darksteel barbute"
-	desc = "A darksteel barbute. This one has an adjustable visor. Called forth from the edge of what should be known. In Her name."
+	name = "avantyne barbute"
+	desc = "A avantyne barbute. This one has an adjustable visor. Called forth from the edge of what should be known. In Her name."
 	adjustable = CAN_CADJUST
 	icon_state = "zizobarbute"
 	max_integrity = ARMOR_INT_HELMET_ANTAG

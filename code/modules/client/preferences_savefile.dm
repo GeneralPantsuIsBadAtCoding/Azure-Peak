@@ -7,7 +7,7 @@
 //	where you would want the updater procs below to run
 
 //	This also works with decimals.
-#define SAVEFILE_VERSION_MAX	33
+#define SAVEFILE_VERSION_MAX	33.9
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -133,28 +133,21 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			S["facial_style_name"]	>> facial_hairstyle
 	if(current_version < 30)
 		S["voice_color"]		>> voice_color
-	if(current_version < 32) // Update races
+	if(current_version < 34) // Update races
 		var/species_name
 		S["species"] >> species_name
-		testing("Save version < 32, updating [species_name].")
+		testing("Save version < 34, updating [species_name].")
 		if(species_name)
 			var/newtype = GLOB.species_list[species_name]
 			if(!newtype)
-				if(species_name == "Sissean")
-					testing("Updating to Zardman.")
-					species_name = "Zardman"
-		_load_species(S, species_name)
-	if(current_version < 33)
-		var/species_name
-		S["species"] >> species_name
-		testing("Save version < 33, updating [species_name].")
-		if(species_name)
-			var/newtype = GLOB.species_list[species_name]
-			if(!newtype)
-				if(species_name == "Vulpkian")
-					testing("Your character is now a Venardine.")
-					species_name = "Venardine"
-		_load_species(S, species_name)		
+				switch(species_name)
+					if("Sissean")
+						testing("Updating to Zardman.")
+						species_name = "Zardman"
+					if("Vulpkian")
+						testing("Your character is now a Venardine.")
+						species_name = "Venardine"
+		_load_species(S, species_name)	
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -459,6 +452,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["voice_type"]			>> voice_type
 	S["nickname"]			>> nickname
 	S["highlight_color"]	>> highlight_color
+	S["taur_type"]			>> taur_type
+	S["taur_color"]			>> taur_color
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
@@ -600,6 +595,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["mcolor3"]	= sanitize_hexcolor(features["mcolor3"], 6, 0)
 	features["ethcolor"]	= copytext(features["ethcolor"],1,7)
 	features["feature_lizard_legs"]	= sanitize_inlist(features["legs"], GLOB.legs_list, "Normal Legs")
+	var/list/valid_taur_types = pref_species.get_taur_list()
+	if(!(taur_type in valid_taur_types))
+		taur_type = null
+	taur_color = sanitize_hexcolor(taur_color, 6, 0)
+
 	S["body_markings"] >> body_markings
 	body_markings = SANITIZE_LIST(body_markings)
 	validate_body_markings()
@@ -659,15 +659,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["backpack"]			, backpack)
 	WRITE_FILE(S["jumpsuit_style"]		, jumpsuit_style)
 	WRITE_FILE(S["uplink_loc"]			, uplink_spawn_loc)
-	WRITE_FILE(S["randomise"]		, randomise)
-	WRITE_FILE(S["species"]			, pref_species.name)
+	WRITE_FILE(S["randomise"]			, randomise)
+	WRITE_FILE(S["species"]				, pref_species.name)
 	WRITE_FILE(S["charflaw"]			, charflaw.type)
-	WRITE_FILE(S["feature_mcolor"]					, features["mcolor"])
-	WRITE_FILE(S["feature_mcolor2"]					, features["mcolor2"])
-	WRITE_FILE(S["feature_mcolor3"]					, features["mcolor3"])
-	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
+	WRITE_FILE(S["feature_mcolor"]		, features["mcolor"])
+	WRITE_FILE(S["feature_mcolor2"]		, features["mcolor2"])
+	WRITE_FILE(S["feature_mcolor3"]		, features["mcolor3"])
+	WRITE_FILE(S["feature_ethcolor"]	, features["ethcolor"])
 	WRITE_FILE(S["nickname"]			, nickname)
 	WRITE_FILE(S["highlight_color"]		, highlight_color)
+	WRITE_FILE(S["taur_type"]			, taur_type)
+	WRITE_FILE(S["taur_color"]			, taur_color)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -724,7 +726,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["loadout3"] , loadout3.type)
 	else
 		WRITE_FILE(S["loadout3"] , null)
-
 
 	return TRUE
 

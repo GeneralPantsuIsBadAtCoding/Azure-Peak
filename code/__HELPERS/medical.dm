@@ -1,4 +1,7 @@
-/proc/parse_zone(zone)
+/proc/parse_zone(zone, obj/item/bodypart/affecting = null)
+	// this helps adapt older code
+	if(affecting?.body_zone == BODY_ZONE_TAUR)
+		return "tauric half"
 	switch(zone)
 		if(BODY_ZONE_PRECISE_R_HAND)
 			return "right hand"
@@ -16,6 +19,8 @@
 			return "left foot"
 		if(BODY_ZONE_PRECISE_R_FOOT)
 			return "right foot"
+		if(BODY_ZONE_TAUR)
+			return "tauric half"
 		if(BODY_ZONE_PRECISE_NECK)
 			return "throat"
 		if(BODY_ZONE_PRECISE_GROIN)

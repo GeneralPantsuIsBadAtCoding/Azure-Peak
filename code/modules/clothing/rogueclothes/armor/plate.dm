@@ -160,7 +160,7 @@
 	qdel(src)
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
-	name = "darksteel fullplate"
+	name = "avantyne fullplate"
 	desc = "Full plate. Called forth from the edge of what should be known. In Her name."
 	icon_state = "zizoplate"
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
