@@ -1229,17 +1229,14 @@ Inquisitorial armory down here
 		to_chat(user, span_warning("It looks like it needs blood to work properly."))
 		return
 	if(!active)
-		var/input = input(user, "WHO DO YOU SEEK?", "THE PRICE IS PAID")
+		var/input = input(user, "WHO DO YOU SEEK?", "THE PRICE IS PAID") as text|null
 		if(!input)
 			return
 		if(!user.key)
 			return
-		for(var/mob/living/carbon/human/HL in GLOB.human_list) 
+		for(var/mob/living/carbon/human/HL in GLOB.player_list) 
 		//	to_chat(world, "going through mob: [HL] | real_name: [HL.real_name] | input: [input] | [world.time]") Mirror-bugsplatter. Disregard this.
 			if(HL.real_name == input)
-				var/turf/T = get_turf(HL)
-				if(!T)
-					continue
 				target = HL
 				active = TRUE
 				effect = target.throw_alert("blackmirror", /atom/movable/screen/alert/blackmirror, override = TRUE)
@@ -1252,9 +1249,9 @@ Inquisitorial armory down here
 				log_game("SCRYING: [user.real_name] ([user.ckey]) has fixated on [target.real_name] ([target.ckey]) via black mirror.")
 				soundloop.start()	
 				return update_icon()	
-			playsound(src, 'sound/items/blackmirror_no.ogg', 100, FALSE)
-			to_chat(user, span_warning("[src] makes a grating sound."))
-			return
+		playsound(src, 'sound/items/blackmirror_no.ogg', 100, FALSE)
+		to_chat(user, span_warning("[src] makes a grating sound."))
+		return
 	var/lookat = null
 	if(alert(user, "WHERE ARE YOU LOOKING?", "BLACK MIRROR", "BLOOD", "FIXATION") != "BLOOD")
 		lookat = target
