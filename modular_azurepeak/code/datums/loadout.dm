@@ -247,6 +247,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tunic"
 	path = /obj/item/clothing/suit/roguetown/shirt/tunic
 
+/datum/loadout_item/stripedtunic
+	name = "Striped Tunic"
+	path = /obj/item/clothing/suit/roguetown/armor/workervest
+
 /datum/loadout_item/dress
 	name = "Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/gen
@@ -291,6 +295,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Silky Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 
+/datum/loadout_item/noblecoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat
+
 /datum/loadout_item/leathervest
 	name = "Leather Vest"
 	path = /obj/item/clothing/suit/roguetown/armor/leather/vest
@@ -332,17 +340,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/under/roguetown/skirt
 
 //ACCESSORIES
-/datum/loadout_item/stockings
-	name = "Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings
-
-/datum/loadout_item/silkstockings
-	name = "Silk Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings/silk
-
-/datum/loadout_item/fishnet
-	name = "Fishnet Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings/fishnet
 
 /datum/loadout_item/wrappings
 	name = "Handwraps"

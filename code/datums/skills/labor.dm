@@ -2,6 +2,7 @@
 	abstract_type = /datum/skill/labor
 	name = "Labor"
 	desc = ""
+	color = "#78c472"
 
 /datum/skill/labor/farming
 	name = "Farming"

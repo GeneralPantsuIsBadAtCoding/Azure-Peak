@@ -1056,9 +1056,9 @@
 /area/rogue/under/cavewet/bogcaves)
 "adV" = (
 /obj/structure/closet/crate/roguecloset/inn/south,
-/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black,
-/obj/item/clothing/under/roguetown/tights/stockings/red,
-/obj/item/clothing/under/roguetown/tights/stockings/black,
+/obj/item/legwears/fishnet/black,
+/obj/item/legwears/red,
+/obj/item/legwears/black,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/red,

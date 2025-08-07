@@ -9,6 +9,8 @@
 /obj/item/kitchen/spoon/aalloy
 	name = "decrepit spoon"
 	icon_state = "aspoon"
+	color = "#bb9696"
+	sellprice = 5
 
 /obj/item/kitchen/spoon/iron
 	name = "iron spoon"

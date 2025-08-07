@@ -27,9 +27,10 @@
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/strongpoison = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/steel/corroded = 1,
 		)
 	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE) // To escape grapplers, fuck you
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
@@ -57,7 +58,6 @@
 			H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 			backr = /obj/item/rogueweapon/woodstaff/toper
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/aerosolize)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash)
 	H.change_stat("perception", 3)
 	H.change_stat("constitution", 2)

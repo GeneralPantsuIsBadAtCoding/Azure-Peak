@@ -43,9 +43,11 @@
 
 /obj/item/reagent_containers/glass/bucket/pot/aalloy
 	name = "decrepit pot"
-	desc = "A decrepit old pot. Aeon's grasp is upon it."
+	desc = "A kettle of wrought bronze. One could only imagine what the stews of millenia prior must've tasted like; do you suppose they knew of seasonings-and-spices, too?"
 	icon_state = "apote"
 	volume = 99
+	color = "#bb9696"
+	sellprice = 25
 
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"

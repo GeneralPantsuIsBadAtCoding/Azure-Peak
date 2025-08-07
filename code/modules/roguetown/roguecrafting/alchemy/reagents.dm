@@ -18,7 +18,7 @@
 	if(volume >= 60)
 		M.reagents.remove_reagent(/datum/reagent/medicine/healthpot, 2) //No overhealing.
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-		M.blood_volume = min(M.blood_volume+20, BLOOD_VOLUME_MAXIMUM)
+		M.blood_volume = min(M.blood_volume+10, BLOOD_VOLUME_NORMAL)
 	var/list/wCount = M.get_wounds()
 	if(wCount.len > 0)
 		M.heal_wounds(3) //at a motabalism of .5 U a tick this translates to 120WHP healing with 20 U Most wounds are unsewn 15-100. This is powerful on single wounds but rapidly weakens at multi wounds.
@@ -41,10 +41,7 @@
 	if(volume >= 60)
 		M.reagents.remove_reagent(/datum/reagent/medicine/healthpot, 2) //No overhealing.
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-		M.blood_volume = min(M.blood_volume+80, BLOOD_VOLUME_MAXIMUM)
-	else
-		//can overfill you with blood, but at a slower rate
-		M.blood_volume = min(M.blood_volume+10, BLOOD_VOLUME_MAXIMUM)
+		M.blood_volume = min(M.blood_volume+20, BLOOD_VOLUME_NORMAL)
 	var/list/wCount = M.get_wounds()
 	if(wCount.len > 0)
 		M.heal_wounds(6) //at a motabalism of .5 U a tick this translates to 240WHP healing with 20 U Most wounds are unsewn 15-100.
@@ -392,7 +389,12 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	required_reagents = list(/datum/reagent/stampoison = 1, /datum/reagent/additive = 1)
 	mix_message = "The cauldron glows for a moment."
 
-
+/datum/chemical_reaction/alch/vitae_essence
+	name = "Vitae Decoction"
+	id = /datum/reagent/medicine/vitae_essence
+	results = list(/datum/reagent/medicine/vitae_essence = 1)
+	required_reagents = list(/datum/reagent/vitae = 1, /datum/reagent/toxin/fyritiusnectar = 5)
+	mix_message = "The cauldron glows for a moment."
 
 /*----------\
 |Ingredients|
@@ -464,3 +466,17 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		to_chat(M, span_small("I feel even worse..."))
 	return ..()
 	
+
+/datum/reagent/medicine/vitae_essence
+	name = "Vitae Decoction"
+	description = "Decoction of essence of lyfe, used to restore one's lux humours."
+	color = "#67c7ff" // rgb: 96, 165, 132
+	overdose_threshold = 10
+	metabolization_rate = 0.1
+
+/datum/reagent/medicine/vitae_essence/on_mob_life(mob/living/carbon/M)
+	if(M.has_flaw(/datum/charflaw/addiction/junkie))
+		M.sate_addiction()
+	if(M.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
+		M.remove_status_effect(/datum/status_effect/debuff/ritualdefiled)
+	return ..()

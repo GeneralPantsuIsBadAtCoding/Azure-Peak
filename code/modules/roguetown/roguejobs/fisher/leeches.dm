@@ -38,6 +38,10 @@
 	var/blood_maximum = BLOOD_VOLUME_SURVIVE
 	// Who are we latching onto?
 	var/mob/living/host
+	/// Multiplier for extracted blood. Mainly used by Cheeles or equivalent.
+	var/blood_multiplier = 1
+	/// Whether we can be attached to mindless mobs.
+	var/mindless_attach = TRUE
 
 /obj/item/natural/worms/leech/Initialize()
 	. = ..()
@@ -58,6 +62,8 @@
 		host = null
 		return FALSE
 	if(!host)
+		return FALSE
+	if(!giving && host.stat == DEAD)
 		return FALSE
 	host.adjustToxLoss(toxin_healing)
 	var/obj/item/bodypart/bp = loc
@@ -100,7 +106,7 @@
 	else
 		var/blood_extracted = min(blood_maximum - blood_storage, user.blood_volume, blood_sucking)
 		user.blood_volume = max(user.blood_volume - blood_extracted, 0)
-		blood_storage += blood_extracted
+		blood_storage += blood_extracted * blood_multiplier
 		if((blood_storage >= blood_maximum) || (user.blood_volume <= 0))
 			if(bodypart)
 				bodypart.remove_embedded_object(src)
@@ -134,6 +140,12 @@
 
 /obj/item/natural/worms/leech/attack(mob/living/M, mob/user)
 	if(ishuman(M))
+		if(!giving && M.stat == DEAD)
+			to_chat(user, span_warning("They are deceased. Only running blood may be extracted."))
+			return
+		if(!giving && !M.mind && !mindless_attach)
+			to_chat(user, span_warning("They are mindless. The [src] won't attach."))
+			return
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
@@ -240,8 +252,10 @@
 	drainage = 0
 	blood_sucking = 5
 	toxin_healing = -2
-	blood_storage = BLOOD_VOLUME_SURVIVE
-	blood_maximum = BLOOD_VOLUME_BAD
+	blood_multiplier = 3
+	blood_storage = BLOOD_VOLUME_BAD
+	blood_maximum = BLOOD_VOLUME_NORMAL
+	mindless_attach = FALSE
 
 /obj/item/natural/worms/leech/cheele/attack_self(mob/user)
 	. = ..()

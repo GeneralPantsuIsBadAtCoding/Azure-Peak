@@ -135,3 +135,224 @@
 		return TRUE
 	revert_cast()
 	return FALSE
+
+// T0, orison inspired healing spell that pours a drink called Lover's Ruin. Works like a red for baotha blessed, poisons non-blessed.
+/obj/effect/proc_holder/spell/targeted/touch/loversruin
+	name = "Lover's Ruin"
+	desc = "A toast to passion that ends in ash.\n \
+		Beseech Baotha to pour wine onto a container. Poisons the unfaithful, rewards Her blessed with healing."
+	overlay_state = "aerosolize"
+	chargedrain = 0
+	chargetime = 0
+	releasedrain = 5
+	miracle = TRUE
+	devotion_cost = 5
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/holy
+	hand_path = /obj/item/melee/touch_attack/loversruin
+	recharge_time = 2 MINUTES
+
+/obj/item/melee/touch_attack/loversruin
+	name = "Baotha's Touch"
+	catchphrase = null
+	possible_item_intents = list(/datum/intent/fill)
+	icon = 'icons/mob/roguehudgrabs.dmi'
+	icon_state = "pulling"
+	icon_state = "grabbing_greyscale"
+	color = "#FFFFFF"
+	var/right_click = FALSE
+
+/obj/item/melee/touch_attack/loversruin/attack_self()
+	qdel(src)
+
+/obj/item/melee/touch_attack/loversruin/afterattack(atom/target, mob/living/carbon/human/user, proximity)
+	if(istype(user.used_intent, /datum/intent/fill) && create_ichor(target, user))
+		qdel(src)
+
+/datum/reagent/medicine/loversruin
+	name = "Lover's Ruin"
+	description = "A sweet smelling concoction. It has small charred petals swimming on the surface."
+	color = "#9c2745"
+	taste_description = "sin"
+
+/datum/reagent/medicine/loversruin/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CRACKHEAD))
+		if(volume >= 60)
+			M.reagents.remove_reagent(/datum/reagent/medicine/loversruin, 2)
+		if(M.blood_volume < BLOOD_VOLUME_NORMAL)
+			M.blood_volume = min(M.blood_volume+40, BLOOD_VOLUME_MAXIMUM)
+		var/list/wCount = M.get_wounds()
+		if(wCount.len > 0)
+			M.heal_wounds(4.5)
+		if(volume > 0.99)
+			M.adjustBruteLoss(-2*REM, 0)
+			M.adjustFireLoss(-2*REM, 0)
+			M.adjustOxyLoss(-2, 0)
+			M.adjustToxLoss(-2, 0)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -5*REM)
+			M.adjustCloneLoss(-4*REM, 0)
+	else
+		M.adjustToxLoss(3, 0)
+		M.adjustOxyLoss(1, 0)
+	..()
+
+/obj/item/melee/touch_attack/loversruin/proc/create_ichor(atom/thing, mob/living/carbon/human/user)
+	if(!thing.Adjacent(user))
+		to_chat(user, span_info("I need to be closer to [thing] in order to try filling it with the concoction."))
+		return
+
+	if(thing.is_refillable())
+		if(thing.reagents.holder_full())
+			to_chat(user, span_warning("[thing] is full."))
+			return
+		
+		user.visible_message(span_info("[user] closes [user.p_their()] eyes in prayer and extends a hand over [thing] as a sweet smelling ichor begins to stream from [user.p_their()] fingertips..."), span_notice("I call forth [user.patron.name], to fill [thing] with Her blessings..."))
+
+		var/holy_skill = user.get_skill_level(attached_spell.associated_skill)
+		var/drip_speed = 56 - (holy_skill * 8)
+		var/fatigue_spent = 0
+		var/fatigue_used = max(3, holy_skill)
+		while(do_after(user, drip_speed, target = thing))
+			if(thing.reagents.holder_full() || (user.devotion.devotion - fatigue_used <= 0))
+				break
+
+			var/water_qty = max(1, holy_skill) + 1
+			var/list/water_contents = list(/datum/reagent/medicine/loversruin = water_qty)
+			var/datum/reagents/reagents_to_add = new()
+			reagents_to_add.add_reagent_list(water_contents)
+			reagents_to_add.trans_to(thing, reagents_to_add.total_volume, transfered_by = user, method = INGEST)
+
+			fatigue_spent += fatigue_used
+			user.stamina_add(fatigue_used)
+			user.devotion?.update_devotion(-1.0)
+
+			if(prob(80))
+				playsound(user, 'sound/items/fillcup.ogg', 55, TRUE)
+		
+		return max(50, fatigue_spent)
+	else
+		to_chat(user, span_info("I'll need to find a container that can hold Her blessing."))
+
+//T1, Baotha's version of Eora's Bud (now renamed True Peace Bloom). Applies the TRAIT_CRACKHEAD baothans have.
+/obj/effect/proc_holder/spell/invoked/griefflower
+	name = "False Serenity Bloom"
+	desc = "A gift for those whom you have choosen as worthy of Her grace, to be able to imbibe in Her gifts as you do."
+	clothes_req = FALSE
+	range = 7
+	overlay_state = "love"
+	sound = list('sound/magic/magnet.ogg')
+	releasedrain = 40
+	chargetime = 10
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/holy
+	recharge_time = 30 MINUTES //To avoid spamming this shit and giving all heretics florida-man crackhead superpowers. No Bro.
+
+/obj/effect/proc_holder/spell/invoked/griefflower/cast(mob/living/user)
+	var/turf/T = get_turf(user)
+	if(!isclosedturf(T))
+		new /obj/item/clothing/ring/griefflower(T)
+		return TRUE
+
+	to_chat(user, span_warning("The targeted location is blocked. Her gift cannot be invoked."))
+	revert_cast()
+	return FALSE
+
+/obj/item/clothing/ring/griefflower
+	name = "rosa ring"
+	desc = "Once a flower of love, now touched by Baotha's hand. Its petals whisper of desire, despair, and the kind of longing that never dies. Worn by those who cannot let go."
+	icon_state = "peaceflower"
+	item_state = "peaceflower"
+	icon = 'icons/roguetown/items/produce.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+
+/obj/item/clothing/ring/griefflower/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_RING)
+		user.apply_status_effect(/datum/status_effect/buff/griefflower)
+
+/obj/item/clothing/ring/griefflower/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(istype(user) && user?.wear_ring == src)
+		user.remove_status_effect(/datum/status_effect/buff/griefflower)
+
+// T2 - bond that lasts for 8 minutes as long as bonded are within 7 tiles, TRAIT_NOPAIN, spd = 5 end = 3
+/obj/effect/proc_holder/spell/invoked/joyride
+	name = "Joyride"
+	desc = "A frenzy for two to partake in."
+	overlay_state = "bliss"
+	range = 2
+	chargetime = 0.5 SECONDS
+	invocation = "By Baotha's mercy, an ecstasy trance for two!"
+	sound = 'sound/magic/magnet.ogg'
+	recharge_time = 60 SECONDS
+	miracle = TRUE
+	devotion_cost = 75
+	associated_skill = /datum/skill/magic/holy
+
+/obj/effect/proc_holder/spell/invoked/joyride/cast(list/targets, mob/living/user)
+	var/mob/living/target = targets[1]
+
+	var/datum/component/baotha_joyride/existing = user.GetComponent(/datum/component/baotha_joyride)
+	if(existing)
+		to_chat(user, span_warning("Your fates are already intertwined!"))
+		revert_cast()
+		return FALSE
+
+	if(!istype(target, /mob/living/carbon) || target == user)
+		revert_cast()
+		return FALSE
+
+	if(!do_after(user, 8 SECONDS, target = target))
+		to_chat(user, span_warning("There is no joy without concentration!"))
+		revert_cast()
+		return FALSE
+
+	var/holy_skill = user.get_skill_level(associated_skill)
+	user.AddComponent(/datum/component/baotha_joyride, target, user, holy_skill)
+	target.AddComponent(/datum/component/baotha_joyride/partner, target, user, holy_skill)
+
+	user.visible_message(
+		span_notice("[user] and [target] inhale a magenta mist. A shudder, a smile, and the taste of hysteria sweetens their blood."),
+	)
+	return TRUE
+
+// T3 - clears all stress. Forget your worries, pookie bear.
+/obj/effect/proc_holder/spell/invoked/lasthigh
+	name = "Last High"
+	desc = "Pleasure's perfume, just before the fall."
+	overlay_state = "astrata"
+	releasedrain = 30
+	chargedrain = 0
+	chargetime = 0
+	range = 7
+	warnie = "sydwarning"
+	sound = 'sound/magic/timestop.ogg'
+	invocation = "May you find bliss through your pain!"
+	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 5 MINUTES
+	miracle = TRUE
+	devotion_cost = 75
+
+/obj/effect/proc_holder/spell/invoked/lasthigh/cast(list/targets, mob/living/user)
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		if(target.mob_biotypes & MOB_UNDEAD)
+			return FALSE
+
+		target.visible_message(
+			span_info("[target] is forced to inhale deeply a sweet smelling mist. They twist in pain, yet a smile decorates their face!"), 
+			span_notice("The world starts to fade around me. My throat melts, my stomach churns, and my pulse quickens. Oblivion never tasted better.")
+		)
+		target.adjustToxLoss(3)
+		target.add_stress(/datum/stressevent/lasthigh)
+		return TRUE
+
+/datum/stressevent/lasthigh
+	timer = 10 MINUTES
+	stressadd = -99
+	desc = span_hypnophrase("The world starts to fade around me. My throat melts, my stomach churns, and my pulse quickens. Oblivion never tasted better.") 

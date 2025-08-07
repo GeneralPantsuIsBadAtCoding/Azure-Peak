@@ -40,6 +40,4 @@
 		var/mob/living/carbon/human/wound_owner = owner
 		wound_owner.attempt_zombie_infection(src, "wound")
 
-
-#undef ZOMBIE_INFECTION_PROBABILITY
 #undef ZOMBIE_INFECTION_TIME

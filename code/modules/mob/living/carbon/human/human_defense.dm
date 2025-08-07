@@ -707,7 +707,7 @@
 		examination += bodypart.check_for_injuries(user, deep_examination)
 
 	examination += "ø ------------ ø</span>"
-	if(infected)
+	if(has_status_effect(/datum/status_effect/zombie_infection) || infected)
 		examination += span_boldwarning("[m1] slowly rotting away.")
 
 	if(!silent)

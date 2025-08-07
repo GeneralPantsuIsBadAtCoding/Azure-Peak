@@ -457,3 +457,15 @@
 		)
 	skillcraft = /datum/skill/craft/cooking
 	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/survival/cheele
+	name = "cheele (1x)"
+	result = list(
+		/obj/item/natural/worms/leech/cheele
+		)
+	reqs = list(
+		/obj/item/reagent_containers/lux = 1,
+		/obj/item/natural/worms/leech = 1,
+		)
+	skillcraft = /datum/skill/misc/medicine
+	craftdiff = SKILL_LEVEL_EXPERT

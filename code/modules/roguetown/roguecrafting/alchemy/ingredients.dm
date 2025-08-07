@@ -402,6 +402,7 @@
 	name = "rosa"
 	icon_state = "rosa"
 	item_state = "rosa"
+	desc = "It is said that these were white - until Graggar bled on its fields."
 	icon = 'icons/roguetown/misc/alchemy.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_MOUTH

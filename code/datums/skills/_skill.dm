@@ -10,6 +10,7 @@
 	var/list/dreams
 	var/randomable_dream_xp = TRUE
 	var/expert_name
+	var/color = null
 
 /datum/skill/proc/get_skill_speed_modifier(level)
 	return

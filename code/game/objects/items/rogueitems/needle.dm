@@ -44,8 +44,6 @@
 		return
 	. += "[icon_state]string"
 
-/obj/item/needle/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', "needle")
 
 /obj/item/needle/use(used)
 	if(infinite)

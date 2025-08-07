@@ -137,6 +137,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	obj_flags = null
 	w_class = WEIGHT_CLASS_TINY
 	experimental_inhand = FALSE
+	associated_skill = /datum/skill/combat/unarmed
 	mill_result = /obj/item/reagent_containers/powder/mineral
 	/// If our stone is magical, this lets us know -how- magical. Maximum is 15.
 	var/magic_power = 0
@@ -356,16 +357,18 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	dropshrink = 0
 	throwforce = 25
 	throw_range = 2
-	force = 18
+	force = 20
 	obj_flags = CAN_BE_HIT
-	force_wielded = 15
+	force_wielded = 22
 	gripped_intents = list(INTENT_GENERIC)
 	w_class = WEIGHT_CLASS_HUGE
 	twohands_required = TRUE
 	var/obj/item/rogueore/mineralType = null
 	var/mineralAmt = 1
+	associated_skill = /datum/skill/combat/unarmed
 	blade_dulling = DULLING_BASH
-	max_integrity = 90
+	max_integrity = 100
+	minstr = 11
 	destroy_sound = 'sound/foley/smash_rock.ogg'
 	attacked_sound = 'sound/foley/hit_rock.ogg'
 

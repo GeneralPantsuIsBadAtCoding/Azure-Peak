@@ -18,6 +18,7 @@
 #define ROLE_ASCENDANT			"Ascendant"
 #define ROLE_WRETCH				"Wretch"
 #define ROLE_UNBOUND_DEATHKNIGHT "Unbound Death Knight"
+#define ROLE_DARK_ITINERANT "Dark Itinerant"
 
 #define ROLE_SYNDICATE			"Syndicate"
 #define ROLE_TRAITOR			"Traitor"
@@ -49,6 +50,7 @@
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
 #define ROLE_NECRO_SKELETON		"Necromancer Skeleton"
 #define ROLE_LICH_SKELETON		"Lich Skeleton"
+#define ROLE_CHOSEN				"Chosen"
 
 GLOBAL_LIST_INIT(special_roles_rogue, list(
 	ROLE_MANIAC = /datum/antagonist/maniac,

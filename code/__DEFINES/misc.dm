@@ -15,19 +15,21 @@
 #define ISDIAGONALDIR(d) (d&(d-1))
 
 //Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			50		//mutations. Tk headglows, cold resistance glow, etc
-#define CLOAK_BEHIND_LAYER		49
-#define HANDS_BEHIND_LAYER		48
-#define BELT_BEHIND_LAYER		47
-#define BACK_BEHIND_LAYER		46
-#define BODY_BEHIND_LAYER		45		//certain mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODY_UNDER_LAYER		44		// Things under the bodyparts but above the "behind body" layer
-#define BODYPARTS_LAYER			43		//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
-#define BODY_ADJ_LAYER			42		//certain mutantrace features (snout, body markings) that must appear above the body parts
-#define BODY_LAYER				41		//underwear, undershirts, socks, eyes, lips(makeup)
-#define FRONT_MUTATIONS_LAYER	40		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define DAMAGE_LAYER			39		//damage indicators (cuts and burns)
-#define LEG_PART_LAYER			38
+
+#define MUTATIONS_LAYER			51		//mutations. Tk headglows, cold resistance glow, etc
+#define CLOAK_BEHIND_LAYER		50
+#define HANDS_BEHIND_LAYER		49
+#define BELT_BEHIND_LAYER		48
+#define BACK_BEHIND_LAYER		47
+#define BODY_BEHIND_LAYER		46		//certain mutantrace features (tail when looking south) that must appear behind the body parts
+#define BODY_UNDER_LAYER		45		// Things under the bodyparts but above the "behind body" layer
+#define BODYPARTS_LAYER			44		//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
+#define BODY_ADJ_LAYER			43		//certain mutantrace features (snout, body markings) that must appear above the body parts
+#define BODY_LAYER				42		//underwear, undershirts, socks, eyes, lips(makeup)
+#define FRONT_MUTATIONS_LAYER	41		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
+#define DAMAGE_LAYER			40		//damage indicators (cuts and burns)
+#define LEG_PART_LAYER			39
+#define LEGWEAR_LAYER			38
 #define PANTS_LAYER				37
 #define SHOES_LAYER				36
 #define LEG_DAMAGE_LAYER		35
@@ -65,7 +67,7 @@
 #define HALO_LAYER				3		//blood cult ascended halo, because there's currently no better solution for adding/removing
 #define FIRE_LAYER				2		//If you're on fire
 #define TURF_LAYER				1		//If you're on fire
-#define TOTAL_LAYERS			50		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
+#define TOTAL_LAYERS			51		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 
 #define BACK_CLOAK_SOUTH_LAYER		(BODY_BEHIND_LAYER+1)
 
@@ -307,12 +309,6 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
-
-//debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, "DEBUG: [msg]")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, "DEBUG: [msg]")
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
 
 #define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
 

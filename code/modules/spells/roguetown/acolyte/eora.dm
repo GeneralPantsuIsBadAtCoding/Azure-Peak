@@ -444,6 +444,10 @@
 	var/aura_range = 7
 	/// List of mobs currently affected by our aura
 	var/list/mob/living/affected_mobs = list()
+	var/ash_offered = FALSE
+	var/ash_effect_start_time = 0
+	var/creation_time
+	var/fruit_doubled = FALSE
 
 /obj/structure/eoran_pomegranate_tree/proc/get_farming_skill(mob/user)
 	return user.get_skill_level(/datum/skill/labor/farming)
@@ -459,6 +463,26 @@
 		happiness_tier = 1
 
 /obj/structure/eoran_pomegranate_tree/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/ash))
+		if(iscarbon(user))
+			var/mob/living/carbon/c = user
+			if(c.patron.type != /datum/patron/divine/eora)
+				to_chat(user, span_warning("The tree rejects your offering. Only followers of Eora may offer ash."))
+				return TRUE
+		if(ash_offered)
+			to_chat(user, span_warning("Covering the tree in additional ash seems to anger it, leaves flare out and the ash flutters to the floor. The aura is renewed."))
+			qdel(I)
+			ash_offered = FALSE
+			aura_range = 7
+			return TRUE
+
+		qdel(I)
+		ash_offered = TRUE
+		ash_effect_start_time = world.time
+		to_chat(user, span_notice("The tree shudders as you coats its leaves in ash. The leaves seem to wilt ever so slightly whilst its aura starts to wane."))
+		update_icon()
+		return TRUE
+
 	if(istype(I, /obj/item/rogueweapon/huntingknife/scissors))
 		if(prune_count >= 4)
 			to_chat(user, span_warning("The tree has been fully pruned already!"))
@@ -577,11 +601,20 @@
 			GLOB.azure_round_stats[STATS_TREES_CUT]++
 
 /obj/structure/eoran_pomegranate_tree/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armor_penetration = 0)
-	visible_message(span_notice("The tree shudders as it is harmed. You feel dread emanating from it."))
+	if(ash_offered)
+		ash_offered = FALSE
+		aura_range = 7
+		visible_message(span_notice("The tree shudders as it is harmmed, ash previously covering the leaves is shaken off, and the aura ignites once more."))
+	else
+		visible_message(span_notice("The tree shudders as it is harmed. You feel dread emanating from it."))
 	. = ..()
 
 /obj/structure/eoran_pomegranate_tree/examine(mob/user)
 	. = ..()
+	if(!ash_offered)
+		. += span_warning("The leaves emit a bright weakening aura, perhaps covering them with ash can prevent this.")
+	else
+		. += span_warning("The leaves are ashen and dampened, emitting no aura. Perhaps more ash can fix this somehow.")
 
 	if(happiness_tier == 1)
 		. += span_warning("The tree seems neglected. Branches are wilted.")
@@ -623,11 +656,23 @@
 	. = ..()
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	creation_time = world.time
 
 /obj/structure/eoran_pomegranate_tree/process(delta_time)
 	var/delta_seconds = delta_time / 10 // Convert delta_time (ticks) to seconds Delta time is the amount of time that has passed since the last time process was called.
 
 	var/target_growth_rate_per_second = 0
+
+	if(ash_offered)
+		var/time_since_ash = world.time - ash_effect_start_time
+		if(time_since_ash >= 30 SECONDS)
+			aura_range = 0
+		else if(time_since_ash >= 15 SECONDS)
+			aura_range = round(aura_range / 2)
+
+	if(!fruit_doubled && (world.time - creation_time) >= 40 MINUTES)
+		fruit_doubled = TRUE
+		visible_message(span_notice("The tree has matured and now bears more fruit!"))
 
 	if(growth_progress >= 50)
 		var/list/current_mobs = list()
@@ -766,7 +811,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		add_sleep_experience(user, /datum/skill/labor/farming, C.STAINT * 3)
-	var/obj/item/fruit_of_eora/new_fruit = new(user.loc, happiness_tier)
+	var/obj/item/fruit_of_eora/new_fruit = new(user.loc, happiness_tier, fruit_doubled)
 	user.put_in_hands(new_fruit)
 
 	// Apply picking debuff
@@ -800,10 +845,12 @@
 	var/fruit_tier = 1
 	var/list/aril_types = list()
 	var/opened = FALSE
+	var/fruit_doubled = FALSE
 
-/obj/item/fruit_of_eora/Initialize(mapload, tier = 1)
+/obj/item/fruit_of_eora/Initialize(mapload, tier = 1, doubled = FALSE)
 	. = ..()
 	fruit_tier = tier
+	fruit_doubled = doubled
 	generate_arils()
 	update_pom()
 
@@ -864,7 +911,11 @@
 			)
 
 	// Generate 4 arils +1 per tier.
-	for(var/i in 1 to 4 + (floor(fruit_tier / 2)))
+	var/num_arils = 4 + (floor(fruit_tier / 2))
+	if(fruit_doubled)
+		num_arils *= 2
+
+	for(var/i in 1 to num_arils)
 		var/aril_type = pickweight(possible_arils)
 		aril_types += aril_type
 
@@ -1072,16 +1123,86 @@
 	name = "ochre aril"
 	desc = "A blood-red seed that seems to pulse menacingly."
 	icon_state = "ochre"
-	effect_desc = "Produce golden arils at the cost of your own life."
+	effect_desc = "Return two nearby corpses in view from necra's embrace, at the cost of your own life."
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/ochre/apply_effects(mob/living/carbon/eater)
 	if(ishuman(eater))
 		var/mob/living/carbon/human/H = eater
 		if(H.patron.type == /datum/patron/divine/eora)
-			to_chat(H, span_notice("Golden seeds sprout from your skin and fall upon the floor."))
-			for(var/i in 1 to 2)
-				new /obj/item/reagent_containers/food/snacks/eoran_aril/auric(H.loc)
-			H.apply_status_effect(/datum/status_effect/debuff/eoran_wilting)
+			var/list/mob/living/carbon/human/target_mobs = list()
+
+			for(var/mob/living/carbon/human/target in view(7, H))
+				if(target_mobs.len >= 2)
+					break
+				if(target.stat != DEAD)
+					continue
+				if(!target.mind || !target.mind.active)
+					continue
+				if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
+					continue
+				if(target.mob_biotypes & MOB_UNDEAD)
+					continue
+				if(target.has_status_effect(/datum/status_effect/debuff/metabolic_acceleration))
+					continue
+				if(target.has_status_effect(/datum/status_effect/debuff/eoran_wilting))
+					continue
+
+				target_mobs += target
+
+			if(target_mobs.len > 0)
+				H.apply_status_effect(/datum/status_effect/debuff/eoran_wilting)
+				addtimer(CALLBACK(GLOBAL_PROC_REF(process_ochre_revivals), target_mobs), 0)
+
+	return ..()
+
+/proc/process_ochre_revivals(list/mob/living/carbon/human/targets_to_revive)
+	for(var/mob/living/carbon/human/target in targets_to_revive)
+		continue
+		if(target.stat != DEAD)
+			continue
+
+		INVOKE_ASYNC(GLOBAL_PROC_REF(revive_ochre_target), target)
+
+/proc/revive_ochre_target(mob/living/carbon/human/target)
+	to_chat(world, span_userdanger("ATTEMPTING REVIVAL FOR [target]"))
+	if(QDELETED(target) || target.stat != DEAD)
+		return FALSE
+
+	var/mob/living/carbon/spirit/underworld_spirit = target.get_spirit()
+
+	if (target.client)
+		if (alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
+			target.visible_message(span_notice("Nothing happens. They are not being let go."))
+			return FALSE
+	else if (underworld_spirit && underworld_spirit.client)
+		if (alert(underworld_spirit, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
+			target.visible_message(span_notice("Nothing happens. They are not being let go."))
+			return FALSE
+	else
+		target.visible_message(span_notice("The body shudders, but there's no one to call out to."))
+		return FALSE
+
+	// Perform revival
+	target.adjustOxyLoss(-target.getOxyLoss())
+	if(target.revive(full_heal = FALSE))
+		// Transfer ghost back to body (if they were ghosted)
+		if(underworld_spirit && underworld_spirit.mind) // Ensure spirit exists and has a mind
+			underworld_spirit.mind.transfer_to(target, TRUE) // Transfer mind back to the revived body
+			qdel(underworld_spirit) // Delete the spirit mob
+		else
+			target.grab_ghost(force = TRUE) // This attempts to grab a ghost even if they committed suicide.
+
+		target.emote("breathgasp")
+		target.Jitter(100)
+		target.update_body()
+		target.visible_message(span_notice("[target] is revived by divine magic!"), span_green("I awake from the void."))
+
+		ADD_TRAIT(target, TRAIT_IWASREVIVED, "ochre_aril")
+		target.apply_status_effect(/datum/status_effect/debuff/metabolic_acceleration)
+		return TRUE
+	else
+		target.visible_message(span_warning("The magic falters, and nothing happens."))
+		return FALSE
 
 //For now this is just artifical lux. But this may make the user/receiver indebted to eora eventually.
 //This is meant to be given guaranteed with T4 pommes for priests but given we don't have eoran priests yet I will implement this when we do.

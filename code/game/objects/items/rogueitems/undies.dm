@@ -32,6 +32,11 @@
 				user.dropItemToGround(src)
 				forceMove(H)
 				H.underwear = src
+				undies_feature.accessory_colors = color
+
+/obj/item/undies/Destroy()
+	undies_feature = null
+	return ..()
 
 /obj/item/undies/bikini
 	name = "bikini"

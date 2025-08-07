@@ -22,7 +22,6 @@
 	..()
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
-		pants = /obj/item/clothing/under/roguetown/tights/stockings/black
 		head  = /obj/item/clothing/head/roguetown/roguehood/black
 	else
 		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
@@ -49,7 +48,6 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H?.mind.adjust_spellpoints(12)
 	H.grant_language(/datum/language/elvish)
 	H.grant_language(/datum/language/dwarvish)
 	H.grant_language(/datum/language/celestial)
@@ -71,6 +69,7 @@
 	H.change_stat("intelligence", 4)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)
+		H.mind?.adjust_spellpoints(12)
 	if(H.age == AGE_OLD)
 		H.change_stat("speed", -1)
 		H.change_stat("intelligence", 1)

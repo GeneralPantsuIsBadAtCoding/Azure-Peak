@@ -554,10 +554,10 @@
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/hgambeson/fencer
-	name = "fencing shirt (6 cloth, 2 cured leather)"
+	name = "fencing shirt (5 cloth, 2 fibers)"
 	result = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
-	reqs = list(/obj/item/natural/cloth = 6,
-				/obj/item/natural/hide/cured = 2)
+	reqs = list(/obj/item/natural/cloth = 5,
+				/obj/item/natural/fibers = 2)
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/sewing/chaperon
@@ -1096,26 +1096,6 @@
 	result = list (/obj/item/clothing/mask/rogue/exoticsilkmask)
 	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
-
-/datum/crafting_recipe/roguetown/sewing/stockings_white
-	name = "stockings (1 fibers, 1 cloth)"
-	result = list(/obj/item/clothing/under/roguetown/tights/stockings/white)
-	reqs = list(/obj/item/natural/cloth = 1,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/stockings_white_silk
-	name = "silk stockings (1 fibers, 1 silk)"
-	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/white)
-	reqs = list(/obj/item/natural/silk = 1,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 5
-
-/datum/crafting_recipe/roguetown/sewing/stockings_white_fishnet
-	name = "fishnet stockings (2 fibers)"
-	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/white)
-	reqs = list(/obj/item/natural/fibers = 2)
-	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/strapless_dress
 	name = "strapless dress (1 fibers, 2 cloth)"

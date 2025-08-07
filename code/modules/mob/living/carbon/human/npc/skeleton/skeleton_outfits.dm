@@ -1,3 +1,7 @@
+// Ultra easy tier skeleton with no armor and just a single weapon.
+/mob/living/carbon/human/species/skeleton/npc/supereasy
+	skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/supereasy
+
 // Easy tier skeleton, with only incomplete chainmail and kilt
 // Ambushes people in "safe" route. A replacement for old skeletons that were effectively naked.
 /mob/living/carbon/human/species/skeleton/npc/easy
@@ -14,6 +18,43 @@
 // High tier skeleton, 4 skills. Heavy Armor.
 /mob/living/carbon/human/species/skeleton/npc/hard
 	skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
+
+/datum/outfit/job/roguetown/skeleton/npc/supereasy/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.STASTR = 10
+	H.STASPD = 8
+	H.STACON = 4
+	H.STAEND = 10
+	H.STAINT = 1
+	name = "Skeleton"
+	if(prob(50))
+		shirt = /obj/item/clothing/suit/roguetown/shirt/rags
+	else
+		shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+	if(prob(50))
+		pants = /obj/item/clothing/under/roguetown/tights/random
+	else
+		pants = /obj/item/clothing/under/roguetown/loincloth
+	var/weapon_choice = rand(1, 4)
+	switch(weapon_choice)
+		if(1)
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
+		if(2)
+			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+		if(3)
+			r_hand = /obj/item/rogueweapon/spear/aalloy
+		if(4)
+			r_hand = /obj/item/rogueweapon/mace/alloy
+	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 
 /datum/outfit/job/roguetown/skeleton/npc/easy/pre_equip(mob/living/carbon/human/H)
 	..()
