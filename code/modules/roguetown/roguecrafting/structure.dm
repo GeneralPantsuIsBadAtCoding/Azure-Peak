@@ -80,7 +80,7 @@
 /datum/crafting_recipe/roguetown/structure/zizo_shrine
 	name = "Profane Shrine"
 	always_availible = FALSE	//Has unique assign for certain roles.
-	reqs = /obj/item/grown/log/tree/small = 2
+	reqs = list(/obj/item/grown/log/tree/small = 2)
 	result = /obj/structure/fluff/psycross/zizocross
 
 /datum/crafting_recipe/roguetown/structure/swing_door
