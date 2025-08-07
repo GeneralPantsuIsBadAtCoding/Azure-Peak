@@ -33,7 +33,7 @@
 /datum/inqports/supplies/extrafunding
 	name = "(80 Silvers) Extra Funding"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/extrafunding
-	marquescost = 18
+	marquescost = 16
 	maximum = 1
 
 /obj/item/roguecoin/silver/inqpile/Initialize()
@@ -55,7 +55,7 @@
 /datum/inqports/supplies/medical
 	name = "5 Rolls of Cloth and Needles"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/medical
-	marquescost = 12
+	marquescost = 10
 
 /obj/item/natural/bundle/cloth/roll/Initialize()
 	. = ..()
@@ -175,7 +175,7 @@
 /datum/inqports/supplies/bullion
 	name = "6 Blessed Silver Bullion"
 	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/bullion/
-	marquescost = 20
+	marquescost = 16
 
 /obj/structure/closet/crate/chest/inqreliquary/relic/bullion/Initialize()
 	. = ..()
@@ -277,7 +277,7 @@
 /datum/inqports/equipment/otavansatchel
 	name = "1 Otavan Leather Satchel"
 	item_type = /obj/item/storage/backpack/rogue/satchel/otavan
-	marquescost = 10
+	marquescost = 8
 
 /datum/inqports/equipment/psysack
 	name = "1 Identity Concealer"
