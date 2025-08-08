@@ -8,6 +8,7 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.1
+	penfactor = 10
 	swingdelay = 0
 	icon_state = "instrike"
 	item_d_type = "blunt"
@@ -15,10 +16,11 @@
 /datum/intent/mace/smash
 	name = "smash"
 	blade_class = BCLASS_SMASH
-	attack_verb = list("smashes")
+	attack_verb = list("smashes", "clobbers")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.5
+	damfactor = 1.3
+	penfactor = 30
 	swingdelay = 10
 	clickcd = 14
 	icon_state = "insmash"
@@ -68,7 +70,7 @@
 	wdefense = 2
 	wbalance = WBALANCE_HEAVY
 	blade_dulling = DULLING_SHAFT_METAL
-	intdamage_factor = 1.35
+	intdamage_factor = 1.2
 	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/mace/getonmobprop(tag)

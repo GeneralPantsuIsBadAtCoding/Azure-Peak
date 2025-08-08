@@ -304,3 +304,57 @@
 	if(istype(other, /datum/wound/scarring))
 		return FALSE
 	return TRUE
+
+/datum/wound/neck/collapse
+	name = "collapsed trachea"
+	severity = WOUND_SEVERITY_FATAL
+	check_name = span_bone ("<B>THROAT</B>")
+	crit_message =list(
+		"The throat is collapsed!",
+		"The windpipe is broken!",
+		"The throat is smashed!",
+		"The windpipe caves in!",
+	)
+	sound_effect = "neckbreak"
+	whp = 75
+	woundpain = 60		
+	clotting_threshold = 1		
+	clotting_rate = 1
+	can_sew = FALSE
+	can_cauterize = FALSE
+	disabling = FALSE
+	critical = TRUE
+	sleep_healing = 0 //YOUR! THROAT! IS! BROKEEEN!!!!
+
+/datum/wound/neck/collapse/on_mob_gain(mob/living/affected)
+	. = ..()
+	affected.emote("choke", TRUE)
+	affected.Slowdown(20)
+	shake_camera(affected, 2, 2)
+
+/datum/wound/neck/collapse/on_mob_gain(mob/living/affected)
+	. = ..()
+	ADD_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")
+	if(HAS_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS)) //dudes w/ crit_weakness get they neck snapped completely and Die. 
+		affected.death()
+	var/static/list/manualbreathing = list(
+	"I CAN'T FUCKING BREATHE!",
+	"MY THROAT! IT HURTS!",
+	"I AM DYING!",
+	"I CAN'T BREATHE!",
+	"MY NECK!",
+	)
+	to_chat(affected, span_userdanger("[pick(manualbreathing)]"))
+
+/datum/wound/neck/collapse/on_mob_loss(mob/living/affected)
+	. = ..()
+	REMOVE_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")
+
+/datum/wound/fracture/chest/on_life()
+	. = ..()
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	if(!carbon_owner.stat && prob(20))
+		carbon_owner.adjustOxyLoss(15)
+		carbon_owner.emote("choke", "gag")
