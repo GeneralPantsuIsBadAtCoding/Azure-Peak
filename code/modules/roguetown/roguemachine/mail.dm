@@ -402,29 +402,14 @@
 		if((HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_PURITAN)))	
 			var/obj/item/paper/inqslip/arrival/I = P
 			if(I.signee && I.signed)
-				var/no
-				if(GLOB.indexed)
-					if(", [I.signee]" in GLOB.inqarrivals)
-						no = TRUE
-					if("[I.signee]" in GLOB.inqarrivals)
-						no = TRUE
-					if(!no)
-						if(GLOB.inqarrivals.len)
-							GLOB.inqarrivals += ", [I.signee]"
-						else
-							GLOB.inqarrivals += "[I.signee]"
-				if(no)		
-					qdel(I)
-					visible_message(span_warning("[user] sends something."))
-					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-					to_chat(user, span_notice("I.. I've already arrived? Surely, it's a clerical error..."))
-				else	
-					budget2change(I.marquevalue, user, "MARQUE")
-					GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
-					qdel(I)
-					visible_message(span_warning("[user] sends something."))
-					playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
-					playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
+				message_admins("INQ ARRIVAL: [user.real_name] ([user.ckey]) has just arrived as a [user.job], earning [I.marquevalue] Marques.")
+				log_game("INQ ARRIVAL: [user.real_name] ([user.ckey]) has just arrived as a [user.job], earning [I.marquevalue] Marques.")
+				budget2change(I.marquevalue, user, "MARQUE")
+				GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+				qdel(I)
+				visible_message(span_warning("[user] sends something."))
+				playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
+				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 			return				
 
 	if(istype(P, /obj/item/paper/inqslip/accusation))

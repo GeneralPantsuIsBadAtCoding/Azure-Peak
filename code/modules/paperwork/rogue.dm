@@ -227,7 +227,6 @@
 	var/base_icon_state = "slip"
 	dropshrink = 0.75		
 	icon_state = "slip"
-	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 	obj_flags = CAN_BE_HIT
 	var/signed
 	var/mob/living/carbon/signee
@@ -257,7 +256,6 @@
 /obj/item/paper/inqslip/accusation
 	name = "accusation"
 	desc = "A writ of religious suspicion, printed on Otavan parchment: one signed not in ink, but blood. Press the accusation against your own bleeding wound in order to obtain a signature. Then pair it with an INDEXER full of the accused's blood. Once done, it is ready to be mailed back to Otava. Fold and seal it, it's only proper."
-	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 	marquevalue = 4
 	sliptype = 0
 
@@ -266,13 +264,11 @@
 	base_icon_state = "confession"
 	marquevalue = 6
 	desc = "A writ of religious guilt, printed on Otavan parchment: one signed not in ink, but blood. Press the confession against a suspect's bleeding wound, in order to obtain their signature. Once done, it is ready to be mailed back to Otava. Fold and seal it, it's only proper."
-	info = "THIS CONFESSION CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 	sliptype = 2
 
 /obj/item/paper/inqslip/arrival
 	name = "arrival slip"	
 	desc = "A writ of arrival, printed on Otavan parchment: one signed not in ink, but blood. Intended for one person and one person only. Press the slip against one's own weeping wounds in order to obtain a fitting signature. Once done, it is ready to be mailed back to Otava."
-	info = "THIS SLIP CONFIRMS THE BELOW SIGNATURE BLAH BLAH BLAH BLAH"
 
 /obj/item/paper/inqslip/arrival/ortho
 	marquevalue = 4
@@ -380,7 +376,7 @@
 	if(!signee)
 		signee = user
 
-/obj/item/paper/inqslip/attacked_by(obj/item/I, mob/living/user)		
+/obj/item/paper/inqslip/attacked_by(obj/item/I, mob/living/user)	
 	if(istype(I, /obj/item/clothing/ring/signet))
 		var/obj/item/clothing/ring/signet/S = I
 		if(S.tallowed && sealed)
