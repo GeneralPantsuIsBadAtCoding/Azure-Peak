@@ -389,6 +389,7 @@
 	obj_flags = CAN_BE_HIT
 	bitesize = 1
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin/fyritiusnectar = 5)
+	grind_results = list(/datum/reagent/toxin/fyritiusnectar = 10)
 	dropshrink = 0.8
 	rotprocess = null
 	w_class = WEIGHT_CLASS_TINY
