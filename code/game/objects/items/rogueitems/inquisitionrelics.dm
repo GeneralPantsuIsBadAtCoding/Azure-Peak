@@ -1052,7 +1052,7 @@ Inquisitorial armory down here
 		return
 	headgear = M.get_item_by_slot(SLOT_HEAD)
 	var/trained = FALSE
-	var/timetobag = 12 SECONDS
+	var/timetobag = 8 SECONDS
 	if(HAS_TRAIT(user, TRAIT_BLACKBAGGER))
 		trained = TRUE
 		timetobag = 4 SECONDS
@@ -1062,21 +1062,21 @@ Inquisitorial armory down here
 		playsound(M, pick('sound/misc/blackbag.ogg','sound/misc/blackbag2.ogg','sound/misc/blackbag3.ogg','sound/misc/blackbag4.ogg','sound/misc/blackbag5.ogg'), 100, TRUE, 4)
 		return
 	if(!M.stat)
-		if(HAS_TRAIT(user, TRAIT_BLACKBAGGER) && !M.cmode)
+		/* if(HAS_TRAIT(user, TRAIT_BLACKBAGGER) && !M.cmode) It was too much to handle. Too cold to hold.
 			bagging = TRUE
 			bagsound(M)
 			M.transferItemToLoc(headgear, src)	
 			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
 			bagging = FALSE
+		else*/  
+		bagging = TRUE
+		bagcheck(M)
+		if(do_after(user, timetobag, FALSE, M))
+			bagging = FALSE
+			M.transferItemToLoc(headgear, src)	
+			M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
 		else
-			bagging = TRUE
-			bagcheck(M)
-			if(do_after(user, timetobag, FALSE, M))
-				bagging = FALSE
-				M.transferItemToLoc(headgear, src)	
-				M.equip_to_slot(src, SLOT_HEAD) // Has to be unsafe otherwise it won't work on unconscious people. Ugh.
-			else
-				bagging = FALSE
+			bagging = FALSE
 	else
 		bagging = TRUE
 		bagcheck(M)
