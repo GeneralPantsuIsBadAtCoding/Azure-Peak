@@ -37,6 +37,7 @@
 
 	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
