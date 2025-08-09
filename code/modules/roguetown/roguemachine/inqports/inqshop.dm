@@ -322,7 +322,7 @@
 
 /datum/inqports/equipment/psydonhelms
 	name = "Helms of Psydon"
-	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/blackbags
+	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms
 	marquescost = 12
 	
 /obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms/Initialize()
