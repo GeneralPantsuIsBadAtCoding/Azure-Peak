@@ -886,12 +886,8 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/garrote/attack_self(mob/user)
 	if(obj_broken)
-		to_chat(user, span_warning("It's useless now."))
-		if(HAS_TRAIT(user, TRAIT_BLACKBAGGER))
-			to_chat(user, span_notice("I can rethread it with more inquiry cordage."))
-		return
-	if(!HAS_TRAIT(user, TRAIT_BLACKBAGGER))
-		to_chat(user, span_warning("\The [src] is wound too tightly."))
+		to_chat(user, span_warning("It's useless now, although.."))
+		to_chat(user, span_notice("I could rethread it with more cordage."))
 		return
 	if(wielded)
 		ungrip(user, FALSE)
@@ -938,18 +934,17 @@ Inquisitorial armory down here
 /obj/item/inqarticles/garrote/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I, /obj/item/rope/inqarticles/inquirycord))
-		if(HAS_TRAIT(user, TRAIT_BLACKBAGGER))
-			user.visible_message(span_warning("[user] starts to rethread the [src] using the [I]."))
-			if(do_after(user, 12 SECONDS))
-				qdel(I)
-				obj_broken = FALSE
-				obj_integrity = max_integrity
-				icon_state = initial(icon_state)
-				icon_angle = initial(icon_angle)
-				name = initial(name)
-			else
-				user.visible_message(span_warning("[user] stops rethreading the [src]."))
-			return
+		user.visible_message(span_warning("[user] starts to rethread the [src] using the [I]."))
+		if(do_after(user, 12 SECONDS))
+			qdel(I)
+			obj_broken = FALSE
+			obj_integrity = max_integrity
+			icon_state = initial(icon_state)
+			icon_angle = initial(icon_angle)
+			name = initial(name)
+		else
+			user.visible_message(span_warning("[user] stops rethreading the [src]."))
+		return
 
 /obj/item/inqarticles/garrote/afterattack(mob/living/target, mob/living/user, proximity_flag, click_parameters)
 	if(istype(user.used_intent, /datum/intent/garrote/grab))	// Grab your target first.
@@ -965,6 +960,10 @@ Inquisitorial armory down here
 			playsound(loc, pick('sound/items/garrote.ogg', 'sound/items/garrote2.ogg'), 65, TRUE)
 			user.visible_message(span_danger("[target] slips past [user]'s attempt to [src] them!"))
 			return
+		// THROAT TARGET RESTRICTION. HEAVILY REQUESTED.	
+		if(user.zone_selected != "neck")
+			to_chat(user, span_warning("I need to wrap it around their throat."))
+			return
 		victim = target	
 		playsound(loc, 'sound/items/garrotegrab.ogg', 100, TRUE)
 		ADD_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
@@ -975,7 +974,7 @@ Inquisitorial armory down here
 			user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src)
 		user.visible_message(span_danger("[user] wraps the [src] around [target]'s throat!"))
 		user.stamina_add(25)
-		user.changeNext_move(CLICK_CD_GRABBING)
+		user.changeNext_move(CLICK_CD_MELEE)
 		REMOVE_TRAIT(user, TRAIT_NOSTRUGGLE, TRAIT_GENERIC)	
 		REMOVE_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE, TRAIT_GENERIC)
 		var/obj/item/grabbing/I = user.get_inactive_held_item()
@@ -989,6 +988,9 @@ Inquisitorial armory down here
 			return
 		if(!proximity_flag)
 			return
+		if(user.zone_selected != "neck")
+			to_chat(user, span_warning("I need to constrict the throat."))
+			return	
 		user.stamina_add(rand(4, 8))
 		var/mob/living/carbon/C = victim
 		// if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
@@ -999,7 +1001,7 @@ Inquisitorial armory down here
 		C.visible_message(span_danger("[user] [pick("garrotes", "asphyxiates")] [C]!"), \
 		span_userdanger("[user] [pick("garrotes", "asphyxiates")] me!"), span_hear("I hear the sickening sound of cordage!"), COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger("I [pick("garrote", "asphyxiate")] [C]!"))	
-		user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.	
+		user.changeNext_move(CLICK_CD_RESIST)	//Stops spam for choking.	
 
 /obj/item/clothing/head/inqarticles/blackbag
 	name = "black bag"

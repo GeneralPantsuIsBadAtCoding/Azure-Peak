@@ -1,6 +1,6 @@
-/datum/job/roguetown/absolutionist
-	title = "Absolutionist"
-	flag = ABSOLUTIONIST
+/datum/job/roguetown/absolver
+	title = "Absolver"
+	flag = ABSOLVER
 	department_flag = INQUISITION
 	faction = "Station"
 	total_positions = 1 // THE ONE.
@@ -9,8 +9,8 @@
 	allowed_patrons = list(/datum/patron/old_god) //You MUST have a Psydonite character to start. Just so people don't get japed into Oops Suddenly Psydon!
 	tutorial = "Whether hand-picked by the Sovereignty of Otava or taken along through mere circumstance, you now serve as a loyal adherent to the Inquisitor's retinue. Descend into the darkness and - be it with a clenched fist or an opened palm - bring the inhumen towards the light: gift them salvation or damnation."
 	selection_color = JCOLOR_INQUISITION
-	outfit = /datum/outfit/job/roguetown/absolutionist
-	display_order = JDO_ABSOLUTIONIST
+	outfit = /datum/outfit/job/roguetown/absolver
+	display_order = JDO_ABSOLVER
 	min_pq = 3 // Low potential for grief. A pacifist by trade. Also needs to know wtf a PSYDON is.
 	max_pq = null
 	round_contrib_points = 2
@@ -20,13 +20,13 @@
 
 // REMEMBER FLAGELLANT? REMEMBER LASZLO? THIS IS HIM NOW. FEEL OLD YET?
 
-/datum/job/roguetown/absolutionist/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/absolver/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.grant_language(/datum/language/otavan)
 
-/datum/outfit/job/roguetown/absolutionist/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/absolver/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) // Enduring.
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
@@ -51,7 +51,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/absolver
 	id = /obj/item/clothing/ring/signet/silver
 	backpack_contents = list(
 		/obj/item/book/rogue/bibble/psy = 1,
@@ -71,7 +71,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 		H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLUTIONIST, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PACIFISM, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)

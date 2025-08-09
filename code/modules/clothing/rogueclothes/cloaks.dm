@@ -1804,7 +1804,7 @@
 	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
 
 /obj/item/clothing/cloak/absolutionistrobe
-	name = "absolutionist's robe"
+	name = "absolver's robe"
 	desc = "Absolve them of their pain. Absolve them of their longing. Lyve, as PSYDON lyves."
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'

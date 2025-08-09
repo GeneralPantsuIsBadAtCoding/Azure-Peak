@@ -1146,6 +1146,9 @@
 	if(agg_grab)
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			combat_modifier -= 0.3
+		else
+			if(HAS_TRAIT(L, TRAIT_BLACKBAGGER))
+				combat_modifier -= 0.3	
 	for(var/obj/item/grabbing/G in grabbedby)
 		if(G.chokehold == TRUE)
 			combat_modifier -= 0.15

@@ -691,7 +691,7 @@
 	name = "Psydonian Conical Helm (+1 Steel, +1 Blessed Silver)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/silverblessed)
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/bevor

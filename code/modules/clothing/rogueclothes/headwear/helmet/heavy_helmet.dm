@@ -418,7 +418,7 @@
 	if(istype(W, /obj/item/natural/feather))
 		return
 
-/obj/item/clothing/head/roguetown/helmet/heavy/absolutionist
+/obj/item/clothing/head/roguetown/helmet/heavy/absolver
 	name = "psydonian conical helm"
 	desc = "Based on the visage worn by Saint Pestra's order, this cryptic helmet provides its wearer with the satisfaction of reminding heretics that fear is not an emotion easily lost. Even the dead may learn to taste terror again."
 	icon_state = "absolutionisthelm"

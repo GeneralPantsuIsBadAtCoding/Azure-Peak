@@ -2869,7 +2869,7 @@
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1;
 	lockid = "inquisition";
-	name = "Absolutionist's Chambers"
+	name = "Absolver's Chambers"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/inq/basement)
@@ -9439,7 +9439,7 @@
 "dcA" = (
 /obj/structure/bed/rogue/inn/double,
 /obj/item/bedsheet/rogue/double_pelt,
-/obj/effect/landmark/start/absolutionist,
+/obj/effect/landmark/start/absolver,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/basement)
 "dcM" = (
