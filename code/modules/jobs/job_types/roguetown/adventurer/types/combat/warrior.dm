@@ -61,9 +61,9 @@
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 					backr = /obj/item/rogueweapon/shield/iron
 					beltr = /obj/item/rogueweapon/scabbard/sword
-					r_hand = /obj/item/rogueweapon/sword/iron/short
+					r_hand = /obj/item/rogueweapon/sword/short/iron
 				if("Iron Saber & Wood Shield")
-					r_hand = /obj/item/rogueweapon/sword/iron/saber
+					r_hand = /obj/item/rogueweapon/sword/saber/iron
 					beltr = /obj/item/rogueweapon/scabbard/sword
 					backr = /obj/item/rogueweapon/shield/wood
 			var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet","Light Naledian Armor")

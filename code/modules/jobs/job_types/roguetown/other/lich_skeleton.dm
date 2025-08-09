@@ -71,7 +71,7 @@ LICH SKELETONS
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Gladius")
-			beltr = /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
+			beltr = /obj/item/rogueweapon/sword/short/gladius/pagladius
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Kopesh")
 			beltr = /obj/item/rogueweapon/sword/sabre/palloy

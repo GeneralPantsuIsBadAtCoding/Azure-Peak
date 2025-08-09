@@ -813,7 +813,7 @@
 /area/rogue/indoors)
 "bT" = (
 /obj/structure/closet/crate/roguecloset/inn,
-/obj/item/rogueweapon/sword/long/vlord,
+/obj/item/rogueweapon/sword/long/judgement/vlord,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -3946,10 +3946,10 @@
 	icon_state = "tablewood2";
 	dir = 10
 	},
-/obj/item/rogueweapon/sword/iron/short/gladius,
-/obj/item/rogueweapon/sword/iron/short/gladius,
-/obj/item/rogueweapon/sword/iron/short/gladius,
-/obj/item/rogueweapon/sword/iron/short/gladius,
+/obj/item/rogueweapon/sword/short/gladius,
+/obj/item/rogueweapon/sword/short/gladius,
+/obj/item/rogueweapon/sword/short/gladius,
+/obj/item/rogueweapon/sword/short/gladius,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Vp" = (
