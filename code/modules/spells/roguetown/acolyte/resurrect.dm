@@ -62,6 +62,10 @@
 			to_chat(user, "This one is inert.")
 			revert_cast()
 			return FALSE
+		if(target.revived >= 1)
+			to_chat(user, span_warning("[target]'s soul has already been pried from Necra's grasp once. She shant permit such trespasses twice..."))
+			revert_cast()
+			return FALSE
 		if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
 			to_chat(user, "This one has pledged themselves whole to Necra. They are Hers.")
 			revert_cast()
@@ -109,10 +113,15 @@
 		target.apply_status_effect(debuff_type)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
 		//Due to an increased cost and cooldown, these revival types heal quite a bit.
 		target.apply_status_effect(/datum/status_effect/buff/healing, 14)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, revive_timer)), 2 MINUTES)
 		consume_items(target)
 		return TRUE
 	revert_cast()
 	return FALSE
+
+/mob/living/carbon/human/proc/revive_timer()
+	if(stat != DEAD)
+		revived += 1
 
 /obj/effect/proc_holder/spell/invoked/resurrect/cast_check(skipcharge = 0,mob/user = usr)
 	if(!..())
