@@ -442,6 +442,7 @@
 	antimagic_allowed = FALSE
 	recharge_time = 2 MINUTES
 	miracle = TRUE
+	is_cdr_exempt = TRUE
 	devotion_cost = 100
 
 /obj/effect/proc_holder/spell/invoked/wound_heal/cast(list/targets, mob/user = usr)
@@ -471,8 +472,8 @@
 			
 
 /obj/effect/proc_holder/spell/invoked/blood_heal
-	name = "Bloodheal Miracle"
-	desc = "Restores the blood of the target with divine magycks. Scales with holy skill."
+	name = "Blood transfer Miracle"
+	desc = "Transfers the blood from myself to the target with divine magycks. Ratio of transfer scales with holy skill."
 	overlay_icon = 'icons/mob/actions/genericmiracles.dmi'
 	overlay_state = "bloodheal"
 	action_icon_state = "bloodheal"
@@ -480,7 +481,7 @@
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
-	range = 1
+	range = 7
 	ignore_los = FALSE
 	warnie = "sydwarning"
 	movement_interrupt = TRUE
@@ -488,16 +489,56 @@
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	recharge_time = 30 SECONDS
+	recharge_time = 45 SECONDS
 	miracle = TRUE
-	devotion_cost = 80
+	devotion_cost = 50
+	var/blood_price = 5
+	var/blood_vol_restore = 7.5 //30 every 2 seconds.
+	var/vol_per_skill = 1	//54 with legendary
+	var/delay = 0.5 SECONDS
 
 /obj/effect/proc_holder/spell/invoked/blood_heal/cast(list/targets, mob/user = usr)
 	if(ishuman(targets[1]))
 		var/mob/living/carbon/human/target = targets[1]
-		var/mob/living/L = user
-		target.apply_status_effect(/datum/status_effect/buff/bloodheal, L.get_skill_level(associated_skill))
+		var/mob/living/carbon/human/UH = user
+		if(target.blood_volume >= BLOOD_VOLUME_NORMAL)
+			to_chat(UH, span_warning("Their lyfeblood is at capacity. There is no need."))
+			revert_cast()
+			return FALSE
+		UH.visible_message(span_warning("Tiny strands of red link between [UH] and [target], blood being transferred!"))
+		playsound(UH, 'sound/magic/bloodheal_start.ogg', 100, TRUE)
+		var/user_skill = UH.get_skill_level(associated_skill)
+		var/user_informed = FALSE
+		switch(user_skill)	//Bleeding happens every life(), which is every 2 seconds. Multiply these numbers by 4 to get the "bleedrate" equivalent values.
+			if(SKILL_LEVEL_APPRENTICE)
+				blood_price = 3.75
+			if(SKILL_LEVEL_JOURNEYMAN)
+				blood_price = 2.5
+			if(SKILL_LEVEL_EXPERT)
+				blood_price = 2
+			if(SKILL_LEVEL_MASTER)
+				blood_price = 1.625
+			if(SKILL_LEVEL_LEGENDARY)
+				blood_price = 1.25
+		if(user_skill > SKILL_LEVEL_NOVICE)
+			blood_vol_restore += vol_per_skill * user_skill
+		var/max_loops = round(UH.blood_volume / blood_price, 1) * 2	// x2 just in case the user is trying to fill themselves up while using it.
+		var/datum/beam/bloodbeam = user.Beam(target,icon_state="blood",time=(max_loops * 5))
+		for(var/i in 1 to max_loops)
+			if(UH.blood_volume > (BLOOD_VOLUME_SURVIVE / 2))
+				if(do_after(UH, delay))
+					target.blood_volume = min((target.blood_volume + blood_vol_restore), BLOOD_VOLUME_NORMAL)
+					UH.blood_volume = max((UH.blood_volume - blood_price), 0)
+					if(target.blood_volume >= BLOOD_VOLUME_NORMAL && !user_informed)
+						to_chat(UH, span_info("They're at a healthy blood level, but I can keep going."))
+						user_informed = TRUE
+				else
+					UH.visible_message(span_warning("Severs the bloodlink from [target]!"))
+					bloodbeam.End()
+					return TRUE
+			else
+				UH.visible_message(span_warning("Severs the bloodlink from [target]!"))
+				bloodbeam.End()
+				return TRUE
+		bloodbeam.End()
 		return TRUE
-	else
-		revert_cast()
-		return FALSE
