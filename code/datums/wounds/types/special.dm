@@ -305,10 +305,10 @@
 		return FALSE
 	return TRUE
 
-/datum/wound/neck/collapse
+/datum/wound/fracture/neck
 	name = "collapsed trachea"
 	severity = WOUND_SEVERITY_FATAL
-	check_name = span_bone ("<B>THROAT</B>")
+	check_name = span_bone ("<B>NECK</B>")
 	crit_message =list(
 		"The throat is collapsed!",
 		"The windpipe is broken!",
@@ -326,13 +326,13 @@
 	critical = TRUE
 	sleep_healing = 0 //YOUR! THROAT! IS! BROKEEEN!!!!
 
-/datum/wound/neck/collapse/on_mob_gain(mob/living/affected)
+/datum/wound/fracture/neck/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.emote("choke", TRUE)
 	affected.Slowdown(20)
 	shake_camera(affected, 2, 2)
 
-/datum/wound/neck/collapse/on_mob_gain(mob/living/affected)
+/datum/wound/fracture/neck/on_mob_gain(mob/living/affected)
 	. = ..()
 	ADD_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")
 	if(HAS_TRAIT(affected, TRAIT_CRITICAL_WEAKNESS)) //dudes w/ crit_weakness get they neck snapped completely and Die. 
@@ -346,11 +346,11 @@
 	)
 	to_chat(affected, span_userdanger("[pick(manualbreathing)]"))
 
-/datum/wound/neck/collapse/on_mob_loss(mob/living/affected)
+/datum/wound/fracture/neck/on_mob_loss(mob/living/affected)
 	. = ..()
 	REMOVE_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")
 
-/datum/wound/fracture/chest/on_life()
+/datum/wound/fracture/neck/on_life()
 	. = ..()
 	if(!iscarbon(owner))
 		return

@@ -63,14 +63,13 @@
 /datum/intent/knuckles/smash
 	name = "smash"
 	blade_class = BCLASS_SMASH
-	attack_verb = list("smashes")
+	attack_verb = list("smashes", "clobbers")
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.1
+	damfactor = 1.2
 	clickcd = CLICK_CD_MELEE
 	swingdelay = 8
-	intent_intdamage_factor = 1.8
-	icon_state = "insmash"
+	intent_intdamage_factor = 1.2 //WHY THE FUUUUUUCK WAS IT 1.8???
 	item_d_type = "blunt"
 /// INTENT DATUMS	^
 
@@ -343,7 +342,7 @@
 	smeltresult = /obj/item/ingot/steel
 	grid_width = 64
 	grid_height = 32
-	intdamage_factor = 1.2
+	intdamage_factor = 1.1
 
 /obj/item/rogueweapon/knuckles/getonmobprop(tag)
 	. = ..()
