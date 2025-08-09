@@ -55,7 +55,7 @@
 /datum/inqports/supplies/medical
 	name = "5 Rolls of Cloth and Needles"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/medical
-	marquescost = 10
+	marquescost = 8
 
 /obj/item/natural/bundle/cloth/roll/Initialize()
 	. = ..()
@@ -146,7 +146,7 @@
 /datum/inqports/supplies/psybuns
 	name = "The Otavan Bakery Special"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/psybuns
-	marquescost = 10
+	marquescost = 6
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/psybuns/Initialize()
 	. = ..()
@@ -205,8 +205,23 @@
 	item_type = /obj/item/clothing/neck/roguetown/psicross
 	marquescost = 2
 
+/datum/inqports/articles/indexaccused
+	name = "3 INDEXERs, 3 Accusations"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/indexaccused
+	marquescost = 6
+
+/obj/structure/closet/crate/chest/inqcrate/articles/indexaccused/Initialize()
+	. = ..()
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/paper/inqslip/accusation(src)
+	new /obj/item/paper/inqslip/accusation(src)
+	new /obj/item/paper/inqslip/accusation(src)
+
+/*
 /datum/inqports/articles/indexers
-	name = "4 INDEXERs"
+	name = "3 INDEXERs"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/indexers
 	marquescost = 4
 
@@ -215,10 +230,10 @@
 	new /obj/item/inqarticles/indexer(src)
 	new /obj/item/inqarticles/indexer(src)
 	new /obj/item/inqarticles/indexer(src)
-	new /obj/item/inqarticles/indexer(src)
-
+*/
+/*
 /datum/inqports/articles/accusations
-	name = "4 Accusations"
+	name = "3 Accusations"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/accusations
 	marquescost = 8
 
@@ -227,19 +242,18 @@
 	new /obj/item/paper/inqslip/accusation(src)
 	new /obj/item/paper/inqslip/accusation(src)
 	new /obj/item/paper/inqslip/accusation(src)
-	new /obj/item/paper/inqslip/accusation(src)		
+*/
 
 /datum/inqports/articles/confessions
-	name = "4 Confessions"
+	name = "3 Confessions"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/confessions
-	marquescost = 16
+	marquescost = 12
 
 /obj/structure/closet/crate/chest/inqcrate/articles/confessions/Initialize()
 	. = ..()
 	new /obj/item/paper/inqslip/confession(src)
 	new /obj/item/paper/inqslip/confession(src)
 	new /obj/item/paper/inqslip/confession(src)
-	new /obj/item/paper/inqslip/confession(src)	
 
 /datum/inqports/articles/bmirror
 	name = "1 Black Mirror"

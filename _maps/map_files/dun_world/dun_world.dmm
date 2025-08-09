@@ -1356,12 +1356,6 @@
 /obj/item/paper/inqslip/confession,
 /obj/item/paper/inqslip/confession,
 /obj/item/paper/inqslip/confession,
-/obj/item/paper/inqslip/accusation,
-/obj/item/paper/inqslip/accusation,
-/obj/item/paper/inqslip/accusation,
-/obj/item/inqarticles/indexer,
-/obj/item/inqarticles/indexer,
-/obj/item/inqarticles/indexer,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/office)
 "awp" = (
@@ -5357,8 +5351,6 @@
 "bLj" = (
 /obj/item/paper/inqslip/confession,
 /obj/item/paper/inqslip/confession,
-/obj/item/paper/inqslip/confession,
-/obj/item/paper/inqslip/accusation,
 /obj/item/paper/inqslip/accusation,
 /obj/item/paper/inqslip/accusation,
 /obj/machinery/light/rogue/wallfire/candle/l,
@@ -12370,7 +12362,6 @@
 /obj/item/clothing/cloak/psydontabard,
 /obj/item/clothing/mask/rogue/facemask/psydonmask,
 /obj/item/clothing/head/roguetown/roguehood/psydon,
-/obj/item/clothing/mask/rogue/sack/psy,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/basement)
 "eaG" = (
@@ -16634,7 +16625,6 @@
 /obj/item/clothing/cloak/psydontabard,
 /obj/item/clothing/mask/rogue/facemask/psydonmask,
 /obj/item/clothing/head/roguetown/roguehood/psydon,
-/obj/item/clothing/mask/rogue/sack/psy,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq/basement)
 "fnC" = (
@@ -43423,18 +43413,14 @@
 /turf/open/floor/rogue/woodturned/nosmooth,
 /area/rogue/under/underdark/south)
 "nOk" = (
-/obj/item/clothing/head/roguetown/roguehood/psydon,
-/obj/item/clothing/mask/rogue/facemask/psydonmask,
-/obj/item/clothing/cloak/psydontabard,
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/mask/rogue/sack/psy,
-/obj/item/clothing/head/roguetown/helmet/heavy/psybucket,
-/obj/item/clothing/head/roguetown/helmet/heavy/psysallet,
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute,
 /obj/item/storage/belt/rogue/leather/steel/tasset,
 /obj/item/storage/belt/rogue/leather/steel/tasset,
 /obj/item/storage/belt/rogue/leather/steel/tasset,
+/obj/item/clothing/mask/rogue/sack/psy,
+/obj/item/clothing/mask/rogue/sack/psy,
+/obj/item/clothing/mask/rogue/sack/psy,
 /obj/item/storage/belt/rogue/leather/steel/tasset,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/inq)
@@ -55172,10 +55158,6 @@
 "rIh" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
 /obj/structure/closet/crate/chest,
-/obj/item/inqarticles/indexer,
-/obj/item/inqarticles/indexer,
-/obj/item/inqarticles/indexer,
-/obj/item/inqarticles/indexer,
 /obj/item/inqarticles/indexer,
 /obj/item/inqarticles/indexer,
 /obj/item/inqarticles/indexer,

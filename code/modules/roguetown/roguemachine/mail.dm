@@ -471,10 +471,7 @@
 							to_chat(user, span_notice("They've already been accused."))
 						return
 					else
-						if(!indexed && !correct)
-							budget2change(2, user, "MARQUE")
-							GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
-						else if(correct)	
+						if(correct)	
 							if(!indexed)
 								I.marquevalue += 2
 							budget2change(I.marquevalue, user, "MARQUE")
