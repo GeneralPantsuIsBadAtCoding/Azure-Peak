@@ -68,6 +68,11 @@
 		var/datum/loadout_item/loadout_item = new path()
 		GLOB.loadout_items[path] = loadout_item
 
+	// Inquisition Hermes list
+	for (var/path in subtypesof(/datum/inqports))
+		var/datum/inqports/inqports = new path()
+		GLOB.inqsupplies[path] = inqports
+
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.
 /proc/init_subtypes(prototype, list/L)

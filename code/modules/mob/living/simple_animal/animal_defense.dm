@@ -189,9 +189,10 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
-		to_chat(user, span_notice("I can't move my leg!"))
-		return
+	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
+		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
+			to_chat(user, span_notice("I can't move my leg!"))
+			return
 	if(user.stamina >= user.max_stamina)
 		return FALSE
 	if(user.loc == target.loc)

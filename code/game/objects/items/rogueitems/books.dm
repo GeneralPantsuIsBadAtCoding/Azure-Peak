@@ -203,6 +203,41 @@
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
 
+/obj/item/book/rogue/bibble/psy
+	name = "Of Psydon"
+	icon_state = "psyble_0"
+	base_icon_state = "psyble"
+	title = "psyble"
+	dat = "gott.json"
+	var/sect = "sect1"
+
+/obj/item/book/rogue/bibble/psy/attack(mob/living/M, mob/user)
+	return
+
+/obj/item/book/rogue/bibble/psy/read(mob/living/carbon/human/user)
+	if(!open)
+		to_chat(user, span_info("Open it first."))
+		return FALSE
+	if(!user.client || !user.hud_used)
+		return
+	if(!user.hud_used.reads)
+		return
+	if(!user.can_read(src))
+		return
+	if(in_range(user, src) || isobserver(user))
+		user.changeNext_move(CLICK_CD_MELEE)
+		var/m
+		if(sect == "sect1" || sect == "sect3")
+			var/list/verses = world.file2list("strings/psy[sect].txt")
+			m = pick(verses)
+			if(m)
+				if(prob(2) && sect == "sect1")
+					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
+					user.say("PSY 23:4... And so, ZEZUS wept; for he had been struck down by the silvered javelin of JVDAS, PSYDON's most devout.")
+					user.psydo_nyte()
+				else
+					user.say(m)	
+
 /datum/status_effect/buff/blessed
 	id = "blessed"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/blessed

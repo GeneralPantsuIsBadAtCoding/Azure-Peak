@@ -303,6 +303,10 @@
 	if(legcuffed)
 		dat += "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>"
 
+	var/datum/status_effect/bugged/effect = has_status_effect(/datum/status_effect/bugged)
+	if(effect && HAS_TRAIT(user, TRAIT_INQUISITION))
+		dat += "<BR><A href='?src=[REF(src)];item=[effect.device]'>BUGGED</A>"
+
 	dat += {"
 	<BR>
 	<BR><A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
@@ -758,6 +762,15 @@
 	if(HAS_TRAIT(src, TRAIT_DARKVISION))
 		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_DARKVISION)
 		see_in_dark = max(see_in_dark, 12)
+
+	if(HAS_TRAIT(src, TRAIT_NOCSHADES))
+		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_NOCSHADES)
+		see_in_dark = max(see_in_dark, 12)	
+		add_client_colour(/datum/client_colour/nocshaded)
+		overlay_fullscreen("inqvision", /atom/movable/screen/fullscreen/inqvision)
+	else
+		remove_client_colour(/datum/client_colour/nocshaded)
+		clear_fullscreen("inqvision")
 
 	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
 		sight |= (SEE_MOBS)

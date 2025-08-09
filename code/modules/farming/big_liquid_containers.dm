@@ -76,6 +76,20 @@
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/sourwine,900)
 
+/obj/structure/fermentation_keg/whitewine
+	desc = "A barrel that contains an Otavan luxury. A sweeter tasting wine that often serves to highlight and enhance savoury notes. The rarer the vintage, the harder the find. The names of the ingredients often grow more ostentatious the closer you get to the capital."
+
+/obj/structure/fermentation_keg/whitewine/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/whitewine,900)
+
+/obj/structure/fermentation_keg/redwine
+	desc = "A barrel that contains an Otavan luxury. It was originally served as part of Psydonic communion, eventually becoming wildly enjoyed within Otava to the point of being oft paired with EVERY meal."
+
+/obj/structure/fermentation_keg/redwine/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/redwine,900)
+
 
 /obj/structure/fermentation_keg/onion
 	desc = "A barrel with surprisingly no maker's mark. On the wood is carved the word \"ONI-N\", the 'O' seems to have been scratched out completely. Dubious. On the barrel is a paper glued to it showing an illustration of rats guarding a cellar filled with bottles against a hoard of beggars."

@@ -182,6 +182,9 @@
 	desc = "To keep ones vision away from the heavens, and focused on the sin beneath the soil."
 	icon_state = "inqhat"
 	item_state = "inqhat"
+	max_integrity = 150
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_SPELLSINGER // spellsinger hat stats
 	sewrepair = TRUE
 
 /obj/item/clothing/head/roguetown/headband/red

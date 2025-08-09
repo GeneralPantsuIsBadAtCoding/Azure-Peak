@@ -117,6 +117,11 @@
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/clothing/ring/signet
 
+/datum/anvil_recipe/valuables/signet
+	name = "Blessed Silver Signet Ring"
+	req_bar = /obj/item/ingot/silverblessed
+	created_item = /obj/item/clothing/ring/signet	
+
 // Silver ingots are now in play, and as such, the steel rings have been converted to silver with their value adjusted accordingly. -Kyogon
 
 /datum/anvil_recipe/valuables/emerings
