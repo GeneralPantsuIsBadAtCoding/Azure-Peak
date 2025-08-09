@@ -324,6 +324,7 @@
 	name = "Helms of Psydon"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms
 	marquescost = 12
+	maximum = 1
 	
 /obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms/Initialize()
 	. = ..()
