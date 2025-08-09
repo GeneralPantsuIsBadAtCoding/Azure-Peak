@@ -375,7 +375,7 @@
 	blade_dulling = DULLING_SHAFT_WOOD
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
-	intdamage_factor = 1.2
+	intdamage_factor = 1
 
 /obj/item/rogueweapon/knuckles/aknuckles
 	name = "decrepit knuckles"
