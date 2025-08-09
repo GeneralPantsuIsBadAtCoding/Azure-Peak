@@ -137,9 +137,9 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 		for(var/dir_to_check in GLOB.cardinals)
 			if(!(cur.bf & dir_to_check)) // we can't proceed in this direction
 				continue
-			if(cur.source.LinkSelfBlocked(dir_to_check, traveler, id)) // check if this dir is blocked moving out of our current turf
-				cur.bf &= dir_to_check // don't check this dir again for this node
-				continue
+			// if(cur.source.LinkSelfBlocked(dir_to_check, traveler, id)) // check if this dir is blocked moving out of our current turf
+			// 	cur.bf &= dir_to_check // don't check this dir again for this node
+			// 	continue
 			// get the turf we end up at if we move in dir_to_check; this may have special handling for multiz moves
 			var/T = get_step(cur.source, dir_to_check)
 			// when leaving a turf with stairs on it, we can change Z, so take that into account
