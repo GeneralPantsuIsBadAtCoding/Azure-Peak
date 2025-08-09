@@ -18058,17 +18058,16 @@
 "fMP" = (
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/flashlight/flare/torch/lantern,
-/obj/item/flashlight/flare/torch/metal,
-/obj/item/flashlight/flare/torch/metal,
 /obj/item/listeningdevice,
 /obj/item/listeningdevice,
 /obj/item/speakerinq,
 /obj/item/speakerinq,
-/obj/item/rope/chain,
-/obj/item/rope/chain,
-/obj/item/rope,
-/obj/item/rope,
 /obj/structure/closet/crate/roguecloset,
+/obj/item/rope/inqarticles/inquirycord,
+/obj/item/rope/inqarticles/inquirycord,
+/obj/item/rope/inqarticles/inquirycord,
+/obj/item/listeningdevice,
+/obj/item/flashlight/flare/torch/lantern,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/inq)
 "fMS" = (

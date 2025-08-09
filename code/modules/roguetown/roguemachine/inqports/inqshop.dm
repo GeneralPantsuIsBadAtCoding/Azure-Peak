@@ -319,6 +319,19 @@
 	new /obj/item/clothing/head/inqarticles/blackbag(src)
 	new /obj/item/clothing/head/inqarticles/blackbag(src)
 
+
+/datum/inqports/equipment/psydonhelms
+	name = "Helms of Psydon"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/equipment/blackbags
+	marquescost = 12
+	
+/obj/structure/closet/crate/chest/inqcrate/equipment/psydonhelms/Initialize()
+	. = ..()
+	new /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute(src)
+	new /obj/item/clothing/head/roguetown/helmet/heavy/psysallet(src)
+	new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket(src)
+	new /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm(src)
+
 /datum/inqports/equipment/crankbox
 	name = "The Crankbox"
 	item_type = /obj/structure/closet/crate/chest/inqreliquary/relic/crankbox/
