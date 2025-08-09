@@ -246,6 +246,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		succumb(1)
 		to_chat(src, compose_message(src, language, message, , spans, message_mode))
 
+	SEND_SIGNAL(src, COMSIG_MOB_POST_SAY, args, spans, message_mode)
 	return 1
 
 /mob/living/proc/send_speech_sign(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode, original_message)

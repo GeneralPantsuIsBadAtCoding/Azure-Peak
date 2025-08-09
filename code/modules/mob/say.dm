@@ -149,14 +149,15 @@
   * * MODE_HEADSET (Common radio channel)
   * * A department radio (lots of values here)
   */
-/mob/proc/get_message_mode(message)
+/mob/proc/get_message_mode(message, list/mods)
 	var/key = copytext_char(message, 1, 2)
-	if(key == "#")
-		return MODE_WHISPER
-	else if(key == ";")
-		return MODE_HEADSET
-	else if(key == "%")
-		return MODE_SING
+	if(key == "#" && !mods[WHISPER_MODE])
+		mods[WHISPER_MODE] = MODE_WHISPER
+	else if(key == "%" && !mods[MODE_SING])
+		mods[MODE_SING] = TRUE
+	else if(key == ";" && !mods[MODE_HEADSET])
+		if(stat == CONSCIOUS)
+			mods[MODE_HEADSET] = TRUE
 	else if(length(message) > 2 && (key in GLOB.department_radio_prefixes))
 		var/key_symbol = lowertext(copytext_char(message, 2, 3))
 		return GLOB.department_radio_keys[key_symbol]
