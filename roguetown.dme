@@ -898,6 +898,7 @@
 #include "code\game\objects\effects\effect_system\effects_smoke.dm"
 #include "code\game\objects\effects\effect_system\effects_sparks.dm"
 #include "code\game\objects\effects\effect_system\effects_water.dm"
+#include "code\game\objects\effects\gods\unassuming_fluff.dm"
 #include "code\game\objects\effects\particles\weather.dm"
 #include "code\game\objects\effects\spawners\clutter_spawner.dm"
 #include "code\game\objects\effects\spawners\equipment_spawners.dm"

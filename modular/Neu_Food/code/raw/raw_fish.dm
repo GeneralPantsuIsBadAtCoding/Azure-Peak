@@ -187,3 +187,88 @@
 	fried_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/cod
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/cod
 
+/obj/item/reagent_containers/food/snacks/fish/creepy_eel
+	name = "abyssal eel"
+	desc = "Pick me up pick me up pick me up pick me up pick me up pick me up!"
+	icon_state = "creepy_eel"
+	faretype = FARE_IMPOVERISHED
+	no_rarity_sprite = TRUE
+	var/was_i_picked_up = FALSE
+	dropshrink = 0
+
+/obj/item/reagent_containers/food/snacks/fish/creepy_eel/pickup(mob/living/user)
+	if(!was_i_picked_up && ishuman(user))
+		teleport_to_dream(user, 100)
+		was_i_picked_up = TRUE
+		desc = "A slimy eel, you feel a strange mundanity looking at it... You're assured there's nothing weird about it whatsoever. It might as well be the most average thing in the realm."
+	..()
+
+/obj/item/reagent_containers/food/snacks/fish/creepy_squid
+	name = "brain squid"
+	desc = "It makes me feel strange..."
+	icon_state = "creepy_squid"
+	faretype = FARE_IMPOVERISHED
+	no_rarity_sprite = TRUE
+	dropshrink = 0
+
+/obj/item/reagent_containers/food/snacks/fish/creepy_squid/examine(mob/user)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(ishuman(H) && !HAS_TRAIT(H, TRAIT_NOMOOD) && H.patron != /datum/patron/divine/abyssor)
+		. += span_danger("As I behold the squid closely, I can see its body extend into the spectral shape of a vicious, horrific creature. Countless tentacles lead into innumerable spiny limbs with vicious looking spikes. A singular, gigantic eye stares back at me. The image fades...")
+		H.add_stress(/datum/stressevent/creepy_squid)
+		H.emote("scream")
+		H.Knockdown(1)
+	else if(H.patron == /datum/patron/divine/abyssor)
+		. += span_notice("It's the most beautiful creature I have ever laid my eyes upon.")
+		user.add_stress(/datum/stressevent/creepy_squid_happy)
+
+/datum/stressevent/creepy_squid
+	timer = 5 MINUTES
+	stressadd = 2
+	desc = span_danger("I don't know what I saw, but I can still see parts of that horrific form in the corners of my vision.")
+
+/datum/stressevent/creepy_squid_happy
+	timer = 25 MINUTES
+	stressadd = -1
+	desc = span_notice("Seeing that beautiful squid made me really happy!")
+
+/obj/item/reagent_containers/food/snacks/fish/creepy_shark
+	name = "iridescent reaver"
+	desc = "It's scales refract light in a strange, unsettling manner."
+	icon_state = "creepy_shark"
+	faretype = FARE_IMPOVERISHED
+	no_rarity_sprite = TRUE
+	dropshrink = 0
+	var/loot_spawn_cooldown
+
+// I'll probably give this a cooler effect later, but scope creep ahhh.
+/obj/item/reagent_containers/food/snacks/fish/creepy_shark/attack_self(mob/user)
+	if(world.time < loot_spawn_cooldown)
+		var/time_left = (loot_spawn_cooldown - world.time) / (1 MINUTES)
+		var/minutes_left = round(time_left, 0.1)
+		to_chat(user, span_warning("The [src] feels inert. It will take about [minutes_left] more minutes before it can produce again."))
+		return TRUE
+
+	var/obj/effect/spawner/lootdrop/roguetown/abyssor/table = new /obj/effect/spawner/lootdrop/roguetown/abyssor
+	var/list/loot_table = table.loot
+	if(!loot_table || !loot_table.len)
+		to_chat(user, span_warning("The [src] shimmers faintly, but nothing happens."))
+		return TRUE
+
+	var/lootspawn = pickweight(loot_table)
+
+	if(!lootspawn)
+		to_chat(user, span_warning("The [src] shimmers faintly, but nothing happens."))
+		return TRUE
+
+	var/obj/item/I = new lootspawn()
+
+	if(user.put_in_hands(I))
+		to_chat(user, span_notice("The [src] shimmers, and you feel the weight of [I] materialize in your hand!"))
+	else
+		I.forceMove(user.drop_location())
+		to_chat(user, span_notice("The [src] shimmers, and [I] appears at your feet!"))
+
+	loot_spawn_cooldown = world.time + 30 MINUTES
+	return TRUE

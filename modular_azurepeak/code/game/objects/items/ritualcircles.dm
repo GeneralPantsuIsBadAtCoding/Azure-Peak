@@ -287,18 +287,39 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/turf/marked_location
 	var/effect_desc = " Use in-hand to mark a location, then activate it to break the barrier between the dream and this realm where you put a mark down earlier. You recall the teachings of your Hierophant... these things are dangerous to all."
 	var/obj/rune_type = /obj/structure/active_abyssor_rune
+	var/faith_locked = TRUE
+
+/obj/item/abyssal_marker/volatile
+	name = "volatile abyssal marker"
+	effect_desc = " Whispers fill your head. The crystal yearns to be used, it shall bring forth a beautiful dream. The first use shall mark, the second shall unleash. Seems fragile, like it would break when thrown..."
+	faith_locked = FALSE
+	icon_state = "abyssal_marker_volatile"
+
+/obj/item/abyssal_marker/volatile/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/turf/T = get_turf(hit_atom)
+	if(T)
+		marked_location = T
+		visible_message(span_warning("[src] shatters on impact!"))
+		playsound(src, 'sound/magic/lightning.ogg', 50, TRUE)
+		var/mob/thrower = throwingdatum?.thrower
+		if(thrower && HAS_TRAIT(thrower, TRAIT_HERESIARCH))
+			rune_type = /obj/structure/active_abyssor_rune/greater
+		new rune_type(T)
+		qdel(src)
+	else
+		return ..()
 
 /obj/item/abyssal_marker/examine(mob/user)
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type == /datum/patron/divine/abyssor)
+		if(c.patron.type == /datum/patron/divine/abyssor || !faith_locked)
 			. += span_info(effect_desc)
 
 /obj/item/abyssal_marker/attack_self(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/c = user
-		if(c.patron.type != /datum/patron/divine/abyssor)
+		if(c.patron.type != /datum/patron/divine/abyssor && faith_locked)
 			to_chat(user, span_warning("My connection to Abyssor's dream is too weak to invoke his power with this crystal."))
 			return ..()
 		//Heretics get FAR stronger spires!
@@ -408,6 +429,11 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	STOP_PROCESSING(SSobj, src)
 	playsound(src, 'sound/foley/glassbreak.ogg', 50, TRUE)
 	new /obj/effect/particle_effect/smoke(src.loc)
+
+	var/list/witnesses = view(7, src)
+	for(var/mob/living/carbon/human/H in witnesses)
+		teleport_to_dream(H, 0.1)
+
 	return ..()
 
 /obj/structure/crystal_spire/proc/start_conversion()

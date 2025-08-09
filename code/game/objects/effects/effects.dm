@@ -41,3 +41,9 @@
 
 /obj/effect/abstract/has_gravity(turf/T)
 	return FALSE
+
+/obj/effect/solid_invisible_barrier
+	density = TRUE
+	opacity = 0
+	invisibility = INVISIBILITY_MAXIMUM
+	icon_state = "nothing"
