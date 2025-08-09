@@ -13459,7 +13459,6 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/town/tavern)
 "nDD" = (
-/obj/effect/sunlight,
 /obj/structure/telescope,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
