@@ -82,7 +82,8 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/sheriff = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)

@@ -127,7 +127,8 @@
 				/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 				/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 				/obj/item/rope/chain = 1,
-				/obj/item/rogueweapon/scabbard/sheath = 1
+				/obj/item/rogueweapon/scabbard/sheath = 1,
+				/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 				)
 
 

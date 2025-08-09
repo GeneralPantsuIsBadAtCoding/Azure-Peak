@@ -67,7 +67,8 @@
 		/obj/item/ritechalk = 1,
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 		/obj/item/rope/chain = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
