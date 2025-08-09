@@ -103,6 +103,8 @@
 	W.stored_language.copy_known_languages_from(src)
 	W.stored_skills = ensure_skills().known_skills.Copy()
 	W.stored_experience = ensure_skills().skill_experience.Copy()
+	W.cmode_music_override = cmode_music_override
+	W.cmode_music_override_name = cmode_music_override_name
 	mind.transfer_to(W)
 	skills?.known_skills = list()
 	skills?.skill_experience = list()
