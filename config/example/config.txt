@@ -512,3 +512,13 @@ DEFAULT_VIEW 15x15
 ## The alternative square viewport size if you're using a widescreen view size
 ## You probably shouldn't ever be changing this, but it's here if you want to.
 DEFAULT_VIEW_SQUARE 15x15
+
+## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
+## More API details can be found here: https://centcom.melonmesa.com
+#CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
+## If the server only accepts whitelisted connections
+## 0 Disables Border Control
+## 1 Puts Border Control into 'learning mode' and will have it automatically whitelist new connections
+## 2 Puts Border Control into 'enforcing mode' and will have it deny connections that are not already whitelisted.
+BORDER_CONTROL 0

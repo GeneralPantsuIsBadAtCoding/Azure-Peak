@@ -20,6 +20,7 @@
 #define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
+#define LAZYISIN(L, V) L ? (V in L) : FALSE
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L)
@@ -730,4 +731,24 @@ GLOBAL_LIST_EMPTY(string_lists)
 /proc/list_clear_nulls(list/list_to_clear)
 	return (list_to_clear.RemoveAll(null) > 0)
 
+// Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
+#define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}
 
+// Return the index using dichotomic search
+/proc/FindElementIndex(atom/A, list/L, cmp)
+	var/i = 1
+	var/j = L.len
+	var/mid
+
+	while(i < j)
+		mid = round((i+j)/2)
+
+		if(call(cmp)(L[mid],A) < 0)
+			i = mid + 1
+		else
+			j = mid
+
+	if(i == 1 || i ==  L.len) // Edge cases
+		return (call(cmp)(L[i],A) > 0) ? i : i+1
+	else
+		return i
