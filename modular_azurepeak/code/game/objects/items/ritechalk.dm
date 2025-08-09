@@ -19,6 +19,8 @@
 			ritechoices+="Rune of ZIZO" 
 		if(/datum/patron/inhumen/matthios)
 			ritechoices+="Rune of Transaction" 
+		if(/datum/patron/inhumen/baotha)
+			ritechoices+="Rune of Hedonism"
 		if(/datum/patron/divine/astrata)
 			ritechoices+="Rune of Sun"
 		if(/datum/patron/divine/noc)
@@ -36,9 +38,11 @@
 		if(/datum/patron/divine/eora)
 			ritechoices+="Rune of Love"
 		if(/datum/patron/divine/ravox)
-			ritechoices+="Rune of War"
+			ritechoices+="Rune of Justice"
 		if(/datum/patron/divine/abyssor)
 			ritechoices+="Rune of Storm"
+		if(/datum/patron/old_god)
+			ritechoices+="Rune of Enduring"
 
 	var/runeselection = input(user, "Which rune shall I inscribe?", src) as null|anything in ritechoices
 	var/turf/step_turf = get_step(get_turf(user), user.dir)
@@ -49,12 +53,12 @@
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/astrata(step_turf)
 		if("Rune of Moon")
-			to_chat(user, span_cultsmall("I begin inscribing the rune of His Wisdom"))
+			to_chat(user, span_cultsmall("I begin inscribing the rune of His Wisdom."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/noc(step_turf)
 		if("Rune of Beasts")
-			to_chat(user,span_cultsmall("I begin inscribing the rune of His Madness"))
+			to_chat(user,span_cultsmall("I begin inscribing the rune of His Madness."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/dendor(step_turf)
@@ -99,12 +103,22 @@
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/zizo(step_turf)
 		if("Rune of Transaction")
-			to_chat(user,span_cultsmall("I begin inscribing the rune of His Transactions"))
+			to_chat(user,span_cultsmall("I begin inscribing the rune of His Transactions."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/matthios(step_turf)
 		if("Rune of Violence")
-			to_chat(user,span_cultsmall("I begin inscribing the rune of Slaughter"))
+			to_chat(user,span_cultsmall("I begin inscribing the rune of Slaughter."))
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/graggar(step_turf)
+		if("Rune of Hedonism")
+			to_chat(user,span_cultsmall("I begin inscribing the rune of Addiction."))
+			if(do_after(user, 30, src))
+				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
+				new /obj/structure/ritualcircle/baotha(step_turf)
+		if("Rune of Enduring")
+			to_chat(user,span_cultsmall("I begin inscribing His holy symbol."))
+			if(do_after(user, 30, src))
+				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
+				new /obj/structure/ritualcircle/psydon(step_turf)

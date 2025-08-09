@@ -23034,13 +23034,6 @@
 /obj/structure/fluff/statue/knight/interior/r,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena/bossroom)
-"hxh" = (
-/obj/structure/wonder{
-	name = "graggarite altar"
-	},
-/obj/effect/decal/cleanable/roguerune/arcyne/summoning/mid,
-/turf/open/floor/rogue/churchbrick,
-/area/rogue/under/cave/orcdungeon)
 "hxi" = (
 /obj/item/roguegear{
 	pixel_x = 5;
@@ -23457,13 +23450,6 @@
 /obj/structure/fluff/railing/corner/south_west,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
-"hEb" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
-/obj/item/clothing/cloak/apron/waist,
-/obj/item/legwears,
-/turf/open/floor/rogue/ruinedwood/chevron,
-/area/rogue/indoors/town/tavern)
 "hEc" = (
 /obj/structure/stairs{
 	dir = 1
@@ -27676,23 +27662,6 @@
 /obj/structure/fluff/railing/border/north,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach/south)
-"iVW" = (
-/obj/item/legwears/silk/random,
-/obj/item/legwears/silk/random,
-/obj/item/legwears/silk/random,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
-/obj/item/clothing/suit/roguetown/armor/corset,
-/obj/item/clothing/suit/roguetown/armor/corset,
-/obj/item/clothing/suit/roguetown/armor/corset,
-/obj/structure/closet/crate/roguecloset/inn,
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/turf/open/floor/rogue/tile/brownbrick,
-/area/rogue/indoors/town/bath)
 "iWa" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/garrison)
@@ -33236,6 +33205,17 @@
 	dir = 4
 	},
 /area/rogue/under/cave/dungeon1/gethsmane)
+"kJf" = (
+/obj/structure/closet/crate/roguecloset,
+/obj/item/clothing/cloak/half,
+/obj/item/clothing/suit/roguetown/shirt/tunic/random,
+/obj/item/clothing/suit/roguetown/shirt/tunic/random,
+/obj/item/clothing/shoes/roguetown/shortboots,
+/obj/item/legwears/silk/black,
+/obj/item/clothing/under/roguetown/tights/black,
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/town)
 "kJh" = (
 /obj/structure/flora/roguegrass/thorn_bush,
 /turf/open/floor/rogue/grass,
@@ -47600,6 +47580,18 @@
 /obj/item/roguebin/water/gross,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/town/dwarfin)
+"pub" = (
+/obj/effect/decal/cleanable/roguerune/arcyne/summoning/mid{
+	color = "a60011"
+	},
+/obj/structure/ritualcircle/graggar{
+	icon_state = "graggar_active"
+	},
+/obj/structure/wonder{
+	name = "graggarite altar"
+	},
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/under/cave/orcdungeon)
 "pus" = (
 /obj/structure/stairs{
 	dir = 8
@@ -51182,6 +51174,13 @@
 /mob/living/carbon/human/species/skeleton/npc/medium,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
+"qDF" = (
+/obj/structure/closet/crate/roguecloset,
+/obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
+/obj/item/clothing/cloak/apron/waist,
+/obj/item/legwears,
+/turf/open/floor/rogue/ruinedwood/chevron,
+/area/rogue/indoors/town/tavern)
 "qDH" = (
 /obj/item/natural/stone,
 /obj/item/natural/stone,
@@ -61566,6 +61565,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/exposed/town/keep)
+"tWn" = (
+/obj/structure/ritualcircle/abyssor_alt,
+/turf/open/floor/rogue/churchmarble,
+/area/rogue/outdoors/beach)
 "tWq" = (
 /obj/structure/rack/rogue,
 /turf/open/floor/rogue/ruinedwood,
@@ -66992,6 +66995,23 @@
 /obj/structure/table/wood/map/six,
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/town/dwarfin)
+"vFS" = (
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress,
+/obj/item/clothing/suit/roguetown/armor/corset,
+/obj/item/clothing/suit/roguetown/armor/corset,
+/obj/item/clothing/suit/roguetown/armor/corset,
+/obj/structure/closet/crate/roguecloset/inn,
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/tile/brownbrick,
+/area/rogue/indoors/town/bath)
 "vFY" = (
 /turf/closed/wall/mineral/rogue/roofwall/innercorner/dir1,
 /area/rogue/indoors/town/garrison)
@@ -70502,17 +70522,6 @@
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
-"wLs" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/cloak/half,
-/obj/item/clothing/suit/roguetown/shirt/tunic/random,
-/obj/item/clothing/suit/roguetown/shirt/tunic/random,
-/obj/item/clothing/shoes/roguetown/shortboots,
-/obj/item/legwears/silk/black,
-/obj/item/clothing/under/roguetown/tights/black,
-/obj/machinery/light/rogue/wallfire/candle/blue/r,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors/town)
 "wLu" = (
 /obj/structure/roguewindow/harem3{
 	opacity = 1
@@ -132638,7 +132647,7 @@ rqY
 rqY
 rqY
 rqY
-iVW
+vFS
 brW
 brW
 mfq
@@ -182414,7 +182423,7 @@ fce
 dYM
 jnd
 ayP
-tsj
+tWn
 tsj
 vTo
 tsj
@@ -279434,7 +279443,7 @@ ujm
 lJf
 sAO
 sAO
-hxh
+pub
 sAO
 arz
 xQI
@@ -369046,11 +369055,11 @@ lQX
 pvg
 kfA
 tvR
-hEb
+qDF
 hiM
 uyR
 hiM
-hEb
+qDF
 dJN
 dJN
 kSK
@@ -371306,11 +371315,11 @@ oKQ
 hpV
 pvg
 tvR
-hEb
+qDF
 tUu
 uyR
 fQZ
-hEb
+qDF
 xtp
 tvR
 kSK
@@ -387590,7 +387599,7 @@ nSc
 xcp
 lDV
 wBe
-wLs
+kJf
 eKH
 kSK
 kSK
