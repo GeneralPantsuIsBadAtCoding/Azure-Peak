@@ -44,6 +44,10 @@
 			skill_experience |= skill
 			skill_experience[skill] = 0
 
+/datum/skill_holder/Destroy()
+	current = null
+	. = ..()
+
 /datum/skill_holder/proc/set_current(mob/incoming)
 	current = incoming
 	RegisterSignal(incoming, COMSIG_MIND_TRANSFER, PROC_REF(transfer_skills))

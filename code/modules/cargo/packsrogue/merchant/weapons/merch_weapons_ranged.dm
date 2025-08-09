@@ -137,5 +137,4 @@
 	cost = 20
 	contains = list(
 					/obj/item/net,
-					/obj/item/net
 				)

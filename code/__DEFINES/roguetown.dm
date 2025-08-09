@@ -374,7 +374,6 @@ GLOBAL_LIST_EMPTY(confessors)
 #define FAMILY_PARTIAL 2
 #define FAMILY_FULL 3
 
-GLOBAL_LIST_EMPTY(sunlights)
 GLOBAL_LIST_EMPTY(head_bounties)
 GLOBAL_LIST_EMPTY(board_viewers)
 GLOBAL_LIST_EMPTY(noticeboard_posts)

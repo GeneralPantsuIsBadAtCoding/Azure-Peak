@@ -315,6 +315,7 @@
 	name ="plaguebringer sickle"
 	desc = "A wicked edge brings feculent delights."
 	icon_state = "pestrasickle"
+	force = 22 // 10% - This is a 8 clickCD weapon
 	max_integrity = 200
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle/Initialize()

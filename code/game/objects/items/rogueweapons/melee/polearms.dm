@@ -643,6 +643,8 @@
 	desc = "Summer's verdancy runs through the head of this scythe. All the more to sow."
 	icon_state = "dendorscythe"
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop/scythe, SPEAR_BASH)
+	force_wielded = 33 // +3
+	max_integrity = 300 // +50
 
 /obj/item/rogueweapon/halberd/psyhalberd/relic
 	name = "Stigmata"

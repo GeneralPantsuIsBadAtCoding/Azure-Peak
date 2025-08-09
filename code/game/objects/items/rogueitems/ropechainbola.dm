@@ -219,8 +219,9 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "net"
-	breakouttime = 35//easy to apply, easy to break out of
+	slipouttime = 2 SECONDS //ideally you're using this to catch a dodger, not in the middle of combat
 	gender = NEUTER
+	throw_speed = 2
 	var/knockdown = 0
 
 /obj/item/net/Initialize()

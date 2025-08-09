@@ -210,13 +210,6 @@
 	dir = 4
 	},
 /area/rogue/outdoors/rtfield)
-"Ha" = (
-/obj/effect/landmark/mapGenerator/sunlights{
-	endTurfX = 128;
-	endTurfY = 128
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/outdoors/rtfield)
 "Hp" = (
 /obj/structure/fluff/traveltile{
 	aportalid = "rwfielddecap";
@@ -33724,7 +33717,7 @@ rY
 rY
 rY
 rY
-Ha
+rY
 "}
 (2,1,3) = {"
 rY

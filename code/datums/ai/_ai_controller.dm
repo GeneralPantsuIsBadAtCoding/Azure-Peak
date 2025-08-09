@@ -328,11 +328,6 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	if(mob_pawn.stat >= UNCONSCIOUS)
 		return AI_STATUS_OFF
 
-	// var/turf/pawn_turf = get_turf(mob_pawn) ???
-#ifdef TESTING
-	if(!pawn_turf)
-		CRASH("AI controller [src] controlling pawn ([pawn]) is not on a turf.")
-#endif
 	//if(!("[pawn_turf?.z]" in GLOB.weatherproof_z_levels))
 	//	if(SSmapping.level_has_any_trait(pawn_turf?.z, list(ZTRAIT_IGNORE_WEATHER_TRAIT)))
 	//		GLOB.weatherproof_z_levels |= "[pawn_turf?.z]"

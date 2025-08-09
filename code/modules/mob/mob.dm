@@ -30,6 +30,9 @@ GLOBAL_VAR_INIT(mobids, 1)
 	GLOB.alive_mob_list -= src
 	GLOB.mob_directory -= tag
 	focus = null
+	if(mind)
+		mind.current = null
+		mind.soulOwner = null
 
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
@@ -40,6 +43,9 @@ GLOBAL_VAR_INIT(mobids, 1)
 	qdel(hud_used)
 	for(var/cc in client_colours)
 		qdel(cc)
+	for(var/datum/intent in base_intents)
+		qdel(intent)
+	qdel(skills)
 	client_colours = null
 	testing("EPICWIN!! [src] [type]")
 	ghostize(drawskip=TRUE)
