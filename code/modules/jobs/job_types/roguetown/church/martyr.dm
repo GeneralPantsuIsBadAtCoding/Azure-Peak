@@ -488,6 +488,7 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
 	H.grant_language(/datum/language/grenzelhoftian)
+	H.adjust_skillrank(/datum/skill/language/grenzelhoftian, 3, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)

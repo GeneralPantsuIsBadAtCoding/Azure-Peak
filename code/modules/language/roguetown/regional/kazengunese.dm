@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "asse"
 	spans = list(SPAN_KAZENGUNESE)
+	associated_skill = /datum/skill/language/kazengunese
 	syllables = list(
 		"ka", "ki", "ku", "ke", "ko", "sa", "shi", "su", "se", "so", "ta", "chi", "tsu",
 		"te", "to", "na", "ni", "nu", "ne", "no", "ha", "hi", "fu", "he", "ho", "ma",
