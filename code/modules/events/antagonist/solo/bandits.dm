@@ -41,12 +41,12 @@
 		"Apothecary"
 	)
 
-	base_antags = 4
-	maximum_antags = 6
+	base_antags = 5
+	maximum_antags = 10
 
 	earliest_start = 0 SECONDS
 
-	weight = 25
+	weight = 35
 
 	typepath = /datum/round_event/antagonist/solo/bandits
 	antag_datum = /datum/antagonist/bandit
