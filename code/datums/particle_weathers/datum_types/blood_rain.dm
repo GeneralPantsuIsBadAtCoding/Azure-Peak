@@ -20,7 +20,7 @@
 	particleEffectType = /particles/weather/blood_rain
 
 	scale_vol_with_severity = TRUE
-	weather_sounds = list(/datum/looping_sound/rain)
+	weather_sounds = /datum/looping_sound/rain
 	indoor_weather_sounds = list(/datum/looping_sound/indoor_rain)
 
 	minSeverity = 1
@@ -41,7 +41,7 @@
 	particleEffectType = /particles/weather/blood_rain
 
 	scale_vol_with_severity = TRUE
-	weather_sounds = list(/datum/looping_sound/storm)
+	weather_sounds = /datum/looping_sound/storm
 	indoor_weather_sounds = list(/datum/looping_sound/indoor_rain)
 
 	minSeverity = 4
