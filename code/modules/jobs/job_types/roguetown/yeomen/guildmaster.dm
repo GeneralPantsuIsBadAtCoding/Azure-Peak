@@ -1,3 +1,5 @@
+#define GUILDMASTER_ANNOUNCEMENT_COOLDOWN (2 MINUTES)
+
 /datum/job/roguetown/guildmaster
 	title = "Guildmaster"
 	flag = GUILDMASTER
@@ -77,8 +79,6 @@
 	H.change_stat("endurance", 2)
 	H.change_stat("constitution", 2)
 
-GLOBAL_VAR_INIT(last_guildmaster_announcement, -50000) // Inits variable for later
-
 /mob/living/carbon/human/proc/guild_announcement()
 	set name = "Announcement"
 	set category = "GUILDMASTER"
@@ -89,14 +89,14 @@ GLOBAL_VAR_INIT(last_guildmaster_announcement, -50000) // Inits variable for lat
 		if(!src.can_speak_vocal())
 			to_chat(src,span_warning("I can't speak!"))
 			return FALSE
-		if(world.time < GLOB.last_guildmaster_announcement + 600 SECONDS)
-			to_chat(src, span_warning("You must wait [round((GLOB.last_guildmaster_announcement + 600 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
+		if (!COOLDOWN_FINISHED(src, guildmaster_announcement))
+			to_chat(src, span_warning("You must wait before speaking again."))
 			return FALSE
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
 			say(announcementinput)
 			priority_announce("[announcementinput]", "The Guildmaster Heralds", 'sound/misc/bell.ogg', sender = src)
-			GLOB.last_guildmaster_announcement = world.time
+			COOLDOWN_START(src, guildmaster_announcement, GUILDMASTER_ANNOUNCEMENT_COOLDOWN)
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))
 			return FALSE

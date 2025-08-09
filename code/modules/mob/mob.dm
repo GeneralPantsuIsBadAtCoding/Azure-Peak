@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	testing("EPICWIN!! [src] [type]")
 	ghostize(drawskip=TRUE)
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE
 
 /**
  * Intialize a mob
@@ -1397,3 +1397,14 @@ GLOBAL_VAR_INIT(mobids, 1)
 	if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 		return FALSE
 	return TRUE
+
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null

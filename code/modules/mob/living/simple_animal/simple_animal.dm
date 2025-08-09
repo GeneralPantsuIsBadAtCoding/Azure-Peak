@@ -947,7 +947,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 /mob/living/simple_animal/proc/update_grid()
 	var/turf/our_turf = get_turf(src)
-	if(isnull(our_turf))
+	if(isnull(our_turf) || isnull(our_cells))
 		return
 
 	var/list/cell_collections = our_cells.recalculate_cells(our_turf)
