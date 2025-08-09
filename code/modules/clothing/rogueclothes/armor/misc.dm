@@ -21,6 +21,9 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	allowed_sex = list(MALE, FEMALE)
 
+/obj/item/clothing/suit/roguetown/armor/longcoat/brown
+	color = "#997C4F"
+
 /obj/item/clothing/suit/roguetown/armor/longcoat/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
