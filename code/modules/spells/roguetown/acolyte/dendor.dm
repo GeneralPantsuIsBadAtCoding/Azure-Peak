@@ -147,3 +147,35 @@
 		return TRUE
 	revert_cast()
 	return FALSE
+
+/obj/effect/proc_holder/spell/self/call_of_dendor
+	name = "Call of Dendor"
+	desc = "The power of the Dendor overwhelms you! But, it have very big cost... Its your last chanse!"
+	overlay_state = "tamebeast"
+	recharge_time = 5 MINUTES
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross/dendor)
+	sound = 'sound/magic/timestop.ogg'
+	releasedrain = 30
+	miracle = TRUE
+	devotion_cost = 950
+	var/static/list/purged_effects = list(
+	/datum/status_effect/incapacitating/immobilized,
+	/datum/status_effect/incapacitating/paralyzed,
+	/datum/status_effect/incapacitating/stun,
+	/datum/status_effect/incapacitating/knockdown,)
+
+/obj/effect/proc_holder/spell/self/call_of_dendor/cast(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		revert_cast()
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(H.resting)
+		H.set_resting(FALSE, FALSE)
+	H.emote("warcry")
+	for(var/effect in purged_effects)
+		H.remove_status_effect(effect)
+	H.apply_status_effect(/datum/status_effect/buff/call_of_dendor)
+	H.visible_message(span_danger("[H] is enveloped in green energy!"))
+	to_chat(H, span_userdanger("RUN OR KILL!!"))
+	return TRUE

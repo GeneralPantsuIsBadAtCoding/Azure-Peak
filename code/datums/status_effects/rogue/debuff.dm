@@ -475,3 +475,14 @@
 	desc = "I was on the sermon. My patron is not proud of me."
 	icon_state = "debuff"
 	color ="#af9f9f"
+
+/datum/status_effect/debuff/dyspnea
+	id = "dyspnea"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/dyspnea
+	effectedstats = list("strength" = -2, "perception" = -2, "endurance" = -2, "constitution" = -4, "speed" = -3)
+	duration = 1 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/dyspnea
+	name = "Dyspnea"
+	desc = "The forces of Dendor have left you, taking their price."
+	icon_state = "revived"
