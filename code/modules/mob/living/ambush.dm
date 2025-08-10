@@ -116,10 +116,6 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 		else
 			playsound_local(src, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
 		shake_camera(src, 2, 2)
-		if(iscarbon(src))
-			var/mob/living/carbon/C = src
-			if(C.get_stress_amount() >= 30 && (prob(0)))
-				C.heart_attack()
 
 /proc/get_adjacent_ambush_turfs(turf/T)
 	var/list/adjacent = list()
