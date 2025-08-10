@@ -967,7 +967,7 @@
 	id = "call_of_dendor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/call_of_dendor
 	duration = 2.5 MINUTES
-	effectedstats = list("strength" = 3, "endurance" = 3 , "speed" = 3, "intelligence" = -6) //power, but stupid
+	effectedstats = list("endurance" = 3 , "speed" = 4, "intelligence" = -6) //fast legs not afraid
 
 /atom/movable/screen/alert/status_effect/buff/call_of_dendor
 	name = "Call of Dendor"

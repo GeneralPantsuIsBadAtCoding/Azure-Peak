@@ -479,7 +479,7 @@
 /datum/status_effect/debuff/dyspnea
 	id = "dyspnea"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/dyspnea
-	effectedstats = list("strength" = -2, "perception" = -2, "endurance" = -2, "constitution" = -4, "speed" = -3)
+	effectedstats = list("strength" = -3, "perception" = -2, "endurance" = -2, "constitution" = -4, "speed" = -3)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/dyspnea
