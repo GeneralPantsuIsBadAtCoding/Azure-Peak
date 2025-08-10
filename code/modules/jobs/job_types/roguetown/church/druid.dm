@@ -38,11 +38,11 @@
 	head = /obj/item/clothing/head/roguetown/dendormask
 	wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
-	backpack_contents = list(/obj/item/ritechalk, /obj/item/rogueweapon/knuckles/bronzeknuckles)
+	backpack_contents = list(/obj/item/ritechalk, /obj/item/rogueweapon/knuckles/bronzeknuckles) // bronzeknuckles - like gift from church
 	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE) //wildlife - druid fights for his life
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
