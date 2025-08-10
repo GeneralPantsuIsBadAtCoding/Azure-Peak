@@ -32,6 +32,8 @@
 	client.screen = list()				//remove hud items just in case
 	client.images = list()
 
+	canon_client = client
+
 	if(!hud_used)
 		create_mob_hud()
 	if(hud_used && client && client.prefs)

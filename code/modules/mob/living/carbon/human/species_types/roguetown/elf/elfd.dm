@@ -42,6 +42,9 @@
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,OLDGREY)
 	inherent_traits = list(TRAIT_DARKVISION, TRAIT_LIGHT_STEP)
+	allowed_taur_types = list(
+		/obj/item/bodypart/taur/spider,
+	)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	disliked_food = NONE

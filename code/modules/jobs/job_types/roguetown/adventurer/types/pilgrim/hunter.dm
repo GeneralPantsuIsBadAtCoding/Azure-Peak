@@ -20,7 +20,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/quiver/arrows
 	beltl = /obj/item/rogueweapon/scabbard/sword
-	l_hand = /obj/item/rogueweapon/sword/iron/messer
+	l_hand = /obj/item/rogueweapon/sword/short/messer/iron
 	r_hand = /obj/item/storage/meatbag
 	backpack_contents = list(
 						/obj/item/flint = 1,

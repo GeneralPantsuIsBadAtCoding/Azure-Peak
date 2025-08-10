@@ -418,6 +418,9 @@
 	update_icon()
 	return
 
+//Universal miracle T3 miracle.
+//Instantly heals all wounds & damage on a selected limb.
+//Long CD (so a Medical class would still outpace this if there's more than one patient to heal)
 /obj/effect/proc_holder/spell/invoked/wound_heal
 	name = "Wound Miracle"
 	desc = "Heals all wounds on a targeted limb."
@@ -425,9 +428,9 @@
 	overlay_state = "woundheal"
 	action_icon_state = "woundheal"
 	action_icon = 'icons/mob/actions/genericmiracles.dmi'
-	releasedrain = 30
+	releasedrain = 15
 	chargedrain = 0
-	chargetime = 30
+	chargetime = 15
 	range = 1
 	ignore_los = FALSE
 	warnie = "sydwarning"
@@ -439,7 +442,7 @@
 	antimagic_allowed = FALSE
 	recharge_time = 2 MINUTES
 	miracle = TRUE
-	devotion_cost = 200
+	devotion_cost = 100
 
 /obj/effect/proc_holder/spell/invoked/wound_heal/cast(list/targets, mob/user = usr)
 	if(ishuman(targets[1]))
@@ -452,12 +455,14 @@
 		var/foundwound = FALSE
 		if(length(affecting.wounds))
 			for(var/datum/wound/wound in affecting.wounds)
-				if(!isnull(wound))	//I'm not adding to that runtime fiesta
+				if(!isnull(wound))
 					wound.heal_wound(wound.whp)
 					foundwound = TRUE
-					user.visible_message(span_greenteamradio("[capitalize(wound.name)] oozes a clear fluid and closes shut!"))
+					user.visible_message(("<font color = '#488f33'>[capitalize(wound.name)] oozes a clear fluid and closes shut!</font>"))
 			if(foundwound)
 				playsound(target, 'sound/magic/woundheal_crunch.ogg', 100, TRUE)
+			affecting.change_bodypart_status(heal_limb = TRUE)
+			affecting.update_disabled()
 			return TRUE
 		else
 			to_chat(user, span_warning("The limb is free of wounds."))

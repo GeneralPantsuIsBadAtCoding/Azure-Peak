@@ -15,14 +15,14 @@
 	name = "Shortsword"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/iron/short,
+					/obj/item/rogueweapon/sword/short/iron,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/messer
 	name = "Messer"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/iron/messer,
+					/obj/item/rogueweapon/sword/short/messer/iron,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/mace

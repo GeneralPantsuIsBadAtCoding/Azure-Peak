@@ -52,6 +52,10 @@
 				return
 		to_chat(user, span_warning("Wrong key."))
 		return
+	if(istype(P, /obj/item/roguecoin/aalloy))
+		return
+	if(istype(P, /obj/item/roguecoin/inqcoin))	
+		return	
 	if(istype(P, /obj/item/roguecoin))
 		SStreasury.give_money_treasury(P.get_real_price(), "NERVE MASTER deposit")
 		qdel(P)

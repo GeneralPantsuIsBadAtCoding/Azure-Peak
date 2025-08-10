@@ -245,6 +245,8 @@
 			return FALSE
 		if (M.grab_state > GRAB_PASSIVE)
 			return FALSE
+		if (L.compliance)
+			return FALSE
 		move_delay = world.time + 10
 		to_chat(src, span_warning("[L] still has footing! I need a stronger grip!"))
 		return TRUE    

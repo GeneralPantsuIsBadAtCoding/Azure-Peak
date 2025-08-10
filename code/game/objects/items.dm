@@ -147,6 +147,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/list/gripped_intents //intents while gripped, replacing main intents
 	var/force_wielded = 0
 	var/gripsprite = FALSE //use alternate grip sprite for inhand
+	var/wieldsound = FALSE
 
 	var/dropshrink = 0
 	/// Force value that is force or force_wielded, with any added bonuses from external sources. (Mainly components for enchantments)
@@ -190,8 +191,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/icon/experimental_inhand = TRUE
 	var/icon/experimental_onhip = FALSE
 	var/icon/experimental_onback = FALSE
-
-	///trying to emote or talk with this in our mouth makes us muffled
 	var/muteinmouth = TRUE
 	///using spit emote spits the item out of our mouth and falls out after some time
 	var/spitoutmouth = TRUE
@@ -446,7 +445,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(force)
 			inspec += "\n<b>FORCE:</b> [get_force_string(force)]"
 		if(gripped_intents && !wielded)
-			inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)]"
+			if(force_wielded)
+				inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)]"
 
 		if(wbalance)
 			inspec += "\n<b>BALANCE: </b>"
@@ -1254,7 +1254,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(alt_intents)
 			user.update_a_intents()
 
-/obj/item/proc/wield(mob/living/carbon/user)
+/obj/item/proc/wield(mob/living/carbon/user, show_message = TRUE)
 	if(wielded)
 		return
 	if(user.get_inactive_held_item())
@@ -1271,8 +1271,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		force_dynamic = force_wielded
 	wdefense_dynamic = (wdefense + wdefense_wbonus)
 	update_transform()
-	to_chat(user, span_notice("I wield [src] with both hands."))
-	playsound(loc, pick('sound/combat/weaponr1.ogg','sound/combat/weaponr2.ogg'), 100, TRUE)
+	if(show_message)
+		to_chat(user, span_notice("I wield [src] with both hands."))
+	if(!wieldsound)
+		playsound(loc, pick('sound/combat/weaponr1.ogg','sound/combat/weaponr2.ogg'), 100, TRUE)
 	if(twohands_required)
 		if(!wielded)
 			user.dropItemToGround(src)

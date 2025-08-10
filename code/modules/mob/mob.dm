@@ -30,6 +30,9 @@ GLOBAL_VAR_INIT(mobids, 1)
 	GLOB.alive_mob_list -= src
 	GLOB.mob_directory -= tag
 	focus = null
+	if(mind?.current == src)
+		mind.set_current(null)
+		mind.soulOwner = null
 
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
@@ -40,11 +43,15 @@ GLOBAL_VAR_INIT(mobids, 1)
 	qdel(hud_used)
 	for(var/cc in client_colours)
 		qdel(cc)
+	for(var/datum/intent in base_intents)
+		qdel(intent)
+	if(skills && skills.current == src)
+		qdel(skills)
 	client_colours = null
 	testing("EPICWIN!! [src] [type]")
 	ghostize(drawskip=TRUE)
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE
 
 /**
  * Intialize a mob
@@ -1397,3 +1404,14 @@ GLOBAL_VAR_INIT(mobids, 1)
 	if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 		return FALSE
 	return TRUE
+
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null
