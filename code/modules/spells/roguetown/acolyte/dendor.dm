@@ -157,7 +157,7 @@
 	sound = 'sound/magic/timestop.ogg'
 	releasedrain = 30
 	miracle = TRUE
-	devotion_cost = 950
+	devotion_cost = 600
 	var/static/list/purged_effects = list(
 	/datum/status_effect/incapacitating/immobilized,
 	/datum/status_effect/incapacitating/paralyzed,
