@@ -4545,7 +4545,7 @@
 "bwy" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = "priest"
+	lockid = "churchvault"
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/church/chapel)
