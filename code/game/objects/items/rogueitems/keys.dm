@@ -413,6 +413,12 @@
 	icon_state = "brownkey"
 	lockid = "church"
 
+/obj/item/roguekey/churchvault
+	name = "church vault key"
+	desc = "This green key has a few extra notches than the bronze ones; it will open the tithe vault."
+	icon_state = "greenkey"
+	lockid = "churchvault"
+
 /obj/item/roguekey/priest
 	name = "Bishop's key"
 	desc = "This is the master key of the church."
