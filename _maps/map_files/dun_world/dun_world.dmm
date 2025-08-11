@@ -11619,7 +11619,9 @@
 /area/rogue/outdoors/town)
 "dIR" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/mineral_door/wood/deadbolt,
+/obj/structure/mineral_door/wood/deadbolt{
+	name = "Bathroom"
+	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/church/basement)
 "dIS" = (
@@ -12642,6 +12644,14 @@
 /obj/structure/bed/rogue/inn/hay,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave/east)
+"dYQ" = (
+/obj/structure/mineral_door/wood/donjon/stone{
+	locked = 1;
+	lockid = "church";
+	name = "Dormitorium"
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/town/church/chapel)
 "dYT" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/hoe,
@@ -17092,6 +17102,14 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains)
+"fnM" = (
+/obj/structure/mineral_door/wood/donjon/stone{
+	locked = 1;
+	lockid = "church";
+	name = "Church Closet"
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/town/church/chapel)
 "fnN" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner,
 /area/rogue/indoors/town/physician)
@@ -36517,7 +36535,8 @@
 /obj/structure/mineral_door/wood/donjon{
 	dir = 1;
 	locked = 1;
-	lockid = "priest"
+	lockid = "priest";
+	name = "Martyr's Apartment"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/church/chapel)
@@ -44427,7 +44446,8 @@
 "nLg" = (
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1;
-	lockid = "church"
+	lockid = "church";
+	name = "Belfry"
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/church/chapel)
@@ -47289,7 +47309,8 @@
 "oHp" = (
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1;
-	lockid = "churchvault"
+	lockid = "churchvault";
+	name = "Tithe Vault"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/church/chapel)
@@ -65115,7 +65136,9 @@
 /area/rogue/indoors/shelter/woods)
 "ugb" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/mineral_door/wood/deadbolt,
+/obj/structure/mineral_door/wood/deadbolt{
+	name = "Bathroom"
+	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/church/basement)
 "ugc" = (
@@ -371688,7 +371711,7 @@ oKc
 gTY
 gTY
 oKc
-lCF
+fnM
 oKc
 gTY
 gTY
@@ -378009,7 +378032,7 @@ oKc
 eMQ
 gen
 gen
-lCF
+dYQ
 fwK
 fwK
 oKc
