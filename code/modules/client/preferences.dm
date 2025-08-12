@@ -230,9 +230,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	pref_species = new_race
 	real_name = pref_species.random_name(gender,1)
 	ResetJobs()
-	if(!istype(pref_species, /datum/species/anthromorph) && \
-		!istype(pref_species, /datum/species/anthromorphsmall) && \
-		!istype(pref_species, /datum/species/demihuman))
+	if(!ispath(pref_species, /datum/species/anthromorph) && \
+		!ispath(pref_species, /datum/species/anthromorphsmall) && \
+		!ispath(pref_species, /datum/species/demihuman))
 		stat_bonus = "None" //Making -kin stat bonuses not carry over when you change races
 
 	if(user)
