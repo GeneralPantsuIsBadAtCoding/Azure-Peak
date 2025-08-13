@@ -387,7 +387,6 @@
 	desc = "Finely crafted boots, made to stomp out darkness."
 	icon_state = "inqboots"
 	item_state = "inqboots"
-	allowed_race = ALL_RACES_TYPES
 
 
 // ----------------- BLACKSTEEL -----------------------
