@@ -227,7 +227,7 @@
 
 //Races allowed to hold important leadership positions in the court.
 //Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
-//Currently only excludes constructs. Other races can be removed later if needed.
+//Currently only excludes constructs. Other races can be excluded later if needed.
 #define RACES_NOBLE_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
