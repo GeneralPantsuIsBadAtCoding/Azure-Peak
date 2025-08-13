@@ -209,6 +209,7 @@
 #define RACES_CHURCH_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
+	/datum/species/elf/dark,\
 	/datum/species/elf/wood,\
 	/datum/species/dwarf/mountain,\
 	/datum/species/aasimar,\
