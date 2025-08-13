@@ -83,8 +83,7 @@
 	desc = "Made with Otava's Finest leather, these gloves are fashioned to last."
 	icon_state = "psydongloves"
 	item_state = "psydongloves"
-	salvage_result = /obj/item/natural/hide/cured	
-	allowed_race = ALL_RACES_TYPES
+	salvage_result = /obj/item/natural/hide/cured
 
 // Eastern gloves
 /obj/item/clothing/gloves/roguetown/eastgloves1

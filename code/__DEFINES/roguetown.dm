@@ -229,7 +229,7 @@
 	/datum/species/goblinp,\
 
 //Races allowed to hold important leadership positions in the court.
-//Used for Steward, Marshal, Knight Captain, and Duke. Deliberately did not include the hand, as it's a hand-picked position where birth status holds no sway.
+//Used for the Steward, Marshal, Knight Captain, and royal family. Deliberately did not include the hand, as it's a hand-picked position where birth status holds no sway.
 //Excludes constructs.
 #define RACES_NOBLE_LEADERS \
 	/datum/species/human/northern,\
