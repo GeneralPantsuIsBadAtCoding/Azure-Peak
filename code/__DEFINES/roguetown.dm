@@ -178,8 +178,13 @@
 #define COVERAGE_PANTS			( GROIN | LEGS )
 #define COVERAGE_FULL_LEG		( LEGS | FEET )
 
+/*--------------------\
+| FAVORED RACE DEFINES |	
+\--------------------*/
 
-//A list of every single race.
+// These are used to determine which races can play which roles.
+
+// A list of every single race.
 #define ALL_RACES_TYPES \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -203,9 +208,9 @@
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 
-//Races allowed to hold leadership positions in church roles.
-//Used for Martyr, Inquisitor, and Priest.
-//Excludes races with lore tied to the ascendants like constructs, goblins, tieflings, and dark elves.
+// Races allowed to hold leadership positions in church roles.
+// Used for Martyr, Inquisitor, and Priest.
+// Excludes races with lore tied to the ascendants like goblins, tieflings, and constructs.
 #define RACES_CHURCH_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -226,9 +231,9 @@
 	/datum/species/halforc,\
 	/datum/species/kobold,\
 
-//Races allowed to hold important leadership positions in the court.
-//Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
-//Currently only excludes constructs since they cannot possibly be of a noble bloodline.
+// Races allowed to hold important leadership positions in the court.
+// Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
+// Currently only excludes constructs since they cannot possibly be born of a noble bloodline.
 #define RACES_NOBLE_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
