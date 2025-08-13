@@ -168,8 +168,8 @@
 #define COVERAGE_FULL_LEG		( LEGS | FEET )
 
 
-//used in various places
-#define ALL_RACES_TYPES list(\
+//A list of every single race.
+#define ALL_RACES_TYPES \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
 	/datum/species/elf/dark,\
@@ -190,49 +190,12 @@
 	/datum/species/halforc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
-)
-
-#define RACES_RESPECTED \
-	/datum/species/human/northern,\
-	/datum/species/elf/wood,\
-	/datum/species/human/halfelf,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/aasimar,\
-	/datum/species/lupian,\
-	/datum/species/vulpkanin,\
-	/datum/species/moth,\
-	/datum/species/dracon,
-
-#define RACES_TOLERATED \
-	/datum/species/elf/dark,\
-	/datum/species/tieberian,\
-	/datum/species/lizardfolk,\
-	/datum/species/tabaxi,\
-	/datum/species/akula,\
-	/datum/species/anthromorph,\
-	/datum/species/demihuman,\
-
-
-#define RACES_SHUNNED \
-	/datum/species/halforc,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/kobold,\
-
-#define RACES_DESPISED \
-	/datum/species/goblinp,\
-
-#define RACES_CONSTRUCT \
 	/datum/species/construct/metal,\
 
-#define RACES_ALL_KINDS list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
-
-#define RACES_NO_CONSTRUCT list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
-
-#define RACES_SHUNNED_UP list(RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
-
-#define RACES_TOLERATED_UP list(RACES_TOLERATED, RACES_RESPECTED)
-
-#define NOBLE_RACES_TYPES list(\
+//Races allowed to hold leadership positions in church roles.
+//Used for Martyr, Inquisitor, and Priest.
+//Excludes constructs. This can be edited later if people want to add other races that don't really make sense in church leadership roles like goblins, tieflings, etc.
+#define RACES_CHURCH_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
 	/datum/species/elf/dark,\
@@ -250,11 +213,42 @@
 	/datum/species/anthromorph,\
 	/datum/species/anthromorphsmall,\
 	/datum/species/demihuman,\
+	/datum/species/halforc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
-	/datum/species/construct/metal,\
-)
 
+//Races allowed to hold important leadership positions in the court.
+//Used for Steward, Marshal, Knight Captain, and Duke. Deliberately did not include the hand, as it's a hand-picked position where birth status holds no sway.
+//Excludes constructs.
+#define RACES_NOBLE_LEADERS \
+	/datum/species/human/northern,\
+	/datum/species/human/halfelf,\
+	/datum/species/elf/dark,\
+	/datum/species/elf/wood,\
+	/datum/species/dwarf/mountain,\
+	/datum/species/tieberian,\
+	/datum/species/aasimar,\
+	/datum/species/lizardfolk,\
+	/datum/species/lupian,\
+	/datum/species/tabaxi,\
+	/datum/species/vulpkanin,\
+	/datum/species/akula,\
+	/datum/species/moth,\
+	/datum/species/dracon,\
+	/datum/species/anthromorph,\
+	/datum/species/anthromorphsmall,\
+	/datum/species/demihuman,\
+	/datum/species/halforc,\
+	/datum/species/kobold,\
+	/datum/species/goblinp,\
+
+#define RACES_ALL_KINDS list(ALL_RACES_TYPES)
+
+#define RACES_CHURCH_RESPECTED list(RACES_CHURCH_LEADERS)
+
+#define RACES_NOBLE_RESPECTED list(RACES_NOBLE_LEADERS)
+
+// Used for clothing.
 #define CLOTHED_RACES_TYPES list(\
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -279,7 +273,8 @@
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 )
-// Non-dwarf non-kobold non-goblin mostly
+
+// Non-dwarf, non-kobold, non-verminfolk. Used for clothing items that do not have small sprite variants.
 #define NON_DWARVEN_RACE_TYPES list(\
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -299,22 +294,7 @@
 	/datum/species/halforc,\
 	/datum/species/construct/metal,\
 )
-// Non-elf non-dwarf non-kobold non-goblin mostly
-#define HUMANLIKE_RACE_TYPES list(\
-	/datum/species/human/northern,\
-	/datum/species/tieberian,\
-	/datum/species/aasimar,\
-	/datum/species/lizardfolk,\
-	/datum/species/lupian,\
-	/datum/species/tabaxi,\
-	/datum/species/vulpkanin,\
-	/datum/species/akula,\
-	/datum/species/moth,\
-	/datum/species/dracon,\
-	/datum/species/anthromorph,\
-	/datum/species/demihuman,\
-	/datum/species/construct/metal,\
-)
+
 #define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora) // Currently unused.
 
 #define ALL_PALADIN_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god) // Currently unused.
