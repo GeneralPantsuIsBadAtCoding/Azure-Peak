@@ -203,9 +203,9 @@
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 
-//Races allowed to hold leadership positions in church roles.
+//Races allowed to hold leadership positions in the church.
 //Used for Martyr, Inquisitor, and Priest.
-//Excludes constructs. This can be edited later if people want to add other races that don't really make sense in church leadership roles like goblins, tieflings, etc.
+//Does not currently exclude any races. List can be edited in the future if we decide we want to bar specific races from church leadership roles.
 #define RACES_CHURCH_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -227,10 +227,11 @@
 	/datum/species/halforc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
+	/datum/species/construct/metal,\
 
-//Races allowed to hold important leadership positions in the court.
-//Used for the Steward, Marshal, Knight Captain, and royal family. Deliberately did not include the hand, as it's a hand-picked position where birth status holds no sway.
-//Excludes constructs.
+//Races allowed to hold leadership positions in the court.
+//Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
+//Does not currently exclude any races. List can be edited in the future if we decide we want to bar specific races from keep leadership roles.
 #define RACES_NOBLE_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -252,6 +253,7 @@
 	/datum/species/halforc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
+	/datum/species/construct/metal,\
 
 #define RACES_ALL_KINDS list(ALL_RACES_TYPES)
 
