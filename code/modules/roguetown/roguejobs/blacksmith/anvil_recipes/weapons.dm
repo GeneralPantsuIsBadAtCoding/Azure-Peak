@@ -543,12 +543,12 @@
 	created_item = /obj/item/rogueweapon/greatsword
 	craftdiff = 4
 
-/*datum/anvil_recipe/weapons/steel/steelzweihander //leaving this here for now; discussion with devgeneral.
+/datum/anvil_recipe/weapons/steel/steelzweihander
 	name = "Zweihander, Steel (+2 Steel)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel)
 	created_item = /obj/item/rogueweapon/greatsword/grenz
-	craftdiff = 4*/
+	craftdiff = 4
 
 /datum/anvil_recipe/weapons/estoc
 	name = "Estoc, Steel (+1 Steel)"
@@ -564,11 +564,11 @@
 	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	craftdiff = 2
 
-/*/datum/anvil_recipe/weapons/steel/pulaski // We left the other holy steel recipes in, so I'll leave this for now.
+//datum/anvil_recipe/weapons/steel/pulaski // Not a holy steel weapon.
 	name = "Pulaski axe (+1 Stick)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/stick)
-	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/pick */
+	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/pick
 
 /datum/anvil_recipe/weapons/steel/greataxe
 	name = "Greataxe, Steel (+1 Steel, +1 Small Log)"
