@@ -95,6 +95,7 @@
 /datum/outfit/job/roguetown/nightmaiden/concubine/pre_equip(mob/living/carbon/human/H)
 	..()
 	beltl = /obj/item/roguekey/nightmaiden
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/rope = 1,

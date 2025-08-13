@@ -13459,7 +13459,6 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/town/tavern)
 "nDD" = (
-/obj/effect/sunlight,
 /obj/structure/telescope,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -20569,8 +20568,8 @@
 /area/rogue/indoors/town/church/chapel)
 "vse" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "vsh" = (
@@ -23229,10 +23228,10 @@
 /obj/machinery/light/rogue/torchholder{
 	pixel_y = 26
 	},
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
-/obj/item/rogueweapon/sword/iron/messer,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
+/obj/item/rogueweapon/sword/short/messer/iron,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors)
 "yhF" = (

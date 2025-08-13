@@ -495,6 +495,42 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
+/client/verb/combat_music() // if you touch this, touch the option in game preferences too
+	set name = "Combat Mode Music"
+	set category = "Options"
+	set desc = ""
+	if(!isliving(mob))
+		to_chat(src, span_warning("You're not alive yet. Set this in your Game Preferences instead."))
+		return
+	var/mob/living/L = mob
+	var/track_select = input(src, "Choose a combat music track to use TEMPORARILY.\n\
+									You can set this permanently in Game Preferences.\
+									", "Combat Music", L.cmode_music_override_name)\
+									as null|anything in GLOB.cmode_tracks_by_name
+	if(track_select)
+		if(!isliving(mob)) // mob might've changed between then and now
+			return
+		L = mob
+		var/datum/combat_music/combat_music
+		combat_music = GLOB.cmode_tracks_by_name[track_select]
+		to_chat(src, span_notice("Selected track: <b>[track_select]</b>."))
+		if(combat_music.desc)
+			to_chat(src, "<i>[combat_music.desc]</i>")
+		if(combat_music.credits)
+			to_chat(src, span_info("Song name: <b>[combat_music.credits]</b>"))
+		// also change it for Werewolf & Wildshape transformations, else it'd be annoying to keep changing this (lol)
+		var/mob/living/carbon/human/H
+		var/mob/living/S
+		if(ishuman(mob))
+			H = mob
+			if(isliving(H.stored_mob))
+				S = H.stored_mob
+		L.cmode_music_override = combat_music.musicpath
+		L.cmode_music_override_name = combat_music.name
+		if(S)
+			S.cmode_music_override = combat_music.musicpath
+			S.cmode_music_override_name = combat_music.name
+	return
 
 /client/verb/policy()
 	set name = "Show Policy"
@@ -509,6 +545,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/header = get_policy(POLICY_VERB_HEADER)
 	var/list/policytext = list(header,"<hr>")
 	var/anything = FALSE
+
 	for(var/keyword in keywords)
 		var/p = get_policy(keyword)
 		if(p)

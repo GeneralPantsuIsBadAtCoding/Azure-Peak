@@ -315,6 +315,7 @@
 	name ="plaguebringer sickle"
 	desc = "A wicked edge brings feculent delights."
 	icon_state = "pestrasickle"
+	force = 22 // 10% - This is a 8 clickCD weapon
 	max_integrity = 200
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle/Initialize()
@@ -375,7 +376,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
 	. = ..()				//It's preblessed with silver only. Mostly redundant, but safely prevents double-blessing.
-	AddComponent(/datum/component/psyblessed, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 0, bonus_sharpness = 0, bonus_integrity = 0, bonus_wdef = 0, make_silver = TRUE)
 	sellprice += 200
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/pickup(mob/user)

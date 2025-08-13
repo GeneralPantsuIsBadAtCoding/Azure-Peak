@@ -62,7 +62,7 @@
 		if(1)
 			l_hand = /obj/item/rogueweapon/spear
 		if(2)
-			l_hand = /obj/item/rogueweapon/sword/falchion
+			l_hand = /obj/item/rogueweapon/sword/short/falchion
 			r_hand = /obj/item/rogueweapon/shield/wood // Help preserve integrity
 		if(3)
 			l_hand = /obj/item/rogueweapon/mace // Threat to parry-er
@@ -143,8 +143,8 @@
 		if(5)
 			l_hand = /obj/item/rogueweapon/mace/goden
 		if(6)
-			l_hand = /obj/item/rogueweapon/sword/falchion
-			r_hand = /obj/item/rogueweapon/sword/falchion // intrusive thoughts
+			l_hand = /obj/item/rogueweapon/sword/short/falchion
+			r_hand = /obj/item/rogueweapon/sword/short/falchion // intrusive thoughts
 	H.STASTR = 16 // GAGGER GAGGER GAGGER
 	H.STASPD = 10 // Fast, for an orc
 	H.STACON = 16

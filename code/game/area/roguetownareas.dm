@@ -553,6 +553,29 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "dock warehouse import"
 	icon_state = "warehouse"
 
+/area/rogue/indoors/inq
+	name = "The Inquisition"
+	icon_state = "chapel"
+	first_time_text = "THE OTAVAN INQUISITION"
+
+/area/rogue/indoors/inq/office
+	name = "The Inquisitor's Office"
+	icon_state = "chapel"
+
+/area/rogue/indoors/inq/basement
+	name = "The Inquisition's Basement"
+	icon_state = "chapel"	
+
+/area/rogue/indoors/town/warehouse/can_craft_here()
+	return FALSE
+
+/area/rogue/indoors/inq/import
+	name = "foreign imports"
+	icon_state = "warehouse"
+
+/area/rogue/indoors/inq/import/can_craft_here()
+	return FALSE
+
 /area/rogue/indoors/town/vault
 	name = "vault"
 	icon_state = "vault"
@@ -738,3 +761,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "The Forest of Repentence"
+
+/area/rogue/underworld/dream
+	name = "dream realm"
+	icon_state = "dream"
+	first_time_text = "Abyssal Dream"

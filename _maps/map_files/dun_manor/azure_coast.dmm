@@ -5886,7 +5886,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
 "My" = (
-/obj/item/rogueweapon/sword/iron/short,
+/obj/item/rogueweapon/sword/short/iron,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "ME" = (

@@ -33,6 +33,26 @@
 	underwear_type = /obj/item/undies/bikini
 	hides_breasts = TRUE
 
+/datum/sprite_accessory/underwear/bikini/get_icon_state(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
+	if(owner.getorganslot(ORGAN_SLOT_BREASTS))
+		var/obj/item/organ/breasts/breasts = owner.getorganslot(ORGAN_SLOT_BREASTS)
+		var/tag = "bikini_f"
+		if(breasts.breast_size == 0)
+			tag = tag + "_0"
+		if(breasts.breast_size == 1)
+			tag = tag + "_1"
+		if(breasts.breast_size == 2)
+			tag = tag + "_2"
+		if(breasts.breast_size == 3)
+			tag = tag + "_3"
+		if(breasts.breast_size == 4)
+			tag = tag + "_4"
+		if(breasts.breast_size == 5)
+			tag = tag + "_5"
+		return tag
+	else
+		return "bikini_f_0"
+
 /datum/sprite_accessory/underwear/panties
 	name = "Panties"
 	icon_state = "panties"
@@ -45,9 +65,24 @@
 	hides_breasts = TRUE
 
 /datum/sprite_accessory/underwear/leotard/get_icon_state(obj/item/organ/organ, obj/item/bodypart/bodypart, mob/living/carbon/owner)
-	if(owner.gender == MALE)
+	if(owner.getorganslot(ORGAN_SLOT_BREASTS))
+		var/obj/item/organ/breasts/breasts = owner.getorganslot(ORGAN_SLOT_BREASTS)
+		var/tag = "female_leotard"
+		if(breasts.breast_size == 0)
+			tag = tag + "_0"
+		if(breasts.breast_size == 1)
+			tag = tag + "_1"
+		if(breasts.breast_size == 2)
+			tag = tag + "_2"
+		if(breasts.breast_size == 3)
+			tag = tag + "_3"
+		if(breasts.breast_size == 4)
+			tag = tag + "_4"
+		if(breasts.breast_size == 5)
+			tag = tag + "_5"
+		return tag
+	else
 		return "male_leotard"
-	return "female_leotard"
 
 /datum/sprite_accessory/underwear/athletic_leotard
 	name = "Athletic Leotard"

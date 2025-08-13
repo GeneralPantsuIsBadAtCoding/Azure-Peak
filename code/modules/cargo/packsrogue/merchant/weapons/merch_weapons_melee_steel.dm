@@ -52,7 +52,7 @@
 	name = "Falchion"
 	cost = 40 // 1 Steel Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/falchion,
+					/obj/item/rogueweapon/sword/short/falchion,
 				)
 
 /datum/supply_pack/rogue/steel_weapons/messer

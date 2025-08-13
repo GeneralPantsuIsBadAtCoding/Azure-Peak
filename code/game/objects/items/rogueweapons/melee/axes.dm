@@ -405,8 +405,8 @@
 	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/ComponentInitialize()
-	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
-	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)
+	. = ..()
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 
 /datum/intent/axe/cut/battle/greataxe

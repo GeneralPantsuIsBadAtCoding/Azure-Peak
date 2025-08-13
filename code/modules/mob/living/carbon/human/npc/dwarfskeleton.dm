@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	l_hand = /obj/item/rogueweapon/spear/bronze
 	if(prob(50))
-		l_hand = /obj/item/rogueweapon/sword/iron/short/gladius
+		l_hand = /obj/item/rogueweapon/sword/short/gladius
 		r_hand = /obj/item/rogueweapon/shield/wood
 		if(prob(20))
 			l_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles

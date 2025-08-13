@@ -128,6 +128,7 @@
 	name = "swift journey"
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
+	force = 33 // 10% force increase, yippee
 
 /obj/item/rogueweapon/flail/sflail/psyflail
 	name = "psydonian flail"
@@ -135,8 +136,16 @@
 	icon_state = "psyflail"
 
 /obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
+	. = ..()
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+
+/obj/item/rogueweapon/flail/sflail/psyflail/relic
+	name = "Consecratia"
+	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
+	icon_state = "psymorningstar"
+
+/obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10

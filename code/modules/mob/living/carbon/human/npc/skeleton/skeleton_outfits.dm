@@ -40,7 +40,7 @@
 		if(1)
 			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 		if(2)
-			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+			r_hand = /obj/item/rogueweapon/sword/short/ashort
 		if(3)
 			r_hand = /obj/item/rogueweapon/spear/aalloy
 		if(4)
@@ -72,7 +72,7 @@
 		if(1)
 			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 		if(2)
-			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+			r_hand = /obj/item/rogueweapon/sword/short/ashort
 		if(3)
 			r_hand = /obj/item/rogueweapon/spear/aalloy
 		if(4)
@@ -138,7 +138,7 @@
 	if(prob(33))
 		r_hand = /obj/item/rogueweapon/spear/aalloy
 	else if(prob(33))
-		r_hand = /obj/item/rogueweapon/sword/iron/short/gladius/agladius	// ave
+		r_hand = /obj/item/rogueweapon/sword/short/gladius/agladius	// ave
 	else
 		r_hand = /obj/item/rogueweapon/flail/aflail
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)

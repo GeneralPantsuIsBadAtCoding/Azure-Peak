@@ -58,13 +58,14 @@
 		if(/datum/patron/divine/malum)
 			recipient.mind?.special_items["Malum Psycross"] = /obj/item/clothing/neck/roguetown/psicross/malum
 		if(/datum/patron/old_god)
+			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
 			recipient.mind?.special_items["Psydon Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 
 /datum/virtue/combat/duelist
 	name = "Duelist's Apprentice"
 	desc = "I have trained under a duelist of considerable skill, and always have my swift hunting sword close at hand."
 	custom_text = "+1 to Swords and Knives, Up to Journeyman, Minimum Apprentice."
-	added_stashed_items = list("Duelist's Hunting Sword" = /obj/item/rogueweapon/sword/iron/messer/virtue)
+	added_stashed_items = list("Duelist's Hunting Sword" = /obj/item/rogueweapon/sword/short/messer/iron/virtue)
 
 /datum/virtue/combat/duelist/apply_to_human(mob/living/carbon/human/recipient)
 	if(recipient.get_skill_level(/datum/skill/combat/swords) < SKILL_LEVEL_APPRENTICE)

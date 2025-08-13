@@ -226,7 +226,7 @@
 	name = "Heartweave"
 	desc = "Forge a symbiotic bond between two souls."
 	overlay_state = "bliss"
-	range = 2
+	range = 1
 	chargetime = 0.5 SECONDS
 	invocation = "By Eora's grace, let our fates intertwine!"
 	sound = 'sound/magic/magnet.ogg'
@@ -248,7 +248,7 @@
 		revert_cast()
 		return FALSE
 
-	if(!do_after(user, 8 SECONDS, target = target))
+	if(!do_after(user, 2 SECONDS, target = target))
 		to_chat(user, span_warning("The bond requires focused concentration!"))
 		revert_cast()
 		return FALSE

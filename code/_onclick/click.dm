@@ -92,6 +92,8 @@
 		return
 	next_click = world.time + 1
 
+	last_client_interact = world.time
+
 	if(check_click_intercept(params,A))
 		return
 

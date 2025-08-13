@@ -27,8 +27,8 @@
 	var/obj/item/rogueweapon/conjured_weapon = null
 
 	var/list/iron_weapons = list(
-		"Iron Short Sword" = /obj/item/rogueweapon/sword/iron/short,
-		"Iron Messer" = /obj/item/rogueweapon/sword/iron/messer,
+		"Iron Short Sword" = /obj/item/rogueweapon/sword/short/iron,
+		"Iron Messer" = /obj/item/rogueweapon/sword/short/messer/iron,
 		"Zweihander" = /obj/item/rogueweapon/greatsword/zwei,
 		"Cudgel" = /obj/item/rogueweapon/mace/cudgel,
 		"Iron Warhammer" = /obj/item/rogueweapon/mace/warhammer,

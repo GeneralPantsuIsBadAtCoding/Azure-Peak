@@ -158,7 +158,7 @@
 			var/modifier
 			if(H.age == AGE_OLD)
 				modifier = "old"
-			if((!ignore_silent && (H.silent)) || (!ignore_silent && !is_emote_muffled(H)))
+			if((!ignore_silent && (H.silent)) || (!ignore_silent && !is_emote_muffled(H)) || (!ignore_silent && HAS_TRAIT(H, TRAIT_MUTE)) ||  (!ignore_silent && HAS_TRAIT(H, TRAIT_BAGGED)))
 				modifier = "silenced"
 			if(user.gender == FEMALE && H.dna.species.soundpack_f)
 				possible_sounds = H.dna.species.soundpack_f.get_sound(key,modifier)
@@ -209,8 +209,12 @@
 		var/mob/living/carbon/C = user
 		if(C.silent)
 			. = message_muffled
-		if(!muzzle_ignore && !is_emote_muffled(C) && emote_type == EMOTE_AUDIBLE)
+		if(!muzzle_ignore && HAS_TRAIT(C, TRAIT_MUTE) && emote_type == EMOTE_AUDIBLE)	
 			. = message_muffled
+		if(!muzzle_ignore && C.mouth?.muteinmouth && emote_type == EMOTE_AUDIBLE)
+			. = message_muffled
+		if(!muzzle_ignore && emote_type == EMOTE_AUDIBLE && HAS_TRAIT(C, TRAIT_BAGGED))
+			. = message_muffled	
 	if(user.mind && user.mind.miming && message_mime)
 		. = message_mime
 	else if(ismonkey(user) && message_monkey)
@@ -267,9 +271,8 @@
 		if(M.name == target_name)
 			target = M
 			break
-	
 	return target
-
+	
 /datum/emote/proc/is_emote_muffled(mob/living/carbon/H) //ONLY for audible emote use
 	if(H.mouth?.muteinmouth)
 		return FALSE

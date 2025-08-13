@@ -3,7 +3,7 @@
 	roundend_category = "Werewolves"
 	antagpanel_category = "Werewolf"
 	job_rank = ROLE_WEREWOLF
-	var/list/inherent_traits = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOFALLDAMAGE1, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_SHOCKIMMUNE, TRAIT_GRABIMMUNE)
+	var/list/inherent_traits = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOFALLDAMAGE1, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_SHOCKIMMUNE) // this doesn't do anything. that's pretty funny.
 	confess_lines = list(
 		"THE BEAST INSIDE ME!",
 		"BEWARE THE BEAST!",
