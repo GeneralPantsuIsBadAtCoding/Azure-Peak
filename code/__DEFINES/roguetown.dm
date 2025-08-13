@@ -203,63 +203,7 @@
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 
-//Races allowed to hold leadership positions in the church.
-//Used for Martyr, Inquisitor, and Priest.
-//Does not currently exclude any races. List can be edited in the future if we decide we want to bar specific races from church leadership roles.
-#define RACES_CHURCH_LEADERS \
-	/datum/species/human/northern,\
-	/datum/species/human/halfelf,\
-	/datum/species/elf/dark,\
-	/datum/species/elf/wood,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/tieberian,\
-	/datum/species/aasimar,\
-	/datum/species/lizardfolk,\
-	/datum/species/lupian,\
-	/datum/species/tabaxi,\
-	/datum/species/vulpkanin,\
-	/datum/species/akula,\
-	/datum/species/moth,\
-	/datum/species/dracon,\
-	/datum/species/anthromorph,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/demihuman,\
-	/datum/species/halforc,\
-	/datum/species/kobold,\
-	/datum/species/goblinp,\
-	/datum/species/construct/metal,\
-
-//Races allowed to hold leadership positions in the court.
-//Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
-//Does not currently exclude any races. List can be edited in the future if we decide we want to bar specific races from keep leadership roles.
-#define RACES_NOBLE_LEADERS \
-	/datum/species/human/northern,\
-	/datum/species/human/halfelf,\
-	/datum/species/elf/dark,\
-	/datum/species/elf/wood,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/tieberian,\
-	/datum/species/aasimar,\
-	/datum/species/lizardfolk,\
-	/datum/species/lupian,\
-	/datum/species/tabaxi,\
-	/datum/species/vulpkanin,\
-	/datum/species/akula,\
-	/datum/species/moth,\
-	/datum/species/dracon,\
-	/datum/species/anthromorph,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/demihuman,\
-	/datum/species/halforc,\
-	/datum/species/kobold,\
-	/datum/species/goblinp,\
-	/datum/species/construct/metal,\
-
 #define RACES_ALL_KINDS list(ALL_RACES_TYPES)
-
-#define RACES_CHURCH_RESPECTED list(RACES_CHURCH_LEADERS)
-
-#define RACES_NOBLE_RESPECTED list(RACES_NOBLE_LEADERS)
 
 // Used for clothing.
 #define CLOTHED_RACES_TYPES list(\
