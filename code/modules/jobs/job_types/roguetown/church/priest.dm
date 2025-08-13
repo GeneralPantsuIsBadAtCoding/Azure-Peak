@@ -1,10 +1,8 @@
-GLOBAL_LIST_EMPTY(apostasy_players)
 GLOBAL_LIST_EMPTY(cursed_players)
 GLOBAL_LIST_EMPTY(excommunicated_players)
 GLOBAL_LIST_EMPTY(heretical_players)
 #define PRIEST_ANNOUNCEMENT_COOLDOWN (2 MINUTES)
 #define PRIEST_SERMON_COOLDOWN (30 MINUTES)
-#define PRIEST_APOSTASY_COOLDOWN (10 MINUTES)
 #define PRIEST_EXCOMMUNICATION_COOLDOWN (10 MINUTES)
 #define PRIEST_CURSE_COOLDOWN (15 MINUTES)
 
@@ -89,7 +87,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/change_miracle_set
 	H.verbs |= /mob/living/carbon/human/proc/churchexcommunicate //your button against clergy
 	H.verbs |= /mob/living/carbon/human/proc/churchpriestcurse //snowflake priests button. Will not sacrifice them
-	H.verbs |= /mob/living/carbon/human/proc/churcheapostasy //punish the lamb reward the wolf
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
 
 /datum/job/priest/vice //just used to change the priest title
@@ -217,6 +214,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	accept_message = "FOR THE TEN!"
 	refuse_message = "I refuse."
 
+/* Area buff for Tennites */
 /mob/living/carbon/human/proc/completesermon()
 	set name = "Sermon"
 	set category = "Priest"
@@ -262,70 +260,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	return TRUE
 
-/mob/living/carbon/human/proc/churcheapostasy(var/mob/living/carbon/human/H in GLOB.player_list)
-	set name = "Apostasy"
-	set category = "Priest"
-
-	if (stat)
-		return
-
-	var/found = FALSE
-	var/inputty = input("Put an apostasy on someone, removing their ability to use miracles... (apostasy them again to remove it)", "Sinner Name") as text|null
-
-	if (!inputty)
-		return
-
-	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
-		to_chat(src, span_warning("I need to do this from the House of the Ten."))
-		return FALSE
-
-	if(!src.key)
-		return
-
-	if(!src.mind || !src.mind.do_i_know(name=inputty))
-		to_chat(src, span_warning("I don't know anyone by that name."))
-		return
-
-	if (inputty in GLOB.apostasy_players)
-		GLOB.apostasy_players -= inputty
-		priority_announce("[real_name] has forgiven [inputty]. Their patron hears their prayer once more!", title = "APOSTASY LIFTED", sound = 'sound/misc/bell.ogg')
-		message_admins("APOSTASY: [real_name] ([ckey]) has used forgiven apostasy at [H.real_name] ([H.ckey])")
-		log_game("APOSTASY: [real_name] ([ckey]) has used forgiven apostasy at [H.real_name] ([H.ckey])")
-
-		if (H.real_name == inputty)
-			if (istype(H.patron, /datum/patron/divine) && H.devotion)
-				H.devotion.recommunicate()
-				H.remove_status_effect(/datum/status_effect/debuff/apostasy)
-				H.remove_stress(/datum/stressevent/apostasy)
-
-		return TRUE
-
-	if (H.real_name == inputty)
-		if (!COOLDOWN_FINISHED(src, priest_apostasy))
-			to_chat(src, span_warning("You must wait until you can mark another."))
-			return
-		found = TRUE
-		GLOB.apostasy_players += inputty
-		COOLDOWN_START(src, priest_apostasy, PRIEST_APOSTASY_COOLDOWN)
-
-		if (istype(H.patron, /datum/patron/divine) && H.devotion)
-			H.devotion.excommunicate()
-			H.apply_status_effect(/datum/status_effect/debuff/apostasy)
-			H.add_stress(/datum/stressevent/apostasy)
-			to_chat(H, span_warning("A holy silence falls upon you. Your Patron cannot hear you anymore..."))
-		else
-			to_chat(H, span_warning("A holy silence falls upon you..."))
-
-		priority_announce("[real_name] has placed mark of shame upon [inputty]. Their prayers fall on deaf ears.", title = "APOSTASY", sound = 'sound/misc/excomm.ogg')
-		message_admins("APOSTASY: [real_name] ([ckey]) has used apostasy at [H.real_name] ([H.ckey])")
-		log_game("APOSTASY: [real_name] ([ckey]) has used apostasy at [H.real_name] ([H.ckey])")
-		return TRUE
-
-	if (!found)
-		return FALSE
-
-	return
-
+/*General punishment tool for misdeeds */
 /mob/living/carbon/human/proc/churchexcommunicate(var/mob/living/carbon/human/H in GLOB.player_list)
 	set name = "Excommunicate"
 	set category = "Priest"
@@ -394,7 +329,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	return
 
-/* PRIEST CURSE - powerful debuffs to punish ppl outside church otherwise use apostasy
+/* PRIEST CURSE - powerful debuffs to punish ppl outside church otherwise use excommunication
 code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep that updated if this gets any changes.*/
 /mob/living/carbon/human/proc/churchpriestcurse(var/mob/living/carbon/human/H in GLOB.player_list)
 	set name = "Divine Curse"
@@ -420,11 +355,11 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 		return
 
 	var/list/curse_choices = list(
-		"Curse of Astrata" = /datum/curse/astrata,
-		"Curse of Noc" = /datum/curse/noc,
-		"Curse of Ravox" = /datum/curse/ravox,
-		"Curse of Necra" = /datum/curse/necra,
-		"Curse of Xylix" = /datum/curse/xylix,
+		"Curse of Astrata" = /datum/curse/astrata, //No sleep and burn during the day
+		"Curse of Noc" = /datum/curse/noc, //No magic and burn during the night
+		"Curse of Ravox" = /datum/curse/ravox, //30% debuff to parry/dodge/hit
+		"Curse of Necra" = /datum/curse/necra, //Critical Weakness
+		"Curse of Xylix" = /datum/curse/xylix, //-10 luck
 		)
 
 	var/curse_pick = input("Choose a curse to apply or lift.", "Select Curse") as null|anything in curse_choices

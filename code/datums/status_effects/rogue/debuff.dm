@@ -452,18 +452,6 @@
 	icon_state = "muscles"
 	color ="#6d1313"
 
-/datum/status_effect/debuff/apostasy
-	id = "Apostasy!"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/apostasy
-	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "endurance" = -2, "constitution" = -2)
-	duration = 999 MINUTES
-
-/atom/movable/screen/alert/status_effect/debuff/apostasy
-	name = "Apostasy!"
-	desc = "Shame upon the member of clergy!"
-	icon_state = "debuff"
-	color ="#7a0606"
-
 /datum/status_effect/debuff/hereticsermon
 	id = "Heretic on sermon!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/hereticsermon

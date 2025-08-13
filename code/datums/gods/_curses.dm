@@ -3,7 +3,6 @@
 	COOLDOWN_DECLARE(priest_announcement)
 	COOLDOWN_DECLARE(guildmaster_announcement) //This is not for priest but if you are looking for GUILDMASTER announcements it's here, more so convinence than anything.
 	COOLDOWN_DECLARE(priest_sermon)
-	COOLDOWN_DECLARE(priest_apostasy)
 	COOLDOWN_DECLARE(priest_excommunicate)
 	COOLDOWN_DECLARE(priest_curse)
 
@@ -200,33 +199,29 @@
 //NECRA//
 /datum/curse/necra/on_gain(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STACON -= 10
 	ADD_TRAIT(owner, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 
 /datum/curse/necra/on_loss(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STACON += 10
 	REMOVE_TRAIT(owner, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 
 //XYLIX//
 /datum/curse/xylix/on_gain(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STALUC -= 20
+	owner.STALUC -= 10
 
 /datum/curse/xylix/on_loss(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STALUC += 20
+	owner.STALUC += 10
 
 //PESTRA//
 /datum/curse/pestra/on_gain(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STAEND -= 10
 	ADD_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
 	ADD_TRAIT(owner, TRAIT_MISSING_NOSE, TRAIT_GENERIC)
 
 /datum/curse/pestra/on_loss(mob/living/carbon/human/owner)
 	. = ..()
-	owner.STAEND += 10
 	REMOVE_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_MISSING_NOSE, TRAIT_GENERIC)
 

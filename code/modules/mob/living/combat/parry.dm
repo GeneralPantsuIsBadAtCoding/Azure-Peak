@@ -108,7 +108,7 @@
 		prob2defend -= 20
 	
 	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
-		prob2defend -= 40
+		prob2defend -= 30
 
 	// parrying while knocked down sucks ass
 	if(!(mobility_flags & MOBILITY_STAND))

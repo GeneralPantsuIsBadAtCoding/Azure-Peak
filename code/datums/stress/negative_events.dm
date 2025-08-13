@@ -334,12 +334,6 @@
 	desc = span_boldred("The Ten have forsaken me!")
 	timer = 999 MINUTES
 
-/datum/stressevent/apostasy
-
-	stressadd = 3
-	desc = span_boldred("The apostasy's mark is upon me!")
-	timer = 999 MINUTES
-
 /datum/stressevent/heretic_on_sermon
 
 	stressadd = 5

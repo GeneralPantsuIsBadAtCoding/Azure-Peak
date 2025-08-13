@@ -53,7 +53,7 @@
 		chance2hit -= 20
 	
 	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
-		chance2hit -= 40
+		chance2hit -= 30
 
 	chance2hit = CLAMP(chance2hit, 5, 93)
 
