@@ -226,8 +226,8 @@
 	/datum/species/kobold,\
 
 //Races allowed to hold important leadership positions in the court.
-//Used for the Steward, Marshal, Knight Captain, and royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
-//Excludes constructs and half-orcs, races implied to be of low status in society by in-game lore blurbs.
+//Used for the Steward, Marshal, Knight Captain, and the royal family. Does not include the hand, as it's a hand-picked position where birth status holds no sway.
+//Currently only excludes constructs. Other races can be removed later if needed.
 #define RACES_NOBLE_LEADERS \
 	/datum/species/human/northern,\
 	/datum/species/human/halfelf,\
@@ -247,6 +247,7 @@
 	/datum/species/anthromorphsmall,\
 	/datum/species/demihuman,\
 	/datum/species/kobold,\
+	/datum/species/halforc,\
 	/datum/species/goblinp,\
 
 #define RACES_ALL_KINDS list(ALL_RACES_TYPES)
