@@ -99,7 +99,7 @@
 		force /= 5
 	if(force_wielded)
 		force_wielded /= 5
-	force_dynamic = (wielded ? force_wielded : force)
+	update_force_dynamic()
 	if(armor_penetration)
 		armor_penetration /= 5
 	if(wdefense)
@@ -117,7 +117,7 @@
 
 	force = initial(force)
 	force_wielded = initial(force_wielded)
-	force_dynamic = force
+	update_force_dynamic()
 	armor_penetration = initial(armor_penetration)
 	wdefense = initial(wdefense)
 	wdefense_wbonus = initial(wdefense_wbonus)

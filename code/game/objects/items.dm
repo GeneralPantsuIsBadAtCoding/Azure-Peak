@@ -342,7 +342,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				getmoboverlay(i,prop,behind=TRUE,mirrored=TRUE)
 	
 	wdefense_dynamic = wdefense
-	force_dynamic = force
+	update_force_dynamic()
 
 	. = ..()
 	for(var/path in actions_types)
@@ -1228,7 +1228,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(wielded)
 		wielded = FALSE
 		if(force_wielded)
-			force_dynamic = force
+			update_force_dynamic()
 		wdefense_dynamic = wdefense
 	if(altgripped)
 		altgripped = FALSE
@@ -1268,7 +1268,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	wielded = TRUE
 	if(force_wielded)
-		force_dynamic = force_wielded
+		update_force_dynamic()
 	wdefense_dynamic = (wdefense + wdefense_wbonus)
 	update_transform()
 	if(show_message)
@@ -1469,3 +1469,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "<b>Sewing</b> and a needle."
 		str = span_info(str)
 		. += str
+
+/obj/item/proc/update_force_dynamic()
+	force_dynamic = (wielded ? force_wielded : force)
