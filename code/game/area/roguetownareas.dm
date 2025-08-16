@@ -155,6 +155,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	converted_type = /area/rogue/indoors/shelter/rtfield
 	deathsight_message = "somewhere in the wilds, next to towering walls"
 	warden_area = TRUE
+	threat_region = THREAT_REGION_AZURE_BASIN
 
 /area/rogue/indoors/shelter/rtfield
 	icon_state = "rtfield"
