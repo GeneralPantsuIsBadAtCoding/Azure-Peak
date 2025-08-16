@@ -37,7 +37,7 @@
 
 /datum/supply_pack/rogue/luxury/naledipsicross
 	name = "Naledian Psy-Bracelet"
-	cost = 100 // Not as useful as the Silver one.
+	cost = 65 // Not as useful as the Silver one. Foreign import so expensive.
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/naledi)
 
 /datum/supply_pack/rogue/luxury/silverpsicross
