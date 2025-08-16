@@ -156,11 +156,13 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 					var/mob/living/simple_animal/hostile/M = spawnedmob
 					M.attack_same = FALSE
 					M.del_on_deaggro = 44 SECONDS
+					M.faction += "ambush"
 					M.GiveTarget(src)
 				if(istype(spawnedmob, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = spawnedmob
 					H.del_on_deaggro = 44 SECONDS
 					H.last_aggro_loss = world.time
+					H.faction += "ambush"
 					H.retaliate(src)
 					mustype = 2
 		if(mustype == 1)
