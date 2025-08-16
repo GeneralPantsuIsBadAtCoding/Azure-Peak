@@ -170,6 +170,22 @@
 /datum/crafting_recipe/proc/TurfCheck(mob/user, turf/T)
 	return TRUE
 
+/atom/proc/SelectDiagDirection()
+	var/list/options = list("NORTHWEST", "SOUTHWEST", "SOUTHEAST", "NORTHEAST")
+	var/select = input(usr, "Please select a direction.", "", null) in options
+	if(!select)
+		return FALSE
+	switch(select)
+		if("NORTHWEST")
+			return NORTHWEST
+		if("SOUTHWEST")
+			return SOUTHWEST
+		if("SOUTHEAST")
+			return SOUTHEAST
+		if("NORTHEAST")
+			return NORTHEAST
+	return FALSE
+
 
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)
 	if (HAS_TRAIT(user, TRAIT_CURSE_MALUM))
@@ -276,7 +292,10 @@
 						else
 							var/atom/movable/I = new R.result (T)
 							I.CheckParts(parts, R)
-							I.OnCrafted(user.dir, user)
+							if(R.diagonal)
+								I.OnCrafted(I.SelectDiagDirection(), user)
+							else
+								I.OnCrafted(user.dir, user)
 							I.add_fingerprint(user)
 					user.visible_message(span_notice("[user] [R.verbage] \a [R.name]!"), \
 										span_notice("I [R.verbage_simple] \a [R.name]!"))
