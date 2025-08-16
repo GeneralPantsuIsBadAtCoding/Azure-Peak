@@ -10,6 +10,7 @@
 	default_priority = 80
 	icon_state = "asse"
 	spans = list(SPAN_HELL)
+	associated_skill = /datum/skill/language/hellspeak
 	syllables = list(
 		"ad", "al", "an", "ar", "as", "ci", "co", "de", "do", "el", "en", "er", "es", "ie",
 		"in", "la", "lo", "me", "na", "no", "nt", "on", "or", "os", "pa", "qu", "ra", "re",

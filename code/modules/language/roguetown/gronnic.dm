@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "asse"
 	spans = list(SPAN_GRONNIC)
+	associated_skill = /datum/skill/language/gronnic
 	syllables = list(
 		"to", "ost", "no", "na", "ni", "ko", "ne", "en", "po", "ra", "li",
 		"on", "ro", "er", "go", "ol", "al", "ot", "ov", "re", "vo", "ka",

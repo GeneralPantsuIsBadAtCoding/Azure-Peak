@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "asse"
 	spans = list(SPAN_AAVNIC)
+	associated_skill = /datum/skill/language/aanvic
 	syllables = list(
 	"ál", "by", "č", "ch", "če", "do", "en", "ho", "je", "ko", "la", "le", "na", "ne", "ní", "od", "ou", "ov", "po", "pr", "ra", "ro", "se", "st", "te", "to", "je", "by", "ko", "ho", "do",
 	"ach", "ako", "ale", "byl", "chi", "děl", "ení", "jak", "kdy", "kte", "měl", "nos", "ost", "ova", "pod", "pře", "pří", "pro", "sem", "sta", "tak", "ter", "val", "ylo", "šti", "ša",

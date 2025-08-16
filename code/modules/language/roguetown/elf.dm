@@ -10,6 +10,7 @@
 	default_priority = 80
 	icon_state = "asse"
 	spans = list(SPAN_ELF)
+	associated_skill = /datum/skill/language/elvish
 	syllables = list(
 "ac",
 "ad",
