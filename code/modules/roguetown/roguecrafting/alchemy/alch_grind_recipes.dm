@@ -148,6 +148,12 @@
 	valid_outputs = list(/obj/item/alch/silverdust = 1)
 	bonus_chance_outputs = list(/obj/item/alch/silverdust = 33, /obj/item/alch/firedust = 25)
 
+/datum/alch_grind_recipe/blessed_silver_bar
+	name = "Blessed Silver Bar"
+	valid_input = /obj/item/ingot/silverblessed
+	valid_outputs = list(/obj/item/alch/silverdust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/silverdust = 33, /obj/item/alch/firedust = 25)
+
 /datum/alch_grind_recipe/iron_bar
 	name = "Iron Bar"
 	valid_input = /obj/item/ingot/iron
