@@ -186,8 +186,9 @@
 		return FALSE
 
 	var/moveup = 10
-	if(doctor.mind)
-		moveup = ((doctor.get_skill_level(/datum/skill/misc/medicine)+1) * 5)
+	var/medskill = doctor.get_skill_level(/datum/skill/misc/medicine)
+	var/informed = FALSE
+	moveup = (medskill+1) * 5
 	while(!QDELETED(target_wound) && !QDELETED(src) && \
 		!QDELETED(user) && (target_wound.sew_progress < target_wound.sew_threshold) && \
 		stringamt >= 1)
@@ -195,6 +196,18 @@
 			break
 		playsound(loc, 'sound/foley/sewflesh.ogg', 100, TRUE, -2)
 		target_wound.sew_progress = min(target_wound.sew_progress + moveup, target_wound.sew_threshold)
+
+		var/bleedreduction = max((medskill / 2), 1)	//Half of medicine skill, or 1, whichever is higher.
+		target_wound.bleed_rate = max( (target_wound.bleed_rate - bleedreduction), 0)
+		if(target_wound.bleed_rate == 0 && !informed)
+			patient.visible_message(span_smallgreen("[capitalize(target_wound.name)] trickles out the last drop from [patient]'s [affecting] and stops bleeding."), span_smallgreen("The throbbing warmth coming out of [target_wound.name] soothes and stops. It no longer bleeds."))
+			informed = TRUE
+		if(istype(target_wound, /datum/wound/dynamic))
+			var/datum/wound/dynamic/dynwound = target_wound
+			if(dynwound.is_maxed)
+				dynwound.is_maxed = FALSE
+			if(dynwound.is_armor_maxed)
+				dynwound.is_armor_maxed = FALSE
 		if(target_wound.sew_progress < target_wound.sew_threshold)
 			continue
 		if(doctor.mind)

@@ -76,8 +76,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	var/bypass_bloody_wound_check = FALSE
 	/// Some wounds make no sense on a dismembered limb and need to go
 	var/qdel_on_droplimb = FALSE
-
-
+	/// Severity names, assoc list.
+	var/list/severity_names = list()
+	/// Whether miracles heal it.
+	var/healable_by_miracles = TRUE
 
 /datum/wound/Destroy(force)
 	if(bodypart_owner)
@@ -337,3 +339,62 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	if(weapon && !can_embed(weapon))
 		return FALSE
 	return prob(wound_or_boolean.embed_chance)
+
+/// Upgrades a wound's stats based on damage dealt. Used mainly by dynamic wounds.
+/datum/wound/proc/upgrade(dam as num)
+	SHOULD_CALL_PARENT(TRUE)	//Don't skip this if you're making new dynamic wounds.
+	return
+
+/datum/wound/proc/update_name()
+	var/newname
+	if(length(severity_names))
+		for(var/sevname in severity_names)
+			if(severity_names[sevname] <= bleed_rate)
+				newname = sevname
+	name = "[newname  ? "[newname] " : ""][initial(name)]"	//[adjective] [name], aka, "gnarly slash" or "slash"
+
+// Blank because it'll be overridden by wound code.
+/datum/wound/dynamic
+	var/is_maxed = FALSE
+	var/is_armor_maxed = FALSE
+	clotting_rate = 0.4
+	clotting_threshold = 0
+
+/datum/wound/dynamic/sew_wound()
+	heal_wound(whp)
+
+/datum/wound/dynamic/proc/armor_check(armor, cap)
+	if(armor)
+		if(!bodypart_owner.unlimited_bleeding)
+			if(bleed_rate >= cap)
+				bleed_rate = cap
+				if(!is_armor_maxed)
+					playsound(owner, 'sound/combat/armored_wound.ogg', 100, TRUE)
+					owner.visible_message(span_crit("The wound tears open from [bodypart_owner.owner]'s <b>[bodyzone2readablezone(bodypart_to_zone(bodypart_owner))]</b>, the armor won't let it go any further!"))
+					is_armor_maxed = TRUE
+
+#define CLOT_THRESHOLD_INCREASE_PER_HIT 0.1	//This raises the MINIMUM bleed the wound can clot to.
+#define CLOT_DECREASE_PER_HIT 0.05	//This reduces the amount of clotting the wound has.
+#define CLOT_RATE_ARTERY 0	//Artery exceptions. Essentially overrides the clotting threshold.
+#define CLOT_THRESHOLD_ARTERY 2
+
+/// Make sure this is called AFTER your child upgrade proc, unless you have a reason for the bleed rate to be above artery on a regular wound.
+/datum/wound/dynamic/upgrade(dam as num)
+	if(!bodypart_owner.unlimited_bleeding)
+		if(bleed_rate >= ARTERY_LIMB_BLEEDRATE)
+			bleed_rate = ARTERY_LIMB_BLEEDRATE
+			if(!is_maxed)
+				playsound(owner, 'sound/combat/wound_tear.ogg', 100, TRUE)
+				owner.visible_message(span_crit("The wound gushes open from [bodypart_owner.owner]'s <b>[bodyzone2readablezone(bodypart_to_zone(bodypart_owner))]</b>, nicking an artery!"))
+				is_maxed = TRUE
+			clotting_rate = CLOT_RATE_ARTERY
+			clotting_threshold = CLOT_THRESHOLD_ARTERY
+	if(!is_maxed)
+		clotting_rate = max(0.01, (clotting_rate - CLOT_DECREASE_PER_HIT))
+		clotting_threshold += CLOT_THRESHOLD_INCREASE_PER_HIT
+	..()
+
+#undef CLOT_THRESHOLD_INCREASE_PER_HIT
+#undef CLOT_DECREASE_PER_HIT
+#undef CLOT_RATE_ARTERY
+#undef CLOT_THRESHOLD_ARTERY

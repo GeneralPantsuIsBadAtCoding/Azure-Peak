@@ -5,6 +5,7 @@
 		bad_guard(span_warning("I hit myself."))
 		return
 	var/mob/living/carbon/human/H = user
+	apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 	if(!IU)	//The opponent is trying to rawdog us with their bare hands while we have Guard up. We get a free attack on their active hand.
 		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		var/force = get_complex_damage(IM, src)
