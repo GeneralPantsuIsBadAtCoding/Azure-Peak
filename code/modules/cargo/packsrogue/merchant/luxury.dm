@@ -35,6 +35,11 @@
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy,
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy)
 
+/datum/supply_pack/rogue/luxury/naledipsicross
+	name = "Naledian Psy-Bracelet"
+	cost = 100 // Not as useful as the Silver one.
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/naledi)
+
 /datum/supply_pack/rogue/luxury/silverpsicross
 	name = "Silver Psycross"
 	cost = 200
