@@ -129,7 +129,7 @@
 /datum/virtue/combat/bowman
 	name = "Toxophilite"
 	desc = "I've had an interest in archery from a young age, and I always keep a spare bow and quiver around."
-	custom_text = "+1 to Bows, Up to Legendary, Minimum Apprentice"
+	custom_text = "+1 to Bows and Crossbows, Up to Journeyman, Minimum Apprentice"
 	added_stashed_items = list("Recurve Bow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
 								"Quiver (Arrows)" = /obj/item/quiver/arrows
 	)
@@ -138,7 +138,12 @@
 	if(recipient.get_skill_level(/datum/skill/combat/bows) < SKILL_LEVEL_APPRENTICE)
 		recipient.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_APPRENTICE, silent = TRUE)
 	else
-		added_skills = list(list(/datum/skill/combat/bows, 1, 6))
+		recipient.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	if(recipient.get_skill_level(/datum/skill/combat/crossbows) < SKILL_LEVEL_APPRENTICE)
+		recipient.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_APPRENTICE, silent = TRUE)
+	else
+		recipient.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+
 /*/datum/virtue/combat/tavern_brawler
 	name = "Tavern Brawler"
 	desc = "I've never met a problem my fists couldn't solve."
