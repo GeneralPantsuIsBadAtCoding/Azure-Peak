@@ -456,7 +456,7 @@
 	noaa = FALSE
 	animname = "bite"
 	hitsound = list('sound/combat/hits/punch/punch (1).ogg', 'sound/combat/hits/punch/punch (2).ogg', 'sound/combat/hits/punch/punch (3).ogg')
-	misscost = 4
+	misscost = 1
 	releasedrain = 1
 	swingdelay = 0
 	clickcd = 10
