@@ -7403,6 +7403,10 @@
 	},
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
+"con" = (
+/obj/structure/scoutreportboard,
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/town)
 "cop" = (
 /turf/closed/wall/mineral/rogue/stone{
 	max_integrity = 5000
@@ -256314,7 +256318,7 @@ twE
 tjI
 xsZ
 fPJ
-phl
+con
 wZo
 dxw
 dra
