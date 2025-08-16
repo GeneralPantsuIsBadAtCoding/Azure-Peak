@@ -21,6 +21,7 @@
 /obj/item/reagent_containers/glass/bowl/aalloy
 	name = "decrepit bowl"
 	icon_state = "abowl"
+	sellprice = 15
 
 /obj/item/reagent_containers/glass/bowl/iron
 	name = "iron bowl"

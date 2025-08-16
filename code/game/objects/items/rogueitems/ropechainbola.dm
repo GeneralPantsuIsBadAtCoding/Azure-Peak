@@ -99,8 +99,8 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.compliance || C.surrendering)
-		surrender_mod = 0.5
+	if(C.compliance || C.surrendering || HAS_TRAIT(C, TRAIT_BAGGED))
+		surrender_mod = 0.5	
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s arms with [src.name]!"), \
 						span_userdanger("[user] is trying to tie my arms with [src.name]!"))
@@ -200,7 +200,7 @@
 	throw_range = 3
 	breakouttime = 10 SECONDS
 	slipouttime = 2 MINUTES
-	cuffsound = 'sound/blank.ogg'
+	cuffsound = 'sound/misc/chains.ogg'
 	possible_item_intents = list(/datum/intent/tie, /datum/intent/whips)
 	firefuel = null
 	smeltresult = /obj/item/ingot/iron
@@ -219,8 +219,9 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "net"
-	breakouttime = 35//easy to apply, easy to break out of
+	slipouttime = 2 SECONDS //ideally you're using this to catch a dodger, not in the middle of combat
 	gender = NEUTER
+	throw_speed = 2
 	var/knockdown = 0
 
 /obj/item/net/Initialize()

@@ -150,7 +150,6 @@
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-			H.mind.adjust_spellpoints(15)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			H.change_stat("perception", -1)
@@ -162,6 +161,7 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
+				H.mind.adjust_spellpoints(15)
 			head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 			neck = /obj/item/clothing/neck/roguetown/gorget/copper
 			mask = /obj/item/clothing/mask/rogue/facemask/copper

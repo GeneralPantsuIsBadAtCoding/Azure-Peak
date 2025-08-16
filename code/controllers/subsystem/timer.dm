@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(timer)
 	if (!length(alltimers))
 		return
 
-	sortTim(alltimers, PROC_REF(cmp_timer))
+	sortTim(alltimers, /proc/cmp_timer) //Delinefortune:  Strings can't be called like procs, coz BYOND not likes it. Sorry no PROC_REF
 
 	var/datum/timedevent/head = alltimers[1]
 

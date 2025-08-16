@@ -39,8 +39,6 @@
 	if(L)
 		L.remove_status_effect(/datum/status_effect/baotha_joyride)
 		UnregisterSignal(L, list(
-			COMSIG_MOB_APPLY_DAMGE,
-			COMSIG_LIVING_MIRACLE_HEAL_APPLY,
 			COMSIG_PARENT_QDELETING
 		))
 

@@ -58,6 +58,13 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+			var/weapons = list("Katar","Knuckle Dusters")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if("Katar")
+					backpack_contents += list(/obj/item/rogueweapon/katar = 1)
+				if("Knuckle Dusters")
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 			H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
@@ -127,7 +134,13 @@
 				if(/datum/patron/old_god)
 					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 					cloak = /obj/item/clothing/cloak/psydontabard
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+					var/helmets = list("Armet","Bucket Helm")
+					var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
+					switch(helmet_choice)
+						if("Bucket Helm")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+						if("Armet")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 				if(/datum/patron/divine/astrata)
 					cloak = /obj/item/clothing/cloak/templar/astrata
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -168,7 +181,7 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
-					if(HAS_TRAIT(H, TRAIT_PSYDONITE))
+					if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
 						beltr = /obj/item/rogueweapon/sword/long/oldpsysword
 					else
 						beltr = /obj/item/rogueweapon/sword/long
@@ -176,7 +189,10 @@
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 				if("Mace")
 					H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-					beltr = /obj/item/rogueweapon/mace
+					if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+						beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
+					else
+						beltr = /obj/item/rogueweapon/mace
 				if("Flail")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/flail
@@ -360,17 +376,16 @@
 			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
-		if (/datum/patron/inhumen/matthios)
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/matthios)
 			H.cmode_music = 'sound/music/combat_matthios.ogg'
-		if (/datum/patron/inhumen/graggar)
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/graggar)
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
-		if (/datum/patron/inhumen/baotha)
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/baotha)
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 		if(/datum/patron/divine/xylix)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
-		if(/datum/patron/inhumen/zizo,
-	  		/datum/patron/inhumen/matthios,
-	   		/datum/patron/inhumen/graggar,
-	   		/datum/patron/inhumen/baotha)
-			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)

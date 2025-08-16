@@ -46,9 +46,9 @@
 	var/accessory = "None"
 	var/detail = "None"
 	var/marking = "None"
-
+	
 	var/shavelevel = 0
-
+	var/breathe_tick = 0 // Used for gas mask delays.
 	var/socks = "Nude" //Which socks the player wants
 	var/backpack = DBACKPACK		//Which backpack type the player has chosen.
 	var/jumpsuit_style = PREF_SUIT		//suit/skirt
@@ -118,8 +118,6 @@
 	var/ooc_extra
 	var/is_legacy = FALSE
 	var/received_resident_key = FALSE
-
-	var/has_confessed = FALSE // Used to track if they have confessed it was written onto a confession paper
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

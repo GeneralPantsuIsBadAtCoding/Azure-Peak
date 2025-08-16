@@ -2,10 +2,12 @@
 /obj/effect/proc_holder/spell/invoked/abyssor_bends
 	name = "Depth Bends"
 	desc = "Drains the targets stamina, unless they worship Abyssor. Also makes them dizzy and blurs their screen."
-	overlay_state = "thebends"
+	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_state = "bends"
 	releasedrain = 15
 	chargedrain = 0
-	chargetime = 2 SECONDS
+	chargetime = 0.75 SECONDS
 	range = 15
 	movement_interrupt = FALSE
 	chargedloop = null
@@ -39,10 +41,12 @@
 /obj/effect/proc_holder/spell/invoked/abyssor_undertow // t1 offbalance someone for 5 seconds if on land, on water, knock them down.
 	name = "Undertow"
 	desc = "Throws target down if they are on water, otherwise puts them off balance."
-	overlay_state = "thebends"
+	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_state = "undertow"
 	releasedrain = 15
 	chargedrain = 0
-	chargetime = 1 SECONDS
+	chargetime = 0.75 SECONDS
 	range = 15
 	movement_interrupt = FALSE
 	chargedloop = null
@@ -165,6 +169,7 @@
 			record_featured_stat(FEATURED_STATS_FISHERS, user)
 			GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
 			playsound(T, 'sound/foley/footsteps/FTWAT_1.ogg', 100)
+			teleport_to_dream(user, 0.01)
 			user.visible_message("<font color='yellow'>[user] makes a beckoning gesture at [T]!</font>")
 			return TRUE
 		else
@@ -177,10 +182,12 @@
 /obj/effect/proc_holder/spell/invoked/abyssheal
 	name = "Abyssal Healing"
 	desc = "Heals target over time, more if there is water around you."
-	overlay_state = "thebends"
+	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_state = "deepheal"
 	releasedrain = 15
 	chargedrain = 0
-	chargetime = 1 SECONDS
+	chargetime = 0.75 SECONDS
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
@@ -237,13 +244,15 @@
 /obj/effect/proc_holder/spell/invoked/call_mossback
 	name = "Call Mossback"
 	desc = "Calls a Mossback that is friendly to you and that you can command."
-	overlay_state = "thebends"
+	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_state = "crab"
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
 	releasedrain = 20
 	chargedrain = 0
-	chargetime = 2 SECONDS
+	chargetime = 4 SECONDS
 	chargedloop = null
 	sound = 'sound/foley/bubb (1).ogg'
 	invocation = "From the abyss, rise!"
@@ -276,7 +285,7 @@
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
-	chargetime = 2 SECONDS
+	chargetime = 1.25 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
 	invocation = "From the dream, consume!"
 	invocation_type = "shout"
@@ -351,6 +360,7 @@
 	F.visible_message(span_notice("A [F] manifests following after [target]... countless teeth bared with hostility!"))
 	return TRUE
 
+// No chargetime given this can be cast well in advance.
 /obj/effect/proc_holder/spell/invoked/abyssal_infusion
 	name = "Abyssal Infusion"
 	desc = "Consumes an anglerfish to bless target with ability to call upon Abyssal Strength."
@@ -358,7 +368,6 @@
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
-	chargetime = 2 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
 	//Each dreamfiend has a different name to call!
 	invocation = "shogg vulgt!"
@@ -433,12 +442,7 @@
 
 /obj/effect/proc_holder/spell/invoked/abyssal_strength/cast(list/targets, mob/living/user)
 	. = ..()
-	var/mob/living/carbon/target = targets[1]
-
-	if(!istype(target) || !(target == user))
-		to_chat(user, span_warning("This spell only works on myself!"))
-		revert_cast()
-		return FALSE
+	var/mob/living/carbon/target = user
 
 	var/list/stats = list(
 		"str" = 3 + ((stage - 1) * 1),

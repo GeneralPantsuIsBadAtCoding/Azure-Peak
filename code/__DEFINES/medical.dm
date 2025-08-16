@@ -5,6 +5,7 @@
 #define BODY_ZONE_R_ARM		"r_arm"
 #define BODY_ZONE_L_LEG		"l_leg"
 #define BODY_ZONE_R_LEG		"r_leg"
+#define BODY_ZONE_TAUR		"taur"
 
 #define BODY_ZONE_PRECISE_SKULL		"skull"
 #define BODY_ZONE_PRECISE_EARS		"ears"
@@ -93,6 +94,7 @@
 #define BODYPART_FEATURE_FACE_DETAIL "facedetail"
 #define BODYPART_FEATURE_UNDERWEAR "underwear"
 #define BODYPART_FEATURE_CREST "crest"
+#define BODYPART_FEATURE_LEGWEAR "legwear"
 
 //flags for requirements for a surgery step
 #define SURGERY_BLOODY (1<<0)

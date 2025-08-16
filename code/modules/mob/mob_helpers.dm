@@ -408,8 +408,8 @@
 		hud_used.action_intent.switch_intent(r_index,l_index,oactive)
 
 /mob/proc/update_a_intents()
-	possible_a_intents.Cut()
-	possible_offhand_intents.Cut()
+	QDEL_LIST(possible_a_intents)
+	QDEL_LIST(possible_offhand_intents)
 	var/list/intents = list()
 	var/obj/item/Masteritem = get_active_held_item()
 	if(Masteritem)
@@ -581,7 +581,9 @@
 	else
 		cmode = TRUE
 		playsound_local(src, 'sound/misc/combon.ogg', 100)
-		if(L.cmode_music)
+		if(length(L.cmode_music_override))
+			SSdroning.play_combat_music(L.cmode_music_override, client)
+		else if(L.cmode_music)
 			SSdroning.play_combat_music(L.cmode_music, client)
 		if(client && HAS_TRAIT(src, TRAIT_SCHIZO_AMBIENCE))
 			animate(client, pixel_y = 1, time = 1, loop = -1, flags = ANIMATION_RELATIVE)

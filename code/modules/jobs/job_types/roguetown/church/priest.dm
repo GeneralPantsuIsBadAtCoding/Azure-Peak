@@ -2,25 +2,26 @@ GLOBAL_LIST_EMPTY(apostasy_players)
 GLOBAL_LIST_EMPTY(cursed_players)
 GLOBAL_LIST_EMPTY(excommunicated_players)
 GLOBAL_LIST_EMPTY(heretical_players)
-#define PRIEST_ANNOUNCEMENT_COOLDOWN (5 MINUTES)
+#define PRIEST_ANNOUNCEMENT_COOLDOWN (2 MINUTES)
 #define PRIEST_SERMON_COOLDOWN (30 MINUTES)
 #define PRIEST_APOSTASY_COOLDOWN (10 MINUTES)
 #define PRIEST_EXCOMMUNICATION_COOLDOWN (10 MINUTES)
 #define PRIEST_CURSE_COOLDOWN (15 MINUTES)
+#define PRIEST_SWAP_COOLDOWN (20 MINUTES)
 
 /datum/job/roguetown/priest
-	title = "Priest"
+	title = "Bishop"
 	flag = PRIEST
 	department_flag = CHURCHMEN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = JCOLOR_CHURCH
-	f_title = "Priestess"
+	f_title = "Bishop"
 	allowed_races = RACES_NO_CONSTRUCT		//Too recent arrivals to ascend to priesthood.
 	allowed_patrons = ALL_DIVINE_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
-	tutorial = "The Divine is all that matters in a world of the immoral. The Weeping God left his children to rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepard them toward a Gods-fearing future; for you are a priest of Astrata."
+	tutorial = "The Divine is all that matters in a world of the immoral. The Weeping God left his children to rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepard them toward a Gods-fearing future; for you are a Bishop of the Holy See."
 	whitelist_req = FALSE
 	cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 
@@ -103,30 +104,141 @@ GLOBAL_LIST_EMPTY(heretical_players)
 /mob/living/carbon/human/proc/change_miracle_set(mob/living/user)
 	set name = "Change Miracle Set"
 	set category = "Priest"
-	if(!mind)
+	var/mono_first_pick = FALSE
+
+	if(!mind || user != src)
 		return
+
+	if(HAS_TRAIT(src, TRAIT_MONOTHEIST))
+		to_chat(src, "<font color='yellow'>I have dedicated myself to a single god.</font>")
+		return
+
+	if(!COOLDOWN_FINISHED(src, priest_change_miracles))
+		to_chat(src, "<font color='yellow'>I am not yet ready to call upon another god.</font>")
+		return
+
+	if(!HAS_TRAIT(src, TRAIT_POLYTHEIST))
+		var/choice = alert(src, "Do you wish to dedicate yourself to a single god? This choice is permanent and will prevent changing miracles in the future.", "Divine Dedication", "Dedicate (Monotheist)", "Remain Flexible (Polytheist)", "Cancel")
+
+		switch(choice)
+			if("Dedicate (Monotheist)")
+				ADD_TRAIT(src, TRAIT_MONOTHEIST, "divine_dedication")
+				mono_first_pick = TRUE
+			if("Remain Flexible (Polytheist)")
+				ADD_TRAIT(src, TRAIT_POLYTHEIST, "divine_dedication")
+			else
+				return
+
+	// Create god selection menu
 	var/list/god_choice = list()
 	var/list/god_type = list()
-	for (var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
+	for(var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
 		var/datum/patron/patron = GLOB.patronlist[path]
-		god_choice += list("[patron.name]" = icon(icon = 'icons/mob/overhead_effects.dmi', icon_state = "sign_[patron.name]"))
+		if(!patron || !patron.name)
+			continue
+		god_choice[patron.name] = icon(icon = 'icons/mob/overhead_effects.dmi', icon_state = "sign_[patron.name]")
 		god_type[patron.name] = patron
+
+	// Show radial menu
 	var/string_choice = show_radial_menu(src, src, god_choice, require_near = FALSE)
 	if(!string_choice)
 		return
+
+	// Apply new miracle set
 	var/datum/patron/god = god_type[string_choice]
-	mind.RemoveAllSpells()
-	var/datum/devotion/patrondev = new /datum/devotion(src, god)
-	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
-	if (string_choice == "Astrata")
+
+	if(patron.type == god.type && !mono_first_pick)
+		to_chat(src, "<font color='yellow'>I'm already blessed by that [patron.name].</font>")
+		return
+
+	if(mono_first_pick)
+		for(var/obj/effect/proc_holder/spell/S in src.devotion.granted_spells)
+			src.mind.RemoveSpell(S)
+	if(mono_first_pick)
+		//devotion.granted_spells.Cut()
+		var/datum/devotion/patrondev = new /datum/devotion(src, god)
+		patron = god
+		patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, devotion_limit = CLERIC_REQ_4)
+	else
+		// Define whitelist of swapable spells (T0-T2 only)
+		var/list/whitelist = list(
+			// Astrata
+			/obj/effect/proc_holder/spell/targeted/touch/orison,
+			/obj/effect/proc_holder/spell/invoked/ignition,
+			/obj/effect/proc_holder/spell/self/astrata_gaze,
+			/obj/effect/proc_holder/spell/invoked/lesser_heal,
+			/obj/effect/proc_holder/spell/invoked/blood_heal,
+			/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt/sacred_flame_rogue,
+			/obj/effect/proc_holder/spell/invoked/heal,
+			// Noc
+			/obj/effect/proc_holder/spell/invoked/noc_sight,
+			/obj/effect/proc_holder/spell/targeted/touch/darkvision/miracle,
+			/obj/effect/proc_holder/spell/invoked/invisibility/miracle,
+			// Dendor
+			/obj/effect/proc_holder/spell/invoked/spiderspeak,
+			/obj/effect/proc_holder/spell/targeted/wildshape,
+			// Abyssor
+			/obj/effect/proc_holder/spell/self/abyssor_wind,
+			/obj/effect/proc_holder/spell/invoked/abyssor_bends,
+			/obj/effect/proc_holder/spell/invoked/abyssor_undertow,
+			/obj/effect/proc_holder/spell/invoked/abyssheal,
+			// Ravox
+			/obj/effect/proc_holder/spell/invoked/tug_of_war,
+			/obj/effect/proc_holder/spell/self/divine_strike,
+			/obj/effect/proc_holder/spell/self/call_to_arms,
+			/obj/effect/proc_holder/spell/invoked/challenge,
+			// Necra
+			/obj/effect/proc_holder/spell/invoked/necras_sight,
+			/obj/effect/proc_holder/spell/invoked/avert,
+			/obj/effect/proc_holder/spell/invoked/deaths_door,
+			/obj/effect/proc_holder/spell/invoked/raise_spirits_vengeance,
+			// Xylix
+			/obj/effect/proc_holder/spell/self/xylixslip,
+			/obj/effect/proc_holder/spell/invoked/mockery,
+			/obj/effect/proc_holder/spell/invoked/mastersillusion,
+			// Pestra
+			/obj/effect/proc_holder/spell/invoked/diagnose,
+			/obj/effect/proc_holder/spell/invoked/pestra_leech,
+			/obj/effect/proc_holder/spell/invoked/heal,
+			/obj/effect/proc_holder/spell/invoked/infestation,
+			/obj/effect/proc_holder/spell/invoked/attach_bodypart,
+			// Malum
+			/obj/effect/proc_holder/spell/invoked/malum_flame_rogue,
+			/obj/effect/proc_holder/spell/invoked/conjure_tool,
+			/obj/effect/proc_holder/spell/invoked/vigorousexchange,
+			/obj/effect/proc_holder/spell/invoked/heatmetal,
+			// Eora
+			/obj/effect/proc_holder/spell/invoked/eora_blessing,
+			/obj/effect/proc_holder/spell/invoked/bud,
+			/obj/effect/proc_holder/spell/invoked/heartweave
+		)
+		for(var/obj/effect/proc_holder/spell/S in mind.spell_list)
+			if(S.type in whitelist)
+				mind.RemoveSpell(S)
+		
+		for(var/spell_type in god.miracles)
+			if(god.miracles[spell_type] <= CLERIC_T4 && (spell_type in whitelist))
+				var/obj/effect/proc_holder/spell/new_spell = new spell_type
+				mind.AddSpell(new_spell)
+
+	var/list/base_spells = list(
+		/obj/effect/proc_holder/spell/invoked/revive
+	)
+	for(var/type in base_spells)
+		if(!mind.has_spell(type))
+			mind.AddSpell(new type)
+
+	src.devotion.devotion *= 0.4
+
+	// Special messages
+	if(string_choice == "Astrata")
 		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
 	else
 		to_chat(src, "<font color='yellow'>Thou wieldeth now the power of [string_choice].</font>")
-	to_chat(src, "<font color='yellow'>TThe strain of changing your miracles has consumed all your devotion.</font>")
-	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
-	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
-	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
-	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
+
+	to_chat(src, "<font color='yellow'>The strain of changing your miracles has consumed all your devotion.</font>")
+
+	COOLDOWN_START(src, priest_change_miracles, PRIEST_SWAP_COOLDOWN)
 
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"
@@ -193,7 +305,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
 			say(announcementinput)
-			priority_announce("[announcementinput]", "The Priest Speaks", 'sound/misc/bell.ogg', sender = src)
+			priority_announce("[announcementinput]", "The Bishop Preaches", 'sound/misc/bell.ogg', sender = src)
 			COOLDOWN_START(src, priest_announcement, PRIEST_ANNOUNCEMENT_COOLDOWN)
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))

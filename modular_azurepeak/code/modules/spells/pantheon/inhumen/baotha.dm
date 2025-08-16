@@ -305,7 +305,7 @@
 		revert_cast()
 		return FALSE
 
-	if(!do_after(user, 8 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target = target))
 		to_chat(user, span_warning("There is no joy without concentration!"))
 		revert_cast()
 		return FALSE

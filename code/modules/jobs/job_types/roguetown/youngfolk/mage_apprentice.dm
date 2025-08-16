@@ -75,8 +75,8 @@
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.change_stat("speed", -1)
 		H.change_stat("intelligence", 1)
-		H?.mind.adjust_spellpoints(6)
-	H?.mind.adjust_spellpoints(21)
+		H.mind?.adjust_spellpoints(6)
+	H.mind?.adjust_spellpoints(21)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	H.change_stat("intelligence", 3)
@@ -121,7 +121,7 @@
 		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
 		H.change_stat("perception", -1)
 		H.change_stat("intelligence", 1)
-	H?.mind.adjust_spellpoints(18)
+	H.mind?.adjust_spellpoints(18)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	H.change_stat("intelligence", 3)
@@ -144,7 +144,7 @@
 		/obj/item/roguegem/amethyst = 1, 
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/recipe_book/magic = 1,
-    	/obj/item/spellbook_unfinished/pre_arcyne = 1,
+		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/chalk = 1,
 		)
 	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
@@ -152,7 +152,7 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-	H?.mind.adjust_spellpoints(18)
+	H.mind?.adjust_spellpoints(18)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	H.change_stat("intelligence", 4)
@@ -164,7 +164,7 @@
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.change_stat("speed", -1)
 		H.change_stat("intelligence", 1)
-		H?.mind.adjust_spellpoints(3)
+		H.mind?.adjust_spellpoints(3)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'

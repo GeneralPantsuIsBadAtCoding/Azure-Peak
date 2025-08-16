@@ -16,23 +16,48 @@
 
 /obj/item/clothing/gloves/roguetown/chain/aalloy
 	name = "decrepit chain gauntlets"
-	desc = "Decrepit old chain gauntlets. Aeon's grasp is upon them."
+	desc = "Frayed bronze rings, interlinked together to form sagging mittens. Fingers, talons, claws; they're all the same, when smothered beneath maille and left to rot away."
 	icon_state = "acgloves"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/gloves/roguetown/chain/paalloy
 	name = "ancient chain gauntlets"
-	desc = "Chain gauntlets formed out of ancient alloys. Aeon's grasp is lifted from them."
+	desc = "Polished gilbranze rings, delicately daisy-chained together into mittens. The filament is ruptured, and it will never heal; Zizo's ascension made sure of that. By the hands of Her disciples, the final obstacle preventing this world's salvation shall be dismantled - lyfe."
 	icon_state = "acgloves"
 	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/gloves/roguetown/chain/psydon
-	name = "psydonian gloves"
+	name = "psydonian chain wrapped gloves"
 	desc = "Blacksteel-bound gauntlets. These ritualistic restraints, when left to dangle-and-sway, assist in the deflection of unpredictable blows."
 	icon_state = "psydongloveschain"
 	item_state = "psydongloveschains"
 	smeltresult = null	//So you can't melt down your start gear for blacksteel brigadines etc.
+	var/wrapped = FALSE
+
+/obj/item/clothing/gloves/roguetown/chain/psydon/attack_right(mob/user)
+	. = ..()
+	if(!wrapped)
+		icon_state = "psydongloveschainwrap"
+		item_state = "psydongloveschainwrap"
+		user.update_inv_wrists()
+		user.update_inv_gloves()
+		user.update_inv_armor()
+		user.update_inv_shirt()
+		playsound(user, 'sound/foley/equip/chain_equip.ogg', 50, TRUE)
+		wrapped = TRUE
+	else
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		user.update_inv_wrists()
+		user.update_inv_gloves()
+		user.update_inv_armor()
+		user.update_inv_shirt()
+		playsound(user, 'sound/foley/equip/chain_equip.ogg', 50, TRUE)
+		wrapped = FALSE
+
 
 /obj/item/clothing/gloves/roguetown/chain/iron
 	icon_state = "icgloves"

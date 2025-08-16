@@ -78,12 +78,18 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-//				animate(F1, size=50, radius=480, time=4, loop=-1, flags=ANIMATION_PARALLEL)
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				// Only add ripple effect if it's not already present to prevent conflicts
+				var/has_ripple = FALSE
+				for(var/filter in filters)
+					if(filter && filter:type == "ripple")
+						has_ripple = TRUE
+						break
+				if(!has_ripple)
+					filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
+					var/F1 = filters[filters.len]
+					filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
+					F1 = filters[filters.len-1]
+					animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
 //			if(L.has_status_effect(/datum/status_effect/buff/weed))
 //				filters += filter(type="bloom",threshold=rgb(255, 128, 255),size=5,offset=5)
 /*
@@ -160,11 +166,18 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				// Only add ripple effect if it's not already present to prevent conflicts
+				var/has_ripple = FALSE
+				for(var/filter in filters)
+					if(filter && filter:type == "ripple")
+						has_ripple = TRUE
+						break
+				if(!has_ripple)
+					filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
+					var/F1 = filters[filters.len]
+					filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
+					F1 = filters[filters.len-1]
+					animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
 	filters += filter(type = "alpha", render_source = FIELD_OF_VISION_BLOCKER_RENDER_TARGET, flags = MASK_INVERSE)
 
 /atom/movable/screen/plane_master/game_world_above
@@ -183,11 +196,18 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				// Only add ripple effect if it's not already present to prevent conflicts
+				var/has_ripple = FALSE
+				for(var/filter in filters)
+					if(filter && filter:type == "ripple")
+						has_ripple = TRUE
+						break
+				if(!has_ripple)
+					filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
+					var/F1 = filters[filters.len]
+					filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
+					F1 = filters[filters.len-1]
+					animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
 
 /atom/movable/screen/plane_master/field_of_vision_blocker
 	name = "field of vision blocker plane master"

@@ -39,8 +39,11 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 
 	if(!always && prob(100 - true_ambush_chance))
 		return
-	if(HAS_TRAIT(src, TRAIT_AZURENATIVE) && !always)
-		return
+	if(!always)
+		if(HAS_TRAIT(src, TRAIT_AZURENATIVE))
+			return
+		if(world.time > last_client_interact + 0.3 SECONDS)
+			return // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
 	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)
 			return

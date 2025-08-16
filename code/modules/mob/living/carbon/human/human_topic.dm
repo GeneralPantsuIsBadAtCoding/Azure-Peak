@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			dat += "<div align='center'><b>OOC notes</b></div>"
 			dat += "<div align='left'>[ooc_notes_display]</div>"
 		if(ooc_extra)
-			dat += "[ooc_extra]"
+			dat += "<div align='center'>[ooc_extra]</div>"
 		var/datum/browser/popup = new(user, "[src]", nwidth = 600, nheight = 800)
 		popup.set_content(dat.Join())
 		popup.open(FALSE)
@@ -127,6 +127,22 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(do_after(usr, 50, needhand = 1, target = src))
 			var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
 			chest.remove_bodypart_feature(underwear.undies_feature)
+			underwear.forceMove(get_turf(src))
+			if(iscarbon(usr))
+				var/mob/living/carbon/C = usr
+				C.put_in_hands(underwear)
+			underwear = null
+
+	if(href_list["legwearsthing"]) //canUseTopic check for this is handled by mob/Topic()
+		if(!get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
+			to_chat(usr, span_warning("I can't reach that! Something is covering it."))
+			return
+		if(!legwear_socks)
+			return
+		usr.visible_message(span_warning("[usr] starts taking off [src]'s [legwear_socks.name]."),span_warning("I start taking off [src]'s [legwear_socks.name]..."))
+		if(do_after(usr, 50, needhand = 1, target = src))
+			var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+			chest.remove_bodypart_feature(legwear_socks.legwears_feature)
 			underwear.forceMove(get_turf(src))
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr

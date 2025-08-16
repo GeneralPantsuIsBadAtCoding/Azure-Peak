@@ -42,6 +42,7 @@
 				/obj/item/rope/chain = 1,
 				/obj/item/storage/roguebag = 1,
 				/obj/item/ammo_casing/caseless/rogue/bolt/water = 3,
+				/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 				)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -109,7 +110,7 @@
 			H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)

@@ -143,5 +143,7 @@
 				used = 'sound/vo/moth/moth_flutter.ogg'
 			if("strain")
 				used = 'sound/vo/female/gen/strain.ogg'
+			if("yip")
+				used = list('sound/vo/yip.ogg', 'sound/vo/yip2.ogg', 'sound/vo/yip3.ogg')
 
 	return used

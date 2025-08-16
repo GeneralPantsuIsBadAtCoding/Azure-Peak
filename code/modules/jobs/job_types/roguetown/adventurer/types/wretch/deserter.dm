@@ -34,7 +34,7 @@
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
@@ -127,7 +127,8 @@
 				/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 				/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 				/obj/item/rope/chain = 1,
-				/obj/item/rogueweapon/scabbard/sheath = 1
+				/obj/item/rogueweapon/scabbard/sheath = 1,
+				/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 				)
 
 
@@ -171,7 +172,7 @@
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) // Better at climbing away than your average MaA. Only slightly.
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE) // Worse at swimming than the above class.
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)

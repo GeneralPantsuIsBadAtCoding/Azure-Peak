@@ -73,41 +73,45 @@
 
 /obj/effect/spawner/lootdrop/potion_vitals
 	icon_state = "lootpotion"
-	spawned = list(
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew = 5,
+	lootcount = 1
+	loot = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 5,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/manapot = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot = 5,
+		/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/stampot = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/strongstampot = 5
+		/obj/item/reagent_containers/glass/bottle/rogue/strongstampot = 1
 	)
 
 /obj/effect/spawner/lootdrop/potion_poisons
 	icon_state = "lootpoison"
-	spawned = list(
-		/obj/item/reagent_containers/glass/bottle/rogue/poison = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/strongpoison = 5,
+	lootcount = 1
+	loot = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/berrypoison = 10,
+		/obj/item/reagent_containers/glass/bottle/rogue/poison = 5,
+		/obj/item/reagent_containers/glass/bottle/rogue/strongpoison = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/stampoison = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/strongstampoison = 5,
+		/obj/item/reagent_containers/glass/bottle/rogue/strongstampoison = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/stampot = 10,
-		/obj/item/reagent_containers/glass/bottle/rogue/strongstampot = 5
+		/obj/item/reagent_containers/glass/bottle/rogue/strongstampot = 1
 	)
 
 /obj/effect/spawner/lootdrop/potion_ingredient
 	icon_state = "lootpotioning"
 	var/static/list/all_potion_ings = list()
-	spawned = list()
+	loot = list()
 
 /obj/effect/spawner/lootdrop/potion_ingredient/Initialize(mapload)
 	if(!all_potion_ings.len)
 		all_potion_ings = subtypesof(/obj/item/alch)
-	if(!spawned.len)
-		spawned = all_potion_ings.Copy()
+	if(!loot.len)
+		loot = all_potion_ings.Copy()
 	return ..()
 
 /obj/effect/spawner/lootdrop/potion_ingredient/herb
 	icon_state = "lootpotionherb"
-	spawned = list(
+	lootcount = 2
+	loot = list(
 		/obj/item/alch/atropa = 5,
 		/obj/item/alch/matricaria = 5,
 		/obj/item/alch/symphitum = 5,
@@ -126,7 +130,8 @@
 	)
 /obj/effect/spawner/lootdrop/potion_stats
 	icon_state = "lootstatpot"
-	spawned = list(
+	lootcount = 1
+	loot = list(
 		/obj/item/reagent_containers/glass/bottle/alchemical/strpot = 10,
 		/obj/item/reagent_containers/glass/bottle/alchemical/perpot = 10,
 		/obj/item/reagent_containers/glass/bottle/alchemical/endpot = 10,

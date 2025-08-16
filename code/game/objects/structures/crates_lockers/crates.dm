@@ -66,11 +66,8 @@
 	name = "sleep casket"
 	desc = "A fancy coffin."
 	icon_state = "vcasket"
-	resistance_flags = FLAMMABLE
-	max_integrity = 70
-	icon = 'icons/roguetown/misc/structure.dmi'
-	material_drop_amount = 5
-	open_sound = 'sound/blank.ogg'
-	close_sound = 'sound/blank.ogg'
-	open_sound_volume = 25
-	close_sound_volume = 50
+
+/obj/structure/closet/crate/coffin/royal
+	name = "gilded casket"
+	desc = "A coffin made of fine wood and gilded metals."
+	icon_state = "rcasket"

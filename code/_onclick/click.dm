@@ -92,6 +92,8 @@
 		return
 	next_click = world.time + 1
 
+	last_client_interact = world.time
+
 	if(check_click_intercept(params,A))
 		return
 
@@ -910,14 +912,8 @@
 	if(rmb_intent?.adjacency && !Adjacent(A))
 		return FALSE
 
-	var/held = get_active_held_item()
-	if(held && istype(held, /obj/item))
-		var/obj/item/I = held
-		if(!I.associated_skill)
-			return FALSE
-
-		rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
-		return TRUE
+	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
+	return TRUE
 
 /mob/living/carbon/human/species/skeleton/try_special_attack(atom/A, list/modifiers)
 	return FALSE
@@ -929,17 +925,21 @@
 
 	var/list/mob/living/foes = list()
 	for(var/mob/living/foe_in_turf in T)
+		if(foe_in_turf == src)
+			continue
+
 		var/foe_prio = rand(4, 8)
 		if(foe_in_turf.mobility_flags & MOBILITY_STAND)
 			foe_prio += 10
-		else if(foe_in_turf == src)
-			foe_prio = -10
 		else if(foe_in_turf.stat != CONSCIOUS)
 			foe_prio = 2
 		else if(foe_in_turf.surrendering)
 			foe_prio = -5
 
 		foes[foe_in_turf] = foe_prio
+
+	if(!foes.len)
+		return null
 
 	if(foes.len > 1)
 		sortTim(foes, cmp = /proc/cmp_numeric_dsc, associative = TRUE)

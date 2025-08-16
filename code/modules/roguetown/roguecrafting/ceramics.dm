@@ -22,6 +22,18 @@
 	reqs = list(/obj/item/natural/clay = 3)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/ceramics/clay/claybrick
+	name = "clay brick"
+	result = list(/obj/item/natural/clay/claybrick)
+	reqs = list(/obj/item/natural/clay = 1)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/ceramics/clay/claybrick3
+	name = "clay brick 3x"
+	result = list(/obj/item/natural/clay/claybrick, /obj/item/natural/clay/claybrick, /obj/item/natural/clay/claybrick)
+	reqs = list(/obj/item/natural/clay = 3)
+	craftdiff = 0
+
 /* 1 diff */
 /datum/crafting_recipe/roguetown/ceramics/clay/claybottle
 	name = "clay bottle"

@@ -237,7 +237,25 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/pronouns = null // LETHALSTONE ADDITION: this is cheap so i'm doing it. preferences in human will set this appropriately
 	var/obscured_flags = NONE
 
-/proc/do_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/**
+ * Timed action involving one mob user. Target is optional.
+ *
+ * mob/user - The mob performing the action.
+ *
+ * delay = the time in deciseconds. Use time defines (SECONDS, MINUTES) for readability.
+ * 
+ * needhand - check for an empty hand
+ * 
+ * target - the target of the action
+ *
+ * progress - whether to display a progress bar
+ * 
+ * datum/callback/extra_checks - additional check callbacks to perform during do_after
+ * 
+ * same_direction - whether the mob performing the action may switch directions or not
+*/
+
+/proc/do_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, same_direction = FALSE)
 	if(!user)
 		return 0
 
@@ -250,6 +268,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		Tloc = target.loc
 
 	var/atom/Uloc = user.loc
+	var/original_dir = user.dir
 
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
@@ -279,7 +298,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			Uloc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()) || (same_direction && user.dir != original_dir))
 			. = 0
 			break
 
@@ -312,7 +331,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if (progress)
 		qdel(progbar)
 
-/proc/move_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null) //do_after copypasta but you can move
+/// do_after copypasta but you can move
+/proc/move_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, same_direction = FALSE)
 	if(!user)
 		return 0
 
@@ -325,6 +345,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		Tloc = target.loc
 
 	var/atom/Uloc = user.loc
+	var/original_dir = user.dir
 
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
@@ -357,7 +378,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		Uloc = user.loc
 		Tloc = target.loc
 
-		if(QDELETED(user) || user.stat || !Tloc?.Adjacent(Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || !Tloc?.Adjacent(Uloc) || (extra_checks && !extra_checks.Invoke()) || (same_direction && user.dir != original_dir))
 			. = 0
 			break
 

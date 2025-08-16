@@ -21,6 +21,7 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 		/obj/item/rope/chain = 1,
+		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE) //To make a clean getaway from the constables
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // RUN BOY RUN

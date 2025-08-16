@@ -93,6 +93,12 @@
  * Helper atom that copies an appearance and exists for a period
 */
 /atom/movable/flick_visual
+	var/atom/movable/container = null
+
+/atom/movable/flick_visual/Destroy()
+	. = ..()
+	if(container)
+		container.vis_contents -= src
 
 /// Takes the passed in MA/icon_state, mirrors it onto ourselves, and displays that in world for duration seconds
 /// Returns the displayed object, you can animate it and all, but you don't own it, we'll delete it after the duration
@@ -116,6 +122,7 @@
 	// I hate /area
 	var/atom/movable/lies_to_children = src
 	lies_to_children.vis_contents += visual
+	visual.container = lies_to_children
 	QDEL_IN_CLIENT_TIME(visual, duration)
 	return visual
 

@@ -106,7 +106,11 @@
 	name = "Daybreak"
 	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
 	icon_state = "psywhip"
-	is_silver = TRUE
+	
+/obj/item/rogueweapon/whip/antique/psywhip/ComponentInitialize()
+	. = ..()					// Pre-blessed, +5 force, +100 INT, +2 Def, Silver.
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+
 
 /obj/item/rogueweapon/whip/psywhip_lesser
 	name = "psydonian whip"
@@ -115,4 +119,4 @@
 
 /obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
 	. = ..()					//+3 force, +50 int, +1 def, make silver
-	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)

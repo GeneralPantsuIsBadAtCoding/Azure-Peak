@@ -95,6 +95,12 @@
 
 /obj/structure/roguemachine/atm/attackby(obj/item/P, mob/user, params)
 	if(ishuman(user))
+		if(istype(P, /obj/item/roguecoin/aalloy))	
+			return	
+		
+		if(istype(P, /obj/item/roguecoin/inqcoin))
+			return		
+
 		if(istype(P, /obj/item/roguecoin))
 			var/mob/living/carbon/human/H = user
 			if(H in SStreasury.bank_accounts)
@@ -109,6 +115,7 @@
 				qdel(P)
 				playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 				return
+
 		if(istype(P, /obj/item/coveter))
 			var/mob/living/carbon/human/H = user
 			if(!HAS_TRAIT(H, TRAIT_COMMIE))
@@ -198,7 +205,7 @@
 
 /obj/item/coveter
 	name = "Covetous Crown"
-	desc = "A Crown which craves the brow of meisters. The Covetous Crab"
+	desc = "A Crown which craves the brow of miesters and the vault's jawbank; it could be also be mounted upon a restrained person's head to drain their miester account in a pinch."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "crown_object"
 	force = 10
