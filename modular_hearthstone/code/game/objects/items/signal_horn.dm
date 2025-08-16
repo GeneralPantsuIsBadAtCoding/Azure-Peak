@@ -17,10 +17,10 @@
 	. = ..()
 	var/area/AR = get_area(user)
 	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
-	if(!TR)
+	if(!TR || !TR.latent_ambush || TR.fixed_ambush)
 		to_chat(user, span_warning("There's no point in sounding the horn here."))
 		return
-	if(TR && (((world.time - TR.last_induced_ambush_time + 5 MINUTES) < 5 MINUTES)))
+	if(TR && TR.last_induced_ambush_time && (world.time < TR.last_induced_ambush_time + 5 MINUTES))
 		to_chat(user, span_warning("Foes have been cleared out here recently, perhaps you should wait a moment before sounding the horn again."))
 		return
 	user.visible_message(span_userdanger("[user] is about to sound [src]!"))

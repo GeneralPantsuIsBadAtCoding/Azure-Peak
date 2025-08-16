@@ -1,20 +1,21 @@
-/obj/structure/threatboard
-	name = "Threat Board"
+/obj/structure/scoutreportboard
+	name = "Scout Report Board"
 	desc = "A board where wardens posts scout reports on threats in the area. This one looks strangely out of place."
-	icon_state = "nboard00"
+	icon = 'icons/roguetown/structure/scoutreportboard.dmi'
+	icon_state = "noticeboard" // Notice Board straight from TG. Yippee.
 	density = FALSE
 	anchored = TRUE
 	max_integrity = 9999 // Fuck gamers
 	var/notices = 0
 
-/obj/structure/threatboard/attackby(obj/item/I, mob/living/user)
+/obj/structure/scoutreportboard/attackby(obj/item/I, mob/living/user)
 	if(!user.get_active_held_item())
 		interact(user)
 	return ..()
 
-/obj/structure/threatboard/interact(mob/user)
+/obj/structure/scoutreportboard/interact(mob/user)
 	user.set_machine(src)
-	var/datum/browser/menu = new(user, "Scout Report", "Scout Report", 600, 800, src)
+	var/datum/browser/menu = new(user, "Scout Report", "Scout Report", 1000, 600, src)
 	var/content = "<html>"
 	var/list/regional_threats = SSregionthreat.get_threat_regions_for_display()
 	content += "<hr>"
@@ -34,13 +35,13 @@
 
 // I am converting this to TGUI later - Coder who did not convert this to TGUI later - WeNeedMorePhoron
 
-// /obj/structure/threatboard/ui_interact(mob/user, datum/tgui/ui)
+// /obj/structure/scoutreportboard/ui_interact(mob/user, datum/tgui/ui)
 // 	ui = SStgui.try_update_ui(user, src, ui)
 // 	if(!ui)
 // 		ui = new(user, src, "ThreatBoard", "ThreatBoard")
 // 		ui.open()
 
-// /obj/structure/threatboard/ui_data(mob/user)
+// /obj/structure/scoutreportboard/ui_data(mob/user)
 // 	var/list/data = ..()
 // 	data["threat_regions"] = SSregionthreat.get_threat_regions_for_display()
 // 	return data
