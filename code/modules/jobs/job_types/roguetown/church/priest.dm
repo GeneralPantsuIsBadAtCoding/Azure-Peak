@@ -159,6 +159,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		//devotion.granted_spells.Cut()
 		patron = god
 		patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, devotion_limit = CLERIC_REQ_4)
+		if(!mind.has_spell(/obj/effect/proc_holder/spell/invoked/revive))
+			mind.AddSpell(/obj/effect/proc_holder/spell/invoked/revive)
 	else
 		// Define whitelist of swapable spells (T0-T2 only)
 		var/list/whitelist = list(
@@ -221,12 +223,13 @@ GLOBAL_LIST_EMPTY(heretical_players)
 				var/obj/effect/proc_holder/spell/new_spell = new spell_type
 				mind.AddSpell(new_spell)
 
-	var/list/base_spells = list(
-		/obj/effect/proc_holder/spell/invoked/revive
-	)
-	for(var/type in base_spells)
-		if(!mind.has_spell(type))
-			mind.AddSpell(new type)
+		var/list/base_spells = list(
+			/obj/effect/proc_holder/spell/invoked/revive,
+			/obj/effect/proc_holder/spell/invoked/immolation
+		)
+		for(var/type in base_spells)
+			if(!mind.has_spell(type))
+				mind.AddSpell(new type)
 
 	// Special messages
 	if(string_choice == "Astrata")
