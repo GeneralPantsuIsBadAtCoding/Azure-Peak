@@ -1352,6 +1352,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors)
+"YA" = (
+/obj/structure/threatboard,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "YT" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -2904,7 +2908,7 @@ yK
 rT
 rT
 rT
-rT
+YA
 rT
 rT
 rT
