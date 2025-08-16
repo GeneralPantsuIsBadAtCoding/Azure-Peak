@@ -7,7 +7,7 @@
 
 #define THREAT_REGION_AZURE_BASIN "Azure Basin"
 #define THREAT_REGION_NORTHERN_GROVE "Northern Grove"
-#define THREAT_REGION_WESTERN_GROVE "Western Grove" // Grove west of the road
+#define THREAT_REGION_OUTER_GROVE "Outer Grove" // Grove west of the road
 #define THREAT_REGION_SOUTH_AZUREAN_COAST "South Azurean Coast"
 #define THREAT_REGION_NORTH_AZUREAN_COAST "North Azurean Coast"
 #define THREAT_REGION_MOUNT_DECAP "Mount Decapitation"
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(regionthreat)
 		),
 		// All regions after are meant to stay somewhat dangerous no matter what
 		new /datum/threat_region(
-			_region_name = THREAT_REGION_WESTERN_GROVE,
+			_region_name = THREAT_REGION_OUTER_GROVE,
 			_latent_ambush = DANGER_MODERATE_LIMIT,
 			_min_ambush = DANGER_MODERATE_FLOOR,
 			_max_ambush = DANGER_DIRE_LIMIT,
