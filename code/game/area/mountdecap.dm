@@ -19,12 +19,14 @@
 	ambush_times = list("night","dawn","dusk","day")
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	deathsight_message = "a twisted tangle of soaring peaks"
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 /area/rogue/indoors/shelter/mountains/decap
 	icon_state = "decap"
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 
 /area/rogue/outdoors/mountains/decap/stepbelow
@@ -46,6 +48,7 @@
 	first_time_text = "TARICHEA, VALLEY OF LOSS"
 	ambush_times = list("night","dawn","dusk","day")
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 /area/rogue/outdoors/mountains/decap/gunduzirak
 	name = "Gundu Zirak"
@@ -61,6 +64,7 @@
 	ambush_times = list("night","dawn","dusk","day")
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	ceiling_protected = TRUE
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 /area/rogue/under/cave/dragonden
 	name = "dragonnest"
@@ -72,6 +76,7 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 /area/rogue/under/cave/goblinfort
 	name = "goblinfort"
@@ -83,6 +88,7 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
+	threat_region = THREAT_REGION_MOUNT_DECAP
 
 /area/rogue/under/cave/scarymaze
 	name = "hauntedlabyrinth"
@@ -94,3 +100,4 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
+	threat_region = THREAT_REGION_MOUNT_DECAP

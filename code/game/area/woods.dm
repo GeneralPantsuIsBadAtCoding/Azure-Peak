@@ -21,6 +21,7 @@
 	first_time_text = "THE AZURE GROVE"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
+	threat_region = THREAT_REGION_OUTER_GROVE
 
 /area/rogue/indoors/shelter/woods
 	name = "Azure Grove"
@@ -28,6 +29,8 @@
 	droning_sound = 'sound/music/area/forest.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/forestnight.ogg'
+	threat_region = THREAT_REGION_OUTER_GROVE
+
 
 /area/rogue/outdoors/woods/north
 	name = "Azure Grove - North"
