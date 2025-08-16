@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(ambush_chance_pct, 20) // Please don't raise this over 100 admins :')
-GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 10 SECONDS) // Cooldown for each individual mob being considered for an ambush
+GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each individual mob being considered for an ambush
 // Instead of setting it on area and hoping no one forgets it on area we're just doing this
 GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 	/turf/open/floor/rogue/dirt,
