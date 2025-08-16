@@ -21,6 +21,7 @@
 /datum/sex_action/rimming/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] rims [target]'s butt..."))
 	user.make_sucking_noise()
+	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(target, 2, 0, TRUE)
 	target.sexcon.handle_passive_ejaculation()
