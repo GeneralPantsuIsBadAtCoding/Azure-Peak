@@ -19,6 +19,7 @@
 	H.skin_tone = random_skin_tone()
 	H.eye_color = random_eye_color()
 	H.dna.blood_type = random_blood_type()
+	H.voice_type = random_voice_type(H.gender)
 
 	H.update_body()
 	H.update_hair()
