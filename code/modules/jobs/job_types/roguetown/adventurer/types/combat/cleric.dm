@@ -352,6 +352,8 @@
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/divine/undivided)
+			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 		if(/datum/patron/divine/astrata)
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
