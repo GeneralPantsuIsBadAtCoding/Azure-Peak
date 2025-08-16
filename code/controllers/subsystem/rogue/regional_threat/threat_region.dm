@@ -36,7 +36,7 @@
 
 // Special proc because danger level is dependent on the number of latent ambush
 /datum/threat_region/proc/get_danger_level()
-	if(latent_ambush <= DANGER_SAFE_FLOOR)
+	if(latent_ambush <= DANGER_SAFE_LIMIT)
 		return DANGER_LEVEL_SAFE
 	else if(latent_ambush <= DANGER_LOW_LIMIT)
 		return DANGER_LEVEL_LOW
