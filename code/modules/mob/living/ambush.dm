@@ -25,7 +25,10 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 	if(TR)
 		danger_level = TR.get_danger_level()
 	if(danger_level == DANGER_LEVEL_SAFE)
-		return
+		if(TR.latent_ambush == 0)
+			return
+		if(TR.latent_ambush <= DANGER_SAFE_LIMIT && !always) // Signal horn can dip below 10
+			return
 	if(TR && ((world.time - TR.last_natural_ambush_time + 1 MINUTES) < 1 MINUTES))
 		return
 	var/true_ambush_chance = GLOB.ambush_chance_pct
@@ -116,6 +119,8 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 
 		if(ispath(spawnedtype, /mob/living))
 			switch(danger_level)
+				if(DANGER_LEVEL_SAFE) // Induced Ambush
+					max_spawns = 1
 				if(DANGER_LEVEL_LOW)
 					max_spawns = 1
 				if(DANGER_LEVEL_MODERATE)
@@ -133,6 +138,9 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 					mobs_to_spawn += type_path
 				if(mobs_to_spawn.len > 1)
 					switch(danger_level)
+						if(DANGER_LEVEL_SAFE)
+							var/ri = rand(1, mobs_to_spawn.len)
+							mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
 						if(DANGER_LEVEL_LOW)
 							var/ri = rand(1, mobs_to_spawn.len)
 							mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
