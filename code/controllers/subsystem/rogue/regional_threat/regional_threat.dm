@@ -1,9 +1,9 @@
 // Danger levels. Each danger level is defined as an ambush that can happen. Every time this fire, this number iterates.
-#define DANGER_LEVEL_SAFE 0
-#define DANGER_LEVEL_LOW 1
-#define DANGER_LEVEL_MODERATE 2
-#define DANGER_LEVEL_DANGEROUS 3
-#define DANGER_LEVEL_DIRE 4
+#define DANGER_LEVEL_SAFE "Safe"
+#define DANGER_LEVEL_LOW "Low"
+#define DANGER_LEVEL_MODERATE "Moderate"
+#define DANGER_LEVEL_DANGEROUS "Dangerous"
+#define DANGER_LEVEL_DIRE "Dire"
 
 #define THREAT_REGION_AZURE_BASIN "Azure Basin"
 #define THREAT_REGION_NORTHERN_GROVE "Northern Grove"
@@ -89,27 +89,6 @@ SUBSYSTEM_DEF(regionthreat)
 		)
 	)
 
-/datum/controller/subsystem/regionthreat/proc/get_region(region_name)
-	for(var/T in threat_regions)
-		var/datum/threat_region/TR = T
-		if(TR.region_name == region_name)
-			return TR
-	return null
-
-/datum/controller/subsystem/regionthreat/proc/get_effective_threat_level(level)
-	if(DANGER_SAFE_FLOOR <= level && level <= DANGER_LOW_LIMIT)
-		return DANGER_LEVEL_SAFE
-	else if(DANGER_LOW_FLOOR <= level && level <= DANGER_MODERATE_LIMIT)
-		return DANGER_LEVEL_LOW
-	else if(DANGER_MODERATE_FLOOR <= level && level <= DANGER_DANGEROUS_LIMIT)
-		return DANGER_LEVEL_MODERATE
-	else if(DANGER_DANGEROUS_FLOOR <= level && level <= DANGER_DIRE_LIMIT)
-		return DANGER_LEVEL_DANGEROUS
-	else if(DANGER_DIRE_FLOOR <= level)
-		return DANGER_LEVEL_DIRE
-	else
-		return DANGER_LEVEL_SAFE
-
 /datum/controller/subsystem/regionthreat/fire(resumed)
 	var/player_count = GLOB.player_list.len
 	var/ishighpop = player_count >= LOWPOP_THRESHOLD
@@ -119,3 +98,26 @@ SUBSYSTEM_DEF(regionthreat)
 			TR.increase_latent_ambush(TR.highpop_tick)
 		else
 			TR.increase_latent_ambush(TR.lowpop_tick)
+
+/datum/controller/subsystem/regionthreat/proc/get_region(region_name)
+	for(var/T in threat_regions)
+		var/datum/threat_region/TR = T
+		if(TR.region_name == region_name)
+			return TR
+	return null
+
+/datum/threat_region_display
+	var/region_name
+	var/danger_level
+	var/danger_color
+
+/datum/controller/subsystem/regionthreat/proc/get_threat_regions_for_display()
+	var/list/threat_region_displays = list()
+	for(var/T in threat_regions)
+		var/datum/threat_region/TR = T
+		var/datum/threat_region_display/TRS = new /datum/threat_region_display
+		TRS.region_name = TR.region_name
+		TRS.danger_level = TR.get_danger_level()
+		TRS.danger_color = TR.get_danger_color()
+		threat_region_displays += TRS
+	return threat_region_displays
