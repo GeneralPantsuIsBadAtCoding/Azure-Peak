@@ -139,6 +139,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/lich_announce)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
 	H.ambushable = FALSE
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "LICH"), 5 SECONDS)

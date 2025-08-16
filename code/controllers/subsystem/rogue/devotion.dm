@@ -105,21 +105,21 @@
 	return TRUE
 
 /datum/devotion/proc/try_add_spells(silent = FALSE)
-	if(length(patron.miracles))
+	if(!holder || !holder.mind)
+		return
+
+	if(patron && length(patron.miracles))
 		for(var/spell_type in patron.miracles)
-			if(patron.miracles[spell_type] <= level)
+			var/required_tier = patron.miracles[spell_type]			
+			if(required_tier <= level)
 				if(holder.mind.has_spell(spell_type))
 					continue
-				else
-					var/newspell = new spell_type
-					if(!silent)
-						to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
-					holder.mind.AddSpell(newspell)
-					LAZYADD(granted_spells, newspell)
-	if(length(patron.traits_tier))
-		for(var/trait in patron.traits_tier)
-			if(patron.traits_tier[trait] <= level)
-				ADD_TRAIT(holder, trait, TRAIT_MIRACLE)
+
+				var/obj/effect/proc_holder/spell/newspell = new spell_type
+				if(!silent)
+					to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
+				holder.mind.AddSpell(newspell)
+				LAZYADD(granted_spells, newspell)
 
 
 //The main proc that distributes all the needed devotion tweaks to the given class.
@@ -231,23 +231,3 @@
 		add_client_colour(/datum/client_colour/monochrome)
 	else
 		remove_client_colour(/datum/client_colour/monochrome)
-
-/datum/devotion/proc/excommunicate(mob/living/carbon/human/H)
-    if (!devotion)
-        return
-
-    prayer_effectiveness = 0
-    devotion = 0
-    passive_devotion_gain = 0
-    passive_progression_gain = 0
-    STOP_PROCESSING(SSobj, src)
-    to_chat(H, span_boldnotice("I have been excommunicated. I am now unable to gain devotion."))
-
-/datum/devotion/proc/recommunicate(mob/living/carbon/human/H)
-    prayer_effectiveness = 2
-    if (!passive_devotion_gain && !passive_progression_gain)
-        passive_devotion_gain = CLERIC_REGEN_DEVOTEE
-        passive_progression_gain = CLERIC_REGEN_DEVOTEE
-        START_PROCESSING(SSobj, src)
-
-    to_chat(H, span_boldnotice("I have been welcomed back to the Church. I am now able to gain devotion again."))
