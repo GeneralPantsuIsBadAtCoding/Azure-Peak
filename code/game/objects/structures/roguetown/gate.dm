@@ -185,3 +185,12 @@ GLOBAL_LIST_EMPTY(biggates)
 		playsound(src, 'sound/foley/winch.ogg', 100, extrarange = 3)
 		if(do_after(user, used_time, target = user))
 			attached_gate.toggle()
+
+/obj/structure/gate/psy_vault
+	name = "\improper HIS vault"
+	redstone_id = "swamp_psy_dungeon_hour"
+	max_integrity = "9999"
+
+/obj/structure/gate/psy_vault/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(open)), 1 HOURS)

@@ -37,3 +37,6 @@
 /obj/item/organ/snout/akula
 	name = "axian snout"
 	accessory_type = /datum/sprite_accessory/snout/sergal
+
+/obj/item/organ/snout/lizard/psy_vault_guard
+	accessory_type = /datum/sprite_accessory/snout/round
