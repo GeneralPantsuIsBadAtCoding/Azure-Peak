@@ -92,8 +92,7 @@
 					H.Dizzy(5)
 					H.emote("drown")
 				if(/datum/patron/divine/dendor)
-					H.Immobilize(10)
-					H.OffBalance(10)
+					H.Slowdown(2) // Shared with Ravox cuz immobilize + offbal is 2 strong
 					H.visible_message(span_warning("Roots coil around [H]'s legs!"), span_warning("Roots tangle around my legs!"))
 				if(/datum/patron/divine/necra)
 					if(H.mob_biotypes & MOB_UNDEAD)
