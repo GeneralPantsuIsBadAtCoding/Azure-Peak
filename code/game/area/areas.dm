@@ -109,6 +109,7 @@
 
 	var/converted_type
 
+	var/threat_region = "" // Key used to look up threat region this area belongs to 
 	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
 	// Try to be deliberately obtuse but not too obtuse.
 

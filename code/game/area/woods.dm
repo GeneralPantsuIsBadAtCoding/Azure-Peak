@@ -38,6 +38,7 @@
 		/mob/living/carbon/human/species/skeleton/npc/easy = 20,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 30,
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
+	threat_region = THREAT_REGION_NORTHERN_GROVE
 
 /area/rogue/outdoors/woods/northeast
 	name = "Azure Grove - Northeast"
@@ -49,6 +50,7 @@
 			/mob/living/carbon/human/species/goblin/npc/ambush = 20,
 			/mob/living/carbon/human/species/goblin/npc/sea = 10,
 			/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
+	threat_region = THREAT_REGION_NORTHERN_GROVE
 
 /area/rogue/outdoors/woods/southeast
 	name = "Azure Grove - Southeast"

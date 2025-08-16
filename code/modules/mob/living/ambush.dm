@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(ambush_chance_pct, 20) // Please don't raise this over 100 admins :')
-GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 5 MINUTES) // Cooldown for each individual mob being considered for an ambush
+GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 10 SECONDS) // Cooldown for each individual mob being considered for an ambush
 // Instead of setting it on area and hoping no one forgets it on area we're just doing this
 GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 	/turf/open/floor/rogue/dirt,
@@ -19,7 +19,25 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 	return ambushable
 
 /mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE)
-	if(!always && prob(100 - GLOB.ambush_chance_pct))
+	var/area/AR = get_area(src)
+	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
+	var/danger_level = DANGER_LEVEL_MODERATE // Fallback if there's no region
+	if(TR)
+		danger_level = TR.get_danger_level()
+	if(danger_level == DANGER_LEVEL_SAFE)
+		return
+	if(TR && ((world.time - TR.last_natural_ambush_time) < 1 MINUTES))
+		return
+	var/true_ambush_chance = GLOB.ambush_chance_pct
+	if(TR)
+		if(danger_level == DANGER_LEVEL_LOW)
+			true_ambush_chance *= 0.5
+		else if(danger_level == DANGER_LEVEL_DANGEROUS)
+			true_ambush_chance *= 1.5
+		else if(danger_level == DANGER_LEVEL_DIRE)
+			true_ambush_chance *= 2
+
+	if(!always && prob(100 - true_ambush_chance))
 		return
 	if(!always)
 		if(HAS_TRAIT(src, TRAIT_AZURENATIVE))
@@ -32,7 +50,6 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 	mob_timers["ambush_check"] = world.time
 	if(!ambushable())
 		return
-	var/area/AR = get_area(src)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -74,14 +91,39 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 		mob_timers["ambushlast"] = world.time
 		for(var/mob/living/V in victimsa)
 			V.mob_timers["ambushlast"] = world.time
+		if(TR)
+			TR.reduce_latent_ambush(1) // Remove one ambush from the ambient pool
+			TR.last_natural_ambush_time = world.time
 		var/list/mobs_to_spawn = list()
 		var/mobs_to_spawn_single = FALSE
 		var/max_spawns = 3
 		var/mustype = 1
 		var/spawnedtype = pickweight(AR.ambush_mobs)
 
+		// This is the part where we scale ambush difficulty based on threat. Due to how we have a mix of
+		// Ambush Config and Single Mob Ambush, I use a weird scaling system:
+		// Single Mob
+		// Low - 1 Mob only 
+		// Moderate - 1 to 2 (This is REALLY moderate)
+		// Dangerous - 2 to 3 
+		// Dire - 3 to 4 
+		// Ambush Difficulty Scaling:
+		// Low = -1 Mob
+		// Dangerous = +1 Mob
+		// Dire = + 2 Mobs
+		// Previous ambush system is 2 mobs, unless there's 3 victims, in which 3 mobs
+		// And Ambush Config number is fixed
+
 		if(ispath(spawnedtype, /mob/living))
-			max_spawns = CLAMP(victims*1, 2, 3)
+			switch(danger_level)
+				if(DANGER_LEVEL_LOW)
+					max_spawns = 1
+				if(DANGER_LEVEL_MODERATE)
+					max_spawns = rand(1, 2) // This is lower than before, to make moderate easier to deal with
+				if(DANGER_LEVEL_DANGEROUS)
+					max_spawns = rand(2, 3)
+				if(DANGER_LEVEL_DIRE)
+					max_spawns = rand(3, 4)
 			mobs_to_spawn_single = TRUE
 		else if(istype(spawnedtype, /datum/ambush_config))
 			var/datum/ambush_config/A = spawnedtype
@@ -89,6 +131,16 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 				var/amt = A.mob_types[type_path]
 				for(var/i in 1 to amt)
 					mobs_to_spawn += type_path
+				if(mobs_to_spawn.len > 1)
+					switch(danger_level)
+						if(DANGER_LEVEL_LOW)
+							var/ri = rand(1, mobs_to_spawn.len)
+							mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
+						if(DANGER_LEVEL_DANGEROUS)
+							mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 1
+						if(DANGER_LEVEL_DIRE)
+							mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 2
+							mobs_to_spawn += pick(mobs_to_spawn)
 				max_spawns = mobs_to_spawn.len
 
 		for(var/i in 1 to max_spawns)
