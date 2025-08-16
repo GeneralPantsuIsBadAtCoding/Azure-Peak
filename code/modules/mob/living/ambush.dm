@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 		danger_level = TR.get_danger_level()
 	if(danger_level == DANGER_LEVEL_SAFE)
 		return
-	if(TR && ((world.time - TR.last_natural_ambush_time) < 1 MINUTES))
+	if(TR && ((world.time - TR.last_natural_ambush_time + 1 MINUTES) < 1 MINUTES))
 		return
 	var/true_ambush_chance = GLOB.ambush_chance_pct
 	if(TR)
