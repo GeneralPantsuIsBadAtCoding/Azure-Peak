@@ -1,6 +1,6 @@
 /obj/item/signal_horn
 	name = "signal horn"
-	desc = "Used to sound the alarm."
+	desc = "A horn carried by the wardens. Blowing it attracts the attention of various creechurs and rapscallions, enabling the wardens to clear them out."
 	icon = 'modular_hearthstone/icons/obj/items/signalhorn.dmi'
 	icon_state = "signalhorn"
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK
@@ -8,14 +8,30 @@
 	grid_height = 32
 	grid_width = 64
 
+/obj/item/signal_horn/examine()
+	. = ..()
+	. += span_notice("Using the horn will make you stand still and induce several ambushes to happen at once, enabling you to clear out an area. It cannot be used in rapid succession.")
+	. += span_notice("Using it will leave you exhausted for a moment. Bring friends!")
+
 /obj/item/signal_horn/attack_self(mob/living/user)
 	. = ..()
-	user.visible_message(span_warning("[user] is about to sound the [src]!"))
-	if(do_after(user, 15))
+	var/area/AR = get_area(user)
+	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
+	if(!TR)
+		to_chat(user, span_warning("There's no point in sounding the horn here."))
+		return
+	if(TR && (((world.time - TR.last_induced_ambush_time + 5 MINUTES) < 5 MINUTES)))
+		to_chat(user, span_warning("Foes have been cleared out here recently, perhaps you should wait a moment before sounding the horn again."))
+		return
+	user.visible_message(span_userdanger("[user] is about to sound [src]!"))
+	user.apply_status_effect(/datum/status_effect/debuff/clickcd, 5 SECONDS) // We don't want them to spam the message.
+	if(do_after(user, 30 SECONDS)) // Enough time for any antag to kick or interrupt third party, me think
+		TR.last_induced_ambush_time = world.time
+		user.Immobilize(30) // A very crude solution to kill any solo gamer
 		sound_horn(user)
 
 /obj/item/signal_horn/proc/sound_horn(mob/living/user)
-	user.visible_message(span_warning("[user] blows the horn!"))
+	user.visible_message(span_userdanger("[user] blows the horn!"))
 	switch(user.job)
 		if("Warden")
 			playsound(src, 'modular_hearthstone/sound/items/bogguardhorn.ogg', 100, TRUE)
@@ -26,6 +42,7 @@
 		else
 			playsound(src, 'modular_hearthstone/sound/items/signalhorn.ogg', 100, TRUE)
 
-	for(var/i = 0, i < 5, i++)
+	var/random_ambushes = 3 + rand(0,2) // 3 - 5 ambushes
+	for(var/i = 0, i < random_ambushes, i++)
 		user.consider_ambush(TRUE, TRUE)
  
