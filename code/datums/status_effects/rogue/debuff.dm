@@ -444,7 +444,7 @@
 	id = "Excommunicated!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/excomm
 	effectedstats = list("fortune" = -2, "intelligence" = -2, "speed" = -1, "endurance" = -1, "constitution" = -1)
-	duration = 999 MINUTES
+	duration = -1
 
 /atom/movable/screen/alert/status_effect/debuff/excomm
 	name = "Excommunicated!"
@@ -456,7 +456,57 @@
 	id = "Apostasy!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/apostasy
 	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "endurance" = -2, "constitution" = -2)
-	duration = 999 MINUTES
+	duration = -1
+	var/resistant = FALSE
+	var/original_devotion = 0
+	var/original_prayer_effectiveness = 0
+	var/original_passive_devotion_gain = 0
+	var/original_passive_progression_gain = 0
+
+/datum/status_effect/debuff/apostasy/on_creation(mob/living/new_owner, resistant = FALSE)
+	src.resistant = resistant
+	return ..()
+
+/datum/status_effect/debuff/apostasy/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return FALSE
+	var/mob/living/carbon/human/H = owner
+	if(!H.devotion)
+		return FALSE
+
+	var/datum/devotion/D = H.devotion
+	original_devotion = D.devotion
+	original_prayer_effectiveness = D.prayer_effectiveness
+	original_passive_devotion_gain = D.passive_devotion_gain
+	original_passive_progression_gain = D.passive_progression_gain
+
+	if(resistant)
+		D.devotion = original_devotion * 0.5
+		D.prayer_effectiveness = original_prayer_effectiveness * 0.5
+		D.passive_devotion_gain = original_passive_devotion_gain * 0.5
+		D.passive_progression_gain = original_passive_progression_gain * 0.5
+	else
+		D.devotion = 0
+		D.prayer_effectiveness = 0
+		D.passive_devotion_gain = 0
+		D.passive_progression_gain = 0
+
+	to_chat(H, span_boldnotice("I have been excommunicated. I am now unable to gain devotion."))
+	return ..()
+
+/datum/status_effect/debuff/apostasy/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		if(H.devotion)
+			var/datum/devotion/D = H.devotion
+			D.devotion = original_devotion
+			D.prayer_effectiveness = original_prayer_effectiveness
+			D.passive_devotion_gain = original_passive_devotion_gain
+			D.passive_progression_gain = original_passive_progression_gain
+
+		to_chat(H, span_boldnotice("I have been welcomed back to the Church. I am now able to gain devotion again."))
 
 /atom/movable/screen/alert/status_effect/debuff/apostasy
 	name = "Apostasy!"
