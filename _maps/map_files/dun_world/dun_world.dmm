@@ -640,6 +640,7 @@
 /turf/open/water/pond,
 /area/rogue/outdoors/woods/north)
 "akS" = (
+/obj/structure/flora/roguegrass,
 /obj/structure/flora/roguegrass/herb/rosa,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/exposed/town/keep)
@@ -11003,6 +11004,13 @@
 /obj/item/bedsheet/rogue/fabric,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/garrison)
+"dtb" = (
+/obj/item/natural/stone{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "dte" = (
 /obj/structure/closet/crate/drawer,
 /turf/open/floor/carpet/purple,
@@ -14686,6 +14694,14 @@
 "exD" = (
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
+"exH" = (
+/obj/structure/closet/crate/chest/crate,
+/obj/item/rogueweapon/mace/wsword,
+/obj/item/rogueweapon/mace/wsword,
+/obj/item/clothing/ring/duelist,
+/obj/item/clothing/ring/duelist,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "exK" = (
 /obj/structure/fluff/railing/border/north,
 /obj/structure/flora/roguegrass,
@@ -15012,6 +15028,7 @@
 	dir = 4
 	},
 /obj/machinery/light/rogue/wallfire/candle,
+/obj/structure/fermentation_keg,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/manor)
 "eCj" = (
@@ -59443,6 +59460,13 @@
 /obj/item/bedsheet/rogue/cloth,
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/underdark/south)
+"say" = (
+/obj/item/natural/stone{
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "saK" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 8;
@@ -288420,7 +288444,7 @@ wzn
 nps
 kus
 pSa
-pSa
+qzt
 vhL
 slj
 jTT
@@ -296997,7 +297021,7 @@ hGG
 lqV
 rFm
 vAw
-vAw
+dtb
 vAw
 vAw
 vAw
@@ -300164,7 +300188,7 @@ vAw
 vAw
 vAw
 vAw
-vAw
+say
 vAw
 kAY
 uhI
@@ -301515,7 +301539,7 @@ eMT
 hGG
 hGG
 uNy
-vAw
+exH
 vAw
 vAw
 vAw
@@ -302379,7 +302403,7 @@ daQ
 nTh
 rMf
 rMf
-uhI
+akS
 uhI
 uhI
 weQ
