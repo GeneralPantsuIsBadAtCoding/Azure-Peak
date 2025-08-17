@@ -2190,7 +2190,7 @@
 /obj/item/candle/candlestick/gold/lit{
 	pixel_y = 23
 	},
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "aIC" = (
 /obj/effect/decal/cobbleedge{
@@ -4718,7 +4718,7 @@
 /obj/structure/stairs{
 	dir = 1
 	},
-/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "bwW" = (
 /obj/effect/decal/cobbleedge{
@@ -9511,6 +9511,12 @@
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"cVh" = (
+/obj/effect/landmark/events/haunts,
+/turf/open/floor/rogue/cobblerock{
+	smooth = 0
+	},
+/area/rogue/outdoors/exposed/town/keep)
 "cVl" = (
 /obj/effect/spawner/trap,
 /obj/structure/mineral_door/wood{
@@ -11191,6 +11197,10 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/inq)
+"dvT" = (
+/obj/effect/landmark/events/haunts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "dvV" = (
 /obj/structure/roguemachine/mail,
 /turf/open/floor/rogue/cobblerock,
@@ -14997,7 +15007,7 @@
 	},
 /obj/item/book/rogue/law,
 /obj/item/natural/feather,
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "eBJ" = (
 /obj/structure/fluff/railing/border/north,
@@ -22054,6 +22064,10 @@
 "gKR" = (
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/dwarfin)
+"gKS" = (
+/obj/effect/landmark/events/haunts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/town/manor)
 "gKT" = (
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/rtfield)
@@ -26260,7 +26274,7 @@
 	pixel_y = 32
 	},
 /obj/effect/landmark/start/marshal,
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "hYg" = (
 /obj/structure/mineral_door/wood/donjon{
@@ -27432,6 +27446,13 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/misc,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach/forest/south)
+"iqR" = (
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 1
+	},
+/obj/effect/landmark/start/marshal,
+/turf/open/floor/carpet/red,
+/area/rogue/indoors/town/garrison)
 "iqS" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/ruinedwood,
@@ -37420,12 +37441,6 @@
 "lpW" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/mountains)
-"lpX" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 1
-	},
-/turf/open/floor/carpet/red,
-/area/rogue/indoors/town/garrison)
 "lpY" = (
 /obj/structure/fluff/wallclock{
 	pixel_y = -32
@@ -39099,7 +39114,7 @@
 "lOE" = (
 /obj/structure/fluff/railing/corner,
 /obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "lOG" = (
 /obj/machinery/light/rogue/firebowl/off,
@@ -42264,7 +42279,6 @@
 /area/rogue/indoors/inq)
 "mLg" = (
 /obj/structure/fluff/railing/corner/south_east,
-/obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
 "mLh" = (
@@ -50065,7 +50079,7 @@
 /area/rogue/indoors/town/manor)
 "pgQ" = (
 /obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "pgR" = (
 /obj/structure/fluff/railing/border/east,
@@ -51650,6 +51664,10 @@
 /obj/machinery/light/rogue/lanternpost,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
+"pGj" = (
+/obj/effect/landmark/events/haunts,
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/exposed/town/keep)
 "pGk" = (
 /obj/structure/flora/roguetree,
 /obj/structure/flora/roguegrass/water/reeds,
@@ -59157,6 +59175,12 @@
 /obj/structure/closet/crate/chest/wicker,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
+"rVw" = (
+/obj/structure/fluff/railing/corner{
+	dir = 5
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/town/roofs/keep)
 "rVx" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
@@ -59625,7 +59649,7 @@
 /obj/item/candle/candlestick/gold/lit{
 	pixel_y = 23
 	},
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "sdp" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
@@ -67775,7 +67799,7 @@
 "uxf" = (
 /obj/structure/fluff/railing/corner/north_east,
 /obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "uxg" = (
 /obj/structure/flora/roguegrass/water/reeds,
@@ -69036,6 +69060,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"uQA" = (
+/obj/machinery/light/rogue/wallfire{
+	pixel_x = -16;
+	pixel_y = 33
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/garrison)
 "uQC" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
@@ -70007,7 +70038,7 @@
 "vfB" = (
 /obj/effect/landmark/start/guard_captain,
 /obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/wood,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town/garrison)
 "vfD" = (
 /obj/structure/chair/stool/rogue,
@@ -79133,6 +79164,11 @@
 	dir = 4
 	},
 /area/rogue/under/cave/dungeon1/gethsmane)
+"xUy" = (
+/obj/structure/flora/roguegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/indoors/town/garrison)
 "xUA" = (
 /obj/structure/table/wood/poor,
 /turf/open/floor/rogue/cobble,
@@ -287103,7 +287139,7 @@ faG
 faG
 faG
 utk
-weQ
+pGj
 eMT
 hGG
 hGG
@@ -294781,6 +294817,7 @@ hGG
 rKQ
 hGG
 hGG
+cVh
 hGG
 hGG
 hGG
@@ -294802,8 +294839,7 @@ hGG
 hGG
 hGG
 hGG
-hGG
-hGG
+cVh
 hGG
 hGG
 hGG
@@ -299303,7 +299339,7 @@ fla
 lJC
 oLJ
 oLJ
-oLJ
+gKS
 oLJ
 oLJ
 fIJ
@@ -300226,7 +300262,7 @@ vAw
 kAY
 uhI
 lwu
-nBo
+evC
 aIz
 nDy
 iCo
@@ -301130,7 +301166,7 @@ vAw
 kAY
 rMf
 lwu
-nBo
+evC
 sdg
 nDy
 iCo
@@ -301592,7 +301628,7 @@ qnG
 lwu
 vAw
 vAw
-vAw
+dvT
 vAw
 mgK
 nTh
@@ -411417,13 +411453,13 @@ vmi
 vmi
 vmi
 vmi
-vmi
-vmi
-vmi
-vmi
-vmi
-vmi
-vmi
+xfy
+woI
+woI
+woI
+woI
+woI
+rVw
 vmi
 vmi
 vmi
@@ -411870,11 +411906,11 @@ vmi
 vmi
 vmi
 vgL
-lwu
-lgy
-lgy
-lgy
-lwu
+wkf
+vlU
+wkf
+eDB
+xUy
 vgL
 cte
 cte
@@ -412322,11 +412358,11 @@ vmi
 vmi
 vmi
 lwu
-uob
-reX
-bnd
-lpX
-tQb
+lwu
+lgy
+lgy
+lgy
+lwu
 lwu
 gJt
 cCw
@@ -412774,11 +412810,11 @@ vmi
 vmi
 vmi
 lwu
-nBo
-nBo
-nBo
-nBo
-nBo
+uob
+reX
+bnd
+iqR
+tQb
 lwu
 cMw
 siN
@@ -413678,7 +413714,7 @@ vmi
 vmi
 vmi
 lwu
-alP
+nBo
 jNB
 rCV
 gyi
@@ -414130,7 +414166,7 @@ vmi
 vmi
 vmi
 lwu
-pgQ
+uQA
 jNB
 rCV
 gyi
