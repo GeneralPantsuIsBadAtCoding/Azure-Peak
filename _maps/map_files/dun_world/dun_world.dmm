@@ -5051,6 +5051,10 @@
 /area/rogue/under/underdark/north)
 "bBz" = (
 /obj/structure/table/wood/long_table/mid/alt,
+/obj/item/mundane/puzzlebox/medium{
+	pixel_x = 0;
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/magician)
 "bBA" = (
@@ -37016,6 +37020,14 @@
 /obj/structure/fluff/railing/corner/north_east,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
+"lki" = (
+/obj/structure/closet/crate/drawer,
+/obj/item/book/rogue/cardgame,
+/obj/item/toy/cards/deck,
+/obj/item/dice,
+/obj/item/dice,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/magician)
 "lkk" = (
 /obj/structure/table/wood/long_table,
 /obj/item/rogueweapon/blowrod,
@@ -51401,7 +51413,10 @@
 /area/rogue/outdoors/mountains)
 "pCK" = (
 /obj/structure/easel,
-/obj/item/paint_palette/filled,
+/obj/item/canvas{
+	pixel_x = 0;
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/magician)
 "pCN" = (
@@ -60758,6 +60773,12 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave/southern)
+"ssQ" = (
+/obj/structure/chair/stool/rogue,
+/obj/item/paint_palette/filled,
+/obj/item/paint_brush,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/magician)
 "ssS" = (
 /obj/structure/fluff/railing/border/west{
 	dir = 5
@@ -288456,7 +288477,7 @@ wzn
 nps
 kus
 pSa
-qzt
+ssQ
 vhL
 slj
 jTT
@@ -289356,7 +289377,7 @@ uAw
 uAw
 keI
 iSm
-pSa
+lki
 pSa
 pSa
 pSa
