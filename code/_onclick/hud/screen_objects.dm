@@ -947,7 +947,14 @@
 	var/overlay_icon = 'icons/mob/roguehud64.dmi'
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
+	var/obj/effect/overlay/flash_layer
 	var/arrowheight = 0
+
+/atom/movable/screen/zone_sel/New()
+	..()
+	flash_layer = new
+	flash_layer.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_contents += flash_layer
 
 /atom/movable/screen/zone_sel/Click(location, control,params)
 	if(isobserver(usr))
@@ -1306,6 +1313,30 @@
 
 	. += mutable_appearance(overlay_icon, "[hud.mymob.gender == "male" ? "m" : "f"]_[hud.mymob.zone_selected]")
 //	. += mutable_appearance(overlay_icon, "height_arrow[hud.mymob.aimheight]")
+
+/atom/movable/screen/zone_sel/proc/flash_limb(zone, limb_color="#FF0000") //Flashes when an attack hits a limb
+	if(!zone || !hud?.mymob)
+		return
+
+	var/gender_prefix = (hud.mymob.gender == FEMALE) ? "f" : "m"
+
+	var/obj/effect/overlay/highlight = new
+	highlight.icon = 'icons/mob/roguehud64.dmi'
+	highlight.icon_state = "[gender_prefix]-[zone]"
+	highlight.color = limb_color
+	highlight.alpha = 180
+	highlight.layer = ABOVE_HUD_LAYER
+	highlight.plane = ABOVE_HUD_PLANE-0.1
+	highlight.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+	flash_layer.vis_contents += highlight
+
+	animate(highlight, alpha = 0, time = 20, easing = EASE_IN)
+
+	spawn(20)
+		if(highlight in flash_layer.vis_contents)
+			flash_layer.vis_contents -= highlight
+		qdel(highlight)
 
 /atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'

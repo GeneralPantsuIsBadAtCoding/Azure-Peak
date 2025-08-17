@@ -172,6 +172,10 @@
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
 		BB.embedchance = 0.1 //for some reason, if the embedchance is 0, the reusable projectile will not drop after hitting a mob. so it's a 1/1000 chance now
+		BB.accuracy += accfactor * (user.STAPER - 8) * 3 // 8+ PER gives +3 per level. Exponential.
+		BB.bonus_accuracy += (user.STAPER - 8) // 8+ PER gives +1 per level. Does not decrease over range.
+		BB.bonus_accuracy += (user.get_skill_level(/datum/skill/combat/slings) * 5) // +5 per Sling level.
+		BB.damage *= damfactor
 		if(user.client.chargedprog < 100)
 			BB.damage = BB.damage - (BB.damage * (user.client.chargedprog / 100))
 		else

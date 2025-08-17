@@ -75,7 +75,7 @@
 
 /datum/intent/flail/strike/smashrange
 	name = "ranged smash"
-	chargetime = 10
+	chargetime = 1 SECONDS
 	chargedrain = 2
 	no_early_release = TRUE
 	recovery = 30

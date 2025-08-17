@@ -225,15 +225,17 @@
 	chargedrain = 0
 	chargetime = 0
 	chargedloop = /datum/looping_sound/invokeholy
+	invocation = "Embrace the darkness!"
+	invocation_type = "shout"
 	sound = 'sound/magic/zizo_snuff.ogg'
 	overlay_state = "rune2"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	recharge_time = 12 SECONDS
+	recharge_time = 20 SECONDS
 	miracle = TRUE
 	devotion_cost = 30
 	range = 2
-	
+
 /obj/effect/proc_holder/spell/self/zizo_snuff/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(!ishuman(user))

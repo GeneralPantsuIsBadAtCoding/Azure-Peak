@@ -494,9 +494,10 @@
 
 /obj/item/rogueweapon/sword/long/oldpsysword
 	name = "old psydonian longsword"
-	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes."
-	icon_state = "psysword"
-	sheathe_icon = "psysword"
+	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes. Yet alike PSYDON, it ENDURES."
+	icon_state = "opsysword"
+	sheathe_icon = "opsysword"
+	dropshrink = 1
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian longsword"
@@ -504,6 +505,7 @@
 		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
+	dropshrink = 1
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
 	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver

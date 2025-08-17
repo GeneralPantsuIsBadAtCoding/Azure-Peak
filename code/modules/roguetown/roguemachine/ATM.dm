@@ -205,7 +205,7 @@
 
 /obj/item/coveter
 	name = "Covetous Crown"
-	desc = "A Crown which craves the brow of meisters. The Covetous Crab"
+	desc = "A Crown which craves the brow of miesters and the vault's jawbank; it could be also be mounted upon a restrained person's head to drain their miester account in a pinch."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "crown_object"
 	force = 10

@@ -32,7 +32,7 @@
 	animname = "stab"
 	icon_state = "instab"
 	reach = 2
-	chargetime = 1
+	clickcd = CLICK_CD_CHARGED
 	recovery = 30
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
@@ -215,6 +215,16 @@
 
 /obj/item/rogueweapon/mace/cudgel/psy/preblessed/ComponentInitialize()
 	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)	
+
+/obj/item/rogueweapon/mace/cudgel/psy/old
+	name = "old psydonian handmace"
+	desc = "A shorthanded mace and convenient sleeping aid, its grown harder to swing with age, though it hasn't lost reliability."
+	force = 20
+	wbalance = WBALANCE_NORMAL
+	icon_state = "opsyflangedmace"
+
+/obj/item/rogueweapon/mace/cudgel/psy/old/ComponentInitialize()
+	return	
 
 /obj/item/rogueweapon/mace/cudgel/copper
 	name = "copper bludgeon"

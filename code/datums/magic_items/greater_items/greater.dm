@@ -81,6 +81,12 @@
 	name = "archery"
 	description = "It has the imprint of a bowstring."
 	var/active_item = FALSE
+	var/masterbow = FALSE
+	var/legendbow = FALSE
+	var/mastercrossbow = FALSE
+	var/legendcrossbow = FALSE
+	var/mastersling = FALSE
+	var/legendsling = FALSE
 
 /datum/magic_item/greater/archery/on_equip(var/obj/item/i, var/mob/living/user, slot)
 	if(slot == ITEM_SLOT_HANDS)
@@ -88,9 +94,42 @@
 	if(active_item)
 		return
 	else
+		//stat boost
 		user.change_stat("perception", 2)
-		user.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-		user.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+
+		//Bow boost
+		if (user.get_skill_level(/datum/skill/combat/bows) == 6)
+			legendbow = TRUE
+			masterbow = FALSE
+		else
+			if (user.get_skill_level(/datum/skill/combat/bows) == 5)
+				user.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+				masterbow = TRUE
+			else
+				user.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+
+		//crossbow boost
+		if (user.get_skill_level(/datum/skill/combat/crossbows) == 6)
+			legendcrossbow = TRUE
+			mastercrossbow = FALSE
+		else
+			if (user.get_skill_level(/datum/skill/combat/crossbows) == 5)
+				user.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
+				mastercrossbow = TRUE
+			else
+				user.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+
+		//sling boost
+		if (user.get_skill_level(/datum/skill/combat/slings) == 6)
+			legendsling = TRUE
+			mastersling = FALSE
+		else
+			if (user.get_skill_level(/datum/skill/combat/slings) == 5)
+				user.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
+				mastersling = TRUE
+			else
+				user.adjust_skillrank(/datum/skill/combat/slings, 2, TRUE)
+
 		to_chat(user, span_notice("I feel more dexterious!"))
 		active_item = TRUE
 
@@ -98,6 +137,25 @@
 	if(active_item)
 		active_item = FALSE
 		user.change_stat("perception", -2)
-		user.adjust_skillrank_down_to(/datum/skill/combat/bows, 2, TRUE)
-		user.adjust_skillrank_down_to(/datum/skill/combat/crossbows, 2, TRUE)
+		//correct bows
+		if (!legendbow)
+			if (masterbow)
+				user.adjust_skillrank(/datum/skill/combat/bows -1, TRUE)
+			else
+				user.adjust_skillrank(/datum/skill/combat/bows, -2, TRUE)
+
+		//correct crossbows
+		if (!legendcrossbow)
+			if (mastercrossbow)
+				user.adjust_skillrank(/datum/skill/combat/crossbows -1, TRUE)
+			else
+				user.adjust_skillrank(/datum/skill/combat/crossbows, -2, TRUE)
+
+		//correct slings
+		if (!legendsling)
+			if (mastersling)
+				user.adjust_skillrank(/datum/skill/combat/slings -1, TRUE)
+			else
+				user.adjust_skillrank(/datum/skill/combat/slings, -2, TRUE)
+
 		to_chat(user, span_notice("I feel mundane once more"))

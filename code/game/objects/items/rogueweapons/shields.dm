@@ -66,8 +66,11 @@
 	if(attacker && istype(attacker))
 		if (!owner.can_see_cone(attacker))
 			return FALSE
+		if(obj_broken) // No blocking with a broken shield you fool
+			return FALSE
 		if((owner.client?.chargedprog == 100 && owner.used_intent?.tranged) || prob(coverage))
 			owner.visible_message(span_danger("[owner] expertly blocks [hitby] with [src]!"))
+			src.take_damage(floor(damage / 2)) // Halved damage so they don't feel too fragile
 			return TRUE
 	return FALSE
 

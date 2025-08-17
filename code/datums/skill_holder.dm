@@ -111,56 +111,96 @@
 
 /datum/skill_holder/proc/adjust_skillrank_down_to(skill, amt, silent = FALSE)
 	var/proper_amt = get_skill_level(skill) - amt
-	if(proper_amt <= 0)
+	if(proper_amt >= 0)
 		return
 	adjust_skillrank(skill, -proper_amt, silent)
 
 /datum/skill_holder/proc/adjust_skillrank(skill, amt, silent = FALSE)
-	var/datum/skill/S = GetSkillRef(skill)
+	if(!amt)
+		return
+	if(!skill)
+		CRASH("adjust_skillrank was called without a specified skill!")
+	/// The skill we are changing
+	var/datum/skill/skill_ref = GetSkillRef(skill)
+	/// How much experience the mob gets at the end
 	var/amt2gain = 0
-	for(var/i in 1 to amt)
-		switch(skill_experience[S])
-			if(SKILL_EXP_MASTER to SKILL_EXP_LEGENDARY)
-				amt2gain = SKILL_EXP_LEGENDARY-skill_experience[S]
-			if(SKILL_EXP_EXPERT to SKILL_EXP_MASTER)
-				amt2gain = SKILL_EXP_MASTER-skill_experience[S]
-			if(SKILL_EXP_JOURNEYMAN to SKILL_EXP_EXPERT)
-				amt2gain = SKILL_EXP_EXPERT-skill_experience[S]
-			if(SKILL_EXP_APPRENTICE to SKILL_EXP_JOURNEYMAN)
-				amt2gain = SKILL_EXP_JOURNEYMAN-skill_experience[S]
-			if(SKILL_EXP_NOVICE to SKILL_EXP_APPRENTICE)
-				amt2gain = SKILL_EXP_APPRENTICE-skill_experience[S]
-			if(0 to SKILL_EXP_NOVICE)
-				amt2gain = SKILL_EXP_NOVICE-skill_experience[S] + 1
-		if(!skill_experience[S])
-			amt2gain = SKILL_EXP_NOVICE+1
-		skill_experience[S] = max(0, skill_experience[S] + amt2gain) //Prevent going below 0
-	var/old_level = get_skill_level(skill)
-	switch(skill_experience[S])
+	if(amt > 0)
+		for(var/i in 1 to amt)
+			switch(skill_experience[skill_ref])
+				if(SKILL_EXP_MASTER to SKILL_EXP_LEGENDARY)
+					amt2gain = SKILL_EXP_LEGENDARY-skill_experience[skill_ref]
+				if(SKILL_EXP_EXPERT to SKILL_EXP_MASTER)
+					amt2gain = SKILL_EXP_MASTER-skill_experience[skill_ref]
+				if(SKILL_EXP_JOURNEYMAN to SKILL_EXP_EXPERT)
+					amt2gain = SKILL_EXP_EXPERT-skill_experience[skill_ref]
+				if(SKILL_EXP_APPRENTICE to SKILL_EXP_JOURNEYMAN)
+					amt2gain = SKILL_EXP_JOURNEYMAN-skill_experience[skill_ref]
+				if(SKILL_EXP_NOVICE to SKILL_EXP_APPRENTICE)
+					amt2gain = SKILL_EXP_APPRENTICE-skill_experience[skill_ref]
+				if(0 to SKILL_EXP_NOVICE)
+					amt2gain = SKILL_EXP_NOVICE-skill_experience[skill_ref] + 1
+			if(!skill_experience[skill_ref])
+				amt2gain = SKILL_EXP_NOVICE+1
+			skill_experience[skill_ref] = max(0, skill_experience[skill_ref] + amt2gain) //Prevent going below 0
+	if(amt < 0)
+		var/flipped_amt = -amt
+		for(var/i in 1 to flipped_amt)
+			switch(skill_experience[skill_ref])
+				if(SKILL_EXP_LEGENDARY)
+					amt2gain = SKILL_EXP_MASTER
+				if(SKILL_EXP_MASTER to SKILL_EXP_LEGENDARY-1)
+					amt2gain = SKILL_EXP_EXPERT
+				if(SKILL_EXP_EXPERT to SKILL_EXP_MASTER-1)
+					amt2gain = SKILL_EXP_JOURNEYMAN
+				if(SKILL_EXP_JOURNEYMAN to SKILL_EXP_EXPERT -1)
+					amt2gain = SKILL_EXP_APPRENTICE
+				if(SKILL_EXP_APPRENTICE to SKILL_EXP_JOURNEYMAN-1)
+					amt2gain = SKILL_EXP_NOVICE
+				if(SKILL_EXP_NOVICE to SKILL_EXP_APPRENTICE-1)
+					amt2gain = 1
+				if(0 to SKILL_EXP_NOVICE)
+					amt2gain = 1
+			if(!skill_experience[skill_ref])
+				amt2gain = 1
+			skill_experience[skill_ref] = amt2gain //Prevent going below 0
+
+	var/old_level = known_skills[skill_ref]
+	switch(skill_experience[skill_ref])
 		if(SKILL_EXP_LEGENDARY to INFINITY)
-			known_skills[S] = SKILL_LEVEL_LEGENDARY
+			known_skills[skill_ref] = SKILL_LEVEL_LEGENDARY
 		if(SKILL_EXP_MASTER to SKILL_EXP_LEGENDARY)
-			known_skills[S] = SKILL_LEVEL_MASTER
+			known_skills[skill_ref] = SKILL_LEVEL_MASTER
 		if(SKILL_EXP_EXPERT to SKILL_EXP_MASTER)
-			known_skills[S] = SKILL_LEVEL_EXPERT
+			known_skills[skill_ref] = SKILL_LEVEL_EXPERT
 		if(SKILL_EXP_JOURNEYMAN to SKILL_EXP_EXPERT)
-			known_skills[S] = SKILL_LEVEL_JOURNEYMAN
+			known_skills[skill_ref] = SKILL_LEVEL_JOURNEYMAN
 		if(SKILL_EXP_APPRENTICE to SKILL_EXP_JOURNEYMAN)
-			known_skills[S] = SKILL_LEVEL_APPRENTICE
+			known_skills[skill_ref] = SKILL_LEVEL_APPRENTICE
 		if(SKILL_EXP_NOVICE to SKILL_EXP_APPRENTICE)
-			known_skills[S] = SKILL_LEVEL_NOVICE
+			known_skills[skill_ref] = SKILL_LEVEL_NOVICE
 		if(0 to SKILL_EXP_NOVICE)
-			known_skills[S] = SKILL_LEVEL_NONE
-	if(known_skills[S] == old_level)
-		return //same level or we just started earning xp towards the first level.
+			known_skills[skill_ref] = SKILL_LEVEL_NONE
+	var/is_new_skill = !(skill_ref in known_skills)
+	if(isnull(old_level) && !is_new_skill)
+		old_level = SKILL_LEVEL_NONE
+	if((isnull(old_level) && is_new_skill) || known_skills[skill_ref] == old_level)
+		return
 	if(silent)
 		return
-	if(known_skills[S] >= old_level)
-		to_chat(current, span_nicegreen("I feel like I've become more proficient at [lowertext(S.name)]!"))
-		GLOB.azure_round_stats[STATS_SKILLS_LEARNED]++
-		SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, S, known_skills[S], old_level)
+	if(known_skills[skill_ref] >= old_level)
+		SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, skill_ref, known_skills[skill_ref], old_level)
+		to_chat(current, span_nicegreen("I feel like I've become more proficient at [skill_ref.name]!"))
+/* used in round statistics in Vanderline, but AP doesn't track this?
+		record_round_statistic(STATS_SKILLS_LEARNED)
+		if(istype(skill_ref, /datum/skill/combat))
+			record_round_statistic(STATS_COMBAT_SKILLS)
+		if(istype(skill_ref, /datum/skill/craft))
+			record_round_statistic(STATS_CRAFT_SKILLS)
+		if(skill == /datum/skill/misc/reading && old_level == SKILL_LEVEL_NONE && current.is_literate())
+			record_round_statistic(STATS_LITERACY_TAUGHT)
+*/
 	else
-		to_chat(current, span_warning("I feel like I've become worse at [lowertext(S.name)]!"))
+		to_chat(current, span_warning("I feel like I've become worse at [skill_ref.name]!"))
 
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current

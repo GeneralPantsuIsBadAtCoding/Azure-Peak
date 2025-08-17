@@ -173,7 +173,7 @@
 	movement_interrupt = FALSE
 	no_early_release = FALSE
 	devotion_cost = 50 // attack miracle
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross/pestra)
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/fliesloop
 	associated_skill = /datum/skill/magic/holy

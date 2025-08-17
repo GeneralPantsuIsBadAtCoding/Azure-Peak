@@ -146,7 +146,7 @@
 /datum/inqports/supplies/psybuns
 	name = "The Otavan Bakery Special"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/psybuns
-	marquescost = 6
+	marquescost = 8
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/psybuns/Initialize()
 	. = ..()
@@ -155,6 +155,16 @@
 	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
 	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
 	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/food/snacks/rogue/psycrossbun(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
+	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
 	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
 	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
 	new /obj/item/reagent_containers/glass/bottle/alchemical/blessedwater(src)
@@ -255,6 +265,17 @@
 	new /obj/item/paper/inqslip/confession(src)
 	new /obj/item/paper/inqslip/confession(src)
 
+/datum/inqports/articles/psybles
+	name = "3 Books Of Psydon"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/psybles
+	marquescost = 6
+
+/obj/structure/closet/crate/chest/inqcrate/articles/psybles/Initialize()
+	. = ..()
+	new /obj/item/book/rogue/bibble/psy(src)
+	new /obj/item/book/rogue/bibble/psy(src)
+	new /obj/item/book/rogue/bibble/psy(src)
+
 /datum/inqports/articles/bmirror
 	name = "1 Black Mirror"
 	item_type = /obj/item/inqarticles/bmirror
@@ -276,7 +297,7 @@
 /datum/inqports/equipment/psydonthorns
 	name = "1 Psydonian Thorns"
 	item_type = /obj/item/clothing/wrists/roguetown/bracers/psythorns
-	marquescost = 16
+	marquescost = 12
 
 /datum/inqports/equipment/garrote
 	name = "1 Seizing Garrote"
@@ -346,7 +367,7 @@
 /datum/inqports/equipment/nocshades
 	name = "1 Nocshade Lens-Pair"
 	item_type = /obj/item/clothing/mask/rogue/spectacles/inq
-	marquescost = 16
+	marquescost = 12
 
 // ✤ WARDROBE ✤ STARTS HERE! YEP!
 
@@ -361,7 +382,7 @@
 /datum/inqports/wardrobe/fencerset
 	name = "The Otavan Fencer's Finest Set Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencerset
-	marquescost = 14
+	marquescost = 12
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencerset/Initialize()
 	. = ..()
@@ -374,7 +395,7 @@
 /datum/inqports/wardrobe/confessionalcombo
 	name = "The Confessional Combination"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/confessionalcombo
-	marquescost = 14
+	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/confessionalcombo/Initialize()
 	. = ..()
@@ -384,12 +405,10 @@
 /datum/inqports/wardrobe/inspectorcoat
 	name = "The Inquisition's Finest Coats and Hats"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspectorcoats
-	marquescost = 18	
+	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspectorcoats/Initialize()
 	. = ..()
-	new /obj/item/clothing/head/roguetown/inqhat(src)
-	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
 	new /obj/item/clothing/head/roguetown/inqhat(src)
 	new /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat(src)
 	new /obj/item/clothing/head/roguetown/inqhat(src)
@@ -398,7 +417,7 @@
 /datum/inqports/wardrobe/inspector
 	name = "The Inquisitorial Inspector's Best Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspector
-	marquescost = 18
+	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/inspector/Initialize()
 	. = ..()
@@ -410,7 +429,7 @@
 /datum/inqports/wardrobe/fencersthree
 	name = "The Fencer's Gambeson Three-Pack"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencersthree
-	marquescost = 16
+	marquescost = 12
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/fencersthree/Initialize()
 	. = ..()
@@ -421,7 +440,7 @@
 /datum/inqports/wardrobe/psydonianstandard
 	name = "The Inquisitorial Standard"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian
-	marquescost = 12
+	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/psydonian/Initialize()
 	. = ..()
@@ -433,7 +452,7 @@
 /datum/inqports/wardrobe/nobledressup
 	name = "The Cost of Nobility Crate"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/wardrobe/nobledressup
-	marquescost = 24
+	marquescost = 18
 
 /obj/structure/closet/crate/chest/inqcrate/wardrobe/nobledressup/Initialize()
 	. = ..()

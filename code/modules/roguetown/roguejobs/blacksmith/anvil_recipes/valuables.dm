@@ -171,6 +171,7 @@
 	additional_items = list(/obj/item/ingot/gold, /obj/item/ingot/steel, /obj/item/roguegem/ruby)
 	created_item = /obj/item/rogueweapon/sword/long/exe/cloth
 	craftdiff = 3
+	appro_skill = /datum/skill/craft/weaponsmithing
 	i_type = "Weapons"
 
 /datum/anvil_recipe/valuables/dragon

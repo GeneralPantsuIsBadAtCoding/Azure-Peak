@@ -276,32 +276,32 @@
 						indexed = TRUE	
 					if(I.paired.subject && I.paired.full && !selfreport)
 						if(I.paired.cursedblood)
-							if(HAS_TRAIT(I.paired.subject, TRAIT_CBLOOD))
+							if(HAS_TRAIT(I.paired.subject.mind, TRAIT_CBLOOD))
 								stopfarming = TRUE
 							else
-								ADD_TRAIT(I.paired.subject, TRAIT_CBLOOD, "mail")
+								ADD_TRAIT(I.paired.subject.mind, TRAIT_CBLOOD, "mail")
 								cursedblood = TRUE
 								if(GLOB.cursedsamples.len)
 									GLOB.cursedsamples += ", [I.paired.subject.mind]"
 								else
 									GLOB.cursedsamples += "[I.paired.subject.mind]"			
 						if(GLOB.indexed)
-							if(HAS_TRAIT(I.paired.subject, TRAIT_INDEXED))
+							if(HAS_TRAIT(I.paired.subject.mind, TRAIT_INDEXED))
 								indexed = TRUE
 							if(!indexed)
-								ADD_TRAIT(I.paired.subject, TRAIT_INDEXED, "mail")
+								ADD_TRAIT(I.paired.subject.mind, TRAIT_INDEXED, "mail")
 								if(GLOB.indexed.len)
 									GLOB.indexed += ", [I.signee]"
 								else
 									GLOB.indexed += "[I.signee]"
 				if(GLOB.accused && !selfreport)
-					if(HAS_TRAIT(I.signee, TRAIT_ACCUSED))
+					if(HAS_TRAIT(I.signee.mind, TRAIT_ACCUSED))
 						accused = TRUE
 				if(GLOB.confessors && !selfreport)
-					if(HAS_TRAIT(I.signee, TRAIT_CONFESSED))
+					if(HAS_TRAIT(I.signee.mind, TRAIT_CONFESSED))
 						no = TRUE
 					if(!no)
-						ADD_TRAIT(I.signee, TRAIT_CONFESSED, "mail")
+						ADD_TRAIT(I.signee.mind, TRAIT_CONFESSED, "mail")
 						if(GLOB.confessors.len)
 							GLOB.confessors += ", [I.signee]"
 						else
@@ -324,31 +324,30 @@
 						user.put_in_hands(replacement)
 					return		
 				else
-					if(I.paired)
-						if(!correct)
-							if(cursedblood)
-								bonuses = bonuses + bonuses * I.paired.cursedblood
-								if(I.waxed)
-									bonuses += 2
-								budget2change(bonuses, user, "MARQUE")
-								GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
-							if(!indexed && !correct && !cursedblood)
-								if(I.waxed)
-									bonuses += 2
-								budget2change(bonuses, user, "MARQUE")
-								GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
-						else
-							if(!indexed && !cursedblood)
-								I.marquevalue += bonuses
-							if(cursedblood)
-								bonuses = bonuses + bonuses * I.paired.cursedblood	
-								I.marquevalue += bonuses
-							if(accused)	
-								I.marquevalue -= 4
-							if(I.paired)	
-								qdel(I.paired)
-							budget2change(I.marquevalue, user, "MARQUE")
-							GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+					if(!correct)
+						if(cursedblood)
+							bonuses = bonuses + bonuses * I.paired.cursedblood
+							if(I.waxed)
+								bonuses += 2
+							budget2change(bonuses, user, "MARQUE")
+							GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
+						if(I.paired && !indexed && !correct && !cursedblood)
+							if(I.waxed)
+								bonuses += 2	
+						budget2change(bonuses, user, "MARQUE")
+						GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
+					else
+						if(I.paired && !indexed && !cursedblood)
+							I.marquevalue += bonuses
+						if(cursedblood)
+							bonuses = bonuses + bonuses * I.paired.cursedblood	
+							I.marquevalue += bonuses
+						if(accused)	
+							I.marquevalue -= 4
+						budget2change(I.marquevalue, user, "MARQUE")
+						GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+					if(I.paired)	
+						qdel(I.paired)	
 					qdel(I)
 					visible_message(span_warning("[user] sends something."))
 					playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
@@ -394,35 +393,35 @@
 					if(I.paired.subject.name in GLOB.excommunicated_players)	
 						correct = TRUE
 					if(GLOB.indexed && !selfreport)
-						if(HAS_TRAIT(I.paired.subject, TRAIT_INDEXED))
+						if(HAS_TRAIT(I.paired.subject.mind, TRAIT_INDEXED))
 							indexed = TRUE
 						if(!indexed && !selfreport)
-							ADD_TRAIT(I.paired.subject, TRAIT_INDEXED, "mail")
+							ADD_TRAIT(I.paired.subject.mind, TRAIT_INDEXED, "mail")
 							if(GLOB.indexed.len)
 								GLOB.indexed += ", [I.paired.subject]"
 							else
 								GLOB.indexed += "[I.paired.subject]"
 					if(I.paired.cursedblood)		
-						if(HAS_TRAIT(I.paired.subject, TRAIT_CBLOOD))
+						if(HAS_TRAIT(I.paired.subject.mind, TRAIT_CBLOOD))
 							stopfarming = TRUE
 						if(!stopfarming)
 							cursedblood = TRUE
-							ADD_TRAIT(I.paired.subject, TRAIT_CBLOOD, "mail")
+							ADD_TRAIT(I.paired.subject.mind, TRAIT_CBLOOD, "mail")
 							if(GLOB.cursedsamples.len)
 								GLOB.cursedsamples += ", [I.paired.subject.mind]"
 							else
 								GLOB.cursedsamples += "[I.paired.subject.mind]"								
 					if(GLOB.accused && !selfreport)
-						if(HAS_TRAIT(I.paired.subject, TRAIT_ACCUSED))
+						if(HAS_TRAIT(I.paired.subject.mind, TRAIT_ACCUSED))
 							no = TRUE
 						if(!no)
-							ADD_TRAIT(I.paired.subject, TRAIT_ACCUSED, "mail")
+							ADD_TRAIT(I.paired.subject.mind, TRAIT_ACCUSED, "mail")
 							if(GLOB.accused.len)
 								GLOB.accused += ", [I.paired.subject]"
 							else
 								GLOB.accused += "[I.paired.subject]"
 					if(GLOB.confessors && !selfreport)
-						if(HAS_TRAIT(I.paired.subject, TRAIT_CONFESSED))
+						if(HAS_TRAIT(I.paired.subject.mind, TRAIT_CONFESSED))
 							no = TRUE
 							specialno = TRUE	
 					if(cursedblood)	

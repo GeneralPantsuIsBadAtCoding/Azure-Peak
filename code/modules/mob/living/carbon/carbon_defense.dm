@@ -100,13 +100,17 @@
 		used_limb = parse_zone(I.sublimb_grabbed)
 
 	if(used_limb)
-		target.visible_message(span_danger("[src] grabs [target]'s [used_limb]."), \
-						span_userdanger("[src] grabs my [used_limb]!"), span_hear("I hear shuffling."), null, src)
-		to_chat(src, span_danger("I grab [target]'s [used_limb]."))
+		target.visible_message(span_danger("[src] grabs [target]'s [span_userdanger(used_limb)]."), \
+						span_danger("[src] grabs my [span_userdanger(used_limb)]!"), span_hear("I hear shuffling."), null, src)
+		to_chat(src, span_danger("I grab [target]'s [span_userdanger(used_limb)]."))
 	else
 		target.visible_message(span_danger("[src] grabs [target]."), \
 						span_userdanger("[src] grabs me!"), span_hear("I hear shuffling."), null, src)
 		to_chat(src, span_danger("I grab [target]."))
+
+	if(used_limb && target.client && target.hud_used && target.hud_used.zone_select)
+		var/atom/movable/screen/zone_sel/zone_sel = target.hud_used.zone_select
+		zone_sel.flash_limb(I.sublimb_grabbed, "#d19e13") // grab = orange
 
 /mob/living/carbon/send_grabbed_message(mob/living/carbon/user)
 	var/used_limb = "chest"

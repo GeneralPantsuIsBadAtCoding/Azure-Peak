@@ -383,8 +383,8 @@
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	penfactor = 60
 	damfactor = 1.1
-	chargetime = 0.7
-	chargedrain = 2
+	clickcd = CLICK_CD_CHARGED
+	releasedrain = 4
 	reach = 2
 	no_early_release = TRUE
 	blade_class = BCLASS_PICK

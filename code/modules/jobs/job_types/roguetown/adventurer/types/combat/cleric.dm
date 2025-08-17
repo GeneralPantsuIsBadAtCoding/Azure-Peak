@@ -134,7 +134,13 @@
 				if(/datum/patron/old_god)
 					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 					cloak = /obj/item/clothing/cloak/psydontabard
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+					var/helmets = list("Armet","Bucket Helm")
+					var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
+					switch(helmet_choice)
+						if("Bucket Helm")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+						if("Armet")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 				if(/datum/patron/divine/astrata)
 					cloak = /obj/item/clothing/cloak/templar/astrata
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -175,7 +181,7 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
-					if(HAS_TRAIT(H, TRAIT_PSYDONITE))
+					if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
 						beltr = /obj/item/rogueweapon/sword/long/oldpsysword
 					else
 						beltr = /obj/item/rogueweapon/sword/long
@@ -183,7 +189,10 @@
 					H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 				if("Mace")
 					H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-					beltr = /obj/item/rogueweapon/mace
+					if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+						beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
+					else
+						beltr = /obj/item/rogueweapon/mace
 				if("Flail")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/flail
@@ -343,6 +352,8 @@
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/divine/undivided)
+			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 		if(/datum/patron/divine/astrata)
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'

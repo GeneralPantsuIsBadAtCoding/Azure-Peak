@@ -111,21 +111,13 @@
 
 /datum/status_effect/bugged/on_apply(mob/living/new_owner, obj/item/listeningdevice/tracker)
 	. = ..()
-	if (.)
-		RegisterSignal(new_owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /datum/status_effect/bugged/on_remove()
 	..()
-
-	UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
 	if(device)
 		owner.contents.Remove(device)
 		device.forceMove(owner.loc)
 		owner.put_in_hands(device)
-
-/datum/status_effect/bugged/proc/handle_hearing(datum/source, list/hearing_args)
-//	listening_in.show_message(hearing_args[HEARING_MESSAGE])
-	device.Hear(hearing_args[HEARING_MESSAGE], hearing_args[HEARING_SPEAKER], raw_message = hearing_args[HEARING_RAW_MESSAGE])
 
 /atom/movable/screen/alert/bugged
 	name = "BUGGED"
