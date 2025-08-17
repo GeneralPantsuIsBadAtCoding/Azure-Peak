@@ -287,7 +287,7 @@
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/garrison)
 
 /obj/item/storage/keyring/archivist
-	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/archive)
+	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/archive, /obj/item/roguekey/tower)
 
 /obj/item/storage/keyring/physician
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/garrison, /obj/item/roguekey/physician)
