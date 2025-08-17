@@ -1017,6 +1017,29 @@
 	desc = "Usually sewn by the very wardens that wear them, this hue of blue is made to alart denizens of the forest to their presence."
 	color = "#597fb9"
 
+/obj/item/clothing/cloak/raincloak/furcloak/knight
+	name = "champion's cloak"
+	desc = "A cloak of the Grand Duke's most loyal champion."
+	color = CLOTHING_AZURE
+
+/obj/item/clothing/cloak/raincloak/furcloak/knight/Initialize()
+	. = ..()
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	GLOB.lordcolor += src
+
+/obj/item/clothing/cloak/raincloak/furcloak/knight/lordcolor(primary,secondary)
+	color = primary
+	detail_color = secondary
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_cloak()
+
+/obj/item/clothing/cloak/raincloak/furcloak/knight/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
+
 /obj/item/clothing/head/hooded/rainhood/furhood
 	icon_state = "fur_hood"
 	block2add = FOV_BEHIND
@@ -1190,6 +1213,29 @@
 		icon_state = initial(icon_state)
 		flipped = FALSE
 	user.regenerate_icons()
+
+/obj/item/clothing/cloak/half/knight
+	name = "champion's halfcloak"
+	desc = "A halfcloak of the Grand Duke's most loyal champion."
+	color = CLOTHING_AZURE
+
+/obj/item/clothing/cloak/half/knight/Initialize()
+	. = ..()
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	GLOB.lordcolor += src
+
+/obj/item/clothing/cloak/half/knight/lordcolor(primary,secondary)
+	color = primary
+	detail_color = secondary
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_cloak()
+
+/obj/item/clothing/cloak/half/knight/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
 
 /obj/item/clothing/cloak/half/brown
 	color = CLOTHING_BROWN
