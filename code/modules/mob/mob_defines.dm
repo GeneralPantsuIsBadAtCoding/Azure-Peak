@@ -312,3 +312,6 @@
 
 	// The last tick where we manually moved, or clicked on something in-world. Useful for preventing abuse of mobs with AFK players.
 	var/last_client_interact = 0
+
+	///Override for sound_environments. If this is set the user will always hear a specific type of reverb (Instead of the area defined reverb)
+	var/sound_environment_override = SOUND_ENVIRONMENT_NONE

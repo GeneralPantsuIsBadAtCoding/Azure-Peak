@@ -112,6 +112,8 @@
 	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
 	// Try to be deliberately obtuse but not too obtuse.
 
+	///Used to decide what kind of reverb the area makes sound have
+	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
 /**
   * A list of teleport locations

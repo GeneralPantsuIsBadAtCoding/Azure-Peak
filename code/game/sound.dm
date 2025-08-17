@@ -1,16 +1,53 @@
 /client
 	var/list/played_loops = list() //uses dlink to link to the sound
 
+///Default override for echo
+/sound
+	echo = list(
+		0, // Direct
+		0, // DirectHF
+		-10000, // Room, -10000 means no low frequency sound reverb
+		-10000, // RoomHF, -10000 means no high frequency sound reverb
+		0, // Obstruction
+		0, // ObstructionLFRatio
+		0, // Occlusion
+		0.25, // OcclusionLFRatio
+		1.5, // OcclusionRoomRatio
+		1.0, // OcclusionDirectRatio
+		0, // Exclusion
+		1.0, // ExclusionLFRatio
+		0, // OutsideVolumeHF
+		0, // DopplerFactor
+		0, // RolloffFactor
+		0, // RoomRolloffFactor
+		1.0, // AirAbsorptionFactor
+		0, // Flags (1 = Auto Direct, 2 = Auto Room, 4 = Auto RoomHF)
+	)
+	environment = SOUND_ENVIRONMENT_NONE //Default to none so sounds without overrides dont get reverb
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat, animal_pref = FALSE)
+/**
+ * playsound is a proc used to play a 3D sound in a specific range. This uses SOUND_RANGE + extra_range to determine that.
+ *
+ * source - Origin of sound.
+ * soundin - Either a file, or a string that can be used to get an SFX.
+ * vol - The volume of the sound, excluding falloff and pressure affection.
+ * vary - bool that determines if the sound changes pitch every time it plays.
+ * extrarange - modifier for sound range. This gets added on top of SOUND_RANGE.
+ * falloff_exponent - Rate of falloff for the audio. Higher means quicker drop to low volume. Should generally be over 1 to indicate a quick dive to 0 rather than a slow dive.
+ * frequency - playback speed of audio.
+ * channel - The channel the sound is played at.
+ * pressure_affected - Whether or not difference in pressure affects the sound (E.g. if you can hear in space).
+ * ignore_walls - Whether or not the sound can pass through walls. If passed a sound, it will play to anyone who would not normally hear the sound due to LOS.
+ * falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
+ */
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat, animal_pref = FALSE, falloff_exponent = SOUND_FALLOFF_EXPONENT, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
+	if(isnull(vol))
+		CRASH("Playsound received a null volume, this is probably wrong!")
 
 	var/turf/turf_source = get_turf(source)
-	if(isturf(source))
-		turf_source = source
-
-	if (!turf_source)
+	if(!turf_source || !soundin || !vol)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -18,13 +55,21 @@
 
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = soundin
+	var/maxdistance = (world.view + extrarange)
+	var/source_z = turf_source.z
+
 	if(!istype(S))
 		S = sound(get_sfx(soundin))
 	if(!extrarange)
 		extrarange = 1
-	var/maxdistance = (world.view + extrarange)
-	var/source_z = turf_source.z
+
 	var/list/listeners = SSmobs.clients_by_zlevel[source_z].Copy()
+
+	// Listeners that are hearing through a wall or out of view. They will hear a much quieter sound.
+	var/list/muffled_listeners = list() //this is very rudimentary list of muffled listeners above and below to mimic sound muffling (this is done through modifying the playsounds for them)
+	var/muffled_sound					//for when the sound is muffled but not stopped
+
+	. = list()//output everything that successfully heard the sound
 
 	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
 	var/turf/below_turf = GET_TURF_BELOW(turf_source)
@@ -32,35 +77,68 @@
 	if(soundping)
 		ping_sound(source)
 
-	var/list/muffled_listeners = list() //this is very rudimentary list of muffled listeners above and below to mimic sound muffling (this is done through modifying the playsounds for them)
-	if(!ignore_walls) //these sounds don't carry through walls or vertically
-		listeners = listeners & hearers(maxdistance,turf_source)
-	else
-		if(above_turf)
+	if(!isnum(ignore_walls))
+		muffled_sound = sound(get_sfx(ignore_walls))
+
+	if(ignore_walls == TRUE)
+		if(above_turf && istransparentturf(above_turf))
 			listeners += SSmobs.clients_by_zlevel[above_turf.z]
-			listeners += SSmobs.dead_players_by_zlevel[above_turf.z]
-
-		if(below_turf)
+		if(below_turf && istransparentturf(turf_source))
 			listeners += SSmobs.clients_by_zlevel[below_turf.z]
-			listeners += SSmobs.dead_players_by_zlevel[below_turf.z]
+	else //these sounds don't carry through walls
+		listeners = get_hearers_in_view(maxdistance, turf_source)
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_view(maxdistance, above_turf)
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_view(maxdistance, below_turf)
+		// If we have a partial sound to play, generate the list of partial listeners.
+		if(muffled_sound)
+			muffled_listeners = SSmobs.clients_by_zlevel[source_z].Copy()
 
-	listeners += SSmobs.dead_players_by_zlevel[source_z]
-	. = list()
+			if(above_turf && istransparentturf(above_turf))
+				muffled_listeners += SSmobs.clients_by_zlevel[above_turf.z]
 
-	for(var/mob/M as anything in listeners)
+			if(below_turf && istransparentturf(turf_source))
+				muffled_listeners += SSmobs.clients_by_zlevel[below_turf.z]
+
+			muffled_listeners -= listeners
+			muffled_listeners -= SSmobs.dead_players_by_zlevel[source_z]
+
+	//for(var/mob/M as anything in listeners)
+	for(var/mob/M in listeners | SSmobs.dead_players_by_zlevel[source_z])//observers always hear through walls
 		if(get_dist(M, turf_source) <= maxdistance)
 			if(animal_pref)
 				if(M.client?.prefs?.mute_animal_emotes)
 					continue
-			if(M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S, repeat))
+			if(M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb))
 				. += M
-
-	for(var/mob/M as anything in muffled_listeners)
-		if(get_dist(M, turf_source) <= maxdistance)
+	
+	if(muffled_listeners)
+		for(var/mob/M as anything in muffled_listeners)
+			var/mob_distance = get_dist(M, turf_source)
+			if(mob_distance > maxdistance)
+				continue
 			if(animal_pref)
 				if(M.client?.prefs?.mute_animal_emotes)
 					continue
-			if(M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S, repeat, muffled = TRUE))
+			var/heard_da_sound = M.playsound_local(
+				turf_source,
+				muffled_sound,
+				vol * 0.5,
+				vary,
+				frequency,
+				falloff_exponent + 3,
+				channel,
+				pressure_affected,
+				muffled_sound,
+				maxdistance,
+				max(min(mob_distance - SOUND_OCCLUSION_DISTANCE_MODIFIER, falloff_distance), 1),
+				1,
+				TRUE,
+				env_override = SOUND_ENVIRONMENT_PADDED_CELL,
+			)
+
+			if(heard_da_sound)
 				. += M
 
 
@@ -90,7 +168,7 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
 */
-/mob/proc/playsound_local(atom/turf_source, soundin, vol as num, vary, frequency, falloff, channel, pressure_affected = TRUE, sound/S, repeat, muffled)
+/mob/proc/playsound_local(atom/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, repeat, muffled, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, wait = FALSE, env_override = null)
 	if(!client || !can_hear())
 		return FALSE
 
@@ -99,41 +177,27 @@
 
 	S.wait = 0 //No queue
 	S.channel = channel
-	if(!S.channel)
-		S.channel = SSsounds.random_available_channel()
+	S.volume = vol
 
-	if(muffled)
-		S.environment = 11
-		if(falloff)
-			falloff *= 1.5
+	if(vary)
+		if(frequency)
+			S.frequency = frequency
 		else
-			falloff = FALLOFF_SOUNDS * 1.5
-		vol *= 0.75
+			S.frequency = get_rand_frequency()
 
 	var/vol2use = vol
 	if(client.prefs)
 		vol2use = vol * (client.prefs.mastervol * 0.01)
-	vol2use = min(vol2use, 100)
-
-	S.volume = vol2use
-
-	var/area/A = get_area(src)
-	if(A)
-		if(A.soundenv != -1)
-			S.environment = A.soundenv
-
-	if(vary)
-		S.frequency = get_rand_frequency()
-	if(frequency)
-		S.frequency = frequency
 
 	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
+		var/turf/turf_loc = get_turf(src)
 
 		//sound volume falloff with distance
-		var/distance = get_dist(T, turf_source)
+		var/distance = get_dist(turf_loc, turf_source) * distance_multiplier
 
-		S.volume -= (distance * (0.10 * S.volume)) //10% each step
+		if(max_distance && falloff_exponent) //If theres no max_distance we're not a 3D sound, so no falloff.
+			S.volume -= (max(distance - falloff_distance, 0) ** (1 / falloff_exponent)) / ((max(max_distance, distance) - falloff_distance) ** (1 / falloff_exponent)) * S.volume
+			//https://www.desmos.com/calculator/sqdfl8ipgf
 /*
 		if(pressure_affected)
 			//Atmosphere affects sound
@@ -158,22 +222,31 @@
 		if(S.volume <= 0)
 			return FALSE //No sound
 
-		var/dx = turf_source.x - x
-		if(dx <= 1 && dx >= -1)
-			S.x = 0
-		else
-			S.x = dx
-		var/dz = turf_source.y - y
-		if(dz <= 1 && dz >= -1)
-			S.z = 0
-		else
-			S.z = dz
-
-		var/dy = turf_source.z - z
+		var/dx = turf_source.x - turf_loc.x // Hearing from the right/left
+		S.x = dx * distance_multiplier
+		var/dz = turf_source.y - turf_loc.y // Hearing from infront/behind
+		S.z = dz * distance_multiplier
+		var/dy = (turf_source.z - turf_loc.z) * 5 * distance_multiplier // Hearing from  above / below, multiplied by 5 because we assume height is further along coords.
 		S.y = dy
 
-		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
+		S.falloff = max_distance || 1 //use max_distance, else just use 1 as we are a direct sound so falloff isnt relevant.
 
+		// A sound's environment will be:
+		// 1. the sound's
+		// 2. the mob's
+		// 3. the area's (defaults to SOUND_ENVRIONMENT_NONE)
+
+		if(isnum(env_override))
+			S.environment = env_override
+		else if(sound_environment_override != SOUND_ENVIRONMENT_NONE)
+			S.environment = sound_environment_override
+		else
+			var/area/A = get_area(src)
+			S.environment = A.sound_environment
+
+		if(use_reverb && S.environment != SOUND_ENVIRONMENT_NONE) //We have reverb, reset our echo setting
+			S.echo[3] = 0 //Room setting, 0 means normal reverb
+			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
 	if(repeat && istype(repeat, /datum/looping_sound))
 		var/datum/looping_sound/D = repeat
 		if(src in D.thingshearing) //we are already hearing this loop
@@ -198,8 +271,12 @@
 			client.played_loops[D]["MUTESTATUS"] = null
 			S.repeat = 1
 
-	SEND_SOUND(src, S)
+	. = TRUE
 
+	SEND_SOUND(src, S)
+	if(LAZYLEN(observers))
+		for(var/mob/dead/observer/O as anything in observers)
+			SEND_SOUND(src, S)
 	return TRUE
 
 /proc/sound_to_playing_players(soundin, volume = 100, vary = FALSE, frequency = 0, falloff = FALSE, channel = 0, pressure_affected = FALSE, sound/S)
