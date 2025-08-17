@@ -41,6 +41,11 @@
 		var/message_self
 		//this if chain is stupid, replace with variables on /datum/patron when possible?
 		switch(user.patron.type)
+			if(/datum/patron/divine/undivided)
+				message_out = span_info("A wreath of holy power passes over [target]!") // we're always good.
+				message_self = ("I'm bathed in holy power!")
+				conditional_buff = TRUE
+				situational_bonus = 2
 			if(/datum/patron/divine/astrata)
 				message_out = span_info("A wreath of gentle light passes over [target]!")
 				message_self = ("I'm bathed in holy light!")

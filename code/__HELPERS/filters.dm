@@ -31,3 +31,20 @@
 	.["color"] = in_matrix
 	if(!isnull(space))
 		.["space"] = space
+
+/proc/ripple_filter(radius, size, falloff, repeat, x, y, flags)
+	. = list("type" = "ripple")
+	if(!isnull(radius))
+		.["radius"] = radius
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(falloff))
+		.["falloff"] = falloff
+	if(!isnull(repeat))
+		.["repeat"] = repeat
+	if(!isnull(flags))
+		.["flags"] = flags
+	if(!isnull(x))
+		.["x"] = x
+	if(!isnull(y))
+		.["y"] = y
