@@ -58,6 +58,9 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/bolstertext = "Hold the line!!"
 	var/brotherhoodtext = "Stand proud, for the Brotherhood!!"
 	var/chargetext = "Chaaaaaarge!!"
+	var/knight_advancetext = "Advance!"
+	var/knight_holdfasttext = "Hold fast!"
+	var/knight_noretreattext = "Not one step back!"
 
 	var/linglink
 	var/datum/martial_art/martial_art
