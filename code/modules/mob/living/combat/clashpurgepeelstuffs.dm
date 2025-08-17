@@ -5,7 +5,6 @@
 		bad_guard(span_warning("I hit myself."))
 		return
 	var/mob/living/carbon/human/H = user
-	apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 	if(!IU)	//The opponent is trying to rawdog us with their bare hands while we have Guard up. We get a free attack on their active hand.
 		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		var/force = get_complex_damage(IM, src)
@@ -42,10 +41,11 @@
 			H.apply_status_effect(/datum/status_effect/debuff/exposed, 2 SECONDS)
 			H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 			H.Slowdown(3)
-			to_chat(src, span_notice("[H.p_theyre()] exposed!"))
+			to_chat(src, span_notice("[capitalize(H.p_theyre())] exposed!"))
 		else
 			H.changeNext_move(CLICK_CD_MELEE)
 		remove_status_effect(/datum/status_effect/buff/clash)
+		apply_status_effect(/datum/status_effect/buff/adrenaline_rush)
 		purge_peel(GUARD_PEEL_REDUCTION)
 
 //This is a gargantuan, clunky proc that is meant to tally stats and weapon properties for the potential disarm.

@@ -1198,7 +1198,7 @@
 		var/mob/living/carbon/human/H = owner
 		H.playsound_local(get_turf(H), 'sound/misc/adrenaline_rush.ogg', 100, TRUE)
 		H.blood_volume = min((H.blood_volume + blood_restore), BLOOD_VOLUME_NORMAL)
-		H.stamina += (H.max_stamina / 2)
+		H.stamina -= max((H.stamina - (H.max_stamina / 2)), 0)
 
 /datum/status_effect/buff/adrenaline_rush/on_remove()
 	. = ..()
