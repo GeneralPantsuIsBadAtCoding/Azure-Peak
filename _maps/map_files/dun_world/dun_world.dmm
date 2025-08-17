@@ -4590,6 +4590,12 @@
 /obj/structure/fluff/railing/corner/south_west,
 /turf/open/floor/rogue/AzureSand,
 /area/rogue/outdoors/beach/north)
+"buM" = (
+/obj/structure/fluff/walldeco/customflag,
+/turf/closed/wall/mineral/rogue/stonebrick{
+	wallclimb = 0
+	},
+/area/rogue/outdoors/exposed/town/keep)
 "buO" = (
 /obj/item/natural/rock,
 /turf/open/floor/rogue/naturalstone,
@@ -286579,7 +286585,7 @@ iNv
 okC
 iNv
 iNv
-msb
+buM
 vUR
 weQ
 weQ
@@ -289291,7 +289297,7 @@ nXW
 pww
 pww
 nTh
-msb
+buM
 gzy
 weQ
 weQ
@@ -291551,7 +291557,7 @@ vxe
 cOh
 awz
 noW
-msb
+buM
 laG
 kAx
 weQ
@@ -293811,7 +293817,7 @@ tOf
 weQ
 jMj
 lmw
-msb
+buM
 hmO
 lmw
 lmw
@@ -295619,7 +295625,7 @@ cGC
 weQ
 lcA
 evY
-msb
+buM
 kYw
 evY
 evY
