@@ -25,13 +25,13 @@
 			to_chat(H, span_warning("You were once a venerated and revered knight - now, a traitor who abandoned your liege. You lyve the lyfe of an outlaw, shunned and looked down upon by society."))
 			ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
@@ -64,26 +64,37 @@
 				if("Estoc")
 					r_hand = /obj/item/rogueweapon/estoc
 					backr = /obj/item/gwstrap
+					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 				if("Longsword + Shield")
 					beltr = /obj/item/rogueweapon/scabbard/sword
 					r_hand = /obj/item/rogueweapon/sword/long
 					backr = /obj/item/rogueweapon/shield/tower/metal
+					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
 				if("Mace + Shield")
 					beltr = /obj/item/rogueweapon/mace/steel
 					backr = /obj/item/rogueweapon/shield/tower/metal
+					H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
 				if("Flail + Shield")
 					beltr = /obj/item/rogueweapon/flail/sflail
 					backr = /obj/item/rogueweapon/shield/tower/metal
+					H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 5, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/shields, 4, TRUE)
 				if("Lucerne")
 					r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
 					backr = /obj/item/gwstrap
+					H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
 				if("Battle Axe")
 					backr = /obj/item/rogueweapon/stoneaxe/battle
+					H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
 				if("Lance + Kite Shield")
 					r_hand = /obj/item/rogueweapon/spear/lance
 					backr = /obj/item/rogueweapon/shield/tower/metal
+					H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
 				if("Samshir")
 					r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 			var/helmets = list(
 				"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
 				"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
@@ -108,6 +119,7 @@
 				"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,				
 				"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
 				"Scalemail"		= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+				"Full Plate Armor"		= /obj/item/clothing/suit/roguetown/armor/plate/full,
 			)
 			var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 			armor = armors[armorchoice]
