@@ -1458,6 +1458,10 @@
 "awh" = (
 /turf/closed/wall/mineral/rogue/pipe/corners/four,
 /area/rogue/under/underdark/north)
+"awl" = (
+/obj/structure/closet/dirthole/grave,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "awp" = (
 /obj/structure/closet/crate/roguecloset/inn,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -59874,6 +59878,14 @@
 "shU" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave/east)
+"sik" = (
+/obj/item/rogueweapon/shovel{
+	pixel_x = -6
+	},
+/obj/structure/closet/dirthole/closed/loot,
+/obj/structure/gravemarker,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "sim" = (
 /obj/structure/ladder,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -301108,7 +301120,7 @@ lwu
 dPn
 vAw
 vAw
-kAx
+sik
 rMf
 nTh
 hvv
@@ -301560,7 +301572,7 @@ lwu
 vAw
 vAw
 vAw
-rMf
+vAw
 mgK
 nTh
 hvv
@@ -302011,8 +302023,8 @@ lwu
 vgL
 vAw
 onO
-rMf
-kAx
+awl
+awl
 laG
 pww
 hvv
