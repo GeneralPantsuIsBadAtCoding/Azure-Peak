@@ -559,7 +559,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 
 	if (!target_name)
 		return
-/*
+
 	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 		to_chat(src, span_warning("I need to do this from the House of the Ten."))
 		return FALSE
@@ -570,7 +570,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	if(!src.mind || !src.mind.do_i_know(name=target_name))
 		to_chat(src, span_warning("I don't know anyone by that name."))
 		return
-*/
+
 	var/list/curse_choices = list(
 		"Curse of Astrata" = /datum/curse/astrata,
 		"Curse of Noc" = /datum/curse/noc,
