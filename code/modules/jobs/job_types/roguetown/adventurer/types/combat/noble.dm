@@ -138,14 +138,14 @@
 				if("Billhook")
 					H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 					r_hand = /obj/item/rogueweapon/spear/billhook
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Battle Axe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/stoneaxe/battle
 				if("Greataxe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/greataxe
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 			H.change_stat("strength", 2)
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 1)

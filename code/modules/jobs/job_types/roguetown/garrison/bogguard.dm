@@ -106,7 +106,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-	backl = /obj/item/gwstrap
+	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
 	beltl = /obj/item/rogueweapon/huntingknife
 	r_hand = /obj/item/rogueweapon/spear

@@ -46,7 +46,7 @@
 			beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
 			beltr = /obj/item/flashlight/flare/torch
 			r_hand = /obj/item/rogueweapon/halberd/glaive
-			backr = /obj/item/gwstrap
+			backr = /obj/item/rogueweapon/scabbard/gwstrap
 			backpack_contents = list(
 				/obj/item/roguekey/mercenary = 1,
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,

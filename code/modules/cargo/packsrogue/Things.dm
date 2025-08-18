@@ -41,7 +41,7 @@
 /datum/supply_pack/rogue/Things/gwstrap
 	name = "Greatweapon Strap"
 	cost = 15
-	contains = list(/obj/item/gwstrap)
+	contains = list(/obj/item/rogueweapon/scabbard/gwstrap)
 
 /////////////
 // POTIONS //

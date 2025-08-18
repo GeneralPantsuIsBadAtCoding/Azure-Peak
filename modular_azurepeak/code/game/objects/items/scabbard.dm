@@ -28,8 +28,9 @@
 	COOLDOWN_DECLARE(shield_bang)
 
 	var/obj/item/rogueweapon/valid_blade
+	var/list/obj/item/rogueweapon/valid_blades
 	var/list/obj/item/rogueweapon/invalid_blades
-	var/obj/item/rogueweapon/sword/sheathed
+	var/obj/item/rogueweapon/sheathed
 	var/sheathe_time = 0.1 SECONDS
 	var/sheathe_sound = 'sound/foley/equip/scabbard_holster.ogg'
 
@@ -41,26 +42,33 @@
 /obj/item/rogueweapon/scabbard/attack_turf(turf/T, mob/living/user)
 	to_chat(user, span_notice("I search for my sword..."))
 	for(var/obj/item/rogueweapon/sword/sword in T.contents)
-		if(eatsword(user, sword))
+		if(eat_sword(user, sword))
 			break
 
 	..()
 
 
-/obj/item/rogueweapon/scabbard/proc/eatsword(mob/living/user, obj/A)
-	if(!user || !istype(user))
-		var/mob/living/carbon/human/sheather = locate() in loc
-		user = sheather
+/obj/item/rogueweapon/scabbard/proc/weapon_check(mob/living/user, obj/A)
 	if(sheathed)
 		to_chat(user, span_warning("The sheath is occupied!"))
 		return FALSE
-	if(!istype(A, valid_blade))
+	if(valid_blade && !istype(A, valid_blade))
 		to_chat(user, span_warning("[A] won't fit in there.."))
 		return FALSE
+	if(valid_blades)
+		if(!(A.type in valid_blades))
+			to_chat(user, span_warning("[A] won't fit in there."))
+			return FALSE
 	if(invalid_blades)
 		if(A.type in invalid_blades)
 			to_chat(user, span_warning("[A] won't fit in there.."))
 			return FALSE
+	return TRUE
+
+
+/obj/item/rogueweapon/scabbard/proc/eat_sword(mob/living/user, obj/A)
+	if(!weapon_check(user, A))
+		return FALSE
 	if(obj_broken)
 		user.visible_message(
 			span_warning("[user] begins to force [A] into [src]!"),
@@ -85,7 +93,7 @@
 	return TRUE
 
 
-/obj/item/rogueweapon/scabbard/proc/pukesword(mob/living/user)
+/obj/item/rogueweapon/scabbard/proc/puke_sword(mob/living/user)
 	if(!sheathed)
 		return FALSE
 
@@ -124,17 +132,13 @@
 
 /obj/item/rogueweapon/scabbard/attack_hand(mob/user)
 	if(sheathed)
-		return pukesword(user)
+		return puke_sword(user)
 
 	..()
 
 
 /obj/item/rogueweapon/scabbard/attackby(obj/item/I, mob/user, params)
-	if(istype(I, valid_blade))
-		return eatsword(user, I)
-
-	..()
-
+	return eat_sword(user, I)
 
 /obj/item/rogueweapon/scabbard/examine(mob/user)
 	. = ..()
@@ -266,7 +270,7 @@
 /obj/item/rogueweapon/scabbard/sheath/LateInitialize()
 	var/obj/item/rogueweapon/huntingknife/init_blade = locate() in loc
 	if(init_blade)
-		return eatsword(loc.loc, init_blade)
+		return eat_sword(loc.loc, init_blade)
 
 /obj/item/rogueweapon/scabbard/sheath/getonmobprop(tag)
 	..()
@@ -344,6 +348,132 @@
 					"southabove" = 1,
 					"eastabove" = 1,
 					"westabove" = 1
+				)
+
+
+/*
+	GREATWEAPON STRAPS
+*/
+
+
+/obj/item/rogueweapon/scabbard/gwstrap
+	name = "greatweapon strap"
+	desc = ""
+
+	icon_state = "gws0"
+	item_state = "gwstrap"
+	icon = 'modular_azurepeak/icons/obj/items/gwstrap.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
+	pixel_y = -16
+	pixel_x = -16
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	resistance_flags = NONE
+	experimental_onback = FALSE
+	bigboy = TRUE
+	sewrepair = TRUE
+
+	equip_delay_self = 5 SECONDS
+	unequip_delay_self = 5 SECONDS
+	strip_delay = 2 SECONDS
+	sheathe_time = 2 SECONDS
+
+	max_integrity = 0
+	sellprice = 15
+
+
+/obj/item/rogueweapon/scabbard/gwstrap/weapon_check(mob/living/user, obj/item/A)
+	. = ..()
+	if(!.)
+		if(istype(A, /obj/item/rogueweapon) && A.w_class >= WEIGHT_CLASS_BULKY)
+			return TRUE
+
+/obj/item/rogueweapon/scabbard/gwstrap/eat_sword(mob/living/user, obj/A)
+	..()
+	update_icon(user)
+
+/obj/item/rogueweapon/scabbard/gwstrap/puke_sword(mob/living/user, obj/A)
+	..()
+	update_icon(user)
+
+/obj/item/rogueweapon/scabbard/gwstrap/update_icon(mob/living/user)
+	if(sheathed)
+		worn_x_dimension = 64
+		worn_y_dimension = 64
+		icon = sheathed.icon
+		icon_state = sheathed.icon_state
+		experimental_onback = TRUE
+	else
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		worn_x_dimension = initial(worn_x_dimension)
+		worn_y_dimension = initial(worn_y_dimension)
+		experimental_onback = FALSE
+
+	if(user)
+		user.update_inv_back()
+
+	getonmobprop(tag)
+
+/obj/item/rogueweapon/scabbard/gwstrap/getonmobprop(tag)
+	..()
+	if(!sheathed)
+		return
+	if(istype(sheathed, /obj/item/rogueweapon/estoc) || istype(sheathed, /obj/item/rogueweapon/greatsword))
+		switch(tag)
+			if("onback")
+				return list(
+					"shrink" = 0.6,
+					"sx" = -1,
+					"sy" = 2,
+					"nx" = 0,
+					"ny" = 2,
+					"wx" = 2,
+					"wy" = 1,
+					"ex" = 0,
+					"ey" = 1,
+					"nturn" = 0,
+					"sturn" = 0,
+					"wturn" = 70,
+					"eturn" = 15,
+					"nflip" = 1,
+					"sflip" = 1,
+					"wflip" = 1,
+					"eflip" = 1,
+					"northabove" = 1,
+					"southabove" = 0,
+					"eastabove" = 0,
+					"westabove" = 0
+				)
+	else
+		switch(tag)
+			if("onback")
+				return list(
+					"shrink" = 0.7,
+					"sx" = 1,
+					"sy" = -1,
+					"nx" = 1,
+					"ny" = -1,
+					"wx" = 4,
+					"wy" = -1,
+					"ex" = -1,
+					"ey" = -1,
+					"nturn" = 0,
+					"sturn" = 0,
+					"wturn" = 0,
+					"eturn" = 0,
+					"nflip" = 8,
+					"sflip" = 0,
+					"wflip" = 0,
+					"eflip" = 0,
+					"northabove" = 1,
+					"southabove" = 0,
+					"eastabove" = 0,
+					"westabove" = 0
 				)
 
 

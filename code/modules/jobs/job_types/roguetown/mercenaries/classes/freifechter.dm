@@ -64,7 +64,7 @@
 			H.change_stat("constitution", 4)	//This is going to need live testing, since I'm not sure they should be getting this much CON without using a statpack to spec. Revision pending.
 			H.change_stat("endurance", -2)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			var/weapons = list("Graduate's Spear", "Boar Spear", "Lucerne")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
