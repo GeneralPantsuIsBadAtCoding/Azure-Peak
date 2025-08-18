@@ -48182,6 +48182,10 @@
 /obj/machinery/tanningrack,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
+"oDw" = (
+/obj/structure/chair/frankenstein,
+/turf/open/floor/rogue/church,
+/area/rogue/indoors/town/physician)
 "oDx" = (
 /obj/structure/table/wood/large_table/north_east,
 /obj/item/cooking/platter/aalloy,
@@ -72072,6 +72076,7 @@
 /obj/item/clothing/cloak/apron/cook{
 	name = "barber's apron"
 	},
+/obj/item/reagent_containers/glass/bottle/frankenbrew,
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/physician)
 "vKP" = (
@@ -385662,7 +385667,7 @@ mYW
 bsh
 sGj
 pbO
-eMg
+oDw
 dMF
 sGj
 kYW
