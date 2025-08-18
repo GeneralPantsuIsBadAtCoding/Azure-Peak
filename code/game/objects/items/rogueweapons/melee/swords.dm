@@ -106,7 +106,6 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	armor = ARMOR_SWORD
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
@@ -120,7 +119,7 @@
 		)
 	swingsound = BLADEWOOSH_MED
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 100
+	max_blade_int = 200
 	max_integrity = 150
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
@@ -129,7 +128,6 @@
 	flags_1 = CONDUCT_1
 	throwforce = 10
 	thrown_bclass = BCLASS_CUT
-	blade_dulling = DULLING_SHAFT_METAL
 	//dropshrink = 0.75
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -167,7 +165,7 @@
 	force = 22
 	possible_item_intents = list(/datum/intent/sword/cut/falx,  /datum/intent/sword/chop/falx, /datum/intent/sword/strike, /datum/intent/sword/peel)
 	icon_state = "falx"
-	max_blade_int = 100
+	max_blade_int = 250
 	max_integrity = 125
 	gripped_intents = null
 	minstr = 4
@@ -287,6 +285,7 @@
 	associated_skill = /datum/skill/combat/swords
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
+	max_blade_int = 220
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
@@ -546,6 +545,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/short/pashortsword
 	name = "ancient shortsword"
@@ -582,6 +582,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/short/gladius/pagladius
 	name = "ancient gladius"
@@ -702,6 +703,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/sabre/palloy
 	name = "ancient khopesh"

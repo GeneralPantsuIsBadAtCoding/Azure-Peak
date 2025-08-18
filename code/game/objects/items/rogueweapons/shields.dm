@@ -13,7 +13,6 @@
 	icon = 'icons/roguetown/weapons/32.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	flags_1 = null
-	armor = ARMOR_SHIELD
 	force = 10
 	throwforce = 5
 	throw_speed = 1

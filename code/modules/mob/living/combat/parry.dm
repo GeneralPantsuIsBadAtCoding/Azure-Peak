@@ -250,45 +250,8 @@
 
 			var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 			if(dam2take)
-				if(!user.mind)
-					dam2take = dam2take * 0.25
-				if(dam2take > 0 && (intenty.masteritem?.intdamage_factor != 1 || intenty.intent_intdamage_factor != 1))
-					var/higher_intfactor = max(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/lowest_intfactor = min(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/used_intfactor
-					if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-						used_intfactor = lowest_intfactor
-					if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-						used_intfactor = higher_intfactor
-					dam2take *= used_intfactor
-			else	//This is normally handled in get_complex_damage, but it doesn't support simple mobs... at all, so we do a clunky mini-version of it.
-				if(istype(user, /mob/living/simple_animal))
-					var/mob/living/simple_animal/SM = user
-					dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
-					dam2take *= (SM.STASTR / 10)
-					dam2take *= 0.25
-					switch(used_weapon.blade_dulling)
-						if(DULLING_SHAFT_CONJURED)
-							dam2take *= 1.3
-						if(DULLING_SHAFT_METAL)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.5
-								if("blunt")
-									dam2take *= 1.5
-						if(DULLING_SHAFT_WOOD)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 1.5
-								if("blunt")
-									dam2take *= 0.5
-						if(DULLING_SHAFT_REINFORCED)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.75
-								if("stab")
-									dam2take *= 1.5
-			used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
+				used_weapon.take_damage(INTEG_PARRY_DECAY, BRUTE, used_weapon.d_type)
+				used_weapon.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
 			return TRUE
 		else
 			return FALSE

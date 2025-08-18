@@ -264,7 +264,6 @@
 	icon_state = "idagger"
 	sheathe_icon = "idagger"
 	smeltresult = /obj/item/ingot/iron
-	blade_dulling = DULLING_SHAFT_REINFORCED
 
 /obj/item/rogueweapon/huntingknife/idagger/adagger
 	name = "decrepit dagger"
@@ -277,6 +276,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	name = "ancient dagger"
@@ -604,6 +604,7 @@
 	color = "#bb9696"
 	force = 7
 	throwforce = 16
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"

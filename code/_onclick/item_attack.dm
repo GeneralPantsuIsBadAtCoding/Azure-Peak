@@ -439,6 +439,10 @@
 		newforce *= 0.5
 	newforce = round(newforce,1)
 	newforce = max(newforce, 1)
+	if(I.max_blade_int && I.sharpness != IS_BLUNT)
+		to_chat(world, "trying to round [(I.blade_int / I.max_blade_int)]")
+		newforce *= round((I.blade_int / I.max_blade_int), 0.05)
+	to_chat(world, "returning [newforce]")
 	testing("endforce [newforce]")
 	return newforce
 

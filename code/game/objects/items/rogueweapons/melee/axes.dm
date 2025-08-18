@@ -76,7 +76,6 @@
 	pickup_sound = 'sound/foley/equip/rummaging-03.ogg'
 	gripped_intents = list(/datum/intent/axe/chop/stone)
 	resistance_flags = FLAMMABLE
-	blade_dulling = DULLING_SHAFT_WOOD
 
 
 /obj/item/rogueweapon/stoneaxe/getonmobprop(tag)
@@ -213,6 +212,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/stoneaxe/hurlbat
 	name = "hurlbat"
@@ -395,14 +395,12 @@
 	gripped_intents = null
 	wdefense = 4
 	is_silver = TRUE
-	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
 	name = "psydonian war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	smeltresult = /obj/item/ingot/steel
-	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/ComponentInitialize()
 	. = ..()
@@ -437,7 +435,6 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/axes
-	blade_dulling = DULLING_SHAFT_WOOD
 	wdefense = 6
 	demolition_mod = 1.5
 
@@ -501,7 +498,6 @@
 	name = "minotaur greataxe"
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
-	blade_dulling = DULLING_SHAFT_WOOD
 	minstr = 15	
 	max_blade_int = 100 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
 
