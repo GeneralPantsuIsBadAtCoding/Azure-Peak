@@ -439,10 +439,14 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 		return TRUE
 
+	if (inputty in GLOB.excommunicated_players)
+		return //No stacking
+
 	if (H.real_name == inputty)
 		if (!COOLDOWN_FINISHED(src, priest_apostasy))
 			to_chat(src, span_warning("You must wait until you can mark another."))
 			return
+
 
 		//Check if we can curse this person.
 		if(!churchecancurse(H))
@@ -513,12 +517,14 @@ GLOBAL_LIST_EMPTY(heretical_players)
 					return
 		return
 
+	if (inputty in GLOB.apostasy_players)//This is an abysmal way of doing this but uhhhhhhhhhhhhhhhhhh yeah
+		return //No stacking
+
 	if (H.real_name == inputty)
 		if (!COOLDOWN_FINISHED(src, priest_excommunicate))
 			to_chat(src, span_warning("You must wait until you can excommunicate another."))
 			return // Anybody can still be excommunicated, so no extra checks here since it's purely RP and not mechanical.
 		found = TRUE
-		ADD_TRAIT(H, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
 		COOLDOWN_START(src, priest_excommunicate, PRIEST_EXCOMMUNICATION_COOLDOWN)
 
 		if (H.patron)
@@ -526,6 +532,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 				H.add_stress(/datum/stressevent/excommunicated)
 				H.apply_status_effect(/datum/status_effect/debuff/excomm)
 				to_chat(H, span_warning("Your divine light has been severed. Gods turn their backs to you."))
+				ADD_TRAIT(H, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
 			else
 				return
 
@@ -552,7 +559,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 
 	if (!target_name)
 		return
-
+/*
 	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 		to_chat(src, span_warning("I need to do this from the House of the Ten."))
 		return FALSE
@@ -563,7 +570,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	if(!src.mind || !src.mind.do_i_know(name=target_name))
 		to_chat(src, span_warning("I don't know anyone by that name."))
 		return
-
+*/
 	var/list/curse_choices = list(
 		"Curse of Astrata" = /datum/curse/astrata,
 		"Curse of Noc" = /datum/curse/noc,
@@ -595,6 +602,10 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 
 			if (!COOLDOWN_FINISHED(src, priest_curse))
 				to_chat(src, span_warning("You must wait before invoking a curse again."))
+				return
+
+			if (H.mind.has_antag_datum(/datum/antagonist))
+				to_chat(src, span_warning("They are outside your grasp."))
 				return
 
 			//Check if we can curse this person.

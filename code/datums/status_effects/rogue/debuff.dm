@@ -443,7 +443,7 @@
 /datum/status_effect/debuff/excomm
 	id = "Excommunicated!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/excomm
-	effectedstats = list("fortune" = -2, "intelligence" = -2, "speed" = -1, "endurance" = -1, "constitution" = -1)
+	effectedstats = list("fortune" = -2)
 	duration = -1
 
 /atom/movable/screen/alert/status_effect/debuff/excomm
@@ -455,7 +455,7 @@
 /datum/status_effect/debuff/apostasy
 	id = "Apostasy!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/apostasy
-	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "endurance" = -2, "constitution" = -2)
+	effectedstats = list("fortune" = -3, "intelligence" = -2, "perception" = -2 , "endurance" = -2, "constitution" = -2)
 	duration = -1
 	var/resistant = FALSE
 	var/original_devotion = 0
