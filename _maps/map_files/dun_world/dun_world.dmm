@@ -3743,8 +3743,8 @@
 /obj/item/quiver/bolts,
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
-/obj/item/gwstrap,
 /obj/item/rogueweapon/mace/cudgel,
+/obj/item/rogueweapon/scabbard/gwstrap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/garrison)
 "bhV" = (
@@ -29590,7 +29590,6 @@
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
-/obj/item/gwstrap,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/garrison)
 "iZi" = (
