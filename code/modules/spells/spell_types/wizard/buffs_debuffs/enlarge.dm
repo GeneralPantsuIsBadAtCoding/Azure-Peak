@@ -12,7 +12,7 @@
 	movement_interrupt = FALSE
 	charging_slowdown = 3
 	spell_tier = 2
-	invocation = "Dilatare!"
+	invocations = list("Dilatare!")
 	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane

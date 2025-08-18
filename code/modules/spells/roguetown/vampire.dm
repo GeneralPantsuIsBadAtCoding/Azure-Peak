@@ -2,7 +2,6 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/bat
 	name = "Bat Form"
 	desc = ""
-	invocation = ""
 	recharge_time = 50
 	cooldown_min = 50
 	die_with_shapeshifted_form =  FALSE
@@ -12,7 +11,6 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/gaseousform
 	name = "Mist Form"
 	desc = ""
-	invocation = ""
 	recharge_time = 50
 	cooldown_min = 50
 	die_with_shapeshifted_form =  FALSE
@@ -22,7 +20,6 @@
 	name = "Zad Form"
 	overlay_state = "zad"
 	desc = ""
-	invocation = ""
 	gesture_required = TRUE
 	chargetime = 5 SECONDS
 	recharge_time = 50

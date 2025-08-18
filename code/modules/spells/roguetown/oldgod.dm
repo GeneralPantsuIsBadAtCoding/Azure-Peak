@@ -9,7 +9,7 @@
 	desc = "Bleed for the target, taking their wounds and refilling their blood level."
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psydonbleeds.ogg'
-	invocation = "I BLEED, SO THAT YOU MIGHT ENDURE!"
+	invocations = list("I BLEED, SO THAT YOU MIGHT ENDURE!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -99,8 +99,6 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
-	invocation = ". . ."
-	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
@@ -204,8 +202,6 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
-	invocation = ". . ."
-	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	recharge_time = 5 SECONDS
@@ -309,7 +305,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psyabsolution.ogg'
-	invocation = "BE ABSOLVED!"
+	invocations = list("BE ABSOLVED!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE

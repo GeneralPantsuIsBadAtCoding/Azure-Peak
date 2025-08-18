@@ -19,7 +19,7 @@
 	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Conjura Telum!" // I was offered Me Armare (Arm Myself) but Conjura Telum (Conjure Weapon) is more suitable.
+	invocations = list("Conjura Telum!") // I was offered Me Armare (Arm Myself) but Conjura Telum (Conjure Weapon) is more suitable.
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_LOW

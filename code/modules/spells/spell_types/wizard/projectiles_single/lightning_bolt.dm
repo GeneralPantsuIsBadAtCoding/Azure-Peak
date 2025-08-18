@@ -20,7 +20,7 @@
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	spell_tier = 2
-	invocation = "Fulmen!"
+	invocations = list("Fulmen!")
 	invocation_type = "shout"
 	cost = 3
 	xp_gain = TRUE

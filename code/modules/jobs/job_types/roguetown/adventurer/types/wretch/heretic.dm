@@ -88,7 +88,7 @@
 /obj/effect/proc_holder/spell/invoked/convert_heretic
 	name = "Convert The Downtrodden"
 	desc = "Convert an soul excommunicated, cursed, or forced onto apotasy to your cause. Requires a willing participant, and takes a long time to cast."
-	invocation = "Show this lost sheep the righteous path."
+	invocations = list("Show this lost sheep the righteous path.")
 	invocation_type = "whisper"
 	sound = 'sound/magic/bless.ogg'
 	devotion_cost = 100

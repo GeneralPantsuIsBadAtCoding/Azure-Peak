@@ -229,7 +229,7 @@
 	desc = "Summon the dreamfiend haunting you to confront it directly"
 	overlay_state = "terrors"
 	chargetime = 0
-	invocation = "Face me daemon!"
+	invocations = list("Face me daemon!")
 	invocation_type = "shout"
 	sound = 'modular_azurepeak/sound/mobs/abyssal/abyssal_teleport.ogg'
 	/// Type of dreamfiend to summon

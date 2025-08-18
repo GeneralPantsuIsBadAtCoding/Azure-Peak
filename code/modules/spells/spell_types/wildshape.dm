@@ -9,7 +9,7 @@
 	releasedrain = 60
 	recharge_time = 30 SECONDS
 	cooldown_min = 50
-	invocation = "Treefather grant me your form!"
+	invocations = list("Treefather grant me your form!")
 	invocation_type = "shout"
 	action_icon_state = "shapeshift"
 	associated_skill = /datum/skill/magic/holy

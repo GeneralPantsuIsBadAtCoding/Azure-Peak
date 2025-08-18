@@ -11,7 +11,7 @@
 	school = "transmutation"
 	overlay_state = "haste" // Temporary icon from RW
 	spell_tier = 2
-	invocation = "Festinatio!"
+	invocations = list("Festinatio!")
 	invocation_type = "shout" // I mean, it is fast
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_MEDIUM

@@ -9,7 +9,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	projectile_type = /obj/projectile/magic/profane
 	chargedloop = /datum/looping_sound/invokeholy
-	invocation = "Oblino!"
+	invocations = list("Oblino!")
 	invocation_type = "whisper"
 	releasedrain = 30
 	chargedrain = 0
@@ -225,7 +225,7 @@
 	chargedrain = 0
 	chargetime = 0
 	chargedloop = /datum/looping_sound/invokeholy
-	invocation = "Embrace the darkness!"
+	invocations = list("Embrace the darkness!")
 	invocation_type = "shout"
 	sound = 'sound/magic/zizo_snuff.ogg'
 	overlay_state = "rune2"

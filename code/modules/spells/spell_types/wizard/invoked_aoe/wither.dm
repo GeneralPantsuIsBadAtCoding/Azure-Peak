@@ -15,7 +15,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3 // AOE
-	invocation = "Arescentem!"
+	invocations = list("Arescentem!")
 	invocation_type = "shout"
 	glow_color = "#b884f8" // evil ass purple
 	glow_intensity = GLOW_INTENSITY_HIGH

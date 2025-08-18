@@ -2311,6 +2311,7 @@
 #include "code\modules\spells\spell_types\wizard\utility\summon_weapon.dm"
 #include "code\modules\surgery\_surgery.dm"
 #include "code\modules\surgery\_surgery_step.dm"
+#include "code\modules\surgery\revive_chair.dm"
 #include "code\modules\surgery\surgery_helpers.dm"
 #include "code\modules\surgery\surgery_tools_rogue.dm"
 #include "code\modules\surgery\bodyparts\_bodyparts.dm"

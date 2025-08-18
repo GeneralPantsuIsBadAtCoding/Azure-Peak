@@ -27,7 +27,7 @@
 	cost = 2 // Slightly discounted as it is mostly buff.
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Incantare Arma!" // Enchant Weapon(s)
+	invocations = list("Incantare Arma!") // Enchant Weapon(s)
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_LOW

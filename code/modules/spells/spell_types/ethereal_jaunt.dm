@@ -5,7 +5,6 @@
 	school = "transmutation"
 	recharge_time = 300
 	clothes_req = TRUE
-	invocation = "none"
 	invocation_type = "none"
 	range = -1
 	cooldown_min = 100 //50 deciseconds reduction per rank

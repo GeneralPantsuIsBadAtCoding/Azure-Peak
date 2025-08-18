@@ -12,7 +12,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/foley/bubb (5).ogg'
-	invocation = "Weight of the deep, crush!"
+	invocations = list("Weight of the deep, crush!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -51,7 +51,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/misc/undertow.ogg'
-	invocation = "Strangling waters, pull!"
+	invocations = list("Strangling waters, pull!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -85,7 +85,7 @@
 	sound = 'sound/magic/abyssor_splash.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	invocation = "What is drowned shall rise anew!"
+	invocations = list("What is drowned shall rise anew!")
 	invocation_type = "shout"
 	recharge_time = 120 SECONDS
 	devotion_cost = 30
@@ -124,7 +124,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/foley/bubb (5).ogg'
-	invocation = "Splash forth."
+	invocations = list("Splash forth.")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -192,7 +192,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/foley/waterenter.ogg'
-	invocation = "Healing waters, come forth!"
+	invocations = list("Healing waters, come forth!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -255,7 +255,7 @@
 	chargetime = 4 SECONDS
 	chargedloop = null
 	sound = 'sound/foley/bubb (1).ogg'
-	invocation = "From the abyss, rise!"
+	invocations = list("From the abyss, rise!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -287,7 +287,7 @@
 	charging_slowdown = 1
 	chargetime = 1.25 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
-	invocation = "From the dream, consume!"
+	invocations = list("From the dream, consume!")
 	invocation_type = "shout"
 	recharge_time = 300 SECONDS
 	miracle = TRUE
@@ -370,7 +370,7 @@
 	charging_slowdown = 1
 	sound = 'sound/foley/bubb (1).ogg'
 	//Each dreamfiend has a different name to call!
-	invocation = "shogg vulgt!"
+	invocations = list("shogg vulgt!")
 	invocation_type = "shout"
 	recharge_time = 600 SECONDS
 	miracle = TRUE
@@ -427,7 +427,7 @@
 	chargetime = 2 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
 	//Each dreamfiend has a different name to call!
-	invocation = "shogg vulgt!"
+	invocations = list("shogg vulgt!")
 	invocation_type = "shout"
 	recharge_time = 750 SECONDS
 

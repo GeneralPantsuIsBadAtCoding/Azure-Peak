@@ -613,7 +613,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 /obj/effect/proc_holder/spell/invoked/convert_heretic_priest
 	name = "Absolve the Heretic"
 	desc = "Convert a heretic back to the fold of the church. Requires the heretic to be willing, and takes a long time to cast."
-	invocation = "Show this lost sheep the way back to the flock."
+	invocations = list("Show this lost sheep the way back to the flock.")
 	invocation_type = "whisper"
 	sound = 'sound/magic/bless.ogg'
 	devotion_cost = 100

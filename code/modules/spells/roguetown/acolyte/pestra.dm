@@ -180,7 +180,7 @@
 	antimagic_allowed = FALSE
 	miracle = TRUE
 
-	invocation = "Rot, take them!"
+	invocations = list("Rot, take them!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
 

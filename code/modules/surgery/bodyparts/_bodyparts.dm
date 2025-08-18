@@ -93,6 +93,9 @@
 	/// Visual features of the bodypart, such as hair and accessories
 	var/list/bodypart_features
 
+	/// Whether the bodypart has unlimited bleeding.
+	var/unlimited_bleeding = FALSE
+
 	grid_width = 32
 	grid_height = 64
 
