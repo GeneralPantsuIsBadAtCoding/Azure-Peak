@@ -824,6 +824,13 @@
 /obj/structure/fireaxecabinet/south,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/tavern)
+"anV" = (
+/obj/machinery/light/rogue/torchholder/l,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/masonic{
+	dir = 4
+	},
+/area/rogue/indoors/town/manor)
 "anX" = (
 /mob/living/carbon/human/species/skeleton/npc/bogguard,
 /turf/open/floor/rogue/dirt,
@@ -2490,7 +2497,7 @@
 /area/rogue/indoors/town/garrison)
 "aNj" = (
 /obj/effect/landmark/start/knight,
-/turf/open/floor/rogue/carpet/lord/center,
+/turf/open/transparent/openspace,
 /area/rogue/indoors/town/manor)
 "aNp" = (
 /obj/structure/fluff/signage{
@@ -5657,6 +5664,10 @@
 /obj/item/candle/candlestick/gold,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/goblinfort)
+"bLm" = (
+/obj/item/gun/ballistic/revolver/last_resort,
+/turf/closed/wall/mineral/rogue/decostone/long,
+/area/rogue/indoors/town/manor)
 "bLq" = (
 /obj/structure/mineral_door/bars,
 /turf/open/floor/rogue/dirt,
@@ -6592,6 +6603,7 @@
 /area/rogue/under/town/basement/keep)
 "bZJ" = (
 /obj/effect/landmark/start/knight,
+/obj/structure/fluff/railing/border/east,
 /turf/open/floor/rogue/tile/masonic{
 	dir = 1
 	},
@@ -21752,6 +21764,10 @@
 /obj/structure/roguemachine/bounty,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
+"gEI" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/masonic,
+/area/rogue/indoors/town/manor)
 "gEJ" = (
 /obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/dirt,
@@ -23103,6 +23119,10 @@
 /obj/structure/fluff/pillow/magenta,
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
+"gZt" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/indoors/town/manor)
 "gZB" = (
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/dirt,
@@ -27934,6 +27954,7 @@
 /area/rogue/indoors/town/bath)
 "iuM" = (
 /obj/effect/landmark/start/knight,
+/obj/structure/fluff/railing/border/west,
 /turf/open/floor/rogue/tile/masonic{
 	dir = 8
 	},
@@ -28588,6 +28609,12 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/shop)
+"iFz" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/masonic{
+	dir = 1
+	},
+/area/rogue/indoors/town/manor)
 "iFA" = (
 /obj/structure/closet/crate/drawer,
 /obj/machinery/light/rogue/wallfire/candle/weak/r,
@@ -61601,6 +61628,12 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/mountains)
+"sFX" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/masonic{
+	dir = 4
+	},
+/area/rogue/indoors/town/manor)
 "sFZ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/fluff/walldeco/chains,
@@ -65504,6 +65537,12 @@
 /obj/structure/flora/roguegrass/bush/wall,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/rtfield)
+"tMX" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/masonic{
+	dir = 8
+	},
+/area/rogue/indoors/town/manor)
 "tNa" = (
 /obj/structure/flora/rogueshroom/happy/mushroom3,
 /turf/open/floor/rogue/dirt,
@@ -69696,6 +69735,10 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
+"uXo" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/masonic/single,
+/area/rogue/indoors/town/manor)
 "uXq" = (
 /obj/structure/bed/rogue/inn/double{
 	dir = 1
@@ -73757,6 +73800,13 @@
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/manor)
+"weX" = (
+/obj/structure/kybraxor{
+	pixel_x = -32;
+	pixel_y = -32
+	},
+/turf/open/transparent/openspace,
+/area/rogue/indoors/town/manor)
 "wfm" = (
 /obj/structure/table/wood/map,
 /turf/open/floor/rogue/carpet,
@@ -77365,6 +77415,13 @@
 /obj/structure/roguewindow/openclose,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"xmp" = (
+/obj/machinery/light/rogue/torchholder/l{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/masonic,
+/area/rogue/indoors/town/manor)
 "xmx" = (
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/blocks/green,
@@ -291546,7 +291603,7 @@ wWq
 wsf
 wsf
 wsf
-wsf
+bLm
 wsf
 wsf
 wsf
@@ -294259,12 +294316,12 @@ pbK
 uWp
 fdR
 bZJ
-uQf
-uBe
-dir
-tCI
-uBe
-dir
+anV
+gZt
+iFz
+sFX
+gZt
+iFz
 uQf
 uBe
 kJS
@@ -294710,9 +294767,9 @@ udY
 mvH
 jiA
 aLr
-jiA
-jiA
-jiA
+fSz
+fSz
+fSz
 jiA
 jiA
 jiA
@@ -295163,8 +295220,8 @@ cpa
 fZT
 vKj
 aNj
-fZT
-fZT
+weX
+fSz
 fZT
 xHI
 fZT
@@ -295614,9 +295671,9 @@ udY
 sUn
 lzQ
 vAo
-lzQ
-lzQ
-lzQ
+fSz
+fSz
+fSz
 lzQ
 lzQ
 lzQ
@@ -296067,12 +296124,12 @@ pbK
 uWp
 mnB
 iuM
-ovY
-kMx
-xwF
-ruD
-kMx
-xwF
+xmp
+uXo
+tMX
+gEI
+uXo
+tMX
 ovY
 kMx
 xwF
