@@ -1364,10 +1364,15 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/indoors/shelter)
 "auI" = (
-/obj/structure/table/wood/poor,
-/obj/item/candle/gold/lit,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors/town)
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/machinery/light/rogue/lanternpost{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/town)
 "auJ" = (
 /obj/structure/fluff/railing/corner,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -43395,6 +43400,11 @@
 /mob/living/simple_animal/hostile/rogue/mirespider_lurker,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
+"naj" = (
+/obj/structure/table/wood/poor,
+/obj/item/candle/gold/lit,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/town)
 "nak" = (
 /obj/structure/closet/crate/chest/crate,
 /obj/item/roguecoin/gold,
@@ -62169,6 +62179,7 @@
 /obj/item/paper/scroll,
 /obj/item/paper/scroll,
 /obj/item/roguekey/crier,
+/obj/item/roguekey/crier,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "sNi" = (
@@ -77261,7 +77272,6 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/item/legwears/black,
-/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/loudmouth,
 /obj/item/clothing/shoes/roguetown/boots,
 /obj/item/clothing/suit/roguetown/shirt/tunic/red,
 /turf/open/floor/rogue/tile/harem,
@@ -80650,6 +80660,11 @@
 /obj/structure/fluff/railing/border/west,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/rtfield)
+"yit" = (
+/obj/structure/fluff/railing/border/north,
+/obj/machinery/light/rogue/lanternpost,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "yiv" = (
 /turf/closed/wall/mineral/rogue/pipe/line/four,
 /area/rogue/under/cavewet/bogcaves/west)
@@ -270455,7 +270470,7 @@ noZ
 jNP
 pgr
 edT
-xPG
+yit
 fpx
 qzj
 pWT
@@ -271351,7 +271366,7 @@ wMg
 fpx
 exD
 exD
-fpx
+xzx
 fpx
 fpx
 njB
@@ -271804,7 +271819,7 @@ exD
 exD
 exD
 exD
-qXH
+fpx
 fpx
 fpx
 ssm
@@ -273161,14 +273176,14 @@ exD
 exD
 exD
 okQ
-ges
+auI
 sns
 sns
 sns
 vOG
 sns
 sns
-sns
+nqN
 sns
 sns
 sns
@@ -273612,7 +273627,7 @@ exD
 exD
 exD
 fpx
-xpk
+fpx
 cDX
 uBc
 pqG
@@ -274523,7 +274538,7 @@ inn
 guB
 cWw
 wBe
-auI
+naj
 uZq
 btK
 okH
@@ -275881,7 +275896,7 @@ stH
 nBE
 wBe
 uBc
-pWT
+aHU
 njB
 uBc
 oJE
@@ -276785,7 +276800,7 @@ ukL
 beJ
 cDX
 uBc
-daQ
+iyU
 daQ
 uBc
 gPy
