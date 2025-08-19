@@ -729,12 +729,12 @@
 	force_wielded = 25
 	icon_state = "polehammer"
 	smeltresult = /obj/item/ingot/iron
-	max_blade_int = 300
+	max_blade_int = 100
 	sellprice = 40
 
 /datum/intent/spear/thrust/eaglebeak
-	penfactor = 20
-	damfactor = 0.9
+	penfactor = 50
+	damfactor = 1
 
 /datum/intent/spear/thrust/glaive
 	penfactor = 50
@@ -745,6 +745,7 @@
 	reach = 2
 	swingdelay = 12
 	clickcd = 14
+	damfactor = 1.3
 
 /obj/item/rogueweapon/spear/bronze
 	name = "Bronze Spear"
@@ -1008,7 +1009,7 @@
 	force_wielded = 20
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff"
-	max_integrity = 300
+	max_integrity = 150
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 	name = "iron quarterstaff"
@@ -1017,8 +1018,7 @@
 	force_wielded = 22
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_iron"
-	max_integrity = 300
-	intdamage_factor = 1.2
+	max_integrity = 200
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 	name = "steel quarterstaff"
@@ -1027,8 +1027,7 @@
 	force_wielded = 25
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
-	max_integrity = 400
-	intdamage_factor = 1.2
+	max_integrity = 200
 
 /obj/item/rogueweapon/spear/partizan
 	name = "partizan"

@@ -431,7 +431,7 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 11
-	max_blade_int = 200
+	max_blade_int = 150
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/axes
@@ -459,7 +459,7 @@
 	icon_state = "sgreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 11
-	max_blade_int = 300
+	max_blade_int = 200
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/greataxe/steel/doublehead
@@ -471,6 +471,7 @@
 	desc = "A steel great axe with a wicked double-bladed head. Perfect for cutting either men or trees into stumps.."
 	icon_state = "doublegreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
+	max_blade_int = 125
 	minstr = 12
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
@@ -480,6 +481,7 @@
 	blade_dulling = DULLING_SHAFT_GRAND
 	force = 20
 	force_wielded = 40
+	max_blade_int = 250
 	icon = 'icons/roguetown/weapons/64.dmi'
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/graggar/pickup(mob/living/user)
