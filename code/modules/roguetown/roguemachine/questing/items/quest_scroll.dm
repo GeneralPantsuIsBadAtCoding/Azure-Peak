@@ -1,8 +1,8 @@
 #define WHISPER_COOLDOWN 10 SECONDS
 /obj/item/paper/scroll/quest
-	name = "enchanted quest scroll"
-	desc = "A weathered scroll oft known as a \"whispering scroll\". Enchanted with magicks to make it whisper to its bearer when opened the location of its target.\n\
-	The magical protections make it resistant to damage and tampering. It will only whisper when carried on the person of the quest bearer."
+	name = "enchanted contract scroll"
+	desc = "A scroll oft known as a \"whispering scroll\". Enchanted with magicks to make it whisper to its bearer when opened the location of its target.\n\
+	The magical protections make it resistant to damage and tampering. It will only whisper when carried on the person of the contract bearer."
 	icon = 'code/modules/roguetown/roguemachine/questing/questing.dmi'
 	icon_state = "scroll_quest"
 	var/base_icon_state = "scroll_quest"
@@ -33,14 +33,14 @@
 			if(giver && (giver in SStreasury.bank_accounts))
 				SStreasury.bank_accounts[giver] += refund
 				SStreasury.treasury_value -= refund
-				SStreasury.log_entries += "-[refund] from treasury (quest scroll destroyed refund to giver [giver.real_name])"
+				SStreasury.log_entries += "-[refund] from treasury (contract scroll destroyed refund to giver [giver.real_name])"
 			// Otherwise try quest receiver
 			else if(assigned_quest.quest_receiver_reference)
 				var/mob/receiver = assigned_quest.quest_receiver_reference.resolve()
 				if(receiver && (receiver in SStreasury.bank_accounts))
 					SStreasury.bank_accounts[receiver] += refund
 					SStreasury.treasury_value -= refund
-					SStreasury.log_entries += "-[refund] from treasury (quest scroll destroyed refund to receiver [receiver.real_name])"
+					SStreasury.log_entries += "-[refund] from treasury (contract scroll destroyed refund to receiver [receiver.real_name])"
 		
 		// Clean up the quest
 		qdel(assigned_quest)
@@ -88,12 +88,12 @@
 	if(!assigned_quest)
 		return
 	if(!assigned_quest.quest_receiver_reference)
-		. += span_notice("This quest hasn't been claimed yet. Open it to claim it for yourself!")
+		. += span_notice("This contract hasn't been claimed yet. Open it to claim it for yourself!")
 	else if(assigned_quest.complete)
-		. += span_notice("\nThis quest is complete! Return it to the Notice Board to claim your reward.")
+		. += span_notice("\nThis contract is complete! Return it to the Notice Board to claim your reward.")
 		. += span_info("\nPlace it on the marked area next to the book.")
 	else
-		. += span_notice("\nThis quest is still in progress.")
+		. += span_notice("\nThis contract is still in progress.")
 
 /obj/item/paper/scroll/quest/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	if(P.get_sharpness())
@@ -107,7 +107,7 @@
 			to_chat(user, span_warning("You need to open the scroll first."))
 			return
 		if(!assigned_quest)
-			to_chat(user, span_warning("This quest scroll doesn't accept modifications."))
+			to_chat(user, span_warning("This contract scroll doesn't accept modifications."))
 			return
 	..()
 
@@ -136,7 +136,7 @@
 	assigned_quest.quest_receiver_reference = WEAKREF(user)
 	assigned_quest.quest_receiver_name = user.real_name
 
-	to_chat(user, span_notice("You claim this quest for yourself!"))
+	to_chat(user, span_notice("You claim this contract for yourself!"))
 	update_quest_text()
 	refresh_compass(user) // Update compass after claiming
 
@@ -146,9 +146,9 @@
 
 	var/scroll_text = "<center>HELP NEEDED</center><br>"
 	scroll_text += "<center><b>[assigned_quest.title]</b></center><br><br>"
-	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? "[assigned_quest.quest_giver_name]" : "The Adventurer's Guild"].<br>"
+	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? "[assigned_quest.quest_giver_name]" : "The Mercenary's Guild"].<br>"
 	scroll_text += "<b>Issued to:</b> [assigned_quest.quest_receiver_name ? assigned_quest.quest_receiver_name : "whoever it may concern"].<br>"
-	scroll_text += "<b>Type:</b> [assigned_quest.quest_type] quest.<br>"
+	scroll_text += "<b>Type:</b> [assigned_quest.quest_type] contract.<br>"
 	scroll_text += "<b>Difficulty:</b> [assigned_quest.quest_difficulty].<br><br>"
 
 	if(last_compass_direction)
@@ -158,10 +158,10 @@
 	scroll_text += "<br>"
 
 	switch(assigned_quest.quest_type)
-		if(QUEST_FETCH)
+		if(QUEST_RETRIEVAL)
 			scroll_text += "<b>Objective:</b> Retrieve [assigned_quest.target_amount] [initial(assigned_quest.target_item_type.name)].<br>"
 			scroll_text += "<b>Last Seen Location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
-		if(QUEST_KILL, QUEST_MINIBOSS)
+		if(QUEST_KILL, QUEST_OUTLAW)
 			scroll_text += "<b>Objective:</b> Slay [assigned_quest.target_amount] [initial(assigned_quest.target_mob_type.name)].<br>"
 			scroll_text += "<b>Last Seen Location:</b> [assigned_quest.target_spawn_area ? "Reported sighting in [assigned_quest.target_spawn_area] region." : "Reported sighting in Azuria region."]<br>"
 		if(QUEST_CLEAR_OUT)
@@ -176,7 +176,7 @@
 	scroll_text += "<br><b>Reward:</b> [assigned_quest.reward_amount] mammon upon completion<br>"
 	
 	if(assigned_quest.complete)
-		scroll_text += "<br><center><b>QUEST COMPLETE</b></center>"
+		scroll_text += "<br><center><b>CONTRACT COMPLETE</b></center>"
 		scroll_text += "<br><b>Return this scroll to the Notice Board to claim your reward!</b>"
 		scroll_text += "<br><i>Place it on the marked area next to the book.</i>"
 	else

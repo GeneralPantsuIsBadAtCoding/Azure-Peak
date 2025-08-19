@@ -195,7 +195,7 @@
 			backl = /obj/item/rogueweapon/shield/tower/metal
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 		if("Halberd")
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			r_hand = /obj/item/rogueweapon/halberd
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 

@@ -17,9 +17,13 @@
 	generic_random_pick = TRUE
 	sprite_accessories = list(
 		/datum/sprite_accessory/snout/sharp,
+		/datum/sprite_accessory/snout/sharpdualcolor,
 		/datum/sprite_accessory/snout/round,
+		/datum/sprite_accessory/snout/rounddualcolor,
 		/datum/sprite_accessory/snout/sharplight,
+		/datum/sprite_accessory/snout/sharplightdualcolor,
 		/datum/sprite_accessory/snout/roundlight,
+		/datum/sprite_accessory/snout/roundlightdualcolor,
 		/datum/sprite_accessory/snout/front/sharp,
 		/datum/sprite_accessory/snout/front/round,
 		/datum/sprite_accessory/snout/front/sharplight,

@@ -314,7 +314,7 @@
 			r_hand = /obj/item/rogueweapon/greatsword/grenz
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Halberd")
 			r_hand = /obj/item/rogueweapon/halberd
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.

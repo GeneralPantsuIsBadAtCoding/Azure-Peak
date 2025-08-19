@@ -24,7 +24,7 @@
 			shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-			backr = /obj/item/gwstrap
+			backr = /obj/item/rogueweapon/scabbard/gwstrap
 			backl = /obj/item/storage/backpack/rogue/backpack
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/meatbag
