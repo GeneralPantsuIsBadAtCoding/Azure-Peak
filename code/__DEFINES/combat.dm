@@ -360,6 +360,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 //Weapon values
 #define BLUNT_DEFAULT_PENFACTOR		-100
 #define INTEG_PARRY_DECAY			1
+#define INTEG_PARRY_DECAY_NOSHARP	5
 #define SHARPNESS_ONHIT_DECAY		3
 #define SHARPNESS_TIER1_THRESHOLD	0.8
 #define SHARPNESS_TIER2_THRESHOLD	0.35

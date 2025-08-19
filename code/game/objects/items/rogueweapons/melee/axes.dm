@@ -478,7 +478,6 @@
 	name = "vicious greataxe"
 	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
 	icon_state = "graggargaxe"
-	blade_dulling = DULLING_SHAFT_GRAND
 	force = 20
 	force_wielded = 40
 	max_blade_int = 250

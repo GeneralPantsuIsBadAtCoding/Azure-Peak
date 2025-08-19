@@ -165,6 +165,8 @@
 			prob2defend += sentinel
 
 		prob2defend = clamp(prob2defend, 5, 90)
+		if(UH.used_intent.item_d_type == "blunt" && UH.mind)
+			prob2defend = clamp(prob2defend, 5, 75)
 
 		//------------Dual Wielding Checks------------
 		var/attacker_dualw
@@ -254,7 +256,8 @@
 			var/lucmod = L.STALUC - U.STALUC
 			probclip += lucmod * 10
 		if(prob(probclip) && IS && IU)
-			IS.take_damage(INTEG_PARRY_DECAY, BRUTE, IU.d_type)
+			var/intdam = IS.max_blade_int ? INTEG_PARRY_DECAY : INTEG_PARRY_DECAY_NOSHARP
+			IS.take_damage(intdam, BRUTE, IU.d_type)
 			IS.remove_bintegrity(SHARPNESS_ONHIT_DECAY, src)
 
 			user.visible_message(span_warning("<b>[user]</b> clips [src]'s weapon!"))

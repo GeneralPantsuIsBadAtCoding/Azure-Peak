@@ -32,7 +32,7 @@
 		//We are above the second threshold but are about to hit it.
 		if(ratio > SHARPNESS_TIER2_THRESHOLD && newratio <= SHARPNESS_TIER2_THRESHOLD)
 			if(L.STAINT > 9)
-				to_chat(L, "<font color = '#ececec'><font size = 4>A chunk snapped off! \The [src]'s damage will decay much quicker now.</font>")
+				to_chat(L, span_userdanger("A chunk snapped off! \The [src]'s damage will decay much quicker now."))
 			playsound(L, 'sound/combat/sharpness_loss2.ogg', 100, TRUE)
 	
 	blade_int = blade_int - amt
@@ -51,7 +51,9 @@
 			max_blade_int = 10
 		return TRUE
 
-/obj/item/proc/add_bintegrity(amt as num)
+/obj/item/proc/add_bintegrity(amt as num, mob/user)
+	if(HAS_TRAIT(user, TRAIT_SHARPER_BLADES))
+		amt *= 1.3
 	if(blade_int >= max_blade_int)
 		blade_int = max_blade_int
 		return FALSE
@@ -77,16 +79,24 @@
 			var/obj/item/natural/ST = I
 			if(!ST.sharpening_factor)
 				return
-			playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100)
-			user.visible_message(span_notice("[user] sharpens [src]!"))
-			degrade_bintegrity(0.5)
-			add_bintegrity(max_blade_int * ST.sharpening_factor)
-			if(blade_int >= max_blade_int)
-				to_chat(user, span_info("Fully sharpened."))
-			if(prob(ST.spark_chance))
-				var/datum/effect_system/spark_spread/S = new()
-				var/turf/front = get_step(user,user.dir)
-				S.set_up(1, 1, front)
-				S.start()
+			var/loopcount = round(max_blade_int / ST.sharpening_factor, 1) + 1
+			for(var/i in 1 to loopcount)
+				if(blade_int >= max_blade_int)
+					to_chat(user, span_info("Fully sharpened."))
+					break
+				user.visible_message(span_info("[user] starts sharpening \the [src]..."))
+				if(do_after(user, 1.5 SECONDS))
+					playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100)
+					user.visible_message(span_notice("[user] sharpens [src]!"))
+					degrade_bintegrity(0.5)
+					add_bintegrity(ST.sharpening_factor, user)
+
+					if(prob(ST.spark_chance))
+						var/datum/effect_system/spark_spread/S = new()
+						var/turf/front = get_step(user,user.dir)
+						S.set_up(1, 1, front)
+						S.start()
+				else
+					break
 			return
 	. = ..()

@@ -458,7 +458,6 @@
 		if(dullness_ratio < SHARPNESS_TIER2_THRESHOLD)
 			var/lerpratio = LERP(0, SHARPNESS_TIER2_THRESHOLD, (dullness_ratio / SHARPNESS_TIER2_THRESHOLD))	//Yes, it's meant to LERP between 0 and 0.x using ratio / tier2. The damage falls off a cliff. Intended!
 			newforce *= (lerpratio * 2)
-	to_chat(world, "final force value: [newforce]")
 	testing("endforce [newforce]")
 	return newforce
 

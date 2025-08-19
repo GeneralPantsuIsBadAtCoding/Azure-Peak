@@ -130,6 +130,8 @@
 	if(!H?.check_armor_skill())
 		prob2defend = clamp(prob2defend, 5, 75)			//Caps your max parry to 75 if using armor you're not trained in. Bad dexerity.
 		drained = drained + 5							//More stamina usage for not being trained in the armor you're using.
+	if(intenty.item_d_type == "blunt" && H.mind)
+		prob2defend = clamp(prob2defend, 5, 75)
 
 	//Dual Wielding
 	var/attacker_dualw
@@ -250,7 +252,10 @@
 
 			var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 			if(dam2take)
-				used_weapon.take_damage(INTEG_PARRY_DECAY, BRUTE, used_weapon.d_type)
+				var/intdam = used_weapon.max_blade_int ? INTEG_PARRY_DECAY : INTEG_PARRY_DECAY_NOSHARP
+				if(used_weapon == offhand)
+					intdam = INTEG_PARRY_DECAY_NOSHARP
+				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
 				used_weapon.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
 			return TRUE
 		else
