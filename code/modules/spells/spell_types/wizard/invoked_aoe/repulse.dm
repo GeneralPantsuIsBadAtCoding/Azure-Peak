@@ -2,11 +2,10 @@
 	name = "Repulse"
 	desc = "Conjure forth a wave of energy, repelling anyone around you."
 	cost = 3
-	xp_gain = TRUE
-	releasedrain = 50
+	releasedrain = 30
 	chargedrain = 1
-	chargetime = 5
-	recharge_time = 30 SECONDS
+	chargetime = 6
+	recharge_time = 20 SECONDS
 	ignore_los = TRUE
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -51,14 +50,15 @@
 		if(distfromcaster == 0)
 			if(isliving(AM))
 				var/mob/living/M = AM
-				M.Paralyze(10)
 				M.adjustBruteLoss(20)
 				to_chat(M, "<span class='danger'>You're slammed into the floor by [user]!</span>")
 		else
 			new sparkle_path(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
 			if(isliving(AM))
 				var/mob/living/M = AM
-				M.Paralyze(stun_amt)
+				M.apply_status_effect(/datum/status_effect/debuff/clickcd, 6 SECONDS)
+				M.apply_status_effect(/datum/status_effect/debuff/exposed, 6 SECONDS)
+				M.Immobilize(3 SECONDS)
 				to_chat(M, "<span class='danger'>You're thrown back by [user]!</span>")
 			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
 	return TRUE
