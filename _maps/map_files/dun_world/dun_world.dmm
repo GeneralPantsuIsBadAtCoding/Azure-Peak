@@ -468,7 +468,9 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/physician)
 "aih" = (
-/obj/structure/bookcase/random,
+/obj/structure/chair/wood/rogue{
+	dir = 4
+	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "aim" = (
@@ -1362,8 +1364,8 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/indoors/shelter)
 "auI" = (
-/obj/structure/fluff/railing/corner/south_east,
-/obj/structure/roguemachine/scomm,
+/obj/structure/table/wood/poor,
+/obj/item/candle/gold/lit,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "auJ" = (
@@ -17839,7 +17841,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains)
 "fsR" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/structure/roguemachine/scomm{
+	pixel_y = -32
+	},
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "fsV" = (
@@ -42638,7 +42642,7 @@
 	pixel_y = 6;
 	pixel_x = 16
 	},
-/obj/machinery/light/rogue/wallfire/candle/l,
+/obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "mOv" = (
@@ -43411,6 +43415,7 @@
 	pixel_y = 6;
 	pixel_x = -16
 	},
+/obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "nay" = (
@@ -53809,7 +53814,8 @@
 "qmY" = (
 /obj/structure/table/vtable/v2,
 /obj/structure/broadcast_horn/loudmouth/guest{
-	pixel_y = 16
+	pixel_y = 18;
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
@@ -62598,8 +62604,8 @@
 "sTd" = (
 /obj/structure/table/vtable,
 /obj/structure/broadcast_horn/loudmouth{
-	dir = 1;
-	pixel_y = 16
+	pixel_y = 16;
+	dir = 8
 	},
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
@@ -274064,7 +274070,7 @@ mOt
 guB
 fsR
 uBc
-aih
+wBe
 aih
 uBc
 sns
@@ -274517,7 +274523,7 @@ inn
 guB
 cWw
 wBe
-wBe
+auI
 uZq
 btK
 okH
@@ -274969,7 +274975,7 @@ guB
 guB
 uBc
 jdX
-wBe
+tVT
 uBc
 pWT
 njB
@@ -276319,14 +276325,14 @@ pWT
 kuh
 kuh
 pWT
-uBc
-auI
+uZq
+nBE
 ahf
 mNk
 wBe
 wGO
 xNA
-uBc
+uZq
 aZo
 pWT
 uBc
