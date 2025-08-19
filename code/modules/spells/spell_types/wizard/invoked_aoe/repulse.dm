@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/repulse
 	name = "Repulse"
-	desc = "Conjure forth a wave of energy, repelling anyone around you."
+	desc = "Conjure forth a wave of energy, repelling anyone around you. Leaves them immobilized and vulnerable to followup attacks for a brief moment."
 	cost = 3
 	releasedrain = 30
 	chargedrain = 1
