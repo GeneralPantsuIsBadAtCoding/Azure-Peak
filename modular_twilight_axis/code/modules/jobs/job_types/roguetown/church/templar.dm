@@ -148,7 +148,21 @@
 		if(/datum/patron/divine/xylix)
 			weapons += "Devilsknives"
 		if(/datum/patron/divine/eora)
-			weapons += "The Heartstring"
+			weapons += "The Heartstring and Misericorde"
+		if(/datum/patron/divine/noc)
+			weapons += "Twilight Fangs"
+		if(/datum/patron/divine/astrata)
+			weapons += "Dawnbringers"
+		if(/datum/patron/divine/ravox)
+			weapons += "Echoes of Triumph"
+		if(/datum/patron/divine/abyssor)
+			weapons += "Darkwater Rippers"
+		if(/datum/patron/divine/dendor)
+			weapons += "Madenning Thorns"
+		if(/datum/patron/divine/necra)
+			weapons += "Osteotomes"
+		if(/datum/patron/divine/malum)
+			weapons += "Embertongues"
 
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
@@ -160,6 +174,10 @@
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		if("Recurve Bow")
+			H.put_in_hands(new /obj/item/quiver/arrows(H), TRUE)
+			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve(H), TRUE) 
+			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
 		if("Plaguebringer Sickles")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
@@ -168,11 +186,37 @@
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-		if("The Heartstring")
+		if("The Heartstring and Misericorde")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier/eora(H), TRUE)
-			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/eora(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Recurve Bow")
-			H.put_in_hands(new /obj/item/quiver/arrows(H), TRUE)
-			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve(H), TRUE) 
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Twilight Fangs")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/throwingknife/steel/noc(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/throwingknife/steel/noc(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Dawnbringers")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/astrata(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/astrata(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Echoes of Triumph")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/ravox(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/ravox(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Darkwater Rippers")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/abyssor(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/abyssor(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Madenning Thorns")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/dendor(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/dendor(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Osteotomes")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/necra(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/necra(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Embertongues")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/malum(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/malum(H), TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+
