@@ -20,7 +20,7 @@ export BUN_VERSION=1.2.16
 export SPACEMAN_DMM_VERSION=suite-1.8
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.9.0
+export PYTHON_VERSION=3.12.3
 
 #auxlua repo
 export AUXLUA_REPO=tgstation/auxlua
