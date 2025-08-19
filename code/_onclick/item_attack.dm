@@ -270,7 +270,7 @@
 			if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
 				strmod = 0
 			else if(dullness_ratio < SHARPNESS_TIER1_THRESHOLD)
-				var/strlerp = LERP(0, SHARPNESS_TIER1_THRESHOLD, dullness_ratio)
+				var/strlerp = (dullness_ratio - SHARPNESS_TIER2_THRESHOLD) / SHARPNESS_TIER1_THRESHOLD
 				strmod *= strlerp
 		newforce = newforce + (newforce * strmod)
 	else if(used_str <= 9)
@@ -444,7 +444,7 @@
 	if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
 		newdam = 0
 	else if(dullness_ratio <= SHARPNESS_TIER1_THRESHOLD)
-		var/damflerp = dullness_ratio - SHARPNESS_TIER2_THRESHOLD
+		var/damflerp = (dullness_ratio - SHARPNESS_TIER2_THRESHOLD) / SHARPNESS_TIER1_THRESHOLD
 		newdam *= damflerp
 	newforce = (newforce + newdam) * dullfactor
 	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)
