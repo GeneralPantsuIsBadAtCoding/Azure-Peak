@@ -13,6 +13,28 @@
 /obj/item/proc/remove_bintegrity(amt as num, mob/user)
 	if(user && HAS_TRAIT(user, TRAIT_SHARPER_BLADES))
 		amt = amt * 0.7
+
+	var/mob/living/L
+	if(loc && loc == user)
+		L = user
+	else	//If we're sending messages it should be sent to a mob
+		if(loc && ishuman(loc))
+			L = loc
+	
+	if(L && max_blade_int)	
+		var/ratio = blade_int / max_blade_int
+		var/newratio = (blade_int - amt) / max_blade_int
+		if(ratio > SHARPNESS_TIER1_THRESHOLD && newratio <= SHARPNESS_TIER1_THRESHOLD) //We are above the first threshold but are about to hit it.
+			if(L.STAINT > 9)
+				to_chat(L, "<font color = '#ececec'><font size = 4>The edge chips! \The [src]'s damage will start to slowly wane, now.</font>")
+			playsound(L, 'sound/combat/sharpness_loss1.ogg', 100, TRUE)
+
+		//We are above the second threshold but are about to hit it.
+		if(ratio > SHARPNESS_TIER2_THRESHOLD && newratio <= SHARPNESS_TIER2_THRESHOLD)
+			if(L.STAINT > 9)
+				to_chat(L, "<font color = '#ececec'><font size = 4>A chunk snapped off! \The [src]'s damage will decay much quicker now.</font>")
+			playsound(L, 'sound/combat/sharpness_loss2.ogg', 100, TRUE)
+	
 	blade_int = blade_int - amt
 	if(blade_int <= 0)
 		blade_int = 0

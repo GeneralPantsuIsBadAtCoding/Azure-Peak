@@ -245,6 +245,9 @@
 	testing("startforce [newforce]")
 	if(!istype(user))
 		return newforce
+	var/dullness_ratio
+	if(I.max_blade_int && I.sharpness != IS_BLUNT)
+		dullness_ratio = I.blade_int / I.max_blade_int
 	var/cont = FALSE
 	var/used_str = user.STASTR
 	if(iscarbon(user))
@@ -263,6 +266,12 @@
 			strmod += strcappedmod
 		else
 			strmod = ((used_str - 10) * STRENGTH_MULT)
+		if(dullness_ratio)
+			if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
+				strmod = 0
+			else if(dullness_ratio < SHARPNESS_TIER1_THRESHOLD)
+				var/strlerp = LERP(0, SHARPNESS_TIER1_THRESHOLD, dullness_ratio)
+				strmod *= strlerp
 		newforce = newforce + (newforce * strmod)
 	else if(used_str <= 9)
 		newforce = newforce - (newforce * ((10 - used_str) * 0.1))
@@ -432,6 +441,11 @@
 				if(BCLASS_PICK)
 					dullfactor = DULLFACTOR_ANTAG
 	var/newdam = (I.force_dynamic * user.used_intent.damfactor) - I.force_dynamic
+	if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
+		newdam = 0
+	else if(dullness_ratio <= SHARPNESS_TIER1_THRESHOLD)
+		var/damflerp = dullness_ratio - SHARPNESS_TIER2_THRESHOLD
+		newdam *= damflerp
 	newforce = (newforce + newdam) * dullfactor
 	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)
 		newforce = newforce * 0.5
@@ -439,10 +453,11 @@
 		newforce *= 0.5
 	newforce = round(newforce,1)
 	newforce = max(newforce, 1)
-	if(I.max_blade_int && I.sharpness != IS_BLUNT)
-		to_chat(world, "trying to round [(I.blade_int / I.max_blade_int)]")
-		newforce *= round((I.blade_int / I.max_blade_int), 0.05)
-	to_chat(world, "returning [newforce]")
+	if(dullness_ratio)
+		if(dullness_ratio < SHARPNESS_TIER2_THRESHOLD)
+			var/lerpratio = LERP(0, SHARPNESS_TIER2_THRESHOLD, (dullness_ratio / SHARPNESS_TIER2_THRESHOLD))	//Yes, it's meant to LERP between 0 and 0.x using ratio / tier2. The damage falls off a cliff. Intended!
+			newforce *= (lerpratio * 2)
+	to_chat(world, "final force value: [newforce]")
 	testing("endforce [newforce]")
 	return newforce
 
