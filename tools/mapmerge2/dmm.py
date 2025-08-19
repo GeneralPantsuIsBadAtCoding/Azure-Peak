@@ -11,7 +11,7 @@ ENCODING = 'utf-8'
 Coordinate = namedtuple('Coordinate', ['x', 'y', 'z'])
 
 class DMM:
-    __slots__ = ['key_length', 'size', 'dictionary', 'grid', 'header', 'lowest_free']
+    __slots__ = ['key_length', 'size', 'dictionary', 'grid', 'header']
 
     def __init__(self, key_length, size):
         self.key_length = key_length
@@ -19,7 +19,6 @@ class DMM:
         self.dictionary = bidict.bidict()
         self.grid = {}
         self.header = None
-        self.lowest_free = 0
 
     @staticmethod
     def from_file(fname):
@@ -61,14 +60,10 @@ class DMM:
     def generate_new_key(self):
         self._ensure_free_keys(1)
         max_key = max_key_for(self.key_length)
-        # choose one of the free keys
-        key = self.lowest_free
+        # choose one of the free keys at random
+        key = random.randint(0, max_key - 1)
         while key in self.dictionary:
-            key = key + 1
-            if key >= max_key:
-                print("The value for lowest_free was invalid!")
-                key = 0
-        self.lowest_free = key
+            key = random.randint(0, max_key - 1)
         return key
 
     def overwrite_key(self, key, fixed, bad_keys):
@@ -95,7 +90,6 @@ class DMM:
                 unused_keys.remove(key)
         for key in unused_keys:
             del self.dictionary[key]
-        self.lowest_free = 0
 
     def _presave_checks(self):
         # last-second handling of bogus keys to help prevent and fix broken maps
