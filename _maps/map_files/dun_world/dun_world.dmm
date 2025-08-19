@@ -3488,8 +3488,15 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "beJ" = (
+/obj/structure/closet/crate/chest/old_crate,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/fluff/railing/corner/south_west,
-/obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "beO" = (
@@ -17671,15 +17678,11 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "fqX" = (
-/obj/structure/table/wood/poor,
-/obj/structure/bars{
-	icon_state = "barsbent";
-	layer = 2.81
-	},
-/obj/structure/bars/passage/shutter/open{
-	redstone_id = "crier"
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
+/obj/structure/bookcase/random,
+/obj/item/book/rogue/sword,
+/obj/item/book/rogue/tales1,
+/obj/item/book/rogue/arcyne,
+/turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "fqY" = (
 /turf/open/water/swamp/deep,
@@ -39239,24 +39242,18 @@
 /turf/open/water/bath,
 /area/rogue/outdoors/mountains/decap/gunduzirak/bossarena)
 "lOE" = (
-/obj/structure/closet/crate/chest/old_crate,
+/obj/structure/fluff/railing/corner/south_west,
+/obj/structure/fermentation_keg/water,
 /obj/structure/fluff/railing/border,
 /obj/structure/rack/rogue/shelf,
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_y = 32;
-	pixel_x = 6
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_y = 32;
-	pixel_x = -6
+	pixel_x = 6
 	},
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "lOJ" = (
@@ -40869,10 +40866,10 @@
 	icon_state = "barsbent";
 	layer = 2.81
 	},
-/obj/structure/bars/passage/shutter/open{
+/obj/structure/bars/passage/shutter{
 	redstone_id = "crier"
 	},
-/turf/closed,
+/turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "mnc" = (
 /obj/structure/table/wood/long_table,
@@ -60551,6 +60548,9 @@
 /area/rogue/indoors/town/garrison)
 "spk" = (
 /obj/structure/bookcase/random,
+/obj/item/book/rogue/law,
+/obj/item/book/rogue/tales3,
+/obj/item/book/rogue/nitebeast,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "spt" = (
@@ -62154,9 +62154,9 @@
 "sNh" = (
 /obj/structure/closet/crate/drawer,
 /obj/structure/mirror,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/paper,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "sNi" = (
@@ -274512,7 +274512,7 @@ guB
 cWw
 wBe
 wBe
-uBc
+uZq
 btK
 okH
 cDX
@@ -275410,13 +275410,13 @@ jiQ
 pWT
 pWT
 cDX
-fqX
-fqX
+mmY
+mmY
 mmY
 cDX
 gLW
 wBe
-uBc
+cDX
 njB
 jiQ
 uBc
@@ -275868,7 +275868,7 @@ wBe
 stH
 nBE
 wBe
-cDX
+uBc
 pWT
 njB
 uBc
@@ -390224,7 +390224,7 @@ guB
 guB
 guB
 guB
-spk
+fqX
 uBc
 bGf
 bGf
