@@ -17678,10 +17678,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "fqX" = (
-/obj/structure/bookcase/random,
-/obj/item/book/rogue/sword,
-/obj/item/book/rogue/tales1,
-/obj/item/book/rogue/arcyne,
+/obj/effect/landmark/start/crier,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "fqY" = (
@@ -17841,6 +17838,10 @@
 /obj/structure/roguemachine/noticeboard,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains)
+"fsR" = (
+/obj/machinery/light/rogue/wallfire/candle/l,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/town)
 "fsV" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/rogue/blocks/green,
@@ -19931,8 +19932,11 @@
 /turf/closed/mineral/rogue/iron,
 /area/rogue/under/underdark/north)
 "gcA" = (
-/obj/structure/roguewindow,
-/turf/closed,
+/obj/structure/bookcase/random,
+/obj/item/book/rogue/sword,
+/obj/item/book/rogue/tales1,
+/obj/item/book/rogue/arcyne,
+/turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "gcH" = (
 /obj/structure/mineral_door/wood/red{
@@ -42634,6 +42638,7 @@
 	pixel_y = 6;
 	pixel_x = 16
 	},
+/obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town)
 "mOv" = (
@@ -62157,6 +62162,7 @@
 /obj/item/paper/scroll,
 /obj/item/paper/scroll,
 /obj/item/paper/scroll,
+/obj/item/roguekey/crier,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "sNi" = (
@@ -273600,7 +273606,7 @@ exD
 exD
 exD
 fpx
-fpx
+xpk
 cDX
 uBc
 pqG
@@ -274056,7 +274062,7 @@ pWT
 uBc
 mOt
 guB
-guB
+fsR
 uBc
 aih
 aih
@@ -274505,7 +274511,7 @@ kuh
 rSx
 kuh
 pWT
-gcA
+ttj
 guB
 inn
 guB
@@ -390221,10 +390227,10 @@ bGf
 flT
 qmY
 guB
-guB
-guB
-guB
 fqX
+guB
+guB
+gcA
 uBc
 bGf
 bGf
