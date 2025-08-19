@@ -486,8 +486,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(max_blade_int)
 			inspec += "\n<b>SHARPNESS:</b> "
-			var/meme = round(((blade_int / max_blade_int) * 100), 1)
-			inspec += "[meme]%"
+			var/percent = round(((blade_int / max_blade_int) * 100), 1)
+			inspec += "[percent]% ([blade_int])"
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"

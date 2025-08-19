@@ -80,11 +80,11 @@
 			if(!ST.sharpening_factor)
 				return
 			var/loopcount = round(max_blade_int / ST.sharpening_factor, 1) + 1
+			user.visible_message(span_info("[user] starts sharpening \the [src]..."))
 			for(var/i in 1 to loopcount)
 				if(blade_int >= max_blade_int)
 					to_chat(user, span_info("Fully sharpened."))
 					break
-				user.visible_message(span_info("[user] starts sharpening \the [src]..."))
 				if(do_after(user, 1.5 SECONDS))
 					playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100)
 					user.visible_message(span_notice("[user] sharpens [src]!"))

@@ -457,6 +457,8 @@
 	if(dullness_ratio)
 		if(dullness_ratio < SHARPNESS_TIER2_THRESHOLD)
 			var/lerpratio = LERP(0, SHARPNESS_TIER2_THRESHOLD, (dullness_ratio / SHARPNESS_TIER2_THRESHOLD))	//Yes, it's meant to LERP between 0 and 0.x using ratio / tier2. The damage falls off a cliff. Intended!
+			if(prob(33))
+				to_chat(user, span_info("The blade is dull..."))
 			newforce *= (lerpratio * 2)
 	testing("endforce [newforce]")
 	return newforce

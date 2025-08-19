@@ -331,7 +331,6 @@
 	sheathe_icon = "zizosword"
 	force = 30
 	force_wielded = 35
-	blade_dulling = DULLING_SHAFT_GRAND
 	equip_delay_self = 0
 	unequip_delay_self = 0
 
@@ -412,7 +411,6 @@
 	item_state = "vlord"
 	wbalance = WBALANCE_NORMAL
 	max_integrity = 9999
-	blade_dulling = DULLING_SHAFT_GRAND
 	sellprice = 363
 	static_price = TRUE
 	equip_delay_self = 0
