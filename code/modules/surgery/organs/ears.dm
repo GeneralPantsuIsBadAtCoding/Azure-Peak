@@ -182,3 +182,7 @@
 /obj/item/organ/ears/goblin
 	name = "goblin ears"
 	accessory_type = /datum/sprite_accessory/ears/goblin
+
+/obj/item/organ/ears/psy_vault_guard
+	name = "cobra hood"
+	accessory_type = /datum/sprite_accessory/ears/cobrahood

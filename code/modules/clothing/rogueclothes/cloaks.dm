@@ -1874,3 +1874,32 @@
 		alternate_worn_layer = UNDER_ARMOR_LAYER
 	user.update_inv_cloak()
 	user.update_inv_armor()
+
+/obj/item/clothing/cloak/captain
+	name = "captain's cape"
+	desc = "A cape with a gold embroided heraldry of Azure."
+	icon = 'icons/roguetown/clothing/special/captain.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/captain.dmi'
+	sleeved = 'icons/roguetown/clothing/special/onmob/captain.dmi'
+	sleevetype = "shirt"
+	icon_state = "capcloak"
+	detail_tag = "_detail"
+	alternate_worn_layer = CLOAK_BEHIND_LAYER
+	detail_color = "#39404d"
+
+/obj/item/clothing/cloak/captain/Initialize()
+	. = ..()
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary, GLOB.lordsecondary)
+	GLOB.lordcolor += src
+
+/obj/item/clothing/cloak/tabard/knight/guard/lordcolor(primary,secondary)
+	detail_color = primary
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_cloak()
+
+/obj/item/clothing/cloak/captain/Destroy()
+	GLOB.lordcolor -= src
+	return ..()

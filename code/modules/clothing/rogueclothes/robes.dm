@@ -25,6 +25,7 @@
 	sleeved = null
 	boobed = TRUE
 	color = null
+	resistance_flags = FIRE_PROOF
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 
