@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(regionthreat)
 			_latent_ambush = DANGER_DIRE_LIMIT,
 			_min_ambush = DANGER_SAFE_FLOOR, // This is intended. A warden can engage in a long war to tame the terrorbog.
 			_max_ambush = DANGER_DIRE_LIMIT,
-			_fixed_ambush = 2,
+			_fixed_ambush = FALSE,
 			_lowpop_tick = 2,
 			_highpop_tick = 4
 		),

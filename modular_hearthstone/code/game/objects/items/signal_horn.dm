@@ -20,6 +20,13 @@
 	if(!TR || !TR.latent_ambush || TR.fixed_ambush)
 		to_chat(user, span_warning("There's no point in sounding the horn here."))
 		return
+	var/has_campfire = FALSE
+	for(var/obj/machinery/light/rogue/RF in view(5, user))
+		if(RF.on)
+			has_campfire = TRUE
+	if(has_campfire)
+		to_chat(user, span_warning("This won't work with a campfire nearby."))
+		return
 	if(TR && TR.last_induced_ambush_time && (world.time < TR.last_induced_ambush_time + 5 MINUTES))
 		to_chat(user, span_warning("Foes have been cleared out here recently, perhaps you should wait a moment before sounding the horn again."))
 		return
