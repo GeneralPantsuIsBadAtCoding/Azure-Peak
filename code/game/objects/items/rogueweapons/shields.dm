@@ -179,7 +179,8 @@
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 3
-	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)	wlength = WLENGTH_NORMAL
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)	
+	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
 	wdefense = 11
