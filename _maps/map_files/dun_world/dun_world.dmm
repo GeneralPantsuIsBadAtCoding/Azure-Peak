@@ -86175,7 +86175,9 @@
 	},
 /area/rogue/indoors/town/manor)
 "xFo" = (
-/obj/structure/roguewindow,
+/obj/structure/roguewindow{
+	max_integrity = 1500
+	},
 /obj/structure/bars/grille{
 	density = 1;
 	name = "window bars"
