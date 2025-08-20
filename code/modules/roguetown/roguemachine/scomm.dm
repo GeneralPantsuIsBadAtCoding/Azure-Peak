@@ -153,10 +153,6 @@
 	if((HAS_TRAIT(user, TRAIT_GUARDSMAN) || (user.job == "Warden") || (user.job == "Squire") || (user.job == "Marshal") || (user.job == "Grand Duke") || (user.job == "Knight Captain") || (user.job == "Grand Duchess")))
 		if(alert("Would you like to swap lines or connect to a jabberline?",, "swap", "jabberline") != "jabberline")
 			garrisonline = !garrisonline
-			if(garrisonline)
-				become_hearing_sensitive()
-			else
-				lose_hearing_sensitivity()
 			to_chat(user, span_info("I [garrisonline ? "connect to the garrison SCOMline" : "connect to the general SCOMLINE"]"))
 			playsound(loc, 'sound/misc/garrisonscom.ogg', 100, FALSE, -1)
 			update_icon()
@@ -235,6 +231,7 @@
 	. = ..()
 //	icon_state = "scomm[rand(1,2)]"
 	START_PROCESSING(SSroguemachine, src)
+	become_hearing_sensitive()
 	update_icon()
 	SSroguemachine.scomm_machines += src
 	scom_number = SSroguemachine.scomm_machines.len
@@ -254,6 +251,7 @@
 		icon_state = "scomm0"
 
 /obj/structure/roguemachine/scomm/Destroy()
+	lose_hearing_sensitivity()
 	SSroguemachine.scomm_machines -= src
 	STOP_PROCESSING(SSroguemachine, src)
 	set_light(0)
@@ -293,12 +291,6 @@
 				calling.repeat_message(raw_message, src, usedcolor, message_language)
 			return
 		if(length(raw_message) > 100) //When these people talk too much, put that shit in slow motion, yeah
-			/*if(length(raw_message) > 200)
-				if(!spawned_rat)
-					visible_message(span_warning("An angered rous emerges from the SCOMlines!"))
-					new /mob/living/simple_animal/hostile/retaliate/rogue/bigrat(get_turf(src))
-					spawned_rat = TRUE
-				return*/
 			raw_message = "<small>[raw_message]</small>"
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
@@ -311,14 +303,6 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
-		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-			if(!S.calling)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
-		SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
