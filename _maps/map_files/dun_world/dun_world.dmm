@@ -51024,10 +51024,6 @@
 /obj/structure/fermentation_keg/crafted,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/tavern)
-"pvQ" = (
-/obj/structure/scoutreportboard,
-/turf/closed/wall/mineral/rogue/stone,
-/area/rogue/indoors/town)
 "pvR" = (
 /turf/closed/wall/mineral/rogue/roofwall/middle/dir1,
 /area/rogue/indoors/town/magician)
@@ -256318,7 +256314,7 @@ twE
 tjI
 xsZ
 fPJ
-pvQ
+phl
 wZo
 dxw
 dra

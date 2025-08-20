@@ -1045,7 +1045,6 @@
 #include "code\game\objects\structures\plasticflaps.dm"
 #include "code\game\objects\structures\roguetent.dm"
 #include "code\game\objects\structures\roguewindow.dm"
-#include "code\game\objects\structures\scoutreportboard.dm"
 #include "code\game\objects\structures\spawner.dm"
 #include "code\game\objects\structures\spirit_board.dm"
 #include "code\game\objects\structures\stairs.dm"
