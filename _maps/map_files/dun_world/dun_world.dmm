@@ -38782,7 +38782,9 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/under/town/sewer)
 "kJV" = (
-/obj/structure/roguewindow,
+/obj/structure/roguewindow{
+	max_integrity = 1500
+	},
 /obj/structure/fluff/littlebanners/greenwhite{
 	pixel_y = -6
 	},
