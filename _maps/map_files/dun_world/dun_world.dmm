@@ -9254,9 +9254,6 @@
 /mob/living/carbon/human/species/human/northern/bog_deserters/better_gear,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
-"cPY" = (
-/turf/closed/wall/mineral/rogue/stone,
-/area/rogue/outdoors/rtfield)
 "cQe" = (
 /turf/closed/wall/mineral/rogue/decostone/end/north,
 /area/rogue/indoors/town/church/chapel)
@@ -12078,10 +12075,6 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/underdark/south)
-"dJX" = (
-/obj/effect/spawner/roguemap/stump,
-/turf/open/floor/rogue/dirt,
-/area/rogue/indoors/town)
 "dJZ" = (
 /obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
@@ -15038,10 +15031,6 @@
 /obj/structure/fluff/walldeco/customflag,
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/outdoors/town)
-"eCf" = (
-/obj/structure/fluff/railing/border/north,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors/town)
 "eCh" = (
 /obj/effect/decal/mossy{
 	dir = 4
@@ -18969,6 +18958,10 @@
 /obj/effect/spawner/lootdrop/potion_ingredient/herb,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/underdark)
+"fLq" = (
+/obj/structure/roguemachine/scomm/r,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/exposed/town/keep)
 "fLw" = (
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/underdark)
@@ -25689,9 +25682,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods/southwest)
-"hNY" = (
-/turf/closed/wall/mineral/rogue/stone/moss,
-/area/rogue/outdoors/exposed/town/keep)
 "hOa" = (
 /obj/effect/decal/carpet/kover_darkred,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -50357,7 +50347,7 @@
 	lockid = "garrison"
 	},
 /turf/open/floor/rogue/cobble,
-/area/rogue/outdoors/exposed/town/keep)
+/area/rogue/indoors/town)
 "pjN" = (
 /obj/structure/mineral_door/wood/donjon{
 	desc = "a large door. It seems big enough to fit a mount.";
@@ -62403,9 +62393,6 @@
 /obj/effect/landmark/start/archivist,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/magician)
-"sRO" = (
-/turf/closed/wall/mineral/rogue/stone,
-/area/rogue/outdoors/exposed/town/keep)
 "sRQ" = (
 /obj/structure/fluff/walldeco/wantedposter/l,
 /mob/living/carbon/human/species/human/northern/bog_deserters,
@@ -302936,11 +302923,11 @@ uJY
 uJY
 uJY
 uJY
-fje
-dJX
+uJY
+ftO
 phl
 pjK
-hNY
+pLh
 mgq
 mgq
 mgq
@@ -302965,14 +302952,14 @@ vAw
 vAw
 vAw
 gqP
-sRO
+phl
 pjK
-hNY
+pLh
 onO
 wxu
 rMf
 ooI
-vAw
+fLq
 kAx
 rMf
 bYd
@@ -304743,12 +304730,12 @@ asY
 asY
 bNc
 moR
-bZZ
-eCf
-hzG
+kvV
+xWe
+rZO
 phl
 phl
-cPY
+phl
 rZO
 rZO
 aoe
@@ -304773,9 +304760,9 @@ sTy
 trV
 sNZ
 wQg
-cPY
-cPY
-cPY
+phl
+phl
+phl
 sNZ
 kTT
 sNZ
