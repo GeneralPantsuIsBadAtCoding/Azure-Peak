@@ -40,7 +40,7 @@
 
 /area/rogue/outdoors/beach/forest/south
 	name = "The Azure Coast - South"
-	threat_region = THREAT_REGION_NORTH_AZUREAN_COAST
+	threat_region = THREAT_REGION_SOUTH_AZUREAN_COAST
 
 /area/rogue/under/cave/dukecourt
 	name = "dukedungeon"
