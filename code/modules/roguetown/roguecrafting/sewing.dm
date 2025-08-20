@@ -1150,3 +1150,21 @@
 	result = list(/obj/item/clothing/head/roguetown/menacing/bandit)
 	reqs = list(/obj/item/natural/cloth = 3)
 	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/sewing/battleskirt
+	name = "cloth military skirt (3 cloth, 1 leather)"
+	result = list(/obj/item/storage/belt/rogue/leather/battleskirt)
+	reqs = list(
+		/obj/item/natural/cloth = 3,
+		/obj/item/natural/hide/cured = 1
+	)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/sewing/fauldedbelt
+	name = "belt with faulds (3 cloth, 1 leather)"
+	result = list(/obj/item/storage/belt/rogue/leather/battleskirt/faulds)
+	reqs = list(
+		/obj/item/natural/cloth = 3,
+		/obj/item/natural/hide/cured = 1
+	)
+	craftdiff = 2

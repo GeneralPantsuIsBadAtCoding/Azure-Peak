@@ -76,8 +76,12 @@
 		else
 			endtime = world.time + DEFAULT_DURATION
 			addtimer(CALLBACK(src, PROC_REF(refresh_check)), DEFAULT_DURATION)
+	else
+		remove()
+		qdel(src)
+		return
 
-/datum/component/enchanted_weapon/proc/apply_enchant(var/obj/item/I)
+/datum/component/enchanted_weapon/proc/apply_enchant(var/obj/item/I, is_fix = FALSE)
 	if(enchant_type == FORCE_BLADE_ENCHANT)
 		I.force += FORCE_BLADE_FORCE
 		I.force_wielded += FORCE_BLADE_FORCE
@@ -86,8 +90,9 @@
 		if(!force_blade_filter)
 			I.add_filter(FORCE_FILTER, 2, list("type" = "outline", "color" = GLOW_COLOR_DISPLACEMENT, "alpha" = 200, "size" = 1))
 	else if(enchant_type == DURABILITY_ENCHANT)
-		I.max_integrity += DURABILITY_INCREASE
-		I.obj_integrity += DURABILITY_INCREASE
+		if(!is_fix) // Obj fix already increase durability.
+			I.max_integrity += DURABILITY_INCREASE
+			I.obj_integrity += DURABILITY_INCREASE
 		var/durability_filter = I.get_filter(DURABILITY_FILTER)
 		if(!durability_filter)
 			I.add_filter(DURABILITY_FILTER, 2, list("type" = "outline", "color" = GLOW_COLOR_METAL, "alpha" = 200, "size" = 1))
@@ -100,8 +105,9 @@
 		I.force_wielded -= FORCE_BLADE_FORCE
 		I.remove_filter(FORCE_FILTER)
 	else if(enchant_type == DURABILITY_ENCHANT)
-		I.max_integrity -= DURABILITY_INCREASE
-		I.obj_integrity -= DURABILITY_INCREASE
+		if(I.max_integrity != initial(I.max_integrity))
+			I.max_integrity -= DURABILITY_INCREASE // Jank ass "temporary" fix I sure hope no one else modify max integrity
+		I.obj_integrity = min(I.obj_integrity, I.max_integrity - DURABILITY_INCREASE)
 		I.remove_filter(DURABILITY_FILTER)
 	else
 		return
@@ -121,6 +127,6 @@
 // This is called right after the object is fixed and all of its force / wdefense values are reset to initial. We re-apply the relevant bonuses.
 /datum/component/enchanted_weapon/proc/on_fix()
 	var/obj/item/I = parent
-	apply_enchant(I)
+	apply_enchant(I, TRUE)
 
 #undef DEFAULT_DURATION

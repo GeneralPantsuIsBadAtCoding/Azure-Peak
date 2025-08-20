@@ -553,3 +553,13 @@
 	debuff_type = /datum/status_effect/debuff/noc_revival
 	overlay_state = "noc_revive"
 	sound = 'sound/magic/owlhoot.ogg'
+
+
+/obj/effect/proc_holder/spell/invoked/resurrect/undivided
+	name = "Decagram Revival"
+	desc = "Revive the target at a cost, cast on yourself to check."
+	required_items = list(
+		/obj/item/rogueore/gold = 1 // Was thinking Eclipsum combo of gold/silver but that'd probably be *too* expensive. Probably the costliest revival, while having a anastasis equal debuff.
+	)
+	debuff_type = /datum/status_effect/debuff/revived
+	sound = 'sound/magic/revive.ogg'

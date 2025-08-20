@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(quest_components)
 	var/list/user_scrolls = find_quest_scrolls(user)
 	for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
 		var/datum/quest/user_quest = scroll.assigned_quest
-		if(user_quest && ((user_quest.quest_type == QUEST_FETCH && istype(parent, user_quest.target_item_type)) || \
+		if(user_quest && ((user_quest.quest_type == QUEST_RETRIEVAL && istype(parent, user_quest.target_item_type)) || \
 						(user_quest.quest_type == QUEST_COURIER && istype(parent, user_quest.target_delivery_item))))
 			examine_list += span_notice("This looks like an item you need for your quest: [user_quest.title]!")
 			break
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(quest_components)
 	var/list/user_scrolls = find_quest_scrolls(user)
 	for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
 		var/datum/quest/user_quest = scroll.assigned_quest
-		if(user_quest && (user_quest.quest_type in list(QUEST_KILL, QUEST_CLEAR_OUT, QUEST_MINIBOSS)) && istype(parent, user_quest.target_mob_type))
+		if(user_quest && (user_quest.quest_type in list(QUEST_KILL, QUEST_CLEAR_OUT, QUEST_OUTLAW)) && istype(parent, user_quest.target_mob_type))
 			examine_list += span_notice("This looks like the target of your quest: [user_quest.title]!")
 			if(Q.target_spawn_area != get_area(get_turf(src)))
 				examine_list += span_notice("It was last reported in the [Q.target_spawn_area] area, however.")
@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(quest_components)
 	var/turf/drop_turf = get_turf(dropped_item)
 	
 	// Handle fetch quests (dropping item on quest machine input)
-	if(Q.quest_type == QUEST_FETCH)
+	if(Q.quest_type == QUEST_RETRIEVAL)
 		for(var/obj/structure/roguemachine/noticeboard/quest_machine in SSroguemachine.noticeboards)
 			if(get_turf(quest_machine.input_point) == drop_turf)
 				if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
@@ -169,6 +169,6 @@ GLOBAL_LIST_EMPTY(quest_components)
 		var/obj/item/I = parent
 		I.remove_filter(outline_filter_id)
 		// Only delete the item if it's part of an incomplete fetch or courier quest
-		if(Q && !Q.complete && ((Q.quest_type == QUEST_FETCH && istype(I, Q.target_item_type)) || (Q.quest_type == QUEST_COURIER && istype(I, Q.target_delivery_item))))
+		if(Q && !Q.complete && ((Q.quest_type == QUEST_RETRIEVAL && istype(I, Q.target_item_type)) || (Q.quest_type == QUEST_COURIER && istype(I, Q.target_delivery_item))))
 			qdel(I)
 	qdel(src)

@@ -126,6 +126,7 @@
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	max_integrity = 100
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/roguetown/roguehood/abyssor
 	name = "depths hood"
