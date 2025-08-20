@@ -9,8 +9,12 @@
 	var/randomize_blade_int_on_init = FALSE
 	/// Required skill to repair the blade integrity
 	var/required_repair_skill = 0
+	/// Sharpness loss multiplier.
+	var/sharpness_mod = 1
 
 /obj/item/proc/remove_bintegrity(amt as num, mob/user)
+	if(sharpness_mod != 1)
+		amt *= sharpness_mod
 	if(user && HAS_TRAIT(user, TRAIT_SHARPER_BLADES))
 		amt = amt * 0.7
 

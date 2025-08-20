@@ -284,6 +284,7 @@
 	smeltresult = /obj/item/ingot/steel
 	grid_height = 64
 	grid_width = 32
+	sharpness_mod = 3	//Can't parry, so it decays quicker on-hit.
 
 /obj/item/rogueweapon/katar/getonmobprop(tag)
 	. = ..()
@@ -360,7 +361,6 @@
 	smeltresult = /obj/item/ingot/steel
 	grid_width = 64
 	grid_height = 32
-	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/knuckles/getonmobprop(tag)
 	. = ..()
@@ -392,7 +392,6 @@
 	wbalance = WBALANCE_HEAVY
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
-	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/knuckles/aknuckles
 	name = "decrepit knuckles"
@@ -452,7 +451,7 @@
 	force = 15
 	force_wielded = 25
 	minstr = 10
-	max_blade_int = 100
+	max_blade_int = 130
 	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/rogueore/coal
 	wdefense = 4
@@ -468,7 +467,7 @@
 	icon_state = "peasantwarspear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 8
-	max_blade_int = 100
+	max_blade_int = 120
 	max_integrity = 200
 	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/rogueore/coal
@@ -661,7 +660,7 @@
 	name = "militia steel warpick"
 	desc = "At the end of the dae, a knight's bascinet isn't much different than a particularly large stone. After all, both tend to rupture with sobering ease when introduced to a sharpened pickend. This one is honed out of steel parts."
 	icon_state = "milsteelpick"
-	max_blade_int = 160
+	max_blade_int = 120
 	max_integrity = 600
 	associated_skill = /datum/skill/combat/axes
 	anvilrepair = /datum/skill/craft/weaponsmithing

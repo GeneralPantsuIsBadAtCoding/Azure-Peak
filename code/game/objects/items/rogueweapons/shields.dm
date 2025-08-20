@@ -29,8 +29,7 @@
 	var/coverage = 50
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 150
-	blade_dulling = DULLING_SHAFT_WOOD
+	max_integrity = 100
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	COOLDOWN_DECLARE(shield_bang)
 
@@ -166,24 +165,22 @@
 	throw_range = 3
 	wlength = WLENGTH_NORMAL
 	resistance_flags = FLAMMABLE
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	wdefense = 10
 	coverage = 40
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 200
+	max_integrity = 150
 
 /obj/item/rogueweapon/shield/tower/holysee
 	name = "decablessed shield"
 	desc = "Protection of the Ten upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
 	icon_state = "gsshield"
 	wdefense = 13
-	max_integrity = 300
+	max_integrity = 200
 	coverage = 50
 	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
 	force = 20
-	blade_dulling = DULLING_SHAFT_METAL
 	sellprice = 30
 
 /obj/item/rogueweapon/shield/tower/holysee/dark
@@ -215,8 +212,7 @@
 	coverage = 50
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 300
-	blade_dulling = DULLING_SHAFT_METAL
+	max_integrity = 120
 	sellprice = 30
 
 /obj/item/rogueweapon/shield/tower/metal/getonmobprop(tag)
@@ -245,7 +241,6 @@
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	max_integrity = 300
-	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
 	. = ..()
@@ -267,7 +262,6 @@
 	desc = "A venerable scutum, plated with polished gilbranze. An undying legionnaire's closest friend; that which rebukes arrow-and-bolt alike with unphasing prejudice. It is a reminder - one of many - that Her progress cannot be stopped."
 	icon_state = "ancientsh"
 	smeltresult = /obj/item/ingot/purifiedaalloy
-	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/shield/tower/raneshen
 	name = "rider shield"
@@ -302,8 +296,7 @@
 	coverage = 10
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 180
-	blade_dulling = DULLING_SHAFT_CONJURED
+	max_integrity = 80
 	associated_skill = /datum/skill/combat/shields
 	grid_width = 32
 	grid_height = 64
@@ -342,7 +335,7 @@
 	desc = "An object once before its time, now out of it. The artisan's hammerstrikes are still visible in the mottled surface, yet \
 	the encroach of rust and rot threatens even this memory."
 	icon_state = "ancient_buckler"
-	max_integrity = 80
+	max_integrity = 50
 	smeltresult = /obj/item/ingot/purifiedaalloy
 
 /obj/item/rogueweapon/shield/heater
@@ -355,7 +348,7 @@
 	coverage = 30
 	attacked_sound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 200
+	max_integrity = 100
 
 /obj/item/rogueweapon/shield/heater/getonmobprop(tag)
 	. = ..()
@@ -378,7 +371,7 @@
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	possible_item_intents = list(SHIELD_SMASH_METAL, SHIELD_BLOCK) // No SHIELD_BASH. Too heavy to swing quickly, or something.
-	max_integrity = 200
+	max_integrity = 120
 
 /obj/item/rogueweapon/shield/iron/getonmobprop(tag)
 	. = ..()
