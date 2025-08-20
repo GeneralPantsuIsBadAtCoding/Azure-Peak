@@ -10,7 +10,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "Through flame and ash, let vigor rise, by Malum’s hand, let strength reprise!"
+	invocations = list("Through flame and ash, let vigor rise, by Malum’s hand, let strength reprise!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -34,7 +34,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "With heat I wield, with flame I claim, Let metal serve in Malum's name!"
+	invocations = list("With heat I wield, with flame I claim, Let metal serve in Malum's name!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -58,7 +58,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "By molten might and hammer's weight, in Malum’s flame, the earth shall quake!"
+	invocations = list("By molten might and hammer's weight, in Malum’s flame, the earth shall quake!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -82,7 +82,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "Coins to ash, flame to form, in Malum’s name, let creation be born!"
+	invocations = list("Coins to ash, flame to form, in Malum’s name, let creation be born!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -398,7 +398,7 @@ var/global/list/anvil_recipe_prices[][]
 	chargedloop = null
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/heal.ogg'
-	invocation = "Flame."
+	invocations = list("Flame.")
 	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE

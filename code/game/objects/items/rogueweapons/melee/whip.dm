@@ -59,7 +59,7 @@
 //Punish = Non-lethal sorta damage.
 /datum/intent/whip/punish
 	name = "punish"
-	blade_class = BCLASS_LASHING
+	blade_class = BCLASS_PUNISH
 	attack_verb = list("lashes", "cracks")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0

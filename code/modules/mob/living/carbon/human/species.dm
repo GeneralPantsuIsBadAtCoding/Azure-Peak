@@ -1232,7 +1232,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			message_verb = "[pick(user.used_intent.attack_verb)]"
 		var/message_hit_area = ""
 		if(selzone)
-			message_hit_area = " in the [parse_zone(selzone, affecting)]"
+			message_hit_area = " in the [span_userdanger(parse_zone(selzone))]"
 		var/attack_message = "[user] [message_verb] [target][message_hit_area]!"
 		var/attack_message_local = "[user] [message_verb] me[message_hit_area]!"
 		target.visible_message(span_danger("[attack_message][target.next_attack_msg.Join()]"),\
@@ -1729,10 +1729,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	damage = max(damage-blocked+armor,0)
 //	var/hit_percent =  (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
+	var/atom/movable/screen/zone_sel/zone_sel
+	if(def_zone && H.client && H.hud_used && H.hud_used.zone_select)
+		zone_sel = H.hud_used.zone_select
+	var/obj/item/bodypart/BP = null
 	if(!damage || (!forced && hit_percent <= 0))
+		if(zone_sel && isbodypart(def_zone))
+			BP = def_zone
+			zone_sel.flash_limb(BP.body_zone, "#00AFFF") // blocked = blue
 		return 0
 
-	var/obj/item/bodypart/BP = null
 	if(!spread_damage)
 		if(isbodypart(def_zone))
 			BP = def_zone
@@ -1769,6 +1775,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				else if(damage_amount >= 20)
 					H.flash_fullscreen("redflash3")
 			if(BP)
+				if(zone_sel)
+					zone_sel.flash_limb(BP.body_zone, "#FF0000")
 				if(BP.receive_damage(damage_amount, 0))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
@@ -1785,6 +1793,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else if(damage_amount >= 20)
 				H.flash_fullscreen("redflash3")
 			if(BP)
+				if(zone_sel)
+					zone_sel.flash_limb(BP.body_zone, "#FF0000") 
 				if(BP.receive_damage(0, damage_amount))
 					H.update_damage_overlays()
 			else

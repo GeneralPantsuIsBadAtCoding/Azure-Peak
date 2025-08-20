@@ -14,7 +14,7 @@
 	associated_skill = /datum/skill/magic/holy
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "By Ravox, stand and fight!"
+	invocations = list("By Ravox, stand and fight!")
 	invocation_type = "shout"
 	antimagic_allowed = TRUE
 	miracle = TRUE
@@ -83,7 +83,7 @@
 	overlay_state = "call_to_arms"
 	recharge_time = 5 MINUTES
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
-	invocation = "FOR GLORY AND HONOR!"
+	invocations = list("FOR GLORY AND HONOR!")
 	invocation_type = "shout"
 	sound = 'sound/magic/timestop.ogg'
 	releasedrain = 30
@@ -94,17 +94,17 @@
 	for(var/mob/living/carbon/target in view(3, get_turf(user)))
 		if(istype(target.patron, /datum/patron/inhumen))
 			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
-			return
+			continue
 		if(istype(target.patron, /datum/patron/old_god))
 			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
-			return
+			continue
 		if(!user.faction_check_mob(target))
 			continue
 		if(target.mob_biotypes & MOB_UNDEAD)
 			continue
 		target.apply_status_effect(/datum/status_effect/buff/call_to_arms)
 	return TRUE
-
+	
 //Persistence - Harms the shit out of an undead mob/player while causing bleeding/pain wounds to clot at higher rate for living ones. Basically a 'shittier' yet still good greater heal effect.
 /obj/effect/proc_holder/spell/invoked/persistence
 	name = "Persistence"
@@ -117,7 +117,7 @@
 	warnie = "sydwarning"
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "Ravox deems your persistence worthy!"
+	invocations = list("Ravox deems your persistence worthy!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -183,7 +183,7 @@
 	associated_skill = /datum/skill/magic/holy
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "By Ravox, let your sins guide you to justice!"
+	invocations = list("By Ravox, let your sins guide you to justice!")
 	invocation_type = "shout"
 	antimagic_allowed = FALSE
 	miracle = TRUE
@@ -252,7 +252,7 @@
 	associated_skill = /datum/skill/magic/holy
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "By Ravox, I challenge you!!"
+	invocations = list("By Ravox, I challenge you!!")
 	chargedloop = /datum/looping_sound/invokeholy
 	invocation_type = "shout"
 	antimagic_allowed = TRUE

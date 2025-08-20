@@ -65,7 +65,7 @@
 	blink.player_lock = 0
 	blink.inner_tele_radius = 5
 	blink.outer_tele_radius = 6
-	blink.invocation = pick(taunt)
+	blink.invocations += pick(taunt)
 	blink.invocation_type = "shout"
 	AddSpell(blink)
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
@@ -106,7 +106,7 @@
 	if(target && next_cast < world.time && next_blink < world.time) //Triggers a blink spell
 		if(blink.cast_check(0,src))
 			blink.choose_targets(src)
-			blink.invocation = pick(taunt)
+			blink.invocations += pick(taunt)
 			next_cast = world.time + 20
 			next_blink = world.time + 120
 			return .
@@ -437,8 +437,6 @@
 	school = "abjuration"
 	recharge_time = 20
 	clothes_req = FALSE
-	invocation = "none"
-	invocation_type = "none"
 	range = -1
 	include_user = TRUE
 	cooldown_min = 5 //4 deciseconds reduction per rank

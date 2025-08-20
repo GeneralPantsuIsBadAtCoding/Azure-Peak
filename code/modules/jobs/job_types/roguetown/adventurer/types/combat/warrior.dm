@@ -52,7 +52,7 @@
 				if("Billhook")
 					H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 					r_hand = /obj/item/rogueweapon/spear/billhook
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Battle Axe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 					backr = /obj/item/rogueweapon/stoneaxe/battle

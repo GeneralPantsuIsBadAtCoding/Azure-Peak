@@ -16,7 +16,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE
 	spell_tier = 3
-	invocation = "Feri Fulmine Hostem!" // Based on Zeus - Strike the Enemy with Lightning! 
+	invocations = list("Feri Fulmine Hostem!") // Based on Zeus - Strike the Enemy with Lightning!
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_HIGH

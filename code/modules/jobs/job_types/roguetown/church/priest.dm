@@ -19,9 +19,9 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	selection_color = JCOLOR_CHURCH
 	f_title = "Bishop"
 	allowed_races = RACES_NO_CONSTRUCT		//Too recent arrivals to ascend to priesthood.
-	allowed_patrons = ALL_DIVINE_PATRONS
+	allowed_patrons = list(/datum/patron/divine/undivided)
 	allowed_sexes = list(MALE, FEMALE)
-	tutorial = "The Divine is all that matters in a world of the immoral. The Weeping God left his children to rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepard them toward a Gods-fearing future; for you are a Bishop of the Holy See."
+	tutorial = "The Divine is all that matters in a world of the immoral. The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
 	whitelist_req = FALSE
 	cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 
@@ -38,11 +38,11 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 /datum/outfit/job/roguetown/priest
 	job_bitflag = BITFLAG_CHURCH
-	allowed_patrons = list(/datum/patron/divine/astrata)	//We lock this cus head of church, acktully
+	allowed_patrons = list(/datum/patron/divine/undivided)	//We lock this cus head of church, acktully
 
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()
-	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+	neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 	head = /obj/item/clothing/head/roguetown/priestmask
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -92,6 +92,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/churchpriestcurse //snowflake priests button. Will not sacrifice them
 	H.verbs |= /mob/living/carbon/human/proc/churcheapostasy //punish the lamb reward the wolf
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
+	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic_priest)
 
 /datum/job/priest/vice //just used to change the priest title
 	title = "Vice Priest"
@@ -159,6 +160,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		var/datum/devotion/patrondev = new /datum/devotion(src, god)
 		patron = god
 		patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, devotion_limit = CLERIC_REQ_4)
+		if(!mind.has_spell(/obj/effect/proc_holder/spell/invoked/revive))
+			mind.AddSpell(/obj/effect/proc_holder/spell/invoked/revive)
 	else
 		// Define whitelist of swapable spells (T0-T2 only)
 		var/list/whitelist = list(
@@ -221,12 +224,13 @@ GLOBAL_LIST_EMPTY(heretical_players)
 				var/obj/effect/proc_holder/spell/new_spell = new spell_type
 				mind.AddSpell(new_spell)
 
-	var/list/base_spells = list(
-		/obj/effect/proc_holder/spell/invoked/revive
-	)
-	for(var/type in base_spells)
-		if(!mind.has_spell(type))
-			mind.AddSpell(new type)
+		var/list/base_spells = list(
+			/obj/effect/proc_holder/spell/invoked/revive,
+			/obj/effect/proc_holder/spell/invoked/immolation
+		)
+		for(var/type in base_spells)
+			if(!mind.has_spell(type))
+				mind.AddSpell(new type)
 
 	src.devotion.devotion *= 0.4
 
@@ -374,6 +378,30 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	return TRUE
 
+/mob/living/carbon/human/proc/churchecancurse(var/mob/living/carbon/human/H, apostasy = FALSE)
+	if (!H.devotion && apostasy)
+		to_chat(src, span_warning("This one's connection to the ten is too shallow."))
+		return FALSE
+
+	//Flavor messages for cursing certain god's faithful.
+	//Dendor works in mysterious ways.
+	if (istype(H.patron, /datum/patron/divine/dendor))
+		to_chat(src, span_warning("The mad god Dendor is felt strongly. The wolf in this one balks and trashes as it is faintly restrained."))
+		//If we check this here there's no need to apply this trait preemtively to a bunch of people, and allows for greater fluff feedback.
+		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
+
+	//Abyssor's clergy are gripped by his dream.
+	if (istype(H.patron, /datum/patron/divine/abyssor))
+		to_chat(src, span_warning("The Dreamer, Abyssor has his clutches grasped firmly around this one. The light of the ten only barely penetrates the depths."))
+		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
+
+	//Let's not curse heretical antags.
+	if(HAS_TRAIT(H, TRAIT_HERESIARCH))
+		to_chat(src, span_warning("The patron of this one shields them from being suppressed."))
+		return FALSE
+
+	return TRUE
+
 /mob/living/carbon/human/proc/churcheapostasy(var/mob/living/carbon/human/H in GLOB.player_list)
 	set name = "Apostasy"
 	set category = "Priest"
@@ -406,7 +434,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 		if (H.real_name == inputty)
 			if (istype(H.patron, /datum/patron/divine) && H.devotion)
-				H.devotion.recommunicate()
 				H.remove_status_effect(/datum/status_effect/debuff/apostasy)
 				H.remove_stress(/datum/stressevent/apostasy)
 
@@ -416,13 +443,19 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		if (!COOLDOWN_FINISHED(src, priest_apostasy))
 			to_chat(src, span_warning("You must wait until you can mark another."))
 			return
+
+		//Check if we can curse this person.
+		if(!churchecancurse(H))
+			return
+
 		found = TRUE
 		GLOB.apostasy_players += inputty
 		COOLDOWN_START(src, priest_apostasy, PRIEST_APOSTASY_COOLDOWN)
 
-		if (istype(H.patron, /datum/patron/divine) && H.devotion)
-			H.devotion.excommunicate()
-			H.apply_status_effect(/datum/status_effect/debuff/apostasy)
+		var/curse_resist = HAS_TRAIT(H, TRAIT_CURSE_RESIST)
+
+		if (istype(H.patron, /datum/patron/divine))
+			H.apply_status_effect(/datum/status_effect/debuff/apostasy, curse_resist)
 			H.add_stress(/datum/stressevent/apostasy)
 			to_chat(H, span_warning("A holy silence falls upon you. Your Patron cannot hear you anymore..."))
 		else
@@ -483,7 +516,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	if (H.real_name == inputty)
 		if (!COOLDOWN_FINISHED(src, priest_excommunicate))
 			to_chat(src, span_warning("You must wait until you can excommunicate another."))
-			return
+			return // Anybody can still be excommunicated, so no extra checks here since it's purely RP and not mechanical.
 		found = TRUE
 		ADD_TRAIT(H, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
 		COOLDOWN_START(src, priest_excommunicate, PRIEST_EXCOMMUNICATION_COOLDOWN)
@@ -563,6 +596,11 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 			if (!COOLDOWN_FINISHED(src, priest_curse))
 				to_chat(src, span_warning("You must wait before invoking a curse again."))
 				return
+
+			//Check if we can curse this person.
+			if(!churchecancurse(H))
+				return
+
 			COOLDOWN_START(src, priest_curse, PRIEST_CURSE_COOLDOWN)
 			H.add_curse(curse_type)
 			
@@ -571,3 +609,81 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 			log_game("DIVINE CURSE: [real_name] ([ckey]) has stricken [H.real_name] ([H.ckey] with [curse_pick])")
 
 		return
+
+/obj/effect/proc_holder/spell/invoked/convert_heretic_priest
+	name = "Absolve the Heretic"
+	desc = "Convert a heretic back to the fold of the church. Requires the heretic to be willing, and takes a long time to cast."
+	invocations = list("Show this lost sheep the way back to the flock.")
+	invocation_type = "whisper"
+	sound = 'sound/magic/bless.ogg'
+	devotion_cost = 100
+	recharge_time = 20 MINUTES
+	chargetime = 10 SECONDS
+	associated_skill = /datum/skill/magic/holy
+	overlay_state = "convert_heretic"
+
+/obj/effect/proc_holder/spell/invoked/convert_heretic_priest/cast(list/targets, mob/living/carbon/human/user)
+	var/mob/living/carbon/human/target = targets[1]
+
+	if(!ishuman(target))
+		revert_cast()
+		return FALSE
+
+	if(!HAS_TRAIT(target, TRAIT_HERESIARCH))
+		to_chat(user, span_warning("[target] wasn't marked by the enemy as a heretic!"))
+		revert_cast()
+		return FALSE
+
+	if(alert(target, "[user.real_name] is trying to convert you back to the church. Do you accept?", "Conversion Request", "Yes", "No") != "Yes")
+		to_chat(user, span_warning("[target] refused your offer of conversion."))
+		revert_cast()
+		return FALSE
+
+	// Remove from excommunication lists
+	if(target.real_name in GLOB.excommunicated_players)
+		GLOB.excommunicated_players -= target.real_name
+
+	// Remove heretic traits
+	REMOVE_TRAIT(target, TRAIT_HERESIARCH, TRAIT_GENERIC)
+	REMOVE_TRAIT(target, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
+
+	// Remove divine punishments
+	target.remove_status_effect(/datum/status_effect/debuff/excomm)
+	target.remove_stress(/datum/stressevent/excommunicated)
+
+	// Save devotion state
+	var/saved_level = CLERIC_T0
+	var/saved_max_progression = CLERIC_T1
+	var/saved_devotion_gain = CLERIC_REGEN_MINOR
+
+	if(target.devotion)
+		saved_level = target.devotion.level
+		saved_devotion_gain = target.devotion.passive_devotion_gain
+		saved_max_progression = target.devotion.max_progression
+
+		// Remove all granted spells
+		for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
+			target.mind.RemoveSpell(S)
+
+		target.devotion.Destroy()
+
+	// Convert to priest's patron
+	target.patron = new user.patron.type()
+
+	// Grant new devotion
+	var/datum/devotion/new_devotion = new /datum/devotion(target, target.patron)
+	target.devotion = new_devotion
+	new_devotion.grant_miracles(target, saved_level, saved_devotion_gain, saved_max_progression)
+
+	// Apply revival debuff as a small cost to conversion in addition to the cooldown
+	user.apply_status_effect(/datum/status_effect/debuff/devitalised)
+	target.apply_status_effect(/datum/status_effect/debuff/devitalised)
+
+	var/announcement_text = "[user.real_name] has brought [target.real_name] back into the fold of the church! [target.real_name] now follows [user.patron.name]!"
+	priority_announce(announcement_text, title = "REDEMPTION", sound = 'sound/misc/bell.ogg')
+	message_admins("HERETIC CONVERSION: [user.real_name] ([user.ckey]) has converted [target.real_name] ([target.ckey]) to [user.patron.name]")
+	log_game("HERETIC CONVERSION: [user.real_name] ([user.ckey]) converted [target.real_name] ([target.ckey]) to [user.patron.name]")
+	to_chat(user, span_danger("You've converted [target.name] to follow [user.patron.name]!"))
+	to_chat(target, span_danger("You feel the weight of heresy lift from your soul as you embrace [user.patron.name]!"))
+
+	return TRUE

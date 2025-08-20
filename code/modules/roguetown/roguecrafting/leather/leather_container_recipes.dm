@@ -68,7 +68,7 @@
 
 /datum/crafting_recipe/roguetown/leather/container/gwstrap
 	name = "greatweapon strap (2 leather, 1 rope)"
-	result = /obj/item/gwstrap
+	result = /obj/item/rogueweapon/scabbard/gwstrap
 	reqs = list(/obj/item/natural/hide/cured = 2,
 				/obj/item/rope = 1)
 

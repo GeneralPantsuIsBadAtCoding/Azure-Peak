@@ -12,7 +12,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/foley/bubb (5).ogg'
-	invocation = "Weight of the deep, crush!"
+	invocations = list("Weight of the deep, crush!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -51,7 +51,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/misc/undertow.ogg'
-	invocation = "Strangling waters, pull!"
+	invocations = list("Strangling waters, pull!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -85,7 +85,7 @@
 	sound = 'sound/magic/abyssor_splash.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	invocation = "What is drowned shall rise anew!"
+	invocations = list("What is drowned shall rise anew!")
 	invocation_type = "shout"
 	recharge_time = 120 SECONDS
 	devotion_cost = 30
@@ -124,7 +124,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/foley/bubb (5).ogg'
-	invocation = "Splash forth."
+	invocations = list("Splash forth.")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -181,7 +181,7 @@
 //T2, Abyssal Healing. Totally stole most of this from lesser heal.
 /obj/effect/proc_holder/spell/invoked/abyssheal
 	name = "Abyssal Healing"
-	desc = "Heals target over time, more if there is water around you."
+	desc = "Heals target over time, more if there is water around you. Weakens if cast away from water for too long"
 	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
 	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
 	overlay_state = "deepheal"
@@ -192,13 +192,17 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/foley/waterenter.ogg'
-	invocation = "Healing waters, come forth!"
+	invocations = list("Healing waters, come forth!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 10 SECONDS
 	miracle = TRUE
-	devotion_cost = 50
+	devotion_cost = 45
+	var/slickness = 20
+	var/max_slickness = 20
+	var/max_slickness_greater_caster = 40
+	var/base_healing = 6.5
 
 /obj/effect/proc_holder/spell/invoked/abyssheal/cast(list/targets, mob/living/user)
 	. = ..()
@@ -209,30 +213,48 @@
 			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			return FALSE
-		if(user.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD)) //THE DEEP CALLS- sorry, the pressure of the deep falls upon those of the undead ilk
+		if(user.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD))
 			target.visible_message(span_danger("[target] is crushed by divine pressure!"), span_userdanger("I'm crushed by divine pressure!"))
 			target.adjustBruteLoss(30)			
 			return TRUE
+
 		var/conditional_buff = FALSE
-		var/situational_bonus = 1
+		var/situational_bonus = 0
 		target.visible_message(span_info("A wave of divine energy crashes over [target]!"), span_notice("I'm crushed by healing energies!"))
+
 		var/list/water = list(/turf/open/water/bath, /turf/open/water/ocean, /turf/open/water/cleanshallow, /turf/open/water/swamp, /turf/open/water/swamp/deep, /turf/open/water/pond, /turf/open/water/river)
-		situational_bonus = 0
-		// the more warter around us, the more we heal
+
+		// Calculate situational bonus based on water nearby
 		for (var/turf/O in oview(3, user))
-			if (O in water)
+			if (is_type_in_list(O, water))
 				situational_bonus = min(situational_bonus + 0.1, 2)
 		for (var/turf/open/water/ocean/deep/O in oview(3, user))
 			situational_bonus += 0.5
-		// Healing by the deep sea gives an extra boost.
+
+		var/holy_skill = user.get_skill_level(associated_skill)
+		// It's annoying to have to do a check here -every- time for a one time change, but it's the only way I can think of without a refactor of job systems or spells...
+		if(holy_skill > 3)
+			max_slickness = max_slickness_greater_caster
+
+		// Update slickness based on situational bonus
 		if (situational_bonus > 0)
+			slickness = max_slickness
 			conditional_buff = TRUE
-		var/healing = 6.5
+			to_chat(user, "Calling upon Abyssor's power is easier in these conditions!")
+
+		// Warning messages
+		if((slickness / max_slickness) <= 0.5)
+			to_chat(user, span_warning("Your connection to Abyssor is weakening. Cast near water to renew it."))
+
+		// Calculate healing based on slickness and situational bonus
+		var/healing = max(base_healing * (slickness / max_slickness) + situational_bonus, 3)
+		if (situational_bonus == 0)
+			slickness = max(0, slickness - 1)
+
 		target.adjustFireLoss(-80)
 		if (conditional_buff)
-			to_chat(user, "Calling upon Abyssor's power is easier in these conditions!")
-			healing += situational_bonus
 			target.adjustFireLoss(-40)
+
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		return TRUE
 
@@ -255,7 +277,7 @@
 	chargetime = 4 SECONDS
 	chargedloop = null
 	sound = 'sound/foley/bubb (1).ogg'
-	invocation = "From the abyss, rise!"
+	invocations = list("From the abyss, rise!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -287,7 +309,7 @@
 	charging_slowdown = 1
 	chargetime = 1.25 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
-	invocation = "From the dream, consume!"
+	invocations = list("From the dream, consume!")
 	invocation_type = "shout"
 	recharge_time = 300 SECONDS
 	miracle = TRUE
@@ -370,7 +392,7 @@
 	charging_slowdown = 1
 	sound = 'sound/foley/bubb (1).ogg'
 	//Each dreamfiend has a different name to call!
-	invocation = "shogg vulgt!"
+	invocations = list("shogg vulgt!")
 	invocation_type = "shout"
 	recharge_time = 600 SECONDS
 	miracle = TRUE
@@ -427,7 +449,7 @@
 	chargetime = 2 SECONDS
 	sound = 'sound/foley/bubb (1).ogg'
 	//Each dreamfiend has a different name to call!
-	invocation = "shogg vulgt!"
+	invocations = list("shogg vulgt!")
 	invocation_type = "shout"
 	recharge_time = 750 SECONDS
 

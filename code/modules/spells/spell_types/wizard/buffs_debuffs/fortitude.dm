@@ -13,7 +13,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Tenax"
+	invocations = list("Tenax")
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW

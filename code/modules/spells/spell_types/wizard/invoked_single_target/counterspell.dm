@@ -13,7 +13,7 @@
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3 // Full shut down of another mage should be a full mage privilege, imo
-	invocation = "Respondeo!"
+	invocations = list("Respondeo!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_MEDIUM

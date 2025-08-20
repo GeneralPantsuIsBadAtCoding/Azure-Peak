@@ -15,7 +15,7 @@
 	movement_interrupt = FALSE
 	charging_slowdown = 3
 	spell_tier = 3 // AOE
-	invocation = "Sphaera Ignis!"
+	invocations = list("Sphaera Ignis!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_HIGH

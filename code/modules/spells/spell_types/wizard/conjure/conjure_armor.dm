@@ -18,7 +18,7 @@
 	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Cladum Fati!" //destiny's defeat!
+	invocations = list("Cladum Fati!") //destiny's defeat!
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_MEDIUM

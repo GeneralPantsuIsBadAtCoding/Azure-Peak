@@ -76,10 +76,11 @@
 		..()
 	else
 		var/words
+		var/chosen_invocation = pick(invocations)
 		if(say_destination)
-			words = "[invocation] [uppertext(chosenarea.name)]"
+			words = "[chosen_invocation] [uppertext(chosenarea.name)]"
 		else
-			words = "[invocation]"
+			words = "[chosen_invocation]"
 
 		switch(invocation_type)
 			if("shout")

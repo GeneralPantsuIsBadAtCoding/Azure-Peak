@@ -24,16 +24,14 @@
 
 /datum/magic_item/mundane/mining/on_equip(var/obj/item/i, var/mob/living/user, slot)
 	. = ..()
-	if(user.get_skill_level(/datum/skill/labor/mining)== 6)
-		max_skill = TRUE //they are max level, so we skip giving them skills
-		user.change_stat("endurance", 1)
-		to_chat(user, span_notice("I feel ready to mine!"))
-		active_item = TRUE
 	if(active_item)
 		return
 	if(slot == ITEM_SLOT_HANDS)
 		user.change_stat("endurance", 1)
-		user.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
+		if(user.get_skill_level(/datum/skill/labor/mining)== 6)
+			max_skill = TRUE //they are max level, so we skip giving them skills
+		else
+			user.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
 		to_chat(user, span_notice("I feel ready to mine!"))
 		active_item = TRUE
 	else

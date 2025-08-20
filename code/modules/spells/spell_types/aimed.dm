@@ -102,7 +102,7 @@
 	school = "evocation"
 	recharge_time = 60
 	clothes_req = FALSE
-	invocation = "ONI SOMA"
+	invocations = list("ONI SOMA")
 	invocation_type = "shout"
 	range = 20
 	cooldown_min = 20 //10 deciseconds reduction per rank

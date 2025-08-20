@@ -24,7 +24,7 @@
 			shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-			backr = /obj/item/gwstrap
+			backr = /obj/item/rogueweapon/scabbard/gwstrap
 			backl = /obj/item/storage/backpack/rogue/backpack
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/meatbag
@@ -42,17 +42,17 @@
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/tanning, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/labor/butchering, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/traps, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+			H.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
@@ -97,16 +97,16 @@
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/tanning, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 3)

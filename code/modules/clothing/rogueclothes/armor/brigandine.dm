@@ -142,3 +142,20 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/captain
+	name = "captain's brigandine"
+	desc = "A coat with plates specifically tailored and forged for the captain of Azure."
+	icon_state = "capplate"
+	icon = 'icons/roguetown/clothing/special/captain.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/captain.dmi'
+	sleeved = 'icons/roguetown/clothing/special/onmob/captain.dmi'
+	detail_tag = "_detail"
+	detail_color = "#39404d"
+	blocksound = SOFTHIT
+	equip_delay_self = 4 SECONDS
+	unequip_delay_self = 4 SECONDS
+	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE + 50
+	sellprice = 363 // On par w/ judgement and ichor fang cuz why not
+	smelt_bar_num = 2
+	armor_class = ARMOR_CLASS_HEAVY

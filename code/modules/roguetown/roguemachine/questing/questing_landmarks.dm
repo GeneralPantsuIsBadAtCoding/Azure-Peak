@@ -3,7 +3,7 @@
 	icon = 'code/modules/roguetown/roguemachine/questing/questing.dmi'
 	icon_state = "quest_marker"
 	var/quest_difficulty = list(QUEST_DIFFICULTY_EASY, QUEST_DIFFICULTY_MEDIUM, QUEST_DIFFICULTY_HARD)
-	var/quest_type = list(QUEST_FETCH, QUEST_COURIER, QUEST_CLEAR_OUT, QUEST_KILL, QUEST_BEACON, QUEST_MINIBOSS)
+	var/quest_type = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_CLEAR_OUT, QUEST_KILL, QUEST_BEACON, QUEST_OUTLAW)
 	var/list/fetch_items = list(
 		/obj/item/rogueweapon/huntingknife/throwingknife/steel,
 		/obj/item/rogueweapon/huntingknife,
@@ -40,7 +40,7 @@
 			new_quest.reward_amount = rand(QUEST_REWARD_HARD_LOW, QUEST_REWARD_HARD_HIGH)
 
 	switch(new_quest.quest_type)
-		if(QUEST_FETCH)
+		if(QUEST_RETRIEVAL)
 			new_quest.title = "Retrieve [pick("an ancient", "a rare", "a stolen", "a magical")] [pick("artifact", "relic", "doohickey", "treasure")]"
 			new_quest.target_item_type = pick(fetch_items)
 			new_quest.target_amount = rand(1, 3)
@@ -66,7 +66,7 @@
 				/area/rogue/indoors/town/magician,
 			)
 			spawn_courier_item(new_quest, new_quest.target_delivery_location)
-		if(QUEST_MINIBOSS)
+		if(QUEST_OUTLAW)
 			new_quest.title = "Defeat [pick("the terrible", "the dreadful", "the monstrous", "the infamous")] [pick("warlord", "beast", "sorcerer", "abomination")]"
 			new_quest.target_mob_type = pick(miniboss_mobs)
 			new_quest.target_amount = 1
@@ -236,7 +236,7 @@
 	name = "easy quest landmark"
 	icon_state = "quest_marker_low"
 	quest_difficulty = "Easy"
-	quest_type = list(QUEST_FETCH, QUEST_COURIER, QUEST_KILL, QUEST_BEACON)
+	quest_type = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_KILL, QUEST_BEACON)
 
 /obj/effect/landmark/quest_spawner/medium
 	name = "medium quest landmark"
@@ -248,4 +248,4 @@
 	name = "hard quest landmark"
 	icon_state = "quest_marker_high"
 	quest_difficulty = "Hard"
-	quest_type = list(QUEST_CLEAR_OUT, QUEST_BEACON, QUEST_MINIBOSS)
+	quest_type = list(QUEST_CLEAR_OUT, QUEST_BEACON, QUEST_OUTLAW)

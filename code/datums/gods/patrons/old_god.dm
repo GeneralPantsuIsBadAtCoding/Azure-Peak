@@ -141,7 +141,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/ENDVRE.ogg'
-	invocation = "LYVE, ENDURE!" // holy larp yelling for healing is silly
+	invocations = list("LYVE, ENDURE!") // holy larp yelling for healing is silly
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE

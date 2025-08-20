@@ -92,7 +92,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/gwstrap
+	backl = /obj/item/rogueweapon/scabbard/gwstrap
 
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary = 1,

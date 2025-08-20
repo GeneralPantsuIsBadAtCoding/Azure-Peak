@@ -1109,6 +1109,11 @@
 		update_filters()
 	return .
 
+/atom/movable/proc/clear_filters()
+	var/atom/atom_cast = src // filters only work with images or atoms.
+	filter_data = null
+	atom_cast.filters = null
+
 /atom/movable/proc/update_filters() //Determine which filter comes first
 	filters = null                  //note, the cmp_filter is a little flimsy.
 	sortTim(filter_data, /proc/cmp_filter_priority_desc, associative = TRUE) 

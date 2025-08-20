@@ -15,7 +15,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	invocation = "Goettlichen macht!"
+	invocations = list("Goettlichen macht!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -84,6 +84,8 @@
 		if (ishuman(firer))
 			caster = firer
 			switch(caster.patron.type)
+				if(/datum/patron/divine/undivided)
+					damage += 15 // just more raw damage. As mentioned in UNDIVIDED. Our generics are better as a trade off of not having higher tier uniques.
 				if(/datum/patron/divine/astrata)
 					H.adjust_fire_stacks(2)
 					H.IgniteMob()

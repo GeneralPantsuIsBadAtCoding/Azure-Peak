@@ -262,3 +262,19 @@
 	craftdiff = 6
 	verbage_simple = "transmute"
 
+/datum/crafting_recipe/roguetown/alchemy/frankenbrew
+	name = "Reanimation Elixir"
+	category = "Table"
+	result = list(
+		/obj/item/reagent_containers/glass/bottle/frankenbrew,
+		/obj/item/reagent_containers/glass/bottle/frankenbrew
+	)
+	reqs = list(
+		/obj/item/reagent_containers/glass/bottle = 2,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom = 1,
+		/obj/item/reagent_containers/lux = 1,
+		/obj/item/alch/calendula = 1,
+		/datum/reagent/water = 98
+	)
+	craftdiff = 4
+	verbage_simple = "mix"

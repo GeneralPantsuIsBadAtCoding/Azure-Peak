@@ -198,7 +198,7 @@
 /datum/supply_pack/rogue/tools/gwstrap
 	name = "Greatweapon Strap"
 	cost = 30
-	contains = list(/obj/item/gwstrap)
+	contains = list(/obj/item/rogueweapon/scabbard/gwstrap)
 
 /datum/supply_pack/rogue/tools/headhook
 	name = "Iron Head Hook"

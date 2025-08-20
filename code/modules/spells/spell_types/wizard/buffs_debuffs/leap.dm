@@ -11,7 +11,7 @@
 	movement_interrupt = FALSE
 	gesture_required = TRUE // Mobility spell
 	spell_tier = 2
-	invocation = "Saltus!"
+	invocations = list("Saltus!")
 	invocation_type = "whisper"
 	hide_charge_effect = TRUE
 	charging_slowdown = 3

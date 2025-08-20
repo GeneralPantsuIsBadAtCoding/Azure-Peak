@@ -119,14 +119,23 @@
 	return bleed_rate
 
 /// Called after a bodypart is attacked so that wounds and critical effects can be applied
-/obj/item/bodypart/proc/bodypart_attacked_by(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE)
+/obj/item/bodypart/proc/bodypart_attacked_by(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE, armor)
 	if(!bclass || !dam || !owner || (owner.status_flags & GODMODE))
 		return FALSE
 	var/do_crit = TRUE
+	var/acheck_dflag
+	switch(bclass)
+		if(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PUNCH)
+			acheck_dflag = "blunt"
+		if(BCLASS_CHOP, BCLASS_CUT, BCLASS_LASHING, BCLASS_PUNISH)
+			acheck_dflag = "slash"
+		if(BCLASS_PICK, BCLASS_STAB)
+			acheck_dflag = "stab"
+	armor = owner.run_armor_check(zone_precise, acheck_dflag, damage = 0)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		if(human_owner.checkcritarmor(zone_precise, bclass))
-			return FALSE
+			do_crit = FALSE
 		if(owner.mind && (get_damage() <= (max_damage * 0.9))) //No crits unless the damage is maxed out.
 			do_crit = FALSE // We used to check if they are buckled or lying down but being grounded is a big enough advantage.
 	if(user)
@@ -135,55 +144,44 @@
 		if(istype(user.rmb_intent, /datum/rmb_intent/weak) || bclass == BCLASS_PEEL)
 			do_crit = FALSE
 	testing("bodypart_attacked_by() dam [dam]")
-	var/added_wound
-	switch(bclass) //do stuff but only when we are a blade that adds wounds
-		if(BCLASS_SMASH, BCLASS_BLUNT)
-			switch(dam)
-				if(20 to INFINITY)
-					added_wound = /datum/wound/bruise/large
-				if(10 to 20)
-					added_wound = /datum/wound/bruise
-				if(1 to 10)
-					added_wound = /datum/wound/bruise/small
-		if(BCLASS_CUT, BCLASS_CHOP)
-			switch(dam)
-				if(20 to INFINITY)
-					added_wound = /datum/wound/slash/large
-				if(10 to 20)
-					added_wound = /datum/wound/slash
-				if(1 to 10)
-					added_wound = /datum/wound/slash/small
-		if(BCLASS_STAB, BCLASS_PICK)
-			switch(dam)
-				if(20 to INFINITY)
-					added_wound = /datum/wound/puncture/large
-				if(10 to 20)
-					added_wound = /datum/wound/puncture
-				if(1 to 10)
-					added_wound = /datum/wound/puncture/small
-		if(BCLASS_LASHING)
-			switch(dam)
-				if(20 to INFINITY)
-					added_wound = /datum/wound/lashing/large
-				if(10 to 20)
-					added_wound = /datum/wound/lashing
-				if(1 to 10)
-					added_wound = /datum/wound/lashing/small
-		if(BCLASS_BITE)
-			switch(dam)
-				if(20 to INFINITY)
-					added_wound = /datum/wound/bite/large
-				if(10 to 20)
-					added_wound = /datum/wound/bite
-				if(1 to 10)
-					added_wound = /datum/wound/bite/small
-	if(added_wound)
-		added_wound = add_wound(added_wound, silent, crit_message)
+
+	manage_dynamic_wound(bclass, dam, armor)
+
 	if(do_crit)
 		var/crit_attempt = try_crit(bclass, dam, user, zone_precise, silent, crit_message)
 		if(crit_attempt)
 			return crit_attempt
-	return added_wound
+	return TRUE
+
+
+/obj/item/bodypart/proc/manage_dynamic_wound(bclass, dam, armor)
+	var/woundtype
+	switch(bclass)
+		if(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PUNCH, BCLASS_TWIST)
+			woundtype = /datum/wound/dynamic/bruise
+		if(BCLASS_BITE)
+			woundtype = /datum/wound/dynamic/bite
+		if(BCLASS_CHOP, BCLASS_CUT)
+			woundtype = /datum/wound/dynamic/slash
+		if(BCLASS_STAB)
+			woundtype = /datum/wound/dynamic/puncture
+		if(BCLASS_PICK, BCLASS_PIERCE)
+			woundtype = /datum/wound/dynamic/gouge
+		if(BCLASS_LASHING)
+			woundtype = /datum/wound/dynamic/lashing
+		if(BCLASS_PUNISH)
+			woundtype = /datum/wound/dynamic/punish
+		else	//Wrong bclass type for wounds, skip adding this.
+			return
+	var/datum/wound/dynwound = has_wound(woundtype)
+	if(!isnull(dynwound))
+		dynwound.upgrade(dam, armor)
+	else
+		if(ispath(woundtype) && woundtype)
+			if(!isnull(woundtype))
+				var/datum/wound/newwound = add_wound(woundtype)
+				if(newwound && !isnull(newwound))	//don't even ask - Free
+					newwound.upgrade(dam, armor)
 
 /// Behemoth of a proc used to apply a wound after a bodypart is damaged in an attack
 /obj/item/bodypart/proc/try_crit(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE)
@@ -354,11 +352,7 @@
 		var/fracture_type = /datum/wound/fracture/head
 		var/necessary_damage = 0.9
 		if(resistance)
-			if(zone_precise == BODY_ZONE_PRECISE_MOUTH) // critically resistant people can still have their jaw broken
-				fracture_type = /datum/wound/fracture/mouth // this is awful implementation. i'm sorry free
-				necessary_damage = 0.8 // they get a bit higher threshold 2 do so. raise it if we need 2.
-			else
-				fracture_type = /datum/wound/fracture // everything else is still a normal fracture doe
+			fracture_type = /datum/wound/fracture
 		else if(zone_precise == BODY_ZONE_PRECISE_SKULL)
 			fracture_type = /datum/wound/fracture/head/brain
 		else if(zone_precise== BODY_ZONE_PRECISE_EARS)

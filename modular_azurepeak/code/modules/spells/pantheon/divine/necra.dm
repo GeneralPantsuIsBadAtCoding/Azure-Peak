@@ -75,7 +75,7 @@
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
-	invocation = "The Undermaiden rebukes!"
+	invocations = list("The Undermaiden rebukes!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	miracle = TRUE
 	devotion_cost = 20
@@ -196,7 +196,7 @@
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
-	invocation = "The Undermaiden Protects."
+	invocations = list("The Undermaiden Protects.")
 	invocation_type = "shout"
 	miracle = TRUE
 	devotion_cost = 100
@@ -259,7 +259,7 @@
 	recharge_time = 10 SECONDS
 	warnie = "spellwarning"
 	invocation_type = "whisper"
-	invocation = "Undermaiden guide my gaze..."
+	invocations = list("Undermaiden guide my gaze...")
 	associated_skill = /datum/skill/magic/holy
 	overlay_state = "necraeye"
 	miracle = TRUE
@@ -360,8 +360,8 @@
 	overlay_state = "vengeful_spirit"
 	action_icon_state = "vengeful_spirit"
 	action_icon = 'icons/mob/actions/necramiracles.dmi'
+	invocations = list("Awaken, rancor!!")
 	invocation_type = "shout"
-	invocation = "Awaken, rancor!!"
 
 
 
