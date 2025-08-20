@@ -17143,7 +17143,7 @@
 "eNg" = (
 /obj/structure/mineral_door/wood/window{
 	name = "Gatehouse";
-	lockid = "garrison";
+	lockid = "manor";
 	locked = 1
 	},
 /turf/open/floor/rogue/concrete,
