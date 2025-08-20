@@ -346,6 +346,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
 	muteinmouth = TRUE
+	var/cooldown = 60 SECONDS
+	var/on_cooldown = FALSE
 	var/listening = TRUE
 	var/speaking = TRUE
 	var/loudmouth_listening = TRUE
@@ -355,8 +357,12 @@
 	sellprice = 100
 	grid_width = 32
 	grid_height = 32
-//wip
+
 /obj/item/scomstone/attack_right(mob/living/carbon/human/user)
+	if(on_cooldown)
+		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
@@ -372,9 +378,16 @@
 		S.repeat_message(input_text, src, usedcolor)
 	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
-	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)//make the listenstone hear scomstone
+	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines) //make the listenstone hear scomstone
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
+
+/obj/item/scomstone/proc/reset_cooldown()
+	visible_message(span_notice ("[src] is ready for use again."))
+	playsound(loc, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
+	on_cooldown = FALSE
 
 /obj/item/scomstone/MiddleClick(mob/user)
 	if(.)
@@ -829,6 +842,10 @@
 
 /obj/item/scomstone/garrison/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_INTENTCAP)
+	if(on_cooldown)
+		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(!input_text)
@@ -839,6 +856,7 @@
 	user.whisper(input_text)
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
+
 	if(garrisonline)
 		input_text = "<big><span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
 		for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
@@ -849,6 +867,8 @@
 			if(S.garrisonline)
 				S.repeat_message(input_text, src, usedcolor)
 		SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+		on_cooldown = TRUE
+		addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 		return
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
@@ -857,6 +877,8 @@
 	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 
 /obj/item/scomstone/garrison/attack_self(mob/living/user)
 	if(.)
