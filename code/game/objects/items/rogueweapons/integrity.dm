@@ -62,6 +62,11 @@
 		blade_int = max_blade_int
 		return FALSE
 	else
+		var/ratio = blade_int / max_blade_int
+		if(ratio < SHARPNESS_TIER2_THRESHOLD && ((blade_int + amt) / max_blade_int) > SHARPNESS_TIER2_THRESHOLD)
+			to_chat(user, span_info("The <b>chunks</b> smooth out. The edge regains some smoothness."))
+		if(ratio < SHARPNESS_TIER1_THRESHOLD && ((blade_int + amt) / max_blade_int) > SHARPNESS_TIER1_THRESHOLD)
+			to_chat(user, span_info("The <b>chips</b> disappear. The edge is now as sharp as ever."))
 		blade_int = blade_int + amt
 		if(blade_int >= max_blade_int)
 			blade_int = max_blade_int
