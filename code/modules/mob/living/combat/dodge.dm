@@ -163,9 +163,12 @@
 		if(HAS_TRAIT(H, TRAIT_SENTINELOFWITS))
 			var/sentinel = H.calculate_sentinel_bonus()
 			prob2defend += sentinel
+		
+		var/blunt_attack = FALSE
 
 		prob2defend = clamp(prob2defend, 5, 90)
-		if(UH.used_intent.item_d_type == "blunt" && UH.mind)
+		if(UH.used_intent.item_d_type == "blunt")
+			blunt_attack = TRUE
 			prob2defend = clamp(prob2defend, 5, 75)
 
 		//------------Dual Wielding Checks------------
@@ -197,6 +200,8 @@
 
 		if(src.client?.prefs.showrolls)
 			var/text = "Roll to dodge... [prob2defend]%"
+			if(blunt_attack)
+				text += " <b>Blunt!</b>"
 			if((defender_dualw || attacker_dualw))
 				if(defender_dualw && attacker_dualw)
 					text += " Our dual wielding cancels out!"
