@@ -18,7 +18,7 @@
 
 SUBSYSTEM_DEF(regionthreat)
 	name = "Regional Threat"
-	wait = 10 MINUTES
+	wait = 15 MINUTES
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
 	// The first four regions are meant to be "tameable" for towner purposes
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(regionthreat)
 			_max_ambush = DANGER_DANGEROUS_LIMIT, // Let's not go DIRE no matter what, in the future 
 			_fixed_ambush = FALSE,
 			_lowpop_tick = 1,
-			_highpop_tick = 2
+			_highpop_tick = 1,
 		),
 		new /datum/threat_region(
 			_region_name = THREAT_REGION_NORTHERN_GROVE,
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(regionthreat)
 			_max_ambush = DANGER_DANGEROUS_LIMIT,
 			_fixed_ambush = FALSE,
 			_lowpop_tick = 1,
-			_highpop_tick = 2
+			_highpop_tick = 1
 		),
 		new /datum/threat_region(
 			_region_name = THREAT_REGION_SOUTH_AZUREAN_COAST,
@@ -47,8 +47,8 @@ SUBSYSTEM_DEF(regionthreat)
 			_min_ambush = DANGER_SAFE_FLOOR,
 			_max_ambush = DANGER_DIRE_LIMIT,
 			_fixed_ambush = FALSE,
-			_lowpop_tick = 2,
-			_highpop_tick = 3 // It is not the terrorbog.
+			_lowpop_tick = 1,
+			_highpop_tick = 1
 		),
 		new /datum/threat_region(
 			_region_name = THREAT_REGION_TERRORBOG,
@@ -66,8 +66,8 @@ SUBSYSTEM_DEF(regionthreat)
 			_min_ambush = DANGER_MODERATE_FLOOR,
 			_max_ambush = DANGER_DIRE_LIMIT,
 			_fixed_ambush = FALSE,
-			_lowpop_tick = 2,
-			_highpop_tick = 4
+			_lowpop_tick = 1,
+			_highpop_tick = 2
 		),
 		new /datum/threat_region(
 			_region_name = THREAT_REGION_NORTH_AZUREAN_COAST,
@@ -75,8 +75,8 @@ SUBSYSTEM_DEF(regionthreat)
 			_min_ambush = DANGER_MODERATE_FLOOR,
 			_max_ambush = DANGER_DIRE_LIMIT,
 			_fixed_ambush = FALSE,
-			_lowpop_tick = 2,
-			_highpop_tick = 4
+			_lowpop_tick = 1,
+			_highpop_tick = 2
 		),
 		new /datum/threat_region(
 			_region_name = THREAT_REGION_MOUNT_DECAP,
