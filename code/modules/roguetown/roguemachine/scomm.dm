@@ -23,14 +23,6 @@
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
 
-/obj/structure/roguemachine/scomm/Initialize()
-	. = ..()
-	become_hearing_sensitive()
-
-/obj/structure/roguemachine/scomm/Destroy()
-	lose_hearing_sensitivity()
-	return ..()
-
 /obj/structure/roguemachine/scomm/OnCrafted(dirin, mob/user)
 	. = ..()
 	loc = user.loc
@@ -985,3 +977,11 @@
 	desc = "A guest's horn. Not as gaudy as the Loudmouth's own, but still a fine piece of craftsmanship. "
 	icon_state = "broadcaster_crass"
 	speech_color = COLOR_ASSEMBLY_GURKHA
+
+/obj/structure/broadcast_horn/loudmouth/Initialize()
+	. = ..()
+	become_hearing_sensitive()
+
+/obj/structure/broadcast_horn/loudmouth/Destroy()
+	lose_hearing_sensitivity()
+	return ..()
