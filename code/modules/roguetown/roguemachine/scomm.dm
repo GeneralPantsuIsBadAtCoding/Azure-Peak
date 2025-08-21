@@ -970,7 +970,6 @@
 	if(istype(src, /obj/structure/broadcast_horn/paid))
 		listening = FALSE
 		playsound(src, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
-		say("Message delivered! Thanks for the coin, sucker!")
 
 /obj/structure/broadcast_horn/loudmouth
 	name = "\improper Golden Mouth"
