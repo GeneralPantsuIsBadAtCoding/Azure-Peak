@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 		r_hand = /obj/item/rogueweapon/sword/falx
 		l_hand = /obj/item/rogueweapon/shield/tower
 	else
-		r_hand = /obj/item/rogueweapon/halberd/glaive
+		r_hand = /obj/item/rogueweapon/halberd/bardiche
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)

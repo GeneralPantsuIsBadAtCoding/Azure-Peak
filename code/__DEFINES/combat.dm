@@ -59,6 +59,8 @@
 #define CLICK_CD_EXHAUSTED 60
 #define CLICK_CD_TRACKING 30
 #define CLICK_CD_SLEUTH 10
+#define CLICK_CD_HEAVY 16
+#define CLICK_CD_CHARGED 14
 #define CLICK_CD_MELEE 12
 #define CLICK_CD_FAST 8
 #define CLICK_CD_INTENTCAP 6
@@ -210,6 +212,7 @@
 #define BCLASS_BITE			"bite"
 #define BCLASS_BURN			"charring"
 #define BCLASS_PEEL			"peel"
+#define BCLASS_PUNISH		"punish"
 #define BCLASS_EFFECT		"effect"
 
 //Material class (what material is striking)

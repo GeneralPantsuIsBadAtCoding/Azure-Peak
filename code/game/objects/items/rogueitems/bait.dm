@@ -26,6 +26,11 @@
 	check_counter = world.time
 
 /obj/item/bait/attack_self(mob/user)
+	var/area/A = get_area(user.loc)
+	if(!is_valid_hunting_area(A))
+		to_chat(user, span_warning("I should save [name] for the wilderness..."))
+		return
+
 	. = ..()
 	user.visible_message(span_notice("[user] begins deploying the bait..."), \
 						span_notice("I begin deploying the bait..."))

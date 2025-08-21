@@ -67,6 +67,16 @@
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/alch/silverdust = 1)
 	craftdiff = 4
 
+/datum/crafting_recipe/roguetown/alchemy/qsabsolution
+	name = "absolving silver"
+	category = "Transmutation"
+	req_table = FALSE
+	result = list(/obj/item/quicksilver/luxinfused = 1)
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/alch/silverdust = 1)
+	craftdiff = 0
+	verbage_simple = "transmute"
+	structurecraft = null
+
 /datum/crafting_recipe/roguetown/alchemy/transisdust
 	name = "sui dust"
 	category = "Table"
@@ -252,3 +262,19 @@
 	craftdiff = 6
 	verbage_simple = "transmute"
 
+/datum/crafting_recipe/roguetown/alchemy/frankenbrew
+	name = "Reanimation Elixir"
+	category = "Table"
+	result = list(
+		/obj/item/reagent_containers/glass/bottle/frankenbrew,
+		/obj/item/reagent_containers/glass/bottle/frankenbrew
+	)
+	reqs = list(
+		/obj/item/reagent_containers/glass/bottle = 2,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom = 1,
+		/obj/item/reagent_containers/lux = 1,
+		/obj/item/alch/calendula = 1,
+		/datum/reagent/water = 98
+	)
+	craftdiff = 4
+	verbage_simple = "mix"

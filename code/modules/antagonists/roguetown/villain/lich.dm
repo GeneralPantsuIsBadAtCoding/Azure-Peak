@@ -100,6 +100,7 @@
 	equip_and_traits()
 	L.equipOutfit(/datum/outfit/job/roguetown/lich)
 	L.set_patron(/datum/patron/inhumen/zizo)
+	owner.current.forceMove(pick(GLOB.vlord_starts)) // as opposed to spawning at their normal role spot as a skeleton; which is le bad
 
 
 /datum/outfit/job/roguetown/lich/pre_equip(mob/living/carbon/human/H) //Equipment is located below
@@ -139,6 +140,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/lich_announce)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
 	H.ambushable = FALSE
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "LICH"), 5 SECONDS)

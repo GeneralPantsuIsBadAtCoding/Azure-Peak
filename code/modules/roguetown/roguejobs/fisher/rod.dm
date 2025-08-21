@@ -69,6 +69,7 @@
 	var/salwt_coast = list(/turf/open/water/ocean)
 	var/salwt_deep = list(/turf/open/water/ocean/deep)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
+	var/list/modlist
 	if(user.used_intent.type == SPEAR_BASH)
 		return ..()
 
@@ -97,17 +98,33 @@
 							else
 								fishchance -= bp // Deduct penalties from bait quality, if any
 								fishchance -= fpp // Deduct a penalty the lower our fishing level is (-0 at legendary)
-						var/mob/living/fisherman = user
+						var/mob/living/carbon/human/fisherman = user
+						modlist = baited.fishingMods.Copy()
+						if(ishuman(fisherman))
+							if(fisherman.patron.type == /datum/patron/divine/abyssor)
+								modlist["dangerFishingMod"] *= 1.10  // +10% danger
+								modlist["treasureFishingMod"] *= 0.90  // -10% treasure
+								modlist["rareFishingMod"] *= 1.25  // +25% rare
+							if(fisherman.STALUC > 10)
+								var/trait_bonus = 0
+								if(HAS_TRAIT(fisherman, TRAIT_CAUTIOUS_FISHER))
+									trait_bonus = 0.20
+								var/tier1_bonus = min(fisherman.STALUC - 10, 5) // 5% bonus per point up until 15
+								var/tier2_bonus = max(fisherman.STALUC - 15, 0) // 1% bonus per point past 15
+								var/total_bonus = (tier1_bonus * 0.05) + (tier2_bonus * 0.01) + (trait_bonus)
+								modlist["rareFishingMod"] *= (1 + total_bonus)
+								modlist["treasureFishingMod"] *= (1 + total_bonus)
+								modlist["dangerFishingMod"] *= (1 - (trait_bonus * 3))
 						if(prob(fishchance)) // Finally, roll the dice to see if we fish.
 							var/A
 							if(target.type in frwt)
-								A = pickweightAllowZero(createFreshWaterFishWeightListModlist(baited.fishingMods))
+								A = pickweightAllowZero(createFreshWaterFishWeightListModlist(modlist))
 							else if(target.type in salwt_coast)
-								A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(baited.fishingMods))
+								A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(modlist))
 							else if(target.type in salwt_deep)
-								A = pickweightAllowZero(createDeepSeaFishWeightListModlist(baited.fishingMods))
+								A = pickweightAllowZero(createDeepSeaFishWeightListModlist(modlist))
 							else if(target.type in mud)
-								A = pickweightAllowZero(createMudFishWeightListModlist(baited.fishingMods))
+								A = pickweightAllowZero(createMudFishWeightListModlist(modlist))
 							if(A)
 								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
@@ -123,6 +140,7 @@
 									else
 										new A(user.loc)
 										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
+										teleport_to_dream(user, 0.01)
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
 										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++

@@ -65,7 +65,8 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	id = /obj/item/scomstone/bad/garrison
 	backpack_contents = list(
-		/obj/item/storage/keyring/guardknight = 1
+		/obj/item/storage/keyring/guardknight = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 	)
 
 /datum/outfit/job/roguetown/knight/pre_equip(mob/living/carbon/human/H)
@@ -90,7 +91,7 @@
 	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)	//Too heavy for horses.
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -114,23 +115,23 @@
 	switch(weapon_choice)
 		if("Zweihander")
 			r_hand = /obj/item/rogueweapon/greatsword/zwei
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Great Mace")
 			r_hand = /obj/item/rogueweapon/mace/goden/steel
 		if("Battle Axe")
 			r_hand = /obj/item/rogueweapon/stoneaxe/battle
 		if("Greataxe")
 			r_hand = /obj/item/rogueweapon/greataxe/steel
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Estoc")
 			r_hand = /obj/item/rogueweapon/estoc
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Lucerne")
 			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Partizan")
 			r_hand = /obj/item/rogueweapon/spear/partizan
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
@@ -182,7 +183,7 @@
 	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)	
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -266,7 +267,7 @@
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -300,7 +301,7 @@
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 		if("Billhook + Recurve Bow")
 			r_hand = /obj/item/rogueweapon/spear/billhook
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 		if("Grand Mace + Longbow")
@@ -372,7 +373,7 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)		
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
@@ -401,7 +402,7 @@
 
 		if("Estoc + Recurve Bow")
 			r_hand = /obj/item/rogueweapon/estoc
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 		
@@ -419,7 +420,7 @@
 			H.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 			r_hand = /obj/item/rogueweapon/greataxe/steel
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			beltr = /obj/item/quiver/sling/iron
 			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 	

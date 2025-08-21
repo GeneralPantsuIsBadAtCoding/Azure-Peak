@@ -3,8 +3,6 @@
 	desc = "Deals damage and ignites target, Deals extra damage to undead."
 	overlay_state = "sacredflame"
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
-	invocation = null
-	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 25 SECONDS
@@ -51,8 +49,6 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/magic/heal.ogg'
-	invocation = null
-	invocation_type = null
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 5 SECONDS
@@ -181,7 +177,7 @@
 	sound = 'sound/magic/astrata_choir.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	invocation = "Astrata show me true."
+	invocations = list("Astrata show me true.")
 	invocation_type = "shout"
 	recharge_time = 120 SECONDS
 	devotion_cost = 30
@@ -403,7 +399,7 @@
 	overlay_state = "immolation"
 	range = 2
 	chargetime = 0.5 SECONDS
-	invocation = "By sacred fire, be cleansed!"
+	invocations = list("By sacred fire, be cleansed!")
 	sound = 'sound/magic/fireball.ogg'
 	recharge_time = 600 SECONDS
 	miracle = TRUE

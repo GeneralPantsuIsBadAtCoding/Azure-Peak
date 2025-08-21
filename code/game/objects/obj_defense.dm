@@ -240,6 +240,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 /obj/proc/obj_fix(mob/user)
 	obj_broken = FALSE
 	obj_integrity = max_integrity
+	SEND_SIGNAL(src, COMSIG_ITEM_OBJFIX)
 
 ///what happens when the obj's integrity reaches zero.
 /obj/proc/obj_destruction(damage_flag)

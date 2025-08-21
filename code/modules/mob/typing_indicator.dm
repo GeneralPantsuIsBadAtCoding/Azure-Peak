@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	if(ispath(state))
 		var/atom/thing = new state(null)
 		var/mutable_appearance/generated = new(thing)
+		generated.plane = FULLSCREEN_PLANE
 		return generated
 	else
 		CRASH("Unsupported typing indicator state: [state]")
@@ -57,5 +58,6 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	icon = 'icons/mob/typing_indicator.dmi'
 	icon_state = "default0"
 	appearance_flags = RESET_COLOR | TILE_BOUND | PIXEL_SCALE
-	layer = 5.1 // ABOVE_FLY_LAYER
+	layer = HUD_LAYER
+	plane = FULLSCREEN_PLANE
 	alpha = 175

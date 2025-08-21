@@ -57,9 +57,15 @@
 		H.change_stat("fortune", 1)
 		
 	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo,
-			/datum/patron/inhumen/matthios,
-			/datum/patron/inhumen/graggar,
-			/datum/patron/inhumen/baotha)
+		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/matthios)
+			H.cmode_music = 'sound/music/combat_matthios.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/graggar)
+			H.cmode_music = 'sound/music/combat_graggar.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/baotha)
+			H.cmode_music = 'sound/music/combat_baotha.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)

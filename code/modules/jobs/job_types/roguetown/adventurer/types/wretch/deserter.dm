@@ -34,7 +34,7 @@
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
@@ -63,7 +63,7 @@
 			switch(weapon_choice)
 				if("Estoc")
 					r_hand = /obj/item/rogueweapon/estoc
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Longsword + Shield")
 					beltr = /obj/item/rogueweapon/scabbard/sword
 					r_hand = /obj/item/rogueweapon/sword/long
@@ -76,7 +76,7 @@
 					backr = /obj/item/rogueweapon/shield/tower/metal
 				if("Lucerne")
 					r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Battle Axe")
 					backr = /obj/item/rogueweapon/stoneaxe/battle
 				if("Lance + Kite Shield")
@@ -127,7 +127,8 @@
 				/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 				/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 				/obj/item/rope/chain = 1,
-				/obj/item/rogueweapon/scabbard/sheath = 1
+				/obj/item/rogueweapon/scabbard/sheath = 1,
+				/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 				)
 
 
@@ -154,13 +155,13 @@
 					backl = /obj/item/rogueweapon/shield/iron
 				if("Billhook")
 					r_hand = /obj/item/rogueweapon/spear/billhook 
-					backl = /obj/item/gwstrap
+					backl = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Halberd")
 					r_hand = /obj/item/rogueweapon/halberd
-					backl = /obj/item/gwstrap	
+					backl = /obj/item/rogueweapon/scabbard/gwstrap	
 				if("Greataxe")
 					r_hand = /obj/item/rogueweapon/greataxe
-					backl = /obj/item/gwstrap
+					backl = /obj/item/rogueweapon/scabbard/gwstrap
 			
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
@@ -171,7 +172,7 @@
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) // Better at climbing away than your average MaA. Only slightly.
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE) // Worse at swimming than the above class.
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)

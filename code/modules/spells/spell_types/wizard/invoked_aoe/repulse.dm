@@ -16,7 +16,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "repulse"
 	spell_tier = 2
-	invocation = "Obmolior!"
+	invocations = list("Obmolior!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM

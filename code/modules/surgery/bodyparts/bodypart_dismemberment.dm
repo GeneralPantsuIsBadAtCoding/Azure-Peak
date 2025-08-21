@@ -79,6 +79,11 @@
 		qdel(grabbedby)
 		grabbedby = null
 
+	if(length(wounds))
+		for(var/datum/wound/wound in wounds)
+			remove_wound(wound.type)
+
+
 	drop_limb()
 	if(dam_type == BURN)
 		burn()
@@ -268,6 +273,20 @@
 		C.update_inv_pants()
 
 /obj/item/bodypart/l_leg/drop_limb(special) //copypasta
+	var/mob/living/carbon/C = owner
+	. = ..()
+	if(C && !special)
+		if(C.legcuffed)
+			C.legcuffed.forceMove(C.drop_location())
+			C.legcuffed.dropped(C)
+			C.legcuffed = null
+			C.update_inv_legcuffed()
+		if(C.shoes && (C.get_num_legs(FALSE) < 1))
+			C.dropItemToGround(C.shoes, force = TRUE)
+		C.update_inv_shoes()
+		C.update_inv_pants()
+
+/obj/item/bodypart/taur/drop_limb(special) //copypasta
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(C && !special)

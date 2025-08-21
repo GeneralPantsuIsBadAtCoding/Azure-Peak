@@ -49,6 +49,16 @@
 	loud_message("The sound of a crumbling stone wall rings out", hearing_distance = 14)
 	. = ..()
 
+/turf/closed/wall/mineral/rogue/stone/unbreakable
+	name = "heavy stone wall"
+	desc = "Seems nigh-indestructable"
+	max_integrity = 10000000
+	damage_deflection = 99999999
+
+/turf/closed/wall/mineral/rogue/stone/unbreakable/attackby(obj/item/I, mob/user, params, multiplier)
+	to_chat(user, span_warning("TOO HARD!"))
+	return FALSE
+
 /turf/closed/wall/mineral/rogue/stone/window
 	name = "stone window"
 	desc = "A window with a solid and sturdy stone frame."
@@ -66,13 +76,41 @@
 	var/mutable_appearance/M = mutable_appearance(icon, "stonehole", layer = ABOVE_NORMAL_TURF_LAYER)
 	add_overlay(M)
 
+/turf/closed/wall/mineral/rogue/stone/window/unbreakable
+	name = "heavy stone window"
+	desc = "Seems nigh-indestructable"
+	max_integrity = 10000000
+	damage_deflection = 99999999
+
+/turf/closed/wall/mineral/rogue/stone/window/unbreakable/attackby(obj/item/I, mob/user, params, multiplier)
+	to_chat(user, span_warning("TOO HARD!"))
+	return FALSE
+
 /turf/closed/wall/mineral/rogue/stone/moss
 	icon = 'icons/turf/walls/mossy_stone.dmi'
 	climbdiff = 4
 
+/turf/closed/wall/mineral/rogue/stone/moss/unbreakable
+	desc = "Seems nigh-indestructable"
+	max_integrity = 10000000
+	damage_deflection = 99999999
+
+/turf/closed/wall/mineral/rogue/stone/moss/unbreakable/attackby(obj/item/I, mob/user, params, multiplier)
+	to_chat(user, span_warning("TOO HARD!"))
+	return FALSE
+
 /turf/closed/wall/mineral/rogue/stone/window/moss
 	icon = 'icons/turf/walls/mossy_stone.dmi'
 	climbdiff = 4
+
+/turf/closed/wall/mineral/rogue/stone/window/moss/unbreakable
+	desc = "Seems nigh-indestructable"
+	max_integrity = 10000000
+	damage_deflection = 99999999
+
+/turf/closed/wall/mineral/rogue/stone/window/moss/unbreakable/attackby(obj/item/I, mob/user, params, multiplier)
+	to_chat(user, span_warning("TOO HARD!"))
+	return FALSE
 
 /turf/closed/wall/mineral/rogue/craftstone
 	name = "stone wall"

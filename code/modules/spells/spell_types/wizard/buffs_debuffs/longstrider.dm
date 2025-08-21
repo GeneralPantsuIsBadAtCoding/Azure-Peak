@@ -11,7 +11,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	spell_tier = 1 // Not direct combat useful but still good, replicated by polearm
-	invocation = "Aranea Deambulatio"
+	invocations = list("Aranea Deambulatio")
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW

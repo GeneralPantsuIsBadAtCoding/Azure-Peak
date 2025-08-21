@@ -83,7 +83,7 @@
 
 /obj/item/clothing/under/roguetown/platelegs/zizo
 	max_integrity = ARMOR_INT_LEG_ANTAG
-	name = "darksteel garments"
+	name = "avantyne garments"
 	desc = "Leg garments worn by true anointed of the Dame of Progress. In Her name."
 	icon_state = "zizocloth"
 	armor = ARMOR_ASCENDANT

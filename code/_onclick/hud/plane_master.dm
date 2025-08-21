@@ -45,9 +45,6 @@
 /atom/movable/screen/plane_master/proc/shadow(_size, _border, _offset = 0, _x = 0, _y = 0, _color = "#04080FAA")
 	filters += filter(type = "drop_shadow", x = _x, y = _y, color = _color, size = _size, offset = _offset)
 
-/atom/movable/screen/plane_master/proc/clear_filters()
-	filters = list()
-
 /atom/movable/screen/plane_master/floor
 	name = "floor plane master"
 //	screen_loc = "CENTER-2"
@@ -68,7 +65,7 @@
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
-	filters = list()
+	clear_filters()
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
 //		filters += filter(type="bloom", size = 4, offset = 0, threshold = "#282828")
@@ -78,12 +75,10 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-//				animate(F1, size=50, radius=480, time=4, loop=-1, flags=ANIMATION_PARALLEL)
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				add_filter("druqks_ripple", 2, ripple_filter(0, 50, 1, x = 80))
+				var/filter = get_filter("druqks_ripple")
+				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 //			if(L.has_status_effect(/datum/status_effect/buff/weed))
 //				filters += filter(type="bloom",threshold=rgb(255, 128, 255),size=5,offset=5)
 /*
@@ -151,7 +146,7 @@
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/game_world_fov_hidden/backdrop(mob/mymob)
-	filters = list()
+	clear_filters()
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
@@ -160,11 +155,10 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				add_filter("druqks_ripple", 2, ripple_filter(0, 50, 1, x = 80))
+				var/filter = get_filter("druqks_ripple")
+				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 	filters += filter(type = "alpha", render_source = FIELD_OF_VISION_BLOCKER_RENDER_TARGET, flags = MASK_INVERSE)
 
 /atom/movable/screen/plane_master/game_world_above
@@ -174,7 +168,7 @@
 	blend_mode = BLEND_OVERLAY
 
 /atom/movable/screen/plane_master/game_world_above/backdrop(mob/mymob)
-	filters = list()
+	clear_filters()
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
@@ -183,11 +177,10 @@
 		if(isliving(mymob))
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
-				filters += filter(type="ripple",x=80,size=50,radius=0,falloff = 1)
-				var/F1 = filters[filters.len]
-				filters += filter(type="color", color = list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0))
-				F1 = filters[filters.len-1]
-				animate(F1, size=50, radius=480, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+				add_filter("druqks_ripple", 1, ripple_filter(0, 50, 1, x = 80))
+				var/filter = get_filter("druqks_ripple")
+				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 
 /atom/movable/screen/plane_master/field_of_vision_blocker
 	name = "field of vision blocker plane master"

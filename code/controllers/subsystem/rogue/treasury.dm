@@ -249,3 +249,8 @@ SUBSYSTEM_DEF(treasury)
 			total_value_exported += exported
 	if(total_value_exported >= EXPORT_ANNOUNCE_THRESHOLD)
 		scom_announce("Azure Peak exports [total_value_exported] mammons of surplus goods.")
+
+/datum/controller/subsystem/treasury/proc/remove_person(mob/living/person)
+	noble_incomes -= person
+	bank_accounts -= person
+	return TRUE

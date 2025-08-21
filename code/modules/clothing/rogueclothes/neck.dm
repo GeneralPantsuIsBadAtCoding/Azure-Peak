@@ -312,6 +312,10 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+		
+/obj/item/clothing/neck/roguetown/fencerguard/Initialize()
+	. = ..()		
+	update_icon()		
 
 /obj/item/clothing/neck/roguetown/gorget/forlorncollar
 	name = "forlorn collar"
@@ -398,6 +402,11 @@
 	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
 	color = "#bb9696"
+
+/obj/item/clothing/neck/roguetown/psicross/undivided
+	name = "amulet of Ten"
+	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
+	icon_state = "undivided"
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"

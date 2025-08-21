@@ -1,3 +1,5 @@
+#define STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL -2
+
 /mob/living/proc/attempt_parry(datum/intent/intenty, mob/living/user)
 	var/prob2defend = user.defprob
 	var/mob/living/H = src
@@ -64,12 +66,14 @@
 
 	var/defender_skill = 0
 	var/attacker_skill = 0
+	var/obj/item/clothing/wrists/roguetown/bracers/unarmed_bracers
 
 	if(highest_defense <= (H.get_skill_level(/datum/skill/combat/unarmed) * 20))
 		defender_skill = H.get_skill_level(/datum/skill/combat/unarmed)
 		var/obj/B = H.get_item_by_slot(SLOT_WRISTS)
 		if(istype(B, /obj/item/clothing/wrists/roguetown/bracers))
-			prob2defend += (defender_skill * 30)
+			prob2defend += (defender_skill * 35)
+			unarmed_bracers = B
 		else
 			prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 		weapon_parry = FALSE
@@ -81,26 +85,25 @@
 		prob2defend += highest_defense
 		weapon_parry = TRUE
 
-	if(U.mind)
-		if(intenty.masteritem)
-			attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
-			prob2defend -= (attacker_skill * 20)
-			if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-				var/spdmod = ((user.STASPD - src.STASPD) * 10)
-				var/permod = ((src.STAPER - user.STAPER) * 10)
-				var/intmod = ((src.STAINT - user.STAINT) * 3)
-				if(mind)
-					if(permod > 0)
-						spdmod -= permod
-					if(intmod > 0)
-						spdmod -= intmod
-				var/finalmod = spdmod
-				if(mind)
-					finalmod = clamp(spdmod, 0, 30)
-				prob2defend -= finalmod
-		else
-			attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
-			prob2defend -= (attacker_skill * 20)
+	if(intenty.masteritem)
+		attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
+		prob2defend -= (attacker_skill * 20)
+		if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+			var/spdmod = ((user.STASPD - src.STASPD) * 10)
+			var/permod = ((src.STAPER - user.STAPER) * 10)
+			var/intmod = ((src.STAINT - user.STAINT) * 3)
+			if(mind)
+				if(permod > 0)
+					spdmod -= permod
+				if(intmod > 0)
+					spdmod -= intmod
+			var/finalmod = spdmod
+			if(mind)
+				finalmod = clamp(spdmod, 0, 30)
+			prob2defend -= finalmod
+	else
+		attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
+		prob2defend -= (attacker_skill * 20)
 
 	if(HAS_TRAIT(src, TRAIT_GUIDANCE))
 		prob2defend += 20
@@ -178,8 +181,8 @@
 
 	if(parry_status)
 		if(intenty.masteritem)
-			if(intenty.masteritem.wbalance < 0 && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
-				drained = drained + ( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * -5) )
+			if(intenty.masteritem.wbalance < WBALANCE_NORMAL && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
+				drained = drained + ( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) )
 	else
 		to_chat(src, span_warning("The enemy defeated my parry!"))
 		if(HAS_TRAIT(src, TRAIT_MAGEARMOR))
@@ -300,6 +303,16 @@
 					skill_target -= SKILL_LEVEL_NOVICE
 				if(can_train_combat_skill(H, /datum/skill/combat/unarmed, skill_target))
 					H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
+			if(unarmed_bracers)
+				var/bracer_damage
+				var/d_flag = "blunt"
+				if(intenty.masteritem)
+					bracer_damage = get_complex_damage(intenty.masteritem, user)
+					d_flag = intenty.item_d_type
+				else
+					bracer_damage = U.get_punch_dmg()
+				bracer_damage = bracer_damage / 2
+				unarmed_bracers.take_damage(bracer_damage, damage_flag = d_flag, armor_penetration = 100)
 			flash_fullscreen("blackflash2")
 			return TRUE
 		else

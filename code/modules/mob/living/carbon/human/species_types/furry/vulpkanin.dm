@@ -69,6 +69,7 @@
 		/datum/customizer/bodypart_feature/accessory,
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
+		/datum/customizer/bodypart_feature/legwear,
 		/datum/customizer/organ/tail/vulpkanin,
 		/datum/customizer/organ/snout/vulpkanin,
 		/datum/customizer/organ/ears/vulpkanin,

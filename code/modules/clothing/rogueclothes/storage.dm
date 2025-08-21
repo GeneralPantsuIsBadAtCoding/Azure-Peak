@@ -59,6 +59,27 @@
 	sewrepair = FALSE
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+/obj/item/storage/belt/rogue/leather/battleskirt
+	name = "cloth military skirt"
+	icon_state = "battleskirt"
+	sewrepair = FALSE
+	detail_tag = "_belt"
+
+/obj/item/storage/belt/rogue/leather/battleskirt/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/storage/belt/rogue/leather/battleskirt/faulds
+	name = "belt with faulds"
+	icon_state = "faulds"
+	sewrepair = FALSE
+	detail_tag = "_belt"
+
 /obj/item/storage/belt/rogue/leather/steel
 	name = "steel belt"
 	icon_state = "steelplaque"
@@ -193,6 +214,12 @@
 		/obj/item/natural/feather,
 		/obj/item/paper,
 	)
+
+/obj/item/storage/backpack/rogue/satchel/otavan
+	name = "otavan leather satchel"
+	desc = "A made to last leather bag from the Psydonian heart of Otava. It's Otava's finest."
+	icon_state = "osatchel"
+	item_state = "osatchel"
 
 /obj/item/storage/backpack/rogue/satchel/mule/PopulateContents()
 	for(var/i in 1 to 3)

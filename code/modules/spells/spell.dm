@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to 1 for ghostpells
 	var/phase_allowed = FALSE // If true, the spell can be cast while phased, eg. blood crawling, ethereal jaunting
 	var/antimagic_allowed = FALSE // If false, the spell cannot be cast while under the effect of antimagic
-	var/invocation = "" //what is uttered when the wizard casts the spell
+	var/list/invocations = list() //what is uttered when the wizard casts the spell
 	var/invocation_emote_self = null
 	var/invocation_type = "none" //can be none, whisper, emote and shout
 	var/range = 7 //the range of the spell; outer radius for aoe spells
@@ -316,21 +316,26 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 
 	if(req_items.len)
-		var/list/confirmed_items = list()
+		var/list/missing_names = list()
+		var/met_requirement = FALSE
 		for(var/I in req_items)
-			testing("req item [I]")
+			met_requirement = FALSE
 			for(var/obj/item/IN in user.contents)
 				if(istype(IN, I))
-					testing("confirmed [I]")
-					confirmed_items += IN
+					met_requirement = TRUE
 					continue
-		if(confirmed_items.len != req_items.len)
-			to_chat(user, span_warning("I'm missing something to cast this."))
+			if(!met_requirement)
+				var/obj/item/M = I
+				missing_names.Add(M.name)
+		if(!met_requirement)
+			to_chat(user, span_warning("I'm missing [missing_names.Join(", ")] to cast this."))
 			return FALSE
 
 	if(req_inhand)
 		if(!istype(user.get_active_held_item(), req_inhand))
-			to_chat(user, span_warning("I'm missing something to cast this."))
+			var/obj/item/M = req_inhand
+			var/req_name = M.name
+			to_chat(user, span_warning("I'm missing [req_name] in my hand to cast this."))
 			return FALSE
 
 	if(!skipcharge)
@@ -361,21 +366,22 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	return TRUE
 
 /obj/effect/proc_holder/spell/proc/invocation(mob/user = usr)
-	if(!invocation)
+	if(!invocations || !invocations.len)
 		return
+	var/chosen_invocation = pick(invocations)
 	switch(invocation_type)
 		if("shout")
 			if(prob(50))//Auto-mute? Fuck that noise
-				user.say(invocation, forced = "spell")
+				user.say(chosen_invocation, forced = "spell")
 			else
-				user.say(invocation, forced = "spell")
+				user.say(chosen_invocation, forced = "spell")
 		if("whisper")
 			if(prob(50))
-				user.whisper(invocation)
+				user.whisper(chosen_invocation)
 			else
-				user.whisper(invocation)
+				user.whisper(chosen_invocation)
 		if("emote")
-			user.visible_message(invocation, invocation_emote_self) //same style as in mob/living/emote.dm
+			user.visible_message(chosen_invocation, invocation_emote_self) //same style as in mob/living/emote.dm
 
 /obj/effect/proc_holder/spell/proc/playMagSound()
 	var/ss = sound
@@ -735,7 +741,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	human_req = TRUE
 	clothes_req = FALSE
 	recharge_time = 100
-	invocation = "Victus sano!"
+	invocations = list("Victus sano!")
 	invocation_type = "whisper"
 	school = "restoration"
 	sound = 'sound/blank.ogg'

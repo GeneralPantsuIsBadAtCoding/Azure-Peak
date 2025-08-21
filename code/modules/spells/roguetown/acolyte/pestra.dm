@@ -173,14 +173,14 @@
 	movement_interrupt = FALSE
 	no_early_release = FALSE
 	devotion_cost = 50 // attack miracle
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross/pestra)
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/fliesloop
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	miracle = TRUE
 
-	invocation = "Rot, take them!"
+	invocations = list("Rot, take them!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
 

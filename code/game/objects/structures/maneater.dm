@@ -82,11 +82,15 @@
 							if(limb)
 								playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 								if(limb.dismember())
+									limb.drop_limb()
 									qdel(limb)
 									seednutrition += 20
 									if(C.mind) // eat only one limb of things with minds
 										maneater_spit_out(C)
 										return
+								if(!limb.dismemberable) //gib goblins right away as they cant be dismembered, meaning they will be stuck in infinit loop of being snatched and not dismembered
+									C.gib()
+									seednutrition += 50
 								return
 						if(C.mind) // nugget case, just spit them out
 							maneater_spit_out(C)
@@ -95,6 +99,7 @@
 						if(limb)
 							playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 							if(limb.dismember())
+								limb.drop_limb()
 								qdel(limb)
 							return
 						limb = C.get_bodypart(BODY_ZONE_CHEST)

@@ -30,6 +30,9 @@ GLOBAL_VAR_INIT(mobids, 1)
 	GLOB.alive_mob_list -= src
 	GLOB.mob_directory -= tag
 	focus = null
+	if(mind?.current == src)
+		mind.set_current(null)
+		mind.soulOwner = null
 
 	for (var/alert in alerts)
 		clear_alert(alert, TRUE)
@@ -40,11 +43,21 @@ GLOBAL_VAR_INIT(mobids, 1)
 	qdel(hud_used)
 	for(var/cc in client_colours)
 		qdel(cc)
+	if(used_intent)
+		qdel(used_intent)
+	if(a_intent && a_intent.mastermob == src)
+		a_intent.mastermob = null
+	QDEL_LIST(possible_a_intents)
+	QDEL_LIST(possible_offhand_intents)
+	SStreasury.remove_person(src) // Call me overly cautious I dunno when they giving dogs bank account
+	if(skills && skills.current == src)
+		var/datum/skill_holder/my_skill = skills
+		my_skill.current = null
+		QDEL_NULL(skills)
 	client_colours = null
-	testing("EPICWIN!! [src] [type]")
 	ghostize(drawskip=TRUE)
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE
 
 /**
  * Intialize a mob
@@ -785,33 +798,51 @@ GLOBAL_VAR_INIT(mobids, 1)
 	// && check_rights(R_ADMIN,0)
 	var/ticker_time = world.time - SSticker.round_start_time
 	var/time_left = SSgamemode.round_ends_at - ticker_time
+	var/days = "TWILIGHT"
+	switch(GLOB.dayspassed)
+		if(1)
+			days = "MOON'S DAE"
+		if(2)
+			days = "TIW'S DAE"
+		if(3)
+			days = "WEDDING'S DAE"
+		if(4)
+			days = "THULE'S DAE"
+		if(5)
+			days = "FREYJA'S DAE"
+		if(6)
+			days = "SATURN'S DAE"
+		if(7)
+			days = "SUN'S DAE"
+
 	if(client && client.holder)
 		if(statpanel("Status"))
 			if (client)
-				stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
-			stat(null, "Map: [SSmapping.config?.map_name || "Loading..."]")
+				stat(null, "PING: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
+			stat(null, "MAP: [SSmapping.config?.map_name || "Loading..."]")
 			var/datum/map_config/cached = SSmapping.next_map_config
 			if(cached)
 				stat(null, "Next Map: [cached.map_name]")
-			stat(null, "Round ID: [GLOB.rogue_round_id ? GLOB.rogue_round_id : "NULL"]")
+			stat(null, "ROUND ID: [GLOB.rogue_round_id ? GLOB.rogue_round_id : "NULL"]")
 //			stat(null, "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]")
-			stat(null, "Round Time: [time2text(STATION_TIME_PASSED(), "hh:mm:ss", 0)] [world.time - SSticker.round_start_time]")
+			stat(null, "ROUND TIME: [time2text(STATION_TIME_PASSED(), "hh:mm:ss", 0)] [world.time - SSticker.round_start_time]")
 			if(SSgamemode.roundvoteend)
-				stat("Round End: [DisplayTimeText(time_left)]")
-			stat(null, "Round TrueTime: [worldtime2text()] [world.time]")
-			stat(null, "TimeOfDay: [GLOB.tod]")
+				stat("ROUND END: [DisplayTimeText(time_left)]")
+			stat(null, "ROUND TrueTime: [worldtime2text()] [world.time]")
+			stat(null, "TIMEOFDAY: [days] ᛉ [uppertext(GLOB.tod)] ᛉ [station_time_timestamp("hh:mm")]")
 			stat(null, "IC Time: [station_time_timestamp()] [station_time()]")
-			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+			stat(null, "TIME DILATION: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 			if(check_rights(R_ADMIN,0))
 				stat(null, SSmigrants.get_status_line())
 
 	if(client)
 		if(statpanel("RoundInfo"))
-			stat("Round ID: [GLOB.rogue_round_id]")
-			stat("Round Time: [time2text(STATION_TIME_PASSED(), "hh:mm:ss", 0)] [world.time - SSticker.round_start_time]")
+			stat("ROUND ID: [GLOB.rogue_round_id]")
+			stat("ROUND TIME: [time2text(STATION_TIME_PASSED(), "hh:mm:ss", 0)] [world.time - SSticker.round_start_time]")
 			if(SSgamemode.roundvoteend)
-				stat("Round End: [DisplayTimeText(time_left)]")
-			stat("TimeOfDay: [GLOB.tod]")
+				stat("ROUND END: [DisplayTimeText(time_left)]")
+			stat("DAY OF WEEK: [days]" )
+			stat("TIME OF DAY: [uppertext(GLOB.tod)] ᛉ [station_time_timestamp("hh")]")
 
 	if(client && client.holder && check_rights(R_DEBUG,0))
 		if(statpanel("MC"))
@@ -1397,3 +1428,14 @@ GLOBAL_VAR_INIT(mobids, 1)
 	if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 		return FALSE
 	return TRUE
+
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null

@@ -186,15 +186,44 @@
 		return FALSE
 
 	var/moveup = 10
-	if(doctor.mind)
-		moveup = ((doctor.get_skill_level(/datum/skill/misc/medicine)+1) * 5)
+	var/medskill = doctor.get_skill_level(/datum/skill/misc/medicine)
+	var/informed = FALSE
+	moveup = (medskill+1) * 4
+	if(medskill > SKILL_LEVEL_EXPERT)
+		if(medskill == SKILL_LEVEL_MASTER)
+			moveup = medskill * 6
+		else if(medskill == SKILL_LEVEL_LEGENDARY)
+			moveup = medskill * 7
 	while(!QDELETED(target_wound) && !QDELETED(src) && \
 		!QDELETED(user) && (target_wound.sew_progress < target_wound.sew_threshold) && \
 		stringamt >= 1)
-		if(!do_after(doctor, 2 SECONDS, target = patient))
+		var/sewing_start_delay = 2 SECONDS
+		if(medskill > SKILL_LEVEL_EXPERT)
+			if(medskill == SKILL_LEVEL_MASTER)
+				sewing_start_delay = 1.5 SECONDS
+			else if(medskill == SKILL_LEVEL_LEGENDARY)
+				sewing_start_delay = 1 SECONDS
+		if(!do_after(doctor, sewing_start_delay, target = patient))
 			break
 		playsound(loc, 'sound/foley/sewflesh.ogg', 100, TRUE, -2)
 		target_wound.sew_progress = min(target_wound.sew_progress + moveup, target_wound.sew_threshold)
+
+		var/bleedreduction = max((0.5 * medskill), 0.5)
+		if(medskill > SKILL_LEVEL_EXPERT)
+			if(medskill == SKILL_LEVEL_MASTER)
+				bleedreduction = 3
+			else if(medskill == SKILL_LEVEL_LEGENDARY)
+				bleedreduction = 4
+		target_wound.bleed_rate = max( (target_wound.bleed_rate - bleedreduction), 0)
+		if(target_wound.bleed_rate == 0 && !informed)
+			patient.visible_message(span_smallgreen("[capitalize(target_wound.name)] trickles out the last drop from [patient]'s [affecting] and stops bleeding."), span_smallgreen("The throbbing warmth coming out of [target_wound.name] soothes and stops. It no longer bleeds."))
+			informed = TRUE
+		if(istype(target_wound, /datum/wound/dynamic))
+			var/datum/wound/dynamic/dynwound = target_wound
+			if(dynwound.is_maxed)
+				dynwound.is_maxed = FALSE
+			if(dynwound.is_armor_maxed)
+				dynwound.is_armor_maxed = FALSE
 		if(target_wound.sew_progress < target_wound.sew_threshold)
 			continue
 		if(doctor.mind)

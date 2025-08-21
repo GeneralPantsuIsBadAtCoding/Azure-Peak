@@ -402,7 +402,7 @@
 					return
 				if(src.incapacitated())
 					return
-				if(!get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH, grabs="other"))
+				if(!get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH, grabs="other") && (!HAS_TRAIT(src, TRAIT_BITERHELM)))
 					to_chat(src, span_warning("My mouth is blocked."))
 					return
 				if(HAS_TRAIT(src, TRAIT_NO_BITE))

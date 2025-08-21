@@ -86,8 +86,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK_L
 	resistance_flags = FIRE_PROOF
-	gripped_intents = list(/datum/intent/use, /datum/intent/mace/strike)
-	force = 1
+	force = 0
 	throwforce = 0
 	sellprice = 10
 	var/storage_type = /datum/component/storage/concrete/roguetown/saddle

@@ -66,8 +66,11 @@
 	if(attacker && istype(attacker))
 		if (!owner.can_see_cone(attacker))
 			return FALSE
+		if(obj_broken) // No blocking with a broken shield you fool
+			return FALSE
 		if((owner.client?.chargedprog == 100 && owner.used_intent?.tranged) || prob(coverage))
 			owner.visible_message(span_danger("[owner] expertly blocks [hitby] with [src]!"))
+			src.take_damage(floor(damage / 2)) // Halved damage so they don't feel too fragile
 			return TRUE
 	return FALSE
 
@@ -165,6 +168,7 @@
 	wlength = WLENGTH_NORMAL
 	resistance_flags = FLAMMABLE
 	blade_dulling = DULLING_SHAFT_REINFORCED
+	var/swapped = FALSE
 	wdefense = 10
 	coverage = 40
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
@@ -174,18 +178,33 @@
 	name = "decablessed shield"
 	desc = "Protection of the Ten upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
 	icon_state = "gsshield"
-	wdefense = 13
-	max_integrity = 300
-	coverage = 50
+	force = 20
+	throwforce = 10
+	throw_speed = 1
+	throw_range = 3
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
 	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
-	force = 20
+	wdefense = 11
+	coverage = 50
+	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	max_integrity = 300
 	blade_dulling = DULLING_SHAFT_METAL
 	sellprice = 30
 
-/obj/item/rogueweapon/shield/tower/holysee/dark
-	icon_state = "gsshielddark"
+/obj/item/rogueweapon/shield/tower/holysee/MiddleClick(mob/user, params)
+	. = ..()
+	swapped = !swapped
+	update_icon()
+
+/obj/item/rogueweapon/shield/tower/holysee/update_icon()
+	. = ..()
+	if(swapped)
+		icon_state = "gsshielddark"
+	else
+		icon_state = "gsshield"
 
 
 /obj/item/rogueweapon/shield/tower/getonmobprop(tag)
@@ -225,6 +244,29 @@
 			if("onback")
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 	return ..()
+
+/obj/item/rogueweapon/shield/tower/metal/psy
+	name = "Covenant"
+	desc = "A Psydonian endures. A Psydonian preserves themselves. A Psydonian preserves His flock."
+	icon_state = "psyshield"
+	force = 20
+	throwforce = 10
+	throw_speed = 1
+	throw_range = 3
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
+	wlength = WLENGTH_NORMAL
+	resistance_flags = null
+	flags_1 = CONDUCT_1
+	wdefense = 11
+	coverage = 50
+	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
+	max_integrity = 300
+	blade_dulling = DULLING_SHAFT_METAL
+
+/obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
+	. = ..()
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 0, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"

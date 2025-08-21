@@ -5,6 +5,7 @@
 	name = "astratan tabard"
 	desc = "The washed out golds of an asratan crusader adorn these fine robes."
 	icon_state = "astratatabard"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/cloak/templar/malumite
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'

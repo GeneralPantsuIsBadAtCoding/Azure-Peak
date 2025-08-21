@@ -35,6 +35,7 @@
 	icon_state = "priestunder"
 	item_state = "priestunder"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	allowed_sex = list(MALE, FEMALE)

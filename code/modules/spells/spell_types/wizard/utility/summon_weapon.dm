@@ -7,7 +7,7 @@
 	recharge_time = 1 MINUTES
 	chargedloop = /datum/looping_sound/invokegen
 	action_icon_state = "summons"
-	invocation = "Evoca Telum"
+	invocations = list("Evoca Telum")
 	invocation_type = "whisper"
 	spell_tier = 2 
 	cost = 1 // 1 Cost, I don't think this is amazing enough utility. Maybe.

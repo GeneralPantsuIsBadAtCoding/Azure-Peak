@@ -19,6 +19,34 @@
 /mob/living/carbon/human/species/skeleton/npc/hard
 	skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
 
+// For Duke Manor & Zizo Manor - Ground based spread, so no pirate in pool!
+/mob/living/carbon/human/species/skeleton/npc/mediumspread/Initialize()
+	var/outfit = rand(1, 4)
+	switch(outfit)
+		if(1)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/supereasy
+		if(2)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/easy
+		if(3)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/medium
+		if(4)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
+	..()
+
+// for Lich Dungeon
+/mob/living/carbon/human/species/skeleton/npc/hardspread/Initialize()
+	var/outfit = rand(1,4)
+	switch(outfit)
+		if(1)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
+		if(2)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/medium
+		if(3)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/pirate
+		if(4)
+			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
+	..()
+
 /datum/outfit/job/roguetown/skeleton/npc/supereasy/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.STASTR = 10
@@ -40,7 +68,7 @@
 		if(1)
 			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 		if(2)
-			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+			r_hand = /obj/item/rogueweapon/sword/short/ashort
 		if(3)
 			r_hand = /obj/item/rogueweapon/spear/aalloy
 		if(4)
@@ -72,7 +100,7 @@
 		if(1)
 			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 		if(2)
-			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
+			r_hand = /obj/item/rogueweapon/sword/short/ashort
 		if(3)
 			r_hand = /obj/item/rogueweapon/spear/aalloy
 		if(4)
@@ -138,7 +166,7 @@
 	if(prob(33))
 		r_hand = /obj/item/rogueweapon/spear/aalloy
 	else if(prob(33))
-		r_hand = /obj/item/rogueweapon/sword/iron/short/gladius/agladius	// ave
+		r_hand = /obj/item/rogueweapon/sword/short/gladius/agladius	// ave
 	else
 		r_hand = /obj/item/rogueweapon/flail/aflail
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)

@@ -63,7 +63,8 @@
 	backpack_contents = list(
 		/obj/item/storage/keyring/guard = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE) 
@@ -105,7 +106,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-	backl = /obj/item/gwstrap
+	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
 	beltl = /obj/item/rogueweapon/huntingknife
 	r_hand = /obj/item/rogueweapon/spear
@@ -121,7 +122,7 @@
 	H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)

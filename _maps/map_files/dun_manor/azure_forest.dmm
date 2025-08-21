@@ -5630,7 +5630,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "TG" = (
-/obj/item/rogueweapon/sword/iron/short,
+/obj/item/rogueweapon/sword/short/iron,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "TI" = (

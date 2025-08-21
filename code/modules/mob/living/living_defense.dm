@@ -47,8 +47,7 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
-	if(!prob(P.accuracy + P.bonus_accuracy))
-		def_zone = BODY_ZONE_CHEST
+	def_zone = bullet_hit_accuracy_check(P.accuracy + P.bonus_accuracy, def_zone)
 	var/ap = (P.flag == "blunt") ? BLUNT_DEFAULT_PENFACTOR : P.armor_penetration
 	var/armor = run_armor_check(def_zone, P.flag, "", "",armor_penetration = ap, damage = P.damage)
 
@@ -195,6 +194,9 @@
 	if(user == src)
 		instant = TRUE
 
+	if(HAS_TRAIT(user, TRAIT_NOSTRUGGLE))	
+		instant = TRUE
+		
 	if(surrendering)
 		combat_modifier = 2
 
@@ -298,6 +300,8 @@
 	return list(/datum/intent/grab/move)
 
 /mob/living/proc/send_grabbed_message(mob/living/carbon/user)
+	if(HAS_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE))	
+		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		visible_message(span_danger("[user] firmly grips [src]!"),
 						span_danger("[user] firmly grips me!"), span_hear("I hear aggressive shuffling!"), null, user)

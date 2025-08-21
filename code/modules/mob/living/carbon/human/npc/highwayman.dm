@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
+	d_intent = INTENT_PARRY
 	possible_rmb_intents = list()
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
@@ -109,7 +110,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	H.STAPER = 10
 	H.STAINT = 10
 	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword/iron/short
+		r_hand = /obj/item/rogueweapon/sword/short/iron
 	else
 		r_hand = /obj/item/rogueweapon/mace/cudgel
 	if(prob(20))

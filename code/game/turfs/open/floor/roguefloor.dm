@@ -698,7 +698,8 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_FALSE
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/floor/rogue/dark_ice)
 	slowdown = 50
 
 /turf/open/floor/rogue/underworld/space/sparkle_quiet
@@ -1475,7 +1476,7 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue)
+	canSmoothWith = list(/turf/open/floor/rogue, /turf/open/floor/rogue/underworld)
 
 /turf/open/floor/rogue/dark_ice/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)

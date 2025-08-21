@@ -43,6 +43,9 @@
 					if(H.patron?.type == private || private == /datum/patron/divine/xylix)	//Xylixians will always flash the observer's religion to them.
 						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset, icon_plane)
 						pass = TRUE
+					if(ispath(private, /datum/patron/divine/undivided)) // All Divine worshippers will see UNDIVIDED symbol
+						if((ispath(H.patron?.type, /datum/patron/divine)))
+							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[patron.name]", offset_list, y_offset, icon_plane)
 					else if(HAS_TRAIT(H, TRAIT_HERETIC_SEER) && istype(private,/datum/patron/inhumen))	//Seers should see all inhumen symbols.
 						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[patron?.name]", offset_list, y_offset, icon_plane)
 						pass = TRUE

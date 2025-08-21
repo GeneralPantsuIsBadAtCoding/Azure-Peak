@@ -168,10 +168,11 @@
 	..()
 
 /obj/item/book/rogue/bibble
-	name = "The Book"
+	name = "The Verses and Acts of the Ten"
+	desc = "The collected verses and acts of the DIVINE PANTHEON. Split into three parts.</br>VISAGE - The OLD, THE FIRST ACTS OF THE TEN UPON PSYDONIA, BEFORE THE COMET SYON </br>DECANOMICON - THE ERA OF GLEAM, THE HOLY CELESTIAL EMPIRE - </br>NEW DAWN - Modern Era, the foundation of the HOLY SEE and ONWARDS."
 	icon_state = "bibble_0"
 	base_icon_state = "bibble"
-	title = "bible"
+	title = "The Verses and Acts of the Ten"
 	dat = "gott.json"
 
 /obj/item/book/rogue/bibble/read(mob/user)
@@ -186,8 +187,18 @@
 		return
 	if(in_range(user, src) || isobserver(user))
 		user.changeNext_move(CLICK_CD_MELEE)
+		var/list/choices = list("Visage", "Decanomicon", "New Dawn")
+		var/section_choice = input(user,"Which section shall I read from?", "DIVINE ENLIGHTENMENT") as anything in choices
+		var/chosentxt
+		switch(section_choice)
+			if("Visage")
+				chosentxt = 'strings/visage.txt'
+			if("Decanomicon")
+				chosentxt = 'strings/decanomicon.txt'
+			if("New Dawn")
+				chosentxt = 'strings/newdawn.txt'
 		var/m
-		var/list/verses = world.file2list("strings/bibble.txt")
+		var/list/verses = world.file2list(chosentxt)
 		m = pick(verses)
 		if(m)
 			user.say(m)
@@ -202,6 +213,54 @@
 		user.visible_message(span_notice("[user] blesses [M]."))
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
+
+/obj/item/book/rogue/bibble/psy
+	name = "Of Psydon"
+	desc = "And HE WEEPS. Not for you, not for me, but for it all."
+	icon_state = "psyble_0"
+	base_icon_state = "psyble"
+	title = "psyble"
+	dat = "gott.json"
+	var/sect = "sect1"
+
+/obj/item/book/rogue/bibble/psy/attack(mob/living/M, mob/user)
+	return
+
+/obj/item/book/rogue/bibble/psy/read(mob/living/carbon/human/user)
+	if(!open)
+		to_chat(user, span_info("Open it first."))
+		return FALSE
+	if(!user.client || !user.hud_used)
+		return
+	if(!user.hud_used.reads)
+		return
+	if(!user.can_read(src))
+		return
+	if(in_range(user, src) || isobserver(user))
+		user.changeNext_move(CLICK_CD_MELEE)
+		var/m
+		if(sect)
+			var/list/verses = world.file2list("strings/psy[sect].txt")
+			m = pick(verses)
+			if(m)
+				if(prob(1) && sect == "sect1")
+					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
+					user.say("PSY 23:4... And so, ZEZUS wept; for he had been struck down by the silvered javelin of JVDAS, PSYDON's most devout.")
+					user.psydo_nyte()
+				else
+					user.say(m)	
+
+/obj/item/book/rogue/bibble/psy/MiddleClick(mob/user, params)
+	. = ..()
+	var/sects = list("Sect 1 - PSALMS", "Sect 2 - OF LYFE", "Sect 3 - CHANTS")
+	var/sect_choice = input(user, "Select a Sect", "OF PSYDONIA") as anything in sects
+	switch(sect_choice)
+		if("Sect 1 - PSALMS")
+			sect = "sect1"
+		if("Sect 2 - OF LYFE")
+			sect = "sect2"
+		if("Sect 3 - CHANTS")
+			sect = "sect3"
 
 /datum/status_effect/buff/blessed
 	id = "blessed"

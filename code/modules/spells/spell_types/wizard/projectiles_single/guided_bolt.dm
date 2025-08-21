@@ -16,7 +16,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Sagitta Dirigitur!"
+	invocations = list("Sagitta Dirigitur!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW

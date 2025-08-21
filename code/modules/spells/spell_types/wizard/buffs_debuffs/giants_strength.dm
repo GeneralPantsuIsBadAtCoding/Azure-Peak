@@ -12,7 +12,7 @@
 	school = "transmutation"
 	overlay_state = "giants_strength"
 	spell_tier = 2
-	invocation = "Vis Gigantis." // Vis - Strength. Gigantis - Singular possessive form.
+	invocations = list("Vis Gigantis.") // Vis - Strength. Gigantis - Singular possessive form.
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW

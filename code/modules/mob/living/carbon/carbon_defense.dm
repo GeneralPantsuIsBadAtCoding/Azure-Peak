@@ -58,22 +58,14 @@
 	if(!skipcatch)	//ugly, but easy
 		if(can_catch_item())
 			if(istype(AM, /obj/item))
-				if(!istype(AM, /obj/item/net))
-					var/obj/item/I = AM
-					if(isturf(I.loc))
-						I.attack_hand(src)
-						if(get_active_held_item() == I) //if our attack_hand() picks up the item...
-							visible_message("<span class='warning'>[src] catches [I]!</span>", \
-											"<span class='danger'>I catch [I] in mid-air!</span>")
-							throw_mode_off()
-							return 1
-				else
-					var/obj/item/net/N
-					visible_message("<span class='warning'>[src] tries to catch \the [N] but gets snared by it!</span>", \
-									"<span class='danger'>Why did I even try to do this...?</span>") // Hahaha dumbass!!!
-					throw_mode_off()
-					N.ensnare(src)
-					return
+				var/obj/item/I = AM
+				if(isturf(I.loc))
+					I.attack_hand(src)
+					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
+						visible_message("<span class='warning'>[src] catches [I]!</span>", \
+										"<span class='danger'>I catch [I] in mid-air!</span>")
+						throw_mode_off()
+						return 1
 	..()
 
 
@@ -108,13 +100,17 @@
 		used_limb = parse_zone(I.sublimb_grabbed)
 
 	if(used_limb)
-		target.visible_message(span_danger("[src] grabs [target]'s [used_limb]."), \
-						span_userdanger("[src] grabs my [used_limb]!"), span_hear("I hear shuffling."), null, src)
-		to_chat(src, span_danger("I grab [target]'s [used_limb]."))
+		target.visible_message(span_danger("[src] grabs [target]'s [span_userdanger(used_limb)]."), \
+						span_danger("[src] grabs my [span_userdanger(used_limb)]!"), span_hear("I hear shuffling."), null, src)
+		to_chat(src, span_danger("I grab [target]'s [span_userdanger(used_limb)]."))
 	else
 		target.visible_message(span_danger("[src] grabs [target]."), \
 						span_userdanger("[src] grabs me!"), span_hear("I hear shuffling."), null, src)
 		to_chat(src, span_danger("I grab [target]."))
+
+	if(used_limb && target.client && target.hud_used && target.hud_used.zone_select)
+		var/atom/movable/screen/zone_sel/zone_sel = target.hud_used.zone_select
+		zone_sel.flash_limb(I.sublimb_grabbed, "#d19e13") // grab = orange
 
 /mob/living/carbon/send_grabbed_message(mob/living/carbon/user)
 	var/used_limb = "chest"
@@ -126,6 +122,8 @@
 	if(I)
 		used_limb = parse_zone(I.sublimb_grabbed)
 
+	if(HAS_TRAIT(user, TRAIT_NOTIGHTGRABMESSAGE))	
+		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		visible_message("<span class='danger'>[user] firmly grips [src]'s [used_limb]!</span>",
 						"<span class='danger'>[user] firmly grips my [used_limb]!</span>", "<span class='hear'>I hear aggressive shuffling!</span>", null, user)

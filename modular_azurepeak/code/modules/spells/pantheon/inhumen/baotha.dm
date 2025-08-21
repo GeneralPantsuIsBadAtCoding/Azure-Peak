@@ -48,7 +48,7 @@
 	chargetime = 15
 	recharge_time = 10 SECONDS
 	invocation_type = "whisper"
-	invocation = "Have a taste of the maiden's pure-bliss..."
+	invocations = list("Have a taste of the maiden's pure-bliss...")
 	devotion_cost = 30
 
 /obj/projectile/magic/blowingdust
@@ -79,7 +79,7 @@
 	range = 7
 	warnie = "sydwarning"
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "May you find bliss through your pain!"
+	invocations = list("May you find bliss through your pain!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -285,7 +285,7 @@
 	overlay_state = "bliss"
 	range = 2
 	chargetime = 0.5 SECONDS
-	invocation = "By Baotha's mercy, an ecstasy trance for two!"
+	invocations = list("By Baotha's mercy, an ecstasy trance for two!")
 	sound = 'sound/magic/magnet.ogg'
 	recharge_time = 60 SECONDS
 	miracle = TRUE
@@ -305,7 +305,7 @@
 		revert_cast()
 		return FALSE
 
-	if(!do_after(user, 8 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target = target))
 		to_chat(user, span_warning("There is no joy without concentration!"))
 		revert_cast()
 		return FALSE
@@ -330,7 +330,7 @@
 	range = 7
 	warnie = "sydwarning"
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "May you find bliss through your pain!"
+	invocations = list("May you find bliss through your pain!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE

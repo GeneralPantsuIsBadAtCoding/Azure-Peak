@@ -33,7 +33,8 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/chalk = 1,
 		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 	)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)

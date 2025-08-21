@@ -13,13 +13,40 @@
 /datum/magic_item/mundane/mining
 	name = "mining"
 	description = "It is coated with rock."
-	var/last_used
+	var/active_item = FALSE
+	var/max_skill = FALSE
 
 /datum/magic_item/mundane/mining/on_hit_structure(var/obj/item/i, var/turf/target, var/mob/living/user)
-	if(istype(target, /turf/closed/mineral/rogue))
-		var/turf/closed/mineral/rogue/rock = target
-		rock.turf_integrity -= 500
+	if(istype(target, /obj/item/natural/rock))
+		var/obj/item/natural/rock/rocktarget = target
+		rocktarget.obj_integrity -= 500 //smashs through boulders with ease
 	. = ..()
+
+/datum/magic_item/mundane/mining/on_equip(var/obj/item/i, var/mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	if(slot == ITEM_SLOT_HANDS)
+		user.change_stat("endurance", 1)
+		if(user.get_skill_level(/datum/skill/labor/mining)== 6)
+			max_skill = TRUE //they are max level, so we skip giving them skills
+		else
+			user.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
+		to_chat(user, span_notice("I feel ready to mine!"))
+		active_item = TRUE
+	else
+		return
+
+/datum/magic_item/mundane/mining/on_drop(var/obj/item/i, var/mob/living/user)
+	. = ..()
+	if(active_item)
+		active_item = FALSE
+		if (!max_skill)
+			user.adjust_skillrank(/datum/skill/labor/mining, -1, TRUE) //stripping them a level since they weren't max
+		user.change_stat("endurance", -1)
+		to_chat(user, span_notice("I feel mundane once more"))
+
+
 
 /datum/magic_item/mundane/xylix
 	name = "Xylix's boon"

@@ -9,7 +9,7 @@
 	releasedrain = 60
 	recharge_time = 30 SECONDS
 	cooldown_min = 50
-	invocation = "Treefather grant me your form!"
+	invocations = list("Treefather grant me your form!")
 	invocation_type = "shout"
 	action_icon_state = "shapeshift"
 	associated_skill = /datum/skill/magic/holy
@@ -41,6 +41,8 @@
 			for(var/crecher in possible_shapes) //Second pass to fetch the mob type itself and send it on wildshape_transformation
 				var/mob/living/carbon/human/species/wildshape/B = crecher
 				if(new_wildshape_type == B.name)
+					M.Stun(30)
+					M.Knockdown(30)
 					M.wildshape_transformation(B)
 
 		else //If we are a wildshaped species, we simply un-transform

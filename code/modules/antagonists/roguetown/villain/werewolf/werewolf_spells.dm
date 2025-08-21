@@ -24,7 +24,7 @@
 		if(isbrain(player)) continue
 
 		// Announcement to other werewolves (and anyone else who has beast language somehow)
-		if(player.mind.has_antag_datum(/datum/antagonist/werewolf) || (use_language && player.has_language(/datum/language/beast)))
+		if(player.mind.has_antag_datum(/datum/antagonist/werewolf) || (player.has_language(/datum/language/beast)))
 			to_chat(player, span_boldannounce("[werewolf_player ? werewolf_player.wolfname : user.real_name] howls to the hidden moon: [message]"))
 
 		//sound played for other players

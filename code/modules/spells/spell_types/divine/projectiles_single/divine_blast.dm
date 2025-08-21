@@ -15,7 +15,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	invocation = "Goettlichen macht!"
+	invocations = list("Goettlichen macht!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_LIGHTNING
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -84,6 +84,8 @@
 		if (ishuman(firer))
 			caster = firer
 			switch(caster.patron.type)
+				if(/datum/patron/divine/undivided)
+					damage += 15 // just more raw damage. As mentioned in UNDIVIDED. Our generics are better as a trade off of not having higher tier uniques.
 				if(/datum/patron/divine/astrata)
 					H.adjust_fire_stacks(2)
 					H.IgniteMob()
@@ -92,8 +94,7 @@
 					H.Dizzy(5)
 					H.emote("drown")
 				if(/datum/patron/divine/dendor)
-					H.Immobilize(10)
-					H.OffBalance(10)
+					H.Slowdown(2) // Shared with Ravox cuz immobilize + offbal is 2 strong
 					H.visible_message(span_warning("Roots coil around [H]'s legs!"), span_warning("Roots tangle around my legs!"))
 				if(/datum/patron/divine/necra)
 					if(H.mob_biotypes & MOB_UNDEAD)

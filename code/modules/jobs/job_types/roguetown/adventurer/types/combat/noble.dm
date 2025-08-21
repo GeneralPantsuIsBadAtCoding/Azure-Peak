@@ -36,7 +36,6 @@
 				pants = /obj/item/clothing/under/roguetown/tights/black
 			if(should_wear_femme_clothes(H))
 				shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/purple
-				pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/purple
 				cloak = /obj/item/clothing/cloak/raincloak/purple
 			H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
@@ -139,14 +138,14 @@
 				if("Billhook")
 					H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 					r_hand = /obj/item/rogueweapon/spear/billhook
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Battle Axe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/stoneaxe/battle
 				if("Greataxe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/greataxe
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 			H.change_stat("strength", 2)
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 1)

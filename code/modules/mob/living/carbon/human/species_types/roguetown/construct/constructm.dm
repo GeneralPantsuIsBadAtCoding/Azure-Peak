@@ -58,19 +58,29 @@
 		/datum/customizer/bodypart_feature/accessory,
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
+		/datum/customizer/bodypart_feature/legwear,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
 		/datum/customizer/organ/vagina/human_anthro,
 		)
 	body_marking_sets = list(
 		/datum/body_marking_set/none,
-	)
+		/datum/body_marking_set/construct_plating_light,
+		/datum/body_marking_set/construct_plating_medium,
+		/datum/body_marking_set/construct_plating_heavy,
+		)
 	body_markings = list(
 		/datum/body_marking/eyeliner,
 		/datum/body_marking/tonage,
 		/datum/body_marking/nose,
 		/datum/body_marking/construct_plating_light,
-		
+		/datum/body_marking/construct_plating_medium,
+		/datum/body_marking/construct_plating_heavy,
+		/datum/body_marking/construct_head_standard,
+		/datum/body_marking/construct_head_round,
+		/datum/body_marking/construct_standard_eyes,
+		/datum/body_marking/construct_visor_eyes,
+		/datum/body_marking/construct_psyclops_eye,
 	)
 
 /datum/species/construct/metal/check_roundstart_eligible()

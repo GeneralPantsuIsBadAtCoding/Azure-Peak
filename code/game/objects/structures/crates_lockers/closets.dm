@@ -270,6 +270,9 @@
 	if(istype(W, /obj/item/lockpick))
 		trypicklock(W, user)
 		return
+	if(istype(W, /obj/item/melee/touch_attack/lesserknock))
+		trypicklock(W, user)
+		return
 	if(istype(W,/obj/item/lockpickring))
 		var/obj/item/lockpickring/pickring = W
 		if(pickring.picks.len)

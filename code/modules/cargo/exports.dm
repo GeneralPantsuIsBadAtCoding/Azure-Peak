@@ -42,7 +42,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		for(var/obj/item/I in src.contents) // runs a loop on anytihng that's got contents under our current inv system
 			if(I) // runs the get_real_price recurisvely. please dont runtime.
 				total_sellprice += I.get_real_price()
-		return total_sellprice
+		return total_sellprice + sellprice
 	else // if its not a container, run the original code.
 		if(sellprice == initial(sellprice))
 			randomize_price()

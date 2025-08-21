@@ -373,7 +373,12 @@
 		var/implement_type = tool_check(user, tool)
 		if(implement_type)
 			speed_mod *= implements_speed[implement_type] || 1
-	speed_mod *= get_location_modifier(target)
+	speed_mod *= get_speed_location_modifier(target)
+	var/medskill = user.get_skill_level(/datum/skill/misc/medicine)
+	if(medskill == SKILL_LEVEL_MASTER)
+		speed_mod -= 0.2
+	else if(medskill == SKILL_LEVEL_LEGENDARY)
+		speed_mod -= 0.4
 
 	return speed_mod
 
@@ -412,6 +417,17 @@
 	else if(locate(/obj/structure/table) in patient_turf)
 		return 0.8
 	return 0.7
+
+/datum/surgery_step/proc/get_speed_location_modifier(mob/living/target)
+	var/turf/patient_turf = get_turf(target)
+	var/is_lying = !(target.mobility_flags & MOBILITY_STAND)
+	if(!is_lying)
+		return 1.4
+	if(locate(/obj/structure/bed) in patient_turf)
+		return 0.9
+	else if(locate(/obj/structure/table) in patient_turf)
+		return 0.8
+	return 1.1
 	/*
 	if(locate(/obj/structure/table/optable) in patient_turf)
 		return 1

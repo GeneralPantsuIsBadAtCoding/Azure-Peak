@@ -1,3 +1,12 @@
+/*STAT DEFINES*/
+#define STAT_STRENGTH "strength"
+#define STAT_PERCEPTION "perception"
+#define STAT_INTELLIGENCE "intelligence"
+#define STAT_CONSTITUTION "constitution"
+#define STAT_ENDURANCE "endurance"
+#define STAT_SPEED "speed"
+#define STAT_FORTUNE "fortune"
+
 /*------------------------\
 | ARMOR INTEGRITY DEFINES | // Use these when possible on armor to keep value consistent.	
 \------------------------*/
@@ -31,7 +40,7 @@
 
 // MEDIUM
 #define ARMOR_INT_CHEST_MEDIUM_STEEL 300
-#define ARMOR_INT_CHEST_MEDIUM_HATANGA 250
+#define ARMOR_INT_CHEST_MEDIUM_HATANGA 325
 #define ARMOR_INT_CHEST_MEDIUM_IRON 225
 #define ARMOR_INT_CHEST_MEDIUM_SCALE 200 // More coverage, less integrity
 #define ARMOR_INT_CHEST_MEDIUM_DECREPIT 150
@@ -76,6 +85,7 @@
 #define ARMOR_STRUCTURE list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 50, "acid" = 50)
 #define ARMOR_DISPLAYCASE list("blunt" = 30, "slash" = 30, "stab" = 30,  "piercing" = 0, "fire" = 70, "acid" = 100)
 #define ARMOR_CLOSET list("blunt" = 20, "slash" = 10, "stab" = 15, "piercing" = 10, "fire" = 70, "acid" = 60)
+#define ARMOR_BLACKBAG list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 75, "acid" = 100)	
 
 // Light AC | Chest
 #define ARMOR_CLOTHING list("blunt" = 0, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
@@ -135,6 +145,7 @@
 // Weapon Armors (Yeah, we have this)
 #define ARMOR_SHIELD list("blunt" = 50, "slash" = 25, "stab" = 0, "piercing" = 0)
 #define ARMOR_GREATSWORD list("blunt" = 20, "slash" = 50, "stab" = 50, "piercing" = 0)
+#define ARMOR_BROADSWORD list("blunt" = 40, "slash" = 50, "stab" = 50, "piercing" = 0)
 #define ARMOR_SWORD list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
 
 //Antag / Special / Unique armor defines
@@ -315,19 +326,19 @@
 	/datum/species/demihuman,\
 	/datum/species/construct/metal,\
 )
-#define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora) // Currently unused.
+#define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/undivided) // Currently unused.
 
-#define ALL_PALADIN_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god) // Currently unused.
+#define ALL_PALADIN_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god) // Currently unused.
 
-#define ALL_ACOLYTE_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum) // Currently unused.
+#define ALL_ACOLYTE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum) // Currently unused.
 
-#define ALL_DIVINE_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora)
+#define ALL_DIVINE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora)
 
 #define ALL_INHUMEN_PATRONS list(/datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
 
-#define NON_PSYDON_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)	//For lord/heir usage
+#define NON_PSYDON_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)	//For lord/heir usage
 
-#define ALL_PATRONS  list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/old_god, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
+#define ALL_PATRONS  list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/old_god, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
 
 #define PLATEHIT "plate"
 #define CHAINHIT "chain"
@@ -362,6 +373,9 @@
 GLOBAL_LIST_INIT(lockhashes, list())
 GLOBAL_LIST_INIT(lockids, list())
 GLOBAL_LIST_EMPTY(credits_icons)
+GLOBAL_LIST_EMPTY(indexed)
+GLOBAL_LIST_EMPTY(cursedsamples)
+GLOBAL_LIST_EMPTY(accused)
 GLOBAL_LIST_EMPTY(confessors)
 
 //preference stuff
@@ -369,7 +383,6 @@ GLOBAL_LIST_EMPTY(confessors)
 #define FAMILY_PARTIAL 2
 #define FAMILY_FULL 3
 
-GLOBAL_LIST_EMPTY(sunlights)
 GLOBAL_LIST_EMPTY(head_bounties)
 GLOBAL_LIST_EMPTY(board_viewers)
 GLOBAL_LIST_EMPTY(noticeboard_posts)
@@ -445,3 +458,10 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define BAD_GUARD_FATIGUE_DRAIN 20 //Percentage of your green bar lost on letting a guard expire.
 #define GUARD_PEEL_REDUCTION 2	//How many Peel stacks to lose if a Guard is hit.
 #define BAIT_PEEL_REDUCTION 1	//How many Peel stacks to lose if we perfectly bait.
+
+/*
+Medical defines
+*/
+#define ARTERY_LIMB_BLEEDRATE 20	//This is used as a reference point for dynamic wounds, so it's better off as a define.
+#define CONSTITUTION_BLEEDRATE_MOD 0.1	//How much slower we'll be bleeding for every CON point. 0.1 = 10% slower.
+#define CONSTITUTION_BLEEDRATE_CAP 15	//The CON value up to which we get a bleedrate reduction.

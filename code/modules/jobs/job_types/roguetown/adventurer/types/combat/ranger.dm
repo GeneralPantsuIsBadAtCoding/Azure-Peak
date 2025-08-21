@@ -191,7 +191,7 @@
 				if("Billhook") // Debatable here, but we love variety.
 					H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/spear/billhook
-					backr = /obj/item/gwstrap
+					backr = /obj/item/rogueweapon/scabbard/gwstrap
 				if("Sling")
 					H.adjust_skillrank(/datum/skill/combat/slings, 3, TRUE)
 					beltl = /obj/item/quiver/sling/iron

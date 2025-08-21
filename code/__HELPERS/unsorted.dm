@@ -1621,3 +1621,16 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 			for(var/atom/contained_atom in M.component_parts)
 				contained_atom.flags_1 |= HOLOGRAM_1
 	return O
+
+#define VALID_HUNTING_AREAS list(\
+	/area/rogue/outdoors/beach/forest, \
+	/area/rogue/outdoors/woods, \
+	/area/rogue/outdoors/bog, \
+	/area/rogue/outdoors/mountains \
+)
+
+/proc/is_valid_hunting_area(area/A)
+	for(var/i in VALID_HUNTING_AREAS)
+		if(istype(A, i))
+			return TRUE
+	return FALSE

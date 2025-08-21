@@ -61,6 +61,7 @@
 		/datum/customizer/bodypart_feature/accessory,
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
+		/datum/customizer/bodypart_feature/legwear,
 		/datum/customizer/organ/wings/dracon,
 		/datum/customizer/organ/tail/lizard,
 		/datum/customizer/organ/tail_feature/lizard_spines,

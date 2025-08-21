@@ -224,3 +224,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		sleep(40)
 		icon_state = "kybraxor1"
 		changing_state = FALSE
+
+/obj/structure/kybraxor/psy
+	name = "Kybraxor the Vaultkeeper"
+	redstone_id = "swamp_psy_dungeon"

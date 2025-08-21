@@ -16,7 +16,7 @@
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
 	spell_tier = 2
-	invocation = "Murus!"
+	invocations = list("Murus!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_MEDIUM

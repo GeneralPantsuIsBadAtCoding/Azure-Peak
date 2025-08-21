@@ -11,7 +11,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/darkvision
 	spell_tier = 1
-	invocation = "Nox Oculus"
+	invocations = list("Nox Oculus")
 	invocation_type = "whisper"
 	hide_charge_effect = TRUE
 	xp_gain = TRUE

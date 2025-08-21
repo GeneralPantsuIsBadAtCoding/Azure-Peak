@@ -14,13 +14,31 @@
 	name = "Simple"
 	icon_state = "simple"
 
+/datum/sprite_accessory/frills/simpledualcolor
+	name = "Simple - Dual Color"
+	icon_state = "m_frills_simple"
+	color_keys = 2
+	color_key_names = list("Outer", "Inner")
+
 /datum/sprite_accessory/frills/short
 	name = "Short"
 	icon_state = "short"
 
+/datum/sprite_accessory/frills/shortdualcolor
+	name = "Short - Dual Color"
+	icon_state = "m_frills_short"
+	color_keys = 2
+	color_key_names = list("Outer", "Inner")
+
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/frills/aquaticdualcolor
+	name = "Aquatic - Dual Color"
+	icon_state = "m_frills_aqua"
+	color_keys = 2
+	color_key_names = list("Outer", "Inner")
 
 /datum/sprite_accessory/frills/divinity
 	name = "Divinity"

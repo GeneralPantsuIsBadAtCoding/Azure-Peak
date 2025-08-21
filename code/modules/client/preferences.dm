@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/datum/species/pref_species = new /datum/species/human/northern()	//Mutant race
 	var/static/datum/species/default_species = new /datum/species/human/northern()
 	var/datum/patron/selected_patron
-	var/static/datum/patron/default_patron = /datum/patron/divine/astrata
+	var/static/datum/patron/default_patron = /datum/patron/divine/undivided
 	var/list/features = MANDATORY_FEATURE_LIST
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_JUMPSUIT_STYLE = FALSE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
 	var/list/friendlyGenders = list("male" = "masculine", "female" = "feminine")
@@ -151,6 +151,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/highlight_color = "#FF0000"
 	var/datum/charflaw/charflaw
 
+	var/static/default_cmusic_type = /datum/combat_music/default
+	var/datum/combat_music/combat_music
+	var/combat_music_helptext_shown = FALSE
+	
 	var/family = FAMILY_NONE
 
 	var/crt = FALSE
@@ -161,6 +165,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/update_mutant_colors = TRUE
 
 	var/headshot_link
+	var/chatheadshot = FALSE
 	var/ooc_extra_link
 	var/ooc_extra
 	var/list/descriptor_entries = list()
@@ -179,6 +184,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/ooc_notes
 	var/ooc_notes_display
+
+	var/taur_type = null
+	var/taur_color = "ffffff"
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -208,6 +216,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 		charflaw = new charflaw()
 	if(!selected_patron)
 		selected_patron = GLOB.patronlist[default_patron]
+	if(!combat_music)
+		combat_music = GLOB.cmode_tracks_by_type[default_cmusic_type]
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys()
 	if(!loaded_preferences_successfully)
@@ -232,6 +242,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	reset_all_customizer_accessory_colors()
 	randomize_all_customizer_accessories()
 	reset_descriptors()
+	taur_type = null
 
 #define APPEARANCE_CATEGORY_COLUMN "<td valign='top' width='14%'>"
 #define MAX_MUTANT_ROWS 4
@@ -358,6 +369,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>Always Random Bodytype: [(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A>"
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>When Antagonist: [(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A>"
+			
+			if(LAZYLEN(pref_species.allowed_taur_types))
+				var/obj/item/bodypart/taur/T = taur_type
+				var/name = ispath(T) ? T::name : "None"
+				dat += "<b>Taur Body Type:</b> <a href='?_src_=prefs;preference=taur_type;task=input'>[name]</a><BR>"
+				dat += "<b>Taur Color:</b><span style='border: 1px solid #161616; background-color: #[taur_color];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=taur_color;task=input'>Change</a><BR>"
 
 			// LETHALSTONE EDIT BEGIN: add voice type prefs
 			dat += "<b>Voice Type</b>: <a href='?_src_=prefs;preference=voicetype;task=input'>[voice_type]</a><BR>"
@@ -380,6 +397,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<b>Patron:</b> <a href='?_src_=prefs;preference=patron;task=input'>[selected_patron?.name || "FUCK!"]</a><BR>"
 //			dat += "<b>Family:</b> <a href='?_src_=prefs;preference=family'>Unknown</a><BR>" // Disabling until its working
 			dat += "<b>Dominance:</b> <a href='?_src_=prefs;preference=domhand'>[domhand == 1 ? "Left-handed" : "Right-handed"]</a><BR>"
+
+			var/musicname = (combat_music.shortname ? combat_music.shortname : combat_music.name)
+			dat += "<b>Combat Music:</b> <a href='?_src_=prefs;preference=combat_music;task=input'>[musicname || "FUCK!"]</a><BR>"
 
 /*
 			dat += "<br><br><b>Special Names:</b><BR>"
@@ -1501,6 +1521,29 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						voice_type = voicetype_input
 						to_chat(user, "<font color='red'>Your character will now vocalize with a [lowertext(voice_type)] affect.</font>")
 
+				if("taur_type")
+					var/list/species_taur_list = pref_species.get_taur_list()
+					if(!LAZYLEN(species_taur_list))
+						taur_type = null
+						to_chat(user, span_bad("There are no available taur bodies for this species."))
+						return
+
+					var/list/taur_selection = list("None")
+					for(var/obj/item/bodypart/taur/tt as anything in pref_species.get_taur_list())
+						taur_selection[tt::name] = tt
+					
+					var/new_taur_type = input(user, "Choose your character's taur body", "Taur Body") as null|anything in taur_selection
+					if(!new_taur_type)
+						return
+
+					if(new_taur_type == "None")
+						taur_type = null
+					else
+						taur_type = taur_selection[new_taur_type]
+
+					var/obj/item/bodypart/taur/tt = taur_type
+					to_chat(user, span_red("Your character now has [tt ? tt::name : "no taurtype."]."))
+
 				if("faith")
 					var/list/faiths_named = list()
 					for(var/path as anything in GLOB.preference_faiths)
@@ -1531,6 +1574,23 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						to_chat(user, "<font color='#FFA500'>Domain: [selected_patron.domain]</font>")
 						to_chat(user, "Background: [selected_patron.desc]")
 						to_chat(user, "<font color='red'>Likely Worshippers: [selected_patron.worshippers]</font>")
+
+				if("combat_music") // if u change shit here look at /client/verb/combat_music() too
+					if(!combat_music_helptext_shown)
+						to_chat(user, span_notice("<span class='bold'>Combat Music Override</span>\n") + \
+						"Options other than \"Default\" override whatever the game dynamically sets for you, \
+						which is influenced by your job class, villain status, or certain events.\n\
+						You can change this later through \"Combat Mode Music\" in the Options tab.\"</span>")
+						combat_music_helptext_shown = TRUE
+					var/track_select = input(user, "Set a track to be your combat music.", "Combat Music", combat_music?.name)\
+											as null|anything in GLOB.cmode_tracks_by_name
+					if(track_select)
+						combat_music = GLOB.cmode_tracks_by_name[track_select]
+						to_chat(user, span_notice("Selected track: <b>[track_select]</b>."))
+						if(combat_music.desc)
+							to_chat(user, "<i>[combat_music.desc]</i>")
+						if(combat_music.credits)
+							to_chat(user, span_info("Song name: <b>[combat_music.credits]</b>"))
 
 				if("bdetail")
 					var/list/loly = list("Not yet.","Work in progress.","Don't click me.","Stop clicking this.","Nope.","Be patient.","Sooner or later.")
@@ -1699,7 +1759,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						dat += "<div align='center'><b>OOC notes</b></div>"
 						dat += "<div align='left'>[ooc_notes_display]</div>"
 					if(ooc_extra)
-						dat += "[ooc_extra]"
+						dat += "<div align='center'>[ooc_extra]</div>"
 					var/datum/browser/popup = new(user, "[real_name]", nwidth = 600, nheight = 800)
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
@@ -1898,6 +1958,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(new_body_size)
 						new_body_size = clamp(new_body_size * 0.01, BODY_SIZE_MIN, BODY_SIZE_MAX)
 						features["body_size"] = new_body_size
+
+				if("taur_color")
+					var/new_taur_color = color_pick_sanitized(user, "Choose your character's taur color:", "Character Preference", "#"+taur_color)
+					if(new_taur_color)
+						taur_color = sanitize_hexcolor(new_taur_color)
 
 				if("mutant_color")
 					var/new_mutantcolor = color_pick_sanitized(user, "Choose your character's mutant #1 color:", "Character Preference","#"+features["mcolor"])
@@ -2377,6 +2442,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.name = character.real_name
 
 	character.domhand = domhand
+	character.cmode_music_override = combat_music.musicpath
+	character.cmode_music_override_name = combat_music.name
 	character.highlight_color = highlight_color
 	character.nickname = nickname
 
@@ -2436,12 +2503,19 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			for(var/X in L)
 				ADD_TRAIT(character, curse2trait(X), TRAIT_GENERIC)
 
+	if(taur_type)
+		character.Taurize(taur_type, "#[taur_color]")
+	else if(character_setup)
+		// This should only ever ~do~ anything for previews
+		character.ensure_not_taur()
+
 	if(icon_updates)
 		character.update_body()
-		character.update_hair()
+		character.update_hair() 
 		character.update_body_parts(redraw = TRUE)
 
 	character.char_accent = char_accent
+
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

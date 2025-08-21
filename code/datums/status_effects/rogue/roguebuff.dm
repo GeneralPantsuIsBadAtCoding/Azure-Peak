@@ -65,7 +65,6 @@
 
 /datum/status_effect/buff/druqks/on_apply()
 	. = ..()
-	owner.add_stress(/datum/stressevent/high)
 	if(owner?.client)
 		if(owner.client.screen && owner.client.screen.len)
 			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
@@ -74,9 +73,9 @@
 			PM.backdrop(owner)
 			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
 			PM.backdrop(owner)
+			owner.add_stress(/datum/stressevent/high)
 
 /datum/status_effect/buff/druqks/on_remove()
-	owner.remove_stress(/datum/stressevent/high)
 	if(owner?.client)
 		if(owner.client.screen && owner.client.screen.len)
 			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
@@ -85,6 +84,7 @@
 			PM.backdrop(owner)
 			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
 			PM.backdrop(owner)
+			owner.remove_stress(/datum/stressevent/high)
 
 	. = ..()
 
@@ -566,7 +566,13 @@
 	desc = "I am awash with sentimentality."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/psyvived
+	name = "Absolved"
+	desc = "I feel a strange sense of peace."
+	icon_state = "buff"
+
 #define PSYDON_HEALING_FILTER "psydon_heal_glow"
+#define PSYDON_REVIVED_FILTER "psydon_revival_glow"
 
 /datum/status_effect/buff/psyhealing
 	id = "psyhealing"
@@ -600,6 +606,26 @@
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
 		owner.adjustCloneLoss(-healing_on_tick, 0)		
 
+/datum/status_effect/buff/psyvived
+	id = "psyvived"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/psyvived
+	duration = 30 SECONDS
+	examine_text = "SUBJECTPRONOUN moves with an air of ABSOLUTION!"
+	var/outline_colour = "#aa1717"
+
+/datum/status_effect/buff/psyvived/on_creation(mob/living/new_owner)
+	return ..()
+
+/datum/status_effect/buff/psyvived/on_apply()
+	var/filter = owner.get_filter(PSYDON_REVIVED_FILTER)
+	if (!filter)
+		owner.add_filter(PSYDON_REVIVED_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+	return TRUE
+
+/datum/status_effect/buff/psyvived/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/psyheal_rogue(get_turf(owner))
+	H.color = "#aa1717"	
+
 /datum/status_effect/buff/rockmuncher
 	id = "rockmuncher"
 	duration = 10 SECONDS
@@ -630,6 +656,10 @@
 
 /datum/status_effect/buff/psyhealing/on_remove()
 	owner.remove_filter(PSYDON_HEALING_FILTER)
+	owner.update_damage_hud()
+
+/datum/status_effect/buff/psyvived/on_remove()
+	owner.remove_filter(PSYDON_REVIVED_FILTER)
 	owner.update_damage_hud()
 
 /atom/movable/screen/alert/status_effect/buff/fortify
@@ -1147,3 +1177,29 @@
 	name = "Rosa Ring"
 	desc = "The Rosa's ring draws blood, but it's the memories that truly wound. Failure after failure surging through you like thorns blooming inward."
 	icon_state = "buff"
+
+/atom/movable/screen/alert/status_effect/buff/adrenaline_rush
+	name = "Adrenaline Rush"
+	desc = "The gambit worked! I can do anything! My heart races, the throb of my wounds wavers."
+	icon_state = "adrrush"
+
+/datum/status_effect/buff/adrenaline_rush
+	id = "adrrush"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/adrenaline_rush
+	duration = 18 SECONDS
+	examine_text = "SUBJECTPRONOUN is amped up!"
+	effectedstats = list("endurance" = 1)
+	var/blood_restore = 30
+
+/datum/status_effect/buff/adrenaline_rush/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_ADRENALINE_RUSH, INNATE_TRAIT)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.playsound_local(get_turf(H), 'sound/misc/adrenaline_rush.ogg', 100, TRUE)
+		H.blood_volume = min((H.blood_volume + blood_restore), BLOOD_VOLUME_NORMAL)
+		H.stamina -= max((H.stamina - (H.max_stamina / 2)), 0)
+
+/datum/status_effect/buff/adrenaline_rush/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_ADRENALINE_RUSH, INNATE_TRAIT)

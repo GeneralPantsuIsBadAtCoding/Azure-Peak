@@ -19,32 +19,22 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	var/keep_area = FALSE
 	var/tavern_area = FALSE
 	var/warden_area = FALSE
+	var/holy_area = FALSE
 	var/cell_area = FALSE
 	var/ceiling_protected = FALSE //Prevents tunneling into these from above
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
-
 	. = ..()
 	if((src.town_area == TRUE) && HAS_TRAIT(guy, TRAIT_GUARDSMAN) && !guy.has_status_effect(/datum/status_effect/buff/guardbuffone)) //man at arms
 		guy.apply_status_effect(/datum/status_effect/buff/guardbuffone)
-
-/area/rogue/Entered(mob/living/carbon/human/guy)
-
-	. = ..()
 	if((src.tavern_area == TRUE) && HAS_TRAIT(guy, TRAIT_TAVERN_FIGHTER) && !guy.has_status_effect(/datum/status_effect/buff/barkeepbuff)) // THE FIGHTER
 		guy.apply_status_effect(/datum/status_effect/buff/barkeepbuff)
-
-/area/rogue/Entered(mob/living/carbon/human/guy)
-
-	. = ..()
 	if((src.warden_area == TRUE) && HAS_TRAIT(guy, TRAIT_WOODSMAN) && !guy.has_status_effect(/datum/status_effect/buff/wardenbuff)) // Warden
 		guy.apply_status_effect(/datum/status_effect/buff/wardenbuff)
-
-/area/rogue/Entered(mob/living/carbon/human/guy)
-
-	. = ..()
 	if((src.cell_area == TRUE) && HAS_TRAIT(guy, TRAIT_DUNGEONMASTER) && !guy.has_status_effect(/datum/status_effect/buff/dungeoneerbuff)) // Dungeoneer
 		guy.apply_status_effect(/datum/status_effect/buff/dungeoneerbuff)
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_UNDIVIDED)) // get a long-lingering mood buff so long as we visit the church daily as Undivided.
+		guy.add_stress(/datum/stressevent/seeblessed)
 
 /area/rogue/indoors
 	name = "indoors rt"
@@ -338,6 +328,46 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/under/cave/licharena/bossroom/can_craft_here()
 	return FALSE
 
+/area/rogue/under/cave/his_vault
+	name = "his_vault"
+	icon_state = "under"
+	first_time_text = "HIS VAULT"
+	droning_sound = 'sound/music/area/dragonden.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
+
+/area/rogue/under/cave/his_vault/one
+	first_time_text = "PSLM 89:99"
+
+/area/rogue/under/cave/his_vault/one/can_craft_here()
+	return FALSE
+
+/area/rogue/under/cave/his_vault/two
+	first_time_text = "PSLM 71:6"
+
+/area/rogue/under/cave/his_vault/two/can_craft_here()
+	return FALSE
+
+/area/rogue/under/cave/his_vault/three
+	first_time_text = "PSY 66:2"
+
+/area/rogue/under/cave/his_vault/three/can_craft_here()
+	return FALSE
+
+/area/rogue/under/cave/his_vault/four
+	first_time_text = "PSY 1:4"
+
+/area/rogue/under/cave/his_vault/four/can_craft_here()
+	return FALSE
+
+/area/rogue/under/cave/his_vault/puzzle
+	first_time_text = "NODD 8:14"
+
+/area/rogue/under/cave/his_vault/puzzle/can_craft_here()
+	return FALSE
+
 /area/rogue/under/cave/undeadmanor
 	name = "skelemansion"
 	icon_state = "spidercave"
@@ -522,6 +552,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound = 'sound/music/area/church.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+	holy_area = TRUE
 	droning_sound_dawn = 'sound/music/area/churchdawn.ogg'
 	converted_type = /area/rogue/outdoors/exposed/church
 	deathsight_message = "a hallowed place, sworn to the Ten"
@@ -552,6 +583,29 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/indoors/town/warehouse
 	name = "dock warehouse import"
 	icon_state = "warehouse"
+
+/area/rogue/indoors/inq
+	name = "The Inquisition"
+	icon_state = "chapel"
+	first_time_text = "THE OTAVAN INQUISITION"
+
+/area/rogue/indoors/inq/office
+	name = "The Inquisitor's Office"
+	icon_state = "chapel"
+
+/area/rogue/indoors/inq/basement
+	name = "The Inquisition's Basement"
+	icon_state = "chapel"	
+
+/area/rogue/indoors/town/warehouse/can_craft_here()
+	return FALSE
+
+/area/rogue/indoors/inq/import
+	name = "foreign imports"
+	icon_state = "warehouse"
+
+/area/rogue/indoors/inq/import/can_craft_here()
+	return FALSE
 
 /area/rogue/indoors/town/vault
 	name = "vault"
@@ -738,3 +792,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "The Forest of Repentence"
+
+/area/rogue/underworld/dream
+	name = "dream realm"
+	icon_state = "dream"
+	first_time_text = "Abyssal Dream"

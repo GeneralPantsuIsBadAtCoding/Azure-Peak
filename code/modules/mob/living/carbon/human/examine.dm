@@ -80,12 +80,20 @@
 				display_as_wanderer = TRUE
 			if(islatejoin)
 				is_returning = TRUE
-		if(display_as_wanderer)
-			. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the wandering [race_name]."))
-		else if(used_title)
-			. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the [is_returning ? "returning " : ""][race_name] [used_title]."))
+		if ((valid_headshot_link(src, headshot_link, TRUE)) && (user.client?.prefs.chatheadshot))
+			if(display_as_wanderer)
+				. = list(span_info("ø ------------ ø\n<img src=[headshot_link] width=100 height=100/>\nThis is <EM>[used_name]</EM>, the wandering [race_name]."))
+			else if(used_title)
+				. = list(span_info("ø ------------ ø\n<img src=[headshot_link] width=100 height=100/>\nThis is <EM>[used_name]</EM>, the [is_returning ? "returning " : ""][race_name] [used_title]."))
+			else
+				. = list(span_info("ø ------------ ø\n<img src=[headshot_link] width=100 height=100/>\nThis is the <EM>[used_name]</EM>, the [race_name]."))
 		else
-			. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
+			if(display_as_wanderer)
+				. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the wandering [race_name]."))
+			else if(used_title)
+				. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the [is_returning ? "returning " : ""][race_name] [used_title]."))
+			else
+				. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
@@ -508,6 +516,10 @@
 	if(legcuffed)
 		. += "<A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'><span class='warning'>[m3] \a [legcuffed] around [m2] legs!</span></A>"
 
+	var/datum/status_effect/bugged/effect = has_status_effect(/datum/status_effect/bugged)
+	if(effect && HAS_TRAIT(user, TRAIT_INQUISITION))
+		. += "<A href='?src=[REF(src)];item=[effect.device]'><span class='warning'>[m3] \a [effect.device] implanted.</span></A>"
+
 	//Gets encapsulated with a warning span
 	var/list/msg = list()
 
@@ -896,7 +908,13 @@
 /mob/living/proc/get_inquisition_text(mob/examiner)
 	var/inquisition_text
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text += "Fellow Member of the Inquisition"
+		inquisition_text = "A Practical of our Psydonic Inquisitorial Sect."
+	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
+		inquisition_text = "The Lorde-Inquisitor of our Psydonic Inquisitorial Sect."	
+	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_PURITAN))
+		inquisition_text = "Subordinate to me in the Psydonic Inquisitorial Sect."
+	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_PURITAN))
+		inquisition_text = "The Lorde-Inquisitor of the Sect sent here. That's me."				
 
 	return inquisition_text
 

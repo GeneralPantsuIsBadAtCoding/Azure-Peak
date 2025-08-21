@@ -99,7 +99,7 @@
 		force /= 5
 	if(force_wielded)
 		force_wielded /= 5
-	force_dynamic = (wielded ? force_wielded : force)
+	update_force_dynamic()
 	if(armor_penetration)
 		armor_penetration /= 5
 	if(wdefense)
@@ -113,18 +113,16 @@
 		can_parry = FALSE
 
 /obj/item/rogueweapon/obj_fix()
-	..()
-
 	force = initial(force)
 	force_wielded = initial(force_wielded)
-	force_dynamic = force
+	update_force_dynamic()
 	armor_penetration = initial(armor_penetration)
 	wdefense = initial(wdefense)
 	wdefense_wbonus = initial(wdefense_wbonus)
 	wdefense_dynamic = wdefense
 	sharpness = initial(sharpness)
 	can_parry = initial(can_parry)
-	SEND_SIGNAL(src, COMSIG_ROGUEWEAPON_OBJFIX)
+	..()
 
 /obj/item/rogueweapon/rmb_self(mob/user)
 	if(length(alt_intents))
@@ -189,3 +187,6 @@
 	blade_dulling = new_shaft
 	qdel(S)
 	new replaced_shaft(src.drop_location())
+
+/obj/item/rogueweapon/proc/add_psyblessed_component(is_preblessed, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)
+	AddComponent(/datum/component/psyblessed, is_preblessed, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)

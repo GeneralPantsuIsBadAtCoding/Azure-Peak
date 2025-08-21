@@ -15,7 +15,7 @@
 	movement_interrupt = FALSE
 	sound = 'sound/magic/churn.ogg'
 	spell_tier = 2 // Combat spell
-	invocation = "Noc blinds thee of thy sins!"
+	invocations = list("Noc blinds thee of thy sins!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	associated_skill = /datum/skill/magic/holy
 	devotion_cost = 15
@@ -173,7 +173,7 @@
 	range = 7
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
-	invocation = "Noc guide my gaze."
+	invocations = list("Noc guide my gaze.")
 	invocation_type = "whisper"
 	sound = null
 	associated_skill = /datum/skill/magic/holy

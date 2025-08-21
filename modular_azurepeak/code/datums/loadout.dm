@@ -340,17 +340,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/under/roguetown/skirt
 
 //ACCESSORIES
-/datum/loadout_item/stockings
-	name = "Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings
-
-/datum/loadout_item/silkstockings
-	name = "Silk Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings/silk
-
-/datum/loadout_item/fishnet
-	name = "Fishnet Stockings"
-	path = /obj/item/clothing/under/roguetown/tights/stockings/fishnet
 
 /datum/loadout_item/wrappings
 	name = "Handwraps"
@@ -424,6 +413,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Cloth Blindfold"
 	path = /obj/item/clothing/mask/rogue/blindfold
 
+/datum/loadout_item/bases
+	name = "Cloth military skirt"
+	path = /obj/item/storage/belt/rogue/leather/battleskirt
+
+/datum/loadout_item/fauldedbelt
+	name = "Belt with faulds"
+	path = /obj/item/storage/belt/rogue/leather/battleskirt/faulds
+
 /datum/loadout_item/psicross
 	name = "Psydonian Cross"
 	path = /obj/item/clothing/neck/roguetown/psicross
@@ -491,6 +488,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/jestershoes
     name = "Jester's Shoes"
     path = /obj/item/clothing/shoes/roguetown/jester
+
+/datum/loadout_item/cotehardie
+	name = "Fitted Coat"
+	path = /obj/item/clothing/cloak/cotehardie
 
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.

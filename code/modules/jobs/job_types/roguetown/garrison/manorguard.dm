@@ -71,7 +71,7 @@
 	H.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
@@ -104,15 +104,16 @@
 			backl = /obj/item/rogueweapon/shield/iron
 		if("Halberd")
 			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Greataxe")
 			r_hand = /obj/item/rogueweapon/greataxe
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
 		/obj/item/storage/keyring/guardcastle = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.verbs |= /mob/proc/haltyell
 
@@ -172,14 +173,13 @@
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // A little better; run fast, weak boy.
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +2 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+
 
 
 	//Garrison ranged/speed class. Time to go wild
@@ -214,9 +214,11 @@
 		if("Light Armor")
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Medium Armor")
 			pants = /obj/item/clothing/under/roguetown/chainlegs
 			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 	var/arms = list(
 		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
@@ -230,7 +232,8 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
 		/obj/item/storage/keyring/guardcastle = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.verbs |= /mob/proc/haltyell
 
@@ -270,7 +273,7 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) 
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE) 		// Like the other horselords.
 	H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)	//Best tracker. Might as well give it something to stick-out utility wise.
@@ -297,7 +300,7 @@
 	switch(weapon_choice)
 		if("Bardiche")
 			r_hand = /obj/item/rogueweapon/halberd/bardiche
-			backl = /obj/item/gwstrap
+			backl = /obj/item/rogueweapon/scabbard/gwstrap
 		if("Sword & Shield")
 			beltr = /obj/item/rogueweapon/scabbard/sword
 			r_hand = /obj/item/rogueweapon/sword/sabre
@@ -307,7 +310,8 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
 		/obj/item/storage/keyring/guardcastle = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.verbs |= /mob/proc/haltyell
 

@@ -317,6 +317,8 @@
 
 /datum/config_entry/flag/panic_bunker	// prevents people the server hasn't seen before from connecting
 
+/datum/config_entry/number/border_control // If border control is enabled
+
 /datum/config_entry/string/panic_bunker_message
 	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
 

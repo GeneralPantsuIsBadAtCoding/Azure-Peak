@@ -1004,6 +1004,8 @@
 		/obj/item/ingot/blacksteel,
 		/obj/item/clothing/neck/roguetown/psicross,
 		/obj/item/reagent_containers/glass/cup,
+		/obj/item/candle/gold,
+		/obj/item/candle/silver,
 		/obj/item/candle/candlestick/silver,
 		/obj/item/candle/candlestick/gold,
 		/obj/item/kitchen/fork/silver,

@@ -17,7 +17,7 @@
 	range = 7
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3
-	invocation = "Congelare Subitus!"
+	invocations = list("Congelare Subitus!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_HIGH

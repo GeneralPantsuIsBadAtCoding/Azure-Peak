@@ -14,7 +14,7 @@
 	no_early_release = TRUE
 	charging_slowdown = 1
 	spell_tier = 2
-	invocation = "Recolligere"
+	invocations = list("Recolligere")
 	invocation_type = "whisper"
 	hide_charge_effect = TRUE // essential for rogue mage
 	chargedloop = /datum/looping_sound/invokegen
