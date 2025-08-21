@@ -167,7 +167,7 @@
 		var/blunt_attack = FALSE
 
 		prob2defend = clamp(prob2defend, 5, 90)
-		if(UH.used_intent.item_d_type == "blunt")
+		if(UH?.used_intent.item_d_type == "blunt")
 			blunt_attack = TRUE
 			prob2defend = clamp(prob2defend, 5, 75)
 
