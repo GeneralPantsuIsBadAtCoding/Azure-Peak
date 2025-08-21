@@ -73,23 +73,7 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 				victimsa += V
 			if(victims > 3)
 				return
-	var/list/possible_targets = list()
-	for(var/obj/structure/flora/roguetree/RT in view(5, src))
-		if(istype(RT,/obj/structure/flora/roguetree/stump))
-			continue
-		if(isturf(RT.loc))
-			possible_targets += get_adjacent_ambush_turfs(RT.loc)
-	for(var/obj/structure/flora/roguegrass/bush/RB in view(5, src))
-		if(isturf(RB.loc))
-			possible_targets += get_adjacent_ambush_turfs(RB.loc)
-	for(var/obj/structure/flora/rogueshroom/RX in view(5, src))
-		if(isturf(RX.loc))
-			possible_targets += get_adjacent_ambush_turfs(RX.loc)
-	for(var/obj/structure/flora/newtree/RS in view(5, src))
-		if(!RS.density)
-			continue
-		if(isturf(RS.loc))
-			possible_targets += get_adjacent_ambush_turfs(RS.loc)
+	var/list/possible_targets = get_possible_ambush_spawn()
 	if(possible_targets.len)
 		mob_timers["ambushlast"] = world.time
 		for(var/mob/living/V in victimsa)
@@ -183,6 +167,27 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			playsound_local(src, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
 		shake_camera(src, 2, 2)
 
+/mob/proc/get_possible_ambush_spawn(min_dist = 1, max_dist = 7)
+	var/list/possible_targets = list()
+	for(var/obj/structure/flora/roguetree/RT in orange(max_dist, src))
+		if(istype(RT,/obj/structure/flora/roguetree/stump))
+			continue
+		if(isturf(RT.loc) && !get_dist(RT.loc, src) < min_dist)
+			possible_targets += get_adjacent_ambush_turfs(RT.loc)
+	for(var/obj/structure/flora/roguegrass/bush/RB in orange(max_dist, src))
+		if(isturf(RB.loc) && !get_dist(RB.loc, src) < min_dist)
+			possible_targets += get_adjacent_ambush_turfs(RB.loc)
+	for(var/obj/structure/flora/rogueshroom/RX in orange(max_dist, src))
+		if(isturf(RX.loc) && !get_dist(RX.loc, src) < min_dist)
+			possible_targets += get_adjacent_ambush_turfs(RX.loc)
+	for(var/obj/structure/flora/newtree/RS in orange(max_dist, src))
+		if(!RS.density)
+			continue
+		if(isturf(RS.loc) && !get_dist(RS.loc, src) < min_dist)
+			possible_targets += get_adjacent_ambush_turfs(RS.loc)
+
+	return possible_targets
+
 /proc/get_adjacent_ambush_turfs(turf/T)
 	var/list/adjacent = list()
 	for(var/turf/AT in get_adjacent_turfs(T))
@@ -190,3 +195,5 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			continue
 		adjacent += AT
 	return adjacent
+
+/mob/proc/get_eligible_for_ambush()
