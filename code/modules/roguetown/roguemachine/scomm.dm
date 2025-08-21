@@ -967,6 +967,10 @@
 	var/obj/item/clothing/head/roguetown/crown/serpcrown/crowne = SSroguemachine.crown
 	if(crowne && (!loudmouth || crowne.loudmouth_listening))
 		crowne.repeat_message(raw_message, src, usedcolor, message_language, tspans)
+	if(istype(src, /obj/structure/broadcast_horn/paid))
+		listening = FALSE
+		playsound(src, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
+		say("Message delivered! Thanks for the coin, sucker!")
 
 /obj/structure/broadcast_horn/loudmouth
 	name = "\improper Golden Mouth"
@@ -988,10 +992,63 @@
 	icon_state = "broadcaster_crass"
 	speech_color = COLOR_ASSEMBLY_GURKHA
 
-/obj/structure/broadcast_horn/loudmouth/Initialize()
+/obj/structure/broadcast_horn/paid
+	name = "\improper Streetpipe"
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a zenar to send a message over the SCOM network."
+	icon_state = "broadcaster_crass"
+	icon = 'icons/roguetown/misc/machines.dmi'
+	var/is_locked = FALSE
+	var/stored_zenar = 0
+
+/obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
+	if(istype(P, /obj/item/roguekey/crier))
+		is_locked = !is_locked
+		listening = FALSE
+		playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
+		if(is_locked)
+			say("Streetpipe has been locked.")
+		else
+			say("Streetpipe has been unlocked.")
+	if(istype(P, /obj/item/roguecoin/gold))
+		if(is_locked)
+			say("Streetpipe is locked. Consult the crier.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
+		if(listening)
+			say("Coin already loaded.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
+		var/obj/item/roguecoin/C = P
+		if(C.quantity > 1)
+			return
+		listening = TRUE
+		qdel(C)
+		stored_zenar += 1
+		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
+		return
+	..()
+
+/obj/structure/broadcast_horn/paid/attack_right(mob/user)
+	if(.)
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.job == "Town Crier")
+		if(stored_zenar)
+			var/obj/item/roguecoin/G = new /obj/item/roguecoin/gold(H, stored_zenar)
+			if(H)
+				H.put_in_hands(G)
+				stored_zenar = 0
+				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
+		else
+			say("There's no mammon inside.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+
+/obj/structure/broadcast_horn/Initialize()
 	. = ..()
 	become_hearing_sensitive()
 
-/obj/structure/broadcast_horn/loudmouth/Destroy()
+/obj/structure/broadcast_horn/Destroy()
 	lose_hearing_sensitivity()
 	return ..()
