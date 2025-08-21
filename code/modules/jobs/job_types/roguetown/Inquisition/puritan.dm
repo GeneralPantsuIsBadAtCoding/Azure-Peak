@@ -109,7 +109,7 @@
 
 /datum/outfit/job/roguetown/puritan/inspector/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Eucharist (Rapier)", "Daybreak (Whip)", "Stigmata (Halberd)")
+	var/weapons = list("Eucharist (Rapier)", "Daybreak (Whip)")
 	var/weapon_choice = input(H,"CHOOSE YOUR RELIQUARY PIECE.", "WIELD THEM IN HIS NAME.") as anything in weapons
 	switch(weapon_choice)
 		if("Eucharist (Rapier)")
@@ -119,10 +119,6 @@
 		if("Daybreak (Whip)")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/antique/psywhip(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
-		if("Stigmata (Halberd)")
-			H.put_in_hands(new /obj/item/rogueweapon/halberd/psyhalberd/relic(H), TRUE)
-			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 
 
 ///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more. 
@@ -174,12 +170,12 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	backpack_contents = list(
 		/obj/item/storage/keyring/puritan = 1,
-		/obj/item/paper/inqslip/arrival/inq = 1
+		/obj/item/paper/inqslip/arrival/inq = 1,
 		)
 
 /datum/outfit/job/roguetown/puritan/ordinator/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Covenant And Creed (Broadsword + Shield)", "Covenant and Consecratia (Flail + Shield)", "Apocrypha (Greatsword) and a Silver Dagger")
+	var/weapons = list("Covenant And Creed (Broadsword + Shield)", "Covenant and Consecratia (Flail + Shield)", "Apocrypha (Greatsword) and a Silver Dagger", "Stigmata (Halberd + Dagger)")
 	var/weapon_choice = input(H,"CHOOSE YOUR RELIQUARY PIECE.", "WIELD THEM IN HIS NAME.") as anything in weapons
 	switch(weapon_choice)
 		if("Covenant And Creed (Broadsword + Shield)")
@@ -203,6 +199,13 @@
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_R, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+		if("Stigmata (Halberd + Dagger)") // moved from the inspector. Dexpert+polearms is bad
+			H.put_in_hands(new /obj/item/rogueweapon/halberd/psyhalberd/relic(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 
 
