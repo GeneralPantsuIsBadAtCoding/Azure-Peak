@@ -4,7 +4,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/plaguebearer
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_CICERONE, TRAIT_HERESIARCH, TRAIT_NOSTINK)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_CICERONE, TRAIT_HERESIARCH, TRAIT_NOSTINK, TRAIT_MEDICINE_EXPERT)
 	maximum_possible_slots = 1 //They spawn with killer's ice lol I'm limiting this shit 
 
 /datum/outfit/job/roguetown/wretch/plaguebearer/pre_equip(mob/living/carbon/human/H)

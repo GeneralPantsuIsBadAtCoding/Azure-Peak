@@ -34,7 +34,10 @@
 	var/burndam = 20
 	var/stinky = FALSE
 	if(user.mind)
-		burndam -= (user.get_skill_level(/datum/skill/misc/medicine) * 3)
+		var/medskill = user.get_skill_level(/datum/skill/misc/medicine)
+		burndam -= (medskill * 2)
+		if(medskill > SKILL_LEVEL_EXPERT)
+			burndam = 0
 
 	var/datum/antagonist/zombie/was_zombie = target.mind?.has_antag_datum(/datum/antagonist/zombie)
 	if(target.infected == FALSE)

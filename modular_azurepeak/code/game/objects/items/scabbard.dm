@@ -138,7 +138,9 @@
 
 
 /obj/item/rogueweapon/scabbard/attackby(obj/item/I, mob/user, params)
-	return eat_sword(user, I)
+	if(!sheathed)
+		if(!eat_sword(user, I))
+			return ..()
 
 /obj/item/rogueweapon/scabbard/examine(mob/user)
 	. = ..()
@@ -388,17 +390,11 @@
 
 /obj/item/rogueweapon/scabbard/gwstrap/weapon_check(mob/living/user, obj/item/A)
 	. = ..()
-	if(!.)
+	if(.)
+		if(sheathed)
+			return FALSE
 		if(istype(A, /obj/item/rogueweapon) && A.w_class >= WEIGHT_CLASS_BULKY)
 			return TRUE
-
-/obj/item/rogueweapon/scabbard/gwstrap/eat_sword(mob/living/user, obj/A)
-	..()
-	update_icon(user)
-
-/obj/item/rogueweapon/scabbard/gwstrap/puke_sword(mob/living/user, obj/A)
-	..()
-	update_icon(user)
 
 /obj/item/rogueweapon/scabbard/gwstrap/update_icon(mob/living/user)
 	if(sheathed)

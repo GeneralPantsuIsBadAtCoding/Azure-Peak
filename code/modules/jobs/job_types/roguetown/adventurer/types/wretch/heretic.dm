@@ -16,10 +16,10 @@
 	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.set_blindness(0)
@@ -50,16 +50,14 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
 			H.mind.current.faction += "[H.name]_faction"
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
-	head = /obj/item/clothing/head/roguetown/helmet/bascinet
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	pants = /obj/item/clothing/under/roguetown/chainlegs
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	cloak = /obj/item/clothing/cloak/cape/crusader
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shield/tower/metal
 	belt = /obj/item/storage/belt/rogue/leather
@@ -84,18 +82,17 @@
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
 		if(/datum/patron/inhumen/baotha)
 			H.cmode_music = 'sound/music/combat_baotha.ogg'
-			head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle
+			head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
 		if(/datum/patron/inhumen/graggar)
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/guard
 		if(/datum/patron/divine/astrata)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
-			head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
 			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 		if(/datum/patron/divine/abyssor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
-			head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
-			cloak = /obj/item/clothing/cloak/abyssortabard
+			head = /obj/item/clothing/head/roguetown/helmet/heavy
 			H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 		if(/datum/patron/divine/xylix)

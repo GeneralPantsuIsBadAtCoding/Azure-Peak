@@ -55,6 +55,7 @@
 	)
 	ADD_TRAIT(H, TRAIT_EMPATH, "[type]")
 	ADD_TRAIT(H, TRAIT_NOSTINK, "[type]")
+	ADD_TRAIT(H, TRAIT_MEDICINE_EXPERT, TRAIT_GENERIC)
 	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE) //same tier as other yeomen
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
