@@ -271,7 +271,7 @@
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_SMALL
 	parrysound = list('sound/combat/parry/bladed/bladedsmall (1).ogg','sound/combat/parry/bladed/bladedsmall (2).ogg','sound/combat/parry/bladed/bladedsmall (3).ogg')
-	max_blade_int = 150
+	max_blade_int = 200
 	max_integrity = 80
 	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
 	associated_skill = /datum/skill/combat/unarmed
@@ -284,7 +284,7 @@
 	smeltresult = /obj/item/ingot/steel
 	grid_height = 64
 	grid_width = 32
-	sharpness_mod = 3	//Can't parry, so it decays quicker on-hit.
+	sharpness_mod = 2	//Can't parry, so it decays quicker on-hit.
 
 /obj/item/rogueweapon/katar/getonmobprop(tag)
 	. = ..()
