@@ -703,7 +703,7 @@
 	minstr = 11
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	max_blade_int = 300
+	max_blade_int = 180
 	walking_stick = TRUE
 	wdefense = 5
 	wbalance = WBALANCE_HEAVY
