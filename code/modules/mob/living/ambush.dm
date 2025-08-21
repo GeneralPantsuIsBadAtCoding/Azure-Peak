@@ -136,20 +136,20 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 				var/amt = A.mob_types[type_path]
 				for(var/i in 1 to amt)
 					mobs_to_spawn += type_path
-				if(mobs_to_spawn.len > 1)
-					switch(danger_level)
-						if(DANGER_LEVEL_SAFE)
-							var/ri = rand(1, mobs_to_spawn.len)
-							mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
-						if(DANGER_LEVEL_LOW)
-							var/ri = rand(1, mobs_to_spawn.len)
-							mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
-						if(DANGER_LEVEL_DANGEROUS)
-							mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 1
-						if(DANGER_LEVEL_DIRE)
-							mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 2
-							mobs_to_spawn += pick(mobs_to_spawn)
-				max_spawns = mobs_to_spawn.len
+			if(mobs_to_spawn.len > 1)
+				switch(danger_level)
+					if(DANGER_LEVEL_SAFE)
+						var/ri = rand(1, mobs_to_spawn.len)
+						mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
+					if(DANGER_LEVEL_LOW)
+						var/ri = rand(1, mobs_to_spawn.len)
+						mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
+					if(DANGER_LEVEL_DANGEROUS)
+						mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 1
+					if(DANGER_LEVEL_DIRE)
+						mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 2
+						mobs_to_spawn += pick(mobs_to_spawn)
+			max_spawns = mobs_to_spawn.len
 
 		for(var/i in 1 to max_spawns)
 			var/spawnloc = pick(possible_targets)
@@ -161,8 +161,9 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 					if(!mobs_to_spawn.len)
 						continue
 					mob_type = mobs_to_spawn[1]
-					mobs_to_spawn.Cut(1, 2)
 				var/mob/spawnedmob = new mob_type(spawnloc)
+				if(mobs_to_spawn.len && !mobs_to_spawn_single)
+					mobs_to_spawn.Cut(1, 2)
 				if(istype(spawnedmob, /mob/living/simple_animal/hostile))
 					var/mob/living/simple_animal/hostile/M = spawnedmob
 					M.attack_same = FALSE
