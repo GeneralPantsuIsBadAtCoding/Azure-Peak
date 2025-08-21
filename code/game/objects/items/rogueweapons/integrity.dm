@@ -30,8 +30,8 @@
 		var/newratio = (blade_int - amt) / max_blade_int
 		if(ratio > SHARPNESS_TIER1_THRESHOLD && newratio <= SHARPNESS_TIER1_THRESHOLD) //We are above the first threshold but are about to hit it.
 			if(L.STAINT > 9)
-				to_chat(L, "<font color = '#ececec'><font size = 4>The edge chips! \The [src]'s damage will start to slowly wane, now.</font>")
-			playsound(L, 'sound/combat/sharpness_loss1.ogg', 100, TRUE)
+				to_chat(L, span_info("<i><font color = '#ececec'>The edge chips! \The [src]'s damage will start to slowly wane, now.</font></i>"))
+			playsound(L, 'sound/combat/sharpness_loss1.ogg', 75, TRUE)
 
 		//We are above the second threshold but are about to hit it.
 		if(ratio > SHARPNESS_TIER2_THRESHOLD && newratio <= SHARPNESS_TIER2_THRESHOLD)
@@ -89,23 +89,30 @@
 			if(!ST.sharpening_factor)
 				return
 			var/loopcount = round(max_blade_int / ST.sharpening_factor, 1) + 1
-			user.visible_message(span_info("[user] starts sharpening \the [src]..."))
+			sharpen(ST, user)
+			if(blade_int >= max_blade_int)
+				to_chat(user, span_info("Fully sharpened."))
+				return
 			for(var/i in 1 to loopcount)
 				if(blade_int >= max_blade_int)
 					to_chat(user, span_info("Fully sharpened."))
 					break
 				if(do_after(user, 1.5 SECONDS))
-					playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100)
-					user.visible_message(span_notice("[user] sharpens [src]!"))
-					degrade_bintegrity(0.5)
-					add_bintegrity(ST.sharpening_factor, user)
-
-					if(prob(ST.spark_chance))
-						var/datum/effect_system/spark_spread/S = new()
-						var/turf/front = get_step(user,user.dir)
-						S.set_up(1, 1, front)
-						S.start()
+					sharpen(ST, user)
 				else
 					break
 			return
 	. = ..()
+
+/obj/item/proc/sharpen(obj/item/natural/ST, mob/user)
+	playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.visible_message(span_notice("[user] sharpens [src]!"))
+	degrade_bintegrity(0.5)
+	add_bintegrity(ST.sharpening_factor, user)
+
+	if(prob(ST.spark_chance))
+		var/datum/effect_system/spark_spread/S = new()
+		var/turf/front = get_step(user,user.dir)
+		S.set_up(1, 1, front)
+		S.start()

@@ -826,7 +826,7 @@
 	icon_state = "zwei"
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
-	max_blade_int = 200
+	max_blade_int = 300
 	wdefense = 4
 	force = 14
 	force_wielded = 35
@@ -836,7 +836,7 @@
 	icon_state = "steelzwei"
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
-	max_blade_int = 300
+	max_blade_int = 350
 	force = 14
 	force_wielded = 35
 

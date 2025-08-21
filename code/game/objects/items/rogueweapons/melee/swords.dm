@@ -285,7 +285,7 @@
 	associated_skill = /datum/skill/combat/swords
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
-	max_blade_int = 220
+	max_blade_int = 280
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
