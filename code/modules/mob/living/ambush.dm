@@ -1,24 +1,13 @@
 GLOBAL_VAR_INIT(ambush_chance_pct, 20) // Please don't raise this over 100 admins :')
 GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each individual mob being considered for an ambush
 // Instead of setting it on area and hoping no one forgets it on area we're just doing this
-GLOBAL_LIST_INIT(valid_ambush_turfs, list(
-	/turf/open/floor/rogue/dirt,
-	/turf/open/floor/rogue/dirt/road,
-	/turf/open/floor/rogue/grass,
-	/turf/open/floor/rogue/grasscold,
-	/turf/open/floor/rogue/cobble,
-	/turf/open/floor/rogue/sand,
-	/turf/open/floor/rogue/snow,
-	/turf/open/floor/rogue/AzureSand,
-	/turf/open/water
-))
 
 /mob/living/proc/ambushable()
 	if(stat)
 		return FALSE
 	return ambushable
 
-/mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE)
+/mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE, min_dist = 1, max_dist = 7)
 	var/area/AR = get_area(src)
 	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
 	var/danger_level = DANGER_LEVEL_MODERATE // Fallback if there's no region
@@ -39,7 +28,6 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			true_ambush_chance *= 1.5
 		else if(danger_level == DANGER_LEVEL_DIRE)
 			true_ambush_chance *= 2
-
 	if(!always && prob(100 - true_ambush_chance))
 		return
 	if(!always)
@@ -47,23 +35,12 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			return
 		if(world.time > last_client_interact + 0.3 SECONDS)
 			return // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
+	if(get_will_block_ambush(src))
+		return
 	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)
 			return
 	mob_timers["ambush_check"] = world.time
-	if(!ambushable())
-		return
-	var/turf/T = get_turf(src)
-	if(!T)
-		return
-	if(!(T.type in GLOB.valid_ambush_turfs))
-		return
-	var/campfires = 0
-	for(var/obj/machinery/light/rogue/RF in view(5, src))
-		if(RF.on)
-			campfires++
-	if(campfires > 0)
-		return
 	var/victims = 1
 	var/list/victimsa = list()
 	for(var/mob/living/V in view(5, src))
@@ -73,7 +50,7 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 				victimsa += V
 			if(victims > 3)
 				return
-	var/list/possible_targets = get_possible_ambush_spawn()
+	var/list/possible_targets = get_possible_ambush_spawn(min_dist, max_dist)
 	if(possible_targets.len)
 		mob_timers["ambushlast"] = world.time
 		for(var/mob/living/V in victimsa)
@@ -167,7 +144,18 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			playsound_local(src, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
 		shake_camera(src, 2, 2)
 
-/mob/proc/get_possible_ambush_spawn(min_dist = 1, max_dist = 7)
+// Return whether a mob is blocked from being ambushed
+/mob/living/proc/get_will_block_ambush()
+	if(!ambushable())
+		return TRUE
+	var/campfires = 0
+	for(var/obj/machinery/light/rogue/RF in view(5, src))
+		if(RF.on)
+			campfires++
+	if(campfires > 0)
+		return TRUE
+
+/mob/living/proc/get_possible_ambush_spawn(min_dist = 2, max_dist = 7)
 	var/list/possible_targets = list()
 	for(var/obj/structure/flora/roguetree/RT in orange(max_dist, src))
 		if(istype(RT,/obj/structure/flora/roguetree/stump))
@@ -195,5 +183,3 @@ GLOBAL_LIST_INIT(valid_ambush_turfs, list(
 			continue
 		adjacent += AT
 	return adjacent
-
-/mob/proc/get_eligible_for_ambush()

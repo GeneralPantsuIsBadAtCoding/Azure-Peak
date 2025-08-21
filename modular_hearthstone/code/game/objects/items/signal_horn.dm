@@ -1,3 +1,6 @@
+#define WARDEN_AMBUSH_MIN 2
+#define WARDEN_AMBUSH_MAX 9
+
 /obj/item/signal_horn
 	name = "signal horn"
 	desc = "A horn carried by the wardens. Blowing it attracts the attention of various creechurs and rapscallions, enabling the wardens to clear them out."
@@ -20,12 +23,12 @@
 	if(!TR || !TR.latent_ambush || TR.fixed_ambush)
 		to_chat(user, span_warning("There's no point in sounding the horn here."))
 		return
-	var/has_campfire = FALSE
-	for(var/obj/machinery/light/rogue/RF in view(5, user))
-		if(RF.on)
-			has_campfire = TRUE
-	if(has_campfire)
-		to_chat(user, span_warning("This won't work with a campfire nearby."))
+	var/cannot_ambush = FALSE
+	if(user.get_will_block_ambush())
+		to_chat(user, span_warning("This place is too well-lit for enemies to come."))
+		return
+	if(!user.get_possible_ambush_spawn(min_dist = WARDEN_AMBUSH_MIN, max_dist = WARDEN_AMBUSH_MAX))
+		to_chat(user, span_warning("This place is too lightly vegetated for enemies to hide."))
 		return
 	if(TR && TR.last_induced_ambush_time && (world.time < TR.last_induced_ambush_time + 5 MINUTES))
 		to_chat(user, span_warning("Foes have been cleared out here recently, perhaps you should wait a moment before sounding the horn again."))
@@ -51,5 +54,4 @@
 
 	var/random_ambushes = 3 + rand(0,2) // 3 - 5 ambushes
 	for(var/i = 0, i < random_ambushes, i++)
-		user.consider_ambush(TRUE, TRUE)
- 
+		user.consider_ambush(TRUE, TRUE, min_dist = WARDEN_AMBUSH_MIN, max_dist = WARDEN_AMBUSH_MAX)
