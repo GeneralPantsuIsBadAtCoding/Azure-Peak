@@ -311,14 +311,14 @@
 						changeNext_move(CLICK_CD_RAPID)
 						if(get_dist(get_turf(src), T) <= used_intent.reach)
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
+						var/adf = used_intent.clickcd
+						if(istype(rmb_intent, /datum/rmb_intent/aimed))
+							adf = round(adf * CLICK_CD_MOD_AIMED)
+						if(istype(rmb_intent, /datum/rmb_intent/swift))
+							adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
+						changeNext_move(adf)
 						if(W)
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
-							var/adf = used_intent.clickcd
-							if(istype(rmb_intent, /datum/rmb_intent/aimed))
-								adf = round(adf * CLICK_CD_MOD_AIMED)
-							if(istype(rmb_intent, /datum/rmb_intent/swift))
-								adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
-							changeNext_move(adf)
 						else
 							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
 							if(used_intent.miss_text)

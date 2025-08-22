@@ -65,12 +65,20 @@
 	icon_state = "hidearmor"
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
 
-/obj/item/clothing/suit/roguetown/armor/leather/hide/warden
-	name = "forestry armor"
-	desc = "A light armor worn by the Wardens of Azuria. Far more durable than leather."
+/obj/item/clothing/suit/roguetown/armor/leather/studded/warden
+	name = "forester's armor"
+	desc = "A hardened leather harness with a large pauldron worn over a maille coat, associated with the Azurian wardens."
 	icon = 'icons/roguetown/clothing/special/warden.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
-	icon_state = "foresthide"
+	icon_state = "forestleather"
+
+/obj/item/clothing/suit/roguetown/armor/leather/studded/warden/upgraded
+	name = "forester's brigandine"
+	desc = "A hardened leather harness with a large pauldron worn over a tasseted brigandine, imbued with Dendor's essence."
+	icon_state = "forestbrig"
+	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE + 50
+	equip_delay_self = 50
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded
 	name = "studded leather armor"

@@ -2,10 +2,11 @@
 /obj/effect/proc_holder/spell/invoked/projectile/spitfire
 	name = "Spitfire"
 	desc = "Shoot out a low-powered ball of fire that ignites a target with a small amount of fire on impact. \n\
-	Damage is increased by 100% versus simple-minded creechurs."
+	Damage is increased by 100% versus simple-minded creechurs.\n\
+	Can be fired in an arc over an ally's head with a mage's staff or spellbook on arc intent. It will deals 25% less damage that way."
 	clothes_req = FALSE
 	range = 8
-	projectile_type = /obj/projectile/magic/aoe/fireball/rogue2
+	projectile_type = /obj/projectile/magic/aoe/fireball/spitfire
 	overlay_state = "fireball_multi"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
@@ -26,8 +27,17 @@
 	associated_skill = /datum/skill/magic/arcane
 	cost = 3
 
-/obj/projectile/magic/aoe/fireball/rogue2
-	name = "spitfire"
+/obj/effect/proc_holder/spell/invoked/projectile/spitfire/cast(list/targets, mob/user = user)
+	var/mob/living/carbon/human/H = user
+	var/datum/intent/a_intent = H.a_intent
+	if(istype(a_intent, /datum/intent/special/magicarc))
+		projectile_type = /obj/projectile/magic/aoe/fireball/spitfire/arc
+	else
+		projectile_type = /obj/projectile/magic/aoe/fireball/spitfire
+	. = ..()
+
+/obj/projectile/magic/aoe/fireball/spitfire
+	name = "Spitfire"
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 0
@@ -41,7 +51,12 @@
 	hitsound = 'sound/blank.ogg'
 	aoe_range = 0
 
-/obj/projectile/magic/aoe/fireball/rogue2/on_hit(target)
+/obj/projectile/magic/aoe/fireball/spitfire/arc
+	name = "Arced Spitfire"
+	damage = 15 // 25% damage penalty
+	arcshot = TRUE
+
+/obj/projectile/magic/aoe/fireball/spitfire/on_hit(target)
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target

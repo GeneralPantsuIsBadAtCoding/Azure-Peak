@@ -43,6 +43,7 @@
 			ritechoices+="Rune of Justice"
 		if(/datum/patron/divine/abyssor)
 			ritechoices+="Rune of Storm"
+			ritechoices+="Rune of Stirring"
 		if(/datum/patron/old_god)
 			ritechoices+="Rune of Enduring"
 
@@ -99,6 +100,11 @@
 			if(do_after(user, 30, src))
 				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
 				new /obj/structure/ritualcircle/abyssor(step_turf)
+		if("Rune of Stirring")
+			to_chat(user,span_cultsmall("I begin inscribing the rune of His Dream..."))
+			if(do_after(user, 30, src))
+				playsound(src, 'sound/foley/scribble.ogg', 40, TRUE)
+				new /obj/structure/ritualcircle/abyssor_alt_inactive(step_turf)
 		if("Rune of ZIZO")
 			to_chat(user,span_cultsmall("I begin inscribing the rune of Her Knowledge..."))
 			if(do_after(user, 30, src))

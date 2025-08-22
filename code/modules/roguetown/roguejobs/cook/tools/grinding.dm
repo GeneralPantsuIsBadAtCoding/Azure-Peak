@@ -1,4 +1,4 @@
-#define BASE_GRIND_TIME 2 SECONDS
+#define BASE_GRIND_TIME 1 SECONDS
 /obj/item/millstone // Previous structure path means it cannot be crafted on tables
 	name = "millstone"
 	desc = "A millstone used to grind grain into flour."

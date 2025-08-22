@@ -36,6 +36,9 @@
 	icon_state = "topazstaff"
 	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF //imagine the salt
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 34
 
 /obj/item/rogueweapon/woodstaff/amethyst
 	name = "amethyst-focused staff"
@@ -44,6 +47,8 @@
 	icon_state = "amethyststaff"
 	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
 
 /obj/item/rogueweapon/woodstaff/emerald
 	name = "gemerald-focused staff"
@@ -52,6 +57,9 @@
 	icon_state = "emeraldstaff"
 	cast_time_reduction = EMERALD_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 42
 
 /obj/item/rogueweapon/woodstaff/sapphire
 	name = "saffira-focused staff"
@@ -60,6 +68,9 @@
 	icon_state = "sapphirestaff"
 	cast_time_reduction = SAPPHIRE_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 56
 
 /obj/item/rogueweapon/woodstaff/quartz
 	name = "blortz-focused staff"
@@ -68,6 +79,9 @@
 	icon_state = "quartzstaff"
 	cast_time_reduction = QUARTZ_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 88
 
 /obj/item/rogueweapon/woodstaff/ruby
 	name = "ronts-focused staff"
@@ -76,6 +90,9 @@
 	icon_state = "rubystaff"
 	cast_time_reduction = RUBY_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 100
 
 /obj/item/rogueweapon/woodstaff/diamond
 	name = "dorpel-focused staff"
@@ -84,6 +101,9 @@
 	icon_state = "diamondstaff"
 	cast_time_reduction = DIAMOND_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 121
 
 /obj/item/rogueweapon/woodstaff/riddle_of_steel
 	name = "\improper Staff of the Riddle-Steel"
@@ -93,6 +113,9 @@
 	icon_state = "riddlestaff"
 	cast_time_reduction = RIDDLE_OF_STEEL_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/mace/smash/wood, /datum/intent/special/magicarc)
+	sellprice = 400
 
 /obj/item/rogueweapon/woodstaff/riddle_of_steel/magos
 	name = "\improper Staff of the Court Magos"
@@ -101,6 +124,7 @@
 /obj/item/rogueweapon/woodstaff/naledi
 	cast_time_reduction = DIAMOND_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	sellprice = 40
 
 //crafting datums
 

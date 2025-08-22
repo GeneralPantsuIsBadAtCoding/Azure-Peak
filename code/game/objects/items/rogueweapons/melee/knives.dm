@@ -556,6 +556,9 @@
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		sharpness = IS_SHARP
 		playsound(user, 'sound/items/knife_open.ogg', 100, TRUE)
+		equip_delay_self = initial(equip_delay_self)
+		unequip_delay_self = initial(unequip_delay_self)
+		inv_storage_delay = initial(inv_storage_delay)
 	else
 		force = 5
 		w_class = WEIGHT_CLASS_SMALL
@@ -564,6 +567,9 @@
 		attack_verb = list("stubbed", "poked")
 		sharpness = IS_BLUNT
 		wdefense = 2
+		equip_delay_self = 0 SECONDS
+		unequip_delay_self = 0 SECONDS
+		inv_storage_delay = 0 SECONDS
 
 /obj/item/rogueweapon/huntingknife/throwingknife
 	name = "iron tossblade"

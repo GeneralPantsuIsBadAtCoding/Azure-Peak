@@ -420,3 +420,18 @@
 					"eastabove" = 0,
 					"westabove" = 0,
 					)
+
+//Unique Bows
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/warden
+	name = "blackhorn bow"
+	desc = "When a northern black-horned saiga is old enough, it will shed its two-metre long antlers. As time passes, they harden progressively more but keep a degree of flexibility that can outdo even yew.\
+		Wardens often collect such antlers in the rare occasion they are found and send them to be filed, strung and treated by a master bowyer. Such tradition carries merit even todae, \
+		and thus one can see Azurian wardens carrying their endemic blackhorn bows with pride."
+	icon_state = "recurve_warden"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow/warden
+	name = "blackhorn longbow"
+	desc = "When a northern black-horned saiga is old enough, it will shed its two-metre long antlers. As time passes, they harden progressively more but keep a degree of flexibility that can outdo even yew.\
+		Wardens often collect such antlers in the rare occasion they are found and send them to be filed, strung and treated by a master bowyer. The end result is a war bow such as this one."
+	icon_state = "longbow_warden"

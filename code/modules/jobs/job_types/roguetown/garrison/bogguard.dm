@@ -10,7 +10,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "Typically a denizen of the sparsely populated Azure woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilds. \
+	tutorial = "Typically a denizen of the sparsely populated Azurian woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilderness. \
 				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Marshal or the Crown. \
 				Serve their will and recieve what a ranger craves the most - freedom and safety."
 	display_order = JDO_TOWNGUARD
@@ -27,8 +27,7 @@
 	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 
 /datum/outfit/job/roguetown/bogguardsman
-	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide/warden
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden
 	cloak = /obj/item/clothing/cloak/wardencloak
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	belt = /obj/item/storage/belt/rogue/leather
@@ -57,7 +56,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/warden
 	beltr = /obj/item/quiver/arrows
 	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
 	backpack_contents = list(
@@ -93,6 +92,26 @@
 	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	H.set_blindness(0)
+
+	var/helmets = list(
+		"Path of the Antelope" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/antler,
+		"Path of the Volf"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf,
+		"Path of the Ram"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/goat,
+		"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
+		"None"
+	)
+	var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/hoods = list(
+		"Common Shroud" 	= /obj/item/clothing/head/roguetown/roguehood/warden,
+		"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
+		"None"
+	)
+	var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+	if(helmchoice != "None")
+		mask = hoods[hoodchoice]
 
 /datum/advclass/bogguardsman/forester
 	name = "Forester"
@@ -145,3 +164,23 @@
 	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	H.set_blindness(0)
+
+	var/helmets = list(
+		"Path of the Antelope" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/antler,
+		"Path of the Volf"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf,
+		"Path of the Ram"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/goat,
+		"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
+		"None"
+	)
+	var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/hoods = list(
+		"Common Shroud" 	= /obj/item/clothing/head/roguetown/roguehood/warden,
+		"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
+		"None"
+	)
+	var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+	if(helmchoice != "None")
+		mask = hoods[hoodchoice]

@@ -18,8 +18,9 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	drop_sound = 'sound/foley/dropsound/book_drop.ogg'
 	force = 5
 	associated_skill = /datum/skill/misc/reading
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
 	name = "\improper tome of the arcyne"
-	desc = "A crackling, glowing book, filled with runes and symbols that hurt the mind to stare at."
+	desc = "A crackling, glowing book, filled with runes and symbols that hurt the mind to stare at. Can be used to unbind spells, or to assist the caster in arcing some of their projectiles."
 	var/picked // if the book has had it's style picked or not
 	var/born_of_rock = FALSE // was a magical stone used to make it instead of a gem
 

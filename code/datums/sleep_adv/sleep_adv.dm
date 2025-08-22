@@ -71,12 +71,22 @@
 	if((mind.current.get_skill_level(skill) < SKILL_LEVEL_APPRENTICE) && !is_considered_sleeping())
 		mind.current.adjust_experience(skill, amt)
 		return
+	var/datum/skill/skillref = GetSkillRef(skill)
+	var/trait_capped_level = FALSE
+	if(length(skillref.trait_restrictions))
+		for(var/trait in skillref.trait_restrictions)
+			trait_capped_level = skillref.trait_restrictions[trait]
+			if(!HAS_TRAIT(mind.current, trait) && mind.current.get_skill_level(skill) >= skillref.trait_restrictions[trait])	//We don't have the trait & we're at the skill limit.
+				return
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)
+
+	if(can_advance_pre && trait_capped_level && (trait_capped_level <= (mind.current.get_skill_level(skill) + 1)))
+		amt = 0
+
 	adjust_sleep_xp(skill, amt)
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
 	var/capped_post = enough_sleep_xp_to_advance(skill, 2)
-	var/datum/skill/skillref = GetSkillRef(skill)
 	if(!can_advance_pre && can_advance_post && !silent)
 		to_chat(mind.current, span_nicegreen(pick(list(
 			"I'm getting a better grasp at [lowertext(skillref.name)]...",
