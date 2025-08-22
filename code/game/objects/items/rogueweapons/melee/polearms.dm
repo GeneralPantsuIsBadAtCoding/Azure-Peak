@@ -77,6 +77,7 @@
 	penfactor = 57	//At 57 pen + 25 base (82 total), you will always pen 80 stab armor, but you can't do it at range unlike a spear.
 	recovery = 20
 	clickcd = 8
+	swingdelay = 8
 
 /datum/intent/sword/lunge
 	name = "lunge"
@@ -89,6 +90,7 @@
 	damfactor = 1.3	//Zwei will still deal ~7-10 more damage at the same range, depending on user's STR.
 	recovery = 20
 	clickcd = 8
+	swingdelay = 8
 
 /datum/intent/sword/bash
 	name = "pommel bash"
@@ -926,7 +928,8 @@
 	associated_skill = /datum/skill/combat/swords
 	max_blade_int = 400
 	max_integrity = 300
-	wdefense = 7
+	wdefense = 3
+	wdefense_wbonus = 7
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/estoc/getonmobprop(tag)
