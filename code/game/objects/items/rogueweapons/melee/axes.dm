@@ -431,7 +431,7 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 11
-	max_blade_int = 150
+	max_blade_int = 200
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/axes
@@ -459,7 +459,7 @@
 	icon_state = "sgreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 11
-	max_blade_int = 200
+	max_blade_int = 250
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/greataxe/steel/doublehead
@@ -471,7 +471,7 @@
 	desc = "A steel great axe with a wicked double-bladed head. Perfect for cutting either men or trees into stumps.."
 	icon_state = "doublegreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
-	max_blade_int = 125
+	max_blade_int = 175
 	minstr = 12
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
@@ -500,7 +500,7 @@
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
 	minstr = 15	
-	max_blade_int = 100 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
+	max_blade_int = 150 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
 
 /obj/item/rogueweapon/stoneaxe/woodcut/troll
 	name = "crude heavy axe"

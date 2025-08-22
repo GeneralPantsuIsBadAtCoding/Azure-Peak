@@ -202,7 +202,7 @@
 	name = "stone sword"
 	desc = "A crude mockery of what seems to be a sword, really just a long knapped stone tied to a carved wooden shaft."
 	icon_state = "stone_sword"
-	max_blade_int = 70
+	max_blade_int = 100
 	max_integrity = 70
 	anvilrepair = /datum/skill/craft/crafting
 	smeltresult = null
@@ -933,7 +933,7 @@
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
-	max_blade_int = 150
+	max_blade_int = 230
 	max_integrity = 200
 
 /obj/item/rogueweapon/sword/long/blackflamb

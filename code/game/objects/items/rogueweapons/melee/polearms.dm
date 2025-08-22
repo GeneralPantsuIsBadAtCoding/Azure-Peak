@@ -332,7 +332,7 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 6
-	max_blade_int = 70
+	max_blade_int = 80
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
 	walking_stick = TRUE
@@ -375,7 +375,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	minstr = 6
-	max_blade_int = 50
+	max_blade_int = 70
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
 	walking_stick = TRUE
@@ -667,7 +667,7 @@
 	icon_state = "glaive"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
-	max_blade_int = 150
+	max_blade_int = 160
 	wdefense = 9
 
 /obj/item/rogueweapon/halberd/glaive/getonmobprop(tag)
@@ -729,7 +729,7 @@
 	force_wielded = 25
 	icon_state = "polehammer"
 	smeltresult = /obj/item/ingot/iron
-	max_blade_int = 100
+	max_blade_int = 150
 	sellprice = 40
 
 /datum/intent/spear/thrust/eaglebeak
@@ -1061,7 +1061,7 @@
 	icon_state = "boarspear"
 	force_wielded = 33 // 10% base damage increase
 	wdefense = 6 // A little bit extra
-	max_blade_int = 150 // 50% more sharpness but it barely matter lol
+	max_blade_int = 200 
 
 /obj/item/rogueweapon/spear/boar/frei
 	name = "Aavnic lándzsa"
@@ -1093,7 +1093,7 @@
 	icon_state = "naginata"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 7
-	max_blade_int = 100 //Nippon suteeru (dogshit)
+	max_blade_int = 150 //Nippon suteeru (dogshit)
 	wdefense = 5
 	throwforce = 12	//Not a throwing weapon. 
 	icon_angle_wielded = 50
