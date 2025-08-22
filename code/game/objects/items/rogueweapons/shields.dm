@@ -30,7 +30,7 @@
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	max_integrity = 100
-	anvilrepair = /datum/skill/craft/weaponsmithing
+	anvilrepair = /datum/skill/craft/carpentry
 	COOLDOWN_DECLARE(shield_bang)
 
 
@@ -169,7 +169,8 @@
 	wdefense = 10
 	coverage = 40
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 200
+	max_integrity = 300
+	anvilrepair = /datum/skill/craft/weaponsmithing
 
 /obj/item/rogueweapon/shield/tower/holysee
 	name = "decablessed shield"
@@ -187,7 +188,7 @@
 	coverage = 50
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 200
+	max_integrity = 330
 	sellprice = 30
 
 /obj/item/rogueweapon/shield/tower/holysee/MiddleClick(mob/user, params)
@@ -228,8 +229,9 @@
 	coverage = 50
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 200
+	max_integrity = 250
 	sellprice = 30
+	anvilrepair = /datum/skill/craft/weaponsmithing
 
 /obj/item/rogueweapon/shield/tower/metal/getonmobprop(tag)
 	if(tag)
@@ -256,7 +258,7 @@
 	coverage = 50
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 200
+	max_integrity = 250
 
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
 	. = ..()
@@ -287,7 +289,8 @@
 	force = 25
 	throwforce = 25 //for cosplaying captain raneshen
 	wdefense = 11
-	max_integrity = 175 //not fully metal but not fully wood either
+	max_integrity = 200 //not fully metal but not fully wood either
+	anvilrepair = /datum/skill/craft/carpentry
 
 /obj/item/rogueweapon/shield/tower/raneshen/getonmobprop(tag)
 	. = ..()
@@ -316,6 +319,7 @@
 	associated_skill = /datum/skill/combat/shields
 	grid_width = 32
 	grid_height = 64
+	anvilrepair = /datum/skill/craft/weaponsmithing
 
 /obj/item/rogueweapon/shield/buckler/examine(mob/living/user)
 	. = ..()
@@ -364,7 +368,7 @@
 	coverage = 30
 	attacked_sound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 150
+	max_integrity = 220
 
 /obj/item/rogueweapon/shield/heater/getonmobprop(tag)
 	. = ..()
@@ -387,7 +391,8 @@
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	possible_item_intents = list(SHIELD_SMASH_METAL, SHIELD_BLOCK) // No SHIELD_BASH. Too heavy to swing quickly, or something.
-	max_integrity = 180
+	max_integrity = 220
+	anvilrepair = /datum/skill/craft/weaponsmithing
 
 /obj/item/rogueweapon/shield/iron/getonmobprop(tag)
 	. = ..()

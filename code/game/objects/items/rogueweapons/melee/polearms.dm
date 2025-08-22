@@ -926,8 +926,8 @@
 	minstr = 8
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 300
-	wdefense = 5
+	max_blade_int = 400
+	wdefense = 6
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/estoc/getonmobprop(tag)
