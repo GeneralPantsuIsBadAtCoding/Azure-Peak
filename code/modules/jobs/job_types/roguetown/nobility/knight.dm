@@ -22,6 +22,7 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/combat_knight.ogg'
+	allowed_patrons = NON_PSYDON_PATRONS
 
 /datum/outfit/job/roguetown/knight
 	job_bitflag = BITFLAG_GARRISON
