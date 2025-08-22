@@ -19,6 +19,7 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
+	allowed_patrons = NON_PSYDON_PATRONS
 
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
