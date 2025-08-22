@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 			/obj/effect/proc_holder/spell/invoked/heal,
 			// Noc
 			/obj/effect/proc_holder/spell/invoked/noc_sight,
-			/obj/effect/proc_holder/spell/targeted/touch/darkvision/miracle,
+			/obj/effect/proc_holder/spell/invoked/darkvision/miracle,
 			/obj/effect/proc_holder/spell/invoked/invisibility/miracle,
 			// Dendor
 			/obj/effect/proc_holder/spell/invoked/spiderspeak,

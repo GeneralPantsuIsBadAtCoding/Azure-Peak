@@ -269,6 +269,14 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 	i_type = "Armor"
 
+/datum/anvil_recipe/armor/iron/wardenbrig
+	name = "Forester's Brigandine (+1 Forester's Armor, +1 Iron, +1 Essence of Wilderness)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/clothing/suit/roguetown/armor/leather/studded/warden, /obj/item/ingot/iron, /obj/item/natural/cured/essence)
+	created_item = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden/upgraded
+	craftdiff = 4
+	i_type = "Armor"
+
 /datum/anvil_recipe/armor/iron/halfplate
 	name = "Half-Plate, Iron (+2 Iron, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/iron

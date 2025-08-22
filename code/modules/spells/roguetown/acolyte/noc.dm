@@ -103,7 +103,7 @@
 		/obj/effect/proc_holder/spell/invoked/blink::name 				= /obj/effect/proc_holder/spell/invoked/blink,
 	)
 	var/list/offensive_bundle = list(	//This is not meant to make them combat-capable. A weak offensive, and mostly defensive option.
-		/obj/effect/proc_holder/spell/invoked/projectile/guided_bolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt, // PLACEHOLDER
 		/obj/effect/proc_holder/spell/self/conjure_armor/miracle,
 		/obj/effect/proc_holder/spell/invoked/conjure_weapon/miracle,
 		/obj/effect/proc_holder/spell/invoked/rebuke,

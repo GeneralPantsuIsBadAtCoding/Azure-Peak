@@ -512,9 +512,9 @@
 	associated_skill = /datum/skill/combat/shields
 	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK)
 	can_parry = TRUE
-	wdefense = 9
+	wdefense = 8
 
-	max_integrity = 100
+	max_integrity = 0
 
 
 /obj/item/rogueweapon/scabbard/sword/kazengun/steel

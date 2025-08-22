@@ -12,6 +12,10 @@
 	buckle_lying = 0
 	can_buckle = 1
 
+/obj/structure/meathook/examine()
+	. = ..()
+	. += span_notice("Improves the yield of butchering. Also increases speed by 25%.")
+
 /obj/structure/meathook/attack_paw(mob/user)
 	return attack_hand(user)
 
