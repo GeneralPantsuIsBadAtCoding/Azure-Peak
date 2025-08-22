@@ -929,7 +929,7 @@
 	max_blade_int = 400
 	max_integrity = 300
 	wdefense = 3
-	wdefense_wbonus = 7
+	wdefense_wbonus = 6
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/estoc/getonmobprop(tag)
