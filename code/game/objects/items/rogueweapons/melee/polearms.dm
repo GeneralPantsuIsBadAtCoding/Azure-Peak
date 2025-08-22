@@ -74,9 +74,9 @@
 
 /datum/intent/sword/thrust/estoc
 	name = "thrust"
-	penfactor = 50
+	penfactor = 57	//At 57 pen + 25 base (82 total), you will always pen 80 stab armor, but you can't do it at range unlike a spear.
 	recovery = 20
-	clickcd = 10
+	clickcd = 8
 
 /datum/intent/sword/lunge
 	name = "lunge"
@@ -86,11 +86,9 @@
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	reach = 2
-	penfactor = 30
-	damfactor = 1.2
-	chargetime = 5
+	damfactor = 1.3	//Zwei will still deal ~7-10 more damage at the same range, depending on user's STR.
 	recovery = 20
-	clickcd = 10
+	clickcd = 8
 
 /datum/intent/sword/bash
 	name = "pommel bash"
@@ -927,7 +925,8 @@
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
 	max_blade_int = 400
-	wdefense = 6
+	max_integrity = 300
+	wdefense = 7
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/estoc/getonmobprop(tag)
