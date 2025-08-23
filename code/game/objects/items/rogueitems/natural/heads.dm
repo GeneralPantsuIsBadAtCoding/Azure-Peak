@@ -82,7 +82,7 @@
 	w_class = WEIGHT_CLASS_NORMAL // We want them to be placeable in headhook
 	grid_height = 96
 	grid_width = 96
-	sellprice = 100
+	sellprice = 60
 
 /obj/item/natural/head/dragon/
 	name = "dragon head"
