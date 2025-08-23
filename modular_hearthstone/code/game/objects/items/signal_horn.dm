@@ -51,6 +51,50 @@
 		else
 			playsound(src, 'modular_hearthstone/sound/items/signalhorn.ogg', 100, TRUE)
 
+	for(var/mob/living/player in GLOB.player_list)
+		if(player.stat == DEAD)
+			continue
+		if(isbrain(player))
+			continue
+
+		var/turf/origin_turf = get_turf(src)
+
+		var/distance = get_dist(player, origin_turf)
+		if(distance <= 7 || distance > 21) // two screens away
+			continue
+		var/dirtext = " to the "
+		var/direction = get_dir(player, origin_turf)
+		switch(direction)
+			if(NORTH)
+				dirtext += "north"
+			if(SOUTH)
+				dirtext += "south"
+			if(EAST)
+				dirtext += "east"
+			if(WEST)
+				dirtext += "west"
+			if(NORTHWEST)
+				dirtext += "northwest"
+			if(NORTHEAST)
+				dirtext += "northeast"
+			if(SOUTHWEST)
+				dirtext += "southwest"
+			if(SOUTHEAST)
+				dirtext += "southeast"
+			else //Where ARE you.
+				dirtext = "although I cannot make out an exact direction"
+
+		switch(user.job)
+			if("Warden")
+				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/bogguardhorn.ogg', 35, FALSE, pressure_affected = FALSE)
+			if("Marshall", "Watchman", "Sergeant", "Man at Arms")
+				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/watchhorn.ogg', 35, FALSE, pressure_affected = FALSE)
+			if("Knight Captain", "Knight")
+				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/rghorn.ogg', 35, FALSE, pressure_affected = FALSE)
+			else
+				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/signalhorn.ogg', 35, FALSE, pressure_affected = FALSE)
+		to_chat(player, span_warning("I hear the horn of the Wardens somewhere [dirtext]"))
+
 	var/random_ambushes = 4 + rand(0,2) // 4 - 6 ambushes
 	for(var/i = 0, i < random_ambushes, i++)
 		user.consider_ambush(TRUE, TRUE, min_dist = WARDEN_AMBUSH_MIN, max_dist = WARDEN_AMBUSH_MAX)
