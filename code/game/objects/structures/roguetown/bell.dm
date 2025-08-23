@@ -30,7 +30,7 @@
 
 /obj/structure/standingbell
 	name = "service bell"
-	desc = "This bell can be rung to call for service."
+	desc = "A small mana-infused bell that carries its chime across the city to a select few ears. Use this to call for service."
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "standingbell"
 	density = FALSE
