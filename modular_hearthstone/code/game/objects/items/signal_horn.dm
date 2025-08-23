@@ -51,6 +51,6 @@
 		else
 			playsound(src, 'modular_hearthstone/sound/items/signalhorn.ogg', 100, TRUE)
 
-	var/random_ambushes = 3 + rand(0,2) // 3 - 5 ambushes
+	var/random_ambushes = 4 + rand(0,2) // 4 - 6 ambushes
 	for(var/i = 0, i < random_ambushes, i++)
 		user.consider_ambush(TRUE, TRUE, min_dist = WARDEN_AMBUSH_MIN, max_dist = WARDEN_AMBUSH_MAX)
