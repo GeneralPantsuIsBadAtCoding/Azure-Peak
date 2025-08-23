@@ -23,7 +23,6 @@
 	if(!TR || !TR.latent_ambush || TR.fixed_ambush)
 		to_chat(user, span_warning("There's no point in sounding the horn here."))
 		return
-	var/cannot_ambush = FALSE
 	if(user.get_will_block_ambush())
 		to_chat(user, span_warning("This place is too well-lit for enemies to come."))
 		return
