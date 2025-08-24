@@ -1,11 +1,12 @@
 // Elven unique mercenary type; should be scary in a way solo but easy to kill with a group or bow.
 /datum/advclass/mercenary/blackoak
 	name = "Black Oak's Guardian"
-	tutorial = "The Black Oaks are a shady Elven milita dedicated to upholding Azurian tradition. This land was once great...and now, wave after wave of filthy foreigners and refugees trample your glorious home. They want to subsume you, destroy your fields, and replace your culture. Unjust is the foreign-backed Crown, who oft put bounties on higher members of your order and call them WRETCHES..."
+	tutorial = "The Black Oaks are a shady Elven milita dedicated to upholding Azurian tradition. This land was once great...and now, wave after wave of filthy foreigners and refugees trample your glorious home. They want to salt your fields, destroy your culture, and replace you. Unjust is the foreign-backed Crown, who oft put bounties on higher members of your order and call them WRETCHES..."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/human/halfelf,
 		/datum/species/elf/wood,
+		/datum/species/elf/dark,
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
 	category_tags = list(CTAG_MERCENARY)
