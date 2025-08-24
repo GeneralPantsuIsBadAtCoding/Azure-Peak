@@ -45,7 +45,7 @@
 	else if(latent_ambush <= DANGER_DANGEROUS_LIMIT)
 		return DANGER_LEVEL_DANGEROUS
 	else if(latent_ambush <= DANGER_DIRE_LIMIT)
-		return DANGER_LEVEL_DIRE
+		return DANGER_LEVEL_BLEAK
 	else
 		return DANGER_LEVEL_SAFE
 
@@ -59,7 +59,7 @@
 			return "#FFA500"
 		if(DANGER_LEVEL_DANGEROUS)
 			return "#FF0000"
-		if(DANGER_LEVEL_DIRE)
+		if(DANGER_LEVEL_BLEAK)
 			return "#800080"
 		else
 			return "#FFFFFF"

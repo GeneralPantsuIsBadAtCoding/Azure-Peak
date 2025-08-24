@@ -26,7 +26,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 			true_ambush_chance *= 0.5
 		else if(danger_level == DANGER_LEVEL_DANGEROUS)
 			true_ambush_chance *= 1.5
-		else if(danger_level == DANGER_LEVEL_DIRE)
+		else if(danger_level == DANGER_LEVEL_BLEAK)
 			true_ambush_chance *= 2
 	if(!always && prob(100 - true_ambush_chance))
 		return
@@ -88,7 +88,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 					max_spawns = rand(1, 2) // This is lower than before, to make moderate easier to deal with
 				if(DANGER_LEVEL_DANGEROUS)
 					max_spawns = rand(2, 3)
-				if(DANGER_LEVEL_DIRE)
+				if(DANGER_LEVEL_BLEAK)
 					max_spawns = rand(3, 4)
 			mobs_to_spawn_single = TRUE
 		else if(istype(spawnedtype, /datum/ambush_config))
@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 						mobs_to_spawn.Cut(ri, ri + 1) // Randomly remove one mob
 					if(DANGER_LEVEL_DANGEROUS)
 						mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 1
-					if(DANGER_LEVEL_DIRE)
+					if(DANGER_LEVEL_BLEAK)
 						mobs_to_spawn += pick(mobs_to_spawn) // Randomly add 2
 						mobs_to_spawn += pick(mobs_to_spawn)
 			max_spawns = mobs_to_spawn.len

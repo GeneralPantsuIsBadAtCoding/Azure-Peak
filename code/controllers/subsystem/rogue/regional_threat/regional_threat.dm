@@ -3,7 +3,7 @@
 #define DANGER_LEVEL_LOW "Low"
 #define DANGER_LEVEL_MODERATE "Moderate"
 #define DANGER_LEVEL_DANGEROUS "Dangerous"
-#define DANGER_LEVEL_DIRE "Dire"
+#define DANGER_LEVEL_BLEAK "Bleak"
 
 #define THREAT_REGION_AZURE_BASIN "Azure Basin"
 #define THREAT_REGION_NORTHERN_GROVE "Northern Grove"

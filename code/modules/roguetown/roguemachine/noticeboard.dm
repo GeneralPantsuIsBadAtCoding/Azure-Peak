@@ -157,7 +157,7 @@
 			var/datum/threat_region_display/TRS = T
 			contents += ("<div>[TRS?.region_name]: <font color=[TRS?.danger_color]>[TRS?.danger_level]</font></div>")
 		contents += "<hr>"
-		contents += "Scouts rate how dangerous a region is from Safe -> Low -> Moderate -> Dangerous -> Dire <br>"
+		contents += "Scouts rate how dangerous a region is from Safe -> Low -> Moderate -> Dangerous -> Bleak <br>"
 		contents += "A safe region is safe and travelers are unlikely to be ambushed by common creechurs and brigands <br>"
 		contents += "A low threat region is unlikely to manifest any great threat and brigands and creechurs are often found alone.<br>"
 		contents += "Only Azure Basin, Northern Grove, South Azurean Coast, and the Terrorbog can be rendered safe entirely. <br>" 
