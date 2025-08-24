@@ -778,7 +778,7 @@
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 300
+	max_blade_int = 200
 	wdefense = 5
 	smelt_bar_num = 3
 
@@ -801,7 +801,7 @@
 	desc = "A massive blade, wrought in frayed bronze. It is too big to be called a sword; massive, thick, heavy, and far too rough. Indeed, this blade was more like a heap of raw metal."
 	force = 10
 	force_wielded = 25
-	max_integrity = 180
+	max_integrity = 150
 	icon_state = "ancient_gsw"
 	blade_dulling = DULLING_SHAFT_CONJURED
 	color = "#bb9696"
@@ -822,7 +822,7 @@
 	icon_state = "zwei"
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
-	max_blade_int = 300
+	max_blade_int = 220
 	wdefense = 4
 	force = 14
 	force_wielded = 35
@@ -832,7 +832,7 @@
 	icon_state = "steelzwei"
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
-	max_blade_int = 350
+	max_blade_int = 240
 	force = 14
 	force_wielded = 35
 
@@ -843,7 +843,7 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
 	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic
 	name = "Apocrypha"
@@ -854,7 +854,7 @@
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/exe, /datum/intent/rend, /datum/intent/axe/chop)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 1000, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/greatsword/bsword/psy
 	name = "old psydonian broadsword"

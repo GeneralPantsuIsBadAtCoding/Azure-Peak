@@ -270,15 +270,7 @@
 				if(can_train_combat_skill(H, /datum/skill/combat/unarmed, skill_target))
 					H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
 			if(unarmed_bracers)
-				var/bracer_damage
-				var/d_flag = "blunt"
-				if(intenty.masteritem)
-					bracer_damage = get_complex_damage(intenty.masteritem, user)
-					d_flag = intenty.item_d_type
-				else
-					bracer_damage = U.get_punch_dmg()
-				bracer_damage = bracer_damage / 2
-				unarmed_bracers.take_damage(bracer_damage, damage_flag = d_flag, armor_penetration = 100)
+				unarmed_bracers.take_damage(INTEG_PARRY_DECAY_NOSHARP, "slash", armor_penetration = 100)
 			flash_fullscreen("blackflash2")
 			return TRUE
 		else
@@ -297,6 +289,10 @@
 				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
 				src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
+			if(W.max_blade_int)
+				W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+			else
+				W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
 			return TRUE
 		else
 			to_chat(src, span_warning("I'm too tired to parry!"))
