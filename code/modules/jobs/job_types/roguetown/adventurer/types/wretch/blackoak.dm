@@ -14,13 +14,7 @@
 
 /datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
 	..()
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
-	cloak = /obj/item/clothing/cloak/forrestercloak
-	gloves = /obj/item/clothing/gloves/roguetown/elven_gloves
-	belt = /obj/item/storage/belt/rogue/leather/black
-	backl = /obj/item/storage/backpack/rogue/satchel
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-	pants = /obj/item/clothing/under/roguetown/trou/leather
+
 
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
@@ -37,16 +31,24 @@
 	H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 	H.change_stat("endurance", 1) //i'm scared that this stat block may be a bit too terrifying but it's an antagonistic role that is going to have like, literally zero friends, so.
-	H.change_stat("constitution", 1)
+	H.change_stat("constitution", -1)
 	H.change_stat("intelligence", 1)
-	H.change_stat("strength", 3)
-	H.change_stat("speed", 1)
+	H.change_stat("strength", 2)
+	H.change_stat("speed", 2)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_RACISMISBAD, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
+	cloak = /obj/item/clothing/cloak/forrestercloak
+	gloves = /obj/item/clothing/gloves/roguetown/elven_gloves
+	belt = /obj/item/storage/belt/rogue/leather/black
+	backl = /obj/item/storage/backpack/rogue/satchel
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+	pants = /obj/item/clothing/under/roguetown/trou/leather
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/elven
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
@@ -55,7 +57,6 @@
 	r_hand = /obj/item/rogueweapon/halberd/glaive
 	backr = /obj/item/rogueweapon/scabbard/gwstrap
 	backpack_contents = list(
-				/obj/item/roguekey/mercenary = 1,
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
