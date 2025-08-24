@@ -8,12 +8,12 @@
 		/datum/species/elf/wood,
 		/datum/species/elf/dark,
 	)
-	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
-	category_tags = list(CTAG_MERCENARY)
+	outfit = /datum/outfit/job/roguetown/wretch/blackoak
 	cmode_music = 'sound/music/combat_blackoak.ogg'
 	maximum_possible_slots = 2
+	category_tags = list(CTAG_WRETCH)
 
-/datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wretch/blackoak/pre_equip(mob/living/carbon/human/H)
 	..()
 
 
@@ -42,6 +42,7 @@
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_RACISMISBAD, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
 	cloak = /obj/item/clothing/cloak/forrestercloak
@@ -61,6 +62,7 @@
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
+
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
