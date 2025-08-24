@@ -35,7 +35,7 @@
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 	H.change_stat("endurance", 1) //i'm scared that this stat block may be a bit too terrifying but it's an antagonistic role that is going to have like, literally zero friends, so.
 	H.change_stat("constitution", -1)
-	H.change_stat("intelligence", 1)
+	H.change_stat("intelligence", 2)
 	H.change_stat("strength", 2)
 	H.change_stat("speed", 2)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
