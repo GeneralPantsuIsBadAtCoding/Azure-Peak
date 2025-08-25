@@ -22,7 +22,7 @@
 	break_sound = 'sound/foley/breaksound.ogg'
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
-	blade_dulling = DULLING_SHAFT_WOOD
+	blade_dulling = null
 	max_integrity = 250
 	integrity_failure = 0.2
 	wdefense = 3

@@ -244,7 +244,7 @@
 	icon_state = "grass1"
 	attacked_sound = "plantcross"
 	destroy_sound = "plantcross"
-	max_integrity = 5
+	max_integrity = 2
 	blade_dulling = DULLING_CUT
 	debris = list(/obj/item/natural/fibers = 1)
 

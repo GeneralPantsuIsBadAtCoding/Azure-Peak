@@ -12,7 +12,7 @@
 	throwforce = 12
 	wdefense = 3
 	wbalance = WBALANCE_SWIFT
-	max_blade_int = 100
+	max_blade_int = 200
 	max_integrity = 175
 	thrown_bclass = BCLASS_CUT
 	associated_skill = /datum/skill/combat/knives

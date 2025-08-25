@@ -367,12 +367,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		AddComponent(/datum/component/butchering, 80 * toolspeed)
 
 	if(max_blade_int)
-		//set blade integrity to randomized 60% to 100% if not already set
-		if(!blade_int)
-			blade_int = max_blade_int + rand(-(max_blade_int * 0.4), 0)
-		//set dismemberment integrity to max_blade_int if not already set
-		if(!dismember_blade_int)
-			dismember_blade_int = max_blade_int
+		if(randomize_blade_int_on_init)
+			//set blade integrity to randomized 60% to 100% if not already set
+			if(!blade_int)
+				blade_int = max_blade_int + rand(-(max_blade_int * 0.4), 0)
+			//set dismemberment integrity to max_blade_int if not already set
+			if(!dismember_blade_int)
+				dismember_blade_int = max_blade_int
+		else
+			blade_int = max_blade_int
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -483,13 +486,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(max_blade_int)
 			inspec += "\n<b>SHARPNESS:</b> "
-			var/meme = round(((blade_int / max_blade_int) * 100), 1)
-			inspec += "[meme]%"
+			var/percent = round(((blade_int / max_blade_int) * 100), 1)
+			inspec += "[percent]% ([blade_int])"
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
 		
-		if(intdamage_factor && force >= 5)
+		if(intdamage_factor != 1 && force >= 5)
 			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]%"
 
 //**** CLOTHING STUFF
