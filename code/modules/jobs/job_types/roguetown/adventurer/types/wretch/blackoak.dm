@@ -60,7 +60,8 @@
 	backr = /obj/item/rogueweapon/scabbard/gwstrap
 	backpack_contents = list(
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-				/obj/item/rogueweapon/scabbard/sheath = 1
+				/obj/item/rogueweapon/scabbard/sheath = 1,
+				/obj/item/book/rogue/blackoak = 1
 				)
 
 	if(H.mind)
