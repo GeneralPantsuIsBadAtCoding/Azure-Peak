@@ -48,7 +48,9 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 	var/cur_num_loops = 0
 	var/direct
 	var/extra_range = 0
-	var/falloff
+	var/falloff_exponent
+	var/falloff_distance
+	var/use_reverb = TRUE
 	var/frequency
 	var/stopped = TRUE
 	var/persistent_loop = FALSE //we stay in the client's played_loops so we keep updating volume even when out of range
@@ -158,9 +160,9 @@ GLOBAL_LIST_EMPTY(created_sound_groups)
 	if(direct)
 		if(ismob(thing))
 			var/mob/mob = thing
-			mob.playsound_local(mob, S, volume, vary, frequency, falloff, repeat = src, channel = channel)
+			mob.playsound_local(mob, S, volume, vary, frequency, falloff_exponent, repeat = src, channel = channel)
 	else
-		var/list/R = playsound(thing, S, volume, vary, extra_range, falloff, frequency, channel, ignore_walls = ignore_walls, repeat = src)
+		var/list/R = playsound(thing, S, volume, vary, extra_range, falloff_exponent, frequency, channel, ignore_walls = ignore_walls, repeat = src)
 		if(!R || !R.len)
 			R = list()
 		for(var/mob/M in thingshearing)

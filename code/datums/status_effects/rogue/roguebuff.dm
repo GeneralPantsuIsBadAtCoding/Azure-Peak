@@ -57,10 +57,13 @@
 /datum/status_effect/buff/druqks/baotha/on_apply()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+	owner.sound_environment_override = SOUND_ENVIRONMENT_DRUGGED
 
 /datum/status_effect/buff/druqks/baotha/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+	if(owner.sound_environment_override == SOUND_ENVIRONMENT_DRUGGED)
+		owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
 	owner.visible_message("[owner]'s eyes appear to return to normal.")
 
 /datum/status_effect/buff/druqks/on_apply()
@@ -151,6 +154,7 @@
 	ADD_TRAIT(owner, TRAIT_NOPAIN, id)
 	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, id)
 	originalcmode = owner.cmode_music
+	owner.sound_environment_override = SOUND_ENVIRONMENT_PSYCHOTIC
 	owner.cmode_music = 'sound/music/combat_ozium.ogg'
 
 /datum/status_effect/buff/herozium/on_remove()
@@ -158,6 +162,8 @@
 	REMOVE_TRAIT(owner, TRAIT_NOPAIN, id)
 	REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, id)
 	owner.cmode_music = originalcmode
+	if(owner.sound_environment_override == SOUND_ENVIRONMENT_PSYCHOTIC)
+		owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
 	. = ..()
 
 /datum/status_effect/buff/starsugar
@@ -177,6 +183,7 @@
 	ADD_TRAIT(owner, TRAIT_DARKVISION, id)
 	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
 		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
+	owner.sound_environment_override = SOUND_ENVIRONMENT_DRUGGED
 	originalcmode = owner.cmode_music
 	owner.cmode_music = 'sound/music/combat_starsugar.ogg'
 
@@ -185,6 +192,8 @@
 	REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, id)
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, id)
 	owner.remove_stress(/datum/stressevent/starsugar)
+	if(owner.sound_environment_override == SOUND_ENVIRONMENT_DRUGGED)
+		owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
 	owner.cmode_music = originalcmode
 	. = ..()
 
@@ -232,11 +241,13 @@
 /datum/status_effect/buff/vitae/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/high)
+	owner.sound_environment_override = SOUND_ENVIRONMENT_DRUGGED
 	SEND_SIGNAL(owner, COMSIG_LUX_TASTED)
 
 /datum/status_effect/buff/vitae/on_remove()
 	owner.remove_stress(/datum/stressevent/high)
-
+	if(owner.sound_environment_override == SOUND_ENVIRONMENT_DRUGGED)
+		owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/vitae

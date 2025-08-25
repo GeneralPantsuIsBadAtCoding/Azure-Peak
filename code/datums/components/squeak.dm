@@ -13,7 +13,14 @@
 	var/last_use = 0
 	var/use_delay = 20
 
-/datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override)
+	///extra-range for this component's sound
+	var/sound_extra_range = -1
+	///when sounds start falling off for the squeak
+	var/sound_falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE
+	///sound exponent for squeak. Defaults to 10 as squeaking is loud and annoying enough.
+	var/sound_falloff_exponent = 10
+
+/datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override, extrarange, falloff_exponent, fallof_distance)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_PARENT_ATTACKBY), PROC_REF(play_squeak))
