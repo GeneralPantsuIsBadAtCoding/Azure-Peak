@@ -448,6 +448,7 @@
 		else if(dullness_ratio <= SHARPNESS_TIER1_THRESHOLD)
 			var/damflerp = (dullness_ratio - SHARPNESS_TIER2_THRESHOLD) / (SHARPNESS_TIER1_THRESHOLD - SHARPNESS_TIER2_THRESHOLD)
 			newdam *= damflerp
+			newdam = round(newdam)	//floors it, making the scaling harsher
 	newforce = (newforce + newdam) * dullfactor
 	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)
 		newforce = newforce * 0.5

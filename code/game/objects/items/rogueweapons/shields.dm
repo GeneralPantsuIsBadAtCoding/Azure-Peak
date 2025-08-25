@@ -225,11 +225,11 @@
 	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
-	wdefense = 11
-	coverage = 50
+	wdefense = 12
+	coverage = 60
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 250
+	max_integrity = 300
 	sellprice = 30
 	anvilrepair = /datum/skill/craft/weaponsmithing
 
@@ -258,7 +258,7 @@
 	coverage = 50
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 250
+	max_integrity = 350
 
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
 	. = ..()
@@ -289,7 +289,7 @@
 	force = 25
 	throwforce = 25 //for cosplaying captain raneshen
 	wdefense = 11
-	max_integrity = 200 //not fully metal but not fully wood either
+	max_integrity = 220 //not fully metal but not fully wood either
 	anvilrepair = /datum/skill/craft/carpentry
 
 /obj/item/rogueweapon/shield/tower/raneshen/getonmobprop(tag)
@@ -315,7 +315,7 @@
 	coverage = 10
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 110
+	max_integrity = 130
 	associated_skill = /datum/skill/combat/shields
 	grid_width = 32
 	grid_height = 64
