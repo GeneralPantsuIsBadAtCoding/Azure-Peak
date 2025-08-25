@@ -2,13 +2,13 @@
 	race = /datum/species/lizardfolk
 
 /datum/species/lizardfolk
-	name = "Zardman"
+	name = "Saurian"
 	id = "lizardfolk"
-	desc = "<b>Zardman</b><br>\
-	Zardmen are semi-aquatic reptilian humanoids. \
+	desc = "<b>Saurian</b><br>\
+	Saurian are semi-aquatic reptilian humanoids. \
 	Their flesh is covered in scales varying in color from dark green to shades of brown and gray. \
-	Taller than humans and powerfully built, zardmen are often between 6 and 7 feet tall. \
-	Zardmen have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
+	Taller than humans and powerfully built, saurians are often between 6 and 7 feet tall. \
+	Saurians have non-prehensile muscular tails that grow to three or four feet in length, and these are used for balance. \
 	They also have sharp claws and teeth.<br>\
 	(+1 Constitution, +1 Endurance)"
 	skin_tone_wording = "Skin Colors"
@@ -71,7 +71,7 @@
 		/datum/customizer/organ/snout/lizard,
 		/datum/customizer/organ/ears/lizard,
 		/datum/customizer/organ/frills/lizard,
-		/datum/customizer/organ/horns/humanoid/zardman,
+		/datum/customizer/organ/horns/humanoid/saurian,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/animal,

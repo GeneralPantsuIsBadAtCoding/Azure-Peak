@@ -142,12 +142,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			if(!newtype)
 				switch(species_name)
 					if("Sissean")
-						testing("Updating to Zardman.")
-						species_name = "Zardman"
+						testing("Updating to Saurian.")
+						species_name = "Saurian"
+					if("Zardman")
+						testing("Updating to Saurian.")
+						species_name = "Saurian"
 					if("Vulpkian")
 						testing("Your character is now a Venardine.")
 						species_name = "Venardine"
-		_load_species(S, species_name)	
+		_load_species(S, species_name)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -260,7 +263,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_islist(key_bindings, list())
-	
+
 	//ROGUETOWN
 	parallax = PARALLAX_INSANE
 

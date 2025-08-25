@@ -58,7 +58,7 @@
 	customizer_choices = list(/datum/customizer_choice/organ/tail/lizard)
 
 /datum/customizer_choice/organ/tail/lizard
-	name = "Zardman Tail"
+	name = "Saurian Tail"
 	organ_type = /obj/item/organ/tail/lizard
 	generic_random_pick = TRUE
 	sprite_accessories = list(

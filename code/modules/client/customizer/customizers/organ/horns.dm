@@ -12,7 +12,7 @@
 	customizer_choices = list(/datum/customizer_choice/organ/horns/humanoid)
 	allows_disabling = TRUE
 
-/datum/customizer/organ/horns/humanoid/zardman
+/datum/customizer/organ/horns/humanoid/saurian
 	default_disabled = TRUE
 
 /datum/customizer_choice/organ/horns/humanoid

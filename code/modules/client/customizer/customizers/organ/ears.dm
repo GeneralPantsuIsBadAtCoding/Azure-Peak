@@ -94,7 +94,7 @@
 		/datum/sprite_accessory/ears/goblin_small,
 		/datum/sprite_accessory/ears/halforc)
 
-/datum/customizer/organ/ears/goblin 
+/datum/customizer/organ/ears/goblin
 	customizer_choices = list(/datum/customizer_choice/organ/ears/goblin)
 	allows_disabling = FALSE
 
@@ -240,7 +240,7 @@
 	default_disabled = TRUE
 
 /datum/customizer_choice/organ/ears/lizard
-	name = "Zardman Hood"
+	name = "Saurian Hood"
 	organ_type = /obj/item/organ/ears/anthro
 	generic_random_pick = TRUE
 	sprite_accessories = list(
