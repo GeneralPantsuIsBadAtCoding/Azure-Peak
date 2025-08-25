@@ -10,6 +10,7 @@
 	default_priority = 80
 	icon_state = "asse"
 	spans = list(SPAN_SAND)
+	associated_skill = /datum/skill/language/sandspeak
 	syllables = list(
 		"ak", "al", "am", "an", "ar", "bi", "da", "de", "di", "ek", "el",
 		"en", "er", "il", "in", "ir", "ka", "la", "le", "li", "ma", "nd",

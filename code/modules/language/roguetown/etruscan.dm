@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "asse"
 	spans = list(SPAN_ETRUSCAN)
+	associated_skill = /datum/skill/language/etruscan
 	syllables = list(
 		"que", "ent", "ante", "con", "est", "ado", "para", "los", "era", "ien", "men",
 		"per", "osta", "ara", "por", "una", "ión", "ant", "tra", "ero", "anto", "ació",
