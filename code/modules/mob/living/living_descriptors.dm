@@ -115,6 +115,22 @@
 	string = treat_mob_descriptor_string(string, described)
 	return string
 
+/proc/build_coalesce_description_nofluff(list/descriptors, mob/living/described, list/slots, string)
+	var/list/descs = described.get_descriptor_slot_list(slots, descriptors)
+	if(!descs)
+		return
+	var/list/used_verbage = list()
+	descriptors -= descs
+	for(var/i in 1 to descs.len)
+		var/desc_type = descs[i]
+		var/datum/mob_descriptor/descriptor = MOB_DESCRIPTOR(desc_type)
+		string = replacetext(string, "%DESC[i]%", descriptor.get_coalesce_text_nofluff(described))
+		var/used_verb = descriptor.get_verbage(described)
+		if(used_verb)
+			used_verbage |= used_verb
+	string = treat_mob_descriptor_string(string, described)
+	return string
+
 /proc/treat_mob_descriptor_string(string, mob/living/described)
 	var/they_replace
 	if(described.gender == MALE)
