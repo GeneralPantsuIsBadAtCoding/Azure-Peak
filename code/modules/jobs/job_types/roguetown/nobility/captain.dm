@@ -24,6 +24,7 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_knight.ogg'
+	allowed_patrons = NON_PSYDON_PATRONS
 
 /datum/outfit/job/roguetown/captain
 	neck = /obj/item/clothing/neck/roguetown/bevor

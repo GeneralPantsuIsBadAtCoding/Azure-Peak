@@ -23,6 +23,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_knight.ogg'
 	advclass_cat_rolls = list (CTAG_MARSHAL = 20)
+	allowed_patrons = NON_PSYDON_PATRONS
 
 /datum/outfit/job/roguetown/marshal
 	job_bitflag = BITFLAG_ROYALTY | BITFLAG_GARRISON	//Same as Captain, you get decent combat stats so might as well be garrison.
