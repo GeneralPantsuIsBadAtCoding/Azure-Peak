@@ -10,7 +10,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/wretch/blackoak
 	cmode_music = 'sound/music/combat_blackoak.ogg'
-	maximum_possible_slots = 2
+	maximum_possible_slots = 1
 	category_tags = list(CTAG_WRETCH)
 
 /datum/outfit/job/roguetown/wretch/blackoak/pre_equip(mob/living/carbon/human/H)
@@ -33,8 +33,7 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H.change_stat("endurance", 1) //i'm scared that this stat block may be a bit too terrifying but it's an antagonistic role that is going to have like, literally zero friends, so.
-	H.change_stat("constitution", -1)
+	H.change_stat("constitution", -1) //lower-than-avg stats for wretch but their traits are insanely good
 	H.change_stat("intelligence", 2)
 	H.change_stat("strength", 2)
 	H.change_stat("speed", 2)
@@ -69,5 +68,5 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
-		H.mind.adjust_spellpoints(12)
+		H.mind.adjust_spellpoints(10)
 
