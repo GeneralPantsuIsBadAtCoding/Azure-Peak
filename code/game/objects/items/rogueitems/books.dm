@@ -321,7 +321,7 @@
 
 /obj/item/book/rogue/blackoak
 	name = "The Noblest Struggle"
-	desc = "A small black book. Writings from the Grand High Wyrm of the Black Oaks."
+	desc = "A small black book. Writings from the Grand High Wyrm of the Black Oaks. All Black Oaks carry this close."
 	icon_state ="book_0"
 	base_icon_state = "book"
 	bookfile = "blackoak.json"
