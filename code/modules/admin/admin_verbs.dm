@@ -172,6 +172,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/datum/admins/proc/BC_WhitelistKeyVerb,
 	/datum/admins/proc/BC_RemoveKeyVerb,
+	/datum/admins/proc/admin_add_donator_verb,
+	/datum/admins/proc/admin_remove_donator_verb,
 	/client/proc/toggle_hub
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())

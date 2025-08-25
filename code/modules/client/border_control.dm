@@ -60,8 +60,8 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 	if(key)
 		var/confirm = alert("Add [key] to the border control whitelist?", , "Yes", "No")
 		if(confirm == "Yes")
-			message_admins("added [key] to the border whitelist.")
-			log_admin("added [key] to the border whitelist.")
+			message_admins("[key_name(usr)] added [key] to the border whitelist.")
+			log_admin("[key_name(usr)] added [key] to the border whitelist.")
 			BC_WhitelistKey(key)
 
 
@@ -100,8 +100,8 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 	if(keyToRemove)
 		var/confirm = alert("Remove [keyToRemove] from the border control whitelist?", , "Yes", "No")
 		if(confirm == "Yes")
-			message_admins("removed [keyToRemove] from the border whitelist.")
-			log_admin("removed [keyToRemove] from the border whitelist.")
+			message_admins("[key_name(usr)] removed [keyToRemove] from the border whitelist.")
+			log_admin("[key_name(usr)] removed [keyToRemove] from the border whitelist.")
 			BC_RemoveKey(keyToRemove)
 
 	return

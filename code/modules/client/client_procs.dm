@@ -981,6 +981,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		convert_notes_sql(ckey)
 
 	add_patreon_verbs()
+	is_donator = is_donator(ckey)
 	to_chat(src, get_message_output("message", ckey))
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
