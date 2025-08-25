@@ -263,11 +263,11 @@
 	icon_state = "greenkey"
 	lockid = "innkeep"
 
-/obj/item/roguekey/velder
-	name = "elder's key"
-	desc = "This key should open and close the elder's home."
-	icon_state = "brownkey"
-	lockid = "velder"
+/obj/item/roguekey/crier
+	name = "crier's key"
+	desc = "This key should open and close the crier's office."
+	icon_state = "cheesekey"
+	lockid = "crier"
 
 /obj/item/roguekey/tavern/village
 	lockid = "vtavern"

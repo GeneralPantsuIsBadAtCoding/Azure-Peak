@@ -129,6 +129,9 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .papyrus				{font-family: "Papyrus", cursive, sans-serif;}
 .robot					{font-family: "Courier New", cursive, sans-serif;}
 
+
+.orator					{font-family: "Project Sans", Pterra; font-size: 100%;}
+.sandwauk				{font-family: "Almalik", Pterra; font-size: 100%;}
 .human					{font-family: "Honoka Mincho", Pterra;}
 .elf					{font-family: "Dauphin", cursive, Pterra;}
 .dwarf					{font-family: "MasonAlternate", Pterra;}

@@ -365,6 +365,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	// Create map text prior to modifying message for goonchat
 	if(can_see_runechat(speaker) && can_hear())
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+	if(raw_message == last_heard_raw_message)
+		return
+	last_heard_raw_message = raw_message
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	show_message(message, MSG_AUDIBLE, deaf_message, deaf_type)
