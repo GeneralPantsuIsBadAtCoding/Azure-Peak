@@ -38,17 +38,20 @@
 		var/T = get_turf(user)
 		if(M.stat == DEAD && M.client && (M.client.prefs?.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
 			M.show_message(message)*/
+	user.do_subtle_emote(message)
+
+/mob/proc/do_subtle_emote(var/message)
 	var/distance = 4
-	var/list/ghostless = get_hearers_in_view(distance, user)
+	var/list/ghostless = get_hearers_in_view(distance, src)
 	var/list/mobsinview = list()
 	var/list/mobspickable = list("1-Tile Range", "Same Tile")
 	for(var/mob/living/L in ghostless)
-		if(L.stat == CONSCIOUS && L != user) // To those conscious only. Slightly more expensive but subtle is not spammed
+		if(L.stat == CONSCIOUS && L != src) // To those conscious only. Slightly more expensive but subtle is not spammed
 			mobsinview += L
 			if(!L.rogue_sneaking && L.name != "Unknown") // do not let hidden/unknown targets be added to list
 				mobspickable += L
-	var/choice = input(user, "Pick a target?", "Subtle Emote") in mobspickable
-	to_chat(user, "<i>[message]</i>")
+	var/choice = input(src, "Pick a target?", "Subtle Emote") in mobspickable
+	to_chat(src, "<i>[message]</i>")
 
 	var/user_loc
 	if(choice == "1-Tile Range")
@@ -58,18 +61,18 @@
 	else // we picked a target
 		var/mob/living/target = choice
 		if(!isliving(target) || QDELETED(target)) // mob has since been deleted/destroyed, skip
-			to_chat(user, span_boldwarning("The subtle emote target no longer exists, try again."))
+			to_chat(src, span_boldwarning("The subtle emote target no longer exists, try again."))
 			return
-		user_loc = get_turf(user)
+		user_loc = get_turf(src)
 		if(get_dist(get_turf(target), user_loc) <= distance)
 			to_chat(target, "<i>[message]</i>")
 		else
-			to_chat(user, span_boldwarning("The subtle emote target moved out of view, try again."))
+			to_chat(src, span_boldwarning("The subtle emote target moved out of view, try again."))
 		return
 
 	if(!mobsinview.len) // nobody to target, don't test distance
 		return
-	user_loc = get_turf(user)
+	user_loc = get_turf(src)
 	for(var/mob/living/L in mobsinview)
 		if(!isliving(L) || QDELETED(L)) // mob has since been deleted/destroyed, skip
 			continue
