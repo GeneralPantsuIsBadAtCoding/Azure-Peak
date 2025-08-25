@@ -66,6 +66,7 @@
 		user_loc = get_turf(src)
 		if(get_dist(get_turf(target), user_loc) <= distance)
 			to_chat(target, "<i>[message]</i>")
+			target.playsound_local(target, 'sound/misc/subtle_emote.ogg', 100)
 		else
 			to_chat(src, span_boldwarning("The subtle emote target moved out of view, try again."))
 		return
@@ -78,3 +79,4 @@
 			continue
 		if(get_dist(get_turf(L), user_loc) <= distance)
 			to_chat(L, "<i>[message]</i>")
+			L.playsound_local(L, 'sound/misc/subtle_emote.ogg', 100)
