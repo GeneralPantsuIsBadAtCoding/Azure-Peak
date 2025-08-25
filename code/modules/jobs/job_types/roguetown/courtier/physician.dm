@@ -20,7 +20,7 @@
 	give_bank_account = 30
 	min_pq = 3 //Please don't kill the duke by operating on strong intent. Play apothecary until you're deserving of the great white beak of doom
 	max_pq = null
-	round_contrib_points = 3
+	round_contrib_points = 5
 
 	cmode_music = 'sound/music/combat_physician.ogg'
 
