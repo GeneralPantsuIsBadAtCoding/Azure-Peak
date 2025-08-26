@@ -38,6 +38,16 @@
 	cost = 10
 	contains = list(/obj/item/reagent_containers/glass/bottle/waterskin)
 
+/datum/supply_pack/rogue/Things/scabbard_knife
+	name = "Dagger Sheath"
+	cost = 15
+	contains = list(/obj/item/rogueweapon/scabbard/sheath)
+
+/datum/supply_pack/rogue/Things/scabbard_sword
+	name = "Scabbard"
+	cost = 15
+	contains = list(/obj/item/rogueweapon/scabbard)
+
 /datum/supply_pack/rogue/Things/gwstrap
 	name = "Greatweapon Strap"
 	cost = 15

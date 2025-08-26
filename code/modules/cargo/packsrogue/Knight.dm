@@ -173,30 +173,40 @@
 // WEAPONS //
 /////////////
 
+/datum/supply_pack/rogue/Knight/baxe
+	name = "Battle Axe"
+	cost = 20
+	contains = list(/obj/item/rogueweapon/stoneaxe/battle)
+
+/datum/supply_pack/rogue/Knight/gmace //These two are just so they can replace / dual wield - if you want the two handed axes etc go to Brigand
+	name = "Grand Mace"
+	cost = 20
+	contains = list(/obj/item/rogueweapon/mace/goden/steel)
+
 /datum/supply_pack/rogue/Knight/lsword
 	name = "Longsword"
 	cost = 20
 	contains = list(/obj/item/rogueweapon/sword/long)
 
-/datum/supply_pack/rogue/Knight/Zweihandersword
-	name = "Zweihander"
-	cost = 40
-	contains = list(/obj/item/rogueweapon/greatsword/zwei)
-
-/datum/supply_pack/rogue/Knight/SZweihandersword
-	name = "Steel Zweihander"
-	cost = 60
-	contains = list(/obj/item/rogueweapon/greatsword/grenz)
+/datum/supply_pack/rogue/Knight/bslsword
+	name = "Flamberge"
+	cost = 30
+	contains = list(/obj/item/rogueweapon/sword/long/blackflamb)
 
 /datum/supply_pack/rogue/Knight/greatsword
 	name = "Greatsword"
-	cost = 50
+	cost = 40
 	contains = list(/obj/item/rogueweapon/greatsword)
 
 /datum/supply_pack/rogue/Knight/estoc
 	name = "Estoc"
 	cost = 50
 	contains = list(/obj/item/rogueweapon/estoc)
+
+/datum/supply_pack/rogue/Knight/ebeak
+	name = "Eagle's Beak"
+	cost = 60
+	contains = list(/obj/item/rogueweapon/eaglebeak)
 
 /////////////
 // SHIELDS //

@@ -71,6 +71,11 @@
 	cost = 30
 	contains = list(/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat)
 
+/datum/supply_pack/rogue/Knave/brigandine
+	name = "Lightweight Brigandine"
+	cost = 40
+	contains = list(/obj/item/clothing/suit/roguetown/armor/brigandine/light)
+
 ///////////////////
 // WRISTS/GLOVES //
 ///////////////////
@@ -84,6 +89,11 @@
 	name = "Hardened Leather Bracers"
 	cost = 10
 	contains = list(/obj/item/clothing/wrists/roguetown/bracers/leather/heavy)
+
+/datum/supply_pack/rogue/Knave/splintbracers
+	name = "Brigandine Rerebraces"
+	cost = 20
+	contains = list(/obj/item/clothing/wrists/roguetown/splintarms)
 
 /datum/supply_pack/rogue/Knave/leather/lgloves
 	name = "Leather Gloves"
@@ -113,6 +123,11 @@
 	name = "Hardened Leather Trousers"
 	cost = 20
 	contains = list(/obj/item/clothing/under/roguetown/heavy_leather_pants)
+
+/datum/supply_pack/rogue/Knave/splintlegs
+	name = "Brigandine Chausses"
+	cost = 30
+	contains = list(/obj/item/clothing/under/roguetown/splintlegs)
 
 /////////////////////
 // WEAPONS - MELEE //
