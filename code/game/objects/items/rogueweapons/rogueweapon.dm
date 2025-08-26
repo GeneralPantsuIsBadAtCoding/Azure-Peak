@@ -188,5 +188,5 @@
 	qdel(S)
 	new replaced_shaft(src.drop_location())
 
-/obj/item/rogueweapon/proc/add_psyblessed_component(is_preblessed, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)
-	AddComponent(/datum/component/psyblessed, is_preblessed, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)
+/obj/item/rogueweapon/proc/add_psyblessed_component(preblessing, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)
+	AddComponent(/datum/component/psyblessed, preblessing, bonus_force, bonus_sharpness, bonus_integrity, bonus_wdef, make_silver)

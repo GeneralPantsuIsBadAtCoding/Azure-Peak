@@ -99,6 +99,9 @@
 	material = "silver"
 	is_silver = TRUE
 
+/obj/item/lockpick/goldpin/silver/ComponentInitialize()
+	AddComponent(/datum/component/psyblessed, preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 20, bonus_integrity = 20, bonus_wdef = 3, make_silver = TRUE)
+
 /obj/item/lockpick/goldpin/silver/pickup(mob/user)
 	. = ..()
 	var/mob/living/carbon/human/H = user

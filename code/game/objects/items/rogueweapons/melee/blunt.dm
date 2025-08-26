@@ -136,6 +136,9 @@
 	smelt_bar_num = 2
 	is_silver = TRUE
 
+/obj/item/rogueweapon/mace/silver/ComponentInitialize()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+
 /obj/item/rogueweapon/mace/silver/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -209,12 +212,12 @@
 	wdefense = 2
 
 /obj/item/rogueweapon/mace/cudgel/psy/ComponentInitialize()
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/mace/cudgel/psy/preblessed
 
 /obj/item/rogueweapon/mace/cudgel/psy/preblessed/ComponentInitialize()
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)	
+	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)	
 
 /obj/item/rogueweapon/mace/cudgel/psy/old
 	name = "old psydonian handmace"
@@ -430,7 +433,7 @@
 
 /obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
 	. = ..()
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/mace/spiked
 	icon_state = "spiked_club"

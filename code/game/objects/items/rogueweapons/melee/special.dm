@@ -326,8 +326,8 @@
 	icon_state = "psykatar"
 
 /obj/item/rogueweapon/katar/psydon/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/knuckles/psydon
 	name = "psydonian knuckles"
@@ -335,8 +335,8 @@
 	icon_state = "psyknuckle"
 
 /obj/item/rogueweapon/knuckles/psydon/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/knuckles
 	name = "steel knuckles"

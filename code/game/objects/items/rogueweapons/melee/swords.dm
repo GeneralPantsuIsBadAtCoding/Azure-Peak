@@ -460,8 +460,8 @@
 	dropshrink = 1
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
-	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/short
 	name = "steel shortsword"
@@ -558,14 +558,13 @@
 	wbalance = WBALANCE_SWIFT
 
 /obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
-	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/short/psy/preblessed
 
 /obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
-	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
 
 /datum/intent/sword/cut/short
 	clickcd = 9
@@ -691,6 +690,10 @@
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
+
+/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -6, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 4, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
@@ -854,8 +857,8 @@
 	max_blade_int = 300
 	wdefense = 7
 
-/obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+/obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()
+	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/rapier/lord
 	name = "sword of the Mad Duke"
@@ -905,6 +908,10 @@
 	smelt_bar_num = 2
 	max_blade_int = 150
 	max_integrity = 200
+
+/obj/item/rogueweapon/sword/silver/ComponentInitialize()
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -4, bonus_sharpness = 50, bonus_integrity = 80, bonus_wdef = 3, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/long/blackflamb
 	name = "blacksteel flamberge"
@@ -1159,6 +1166,10 @@
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
 	max_integrity = 999
+
+/obj/item/rogueweapon/sword/long/holysee/ComponentInitialize()
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_TENNITE, bonus_force = -4, bonus_sharpness = 50, bonus_integrity = 80, bonus_wdef = 3, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
 	. = ..()

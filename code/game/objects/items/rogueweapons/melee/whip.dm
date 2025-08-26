@@ -108,8 +108,8 @@
 	icon_state = "psywhip"
 	
 /obj/item/rogueweapon/whip/antique/psywhip/ComponentInitialize()
-	. = ..()					// Pre-blessed, +5 force, +100 INT, +2 Def, Silver.
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
 
 
 /obj/item/rogueweapon/whip/psywhip_lesser
@@ -118,5 +118,5 @@
 	icon_state = "psywhip_lesser"
 
 /obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
-	. = ..()					//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	. = ..()
+	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)

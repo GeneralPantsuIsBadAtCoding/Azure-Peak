@@ -536,6 +536,10 @@
 	toggle_state = null
 	is_important = TRUE
 
+/obj/item/rogueweapon/sword/long/martyr/ComponentInitialize()
+	. = ..() // It is already dope AF but we need it preblessed to actually sunder everyone
+	add_psyblessed_component(preblessing = BLESSING_TENNITE, bonus_force = 0, bonus_sharpness = 0, bonus_integrity = 0, bonus_wdef = 0, make_silver = TRUE)
+
 /datum/intent/sword/cut/martyr
 		item_d_type = "fire"
 		blade_class = BCLASS_CUT

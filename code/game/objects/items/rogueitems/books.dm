@@ -213,6 +213,21 @@
 		user.visible_message(span_notice("[user] blesses [M]."))
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
+	if(user.mind?.assigned_role == "Bishop" && isitem(M) && user.used_intent?.type == /datum/intent/bless)
+		var/datum/component/psyblessed/CP = M.GetComponent(/datum/component/psyblessed)
+		if(!CP)
+			to_chat(user, span_info("\The [M] can not be blessed."))
+			return
+		else if(!CP.is_blessed)
+			playsound(user, 'sound/magic/censercharging.ogg', 100)
+			user.visible_message(span_info("[user] holds \the [src] over \the [M]..."))
+			if(do_after(user, 5 SECONDS, target = M))
+				CP.try_bless(BLESSING_TENNITE)
+				new /obj/effect/temp_visual/censer_dust(get_turf(M))
+			return
+		else
+			to_chat(user, span_info("It has already been blessed."))
+			return
 
 /obj/item/book/rogue/bibble/psy
 	name = "Of Psydon"

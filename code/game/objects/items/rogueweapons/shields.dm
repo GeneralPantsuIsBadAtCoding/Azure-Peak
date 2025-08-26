@@ -266,7 +266,7 @@
 
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
 	. = ..()
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 0, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"
