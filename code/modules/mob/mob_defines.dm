@@ -103,6 +103,11 @@
 	/// Satiation level of the mob
 	var/satiety = 0//Carbon
 
+	/// Sprite scaling variables
+	var/default_pixel_x = 0
+	var/default_pixel_y = 0
+	var/default_pixel_z = 0
+
 	/// How many ticks this mob has been over reating
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 

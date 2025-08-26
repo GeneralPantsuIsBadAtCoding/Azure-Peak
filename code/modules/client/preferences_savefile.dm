@@ -560,9 +560,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	S["pronouns"] >> pronouns
 	S["voice_type"] >> voice_type
-	S["body_size"] >> features["body_size"]
-	if (!features["body_size"])
-		features["body_size"] = BODY_SIZE_NORMAL
+	S["scale_effect"] >> features["scale_effect"]
+	if(!features["scale_effect"])
+		features["scale_effect"] = 0	//Base no modifications = 0 size
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_character(needs_update, S)		//needs_update == savefile_version if we need an update (positive integer)
@@ -727,7 +727,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["virtue"] , virtue.type)
 	WRITE_FILE(S["virtuetwo"], virtuetwo.type)
 	WRITE_FILE(S["combat_music"], combat_music.type)
-	WRITE_FILE(S["body_size"] , features["body_size"])
+	WRITE_FILE(S["scale_effect"] , features["scale_effect"])
 	if(loadout)
 		WRITE_FILE(S["loadout"] , loadout.type)
 	else

@@ -53,6 +53,9 @@
 	var/backpack = DBACKPACK		//Which backpack type the player has chosen.
 	var/jumpsuit_style = PREF_SUIT		//suit/skirt
 
+	//Sprite scaling 
+	var/scale_effect = 0
+
 	//Equipment slots
 	var/obj/item/clothing/skin_armor = null
 	var/obj/item/clothing/wear_armor = null
