@@ -1,6 +1,6 @@
 /datum/advclass/templar/vigilant
 	name = "Vigilant"
-	tutorial = "You are a vigilant of the Church, the secretive counterspies of the Grenzelhoftian Holy See. Your underhanded methods earn you the scorn of some of your brothers, but they know not of the wars you fight away from their gaze."
+	tutorial = "You are a vigilant of the Church, the secretive counterspies of the Holy See. Your underhanded methods earn you the scorn of some of your brothers, but they know not of the wars you fight away from their gaze."
 	outfit = /datum/outfit/job/roguetown/templar/vigilant
 
 	category_tags = list(CTAG_TEMPLAR)
@@ -14,7 +14,8 @@
 	backpack_contents = list(
 		/obj/item/ritechalk = 1,
 		/obj/item/lockpickring/mundane = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 2,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/keyring/churchie = 1
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
@@ -66,7 +67,6 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/steel
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltr = /obj/item/storage/keyring/churchie
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain
 	gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -132,7 +132,7 @@
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	H.change_stat("strength", -1)
 	H.change_stat("endurance", 2)
-	H.change_stat("speed", 3)
+	H.change_stat("speed", 1)
 	H.change_stat("perception", 1)
 	H.change_stat("intelligence", 2)
 
@@ -141,12 +141,13 @@
 
 /datum/outfit/job/roguetown/templar/vigilant/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Dagger + Parrying Dagger","Rapier + Parrying Dagger","Recurve Bow")
+	var/weapons = list("Dagger + Parrying Dagger","Rapier + Parrying Dagger","Recurve Bow + Dagger")
 	switch(H.patron?.type)
 		if(/datum/patron/divine/pestra)
 			weapons += "Plaguebringer Sickles"
 		if(/datum/patron/divine/xylix)
 			weapons += "Devilsknives"
+			weapons += "Recurve Bow + Cackle Lash"
 		if(/datum/patron/divine/eora)
 			weapons += "The Heartstring and Misericorde"
 		if(/datum/patron/divine/noc)
@@ -169,54 +170,103 @@
 		if("Dagger + Parrying Dagger")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Rapier + Parrying Dagger")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Recurve Bow")
-			H.put_in_hands(new /obj/item/quiver/arrows(H), TRUE)
-			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve(H), TRUE) 
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
+			H.change_stat("perception", 2)
+			H.change_stat("speed", 1)
+			H.change_stat("intelligence", 1)
+		if("Recurve Bow + Dagger")
+			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/special(H), TRUE)
+			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/quiver/arrows, SLOT_BELT_L, TRUE)
+			H.change_stat("perception", 3)
+			H.change_stat("speed", 1)
+			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
 		if("Plaguebringer Sickles")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Devilsknives")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/devilsknife(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
+		if("Recurve Bow + Cackle Lash")
+			H.put_in_hands(new /obj/item/rogueweapon/whip/xylix(H), TRUE)
+			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/quiver/arrows, SLOT_BELT_L, TRUE)
+			H.change_stat("perception", 3)
+			H.change_stat("speed", 1)
+			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 3, TRUE)
 		if("The Heartstring and Misericorde")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier/eora(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/eora(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("perception", 2)
+			H.change_stat("speed", 1)
+			H.change_stat("intelligence", 1)
 		if("Twilight Fangs")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/throwingknife/steel/noc(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/throwingknife/steel/noc(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Dawnbringers")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/astrata(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/astrata(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Echoes of Triumph")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/ravox(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/ravox(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Darkwater Rippers")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/abyssor(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/abyssor(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Madenning Thorns")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/dendor(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/dendor(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Osteotomes")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/necra(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/necra(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 		if("Embertongues")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/malum(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/malum(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
 
