@@ -318,3 +318,22 @@
 	can_sew = FALSE
 	can_cauterize = FALSE
 	disabling = TRUE
+
+/datum/wound/sunder/chest
+	name = "sundered lux"
+	check_name = span_artery("<B>SUNDERED LUX</B>")
+	severity = WOUND_SEVERITY_FATAL
+	whp = 100
+	sewn_whp = 35
+	bleed_rate = 50
+	sewn_bleed_rate = 0.8
+	woundpain = 100
+	sewn_woundpain = 50
+
+/datum/wound/sunder/chest/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(iscarbon(affected))
+		var/mob/living/carbon/carbon_affected = affected
+		carbon_affected.vomit(blood = TRUE)
+	to_chat(affected, span_userdanger("MY LUX! IT BURNED MY LUX!!!"))
+	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)

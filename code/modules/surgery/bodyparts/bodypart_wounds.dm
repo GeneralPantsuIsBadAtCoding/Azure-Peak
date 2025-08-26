@@ -310,8 +310,9 @@
 			else
 				attempted_wounds += /datum/wound/scarring
 	if(bclass in GLOB.sunder_bclasses && HAS_TRAIT(owner, TRAIT_SILVER_WEAK))
+		used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 		if(prob(used))
-			attempted_wounds += /datum/wound/sunder
+			attempted_wounds += list(/datum/wound/sunder, /datum/wound/sunder/chest)
 
 	for(var/wound_type in shuffle(attempted_wounds))
 		var/datum/wound/applied = add_wound(wound_type, silent, crit_message)
@@ -426,6 +427,7 @@
 				else if(zone_precise in knockout_zones)
 					attempted_wounds += /datum/wound/fracture/head/brain
 	if(bclass in GLOB.sunder_bclasses && HAS_TRAIT(owner, TRAIT_SILVER_WEAK))
+		used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 		if(prob(used))
 			attempted_wounds += /datum/wound/sunder
 
