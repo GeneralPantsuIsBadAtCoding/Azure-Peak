@@ -38,6 +38,10 @@
 	cost = 10
 	contains = list(/obj/item/reagent_containers/glass/bottle/waterskin)
 
+/////////////
+// STORAGE //
+/////////////
+
 /datum/supply_pack/rogue/Things/scabbard_knife
 	name = "Dagger Sheath"
 	cost = 15
@@ -52,6 +56,21 @@
 	name = "Greatweapon Strap"
 	cost = 15
 	contains = list(/obj/item/rogueweapon/scabbard/gwstrap)
+
+/datum/supply_pack/rogue/Things/satchel
+	name = "Satchel"
+	cost = 25
+	contains = list(/obj/item/storage/backpack/rogue/satchel)
+
+/datum/supply_pack/rogue/Things/satchel_mini
+	name = "Satchel - Short"
+	cost = 25
+	contains = list(/obj/item/storage/backpack/rogue/satchel/short)
+
+/datum/supply_pack/rogue/Things/backpack
+	name = "Backpack"
+	cost = 30
+	contains = list(/obj/item/storage/backpack/rogue/backpack)
 
 /////////////
 // POTIONS //
