@@ -304,3 +304,17 @@
 	if(istype(other, /datum/wound/scarring))
 		return FALSE
 	return TRUE
+
+/datum/wound/sunder
+	name = "sundered"
+	check_name = "<span class='userdanger'><B>SUNDERED</B></span>"
+	crit_message = list(
+		"The %BODYPART is sundered!",
+		"The %BODYPART is BURNT by HIS might!",
+	)
+	sound_effect = 'sound/combat/crit.ogg'
+	whp = 80
+	woundpain = 30
+	can_sew = FALSE
+	can_cauterize = FALSE
+	disabling = TRUE

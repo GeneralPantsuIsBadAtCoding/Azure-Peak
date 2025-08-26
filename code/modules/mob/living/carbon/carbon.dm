@@ -361,6 +361,8 @@
 
 /mob/living/carbon/resist_fire()
 	fire_stacks -= 2.5
+	var/datum/component/sunder_fire/sunder = GetComponent(/datum/component/sunder_fire)
+	sunder?.resist()
 	if(fire_stacks > 10 || !(mobility_flags & MOBILITY_STAND))
 		Paralyze(50, TRUE, TRUE)
 		spin(32,2)

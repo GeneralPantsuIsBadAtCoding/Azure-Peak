@@ -214,6 +214,7 @@
 #define BCLASS_PEEL			"peel"
 #define BCLASS_PUNISH		"punish"
 #define BCLASS_EFFECT		"effect"
+#define BCLASS_SUNDER       "sunder"
 
 //Material class (what material is striking)
 #define MCLASS_GENERIC		1

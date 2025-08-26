@@ -462,3 +462,5 @@
 // heretic signals
 #define COMSIG_TRAIT_GAIN "trait_gain"    // (trait, source)
 #define COMSIG_TRAIT_LOSS "trait_loss"    // (trait, source)				//from monkey CtrlClickOn(): (/mob)
+
+#define COMSIG_ITEM_ATTACK_EFFECT "item_attack_effect"
