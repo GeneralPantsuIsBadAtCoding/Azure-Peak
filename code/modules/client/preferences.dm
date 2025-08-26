@@ -1955,7 +1955,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<span class='info'>[charflaw.desc]</span>")
 
 				if("scale_effect")
-					var/new_size_mult = input(user, "Choose your character's size ranging from -5% to +25% from normal sprite size. Note that 100% equalys roughly 1.66 meters / 5'10", "Character Preference", features["scale_effect"]) as num|null
+					var/new_size_mult = input(user, "Choose your character's size ranging from -5 to +25 from normal sprite size. Note that 100% equalys roughly 1.66 meters / 5'10", "Character Preference", features["scale_effect"]) as num|null
 					if(!ISINRANGE(new_size_mult,-5,25))
 						scale_effect = 0
 						features["scale_effect"] = 0
