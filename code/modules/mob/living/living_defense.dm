@@ -156,7 +156,7 @@
 	if(!maxstacks)
 		maxstacks = 1
 	if(maxstacks)
-		if(fire_stacks + divine_fire_stacks >= maxstacks)
+		if(fire_stacks + divine_fire_stacks + sunder_fire_stacks >= maxstacks)
 			return
 	if(added)
 		adjust_fire_stacks(added)

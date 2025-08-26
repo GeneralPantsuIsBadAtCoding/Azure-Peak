@@ -120,8 +120,10 @@
 //		testing("handlefyre0 [src]")
 		return TRUE //the mob is no longer on fire, no need to do the rest.
 //	testing("handlefyre1 [src]")
-	if(fire_stacks + divine_fire_stacks > 0)
+	if(fire_stacks + divine_fire_stacks + sunder_fire_stacks> 0)
 		adjust_divine_fire_stacks(-0.05)
+		if(sunder_fire_stacks > 0)
+			adjust_sunder_stacks(-0.05)
 		if(fire_stacks > 0)
 			adjust_fire_stacks(-0.05) //the fire is slowly consumed
 	else

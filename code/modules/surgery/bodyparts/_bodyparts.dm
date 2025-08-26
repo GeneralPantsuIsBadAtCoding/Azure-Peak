@@ -172,8 +172,7 @@
 
 /obj/item/bodypart/onbite(mob/living/carbon/human/user)
 	if((user.mind && user.mind.has_antag_datum(/datum/antagonist/zombie)) || istype(user.dna.species, /datum/species/werewolf))
-		var/datum/component/sunder_fire/sunder_comp = user.GetComponent(/datum/component/sunder_fire)
-		if(sunder_comp)
+		if(owner.has_status_effect(/datum/status_effect/debuff/sundered))
 			to_chat(user, span_notice("My power is weakened, I cannot heal!"))
 			return
 		if(do_after(user, 50, target = src))
@@ -375,7 +374,7 @@
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
 /obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
-	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && owner.GetComponent(/datum/component/sunder_fire))
+	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && owner.has_status_effect(/datum/status_effect/debuff/sundered))
 		return
 	update_HP()
 	if(required_status && (status != required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.

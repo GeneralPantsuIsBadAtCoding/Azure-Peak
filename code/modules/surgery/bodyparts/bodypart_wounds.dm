@@ -50,7 +50,7 @@
 /obj/item/bodypart/proc/heal_wounds(heal_amount)
 	if(!length(wounds))
 		return FALSE
-	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && owner.GetComponent(/datum/component/sunder_fire))
+	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && owner.has_status_effect(/datum/status_effect/debuff/sundered))
 		return
 	var/healed_any = FALSE
 	for(var/datum/wound/wound as anything in wounds)

@@ -40,6 +40,7 @@
 	sharedSoullinks = null
 	if(craftingthing)
 		QDEL_NULL(craftingthing)
+	QDEL_NULL(sunder_light_obj)
 	return ..()
 
 /mob/living/onZImpact(turf/T, levels)
@@ -853,6 +854,7 @@
 	ExtinguishMob()
 	fire_stacks = 0
 	divine_fire_stacks = 0
+	sunder_fire_stacks = 0
 	confused = 0
 	dizziness = 0
 	drowsyness = 0
@@ -1495,11 +1497,11 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	if((fire_stacks > 0 || divine_fire_stacks > 0) && !on_fire)
+	if((fire_stacks > 0 || divine_fire_stacks > 0 || sunder_fire_stacks > 0) && !on_fire)
 		if(HAS_TRAIT(src, TRAIT_NOFIRE) && prob(90)) // Nofire is described as nonflammable, not immune. 90% chance of avoiding ignite
 			return
 		testing("ignis")
-		on_fire = 1
+		on_fire = TRUE
 		src.visible_message(span_warning("[src] catches fire!"), \
 						span_danger("I'm set on fire!"))
 		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
@@ -1515,13 +1517,14 @@
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
-		on_fire = 0
+		on_fire = FALSE
 		fire_stacks = 0
 		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
 			qdel(F)
 		clear_alert("fire")
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 		SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISHED, src)
+		remove_status_effect(/datum/status_effect/debuff/sundered)
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
@@ -1531,6 +1534,14 @@
 
 /mob/living/proc/adjust_divine_fire_stacks(add_fire_stacks) //Adjusting the amount of divine_fire_stacks we have on person
 	divine_fire_stacks = CLAMP(divine_fire_stacks + add_fire_stacks, 0, 100)
+
+/// Adjusting the amount of sunder_fire_stacks we have on person
+/mob/living/proc/adjust_sunder_stacks(add)
+	sunder_fire_stacks = CLAMP(sunder_fire_stacks + add, 0, 100)
+	if(sunder_fire_stacks > 0)
+		apply_status_effect(/datum/status_effect/debuff/sundered)
+	else
+		remove_status_effect(/datum/status_effect/debuff/sundered)
 
 //Share fire evenly between the two mobs
 //Called in MobBump() and Crossed()

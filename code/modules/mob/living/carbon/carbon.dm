@@ -361,17 +361,17 @@
 
 /mob/living/carbon/resist_fire()
 	fire_stacks -= 2.5
-	var/datum/component/sunder_fire/sunder = GetComponent(/datum/component/sunder_fire)
-	sunder?.resist()
-	if(fire_stacks > 10 || !(mobility_flags & MOBILITY_STAND))
+	sunder_fire_stacks -= 2
+	if(fire_stacks + sunder_fire_stacks > 10 || !(mobility_flags & MOBILITY_STAND))
 		Paralyze(50, TRUE, TRUE)
 		spin(32,2)
 		fire_stacks -= 5
+		sunder_fire_stacks -= 4
 		visible_message("<span class='warning'>[src] rolls on the ground, trying to put [p_them()]self out!</span>")
 	else
 		visible_message("<span class='notice'>[src] pats the flames to extinguish them.</span>")
 	sleep(30)
-	if(fire_stacks <= 0)
+	if(fire_stacks + sunder_fire_stacks <= 0)
 		ExtinguishMob(TRUE)
 	return
 

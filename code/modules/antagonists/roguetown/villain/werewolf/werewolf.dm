@@ -109,8 +109,7 @@
 /mob/living/carbon/human/proc/werewolf_feed(mob/living/carbon/human/target, healing_amount = 10)
 	if(!istype(target))
 		return
-	var/datum/component/sunder_fire/sunder_comp = GetComponent(/datum/component/sunder_fire)
-	if(sunder_comp)
+	if(has_status_effect(/datum/status_effect/debuff/sundered))
 		to_chat(src, span_notice("My power is weakened, I cannot heal!"))
 		return
 	if(target.mind)

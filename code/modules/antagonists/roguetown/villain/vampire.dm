@@ -365,8 +365,7 @@
 /mob/living/carbon/human/proc/vamp_regenerate()
 	set name = "Regenerate"
 	set category = "VAMPIRE"
-	var/datum/component/sunder_fire/sunder_comp = GetComponent(/datum/component/sunder_fire)
-	if(sunder_comp)
+	if(has_status_effect(/datum/status_effect/debuff/sundered))
 		to_chat(src, span_warning("My BANE is not letting me REGEN!."))
 		return
 	var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)

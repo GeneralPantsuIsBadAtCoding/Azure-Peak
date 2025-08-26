@@ -262,6 +262,8 @@
 			M.adjust_divine_fire_stacks(-2)
 		if(M.fire_stacks > 0)
 			M.adjust_fire_stacks(-2)
+		if(M.sunder_fire_stacks)
+			M.adjust_sunder_stacks(-2)
 		take_damage(10, BURN, "fire")
 	else
 		return ..()

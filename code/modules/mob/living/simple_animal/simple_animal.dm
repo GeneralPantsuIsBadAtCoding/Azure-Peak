@@ -593,9 +593,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	. = ..()
 	if(!on_fire)
 		return TRUE
-	if(fire_stacks + divine_fire_stacks > 0)
+	if(fire_stacks + divine_fire_stacks + sunder_fire_stacks> 0)
 		apply_damage(5, BURN)
-		if(fire_stacks + divine_fire_stacks > 5)
+		if(fire_stacks + divine_fire_stacks + sunder_fire_stacks > 5)
 			apply_damage(10, BURN)
 
 //mob/living/simple_animal/IgniteMob()

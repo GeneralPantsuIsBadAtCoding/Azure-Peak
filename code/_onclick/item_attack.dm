@@ -558,7 +558,8 @@
 	SEND_SIGNAL(H, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 
 	if(is_silver && HAS_TRAIT(H, TRAIT_SILVER_WEAK))
-		H.AddComponent(/datum/component/sunder_fire, 3)
+		H.adjust_sunder_stacks(3)
+		H.IgniteMob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)
