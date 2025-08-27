@@ -31,6 +31,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tarot Deck"
 	path = /obj/item/toy/cards/deck/tarot
 
+/datum/loadout_item/Scroll
+	name = "Scroll" 
+	path = /obj/item/paper/scroll
+
+/datum/loadout_item/Flint
+	name = "Flint"
+	path = /obj/item/flint
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"

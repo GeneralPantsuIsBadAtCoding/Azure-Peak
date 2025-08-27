@@ -217,6 +217,18 @@
 		/datum/mob_descriptor/chitin/fine,
 	)
 
+/datum/descriptor_choice/metal
+	name = "Plating"
+	descriptors = list(
+	/datum/mob_descriptor/metal/smooth,
+	/datum/mob_descriptor/metal/warped,
+	/datum/mob_descriptor/metal/polished,
+	/datum/mob_descriptor/metal/rough,
+	/datum/mob_descriptor/metal/scratched,
+	/datum/mob_descriptor/metal/engraved,
+	)
+
+
 /datum/descriptor_choice/height
 	name = "Height"
 	default_descriptor = /datum/mob_descriptor/height/moderate

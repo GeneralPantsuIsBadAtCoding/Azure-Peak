@@ -139,3 +139,26 @@
 
 /datum/mob_descriptor/chitin/fine
 	name = "Fine Chitin"
+
+/datum/mob_descriptor/metal
+	abstract_type = /datum/mob_descriptor/metal
+	slot = MOB_DESCRIPTOR_SLOT_SKIN
+	verbage = "%HAVE%"
+
+/datum/mob_descriptor/metal/smooth
+	name = "Smooth plating"
+
+/datum/mob_descriptor/metal/warped
+	name = "Warped plating"
+
+/datum/mob_descriptor/metal/polished
+	name = "Polished plating"
+
+/datum/mob_descriptor/metal/rough
+	name = "Rough plating"
+
+/datum/mob_descriptor/metal/scratched
+	name = "Scratched plating"	
+	
+/datum/mob_descriptor/metal/engraved
+	name = "Engraved plating"	
