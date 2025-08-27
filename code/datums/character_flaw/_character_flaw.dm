@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/critweakness
 	name = "Critical Weakness"
-	desc = "My bones are as fragile as eggshell. Single well-placed blow will likely end me then and there."
+	desc = "My bones are as fragile as eggshell. A single well-placed blow will likely end me then and there."
 
 /datum/charflaw/critweakness/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
