@@ -55,7 +55,13 @@
 	switch(H.patron?.type)
 		if(/datum/patron/divine/undivided)
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
-			cloak = /obj/item/clothing/cloak/tabard/crusader/astrata
+			var/cloaks = list("Cloak", "Tabard")
+			var/cloakchoice = input(H,"Choose your covering", "TAKE UP FASHION") as anything in cloaks
+			switch(cloakchoice)
+				if("Cloak")
+					cloak = /obj/item/clothing/cloak/undivided
+				if("Tabard")
+					cloak = /obj/item/clothing/cloak/templar/undivided
 		if(/datum/patron/divine/astrata)
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 			cloak = /obj/item/clothing/cloak/tabard/crusader/astrata
@@ -205,8 +211,14 @@
 		if(/datum/patron/divine/undivided)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
-			cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 			backr = /obj/item/rogueweapon/shield/tower/holysee
+			var/cloaks = list("Cloak", "Tabard")
+			var/cloakchoice = input(H,"Choose your covering", "TAKE UP FASHION") as anything in cloaks
+			switch(cloakchoice)
+				if("Cloak")
+					cloak = /obj/item/clothing/cloak/undivided
+				if("Tabard")
+					cloak = /obj/item/clothing/cloak/templar/undivided
 		if(/datum/patron/divine/astrata)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -278,6 +290,8 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)	//May tone down to 2; seems OK.
 	// -- Start of section for god specific bonuses --
+	if(H.patron?.type == /datum/patron/divine/undivided)
+		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 	if(H.patron?.type == /datum/patron/divine/astrata)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 		H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
@@ -333,6 +347,8 @@
 	switch(H.patron?.type)
 		if(/datum/patron/divine/astrata) //Unique patron weapons, more can be added here if wanted.
 			weapons += "Solar Judgement"
+		if(/datum/patron/divine/undivided)
+			weapons += "Decablade"
 		if(/datum/patron/divine/noc)
 			weapons += "Moonlight Khopesh"
 		if(/datum/patron/divine/necra)
@@ -354,7 +370,7 @@
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Longsword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/long(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/church(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Flail")
 			H.put_in_hands(new /obj/item/rogueweapon/flail(H), TRUE)
@@ -365,6 +381,9 @@
 		if("Battle Axe")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+		if("Decablade")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/undivided(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)	
 		if("Solar Judgement")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/exe/astrata(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)

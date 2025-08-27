@@ -733,7 +733,6 @@ will handle it, but:
 Checks if that loc and dir has an item on the wall
 */
 GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
-	/obj/structure/noticeboard,
 	/obj/structure/mirror,
 	/obj/structure/fireaxecabinet,
 	)))

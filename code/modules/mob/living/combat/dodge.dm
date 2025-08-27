@@ -254,47 +254,9 @@
 			var/lucmod = L.STALUC - U.STALUC
 			probclip += lucmod * 10
 		if(prob(probclip) && IS && IU)
-			var/dam2take = round((get_complex_damage(IU, user, FALSE)/2),1)
-			if(dam2take)
-				if(!user.mind)
-					dam2take = dam2take * 0.25
-				if(dam2take > 0 && (user.used_intent.masteritem?.intdamage_factor != 1 || user.used_intent.intent_intdamage_factor != 1))
-					var/higher_intfactor = max(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
-					var/lowest_intfactor = min(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
-					var/used_intfactor
-					if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-						used_intfactor = lowest_intfactor
-					if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-						used_intfactor = higher_intfactor
-					dam2take *= used_intfactor
-				else
-					if(istype(user, /mob/living/simple_animal))
-						var/mob/living/simple_animal/SM = user
-						dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
-						dam2take *= (SM.STASTR / 10)
-						dam2take *= 0.25
-						switch(IS.blade_dulling)
-							if(DULLING_SHAFT_CONJURED)
-								dam2take *= 1.3
-							if(DULLING_SHAFT_METAL)
-								switch(SM.d_type)
-									if("slash")
-										dam2take *= 0.5
-									if("blunt")
-										dam2take *= 1.5
-							if(DULLING_SHAFT_WOOD)
-								switch(SM.d_type)
-									if("slash")
-										dam2take *= 1.5
-									if("blunt")
-										dam2take *= 0.5
-							if(DULLING_SHAFT_REINFORCED)
-								switch(SM.d_type)
-									if("slash")
-										dam2take *= 0.75
-									if("stab")
-										dam2take *= 1.5
-				IS.take_damage(max(dam2take,1), BRUTE, IU.d_type)
+			var/intdam = IS.max_blade_int ? INTEG_PARRY_DECAY : INTEG_PARRY_DECAY_NOSHARP
+			IS.take_damage(intdam, BRUTE, IU.d_type)
+			IS.remove_bintegrity(SHARPNESS_ONHIT_DECAY, src)
 
 			user.visible_message(span_warning("<b>[user]</b> clips [src]'s weapon!"))
 			playsound(user, 'sound/misc/weapon_clip.ogg', 100)

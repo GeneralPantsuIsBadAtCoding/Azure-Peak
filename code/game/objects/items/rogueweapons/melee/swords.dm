@@ -106,7 +106,6 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	armor = ARMOR_SWORD
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
@@ -120,7 +119,7 @@
 		)
 	swingsound = BLADEWOOSH_MED
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 100
+	max_blade_int = 200
 	max_integrity = 150
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
@@ -129,7 +128,6 @@
 	flags_1 = CONDUCT_1
 	throwforce = 10
 	thrown_bclass = BCLASS_CUT
-	blade_dulling = DULLING_SHAFT_METAL
 	//dropshrink = 0.75
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -167,7 +165,7 @@
 	force = 22
 	possible_item_intents = list(/datum/intent/sword/cut/falx,  /datum/intent/sword/chop/falx, /datum/intent/sword/strike, /datum/intent/sword/peel)
 	icon_state = "falx"
-	max_blade_int = 100
+	max_blade_int = 250
 	max_integrity = 125
 	gripped_intents = null
 	minstr = 4
@@ -204,61 +202,13 @@
 	name = "stone sword"
 	desc = "A crude mockery of what seems to be a sword, really just a long knapped stone tied to a carved wooden shaft."
 	icon_state = "stone_sword"
-	max_blade_int = 70
+	max_blade_int = 100
 	max_integrity = 70
 	anvilrepair = /datum/skill/craft/crafting
 	smeltresult = null
 	minstr = 4
 	wdefense = 4
 	sellprice = 10
-
-/obj/item/rogueweapon/sword/short
-	name = "steel shortsword"
-	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers."
-	force = 19
-	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
-	icon_state = "swordshort"
-	sheathe_icon = "swordshort"
-	gripped_intents = null
-	minstr = 4
-	wdefense = 4
-	wlength = WLENGTH_SHORT
-	w_class = WEIGHT_CLASS_NORMAL
-	grid_width = 32
-	grid_height = 96
-
-/obj/item/rogueweapon/sword/short/pashortsword
-	name = "ancient shortsword"
-	desc = "A polished sidearm-sword, forged from gilbranze. From after His sacrifice, but before Her ascension; the tithe of a war without reason, waged between squabbling children who hadn't known that the world was about to end."
-	icon_state = "ashortsword"
-	sheathe_icon = "ashortsword"
-	smeltresult = /obj/item/ingot/aaslag
-
-/obj/item/rogueweapon/sword/short/psy
-	name = "psydonian shortsword"
-	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
-	force = 19
-	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
-	icon_state = "psyswordshort"
-	sheathe_icon = "psyswordshort"
-	gripped_intents = null
-	minstr = 4
-	wdefense = 4
-	wbalance = WBALANCE_SWIFT
-	wlength = WLENGTH_SHORT
-	w_class = WEIGHT_CLASS_NORMAL
-	grid_width = 32
-	grid_height = 96
-
-/obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
-	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
-
-/obj/item/rogueweapon/sword/short/psy/preblessed
-
-/obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
-	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/sword/long
 	name = "longsword"
@@ -287,8 +237,121 @@
 	associated_skill = /datum/skill/combat/swords
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
+	max_blade_int = 280
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
+
+
+/obj/item/rogueweapon/sword/long/church
+	name = "see longsword"
+	desc = "The workhorse of the Holy See. Blades like this have drawn blood against the  old Infidels and the modern Inhumen heretics alike for centuries."
+	icon_state = "churchsword"
+
+/obj/item/rogueweapon/sword/long/undivided
+	name = "decablade"
+	desc = "With a drop of holy Eclipsum, doth the blade rise. Gilded, gleaming, radiant heat, warm my soul, immolate my enemies."
+	icon_state = "eclipsum"
+	sheathe_icon = "eclipsum"
+	force = 28
+	force_wielded = 33
+
+/obj/item/rogueweapon/sword/long/undivided/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen") return list(
+				"shrink" = 0.65,
+				"sx" = -14,
+				"sy" = -8,
+				"nx" = 15,
+				"ny" = -7,
+				"wx" = -10,
+				"wy" = -5,
+				"ex" = 7,
+				"ey" = -6,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = -13,
+				"sturn" = 110,
+				"wturn" = -60,
+				"eturn" = -30,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 8,
+				"eflip" = 1,
+				)
+			if("onback") return list(
+				"shrink" = 0.65,
+				"sx" = -1,
+				"sy" = 2,
+				"nx" = 0,
+				"ny" = 2,
+				"wx" = 2,
+				"wy" = 1,
+				"ex" = 0,
+				"ey" = 1,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 70,
+				"eturn" = 15,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 1,
+				"eflip" = 1,
+				"northabove" = 1,
+				"southabove" = 0,
+				"eastabove" = 0,
+				"westabove" = 0,
+				)
+			if("wielded") return list(
+				"shrink" = 0.6,
+				"sx" = 3,
+				"sy" = 5,
+				"nx" = -3,
+				"ny" = 5,
+				"wx" = -9,
+				"wy" = 4,
+				"ex" = 9,
+				"ey" = 1,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 0,
+				"eturn" = 15,
+				"nflip" = 8,
+				"sflip" = 0,
+				"wflip" = 8,
+				"eflip" = 0,
+				)
+			if("onbelt") return list(
+				"shrink" = 0.4,
+				"sx" = -4,
+				"sy" = -6,
+				"nx" = 5,
+				"ny" = -6,
+				"wx" = 0,
+				"wy" = -6,
+				"ex" = -1,
+				"ey" = -6,
+				"nturn" = 100,
+				"sturn" = 156,
+				"wturn" = 90,
+				"eturn" = 180,
+				"nflip" = 0,
+				"sflip" = 0,
+				"wflip" = 0,
+				"eflip" = 0,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				)
+
 
 /obj/item/rogueweapon/sword/long/death
 	color = CLOTHING_BLACK
@@ -332,7 +395,6 @@
 	sheathe_icon = "zizosword"
 	force = 30
 	force_wielded = 35
-	blade_dulling = DULLING_SHAFT_GRAND
 	equip_delay_self = 0
 	unequip_delay_self = 0
 
@@ -413,7 +475,6 @@
 	item_state = "vlord"
 	wbalance = WBALANCE_NORMAL
 	max_integrity = 9999
-	blade_dulling = DULLING_SHAFT_GRAND
 	sellprice = 363
 	static_price = TRUE
 	equip_delay_self = 0
@@ -546,6 +607,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/short/pashortsword
 	name = "ancient shortsword"
@@ -582,6 +644,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/short/gladius/pagladius
 	name = "ancient gladius"
@@ -596,6 +659,24 @@
 	icon_state = "iswordshort_d"
 	sheathe_icon = "iswordshort_d"
 	max_integrity = 75
+
+/obj/item/rogueweapon/sword/short/psy
+	name = "psydonian shortsword"
+	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
+	force = 19
+	icon_state = "psyswordshort"
+	sheathe_icon = "psyswordshort"
+	wbalance = WBALANCE_SWIFT
+
+/obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
+	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+
+/obj/item/rogueweapon/sword/short/psy/preblessed
+
+/obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
+	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /datum/intent/sword/cut/short
 	clickcd = 9
@@ -702,6 +783,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/sword/sabre/palloy
 	name = "ancient khopesh"
@@ -933,7 +1015,7 @@
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
-	max_blade_int = 150
+	max_blade_int = 230
 	max_integrity = 200
 
 /obj/item/rogueweapon/sword/long/blackflamb
@@ -1179,8 +1261,7 @@
 /obj/item/rogueweapon/sword/long/holysee
 	name = "eclipsum sword"
 	desc = "A deadly longsword born of Astratan and Nocite hands, this blade was forged with both silver and gold alike. Blessed to hold strength and bring hope, whether it be during the dae or the nite."
-	icon_state = "eclipsum"
-	sheathe_icon = "eclipsum"
+	icon_state = "seeblade"
 	force = 34
 	force_wielded = 50
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
@@ -1189,103 +1270,6 @@
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
 	max_integrity = 999
-
-/obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
-	. = ..()
-	if(tag)
-		switch(tag)
-			if("gen") return list(
-				"shrink" = 0.65,
-				"sx" = -14,
-				"sy" = -8,
-				"nx" = 15,
-				"ny" = -7,
-				"wx" = -10,
-				"wy" = -5,
-				"ex" = 7,
-				"ey" = -6,
-				"northabove" = 0,
-				"southabove" = 1,
-				"eastabove" = 1,
-				"westabove" = 0,
-				"nturn" = -13,
-				"sturn" = 110,
-				"wturn" = -60,
-				"eturn" = -30,
-				"nflip" = 1,
-				"sflip" = 1,
-				"wflip" = 8,
-				"eflip" = 1,
-				)
-			if("onback") return list(
-				"shrink" = 0.65,
-				"sx" = -1,
-				"sy" = 2,
-				"nx" = 0,
-				"ny" = 2,
-				"wx" = 2,
-				"wy" = 1,
-				"ex" = 0,
-				"ey" = 1,
-				"nturn" = 0,
-				"sturn" = 0,
-				"wturn" = 70,
-				"eturn" = 15,
-				"nflip" = 1,
-				"sflip" = 1,
-				"wflip" = 1,
-				"eflip" = 1,
-				"northabove" = 1,
-				"southabove" = 0,
-				"eastabove" = 0,
-				"westabove" = 0,
-				)
-			if("wielded") return list(
-				"shrink" = 0.6,
-				"sx" = 3,
-				"sy" = 5,
-				"nx" = -3,
-				"ny" = 5,
-				"wx" = -9,
-				"wy" = 4,
-				"ex" = 9,
-				"ey" = 1,
-				"northabove" = 0,
-				"southabove" = 1,
-				"eastabove" = 1,
-				"westabove" = 0,
-				"nturn" = 0,
-				"sturn" = 0,
-				"wturn" = 0,
-				"eturn" = 15,
-				"nflip" = 8,
-				"sflip" = 0,
-				"wflip" = 8,
-				"eflip" = 0,
-				)
-			if("onbelt") return list(
-				"shrink" = 0.4,
-				"sx" = -4,
-				"sy" = -6,
-				"nx" = 5,
-				"ny" = -6,
-				"wx" = 0,
-				"wy" = -6,
-				"ex" = -1,
-				"ey" = -6,
-				"nturn" = 100,
-				"sturn" = 156,
-				"wturn" = 90,
-				"eturn" = 180,
-				"nflip" = 0,
-				"sflip" = 0,
-				"wflip" = 0,
-				"eflip" = 0,
-				"northabove" = 0,
-				"southabove" = 1,
-				"eastabove" = 1,
-				"westabove" = 0,
-				)
 
 /obj/item/rogueweapon/sword/long/kriegmesser
 	name = "kriegsmesser"
@@ -1306,25 +1290,25 @@
 	sellprice = 140
 
 // kazengite content
-
+// Stronger offense less defense sword meant to be paired w/ scabbard for parrying
 /obj/item/rogueweapon/sword/sabre/mulyeog
 	force = 25
-	name = "foreign straight blade"
-	desc = "A foreign sword used by cut-throats & thugs. There's a red tassel on the hilt."
+	name = "hwando" // From Korean Hwangdo - Lit. Military Sword / Sabre, noted for less curves than a Japanese katana.
+	desc = "A foreign single-edged sword used by cut-throats & thugs. There's a red tassel on the hilt, said to bring about good fortune."
 	sheathe_icon = "mulyeog"
 	icon_state = "eastsword1"
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3
 
 /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
-	name = "hwang blade"
-	desc = "A foreign steel sword with cloud patterns on the groove. An blade of the Ruma clan's insignia along it."
+	name = "ruma hwando"
+	desc = "A foreign steel single-edged sword with cloud patterns on the groove. The Ruma Clan's insignia is engraved on the blade."
 	icon_state = "eastsword2"
 
 /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
 	force = 30
 	name = "samjeongdo"
-	desc = "A gold-stained with cloud patterns on the groove. One of a kind. It is a symbol of status within the Ruma clan."
+	desc = "A gold-stained sword with cloud patterns on the groove. One of a kind. It is a symbol of status within the Ruma clan."
 	icon_state = "eastsword3"
 	max_integrity = 180
 	wdefense = 4

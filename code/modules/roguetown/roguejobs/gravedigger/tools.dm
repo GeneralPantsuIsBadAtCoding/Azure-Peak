@@ -17,7 +17,7 @@
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	var/obj/item/natural/dirtclod/heldclod
 	smeltresult = /obj/item/ingot/iron
-	max_blade_int = 50
+	max_blade_int = 300
 	grid_width = 32
 	grid_height = 96
 

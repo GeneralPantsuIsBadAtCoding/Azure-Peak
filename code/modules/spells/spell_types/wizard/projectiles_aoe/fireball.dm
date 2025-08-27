@@ -8,7 +8,7 @@
 	sound = list('sound/magic/fireball.ogg')
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 25
+	chargetime = 15
 	recharge_time = 15 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -43,9 +43,10 @@
 /obj/projectile/magic/aoe/fireball/rogue/on_hit(target)
 	. = ..()
 	if(ismob(target))
-		var/mob/M = target
+		var/mob/living/M = target
 		if(M.anti_magic_check())
 			visible_message(span_warning("[src] fizzles on contact with [target]!"))
 			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)
 			return BULLET_ACT_BLOCK
+		M.adjust_fire_stacks(2)

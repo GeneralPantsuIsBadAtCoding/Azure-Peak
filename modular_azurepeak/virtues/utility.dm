@@ -202,6 +202,10 @@
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
 
+/datum/virtue/utility/physician/apply_to_human(mob/living/carbon/human/recipient)
+	if(!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/invoked/diagnose/secular))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+
 /datum/virtue/utility/feral_appetite
 	name = "Feral Appetite"
 	desc = "Raw, toxic or spoiled food doesn't bother my superior digestive system."

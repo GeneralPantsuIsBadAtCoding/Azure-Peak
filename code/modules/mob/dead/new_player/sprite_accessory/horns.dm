@@ -66,6 +66,10 @@
 	name = "Drake"
 	icon_state = "drake"
 
+/datum/sprite_accessory/horns/drake_wide
+	name = "Drake, Wide"
+	icon_state = "drake_wide"
+
 /datum/sprite_accessory/horns/knight
 	name = "Knight"
 	icon_state = "knight"

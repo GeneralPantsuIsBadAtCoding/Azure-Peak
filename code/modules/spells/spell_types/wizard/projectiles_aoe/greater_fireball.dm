@@ -9,7 +9,7 @@
 	active = FALSE
 	releasedrain = 50
 	chargedrain = 1
-	chargetime = 25
+	chargetime = 15
 	recharge_time = 15 SECONDS
 	warnie = "spellwarning"
 	spell_tier = 4 // Highest tier AOE

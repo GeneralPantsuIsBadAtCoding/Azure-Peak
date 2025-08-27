@@ -90,7 +90,7 @@
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_SMALL
 	parrysound = list('sound/combat/parry/bladed/bladedsmall (1).ogg','sound/combat/parry/bladed/bladedsmall (2).ogg','sound/combat/parry/bladed/bladedsmall (3).ogg')
-	max_blade_int = 100
+	max_blade_int = 200
 	max_integrity = 175
 	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
 	associated_skill = /datum/skill/combat/knives
@@ -264,7 +264,6 @@
 	icon_state = "idagger"
 	sheathe_icon = "idagger"
 	smeltresult = /obj/item/ingot/iron
-	blade_dulling = DULLING_SHAFT_REINFORCED
 
 /obj/item/rogueweapon/huntingknife/idagger/adagger
 	name = "decrepit dagger"
@@ -277,6 +276,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	name = "ancient dagger"
@@ -337,6 +337,7 @@
 	throwforce = 12
 	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard. It's a bit more dull, however."
 	sheathe_icon = "spdagger"
+	max_integrity = 175
 	wdefense = 8		//This way with expert dagger skill you'd have ~12 defense. 1 higher than a kiteshield, but no arrow protection.
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
@@ -344,6 +345,7 @@
 	force = 15
 	throwforce = 15
 	desc = "An exceptionally protective parrying dagger popular in the Etruscan Isles, this dagger features a plain metal guard in the shape of a ship's sail."
+	max_integrity = 200
 	wdefense = 9		//This way with expert dagger skill you'd have ~13 defense. 2 higher than a kiteshield, but no arrow protection.
 	icon_state = "sail_dagger"
 
@@ -513,7 +515,7 @@
 	icon_state = "stone_knife"
 	smeltresult = null
 	max_integrity = 50
-	max_blade_int = 50
+	max_blade_int = 100
 	wdefense = 1
 	resistance_flags = FLAMMABLE
 
@@ -610,6 +612,7 @@
 	color = "#bb9696"
 	force = 7
 	throwforce = 16
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"

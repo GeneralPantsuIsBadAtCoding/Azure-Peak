@@ -74,6 +74,9 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
+/obj/item/storage/belt/rogue/leather/battleskirt/black
+	color = CLOTHING_BLACK
+
 /obj/item/storage/belt/rogue/leather/battleskirt/faulds
 	name = "belt with faulds"
 	icon_state = "faulds"

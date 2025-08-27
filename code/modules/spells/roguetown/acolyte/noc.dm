@@ -94,19 +94,18 @@
 	associated_skill = /datum/skill/magic/holy
 	var/chosen_bundle
 	var/list/utility_bundle = list(	//Utility means exactly that. Nothing offensive and nothing that can affect another person negatively. (Barring Fetch)
-		/obj/effect/proc_holder/spell/self/message::name 				= /obj/effect/proc_holder/spell/self/message,
-		/obj/effect/proc_holder/spell/invoked/leap::name 				= /obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/targeted/touch/lesserknock::name 	= /obj/effect/proc_holder/spell/targeted/touch/lesserknock,
-		/obj/effect/proc_holder/spell/invoked/mending::name 			= /obj/effect/proc_holder/spell/invoked/mending,
-		/obj/effect/proc_holder/spell/invoked/projectile/fetch::name 	= /obj/effect/proc_holder/spell/invoked/projectile/fetch,
-		/obj/effect/proc_holder/spell/invoked/aerosolize::name 			= /obj/effect/proc_holder/spell/invoked/aerosolize,
-		/obj/effect/proc_holder/spell/invoked/blink::name 				= /obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/self/message,
+		/obj/effect/proc_holder/spell/invoked/leap,
+		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
+		/obj/effect/proc_holder/spell/invoked/mending,
+		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
+		/obj/effect/proc_holder/spell/invoked/blink,
 	)
 	var/list/offensive_bundle = list(	//This is not meant to make them combat-capable. A weak offensive, and mostly defensive option.
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt, // PLACEHOLDER
 		/obj/effect/proc_holder/spell/self/conjure_armor/miracle,
 		/obj/effect/proc_holder/spell/invoked/conjure_weapon/miracle,
-		/obj/effect/proc_holder/spell/invoked/rebuke,
+		/obj/effect/proc_holder/spell/invoked/rebuke, // By points, this adds up to 8 points total. However it is the strongest Acolyte combo offensively.
 	)
 	var/list/buff_bundle = list(	//Buffs! An Acolyte being a supportive caster is 100% what they already are, so this fits neatly. No debuffs -- every patron already has a plethora of those.
 		/obj/effect/proc_holder/spell/invoked/hawks_eyes::name 			= /obj/effect/proc_holder/spell/invoked/hawks_eyes,
@@ -114,7 +113,8 @@
 		/obj/effect/proc_holder/spell/invoked/longstrider::name 		= /obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/guidance::name 			= /obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/haste::name 				= /obj/effect/proc_holder/spell/invoked/haste,
-		/obj/effect/proc_holder/spell/invoked/fortitude::name 			= /obj/effect/proc_holder/spell/invoked/fortitude,
+		/obj/effect/proc_holder/spell/invoked/stoneskin::name 			= /obj/effect/proc_holder/spell/invoked/stoneskin,
+		/obj/effect/proc_holder/spell/invoked/fortitude::name 			= /obj/effect/proc_holder/spell/invoked/fortitude, // Picking the most expensive options adds up to 12 points
 	)
 /obj/effect/proc_holder/spell/self/noc_spell_bundle/cast(list/targets, mob/user)
 	. = ..()
@@ -127,14 +127,16 @@
 			if(!user.mind?.has_spell(/obj/effect/proc_holder/spell/invoked/diagnose/secular))
 				var/secular_diagnose = new /obj/effect/proc_holder/spell/invoked/diagnose/secular
 				user.mind?.AddSpell(secular_diagnose)
-			add_spells(user, utility_bundle, choice_count = 2)
+			add_spells(user, utility_bundle, grant_all = TRUE)
+			user.mind?.RemoveSpell(src.type)
 		if("Offense")
 			add_spells(user, offensive_bundle, grant_all = TRUE)
 			ADD_TRAIT(user, TRAIT_MAGEARMOR, TRAIT_MIRACLE)
 			user.mind?.RemoveSpell(src.type)
 		if("Buffs")
-			add_spells(user, buff_bundle, choice_count = 1)
+			add_spells(user, buff_bundle, choice_count = 4)
 			ADD_TRAIT(user, TRAIT_MAGEARMOR, TRAIT_MIRACLE)
+			user.mind?.RemoveSpell(src.type)
 		else
 			revert_cast()
 

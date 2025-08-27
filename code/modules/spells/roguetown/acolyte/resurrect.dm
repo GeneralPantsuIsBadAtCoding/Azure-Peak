@@ -23,6 +23,7 @@
 	var/debuff_type = /datum/status_effect/debuff/revived
 	var/structure_range = 1
 	var/harms_undead = TRUE
+	priest_excluded = TRUE
 
 /obj/effect/proc_holder/spell/invoked/resurrect/cast(list/targets, mob/living/user)
 	. = ..()

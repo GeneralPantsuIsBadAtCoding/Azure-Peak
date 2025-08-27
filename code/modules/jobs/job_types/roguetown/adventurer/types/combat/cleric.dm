@@ -48,7 +48,7 @@
 				/obj/item/recipe_book/survival = 1,
 				)
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -176,7 +176,7 @@
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 			H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 			var/weapons = list("Longsword","Mace","Flail")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
@@ -216,7 +216,7 @@
 			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/special
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = FALSE, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
+			C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
 			backpack_contents = list(
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/recipe_book/survival = 1,
@@ -349,9 +349,9 @@
 					head = /obj/item/clothing/head/roguetown/roguehood
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
 			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_3)	//Minor regen, capped to T3.
-	if(istype(H.patron, /datum/patron/divine))
-		// For now, only Tennites get this. Heretics can have a special treat later
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
+			if(istype(H.patron, /datum/patron/divine))
+				// For now, only Tennites get this. Heretics can have a special treat later
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross

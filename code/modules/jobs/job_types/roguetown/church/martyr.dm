@@ -251,9 +251,9 @@
 /datum/component/martyrweapon/proc/adjust_traits(remove = FALSE)
 	for(var/trait in traits_applied)
 		if(!remove)
-			ADD_TRAIT(current_holder, trait, TRAIT_GENERIC)
+			ADD_TRAIT(current_holder, trait, "martyrweapon")
 		else
-			REMOVE_TRAIT(current_holder, trait, TRAIT_GENERIC)
+			REMOVE_TRAIT(current_holder, trait, "martyrweapon")
 
 /datum/component/martyrweapon/proc/adjust_stats(state)
 	if(current_holder)
@@ -676,6 +676,19 @@
 	flags_inv = HIDECROTCH|HIDEBOOB
 	var/overarmor = TRUE
 	sellprice = 300
+
+
+/obj/item/clothing/cloak/holysee/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/cloak/holysee/dropped(mob/living/carbon/human/user)
+	..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		var/list/things = STR.contents()
+		for(var/obj/item/I in things)
+			STR.remove_from_storage(I, get_turf(src))
 
 /obj/item/clothing/cloak/holysee/MiddleClick(mob/user)
 	overarmor = !overarmor

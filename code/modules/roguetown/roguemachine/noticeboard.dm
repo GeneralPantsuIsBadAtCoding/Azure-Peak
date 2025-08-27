@@ -10,7 +10,7 @@
 	layer = ABOVE_MOB_LAYER
 	plane = GAME_PLANE_UPPER
 	var/current_category = "Postings"
-	var/list/categories = list("Postings", "Premium Postings", "Contracts")
+	var/list/categories = list("Postings", "Premium Postings", "Scout Report", "Contracts")
 	/// Place to deposit completed scrolls or items
 	var/input_point
 
@@ -116,7 +116,7 @@
 	for(var/i = 1, i <= length(categories), i++)
 		var/category = categories[i]
 		if(category == current_category)
-			selection += "<b>[current_category]</b>"
+			selection += "<b>[current_category]</b> | "
 		else if(i != length(categories))
 			selection += "<a href='?src=[REF(src)];changecategory=[category]'>[category]</a> | "
 		else
@@ -149,6 +149,20 @@
 		contents += "<a href='?src=[REF(src)];abandoncontract=1'>Abandon Contract</a><br>"
 		if(user.job == "Steward" || user.job == "Merchant")
 			contents += "<a href='?src=[REF(src)];printcontracts=1'>Print Issued Contracts</a><br>"
+	else if(current_category == "Scout Report")
+		var/list/regional_threats = SSregionthreat.get_threat_regions_for_display()
+		contents += "<h2>Scout Report</h2>"
+		contents += "<hr></center>"
+		for(var/T in regional_threats)
+			var/datum/threat_region_display/TRS = T
+			contents += ("<div>[TRS?.region_name]: <font color=[TRS?.danger_color]>[TRS?.danger_level]</font></div>")
+		contents += "<hr>"
+		contents += "Scouts rate how dangerous a region is from Safe -> Low -> Moderate -> Dangerous -> Bleak <br>"
+		contents += "A safe region is safe and travelers are unlikely to be ambushed by common creechurs and brigands <br>"
+		contents += "A low threat region is unlikely to manifest any great threat and brigands and creechurs are often found alone.<br>"
+		contents += "Only Azure Basin, Northern Grove, South Azurean Coast, and the Terrorbog can be rendered safe entirely. <br>" 
+		contents += "Regions not listed are beyond the charge of the wardens. Danger will be constant in these regions.<br>"
+		contents += "Danger is reduced by luring villains and creechurs and killing them when they ambush you. The signal horns wardens have been issued can help with this. Take care with using it."
 	var/datum/browser/popup = new(user, "NOTICEBOARD", "", 800, 650)
 	popup.set_content(contents)
 	popup.open()

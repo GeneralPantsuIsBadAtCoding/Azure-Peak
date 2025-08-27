@@ -50,5 +50,6 @@
 	H.change_stat("fortune", 2) //We have a total of +12 in stats. 
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC) // We are going to be the lord's first heavy armor unarmed class
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC) // To be up to date with other unarmed classes.
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.

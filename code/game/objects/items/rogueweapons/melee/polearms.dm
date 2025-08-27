@@ -74,9 +74,8 @@
 
 /datum/intent/sword/thrust/estoc
 	name = "thrust"
-	penfactor = 50
-	recovery = 20
-	clickcd = 10
+	penfactor = 57	//At 57 pen + 25 base (82 total), you will always pen 80 stab armor, but you can't do it at range unlike a spear.
+	swingdelay = 8
 
 /datum/intent/sword/lunge
 	name = "lunge"
@@ -86,11 +85,8 @@
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	reach = 2
-	penfactor = 30
-	damfactor = 1.2
-	chargetime = 5
-	recovery = 20
-	clickcd = 10
+	damfactor = 1.3	//Zwei will still deal ~7-10 more damage at the same range, depending on user's STR.
+	swingdelay = 8
 
 /datum/intent/sword/bash
 	name = "pommel bash"
@@ -196,14 +192,14 @@
 	wlength = WLENGTH_LONG
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	blade_dulling = DULLING_SHAFT_WOOD
 	sharpness = IS_BLUNT
 	walking_stick = TRUE
 	pixel_y = -16
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	wdefense = 10
+	wdefense = 5
+	wdefense_wbonus = 8	//13 when wielded.
 	bigboy = TRUE
 	gripsprite = TRUE
 	associated_skill = /datum/skill/combat/polearms
@@ -268,11 +264,10 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 8
-	max_blade_int = 100
+	max_blade_int = 180
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 5
 	thrown_bclass = BCLASS_STAB
@@ -285,11 +280,12 @@
 	icon_state = "ancient_spear"
 	force = 13
 	force_wielded = 22
-	max_integrity = 180
+	max_integrity = 120
 	blade_dulling = DULLING_SHAFT_CONJURED
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/spear/paalloy
 	name = "ancient spear"
@@ -332,10 +328,9 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 6
-	max_blade_int = 70
+	max_blade_int = 80
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	max_integrity = 60
@@ -376,10 +371,9 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	minstr = 6
-	max_blade_int = 50
+	max_blade_int = 70
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	max_integrity = 50
@@ -417,7 +411,6 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	thrown_bclass = BCLASS_STAB
@@ -585,7 +578,6 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 6
 
@@ -629,6 +621,7 @@
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/halberd/bardiche/paalloy
 	name = "ancient bardiche"
@@ -670,7 +663,7 @@
 	icon_state = "glaive"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
-	max_blade_int = 300
+	max_blade_int = 160
 	wdefense = 9
 
 /obj/item/rogueweapon/halberd/glaive/getonmobprop(tag)
@@ -706,8 +699,7 @@
 	minstr = 11
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	max_blade_int = 300
-	blade_dulling = DULLING_SHAFT_REINFORCED
+	max_blade_int = 180
 	walking_stick = TRUE
 	wdefense = 5
 	wbalance = WBALANCE_HEAVY
@@ -733,12 +725,12 @@
 	force_wielded = 25
 	icon_state = "polehammer"
 	smeltresult = /obj/item/ingot/iron
-	max_blade_int = 300
+	max_blade_int = 150
 	sellprice = 40
 
 /datum/intent/spear/thrust/eaglebeak
-	penfactor = 20
-	damfactor = 0.9
+	penfactor = 50
+	damfactor = 1
 
 /datum/intent/spear/thrust/glaive
 	penfactor = 50
@@ -749,6 +741,7 @@
 	reach = 2
 	swingdelay = 12
 	clickcd = 14
+	damfactor = 1.3
 
 /obj/item/rogueweapon/spear/bronze
 	name = "Bronze Spear"
@@ -765,7 +758,6 @@
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/sword/peel/big)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
-	armor = ARMOR_GREATSWORD
 	name = "greatsword"
 	desc = "Might be able to chop anything in half!"
 	icon_state = "gsw"
@@ -783,11 +775,10 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 300
+	max_blade_int = 200
 	wdefense = 5
 	smelt_bar_num = 3
 
@@ -810,12 +801,13 @@
 	desc = "A massive blade, wrought in frayed bronze. It is too big to be called a sword; massive, thick, heavy, and far too rough. Indeed, this blade was more like a heap of raw metal."
 	force = 10
 	force_wielded = 25
-	max_integrity = 180
+	max_integrity = 150
 	icon_state = "ancient_gsw"
 	blade_dulling = DULLING_SHAFT_CONJURED
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
+	randomize_blade_int_on_init = TRUE
 
 
 /obj/item/rogueweapon/greatsword/paalloy
@@ -830,7 +822,7 @@
 	icon_state = "zwei"
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
-	max_blade_int = 200
+	max_blade_int = 220
 	wdefense = 4
 	force = 14
 	force_wielded = 35
@@ -840,7 +832,7 @@
 	icon_state = "steelzwei"
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
-	max_blade_int = 300
+	max_blade_int = 240
 	force = 14
 	force_wielded = 35
 
@@ -851,7 +843,7 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
 	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic
 	name = "Apocrypha"
@@ -862,7 +854,7 @@
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/exe, /datum/intent/rend, /datum/intent/axe/chop)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 1000, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
 
 /obj/item/rogueweapon/greatsword/bsword/psy
 	name = "old psydonian broadsword"
@@ -927,12 +919,13 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
-	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 8
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 300
-	wdefense = 5
+	max_blade_int = 400
+	max_integrity = 300
+	wdefense = 3
+	wdefense_wbonus = 6
 	smelt_bar_num = 2
 
 /obj/item/rogueweapon/estoc/getonmobprop(tag)
@@ -1014,7 +1007,7 @@
 	force_wielded = 20
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff"
-	max_integrity = 300
+	max_integrity = 150
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 	name = "iron quarterstaff"
@@ -1023,9 +1016,7 @@
 	force_wielded = 22
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_iron"
-	max_integrity = 300
-	blade_dulling = DULLING_SHAFT_REINFORCED
-	intdamage_factor = 1.2
+	max_integrity = 200
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 	name = "steel quarterstaff"
@@ -1034,9 +1025,7 @@
 	force_wielded = 25
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
-	max_integrity = 400
-	blade_dulling = DULLING_SHAFT_REINFORCED
-	intdamage_factor = 1.2
+	max_integrity = 200
 
 /obj/item/rogueweapon/spear/partizan
 	name = "partizan"
@@ -1051,7 +1040,6 @@
 	max_blade_int = 200
 	wdefense = 6
 	throwforce = 12	//Not a throwing weapon. Too heavy!
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
@@ -1071,7 +1059,7 @@
 	icon_state = "boarspear"
 	force_wielded = 33 // 10% base damage increase
 	wdefense = 6 // A little bit extra
-	max_blade_int = 150 // 50% more sharpness but it barely matter lol
+	max_blade_int = 200 
 
 /obj/item/rogueweapon/spear/boar/frei
 	name = "Aavnic lándzsa"
@@ -1092,7 +1080,6 @@
 	possible_item_intents = list(SPEAR_THRUST, /datum/intent/lance/onehand, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/lance, /datum/intent/lance, SPEAR_BASH)
 	resistance_flags = null
-	blade_dulling = DULLING_SHAFT_REINFORCED
 
 /obj/item/rogueweapon/spear/naginata
 	name = "naginata"
@@ -1104,10 +1091,9 @@
 	icon_state = "naginata"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 7
-	max_blade_int = 50 //Nippon suteeru (dogshit)
+	max_blade_int = 150 //Nippon suteeru (dogshit)
 	wdefense = 5
 	throwforce = 12	//Not a throwing weapon. 
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/spear/naginata/getonmobprop(tag)

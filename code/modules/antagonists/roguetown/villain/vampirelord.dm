@@ -140,6 +140,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	backl = /obj/item/storage/backpack/rogue/satchel/black
+	l_hand = /obj/item/rogueweapon/sword/long/judgement/vlord
 	H.ambushable = FALSE
 
 

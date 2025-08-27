@@ -29,6 +29,9 @@
 /obj/effect/proc_holder/spell/targeted/wildshape/cast(list/targets, mob/user = usr)
 	. = ..()
 	for(var/mob/living/carbon/human/M in targets)
+		if (M.has_status_effect(/datum/status_effect/debuff/submissive))
+			to_chat(user, span_warning("Your will is too broken to change form."))
+			return FALSE
 		if(!istype(M, /mob/living/carbon/human/species/wildshape)) //If we aren't a wildshaped species, we can use this
 			var/list/animal_list = list()
 			

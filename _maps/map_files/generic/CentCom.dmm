@@ -813,7 +813,6 @@
 /area/rogue/indoors)
 "bT" = (
 /obj/structure/closet/crate/roguecloset/inn,
-/obj/item/rogueweapon/sword/long/judgement/vlord,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},

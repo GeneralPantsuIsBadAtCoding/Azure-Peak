@@ -260,6 +260,10 @@
 /datum/wound/fracture/chest/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.Immobilize(15)		//Stuns you, major downside
+	if(istype(affected, /mob/living/carbon)) // Intended for PVE skeletons
+		var/mob/living/carbon/CA = affected
+		if(HAS_TRAIT(CA, TRAIT_CRITICAL_WEAKNESS) && (NOBLOOD in CA.dna.species.species_traits))
+			CA.death()
 
 /datum/wound/fracture/chest/on_life()
 	. = ..()

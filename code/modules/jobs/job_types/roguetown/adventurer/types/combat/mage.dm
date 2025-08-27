@@ -99,7 +99,7 @@
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
-			var/weapons = list("Bastard Sword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Foreign Straight Sword") // Much smaller selection with only three swords. You will probably want to upgrade.
+			var/weapons = list("Bastard Sword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Bastard Sword")
@@ -118,7 +118,7 @@
 					r_hand = /obj/item/rogueweapon/sword/short/messer/iron
 					armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 					H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-				if("Foreign Straight Sword")
+				if("Hwando")
 					r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
 					beltr = /obj/item/rogueweapon/scabbard/sword
 					armor = /obj/item/clothing/suit/roguetown/armor/basiceast

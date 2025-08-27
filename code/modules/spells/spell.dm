@@ -42,6 +42,9 @@
 	var/is_cdr_exempt = FALSE
 	var/obj/effect/mob_charge_effect = null
 
+	/// This "spell" (miracle) is excluded from Priest's round-start selection.
+	var/priest_excluded = FALSE
+
 /obj/effect/proc_holder/Initialize()
 	. = ..()
 	if(has_action)

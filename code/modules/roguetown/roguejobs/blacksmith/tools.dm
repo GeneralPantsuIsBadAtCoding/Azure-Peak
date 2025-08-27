@@ -167,12 +167,18 @@
 		H.adjustFireLoss(-10)
 		H.update_damage_overlays()
 		if(wCount.len > 0)
-			H.heal_wounds(2)
+			if(M == user)
+				H.heal_wounds(2)
+			else
+				H.heal_wounds(10) // Other heal are far more powerful and can heal skullcrack in 15 hits instead of 75
 			H.update_damage_overlays()
 		if(M == user)
 			user.visible_message(span_notice("[user] hammers [user.p_their()] [affecting]."), span_notice("I hammer my [affecting]."))
 		else
 			user.visible_message(span_notice("[user] hammers [M]'s [affecting]."), span_notice("I hammer [M]'s [affecting]."))
+		if(wCount.len > 0)
+			// Auto repeat healing
+			hammerheal(M, user)
 	else //Non-construct.
 		to_chat(user, span_warning("I can't tinker on living flesh!"))
 

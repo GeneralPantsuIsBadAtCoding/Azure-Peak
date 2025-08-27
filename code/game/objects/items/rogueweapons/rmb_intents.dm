@@ -41,7 +41,7 @@
 	var/target_zone = HT.zone_selected
 	var/user_zone = HU.zone_selected
 
-	if(HT.has_status_effect(/datum/status_effect/debuff/baited) && user.has_status_effect(/datum/status_effect/debuff/baitcd))
+	if(HT.has_status_effect(/datum/status_effect/debuff/baited) || user.has_status_effect(/datum/status_effect/debuff/baitcd))
 		return	//We don't do anything if either of us is affected by bait statuses
 
 	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))

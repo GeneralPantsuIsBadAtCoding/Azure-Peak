@@ -20,7 +20,7 @@
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/axes		//Not an axe but fuck it - you're logging anyway.
-	max_blade_int = 50
+	max_blade_int = 300
 
 //................	Chisel	............... //
 /obj/item/rogueweapon/chisel
@@ -44,7 +44,7 @@
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	associated_skill = /datum/skill/combat/knives	//Not a knife but kinda similar to etching so..
-	max_blade_int = 50
+	max_blade_int = 300
 	dropshrink = 0.9
 	var/already_assembled
 
