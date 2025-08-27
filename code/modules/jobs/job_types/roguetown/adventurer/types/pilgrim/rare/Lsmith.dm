@@ -32,6 +32,7 @@
 						/obj/item/rogueore/iron=2,
 						/obj/item/rogueore/silver=1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)

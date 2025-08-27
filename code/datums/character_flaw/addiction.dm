@@ -99,7 +99,7 @@
 
 /datum/charflaw/addiction/godfearing
 	name = "Devout Follower"
-	desc = "I need to pray to my Patron in their realm, it will make me and my prayers stronger."
+	desc = "Without faith we are nothing. Without devotion we are lost. Some call me a zealot for it. I shall pray for them too."
 	time = 40 MINUTES
 	needsate_text = "Time to pray to my Patron."
 

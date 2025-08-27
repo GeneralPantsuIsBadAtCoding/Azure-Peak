@@ -72,7 +72,7 @@
 
 /atom/movable/screen/alert/status_effect/baotha_joyride
 	name = "Joyride"
-	desc = "At the tip of the tongue, Baotha's blessing in purest form."
+	desc = "At the tip of the tongue is Baotha's blessing in its purest form."
 
 /datum/status_effect/baotha_joyride/on_apply()
 	var/filter = owner.get_filter(JOYRIDE_FILTER)

@@ -13,7 +13,7 @@
 /datum/brewing_recipe/brandy/pear
 	name = "Brandy, Pear"
 	bottle_name = "pear brandy"
-	bottle_desc = "A bottle of locally-distilled pear brandy. Tastes of ripe pear, and a hint of spice."
+	bottle_desc = "A bottle of locally-distilled pear brandy. Tastes of ripe pear and a hint of spice."
 	pre_reqs = /datum/reagent/consumable/ethanol/cider/pear
 	reagent_to_brew = /datum/reagent/consumable/ethanol/brandy/pear
 
@@ -27,13 +27,13 @@
 /datum/brewing_recipe/brandy/tangerine
 	name = "Brandy, Tangerine"
 	bottle_name = "tangerine brandy"
-	bottle_desc = "A bottle of locally-distilled tangerine brandy. Has a light, citrusty flavor with a hint of spice."
+	bottle_desc = "A bottle of locally-distilled tangerine brandy. Has a light citrusy flavor with a hint of spice."
 	pre_reqs = /datum/reagent/consumable/ethanol/tangerine
 	reagent_to_brew = /datum/reagent/consumable/ethanol/brandy/tangerine
 
 /datum/brewing_recipe/brandy/plum
 	name = "Brandy, Plum"
 	bottle_name = "plum brandy"
-	bottle_desc = "A bottle of locally-distilled plum brandy. Has a sweet, vanilla flavor."
+	bottle_desc = "A bottle of locally-distilled plum brandy. Has a sweet vanilla flavor."
 	pre_reqs = /datum/reagent/consumable/ethanol/plum_wine
 	reagent_to_brew = /datum/reagent/consumable/ethanol/brandy/plum

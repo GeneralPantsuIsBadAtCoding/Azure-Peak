@@ -623,7 +623,7 @@
 	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
-							span_danger("I try to throw up, but there's nothing in your stomach!"))
+							span_danger("You try to throw up but there's nothing in your stomach!"))
 		if(stun)
 			Immobilize(200)
 		return 1
@@ -645,7 +645,7 @@
 			return
 		if(!client || !client.prefs)
 			return
-		if(alert(usr,"This will irreversibly an INDIVIDUAL PORTION of this slot. Is this what you want?","DON'T FATFINGER THIS","PURGE","Nevermind") == "PURGE")
+		if(alert(usr,"This will irreversibly purge an INDIVIDUAL PORTION of this slot. Is this what you want?","DON'T FATFINGER THIS","PURGE","Nevermind") == "PURGE")
 			if(alert(usr,"The next prompt will not have a Nevermind option. Are you sure you want this?","ITS NOT REVERSIBLE","Yes","Nevermind") == "Yes")
 				var/choice = alert(usr,"What would you like to purge?","ITS TOO LATE NOW","Flavor","Notes","Extra")
 				if(choice)
