@@ -984,6 +984,26 @@
 	desc = span_bloody("LAMBS TO THE SLAUGHTER!")
 	icon_state = "call_to_slaughter"
 
+/datum/status_effect/buff/call_of_dendor
+	id = "call_of_dendor"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/call_of_dendor
+	duration = 2.5 MINUTES
+	effectedstats = list("strength" = 2,"constitution" = 2 , "speed" = 4, "intelligence" = -6) //fast legs not afraid
+
+/atom/movable/screen/alert/status_effect/buff/call_of_dendor
+	name = "Call of Dendor"
+	desc = span_bloody("I FEEL DENDOR'S MIGHT!")
+	icon_state = "tamebeast"
+
+/datum/status_effect/buff/call_of_dendor/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
+
+/datum/status_effect/buff/call_of_dendor/on_remove()
+	. = ..()
+	owner.apply_status_effect(/datum/status_effect/debuff/dyspnea)
+	REMOVE_TRAIT(owner, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
+
 /atom/movable/screen/alert/status_effect/buff/xylix_joy
 	name = "Trickster's Joy"
 	desc = "The sound of merriment fills me with fortune."
