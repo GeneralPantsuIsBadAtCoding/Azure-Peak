@@ -157,7 +157,7 @@
 	sound = 'sound/magic/timestop.ogg'
 	releasedrain = 30
 	miracle = TRUE
-	devotion_cost = 250
+	devotion_cost = 300
 	invocations = list("The Treefather! Give me power!")
 	invocation_type = "shout"
 	var/static/list/purged_effects = list(
