@@ -1,7 +1,7 @@
 // WOE: SPELLBLADE DODGE EXPERT POLEARM BUILD UPON YE.
 /datum/advclass/wretch/blackoakwyrm
 	name = "Black Oak Wyrm"
-	tutorial = "A highly-ranked Black Oak fieldman. This land was once great...and now, wave after wave of filthy foreigners and refugees trample your glorious home. They want to salt your fields, destroy your culture, and replace you. As a higher-ranked member, you are skilled in both glaives and old magycks, and have used them to reclaim part of your home. The corrupt, foreign-bought crown has set a bounty on you for it."
+	tutorial = "A highly-ranked Black Oak fieldman. This land was once great...and now, wave after wave of monsters and outsiders trample your home. Your people were the ones that settled these lands, and the foreign-backed Crown, deceitful and arrogant, has denied your people the rewards they deserve! As a higher-ranked member, you are skilled in both glaives and magycks. You have a bounty on your head already; perhaps from run-ins with the guard. Either way, best be on-guard..."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/human/halfelf,
