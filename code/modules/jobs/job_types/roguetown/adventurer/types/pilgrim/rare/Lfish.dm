@@ -60,6 +60,7 @@
 		backpack_contents = list(
 			/obj/item/natural/worms = 2,
 			/obj/item/rogueweapon/shovel/small=1,
+			/obj/item/recipe_book/survival = 1,
 			/obj/item/rogueweapon/scabbard/sheath = 1
 			)
 		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)

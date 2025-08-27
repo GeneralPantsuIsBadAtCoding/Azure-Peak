@@ -88,7 +88,7 @@
 
 /datum/virtue/utility/failed_squire
 	name = "Failed Squire"
-	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair, including how to polish arms and armor."
+	desc = "Once, I was a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair, including how to polish arms and armor."
 	added_traits = list(TRAIT_SQUIRE_REPAIR)
 	added_stashed_items = list(
 		"Hammer" = /obj/item/rogueweapon/hammer/iron,
@@ -102,7 +102,7 @@
 
 /datum/virtue/utility/linguist
 	name = "Intellectual"
-	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess."
+	desc = "Be it through travel or other fortunes in my life, I've had the luxury of spending much of it surrounded by books and sophisticated foreigners. Several tongues and wits are known to me, and I can examine others more thoroughly than most."
 	custom_text = "Maximizes Assess benefits with a bonus of the target's Stats. Allows the choice of 3 languages to learn upon joining. +1 INT."
 	added_traits = list(TRAIT_INTELLECTUAL)
 	added_skills = list(list(/datum/skill/misc/reading, 3, 6))
@@ -168,7 +168,7 @@
 
 /datum/virtue/utility/hunter
 	name = "Hunter's Apprentice"
-	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide."
+	desc = "In my youth I learned how to butcher animals and how to work with leather/hide under a skilled hunter."
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/traps, 2, 2),
 						list(/datum/skill/labor/butchering, 2, 2),
@@ -179,7 +179,7 @@
 
 /datum/virtue/utility/artificer
 	name = "Artificer's Apprentice"
-	desc = "In my youth, I worked under a skilled artificer, studying construction and engineering."
+	desc = "In my youth I studied construction and engineering under a skilled artificer."
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/carpentry, 2, 2),
 						list(/datum/skill/craft/masonry, 2, 2),
@@ -195,7 +195,7 @@
 
 /datum/virtue/utility/physician
 	name = "Physician's Apprentice"
-	desc = "In my youth, I worked under a skilled physician, studying medicine and alchemy."
+	desc = "In my youth I studied medicine and alchemy under a skilled physician."
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
@@ -204,7 +204,7 @@
 
 /datum/virtue/utility/feral_appetite
 	name = "Feral Appetite"
-	desc = "Raw, toxic or spoiled food doesn't bother my superior digestive system."
+	desc = "Raw, toxic, or spoiled food doesn't bother my superior digestive system."
 	added_traits = list(TRAIT_NASTY_EATER)
 
 /datum/virtue/utility/night_vision
@@ -270,7 +270,7 @@
 
 /datum/virtue/utility/mining
 	name = "Miner's Apprentice"
-	desc = "The dark shafts, the damp smells of ichor and the laboring hours are no stranger to me. I keep my pickaxe and lamptern close, and have been taught how to mine well."
+	desc = "The dark shafts, the damp smells of ichor, and the laboring hours are no stranger to me. I keep my pickaxe and lamptern close, and have been taught how to mine well."
 	added_stashed_items = list(
 		"Steel Pickaxe" = /obj/item/rogueweapon/pick/steel,
 		"Lamptern" = /obj/item/flashlight/flare/torch/lantern)

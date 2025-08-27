@@ -41,7 +41,9 @@
 		/obj/item/rogueore/coal = 1,
 		/obj/item/roguegear = 1,
 		/obj/item/dye_brush = 1,
-		/obj/item/recipe_book/ceramics = 1)
+		/obj/item/recipe_book/ceramics = 1,
+		/obj/item/recipe_book/survival = 1
+		)
 	// Clay and glassBatch are raw materials
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.

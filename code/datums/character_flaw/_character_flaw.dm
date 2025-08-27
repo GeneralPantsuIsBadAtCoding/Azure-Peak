@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/randflaw
 	name = "Random or None"
-	desc = "A 50% chance to be given a random flaw, or a 50% chance to have NO flaw."
+	desc = "A 50% chance to be given a random flaw or no flaw."
 	var/nochekk = TRUE
 
 /datum/charflaw/randflaw/flaw_on_life(mob/user)
@@ -89,11 +89,11 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/eznoflaw
 	name = "No Flaw"
-	desc = "I'm a normal person, how rare!"
+	desc = "I'm a normal person. How rare!"
 
 /datum/charflaw/noflaw
 	name = "No Flaw (3 TRI)"
-	desc = "I'm a normal person, how rare! (Consumes 3 triumphs or gives a random flaw.)"
+	desc = "I'm a normal person. How rare! (Consumes 3 triumphs or gives a random flaw.)"
 	var/nochekk = TRUE
 
 /datum/charflaw/noflaw/flaw_on_life(mob/user)
@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/badsight
 	name = "Bad Eyesight"
-	desc = "I need spectacles to see normally from my years spent reading books."
+	desc = "After years spent reading books I now need spectacles to see normally."
 
 /datum/charflaw/badsight/flaw_on_life(mob/user)
 	if(!ishuman(user))
@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/isolationist
 	name = "Isolationist"
-	desc = "I don't like being near people. They might be trying to do something to me..."
+	desc = "I don't like being near people, they might try to hurt me..."
 	var/last_check = 0
 
 /datum/charflaw/isolationist/flaw_on_life(mob/user)
@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/colorblind
 	name = "Colorblind"
-	desc = "I was cursed with flawed eyesight from birth, and can't discern things others can. Incompatible with Night-eyed virtue."
+	desc = "Cursed with flawed eyesight from birth, there are things I can't discern that others can. Incompatible with Night-eyed virtue."
 
 /datum/charflaw/colorblind/on_mob_creation(mob/user)
 	..()
@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/greedy
 	name = "Greedy"
-	desc = "I can't get enough of mammons, I need more and more! I've also become good at knowing how much things are worth"
+	desc = "I can't get enough mammons, I need more and more! I've also become good at knowing how much things are worth."
 	var/last_checked_mammons = 0
 	var/required_mammons = 0
 	var/next_mammon_increase = 0
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/greedy/proc/mammon_increase(mob/living/carbon/human/user)
 	if(last_passed_check + (50 MINUTES) < world.time) //If we spend a REALLY long time without being able to satisfy, then pity downgrade
 		required_mammons -= rand(10, 20)
-		to_chat(user, span_blue("Maybe a little less mammons is enough..."))
+		to_chat(user, span_blue("Maybe this many mammons is enough after all..."))
 	else
 		required_mammons += rand(25, 35) + extra_increment_value
 	required_mammons = min(required_mammons, 250) //Cap at 250 coins maximum
@@ -335,7 +335,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	if(new_mammon_amount >= required_mammons)
 		// Feel better
 		if(user.has_stress_event(/datum/stressevent/vice))
-			to_chat(user, span_blue("[new_mammon_amount] mammons... That's more like it.."))
+			to_chat(user, span_blue("[new_mammon_amount] mammons... That's more like it!"))
 		user.remove_stress(/datum/stressevent/vice)
 		user.remove_status_effect(/datum/status_effect/debuff/addiction)
 		last_passed_check = world.time
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 	if(do_update_msg)
 		if(ascending)
-			to_chat(user, span_warning("Only [new_mammon_amount] mammons.. I need more..."))
+			to_chat(user, span_warning("Only [new_mammon_amount] mammons... I need more!"))
 		else
 			to_chat(user, span_boldwarning("No! My precious mammons..."))
 
@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/masochist
 	name = "Masochist"
-	desc = "I love the feeling of pain, so much I can't get enough of it."
+	desc = "They can't know. Everyone would call me a freek if they find out, but I can't help it. Pain just feels so good."
 	var/next_paincrave = 0
 	var/last_pain_threshold = NONE
 
@@ -484,7 +484,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/sleepless
 	name = "Insomnia"
-	desc = "I do not sleep. I cannot sleep. I've tried everything."
+	desc = "I don't sleep. I can't sleep. Nothing works."
 
 /datum/charflaw/sleepless/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_NOSLEEP, TRAIT_GENERIC)
@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/critweakness
 	name = "Critical Weakness"
-	desc = "My body is as fragile as an eggshell. A critical strike is like to end me then and there."
+	desc = "My bones are as fragile as eggshell. Single well-placed blow will likely end me then and there."
 
 /datum/charflaw/critweakness/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)

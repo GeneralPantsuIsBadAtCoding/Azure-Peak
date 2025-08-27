@@ -33,7 +33,8 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/needle/thorn = 1,
 						/obj/item/recipe_book/sewing = 1, 
-						/obj/item/recipe_book/leatherworking = 1
+						/obj/item/recipe_book/leatherworking = 1,
+						/obj/item/recipe_book/survival = 1
 						)
 	H.change_stat("intelligence", 2)
 	H.change_stat("speed", 2)

@@ -52,6 +52,7 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	backpack_contents = list(
+		/obj/item/recipe_book/survival,
 		/obj/item/soap/bath = 1
 	)
 	if(should_wear_femme_clothes(H))
@@ -101,6 +102,7 @@
 		/obj/item/rope = 1,
 		/obj/item/candle/eora = 1,
 		/obj/item/rogueweapon/whip = 1,
+		/obj/item/recipe_book/survival,
 		/obj/item/clothing/mask/rogue/blindfold = 1,
 	)
 	if(should_wear_femme_clothes(H))
@@ -188,6 +190,7 @@
 	backpack_contents = list(
 		/obj/item/reagent_containers/powder/moondust = 2,
 		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
+		/obj/item/recipe_book/survival,
 		/obj/item/toy/cards/deck = 1,
 	)
 	if(should_wear_femme_clothes(H))

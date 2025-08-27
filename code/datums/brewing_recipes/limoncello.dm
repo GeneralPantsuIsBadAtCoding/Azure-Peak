@@ -2,7 +2,7 @@
 	name = "Limoncello"
 	category = "Liquor"
 	bottle_name = "limoncello"
-	bottle_desc = "A bottle of locally-distilled limoncello. Has a sweet, citrusy and burning flavor."
+	bottle_desc = "A bottle of locally-distilled limoncello. It tastes like drinking fire with a sweet citrus finish."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/limoncello
 	pre_reqs = /datum/reagent/consumable/ethanol/voddena
 	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/lemon = 2, /obj/item/reagent_containers/food/snacks/sugar = 1)

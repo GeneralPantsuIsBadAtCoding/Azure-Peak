@@ -2,7 +2,7 @@
 	name = "Wine, Jackberry"
 	category = "Fruit"
 	bottle_name = "jackberry wine"
-	bottle_desc = "A bottle of locally-brewed jackberry wine. Has a sweet, fruity flavor with a hint of tartness."
+	bottle_desc = "A bottle of locally-brewed jackberry wine. Has a sweet fruity flavor with a hint of tartness."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/jackberrywine
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_crops = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue = 6)
@@ -20,7 +20,7 @@
 	name = "Wine, Umeshu (Plum)"
 	category = "Fruit"
 	bottle_name = "umeshu wine"
-	bottle_desc = "A bottle of locally-brewed plum wine. Has a sweet, slightly sour flavor."
+	bottle_desc = "A bottle of locally-brewed plum wine. Has a sweet slightly sour flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/plum_wine
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/plum = 4, /obj/item/reagent_containers/food/snacks/sugar = 2)
@@ -38,7 +38,7 @@
 	name = "Wine, Tangerine"
 	category = "Fruit"
 	bottle_name = "tangerine wine"
-	bottle_desc = "A bottle of locally-brewed tangerine wine. Has a bittersweet, citrusy flavor."
+	bottle_desc = "A bottle of locally-brewed tangerine wine. Has a bittersweet citrusy flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/tangerine
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/tangerine = 4, /obj/item/reagent_containers/food/snacks/sugar = 2)
@@ -56,7 +56,7 @@
 	name = "Wine, Raspberry"
 	category = "Fruit"
 	bottle_name = "raspberry wine"
-	bottle_desc = "A bottle of locally-brewed raspberry wine. Has a sweet, tart flavor."
+	bottle_desc = "A bottle of locally-brewed raspberry wine. Has a sweet tart flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/raspberry
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/raspberry = 4, /obj/item/reagent_containers/food/snacks/sugar = 2)
@@ -74,7 +74,7 @@
 	name = "Wine, Blackberry"
 	category = "Fruit"
 	bottle_name = "blackberry wine"
-	bottle_desc = "A bottle of locally-brewed blackberry wine. Has a bitter, tart flavor."
+	bottle_desc = "A bottle of locally-brewed blackberry wine. Has a bitter tart flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/blackberry
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_items = list(/obj/item/reagent_containers/food/snacks/grown/fruit/blackberry = 4, /obj/item/reagent_containers/food/snacks/sugar = 2)
@@ -92,7 +92,7 @@
 	name = "Wine, Whip"
 	category = "Other"
 	bottle_name = "azurian whip-wine" // knockoff divine whip wine (magical penis wine)
-	bottle_desc = "A bottle of locally-brewed Whipwine. Said to be based off a Kazengun recipe. It has a particularly... leathery flavor."
+	bottle_desc = "A bottle of locally-brewed Whipwine, said to be based off a Kazengun recipe. It has a particularly... leathery flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/whipwine
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_items = list(/obj/item/alch/atropa = 1, /obj/item/reagent_containers/food/snacks/sugar = 1, /obj/item/alch/matricaria = 1,
@@ -105,7 +105,7 @@
 	name = "Wine, Lux"
 	category = "Other"
 	bottle_name = "luxintebere" // knockoff divine whip wine (magical penis wine)
-	bottle_desc = "A potentially heretickal brew, Lux, when fermented, breaks down into Vitae, which can further ferment into a delectable wine."
+	bottle_desc = "A potentially heretickal brew; Lux, when fermented, breaks down into Vitae, which can further ferment into a delectable wine."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/luxwine
 	needed_reagents = list(/datum/reagent/water = 198) // standard
 	needed_items = list(/obj/item/reagent_containers/lux = 1, /obj/item/reagent_containers/food/snacks/sugar = 2,

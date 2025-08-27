@@ -43,6 +43,9 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
+	backpack_contents = list(
+					/obj/item/recipe_book/survival = 1,
+					)
 	H.change_stat("strength", 2)
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 3)

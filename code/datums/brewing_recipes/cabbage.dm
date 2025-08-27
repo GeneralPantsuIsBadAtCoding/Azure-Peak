@@ -2,7 +2,7 @@
 	name = "Fireleaf"
 	category = "Other"
 	bottle_name = "fireleaf"
-	bottle_desc = "A bottle of locally-brewed fireleaf. Brewed from cabbage, it tastes absolutely awful."
+	bottle_desc = "A bottle of locally-brewed fireleaf brewed from cabbage. It tastes absolutely awful."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/fireleaf
 	needed_reagents = list(/datum/reagent/water = 198)
 	needed_crops = list(/obj/item/reagent_containers/food/snacks/grown/cabbage/rogue = 6)

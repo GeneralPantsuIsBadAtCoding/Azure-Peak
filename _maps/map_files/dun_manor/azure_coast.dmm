@@ -3528,7 +3528,7 @@
 /obj/structure/table/wood,
 /obj/item/rogueweapon/stoneaxe/battle{
 	name = "gutspiller";
-	desc = "A steel battleaxe of war. Has a wicked edge. Stained in the blood of countless victims."
+	desc = "A steel battleaxe of war. Its wicked edge is stained by the blood of countless victims."
 	},
 /obj/item/roguestatue/gold/loot{
 	pixel_x = -6;

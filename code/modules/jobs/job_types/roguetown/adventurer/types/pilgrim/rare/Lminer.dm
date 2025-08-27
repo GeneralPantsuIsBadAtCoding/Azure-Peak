@@ -23,6 +23,7 @@
 	beltl = /obj/item/rogueweapon/pick
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
+ 						/obj/item/recipe_book/survival = 1,
 						/obj/item/flashlight/flare/torch = 1,
 						)
 	H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)

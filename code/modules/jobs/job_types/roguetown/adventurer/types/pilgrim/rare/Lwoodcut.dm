@@ -42,6 +42,7 @@
 	backpack_contents = list(
 						/obj/item/flint = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
 	H.change_stat("strength", 4)
