@@ -987,7 +987,7 @@
 /datum/status_effect/buff/call_of_dendor
 	id = "call_of_dendor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/call_of_dendor
-	duration = 2.5 MINUTES
+	duration = 1.5 MINUTES
 	effectedstats = list("strength" = 2,"constitution" = 2 , "speed" = 4, "intelligence" = -6) //fast legs not afraid
 
 /atom/movable/screen/alert/status_effect/buff/call_of_dendor
