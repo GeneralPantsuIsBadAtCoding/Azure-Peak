@@ -2,7 +2,7 @@
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
-	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology. There's a button in the MIDDLE for making private jabberline connections."
+	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology, a device able to receive remote messages from the town crier's office. There's a button in the MIDDLE for making private jabberline connections."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "scomm1"
 	density = FALSE
@@ -307,7 +307,7 @@
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
 		else
-			say("This SCOM is set to receive-only. Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message.")
+			say("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message.")
 			playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
