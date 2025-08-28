@@ -148,12 +148,38 @@
 			if(/datum/patron/inhumen/graggar)
 				message_out = span_info("Foul fumes billow outward as [target] is restored!")
 				message_self = span_notice("A noxious scent burns my nostrils, but I feel better!")
-				// if you've got lingering toxin damage, you get healed more, but your bonus healing doesn't affect toxin
-				var/toxloss = target.getToxLoss()
-				if (toxloss >= 10)
+				// YES, HIT ME MORE
+				var/mob/living/carbon/human/G = user
+				var/brute = G.getBruteLoss()
+				var/burn = G.getFireLoss()
+				var/sit_bonus1 = 0
+				var/sit_bonus2 = 0
+				if(brute > 100)
+					sit_bonus1 = -2
+				if(brute > 150)
+					sit_bonus1 = -4
+				if(brute > 200)
+					sit_bonus1 = -6	
+				if(brute > 300)
+					sit_bonus1 = -8		
+				if(brute > 350)
+					sit_bonus1 = -10
+				if(brute > 400)
+					sit_bonus1 = -14	
+				if(burn > 100)
+					sit_bonus2 = -2
+				if(burn > 150)
+					sit_bonus2 = -4
+				if(burn > 200)
+					sit_bonus2 = -6	
+				if(burn > 300)
+					sit_bonus2 = -8		
+				if(burn > 350)
+					sit_bonus2 = -10
+				if(burn > 400)
+					sit_bonus2 = -14									
+				if(sit_bonus1 || sit_bonus2)				
 					conditional_buff = TRUE
-					situational_bonus = 2.5
-					target.adjustToxLoss(situational_bonus) // remember we do a global toxloss adjust down below so this is okay
 			if(/datum/patron/inhumen/matthios)
 				message_out = span_info("A wreath of... strange light passes over [target]?")
 				message_self = span_notice("I'm bathed in a... strange holy light?")
