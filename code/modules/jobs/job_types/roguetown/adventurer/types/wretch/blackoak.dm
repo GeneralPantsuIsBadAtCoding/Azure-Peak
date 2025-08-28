@@ -49,18 +49,19 @@
 	belt = /obj/item/storage/belt/rogue/leather/black
 	backl = /obj/item/storage/backpack/rogue/satchel
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-	pants = /obj/item/clothing/under/roguetown/trou/leather
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/elven
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/full
 	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
-	beltr = /obj/item/flashlight/flare/torch
 	r_hand = /obj/item/rogueweapon/halberd/glaive
 	backr = /obj/item/rogueweapon/scabbard/gwstrap
 	backpack_contents = list(
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1,
-				/obj/item/book/rogue/blackoak = 1
+				/obj/item/book/rogue/blackoak = 1,
+				/obj/item/flashlight/flare/torch/lantern/prelit = 1,
 				)
 
 	if(H.mind)
