@@ -307,7 +307,7 @@
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
 		else
-			say("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message.")
+			say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
 			playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
