@@ -1556,6 +1556,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\tbutcher.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\thug.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\towndoctor.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\townelder.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\witch.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\woodcutter.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\rare\Lchef.dm"
