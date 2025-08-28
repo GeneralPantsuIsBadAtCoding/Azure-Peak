@@ -155,11 +155,13 @@
 	recharge_time = 5 MINUTES
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross/dendor)
 	sound = 'sound/magic/timestop.ogg'
-	releasedrain = 30
+	associated_skill = /datum/skill/magic/holy
+	releasedrain = 0
 	miracle = TRUE
 	devotion_cost = 300
 	invocations = list("The Treefather! Give me power!")
 	invocation_type = "shout"
+	var/stamregenmod = 25
 	var/static/list/purged_effects = list(
 	/datum/status_effect/incapacitating/immobilized,
 	/datum/status_effect/incapacitating/paralyzed,
@@ -174,6 +176,9 @@
 	var/mob/living/carbon/human/H = user
 	if(H.resting)
 		H.set_resting(FALSE, FALSE)
+	var/regen = (stamregenmod / 150) * H.get_skill_level(associated_skill)
+	H.stamina_add(-(regen * H.max_stamina))
+	H.energy_add(regen * H.max_energy)
 	H.emote("warcry")
 	for(var/effect in purged_effects)
 		H.remove_status_effect(effect)
