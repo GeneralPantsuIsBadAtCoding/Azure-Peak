@@ -36,7 +36,7 @@
 	density = FALSE
 	max_integrity = 0
 	anchored = TRUE
-	var/cooldown = 5 MINUTES
+	var/cooldown = 10 MINUTES
 	var/on_cooldown = FALSE
 	var/area/localarea
 
