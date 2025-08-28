@@ -249,6 +249,9 @@
 		icon_state = "scomm1"
 	else
 		icon_state = "scomm0"
+	if(listening)
+		if(!loudmouth_listening)
+			icon_state = "scomm3"
 
 /obj/structure/roguemachine/scomm/Destroy()
 	lose_hearing_sensitivity()
@@ -303,6 +306,9 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
+		else
+			say("This SCOM is set to receive-only. Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message.")
+			playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
@@ -382,10 +388,10 @@
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
 	on_cooldown = TRUE
-	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown), user), cooldown)
 
-/obj/item/scomstone/proc/reset_cooldown()
-	visible_message(span_notice ("[src] is ready for use again."))
+/obj/item/scomstone/proc/reset_cooldown(mob/living/carbon/human/user)
+	to_chat(user, span_notice("[src] is ready for use again."))
 	playsound(loc, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
 	on_cooldown = FALSE
 
