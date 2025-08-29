@@ -16,8 +16,6 @@
 /datum/component/psyblessed/Initialize(blessing_type = BLESSING_NONE, force, blade_int, int, def, makesilver)
 	if(!istype(parent, /obj/item/rogueweapon))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(parent, COMSIG_ITEM_OBJFIX, PROC_REF(on_fix))
 	pre_blessed = blessing_type
 	added_force = force
 	added_blade_int = blade_int
@@ -26,7 +24,39 @@
 	silver = makesilver
 	if(pre_blessed)
 		apply_bless(blessing_type)
-		
+
+/datum/component/psyblessed/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ITEM_OBJFIX, PROC_REF(on_fix))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equipped))
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_dropped))
+
+/datum/component/psyblessed/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_PARENT_EXAMINE, COMSIG_ITEM_OBJFIX, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
+
+/datum/component/psyblessed/proc/on_equipped(mob/user, slot)
+	if(HAS_TRAIT(user, TRAIT_SILVER_WEAK))
+		var/mob/living/carbon/human/H = user
+		if(!H.mind)
+			return
+		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
+		if(V_lord.vamplevel >= 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+			return
+
+		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
+		H.Knockdown(10)
+		H.Paralyze(10)
+		H.adjustFireLoss(25)
+		H.fire_act(1,10)
+		user.dropItemToGround(parent, force = TRUE)
+		return
+	else if(is_blessed && slot == SLOT_HANDS)
+		user.add_stress(/datum/stressevent/blessed_weapon)
+
+/datum/component/psyblessed/proc/on_dropped(mob/user, slot)
+	if(is_blessed && (parent in user.held_items))
+		user.remove_stress(/datum/stressevent/blessed_weapon)
+
 /datum/component/psyblessed/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(!is_blessed)
 		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON. Until then, its impure alloying of silver-and-steel cannot blight inhumen foes on its own.</font>")
