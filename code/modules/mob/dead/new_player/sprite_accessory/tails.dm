@@ -353,7 +353,7 @@
 	can_wag = TRUE
 
 /datum/sprite_accessory/tail/dullahan
-	name = "Dullahan"
+	name = "Revenant"
 	icon = 'icons/mob/sprite_accessory/tails/tiefling.dmi'
 	icon_state = "tiebtail"
 	color_key_defaults = list(KEY_SKIN_COLOR)

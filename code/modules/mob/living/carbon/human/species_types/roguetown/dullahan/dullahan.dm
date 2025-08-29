@@ -5,10 +5,10 @@
 	race = /datum/species/dullahan
 
 /datum/species/dullahan
-	name = "Dullahan"
-	id = "dullahan"
-	desc = "<b>Dullahan</b><br>\
-	The origins of Dullahans are widely unknown. Rumored to be humen accursed with a powerful arcyne energy binding mind to soul, until that connection is forcefully snuffed out. \
+	name = "Revenant"
+	id = "revenant"
+	desc = "<b>Revenant</b><br>\
+	The origins of Revenants are widely unknown. Rumored to be humen accursed with a powerful arcyne energy binding mind to soul, until that connection is forcefully snuffed out. \
 	Such power affects some more than others, altering complexion and even their touch with magic. Their soul burns bright, yet their unknown origins makes them frightening to most."
 	// Stat balancing. Per-server decision. Preferably keep neutral until analysis post testmerges.
 	//race_bonus = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1)
