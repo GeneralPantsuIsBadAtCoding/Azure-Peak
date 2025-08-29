@@ -1617,10 +1617,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
 		used_intfactor = higher_intfactor
 	
-	if(ishuman(user) && user.mind)
+	if(ishuman(user) && user.mind && bladec != BCLASS_PEEL)
 		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
 		user.transmit_to_combat_aware(text)
-		
+
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor)
 
 	var/nodmg = FALSE
