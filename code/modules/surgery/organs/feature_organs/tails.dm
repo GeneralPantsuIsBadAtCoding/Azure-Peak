@@ -59,6 +59,10 @@
 	name = "tiefling tail"
 	accessory_type =  /datum/sprite_accessory/tail/tiefling
 
+/obj/item/organ/tail/dullahan
+	name = "dullahan tail"
+	accessory_type =  /datum/sprite_accessory/tail/dullahan
+
 /obj/item/organ/tail/akula
 	name = "axian tail"
 	accessory_type =  /datum/sprite_accessory/tail/shark

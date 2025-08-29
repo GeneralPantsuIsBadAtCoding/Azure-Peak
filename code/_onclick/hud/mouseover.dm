@@ -34,16 +34,17 @@
 	var/mob/p = usr
 	if(QDELETED(src))
 		return FALSE
+	if(!p)
+		return FALSE
 	if(p.client)
+		var/atom/AT = get_turf(p.client.eye)
 		if(!p.client.mouseovertext)
 			p.client.genmouseobj()
 			return FALSE
-		if(p.client.pixel_x || p.client.pixel_y)
-			return FALSE
 		if(!p.x || !p.y)
 			return FALSE
-		var/offset_x = 8 - (p.x - x)
-		var/offset_y = 8 - (p.y - y)
+		var/offset_x = 8 - (AT.x - x) - (p.client.pixel_x / world.icon_size)
+		var/offset_y = 8 - (AT.y - y) - (p.client.pixel_y / world.icon_size)
 		var/list/PM = list("screen-loc" = "[offset_x]:0,[offset_y]:0")
 		if(!isturf(loc))
 			PM = params2list(params)
@@ -89,15 +90,14 @@
 	if(QDELETED(src))
 		return FALSE
 	if(p.client)
+		var/atom/AT = get_turf(p.client.eye)
 		if(!p.client.mouseovertext)
 			p.client.genmouseobj()
 			return FALSE
-		if(p.client.pixel_x || p.client.pixel_y)
-			return FALSE
 		if(!p.x || !p.y)
 			return FALSE
-		var/offset_x = 8 - (p.x - x)
-		var/offset_y = 8 - (p.y - y)
+		var/offset_x = 8 - (AT.x - x) - (p.client.pixel_x / world.icon_size)
+		var/offset_y = 8 - (AT.y - y) - (p.client.pixel_y / world.icon_size)
 		if(offset_x < 1 || offset_x > 15 || offset_y < 1 || offset_x > 15)
 			return FALSE
 		var/list/PM = list("screen-loc" = "[offset_x]:0,[offset_y]:0")
@@ -114,15 +114,14 @@
 	if(QDELETED(src))
 		return FALSE
 	if(p.client)
+		var/atom/AT = get_turf(p.client.eye)
 		if(!p.client.mouseovertext)
 			p.client.genmouseobj()
 			return FALSE
-		if(p.client.pixel_x || p.client.pixel_y)
-			return FALSE
 		if(!p.x || !p.y)
 			return FALSE
-		var/offset_x = 8 - (p.x - x)
-		var/offset_y = 8 - (p.y - y)
+		var/offset_x = 8 - (AT.x - x) - (p.client.pixel_x / world.icon_size)
+		var/offset_y = 8 - (AT.y - y) - (p.client.pixel_y / world.icon_size)
 		var/list/PM = list("screen-loc" = "[offset_x]:0,[offset_y]:0")
 		p.client.mouseovertext.maptext = {"<span style='font-size:8pt;font-family:"Pterra";color:#6b3f3f;text-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>[name]"}
 		p.client.mouseovertext.movethis(PM)
@@ -134,6 +133,7 @@
 	if(QDELETED(src))
 		return FALSE
 	if(p.client)
+		var/atom/AT = get_turf(p.client.eye)
 		if(!p.client.mouseovertext)
 			p.client.genmouseobj()
 			return FALSE
@@ -141,14 +141,12 @@
 			var/mob/living/L = p
 			if(!L.can_see_cone(src))
 				return FALSE
-		if(p.client.pixel_x || p.client.pixel_y)
-			return FALSE
 		if(alpha == 0)
 			return FALSE
 		if(!p.x || !p.y)
 			return FALSE
-		var/offset_x = 8 - (p.x - x)
-		var/offset_y = 8 - (p.y - y)
+		var/offset_x = 8 - (AT.x - x) - (p.client.pixel_x / world.icon_size)
+		var/offset_y = 8 - (AT.y - y) - (p.client.pixel_y / world.icon_size)
 		var/list/PM = list("screen-loc" = "[offset_x]:0,[offset_y]:0")
 		var/mousecolor = "#c1aaaa"
 		if(ishuman(src))

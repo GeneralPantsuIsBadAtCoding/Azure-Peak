@@ -102,7 +102,8 @@ GLOBAL_LIST_INIT(moldable_organs, list(BODY_ZONE_PRECISE_GROIN=list(ORGAN_SLOT_P
 		for(var/obj/item/organ/found_organ as anything in organs)
 			found_organ.on_find(user)
 			organs -= found_organ
-			organs[found_organ.name] = found_organ
+			if(!(found_organ.organ_flags & ORGAN_SURGERY_HIDDEN))
+				organs[found_organ.name] = found_organ
 
 		var/selected = input(user, "Remove which organ?", "PESTRA") as null|anything in sortList(organs)
 		if(QDELETED(user) || QDELETED(target) || !user.Adjacent(target) || (user.get_active_held_item() != tool))
@@ -136,6 +137,10 @@ GLOBAL_LIST_INIT(moldable_organs, list(BODY_ZONE_PRECISE_GROIN=list(ORGAN_SLOT_P
 		span_notice("[user] successfully extracts [selected_organ] from [target]'s [parse_zone(target_zone)]!"),
 		span_notice("[user] successfully extracts something from [target]'s [parse_zone(target_zone)]!"))
 	log_combat(user, target, "surgically removed [selected_organ.name] from")
+
+	if(selected_organ == ORGAN_SLOT_BRAIN && isdullahan(target))
+		target.death()
+
 	selected_organ.Remove(target)
 	selected_organ.forceMove(target.drop_location())
 	user.put_in_hands(selected_organ)

@@ -38,7 +38,7 @@
 /obj/item/melee/touch_attack/rogueweapon/attack_self()
 	attached_spell.remove_hand()
 
-/obj/item/melee/touch_attack/rogueweapon/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user)
+/obj/item/melee/touch_attack/rogueweapon/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user, zone_sel)
 	if(!get_sharpness() || !affecting.can_dismember(src))
 		return 0
 
@@ -73,12 +73,17 @@
 	var/probability = nuforce * (total_dam / affecting.max_damage)
 	var/hard_dismember = HAS_TRAIT(affecting, TRAIT_HARDDISMEMBER)
 	var/easy_dismember = affecting.rotted || affecting.skeletonized || HAS_TRAIT(affecting, TRAIT_EASYDISMEMBER)
+	var/easy_decapitation = HAS_TRAIT(affecting, TRAIT_EASYDECAPITATION)
 	if(affecting.owner)
 		if(!hard_dismember)
 			hard_dismember = HAS_TRAIT(affecting.owner, TRAIT_HARDDISMEMBER)
 		if(!easy_dismember)
 			easy_dismember = HAS_TRAIT(affecting.owner, TRAIT_EASYDISMEMBER)
-	if(hard_dismember)
+		if(!easy_decapitation)
+			easy_decapitation = HAS_TRAIT(affecting.owner, TRAIT_EASYDECAPITATION)
+	if(easy_decapitation && zone_sel == BODY_ZONE_PRECISE_NECK)
+		return probability * 1.5
+	else if(hard_dismember)
 		return min(probability, 5)
 	else if(easy_dismember)
 		return probability * 1.5

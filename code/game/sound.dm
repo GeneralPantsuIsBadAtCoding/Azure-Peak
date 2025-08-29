@@ -6,11 +6,23 @@
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
+	var/soundfile = soundin
+	if(istype(soundin, /sound))
+		var/sound/sound = soundin
+		soundfile = sound.file
+	// Voice over sound, which implies it should come from the head.
+	if(isdullahan(source) && findtext("[soundfile]", @"sound/vo"))
+		var/mob/living/carbon/human/human = source
+		var/datum/species/dullahan/dullahan = human.dna.species
+		if(dullahan.headless)
+			var/obj/item/bodypart/head/dullahan/head = dullahan.my_head
+			source = head
+
 	var/turf/turf_source = get_turf(source)
 	if(isturf(source))
 		turf_source = source
 
-	if (!turf_source)
+	if(!turf_source)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -48,7 +60,15 @@
 	. = list()
 
 	for(var/mob/M as anything in listeners)
-		if(get_dist(M, turf_source) <= maxdistance)
+		var/turf/tocheck = get_turf(M)
+		// Check relay instead.
+		if(isdullahan(M))
+			var/mob/living/carbon/human = M
+			var/datum/species/dullahan/dullahan = human.dna.species
+			if(dullahan.headless)
+				tocheck = get_turf(dullahan.my_head)
+
+		if(get_dist(tocheck, turf_source) <= maxdistance)
 			if(animal_pref)
 				if(M.client?.prefs?.mute_animal_emotes)
 					continue
@@ -102,6 +122,14 @@
 	if(!S.channel)
 		S.channel = SSsounds.random_available_channel()
 
+	var/obj/item/bodypart/head/dullahan/user_head
+	if(isdullahan(src))
+		var/mob/living/carbon/human = src
+		var/datum/species/dullahan/dullahan = human.dna.species
+		if(dullahan.headless)
+			user_head = dullahan.my_head
+			muffled = istype(user_head.loc, /obj/structure/closet) || istype(user_head.loc, /obj/item/storage/)
+
 	if(muffled)
 		S.environment = 11
 		if(falloff)
@@ -128,7 +156,10 @@
 		S.frequency = frequency
 
 	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
+		// Check distance to relay instead.
+		var/atom/movable/tocheck = user_head ? user_head : src
+
+		var/turf/T = get_turf(tocheck)
 
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
@@ -158,18 +189,18 @@
 		if(S.volume <= 0)
 			return FALSE //No sound
 
-		var/dx = turf_source.x - x
+		var/dx = turf_source.x - T.x
 		if(dx <= 1 && dx >= -1)
 			S.x = 0
 		else
 			S.x = dx
-		var/dz = turf_source.y - y
+		var/dz = turf_source.y - T.y
 		if(dz <= 1 && dz >= -1)
 			S.z = 0
 		else
 			S.z = dz
 
-		var/dy = turf_source.z - z
+		var/dy = turf_source.z - T.z
 		S.y = dy
 
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
