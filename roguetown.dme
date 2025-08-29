@@ -595,6 +595,7 @@
 #include "code\datums\components\movable_lighting.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\pollutant.dm"
+#include "code\datums\components\psyblessed.dm"
 #include "code\datums\components\punchcooldown.dm"
 #include "code\datums\components\riding.dm"
 #include "code\datums\components\rotation.dm"
