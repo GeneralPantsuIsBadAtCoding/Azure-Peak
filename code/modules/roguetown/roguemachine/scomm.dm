@@ -161,7 +161,7 @@
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(calling)
 		calling.say("Jabberline severed.", spans = list("info"))
-		if(calling.calling == src)
+		if(calling.calling == src || calling.called_by == src)
 			var/obj/structure/roguemachine/scomm/old_calling = calling
 			old_calling.called_by = null
 			old_calling.calling = null
