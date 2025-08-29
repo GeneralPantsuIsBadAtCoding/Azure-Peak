@@ -196,9 +196,9 @@
 #define TRAIT_NECRAS_VOW "Necra's Vow"
 #define TRAIT_ADRENALINE_RUSH "Adrenaline Rush"
 #define TRAIT_MEDICINE_EXPERT "Medicine Expert"
+#define TRAIT_SILVER_WEAK "Silver Weakness"
 // ARMOR / CLOTHING GIVEN TRAITS (GIVEN BY WEARING CLOTHES/ARMOR PIECES)
 #define TRAIT_MONK_ROBE	"Holy Vestatures"
-#define TRAIT_SILVER_WEAK "Silver Weakness"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -360,6 +360,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BLOODLOSS_IMMUNE = span_notice("While I may bleed, I will feel nothing from it."),
 	TRAIT_ADRENALINE_RUSH = span_notice("I'm invigorated in the midst of battle! I don't feel my wounds!"),
 	TRAIT_MEDICINE_EXPERT = span_greentext("I've deep, intricate knowledge of my craft. I can learn to become a Master or above."),
+	TRAIT_SILVER_WEAK = span_notice("Silver is my bane.")
 ))
 
 // trait accessor defines

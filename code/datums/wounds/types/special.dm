@@ -335,5 +335,5 @@
 	if(iscarbon(affected))
 		var/mob/living/carbon/carbon_affected = affected
 		carbon_affected.vomit(blood = TRUE)
-	to_chat(affected, span_userdanger("MY LUX! IT BURNED MY LUX!!!"))
+	to_chat(affected, span_userdanger("PSYDON GRABS MY WEARY... LUX?!"))
 	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)

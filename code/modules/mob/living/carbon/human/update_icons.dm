@@ -86,9 +86,9 @@ There are several things that need to be remembered:
 		remove_overlay(SUNDER_LAYER)
 		QDEL_NULL(sunder_light_obj)
 
-	if(fire_stacks + divine_fire_stacks + sunder_fire_stacks< 10)
+	if(fire_stacks + divine_fire_stacks < 10)
 		return ..("Generic_mob_burning")
-	else
+	else if(fire_stacks + divine_fire_stacks > 10)
 		var/burning = dna.species.enflamed_icon
 		if(!burning)
 			return ..("widefire")

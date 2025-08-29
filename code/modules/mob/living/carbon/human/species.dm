@@ -1885,7 +1885,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		//FIRE_STACKS Human damage taken from fire is determined here.
 		var/burn_damage
 		var/firemodifier = H.fire_stacks / 50
-		if (H.on_fire)
+		if(H.on_fire)
 			burn_damage = 10 + H.fire_stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
 		else
 			firemodifier = min(firemodifier, 0)
