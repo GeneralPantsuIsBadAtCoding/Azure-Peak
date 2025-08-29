@@ -121,11 +121,11 @@
 		var/text
 		var/stamratio = stamina / max_stamina
 		if(stamratio >= 0.25 && ((stamina - added) / max_stamina) < 0.25)
-			text = "<font color = '#a8af9b'>Winded... </font>"
+			text = "<font color = '#a8af9b'>Winded.</font>"
 		if(stamratio >= 0.5 && ((stamina - added) / max_stamina) < 0.5)
-			text = "<font color = '#d4d36c'>Drained... </font>"
+			text = "<font color = '#d4d36c'>Drained.</font>"
 		if(stamratio >= 0.75 && ((stamina - added) / max_stamina) < 0.75)
-			text = "<font color = '#a8665a'>Fatigued... </font>"
+			text = "<font color = '#a8665a'>Fatigued.</font>"
 		if(text)
 			H.transmit_to_combat_aware(text, 20)
 

@@ -23,11 +23,11 @@
 	var/ratio = obj_integrity / max_integrity
 	var/text
 	if(ratio < 0.75 && ((obj_integrity + damage_amount) / max_integrity) > 0.75)
-		text = "Armor <br><font color = '#8aaa4d'>marred...</font>"
+		text = "Armor <br><font color = '#8aaa4d'>marred.</font>"
 	if(ratio < 0.5 && ((obj_integrity + damage_amount) / max_integrity) > 0.5)
-		text = "Armor <br><font color = '#d4d36c'>damaged...</font>"
+		text = "Armor <br><font color = '#d4d36c'>damaged.</font>"
 	if(ratio < 0.25 && ((obj_integrity + damage_amount) / max_integrity) > 0.25)
-		text = "Armor <br><font color = '#a8705a'>sundered...</font>"
+		text = "Armor <br><font color = '#a8705a'>sundered.</font>"
 	if(text)
 		transmit_to_combat_aware(text, -20)
 	//BREAKING FIRST
