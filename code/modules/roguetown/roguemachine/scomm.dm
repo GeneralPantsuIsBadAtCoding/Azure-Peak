@@ -999,11 +999,12 @@
 
 /obj/structure/broadcast_horn/paid
 	name = "\improper Streetpipe"
-	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a zenar to send a message over the SCOM network."
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a ziliqua to send a message over the SCOM network."
 	icon_state = "broadcaster_crass"
 	icon = 'icons/roguetown/misc/machines.dmi'
 	var/is_locked = FALSE
 	var/stored_zenar = 0
+	var/stored_zil = 0
 
 /obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
 	if(istype(P, /obj/item/roguekey/crier))
@@ -1014,7 +1015,21 @@
 			say("Streetpipe has been locked.")
 		else
 			say("Streetpipe has been unlocked.")
-	if(istype(P, /obj/item/roguecoin/gold))
+	if(istype(P, /obj/item/roguecoin))
+		var/has_paid = FALSE
+		var/paid_zil = FALSE
+		if(HAS_TRAIT(user, TRAIT_OUTLANDER))
+			if(istype(P, /obj/item/roguecoin/gold))
+				has_paid = TRUE
+			else
+				say("Foreigners pay double. Insert a zenar.")
+				playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+				return
+		else if(istype(P, /obj/item/roguecoin/silver))
+			has_paid = TRUE
+			paid_zil = TRUE
+		if(!has_paid)
+			return
 		if(is_locked)
 			say("Streetpipe is locked. Consult the crier.")
 			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
@@ -1028,7 +1043,10 @@
 			return
 		listening = TRUE
 		qdel(C)
-		stored_zenar += 1
+		if(paid_zil)
+			stored_zil += 1
+		else
+			stored_zenar +=1
 		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 		return
 	..()
@@ -1040,13 +1058,22 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.job == "Town Crier")
+		var/dispensed = FALSE
 		if(stored_zenar)
 			var/obj/item/roguecoin/G = new /obj/item/roguecoin/gold(H, stored_zenar)
 			if(H)
 				H.put_in_hands(G)
 				stored_zenar = 0
+				dispensed = TRUE
 				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
-		else
+		if(stored_zil)
+			var/obj/item/roguecoin/S = new /obj/item/roguecoin/silver(H, stored_zil)
+			if(H)
+				H.put_in_hands(S)
+				stored_zil = 0
+				dispensed = TRUE
+				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
+		else if(!dispensed)
 			say("There's no mammon inside.")
 			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 
