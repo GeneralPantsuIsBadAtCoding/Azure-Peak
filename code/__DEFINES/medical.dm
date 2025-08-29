@@ -33,6 +33,7 @@
 #define READABLE_ZONE_L_LEG		"Left leg"
 #define READABLE_ZONE_R_LEG		"Right leg"
 
+#define READABLE_ZONE_SKULL		"Skull"
 #define READABLE_ZONE_NOSE		"Nose"
 #define READABLE_ZONE_MOUTH		"Mouth"
 #define READABLE_ZONE_EYES		"Eyes"

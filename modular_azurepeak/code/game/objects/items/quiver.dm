@@ -77,6 +77,10 @@
 				if(istype(AR, /obj/item/ammo_casing/caseless/rogue/arrow))
 					arrows -= AR
 					B.attackby(AR, loc, params)
+					if(ismob(loc))
+						var/mob/M = loc
+						if(HAS_TRAIT(M, TRAIT_COMBAT_AWARE))
+							M.balloon_alert(M, "[length(arrows)] left...")
 					break
 		return
 	..()

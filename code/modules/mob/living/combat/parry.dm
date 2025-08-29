@@ -290,10 +290,7 @@
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(src.client)
 				GLOB.azure_round_stats[STATS_PARRIES]++
-			if(istype(rmb_intent, /datum/rmb_intent/riposte))
-				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
-			else
-				src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
+			src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
 			if(W.max_blade_int)
 				W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
 			else

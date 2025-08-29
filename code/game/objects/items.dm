@@ -1376,6 +1376,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/coveragezone = attackzone2coveragezone(bodypart)
 	if(!(body_parts_inherent & coveragezone))
 		if(!last_peeled_limb || coveragezone == last_peeled_limb)
+			var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 			if(divisor >= peel_threshold)
 				peel_count += divisor ? (peel_threshold / divisor ) : 1
 			else if(divisor < peel_threshold)
@@ -1383,14 +1384,19 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
-				var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 				var/parttext
 				if(length(peeledpart))
 					parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
 				visible_message("<font color = '#f5f5f5'><b>[parttext ? parttext : "Coverage"]</font></b> gets peeled off of [src]!")
+				var/balloon_msg = "<font color = '#bb1111'>[parttext] peeled!</font>"
+				if(length(peeledpart))
+					balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
 				reset_peel(success = TRUE)
 			else
 				visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
+				var/balloon_msg = "Peel! \Roman[ROUND_UP(peel_count)] <br><font color = '#8b7330'>[peeledpart[1]]!</font>"
+				if(length(peeledpart))
+					balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
 		else
 			last_peeled_limb = coveragezone
 			reset_peel()
@@ -1414,7 +1420,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		peel_count = 0
 	visible_message(span_info("Peel reduced to [peel_count == 0 ? "none" : "[peel_count]"] on [src]!"))
 
-/obj/item/proc/attackzone2coveragezone(location)
+/proc/attackzone2coveragezone(location)
 	switch(location)
 		if(BODY_ZONE_HEAD)
 			return HEAD

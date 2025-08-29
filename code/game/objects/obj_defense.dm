@@ -19,6 +19,17 @@
 		animate(src, pixel_x = oldx+1, time = 0.5)
 		animate(pixel_x = oldx-1, time = 0.5)
 		animate(pixel_x = oldx, time = 0.5)
+
+	var/ratio = obj_integrity / max_integrity
+	var/text
+	if(ratio < 0.75 && ((obj_integrity + damage_amount) / max_integrity) > 0.75)
+		text = "Armor <br><font color = '#8aaa4d'>marred...</font>"
+	if(ratio < 0.5 && ((obj_integrity + damage_amount) / max_integrity) > 0.5)
+		text = "Armor <br><font color = '#d4d36c'>damaged...</font>"
+	if(ratio < 0.25 && ((obj_integrity + damage_amount) / max_integrity) > 0.25)
+		text = "Armor <br><font color = '#a8705a'>sundered...</font>"
+	if(text)
+		transmit_to_combat_aware(text, -20)
 	//BREAKING FIRST
 	if(!obj_broken && integrity_failure && obj_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_flag)
@@ -235,6 +246,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 		playsound(get_turf(src), break_sound, 80, TRUE)
 	if(break_message)
 		visible_message(break_message)
+	balloon_alert_to_viewers("<font color = '#bb2b2b'>[src]<br>breaks!</font>")
 
 /// Called after obj is repaired (needle/hammer for items). Do not call unless obj_broken is true to avoid breaking armor.
 /obj/proc/obj_fix(mob/user)

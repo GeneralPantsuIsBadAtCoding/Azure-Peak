@@ -68,8 +68,16 @@
 	return needed_xp
 
 /datum/sleep_adv/proc/add_sleep_experience(skill, amt, silent = FALSE)
-	if((mind.current.get_skill_level(skill) < SKILL_LEVEL_APPRENTICE) && !is_considered_sleeping())
-		mind.current.adjust_experience(skill, amt)
+	var/mob/living/L = mind.current
+	var/show_xp = TRUE
+	if(!L.client?.prefs.xp_text)
+		show_xp = FALSE
+	if((L.get_skill_level(skill) < SKILL_LEVEL_APPRENTICE) && !is_considered_sleeping())
+		var/org_lvl = L.get_skill_level(skill)
+		L.adjust_experience(skill, amt)
+		var/new_lvl = L.get_skill_level(skill)
+		if(org_lvl == new_lvl && show_xp)
+			L.balloon_alert(L, "[amt] XP")
 		return
 	var/datum/skill/skillref = GetSkillRef(skill)
 	var/trait_capped_level = FALSE
@@ -87,16 +95,29 @@
 	adjust_sleep_xp(skill, amt)
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
 	var/capped_post = enough_sleep_xp_to_advance(skill, 2)
+
+	if(capped_post)
+		show_xp = FALSE
 	if(!can_advance_pre && can_advance_post && !silent)
 		to_chat(mind.current, span_nicegreen(pick(list(
 			"I'm getting a better grasp at [lowertext(skillref.name)]...",
 			"With some rest, I feel like I can get better at [lowertext(skillref.name)]...",
 			"[skillref.name] starts making more sense to me...",
 		))))
+		if(L.client?.prefs.xp_text)
+			L.balloon_alert(L, "<font color = '#9BCCD0'>Level up...</font>")
+		L.playsound_local(L, pick(LEVEL_UP_SOUNDS), 100, TRUE)
+		show_xp = FALSE
 	if(!capped_pre && capped_post && !silent)
 		to_chat(mind.current, span_nicegreen(pick(list(
 			"My [lowertext(skillref.name)] can no longer improve without some rest and meditation...",
 		))))
+		if(L.client?.prefs.xp_text)
+			L.balloon_alert(L, "<font color = '#9BCCD0'>Level up...</font>")
+		L.playsound_local(L, pick(LEVEL_UP_SOUNDS), 100, TRUE)
+		show_xp = FALSE
+	if(amt && !show_xp && L.client?.prefs.xp_text)
+		L.balloon_alert(L, "[amt] XP")
 
 /datum/sleep_adv/proc/advance_cycle()
 	// Stuff

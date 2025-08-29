@@ -93,6 +93,9 @@
 	if(known_skills[S] >= old_level)
 		if(known_skills[S] > old_level)
 			to_chat(current, span_nicegreen("My [S.name] grows to [SSskills.level_names[known_skills[S]]]!"))
+			if(current.client?.prefs.xp_text)
+				current.balloon_alert(current, "<font color = '#9BCCD0'>Level up...</font>")
+			current.playsound_local(current, pick(LEVEL_UP_SOUNDS), 100, TRUE)
 			SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, S, known_skills[S], old_level)
 			GLOB.azure_round_stats[STATS_SKILLS_LEARNED]++
 			S.skill_level_effect(known_skills[S], src)

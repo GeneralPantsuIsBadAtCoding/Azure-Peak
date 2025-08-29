@@ -1233,6 +1233,7 @@
 #include "code\modules\atmospherics\environmental\LINDA_fire.dm"
 #include "code\modules\awaymissions\corpse.dm"
 #include "code\modules\awaymissions\zlevel.dm"
+#include "code\modules\balloon_alert\balloon_alert.dm"
 #include "code\modules\buildmode\bm_mode.dm"
 #include "code\modules\buildmode\buildmode.dm"
 #include "code\modules\buildmode\buttons.dm"

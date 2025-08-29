@@ -147,6 +147,13 @@
 		prefs.save_preferences()
 	to_chat(src, "You will [prefs.toggles & CMODE_STRIPPING ? "" : "not"] be able to open the strip menu in combat mode.")
 
+/client/verb/toggle_xptext() // Whether the user can see the balloon XP pop ups.
+	set category = "Options"
+	set name = "Toggle XP Text"
+	if(prefs)
+		prefs.xp_text = !prefs.xp_text
+		prefs.save_preferences()
+		to_chat(src, "You will[prefs.xp_text ? "" : " not"] see XP text popups.")
 /*
 //toggles
 /datum/verbs/menu/Settings/Ghost/chatterbox

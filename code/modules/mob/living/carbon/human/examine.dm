@@ -95,6 +95,11 @@
 			else
 				. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
 
+		if(HAS_TRAIT(user, TRAIT_COMBAT_AWARE) && zone_selected)
+			. += span_warning("[capitalize(p_they())] [p_are()] aiming at the <b>[bodyzone2readablezone(zone_selected)].</b>")
+			if(HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+				. += span_warning("[capitalize(p_they())] [p_are()] just as <b>aware.</b>")
+
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
 				. += span_warning("A witch! Their presence brings an unsettling aura.")

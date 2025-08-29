@@ -1209,6 +1209,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(affecting.body_zone == BODY_ZONE_HEAD)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 		log_combat(user, target, "punched")
+		if(ishuman(user) && user.mind)
+			var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+			user.transmit_to_combat_aware(text)
 
 		if(!nodmg)
 			if(user.limb_destroyer)
@@ -1413,6 +1416,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, span_danger("I stomp on [target]![target.next_attack_msg.Join()]"))
 			target.next_attack_msg.Cut()
 			log_combat(user, target, "kicked")
+
+			if(ishuman(user) && user.mind)
+				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+				user.transmit_to_combat_aware(text)
+
 			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 			if(!nodmg)
 				playsound(target, 'sound/combat/hits/kick/stomp.ogg', 100, TRUE, -1)
@@ -1609,6 +1617,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
 		used_intfactor = higher_intfactor
 	
+	if(ishuman(user) && user.mind)
+		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+		user.transmit_to_combat_aware(text)
+		
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor)
 
 	var/nodmg = FALSE
