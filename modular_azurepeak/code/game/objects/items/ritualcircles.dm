@@ -525,7 +525,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 
 	var/list/witnesses = view(7, src)
 	for(var/mob/living/carbon/human/H in witnesses)
-		teleport_to_dream(H, 0.1)
+		teleport_to_dream(H, 1000, 1)
 
 	return ..()
 

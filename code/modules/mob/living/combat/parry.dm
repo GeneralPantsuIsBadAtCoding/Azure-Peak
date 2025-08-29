@@ -290,11 +290,16 @@
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(src.client)
 				GLOB.azure_round_stats[STATS_PARRIES]++
-			src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
-			if(W.max_blade_int)
-				W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+			if(istype(rmb_intent, /datum/rmb_intent/riposte))
+				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
-				W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
+				src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
+			if(!iscarbon(user))	//Non-carbon mobs never make it to the proper parry proc where the other calculations are done.
+				if(W.max_blade_int)
+					W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+					W.take_damage(INTEG_PARRY_DECAY, BRUTE, "slash")
+				else
+					W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
 			return TRUE
 		else
 			to_chat(src, span_warning("I'm too tired to parry!"))

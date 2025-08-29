@@ -24,14 +24,17 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 	stressadd = 20
 	desc = span_userdanger("WHAT IS THAT THING?!")
 
-/proc/teleport_to_dream(mob/living/carbon/human/user, probability = 0.1)
+/proc/teleport_to_dream(mob/living/carbon/human/user, base_probability = 10000, probability = 10)
 	if(!ishuman(user))
 		return
 
+	var/effective_probability = probability
 	if(user.patron.type == /datum/patron/divine/abyssor)
-		probability *= 5
+		effective_probability *= 5
 
-	if(!prob(probability))
+	// Look kids, if you want accurate probability, don't use fractional numbers. Pickweight is safer and more accurate than prob() here.
+	var/list/options = list("teleport" = effective_probability, "no_teleport" = base_probability - effective_probability)
+	if(pickweight(options) == "no_teleport")
 		return
 
 	var/area/dream_area = GLOB.areas_by_type[/area/rogue/underworld/dream]
@@ -79,6 +82,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 
 	// Schedule return
 	user.apply_status_effect(/datum/status_effect/dream_teleport, original_turf)
+	return TRUE
 
 /proc/return_from_dream(mob/living/carbon/human/user, turf/original_turf)
 	if(!user || QDELETED(user) || !original_turf)
