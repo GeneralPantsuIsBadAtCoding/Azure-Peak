@@ -140,7 +140,7 @@
 									else
 										new A(user.loc)
 										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
-										teleport_to_dream(user, 0.01)
+										teleport_to_dream(user, 10000, 1)
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
 										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++

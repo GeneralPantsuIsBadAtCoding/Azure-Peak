@@ -597,7 +597,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
 			if(eyesclosed && !HAS_TRAIT(src, TRAIT_NOSLEEP))
-				teleport_to_dream(src, 0.02)
+				teleport_to_dream(src, 10000, 2)
 				Sleeping(300)
 	else if(!IsSleeping() && !HAS_TRAIT(src, TRAIT_NOSLEEP))
 		// Resting on a bed or something
@@ -632,7 +632,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
 						fallingas++
 					if(fallingas > 15)
-						teleport_to_dream(src, 0.02)
+						teleport_to_dream(src, 10000, 2)
 						Sleeping(300)
 			else
 				energy_add(sleepy_mod * 10)
@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
 						fallingas++
 					if(fallingas > 25)
-						teleport_to_dream(src, 0.02)
+						teleport_to_dream(src, 10000, 2)
 						Sleeping(300)
 			else
 				energy_add(10)
