@@ -697,15 +697,18 @@
 		return
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(istype(H.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || HAS_TRAIT(H, TRAIT_SILVER_BLESSED))
+		if(istype(H.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver))
 			to_chat(user, span_userdanger("SILVER! HISSS!!!"))
 			return
+		// Add bite animation to the victim
+		H.add_bite_animation()
+
 	last_drink = world.time
-	user.changeNext_move(CLICK_CD_GRABBING)
+	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(user.mind && C.mind)
-		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
-		var/datum/antagonist/vampirelord/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampirelord)
+		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire_neu)
+		var/datum/antagonist/vampire/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire_neu)
 		var/zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/werewolf)
 		if(!zomwerewolf)
 			if(C.stat != DEAD)
@@ -715,47 +718,47 @@
 				to_chat(user, span_danger("I'm going to puke..."))
 				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 			else
+				var/blood_handle
+				if(C.stat == DEAD)
+					blood_handle |= BLOOD_PREFERENCE_DEAD
+				else
+					blood_handle |= BLOOD_PREFERENCE_LIVING
+
+				if(C.job in list("Priest", "Priestess", "Cleric", "Acolyte", "Templar", "Churchling", "Crusader", "Inquisitor"))
+					blood_handle |= BLOOD_PREFERENCE_HOLY
 				if(VVictim)
-					to_chat(user, span_warning("It's vitae, just like mine."))
-				else if (C.vitae_pool > 500)
+					blood_handle |= BLOOD_PREFERENCE_KIN
+					blood_handle  &= ~BLOOD_PREFERENCE_LIVING
+
+				if(C.bloodpool > 0)
 					C.blood_volume = max(C.blood_volume-45, 0)
-					C.vitae_pool -= 500
 					if(ishuman(C))
-						var/mob/living/carbon/human/H = C
-						if(H.virginity)
-							to_chat(user, "<span class='love'>Virgin blood, delicious!</span>")
-							if(VDrinker.isspawn)
-								VDrinker.handle_vitae(750, 750)
-							else
-								VDrinker.handle_vitae(750)
-					if(VDrinker.isspawn)
-						VDrinker.handle_vitae(500, 500)
-					else
-						VDrinker.handle_vitae(500)
+						var/used_vitae = 150
+						if(C.bloodpool < used_vitae)
+							used_vitae = C.bloodpool // We assume they're left with 250 vitae or less, so we take it all
+							to_chat(user, "<span class='warning'>...But alas, only leftovers...</span>")
+						user.adjust_bloodpool(used_vitae)
+						user.adjust_hydration(used_vitae * 0.1)
+						if(VVictim)
+							C.adjust_bloodpool(-used_vitae) //twice the loss
+						C.adjust_bloodpool(-used_vitae)
+					user.clan.handle_bloodsuck(user, blood_handle)
 				else
 					to_chat(user, span_warning("No more vitae from this blood..."))
-		else
-/*			if(VVictim)
-				to_chat(user, "<span class='notice'>A strange, sweet taste tickles my throat.</span>")
-				addtimer(CALLBACK(user, .mob/living/carbon/human/proc/vampire_infect), 1 MINUTES) // I'll use this for succession later.
-			else */
-			if(!HAS_TRAIT(user, TRAIT_HORDE))
-				to_chat(user, "<span class='warning'>I'm going to puke...</span>")
-				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+		else // Don't larp as a vampire, kids.
+			to_chat(user, span_warning("I'm going to puke..."))
+			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 	else
-		if(user.mind)
-			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord))
-				var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
+		if(user.mind) // We're drinking from a mob or a person who disconnected from the game
+			if(user.mind.has_antag_datum(/datum/antagonist/vampire))
 				C.blood_volume = max(C.blood_volume-45, 0)
-				if(VDrinker.isspawn)
-					VDrinker.handle_vitae(300, 300)
+				if(C.bloodpool >= 250)
+					user.adjust_bloodpool(250, 250)
 				else
-					VDrinker.handle_vitae(300)
+					to_chat(user, span_warning("And yet, not enough vitae can be extracted from them... Tsk."))
 
-	C.blood_volume = max(C.blood_volume-15, 0)
+	C.blood_volume = max(C.blood_volume-5, 0)
 	C.handle_blood()
-	if(HAS_TRAIT(user, TRAIT_HORDE))
-		user.adjust_hydration(8)
 
 	playsound(user.loc, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
 
@@ -765,23 +768,19 @@
 	log_combat(user, C, "drank blood from ")
 
 	if(ishuman(C) && C.mind)
-		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
-		if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
-			if(!VDrinker.isspawn)
-				switch(alert("Would you like to sire a new spawn?",,"Yes","No"))
-					if("Yes")
-						user.visible_message("[user] begins to infuse dark magic into [C]")
-						if(do_after(user, 30))
-							C.visible_message("[C] rises as a new spawn!")
-							var/datum/antagonist/vampirelord/lesser/new_antag = new /datum/antagonist/vampirelord/lesser()
-							new_antag.sired = TRUE
-							C.mind.add_antag_datum(new_antag)
-							sleep(10 SECONDS)
-							C.fully_heal()
-							C.energy = C.max_energy
-							C.update_health_hud()
-					if("No")
-						to_chat(user, span_warning("I decide [C] is unworthy."))
+		if(user.clan_position?.can_assign_positions && C.bloodpool <= 150)
+			if(alert(user, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
+				to_chat(user, span_warning("I decide [C] is unworthy."))
+			else
+				user.visible_message(span_danger("Some dark energy begins to flow from [user] into [C]..."), span_userdanger("I begin siring [C]..."))
+				if(do_after(user, 3 SECONDS, C))
+					C.visible_message(span_red("[C] rises as a new spawn!"))
+					var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(user.clan, TRUE)
+					C.mind.add_antag_datum(new_antag)
+					C.adjust_bloodpool(500)
+					// this is bad, should give them a healing buff instead
+					sleep(2 SECONDS)
+					C.fully_heal()
 
 /datum/status_effect/buff/oiled
 	id = "oiled"

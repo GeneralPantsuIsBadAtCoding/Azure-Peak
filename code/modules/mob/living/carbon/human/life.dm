@@ -32,6 +32,8 @@
 	if (QDELETED(src))
 		return 0
 
+	SEND_SIGNAL(src, COMSIG_HUMAN_LIFE)
+
 	if(. && (mode != NPC_AI_OFF))
 		handle_ai()
 

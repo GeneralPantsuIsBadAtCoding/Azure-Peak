@@ -92,6 +92,8 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
+	else if(HAS_TRAIT(mob, TRAIT_IN_FRENZY) || HAS_TRAIT(mob, TRAIT_MOVEMENT_BLOCKED))
+		return FALSE
 	if(mob.stat == DEAD)
 #ifdef TESTSERVER
 		mob.ghostize()

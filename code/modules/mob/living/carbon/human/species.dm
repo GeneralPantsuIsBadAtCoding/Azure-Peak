@@ -157,6 +157,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/gender_swapping = FALSE
 	var/stress_examine = FALSE
 	var/stress_desc = null
+	
+	var/punch_damage
 
 ///////////
 // PROCS //

@@ -269,3 +269,6 @@
 	name = "Harpy Bat Alt"
 	icon_state = "harpybat_alt"
 
+/datum/sprite_accessory/wings/large/gargoyle
+	name = "Gargoyle"
+	icon_state = "gargoyle"

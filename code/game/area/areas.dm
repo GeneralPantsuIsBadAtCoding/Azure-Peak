@@ -113,6 +113,8 @@
 	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
 	// Try to be deliberately obtuse but not too obtuse.
 
+	var/coven_protected = FALSE
+
 
 /**
   * A list of teleport locations
