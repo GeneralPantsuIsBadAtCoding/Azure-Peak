@@ -68,6 +68,8 @@
 					rolestonotify = list("Guildmaster", "Guildsman")
 				if("Steward")
 					rolestonotify = list("Steward", "Clerk")
+				if("Baths")
+					rolestonotify = list("Bathmaster", "Bathhouse Attendant")
 			send_ooc_note(("I hear the distant sounds of [src] ringing. I'm being called to the [localarea]."), job = rolestonotify)
 
 /obj/structure/standingbell/proc/reset_cooldown()
