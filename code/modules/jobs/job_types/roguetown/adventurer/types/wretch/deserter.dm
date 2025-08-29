@@ -2,7 +2,7 @@
 	name = "Deserter"
 	tutorial = "You served a Duchy, once. Be it as a soldier in their armies or a member of their retinue. And then, you left. But it wasn't an ordered retreat, or even dismissal. You made your decision."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	outfit = /datum/outfit/job/roguetown/wretch/deserter
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_WRETCH)
