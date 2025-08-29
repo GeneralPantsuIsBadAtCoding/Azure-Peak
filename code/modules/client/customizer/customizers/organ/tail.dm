@@ -236,7 +236,7 @@
 	default_disabled = TRUE
 
 /datum/customizer_choice/organ/tail/dullahan
-	name = "Dullahan Tail"
+	name = "Revenant Tail"
 	organ_type = /obj/item/organ/tail/dullahan
 	generic_random_pick = TRUE
 	sprite_accessories = list(

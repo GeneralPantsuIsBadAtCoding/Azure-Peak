@@ -1,5 +1,5 @@
 /obj/item/organ/dullahan_vision
-	name = "Dullahan Vision"
+	name = "Revenant Vision"
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	slot = ORGAN_SLOT_HUD
 	organ_flags = ORGAN_SURGERY_HIDDEN | ORGAN_INTERNAL_ONLY

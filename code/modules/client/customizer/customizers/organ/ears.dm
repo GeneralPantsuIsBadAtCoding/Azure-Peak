@@ -266,7 +266,7 @@
 	default_disabled = TRUE
 
 /datum/customizer_choice/organ/ears/dullahan
-	name = "Dullahan Ears"
+	name = "Revenant Ears"
 	organ_type = /obj/item/organ/ears
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/cat,
