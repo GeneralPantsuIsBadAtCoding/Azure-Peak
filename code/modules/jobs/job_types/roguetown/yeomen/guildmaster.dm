@@ -69,6 +69,8 @@
 			/obj/item/rogueweapon/hammer/iron = 1,
 			/obj/item/rogueweapon/tongs = 1,
 			/obj/item/recipe_book/blacksmithing = 1,
+			/obj/item/clothing/mask/rogue/spectacles/golden = 1, 
+			/obj/item/contraption/linker/master = 1,
 			)
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
