@@ -23,8 +23,6 @@
 	icon_state = "rmbaimed"
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
-	if(istype(src, /mob/living/carbon/human/species/skeleton))
-		return
 	if(!user)
 		return
 	if(user.incapacitated())
@@ -120,8 +118,6 @@
 	icon_state = "rmbfeint"
 
 /datum/rmb_intent/feint/special_attack(mob/living/user, atom/target)
-	if(istype(src, /mob/living/carbon/human/species/skeleton))
-		return
 	if(!isliving(target))
 		return
 	if(!user)
