@@ -353,7 +353,7 @@
 				// For now, only Tennites get this. Heretics can have a special treat later
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 			if(istype(H.patron, /datum/patron/inhumen))
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross

@@ -1,30 +1,10 @@
-/obj/effect/proc_holder/spell/invoked/projectile/unholyblast
+/obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast
 	name = "Unholy Blast"
 	desc = "Channel unholy power and sunder the unbelievers. Deals additional damage to wretched conformists and Psydonites! \n\
-	Damage is increased by 100% versus INFERIOR BEINGS."
-	clothes_req = FALSE
-	range = 12
+	Damage is increased by 100% versus simple-minded creechurs.\n\
+	Can be fired in an arc over an ally's head with a mage's staff, spellbook or psicross on arc intent. It will deals 25% less damage that way."
 	projectile_type = /obj/projectile/energy/unholyblast
-	overlay_state = "divine_blast"
-	sound = list('sound/magic/vlightning.ogg')
-	active = FALSE
-	releasedrain = 20
-	chargedrain = 1
-	chargetime = 0
-	recharge_time = 5 SECONDS
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
 	invocations = list("Fortschritt macht!")
-	invocation_type = "shout"
-	glow_color = GLOW_COLOR_LIGHTNING
-	glow_intensity = GLOW_INTENSITY_LOW
-	charging_slowdown = 3
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/holy
-	miracle = TRUE
-	devotion_cost = 25
-
 
 /obj/projectile/energy/unholyblast
 	name = "Unholy Blast"
@@ -35,6 +15,20 @@
 	npc_damage_mult = 2 // The Simple Skele Gibber
 	hitsound = 'sound/magic/churn.ogg'
 	speed = 1
+
+/obj/projectile/energy/unholyblast/arc
+	name = "Arced Unholy Blast"
+	damage = 15 // Slightly lower base damage
+	arcshot = TRUE
+
+/obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast/cast(list/targets, mob/user = user)
+	var/mob/living/carbon/human/H = user
+	var/datum/intent/a_intent = H.a_intent
+	if(istype(a_intent, /datum/intent/special/magicarc))
+		projectile_type = /obj/projectile/energy/unholyblast/arc
+	else
+		projectile_type = /obj/projectile/energy/unholyblast
+	. = ..()
 
 /obj/projectile/energy/unholyblast/on_hit(target)
 	. = ..()
