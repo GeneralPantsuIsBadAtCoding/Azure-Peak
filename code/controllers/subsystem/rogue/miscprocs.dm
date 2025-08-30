@@ -243,10 +243,27 @@
 		ADD_TRAIT(src, TRAIT_COMBAT_AWARE, TRAIT_VIRTUE)
 	to_chat(src, "I will see [HAS_TRAIT(src, TRAIT_COMBAT_AWARE) ? "more" : "less"] combat information now.")
 
-/atom/proc/transmit_to_combat_aware(text, x_offset)
+#define BALLOON_Y_OFFSET_TIER1 1
+#define BALLOON_Y_OFFSET_TIER2 2
+#define BALLOON_Y_OFFSET_TIER3 3
+
+/atom/proc/transmit_to_combat_aware(text, x_offset, tier)
 	var/list/candidates = get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src)
 	for(var/mob/living/carbon/human/H in candidates)
 		if(HAS_TRAIT(H, TRAIT_COMBAT_AWARE))
 			candidates -= H
+	
+	var/y_offset
+
+	switch(tier)
+		if(BALLOON_Y_OFFSET_TIER1)
+			y_offset = 5
+		if(BALLOON_Y_OFFSET_TIER2)
+			y_offset = 15
+		if(BALLOON_Y_OFFSET_TIER3)
+			y_offset = 25
+		else
+			y_offset = tier	//in case it's custom-sized, otherwise this will just be null and won't do anything.
+
 	if(length(candidates))
-		balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset)
+		balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset, y_offset)

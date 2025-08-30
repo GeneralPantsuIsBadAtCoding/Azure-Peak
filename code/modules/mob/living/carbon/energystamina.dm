@@ -119,15 +119,19 @@
 	if(ishuman(src) && mind && added > 0)
 		var/mob/living/carbon/human/H = src
 		var/text
+		var/tier
 		var/stamratio = stamina / max_stamina
 		if(stamratio >= 0.25 && ((stamina - added) / max_stamina) < 0.25)
-			text = "<font color = '#a8af9b'>Winded.</font>"
+			text = "<font color = '#a8af9b'>Winded</font>"
+			tier = BALLOON_Y_OFFSET_TIER1
 		if(stamratio >= 0.5 && ((stamina - added) / max_stamina) < 0.5)
-			text = "<font color = '#d4d36c'>Drained.</font>"
+			text = "<font color = '#d4d36c'>Drained</font>"
+			tier = BALLOON_Y_OFFSET_TIER2
 		if(stamratio >= 0.75 && ((stamina - added) / max_stamina) < 0.75)
-			text = "<font color = '#a8665a'>Fatigued.</font>"
+			text = "<font color = '#a8665a'>Fatigued</font>"
+			tier = BALLOON_Y_OFFSET_TIER3
 		if(text)
-			H.transmit_to_combat_aware(text, 20)
+			H.transmit_to_combat_aware(text, 20, tier)
 
 	if(stamina >= max_stamina)
 		stamina = max_stamina
@@ -144,9 +148,10 @@
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
 
-		var/mob/living/carbon/human/H = src
-		var/balloon_text = "<font color = '#bb2b2b'>Exhausted... </font>"
-		H.balloon_alert_to_viewers(balloon_text, balloon_text, DEFAULT_MESSAGE_RANGE)
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			var/balloon_text = "<font color = '#bb2b2b'>Exhausted... </font>"
+			H.balloon_alert_to_viewers(balloon_text, balloon_text, DEFAULT_MESSAGE_RANGE)
 
 		if(energy <= 0)
 			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 1 SECONDS)

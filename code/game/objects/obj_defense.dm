@@ -22,14 +22,18 @@
 
 	var/ratio = obj_integrity / max_integrity
 	var/text
+	var/y_offset
 	if(ratio < 0.75 && ((obj_integrity + damage_amount) / max_integrity) > 0.75)
-		text = "Armor <br><font color = '#8aaa4d'>marred.</font>"
+		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
+		y_offset = 1
 	if(ratio < 0.5 && ((obj_integrity + damage_amount) / max_integrity) > 0.5)
-		text = "Armor <br><font color = '#d4d36c'>damaged.</font>"
+		text = "Armor <br><font color = '#d4d36c'>damaged</font>"
+		y_offset = 15
 	if(ratio < 0.25 && ((obj_integrity + damage_amount) / max_integrity) > 0.25)
-		text = "Armor <br><font color = '#a8705a'>sundered.</font>"
+		text = "Armor <br><font color = '#a8705a'>sundered</font>"
+		y_offset = 30
 	if(text)
-		transmit_to_combat_aware(text, -20)
+		transmit_to_combat_aware(text, -20, y_offset)
 	//BREAKING FIRST
 	if(!obj_broken && integrity_failure && obj_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_flag)
