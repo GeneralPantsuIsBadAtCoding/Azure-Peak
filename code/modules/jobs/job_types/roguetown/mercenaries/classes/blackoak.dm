@@ -1,12 +1,11 @@
 // Elven unique mercenary type; should be scary in a way solo but easy to kill with a group or bow.
 /datum/advclass/mercenary/blackoak
 	name = "Black Oak's Guardian"
-	tutorial = "The Black Oaks are a shady Elven milita dedicated to upholding Azurian tradition and security. This land was once great...and now, wave after wave of outsiders and monsters trample your home. Thankfully for the foreign-backed crown, you are not here to spill the blood of the Lord's men, today, and instead fight for the prosperity of your lands. Some of the higher-ranking, and braver, members of your company are called WRETCHES and have bounties associated with them."
+	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. Thankfully, you are not here today to shed the blood of the Duke's men- unless someone pays you to..."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/human/halfelf,
 		/datum/species/elf/wood,
-		/datum/species/elf/dark,
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
 	category_tags = list(CTAG_MERCENARY)
@@ -51,8 +50,7 @@
 			backpack_contents = list(
 				/obj/item/roguekey/mercenary = 1,
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-				/obj/item/rogueweapon/scabbard/sheath = 1,
-				/obj/item/book/rogue/blackoak = 1
+				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 		if("Ranged (Bows)")
@@ -83,8 +81,7 @@
 				/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 				/obj/item/rogueweapon/huntingknife/idagger/navaja = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1,
-				/obj/item/flashlight/flare/torch = 1,
-				/obj/item/book/rogue/blackoak = 1
+				/obj/item/flashlight/flare/torch = 1
 				)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
@@ -95,5 +92,4 @@
 	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_RACISMISBAD, TRAIT_GENERIC)
 	H.merctype = 2
