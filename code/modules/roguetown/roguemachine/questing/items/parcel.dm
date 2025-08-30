@@ -60,7 +60,7 @@
 		/area/rogue/indoors/town/magician = list("Court Magician", "Magicians Associate"),
 		/area/rogue/indoors/town = list("Guild Handler")
 	)
-	return area_jobs[area_type] || list("Town Elder", "Steward", "Merchant")
+	return area_jobs[area_type] || list("Town Crier", "Steward", "Merchant")
 
 /obj/item/parcel/proc/on_quest_component_deleted(datum/source)
 	SIGNAL_HANDLER

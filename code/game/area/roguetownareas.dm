@@ -490,6 +490,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "shop"
 	droning_sound = 'sound/music/area/shop.ogg'
 
+/area/rogue/indoors/town/steward
+	name = "Steward"
+	icon_state = "steward"
+	droning_sound = 'sound/music/area/shop.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
 /area/rogue/indoors/town/physician
 	name = "Physician"
 	icon_state = "physician"
