@@ -40,7 +40,6 @@
 /datum/antagonist/dreamwalker/on_gain()
 	SSmapping.retainer.dreamwalkers |= owner
 	. = ..()
-	to_chat(world, span_userdanger("RESETTING THEM STATS UWU"))
 	reset_stats()
 	// We'll set the special role later to avoid revealing dreamwalkers early!
 	//owner.special_role = name
@@ -86,7 +85,6 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	// We lose our statpack & racial, so bonuses are significant.
-	to_chat(world, span_userdanger("ADDING STATS NOW"))
 	H.change_stat("strength", 5)
 	H.change_stat("intelligence", 2)
 	H.change_stat("constitution", 2)
@@ -222,6 +220,7 @@
 	)
 
 	var/mob/living/marked_target = null
+	var/obj/effect/proc_holder/spell/invoked/track_mark/tracking_spell = null
 
 /obj/effect/proc_holder/spell/invoked/mark_target/Destroy()
 	remove_mark()
@@ -229,6 +228,18 @@
 
 /obj/effect/proc_holder/spell/invoked/mark_target/cast(list/targets, mob/user)
 	var/mob/living/target = targets[1]
+
+	if(target == user || ishuman(target))
+		to_chat(user, span_warning("You mark [target] for testing purposes!"))
+		if(marked_target)
+			remove_mark()
+		// Apply new mark
+		marked_target = target
+		tracking_spell = new()
+		tracking_spell.marked_target = marked_target
+		tracking_spell.parent_spell = src
+		user.mind.AddSpell(tracking_spell)
+		return TRUE
 
 	var/list/valid_targets = get_valid_targets(user)
 	if(!length(valid_targets))
@@ -243,6 +254,10 @@
 		remove_mark()
 	// Apply new mark
 	marked_target = target
+	tracking_spell = new()
+	tracking_spell.marked_target = marked_target
+	tracking_spell.parent_spell = src
+	user.mind.AddSpell(tracking_spell)
 
 	if(target != user)
 		to_chat(user, span_warning("[user] traces a glowing symbol in the air指向 [target]."), 
@@ -268,3 +283,69 @@
 /obj/effect/proc_holder/spell/invoked/mark_target/proc/remove_mark()
 	if(marked_target)
 		marked_target = null
+	if(tracking_spell && usr && usr.mind)
+		usr.mind.RemoveSpell(tracking_spell)
+		tracking_spell = null
+
+/obj/effect/proc_holder/spell/invoked/track_mark
+	name = "Track Marked Target"
+	recharge_time = 10 SECONDS
+	var/mob/living/marked_target = null
+	var/obj/effect/proc_holder/spell/invoked/mark_target/parent_spell = null
+	releasedrain = 75
+	chargedrain = 1
+	chargetime = 0.5 SECONDS
+	overlay_state = "mark"
+	invocations = list("Signum persequendi!")
+	invocation_type = "whisper"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 1
+	associated_skill = /datum/skill/magic/arcane
+
+/obj/effect/proc_holder/spell/invoked/track_mark/cast(list/targets, mob/user)
+	if(!marked_target)
+		to_chat(user, span_warning("The mark has faded!"))
+		user.mind.RemoveSpell(src)
+		return
+
+	var/turf/user_turf = get_turf(user)
+	var/turf/target_turf = get_turf(marked_target)
+
+	if(user_turf.z != target_turf.z)
+		// Different z-level
+		var/z_direction = "unknown"
+		if(user_turf.z > target_turf.z)
+			z_direction = "above"
+		else
+			z_direction = "below"
+
+		to_chat(user, span_notice("The target is on a level [z_direction] you."))
+	else
+		// Same z-level
+		var/distance = get_dist(user, marked_target)
+		var/direction = get_dir(user, marked_target)
+
+		if(distance == 0)
+			to_chat(user, span_notice("The target is here!"))
+		else
+			var/direction_text = dir2text(direction)
+			to_chat(user, span_notice("The target is [distance] tiles away to the [direction_text]."))
+
+	// Check if the target is downed and adjacent
+	if(user.Adjacent(marked_target) && !(marked_target.mobility_flags & MOBILITY_STAND) && !marked_target.buckled)
+		to_chat(user, span_notice("The target is vulnerable. You begin to extract an ingot..."))
+
+		if(do_after(user, 1 SECONDS, target = marked_target))
+			// Create an ingot
+			new /obj/item/ingot/iron(get_turf(user))
+			to_chat(user, span_notice("You successfully extract an ingot from the target."))
+
+			// Remove the mark
+			if(parent_spell)
+				parent_spell.remove_mark()
+			user.mind.RemoveSpell(src)
+		else
+			to_chat(user, span_warning("You were interrupted."))
+	
+	to_chat(world, "END OF FUNCTION...");
