@@ -1749,6 +1749,7 @@
 /area/rogue/indoors/eventarea)
 "km" = (
 /obj/machinery/light/rogue/wallfire/candle,
+/obj/structure/far_travel,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "kp" = (
@@ -2020,7 +2021,7 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cobbleedge,
-/obj/item/roguebin/water/gross,
+/obj/machinery/tanningrack,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "oy" = (
@@ -2043,6 +2044,10 @@
 /obj/structure/flora/roguetree,
 /turf/closed,
 /area/rogue/outdoors/woods)
+"oS" = (
+/obj/structure/far_travel,
+/turf/open/floor/rogue/blocks,
+/area/rogue/under/cave/inhumen)
 "oV" = (
 /obj/structure/fluff/railing/fence{
 	dir = 1;
@@ -2567,6 +2572,11 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
+"wT" = (
+/obj/effect/decal/cobbleedge,
+/obj/item/roguebin/water/gross,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/cave/inhumen)
 "wZ" = (
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/indoors/eventarea)
@@ -2915,6 +2925,10 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
+"Cs" = (
+/obj/structure/table/wood/large_table/south_west,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/cave/inhumen)
 "Cv" = (
 /obj/structure/mineral_door/wood/donjon/stone,
 /turf/open/floor/rogue/concrete,
@@ -3170,6 +3184,10 @@
 /obj/structure/closet/crate/chest/neu_iron,
 /obj/item/rogueweapon/thresher,
 /obj/item/rogueweapon/hoe,
+/obj/item/rogueweapon/shovel,
+/obj/item/seeds/wheat,
+/obj/item/seeds/berryrogue,
+/obj/item/seeds/apple,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "GK" = (
@@ -3343,6 +3361,11 @@
 /area/rogue/under/cave/inhumen)
 "Jc" = (
 /turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave/inhumen)
+"Jf" = (
+/obj/structure/table/wood/large_table/south_east,
+/obj/item/recipe_book/sewing,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
 "Jp" = (
 /obj/structure/table/wood{
@@ -4225,7 +4248,6 @@
 	dir = 10;
 	icon_state = "tablewood2"
 	},
-/obj/item/rogueweapon/shovel,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "YH" = (
@@ -15991,7 +16013,7 @@ tb
 Qn
 ws
 If
-Bi
+oS
 Qn
 Qn
 Qn
@@ -16251,7 +16273,7 @@ ON
 BB
 ws
 BC
-Bi
+oS
 Qn
 Qn
 Qn
@@ -17815,9 +17837,9 @@ KZ
 ws
 ws
 tX
-kN
-qO
-qO
+xA
+TD
+wT
 qO
 tE
 kX
@@ -18205,7 +18227,7 @@ mc
 Bi
 Sj
 TS
-qO
+Cs
 qO
 eh
 kX
@@ -18335,8 +18357,8 @@ tX
 Io
 tX
 TS
-xA
-TD
+Jf
+qO
 ow
 kX
 kX
