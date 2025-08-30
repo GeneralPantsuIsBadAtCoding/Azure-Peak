@@ -19,7 +19,7 @@
 	var/stat_bonus = 0
 	stat_bonus += ((owner.STACON - 10 ) * 0.05)
 	stat_bonus += ((owner.STASTR - 10 ) * 0.05)
-	stat_bonus += ((owner.STAEND - 10 ) * 0.05)
+	stat_bonus += ((owner.STAWIL - 10 ) * 0.05)
 	if(stat_bonus > 0)
 		healing_on_tick += stat_bonus
 		blood_healing_on_tick += (stat_bonus * 10)

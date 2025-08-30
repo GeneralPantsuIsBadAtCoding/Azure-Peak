@@ -1159,7 +1159,7 @@
 	if(HAS_TRAIT(src, TRAIT_GARROTED))
 		resist_chance += (STACON - L.STASPD) * 5
 	else
-		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
+		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
 

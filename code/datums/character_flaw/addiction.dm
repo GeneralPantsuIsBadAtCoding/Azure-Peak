@@ -60,7 +60,7 @@
 /datum/status_effect/debuff/addiction
 	id = "addiction"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction
-	effectedstats = list("endurance" = -1,"fortune" = -1)
+	effectedstats = list("willpower" = -1,"fortune" = -1)
 	duration = 100
 
 

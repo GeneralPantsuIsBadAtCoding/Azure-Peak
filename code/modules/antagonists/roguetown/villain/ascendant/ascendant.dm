@@ -23,7 +23,7 @@
 	/// Cached old stats in case we get removed
 	var/STASTR
 	var/STACON
-	var/STAEND
+	var/STAWIL
 
 /*
 var/psydon_artefact_one = psydon_pool[1]
@@ -80,10 +80,10 @@ var/psydon_ascend = psydon_pool[7]
 				dreamer.adjust_skillrank(/datum/skill/combat/wrestling, 6 - wrestling_skill, TRUE)
 			STASTR = dreamer.STASTR
 			STACON = dreamer.STACON
-			STAEND = dreamer.STAEND
+			STAWIL = dreamer.STAWIL
 			dreamer.STASTR += 2
 			dreamer.STACON += 2
-			dreamer.STAEND += 2
+			dreamer.STAWIL += 2
 
 		if(length(objectives))
 			SEND_SOUND(owner.current, 'sound/villain/ascendant_intro.ogg')

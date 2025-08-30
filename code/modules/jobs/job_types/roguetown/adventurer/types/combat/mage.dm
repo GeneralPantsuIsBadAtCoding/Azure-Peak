@@ -95,7 +95,7 @@
 			H.change_stat("strength", 2) // Favoring a less speedy and more steady playstyle vs spellsinger
 			H.change_stat("intelligence", 1)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
@@ -157,7 +157,7 @@
 			H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.change_stat("intelligence", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("speed", 2)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)

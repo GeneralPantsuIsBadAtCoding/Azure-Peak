@@ -268,7 +268,7 @@
 				current_holder.STASTR += stat_bonus_martyr
 				//current_holder.STASPD += stat_bonus_martyr
 				current_holder.STACON += stat_bonus_martyr
-				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAWIL += stat_bonus_martyr
 				current_holder.STAINT += stat_bonus_martyr
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
@@ -277,7 +277,7 @@
 				current_holder.STASTR = 20
 				current_holder.STASPD = 20
 				current_holder.STACON = 20
-				current_holder.STAEND = 20
+				current_holder.STAWIL = 20
 				current_holder.STAINT = 20
 				current_holder.STAPER = 20
 				current_holder.STALUC = 20
@@ -389,7 +389,7 @@
 				current_holder.STASTR += stat_bonus_martyr
 				current_holder.STASPD += stat_bonus_martyr
 				current_holder.STACON += stat_bonus_martyr
-				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAWIL += stat_bonus_martyr
 				current_holder.STAINT += stat_bonus_martyr
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
@@ -497,7 +497,7 @@
 	ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
 	H.change_stat("strength", 2)
 	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	H.change_stat("intelligence", 1)
 	H.change_stat("perception", 1)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()

@@ -43,7 +43,7 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/engineering, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	H.change_stat("constitution", 3)
 	H.change_stat("intelligence", 3)
 	wretch_select_bounty(H)

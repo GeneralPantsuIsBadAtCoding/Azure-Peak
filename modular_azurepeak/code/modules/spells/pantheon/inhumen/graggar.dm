@@ -1,7 +1,7 @@
 //Call to Slaughter - AoE buff for all people surrounding you.
 /obj/effect/proc_holder/spell/self/call_to_slaughter
 	name = "Call to Slaughter"
-	desc = "Grants you and all allies nearby a buff to their strength, endurance, and constitution."
+	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution."
 	overlay_state = "call_to_slaughter"
 	recharge_time = 5 MINUTES
 	invocations = list("LAMBS TO THE SLAUGHTER!")

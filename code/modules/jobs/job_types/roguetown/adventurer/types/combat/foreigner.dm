@@ -45,7 +45,7 @@
 				/obj/item/flashlight/flare/torch/lantern,
 				)
 			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			H.set_blindness(0)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
@@ -79,7 +79,7 @@
 				if("Quarterstaff")
 					backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 			H.change_stat("strength", 2) // Took off the weight and moved it to qstaff
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 

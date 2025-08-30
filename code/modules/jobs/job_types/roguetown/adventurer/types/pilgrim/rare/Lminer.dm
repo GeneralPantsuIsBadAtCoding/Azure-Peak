@@ -36,7 +36,7 @@
 	H.adjust_skillrank(/datum/skill/craft/smelting, 6, TRUE)
 	H.change_stat("strength", 2)
 	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 1)
 	H.change_stat("perception", 1)
 	H.change_stat("fortune", 4)

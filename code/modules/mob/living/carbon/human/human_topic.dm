@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					dat +=("PER: \Roman [H.STAPER]<br>")
 					dat +=("INT: \Roman [H.STAINT]<br>")
 					dat +=("CON: \Roman [H.STACON]<br>")
-					dat +=("END: \Roman [H.STAEND]<br>")
+					dat +=("END: \Roman [H.STAWIL]<br>")
 					dat +=("SPD: \Roman [H.STASPD]<br>")
 				else
 					dat +=("STR: \Roman [rand(1,20)]<br>")

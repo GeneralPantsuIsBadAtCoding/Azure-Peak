@@ -83,7 +83,7 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	H.change_stat("perception", 1)
 	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 1)
 	H.change_stat("speed", 1)
 	H.change_stat("strength", 1)
@@ -91,7 +91,7 @@
 		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-		H.change_stat("endurance", 1)
+		H.change_stat("willpower", 1)
 
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
@@ -148,7 +148,7 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.change_stat("perception", 1)
 	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 2)
 	H.change_stat("strength", 1)
 	if(H.age == AGE_OLD)
@@ -207,7 +207,7 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 	H.change_stat("perception", 1)
 	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 2)
 	H.change_stat("speed", -1)
 	H.change_stat("strength", 1)
@@ -289,7 +289,7 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 3) // two handed weapons require a LOT of stamina.
+	H.change_stat("willpower", 3) // two handed weapons require a LOT of stamina.
 	H.change_stat("constitution", 1)
 	H.change_stat("speed", -1)
 	H.change_stat("strength", 2)
@@ -371,7 +371,7 @@
 	H.change_stat("strength", -1)
 	H.change_stat("perception", 3) // you are OLD you have OLD EYES. this is to counter that debuff so you can be OBSERVANT. You sacrifice your strength and armor, so.
 	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 1)
 	H.change_stat("speed", 1) // You get -2 speed from being old.
 	if(H.age == AGE_OLD)

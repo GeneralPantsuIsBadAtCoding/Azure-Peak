@@ -30,7 +30,7 @@
 	STAPER = 20
 	STAINT = 18
 	STACON = 20
-	STAEND = 20
+	STAWIL = 20
 	STASPD = 15
 	STALUC = 15
 	loot = list(/obj/effect/temp_visual/lich_dying)
@@ -350,7 +350,7 @@
 	H.STAPER = 20
 	H.STASPD = 10
 	H.STACON = 20
-	H.STAEND = 20
+	H.STAWIL = 20
 	H.STAINT = 1
 	H.faction = list("lich")
 	H.wander = FALSE

@@ -26,6 +26,6 @@
 	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 3, TRUE)
 	H.change_stat("speed", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 2)
 	H.change_stat("intelligence", -2)

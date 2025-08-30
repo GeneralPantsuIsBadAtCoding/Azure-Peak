@@ -71,7 +71,7 @@
 	H.change_stat("constitution", -1)
 	H.change_stat("intelligence", 4)
 	H.change_stat("fortune", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	if(H.age == AGE_MIDDLEAGED)
 		H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 	if(H.age == AGE_OLD)

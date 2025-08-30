@@ -98,7 +98,7 @@
 					head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 					gloves = /obj/item/clothing/gloves/roguetown/angle
 			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			belt = /obj/item/storage/belt/rogue/leather
 			backl = /obj/item/storage/backpack/rogue/satchel
@@ -140,7 +140,7 @@
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 					beltr = /obj/item/rogueweapon/scabbard/sheath
 			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("intelligence", 2)
 			H.change_stat("speed", 1)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
@@ -203,7 +203,7 @@
 					H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 4, TRUE)
 					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 			H.change_stat("strength", 3)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			H.change_stat("intelligence", -2)
 			if(should_wear_masc_clothes(H))
@@ -266,7 +266,7 @@
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
 					backr = /obj/item/rogueweapon/scabbard/sheath
 			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("intelligence", 1)
 			backl = /obj/item/storage/backpack/rogue/satchel/black
@@ -313,7 +313,7 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 			H.change_stat("constitution", 5)
-			H.change_stat("endurance", 5)
+			H.change_stat("willpower", 5)
 			H.change_stat("speed", 1)
 			H.change_stat("strength", -2)
 			H.change_stat("intelligence", -2)
@@ -416,4 +416,4 @@
 					backr = /obj/item/rogueweapon/scabbard/gwstrap
 			H.change_stat("strength", 2)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)

@@ -35,7 +35,7 @@
 	H.STASTR = 12
 	H.STASPD = 8
 	H.STACON = 12
-	H.STAEND = 12
+	H.STAWIL = 12
 	H.STAINT = 4 // Very dumb
 	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
@@ -73,7 +73,7 @@
 	H.STASTR = 14 // GAGGER GAGGER GAGGER
 	H.STASPD = 8
 	H.STACON = 13
-	H.STAEND = 13
+	H.STAWIL = 13
 	H.STAINT = 4
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -107,7 +107,7 @@
 	H.STASTR = 16 // GAGGER GAGGER GAGGER
 	H.STASPD = 10 // Fast, for an orc
 	H.STACON = 16
-	H.STAEND = 13
+	H.STAWIL = 13
 	H.STAINT = 1 // Minmax department
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
@@ -148,7 +148,7 @@
 	H.STASTR = 16 // GAGGER GAGGER GAGGER
 	H.STASPD = 10 // Fast, for an orc
 	H.STACON = 16
-	H.STAEND = 13
+	H.STAWIL = 13
 	H.STAINT = 1 // Minmax department
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)

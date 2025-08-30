@@ -19,7 +19,7 @@
 
 		src.STASTR = 2
 		src.STACON = 2
-		src.STAEND = 7
+		src.STAWIL = 7
 		src.STAPER = 14
 		src.STASPD = 18 //May be overtuned with dodge expert, but this thing is so fragile
 		src.STALUC = 12 //Xylyx's critters

@@ -63,7 +63,7 @@
 	H.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/ceramics, 3, TRUE)
 	H.change_stat("perception", 2)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("speed", -1)
 	H.change_stat("constitution", 1)
 	H.change_stat("intelligence", 3)

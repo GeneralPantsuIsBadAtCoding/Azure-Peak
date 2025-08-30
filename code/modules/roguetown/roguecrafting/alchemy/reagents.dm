@@ -220,7 +220,7 @@
 	return ..()
 
 /datum/reagent/buff/endurance
-	name = "Endurance"
+	name = "willpower"
 	color = "#ffff00"
 	taste_description = "oversweetened milk"
 

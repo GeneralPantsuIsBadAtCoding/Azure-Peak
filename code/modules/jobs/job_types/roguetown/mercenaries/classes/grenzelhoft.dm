@@ -40,7 +40,7 @@
 			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 			H.change_stat("strength", 2)	//Should give minimum required stats to use Zweihander
-			H.change_stat("endurance", 3)
+			H.change_stat("willpower", 3)
 			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)		//They get heavy armor now + sword option; so lower speed.
@@ -73,7 +73,7 @@
 			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 			H.change_stat("strength", 2) //same str, worse end, more speed - actually a good tradeoff, now.
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("constitution", 2)
 			H.change_stat("perception", -1)
 			H.change_stat("speed", 1)
@@ -109,7 +109,7 @@
 			beltl = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			H.change_stat("strength", 1) // 1 STR for the axe and crossbow reload. END for chopping trees, a bit of SPD for running, PER for shooting. -1 CON bc you aint a frontliner
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("constitution", -1)
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 2)

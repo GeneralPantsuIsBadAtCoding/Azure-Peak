@@ -91,7 +91,7 @@
 	H.change_stat("intelligence", 1)
 	H.change_stat("constitution", 1)
 	H.change_stat("perception", 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
@@ -305,7 +305,7 @@
 
 /obj/effect/proc_holder/spell/invoked/order/hold
 	name = "Hold!"
-	desc = "Orders your underlings to Endure. +2 Endurance and Constitution."
+	desc = "Orders your underlings to Endure. +2 Willpower and Constitution."
 	overlay_state = "hold"
 
 
@@ -338,7 +338,7 @@
 /datum/status_effect/buff/order/hold
 	id = "hold"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/hold
-	effectedstats = list("endurance" = 2, "constitution" = 2)
+	effectedstats = list("willpower" = 2, "constitution" = 2)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/hold

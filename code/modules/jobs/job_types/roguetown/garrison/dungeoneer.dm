@@ -24,7 +24,7 @@
 
 	cmode_music = 'sound/music/combat_dungeoneer.ogg'
 
-	stat_ceilings = list(STAT_STRENGTH = 16, STAT_CONSTITUTION = 16, STAT_ENDURANCE = 16)
+	stat_ceilings = list(STAT_STRENGTH = 16, STAT_CONSTITUTION = 16, STAT_WILLPOWER = 16)
 
 /datum/job/roguetown/dungeoneer/New()
 	. = ..()
@@ -69,7 +69,7 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 2)
 	//Torture victim is for inquisition - doesn't even work without a psicross anymore so maybe come up with a variant for him specifically?
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)

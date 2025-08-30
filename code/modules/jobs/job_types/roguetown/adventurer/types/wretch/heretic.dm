@@ -41,7 +41,7 @@
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	H.change_stat("strength", 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
 	H.change_stat("constitution", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	// You can convert those the church has shunned.
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
@@ -144,7 +144,7 @@
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
-			H.change_stat("endurance", 2) //ENDVRE
+			H.change_stat("willpower", 2) //ENDVRE
 
 /obj/effect/proc_holder/spell/invoked/convert_heretic
 	name = "Convert The Downtrodden"

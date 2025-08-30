@@ -51,7 +51,7 @@
 		H.mind?.adjust_spellpoints(6)
 	H.change_stat("intelligence", 4) // Same stat spread as necromancer, same reasoning
 	H.change_stat("perception", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("speed", 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)

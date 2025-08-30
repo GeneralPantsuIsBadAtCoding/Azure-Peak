@@ -191,7 +191,7 @@
 	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/conpot)
 
 /datum/supply_pack/rogue/Sawbones/endpot
-	name = "Endurance Potion"
+	name = "Willpower Potion"
 	cost = 10
 	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/endpot)
 

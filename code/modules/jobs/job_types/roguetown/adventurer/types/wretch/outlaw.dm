@@ -77,7 +77,7 @@
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltl = /obj/item/rogueweapon/whip
 			H.change_stat("perception", 1)
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("speed", 3)
 
 		if("Marauder")
@@ -141,7 +141,7 @@
 					backr = /obj/item/rogueweapon/shield/heater
 			H.change_stat("constitution", 2)
 			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("speed", 2)//Still the speed class
 	H.grant_language(/datum/language/thievescant)
 	wretch_select_bounty(H)

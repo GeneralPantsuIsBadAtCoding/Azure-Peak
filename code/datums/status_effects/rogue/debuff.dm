@@ -17,7 +17,7 @@
 /datum/status_effect/debuff/hungryt2
 	id = "hungryt2"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/hungryt2
-	effectedstats = list("strength" = -2, "constitution" = -2, "endurance" = -1)
+	effectedstats = list("strength" = -2, "constitution" = -2, "willpower" = -1)
 	duration = 100
 
 /atom/movable/screen/alert/status_effect/debuff/hungryt2
@@ -28,7 +28,7 @@
 /datum/status_effect/debuff/hungryt3
 	id = "hungryt3"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/hungryt3
-	effectedstats = list("strength" = -5, "constitution" = -3, "endurance" = -2)
+	effectedstats = list("strength" = -5, "constitution" = -3, "willpower" = -2)
 	duration = 100
 
 /atom/movable/screen/alert/status_effect/debuff/hungryt3
@@ -41,7 +41,7 @@
 /datum/status_effect/debuff/silver_curse
 	id = "silver_curse"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/silver_curse
-	effectedstats = list("strength" = -2,"perception" = -2,"intelligence" = -2, "constitution" = -2, "endurance" = -2, "speed" = -2)
+	effectedstats = list("strength" = -2,"perception" = -2,"intelligence" = -2, "constitution" = -2, "willpower" = -2, "speed" = -2)
 	duration = 45 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/silver_curse
@@ -55,7 +55,7 @@
 /datum/status_effect/debuff/thirstyt1
 	id = "thirsty1"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/thirstyt1
-	effectedstats = list("endurance" = -1)
+	effectedstats = list("willpower" = -1)
 	duration = 100
 
 /atom/movable/screen/alert/status_effect/debuff/thirstyt1
@@ -66,7 +66,7 @@
 /datum/status_effect/debuff/thirstyt2
 	id = "thirsty2"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/thirstyt2
-	effectedstats = list("speed" = -1, "endurance" = -2)
+	effectedstats = list("speed" = -1, "willpower" = -2)
 	duration = 100
 
 /atom/movable/screen/alert/status_effect/debuff/thirstyt2
@@ -77,7 +77,7 @@
 /datum/status_effect/debuff/thirstyt3
 	id = "thirsty3"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/thirstyt3
-	effectedstats = list("strength" = -1, "speed" = -2, "endurance" = -3)
+	effectedstats = list("strength" = -1, "speed" = -2, "willpower" = -3)
 	duration = 100
 
 /atom/movable/screen/alert/status_effect/debuff/thirstyt3
@@ -182,7 +182,7 @@
 /datum/status_effect/debuff/netted
 	id = "net"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/netted
-	effectedstats = list("speed" = -5, "endurance" = -2)
+	effectedstats = list("speed" = -5, "willpower" = -2)
 	duration = 3 MINUTES
 
 /datum/status_effect/debuff/netted/on_apply()
@@ -206,7 +206,7 @@
 /datum/status_effect/debuff/muscle_sore
 	id = "muscle_sore"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/muscle_sore
-	effectedstats = list("strength" = -1, "endurance" = -1)
+	effectedstats = list("strength" = -1, "willpower" = -1)
 
 /atom/movable/screen/alert/status_effect/debuff/muscle_sore
 	name = "Muscle Soreness"
@@ -216,7 +216,7 @@
 /datum/status_effect/debuff/devitalised
 	id = "devitalised"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/devitalised
-	effectedstats = list("strength" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)	//Slightly punishing.
+	effectedstats = list("strength" = -1, "willpower" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)	//Slightly punishing.
 	duration = 15 MINUTES	//Punishing, same time as revival, but mildly less punishing than revival itself.
 
 /atom/movable/screen/alert/status_effect/debuff/devitalised
@@ -235,7 +235,7 @@
 /datum/status_effect/debuff/ritualdefiled
 	id = "ritualdefiled"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
-	effectedstats = list("strength" = -2, "perception" = -1, "intelligence" = -1, "endurance" = -2, "constitution" = -2, "speed" = -1, "fortune" = -1)
+	effectedstats = list("strength" = -2, "perception" = -1, "intelligence" = -1, "willpower" = -2, "constitution" = -2, "speed" = -1, "fortune" = -1)
 	duration = 2 HOURS // Punishing AS FUCK, but not as punishing as being dead.
 
 /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
@@ -281,7 +281,7 @@
 /datum/status_effect/debuff/chilled
 	id = "chilled"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/chilled
-	effectedstats = list("speed" = -5, "strength" = -2, "endurance" = -2)
+	effectedstats = list("speed" = -5, "strength" = -2, "willpower" = -2)
 	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/chilled
@@ -313,7 +313,7 @@
 /datum/status_effect/debuff/call_to_arms
 	id = "call_to_arms"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/call_to_arms
-	effectedstats = list("endurance" = -2, "constitution" = -2)
+	effectedstats = list("willpower" = -2, "constitution" = -2)
 	duration = 2.5 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/call_to_arms
@@ -324,7 +324,7 @@
 /datum/status_effect/debuff/ravox_burden
 	id = "ravox_burden"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/ravox_burden
-	effectedstats = list("speed" = -2, "endurance" = -3)
+	effectedstats = list("speed" = -2, "willpower" = -3)
 	duration = 12 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/ravox_burden
@@ -335,7 +335,7 @@
 /datum/status_effect/debuff/call_to_slaughter
 	id = "call_to_slaughter"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/call_to_slaughter
-	effectedstats = list("endurance" = -2, "constitution" = -2)
+	effectedstats = list("willpower" = -2, "constitution" = -2)
 	duration = 2.5 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/call_to_slaughter
@@ -347,7 +347,7 @@
 /datum/status_effect/debuff/revived
 	id = "revived"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/revived
-	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
+	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "willpower" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
 	duration = 15 MINUTES		//Should be long enough to stop someone from running back into battle. Plus, this stacks with body-rot debuff. RIP.
 
 /atom/movable/screen/alert/status_effect/debuff/revived
@@ -359,7 +359,7 @@
 /datum/status_effect/debuff/rotted
 	id = "rotted_body"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
-	effectedstats = list("strength" = -2, "perception" = -2, "intelligence" = -2, "endurance" = -2, "constitution" = -2, "speed" = -2, "fortune" = -2)
+	effectedstats = list("strength" = -2, "perception" = -2, "intelligence" = -2, "willpower" = -2, "constitution" = -2, "speed" = -2, "fortune" = -2)
 	duration = 30 MINUTES	//Back to a temporary 30 min duration. It hurts.
 
 /atom/movable/screen/alert/status_effect/debuff/rotted
@@ -443,7 +443,7 @@
 /datum/status_effect/debuff/excomm
 	id = "Excommunicated!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/excomm
-	effectedstats = list("fortune" = -2, "intelligence" = -2, "speed" = -1, "endurance" = -1, "constitution" = -1)
+	effectedstats = list("fortune" = -2, "intelligence" = -2, "speed" = -1, "willpower" = -1, "constitution" = -1)
 	duration = -1
 
 /atom/movable/screen/alert/status_effect/debuff/excomm
@@ -455,7 +455,7 @@
 /datum/status_effect/debuff/apostasy
 	id = "Apostasy!"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/apostasy
-	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "endurance" = -2, "constitution" = -2)
+	effectedstats = list("fortune" = -5, "intelligence" = -3, "perception" = -2 , "speed" = -2, "willpower" = -2, "constitution" = -2)
 	duration = -1
 	var/resistant = FALSE
 	var/original_devotion = 0

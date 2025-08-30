@@ -46,7 +46,7 @@
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.
 
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 1)
 	H.change_stat("perception", 2)
 	H.change_stat("speed", -1)

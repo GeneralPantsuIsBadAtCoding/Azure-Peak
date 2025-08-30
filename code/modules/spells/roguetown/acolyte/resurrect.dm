@@ -408,7 +408,7 @@
 
 /datum/status_effect/debuff/malum_revival/on_creation(mob/living/new_owner)
 	effectedstats = list(
-		"endurance" = -5,
+		"willpower" = -5,
 		"strength" = -2
 	)
 	return ..()
@@ -515,7 +515,7 @@
 
 /obj/effect/proc_holder/spell/invoked/resurrect/malum
 	name = "Diligent Revival"
-	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets endurance and strenght will be sapped for a time."
+	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets willpower and strenght will be sapped for a time."
 	required_items = list(
 		/obj/item/ingot/iron = 3
 	)

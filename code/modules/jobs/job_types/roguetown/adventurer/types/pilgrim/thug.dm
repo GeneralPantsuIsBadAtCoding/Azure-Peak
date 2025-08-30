@@ -44,7 +44,7 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
 	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 3)
 	H.change_stat("speed", -1)
 	H.change_stat("intelligence", -1)

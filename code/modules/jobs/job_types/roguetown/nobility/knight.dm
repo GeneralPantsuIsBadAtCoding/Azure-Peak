@@ -105,7 +105,7 @@
 	H.change_stat("strength", 3) //Heavy hitters. Less con/end, high strength.
 	H.change_stat("intelligence", 3)
 	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("speed", -1)
 
 	H.adjust_blindness(-3)
@@ -195,7 +195,7 @@
 
 	H.change_stat("strength", 1) //Tanky, less strength, but high con/end.
 	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	H.change_stat("intelligence", 1)
 
 	H.adjust_blindness(-3)
@@ -278,7 +278,7 @@
 	H.verbs |= /mob/proc/haltyell
 
 	H.change_stat("strength", 2) //Decent all-around stats. Nothing spectacular. Ranged/melee hybrid class on horseback.
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("constitution", 1)
 	H.change_stat("perception", 2)
 	H.change_stat("intelligence", 1)
@@ -383,7 +383,7 @@
 	H.verbs |= /mob/proc/haltyell
 
 	H.change_stat("strength", 1)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("speed", 2)
 	H.change_stat("intelligence", 1)
 

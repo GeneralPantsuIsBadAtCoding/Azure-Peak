@@ -41,7 +41,7 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 
 			H.change_stat("strength", 2)	
-			H.change_stat("endurance", 3)
+			H.change_stat("willpower", 3)
 			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)	
@@ -80,7 +80,7 @@
 			H.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			H.change_stat("strength", 3) 
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			H.change_stat("intelligence", -1)
 			H.change_stat("perception", -1)
