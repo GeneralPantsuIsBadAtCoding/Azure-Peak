@@ -278,11 +278,15 @@
 	voicecolor_override = null
 
 /obj/structure/roguemachine/scomm/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
-	if(speaker.loc != loc && !calling)
+	if(speaker.loc != loc)
 		return
 	if(!ishuman(speaker))
 		return
 	if(!listening)
+		return
+	if(!calling && !garrisonline)
+		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
+		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 		return
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
@@ -306,9 +310,6 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
-		else
-			say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
-			playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
