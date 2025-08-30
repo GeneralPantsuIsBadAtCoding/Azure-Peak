@@ -34,7 +34,7 @@
 	mid_length = 2400 // Whoever wrote this is giving me an aneurism
 	volume = 70
 	extra_range = 8
-	falloff = 0
+	falloff_exponent = 0
 	persistent_loop = TRUE
 	var/stress2give = /datum/stressevent/music
 	channel = CHANNEL_JUKEBOX
