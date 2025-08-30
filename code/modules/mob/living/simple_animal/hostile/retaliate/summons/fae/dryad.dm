@@ -46,6 +46,22 @@
 	ranged = FALSE
 	var/vine_cd
 
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Move(newloc)	//vine movespeed buff
+	.=..()
+	if(isturf(newloc))
+		var/turf/T = newloc
+		if(contains_vines(T))
+			src.move_to_delay = 6
+			src.STASPD = 15
+		else
+			src.move_to_delay = 12
+			src.STASPD = 4
+
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/contains_vines(var/turf/T)
+	for(var/obj/structure/vine/V in T)
+		return TRUE
+	return FALSE
+
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return
 
@@ -92,11 +108,15 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/proc/vine()
 	target.visible_message(span_boldwarning("Vines spread out from [src]!"))
-	for(var/turf/turf as anything in RANGE_TURFS(3,src.loc))
-		new /obj/structure/vine(turf)
-
+	for(var/turf/turf as anything in RANGE_TURFS(2,src.loc))
+		if(!locate(/obj/structure/vine) in turf)
+			new /obj/structure/vine(turf)
+	src.vine_cd = world.time
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/death(gibbed)
 	..()
+	for(var/obj/structure/vine/V in view(src))
+		qdel(V)
+	src.visible_message(span_boldwarning("Vines near [src] wither!"))
 	var/turf/deathspot = get_turf(src)
 	new /obj/item/magic/melded/t1(deathspot)
 	new /obj/item/magic/iridescentscale(deathspot)

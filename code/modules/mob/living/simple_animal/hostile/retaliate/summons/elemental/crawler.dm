@@ -21,7 +21,7 @@
 	melee_damage_upper = 17
 	vision_range = 8
 	aggro_vision_range = 11
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	simple_detect_bonus = 20
 	retreat_distance = 0
 	minimum_distance = 0

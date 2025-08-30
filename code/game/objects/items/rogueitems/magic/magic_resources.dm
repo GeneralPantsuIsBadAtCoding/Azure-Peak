@@ -1,6 +1,6 @@
 // Magical resources for the Ratwood ported Mage Gameplay Loop system
 // Chose to not use /natural typepath because it didn't make much sense and this
-// Let me use another .dmi 
+// Let me use another .dmi
 // Since the enchanting / summoning system is not here yet, sellprice has been adjusted.
 /obj/item/magic
 	name = "magic resource"
@@ -15,7 +15,7 @@
 	name = "arcane meld"
 	icon_state = "wessence"
 	desc = "You should not be seeing this"
-	resistance_flags = FLAMMABLE
+	resistance_flags = FIRE_PROOF
 	w_class = WEIGHT_CLASS_SMALL
 	sellprice = 20
 
@@ -80,7 +80,7 @@
 	name = "runed artifact"
 	icon_state = "runedartifact"
 	desc = "An old stone from age long ago, marked with glowing sigils."
-	resistance_flags = FLAMMABLE
+	resistance_flags = FIRE_PROOF
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/magic/artifact/Initialize()
@@ -91,9 +91,9 @@
 
 /obj/item/magic/voidstone
 	name = "voidstone"
-	icon_state = "wessence"
+	icon_state = "voidstone"
 	desc = "A piece of blackstone, it feels off to stare at it for long."
-	resistance_flags = FLAMMABLE
+	resistance_flags = FIRE_PROOF
 	w_class = WEIGHT_CLASS_SMALL
 
 // INFERNAL

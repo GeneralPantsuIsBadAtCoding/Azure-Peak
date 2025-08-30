@@ -1,3 +1,6 @@
+/mob/living/simple_animal/hostile/retaliate/rogue/fae
+	obj_damage = 75
+
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC)

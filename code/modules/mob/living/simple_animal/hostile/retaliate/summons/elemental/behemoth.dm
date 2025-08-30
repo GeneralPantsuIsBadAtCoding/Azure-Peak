@@ -24,7 +24,7 @@
 	melee_damage_upper = 80
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	simple_detect_bonus = 20
 	retreat_distance = 0
 	minimum_distance = 0
@@ -52,8 +52,12 @@
 	..()
 	var/turf/deathspot = get_turf(src)
 	new /obj/item/magic/elementalfragment(deathspot)
+	new /obj/item/magic/elementalfragment(deathspot)
+	new /obj/item/magic/elementalshard(deathspot)
+	new /obj/item/magic/elementalshard(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
+	new /obj/item/magic/melded/t1(deathspot)
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
