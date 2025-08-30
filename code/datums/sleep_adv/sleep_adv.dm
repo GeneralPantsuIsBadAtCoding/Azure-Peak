@@ -76,7 +76,8 @@
 		var/org_lvl = L.get_skill_level(skill)
 		L.adjust_experience(skill, amt)
 		var/new_lvl = L.get_skill_level(skill)
-		if(org_lvl == new_lvl && show_xp)
+		var/capped_post_check = enough_sleep_xp_to_advance(skill, 2)
+		if(org_lvl == new_lvl && !capped_post_check && show_xp)
 			L.balloon_alert(L, "[amt] XP")
 		return
 	var/datum/skill/skillref = GetSkillRef(skill)
