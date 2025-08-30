@@ -1,7 +1,7 @@
 // Elven unique mercenary type; should be scary in a way solo but easy to kill with a group or bow.
 /datum/advclass/mercenary/blackoak
 	name = "Black Oak's Guardian"
-	tutorial = "The Black Oaks are a shady Elven milita dedicated to upholding Azurian tradition and security. This land was once great...and now, wave after wave of outsiders and monsters trample your home. Thankfully for the foreign-backed crown, you are not here to spill the blood of the Lord's men, today, and instead fight for the prosperity of your lands. Some of the higher-ranking, and braver, members of your company are called WRETCHES and have bounties associated with them."
+	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. Thankfully, you are not here today to shed the blood of the Duke's men — unless someone pays you to..."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/human/halfelf,
