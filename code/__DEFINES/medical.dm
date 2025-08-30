@@ -35,6 +35,7 @@
 
 #define READABLE_ZONE_SKULL		"Skull"
 #define READABLE_ZONE_NOSE		"Nose"
+#define READABLE_ZONE_EARS		"Ears"
 #define READABLE_ZONE_MOUTH		"Mouth"
 #define READABLE_ZONE_EYES		"Eyes"
 #define READABLE_ZONE_NECK		"Neck"

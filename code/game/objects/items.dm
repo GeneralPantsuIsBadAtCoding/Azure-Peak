@@ -1372,16 +1372,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	add_overlay(damage)
 
 /// Proc that is only called with the Peel intent. Stacks consecutive hits, shreds coverage once a threshold is met. Thresholds are defined on /obj/item
-/obj/item/proc/peel_coverage(bodypart, divisor)
+/obj/item/proc/peel_coverage(bodypart, divisor, mob/living/carbon/human/owner)
 	var/coveragezone = attackzone2coveragezone(bodypart)
 	if(!(body_parts_inherent & coveragezone))
 		if(!last_peeled_limb || coveragezone == last_peeled_limb)
+			var/peel_goal = peel_threshold
+			if(divisor > peel_goal)
+				peel_goal = divisor
+				
 			var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
-			if(divisor >= peel_threshold)
-				peel_count += divisor ? (peel_threshold / divisor ) : 1
-			else if(divisor < peel_threshold)
+
+			if(peel_count < peel_goal)
 				peel_count++
-			if(peel_count >= peel_threshold)
+
+			if(peel_count >= peel_goal)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
 				var/parttext
@@ -1393,10 +1397,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
 				reset_peel(success = TRUE)
 			else
-				visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
+				if(owner)
+					owner.visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
 				var/balloon_msg = "Peel! \Roman[ROUND_UP(peel_count)] <br><font color = '#8b7330'>[peeledpart[1]]!</font>"
 				if(length(peeledpart))
-					balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
+					transmit_to_combat_aware(balloon_msg)
 		else
 			last_peeled_limb = coveragezone
 			reset_peel()

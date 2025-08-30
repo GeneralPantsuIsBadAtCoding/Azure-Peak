@@ -365,13 +365,13 @@
 	return covered_parts
 
 
-//Takes a user-targeted zone and returns a readable version of it.
+/// Takes a user-targeted zone and returns a readable version of it.
 /proc/bodyzone2readablezone(zone)
 	switch(zone)
 		if(BODY_ZONE_HEAD)
 			return READABLE_ZONE_HEAD
 		if(BODY_ZONE_PRECISE_EARS)
-			return READABLE_ZONE_HEAD
+			return READABLE_ZONE_EARS
 		if(BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_R_EYE)
 			return READABLE_ZONE_EYES
 		if(BODY_ZONE_PRECISE_MOUTH)
