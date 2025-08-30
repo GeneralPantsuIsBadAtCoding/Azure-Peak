@@ -23,8 +23,8 @@
 	var/obj/item/clothing/used
 	var/protection = 0
 	used = get_best_worn_armor(def_zone, d_type)
-	protection = used.armor.getRating(d_type)
 	if(used)
+		protection = used.armor.getRating(d_type)
 		if(!blade_dulling)
 			blade_dulling = BCLASS_BLUNT
 		if(blade_dulling == BCLASS_PEEL)	//Peel shouldn't be dealing any damage through armor, or to armor itself.
