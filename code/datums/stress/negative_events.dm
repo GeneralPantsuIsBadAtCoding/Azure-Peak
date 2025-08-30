@@ -136,6 +136,20 @@
 	stressadd_per_extra_stack = 2
 	desc = span_red("I puked on myself!")
 
+/datum/stressevent/vomitother
+	timer = 3 MINUTES
+	stressadd = 3
+	max_stacks = 3
+	stressadd_per_extra_stack = 3
+	desc = span_red("I have someone's puke on myself!")
+
+/datum/stressevent/vomitedonother
+	timer = 3 MINUTES
+	stressadd = 2
+	max_stacks = 3
+	stressadd_per_extra_stack = 2
+	desc = span_red("I puked on someone!")
+
 /datum/stressevent/cumbad
 	timer = 5 MINUTES
 	stressadd = 5

@@ -96,7 +96,7 @@
 	name = "Hand of Heartfelt"
 	greet_text = "You are the Hand of Heartfelt, burdened by the perception of failure in protecting your Lord's domain. Despite doubts from others, your loyalty remains steadfast as you journey to the Peak, determined to fulfill your duties."
 	outfit = /datum/outfit/job/roguetown/heartfelt/hand
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	grant_lit_torch = TRUE
 	show_wanderer_examine = FALSE
 
