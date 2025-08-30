@@ -68,6 +68,7 @@
 	if(body.mind)
 		body.mind.RemoveAllSpells()
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
+		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mark_target)
 	body.ambushable = FALSE
 	body.AddComponent(/datum/component/dreamwalker_repair)
 
@@ -199,3 +200,71 @@
 
 	// Remove the timer reference
 	repair_timers -= I
+
+/obj/effect/proc_holder/spell/invoked/mark_target
+	name = "Mark Target"
+	desc = "Marks a target for pursuit, making them visible through walls with a special outline. Right-click to mark a random valid target."
+	releasedrain = 75
+	chargedrain = 1
+	chargetime = 1.5 SECONDS
+	recharge_time = 35 MINUTES
+	overlay_state = "mark"
+	invocations = list("Signum persequendi!")
+	invocation_type = "whisper"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 1
+	associated_skill = /datum/skill/magic/arcane
+
+	// Define roles that are considered valid targets
+	var/static/list/valid_target_roles = list(
+		"Acolyte"
+	)
+
+	var/mob/living/marked_target = null
+
+/obj/effect/proc_holder/spell/invoked/mark_target/Destroy()
+	remove_mark()
+	return ..()
+
+/obj/effect/proc_holder/spell/invoked/mark_target/cast(list/targets, mob/user)
+	var/mob/living/target = targets[1]
+
+	var/list/valid_targets = get_valid_targets(user)
+	if(!length(valid_targets))
+		to_chat(user, span_warning("No valid targets found."))
+		revert_cast()
+		return
+	target = pick(valid_targets)
+	to_chat(user, span_notice("The spell seeks out a worthy target..."))
+
+	// Remove previous mark if it exists
+	if(marked_target)
+		remove_mark()
+	// Apply new mark
+	marked_target = target
+
+	if(target != user)
+		to_chat(user, span_warning("[user] traces a glowing symbol in the air指向 [target]."), 
+							 span_notice("You mark [target] for pursuit."))
+
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mark_target/proc/get_valid_targets(mob/user)
+	var/list/valid_targets = list()
+	
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		if(player == user || player.stat == DEAD || !player.mind || !player.client)
+			continue
+		if(player.mind.assigned_role in valid_target_roles)
+			valid_targets += player
+	return valid_targets
+
+/obj/effect/proc_holder/spell/invoked/mark_target/proc/is_valid_target(mob/living/target)
+	if(!ishuman(target) || target.stat == DEAD || !target.mind || !target.client)
+		return FALSE
+	return (target.mind.assigned_role in valid_target_roles)
+
+/obj/effect/proc_holder/spell/invoked/mark_target/proc/remove_mark()
+	if(marked_target)
+		marked_target = null
