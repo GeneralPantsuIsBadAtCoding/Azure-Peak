@@ -74,7 +74,7 @@
 
 
 	animate(
-		alpha = 235,
+		alpha = 175,
 		time = BALLOON_TEXT_SPAWN_TIME,
 		easing = CUBIC_EASING | EASE_OUT,
 		flags = ANIMATION_PARALLEL,
