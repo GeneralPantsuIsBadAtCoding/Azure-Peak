@@ -46,7 +46,7 @@
 	var/list/mobsinview = list()
 	var/list/mobspickable = list("1-Tile Range", "Same Tile")
 	for(var/mob/living/L in ghostless)
-		if(L.stat == CONSCIOUS && L != src) // To those conscious only. Slightly more expensive but subtle is not spammed
+		if(L.stat != DEAD && L != src) // to those living only - slightly more expensive but subtle is not spammed
 			mobsinview += L
 			if(!L.rogue_sneaking && L.name != "Unknown") // do not let hidden/unknown targets be added to list
 				mobspickable += L
