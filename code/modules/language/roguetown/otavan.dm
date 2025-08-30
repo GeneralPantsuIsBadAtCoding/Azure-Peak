@@ -10,6 +10,7 @@
 	default_priority = 90
 	icon_state = "asse"
 	spans = list(SPAN_OTAVAN)
+	associated_skill = /datum/skill/language/otavan
 	syllables = list(
 		"ent", "que", "ait", "les", "lle", "our", "oui", "men", "ais", "est", "tre",
 		"re", "mai", "ous", "par", "ant", "ion", "eme", "tai", "ans", "pas", "ell",

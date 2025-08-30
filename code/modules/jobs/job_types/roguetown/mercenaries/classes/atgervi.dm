@@ -39,6 +39,9 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			H.grant_language(/datum/language/dwarvish)
+			//Hammerholdian mercs
+			H.adjust_skillrank(/datum/skill/language/dwarvish, 4, TRUE)
 
 			H.change_stat("strength", 2)	
 			H.change_stat("endurance", 3)
@@ -78,6 +81,9 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE)
+			H.grant_language(/datum/language/dwarvish)
+			// Hammerholdian + Gronn joint mercs
+			H.adjust_skillrank(/datum/skill/language/dwarvish, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			H.change_stat("strength", 3) 
 			H.change_stat("endurance", 1)
@@ -109,6 +115,7 @@
 			H.cmode_music = 'sound/music/combat_shaman2.ogg'
 
 	H.grant_language(/datum/language/gronnic)
+	
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary = 1,
 		/obj/item/rogueweapon/huntingknife = 1,
