@@ -819,7 +819,6 @@
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
-	var/list/lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
 	if(lip_style)
 		switch(lip_color)
 			if("red")
@@ -830,6 +829,13 @@
 				. += "<span class='info' style='color: #00FF00'>[m1] wearing lime lipstick.</span>"
 			if("black")
 				. += "<span class='info' style='color: #313131ff'>[m1] wearing black lipstick.</span>"
+
+
+	var/list/lines
+	if(get_visible_name() in unknown_names)
+		lines = build_cool_description_unknown(get_mob_descriptors_unknown(obscure_name, user), src)
+	else
+		lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
 
 	for(var/line in lines)
 		. += span_info(line)
