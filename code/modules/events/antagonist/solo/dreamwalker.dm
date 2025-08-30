@@ -5,7 +5,8 @@
 		TAG_HAUNTED,
 		TAG_VILLIAN,
 	)
-	roundstart = TRUE
+	//Can roll at any time.
+	roundstart = FALSE
 	antag_flag = ROLE_DREAMWALKER
 	shared_occurence_type = SHARED_MINOR_THREAT
 
