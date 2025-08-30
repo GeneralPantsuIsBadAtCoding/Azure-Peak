@@ -155,6 +155,13 @@ GLOBAL_LIST_EMPTY(respawncounts)
 			return
 		if("vars")
 			return view_var_Topic(href,href_list,hsrc)
+		if("familiar_prefs")
+			if (inprefs)
+				return
+			inprefs = TRUE
+			. = prefs.familiar_prefs.fam_process_link(usr,href_list)
+			inprefs = FALSE
+			return
 
 	switch(href_list["action"])
 		if("openLink")
