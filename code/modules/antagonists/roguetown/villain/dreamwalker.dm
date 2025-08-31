@@ -769,7 +769,8 @@
 	switch(effect_type)
 		if("fire")
 			H.adjust_fire_stacks(4)
-			H.IgniteMob()
+			spawn(0)
+				H.IgniteMob()
 			target.visible_message(span_warning("[source] ignites [target] with strange flame!"))
 		if("frost")
 			H.apply_status_effect(/datum/status_effect/buff/frostbite)
@@ -845,12 +846,11 @@
 	for(var/I in items)
 		H.dropItemToGround(I, TRUE)
 	H.drop_all_held_items()
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
-	pants = /obj/item/clothing/under/roguetown/platelegs/zizo
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/zizo
-	gloves = /obj/item/clothing/gloves/roguetown/plate/zizo
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/zizo
-	backr = /obj/item/rogueweapon/sword/long/zizo
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dreamwalker
+	pants = /obj/item/clothing/under/roguetown/platelegs/dreamwalker
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dreamwalker
+	gloves = /obj/item/clothing/gloves/roguetown/plate/dreamwalker
+	head = /obj/item/clothing/head/roguetown/helmet/bascinet/dreamwalker
 	neck = /obj/item/clothing/neck/roguetown/bevor
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/dreamwalker
@@ -885,7 +885,7 @@
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 	item_flags = DREAM_ITEM
 
-/obj/item/clothing/head/roguetown/helmet/heavy/dreamwalker
+/obj/item/clothing/head/roguetown/helmet/bascinet/dreamwalker
 	name = "otherworldly squid helm"
 	desc = "A otherworldly squid helm. It reflects light as if covered in shiny oil."
 	adjustable = CAN_CADJUST
@@ -893,3 +893,10 @@
 	max_integrity = ARMOR_INT_HELMET_ANTAG
 	peel_threshold = 4
 	item_flags = DREAM_ITEM
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/head.dmi'
+	block2add = null
+	worn_x_dimension = 32
+	worn_y_dimension = 48
+	body_parts_covered = FULL_HEAD
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
