@@ -207,7 +207,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mark_target
 	name = "Mark Target"
-	desc = "Marks a random target for pursuit. Track them, extract metal from their mind to complete your vision."
+	desc = "Marks a random target for pursuit. Track them, extract metal from their mind to complete your vision. Hit them with a dream weapon to summon them to you later."
 	releasedrain = 75
 	chargedrain = 1
 	chargetime = 1.5 SECONDS
