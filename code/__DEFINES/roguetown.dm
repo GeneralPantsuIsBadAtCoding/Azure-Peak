@@ -172,6 +172,11 @@
 #define COVERAGE_PANTS			( GROIN | LEGS )
 #define COVERAGE_FULL_LEG		( LEGS | FEET )
 
+/*
+Balloon Alert / Floating Text defines
+*/
+#define XP_SHOW_COOLDOWN (0.5 SECONDS)
+
 
 //used in various places
 #define ALL_RACES_TYPES list(\
@@ -459,9 +464,3 @@ Medical defines
 #define ARTERY_LIMB_BLEEDRATE 20	//This is used as a reference point for dynamic wounds, so it's better off as a define.
 #define CONSTITUTION_BLEEDRATE_MOD 0.1	//How much slower we'll be bleeding for every CON point. 0.1 = 10% slower.
 #define CONSTITUTION_BLEEDRATE_CAP 15	//The CON value up to which we get a bleedrate reduction.
-
-
-/*
-Balloon Alert / Floating Text defines
-*/
-#define XP_SHOW_COOLDOWN (0.5 SECONDS)
