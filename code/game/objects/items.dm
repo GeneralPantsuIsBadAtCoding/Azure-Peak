@@ -541,8 +541,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(max_integrity)
 			inspec += "\n<b>DURABILITY:</b> "
-			var/percent = round(((obj_integrity / max_integrity) * 100), 1)
-			inspec += "[percent]% ([obj_integrity])"
+			var/intfailmod = integrity_failure ? (1 - integrity_failure) : 1	//let's all hope integrity_failure is never above 1
+			var/eff_maxint = (max_integrity * intfailmod)
+			var/eff_currint = (obj_integrity * intfailmod)
+			var/ratio =	(eff_currint / eff_maxint)
+			var/percent = round((ratio * 100), 1)
+			inspec += "[percent]% ([floor(eff_currint)])"
 
 		to_chat(usr, "[inspec.Join()]")
 

@@ -43,6 +43,9 @@
 	var/client/viewer_client = viewer?.client
 	if (isnull(viewer_client))
 		return
+	
+	if(!(viewer_client.prefs.floating_text_toggles & FLOATING_TEXT))
+		return
 
 	var/image/balloon_alert = image(loc = isturf(src) ? src : get_atom_on_turf(src), layer = ABOVE_MOB_LAYER)
 	balloon_alert.plane = BALLOON_CHAT_PLANE

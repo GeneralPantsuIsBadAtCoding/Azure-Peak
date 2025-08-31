@@ -20,16 +20,20 @@
 		animate(pixel_x = oldx-1, time = 0.5)
 		animate(pixel_x = oldx, time = 0.5)
 
-	var/ratio = obj_integrity / max_integrity
+	var/intfailmod = integrity_failure ? (1 - integrity_failure) : 1	//let's all hope integrity_failure is never above 1
+	var/eff_maxint = (max_integrity * intfailmod)
+	var/eff_currint = (obj_integrity * intfailmod)
+	var/ratio =	(eff_currint / eff_maxint)
+	var/ratio_newinteg = (eff_currint + damage_amount) / eff_maxint
 	var/text
 	var/y_offset
-	if(ratio < 0.75 && ((obj_integrity + damage_amount) / max_integrity) > 0.75)
+	if(ratio < 0.75 && ratio_newinteg > 0.75)
 		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
 		y_offset = -5
-	if(ratio < 0.5 && ((obj_integrity + damage_amount) / max_integrity) > 0.5)
+	if(ratio < 0.5 && ratio_newinteg > 0.5)
 		text = "Armor <br><font color = '#d4d36c'>damaged</font>"
 		y_offset = 15
-	if(ratio < 0.25 && ((obj_integrity + damage_amount) / max_integrity) > 0.25)
+	if(ratio < 0.25 && ratio_newinteg > 0.25)
 		text = "Armor <br><font color = '#a8705a'>sundered</font>"
 		y_offset = 35
 	if(text)
