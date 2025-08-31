@@ -746,7 +746,7 @@
 // Component for dream weapon special properties
 /datum/component/dream_weapon
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	var/effect_type
+	var/effect_type = null
 	var/cooldown_time
 	var/next_use = 0
 
@@ -759,9 +759,14 @@
 	src.cooldown_time = cooldown_time
 
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SUCCESS, .proc/on_attack)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equipped)
+
 
 /datum/component/dream_weapon/proc/on_attack(obj/item/source, mob/living/target, mob/living/user)
 	SIGNAL_HANDLER
+	if(!effect_type)
+		return
+
 	// Check cooldown
 	if(world.time < next_use)
 		return
@@ -788,6 +793,23 @@
 
 	// Set cooldown
 	next_use = world.time + cooldown_time
+
+/datum/component/dream_weapon/proc/on_equipped(obj/item/source, mob/user, slot)
+	SIGNAL_HANDLER
+	if(HAS_TRAIT(user, TRAIT_DREAMWALKER))
+		return
+
+	// Non-dreamwalker trying to equip a dream weapon
+	to_chat(user, span_userdanger("The weapon rejects your touch, burning with dream energy!"))
+	user.dropItemToGround(source, TRUE)
+
+	// Apply some damage or negative effect
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		spawn(0)
+			H.apply_damage(10, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			H.adjust_fire_stacks(2)
+			H.IgniteMob()
 
 /obj/item/rogueweapon/halberd/glaive/dreamscape
 	name = "otherworldly spear"
@@ -867,6 +889,10 @@
 	item_flags = DREAM_ITEM
 	peel_threshold = 5
 
+/obj/item/clothing/suit/roguetown/armor/plate/full/dreamwalker/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
+
 /obj/item/clothing/under/roguetown/platelegs/dreamwalker
 	max_integrity = ARMOR_INT_LEG_ANTAG
 	name = "otherworldly legplate"
@@ -876,6 +902,10 @@
 	item_flags = DREAM_ITEM
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
 
+/obj/item/clothing/under/roguetown/platelegs/dreamwalker/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
+
 /obj/item/clothing/shoes/roguetown/boots/armor/dreamwalker
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 	name = "otherworldly boots"
@@ -884,12 +914,20 @@
 	armor = ARMOR_ASCENDANT
 	item_flags = DREAM_ITEM
 
+/obj/item/clothing/shoes/roguetown/boots/armor/dreamwalker/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
+
 /obj/item/clothing/gloves/roguetown/plate/dreamwalker
 	name = "otherworldly gauntlets"
 	desc = "Strange iridescent plated gauntlets. It reflects light as if covered in shiny oil."
 	icon_state = "dreamgauntlets"
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 	item_flags = DREAM_ITEM
+
+/obj/item/clothing/gloves/roguetown/plate/dreamwalker/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/dreamwalker
 	name = "otherworldly squid helm"
@@ -906,6 +944,10 @@
 	body_parts_covered = FULL_HEAD
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+
+/obj/item/clothing/head/roguetown/helmet/bascinet/dreamwalker/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
 
 /obj/effect/proc_holder/spell/invoked/dream_bind
 	name = "Dream Bind"
