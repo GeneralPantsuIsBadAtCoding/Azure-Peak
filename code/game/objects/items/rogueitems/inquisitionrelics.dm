@@ -369,7 +369,7 @@ Inquisitorial armory down here
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
-			if(!CP.is_blessed)
+			if(!CP.is_blessed && (CP.silver_type & SILVER_PSYDONIAN))
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
 				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
 				if(do_after(user, 50, target = A))

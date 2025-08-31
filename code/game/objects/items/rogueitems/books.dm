@@ -223,11 +223,11 @@
 		if(!CP)
 			to_chat(user, span_info("\The [M] can not be blessed."))
 			return
-		else if(!CP.is_blessed)
+		else if(!CP.is_blessed && (CP.silver_type & SILVER_TENNITE))
 			playsound(user, 'sound/magic/censercharging.ogg', 100)
 			user.visible_message(span_info("[user] holds \the [src] over \the [M]..."))
 			if(do_after(user, 5 SECONDS, target = M))
-				CP.try_bless()
+				CP.try_bless(BLESSING_TENNITE)
 				new /obj/effect/temp_visual/censer_dust(get_turf(M))
 			return
 		else
