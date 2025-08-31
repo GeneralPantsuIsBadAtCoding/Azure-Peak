@@ -126,7 +126,7 @@
 			COOLDOWN_START(src, level_up, XP_SHOW_COOLDOWN)
 		show_xp = FALSE
 	if(COOLDOWN_FINISHED(src, xp_show))
-		if(amt && !show_xp && (L.client?.prefs.floating_text_toggles & XP_TEXT))
+		if(amt && show_xp && (L.client?.prefs.floating_text_toggles & XP_TEXT))
 			L.balloon_alert(L, "[amt] XP")
 			COOLDOWN_START(src, xp_show, XP_SHOW_COOLDOWN)
 
