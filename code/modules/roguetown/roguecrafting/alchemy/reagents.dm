@@ -420,7 +420,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		M.add_nausea(9)
 		M.adjustFireLoss(2, 0)
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	return ..()
 //I'm stapling our infection reagents on the bottom, because IDEK where else to put them.
 

@@ -219,7 +219,7 @@
 	if(!HAS_TRAIT(user, TRAIT_COMMIE))
 		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCHING THIS FLAIL, CEASE OR BE PUNISHED!</font>")
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.Stun(40)
 	..()
 

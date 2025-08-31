@@ -600,7 +600,7 @@
 			if(isliving(target))
 				var/mob/living/M = target
 				M.adjust_fire_stacks(5)
-				M.IgniteMob()
+				M.ignite_mob()
 				ignited = TRUE
 			if(ignited && single_use)
 				is_active = FALSE

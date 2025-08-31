@@ -901,7 +901,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 		if(get_temperature() && isliving(hit_atom))
 			var/mob/living/L = hit_atom
-			L.IgniteMob()
+			L.ignite_mob()
 		var/itempush = 0
 		if(w_class < 4)
 			itempush = 0 //too light to push anything

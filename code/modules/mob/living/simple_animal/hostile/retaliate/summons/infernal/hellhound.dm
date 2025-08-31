@@ -77,7 +77,7 @@
 		if(!isliving(target))
 			return
 		targetted.adjust_fire_stacks(5)
-		targetted.IgniteMob()
+		targetted.ignite_mob()
 		targetted.visible_message(span_danger("[src] sets [target] on fire!"))
 		src.flame_cd = world.time
 	if(!QDELETED(target))

@@ -63,7 +63,6 @@
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	update_sneak_invis()
-	handle_fire()
 
 	if(machine)
 		machine.check_eye(src)
@@ -85,7 +84,6 @@
 		handle_embedded_objects()
 		handle_blood()
 	update_sneak_invis()
-	handle_fire()
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
@@ -112,26 +110,6 @@
 
 /mob/living/proc/handle_environment()
 	return
-
-/mob/living/proc/handle_fire()
-	if(fire_stacks < 0) //If we've doused ourselves in water to avoid fire, dry off slowly
-		fire_stacks = min(0, fire_stacks + 1)//So we dry ourselves back to default, nonflammable.
-	if(!on_fire)
-//		testing("handlefyre0 [src]")
-		return TRUE //the mob is no longer on fire, no need to do the rest.
-//	testing("handlefyre1 [src]")
-	if(fire_stacks + divine_fire_stacks + sunder_fire_stacks> 0)
-		adjust_divine_fire_stacks(-0.05)
-		if(sunder_fire_stacks > 0)
-			adjust_sunder_stacks(-0.05)
-		if(fire_stacks > 0)
-			adjust_fire_stacks(-0.05) //the fire is slowly consumed
-	else
-		ExtinguishMob()
-		return TRUE //mob was put out, on_fire = FALSE via ExtinguishMob(), no need to update everything down the chain.
-	update_fire()
-	var/turf/location = get_turf(src)
-	location?.hotspot_expose(700, 50, 1)
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)

@@ -589,19 +589,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return FALSE
 	return TRUE
 
-/mob/living/simple_animal/handle_fire()
-	. = ..()
-	if(!on_fire)
-		return TRUE
-	if(fire_stacks + divine_fire_stacks + sunder_fire_stacks> 0)
-		apply_damage(5, BURN)
-		if(fire_stacks + divine_fire_stacks + sunder_fire_stacks > 5)
-			apply_damage(10, BURN)
-
-//mob/living/simple_animal/IgniteMob()
+//mob/living/simple_animal/ignite_mob()
 //	return FALSE
 
-///mob/living/simple_animal/ExtinguishMob()
+///mob/living/simple_animal/extinguish_mob()
 //	return
 
 /mob/living/simple_animal/revive(full_heal = FALSE, admin_revive = FALSE)

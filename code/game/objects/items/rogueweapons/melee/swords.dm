@@ -241,6 +241,7 @@
 	thrown_bclass = BCLASS_CUT
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
+	wdefense_wbonus = ""
 
 /obj/item/rogueweapon/sword/long/death
 	color = CLOTHING_BLACK
@@ -292,7 +293,7 @@
 	if(!HAS_TRAIT(user, TRAIT_CABAL))
 		to_chat(user, "<font color='purple'>UNWORTHY HANDS TOUCHING THIS SWORD, CEASE OR BE PUNISHED!</font>")
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.Stun(40)
 	..()
 

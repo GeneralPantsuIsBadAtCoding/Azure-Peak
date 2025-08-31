@@ -119,7 +119,7 @@
 		spawn(30)
 			if(loc == user)
 				user.adjust_fire_stacks(5)
-				user.IgniteMob()
+				user.ignite_mob()
 	..()
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/equipped(mob/living/user, slot)

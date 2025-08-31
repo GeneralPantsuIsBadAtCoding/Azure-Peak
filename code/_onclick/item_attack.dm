@@ -169,7 +169,7 @@
 		if(M.has_status_effect(/datum/status_effect/buff/necras_vow))
 			if(isnull(user.mind))
 				user.adjust_fire_stacks(5)
-				user.IgniteMob()
+				user.ignite_mob()
 			else
 				if(prob(30))
 					to_chat(M, span_warning("The foul blessing of the Undermaiden hurts us!"))
@@ -558,8 +558,8 @@
 	SEND_SIGNAL(H, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 
 	if(is_silver && HAS_TRAIT(H, TRAIT_SILVER_WEAK))
-		H.adjust_sunder_stacks(3)
-		H.IgniteMob()
+		H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		H.ignite_mob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)

@@ -68,33 +68,14 @@ There are several things that need to be remembered:
 	dna.species.handle_body(src)
 	..()
 
-#define SUNDER_FILTER "sunder_filter"
-
 /mob/living/carbon/human/update_fire()
-	if(sunder_fire_stacks > 0)
-		var/filter = get_filter(SUNDER_FILTER)
-		if(!filter)
-			add_filter(SUNDER_FILTER, 2, list("type" = "outline", "color" = "#ffffff", "alpha" = 60, "size" = 1))
-		sunder_light_obj = mob_light("#f5edda", 5, 5)
-		remove_overlay(SUNDER_LAYER)
-		var/mutable_appearance/new_fire_overlay = mutable_appearance('icons/mob/OnFire.dmi', "sunder_burning", -SUNDER_LAYER)
-		new_fire_overlay.appearance_flags = RESET_COLOR
-		overlays_standing[SUNDER_LAYER] = new_fire_overlay
-		apply_overlay(SUNDER_LAYER)
-	else
-		remove_filter(SUNDER_FILTER)
-		remove_overlay(SUNDER_LAYER)
-		QDEL_NULL(sunder_light_obj)
-
-	if(fire_stacks + divine_fire_stacks < 10)
+	if(fire_stacks < 10)
 		return ..("Generic_mob_burning")
-	else if(fire_stacks + divine_fire_stacks > 10)
+	else
 		var/burning = dna.species.enflamed_icon
 		if(!burning)
 			return ..("widefire")
 		return ..(burning)
-
-#undef SUNDER_FILTER
 
 /mob/living/carbon/human/update_damage_overlays()
 	START_PROCESSING(SSdamoverlays,src)

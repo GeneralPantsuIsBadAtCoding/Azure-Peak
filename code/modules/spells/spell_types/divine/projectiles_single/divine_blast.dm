@@ -103,7 +103,7 @@
 					damage += 15 // just more raw damage. As mentioned in UNDIVIDED. Our generics are better as a trade off of not having higher tier uniques.
 				if(/datum/patron/divine/astrata)
 					H.adjust_fire_stacks(2)
-					H.IgniteMob()
+					H.ignite_mob()
 				if(/datum/patron/divine/abyssor)
 					H.visible_message(span_warning("Water seeps from [H]'s lips!"), span_warning("Choking water in my lungs!"))
 					H.Dizzy(5)
@@ -114,7 +114,7 @@
 				if(/datum/patron/divine/necra)
 					if(H.mob_biotypes & MOB_UNDEAD)
 						H.adjust_fire_stacks(4)
-						H.IgniteMob()
+						H.ignite_mob()
 				if(/datum/patron/divine/pestra)
 					H.vomit(stun = 0)
 					H.adjustToxLoss(10)

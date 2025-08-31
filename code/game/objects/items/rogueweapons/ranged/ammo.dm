@@ -275,7 +275,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(6)
 	M.adjustFireLoss(15)
-	M.IgniteMob()
+	M.ignite_mob()
 
 
 /obj/item/ammo_casing/caseless/rogue/bolt/water
@@ -357,7 +357,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(4)
 	M.adjustFireLoss(10)
-	M.IgniteMob()
+	M.ignite_mob()
 
 /obj/item/ammo_casing/caseless/rogue/arrow/water
 	name = "water arrow"

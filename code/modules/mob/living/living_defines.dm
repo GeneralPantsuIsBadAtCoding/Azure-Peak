@@ -58,15 +58,12 @@
 
 	var/tod = null // Time of death
 
-	/// The boolean "Are we on fire?" var
+	/// The boolean "Are we on fire?" var. 
 	var/on_fire = FALSE
-	///Tracks how many stacks of fire we have on, max is usually 20
+	/// Helper vars for quick access to firestacks, these should be updated every time firestacks are adjusted
 	var/fire_stacks = 0
-	/// Same as regular firestacks but has less properties to avoid firespreading and other mechanics. Meant to ONLY harm the target.
-	var/divine_fire_stacks = 0
-	/// Same as divine fire stacks, but SUNDER!
-	var/sunder_fire_stacks = 0
-	var/sunder_light_obj
+	/// Rate at which fire stacks should decay from this mob
+	var/fire_stack_decay_rate = -0.05
 
 	var/bloodcrawl = 0 //0 No blood crawling, BLOODCRAWL for bloodcrawling, BLOODCRAWL_EAT for crawling+mob devour
 	var/holder = null //The holder for blood crawling

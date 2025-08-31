@@ -165,7 +165,7 @@
 	if(isliving(target))
 		var/mob/living/M = target
 		M.adjust_fire_stacks(5)
-		M.IgniteMob()
+		M.ignite_mob()
 
 /datum/component/martyrweapon/proc/on_equip(datum/source, mob/user, slot)
 	if(!allow_all)
@@ -583,7 +583,7 @@
 				visible_message(span_warning("[H] lets out a painful shriek as the sword lashes out at them!"))
 				H.emote("agony")
 				H.adjust_fire_stacks(5)
-				H.IgniteMob()
+				H.ignite_mob()
 			return FALSE
 		else	//Everyone else
 			to_chat(user, span_warning("A painful jolt across your entire body sends you to the ground. You cannot touch this thing."))

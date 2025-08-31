@@ -155,14 +155,11 @@
 		maxstacks = 20
 	if(!maxstacks)
 		maxstacks = 1
-	if(maxstacks)
-		if(fire_stacks + divine_fire_stacks + sunder_fire_stacks >= maxstacks)
-			return
 	if(added)
 		adjust_fire_stacks(added)
 	else
 		adjust_fire_stacks(1)
-	IgniteMob()
+	ignite_mob()
 
 /mob/living/proc/grabbedby(mob/living/carbon/user, supress_message = FALSE, item_override)
 	if(!user || !src || anchored || !isturf(user.loc))

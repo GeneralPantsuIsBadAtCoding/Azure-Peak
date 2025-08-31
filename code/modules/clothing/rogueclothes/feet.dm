@@ -258,7 +258,7 @@
 	if(!HAS_TRAIT(user, TRAIT_HORDE))
 		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.Stun(40)
 	..()
 
