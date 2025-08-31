@@ -518,7 +518,7 @@ BLIND     // can't see anything
 	var/eff_maxint = (max_integrity * intfailmod)
 	var/eff_currint = (obj_integrity * intfailmod)
 	var/ratio =	(eff_currint / eff_maxint)
-	var/ratio_newinteg = (eff_currint + damage_amount) / eff_maxint
+	var/ratio_newinteg = (eff_currint + newdam) / eff_maxint
 	var/text
 	var/y_offset
 	if(ratio < 0.75 && ratio_newinteg > 0.75)
