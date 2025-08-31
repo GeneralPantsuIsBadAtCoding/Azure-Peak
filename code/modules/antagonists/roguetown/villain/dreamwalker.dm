@@ -69,9 +69,12 @@
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mark_target)
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/jaunt)
+		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/dream_bind)
 	body.ambushable = FALSE
 	body.AddComponent(/datum/component/dreamwalker_repair)
 	body.AddComponent(/datum/component/dreamwalker_mark)
+	var/obj/item/ritechalk/chalk = new()
+	body.put_in_hands(chalk)
 
 /datum/outfit/job/roguetown/dreamwalker/pre_equip(mob/living/carbon/human/H) //Equipment is located below
 	..()
@@ -900,3 +903,50 @@
 	body_parts_covered = FULL_HEAD
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+
+/obj/effect/proc_holder/spell/invoked/dream_bind
+	name = "Dream Bind"
+	desc = "Bind a dream item to your soul, allowing you to summon it at will. Cast on a dream item to bind it, or cast on anything else to summon your bound item."
+	chargedrain = 0
+	chargetime = 1 SECONDS
+	recharge_time = 10 SECONDS
+	invocation_type = "whisper"
+	invocations = list("From dream to hand...")
+	movement_interrupt = FALSE
+	charging_slowdown = 0
+	associated_skill = /datum/skill/magic/arcane
+	var/obj/item/bound_item = null
+
+/obj/effect/proc_holder/spell/invoked/dream_bind/cast(list/targets, mob/user)
+	var/atom/target = targets[1]
+
+	// If targeting a dream item, bind it
+	if(istype(target, /obj/item))
+		var/obj/item/dream_item = target
+		if(dream_item.item_flags & DREAM_ITEM)
+			bound_item = dream_item
+			to_chat(user, span_notice("You bind [bound_item] to your soul. You can now summon it at will."))
+			return TRUE
+
+	// If not targeting a dream item, try to summon the bound item
+	if(!bound_item)
+		to_chat(user, span_warning("You don't have any dream item bound!"))
+		revert_cast()
+		return
+
+	if(bound_item.loc == user) // Already in inventory
+		to_chat(user, span_notice("[bound_item] is already in your possession."))
+		return
+
+	// Check if the item still exists
+	if(QDELETED(bound_item))
+		to_chat(user, span_warning("Your bound item has been destroyed!"))
+		bound_item = null
+		revert_cast()
+		return
+
+	// Summon the item to the user's hand
+	bound_item.forceMove(get_turf(user))
+	user.put_in_hands(bound_item)
+	to_chat(user, span_notice("You summon [bound_item] to your hand."))
+	return TRUE
