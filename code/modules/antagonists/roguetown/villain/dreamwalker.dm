@@ -71,6 +71,7 @@
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/jaunt)
 	body.ambushable = FALSE
 	body.AddComponent(/datum/component/dreamwalker_repair)
+	body.AddComponent(/datum/component/dreamwalker_mark)
 
 /datum/outfit/job/roguetown/dreamwalker/pre_equip(mob/living/carbon/human/H) //Equipment is located below
 	..()
@@ -206,9 +207,9 @@
 	releasedrain = 75
 	chargedrain = 1
 	chargetime = 1.5 SECONDS
-	recharge_time = 35 MINUTES
+	recharge_time = 25 MINUTES
 	overlay_state = "mark"
-	invocations = list("Signum persequendi!")
+	invocations = list("Dream... manifest my vision, bend to my will.")
 	invocation_type = "whisper"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -230,6 +231,10 @@
 /obj/effect/proc_holder/spell/invoked/mark_target/cast(list/targets, mob/user)
 	var/mob/living/target = targets[1]
 
+	var/datum/component/dreamwalker_mark/mark_component = user.GetComponent(/datum/component/dreamwalker_mark)
+	if(!mark_component)
+		mark_component = user.AddComponent(/datum/component/dreamwalker_mark)
+
 	if(target == user || ishuman(target))
 		to_chat(user, span_warning("You mark [target] for testing purposes!"))
 		if(marked_target)
@@ -240,6 +245,7 @@
 		tracking_spell.marked_target = marked_target
 		tracking_spell.parent_spell = src
 		user.mind.AddSpell(tracking_spell)
+		mark_component.set_marked_target(marked_target)
 		return TRUE
 
 	var/list/valid_targets = get_valid_targets(user)
@@ -259,10 +265,11 @@
 	tracking_spell.marked_target = marked_target
 	tracking_spell.parent_spell = src
 	user.mind.AddSpell(tracking_spell)
+	mark_component.set_marked_target(marked_target)
 
-	if(target != user)
-		to_chat(user, span_warning("[user] traces a glowing symbol in the air指向 [target]."), 
-							 span_notice("You mark [target] for pursuit."))
+	if(marked_target != user)
+		to_chat(user, span_warning("[user] traces a glowing symbol in the air marking [marked_target]."), 
+							 span_notice("You mark [marked_target] for pursuit."))
 
 	return TRUE
 
@@ -469,3 +476,196 @@
 	if(uses >= max_uses)
 		visible_message(span_danger("[src] collapses in on itself!"))
 		QDEL_IN(src, 1)
+
+// Component to track marked targets and hits
+/datum/component/dreamwalker_mark
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+	var/mob/living/marked_target = null
+	var/hit_count = 0
+	var/max_hits = 5
+	var/mark_duration = 30 MINUTES
+	var/mark_start_time = 0
+	var/mark_minimum_duration = 10 MINUTES
+	var/obj/effect/proc_holder/spell/invoked/summon_marked/summon_spell = null
+
+/datum/component/dreamwalker_mark/Initialize()
+	if(!ishuman(parent))
+		return COMPONENT_INCOMPATIBLE
+	RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, .proc/on_attack)
+
+/datum/component/dreamwalker_mark/Destroy()
+	if(marked_target)
+		UnregisterSignal(marked_target, COMSIG_LIVING_DEATH)
+		marked_target = null
+
+	if(summon_spell && ishuman(parent))
+		var/mob/living/carbon/human/H = parent
+		if(H.mind)
+			H.mind.RemoveSpell(summon_spell)
+		QDEL_NULL(summon_spell)
+	return ..()
+
+/datum/component/dreamwalker_mark/proc/set_marked_target(mob/living/target)
+	if(marked_target)
+		UnregisterSignal(marked_target, COMSIG_LIVING_DEATH)
+		if(marked_target.has_status_effect(/datum/status_effect/dream_mark))
+			marked_target.remove_status_effect(/datum/status_effect/dream_mark)
+
+	marked_target = target
+	hit_count = 0
+	mark_start_time = 0
+
+	if(marked_target)
+		RegisterSignal(marked_target, COMSIG_LIVING_DEATH, .proc/on_target_death)
+		to_chat(parent, span_notice("You begin focusing your dream energy on [marked_target]."))
+
+		// Remove any existing summon spell
+		if(summon_spell && ishuman(parent))
+			var/mob/living/carbon/human/H = parent
+			if(H.mind)
+				H.mind.RemoveSpell(summon_spell)
+			QDEL_NULL(summon_spell)
+
+/datum/component/dreamwalker_mark/proc/on_attack(mob/parent, mob/living/target, mob/user, obj/item/I)
+	SIGNAL_HANDLER
+
+	if(!marked_target || target != marked_target)
+		return
+
+	if(!(I.item_flags & DREAM_ITEM))
+		return
+
+	if(marked_target.has_status_effect(/datum/status_effect/dream_mark))
+		return
+
+	hit_count++
+	to_chat(user, span_notice("Your dream weapon strikes true. [hit_count]/[max_hits] hits to establish a connection."))
+
+	if(hit_count >= max_hits)
+		// Apply the mark status effect
+		marked_target.apply_status_effect(/datum/status_effect/dream_mark, mark_duration)
+		mark_start_time = world.time
+		to_chat(user, span_warning("You've established a strong dream connection with [marked_target]! You'll be able to summon them in 10 minutes."))
+		to_chat(marked_target, span_userdanger("You feel an unnatural connection forming with [user]. Your very essence feels tethered to them."))
+
+		create_summon_spell()
+
+/datum/component/dreamwalker_mark/proc/create_summon_spell()
+	if(!marked_target || !ishuman(parent))
+		return
+
+	// Check if mark is still active
+	if(!marked_target.has_status_effect(/datum/status_effect/dream_mark))
+		to_chat(parent, span_warning("Your connection with [marked_target] has faded before you could summon them!"))
+		return
+
+	// Create the summon spell
+	summon_spell = new()
+	var/mob/living/carbon/human/H = parent
+	if(H.mind)
+		H.mind.AddSpell(summon_spell)
+		to_chat(H, span_warning("Your connection with [marked_target] is now strong enough to summon them!"))
+
+/datum/component/dreamwalker_mark/proc/on_target_death()
+	SIGNAL_HANDLER
+	to_chat(parent, span_warning("Your connection with [marked_target] has been severed by death."))
+	set_marked_target(null)
+
+/datum/component/dreamwalker_mark/proc/can_summon()
+	if(!marked_target)
+		return FALSE
+
+	if(!marked_target.has_status_effect(/datum/status_effect/dream_mark))
+		return FALSE
+
+	if(world.time < mark_start_time + mark_minimum_duration)
+		var/time_left = ((mark_start_time + mark_minimum_duration) - world.time) * 0.1
+		to_chat(parent, span_warning("The mark is not stable yet. [time_left] seconds remaining."))
+		return FALSE
+
+	return TRUE
+
+// Status effect for marked targets
+/datum/status_effect/dream_mark
+	id = "dream_mark"
+	duration = 30 MINUTES // Increased to 30 minutes
+	alert_type = /atom/movable/screen/alert/status_effect/dream_mark
+
+/datum/status_effect/dream_mark/on_apply()
+	to_chat(owner, span_userdanger("You feel your essence being pulled toward another realm. You've been marked by a dreamwalker!"))
+	return TRUE
+
+/datum/status_effect/dream_mark/on_remove()
+	to_chat(owner, span_notice("The connection to the dream realm fades."))
+
+/atom/movable/screen/alert/status_effect/dream_mark
+	name = "Dream Marked"
+	desc = "A dreamwalker has established a connection to your essence. They may attempt to summon you once the connection stabilizes."
+	icon_state = "dream_mark"
+
+// Summon marked target spell
+/obj/effect/proc_holder/spell/invoked/summon_marked
+	name = "Summon Marked"
+	desc = "Summons your marked target to your location, leaving a temporary portal behind. Requires the target to be marked for at least 10 minutes."
+	chargedrain = 0
+	chargetime = 3 SECONDS
+	recharge_time = 5 MINUTES
+	invocation_type = "whisper"
+	invocations = list("By the dream's connection, come to me!")
+	movement_interrupt = FALSE
+	charging_slowdown = 1
+	associated_skill = /datum/skill/magic/arcane
+
+/obj/effect/proc_holder/spell/invoked/summon_marked/cast(list/targets, mob/user)
+	var/datum/component/dreamwalker_mark/mark_component = user.GetComponent(/datum/component/dreamwalker_mark)
+	if(!mark_component || !mark_component.marked_target)
+		to_chat(user, span_warning("You have no target marked for summoning!"))
+		revert_cast()
+		return
+
+	// Check if we can summon (10 minutes have passed)
+	if(!mark_component.can_summon())
+		revert_cast()
+		return
+
+	var/mob/living/target = mark_component.marked_target
+
+	if(!target.has_status_effect(/datum/status_effect/dream_mark))
+		to_chat(user, span_warning("Your connection with [target] has faded!"))
+		revert_cast()
+		return
+
+	if(target.stat == DEAD)
+		to_chat(user, span_warning("[target] is dead and cannot be summoned!"))
+		revert_cast()
+		return
+
+	to_chat(target, span_userdanger("YOU CAN FEEL THE DREAMWALKER BEGIN TO SUMMON YOU BY FORCE."))
+	if(!do_after(user, 20 SECONDS, FALSE, user))
+		to_chat(user, span_warning("You must stand still to summon your target!"))
+		revert_cast()
+		return
+
+	var/turf/original_turf = get_turf(target)
+	var/turf/destination = get_turf(user)
+
+	if(!original_turf || !destination)
+		revert_cast()
+		return
+
+	// Create portal at target's original location
+	var/obj/structure/portal_jaunt/portal = new(original_turf)
+	portal.linked_turf = destination
+
+	// Teleport target
+	if(do_teleport(target, destination))
+		to_chat(user, span_warning("You summon [target] to your location!"))
+		to_chat(target, span_userdanger("You're violently pulled through the dream realm to [user]'s location!"))
+		// Reset mark after teleport.
+		target.remove_status_effect(/datum/status_effect/dream_mark)
+		mark_component.marked_target = null
+		return TRUE
+
+	qdel(portal)
+	revert_cast()
+	return FALSE

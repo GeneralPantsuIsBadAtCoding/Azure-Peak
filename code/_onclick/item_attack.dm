@@ -95,7 +95,7 @@
 /obj/item/proc/attack(mob/living/M, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, src)
 	if(item_flags & NOBLUDGEON)
 		return FALSE	
 
