@@ -837,3 +837,59 @@
 /obj/item/rogueweapon/greatsword/bsword/dreamscape/active/Initialize()
 	. = ..()
 	AddComponent(/datum/component/dream_weapon, "poison", 10 SECONDS)
+
+/datum/outfit/job/roguetown/dreamwalker_armorrite/pre_equip(mob/living/carbon/human/H)
+	..()
+	var/list/items = list()
+	items |= H.get_equipped_items(TRUE)
+	for(var/I in items)
+		H.dropItemToGround(I, TRUE)
+	H.drop_all_held_items()
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
+	pants = /obj/item/clothing/under/roguetown/platelegs/zizo
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/zizo
+	gloves = /obj/item/clothing/gloves/roguetown/plate/zizo
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/zizo
+	backr = /obj/item/rogueweapon/sword/long/zizo
+	neck = /obj/item/clothing/neck/roguetown/bevor
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/dreamwalker
+	name = "otherworldly fullplate"
+	desc = "Strange iridescent full plate. It reflects light as if covered in shiny oil."
+	icon_state = "dreamplate"
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
+	item_flags = DREAM_ITEM
+	peel_threshold = 5
+
+/obj/item/clothing/under/roguetown/platelegs/dreamwalker
+	max_integrity = ARMOR_INT_LEG_ANTAG
+	name = "otherworldly legplate"
+	desc = "Strange iridescent leg plate. It reflects light as if covered in shiny oil."
+	icon_state = "dreamlegs"
+	armor = ARMOR_ASCENDANT
+	item_flags = DREAM_ITEM
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
+
+/obj/item/clothing/shoes/roguetown/boots/armor/dreamwalker
+	max_integrity = ARMOR_INT_SIDE_ANTAG
+	name = "otherworldly boots"
+	desc = "Strange iridescent plated boots. It reflects light as if covered in shiny oil."
+	icon_state = "dreamboots"
+	armor = ARMOR_ASCENDANT
+	item_flags = DREAM_ITEM
+
+/obj/item/clothing/gloves/roguetown/plate/dreamwalker
+	name = "otherworldly gauntlets"
+	desc = "Strange iridescent plated gauntlets. It reflects light as if covered in shiny oil."
+	icon_state = "dreamgauntlets"
+	max_integrity = ARMOR_INT_SIDE_ANTAG
+	item_flags = DREAM_ITEM
+
+/obj/item/clothing/head/roguetown/helmet/heavy/dreamwalker
+	name = "otherworldly squid helm"
+	desc = "A otherworldly squid helm. It reflects light as if covered in shiny oil."
+	adjustable = CAN_CADJUST
+	icon_state = "dreamsquidhelm"
+	max_integrity = ARMOR_INT_HELMET_ANTAG
+	peel_threshold = 4
+	item_flags = DREAM_ITEM
