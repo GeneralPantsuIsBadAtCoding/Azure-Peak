@@ -194,8 +194,8 @@
 	if(I && (I in repairing_items) && I.obj_broken)
 		I.visible_message(span_danger("The [I] melds back into a useable shape."))
 		I.obj_fix()
-		// Restore up to 20% of durability instead of all of it. This is the same as I.integrity_failure for MOST things.
-		I.obj_integrity *= 0.2
+		// Restore up to 25% of durability instead of all of it. This is slightly more as I.integrity_failure for MOST things.
+		I.obj_integrity *= 0.25
 		I.update_icon()
 
 	// Remove the timer reference
@@ -203,7 +203,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mark_target
 	name = "Mark Target"
-	desc = "Marks a target for pursuit, making them visible through walls with a special outline. Right-click to mark a random valid target."
+	desc = "Marks a random target for pursuit. Track them, extract metal from their mind to complete your vision."
 	releasedrain = 75
 	chargedrain = 1
 	chargetime = 1.5 SECONDS
@@ -342,13 +342,15 @@
 
 	// Check if the target is downed and adjacent
 	if(user.Adjacent(marked_target) && !(marked_target.mobility_flags & MOBILITY_STAND) && !marked_target.buckled)
-		to_chat(user, span_notice("The target is vulnerable. You begin to extract an ingot..."))
+		to_chat(user, span_notice("The target is vulnerable. You begin to pull metal from their mind..."))
 
 		if(do_after(user, 1 SECONDS, target = marked_target))
+			// Small stun to stop our target from messing with the ingot
+			marked_target.Stun(10)
 			// Create an ingot
-			new /obj/item/ingot/iron(get_turf(user))
+			new /obj/item/ingot/sylveric(get_turf(user))
 			marked_target.apply_status_effect(/datum/status_effect/debuff/dreamfiend_curse)
-			to_chat(user, span_notice("You successfully extract an ingot from the target."))
+			to_chat(user, span_notice("You successfully manifest an ingot of strange metal using your target's psyche."))
 
 			// Remove the mark
 			if(parent_spell)
@@ -608,10 +610,10 @@
 	name = "Summon Marked"
 	desc = "Summons your marked target to your location, leaving a temporary portal behind. Requires the target to be marked for at least 10 minutes."
 	chargedrain = 0
-	chargetime = 3 SECONDS
-	recharge_time = 5 MINUTES
+	chargetime = 1.5 SECONDS
+	recharge_time = 30 SECONDS
 	invocation_type = "whisper"
-	invocations = list("By the dream's connection, come to me!")
+	invocations = list("I invoke the dream connection, come to me!")
 	movement_interrupt = FALSE
 	charging_slowdown = 1
 	associated_skill = /datum/skill/magic/arcane
@@ -643,8 +645,8 @@
 	to_chat(target, span_userdanger("YOU CAN FEEL THE DREAMWALKER BEGIN TO SUMMON YOU BY FORCE."))
 	if(!do_after(user, 20 SECONDS, FALSE, user))
 		to_chat(user, span_warning("You must stand still to summon your target!"))
-		revert_cast()
-		return
+		// Counts as a finished spellcast to make it impossible to spam your target with messages...
+		return TRUE
 
 	var/turf/original_turf = get_turf(target)
 	var/turf/destination = get_turf(user)
@@ -669,3 +671,9 @@
 	qdel(portal)
 	revert_cast()
 	return FALSE
+
+/obj/item/ingot/sylveric
+	name = "Sylveric ingot"
+	icon = 'icons/roguetown/items/ore.dmi'
+	icon_state = "ingotsylveric"
+	desc = "An impossibly light metal that seems to grow harder and heavier when pressured. Nothing seems to be able to shape this metal."
