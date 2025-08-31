@@ -343,6 +343,10 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 			dreamarmor(user)
 			dreamcraft_weapon(user, choice)
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(H.mind)
+					H.mind.special_role = "dreamwalker"
 			spawn(240)
 				icon_state = "abyssoralt_chalky"
 

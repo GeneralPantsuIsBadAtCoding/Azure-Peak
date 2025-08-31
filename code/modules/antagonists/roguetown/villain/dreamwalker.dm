@@ -48,6 +48,7 @@
 
 /datum/antagonist/dreamwalker/greet()
 	to_chat(owner.current, span_notice("I feel a rare ability awaken within me. I am someone coveted as a champion by most gods. A dreamwalker. Not merely touched by Abyssor's dream, but able to pull materia and power from his realm effortlessly. I shall bring glory to my patron. My mind frays under the influence of dream entities, but surely my resolve is stronger than theirs."))
+	to_chat(owner.current, span_notice("I manifest a piece of ritual chalk... It seems potent. I shall forge a great weapon, one with such power it shall dwarf all others. I must find a target to begin... It should be easy enough if I focus."))
 	owner.announce_objectives()
 	..()
 
@@ -211,7 +212,7 @@
 	chargedrain = 1
 	chargetime = 1.5 SECONDS
 	recharge_time = 25 MINUTES
-	overlay_state = "mark"
+	overlay_state = "dream_mark"
 	invocations = list("Dream... manifest my vision, bend to my will.")
 	invocation_type = "whisper"
 	no_early_release = TRUE
@@ -315,9 +316,9 @@
 	var/obj/effect/proc_holder/spell/invoked/mark_target/parent_spell = null
 	releasedrain = 75
 	chargedrain = 1
-	chargetime = 0.5 SECONDS
-	overlay_state = "mark"
-	invocations = list("Signum persequendi!")
+	chargetime = 0
+	overlay_state = "dream_track"
+	invocations = list("Dream... Find them.")
 	invocation_type = "whisper"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -383,6 +384,7 @@
 	movement_interrupt = FALSE
 	charging_slowdown = 1
 	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "dream_jaunt"
 
 /obj/effect/proc_holder/spell/invoked/jaunt/cast(list/targets, mob/user)
 	var/turf/original_turf = get_turf(user)
@@ -630,6 +632,7 @@
 	movement_interrupt = FALSE
 	charging_slowdown = 1
 	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "dream_summon"
 
 /obj/effect/proc_holder/spell/invoked/summon_marked/cast(list/targets, mob/user)
 	var/datum/component/dreamwalker_mark/mark_component = user.GetComponent(/datum/component/dreamwalker_mark)
@@ -916,6 +919,7 @@
 	charging_slowdown = 0
 	associated_skill = /datum/skill/magic/arcane
 	var/obj/item/bound_item = null
+	overlay_state = "dream_bind"
 
 /obj/effect/proc_holder/spell/invoked/dream_bind/cast(list/targets, mob/user)
 	var/atom/target = targets[1]
