@@ -737,35 +737,27 @@
 		return
 	return ..()
 
-// Element for dream weapon special properties
-/datum/element/dream_weapon
-	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+// Component for dream weapon special properties
+/datum/component/dream_weapon
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/effect_type
 	var/cooldown_time
-	var/list/weapon_cooldowns = list() // Store cooldowns by weak references
+	var/next_use = 0
 
-/datum/element/dream_weapon/Attach(datum/target, effect_type, cooldown_time)
+/datum/component/dream_weapon/Initialize(effect_type, cooldown_time)
 	. = ..()
-	if(!isitem(target))
-		return ELEMENT_INCOMPATIBLE
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
 
 	src.effect_type = effect_type
 	src.cooldown_time = cooldown_time
 
-	RegisterSignal(target, COMSIG_ITEM_ATTACK_SUCCESS, .proc/on_attack)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SUCCESS, .proc/on_attack)
 
-/datum/element/dream_weapon/Detach(datum/source)
-	UnregisterSignal(source, COMSIG_ITEM_ATTACK_SUCCESS)
-	return ..()
-
-/datum/element/dream_weapon/proc/on_attack(obj/item/source, mob/living/target, mob/living/user)
+/datum/component/dream_weapon/proc/on_attack(obj/item/source, mob/living/target, mob/living/user)
 	SIGNAL_HANDLER
-	// Create a unique identifier for this weapon
-	var/weapon_id = "\ref[source]"
-
 	// Check cooldown
-	if(world.time < weapon_cooldowns[weapon_id])
+	if(world.time < next_use)
 		return
 
 	if(!ishuman(target))
@@ -777,9 +769,7 @@
 	switch(effect_type)
 		if("fire")
 			H.adjust_fire_stacks(4)
-			// Look, elements can't sleep in their proc call chain, forgive me
-			spawn(0)
-				H.IgniteMob()
+			H.IgniteMob()
 			target.visible_message(span_warning("[source] ignites [target] with strange flame!"))
 		if("frost")
 			H.apply_status_effect(/datum/status_effect/buff/frostbite)
@@ -790,7 +780,7 @@
 				target.visible_message(span_warning("[source] injects [target] with vile ooze!"))
 
 	// Set cooldown
-	weapon_cooldowns[weapon_id] = world.time + cooldown_time
+	next_use = world.time + cooldown_time
 
 /obj/item/rogueweapon/halberd/glaive/dreamscape
 	name = "otherworldly spear"
@@ -817,6 +807,7 @@
 	icon_state = "dreamsword"
 	force = 25
 	force_wielded = 30
+	max_integrity = 275
 	smeltresult = null
 	item_flags = DREAM_ITEM
 	wbalance = WBALANCE_HEAVY
@@ -829,6 +820,7 @@
 	name = "otherworldly sword"
 	desc = "A strange sword made out of a strange reflective metal. It oozes sickening sludge."
 	icon_state = "dreamswordactive"
+	max_integrity = 500
 	force = 30
 	force_wielded = 35
 	wdefense = 5
@@ -836,12 +828,12 @@
 // Update weapon initializations with specific effects
 /obj/item/rogueweapon/greataxe/dreamscape/active/Initialize()
 	. = ..()
-	AddElement(/datum/element/dream_weapon, "fire", 20 SECONDS)
+	AddComponent(/datum/component/dream_weapon, "fire", 20 SECONDS)
 
 /obj/item/rogueweapon/halberd/glaive/dreamscape/active/Initialize()
 	. = ..()
-	AddElement(/datum/element/dream_weapon, "frost", 40 SECONDS)
+	AddComponent(/datum/component/dream_weapon, "frost", 40 SECONDS)
 
 /obj/item/rogueweapon/greatsword/bsword/dreamscape/active/Initialize()
 	. = ..()
-	AddElement(/datum/element/dream_weapon, "poison", 10 SECONDS)
+	AddComponent(/datum/component/dream_weapon, "poison", 10 SECONDS)
