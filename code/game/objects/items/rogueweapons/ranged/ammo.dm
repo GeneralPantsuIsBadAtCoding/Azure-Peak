@@ -585,7 +585,15 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/psyblessed, preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 3, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = -3,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 3,\
+	)
 
 //Snowflake code to make sure the silver-bane is applied on hit to targeted mob. Thanks to Aurorablade for getting this code to work.
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

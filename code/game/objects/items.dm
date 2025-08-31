@@ -780,6 +780,19 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if((is_silver || smeltresult == /obj/item/ingot/silver) && HAS_TRAIT(M, TRAIT_SILVER_WEAK))
+		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
+		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+			return
+
+		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))
+		M.Knockdown(10)
+		M.Paralyze(10)
+		M.adjustFireLoss(25)
+		M.fire_act(1,10)
+		return FALSE
+	//else if(is_blessed && slot == SLOT_HANDS)
+	//	user.add_stress(/datum/stressevent/blessed_weapon)
 	if(twohands_required)
 		if(!disable_warning)
 			to_chat(M, span_warning("[src] is too bulky to carry with anything but my hands!"))

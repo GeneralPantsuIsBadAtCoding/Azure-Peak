@@ -320,23 +320,42 @@
 	desc = "A type of punch dagger of Aavnic make initially designed to level the playing field with an orc in fisticuffs, its serrated edges and longer, thinner point are designed to maximize pain for the recipient. It's aptly given the name of \"corkscrew\", and this specific one has the colours of Szöréndnížina. Can be worn on your ring slot."
 	icon_state = "freiplug"
 	slot_flags = ITEM_SLOT_RING
+
 /obj/item/rogueweapon/katar/psydon
 	name = "psydonian katar"
 	desc = "An exotic weapon taken from the hands of wandering monks, an esoteric design to the Otavan Orthodoxy. Special care was taken into account towards the user's knuckles: silver-tipped steel from tip to edges, and His holy cross reinforcing the heart of the weapon, with curved shoulders to allow its user to deflect incoming blows - provided they lead it in with the blade."
 	icon_state = "psykatar"
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/katar/psydon/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/knuckles/psydon
 	name = "psydonian knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Psydon's crown - to crush the heretics' garments and armor into smithereens."
 	icon_state = "psyknuckle"
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/knuckles/psydon/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 2, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/knuckles
 	name = "steel knuckles"

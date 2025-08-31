@@ -368,8 +368,15 @@
 	is_silver = TRUE
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	name = "psydonian dagger"
@@ -379,8 +386,15 @@
 	sellprice = 70
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
-	. = ..()				//It's preblessed with silver only. Mostly redundant, but safely prevents double-blessing.
-	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 	sellprice += 200
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
@@ -618,11 +632,19 @@
 	icon_state = "throw_knifep"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 	sellprice = 6
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 3, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 3,\
+	)
 
 /obj/item/rogueweapon/huntingknife/scissors
 	possible_item_intents = list(/datum/intent/snip, /datum/intent/dagger/thrust, /datum/intent/dagger/cut)

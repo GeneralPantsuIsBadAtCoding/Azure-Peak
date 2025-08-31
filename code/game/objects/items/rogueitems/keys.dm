@@ -100,7 +100,15 @@
 	is_silver = TRUE
 
 /obj/item/lockpick/goldpin/silver/ComponentInitialize()
-	AddComponent(/datum/component/psyblessed, preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 20, bonus_integrity = 20, bonus_wdef = 3, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = -3,\
+		added_blade_int = 20,\
+		added_int = 20,\
+		added_def = 3,\
+	)
 
 /obj/item/roguekey/lord
 	name = "master key"

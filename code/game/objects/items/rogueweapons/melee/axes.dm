@@ -398,20 +398,34 @@
 	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/woodcut/silver/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
 	name = "psydonian war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
-	smeltresult = /obj/item/ingot/steel
 	blade_dulling = DULLING_SHAFT_METAL
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_NONE, bonus_force = -3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
-
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 1,\
+	)
 
 /datum/intent/axe/cut/battle/greataxe
 	reach = 2

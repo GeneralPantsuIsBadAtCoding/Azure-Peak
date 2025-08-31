@@ -219,7 +219,7 @@
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
 	if(user.mind?.assigned_role == "Bishop" && isitem(M) && user.used_intent?.type == /datum/intent/bless)
-		var/datum/component/psyblessed/CP = M.GetComponent(/datum/component/psyblessed)
+		var/datum/component/silverbless/CP = M.GetComponent(/datum/component/silverbless)
 		if(!CP)
 			to_chat(user, span_info("\The [M] can not be blessed."))
 			return

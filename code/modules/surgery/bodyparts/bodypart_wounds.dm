@@ -150,7 +150,7 @@
 	var/datum/wound/dynwound = manage_dynamic_wound(bclass, dam, armor)
 
 	if(do_crit)
-		var/datum/component/psyblessed/psyblessed = weapon?.GetComponent(/datum/component/psyblessed)
+		var/datum/component/silverbless/psyblessed = weapon?.GetComponent(/datum/component/silverbless)
 		var/sundering = HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && weapon?.is_silver && psyblessed?.is_blessed
 		var/crit_attempt = try_crit(sundering ? BCLASS_SUNDER : bclass, dam, user, zone_precise, silent, crit_message)
 		if(crit_attempt)

@@ -263,10 +263,19 @@
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	max_integrity = 300
 	blade_dulling = DULLING_SHAFT_METAL
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/shield/tower/metal/psy/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(preblessing = BLESSING_PSYDONIAN, bonus_force = -3, bonus_sharpness = 0, bonus_integrity = 100, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = -3,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 1,\
+	)
 
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"

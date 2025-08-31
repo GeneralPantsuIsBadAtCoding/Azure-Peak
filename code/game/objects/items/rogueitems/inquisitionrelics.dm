@@ -367,7 +367,7 @@ Inquisitorial armory down here
 			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
-		var/datum/component/psyblessed/CP = A.GetComponent(/datum/component/psyblessed)
+		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
 			if(!CP.is_blessed)
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
