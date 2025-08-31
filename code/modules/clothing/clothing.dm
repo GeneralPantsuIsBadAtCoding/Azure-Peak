@@ -527,9 +527,8 @@ BLIND     // can't see anything
 		text = "Armor <br><font color = '#d4d36c'>damaged</font>"
 		y_offset = 15
 	if(ratio > 0.25 && ratio_newinteg < 0.25)
-		if(obj_integrity / max_integrity > integrity_failure)	//edge case where you might get to see two of these from consecutive hits
-			text = "Armor <br><font color = '#a8705a'>sundered</font>"
-			y_offset = 30
+		text = "Armor <br><font color = '#a8705a'>sundered</font>"
+		y_offset = 30
 	if(text)
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	. = ..()
