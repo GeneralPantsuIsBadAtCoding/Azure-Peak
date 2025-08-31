@@ -38,8 +38,8 @@
 			if(obj_integrity / max_integrity > integrity_failure)	//edge case where you might get to see two of these from consecutive hits
 				text = "Armor <br><font color = '#a8705a'>sundered</font>"
 				y_offset = 30
-	if(text)
-		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
+		if(text)
+			filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	//BREAKING FIRST
 	if(!obj_broken && integrity_failure && obj_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_flag)
