@@ -512,22 +512,21 @@ BLIND     // can't see anything
 /obj/item/clothing/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
 
-/obj/item/clothing/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
+/obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
 	var/newdam = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armor_penetration)
-	var/intfailmod = integrity_failure ? (1 - integrity_failure) : 1	//let's all hope integrity_failure is never above 1
-	var/eff_maxint = (max_integrity * intfailmod)
-	var/eff_currint = (obj_integrity * intfailmod)
+	var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
+	var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
 	var/ratio =	(eff_currint / eff_maxint)
-	var/ratio_newinteg = (eff_currint + newdam) / eff_maxint
+	var/ratio_newinteg = (eff_currint - newdam) / eff_maxint
 	var/text
 	var/y_offset
-	if(ratio < 0.75 && ratio_newinteg > 0.75)
+	if(ratio > 0.75 && ratio_newinteg < 0.75)
 		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
 		y_offset = -5
-	if(ratio < 0.5 && ratio_newinteg > 0.5)
+	if(ratio > 0.5 && ratio_newinteg < 0.5)
 		text = "Armor <br><font color = '#d4d36c'>damaged</font>"
 		y_offset = 15
-	if(ratio < 0.25 && ratio_newinteg > 0.25)
+	if(ratio > 0.25 && ratio_newinteg < 0.25)
 		if(obj_integrity / max_integrity > integrity_failure)	//edge case where you might get to see two of these from consecutive hits
 			text = "Armor <br><font color = '#a8705a'>sundered</font>"
 			y_offset = 30
