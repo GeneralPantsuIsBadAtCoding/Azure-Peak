@@ -68,6 +68,7 @@
 		body.mind.RemoveAllSpells()
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
 		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mark_target)
+		body.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/jaunt)
 	body.ambushable = FALSE
 	body.AddComponent(/datum/component/dreamwalker_repair)
 
@@ -192,7 +193,7 @@
 	if(I && (I in repairing_items) && I.obj_broken)
 		I.visible_message(span_danger("The [I] melds back into a useable shape."))
 		I.obj_fix()
-		// Restore up to 20% of durability instead of all of it. This is the same as I.integrity_failure which I'm confused why it exists at all.
+		// Restore up to 20% of durability instead of all of it. This is the same as I.integrity_failure for MOST things.
 		I.obj_integrity *= 0.2
 		I.update_icon()
 
@@ -339,6 +340,7 @@
 		if(do_after(user, 1 SECONDS, target = marked_target))
 			// Create an ingot
 			new /obj/item/ingot/iron(get_turf(user))
+			marked_target.apply_status_effect(/datum/status_effect/debuff/dreamfiend_curse)
 			to_chat(user, span_notice("You successfully extract an ingot from the target."))
 
 			// Remove the mark
@@ -347,5 +349,123 @@
 			user.mind.RemoveSpell(src)
 		else
 			to_chat(user, span_warning("You were interrupted."))
+
+/obj/effect/proc_holder/spell/invoked/jaunt
+	name = "Dream Jaunt"
+	desc = "Teleports you to a random coastal area after a short channel, leaving a temporary portal behind. You may be followed."
+	chargedrain = 0
+	chargetime = 2 SECONDS
+	recharge_time = 20 MINUTES
+	invocation_type = "whisper"
+	invocations = list("Whisper of the dream...")
+	movement_interrupt = FALSE
+	charging_slowdown = 1
+	associated_skill = /datum/skill/magic/arcane
+
+/obj/effect/proc_holder/spell/invoked/jaunt/cast(list/targets, mob/user)
+	var/turf/original_turf = get_turf(user)
+	if(!original_turf)
+		revert_cast()
+		return
+
+	// Find destination area
+	var/static/list/possible_areas = list(
+		/area/rogue/outdoors/beach,
+		/area/rogue/outdoors/beach/north,
+		/area/rogue/outdoors/beach/south
+	)
+	var/area/destination_area = GLOB.areas_by_type[pick(possible_areas)]
+	if(!destination_area)
+		revert_cast()
+		return
+
+	// Find safe turfs in destination area
+	var/list/safe_turfs = list()
+	for(var/turf/T in get_area_turfs(destination_area))
+		if(istype(T, /turf/open/water/ocean/deep))
+			continue
+		if(T.density)
+			continue
+		var/valid = TRUE
+		for(var/atom/movable/AM in T)
+			if(AM.density && AM.anchored)
+				valid = FALSE
+				break
+		if(valid)
+			safe_turfs += T
+
+	if(!safe_turfs.len)
+		revert_cast()
+		return
+
+	var/turf/destination = pick(safe_turfs)
 	
-	to_chat(world, "END OF FUNCTION...");
+	// Create portal at origin
+	var/obj/structure/portal_jaunt/portal = new(original_turf)
+	portal.linked_turf = destination
+
+	// Teleport user
+	if(do_teleport(user, destination))
+		// Create return portal at destination
+		return TRUE
+
+	qdel(portal)
+	revert_cast()
+	return FALSE
+
+/obj/structure/portal_jaunt
+	name = "dream rift"
+	desc = "A shimmering portal to another place. You hear countless whispers when you get close, seems dangerous."
+	icon_state = "shitportal"
+	icon = 'icons/roguetown/misc/structure.dmi'
+	max_integrity = 250
+	var/cooldown = 0
+	var/uses = 0
+	var/max_uses = 3
+	var/turf/linked_turf
+
+/obj/structure/portal_jaunt/Initialize()
+	. = ..()
+	cooldown = world.time + 4 SECONDS
+	visible_message(span_warning("[src] shimmers into existence!"))
+	playsound(src, 'sound/magic/charging_lightning.ogg', 50, TRUE)
+
+/obj/structure/portal_jaunt/attack_hand(mob/user)
+	if(!do_after(user, 1 SECONDS, target = src))
+		to_chat(user, span_warning("I must stand still to use the portal."))
+		return
+
+	if(world.time < cooldown)
+		var/time_left = (cooldown - world.time) * 0.1
+		to_chat(user, span_warning("The portal is not stable yet. [time_left] seconds remaining."))
+		return
+
+	if(uses >= max_uses)
+		to_chat(user, span_warning("The portal collapses as you touch it!"))
+		qdel(src)
+		return
+
+	if(!linked_turf || !do_teleport(user, linked_turf))
+		to_chat(user, span_warning("The portal flickers but nothing happens."))
+		return
+
+	uses++
+	cooldown = world.time + 15 SECONDS
+	// High likelyhood of getting a dreamfiend summon upon non dreamwalkers when used.
+	if(!HAS_TRAIT(user, TRAIT_DREAMWALKER) && prob(75))
+		summon_dreamfiend(
+			target = user,
+			user = user,
+			F = /mob/living/simple_animal/hostile/rogue/dreamfiend,
+			outer_tele_radius = 3,
+			inner_tele_radius = 2,
+			include_dense = FALSE,
+			include_teleport_restricted = FALSE
+		)
+
+	visible_message(span_warning("[user] steps through [src]!"))
+	playsound(src, 'sound/magic/lightning.ogg', 50, TRUE)
+
+	if(uses >= max_uses)
+		visible_message(span_danger("[src] collapses in on itself!"))
+		QDEL_IN(src, 1)
