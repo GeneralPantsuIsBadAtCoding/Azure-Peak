@@ -102,7 +102,7 @@
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
 	var/capped_post = enough_sleep_xp_to_advance(skill, 2)
 
-	if(capped_post || capped_pre)
+	if(capped_post || capped_pre || L.get_skill_level(skill) == SKILL_LEVEL_LEGENDARY)
 		show_xp = FALSE
 	if(!can_advance_pre && can_advance_post && !silent)
 		to_chat(mind.current, span_nicegreen(pick(list(
