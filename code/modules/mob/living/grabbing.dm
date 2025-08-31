@@ -381,7 +381,7 @@
 		limb_grabbed.drop_limb(TRUE)
 	if(ishuman(user) && user.mind)
 		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
-		user.transmit_to_combat_aware(text)
+		user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 /obj/item/grabbing/proc/headbutt(mob/living/carbon/human/H)
 	var/mob/living/carbon/C = grabbed
@@ -521,7 +521,7 @@
 	log_combat(user, C, "limbsmashed [limb_grabbed] ")
 	if(ishuman(user) && user.mind)
 		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
-		user.transmit_to_combat_aware(text)
+		user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 /datum/intent/grab
 	unarmed = TRUE

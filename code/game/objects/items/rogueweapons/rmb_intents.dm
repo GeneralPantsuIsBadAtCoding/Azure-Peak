@@ -11,12 +11,9 @@
 	var/bait_stacks
 
 /mob/living/carbon/human/on_cmode()
-	
 	if(!cmode)	//We just toggled it off.
 		addtimer(CALLBACK(src, PROC_REF(purge_bait)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		transmit_to_combat_aware("<i><font color = '#c7c6c6'>Relaxed</font></i>", tier = 32)
-	else
-		transmit_to_combat_aware("<i><font color = '#831414'>Tense</font></i>", tier = 32)
+	filtered_balloon_alert(TRAIT_COMBAT_AWARE, (cmode ? ("<i><font color = '#831414'>Tense</font></i>") : ("<i><font color = '#c7c6c6'>Relaxed</font></i>")), y_offset = 32)
 
 /datum/rmb_intent/proc/special_attack(mob/living/user, atom/target)
 	return

@@ -1211,7 +1211,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		log_combat(user, target, "punched")
 		if(ishuman(user) && user.mind)
 			var/text = "[bodyzone2readablezone(user.zone_selected)]..."
-			user.transmit_to_combat_aware(text)
+			user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 		if(!nodmg)
 			if(user.limb_destroyer)
@@ -1419,7 +1419,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 			if(ishuman(user) && user.mind)
 				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
-				user.transmit_to_combat_aware(text)
+				user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 			if(!nodmg)
@@ -1621,7 +1621,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	
 	if(ishuman(user) && user.mind && user.used_intent.blade_class != BCLASS_PEEL)
 		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
-		user.transmit_to_combat_aware(text)
+		user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=bladec, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor)
 

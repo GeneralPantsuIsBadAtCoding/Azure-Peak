@@ -119,19 +119,20 @@
 	if(ishuman(src) && mind && added > 0)
 		var/mob/living/carbon/human/H = src
 		var/text
-		var/tier
+		var/x_offset = 20
+		var/y_offset
 		var/stamratio = stamina / max_stamina
 		if(stamratio >= 0.25 && ((stamina - added) / max_stamina) < 0.25)
 			text = "<font color = '#a8af9b'>Winded</font>"
-			tier = BALLOON_Y_OFFSET_TIER1
+			y_offset = BALLOON_Y_OFFSET_TIER1
 		if(stamratio >= 0.5 && ((stamina - added) / max_stamina) < 0.5)
 			text = "<font color = '#d4d36c'>Drained</font>"
-			tier = BALLOON_Y_OFFSET_TIER2
+			y_offset = BALLOON_Y_OFFSET_TIER2
 		if(stamratio >= 0.75 && ((stamina - added) / max_stamina) < 0.75)
 			text = "<font color = '#a8665a'>Fatigued</font>"
-			tier = BALLOON_Y_OFFSET_TIER3
+			y_offset = BALLOON_Y_OFFSET_TIER3
 		if(text)
-			H.transmit_to_combat_aware(text, 20, tier)
+			H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
 
 	if(stamina >= max_stamina)
 		stamina = max_stamina

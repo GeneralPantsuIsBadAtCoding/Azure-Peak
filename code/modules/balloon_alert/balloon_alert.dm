@@ -94,6 +94,23 @@
 	// We could lose our loc, and still need to talk to our client, so they are done seperately
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_client), balloon_alert, viewer_client), BALLOON_TEXT_TOTAL_LIFETIME(length_mult))
 
+//These are "standard" separations for 3 tiers. Should work fine with single words.
+#define BALLOON_Y_OFFSET_TIER1 5
+#define BALLOON_Y_OFFSET_TIER2 15
+#define BALLOON_Y_OFFSET_TIER3 25
+
+///Proc for creating a balloon alert that only someone with a specific trait would see.
+/atom/proc/filtered_balloon_alert(trait, text, x_offset, y_offset)
+	var/list/candidates = get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src)
+	if(trait)	
+		for(var/mob/living/carbon/human/H in candidates)
+			if(HAS_TRAIT(H, trait))
+				candidates -= H
+	else
+		CRASH("filtered_balloon_alert called without a trait, either it's an error or use balloon_alert instead.")
+
+	if(length(candidates))
+		balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset, y_offset)
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT
