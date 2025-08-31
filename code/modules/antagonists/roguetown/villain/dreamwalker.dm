@@ -249,18 +249,19 @@
 	if(!mark_component)
 		mark_component = user.AddComponent(/datum/component/dreamwalker_mark)
 
-	if(target == user || ishuman(target))
-		to_chat(user, span_warning("You mark [target] for testing purposes!"))
-		if(marked_target)
-			remove_mark()
-		// Apply new mark
-		marked_target = target
-		tracking_spell = new()
-		tracking_spell.marked_target = marked_target
-		tracking_spell.parent_spell = src
-		user.mind.AddSpell(tracking_spell)
-		mark_component.set_marked_target(marked_target)
-		return TRUE
+	// Uncomment below for debugging purposes.
+	// if(target == user || ishuman(target))
+	// 	to_chat(user, span_warning("You mark [target] for testing purposes!"))
+	// 	if(marked_target)
+	// 		remove_mark()
+	// 	// Apply new mark
+	// 	marked_target = target
+	// 	tracking_spell = new()
+	// 	tracking_spell.marked_target = marked_target
+	// 	tracking_spell.parent_spell = src
+	// 	user.mind.AddSpell(tracking_spell)
+	// 	mark_component.set_marked_target(marked_target)
+	// 	return TRUE
 
 	var/list/valid_targets = get_valid_targets(user)
 	if(!length(valid_targets))
