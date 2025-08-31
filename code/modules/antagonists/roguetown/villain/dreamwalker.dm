@@ -217,8 +217,18 @@
 	associated_skill = /datum/skill/magic/arcane
 
 	// Define roles that are considered valid targets
+	// Generally combat ready roles connected to a larger faction.
 	var/static/list/valid_target_roles = list(
-		"Acolyte"
+		"Orthodoxist",
+		"Absolver",
+		"Templar",
+		"Dungeoneer",
+		"Sergeant",
+		"Men-at-arms",
+		"Knight",
+		"Squire",
+		"Mercenary",
+		"Warden",
 	)
 
 	var/mob/living/marked_target = null
@@ -677,3 +687,161 @@
 	icon = 'icons/roguetown/items/ore.dmi'
 	icon_state = "ingotsylveric"
 	desc = "An impossibly light metal that seems to grow harder and heavier when pressured. Nothing seems to be able to shape this metal."
+
+// Add extra examine text for dreamwalkers
+/obj/item/ingot/sylveric/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_DREAMWALKER))
+		. += span_notice("You can feel the metal resonate with your dream energy. If you strike another sylveric ingot with this one, you can shape it into a weapon.")
+
+// Handle attacking one sylveric ingot with another
+/obj/item/ingot/sylveric/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/ingot/sylveric))
+		if(!HAS_TRAIT(user, TRAIT_DREAMWALKER))
+			return ..()
+
+		// Check if both ingots are accessible
+		if(I != user.get_active_held_item())
+			return ..()
+
+		if(!(src in user.contents) && !(isturf(src.loc) && in_range(src, user)))
+			return ..()
+
+		// Show weapon selection menu
+		var/list/weapon_options = list(
+			"Dreamreaver Greataxe" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamaxeactive"),
+			"Harmonious Spear" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamspearactive"),
+			"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamswordactive")
+		)
+
+		var/choice = show_radial_menu(user, src, weapon_options, require_near = TRUE, tooltips = TRUE)
+		if(!choice)
+			return
+
+		to_chat(user, span_notice("You begin focusing your dream energy to shape the sylveric ingots into a [choice]..."))
+		if(do_after(user, 10 SECONDS, target = src))
+			var/obj/item/new_weapon
+			switch(choice)
+				if("Dreamreaver Greataxe")
+					new_weapon = new /obj/item/rogueweapon/greataxe/dreamscape/active(user.loc)
+				if("Harmonious Spear")
+					new_weapon = new /obj/item/rogueweapon/halberd/glaive/dreamscape/active(user.loc)
+				if("Oozing Sword")
+					new_weapon = new /obj/item/rogueweapon/greatsword/bsword/dreamscape/active(user.loc)
+
+			if(new_weapon)
+				to_chat(user, span_notice("You shape the sylveric ingots into a [choice]."))
+				user.put_in_hands(new_weapon)
+				qdel(I)
+				qdel(src)
+		return
+	return ..()
+
+// Element for dream weapon special properties
+/datum/element/dream_weapon
+	element_flags = ELEMENT_BESPOKE
+	id_arg_index = 2
+	var/effect_type
+	var/cooldown_time
+	var/list/weapon_cooldowns = list() // Store cooldowns by weak references
+
+/datum/element/dream_weapon/Attach(datum/target, effect_type, cooldown_time)
+	. = ..()
+	if(!isitem(target))
+		return ELEMENT_INCOMPATIBLE
+
+	src.effect_type = effect_type
+	src.cooldown_time = cooldown_time
+
+	RegisterSignal(target, COMSIG_ITEM_ATTACK_SUCCESS, .proc/on_attack)
+
+/datum/element/dream_weapon/Detach(datum/source)
+	UnregisterSignal(source, COMSIG_ITEM_ATTACK_SUCCESS)
+	return ..()
+
+/datum/element/dream_weapon/proc/on_attack(obj/item/source, mob/living/target, mob/living/user)
+	SIGNAL_HANDLER
+	// Create a unique identifier for this weapon
+	var/weapon_id = "\ref[source]"
+
+	// Check cooldown
+	if(world.time < weapon_cooldowns[weapon_id])
+		return
+
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/H = target
+
+	// Apply effect based on type
+	switch(effect_type)
+		if("fire")
+			H.adjust_fire_stacks(4)
+			// Look, elements can't sleep in their proc call chain, forgive me
+			spawn(0)
+				H.IgniteMob()
+			target.visible_message(span_warning("[source] ignites [target] with strange flame!"))
+		if("frost")
+			H.apply_status_effect(/datum/status_effect/buff/frostbite)
+			target.visible_message(span_warning("[source] freezes [target] with scalding ice!"))
+		if("poison")
+			if(H.reagents)
+				H.reagents.add_reagent(/datum/reagent/berrypoison, 5)
+				target.visible_message(span_warning("[source] injects [target] with vile ooze!"))
+
+	// Set cooldown
+	weapon_cooldowns[weapon_id] = world.time + cooldown_time
+
+/obj/item/rogueweapon/halberd/glaive/dreamscape
+	name = "otherworldly spear"
+	desc = "A strange spear, who knows where it came from. It seems like it is made out of ancient bone."
+	icon_state = "dreamspear"
+	anvilrepair = /datum/skill/craft/weaponsmithing
+	smeltresult = null
+	item_flags = DREAM_ITEM
+	wbalance = WBALANCE_HEAVY
+	max_blade_int = 200
+	wdefense = 8
+
+/obj/item/rogueweapon/halberd/glaive/dreamscape/active
+	desc = "A strange spear, who knows where it came from. Strange harmonious sounds ring out as wind passes through the holes."
+	icon_state = "dreamspearactive"
+	max_blade_int = 400
+	wdefense = 9
+	force = 20
+	force_wielded = 35
+
+/obj/item/rogueweapon/greatsword/bsword/dreamscape
+	name = "otherworldly sword"
+	desc = "A strange sword made out of a strange reflective metal."
+	icon_state = "dreamsword"
+	force = 25
+	force_wielded = 30
+	smeltresult = null
+	item_flags = DREAM_ITEM
+	wbalance = WBALANCE_HEAVY
+	wdefense = 4
+	possible_item_intents = list(/datum/intent/sword/cut,/datum/intent/sword/chop,/datum/intent/stab, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/lunge, /datum/intent/sword/thrust/estoc)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
+
+/obj/item/rogueweapon/greatsword/bsword/dreamscape/active
+	name = "otherworldly sword"
+	desc = "A strange sword made out of a strange reflective metal. It oozes sickening sludge."
+	icon_state = "dreamswordactive"
+	force = 30
+	force_wielded = 35
+	wdefense = 5
+
+// Update weapon initializations with specific effects
+/obj/item/rogueweapon/greataxe/dreamscape/active/Initialize()
+	. = ..()
+	AddElement(/datum/element/dream_weapon, "fire", 20 SECONDS)
+
+/obj/item/rogueweapon/halberd/glaive/dreamscape/active/Initialize()
+	. = ..()
+	AddElement(/datum/element/dream_weapon, "frost", 40 SECONDS)
+
+/obj/item/rogueweapon/greatsword/bsword/dreamscape/active/Initialize()
+	. = ..()
+	AddElement(/datum/element/dream_weapon, "poison", 10 SECONDS)

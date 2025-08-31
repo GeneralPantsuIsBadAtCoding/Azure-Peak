@@ -179,8 +179,7 @@
 	if(M.checkdefense(user.used_intent, user))
 		return
 
-
-
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SUCCESS, M, user)
 	if(user.zone_selected == BODY_ZONE_PRECISE_R_INHAND)
 		var/offh = 0
 		var/obj/item/W = M.held_items[1]

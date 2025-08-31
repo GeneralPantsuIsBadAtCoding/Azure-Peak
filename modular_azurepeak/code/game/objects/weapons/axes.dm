@@ -12,6 +12,7 @@
 	blade_dulling = DULLING_BASHCHOP
 	wdefense = 5
 	item_flags = DREAM_ITEM
+	wbalance = WBALANCE_HEAVY
 
 /obj/item/rogueweapon/greataxe/dreamscape/active
 	// to do, make this burn you if you don't regularly soak it.
