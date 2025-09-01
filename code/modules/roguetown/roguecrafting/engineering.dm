@@ -1,6 +1,40 @@
 /datum/crafting_recipe/roguetown/engineering
 	abstract_type = /datum/crafting_recipe/roguetown/engineering
 
+
+/datum/crafting_recipe/roguetown/engineering/gear_t1
+	name = "T1 gear"
+	result = /obj/item/roguegear/t1
+	reqs = list(/datum/reagent/medicine/manapot = 25,
+				/obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/engineering/gear_t2
+	name = "T2 gear"
+	result = /obj/item/roguegear/t2
+	reqs = list(/obj/item/clothing/neck/roguetown/zcross = 1,
+				/obj/item/roguegem = 1,
+				/obj/item/roguegear/t1 = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 3
+
+/* Legendary cog skill-updater
+/datum/crafting_recipe/roguetown/engineering/gear_t3
+	name = "T3 gear"
+	result = /obj/item/roguegear/t3
+	reqs = list(/obj/item/reagent_containers/lux,
+				/obj/item/roguegear/t2 = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+*/
+
 /datum/crafting_recipe/roguetown/engineering/coolingtable
 	name = "Cooling Table"
 	result = /obj/structure/table/cooling

@@ -350,6 +350,32 @@
 	desc = "This is my sanctuary. I can overpower any opposition that dares breach it."
 	icon_state = "buff"
 
+/datum/status_effect/buff/overheat
+	id = "overheat"
+	var/outline_colour ="#f46201ff"
+	duration = 2.5 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/buff/overheat
+	effectedstats = list("strength" = 1, "endurance" = 2, "speeds" = 1)
+
+/atom/movable/screen/alert/status_effect/buff/overheat
+	name = "Overheat"
+	desc = "I have absorbed high quality fuel!"
+	icon_state = "stressvg"
+
+#define BLESSINGOFLIGHT_FILTER "bol_glow"
+
+/datum/status_effect/buff/overheat/on_apply()
+	. = ..()
+	var/filter = owner.get_filter(BLESSINGOFLIGHT_FILTER)
+	if (!filter)
+		owner.add_filter(BLESSINGOFLIGHT_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+	to_chat(owner, span_warning("Mechanism in my body is starting to accelerate!"))
+
+/datum/status_effect/buff/guidance/on_remove()
+	. = ..()
+	to_chat(owner, span_warning("My body has cooled down..."))
+	owner.remove_filter(BLESSINGOFLIGHT_FILTER)
+
 /datum/status_effect/buff/wardenbuff
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
@@ -629,6 +655,47 @@
 		owner.adjustToxLoss(0.15*-healing_on_tick, 0)
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.15*-healing_on_tick)
 		owner.adjustCloneLoss(0.15*-healing_on_tick, 0)
+
+/datum/status_effect/buff/powerup
+	id = "powerup"
+	duration = 5 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/powerup
+	var/healing_on_tick = 4
+
+/atom/movable/screen/alert/status_effect/buff/powerup
+	name = "Powerup"
+	desc = "I absorb fuel."
+	icon_state = "stressvg"
+
+/datum/status_effect/buff/powerup/on_creation(mob/living/new_owner, new_healing_on_tick)
+	healing_on_tick = new_healing_on_tick
+	return ..()
+
+/datum/status_effect/buff/powerup/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
+	H.color = "#002affff"
+	if(owner.construct)
+		owner.energy_add(5)
+
+/datum/status_effect/buff/powerup/minor
+	duration = 12 SECONDS
+	effectedstats = list("endurance" = 1, "speeds" = 1)
+
+/datum/status_effect/buff/powerup/minor/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
+	H.color = "#00c3ffff"
+	if(owner.construct)
+		owner.energy_add(8)
+
+/datum/status_effect/buff/powerup/high
+	duration = 30 SECONDS
+	effectedstats = list("endurance" = 1, "speeds" = 1)
+
+/datum/status_effect/buff/powerup/high/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
+	H.color = "#a200ffff"
+	if(owner.construct)
+		owner.energy_add(10)
 
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)

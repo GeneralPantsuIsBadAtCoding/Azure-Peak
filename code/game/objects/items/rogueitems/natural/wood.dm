@@ -162,6 +162,24 @@
 			return
 	..()
 
+/obj/item/grown/log/tree/small/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+		if(M.construct)
+			if(do_after(user, 2 SECONDS, target = user))
+				M.apply_status_effect(/datum/status_effect/buff/powerup/minor, 12)
+				qdel(src)
+				if(M == user)
+					user.visible_message(span_notice("[user] presses the log to [user]'s body, and it is absorbed."), span_notice("I absorb the log."))
+				else
+					user.visible_message(span_notice("[user] presses the log to [M]'s body, and it is absorbed."), span_notice("I press the log to [M], and it is absorbed."))
+			else 
+				return ..()
+		else
+			return ..()
+	else 
+		return ..()
+
 /obj/item/grown/log/tree/bowpartial
 	name = "crude bowstave"
 	desc = "A partially completed bow, waiting to be strung."
@@ -333,6 +351,21 @@
 			else
 				to_chat(user, "I can't add any more sticks to the bundle without it falling apart.")
 			return
+
+/obj/item/grown/log/tree/stick/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+		if(M.construct)
+			M.apply_status_effect(/datum/status_effect/buff/powerup, 3)
+			qdel(src)
+			if(M == user)
+				user.visible_message(span_notice("[user] presses the stick to [user]'s body, and it is absorbed."), span_notice("I absorb the stick."))
+			else
+				user.visible_message(span_notice("[user] presses the stick to [M]'s body, and it is absorbed."), span_notice("I press the stick to [M], and it is absorbed."))
+		else
+			return ..()
+	else 
+		return ..()
 
 /obj/item/grown/log/tree/stake
 	name = "stake"
