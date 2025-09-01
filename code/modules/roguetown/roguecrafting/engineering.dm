@@ -6,7 +6,7 @@
 	name = "T1 gear"
 	result = /obj/item/roguegear/t1
 	reqs = list(/datum/reagent/medicine/manapot = 25,
-				/obj/item/roguegear = 1)
+				/obj/item/roguegear = 2)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
