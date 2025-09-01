@@ -7,6 +7,7 @@
 	smeltresult = null
 	var/skillholder = null
 	var/max_skill = SKILL_LEVEL_APPRENTICE
+	var/cog_update = 0
 	var/obj/structure/linking
 	grid_width = 64
 	grid_height = 32
@@ -121,19 +122,23 @@
 							if("Pottery")
 								skillholder = /datum/skill/misc/ceramics
 				var/userskill = M.get_skill_level(skillholder)
-				if(userskill <= max_skill && userskill == SKILL_LEVEL_NONE || userskill == SKILL_LEVEL_NOVICE && istype(src, /obj/item/roguegear))
+				if(userskill < max_skill && istype(src, /obj/item/roguegear))
 					to_chat(M, span_blue("A strange disturbance is gaining strength in my mechanisms..."))
 					M.adjust_skillrank(skillholder, 1, TRUE)
-				if(userskill <= max_skill && userskill == SKILL_LEVEL_APPRENTICE && istype(src, /obj/item/roguegear))
+					cog_update = 1
+				if(userskill == max_skill && istype(src, /obj/item/roguegear))
 					to_chat(M, span_blue("ᛦ I'm opening up new possibilities for my body... ᛦ"))
 					M.adjust_skillrank(skillholder, 1, TRUE)
-				if(userskill <= max_skill && userskill == SKILL_LEVEL_JOURNEYMAN && istype(src, /obj/item/roguegear/t1))
+					cog_update = 1
+				if(userskill == max_skill && istype(src, /obj/item/roguegear/t1))
 					to_chat(M, span_blue("ᛦᛦ I went beyond what was allowed, a strange feeling does not leave me... ᛦᛦ"))
 					M.adjust_skillrank(skillholder, 1, TRUE)
-				if(userskill <= max_skill && userskill == SKILL_LEVEL_EXPERT && istype(src, /obj/item/roguegear/t2))
+					cog_update = 1
+				if(userskill == max_skill && istype(src, /obj/item/roguegear/t2))
 					to_chat(M, span_blue("ᛦᛦᛦ Now I understand, I feel the power of PROGRESS! ᛦᛦᛦ"))
 					M.adjust_skillrank(skillholder, 1, TRUE)
-				else
+					cog_update = 1
+				if(cog_update == 0)
 					to_chat(M, span_danger("This gear doesn't match my current skill level..."))
 					return
 				if(M == user)
