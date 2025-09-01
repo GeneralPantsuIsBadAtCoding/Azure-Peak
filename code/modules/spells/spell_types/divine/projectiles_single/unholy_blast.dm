@@ -78,7 +78,7 @@
 						damage += 10 
 						H.adjust_fire_stacks(4)
 					H.adjust_fire_stacks(2)
-					H.IgniteMob()
+					H.ignite_mob()
 				if(/datum/patron/inhumen/graggar)
 					H.visible_message(span_warning("A splatter of blood covers [H]'s face!"), span_warning("A glob of blood splatters my vision!"))
 					H.Dizzy(5)
@@ -86,7 +86,7 @@
 				if(/datum/patron/inhumen/zizo)
 					if(istype(H.patron, /datum/patron/divine/necra)) //Hilarious
 						H.adjust_fire_stacks(6)
-						H.IgniteMob()
+						H.ignite_mob()
 					H.Slowdown(3) 
 					H.visible_message(span_warning("Seething ambition sears within [H]'s mind!"), span_warning("Visions of progress and ambition sear into my mind!"))
 	else
