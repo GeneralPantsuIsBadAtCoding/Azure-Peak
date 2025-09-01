@@ -1000,11 +1000,11 @@
 
 /obj/structure/broadcast_horn/paid
 	name = "\improper Streetpipe"
-	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a ziliqua to send a message over the SCOM network."
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a zenny to send a message over the SCOM network. Foreigners pay extra."
 	icon_state = "broadcaster_crass"
 	icon = 'icons/roguetown/misc/machines.dmi'
 	var/is_locked = FALSE
-	var/stored_zenar = 0
+	var/stored_zen = 0
 	var/stored_zil = 0
 
 /obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
@@ -1018,17 +1018,17 @@
 			say("Streetpipe has been unlocked.")
 	if(istype(P, /obj/item/roguecoin))
 		var/has_paid = FALSE
-		var/paid_zil = FALSE
+		var/paid_zen = FALSE
 		if(HAS_TRAIT(user, TRAIT_OUTLANDER))
-			if(istype(P, /obj/item/roguecoin/gold))
+			if(istype(P, /obj/item/roguecoin/silver))
 				has_paid = TRUE
 			else
-				say("Foreigners pay double. Insert a zenar.")
+				say("Foreigners pay extra. Insert a ziliqua.")
 				playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 				return
-		else if(istype(P, /obj/item/roguecoin/silver))
+		else if(istype(P, /obj/item/roguecoin/copper))
 			has_paid = TRUE
-			paid_zil = TRUE
+			paid_zen = TRUE
 		if(!has_paid)
 			return
 		if(is_locked)
@@ -1044,10 +1044,10 @@
 			return
 		listening = TRUE
 		qdel(C)
-		if(paid_zil)
-			stored_zil += 1
+		if(paid_zen)
+			stored_zen += 1
 		else
-			stored_zenar +=1
+			stored_zil +=1
 		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 		return
 	..()
@@ -1060,11 +1060,11 @@
 	var/mob/living/carbon/human/H = user
 	if(H.job == "Town Crier")
 		var/dispensed = FALSE
-		if(stored_zenar)
-			var/obj/item/roguecoin/G = new /obj/item/roguecoin/gold(H, stored_zenar)
+		if(stored_zen)
+			var/obj/item/roguecoin/Z = new /obj/item/roguecoin/copper(H, stored_zen)
 			if(H)
-				H.put_in_hands(G)
-				stored_zenar = 0
+				H.put_in_hands(Z)
+				stored_zen = 0
 				dispensed = TRUE
 				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
 		if(stored_zil)
