@@ -552,7 +552,7 @@
 	throwforce = 20
 	force = 9
 	color = "#bb9696"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // Override iron inherit
 	anvilrepair = null
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
@@ -565,13 +565,13 @@
 	throwforce = 28							//Equal to steel knife BUT this has peircing damage type so..
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
-	smeltresult = /obj/item/ingot/steel
+	smeltresult = null // 1 Ingot = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
 	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // 1 Ingots = 2 Javelin s
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"

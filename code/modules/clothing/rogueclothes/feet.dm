@@ -7,8 +7,6 @@
 	slot_flags = ITEM_SLOT_SHOES
 	body_parts_covered = FEET
 	body_parts_inherent = FEET
-	sleeved = 'icons/roguetown/clothing/onmob/feet.dmi'
-	sleevetype = "leg"
 	bloody_icon_state = "shoeblood"
 	equip_delay_self = 30
 	resistance_flags = FIRE_PROOF
@@ -376,7 +374,7 @@
 	name = "cloth lined anklets"
 	desc = "Cloth anklets lined with fibers for warmth while leaving the feet bare."
 	gender = PLURAL
-	icon_state = "clothlinedanklets"
+	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
 	is_barefoot = TRUE
 	sewrepair = TRUE

@@ -172,6 +172,11 @@
 #define COVERAGE_PANTS			( GROIN | LEGS )
 #define COVERAGE_FULL_LEG		( LEGS | FEET )
 
+/*
+Balloon Alert / Floating Text defines
+*/
+#define XP_SHOW_COOLDOWN (0.5 SECONDS)
+
 
 //used in various places
 #define ALL_RACES_TYPES list(\

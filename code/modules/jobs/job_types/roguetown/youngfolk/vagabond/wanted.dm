@@ -34,7 +34,13 @@
 			my_crime = "crimes against the Crown"
 		var/list/bounty_cats = list("Meager", "Moderate", "Massive")
 		var/bounty_amount = input(H, "How ample is your bounty?", "Blooded Gold") as anything in bounty_cats
-		var/bounty_total
+		var/race = H.dna.species
+		var/gender = H.gender
+		var/list/d_list = H.get_mob_descriptors()
+		var/descriptor_height = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_HEIGHT), "%DESC1%")
+		var/descriptor_body = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_BODY), "%DESC1%")
+		var/descriptor_voice = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_VOICE), "%DESC1%")
+		var/bounty_total = rand(51, 200)
 		switch (bounty_amount)
 			if ("Meager")
 				bounty_total = rand(51, 100)
@@ -43,5 +49,5 @@
 			if ("Massive")
 				bounty_total = rand(150, 200)
 	
-		add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
+		add_bounty(H.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 		to_chat(H, span_notice("I'm on the run from the law, and there's a [lowertext(bounty_amount)] sum of mammons out on my head... better lay low."))

@@ -18,6 +18,7 @@
 	var/can_be_bloody = TRUE
 	var/is_barefoot = FALSE
 	bloody_icon_state = "shoeblood"
+	sleeved_detail = null
 
 	grid_width = 32
 	grid_height = 64
