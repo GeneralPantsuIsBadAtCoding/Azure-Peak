@@ -121,7 +121,7 @@
 							if("Pottery")
 								skillholder = /datum/skill/misc/ceramics
 				var/userskill = M.get_skill_level(skillholder)
-				if(userskill <= max_skill && istype(src, /obj/item/roguegear))
+				if(userskill <= max_skill && userskill == SKILL_LEVEL_NONE || userskill == SKILL_LEVEL_NOVICE && istype(src, /obj/item/roguegear))
 					to_chat(M, span_blue("A strange disturbance is gaining strength in my mechanisms..."))
 					M.adjust_skillrank(skillholder, 1, TRUE)
 				if(userskill <= max_skill && userskill == SKILL_LEVEL_APPRENTICE && istype(src, /obj/item/roguegear))
@@ -133,10 +133,15 @@
 				if(userskill <= max_skill && userskill == SKILL_LEVEL_EXPERT && istype(src, /obj/item/roguegear/t2))
 					to_chat(M, span_blue("ᛦᛦᛦ Now I understand, I feel the power of PROGRESS! ᛦᛦᛦ"))
 					M.adjust_skillrank(skillholder, 1, TRUE)
+				else
+					to_chat(M, span_danger("This gear doesn't match my current skill level..."))
+					return
 				if(M == user)
 					user.visible_message(span_notice("[user] presses the cog to [user]'s body, and it is absorbed."), span_notice("I absorb the cog."))
+					qdel(src)
 				else
 					user.visible_message(span_notice("[user] presses the cog to [M]'s body, and it is absorbed."), span_notice("I press the cog to [M], and it is absorbed."))
+					qdel(src)
 				return
 			else 
 				return ..()
