@@ -345,6 +345,7 @@
 	var/turf/origin
 	var/firestacks = 0
 	var/divinefirestacks = 0
+	var/sunderfirestacks = 0
 	var/blood = 0
 	miracle = TRUE
 	devotion_cost = 30
@@ -360,6 +361,12 @@
 		toxin = target.getToxLoss()
 		origin = get_turf(target)
 		blood = target.blood_volume
+		var/datum/status_effect/fire_handler/fire_stacks/fire_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+		firestacks = fire_status?.stacks
+		var/datum/status_effect/fire_handler/fire_stacks/sunder/sunder_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
+		sunderfirestacks = sunder_status?.stacks
+		var/datum/status_effect/fire_handler/fire_stacks/divine/divine_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
+		divinefirestacks = divine_status?.stacks
 		to_chat(target, span_warning("I feel a part of me was left behind..."))
 		play_indicator(target,'icons/mob/overhead_effects.dmi', "timestop", 100, OBJ_LAYER)
 		addtimer(CALLBACK(src, PROC_REF(remove_buff), target), wait = 10 SECONDS)
@@ -372,6 +379,9 @@
 	var/burnnew = target.getFireLoss()
 	var/oxynew = target.getOxyLoss()
 	var/toxinnew = target.getToxLoss()
+	target.adjust_fire_stacks(firestacks)
+	target.adjust_fire_stacks(sunderfirestacks, /datum/status_effect/fire_handler/fire_stacks/sunder)
+	target.adjust_fire_stacks(divinefirestacks, /datum/status_effect/fire_handler/fire_stacks/divine)
 	if(target.has_status_effect(/datum/status_effect/buff/convergence))
 		if(brutenew>brute)
 			target.adjustBruteLoss(brutenew*-1 + brute)
