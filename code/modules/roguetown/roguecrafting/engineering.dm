@@ -3,7 +3,7 @@
 
 
 /datum/crafting_recipe/roguetown/engineering/gear_t1
-	name = "T1 gear"
+	name = "Runic cog (T2)"
 	result = /obj/item/roguegear/t1
 	reqs = list(/datum/reagent/medicine/manapot = 25,
 				/obj/item/roguegear = 2)
@@ -13,7 +13,7 @@
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/engineering/gear_t2
-	name = "T2 gear"
+	name = "Cog of PROGRESS (T3)"
 	result = /obj/item/roguegear/t2
 	reqs = list(/obj/item/clothing/neck/roguetown/zcross = 1,
 				/obj/item/roguegem = 1,
