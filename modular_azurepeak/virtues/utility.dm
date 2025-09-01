@@ -147,6 +147,10 @@
 			if(chosen_language)
 				var/language_type = choices[chosen_language]
 				recipient.grant_language(language_type)
+				var/datum/language/lang = language_type
+				var/datum/skill/language/skill = lang.associated_skill
+				if(skill)
+					recipient.adjust_skillrank(skill, 4, TRUE)
 				choices -= chosen_language
 				to_chat(recipient, span_info("I recall my knowledge of [chosen_language]..."))
 				count--

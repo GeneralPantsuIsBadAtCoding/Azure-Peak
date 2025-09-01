@@ -166,6 +166,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
 		if(findtext_char(message, " ", 1, 2))
 			message = copytext(message, 2)
+		
+		if(message_language && message_language.associated_skill)
+			if(ispath(message_language))
+				message_language = GLOB.language_datum_instances[message_language]
+			var/skill_level = get_skill_level(message_language.associated_skill)
+			message = message_language.scramble_for_speaker(message, skill_level)
 
 	if(!language)
 		language = get_default_language()
@@ -354,21 +360,30 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 	var/deaf_message
 	var/deaf_type
+	var/own_message = FALSE
 	if(speaker != src)
-		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
+		if(!radio_freq)
 			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
 			deaf_type = 1
 	else
+		own_message = TRUE
 		deaf_message = span_notice("I can't hear yourself!")
-		deaf_type = 2 // Since you should be able to hear myself without looking
+		deaf_type = 2
 
 	// Create map text prior to modifying message for goonchat
 	if(can_see_runechat(speaker) && can_hear())
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
-	// Recompose message for AI hrefs, language incomprehension.
-	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
-	show_message(message, MSG_AUDIBLE, deaf_message, deaf_type)
-	return message
+
+	// Only apply listener-side scrambling to non-own messages
+	var/processed_message = message
+	if(!own_message && message_language && !has_language(message_language) && !check_language_hear(message_language))
+		var/skill_level = get_skill_level(message_language.associated_skill)
+		var/scrambled = message_language.scramble_for_speaker(raw_message, skill_level)
+		// Reuse the same formatting as the original message, but with the scrambled text.
+		processed_message = compose_message(speaker, message_language, scrambled, radio_freq, spans, message_mode)
+
+	show_message(processed_message, MSG_AUDIBLE, deaf_message, deaf_type)
+	return processed_message
 
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode, original_message)
 	var/static/list/eavesdropping_modes = list(MODE_WHISPER = TRUE, MODE_WHISPER_CRIT = TRUE)

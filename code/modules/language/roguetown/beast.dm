@@ -10,6 +10,7 @@
 	default_priority = 100
 	icon_state = "asse"
 	spans = list(SPAN_BEAST)
+	associated_skill = /datum/skill/language/beast
 	syllables = list("GRRrrrr",
 "GGGrrr",
 "RRRRrr",
