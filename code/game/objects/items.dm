@@ -1403,8 +1403,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(owner)
 					owner.visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
 				var/balloon_msg = "Peel! \Roman[ROUND_UP(peel_count)] <br><font color = '#8b7330'>[peeledpart[1]]!</font>"
-				if(length(peeledpart))
+				var/has_guarded = HAS_TRAIT(owner, TRAIT_DECEIVING_MEEKNESS)
+				if(length(peeledpart) && !has_guarded)
 					filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
+				else if(length(peeledpart) && has_guarded)
+					if(prob(10))
+						balloon_msg = "<i>Guarded...</i>"
+						filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
 		else
 			last_peeled_limb = coveragezone
 			reset_peel()

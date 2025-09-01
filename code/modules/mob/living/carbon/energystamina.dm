@@ -132,7 +132,12 @@
 			text = "<font color = '#a8665a'>Fatigued</font>"
 			y_offset = BALLOON_Y_OFFSET_TIER3
 		if(text)
-			H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
+			if(!HAS_TRAIT(H, TRAIT_DECEIVING_MEEKNESS))
+				H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
+			else
+				if(prob(10))
+					text = "<i>Tired...?</i>"
+					H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
 
 	if(stamina >= max_stamina)
 		stamina = max_stamina
