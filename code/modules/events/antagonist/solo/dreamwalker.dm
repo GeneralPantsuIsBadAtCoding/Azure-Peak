@@ -15,7 +15,7 @@
 	base_antags = 1
 	maximum_antags = 2
 
-	weight = 4
+	weight = 18
 	max_occurrences = 2
 
 	earliest_start = 0 SECONDS
