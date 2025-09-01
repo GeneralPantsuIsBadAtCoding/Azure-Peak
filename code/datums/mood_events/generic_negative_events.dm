@@ -124,6 +124,16 @@
 	mood_change = -4
 	timeout = 3 MINUTES
 
+/datum/mood_event/vomitother
+	description = "<span class='warning'>Someone just threw up all over me. This is sickening.</span>\n"
+	mood_change = -5
+	timeout = 3 MINUTES
+
+/datum/mood_event/vomitedonother
+	description = "<span class='warning'>I just threw up all over someone. Gross.</span>\n"
+	mood_change = -2
+	timeout = 3 MINUTES
+
 /datum/mood_event/painful_medicine
 	description = "<span class='warning'>Medicine may be good for me but right now it stings like hell.</span>\n"
 	mood_change = -5
