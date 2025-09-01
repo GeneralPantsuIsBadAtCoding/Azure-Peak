@@ -416,7 +416,6 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_inv_gloves()
 	remove_overlay(GLOVES_LAYER)
-	remove_overlay(GLOVESLEEVE_LAYER)
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_GLOVES])
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_GLOVES]
@@ -434,7 +433,7 @@ There are several things that need to be remembered:
 			if(gender == FEMALE)
 				bloody_overlay.icon_state += "_f"
 
-		overlays_standing[GLOVESLEEVE_LAYER] = bloody_overlay
+		overlays_standing[GLOVES_LAYER] = bloody_overlay
 
 	if(gloves)
 		gloves.screen_loc = rogueui_gloves
@@ -463,30 +462,11 @@ There are several things that need to be remembered:
 					gloves_overlay.pixel_y += dna.species.offset_features[OFFSET_GLOVES_F][2]
 			overlays_standing[GLOVES_LAYER] = gloves_overlay
 
-			//add sleeve overlays, then offset
-			var/list/sleeves = list()
-			if(gloves.sleeved && armsindex > 0)
-				sleeves = get_sleeves_layer(gloves,armsindex,GLOVESLEEVE_LAYER)
-
-			if(sleeves)
-				for(var/X in sleeves)
-					var/mutable_appearance/S = X
-					if(gender == MALE)
-						if(OFFSET_GLOVES in dna.species.offset_features)
-							S.pixel_x += dna.species.offset_features[OFFSET_GLOVES][1]
-							S.pixel_y += dna.species.offset_features[OFFSET_GLOVES][2]
-					else
-						if(OFFSET_GLOVES_F in dna.species.offset_features)
-							S.pixel_x += dna.species.offset_features[OFFSET_GLOVES_F][1]
-							S.pixel_y += dna.species.offset_features[OFFSET_GLOVES_F][2]
-				overlays_standing[GLOVESLEEVE_LAYER] = sleeves
 	rebuild_obscured_flags()
 	apply_overlay(GLOVES_LAYER)
-	apply_overlay(GLOVESLEEVE_LAYER)
 
 /mob/living/carbon/human/update_inv_wrists()
 	remove_overlay(WRISTS_LAYER)
-	remove_overlay(WRISTSLEEVE_LAYER)
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_WRISTS])
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_WRISTS]
@@ -519,27 +499,8 @@ There are several things that need to be remembered:
 					wrists_overlay.pixel_y += dna.species.offset_features[OFFSET_WRISTS_F][2]
 			overlays_standing[WRISTS_LAYER] = wrists_overlay
 
-			//add sleeve overlays, then offset
-			var/list/sleeves = list()
-			if(wear_wrists.sleeved && armsindex > 0)
-				sleeves = get_sleeves_layer(wear_wrists,armsindex,WRISTSLEEVE_LAYER)
-
-			if(sleeves)
-				for(var/X in sleeves)
-					var/mutable_appearance/S = X
-					if(gender == MALE)
-						if(OFFSET_WRISTS in dna.species.offset_features)
-							S.pixel_x += dna.species.offset_features[OFFSET_WRISTS][1]
-							S.pixel_y += dna.species.offset_features[OFFSET_WRISTS][2]
-					else
-						if(OFFSET_WRISTS_F in dna.species.offset_features)
-							S.pixel_x += dna.species.offset_features[OFFSET_WRISTS_F][1]
-							S.pixel_y += dna.species.offset_features[OFFSET_WRISTS_F][2]
-				overlays_standing[WRISTSLEEVE_LAYER] = sleeves
-
 	rebuild_obscured_flags()
 	apply_overlay(WRISTS_LAYER)
-	apply_overlay(WRISTSLEEVE_LAYER)
 
 /mob/living/carbon/human/update_inv_glasses()
 	/*
