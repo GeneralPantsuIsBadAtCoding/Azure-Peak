@@ -75,5 +75,5 @@
 			send_ooc_note(("I hear the distant sounds of [src] ringing. I'm being called to the [localarea]."), job = rolestonotify)
 
 /obj/structure/standingbell/proc/reset_cooldown()
-	visible_message(span_notice ("The [src] is ready for use again."))
+	visible_message(span_notice ("[src] is ready for use again."))
 	on_cooldown = FALSE
