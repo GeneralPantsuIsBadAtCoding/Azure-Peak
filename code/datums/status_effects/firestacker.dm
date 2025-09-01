@@ -158,7 +158,7 @@
 	if(!on_fire)
 		return TRUE
 
-	adjust_stacks(fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * seconds_between_ticks)
+	adjust_stacks(owner.fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * seconds_between_ticks)
 
 	if(stacks <= 0)
 		qdel(src)
