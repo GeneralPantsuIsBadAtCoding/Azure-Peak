@@ -28,6 +28,9 @@
 	/// Whether this class will apply the adaptive name to the job it belongs to.
 	var/adaptive_name = FALSE
 
+	/// Stat ceilings for the specific subclass.
+	var/list/adv_stat_ceiling
+
 /datum/advclass/proc/equipme(mob/living/carbon/human/H)
 	// input sleeps....
 	set waitfor = FALSE

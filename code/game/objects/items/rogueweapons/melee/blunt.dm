@@ -67,7 +67,6 @@
 	minstr = 7
 	wdefense = 2
 	wbalance = WBALANCE_HEAVY
-	blade_dulling = DULLING_SHAFT_METAL
 	intdamage_factor = 1.35
 	icon_angle_wielded = 50
 
@@ -172,7 +171,6 @@
 	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	smeltresult = /obj/item/ash
 	anvilrepair = /datum/skill/craft/carpentry
-	blade_dulling = DULLING_SHAFT_WOOD
 	minstr = 7
 	resistance_flags = FLAMMABLE
 
@@ -206,7 +204,6 @@
 	minstr = 7
 	wdefense = 1
 	resistance_flags = FLAMMABLE
-	blade_dulling = DULLING_SHAFT_WOOD
 	grid_width = 32
 	grid_height = 96
 
@@ -214,7 +211,6 @@
 	name = "psydonian handmace"
 	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
 	wbalance = WBALANCE_SWIFT
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	resistance_flags = FIRE_PROOF
 	icon_state = "psyflangedmace"
 	wdefense = 2
@@ -269,7 +265,6 @@
 	smeltresult = /obj/item/ingot/steel
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	wbalance = WBALANCE_SWIFT
 	resistance_flags = FIRE_PROOF
 	minstr = 7
@@ -299,7 +294,6 @@
 	wbalance = WBALANCE_NORMAL
 	associated_skill = /datum/skill/combat/swords
 	anvilrepair = /datum/skill/craft/carpentry
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	resistance_flags = FLAMMABLE
 
 
@@ -377,7 +371,6 @@
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	blade_dulling = DULLING_SHAFT_WOOD
 	dropshrink = 0.6
 	bigboy = TRUE
 	gripsprite = TRUE
@@ -411,7 +404,6 @@
 	force = 15
 	force_wielded = 35
 	smeltresult = /obj/item/ingot/steel
-	blade_dulling = DULLING_SHAFT_METAL
 	smelt_bar_num = 2
 	intdamage_factor = 1
 	wdefense_wbonus = 5
@@ -480,7 +472,6 @@
 	icon_state = "iwarhammer"
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
-	blade_dulling = DULLING_SHAFT_REINFORCED
 	wdefense = 3
 	intdamage_factor = 1.2
 
@@ -502,7 +493,6 @@
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
 	icon_state = "swarhammer"
 	smeltresult = /obj/item/ingot/steel
-	blade_dulling = DULLING_SHAFT_METAL
 	wdefense = 4
 
 /obj/item/rogueweapon/mace/warhammer/getonmobprop(tag)

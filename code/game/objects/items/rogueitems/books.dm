@@ -268,7 +268,7 @@
 					user.say("PSY 23:4... And so, ZEZUS wept; for he had been struck down by the silvered javelin of JVDAS, PSYDON's most devout.")
 					user.psydo_nyte()
 				else
-					user.say(m)	
+					user.say(m)
 
 /obj/item/book/rogue/bibble/psy/MiddleClick(mob/user, params)
 	. = ..()
@@ -338,6 +338,13 @@
 	icon_state ="book6_0"
 	base_icon_state = "book6"
 	bookfile = "thefireisgone.json"
+
+/obj/item/book/rogue/blackoak
+	name = "The Noblest Struggle"
+	desc = "A small black book. All Black Oaks carry this close."
+	icon_state ="book_0"
+	base_icon_state = "book"
+	bookfile = "blackoak.json"
 
 //player made books
 /obj/item/book/rogue/tales1

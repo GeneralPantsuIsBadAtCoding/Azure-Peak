@@ -6,6 +6,7 @@
 	icon_state = "fat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+	possible_item_intents = list(/datum/intent/food, /datum/intent/splash)
 	fat_yield = 20
 
 /obj/item/reagent_containers/food/snacks/fat/attackby(obj/item/I, mob/living/user, params)
@@ -24,6 +25,22 @@
 			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
+
+/obj/item/reagent_containers/food/snacks/fat/attack(mob/living/M, mob/user, proximity)
+	if(user.used_intent.type == /datum/intent/food)
+		return ..()
+
+	if(!isliving(M) || (M != user))
+		return ..()
+
+	user.visible_message("[user] starts to oil up [M]", "You start to oil up [M]")
+	if(!do_after(user, 5 SECONDS, M))
+		return
+	M.apply_status_effect(/datum/status_effect/buff/oiled)
+
+/obj/item/reagent_containers/food/snacks/fat/examine()
+	. = ..()
+	. += span_info("Use on splash intent on yourself to oil yourself up, making yourself slippery and harder to grab when uncovered. Being barefoot reduces the chance of slipping.")
 
 // TALLOW is used as an intermediate crafting ingredient for other recipes.
 /obj/item/reagent_containers/food/snacks/tallow

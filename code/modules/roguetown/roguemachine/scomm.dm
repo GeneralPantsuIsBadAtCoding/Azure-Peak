@@ -2,7 +2,7 @@
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
-	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology."
+	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology, a device able to receive remote messages from the town crier's office. There's a button in the MIDDLE for making private jabberline connections."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "scomm1"
 	density = FALSE
@@ -10,23 +10,18 @@
 	max_integrity = 0
 	pixel_y = 32
 	anchored = TRUE
+	verb_say = "squeaks"
 	var/next_decree = 0
 	var/listening = TRUE
 	var/speaking = TRUE
+	var/loudmouth_listening = TRUE
 	var/dictating = FALSE
 	var/scom_number
+	var/scom_tag
 	var/obj/structure/roguemachine/scomm/calling = null
 	var/obj/structure/roguemachine/scomm/called_by = null
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
-
-/obj/structure/roguemachine/scomm/Initialize()
-	. = ..()
-	become_hearing_sensitive()
-
-/obj/structure/roguemachine/scomm/Destroy()
-	lose_hearing_sensitivity()
-	return ..()
 
 /obj/structure/roguemachine/scomm/OnCrafted(dirin, mob/user)
 	. = ..()
@@ -53,7 +48,8 @@
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
 	if(scom_number)
-		. += "Its designation is #[scom_number]."
+		. += "Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""]."
+	. += "<a href='?src=[REF(src)];directory=1'>Directory</a>"
 	if(user.loc == loc)
 		. += "<b>THE LAWS OF THE LAND:</b>"
 		if(!length(GLOB.laws_of_the_land))
@@ -64,6 +60,25 @@
 			return
 		for(var/i in 1 to length(GLOB.laws_of_the_land))
 			. += span_small("[i]. [GLOB.laws_of_the_land[i]]")
+
+/obj/structure/roguemachine/scomm/Topic(href, href_list)
+	..()
+
+	if(!usr)
+		return
+
+	if(href_list["directory"])
+		view_directory(usr)
+
+/obj/structure/roguemachine/scomm/proc/view_directory(mob/user)
+	var/dat
+	for(var/obj/structure/roguemachine/scomm/X in SSroguemachine.scomm_machines)
+		if(X.scom_tag)
+			dat += "#[X.scom_number] [X.scom_tag]<br>"
+
+	var/datum/browser/popup = new(user, "scom_directory", "<center>RAT REGISTER</center>", 387, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 /obj/structure/roguemachine/scomm/process()
 	if(world.time <= next_decree)
@@ -91,9 +106,15 @@
 		listening = !listening
 		to_chat(user, span_info("I [listening ? "unmute" : "mute"] the input on the SCOM."))
 		return
-	listening = !listening
-	speaking = listening
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the SCOM."))
+	if(loudmouth_listening)
+		to_chat(user, span_info("I quell the Loudmouth's prattling on the SCOM. It may be muted entirely still."))
+		loudmouth_listening = FALSE
+	else
+		listening = !listening
+		speaking = listening
+		to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the SCOM."))
+		if(listening)
+			loudmouth_listening = TRUE
 	update_icon()
 
 /obj/structure/roguemachine/scomm/attack_right(mob/user)
@@ -140,7 +161,7 @@
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	if(calling)
 		calling.say("Jabberline severed.", spans = list("info"))
-		if(calling.calling == src)
+		if(calling.calling == src || calling.called_by == src)
 			var/obj/structure/roguemachine/scomm/old_calling = calling
 			old_calling.called_by = null
 			old_calling.calling = null
@@ -210,6 +231,7 @@
 	. = ..()
 //	icon_state = "scomm[rand(1,2)]"
 	START_PROCESSING(SSroguemachine, src)
+	become_hearing_sensitive()
 	update_icon()
 	SSroguemachine.scomm_machines += src
 	scom_number = SSroguemachine.scomm_machines.len
@@ -227,8 +249,12 @@
 		icon_state = "scomm1"
 	else
 		icon_state = "scomm0"
+	if(listening)
+		if(!loudmouth_listening)
+			icon_state = "scomm3"
 
 /obj/structure/roguemachine/scomm/Destroy()
+	lose_hearing_sensitivity()
 	SSroguemachine.scomm_machines -= src
 	STOP_PROCESSING(SSroguemachine, src)
 	set_light(0)
@@ -252,11 +278,15 @@
 	voicecolor_override = null
 
 /obj/structure/roguemachine/scomm/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
-	if(speaker.loc != loc && !calling)
+	if(speaker.loc != loc)
 		return
 	if(!ishuman(speaker))
 		return
 	if(!listening)
+		return
+	if(!calling && !garrisonline)
+		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
+		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 		return
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
@@ -268,12 +298,6 @@
 				calling.repeat_message(raw_message, src, usedcolor, message_language)
 			return
 		if(length(raw_message) > 100) //When these people talk too much, put that shit in slow motion, yeah
-			/*if(length(raw_message) > 200)
-				if(!spawned_rat)
-					visible_message(span_warning("An angered rous emerges from the SCOMlines!"))
-					new /mob/living/simple_animal/hostile/retaliate/rogue/bigrat(get_turf(src))
-					spawned_rat = TRUE
-				return*/
 			raw_message = "<small>[raw_message]</small>"
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
@@ -286,14 +310,6 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
-		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-			if(!S.calling)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
-		SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
@@ -337,16 +353,23 @@
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
 	muteinmouth = TRUE
+	var/cooldown = 60 SECONDS
+	var/on_cooldown = FALSE
 	var/listening = TRUE
 	var/speaking = TRUE
+	var/loudmouth_listening = TRUE
 	var/messagereceivedsound = 'sound/misc/scom.ogg'
 	var/hearrange = 1 // change to 0 if you want your special scomstone to be only hearable by wearer
 	drop_sound = 'sound/foley/coinphy (1).ogg'
 	sellprice = 100
 	grid_width = 32
 	grid_height = 32
-//wip
+
 /obj/item/scomstone/attack_right(mob/living/carbon/human/user)
+	if(on_cooldown)
+		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
@@ -362,19 +385,32 @@
 		S.repeat_message(input_text, src, usedcolor)
 	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
-	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)//make the listenstone hear scomstone
+	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines) //make the listenstone hear scomstone
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown), user), cooldown)
+
+/obj/item/scomstone/proc/reset_cooldown(mob/living/carbon/human/user)
+	to_chat(user, span_notice("[src] is ready for use again."))
+	playsound(loc, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
+	on_cooldown = FALSE
 
 /obj/item/scomstone/MiddleClick(mob/user)
 	if(.)
 		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
-	listening = !listening
-	speaking = !speaking
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the scomstone."))
-	update_icon()
+	if(loudmouth_listening)
+		to_chat(user, span_info("I quell the Loudmouth's prattling on the scomstone. It may be muted entirely still."))
+		loudmouth_listening = FALSE
+	else
+		listening = !listening
+		speaking = !speaking
+		to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the scomstone."))
+		if(listening)
+			loudmouth_listening = TRUE
+		update_icon()
 
 /obj/item/scomstone/Destroy()
 	SSroguemachine.scomm_machines -= src
@@ -442,6 +478,7 @@
 	muteinmouth = TRUE
 	var/listening = TRUE
 	var/speaking = TRUE
+	var/loudmouth_listening = TRUE
 	sellprice = 200
 	grid_width = 32
 	grid_height = 32
@@ -451,9 +488,15 @@
 		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
-	listening = !listening
-	speaking = !speaking
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the scomstone."))
+	if(loudmouth_listening)
+		to_chat(user, span_info("I quell the Loudmouth's prattling on the scomstone. It may be muted entirely still."))
+		loudmouth_listening = FALSE
+	else
+		listening = !listening
+		speaking = !speaking
+		to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the scomstone."))
+		if(listening)
+			loudmouth_listening = TRUE
 	update_icon()
 	if(listening)
 		icon_state = "listenstone"
@@ -806,6 +849,10 @@
 
 /obj/item/scomstone/garrison/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_INTENTCAP)
+	if(on_cooldown)
+		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(!input_text)
@@ -816,6 +863,7 @@
 	user.whisper(input_text)
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
+
 	if(garrisonline)
 		input_text = "<big><span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
 		for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
@@ -826,6 +874,8 @@
 			if(S.garrisonline)
 				S.repeat_message(input_text, src, usedcolor)
 		SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+		on_cooldown = TRUE
+		addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 		return
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
@@ -834,6 +884,8 @@
 	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 
 /obj/item/scomstone/garrison/attack_self(mob/living/user)
 	if(.)
@@ -855,3 +907,181 @@
 	sellprice = 20
 	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
 	hearrange = 0
+
+/obj/structure/broadcast_horn
+	name = "\improper Streetpipe"
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it."
+	icon_state = "broadcaster_crass"
+	icon = 'icons/roguetown/misc/machines.dmi'
+	blade_dulling = DULLING_BASH
+	max_integrity = 0
+	density = TRUE
+	anchored = TRUE
+	flags_1 = HEAR_1
+	speech_span = SPAN_ORATOR
+	var/listening = FALSE
+	var/speech_color = null
+	var/loudmouth = FALSE
+
+/obj/structure/broadcast_horn/examine(mob/user)
+	. = ..()
+	if(listening)
+		. += "There's a faint skittering coming out of it."
+	else
+		. += "The rats within are quiet."
+
+/obj/structure/broadcast_horn/redstone_triggered()
+	toggle_horn()
+
+/obj/structure/broadcast_horn/proc/toggle_horn()
+	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
+	if(listening)
+		visible_message(span_notice("[src]'s whine stills."))
+		listening = FALSE
+	else
+		listening = TRUE
+		visible_message(span_notice("[src] squeaks alive."))
+
+/obj/structure/broadcast_horn/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+	if(!ishuman(speaker))
+		return
+	if(!listening)
+		return
+	var/turf/step_turf = get_step(get_turf(src), src.dir)
+	if(get_turf(speaker) != step_turf)
+		return
+	var/mob/living/carbon/human/H = speaker
+	var/usedcolor = H.voice_color
+	if(H.voicecolor_override)
+		usedcolor = H.voicecolor_override
+	var/list/tspans = list()
+	if(!raw_message)
+		return
+	if(length(raw_message) > 100)
+		raw_message = "<small>[raw_message]</small>"
+	tspans |= speech_span
+	if(speech_color)
+		raw_message = "<span style='color: [speech_color]'>[raw_message]</span>"
+	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+		if(!S.calling && (!loudmouth || S.loudmouth_listening))
+			S.repeat_message(raw_message, src, usedcolor, message_language, tspans)
+	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+		if(!loudmouth || S.loudmouth_listening)
+			S.repeat_message(raw_message, src, usedcolor, message_language, tspans)
+	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+		if(!loudmouth || S.loudmouth_listening)
+			S.repeat_message(raw_message, src, usedcolor, message_language, tspans)
+	var/obj/item/clothing/head/roguetown/crown/serpcrown/crowne = SSroguemachine.crown
+	if(crowne && (!loudmouth || crowne.loudmouth_listening))
+		crowne.repeat_message(raw_message, src, usedcolor, message_language, tspans)
+	if(istype(src, /obj/structure/broadcast_horn/paid))
+		listening = FALSE
+		playsound(src, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
+
+/obj/structure/broadcast_horn/loudmouth
+	name = "\improper Golden Mouth"
+	desc = "The Loudmouth's own gleaming horn, its surface engraved with the ducal crest."
+	icon_state = "broadcaster"
+	speech_color = COLOR_ASSEMBLY_GOLD
+	loudmouth = TRUE
+
+/obj/structure/broadcast_horn/loudmouth/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+	toggle_horn()
+
+/obj/structure/broadcast_horn/loudmouth/guest
+	name = "\improper Silver Tongue"
+	desc = "A guest's horn. Not as gaudy as the Loudmouth's own, but still a fine piece of craftsmanship. "
+	icon_state = "broadcaster_crass"
+	speech_color = COLOR_ASSEMBLY_GURKHA
+
+/obj/structure/broadcast_horn/paid
+	name = "\improper Streetpipe"
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a zenny to send a message over the SCOM network. Foreigners pay extra."
+	icon_state = "broadcaster_crass"
+	icon = 'icons/roguetown/misc/machines.dmi'
+	var/is_locked = FALSE
+	var/stored_zen = 0
+	var/stored_zil = 0
+
+/obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
+	if(istype(P, /obj/item/roguekey/crier))
+		is_locked = !is_locked
+		listening = FALSE
+		playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
+		if(is_locked)
+			say("Streetpipe has been locked.")
+		else
+			say("Streetpipe has been unlocked.")
+	if(istype(P, /obj/item/roguecoin))
+		var/has_paid = FALSE
+		var/paid_zen = FALSE
+		if(HAS_TRAIT(user, TRAIT_OUTLANDER))
+			if(istype(P, /obj/item/roguecoin/silver))
+				has_paid = TRUE
+			else
+				say("Foreigners pay extra. Insert a ziliqua.")
+				playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+				return
+		else if(istype(P, /obj/item/roguecoin/copper))
+			has_paid = TRUE
+			paid_zen = TRUE
+		if(!has_paid)
+			return
+		if(is_locked)
+			say("Streetpipe is locked. Consult the crier.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
+		if(listening)
+			say("Coin already loaded.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
+		var/obj/item/roguecoin/C = P
+		if(C.quantity > 1)
+			return
+		listening = TRUE
+		qdel(C)
+		if(paid_zen)
+			stored_zen += 1
+		else
+			stored_zil +=1
+		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
+		return
+	..()
+
+/obj/structure/broadcast_horn/paid/attack_right(mob/user)
+	if(.)
+		return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.job == "Town Crier")
+		var/dispensed = FALSE
+		if(stored_zen)
+			var/obj/item/roguecoin/Z = new /obj/item/roguecoin/copper(H, stored_zen)
+			if(H)
+				H.put_in_hands(Z)
+				stored_zen = 0
+				dispensed = TRUE
+				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
+		if(stored_zil)
+			var/obj/item/roguecoin/S = new /obj/item/roguecoin/silver(H, stored_zil)
+			if(H)
+				H.put_in_hands(S)
+				stored_zil = 0
+				dispensed = TRUE
+				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
+		else if(!dispensed)
+			say("There's no mammon inside.")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+
+/obj/structure/broadcast_horn/Initialize()
+	. = ..()
+	become_hearing_sensitive()
+
+/obj/structure/broadcast_horn/Destroy()
+	lose_hearing_sensitivity()
+	return ..()

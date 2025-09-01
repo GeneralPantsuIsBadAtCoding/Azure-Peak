@@ -244,14 +244,31 @@
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
+			var/steel = list("Parrying Dagger","Sword","Dagger")
+			var/steel_choice = input("Choose your steel.", "PURGE THE LIVING") as anything in steel
+			switch(steel_choice)
+				if ("Parrying Dagger")
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+					beltr = /obj/item/rogueweapon/scabbard/sheath
+				if("Sword")
+					l_hand = /obj/item/rogueweapon/sword
+					beltr = /obj/item/rogueweapon/scabbard/sword
+				if ("Dagger")
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+					beltr = /obj/item/rogueweapon/scabbard/sheath
+			var/silver = list("Silver Sword","Silver Dagger")
+			var/silver_choice = input("Choose your silver.", "PURGE THE CURSED") as anything in silver
+			switch(silver_choice)
+				if("Silver Sword")
+					r_hand = /obj/item/rogueweapon/sword/silver
+					backr = /obj/item/rogueweapon/scabbard/sword
+				if ("Silver Dagger")
+					r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
+					backr = /obj/item/rogueweapon/scabbard/sheath
 			H.change_stat("strength", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 1)
 			H.change_stat("intelligence", 1)
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			beltl = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/silver
-			backr = /obj/item/rogueweapon/sword
 			backl = /obj/item/storage/backpack/rogue/satchel/black
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 			armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
@@ -278,6 +295,7 @@
 				/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
 				/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 				)
+
 
 		if("Flagellant")
 			to_chat(H, span_warning("You are a pacifistic warrior who embraces suffering, believing pain is the path to enlightenment."))

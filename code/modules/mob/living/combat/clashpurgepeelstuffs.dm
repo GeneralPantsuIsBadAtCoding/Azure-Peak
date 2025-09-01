@@ -20,19 +20,16 @@
 	if(H.has_status_effect(/datum/status_effect/buff/clash))	//They also have Clash active. It'll trigger the special event.
 		clash(user, IM, IU)
 	else	//Otherwise, we just riposte them.
-		var/damage = get_complex_damage(IM, src, IU.blade_dulling)
-		if(IM.intdamage_factor != 1 || used_intent.intent_intdamage_factor != 1)
-			var/higher_intfactor = max(IM.intdamage_factor, used_intent.intent_intdamage_factor)
-			var/lowest_intfactor = min(IM.intdamage_factor, used_intent.intent_intdamage_factor)
-			var/used_intfactor
-			if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-				used_intfactor = lowest_intfactor
-			if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-				used_intfactor = higher_intfactor
-			damage *= used_intfactor
-		if(IM.wbalance == WBALANCE_HEAVY)
-			damage *= 1.5
-		IU.take_damage(max(damage,1), BRUTE, IM.d_type)
+		var/sharpnesspenalty = SHARPNESS_ONHIT_DECAY * 5
+		if(IM.wbalance == WBALANCE_HEAVY || IU.blade_dulling == DULLING_SHAFT_CONJURED)
+			sharpnesspenalty *= 2
+		if(IU.max_blade_int)
+			IU.remove_bintegrity(sharpnesspenalty, user)
+		else
+			var/integdam = INTEG_PARRY_DECAY_NOSHARP * 5
+			if(IU.blade_dulling == DULLING_SHAFT_CONJURED)
+				integdam *= 2
+			IU.take_damage(integdam, BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))
 		playsound(src, 'sound/combat/clash_struck.ogg', 100)
 		var/staminadef = (stamina * 100) / max_stamina

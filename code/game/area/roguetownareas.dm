@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/decap
-	
+
 /area/rogue/outdoors/exposed/decap
 	icon_state = "decap"
 	droning_sound = 'sound/music/area/decap.ogg'
@@ -438,6 +438,12 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	keep_area = TRUE
 	town_area = TRUE
 
+/area/rogue/outdoors/exposed/town/keep/unbuildable
+	name = "Keep unbuildable"
+
+/area/rogue/outdoors/exposed/town/keep/unbuildable/can_craft_here()
+	return FALSE
+
 /area/rogue/indoors/town/manor
 	name = "Manor"
 	icon_state = "manor"
@@ -483,6 +489,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/outdoors/exposed/shop
 	icon_state = "shop"
 	droning_sound = 'sound/music/area/shop.ogg'
+
+/area/rogue/indoors/town/steward
+	name = "Steward"
+	icon_state = "steward"
+	droning_sound = 'sound/music/area/shop.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
 
 /area/rogue/indoors/town/physician
 	name = "Physician"
@@ -596,7 +609,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/indoors/inq/basement
 	name = "The Inquisition's Basement"
-	icon_state = "chapel"	
+	icon_state = "chapel"
 
 /area/rogue/indoors/town/warehouse/can_craft_here()
 	return FALSE
@@ -778,6 +791,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "basement"
 	keep_area = TRUE
 	town_area = TRUE
+	ceiling_protected = TRUE
 
 /area/rogue/outdoors/exposed/under/basement
 	icon_state = "basement"

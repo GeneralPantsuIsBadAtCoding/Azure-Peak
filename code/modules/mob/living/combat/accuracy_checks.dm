@@ -15,9 +15,8 @@
 		return zone
 	if(HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
 		return zone
-	if(target.grabbedby == user)
-		if(user.grab_state >= GRAB_AGGRESSIVE)
-			return zone
+	if(target.pulledby || target.pulling)
+		return zone
 	if(!(target.mobility_flags & MOBILITY_STAND))
 		return zone
 	// If you're floored, you will aim feet and legs easily. There's a check for whether the victim is laying down already.

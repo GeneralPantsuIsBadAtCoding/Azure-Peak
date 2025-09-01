@@ -126,7 +126,6 @@
 		/datum/crafting_recipe/roguetown/survival/prosthetic/woodrightleg,
 		/datum/crafting_recipe/roguetown/survival/tarot_deck,
 		/datum/crafting_recipe/roguetown/survival/heatershield,
-		/datum/crafting_recipe/roguetown/survival/woodshaft,
 		/datum/crafting_recipe/roguetown/survival/peasantry/thresher/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/shovel/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/hoe/whetstone,

@@ -147,6 +147,21 @@
 		prefs.save_preferences()
 	to_chat(src, "You will [prefs.toggles & CMODE_STRIPPING ? "" : "not"] be able to open the strip menu in combat mode.")
 
+/client/verb/toggle_xptext() // Whether the user can see the balloon XP pop ups.
+	set category = "Options"
+	set name = "Toggle XP Text"
+	if(prefs)
+		prefs.floating_text_toggles ^= XP_TEXT
+		prefs.save_preferences()
+	to_chat(src, "You will[prefs.floating_text_toggles & XP_TEXT ? "" : " not"] see XP pop ups.")
+
+/client/verb/toggle_floatingtext() // Whether the user can see the balloon pop ups at all.
+	set category = "Options"
+	set name = "Toggle Floating Text"
+	if(prefs)
+		prefs.floating_text_toggles ^= FLOATING_TEXT
+		prefs.save_preferences()
+	to_chat(src, "You will [prefs.floating_text_toggles & FLOATING_TEXT ? "see" : "not see any"] floating text.")
 /*
 //toggles
 /datum/verbs/menu/Settings/Ghost/chatterbox

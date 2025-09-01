@@ -275,6 +275,11 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
 		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
 		return
+	var/time_elapsed = STATION_TIME_PASSED() / (1 MINUTES)
+	if(time_elapsed < 30)
+		var/time_left = 30 - time_elapsed
+		to_chat(user, span_smallred("The veil is too thin for this rite. Wait another [round(time_left, 0.1)] minutes."))
+		return
 	var/riteselection = input(user, "Rite of the Tidal Spire", src) as null|anything in stirringrites
 	switch(riteselection)
 		if("Rite of the Crystal Spire")
@@ -461,7 +466,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	initial_fiend = /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
 	max_integrity = 1000
 	max_radius = 5
-	max_fiends = 10
+	max_fiends = 7
 
 /obj/structure/crystal_spire/tidal
 	name = "tidal spire"
@@ -520,7 +525,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 
 	var/list/witnesses = view(7, src)
 	for(var/mob/living/carbon/human/H in witnesses)
-		teleport_to_dream(H, 0.1)
+		teleport_to_dream(H, 1000, 1)
 
 	return ..()
 

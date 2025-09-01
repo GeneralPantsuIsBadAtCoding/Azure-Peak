@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 		return FALSE
 	return ambushable
 
-/mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE, min_dist = 1, max_dist = 7)
+/mob/living/proc/consider_ambush(always = FALSE, ignore_cooldown = FALSE, min_dist = 1, max_dist = 7, silent = FALSE)
 	var/area/AR = get_area(src)
 	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
 	var/danger_level = DANGER_LEVEL_MODERATE // Fallback if there's no region
@@ -15,11 +15,11 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 		danger_level = TR.get_danger_level()
 	if(danger_level == DANGER_LEVEL_SAFE)
 		if(TR.latent_ambush == 0)
-			return
+			return FALSE
 		if(TR.latent_ambush <= DANGER_SAFE_LIMIT && !always) // Signal horn can dip below 10
-			return
+			return FALSE
 	if(TR && ((world.time - TR.last_natural_ambush_time + 1 MINUTES) < 1 MINUTES))
-		return
+		return FALSE
 	var/true_ambush_chance = GLOB.ambush_chance_pct
 	if(TR)
 		if(danger_level == DANGER_LEVEL_LOW)
@@ -29,17 +29,17 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 		else if(danger_level == DANGER_LEVEL_BLEAK)
 			true_ambush_chance *= 2
 	if(!always && prob(100 - true_ambush_chance))
-		return
+		return FALSE
 	if(!always)
 		if(HAS_TRAIT(src, TRAIT_AZURENATIVE))
-			return
+			return FALSE
 		if(world.time > last_client_interact + 0.3 SECONDS)
-			return // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
+			return FALSE // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
 	if(get_will_block_ambush(src))
-		return
+		return FALSE
 	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)
-			return
+			return FALSE
 	mob_timers["ambush_check"] = world.time
 	var/victims = 1
 	var/list/victimsa = list()
@@ -138,11 +138,13 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 					H.faction += "ambush"
 					H.retaliate(src)
 					mustype = 2
-		if(mustype == 1)
-			playsound_local(src, pick('sound/misc/jumpscare (1).ogg','sound/misc/jumpscare (2).ogg','sound/misc/jumpscare (3).ogg','sound/misc/jumpscare (4).ogg'), 100)
-		else
-			playsound_local(src, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
-		shake_camera(src, 2, 2)
+		if(!silent)
+			if(mustype == 1)
+				playsound_local(src, pick('sound/misc/jumpscare (1).ogg','sound/misc/jumpscare (2).ogg','sound/misc/jumpscare (3).ogg','sound/misc/jumpscare (4).ogg'), 100)
+			else
+				playsound_local(src, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
+			shake_camera(src, 2, 2)
+		return TURF_WET_PERMAFROST
 
 // Return whether a mob is blocked from being ambushed
 /mob/living/proc/get_will_block_ambush()

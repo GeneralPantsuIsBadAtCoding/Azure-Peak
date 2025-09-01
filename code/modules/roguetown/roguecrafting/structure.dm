@@ -873,6 +873,10 @@
 	if(!istype(to_check, /turf/open/floor/rogue/dirt))
 		to_chat(user, span_info("I need a dirt floor to do this."))
 		return FALSE
+	for(var/obj/O in T.contents)
+		if(istype(O, /obj/structure/spike_pit))
+			to_chat(user, span_info("There's already a pit of spikes here."))
+			return FALSE
 	return TRUE
 
 /datum/crafting_recipe/roguetown/structure/wicker

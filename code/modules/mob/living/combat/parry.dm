@@ -252,45 +252,11 @@
 
 			var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 			if(dam2take)
-				if(!user.mind)
-					dam2take = dam2take * 0.25
-				if(dam2take > 0 && (intenty.masteritem?.intdamage_factor != 1 || intenty.intent_intdamage_factor != 1))
-					var/higher_intfactor = max(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/lowest_intfactor = min(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/used_intfactor
-					if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-						used_intfactor = lowest_intfactor
-					if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-						used_intfactor = higher_intfactor
-					dam2take *= used_intfactor
-			else	//This is normally handled in get_complex_damage, but it doesn't support simple mobs... at all, so we do a clunky mini-version of it.
-				if(istype(user, /mob/living/simple_animal))
-					var/mob/living/simple_animal/SM = user
-					dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
-					dam2take *= (SM.STASTR / 10)
-					dam2take *= 0.25
-					switch(used_weapon.blade_dulling)
-						if(DULLING_SHAFT_CONJURED)
-							dam2take *= 1.3
-						if(DULLING_SHAFT_METAL)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.5
-								if("blunt")
-									dam2take *= 1.5
-						if(DULLING_SHAFT_WOOD)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 1.5
-								if("blunt")
-									dam2take *= 0.5
-						if(DULLING_SHAFT_REINFORCED)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.75
-								if("stab")
-									dam2take *= 1.5
-			used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
+				var/intdam = used_weapon.max_blade_int ? INTEG_PARRY_DECAY : INTEG_PARRY_DECAY_NOSHARP
+				if(used_weapon == offhand)
+					intdam = INTEG_PARRY_DECAY_NOSHARP
+				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
+				used_weapon.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
 			return TRUE
 		else
 			return FALSE
@@ -309,15 +275,7 @@
 						H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
 
 			if(unarmed_bracers)
-				var/bracer_damage
-				var/d_flag = "blunt"
-				if(intenty.masteritem)
-					bracer_damage = get_complex_damage(intenty.masteritem, user)
-					d_flag = intenty.item_d_type
-				else
-					bracer_damage = U.get_punch_dmg()
-				bracer_damage = bracer_damage / 2
-				unarmed_bracers.take_damage(bracer_damage, damage_flag = d_flag, armor_penetration = 100)
+				unarmed_bracers.take_damage(INTEG_PARRY_DECAY_NOSHARP, "slash", armor_penetration = 100)
 			flash_fullscreen("blackflash2")
 			return TRUE
 		else
@@ -336,6 +294,12 @@
 				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
 				src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
+			if(!iscarbon(user))	//Non-carbon mobs never make it to the proper parry proc where the other calculations are done.
+				if(W.max_blade_int)
+					W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+					W.take_damage(INTEG_PARRY_DECAY, BRUTE, "slash")
+				else
+					W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
 			return TRUE
 		else
 			to_chat(src, span_warning("I'm too tired to parry!"))

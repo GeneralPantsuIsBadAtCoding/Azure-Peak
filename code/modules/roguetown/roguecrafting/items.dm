@@ -388,28 +388,6 @@
 	reqs = list(/obj/item/storage/roguebag/crafted = 1,
 				/obj/item/rope = 1)
 
-/datum/crafting_recipe/roguetown/survival/woodshaft
-	name = "wood shaft x2"
-	result = list(
-		/obj/item/shaft/wood,
-		/obj/item/shaft/wood
-	)
-	tools = list(/obj/item/rogueweapon/huntingknife)
-	reqs = list(/obj/item/grown/log/tree/small = 1)
-	skillcraft = /datum/skill/craft/carpentry
-	craftdiff = 0
-
-/datum/crafting_recipe/roguetown/survival/reinforcedshaft
-	name = "reinforced shaft"
-	result = /obj/item/shaft/reinforced
-	tools = list(/obj/item/rogueweapon/hammer)
-	reqs = list(
-		/obj/item/shaft/wood = 1,
-		/obj/item/natural/whetstone = 2,
-		)
-	skillcraft = /datum/skill/craft/carpentry
-	craftdiff = 2
-
 // Improvised surgey tools. They go here for now (TM)
 /datum/crafting_recipe/roguetown/survival/improvisedsaw
 	name = "improvised surgery saw (1 fiber + 1 stone + 1 stick)"

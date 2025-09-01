@@ -366,7 +366,6 @@
 		/obj/item/book/granter/spell/blackstone/message = 3,
 		/obj/item/book/granter/spell/blackstone/ensnare = 2,
 		/obj/item/book/granter/spell/blackstone/lightning = 2,
-		/obj/item/book/granter/spell/blackstone/blindness = 2,
 		/obj/item/book/granter/spell/blackstone/invisibility = 2,
 		/obj/item/book/granter/spell/blackstone/greaterfireball = 1
 	)

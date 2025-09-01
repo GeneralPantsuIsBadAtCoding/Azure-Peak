@@ -203,9 +203,13 @@
 
 	for(var/X in peopleknowme)
 		for(var/datum/mind/MF in get_minds(X))
+			if(isnull(H.mind?.special_role) && (MF?.special_role in list(ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT, ROLE_LICH, ROLE_WRETCH, ROLE_UNBOUND_DEATHKNIGHT)))
+				continue
 			H.mind.person_knows_me(MF)
 	for(var/X in peopleiknow)
 		for(var/datum/mind/MF in get_minds(X))
+			if(isnull(H.mind?.special_role) && (MF?.special_role in list(ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT, ROLE_LICH, ROLE_WRETCH, ROLE_UNBOUND_DEATHKNIGHT)))
+				continue
 			H.mind.i_know_person(MF)
 
 	if(H.islatejoin && announce_latejoin)
@@ -409,13 +413,19 @@
 		return list(ACCESS_MAINT_TUNNELS)
 	return list()
 
-/datum/job/proc/clamp_stats(var/mob/living/carbon/human/H)
+/datum/job/proc/clamp_stats(mob/living/carbon/human/H)
+	var/list/statcl
 	if(length(stat_ceilings))
-		for(var/stat in stat_ceilings)
-			if(stat_ceilings[stat] < H.get_stat(stat))
-				H.change_stat(stat, (stat_ceilings[stat] - H.get_stat(stat)))
-				to_chat(H, "Your [stat] was reduced to \Roman[stat_ceilings[stat]].")
+		statcl = stat_ceilings
+	var/datum/advclass/advclass = SSrole_class_handler.get_advclass_by_name(H.advjob)
+	if(advclass && length(advclass.adv_stat_ceiling))
+		statcl = advclass.adv_stat_ceiling
 
+	if(length(statcl))
+		for(var/stat in statcl)
+			if(statcl[stat] < H.get_stat(stat))
+				H.change_stat(stat, (statcl[stat] - H.get_stat(stat)))
+				to_chat(H, "Your [stat] was reduced to \Roman[statcl[stat]] due to class limits.")
 
 // LETHALSTONE EDIT: Helper functions for pronoun-based clothing selection
 /proc/should_wear_masc_clothes(mob/living/carbon/human/H)

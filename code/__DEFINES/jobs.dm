@@ -139,7 +139,7 @@
 #define ALCHEMIST	(1<<5)
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
-#define ELDER		(1<<10)
+#define CRIER		(1<<10)
 
 #define PEASANTS	(1<<5)
 
@@ -267,7 +267,7 @@
 #define JDO_GRABBER 17.2
 
 #define JDO_ARCHIVIST 18
-#define JDO_CHIEF 18.1
+#define JDO_CRIER 18.1
 
 #define JDO_GUILDMASTER 19.1
 #define JDO_GUILDSMAN 19.2
@@ -365,7 +365,7 @@
 	/datum/job/roguetown/prisonerr
 
 #define YEOMEN_ROLES \
-	/datum/job/roguetown/elder,\
+	/datum/job/roguetown/crier,\
 	/datum/job/roguetown/niteman,\
 	/datum/job/roguetown/archivist,\
 	/datum/job/roguetown/barkeep,\
