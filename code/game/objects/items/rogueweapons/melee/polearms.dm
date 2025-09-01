@@ -776,7 +776,7 @@
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 200
+	max_blade_int = 300
 	wdefense = 5
 	smelt_bar_num = 3
 
@@ -831,6 +831,7 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
 	max_blade_int = 240
+	wdefense = 4
 	force = 14
 	force_wielded = 35
 

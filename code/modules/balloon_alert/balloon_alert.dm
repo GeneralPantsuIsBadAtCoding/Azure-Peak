@@ -101,7 +101,7 @@
 
 ///Proc for creating a balloon alert that only someone with a specific trait would see.
 /atom/proc/filtered_balloon_alert(trait, text, x_offset, y_offset)
-	var/list/candidates = get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src)
+	var/list/candidates = get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 	if(trait)	
 		for(var/mob/living/carbon/human/H in candidates)
 			if(HAS_TRAIT(H, trait))

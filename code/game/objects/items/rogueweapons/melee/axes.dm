@@ -483,13 +483,9 @@
 	max_blade_int = 250
 	icon = 'icons/roguetown/weapons/64.dmi'
 
-/obj/item/rogueweapon/greataxe/steel/doublehead/graggar/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_HORDE))
-		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS AXE, CEASE OR BE PUNISHED!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/rogueweapon/greataxe/steel/doublehead/graggar/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "AXE", "RENDERED ASUNDER")
 
 ////////////////////////////////////////
 // Unique loot axes; mostly from mobs //

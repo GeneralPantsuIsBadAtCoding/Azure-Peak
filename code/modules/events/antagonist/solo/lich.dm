@@ -42,7 +42,7 @@
 		"Hand",
 		"Steward",
 		"Court Physician",
-		"Town Elder",
+		"Town Crier",
 		"Knight Captain",
 		"Archivist",
 		"Knight",
