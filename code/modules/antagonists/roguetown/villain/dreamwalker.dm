@@ -881,6 +881,7 @@
 	throwforce = 40
 	force = 30
 	force_wielded = 20
+	item_flags = DREAM_ITEM
 	var/shockwave_cooldown = 0
 	var/shockwave_cooldown_interval = 1 MINUTES
 	var/shockwave_divisor = 3
