@@ -7,6 +7,9 @@
 #define SILVER_PSYDONIAN (1<<0)
 #define SILVER_TENNITE (1<<1)
 
+#define CURSEITEM_INT_DAMAGE_PSY_MULTIPLIER 1.3
+#define CURSEITEM_INT_DAMAGE_TEN_MULTIPLIER 1.1
+
 /datum/component/silverbless
 	var/is_blessed
 	var/pre_blessed
@@ -15,6 +18,7 @@
 	var/added_blade_int
 	var/added_int
 	var/added_def
+	var/cursed_item_intdamage
 
 /datum/component/silverbless/Initialize(pre_blessed = BLESSING_NONE, silver_type, added_force, added_blade_int, added_int, added_def)
 	if(!istype(parent, /obj/item/rogueweapon))
@@ -37,7 +41,7 @@
 /datum/component/silverbless/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PARENT_EXAMINE, COMSIG_ITEM_OBJFIX, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
-/datum/component/silverbless/proc/on_equipped(mob/user, slot)
+/datum/component/silverbless/proc/on_equipped(obj/item/equipped, mob/user, slot)
 	if(HAS_TRAIT(user, TRAIT_SILVER_WEAK))
 		var/mob/living/carbon/human/H = user
 		if(!H.mind)
@@ -53,11 +57,11 @@
 		H.fire_act(1,10)
 		user.dropItemToGround(parent, force = TRUE)
 		return
-	else if(is_blessed && slot == SLOT_HANDS)
+	else if(is_blessed && slot & ITEM_SLOT_HANDS)
 		user.add_stress(/datum/stressevent/blessed_weapon)
 
-/datum/component/silverbless/proc/on_dropped(mob/user, slot)
-	if(is_blessed && (parent in user.held_items))
+/datum/component/silverbless/proc/on_dropped(obj/item/dropped, mob/user, slot)
+	if(is_blessed)
 		user.remove_stress(/datum/stressevent/blessed_weapon)
 
 /datum/component/silverbless/proc/on_examine(datum/source, mob/user, list/examine_list)
@@ -84,9 +88,12 @@
 	var/blessing_divisor = 1
 	if(blessing_type == BLESSING_TENNITE)
 		blessing_divisor = TENNITE_BLESSING_DIVISOR
+		cursed_item_intdamage = CURSEITEM_INT_DAMAGE_TEN_MULTIPLIER
+	else
+		cursed_item_intdamage = CURSEITEM_INT_DAMAGE_PSY_MULTIPLIER
 	if(isitem(parent))
 		var/obj/item/I = parent
-		is_blessed = TRUE
+		is_blessed = blessing_type
 		I.force += added_force
 		if(I.force_wielded)
 			I.force_wielded += added_force
@@ -108,3 +115,6 @@
 	if(I.force_wielded)
 		I.force_wielded += added_force
 	I.wdefense += round(added_def * (is_blessed == BLESSING_TENNITE ? TENNITE_BLESSING_DIVISOR : 1))
+
+#undef CURSEITEM_INT_DAMAGE_PSY_MULTIPLIER
+#undef CURSEITEM_INT_DAMAGE_TEN_MULTIPLIER

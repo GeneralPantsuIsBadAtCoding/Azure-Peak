@@ -1120,6 +1120,8 @@
 	max_integrity = 300
 	max_blade_int = 300
 	wdefense = 7
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
 
 /obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()
 	AddComponent(\
