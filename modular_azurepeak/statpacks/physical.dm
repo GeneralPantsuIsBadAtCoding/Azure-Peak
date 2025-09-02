@@ -8,7 +8,7 @@
 /datum/statpack/physical/muscular
 	name = "Muscular"
 	desc = "Hard labor has honed you into a mass of sinew - a valuable trait in a world where might makes right."
-	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 1, STAT_PERCEPTION = -1, STAT_SPEED = -2)
+	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 1, STAT_INTELLIGENCE = -1, STAT_SPEED = -2)
 
 /datum/statpack/physical/tactician
 	name = "Alert"
@@ -27,7 +27,7 @@
 
 /datum/statpack/physical/struggler
 	name = "Struggler"
-	desc = "Lyfe's dealt you a poor hand, so you've opted to simply flip the table instead."
+	desc = "Struggle, challenge, and rise to struggle again; for while fate itself seems to conspire against you, your unmatched physique ensures little is left to chance."
 	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 2, STAT_ENDURANCE = 2, STAT_INTELLIGENCE = -3, STAT_PERCEPTION = -3, STAT_FORTUNE = -2)
 
 /datum/statpack/physical/enduring
