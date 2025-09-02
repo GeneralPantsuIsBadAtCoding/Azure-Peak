@@ -25,34 +25,31 @@
 	var/max_radius = min(7, round(distance / shockwave_divisor))
 	var/knockup_threshold = 5
 	playsound(epicenter, 'sound/magic/lightning.ogg', 60, TRUE)
-	var/list/original_turf_types = list()
+	var/list/visual_effects = list()
 
 	sleep(5)
 	for(var/radius in 1 to max_radius)
 		var/list/ring_turfs = get_ring_turfs(epicenter, radius)
 		for(var/turf/T in ring_turfs)
-			if(istype(T, /turf/open/water) || istype(T, /turf/open/floor/rogue/dark_ice) || T.density)
+			if(T.density)
 				continue
-
-			original_turf_types[T] = T.type
-			T.ChangeTurf(/turf/open/floor/rogue/dark_ice, flags = CHANGETURF_IGNORE_AIR)
+			var/obj/effect/visuals/black_ice/V = new(T)
+			visual_effects[T] = V
 
 			for(var/mob/living/L in T)
 				affect_mob(L, distance, radius, knockup_threshold)
-		sleep(10)
-	revert_shockwave(epicenter, original_turf_types, max_radius)
+		sleep(5)
+	revert_shockwave(epicenter, visual_effects, max_radius)
 
-/obj/item/rogueweapon/spear/dreamscape_trident/proc/revert_shockwave(turf/epicenter, list/original_turf_types, max_radius)
-	// Ditto
+/obj/item/rogueweapon/spear/dreamscape_trident/proc/revert_shockwave(turf/epicenter, list/visual_effects, max_radius)
 	set waitfor = FALSE
 	for(var/radius in max_radius to 1 step -1)
 		var/list/ring_turfs = get_ring_turfs(epicenter, radius)
 		for(var/turf/T in ring_turfs)
-			var/original_type = original_turf_types[T]
-			if(original_type && istype(T, /turf/open/floor/rogue/dark_ice))
-				T.ChangeTurf(original_type, flags = CHANGETURF_IGNORE_AIR)
-		sleep(10)
-	original_turf_types.Cut()
+			if(visual_effects[T])
+				qdel(visual_effects[T])
+		sleep(5)
+	visual_effects.Cut()
 
 /obj/item/rogueweapon/spear/dreamscape_trident/proc/get_ring_turfs(turf/center, radius)
 	var/list/ring_turfs = list()
@@ -100,6 +97,13 @@
 		effect_strength = 2
 		if(radius <= 2) // Stronger effect closer to center
 			effect_strength = 3
+
+	if(shockwave_damage)
+		var/damage = round(distance)
+		damage += max(0,(18 - (radius*6)))
+		// Apply a small ammount of damage considering this is armor piercing damage
+		L.adjustBruteLoss(damage)
+
 	// Special knockup effect for strong throws
 	if(effect_strength >= 2 && radius <= 3)
 		L.Knockdown(1 * effect_strength)

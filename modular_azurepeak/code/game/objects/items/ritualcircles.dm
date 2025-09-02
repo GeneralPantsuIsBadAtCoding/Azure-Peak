@@ -289,7 +289,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		var/time_elapsed = STATION_TIME_PASSED() / (1 MINUTES)
 		if(time_elapsed < 30 && ("Rite of the Crystal Spire" in available_rites))
 			var/time_left = 30 - time_elapsed
-			to_chat(user, span_smallred("The veil is too thin for this rite. Wait another [round(time_left, 0.1)] minutes."))
+			to_chat(user, span_smallred("The veil is too thin to summon crystal spires. Wait another [round(time_left, 0.1)] minutes."))
 			available_rites -= "Rite of the Crystal Spire"
 
 	if(HAS_TRAIT(user, TRAIT_DREAMWALKER))
@@ -321,7 +321,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			var/list/weapon_options = list(
 				"Dreamreaver Greataxe" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamaxe"),
 				"Harmonious Spear" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamspear"),
-				"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamsword")
+				"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamsword"),
+				"Thunderous Trident" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamtri")
 			)
 
 			var/choice = show_radial_menu(user, src, weapon_options, require_near = TRUE, tooltips = TRUE)
@@ -364,6 +365,9 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		if("Dreamreaver Greataxe")
 			new_weapon = new /obj/item/rogueweapon/greataxe/dreamscape(user.loc)
 			skill_to_teach = /datum/skill/combat/axes
+		if("Thunderous Trident")
+			new_weapon = new /obj/item/rogueweapon/spear/dreamscape_trident(user.loc)
+			skill_to_teach = /datum/skill/combat/polearms
 
 	if(new_weapon)
 		user.put_in_hands(new_weapon)

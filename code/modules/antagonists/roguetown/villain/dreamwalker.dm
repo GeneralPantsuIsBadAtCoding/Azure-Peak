@@ -730,7 +730,8 @@
 		var/list/weapon_options = list(
 			"Dreamreaver Greataxe" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamaxeactive"),
 			"Harmonious Spear" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamspearactive"),
-			"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamswordactive")
+			"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamswordactive"),
+			"Thunderous Trident" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamtriactive")
 		)
 
 		var/choice = show_radial_menu(user, src, weapon_options, require_near = TRUE, tooltips = TRUE)
@@ -747,6 +748,8 @@
 					new_weapon = new /obj/item/rogueweapon/halberd/glaive/dreamscape/active(user.loc)
 				if("Oozing Sword")
 					new_weapon = new /obj/item/rogueweapon/greatsword/bsword/dreamscape/active(user.loc)
+				if("Thunderous Trident")
+					new_weapon = new /obj/item/rogueweapon/spear/dreamscape_trident/active(user.loc)
 
 			if(new_weapon)
 				to_chat(user, span_notice("You shape the sylveric ingots into a [choice]."))
@@ -881,17 +884,20 @@
 	var/shockwave_cooldown = 0
 	var/shockwave_cooldown_interval = 1 MINUTES
 	var/shockwave_divisor = 3
+	var/shockwave_damage = FALSE
 
 /obj/item/rogueweapon/spear/dreamscape_trident/active
 	name = "Iridescent trident"
 	desc = "A strange trident glimmering with an oily hue. The air shimmers around it."
 	icon_state = "dreamtriactive"
 	max_integrity = 480
+	throwforce = 50
 	force = 35
 	force_wielded = 25
 	wdefense = 5
 	shockwave_cooldown_interval = 30 SECONDS
 	shockwave_divisor = 2
+	shockwave_damage = TRUE
 
 // Update weapon initializations with specific effects
 /obj/item/rogueweapon/greataxe/dreamscape/active/Initialize()
@@ -905,6 +911,10 @@
 /obj/item/rogueweapon/greatsword/bsword/dreamscape/active/Initialize()
 	. = ..()
 	AddComponent(/datum/component/dream_weapon, "poison", 10 SECONDS)
+
+/obj/item/rogueweapon/spear/dreamscape_trident/active/Initialize()
+	. = ..()
+	AddComponent(/datum/component/dream_weapon, null, 20 SECONDS)
 
 /datum/outfit/job/roguetown/dreamwalker_armorrite/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -992,7 +1002,7 @@
 	name = "Dream Bind"
 	desc = "Bind a dream item to your soul, allowing you to summon it at will. Cast on a dream item to bind it, or cast on anything else to summon your bound item."
 	chargedrain = 0
-	chargetime = 1 SECONDS
+	chargetime = 0.5 SECONDS
 	recharge_time = 10 SECONDS
 	invocation_type = "whisper"
 	invocations = list("From dream to hand...")
