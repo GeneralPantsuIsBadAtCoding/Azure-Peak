@@ -878,6 +878,9 @@
 	throwforce = 40
 	force = 30
 	force_wielded = 20
+	var/shockwave_cooldown = 0
+	var/shockwave_cooldown_interval = 1 MINUTES
+	var/shockwave_divisor = 3
 
 /obj/item/rogueweapon/spear/dreamscape_trident/active
 	name = "Iridescent trident"
@@ -887,6 +890,8 @@
 	force = 35
 	force_wielded = 25
 	wdefense = 5
+	shockwave_cooldown_interval = 30 SECONDS
+	shockwave_divisor = 2
 
 // Update weapon initializations with specific effects
 /obj/item/rogueweapon/greataxe/dreamscape/active/Initialize()
