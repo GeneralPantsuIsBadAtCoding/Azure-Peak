@@ -34,3 +34,8 @@
 	name = "Enduring"
 	desc = "You've spent yils willingly submitting your body through a most perilous journey. Stalwart in your faith, you've sworn to never flee again."
 	stat_array = list(STAT_CONSTITUTION = 3, STAT_ENDURANCE = 3, STAT_SPEED = -4)
+
+/datum/statpack/physical/balanced
+	name = "Balanced"
+	desc = "This is a balanced statpack."
+	stat_array = list(STAT_STRENGTH = 4, STAT_SPEED = 5, STAT_PERCEPTION = -9, STAT_INTELLIGENCE = -9)
