@@ -32,10 +32,6 @@
 /datum/status_effect/fire_handler/on_creation(mob/living/new_owner, new_stacks, forced = FALSE)
 	. = ..()
 
-	if(isanimal(owner))
-		qdel(src)
-		return
-
 	owner = new_owner
 	set_stacks(new_stacks)
 
@@ -181,7 +177,7 @@
 	owner.on_fire_stack(seconds_per_tick, src)
 
 	var/turf/location = get_turf(owner)
-	location.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
+	location?.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
 
 /**
  * Used to deal damage to humans and count their protection.

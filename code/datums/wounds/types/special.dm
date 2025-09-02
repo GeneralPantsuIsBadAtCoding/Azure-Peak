@@ -318,6 +318,7 @@
 	can_sew = FALSE
 	can_cauterize = FALSE
 	disabling = TRUE
+	bypass_bloody_wound_check = TRUE
 
 /datum/wound/sunder/chest
 	name = "sundered lux"

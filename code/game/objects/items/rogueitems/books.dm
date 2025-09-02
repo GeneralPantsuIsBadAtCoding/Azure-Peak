@@ -218,17 +218,20 @@
 		user.visible_message(span_notice("[user] blesses [M]."))
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
-	if(user.mind?.assigned_role == "Bishop" && isitem(M) && user.used_intent?.type == /datum/intent/bless)
-		var/datum/component/silverbless/CP = M.GetComponent(/datum/component/silverbless)
+
+/obj/item/book/rogue/bibble/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(user.mind?.assigned_role == "Bishop" && isitem(target) && user.used_intent?.type == /datum/intent/bless)
+		var/datum/component/silverbless/CP = target.GetComponent(/datum/component/silverbless)
 		if(!CP)
-			to_chat(user, span_info("\The [M] can not be blessed."))
+			to_chat(user, span_info("\The [target] can not be blessed."))
 			return
 		else if(!CP.is_blessed && (CP.silver_type & SILVER_TENNITE))
 			playsound(user, 'sound/magic/censercharging.ogg', 100)
-			user.visible_message(span_info("[user] holds \the [src] over \the [M]..."))
-			if(do_after(user, 5 SECONDS, target = M))
+			user.visible_message(span_info("[user] holds \the [src] over \the [target]..."))
+			if(do_after(user, 5 SECONDS, target = target))
 				CP.try_bless(BLESSING_TENNITE)
-				new /obj/effect/temp_visual/censer_dust(get_turf(M))
+				new /obj/effect/temp_visual/censer_dust(get_turf(target))
 			return
 		else
 			to_chat(user, span_info("It has already been blessed."))

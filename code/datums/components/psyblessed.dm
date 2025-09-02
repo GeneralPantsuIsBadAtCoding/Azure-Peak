@@ -47,7 +47,7 @@
 		if(!H.mind)
 			return
 		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V_lord.vamplevel >= 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+		if(V_lord?.vamplevel >= 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 			return
 
 		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))

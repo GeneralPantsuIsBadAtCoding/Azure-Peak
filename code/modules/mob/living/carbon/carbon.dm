@@ -370,7 +370,7 @@
 	var/datum/status_effect/fire_handler/fire_stacks/divine_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
 	var/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/blessed_sunder = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 
-	if(fire_status.stacks + sunder_status.stacks + divine_status.stacks > 10 || !(mobility_flags & MOBILITY_STAND))
+	if(fire_status?.stacks + sunder_status?.stacks + divine_status?.stacks + blessed_sunder?.stacks > 10 || !(mobility_flags & MOBILITY_STAND))
 		Paralyze(50, TRUE, TRUE)
 		spin(32,2)
 		adjust_fire_stacks(-5, /datum/status_effect/fire_handler/fire_stacks)

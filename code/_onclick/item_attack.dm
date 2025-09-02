@@ -576,17 +576,17 @@
 /obj/item/proc/funny_attack_effects(mob/living/target, mob/living/user, nodmg)
 	pass()
 
-/obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H, selzone)
+/obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(H, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
+	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 
-	if(is_silver && HAS_TRAIT(H, TRAIT_SILVER_WEAK))
+	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
 		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
 		if(blesscomp?.is_blessed)
-			H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 		else
-			H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
-		H.ignite_mob()
+			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		victim.ignite_mob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)
@@ -629,7 +629,8 @@
 	if(I.force_dynamic < force_threshold || I.damtype == STAMINA)
 		playsound(loc, 'sound/blank.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
-		return ..()
+		. = ..()
+		I.do_special_attack_effect(user, null, null, src, null)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
