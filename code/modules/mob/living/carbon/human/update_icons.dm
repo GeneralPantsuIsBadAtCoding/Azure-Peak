@@ -83,6 +83,7 @@ There are several things that need to be remembered:
 		new_fire_overlay.appearance_flags = RESET_COLOR
 		overlays_standing[SUNDER_LAYER] = new_fire_overlay
 		apply_overlay(SUNDER_LAYER)
+		return
 	else
 		remove_filter(SUNDER_FILTER)
 		remove_overlay(SUNDER_LAYER)
