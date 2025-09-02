@@ -268,6 +268,15 @@
 /datum/status_effect/fire_handler/fire_stacks/sunder/harm_human(seconds_per_tick, no_protection = FALSE)
 	var/mob/living/carbon/human/victim = owner
 	victim?.dna?.species?.handle_fire(victim, no_protection)
+	victim.adjustFireLoss(5)
+
+/datum/status_effect/fire_handler/fire_stacks/sunder/blessed
+	id = "fire_stacks_sunder_blessed"
+
+/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/harm_human(seconds_per_tick, no_protection = FALSE)
+	var/mob/living/carbon/human/victim = owner
+	victim?.dna?.species?.handle_fire(victim, no_protection)
+	victim.adjustFireLoss(10)
 
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"

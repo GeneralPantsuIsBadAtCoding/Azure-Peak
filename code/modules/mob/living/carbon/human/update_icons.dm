@@ -72,7 +72,8 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_fire()
 	var/datum/status_effect/fire_handler/fire_stacks/sunder/sunder_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
-	if(sunder_status?.on_fire)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/blessed_sunder = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+	if(sunder_status?.on_fire || blessed_sunder?.on_fire)
 		var/filter = get_filter(SUNDER_FILTER)
 		if(!filter)
 			add_filter(SUNDER_FILTER, 2, list("type" = "outline", "color" = "#ffffff", "alpha" = 60, "size" = 1))

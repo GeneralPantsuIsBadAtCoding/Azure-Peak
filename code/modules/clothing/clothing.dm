@@ -261,6 +261,7 @@
 		M.adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks/divine)
 		M.adjust_fire_stacks(-2)
 		M.adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		M.adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 		take_damage(10, BURN, "fire")
 	else
 		return ..()

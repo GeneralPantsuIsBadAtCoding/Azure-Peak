@@ -581,7 +581,11 @@
 	SEND_SIGNAL(H, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 
 	if(is_silver && HAS_TRAIT(H, TRAIT_SILVER_WEAK))
-		H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
+		if(blesscomp?.is_blessed)
+			H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+		else
+			H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
 		H.ignite_mob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
