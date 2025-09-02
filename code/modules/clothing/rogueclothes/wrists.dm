@@ -2,6 +2,8 @@
 	slot_flags = ITEM_SLOT_WRISTS
 	icon = 'icons/roguetown/clothing/wrists.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
+	sleeved = null
+	sleevetype = null
 	sleeved_detail = null
 	resistance_flags = FLAMMABLE
 	sewrepair = TRUE
