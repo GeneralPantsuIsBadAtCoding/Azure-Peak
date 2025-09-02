@@ -867,6 +867,27 @@
 	force_wielded = 35
 	wdefense = 5
 
+/obj/item/rogueweapon/spear/dreamscape_trident
+	name = "otherworldly trident"
+	desc = "A strange trident. It feels like it shouldn't be an effective weapon, but the dull metal whispers tales of its power to you."
+	icon_state = "dreamtri"
+	smeltresult = null
+	max_blade_int = 240
+	minstr = 8
+	wdefense = 4
+	throwforce = 40
+	force = 30
+	force_wielded = 20
+
+/obj/item/rogueweapon/spear/dreamscape_trident/active
+	name = "Iridescent trident"
+	desc = "A strange trident glimmering with an oily hue. The air shimmers around it."
+	icon_state = "dreamtriactive"
+	max_integrity = 480
+	force = 35
+	force_wielded = 25
+	wdefense = 5
+
 // Update weapon initializations with specific effects
 /obj/item/rogueweapon/greataxe/dreamscape/active/Initialize()
 	. = ..()
