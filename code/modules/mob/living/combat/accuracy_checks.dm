@@ -5,6 +5,13 @@
 #define RANGED_ULTRA_PRECISE_HIT_PENALTY -25 // -25 for you - THEN we clamp.
 #define RANGED_MAX_PRECISE_HIT_CHANCE 75 // No matter what max 75% chance to hit
 #define RANGED_PRECISE_HIT_PENALTY -10 // -10 - THEN we clamp.
+#define BODY_PART_LOWER_BODY list(BODY_ZONE_L_LEG, \
+ BODY_ZONE_R_LEG, \
+ BODY_ZONE_PRECISE_R_FOOT, \
+ BODY_ZONE_PRECISE_L_FOOT, \
+ BODY_ZONE_PRECISE_GROIN \
+)
+#define SHORT_RACES list(/datum/species/dwarf/mountain, /datum/species/dwarf, /datum/species/goblin, /datum/species/anthromorphsmall, /datum/species/kobold)
 
 /proc/accuracy_check(zone, mob/living/user, mob/living/target, associated_skill, datum/intent/used_intent, obj/item/I)
 	if(!zone)
@@ -29,6 +36,23 @@
 
 	if(check_zone(zone) == zone)	//Are we targeting a big limb or chest?
 		chance2hit += 10
+
+	if(istype(user, /mob/living/carbon/human) && istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/attacker = user
+		var/mob/living/carbon/human/defender = target
+		var/is_user_short = FALSE
+		var/is_target_short = FALSE
+		for(var/species in SHORT_RACES)
+			if(is_species(attacker, species))
+				is_user_short = TRUE
+			if(is_species(defender, species))
+				is_target_short = TRUE
+		// +15% chance to hit the lower body
+		if(is_user_short && !is_target_short && (zone in BODY_PART_LOWER_BODY))
+			chance2hit += 15
+		// +15% chance to hit head or subpart of head
+		if(!is_user_short && is_target_short && check_zone(zone) == BODY_ZONE_HEAD)
+			chance2hit += 15
 
 	chance2hit += (user.get_skill_level(associated_skill) * 8)
 
@@ -144,3 +168,4 @@
 #undef RANGED_ULTRA_PRECISE_HIT_PENALTY
 #undef RANGED_MAX_ULTRA_PRECISE_HIT_CHANCE
 #undef RANGED_PRECISE_HIT_PENALTY
+#undef BODY_ZONE_LOWER_BODY
