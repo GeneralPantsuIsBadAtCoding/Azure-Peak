@@ -337,3 +337,5 @@
 		carbon_affected.vomit(blood = TRUE)
 	to_chat(affected, span_userdanger("PSYDON GRABS MY WEARY... LUX?!"))
 	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)
+	if(HAS_TRAIT(affected, TRAIT_SILVER_WEAK))
+		affected.death()
