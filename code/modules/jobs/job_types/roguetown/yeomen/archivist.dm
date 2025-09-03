@@ -64,15 +64,15 @@
 	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
-	H.change_stat("strength", -1)
-	H.change_stat("constitution", -1)
-	H.change_stat("intelligence", 4)
+	H.change_stat(STATKEY_STR, -1)
+	H.change_stat(STATKEY_CON, -1)
+	H.change_stat(STATKEY_INT, 4)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)
 		H.mind?.adjust_spellpoints(12)
 	if(H.age == AGE_OLD)
-		H.change_stat("speed", -1)
-		H.change_stat("intelligence", 1)
+		H.change_stat(STATKEY_SPD, -1)
+		H.change_stat(STATKEY_INT, 1)
 
 
 //A spell to teach other characters new skills

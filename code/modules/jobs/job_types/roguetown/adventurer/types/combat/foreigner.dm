@@ -52,9 +52,9 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/flashlight/flare/torch/lantern,
 				)
-			H.change_stat("strength", 2)
-			H.change_stat("willpower", 1)
-			H.change_stat("constitution", 2)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 2)
 			H.set_blindness(0)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
@@ -86,9 +86,9 @@
 					r_hand = /obj/item/rogueweapon/spear/naginata
 				if("Quarterstaff")
 					backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
-			H.change_stat("strength", 2) // Took off the weight and moved it to qstaff
-			H.change_stat("willpower", 1)
-			H.change_stat("constitution", 2)
+			H.change_stat(STATKEY_STR, 2) // Took off the weight and moved it to qstaff
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 2)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
 		if("Yoruku")
@@ -117,9 +117,9 @@
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			H.change_stat("perception", 1)
-			H.change_stat("willpower", 1)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 3)
 			H.set_blindness(0)
 			var/weapons = list("Tanto","Kodachi")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -127,11 +127,11 @@
 				if("Tanto")
 					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
 					beltl = /obj/item/rogueweapon/scabbard/sheath/kazengun
-					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 				if("Kodachi")
 					beltr = /obj/item/rogueweapon/sword/short/kazengun
 					beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
-					H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 			var/masks = list("Oni","Kitsune")
 			var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
 			switch(mask_choice)

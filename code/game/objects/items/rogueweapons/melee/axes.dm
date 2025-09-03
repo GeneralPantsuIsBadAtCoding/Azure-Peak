@@ -406,6 +406,15 @@
 	. = ..()
 	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
+/obj/item/rogueweapon/stoneaxe/battle/steppesman
+	name = "aavnic valaška"
+	desc = "A steel axe of Aavnic make that combines a deadly weapon with a walking stick - hence its pointed end. It has a flat head that fits the hand comfortably, and it's usable for chopping and smashing. You could probably stab someone if you tried really hard."
+	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/mace/smash/flataxe, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/axe/cut/battle ,/datum/intent/axe/chop/battle, /datum/intent/stab, /datum/intent/sword/peel)
+	force_wielded = 25	//No damage changes for wielded/unwielded
+	icon_state = "valaska"
+	demolition_mod = 2
+	walking_stick = TRUE
 
 /datum/intent/axe/cut/battle/greataxe
 	reach = 2

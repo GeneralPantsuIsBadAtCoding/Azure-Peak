@@ -50,9 +50,9 @@
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("fortune", 1)
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_LCK, 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 	if(prob(33))
@@ -62,4 +62,4 @@
 	else //the legendary shopARM
 		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-		H.change_stat("strength", 1)
+		H.change_stat(STATKEY_STR, 1)

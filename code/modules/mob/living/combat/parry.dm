@@ -257,6 +257,15 @@
 					intdam = INTEG_PARRY_DECAY_NOSHARP
 				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
 				used_weapon.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+
+			if(mind && user.mind && HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+				if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
+					if(prob(10))
+						text = "<i>Somewhere...</i>"
+						user.balloon_alert(src, text)
+				else
+					user.balloon_alert(src, text)
 			return TRUE
 		else
 			return FALSE

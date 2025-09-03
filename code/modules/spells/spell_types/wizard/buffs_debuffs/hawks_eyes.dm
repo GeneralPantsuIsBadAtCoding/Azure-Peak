@@ -51,7 +51,7 @@
 	var/outline_colour ="#ffff00" // Same color as perception potion
 	id = "hawkseyes"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/hawks_eyes
-	effectedstats = list("perception" = 5)
+	effectedstats = list(STATKEY_PER = 5)
 	duration = 1 MINUTES
 
 /datum/status_effect/buff/hawks_eyes/other

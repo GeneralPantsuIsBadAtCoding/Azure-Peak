@@ -260,6 +260,15 @@
 
 			user.visible_message(span_warning("<b>[user]</b> clips [src]'s weapon!"))
 			playsound(user, 'sound/misc/weapon_clip.ogg', 100)
+
+	if(mind && user.mind && HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+		if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
+			if(prob(10))
+				text = "<i>Can't tell...</i>"
+				user.balloon_alert(src, text)
+		else
+			user.balloon_alert(src, text)
 	dodgecd = FALSE
 //		if(H)
 //			if(H.IsOffBalanced())

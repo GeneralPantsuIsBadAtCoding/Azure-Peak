@@ -495,11 +495,11 @@
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDICINE_EXPERT, TRAIT_GENERIC)	//Tentative!
 	ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
-	H.change_stat("strength", 2)
-	H.change_stat("constitution", 3)
-	H.change_stat("willpower", 3)
-	H.change_stat("intelligence", 1)
-	H.change_stat("perception", 1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_PER, 1)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 
 

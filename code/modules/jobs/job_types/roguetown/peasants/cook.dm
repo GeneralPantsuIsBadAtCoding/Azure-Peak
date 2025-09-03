@@ -51,7 +51,7 @@
 	backpack_contents = list(
 		/obj/item/recipe_book/survival,
 	)
-	H.change_stat("constitution", 2)
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 1) //5 points (weighted)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_INT, 1) //5 points (weighted)
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)

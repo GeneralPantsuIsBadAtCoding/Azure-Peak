@@ -44,8 +44,8 @@
 		if(H.age == AGE_OLD)
 			H.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.change_stat("constitution", 2)
-		H.change_stat("perception", 2)
+		H.change_stat(STATKEY_CON, 2)
+		H.change_stat(STATKEY_PER, 2)
 	else
 		pants = /obj/item/clothing/under/roguetown/trou
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
@@ -74,5 +74,5 @@
 		if(H.age == AGE_OLD)
 			H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.change_stat("constitution", 1)
-		H.change_stat("perception", 2)
+		H.change_stat(STATKEY_CON, 1)
+		H.change_stat(STATKEY_PER, 2)

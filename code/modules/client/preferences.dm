@@ -47,6 +47,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/floating_text_toggles = TOGGLES_TEXT_DEFAULT
+	var/admin_chat_toggles = TOGGLES_DEFAULT_CHAT_ADMIN
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"

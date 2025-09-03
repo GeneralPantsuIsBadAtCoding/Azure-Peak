@@ -95,7 +95,7 @@
 		return
 	else
 		//stat boost
-		user.change_stat("perception", 2)
+		user.change_stat(STATKEY_PER, 2)
 
 		//Bow boost
 		if (user.get_skill_level(/datum/skill/combat/bows) == 6)
@@ -136,7 +136,7 @@
 /datum/magic_item/greater/archery/on_drop(var/obj/item/i, var/mob/living/user)
 	if(active_item)
 		active_item = FALSE
-		user.change_stat("perception", -2)
+		user.change_stat(STATKEY_PER, -2)
 		//correct bows
 		if (!legendbow)
 			if (masterbow)

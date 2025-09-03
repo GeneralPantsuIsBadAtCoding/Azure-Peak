@@ -1012,16 +1012,10 @@
 
 		if (number == 1)
 			log_admin("[key_name(usr)] created a [english_list(paths)]")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created a [english_list(paths)]")
-					break
+			spawn_message_admins("[key_name_admin(usr)] created a [english_list(paths)]")
 		else
 			log_admin("[key_name(usr)] created [number]ea [english_list(paths)]")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created [number]ea [english_list(paths)]")
-					break
+			spawn_message_admins("[key_name_admin(usr)] created [number]ea [english_list(paths)]")
 		return
 
 	else if(href_list["secrets"])

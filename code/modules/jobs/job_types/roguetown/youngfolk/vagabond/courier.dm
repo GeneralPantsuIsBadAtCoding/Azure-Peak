@@ -29,5 +29,5 @@
 		H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.change_stat("constitution", -2)
-		H.change_stat("perception", 2) // never going back to that place again
+		H.change_stat(STATKEY_CON, -2)
+		H.change_stat(STATKEY_PER, 2) // never going back to that place again

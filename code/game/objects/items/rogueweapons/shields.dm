@@ -405,6 +405,12 @@
 
 #undef SHIELD_BANG_COOLDOWN
 
+/obj/item/rogueweapon/shield/iron/steppesman
+	name = "steppesman shield"
+	desc = "A banded iron shield decorated with traditional Aavnic colours, often seen in the hands of the Steppesmen."
+	icon_state = "ironsh_steppeman"
+	max_integrity = 250 //+30
+
 /*/obj/item/rogueweapon/shield/buckler/freelancer
 	name = "fencer's wrap"
 	desc = "A traditional Etruscan quilted cloth square with a woolen cover. It can be used to daze and distract people with its bright colours and hanging steel balls."

@@ -45,8 +45,6 @@
 	if(I)
 		if(I.wlength == WLENGTH_SHORT)
 			chance2hit += 10
-		if((I.wlength >= WLENGTH_LONG) && (used_intent.blade_class == BCLASS_PEEL))
-			chance2hit -= 20
 
 	if(user.STAPER > 10)
 		chance2hit += (min((user.STAPER-10)*8, 40))

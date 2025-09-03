@@ -216,7 +216,7 @@
 		per_bonus++
 		duration *= 2
 	if(per_bonus > 0)
-		effectedstats = list("perception" = per_bonus)
+		effectedstats = list(STATKEY_PER = per_bonus)
 	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
 	. = ..()
 

@@ -84,7 +84,7 @@
 	swingdelay = 0
 	damfactor = 0.01
 	item_d_type = "slash"
-	peel_divisor = 4
+	peel_divisor = 5
 
 /datum/intent/sword/peel/big
 	name = "big sword armor peel"
@@ -788,6 +788,15 @@
 	max_integrity = 100
 	icon_state = "isaber"
 	sellprice = 10
+
+/obj/item/rogueweapon/sword/sabre/steppesman
+	name = "aavnic shashka"
+	desc = "A single-edged, single-handed, and guardless blade of northern Aavnic make with a brass pommel in the shape of a zad's head. The gentle curve of its blade puts it midway between a radically curved sabre and a straight sword, effective for both cutting and thrusting but lacking raw defense potential."
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre, /datum/intent/rend, /datum/intent/sword/chop)
+	wdefense = 5
+	minstr = 6
+	icon_state = "shashka"
+	sheathe_icon = "shashka"
 
 //Unique church sword - slightly better than regular sabre due to falx chop.
 /obj/item/rogueweapon/sword/sabre/nockhopesh

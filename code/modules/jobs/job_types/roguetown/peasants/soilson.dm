@@ -57,9 +57,9 @@
 	if(H.age == AGE_OLD)//So ppl have reason to pick this I guess?
 		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("speed", 1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_SPD, 1)
 	ADD_TRAIT(H, TRAIT_SEEDKNOW, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_LONGSTRIDER, TRAIT_GENERIC)

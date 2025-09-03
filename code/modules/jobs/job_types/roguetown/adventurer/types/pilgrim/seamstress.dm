@@ -35,7 +35,7 @@
 						/obj/item/recipe_book/sewing = 1, 
 						/obj/item/recipe_book/leatherworking = 1
 						)
-	H.change_stat("intelligence", 2)
-	H.change_stat("speed", 2)
-	H.change_stat("perception", 1)
-	H.change_stat("strength", -1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_STR, -1)

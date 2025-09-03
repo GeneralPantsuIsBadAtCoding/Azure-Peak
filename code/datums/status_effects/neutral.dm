@@ -156,7 +156,7 @@
 /datum/status_effect/wheel/on_apply()
 	. = ..()
 	wheeleffect = rand(-5,5)
-	owner.change_stat("fortune", wheeleffect)
+	owner.change_stat(STATKEY_LCK, wheeleffect)
 	switch(wheeleffect)
 		if(-5 to -1)
 			to_chat(owner, span_boldnotice("My heart sinks, I feel as though I've lost something!"))
@@ -167,7 +167,7 @@
 
 /datum/status_effect/wheel/on_remove()
 	. = ..()
-	owner.change_stat("fortune", -wheeleffect)
+	owner.change_stat(STATKEY_LCK, -wheeleffect)
 
 /atom/movable/screen/alert/status_effect/wheel
 	name = "Lucky(?)"

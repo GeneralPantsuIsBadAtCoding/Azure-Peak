@@ -35,7 +35,7 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 	H.STALUC = rand(3, 8)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_SPD, 2)
 	armor = /obj/item/clothing/suit/roguetown/shirt/rags
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 	pants = /obj/item/clothing/under/roguetown/tights/vagrant

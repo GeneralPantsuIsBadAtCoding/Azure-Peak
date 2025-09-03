@@ -128,7 +128,7 @@
 /datum/status_effect/buff/equalizebuff
 	id = "equalize"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/equalized
-	effectedstats = list("strength" = 2, "constitution" = 2, "speed" = 2)
+	effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 2, STATKEY_SPD = 2)
 	duration = 1 MINUTES
 	var/outline_colour = "#FFD700"
 
@@ -151,7 +151,7 @@
 /datum/status_effect/debuff/equalizedebuff
 	id = "equalize"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/equalized
-	effectedstats = list("strength" = -2, "constitution" = -2, "speed" = -2)
+	effectedstats = list(STATKEY_STR = -2, STATKEY_CON = -2, STATKEY_SPD = -2)
 	duration = 1 MINUTES
 	var/outline_colour = "#FFD700"
 
