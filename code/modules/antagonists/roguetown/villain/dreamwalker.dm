@@ -91,12 +91,12 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	// We lose our statpack & racial, so bonuses are significant.
-	H.change_stat("strength", 5)
-	H.change_stat("intelligence", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("speed", 2)
-	H.change_stat("willpower", 2)
+	H.change_stat(STATKEY_STR, 5)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_WIL, 2)
 
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
