@@ -1,7 +1,6 @@
 /datum/advclass/foreigner
-	name = "Foreigner"
-	tutorial = "Strangers from relatively obscure lands, with completely different cultures\
-	they usually bring unique and varied fighting styles. They typically originate from Kazengun, or elsewhere."
+	name = "Easterner"
+	tutorial = "Strangers from the distant Eastern land known as Kazengun, usually with unique and varied fighting styles."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = NON_DWARVEN_RACE_TYPES //roughneck & custodian sprites dont have dwarf variants - adjust if/when a second update comes out with dwarf sprites
 	outfit = /datum/outfit/job/roguetown/adventurer/foreigner
@@ -127,11 +126,11 @@
 				if("Tanto")
 					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
 					beltl = /obj/item/rogueweapon/scabbard/sheath/kazengun
-					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/swords, 3, TRUE)
 				if("Kodachi")
 					beltr = /obj/item/rogueweapon/sword/short/kazengun
 					beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
-					H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+					H.adjust_skillrank_up_to(/datum/skill/combat/knives, 3, TRUE)
 			var/masks = list("Oni","Kitsune")
 			var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
 			switch(mask_choice)
