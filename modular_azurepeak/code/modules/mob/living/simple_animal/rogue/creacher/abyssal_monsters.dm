@@ -160,8 +160,8 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major/death()
-	if(prob(1))
-		new /obj/item/rogueweapon/greataxe/dreamscape(loc)
+	if(prob(25))
+		new /obj/effect/spawner/lootdrop/roguetown/abyssor(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
 	var/main_target = ai_controller.blackboard[BB_MAIN_TARGET]
 	for(var/i in 1 to 2)
@@ -173,11 +173,11 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/death()
-	if(prob(50))
+	if(prob(100))
 		if(prob(1))
 			new /obj/item/rogueweapon/greataxe/dreamscape/active(loc)
 		else
-			new /obj/item/rogueweapon/greataxe/dreamscape(loc)
+			new /obj/effect/spawner/lootdrop/roguetown/abyssor(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/huge(loc)
 	qdel(src)
 
@@ -218,8 +218,8 @@
 	ai_controller = /datum/ai_controller/dreamfiend_unbound
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound/death()
-	if(prob(1))
-		new /obj/item/rogueweapon/greataxe/dreamscape(loc)
+	if(prob(25))
+		new /obj/effect/spawner/lootdrop/roguetown/abyssor(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
 	for(var/i in 1 to 2)
 		new /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound(loc)
