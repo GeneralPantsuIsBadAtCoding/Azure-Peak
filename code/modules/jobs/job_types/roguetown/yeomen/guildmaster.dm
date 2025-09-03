@@ -76,7 +76,7 @@
 
 	H.change_stat("strength", 2)
 	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 2)
 
 /mob/living/carbon/human/proc/guild_announcement()

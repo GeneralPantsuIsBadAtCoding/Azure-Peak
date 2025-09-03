@@ -122,7 +122,7 @@
 
 	W.STASTR = 20
 	W.STACON = 20
-	W.STAEND = 20
+	W.STAWIL = 20
 
 	W.AddSpell(new /obj/effect/proc_holder/spell/self/howl)
 	W.AddSpell(new /obj/effect/proc_holder/spell/self/claws)

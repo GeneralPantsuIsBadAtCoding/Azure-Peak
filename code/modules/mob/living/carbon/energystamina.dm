@@ -25,7 +25,7 @@
 /mob/living/proc/update_energy()
 	var/athletics_skill = 0
 	athletics_skill = get_skill_level(/datum/skill/misc/athletics)
-	max_energy = (STAEND + (athletics_skill/2 ) ) * 100
+	max_energy = (STAWIL + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
 			energy_add(-2)

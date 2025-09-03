@@ -87,7 +87,7 @@
 	H.STASTR = 18
 	H.STASPD = 18
 	H.STACON = 18
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAPER = 15
 	H.STAINT = 15
 	H.eye_color = "27becc"

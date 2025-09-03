@@ -60,13 +60,13 @@
 	H.grant_language(/datum/language/beast)
 	H.put_in_hands(new /obj/item/rogueweapon/woodstaff(H), TRUE) //To encourage them to wander the forests and to help defend themselves
 	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("speed", 1)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/magic/druidic, 1, TRUE)
 	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("perception", -1)
 	H.ambushable = FALSE
 

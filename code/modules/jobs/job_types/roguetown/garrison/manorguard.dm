@@ -85,7 +85,7 @@
 	H.change_stat("strength", 2) // seems kinda lame but remember guardsman bonus!!
 	H.change_stat("intelligence", 1)
 	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -183,7 +183,7 @@
 
 
 	//Garrison ranged/speed class. Time to go wild
-	H.change_stat("endurance", 1) // seems kinda lame but remember guardsman bonus!!
+	H.change_stat("willpower", 1) // seems kinda lame but remember guardsman bonus!!
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)
 
@@ -284,7 +284,7 @@
 	//Garrison mounted class; charge and charge often.
 	H.change_stat("strength", 1)
 	H.change_stat("constitution", 2) 
-	H.change_stat("endurance", 2) // Your name is speed, and speed is running.
+	H.change_stat("willpower", 2) // Your name is speed, and speed is running.
 	H.change_stat("intelligence", 1) // No strength to account for the nominally better weapons. We'll see.
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson		//Bit worse shirt protection than the archer -- as foot soldier.

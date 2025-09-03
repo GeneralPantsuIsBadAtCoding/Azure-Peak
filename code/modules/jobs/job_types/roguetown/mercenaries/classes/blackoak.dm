@@ -36,7 +36,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("constitution", 1)
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", -1)
@@ -68,7 +68,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
 			H.change_stat("constitution", -1)
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 3)
 			head = /obj/item/clothing/head/roguetown/helmet/sallet/elven

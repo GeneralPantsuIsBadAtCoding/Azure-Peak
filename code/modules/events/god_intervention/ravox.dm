@@ -39,7 +39,7 @@
 		return
 
 	weakest.change_stat("strength", 1)
-	weakest.change_stat("endurance", 1)
+	weakest.change_stat("willpower", 1)
 	weakest.change_stat("constitution", 1)
 	to_chat(weakest, span_green("You may be weak compared to your fellow warriors of justice, but still you persevere. Ravox honors those who fight even when victory seems impossible. Let his gift of strength be your whetstone — now strike!"))
 	weakest.playsound_local(weakest, 'sound/vo/male/knight/rage (6).ogg', 70)

@@ -48,7 +48,7 @@
 						/obj/item/flashlight/flare/torch = 1,
 						)
 	H.change_stat("strength", 2)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	H.change_stat("constitution", 1)
 	H.change_stat("intelligence", 2)
 	H.change_stat("speed", 1)

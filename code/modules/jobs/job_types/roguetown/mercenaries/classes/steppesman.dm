@@ -64,7 +64,7 @@
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("constitution", 2)
 			H.change_stat("speed", 1)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
@@ -93,7 +93,7 @@
 			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 			H.change_stat("perception", 3)
-			H.change_stat("endurance", 2)
+			H.change_stat("willpower", 2)
 			H.change_stat("speed", 2)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Kozak - Melee Skirmisher")		//Tl;dr - Old Steppesman whip build, light armor, be the glass canon you always wanted to be. Live your life, king. 
@@ -118,7 +118,7 @@
 			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 			H.change_stat("strength", 1)
 			H.change_stat("perception", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("speed", 2)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()		//Semi-crazed warrior vibe.

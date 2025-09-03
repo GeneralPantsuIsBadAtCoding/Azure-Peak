@@ -71,7 +71,7 @@
 		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/roguekey/inquisition = 1,
 		)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	H.change_stat("constitution", 7)
 	H.change_stat("speed", -2)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	H.STASTR = 12
 	H.STASPD = 11
 	H.STACON = 12
-	H.STAEND = 12
+	H.STAWIL = 12
 	H.STAPER = 14
 	H.STAINT = 11
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	H.STASTR = 16
 	H.STASPD = 11
 	H.STACON = 14
-	H.STAEND = 14
+	H.STAWIL = 14
 	H.STAPER = 14
 	H.STAINT = 11
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)

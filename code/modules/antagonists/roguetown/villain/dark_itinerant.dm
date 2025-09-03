@@ -65,7 +65,7 @@
 		H.change_stat(STATKEY_STR, 1)
 		H.change_stat(STATKEY_PER, 2)
 		H.change_stat(STATKEY_CON, 2)
-		H.change_stat(STATKEY_END, 1)
+		H.change_stat(STATKEY_WIL, 1)
 		H.change_stat(STATKEY_SPD, 1) // 9 weighted
 
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mindlink)
@@ -140,7 +140,7 @@
 		H.change_stat(STATKEY_PER, 2)
 		H.change_stat(STATKEY_INT, 3)
 		H.change_stat(STATKEY_CON, 2)
-		H.change_stat(STATKEY_END, 2) 
+		H.change_stat(STATKEY_WIL, 2) 
 		H.change_stat(STATKEY_SPD, -1) // 11 weighted
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mindlink)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/zizosquire)

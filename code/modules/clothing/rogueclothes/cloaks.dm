@@ -1276,6 +1276,9 @@
 		for(var/obj/item/I in things)
 			STR.remove_from_storage(I, get_turf(src))
 
+/obj/item/clothing/cloak/thief_cloak/yoruku
+	color = CLOTHING_BLACK
+
 /obj/item/clothing/cloak/templar
 	var/overarmor = TRUE
 
@@ -1609,7 +1612,7 @@
 			user.change_stat("perception", 2)
 			user.change_stat("intelligence", 2)
 			user.change_stat("constitution", 2)
-			user.change_stat("endurance", 2)
+			user.change_stat("willpower", 2)
 			user.change_stat("speed", 2)
 			armor = getArmor("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 50, "acid" = 0)
 		else
@@ -1627,7 +1630,7 @@
 		user.change_stat("perception", -2)
 		user.change_stat("intelligence", -2)
 		user.change_stat("constitution", -2)
-		user.change_stat("endurance", -2)
+		user.change_stat("willpower", -2)
 		user.change_stat("speed", -2)
 	else
 		to_chat(user, span_notice("Strange, I don't feel that power anymore..."))

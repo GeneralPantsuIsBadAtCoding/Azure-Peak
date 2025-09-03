@@ -192,7 +192,7 @@
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 
 		if ("Doomsayer")
 			to_chat(H, span_warning("THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly."))
@@ -267,7 +267,7 @@
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 
 		if ("Harlequin")
 			to_chat(H, span_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
@@ -298,7 +298,7 @@
 			ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.change_stat("speed", 2)
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons

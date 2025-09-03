@@ -200,7 +200,7 @@
 	H.STASTR = rand(14,16)
 	H.STASPD = 11
 	H.STACON = rand(11,13)
-	H.STAEND = 13
+	H.STAWIL = 13
 	H.STAPER = 11
 	H.STAINT = 11
 	//Chest Gear
@@ -288,7 +288,7 @@
 	H.STASTR = rand(14,16)
 	H.STASPD = 11
 	H.STACON = rand(11,13)
-	H.STAEND = 13
+	H.STAWIL = 13
 	H.STAPER = 11
 	H.STAINT = 11
 	//Chest Gear

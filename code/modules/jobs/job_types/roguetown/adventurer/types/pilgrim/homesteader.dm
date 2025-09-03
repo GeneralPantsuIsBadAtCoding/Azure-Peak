@@ -109,7 +109,7 @@
 
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	H.change_stat("strength", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("intelligence", 3)	//This guy's here to grind, baby.
 	H.change_stat("perception", 1)
 	H.change_stat("fortune", 1)

@@ -52,3 +52,15 @@
 		icon_state = "[base_state]1"
 	else
 		icon_state = "[base_state]0"
+
+/obj/machinery/light/oldlight
+	name = "ancyent lightbar"
+	desc = "Two frustrums hold a glaring death-light. Solid and unyielding."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "celestial_light"
+	brightness = 10
+	bulb_power = 1
+	bulb_colour = "#fcd294"
+	light_color = "#75021d"
+	max_integrity = 0
+	fueluse = 0
