@@ -1,3 +1,9 @@
+///////////////////////////
+//   NPC Related Buffs   //
+///////////////////////////
+
+//NPC and simple mob related buffs
+
 /atom/movable/screen/alert/status_effect/buff/healing/spider_cocoon
 	name = "Spider loogies"
 	desc = "Arachnid weave is stitching some of my wounds up slowly."
@@ -47,3 +53,22 @@
 		owner.adjustCloneLoss(-healing_on_tick, 0)
 
 #undef COCOON_FILTER
+
+/atom/movable/screen/alert/status_effect/buff/spider_speak
+	name = "Spider language"
+	desc = "I'm able to click my tongue how spiders speak."
+	icon_state = "buff"
+
+/datum/status_effect/buff/spider_speak
+	id = "spider_speak"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/spider_speak
+	duration = 2700 SECONDS
+	examine_text = "SUBJECTPRONOUN occasionally clicks their tongue quietly"
+
+/datum/status_effect/buff/spider_speak/on_apply()
+	owner.faction += "spiders"
+	return TRUE
+
+/datum/status_effect/buff/spider_speak/on_remove()
+	owner.faction -= "spiders"
+	return TRUE

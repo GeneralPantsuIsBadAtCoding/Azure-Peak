@@ -1,0 +1,5 @@
+///////////////////////////
+// Area Related Debuffs//
+///////////////////////////
+
+//if its related to area debuffs, put it below

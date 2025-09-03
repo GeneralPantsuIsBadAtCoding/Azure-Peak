@@ -55,21 +55,6 @@
 		if(debuff)
 			H.apply_status_effect(debuff)
 
-
-
-/datum/status_effect/debuff/addiction
-	id = "addiction"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction
-	effectedstats = list("endurance" = -1,"fortune" = -1)
-	duration = 100
-
-
-/atom/movable/screen/alert/status_effect/debuff/addiction
-	name = "Addiction"
-	desc = ""
-	icon_state = "debuff"
-
-
 /// ALCOHOLIC
 
 /datum/charflaw/addiction/alcoholic

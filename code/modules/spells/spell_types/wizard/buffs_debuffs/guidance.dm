@@ -39,34 +39,3 @@
 		spelltarget.apply_status_effect(/datum/status_effect/buff/guidance)
 
 	return TRUE
-
-#define GUIDANCE_FILTER "guidance_glow"
-/atom/movable/screen/alert/status_effect/buff/guidance
-	name = "Guidance"
-	desc = "Arcyne assistance guides my hands. (+20% chance to bypass parry / dodge, +20% chance to parry / dodge)"
-	icon_state = "buff"
-
-/datum/status_effect/buff/guidance
-	var/outline_colour ="#f58e2d"
-	id = "guidance"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/guidance/other
-	duration = 2 MINUTES
-
-/datum/status_effect/buff/guidance/on_apply()
-	. = ..()
-	var/filter = owner.get_filter(GUIDANCE_FILTER)
-	if (!filter)
-		owner.add_filter(GUIDANCE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("The arcyne aides me in battle."))
-	ADD_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
-
-/datum/status_effect/buff/guidance/on_remove()
-	. = ..()
-	to_chat(owner, span_warning("My feeble mind muddies my warcraft once more."))
-	owner.remove_filter(GUIDANCE_FILTER)
-	REMOVE_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
-
-#undef GUIDANCE_FILTER

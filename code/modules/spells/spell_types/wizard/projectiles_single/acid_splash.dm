@@ -52,30 +52,10 @@
 	for(var/mob/living/L in range(aoe_range, get_turf(src))) //apply damage over time to mobs
 		if(!L.anti_magic_check())
 			var/mob/living/carbon/M = L
-			M.apply_status_effect(/datum/status_effect/buff/acidsplash)
+			M.apply_status_effect(/datum/status_effect/debuff/acidsplash)
 			new /obj/effect/temp_visual/acidsplash(get_turf(M))
 	for(var/turf/turfs_in_range in range(aoe_range+1, T)) //make a splash
 		new /obj/effect/temp_visual/acidsplash(T)
-
-/datum/status_effect/buff/acidsplash
-	id = "acid splash"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash
-	duration = 20 SECONDS
-
-/datum/status_effect/buff/acidsplash/on_apply()
-	. = ..()
-	owner.playsound_local(get_turf(owner), 'sound/misc/lava_death.ogg', 35, FALSE, pressure_affected = FALSE)
-	owner.visible_message(span_warning("[owner] is covered in acid!"), span_danger("I am covered in acid!"))
-	owner.emote("scream")
-
-/datum/status_effect/buff/acidsplash/tick()
-	var/mob/living/target = owner
-	target.adjustFireLoss(5)
-
-/atom/movable/screen/alert/status_effect/buff/acidsplash
-	name = "Acid Burn"
-	desc = "My skin is burning!"
-	icon_state = "debuff"
 
 /obj/effect/temp_visual/acidsplash
 	icon = 'icons/effects/effects.dmi'

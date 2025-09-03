@@ -253,17 +253,6 @@
 	to_chat(src, span_greentext("! NIGHT MUSCLES !"))
 	src.playsound_local(get_turf(src), 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
 
-/datum/status_effect/buff/bloodstrength
-	id = "bloodstrength"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/bloodstrength
-	effectedstats = list("strength" = 6)
-	duration = 1 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/bloodstrength
-	name = "Night Muscles"
-	desc = ""
-	icon_state = "bleed1"
-
 /mob/living/carbon/human/proc/blood_celerity()
 	set name = "Quickening"
 	set category = "VAMPIRE"
@@ -285,20 +274,6 @@
 	apply_status_effect(/datum/status_effect/buff/celerity)
 	to_chat(src, span_greentext("! QUICKENING !"))
 	src.playsound_local(get_turf(src), 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
-
-/datum/status_effect/buff/celerity
-	id = "celerity"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/celerity
-	effectedstats = list("speed" = 15,"perception" = 10)
-	duration = 30 SECONDS
-
-/datum/status_effect/buff/celerity/nextmove_modifier()
-	return 0.60
-
-/atom/movable/screen/alert/status_effect/buff/celerity
-	name = "Quickening"
-	desc = ""
-	icon_state = "bleed1"
 
 /mob/living/carbon/human/proc/blood_fortitude()
 	set name = "Armor of Darkness"
@@ -322,31 +297,7 @@
 	to_chat(src, span_greentext("! ARMOR OF DARKNESS !"))
 	src.playsound_local(get_turf(src), 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
 
-/datum/status_effect/buff/blood_fortitude
-	id = "blood_fortitude"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/blood_fortitude
-	effectedstats = list("endurance" = 20,"constitution" = 20)
-	duration = 30 SECONDS
 
-/atom/movable/screen/alert/status_effect/buff/blood_fortitude
-	name = "Armor of Darkness"
-	desc = ""
-	icon_state = "bleed1"
-
-/datum/status_effect/buff/fortitude/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		QDEL_NULL(H.skin_armor)
-		H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude(H)
-	owner.add_stress(/datum/stressevent/weed)
-
-/datum/status_effect/buff/fortitude/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		if(istype(H.skin_armor, /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude))
-			QDEL_NULL(H.skin_armor)
-	. = ..()
 
 /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude
 	slot_flags = null

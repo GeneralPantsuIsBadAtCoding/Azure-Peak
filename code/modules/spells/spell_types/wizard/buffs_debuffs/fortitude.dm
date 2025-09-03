@@ -39,32 +39,3 @@
 		spelltarget.apply_status_effect(/datum/status_effect/buff/fortitude)
 
 	return TRUE
-
-/atom/movable/screen/alert/status_effect/buff/fortitude
-	name = "Fortitude"
-	desc = "My humors has been hardened to the fatigues of the body. (-50% Stamina Usage)"
-	icon_state = "buff"
-
-#define FORTITUDE_FILTER "fortitude_glow"
-/datum/status_effect/buff/fortitude
-	var/outline_colour ="#008000" // Forest green to avoid le sparkle mage
-	id = "fortitude"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/fortitude
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/fortitude/other
-	duration = 2 MINUTES
-
-/datum/status_effect/buff/fortitude/on_apply()
-	. = ..()
-	var/filter = owner.get_filter(FORTITUDE_FILTER)
-	if (!filter)
-		owner.add_filter(FORTITUDE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("My body feels lighter..."))
-	ADD_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)
-
-/datum/status_effect/buff/fortitude/on_remove()
-	. = ..()
-	owner.remove_filter(FORTITUDE_FILTER)
-	to_chat(owner, span_warning("The weight of the world rests upon my shoulders once more."))
-	REMOVE_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)

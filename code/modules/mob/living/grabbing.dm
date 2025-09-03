@@ -783,42 +783,7 @@
 					if("No")
 						to_chat(user, span_warning("I decide [C] is unworthy."))
 
-/datum/status_effect/buff/oiled
-	id = "oiled"
-	duration = 5 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/oiled
-	var/slip_chance = 2 // chance to slip when moving
 
-/datum/status_effect/buff/oiled/on_apply()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-
-/datum/status_effect/buff/oiled/on_remove()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-/datum/status_effect/buff/oiled/proc/on_move(mob/living/mover, atom/oldloc, direction, forced)
-	if(forced)
-		return
-	var/slipping_prob = slip_chance
-	if(iscarbon(mover))
-		var/mob/living/carbon/carbon = mover
-		if(!carbon.shoes) // being barefoot makes you slip lesss
-			slipping_prob /= 2
-
-	if(!prob(slip_chance))
-		return
-
-	if(istype(mover))
-		if(istype(mover.mind?.assigned_role, /datum/job/roguetown/jester))
-			mover.liquid_slip(total_time = 1 SECONDS, stun_duration = 1 SECONDS, height = 30, flip_count = 10)
-		else
-			mover.liquid_slip(total_time = 1 SECONDS, stun_duration = 1 SECONDS, height = 12, flip_count = 0)
-
-/atom/movable/screen/alert/status_effect/oiled
-	name = "Oiled"
-	desc = "I'm covered in oil, making me slippery and harder to grab!"
-	icon_state = "oiled"
 
 /atom/proc/liquid_slip(dir=null, total_time = 0.5 SECONDS, height = 16, stun_duration = 1 SECONDS, flip_count = 1)
 	animate(src) // cleanse animations as funny as a ton of stacked flips would be it would be an eye sore

@@ -41,34 +41,3 @@
 		spelltarget.apply_status_effect(/datum/status_effect/buff/stoneskin)
 
 	return TRUE
-
-#define STONESKIN_FILTER "stoneskin_glow"
-/atom/movable/screen/alert/status_effect/buff/stoneskin
-	name = "Stoneskin"
-	desc = "My skin is hardened like stone. (+5 Constitution)"
-	icon_state = "buff"
-
-/datum/status_effect/buff/stoneskin
-	var/outline_colour ="#808080" // Granite Grey
-	id = "stoneskin"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/stoneskin
-	effectedstats = list("constitution" = 5)
-	var/hadcritres = FALSE
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/stoneskin/other
-	duration = 2 MINUTES
-
-/datum/status_effect/buff/stoneskin/on_apply()
-	. = ..()
-	var/filter = owner.get_filter(STONESKIN_FILTER)
-	if (!filter)
-		owner.add_filter(STONESKIN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("My skin hardens like stone."))
-
-/datum/status_effect/buff/stoneskin/on_remove()
-	. = ..()
-	to_chat(owner, span_warning("The stone shell cracks away."))
-	owner.remove_filter(STONESKIN_FILTER)
-
-#undef STONESKIN_FILTER

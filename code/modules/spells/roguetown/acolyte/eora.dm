@@ -217,8 +217,6 @@
 	STOP_PROCESSING(SSprocessing, src)
 	qdel(src)
 
-/datum/status_effect/buff/healing/eora
-
 // =====================
 // Heartweave Spell
 // =====================
@@ -1027,26 +1025,6 @@
 		var/mob/living/carbon/human/H = eater
 		if(!HAS_TRAIT(H, TRAIT_UNSEEMLY) && !HAS_TRAIT(H, TRAIT_BEAUTIFUL))
 			H.apply_status_effect(/datum/status_effect/buff/eora_grace)
-
-/datum/status_effect/buff/eora_grace
-	id = "eora_grace"
-	duration = 10 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/eora_grace
-
-/atom/movable/screen/alert/status_effect/eora_grace
-	name = "Eora's grace"
-	desc = "You feel beautiful."
-
-/datum/status_effect/buff/eora_grace/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
-	return TRUE
-
-/datum/status_effect/buff/eora_grace/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		REMOVE_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
 
 /obj/item/reagent_containers/food/snacks/eoran_aril/opalescent
 	name = "opalescent aril"

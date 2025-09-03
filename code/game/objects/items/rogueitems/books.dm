@@ -262,18 +262,6 @@
 		if("Sect 3 - CHANTS")
 			sect = "sect3"
 
-/datum/status_effect/buff/blessed
-	id = "blessed"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/blessed
-	effectedstats = list("fortune" = 1)
-	duration = 20 MINUTES
-
-/atom/movable/screen/alert/status_effect/buff/blessed
-	name = "Blessed"
-	desc = ""
-	icon_state = "buff"
-
-
 /obj/item/book/rogue/law
 	name = "Tome of Justice"
 	desc = "The Tome of Laws, as passed from the Holy See to its many Ten-worshipping communities."

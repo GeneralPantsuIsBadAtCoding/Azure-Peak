@@ -304,15 +304,6 @@
 	new_post.banner += "<BR>"
 	new_post.banner += "--------------<BR>"
 
-/datum/status_effect/debuff/postcooldown
-	id = "postcooldown"
-	duration = 5 MINUTES
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/postcooldown
-
-/atom/movable/screen/alert/status_effect/debuff/postcooldown
-	name = "Recent messenger"
-	desc = "I'll have to wait a bit before making another posting!"
-
 /obj/structure/roguemachine/noticeboard/proc/consult_contracts(mob/user)
 	if(!(user in SStreasury.bank_accounts))
 		say("You have no bank account.")

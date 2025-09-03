@@ -190,17 +190,6 @@
 		playsound(loc,'sound/items/dig_shovel.ogg', 100, TRUE)
 		return
 
-/datum/status_effect/debuff/cursed
-	id = "cursed"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/cursed
-	effectedstats = list("fortune" = -3)
-	duration = 10 MINUTES
-
-/atom/movable/screen/alert/status_effect/debuff/cursed
-	name = "Cursed"
-	desc = "I feel... unlucky."
-	icon_state = "debuff"
-
 /obj/structure/closet/dirthole/MouseDrop_T(atom/movable/O, mob/living/user)
 	var/turf/T = get_turf(src)
 	if(istype(O, /obj/structure/closet/crate/coffin))

@@ -191,43 +191,6 @@
 	H.apply_status_effect(/datum/status_effect/buff/astrata_gaze, user.get_skill_level(associated_skill))
 	return TRUE
 
-/atom/movable/screen/alert/status_effect/buff/astrata_gaze
-	name = "Astratan's Gaze"
-	desc = "She shines through me, illuminating all injustice."
-	icon_state = "astrata_gaze"
-
-/datum/status_effect/buff/astrata_gaze
-	id = "astratagaze"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/astrata_gaze
-	duration = 20 SECONDS
-
-/datum/status_effect/buff/astrata_gaze/on_apply(assocskill)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.viewcone_override = TRUE
-		H.hide_cone()
-		H.update_cone_show()
-	var/per_bonus = 0
-	if(assocskill)
-		if(assocskill > SKILL_LEVEL_NOVICE)
-			per_bonus++
-		duration *= assocskill
-	if(GLOB.tod == "day" || GLOB.tod == "dawn")
-		per_bonus++
-		duration *= 2
-	if(per_bonus > 0)
-		effectedstats = list("perception" = per_bonus)
-	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
-	. = ..()
-
-/datum/status_effect/buff/astrata_gaze/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.viewcone_override = FALSE
-		H.hide_cone()
-		H.update_cone_show()
-
 // =====================
 // Immolation Component
 // =====================

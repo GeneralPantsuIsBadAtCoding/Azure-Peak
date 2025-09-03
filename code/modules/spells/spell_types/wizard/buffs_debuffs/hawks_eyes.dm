@@ -40,34 +40,3 @@
 		spelltarget.apply_status_effect(/datum/status_effect/buff/hawks_eyes)
 
 	return TRUE
-
-#define HAWKSEYES_FILTER "hawkseyes_glow"
-/atom/movable/screen/alert/status_effect/buff/hawks_eyes
-	name = "Hawk's Eyes"
-	desc = "My vision is sharpened. (+5 Perception)"
-	icon_state = "buff"
-
-/datum/status_effect/buff/hawks_eyes
-	var/outline_colour ="#ffff00" // Same color as perception potion
-	id = "hawkseyes"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/hawks_eyes
-	effectedstats = list("perception" = 5)
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/hawks_eyes/other
-	duration = 2 MINUTES
-
-/datum/status_effect/buff/hawks_eyes/on_apply()
-	. = ..()
-	var/filter = owner.get_filter(HAWKSEYES_FILTER)
-	if (!filter)
-		owner.add_filter(HAWKSEYES_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("My vision sharpens, like that of a hawk."))
-
-
-/datum/status_effect/buff/hawks_eyes/on_remove()
-	. = ..()
-	to_chat(owner, span_warning("My vision blurs, losing its unnatural keenness."))
-	owner.remove_filter(HAWKSEYES_FILTER)
-
-#undef HAWKSEYES_FILTER

@@ -136,12 +136,6 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	H.blur_eyes(2)
 	H.apply_status_effect(/datum/status_effect/debuff/badvision)
 
-/datum/status_effect/debuff/badvision
-	id = "badvision"
-	alert_type = null
-	effectedstats = list("perception" = -20, "speed" = -5)
-	duration = 10 SECONDS
-
 /datum/charflaw/badsight/on_mob_creation(mob/user)
 	..()
 	if(!ishuman(user))
