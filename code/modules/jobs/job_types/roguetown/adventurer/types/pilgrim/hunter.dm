@@ -59,7 +59,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.change_stat("strength", 2)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat("willpower", 1)
 			H.cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 			return
 		if("Bowman")

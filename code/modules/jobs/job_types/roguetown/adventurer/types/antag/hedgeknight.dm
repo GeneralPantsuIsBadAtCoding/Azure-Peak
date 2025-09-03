@@ -44,7 +44,7 @@
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 	H.change_stat("strength", 2)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 3) //dark souls 3 dual greatshield moment
 	H.change_stat("intelligence", 1)
 	H.change_stat("speed", 1)

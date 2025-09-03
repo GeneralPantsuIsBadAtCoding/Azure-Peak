@@ -35,5 +35,5 @@
 	H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 3, TRUE)
 	H.change_stat("strength", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("speed", -2)

@@ -181,7 +181,7 @@
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 	H.change_stat("intelligence", 3)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("speed", 1)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

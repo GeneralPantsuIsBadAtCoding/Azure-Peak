@@ -49,7 +49,7 @@
 
 	H.change_stat("intelligence", 3)
 	H.change_stat("strength", 4)
-	H.change_stat("endurance", 4)
+	H.change_stat("willpower", 4)
 	H.change_stat("constitution", 4)
 	H.change_stat("speed", 2)
 	if(H.mind)

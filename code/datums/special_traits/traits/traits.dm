@@ -463,7 +463,7 @@
 /datum/special_trait/atrophy/on_apply(mob/living/carbon/human/character)
 	character.change_stat("strength", -2)
 	character.change_stat("constitution", -2)
-	character.change_stat("endurance", -1)
+	character.change_stat("willpower", -1)
 
 /datum/special_trait/lazy
 	name = "Lazy"
@@ -473,7 +473,7 @@
 /datum/special_trait/lazy/on_apply(mob/living/carbon/human/character)
 	character.change_stat("strength", -1)
 	character.change_stat("constitution", -1)
-	character.change_stat("endurance", -1)
+	character.change_stat("willpower", -1)
 	character.change_stat("speed", -1)
 	character.change_stat("perception", -1)
 
@@ -544,7 +544,7 @@
 	character.adjust_skillrank_up_to(/datum/skill/misc/reading, 3, TRUE)
 	character.STASTR = 20
 	character.STACON = 20
-	character.STAEND = 20
+	character.STAWIL = 20
 
 /datum/special_trait/my_precious
 	name = "My Precious"

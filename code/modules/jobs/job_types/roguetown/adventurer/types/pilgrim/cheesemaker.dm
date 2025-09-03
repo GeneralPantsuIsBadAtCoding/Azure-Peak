@@ -47,4 +47,4 @@
 	r_hand = /obj/item/flashlight/flare/torch
 	H.change_stat("intelligence", 2)
 	H.change_stat("constitution", 2) // Cheese diet.
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)

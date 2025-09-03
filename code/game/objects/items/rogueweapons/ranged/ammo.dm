@@ -50,7 +50,7 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.5
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
@@ -133,7 +133,7 @@
 	name = "arrow"
 	damage = 20
 	damage_type = BRUTE
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	armor_penetration = 10
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -174,7 +174,7 @@
 	damage = 40
 	armor_penetration = 20
 	embedchance = 30
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/arrow/iron/aalloy
 	name = "decrepit broadhead arrow"
@@ -191,7 +191,7 @@
 	armor_penetration = 45
 	embedchance = 80
 	speed = 0.6
-	npc_damage_mult = 3
+	npc_simple_damage_mult = 3
 
 /obj/projectile/bullet/reusable/arrow/steel/paalloy
 	name = "decrepit bodkin arrow"
@@ -673,7 +673,7 @@
 	damage = 25
 	damage_type = BRUTE
 	armor_penetration = 0
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	range = 15

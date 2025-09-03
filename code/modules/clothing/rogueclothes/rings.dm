@@ -208,7 +208,7 @@
 		to_chat(user, span_notice("Here be dragons."))
 		user.change_stat("strength", 2)
 		user.change_stat("constitution", 2)
-		user.change_stat("endurance", 2)
+		user.change_stat("willpower", 2)
 	return
 
 /obj/item/clothing/ring/dragon_ring/dropped(mob/living/user)
@@ -217,7 +217,7 @@
 		to_chat(user, span_notice("Gone is thy hoard."))
 		user.change_stat("strength", -2)
 		user.change_stat("constitution", -2)
-		user.change_stat("endurance", -2)
+		user.change_stat("willpower", -2)
 		active_item = FALSE
 	return
 

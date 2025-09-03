@@ -191,7 +191,7 @@
 	H.change_stat("perception", -2)
 	H.change_stat("intelligence", -2)
 	H.change_stat("constitution", -2)
-	H.change_stat("endurance", -2)
+	H.change_stat("willpower", -2)
 	H.change_stat("fortune", -2) //They already can't run, no need to do speed and torture their move speed.
 
 /datum/advclass/heir/scamp
@@ -238,5 +238,5 @@
 	H.change_stat("speed", 4)
 	H.change_stat("perception", 2)
 	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("fortune", 1)

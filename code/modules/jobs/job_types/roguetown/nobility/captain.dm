@@ -101,7 +101,7 @@
 	H.change_stat("perception", 1)
 	H.change_stat("intelligence", 2)
 	H.change_stat("constitution", 2)
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("fortune", 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)

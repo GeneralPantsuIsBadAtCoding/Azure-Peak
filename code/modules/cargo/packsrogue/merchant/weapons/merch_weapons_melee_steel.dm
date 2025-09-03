@@ -82,7 +82,7 @@
 	name = "Warhammer"
 	cost = 40 // 1 Steel Ingot
 	contains = list(
-					/obj/item/rogueweapon/mace/warhammer,
+					/obj/item/rogueweapon/mace/warhammer/steel,
 				)
 
 /datum/supply_pack/rogue/steel_weapons/longsword

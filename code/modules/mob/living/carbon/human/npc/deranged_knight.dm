@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	H.STASTR = 15
 	H.STASPD = 14
 	H.STACON = 16
-	H.STAEND = 20
+	H.STAWIL = 20
 	H.STAPER = 12
 	H.STAINT = 12  
 	H.STALUC = 12

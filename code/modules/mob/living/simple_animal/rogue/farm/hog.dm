@@ -34,7 +34,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 40 //Ever been rammed by a boar? Exactly.
 	STACON = 15
-	STAEND = 20//Beefy
+	STAWIL = 20//Beefy
 	STASTR = 12
 	STASPD = 8
 	move_to_delay = 8
@@ -153,7 +153,7 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 	pooptype = /obj/item/natural/poo/horse
 	STACON = 15
-	STAEND = 20//Beefy
+	STAWIL = 20//Beefy
 	STASTR = 12
 	STASPD = 6
 	move_to_delay = 10//Slowest mount

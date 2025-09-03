@@ -126,7 +126,7 @@
 	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	H.change_stat("intelligence", 3)
 	H.change_stat("perception", 3)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	ADD_TRAIT(H, TRAIT_SEEDKNOW, TRAIT_GENERIC)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -157,7 +157,7 @@
 	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	H.change_stat("intelligence", 4)
 	H.change_stat("speed", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H.change_stat("fortune", 1) // this is just a carrot for the folk who are mad enough to take this role...
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)

@@ -67,7 +67,7 @@
 		if ("My Bow Is Enough")
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 			head = /obj/item/clothing/head/roguetown/duelhat
-	H.change_stat("endurance", 2)
+	H.change_stat("willpower", 2)
 	H.change_stat("constitution", 1) // No straight upgrade to perception / speed to not stack one stat too high, but still stronger than MAA Skirm out of town.
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)

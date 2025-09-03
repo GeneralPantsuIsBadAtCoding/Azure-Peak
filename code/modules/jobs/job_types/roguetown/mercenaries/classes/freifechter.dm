@@ -62,7 +62,7 @@
 			H.change_stat("speed", 1)	//We want to encourage backstepping since you no longer get an extra layer of armour. I don't think this will break much of anything.
 			H.change_stat("perception", 3)
 			H.change_stat("constitution", 4)	//This is going to need live testing, since I'm not sure they should be getting this much CON without using a statpack to spec. Revision pending.
-			H.change_stat("endurance", -2)
+			H.change_stat("willpower", -2)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
 			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			var/weapons = list("Graduate's Spear", "Boar Spear", "Lucerne")
@@ -88,7 +88,7 @@
 			H.change_stat("speed", 2)
 			H.change_stat("perception", 1)
 			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 3)
+			H.change_stat("willpower", 3)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT)
 			var/weapons = list("Common Dagger", "Facón Dagger")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

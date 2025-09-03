@@ -188,10 +188,10 @@
 	var/finalprob = 40
 
 	//We take the highest and the lowest stats, clamped to 14.
-	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD), 14)
-	var/min_target = min(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD)
-	var/max_user = min(max(STASTR, STACON, STAEND, STAINT, STAPER, STASPD), 14)
-	var/min_user = min(STASTR, STACON, STAEND, STAINT, STAPER, STASPD)
+	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD), 14)
+	var/min_target = min(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD)
+	var/max_user = min(max(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD), 14)
+	var/min_user = min(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD)
 	
 	if(max_target > max_user)
 		finalprob -= max_target

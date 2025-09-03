@@ -63,7 +63,7 @@
 	ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
 	H.change_stat("speed", 1)
 	H.change_stat("intelligence", 3)
-	H.change_stat("endurance", 3)
+	H.change_stat("willpower", 3)
 	if (H && H.mind)
 		H.mind.adjust_spellpoints(6)
 	if(H.age == AGE_OLD)
