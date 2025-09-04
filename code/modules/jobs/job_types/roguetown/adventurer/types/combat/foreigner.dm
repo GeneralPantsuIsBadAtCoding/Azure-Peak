@@ -7,18 +7,18 @@
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	classes = list(
-		"Easterner" = "A traveler hailing from the distant land of Kazengun, far across the eastern sea. Your fellow countrymen are few and far between in Azuria.",
-		"Exile" = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins.",
-		"Chainbearer" = "In parts of Psydonia, the practice of slavery is still a common sight. You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls.",
-		"Refugee" = "A refugee from the war-torn deserts of Naledi, driven north as your homeland continues to be ravaged by an endless conflict against the Djinn.")
+		"Eastern Wayfarer" = "A traveler hailing from the distant land of Kazengun, far across the eastern sea. Your fellow countrymen are few and far between in Azuria.",
+		"Otavan Exile" = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins.",
+		"Ranesheni Slaver" = "In parts of Psydonia, the practice of slavery is still a common sight. You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls.",
+		"Naledi Refugee" = "A refugee from the war-torn deserts of Naledi, driven north as your homeland continues to be ravaged by an endless conflict against the Djinn.")
 /datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
 	H.cmode_music = 'sound/music/combat_kazengite.ogg'
-	var/classes = list("Easterner","Exile","Chainbearer","Refugee")
+	var/classes = list("Eastern Wayfarer","Otavan Exile","Ranesheni Slaver","Naledi Refugee")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
-		if("Chainbearer")
+		if("Ranesheni Slaver")
 			to_chat(H, span_warning("In parts of Psydonia, the practice of slavery is still a common sight. \
 			You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."))
 			mask = /obj/item/clothing/mask/rogue/facemask/steel
@@ -54,7 +54,7 @@
 			H.change_stat(STATKEY_WIL, 1)
 			H.grant_language(/datum/language/celestial)
 
-		if("Refugee")
+		if("Naledi Refugee")
 			to_chat(H, span_warning("An asylum-seeker from the war-torn deserts of Naledi, \
 			driven north as your homeland continues to be ravaged by an endless conflict against the Djinn."))
 			mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
@@ -83,7 +83,7 @@
 			H.change_stat(STATKEY_SPD, 2)
 			H.grant_language(/datum/language/celestial)
 
-		if("Exile")
+		if("Otavan Exile")
 			to_chat(H, span_warning("An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. \
 			Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins. \
 			You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."))
@@ -113,7 +113,7 @@
 			H.change_stat(STATKEY_SPD, -1)
 			H.grant_language(/datum/language/otavan)
 
-		if("Easterner")
+		if("Eastern Wayfarer")
 			to_chat(H, span_warning("A traveler hailing from the distant land of Kazengun, far across the eastern sea. \
 			 Your fellow countrymen are few and far between in Azuria."))
 			var/subclasses = list("Okaru (Warrior)","Yoruku (Rogue)")
