@@ -22,6 +22,8 @@
 	var/list/override_types
 	/// For how much firestacks does one our stack count
 	var/stack_modifier = 1
+	/// Type of alert we throw
+	var/fire_alert_type = /atom/movable/screen/alert/fire
 
 /datum/status_effect/fire_handler/refresh(mob/living/new_owner, new_stacks, forced = FALSE)
 	if(forced)
@@ -112,7 +114,7 @@
 	if(was_on_fire && !owner.on_fire)
 		owner.clear_alert(ALERT_FIRE)
 	else if(!was_on_fire && owner.on_fire)
-		owner.throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
+		owner.throw_alert(ALERT_FIRE, fire_alert_type)
 	owner.update_fire()
 
 /datum/status_effect/fire_handler/fire_stacks
@@ -260,6 +262,7 @@
 
 /datum/status_effect/fire_handler/fire_stacks/sunder
 	id = "fire_stacks_sunder"
+	fire_alert_type = /atom/movable/screen/alert/fire/sunder
 
 /datum/status_effect/fire_handler/fire_stacks/sunder/harm_human(seconds_per_tick, no_protection = FALSE)
 	var/mob/living/carbon/human/victim = owner
@@ -269,6 +272,7 @@
 
 /datum/status_effect/fire_handler/fire_stacks/sunder/blessed
 	id = "fire_stacks_sunder_blessed"
+	fire_alert_type = /atom/movable/screen/alert/fire/sunder/blessed
 
 /datum/status_effect/fire_handler/fire_stacks/sunder/blessed/harm_human(seconds_per_tick, no_protection = FALSE)
 	var/mob/living/carbon/human/victim = owner

@@ -25,7 +25,7 @@
 		user.Knockdown(10)
 		user.Paralyze(10)
 		user.adjustFireLoss(25)
-		user.fire_act(1,10)
+		user.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
 
 /datum/magic_item/mundane/silver/on_pickup(var/obj/item/i, var/mob/living/user)
 	var/mob/living/carbon/human/H = user
@@ -38,7 +38,8 @@
 				H.Knockdown(10)
 				H.Paralyze(10)
 				H.adjustFireLoss(25)
-				H.fire_act(1,10)
+				H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+				H.ignite_mob()
 			if(V_lord)
 				if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 					to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
@@ -49,4 +50,5 @@
 				H.Knockdown(10)
 				H.Paralyze(10)
 				H.adjustFireLoss(25)
-				H.fire_act(1,10)
+				H.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+				H.ignite_mob()

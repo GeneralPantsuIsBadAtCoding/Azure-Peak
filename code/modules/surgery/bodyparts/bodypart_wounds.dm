@@ -469,7 +469,8 @@
 			owner.next_attack_msg += " <span class='userdanger'>[embedder] runs through [owner]'s [src]!</span>"
 		update_disabled()
 		if(embedder.is_silver && HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
-			owner.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+			var/datum/component/silverbless/psyblessed = embedder.GetComponent(/datum/component/silverbless)
+			owner.adjust_fire_stacks(1, psyblessed?.is_blessed ? /datum/status_effect/fire_handler/fire_stacks/sunder/blessed : /datum/status_effect/fire_handler/fire_stacks/sunder)
 			to_chat(owner, span_danger("the [embedder] in your body painfully jostles!"))
 	return TRUE
 
