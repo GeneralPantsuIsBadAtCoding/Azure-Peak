@@ -196,11 +196,11 @@
 						if("Tanto")
 							beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
 							beltl = /obj/item/rogueweapon/scabbard/sheath/kazengun
-							H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 						if("Kodachi")
 							beltr = /obj/item/rogueweapon/sword/short/kazengun
 							beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
-							H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 					var/masks = list("Oni","Kitsune")
 					var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
 					switch(mask_choice)
