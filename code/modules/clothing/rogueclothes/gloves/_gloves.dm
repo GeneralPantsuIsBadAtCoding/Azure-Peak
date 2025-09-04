@@ -2,11 +2,10 @@
 	slot_flags = ITEM_SLOT_GLOVES
 	body_parts_covered = HANDS
 	body_parts_inherent = HANDS
-	sleeved = 'icons/roguetown/clothing/onmob/gloves.dmi'
 	icon = 'icons/roguetown/clothing/gloves.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/gloves.dmi'
 	bloody_icon_state = "bloodyhands"
-	sleevetype = "shirt"
+	sleeved_detail = null
 	max_heat_protection_temperature = 361
 	experimental_inhand = FALSE
 	/// Unarmed damage multiplier (for pure fists / wrestling only)

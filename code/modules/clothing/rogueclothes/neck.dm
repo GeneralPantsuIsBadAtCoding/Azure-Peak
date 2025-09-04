@@ -380,7 +380,7 @@
 
 	if(slot == SLOT_WRISTS)
 		mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
-		sleeved = 'icons/roguetown/clothing/onmob/wrists.dmi'
+		sleeved = null
 	if(slot == SLOT_NECK)
 		mob_overlay_icon = initial(mob_overlay_icon)
 		sleeved = initial(sleeved)

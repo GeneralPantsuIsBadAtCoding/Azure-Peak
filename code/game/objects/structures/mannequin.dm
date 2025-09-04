@@ -462,10 +462,6 @@
 */
 /obj/structure/mannequin/proc/MakeSleeveLayer(obj/item/I, cloth_slot, layer2use = ARMORSLEEVE_LAYER, sleeveindex = 4)
 	switch(cloth_slot)
-		if(SLOT_MANNEQUIN_WRISTS)
-			layer2use = WRISTSLEEVE_LAYER
-		if(SLOT_MANNEQUIN_GLOVES)
-			layer2use = GLOVESLEEVE_LAYER
 		if(SLOT_MANNEQUIN_ARMOR)
 			layer2use = ARMORSLEEVE_LAYER
 		if(SLOT_MANNEQUIN_SHIRT)
