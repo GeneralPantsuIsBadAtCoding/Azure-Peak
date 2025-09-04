@@ -309,8 +309,7 @@
 	name = "sundered"
 	check_name = "<span class='userdanger'><B>SUNDERED</B></span>"
 	crit_message = list(
-		"The %BODYPART is sundered!",
-		"The %BODYPART is BURNT by HIS might!",
+		"The %BODYPART is engulfed in blessed fire!",
 	)
 	sound_effect = 'sound/combat/crit.ogg'
 	whp = 80
@@ -323,6 +322,10 @@
 /datum/wound/sunder/chest
 	name = "sundered lux"
 	check_name = span_artery("<B>SUNDERED LUX</B>")
+	crit_message = list(
+		"Blessed flames erupt from %VICTIM's chest!",
+		"Molten lux splatters out from %VICTIM's sundered ribs!",
+	)
 	severity = WOUND_SEVERITY_FATAL
 	whp = 100
 	sewn_whp = 35
@@ -336,7 +339,12 @@
 	if(iscarbon(affected))
 		var/mob/living/carbon/carbon_affected = affected
 		carbon_affected.vomit(blood = TRUE)
-	to_chat(affected, span_userdanger("PSYDON GRABS MY WEARY... LUX?!"))
+	var/goodbye = list(\
+		"PSYDON GRABS MY WEARY... LUX?!",\
+		"MY LUX MELTS AWAY FROM THIS PIERCED HEART!",\
+		"OH, SHIT!"\
+	)
+	to_chat(affected, span_userdanger(goodbye))
 	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)
 	if(HAS_TRAIT(affected, TRAIT_SILVER_WEAK))
 		affected.death()
