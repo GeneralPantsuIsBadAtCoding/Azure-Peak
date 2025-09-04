@@ -8,25 +8,24 @@
 		return
 	. = ..()
 	if(ishuman(target))
-		var/mob/living/carbon/human/s_user = user
-		var/mob/living/carbon/human/H = target
+		var/mob/living/H = target
 		if(HAS_TRAIT(H, TRAIT_SILVER_WEAK))
 			H.visible_message("<font color='white'>The unholy strike weakens the curse temporarily!</font>")
 			to_chat(H, span_userdanger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
 			H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/sunder)
 
-/datum/magic_item/mundane/silver/on_equip(var/obj/item/i, var/mob/living/user)
+/datum/magic_item/mundane/silver/on_equip(obj/item/i, mob/living/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_SILVER_WEAK))
-		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+		var/datum/antagonist/vampirelord/V_lord = user.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
+		if(V_lord.vamplevel >= 4 && !user.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 			return
 
-		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		M.Knockdown(10)
-		M.Paralyze(10)
-		M.adjustFireLoss(25)
-		M.fire_act(1,10)
+		to_chat(user, span_userdanger("I can't pick up the silver, it is my BANE!"))
+		user.Knockdown(10)
+		user.Paralyze(10)
+		user.adjustFireLoss(25)
+		user.fire_act(1,10)
 
 /datum/magic_item/mundane/silver/on_pickup(var/obj/item/i, var/mob/living/user)
 	var/mob/living/carbon/human/H = user
