@@ -797,7 +797,7 @@
 		if("fire")
 			H.adjust_fire_stacks(4)
 			spawn(0)
-				H.IgniteMob()
+				H.ignite_mob()
 			target.visible_message(span_warning("[source] ignites [target] with strange flame!"))
 		if("frost")
 			H.apply_status_effect(/datum/status_effect/buff/frostbite)
@@ -825,7 +825,7 @@
 		spawn(0)
 			H.apply_damage(10, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			H.adjust_fire_stacks(2)
-			H.IgniteMob()
+			H.ignite_mob()
 
 /obj/item/rogueweapon/halberd/glaive/dreamscape
 	name = "otherworldly spear"
