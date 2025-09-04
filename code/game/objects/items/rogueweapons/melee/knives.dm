@@ -365,6 +365,8 @@
 	desc = "This silver dagger can be the banishment of vampires and werewolves."
 	icon_state = "sildagger"
 	sheathe_icon = "sildagger"
+	force = 10
+	wdefense = 6
 	sellprice = 50
 	smeltresult = /obj/item/ingot/silver
 	last_used = 0
@@ -490,7 +492,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	name = "elvish dagger"
 	desc = "This beautiful dagger is of intricate, elvish design. Sharper, too."
-	force = 22
+	force = 18
 	icon_state = "elfdagger"
 	item_state = "elfdag"
 	last_used = 0
@@ -499,7 +501,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/drow
 	name = "dark elvish dagger"
 	desc = "A vicious wave-bladed dagger from the Underdark."
-	force = 25
+	force = 18
 	last_used = 0
 	is_silver = TRUE
 
@@ -602,8 +604,8 @@
 	name = "psydonian tossblade"
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
 	item_state = "bone_dagger"
-	force = 12
-	throwforce = 28
+	force = 10
+	throwforce = 17
 	armor_penetration = 50
 	max_integrity = 150
 	wdefense = 3

@@ -699,6 +699,10 @@
 		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 9
+	wdefense = 6
 	dropshrink = 1
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -817,9 +821,12 @@
 /obj/item/rogueweapon/sword/short/psy
 	name = "psydonian shortsword"
 	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
-	force = 19
 	icon_state = "psyswordshort"
 	sheathe_icon = "psyswordshort"
+	force = 17
+	force_wielded = 20
+	minstr = 6
+	wdefense = 5
 	wbalance = WBALANCE_SWIFT
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -966,7 +973,10 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 25	//Base is 22
+	force = 17
+	force_wielded = 20
+	minstr = 7
+	wdefense = 9
 	last_used = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -1143,7 +1153,10 @@
 	sheathe_icon = "psyrapier"
 	max_integrity = 300
 	max_blade_int = 300
-	wdefense = 7
+	force = 17
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
 	smeltresult = /obj/item/ingot/silver
 	is_silver = TRUE
 
@@ -1196,11 +1209,14 @@
 
 
 /obj/item/rogueweapon/sword/silver
-	force = 24
 	name = "silver sword"
 	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
+	force = 17
+	force_wielded = 20
+	minstr = 9
+	wdefense = 5
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2

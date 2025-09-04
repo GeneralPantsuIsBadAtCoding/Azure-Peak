@@ -130,10 +130,12 @@
 	name = "silver war hammer"
 	desc = "A light war hammer forged of silver."
 	icon_state = "silverhammer"
-	force = 24
+	force = 18
+	force_wielded = 20
+	minstr = 9
+	wdefense = 5
 	gripped_intents = null
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze)
-	wdefense = 4
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
 	is_silver = TRUE
@@ -213,10 +215,13 @@
 /obj/item/rogueweapon/mace/cudgel/psy
 	name = "psydonian handmace"
 	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
+	force = 20
+	force_wielded = 20
+	minstr = 9
+	wdefense = 5
 	wbalance = WBALANCE_SWIFT
 	resistance_flags = FIRE_PROOF
 	icon_state = "psyflangedmace"
-	wdefense = 2
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 
@@ -441,8 +446,10 @@
 	name = "psydonian mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
-	force = 25
-	force_wielded = 32
+	force = 20
+	force_wielded = 25
+	minstr = 12
+	wdefense = 6
 	wbalance = WBALANCE_HEAVY
 	dropshrink = 0.75
 	smelt_bar_num = 2

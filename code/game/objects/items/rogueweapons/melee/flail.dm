@@ -132,6 +132,9 @@
 	name = "psydonian flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
+	force = 25
+	minstr = 9
+	wdefense = 3
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 
