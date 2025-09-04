@@ -576,7 +576,7 @@
 /obj/item/proc/funny_attack_effects(mob/living/target, mob/living/user, nodmg)
 	pass()
 
-/obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone)
+/obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone, thrown = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
 
@@ -585,11 +585,11 @@
 		if(blesscomp?.is_blessed)
 			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))
 				to_chat(victim, span_danger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
-			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+			victim.adjust_fire_stacks(thrown ? 1 : 3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 		else
 			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
 				to_chat(victim, span_danger("Blessed silver rebukes my presence! These fires are lashing at my very soul!"))
-			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+			victim.adjust_fire_stacks(thrown ? 1 : 3, /datum/status_effect/fire_handler/fire_stacks/sunder)
 		victim.ignite_mob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)

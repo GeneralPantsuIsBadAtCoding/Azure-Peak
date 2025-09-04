@@ -786,7 +786,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if((is_silver || smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(M, TRAIT_SILVER_WEAK) && !HAS_TRAIT(M, STATUS_EFFECT_ANTIMAGIC)))
+	if((is_silver || smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(M, TRAIT_SILVER_WEAK) &&  !M.has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
 		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
 		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 			return

@@ -130,11 +130,11 @@
 			continue
 
 		if(prob(embedded.embedding.embedded_pain_chance))
-//			BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier)
+			if(embedded.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK) && !has_status_effect(STATUS_EFFECT_ANTIMAGIC))
+				adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 			to_chat(src, span_danger("[embedded] in me hurts!"))
 
 		if(prob(embedded.embedding.embedded_fall_chance))
-//			BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier)
 			simple_remove_embedded_object(embedded)
 			to_chat(src,span_danger("[embedded] falls out of me!"))
 

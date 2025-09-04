@@ -374,7 +374,7 @@
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
 /obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
-	if((HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC)) && owner.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || owner.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+	if((HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC)) && owner.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || owner.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
 		return
 	update_HP()
 	if(required_status && (status != required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.

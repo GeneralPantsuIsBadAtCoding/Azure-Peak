@@ -243,7 +243,7 @@
 		if(prob(used))
 			attempted_wounds += /datum/wound/scarring
 	if((bclass in GLOB.sunder_bclasses))
-		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
 			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 			if(prob(used))
 				attempted_wounds += /datum/wound/sunder
@@ -313,7 +313,7 @@
 			else
 				attempted_wounds += /datum/wound/scarring
 	if(bclass in GLOB.sunder_bclasses)
-		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
 			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 			if(prob(used))
 				attempted_wounds += list(/datum/wound/sunder/chest)
@@ -431,7 +431,7 @@
 				else if(zone_precise in knockout_zones)
 					attempted_wounds += /datum/wound/fracture/head/brain
 	if(bclass in GLOB.sunder_bclasses)
-		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
 			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 			if(prob(used))
 				attempted_wounds += /datum/wound/sunder
@@ -468,6 +468,9 @@
 		if(crit_message)
 			owner.next_attack_msg += " <span class='userdanger'>[embedder] runs through [owner]'s [src]!</span>"
 		update_disabled()
+		if(embedder.is_silver && HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
+			owner.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+			to_chat(owner, span_danger("the [embedder] in your body painfully jostles!"))
 	return TRUE
 
 /// Removes an embedded object from this bodypart
