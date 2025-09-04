@@ -51,9 +51,14 @@
 
 /datum/component/silverbless/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(!is_blessed)
-		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON. Until then, its impure alloying of silver-and-steel cannot blight inhumen foes on its own.</font>")
-	if(is_blessed)
+		if(silver_type & SILVER_PSYDONIAN)
+			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON.</font>")
+		else if(silver_type & SILVER_TENNITE)
+			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by a bishop.</font>")
+	if(is_blessed == BLESSING_PSYDONIAN)
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
+	else if(is_blessed == BLESSING_TENNITE)
+		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by THE TEN.</font>")
 
 /datum/component/silverbless/proc/try_bless(blessing_type)
 	if(!is_blessed)
