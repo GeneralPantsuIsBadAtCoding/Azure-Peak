@@ -231,7 +231,7 @@
 //PESTRA//
 /datum/curse/pestra/on_gain(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
-	owner.STAEND -= (10 * (1 - curse_resist))
+	owner.STAWIL -= (10 * (1 - curse_resist))
 	if(curse_resist && prob(50))
 		return
 	ADD_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
@@ -239,7 +239,7 @@
 
 /datum/curse/pestra/on_loss(mob/living/carbon/human/owner, curse_resist = FALSE)
 	. = ..()
-	owner.STAEND += (10 * (1 - curse_resist))
+	owner.STAWIL += (10 * (1 - curse_resist))
 	REMOVE_TRAIT(owner, TRAIT_NORUN, TRAIT_GENERIC)
 	REMOVE_TRAIT(owner, TRAIT_MISSING_NOSE, TRAIT_GENERIC)
 

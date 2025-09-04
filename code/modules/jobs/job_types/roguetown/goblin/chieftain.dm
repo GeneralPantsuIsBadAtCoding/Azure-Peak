@@ -29,11 +29,11 @@
 	cloak = /obj/item/clothing/cloak/heartfelt
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.change_stat("strength", -1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("constitution", 6)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", -2)
+	H.change_stat(STATKEY_STR, -1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_CON, 6)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, -2)
 
 /mob/living/carbon/human/proc/goblinannouncement()
 	set name = "Announcement"

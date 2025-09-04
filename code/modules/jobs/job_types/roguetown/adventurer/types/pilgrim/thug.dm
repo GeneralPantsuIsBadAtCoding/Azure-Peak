@@ -43,9 +43,9 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 3)
-	H.change_stat("speed", -1)
-	H.change_stat("intelligence", -1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_SPD, -1)
+	H.change_stat(STATKEY_INT, -1)
 	H.grant_language(/datum/language/thievescant)

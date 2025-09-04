@@ -48,5 +48,5 @@
 	beltl = /obj/item/rogueweapon/sickle
 	beltr = /obj/item/flint
 	backr = /obj/item/rogueweapon/hoe
-	H.change_stat("strength", 1)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_SPD, -1)

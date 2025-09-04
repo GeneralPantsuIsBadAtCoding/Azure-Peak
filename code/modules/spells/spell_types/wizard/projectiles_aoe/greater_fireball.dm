@@ -30,5 +30,5 @@
 	exp_flash = 2
 	exp_fire = 2
 	damage = 90 // This is gonna fucking HURT
-	npc_damage_mult = 2 // HAHAHA
+	npc_simple_damage_mult = 2 // HAHAHA
 	flag = "magic"

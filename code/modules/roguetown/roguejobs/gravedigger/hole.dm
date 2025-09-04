@@ -193,7 +193,7 @@
 /datum/status_effect/debuff/cursed
 	id = "cursed"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/cursed
-	effectedstats = list("fortune" = -3)
+	effectedstats = list(STATKEY_LCK = -3)
 	duration = 10 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/cursed

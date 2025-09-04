@@ -179,6 +179,7 @@
 
 #define MACE_SMASH			/datum/intent/mace/smash
 #define MACE_STRIKE			/datum/intent/mace/strike
+#define AXE_SMASH			/datum/intent/mace/smash/flataxe
 
 #define DAGGER_CUT			/datum/intent/dagger/cut
 #define DAGGER_THRUST		/datum/intent/dagger/thrust

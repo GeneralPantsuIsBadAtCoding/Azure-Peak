@@ -21,6 +21,10 @@
 	damfactor = 1.2
 	chargetime = 0.2
 
+/datum/intent/sword/cut/short
+	clickcd = 9
+	damfactor = 1
+
 /datum/intent/sword/chop/militia
 	penfactor = 50
 	chargetime = 0.5
@@ -38,6 +42,11 @@
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
+
+/datum/intent/sword/thrust/short
+	clickcd = 8
+	damfactor = 1.1
+	penfactor = 30
 
 /datum/intent/sword/thrust/arming
 	clickcd = 10 // Less than rapier
@@ -75,7 +84,7 @@
 	swingdelay = 0
 	damfactor = 0.01
 	item_d_type = "slash"
-	peel_divisor = 4
+	peel_divisor = 5
 
 /datum/intent/sword/peel/big
 	name = "big sword armor peel"
@@ -92,6 +101,9 @@
 	swingdelay = 8
 	damfactor = 1.0
 	item_d_type = "slash"
+
+/datum/intent/sword/chop/short
+	damfactor = 0.9
 
 /datum/intent/sword/cut/falx
 	penfactor = 20
@@ -716,6 +728,18 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/sword/short/kazengun
+	name = "steel kodachi"
+	desc = "A razor-edged sword with a wavy pattern weld apparent on its blade."
+	possible_item_intents = list(
+		/datum/intent/sword/cut/short,
+		/datum/intent/sword/thrust/short,
+		/datum/intent/sword/peel,
+		/datum/intent/sword/chop/short,
+		)
+	icon_state = "eastshortsword"
+	sheathe_icon = "kodachi"
+
 /obj/item/rogueweapon/sword/short/iron
 	name = "iron shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers. This iron variant predates them all."
@@ -822,15 +846,6 @@
 		added_def = 2,\
 	)
 
-/datum/intent/sword/cut/short
-	clickcd = 9
-	damfactor = 1
-
-/datum/intent/sword/thrust/short
-	clickcd = 8
-	damfactor = 1.1
-	penfactor = 30
-
 /obj/item/rogueweapon/sword/short/messer
 	name = "messer"
 	desc = "A \"Großesmesser\" of disputed Grenzel origin, meaning greatknife. It's a basic single-edge sword for civilian and military use. It excels at slicing and chopping, and it's made of steel. \
@@ -907,6 +922,15 @@
 	max_integrity = 100
 	icon_state = "isaber"
 	sellprice = 10
+
+/obj/item/rogueweapon/sword/sabre/steppesman
+	name = "aavnic shashka"
+	desc = "A single-edged, single-handed, and guardless blade of northern Aavnic make with a brass pommel in the shape of a zad's head. The gentle curve of its blade puts it midway between a radically curved sabre and a straight sword, effective for both cutting and thrusting but lacking raw defense potential."
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre, /datum/intent/rend, /datum/intent/sword/chop)
+	wdefense = 5
+	minstr = 6
+	icon_state = "shashka"
+	sheathe_icon = "shashka"
 
 //Unique church sword - slightly better than regular sabre due to falx chop.
 /obj/item/rogueweapon/sword/sabre/nockhopesh

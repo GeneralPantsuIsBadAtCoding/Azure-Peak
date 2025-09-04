@@ -82,10 +82,10 @@
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +2 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
-	H.change_stat("strength", 2) // seems kinda lame but remember guardsman bonus!!
-	H.change_stat("intelligence", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat(STATKEY_STR, 2) // seems kinda lame but remember guardsman bonus!!
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_WIL, 1)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -183,9 +183,9 @@
 
 
 	//Garrison ranged/speed class. Time to go wild
-	H.change_stat("endurance", 1) // seems kinda lame but remember guardsman bonus!!
-	H.change_stat("perception", 2)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_WIL, 1) // seems kinda lame but remember guardsman bonus!!
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_SPD, 2)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson			// Cant wear chainmail anymoooree
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
@@ -282,10 +282,10 @@
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 	//Garrison mounted class; charge and charge often.
-	H.change_stat("strength", 1)
-	H.change_stat("constitution", 2) 
-	H.change_stat("endurance", 2) // Your name is speed, and speed is running.
-	H.change_stat("intelligence", 1) // No strength to account for the nominally better weapons. We'll see.
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_CON, 2) 
+	H.change_stat(STATKEY_WIL, 2) // Your name is speed, and speed is running.
+	H.change_stat(STATKEY_INT, 1) // No strength to account for the nominally better weapons. We'll see.
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson		//Bit worse shirt protection than the archer -- as foot soldier.
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection

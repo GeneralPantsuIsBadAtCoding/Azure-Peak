@@ -146,7 +146,7 @@
 	swingdelay = 5
 	damfactor = 0.01
 	item_d_type = "slash"
-	peel_divisor = 4
+	peel_divisor = 5
 	reach = 2
 
 

@@ -78,11 +78,11 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.grant_language(/datum/language/grenzelhoftian)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-	H.change_stat("strength", -1)
-	H.change_stat("intelligence", 3)
-	H.change_stat("constitution", -1)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_STR, -1)
+	H.change_stat(STATKEY_INT, 3)
+	H.change_stat(STATKEY_CON, -1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, -1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 

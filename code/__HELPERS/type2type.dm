@@ -310,6 +310,8 @@
 
 	if(bpc & HEAD)
 		covered_parts |= list(READABLE_ZONE_HEAD)
+	if(bpc & HAIR)
+		covered_parts |= list(READABLE_ZONE_SKULL)
 	if(bpc & NECK)
 		covered_parts |= list(READABLE_ZONE_NECK)
 	if(bpc & FACE && !precise)
@@ -321,6 +323,8 @@
 			covered_parts |= list(READABLE_ZONE_NOSE)
 		if(bpc & EYES)
 			covered_parts |= list(READABLE_ZONE_EYES)
+		if(bpc & EARS)
+			covered_parts |= list(READABLE_ZONE_EARS)
 
 	if(bpc & CHEST)
 		covered_parts |= list(READABLE_ZONE_CHEST)

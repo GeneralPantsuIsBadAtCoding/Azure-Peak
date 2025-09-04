@@ -38,10 +38,10 @@
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			H.change_stat("strength", 2)
-			H.change_stat("endurance", 2)
-			H.change_stat("perception", -1)
-			H.change_stat("speed", 2)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_PER, -1)
+			H.change_stat(STATKEY_SPD, 2)
 			head = /obj/item/clothing/head/roguetown/helmet/sallet/raneshen
 			neck = /obj/item/clothing/neck/roguetown/bevor
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
@@ -94,9 +94,9 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			H.change_stat("endurance", 2)
-			H.change_stat("intelligence", 1)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_SPD, 3)
 			head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 			neck = /obj/item/clothing/neck/roguetown/leather
 			mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
@@ -152,10 +152,10 @@
 			H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
-			H.change_stat("perception", -1)
-			H.change_stat("endurance", 2)
-			H.change_stat("intelligence", 2)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_PER, -1)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_INT, 2)
+			H.change_stat(STATKEY_SPD, 3)
 			if(H.mind)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse)

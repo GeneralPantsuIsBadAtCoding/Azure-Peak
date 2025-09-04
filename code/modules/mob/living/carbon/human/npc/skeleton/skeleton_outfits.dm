@@ -52,7 +52,7 @@
 	H.STASTR = 10
 	H.STASPD = 8
 	H.STACON = 4
-	H.STAEND = 10
+	H.STAWIL = 10
 	H.STAINT = 1
 	name = "Skeleton"
 	if(prob(50))
@@ -89,7 +89,7 @@
 	H.STASTR = 14
 	H.STASPD = 8
 	H.STACON = 4 // Same statblock as before easily killed
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAINT = 1
 	name = "Skeleton Footsoldier"
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
@@ -121,7 +121,7 @@
 	H.STASTR = 14
 	H.STASPD = 8
 	H.STACON = 4 // Same statblock as before easily killed
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAINT = 1
 	name = "Skeleton Pirate"
 	head =  /obj/item/clothing/head/roguetown/helmet/tricorn
@@ -150,7 +150,7 @@
 	H.STASTR = 14
 	H.STASPD = 8
 	H.STACON = 6 // Slightly tougher now!
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAINT = 1
 	name = "Skeleton Soldier"
 	cloak = /obj/item/clothing/cloak/stabard/surcoat/guard // Ooo Spooky Old Dead MAA
@@ -184,7 +184,7 @@
 	..()
 	H.STASTR = 14
 	H.STACON = 8 // Woe, actual limb health.
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAINT = 1
 	name = "Skeleton Dreadnought"
 	// This combines the khopesh  and withered dreadknight

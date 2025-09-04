@@ -70,10 +70,10 @@
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 			beltr = /obj/item/rogueweapon/scabbard/sword
 			r_hand = /obj/item/rogueweapon/sword/falx
-	H.change_stat("strength", 3) // Literally same stat spread as Atgervi Shaman
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 2)
-	H.change_stat("intelligence", -1)
-	H.change_stat("perception", -1)
-	H.change_stat("speed", 1)
+	H.change_stat(STATKEY_STR, 3) // Literally same stat spread as Atgervi Shaman
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_INT, -1)
+	H.change_stat(STATKEY_PER, -1)
+	H.change_stat(STATKEY_SPD, 1)
 	wretch_select_bounty(H)

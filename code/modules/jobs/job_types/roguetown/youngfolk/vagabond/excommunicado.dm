@@ -30,9 +30,9 @@
 		H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-		H.change_stat("perception", 2)
-		H.change_stat("constitution", -1)
-		H.change_stat("endurance", -1)
+		H.change_stat(STATKEY_PER, 2)
+		H.change_stat(STATKEY_CON, -1)
+		H.change_stat(STATKEY_WIL, -1)
 
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
 		C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR)	//Minor regen, can level up to T4.

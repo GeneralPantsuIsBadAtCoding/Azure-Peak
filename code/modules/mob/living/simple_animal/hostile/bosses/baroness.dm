@@ -43,7 +43,7 @@
 	STAPER = 20
 	STAINT = 18
 	STACON = 18
-	STAEND = 18
+	STAWIL = 18
 	STASPD = 15
 	STALUC = 15
 	loot = list(/obj/effect/temp_visual/baroness_dying)

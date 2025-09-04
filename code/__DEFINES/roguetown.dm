@@ -3,7 +3,7 @@
 #define STAT_PERCEPTION "perception"
 #define STAT_INTELLIGENCE "intelligence"
 #define STAT_CONSTITUTION "constitution"
-#define STAT_ENDURANCE "endurance"
+#define STAT_WILLPOWER "willpower"
 #define STAT_SPEED "speed"
 #define STAT_FORTUNE "fortune"
 
@@ -40,7 +40,6 @@
 
 // MEDIUM
 #define ARMOR_INT_CHEST_MEDIUM_STEEL 300
-#define ARMOR_INT_CHEST_MEDIUM_HATANGA 325
 #define ARMOR_INT_CHEST_MEDIUM_IRON 225
 #define ARMOR_INT_CHEST_MEDIUM_SCALE 200 // More coverage, less integrity
 #define ARMOR_INT_CHEST_MEDIUM_DECREPIT 150

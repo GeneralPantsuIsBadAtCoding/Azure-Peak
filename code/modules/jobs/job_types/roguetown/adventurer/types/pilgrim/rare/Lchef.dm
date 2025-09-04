@@ -37,8 +37,8 @@
 	mouth = /obj/item/rogueweapon/huntingknife/cleaver
 	beltl = /obj/item/flint
 	r_hand = /obj/item/flashlight/flare/torch
-	H.change_stat("intelligence", 3)
-	H.change_stat("constitution", 2)
+	H.change_stat(STATKEY_INT, 3)
+	H.change_stat(STATKEY_CON, 2)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 	var/packcontents = pickweight(list("Honey" = 1, "Truffles" = 1, "Bacon" = 1)) // What is our special ingredient? Honey, truffles, or BACON?

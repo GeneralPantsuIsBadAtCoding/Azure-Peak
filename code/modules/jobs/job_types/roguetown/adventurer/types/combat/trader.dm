@@ -65,9 +65,9 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 2)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 2)
+			H.change_stat(STATKEY_SPD, 1)
 
 		if("Brewer")
 			to_chat(H, span_warning("You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch. You have the equipments and know how on how to make your own distiller, too."))
@@ -103,10 +103,10 @@
 				/obj/item/ingot/copper = 2,
 				/obj/item/roguegear = 1, 
 				/obj/item/recipe_book/survival = 1)
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("strength", 1)
-			H.change_stat("constitution", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_CON, 1)
 			ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC) // To view what is in a bottle.
 
 		if("Cuisinier")
@@ -150,10 +150,10 @@
 				/obj/item/recipe_book/survival = 1,
 				)
 				// no ration wrappers by design
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("speed", 1) // you move very fast in a kitchen, you see
-			H.change_stat("constitution", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_SPD, 1) // you move very fast in a kitchen, you see
+			H.change_stat(STATKEY_CON, 1)
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 
 		if ("Jeweler")
@@ -189,10 +189,10 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_WIL, 1)
 
 		if ("Doomsayer")
 			to_chat(H, span_warning("THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly."))
@@ -226,10 +226,10 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("strength", 1)
-			H.change_stat("constitution", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_CON, 1)
 
 		if ("Scholar")
 			to_chat(H, span_warning("You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."))
@@ -264,10 +264,10 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("speed", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat(STATKEY_INT, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_SPD, 1)
+			H.change_stat(STATKEY_WIL, 1)
 
 		if ("Harlequin")
 			to_chat(H, span_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
@@ -296,10 +296,10 @@
 			H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
-			H.change_stat("intelligence", 1)
-			H.change_stat("perception", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 2)
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)

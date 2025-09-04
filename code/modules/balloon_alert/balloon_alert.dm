@@ -109,8 +109,7 @@
 	else
 		CRASH("filtered_balloon_alert called without a trait, either it's an error or use balloon_alert instead.")
 
-	if(length(candidates))
-		balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset, y_offset)
+	balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset, y_offset)
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT

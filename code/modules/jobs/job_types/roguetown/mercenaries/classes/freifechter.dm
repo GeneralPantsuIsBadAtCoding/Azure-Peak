@@ -29,9 +29,9 @@
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)	//I got told that having zero climbing is a PITA. Bare minimum for a combat class.
-			H.change_stat("perception", 3)
-			H.change_stat("constitution", 2)
-			H.change_stat("intelligence", 4)	//To give you an edge in specialty moves like feints and stop you from being feinted
+			H.change_stat(STATKEY_PER, 3)
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_INT, 4)	//To give you an edge in specialty moves like feints and stop you from being feinted
 			l_hand = /obj/item/rogueweapon/scabbard/sword
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer	//Experimental.
 			var/weapons = list("Modified Training Sword !!!CHALLENGE!!!", "Etruscan Longsword", "Kriegsmesser", "Field Longsword")
@@ -58,11 +58,11 @@
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)	//Wrestling is a swordsman's luxury.
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)	//I got told that having zero climbing is a PITA. Bare minimum for a combat class.
-			H.change_stat("strength", 1)
-			H.change_stat("speed", 1)	//We want to encourage backstepping since you no longer get an extra layer of armour. I don't think this will break much of anything.
-			H.change_stat("perception", 3)
-			H.change_stat("constitution", 4)	//This is going to need live testing, since I'm not sure they should be getting this much CON without using a statpack to spec. Revision pending.
-			H.change_stat("endurance", -2)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_SPD, 1)	//We want to encourage backstepping since you no longer get an extra layer of armour. I don't think this will break much of anything.
+			H.change_stat(STATKEY_PER, 3)
+			H.change_stat(STATKEY_CON, 4)	//This is going to need live testing, since I'm not sure they should be getting this much CON without using a statpack to spec. Revision pending.
+			H.change_stat(STATKEY_WIL, -2)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
 			backl = /obj/item/rogueweapon/scabbard/gwstrap
 			var/weapons = list("Graduate's Spear", "Boar Spear", "Lucerne")
@@ -85,10 +85,10 @@
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-			H.change_stat("speed", 2)
-			H.change_stat("perception", 1)
-			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 3)
+			H.change_stat(STATKEY_SPD, 2)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_WIL, 3)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT)
 			var/weapons = list("Common Dagger", "Facón Dagger")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

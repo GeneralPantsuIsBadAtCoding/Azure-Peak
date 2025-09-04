@@ -332,6 +332,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/effect_desc = " Use in-hand to mark a location, then activate it to break the barrier between the dream and this realm where you put a mark down earlier. You recall the teachings of your Hierophant... these things are dangerous to all."
 	var/obj/rune_type = /obj/structure/active_abyssor_rune
 	var/faith_locked = TRUE
+	var/obj/upgraded_rune_type = /obj/structure/active_abyssor_rune/greater
 
 /obj/item/abyssal_marker/volatile
 	name = "volatile abyssal marker"
@@ -347,6 +348,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	icon_state = "abyssal_marker_tidal"
 	effect_desc = " Use in-hand to mark a location, then activate it to break the barrier between the dream and this realm where you put a mark down earlier. This one calls forth the tidal waters of the abyss."
 	rune_type = /obj/structure/active_abyssor_rune/tidal
+	upgraded_rune_type = null
 
 /obj/item/abyssal_marker/volatile/Initialize()
 	. = ..()
@@ -366,8 +368,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 		visible_message(span_warning("[src] shatters on impact!"))
 		playsound(src, 'sound/magic/lightning.ogg', 50, TRUE)
 		var/mob/thrower = throwingdatum?.thrower
-		if(thrower && HAS_TRAIT(thrower, TRAIT_HERESIARCH))
-			rune_type = /obj/structure/active_abyssor_rune/greater
+		if(thrower && HAS_TRAIT(thrower, TRAIT_HERESIARCH) && upgraded_rune_type)
+			rune_type = upgraded_rune_type
 		new rune_type(T)
 		qdel(src)
 	else
@@ -387,8 +389,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			to_chat(user, span_warning("My connection to Abyssor's dream is too weak to invoke his power with this crystal."))
 			return ..()
 		//Heretics get FAR stronger spires!
-		if(HAS_TRAIT(user, TRAIT_HERESIARCH))
-			rune_type = /obj/structure/active_abyssor_rune/greater
+		if(HAS_TRAIT(user, TRAIT_HERESIARCH) && upgraded_rune_type)
+			rune_type = upgraded_rune_type
 	if(do_after(user, 2 SECONDS) && !marked_location)
 		marked_location = get_turf(user)
 		to_chat(user, span_notice("You charge the crystal with the essence of this location."))

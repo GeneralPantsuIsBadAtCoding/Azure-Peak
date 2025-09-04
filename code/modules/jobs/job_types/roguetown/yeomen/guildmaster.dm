@@ -74,10 +74,10 @@
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
 		beltr = /obj/item/storage/keyring/guildmaster
 
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 2)
 
 /mob/living/carbon/human/proc/guild_announcement()
 	set name = "Announcement"

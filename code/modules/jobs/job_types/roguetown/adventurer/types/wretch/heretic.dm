@@ -52,9 +52,9 @@
 				if("Axe")
 					H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 					beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			H.change_stat("strength", 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
-			H.change_stat("constitution", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat(STATKEY_STR, 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_WIL, 1)
 			// You can convert those the church has shunned.
 			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
 			if (istype (H.patron, /datum/patron/inhumen/zizo))
@@ -157,7 +157,7 @@
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet
 					wrists = /obj/item/clothing/neck/roguetown/psicross
 					cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
-					H.change_stat("endurance", 2) //ENDVRE
+					H.change_stat(STATKEY_WIL, 2) //ENDVRE
 
 		if("Spy")
 			to_chat(H, span_warning("Nimble of dagger and foot both, you are the shadowy herald of the cabal. They will not see you coming."))
@@ -219,10 +219,10 @@
 					beltr = /obj/item/quiver/bolts
 					backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 
-			H.change_stat("perception", 2)
-			H.change_stat("intelligence", 1)
-			H.change_stat("endurance", 2)
-			H.change_stat("speed", 2) //Slower than outlaw, but a bit more PER and INT
+			H.change_stat(STATKEY_PER, 2)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_SPD, 2) //Slower than outlaw, but a bit more PER and INT
 			if (istype (H.patron, /datum/patron/inhumen/zizo))
 				if(H.mind)
 					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
@@ -289,7 +289,7 @@
 				if(/datum/patron/old_god)
 					wrists = /obj/item/clothing/neck/roguetown/psicross
 					cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
-					H.change_stat("endurance", 2) //ENDVRE
+					H.change_stat(STATKEY_WIL, 2) //ENDVRE
 
 /obj/effect/proc_holder/spell/invoked/convert_heretic
 	name = "Convert The Downtrodden"

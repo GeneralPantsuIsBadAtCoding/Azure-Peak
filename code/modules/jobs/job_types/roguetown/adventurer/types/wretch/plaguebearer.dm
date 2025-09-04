@@ -60,7 +60,7 @@
 			backr = /obj/item/rogueweapon/woodstaff/toper
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash)
-	H.change_stat("perception", 3)
-	H.change_stat("constitution", 2)
-	H.change_stat("intelligence", 4)
+	H.change_stat(STATKEY_PER, 3)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_INT, 4)
 	wretch_select_bounty(H)

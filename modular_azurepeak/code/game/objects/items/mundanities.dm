@@ -131,7 +131,7 @@
 			user.STASTR += rand(1,5)
 			user.STASPD += rand(1,5)
 			user.STACON += rand(1,5)
-			user.STAEND += rand(1,5)
+			user.STAWIL += rand(1,5)
 			finished_ckeys += ckey
 			playsound(src.loc, 'sound/foley/doors/lock.ogg', 75, TRUE)
 			playsound(src.loc, 'sound/items/visor.ogg', 75, TRUE)

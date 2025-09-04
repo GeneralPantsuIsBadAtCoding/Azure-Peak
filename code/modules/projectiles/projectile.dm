@@ -80,7 +80,7 @@
 	var/ignore_source_check = FALSE
 
 	var/damage = 10
-	var/npc_damage_mult = 1 // Multiplicative bonus damage.
+	var/npc_simple_damage_mult = 1 // Multiplicative bonus damage vs mindless simple animals.
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/flag = "piercing" //Defines what armor to use when it hits things. Setting this to "blunt" might result in unexpected behavior (i.e. knockout on hit, figure out the root causes and excise it)
@@ -187,8 +187,8 @@
 
 	var/mob/living/L = target
 
-	if (!L.mind)
-		damage *= npc_damage_mult // bonus damage against NPCs.
+	if (!L.mind && istype(L, /mob/living/simple_animal))
+		damage *= npc_simple_damage_mult // bonus damage against simple animals.
 	if(blocked != 100) // not completely blocked
 		if(damage && L.blood_volume && damage_type == BRUTE)
 			var/splatter_dir = dir

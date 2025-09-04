@@ -3,7 +3,7 @@
 	id = "frostbite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
 	duration = 20 SECONDS
-	effectedstats = list("speed" = -2)
+	effectedstats = list(STATKEY_SPD = -2)
 
 /atom/movable/screen/alert/status_effect/buff/frostbite
 	name = "Frostbite"
@@ -30,7 +30,7 @@
 	id = "withered"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/witherd
 	duration = 30 SECONDS
-	effectedstats = list("speed" = -2,"strength" = -2,"constitution"= -2,"endurance" = -2)
+	effectedstats = list(STATKEY_SPD = -2,STATKEY_STR = -2,STATKEY_CON= -2,STATKEY_WIL = -2)
 
 /atom/movable/screen/alert/status_effect/buff/witherd
 	name = "Withering"
@@ -56,7 +56,7 @@
 	id = "lightningstruck"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/lightningstruck
 	duration = 6 SECONDS
-	effectedstats = list("speed" = -2)
+	effectedstats = list(STATKEY_SPD = -2)
 
 /atom/movable/screen/alert/status_effect/buff/lightningstruck
 	name = "Lightning Struck"

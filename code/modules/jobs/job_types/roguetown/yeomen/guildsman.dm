@@ -91,10 +91,10 @@
 		beltr = /obj/item/roguekey/crafterguild
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
 
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 2)
 
 /datum/advclass/guildsman/artificer
 	name = "Artificer"
@@ -152,11 +152,11 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 3)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_INT, 3)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_PER, 1)
 
 /datum/advclass/guildsman/architect
 	name = "Architect"
@@ -211,9 +211,9 @@
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/roguekey/crafterguild = 1
 						)
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("fortune", 2)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_LCK, 2)
 

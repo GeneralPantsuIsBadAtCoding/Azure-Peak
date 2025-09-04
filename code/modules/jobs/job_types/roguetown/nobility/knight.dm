@@ -102,11 +102,11 @@
 	H.verbs |= /mob/proc/haltyell
 
 
-	H.change_stat("strength", 3) //Heavy hitters. Less con/end, high strength.
-	H.change_stat("intelligence", 3)
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_STR, 3) //Heavy hitters. Less con/end, high strength.
+	H.change_stat(STATKEY_INT, 3)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, -1)
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Zweihander","Great Mace","Battle Axe","Greataxe","Estoc","Lucerne", "Partizan")
@@ -193,10 +193,10 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
 
-	H.change_stat("strength", 1) //Tanky, less strength, but high con/end.
-	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
-	H.change_stat("intelligence", 1)
+	H.change_stat(STATKEY_STR, 1) //Tanky, less strength, but high con/end.
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_INT, 1)
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Longsword","Flail","Warhammer","Sabre")
@@ -277,11 +277,11 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
 
-	H.change_stat("strength", 2) //Decent all-around stats. Nothing spectacular. Ranged/melee hybrid class on horseback.
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 2)
-	H.change_stat("intelligence", 1)
+	H.change_stat(STATKEY_STR, 2) //Decent all-around stats. Nothing spectacular. Ranged/melee hybrid class on horseback.
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_INT, 1)
 
 	H.adjust_blindness(-3)
 	var/weapons = list(
@@ -382,10 +382,10 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
 
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("speed", 2)
-	H.change_stat("intelligence", 1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_INT, 1)
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Rapier + Longbow","Estoc + Recurve Bow","Sabre + Buckler","Whip + Crossbow","Greataxe + Sling")

@@ -40,11 +40,11 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 
-			H.change_stat("strength", 2)	
-			H.change_stat("endurance", 3)
-			H.change_stat("constitution", 3)
-			H.change_stat("perception", 1)
-			H.change_stat("speed", -1)	
+			H.change_stat(STATKEY_STR, 2)	
+			H.change_stat(STATKEY_WIL, 3)
+			H.change_stat(STATKEY_CON, 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_SPD, -1)	
 
 			head = /obj/item/clothing/head/roguetown/helmet/bascinet/atgervi
 			gloves = /obj/item/clothing/gloves/roguetown/angle/atgervi
@@ -79,12 +79,12 @@
 			H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
-			H.change_stat("strength", 3) 
-			H.change_stat("endurance", 1)
-			H.change_stat("constitution", 2)
-			H.change_stat("intelligence", -1)
-			H.change_stat("perception", -1)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_STR, 3) 
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_INT, -1)
+			H.change_stat(STATKEY_PER, -1)
+			H.change_stat(STATKEY_SPD, 1)
 
 			head = /obj/item/clothing/head/roguetown/helmet/leather/saiga/atgervi
 			gloves = /obj/item/clothing/gloves/roguetown/plate/atgervi

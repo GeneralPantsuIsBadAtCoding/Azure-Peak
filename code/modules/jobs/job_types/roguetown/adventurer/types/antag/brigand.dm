@@ -42,12 +42,12 @@
 	head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	id = /obj/item/mattcoin
-	H.change_stat("strength", 4) //have you seen this idiot's starting gear and skill spread??
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("intelligence", -1)
-	H.change_stat("speed", 1)
-	H.change_stat("fortune", 1)
+	H.change_stat(STATKEY_STR, 4) //have you seen this idiot's starting gear and skill spread??
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_INT, -1)
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_LCK, 1)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.adjust_blindness(-3)
 	var/weapons = list("Battleaxe & Cudgel","Flail & Shield")

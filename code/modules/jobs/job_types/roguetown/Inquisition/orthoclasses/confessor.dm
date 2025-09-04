@@ -47,10 +47,10 @@
 		/obj/item/grapplinghook = 1,
 		/obj/item/paper/inqslip/arrival/ortho = 1
 		)
-	H.change_stat("strength", -1) // weasel
-	H.change_stat("endurance", 3)
-	H.change_stat("perception", 2)
-	H.change_stat("speed", 3)
+	H.change_stat(STATKEY_STR, -1) // weasel
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_SPD, 3)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)

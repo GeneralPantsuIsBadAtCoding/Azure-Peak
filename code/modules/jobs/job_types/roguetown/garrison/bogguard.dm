@@ -85,9 +85,9 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // This should let them fry meat on fires.
-	H.change_stat("perception", 2) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_PER, 2) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, 2)
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
@@ -157,10 +157,10 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // This should let them fry meat on fires.
-	H.change_stat("perception", 1) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("strength", 2)
+	H.change_stat(STATKEY_PER, 1) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_STR, 2)
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)

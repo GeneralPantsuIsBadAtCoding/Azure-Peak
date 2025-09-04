@@ -25,7 +25,7 @@
 /mob/living/proc/update_energy()
 	var/athletics_skill = 0
 	athletics_skill = get_skill_level(/datum/skill/misc/athletics)
-	max_energy = (STAEND + (athletics_skill/2 ) ) * 100
+	max_energy = (STAWIL + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
 			energy_add(-2)
@@ -40,7 +40,7 @@
 	//	return TRUE
 	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
 		return TRUE
-	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
+	if(m_intent == MOVE_INTENT_RUN && isnull(buckled) && (mobility_flags & MOBILITY_STAND))
 		mind && mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
 	energy += added
 	if(energy > max_energy)

@@ -176,7 +176,7 @@
 				H.dropItemToGround(parent)
 				return
 			var/datum/job/J = SSjob.GetJob(H.mind?.assigned_role)
-			if(!J.title == "Martyr" && !J.title == "Bishop")		//Can't be a Martyr if you're not a Martyr. Or a Bishop.
+			if(J.title != "Martyr" && J.title != "Bishop")		//Can't be a Martyr if you're not a Martyr. Or a Bishop.
 				to_chat(H, span_warn("It slips from my grasp. I can't get a hold."))
 				H.dropItemToGround(parent)
 				return
@@ -268,7 +268,7 @@
 				current_holder.STASTR += stat_bonus_martyr
 				//current_holder.STASPD += stat_bonus_martyr
 				current_holder.STACON += stat_bonus_martyr
-				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAWIL += stat_bonus_martyr
 				current_holder.STAINT += stat_bonus_martyr
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
@@ -277,7 +277,7 @@
 				current_holder.STASTR = 20
 				current_holder.STASPD = 20
 				current_holder.STACON = 20
-				current_holder.STAEND = 20
+				current_holder.STAWIL = 20
 				current_holder.STAINT = 20
 				current_holder.STAPER = 20
 				current_holder.STALUC = 20
@@ -389,7 +389,7 @@
 				current_holder.STASTR += stat_bonus_martyr
 				current_holder.STASPD += stat_bonus_martyr
 				current_holder.STACON += stat_bonus_martyr
-				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAWIL += stat_bonus_martyr
 				current_holder.STAINT += stat_bonus_martyr
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
@@ -495,11 +495,11 @@
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDICINE_EXPERT, TRAIT_GENERIC)	//Tentative!
 	ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
-	H.change_stat("strength", 2)
-	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
-	H.change_stat("intelligence", 1)
-	H.change_stat("perception", 1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_PER, 1)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 
 

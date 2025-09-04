@@ -51,11 +51,11 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)	//Accompanies mining; they know how to smelt, not make armor though.
-	H.change_stat("fortune", 1)
-	H.change_stat("strength", 1)
-	H.change_stat("constitution", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("speed", 1)
+	H.change_stat(STATKEY_LCK, 1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_SPD, 1)
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WEBWALK, TRAIT_GENERIC)	//A cave dweller fears no spider.

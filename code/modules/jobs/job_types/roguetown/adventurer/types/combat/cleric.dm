@@ -96,10 +96,10 @@
 				else
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 					head = /obj/item/clothing/head/roguetown/roguehood
-			H.change_stat("strength", 2)
-			H.change_stat("endurance", 2)
-			H.change_stat("constitution", 2)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_SPD, 1)
 
 		if("Paladin")
 			to_chat(H, span_warning("A holy warrior. Where others of the clergy may have spent their free time studying scriptures, you have instead honed your skills with a blade."))
@@ -197,9 +197,9 @@
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/flail
 			H.set_blindness(0)
-			H.change_stat("strength", 2)
-			H.change_stat("constitution", 2)
-			H.change_stat("endurance", 1)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_WIL, 1)
 
 		if("Cantor")
 			H.set_blindness(0)
@@ -234,9 +234,9 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 2)
 			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
@@ -307,10 +307,10 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
-			H.change_stat("intelligence", 2)
-			H.change_stat("endurance", 1)
-			H.change_stat("perception", 2)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_INT, 2)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_PER, 2)
+			H.change_stat(STATKEY_SPD, 1)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
 					cloak = /obj/item/clothing/cloak/psydontabard

@@ -87,11 +87,11 @@
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat("endurance", 1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_PER, 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
+	H.change_stat(STATKEY_WIL, 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
@@ -186,7 +186,7 @@
 /datum/status_effect/buff/order/movemovemove
 	id = "movemovemove"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/movemovemove
-	effectedstats = list("speed" = 5)
+	effectedstats = list(STATKEY_SPD = 5)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/movemovemove
@@ -206,7 +206,7 @@
 /datum/status_effect/buff/order/takeaim
 	id = "takeaim"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/takeaim
-	effectedstats = list("perception" = 5)
+	effectedstats = list(STATKEY_PER = 5)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/takeaim
@@ -305,7 +305,7 @@
 
 /obj/effect/proc_holder/spell/invoked/order/hold
 	name = "Hold!"
-	desc = "Orders your underlings to Endure. +2 Endurance and Constitution."
+	desc = "Orders your underlings to Endure. +2 Willpower and Constitution."
 	overlay_state = "hold"
 
 
@@ -338,7 +338,7 @@
 /datum/status_effect/buff/order/hold
 	id = "hold"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/hold
-	effectedstats = list("endurance" = 2, "constitution" = 2)
+	effectedstats = list(STATKEY_WIL = 2, STATKEY_CON = 2)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/hold
@@ -381,7 +381,7 @@
 /datum/status_effect/debuff/order/focustarget
 	id = "focustarget"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/order/focustarget
-	effectedstats = list("fortune" = -2)
+	effectedstats = list(STATKEY_LCK = -2)
 	duration = 1 MINUTES
 	var/outline_colour = "#69050a"
 
