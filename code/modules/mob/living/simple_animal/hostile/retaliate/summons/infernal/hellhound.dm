@@ -47,6 +47,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
 	..()

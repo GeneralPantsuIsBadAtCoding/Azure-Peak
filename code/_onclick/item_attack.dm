@@ -602,6 +602,8 @@
 		if(I.damtype == BRUTE)
 			next_attack_msg.Cut()
 			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
+				if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
+					newforce *= SILVER_SIMPLEMOB_DAM_MULT
 				simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
 				/* No embedding on simple mobs, thank you!
 				var/datum/wound/crit_wound  = simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
