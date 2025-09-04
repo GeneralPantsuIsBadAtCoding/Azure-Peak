@@ -42,7 +42,7 @@
 			damage += 20
 		if(istype(H.patron, /datum/patron/old_god))
 			damage += 20
-		if(HAS_TRAIT(H, TRAIT_SILVER_WEAK))
+		if(HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !HAS_TRAIT(H, STATUS_EFFECT_ANTIMAGIC))
 			H.visible_message("<font color='white'>The unholy strike weakens the curse temporarily!</font>")
 			to_chat(H, span_userdanger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
 			H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/sunder)

@@ -346,5 +346,5 @@
 	)
 	to_chat(affected, span_userdanger(goodbye))
 	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)
-	if(HAS_TRAIT(affected, TRAIT_SILVER_WEAK))
+	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
 		affected.death()

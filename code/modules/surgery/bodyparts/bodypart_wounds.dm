@@ -242,10 +242,11 @@
 			attempted_wounds += /datum/wound/artery		//basically does sword-tier wounds.
 		if(prob(used))
 			attempted_wounds += /datum/wound/scarring
-	if((bclass in GLOB.sunder_bclasses) && HAS_TRAIT(owner, TRAIT_SILVER_WEAK))
-		used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
-		if(prob(used))
-			attempted_wounds += /datum/wound/sunder
+	if((bclass in GLOB.sunder_bclasses))
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
+			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
+			if(prob(used))
+				attempted_wounds += /datum/wound/sunder
 
 	for(var/wound_type in shuffle(attempted_wounds))
 		var/datum/wound/applied = add_wound(wound_type, silent, crit_message)
@@ -312,7 +313,7 @@
 			else
 				attempted_wounds += /datum/wound/scarring
 	if(bclass in GLOB.sunder_bclasses)
-		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK))
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
 			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
 			if(prob(used))
 				attempted_wounds += list(/datum/wound/sunder/chest)
@@ -429,10 +430,11 @@
 						attempted_wounds += /datum/wound/facial/disfigurement/nose
 				else if(zone_precise in knockout_zones)
 					attempted_wounds += /datum/wound/fracture/head/brain
-	if(bclass in GLOB.sunder_bclasses && HAS_TRAIT(owner, TRAIT_SILVER_WEAK))
-		used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
-		if(prob(used))
-			attempted_wounds += /datum/wound/sunder
+	if(bclass in GLOB.sunder_bclasses)
+		if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !HAS_TRAIT(owner, STATUS_EFFECT_ANTIMAGIC))
+			used = round(damage_dividend * 20 + (dam / 2) - 10 * resistance, 1)
+			if(prob(used))
+				attempted_wounds += /datum/wound/sunder
 
 	for(var/wound_type in shuffle(attempted_wounds))
 		var/datum/wound/applied = add_wound(wound_type, silent, crit_message)
