@@ -99,17 +99,6 @@
 	material = "silver"
 	is_silver = TRUE
 
-/obj/item/lockpick/goldpin/silver/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = -3,\
-		added_blade_int = 20,\
-		added_int = 20,\
-		added_def = 3,\
-	)
-
 /obj/item/roguekey/lord
 	name = "master key"
 	desc = "The Lord's key."
