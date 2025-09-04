@@ -583,8 +583,12 @@
 	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
 		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
 		if(blesscomp?.is_blessed)
+			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))
+				to_chat(victim, span_danger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
 			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 		else
+			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+				to_chat(victim, span_danger("Blessed silver rebukes my presence! These fires are lashing at my very soul!"))
 			victim.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
 		victim.ignite_mob()
 
