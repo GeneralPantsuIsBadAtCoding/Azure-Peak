@@ -9,7 +9,7 @@
 	classes = list(
 		"Easterner" = "A traveler hailing from the distant land of Kazengun, far across the eastern sea. Your fellow countrymen are few and far between in Azuria.",
 		"Exile" = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins.",
-		"Chainbearer" = "In parts of Psydonia, the practice of slavery is still a common sight. You hail from the Raneshen Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls.",
+		"Chainbearer" = "In parts of Psydonia, the practice of slavery is still a common sight. You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls.",
 		"Refugee" = "A refugee from the war-torn deserts of Naledi, driven north as your homeland continues to be ravaged by an endless conflict against the Djinn.")
 /datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
 	..()
