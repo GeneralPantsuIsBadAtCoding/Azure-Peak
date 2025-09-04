@@ -42,22 +42,7 @@
 	UnregisterSignal(parent, list(COMSIG_PARENT_EXAMINE, COMSIG_ITEM_OBJFIX, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /datum/component/silverbless/proc/on_equipped(obj/item/equipped, mob/user, slot)
-	if(HAS_TRAIT(user, TRAIT_SILVER_WEAK))
-		var/mob/living/carbon/human/H = user
-		if(!H.mind)
-			return
-		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V_lord?.vamplevel >= 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			return
-
-		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		H.Knockdown(10)
-		H.Paralyze(10)
-		H.adjustFireLoss(25)
-		H.fire_act(1,10)
-		user.dropItemToGround(parent, force = TRUE)
-		return
-	else if(is_blessed && slot & ITEM_SLOT_HANDS)
+	if(is_blessed && slot & ITEM_SLOT_HANDS)
 		user.add_stress(/datum/stressevent/blessed_weapon)
 
 /datum/component/silverbless/proc/on_dropped(obj/item/dropped, mob/user, slot)

@@ -468,62 +468,7 @@
 	icon_state = "psycross_s"
 	item_state = "psycross_s"
 	sellprice = 50
-
-/obj/item/clothing/neck/roguetown/psicross/silver/pickup(mob/user)
-	..()
-
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		return
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-	if(V_lord)
-		if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-
-/obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	..()
-
-	if(!ishuman(M))
-		return FALSE
-	var/mob/living/carbon/human/H = M
-	if(!H.mind)
-		return FALSE
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-		return FALSE
-	if(V_lord && V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(10)
-		H.Paralyze(10)
-		return FALSE
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-		return FALSE
-
-	return TRUE
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/g
 	name = "golden psycross"
