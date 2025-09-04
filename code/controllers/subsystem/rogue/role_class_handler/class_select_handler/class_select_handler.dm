@@ -279,7 +279,7 @@
 	</html>
 	"}
 
-	linked_client << browse(data, "window=class_handler_main;size=330x430;can_close=0;can_minimize=0;can_maximize=0;can_resize=1;titlebar=1")
+	linked_client << browse(data, "window=class_handler_main;size=380x450;can_close=0;can_minimize=0;can_maximize=0;can_resize=1;titlebar=1")
 
 /datum/class_select_handler/proc/class_select_slop()
 
