@@ -548,13 +548,3 @@
 	name = "Action Delayed"
 	desc = "I cannot take another action."
 	icon_state = "clickcd"
-
-/datum/status_effect/debuff/sundered
-	id = "sundered"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/sundered
-
-/atom/movable/screen/alert/status_effect/debuff/sundered
-	name = "Sunder!"
-	desc = "Silver! MY BANE!!!"
-	icon_state = "debuff"
-
