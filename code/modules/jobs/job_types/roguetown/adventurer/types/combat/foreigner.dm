@@ -52,6 +52,7 @@
 			H.change_stat(STATKEY_STR, 2)
 			H.change_stat(STATKEY_CON, 2)
 			H.change_stat(STATKEY_WIL, 1)
+			H.grant_language(/datum/language/celestial)
 
 		if("Refugee")
 			to_chat(H, span_warning("An asylum-seeker from the war-torn deserts of Naledi, \
@@ -80,6 +81,7 @@
 			H.change_stat(STATKEY_PER, 1)
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_SPD, 2)
+			H.grant_language(/datum/language/celestial)
 
 		if("Exile")
 			to_chat(H, span_warning("An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. \
@@ -206,7 +208,6 @@
 							mask = /obj/item/clothing/mask/rogue/facemask/yoruku_oni
 						if("Kitsune")
 							mask = /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
-
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/civilian
 	name = "shawl"
