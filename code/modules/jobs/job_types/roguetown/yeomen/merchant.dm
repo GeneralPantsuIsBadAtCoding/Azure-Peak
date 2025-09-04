@@ -53,9 +53,9 @@
 		H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	else if(should_wear_femme_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/gladiator
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 3)
-	H.change_stat("strength", -1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 3)
+	H.change_stat(STATKEY_STR, -1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 

@@ -129,10 +129,10 @@
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
-	name = "steppesman chargah robe"
-	desc = "A light yet thick robe padded with fine silks and cloth, acting as a mix of traditional gambeson and imported silks of the east. Popular among Aavnr steppesmen."
+	name = "padded caftan"
+	desc = "A long overcoat commonly worn in Naledi, Kazengun, and Aavnr - but mostly associated with steppesmen. This specific kind rivals a gambeson in protection."
 	icon_state = "chargah"
-	color = "#864a4a"
+	color = "#ffffff"
 	boobed = TRUE
 	shiftable = FALSE
 

@@ -44,8 +44,8 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	H.change_stat("strength", 4)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("intelligence", 2)
+	H.change_stat(STATKEY_STR, 4)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_INT, 2)
 

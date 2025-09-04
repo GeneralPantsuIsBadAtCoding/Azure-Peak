@@ -44,8 +44,8 @@
 	beltl = /obj/item/storage/keyring/churchie
 
 
-	H.change_stat("perception", 1)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_SPD, 2)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.

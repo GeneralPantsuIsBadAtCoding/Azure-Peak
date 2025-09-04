@@ -44,5 +44,5 @@
 						)
 	beltl = /obj/item/rogueweapon/sickle
 	backr = /obj/item/rogueweapon/hoe
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", -1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_INT, -1)

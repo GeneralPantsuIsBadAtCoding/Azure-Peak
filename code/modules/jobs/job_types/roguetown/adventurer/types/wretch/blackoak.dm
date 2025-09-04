@@ -33,10 +33,10 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H.change_stat("constitution", -1) //lower-than-avg stats for wretch but their traits are insanely good
-	H.change_stat("intelligence", 2)
-	H.change_stat("strength", 2)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_CON, -1) //lower-than-avg stats for wretch but their traits are insanely good
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_SPD, 2)
 	ADD_TRAIT(H, TRAIT_AZURENATIVE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)

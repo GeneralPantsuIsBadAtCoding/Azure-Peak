@@ -26,9 +26,9 @@
 		H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-		H.change_stat("perception", 2)
-		H.change_stat("intelligence", -1)
-		H.change_stat("fortune", rand(-2, 2))
+		H.change_stat(STATKEY_PER, 2)
+		H.change_stat(STATKEY_INT, -1)
+		H.change_stat(STATKEY_LCK, rand(-2, 2))
 		var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 		if (!my_crime)
 			my_crime = "crimes against the Crown"
