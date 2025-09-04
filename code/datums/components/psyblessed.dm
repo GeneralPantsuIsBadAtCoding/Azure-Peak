@@ -91,7 +91,7 @@
 			I.max_blade_int += round(added_blade_int * blessing_divisor)
 			I.blade_int = round(I.max_blade_int * blessing_divisor)
 		I.max_integrity += round(added_int * blessing_divisor)
-		I.obj_integrity = round(I.max_integrity * blessing_divisor)
+		I.obj_integrity = I.max_integrity
 		I.wdefense += round(added_def * blessing_divisor)
 		I.name = "blessed [I.name]"
 		I.AddComponent(/datum/component/metal_glint)
