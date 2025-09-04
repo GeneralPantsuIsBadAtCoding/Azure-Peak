@@ -295,40 +295,6 @@
 				/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
 				/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 				)
-
-
-		if("Flagellant")
-			to_chat(H, span_warning("You are a pacifistic warrior who embraces suffering, believing pain is the path to enlightenment."))
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-			H.set_blindness(0)
-
-			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-			H.change_stat(STATKEY_CON, 5)
-			H.change_stat(STATKEY_WIL, 5)
-			H.change_stat(STATKEY_SPD, 1)
-			H.change_stat(STATKEY_STR, -2)
-			H.change_stat(STATKEY_INT, -2)
-
-			pants = /obj/item/clothing/under/roguetown/tights/black
-			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
-			shoes = /obj/item/clothing/shoes/roguetown/boots
-			backl = /obj/item/storage/backpack/rogue/satchel
-			belt = /obj/item/storage/belt/rogue/leather
-			beltr = /obj/item/rogueweapon/whip
-			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-			backpack_contents = list(
-				/obj/item/recipe_book/survival = 1,
-				/obj/item/flashlight/flare/torch = 1,
-				)
 		
 		if("Ironclad")
 			to_chat(H, span_warning("You put your trust into your durable armor. The best offense is a good defense."))

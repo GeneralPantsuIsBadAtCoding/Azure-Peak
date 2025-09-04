@@ -1105,10 +1105,12 @@
 				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
 
-/obj/item/roguewapon/spear/assegai/iron
+/obj/item/rogueweapon/spear/assegai/iron
 	name = "iron assegai"
 	desc = "A long spear originating from the southern regions of Naledi. Commoners living along the great river Bilomari are taught to use assegai so they can defend themselves against the Djinn."
 	icon = 'icons/roguetown/weapons/64.dmi'
+	max_integrity = 150
+	max_blade_int = 150
 	icon_state = "assegai_iron"
 	gripsprite = FALSE
 
@@ -1116,5 +1118,7 @@
 	name = "steel assegai"
 	desc = "A long spear originating from the southern regions of Naledi. Commoners living along the great river Bilomari are taught to use assegai so they can defend themselves against the Djinn."
 	icon = 'icons/roguetown/weapons/64.dmi'
+	max_integrity = 250
+	max_blade_int = 200
 	icon_state = "assegai_steel"
 	gripsprite = FALSE

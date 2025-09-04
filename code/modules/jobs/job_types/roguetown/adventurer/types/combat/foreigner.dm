@@ -8,13 +8,12 @@
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	classes = list(
 		"Eastern Wayfarer" = "A traveler hailing from the distant land of Kazengun, far across the eastern sea. Your fellow countrymen are few and far between in Azuria.",
-		"Otavan Exile" = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins.",
+		"Otavan Exile" = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. Some consider yours a fate worse than death; the alloy mask seared onto your face serving as a permanent reminder of your sins.",
 		"Ranesheni Slaver" = "In parts of Psydonia, the practice of slavery is still a common sight. You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls.",
 		"Naledi Refugee" = "A refugee from the war-torn deserts of Naledi, driven north as your homeland continues to be ravaged by an endless conflict against the Djinn.")
 /datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	H.cmode_music = 'sound/music/combat_kazengite.ogg'
 	var/classes = list("Eastern Wayfarer","Otavan Exile","Ranesheni Slaver","Naledi Refugee")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
@@ -36,7 +35,10 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			beltr = /obj/item/rogueweapon/sword/long/shotel
-			backpack_contents = list(/obj/item/rope/chain = 2, /obj/item/storage/belt/rogue/pouch/coins/poor = 1)
+			backpack_contents = list(/obj/item/rope/chain = 2, 
+									/obj/item/storage/belt/rogue/pouch/coins/poor = 1, 
+									/obj/item/recipe_book/survival = 1, 
+									/obj/item/rogueweapon/huntingknife = 1)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE) //Spawns with pretty good medium armor, but jman skills.
@@ -53,6 +55,7 @@
 			H.change_stat(STATKEY_CON, 2)
 			H.change_stat(STATKEY_WIL, 1)
 			H.grant_language(/datum/language/celestial)
+			H.cmode_music = 'sound/music/combat_desertrider.ogg'
 
 		if("Naledi Refugee")
 			to_chat(H, span_warning("An asylum-seeker from the war-torn deserts of Naledi, \
@@ -76,16 +79,19 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+			backpack_contents = list(/obj/item/recipe_book/survival = 1, 
+									/obj/item/rogueweapon/huntingknife = 1)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			H.change_stat(STATKEY_INT, 1)
 			H.change_stat(STATKEY_PER, 1)
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_SPD, 2)
 			H.grant_language(/datum/language/celestial)
+			H.cmode_music = 'sound/music/warscholar.ogg'
 
-		if("Otavan Exile")
+		if("Otavan Repentant")
 			to_chat(H, span_warning("An exile from the Holy See of Otava, accused of heresy and cast out of your homeland. \
-			Some consider yours a fate worse than death; the iron mask seared onto your face serving as a permanent reminder of your sins. \
+			Some consider yours a fate worse than death; the alloy mask seared onto your face serving as a permanent reminder of your sins. \
 			You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."))
 			mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched
 			wrists = /obj/item/clothing/neck/roguetown/psicross
@@ -100,18 +106,21 @@
 			beltl = /obj/item/rogueweapon/whip
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+			backpack_contents = list(/obj/item/recipe_book/survival = 1, 
+									/obj/item/rogueweapon/huntingknife = 1)
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-			H.change_stat(STATKEY_STR, 1)
 			H.change_stat(STATKEY_WIL, 3)
 			H.change_stat(STATKEY_CON, 3)
 			H.change_stat(STATKEY_SPD, -1)
+			H.change_stat(STATKEY_STR, -1)
 			H.grant_language(/datum/language/otavan)
+			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 
 		if("Eastern Wayfarer")
 			to_chat(H, span_warning("A traveler hailing from the distant land of Kazengun, far across the eastern sea. \
@@ -119,6 +128,7 @@
 			var/subclasses = list("Okaru (Warrior)","Yoruku (Rogue)")
 			var/subclasschoice = input("Choose your archetypes", "Available archetypes") as anything in subclasses
 			H.grant_language(/datum/language/kazengunese)
+			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
 			switch(subclasschoice)
 				if("Okaru (Warrior)")
@@ -152,15 +162,15 @@
 					switch(weapon_choice)
 						if("Naginata")
 							r_hand = /obj/item/rogueweapon/spear/naginata
-							H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 						if("Quarterstaff")
 							backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
-							H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 						if("Hwando")
 							beltl = /obj/item/rogueweapon/sword/sabre/mulyeog
 							beltr = /obj/item/rogueweapon/scabbard/sword/kazengun
-							H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-							H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/shields, 3, TRUE)
+							H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 
 				if("Yoruku (Rogue)")
 					to_chat(H, span_warning("You are a Kazengunese agent trained in assassination, sabotage, and irregular combat."))

@@ -1512,7 +1512,7 @@
 	name = "steel shotel"
 	icon_state = "shotel_steel"
 	icon = 'icons/roguetown/weapons/64.dmi'
-	desc = "A long curved blade of Raneshen Design."
+	desc = "A long curved blade of Ranesheni Design."
 	possible_item_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop/long) //Shotels get 2 tile reach.
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop/long)
 	swingsound = BLADEWOOSH_LARGE
@@ -1528,6 +1528,7 @@
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_HIP
 	dropshrink = 0.8
 	max_integrity = 150 //Sword with two tile reach but very low integrity.
+	max_blade_int = 150
 
 /obj/item/rogueweapon/sword/long/shotel/getonmobprop(tag)
 	. = ..()
@@ -1549,6 +1550,7 @@
 	icon_state = "shotel_iron"
 	swingsound = BLADEWOOSH_LARGE
 	max_integrity = 100
+	max_blade_int = 100
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/sword/long/shotel/iron/getonmobprop(tag)
