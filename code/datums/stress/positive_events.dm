@@ -241,3 +241,14 @@
 	stressadd = -5
 	desc = span_green("I feel inspired by the sermon.")
 	timer = 20 MINUTES
+
+
+/datum/stressevent/champion
+	stressadd = -3
+	desc = span_green("I am near my ward!")
+	timer = 1 MINUTES
+
+/datum/stressevent/ward
+	stressadd = -3
+	desc = span_green("I am near my Champion! Oh, oh, Champion!")
+	timer = 1 MINUTES

@@ -345,3 +345,14 @@
 	stressadd = 5
 	desc = span_red("My PATRON is NOT PROUD of ME!")
 	timer = 20 MINUTES
+
+
+/datum/stressevent/lostchampion
+	stressadd = 8
+	desc = span_red("I feel I have lost my champion! Oh, my stricken heart!")
+	timer = 25 MINUTES
+
+/datum/stressevent/lostward
+	stressadd = 8
+	desc = span_red("I have failed my ward! My ribbon fades in color!")
+	timer = 25 MINUTES

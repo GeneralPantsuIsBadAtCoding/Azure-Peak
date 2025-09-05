@@ -34,6 +34,10 @@
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")
 
+/datum/outfit/job/roguetown/heir/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/carbon/human/proc/declarechampion
+
 /datum/advclass/heir/daring
 	name = "Daring Twit"
 	tutorial = "You're a somebody, someone important. It only makes sense you want to make a name for yourself, to gain your own glory so people see how great you really are beyond your bloodline. Plus, if you're beloved by the people for your exploits you'll be chosen! Probably. Shame you're as useful and talented as a squire, despite your delusions to the contrary."
@@ -240,3 +244,121 @@
 	H.change_stat(STATKEY_INT, 2)
 	H.change_stat(STATKEY_WIL, 1)
 	H.change_stat(STATKEY_LCK, 1)
+
+
+/mob/living/carbon/human/proc/declarechampion()
+	set name = "Declare Champion"
+	set category = "Noble"
+
+
+	if(stat)
+		return
+	if(!mind)
+		return
+
+	if(!src.mind.champion)
+		var/list/folksnearby = list()
+		for(var/mob/living/carbon/human/newchampionpotential in (view(1)))
+			folksnearby += newchampionpotential
+		var/target = input(src, "Choose a champion") as null|anything in folksnearby
+		if(istype(target, /mob/living/carbon))
+			var/mob/living/carbon/guy = target
+			if(!guy)
+				return
+			if(guy == src)
+				return
+			if(!guy.mind)
+				return
+			src.say("Be my Champion, [guy]!")
+			var/prompt = alert(guy, "Do wish to be [src]'s Champion?", "Champion", "Yes", "No")
+			if(prompt == "No")
+				return
+
+			guy.say("I serve you, [src]!")
+			src.visible_message(span_warning("[src] begins tying the golden ribbon to [guy]'s wrist."))
+			if(do_after(src, 10 SECONDS))
+				src.visible_message(span_warning("[src] ties a golden ribbon to [guy]'s wrist."))
+				guy.mind.ward = src
+				src.mind.champion = guy
+				var/datum/status_effect/buff/champion/new_champion = guy.apply_status_effect(/datum/status_effect/buff/champion)
+				var/datum/status_effect/buff/ward/new_ward = src.apply_status_effect(/datum/status_effect/buff/ward)
+				new_champion.ward = src
+				new_ward.champion = guy
+
+	else
+		var/list/folksnearby = list()
+		for(var/mob/living/carbon/human/championremoval in (view(1)))
+			if(championremoval == src.mind.champion)
+				folksnearby += championremoval
+		var/mob/living/target = input(src, "Choose a champion") as null|anything in folksnearby
+		if(!target)
+			return
+
+		else
+			src.visible_message(span_warning("[src] begins untying the golden ribbon from [src.mind.champion]'s wrist."))
+			if(do_after(src, 10 SECONDS))
+				src.visible_message(span_warning("[src] unties a golden ribbon from [src.mind.champion]'s wrist."))
+				src.say("I revoke your championship, [target]!")
+				src.mind.champion = null
+				if(target.has_status_effect(/datum/status_effect/buff/champion))
+					target.remove_status_effect(/datum/status_effect/buff/champion)
+				if(src.has_status_effect(/datum/status_effect/buff/ward))
+					src.remove_status_effect(/datum/status_effect/buff/ward)
+
+
+/datum/status_effect/buff/champion
+	alert_type = /atom/movable/screen/alert/status_effect/buff/champion
+	var/mob/living/carbon/ward = null
+	effectedstats = list(STATKEY_CON = 1, STATKEY_WIL = 1)
+	duration = -1
+
+/atom/movable/screen/alert/status_effect/buff/champion
+	name = "Champion"
+	desc = "I am a Chosen by a Heir!"
+	icon_state = "buff"
+
+
+/datum/status_effect/buff/champion/on_creation()
+	spawn(5) // sob doesnt work without this??
+		examine_text = "<font color='yellow'>SUBJECTPRONOUN is the Champion Of [owner.mind.ward.real_name]!"
+	return ..()
+
+/datum/status_effect/buff/champion/tick()
+	for (var/mob/living/carbon/H in view(5, owner))
+		if(H == ward)
+			if (!owner.has_stress_event(/datum/stressevent/champion))
+				owner.add_stress(/datum/stressevent/champion)
+
+/datum/status_effect/buff/champion/on_remove()
+	ward.add_stress(/datum/stressevent/lostchampion)
+	owner.mind.ward = null
+	owner.remove_status_effect(/datum/status_effect/buff/champion)
+	if(ward && ward.mind)
+		ward.mind.champion = null
+		ward.remove_status_effect(/datum/status_effect/buff/ward)
+
+
+/datum/status_effect/buff/ward
+	alert_type = /atom/movable/screen/alert/status_effect/buff/ward
+	var/mob/living/carbon/champion = null
+	effectedstats = list(STATKEY_LCK = 1, STATKEY_WIL = 1)
+	duration = -1
+
+/atom/movable/screen/alert/status_effect/buff/ward
+	name = "Ward"
+	desc = "I have declared a champion."
+	icon_state = "buff"
+
+/datum/status_effect/buff/ward/tick()
+	for (var/mob/living/carbon/H in view(5, owner))
+		if(H == champion)
+			if(!owner.has_stress_event(/datum/stressevent/ward))
+				owner.add_stress(/datum/stressevent/ward)
+
+/datum/status_effect/buff/ward/on_remove()
+	champion.add_stress(/datum/stressevent/lostward)
+	owner.mind.champion = null
+	owner.remove_status_effect(/datum/status_effect/buff/ward)
+	if(champion && champion.mind)
+		champion.mind.ward = null
+		champion.remove_status_effect(/datum/status_effect/buff/champion)
