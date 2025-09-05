@@ -1,5 +1,5 @@
 #ifndef TESTING
-//    #define FASTLOAD
+    #define FASTLOAD
 //    #define DEPLOY_TEST
 //    #define ROGUEWORLD
 #endif
