@@ -6,7 +6,7 @@
 	allowed_races = RACES_ALL_KINDS
 	allowed_patrons = list(/datum/patron/divine/dendor)
 	outfit = /datum/outfit/job/roguetown/adventurer/nudist
-	category_tags = list(CTAG_ADVENTURER)
+	category_tags = list(CTAG_ADVENTURER, CTAG_LICKER_WRETCH)
 
 /datum/outfit/job/roguetown/adventurer/nudist/pre_equip(mob/living/carbon/human/H)
 	..()

@@ -2,13 +2,8 @@
 	name = "Demonic"
 	desc = "Get a help from the Hell creatures, resist THE FIRE, transform into an imp. Violates Masquerade."
 	icon_state = "daimonion"
-	clan_restricted = TRUE
+	clan_restricted = FALSE
 	power_type = /datum/coven_power/demonic
-
-/datum/coven_power/demonic
-	name = "Daimonion power name"
-	desc = "Daimonion power description"
-
 
 //SENSE THE SIN
 /datum/coven_power/demonic/sense_the_sin
@@ -16,7 +11,7 @@
 	desc = "Become supernaturally resistant to fire."
 
 	level = 1
-
+	research_cost = 0
 	cancelable = TRUE
 	duration_length = 20 SECONDS
 	cooldown_length = 10 SECONDS

@@ -22,6 +22,16 @@
 	vitae_bonus = 500 // Extra vitae for lords
 	ascended = FALSE
 
+/datum/clan_leader/wretch
+	lord_spells = list(
+		/obj/effect/proc_holder/spell/targeted/shapeshift/bat,
+	)
+	lord_verbs = list(
+		/mob/living/carbon/human/proc/punish_spawn
+	)
+	lord_title = "Lord"
+	ascended = FALSE
+
 /datum/clan_leader/proc/make_new_leader(mob/living/carbon/human/H)
 	ADD_TRAIT(H, TRAIT_CLAN_LEADER, "clan")
 

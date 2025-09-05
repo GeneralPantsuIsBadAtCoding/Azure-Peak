@@ -1,3 +1,4 @@
+#define INITIAL_BLOODPOOL_PERCENTAGE 40
 /datum/antagonist/vampire_neu
 	name = "Vampire"
 	roundend_category = "Vampires"
@@ -18,6 +19,7 @@
 	var/forced = FALSE
 	var/datum/clan/forcing_clan
 	var/generation
+	var/research_points = 10
 
 /datum/antagonist/vampire_neu/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
 	. = ..()
@@ -27,6 +29,15 @@
 	else
 		default_clan = incoming_clan
 	src.generation = generation
+	switch(generation)
+		if(GENERATION_METHUSELAH)
+			research_points = 20
+		if(GENERATION_ANCILLAE)
+			research_points = 15
+		if(GENERATION_NEONATE)
+			research_points = 8
+		if(GENERATION_THINBLOOD)
+			research_points = 4
 
 /datum/antagonist/vampire_neu/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
 	//if(istype(examined_datum, /datum/antagonist/vampire/lord))
@@ -43,9 +54,10 @@
 	//move_to_spawnpoint()
 	owner.special_role = name
 
+	owner.current.adjust_bloodpool()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/vampdude = owner.current
-		//vampdude.adv_hugboxing_cancel()
+		vampdude.hud_used?.bloodpool?.set_fill_color("#510000")
 
 		if(!forced)
 			// Show clan selection interface
@@ -66,6 +78,10 @@
 /datum/antagonist/vampire_neu/proc/show_clan_selection(mob/living/carbon/human/vampdude)
 	var/list/clan_options = list()
 	var/list/available_clans = list()
+
+	if(vampdude.job == "Wretch")
+		create_custom_clan(vampdude)
+		return
 
 	for(var/clan_type in subtypesof(/datum/clan))
 		var/datum/clan/temp_clan = new clan_type
@@ -98,53 +114,11 @@
 	if(!custom_clan_name)
 		custom_clan_name = "Custom Clan"
 
-	// Show coven selection
-	show_coven_selection(vampdude)
-
-/datum/antagonist/vampire_neu/proc/show_coven_selection(mob/living/carbon/human/vampdude)
-	var/list/coven_options = list()
-	var/list/available_covens = list()
-
-	// Get all available covens
-	for(var/coven_type in subtypesof(/datum/coven))
-		var/datum/coven/temp_coven = new coven_type
-		// Only show covens that aren't clan-restricted or can be used by custom clans
-		if(!temp_coven.clan_restricted)
-			available_covens += coven_type
-			coven_options[temp_coven.name] = coven_type
-		qdel(temp_coven)
-
-	if(!length(coven_options))
-		to_chat(vampdude, span_warning("No covens available for selection."))
-		finalize_custom_clan(vampdude)
-		return
-
-	// Select first coven
-	var/first_choice = input(vampdude, "Choose your first coven:", "Coven Selection") as null|anything in coven_options
-	if(first_choice)
-		selected_covens += coven_options[first_choice]
-		coven_options -= first_choice
-
-	// Select second coven
-	if(length(coven_options))
-		var/second_choice = input(vampdude, "Choose your second coven:", "Coven Selection") as null|anything in coven_options
-		if(second_choice)
-			selected_covens += coven_options[second_choice]
-			coven_options -= second_choice
-
-	if(length(coven_options))
-		var/third_choice = input(vampdude, "Choose your third coven:", "Coven Selection") as null|anything in coven_options
-		if(third_choice)
-			selected_covens += coven_options[third_choice]
-			coven_options -= third_choice
-
-	finalize_custom_clan(vampdude)
-
-/datum/antagonist/vampire_neu/proc/finalize_custom_clan(mob/living/carbon/human/vampdude)
-	// Create a custom clan instance
 	var/datum/clan/custom/new_clan = new /datum/clan/custom()
 	new_clan.name = custom_clan_name
-	new_clan.clane_covens = selected_covens.Copy()
+	switch(vampdude.get_vampire_generation())
+		if(GENERATION_NEONATE, GENERATION_THINBLOOD)
+			new_clan.covens_to_select = COVENS_PER_WRETCH_CLAN
 
 	// Apply the custom clan
 	vampdude.set_clan_direct(new_clan)
@@ -153,7 +127,7 @@
 	to_chat(vampdude, span_notice("You are now a member of the [custom_clan_name] clan with [length(selected_covens)] coven(s)."))
 
 /datum/antagonist/vampire_neu/proc/after_gain()
-	return
+	owner.current.set_bloodpool(owner.current.maxbloodpool / 100 * INITIAL_BLOODPOOL_PERCENTAGE)
 
 /datum/antagonist/vampire_neu/on_removal()
 	if(ishuman(owner.current))

@@ -36,4 +36,13 @@
 	cooldown_min = 5 SECONDS
 	die_with_shapeshifted_form = FALSE
 	do_gib = FALSE
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/bigrat
+	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/smallrat
+
+/obj/effect/proc_holder/spell/targeted/shapeshift/cabbit
+	name = "Cabbit Form"
+	desc = ""
+	recharge_time = 5 SECONDS
+	cooldown_min = 5 SECONDS
+	die_with_shapeshifted_form = FALSE
+	do_gib = FALSE
+	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit

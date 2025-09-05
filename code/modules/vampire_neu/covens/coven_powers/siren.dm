@@ -10,6 +10,7 @@
 	desc = "Throw your voice to any place you can see."
 
 	level = 1
+	research_cost = 0
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_OBJ | TARGET_LIVING
 	range = 7
@@ -100,9 +101,9 @@
 	name = "Madrigal"
 	desc = "Sing a siren song, calling all nearby to you."
 
+	research_cost = 2
 	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-
 	cooldown_length = 5 SECONDS
 	duration_length = 2 SECONDS
 	duration_override = TRUE
@@ -128,9 +129,9 @@
 	name = "Siren's Beckoning"
 	desc = "Sing an unearthly song to stun those around you."
 
+	research_cost = 2
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-
 	duration_length = 2 SECONDS
 	cooldown_length = 7.5 SECONDS
 	duration_override = TRUE
@@ -157,8 +158,9 @@
 	desc = "Scream at an unnatural pitch, shattering the bodies of your enemies."
 
 	level = 5
+	research_cost = 3
+	minimal_generation = GENERATION_ANCILLAE
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-
 	duration_length = 2 SECONDS
 	cooldown_length = 7.5 SECONDS
 	duration_override = TRUE

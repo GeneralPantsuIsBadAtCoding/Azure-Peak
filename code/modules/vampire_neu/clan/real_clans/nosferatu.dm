@@ -38,6 +38,7 @@
 		TRAIT_VAMP_DREAMS,
 		TRAIT_DARKVISION,
 		TRAIT_LIMBATTACHMENT,
+		TRAIT_KEENEARS,
 	)
 
 /datum/clan/nosferatu/get_downside_string()

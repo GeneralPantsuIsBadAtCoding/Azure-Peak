@@ -1183,3 +1183,13 @@
 /datum/status_effect/buff/adrenaline_rush/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_ADRENALINE_RUSH, INNATE_TRAIT)
+
+/datum/status_effect/buff/celerity
+	id = "celerity"
+	alert_type = /atom/movable/screen/alert/status_effect/buff
+	effectedstats = list(STATKEY_SPD = 1)
+	status_type = STATUS_EFFECT_REPLACE
+
+/datum/status_effect/buff/celerity/New(list/arguments)
+	effectedstats[STATKEY_SPD] = arguments[2]
+	. = ..()

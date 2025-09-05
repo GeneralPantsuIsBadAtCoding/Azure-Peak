@@ -15,6 +15,10 @@
 	var/target_type = NONE
 	/// How many tiles away this power can be used from.
 	var/range = 0
+	/// How many DOTS this shit costs
+	var/research_cost = 1
+	/// Minimal generation of a given vampire
+	var/minimal_generation = 0
 
 	/* EXTRA BEHAVIOUR ON ACTIVATION AND DEACTIVATION */
 	/// Sound file that plays to the user when this power is activated.
@@ -574,7 +578,7 @@
 	if (can_afford())
 		switch(cost_system)
 			if(COVEN_COST_VITAE)
-				owner.bloodpool = owner.bloodpool - vitae_cost
+				owner.adjust_bloodpool(-vitae_cost)
 		owner.update_action_buttons()
 		return TRUE
 	else

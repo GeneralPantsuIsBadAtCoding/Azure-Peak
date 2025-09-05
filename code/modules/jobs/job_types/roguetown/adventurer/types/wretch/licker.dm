@@ -15,12 +15,13 @@
 	H.adjust_blindness(-3)
 	var/list/possible_classes = list()
 	for(var/datum/advclass/CHECKS in SSrole_class_handler.sorted_class_categories[CTAG_ADVENTURER])
-		if(CTAG_DISABLED in CHECKS.category_tags)
+		if(!(CTAG_LICKER_WRETCH in CHECKS.category_tags))
 			continue
 		possible_classes += CHECKS
 
 	var/datum/advclass/C = input(H.client, "What is my class?", "Adventure") as null|anything in possible_classes
 	C.equipme(H)
 
-	var/datum/antagonist/vampire_neu/new_antag = new /datum/antagonist/vampire_neu()
+	H.adjust_skillrank_up_to(/datum/skill/magic/blood, 3, TRUE)
+	var/datum/antagonist/vampire_neu/new_antag = new /datum/antagonist/vampire_neu(generation = GENERATION_NEONATE)
 	H.mind.add_antag_datum(new_antag)

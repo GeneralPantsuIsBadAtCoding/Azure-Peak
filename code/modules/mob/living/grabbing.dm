@@ -707,8 +707,10 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(user.mind && C.mind)
-		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire_neu)
-		var/datum/antagonist/vampire/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire_neu)
+		var/datum/antagonist/vampire_neu/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire_neu)
+		var/datum/antagonist/vampire_neu/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire_neu)
+		if(VVictim)
+			to_chat(user, span_userdanger("<b>YOU TRY TO COMMIT DIABLERIE ON [C].</b>"))
 		var/zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/werewolf)
 		if(!zomwerewolf)
 			if(C.stat != DEAD)
@@ -744,13 +746,35 @@
 						C.adjust_bloodpool(-used_vitae)
 					user.clan.handle_bloodsuck(user, blood_handle)
 				else
-					to_chat(user, span_warning("No more vitae from this blood..."))
+					if(ishuman(C))
+						if(C.clan && user.clan)
+							user.AdjustMasquerade(-1)
+							message_admins("[ADMIN_LOOKUPFLW(user)] successfully Diablerized [ADMIN_LOOKUPFLW(C)]")
+							log_attack("[key_name(user)] successfully Diablerized [key_name(C)].")
+							to_chat(user, span_danger("I have... Consumed my kindred!"))
+							if(VVictim.generation > VDrinker.generation)
+								VDrinker.generation = VVictim.generation
+							VDrinker.research_points += VVictim.research_points
+							C.death()
+							C.adjustBruteLoss(-50, TRUE)
+							C.adjustFireLoss(-50, TRUE)
+							return
+						else
+							C.blood_volume = 0
+					if(ishuman(C) && !C.clan)
+						if(C.stat != DEAD)
+							to_chat(src, "<span class='warning'>This sad sacrifice for your own pleasure affects something deep in your mind.</span>")
+							user.AdjustMasquerade(-1)
+							C.death()
+					if(!ishuman(C))
+						if(C.stat != DEAD)
+							C.death()
 		else // Don't larp as a vampire, kids.
 			to_chat(user, span_warning("I'm going to puke..."))
 			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 	else
 		if(user.mind) // We're drinking from a mob or a person who disconnected from the game
-			if(user.mind.has_antag_datum(/datum/antagonist/vampire))
+			if(user.mind.has_antag_datum(/datum/antagonist/vampire_neu))
 				C.blood_volume = max(C.blood_volume-45, 0)
 				if(C.bloodpool >= 250)
 					user.adjust_bloodpool(250, 250)

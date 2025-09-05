@@ -15,9 +15,11 @@
 	desc = "Touch someone to sense their emotional state and immediate needs, making you obsessed with them for a short time."
 
 	level = 1
+	research_cost = 0
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_LIVING | TARGET_HUMAN
 	range = 1
+	research_cost = 0
 
 	cooldown_length = 10 SECONDS
 
@@ -108,6 +110,7 @@
 	name = "Familial Bond"
 	desc = "Create a temporary spiritual connection between two people, allowing them to sense each other's location and well-being."
 
+	research_cost = 2
 	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING | TARGET_HUMAN
@@ -143,6 +146,7 @@
 	name = "Beauty's Restoration"
 	desc = "Channel Eora's power to restore physical beauty and heal disfigurements."
 
+	research_cost = 2
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_LIVING | TARGET_HUMAN | TARGET_SELF

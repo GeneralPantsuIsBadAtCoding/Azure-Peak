@@ -4,6 +4,7 @@
 	var/list/prerequisites = list()
 	var/research_cost = 10
 	var/required_level = 1
+	var/minimal_generation = 0
 	var/unlocks_power = null
 	var/special_effect = null
 	var/node_x = 0
@@ -34,8 +35,9 @@
 		node.name = power.name
 		node.desc = power.desc
 		node.unlocks_power = power_type
-		node.research_cost = power.level * 10
+		node.research_cost = power.research_cost
 		node.required_level = power.level
+		node.minimal_generation = power.minimal_generation
 		node.node_x = (power.level - 1) * 150
 		node.node_y = rand(-100, 100)
 		node.icon_state = power.discipline?.icon_state
@@ -172,7 +174,7 @@
 			"desc" = node.desc,
 			"required_level" = node.required_level,
 			"current_level" = parent_coven.level,
-			"special_effect" = node.special_effect
+			"special_effect" = node.special_effect,
 		)
 
 		if(node.unlocks_power)
@@ -184,6 +186,12 @@
 			else
 				node_data["vitae_cost"] = power.vitae_cost
 			qdel(power)
+
+		if(node.research_cost)
+			node_data["research_cost"] = node.research_cost
+
+		if(node.minimal_generation)
+			node_data["minimal_generation"] = GLOB.vamp_generation_to_text[node.minimal_generation]
 
 		if(node.showcase_gif)
 			node_data["showcase_gif"] = node.showcase_gif
@@ -248,6 +256,8 @@
 			info_text = "<span class='boldnotice'>[node.name] is already unlocked!</span>"
 		else if(parent_coven.level >= node.required_level)
 			// Check prerequisites
+			if(node.minimal_generation > user.get_vampire_generation())
+				to_chat(user, span_warning("[node.name] can be unlocked only by vampires of [GLOB.vamp_generation_to_text[node.minimal_generation]]. You are [GLOB.vamp_generation_to_text[user.get_vampire_generation()]]")) 
 			var/prereqs_met = TRUE
 			var/missing_prereqs = list()
 			for(var/prereq in node.prerequisites)
@@ -256,6 +266,11 @@
 					var/datum/coven_research_node/prereq_node = research_nodes[prereq]
 					if(prereq_node)
 						missing_prereqs += prereq_node.name
+
+			var/datum/antagonist/vampire_neu/vampire = parent_coven.owner.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+			if(prereqs_met && node.research_cost && vampire.research_points < node.research_cost)
+				prereqs_met = FALSE
+				info_text = "<span class='warning'>[node.name] requires [node.research_cost] RP.</span>"
 
 			if(prereqs_met)
 				// Auto-unlock if available

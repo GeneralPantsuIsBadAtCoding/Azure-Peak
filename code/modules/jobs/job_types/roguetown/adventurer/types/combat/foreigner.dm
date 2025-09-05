@@ -6,7 +6,7 @@
 	allowed_races = NON_DWARVEN_RACE_TYPES //roughneck & custodian sprites dont have dwarf variants - adjust if/when a second update comes out with dwarf sprites
 	outfit = /datum/outfit/job/roguetown/adventurer/foreigner
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	classes = list(
 		"Roughneck" = "You are a foreign swordsman, carrying nothing but your sword and its scabbard.",
 		"Custodian"= "You are an ex-guardian, whenever that be a petty noble, or a small shrine. You excel in defense with quarterstaffs, or have taken up the \

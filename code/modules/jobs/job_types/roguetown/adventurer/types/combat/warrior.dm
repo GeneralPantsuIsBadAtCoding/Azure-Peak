@@ -6,7 +6,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/sfighter
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	classes = list("Battlemaster" = "You are a seasoned weapon specialist, clad in maille, with years of experience in warfare and battle under your belt.",
 					"Duelist"= "You are an esteemed swordsman who foregoes armor in exchange for a more nimble fighting style.",
 					"Barbarian" = "You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling.",

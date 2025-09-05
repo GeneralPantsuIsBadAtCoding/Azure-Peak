@@ -50,3 +50,5 @@
 /obj/item/organ/wings/flight/night_kin
 	name = "Vampire Wings"
 	accessory_type = /datum/sprite_accessory/wings/large/gargoyle
+	/// Flight datum
+	var/datum/action/item_action/organ_action/use/flight/fly

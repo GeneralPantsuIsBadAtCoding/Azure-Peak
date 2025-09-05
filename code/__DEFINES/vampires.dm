@@ -75,3 +75,20 @@
 #define GENERATION_THINBLOOD 1
 
 #define GENERATION_MODIFIER 1
+
+#define COVENS_PER_CLAN 3
+#define COVENS_PER_WRETCH_CLAN 2
+
+GLOBAL_LIST_INIT(vamp_generation_to_rpoints, list(
+	GENERATION_METHUSELAH = 50,
+	GENERATION_ANCILLAE = 15,
+	GENERATION_NEONATE = 8,
+	GENERATION_THINBLOOD = 4,
+))
+
+GLOBAL_LIST_INIT(vamp_generation_to_text, list(
+	"Thin Blood",
+	"Neonate",
+	"Ancillae",
+	"Methuselah",
+))

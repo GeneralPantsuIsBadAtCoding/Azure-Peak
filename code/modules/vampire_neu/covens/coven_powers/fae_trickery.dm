@@ -14,9 +14,11 @@
 	desc = "Sense magical items on another person."
 
 	level = 1
+	research_cost = 0
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE
 	target_type = TARGET_MOB
 	range = 7
+	research_cost = 0
 
 	cooldown_length = 10 SECONDS
 
@@ -38,30 +40,35 @@
 //DARKLING TRICKERY
 /datum/coven_power/fae_trickery/darkling_trickery
 	name = "Darkling Trickery"
-	desc = "Steal trinkets from your victims from afar."
+	desc = "Disarm your victims from afar."
 
 	level = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND | COVEN_CHECK_LYING
 	target_type = TARGET_MOB
-	range = 3
+	range = 7
 
 	duration_length = 10 SECONDS
 	cooldown_length = 10 SECONDS
 
 /datum/coven_power/fae_trickery/darkling_trickery/activate(mob/living/target)
 	. = ..()
-	owner.enhanced_strip = TRUE
-	target.show_inv(owner)
-
-/datum/coven_power/fae_trickery/darkling_trickery/deactivate(mob/living/target)
-	. = ..()
-	owner.enhanced_strip = FALSE
+	target.visible_message(span_suicide("[target] is disarmed!"), 
+					span_boldwarning("I'm disarmed!"))
+	playsound(get_turf(target), 'sound/magic/mockery.ogg', 40, FALSE)
+	var/turnangle = (prob(50) ? 270 : 90)
+	var/turndir = turn(target.dir, turnangle)
+	var/dist = rand(1, 5)
+	var/current_turf = get_turf(target)
+	var/target_turf = get_ranged_target_turf(current_turf, turndir, dist)
+	target.throw_item(target_turf, FALSE)
+	target.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 
 //GOBLINISM
 /datum/coven_power/fae_trickery/goblinism
 	name = "Goblinism"
 	desc = "Summon a mischievous goblin to latch onto your enemies' faces."
 
+	research_cost = 2
 	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_MOB
@@ -87,9 +94,17 @@
 	name = "goblin"
 	desc = "A green changeling creature."
 	icon_state = "goblin"
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
+	max_integrity = 10000 // No breaking it. NO CHEAP FRAGS.
+	body_parts_covered = FULL_HEAD
 	var/stat = CONSCIOUS
 	var/strength = 5
 	var/attached = 0
+	var/obj/item/clothing/mask/rogue/headgear
+
+/obj/item/clothing/mask/rogue/goblin_mask/Destroy()
+	. = ..() // Not the other way around as we need to restore our victim's headgear
+	QDEL_NULL(headgear)
 
 /obj/item/clothing/mask/rogue/goblin_mask/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
 	..()
@@ -164,6 +179,11 @@
 	. = ..()
 	Attach(M)
 
+/obj/item/clothing/mask/rogue/goblin_mask/dropped(mob/living/carbon/user)
+	. = ..() // Retarded istype cuz we are doing retarded typecasting here.
+	if(istype(user) && user?.wear_mask == src && istype(headgear))
+		user.equip_to_slot(headgear, SLOT_HEAD)	
+
 /obj/item/clothing/mask/rogue/goblin_mask/Crossed(atom/target)
 	. = ..()
 	HasProximity(target)
@@ -215,17 +235,13 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/target = M
 
-		if(target.head)
-			var/obj/item/clothing/W = target.head
-			target.dropItemToGround(W, TRUE)
-
 		if(target.wear_mask)
-			var/obj/item/clothing/W = target.wear_mask
-			if(target.dropItemToGround(W, TRUE))
-				target.visible_message(
-					span_danger("[src] tears [W] off of [target]'s face!"), \
-					span_userdanger("[src] tears [W] off of your face!"))
-		target.equip_to_slot_if_possible(src, SLOT_WEAR_MASK, FALSE, TRUE, TRUE)
+			headgear = M.get_item_by_slot(SLOT_WEAR_MASK)
+			M.transferItemToLoc(headgear, src)
+			target.visible_message(
+				span_danger("[src] tears [headgear] off of [target]'s face!"), \
+				span_userdanger("[src] tears [headgear] off of your face!"))
+		target.equip_to_slot_if_possible(src, SLOT_WEAR_MASK, disable_warning = TRUE, bypass_equip_delay_self = TRUE)
 		var/datum/cb = CALLBACK(src,/obj/item/clothing/mask/rogue/goblin_mask/proc/eat_head)
 		for(var/i in 1 to 10)
 			addtimer(cb, (i - 1) * 1.5 SECONDS)
@@ -253,7 +269,7 @@
 		if(H.bloodpool < 1)
 			to_chat(owner, span_warning("You don't have enough <b>BLOOD</b> to do that!"))
 			return
-		H.bloodpool = max(H.bloodpool - 1, 0)
+		H.adjust_bloodpool(-1)
 		switch(try_trap)
 			if("Brutal")
 				var/obj/fae_trickery_trap/trap = new (get_turf(owner))
@@ -302,13 +318,14 @@
 	if(isliving(AM) && owner)
 		if(AM != owner)
 			var/mob/living/L = AM
-			var/list/screens = list(L.hud_used.plane_masters["[FLOOR_PLANE]"], L.hud_used.plane_masters["[GAME_PLANE]"], L.hud_used.plane_masters["[LIGHTING_PLANE]"])
 			var/rotation = 50
-			for(var/whole_screen in screens)
+			for(var/screen_type in L.hud_used.plane_masters)
+				var/atom/movable/screen/plane_master/whole_screen = L.hud_used.plane_masters[screen_type]
 				animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 0.5 SECONDS, easing = QUAD_EASING, loop = -1)
 				animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 0.5 SECONDS, easing = QUAD_EASING)
 			spawn(15 SECONDS)
-				for(var/whole_screen in screens)
+				for(var/screen_type in L.hud_used.plane_masters)
+					var/atom/movable/screen/plane_master/whole_screen = L.hud_used.plane_masters[screen_type]
 					animate(whole_screen, transform = matrix(), time = 0.5 SECONDS, easing = QUAD_EASING)
 			qdel(src)
 
@@ -335,6 +352,7 @@
 	name = "Chanjelin Ward"
 	desc = "Create a symbol that disorientates your victim."
 
+	research_cost = 2
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
 	target_type = TARGET_MOB
@@ -376,6 +394,7 @@
 	name = "Riddle Phantastique"
 	desc = "Pose a confounding riddle to your victim, forcing them to answer it before they can do anything else."
 
+	research_cost = 3
 	level = 5
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING

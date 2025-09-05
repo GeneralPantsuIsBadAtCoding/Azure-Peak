@@ -96,6 +96,8 @@
 	if(restrained())
 		return FALSE
 
+	return TRUE
+
 /mob/living/carbon/proc/handle_fear(atom/fear)
 	if(!fear)
 		return FALSE

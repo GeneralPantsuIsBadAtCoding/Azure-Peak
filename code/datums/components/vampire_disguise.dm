@@ -45,7 +45,7 @@
 		return
 
 	// Drain bloodpool
-	source.bloodpool = max(0, source.bloodpool - disguise_upkeep)
+	source.adjust_bloodpool(-disguise_upkeep)
 
 /datum/component/vampire_disguise/proc/apply_disguise(mob/living/carbon/human/H)
 	if(disguised)

@@ -1197,6 +1197,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
 		target.lastattackerckey = user.ckey
+		target.lastattacker_weakref = WEAKREF(user)
 		user.dna.species.spec_unarmedattacked(user, target)
 
 		target.next_attack_msg.Cut()
@@ -1399,6 +1400,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!stander)
 			target.lastattacker = user.real_name
 			target.lastattackerckey = user.ckey
+			target.lastattacker_weakref = WEAKREF(user)	
 			if(target.mind)
 				target.mind.attackedme[user.real_name] = world.time
 			var/selzone = accuracy_check(user.zone_selected, user, target, /datum/skill/combat/unarmed, user.used_intent)
@@ -1518,6 +1520,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
+		target.lastattacker_weakref = WEAKREF(user)
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
 		user.stamina_add(15)
@@ -1664,6 +1667,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						H.emote("paincrit", TRUE)
 						playsound(H, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
 						user.visible_message(span_notice("[user] rips [I] out of [H]'s [affecting.name]!"), span_notice("I rip [I] from [H]'s [affecting.name]."))
+						I.do_special_attack_effect(user, affecting, intent, H, selzone)
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)

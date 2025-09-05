@@ -163,6 +163,7 @@
 
 	// Start the walking process
 	walk_to_caster()
+	addtimer(CALLBACK(src, PROC_REF(remove_walk_to_trait)), 10 SECONDS)
 
 /mob/living/carbon/human/proc/walk_to_caster()
 	if(!walk_to_target || walk_to_steps_taken >= walk_to_duration)

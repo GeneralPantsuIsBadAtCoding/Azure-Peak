@@ -1328,13 +1328,19 @@
 
 	if(!who.Adjacent(src))
 		return
-		
-	who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
-					span_danger("[src] tries to remove my [what.name]."), null, null, src)
+
+	if(!enhanced_strip)
+		who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
+						span_danger("[src] tries to remove my [what.name]."), null, null, src)
+
 	to_chat(src, span_danger("I try to remove [who]'s [what.name]..."))
 	what.add_fingerprint(src)
-	if(do_mob(src, who, what.strip_delay * surrender_mod))
-		if(what && Adjacent(who))
+	var/strip_delayed = what.strip_delay
+	if(enhanced_strip)
+		strip_delayed = 0.1 SECONDS
+	if(do_after(src, strip_delayed * surrender_mod, who))
+		if(what && (Adjacent(who) || (enhanced_strip && (get_dist(src, who) <= 3))))
+			enhanced_strip = FALSE
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
@@ -1343,7 +1349,6 @@
 			if(what == who.get_item_by_slot(where))
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
-					who.update_fov_angles()
 
 	if(Adjacent(who)) //update inventory window
 		who.show_inv(src)

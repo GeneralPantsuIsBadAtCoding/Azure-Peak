@@ -180,7 +180,7 @@
 
 	for(var/research_type in research_interface.research_nodes)
 		var/datum/coven_research_node/node = research_interface.get_research_node(research_type)
-		if(node.required_level <= level)
+		if(node.required_level == 1)
 			unlock_power_from_tree(research_type)
 
 /datum/coven/proc/gain_experience(amount)
@@ -196,31 +196,8 @@
 	level++
 	experience_needed = round(experience_needed * experience_multiplier)
 
-	// Gain bonus research points on level up
-	research_points += level * 5
-
 	if(owner)
 		to_chat(owner, "<span class='boldannounce'>Your [name] has reached level [level]!</span>")
-		to_chat(owner, "<span class='notice'>You gain [level * 5] bonus research points!</span>")
-
-	// Auto-unlock any powers that become available at this level
-	if(level <= length(all_powers))
-		var/new_power_type = all_powers[level]
-		if(!has_power(new_power_type))
-			grant_power(new_power_type, "level_unlock")
-
-	// Auto-unlock research nodes that become available
-	if(research_interface)
-		var/list/newly_available = research_interface.get_available_research()
-		var/list/unlocked_this_level = list()
-
-		for(var/research_type in newly_available)
-			if(unlock_power_from_tree(research_type))
-				var/datum/coven_research_node/node = research_interface.get_research_node(research_type)
-				unlocked_this_level += node.name
-
-		if(length(unlocked_this_level) && owner)
-			to_chat(owner, "<span class='boldnotice'>New powers unlocked: [jointext(unlocked_this_level, ", ")]</span>")
 
 /datum/coven/proc/unlock_power_from_tree(research_type)
 	if(research_type in unlocked_research)
@@ -242,8 +219,13 @@
 		if(!(prereq in unlocked_research))
 			return FALSE
 
+	var/datum/antagonist/vampire_neu/vampire = owner.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+	if(vampire.research_points < node.research_cost)
+		return FALSE
+
 	// Unlock the power
 	unlocked_research += research_type
+	vampire.research_points -= node.research_cost
 
 	// Grant the power
 	if(node.unlocks_power)
@@ -316,36 +298,6 @@
 	// Update current power if this is the first one
 	if(!current_power)
 		current_power = new_power
-
-	return TRUE
-
-/**
- * DEPRECATED: Use grant_power instead
- * Keeping for backwards compatibility but it now just calls grant_power
- */
-/datum/coven/proc/learn_power(power_type)
-	return grant_power(power_type, "unknown", FALSE)
-
-/datum/coven/proc/can_research(research_type)
-	if(!research_interface)
-		return FALSE
-
-	var/datum/coven_research_node/node = research_interface.get_research_node(research_type)
-	if(!node)
-		return FALSE
-
-	// Check if already researched
-	if(research_type in unlocked_research)
-		return FALSE
-
-	// Check if prerequisites are met
-	for(var/prereq in node.prerequisites)
-		if(!(prereq in unlocked_research))
-			return FALSE
-
-	// Check if we have enough research points
-	if(research_points < node.research_cost)
-		return FALSE
 
 	return TRUE
 
@@ -468,30 +420,6 @@
 /datum/coven/proc/on_roleplay_moment(intensity = 1)
 	var/xp_gain = 10 * intensity
 	gain_experience_from_source(xp_gain, "roleplay")
-
-/datum/coven/proc/research_power(research_type)
-	if(!can_research(research_type))
-		return FALSE
-
-	var/datum/coven_research_node/node = research_interface.get_research_node(research_type)
-	research_points -= node.research_cost
-	unlocked_research += research_type
-
-	// Grant the power through research pathway
-	if(node.unlocks_power)
-		grant_power(node.unlocks_power, "research")
-
-	// Apply special effects
-	if(node.special_effect)
-		apply_research_effect(node.special_effect)
-
-	// Gain XP for successful research
-	gain_experience_from_source(node.research_cost, "discovery")
-
-	if(owner)
-		to_chat(owner, "<span class='boldnotice'>You have researched [node.name]!</span>")
-
-	return TRUE
 
 /**
  * Power discovery system - allows finding powers through experimentation

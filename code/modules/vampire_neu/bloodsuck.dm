@@ -42,7 +42,7 @@
 				return
 
 	if(do_after(src, 3 SECONDS, target = mob, progress = TRUE))
-		mob.bloodpool = max(0, mob.bloodpool - 50)
+		mob.adjust_bloodpool(-50)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
 			drunked_of |= "[H.dna.real_name]"
@@ -53,7 +53,7 @@
 						H.reagents.trans_to(src, min(10, H.reagents.total_volume), transfered_by = mob)
 
 		to_chat(src, "<span class='warning'>You sip some <b>BLOOD</b> from your victim. It feels good.</span>")
-		bloodpool = min(maxbloodpool, bloodpool+1)
+		adjust_bloodpool(1)
 		adjustBruteLoss(-10, TRUE)
 		adjustFireLoss(-10, TRUE)
 		update_damage_overlays()

@@ -4,7 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/trader
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	traits_applied = list(TRAIT_OUTLANDER, TRAIT_SEEPRICES)
 	classes = list(
 		"Peddler" = "You make your coin peddling in spices and performing back-alley 'medical' procedures. Hope your patient didn't need that kidney.",

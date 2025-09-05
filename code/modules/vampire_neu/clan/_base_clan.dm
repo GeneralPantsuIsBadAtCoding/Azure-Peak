@@ -15,14 +15,12 @@ And it also helps for the character set panel
 	/// List of traits that are applied to members of this Clan
 	var/list/clane_traits = list(
 		TRAIT_STRONGBITE,
-		TRAIT_INFINITE_ENERGY,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_NOPAIN,
 		TRAIT_TOXIMMUNE,
 		TRAIT_STEELHEARTED,
 		TRAIT_NOSLEEP,
-		TRAIT_VAMPMANSION,
 		TRAIT_VAMP_DREAMS,
 		TRAIT_DARKVISION,
 		TRAIT_LIMBATTACHMENT,
@@ -62,8 +60,11 @@ And it also helps for the character set panel
 
 	var/mob/living/clan_leader
 	var/leader_title = "Vampire Lord"
-	var/datum/clan_leader/leader = /datum/clan_leader/lord
-	var/selectable_by_vampires = TRUE // Set to FALSE for clans that shouldn't be selectable
+	var/datum/clan_leader/leader = /datum/clan_leader/wretch
+	/// Set to FALSE for clans that shouldn't be selectable
+	var/selectable_by_vampires = TRUE
+
+	var/covens_to_select = COVENS_PER_CLAN
 
 /datum/clan/proc/get_downside_string()
 	return "burn in sunlight"
@@ -112,6 +113,7 @@ And it also helps for the character set panel
 		H.playsound_local(get_turf(H), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
 		for(var/datum/coven/coven as anything in clane_covens)
 			H.give_coven(coven)
+		H.give_coven(/datum/coven/bloodheal)
 	else
 		non_vampire_members |= H
 		// Apply non-vampire specific benefits (lighter version)
@@ -359,6 +361,8 @@ And it also helps for the character set panel
 
 
 /datum/clan/proc/add_coven_to_clan(datum/coven/new_coven, give_to_all = TRUE)
+	if(!new_coven)
+		return FALSE
 	if(new_coven in clane_covens)
 		return FALSE // Already have this coven
 

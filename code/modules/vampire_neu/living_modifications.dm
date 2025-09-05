@@ -41,6 +41,8 @@
 
 	var/potence_weapon_buff = 0
 
+	var/celerity_visual = FALSE
+
 	/// List of covens this mob possesses
 	var/list/datum/coven/covens
 	var/datum/clan_menu_interface/clan_menu_interface
@@ -73,8 +75,17 @@
 		var/datum/action/clan_hierarchy/mass_command/mass_action = new()
 		mass_action.Grant(H)
 
+/mob/living/proc/set_bloodpool(newblood)
+	bloodpool = CLAMP(newblood, 0, maxbloodpool)
+	hud_used?.bloodpool?.name = "Bloodpool: [bloodpool]"
+	hud_used?.bloodpool?.desc = "Bloodpool: [bloodpool]/[maxbloodpool]"
+	hud_used?.bloodpool?.set_value((100 / (maxbloodpool / bloodpool)) / 100, 1 SECONDS)
+
 /mob/living/proc/adjust_bloodpool(adjust)
 	bloodpool = CLAMP(bloodpool + adjust, 0, maxbloodpool)
+	hud_used?.bloodpool?.name = "Bloodpool: [bloodpool]"
+	hud_used?.bloodpool?.desc = "Bloodpool: [bloodpool]/[maxbloodpool]"
+	hud_used?.bloodpool?.set_value((100 / (maxbloodpool / bloodpool)) / 100, 1 SECONDS)
 
 /mob/living/proc/CheckEyewitness(mob/living/source, mob/attacker, range = 0, affects_source = FALSE)
 	var/actual_range = max(1, round(range*(attacker.alpha/255)))
@@ -98,7 +109,7 @@
 	return FALSE
 
 
-/mob/living/carbon/human/proc/AdjustMasquerade(value, forced = FALSE)
+/mob/living/proc/AdjustMasquerade(value, forced = FALSE)
 	if(!clan)
 		return
 	if (!forced)
@@ -275,7 +286,7 @@
 			to_chat(src, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 			ADD_TRAIT(src, TRAIT_DEATHCOMA, VAMPIRE_TRAIT)
 		heal_overall_damage(5, 5)
-		bloodpool = min(maxbloodpool * 0.25, bloodpool + 10)
+		adjust_bloodpool(10)
 	if(HAS_TRAIT(src, TRAIT_DEATHCOMA) && (total_damage <= 0 || (!istype(coffin) || !(src in coffin.contents))))
 		REMOVE_TRAIT(src, TRAIT_DEATHCOMA, VAMPIRE_TRAIT)
 		to_chat(src, span_warning("You have recovered from Torpor."))
@@ -329,8 +340,6 @@
 
 	return examine_text
 
-/mob/living/carbon/human/proc/make_vampire_slave(mob/living/carbon/human/master)
-	if(!master.clan)
-		return
-	master.clan.add_non_vampire_member(src)
-	add_bodypart_feature(new /datum/bodypart_feature/vamprire_seal)
+/mob/living/carbon/human/proc/get_vampire_generation()
+	var/datum/antagonist/vampire_neu/licker_datum = mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+	return licker_datum?.generation

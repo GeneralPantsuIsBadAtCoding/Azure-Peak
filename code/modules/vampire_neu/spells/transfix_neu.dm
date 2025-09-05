@@ -20,40 +20,37 @@
 
 	var/transfix_msg
 
-/obj/effect/proc_holder/spell/targeted/transfix_neu/before_cast(list/targets, mob/user = usr)
-	transfix_msg = input(user, "Soothe them. Dominate them. Speak and they will succumb.", "Transfix") as message|null
-	if(QDELETED(src) || QDELETED(user) || !can_cast())
-		return
-
-	if(!transfix_msg)
-		revert_cast()
-		return FALSE
-
-	if(length(transfix_msg) < 10)
-		to_chat(user, span_userdanger("This not enough to ensnare their mind!"))
-		revert_cast()
-		return FALSE
-
-/obj/effect/proc_holder/spell/targeted/transfix_neu/proc/get_targets()
+/obj/effect/proc_holder/spell/targeted/transfix_neu/choose_targets(mob/user = usr)
 	var/list/selection = list()
-	for(var/mob/living/carbon/human/target in viewers(6, usr))
+	for(var/mob/living/carbon/human/target in get_hearers_in_view(6, usr))
 		if(!target.mind || target.stat != CONSCIOUS)
 			continue
 		if(target.mind.has_antag_datum(/datum/antagonist/vampire))
 			continue
 		selection += target
 
-	return selection
+	if(!selection.len)
+		revert_cast(user)
+		return
 
-/obj/effect/proc_holder/spell/targeted/transfix_neu/cast(atom/cast_on, mob/user = usr)
-	. = ..()
-	var/list/targets = get_targets()
+	perform(selection, user=user)
+
+/obj/effect/proc_holder/spell/targeted/transfix_neu/cast(list/targets, mob/user = usr)
 	if(!length(targets))
 		to_chat(user, span_warning("There are no mortals nearby..."))
+		revert_cast(user)
 		return
+
+	transfix_msg = input(user, "Soothe them. Dominate them. Speak and they will succumb.", "Transfix") as message|null
+	if(!transfix_msg || length(transfix_msg) < 10)
+		to_chat(user, span_userdanger("This not enough to ensnare their mind!"))
+		revert_cast()
+		return
+
 	if(!powerful)
 		var/mob/selected = input(user, "Ensnare the mind of which mortal?", "Transfix") as null|anything in targets 
-		if(QDELETED(src) || QDELETED(user) || QDELETED(selected) || !can_cast())
+		if(QDELETED(src) || QDELETED(user) || QDELETED(selected))
+			revert_cast(user)
 			return
 		targets = list(selected)
 

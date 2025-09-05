@@ -50,8 +50,10 @@
 	desc = "Meld into the shadows and stay unnoticed so long as you draw no attention. Broken by any movement."
 
 	level = 1
+	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 25
+	research_cost = 0
 
 	toggled = TRUE
 
@@ -142,6 +144,7 @@
 	name = "Mask of a Thousand Faces"
 	desc = "Be noticed, but incorrectly. Assume the appearance of others for a limited time."
 
+	research_cost = 2
 	level = 3
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 50
@@ -274,6 +277,7 @@
 	name = "Vanish from the Mind's Eye"
 	desc = "Disappear from plain view instantly, and wipe your presence from recent memory."
 
+	research_cost = 2
 	level = 4
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 100
@@ -323,6 +327,7 @@
 	name = "Cloak the Gathering"
 	desc = "Hide yourself and others in a small area. All nearby allies become invisible."
 
+	research_cost = 3
 	level = 5
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 150

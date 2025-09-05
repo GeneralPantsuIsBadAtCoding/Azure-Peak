@@ -15,11 +15,10 @@
 	gif = "Awe.gif"
 
 	level = 1
-
+	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
 	range = 7
-
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 
@@ -60,7 +59,7 @@
 	desc = "Incite fear in others through only your words and gaze."
 
 	level = 2
-
+	research_cost = 1
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
 	range = 7
@@ -108,9 +107,9 @@
 	name = "Kneel"
 	desc = "Make those kneel before you."
 
+	research_cost = 2
 	level = 3
 	vitae_cost = 150
-
 	check_flags = COVEN_CHECK_CAPABLE|COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
 	range = 7
@@ -150,13 +149,12 @@
 	name = "Summon"
 	desc = "Call anyone you've ever met to be by your side."
 
+	research_cost = 2
 	level = 4
 	vitae_cost = 200
-
 	check_flags = COVEN_CHECK_CAPABLE|COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
 	range = 7
-
 	multi_activate = TRUE
 	cooldown_length = 45 SECONDS
 
@@ -213,6 +211,8 @@
 /datum/coven_power/presence/majesty
 	name = "Majesty"
 	desc = "Become so grand that others find it nearly impossible to disobey or harm you."
+
+	research_cost = 3
 	level = 5
 	check_flags = COVEN_CHECK_CAPABLE|COVEN_CHECK_SPEAK
 	vitae_cost = 35

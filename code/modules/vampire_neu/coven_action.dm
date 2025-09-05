@@ -2,7 +2,8 @@
 	check_flags = NONE
 	background_icon_state = "spell" //And this is the state for the background icon
 	button_icon_state = "coven" //And this is the state for the action icon
-//	overlay_icon = 'icons/mob/actions/roguespells.dmi'
+	button_icon = 'icons/mob/actions/vampspells.dmi'
+	icon_icon = 'icons/mob/actions/vampspells.dmi'
 
 	var/level_icon_state = "1" //And this is the state for the action icon
 	var/datum/coven/coven
@@ -54,13 +55,34 @@
 /datum/action/coven/proc/update_mob_buttons()
 	owner.update_action_buttons()
 
+/datum/action/coven/UpdateButtonIcon(status_only, force)
+	button.icon = icon_icon
+	if(coven)
+		name = coven.current_power.name
+		button.name = name
+		desc = coven.current_power.desc
+		button.desc = desc
+		button_icon_state = coven.icon_state
+		background_icon_state = "[initial(background_icon_state)][active]"
+		button.icon_state = background_icon_state
+		overlay_state = "[coven.level_casting]"
+	else
+		button_icon_state = initial(button_icon_state)
+		background_icon_state = "[initial(background_icon_state)][active]"
+		button.icon_state = background_icon_state
+		overlay_state = initial(overlay_state)
+	ApplyIcon(button, TRUE)
+
+	if(!IsAvailable())
+		button.update_maptext(coven.current_power.get_cooldown())
+
 /datum/action/coven/IsAvailable()
 	return coven.current_power.can_activate_untargeted()
 
 /datum/action/coven/Trigger(trigger_flags)
 	. = ..()
 
-	//build_all_button_icons()
+	UpdateButtonIcon()
 
 	//easy de-targeting
 	if (targeting)
@@ -94,7 +116,7 @@
 			begin_targeting()
 			active = TRUE
 
-	//build_all_button_icons()
+	UpdateButtonIcon()
 
 	return .
 
@@ -107,15 +129,11 @@
 	else
 		coven.level_casting += to_advance
 
-	var/datum/antagonist/vampire_neu/licker = owner?.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
-	if(licker.generation + GENERATION_MODIFIER < coven.level_casting)
-		coven.level_casting = licker.generation + GENERATION_MODIFIER
-
 	if(targeting)
 		end_targeting()
 
 	coven.current_power = coven.known_powers[coven.level_casting]
-	//build_all_button_icons()
+	UpdateButtonIcon()
 
 /datum/action/coven/proc/end_targeting()
 	var/client/client = owner?.client
@@ -128,7 +146,7 @@
 	targeting = FALSE
 	active = FALSE
 	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-	//build_all_button_icons()
+	UpdateButtonIcon()
 
 /datum/action/coven/proc/handle_click(mob/source, atom/target, click_parameters)
 	SIGNAL_HANDLER

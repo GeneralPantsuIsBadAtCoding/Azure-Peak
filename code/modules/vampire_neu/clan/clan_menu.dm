@@ -6,6 +6,10 @@
 	var/datum/clan_hierarchy_interface/hierarchy_interface // Hierarchy management
 	var/datum/clan_hierarchy_node/selected_position // Currently selected position
 
+	var/datum/coven/coven_one_preliminary
+	var/datum/coven/coven_two_preliminary
+	var/datum/coven/coven_three_preliminary
+
 /datum/clan_menu_interface/New(mob/living/carbon/human/target_user)
 	user = target_user
 	user_clan = user.clan
@@ -34,7 +38,7 @@
 
 	user << browse_rsc('html/gifs/Awe.gif')
 
-	var/html = generate_combined_html(generate_welcome_screen_html())
+	var/html = generate_combined_html(generate_setup_html())
 	user << browse(html, "window=clan_menu;size=1400x900;can_resize=1")
 
 /datum/clan_menu_interface/proc/generate_welcome_screen_html()
@@ -79,6 +83,140 @@
 	</div>
 	"}
 
+/datum/clan_menu_interface/proc/generate_setup_html()
+	var/clan_downside = "burn in sunlight"
+	var/blood_preference = "any blood"
+
+	if(user_clan)
+		clan_downside = user_clan.get_downside_string()
+		blood_preference = user_clan.get_blood_preference_string()
+
+	return {"
+	<script>
+		function submitCovens() {
+			if(confirm('This choice is final, you will not be able to change covens later. Are you sure??')) {
+				window.location.href = '?src=[REF(src)];action=select_covens';
+			}
+		}
+		function selectCovenOne() {
+			const formOne = document.getElementById('coven-selection1');
+			const formOneData = new FormData(formOne);
+			
+			let params = '?src=[REF(src)];action=select_coven_one';
+			for(let \[key, value\] of formOneData.entries()) {
+				params += ';' + key + '=' + encodeURIComponent(value);
+			}
+			window.location.href = params;
+		}
+		function selectCovenTwo() {
+			const formOne = document.getElementById('coven-selection2');
+			const formOneData = new FormData(formOne);
+			
+			let params = '?src=[REF(src)];action=select_coven_two';
+			for(let \[key, value\] of formOneData.entries()) {
+				params += ';' + key + '=' + encodeURIComponent(value);
+			}
+			window.location.href = params;
+		}
+		function selectCovenThree() {
+			const formOne = document.getElementById('coven-selection3');
+			const formOneData = new FormData(formOne);
+			
+			let params = '?src=[REF(src)];action=select_coven_three';
+			for(let \[key, value\] of formOneData.entries()) {
+				params += ';' + key + '=' + encodeURIComponent(value);
+			}
+			window.location.href = params;
+		}
+	</script>
+	<div class="welcome-screen">
+		<h2>Welcome to your Clan</h2>
+
+		<div class="intro-section">
+			<p>Select up to three covens (two if you are a wretch)
+			Each coven represents a different aspect of your vampiric abilities.
+			Select a coven from the sidebar to view its research tree and manage your powers.
+			</p>
+		</div>
+		[generate_coven_selection()]
+		<div class="vampire-mechanics">
+			<h3>Vampiric Nature</h3>
+			<div class="mechanic-item">
+				<strong>Blood Hunger:</strong> You must drink blood to survive. You prefer <span class="blood-type">[blood_preference]</span>.
+			</div>
+			<div class="mechanic-item">
+				<strong>Clan Weakness:</strong> Your clan's curse means you <span class="weakness">[clan_downside]</span>.
+			</div>
+			<div class="mechanic-item">
+				<strong>Silver Vulnerability:</strong> Silver weaponry may trigger a blood frenzy, causing you to lose control and attack indiscriminately.
+			</div>
+		</div>
+
+		<div class="gameplay-tips">
+			<h3>Gameplay Tips</h3>
+			<div class="tip-item">
+				<strong>Coven Abilities:</strong> Right-click on any coven ability to switch between different powers from that coven.
+			</div>
+			<div class="tip-item">
+				<strong>Creating Progeny:</strong> Drain someone's blood to critical levels to gain the option to embrace them as a new vampire.
+			</div>
+		</div>
+	</div>
+	"}
+
+/datum/clan_menu_interface/proc/generate_coven_selection()
+	if(user_clan.covens_to_select < 1 || user != user_clan?.clan_leader)
+		return ""
+	return {"
+		<div class="clan-selection">
+			<form id='coven-selection1'>
+				<div class='form-group' style='margin-right: 15px;'>
+					<label for='coven-select' style='display: block; margin-left: 5px; margin-right: 5px;margin-bottom: 5px; color: #fff;'></label>
+					<select id='coven-select' onchange='selectCovenOne()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>
+						<option value=''>[ispath(coven_one_preliminary) ? initial(coven_one_preliminary.name) : "-- EMPTY --"]</option>
+						[coven_choice()]
+					</select>
+				</div>
+			</form>
+			[user_clan?.covens_to_select >= 2 ? "\
+			<form id='coven-selection2'>\
+				<div class='form-group' style='margin-right: 15px;'>\
+					<label for='coven-select' style='display: block; margin-bottom: 5px; color: #fff;'></label>\
+					<select id='coven-select' onchange='selectCovenTwo()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
+						<option value=''>[ispath(coven_two_preliminary) ? initial(coven_two_preliminary.name) : "-- EMPTY --"]</option>\
+						[coven_choice()]\
+					</select>\
+				</div>\
+			</form>\
+			":""]
+			[user_clan?.covens_to_select >= 3 ? "\
+			<form id='coven-selection3'>\
+				<div class='form-group' style='margin-right: 15px;'>\
+					<label for='coven-select' style='display: block; margin-bottom: 5px; color: #fff;'></label>\
+					<select id='coven-select' onchange='selectCovenThree()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
+						<option value=''>[ispath(coven_three_preliminary) ? initial(coven_three_preliminary.name) : "-- EMPTY --"]</option>\
+						[coven_choice()]\
+					</select>\
+				</div>\
+			</form>\
+			":""]
+		</div>
+	<button type='button' onclick='submitCovens()' class='btn-primary' style='padding: 8px 16px; background: #0066cc; color: white; border: none; border-radius: 3px; cursor: pointer; margin-right: 10px;'>Select Covens</button>
+	"}
+
+/datum/clan_menu_interface/proc/coven_choice()
+	var/html = ""
+	for(var/coven_path in subtypesof(/datum/coven))
+		var/datum/coven/typecasted = coven_path
+		if(initial(typecasted.clan_restricted))
+			continue
+
+		if(coven_path == coven_one_preliminary || coven_path == coven_two_preliminary || coven_path == coven_three_preliminary)
+			continue
+
+		html += "<option value='[coven_path]'>[initial(typecasted.name)]</option>"
+
+	return html
 
 /datum/clan_menu_interface/proc/generate_coven_list_html()
 	var/html = ""
@@ -100,7 +238,6 @@
 			<div class="coven-progress">
 				<div class="coven-progress-fill" style="width: [experience_percent]%"></div>
 			</div>
-			<div class="research-points">RP: [coven.research_points]</div>
 		</li>
 		"}
 
@@ -108,6 +245,7 @@
 
 /datum/clan_menu_interface/proc/generate_combined_html(research_content)
 	// shitcode
+	var/datum/antagonist/vampire_neu/vampire = user.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
 	var/html = {"
 	<html>
 	<head>
@@ -509,6 +647,14 @@
 				overflow: hidden;
 			}
 
+			.clan-selection {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+
 			/* Research tree styles integrated */
 			.parallax-container {
 				position: absolute;
@@ -811,6 +957,7 @@
 			<div class="clan-info">
 				<div class="clan-name">[user_clan ? user_clan.name : "Unknown Clan"]</div>
 				<div class="clan-desc">[user_clan ? user_clan.desc : ""]</div>
+				<div class="clan-desc">RP: [vampire ? vampire.research_points : ""]</div>
 			</div>
 			<div class="header-controls">
 				<a href="?src=[REF(src)];action=refresh_clan_menu" class="header-btn">Refresh</a>
@@ -1077,6 +1224,10 @@
 					tooltipContent += '<div class="requirements">Requires: ' + nodeData.prerequisites.join(', ') + '</div>';
 				}
 
+				if (nodeData.minimal_generation) {
+					tooltipContent += '<div class="requirements">Minimal Generation: ' + nodeData.minimal_generation + '</div>';
+				}
+
 				if (nodeData.special_effect) {
 					tooltipContent += '<div class="power-stats">Special: ' + nodeData.special_effect + '</div>';
 				}
@@ -1169,6 +1320,34 @@
 					coven.research_interface.Topic(href, href_list)
 
 					load_coven_research_tree(current_coven)
+
+		if("select_coven_one")
+			var/datum/coven/typecasted = text2path(href_list["coven-type"])
+			if(!initial(typecasted.clan_restricted))
+				coven_one_preliminary = typecasted
+			generate_interface()
+
+		if("select_coven_two")
+			var/datum/coven/typecasted = text2path(href_list["coven-type"])
+			if(!initial(typecasted.clan_restricted))
+				coven_two_preliminary = typecasted
+			generate_interface()
+
+		if("select_coven_three")
+			var/datum/coven/typecasted = text2path(href_list["coven-type"])
+			if(!initial(typecasted.clan_restricted))
+				coven_three_preliminary = typecasted
+			generate_interface()
+
+		if("select_covens")
+			if(user_clan.covens_to_select >= 1)
+				if(user_clan?.add_coven_to_clan(coven_one_preliminary, TRUE))
+					user_clan.covens_to_select--
+				if(user_clan?.add_coven_to_clan(coven_two_preliminary, TRUE))
+					user_clan.covens_to_select--
+				if(user_clan?.add_coven_to_clan(coven_three_preliminary, TRUE))
+					user_clan.covens_to_select--
+				generate_interface()
 
 		if("edit_position", "submit_edit_position", "select_position", "create_position", "submit_create_position", "assign_member", "submit_assign_member", "remove_position")
 			if(hierarchy_interface)

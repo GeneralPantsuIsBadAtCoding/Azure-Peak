@@ -3,7 +3,6 @@
 	desc = "Boosts melee and unarmed damage."
 	icon_state = "potence"
 	power_type = /datum/coven_power/potence
-	clan_restricted = TRUE
 
 /datum/coven_power/potence
 	name = "Potence power name"
@@ -15,9 +14,8 @@
 	desc = "Enhance your muscles. Never hit softly."
 
 	level = 1
-
+	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE
-
 	toggled = TRUE
 	duration_length = 2 TURNS
 
@@ -74,10 +72,9 @@
 	name = "Potence 3"
 	desc = "Become a force of destruction. Lift and break the unliftable and the unbreakable."
 
+	research_cost = 2
 	level = 3
-
 	check_flags = COVEN_CHECK_CAPABLE
-
 	toggled = TRUE
 	duration_length = 2 TURNS
 
@@ -105,10 +102,9 @@
 	name = "Potence 4"
 	desc = "Become an unyielding machine for as long as your Vitae lasts."
 
+	research_cost = 2
 	level = 4
-
 	check_flags = COVEN_CHECK_CAPABLE
-
 	toggled = TRUE
 	duration_length = 2 TURNS
 
@@ -136,10 +132,9 @@
 	name = "Potence 5"
 	desc = "The people could worship you as a god if you showed them this."
 
+	research_cost = 3
 	level = 5
-
 	check_flags = COVEN_CHECK_CAPABLE
-
 	toggled = TRUE
 	duration_length = 2 TURNS
 

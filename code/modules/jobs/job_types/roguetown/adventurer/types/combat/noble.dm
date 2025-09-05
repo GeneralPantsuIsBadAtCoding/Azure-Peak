@@ -5,7 +5,7 @@
 	allowed_races = RACES_NO_CONSTRUCT
 	outfit = /datum/outfit/job/roguetown/adventurer/noble
 	traits_applied = list(TRAIT_OUTLANDER)
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	classes = list("Aristocrat" = "You are a traveling noble visiting foreign lands. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grizzly end.",
 				"Knight Errant" = "You are a knight from a distant land, a scion of a noble house visiting Azuria for one reason or another.",
 				"Squire Errant" = "You are a squire who has traveled far in search of a master to train you and a lord to knight you.")
