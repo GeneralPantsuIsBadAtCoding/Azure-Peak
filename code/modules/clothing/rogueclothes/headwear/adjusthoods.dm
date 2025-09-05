@@ -83,6 +83,9 @@
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/shalal/purple
+	color = CLOTHING_PURPLE
+
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 	name = "hijab"
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
