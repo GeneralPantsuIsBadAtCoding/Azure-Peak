@@ -225,6 +225,12 @@
 			if(L.STAINT > 9 && L.STAPER > 9)
 				. += span_redtext("<i>[m1] critically fragile!</i>")
 
+	if(HAS_TRAIT(src, TRAIT_BIGGUY) )
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.STAINT > 9 && L.STAPER > 9)
+				. += span_redtext("<i>[m1] particularly brutish-looking!</i>")
+
 	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
 		var/atom/item = get_most_expensive()
 		if(item)
