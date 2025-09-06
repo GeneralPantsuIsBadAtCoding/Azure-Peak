@@ -17,7 +17,7 @@
 /datum/status_effect/buff/templarbuff
 	id = "templarbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/templarbuff
-	effectedstats = list("strength" = 1,"endurance" = 2,"intelligence" = 1)
+	effectedstats = list(STATKEY_STR = 1,STATKEY_WIL = 2,STATKEY_INT = 1)
 	var/lastcheck = 0
 
 /datum/status_effect/buff/templarbuff/process()
