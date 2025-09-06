@@ -187,3 +187,6 @@
 	var/cmode_music_override = list() // set by prefs or the verb, ignored if empty
 	var/cmode_music_override_name // solely for autoselecting as a spawned-in mob
 	var/last_heard_raw_message //to prevent repeated messages from spamming
+
+	/// If the character has prominent mob descriptors, they'll make extra noise
+	var/loud_sneaking = FALSE
