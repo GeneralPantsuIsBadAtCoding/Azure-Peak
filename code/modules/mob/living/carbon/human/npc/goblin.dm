@@ -132,7 +132,6 @@
 	H.update_inv_hands()
 	H.update_inv_handcuffed()
 	H.update_inv_legcuffed()
-	H.update_fire()
 	H.update_body()
 	var/mob/living/carbon/human/species/goblin/G = H
 	G.update_wearable()

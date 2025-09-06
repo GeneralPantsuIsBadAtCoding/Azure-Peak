@@ -8,6 +8,7 @@
 	dropshrink = 1
 	drop_sound = 'sound/items/gem.ogg'
 	resistance_flags = FIRE_PROOF
+	is_silver = TRUE
 	var/miracle_use = 0
 	var/success = 0
 
@@ -173,33 +174,6 @@
 		M.Knockdown(30)
 		M.Jitter(30)
 		return
-
-
-/obj/item/quicksilver/pickup(mob/user) //Akin to the psycross.
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		return
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(ishuman(H))
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(20)
-			H.adjustFireLoss(60)
-			H.Paralyze(20)
-			H.fire_act(1,5)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				H.Knockdown(10)
-				H.adjustFireLoss(25)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
 
 //A letter to give info on how to make this thing.
 /obj/item/paper/inquisition_poultice_info

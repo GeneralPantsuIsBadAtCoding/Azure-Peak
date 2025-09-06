@@ -33,7 +33,7 @@
 	if(M.mob_biotypes & biotype_we_look_for || istype(M, /mob/living/simple_animal/hostile/rogue/skeleton))
 		damage *= fuck_that_guy_multiplier
 	M.adjust_fire_stacks(4)
-	M.IgniteMob()
+	M.ignite_mob()
 	visible_message(span_warning("[src] ignites [target] in holy flame!"))
 	return TRUE
 

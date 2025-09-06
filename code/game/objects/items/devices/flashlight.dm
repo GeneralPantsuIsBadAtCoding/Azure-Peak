@@ -390,7 +390,7 @@
 	if(HAS_TRAIT(user, TRAIT_CABAL))
 		to_chat(user, "<font color='yellow'> You attempt to take the lamptern. Runic flames of creation lap up the length of your arm in defiance of your Dark Mistress! Curses!</font>")
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.Stun(40)
 		playsound(get_turf(user), 'sound/magic/ahh2.ogg', 100)
 	..()

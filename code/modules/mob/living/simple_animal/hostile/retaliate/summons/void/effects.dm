@@ -31,7 +31,7 @@
 		if(islist(flame_hit) && !flame_hit[L])
 			L.adjustFireLoss(40)
 			L.adjust_fire_stacks(8)
-			L.IgniteMob()
+			L.ignite_mob()
 			to_chat(L, span_userdanger("You're hit by a meteor!"))
 			flame_hit[L] = TRUE
 		else

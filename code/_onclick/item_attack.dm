@@ -169,7 +169,7 @@
 		if(M.has_status_effect(/datum/status_effect/buff/necras_vow))
 			if(isnull(user.mind))
 				user.adjust_fire_stacks(5)
-				user.IgniteMob()
+				user.ignite_mob()
 			else
 				if(prob(30))
 					to_chat(M, span_warning("The foul blessing of the Undermaiden hurts us!"))
@@ -573,43 +573,23 @@
 	return "body"
 
 /obj/item/proc/funny_attack_effects(mob/living/target, mob/living/user, nodmg)
-	if(is_silver)
-		if(world.time < src.last_used + 120)
-			to_chat(user, span_notice("The silver effect is on cooldown."))
-			return
+	pass()
 
-		if(ishuman(target) && target.mind)
-			var/mob/living/carbon/human/s_user = user
-			var/mob/living/carbon/human/H = target
-			var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-			var/datum/antagonist/vampirelord/lesser/V = H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-			if(V)
-				if(V.disguised)
-					H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-					src.last_used = world.time
-				else
-					H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-					src.last_used = world.time
-			if(V_lord)
-				if(V_lord.vamplevel < 4 && !V)
-					H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-					src.last_used = world.time
-				if(V_lord.vamplevel == 4 && !V)
-					to_chat(s_user, "<font color='red'> The silver weapon fails!</font>")
-					H.visible_message(H, span_userdanger("This feeble metal can't hurt me, I AM ANCIENT!"))
-			if(W && W.transformed == TRUE)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-	return
+/obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone, thrown = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
+
+	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
+		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
+		if(blesscomp?.is_blessed)
+			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))
+				to_chat(victim, span_danger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
+			victim.adjust_fire_stacks(thrown ? 1 : 3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+		else
+			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+				to_chat(victim, span_danger("Blessed silver rebukes my presence! These fires are lashing at my very soul!"))
+			victim.adjust_fire_stacks(thrown ? 1 : 3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		victim.ignite_mob()
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)
@@ -621,6 +601,8 @@
 		if(I.damtype == BRUTE)
 			next_attack_msg.Cut()
 			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
+				if(I.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
+					newforce *= SILVER_SIMPLEMOB_DAM_MULT
 				simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
 				/* No embedding on simple mobs, thank you!
 				var/datum/wound/crit_wound  = simple_woundcritroll(user.used_intent.blade_class, newforce, user, hitlim)
@@ -652,7 +634,8 @@
 	if(I.force_dynamic < force_threshold || I.damtype == STAMINA)
 		playsound(loc, 'sound/blank.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
-		return ..()
+		. = ..()
+		I.do_special_attack_effect(user, null, null, src, null)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.

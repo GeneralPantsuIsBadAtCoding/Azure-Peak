@@ -130,7 +130,7 @@
 				T.pollution.smell_act(src)
 
 /mob/living/proc/handle_inwater()
-	ExtinguishMob()
+	extinguish_mob()
 
 /mob/living/carbon/handle_inwater()
 	..()

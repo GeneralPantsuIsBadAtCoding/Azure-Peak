@@ -1,6 +1,6 @@
 #define DEFAULT_BLEED_CLOT 0.02
 #define DEFAULT_BRUTE_HEAL 0.10
-#define DEFAULT_FIRE_HEAL 0.50
+#define DEFAULT_FIRE_HEAL 1
 #define DEFAULT_BLOOD_RECOVERY 5
 
 /**
@@ -29,8 +29,7 @@
 		pawn.bleed_rate = clamp(pawn.bleed_rate, 0, max_hp)
 		pawn.adjustBruteLoss( (max_hp * -brute_heal) )
 		pawn.health = clamp(pawn.health, 0, max_hp)
-		pawn.fire_stacks = pawn.fire_stacks - DEFAULT_FIRE_HEAL
-		pawn.fire_stacks = clamp(pawn.fire_stacks, 0, 999)
+		pawn.adjust_fire_stacks(-DEFAULT_FIRE_HEAL)
 		pawn.blood_volume += pawn.blood_volume + DEFAULT_BLOOD_RECOVERY
 		pawn.blood_volume = clamp(pawn.blood_volume, 0, BLOOD_VOLUME_NORMAL)
 

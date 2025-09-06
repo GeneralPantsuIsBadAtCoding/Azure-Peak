@@ -109,7 +109,7 @@
 /mob/living/carbon/human/proc/werewolf_feed(mob/living/carbon/human/target, healing_amount = 10)
 	if(!istype(target))
 		return
-	if(src.has_status_effect(/datum/status_effect/debuff/silver_curse))
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
 		to_chat(src, span_notice("My power is weakened, I cannot heal!"))
 		return
 	if(target.mind)

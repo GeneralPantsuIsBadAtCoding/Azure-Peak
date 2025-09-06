@@ -33,3 +33,6 @@
 /// Called from the base of '/obj/item/bodypart/proc/drop_limb(special)' ()
 #define COMSIG_MOB_DISMEMBER "mob_drop_limb"
 	#define COMPONENT_CANCEL_DISMEMBER (1<<0) //cancel the drop limb
+
+///From living/Life() (seconds, times_fired)
+#define COMSIG_LIVING_LIFE "living_life"

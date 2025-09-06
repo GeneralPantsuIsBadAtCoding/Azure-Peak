@@ -268,6 +268,117 @@
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/rogueweapon/sword/long/church
+	name = "see longsword"
+	desc = "The workhorse of the Holy See. Blades like this have drawn blood against the  old Infidels and the modern Inhumen heretics alike for centuries."
+	icon_state = "churchsword"
+
+/obj/item/rogueweapon/sword/long/undivided
+	name = "decablade"
+	desc = "With a drop of holy Eclipsum, doth the blade rise. Gilded, gleaming, radiant heat, warm my soul, immolate my enemies."
+	icon_state = "eclipsum"
+	sheathe_icon = "eclipsum"
+	force = 28
+	force_wielded = 33
+
+/obj/item/rogueweapon/sword/long/undivided/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen") return list(
+				"shrink" = 0.65,
+				"sx" = -14,
+				"sy" = -8,
+				"nx" = 15,
+				"ny" = -7,
+				"wx" = -10,
+				"wy" = -5,
+				"ex" = 7,
+				"ey" = -6,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = -13,
+				"sturn" = 110,
+				"wturn" = -60,
+				"eturn" = -30,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 8,
+				"eflip" = 1,
+				)
+			if("onback") return list(
+				"shrink" = 0.65,
+				"sx" = -1,
+				"sy" = 2,
+				"nx" = 0,
+				"ny" = 2,
+				"wx" = 2,
+				"wy" = 1,
+				"ex" = 0,
+				"ey" = 1,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 70,
+				"eturn" = 15,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 1,
+				"eflip" = 1,
+				"northabove" = 1,
+				"southabove" = 0,
+				"eastabove" = 0,
+				"westabove" = 0,
+				)
+			if("wielded") return list(
+				"shrink" = 0.6,
+				"sx" = 3,
+				"sy" = 5,
+				"nx" = -3,
+				"ny" = 5,
+				"wx" = -9,
+				"wy" = 4,
+				"ex" = 9,
+				"ey" = 1,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 0,
+				"eturn" = 15,
+				"nflip" = 8,
+				"sflip" = 0,
+				"wflip" = 8,
+				"eflip" = 0,
+				)
+			if("onbelt") return list(
+				"shrink" = 0.4,
+				"sx" = -4,
+				"sy" = -6,
+				"nx" = 5,
+				"ny" = -6,
+				"wx" = 0,
+				"wy" = -6,
+				"ex" = -1,
+				"ey" = -6,
+				"nturn" = 100,
+				"sturn" = 156,
+				"wturn" = 90,
+				"eturn" = 180,
+				"nflip" = 0,
+				"sflip" = 0,
+				"wflip" = 0,
+				"eflip" = 0,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				)
+
+
 
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"
@@ -589,11 +700,24 @@
 		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 9
+	wdefense = 6
 	dropshrink = 1
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
-	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/short
 	name = "steel shortsword"
@@ -698,20 +822,37 @@
 /obj/item/rogueweapon/sword/short/psy
 	name = "psydonian shortsword"
 	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
-	force = 19
 	icon_state = "psyswordshort"
 	sheathe_icon = "psyswordshort"
+	force = 17
+	force_wielded = 20
+	minstr = 6
+	wdefense = 5
 	wbalance = WBALANCE_SWIFT
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
-	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
-
-/obj/item/rogueweapon/sword/short/psy/preblessed
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/short/psy/preblessed/ComponentInitialize()
-	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/short/messer
 	name = "messer"
@@ -833,11 +974,25 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 25	//Base is 22
+	force = 17
+	force_wielded = 20
+	minstr = 7
+	wdefense = 9
 	last_used = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
+
+/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
@@ -999,10 +1154,23 @@
 	sheathe_icon = "psyrapier"
 	max_integrity = 300
 	max_blade_int = 300
-	wdefense = 7
+	force = 17
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
 
-/obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+/obj/item/rogueweapon/sword/rapier/psy/relic/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/rapier/lord
 	name = "sword of the Mad Duke"
@@ -1042,16 +1210,30 @@
 
 
 /obj/item/rogueweapon/sword/silver
-	force = 24
 	name = "silver sword"
 	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
+	force = 17
+	force_wielded = 20
+	minstr = 9
+	wdefense = 5
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
 	max_blade_int = 230
 	max_integrity = 200
+
+/obj/item/rogueweapon/sword/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/long/blackflamb
 	name = "blacksteel flamberge"
@@ -1305,6 +1487,114 @@
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
 	max_integrity = 999
+
+/obj/item/rogueweapon/sword/long/holysee/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen") return list(
+				"shrink" = 0.65,
+				"sx" = -14,
+				"sy" = -8,
+				"nx" = 15,
+				"ny" = -7,
+				"wx" = -10,
+				"wy" = -5,
+				"ex" = 7,
+				"ey" = -6,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = -13,
+				"sturn" = 110,
+				"wturn" = -60,
+				"eturn" = -30,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 8,
+				"eflip" = 1,
+				)
+			if("onback") return list(
+				"shrink" = 0.65,
+				"sx" = -1,
+				"sy" = 2,
+				"nx" = 0,
+				"ny" = 2,
+				"wx" = 2,
+				"wy" = 1,
+				"ex" = 0,
+				"ey" = 1,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 70,
+				"eturn" = 15,
+				"nflip" = 1,
+				"sflip" = 1,
+				"wflip" = 1,
+				"eflip" = 1,
+				"northabove" = 1,
+				"southabove" = 0,
+				"eastabove" = 0,
+				"westabove" = 0,
+				)
+			if("wielded") return list(
+				"shrink" = 0.6,
+				"sx" = 3,
+				"sy" = 5,
+				"nx" = -3,
+				"ny" = 5,
+				"wx" = -9,
+				"wy" = 4,
+				"ex" = 9,
+				"ey" = 1,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				"nturn" = 0,
+				"sturn" = 0,
+				"wturn" = 0,
+				"eturn" = 15,
+				"nflip" = 8,
+				"sflip" = 0,
+				"wflip" = 8,
+				"eflip" = 0,
+				)
+			if("onbelt") return list(
+				"shrink" = 0.4,
+				"sx" = -4,
+				"sy" = -6,
+				"nx" = 5,
+				"ny" = -6,
+				"wx" = 0,
+				"wy" = -6,
+				"ex" = -1,
+				"ey" = -6,
+				"nturn" = 100,
+				"sturn" = 156,
+				"wturn" = 90,
+				"eturn" = 180,
+				"nflip" = 0,
+				"sflip" = 0,
+				"wflip" = 0,
+				"eflip" = 0,
+				"northabove" = 0,
+				"southabove" = 1,
+				"eastabove" = 1,
+				"westabove" = 0,
+				)
 
 /obj/item/rogueweapon/sword/long/kriegmesser
 	name = "kriegsmesser"

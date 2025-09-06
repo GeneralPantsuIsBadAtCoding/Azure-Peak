@@ -116,7 +116,7 @@
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
-	if(fire_stacks <= 0)
+	if(has_status_effect(/datum/status_effect/fire_handler))
 		adjustHealth(-rand(20,35))
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()
