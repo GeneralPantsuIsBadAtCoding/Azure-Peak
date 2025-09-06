@@ -78,6 +78,26 @@
 	icon_state = "orecoal[rand(1,3)]"
 	..()
 
+/obj/item/rogueore/coal/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+		if(M.construct)
+			if(do_after(user, 5 SECONDS, target = user))
+				M.apply_status_effect(/datum/status_effect/buff/powerup/high)
+				M.apply_status_effect(/datum/status_effect/buff/overheat)
+				M.emote("rage")
+				qdel(src)
+				if(M == user)
+					user.visible_message(span_notice("[user] presses the coal to [user]'s body, and it is absorbed."), span_notice("I absorb the coal."))
+				else
+					user.visible_message(span_notice("[user] presses the coal to [M]'s body, and it is absorbed."), span_notice("I press the coal to [M], and it is absorbed."))
+			else 
+				return ..()
+		else 
+			return ..()
+	else 
+		return ..()
+
 /obj/item/rogueore/coal/charcoal
 	name = "charcoal"
 	icon_state = "oreada"
