@@ -141,3 +141,20 @@
 			finished_ckeys += ckey
 			playsound(src.loc, 'sound/foley/doors/lockrattle.ogg', 75, TRUE)
 
+
+// food cans
+
+/obj/item/reagent_containers/food/snacks/canned
+	name = "saltpot"
+	desc = "Corrugated tinplate concealing tinfood."
+	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
+	icon_state = "acan"
+
+
+	var/can_sealed = 1
+
+/obj/item/reagent_containers/food/snacks/canned/On_Consume
+
+	if(src.can_sealed == 1)
+		return
+	..()
