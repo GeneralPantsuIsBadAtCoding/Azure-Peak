@@ -696,7 +696,7 @@
 	desc = "A cabbit's foot necklace. Some say it brings good luck."
 	icon_state = "luckcharm"
 	sellprice = 15
-	slot_flags = ITEM_SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_WRISTS
 	var/goodluckactivated = FALSE
 
 /obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)
