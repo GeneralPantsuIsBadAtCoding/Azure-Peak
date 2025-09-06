@@ -194,7 +194,7 @@
 		return FALSE
 	if((I.is_silver || I.smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(src, TRAIT_SILVER_WEAK) &&  !has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
 		var/datum/antagonist/vampirelord/V_lord = mind?.has_antag_datum(/datum/antagonist/vampirelord)
-		if(V_lord.vamplevel < 4 || !istype(V_lord))
+		if(!istype(V_lord) || V_lord?.vamplevel < 4)
 			to_chat(src, span_userdanger("I can't pick up the silver, it is my BANE!"))
 			Knockdown(10)
 			Paralyze(10)

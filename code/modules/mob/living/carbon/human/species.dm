@@ -1903,9 +1903,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 		//FIRE_STACKS Human damage taken from fire is determined here.
 		var/burn_damage
-		var/firemodifier = H.fire_stacks / 50
-		if(H.on_fire)
-			burn_damage = 10 + H.fire_stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
+		var/datum/status_effect/fire_handler/fire_stacks/pure_stacks = H.has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+		var/firemodifier = pure_stacks?.stacks / 50
+		if(pure_stacks?.on_fire)
+			burn_damage = 10 + pure_stacks?.stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
 		else
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
