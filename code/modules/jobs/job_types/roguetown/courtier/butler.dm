@@ -62,10 +62,10 @@
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("fortune", 1) // Usual leadership carrot.
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_LCK, 1) // Usual leadership carrot.
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 
 /datum/advclass/seneschal/headmaid
@@ -104,10 +104,10 @@
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("fortune", 1) // Usual leadership carrot.
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_LCK, 1) // Usual leadership carrot.
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 
 /datum/advclass/seneschal/chiefbutler
@@ -146,9 +146,9 @@
 		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("fortune", 1) // Usual leadership carrot.
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_LCK, 1) // Usual leadership carrot.
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 

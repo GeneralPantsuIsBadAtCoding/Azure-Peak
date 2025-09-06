@@ -44,7 +44,7 @@
 	name = "Nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	reagent_state = SOLID
-	nutriment_factor = 35 //EVERY 1 NUTRIMENT RESTORES 35 NUTRITION
+	nutriment_factor = BASE_NUTRIMENT_NUTRITION //EVERY 1 NUTRIMENT RESTORES 35 NUTRITION
 	color = "#664330" // rgb: 102, 67, 48
 
 	var/brute_heal = 0
@@ -108,7 +108,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
-	nutriment_factor = 10 * REAGENTS_METABOLISM
+	nutriment_factor = BASE_SUGAR_NUTRITION
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"

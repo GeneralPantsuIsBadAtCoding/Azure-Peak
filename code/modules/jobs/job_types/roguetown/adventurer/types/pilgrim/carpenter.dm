@@ -48,8 +48,8 @@
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_SPD, -1)

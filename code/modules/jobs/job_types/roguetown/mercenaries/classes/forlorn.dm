@@ -45,8 +45,8 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)	// This was arguably the OG shield + 1hand weapon merc. If this is too much, we can cut it back again.
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 3) // tuff boys
-	H.change_stat("constitution", 2) 
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_WIL, 3) // tuff boys
+	H.change_stat(STATKEY_CON, 2) 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.merctype = 5

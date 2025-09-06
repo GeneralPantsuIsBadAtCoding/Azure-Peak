@@ -53,8 +53,8 @@
 	backpack_contents = list(
 		/obj/item/bottle_kit
 	)
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("speed", 1) //5 points (weighted)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_SPD, 1) //5 points (weighted)
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)

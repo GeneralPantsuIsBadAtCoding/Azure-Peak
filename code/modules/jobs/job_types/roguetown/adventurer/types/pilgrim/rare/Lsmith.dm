@@ -50,9 +50,9 @@
 		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("speed", -1)
-	H.change_stat("fortune", 3)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_SPD, -1)
+	H.change_stat(STATKEY_LCK, 3)
 	if(H.pronouns == HE_HIM)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt

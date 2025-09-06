@@ -187,13 +187,6 @@
 	icon_state ="scrollpurple"
 	remarks = list("Returnus Revico..", "Manus de reverti..", "Menus de returnus..")
 
-/obj/item/book/granter/spell/blackstone/blindness
-	name = "Scroll of Blindness"
-	spell = /obj/effect/proc_holder/spell/invoked/blindness
-	spellname = "blindness"
-	icon_state ="scrollpurple"
-	remarks = list("Occultare oculos..", "Vivus amoevtar..", "Visioner removan..")
-
 /obj/item/book/granter/spell/blackstone/invisibility
 	name = "Scroll of Invisibility"
 	spell = /obj/effect/proc_holder/spell/invoked/invisibility

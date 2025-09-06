@@ -28,7 +28,9 @@
 
 /datum/storyteller/psydon
 	name = "Psydon"
+	vote_desc = "Peace reigns. No villains will be present. His children can rest easy, for they have earned their respite"
 	desc = "Psydon will do little, events will be common as he takes a hands-off approach to the world. Consider this the 'extended' experience."
+	welcome_text = "A temperate breeze rolls through the quiet streets.."
 	weight = 6
 	always_votable = TRUE
 	color_theme = "#80ced8"
@@ -44,7 +46,9 @@
 
 /datum/storyteller/astrata
 	name = "Astrata"
+	vote_desc = "Order reigns. All occurrences are perfectly balanced out, without bias. Her favor shines upon nobility and their decrees."
 	desc = "Astrata will provide a balanced and varied experience. Consider this the default experience."
+	welcome_text = "The warmth of daelight rouses you from your slumber.."
 	weight = 6
 	always_votable = TRUE
 	follower_modifier = LOWER_FOLLOWER_MODIFIER
@@ -60,8 +64,9 @@
 
 /datum/storyteller/noc
 	name = "Noc"
+	vote_desc = "Knowledge reigns. Occurrences are tame, but remain suspectable to arcyne intervention. His favor shines upon those who dream for greater ambitions."
 	desc = "Noc will try to send more magical events."
-	welcome_text = "The veil between realms shimmers in your presence."
+	welcome_text = "The air crackles with arcyne energy.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#F0F0F0"
@@ -81,8 +86,9 @@
 
 /datum/storyteller/ravox
 	name = "Ravox"
+	vote_desc = "Glory reigns. Raids, villains, and omens are more likely to occur. His favor shines upon clashing steel and the cries of war."
 	desc = "Ravox will cause raids to happen naturally instead of only when people are dying a lot."
-	welcome_text = "The drums of battle grow louder."
+	welcome_text = "\"The trumpets of Zericho are echoing in the distance..\""
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#228822"
@@ -110,8 +116,9 @@
 
 /datum/storyteller/abyssor
 	name = "Abyssor"
+	vote_desc = "Water reigns. Occurrences are tame, though their temperance oft-sways with the tide's flow. His favor shines upon the fished, leeched, and drowned."
 	desc = "Abyssor likes to send water and trade-related events."
-	welcome_text = "The tides of fate shift in your favor."
+	welcome_text = "The horizon grows dark, as its clouds gather for a coming storm.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#3366CC"
@@ -131,8 +138,9 @@
 
 /datum/storyteller/xylix
 	name = "Xylix"
+	vote_desc = "Unpredictability reigns. Nothing is set in stone, yet everything is possible. His favor shines upon acts of chance and whimsy."
 	desc = "Xylix is a wildcard, spinning the wheels of fate."
-	welcome_text = "The dice have been cast, let fate decide your destiny."
+	welcome_text = "\"..well, that's what happens out of too much spice and wine!\""
 	weight = 4
 	always_votable = TRUE
 	event_repetition_multiplier = 0
@@ -158,8 +166,9 @@
 
 /datum/storyteller/necra
 	name = "Necra"
+	vote_desc = "Death reigns. Occurrences happen less often, and villains are less likely. Her favor shines upon those who put the deathless back into their graves."
 	desc = "Necra takes things very slow, rarely bringing in newcomers."
-	welcome_text = "The grave whispers, patience is virtue."
+	welcome_text = "\"In the fief of Zenmarke, there was the odor of decay..\""
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#888888"
@@ -188,8 +197,9 @@
 
 /datum/storyteller/pestra
 	name = "Pestra"
+	vote_desc = "Health reigns. Occurrences are tame, yet swayable with practiced hands. Her favor shines upon stitches and alchemists"
 	desc = "Pestra keeps things simple, with a slight bias towards alchemy."
-	welcome_text = "The balance of life and craft tilts in your favor."
+	welcome_text = "The clattering of instruments, and the churning of alchemical wonders.."
 	color_theme = "#AADDAA"
 
 	tag_multipliers = list(
@@ -207,8 +217,9 @@
 
 /datum/storyteller/malum
 	name = "Malum"
+	vote_desc = "Effort reigns. Divine intervention occurs more often. His favor shines upon masterworks and mineshafts."
 	desc = "Malum believes in hard work, intervening more often than others."
-	welcome_text = "Toil and perseverance shall shape your destiny."
+	welcome_text = "The pounding of red-hot steel, and the laboring of a hundred calloused hands.."
 	color_theme = "#D4A56C"
 
 	tag_multipliers = list(
@@ -234,8 +245,9 @@
 
 /datum/storyteller/eora
 	name = "Eora"
+	vote_desc = " Love reigns. Positive affairs occur more often, and raids will rarely transpire. Her favor shines upon romance."
 	desc = "Eora hates death and promotes love. Raids will never naturally progress, only death will bring them."
-	welcome_text = "Life shall flourish under my watchful gaze."
+	welcome_text = "\"Love is in the air? Nay; tis the smell of freshly-baked pies upon the windowsills!\""
 	color_theme = "#9966CC"
 
 	tag_multipliers = list(
@@ -262,8 +274,9 @@
 
 /datum/storyteller/dendor
 	name = "Dendor"
+	vote_desc = " Nature reigns. Overgrowth and Verevolves are more likely to occur. His favor shines upon harvests and lycanthropes."
 	desc = "Dendor likes to send nature-themed events."
-	welcome_text = "The wilds whisper your name."
+	welcome_text = "The cackling of perched zads, and the glimmer of morning dew.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#664422"
@@ -293,8 +306,9 @@
 
 /datum/storyteller/zizo
 	name = "Zizo"
+	vote_desc = "Chaos reigns. Villains are assured, and Deadites are far more vicious. Her favor shines upon corpses; be they holy, noble, or reanimated."
 	desc = "Zizo thrives on risk and reward, favoring the daring and unpredictable."
-	welcome_text = "You will kneel."
+	welcome_text = "A breeze of morbid air, ferrying the howls of the damned.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#CC4444"
@@ -328,8 +342,9 @@
 
 /datum/storyteller/baotha
 	name = "Baotha"
+	vote_desc = "Spice reigns. Occurrences are more erratic and negative. Her favor shines upon drunkards and addicts."
 	desc = "Baotha revels in chaos, making events and reality unpredictable."
-	welcome_text = "The world bends to my whims."
+	welcome_text = "The sickly sweet aromas of liqour and spice fills the air.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#9933FF"
@@ -361,8 +376,9 @@
 
 /datum/storyteller/graggar
 	name = "Graggar"
+	vote_desc = " Inhumenity reigns. Villains are assured, and raids occur far more often. His favor shines upon bloodshed and cannibalism."
 	desc = "Graggar encourages war and conquest, making combat the solution to all."
-	welcome_text = "Victory or death!"
+	welcome_text = "Plumes of smoke are blown through the streets, reeking of ash and blood.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#8B3A3A"
@@ -394,8 +410,9 @@
 
 /datum/storyteller/matthios
 	name = "Matthios"
+	vote_desc = "Thievery reigns. Banditry runs rampant. His favor shines upon thefts and offerings to a certain shrine."
 	desc = "Matthios manipulates wealth and corruption, rewarding those who make deals."
-	welcome_text = "Fortune favors the cunning."
+	welcome_text = "The jingling of mammons, and the dripping of ink from freshly-signed bounties.."
 	weight = 4
 	always_votable = TRUE
 	color_theme = "#8B4513"

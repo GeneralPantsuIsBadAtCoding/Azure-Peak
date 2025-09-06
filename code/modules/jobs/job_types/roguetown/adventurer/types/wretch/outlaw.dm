@@ -76,9 +76,9 @@
 				if ("Whip")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltl = /obj/item/rogueweapon/whip
-			H.change_stat("perception", 1)
-			H.change_stat("endurance", 2)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_SPD, 3)
 
 		if("Marauder")
 			to_chat(H, span_warning("You are a brigand and a pillager - you prefer to get your coins with direct means from unfortunate victims."))
@@ -139,9 +139,9 @@
 					H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 					l_hand = /obj/item/rogueweapon/spear/militia
 					backr = /obj/item/rogueweapon/shield/heater
-			H.change_stat("constitution", 2)
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)//Still the speed class
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 2)//Still the speed class
 	H.grant_language(/datum/language/thievescant)
 	wretch_select_bounty(H)

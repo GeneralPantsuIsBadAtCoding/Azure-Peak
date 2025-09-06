@@ -57,9 +57,9 @@
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-			H.change_stat("strength", 2)
-			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_WIL, 1)
 			H.cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 			return
 		if("Bowman")
@@ -108,6 +108,6 @@
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-			H.change_stat("intelligence", 1)
-			H.change_stat("perception", 3)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_PER, 3)
+			H.change_stat(STATKEY_SPD, 1)

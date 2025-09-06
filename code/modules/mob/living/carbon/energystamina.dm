@@ -25,7 +25,7 @@
 /mob/living/proc/update_energy()
 	var/athletics_skill = 0
 	athletics_skill = get_skill_level(/datum/skill/misc/athletics)
-	max_energy = (STAEND + (athletics_skill/2 ) ) * 100
+	max_energy = (STAWIL + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
 			energy_add(-2)
@@ -40,7 +40,7 @@
 	//	return TRUE
 	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
 		return TRUE
-	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
+	if(m_intent == MOVE_INTENT_RUN && isnull(buckled) && (mobility_flags & MOBILITY_STAND))
 		mind && mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
 	energy += added
 	if(energy > max_energy)
@@ -115,6 +115,30 @@
 						if(C.hydration <= 0)
 							C.heart_attack()
 							return FALSE
+
+	if(ishuman(src) && mind && added > 0)
+		var/mob/living/carbon/human/H = src
+		var/text
+		var/x_offset = 20
+		var/y_offset
+		var/stamratio = stamina / max_stamina
+		if(stamratio >= 0.25 && ((stamina - added) / max_stamina) < 0.25)
+			text = "<font color = '#a8af9b'>Winded</font>"
+			y_offset = BALLOON_Y_OFFSET_TIER1
+		if(stamratio >= 0.5 && ((stamina - added) / max_stamina) < 0.5)
+			text = "<font color = '#d4d36c'>Drained</font>"
+			y_offset = BALLOON_Y_OFFSET_TIER2
+		if(stamratio >= 0.75 && ((stamina - added) / max_stamina) < 0.75)
+			text = "<font color = '#a8665a'>Fatigued</font>"
+			y_offset = BALLOON_Y_OFFSET_TIER3
+		if(text)
+			if(!HAS_TRAIT(H, TRAIT_DECEIVING_MEEKNESS))
+				H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
+			else
+				if(prob(10))
+					text = "<i>Tired...?</i>"
+					H.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, x_offset, y_offset)
+
 	if(stamina >= max_stamina)
 		stamina = max_stamina
 		update_health_hud()
@@ -129,6 +153,12 @@
 		stop_attack()
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
+
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			var/balloon_text = "<font color = '#bb2b2b'>Exhausted... </font>"
+			H.balloon_alert_to_viewers(balloon_text, balloon_text, DEFAULT_MESSAGE_RANGE)
+
 		if(energy <= 0)
 			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 1 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 1 SECONDS)

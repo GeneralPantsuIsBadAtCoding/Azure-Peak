@@ -105,9 +105,9 @@
 		return
 	var/can_remove = FALSE
 	var/can_premium = FALSE
-	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist", "Absolver",))
+	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist", "Absolver", "Marshal")) //why was KC here but not marshal ?
 		can_remove = TRUE
-	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician"))
+	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician", "Town Crier"))
 		can_premium = TRUE
 	var/contents
 	contents += "<center>NOTICEBOARD<BR>"
@@ -573,7 +573,7 @@
 
 	var/obj/item/paper/scroll/report = new(get_turf(src))
 	report.name = "Guild Contract Report"
-	report.desc = "A list of currently active contracts issued by the Adventurers' Guild."
+	report.desc = "A list of currently active contracts issued by the Mercenary's Guild."
 
 	var/report_text = "<center><b>MERCENARY'S GUILD - ACTIVE CONTRACTS</b></center><br><br>"
 	report_text += "<i>Generated on [station_time_timestamp()]</i><br><br>"

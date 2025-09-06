@@ -8,7 +8,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/check_pq,
 	/client/proc/adjust_pq,
 	/client/proc/hearallasghost,
-//	/client/proc/hearglobalLOOC, Лоок вырезан. Не нужно.
+	//	/client/proc/hearglobalLOOC, Лоок вырезан. Не нужно.
+	/client/proc/togglespawnmessages,
 	/client/proc/toggle_aghost_invis,
 	/client/proc/admin_ghost,
 	/datum/admins/proc/start_vote,

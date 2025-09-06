@@ -47,8 +47,8 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/recipe_book/builder = 1,
 						)
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_SPD, 2)

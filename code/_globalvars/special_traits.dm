@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 			var/datum/loadout_item/item = GLOB.loadout_items_by_name[key]
 			character.mind.special_items[item.name] = item.path
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
-	if(assigned_job && length(assigned_job.stat_ceilings))
+	if(assigned_job)
 		assigned_job.clamp_stats(character)
 
 /proc/apply_prefs_virtue(mob/living/carbon/human/character, client/player)

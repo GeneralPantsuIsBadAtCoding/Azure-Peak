@@ -41,19 +41,8 @@
 		src.dna.species.species_traits |= NOBLOOD
 		src.dna.species.soundpack_m = new /datum/voicepack/skeleton()
 		src.dna.species.soundpack_f = new /datum/voicepack/skeleton()
-	var/obj/item/bodypart/O = src.get_bodypart(BODY_ZONE_R_ARM)
-	if(O)
-		O.drop_limb()
-		qdel(O)
-	O = src.get_bodypart(BODY_ZONE_L_ARM)
-	if(O)
-		O.drop_limb()
-		qdel(O)
-	src.regenerate_limb(BODY_ZONE_R_ARM)
-	src.regenerate_limb(BODY_ZONE_L_ARM)
 	if(src.charflaw)
 		QDEL_NULL(src.charflaw)
-	mob_biotypes |= MOB_UNDEAD
 	faction = list("undead")
 	name = "Skeleton"
 	real_name = "Skeleton"
@@ -72,6 +61,28 @@
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	else
 		ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC) // Not touching lich balance in a fix PR - for now
+	skeletonize()
+	if(skel_outfit)
+		var/datum/outfit/OU = new skel_outfit
+		if(OU)
+			equipOutfit(OU)
+
+/mob/living/carbon/human/species/skeleton/fully_heal(admin_revive)
+	. = ..()
+	skeletonize()
+
+/mob/living/carbon/human/species/skeleton/proc/skeletonize()
+	mob_biotypes |= MOB_UNDEAD
+	var/obj/item/bodypart/O = src.get_bodypart(BODY_ZONE_R_ARM)
+	if(O)
+		O.drop_limb()
+		qdel(O)
+	O = src.get_bodypart(BODY_ZONE_L_ARM)
+	if(O)
+		O.drop_limb()
+		qdel(O)
+	src.regenerate_limb(BODY_ZONE_R_ARM)
+	src.regenerate_limb(BODY_ZONE_L_ARM)
 	var/obj/item/organ/eyes/eyes = src.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.Remove(src,1)
@@ -81,10 +92,6 @@
 	for(var/obj/item/bodypart/B in src.bodyparts)
 		B.skeletonize(FALSE)
 	update_body()
-	if(skel_outfit)
-		var/datum/outfit/OU = new skel_outfit
-		if(OU)
-			equipOutfit(OU)
 
 /mob/living/carbon/human/species/skeleton/npc/no_equipment
     skel_outfit = null
@@ -130,7 +137,7 @@
 	H.STASTR = rand(15,16)
 	H.STASPD = 8
 	H.STACON = 4
-	H.STAEND = 15
+	H.STAWIL = 15
 	H.STAINT = 1
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
@@ -157,7 +164,7 @@
 	H.STASTR = 18
 	H.STASPD = 10
 	H.STACON = 10
-	H.STAEND = 16
+	H.STAWIL = 16
 	H.STAINT = 1
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)

@@ -211,7 +211,7 @@
 							bronzealloy = bronzealloy + 1
 						if(I.smeltresult == /obj/item/ingot/copper)
 							bronzealloy = bronzealloy + 2
-						if(I.smeltresult == /obj/item/ingot/aalloy)
+						if(I.smeltresult == /obj/item/ingot/aaslag)
 							purifiedalloy = purifiedalloy + 3
 						if(I.smeltresult == /obj/item/ingot/gold)
 							purifiedalloy = purifiedalloy + 2
@@ -225,9 +225,9 @@
 						alloy = /obj/item/ingot/steel
 					else if(bronzealloy == 7)
 						alloy = /obj/item/ingot/bronze
-					else if(purifiedalloy == 10)
-						maxore = 3
-						alloy = /obj/item/ingot/purifiedaalloy // 2 aalloy, 2 gold, makes 3 purified alloy.
+					else if(purifiedalloy == 11)
+						maxore = 2
+						alloy = /obj/item/ingot/purifiedaalloy // 3 aaslag, 1 gold, makes 2 purified alloy.
 					else if(blacksteelalloy == 7)
 						maxore = 1 // Blacksteel is supposed to be rare and inefficient. 3 steel and 1 silver into one. 
 						alloy = /obj/item/ingot/blacksteel

@@ -28,8 +28,8 @@
 		"Hand",
 		"Steward",
 		"Court Physician",
-		"Town Elder",
-		"Captain",
+		"Town Crier",
+		"Knight Captain",
 		"Archivist",
 		"Knight",
 		"Court Magician",
@@ -39,6 +39,7 @@
 		"Warden",
 		"Squire",
 		"Veteran",
+		"Court Agent",
 		"Apothecary"
 	)
 
@@ -47,7 +48,7 @@
 
 	earliest_start = 0 SECONDS
 
-	weight = 35
+	weight = 18
 
 	typepath = /datum/round_event/antagonist/solo/bandits
 	antag_datum = /datum/antagonist/bandit

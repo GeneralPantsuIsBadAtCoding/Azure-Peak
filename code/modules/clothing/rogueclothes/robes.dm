@@ -113,14 +113,9 @@
 	armor = ARMOR_PADDED	//Equal to gamby
 	color = null
 
-/obj/item/clothing/suit/roguetown/shirt/robe/priest/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_CHOSEN))
-		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCH THE VESTMENTS, CEASE OR BE PUNISHED</font>")
-		spawn(30)
-			if(loc == user)
-				user.adjust_fire_stacks(5)
-				user.IgniteMob()
-	..()
+/obj/item/clothing/suit/roguetown/shirt/robe/priest/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CHOSEN, "VESTMENTS")
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/equipped(mob/living/user, slot)
 	..()

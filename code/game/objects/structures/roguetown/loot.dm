@@ -43,7 +43,6 @@
 		/obj/item/book/granter/spell/blackstone/fetch = 10,
 		/obj/item/book/granter/spell/blackstone/lightning = 5,
 		/obj/item/book/granter/spell/blackstone/fireball = 5,
-		/obj/item/book/granter/spell/blackstone/blindness = 5,
 		/obj/item/book/granter/spell/blackstone/sicknessray = 5,
 		/obj/item/book/granter/spell/blackstone/bonechill = 3,
 		/obj/item/book/granter/spell/blackstone/skeleton = 3,

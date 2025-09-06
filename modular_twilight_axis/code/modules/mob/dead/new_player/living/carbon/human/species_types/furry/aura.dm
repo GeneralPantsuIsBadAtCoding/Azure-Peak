@@ -9,7 +9,7 @@
 	Это давно оспаривается, и ученые приводят в качестве доказательств против этого явные различия между двумя видами. Улучшенный слух и \
 	способность распознавать пространство, которыми обладают их рога, не встречаются у драконов,а крайний половой диморфизм, характерный для этой расы, \
 	также не встречается у драконов. Представители этой расы крепки и выносливы из-за чешуи, которая защищает их. \
-	(+1 Constitution, +1 Endurance)"
+	(+1 Constitution, +1 Willpower)"
 	skin_tone_wording = "Skin Colors"
 	skin_tone_wording = "Ancestry"
 	default_color = "FFFFFF"
@@ -41,7 +41,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
-	race_bonus = list(STAT_ENDURANCE = 1, STAT_CONSTITUTION = 1)
+	race_bonus = list(STAT_WILLPOWER = 1, STAT_CONSTITUTION = 1)
 	enflamed_icon = "widefire"
 	bodypart_features = list(
 		/datum/bodypart_feature/hair/head,

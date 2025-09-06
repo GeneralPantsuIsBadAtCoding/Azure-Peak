@@ -53,11 +53,11 @@
 						/obj/item/flashlight/flare/torch = 1,
 						)
 
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("strength", 2)
+	H.change_stat(STATKEY_WIL, 2)
+	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_STR, 2)
 
 	for(var/I in SSrole_class_handler.sorted_class_categories[CTAG_ALLCLASS])
 		var/datum/advclass/A = I
@@ -81,7 +81,7 @@
 							/obj/item/flashlight/flare/torch = 1,
 							/obj/item/rogueweapon/scabbard/sheath = 1
 							)
-		H.change_stat("strength", 1)
+		H.change_stat(STATKEY_STR, 1)
 
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

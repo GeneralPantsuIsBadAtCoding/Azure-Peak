@@ -50,6 +50,10 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Straw Hat"
 	path = /obj/item/clothing/head/roguetown/strawhat
 
+/datum/loadout_item/eaststrawhat
+	name = "Worn rice hat"
+	path = /obj/item/clothing/head/roguetown/eaststrawhat
+
 /datum/loadout_item/witchhat
 	name = "Witch Hat"
 	path = /obj/item/clothing/head/roguetown/witchhat
@@ -463,6 +467,14 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Amulet of Eora"
 	path = /obj/item/clothing/neck/roguetown/psicross/eora
 
+/datum/loadout_item/psicross/undivided
+	name = "Amulet of Ten"
+	path = /obj/item/clothing/neck/roguetown/psicross/undivided
+
+/datum/loadout_item/psicross/zizo
+	name = "Decrepit Zcross"
+	path = /obj/item/clothing/neck/roguetown/zcross/aalloy
+
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
 	path = /obj/item/clothing/ring/band
@@ -535,26 +547,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/enchantingkit/zydras
 	donatitem = TRUE
 
-/datum/loadout_item/donator_psydonianarmet
-	name = "Donator Kit - Psydonian armet - Required: Armet"
-	path = /obj/item/enchantingkit/psydonianarmet
-	donatitem = TRUE
-
-/datum/loadout_item/donator_psydonbarbute
-	name = "Donator Kit - Psydonian barbute - Required: Barbute"
-	path = /obj/item/enchantingkit/psydonbarbute
-	donatitem = TRUE
-
-/datum/loadout_item/donator_psysallet
-	name = "Donator Kit - Psydonian sallet - Required: Barbute"
-	path = /obj/item/enchantingkit/psysallet
-	donatitem = TRUE
-
-/datum/loadout_item/donator_psybucket
-	name = "Donator Kit - Psydonian bucket helmet - Required: Armet"
-	path = /obj/item/enchantingkit/psybucket
-	donatitem = TRUE
-
 // Разное
 /datum/loadout_item/donat
 	name = "Музыкальная коробка"
@@ -624,14 +616,9 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/clothing/cloak/raincloak/furcloak
 	donatitem = TRUE
 
-/datum/loadout_item/donat/battleskirt
-	name = "Боевая юбка"
-	path = /obj/item/clothing/cloak/fauld/battleskirt
-	donatitem = TRUE
-
-/datum/loadout_item/donat/faulds
-	name = "Фольд"
-	path = /obj/item/clothing/cloak/fauld
+/datum/loadout_item/donat/snowcloak
+	name = "Снежный плащ"
+	path = /obj/item/clothing/cloak/forrestercloak/snow
 	donatitem = TRUE
 
 /datum/loadout_item/donat/tabard/astata
@@ -699,4 +686,11 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 /datum/loadout_item/donat/eoramask
 	name = "Эоранская маска"
 	path = /obj/item/clothing/head/roguetown/eoramask
+	donatitem = TRUE
+
+// Шляпы
+
+/datum/loadout_item/donat/grenzelhofthat_decorated
+	name = "Грензельхофтская шляпа(без брони, декоративная)"
+	path = /obj/item/clothing/head/roguetown/grenzelhofthat/decorated
 	donatitem = TRUE

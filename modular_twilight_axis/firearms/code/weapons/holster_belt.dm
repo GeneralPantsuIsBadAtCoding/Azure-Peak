@@ -13,30 +13,34 @@
 
 /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/proc/eatpistol(obj/A)
 	if((A.type in typesof(/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)) || (A.type in typesof(/obj/item/gun/ballistic/twilight_firearm/arquebus_pistol)))
-		if(pistol.len < max_storage)
-			A.forceMove(src)
-			pistol += A
-			icon_state = "holsterbelt_full"
-			update_icon()
-			return TRUE
-		else
-			return FALSE
+		var/obj/item/gun/ballistic/P = A
+		if(!P.gripped_intents)
+			if(pistol.len < max_storage)
+				P.forceMove(src)
+				pistol += P
+				icon_state = "holsterbelt_full"
+				update_icon()
+				return TRUE
+			else
+				return FALSE
 
 /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/attackby(obj/A, loc, params)
 	if((A.type in typesof(/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)) || (A.type in typesof(/obj/item/gun/ballistic/twilight_firearm/arquebus_pistol)))
-		if(pistol.len < max_storage)
-			if(ismob(loc))
-				var/mob/M = loc
-				M.doUnEquip(A, TRUE, src, TRUE, silent = TRUE)
+		var/obj/item/gun/ballistic/P = A
+		if(!P.gripped_intents)
+			if(pistol.len < max_storage)
+				if(ismob(loc))
+					var/mob/M = loc
+					M.doUnEquip(P, TRUE, src, TRUE, silent = TRUE)
+				else
+					P.forceMove(src)
+				pistol += P
+				icon_state = "holsterbelt_full"
+				update_icon()
+				to_chat(usr, span_notice("I holster the [P.name] into [src.name]."))
 			else
-				A.forceMove(src)
-			pistol += A
-			icon_state = "holsterbelt_full"
-			update_icon()
-			to_chat(usr, span_notice("Я засовываю пистоль в [src.name]."))
-		else
-			to_chat(loc, span_warning("Уже есть пистоль."))
-		return
+				to_chat(loc, span_warning("Something is already holstered."))
+			return
 	..()
 
 /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/attack_right(mob/user)
@@ -52,7 +56,7 @@
 /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/examine(mob/user)
 	. = ..()
 	if(pistol.len == 1)
-		. += span_notice("Пистоль внутри.")
+		. += span_notice("В кобуре есть оружие.")
 	else
 		. += span_notice("Кобура пустая.")
 
@@ -69,6 +73,14 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/gun/ballistic/twilight_firearm/arquebus_pistol/A = new()
+		pistol += A
+	icon_state = "holsterbelt_full"
+	update_icon()
+
+/obj/item/storage/belt/rogue/leather/twilight_holsterbelt/runelock/New()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/A = new()
 		pistol += A
 	icon_state = "holsterbelt_full"
 	update_icon()

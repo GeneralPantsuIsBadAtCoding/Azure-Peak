@@ -141,5 +141,5 @@
 		/obj/item/clothing/suit/roguetown/armor/basiceast = 1,
 		)
 	tools = list(/obj/item/needle)
-	craftdiff = 5
+	craftdiff = 3
 	

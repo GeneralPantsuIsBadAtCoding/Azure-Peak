@@ -7,7 +7,7 @@
 
 /datum/outfit/job/roguetown/manorguard/twilight_grenadier/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE) 		// Still have a cugel.
 	H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 4, TRUE)	
@@ -30,14 +30,16 @@
 	H.change_stat("intelligence", 1)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	pants = /obj/item/clothing/under/roguetown/trou/leather
+	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
+
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/guardcastle,
-		/obj/item/twilight_powderflask = 1,
+		/obj/item/storage/keyring/guardcastle = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/twilight_powderflask = 1
 		)
 
 	H.adjust_blindness(-3)
@@ -63,6 +65,31 @@
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
 	"None"
 	)
-	var/helmchoice = input("Выберите свой шлем.", "НАДЕТЬ ДОСПЕХ") as anything in helmets
+	var/helmchoice = input("Choose your helm.", "TAKE UP ARMOR") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/armors = list(
+		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+	)
+	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice]
+
+	var/arms = list(
+		"Brigandine Splint Arms"		= /obj/item/clothing/wrists/roguetown/splintarms,
+		"Steel Bracers"		= /obj/item/clothing/wrists/roguetown/bracers,
+		"Jack Chains"		= /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+		"None"
+	)
+	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+	if(armschoice != "None")
+		wrists = arms[armschoice]
+
+	var/chausses = list(
+		"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
+		"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
+	)
+	var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
+	pants = chausses[chausseschoice]

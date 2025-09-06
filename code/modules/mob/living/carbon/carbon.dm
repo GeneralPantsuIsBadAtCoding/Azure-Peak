@@ -251,6 +251,7 @@
 			thrown_speed = thrown_thing.throw_speed
 		if(!thrown_range)
 			thrown_range = thrown_thing.throw_range
+		do_attack_animation(target, no_effect = TRUE)
 		visible_message("<span class='danger'>[src] throws [thrown_thing].</span>", \
 						"<span class='danger'>I toss [thrown_thing].</span>")
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
@@ -539,7 +540,7 @@
 		stat("PER: \Roman [STAPER]")
 		stat("INT: \Roman [STAINT]")
 		stat("CON: \Roman [STACON]")
-		stat("END: \Roman [STAEND]")
+		stat("WIL: \Roman [STAWIL]")
 		stat("SPD: \Roman [STASPD]")
 		stat("FOR: \Roman [STALUC]")
 		stat("PATRON: [patron]")
@@ -947,7 +948,7 @@
 	else
 		clear_fullscreen("brute")*/
 
-	var/hurtdamage = ((get_complex_pain() / (STACON * 10)) * 100) //what percent out of 100 to max pain
+	var/hurtdamage = ((get_complex_pain() / (STAWIL * 10)) * 100) //what percent out of 100 to max pain
 	if(hurtdamage > 5) //float
 		var/severity = 0
 		switch(hurtdamage)
@@ -1303,3 +1304,8 @@
 	if(istype(loc, /turf/open/water) && !(mobility_flags & MOBILITY_STAND))
 		return FALSE
 
+
+/mob/living/carbon/can_buckle()
+	if((cmode) && (mind) && (!handcuffed) && (stat == CONSCIOUS))
+		return 0
+	. = ..()

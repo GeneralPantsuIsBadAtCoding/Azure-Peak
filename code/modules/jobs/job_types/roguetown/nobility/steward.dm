@@ -51,9 +51,9 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_SPD, -1)
 	H.mind.special_items["Steward Tights"] = /obj/item/clothing/under/roguetown/tights/black
 	H.mind.special_items["Steward Tailcoat"] = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
 	H.mind.special_items["Steward Silkdress"] = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward

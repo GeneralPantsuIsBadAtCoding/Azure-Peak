@@ -46,7 +46,7 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
 	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 1)
-	H.change_stat("speed", 1)
-	H.change_stat("strength", -1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_STR, -1)

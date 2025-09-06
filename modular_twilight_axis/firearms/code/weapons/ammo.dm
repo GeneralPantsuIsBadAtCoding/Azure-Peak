@@ -1,6 +1,7 @@
 /obj/projectile/bullet
 	var/silver = FALSE
 	var/critfactor = 1
+	var/gunpowder
 
 /**
  * Special runelock ammo
@@ -92,11 +93,39 @@
 	speed = 0.1
 	critfactor = 0.67
 
+/obj/projectile/bullet/twilight_grapeshot/otavian
+	name = "otavian grapeshot"
+	desc = "Плотно упакованный в бумагу набор небольших серебряных шариков. Хорошо сочетается с большими группами нечисти."
+	ammo_type = /obj/item/ammo_casing/caseless/twilight_cannonball/grapeshot/otavian
+	armor_penetration = 60
+	critfactor = 0.5
+	silver = TRUE
+
 /obj/projectile/bullet/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target))
+		var/mob/living/T = target
+		switch(gunpowder) //Hande gunpowder types
+			if("fyrepowder")
+				T.adjust_fire_stacks(round(10 * (damage / 100)))
+				T.IgniteMob()
+			if("thunderpowder")
+				T.Immobilize(30)
+			if("corrosive gunpowder")
+				playsound(src, 'sound/misc/drink_blood.ogg', 100)
+				T.apply_status_effect(/datum/status_effect/buff/acidsplash)
+				new /obj/effect/temp_visual/acidsplash(get_turf(T))
+			if("arcyne gunpowder")
+				if(ishuman(T))
+					var/mob/living/carbon/human/H = T
+					if(istype(H.wear_ring, /obj/item/clothing/ring/fate_weaver))
+						H.wear_ring.obj_break()
+					H.set_silence(5 SECONDS)
+			if("terrorpowder")
+				npc_simple_damage_mult += 1
 	. = ..()
 	if(isliving(firer) && (istype(fired_from, /obj/item/gun/ballistic/twilight_firearm) || istype(fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)))
 		var/mob/living/M = firer
-//		var/obj/item/gun/G = fired_from
+		//var/obj/item/gun/G = fired_from
 		var/skill = (M?.mind ? M.get_skill_level(/datum/skill/combat/twilight_firearms) : 1)
 		if(isliving(target))
 			var/mob/living/T = target
@@ -105,12 +134,6 @@
 					adjust_experience(M, /datum/skill/combat/twilight_firearms, M.STAINT * 3)
 				else if(ishuman(T) && (T.stat != DEAD || (T.stat == DEAD && T.timeofdeath == world.time)))
 					adjust_experience(M, /datum/skill/combat/twilight_firearms, M.STAINT * 6)
-					var/list/screams = list("painscream", "paincrit") //Simulating paincrit on hit
-					var/check = rand(1, 20)
-					if(check > T.STACON)
-						T.emote(screams)
-						T.Knockdown(rand(15,30))
-						T.Immobilize(rand(30,60))
 			if(silver) //Silver bullet effects
 				if(T.mind)
 					var/datum/antagonist/werewolf/W = T.mind.has_antag_datum(/datum/antagonist/werewolf/)
@@ -132,25 +155,56 @@
 						T.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
 						to_chat(T, span_userdanger("I'm hit by my BANE!"))
 						T.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-			if(blocked == 0) //Handle crits. Gunpowder weapons have a separate crit roll that ignores bodypart health
-				if(iscarbon(T))
-					var/zone = def_zone
-					var/obj/item/bodypart/affecting = T.get_bodypart(zone)
-					if(affecting)
-						var/check_crit_against_con = rand(10, 20)
-						check_crit_against_con *= critfactor * (M.STAPER > 10 ? M.STAPER / 10 : 1)
-						if(check_crit_against_con > (T.STACON))
-							if(T.getarmor(zone, flag) >= (armor_penetration / 2))
-								if(prob(60))
-									affecting.twilight_gunpowder_crit(woundclass, zone_precise = zone, crit_message = TRUE)
-							else
-								if(prob(90))
-									affecting.twilight_gunpowder_crit(woundclass, zone_precise = zone, crit_message = TRUE)
+
+/mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, blocked)
+	if(isliving(P.firer) && (istype(P.fired_from, /obj/item/gun/ballistic/twilight_firearm) || istype(P.fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)))
+		var/mob/living/M = P.firer
+		var/obj/projectile/bullet/B = P
+		blocked = run_armor_check(def_zone, P.flag, "", "",armor_penetration = B.armor_penetration, damage = P.damage)
+		if(blocked == 0) //Handle crits. Gunpowder weapons have a separate crit roll that ignores bodypart health
+			var/zone = def_zone
+			var/obj/item/bodypart/affecting = get_bodypart(zone)
+			if(affecting)
+				var/check_crit_against_con = rand(10, 20)
+				check_crit_against_con *= B.critfactor * (M.STAPER > 10 ? M.STAPER / 10 : 1)
+				if(check_crit_against_con > (src.STACON))
+					if(getarmor(zone, B.flag) >= (B.armor_penetration / 2))
+						if(prob(50))
+							affecting.twilight_gunpowder_crit(P.woundclass, zone_precise = zone, silent = FALSE, crit_message = TRUE)
+					else
+						if(prob(90))
+							affecting.twilight_gunpowder_crit(P.woundclass, zone_precise = zone, silent = FALSE, crit_message = TRUE)
+	. = ..()
 
 /obj/projectile/bullet/twilight_cannonball/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/turf/T = get_turf(target)
-	explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+	switch(gunpowder)
+		if("fyrepowder")
+			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, flame_range = 2, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+		if("corrosive gunpowder")
+			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+			for(var/mob/living/L in range(1, T)) //apply damage over time to mobs
+				if(!(L == target))
+					var/mob/living/carbon/M = L
+					M.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					new /obj/effect/temp_visual/acidsplash(get_turf(M))
+			for(var/turf/turfs_in_range in range(2, T)) //make a splash
+				new /obj/effect/temp_visual/acidsplash(turfs_in_range)
+		if("thunderpowder")
+			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+			for(var/mob/living/L in range(2, T))
+				if(!(L == target))
+					L.Immobilize(30)
+		if("arcyne gunpowder")
+			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+			for(var/mob/living/carbon/human/L in range(2, T))
+				if(!(L == target))
+					if(istype(L.wear_ring, /obj/item/clothing/ring/fate_weaver))
+						L.wear_ring.obj_break()
+					L.set_silence(5 SECONDS)
+		else
+			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
 
 /obj/item/ammo_casing/caseless/twilight_lead
 	name = "lead sphere"
@@ -181,10 +235,16 @@
 		src.add_filter("rune_filter", 2, list("type" = "outline", "color" = rgb(112, 28, 28, 1), "alpha" = 200, "size" = 2))
 
 /obj/item/ammo_casing/caseless/twilight_lead/runelock/equipped(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_INQUISITION) && !(user.STAINT >= 15) && !(user.patron?.type == /datum/patron/old_god))
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(!HAS_TRAIT(H, TRAIT_INQUISITION) && !(H.STAINT >= 15) && !(H.patron?.type == /datum/patron/old_god) && !(H.merctype == 10))
+			to_chat(H, "<font color='yellow'>The [name] is extremely hot to touch! It burns your hand!</font>")
+			var/def_zone = "[(H.active_hand_index == 2) ? "r" : "l" ]_hand"
+			H.apply_damage(rand(5,15), BURN, def_zone)
+			src.forceMove(get_turf(H))
+	else
 		to_chat(user, "<font color='yellow'>The [name] is extremely hot to touch! It burns your hand!</font>")
-		var/def_zone = "[(user.active_hand_index == 2) ? "r" : "l" ]_hand"
-		user.apply_damage(rand(5,15), BURN, def_zone)
+		user.apply_damage(rand(5,15), BURN)
 		src.forceMove(get_turf(user))
 	..()
 
@@ -224,4 +284,13 @@
 	dropshrink = 0.5
 	max_integrity = 0.1
 	pellets = 6
+	variance = 30
+
+/obj/item/ammo_casing/caseless/twilight_cannonball/grapeshot/otavian
+	name = "otavian grapeshot"
+	desc = "Плотно упакованный в бумагу набор небольших серебряных шариков. Хорошо сочетается с большими группами нечисти."
+	projectile_type = /obj/projectile/bullet/twilight_grapeshot/otavian
+	caliber = "otavian grapeshot"
+	icon_state = "grapeshot_silver"
+	pellets = 12
 	variance = 30

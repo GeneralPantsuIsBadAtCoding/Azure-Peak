@@ -19,4 +19,4 @@
 		H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-		H.change_stat("fortune", 3)
+		H.change_stat(STATKEY_LCK, 3)

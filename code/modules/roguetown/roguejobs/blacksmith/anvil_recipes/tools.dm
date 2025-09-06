@@ -177,14 +177,7 @@
 	created_item = /obj/item/flashlight/flare/torch/metal
 	createditem_num = 5
 	craftdiff = 0
-
-/datum/anvil_recipe/tools/iron/shaft
-	name = "Metal Shaft (x2)"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/shaft/metal
-	createditem_num = 2
-	craftdiff = 1
-
+	
 /datum/anvil_recipe/tools/iron/pan
 	name = "Frypan, Iron"
 	req_bar = /obj/item/ingot/iron

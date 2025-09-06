@@ -111,9 +111,9 @@
 			)
 			var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 			armor = armors[armorchoice]
-			H.change_stat("strength", 2) // Deserter are the knight-equivalence. They get a balanced, straightforward 2 2 3 statspread to endure and overcome.
-			H.change_stat("constitution", 2)
-			H.change_stat("endurance", 3)
+			H.change_stat(STATKEY_STR, 2) // Deserter are the knight-equivalence. They get a balanced, straightforward 2 2 3 statspread to endure and overcome.
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_WIL, 3)
 			gloves = /obj/item/clothing/gloves/roguetown/plate 
 			pants = /obj/item/clothing/under/roguetown/chainlegs
 			neck = /obj/item/clothing/neck/roguetown/bevor
@@ -183,11 +183,11 @@
 
 
 			// Slightly more rounded. These can be nudged as needed.
-			H.change_stat("strength", 2)
-			H.change_stat("intelligence", 1)
-			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 2)
-			H.change_stat("perception", 1)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_WIL, 2)
+			H.change_stat(STATKEY_PER, 1)
 
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk	
@@ -272,7 +272,7 @@
 /datum/status_effect/buff/order/retreat
 	id = "movemovemove"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/retreat
-	effectedstats = list("speed" = 3)
+	effectedstats = list(STATKEY_SPD = 3)
 	duration = 0.5 / 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/retreat
@@ -291,7 +291,7 @@
 /datum/status_effect/buff/order/bolster
 	id = "takeaim"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/bolster
-	effectedstats = list("constitution" = 5)
+	effectedstats = list(STATKEY_CON = 5)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/bolster
@@ -407,7 +407,7 @@
 /datum/status_effect/buff/order/charge
 	id = "hold"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/charge
-	effectedstats = list("strength" = 2, "fortune" = 2)
+	effectedstats = list(STATKEY_STR = 2, STATKEY_LCK = 2)
 	duration = 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/charge

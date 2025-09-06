@@ -61,6 +61,15 @@
 		else
 			to_chat(loc, span_warning("Full!"))
 		return
+	if(istype(A, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock))
+		var/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/B = A
+		if(arrows.len && !B.chambered && B.cocked)
+			for(var/AR in arrows)
+				if(istype(AR, /obj/item/ammo_casing/caseless/twilight_lead/runelock))
+					arrows -= AR
+					B.attackby(AR, loc, params)
+					break
+		return
 	..()
 
 /obj/item/quiver/twilight_bullet/runed/Initialize()
@@ -81,6 +90,13 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/ammo_casing/caseless/twilight_lead/B = new()
+		arrows += B
+	update_icon()
+
+/obj/item/quiver/twilight_bullet/silver/Initialize()
+	. = ..()
+	for(var/i in 1 to 10)
+		var/obj/item/ammo_casing/caseless/twilight_lead/silver/B = new()
 		arrows += B
 	update_icon()
 
@@ -111,5 +127,12 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/ammo_casing/caseless/twilight_cannonball/grapeshot/B = new()
+		arrows += B
+	update_icon()
+
+/obj/item/quiver/twilight_bullet/cannonball/otavian_grapeshot/Initialize()
+	. = ..()
+	for(var/i in 1 to 10)
+		var/obj/item/ammo_casing/caseless/twilight_cannonball/grapeshot/otavian/B = new()
 		arrows += B
 	update_icon()

@@ -44,6 +44,6 @@
 	H.STALUC = rand(1, 20)
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
-	H.change_stat("intelligence", round(rand(-4,4)))
-	H.change_stat("constitution", -1)
-	H.change_stat("endurance", -1)
+	H.change_stat(STATKEY_INT, round(rand(-4,4)))
+	H.change_stat(STATKEY_CON, -1)
+	H.change_stat(STATKEY_WIL, -1)

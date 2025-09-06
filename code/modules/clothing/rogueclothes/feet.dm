@@ -7,8 +7,6 @@
 	slot_flags = ITEM_SLOT_SHOES
 	body_parts_covered = FEET
 	body_parts_inherent = FEET
-	sleeved = 'icons/roguetown/clothing/onmob/feet.dmi'
-	sleevetype = "leg"
 	bloody_icon_state = "shoeblood"
 	equip_delay_self = 30
 	resistance_flags = FIRE_PROOF
@@ -79,6 +77,13 @@
 	armor = ARMOR_BOOTS_BAD
 	salvage_amount = 2
 	salvage_result = /obj/item/natural/hide/cured
+
+/obj/item/clothing/shoes/roguetown/boots/nobleboot/steppesman
+	name = "aavnic riding boots"
+	desc = "A pair of sturdy riding boots with an iron heel and brass spurs."
+	armor = ARMOR_LEATHER_GOOD
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 
 /obj/item/clothing/shoes/roguetown/shortboots
 	name = "shortboots"
@@ -254,13 +259,9 @@
 	armor = ARMOR_ASCENDANT
 	icon_state = "graggarplateboots"
 
-/obj/item/clothing/shoes/roguetown/boots/armor/graggar/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_HORDE))
-		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/clothing/shoes/roguetown/boots/armor/graggar/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
 
 /obj/item/clothing/shoes/roguetown/boots/armor/matthios
@@ -376,7 +377,7 @@
 	name = "cloth lined anklets"
 	desc = "Cloth anklets lined with fibers for warmth while leaving the feet bare."
 	gender = PLURAL
-	icon_state = "clothlinedanklets"
+	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
 	is_barefoot = TRUE
 	sewrepair = TRUE

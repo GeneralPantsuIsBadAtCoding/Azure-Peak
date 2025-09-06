@@ -180,3 +180,8 @@
 	craftdiff = 3
 	sellprice = 10
 
+/datum/crafting_recipe/roguetown/leather/doctormask
+	name = "plague mask (1 leather, 1 bone)"
+	result = /obj/item/clothing/mask/rogue/physician
+	reqs = list(/obj/item/natural/hide/cured = 1, /obj/item/natural/bone = 1)
+	craftdiff = 1

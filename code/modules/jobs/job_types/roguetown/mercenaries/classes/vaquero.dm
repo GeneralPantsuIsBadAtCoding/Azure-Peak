@@ -73,9 +73,9 @@
 			backr = /obj/item/rogue/instrument/vocals
 		if("Flute")
 			backr = /obj/item/rogue/instrument/flute
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", 3)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, 3)
 	H.grant_language(/datum/language/etruscan)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)

@@ -11,7 +11,7 @@
 
 /datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)
 	..()
-	belt = /obj/item/storage/belt/rogue/leather
+	belt = /obj/item/storage/belt/rogue/leather/black
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
 	beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/gold
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -19,6 +19,7 @@
 		/obj/item/roguekey/mercenary,
 		/obj/item/flashlight/flare/torch,
 		/obj/item/flashlight/flare/torch/lantern,
+		/obj/item/storage/belt/rogue/pouch/coins/poor,
 		)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
@@ -30,26 +31,30 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 3)
-	H.change_stat("constitution", 3)
-	H.change_stat("perception", 1)
-	H.change_stat("speed", -1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_SPD, -1)
 	H.adjust_blindness(-3)
 
 	if(should_wear_masc_clothes(H))
+		head = /obj/item/clothing/head/roguetown/eaststrawhat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt1
 		cloak = /obj/item/clothing/cloak/eastcloak1
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/eastpants1
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves2
 		armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/easttats
-		shoes = /obj/item/clothing/shoes/roguetown/boots
-		H.change_stat("endurance", 1)
-		H.change_stat("constitution", 1) //to compensate for the permanent lack of armor
+		shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
+		H.change_stat(STATKEY_WIL, 1)
+		H.change_stat(STATKEY_CON, 1) //to compensate for the permanent lack of armor
 		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
 	else if(should_wear_femme_clothes(H))
+		head = /obj/item/clothing/head/roguetown/eaststrawhat
 		armor = /obj/item/clothing/suit/roguetown/armor/basiceast/captainrobe
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/easttats
+		gloves = /obj/item/clothing/gloves/roguetown/eastgloves2
+		cloak = /obj/item/clothing/cloak/eastcloak1
 		shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
 
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)

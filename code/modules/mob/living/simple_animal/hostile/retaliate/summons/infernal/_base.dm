@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal
-
+	obj_damage = 75
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/Initialize()
 	. = ..()

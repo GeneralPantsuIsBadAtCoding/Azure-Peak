@@ -97,9 +97,9 @@
 					pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen
 					head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 					gloves = /obj/item/clothing/gloves/roguetown/angle
-			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
-			H.change_stat("constitution", 2)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 2)
 			belt = /obj/item/storage/belt/rogue/leather
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -139,10 +139,10 @@
 					H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 					beltr = /obj/item/rogueweapon/scabbard/sheath
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("intelligence", 2)
-			H.change_stat("speed", 1)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_INT, 2)
+			H.change_stat(STATKEY_SPD, 1)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
 			head = /obj/item/clothing/head/roguetown/duelhat
 			mask = /obj/item/clothing/mask/rogue/duelmask
@@ -202,10 +202,10 @@
 				if ("MY BARE HANDS!!!")
 					H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 4, TRUE)
 					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-			H.change_stat("strength", 3)
-			H.change_stat("endurance", 1)
-			H.change_stat("constitution", 2)
-			H.change_stat("intelligence", -2)
+			H.change_stat(STATKEY_STR, 3)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 2)
+			H.change_stat(STATKEY_INT, -2)
 			if(should_wear_masc_clothes(H))
 				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
@@ -244,14 +244,31 @@
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-			H.change_stat("strength", 2)
-			H.change_stat("endurance", 1)
-			H.change_stat("constitution", 1)
-			H.change_stat("intelligence", 1)
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			beltl = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/silver
-			backr = /obj/item/rogueweapon/sword
+			var/steel = list("Parrying Dagger","Sword","Dagger")
+			var/steel_choice = input("Choose your steel.", "PURGE THE LIVING") as anything in steel
+			switch(steel_choice)
+				if ("Parrying Dagger")
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+					beltr = /obj/item/rogueweapon/scabbard/sheath
+				if("Sword")
+					l_hand = /obj/item/rogueweapon/sword
+					beltr = /obj/item/rogueweapon/scabbard/sword
+				if ("Dagger")
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+					beltr = /obj/item/rogueweapon/scabbard/sheath
+			var/silver = list("Silver Sword","Silver Dagger")
+			var/silver_choice = input("Choose your silver.", "PURGE THE CURSED") as anything in silver
+			switch(silver_choice)
+				if("Silver Sword")
+					r_hand = /obj/item/rogueweapon/sword/silver
+					backr = /obj/item/rogueweapon/scabbard/sword
+				if ("Silver Dagger")
+					r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
+					backr = /obj/item/rogueweapon/scabbard/sheath
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_INT, 1)
 			backl = /obj/item/storage/backpack/rogue/satchel/black
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 			armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
@@ -279,6 +296,7 @@
 				/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 				)
 
+
 		if("Flagellant")
 			to_chat(H, span_warning("You are a pacifistic warrior who embraces suffering, believing pain is the path to enlightenment."))
 			H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
@@ -294,11 +312,11 @@
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-			H.change_stat("constitution", 5)
-			H.change_stat("endurance", 5)
-			H.change_stat("speed", 1)
-			H.change_stat("strength", -2)
-			H.change_stat("intelligence", -2)
+			H.change_stat(STATKEY_CON, 5)
+			H.change_stat(STATKEY_WIL, 5)
+			H.change_stat(STATKEY_SPD, 1)
+			H.change_stat(STATKEY_STR, -2)
+			H.change_stat(STATKEY_INT, -2)
 
 			pants = /obj/item/clothing/under/roguetown/tights/black
 			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
@@ -396,6 +414,6 @@
 					H.adjust_skillrank_up_to(/datum/skill/combat/axes, 3, TRUE)
 					r_hand = /obj/item/rogueweapon/greataxe
 					backr = /obj/item/rogueweapon/scabbard/gwstrap
-			H.change_stat("strength", 2)
-			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 2)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_WIL, 2)

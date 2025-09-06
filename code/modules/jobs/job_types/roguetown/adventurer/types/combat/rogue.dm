@@ -67,20 +67,25 @@
 				if("Whip")
 					H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 					beltr = /obj/item/rogueweapon/whip
-			H.change_stat("strength", -1)
-			H.change_stat("intelligence", 1)
-			H.change_stat("perception", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_STR, -1)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 3)
 
 		if("Thief")
 			to_chat(H, span_warning("You are a scoundrel and a thief. A master in getting into places you shouldn't be and taking things that aren't rightfully yours."))
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			backl = /obj/item/storage/backpack/rogue/backpack
 			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
+			pants = /obj/item/clothing/under/roguetown/trou/leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless
+			belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
+			cloak = /obj/item/clothing/cloak/raincloak/mortus
 			beltl = /obj/item/quiver/Warrows
 			beltr = /obj/item/rogueweapon/mace/cudgel
 			backpack_contents = list(
@@ -106,42 +111,12 @@
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			H.change_stat("strength", -1)
-			H.change_stat("intelligence", 1)
-			H.change_stat("perception", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 3)
+			H.change_stat(STATKEY_STR, -1)
+			H.change_stat(STATKEY_INT, 1)
+			H.change_stat(STATKEY_PER, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 3)
 			H.grant_language(/datum/language/thievescant)
-			var/loadouts = list("Local Scoundrel","Eastern Agent")
-			var/loadout_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in loadouts
-			H.set_blindness(0)
-			switch(loadout_choice)
-				if("Local Scoundrel")
-					backpack_contents = list(
-						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/rogueweapon/huntingknife/idagger/steel = 1,
-						/obj/item/lockpickring/mundane = 1,
-						/obj/item/recipe_book/survival = 1,
-						)
-					belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
-					gloves = /obj/item/clothing/gloves/roguetown/fingerless
-					pants = /obj/item/clothing/under/roguetown/trou/leather
-					shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-					cloak = /obj/item/clothing/cloak/raincloak/mortus
-				if("Eastern Agent")
-					backpack_contents = list(
-						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/rogueweapon/huntingknife/idagger/steel/kazengun = 1,
-						/obj/item/rogueweapon/scabbard/sheath = 1,
-						/obj/item/lockpickring/mundane = 1,
-						/obj/item/recipe_book/survival = 1,
-						)
-					belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/kazengun
-					gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
-					pants = /obj/item/clothing/under/roguetown/trou/leather/eastern
-					shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt1
-					cloak = /obj/item/clothing/cloak/thief_cloak
-					head = /obj/item/clothing/head/roguetown/mentorhat //other armor pieces are nerfed to justify this
 
 		if("Bard")
 			to_chat(H, span_warning("You make your fortune in brothels, flop houses, and taverns – gaining fame for your songs and legends. If there is any truth to them, that is."))
@@ -199,9 +174,9 @@
 					backr = /obj/item/rogue/instrument/viola
 				if("Vocal Talisman")
 					backr = /obj/item/rogue/instrument/vocals
-			H.change_stat("intelligence", 2)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat(STATKEY_INT, 2)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 2)
 
 		if("Swashbuckler")
 			to_chat(H, span_warning("You are a daring rogue of the seas! Swashbucklers wield agile swordplay and acrobatic prowess - fighting dirty to outmaneuver foes with flair."))
@@ -240,6 +215,6 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
 			ADD_TRAIT (H, TRAIT_DECEIVING_MEEKNESS, TRAIT_GENERIC)
-			H.change_stat("strength", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat(STATKEY_STR, 1)
+			H.change_stat(STATKEY_WIL, 1)
+			H.change_stat(STATKEY_SPD, 2)

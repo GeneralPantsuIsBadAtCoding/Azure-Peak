@@ -27,6 +27,7 @@
 	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE) // We can substitute for a sawbones, but aren't as good and dont have access to surgical tools
 	H.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE) //We are the True Mathlete
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	r_hand = /obj/item/rogueweapon/woodstaff
@@ -44,10 +45,10 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate
 	beltr = /obj/item/rogueweapon/katar
 	id = /obj/item/mattcoin
-	H.change_stat("strength", 3) // LETS WRASSLE
-	H.change_stat("endurance", 3) // This is our Go Big stat, we want lots of stamina for miracles and WRASSLIN.
-	H.change_stat("constitution", 1)
-	H.change_stat("fortune", 2) //We have a total of +12 in stats. 
+	H.change_stat(STATKEY_STR, 3) // LETS WRASSLE
+	H.change_stat(STATKEY_WIL, 3) // This is our Go Big stat, we want lots of stamina for miracles and WRASSLIN.
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_LCK, 2) //We have a total of +12 in stats. 
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC) // We are going to be the lord's first heavy armor unarmed class
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC) // To be up to date with other unarmed classes.

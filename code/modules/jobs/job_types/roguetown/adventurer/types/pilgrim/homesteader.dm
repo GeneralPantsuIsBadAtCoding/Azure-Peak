@@ -108,8 +108,8 @@
 		H.mind.special_items["Pan for Frying"] = /obj/item/cooking/pan
 
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("intelligence", 3)	//This guy's here to grind, baby.
-	H.change_stat("perception", 1)
-	H.change_stat("fortune", 1)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_INT, 3)	//This guy's here to grind, baby.
+	H.change_stat(STATKEY_PER, 1)
+	H.change_stat(STATKEY_LCK, 1)

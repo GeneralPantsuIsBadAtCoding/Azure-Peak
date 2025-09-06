@@ -128,8 +128,9 @@
 							if(A)
 								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
+								target.balloon_alert_to_viewers("Tug!")
 								playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-								if(!do_after(user,ow, target = target))
+								if(!do_after(user,ow, target = target, same_direction = TRUE))
 									if(ismob(A)) // TODO: Baits with mobs on their fishloot lists OR water tiles with their own fish loot pools
 										var/mob/M = A
 										if(M.type in subtypesof(/mob/living/simple_animal/hostile))
@@ -140,7 +141,7 @@
 									else
 										new A(user.loc)
 										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
-										teleport_to_dream(user, 0.01)
+										teleport_to_dream(user, 10000, 1)
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
 										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++

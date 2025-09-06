@@ -46,7 +46,7 @@
 		H.STASTR = 12
 		H.STAINT = 13
 		H.STACON = 12
-		H.STAEND = 12
+		H.STAWIL = 12
 		H.STASPD = 7
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/lightningbolt)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravity)

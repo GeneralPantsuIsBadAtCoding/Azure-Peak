@@ -16,7 +16,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/basiceast
 	name = "simple dobo robe"
-	desc = "A dirty dobo robe with white lapels. Can be upgraded through the use of a tailor."
+	desc = "A dirty dobo robe with white lapels. Can be upgraded through the use of a tailor to increase its integrity."
 	icon_state = "eastsuit3"
 	item_state = "eastsuit3"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
@@ -42,6 +42,7 @@
 	desc = "A dobo robe with a red tassel. Leather inlays are sewn in."
 	icon_state = "eastsuit2"
 	item_state = "eastsuit2"
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
 
 //craftable variation of eastsuit, essentially requiring the presence of a tailor with relevant materials
 //still weak against blunt

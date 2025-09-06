@@ -6,8 +6,6 @@
 		return FALSE
 	if(!canparry && !candodge) //mob can do neither of these
 		return FALSE
-	if(!cmode)
-		return FALSE
 	if(user == src)
 		return FALSE
 	if(!(mobility_flags & MOBILITY_MOVE))

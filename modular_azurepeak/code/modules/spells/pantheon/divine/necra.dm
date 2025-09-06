@@ -136,7 +136,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/churned
 	duration = 30 SECONDS
 	examine_text = "<b>SUBJECTPRONOUN is wreathed in a wild frenzy of ghostly motes!</b>"
-	effectedstats = list("strength" = -2, "constitution" = -2, "endurance" = -2, "speed" = -2)
+	effectedstats = list(STATKEY_STR = -2, STATKEY_CON = -2, STATKEY_WIL = -2, STATKEY_SPD = -2)
 	status_type = STATUS_EFFECT_REFRESH
 	var/datum/weakref/debuffer
 	var/outline_colour = "#33cabc"
@@ -232,7 +232,7 @@
 	var/outline_colour ="#929186" // A dull grey.
 	id = "necravow"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/necras_vow
-	effectedstats = list("constitution" = 2)
+	effectedstats = list(STATKEY_CON = 2)
 	duration = -1
 
 /datum/status_effect/buff/necras_vow/on_apply()

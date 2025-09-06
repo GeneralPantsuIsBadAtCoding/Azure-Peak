@@ -248,3 +248,24 @@
 /datum/sprite_accessory/wings/large/harpyswept
 	name = "Harpy (Swept)"
 	icon_state = "harpys"
+
+/datum/sprite_accessory/wings/large/harpyswept_alt
+	name = "Harpy (Swept Alt)"
+	icon_state = "harpys_alt"
+
+/datum/sprite_accessory/wings/large/harpyfluff
+	name = "Harpy Fluff"
+	icon_state = "harpyfluff"
+
+/datum/sprite_accessory/wings/large/harpyfolded
+	name = "Harpy Folded"
+	icon_state = "harpyfolded"
+
+/datum/sprite_accessory/wings/large/harpyowl
+	name = "Harpy Owl"
+	icon_state = "harpyowl"
+
+/datum/sprite_accessory/wings/large/harpybat_alt
+	name = "Harpy Bat Alt"
+	icon_state = "harpybat_alt"
+

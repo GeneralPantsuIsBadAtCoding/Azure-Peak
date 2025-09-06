@@ -53,16 +53,20 @@
 		ungrip(user)
 		return
 	if(!cocked)
-		if(HAS_TRAIT(user, TRAIT_INQUISITION) || (user.STAINT >= 15))
-			to_chat(user, span_info("I ready the runelock to be fired..."))
-			var/adj_reload_time = reload_time
-			if(user.mind)
-				var/skill = user.get_skill_level(/datum/skill/combat/twilight_firearms)
-				if(skill)
-					adj_reload_time = reload_time / skill
-			if(move_after(user, adj_reload_time SECONDS, target = user))
-				playsound(user, 'modular_twilight_axis/firearms/sound/musketcock.ogg', 100, FALSE)
-				cocked = TRUE
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(HAS_TRAIT(H, TRAIT_INQUISITION) || (H.STAINT >= 15) || (H.merctype == 10))
+				to_chat(H, span_info("I ready the runelock to be fired..."))
+				var/adj_reload_time = reload_time
+				if(H.mind)
+					var/skill = H.get_skill_level(/datum/skill/combat/twilight_firearms)
+					if(skill)
+						adj_reload_time = reload_time / skill
+				if(move_after(H, adj_reload_time SECONDS, target = H))
+					playsound(H, 'modular_twilight_axis/firearms/sound/musketcock.ogg', 100, FALSE)
+					cocked = TRUE
+			else
+				to_chat(H, "<span class='warning'>Я совершенно не понимаю, как этим пользоваться!</span>")
 		else
 			to_chat(user, "<span class='warning'>Я совершенно не понимаю, как этим пользоваться!</span>")
 	else
@@ -88,7 +92,7 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/attackby(obj/item/A, mob/user, params)
 	if(istype(A, /obj/item/ammo_box) || istype(A, /obj/item/ammo_casing))
 		if(cocked)
-			if((loc == user) && (user.get_inactive_held_item() != src))
+			if((loc == user) && (user.get_inactive_held_item() != src) && (user.get_active_held_item() != src))
 				return
 			..()
 		else
@@ -141,9 +145,9 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/examine(mob/user)
 	. = ..()
-	if(isliving(user))
-		var/mob/living/u = user
-		if(HAS_TRAIT(u, TRAIT_INQUISITION) || (u.STAINT >= 15))
+	if(ishuman(user))
+		var/mob/living/carbon/human/u = user
+		if(HAS_TRAIT(u, TRAIT_INQUISITION) || (u.STAINT >= 15) || (u.merctype == 10))
 			. += span_info("Это оружие оснащено руническим замком — для стрельбы достаточно взвести курок, но зарядить его можно лишь специальными рунными пулями, изготавливаемыми из черной стали или серебра.")
 			if(cocked)
 				if(chambered)
@@ -227,4 +231,4 @@
 			if("wielded")
 				return list("shrink" = 0.6,"sx" = 5,"sy" = -2,"nx" = -5,"ny" = -1,"wx" = -8,"wy" = 2,"ex" = 8,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 1,"nturn" = -45,"sturn" = 45,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 			if("onback")
-				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)	
+				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)

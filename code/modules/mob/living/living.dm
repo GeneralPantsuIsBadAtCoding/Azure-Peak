@@ -406,34 +406,56 @@
 	update_pull_hud_icon()
 
 	if(isliving(AM))
-		var/mob/living/M = AM
-		log_combat(src, M, "grabbed", addition="passive grab")
+		var/mob/living/target = AM
+		log_combat(src, target, "grabbed", addition="passive grab")
 		if(!iscarbon(src))
-			M.LAssailant = null
+			target.LAssailant = null
 		else
-			M.LAssailant = usr
+			target.LAssailant = usr
 
-		M.update_damage_hud()
+		target.update_damage_hud()
 
-		if(HAS_TRAIT(M, TRAIT_GRABIMMUNE) && M.stat == CONSCIOUS) // Grab immunity check
-			if(M.cmode)
-				M.visible_message(span_warning("[M] breaks from [src]'s grip effortlessly!"), \
-						span_warning("I breaks from [src]'s grab effortlesly!"))
-				log_combat(src, M, "tried grabbing", addition="passive grab")
+		if(target.has_status_effect(/datum/status_effect/buff/oiled))
+			// Determine which limb we're trying to grab
+			var/target_zone = zone_selected
+			if(!target_zone)
+				target_zone = "chest" // Default if no zone selected
+
+			// Check if the target limb is covered by clothing
+			var/is_covered = FALSE
+			if(iscarbon(target))
+				var/mob/living/carbon/carbon_target = target
+				var/obj/item/bodypart/target_limb = carbon_target.get_bodypart(check_zone(target_zone))
+				if(target_limb)
+					is_covered = carbon_target.is_limb_covered(target_limb)
+
+			// If limb is not covered and oiled, chance to slip away
+			if(!is_covered)
+				if(prob(50)) // 35% chance to slip away from grab attempt
+					visible_message(span_warning("[target] slips away from [src]'s oily grasp!"), \
+							span_warning("[target.name] slips away from my grip - they're too oily!"))
+					log_combat(src, target, "failed to grab due to oil", addition="oiled skin")
+					return FALSE // Grab attempt fails
+
+		if(HAS_TRAIT(target, TRAIT_GRABIMMUNE) && target.stat == CONSCIOUS) // Grab immunity check
+			if(target.cmode)
+				target.visible_message(span_warning("[target] breaks from [src]'s grip effortlessly!"), \
+						span_warning("I break from [src]'s grab effortlessly!"))
+				log_combat(src, target, "tried grabbing", addition="passive grab")
 				stop_pulling()
 				return
 
 		// Makes it so people who recently broke out of grabs cannot be grabbed again
-		if(TIMER_COOLDOWN_RUNNING(M, "broke_free") && M.stat == CONSCIOUS)
-			M.visible_message(span_warning("[M] slips from [src]'s grip."), \
+		if(TIMER_COOLDOWN_RUNNING(target, "broke_free") && target.stat == CONSCIOUS)
+			target.visible_message(span_warning("[target] slips from [src]'s grip."), \
 					span_warning("I slip from [src]'s grab."))
-			log_combat(src, M, "tried grabbing", addition="passive grab")
+			log_combat(src, target, "tried grabbing", addition="passive grab")
 			return
 
-		log_combat(src, M, "grabbed", addition="passive grab")
+		log_combat(src, target, "grabbed", addition="passive grab")
 		playsound(src.loc, 'sound/combat/shove.ogg', 50, TRUE, -1)
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
 			var/obj/item/grabbing/O = new()
 			var/used_limb = C.find_used_grab_limb(src)
 			O.name = "[C]'s [parse_zone(used_limb)]"
@@ -453,26 +475,26 @@
 				supress_message = TRUE
 				C.grippedby(src)
 			if(!supress_message)
-				send_pull_message(M)
+				send_pull_message(target)
 		else
 			var/obj/item/grabbing/O = new()
-			O.name = "[M.name]"
-			O.grabbed = M
+			O.name = "[target.name]"
+			O.grabbed = target
 			O.grabbee = src
 			if(item_override)
 				O.sublimb_grabbed = item_override
 			else
-				O.sublimb_grabbed = M.simple_limb_hit(zone_selected)
+				O.sublimb_grabbed = target.simple_limb_hit(zone_selected)
 			put_in_hands(O)
 			O.update_hands(src)
 			if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER) || item_override)
 				supress_message = TRUE
-				M.grippedby(src)
+				target.grippedby(src)
 			if(!supress_message)
-				send_pull_message(M)
+				send_pull_message(target)
 
 		update_pull_movespeed()
-		set_pull_offsets(M, state)
+		set_pull_offsets(target, state)
 	else
 		if(!supress_message)
 			var/sound_to_play = 'sound/combat/shove.ogg'
@@ -484,6 +506,16 @@
 		src.put_in_hands(O)
 		O.update_hands(src)
 		update_grab_intents()
+
+/mob/living/proc/is_limb_covered(obj/item/bodypart/limb)
+	if(!limb)
+		return FALSE
+
+	// Check for clothing covering this limb
+	for(var/obj/item/clothing/C in src.get_equipped_items())
+		if(C.body_parts_covered & limb.body_part)
+			return TRUE
+	return FALSE
 
 /mob/living/proc/send_pull_message(mob/living/target)
 	target.visible_message(span_warning("[src] grabs [target]."), \
@@ -1159,7 +1191,7 @@
 	if(HAS_TRAIT(src, TRAIT_GARROTED))
 		resist_chance += (STACON - L.STASPD) * 5
 	else
-		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
+		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
 
@@ -2026,9 +2058,7 @@
 	hide_cone()
 	var/ttime = 11
 	if(STAPER > 5)
-		ttime = 10 - (STAPER - 5)
-		if(ttime < 0)
-			ttime = 1
+		ttime = max(10 - (STAPER - 5), 5)
 	if(STAPER <= 10)
 		var/offset = (10 - STAPER) * 2
 		if(STAPER == 10)

@@ -32,10 +32,10 @@
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
-	H.change_stat("strength", -1) //NERDDDDDDD!!
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("fortune", 2)
+	H.change_stat(STATKEY_STR, -1) //NERDDDDDDD!!
+	H.change_stat(STATKEY_SPD, 1)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_LCK, 2)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 

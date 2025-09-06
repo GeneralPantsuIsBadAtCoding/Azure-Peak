@@ -41,8 +41,8 @@
 		"Hand",
 		"Steward",
 		"Court Physician",
-		"Town Elder",
-		"Captain",
+		"Town Crier",
+		"Knight Captain",
 		"Archivist",
 		"Knight",
 		"Court Magician",
@@ -52,6 +52,7 @@
 		"Warden",
 		"Squire",
 		"Veteran",
+		"Court Agent",
 		"Apothecary"
 	)
 

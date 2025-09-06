@@ -16,6 +16,8 @@
 	throwforce = 10
 	vis_flags = VIS_INHERIT_PLANE
 
+	var/disconnected_at = 0
+
 	//FOV STUFF
 	plane = GAME_PLANE_FOV_HIDDEN
 

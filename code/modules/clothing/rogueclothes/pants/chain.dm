@@ -107,7 +107,7 @@
 	item_state = "chainkilt"
 	sleevetype = "chainkilt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
-	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
+	alternate_worn_layer = (SHIRT_LAYER)
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
 	name = "decrepit chain kilt"
@@ -132,7 +132,7 @@
 	item_state = "ichainkilt"
 	sleevetype = "ichainkilt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
-	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
+	alternate_worn_layer = (SHIRT_LAYER)
 
 /obj/item/clothing/under/roguetown/chainlegs/captain
 	name = "captain's chausses"

@@ -53,7 +53,7 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/workervest
 		pants = /obj/item/clothing/under/roguetown/trou
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_PER, 1)

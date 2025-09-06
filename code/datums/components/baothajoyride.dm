@@ -59,7 +59,7 @@
 	id = "baotha_joyride"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/baotha_joyride
-	effectedstats = list("speed" = 5, "endurance" = 3)
+	effectedstats = list(STATKEY_SPD = 5, STATKEY_WIL = 3)
 	var/outline_colour = "#c6307b"
 
 /datum/status_effect/baotha_joyride/on_apply()

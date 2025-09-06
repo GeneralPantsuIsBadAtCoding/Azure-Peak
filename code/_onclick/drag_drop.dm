@@ -265,9 +265,9 @@
 		chargedprog = 0
 		START_PROCESSING(SSmousecharge, src)
 
-/client/Destroy()
+/* /client/Destroy() // TA EDIT START
 	STOP_PROCESSING(SSmousecharge, src)
-	return ..()
+	return ..() */ //TA EDIT END
 
 /client/process()
 	if(!isliving(mob))
