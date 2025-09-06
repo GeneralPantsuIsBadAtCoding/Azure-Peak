@@ -928,6 +928,7 @@
 #include "code\game\objects\items\bedsheets.dm"
 #include "code\game\objects\items\candle.dm"
 #include "code\game\objects\items\cigs_lighters.dm"
+#include "code\game\objects\items\contraption.dm"
 #include "code\game\objects\items\cosmetics.dm"
 #include "code\game\objects\items\courtroom.dm"
 #include "code\game\objects\items\debug_items.dm"

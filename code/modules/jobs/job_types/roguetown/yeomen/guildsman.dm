@@ -125,8 +125,10 @@
 	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/engineering, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE) //reduced for tradeoff
+	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE) //they are builders, but not as good as craftsmen
+	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/engineering, 5, TRUE) //raising so they don't need to early week grind to get items out, in parity to a smith's armor or weapon skill
 	H.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE) // Artificer makes for a crappy substitute blacksmith but have the same spread
 	H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE) 
 	H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
@@ -148,7 +150,6 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltl = /obj/item/roguekey/crafterguild
-	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
 						/obj/item/rogueweapon/hammer/steel = 1,
@@ -160,6 +161,8 @@
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/recipe_book/magic = 1,
 						/obj/item/chalk = 1,
+						/obj/item/clothing/mask/rogue/spectacles/golden = 1, //putting them in the bag because bad eye sight virtue strips these
+						/obj/item/contraption/linker = 1,
 						)
 	// Not a real mage, no free spell point. Take Arcyne Potential if you want it.
 	if(H.mind)
