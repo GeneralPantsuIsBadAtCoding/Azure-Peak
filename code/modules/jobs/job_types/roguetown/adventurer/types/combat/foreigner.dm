@@ -56,7 +56,7 @@
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_CON, 2)
 			H.set_blindness(0)
-			H.cmode_music = 'sound/music/combat_kazengite.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 
 		if("Custodian")
 			to_chat(H, span_warning("You are an ex-guardian, whenever that be for a petty noble, or a small shrine. You excel in defense with quarterstaffs, or have taken up the Naginata's offensive martial capabilities."))
@@ -89,7 +89,7 @@
 			H.change_stat(STATKEY_STR, 2) // Took off the weight and moved it to qstaff
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_CON, 2)
-			H.cmode_music = 'sound/music/combat_kazengite.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 
 		if("Yoruku")
 			to_chat(H, span_warning("You are a Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \

@@ -60,7 +60,7 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 5, TRUE)
-			H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			var/weapons = list("Rapier","Dagger", "Whip")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -116,7 +116,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
-			H.cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			var/weapons = list("Just A Heater Shield","Dagger + Crossbow", "Militia Warpick + Heater Shield", "Militia Spear + Heater Shield")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)

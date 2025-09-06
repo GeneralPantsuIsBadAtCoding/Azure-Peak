@@ -19,7 +19,7 @@
 	show_in_credits = FALSE
 	can_random = FALSE
 	
-	cmode_music = 'sound/music/combat_bum.ogg'
+	cmode_music = 'sound/silence.ogg'
 	
 	/// Chance to become a wise beggar, if we still have space for more wise beggars
 	var/wise_chance = 10

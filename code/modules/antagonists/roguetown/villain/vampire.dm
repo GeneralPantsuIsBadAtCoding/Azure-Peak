@@ -66,7 +66,6 @@
 	ADD_TRAIT(owner.current, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(owner.current, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(owner.current, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	owner.current.cmode_music = 'sound/music/cmode/antag/combat_thrall.ogg'
 	var/obj/item/organ/eyes/eyes = owner.current.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.Remove(owner.current,1)
@@ -117,7 +116,7 @@
 	..()
 
 /datum/antagonist/vampire/proc/finalize_vampire()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/silence.ogg', 80, FALSE, pressure_affected = FALSE)
 
 
 
@@ -400,7 +399,7 @@
 	mob_timers["becoming_vampire"] = world.time
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, vampire_finalize)), 2 MINUTES)
 	to_chat(src, span_danger("I feel sick..."))
-	src.playsound_local(get_turf(src), 'sound/music/horror.ogg', 80, FALSE, pressure_affected = FALSE)
+	src.playsound_local(get_turf(src), 'sound/silence.ogg', 80, FALSE, pressure_affected = FALSE)
 	flash_fullscreen("redflash3")
 
 /mob/living/carbon/human/proc/vampire_finalize()

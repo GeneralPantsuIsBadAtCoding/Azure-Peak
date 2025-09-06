@@ -20,7 +20,7 @@
 	min_pq = 1
 	max_pq = null
 	round_contrib_points = 3
-	cmode_music = 'sound/music/combat_noble.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/advclass/heir
 	traits_applied = list(TRAIT_NOBLE)

@@ -1,32 +1,32 @@
 #define MUSIC_TAVCAT_OTHERWORLDLY list(\
-	"Lore" = 'sound/music/jukeboxes/otherworld/ac-ler.ogg',\
-	"Landmarks of Lullabies" = 'sound/music/jukeboxes/otherworld/ac-lol.ogg',\
-	"Waters of Sacrifice" = 'sound/music/jukeboxes/otherworld/acn-wos.ogg',\
-	"Solar Wind" = 'sound/music/jukeboxes/otherworld/av_solar.ogg',\
-	"Balthasar" = 'sound/music/jukeboxes/otherworld/ac-balthasar.ogg',\
-	"Dead Windmills" = 'sound/music/jukeboxes/otherworld/dead_windmills.ogg',\
-	"In Heaven Everythin" = 'sound/music/jukeboxes/otherworld/in_heaven_eif.ogg',\
-	"Jazznocn" = 'sound/music/jukeboxes/otherworld/jazznocn.ogg',\
-	"Vivalaluna-Damla" = 'sound/music/jukeboxes/otherworld/vivalaluna-damla.ogg',\
-	"Shades of Futility" = 'sound/music/jukeboxes/otherworld/fb-sofutile.ogg',\
-	"Mr Doubt" = 'sound/music/jukeboxes/otherworld/mr_doubt.ogg'\
+	"Lore" = 'sound/silence.ogg',\
+	"Landmarks of Lullabies" = 'sound/silence.ogg',\
+	"Waters of Sacrifice" = 'sound/silence.ogg',\
+	"Solar Wind" = 'sound/silence.ogg',\
+	"Balthasar" = 'sound/silence.ogg',\
+	"Dead Windmills" = 'sound/silence.ogg',\
+	"In Heaven Everythin" = 'sound/silence.ogg',\
+	"Jazznocn" = 'sound/silence.ogg',\
+	"Vivalaluna-Damla" = 'sound/silence.ogg',\
+	"Shades of Futility" = 'sound/silence.ogg',\
+	"Mr Doubt" = 'sound/silence.ogg'\
 )
 #define MUSIC_TAVCAT_GENERIC list(\
-	"Song 1" = 'sound/music/jukeboxes/gen/tavern1.ogg',\
-	"Song 2" = 'sound/music/jukeboxes/gen/tavern2.ogg',\
-	"Song 3" = 'sound/music/jukeboxes/gen/tavern3.ogg'\
+	"Song 1" = 'sound/silence.ogg',\
+	"Song 2" = 'sound/silence.ogg',\
+	"Song 3" = 'sound/silence.ogg'\
 )
 #define MUSIC_TAVCAT_OLDSCHOOL list(\
-	"Autumn Voyage" = 'sound/music/jukeboxes/oldschool/Autumn_Voyage.ogg',\
-	"Fanfare" = 'sound/music/jukeboxes/oldschool/Fanfare.ogg',\
-	"Greatness" = 'sound/music/jukeboxes/oldschool/Greatness.ogg',\
-	"Medieval" = 'sound/music/jukeboxes/oldschool/Medieval.ogg',\
-	"Sea Shanty2" = 'sound/music/jukeboxes/oldschool/Sea_Shanty2.ogg',\
-	"Shine" = 'sound/music/jukeboxes/oldschool/Shine.ogg',\
-	"Spirit" = 'sound/music/jukeboxes/oldschool/Spirit.ogg',\
-	"Still Night" = 'sound/music/jukeboxes/oldschool/Still_Night.ogg',\
-	"Venture" = 'sound/music/jukeboxes/oldschool/Venture.ogg',\
-	"Yesteryear" = 'sound/music/jukeboxes/oldschool/Yesteryear.ogg'\
+	"Autumn Voyage" = 'sound/silence.ogg',\
+	"Fanfare" = 'sound/silence.ogg',\
+	"Greatness" = 'sound/silence.ogg',\
+	"Medieval" = 'sound/silence.ogg',\
+	"Sea Shanty2" = 'sound/silence.ogg',\
+	"Shine" = 'sound/silence.ogg',\
+	"Spirit" = 'sound/silence.ogg',\
+	"Still Night" = 'sound/silence.ogg',\
+	"Venture" = 'sound/silence.ogg',\
+	"Yesteryear" = 'sound/silence.ogg'\
 )
 
 /datum/looping_sound/musloop
@@ -55,7 +55,7 @@
 	anchored = TRUE
 	max_integrity = 0
 	var/datum/looping_sound/musloop/soundloop
-	var/list/init_curfile = list('sound/music/jukeboxes/gen/tavern1.ogg') // A list of songs that curfile is set to on init. MUST BE IN ONE OF THE MUSIC_TAVCAT_'s.
+	var/list/init_curfile = list('sound/silence.ogg')
 	var/curfile // The current track that is playing right now
 	var/playing = FALSE // If music is playing or not. playmusic() deals with this don't mess with it.
 	var/curvol = 50 // The current volume at which audio is played. MAPPERS MAY TOUCH THIS.
@@ -160,12 +160,12 @@
 
 /obj/structure/roguemachine/musicbox/tavern
 	init_curfile = list(\
-		'sound/music/jukeboxes/gen/tavern1.ogg',\
-		'sound/music/jukeboxes/gen/tavern2.ogg',\
-		'sound/music/jukeboxes/gen/tavern3.ogg',\
-		'sound/music/jukeboxes/otherworld/ac-lol.ogg',
-		'sound/music/jukeboxes/otherworld/ac-balthasar.ogg',\
-		'sound/music/jukeboxes/otherworld/vivalaluna-damla.ogg',\
+		'sound/silence.ogg',\
+		'sound/silence.ogg',\
+		'sound/silence.ogg',\
+		'sound/silence.ogg',
+		'sound/silence.ogg',\
+		'sound/silence.ogg',\
 	)
 	curvol = 65
 	playuponspawn = TRUE

@@ -65,7 +65,7 @@
 
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)	
-			H.cmode_music = 'sound/music/combat_vagarian.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 		if("Shaman")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a Shaman of the Fjall, The Northern Empty. Savage combatants who commune with the Ecclesical Beast gods through ritualistic violence, rather than idle prayer."))
@@ -106,7 +106,7 @@
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC) //Their entire purpose is to rip people apart with their hands and teeth. I don't think they'd be too preturbed to see someone lose a limb.
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC) //Either no armor, or light armor.
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/combat_shaman2.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 
 	H.grant_language(/datum/language/gronnic)
 	backpack_contents = list(

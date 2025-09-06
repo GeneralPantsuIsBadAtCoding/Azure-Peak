@@ -19,7 +19,7 @@
 	min_pq = 3
 	max_pq = null
 	round_contrib_points = 3
-	cmode_music = 'sound/music/combat_noble.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/job/roguetown/suitor/after_spawn(mob/living/H, mob/M, latejoin)
 	. = ..()

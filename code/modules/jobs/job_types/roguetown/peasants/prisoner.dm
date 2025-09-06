@@ -18,7 +18,7 @@
 	max_pq = null
 	can_random = FALSE
 
-	cmode_music = 'sound/music/combat_bum.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/prisonerr/pre_equip(mob/living/carbon/human/H)
 	..()

@@ -16,7 +16,7 @@
 	max_pq = null
 	bypass_lastclass = TRUE
 	round_contrib_points = 3
-	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/niteman/pre_equip(mob/living/carbon/human/H)
 	..()

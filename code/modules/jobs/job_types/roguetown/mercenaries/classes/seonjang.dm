@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/seonjang
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_OUTLANDER)
-	cmode_music = 'sound/music/combat_kazengite.ogg'
+	cmode_music = 'sound/silence.ogg'
 	maximum_possible_slots = 1
 
 /datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)

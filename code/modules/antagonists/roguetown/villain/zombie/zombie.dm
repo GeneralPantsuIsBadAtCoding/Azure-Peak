@@ -132,7 +132,6 @@
 	src.STAINT = zombie.STAINT
 	src.STACON = zombie.STACON
 	src.STAWIL = zombie.STAWIL
-	cmode_music = zombie.cmode_music
 
 	//Special because deadite status is latent as opposed to the others. 
 	if(admin_granted)
@@ -179,7 +178,6 @@
 									 // There is a better way to maintain it but needs overhaul. Will cover the two methods of zombie
 		GLOB.alive_mob_list += zombie// in both cure rot and medicine. 
 
-		zombie.cmode_music = cmode_music
 
 		for(var/trait in traits_zombie)
 			REMOVE_TRAIT(zombie, trait, "[type]")
@@ -275,7 +273,6 @@
 
 	zombie.update_body()
 	to_chat(zombie, span_narsiesmall("Hungry... so hungry... I CRAVE FLESH!"))
-	zombie.cmode_music = 'sound/music/combat_weird.ogg'
 
 
 	// This is the original first commit values for it, aka 5-7

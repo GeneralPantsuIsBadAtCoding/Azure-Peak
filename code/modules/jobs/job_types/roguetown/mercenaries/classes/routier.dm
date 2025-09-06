@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/routier
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_OUTLANDER)
-	cmode_music = 'sound/music/combat_routier.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/mercenary/routier/pre_equip(mob/living/carbon/human/H)
 	..()

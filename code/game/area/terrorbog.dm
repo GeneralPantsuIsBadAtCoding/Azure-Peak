@@ -6,7 +6,7 @@
 	ambientnight = AMB_BOGNIGHT
 	spookysounds = SPOOKY_FROG
 	spookynight = SPOOKY_GEN
-	droning_sound = 'sound/music/area/bog.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
@@ -29,7 +29,7 @@
 
 /area/rogue/indoors/shelter/bog
 	icon_state = "bog"
-	droning_sound = 'sound/music/area/bog.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 

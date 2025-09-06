@@ -23,7 +23,7 @@
 	min_pq = 9
 	max_pq = null
 	round_contrib_points = 3
-	cmode_music = 'sound/music/combat_knight.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/captain
 	neck = /obj/item/clothing/neck/roguetown/bevor

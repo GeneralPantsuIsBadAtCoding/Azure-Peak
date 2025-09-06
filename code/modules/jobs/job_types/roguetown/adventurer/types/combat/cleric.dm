@@ -65,7 +65,7 @@
 					backpack_contents += list(/obj/item/rogueweapon/katar = 1)
 				if("Knuckle Dusters")
 					backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
-			H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
+			H.cmode_music = 'sound/silence.ogg' // left in bc i feel like monk players want their darktide
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
 					cloak = /obj/item/clothing/cloak/psydontabard
@@ -128,7 +128,7 @@
 			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
@@ -233,7 +233,7 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			H.change_stat(STATKEY_STR, 1)
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_SPD, 2)
@@ -306,7 +306,7 @@
 			H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-			H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			H.change_stat(STATKEY_INT, 2)
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_PER, 2)
@@ -361,17 +361,17 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 		if(/datum/patron/divine/astrata)
 			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
-			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 		if(/datum/patron/divine/noc)
 			neck = /obj/item/clothing/neck/roguetown/psicross/noc
 		if(/datum/patron/divine/abyssor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
 		if(/datum/patron/divine/dendor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
-			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
+			H.cmode_music = 'sound/silence.ogg' // see: druid.dm
 		if(/datum/patron/divine/necra)
 			neck = /obj/item/clothing/neck/roguetown/psicross/necra
-			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 		if(/datum/patron/divine/pestra)
 			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
 		if(/datum/patron/divine/ravox)
@@ -380,19 +380,19 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 		if(/datum/patron/divine/eora)
 			neck = /obj/item/clothing/neck/roguetown/psicross/eora
-			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_heretic.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 		if(/datum/patron/inhumen/matthios)
-			H.cmode_music = 'sound/music/combat_matthios.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 		if(/datum/patron/inhumen/graggar)
-			H.cmode_music = 'sound/music/combat_graggar.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 		if(/datum/patron/inhumen/baotha)
-			H.cmode_music = 'sound/music/combat_baotha.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
 		if(/datum/patron/divine/xylix)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
-			H.cmode_music = 'sound/music/combat_jester.ogg'
+			H.cmode_music = 'sound/silence.ogg'

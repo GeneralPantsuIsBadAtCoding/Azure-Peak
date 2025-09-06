@@ -4,7 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/hunter
-	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
+	cmode_music = 'sound/silence.ogg'
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	classes = list("Spearhunter" = "You are a hunter who specializes in spears, excelling in strength and endurance.",
@@ -60,7 +60,7 @@
 			H.change_stat(STATKEY_STR, 2)
 			H.change_stat(STATKEY_CON, 1)
 			H.change_stat(STATKEY_WIL, 1)
-			H.cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			return
 		if("Bowman")
 			pants = /obj/item/clothing/under/roguetown/trou/artipants

@@ -42,7 +42,7 @@
 	H.STASTR = rand(1, 20)
 	H.STAINT = rand(1, 20)
 	H.STALUC = rand(1, 20)
-	H.cmode_music = 'sound/music/combat_jester.ogg'
+	H.cmode_music = 'sound/silence.ogg'
 	if(H.mind)
 		// Mime vs Jester. 
 		// As a mute jester you cannot cast Tell Joke/Tragedy, so why even have them?

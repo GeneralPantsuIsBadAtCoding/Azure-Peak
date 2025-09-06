@@ -9,7 +9,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer
 	category_tags = list(CTAG_MERCENARY)
-	cmode_music = 'sound/music/combat_dwarf.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()

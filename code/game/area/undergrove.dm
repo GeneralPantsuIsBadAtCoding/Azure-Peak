@@ -7,7 +7,7 @@
 	ambientnight = AMB_CAVEWATER
 	spookysounds = SPOOKY_CAVE
 	spookynight = SPOOKY_CAVE
-	droning_sound = 'sound/music/area/caves.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
@@ -52,7 +52,7 @@
 	name = "goblindungeon"
 	icon_state = "under"
 	first_time_text = "GOBLIN CAMP"
-	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
@@ -63,7 +63,7 @@
 	name = "skeletoncrypt"
 	icon_state = "under"
 	first_time_text = "SKELETON CRYPT"
-	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambientsounds = AMB_BASEMENT

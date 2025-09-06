@@ -10,7 +10,7 @@
 				"Knight Errant" = "You are a knight from a distant land, a scion of a noble house visiting Azuria for one reason or another.",
 				"Squire Errant" = "You are a squire who has traveled far in search of a master to train you and a lord to knight you.")
 
-	cmode_music = 'sound/music/combat_knight.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/adventurer/noble/pre_equip(mob/living/carbon/human/H)
 	..()

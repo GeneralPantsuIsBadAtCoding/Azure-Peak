@@ -9,7 +9,7 @@
 		/datum/species/elf/dark,
 	)
 	outfit = /datum/outfit/job/roguetown/wretch/blackoak
-	cmode_music = 'sound/music/combat_blackoak.ogg'
+	cmode_music = 'sound/silence.ogg'
 	maximum_possible_slots = 1
 	category_tags = list(CTAG_WRETCH)
 

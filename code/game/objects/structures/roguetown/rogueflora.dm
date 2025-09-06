@@ -147,7 +147,7 @@
 /obj/structure/flora/roguetree/wise/examine(mob/user)
 	. = ..()
 	SEND_SOUND(usr, sound(null))
-	playsound(user, 'sound/music/tree.ogg', 80)
+	playsound(user, 'sound/silence.ogg', 80)
 
 /obj/structure/flora/roguetree/burnt
 	name = "burnt tree"

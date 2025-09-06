@@ -88,16 +88,16 @@
 			wretch_select_bounty(H)
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_heretic.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					head = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface
 				if(/datum/patron/inhumen/matthios)
-					H.cmode_music = 'sound/music/combat_matthios.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
 				if(/datum/patron/inhumen/baotha)
-					H.cmode_music = 'sound/music/combat_baotha.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
 				if(/datum/patron/inhumen/graggar)
-					H.cmode_music = 'sound/music/combat_graggar.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/guard
 				if(/datum/patron/divine/astrata)
 					wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
@@ -110,14 +110,14 @@
 					ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 				if(/datum/patron/divine/xylix)
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle
-					H.cmode_music = 'sound/music/combat_jester.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
 				if(/datum/patron/divine/dendor)
 					wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate
-					H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 				if(/datum/patron/divine/necra)
@@ -196,7 +196,7 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
-			H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			var/weapons = list("Rapier","Dagger", "Bow", "Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -235,13 +235,13 @@
 			wretch_select_bounty(H)
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_heretic.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 				if(/datum/patron/inhumen/matthios)
-					H.cmode_music = 'sound/music/combat_matthios.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 				if(/datum/patron/inhumen/baotha)
-					H.cmode_music = 'sound/music/combat_baotha.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 				if(/datum/patron/inhumen/graggar)
-					H.cmode_music = 'sound/music/combat_graggar.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 				if(/datum/patron/divine/astrata)
 					wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 					H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
@@ -250,13 +250,13 @@
 					H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 					ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 				if(/datum/patron/divine/xylix)
-					H.cmode_music = 'sound/music/combat_jester.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
 				if(/datum/patron/divine/dendor)
 					wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
-					H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 					H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 					H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 				if(/datum/patron/divine/necra)

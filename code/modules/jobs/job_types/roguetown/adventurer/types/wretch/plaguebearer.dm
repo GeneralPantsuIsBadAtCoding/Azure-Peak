@@ -44,7 +44,7 @@
 	H.adjust_skillrank(/datum/skill/misc/sewing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/alchemy, 5, TRUE) // This is literally their whole thing
 	H.adjust_skillrank(/datum/skill/labor/farming, 3, TRUE) // Farm ingredients so you have something to do that isn't grinding skills
-	H.cmode_music = 'sound/music/combat_physician.ogg'
+	H.cmode_music = 'sound/silence.ogg'
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	var/weapons = list("Archery", "LET THERE BE PLAGUE!!!")

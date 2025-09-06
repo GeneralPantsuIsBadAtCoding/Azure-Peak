@@ -85,7 +85,6 @@
 		owner.become_unknown_to(MF)
 
 	var/mob/living/carbon/human/L = owner.current
-	L.cmode_music = 'sound/music/combat_heretic.ogg'
 	L.faction = list("undead")
 
 	if (L.charflaw)

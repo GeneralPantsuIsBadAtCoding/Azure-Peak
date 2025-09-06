@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(ticker)
 	else
 		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
 
-	login_music = pick('sound/music/title.ogg','sound/music/title2.ogg')
+	login_music = pick('sound/silence.ogg')
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
@@ -290,7 +290,7 @@ SUBSYSTEM_DEF(ticker)
 			if(SStitle.splash_turf && ikon)
 				SStitle.splash_turf.icon = ikon
 			for(var/mob/dead/new_player/player in GLOB.player_list)
-				player.playsound_local(player, 'sound/music/wartitle.ogg', 100, TRUE)
+				player.playsound_local(player, 'sound/silence.ogg', 100, TRUE)
 		return FALSE
 	*/
 	job_change_locked = TRUE

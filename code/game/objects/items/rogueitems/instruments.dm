@@ -206,130 +206,130 @@
 	name = "lute"
 	desc = "Its graceful curves were designed to weave joyful melodies."
 	icon_state = "lute"
-	song_list = list("A Knight's Return" = 'sound/music/instruments/lute (1).ogg',
-	"Amongst Fare Friends" = 'sound/music/instruments/lute (2).ogg',
-	"The Road Traveled by Few" = 'sound/music/instruments/lute (3).ogg',
-	"Tip Thine Tankard" = 'sound/music/instruments/lute (4).ogg',
-	"A Reed On the Wind" = 'sound/music/instruments/lute (5).ogg',
-	"Jests On Steel Ears" = 'sound/music/instruments/lute (6).ogg',
-	"Merchant in the Mire" = 'sound/music/instruments/lute (7).ogg',
-	"The Power" = 'modular_azurepeak/sound/music/instruments/lute (8).ogg', //Baldur's Gate 3 Song
-	"Bard Dance" = 'modular_azurepeak/sound/music/instruments/lute (9).ogg', //Baldur's Gate 3 Song
-	"Old Time Battles" = 'modular_azurepeak/sound/music/instruments/lute (10).ogg') //Baldur's Gate 3 Song
+	song_list = list("A Knight's Return" = 'sound/silence.ogg',
+	"Amongst Fare Friends" = 'sound/silence.ogg',
+	"The Road Traveled by Few" = 'sound/silence.ogg',
+	"Tip Thine Tankard" = 'sound/silence.ogg',
+	"A Reed On the Wind" = 'sound/silence.ogg',
+	"Jests On Steel Ears" = 'sound/silence.ogg',
+	"Merchant in the Mire" = 'sound/silence.ogg',
+	"The Power" = 'sound/silence.ogg',
+	"Bard Dance" = 'sound/silence.ogg',
+	"Old Time Battles" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/accord
 	name = "accordion"
 	desc = "A harmonious vessel of nostalgia and celebration."
 	icon_state = "accordion"
-	song_list = list("Her Healing Tears" = 'sound/music/instruments/accord (1).ogg',
-	"Peddler's Tale" = 'sound/music/instruments/accord (2).ogg',
-	"We Toil Together" = 'sound/music/instruments/accord (3).ogg',
-	"Just One More, Tavern Wench" = 'sound/music/instruments/accord (4).ogg',
-	"Moonlight Carnival" = 'sound/music/instruments/accord (5).ogg',
-	"'Ye Best Be Goin'" = 'sound/music/instruments/accord (6).ogg',
-	"Beloved Blue" = 'sound/music/instruments/accord (7).ogg')
+	song_list = list("Her Healing Tears" = 'sound/silence.ogg',
+	"Peddler's Tale" = 'sound/silence.ogg',
+	"We Toil Together" = 'sound/silence.ogg',
+	"Just One More, Tavern Wench" = 'sound/silence.ogg',
+	"Moonlight Carnival" = 'sound/silence.ogg',
+	"'Ye Best Be Goin'" = 'sound/silence.ogg',
+	"Beloved Blue" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/guitar
 	name = "guitar"
 	desc = "This is a guitar, chosen instrument of wanderers and the heartbroken." // YIPPEE I LOVE GUITAR
 	icon_state = "guitar"
-	song_list = list("Fire-Cast Shadows" = 'sound/music/instruments/guitar (1).ogg',
-	"The Forced Hand" = 'sound/music/instruments/guitar (2).ogg',
-	"Regrets Unpaid" = 'sound/music/instruments/guitar (3).ogg',
-	"'Took the Mammon and Ran'" = 'sound/music/instruments/guitar (4).ogg',
-	"Poor Man's Tithe" = 'sound/music/instruments/guitar (5).ogg',
-	"In His Arms Ye'll Find Me" = 'sound/music/instruments/guitar (6).ogg',
-	"El Odio" = 'sound/music/instruments/guitar (7).ogg',
-	"Danza De Las Lanzas" = 'sound/music/instruments/guitar (8).ogg',
-	"The Feline, Forever Returning" = 'sound/music/instruments/guitar (9).ogg',
-	"El Beso Carmesí" = 'sound/music/instruments/guitar (10).ogg',
-	"The Queen's High Seas" = 'sound/music/instruments/guitar (11).ogg',
-	"Harsh Testimony" = 'sound/music/instruments/guitar (12).ogg',
-	"Someone Fair" = 'sound/music/instruments/guitar (13).ogg',
-	"Daisies in Bloom" = 'sound/music/instruments/guitar (14).ogg')
+	song_list = list("Fire-Cast Shadows" = 'sound/silence.ogg',
+	"The Forced Hand" = 'sound/silence.ogg',
+	"Regrets Unpaid" = 'sound/silence.ogg',
+	"'Took the Mammon and Ran'" = 'sound/silence.ogg',
+	"Poor Man's Tithe" = 'sound/silence.ogg',
+	"In His Arms Ye'll Find Me" = 'sound/silence.ogg',
+	"El Odio" = 'sound/silence.ogg',
+	"Danza De Las Lanzas" = 'sound/silence.ogg',
+	"The Feline, Forever Returning" = 'sound/silence.ogg',
+	"El Beso Carmesí" = 'sound/silence.ogg',
+	"The Queen's High Seas" = 'sound/silence.ogg',
+	"Harsh Testimony" = 'sound/silence.ogg',
+	"Someone Fair" = 'sound/silence.ogg',
+	"Daisies in Bloom" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/harp
 	name = "harp"
 	desc = "A harp of elven craftsmanship."
 	icon_state = "harp"
-	song_list = list("Through Thine Window, He Glanced" = 'sound/music/instruments/harb (1).ogg',
-	"The Lady of Red Silks" = 'sound/music/instruments/harb (2).ogg',
-	"Eora Doth Watches" = 'sound/music/instruments/harb (3).ogg',
-	"On the Breeze" = 'sound/music/instruments/harb (4).ogg',
-	"Never Enough" = 'sound/music/instruments/harb (5).ogg',
-	"Sundered Heart" = 'sound/music/instruments/harb (6).ogg',
-	"Corridors of Time" = 'sound/music/instruments/harb (7).ogg',
-	"Determination" = 'sound/music/instruments/harb (8).ogg')
+	song_list = list("Through Thine Window, He Glanced" = 'sound/silence.ogg',
+	"The Lady of Red Silks" = 'sound/silence.ogg',
+	"Eora Doth Watches" = 'sound/silence.ogg',
+	"On the Breeze" = 'sound/silence.ogg',
+	"Never Enough" = 'sound/silence.ogg',
+	"Sundered Heart" = 'sound/silence.ogg',
+	"Corridors of Time" = 'sound/silence.ogg',
+	"Determination" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/flute
 	name = "flute"
 	desc = "A row of slender hollow tubes of varying lengths that produce a light airy sound when blown across."
 	icon_state = "flute"
-	song_list = list("Half-Dragon's Ten Mammon" = 'sound/music/instruments/flute (1).ogg',
-	"'The Local Favorite'" = 'sound/music/instruments/flute (2).ogg',
-	"Rous in the Cellar" = 'sound/music/instruments/flute (3).ogg',
-	"Her Boots, So Incandescent" = 'sound/music/instruments/flute (4).ogg',
-	"Moondust Minx" = 'sound/music/instruments/flute (5).ogg',
-	"Quest to the Ends" = 'sound/music/instruments/flute (6).ogg',
-	"Spit Shine" = 'sound/music/instruments/flute (7).ogg',
-	"The Power" = 'modular_azurepeak/sound/music/instruments/flute (8).ogg', //Baldur's Gate 3 Song
-	"Bard Dance" = 'modular_azurepeak/sound/music/instruments/flute (9).ogg', //Baldur's Gate 3 Song
-	"Old Time Battles" = 'modular_azurepeak/sound/music/instruments/flute (10).ogg') //Baldur's Gate 3 Song
+	song_list = list("Half-Dragon's Ten Mammon" = 'sound/silence.ogg',
+	"'The Local Favorite'" = 'sound/silence.ogg',
+	"Rous in the Cellar" = 'sound/silence.ogg',
+	"Her Boots, So Incandescent" = 'sound/silence.ogg',
+	"Moondust Minx" = 'sound/silence.ogg',
+	"Quest to the Ends" = 'sound/silence.ogg',
+	"Spit Shine" = 'sound/silence.ogg',
+	"The Power" = 'sound/silence.ogg',
+	"Bard Dance" = 'sound/silence.ogg',
+	"Old Time Battles" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/drum
 	name = "drum"
 	desc = "Fashioned from taut skins across a sturdy frame, pulses like a giant heartbeat."
 	icon_state = "drum"
-	song_list = list("Barbarian's Moot" = 'sound/music/instruments/drum (1).ogg',
-	"Muster the Wardens" = 'sound/music/instruments/drum (2).ogg',
-	"The Earth That Quakes" = 'sound/music/instruments/drum (3).ogg',
-	"The Power" = 'sound/music/instruments/drum (4).ogg', //BG3 Song
-	"Bard Dance" = 'sound/music/instruments/drum (5).ogg', // BG3 Song
-	"Old Time Battles" = 'sound/music/instruments/drum (6).ogg') // BG3 Song
+	song_list = list("Barbarian's Moot" = 'sound/silence.ogg',
+	"Muster the Wardens" = 'sound/silence.ogg',
+	"The Earth That Quakes" = 'sound/silence.ogg',
+	"The Power" = 'sound/silence.ogg', //BG3 Song
+	"Bard Dance" = 'sound/silence.ogg', // BG3 Song
+	"Old Time Battles" = 'sound/silence.ogg') // BG3 Song
 
 /obj/item/rogue/instrument/hurdygurdy
 	name = "hurdy-gurdy"
 	desc = "A knob-driven, wooden string instrument that reminds you of the oceans far."
 	icon_state = "hurdygurdy"
-	song_list = list("Ruler's One Ring" = 'sound/music/instruments/hurdy (1).ogg',
-	"Tangled Trod" = 'sound/music/instruments/hurdy (2).ogg',
-	"Motus" = 'sound/music/instruments/hurdy (3).ogg',
-	"Becalmed" = 'sound/music/instruments/hurdy (4).ogg',
-	"The Bloody Throne" = 'sound/music/instruments/hurdy (5).ogg',
-	"We Shall Sail Together" = 'sound/music/instruments/hurdy (6).ogg')
+	song_list = list("Ruler's One Ring" = 'sound/silence.ogg',
+	"Tangled Trod" = 'sound/silence.ogg',
+	"Motus" = 'sound/silence.ogg',
+	"Becalmed" = 'sound/silence.ogg',
+	"The Bloody Throne" = 'sound/silence.ogg',
+	"We Shall Sail Together" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/viola
 	name = "viola"
 	desc = "The prim and proper Viola, every prince's first instrument taught."
 	icon_state = "viola"
-	song_list = list("Far Flung Tale" = 'sound/music/instruments/viola (1).ogg',
-	"G Major Cello Suite No. 1" = 'sound/music/instruments/viola (2).ogg',
-	"Ursine's Home" = 'sound/music/instruments/viola (3).ogg',
-	"Mead, Gold and Blood" = 'sound/music/instruments/viola (4).ogg',
-	"Gasgow's Reel" = 'sound/music/instruments/viola (5).ogg',
-	"The Power" = 'sound/music/instruments/viola (6).ogg', //BG3 Song, I KNOW THIS ISNT A VIOLIN, LEAVE ME ALONE
-	"Bard Dance" = 'sound/music/instruments/viola (7).ogg', // BG3 Song
-	"Old Time Battles" = 'sound/music/instruments/viola (8).ogg') // BG3 Song
+	song_list = list("Far Flung Tale" = 'sound/silence.ogg',
+	"G Major Cello Suite No. 1" = 'sound/silence.ogg',
+	"Ursine's Home" = 'sound/silence.ogg',
+	"Mead, Gold and Blood" = 'sound/silence.ogg',
+	"Gasgow's Reel" = 'sound/silence.ogg',
+	"The Power" = 'sound/silence.ogg', //BG3 Song, I KNOW THIS ISNT A VIOLIN, LEAVE ME ALONE
+	"Bard Dance" = 'sound/silence.ogg', // BG3 Song
+	"Old Time Battles" = 'sound/silence.ogg') // BG3 Song
 
 
 /obj/item/rogue/instrument/vocals
 	name = "vocalist's talisman"
 	desc = "This talisman emanates a soft shimmer of light. When held, it can amplify and even change a bard's voice."
 	icon_state = "vtalisman"
-	song_list = list("Harpy's Call (Feminine)" = 'sound/music/instruments/vocalsf (1).ogg',
-	"Necra's Lullaby (Feminine)" = 'sound/music/instruments/vocalsf (2).ogg',
-	"Death Touched Aasimar (Feminine)" = 'sound/music/instruments/vocalsf (3).ogg',
-	"Our Mother, Our Divine (Feminine)" = 'sound/music/instruments/vocalsf (4).ogg',
-	"Wed, Forever More (Feminine)" = 'sound/music/instruments/vocalsf (5).ogg',
-	"Paper Boats (Feminine + Vocals)" = 'sound/music/instruments/vocalsf (6).ogg',
-	"The Dragon's Blood Surges (Masculine)" = 'sound/music/instruments/vocalsm (1).ogg',
-	"Timeless Temple (Masculine)" = 'sound/music/instruments/vocalsm (2).ogg',
-	"Angel's Earnt Halo (Masculine)" = 'sound/music/instruments/vocalsm (3).ogg',
-	"A Fabled Choir (Masculine)" = 'sound/music/instruments/vocalsm (4).ogg',
-	"A Pained Farewell (Masculine + Feminine)" = 'sound/music/instruments/vocalsx (1).ogg',
-	"The Power (Whistling)" = 'sound/music/instruments/vocalsx (2).ogg',
-	"Bard Dance (Whistling)" = 'sound/music/instruments/vocalsx (3).ogg',
-	"Old Time Battles (Whistling)" = 'sound/music/instruments/vocalsx (4).ogg')
+	song_list = list("Harpy's Call (Feminine)" = 'sound/silence.ogg',
+	"Necra's Lullaby (Feminine)" = 'sound/silence.ogg',
+	"Death Touched Aasimar (Feminine)" = 'sound/silence.ogg',
+	"Our Mother, Our Divine (Feminine)" = 'sound/silence.ogg',
+	"Wed, Forever More (Feminine)" = 'sound/silence.ogg',
+	"Paper Boats (Feminine + Vocals)" = 'sound/silence.ogg',
+	"The Dragon's Blood Surges (Masculine)" = 'sound/silence.ogg',
+	"Timeless Temple (Masculine)" = 'sound/silence.ogg',
+	"Angel's Earnt Halo (Masculine)" = 'sound/silence.ogg',
+	"A Fabled Choir (Masculine)" = 'sound/silence.ogg',
+	"A Pained Farewell (Masculine + Feminine)" = 'sound/silence.ogg',
+	"The Power (Whistling)" = 'sound/silence.ogg',
+	"Bard Dance (Whistling)" = 'sound/silence.ogg',
+	"Old Time Battles (Whistling)" = 'sound/silence.ogg')
 
 /obj/item/rogue/instrument/shamisen
 	name = "shamisen"
@@ -338,11 +338,11 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	song_list = list(
-	"Cursed Apple" = 'sound/music/instruments/shamisen (1).ogg',
-	"Fire Dance" = 'sound/music/instruments/shamisen (2).ogg',
-	"Lute" = 'sound/music/instruments/shamisen (3).ogg',
-	"Tsugaru Ripple" = 'sound/music/instruments/shamisen (4).ogg',
-	"Tsugaru" = 'sound/music/instruments/shamisen (5).ogg',
-	"Season" = 'sound/music/instruments/shamisen (6).ogg',
-	"Parade" = 'sound/music/instruments/shamisen (7).ogg',
-	"Koshiro" = 'sound/music/instruments/shamisen (8).ogg')
+	"Cursed Apple" = 'sound/silence.ogg',
+	"Fire Dance" = 'sound/silence.ogg',
+	"Lute" = 'sound/silence.ogg',
+	"Tsugaru Ripple" = 'sound/silence.ogg',
+	"Tsugaru" = 'sound/silence.ogg',
+	"Season" = 'sound/silence.ogg',
+	"Parade" = 'sound/silence.ogg',
+	"Koshiro" = 'sound/silence.ogg')

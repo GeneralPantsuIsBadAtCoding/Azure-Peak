@@ -301,8 +301,8 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		to_chat(user, span_userdanger("THE TRIAL IS CALLED, IMPRESS US, PROSECUTOR!!"))
 		to_chat(target, span_userdanger("A TRIAL OF RAVOX BEGINS. IMPRESS US, DEFENDANT!!"))
 
-		user.cmode_change('sound/music/ravoxarena.ogg')
-		target.cmode_change('sound/music/ravoxarena.ogg')
+		user.cmode_change('sound/silence.ogg')
+		target.cmode_change('sound/silence.ogg')
 
 		addtimer(CALLBACK(user, GLOBAL_PROC_REF(do_teleport), user, storedchallengerturf), 3 MINUTES)
 		addtimer(CALLBACK(target, GLOBAL_PROC_REF(do_teleport), target, storedchallengedturf), 3 MINUTES)

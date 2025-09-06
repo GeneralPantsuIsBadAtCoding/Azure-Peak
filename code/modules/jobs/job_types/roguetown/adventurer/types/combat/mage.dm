@@ -60,10 +60,10 @@
 			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_heretic.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 		if("Spellblade") // They get a unique spell of air slash
 			to_chat(H, span_warning("You are skilled in both the arcyne art and the art of the blade. But you are not a master of either nor could you channel your magick in armor."))
 			head = /obj/item/clothing/head/roguetown/bucklehat
@@ -96,7 +96,7 @@
 			H.change_stat(STATKEY_INT, 1)
 			H.change_stat(STATKEY_CON, 1)
 			H.change_stat(STATKEY_WIL, 1)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			var/weapons = list("Bastard Sword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
@@ -124,7 +124,7 @@
 					armor = /obj/item/clothing/suit/roguetown/armor/basiceast
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_heretic.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 		if("Spellsinger")
 			to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
 			head = /obj/item/clothing/head/roguetown/spellcasterhat
@@ -159,14 +159,14 @@
 			H.change_stat(STATKEY_INT, 2)
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_SPD, 2)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/inhumen/zizo)
-					H.cmode_music = 'sound/music/combat_heretic.ogg'
+					H.cmode_music = 'sound/silence.ogg'
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)

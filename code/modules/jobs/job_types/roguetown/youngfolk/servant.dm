@@ -20,7 +20,7 @@
 	max_pq = null
 	round_contrib_points = 2
 	advjob_examine = TRUE
-	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/job/roguetown/servant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()

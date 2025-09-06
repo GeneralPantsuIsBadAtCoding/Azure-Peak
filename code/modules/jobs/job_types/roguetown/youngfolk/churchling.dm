@@ -29,7 +29,7 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.cmode_music = 'sound/music/combat_holy.ogg'
+	H.cmode_music = 'sound/silence.ogg'
 	neck = /obj/item/clothing/neck/roguetown/psicross
 	if(should_wear_femme_clothes(H))
 		head = /obj/item/clothing/head/roguetown/armingcap

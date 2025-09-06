@@ -22,7 +22,7 @@
 	max_pq = null
 	round_contrib_points = 5
 
-	cmode_music = 'sound/music/combat_physician.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/physician
 	job_bitflag = BITFLAG_ROYALTY

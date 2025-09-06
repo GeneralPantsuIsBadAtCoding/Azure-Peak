@@ -18,7 +18,7 @@
 	show_in_credits = FALSE
 	give_bank_account = FALSE
 
-	cmode_music = 'sound/music/combat_weird.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/job/roguetown/deathknight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	SSmapping.find_and_remove_world_trait(/datum/world_trait/death_knight)

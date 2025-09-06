@@ -7,9 +7,9 @@
 	ambientnight = AMB_FORESTNIGHT
 	spookysounds = SPOOKY_CROWS
 	spookynight = SPOOKY_FOREST
-	droning_sound = 'sound/music/area/forest.ogg'
-	droning_sound_dusk = 'sound/music/area/septimus.ogg'
-	droning_sound_night = 'sound/music/area/forestnight.ogg'
+	droning_sound = 'sound/silence.ogg'
+	droning_sound_dusk = 'sound/silence.ogg'
+	droning_sound_night = 'sound/silence.ogg'
 	soundenv = 15
 	warden_area = TRUE
 	ambush_times = list("night","dawn","dusk","day")
@@ -26,9 +26,9 @@
 /area/rogue/indoors/shelter/woods
 	name = "Azure Grove"
 	icon_state = "woods"
-	droning_sound = 'sound/music/area/forest.ogg'
-	droning_sound_dusk = 'sound/music/area/septimus.ogg'
-	droning_sound_night = 'sound/music/area/forestnight.ogg'
+	droning_sound = 'sound/silence.ogg'
+	droning_sound_dusk = 'sound/silence.ogg'
+	droning_sound_night = 'sound/silence.ogg'
 	threat_region = THREAT_REGION_OUTER_GROVE
 
 

@@ -15,7 +15,7 @@
 				var/turf/loc = H.loc
 				if(loc.can_see_sky())
 					to_chat(H, span_userdanger("The moonlight scorns me... It is too late."))
-					owner.current.playsound_local(get_turf(owner.current), 'sound/music/wolfintro.ogg', 80, FALSE, pressure_affected = FALSE)
+					owner.current.playsound_local(get_turf(owner.current), 'sound/silence.ogg', 80, FALSE, pressure_affected = FALSE)
 					H.flash_fullscreen("redflash3")
 					transforming = world.time // timer
 
@@ -92,7 +92,6 @@
 	W.stored_mob = src
 	W.limb_destroyer = TRUE
 	W.ambushable = FALSE
-	W.cmode_music = 'sound/music/cmode/antag/combat_darkstar.ogg'
 	W.skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/werewolf_skin(W)
 	playsound(W.loc, pick('sound/combat/gib (1).ogg','sound/combat/gib (2).ogg'), 200, FALSE, 3)
 	W.spawn_gibs(FALSE)
@@ -103,8 +102,6 @@
 	W.stored_language.copy_known_languages_from(src)
 	W.stored_skills = ensure_skills().known_skills.Copy()
 	W.stored_experience = ensure_skills().skill_experience.Copy()
-	W.cmode_music_override = cmode_music_override
-	W.cmode_music_override_name = cmode_music_override_name
 	mind.transfer_to(W)
 	skills?.known_skills = list()
 	skills?.skill_experience = list()

@@ -7,9 +7,9 @@
 	ambientnight = AMB_FORESTNIGHT
 	spookysounds = SPOOKY_CROWS
 	spookynight = SPOOKY_FOREST
-	droning_sound = 'sound/music/area/forest.ogg'
-	droning_sound_dusk = 'sound/music/area/septimus.ogg'
-	droning_sound_night = 'sound/music/area/sleeping.ogg'
+	droning_sound = 'sound/silence.ogg'
+	droning_sound_dusk = 'sound/silence.ogg'
+	droning_sound_night = 'sound/silence.ogg'
 	soundenv = 15
 	ambush_times = list("night","dusk")
 	ambush_mobs = list(
@@ -46,7 +46,7 @@
 	name = "dukedungeon"
 	icon_state = "duke"
 	first_time_text = "FORGOTTEN COURT"
-	droning_sound = 'sound/music/area/dungeon2.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1

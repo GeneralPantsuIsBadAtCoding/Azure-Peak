@@ -52,7 +52,7 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
@@ -95,7 +95,7 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
@@ -155,7 +155,7 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -199,7 +199,7 @@
 				/obj/item/recipe_book/survival = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)

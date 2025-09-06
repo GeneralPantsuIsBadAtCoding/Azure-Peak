@@ -21,7 +21,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/combat_ManAtArms.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/guardsman
 	job_bitflag = BITFLAG_GARRISON

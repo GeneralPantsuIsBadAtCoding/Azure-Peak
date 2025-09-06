@@ -24,7 +24,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
+	cmode_music = 'sound/silence.ogg'
 
 /datum/outfit/job/roguetown/bogguardsman
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden

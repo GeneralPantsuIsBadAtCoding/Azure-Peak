@@ -47,7 +47,7 @@
 	H.change_stat(STATKEY_CON, 3)
 	H.change_stat(STATKEY_INT, 3)
 	wretch_select_bounty(H)
-	H.cmode_music = 'sound/music/Iconoclast.ogg'
+	H.cmode_music = 'sound/silence.ogg'
 	var/weapons = list("Archery", "Crossbows", "LET THERE BE FLAME!!!")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)

@@ -150,14 +150,11 @@
 	owner.add_stress(/datum/stressevent/ozium)
 	ADD_TRAIT(owner, TRAIT_NOPAIN, id)
 	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, id)
-	originalcmode = owner.cmode_music
-	owner.cmode_music = 'sound/music/combat_ozium.ogg'
 
 /datum/status_effect/buff/herozium/on_remove()
 	owner.remove_stress(/datum/stressevent/ozium)
 	REMOVE_TRAIT(owner, TRAIT_NOPAIN, id)
 	REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, id)
-	owner.cmode_music = originalcmode
 	. = ..()
 
 /datum/status_effect/buff/starsugar
@@ -177,15 +174,12 @@
 	ADD_TRAIT(owner, TRAIT_DARKVISION, id)
 	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
 		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
-	originalcmode = owner.cmode_music
-	owner.cmode_music = 'sound/music/combat_starsugar.ogg'
 
 
 /datum/status_effect/buff/starsugar/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, id)
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, id)
 	owner.remove_stress(/datum/stressevent/starsugar)
-	owner.cmode_music = originalcmode
 	. = ..()
 
 /datum/status_effect/buff/weed

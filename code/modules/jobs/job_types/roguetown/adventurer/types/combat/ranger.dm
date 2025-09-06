@@ -57,7 +57,7 @@
 			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			var/weapons = list("Recurve Bow","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
@@ -106,7 +106,7 @@
 			H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			H.change_stat(STATKEY_PER, 2)
 			H.change_stat(STATKEY_SPD, 2)
 			H.change_stat(STATKEY_WIL, 1)
@@ -142,7 +142,7 @@
 			H.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.change_stat(STATKEY_CON, 1)
 			H.change_stat(STATKEY_STR, 2)
@@ -179,7 +179,7 @@
 			H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // Won't really equate to much.
 			H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-			H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
+			H.cmode_music = 'sound/silence.ogg'
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			var/weapons = list("Recurve Bow","Billhook","Sling","Crossbow")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

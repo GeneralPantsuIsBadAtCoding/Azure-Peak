@@ -7,7 +7,7 @@
 	ambientnight = AMB_CAVEWATER
 	spookysounds = SPOOKY_CAVE
 	spookynight = SPOOKY_CAVE
-	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	ambush_times = list("night","dawn","dusk","day")
@@ -29,6 +29,6 @@
 	first_time_text = "MELTED UNDERCITY"
 	spookysounds = SPOOKY_MYSTICAL
 	spookynight = SPOOKY_MYSTICAL
-	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null

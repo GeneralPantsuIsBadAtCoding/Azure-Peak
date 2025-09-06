@@ -61,7 +61,6 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	owner.special_role = name
 	for(var/inherited_trait in inherent_traits)
 		ADD_TRAIT(owner.current, inherited_trait, "[type]")
-	owner.current.cmode_music = 'sound/music/cmode/antag/combat_thrall.ogg' // vampire lords get this too... For Now.
 	owner.current.AddSpell(new /obj/effect/proc_holder/spell/targeted/transfix)
 	owner.current.verbs |= /mob/living/carbon/human/proc/vamp_regenerate
 	owner.current.verbs |= /mob/living/carbon/human/proc/vampire_telepathy
@@ -313,13 +312,13 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /datum/antagonist/vampirelord/proc/finalize_vampire()
 	owner.current.forceMove(pick(GLOB.vlord_starts))
-	owner.current.playsound_local(get_turf(owner.current), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/silence.ogg', 80, FALSE, pressure_affected = FALSE)
 
 
 /datum/antagonist/vampirelord/proc/finalize_vampire_lesser()
 	if(!sired)
 		owner.current.forceMove(pick(GLOB.vspawn_starts))
-	owner.current.playsound_local(get_turf(owner.current), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(get_turf(owner.current), 'sound/silence.ogg', 80, FALSE, pressure_affected = FALSE)
 
 
 /datum/antagonist/vampirelord/proc/vamp_look()

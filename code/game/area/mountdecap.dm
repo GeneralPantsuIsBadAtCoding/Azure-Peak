@@ -12,7 +12,7 @@
 				new /datum/ambush_config/medium_skeleton_party = 10,
 				new /datum/ambush_config/heavy_skeleton_party = 5,
 				)
-	droning_sound = 'sound/music/area/decap.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "MOUNT DECAPITATION"
@@ -23,7 +23,7 @@
 
 /area/rogue/indoors/shelter/mountains/decap
 	icon_state = "decap"
-	droning_sound = 'sound/music/area/decap.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	threat_region = THREAT_REGION_MOUNT_DECAP
@@ -42,7 +42,7 @@
 				new /datum/ambush_config/medium_skeleton_party = 20,
 				new /datum/ambush_config/heavy_skeleton_party = 10,
 				)
-	droning_sound = 'sound/music/area/decap_deeper.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "TARICHEA, VALLEY OF LOSS"
@@ -57,7 +57,7 @@
 				new /datum/ambush_config/treasure_hunter_posse = 1,
 				/mob/living/carbon/human/species/dwarfskeleton/ambush = 30,
 				)
-	droning_sound = 'sound/music/area/prospector.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "RUINS OF GUNDU-ZIRAK"
@@ -78,7 +78,7 @@
 	name = "dragonnest"
 	icon_state = "under"
 	first_time_text = "DEN OF DRAGONS"
-	droning_sound = 'sound/music/area/dragonden.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
@@ -93,7 +93,7 @@
 	name = "goblinfort"
 	icon_state = "spidercave"
 	first_time_text = "GOBLIN FORTRESS"
-	droning_sound = 'sound/music/area/dungeon2.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
@@ -105,9 +105,9 @@
 	name = "hauntedlabyrinth"
 	icon_state = "spidercave"
 	first_time_text = "NECRAN LABYRINTH"
-	droning_sound = 'sound/music/area/underworlddrone.ogg'
-	droning_sound_dusk = 'sound/music/area/underworlddrone.ogg'
-	droning_sound_night = 'sound/music/area/underworlddrone.ogg'
+	droning_sound = 'sound/silence.ogg'
+	droning_sound_dusk = 'sound/silence.ogg'
+	droning_sound_night = 'sound/silence.ogg'
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a twisted tangle of soaring peaks"
@@ -116,7 +116,7 @@
 /area/rogue/outdoors/mountains/decap/minotaurfort
 	name = "Minotaur Fort"
 	icon_state = "decap"
-	droning_sound = 'sound/music/area/prospector.ogg'
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	first_time_text = "ANCIENT DWARVEN FORGE"
