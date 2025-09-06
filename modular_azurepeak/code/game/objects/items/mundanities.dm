@@ -153,6 +153,12 @@
 
 	var/can_sealed = 1
 
+/obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
+
+	if(src.can_sealed == 1)
+		return
+	..()
+
 /obj/item/reagent_containers/food/snacks/canned/On_Consume
 
 	if(src.can_sealed == 1)
