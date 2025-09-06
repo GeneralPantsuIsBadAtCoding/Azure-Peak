@@ -146,7 +146,7 @@
 
 /obj/item/reagent_containers/food/snacks/canned
 	name = "saltpot"
-	desc = "Corrugated tinplate concealing tinfood."
+	desc = "Corrugated tinplate concealing tinfood. "
 	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
 	icon_state = "acan"
 	var/can_sealed = 1
@@ -158,27 +158,32 @@
 		return
 
 	if(can_sealed == 1)
+		name = "saltpot"
+		desc =
 
 
-
-/obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, loc, params)
+/obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
 	if(src.can_sealed == 1)
 		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
 
 			if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/cleaver))
-				to_chat(loc, span_warning("...I suspect that this knife in particular may have problems getting this open."))
+				to_chat(user, span_warning("The blade is too big!."))
 				return FALSE
 
-			src.can_sealed = 0
-			update_icon()
-			randomize_insides
+			playsound(src.loc, 'sound/items/wood_sharpen.ogg', 75, TRUE)
+			if(do_after(user,100, target = src))
+				src.can_sealed = 0
+				update_icon()
+				randomize_insides
 
-		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //in case someone wants to bash it open with a BOULDER i guess
+		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 
 
 		randomize_insides()
+		to_chat(user, span_notice("The scent of salty food suddenly hits my nose as I tear the flimsy top off of the saltpot."))
 	else
+		to_chat(user, span_warning("I can't open \the [src] with this..."))
 		return FALSE
 
 
