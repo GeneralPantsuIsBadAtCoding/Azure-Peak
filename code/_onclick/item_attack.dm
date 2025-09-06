@@ -267,10 +267,10 @@
 		else
 			strmod = ((used_str - 10) * STRENGTH_MULT)
 		if(dullness_ratio)
-			if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
+			if(dullness_ratio <= SHARPNESS_TIER1_FLOOR)
 				strmod = 0
 			else if(dullness_ratio < SHARPNESS_TIER1_THRESHOLD)
-				var/strlerp = (dullness_ratio - SHARPNESS_TIER2_THRESHOLD) / (SHARPNESS_TIER1_THRESHOLD - SHARPNESS_TIER2_THRESHOLD)
+				var/strlerp = (dullness_ratio - SHARPNESS_TIER1_FLOOR) / (SHARPNESS_TIER1_THRESHOLD - SHARPNESS_TIER1_FLOOR)
 				strmod *= strlerp
 		newforce = newforce + (newforce * strmod)
 	else if(used_str <= 9)
@@ -442,10 +442,10 @@
 					dullfactor = DULLFACTOR_ANTAG
 	var/newdam = (I.force_dynamic * user.used_intent.damfactor) - I.force_dynamic
 	if(user.used_intent.damfactor > 1)	//Only relevant if damfactor actually adds damage.
-		if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD)
+		if(dullness_ratio <= SHARPNESS_TIER1_FLOOR)
 			newdam = 0
 		else if(dullness_ratio <= SHARPNESS_TIER1_THRESHOLD)
-			var/damflerp = (dullness_ratio - SHARPNESS_TIER2_THRESHOLD) / (SHARPNESS_TIER1_THRESHOLD - SHARPNESS_TIER2_THRESHOLD)
+			var/damflerp = (dullness_ratio - SHARPNESS_TIER1_FLOOR) / (SHARPNESS_TIER1_THRESHOLD - SHARPNESS_TIER1_FLOOR)
 			newdam *= damflerp
 			newdam = round(newdam)	//floors it, making the scaling harsher
 	newforce = (newforce + newdam) * dullfactor
@@ -618,6 +618,7 @@
 	if(I.force_dynamic)
 		var/newforce = get_complex_damage(I, user)
 		apply_damage(newforce, I.damtype, def_zone = hitlim)
+		I.remove_bintegrity(1)
 		if(I.damtype == BRUTE)
 			next_attack_msg.Cut()
 			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
