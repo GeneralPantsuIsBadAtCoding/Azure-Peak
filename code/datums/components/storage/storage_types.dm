@@ -19,11 +19,11 @@
 /datum/component/storage/concrete/roguetown/surgery_bag/New(datum/P, ...)
 	. = ..()
 	can_hold = typecacheof(list(
-	/obj/item/rogueweapon/surgery, 
-	/obj/item/needle, 
-	/obj/item/natural/worms/leech, 
+	/obj/item/rogueweapon/surgery,
+	/obj/item/needle,
+	/obj/item/natural/worms/leech,
 	/obj/item/reagent_containers/lux,
-	/obj/item/natural/bundle/cloth, 
+	/obj/item/natural/bundle/cloth,
 	/obj/item/natural/cloth))
 
 /datum/component/storage/concrete/roguetown/messkit
@@ -148,7 +148,7 @@
 	set_holdable(list(
 		/obj/item/magic/infernalash,
 		/obj/item/magic/hellhoundfang,
-		/obj/item/magic/infernalash,
+		/obj/item/magic/infernalcore,
 		/obj/item/magic/abyssalflame,
 		/obj/item/magic/fairydust,
 		/obj/item/magic/iridescentscale,

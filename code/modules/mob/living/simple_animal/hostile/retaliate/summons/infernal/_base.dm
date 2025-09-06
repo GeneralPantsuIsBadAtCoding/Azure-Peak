@@ -54,3 +54,10 @@
 		if(BODY_ZONE_L_ARM)
 			return "foreleg"
 	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/attackby(obj/item/P, mob/living/carbon/human/user, params)
+	if(istype(P, /obj/item/magic/infernalash))
+		src.health += 100
+	if(istype(P, /obj/item/magic/melded))
+		src.health = src.maxHealth
+	..()

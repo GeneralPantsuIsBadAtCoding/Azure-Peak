@@ -46,6 +46,10 @@
 	ranged = FALSE
 	var/vine_cd
 
+/mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	. = ..()
+
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/dryad/Move(newloc)	//vine movespeed buff
 	.=..()
 	if(isturf(newloc))
@@ -116,7 +120,7 @@
 	..()
 	for(var/obj/structure/vine/V in view(src))
 		qdel(V)
-	src.visible_message(span_boldwarning("Vines near [src] wither!"))
+	src.visible_message(span_boldwarning("Vines near [src] wither as it returns to it's plane!"))
 	var/turf/deathspot = get_turf(src)
 	new /obj/item/magic/melded/t1(deathspot)
 	new /obj/item/magic/iridescentscale(deathspot)

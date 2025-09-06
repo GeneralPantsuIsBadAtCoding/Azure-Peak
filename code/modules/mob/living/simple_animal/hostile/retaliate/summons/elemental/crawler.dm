@@ -46,6 +46,7 @@
 	STASPD = 8
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler/death(gibbed)

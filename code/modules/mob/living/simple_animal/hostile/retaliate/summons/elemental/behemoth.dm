@@ -48,6 +48,10 @@
 
 	var/rock_cd
 
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	. = ..()
+
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
@@ -55,6 +59,8 @@
 	new /obj/item/magic/elementalfragment(deathspot)
 	new /obj/item/magic/elementalshard(deathspot)
 	new /obj/item/magic/elementalshard(deathspot)
+	new /obj/item/magic/elementalmote(deathspot)
+	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/melded/t1(deathspot)

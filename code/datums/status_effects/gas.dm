@@ -43,3 +43,7 @@
 /datum/status_effect/freon/watcher
 	duration = 8
 	can_melt = FALSE
+
+/datum/status_effect/freon/freezing
+	duration = 10 SECONDS
+	can_melt = FALSE

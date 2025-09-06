@@ -11,6 +11,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_GUIDANCE, TRAIT_GENERIC)	//The voiddragon rends
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 6, TRUE)	//parrying the voiddragon should be hard
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
 		attack_action.Grant(src)
@@ -590,6 +592,18 @@ It will also call down lightning strikes from the sky, and fling people with it'
 		playsound(C.loc, 'sound/combat/hits/punch/punch_hard (3).ogg', 80, TRUE, TRUE)
 		C.spin(6, 1)
 	..(targets, user, 3)
+
+/mob/living/simple_animal/hostile/retaliate/rogue/voiddragon/death()
+	..()
+	var/turf/deathspot = get_turf(src)
+	new /obj/item/clothing/ring/dragon_ring(deathspot)
+	new /obj/item/clothing/ring/dragon_ring(deathspot)
+	new /obj/item/clothing/ring/dragon_ring(deathspot)
+	new /obj/item/book/granter/spell_points/voiddragon
+	new /obj/item/book/granter/spell_points/voiddragon
+	new /obj/item/book/granter/spell_points/voiddragon
+	update_icon()
+	spill_embedded_objects()
 
 #undef DRAKE_SWOOP_HEIGHT
 #undef DRAKE_SWOOP_DIRECTION_CHANGE_RANGE

@@ -50,6 +50,7 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/fae/sprite/death(gibbed)

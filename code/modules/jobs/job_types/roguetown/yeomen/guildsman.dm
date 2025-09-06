@@ -128,7 +128,7 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/engineering, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE) // Artificer makes for a crappy substitute blacksmith but have the same spread
-	H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE) 
+	H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
@@ -158,8 +158,6 @@
 						/obj/item/recipe_book/ceramics = 1,
 						/obj/item/recipe_book/builder = 1,
 						/obj/item/recipe_book/survival = 1,
-						/obj/item/recipe_book/magic = 1,
-						/obj/item/chalk = 1,
 						)
 	// Not a real mage, no free spell point. Take Arcyne Potential if you want it.
 	if(H.mind)
@@ -190,7 +188,7 @@
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/lumberjacking, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/mining, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) 
+	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 4, TRUE)

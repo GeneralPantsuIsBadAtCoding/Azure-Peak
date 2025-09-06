@@ -19,12 +19,11 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = 1500
 	maxHealth = 1500
-	obj_damage = 150
 	melee_damage_lower = 40
 	melee_damage_upper = 70
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_WALLS
+	environment_smash = ENVIRONMENT_SMASH_NONE
 	simple_detect_bonus = 20
 	retreat_distance = 0
 	minimum_distance = 0
@@ -52,6 +51,10 @@
 	STASPD = 3
 
 	var/stomp_cd
+
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
@@ -101,6 +104,8 @@
 	new /obj/item/magic/elementalfragment(deathspot)
 	new /obj/item/magic/elementalshard(deathspot)
 	new /obj/item/magic/elementalshard(deathspot)
+	new /obj/item/magic/elementalmote(deathspot)
+	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/elementalmote(deathspot)
 	new /obj/item/magic/melded/t2(deathspot)
