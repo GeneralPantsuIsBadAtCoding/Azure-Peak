@@ -151,7 +151,22 @@
 	icon_state = "acan"
 
 
+/obj/item/reagent_containers/food/snacks/canned/randomize_insides() //where da magyck happens
+
+
+
 	var/can_sealed = 1
+
+/obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, loc, params)
+
+	if(src.can_sealed == 1)
+		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
+
+			if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/cleaver))
+				to_chat(loc, span_warning("I suspect that this knife may have problems getting this open."))
+				return FALSE
+
+		randomize_insides()
 
 /obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
 
