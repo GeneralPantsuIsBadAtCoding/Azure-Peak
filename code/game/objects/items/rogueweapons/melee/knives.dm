@@ -365,7 +365,7 @@
 	desc = "This silver dagger can be the banishment of vampires and werewolves."
 	icon_state = "sildagger"
 	sheathe_icon = "sildagger"
-	force = 10
+	force = 15
 	wdefense = 6
 	sellprice = 50
 	smeltresult = /obj/item/ingot/silver
@@ -605,7 +605,7 @@
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
 	item_state = "bone_dagger"
 	force = 10
-	throwforce = 17
+	throwforce = 20
 	armor_penetration = 50
 	max_integrity = 150
 	wdefense = 3
