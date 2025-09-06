@@ -149,13 +149,17 @@
 	desc = "Corrugated tinplate concealing tinfood."
 	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
 	icon_state = "acan"
-
-
-/obj/item/reagent_containers/food/snacks/canned/randomize_insides() //where da magyck happens
-
-
-
 	var/can_sealed = 1
+
+
+/obj/item/reagent_containers/food/snacks/canned/proc/randomize_insides() //where da magyck happens
+
+	if(can_sealed == 0) //How?
+		return
+
+	if(can_sealed == 1)
+
+
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, loc, params)
 
@@ -163,10 +167,21 @@
 		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
 
 			if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/cleaver))
-				to_chat(loc, span_warning("I suspect that this knife may have problems getting this open."))
+				to_chat(loc, span_warning("...I suspect that this knife in particular may have problems getting this open."))
 				return FALSE
 
+			src.can_sealed = 0
+			update_icon()
+			randomize_insides
+
+		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //in case someone wants to bash it open with a BOULDER i guess
+
+
 		randomize_insides()
+	else
+		return FALSE
+
+
 
 /obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
 
