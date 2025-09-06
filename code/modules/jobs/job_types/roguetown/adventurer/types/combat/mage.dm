@@ -97,10 +97,10 @@
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	var/weapons = list("Bastard Sword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
+	var/weapons = list("Longsword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
-		if("Bastard Sword")
+		if("Longsword")
 			beltr = /obj/item/rogueweapon/scabbard/sword
 			r_hand = /obj/item/rogueweapon/sword/long
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
