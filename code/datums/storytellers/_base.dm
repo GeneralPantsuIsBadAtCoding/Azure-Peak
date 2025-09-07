@@ -80,6 +80,8 @@
 	var/times_chosen = 0
 	/// Bonus points to the storyteller total influence
 	var/bonus_points = 0
+	/// If the storyteller is ascendant this round, that is if he reached over 100 points in rankings of the gods
+	var/ascendant = FALSE
 
 /datum/storyteller/New()
 	. = ..()

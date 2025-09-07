@@ -222,6 +222,8 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[event.track] += event //Add it to the categorized event pools
 
 	load_roundstart_data()
+
+	check_roundstart_gods_rankings()
 	. = ..()
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
@@ -530,7 +532,14 @@ SUBSYSTEM_DEF(gamemode)
 	if(!length(storytellers))
 		for(var/type in subtypesof(/datum/storyteller))
 			storytellers[type] = new type()
-	set_storyteller(/datum/storyteller/astrata)
+	for(var/storyteller_name in storytellers)
+		var/datum/storyteller/initialized_storyteller = storytellers[storyteller_name]
+		if(initialized_storyteller?.ascendant)
+			to_chat(world, "<br>")
+			to_chat(world, span_reallybig("[initialized_storyteller.name] is ascendant!"))
+			to_chat(world, "<br>")
+
+	pick_most_influential(TRUE)
 	calculate_ready_players()
 	roll_pre_setup_points()
 	//handle_pre_setup_roundstart_events()

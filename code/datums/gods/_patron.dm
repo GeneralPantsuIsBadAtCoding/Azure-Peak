@@ -4,6 +4,7 @@
 GLOBAL_LIST_EMPTY(patronlist)
 GLOBAL_LIST_EMPTY(patrons_by_faith)
 GLOBAL_LIST_EMPTY(preference_patrons)
+GLOBAL_LIST_EMPTY(prayers)
 
 /datum/patron
 	/// Name of the god
@@ -91,6 +92,7 @@ GLOBAL_LIST_EMPTY(preference_patrons)
         follower.mob_timers[MT_PSYPRAY] = world.time
 
     . = TRUE //the prayer has succeeded by this point forward
+    GLOB.prayers |= prayer
     record_round_statistic(STATS_PRAYERS_MADE)
 
     if(findtext(prayer, name))
