@@ -265,7 +265,7 @@
 /datum/status_effect/buff/blessed
 	id = "blessed"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/blessed
-	effectedstats = list("fortune" = 1)
+	effectedstats = list(STATKEY_LCK = 1)
 	duration = 20 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/blessed
@@ -321,7 +321,7 @@
 
 /obj/item/book/rogue/blackoak
 	name = "The Noblest Struggle"
-	desc = "A small black book. Writings from the Grand High Wyrm of the Black Oaks. All Black Oaks carry this close."
+	desc = "A small black book. All Black Oaks carry this close."
 	icon_state ="book_0"
 	base_icon_state = "book"
 	bookfile = "blackoak.json"

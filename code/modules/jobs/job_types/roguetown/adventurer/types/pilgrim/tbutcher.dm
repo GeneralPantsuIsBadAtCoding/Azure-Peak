@@ -6,6 +6,11 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/butcher
 	cmode_music = 'sound/music/cmode/towner/combat_retired.ogg'
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
+		STATKEY_STR = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/butcher/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -38,7 +43,3 @@
 	else
 		pants = /obj/item/clothing/under/roguetown/trou
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-
-	H.change_stat("strength", 1)	//Stat spread is decent; not great but decent. 
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)

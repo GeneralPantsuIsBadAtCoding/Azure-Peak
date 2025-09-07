@@ -10,7 +10,13 @@
 	category_tags = list(CTAG_TOWNER)
 	maximum_possible_slots = 1
 	pickprob = 5
-	
+	subclass_stats = list(
+		STATKEY_CON = 2,
+		STATKEY_PER = 2,
+		STATKEY_SPD = 2,
+		STATKEY_WIL = 2,
+		STATKEY_STR = 1
+	)
 /datum/outfit/job/roguetown/adventurer/grandmastermason/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -47,8 +53,3 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/recipe_book/builder = 1,
 						)
-	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("speed", 2)

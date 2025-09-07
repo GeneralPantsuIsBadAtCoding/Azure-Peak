@@ -74,10 +74,10 @@
 			span_warning("[user] begins to force [A] into [src]!"),
 			span_warningbig("I begin to force [A] into [src].")
 		)
-		if(!do_after(user, 2 SECONDS))
+		if(!move_after(user, 2 SECONDS, target = user))
 			return FALSE
 		return FALSE
-	if(!do_after(user, sheathe_time))
+	if(!move_after(user, sheathe_time, target = user))
 		return FALSE
 
 	A.forceMove(src)
@@ -102,9 +102,9 @@
 			span_warning("[user] begins to force [sheathed] out of [src]!"),
 			span_warningbig("I begin to force [sheathed] out of [src].")
 		)
-		if(!do_after(user, 2 SECONDS))
+		if(!move_after(user, 2 SECONDS, target = user))
 			return FALSE
-	if(!do_after(user, sheathe_time))
+	if(!move_after(user, sheathe_time, target = user))
 		return FALSE
 
 	sheathed.forceMove(user.loc)
@@ -262,17 +262,8 @@
 	grid_height = 64
 
 	force = 3
-	max_integrity = 50
+	max_integrity = 500
 	sellprice = 2
-
-/obj/item/rogueweapon/scabbard/sheath/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/rogueweapon/scabbard/sheath/LateInitialize()
-	var/obj/item/rogueweapon/huntingknife/init_blade = locate() in loc
-	if(init_blade)
-		return eat_sword(loc.loc, init_blade)
 
 /obj/item/rogueweapon/scabbard/sheath/getonmobprop(tag)
 	..()
@@ -493,7 +484,7 @@
 	)
 
 	force = 7
-	max_integrity = 75
+	max_integrity = 750
 	sellprice = 3
 
 
@@ -532,3 +523,24 @@
 	item_state = "kazscab_gold"
 	valid_blade = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
 	sellprice = 10
+
+/obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
+	name = "plain lacquer scabbard"
+	desc = "A plain lacquered scabbard with simple steel hardware. A plain dark cloth serves to hang it from a belt."
+	icon_state = "kazscabyuruku"
+	item_state = "kazscabyuruku"
+	valid_blade = /obj/item/rogueweapon/sword/short/kazengun
+	wdefense = 4
+
+/obj/item/rogueweapon/scabbard/sheath/kazengun
+	name = "plain lacquer sheath"
+	desc = "A simple lacquered sheath, for shorter eastern-styled blades."
+	icon_state = "kazscabdagger"
+	item_state = "kazscabdagger"
+	valid_blade = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
+	associated_skill = /datum/skill/combat/shields
+	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK)
+	can_parry = TRUE
+	wdefense = 3
+
+	max_integrity = 0

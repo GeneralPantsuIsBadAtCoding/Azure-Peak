@@ -146,7 +146,7 @@
 	swingdelay = 5
 	damfactor = 0.01
 	item_d_type = "slash"
-	peel_divisor = 4
+	peel_divisor = 5
 	reach = 2
 
 
@@ -273,6 +273,18 @@
 	thrown_bclass = BCLASS_STAB
 	throwforce = 25
 	resistance_flags = FLAMMABLE
+
+/obj/item/rogueweapon/spear/trident
+	// Better one handed & throwing weapon, flimsier.
+	name = "bronze trident"
+	desc = "A bronze trident from the seas. Feels balanced in your hand, like you could throw it quite easily."
+	icon_state = "bronzetri"
+	force = 25
+	force_wielded = 20
+	wdefense = 4
+	max_blade_int = 175
+	max_integrity = 225
+	throwforce = 30
 
 /obj/item/rogueweapon/spear/aalloy
 	name = "decrepit spear"
@@ -592,13 +604,11 @@
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/rogueweapon/halberd/holysee
-	name = "eclipsum halberd"
-	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite. The reinforced shaft provides greater durability."
+/obj/item/rogueweapon/spear/holysee
+	name = "see spear"
+	desc = "A spear against the darkness, a glimmer of Eclipsum in its metal veins. "
 	icon_state = "gsspear"
-	max_integrity = 300
-	force = 20
-	force_wielded = 35
+	force = 25 // better in one hand. Use it with the shield.
 
 /obj/item/rogueweapon/halberd/bardiche
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
@@ -778,7 +788,7 @@
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
-	max_blade_int = 200
+	max_blade_int = 300
 	wdefense = 5
 	smelt_bar_num = 3
 
@@ -833,6 +843,7 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
 	max_blade_int = 240
+	wdefense = 4
 	force = 14
 	force_wielded = 35
 

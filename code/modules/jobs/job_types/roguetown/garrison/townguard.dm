@@ -82,10 +82,10 @@ Archer is basically a 'bounty-catcher' in function, less specialized at close-qu
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE) 
-	H.change_stat("strength", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", 1)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, 1)
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)	//You get medium armor training to go with your armor.
 
@@ -129,11 +129,11 @@ Archer is basically a 'bounty-catcher' in function, less specialized at close-qu
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)	//For basic crafting; you'll need it due to relegated support role.
 	H.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)	//Likely hunter background; very crappy basic skill.
 	H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE) 
-	H.change_stat("strength", 1)
-	H.change_stat("perception", 2)
-	H.change_stat("intelligence", 1)		//Gets some int for crafting + feinting, makes up for no medium armor training along with the speed.
-	H.change_stat("constitution", 1)
-	H.change_stat("speed", 2)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_INT, 1)		//Gets some int for crafting + feinting, makes up for no medium armor training along with the speed.
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_SPD, 2)
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)		//You don't get medium armor training, instead you get a bonus to light armor usage.
 

@@ -34,7 +34,7 @@
 /datum/reagent/toxin/spidervenom_paralytic/on_mob_metabolize(mob/living/L)
 	..()
 	venom_resistance += ((L.STACON - 10) * 5)
-	venom_resistance += ((L.STAEND - 10) * 3)
+	venom_resistance += ((L.STAWIL - 10) * 3)
 	venom_resistance += ((L.STASTR - 10) * 2)
 	venom_resistance += (L.STALUC)
 	

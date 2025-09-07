@@ -23,7 +23,7 @@
 	melee_damage_upper = 30
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	simple_detect_bonus = 20
 	retreat_distance = 4
 	minimum_distance = 3
@@ -44,8 +44,9 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 	ranged = TRUE
+	rapid = 2
 	ranged_cooldown = 40
-	projectiletype = /obj/projectile/magic/firebolt
+	projectiletype = /obj/projectile/magic/aoe/fireball/spitfire
 	ranged_message = "stares"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher

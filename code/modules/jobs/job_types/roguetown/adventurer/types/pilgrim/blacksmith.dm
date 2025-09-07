@@ -7,6 +7,14 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/blacksmith
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	traits_applied = list(TRAIT_TRAINED_SMITH)
+	subclass_stats = list(
+		STATKEY_WIL = 2,
+		STATKEY_CON = 2,
+		STATKEY_STR = 1,
+		STATKEY_LCK = 1,
+		STATKEY_SPD = -1
+	)
 
 /datum/outfit/job/roguetown/adventurer/blacksmith/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -28,7 +36,6 @@
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
 	if(H.pronouns == HE_HIM)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
@@ -51,8 +58,3 @@
 	H.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/smelting, 4, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("speed", -1)
-	H.change_stat("fortune", 1)

@@ -184,7 +184,6 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 /obj/item/natural/whetstone/Initialize()
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
-		/datum/crafting_recipe/roguetown/survival/reinforcedshaft,
 		/datum/crafting_recipe/roguetown/survival/peasantry/thresher/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/shovel/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/hoe/whetstone,

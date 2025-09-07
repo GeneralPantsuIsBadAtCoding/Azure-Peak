@@ -12,10 +12,18 @@
 	damfactor = 1.1
 	item_d_type = "slash"
 
+/datum/intent/sword/cut/arming
+	damfactor = 1.2
+	clickcd = 10 // Versatile, this create 26 EDPS instead of 20. But still easily beaten by the Sabre
+
 /datum/intent/sword/cut/militia
 	penfactor = 30
 	damfactor = 1.2
 	chargetime = 0.2
+
+/datum/intent/sword/cut/short
+	clickcd = 9
+	damfactor = 1
 
 /datum/intent/sword/chop/militia
 	penfactor = 50
@@ -34,6 +42,19 @@
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
+
+/datum/intent/sword/thrust/short
+	clickcd = 8
+	damfactor = 1.1
+	penfactor = 30
+
+/datum/intent/sword/thrust/arming
+	clickcd = 10 // Less than rapier
+	penfactor = 35 // 22 + 35 = 57. Beats light leather slightly more than rapier per strike, but less strike
+
+/datum/intent/sword/thrust/long
+	penfactor = 30 // 2h Longsword already have 30 damage. This let it pierce light armor easily
+	// Their cut is actually pretty decent when 2handed and should be inferior to zwei.
 
 /datum/intent/sword/thrust/krieg
 	damfactor = 0.9
@@ -54,7 +75,7 @@
 /datum/intent/sword/peel
 	name = "armor peel"
 	icon_state = "inpeel"
-	attack_verb = list("peels", "tears")
+	attack_verb = list("<font color ='#e7e7e7'>peels</font>")
 	animname = "cut"
 	blade_class = BCLASS_PEEL
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
@@ -68,6 +89,7 @@
 /datum/intent/sword/peel/big
 	name = "big sword armor peel"
 	reach = 2
+	peel_divisor = 5
 
 /datum/intent/sword/chop
 	name = "chop"
@@ -81,6 +103,9 @@
 	damfactor = 1.0
 	item_d_type = "slash"
 
+/datum/intent/sword/chop/short
+	damfactor = 0.9
+
 /datum/intent/sword/cut/falx
 	penfactor = 20
 
@@ -88,6 +113,7 @@
 	penfactor = 40
 
 /datum/intent/sword/cut/krieg
+	damfactor = 1.2
 	clickcd = 10
 
 /datum/intent/sword/thrust/krieg
@@ -104,8 +130,8 @@
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	force = 22
 	force_wielded = 25
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
+	possible_item_intents = list(/datum/intent/sword/cut/arming, /datum/intent/sword/thrust/arming, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut/arming, /datum/intent/sword/thrust/arming, /datum/intent/sword/strike, /datum/intent/sword/peel)
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
@@ -216,8 +242,8 @@
 		 It has great cultural significance in the empires of Grenzelhoft and Etrusca, where legendary swordsmen have created and perfected many fighting techniques of todae."
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/long, /datum/intent/sword/strike, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/long, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	icon_state = "longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
@@ -238,6 +264,7 @@
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
 	max_blade_int = 280
+	wdefense_wbonus = 4
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
@@ -398,13 +425,9 @@
 	equip_delay_self = 0
 	unequip_delay_self = 0
 
-/obj/item/rogueweapon/sword/long/zizo/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_CABAL))
-		to_chat(user, "<font color='purple'>UNWORTHY HANDS TOUCHING THIS SWORD, CEASE OR BE PUNISHED!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/rogueweapon/sword/long/zizo/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "SWORD")
 
 /obj/item/rogueweapon/sword/long/heirloom
 	name = "old longsword"
@@ -586,6 +609,18 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/sword/short/kazengun
+	name = "steel kodachi"
+	desc = "A razor-edged sword with a wavy pattern weld apparent on its blade."
+	possible_item_intents = list(
+		/datum/intent/sword/cut/short,
+		/datum/intent/sword/thrust/short,
+		/datum/intent/sword/peel,
+		/datum/intent/sword/chop/short,
+		)
+	icon_state = "eastshortsword"
+	sheathe_icon = "kodachi"
+
 /obj/item/rogueweapon/sword/short/iron
 	name = "iron shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers. This iron variant predates them all."
@@ -678,15 +713,6 @@
 	// PREBLESS IT +3 force, +100 blade int, +50 int, +1 def, make silver
 	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 3, bonus_sharpness = 100, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
 
-/datum/intent/sword/cut/short
-	clickcd = 9
-	damfactor = 1
-
-/datum/intent/sword/thrust/short
-	clickcd = 8
-	damfactor = 1.1
-	penfactor = 30
-
 /obj/item/rogueweapon/sword/short/messer
 	name = "messer"
 	desc = "A \"Großesmesser\" of disputed Grenzel origin, meaning greatknife. It's a basic single-edge sword for civilian and military use. It excels at slicing and chopping, and it's made of steel. \
@@ -763,6 +789,15 @@
 	max_integrity = 100
 	icon_state = "isaber"
 	sellprice = 10
+
+/obj/item/rogueweapon/sword/sabre/steppesman
+	name = "aavnic shashka"
+	desc = "A single-edged, single-handed, and guardless blade of northern Aavnic make with a brass pommel in the shape of a zad's head. The gentle curve of its blade puts it midway between a radically curved sabre and a straight sword, effective for both cutting and thrusting but lacking raw defense potential."
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre, /datum/intent/rend, /datum/intent/sword/chop)
+	wdefense = 5
+	minstr = 6
+	icon_state = "shashka"
+	sheathe_icon = "shashka"
 
 //Unique church sword - slightly better than regular sabre due to falx chop.
 /obj/item/rogueweapon/sword/sabre/nockhopesh

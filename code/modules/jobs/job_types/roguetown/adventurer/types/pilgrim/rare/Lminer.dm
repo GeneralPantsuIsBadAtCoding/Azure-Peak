@@ -10,6 +10,15 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
+	traits_applied = list(TRAIT_DARKVISION)
+	subclass_stats = list(
+		STATKEY_LCK = 4,
+		STATKEY_STR = 2,
+		STATKEY_INT = 2,
+		STATKEY_WIL = 2,
+		STATKEY_CON = 1,
+		STATKEY_PER = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/minermaster/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -34,10 +43,4 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/mining, 6, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/smelting, 6, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("fortune", 4)
 

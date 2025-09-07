@@ -19,10 +19,38 @@
 	max_pq = null
 	round_contrib_points = 2
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
+
+	job_traits = list(TRAIT_SEEPRICES_SHITTY)
 	
-/datum/outfit/job/roguetown/shophand/pre_equip(mob/living/carbon/human/H)
+	advclass_cat_rolls = list(CTAG_SHOPHAND = 2)
+	job_subclasses = list(
+		/datum/advclass/shophand
+	)
+
+/datum/job/roguetown/shophand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
-	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/shophand
+	name = "Shophand"
+	tutorial = "You work the largest store in the Peaks by grace of the Merchant who has shackled you to this drudgery. \
+	The work of stocking shelves and taking inventory for your employer is mind-numbing and repetitive--but at least you have a roof over your head and comfortable surroundings. \
+	With time, perhaps you will one day be more than a glorified servant."
+	outfit = /datum/outfit/job/roguetown/shophand/basic
+	category_tags = list(CTAG_SHOPHAND)
+	subclass_stats = list(
+		STATKEY_SPD = 1,
+		STATKEY_INT = 1,
+		STATKEY_LCK = 1
+	)
+
+/datum/outfit/job/roguetown/shophand/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/blue
@@ -50,9 +78,6 @@
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("fortune", 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 	if(prob(33))
@@ -62,4 +87,4 @@
 	else //the legendary shopARM
 		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-		H.change_stat("strength", 1)
+		H.change_stat(STATKEY_STR, 1)

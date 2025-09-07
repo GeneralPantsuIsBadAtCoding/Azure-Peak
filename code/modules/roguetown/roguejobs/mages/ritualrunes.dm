@@ -557,10 +557,16 @@ GLOBAL_LIST(teleport_runes)
 	ritual_number = TRUE
 	icon_state = "summon"
 	invocation = "Rhegal vex'ultraa!"
+	max_integrity = 0
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	tier = 1
 	can_be_scribed = TRUE
 	var/summoning = FALSE
 	var/mob/living/simple_animal/summoned_mob
+
+/obj/effect/decal/cleanable/roguerune/arcyne/summoning/ex_act(severity, target)
+	return
+
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning/Destroy()
 	if(summoning)
 		REMOVE_TRAIT(summoned_mob, TRAIT_PACIFISM, TRAIT_GENERIC)	//can't kill while planar bound.

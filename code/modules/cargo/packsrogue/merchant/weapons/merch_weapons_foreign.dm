@@ -68,3 +68,8 @@
 	name = "Glaive"
 	cost = 120
 	contains = list(/obj/item/rogueweapon/halberd/glaive)
+
+/datum/supply_pack/rogue/merc_weapons/etruscanlongsword
+	name = "Etruscan Longsword"
+	cost = 409 // 409 because the Flos Duellatorum was written between 1400-1409 & Fiore is part of the reason frei gets an etruscan class
+	contains = list(/obj/item/rogueweapon/sword/long/etruscan)

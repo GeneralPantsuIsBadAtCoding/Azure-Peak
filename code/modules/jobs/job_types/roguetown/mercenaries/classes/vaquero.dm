@@ -5,8 +5,12 @@
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	cmode_music = 'sound/music/combat_vaquero.ogg'
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
-
+	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_DECEIVING_MEEKNESS, TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_SPD = 3,
+		STATKEY_INT = 2,
+		STATKEY_WIL = 1
+	)
 /datum/advclass/mercenary/vaquero/equipme(mob/living/carbon/human/H)
 	if(should_wear_femme_clothes(H))
 		horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled
@@ -73,12 +77,5 @@
 			backr = /obj/item/rogue/instrument/vocals
 		if("Flute")
 			backr = /obj/item/rogue/instrument/flute
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", 3)
 	H.grant_language(/datum/language/etruscan)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_DECEIVING_MEEKNESS, TRAIT_GENERIC)
-
 	H.merctype = 13

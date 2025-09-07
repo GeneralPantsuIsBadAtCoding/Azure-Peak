@@ -5,8 +5,9 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/vigilante
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_DECEIVING_MEEKNESS, TRAIT_PERFECT_TRACKER, TRAIT_HERESIARCH)
+	traits_applied = list(TRAIT_DECEIVING_MEEKNESS, TRAIT_PERFECT_TRACKER)
 	maximum_possible_slots = 1 // There can only be one. 
+	extra_context = "This class is best experienced without preparation."
 
 /datum/outfit/job/roguetown/wretch/vigilante/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/ //So your skull isn't caved in if you decide to wear a cool hat. 
@@ -56,9 +57,9 @@
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	cloak = /obj/item/clothing/cloak/thief_cloak
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
-	H.change_stat("strength", 2)
-	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_WIL, 3)
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //No crit resist - you can still get folded pretty easily if overwhelmed
 	wretch_select_bounty(H)
 
@@ -86,9 +87,9 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE) // Escape routes
 	H.adjust_skillrank(/datum/skill/craft/engineering, 3, TRUE) //Make your own tinkering tools and smokebombs
 	H.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE) //Just so your smelted ingots aren't ruined
-	H.change_stat("intelligence", 3) 
-	H.change_stat("endurance", 3)
-	H.change_stat("perception", 3)
+	H.change_stat(STATKEY_INT, 3) 
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_PER, 3)
 	wretch_select_bounty(H)
 
 /datum/outfit/job/roguetown/wretch/vigilante/proc/bullshit_equip(mob/living/carbon/human/H)
@@ -106,7 +107,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/magicians_brick) //Trust the plan. 
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // You LITERALLY get no weapon skills. You're throwing shit at enemies. 
-	H.change_stat("speed", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("intelligence", 4) //Hilarious
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_INT, 4) //Hilarious
 	wretch_select_bounty(H)

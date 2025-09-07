@@ -515,6 +515,16 @@
 	craftdiff = 4
 	sellprice = 14
 
+/datum/crafting_recipe/roguetown/sewing/nurseveil
+	name = "nurse's veil (1 fibers, 2 cloth)"
+	result = list(/obj/item/clothing/head/roguetown/veiled)
+	reqs = list(
+		/obj/item/natural/cloth = 2,
+		/obj/item/natural/fibers = 1
+	)
+	craftdiff = 2
+	sellprice = 5
+
 /datum/crafting_recipe/roguetown/sewing/archer
 	name = "archer cap (1 fibers, 2 cloth)"
 	result = list(/obj/item/clothing/head/roguetown/archercap)

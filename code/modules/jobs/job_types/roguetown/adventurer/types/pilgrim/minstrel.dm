@@ -6,6 +6,11 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/minstrel
 	
 	category_tags = list(CTAG_TOWNER)
+	traits_applied = list(TRAIT_EMPATH, TRAIT_GOODLOVER)
+	subclass_stats = list(
+		STATKEY_SPD = 1,
+		STATKEY_LCK = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/minstrel/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -33,7 +38,3 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	H.change_stat("speed", 1)  
-	H.change_stat("fortune", 1)
-	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)

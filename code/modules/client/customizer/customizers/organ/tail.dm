@@ -159,6 +159,9 @@
 		/datum/sprite_accessory/tail/rattlesnake,
 		/datum/sprite_accessory/tail/lynx,
 		/datum/sprite_accessory/tail/owl,
+		/datum/sprite_accessory/tail/forked_long,
+		/datum/sprite_accessory/tail/haven,
+		/datum/sprite_accessory/tail/swallow,
 		)
 
 /datum/customizer/organ/tail/anthro
@@ -228,6 +231,9 @@
 		/datum/sprite_accessory/tail/rattlesnake,
 		/datum/sprite_accessory/tail/lynx,
 		/datum/sprite_accessory/tail/owl,
+		/datum/sprite_accessory/tail/forked_long,
+		/datum/sprite_accessory/tail/haven,
+		/datum/sprite_accessory/tail/swallow,
 		)
 
 /datum/customizer/organ/tail/dullahan

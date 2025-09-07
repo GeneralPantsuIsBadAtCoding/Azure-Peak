@@ -14,7 +14,7 @@
 	STACON = 16
 	STASTR = 16
 	STASPD = 3
-	STAEND = 15
+	STAWIL = 15
 
 	defprob = 30
 	dodgetime = 15

@@ -188,10 +188,10 @@
 	var/finalprob = 40
 
 	//We take the highest and the lowest stats, clamped to 14.
-	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD), 14)
-	var/min_target = min(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD)
-	var/max_user = min(max(STASTR, STACON, STAEND, STAINT, STAPER, STASPD), 14)
-	var/min_user = min(STASTR, STACON, STAEND, STAINT, STAPER, STASPD)
+	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD), 14)
+	var/min_target = min(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD)
+	var/max_user = min(max(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD), 14)
+	var/min_user = min(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD)
 	
 	if(max_target > max_user)
 		finalprob -= max_target
@@ -217,8 +217,8 @@
 		if(istype(wear_ring, /obj/item/clothing/ring/duelist))
 			return TRUE
 	return FALSE
-
-/mob/living/carbon/human/proc/highest_ac_worn()
+/// Returns the highest AC worn, or held in hands.
+/mob/living/carbon/human/proc/highest_ac_worn(check_hands)
 	var/list/slots = list(wear_armor, wear_pants, wear_wrists, wear_shirt, gloves, head, shoes, wear_neck, wear_mask, wear_ring)
 	for(var/slot in slots)
 		if(isnull(slot) || !istype(slot, /obj/item/clothing))
@@ -230,6 +230,19 @@
 		if(C.armor_class)
 			if(C.armor_class > highest_ac)
 				highest_ac = C.armor_class
+				if(highest_ac == ARMOR_CLASS_HEAVY)
+					return highest_ac
+	if(check_hands)
+		var/mainh = get_active_held_item()
+		var/offh = get_inactive_held_item()
+		if(mainh && istype(mainh, /obj/item/clothing))
+			var/obj/item/clothing/CMH = mainh
+			if(CMH.armor_class > highest_ac)
+				highest_ac = CMH.armor_class 
+		if(offh && istype(offh, /obj/item/clothing))
+			var/obj/item/clothing/COH = offh
+			if(COH.armor_class > highest_ac)
+				highest_ac = COH.armor_class 
 	
 	return highest_ac
 

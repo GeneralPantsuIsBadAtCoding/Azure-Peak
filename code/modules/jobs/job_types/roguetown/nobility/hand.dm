@@ -19,6 +19,12 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
+	job_traits = list(TRAIT_NOBLE)
+	job_subclasses = list(
+		/datum/advclass/hand/hand,
+		/datum/advclass/hand/spymaster,
+		/datum/advclass/hand/advisor
+	)
 
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -53,6 +59,12 @@
 	outfit = /datum/outfit/job/roguetown/hand/handclassic
 
 	category_tags = list(CTAG_HAND)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_HEAVYARMOR)
+	subclass_stats = list(
+		STATKEY_PER = 3,
+		STATKEY_INT = 3,
+		STATKEY_STR = 2
+	)
 
 //Classical hand start - same as before, nothing changed. 
 /datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
@@ -78,12 +90,6 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("perception", 3)
-	H.change_stat("intelligence", 3)
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
 /datum/advclass/hand/spymaster
 	name = "Spymaster"
@@ -91,6 +97,13 @@
 	outfit = /datum/outfit/job/roguetown/hand/spymaster
 
 	category_tags = list(CTAG_HAND)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)
+	subclass_stats = list(
+		STATKEY_SPD = 3,
+		STATKEY_PER = 2,
+		STATKEY_INT = 2,
+		STATKEY_STR = -1,
+	)
 
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
@@ -131,15 +144,7 @@
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE) // not like they're gonna break into the vault.
-	H.change_stat("strength", -1)
-	H.change_stat("perception", 2)
-	H.change_stat("speed", 3)
-	H.change_stat("intelligence", 2)
 	H.grant_language(/datum/language/thievescant)
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
 
 /datum/advclass/hand/advisor
 	name = "Advisor"
@@ -147,6 +152,11 @@
 	outfit = /datum/outfit/job/roguetown/hand/advisor
 
 	category_tags = list(CTAG_HAND)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T2)
+	subclass_stats = list(
+		STATKEY_INT = 4,
+		STATKEY_PER = 3,
+	)
 
 //Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors. 
 /datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
@@ -174,19 +184,14 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H.change_stat("intelligence", 4)
-	H.change_stat("perception", 3)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 	if(H.mind)
 		H.mind.adjust_spellpoints(15)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	if(H.age == AGE_OLD)
-		H.change_stat("speed", -1)
-		H.change_stat("strength", -1)
-		H.change_stat("intelligence", 1)
-		H.change_stat("perception", 1)
+		H.change_stat(STATKEY_SPD, -1)
+		H.change_stat(STATKEY_STR, -1)
+		H.change_stat(STATKEY_INT, 1)
+		H.change_stat(STATKEY_PER, 1)
 		H.mind?.adjust_spellpoints(3)
 
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 

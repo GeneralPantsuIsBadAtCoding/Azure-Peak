@@ -34,7 +34,7 @@
 	movement_type = UNSTOPPABLE
 	light_color = LIGHT_COLOR_WHITE
 	damage = 40
-	npc_damage_mult = 2 // Good news it is not a trap to shoot at NPC anymore
+	npc_simple_damage_mult = 2 // Good news it is not a trap to shoot at NPC anymore
 	damage_type = BURN
 	accuracy = 40 // Base accuracy is lower for burn projectiles because they bypass armor
 	nodamage = FALSE

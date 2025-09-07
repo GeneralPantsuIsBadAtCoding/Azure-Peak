@@ -194,13 +194,9 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 
 
-/obj/item/rogueweapon/flail/peasantwarflail/matthios/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_COMMIE))
-		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCHING THIS FLAIL, CEASE OR BE PUNISHED!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/rogueweapon/flail/peasantwarflail/matthios/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_COMMIE, "FLAIL")
 
 /obj/item/rogueweapon/flail/militia
 	name = "militia flail"

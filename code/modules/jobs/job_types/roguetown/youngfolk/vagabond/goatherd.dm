@@ -6,6 +6,11 @@
 	outfit = /datum/outfit/job/roguetown/vagabond/goatherd
 	category_tags = list(CTAG_VAGABOND)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
+	subclass_stats = list(
+		STATKEY_WIL = 2,
+		STATKEY_INT = -1,
+		STATKEY_CON = -1
+	)
 
 /datum/outfit/job/roguetown/vagabond/goatherd/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -32,9 +37,6 @@
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/carpentry, 3, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-		H.change_stat("intelligence", -1)
-		H.change_stat("constitution", -1)
-		H.change_stat("endurance", 2)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/goat/tame/Initialize()
 	..()

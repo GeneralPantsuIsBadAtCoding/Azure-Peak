@@ -50,7 +50,7 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.5
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
@@ -133,7 +133,7 @@
 	name = "arrow"
 	damage = 20
 	damage_type = BRUTE
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	armor_penetration = 10
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -174,7 +174,7 @@
 	damage = 40
 	armor_penetration = 20
 	embedchance = 30
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/arrow/iron/aalloy
 	name = "decrepit broadhead arrow"
@@ -191,7 +191,7 @@
 	armor_penetration = 45
 	embedchance = 80
 	speed = 0.6
-	npc_damage_mult = 3
+	npc_simple_damage_mult = 3
 
 /obj/projectile/bullet/reusable/arrow/steel/paalloy
 	name = "decrepit bodkin arrow"
@@ -552,7 +552,7 @@
 	throwforce = 20
 	force = 9
 	color = "#bb9696"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // Override iron inherit
 	anvilrepair = null
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
@@ -565,13 +565,13 @@
 	throwforce = 28							//Equal to steel knife BUT this has peircing damage type so..
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
-	smeltresult = /obj/item/ingot/steel
+	smeltresult = null // 1 Ingot = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
 	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // 1 Ingots = 2 Javelin s
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"
@@ -673,7 +673,7 @@
 	damage = 25
 	damage_type = BRUTE
 	armor_penetration = 0
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	range = 15

@@ -131,3 +131,21 @@
 	req_table = TRUE
 	craftdiff = 1
 	skillcraft = /datum/skill/craft/engineering
+
+/datum/crafting_recipe/roguetown/structure/pressure_plate
+	name = "pressure plate"
+	result = /obj/structure/pressure_plate
+	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/structure/activator
+	name = "engineer's launcher"
+	result = /obj/structure/englauncher
+	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 4, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4

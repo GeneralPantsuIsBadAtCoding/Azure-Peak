@@ -290,7 +290,7 @@
 		return
 	var/mob/living/carbon/wise = user
 	if(slot == SLOT_HEAD)
-		wise.change_stat("intelligence", 2, "wisehat")
+		wise.change_stat(STATKEY_INT, 2, "wisehat")
 		to_chat(wise, span_green("I gain wisdom."))
 
 /obj/item/clothing/head/roguetown/wizhat/gen/wise/dropped(mob/user)
@@ -299,7 +299,7 @@
 		return
 	var/mob/living/carbon/human/wise = user
 	if(wise.get_item_by_slot(SLOT_HEAD) == src)
-		wise.change_stat("intelligence", -2, "wisehat")
+		wise.change_stat(STATKEY_INT, -2, "wisehat")
 		to_chat(wise, span_red("I lose wisdom."))
 
 /obj/item/clothing/head/roguetown/shawl
@@ -376,3 +376,40 @@
 	smeltresult = null
 	sewrepair = TRUE
 	blocksound = SOFTHIT
+
+/obj/item/clothing/head/roguetown/veiled
+	name = "nurse's veil"
+	desc = "A chirurgeon's bonnet, veiled with petal-stuffed linen. The stitchwork is often donned by the likes of wandering plague doctors and clerics; especially, those who're beholden to Pestra and Psydon."
+	icon_state = "veil"
+	item_state = "veil"
+	detail_tag = "_detail"
+	color = CLOTHING_WHITE
+	detail_color = CLOTHING_WHITE
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT|HIDEEARS
+	flags_cover = HEADCOVERSEYES
+	body_parts_covered = HEAD|HAIR|EARS|NECK|MOUTH|NOSE|EYES
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
+	blocksound = SOFTHIT
+	max_integrity = 100
+	sewrepair = TRUE
+
+/obj/item/clothing/head/roguetown/veiled/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/veiled/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/adjustable_clothing, (NECK|HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/foley/equip/cloak (3).ogg', null, (UPD_HEAD|UPD_MASK))	
+
+/obj/item/clothing/head/roguetown/veiled/loudmouth
+	name = "loudmouth's headcover"
+	desc = "Said to be worn by only the loudest and proudest. The mask is adjustable."
+	icon_state = "loudmouth"
+	item_state = "loudmouth"
+	color = CLOTHING_RED

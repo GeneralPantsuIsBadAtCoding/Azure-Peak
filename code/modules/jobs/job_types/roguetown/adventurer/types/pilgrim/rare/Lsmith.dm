@@ -11,6 +11,14 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_LCK = 4,
+		STATKEY_STR = 2,
+		STATKEY_INT = 2,
+		STATKEY_WIL = 2,
+		STATKEY_CON = 1,
+		STATKEY_PER = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/masterblacksmith/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -50,9 +58,6 @@
 		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("speed", -1)
-	H.change_stat("fortune", 3)
 	if(H.pronouns == HE_HIM)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
