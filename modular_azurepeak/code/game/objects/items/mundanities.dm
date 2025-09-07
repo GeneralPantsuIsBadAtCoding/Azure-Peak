@@ -207,9 +207,9 @@
 /obj/item/reagent_containers/food/snacks/canned/update_icon()
 
 	if(can_sealed == 1)
-		icon_state = "[initial(icon_state)]_[sheathed.sheathe_icon]"
+		icon_state = "acan_s"
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "acan"
 
 
 /obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
@@ -224,4 +224,4 @@
 		return
 
 	if(src.bitecount == 6) //if it empty, throw up da empty sprite
-	icon_state =
+	icon_state = "acan_e"
