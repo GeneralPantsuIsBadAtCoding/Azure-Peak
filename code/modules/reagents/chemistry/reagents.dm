@@ -72,9 +72,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 			record_featured_object_stat(FEATURED_STATS_DRINKS, name, adjusted_metabolization_rate)
 			if(istype(src, /datum/reagent/consumable/ethanol))
 				record_featured_stat(FEATURED_STATS_ALCOHOLICS, M, adjusted_metabolization_rate)
-				GLOB.azure_round_stats[STATS_ALCOHOL_CONSUMED] += metabolization_rate
+				record_round_statistic(STATS_ALCOHOL_CONSUMED, metabolization_rate)
 			if(istype(src, /datum/reagent/water))
-				GLOB.azure_round_stats[STATS_WATER_CONSUMED] += metabolization_rate
+				record_round_statistic(STATS_WATER_CONSUMED, metabolization_rate)
 		if(istype(src, /datum/reagent/consumable/ethanol) && has_world_trait(/datum/world_trait/baotha_revelry))
 			adjusted_metabolization_rate = adjusted_metabolization_rate * 0.5
 		holder.remove_reagent(type, adjusted_metabolization_rate) //By default it slowly disappears.

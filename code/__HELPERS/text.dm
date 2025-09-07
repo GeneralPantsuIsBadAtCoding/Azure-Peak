@@ -93,6 +93,14 @@
 		return ""
 	return sanitize(t)
 
+/// Removes color tags of the text while preserving any other
+/proc/remove_color_tags(html_text)
+    var/output = html_text
+    output = replacetext(output, regex("<font\[^>\]*color=\[^>\]*>", "g"), "")
+    output = replacetext(output, "</font>", "")
+    output = replacetext(output, regex("color=\[^ >\]*", "g"), "")
+    return output
+
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(t,list/repl_chars = null)
 	return html_encode(sanitize_simple(t,repl_chars))

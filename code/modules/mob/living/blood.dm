@@ -187,7 +187,7 @@
 		if(HAS_TRAIT(src, TRAIT_CRITICAL_WEAKNESS))
 			amt = amt * 2
 	blood_volume = max(blood_volume - amt, 0)
-	GLOB.azure_round_stats[STATS_BLOOD_SPILT] += amt
+	record_round_statistic(STATS_BLOOD_SPILT, amt)
 	if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
 		add_drip_floor(src.loc, amt)
 	var/vol2use

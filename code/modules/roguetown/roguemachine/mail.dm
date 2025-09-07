@@ -245,7 +245,7 @@
 				visible_message(span_warning("[user] sends something."))
 				budget2change(2, user, "MARQUE")
 				qdel(I)
-				GLOB.azure_round_stats[STATS_MARQUES_MADE] += 2
+				record_round_statistic(STATS_MARQUES_MADE, 2)
 				playsound(loc, 'sound/misc/otavanlament.ogg', 100, FALSE, -1)
 				playsound(loc, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)	
 			else
@@ -332,12 +332,12 @@
 							if(I.waxed)
 								bonuses += 2
 							budget2change(bonuses, user, "MARQUE")
-							GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
+							record_round_statistic(STATS_MARQUES_MADE, bonuses)
 						if(I.paired && !indexed && !correct && !cursedblood)
 							if(I.waxed)
 								bonuses += 2	
 						budget2change(bonuses, user, "MARQUE")
-						GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
+						record_round_statistic(STATS_MARQUES_MADE, bonuses)
 					else
 						if(I.paired && !indexed && !cursedblood)
 							I.marquevalue += bonuses
@@ -347,7 +347,7 @@
 						if(accused)	
 							I.marquevalue -= 4
 						budget2change(I.marquevalue, user, "MARQUE")
-						GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+						record_round_statistic(STATS_MARQUES_MADE, I.marquevalue)
 					if(I.paired)	
 						qdel(I.paired)	
 					qdel(I)
@@ -368,7 +368,7 @@
 				message_admins("INQ ARRIVAL: [user.real_name] ([user.ckey]) has just arrived as a [user.job], earning [I.marquevalue] Marques.")
 				log_game("INQ ARRIVAL: [user.real_name] ([user.ckey]) has just arrived as a [user.job], earning [I.marquevalue] Marques.")
 				budget2change(I.marquevalue, user, "MARQUE")
-				GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+				record_round_statistic(STATS_MARQUES_MADE, I.marquevalue)
 				qdel(I)
 				visible_message(span_warning("[user] sends something."))
 				playsound(loc, 'sound/misc/otavasent.ogg', 100, FALSE, -1)
@@ -431,7 +431,7 @@
 						if(I.waxed)
 							bonuses += 2
 						budget2change(bonuses, user, "MARQUE")
-						GLOB.azure_round_stats[STATS_MARQUES_MADE] += bonuses
+						record_round_statistic(STATS_MARQUES_MADE, bonuses)
 					if(no || selfreport || stopfarming)		
 						qdel(I.paired)
 						qdel(I)
@@ -454,12 +454,12 @@
 						if(!indexed && !correct && !cursedblood)
 							(I.marquevalue -= 4) += bonuses 
 							budget2change(I.marquevalue, user, "MARQUE")
-							GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
-						if(correct)	
+							record_round_statistic(STATS_MARQUES_MADE, I.marquevalue)
+						if(correct)
 							if(!indexed)
 								I.marquevalue += bonuses
 							budget2change(I.marquevalue, user, "MARQUE")
-							GLOB.azure_round_stats[STATS_MARQUES_MADE] += I.marquevalue
+							record_round_statistic(STATS_MARQUES_MADE, I.marquevalue)
 						qdel(I.paired)
 						qdel(I)
 						visible_message(span_warning("[user] sends something."))

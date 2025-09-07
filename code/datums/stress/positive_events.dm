@@ -108,6 +108,12 @@
 	desc = span_blue("Relaxing.")
 	timer = 1 MINUTES
 
+/datum/stressevent/bathwater/on_apply(mob/living/user)
+	. = ..()
+	if(user.client)
+		record_round_statistic(STATS_BATHS_TAKEN)
+		// SEND_SIGNAL(user, COMSIG_BATH_TAKEN)
+
 /datum/stressevent/beautiful
 	stressadd = -2
 	desc = span_green("Their face is a work of art!")

@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	var/memory
 
-	var/assigned_role
+	var/datum/job/assigned_role
 	var/special_role
 	var/list/restricted_roles = list()
 

@@ -145,7 +145,7 @@
 			modifier = 1.3
 			I.polished = 4
 			I.AddComponent(/datum/component/metal_glint)
-			GLOB.azure_round_stats[STATS_MASTERWORKS_FORGED]++
+			record_round_statistic(STATS_MASTERWORKS_FORGED)
 
 	if(!modifier) // Sanity.
 		return

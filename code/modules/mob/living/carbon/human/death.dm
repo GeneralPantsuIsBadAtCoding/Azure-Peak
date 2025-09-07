@@ -58,23 +58,23 @@
 				return
 
 	if(client || mind)
-		GLOB.azure_round_stats[STATS_DEATHS]++
+		record_round_statistic(STATS_DEATHS)
 		var/area_of_death = lowertext(get_area_name(src))
 		if(area_of_death == "wilderness")
-			GLOB.azure_round_stats[STATS_FOREST_DEATHS]++
+			record_round_statistic(STATS_FOREST_DEATHS)
 		if(is_noble())
-			GLOB.azure_round_stats[STATS_NOBLE_DEATHS]++
+			record_round_statistic(STATS_NOBLE_DEATHS)
 		if(ishumannorthern(src))
-			GLOB.azure_round_stats[STATS_HUMEN_DEATHS]++
+			record_round_statistic(STATS_HUMEN_DEATHS)
 		if(mind)
 			if(mind.assigned_role in GLOB.church_positions)
-				GLOB.azure_round_stats[STATS_CLERGY_DEATHS]++
+				record_round_statistic(STATS_CLERGY_DEATHS)
 			if(mind.has_antag_datum(/datum/antagonist/vampire))
-				GLOB.azure_round_stats[STATS_VAMPIRES_KILLED]++
+				record_round_statistic(STATS_VAMPIRES_KILLED)
 			if(mind.has_antag_datum(/datum/antagonist/zombie))
-				GLOB.azure_round_stats[STATS_DEADITES_KILLED]++
+				record_round_statistic(STATS_DEADITES_KILLED)
 			if(mind.has_antag_datum(/datum/antagonist/skeleton) || mind.has_antag_datum(/datum/antagonist/lich))
-				GLOB.azure_round_stats[STATS_SKELETONS_KILLED]++
+				record_round_statistic(STATS_SKELETONS_KILLED)
 
 	if(!gibbed)
 		/*
@@ -161,7 +161,7 @@
 			removeomen(OMEN_NOPRIEST)
 
 /mob/living/carbon/human/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
-	GLOB.azure_round_stats[STATS_PEOPLE_GIBBED]++
+	record_round_statistic(STATS_PEOPLE_GIBBED)
 	for(var/mob/living/carbon/human/CA in viewers(7, src))
 		if(CA != src && !HAS_TRAIT(CA, TRAIT_BLIND))
 			if(HAS_TRAIT(CA, TRAIT_STEELHEARTED))
