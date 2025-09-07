@@ -145,11 +145,18 @@
 // food cans
 
 /obj/item/reagent_containers/food/snacks/canned
-	name = "saltpot"
-	desc = "Corrugated tinplate concealing tinfood. "
+	name = "corrugated tinpot"
+	desc = "Corrugated tinplate concealing tinfood."
 	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
 	icon_state = "acan"
+	sellprice = 120
 	var/can_sealed = 1
+	var/menu_item = 1
+	tastes = list("salty mush" = 1)
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
+	bitesize = 6
+	rotprocess = null
 
 
 /obj/item/reagent_containers/food/snacks/canned/proc/randomize_insides() //where da magyck happens
@@ -158,8 +165,17 @@
 		return
 
 	if(can_sealed == 1)
+		menu_item = rand(1,2,3,4,5) //get the meal
 		name = "saltpot"
-		desc =
+		desc += " It has been opened, revealing a salty-smelling mush on the inside.
+		tastes = pick("cherries and syrup", "vegetables and eggs", "frybird
+		switch(menu_item)
+			if(1)
+				list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+				tastes = list("bitter syrup" = 2, "bad mushrooms" = 1)
+			if(2)
+				list(/datum/reagent/consumable/nutriment = 8)
+				tastes = list("bitter syrup" = 2, "bad mushrooms" = 1)
 
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
@@ -171,11 +187,12 @@
 				to_chat(user, span_warning("The blade is too big!."))
 				return FALSE
 
-			playsound(src.loc, 'sound/items/wood_sharpen.ogg', 75, TRUE)
+			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
+			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,100, target = src))
 				src.can_sealed = 0
 				update_icon()
-				randomize_insides
+				randomize_insides()
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 
@@ -186,6 +203,13 @@
 		to_chat(user, span_warning("I can't open \the [src] with this..."))
 		return FALSE
 
+
+/obj/item/reagent_containers/food/snacks/canned/update_icon()
+
+	if(can_sealed == 1)
+		icon_state = "[initial(icon_state)]_[sheathed.sheathe_icon]"
+	else
+		icon_state = "[initial(icon_state)]"
 
 
 /obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
@@ -198,4 +222,6 @@
 
 	if(src.can_sealed == 1)
 		return
-	..()
+
+	if(src.bitecount == 6) //if it empty, throw up da empty sprite
+	icon_state =
