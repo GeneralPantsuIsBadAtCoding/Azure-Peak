@@ -170,10 +170,10 @@
 		desc += " It has been opened, revealing a salty-smelling mush on the inside."
 		switch(menu_item)
 			if(1)
-				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
-				tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
+				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+				src.tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 			if(2)
-				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
 				tastes = list("overpoweringly salty rous meat" = 2)
 			if(3)
 				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
@@ -187,18 +187,18 @@
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
+	if(src.can_sealed == 0)
+		to_chat(user, span_warning("It's already open!"))
+
 	if(src.can_sealed == 1)
 
 		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
-			if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/cleaver))
-				to_chat(user, span_warning("The blade is too big!."))
-				return FALSE
 			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,5, target = src))
 				src.can_sealed = 0
 				update_icon()
-				randomize_insides()
+				src.randomize_insides()
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 			to_chat(user, span_notice("I start messily bashing the can open..."))
@@ -206,7 +206,7 @@
 			if(do_after(user,7, target = src))
 				src.can_sealed = 0
 				update_icon()
-				randomize_insides()
+				src.randomize_insides()
 
 		to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 	else
