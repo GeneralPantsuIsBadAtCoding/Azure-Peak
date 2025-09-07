@@ -948,7 +948,7 @@
 /datum/status_effect/buff/pacify
 	id = "pacify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/pacify
-	duration = 30 MINUTES
+	duration = 5 MINUTES
 
 /datum/status_effect/buff/pacify/on_apply()
 	. = ..()
