@@ -216,7 +216,7 @@
 	data += "</div></div>"
 
 	src.mob << browse(null, "window=vanderlin_influences")
-	var/datum/browser/popup = new(src.mob, "azure_roundend", "<center>The Chronicle</center>", 1075, 800)
+	var/datum/browser/popup = new(src.mob, "azure_roundend", "<center>The Chronicle</center>", 1325, 875)
 	popup.set_content(data.Join())
 	popup.open()
 
@@ -316,7 +316,7 @@
 			data += "<div style='display: table-cell; width: 1px; background-color: #444; height: 100%;'></div>"
 
 			// Prayers Column (50%)
-			data += "<div style='display: table-cell; width: 33%; vertical-align: top; padding: 0 15px;'>"
+			data += "<div style='display: table-cell; width: 50%; vertical-align: top; padding: 0 15px;'>"
 			data += "<div style='color: #e6b327; font-size: 1.2em; font-weight: bold; text-align: center; margin-bottom: 10px;'>PRAYERS</div>"
 			data += "<div style='border-top: 1px solid #e6b327; width: 80%; margin: 0 auto 15px auto;'></div>"
 
@@ -503,7 +503,7 @@
 						if(mind.special_role)
 							jobtext = " the <b>[mind.special_role]</b>"
 						else if(mind.assigned_role && mind.current)
-							jobtext = " the <b>[mind.assigned_role.get_informed_title(mind.current)]</b>"
+							jobtext = " the <b>[mind.assigned_role]</b>"
 						var/usede = get_display_ckey(mind.key)
 						data += "<b>[usede]</b> was <span style='color:#e6a962'><b>[mind.name]</b>[jobtext]</span> and "
 						if(mind.current.stat == DEAD)
@@ -579,7 +579,7 @@
 							if(member.special_role)
 								jobtext = " the <b>[member.special_role]</b>"
 							else if(member.assigned_role && member.current)
-								jobtext = " the <b>[member.assigned_role.get_informed_title(member.current)]</b>"
+								jobtext = " the <b>[member.assigned_role]</b>"
 							var/usede = get_display_ckey(member.key)
 							data += "<b>[usede]</b> was <span style='color:#e6a962'><b>[member.name]</b>[jobtext]</span> and "
 							if(member.current.stat == DEAD)
@@ -626,7 +626,7 @@
 						if(A.owner.special_role)
 							jobtext = " the <b>[A.owner.special_role]</b>"
 						else if(A.owner.assigned_role && A.owner.current)
-							jobtext = " the <b>[A.owner.assigned_role.get_informed_title(A.owner.current)]</b>"
+							jobtext = " the <b>[A.owner.assigned_role]</b>"
 						var/usede = get_display_ckey(A.owner.key)
 						data += "<b>[usede]</b> was <span style='color:#e6a962'><b>[A.owner.name]</b>[jobtext]</span> and "
 						if(A.owner.current.stat == DEAD)
@@ -776,7 +776,7 @@
 	data += "</div>"
 
 	src.mob << browse(null, "window=vanderlin_influences")
-	var/datum/browser/popup = new(src.mob, "azure_roundend", "<center>The Chronicle</center>", 1075, 800)
+	var/datum/browser/popup = new(src.mob, "azure_roundend", "<center>The Chronicle</center>", 1325, 875)
 	popup.set_content(data.Join())
 	popup.open()
 
@@ -802,11 +802,13 @@
 
 	// Chronicle sub-tabs
 	data += "<div style='width: 100%; text-align: center; margin: 15px 0;'>"
+	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=Gods' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #4a4a5a, #2a2a3a); border: 1px solid #6a6a7a; border-bottom: 2px solid #9a9aaa; color: #e0e0f0; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>GODS</a>"
 	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=Messages' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #3a2a1a, #1a120a); border: 1px solid #5a4a3a; border-bottom: 2px solid #8a7a6a; color: #d4c4b4; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>WHISPERS</a>"
 	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=The Realm' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #2a2a3a, #0a0a1a); border: 1px solid #4a4a5a; border-bottom: 2px solid #7a7a8a; color: #c4c4d4; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>THE REALM</a>"
 	data += "<a href='byond://?src=[REF(src)];viewstats=1' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #3a2a0a, #1a1200); border: 1px solid #5a4a1a; border-bottom: 2px solid #8a7a3a; color: #dec97a; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>STATISTICS</a>"
 	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=Heroes' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #3a4a5a, #1a1b2a); border: 1px solid #6a7b8a; border-bottom: 2px solid #8f9caa; color: #c0c0d0; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>HEROES</a>"
 	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=Villains' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #3a1a1a, #1a0a0a); border: 1px solid #5a3a3a; border-bottom: 2px solid #8a6a6a; color: #d4b4b4; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>VILLAINS</a>"
+	data += "<a href='byond://?src=[REF(src)];viewchronicle=1;chronicletab=Outlaws' style='display: inline-block; width: 100px; padding: 6px 10px; margin: 0 5px; background: linear-gradient(to bottom, #5a3a0a, #3a1a0a); border: 1px solid #7a5a2a; border-bottom: 2px solid #aa8a5a; color: #ffd494; font-weight: bold; text-decoration: none; border-radius: 2px; font-size: 0.8em; box-shadow: 0 1px 3px rgba(0,0,0,0.5);'>OUTLAWS</a>"
 	data += "</div>"
 
 	// Content

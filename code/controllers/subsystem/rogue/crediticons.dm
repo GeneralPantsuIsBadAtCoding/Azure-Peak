@@ -33,10 +33,10 @@ SUBSYSTEM_DEF(crediticons)
 
 	var/credit_name = "[target.real_name]"
 	if(target.mind.assigned_role)
+		// We don't have their job refactor yet
 		var/datum/job/job = target.mind.assigned_role
-		var/used_title = job.get_informed_title(target)
-		if(used_title)
-			credit_name = "[credit_name]\nthe [used_title]"
+		if(job)
+			credit_name = "[credit_name]\nthe [job]"
 
 	if(!GLOB.credits_icons[credit_name]?["icon"])
 		return null
