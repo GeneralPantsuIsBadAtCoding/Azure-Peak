@@ -46,6 +46,7 @@ SUBSYSTEM_DEF(treasury)
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(1000, 2000)
+	force_set_round_statistic(STATS_STARTING_TREASURY, treasury_value)
 
 	for(var/path in subtypesof(/datum/roguestock/bounty))
 		var/datum/D = new path
@@ -76,6 +77,7 @@ SUBSYSTEM_DEF(treasury)
 			if(istype(VB))
 				VB.update_icon()
 		give_money_treasury(RURAL_TAX, "Rural Tax Collection") //Give the King's purse to the treasury
+		record_round_statistic(STATS_RURAL_TAXES_COLLECTED, RURAL_TAX)
 		total_rural_tax += RURAL_TAX
 		auto_export()
 

@@ -57,6 +57,7 @@
 	if(istype(P, /obj/item/roguecoin/inqcoin))	
 		return	
 	if(istype(P, /obj/item/roguecoin))
+		record_round_statistic(STATS_MAMMONS_DEPOSITED, P.get_real_price())
 		SStreasury.give_money_treasury(P.get_real_price(), "NERVE MASTER deposit")
 		qdel(P)
 		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)

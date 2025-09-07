@@ -1069,6 +1069,7 @@ SUBSYSTEM_DEF(gamemode)
 			if(listed.name != event_name)
 				continue
 			listed.occurrences++
+			listed.last_round_occurrences++
 
 /// Compares influence of all storytellers and sets a new storyteller with a highest influence
 /datum/controller/subsystem/gamemode/proc/pick_most_influential(roundstart = FALSE)
@@ -1163,6 +1164,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	for(var/stat_name in statistics_to_clear)
 		force_set_round_statistic(stat_name, 0)
+
+	var/total_wealth = 0
 
 	var/highest_strength = -1
 	var/highest_intelligence = -1
@@ -1299,6 +1302,7 @@ SUBSYSTEM_DEF(gamemode)
 				set_chronicle_stat(CHRONICLE_STATS_FASTEST_PERSON, human_mob)
 
 			var/wealth = get_mammons_in_atom(human_mob)
+			total_wealth += wealth
 			if(wealth > highest_wealth)
 				highest_wealth = wealth
 				set_chronicle_stat(CHRONICLE_STATS_RICHEST_PERSON, human_mob)
@@ -1324,6 +1328,8 @@ SUBSYSTEM_DEF(gamemode)
 				lowest_luck = human_mob.STALUC
 				set_chronicle_stat(CHRONICLE_STATS_UNLUCKIEST_PERSON, human_mob)
 
+			force_set_round_statistic(STATS_MAMMONS_HELD, total_wealth)
+
 /// Returns total follower influence for the given storyteller
 /datum/controller/subsystem/gamemode/proc/get_follower_influence(datum/storyteller/chosen_storyteller)
 	var/datum/storyteller/initialized_storyteller = storytellers[chosen_storyteller]
@@ -1346,6 +1352,8 @@ SUBSYSTEM_DEF(gamemode)
 			total_influence += max(min_mod, base_mod - (i - diminish_threshold))
 		else
 			total_influence += max(second_min_mod, base_mod - (i - diminish_threshold))
+
+	total_influence = total_influence * initialized_storyteller.influence_modifier
 
 	return total_influence
 
