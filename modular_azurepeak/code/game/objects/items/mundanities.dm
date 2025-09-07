@@ -154,7 +154,7 @@
 	var/menu_item = 1
 	tastes = list("salty mush" = 1)
 	bitesize = 1
-	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	bitesize = 6
 	rotprocess = null
 
@@ -171,33 +171,44 @@
 		tastes = pick("cherries and syrup", "vegetables and eggs", "frybird
 		switch(menu_item)
 			if(1)
-				list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
-				tastes = list("bitter syrup" = 2, "bad mushrooms" = 1)
+				list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+				tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 			if(2)
-				list(/datum/reagent/consumable/nutriment = 8)
-				tastes = list("bitter syrup" = 2, "bad mushrooms" = 1)
-
+				list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+				tastes = list("overpoweringly salty rous meat" = 2)
+			if(3)
+				list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+				tastes = list("cabbit meat" = 1, "thin stew" = 1)
+			if(4)
+				list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+				tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
+			if(5)
+				list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+				tastes = list("hearty stew" = 1, "vegetables" = 1)
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
 	if(src.can_sealed == 1)
-		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
 
+		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
 			if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/cleaver))
 				to_chat(user, span_warning("The blade is too big!."))
 				return FALSE
-
 			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
-			if(do_after(user,100, target = src))
+			if(do_after(user,5, target = src))
 				src.can_sealed = 0
 				update_icon()
 				randomize_insides()
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
+			to_chat(user, span_notice("I start messily bashing the can open..."))
+			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
+			if(do_after(user,7, target = src))
+				src.can_sealed = 0
+				update_icon()
+				randomize_insides()
 
-
-		randomize_insides()
 		to_chat(user, span_notice("The scent of salty food suddenly hits my nose as I tear the flimsy top off of the saltpot."))
 	else
 		to_chat(user, span_warning("I can't open \the [src] with this..."))
