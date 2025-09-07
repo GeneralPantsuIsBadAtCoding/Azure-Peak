@@ -5,9 +5,9 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/steppesman
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
 	cmode_music = 'sound/music/combat_steppe.ogg'
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled
+	extra_context = "This subclass has 4 loadouts with various stats, skills & equipment."
 
 /datum/outfit/job/roguetown/mercenary/steppesman/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -69,7 +69,6 @@
 			H.change_stat(STATKEY_CON, 2)
 			H.change_stat(STATKEY_SPD, 1)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/evil() 	//Fits in my head all too well.
 			var/masks = list(
 			"Humen" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
@@ -108,7 +107,6 @@
 			H.change_stat(STATKEY_PER, 2)
 			H.change_stat(STATKEY_SPD, -2)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
 			var/masks = list(
 			"Humen" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
@@ -171,7 +169,6 @@
 			H.change_stat(STATKEY_WIL, 1)
 			H.change_stat(STATKEY_SPD, 2)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()		//Semi-crazed warrior vibe.
 		

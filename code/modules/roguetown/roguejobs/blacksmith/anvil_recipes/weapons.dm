@@ -776,6 +776,13 @@
 	created_item = /obj/item/rogueweapon/spear/bronze
 	craftdiff = 0
 
+/datum/anvil_recipe/weapons/bronze/trident
+	name = "Trident, Bronze (+1 Steel, +1 Iron, +1 Small Log)"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/iron, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/trident
+	craftdiff = 4
+
 /datum/anvil_recipe/weapons/bronze/bronzeknuckle
 	name = "Knuckles, Bronze"
 	req_bar = /obj/item/ingot/bronze

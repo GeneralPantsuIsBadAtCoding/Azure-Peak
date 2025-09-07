@@ -35,14 +35,43 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
 	virtue_restrictions = list(/datum/virtue/utility/noble)
+	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER)
+	advclass_cat_rolls = list(CTAG_BISHOP = 2)
+	job_subclasses = list(
+		/datum/advclass/bishop
+	)
+
+/datum/job/roguetown/priest/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/bishop
+	name = "Bishop"
+	tutorial = "The Divine is all that matters in a world of the immoral. \
+	The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
+	It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
+	outfit = /datum/outfit/job/roguetown/priest/basic
+	category_tags = list(CTAG_BISHOP)
+	subclass_stats = list(
+		STATKEY_INT = 4,
+		STATKEY_WIL = 2,
+		STATKEY_STR = -1,
+		STATKEY_CON = -1,
+		STATKEY_SPD = -1
+	)
 
 /datum/outfit/job/roguetown/priest
 	job_bitflag = BITFLAG_CHURCH
 	has_loadout = TRUE
 	allowed_patrons = list(/datum/patron/divine/undivided)	//We lock this cus head of church, acktully
 
-/datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/priest/basic/pre_equip(mob/living/carbon/human/H)
 	..()
+	H.adjust_blindness(-3)
 	neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 	head = /obj/item/clothing/head/roguetown/priestmask
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
@@ -61,9 +90,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/obj/item/rogueweapon/huntingknife/idagger/steel/holysee = 1,	//Unique knife from the Holy See
 		/obj/item/rogueweapon/scabbard/sheath = 1
 	)
-	ADD_TRAIT(H, TRAIT_CHOSEN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
@@ -78,11 +104,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.grant_language(/datum/language/grenzelhoftian)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-	H.change_stat(STATKEY_STR, -1)
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_CON, -1)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_SPD, -1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 
@@ -95,7 +116,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic_priest)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/revive)
 
-/datum/outfit/job/roguetown/priest/choose_loadout(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/priest/basic/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	var/t3_count = 2
 	var/list/t4 = list()

@@ -4,8 +4,13 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/plaguebearer
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_CICERONE, TRAIT_HERESIARCH, TRAIT_NOSTINK, TRAIT_MEDICINE_EXPERT)
+	traits_applied = list( TRAIT_CICERONE, TRAIT_NOSTINK, TRAIT_MEDICINE_EXPERT)
 	maximum_possible_slots = 1 //They spawn with killer's ice lol I'm limiting this shit 
+	subclass_stats = list(
+		STATKEY_INT = 4,
+		STATKEY_PER = 3,
+		STATKEY_CON = 2
+	)
 
 /datum/outfit/job/roguetown/wretch/plaguebearer/pre_equip(mob/living/carbon/human/H)
 	head = /obj/item/clothing/head/roguetown/physician
@@ -60,7 +65,4 @@
 			backr = /obj/item/rogueweapon/woodstaff/toper
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash)
-	H.change_stat(STATKEY_PER, 3)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_INT, 4)
 	wretch_select_bounty(H)

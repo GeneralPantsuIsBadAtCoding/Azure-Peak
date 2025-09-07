@@ -19,6 +19,18 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/combat_bum.ogg'
+	job_subclasses = list(
+		/datum/advclass/vagabond_original,
+		/datum/advclass/vagabond_beggar,
+		/datum/advclass/vagabond_courier,
+		/datum/advclass/vagabond_deprived,
+		/datum/advclass/vagabond_excommunicated,
+		/datum/advclass/vagabond_goatherd,
+		/datum/advclass/vagabond_mage,
+		/datum/advclass/vagabond_runner,
+		/datum/advclass/vagabond_scholar,
+		/datum/advclass/vagabond_wanted
+	)
 
 /datum/job/roguetown/orphan/New()
 	. = ..()

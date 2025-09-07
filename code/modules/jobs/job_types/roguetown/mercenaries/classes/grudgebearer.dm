@@ -1,6 +1,6 @@
 //Dwarf-exclusive mercenary class with unique armor setups.
 /datum/advclass/mercenary/grudgebearer
-	name = "Grudgebearer"
+	name = "Grudgebearer Smith"
 	tutorial = "Bound by eternal grudges of eons past that have not been forgotten, the Grudgebearers are left to wander the surface, as every other clan has a grudge against you, and you against them. This putrid swampland of a Duchy has also wronged you and your people, you care little for it. Coins are a means to an end -- something you can mine and forge yourself. Trinkets -- made by true smiths, now that will carry respect among your clan. However, such artifacts might not buy you food, or a roof."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
@@ -10,91 +10,99 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_dwarf.ogg'
+	extra_context = "This subclass is race-limited to: Dwarves."
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_TRAINED_SMITH)
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_WIL = 3,
+		STATKEY_PER = 3,//Anvil"Strikes deftly" is based on PER
+		STATKEY_STR = 1,
+		STATKEY_SPD = -2
+	)
 
+//Because the armor is race-exclusive for repairs, these guys *should* be able to repair their own guys armor layers. A Dwarf smith isn't guaranteed, after all.
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		var/classes = list("Smith", "Soldier")
-		var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
-		switch(classchoice)
-			if("Smith")	//Because the armor is race-exclusive for repairs, these guys *should* be able to repair their own guys armor layers. A Dwarf smith isn't guaranteed, after all.
-				H.change_stat(STATKEY_INT, 3)
-				H.change_stat(STATKEY_PER, 3)	//"Strikes deftly" is based on PER
-				H.change_stat(STATKEY_WIL, 3)
-				H.change_stat(STATKEY_STR, 1)
-				H.change_stat(STATKEY_SPD, -2)
-				H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-				H.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)	//Shouldn't be better than the smith (though the stats are already)
-				H.adjust_skillrank(/datum/skill/craft/blacksmithing, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-				H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
-				cloak = /obj/item/clothing/cloak/forrestercloak/snow
-				belt = /obj/item/storage/belt/rogue/leather/black
-				beltr = /obj/item/rogueweapon/mace
-				beltl = /obj/item/flashlight/flare/torch
-				backl = /obj/item/storage/backpack/rogue/backpack
-				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
-				pants = /obj/item/clothing/under/roguetown/trou/leather
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half
-				backpack_contents = list(
-					/obj/item/roguekey/mercenary,
-					/obj/item/storage/belt/rogue/pouch/coins/poor,
-					/obj/item/rogueweapon/hammer/iron,
-					/obj/item/paper/scroll/grudge,
-					/obj/item/natural/feather,
-					/obj/item/rogueweapon/tongs = 1,
-					/obj/item/clothing/head/roguetown/helmet/heavy/dwarven,
-					)
-				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-				ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
-			if("Soldier")
-				H.change_stat(STATKEY_CON, 5)
-				H.change_stat(STATKEY_WIL, 4)
-				H.change_stat(STATKEY_STR, 2)
-				H.change_stat(STATKEY_SPD, -2)
-				H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-				H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-				H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-				H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)	//Only here so they'd be able to repair their own armor integrity
-				H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
-				cloak = /obj/item/clothing/cloak/forrestercloak/snow
-				belt = /obj/item/storage/belt/rogue/leather/black
-				beltl = /obj/item/flashlight/flare/torch
-				backl = /obj/item/storage/backpack/rogue/satchel
-				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
-				pants = /obj/item/clothing/under/roguetown/trou/leather
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
-				backpack_contents = list(
-					/obj/item/roguekey/mercenary,
-					/obj/item/storage/belt/rogue/pouch/coins/poor,
-					/obj/item/rogueweapon/hammer/iron,
-					/obj/item/paper/scroll/grudge,
-					/obj/item/natural/feather,
-					)
-				var/weapons = list("Axe", "Mace")
-				var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
-				switch(wepchoice)
-					if("Axe")
-						backr = /obj/item/rogueweapon/stoneaxe/battle
-					if("Mace")
-						backr = /obj/item/rogueweapon/mace/goden/steel
-				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.merctype = 8
+		H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)	//Shouldn't be better than the smith (though the stats are already)
+		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
+		cloak = /obj/item/clothing/cloak/forrestercloak/snow
+		belt = /obj/item/storage/belt/rogue/leather/black
+		beltr = /obj/item/rogueweapon/mace
+		beltl = /obj/item/flashlight/flare/torch
+		backl = /obj/item/storage/backpack/rogue/backpack
+		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+		gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
+		pants = /obj/item/clothing/under/roguetown/trou/leather
+		armor = /obj/item/clothing/suit/roguetown/armor/plate/half
+		backpack_contents = list(
+			/obj/item/roguekey/mercenary,
+			/obj/item/storage/belt/rogue/pouch/coins/poor,
+			/obj/item/rogueweapon/hammer/iron,
+			/obj/item/paper/scroll/grudge,
+			/obj/item/natural/feather,
+			/obj/item/rogueweapon/tongs = 1,
+			/obj/item/clothing/head/roguetown/helmet/heavy/dwarven,
+			)
+		H.merctype = 8
+
+/datum/advclass/mercenary/grudgebearer/soldier
+	name = "Grudgebearer Soldier"
+	tutorial = "Bound by eternal grudges of eons past that have not been forgotten, the Grudgebearers are left to wander the surface, as every other clan has a grudge against you, and you against them. This putrid swampland of a Duchy has also wronged you and your people, you care little for it. Coins are a means to an end -- something you can mine and forge yourself. Trinkets -- made by true smiths, now that will carry respect among your clan. However, such artifacts might not buy you food, or a roof."
+	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer_soldier
+	traits_applied = list(TRAIT_HEAVYARMOR)
+	subclass_stats = list(
+		STATKEY_CON = 5,
+		STATKEY_WIL = 4,
+		STATKEY_STR = 2,
+		STATKEY_SPD = -2
+	)
+/datum/outfit/job/roguetown/mercenary/grudgebearer_soldier/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(H.mind)
+		H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)	//Only here so they'd be able to repair their own armor integrity
+		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
+		cloak = /obj/item/clothing/cloak/forrestercloak/snow
+		belt = /obj/item/storage/belt/rogue/leather/black
+		beltl = /obj/item/flashlight/flare/torch
+		backl = /obj/item/storage/backpack/rogue/satchel
+		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+		gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
+		pants = /obj/item/clothing/under/roguetown/trou/leather
+		armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
+		head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
+		backpack_contents = list(
+			/obj/item/roguekey/mercenary,
+			/obj/item/storage/belt/rogue/pouch/coins/poor,
+			/obj/item/rogueweapon/hammer/iron,
+			/obj/item/paper/scroll/grudge,
+			/obj/item/natural/feather,
+			)
+		var/weapons = list("Axe", "Mace")
+		var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
+		switch(wepchoice)
+			if("Axe")
+				backr = /obj/item/rogueweapon/stoneaxe/battle
+			if("Mace")
+				backr = /obj/item/rogueweapon/mace/goden/steel
+		H.merctype = 8
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven

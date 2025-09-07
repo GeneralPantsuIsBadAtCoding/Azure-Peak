@@ -6,6 +6,12 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/fisher
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	traits_applied = list(TRAIT_CAUTIOUS_FISHER)
+	subclass_stats = list(
+		STATKEY_PER = 2,
+		STATKEY_FOR = 2,
+		STATKEY_SPD = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/fisher/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -30,10 +36,6 @@
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, 1)
-	H.change_stat(STATKEY_LCK, 2)
-	ADD_TRAIT(H, TRAIT_CAUTIOUS_FISHER, TRAIT_GENERIC)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/labor/fishing, 5, TRUE)
 	else

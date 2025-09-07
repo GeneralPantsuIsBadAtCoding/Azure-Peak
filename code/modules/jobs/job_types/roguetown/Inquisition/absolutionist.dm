@@ -18,6 +18,23 @@
 	advjob_examine = FALSE
 	give_bank_account = 15
 
+	job_traits = list(
+		TRAIT_NOPAINSTUN,
+		TRAIT_PACIFISM,
+		TRAIT_EMPATH,
+		TRAIT_CRITICAL_RESISTANCE,
+		TRAIT_SILVER_BLESSED,
+		TRAIT_STEELHEARTED,
+		TRAIT_INQUISITION,
+		TRAIT_OUTLANDER
+	)
+
+	job_stats = list(
+		STATKEY_CON = 7,
+		STATKEY_WIL = 3,
+		STATKEY_SPD = -2
+	)
+
 // REMEMBER FLAGELLANT? REMEMBER LASZLO? THIS IS HIM NOW. FEEL OLD YET?
 
 /datum/job/roguetown/absolver/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
@@ -71,16 +88,5 @@
 		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/roguekey/inquisition = 1,
 		)
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_CON, 7)
-	H.change_stat(STATKEY_SPD, -2)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
-	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PACIFISM, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.

@@ -18,9 +18,32 @@
 	min_pq = -10
 	max_pq = null
 	round_contrib_points = 2
+	advclass_cat_rolls = list(CTAG_CHURCHLING = 2)
+	job_subclasses = list(
+		/datum/advclass/churchling
+	)
 
-/datum/outfit/job/roguetown/churchling/pre_equip(mob/living/carbon/human/H)
+/datum/job/roguetown/churchling/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/churchling
+	name = "Churchling"
+	tutorial = "Your family were zealots. They scolded you with a studded belt and prayed like sinners every waking hour of the day they weren't toiling in the fields. You escaped them by becoming a churchling--and a guaranteed education isn't so bad."
+	outfit = /datum/outfit/job/roguetown/churchling/basic
+	category_tags = list(CTAG_CHURCHLING)
+	subclass_stats = list(
+		STATKEY_SPD = 2,
+		STATKEY_PER = 1,
+	)
+
+/datum/outfit/job/roguetown/churchling/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
@@ -42,10 +65,6 @@
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 	beltl = /obj/item/storage/keyring/churchie
-
-
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_SPD, 2)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.

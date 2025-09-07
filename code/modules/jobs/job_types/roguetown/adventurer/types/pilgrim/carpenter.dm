@@ -7,6 +7,13 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/carpenter
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_WIL = 2,
+		STATKEY_STR = 1,
+		STATKEY_CON = 1,
+		STATKEY_INT = 1,
+		STATKEY_SPD = -1
+	)
 
 /datum/outfit/job/roguetown/adventurer/carpenter/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -48,8 +55,3 @@
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_INT, 1)
-	H.change_stat(STATKEY_SPD, -1)

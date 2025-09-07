@@ -8,13 +8,13 @@
 			user.add_stress(/datum/stressevent/parastr)
 	if(HAS_TRAIT(user, TRAIT_JESTERPHOBIA) && job == "Jester")
 		user.add_stress(/datum/stressevent/jesterphobia)
-	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL))
+	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL) && user != src)//it doesn't really make sense that you can examine your own face
 		user.add_stress(/datum/stressevent/beautiful)
 		// Apply Xylix buff when examining someone with the beautiful trait
 		if(HAS_TRAIT(user, TRAIT_XYLIX) && !user.has_status_effect(/datum/status_effect/buff/xylix_joy))
 			user.apply_status_effect(/datum/status_effect/buff/xylix_joy)
 			to_chat(user, span_info("Their beauty brings a smile to my face, and fortune to my steps!"))
-	if(HAS_TRAIT(src, TRAIT_UNSEEMLY))
+	if(HAS_TRAIT(src, TRAIT_UNSEEMLY) && user != src)
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
 

@@ -18,9 +18,14 @@
 	display_order = JDO_TEMPLAR
 
 	give_bank_account = TRUE
+	job_traits = list(TRAIT_RITUALIST, TRAIT_STEELHEARTED)
 
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
 	virtue_restrictions = list(/datum/virtue/utility/noble)
+	job_subclasses = list(
+		/datum/advclass/templar/monk,
+		/datum/advclass/templar/crusader
+	)
 
 /datum/outfit/job/roguetown/templar
 	job_bitflag = BITFLAG_CHURCH
@@ -41,6 +46,13 @@
 	outfit = /datum/outfit/job/roguetown/templar/monk
 
 	category_tags = list(CTAG_TEMPLAR)
+	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_DODGEEXPERT)
+	subclass_stats = list(
+		STATKEY_STR = 3,
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 2
+	)
 
 /datum/outfit/job/roguetown/templar/monk/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -155,14 +167,6 @@
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
 	// -- End of section for god specific bonuses --
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
-	H.change_stat(STATKEY_STR, 3)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_SPD, 2)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
@@ -192,6 +196,12 @@
 	tutorial = "You are a templar of the Church, trained in heavy weaponry and zealous warfare. You are the instrument of your God's wrath, clad in steel and faith."
 	outfit = /datum/outfit/job/roguetown/templar/crusader
 	category_tags = list(CTAG_TEMPLAR)
+	traits_applied = list(TRAIT_HEAVYARMOR)
+	subclass_stats = list(
+		STATKEY_WIL = 3,
+		STATKEY_STR = 2,
+		STATKEY_CON = 2,
+	)
 
 /datum/outfit/job/roguetown/templar/crusader/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -330,12 +340,6 @@
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
 	// -- End of section for god specific bonuses --
-	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_WIL, 3)
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

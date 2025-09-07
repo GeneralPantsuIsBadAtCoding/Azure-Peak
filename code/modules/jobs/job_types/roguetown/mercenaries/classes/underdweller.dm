@@ -12,7 +12,15 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/underdweller
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_WEBWALK)
+	subclass_stats = list(
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 1,
+		STATKEY_STR = 1,
+		STATKEY_LCK = 1
+	)
+	extra_context = "This subclass is race-limited to: Dwarves, Dark Elves, Kobolds, Goblins & Verminvolk."
 
 /datum/outfit/job/roguetown/mercenary/underdweller/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -51,14 +59,6 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)	//Accompanies mining; they know how to smelt, not make armor though.
-	H.change_stat(STATKEY_LCK, 1)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_SPD, 1)
-
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_WEBWALK, TRAIT_GENERIC)	//A cave dweller fears no spider.
 	H.merctype = 12
 
 

@@ -7,6 +7,10 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/peasant
 	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_STR = 1,
+		STATKEY_INT = -1
+		)
 
 /datum/outfit/job/roguetown/adventurer/peasant/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -44,5 +48,3 @@
 						)
 	beltl = /obj/item/rogueweapon/sickle
 	backr = /obj/item/rogueweapon/hoe
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_INT, -1)

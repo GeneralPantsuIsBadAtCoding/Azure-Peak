@@ -11,6 +11,13 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_STR = 4,
+		STATKEY_INT = 2,
+		STATKEY_WIL = 2,
+		STATKEY_CON = 2,
+		STATKEY_PER = 1
+	)
 	
 /datum/outfit/job/roguetown/adventurer/masterwoodcutter/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -44,8 +51,4 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1
 						)
-	H.change_stat(STATKEY_STR, 4)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_INT, 2)
 

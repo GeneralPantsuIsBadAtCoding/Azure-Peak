@@ -5,6 +5,11 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/vagabond/courier
 	category_tags = list(CTAG_VAGABOND)
+	subclass_stats = list(
+		STATKEY_PER = 2,
+		STATKEY_SPD = 2,
+		STATKEY_CON = -2,
+	)
 
 /datum/outfit/job/roguetown/vagabond/courier/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -29,5 +34,3 @@
 		H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.change_stat(STATKEY_CON, -2)
-		H.change_stat(STATKEY_PER, 2) // never going back to that place again

@@ -720,6 +720,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		ungrip(user, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
+	SEND_SIGNAL(user, COMSIG_ITEM_DROPPED, src)
 	if(!silent)
 		playsound(src, drop_sound, DROP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
 	user.update_equipment_speed_mods()
@@ -744,6 +745,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/equipped(mob/user, slot, initial = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_ITEM_EQUIPPED, src, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.

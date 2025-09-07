@@ -931,11 +931,6 @@
 	toggle_icon_state = FALSE
 	salvage_result = /obj/item/natural/hide/cured
 
-/obj/item/clothing/wash_act(clean)
-	. = ..()
-	if(hood)
-		wash_atom(hood,clean)
-
 /obj/item/clothing/cloak/raincloak/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
@@ -981,14 +976,6 @@
 	body_parts_covered = HEAD
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDETAIL
 	block2add = FOV_BEHIND
-
-/obj/item/clothing/head/hooded/equipped(mob/user, slot)
-	. = ..()
-	user.update_fov_angles()
-
-/obj/item/clothing/head/hooded/dropped(mob/user)
-	. = ..()
-	user.update_fov_angles()
 
 /obj/item/clothing/cloak/raincloak/furcloak
 	name = "fur cloak"

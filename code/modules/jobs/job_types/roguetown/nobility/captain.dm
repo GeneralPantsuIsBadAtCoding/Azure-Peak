@@ -24,6 +24,10 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_knight.ogg'
+	job_traits = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_NOBLE, TRAIT_GUARDSMAN)
+	job_subclasses = list(
+		/datum/advclass/captain/infantry
+	)
 
 /datum/outfit/job/roguetown/captain
 	neck = /obj/item/clothing/neck/roguetown/bevor
@@ -73,6 +77,14 @@
 	outfit = /datum/outfit/job/roguetown/captain/infantry
 	category_tags = list(CTAG_CAPTAIN)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
+		STATKEY_INT = 2,
+		STATKEY_PER = 1,
+		STATKEY_LCK = 1
+	)
 
 /datum/outfit/job/roguetown/captain/infantry/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -97,12 +109,6 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_INT, 2)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_LCK, 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
@@ -110,10 +116,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
 	H.verbs |= list(
 		/mob/living/carbon/human/proc/request_outlaw, 
 		/mob/proc/haltyell, 

@@ -10,7 +10,15 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
-
+	subclass_stats = list(
+		STATKEY_LCK = 4,
+		STATKEY_STR = 2,
+		STATKEY_INT = 2,
+		STATKEY_WIL = 2,
+		STATKEY_CON = 1,
+		STATKEY_PER = 1
+	)
+	
 /datum/outfit/job/roguetown/adventurer/farmermaster/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
@@ -48,5 +56,3 @@
 	beltl = /obj/item/rogueweapon/sickle
 	beltr = /obj/item/flint
 	backr = /obj/item/rogueweapon/hoe
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_SPD, -1)

@@ -5,8 +5,15 @@
 	allowed_races = NON_DWARVEN_RACE_TYPES
 	outfit = /datum/outfit/job/roguetown/mercenary/routier
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_NOBLE)
 	cmode_music = 'sound/music/combat_routier.ogg'
+	subclass_stats = list(
+		STATKEY_CON = 4,
+		STATKEY_WIL = 2,
+		STATKEY_STR = 2,
+		STATKEY_PER = 1,
+		STATKEY_SPD = -1
+	)
 
 /datum/outfit/job/roguetown/mercenary/routier/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -32,11 +39,6 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)   
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_CON, 4)
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_SPD, -1)
 	switch(classchoice)
 		if("Swordsman")
 			H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
@@ -70,6 +72,4 @@
 
 	H.grant_language(/datum/language/otavan)
 	
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	H.merctype = 10

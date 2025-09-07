@@ -7,6 +7,13 @@
 	traits_applied = list(TRAIT_JACKOFALLTRADES)
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	adaptive_name = TRUE
+	subclass_stats = list(
+		STATKEY_INT = 3,	//This guy's here to grind = baby.
+		STATKEY_STR = 1,
+		STATKEY_WIL = 1,
+		STATKEY_PER = 1,
+		STATKEY_LCK = 1,	
+	)
 
 /datum/outfit/job/roguetown/homesteader/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -108,8 +115,3 @@
 		H.mind.special_items["Pan for Frying"] = /obj/item/cooking/pan
 
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_INT, 3)	//This guy's here to grind, baby.
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_LCK, 1)

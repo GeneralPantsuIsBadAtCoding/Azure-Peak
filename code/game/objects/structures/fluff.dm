@@ -388,6 +388,7 @@
 	icon_state = "passage0"
 	density = TRUE
 	max_integrity = 1500
+	redstone_structure = TRUE
 
 /obj/structure/bars/passage/steel
 	name = "steel bars"
@@ -407,6 +408,7 @@
 	icon_state = "shutter0"
 	density = TRUE
 	opacity = TRUE
+	redstone_structure = TRUE
 
 /obj/structure/bars/passage/shutter/redstone_triggered()
 	if(obj_broken)
@@ -437,6 +439,7 @@
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
 	attacked_sound = list('sound/combat/hits/onmetal/grille (1).ogg', 'sound/combat/hits/onmetal/grille (2).ogg', 'sound/combat/hits/onmetal/grille (3).ogg')
 	var/togg = FALSE
+	redstone_structure = TRUE
 
 /obj/structure/bars/grille/Initialize()
 	AddComponent(/datum/component/squeak, list('sound/foley/footsteps/FTMET_A1.ogg','sound/foley/footsteps/FTMET_A2.ogg','sound/foley/footsteps/FTMET_A3.ogg','sound/foley/footsteps/FTMET_A4.ogg'), 40)

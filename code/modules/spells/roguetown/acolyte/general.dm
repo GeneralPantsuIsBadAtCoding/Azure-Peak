@@ -498,7 +498,8 @@
 			to_chat(user, span_warning("The limb is free of wounds."))
 			revert_cast()
 			return FALSE
-			
+	revert_cast()
+	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/blood_heal
 	name = "Blood transfer Miracle"
@@ -530,6 +531,11 @@
 	if(ishuman(targets[1]))
 		var/mob/living/carbon/human/target = targets[1]
 		var/mob/living/carbon/human/UH = user
+		if(NOBLOOD in UH.dna?.species?.species_traits)
+			to_chat(UH, span_warning("I have no blood to provide."))
+			revert_cast()
+			return FALSE
+
 		if(target.blood_volume >= BLOOD_VOLUME_NORMAL)
 			to_chat(UH, span_warning("Their lyfeblood is at capacity. There is no need."))
 			revert_cast()
@@ -578,3 +584,5 @@
 				return TRUE
 		bloodbeam.End()
 		return TRUE
+	revert_cast()
+	return FALSE

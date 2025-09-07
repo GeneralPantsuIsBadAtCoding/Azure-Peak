@@ -6,8 +6,14 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/forlorn
 	min_pq = 2
 	cmode_music = 'sound/music/combat_blackstar.ogg'
-	traits_applied = list(TRAIT_OUTLANDER)
 	category_tags = list(CTAG_MERCENARY)
+	// tuff boys
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_WIL = 3,
+		STATKEY_STR = 2,
+		STATKEY_CON = 2
+	)
 
 /datum/outfit/job/roguetown/mercenary/forlorn/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -45,8 +51,4 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)	// This was arguably the OG shield + 1hand weapon merc. If this is too much, we can cut it back again.
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_WIL, 3) // tuff boys
-	H.change_stat(STATKEY_CON, 2) 
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.merctype = 5

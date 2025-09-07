@@ -18,8 +18,36 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 
-/datum/outfit/job/roguetown/niteman/pre_equip(mob/living/carbon/human/H)
+	job_traits = list(TRAIT_SEEPRICES_SHITTY, TRAIT_CICERONE, TRAIT_NUTCRACKER, TRAIT_GOODLOVER)
+
+	advclass_cat_rolls = list(CTAG_BATHMOM = 2)
+	job_subclasses = list(
+		/datum/advclass/bathmaster
+	)
+
+/datum/job/roguetown/niteman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/bathmaster
+	name = "Bathmaster"
+	tutorial = "You are renting out the bathhouse in a joint operation with the Innkeep. You provide security for the bathwenches and help them to find work--when you're not being a trouble-making rake that others suffer to tolerate."
+	outfit = /datum/outfit/job/roguetown/niteman/basic
+	category_tags = list(CTAG_BATHMOM)
+	subclass_stats = list(
+		STATKEY_WIL = 2,
+		STATKEY_STR = 1,
+		STATKEY_CON = 1,
+		STATKEY_INT = -1
+	)
+
+/datum/outfit/job/roguetown/niteman/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	head = /obj/item/lockpick/goldpin/silver
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/black
@@ -36,10 +64,6 @@
 		/obj/item/reagent_containers/powder/spice = 1,
 		)
 	H.grant_language(/datum/language/thievescant)
-	ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
@@ -53,10 +77,6 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_INT, -1)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_WIL, 2)
 
 	if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman

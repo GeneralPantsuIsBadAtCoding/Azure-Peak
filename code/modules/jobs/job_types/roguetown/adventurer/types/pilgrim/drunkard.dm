@@ -6,6 +6,12 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/drunkard
 	
 	category_tags = list(CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_FOR = 2,
+		STATKEY_CON = 1,
+		STATKEY_STR = 1,
+		STATKEY_INT = -2
+	)
 
 /datum/outfit/job/roguetown/adventurer/drunkard/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -32,9 +38,5 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE) //Climbing into windows to steal drugs or booze.
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.change_stat(STATKEY_INT, -2)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_LCK, 2)
 	if(H.patron.type == /datum/patron/divine/xylix)
 		ADD_TRAIT(H, TRAIT_CRACKHEAD, TRAIT_GENERIC)

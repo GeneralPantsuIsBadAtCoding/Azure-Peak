@@ -8,6 +8,12 @@
 	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_WIL = 1,
+		STATKEY_CON = 1,
+		STATKEY_PER = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/woodcutter/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -53,7 +59,3 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/workervest
 		pants = /obj/item/clothing/under/roguetown/trou
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_PER, 1)

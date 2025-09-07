@@ -23,6 +23,13 @@
 	cmode_music = 'sound/music/cmode/nobility/combat_courtmage.ogg'
 	advjob_examine = TRUE // So that Court Magicians can know if they're teachin' a Apprentice or if someone's a bit more advanced of a player. Just makes the title show up as the advjob's name.
 
+	job_traits = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
+	job_subclasses = list(
+		/datum/advclass/wapprentice/associate,
+		/datum/advclass/wapprentice/alchemist,
+		/datum/advclass/wapprentice/apprentice
+	)
+
 /datum/outfit/job/roguetown/wapprentice
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/random
@@ -47,6 +54,11 @@
 	outfit = /datum/outfit/job/roguetown/wapprentice/associate
 
 	category_tags = list(CTAG_WAPPRENTICE)
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_PER = 2,
+		STATKEY_SPD = 1
+	)
 
 /datum/outfit/job/roguetown/wapprentice/associate/pre_equip(mob/living/carbon/human/H)
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/mage
@@ -77,11 +89,6 @@
 		H.change_stat(STATKEY_INT, 1)
 		H.mind?.adjust_spellpoints(6)
 	H.mind?.adjust_spellpoints(21)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, 1)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -92,6 +99,12 @@
 	outfit = /datum/outfit/job/roguetown/wapprentice/alchemist
 
 	category_tags = list(CTAG_WAPPRENTICE)
+	traits_applied = list(TRAIT_SEEDKNOW)
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_PER = 3,
+		STATKEY_WIL = 1
+	)
 
 /datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
@@ -122,12 +135,6 @@
 		H.change_stat(STATKEY_PER, -1)
 		H.change_stat(STATKEY_INT, 1)
 	H.mind?.adjust_spellpoints(18)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_PER, 3)
-	H.change_stat(STATKEY_WIL, 1)
-	ADD_TRAIT(H, TRAIT_SEEDKNOW, TRAIT_GENERIC)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -138,6 +145,13 @@
 	outfit = /datum/outfit/job/roguetown/wapprentice/apprentice
 
 	category_tags = list(CTAG_WAPPRENTICE)
+	subclass_stats = list(
+		STATKEY_INT = 4,
+		STATKEY_WIL = 1,
+		STATKEY_SPD = 1,
+		STATKEY_LCK = 1 // this is just a carrot for the folk who are mad enough to take this role...
+	)
+
 
 /datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
@@ -153,12 +167,6 @@
 	H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 	H.mind?.adjust_spellpoints(18)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
-	H.change_stat(STATKEY_INT, 4)
-	H.change_stat(STATKEY_SPD, 1)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_LCK, 1) // this is just a carrot for the folk who are mad enough to take this role...
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)

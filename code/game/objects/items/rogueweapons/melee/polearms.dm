@@ -274,6 +274,18 @@
 	throwforce = 25
 	resistance_flags = FLAMMABLE
 
+/obj/item/rogueweapon/spear/trident
+	// Better one handed & throwing weapon, flimsier.
+	name = "bronze trident"
+	desc = "A bronze trident from the seas. Feels balanced in your hand, like you could throw it quite easily."
+	icon_state = "bronzetri"
+	force = 25
+	force_wielded = 20
+	wdefense = 4
+	max_blade_int = 175
+	max_integrity = 225
+	throwforce = 30
+
 /obj/item/rogueweapon/spear/aalloy
 	name = "decrepit spear"
 	desc = "A rotting staff, tipped with frayed bronze. After the stone, but before the sword; an interlude for the violence that would soon engulf His world."

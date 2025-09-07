@@ -6,6 +6,12 @@
 	outfit = /datum/outfit/job/roguetown/psydoniantemplar
 	category_tags = list(CTAG_INQUISITION)
 	cmode_music = 'sound/music/templarofpsydonia.ogg'
+	traits_applied = list(TRAIT_HEAVYARMOR)
+	subclass_stats = list(
+		STATKEY_WIL = 3,
+		STATKEY_CON = 2,
+		STATKEY_STR = 2
+	)
 
 /datum/outfit/job/roguetown/psydoniantemplar
 	job_bitflag = BITFLAG_CHURCH
@@ -42,13 +48,6 @@
 	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_WIL, 3)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 	H.grant_language(/datum/language/otavan)
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()

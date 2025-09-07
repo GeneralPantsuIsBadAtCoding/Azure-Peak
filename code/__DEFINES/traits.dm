@@ -70,6 +70,7 @@
 #define TRAIT_PERMAMUTE "Permanent Mute"
 #define TRAIT_EXCOMMUNICATED "Excommunicated"
 #define TRAIT_HERESIARCH "Forbidden Knowledge" //allows entry to ascendant church
+#define TRAIT_DREAMWALKER "Dreamwalker"
 #define TRAIT_JACKOFALLTRADES "Jack of All Trades"	//Reduces skill up cost
 
 //Hearthstone port (Tracking)
@@ -206,6 +207,9 @@
 // If you want description to show up you gotta have the trait name defined BEFORE this lol
 
 GLOBAL_LIST_INIT(roguetraits, list(
+	TRAIT_STEELHEARTED = span_info("I have hardened nerves, and do not waiver from the sight of violence in battle."),
+	TRAIT_OUTLANDER = span_info("Azurians see me as not of their land."),
+	TRAIT_OUTLAW = span_info("This land's meisters and castificos reject my touch."),
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
 	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Ten Undivided. I feel most comfortable around churchmen."),
 	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
@@ -368,6 +372,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_MEDICINE_EXPERT = span_greentext("I've deep, intricate knowledge of my craft. I can learn to become a Master or above."),
 	TRAIT_COMBAT_AWARE = span_notice("My honed senses and intuition allow me to spot notable things in the midst of battle with ease."),
 	TRAIT_RACISMISBAD = span_warning("The Black Oaks can spot ANY Foreigners and Outsiders, no matter how long they've lived in Azuria. This is an easy skill to master, as it is simply identifying who isn't an elf."),
+	TRAIT_DREAMWALKER = span_warning("I walk the dream and reality at the same time. My mind frays, but my vision shall be reality."),
 ))
 
 // trait accessor defines

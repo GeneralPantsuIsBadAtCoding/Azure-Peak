@@ -6,6 +6,14 @@
 	outfit = /datum/outfit/job/roguetown/bandit/sellsword
 	category_tags = list(CTAG_BANDIT)
 	cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg' // cutpurse or deadly shadows...?
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 2,
+		STATKEY_CON = 1,
+		STATKEY_LCK = 1
+	)
 
 /datum/outfit/job/roguetown/bandit/sellsword/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -27,6 +35,7 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -41,12 +50,6 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
 	id = /obj/item/mattcoin
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_SPD, 2)
-	H.change_stat(STATKEY_LCK, 1)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.adjust_blindness(-3)
 	var/weapons = list("Spear & Crossbow","Sword & Buckler")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

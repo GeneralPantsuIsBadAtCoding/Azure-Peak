@@ -17,15 +17,45 @@
 	max_pq = null
 	round_contrib_points = 3
 
-/datum/outfit/job/roguetown/loudmouth/pre_equip(mob/living/carbon/human/H)
+	job_traits = list(TRAIT_INTELLECTUAL, TRAIT_ARCYNE_T1, TRAIT_MAGEARMOR, TRAIT_SEEPRICES_SHITTY)
+
+	advclass_cat_rolls = list(CTAG_TOWNCRIER = 2)
+	job_subclasses = list(
+		/datum/advclass/towncrier
+	)
+
+/datum/job/roguetown/crier/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/towncrier
+	name = "Town Crier"
+	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. \
+	From your desk in the SCOM atelier, you decide which words will thunder across the realm and which will die in the throats of petitioners who didn't pay enough ratfeed. \
+	Nobles and cutpurses alike shuffle up to your counter, coins in hand, desperate for a moment in the golden glow of the broadcast horn. \
+	In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. After all, you hold the true power: the power to decide what all of the city hears... and how loudly."
+	outfit = /datum/outfit/job/roguetown/loudmouth/basic
+	category_tags = list(CTAG_TOWNCRIER)
+	subclass_stats = list(
+		STATKEY_WIL = 3,
+		STATKEY_INT = 3,
+		STATKEY_SPD = 1
+	)
+
+/datum/outfit/job/roguetown/loudmouth/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/legwears/black
 	else
 		pants = /obj/item/clothing/under/roguetown/tights/black
 	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
 	armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/loudmouth
-	head = /obj/item/clothing/head/roguetown/loudmouth
+	head = /obj/item/clothing/head/roguetown/veiled/loudmouth
 	backr = /obj/item/storage/backpack/rogue/satchel
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
@@ -57,13 +87,6 @@
 	H.grant_language(/datum/language/kazengunese)
 	H.grant_language(/datum/language/draconic)
 	H.grant_language(/datum/language/aavnic) // All but beast, which is associated with werewolves.
-	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
-	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
-	H.change_stat(STATKEY_SPD, 1)
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_WIL, 3)
 	if (H && H.mind)
 		H.mind.adjust_spellpoints(6)
 	if(H.age == AGE_OLD)

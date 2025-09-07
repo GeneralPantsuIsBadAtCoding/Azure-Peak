@@ -84,11 +84,12 @@
 	swingdelay = 0
 	damfactor = 0.01
 	item_d_type = "slash"
-	peel_divisor = 5
+	peel_divisor = 4
 
 /datum/intent/sword/peel/big
 	name = "big sword armor peel"
 	reach = 2
+	peel_divisor = 5
 
 /datum/intent/sword/chop
 	name = "chop"

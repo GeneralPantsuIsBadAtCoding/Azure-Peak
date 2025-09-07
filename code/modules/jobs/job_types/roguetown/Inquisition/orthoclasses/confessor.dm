@@ -6,7 +6,19 @@
 	outfit = /datum/outfit/job/roguetown/confessor
 	category_tags = list(CTAG_INQUISITION)
 	cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg'
-
+	traits_applied = list(
+		TRAIT_DODGEEXPERT,
+		TRAIT_BLACKBAGGER,
+		TRAIT_SILVER_BLESSED,
+		TRAIT_PERFECT_TRACKER,
+		TRAIT_PSYDONITE,
+	)
+	subclass_stats = list(
+		STATKEY_SPD = 3,
+		STATKEY_WIL = 3,
+		STATKEY_PER = 2,
+		STATKEY_STR = -1//weazel
+	)
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_CHURCH
 
@@ -47,17 +59,6 @@
 		/obj/item/grapplinghook = 1,
 		/obj/item/paper/inqslip/arrival/ortho = 1
 		)
-	H.change_stat(STATKEY_STR, -1) // weasel
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, 3)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PSYDONITE, TRAIT_GENERIC) // YOU'RE TRYING TO ENDURE, HERE.
-	ADD_TRAIT(H, TRAIT_BLACKBAGGER, TRAIT_GENERIC) // NECESSARY EVIL.
-	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 	H.grant_language(/datum/language/otavan)
 
 /datum/outfit/job/roguetown/confessor/choose_loadout(mob/living/carbon/human/H)

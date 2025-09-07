@@ -5,6 +5,18 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
 	category_tags = list(CTAG_INQUISITION)
+	traits_applied = list(
+		TRAIT_CRITICAL_RESISTANCE,
+		TRAIT_CIVILIZEDBARBARIAN,
+		TRAIT_NOPAINSTUN,
+	)
+	subclass_stats = list(
+		STATKEY_STR = 3,
+		STATKEY_WIL = 3,
+		STATKEY_CON = 3,
+		STATKEY_INT = -2,
+		STATKEY_SPD = -1
+	)
 
 /datum/outfit/job/roguetown/disciple
 	job_bitflag = BITFLAG_CHURCH
@@ -37,17 +49,6 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.change_stat(STATKEY_STR, 3)
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_CON, 3)
-	H.change_stat(STATKEY_INT, -2)
-	H.change_stat(STATKEY_SPD, -1)
-	ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 	H.grant_language(/datum/language/otavan)
 	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

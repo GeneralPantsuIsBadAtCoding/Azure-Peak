@@ -25,6 +25,11 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
+	job_traits = list(TRAIT_OUTDOORSMAN, TRAIT_WOODSMAN)
+	job_subclasses = list(
+		/datum/advclass/bogguardsman/ranger,
+		/datum/advclass/bogguardsman/forester
+	)
 
 /datum/outfit/job/roguetown/bogguardsman
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden
@@ -49,6 +54,12 @@
 	tutorial = "You are a ranger, a hunter who volunteered to become a part of the wardens. You have experience using bows and daggers."
 	outfit = /datum/outfit/job/roguetown/bogguardsman/ranger
 	category_tags = list(CTAG_WARDEN)
+	traits_applied = list(TRAIT_DODGEEXPERT)
+	subclass_stats = list(
+		STATKEY_PER = 2,//7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
+		STATKEY_SPD = 2,
+		STATKEY_WIL = 1
+	)
 
 /datum/outfit/job/roguetown/bogguardsman/ranger/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -85,13 +96,7 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // This should let them fry meat on fires.
-	H.change_stat(STATKEY_PER, 2) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_SPD, 2)
 	H.verbs |= /mob/proc/haltyell
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	H.set_blindness(0)
 
 	var/helmets = list(
@@ -119,6 +124,13 @@
 	tutorial = "You are a forester, a woodsman who volunteered to become a part of the wardens. You have experience using axes and polearms."
 	outfit = /datum/outfit/job/roguetown/bogguardsman/forester
 	category_tags = list(CTAG_WARDEN)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 2,//7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
+		STATKEY_CON = 1,
+		STATKEY_WIL = 1,
+		STATKEY_PER = 1
+	)
 
 /datum/outfit/job/roguetown/bogguardsman/forester/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -157,14 +169,7 @@
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // This should let them fry meat on fires.
-	H.change_stat(STATKEY_PER, 1) //7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_STR, 2)
 	H.verbs |= /mob/proc/haltyell
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	H.set_blindness(0)
 
 	var/helmets = list(

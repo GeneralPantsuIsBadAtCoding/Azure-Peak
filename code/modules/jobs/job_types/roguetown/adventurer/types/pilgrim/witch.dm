@@ -6,6 +6,11 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/witch
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	traits_applied = list(TRAIT_DEATHSIGHT, TRAIT_WITCH, TRAIT_ARCYNE_T1)
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_SPD = 2,
+		STATKEY_LCK = 1
+	)
 
 /datum/outfit/job/roguetown/adventurer/witch/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -48,9 +53,6 @@
 	H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_SPD, 2)
-	H.change_stat(STATKEY_LCK, 1)
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)

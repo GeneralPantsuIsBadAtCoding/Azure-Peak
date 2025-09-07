@@ -12,7 +12,10 @@
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
-
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_CON = 2,
+	)
 
 /datum/outfit/job/roguetown/adventurer/masterchef/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -37,8 +40,6 @@
 	mouth = /obj/item/rogueweapon/huntingknife/cleaver
 	beltl = /obj/item/flint
 	r_hand = /obj/item/flashlight/flare/torch
-	H.change_stat(STATKEY_INT, 3)
-	H.change_stat(STATKEY_CON, 2)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 	var/packcontents = pickweight(list("Honey" = 1, "Truffles" = 1, "Bacon" = 1)) // What is our special ingredient? Honey, truffles, or BACON?

@@ -443,17 +443,52 @@
 	give_bank_account = TRUE
 
 	cmode_music = 'sound/music/combat_martyrsafe.ogg'
+	job_traits = list(
+		TRAIT_HEAVYARMOR,
+		TRAIT_STEELHEARTED,
+		TRAIT_SILVER_BLESSED,
+		TRAIT_EMPATH,
+		TRAIT_MEDICINE_EXPERT,
+		TRAIT_DUALWIELDER
+	)
 
 	//No undeath-adjacent virtues for a role that can sacrifice itself. The Ten like their sacrifices 'pure'. (I actually didn't want to code returning those virtue traits post-sword use)
 	//They get those traits during sword activation, anyway. 
 	//Dual wielder is there to stand-in for ambidextrous in case they activate their sword in their off-hand.
 	virtue_restrictions = list(/datum/virtue/utility/noble, /datum/virtue/combat/rotcured, /datum/virtue/utility/deadened, /datum/virtue/utility/deathless, /datum/virtue/combat/dualwielder, /datum/virtue/heretic/zchurch_keyholder)
 
+	advclass_cat_rolls = list(CTAG_MARTYR = 2)
+	job_subclasses = list(
+		/datum/advclass/martyr
+	)
+
+/datum/job/roguetown/martyr/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/martyr
+	name = "Martyr"
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
+	outfit = /datum/outfit/job/roguetown/martyr/basic
+	category_tags = list(CTAG_MARTYR)
+	subclass_stats = list(
+		STATKEY_CON = 3,
+		STATKEY_WIL = 3,
+		STATKEY_STR = 2,
+		STATKEY_PER = 1,
+		STATKEY_INT = 1
+	)
+
 /datum/outfit/job/roguetown/martyr
 	job_bitflag = BITFLAG_CHURCH
 
-/datum/outfit/job/roguetown/martyr/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
 	..()
+	H.adjust_blindness(-3)
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
 	beltr = /obj/item/storage/keyring/priest
@@ -489,17 +524,6 @@
 	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
 	H.grant_language(/datum/language/grenzelhoftian)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDICINE_EXPERT, TRAIT_GENERIC)	//Tentative!
-	ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_CON, 3)
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_INT, 1)
-	H.change_stat(STATKEY_PER, 1)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 
 

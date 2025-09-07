@@ -908,6 +908,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(!(job_unavailable in acceptable_unavailables))
 				HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 				continue
+			
+			var/job_display = used_name
+			//job_display += " <a href='?src=[REF(job)];explainjob=1'>{?}</a></span>"
 //			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
 //				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 //				continue
@@ -950,7 +953,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 </style>
 
-<div class="tutorialhover"><font>[used_name]</font>
+<div class="tutorialhover"> [job.class_setup_examine ? "<a href='?src=[REF(job)];explainjob=1'><font>[job_display]</font></a>" : "<font>[job_display]</font>"]</span>
 <span class="tutorial">[job.tutorial]<br>
 Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contrib_points]" : ""]</span>
 </div>

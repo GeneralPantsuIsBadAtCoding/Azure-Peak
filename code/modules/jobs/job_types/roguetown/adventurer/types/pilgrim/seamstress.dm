@@ -6,6 +6,12 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/seamstress
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_SPD = 2,
+		STATKEY_INT = 2,
+		STATKEY_PER = 1,
+		STATKEY_STR = -1
+	)
 
 /datum/outfit/job/roguetown/adventurer/seamstress/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -35,7 +41,3 @@
 						/obj/item/recipe_book/sewing = 1, 
 						/obj/item/recipe_book/leatherworking = 1
 						)
-	H.change_stat(STATKEY_INT, 2)
-	H.change_stat(STATKEY_SPD, 2)
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_STR, -1)

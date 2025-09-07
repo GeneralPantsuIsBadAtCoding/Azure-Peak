@@ -1304,3 +1304,8 @@
 	if(istype(loc, /turf/open/water) && !(mobility_flags & MOBILITY_STAND))
 		return FALSE
 
+
+/mob/living/carbon/can_buckle()
+	if((cmode) && (mind) && (!handcuffed) && (stat == CONSCIOUS))
+		return 0
+	. = ..()
