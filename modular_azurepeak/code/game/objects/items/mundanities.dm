@@ -165,25 +165,24 @@
 		return
 
 	if(can_sealed == 1)
-		menu_item = rand(1,2,3,4,5) //get the meal
+		menu_item = rand(1,5) //get the meal
 		name = "saltpot"
-		desc += " It has been opened, revealing a salty-smelling mush on the inside.
-		tastes = pick("cherries and syrup", "vegetables and eggs", "frybird
+		desc += " It has been opened, revealing a salty-smelling mush on the inside."
 		switch(menu_item)
 			if(1)
-				list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
 				tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 			if(2)
-				list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
 				tastes = list("overpoweringly salty rous meat" = 2)
 			if(3)
-				list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
 				tastes = list("cabbit meat" = 1, "thin stew" = 1)
 			if(4)
-				list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
 				tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
 			if(5)
-				list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
 				tastes = list("hearty stew" = 1, "vegetables" = 1)
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
@@ -209,7 +208,7 @@
 				update_icon()
 				randomize_insides()
 
-		to_chat(user, span_notice("The scent of salty food suddenly hits my nose as I tear the flimsy top off of the saltpot."))
+		to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 	else
 		to_chat(user, span_warning("I can't open \the [src] with this..."))
 		return FALSE
@@ -229,10 +228,10 @@
 		return
 	..()
 
-/obj/item/reagent_containers/food/snacks/canned/On_Consume
+/obj/item/reagent_containers/food/snacks/canned/On_Consume()
 
-	if(src.can_sealed == 1)
+	if(can_sealed == 1)
 		return
 
-	if(src.bitecount == 6) //if it empty, throw up da empty sprite
+	if(bitecount == 6) //if it empty, throw up da empty sprite
 	icon_state = "acan_e"
