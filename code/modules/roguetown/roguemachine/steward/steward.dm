@@ -81,6 +81,7 @@
 		SStreasury.treasury_value -= amt
 		SStreasury.total_import += amt
 		SStreasury.log_to_steward("-[amt] imported [D.name]")
+		record_round_statistic(STATS_STOCKPILE_IMPORTS_VALUE, amt)
 		if(amt >= 100) //Only announce big spending.
 			scom_announce("Azure Peak imports [D.name] for [amt] mammon.", )
 		D.raise_demand()
@@ -207,6 +208,7 @@
 			return
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.job == job_to_pay)
+				record_round_statistic(STATS_WAGES_PAID)
 				SStreasury.give_money_account(amount_to_pay, H, "NERVE MASTER")
 	if(href_list["compact"])
 		compact = !compact

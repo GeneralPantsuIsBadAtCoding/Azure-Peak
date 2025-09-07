@@ -528,3 +528,12 @@
 /// Removes an image from a client's `.images`. Useful as a callback.
 /proc/remove_image_from_client(image/image_to_remove, client/remove_from)
 	remove_from?.images -= image_to_remove
+
+/// Returns this user's display ckey, used in OOC contexts.
+/proc/get_display_ckey(key)
+	if(key in GLOB.anonymize)
+		return get_fake_key(key)
+	if(!key || !istext(key))
+		return "some invalid"
+	var/ckey = ckey(key)
+	return ckey

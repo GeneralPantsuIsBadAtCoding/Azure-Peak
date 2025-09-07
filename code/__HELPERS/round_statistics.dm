@@ -51,6 +51,25 @@
 #define STATS_LUX_REVIVALS "lux_revivals"
 #define STATS_DODGES "dodges_made"
 
+// Economic Statistics
+#define STATS_BATHMATRON_VAULT_INCOME "bath_vault_regular"
+#define STATS_BATHMATRON_VAULT_TOTAL_REVENUE "bath_vault_total"
+#define STATS_WAGES_PAID "wages_paid"
+#define STATS_FINES_INCOME "fines_income"
+#define STATS_TRADE_VALUE_EXPORTED "trade_exported"
+#define STATS_TRADE_VALUE_IMPORTED "trade_imported"
+#define STATS_GOLDFACE_VALUE_SPENT "goldface_spent"
+#define STATS_SILVERFACE_VALUE_SPENT "silverface_spent"
+#define STATS_PURITY_VALUE_SPENT "purity_spent"
+#define STATS_TAXES_EVADED "taxes_evaded"
+#define STATS_NOBLE_INCOME_TOTAL "noble_income_total"
+#define STATS_DIRECT_TREASURY_TRANSFERS "direct_treasury_transfers"
+#define STATS_STOCKPILE_EXPORTS_VALUE "stockpile_exports_value"
+#define STATS_STOCKPILE_IMPORTS_VALUE "stockpile_imports_value"
+#define STATS_STOCKPILE_EXPANSES "stockpile_expanses"
+#define STATS_STOCKPILE_REVENUE "stockpile_revenue"
+#define STATS_PEDDLER_REVENUE "peddler_revenue"
+
 // Influence related statistics
 
 //Psydon
@@ -255,7 +274,6 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_SKILLS_DREAMED = 0,
 	STATS_REGULAR_VAULT_INCOME = 0,
 	STATS_VAULT_TOTAL_REVENUE = 0,
-	STATS_WAGES_PAID = 0,
 	STATS_FINES_INCOME = 0,
 	STATS_TRADE_VALUE_EXPORTED = 0,
 	STATS_TRADE_VALUE_IMPORTED = 0,
@@ -273,6 +291,23 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_MAMMONS_DEPOSITED = 0,
 	STATS_MAMMONS_WITHDRAWN = 0,
 	STATS_STARTING_TREASURY = 0,
+	STATS_BATHMATRON_VAULT_INCOME = 0,
+	STATS_BATHMATRON_VAULT_TOTAL_REVENUE = 0,
+	STATS_WAGES_PAID = 0,
+	STATS_FINES_INCOME = 0,
+	STATS_TRADE_VALUE_EXPORTED = 0,
+	STATS_TRADE_VALUE_IMPORTED = 0,
+	STATS_GOLDFACE_VALUE_SPENT = 0,
+	STATS_SILVERFACE_VALUE_SPENT = 0,
+	STATS_PURITY_VALUE_SPENT = 0,
+	STATS_TAXES_EVADED = 0,
+	STATS_NOBLE_INCOME_TOTAL = 0,
+	STATS_DIRECT_TREASURY_TRANSFERS = 0,
+	STATS_STOCKPILE_EXPORTS_VALUE = 0,
+	STATS_STOCKPILE_IMPORTS_VALUE = 0,
+	STATS_STOCKPILE_EXPANSES = 0,
+	STATS_STOCKPILE_REVENUE = 0,
+	STATS_PEDDLER_REVENUE = 0,
 ))
 
 GLOBAL_LIST_EMPTY(patron_follower_counts)
@@ -395,6 +430,18 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	),
 ))
 
+// Chronicle statistics
+#define CHRONICLE_STATS_STRONGEST_PERSON "strongest_person"
+#define CHRONICLE_STATS_WISEST_PERSON "wisest_person"
+#define CHRONICLE_STATS_RICHEST_PERSON "richest_person"
+#define CHRONICLE_STATS_LUCKIEST_PERSON "luckiest_person"
+#define CHRONICLE_STATS_FASTEST_PERSON "fastest_person"
+#define CHRONICLE_STATS_DUMBEST_PERSON "dumbest_person"
+#define CHRONICLE_STATS_SLOWEST_PERSON "slowest_person"
+#define CHRONICLE_STATS_UNLUCKIEST_PERSON "unluckiest_person"
+
+GLOBAL_LIST_EMPTY(chronicle_stats)
+
 /// Increment a round statistic by a given amount
 /proc/record_round_statistic(name, amount = 1)
 	if(SSticker.current_state == GAME_STATE_FINISHED)
@@ -494,3 +541,20 @@ GLOBAL_LIST_INIT(featured_stats, list(
 		stat_data["entries"] = list()
 
 	stat_data["entries"][object_name] = (stat_data["entries"][object_name] || 0) + increment
+
+/// Records a chronicle stat (weakref to an atom/mob)
+/proc/set_chronicle_stat(stat_name, atom/target)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
+	if(!stat_name || !target || !GLOB.chronicle_stats)
+		return
+
+	GLOB.chronicle_stats[stat_name] = WEAKREF(target)
+
+/// Gets the recorded chronicle stat holder (returns the resolved weakref or null)
+/proc/get_chronicle_stat_holder(stat_name)
+	if(!stat_name || !GLOB.chronicle_stats)
+		return null
+
+	var/datum/weakref/ref = GLOB.chronicle_stats[stat_name]
+	return ref?.resolve()

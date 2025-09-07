@@ -88,6 +88,7 @@
 					I.visible_message(span_warning("[I] is sucked into the air!"))
 					qdel(I)
 			budgie = round(budgie)
+			record_round_statistic(STATS_TRADE_VALUE_EXPORTED, budgie)
 			if(budgie > 0)
 				play_sound=TRUE
 				E.budget2change(budgie)

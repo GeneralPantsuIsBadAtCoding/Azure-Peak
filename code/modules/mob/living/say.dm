@@ -210,7 +210,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
-	if(src.client)
+	if(client)
+		last_words = message
 		record_featured_stat(FEATURED_STATS_SPEAKERS, src)	//Yappin'
 	if(findtext(message, "Abyssor"))	//funni
 		record_round_statistic(STATS_ABYSSOR_REMEMBERED)
