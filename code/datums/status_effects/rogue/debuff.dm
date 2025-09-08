@@ -332,14 +332,13 @@
 /datum/status_effect/debuff/revived
 	id = "revived"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/revived
-	/* The penalties below are tailor made to make someone revived very incapable in combat. -2 str, wil and con doesn't really 
-	 impact a melee class slightly, but the kicker is -8 Fortune which nukes your melee hit chance. Because Mage / Archer have an easier time
-	 getting around the old penalty of -1 across the board due to being ranged or having spells, the Perception and Int penalty is WAY harsher
-	 to make sure that they suffer heavily in damage scaling and spells / CDR scaling.
+	/* The penalties below are tailor made to make someone revived very incapable in combat. -2 str and wil doesn't really 
+	 impact a melee class slightly, but the kicker is -8 Fortune which nukes your melee hit chance. Archer eats a -6 Perception.
+	 Mage only gets -2 Intelligence, but -5 Constitution should make them glass cannon if they immediately re-engage.
 	 This is meant to solve or mitigate the treadmill problem of being revived and immediately running off to fight the antag again.
 	 Unless they pay the price of drinking a rot cure potion, which clears it instantly.
 	*/
-	effectedstats = list(STATKEY_STR = -2, STATKEY_PER = -6, STATKEY_INT = -8, STATKEY_WIL = -2, STATKEY_CON = -2, STATKEY_SPD = -2, STATKEY_LCK = -8)
+	effectedstats = list(STATKEY_STR = -2, STATKEY_PER = -6, STATKEY_INT = -2, STATKEY_WIL = -2, STATKEY_CON = -5, STATKEY_SPD = -2, STATKEY_LCK = -8)
 	duration = 30 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/revived
@@ -351,7 +350,7 @@
 /datum/status_effect/debuff/rotted
 	id = "rotted_body"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
-	effectedstats = list(STATKEY_STR = -2, STATKEY_PER = -2, STATKEY_INT = -2, STATKEY_WIL = -2, STATKEY_CON = -2, STATKEY_SPD = -2, STATKEY_LCK = -2)
+	effectedstats = list(STATKEY_STR = -1, STATKEY_PER = -1, STATKEY_INT = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)
 	duration = 30 MINUTES	//Back to a temporary 30 min duration. It hurts.
 
 /atom/movable/screen/alert/status_effect/debuff/rotted
