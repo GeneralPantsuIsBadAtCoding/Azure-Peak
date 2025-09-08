@@ -1,8 +1,8 @@
 /datum/advclass/foreigner
-	name = "Eastern Warrior (Okaru)"
+	name = "Eastern Warrior"
 	tutorial = "A warrior hailing from the distant land of Kazengun, far across the eastern sea."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = NON_DWARVEN_RACE_TYPES // Clothing has no dwarven sprites.
 	outfit = /datum/outfit/job/roguetown/adventurer/foreigner
 	class_select_category = CLASS_CAT_NOMAD
 	traits_applied = list(TRAIT_STEELHEARTED)
@@ -60,8 +60,8 @@
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 
 /datum/advclass/foreigner/yoruku
-	name = "Eastern Spy (Yoruku)"
-	tutorial = "A Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
+	name = "Eastern Assassin"
+	tutorial = "The Yoruku are Kazengun agents trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
 	for combat in the tight confines of castles and back alleys."
 	allowed_races = NON_DWARVEN_RACE_TYPES //Clothing has no dwarf sprites.
 	outfit = /datum/outfit/job/roguetown/adventurer/yoruku
