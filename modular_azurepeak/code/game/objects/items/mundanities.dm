@@ -149,7 +149,7 @@
 	desc = "Corrugated tinplate concealing tinfood."
 	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
 	icon_state = "acan"
-	sellprice = 120
+	sellprice = 70
 	var/can_sealed = 1
 	var/menu_item = 1
 	tastes = list("salty mush" = 1)
@@ -165,25 +165,25 @@
 		return
 
 	if(can_sealed == 1)
-		menu_item = rand(1,5) //get the meal
-		name = "saltpot"
-		desc += " It has been opened, revealing a salty-smelling mush on the inside."
+		src.menu_item = rand(1,5) //get the meal
+		src.name = "saltpot"
+		src.desc += " It has been opened, revealing a salty-smelling mush on the inside."
 		switch(menu_item)
 			if(1)
 				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
 				src.tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 			if(2)
 				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
-				tastes = list("overpoweringly salty rous meat" = 2)
+				src.tastes = list("overpoweringly salty rous meat" = 2)
 			if(3)
-				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
-				tastes = list("cabbit meat" = 1, "thin stew" = 1)
+				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+				src.tastes = list("cabbit meat" = 1, "thin stew" = 1)
 			if(4)
-				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
-				tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
+				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+				src.tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
 			if(5)
-				list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
-				tastes = list("hearty stew" = 1, "vegetables" = 1)
+				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+				src.tastes = list("hearty stew" = 1, "vegetables" = 1)
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
