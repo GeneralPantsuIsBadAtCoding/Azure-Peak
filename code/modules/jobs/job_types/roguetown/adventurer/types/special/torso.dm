@@ -6,6 +6,13 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/torso
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR, TRAIT_STEELHEARTED)
 	category_tags = list(CTAG_DISABLED)
+	subclass_stats = list(
+		STATKEY_STR = 3,
+		STATKEY_WIL = 3,
+		STATKEY_CON = 3,
+		STATKEY_PER = 2,
+		STATKEY_SPD = 2
+	)
 
 /datum/outfit/job/roguetown/adventurer/torso/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -27,11 +34,6 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, rand(0,4), TRUE)
-	H.change_stat(STATKEY_STR, 3)
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_CON, 3)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, 2)
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
 	belt = /obj/item/storage/belt/rogue/leather

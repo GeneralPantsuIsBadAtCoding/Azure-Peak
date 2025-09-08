@@ -19,6 +19,12 @@
 	wanderer_examine = FALSE
 	advjob_examine = TRUE
 	give_bank_account = 15
+	job_traits = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED, TRAIT_INQUISITION)
+	job_subclasses = list(
+		/datum/advclass/psydoniantemplar,
+		/datum/advclass/disciple,
+		/datum/advclass/confessor
+	)
 
 /datum/job/roguetown/orthodoxist/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

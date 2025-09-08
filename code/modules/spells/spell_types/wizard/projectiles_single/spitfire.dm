@@ -66,4 +66,4 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()

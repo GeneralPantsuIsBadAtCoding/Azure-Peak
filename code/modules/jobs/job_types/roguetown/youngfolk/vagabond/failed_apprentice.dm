@@ -4,7 +4,21 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/vagabond/mage
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
 	category_tags = list(CTAG_VAGABOND)
+	subclass_stats = list(
+		STATKEY_INT = 2,
+		STATKEY_CON = -2,
+		STATKEY_WIL = -2,
+		STATKEY_SPD = -1
+	)
+	subclass_spellpoints = 9
+	subclass_skills = list(
+		/datum/skill/magic/arcane = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/vagabond/mage/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -23,16 +37,3 @@
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	
 	r_hand = /obj/item/rogueweapon/woodstaff
-
-	H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-		H.mind.adjust_spellpoints(9)
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
-	H.change_stat(STATKEY_INT, 2)
-	H.change_stat(STATKEY_CON, -1)
-	H.change_stat(STATKEY_WIL, -1)

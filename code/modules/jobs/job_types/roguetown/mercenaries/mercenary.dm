@@ -16,7 +16,37 @@
 	outfit = null	//Handled by classes
 	outfit_female = null
 	advclass_cat_rolls = list(CTAG_MERCENARY = 20)
+	job_traits = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED)
 	always_show_on_latechoices = TRUE
+	class_categories = TRUE
+	job_subclasses = list(
+		/datum/advclass/mercenary/atgervi,
+		/datum/advclass/mercenary/atgervi/shaman,
+		/datum/advclass/mercenary/condottiero,
+		/datum/advclass/mercenary/desert_rider,
+		/datum/advclass/mercenary/desert_rider/zeybek,
+		/datum/advclass/mercenary/desert_rider/almah,
+		/datum/advclass/mercenary/forlorn,
+		/datum/advclass/mercenary/vaquero,
+		/datum/advclass/mercenary/freelancer,
+		/datum/advclass/mercenary/freelancer/lancer,
+		/datum/advclass/mercenary/grenzelhoft,
+		/datum/advclass/mercenary/grenzelhoft/halberdier,
+		/datum/advclass/mercenary/grenzelhoft/crossbowman,
+		/datum/advclass/mercenary/routier,
+		/datum/advclass/mercenary/rumaclan,
+		/datum/advclass/mercenary/rumaclan/sasu,
+		/datum/advclass/mercenary/seonjang,
+		/datum/advclass/mercenary/steppesman,
+		/datum/advclass/mercenary/warscholar,
+		/datum/advclass/mercenary/warscholar/pontifex,
+		/datum/advclass/mercenary/warscholar/vizier,
+		/datum/advclass/mercenary/blackoak,
+		/datum/advclass/mercenary/blackoak/ranger,
+		/datum/advclass/mercenary/underdweller,
+		/datum/advclass/mercenary/grudgebearer,
+		/datum/advclass/mercenary/grudgebearer/soldier
+	)
 
 /datum/job/roguetown/mercenary/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

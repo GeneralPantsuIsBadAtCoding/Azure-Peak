@@ -388,6 +388,15 @@
 	reqs = list(/obj/item/storage/roguebag/crafted = 1,
 				/obj/item/rope = 1)
 
+/datum/crafting_recipe/roguetown/survival/handmirror
+	name = "hand mirror"
+	result = /obj/item/handmirror
+	reqs = list(
+		/obj/item/natural/glass = 1,
+		/obj/item/grown/log/tree/stick = 1,
+		)
+	craftdiff = 2
+
 // Improvised surgey tools. They go here for now (TM)
 /datum/crafting_recipe/roguetown/survival/improvisedsaw
 	name = "improvised surgery saw (1 fiber + 1 stone + 1 stick)"

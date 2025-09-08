@@ -7,19 +7,27 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/potter
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_PER = 2,
+		STATKEY_WIL = 2,
+		STATKEY_CON = 1,
+		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN, // Potters are fairly active, having to source their own clay.
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN, // They mostly work with their bare hands...?
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN, // Something about wrestling clay into shape?
+		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE, // They probably have some insight in carpentry and masonry.
+		/datum/skill/craft/masonry = SKILL_LEVEL_APPRENTICE, // They probably have some insight in carpentry and masonry.
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/ceramics = SKILL_LEVEL_MASTER,
+	)
 
 /datum/outfit/job/roguetown/adventurer/potter/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) // Potters are fairly active, having to source their own clay.
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE) // They mostly work with their bare hands...?
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE) // Something about wrestling clay into shape?
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE) // They probably have some insight in carpentry and masonry.
-	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE) // They probably have some insight in carpentry and masonry.
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/ceramics, 5, TRUE)
 	head = /obj/item/clothing/head/roguetown/hatfur
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/hatblu
@@ -45,8 +53,3 @@
 	// Clay and glassBatch are raw materials
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.
-
-	H.change_stat(STATKEY_WIL, 2)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, -1)

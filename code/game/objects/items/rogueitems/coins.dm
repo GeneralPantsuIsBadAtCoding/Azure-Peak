@@ -77,7 +77,7 @@
 	G.set_quantity(G.quantity - amt_to_merge)
 	rigged_outcome = 0
 	G.rigged_outcome = 0
-	if(user)
+	if(user && G.quantity <= 0)
 		user.doUnEquip(G)
 		user.update_inv_hands()
 	if(G.quantity <= 0)

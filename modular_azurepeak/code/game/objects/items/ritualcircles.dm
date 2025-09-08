@@ -46,7 +46,7 @@
 							loc.visible_message(span_warning("[user]'s bursts to flames! Embraced by Her Warmth wholly!"))
 							playsound(loc, 'sound/combat/hits/burn (1).ogg', 100, FALSE, -1)
 							user.adjust_fire_stacks(10)
-							user.IgniteMob()
+							user.ignite_mob()
 							user.flash_fullscreen("redflash3")
 							user.emote("firescream")
 						guidinglight(src) // Actually starts the proc for applying the buff

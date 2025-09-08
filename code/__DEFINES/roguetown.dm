@@ -88,11 +88,12 @@
 
 // Light AC | Chest
 #define ARMOR_CLOTHING list("blunt" = 0, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
-#define ARMOR_PADDED_GOOD list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
-#define ARMOR_PADDED list("blunt" = 60, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0)
 #define ARMOR_PADDED_BAD list("blunt" = 40, "slash" = 30, "stab" = 20, "piercing" = 40, "fire" = 0, "acid" = 0)
+#define ARMOR_PADDED list("blunt" = 60, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0)
+#define ARMOR_PADDED_GOOD list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
 
 #define ARMOR_LEATHER list("blunt" = 60, "slash" = 50, "stab" = 40, "piercing" = 20, "fire" = 0, "acid" = 0)
+#define ARMOR_SPELLSINGER list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
 #define ARMOR_LEATHER_GOOD list("blunt" = 100, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
 #define ARMOR_LEATHER_STUDDED list("blunt" = 80, "slash" = 80, "stab" = 60, "piercing" = 20, "fire" = 0, "acid" = 0)
 
@@ -146,7 +147,6 @@
 #define ARMOR_WWOLF list("blunt" = 100, "slash" = 90, "stab" = 80, "piercing" = 70, "fire" = 40, "acid" = 0)
 #define ARMOR_DRAGONSCALE list("blunt" = 100, "slash" = 100, "stab" = 100, "fire" = 50, "acid" = 0)
 #define ARMOR_ASCENDANT list("blunt" = 50, "slash" = 100, "stab" = 80, "piercing" = 80, "fire" = 0, "acid" = 0)
-#define ARMOR_SPELLSINGER list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
 #define ARMOR_GRUDGEBEARER list("blunt" = 40, "slash" = 200, "stab" = 200, "piercing" = 100, "fire" = 0, "acid" = 0)
 #define ARMOR_ZIZOCONCSTRUCT list("blunt" = 60, "slash" = 70, "stab" = 70, "piercing" = 60, "fire" = 40, "acid" = 10)
 
@@ -413,6 +413,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_VAGABOND		"CAT_VAGABOND"		// Vagabond class - start with nothing and work your way up
 #define CTAG_INQUISITION	"CAT_INQUISITION"	// For Orthodoxist subclasses
 #define CTAG_PURITAN		"CAT_PURITAN"		// For Inquisitor subclasses
+#define CTAG_ABSOLVER		"CAT_ABSOLVER"		// For Absolver (sub)class
 #define CTAG_COURTAGENT		"CAT_COURTAGENT"	// Court agent classes
 #define CTAG_WRETCH			"CAT_WRETCH"		// Wretch classes untethered from adventurer
 #define CTAG_LSKELETON		"CAT_LSKELETON"		// Lich Fortified Skeleton classes
@@ -439,6 +440,36 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_GUILDSMASTER 	"CAT_GUILDSMASTER"	// Guildsmaster class - Handles Guildsmaster class selector 
 #define CTAG_GUILDSMEN 		"CAT_GUILDSMEN"		// Guildsmen class - Handles Guildsmen class selector
 #define CTAG_NIGHTMAIDEN	"CAT_NIGHTMAIDEN"	// Bathhouse Attendant's aesthetic choices.
+
+// List of mono-class categories. Only here for standardisation sake, but can be added on if desired.
+#define CTAG_DUNGEONEER		"CAT_DUNGEONEER"
+
+#define CTAG_BISHOP			"CAT_BISHOP"
+#define CTAG_MARTYR			"CAT_MARTYR"
+#define CTAG_ACOLYTE		"CAT_ACOLYTE"
+#define CTAG_CHURCHLING		"CAT_CHURCHLING"
+#define CTAG_DRUID			"CAT_DRUID"
+
+#define CTAG_STEWARD		"CAT_STEWARD"
+#define CTAG_CLERK			"CAT_CLERK"
+#define CTAG_COUNCILLOR		"CAT_COUNCIL"
+
+#define CTAG_COURTMAGE		"CAT_COURTMAGE"
+
+#define CTAG_COURTPHYS		"CAT_COURTPHYS"
+#define CTAG_APOTH			"CAT_APOTH"
+
+#define CTAG_MERCH			"CAT_MERCH"
+#define CTAG_SHOPHAND		"CAT_SHOPHAND"
+#define CTAG_ARCHIVIST		"CAT_ARCHIVIST"
+#define CTAG_TOWNCRIER		"CAT_TOWNCRIER"
+#define CTAG_TAILOR			"CAT_TAILOR"
+#define CTAG_SOILBRIDE		"CAT_SOILBRIDE"
+#define CTAG_INNKEEPER		"CAT_INNKEEPER"
+#define CTAG_COOK			"CAT_COOK"
+#define CTAG_BATHMOM		"CAT_BATHMOM"
+#define CTAG_TAPSTER		"CAT_TAPSTER"
+#define CTAG_LUNATIC		"CAT_LUNATIC"
 /*
 	Defines for the triumph buy datum categories
 */
@@ -452,3 +483,27 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define ARMOR_CLASS_MEDIUM 2
 #define ARMOR_CLASS_HEAVY 3
 
+/*
+	Defines for class select categories
+*/
+
+//Adventurer categories
+#define CLASS_CAT_NOBLE	"Noble"
+#define CLASS_CAT_CLERIC "Cleric"
+#define CLASS_CAT_ROGUE	"Rogue"
+#define CLASS_CAT_RANGER "Ranger"
+#define CLASS_CAT_MAGE "Mage"
+#define CLASS_CAT_WARRIOR "Warrior"
+#define CLASS_CAT_TRADER "Trader"
+#define CLASS_CAT_NOMAD "Nomad"
+
+//Mercenary categories
+#define CLASS_CAT_ETRUSCA "Etrusca"
+#define CLASS_CAT_GRENZELHOFT "Grenzelhoft"
+#define CLASS_CAT_NALEDI "Naledi"
+#define CLASS_CAT_RANESHENI "Ranesheni"
+#define CLASS_CAT_AAVNR "Aavnr"
+#define CLASS_CAT_GRONN "Gronn"
+#define CLASS_CAT_OTAVA "Otava"
+#define CLASS_CAT_KAZENGUN "Kazengun"
+#define CLASS_CAT_RACIAL "Race Exclusive" //Used for black oaks, grudgebearer dwarves, etc.

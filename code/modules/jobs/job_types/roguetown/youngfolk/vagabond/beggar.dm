@@ -4,7 +4,19 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/vagabond/beggar
+	subclass_languages = list(/datum/language/thievescant)
 	category_tags = list(CTAG_VAGABOND)
+	traits_applied = list(TRAIT_NOSTINK, TRAIT_NASTY_EATER)
+	subclass_stats = list(
+		STATKEY_STR =  1,
+		STATKEY_CON = -3,
+		STATKEY_WIL = -3,
+		STATKEY_INT = -4
+	)
+	subclass_skills = list(
+		/datum/skill/misc/stealing = SKILL_LEVEL_EXPERT,
+	)
+	extra_context = "Fortune is randomised."
 
 /datum/outfit/job/roguetown/vagabond/beggar/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -46,15 +58,7 @@
 
 	if (H.mind)
 		H.adjust_skillrank(/datum/skill/misc/sneaking, rand(1,5), TRUE)
-		H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/climbing, rand(1,5), TRUE)
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, pick (1,2,3,4,5), TRUE)
 		H.STALUC = rand(5, 15)
-		H.change_stat(STATKEY_STR, -1)
-		H.change_stat(STATKEY_INT, -4)
-		H.change_stat(STATKEY_CON, -3)
-		H.change_stat(STATKEY_WIL, -3)
-		H.grant_language(/datum/language/thievescant)
-		ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_NASTY_EATER, TRAIT_GENERIC)
 		

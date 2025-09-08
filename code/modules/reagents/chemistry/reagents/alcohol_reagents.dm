@@ -1998,5 +1998,5 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT)
 	if (prob(5))
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	..()

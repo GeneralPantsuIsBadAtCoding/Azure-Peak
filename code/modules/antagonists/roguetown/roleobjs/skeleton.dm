@@ -19,11 +19,12 @@
 //		escape_objective.owner = owner
 //		objectives += escape_objective
 //		return
+	ADD_TRAIT(owner.current, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	return ..()
 
 /datum/antagonist/skeleton/on_removal()
+	REMOVE_TRAIT(owner.current, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	return ..()
-
 
 /datum/antagonist/skeleton/greet()
 	owner.announce_objectives()

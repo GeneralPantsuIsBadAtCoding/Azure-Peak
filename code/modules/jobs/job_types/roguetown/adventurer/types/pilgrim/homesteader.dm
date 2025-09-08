@@ -7,42 +7,50 @@
 	traits_applied = list(TRAIT_JACKOFALLTRADES)
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	adaptive_name = TRUE
+	subclass_stats = list(
+		STATKEY_INT = 3,	//This guy's here to grind = baby.
+		STATKEY_STR = 1,
+		STATKEY_WIL = 1,
+		STATKEY_PER = 1,
+		STATKEY_LCK = 1,	
+	)
+	subclass_skills = list(
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/music = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/ceramics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/masonry = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/engineering = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/tanning = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_APPRENTICE,
+
+		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/fishing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/homesteader/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank_up_to(/datum/skill/combat/axes, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 1, TRUE)
-
-	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/stealing, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/music, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/sewing, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/ceramics, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/tracking, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank_down_to(/datum/skill/misc/riding, 2, TRUE)
-
-	H.adjust_skillrank_up_to(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/carpentry, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/masonry, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/engineering, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/traps, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/tanning, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/cooking, 2, TRUE)
-
-	H.adjust_skillrank_up_to(/datum/skill/labor/lumberjacking, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/labor/fishing, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/labor/butchering, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
-
 	head = pick(/obj/item/clothing/head/roguetown/hatfur,
 	/obj/item/clothing/head/roguetown/hatblu,
 	/obj/item/clothing/head/roguetown/nightman,
@@ -108,8 +116,3 @@
 		H.mind.special_items["Pan for Frying"] = /obj/item/cooking/pan
 
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_INT, 3)	//This guy's here to grind, baby.
-	H.change_stat(STATKEY_PER, 1)
-	H.change_stat(STATKEY_LCK, 1)

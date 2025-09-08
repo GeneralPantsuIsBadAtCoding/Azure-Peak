@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 	spawn_positions = 20
 	allowed_races = RACES_ALL_KINDS
 	tutorial = "Hero of nothing, a wanderer in foreign lands in search of fame and riches. Whatever led you to this fate is up to the wind to decide, and you've never fancied yourself for much other than the thrill. Some day your pride is going to catch up to you, and you're going to find out why most men don't end up in the annals of history."
-
+	class_categories = TRUE
 
 	outfit = null
 	outfit_female = null
@@ -33,6 +33,45 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 	same_job_respawn_delay = 1 MINUTES
 
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
+	job_traits = list(TRAIT_OUTLANDER)
+
+	job_subclasses = list(
+		/datum/advclass/cleric,
+		/datum/advclass/cleric/paladin,
+		/datum/advclass/cleric/cantor,
+		/datum/advclass/cleric/missionary,
+		/datum/advclass/sfighter,
+		/datum/advclass/sfighter/duelist,
+		/datum/advclass/sfighter/mhunter,
+		/datum/advclass/sfighter/barbarian,
+		/datum/advclass/sfighter/ironclad,
+		/datum/advclass/rogue,
+		/datum/advclass/rogue/thief,
+		/datum/advclass/rogue/bard,
+		/datum/advclass/rogue/swashbuckler,
+		/datum/advclass/mage,
+		/datum/advclass/mage/spellblade,
+		/datum/advclass/mage/spellsinger,
+		/datum/advclass/ranger,
+		/datum/advclass/ranger/assassin,
+		/datum/advclass/ranger/bombadier,
+		/datum/advclass/ranger/bwanderer,
+		/datum/advclass/noble,
+		/datum/advclass/noble/knighte,
+		/datum/advclass/noble/squire,
+		/datum/advclass/trader,
+		/datum/advclass/trader/doomsayer,
+		/datum/advclass/trader/scholar,
+		/datum/advclass/trader/harlequin,
+		/datum/advclass/trader/peddler,
+		/datum/advclass/trader/brewer,
+		/datum/advclass/trader/cuisiner,
+		/datum/advclass/foreigner,
+		/datum/advclass/foreigner/yoruku,
+		/datum/advclass/foreigner/repentant,
+		/datum/advclass/foreigner/refugee,
+		/datum/advclass/foreigner/slaver
+	)
 
 /datum/job/roguetown/adventurer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

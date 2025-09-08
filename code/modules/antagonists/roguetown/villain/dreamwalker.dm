@@ -797,14 +797,14 @@
 		if("fire")
 			H.adjust_fire_stacks(4)
 			spawn(0)
-				H.IgniteMob()
+				H.ignite_mob()
 			target.visible_message(span_warning("[source] ignites [target] with strange flame!"))
 		if("frost")
 			H.apply_status_effect(/datum/status_effect/buff/frostbite)
 			target.visible_message(span_warning("[source] freezes [target] with scalding ice!"))
 		if("poison")
 			if(H.reagents)
-				H.reagents.add_reagent(/datum/reagent/berrypoison, 5)
+				H.reagents.add_reagent(/datum/reagent/berrypoison, 2)
 				target.visible_message(span_warning("[source] injects [target] with vile ooze!"))
 
 	// Set cooldown
@@ -825,7 +825,7 @@
 		spawn(0)
 			H.apply_damage(10, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			H.adjust_fire_stacks(2)
-			H.IgniteMob()
+			H.ignite_mob()
 
 /obj/item/rogueweapon/halberd/glaive/dreamscape
 	name = "otherworldly spear"
@@ -911,7 +911,7 @@
 
 /obj/item/rogueweapon/greatsword/bsword/dreamscape/active/Initialize()
 	. = ..()
-	AddComponent(/datum/component/dream_weapon, "poison", 10 SECONDS)
+	AddComponent(/datum/component/dream_weapon, "poison", 20 SECONDS)
 
 /obj/item/rogueweapon/spear/dreamscape_trident/active/Initialize()
 	. = ..()

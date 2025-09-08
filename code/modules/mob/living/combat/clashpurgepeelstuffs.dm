@@ -8,10 +8,10 @@
 	if(!IU)	//The opponent is trying to rawdog us with their bare hands while we have Guard up. We get a free attack on their active hand.
 		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		var/force = get_complex_damage(IM, src)
-		var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_L_HAND, used_intent.item_d_type, armor_penetration = used_intent.penfactor, damage = force)
+		var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_L_HAND, used_intent.item_d_type, armor_penetration = used_intent.penfactor, damage = force, used_weapon = IM)
 		if(H.apply_damage(force, IM.damtype, affecting, armor_block))
 			visible_message(span_suicide("[src] gores [user]'s hands with \the [IM]!"))
-			affecting.bodypart_attacked_by(used_intent.blade_class, force, crit_message = TRUE)
+			affecting.bodypart_attacked_by(used_intent.blade_class, force, crit_message = TRUE, weapon = IM)
 		else
 			visible_message(span_suicide("[src] clashes into [user]'s hands with \the [IM]!"))
 		playsound(src, pick(used_intent.hitsound), 80)
@@ -217,8 +217,8 @@
 		if(istype(wear_ring, /obj/item/clothing/ring/duelist))
 			return TRUE
 	return FALSE
-
-/mob/living/carbon/human/proc/highest_ac_worn()
+/// Returns the highest AC worn, or held in hands.
+/mob/living/carbon/human/proc/highest_ac_worn(check_hands)
 	var/list/slots = list(wear_armor, wear_pants, wear_wrists, wear_shirt, gloves, head, shoes, wear_neck, wear_mask, wear_ring)
 	for(var/slot in slots)
 		if(isnull(slot) || !istype(slot, /obj/item/clothing))
@@ -230,6 +230,19 @@
 		if(C.armor_class)
 			if(C.armor_class > highest_ac)
 				highest_ac = C.armor_class
+				if(highest_ac == ARMOR_CLASS_HEAVY)
+					return highest_ac
+	if(check_hands)
+		var/mainh = get_active_held_item()
+		var/offh = get_inactive_held_item()
+		if(mainh && istype(mainh, /obj/item/clothing))
+			var/obj/item/clothing/CMH = mainh
+			if(CMH.armor_class > highest_ac)
+				highest_ac = CMH.armor_class 
+		if(offh && istype(offh, /obj/item/clothing))
+			var/obj/item/clothing/COH = offh
+			if(COH.armor_class > highest_ac)
+				highest_ac = COH.armor_class 
 	
 	return highest_ac
 

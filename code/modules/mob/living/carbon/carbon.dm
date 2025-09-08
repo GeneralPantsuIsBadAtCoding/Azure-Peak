@@ -361,18 +361,30 @@
 		buckled.user_unbuckle_mob(src,src)
 
 /mob/living/carbon/resist_fire()
-	fire_stacks -= 2.5
-	if(fire_stacks > 10 || !(mobility_flags & MOBILITY_STAND))
+	adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks)
+	adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks/sunder)
+	adjust_fire_stacks(-2, /datum/status_effect/fire_handler/fire_stacks/divine)
+
+	var/datum/status_effect/fire_handler/fire_stacks/fire_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
+	var/datum/status_effect/fire_handler/fire_stacks/divine_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/blessed_sunder = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+
+	if(fire_status?.stacks + sunder_status?.stacks + divine_status?.stacks + blessed_sunder?.stacks > 10 || !(mobility_flags & MOBILITY_STAND))
 		Paralyze(50, TRUE, TRUE)
 		spin(32,2)
-		fire_stacks -= 5
-		visible_message("<span class='warning'>[src] rolls on the ground, trying to put [p_them()]self out!</span>")
+		adjust_fire_stacks(-5, /datum/status_effect/fire_handler/fire_stacks)
+		adjust_fire_stacks(-5, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		adjust_fire_stacks(-5, /datum/status_effect/fire_handler/fire_stacks/divine)
+		adjust_fire_stacks(-5, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+		visible_message(span_warning("[src] rolls on the ground, trying to put [p_them()]self out!"))
 	else
-		visible_message("<span class='notice'>[src] pats the flames to extinguish them.</span>")
-	sleep(30)
-	if(fire_stacks <= 0)
-		ExtinguishMob(TRUE)
-	return
+		visible_message(span_notice("[src] pats the flames to extinguish them."))
+	addtimer(CALLBACK(src, PROC_REF(check_try_extinguish)), 3 SECONDS)
+
+/mob/living/carbon/proc/check_try_extinguish()
+	if(!has_status_effect(/datum/status_effect/fire_handler))
+		extinguish_mob(TRUE)
 
 /mob/living/carbon/resist_restraints()
 	var/obj/item/I = null
@@ -1103,7 +1115,7 @@
 	if(organs_amt)
 		to_chat(user, "<span class='notice'>I retrieve some of [src]\'s internal organs!</span>")
 
-/mob/living/carbon/ExtinguishMob(itemz = TRUE)
+/mob/living/carbon/extinguish_mob(itemz = TRUE)
 	if(itemz)
 		for(var/X in get_equipped_items())
 			var/obj/item/I = X
