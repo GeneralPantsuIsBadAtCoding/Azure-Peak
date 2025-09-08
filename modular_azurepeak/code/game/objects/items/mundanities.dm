@@ -194,7 +194,8 @@
 
 	if(src.can_sealed == 1)
 
-		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
+//		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
+		if(istype(A, /obj/item/rogueweapon/huntingknife))
 			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,50, target = src))
@@ -205,7 +206,8 @@
 				to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 				return
 
-		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
+//		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
+		if(istype(A, /obj/item/natural/stone))
 			to_chat(user, span_notice("I start messily bashing the can open..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,70, target = src))
@@ -246,3 +248,5 @@
 
 	if(bitecount == 4) //if it empty, throw up da empty sprite
 		icon_state = "acan_e"
+		name = "empty saltpot"
+		desc = "Corrugated tinplate and disgusting-smelling slime."
