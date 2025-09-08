@@ -155,7 +155,7 @@
 	tastes = null
 	bitesize = 1
 	list_reagents = null
-	bitesize = 6
+	bitesize = 5
 	rotprocess = null
 //	drop_sound
 
@@ -165,24 +165,24 @@
 	menu_item = pick(1,2,3,4,5) //get the meal. rand does not work for this and i have no idea why.
 	switch(menu_item)
 		if(1)
-			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
 			tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 		if(2)
-			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
 			tastes = list("overpoweringly salty rous meat" = 2)
 		if(3)
-			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
 			tastes = list("cabbit meat" = 1, "thin stew" = 1)
 		if(4)
-			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
 			tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
 		if(5)
-			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
-			tastes = list("hearty stew" = 1, "vegetables" = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+			tastes = list("hearty meat stew" = 1, "fresh vegetables" = 1)
 	. = ..()
 
 
-/obj/item/reagent_containers/food/snacks/canned/proc/name_desc() //where da magyck happens
+/obj/item/reagent_containers/food/snacks/canned/proc/name_desc() //rename and new description upon opening
 	name = "saltpot"
 	desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
 
@@ -197,21 +197,23 @@
 		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
 			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
-			if(do_after(user,5, target = src))
+			if(do_after(user,50, target = src))
 				update_icon()
 				src.name_desc()
 				src.can_sealed = 0
 				update_icon()
 				to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
+				return
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 			to_chat(user, span_notice("I start messily bashing the can open..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
-			if(do_after(user,7, target = src))
+			if(do_after(user,70, target = src))
 				src.name_desc()
 				src.can_sealed = 0
 				update_icon()
 				to_chat(user, span_notice("The scent of salty food hits my nostrils as I bash the saltpot open."))
+				return
 
 		else
 			to_chat(user, span_warning("I can't open \the [src] with this..."))
@@ -220,19 +222,27 @@
 
 /obj/item/reagent_containers/food/snacks/canned/update_icon()
 
-	if(can_sealed == 1)
-		icon_state = "acan_s"
-	else
+	if(can_sealed == 0)
 		icon_state = "acan"
+
+	else
+		icon_state = "acan_s"
+
+
 
 
 /obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
 
 	if(src.can_sealed == 1)
 		return
+
+	if(bitecount == 4)
+		to_chat(user, span_warning("Empty."))
+		sellprice = 10 //u ate da FOOD
+		return
 	..()
 
 /obj/item/reagent_containers/food/snacks/canned/On_Consume()
 
-	if(bitecount == 6) //if it empty, throw up da empty sprite
+	if(bitecount == 4) //if it empty, throw up da empty sprite
 		icon_state = "acan_e"
