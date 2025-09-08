@@ -20,8 +20,8 @@
 
 /datum/outfit/job/roguetown/templar/vigilant/pre_equip(mob/living/carbon/human/H)
 	..()
-	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
-	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
+	wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
+	cloak = /obj/item/clothing/cloak/undivided
 	id = /obj/item/clothing/ring/gold
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
@@ -32,32 +32,46 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
+		if(/datum/patron/divine/undivided)
+			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
+			var/cloaks = list("Cloak", "Tabard")
+			var/cloakchoice = input(H,"Choose your covering", "TAKE UP FASHION") as anything in cloaks
+			switch(cloakchoice)
+				if("Cloak")
+					cloak = /obj/item/clothing/cloak/undivided
+				if("Tabard")
+					cloak = /obj/item/clothing/cloak/templar/undivided
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/astrata)
 			head = /obj/item/clothing/head/roguetown/roguehood/astrata
 			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 			cloak = /obj/item/clothing/cloak/tabard/crusader/astrata
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/abyssor)
 			head = /obj/item/clothing/head/roguetown/roguehood/abyssor
 			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
 			cloak = /obj/item/clothing/cloak/abyssortabard
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/xylix)
 			wrists = /obj/item/clothing/neck/roguetown/luckcharm
 			cloak = /obj/item/clothing/cloak/templar/xylixian
-			mask = /obj/item/clothing/mask/rogue/facemask/xylixmask //TA edit
+			mask = /obj/item/clothing/mask/rogue/facemask/xylixmask/armored //TA edit
 			H.cmode_music = 'sound/music/combat_jester.ogg'
 		if(/datum/patron/divine/dendor)
-			head = /obj/item/clothing/head/roguetown/dendormask
 			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 			cloak = /obj/item/clothing/cloak/tabard/crusader/dendor
+			mask = /obj/item/clothing/head/roguetown/dendormask/armored
 			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
 		if(/datum/patron/divine/necra)
 			head = /obj/item/clothing/head/roguetown/necrahood
 			wrists = /obj/item/clothing/neck/roguetown/psicross/necra
 			cloak = /obj/item/clothing/cloak/templar/necran
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/pestra)
 			head = /obj/item/clothing/head/roguetown/roguehood/phys
 			wrists = /obj/item/clothing/neck/roguetown/psicross/pestra
 			cloak = /obj/item/clothing/cloak/templar/pestran
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/eora) //Eora content from stonekeep
 			head = /obj/item/clothing/head/roguetown/eoramask
 			wrists = /obj/item/clothing/neck/roguetown/psicross/eora
@@ -66,22 +80,24 @@
 			head = /obj/item/clothing/head/roguetown/nochood
 			wrists = /obj/item/clothing/neck/roguetown/psicross/noc
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 		if(/datum/patron/divine/ravox)
 			head = /obj/item/clothing/head/roguetown/roguehood
 			mask = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
 			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
 			cloak = /obj/item/clothing/cloak/templar/ravox
-			backpack_contents = list(/obj/item/ritechalk, /obj/item/book/rogue/law)
+			backpack_contents = list(/obj/item/ritechalk, /obj/item/book/rogue/law, /obj/item/clothing/mask/rogue/facemask/steel)
 		if(/datum/patron/divine/malum)
 			head = /obj/item/clothing/head/roguetown/roguehood
 			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/steel
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/full // пока у них не будет нормальных шлемов
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
 	H.grant_language(/datum/language/grenzelhoftian)
