@@ -148,43 +148,44 @@
 	name = "corrugated tinpot"
 	desc = "Corrugated tinplate concealing tinfood."
 	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
-	icon_state = "acan"
+	icon_state = "acan_s"
 	sellprice = 70
 	var/can_sealed = 1
 	var/menu_item = 1
-	tastes = list("salty mush" = 1)
+	tastes = null
 	bitesize = 1
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	list_reagents = null
 	bitesize = 6
 	rotprocess = null
 //	drop_sound
 
+/obj/item/reagent_containers/food/snacks/canned/Initialize()
 
-/obj/item/reagent_containers/food/snacks/canned/proc/randomize_insides() //where da magyck happens
 
-	if(can_sealed == 0)
-		return
+	menu_item = pick(1,2,3,4,5) //get the meal. rand does not work for this and i have no idea why.
+	switch(menu_item)
+		if(1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+			tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
+		if(2)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+			tastes = list("overpoweringly salty rous meat" = 2)
+		if(3)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+			tastes = list("cabbit meat" = 1, "thin stew" = 1)
+		if(4)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+			tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
+		if(5)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+			tastes = list("hearty stew" = 1, "vegetables" = 1)
+	. = ..()
 
-	if(can_sealed == 1)
-		menu_item = pick(1,2,3,4,5) //get the meal. rand does not work for this and i have no idea why.
-		name = "saltpot"
-		desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
-		switch(menu_item)
-			if(1)
-				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
-				tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
-			if(2)
-				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
-				tastes = list("overpoweringly salty rous meat" = 2)
-			if(3)
-				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
-				tastes = list("cabbit meat" = 1, "thin stew" = 1)
-			if(4)
-				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
-				tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
-			if(5)
-				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
-				tastes = list("hearty stew" = 1, "vegetables" = 1)
+
+/obj/item/reagent_containers/food/snacks/canned/proc/name_desc() //where da magyck happens
+	name = "saltpot"
+	desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
+
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
@@ -198,22 +199,23 @@
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,5, target = src))
 				update_icon()
-				src.randomize_insides()
+				src.name_desc()
 				src.can_sealed = 0
 				update_icon()
+				to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 			to_chat(user, span_notice("I start messily bashing the can open..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,7, target = src))
-				src.randomize_insides()
+				src.name_desc()
 				src.can_sealed = 0
 				update_icon()
+				to_chat(user, span_notice("The scent of salty food hits my nostrils as I bash the saltpot open."))
 
-		to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
-	else
-		to_chat(user, span_warning("I can't open \the [src] with this..."))
-		return FALSE
+		else
+			to_chat(user, span_warning("I can't open \the [src] with this..."))
+			return FALSE
 
 
 /obj/item/reagent_containers/food/snacks/canned/update_icon()
