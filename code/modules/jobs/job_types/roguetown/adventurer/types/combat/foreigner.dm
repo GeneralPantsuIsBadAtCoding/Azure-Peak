@@ -1,6 +1,6 @@
 /datum/advclass/foreigner
 	name = "Eastern Warrior (Okaru)"
-	tutorial = "You are a foreign swordsman, carrying nothing but your sword and your skill."
+	tutorial = "A warrior hailing from the distant land of Kazengun, far across the eastern sea."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/foreigner
@@ -61,7 +61,7 @@
 
 /datum/advclass/foreigner/yoruku
 	name = "Eastern Spy (Yoruku)"
-	tutorial = "You are a Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
+	tutorial = "A Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
 	for combat in the tight confines of castles and back alleys."
 	allowed_races = NON_DWARVEN_RACE_TYPES //Clothing has no dwarf sprites.
 	outfit = /datum/outfit/job/roguetown/adventurer/yoruku
@@ -86,7 +86,7 @@
 
 /datum/outfit/job/roguetown/adventurer/yoruku/pre_equip(mob/living/carbon/human/H)
 	..()
-	to_chat(H, span_warning("You are a Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
+	to_chat(H, span_warning("A Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
 	for combat in the tight confines of castles and back alleys."))
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/yoruku
 	backr = /obj/item/storage/backpack/rogue/satchel
