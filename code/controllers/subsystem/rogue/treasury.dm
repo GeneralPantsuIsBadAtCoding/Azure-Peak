@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(treasury)
 
 	log_to_steward("+[original_amt] deposited by [character.real_name] of which taxed [taxed_amount]")
 
-	return TRUE
+	return list(original_amt, taxed_amount)
 
 
 /datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, target)

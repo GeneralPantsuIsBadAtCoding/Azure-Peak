@@ -108,13 +108,10 @@
 				var/list/deposit_results = SStreasury.generate_money_account(P.get_real_price(), H)
 				if(islist(deposit_results))
 					record_round_statistic(STATS_MAMMONS_DEPOSITED, deposit_results[1] - deposit_results[2])
-				if(!HAS_TRAIT(H, TRAIT_NOBLE))
-					var/taxed_amount = deposit_results[2]
-					if(taxed_amount != 0)
-						SStreasury.total_deposit_tax += taxed_amount
-						say("Your deposit was taxed [taxed_amount] mammon.")
-						record_featured_stat(FEATURED_STATS_TAX_PAYERS, H, taxed_amount)
-						record_round_statistic(STATS_TAXES_COLLECTED, taxed_amount)
+				if(deposit_results[2] != 0)
+					say("Your deposit was taxed [deposit_results[2]] mammon.")
+					record_featured_stat(FEATURED_STATS_TAX_PAYERS, H, deposit_results[2])
+					record_round_statistic(STATS_TAXES_COLLECTED, deposit_results[2])
 				qdel(P)
 				playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 				return
