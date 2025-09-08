@@ -157,6 +157,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	bitesize = 6
 	rotprocess = null
+//	drop_sound
 
 
 /obj/item/reagent_containers/food/snacks/canned/proc/randomize_insides() //where da magyck happens
@@ -165,25 +166,25 @@
 		return
 
 	if(can_sealed == 1)
-		src.menu_item = rand(1,5) //get the meal
-		src.name = "saltpot"
-		src.desc += " It has been opened, revealing a salty-smelling mush on the inside."
+		menu_item = pick(rand(1,5)) //get the meal
+		name = "saltpot"
+		desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
 		switch(menu_item)
 			if(1)
-				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
-				src.tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
+				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+				tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
 			if(2)
-				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
-				src.tastes = list("overpoweringly salty rous meat" = 2)
+				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+				tastes = list("overpoweringly salty rous meat" = 2)
 			if(3)
-				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
-				src.tastes = list("cabbit meat" = 1, "thin stew" = 1)
+				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+				tastes = list("cabbit meat" = 1, "thin stew" = 1)
 			if(4)
-				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
-				src.tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
+				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+				tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
 			if(5)
-				src.list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
-				src.tastes = list("hearty stew" = 1, "vegetables" = 1)
+				bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+				tastes = list("hearty stew" = 1, "vegetables" = 1)
 
 /obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
 
@@ -196,17 +197,17 @@
 			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,5, target = src))
-				src.can_sealed = 0
 				update_icon()
 				src.randomize_insides()
+				src.can_sealed = 0
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 			to_chat(user, span_notice("I start messily bashing the can open..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,7, target = src))
-				src.can_sealed = 0
 				update_icon()
 				src.randomize_insides()
+				src.can_sealed = 0
 
 		to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 	else
@@ -234,4 +235,4 @@
 		return
 
 	if(bitecount == 6) //if it empty, throw up da empty sprite
-	icon_state = "acan_e"
+		icon_state = "acan_e"
