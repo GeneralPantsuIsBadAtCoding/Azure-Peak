@@ -56,7 +56,7 @@
 	var/list/finished_ckeys = list()
 	var/dice_roll = null
 	var/alert = null
-	sellprice = 10
+	sellprice = 15
 
 	grid_width = 32
 	grid_height = 32
@@ -157,7 +157,7 @@
 	list_reagents = null
 	bitesize = 5
 	rotprocess = null
-//	drop_sound
+	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 
 /obj/item/reagent_containers/food/snacks/canned/Initialize()
 
