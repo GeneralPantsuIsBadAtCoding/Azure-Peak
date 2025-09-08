@@ -24,7 +24,7 @@
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE) //Wrestling down those nasty carp.
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE) //Fishermen know how to spearfish and harpoon bigger aquatic threats like sea goblins and deep ones.
 	H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
