@@ -86,7 +86,7 @@
 
 /datum/outfit/job/roguetown/adventurer/yoruku/pre_equip(mob/living/carbon/human/H)
 	..()
-	to_chat(H, span_warning("A Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
+	to_chat(H, span_warning("The Yoruku are Kazengun agents trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
 	for combat in the tight confines of castles and back alleys."))
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/yoruku
 	backr = /obj/item/storage/backpack/rogue/satchel
