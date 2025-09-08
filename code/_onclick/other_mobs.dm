@@ -47,7 +47,7 @@
 			if(L.has_status_effect(/datum/status_effect/buff/necras_vow))
 				if(isnull(mind))
 					adjust_fire_stacks(5)
-					IgniteMob()
+					ignite_mob()
 				else
 					if(prob(30))
 						to_chat(src, span_warning("The Undermaiden protects me!"))

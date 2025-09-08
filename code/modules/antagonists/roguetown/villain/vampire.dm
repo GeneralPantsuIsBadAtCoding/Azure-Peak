@@ -58,14 +58,15 @@
 	if(!is_lesser)
 		owner.current.adjust_skillrank(/datum/skill/combat/wrestling, 6, TRUE)
 		owner.current.adjust_skillrank(/datum/skill/combat/unarmed, 6, TRUE)
-		ADD_TRAIT(owner.current, TRAIT_NOBLE, TRAIT_GENERIC)
+		ADD_TRAIT(owner.current, TRAIT_NOBLE, src)
 	owner.special_role = name
-	ADD_TRAIT(owner.current, TRAIT_STRONGBITE, TRAIT_GENERIC)
-	ADD_TRAIT(owner.current, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(owner.current, TRAIT_NOBREATH, TRAIT_GENERIC)
-	ADD_TRAIT(owner.current, TRAIT_NOPAIN, TRAIT_GENERIC)
-	ADD_TRAIT(owner.current, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
-	ADD_TRAIT(owner.current, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(owner.current, TRAIT_STRONGBITE, src)
+	ADD_TRAIT(owner.current, TRAIT_NOHUNGER, src)
+	ADD_TRAIT(owner.current, TRAIT_NOBREATH, src)
+	ADD_TRAIT(owner.current, TRAIT_NOPAIN, src)
+	ADD_TRAIT(owner.current, TRAIT_TOXIMMUNE, src)
+	ADD_TRAIT(owner.current, TRAIT_STEELHEARTED, src)
+	ADD_TRAIT(owner.current, TRAIT_SILVER_WEAK, src)
 	owner.current.cmode_music = 'sound/music/cmode/antag/combat_thrall.ogg'
 	var/obj/item/organ/eyes/eyes = owner.current.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
@@ -364,18 +365,17 @@
 /mob/living/carbon/human/proc/vamp_regenerate()
 	set name = "Regenerate"
 	set category = "VAMPIRE"
-	var/silver_curse_status = FALSE
-	for(var/datum/status_effect/debuff/silver_curse/silver_curse in status_effects)
-		silver_curse_status = TRUE
-		break
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+		if(prob(50))
+			to_chat(src, span_warning("I cannot regenerate while engulfed in holy fire!"))
+		else
+			to_chat(src, span_warning("Holy fire smothers my attempt to mend these wounds!"))
+		return
 	var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
 	if(!VD)
 		return
 	if(VD.disguised)
 		to_chat(src, span_warning("My curse is hidden."))
-		return
-	if(silver_curse_status)
-		to_chat(src, span_warning("My BANE is not letting me REGEN!."))
 		return
 	if(VD.vitae < 300)
 		to_chat(src, span_warning("Not enough vitae."))

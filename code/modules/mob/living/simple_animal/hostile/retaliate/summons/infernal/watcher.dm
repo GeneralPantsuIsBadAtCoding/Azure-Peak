@@ -49,6 +49,10 @@
 	projectiletype = /obj/projectile/magic/aoe/fireball/spitfire
 	ranged_message = "stares"
 
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
+
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return
 

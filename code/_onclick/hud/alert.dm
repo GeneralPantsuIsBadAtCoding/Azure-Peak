@@ -275,6 +275,15 @@
 	if(L.mobility_flags & MOBILITY_MOVE)
 		return L.resist_fire() //I just want to start a flame in your hearrrrrrtttttt.
 
+/atom/movable/screen/alert/fire/sunder
+	name = "Sundered!"
+	desc = ""
+	icon_state = "sunder"
+
+/atom/movable/screen/alert/fire/sunder/blessed
+	name = "Sundered!"
+	desc = ""
+	icon_state = "supersunder"
 
 //BLOBS
 

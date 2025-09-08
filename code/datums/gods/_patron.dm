@@ -100,10 +100,10 @@ GLOBAL_LIST_EMPTY(prayers)
 
 /// The follower has somehow offended the patron and is now being punished.
 /datum/patron/proc/punish_prayer(mob/living/follower)
-	follower.adjust_divine_fire_stacks(20)
-	follower.IgniteMob()
-	record_round_statistic(STATS_PEOPLE_SMITTEN)
+	follower.adjust_fire_stacks(20, /datum/status_effect/fire_handler/fire_stacks/divine)
+	follower.ignite_mob()
 	follower.add_stress(/datum/stressevent/psycurse)
+	record_round_statistic(STATS_PEOPLE_SMITTEN)
 
 /// The follower has prayed in a special way to the patron and is being rewarded.
 /datum/patron/proc/reward_prayer(mob/living/follower)

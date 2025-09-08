@@ -387,6 +387,7 @@
 	max_integrity = 20
 	firefuel = 5 MINUTES
 	w_class = WEIGHT_CLASS_BULKY
+	sellprice = 4
 	bundletype = /obj/item/natural/bundle/plank
 	smeltresult = /obj/item/ash
 	

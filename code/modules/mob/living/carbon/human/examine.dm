@@ -644,9 +644,9 @@
 				msg += "[m1] looking parched."
 
 	//Fire/water stacks
-	if(fire_stacks + divine_fire_stacks > 0)
+	if(has_status_effect(/datum/status_effect/fire_handler))
 		msg += "[m1] covered in something flammable."
-	else if(fire_stacks < 0)
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
 		msg += "[m1] soaked."
 
 	//Status effects
