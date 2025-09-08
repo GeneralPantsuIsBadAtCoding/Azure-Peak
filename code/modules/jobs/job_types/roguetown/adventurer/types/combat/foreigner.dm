@@ -60,7 +60,7 @@
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 
 /datum/advclass/foreigner/yoruku
-	name = "Eastern Assassin (Yoruku)"
+	name = "Eastern Spy (Yoruku)"
 	tutorial = "You are a Kazengunese agent trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
 	for combat in the tight confines of castles and back alleys."
 	allowed_races = NON_DWARVEN_RACE_TYPES //Clothing has no dwarf sprites.
