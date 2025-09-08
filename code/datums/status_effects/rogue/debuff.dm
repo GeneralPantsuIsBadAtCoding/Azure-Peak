@@ -332,12 +332,19 @@
 /datum/status_effect/debuff/revived
 	id = "revived"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/revived
-	effectedstats = list(STATKEY_STR = -1, STATKEY_PER = -1, STATKEY_INT = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)
-	duration = 15 MINUTES		//Should be long enough to stop someone from running back into battle. Plus, this stacks with body-rot debuff. RIP.
+	/* The penalties below are tailor made to make someone revived very incapable in combat. -2 str, wil and con doesn't really 
+	 impact a melee class slightly, but the kicker is -8 Fortune which nukes your melee hit chance. Because Mage / Archer have an easier time
+	 getting around the old penalty of -1 across the board due to being ranged or having spells, the Perception and Int penalty is WAY harsher
+	 to make sure that they suffer heavily in damage scaling and spells / CDR scaling.
+	 This is meant to solve or mitigate the treadmill problem of being revived and immediately running off to fight the antag again.
+	 Unless they pay the price of drinking a rot cure potion, which clears it instantly.
+	*/
+	effectedstats = list(STATKEY_STR = -2, STATKEY_PER = -6, STATKEY_INT = -8, STATKEY_WIL = -2, STATKEY_CON = -2, STATKEY_SPD = -2, STATKEY_LCK = -8)
+	duration = 30 MINUTES
 
 /atom/movable/screen/alert/status_effect/debuff/revived
 	name = "Revival Sickness"
-	desc = "You felt lyfe itself course through you, restoring your lux and your essance. You.. live - but your body aches. It still needs time to recover.."
+	desc = "You felt lyfe itself course through you, restoring your lux and your essance. You.. live - but your body and mind aches. It still needs time to recover.."
 	icon_state = "revived"
 
 //For de-rot - your body ROTTED. Harsher penalty for longer, can be fully off-set with a cure-rot potion.
