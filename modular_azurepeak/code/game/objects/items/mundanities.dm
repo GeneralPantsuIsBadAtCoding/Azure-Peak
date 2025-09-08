@@ -162,11 +162,11 @@
 
 /obj/item/reagent_containers/food/snacks/canned/proc/randomize_insides() //where da magyck happens
 
-	if(can_sealed == 0) //How?
+	if(can_sealed == 0)
 		return
 
 	if(can_sealed == 1)
-		menu_item = pick(rand(1,5)) //get the meal
+		menu_item = pick(1,2,3,4,5) //get the meal. rand does not work for this and i have no idea why.
 		name = "saltpot"
 		desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
 		switch(menu_item)
@@ -200,14 +200,15 @@
 				update_icon()
 				src.randomize_insides()
 				src.can_sealed = 0
+				update_icon()
 
 		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
 			to_chat(user, span_notice("I start messily bashing the can open..."))
 			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
 			if(do_after(user,7, target = src))
-				update_icon()
 				src.randomize_insides()
 				src.can_sealed = 0
+				update_icon()
 
 		to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
 	else
@@ -230,9 +231,6 @@
 	..()
 
 /obj/item/reagent_containers/food/snacks/canned/On_Consume()
-
-	if(can_sealed == 1)
-		return
 
 	if(bitecount == 6) //if it empty, throw up da empty sprite
 		icon_state = "acan_e"
