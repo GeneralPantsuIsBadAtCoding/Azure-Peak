@@ -1955,20 +1955,20 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<span class='info'>[charflaw.desc]</span>")
 
 				if("scale_effect")
-					var/new_size_mult = input(user, "Choose your character's size ranging from -5 to +25 from normal sprite size. Note that 100% equalys roughly 1.66 meters / 5'10", "Character Preference", features["scale_effect"]) as num|null
+					var/new_size_mult = input(user, "Choose your character's size ranging from -5 to +9 from normal sprite size. Going over +9 will default to tallest measurment (+25). Note that 100% equalys roughly 1.66 meters / 5'10", "Character Preference", features["scale_effect"]) as num|null
 					if(!ISINRANGE(new_size_mult,-5,25))
 						scale_effect = 0
 						features["scale_effect"] = 0
 						to_chat(user, "<span class='notice>Invalid size.</span>")
 						return
-					else if(new_size_mult == -10 || new_size_mult == 10)
-						to_chat(user, "<span class='notice'>You're trying to set character size value which will result broken sprites. Your scaling is auto adjusted.</span>")
-						if(new_size_mult == -10)
-							scale_effect = -9
-							features["scale_effect"] = -9
-						else 
-							scale_effect = 9
-							features["scale_effect"] = 9
+					else if(new_size_mult == 0)
+						to_chat(user, "<span class='notice'>Size scaling reset.</span>")
+						scale_effect = 0
+						features["scale_effect"] = 0
+					else if(new_size_mult >= 10)
+						to_chat(user, "<span class='notice'>Adjusted to nearest whole sprite; +25. For non-max size sprite, select between -5 and +9.</span>")
+						scale_effect = 25
+						features["scale_effect"] = 25
 					else if(new_size_mult)
 						scale_effect = new_size_mult
 						features["scale_effect"] = new_size_mult
