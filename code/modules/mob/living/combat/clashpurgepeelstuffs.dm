@@ -8,10 +8,10 @@
 	if(!IU)	//The opponent is trying to rawdog us with their bare hands while we have Guard up. We get a free attack on their active hand.
 		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		var/force = get_complex_damage(IM, src)
-		var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_L_HAND, used_intent.item_d_type, armor_penetration = used_intent.penfactor, damage = force)
+		var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_L_HAND, used_intent.item_d_type, armor_penetration = used_intent.penfactor, damage = force, used_weapon = IM)
 		if(H.apply_damage(force, IM.damtype, affecting, armor_block))
 			visible_message(span_suicide("[src] gores [user]'s hands with \the [IM]!"))
-			affecting.bodypart_attacked_by(used_intent.blade_class, force, crit_message = TRUE)
+			affecting.bodypart_attacked_by(used_intent.blade_class, force, crit_message = TRUE, weapon = IM)
 		else
 			visible_message(span_suicide("[src] clashes into [user]'s hands with \the [IM]!"))
 		playsound(src, pick(used_intent.hitsound), 80)
@@ -20,19 +20,16 @@
 	if(H.has_status_effect(/datum/status_effect/buff/clash))	//They also have Clash active. It'll trigger the special event.
 		clash(user, IM, IU)
 	else	//Otherwise, we just riposte them.
-		var/damage = get_complex_damage(IM, src, IU.blade_dulling)
-		if(IM.intdamage_factor != 1 || used_intent.intent_intdamage_factor != 1)
-			var/higher_intfactor = max(IM.intdamage_factor, used_intent.intent_intdamage_factor)
-			var/lowest_intfactor = min(IM.intdamage_factor, used_intent.intent_intdamage_factor)
-			var/used_intfactor
-			if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-				used_intfactor = lowest_intfactor
-			if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-				used_intfactor = higher_intfactor
-			damage *= used_intfactor
-		if(IM.wbalance == WBALANCE_HEAVY)
-			damage *= 1.5
-		IU.take_damage(max(damage,1), BRUTE, IM.d_type)
+		var/sharpnesspenalty = SHARPNESS_ONHIT_DECAY * 5
+		if(IM.wbalance == WBALANCE_HEAVY || IU.blade_dulling == DULLING_SHAFT_CONJURED)
+			sharpnesspenalty *= 2
+		if(IU.max_blade_int)
+			IU.remove_bintegrity(sharpnesspenalty, user)
+		else
+			var/integdam = INTEG_PARRY_DECAY_NOSHARP * 5
+			if(IU.blade_dulling == DULLING_SHAFT_CONJURED)
+				integdam *= 2
+			IU.take_damage(integdam, BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))
 		playsound(src, 'sound/combat/clash_struck.ogg', 100)
 		var/staminadef = (stamina * 100) / max_stamina
@@ -191,10 +188,10 @@
 	var/finalprob = 40
 
 	//We take the highest and the lowest stats, clamped to 14.
-	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD), 14)
-	var/min_target = min(HT.STASTR, HT.STACON, HT.STAEND, HT.STAINT, HT.STAPER, HT.STASPD)
-	var/max_user = min(max(STASTR, STACON, STAEND, STAINT, STAPER, STASPD), 14)
-	var/min_user = min(STASTR, STACON, STAEND, STAINT, STAPER, STASPD)
+	var/max_target = min(max(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD), 14)
+	var/min_target = min(HT.STASTR, HT.STACON, HT.STAWIL, HT.STAINT, HT.STAPER, HT.STASPD)
+	var/max_user = min(max(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD), 14)
+	var/min_user = min(STASTR, STACON, STAWIL, STAINT, STAPER, STASPD)
 	
 	if(max_target > max_user)
 		finalprob -= max_target
@@ -220,8 +217,8 @@
 		if(istype(wear_ring, /obj/item/clothing/ring/duelist))
 			return TRUE
 	return FALSE
-
-/mob/living/carbon/human/proc/highest_ac_worn()
+/// Returns the highest AC worn, or held in hands.
+/mob/living/carbon/human/proc/highest_ac_worn(check_hands)
 	var/list/slots = list(wear_armor, wear_pants, wear_wrists, wear_shirt, gloves, head, shoes, wear_neck, wear_mask, wear_ring)
 	for(var/slot in slots)
 		if(isnull(slot) || !istype(slot, /obj/item/clothing))
@@ -233,6 +230,19 @@
 		if(C.armor_class)
 			if(C.armor_class > highest_ac)
 				highest_ac = C.armor_class
+				if(highest_ac == ARMOR_CLASS_HEAVY)
+					return highest_ac
+	if(check_hands)
+		var/mainh = get_active_held_item()
+		var/offh = get_inactive_held_item()
+		if(mainh && istype(mainh, /obj/item/clothing))
+			var/obj/item/clothing/CMH = mainh
+			if(CMH.armor_class > highest_ac)
+				highest_ac = CMH.armor_class 
+		if(offh && istype(offh, /obj/item/clothing))
+			var/obj/item/clothing/COH = offh
+			if(COH.armor_class > highest_ac)
+				highest_ac = COH.armor_class 
 	
 	return highest_ac
 

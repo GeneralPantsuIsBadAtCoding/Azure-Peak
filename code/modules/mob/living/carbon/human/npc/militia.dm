@@ -103,7 +103,7 @@
 	H.STASTR = rand(10,11) //GENDER EQUALITY!!
 	H.STASPD = 10
 	H.STACON = rand(10,12) //so their limbs no longer pop off like a skeleton
-	H.STAEND = 10
+	H.STAWIL = 10
 	H.STAPER = 10
 	H.STAINT = 10
 	if(prob(50))

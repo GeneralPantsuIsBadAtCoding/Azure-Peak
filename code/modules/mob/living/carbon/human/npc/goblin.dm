@@ -132,7 +132,6 @@
 	H.update_inv_hands()
 	H.update_inv_handcuffed()
 	H.update_inv_legcuffed()
-	H.update_fire()
 	H.update_body()
 	var/mob/living/carbon/human/species/goblin/G = H
 	G.update_wearable()
@@ -304,7 +303,7 @@
 		H.tree_climber = TRUE
 		H.find_targets_above = TRUE // so they can taunt
 	H.STACON = 6
-	H.STAEND = 15
+	H.STAWIL = 15
 	if(is_species(H, /datum/species/goblin/moon))
 		H.STAINT = 8
 	else

@@ -10,7 +10,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	gender = PLURAL //placeholder
 
 	status_flags = CANPUSH
-
+	fire_stack_decay_rate = -3
 	var/icon_living = ""
 	///Icon when the animal is dead. Don't use animated icons for this.
 	var/icon_dead = ""
@@ -589,19 +589,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return FALSE
 	return TRUE
 
-/mob/living/simple_animal/handle_fire()
-	. = ..()
-	if(!on_fire)
-		return TRUE
-	if(fire_stacks + divine_fire_stacks > 0)
-		apply_damage(5, BURN)
-		if(fire_stacks + divine_fire_stacks > 5)
-			apply_damage(10, BURN)
-
-//mob/living/simple_animal/IgniteMob()
+//mob/living/simple_animal/ignite_mob()
 //	return FALSE
 
-///mob/living/simple_animal/ExtinguishMob()
+///mob/living/simple_animal/extinguish_mob()
 //	return
 
 /mob/living/simple_animal/revive(full_heal = FALSE, admin_revive = FALSE)

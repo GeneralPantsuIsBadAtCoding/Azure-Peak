@@ -382,12 +382,34 @@
 	desc = "A steel mask, made for those who have snouts, protecting the eyes, nose and muzzle while obscuring the face."
 	icon_state = "smask_hound"
 
+/obj/item/clothing/mask/rogue/facemask/steel/steppesman
+	name = "steppesman war mask"
+	desc = "A steel mask shaped like the face of a rather charismatic fellow! Pronounced cheeks, a nose, and a large mustache. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."
+	max_integrity = 250
+	icon_state = "steppemask"
+	layer = HEAD_LAYER
+
+/obj/item/clothing/mask/rogue/facemask/steel/steppesman/anthro
+	name = "steppesman beast mask"
+	desc = "A steel mask shaped like the face of a rather charismatic beastman! Pronounced cheeks, a nose, and small spikes for whiskers. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."
+	icon_state = "steppebeast"
+	
 /obj/item/clothing/mask/rogue/facemask/goldmask
 	name = "Gold Mask"
 	icon_state = "goldmask"
 	max_integrity = 150
 	sellprice = 100
 	smeltresult = /obj/item/ingot/gold
+
+/obj/item/clothing/mask/rogue/facemask/yoruku_oni
+	name = "oni mask"
+	desc = "A wood mask carved in the visage of demons said to stalk the mountains of Kazengun."
+	icon_state = "oni"
+
+/obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
+	name = "kitsune mask"
+	desc = "A wood mask carved in the visage of the fox spirits said to ply their tricks in the forests of Kazengun."
+	icon_state = "kitsune"
 
 /obj/item/clothing/mask/rogue/shepherd
 	name = "halfmask"

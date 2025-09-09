@@ -9,6 +9,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/adjust_pq,
 	/client/proc/hearallasghost,
 	/client/proc/hearglobalLOOC,
+	/client/proc/togglespawnmessages,
 	/client/proc/toggle_aghost_invis,
 	/client/proc/admin_ghost,
 	/datum/admins/proc/start_vote,
@@ -172,6 +173,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/panicbunker,
 	/datum/admins/proc/BC_WhitelistKeyVerb,
 	/datum/admins/proc/BC_RemoveKeyVerb,
+	/datum/admins/proc/admin_add_donator_verb,
+	/datum/admins/proc/admin_remove_donator_verb,
 	/client/proc/toggle_hub
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())

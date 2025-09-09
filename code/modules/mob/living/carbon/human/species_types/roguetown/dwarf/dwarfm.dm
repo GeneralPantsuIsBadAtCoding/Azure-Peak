@@ -19,7 +19,7 @@
 	to improve their crafts, both in engineering workshops and the forges. \
 	Dwarves are hearty, but are not known for their speed or eyesight... \
 	Each dwarf hails from a ancient fortress named after the most plentiful mineral.<br>\
-	(+1 Constitution, +1 Endurance)"
+	(+1 Constitution, +1 Willpower)"
 
 	skin_tone_wording = "Dwarf Fortress"
 
@@ -52,7 +52,7 @@
 		OFFSET_NECK_F = list(0,-5), OFFSET_MOUTH_F = list(0,-5), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES = list(0,-4), OFFSET_UNDIES_F = list(0,-4), \
 		)
-	race_bonus = list(STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1)
+	race_bonus = list(STAT_CONSTITUTION = 1, STAT_WILLPOWER = 1)
 	enflamed_icon = "widefire"
 	customizers = list(
 		/datum/customizer/organ/eyes/humanoid,

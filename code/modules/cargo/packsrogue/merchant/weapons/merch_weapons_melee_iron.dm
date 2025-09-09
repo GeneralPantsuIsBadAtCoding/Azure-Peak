@@ -54,28 +54,28 @@
 				)
 
 /datum/supply_pack/rogue/iron_weapons/spear
-	name = "Iron Spear"
+	name = "Spear"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/spear,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/flail
-	name = "Iron Flail"
+	name = "Flail"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/flail,
 				)
 
-/datum/supply_pack/rogue/iron_weapons/flail
-	name = "Iron Flail"
+/datum/supply_pack/rogue/iron_weapons/hammer
+	name = "Warhammer"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/flail,
+					/obj/item/rogueweapon/mace/warhammer,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/zweihander
-	name = "Iron Zweihander"
+	name = "Zweihander"
 	cost = 40 // 2 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/greatsword/zwei,

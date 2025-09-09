@@ -169,7 +169,7 @@
 			record_featured_stat(FEATURED_STATS_FISHERS, user)
 			GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
 			playsound(T, 'sound/foley/footsteps/FTWAT_1.ogg', 100)
-			teleport_to_dream(user, 0.01)
+			teleport_to_dream(user, 10000, 1)
 			user.visible_message("<font color='yellow'>[user] makes a beckoning gesture at [T]!</font>")
 			return TRUE
 		else
@@ -552,12 +552,12 @@
 	perception_malus = new_per
 
 	effectedstats = list(
-		"strength" = str_buff,
-		"constitution" = con_buff,
-		"endurance" = end_buff,
-		"fortune" = fortune_malus,
-		"speed" = speed_malus,
-		"perception" = perception_malus
+		STATKEY_STR = str_buff,
+		STATKEY_CON = con_buff,
+		STATKEY_WIL = end_buff,
+		STATKEY_LCK = fortune_malus,
+		STATKEY_SPD = speed_malus,
+		STATKEY_PER = perception_malus
 	)
 	
 	return ..()

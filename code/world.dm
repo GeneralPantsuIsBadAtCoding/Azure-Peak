@@ -18,6 +18,7 @@
 	hub = "Exadv1.spacestation13"
 	name = "AZURE PEAK"
 	fps = 20
+	cache_lifespan = 0
 #ifdef FIND_REF_NO_CHECK_TICK
 	loop_checks = FALSE
 #endif

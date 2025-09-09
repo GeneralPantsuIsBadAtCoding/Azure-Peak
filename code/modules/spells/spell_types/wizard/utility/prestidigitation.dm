@@ -51,17 +51,18 @@
 /obj/item/melee/touch_attack/prestidigitation/afterattack(atom/target, mob/living/carbon/user, proximity)
 	switch (user.used_intent.type)
 		if (INTENT_HELP) // Clean something like a bar of soap
-			handle_cost(user, PRESTI_CLEAN)
 			if(istype(target, /obj/structure/well/fountain/mana) || istype(target, /turf/open/lava))
-				gather_thing(target, user)
-				return
-			clean_thing(target, user)
+				if(gather_thing(target, user))
+					handle_cost(user, PRESTI_CLEAN)
+					return
+			if(clean_thing(target, user))
+				handle_cost(user, PRESTI_CLEAN)
 		if (INTENT_DISARM) // Snap your fingers and produce a spark
-			handle_cost(user, PRESTI_SPARK)
-			create_spark(user, target)
+			if(create_spark(user, target))
+				handle_cost(user, PRESTI_SPARK)
 		if (/datum/intent/use) // Summon an orbiting arcane mote for light
-			handle_cost(user, PRESTI_MOTE)
-			handle_mote(user)
+			if(handle_mote(user))
+				handle_cost(user, PRESTI_MOTE)
 
 /obj/item/melee/touch_attack/prestidigitation/proc/handle_cost(mob/living/carbon/human/user, action)
 	// handles fatigue/stamina deduction, this stuff isn't free - also returns the cost we took to use for xp calculations

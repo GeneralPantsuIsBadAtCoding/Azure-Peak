@@ -498,13 +498,18 @@
 	for(var/obj/O in T.contents)
 		if(!O.Adjacent(targets_from))
 			continue
-		if((ismachinery(O) || isstructure(O)) && O.density && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
+		if((ismachinery(O) || isstructure(O)) && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES && !O.IsObscured())
 			O.attack_animal(src)
 			return
 
 /mob/living/simple_animal/hostile/proc/DestroyPathToTarget()
 	var/dir_to_target = get_dir(targets_from, target)
 	if(environment_smash)
+		var/turf/V = get_turf(src)
+		for (var/obj/structure/O in V.contents)	//check for if a direction dense structure is on the same tile as the mob
+			if(isstructure(O))
+				O.attack_animal(src)
+				continue
 		EscapeConfinement()
 		var/dir_list = list()
 		if(dir_to_target in GLOB.diagonals) //it's diagonal, so we need two directions to hit

@@ -203,7 +203,7 @@
 #define LEFT_EYE	(1<<18)
 #define HAIR		(1<<19)
 #define EYES		(LEFT_EYE | RIGHT_EYE)
-#define FACE		(MOUTH | NOSE | EYES)
+#define FACE		(MOUTH | NOSE | EYES | EARS)
 #define FULL_HEAD	(HEAD | MOUTH | NOSE | EYES | EARS | HAIR)
 #define BELOW_HEAD	(CHEST | GROIN | VITALS | ARMS | HANDS | LEGS | FEET)
 #define BELOW_CHEST	(GROIN | VITALS | LEGS | FEET) //for water

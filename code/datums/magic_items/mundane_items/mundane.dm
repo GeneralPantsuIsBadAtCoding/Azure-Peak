@@ -27,7 +27,7 @@
 	if(active_item)
 		return
 	if(slot == ITEM_SLOT_HANDS)
-		user.change_stat("endurance", 1)
+		user.change_stat(STATKEY_WIL, 1)
 		if(user.get_skill_level(/datum/skill/labor/mining)== 6)
 			max_skill = TRUE //they are max level, so we skip giving them skills
 		else
@@ -43,7 +43,7 @@
 		active_item = FALSE
 		if (!max_skill)
 			user.adjust_skillrank(/datum/skill/labor/mining, -1, TRUE) //stripping them a level since they weren't max
-		user.change_stat("endurance", -1)
+		user.change_stat(STATKEY_WIL, -1)
 		to_chat(user, span_notice("I feel mundane once more"))
 
 

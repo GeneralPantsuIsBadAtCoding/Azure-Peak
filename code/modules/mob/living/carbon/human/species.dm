@@ -1156,7 +1156,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(target.has_status_effect(/datum/status_effect/buff/necras_vow))
 				if(isnull(user.mind))
 					user.adjust_fire_stacks(5)
-					user.IgniteMob()
+					user.ignite_mob()
 				else
 					if(prob(30))
 						to_chat(user, span_warning("The foul blessing of the Undermaiden hurts us!"))
@@ -1209,6 +1209,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(affecting.body_zone == BODY_ZONE_HEAD)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 		log_combat(user, target, "punched")
+		if(ishuman(user) && user.mind)
+			var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+			user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 		if(!nodmg)
 			if(user.limb_destroyer)
@@ -1413,6 +1416,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(user, span_danger("I stomp on [target]![target.next_attack_msg.Join()]"))
 			target.next_attack_msg.Cut()
 			log_combat(user, target, "kicked")
+
+			if(ishuman(user) && user.mind)
+				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+				user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
+
 			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 			if(!nodmg)
 				playsound(target, 'sound/combat/hits/kick/stomp.ogg', 100, TRUE, -1)
@@ -1598,6 +1606,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(user.get_num_arms(FALSE) < 2 || user.get_inactive_held_item())
 			Iforce = 0
 	var/bladec = user.used_intent.blade_class
+
+	// No self-peeling. Useful for debug, though.
 	if(H == user && bladec == BCLASS_PEEL)
 		bladec = BCLASS_BLUNT
 	
@@ -1609,7 +1619,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
 		used_intfactor = higher_intfactor
 	
-	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor)
+	if(ishuman(user) && user.mind && user.used_intent.blade_class != BCLASS_PEEL)
+		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+		if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
+			if(prob(10))
+				text = "<i>I can't tell...</i>"
+				user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
+		else
+			user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
+
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=bladec, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor, used_weapon = I)
 
 	var/nodmg = FALSE
 
@@ -1624,7 +1643,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(I)
 				I.take_damage(1, BRUTE, I.d_type)
 		if(!nodmg)
-			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, (Iforce * weakness) * ((100-(armor_block+armor))/100), user, selzone, crit_message = TRUE)
+			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, (Iforce * weakness) * ((100-(armor_block+armor))/100), user, selzone, crit_message = TRUE, weapon = I)
 			if(should_embed_weapon(crit_wound, I))
 				var/can_impale = TRUE
 				if(!affecting)
@@ -1643,13 +1662,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						H.emote("paincrit", TRUE)
 						playsound(H, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
 						user.visible_message(span_notice("[user] rips [I] out of [H]'s [affecting.name]!"), span_notice("I rip [I] from [H]'s [affecting.name]."))
+			I.do_special_attack_effect(user, affecting, intent, H, selzone)
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)
 
 	I.funny_attack_effects(H, user, nodmg)
 
-	H.send_item_attack_message(I, user, parse_zone(selzone, affecting))
+	H.send_item_attack_message(I, user, parse_zone(selzone, affecting), affecting)
 
 	if(nodmg)
 		return FALSE //dont play a sound
@@ -1761,8 +1781,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 							H.emote("painscream")
 						else
 							H.emote("pain")
-				if(damage_amount > ((H.STACON*10) / 3) && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
-					H.Immobilize(8)
+				if(damage_amount > (H.STACON * 3.5) && !HAS_TRAIT(H, TRAIT_NOPAINSTUN)) //We want this effect only on heavy hits.
+					H.Immobilize(5) //The fastest you can swing a weapon is once each 0.6 seconds, anything higher than 0.5 Immob. opens the door for stunlocking (see: katar).
 					shake_camera(H, 2, 2)
 					H.stuttering += 5
 				if(damage_amount > 10 && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
@@ -1883,12 +1903,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 		//FIRE_STACKS Human damage taken from fire is determined here.
 		var/burn_damage
-		var/firemodifier = H.fire_stacks / 50
-		if (H.on_fire)
-			burn_damage = 10 + H.fire_stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
+		var/datum/status_effect/fire_handler/fire_stacks/pure_stacks = H.has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+		var/firemodifier = pure_stacks?.stacks / 50
+		if(pure_stacks?.on_fire)
+			burn_damage = 10 + pure_stacks?.stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
 		else
 			firemodifier = min(firemodifier, 0)
-			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
+			burn_damage = round(max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0)) // this can go below 5 at log 2.5
 		if (burn_damage)
 			switch(burn_damage)
 				if(0 to 2)
@@ -1934,73 +1955,26 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //////////
 
 /datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
-	if(!CanIgniteMob(H))
+	if(!Canignite_mob(H))
 		return TRUE
-	if(H.on_fire)
-		//the fire tries to damage the exposed clothes and items
-		var/list/burning_items = list()
-		var/list/obscured = H.check_obscured_slots(TRUE)
-		//HEAD//
 
-		if(H.glasses && !(SLOT_GLASSES in obscured))
-			burning_items += H.glasses
-		if(H.wear_mask && !(SLOT_WEAR_MASK in obscured))
-			burning_items += H.wear_mask
-		if(H.wear_neck && !(SLOT_NECK in obscured))
-			burning_items += H.wear_neck
-		if(H.head && !(SLOT_HEAD in obscured))
-			burning_items += H.head
+	var/thermal_protection = H.get_thermal_protection()
 
-		//CHEST//
-		if(H.wear_pants && !(SLOT_PANTS in obscured))
-			burning_items += H.wear_pants
-		if(H.wear_shirt && !(SLOT_SHIRT in obscured))
-			burning_items += H.wear_shirt
-		if(H.wear_armor && !(SLOT_ARMOR in obscured))
-			burning_items += H.wear_armor
+	if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
+		return
 
-		//ARMS & HANDS//
-		var/obj/item/clothing/arm_clothes = null
-		if(H.gloves && !(SLOT_GLOVES in obscured))
-			arm_clothes = H.gloves
-		else if(H.wear_armor && ((H.wear_armor.body_parts_covered & HANDS) || (H.wear_armor.body_parts_covered & ARMS)))
-			arm_clothes = H.wear_armor
-		else if(H.wear_pants && ((H.wear_pants.body_parts_covered & HANDS) || (H.wear_pants.body_parts_covered & ARMS)))
-			arm_clothes = H.wear_pants
-		if(arm_clothes)
-			burning_items |= arm_clothes
+	if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
+		H.adjust_bodytemperature(11)
+	else
+		H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
-		//LEGS & FEET//
-		var/obj/item/clothing/leg_clothes = null
-		if(H.shoes && !(SLOT_SHOES in obscured))
-			leg_clothes = H.shoes
-		else if(H.wear_armor && ((H.wear_armor.body_parts_covered & FEET) || (H.wear_armor.body_parts_covered & LEGS)))
-			leg_clothes = H.wear_armor
-		else if(H.wear_pants && ((H.wear_pants.body_parts_covered & FEET) || (H.wear_pants.body_parts_covered & LEGS)))
-			leg_clothes = H.wear_pants
-		if(leg_clothes)
-			burning_items |= leg_clothes
-
-		for(var/X in burning_items)
-			var/obj/item/I = X
-			I.fire_act(((H.fire_stacks + H.divine_fire_stacks) * 50)) //damage taken is reduced to 2% of this value by fire_act()
-
-		var/thermal_protection = H.get_thermal_protection()
-
-		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
-			return
-		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
-			H.adjust_bodytemperature(11)
-		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
-
-/datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
+/datum/species/proc/Canignite_mob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
 		return FALSE
 	return TRUE
 
-/datum/species/proc/ExtinguishMob(mob/living/carbon/human/H)
+/datum/species/proc/extinguish_mob(mob/living/carbon/human/H)
 	return
 
 /datum/species/proc/get_random_body_markings(list/features) //Needs features to base the colour off of
@@ -2185,7 +2159,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return
 		if(!I.sharpness)
 			if(!target.resting)
-				var/endurance = target.STAEND
+				var/endurance = target.STAWIL
 				var/knockback_tiles = 0
 				var/newforce = get_complex_damage(I, user)
 				if(endurance >= 3)

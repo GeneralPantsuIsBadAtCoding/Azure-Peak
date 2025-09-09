@@ -403,6 +403,7 @@
 	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
 	color = "#bb9696"
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
 
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
@@ -467,62 +468,7 @@
 	icon_state = "psycross_s"
 	item_state = "psycross_s"
 	sellprice = 50
-
-/obj/item/clothing/neck/roguetown/psicross/silver/pickup(mob/user)
-	..()
-
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		return
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-	if(V_lord)
-		if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-
-/obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	..()
-
-	if(!ishuman(M))
-		return FALSE
-	var/mob/living/carbon/human/H = M
-	if(!H.mind)
-		return FALSE
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-		return FALSE
-	if(V_lord && V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(10)
-		H.Paralyze(10)
-		return FALSE
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-		return FALSE
-
-	return TRUE
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/g
 	name = "golden psycross"
@@ -598,11 +544,12 @@
 
 /obj/item/clothing/neck/roguetown/shalal
 	name = "desert rider medal"
-	desc = ""
+	desc = "Made out of the silver from the Ranesheni mercenaries' first pay. A tradition is kept between these hired blades: to give this one away to someone is to symbolize a debt in their favor - to be redeemed by any other mercenary in times of need."
 	icon_state = "shalal"
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING		//Hey I guess you could pretend it is wrapped around your hand? Just keep it on, don't be a hoe.
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
-	sellprice = 15
+	sellprice = 30		// what if the economy crashes...........
 	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/neck/roguetown/ornateamulet
@@ -702,13 +649,13 @@
 /obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_NECK)
-		user.change_stat("fortune", 1) //how much luck stat it gives when equipped
+		user.change_stat(STATKEY_LCK, 1) //how much luck stat it gives when equipped
 		goodluckactivated = TRUE
 	return
 
 /obj/item/clothing/neck/roguetown/luckcharm/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(goodluckactivated == TRUE)
-		user.change_stat("fortune", -1) //how much luck stat taken away when unequipped
+		user.change_stat(STATKEY_LCK, -1) //how much luck stat taken away when unequipped
 		goodluckactivated = FALSE
 	return

@@ -4,9 +4,23 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/vigilante
+	cmode_music = 'sound/music/combatmaniac.ogg'
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_DECEIVING_MEEKNESS, TRAIT_PERFECT_TRACKER, TRAIT_HERESIARCH)
+	traits_applied = list(TRAIT_DECEIVING_MEEKNESS, TRAIT_PERFECT_TRACKER)
 	maximum_possible_slots = 1 // There can only be one. 
+	extra_context = "This class is best experienced without preparation."
+	subclass_skills = list(
+		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT, //To make a clean getaway from the constables
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, // RUN BOY RUN
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT, // To escape grapplers, fuck you
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE, //To make your own costumes.
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE, //You WILL be getting neckstabbed A LOT. 
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT, //SNIFF OUT JUSTICE.
+	)
 
 /datum/outfit/job/roguetown/wretch/vigilante/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/ //So your skull isn't caved in if you decide to wear a cool hat. 
@@ -23,17 +37,6 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE) //To make a clean getaway from the constables
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // RUN BOY RUN
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE) // To escape grapplers, fuck you
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE) //To make your own costumes.
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE) //You WILL be getting neckstabbed A LOT. 
-	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE) //SNIFF OUT JUSTICE.
-	H.cmode_music = 'sound/music/combatmaniac.ogg'
 	var/classes = list("The Watchman", "The Gadgeteer", "I AM JUSTICE INCARNATE!!!")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
@@ -56,9 +59,9 @@
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	cloak = /obj/item/clothing/cloak/thief_cloak
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
-	H.change_stat("strength", 2)
-	H.change_stat("constitution", 3)
-	H.change_stat("endurance", 3)
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_CON, 3)
+	H.change_stat(STATKEY_WIL, 3)
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //No crit resist - you can still get folded pretty easily if overwhelmed
 	wretch_select_bounty(H)
 
@@ -86,9 +89,9 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE) // Escape routes
 	H.adjust_skillrank(/datum/skill/craft/engineering, 3, TRUE) //Make your own tinkering tools and smokebombs
 	H.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE) //Just so your smelted ingots aren't ruined
-	H.change_stat("intelligence", 3) 
-	H.change_stat("endurance", 3)
-	H.change_stat("perception", 3)
+	H.change_stat(STATKEY_INT, 3) 
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_PER, 3)
 	wretch_select_bounty(H)
 
 /datum/outfit/job/roguetown/wretch/vigilante/proc/bullshit_equip(mob/living/carbon/human/H)
@@ -106,7 +109,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/magicians_brick) //Trust the plan. 
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // You LITERALLY get no weapon skills. You're throwing shit at enemies. 
-	H.change_stat("speed", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("intelligence", 4) //Hilarious
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_INT, 4) //Hilarious
 	wretch_select_bounty(H)

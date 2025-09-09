@@ -15,6 +15,8 @@
 	desc = "Wherever I go, I turn heads, such is my natural beauty. I am also rather good in bed, though they always say that."
 	custom_text = "Incompatible with Ugly virtue."
 	added_traits = list(TRAIT_BEAUTIFUL,TRAIT_GOODLOVER)
+	added_stashed_items = list(
+		"Hand Mirror" = /obj/item/handmirror)
 
 /datum/virtue/utility/beautiful/handle_traits(mob/living/carbon/human/recipient)
 	..()
@@ -113,7 +115,7 @@
 	)
 
 /datum/virtue/utility/linguist/apply_to_human(mob/living/carbon/human/recipient)
-	recipient.change_stat("intelligence", 1)
+	recipient.change_stat(STATKEY_INT, 1)
 	addtimer(CALLBACK(src, .proc/linguist_apply, recipient), 50)
 
 /datum/virtue/utility/linguist/proc/linguist_apply(mob/living/carbon/human/recipient)
@@ -201,6 +203,10 @@
 						list(/datum/skill/craft/alchemy, 2, 2),
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
+
+/datum/virtue/utility/physician/apply_to_human(mob/living/carbon/human/recipient)
+	if(!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/invoked/diagnose/secular))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 
 /datum/virtue/utility/feral_appetite
 	name = "Feral Appetite"

@@ -75,48 +75,7 @@
 	desc = "A silver cup, its surface adorned with intricate carvings and runes."
 	icon_state = "scup"
 	sellprice = 20
-
-/obj/item/reagent_containers/glass/cup/silver/pickup(mob/user)
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(ishuman(H))
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				H.Knockdown(10)
-				H.adjustFireLoss(25)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-
-/obj/item/reagent_containers/glass/cup/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.dna && H.dna.species)
-			if(istype(H.dna.species, /datum/species/werewolf))
-				M.Knockdown(10)
-				M.Paralyze(10)
-				M.adjustFireLoss(25)
-				H.fire_act(1,10)
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				return FALSE
-	if(M.mind && M.mind.has_antag_datum(/datum/antagonist/vampirelord))
-		M.adjustFireLoss(25)
-		M.fire_act(1,10)
-		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		return FALSE
+	is_silver = TRUE
 
 /obj/item/reagent_containers/glass/cup/golden
 	name = "golden goblet"

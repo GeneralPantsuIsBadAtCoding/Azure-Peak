@@ -68,13 +68,9 @@
 	icon_state = "graggarplate"
 	armor = ARMOR_CUIRASS
 
-/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_HORDE))
-		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	name = "psydonian half-plate"
@@ -397,10 +393,10 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/steppe
-	name = "steel steppesman hatanga"
-	desc = "A set of steel-scaled hatanga armor hailing from the southern steppes."
+	name = "steel heavy lamellar"
+	desc = "A chestpiece of Aavnic make composed of easily-replaced small rectangular plates of layered steel laced together in rows with wire. Malleable and protective, perfect for cavalrymen."
 	icon_state = "hudesutu"
-	max_integrity = ARMOR_INT_CHEST_MEDIUM_HATANGA		//Gets +25 Integrity for a unique
+	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL + 50
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	slot_flags = ITEM_SLOT_ARMOR

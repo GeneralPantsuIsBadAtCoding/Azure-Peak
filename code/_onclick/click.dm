@@ -874,9 +874,11 @@
 			look_up()
 		else
 			if(istransparentturf(T))
-				look_down(T)
-			else
-				look_further(T)
+				var/turf/MT = get_turf(src)
+				if((T in view(MT))) // if we got line of sight, allow player to look down
+					look_down(T)
+					return
+			look_further(T)
 	else
 		look_further(T)
 

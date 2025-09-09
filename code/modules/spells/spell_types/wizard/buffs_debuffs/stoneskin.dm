@@ -52,7 +52,7 @@
 	var/outline_colour ="#808080" // Granite Grey
 	id = "stoneskin"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/stoneskin
-	effectedstats = list("constitution" = 5)
+	effectedstats = list(STATKEY_CON = 5)
 	var/hadcritres = FALSE
 	duration = 1 MINUTES
 

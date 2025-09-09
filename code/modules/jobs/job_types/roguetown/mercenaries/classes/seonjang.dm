@@ -1,15 +1,36 @@
-/datum/advclass/mercenary/kashira //shitcode approved by free
+/datum/advclass/mercenary/seonjang //shitcode approved by free
 	name = "Seonjang"
 	tutorial = "The respected leader and singular representative of the Ruma clan, you're an experienced swordsman. It matters not where the coin comes from, so long as you can make enough to support the clan in its survival from the Xinyi Dynasty and its conflicts, now in strange lands."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = NON_DWARVEN_RACE_TYPES
-	outfit = /datum/outfit/job/roguetown/mercenary/kashira
+	outfit = /datum/outfit/job/roguetown/mercenary/seonjang
+	subclass_languages = list(/datum/language/kazengunese)
+	class_select_category = CLASS_CAT_KAZENGUN
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_HARDDISMEMBER, TRAIT_NOPAINSTUN)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	maximum_possible_slots = 1
+	subclass_stats = list(
+		STATKEY_CON = 3,
+		STATKEY_WIL = 3,
+		STATKEY_STR = 2,
+		STATKEY_PER = 1,
+		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+	)
 
-/datum/outfit/job/roguetown/mercenary/kashira/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)
 	..()
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
@@ -20,21 +41,6 @@
 		/obj/item/flashlight/flare/torch,
 		/obj/item/flashlight/flare/torch/lantern,
 		)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 3)
-	H.change_stat("constitution", 3)
-	H.change_stat("perception", 1)
-	H.change_stat("speed", -1)
 	H.adjust_blindness(-3)
 
 	if(should_wear_masc_clothes(H))
@@ -44,15 +50,11 @@
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves2
 		armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/easttats
 		shoes = /obj/item/clothing/shoes/roguetown/boots
-		H.change_stat("endurance", 1)
-		H.change_stat("constitution", 1) //to compensate for the permanent lack of armor
+		H.change_stat(STATKEY_WIL, 1)
+		H.change_stat(STATKEY_CON, 1) //to compensate for the permanent lack of armor
 		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
 	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/basiceast/captainrobe
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/easttats
 		shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
-
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //i swear this isn't as good as it sounds
-	H.grant_language(/datum/language/kazengunese)
 	H.merctype = 9

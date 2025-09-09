@@ -26,7 +26,7 @@
 	var/STASPD
 	var/STAINT
 	var/STACON
-	var/STAEND
+	var/STAWIL
 	var/cmode_music
 	var/list/base_intents
 
@@ -54,7 +54,8 @@
 		TRAIT_ZOMBIE_SPEECH,
 		TRAIT_ZOMBIE_IMMUNE,
 		TRAIT_ROTMAN,
-		TRAIT_NORUN
+		TRAIT_NORUN,
+		TRAIT_SILVER_WEAK
 	)
 	/// Traits applied to the owner when we are cured and turn into just "rotmen"
 	var/static/list/traits_rotman = list(
@@ -65,6 +66,7 @@
 		TRAIT_TOXIMMUNE,
 		TRAIT_ZOMBIE_IMMUNE,
 		TRAIT_ROTMAN,
+		TRAIT_SILVER_WEAK,
 	)
 
 /datum/antagonist/zombie/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
@@ -131,7 +133,7 @@
 	src.STASPD = zombie.STASPD
 	src.STAINT = zombie.STAINT
 	src.STACON = zombie.STACON
-	src.STAEND = zombie.STAEND
+	src.STAWIL = zombie.STAWIL
 	cmode_music = zombie.cmode_music
 
 	//Special because deadite status is latent as opposed to the others. 
@@ -171,7 +173,7 @@
 		zombie.STASPD = src.STASPD
 		zombie.STAINT = src.STAINT
 		zombie.STACON = src.STACON
-		zombie.STAEND = src.STAEND
+		zombie.STAWIL = src.STAWIL
 
 
 

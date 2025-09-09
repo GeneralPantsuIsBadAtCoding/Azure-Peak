@@ -412,6 +412,35 @@ All foods are distributed among various categories. Use common sense.
 		return FALSE
 
 	return 0
+/obj/item/reagent_containers/food/snacks/proc/get_nutrition()
+	var/nutriment_count = 0
+	for(var/reagent in list_reagents)
+		if(ispath(reagent, /datum/reagent/consumable))
+			var/datum/reagent/consumable/R = reagent
+			nutriment_count += list_reagents[reagent] * R.nutriment_factor
+	return nutriment_count
+
+/obj/item/reagent_containers/food/snacks/proc/get_nutrition_to_text()
+	var/nutrition = get_nutrition()
+	switch(nutrition)
+		if(0)
+			return "an inedible item"
+		if(1 to BASE_NUTRIMENT_NUTRITION * SNACK_POOR)
+			return "a poor snack"
+		if(BASE_NUTRIMENT_NUTRITION * SNACK_POOR to BASE_NUTRIMENT_NUTRITION * SNACK_DECENT)
+			return "a decent snack"
+		if(BASE_NUTRIMENT_NUTRITION * SNACK_DECENT to BASE_NUTRIMENT_NUTRITION * SNACK_NUTRITIOUS)
+			return "a nutritious snack"
+		if(BASE_NUTRIMENT_NUTRITION * SNACK_NUTRITIOUS to BASE_NUTRIMENT_NUTRITION * SNACK_CHUNKY)
+			return "a chunky snack"
+		if(BASE_NUTRIMENT_NUTRITION * SNACK_CHUNKY to BASE_NUTRIMENT_NUTRITION * MEAL_MEAGRE)
+			return "a meagre meal"
+		if(BASE_NUTRIMENT_NUTRITION * MEAL_MEAGRE to BASE_NUTRIMENT_NUTRITION * MEAL_AVERAGE)
+			return "an adequate meal"
+		if(BASE_NUTRIMENT_NUTRITION * MEAL_AVERAGE to BASE_NUTRIMENT_NUTRITION * MEAL_FILLING)
+			return "a good meal"
+		else
+			return "a lavish, filling meal"
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
@@ -419,35 +448,36 @@ All foods are distributed among various categories. Use common sense.
 		switch (bitecount)
 			if(0)
 			if(1)
-				. += ("[src] was bitten by someone!\n")
+				. += span_smallnotice("[src] was bitten by someone!\n")
 			if(2,3)
-				. += ("[src] was bitten [bitecount] times!\n")
+				. += span_smallnotice("[src] was bitten [bitecount] times!\n")
 			else
-				. += ("[src] was bitten multiple times!\n")
+				. += span_smallnotice("[src] was bitten multiple times!\n")
 	switch(faretype)
 		if(FARE_IMPOVERISHED)
-			. += ("It is food fit for the desperate.")
+			. += span_smallnotice("It is food fit for the desperate.")
 		if(FARE_POOR)
-			. += ("It is food fit for the poor.")
+			. += span_smallnotice("It is food fit for the poor.")
 		if(FARE_NEUTRAL)
-			. += ("It is decent food.")
+			. += span_smallnotice("It is decent food.")
 		if(FARE_FINE)
-			. += ("It is fine food.")
+			. += span_smallnotice("It is fine food.")
 		if(FARE_LAVISH)
-			. += ("It is lavish food.")
+			. += span_smallnotice("It is lavish food.")
 	if(portable)
-		. += ("It can be eaten without a table.")
+		. += span_smallnotice("It can be eaten without a table.")
 	else
-		. += ("Eating this without a table would be disgraceful for a noble.")
+		. += span_smallnotice("Eating this without a table would be disgraceful for a noble.")
+	. += span_smallnotice("It looks like [get_nutrition_to_text()]")
 	switch(eat_effect)
 		if(/datum/status_effect/debuff/uncookedfood)
-			. += span_warning("It is raw!")
+			. += span_smallred("It is raw!")
 		if(/datum/status_effect/debuff/rotfood)
-			. += span_warning("It is rotten!")
+			. += span_smallred("It is rotten!")
 		if(/datum/status_effect/debuff/burnedfood)
-			. += span_warning("It is burned!")
+			. += span_smallred("It is burned!")
 		if(/datum/status_effect/buff/foodbuff)
-			. += span_notice("It looks great!")
+			. += span_smallnotice("It looks great!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/kitchen/fork))

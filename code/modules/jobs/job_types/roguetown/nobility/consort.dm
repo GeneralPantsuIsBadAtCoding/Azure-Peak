@@ -68,11 +68,11 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.change_stat("intelligence", 3)
-	H.change_stat("endurance", 3)
-	H.change_stat("speed", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("fortune", 5)
+	H.change_stat(STATKEY_INT, 3)
+	H.change_stat(STATKEY_WIL, 3)
+	H.change_stat(STATKEY_SPD, 2)
+	H.change_stat(STATKEY_PER, 2)
+	H.change_stat(STATKEY_LCK, 5)
 
 /obj/effect/proc_holder/spell/self/convertrole/servant
 	name = "Recruit Servant"

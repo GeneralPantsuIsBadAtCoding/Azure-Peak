@@ -50,13 +50,13 @@
 /datum/status_effect/buff/ashen_aril/on_apply()
 	// Apply stat boosts to all attributes
 	effectedstats = list(
-		"strength" = current_boost,
-		"endurance" = current_boost,
-		"constitution" = current_boost,
-		"intelligence" = current_boost,
-		"perception" = current_boost,
-		"fortune" = current_boost,
-		"speed" = current_boost
+		STATKEY_STR = current_boost,
+		STATKEY_WIL = current_boost,
+		STATKEY_CON = current_boost,
+		STATKEY_INT = current_boost,
+		STATKEY_PER = current_boost,
+		STATKEY_LCK = current_boost,
+		STATKEY_SPD = current_boost
 	)
 	//Apply Uncapped STR as long as it's still positive.
 	if(current_boost > 0)
@@ -218,8 +218,8 @@
 		perc_change = -2
 
 	effectedstats = list(
-		"strength" = str_change,
-		"perception" = perc_change
+		STATKEY_STR = str_change,
+		STATKEY_PER = perc_change
 	)
 
 	return ..()

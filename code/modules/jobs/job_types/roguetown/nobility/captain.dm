@@ -24,6 +24,10 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_knight.ogg'
+	job_traits = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_NOBLE, TRAIT_GUARDSMAN)
+	job_subclasses = list(
+		/datum/advclass/captain/infantry
+	)
 
 /datum/outfit/job/roguetown/captain
 	neck = /obj/item/clothing/neck/roguetown/bevor
@@ -73,6 +77,31 @@
 	outfit = /datum/outfit/job/roguetown/captain/infantry
 	category_tags = list(CTAG_CAPTAIN)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
+		STATKEY_INT = 2,
+		STATKEY_PER = 1,
+		STATKEY_LCK = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/riding = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+	)
+	extra_context = "This class gains Master skill in their weapon of choice."
 
 /datum/outfit/job/roguetown/captain/infantry/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -83,26 +112,6 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("perception", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("constitution", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("fortune", 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
@@ -110,10 +119,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
 	H.verbs |= list(
 		/mob/living/carbon/human/proc/request_outlaw, 
 		/mob/proc/haltyell, 

@@ -9,6 +9,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT)
 	advclass_cat_rolls = list(CTAG_SQUIRE = 20)
+	job_traits = list(TRAIT_SQUIRE_REPAIR)
 
 	tutorial = "Your folks said you were going to be something, they had better aspirations for you than the life of a peasant. You practiced the basics \
 		in the field alongside your friends, swordfighting with sticks, chasing rabbits with grain flail, and helping around the house lifting heavy \
@@ -21,6 +22,11 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/combat_squire.ogg'
+	job_subclasses = list(
+		/datum/advclass/squire/lancer,
+		/datum/advclass/squire/footman,
+		/datum/advclass/squire/skirmisher
+	)
 
 /datum/outfit/job/roguetown/squire
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
@@ -54,6 +60,28 @@
 	outfit = /datum/outfit/job/roguetown/squire/lancer
 		
 	category_tags = list(CTAG_SQUIRE)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 1,
+		STATKEY_SPD = 1,
+		STATKEY_PER = 1,
+		STATKEY_CON = 1,
+		STATKEY_INT = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/maces = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+	)
 
 /datum/outfit/job/roguetown/squire/lancer/pre_equip(mob/living/carbon/human/H)
 	r_hand = /obj/item/rogueweapon/spear
@@ -67,25 +95,6 @@
 		/obj/item/clothing/neck/roguetown/chaincoif,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 	)
-	H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("speed", 1)
-	ADD_TRAIT(H, TRAIT_SQUIRE_REPAIR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 /datum/advclass/squire/footman
 	name = "Footman Squire"
@@ -94,6 +103,26 @@
 	outfit = /datum/outfit/job/roguetown/squire/footman
 		
 	category_tags = list(CTAG_SQUIRE)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 1,
+		STATKEY_SPD = 1,
+		STATKEY_PER = 1,
+		STATKEY_CON = 1,
+		STATKEY_INT = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/squire/footman/pre_equip(mob/living/carbon/human/H)
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -106,24 +135,6 @@
 		/obj/item/clothing/neck/roguetown/chaincoif,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot
 	)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("speed", 1)
-	ADD_TRAIT(H, TRAIT_SQUIRE_REPAIR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-
 	H.adjust_blindness(-3)
 	var/weapons = list("Iron Sword","Cudgel",)
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -143,6 +154,26 @@
 	outfit = /datum/outfit/job/roguetown/squire/skirmisher
 		
 	category_tags = list(CTAG_SQUIRE)
+	traits_applied = list(TRAIT_DODGEEXPERT)
+	subclass_stats = list(
+		STATKEY_SPD = 2,
+		STATKEY_PER = 1,
+		STATKEY_CON = 1,
+		STATKEY_INT = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/squire/skirmisher/pre_equip(mob/living/carbon/human/H)
 	beltr = /obj/item/quiver/arrows
@@ -159,20 +190,3 @@
 		/obj/item/rogueweapon/scabbard/sheath,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot
 		)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.change_stat("perception", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("intelligence", 1)
-	H.change_stat("speed", 2)
-	ADD_TRAIT(H, TRAIT_SQUIRE_REPAIR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)

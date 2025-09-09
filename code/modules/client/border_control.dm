@@ -52,16 +52,16 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 ///client/proc/BC_WhitelistKeyVerb()
 /datum/admins/proc/BC_WhitelistKeyVerb()
 
-	set name = "Border Control - Whitelist Key"
-	set category = "Admin.Border Control"
+	set name = "BC - Whitelist Key"
+	set category = "-Server-"
 
 	var/key = input("CKey to Whitelist", "Whitelist Key") as null|text
 
 	if(key)
 		var/confirm = alert("Add [key] to the border control whitelist?", , "Yes", "No")
 		if(confirm == "Yes")
-			message_admins("added [key] to the border whitelist.")
-			log_admin("added [key] to the border whitelist.")
+			message_admins("[key_name(usr)] added [key] to the border whitelist.")
+			log_admin("[key_name(usr)] added [key] to the border whitelist.")
 			BC_WhitelistKey(key)
 
 
@@ -92,16 +92,16 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 //ADMIN_VERB_ADD(/client/proc/BC_RemoveKeyVerb, R_ADMIN, FALSE)
 ///client/proc/BC_RemoveKeyVerb()
 /datum/admins/proc/BC_RemoveKeyVerb()
-	set name = "Border Control - Remove Key"
-	set category = "Admin.Border Control"
+	set name = "BC - Remove Whitelist Key"
+	set category = "-Server-"
 
 	var/keyToRemove = input("CKey to Remove", "Remove Key") as null|anything in GLOB.whitelistedCkeys
 
 	if(keyToRemove)
 		var/confirm = alert("Remove [keyToRemove] from the border control whitelist?", , "Yes", "No")
 		if(confirm == "Yes")
-			message_admins("removed [keyToRemove] from the border whitelist.")
-			log_admin("removed [keyToRemove] from the border whitelist.")
+			message_admins("[key_name(usr)] removed [keyToRemove] from the border whitelist.")
+			log_admin("[key_name(usr)] removed [keyToRemove] from the border whitelist.")
 			BC_RemoveKey(keyToRemove)
 
 	return
@@ -127,9 +127,9 @@ GLOBAL_VAR_INIT(whitelistLoaded, 0)
 ///client/proc/BC_ToggleState()
 /datum/admins/proc/BC_ToggleState()
 
-	set name = "Border Control - Toggle Mode"
-	set category = "Admin.Border Control"
-	set desc="Enables or disables border control"
+	set name = "BC - Toggle Mode"
+	set category = "-Server-"
+	set desc= "Enables or disables border control"
 
 	var/borderControlMode = CONFIG_GET(number/border_control)
 

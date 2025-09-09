@@ -18,7 +18,7 @@
 
 		src.STASTR = 12
 		src.STACON = 6
-		src.STAEND = 7
+		src.STAWIL = 7
 		src.STAPER = 12
 		src.STASPD = 14
 

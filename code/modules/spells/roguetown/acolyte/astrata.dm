@@ -33,7 +33,7 @@
 	if(M.mob_biotypes & biotype_we_look_for || istype(M, /mob/living/simple_animal/hostile/rogue/skeleton))
 		damage *= fuck_that_guy_multiplier
 	M.adjust_fire_stacks(4)
-	M.IgniteMob()
+	M.ignite_mob()
 	visible_message(span_warning("[src] ignites [target] in holy flame!"))
 	return TRUE
 
@@ -216,7 +216,7 @@
 		per_bonus++
 		duration *= 2
 	if(per_bonus > 0)
-		effectedstats = list("perception" = per_bonus)
+		effectedstats = list(STATKEY_PER = per_bonus)
 	to_chat(owner, span_info("She shines through me! I can perceive all clear as dae!"))
 	. = ..()
 

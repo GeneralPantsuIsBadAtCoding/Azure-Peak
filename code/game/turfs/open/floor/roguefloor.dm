@@ -1083,6 +1083,17 @@
 	landsound = 'sound/foley/jumpland/woodland.wav'
 	icon_state = "herringbonewood"
 
+/turf/open/floor/rogue/ruinedwood/herringbone_clear
+	name = "wooden herringbone flooring"
+	desc = "Thin planks of wood carefully arranged in a rather pleasing pattern."
+	footstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_WOOD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+	landsound = 'sound/foley/jumpland/woodland.wav'
+	icon_state = "herringbonewood2"
+
 /turf/open/floor/rogue/wood/herringbone
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -1159,6 +1170,20 @@
 	desc = "Dirt and moss have crept between the gaps of this stone-brick flooring. Rather fitting for an outdoor garden; not so much for a home."
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "mossystone_edges"
+	mouse_opacity = 0
+
+/obj/effect/decal/edge
+	name = "stone edge"
+	desc = "A piece of stone used to border city roads."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "border"
+	mouse_opacity = 0
+
+/obj/effect/decal/edge_corner
+	name = "stone edge corner"
+	desc = "A piece of stone used to border city roads."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "border_corner"
 	mouse_opacity = 0
 
 /turf/open/floor/rogue/cobblerock

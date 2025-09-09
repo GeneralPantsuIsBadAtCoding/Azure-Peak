@@ -19,6 +19,9 @@
 			var/fumbled_value = max(1, round(real_value + (real_value * clamp(noise_hash(real_value, fumbling_seed) - 0.25, -0.25, 0.25)), 1))
 			. += span_info("Value: [fumbled_value] mammon... <i>I think</i>")
 
+	if(smeltresult)
+		var/obj/item/smelted = smeltresult
+		. += span_info("Smelts into [smelted.name].")
 	for(var/datum/examine_effect/E in examine_effects)
 		E.trigger(user)
 

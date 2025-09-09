@@ -50,7 +50,7 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.5
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
@@ -133,7 +133,7 @@
 	name = "arrow"
 	damage = 20
 	damage_type = BRUTE
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	armor_penetration = 10
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -174,7 +174,7 @@
 	damage = 40
 	armor_penetration = 20
 	embedchance = 30
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/arrow/iron/aalloy
 	name = "decrepit broadhead arrow"
@@ -191,7 +191,7 @@
 	armor_penetration = 45
 	embedchance = 80
 	speed = 0.6
-	npc_damage_mult = 3
+	npc_simple_damage_mult = 3
 
 /obj/projectile/bullet/reusable/arrow/steel/paalloy
 	name = "decrepit bodkin arrow"
@@ -275,7 +275,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(6)
 	M.adjustFireLoss(15)
-	M.IgniteMob()
+	M.ignite_mob()
 
 
 /obj/item/ammo_casing/caseless/rogue/bolt/water
@@ -357,7 +357,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(4)
 	M.adjustFireLoss(10)
-	M.IgniteMob()
+	M.ignite_mob()
 
 /obj/item/ammo_casing/caseless/rogue/arrow/water
 	name = "water arrow"
@@ -552,7 +552,7 @@
 	throwforce = 20
 	force = 9
 	color = "#bb9696"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // Override iron inherit
 	anvilrepair = null
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
@@ -565,13 +565,13 @@
 	throwforce = 28							//Equal to steel knife BUT this has peircing damage type so..
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
-	smeltresult = /obj/item/ingot/steel
+	smeltresult = null // 1 Ingot = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
 	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // 1 Ingots = 2 Javelin s
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"
@@ -583,45 +583,23 @@
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	smeltresult = /obj/item/ingot/silver
 
+/obj/item/ammo_casing/caseless/rogue/javelin/silver/ComponentInitialize()
+	. = ..()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = -3,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 3,\
+	)
+
 //Snowflake code to make sure the silver-bane is applied on hit to targeted mob. Thanks to Aurorablade for getting this code to work.
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..() 
 	if(!iscarbon(hit_atom))
 		return//abort
-	check_dmg(hit_atom)//apply effects and damages
-		
-/obj/item/ammo_casing/caseless/rogue/javelin/silver/proc/check_dmg(mob/living/hit_atom)
-	var/mob/living/carbon/human/H = hit_atom
-	if(H.mind)
-		var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-		var/datum/antagonist/vampirelord/lesser/V = H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V)
-			if(V.disguised)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			else
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !V)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			if(V_lord.vamplevel == 4 && !V)
-				to_chat(H, "<font color='red'> The silver weapon fails!</font>")
-				H.visible_message(H, span_userdanger("This feeble metal can't hurt me, I AM ANCIENT!"))
-		if(W && W.transformed == TRUE)
-			H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-			to_chat(H, span_userdanger("I'm hit by my BANE!"))
-			H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-			src.last_used = world.time
-	return
 
 //sling bullets
 
@@ -673,7 +651,7 @@
 	damage = 25
 	damage_type = BRUTE
 	armor_penetration = 0
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	range = 15

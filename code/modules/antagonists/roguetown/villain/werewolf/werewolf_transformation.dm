@@ -122,7 +122,7 @@
 
 	W.STASTR = 20
 	W.STACON = 20
-	W.STAEND = 20
+	W.STAWIL = 20
 
 	W.AddSpell(new /obj/effect/proc_holder/spell/self/howl)
 	W.AddSpell(new /obj/effect/proc_holder/spell/self/claws)
@@ -150,6 +150,7 @@
 	ADD_TRAIT(W, TRAIT_SPELLCOCKBLOCK, TRAIT_GENERIC)
 	ADD_TRAIT(W, TRAIT_LONGSTRIDER, TRAIT_GENERIC)
 	ADD_TRAIT(W, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
+	ADD_TRAIT(W, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 	invisibility = oldinv
 
@@ -174,6 +175,7 @@
 	W.forceMove(get_turf(src))
 
 	REMOVE_TRAIT(W, TRAIT_NOMOOD, TRAIT_GENERIC)
+	REMOVE_TRAIT(W, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 	mind.transfer_to(W)
 

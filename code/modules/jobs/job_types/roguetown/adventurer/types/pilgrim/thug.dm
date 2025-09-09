@@ -5,26 +5,35 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/thug
 	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
-	
 	category_tags = list(CTAG_TOWNER)
+	subclass_languages = list(/datum/language/thievescant)
+	subclass_stats = list(
+		STATKEY_CON = 3,
+		STATKEY_STR = 2,
+		STATKEY_WIL = 1,
+		STATKEY_INT = -1,
+		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN, 
+		/datum/skill/labor/mining = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/fishing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+	)
 
 /datum/outfit/job/roguetown/adventurer/thug/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE) 
-	H.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/lumberjacking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 	var/weapons = list("Knuckles","Cudgel")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
@@ -43,9 +52,3 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 1)
-	H.change_stat("constitution", 3)
-	H.change_stat("speed", -1)
-	H.change_stat("intelligence", -1)
-	H.grant_language(/datum/language/thievescant)

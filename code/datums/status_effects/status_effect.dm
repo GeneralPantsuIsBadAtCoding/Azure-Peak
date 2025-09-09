@@ -48,7 +48,7 @@
 	return ..()
 
 /datum/status_effect/process()
-	if(!owner)
+	if(QDELETED(owner))
 		qdel(src)
 		return
 	if(tick_interval < world.time)
@@ -135,17 +135,17 @@
 	. = FALSE
 	var/datum/status_effect/S1 = effect
 	LAZYINITLIST(status_effects)
+	var/list/arguments = args.Copy()
+	arguments[1] = src
 	for(var/datum/status_effect/S in status_effects)
 		if(S.id == initial(S1.id) && S.status_type)
 			if(S.status_type == STATUS_EFFECT_REPLACE)
-				S.be_replaced()
+				S.be_replaced(arglist(arguments))
 			else if(S.status_type == STATUS_EFFECT_REFRESH)
-				S.refresh()
+				S.refresh(arglist(arguments))
 				return
 			else
 				return
-	var/list/arguments = args.Copy()
-	arguments[1] = src
 	S1 = new effect(arguments)
 	. = S1
 

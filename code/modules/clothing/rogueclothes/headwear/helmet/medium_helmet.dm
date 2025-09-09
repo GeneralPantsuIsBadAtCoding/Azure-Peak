@@ -168,6 +168,13 @@
 	smelt_bar_num = 2
 	armor = ARMOR_HEAD_HELMET_VISOR
 
+/obj/item/clothing/head/roguetown/helmet/sallet/shishak
+	name = "steel shishak"
+	desc = "A flat decorated steel helmet of Aavnic make with a spike at the top end. A hanging layer of chainmail protects the sides of the head and even the neck."
+	body_parts_covered = HEAD|EARS|HAIR|NECK
+	max_integrity = ARMOR_INT_HELMET_STEEL + 50
+	icon_state = "shishak"
+
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), HIDEHAIR, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
 

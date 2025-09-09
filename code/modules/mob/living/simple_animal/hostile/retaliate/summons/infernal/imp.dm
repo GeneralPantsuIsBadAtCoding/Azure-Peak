@@ -23,6 +23,7 @@
 	aggro_vision_range = 9
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	simple_detect_bonus = 20
+	ranged = TRUE
 	projectiletype = /obj/projectile/magic/firebolt
 	retreat_distance = 4
 	minimum_distance = 3
@@ -43,6 +44,10 @@
 	attack_verb_simple = "claw"
 	dodgetime = 30
 	aggressive = 1
+
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /obj/projectile/magic/firebolt
 	name = "ball of fire"

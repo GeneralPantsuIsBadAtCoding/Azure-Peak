@@ -109,7 +109,7 @@
 /mob/living/carbon/human/proc/werewolf_feed(mob/living/carbon/human/target, healing_amount = 10)
 	if(!istype(target))
 		return
-	if(src.has_status_effect(/datum/status_effect/debuff/silver_curse))
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
 		to_chat(src, span_notice("My power is weakened, I cannot heal!"))
 		return
 	if(target.mind)
@@ -167,7 +167,6 @@
 	force = 25
 	block_chance = 0
 	wdefense = 2
-	blade_dulling = DULLING_SHAFT_GRAND
 	armor_penetration = 15
 	associated_skill = /datum/skill/combat/unarmed
 	wlength = WLENGTH_NORMAL

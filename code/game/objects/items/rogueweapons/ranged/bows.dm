@@ -435,3 +435,8 @@
 	desc = "When a northern black-horned saiga is old enough, it will shed its two-metre long antlers. As time passes, they harden progressively more but keep a degree of flexibility that can outdo even yew.\
 		Wardens often collect such antlers in the rare occasion they are found and send them to be filed, strung and treated by a master bowyer. The end result is a war bow such as this one."
 	icon_state = "longbow_warden"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/steppesman
+	name = "aavnic riding bow"
+	desc = "A short recurve warbow made for the express purpose of shooting on saigaback, a skill every archer in Aavnr takes much more seriously than their Northern counterparts. Every seasoned Druzhina is themselves a good bowyer and usually makes their own bow, this one is made with the purpure-ish crimson wood of a Vörötslevé tree."
+	icon_state = "recurve_riding"

@@ -135,6 +135,7 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat
 	name = "fancy coat"
 	desc = "A fancy tunic and coat combo. How elegant."
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	icon_state = "noblecoat"
 	sleevetype = "noblecoat"
 	detail_tag = "_detail"
@@ -533,6 +534,13 @@
 	icon_state = "stewardtunic"
 	item_state = "stewardtunic"
 
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/loudmouth
+	color = null
+	name = "crier's garb"
+	desc = "A robe that speaks volumes!"
+	icon_state = "loudmouthrobe"
+	item_state = "loudmouthrobe"
+
 //WEDDING CLOTHES
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/weddingdress
 	name = "wedding silk dress"
@@ -586,7 +594,7 @@
 /obj/item/clothing/suit/roguetown/shirt/undershirt/easttats/Initialize(mapload)
 	. = ..()
 	name = "bouhoi bujeog tattoos"
-	desc = "A mystic style of tattoos adopted by the Ruma Clan, emulating a practice performed by warrior monks of the former Xinyi Dynasty. They are your way of identifying fellow clan members, an sign of companionship and secretive brotherhood. These are styled into the shape of clouds, created by a mystical ink which shifts and moves in ripples like a pond to harden where your skin is struck. It's movement causes you to shudder."
+	desc = "A mystic style of tattoos adopted by the Ruma Clan, emulating a practice performed by warrior monks of the Xinyi Dynasty. They are your way of identifying fellow clan members, an sign of companionship and secretive brotherhood. These are styled into the shape of clouds, created by a mystical ink which shifts and moves in ripples like a pond to harden where your skin is struck. It's movement causes you to shudder."
 	resistance_flags = FIRE_PROOF
 	icon_state = "easttats"
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR

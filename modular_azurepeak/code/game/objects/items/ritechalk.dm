@@ -47,6 +47,9 @@
 		if(/datum/patron/old_god)
 			ritechoices+="Rune of Enduring"
 
+	if(HAS_TRAIT(user, TRAIT_DREAMWALKER) && !("Rune of Stirring" in ritechoices))
+		ritechoices+="Rune of Stirring"
+
 	var/runeselection = input(user, "Which rune shall I inscribe?", src) as null|anything in ritechoices
 	var/turf/step_turf = get_step(get_turf(user), user.dir)
 	switch(runeselection)
