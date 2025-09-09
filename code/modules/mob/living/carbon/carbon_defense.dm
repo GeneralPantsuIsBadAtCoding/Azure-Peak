@@ -382,6 +382,11 @@
 	AdjustSleeping(-100)
 	AdjustParalyzed(-60)
 	AdjustImmobilized(-60)
+	if(isseelie(src))
+		var/obj/item/organ/wings/Wing = src.getorganslot(ORGAN_SLOT_WINGS)
+		if(Wing == null)
+			to_chat(M, span_warning("They cant stand without their wings!"))
+			return
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/blank.ogg', 50, TRUE, -1)

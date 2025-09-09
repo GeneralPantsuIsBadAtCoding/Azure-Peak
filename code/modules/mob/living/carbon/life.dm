@@ -663,6 +663,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		else if(fallingas)
 			fallingas = 0
 
+		if(!IsSleeping() && (mobility_flags & MOBILITY_STAND) && isseelie(src) && (haswings(src) == TRUE) && !(buckled)) //Very slop but dont know of another way
+			fairy_hover()
+
 	// Leaning against a wall: slowly regain stamina
 	if(mobility_flags & MOBILITY_STAND && wallpressed && !IsSleeping() && !buckled && !lying)
 		energy_add(5)

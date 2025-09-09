@@ -16,6 +16,7 @@
 		"sand.ttf" = 'interface/fonts/languages/sand.ttf',
 		"undead.ttf" = 'interface/fonts/languages/undead.ttf',
 		"draconic.ttf" = 'interface/fonts/languages/draconic.ttf',
+		"fae.ttf" = 'interface/fonts/languages/fae.ttf',
 		"grenzelhoftian.ttf" = 'interface/fonts/languages/grenzelhoftian.ttf',
 		"kazengunese.ttf" = 'interface/fonts/languages/kazengunese.ttf',
 		"otavan.ttf" = 'interface/fonts/languages/otavan.ttf',

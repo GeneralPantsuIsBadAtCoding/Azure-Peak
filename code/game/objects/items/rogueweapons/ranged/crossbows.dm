@@ -159,6 +159,8 @@
 		BB.bonus_accuracy += (user.STAPER - 8) // 8+ PER gives +1 per level. Does not decrease over range.
 		BB.bonus_accuracy += (user.get_skill_level(/datum/skill/combat/crossbows) * 5) // +5 per XBow level.
 		BB.damage *= damfactor
+		if(HAS_TRAIT(user, TRAIT_TINY))
+			BB.damage = (BB.damage * 0.3)
 	cocked = FALSE
 	if(user.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))
 		var/mob/living/carbon/human/H = user

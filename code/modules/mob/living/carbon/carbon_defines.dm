@@ -91,3 +91,5 @@
 	var/vitae_pool = 8000
 
 	var/next_smell = 0
+
+	var/aura = TRUE //seelie have aura rizz skibidi

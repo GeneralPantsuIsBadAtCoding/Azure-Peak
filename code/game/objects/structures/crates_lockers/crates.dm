@@ -36,6 +36,8 @@
 				return 1
 			if(!locatedcrate.opened) //otherwise, if the located crate is closed, allow entering
 				return 1
+	if(istype(mover) && (mover.pass_flags & PASSTABLE))
+		return 1
 	return !density
 
 /obj/structure/closet/crate/update_icon()

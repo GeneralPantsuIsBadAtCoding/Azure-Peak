@@ -18,6 +18,7 @@
 		/datum/language/beast,
 		/datum/language/orcish,
 		/datum/language/draconic,
+		/datum/language/faexin,
 		/datum/language/thievescant,
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,

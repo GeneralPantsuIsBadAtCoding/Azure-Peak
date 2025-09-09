@@ -455,6 +455,11 @@
 	. = ..()
 	var/negate_slowdown = FALSE
 
+	//No tile slowdown for fairies
+	var/mob/living/carbon/human/FM = user
+	if(isseelie(FM) && !(FM.resting))	//Add wingcheck
+		return 0
+
 	for(var/obj/item/stick in user.held_items)
 		if(stick.walking_stick && !stick.wielded && !user.cmode)
 			negate_slowdown = TRUE
@@ -493,7 +498,7 @@
 	..()
 	if(ishuman(O))
 		var/mob/living/carbon/human/H = O
-		if(H.shoes && !HAS_TRAIT(H, TRAIT_LIGHT_STEP))
+		if((H.shoes && !HAS_TRAIT(H, TRAIT_LIGHT_STEP)) || !isseelie(H)) //Seelie hover, so they won't step on blood
 			var/obj/item/clothing/shoes/S = H.shoes
 			if(!istype(S) || !S.can_be_bloody)
 				return

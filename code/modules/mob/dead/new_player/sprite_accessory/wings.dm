@@ -30,8 +30,8 @@
 	name = "Bee"
 	icon_state = "bee"
 
-/datum/sprite_accessory/wings/fairy
-	name = "Fairy"
+/datum/sprite_accessory/wings/seelie
+	name = "Seelie"
 	icon_state = "fairy"
 
 /datum/sprite_accessory/wings/feathery

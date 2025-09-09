@@ -222,10 +222,31 @@
 	effectedstats = list(STATKEY_STR = -1, STATKEY_WIL = -1, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -1)
 	duration = 1 HOURS // Punishing AS FUCK, but not as punishing as being dead.
 
-
 /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
 	name = "Tainted Lux"
 	desc = "My Lux has been tainted in a vile heretic ritual."
+
+/datum/status_effect/buff/seelie/sad
+	id = "Seelie Curse"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/seelie/sad
+	effectedstats = list("fortune" = -2)
+	duration = 60 SECONDS
+
+/atom/movable/screen/alert/status_effect/buff/seelie/sad
+	name = "Seelie Curse"
+	desc = "A nearby Seelie has spread their poor mood unto me."
+	icon_state = "stressb"
+
+/datum/status_effect/debuff/seelie_wing_curse
+	id = "seelie_wing_curse"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/seelie_wing_curse
+	effectedstats = list("fortune" = -2)
+	duration = 4 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/seelie_wing_curse
+	name = "Curse of the Seelie"
+	desc = "I've been cursed for my horrific deed..."
+	icon_state = "stressb"
 
 /// SURRENDERING DEBUFFS
 

@@ -107,6 +107,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	jobspawn_override = list("Vagabond")
 	delete_after_roundstart = FALSE
 
+/obj/effect/landmark/start/seelielate
+	name = "Seelielate"
+	icon_state = "arrow"
+	jobspawn_override = list("Town Seelie")
+	delete_after_roundstart = FALSE
+
 /obj/effect/landmark/start/desertriderlate
 	name = "DesertRiderlate"
 	icon_state = "arrow"

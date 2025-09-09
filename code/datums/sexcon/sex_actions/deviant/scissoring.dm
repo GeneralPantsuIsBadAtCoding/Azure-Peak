@@ -21,6 +21,8 @@
 		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_VAGINA))
 		return FALSE
+	if((HAS_TRAIT(target, TRAIT_TINY) && !(HAS_TRAIT(user, TRAIT_TINY))) || (HAS_TRAIT(user, TRAIT_TINY) && !(HAS_TRAIT(target, TRAIT_TINY)))) //Big check to make sure only seelie<->seelie can do this, not seelie<->humen
+		return FALSE
 	return TRUE
 
 /datum/sex_action/scissoring/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)

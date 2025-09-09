@@ -556,6 +556,15 @@
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
 
+//SEELIE SKIN TONES
+#define SKIN_COLOR_WATER "abcbff"
+#define SKIN_COLOR_SOIL "ad7c58"
+#define SKIN_COLOR_ROCK "594638"
+#define SKIN_COLOR_AIR "fce5c2"
+#define SKIN_COLOR_FIRE "ff6e6e"
+#define SKIN_COLOR_FLORA "6afc74"
+#define SKIN_COLOR_ELECTRIC "faec8e"
+
 // Pixel shifting
 #define PIXEL_SHIFT_MAXIMUM 16
 #define PIXEL_SHIFT_PASSABLE_THRESHOLD 8

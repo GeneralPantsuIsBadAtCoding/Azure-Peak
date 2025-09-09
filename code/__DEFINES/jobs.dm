@@ -184,6 +184,7 @@
 #define MERCENARY		(1<<2)
 #define DESERT_RIDER	(1<<3)	//Unused
 #define GRENZELHOFT		(1<<4)	//Unused
+#define SEELIE 			(1<<5)	//for seelie
 
 
 #define TRIBAL		(1<<8)
@@ -293,6 +294,7 @@
 #define JDO_GRENZELHOFT 31.1
 #define JDO_DESERT_RIDER 31.2
 #define JDO_VET 31.4
+#define JDO_SEELIE 31.5
 
 #define JDO_VAGRANT 33
 #define JDO_ORPHAN 34
@@ -380,6 +382,7 @@
 	/datum/job/roguetown/adventurer,\
 	/datum/job/roguetown/mercenary/desert_rider,\
 	/datum/job/roguetown/mercenary/grenzelhoft,\
+	/datum/job/roguetown/seelie,\
 	/datum/job/roguetown/bandit,\
 	/datum/job/roguetown/wretch
 

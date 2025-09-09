@@ -125,6 +125,9 @@
 	var/newamt = 0
 	switch(stat)
 		if(STATKEY_STR)
+			if(isseelie(src))
+				STASTR = 1
+				return
 			newamt = STASTR + amt
 			if(BUFSTR < 0)
 				BUFSTR = BUFSTR + amt

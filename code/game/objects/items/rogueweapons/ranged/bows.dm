@@ -237,6 +237,8 @@
 	if(user.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.bad_guard(span_warning("I can't focus on my Guard and loose arrows! This drains me!"), cheesy = TRUE)
+	if(HAS_TRAIT(user, TRAIT_TINY))	//take more damage for seelie
+			BB.damage = (BB.damage * 0.3)
 	. = ..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/update_icon()

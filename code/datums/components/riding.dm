@@ -90,7 +90,7 @@
 					has_fixedeye = TRUE
 			passindex++
 			var/mob/living/buckled_mob = m
-			var/list/offsets = get_offsets(passindex)
+			var/list/offsets = get_offsets(passindex, buckled_mob)
 			var/rider_dir = get_rider_dir(passindex)
 			if(!has_fixedeye)
 				buckled_mob.setDir(rider_dir)
@@ -124,7 +124,7 @@
 	directional_vehicle_offsets["[dir]"] = list(x, y)
 
 //Override this to set my vehicle's various pixel offsets
-/datum/component/riding/proc/get_offsets(pass_index) // list(dir = x, y, layer)
+/datum/component/riding/proc/get_offsets(pass_index, mob/living/user) // list(dir = x, y, layer)
 	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
 	if(riding_offsets["[pass_index]"])
 		. = riding_offsets["[pass_index]"]
@@ -258,14 +258,16 @@
 	else
 		AM.layer = MOB_LAYER
 
-/datum/component/riding/human/get_offsets(pass_index)
+/datum/component/riding/human/get_offsets(pass_index, mob/living/user)
 	var/mob/living/carbon/human/H = parent
-	if(H.buckle_lying)
+	if(H.buckle_lying && !HAS_TRAIT(user, TRAIT_TINY))
 		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list(0, 6))
 	else if(istype(parent, /mob/living/carbon/human/species/wildshape)) //Snowflake druid travel
 		return list(TEXT_NORTH = list(8, 6), TEXT_SOUTH = list(8, 6), TEXT_EAST = list(8, 6), TEXT_WEST = list(8, 6))
-	else
-		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list(6, 4))
+	else if(!HAS_TRAIT(user, TRAIT_TINY))
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4))
+	else	//backup
+		return list(TEXT_NORTH = list(5, 6), TEXT_SOUTH = list(5, 6), TEXT_EAST = list(-2, 6), TEXT_WEST = list( 2, 6))
 
 
 /datum/component/riding/human/force_dismount(mob/living/user)
@@ -303,7 +305,7 @@
 	else
 		AM.layer = MOB_LAYER
 
-/datum/component/riding/cyborg/get_offsets(pass_index) // list(dir = x, y, layer)
+/datum/component/riding/cyborg/get_offsets(pass_index, mob/living/user) // list(dir = x, y, layer)
 	return list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(-6, 3), TEXT_WEST = list( 6, 3))
 
 /datum/component/riding/cyborg/handle_vehicle_offsets()

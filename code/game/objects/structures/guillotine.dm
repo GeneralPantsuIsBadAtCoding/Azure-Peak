@@ -67,7 +67,7 @@
 	if (!anchored)
 		return FALSE
 
-	if (!istype(M, /mob/living/carbon/human))
+	if ((!istype(M, /mob/living/carbon/human)) || HAS_TRAIT(M, TRAIT_TINY))
 		to_chat(usr, "<span class='warning'>It doesn't look like [M.p_they()] can fit into this properly!</span>")
 		return FALSE // Can't decapitate non-humans
 

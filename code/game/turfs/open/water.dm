@@ -60,6 +60,9 @@
 
 /turf/open/water/Exited(atom/movable/AM, atom/newloc)
 	. = ..()
+	var/mob/living/carbon/human/FM = AM
+	if(isseelie(FM) && !(FM.resting))	//Add wingcheck
+		return
 	if(isliving(AM) && !AM.throwing)
 		var/mob/living/user = AM
 		if(isliving(user) && !user.is_floor_hazard_immune())
@@ -164,6 +167,9 @@
 
 /turf/open/water/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
+	var/mob/living/carbon/human/FM = AM
+	if(isseelie(FM) && !(FM.resting))	//Add wingcheck
+		return
 	for(var/obj/structure/S in src)
 		if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 			return
@@ -295,6 +301,9 @@
 	O.extinguish()
 
 /turf/open/water/get_slowdown(mob/user)
+	var/mob/living/carbon/human/FM = AM
+	if(isseelie(FM) && !(FM.resting))	//Add wingcheck
+		return
 	var/returned = slowdown
 	returned = returned - (user.get_skill_level(/datum/skill/misc/swimming))
 	if(ishuman(user))

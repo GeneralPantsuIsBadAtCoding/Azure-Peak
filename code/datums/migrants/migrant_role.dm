@@ -3,7 +3,7 @@
 	/// Name of the role
 	var/name = "MIGRANT ROLE"
 	/// Restricts species if the list is not null
-	var/list/allowed_races
+	var/list/allowed_races = RACES_VERY_SHUNNED_UP	//stop seelie spawning
 	/// Restricts sexes if list is not null
 	var/list/allowed_sexes
 	/// Restricts ages if list is not null

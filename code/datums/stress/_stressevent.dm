@@ -16,6 +16,9 @@
 /datum/stressevent/proc/get_stress(mob/living/user)
 	return stressadd + ((stacks - 1) * stressadd_per_extra_stack)
 
+/datum/stressevent/proc/on_apply(mob/living/user)
+	return
+
 /datum/stressevent/test
 	timer = 5 SECONDS
 	stressadd = 3

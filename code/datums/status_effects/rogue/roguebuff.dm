@@ -223,6 +223,52 @@
 	desc = ""
 	icon_state = "weed"
 
+/datum/status_effect/buff/seelie_drugs
+	id = "seelie drugs"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("intelligence" = 2, "endurance" = 4, "speed" = -3)
+	duration = 20 SECONDS
+
+/atom/movable/screen/alert/status_effect/buff/seelie_drugs
+	name = "High"
+	desc = ""
+	icon_state = "acid"
+
+/datum/status_effect/buff/seelie_drugs/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/high)
+	if(owner?.client)
+		if(owner.client.screen && owner.client.screen.len)
+			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_fov_hidden) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
+			PM.backdrop(owner)
+
+/datum/status_effect/buff/seelie_drugs/on_remove()
+	owner.remove_stress(/datum/stressevent/high)
+	if(owner?.client)
+		if(owner.client.screen && owner.client.screen.len)
+			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_fov_hidden) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
+			PM.backdrop(owner)
+	. = ..()
+
+/datum/status_effect/buff/seelie/happy
+	id = "Seelie Blessing"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/seelie/happy
+	effectedstats = list("fortune" = 2)
+	duration = 60 SECONDS
+
+/atom/movable/screen/alert/status_effect/buff/seelie/happy
+	name = "Seelie Blessing"
+	desc = "A nearby Seelie has brought me fortune."
+	icon_state = "stressg"
+
 /datum/status_effect/buff/vitae
 	id = "druqks"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/vitae
