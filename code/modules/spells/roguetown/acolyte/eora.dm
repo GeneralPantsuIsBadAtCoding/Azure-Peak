@@ -602,7 +602,7 @@
 				else
 					to_chat(c, span_warning("A divine curse strikes you for destroying the sacred tree!"))
 					c.adjustFireLoss(100)
-					c.IgniteMob()
+					c.ignite_mob()
 					c.add_stress(/datum/stressevent/psycurse)
 			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
 			GLOB.azure_round_stats[STATS_TREES_CUT]++
@@ -1146,6 +1146,8 @@
 				if(!target.mind || !target.mind.active)
 					continue
 				if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
+					continue
+				if(HAS_TRAIT(target, TRAIT_DNR))
 					continue
 				if(target.mob_biotypes & MOB_UNDEAD)
 					continue

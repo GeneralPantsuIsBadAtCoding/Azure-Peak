@@ -413,8 +413,8 @@ var/global/list/anvil_recipe_prices[][]
 		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
 			return FALSE
-		L.adjust_divine_fire_stacks(1)
-		L.IgniteMob()
+		L.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/divine)
+		L.ignite_mob()
 		return TRUE
 
 	// Spell interaction with ignitable objects (burn wooden things, light torches up)

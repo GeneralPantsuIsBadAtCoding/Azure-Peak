@@ -73,7 +73,7 @@
 	desc = list(span_red("I think I'm bleeding."),span_red("I'm bleeding."))
 
 /datum/stressevent/bleeding/can_apply(mob/living/user)
-	if(user.has_flaw(/datum/charflaw/masochist))
+	if(user.has_flaw(/datum/charflaw/addiction/masochist))
 		return FALSE
 	return TRUE
 
@@ -83,7 +83,7 @@
 	desc = span_red("THE PAIN!")
 
 /datum/stressevent/painmax/can_apply(mob/living/user)
-	if(user.has_flaw(/datum/charflaw/masochist))
+	if(user.has_flaw(/datum/charflaw/addiction/masochist))
 		return FALSE
 	return TRUE
 
@@ -345,3 +345,16 @@
 	stressadd = 5
 	desc = span_red("My PATRON is NOT PROUD of ME!")
 	timer = 20 MINUTES
+
+
+
+/datum/stressevent/necrarevive
+	stressadd = 15
+	desc = span_boldred("SO CLOSE TO BEING GRASPED, SO COLD!")
+	timer = 15 MINUTES
+
+/datum/stressevent/blessed_weapon
+	stressadd = -3
+	timer = 999 MINUTES
+	desc = span_green("I'm wielding a BLESSED weapon!")
+

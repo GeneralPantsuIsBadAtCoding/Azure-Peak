@@ -93,7 +93,8 @@
 	.=..()
 	var/obj/item/storage = i
 	var/datum/component/storage/STR = storage.GetComponent(/datum/component/storage)
-
+	if(STR.max_w_class == WEIGHT_CLASS_SMALL)
+		STR.max_w_class++
 	STR.screen_max_columns = STR.screen_max_columns + 2
 
 /datum/magic_item/mundane/revealing

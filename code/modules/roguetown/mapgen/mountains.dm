@@ -7,7 +7,7 @@
 	startTurfY = 1
 
 /datum/mapGenerator/mtn
-	modules = list(/datum/mapGeneratorModule/ambushing,/datum/mapGeneratorModule/mtn)
+	modules = list(/datum/mapGeneratorModule/mtn)
 
 /datum/mapGeneratorModule/mtn
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS

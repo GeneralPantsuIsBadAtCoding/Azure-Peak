@@ -74,10 +74,10 @@
 			span_warning("[user] begins to force [A] into [src]!"),
 			span_warningbig("I begin to force [A] into [src].")
 		)
-		if(!do_after(user, 2 SECONDS))
+		if(!move_after(user, 2 SECONDS, target = user))
 			return FALSE
 		return FALSE
-	if(!do_after(user, sheathe_time))
+	if(!move_after(user, sheathe_time, target = user))
 		return FALSE
 
 	A.forceMove(src)
@@ -102,9 +102,9 @@
 			span_warning("[user] begins to force [sheathed] out of [src]!"),
 			span_warningbig("I begin to force [sheathed] out of [src].")
 		)
-		if(!do_after(user, 2 SECONDS))
+		if(!move_after(user, 2 SECONDS, target = user))
 			return FALSE
-	if(!do_after(user, sheathe_time))
+	if(!move_after(user, sheathe_time, target = user))
 		return FALSE
 
 	sheathed.forceMove(user.loc)
@@ -264,15 +264,6 @@
 	force = 3
 	max_integrity = 500
 	sellprice = 2
-
-/obj/item/rogueweapon/scabbard/sheath/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/rogueweapon/scabbard/sheath/LateInitialize()
-	var/obj/item/rogueweapon/huntingknife/init_blade = locate() in loc
-	if(init_blade)
-		return eat_sword(loc.loc, init_blade)
 
 /obj/item/rogueweapon/scabbard/sheath/getonmobprop(tag)
 	..()

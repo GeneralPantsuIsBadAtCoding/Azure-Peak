@@ -4,7 +4,31 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
+	subclass_languages = list(/datum/language/otavan)
 	category_tags = list(CTAG_INQUISITION)
+	traits_applied = list(
+		TRAIT_CRITICAL_RESISTANCE,
+		TRAIT_CIVILIZEDBARBARIAN,
+		TRAIT_NOPAINSTUN,
+	)
+	subclass_stats = list(
+		STATKEY_STR = 3,
+		STATKEY_WIL = 3,
+		STATKEY_CON = 3,
+		STATKEY_INT = -2,
+		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/misc/athletics = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/disciple
 	job_bitflag = BITFLAG_CHURCH
@@ -29,27 +53,6 @@
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
-	H.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.change_stat(STATKEY_STR, 3)
-	H.change_stat(STATKEY_WIL, 3)
-	H.change_stat(STATKEY_CON, 3)
-	H.change_stat(STATKEY_INT, -2)
-	H.change_stat(STATKEY_SPD, -1)
-	ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
-	H.grant_language(/datum/language/otavan)
-	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles. It's just a self-heal.
 

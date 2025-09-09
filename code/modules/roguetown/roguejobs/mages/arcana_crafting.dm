@@ -37,7 +37,7 @@
 	name = "infernal feather (1 Feather, 2 infernal ash)"
 	result = /obj/item/natural/feather/infernal
 	reqs = list(/obj/item/natural/feather = 1,
-				/obj/item/magic/infernalash = 2)
+				/obj/item/magic/infernal/ash = 2)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/sendingstone
@@ -135,7 +135,7 @@
 	name = "infernal forge - (1 Infernal Core, 4 Stones)"
 	req_table = FALSE
 	result = /obj/machinery/light/rogue/forge/arcane
-	reqs = list(/obj/item/magic/infernalcore = 1,
+	reqs = list(/obj/item/magic/infernal/core = 1,
 				/obj/item/natural/stone = 4)
 	craftdiff = 3
 
@@ -149,33 +149,33 @@
 /datum/crafting_recipe/roguetown/arcana/meldt1
 	name = "arcanic meld - (1 Infernal Ash, 1 Fairy Dust, 1 Elemental Mote)"
 	result = /obj/item/magic/melded/t1
-	reqs = list(/obj/item/magic/infernalash = 1,
+	reqs = list(/obj/item/magic/infernal/ash = 1,
 				/obj/item/magic/fairydust = 1,
-				/obj/item/magic/elementalmote = 1)
+				/obj/item/magic/elemental/mote = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/meldt2
 	name = "dense arcanic meld - (1 Hellhound Fang, 1 Iridescent Scale, 1 Elemental Shard)"
 	result = /obj/item/magic/melded/t2
-	reqs = list(/obj/item/magic/hellhoundfang = 1,
+	reqs = list(/obj/item/magic/infernal/fang = 1,
 				/obj/item/magic/iridescentscale = 1,
-				/obj/item/magic/elementalshard = 1)
+				/obj/item/magic/elemental/shard = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/meldt3
 	name = "sorcerous weave - (1 Molten Core, 1 Heartwood Core, 1 Elemental Fragment)"
 	result = /obj/item/magic/melded/t3
-	reqs = list(/obj/item/magic/infernalcore = 1,
+	reqs = list(/obj/item/magic/infernal/core = 1,
 				/obj/item/magic/heartwoodcore = 1,
-				/obj/item/magic/elementalfragment = 1)
+				/obj/item/magic/elemental/fragment = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/meldt4
 	name = "magical confluence - (1 Abyssal Flame, 1 Sylvan Essence, 1 Elemental Relic)"
 	result = /obj/item/magic/melded/t4
-	reqs = list(/obj/item/magic/abyssalflame = 1,
+	reqs = list(/obj/item/magic/infernal/flame = 1,
 				/obj/item/magic/sylvanessence = 1,
-				/obj/item/magic/elementalrelic = 1)
+				/obj/item/magic/elemental/relic = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/meldt5
@@ -221,58 +221,58 @@
 
 /datum/crafting_recipe/roguetown/arcana/elementalmote //T1 mage summon loot
 	name = "elemental mote - (1 runed artifact, 1 crystalized mana)" //making this one a little harder as mining will also produce some
-	result = /obj/item/magic/elementalmote
+	result = /obj/item/magic/elemental/mote
 	reqs = list(/obj/item/magic/manacrystal = 1,
 				/obj/item/magic/artifact = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/elementalshard //T2 mage summon loot
 	name = "elemental shard - (2 elemental mote, 1 copper ore)"
-	result = /obj/item/magic/elementalshard
-	reqs = list(/obj/item/magic/elementalmote = 2,
+	result = /obj/item/magic/elemental/shard
+	reqs = list(/obj/item/magic/elemental/mote = 2,
 				/obj/item/rogueore/copper = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/arcana/elementalfragment //T3 mage summon loot
 	name = "elemental fragment - (3 elemental shards, 1 iron ore)"
-	result = /obj/item/magic/elementalfragment
-	reqs = list(/obj/item/magic/elementalshard = 3,
+	result = /obj/item/magic/elemental/fragment
+	reqs = list(/obj/item/magic/elemental/shard = 3,
 				/obj/item/rogueore/iron = 1)
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/arcana/elementalrelic //T4 mage summon loot
 	name = "elemental relic - (4 elemental fragment, 1 topar)"
-	result = /obj/item/magic/elementalrelic
-	reqs = list(/obj/item/magic/elementalfragment = 4,
+	result = /obj/item/magic/elemental/relic
+	reqs = list(/obj/item/magic/elemental/fragment = 4,
 				/obj/item/roguegem/yellow = 1)
 	craftdiff = 5
 
 //infernal conversions
 /datum/crafting_recipe/roguetown/arcana/infernalash //T1 mage summon loot
 	name = "infernal ash - (2 ash, 1 crystalized mana)"
-	result = /obj/item/magic/infernalash
+	result = /obj/item/magic/infernal/ash
 	reqs = list(/obj/item/magic/manacrystal = 1,
 				/obj/item/ash = 2)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/arcana/hellhoundfang //T2 mage summon loot
 	name = "hellhound fang - (2 infernal ash, 1 bone)"
-	result = /obj/item/magic/hellhoundfang
-	reqs = list(/obj/item/magic/infernalash = 2,
+	result = /obj/item/magic/infernal/fang
+	reqs = list(/obj/item/magic/infernal/ash = 2,
 				/obj/item/natural/bone = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/arcana/infernalcore //T3 mage summon loot
 	name = "infernal core - (3 hellhound fang, 1 coal)"
-	result = /obj/item/magic/infernalcore
-	reqs = list(/obj/item/magic/hellhoundfang = 3,
+	result = /obj/item/magic/infernal/core
+	reqs = list(/obj/item/magic/infernal/fang = 3,
 				/obj/item/rogueore/coal = 1)
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/arcana/abyssalflame //T4 mage summon loot
 	name = "abyssal flame - (4 infernal core, 1 rontz)"
-	result = /obj/item/magic/abyssalflame
-	reqs = list(/obj/item/magic/infernalcore = 2,
+	result = /obj/item/magic/infernal/flame
+	reqs = list(/obj/item/magic/infernal/core = 2,
 				/obj/item/roguegem/ruby = 1)
 	craftdiff = 5
 
@@ -281,12 +281,12 @@
 	name = "arcyne fission - (1 essense of wilderness, sea water, 5x clay, 1 skull)"
 	result = list(/obj/item/magic/manacrystal, /obj/item/magic/manacrystal,
 				  /obj/item/magic/manacrystal,
-				  /obj/item/magic/infernalash,
-				  /obj/item/magic/hellhoundfang,
+				  /obj/item/magic/infernal/ash,
+				  /obj/item/magic/infernal/fang,
 				  /obj/item/magic/fairydust,
 				  /obj/item/magic/iridescentscale,
-				  /obj/item/magic/elementalmote,
-				  /obj/item/magic/elementalshard)
+				  /obj/item/magic/elemental/mote,
+				  /obj/item/magic/elemental/shard)
 	reqs = list(/obj/item/natural/cured/essence = 1,
 				/datum/reagent/water/salty = 15,
 				/obj/item/natural/clay = 5,
@@ -301,21 +301,21 @@
 				  /obj/item/magic/manacrystal,
 				  /obj/item/magic/manacrystal,
 				  /obj/item/magic/manacrystal,
-				  /obj/item/magic/infernalash,
-				  /obj/item/magic/infernalash,
-				  /obj/item/magic/hellhoundfang,
-				  /obj/item/magic/hellhoundfang,
-				  /obj/item/magic/infernalcore,
+				  /obj/item/magic/infernal/ash,
+				  /obj/item/magic/infernal/ash,
+				  /obj/item/magic/infernal/fang,
+				  /obj/item/magic/infernal/fang,
+				  /obj/item/magic/infernal/core,
 				  /obj/item/magic/fairydust,
 				  /obj/item/magic/fairydust,
 				  /obj/item/magic/iridescentscale,
 				  /obj/item/magic/iridescentscale,
 				  /obj/item/magic/heartwoodcore,
-				  /obj/item/magic/elementalmote,
-				  /obj/item/magic/elementalmote,
-				  /obj/item/magic/elementalshard,
-				  /obj/item/magic/elementalshard,
-				  /obj/item/magic/elementalfragment,)
+				  /obj/item/magic/elemental/mote,
+				  /obj/item/magic/elemental/mote,
+				  /obj/item/magic/elemental/shard,
+				  /obj/item/magic/elemental/shard,
+				  /obj/item/magic/elemental/fragment,)
 	reqs = list(/obj/item/phylactery = 1,
 				/datum/reagent/water/salty = 15,
 				/obj/item/natural/clay = 5,

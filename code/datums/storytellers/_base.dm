@@ -9,6 +9,8 @@
 	var/name = "Badly coded storyteller"
 	/// Description of our storyteller.
 	var/desc = "Report this to the coders."
+	/// Description of our storyteller, shown when pressing (?) during a vote.
+	var/vote_desc = "Do what thou wilt."
 	/// Text that the players will be greeted with when this storyteller is chosen.
 	var/welcome_text = "Lift your Eyes to the Horizon." //changing this quote to match the one from the original eris PR.
 	/// This is the multiplier for repetition penalty in event weight. The lower the harsher it is

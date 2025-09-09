@@ -9,6 +9,7 @@
 	grid_width = 64
 	grid_height = 32
 
+/* linking now done by wrenches
 /obj/item/roguegear/Destroy()
 	if(linking)
 		linking = null
@@ -39,3 +40,4 @@
 		return
 	linking = S
 	to_chat(user, span_info("Link beginning..."))
+*/

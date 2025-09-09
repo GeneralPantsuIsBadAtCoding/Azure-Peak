@@ -41,6 +41,10 @@
 	ai_controller = /datum/ai_controller/simple_skeleton
 	melee_cooldown = SKELETON_ATTACK_SPEED
 
+/mob/living/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine, is_summoned)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
+
 /mob/living/simple_animal/hostile/rogue/skeleton/axe
 	name = "Skeleton"
 	desc = ""

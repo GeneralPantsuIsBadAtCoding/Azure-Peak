@@ -102,6 +102,27 @@
 /obj/structure/closet/dirthole/toggle(mob/living/user)
 	return
 
+/obj/structure/closet/dirthole/attack_hand(mob/living/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_SOUL_EXAMINE))
+		var/atom/movable/coffin = src
+		for(var/mob/living/corpse in coffin)
+			if(!corpse.stat == DEAD)
+				to_chat(user, "That one hasn't truly passed on yet?!")
+				return
+			if(corpse.burialrited)
+				to_chat(user, "This grave has already been consecrated...")
+				return
+			else
+				to_chat(user, "I begin my burial rites...")
+				if(do_after(user, 50))
+					user.say("#Rest thy soul for all aeon within Necra's embrace!")
+					to_chat(user, "I have extracted a strand of luxthread, proof of passing.")
+					playsound(user, 'sound/misc/bellold.ogg', 20)
+					new /obj/item/soulthread((get_turf(user)))
+					corpse.burialrited = TRUE
+
+
 /obj/structure/closet/dirthole/attackby(obj/item/attacking_item, mob/user, params)
 	if(!istype(attacking_item, /obj/item/rogueweapon/shovel))
 		return ..()

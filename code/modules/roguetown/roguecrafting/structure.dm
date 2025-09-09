@@ -698,6 +698,24 @@
 		return FALSE
 	return ..()
 
+/datum/crafting_recipe/roguetown/structure/floorgrille
+	name = "floorgrille"
+	result = /obj/structure/bars/grille
+	reqs = list(/obj/item/ingot/iron = 1,
+					/obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/structure/floorgrille/TurfCheck(mob/user, turf/T)
+	if(istype(T,/turf/open/transparent/openspace))
+		return TRUE
+	if(istype(T,/turf/open/lava))
+		return FALSE
+	return ..()
+
+
 /datum/crafting_recipe/roguetown/structure/sign
 	name = "custom sign"
 	result = /obj/structure/fluff/customsign

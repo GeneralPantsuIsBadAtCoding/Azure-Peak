@@ -5,6 +5,17 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/vagabond/wanted
 	category_tags = list(CTAG_VAGABOND)
+	subclass_stats = list(
+		STATKEY_PER = 2,
+		STATKEY_SPD = 2,
+		STATKEY_INT = -1
+	)
+	subclass_skills = list(
+		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/stealing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+	)
+	extra_context = "This class starts with a bounty."
 
 /datum/outfit/job/roguetown/vagabond/wanted/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -23,11 +34,6 @@
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	
 	if (H.mind)
-		H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-		H.change_stat(STATKEY_PER, 2)
-		H.change_stat(STATKEY_INT, -1)
 		H.change_stat(STATKEY_LCK, rand(-2, 2))
 		var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 		if (!my_crime)

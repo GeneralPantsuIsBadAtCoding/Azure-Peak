@@ -16,7 +16,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/basiceast
 	name = "simple dobo robe"
-	desc = "A dirty dobo robe with white lapels. Can be upgraded through the use of a tailor."
+	desc = "A dirty dobo robe with white lapels. Can be upgraded through the use of a tailor to increase its integrity and protection."
 	icon_state = "eastsuit3"
 	item_state = "eastsuit3"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
@@ -39,9 +39,11 @@
 
 /obj/item/clothing/suit/roguetown/armor/basiceast/crafteast
 	name = "decorated dobo robe"
-	desc = "A dobo robe with a red tassel. Leather inlays are sewn in."
+	desc = "A dobo robe with a red tassel. Leather inlays are sewn in. It looks sturdier than a simple robe."
 	icon_state = "eastsuit2"
 	item_state = "eastsuit2"
+	armor = ARMOR_LEATHER_STUDDED // Makes it the equivalence of studded with less integrity and better armor 
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
 
 //craftable variation of eastsuit, essentially requiring the presence of a tailor with relevant materials
 //still weak against blunt
@@ -52,6 +54,8 @@
 	icon_state = "eastsuit1"
 	item_state = "eastsuit1"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	armor = ARMOR_LEATHER_STUDDED 
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
 
 
 /obj/item/clothing/suit/roguetown/armor/basiceast/captainrobe
@@ -59,7 +63,8 @@
 	desc = "Flower-styled robes, said to have been infused with magical protection. The Merchant Guild says that this is from the southern Kazengite region."
 	icon_state = "eastsuit4"
 	item_state = "eastsuit4"
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
+	armor = ARMOR_LEATHER_STUDDED
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 25 // Head Honcho gets a buff
 	sellprice = 25
 
 // this robe spawns on a role that offers no leg protection nor further upgrades to the loadout, in exchange for better roundstart gear

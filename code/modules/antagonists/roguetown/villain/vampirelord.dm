@@ -1,5 +1,26 @@
 /datum/antagonist/vampire/lord
 	name = "Vampire Lord"
+	roundend_category = "Vampires"
+	antagpanel_category = "Vampire"
+	job_rank = ROLE_VAMPIRE
+	var/list/inherent_traits = list(
+		TRAIT_STRONGBITE, 
+		TRAIT_NOBLE, 
+		TRAIT_NOHUNGER, 
+		TRAIT_NOBREATH, 
+		TRAIT_NOPAIN,
+		TRAIT_TOXIMMUNE,
+		TRAIT_STEELHEARTED, 
+		TRAIT_NOSLEEP, 
+		TRAIT_VAMPMANSION, 
+		TRAIT_VAMP_DREAMS, 
+		TRAIT_INFINITE_STAMINA, 
+		TRAIT_HEAVYARMOR, 
+		TRAIT_COUNTERCOUNTERSPELL, 
+		TRAIT_STRENGTH_UNCAPPED, 
+		TRAIT_CRITICAL_WEAKNESS,
+		TRAIT_SILVER_WEAK
+	)
 	antag_hud_type = ANTAG_HUD_VAMPIRE
 	antag_hud_name = "vamplord"
 	confess_lines = list(

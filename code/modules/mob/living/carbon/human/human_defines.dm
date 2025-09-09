@@ -138,3 +138,6 @@
 
 	/// Whether our job title is adaptive to our skills.
 	var/adaptive_name
+
+	/// Ref to orison-like sunder object
+	var/sunder_light_obj = null
