@@ -23,5 +23,5 @@
 	C.equipme(H)
 
 	H.adjust_skillrank_up_to(/datum/skill/magic/blood, 3, TRUE)
-	var/datum/antagonist/vampire_neu/new_antag = new /datum/antagonist/vampire_neu(generation = GENERATION_NEONATE)
+	var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(generation = GENERATION_NEONATE)
 	H.mind.add_antag_datum(new_antag)

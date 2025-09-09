@@ -1,12 +1,12 @@
 /mob/living/carbon/human/proc/add_bite_animation()
-	remove_overlay(BITE_LAYER)
-	var/mutable_appearance/bite_overlay = mutable_appearance('icons/effects/clan.dmi', "bite", -BITE_LAYER)
-	overlays_standing[BITE_LAYER] = bite_overlay
-	apply_overlay(BITE_LAYER)
+	remove_overlay(SUNDER_LAYER)
+	var/mutable_appearance/bite_overlay = mutable_appearance('icons/effects/clan.dmi', "bite", -SUNDER_LAYER)
+	overlays_standing[SUNDER_LAYER] = bite_overlay
+	apply_overlay(SUNDER_LAYER)
 	addtimer(CALLBACK(src, PROC_REF(remove_bite)), 1.5 SECONDS)
 
 /mob/living/carbon/human/proc/remove_bite()
-	remove_overlay(BITE_LAYER)
+	remove_overlay(SUNDER_LAYER)
 
 /mob/living/carbon/human/proc/drinksomeblood(mob/living/mob)
 	last_drinkblood_use = world.time
@@ -65,8 +65,8 @@
 				src.visible_message(span_danger("Some dark energy begins to flow from [src] into [mob]..."), span_userdanger("I begin siring [mob]..."))
 				if(do_after(src, 3 SECONDS, mob))
 					mob.visible_message(span_red("[mob] rises as a new spawn!"))
-					var/datum/antagonist/vampire_neu/current_licker = mind?.has_antag_datum(/datum/antagonist/vampire_neu)
-					var/datum/antagonist/vampire_neu/new_antag = new /datum/antagonist/vampire_neu(clan, TRUE, current_licker.generation - GENERATION_MODIFIER)
+					var/datum/antagonist/vampire/current_licker = mind?.has_antag_datum(/datum/antagonist/vampire)
+					var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(clan, TRUE, current_licker.generation - GENERATION_MODIFIER)
 					mob.mind?.add_antag_datum(new_antag)
 					// this is bad, should give them a healing buff instead
 					sleep(2 SECONDS)

@@ -341,5 +341,5 @@
 	return examine_text
 
 /mob/living/carbon/human/proc/get_vampire_generation()
-	var/datum/antagonist/vampire_neu/licker_datum = mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+	var/datum/antagonist/vampire/licker_datum = mind?.has_antag_datum(/datum/antagonist/vampire)
 	return licker_datum?.generation

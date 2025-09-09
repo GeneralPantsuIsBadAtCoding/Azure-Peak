@@ -707,8 +707,8 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(user.mind && C.mind)
-		var/datum/antagonist/vampire_neu/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire_neu)
-		var/datum/antagonist/vampire_neu/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire_neu)
+		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
+		var/datum/antagonist/vampire/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire)
 		if(VVictim)
 			to_chat(user, span_userdanger("<b>YOU TRY TO COMMIT DIABLERIE ON [C].</b>"))
 		var/zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/werewolf)
@@ -774,7 +774,7 @@
 			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 	else
 		if(user.mind) // We're drinking from a mob or a person who disconnected from the game
-			if(user.mind.has_antag_datum(/datum/antagonist/vampire_neu))
+			if(user.mind.has_antag_datum(/datum/antagonist/vampire))
 				C.blood_volume = max(C.blood_volume-45, 0)
 				if(C.bloodpool >= 250)
 					user.adjust_bloodpool(250, 250)

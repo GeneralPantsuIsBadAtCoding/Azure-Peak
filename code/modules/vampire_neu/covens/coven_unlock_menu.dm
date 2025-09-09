@@ -267,7 +267,7 @@
 					if(prereq_node)
 						missing_prereqs += prereq_node.name
 
-			var/datum/antagonist/vampire_neu/vampire = parent_coven.owner.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+			var/datum/antagonist/vampire/vampire = parent_coven.owner.mind?.has_antag_datum(/datum/antagonist/vampire)
 			if(prereqs_met && node.research_cost && vampire.research_points < node.research_cost)
 				prereqs_met = FALSE
 				info_text = "<span class='warning'>[node.name] requires [node.research_cost] RP.</span>"

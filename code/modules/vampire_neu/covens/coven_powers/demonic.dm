@@ -154,7 +154,7 @@
 		initialized_curses = TRUE
 
 	to_chat(owner, span_userdanger("The greatest of curses come with the greatest of costs. Are you willing to condemn an entire bloodline?"))
-	var/chosencurse = browser_input_list(owner, "Pick a curse to bestow upon their family:", "Demonic Condemnation", curse_names)
+	var/chosencurse = input(owner, "Pick a curse to bestow upon their family:", "Demonic Condemnation", curse_names)
 	if(!chosencurse)
 		return
 

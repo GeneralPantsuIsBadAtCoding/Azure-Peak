@@ -48,7 +48,7 @@
 		ADD_TRAIT(H, trait, "lord_component")
 
 	// Update vampire datum if they have one
-	var/datum/antagonist/vampire_neu/vamp_datum = H.mind?.has_antag_datum(/datum/antagonist/vampire)
+	var/datum/antagonist/vampire/vamp_datum = H.mind?.has_antag_datum(/datum/antagonist/vampire)
 	H.maxbloodpool += vitae_bonus
 	if(vamp_datum)
 		vamp_datum.name = "[lord_title]"

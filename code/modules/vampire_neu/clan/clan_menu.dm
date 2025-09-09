@@ -245,7 +245,7 @@
 
 /datum/clan_menu_interface/proc/generate_combined_html(research_content)
 	// shitcode
-	var/datum/antagonist/vampire_neu/vampire = user.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+	var/datum/antagonist/vampire/vampire = user.mind?.has_antag_datum(/datum/antagonist/vampire)
 	var/html = {"
 	<html>
 	<head>

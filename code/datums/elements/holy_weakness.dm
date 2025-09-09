@@ -44,6 +44,6 @@
 
 	cursed_mob.apply_damage(20, BURN)
 	cursed_mob.adjust_fire_stacks(6)
-	cursed_mob.IgniteMob()
+	cursed_mob.ignite_mob()
 
 

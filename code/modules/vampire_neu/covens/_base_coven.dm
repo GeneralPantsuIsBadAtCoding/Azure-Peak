@@ -219,7 +219,7 @@
 		if(!(prereq in unlocked_research))
 			return FALSE
 
-	var/datum/antagonist/vampire_neu/vampire = owner.mind?.has_antag_datum(/datum/antagonist/vampire_neu)
+	var/datum/antagonist/vampire/vampire = owner.mind?.has_antag_datum(/datum/antagonist/vampire)
 	if(vampire.research_points < node.research_cost)
 		return FALSE
 

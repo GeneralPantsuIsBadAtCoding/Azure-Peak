@@ -66,7 +66,7 @@
 #define BODY_FRONT_LAYER		6
 #define BODY_FRONT_FRONT_LAYER	5
 #define HALO_LAYER				4		//blood cult ascended halo, because there's currently no better solution for adding/removing
-#define BITE_LAYER              3
+#define SUNDER_LAYER			3
 #define FIRE_LAYER				2		//If you're on fire
 #define TURF_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			53		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;

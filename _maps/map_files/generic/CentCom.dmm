@@ -747,8 +747,8 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors)
 "bG" = (
-/obj/machinery/light/rogue/wallfire,
-/turf/closed/wall/mineral/rogue/craftstone,
+/obj/structure/vampthrone,
+/turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "bH" = (
 /obj/structure/fluff/walldeco/rpainting/forest,
@@ -11293,7 +11293,7 @@ cL
 cL
 cL
 cL
-cL
+WB
 WB
 WB
 WB
@@ -11423,9 +11423,9 @@ cL
 cL
 cL
 cL
-cL
 WB
 bN
+Zl
 Zl
 bV
 Zl
@@ -11553,8 +11553,8 @@ cL
 cL
 cL
 cL
-cL
-WB
+bF
+Zl
 Zl
 bO
 cf
@@ -11682,9 +11682,9 @@ kB
 kB
 kB
 kB
-kB
 WB
-bF
+WB
+bO
 bO
 bW
 cg
@@ -11812,7 +11812,7 @@ rQ
 rQ
 rQ
 kB
-cL
+WB
 WB
 bG
 bO
@@ -11942,9 +11942,9 @@ rQ
 rQ
 rQ
 kB
-cL
 WB
-bH
+WB
+bO
 bO
 bZ
 ci
@@ -12073,9 +12073,9 @@ rQ
 rQ
 kB
 cL
-cL
 WB
 bP
+Zl
 bO
 cj
 cj
@@ -12203,9 +12203,9 @@ rQ
 rQ
 kB
 cL
-cL
-WB
+bH
 ca
+Zl
 Zl
 RC
 Zl
@@ -12333,7 +12333,7 @@ rQ
 rQ
 kB
 cL
-cL
+WB
 WB
 WB
 WB

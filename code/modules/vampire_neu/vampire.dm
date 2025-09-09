@@ -1,5 +1,6 @@
+GLOBAL_LIST_EMPTY(vampire_objects)
 #define INITIAL_BLOODPOOL_PERCENTAGE 40
-/datum/antagonist/vampire_neu
+/datum/antagonist/vampire
 	name = "Vampire"
 	roundend_category = "Vampires"
 	antagpanel_category = "Vampire"
@@ -21,7 +22,7 @@
 	var/generation
 	var/research_points = 10
 
-/datum/antagonist/vampire_neu/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
+/datum/antagonist/vampire/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
 	. = ..()
 	if(forced_clan)
 		forced = forced_clan
@@ -39,9 +40,9 @@
 		if(GENERATION_THINBLOOD)
 			research_points = 4
 
-/datum/antagonist/vampire_neu/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
-	//if(istype(examined_datum, /datum/antagonist/vampire/lord))
-	//	return span_boldnotice("Kaine's firstborn!")
+/datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
+	if(istype(examined_datum, /datum/antagonist/vampire/lord))
+		return span_boldnotice("Kaine's firstborn!")
 	if(istype(examined_datum, /datum/antagonist/vampire))
 		return span_boldnotice("A child of Kaine.")
 	if(istype(examined_datum, /datum/antagonist/zombie))
@@ -49,7 +50,7 @@
 	if(istype(examined_datum, /datum/antagonist/skeleton))
 		return span_boldnotice("Another deadite.")
 
-/datum/antagonist/vampire_neu/on_gain()
+/datum/antagonist/vampire/on_gain()
 	SSmapping.retainer.vampires |= owner
 	//move_to_spawnpoint()
 	owner.special_role = name
@@ -75,7 +76,7 @@
 	. = ..()
 	equip()
 
-/datum/antagonist/vampire_neu/proc/show_clan_selection(mob/living/carbon/human/vampdude)
+/datum/antagonist/vampire/proc/show_clan_selection(mob/living/carbon/human/vampdude)
 	var/list/clan_options = list()
 	var/list/available_clans = list()
 
@@ -108,7 +109,7 @@
 		vampdude.set_clan(default_clan)
 		clan_selected = TRUE
 
-/datum/antagonist/vampire_neu/proc/create_custom_clan(mob/living/carbon/human/vampdude)
+/datum/antagonist/vampire/proc/create_custom_clan(mob/living/carbon/human/vampdude)
 	// Get custom clan name
 	custom_clan_name = input(vampdude, "Enter your custom clan name:", "Custom Clan", "Custom Clan") as text|null
 	if(!custom_clan_name)
@@ -126,10 +127,10 @@
 
 	to_chat(vampdude, span_notice("You are now a member of the [custom_clan_name] clan with [length(selected_covens)] coven(s)."))
 
-/datum/antagonist/vampire_neu/proc/after_gain()
+/datum/antagonist/vampire/proc/after_gain()
 	owner.current.set_bloodpool(owner.current.maxbloodpool / 100 * INITIAL_BLOODPOOL_PERCENTAGE)
 
-/datum/antagonist/vampire_neu/on_removal()
+/datum/antagonist/vampire/on_removal()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/vampdude = owner.current
 		// Remove the clan when losing antagonist status
@@ -139,7 +140,7 @@
 	owner.special_role = null
 	return ..()
 
-/datum/antagonist/vampire_neu/proc/equip()
+/datum/antagonist/vampire/proc/equip()
 	return
 
 // Custom clan datum for player-created clans
@@ -195,6 +196,7 @@
 /obj/effect/landmark/vteleportdestination
 	name = "Return Destination"
 	icon_state = "x2"
+	var/amuletname
 
 /obj/effect/landmark/vteleportsenddest
 	name = "Sending Destination"
