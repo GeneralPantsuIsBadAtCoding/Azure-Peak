@@ -108,11 +108,11 @@
 		var/riding = list("Im a spiderider", "I walk on my legs")
 		var/ridingchoice = input("Choose your faith", "FAITH") as anything in riding
 		switch(ridingchoice)
-			if("Im a spiderider")
+			if("I'm a spider rider (your pet with you)")
 				var/turf/TU = get_turf(H)
 				if(TU)
 					new /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled(TU)
-			if("I walk on my legs")
+			if("I walk on my legs (+1 for athletics)")
 				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_MASTER, TRUE) //+1
 
 		H.merctype = 15
