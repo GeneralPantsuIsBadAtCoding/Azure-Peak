@@ -448,8 +448,9 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/short
 	name = "short bow"
 	desc = "As the eagle was killed by the arrow winged with his own feather, so the hand of the world is wounded by its own skill."
-	icon = 'icons/roguetown/weapons/64.dmi'
-	icon_state = "recurve_bow" //No time for sprite this shit
+	icon = 'icons/roguetown/weapons/32.dmi'
+	icon_state = "bow" //No time for sprite this shit
+	item_state = "bow" 
 	possible_item_intents = list(
 		/datum/intent/shoot/bow/short,
 		/datum/intent/arc/bow/short,
