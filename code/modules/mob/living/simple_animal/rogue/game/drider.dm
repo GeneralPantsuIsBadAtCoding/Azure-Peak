@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/drider //lol
 	icon = 'icons/roguetown/mob/monster/drider.dmi'
-	name = "drider"
+	name = "drider spider"
 	desc = ""
 	pixel_x = -2
 	faction = list("spider_lowers")

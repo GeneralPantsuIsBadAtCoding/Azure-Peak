@@ -12,7 +12,7 @@
 
 	cmode_music = 'sound/music/combat_delf.ogg'
 
-	traits_applied = list(TRAIT_STEELHEARTED)
+	traits_applied = list(TRAIT_DARKVISION) //cave elfes
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_PER = 1,
