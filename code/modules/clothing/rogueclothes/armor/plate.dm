@@ -90,6 +90,13 @@
 	if(istype(user) && user?.wear_armor == src)
 		user.remove_status_effect(/datum/status_effect/buff/psydonic_endurance)
 
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/shadowplate
+	name = "scourge breastplate"
+	desc = "More form over function, this armor is fit for demonstration of might rather than open combat. The aged gilding slowly tarnishes away."
+	icon_state = "shadowplate"
+	item_state = "shadowplate"
+	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
+
 // Full plate armor
 
 /obj/item/clothing/suit/roguetown/armor/plate/full

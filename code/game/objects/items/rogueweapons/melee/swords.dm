@@ -997,6 +997,11 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/sword/sabre/elf/stalker
+	name = "stalker sabre"
+	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
+	icon_state = "spidersaber"
+
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
 	desc = "A curved one-handed longsword. This type of scimitar is the quintessential armament of Ranesheni horsemen, its name derived from Sama'glos for \"Tiger's claw\"."

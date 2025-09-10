@@ -29,6 +29,9 @@
 	..()
 	to_chat(C, "<span class='info'>I can speak Elfish with ,e before my speech.</span>")
 
+/datum/species/elf/dark/after_creation(mob/living/carbon/C)
+	C.faction += "spider_lowers"
+
 /datum/species/elf/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
