@@ -95,6 +95,7 @@
 	desc = "More form over function, this armor is fit for demonstration of might rather than open combat. The aged gilding slowly tarnishes away."
 	icon_state = "shadowplate"
 	item_state = "shadowplate"
+	armor_class = ARMOR_CLASS_MEDIUM
 	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
 
 // Full plate armor

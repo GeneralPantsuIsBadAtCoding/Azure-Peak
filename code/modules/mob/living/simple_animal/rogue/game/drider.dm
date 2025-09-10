@@ -54,8 +54,8 @@
 	if(can_buckle)
 		var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 2), TEXT_SOUTH = list(0, 2), TEXT_EAST = list(-1, 2), TEXT_WEST = list(-1, 2)))
-		D.set_vehicle_dir_layer(SOUTH, MOB_LAYER+0.1)
 		D.set_vehicle_dir_layer(NORTH, MOB_LAYER+0.1)
+		D.set_vehicle_dir_layer(SOUTH, OBJ_LAYER)
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 

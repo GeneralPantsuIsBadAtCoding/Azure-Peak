@@ -297,7 +297,7 @@
 	name = "corroded dagger"
 	desc = "While this is a dagger made of solid steel it has become discolored; the leftovers of the poisons used on this blade.."
 	icon_state = "pdagger"
-	sheathe_icon = "pdagger"
+	sheathe_icon = "sdagger"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/corroded/Initialize()
 	. = ..()
