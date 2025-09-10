@@ -50,12 +50,11 @@
 			return BULLET_ACT_BLOCK
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			var/datum/antagonist/vampirelord/VDrinker = sender.mind.has_antag_datum(/datum/antagonist/vampirelord)
 			H.blood_volume = max(H.blood_volume-45, 0)
 			H.handle_blood()
 			H.visible_message(span_danger("[target] has their blood ripped from their body!!"), \
 					span_userdanger("My blood erupts from my body!"), \
 					span_hear("..."), COMBAT_MESSAGE_RANGE, target)
 			new /obj/effect/decal/cleanable/blood/puddle(H.loc)
-			VDrinker.handle_vitae(400)
+			sender.adjust_bloodpool(400)
 	qdel(src)

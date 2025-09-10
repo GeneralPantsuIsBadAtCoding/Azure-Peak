@@ -133,10 +133,10 @@
 
 /mob/living/proc/apply_status_effect(effect, ...) //applies a given status effect to this mob, returning the effect if it was successful
 	. = FALSE
-	var/datum/status_effect/S1 = effect
-	LAZYINITLIST(status_effects)
 	var/list/arguments = args.Copy()
 	arguments[1] = src
+	var/datum/status_effect/S1 = effect
+	LAZYINITLIST(status_effects)
 	for(var/datum/status_effect/S in status_effects)
 		if(S.id == initial(S1.id) && S.status_type)
 			if(S.status_type == STATUS_EFFECT_REPLACE)

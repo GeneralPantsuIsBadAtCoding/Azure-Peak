@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(special_roles_rogue, list(
 	ROLE_BANDIT = /datum/antagonist/bandit,
 	ROLE_ASPIRANT = /datum/antagonist/aspirant,
 	ROLE_WEREWOLF = /datum/antagonist/werewolf,
-	ROLE_NBEAST = /datum/antagonist/vampirelord,
+	ROLE_NBEAST = /datum/antagonist/vampire/lord,
 	ROLE_LICH = /datum/antagonist/lich,
 	ROLE_DREAMWALKER = /datum/antagonist/dreamwalker
 ))

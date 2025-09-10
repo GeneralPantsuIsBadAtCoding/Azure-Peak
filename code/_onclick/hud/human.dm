@@ -411,6 +411,9 @@
 	energy = new /atom/movable/screen/energy()
 	infodisplay += energy
 
+	bloodpool = new /atom/movable/screen/bloodpool(null, src)
+	infodisplay += bloodpool
+
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			inv.hud = src

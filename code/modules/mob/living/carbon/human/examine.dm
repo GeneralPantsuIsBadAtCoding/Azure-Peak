@@ -261,7 +261,7 @@
 					var/shit = bD.examine_friendorfoe(aD,user,src)
 					if(shit)
 						. += shit
-			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord) || user.mind.has_antag_datum(/datum/antagonist/vampire))
+			if(user.mind.has_antag_datum(/datum/antagonist/vampire) || user.mind.has_antag_datum(/datum/antagonist/vampire))
 				. += span_userdanger("Blood Volume: [blood_volume]")
 
 	var/list/obscured = check_obscured_slots()
@@ -854,6 +854,8 @@
 	if(!isnull(trait_exam))
 		. += trait_exam
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
@@ -944,15 +946,9 @@
 			if(HAS_TRAIT(src,TRAIT_KNOWNCRIMINAL))
 				villain_text = span_userdanger("BANDIT!")
 		if(mind.special_role == "Vampire Lord")
-			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A MONSTER!")
-		if(mind.special_role == "Vampire Spawn")
-			var/datum/antagonist/vampirelord/lesser/VD = mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A LICKER!")
+			var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)
+			if(!SEND_SIGNAL(VD.owner, COMSIG_DISGUISE_STATUS))
+				villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 
