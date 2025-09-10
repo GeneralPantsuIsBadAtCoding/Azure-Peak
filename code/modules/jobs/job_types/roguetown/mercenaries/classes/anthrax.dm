@@ -106,7 +106,7 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 		var/riding = list("Im a spiderider", "I walk on my legs")
-		var/ridingchoice = input("Choose your faith", "TAKE UP ARMOR") as anything in riding
+		var/ridingchoice = input("Choose your faith", "FAITH") as anything in riding
 		switch(ridingchoice)
 			if("Im a spiderider")
 				var/turf/TU = get_turf(H)
