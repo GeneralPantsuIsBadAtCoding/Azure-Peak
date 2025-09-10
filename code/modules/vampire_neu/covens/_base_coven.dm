@@ -200,6 +200,9 @@
 		to_chat(owner, "<span class='boldannounce'>Your [name] has reached level [level]!</span>")
 
 /datum/coven/proc/unlock_power_from_tree(research_type)
+	if(!owner)
+		return FALSE
+
 	if(research_type in unlocked_research)
 		return FALSE
 
@@ -219,7 +222,7 @@
 		if(!(prereq in unlocked_research))
 			return FALSE
 
-	var/datum/antagonist/vampire/vampire = owner.mind?.has_antag_datum(/datum/antagonist/vampire)
+	var/datum/antagonist/vampire/vampire = owner?.mind?.has_antag_datum(/datum/antagonist/vampire)
 	if(vampire.research_points < node.research_cost)
 		return FALSE
 

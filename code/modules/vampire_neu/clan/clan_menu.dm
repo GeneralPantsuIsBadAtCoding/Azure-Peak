@@ -98,6 +98,15 @@
 				window.location.href = '?src=[REF(src)];action=select_covens';
 			}
 		}
+		function previewCovenOne() {
+			window.location.href = '?src=[REF(src)];action=load_coven_preview_one_tree;';
+		}
+		function previewCovenTwo() {
+			window.location.href = '?src=[REF(src)];action=load_coven_preview_two_tree;';
+		}
+		function previewCovenThree() {
+			window.location.href = '?src=[REF(src)];action=load_coven_preview_three_tree;';
+		}
 		function selectCovenOne() {
 			const formOne = document.getElementById('coven-selection1');
 			const formOneData = new FormData(formOne);
@@ -168,39 +177,51 @@
 	if(user_clan.covens_to_select < 1 || user != user_clan?.clan_leader)
 		return ""
 	return {"
-		<div class="clan-selection">
+	<div class="coven-selection">
+		<div class ='coven-form'>
 			<form id='coven-selection1'>
 				<div class='form-group' style='margin-right: 15px;'>
 					<label for='coven-select' style='display: block; margin-left: 5px; margin-right: 5px;margin-bottom: 5px; color: #fff;'></label>
-					<select id='coven-select' onchange='selectCovenOne()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>
+					<select id='coven-select' onchange='selectCovenOne()' name='coven-type' required style='padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>
 						<option value=''>[ispath(coven_one_preliminary) ? initial(coven_one_preliminary.name) : "-- EMPTY --"]</option>
 						[coven_choice()]
 					</select>
 				</div>
 			</form>
-			[user_clan?.covens_to_select >= 2 ? "\
+			[ispath(coven_one_preliminary) ? initial(coven_one_preliminary.desc) : ""]
+			<button type='button' onclick='previewCovenOne()' class='btn-secondary' style='padding: 8px 16px; background: #0066cc; color: white; border: none; cursor: pointer;'>(?)</button>
+		</div>
+		[user_clan?.covens_to_select >= 2 ? "\
+		<div class ='coven-form'>\
 			<form id='coven-selection2'>\
 				<div class='form-group' style='margin-right: 15px;'>\
 					<label for='coven-select' style='display: block; margin-bottom: 5px; color: #fff;'></label>\
-					<select id='coven-select' onchange='selectCovenTwo()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
+					<select id='coven-select' onchange='selectCovenTwo()' name='coven-type' required style='padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
 						<option value=''>[ispath(coven_two_preliminary) ? initial(coven_two_preliminary.name) : "-- EMPTY --"]</option>\
 						[coven_choice()]\
 					</select>\
 				</div>\
 			</form>\
-			":""]
-			[user_clan?.covens_to_select >= 3 ? "\
+			[ispath(coven_two_preliminary) ? initial(coven_two_preliminary.desc) : ""]\
+			<button type='button' onclick='previewCovenTwo()' class='btn-secondary' style='padding: 8px 16px; background: #0066cc; color: white; border: none; cursor: pointer;'>(?)</button>\
+		</div>\
+		":""]
+		[user_clan?.covens_to_select >= 3 ? "\
+		<div class ='coven-form'>\
 			<form id='coven-selection3'>\
 				<div class='form-group' style='margin-right: 15px;'>\
 					<label for='coven-select' style='display: block; margin-bottom: 5px; color: #fff;'></label>\
-					<select id='coven-select' onchange='selectCovenThree()' name='coven-type' required style='width: 100%; padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
+					<select id='coven-select' onchange='selectCovenThree()' name='coven-type' required style='padding: 8px; background: #444; color: #fff; border: 1px solid #666; border-radius: 3px;'>\
 						<option value=''>[ispath(coven_three_preliminary) ? initial(coven_three_preliminary.name) : "-- EMPTY --"]</option>\
 						[coven_choice()]\
 					</select>\
 				</div>\
 			</form>\
-			":""]
-		</div>
+			[ispath(coven_three_preliminary) ? initial(coven_three_preliminary.desc) : ""]\
+			<button type='button' onclick='previewCovenThree()' class='btn-secondary' style='padding: 8px 16px; background: #0066cc; color: white; border: none; cursor: pointer;'>(?)</button>\
+		</div>\
+		":""]
+	</div>
 	<button type='button' onclick='submitCovens()' class='btn-primary' style='padding: 8px 16px; background: #0066cc; color: white; border: none; border-radius: 3px; cursor: pointer; margin-right: 10px;'>Select Covens</button>
 	"}
 
@@ -243,7 +264,7 @@
 
 	return html
 
-/datum/clan_menu_interface/proc/generate_combined_html(research_content)
+/datum/clan_menu_interface/proc/generate_combined_html(research_content, in_preview = FALSE)
 	// shitcode
 	var/datum/antagonist/vampire/vampire = user.mind?.has_antag_datum(/datum/antagonist/vampire)
 	var/html = {"
@@ -647,12 +668,22 @@
 				overflow: hidden;
 			}
 
-			.clan-selection {
+			.coven-selection {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
 				justify-content: center;
 				text-align: center;
+				flex: 1;
+			}
+
+			.coven-form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				align-content: stretch;
 			}
 
 			/* Research tree styles integrated */
@@ -986,7 +1017,7 @@
 			</div>
 		</div>
 
-		<a href="byond://?src=[REF(src)];action=close_clan_menu" class="close-btn">Close</a>
+		<a href="byond://?src=[REF(src)];action=[in_preview ? "refresh_clan_menu" : "close_clan_menu"]" class="close-btn">[in_preview ? "Return" : "Close"]</a>
 
 		<script>
 
@@ -1265,12 +1296,21 @@
 
 
 
-/datum/clan_menu_interface/proc/load_coven_research_tree(coven_name)
-	if(!(coven_name in user_covens))
+/datum/clan_menu_interface/proc/load_coven_research_tree(coven_name, preview = FALSE)
+	if(isnull(coven_name))
 		return
 
-	var/datum/coven/selected_coven = user_covens[coven_name]
-	current_coven = coven_name
+	if(!(coven_name in user_covens) && !preview)
+		return
+
+	var/datum/coven/selected_coven
+
+	if(preview)
+		selected_coven = new coven_name()
+		current_coven = selected_coven.name
+	else
+		selected_coven = user_covens[coven_name]
+		current_coven = coven_name
 
 	if(!selected_coven.research_interface)
 		selected_coven.initialize_research_tree()
@@ -1292,7 +1332,7 @@
 	<div class="tooltip" id="tooltip" style="display: none;"></div>
 	"}
 
-	user << browse(generate_combined_html(research_html), "window=clan_menu")
+	user << browse(generate_combined_html(research_html, in_preview = TRUE), "window=clan_menu")
 
 /datum/clan_menu_interface/Topic(href, href_list)
 	if(!user)
@@ -1301,7 +1341,16 @@
 	switch(href_list["action"])
 		if("load_coven_tree")
 			var/coven_name = href_list["coven_name"]
-			load_coven_research_tree(coven_name)
+			load_coven_research_tree(coven_name, preview = FALSE)
+
+		if("load_coven_preview_one_tree")
+			load_coven_research_tree(coven_one_preliminary, preview = TRUE)
+		
+		if("load_coven_preview_two_tree")
+			load_coven_research_tree(coven_two_preliminary, preview = TRUE)
+
+		if("load_coven_preview_three_tree")
+			load_coven_research_tree(coven_three_preliminary, preview = TRUE)
 
 		if("show_hierarchy")
 			show_hierarchy()
