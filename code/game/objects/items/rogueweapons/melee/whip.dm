@@ -38,7 +38,7 @@
 	chargetime = 5
 	recovery = 5
 	misscost = 7
-	penfactor = 25
+	penfactor = 20
 	reach = 3
 	icon_state = "inlash"
 	item_d_type = "slash"
@@ -53,7 +53,7 @@
 	chargetime = 0
 	recovery = 10
 	damfactor = 1.1
-	penfactor = 20
+	penfactor = 10
 	reach = 2
 	icon_state = "incrack"
 	item_d_type = "slash"
