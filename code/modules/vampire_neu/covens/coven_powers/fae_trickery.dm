@@ -43,12 +43,13 @@
 	desc = "Disarm your victims from afar."
 
 	level = 2
+	vitae_cost = 80
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND | COVEN_CHECK_LYING
 	target_type = TARGET_MOB
 	range = 7
 
 	duration_length = 10 SECONDS
-	cooldown_length = 10 SECONDS
+	cooldown_length = 25 SECONDS
 
 /datum/coven_power/fae_trickery/darkling_trickery/activate(mob/living/target)
 	. = ..()
@@ -70,6 +71,7 @@
 
 	research_cost = 2
 	level = 3
+	vitae_cost = 80
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_MOB
 	range = 5
@@ -78,7 +80,7 @@
 	hostile = TRUE
 	violates_masquerade = TRUE
 
-	cooldown_length = 10 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/fae_trickery/goblinism/activate(mob/living/target)
 	. = ..()
@@ -337,14 +339,21 @@
 	unique = TRUE
 	icon_state = "rune3"
 
-/obj/fae_trickery_trap/drop/Crossed(atom/movable/AM)
+/obj/fae_trickery_trap/drop/Crossed(mob/living/carbon/AM)
 	..()
 	if(iscarbon(AM) && owner)
 		if(AM != owner)
-			var/mob/living/carbon/L = AM
-			for(var/obj/item/I in L.get_equipped_items(include_pockets = TRUE))
-				if(I)
-					L.dropItemToGround(I, TRUE)
+			AM.adjustBruteLoss(60)
+			AM.Knockdown(5)
+			AM.visible_message(span_suicide("[AM] is disarmed!"), 
+							span_boldwarning("I'm disarmed!"))
+			playsound(get_turf(AM), 'sound/magic/mockery.ogg', 40, FALSE)
+			var/turnangle = (prob(50) ? 270 : 90)
+			var/turndir = turn(AM.dir, turnangle)
+			var/dist = rand(1, 5)
+			var/current_turf = get_turf(AM)
+			var/target_turf = get_ranged_target_turf(current_turf, turndir, dist)
+			AM.throw_item(target_turf, FALSE)
 			qdel(src)
 
 //CHANJELIN WARD
@@ -395,6 +404,8 @@
 	desc = "Pose a confounding riddle to your victim, forcing them to answer it before they can do anything else."
 
 	research_cost = 3
+	vitae_cost = 250
+	minimal_generation = GENERATION_ANCILLAE
 	level = 5
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING

@@ -110,7 +110,7 @@
 		function selectCovenOne() {
 			const formOne = document.getElementById('coven-selection1');
 			const formOneData = new FormData(formOne);
-			
+
 			let params = '?src=[REF(src)];action=select_coven_one';
 			for(let \[key, value\] of formOneData.entries()) {
 				params += ';' + key + '=' + encodeURIComponent(value);
@@ -120,7 +120,7 @@
 		function selectCovenTwo() {
 			const formOne = document.getElementById('coven-selection2');
 			const formOneData = new FormData(formOne);
-			
+
 			let params = '?src=[REF(src)];action=select_coven_two';
 			for(let \[key, value\] of formOneData.entries()) {
 				params += ';' + key + '=' + encodeURIComponent(value);
@@ -130,7 +130,7 @@
 		function selectCovenThree() {
 			const formOne = document.getElementById('coven-selection3');
 			const formOneData = new FormData(formOne);
-			
+
 			let params = '?src=[REF(src)];action=select_coven_three';
 			for(let \[key, value\] of formOneData.entries()) {
 				params += ';' + key + '=' + encodeURIComponent(value);
@@ -284,7 +284,7 @@
 				overflow: auto;
 				background: #1a1a1a;
 				height: calc(100% - 40px);
-				margin-bottom: 20px; 
+				margin-bottom: 20px;
 			}
 
 			.hierarchy-sidebar {
@@ -674,11 +674,11 @@
 				align-items: center;
 				justify-content: center;
 				text-align: center;
-				flex: 1;
 			}
 
 			.coven-form {
 				display: flex;
+				flex: auto;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
@@ -1345,7 +1345,7 @@
 
 		if("load_coven_preview_one_tree")
 			load_coven_research_tree(coven_one_preliminary, preview = TRUE)
-		
+
 		if("load_coven_preview_two_tree")
 			load_coven_research_tree(coven_two_preliminary, preview = TRUE)
 

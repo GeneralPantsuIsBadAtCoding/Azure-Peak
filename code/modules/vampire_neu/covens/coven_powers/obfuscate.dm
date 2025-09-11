@@ -155,13 +155,16 @@
 	var/mask_timer
 
 	var/datum/dna/old_dna
+
+	var/cache_skin
+	var/cache_eyes
 	var/old_hair
-	var/old_hair_color
-	var/old_eye_color
+	var/cache_hair
 	var/old_facial_hair
-	var/old_facial_hair_color
+	var/cache_facial
 	var/old_gender
-	var/old_voice
+	var/cache_voice
+
 	var/transformed = FALSE
 	var/mob/living/carbon/human/current_target
 
@@ -180,11 +183,12 @@
 	var/datum/bodypart_feature/hair/facial = transformer.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
 	old_dna = transformer.dna
 	old_hair = feature?.accessory_type
-	old_hair_color = transformer.get_hair_color()
-	old_eye_color = transformer.get_eye_color()
-	old_facial_hair_color = transformer.get_facial_hair_color()
+	cache_hair = transformer.cache_hair_color()
+	cache_eyes = transformer.cache_eye_color()
+	cache_facial = transformer.cache_hair_color(TRUE)
 	old_facial_hair = facial?.accessory_type
 	old_gender = transformer.gender
+	cache_skin = transformer.skin_tone
 
 /datum/coven_power/obfuscate/mask_of_a_thousand_faces/activate()
 	. = ..()
@@ -227,12 +231,33 @@
 	var/datum/bodypart_feature/hair/target_feature = target.get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
 	var/datum/bodypart_feature/hair/target_facial = target.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
 
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	eyes.eye_color = target.get_eye_color()
-	user.hair_color = target.get_hair_color()
-	target_feature.accessory_type = target_feature
-	user.facial_hair_color = target.get_facial_hair_color()
-	user.facial_hairstyle = target_facial?.accessory_type
+	user.set_hair_style(target_feature?.accessory_type, FALSE)
+	user.set_facial_hair_style(target_facial?.accessory_type, FALSE)
+	user.skin_tone = target.skin_tone
+	var/list/eyecache = target.cache_eye_color()
+	user.set_eye_color(
+		eyecache["eye_color"], 
+		eyecache["second_color"],
+		FALSE
+	)
+	var/list/haircache = target.cache_hair_color()
+	user.set_hair_color(
+		haircache["hair_color"],
+		haircache["natural_gradient"],
+		haircache["natural_color"],
+		haircache["hair_dye_gradient"],
+		haircache["hair_dye_color"],
+		FALSE
+	)
+	var/list/facialcache = target.cache_hair_color(TRUE)
+	user.set_facial_hair_color(
+		facialcache["hair_color"],
+		facialcache["natural_gradient"],
+		facialcache["natural_color"],
+		facialcache["hair_dye_gradient"],
+		facialcache["hair_dye_color"],
+		FALSE
+	)
 
 	user.updateappearance(mutcolor_update = TRUE)
 	transformed = TRUE
@@ -257,15 +282,30 @@
 	user.name = user.get_visible_name()
 	user.gender = old_gender
 
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	var/datum/bodypart_feature/hair/target_feature = user.get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
-	var/datum/bodypart_feature/hair/target_facial = user.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
-
-	eyes.eye_color = old_eye_color
-	user.hair_color = old_facial_hair
-	target_feature.accessory_type = old_hair
-	user.facial_hair_color = old_facial_hair_color
-	user.facial_hairstyle = target_facial?.accessory_type
+	user.skin_tone = cache_skin
+	user.set_facial_hair_style(old_facial_hair, FALSE)
+	user.set_hair_style(old_hair, FALSE)
+	user.set_hair_color(
+		cache_hair["hair_color"],
+		cache_hair["natural_gradient"],
+		cache_hair["natural_color"],
+		cache_hair["hair_dye_gradient"],
+		cache_hair["hair_dye_color"],
+		FALSE
+	)
+	user.set_facial_hair_color(
+		cache_hair["hair_color"],
+		cache_hair["natural_gradient"],
+		cache_hair["natural_color"],
+		cache_hair["hair_dye_gradient"],
+		cache_hair["hair_dye_color"],
+		FALSE
+	)
+	user.set_eye_color(
+		cache_eyes["eye_color"], 
+		cache_eyes["second_color"], 
+		FALSE
+	)
 
 	user.updateappearance(mutcolor_update = TRUE)
 	transformed = FALSE

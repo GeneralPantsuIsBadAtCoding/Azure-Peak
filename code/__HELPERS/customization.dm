@@ -41,7 +41,7 @@
 		return
 
 	var/list/cache = list(
-		"hair_color" = feature.accessory_colors,
+		"hair_color" = feature.hair_color,
 		"natural_gradient" = feature.natural_gradient,
 		"natural_color" = feature.natural_color,
 		"hair_dye_gradient" = feature.hair_dye_gradient,
@@ -112,3 +112,26 @@
 	if(updates_body)
 		update_body_parts()
 
+/mob/living/carbon/human/proc/set_hair_style(datum/sprite_accessory/hair/head/style, updates_body = TRUE)
+	if(!ispath(style) && !istype(style))
+		return
+	if(istype(style))
+		style = style.type
+	var/datum/bodypart_feature/hair/feature = get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
+	if(!feature)
+		return
+	feature.accessory_type = style
+	if(updates_body)
+		update_body_parts()
+
+/mob/living/carbon/human/proc/set_facial_hair_style(datum/sprite_accessory/hair/facial/style, updates_body = TRUE)
+	if(!ispath(style) && !istype(style))
+		return
+	if(istype(style))
+		style = style.type
+	var/datum/bodypart_feature/hair/feature = get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
+	if(!feature)
+		return
+	feature.accessory_type = style
+	if(updates_body)
+		update_body_parts()
