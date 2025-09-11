@@ -3,6 +3,7 @@
 	name = "drider spider"
 	desc = ""
 	pixel_x = -2
+	pixel_y = 7
 	faction = list("spider_lowers")
 	gender = MALE
 	icon_state = "drider"
@@ -13,7 +14,6 @@
 	base_intents = list(/datum/intent/simple/bite/mirespider_lurker)
 	health = 660
 	maxHealth = 660
-	resize = 1.5
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	milkies = FALSE
@@ -35,6 +35,10 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame
 	tame = TRUE
 
+/mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/Initialize()
+	. = ..()
+	resize = 1.5
+
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/update_icon()
 	cut_overlays()
 	..()
@@ -53,8 +57,8 @@
 	deaggroprob = 20
 	if(can_buckle)
 		var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 2), TEXT_SOUTH = list(0, 2), TEXT_EAST = list(-1, 2), TEXT_WEST = list(-1, 2)))
-		D.set_vehicle_dir_layer(NORTH, MOB_LAYER+0.1)
+		D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 9), TEXT_SOUTH = list(0, 9), TEXT_EAST = list(-1, 9), TEXT_WEST = list(-1, 9)))
+		D.set_vehicle_dir_layer(NORTH, MOB_LAYER+0.3)
 		D.set_vehicle_dir_layer(SOUTH, OBJ_LAYER)
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)

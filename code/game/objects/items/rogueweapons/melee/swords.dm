@@ -997,10 +997,14 @@
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/sword/sabre/elf/stalker
+/obj/item/rogueweapon/sword/sabre/stalker
 	name = "stalker sabre"
 	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
 	icon_state = "spidersaber"
+	force = 17
+	force_wielded = 20
+	minstr = 7
+	wdefense = 9
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
