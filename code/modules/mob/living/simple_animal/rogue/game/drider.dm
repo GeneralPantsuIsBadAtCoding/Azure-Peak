@@ -22,6 +22,7 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	retreat_health = 0.3
+	resize = 1.5
 	STASPD = 18
 	STACON = 8
 	STASTR = 10
@@ -34,10 +35,6 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame
 	tame = TRUE
-
-/mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/Initialize()
-	. = ..()
-	resize = 1.5
 
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/update_icon()
 	cut_overlays()
