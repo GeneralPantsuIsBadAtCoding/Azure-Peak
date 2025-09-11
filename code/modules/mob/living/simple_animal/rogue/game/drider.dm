@@ -36,6 +36,12 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/tame
 	tame = TRUE
 
+/mob/living/simple_animal/hostile/retaliate/rogue/drider/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOFALLDAMAGE2, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOFIRE, TRAIT_GENERIC)
+
 /mob/living/simple_animal/hostile/retaliate/rogue/drider/update_icon()
 	cut_overlays()
 	..()
