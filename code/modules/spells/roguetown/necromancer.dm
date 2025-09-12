@@ -62,7 +62,7 @@
 	target.blind_eyes(2)
 	target.blur_eyes(10)
 	return TRUE
-	
+
 
 /obj/effect/proc_holder/spell/invoked/raise_lesser_undead
 	name = "Raise Lesser Undead"
@@ -163,3 +163,44 @@
 				user.say("Amicus declaratus es.")
 		return TRUE
 	return FALSE
+
+
+
+/obj/effect/proc_holder/spell/self/zizo_aoe_buff
+	name = "Progressive Rigor"
+	desc = "Place a ward upon any undead within 3 tiles that heals them and applies battle-enhancing magycks. Powerful, but costly, and it takes a long time to prepare again.."
+
+/datum/status_effect/buff/fire_immunity/on_apply()
+	.=..()
+
+
+/obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
+
+	user.visible_message("[user] mutters an arcyne incantation.")
+
+	var/is_project_zomboid = FALSE
+	var/list/zizo_buff_party = list()
+
+	for(var/mob/living/L in range(3, usr))
+
+		if (L.mind)
+			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser) //not really sure why but it got incredibly pissy when I started trying to combine these into one statement
+			if (V && !V.disguised)
+				is_project_zomboid = TRUE
+			if (L.mind.has_antag_datum(/datum/antagonist/zombie))
+				is_project_zomboid = TRUE
+			if (L.mind.special_role == "Vampire Lord")
+				is_project_zomboid = TRUE
+
+		if (L.mob_biotypes & MOB_UNDEAD || is_project_zomboid)
+			zizo_buff_party += L
+
+		if (L.in zizo_buff_party)
+			L.apply_status_effect(/datum/status_effect/buff/fortitude/other)
+			L.apply_status_effect(/datum/status_effect/buff/giants_strength/other)
+			var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(user.zone_selected))
+			if(affecting && (affecting.heal_damage(50, 50) || affecting.heal_wounds(50)))
+				target.update_damage_overlays()
+			target.visible_message(span_danger("[target] reforms under the vile energy!"), span_notice("I'm remade by dark magic!"))
+			return TRUE
+
