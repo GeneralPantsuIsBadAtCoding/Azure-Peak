@@ -81,6 +81,8 @@
 		FALSE
 	)
 	H.set_eye_color(cache_eyes["eye_color"], cache_eyes["second_color"], TRUE)
+	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
+	ears.accessory_colors = cache_skin
 
 	to_chat(H, span_notice("I assume a mortal guise."))
 	return TRUE

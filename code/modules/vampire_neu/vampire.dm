@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		"DRINK THE BLOOD!",
 		"CHILD OF KAIN!",
 	)
+	rogue_enabled = TRUE
 	var/datum/clan/default_clan = /datum/clan/nosferatu
 	// New variables for clan selection
 	var/clan_selected = FALSE

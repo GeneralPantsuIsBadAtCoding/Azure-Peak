@@ -55,7 +55,7 @@
 	if(active_projects.len)
 		available_options["Manage Projects"] = "manage"
 
-	var/choice = input(user, "What to do?", "VANDERLIN", available_options)
+	var/choice = input(user, "What to do?", "VAMPYRE") as anything|null in available_options
 	if(!choice)
 		return
 
@@ -101,7 +101,7 @@
 		var/remaining = project.total_cost - project.paid_amount
 		project_choices["[project.display_name] (Remaining: [remaining])"] = project_type
 
-	var/choice = input(user, "Select project to contribute to:", "CONTRIBUTION", project_choices)
+	var/choice = input(user, "Select project to contribute to:", "CONTRIBUTION") as anything|null in project_choices
 	if(!choice)
 		return
 
@@ -121,14 +121,14 @@
 		var/progress_percent = round((project.paid_amount / project.total_cost) * 100, 1)
 		project_options["[project.display_name] ([progress_percent]%)"] = project_type
 
-	var/choice = input(user, "Select project to manage:", "PROJECT MANAGEMENT", project_options)
+	var/choice = input(user, "Select project to manage:", "PROJECT MANAGEMENT") as anything|null in project_options
 	if(!choice)
 		return
 
 	var/project_type = project_options[choice]
 	var/datum/vampire_project/project = active_projects[project_type]
 
-	var/action = input(user, "What would you like to do?", "MANAGEMENT", list("View Details", "Cancel Project"))
+	var/action = input(user, "What would you like to do?", "MANAGEMENT") as anything|null in list("View Details", "Cancel Project")
 
 	switch(action)
 		if("View Details")

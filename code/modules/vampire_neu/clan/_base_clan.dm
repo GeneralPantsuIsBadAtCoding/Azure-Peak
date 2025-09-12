@@ -343,6 +343,10 @@ And it also helps for the character set panel
 	H.set_hair_color("#181a1d", null, null, null, null, FALSE)
 	H.set_facial_hair_color("#181a1d", null, null, null, null, FALSE)
 	H.set_eye_color("#FF0000", "#FF0000", TRUE)
+	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
+	ears.accessory_colors = "#c9d3de"
+	var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
+	breasts?.accessory_colors = "#c9d3de"
 	H.update_body()
 	H.update_body_parts(redraw = TRUE)
 
