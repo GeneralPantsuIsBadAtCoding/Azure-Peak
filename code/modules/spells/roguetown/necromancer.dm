@@ -172,6 +172,7 @@
 
 /datum/status_effect/buff/fire_immunity/on_apply()
 	.=..()
+	ADD_TRAIT(owner, TRAIT_NOFIRE, TRAIT_GENERIC)
 
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
@@ -198,9 +199,9 @@
 		if (L.in zizo_buff_party)
 			L.apply_status_effect(/datum/status_effect/buff/fortitude/other)
 			L.apply_status_effect(/datum/status_effect/buff/giants_strength/other)
-			var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(user.zone_selected))
+			var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
 			if(affecting && (affecting.heal_damage(50, 50) || affecting.heal_wounds(50)))
-				target.update_damage_overlays()
-			target.visible_message(span_danger("[target] reforms under the vile energy!"), span_notice("I'm remade by dark magic!"))
+				L.update_damage_overlays()
+			L.visible_message(span_danger("[L] reforms under the vile energy!"), span_notice("I'm remade by dark magic!"))
 			return TRUE
 
