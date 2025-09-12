@@ -25,6 +25,16 @@
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
+/obj/item/natural/cured/essence
+	name = "essence of wilderness"
+	icon_state = "wessence"
+	desc = "A mystical essence embued with the power of Dendor. Merely holding it transports one's mind to ancient times."
+	resistance_flags = FLAMMABLE
+	w_class = WEIGHT_CLASS_SMALL
+	sellprice = 20
+	grid_height = 32
+	grid_width = 32
+
 /obj/item/natural/fur
 	name = "fur"
 	icon_state = "wool1"

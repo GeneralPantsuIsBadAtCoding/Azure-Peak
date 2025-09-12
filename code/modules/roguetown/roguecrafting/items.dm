@@ -285,26 +285,6 @@
 	skillcraft = /datum/skill/labor/lumberjacking
 	tools = list(/obj/item/rogueweapon/huntingknife = 1)
 
-/datum/crafting_recipe/roguetown/survival/lumberjacking/cart_upgrade
-	name = "woodcutters wheelbrace"
-	result = /obj/item/cart_upgrade/level_1
-	reqs = list(
-		/obj/item/grown/log/tree/small = 2,
-		/obj/item/natural/stone = 1,
-		)
-	craftdiff = 2
-
-/datum/crafting_recipe/roguetown/survival/lumberjacking/cart_upgrade2
-	name = "reinforced woodcutters wheelbrace"
-	result = /obj/item/cart_upgrade/level_2
-	reqs = list(
-		/obj/item/grown/log/tree/small = 4,
-		/obj/item/cart_upgrade/level_1 = 1,
-		/obj/item/ingot/iron = 1,
-		)
-	craftdiff = 4
-
-
 /datum/crafting_recipe/hair_dye
     name = "hair dye cream"
     result = /obj/item/hair_dye_cream
@@ -402,8 +382,8 @@
 	name = "improvised surgery saw (1 fiber + 1 stone + 1 stick)"
 	result = /obj/item/rogueweapon/surgery/saw/improv
 	reqs = list(
-		/obj/item/natural/fibers = 1, 
-		/obj/item/natural/stone = 1, 
+		/obj/item/natural/fibers = 1,
+		/obj/item/natural/stone = 1,
 		/obj/item/grown/log/tree/stick = 1,
 		)
 	craftdiff = 1
@@ -430,7 +410,7 @@
 // I don't want ration paper to be too expensive, making wrapped food underused
 // So instead, ration paper is a very cheap recipe with parchment and tallow (instead of full fat) that makes 2 wrapper
 // However, it is heavily skillgated by cooking skill. At Craftdiff 4, only Innkeep / Cook can make it easily off the bat.
-// Servant w/ high int can also make it, but it is a bit harder. Or just be middle aged / old instead lol 
+// Servant w/ high int can also make it, but it is a bit harder. Or just be middle aged / old instead lol
 // For 1 fat, 1 log (48 reagents), you get 4 tallow + 6 piece of paper yielding 12 ration wrappers with 1 tallow leftover.
 /datum/crafting_recipe/roguetown/survival/ration_wrapper
 	name = "ration wrapping paper (x2)"

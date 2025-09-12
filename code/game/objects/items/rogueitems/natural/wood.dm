@@ -18,6 +18,7 @@
 	var/quality = SMELTERY_LEVEL_NORMAL // For it not to ruin recipes that need it
 	var/lumber = /obj/item/grown/log/tree/small //These are solely for lumberjack calculations
 	var/lumber_amount = 1
+	metalizer_result = /obj/item/rogueore/iron
 
 /obj/item/grown/log/tree/Initialize()
 	. = ..()
@@ -63,7 +64,14 @@
 			minimum = 2
 		lumber_amount = rand(minimum, max(round(skill_level), minimum))
 		for(var/i = 0; i < lumber_amount; i++)
-			new lumber(get_turf(src))
+			if(prob(skill_level + user.goodluck(2)))
+				new /obj/item/grown/log/tree/small/essence(get_turf(src))
+				if(!essence_sound_played)
+					essence_sound_played = TRUE
+					to_chat(user, span_warning("Dendor watches over us..."))
+					playsound(src,pick('sound/items/gem.ogg'), 100, FALSE)
+			else
+				new lumber(get_turf(src))
 		if(!skill_level)
 			to_chat(user, span_info("Due to inexperience, I ruin some of the timber..."))
 		user.mind.add_sleep_experience(/datum/skill/labor/lumberjacking, (user.STAINT*0.5))
@@ -87,6 +95,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	smeltresult = /obj/item/rogueore/coal/charcoal
 	lumber_amount = 0
+	metalizer_result = /obj/item/rogueore/copper
 
 /obj/item/grown/log/tree/small/Initialize()
 	. = ..()
@@ -172,6 +181,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	smeltresult = /obj/item/rogueore/coal
 	lumber_amount = 0
+	metalizer_result = null
 
 /obj/item/grown/log/tree/bowpartial/Initialize()
 	. = ..()
@@ -224,6 +234,7 @@
 	lumber_amount = 0
 	grid_width = 32
 	grid_height = 32
+	metalizer_result = /obj/item/needle
 
 /obj/item/grown/log/tree/stick/Crossed(mob/living/L)
 	. = ..()
@@ -239,7 +250,7 @@
 			qdel(src)
 			if (L.alpha == 0 && L.rogue_sneaking) // not anymore you're not
 				L.update_sneak_invis(TRUE)
-			if(!HAS_TRAIT(L, TRAIT_WOODWALKER))	
+			if(!HAS_TRAIT(L, TRAIT_WOODWALKER))
 				L.consider_ambush()
 
 /obj/item/grown/log/tree/stick/Initialize()
@@ -353,6 +364,7 @@
 	gripped_intents = null
 	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP
 	lumber_amount = 0
+	metalizer_result = /obj/item/ammo_casing/caseless/rogue/arrow/iron
 
 /obj/item/grown/log/tree/stake/Initialize()
 	. = ..()
@@ -364,6 +376,18 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 		)
+
+//................	Lumber essence	............... //
+/obj/item/grown/log/tree/small/essence
+	name = "essence of lumber"
+	desc = "A mystical essence embued with the power of Dendor. Very good source of fuel."
+	icon_state = "lessence"
+	static_debris = null
+	firefuel = 60 MINUTES // Extremely poweful fuel.
+	w_class = WEIGHT_CLASS_SMALL
+	metalizer_result = /obj/item/rogueore/gold
+	grid_height = 32
+	grid_width = 32
 
 /////////////
 // Planks //
@@ -390,7 +414,8 @@
 	sellprice = 4
 	bundletype = /obj/item/natural/bundle/plank
 	smeltresult = /obj/item/ash
-	
+	metalizer_result = /obj/item/rogueore/tin
+
 /obj/item/natural/wood/plank/attack_right(mob/living/user)
 	if(user.get_active_held_item())
 		return

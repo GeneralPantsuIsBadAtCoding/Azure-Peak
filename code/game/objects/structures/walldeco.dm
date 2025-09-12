@@ -206,6 +206,7 @@
 	buckle_lying = 0
 	breakoutextra = 5 MINUTES
 	buckleverb = "tie"
+	smeltresult = /obj/item/rope/chain
 
 /obj/structure/fluff/walldeco/chains/Initialize()
 	icon_state = "chains[rand(1,8)]"
