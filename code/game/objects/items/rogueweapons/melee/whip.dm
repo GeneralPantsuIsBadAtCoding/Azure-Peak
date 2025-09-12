@@ -1,6 +1,6 @@
 /obj/item/rogueweapon/whip
 	force = 21
-	possible_item_intents = list(/datum/intent/whip/lash, /datum/intent/whip/crack, /datum/intent/whip/cut, /datum/intent/whip/punish)
+	possible_item_intents = list(/datum/intent/whip/lash, /datum/intent/whip/crack, /datum/intent/whip/punish)
 	name = "whip"
 	desc = "A leather whip. Built to last, with a sharp stone for a tip."
 	icon_state = "whip"
@@ -29,25 +29,23 @@
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-//Lash = default, can't dismember, so more range and some pen. Cant be parried.
+//Lash = default, can't dismember, so more range and some pen.
 /datum/intent/whip/lash
 	name = "lash"
 	blade_class = BCLASS_LASHING
-	attack_verb = list("lashes", "whips")
+	attack_verb = list("lashes", "cracks")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
-	chargetime = 5
-	recovery = 5
-	misscost = 7
-	penfactor = 20
+	chargetime = 0
+	recovery = 7
+	penfactor = 30
 	reach = 3
 	icon_state = "inlash"
 	item_d_type = "slash"
-	canparry = FALSE //Has reach and can't be parried, but needs to be charged and punishes misses.
 
-//Crack = blunt damage, non-lethal, so lower range.
+//Crack = cut damage, can dismember, so lower range.
 /datum/intent/whip/crack
 	name = "crack"
-	blade_class = BCLASS_BLUNT
+	blade_class = BCLASS_CUT				//Lets you dismember
 	attack_verb = list("cracks", "strikes") //something something dwarf fotresss
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
@@ -57,22 +55,6 @@
 	reach = 2
 	icon_state = "incrack"
 	item_d_type = "slash"
-	canparry = TRUE //You can parry this
-
-//Old Crack inent, can dismember, less range, letal.
-/datum/intent/whip/cut
-	name = "cut"
-	blade_class = BCLASS_CUT
-	attack_verb = list("cuts", "slashes")
-	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
-	chargetime = 0
-	recovery = 10
-	damfactor = 1.1
-	penfactor = 20
-	reach = 2
-	icon_state = "incut"
-	item_d_type = "slash"
-	canparry = TRUE //You can parry this
 
 //Punish = Non-lethal sorta damage.
 /datum/intent/whip/punish
