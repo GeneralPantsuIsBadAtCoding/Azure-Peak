@@ -140,6 +140,7 @@
 	item_state = "vpants"
 	sewrepair = FALSE
 	armor = ARMOR_VAMP
+	max_integrity = ARMOR_INT_LEG_ANTAG
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
@@ -171,25 +172,28 @@
 	name = "ancient chain shirt"
 	desc = ""
 	body_parts_covered = COVERAGE_TORSO
-	armor_class = 2
+	armor_class = ARMOR_CLASS_HEAVY
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
+	armor = ARMOR_VAMP
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/roguetown/armor/plate/vampire
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "ancient ceremonial plate"
 	desc = ""
-	body_parts_covered = COVERAGE_TORSO
+	body_parts_covered = COVERAGE_FULL
 	icon_state = "vplate"
 	item_state = "vplate"
 	armor = ARMOR_VAMP
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
 	nodismemsleeves = TRUE
-	max_integrity = 500
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	allowed_sex = list(MALE, FEMALE)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	equip_delay_self = 40
-	armor_class = 3
+	armor_class = ARMOR_CLASS_HEAVY
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/roguetown/boots/armor/vampire
@@ -198,7 +202,8 @@
 	body_parts_covered = FEET
 	icon_state = "vboots"
 	item_state = "vboots"
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
+	max_integrity = ARMOR_INT_LEG_ANTAG
 	color = null
 	blocksound = PLATEHIT
 	armor = ARMOR_VAMP
@@ -207,11 +212,11 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/vampire
 	name = "ancient ceremonial helm"
 	icon_state = "vhelmet"
-	max_integrity = 250
+	max_integrity = ARMOR_INT_HELMET_ANTAG
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
 	block2add = FOV_BEHIND
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/active_item = FALSE
-
 
 /obj/item/clothing/head/roguetown/helmet/heavy/vampire/equipped(mob/living/user, slot)
 	. = ..()
@@ -232,3 +237,6 @@
 	name = "ancient ceremonial gloves"
 	icon_state = "vgloves"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	armor = ARMOR_VAMP
+	max_integrity = ARMOR_INT_SIDE_ANTAG
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
