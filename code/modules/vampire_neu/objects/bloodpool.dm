@@ -55,7 +55,7 @@
 	if(active_projects.len)
 		available_options["Manage Projects"] = "manage"
 
-	var/choice = input(user, "What to do?", "VAMPYRE") as anything|null in available_options
+	var/choice = input(user, "What to do?", "VAMPYRE") as null|anything in available_options
 	if(!choice)
 		return
 
@@ -101,7 +101,7 @@
 		var/remaining = project.total_cost - project.paid_amount
 		project_choices["[project.display_name] (Remaining: [remaining])"] = project_type
 
-	var/choice = input(user, "Select project to contribute to:", "CONTRIBUTION") as anything|null in project_choices
+	var/choice = input(user, "Select project to contribute to:", "CONTRIBUTION") as null|anything in project_choices
 	if(!choice)
 		return
 
@@ -121,14 +121,14 @@
 		var/progress_percent = round((project.paid_amount / project.total_cost) * 100, 1)
 		project_options["[project.display_name] ([progress_percent]%)"] = project_type
 
-	var/choice = input(user, "Select project to manage:", "PROJECT MANAGEMENT") as anything|null in project_options
+	var/choice = input(user, "Select project to manage:", "PROJECT MANAGEMENT") as null|anything in project_options
 	if(!choice)
 		return
 
 	var/project_type = project_options[choice]
 	var/datum/vampire_project/project = active_projects[project_type]
 
-	var/action = input(user, "What would you like to do?", "MANAGEMENT") as anything|null in list("View Details", "Cancel Project")
+	var/action = input(user, "What would you like to do?", "MANAGEMENT") as null|anything in list("View Details", "Cancel Project")
 
 	switch(action)
 		if("View Details")
@@ -335,7 +335,7 @@
 
 /datum/vampire_project/amulet_crafting/confirm_start(mob/living/user)
 	if(..())
-		amulet_name = input(user, "Select a name for the amulet.", "VANDERLIN") as text|null
+		amulet_name = input(user, "Select a name for the amulet.", "VAMPYRE") as text|null
 		return TRUE
 	return FALSE
 

@@ -15,7 +15,7 @@
 		to_chat(user, span_warning("I have yet to regain this aspect of my power."))
 		return TRUE
 
-	switch(input(user, "What to do?", null, useoptions))
+	switch(input(user, "What to do?", "VAMPYRE") as null|anything in useoptions)
 		if("Create Death Knight")
 			if(alert(user, "Create a Death Knight?<BR>Cost:[DEATH_KNIGHT_COST]", src, "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 				return

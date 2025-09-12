@@ -13,14 +13,14 @@
 		to_chat(user, span_warning("This costs 1000 vitae, I lack that."))
 		return
 	var/list/choices = list("RETURN", "SENDING", "I RESCIND")
-	switch(input(user, "Which type of portal?", "Portal Type", choices))
+	switch(input(user, "Which type of portal?", "Portal Type") as null|anything in choices)
 		if("I RESCIND")
 			return
 
 		if("RETURN")
 			for(var/obj/item/clothing/neck/portalamulet/P in GLOB.vampire_objects)
 				possibleportals += P
-			var/atom/choice = input(user, "Choose an area to open the portal", "Choices", possibleportals)
+			var/atom/choice = input(user, "Choose an area to open the portal", "Choices") as null|anything in possibleportals
 			if(!choice)
 				return
 			user.visible_message("[user] begins to summon a portal.", "I begin to summon a portal.")
@@ -44,7 +44,7 @@
 				return
 			for(var/obj/item/clothing/neck/portalamulet/P in GLOB.vampire_objects)
 				possibleportals += P
-			var/atom/choice = input(user, "Choose an area to open the portal to", "Choices", possibleportals)
+			var/atom/choice = input(user, "Choose an area to open the portal to", "Choices") as null|anything in possibleportals
 			if(!choice)
 				return
 			user.visible_message("[user] begins to summon a portal.", "I begin to summon a portal.")
