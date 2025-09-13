@@ -251,7 +251,7 @@
 			if(!skipprob && prob(prob2fail))
 				snuff()
 			else
-				explosion(T, devastation_range = 3, light_impact_range = 10, hotspot_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+				explosion(T, devastation_range = 3, light_impact_range = 10, flame_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
 
 				qdel(src)
 
@@ -300,7 +300,7 @@
 /obj/item/impact_grenade/explosion/explodes()
 	var/turf/T = get_turf(src)
 	if(T)
-		explosion(T, heavy_impact_range = 0, light_impact_range = 2, hotspot_range = 2, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
+		explosion(T, heavy_impact_range = 0, light_impact_range = 2, flame_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
 	..() // stop processing and delete self
 
 /obj/item/impact_grenade/smoke

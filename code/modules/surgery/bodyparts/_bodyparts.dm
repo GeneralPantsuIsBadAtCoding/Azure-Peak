@@ -612,7 +612,6 @@
 	var/skel = skeletonized ? "_s" : ""
 
 	var/is_organic_limb = is_organic_limb()
-
 	if(is_organic_limb)
 		if(should_draw_greyscale)
 			limb.icon = species_icon
@@ -632,10 +631,9 @@
 			if(!hideaux)
 				aux = image(limb.icon, "[aux_zone][skel]", -aux_layer, image_dir)
 				. += aux
-
 	else
 		limb.icon = species_icon
-		limb.icon_state = "pr_[body_zone]"
+		limb.icon_state = "[prosthetic_prefix]_[body_zone]"
 		if(aux_zone)
 			if(!hideaux)
 				aux = image(limb.icon, "[prosthetic_prefix]_[aux_zone]", -aux_layer, image_dir)
