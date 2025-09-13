@@ -2295,6 +2295,7 @@
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\nondetection.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\stoneskin.dm"
 #include "code\modules\spells\spell_types\wizard\conjure\conjure_armor.dm"
+#include "code\modules\spells\spell_types\wizard\conjure\conjure_dragonhide.dm"
 #include "code\modules\spells\spell_types\wizard\conjure\conjure_tool.dm"
 #include "code\modules\spells\spell_types\wizard\conjure\conjure_weapon.dm"
 #include "code\modules\spells\spell_types\wizard\conjure\find_familiar.dm"
