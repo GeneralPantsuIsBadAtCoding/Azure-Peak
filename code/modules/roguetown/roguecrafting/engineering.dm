@@ -6,7 +6,7 @@
 	result = /obj/structure/table/cooling
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/ingot/iron = 1,
-				/obj/item/roguegear = 1)
+				/obj/item/roguegear/bronze = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -15,7 +15,7 @@
 /datum/crafting_recipe/roguetown/engineering/lever
 	name = "lever"
 	result = /obj/structure/lever
-	reqs = list(/obj/item/roguegear = 1)
+	reqs = list(/obj/item/roguegear/bronze = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -24,7 +24,7 @@
 	name = "floorhatch"
 	result = /obj/structure/floordoor
 	reqs = list(/obj/item/grown/log/tree/small = 1,
-					/obj/item/roguegear = 1)
+					/obj/item/roguegear/bronze = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -58,7 +58,7 @@
 /datum/crafting_recipe/roguetown/engineering/freedomchair
 	name = "LIBERTAS"
 	result = /obj/structure/chair/freedomchair/crafted
-	reqs = list(/obj/item/ingot/gold = 1, /obj/item/roguegear = 3)
+	reqs = list(/obj/item/ingot/gold = 1, /obj/item/roguegear/bronze = 3)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -68,7 +68,7 @@
 	name = "passage"
 	result = /obj/structure/bars/passage
 	reqs = list(/obj/item/ingot/iron = 1,
-					/obj/item/roguegear = 1)
+					/obj/item/roguegear/bronze = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -135,7 +135,7 @@
 /datum/crafting_recipe/roguetown/structure/pressure_plate
 	name = "pressure plate"
 	result = /obj/structure/pressure_plate
-	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 2)
+	reqs = list(/obj/item/roguegear/bronze = 1, /obj/item/natural/wood/plank = 2)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -144,7 +144,7 @@
 /datum/crafting_recipe/roguetown/structure/activator
 	name = "engineer's launcher"
 	result = /obj/structure/englauncher
-	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 4, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow = 1)
+	reqs = list(/obj/item/roguegear/bronze = 1, /obj/item/natural/wood/plank = 4, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering

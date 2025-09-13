@@ -214,7 +214,7 @@
 /datum/artificer_recipe/contraptions/mobilestove
 	name = "Mobile Stove (+Cog +Tin)" // capitalized to fall in line with the rest of engineering recipes T_T
 	required_item = /obj/item/ingot/bronze
-	additional_items = list(/obj/item/roguegear, /obj/item/ingot/tin)
+	additional_items = list(/obj/item/roguegear/bronze, /obj/item/ingot/tin)
 	created_item = /obj/item/mobilestove
 	hammers_per_item = 10
 	skill_level = 3
@@ -274,7 +274,7 @@
 	name = "Voltic Gauntlet (+1 Tin ingot)(+2 Bronze gear)(+1 cinnabar ore)"
 	required_item = /obj/item/ingot/bronze
 	additional_items = list(/obj/item/roguegear/bronze, /obj/item/roguegear/bronze,/obj/item/ingot/tin, /obj/item/rogueore/cinnabar)
-	created_item = /obj/item/clothing/gloves/roguetown/active/voltic
+	created_item = /obj/item/clothing/gloves/roguetown/contraption/voltic
 	hammers_per_item = 12
 	skill_level = 4
 

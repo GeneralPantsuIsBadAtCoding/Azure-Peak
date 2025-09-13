@@ -119,8 +119,8 @@
 
 
 /obj/item/tntstick
-	name = "Blackpowder stick"
-	desc = "A bit of blackpowder in paper shell..."
+	name = "blastpowder stick"
+	desc = "A bit of blastpowder in paper shell..."
 	icon_state = "tnt_stick"
 	var/lit_state = "tnt_stick-lit"
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -191,8 +191,8 @@
 		explode(TRUE)
 
 /obj/item/satchel_bomb
-	name = "Bomb satchel"
-	desc = "A satchel full of blackpowder..."
+	name = "blastpowder satchel"
+	desc = "A satchel full of blastpowder..."
 	icon_state = "satchel_bomb"
 	var/lit_state = "satchel_bomb-lit"
 	icon = 'icons/roguetown/items/misc.dmi'
