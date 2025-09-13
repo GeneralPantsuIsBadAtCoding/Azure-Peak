@@ -125,7 +125,7 @@
 			continue
 		if (!our_limb.skeletonized)
 			rituos_complete = FALSE
-		
+
 	return rituos_complete
 
 /obj/effect/proc_holder/spell/invoked/rituos/proc/get_skeletonized_bodyparts(mob/living/carbon/user)
@@ -135,7 +135,7 @@
 			continue
 		if (our_limb.skeletonized)
 			skeletonized_parts += our_limb.type
-	
+
 	return skeletonized_parts
 
 /obj/effect/proc_holder/spell/invoked/rituos/cast(list/targets, mob/living/carbon/user)
@@ -186,7 +186,7 @@
 		user.visible_message(span_warning("The pallor of the grave descends across [user]'s skin in a wave of arcyne energy..."), span_boldwarning("A deathly chill overtakes my body at my first culmination of the Lesser Work! I feel my heart slow down in my chest..."))
 		user.mob_biotypes |= MOB_UNDEAD
 		to_chat(user, span_smallred("I have forsaken the living. I am now closer to a deadite than a mortal... but I still yet draw breath and bleed."))
-	
+
 	part_to_bonify.skeletonize(FALSE)
 	user.update_body_parts()
 	user.visible_message(span_warning("Faint runes flare beneath [user]'s skin before [user.p_their()] flesh suddenly slides away from [user.p_their()] [part_to_bonify.name]!"), span_notice("I feel arcyne power surge throughout my frail mortal form, as the Rituos takes its terrible price from my [part_to_bonify.name]."))
@@ -197,7 +197,7 @@
 		user.mind.rituos_spell = null
 
 	user.mind.has_rituos = TRUE
-	
+
 	var/post_rituos = check_ritual_progress(user)
 	if (post_rituos)
 		//everything but our head is skeletonized now, so grant them journeyman rank and 3 extra spellpoints to grief people with
@@ -242,9 +242,39 @@
 		revert_cast()
 		return FALSE
 	var/checkrange = (range + user.get_skill_level(/datum/skill/magic/holy)) //+1 range per holy skill up to a potential of 8.
-	for(var/obj/O in range(checkrange, user))	
+	for(var/obj/O in range(checkrange, user))
 		O.extinguish()
 	for(var/mob/M in range(checkrange, user))
 		for(var/obj/O in M.contents)
 			O.extinguish()
 	return TRUE
+
+
+/obj/effect/proc_holder/spell/self/zizo_aoe_buff
+	name = "Progressive Rigor"
+	desc = "Place a ward upon any undead within 3 tiles that heals them, fortifies them, and renders them immune to flames. Powerful, but costly, and with a large ."
+
+
+/obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
+
+	user.visible_message("[user] mutters an arcyne incantation.")
+
+	var/is_project_zomboid = FALSE
+	var/list/zizo_buff_party = list()
+
+	for(var/mob/living/L in range(3, usr))
+
+		if (L.mind)
+			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser) //not really sure why but it got incredibly pissy when I started trying to combine these into one statement
+			if (V && !V.disguised)
+				is_project_zomboid = TRUE
+			if (L.mind.has_antag_datum(/datum/antagonist/zombie))
+				is_project_zomboid = TRUE
+			if (L.mind.special_role == "Vampire Lord")
+				is_project_zomboid = TRUE
+
+		if (L.mob_biotypes & MOB_UNDEAD || is_project_zomboid)
+			zizo_buff_party += L
+
+		if (L.in zizo_buff_party)
+			L.apply_status_effect(/datum/status_effect/buff/longstrider) //placeholder shut up
