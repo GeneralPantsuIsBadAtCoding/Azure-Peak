@@ -510,3 +510,87 @@
 	desc = "I was on the sermon. My patron is not proud of me."
 	icon_state = "debuff"
 	color ="#af9f9f"
+
+//////////////////////
+/// CLIMBING STUFF //
+////////////////////
+
+/// FLYING BASED CLIMBING
+/*
+/datum/status_effect/debuff/active_climbing
+	id = "active_climbing"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/active_climbing
+	effectedstats = list("strength" = -2,"perception" = -2,"intelligence" = -2, "constitution" = -2, "endurance" = -2, "speed" = -2)
+	tick_interval = 10
+/datum/status_effect/debuff/active_climbing/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/climber = owner
+	climber.movement_type = FLYING
+/datum/status_effect/debuff/active_climbing/tick()
+	. = ..()
+	var/mob/living/carbon/climber = owner
+	var/tile_under_climber = climber.loc
+	if(!istype(tile_under_climber, /turf/open/transparent/openspace))
+		to_chat(climber, span_warningbig("NICE COCK BRO!"))
+		climber.remove_status_effect(/datum/status_effect/debuff/active_climbing)
+/datum/status_effect/debuff/active_climbing/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/climber = owner
+	climber.movement_type = GROUND
+/atom/movable/screen/alert/status_effect/debuff/active_climbing
+	name = "I am climbing"
+	desc = ""
+	icon_state = "muscles"
+*/
+
+/// OPEN SPACE TURF BASED CLIMBING, MOB DRAG-DROP TILE
+/datum/status_effect/debuff/climbing_lfwb
+	id = "climbing_lfwb"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/climbing_lfwb
+	tick_interval = 10
+
+/datum/status_effect/debuff/climbing_lfwb/on_apply()
+	. = ..()
+	var/mob/living/climber = owner
+	climber.climbing = TRUE
+	climber.put_in_hands(new /obj/item/clothing/wall_grab, TRUE, FALSE, TRUE) // gotta have new before /obj/... , otherwise its gonna die
+
+/datum/status_effect/debuff/climbing_lfwb/tick() // do we wanna do this shit every single second? I guess we do boss
+	. = ..()
+	var/mob/living/carbon/human/climber = owner
+	var/baseline_stamina_cost = 35 // have to disable stamina regen while on wall bruh in energystamina.dm
+	var/climb_gear_bonus = 1
+	if((istype(climber.backr, /obj/item/clothing/climbing_gear)) || (istype(climber.backl, /obj/item/clothing/climbing_gear)))
+		climb_gear_bonus = 2
+	var/climbing_skill = max(climber.get_skill_level(/datum/skill/misc/climbing), SKILL_LEVEL_NOVICE) // freestyla hugboxed my shitcode FVCK
+	var/stamina_cost_final = round(((baseline_stamina_cost / climbing_skill) / climb_gear_bonus), 1) // each END is 10 stam, each athletics is 5 stam
+//	to_chat(climber, span_warningbig("[stamina_cost_final] REMOVED!")) // debug msg
+	climber.stamina_add(stamina_cost_final) // every tick interval this much stamina is deducted
+	var/turf/tile_under_climber = climber.loc
+	var/list/branch_under_climber = list()
+	for(var/obj/structure/flora/newbranch/branch in climber.loc)
+		branch_under_climber += branch
+	if(!istype(tile_under_climber, /turf/open/transparent/openspace))// if we aren't on open space turf, remove debuff (aka our feet are on solid shi or water)
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+	if(branch_under_climber.len) // branches dont remove open space turf, so we have to check for it separately
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+	else if(climber.stamina >= climber.max_stamina) // if we run out of green bar stamina, we fall
+		to_chat(climber, span_dead("I can't hold onto the ledge for any longer!"))
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+		tile_under_climber.zFall(climber)
+
+
+/datum/status_effect/debuff/climbing_lfwb/on_remove()
+	. = ..()
+	var/mob/living/climber = owner
+	climber.climbing = FALSE
+	if(climber.is_holding_item_of_type(/obj/item/clothing/wall_grab)) // the slop slops itself holy shit
+		for(var/obj/item/clothing/wall_grab/I in climber.held_items)
+			if(istype(I, /obj/item/clothing/wall_grab))
+				qdel(I)
+				return
+
+/atom/movable/screen/alert/status_effect/debuff/climbing_lfwb
+	name = "Climbing..."
+	desc = ""
+	icon_state = "muscles"
