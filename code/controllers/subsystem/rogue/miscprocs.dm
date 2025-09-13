@@ -253,9 +253,10 @@
 
 /mob/living/carbon/human/proc/tryextractluxstrand(mob/living/carbon/human/killer)
 	if(GetComponent(/datum/component/revival_trauma))
-		to_chat(killer, span_warning("This one has already had their lux stripped."))
+		to_chat(killer, span_warn("<b>This one has already had their lux stripped.</b>"))
 		return FALSE
-	AddComponent(/datum/component/revival_trauma, killer)
-	visible_message(span_warningbig("[killer] rips out a strand of Lux out of [src]!"))
-	playsound(src, 'sound/misc/luxstrandextract.ogg', 100, TRUE)
-	new /obj/item/luxstrand(get_turf(src), src, killer)
+	if(do_after(killer, 1 SECONDS))
+		AddComponent(/datum/component/revival_trauma, killer)
+		visible_message(span_userdanger("[killer] rips out a strand of Lux out of [src]!"))
+		playsound(src, 'sound/misc/luxstrandextract.ogg', 100, TRUE)
+		new /obj/item/luxstrand(get_turf(src), src, killer)

@@ -2231,6 +2231,7 @@
 #include "code\modules\spells\roguetown\necromancer.dm"
 #include "code\modules\spells\roguetown\oldgod.dm"
 #include "code\modules\spells\roguetown\priest.dm"
+#include "code\modules\spells\roguetown\revival_trauma.dm"
 #include "code\modules\spells\roguetown\ritual_butchery.dm"
 #include "code\modules\spells\roguetown\spider.dm"
 #include "code\modules\spells\roguetown\vampire.dm"
