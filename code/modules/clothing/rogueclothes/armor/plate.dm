@@ -122,6 +122,7 @@
 			to_chat(user, span_warning("The curiass feels cold and dead."))
 
 /obj/item/clothing/suit/roguetown/armor/plate/paalloy/artificer/dropped(mob/living/user)
+	.=..()
 	if(active_item)
 		if(mode == 1)
 			if(user.get_skill_level(/datum/skill/magic/arcane))
