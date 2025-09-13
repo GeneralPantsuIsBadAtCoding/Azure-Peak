@@ -1484,7 +1484,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ', . and ,.</font>")
 
 				if("subclassoutfit")
-					var/list/choices = list()
+					var/list/choices = list("None")
 					var/datum/job/highest_pref
 					for(var/job in job_preferences)
 						if(job_preferences[job] > highest_pref)
@@ -1498,11 +1498,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							choices[advref.name] = advref
 					if(length(choices))
 						var/new_choice = input(user, "Choose an outfit preview:", "Outfit Preview")  as anything in choices|null
-						if(new_choice)
+						if(new_choice && new_choice != "None")
 							preview_subclass = choices[new_choice]
 							update_preview_icon()
 						else
 							preview_subclass = null
+							update_preview_icon(jobOnly = TRUE)
 
 //				if("age")
 //					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Years Dead") as num|null
