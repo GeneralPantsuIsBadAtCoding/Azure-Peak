@@ -218,7 +218,7 @@
 		if (L.mob_biotypes & MOB_UNDEAD || is_project_zomboid)
 			zizo_buff_party += L
 
-		if (L.in zizo_buff_party)
+		if (L in zizo_buff_party)
 			L.apply_status_effect(/datum/status_effect/buff/fortitude/other)
 			L.apply_status_effect(/datum/status_effect/buff/giants_strength/other)
 			var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
