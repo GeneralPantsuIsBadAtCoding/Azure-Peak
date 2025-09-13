@@ -485,7 +485,7 @@
 				var/mob/living/M = AM
 				M.adjustFireLoss(25)
 				to_chat(M, span_danger( "You're thrown back by [user]!"))
-			AM.throw_at(throwtarget, 4, 2, null, TRUE, force = MOVE_FORCE_OVERPOWERING)
+			AM.safe_throw_at(throwtarget, 4, 2, user, TRUE, force = MOVE_FORCE_OVERPOWERING)
 
 /obj/item/rogueweapon/shield/artificer/proc/steamready(mob/user)
 	playsound(user, 'sound/items/steamcreation.ogg', 100, FALSE, -1)

@@ -16,7 +16,7 @@
 	var/latched = FALSE
 	locked = FALSE
 	var/base_icon = "pillory_single"
-	list/lockid = list()
+	lockid = list()
 
 /obj/structure/pillory/double
 	icon_state = "pillory_double"

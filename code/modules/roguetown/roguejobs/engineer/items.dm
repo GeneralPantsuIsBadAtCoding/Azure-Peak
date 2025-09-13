@@ -64,17 +64,22 @@
 	name = "reliable wooden cog"
 	desc = "A cog imbued with a special essence, making it very reliable. Used in carts and machinery."
 	icon_state = "wcog2"
-	filters = filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(32, 196, 218, 200))
 	cart_capacity = 120
 	misfire_modification = 7
 	name_prefix = "stable"
 	ulevel = 1
 
+/obj/item/roguegear/wood/reliable/Initialize()
+	.=..()
+	filters += filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(32, 196, 218, 200))
+
 /obj/item/roguegear/wood/unstable
 	name = "unstable wooden cog"
 	desc = "A cog imbued with a special essence, making it prone to breaking at any time. Used in carts and machinery."
 	icon_state = "wcog2"
-	filters = filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(167, 17, 17, 200))
 	cart_capacity = 140
 	misfire_modification = 100
 	ulevel = 2
+/obj/item/roguegear/wood/unstable/Initialize()
+	.=..()
+	filters += filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(167, 17, 17, 200))
