@@ -28,12 +28,12 @@
 	var/windowed = FALSE
 	var/base_state = null
 
-	var/locked = FALSE
+	locked = FALSE
 	var/last_bump = null
 	var/brokenstate = 0
 	var/keylock = FALSE
-	var/lockhash = 0
-	var/lockid = null
+	lockhash = 0
+	lockid = null
 	var/lockbroken = 0
 	var/locksound = 'sound/foley/doors/woodlock.ogg'
 	var/unlocksound = 'sound/foley/doors/woodlock.ogg'

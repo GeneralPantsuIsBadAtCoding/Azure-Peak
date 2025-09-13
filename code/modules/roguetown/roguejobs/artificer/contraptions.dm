@@ -356,16 +356,17 @@
 	var/skill = user.get_skill_level(/datum/skill/craft/engineering)
 	var/turf/turf = get_turf(O)
 	playsound(O, pick('sound/combat/hits/burn (1).ogg','sound/combat/hits/burn (2).ogg'), 100)
-	new /obj/effect/decal/cleanable/ash(turf)
+	new /obj/item/ash(turf)
 	O.moveToNullspace()
 	if(misfire_chance && prob(max(0, misfire_chance - user.goodluck(2) - skill)))
 		misfire(O, user)
 	addtimer(CALLBACK(O, PROC_REF(popcorn_smelt_result), turf), 20)
 	return
+
 /obj/item/contraption/folding_table_stored
 	name = "folding table"
 	desc = "A folding table, useful for setting up a temporary workspace."
-	icon = 'icons/roguetown/items/gadgets.dmi'
+	icon = 'icons/roguetown/misc/gadgets.dmi'
 	icon_state = "foldingTableStored"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
@@ -456,7 +457,7 @@
 	sneaky_misfire_chance = 20
 	charge_per_source = 2
 	cog_accept = FALSE
-	var/list/allowed_locks = list(/obj/structure/mineral_door, /obj/structure/closet, /obj/structure/roguemachine/steward, /obj/structure/roguemachine/vendor, /obj/structure/roguemachine/merchantvend)
+	var/list/allowed_locks = list(/obj/structure/mineral_door, /obj/structure/closet, /obj/structure/roguemachine/steward, /obj/structure/roguemachine/vendor, /obj/structure/roguemachine/goldface)
 	var/stored_lock_id = "artificer"
 	var/stored_lock_hash = 354
 	var/mode = "Examiner"

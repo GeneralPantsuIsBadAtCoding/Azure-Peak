@@ -18,7 +18,7 @@
 		. += span_warning("There's a [initial(material.name)] ready to be worked.")
 
 /obj/machinery/artificer_table/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/natural/wood/plank) || istype(I, /obj/item/ingot)||istype(I, /obj/item/rogueore))
+	if(istype(I, /obj/item/natural/wood/plank) || istype(I, /obj/item/ingot)||istype(I, /obj/item/rogueore)||istype(I, /obj/item/storage/backpack/rogue/satchel))
 		if(!material)
 			I.forceMove(src)
 			material = I
@@ -64,6 +64,7 @@
 		if(!material.artrecipe.hammered)
 			playsound(src, pick('sound/combat/hits/onwood/fence_hit1.ogg', 'sound/combat/hits/onwood/fence_hit2.ogg', 'sound/combat/hits/onwood/fence_hit3.ogg'), 100, FALSE)
 			material.artrecipe.advance(I, user)
+		return
 	if(material && material.artrecipe && material.artrecipe.hammered && istype(I, material.artrecipe.needed_item))
 		material.artrecipe.item_added(user)
 		qdel(I)

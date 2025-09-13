@@ -188,7 +188,7 @@
 	if(..())
 		M.adjustFireLoss(-3, 0)
 		M.adjust_fire_stacks(3)
-		M.ignitemob()
+		M.ignite_mob()
 		M.emote("scream")
 		return 1
 

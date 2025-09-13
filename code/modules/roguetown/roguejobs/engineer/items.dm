@@ -66,7 +66,7 @@
 	icon_state = "wcog2"
 	filters = filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(32, 196, 218, 200))
 	cart_capacity = 120
-	misfire_modification = 0
+	misfire_modification = 7
 	name_prefix = "stable"
 	ulevel = 1
 

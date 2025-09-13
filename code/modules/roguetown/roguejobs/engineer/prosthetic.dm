@@ -21,6 +21,7 @@
 /obj/item/bodypart/l_arm/prosthetic/iron
 	name = "iron left arm"
 	desc = "A left arm of iron."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "prarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -35,6 +36,7 @@
 /obj/item/bodypart/l_arm/prosthetic/steel
 	name = "steel left arm"
 	desc = "A left arm of steel."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "prarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 200
@@ -68,6 +70,7 @@
 /obj/item/bodypart/l_arm/prosthetic/gold
 	name = "golden left arm"
 	desc = "A left arm of cogs and gold."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bprarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -114,6 +117,7 @@
 /obj/item/bodypart/r_arm/prosthetic/iron
 	name = "iron right arm"
 	desc = "A right arm of iron."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "prarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -128,6 +132,7 @@
 /obj/item/bodypart/r_arm/prosthetic/steel
 	name = "steel right arm"
 	desc = "A right arm of steel."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "prarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 200
@@ -161,6 +166,7 @@
 /obj/item/bodypart/r_arm/prosthetic/gold
 	name = "golden right arm"
 	desc = "A right arm of cogs and gold."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bprarm"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -208,6 +214,7 @@
 /obj/item/bodypart/l_leg/prosthetic/iron
 	name = "iron left leg"
 	desc = "A left leg of iron."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -223,6 +230,7 @@
 /obj/item/bodypart/l_leg/prosthetic/steel
 	name = "steel left leg"
 	desc = "A left leg of steel."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 200
@@ -255,6 +263,7 @@
 /obj/item/bodypart/l_leg/prosthetic/gold
 	name = "golden left leg"
 	desc = "A left leg of cogs and gold."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bpleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -302,6 +311,7 @@
 /obj/item/bodypart/r_leg/prosthetic/iron
 	name = "iron right leg"
 	desc = "A right leg of iron."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150
@@ -317,6 +327,7 @@
 /obj/item/bodypart/r_leg/prosthetic/steel
 	name = "steel right leg"
 	desc = "A right leg of steel."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 200
@@ -349,6 +360,7 @@
 /obj/item/bodypart/r_leg/prosthetic/gold
 	name = "golden right leg"
 	desc = "A right leg of cogs and gold."
+	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bpleg"
 	resistance_flags = FIRE_PROOF
 	max_damage = 150

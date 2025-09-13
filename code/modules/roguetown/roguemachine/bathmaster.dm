@@ -11,13 +11,13 @@
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	var/list/held_items = list()
-	var/locked = FALSE
+	locked = FALSE
 	var/budget = 0
 	var/upgrade_flags
 	var/current_cat = "1"
-	var/lockid = "nightman"
+	lockid = "nightman"
 	var/list/categories = list(
-		"Alcohols", 
+		"Alcohols",
 		"Drugs",
 		"Exotic Apparel",
 		"Instruments",

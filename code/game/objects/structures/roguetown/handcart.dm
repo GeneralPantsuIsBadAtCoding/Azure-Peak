@@ -15,7 +15,7 @@
 
 	var/arbitrary_living_creature_weight = 10 // The arbitrary weight for any thing of a mob and living variety
 	var/upgrade_level = 0 // This is the carts upgrade level, capacity increases with upgrade level
-	var/obj/item/cart_upgrade/upgrade = null
+	var/obj/item/roguegear/wood/upgrade = null
 	facepull = FALSE
 	throw_range = 1
 
@@ -92,7 +92,7 @@
 /obj/structure/handcart/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/roguegear/wood))
 		var/obj/item/roguegear/wood/cog = I
-		if(I.ulevel == 0)
+		if(cog.ulevel == 0)
 			upgrade = I
 			upgrade_level = cog.ulevel
 			maximum_capacity = cog.cart_capacity
@@ -101,7 +101,7 @@
 			shake_camera(user, 1, 1)
 			to_chat(user, span_warning("[cog.name] inserted!"))
 			return
-		if(I.ulevel == 1)
+		if(cog.ulevel == 1)
 			if(upgrade_level != 0)
 				to_chat(user, span_warning("This [I] is obsolete."))
 				return
@@ -114,12 +114,12 @@
 				shake_camera(user, 1, 1)
 				to_chat(user, span_warning("[cog.name] inserted!"))
 				return
-		if(I.ulevel == 2)
+		if(cog.ulevel == 2)
 			if(upgrade_level == 2)
 				to_chat(user, span_warning("This [I] is obsolete."))
 				return
 			else
-				upgrade = item
+				upgrade = I
 				upgrade_level = cog.ulevel
 				maximum_capacity = cog.cart_capacity
 				qdel(cog)

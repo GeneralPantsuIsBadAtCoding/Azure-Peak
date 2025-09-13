@@ -53,12 +53,28 @@
 	desc = "A gauntlet containing charged energy just waiting for release. Activation sigil is on the RIGHT side.."
 	icon_state = "volticgauntlets"
 	activate_sound = 'sound/items/stunmace_gen (2).ogg'
-	cdtime = 10 MINUTES
+	cdtime = 1.5 MINUTES
 	activetime = 5 SECONDS
 	sellprice = 100
 	var/delay = 5 SECONDS
 	var/sprite_changes = 10
 	var/datum/beam/current_beam = null
+
+/obj/item/clothing/gloves/roguetown/active/voltic/attack_right(mob/user)
+	if(loc != user)
+		return
+	if(cooldowny)
+		if(world.time < cooldowny + cdtime)
+			to_chat(user, span_warning("Nothing happens."))
+			return
+	user.visible_message(span_warning("[user] primes the [src]!"))
+	if(activate_sound)
+		playsound(user, activate_sound, 100, FALSE, -1)
+	cooldowny = world.time
+	addtimer(CALLBACK(src, PROC_REF(demagicify)), activetime)
+	active = TRUE
+	update_icon()
+	activate(user)
 
 /obj/item/clothing/gloves/roguetown/active/voltic/activate(mob/user)
 	if (!user)
@@ -72,7 +88,8 @@
 			visible_message(span_warning("The beam of lightning can't seem to shock [C]!"))
 			playsound(get_turf(C), 'sound/magic/magic_nulled.ogg', 100)
 			continue
-
+		if (C == user) // Prevent the user from being targeted
+			continue
 		valid_targets += C
 		user.visible_message(span_warning("[C] is connected to [user] with a voltic link!"),
 			span_warning("You create a static link with [C]."))
@@ -103,3 +120,4 @@
 		else
 			playsound(user, 'sound/items/stunmace_toggle (3).ogg', 100)
 			user.visible_message(span_warning("The voltaic link fizzles out!"), span_warning("[C] is too far away!"))
+

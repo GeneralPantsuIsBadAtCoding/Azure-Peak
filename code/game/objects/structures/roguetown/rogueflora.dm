@@ -219,12 +219,14 @@
 	climb_offset = 14
 	stump_type = FALSE
 	metalizer_result = /obj/machinery/anvil
+	var/lumber_amount = 1
+	var/lumber = /obj/item/grown/log/tree/small
 
 /obj/structure/flora/roguetree/stump/Initialize()
 	. = ..()
 	icon_state = "t[rand(1,4)]stump"
 
-/obj/structure/table/roguetree/stump/attackby(obj/item/I, mob/living/user)
+/obj/structure/flora/roguetree/stump/attackby(obj/item/I, mob/living/user)
 	if(user.used_intent.blade_class == BCLASS_CHOP && lumber_amount)
 		var/skill_level = user.get_skill_level(/datum/skill/labor/lumberjacking)
 		var/lumber_time = (120 - (skill_level * 15))

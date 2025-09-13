@@ -10,7 +10,7 @@
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	var/list/held_items = list()
-	var/locked = TRUE
+	locked = TRUE
 	var/budget = 0
 	var/wgain = 0
 	var/keycontrol = "merchant"
@@ -33,7 +33,7 @@
 /obj/structure/roguemachine/vendor/attackby(obj/item/P, mob/user, params)
 	if(istype(P, /obj/item/roguecoin/aalloy))
 		return
-	if(istype(P, /obj/item/roguecoin/inqcoin))	
+	if(istype(P, /obj/item/roguecoin/inqcoin))
 		return
 	if(istype(P, /obj/item/roguecoin))
 		budget += P.get_real_price()
@@ -51,7 +51,7 @@
 		else
 			if(!locked)
 				insert(P, user)
-			else	
+			else
 				to_chat(user, span_warning("Wrong key."))
 				return
 	if(istype(P, /obj/item/storage/keyring))
@@ -273,7 +273,7 @@
 
 /obj/structure/roguemachine/vendor/inn/Initialize()
     . = ..()
-    
+
     // Add room keys with a price of 20
     for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomvii, /obj/item/roguekey/roomviii))
         var/obj/P = new X(src)
