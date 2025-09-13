@@ -204,7 +204,7 @@
 	var/is_project_zomboid = FALSE
 	var/list/zizo_buff_party = list()
 
-	for(var/mob/living/L in range(3, usr))
+	for(var/mob/living/L in range(3, user))
 
 		if (L.mind)
 			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser) //not really sure why but it got incredibly pissy when I started trying to combine these into one statement
@@ -225,5 +225,5 @@
 			if(affecting && (affecting.heal_damage(50, 50) || affecting.heal_wounds(50)))
 				L.update_damage_overlays()
 			L.visible_message(span_danger("[L] reforms under the vile energy!"), span_notice("I'm remade by dark magic!"))
-			return TRUE
+
 
