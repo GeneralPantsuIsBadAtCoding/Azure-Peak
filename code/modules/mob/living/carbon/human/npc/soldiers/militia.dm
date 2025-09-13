@@ -167,5 +167,5 @@
 
 /mob/living/carbon/human/species/human/northern/militia/after_creation()
 	..()
-	var/obj/item/bodypart/head/head = get_bodypart(BODY_PART_HEAD)
+	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
 	head.sellprice = 20 // Gobbo sellprice

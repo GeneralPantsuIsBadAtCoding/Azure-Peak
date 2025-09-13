@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30
 	)
 	first_time_text = "ABYSSOR'S GRASP"
-	deathsight_message = "somewhere amidst abyssor's grasp"
+	deathsight_message = "amidst abyssor's"
 
 //// UNDER AREAS (no indoor rain sound usually)
 
