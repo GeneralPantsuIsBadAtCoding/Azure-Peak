@@ -21,7 +21,6 @@
 	var/stump_type = /obj/structure/flora/roguetree/stump
 	metalizer_result = /obj/machinery/light/rogue/lanternpost
 	smeltresult = /obj/item/rogueore/coal
-/obj/machinery/light/rogue/lanternpost
 
 /obj/structure/flora/roguetree/attack_right(mob/user)
 	if(user.mind && isliving(user))
