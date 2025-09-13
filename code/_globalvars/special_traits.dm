@@ -86,6 +86,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 /proc/apply_charflaw_equipment(mob/living/carbon/human/character, client/player)
 	if(character.charflaw)
 		character.charflaw.apply_post_equipment(character)
+		record_featured_object_stat(FEATURED_STATS_VICES, character.charflaw.name)
 
 /proc/apply_prefs_special(mob/living/carbon/human/character, client/player)
 	if(!player)
