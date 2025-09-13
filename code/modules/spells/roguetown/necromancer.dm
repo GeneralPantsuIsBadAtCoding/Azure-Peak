@@ -165,14 +165,36 @@
 	return FALSE
 
 
+#define ZIZOFIRE_FILTER "zizo_fireimmunity"
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff
 	name = "Progressive Rigor"
-	desc = "Place a ward upon any undead within 3 tiles that heals them and applies battle-enhancing magycks. Powerful, but costly, and it takes a long time to prepare again.."
+	desc = "Place a ward upon any undead within 3 tiles that heals them, applies battle-enhancing magycks, and makes them immune to flames. Powerful, but it takes a long time to prepare again."
 
-/datum/status_effect/buff/fire_immunity/on_apply()
+
+/datum/status_effect/buff/fire_immunity_zizo
+	id = "fireimmunezizo"
+	alert_type = /atom/movable/screen/alertstatus/status_effect/zizo_fireimmune
+	duration = 2 MINUTES
+	var/outline_colour = "#c23d09" //same as dragonhide but nobody is wearing dragonhide and this at the same time and it's good for visual clarity!
+
+/atom/movable/screen/alertstatus/status_effect/zizo_fireimmune
+	name = "Fire Immunity"
+	desc = "My Lady grants me immunity to flames."
+
+/datum/status_effect/buff/fire_immunity_zizo/on_apply()
 	.=..()
+
+/*	var/filter = owner.get_filter(ZIZOFIRE_FILTER)
+	if (!filter)
+		owner.add_filter(ZIZOFIRE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+	to_chat(owner, span_warning("My limbs move with uncanny swiftness."))*/
+
 	ADD_TRAIT(owner, TRAIT_NOFIRE, TRAIT_GENERIC)
+
+	var/filter = owner.get_filter(ZIZOFIRE_FILTER)
+	if (!filter)
+		owner.add_filter(ZIZOFIRE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
 
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
