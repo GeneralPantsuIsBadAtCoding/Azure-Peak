@@ -99,22 +99,23 @@
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd","Greataxe")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Warhammer & Shield")
-			beltr = /obj/item/rogueweapon/mace/warhammer
-			backl = /obj/item/rogueweapon/shield/iron
-		if("Axe & Shield")
-			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			backl = /obj/item/rogueweapon/shield/iron
-		if("Halberd")
-			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Greataxe")
-			r_hand = /obj/item/rogueweapon/greataxe
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
+	if(H.mind)
+		var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd","Greataxe")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Warhammer & Shield")
+				beltr = /obj/item/rogueweapon/mace/warhammer
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Axe & Shield")
+				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Greataxe")
+				r_hand = /obj/item/rogueweapon/greataxe
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
@@ -124,41 +125,42 @@
 		)
 	H.verbs |= /mob/proc/haltyell
 
-	var/helmets = list(
-	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
-	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
-	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
-	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
-	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
-	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
-	"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
+	if(H.mind)
+		var/helmets = list(
+		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+		"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+		"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
+		"None"
+		)
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
-	var/armors = list(
-		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-		"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
-		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	armor = armors[armorchoice]
+		var/armors = list(
+			"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+			"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
+			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+		)
+		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		armor = armors[armorchoice]
 
-	var/arms = list(
-		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-	)
-	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
-	wrists = arms[armschoice]
+		var/arms = list(
+			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+		)
+		var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+		wrists = arms[armschoice]
 
-	var/chausses = list(
-		"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
-		"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
-	)
-	var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
-	pants = chausses[chausseschoice]
+		var/chausses = list(
+			"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
+			"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
+		)
+		var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
+		pants = chausses[chausseschoice]
 
 // Ranged weapons and daggers on the side - lighter armor, but fleet!
 /datum/advclass/manorguard/skirmisher
@@ -200,61 +202,62 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Crossbow","Bow","Sling")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	var/armor_options = list("Light Armor", "Medium Armor")
-	var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armor_options
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Crossbow")
-			beltr = /obj/item/quiver/bolts
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-		if("Bow") // They can head down to the armory to sideshift into one of the other bows.
-			beltr = /obj/item/quiver/arrows
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-		if("Sling")
-			beltr = /obj/item/quiver/sling/iron
-			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
+	if(H.mind)
+		var/weapons = list("Crossbow","Bow","Sling")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/armor_options = list("Light Armor", "Medium Armor")
+		var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armor_options
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Crossbow")
+				beltr = /obj/item/quiver/bolts
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			if("Bow") // They can head down to the armory to sideshift into one of the other bows.
+				beltr = /obj/item/quiver/arrows
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			if("Sling")
+				beltr = /obj/item/quiver/sling/iron
+				r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
 
-	switch(armor_choice)
-		if("Light Armor")
-			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-		if("Medium Armor")
-			pants = /obj/item/clothing/under/roguetown/chainlegs
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
-			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+		switch(armor_choice)
+			if("Light Armor")
+				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			if("Medium Armor")
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
-	var/arms = list(
-		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-	)
-	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
-	wrists = arms[armschoice]
-
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/guardcastle = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		var/arms = list(
+			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
 		)
-	H.verbs |= /mob/proc/haltyell
+		var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+		wrists = arms[armschoice]
 
-	var/helmets = list(
-	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
-	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
-	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
-	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
-	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
-	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
-	"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
+		backpack_contents = list(
+			/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+			/obj/item/rope/chain = 1,
+			/obj/item/storage/keyring/guardcastle = 1,
+			/obj/item/rogueweapon/scabbard/sheath = 1,
+			/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+			)
+		H.verbs |= /mob/proc/haltyell
+
+		var/helmets = list(
+		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+		"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+		"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
+		"None"
+		)
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
 		
 
@@ -301,59 +304,60 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Bardiche","Sword & Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Bardiche")
-			r_hand = /obj/item/rogueweapon/halberd/bardiche
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Sword & Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/sabre
-			backl = /obj/item/rogueweapon/shield/wood
-	
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/guardcastle = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+	if(H.mind)
+		var/weapons = list("Bardiche","Sword & Shield")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Bardiche")
+				r_hand = /obj/item/rogueweapon/halberd/bardiche
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Sword & Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/sabre
+				backl = /obj/item/rogueweapon/shield/wood
+		
+		backpack_contents = list(
+			/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+			/obj/item/rope/chain = 1,
+			/obj/item/storage/keyring/guardcastle = 1,
+			/obj/item/rogueweapon/scabbard/sheath = 1,
+			/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+			)
+		H.verbs |= /mob/proc/haltyell
+
+		var/helmets = list(
+		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+		"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+		"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
+		"None"
 		)
-	H.verbs |= /mob/proc/haltyell
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
-	var/helmets = list(
-	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
-	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
-	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
-	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
-	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
-	"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
-	"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
+		var/armors = list(
+			"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+			"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
+			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+		)
+		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		armor = armors[armorchoice]
 
-	var/armors = list(
-		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-		"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
-		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	armor = armors[armorchoice]
+		var/arms = list(
+			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
+			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
+			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
+		)
+		var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
+		wrists = arms[armschoice]
 
-	var/arms = list(
-		"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-		"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-		"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-	)
-	var/armschoice = input("Choose your arm protection.", "READY THYSELF") as anything in arms
-	wrists = arms[armschoice]
-
-	var/chausses = list(
-		"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
-		"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
-	)
-	var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
-	pants = chausses[chausseschoice]
+		var/chausses = list(
+			"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
+			"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
+		)
+		var/chausseschoice = input("Choose your chausses.", "READY THYSELF") as anything in chausses
+		pants = chausses[chausseschoice]

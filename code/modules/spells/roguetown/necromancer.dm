@@ -66,7 +66,7 @@
 
 /obj/effect/proc_holder/spell/invoked/raise_lesser_undead
 	name = "Raise Lesser Undead"
-	desc = "Raises an undead skeleton."
+	desc = "Raises an undead skeleton. These are mindless and of inferior intellect and durability."
 	clothes_req = FALSE
 	overlay_state = "animate"
 	range = 7

@@ -37,18 +37,19 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
-	var/classes = list("The Watchman", "The Gadgeteer", "I AM JUSTICE INCARNATE!!!")
-	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
-	switch(classchoice)
-		if("The Watchman") //Face-to-face CQC. No crit resist. Pure aura. Rorschach. 
-			H.set_blindness(0)
-			watchman_equip(H)
-		if("The Gadgeteer") //Make gadgets, be precise and smart. Think ahead before you start swinging. Nite Owl. 
-			H.set_blindness(0)
-			owl_equip(H)
-		if("I AM JUSTICE INCARNATE!!!") //THROW SHIT AT PEOPLE. RANDOM BULLSHIT GO!!!! MOON KNIGHT. 
-			H.set_blindness(0)
-			bullshit_equip(H)
+	if(H.mind)
+		var/classes = list("The Watchman", "The Gadgeteer", "I AM JUSTICE INCARNATE!!!")
+		var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
+		switch(classchoice)
+			if("The Watchman") //Face-to-face CQC. No crit resist. Pure aura. Rorschach. 
+				H.set_blindness(0)
+				watchman_equip(H)
+			if("The Gadgeteer") //Make gadgets, be precise and smart. Think ahead before you start swinging. Nite Owl. 
+				H.set_blindness(0)
+				owl_equip(H)
+			if("I AM JUSTICE INCARNATE!!!") //THROW SHIT AT PEOPLE. RANDOM BULLSHIT GO!!!! MOON KNIGHT. 
+				H.set_blindness(0)
+				bullshit_equip(H)
 
 /datum/outfit/job/roguetown/wretch/vigilante/proc/watchman_equip(mob/living/carbon/human/H)
 	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE) //No civilized barbarian. Sorry chud. Go play Berserker if you want that. 

@@ -52,20 +52,21 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor
 		)
 	var/weapons = list("Heavy Mace","Shamshir and Shield","Spear and Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Heavy Mace")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-			backl = /obj/item/rogueweapon/mace/goden
-		if("Shamshir and Shield")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-			backl = /obj/item/rogueweapon/shield/tower/raneshen
-		if("Spear and Shield")
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-			r_hand = /obj/item/rogueweapon/spear
-			backl = /obj/item/rogueweapon/shield/tower/raneshen
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Heavy Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+				backl = /obj/item/rogueweapon/mace/goden
+			if("Shamshir and Shield")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+				backl = /obj/item/rogueweapon/shield/tower/raneshen
+			if("Spear and Shield")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/spear
+				backl = /obj/item/rogueweapon/shield/tower/raneshen
 
 	shoes = /obj/item/clothing/shoes/roguetown/shalal
 	belt = /obj/item/storage/belt/rogue/leather/shalal
@@ -124,23 +125,24 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor
 		)
 	var/weapons = list("Shamshir and Javelin","Whips and Knives", "Recurve Bow")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Shamshir and Javelin")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
-			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-			backl = /obj/item/quiver/javelin/iron
-		if("Whips and Knives")	///They DO enslave people after all
-			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
-			r_hand = /obj/item/rogueweapon/whip
-			l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
-			backl = /obj/item/rogueweapon/scabbard/sheath
-		if("Recurve Bow")
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_EXPERT, TRUE)
-			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			backl = /obj/item/quiver/arrows
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Shamshir and Javelin")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+				backl = /obj/item/quiver/javelin/iron
+			if("Whips and Knives")	///They DO enslave people after all
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+				r_hand = /obj/item/rogueweapon/whip
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				backl = /obj/item/rogueweapon/scabbard/sheath
+			if("Recurve Bow")
+				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_EXPERT, TRUE)
+				r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+				backl = /obj/item/quiver/arrows
 	shoes = /obj/item/clothing/shoes/roguetown/shalal
 	belt = /obj/item/storage/belt/rogue/leather/shalal
 	beltl = /obj/item/rogueweapon/scabbard/sword

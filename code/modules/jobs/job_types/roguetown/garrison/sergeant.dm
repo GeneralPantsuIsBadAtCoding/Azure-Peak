@@ -113,34 +113,35 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.adjust_blindness(-3)
-	var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
-			backl = /obj/item/rogueweapon/scabbard/sword
-			l_hand = /obj/item/rogueweapon/sword/long/rhomphaia
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
-			beltr = /obj/item/rogueweapon/flail/sflail
-			backl = /obj/item/rogueweapon/shield/tower
-		if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
-			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
-			beltr = /obj/item/quiver/bolts
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			r_hand = /obj/item/rogueweapon/sword/sabre
-			l_hand = /obj/item/rogueweapon/scabbard/sword
+	if(H.mind)
+		var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
+				backl = /obj/item/rogueweapon/scabbard/sword
+				l_hand = /obj/item/rogueweapon/sword/long/rhomphaia
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
+				beltr = /obj/item/rogueweapon/flail/sflail
+				backl = /obj/item/rogueweapon/shield/tower
+			if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
+				r_hand = /obj/item/rogueweapon/halberd
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
+				beltr = /obj/item/quiver/bolts
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				r_hand = /obj/item/rogueweapon/sword/sabre
+				l_hand = /obj/item/rogueweapon/scabbard/sword
 
-	var/armors = list(
-		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
-		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	armor = armors[armorchoice]
+		var/armors = list(
+			"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+		)
+		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		armor = armors[armorchoice]
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""

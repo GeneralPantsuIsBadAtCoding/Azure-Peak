@@ -55,15 +55,16 @@
 	id = /obj/item/mattcoin
 	H.adjust_blindness(-3)
 	var/weapons = list("Battleaxe & Cudgel","Flail & Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Battleaxe & Cudgel") //one weapon to hurt people one weapon to kill people
-			backl= /obj/item/rogueweapon/stoneaxe/battle
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Flail & Shield") //plate users beware, you're in for a scare!
-			backl= /obj/item/rogueweapon/shield/wood
-			beltr = /obj/item/rogueweapon/flail
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Battleaxe & Cudgel") //one weapon to hurt people one weapon to kill people
+				backl= /obj/item/rogueweapon/stoneaxe/battle
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if("Flail & Shield") //plate users beware, you're in for a scare!
+				backl= /obj/item/rogueweapon/shield/wood
+				beltr = /obj/item/rogueweapon/flail
 
 	if(!istype(H.patron, /datum/patron/inhumen/matthios))
 		var/inputty = input(H, "Would you like to change your patron to Matthios?", "The Transactor calls", "No") as anything in list("Yes", "No")

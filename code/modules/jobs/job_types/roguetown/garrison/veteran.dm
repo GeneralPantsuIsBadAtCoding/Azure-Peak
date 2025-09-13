@@ -240,24 +240,25 @@
 	H.verbs |= /mob/proc/haltyell
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Sword + Recurve Bow")
-			r_hand = /obj/item/rogueweapon/sword/long
-			beltl = /obj/item/quiver/arrows
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+	if(H.mind)
+		var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Sword + Recurve Bow")
+				r_hand = /obj/item/rogueweapon/sword/long
+				beltl = /obj/item/quiver/arrows
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 
-		if("Axe + Crossbow")
-			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			beltl = /obj/item/quiver/bolts
+			if("Axe + Crossbow")
+				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				beltl = /obj/item/quiver/bolts
 
-		if ("Spear + Shield")
-			r_hand = /obj/item/rogueweapon/spear
-			backl = /obj/item/rogueweapon/shield/tower/metal
+			if ("Spear + Shield")
+				r_hand = /obj/item/rogueweapon/spear
+				backl = /obj/item/rogueweapon/shield/tower/metal
 
 /datum/advclass/veteran/merc
 	name = "Retired Mercenary"
@@ -328,19 +329,20 @@
 		H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 4, TRUE) // two handed weapons require a LOT of stamina.
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Zweihander","Halberd")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Zweihander")
-			r_hand = /obj/item/rogueweapon/greatsword/grenz
-			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Halberd")
-			r_hand = /obj/item/rogueweapon/halberd
-			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.
-			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	if(H.mind)
+		var/weapons = list("Zweihander","Halberd")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Zweihander")
+				r_hand = /obj/item/rogueweapon/greatsword/grenz
+				H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+				H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.
+				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 
 /datum/advclass/veteran/scout
 	name = "Former Scout"

@@ -40,23 +40,24 @@
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
 	var/classes = list("Swordsman","Macebearer","Flailman", "Foot Lancer")
-	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
-	H.set_blindness(0)
-	to_chat(H, span_warning("You are a Knight of Otava, well experienced in the use of your chosen arms."))
-	switch(classchoice)
-		if("Swordsman")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-			beltl = /obj/item/rogueweapon/scabbard/sword
-			l_hand = /obj/item/rogueweapon/sword/short/falchion
-		if("Macebearer")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-			beltl = /obj/item/rogueweapon/mace/steel/morningstar
-		if("Flailman")
-			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
-			beltl = /obj/item/rogueweapon/flail/sflail
-		if("Foot Lancer")
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-			r_hand = /obj/item/rogueweapon/spear/lance
+	if(H.mind)
+		var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
+		H.set_blindness(0)
+		to_chat(H, span_warning("You are a Knight of Otava, well experienced in the use of your chosen arms."))
+		switch(classchoice)
+			if("Swordsman")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+				beltl = /obj/item/rogueweapon/scabbard/sword
+				l_hand = /obj/item/rogueweapon/sword/short/falchion
+			if("Macebearer")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+				beltl = /obj/item/rogueweapon/mace/steel/morningstar
+			if("Flailman")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+				beltl = /obj/item/rogueweapon/flail/sflail
+			if("Foot Lancer")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/spear/lance
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
