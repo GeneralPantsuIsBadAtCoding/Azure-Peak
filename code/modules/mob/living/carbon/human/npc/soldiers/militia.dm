@@ -71,7 +71,7 @@
 	. = ..() */
 
 /datum/outfit/job/roguetown/human/species/human/northern/militia/pre_equip(mob/living/carbon/human/H)
-	if(H.faction && "viking" in H.faction)
+	if(H.faction && ("viking" in H.faction))
 		cloak = /obj/item/clothing/cloak/stabard/dungeon
 	else
 		cloak = /obj/item/clothing/cloak/stabard/guard

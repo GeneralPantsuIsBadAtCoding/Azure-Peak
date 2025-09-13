@@ -1,13 +1,13 @@
-import { useBackend, useSharedState } from '../backend';
-import { Window } from '../layouts';
+import { useState } from 'react';
 import {
   Button,
-  LabeledList,
   Collapsible,
   Flex,
-  Input,
+  LabeledList,
 } from 'tgui-core/components';
-import { useState, useEffect} from 'react';
+
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
 export const MiaCraft = (props, context) => {
   const { act, data } = useBackend();
