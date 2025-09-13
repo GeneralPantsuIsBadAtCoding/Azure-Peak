@@ -7,6 +7,8 @@
 		if(1)
 			cloak = /obj/item/clothing/cloak/stabard/bog
 		if(2)
+			cloak = /obj/item/clothing/cloak/stabard/dungeon
+		if(3)
 			cloak = /obj/item/clothing/suit/roguetown/armor/longcoat/brown
 
 /datum/outfit/job/roguetown/human/northern/bog_deserters/proc/add_random_deserter_weapon(mob/living/carbon/human/H)

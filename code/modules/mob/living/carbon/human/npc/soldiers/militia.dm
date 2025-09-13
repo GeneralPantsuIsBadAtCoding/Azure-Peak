@@ -11,16 +11,6 @@
 	possible_rmb_intents = list()
 	var/is_silent = TRUE /// Determines whether or not we will scream our funny lines at people.
 
-
-/mob/living/carbon/human/species/human/northern/militia/ambush
-
-	wander = TRUE
-
-/mob/living/carbon/human/species/human/northern/militia/guard //variant that doesn't wander, if you want to place them as set dressing. will aggro enemies and animals
-	wander = FALSE
-
-
-	
 /* /mob/living/carbon/human/species/human/northern/militia/retaliate(mob/living/L)
 	var/newtarg = target
 	.=..()
@@ -81,7 +71,10 @@
 	. = ..() */
 
 /datum/outfit/job/roguetown/human/species/human/northern/militia/pre_equip(mob/living/carbon/human/H)
-	cloak = /obj/item/clothing/cloak/stabard/guard
+	if(H.faction && "viking" in H.faction)
+		cloak = /obj/item/clothing/cloak/stabard/dungeon
+	else
+		cloak = /obj/item/clothing/cloak/stabard/guard
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	if(prob(50))
@@ -135,3 +128,12 @@
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+
+/mob/living/carbon/human/species/human/northern/militia/ambush
+	wander = TRUE
+
+/mob/living/carbon/human/species/human/northern/militia/guard //variant that doesn't wander, if you want to place them as set dressing. will aggro enemies and animals
+	wander = FALSE
+
+/mob/living/carbon/human/species/human/northern/militia/deserter // Bad deserter, trash mob
+	faction = list("viking", "station")
