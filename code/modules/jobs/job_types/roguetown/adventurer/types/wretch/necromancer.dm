@@ -15,7 +15,7 @@
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 1
 	)
-	subclass_spellpoints = 18
+	subclass_spellpoints = 12
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
@@ -60,6 +60,8 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead_formation/necromancer)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead_guard)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/tame_undead)
 		wretch_select_bounty(H)

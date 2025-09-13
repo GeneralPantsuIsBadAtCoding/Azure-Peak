@@ -131,7 +131,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead_formation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/bloodlightning)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
@@ -141,6 +141,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/lich_announce)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/tame_undead)
 	H.ambushable = FALSE
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "LICH"), 5 SECONDS)
