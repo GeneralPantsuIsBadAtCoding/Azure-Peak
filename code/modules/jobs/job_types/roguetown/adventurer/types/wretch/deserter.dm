@@ -44,69 +44,70 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/charge)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/brotherhood)
 
-	var/weapons = list(
-		"Estoc",
-		"Mace + Shield",
-		"Flail + Shield",
-		"Longsword + Shield", 
-		"Lucerne",
-		"Battle Axe",
-		"Lance + Kite Shield",
-		"Samshir",
-	)
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Estoc")
-			r_hand = /obj/item/rogueweapon/estoc
-			backr = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Longsword + Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/long
-			backr = /obj/item/rogueweapon/shield/tower/metal
-		if("Mace + Shield")
-			beltr = /obj/item/rogueweapon/mace/steel
-			backr = /obj/item/rogueweapon/shield/tower/metal
-		if("Flail + Shield")
-			beltr = /obj/item/rogueweapon/flail/sflail
-			backr = /obj/item/rogueweapon/shield/tower/metal
-		if("Lucerne")
-			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-			backr = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Battle Axe")
-			backr = /obj/item/rogueweapon/stoneaxe/battle
-		if("Lance + Kite Shield")
-			r_hand = /obj/item/rogueweapon/spear/lance
-			backr = /obj/item/rogueweapon/shield/tower/metal
-		if("Samshir")
-			r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-	var/helmets = list(
-		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
-		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
-		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
-		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
-		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-		"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
-		"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
-		"Hounskull Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
-		"Etruscan Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
-		"Slitted Kettle"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
-		"Kulah Khud"	= /obj/item/clothing/head/roguetown/helmet/sallet/raneshen,
-		"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
+		var/weapons = list(
+			"Estoc",
+			"Mace + Shield",
+			"Flail + Shield",
+			"Longsword + Shield", 
+			"Lucerne",
+			"Battle Axe",
+			"Lance + Kite Shield",
+			"Samshir",
+		)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Estoc")
+				r_hand = /obj/item/rogueweapon/estoc
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Longsword + Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long
+				backr = /obj/item/rogueweapon/shield/tower/metal
+			if("Mace + Shield")
+				beltr = /obj/item/rogueweapon/mace/steel
+				backr = /obj/item/rogueweapon/shield/tower/metal
+			if("Flail + Shield")
+				beltr = /obj/item/rogueweapon/flail/sflail
+				backr = /obj/item/rogueweapon/shield/tower/metal
+			if("Lucerne")
+				r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Battle Axe")
+				backr = /obj/item/rogueweapon/stoneaxe/battle
+			if("Lance + Kite Shield")
+				r_hand = /obj/item/rogueweapon/spear/lance
+				backr = /obj/item/rogueweapon/shield/tower/metal
+			if("Samshir")
+				r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
+		var/helmets = list(
+			"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+			"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+			"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+			"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+			"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+			"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+			"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+			"Hounskull Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+			"Etruscan Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+			"Slitted Kettle"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
+			"Kulah Khud"	= /obj/item/clothing/head/roguetown/helmet/sallet/raneshen,
+			"None"
+		)
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
-	var/armors = list(
-		"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
-		"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
-		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,				
-		"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
-		"Scalemail"		= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	armor = armors[armorchoice]
+		var/armors = list(
+			"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+			"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,				
+			"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
+			"Scalemail"		= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+		)
+		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		armor = armors[armorchoice]
+		wretch_select_bounty(H)
 	gloves = /obj/item/clothing/gloves/roguetown/plate 
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/bevor
@@ -125,7 +126,6 @@
 		)
 
 
-	wretch_select_bounty(H)
 
 /datum/advclass/wretch/deserter/maa
 	name = "Disgraced Man at Arms"
@@ -162,29 +162,30 @@
 	)
 /datum/outfit/job/roguetown/wretch/desertermaa/pre_equip(mob/living/carbon/human/H)
 	..()
-	var/weapons = list("Warhammer & Shield","Sabre & Shield","Axe & Shield","Billhook","Greataxe","Halberd",)
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Warhammer & Shield")
-			beltr = /obj/item/rogueweapon/mace/warhammer
-			backl = /obj/item/rogueweapon/shield/iron
-		if("Sabre & Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/sabre
-			backl = /obj/item/rogueweapon/shield/wood
-		if("Axe & Shield")
-			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			backl = /obj/item/rogueweapon/shield/iron
-		if("Billhook")
-			r_hand = /obj/item/rogueweapon/spear/billhook 
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Halberd")
-			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/rogueweapon/scabbard/gwstrap	
-		if("Greataxe")
-			r_hand = /obj/item/rogueweapon/greataxe
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
+	if(H.mind)
+		var/weapons = list("Warhammer & Shield","Sabre & Shield","Axe & Shield","Billhook","Greataxe","Halberd",)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Warhammer & Shield")
+				beltr = /obj/item/rogueweapon/mace/warhammer
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Sabre & Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/sabre
+				backl = /obj/item/rogueweapon/shield/wood
+			if("Axe & Shield")
+				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Billhook")
+				r_hand = /obj/item/rogueweapon/spear/billhook 
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+				backl = /obj/item/rogueweapon/scabbard/gwstrap	
+			if("Greataxe")
+				r_hand = /obj/item/rogueweapon/greataxe
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
 	H.verbs |= list(/mob/living/carbon/human/mind/proc/setorderswretch)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/retreat)
@@ -192,7 +193,29 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/brotherhood)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/charge)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/brotherhood)
+		var/helmets = list(
+		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+		"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+		"None"
+		)
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
+		var/masks = list(
+		"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
+		"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
+		"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
+		"None"
+		)
+		var/maskchoice = input("Choose your Mask.", "MASK MASK MASK") as anything in masks // Run from it. MASK. MASK. MASK.
+		if(maskchoice != "None")
+			mask = masks[maskchoice]
+		
+		wretch_select_bounty(H)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk	
@@ -207,31 +230,6 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 
 	backpack_contents = list(/obj/item/natural/cloth = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
-	var/helmets = list(
-	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
-	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
-	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
-	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
-	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
-	"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
-
-	var/masks = list(
-	"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
-	"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
-	"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
-	"None"
-	)
-	var/maskchoice = input("Choose your Mask.", "MASK MASK MASK") as anything in masks // Run from it. MASK. MASK. MASK.
-	if(maskchoice != "None")
-		mask = masks[maskchoice]	
-
-
-
-	wretch_select_bounty(H)
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""

@@ -305,6 +305,10 @@
 	zone_select.hud = src
 	static_inventory += zone_select
 
+	fov_blocker = new /atom/movable/screen/fov_blocker()
+	fov_blocker.hud = src
+	static_inventory += fov_blocker
+
 	zone_select.update_icon()
 
 	stamina = new /atom/movable/screen/stamina()

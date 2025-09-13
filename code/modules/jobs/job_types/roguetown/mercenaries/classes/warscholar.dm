@@ -52,8 +52,6 @@
 		"MAROON" = "#5F1F34",
 		"BLACK" = "#242526"
 	))
-	detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
-	detailcolor = naledicolors[detailcolor]
 	to_chat(H, span_warning("You are a Naledi Hierophant, a magician who studied under cloistered sages, well-versed in all manners of arcyne. You prioritize enhancing your teammates and distracting foes while staying in the backline."))
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 5, TRUE)
@@ -62,6 +60,8 @@
 		H.change_stat(STATKEY_PER, 1)
 		H.mind?.adjust_spellpoints(6)
 	if(H.mind)
+		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
+		detailcolor = naledicolors[detailcolor]
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/giants_strength)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/longstrider)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
@@ -138,10 +138,10 @@
 		"MAROON" = "#5F1F34",
 		"BLACK" = "#242526"
 	))
-	detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
-	detailcolor = naledicolors[detailcolor]
 	to_chat(H, span_warning("You are a Naledi Pontifex, a warrior trained into a hybridized style of movement-controlling magic and hand-to-hand combat. Though your abilities in magical fields are lacking, you are far more dangerous than other magi in a straight fight. You manifest your calm, practiced skill into a killing intent that takes the shape of an arcyne blade."))
 	if(H.mind)
+		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
+		detailcolor = naledicolors[detailcolor]
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // In an attempt to make them less Possibly Wildly OP, they can't freely pick their spells. Casts at apprentice level, but doesn't get the spellbuy points it'd provide.
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/ensnare)
@@ -215,8 +215,6 @@
 		"MAROON" = "#5F1F34",
 		"BLACK" = "#242526"
 	))
-	detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
-	detailcolor = naledicolors[detailcolor]
 	to_chat(H, span_warning("You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, a combination of the saint's power may be similar enough."))
 	r_hand = /obj/item/rogueweapon/woodstaff/naledi
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
@@ -246,6 +244,8 @@
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 	if(H.mind)
+		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
+		detailcolor = naledicolors[detailcolor]
 		H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/lesser_heal)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)

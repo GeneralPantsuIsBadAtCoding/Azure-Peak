@@ -773,6 +773,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	src << browse(null, "window=mob_occupation")
 	src << browse(null, "window=latechoices") //closes late job selection
 	src << browse(null, "window=migration") // Closes migrant menu
+	src << browse(null, "window=familiar_prefs") // Closes familiar prefs menu
 
 	SStriumphs.remove_triumph_buy_menu(client)
 

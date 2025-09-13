@@ -100,29 +100,30 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	var/weapons = list("Longsword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Longsword")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/long
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-		if("Falchion & Wooden Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backr = /obj/item/rogueweapon/shield/wood
-			r_hand = /obj/item/rogueweapon/sword/short/falchion
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
-		if("Messer & Wooden Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backr = /obj/item/rogueweapon/shield/wood
-			r_hand = /obj/item/rogueweapon/sword/short/messer/iron
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
-		if("Hwando")
-			r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			armor = /obj/item/clothing/suit/roguetown/armor/basiceast
+	if(H.mind)
+		var/weapons = list("Longsword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Longsword")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+			if("Falchion & Wooden Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backr = /obj/item/rogueweapon/shield/wood
+				r_hand = /obj/item/rogueweapon/sword/short/falchion
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
+			if("Messer & Wooden Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backr = /obj/item/rogueweapon/shield/wood
+				r_hand = /obj/item/rogueweapon/sword/short/messer/iron
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
+			if("Hwando")
+				r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				armor = /obj/item/clothing/suit/roguetown/armor/basiceast
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -174,21 +175,22 @@
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
+	if(H.mind)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals

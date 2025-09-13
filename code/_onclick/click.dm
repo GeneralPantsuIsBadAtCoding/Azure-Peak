@@ -917,9 +917,6 @@
 	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
 	return TRUE
 
-/mob/living/carbon/human/species/skeleton/try_special_attack(atom/A, list/modifiers)
-	return FALSE
-
 /// Used for "directional" style rmb attacks on a turf, prioritizing standing targets
 /mob/living/proc/get_foe_from_turf(turf/T)
 	if(!istype(T))

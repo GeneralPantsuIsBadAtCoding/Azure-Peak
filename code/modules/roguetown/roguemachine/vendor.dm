@@ -301,3 +301,15 @@
 		held_items[P]["NAME"] = P.name
 		held_items[P]["PRICE"] = 10
 	update_icon()
+
+/obj/structure/roguemachine/vendor/stablemaster
+	keycontrol = "stablemaster"
+
+/obj/structure/roguemachine/vendor/stablemaster/Initialize()
+	. = ..()
+	for(var/X in list(/obj/item/roguekey/apartments/stablemaster_1,/obj/item/roguekey/apartments/stablemaster_2,/obj/item/roguekey/apartments/stablemaster_3,/obj/item/roguekey/apartments/stablemaster_4,/obj/item/roguekey/apartments/stablemaster_5))
+		var/obj/P = new X(src)
+		held_items[P] = list()
+		held_items[P]["NAME"] = P.name
+		held_items[P]["PRICE"] = 30
+	update_icon()

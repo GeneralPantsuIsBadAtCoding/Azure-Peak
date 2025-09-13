@@ -38,15 +38,16 @@
 	to_chat(H, span_warning("You are a Doppelsoldner - \"Double-pay Mercenary\" - an experienced frontline swordsman trained by the Zenitstadt fencing guild."))
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
-	var/weapons = list("Zweihander", "Kriegmesser & Buckler")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Zweihander")
-			r_hand = /obj/item/rogueweapon/greatsword/grenz
-		if("Kriegmesser & Buckler") // Buckler cuz they have no shield skill.
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
-			l_hand = /obj/item/rogueweapon/shield/buckler
+	if(H.mind)
+		var/weapons = list("Zweihander", "Kriegmesser & Buckler")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Zweihander")
+				r_hand = /obj/item/rogueweapon/greatsword/grenz
+			if("Kriegmesser & Buckler") // Buckler cuz they have no shield skill.
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
+				l_hand = /obj/item/rogueweapon/shield/buckler
 	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
@@ -99,13 +100,14 @@
 	to_chat(H, span_warning("You're an experienced soldier skilled in the use of polearms and axes. Your equals make up the bulk of the mercenary guild's forces."))
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
-	var/weapons = list("Halberd", "Partizan")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Halberd")
-			r_hand = /obj/item/rogueweapon/halberd
-		if("Partizan")
-			r_hand = /obj/item/rogueweapon/spear/partizan
+	if(H.mind)
+		var/weapons = list("Halberd", "Partizan")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+			if("Partizan")
+				r_hand = /obj/item/rogueweapon/spear/partizan
 	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
@@ -164,13 +166,14 @@
 	beltr = /obj/item/quiver/bolts
 	beltl = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-	var/armor_options = list("Light Brigandine", "Studded Leather Vest")
-	var/armor_choice = input("Choose your armor.", "DRESS UP") as anything in armor_options
-	switch(armor_choice)
-		if("Light Brigandine")
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light	// find a smithy to fix it
-		if("Studded Leather Vest")
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		// or maintain it yourself!
+	if(H.mind)
+		var/armor_options = list("Light Brigandine", "Studded Leather Vest")
+		var/armor_choice = input("Choose your armor.", "DRESS UP") as anything in armor_options
+		switch(armor_choice)
+			if("Light Brigandine")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light	// find a smithy to fix it
+			if("Studded Leather Vest")
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		// or maintain it yourself!
 	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather

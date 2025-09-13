@@ -31,7 +31,7 @@
 		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/advclass/mercenary/vaquero/equipme(mob/living/carbon/human/H)
+/datum/advclass/mercenary/vaquero/equipme(mob/living/carbon/human/H, dummy)
 	if(should_wear_femme_clothes(H))
 		horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled
 	return ..()
@@ -62,24 +62,25 @@
 					/obj/item/roguekey/mercenary = 1,
 					/obj/item/rogueweapon/scabbard/sheath = 1
 					)
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
-		if("Flute")
-			backr = /obj/item/rogue/instrument/flute
+	if(H.mind)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals
+			if("Flute")
+				backr = /obj/item/rogue/instrument/flute
 	H.merctype = 13

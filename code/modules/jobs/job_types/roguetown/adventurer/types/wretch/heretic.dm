@@ -36,22 +36,27 @@
 	to_chat(H, span_warning("You father your unholy cause through the most time-tested of ways: hard, heavy steel in both arms and armor."))
 	H.mind.current.faction += "[H.name]_faction"
 	H.set_blindness(0)
-	var/weapons = list("Longsword", "Mace", "Flail", "Axe")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Longsword")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/long
-		if("Mace")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT, TRUE)
-			beltr = /obj/item/rogueweapon/mace/steel
-		if("Flail")
-			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
-			beltr = /obj/item/rogueweapon/flail/sflail
-		if("Axe")
-			H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
-			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+	if(H.mind)
+		var/weapons = list("Longsword", "Mace", "Flail", "Axe")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Longsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long
+			if("Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT, TRUE)
+				beltr = /obj/item/rogueweapon/mace/steel
+			if("Flail")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
+				beltr = /obj/item/rogueweapon/flail/sflail
+			if("Axe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
+				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+		var/datum/devotion/C = new /datum/devotion(H, H.patron)
+		C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
+		wretch_select_bounty(H)
+
 	// You can convert those the church has shunned.
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
@@ -80,10 +85,6 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
-	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
-	wretch_select_bounty(H)
-
 /datum/outfit/job/roguetown/wretch/heretic/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	switch(H.patron?.type)
@@ -217,26 +218,30 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
 	H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
-	var/weapons = list("Rapier","Dagger", "Bow", "Crossbow")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Rapier")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
-			beltl = /obj/item/rogueweapon/scabbard/sword
-			l_hand = /obj/item/rogueweapon/sword/rapier
-		if("Dagger")
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
-			beltl = /obj/item/rogueweapon/scabbard/sheath
-			l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special
-		if("Bow")
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
-			beltl = /obj/item/quiver/arrows
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-		if("Crossbow")
-			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, TRUE) //have to specifically go into bows/crossbows unlike outlaw
-			beltr = /obj/item/quiver/bolts
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	if(H.mind)
+		var/weapons = list("Rapier","Dagger", "Bow", "Crossbow")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Rapier")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
+				beltl = /obj/item/rogueweapon/scabbard/sword
+				l_hand = /obj/item/rogueweapon/sword/rapier
+			if("Dagger")
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+				beltl = /obj/item/rogueweapon/scabbard/sheath
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special
+			if("Bow")
+				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltl = /obj/item/quiver/arrows
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			if("Crossbow")
+				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, TRUE) //have to specifically go into bows/crossbows unlike outlaw
+				beltr = /obj/item/quiver/bolts
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+		var/datum/devotion/C = new /datum/devotion(H, H.patron)
+		C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
+		wretch_select_bounty(H)
 
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
 		if(H.mind)
@@ -245,9 +250,6 @@
 			H.mind.current.faction += "[H.name]_faction"
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
-	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
-	wretch_select_bounty(H)
 
 /datum/outfit/job/roguetown/wretch/hereticspy/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
