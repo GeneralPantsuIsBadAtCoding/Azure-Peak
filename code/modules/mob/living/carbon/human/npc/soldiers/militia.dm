@@ -80,14 +80,23 @@
 	if(prob(50))
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/
 	if(prob(25))
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+		armor = /obj/item/clothing/suit/roguetown/armor/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	if(prob(50))
 		pants = /obj/item/clothing/under/roguetown/trou
-	if(prob(50))
-		head = /obj/item/clothing/head/roguetown/helmet/kettle
-	if(prob(30))
-		head = /obj/item/clothing/head/roguetown/helmet
+	// Helmet, or lackthereof
+	switch(rand(1, 7))
+		if(1)
+			head = /obj/item/clothing/head/roguetown/helmet/kettle/iron
+		if(2)
+			head = /obj/item/clothing/head/roguetown/helmet/sallet/iron
+		if(3)
+			head = /obj/item/clothing/head/roguetown/helmet/skullcap
+		if(4 to 6)
+			head = /obj/item/clothing/neck/roguetown/coif/heavypadding
+		if(7)
+			head = null
+	// Neck protection, if there's no coif on head
 	if(prob(50))
 		neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
@@ -99,17 +108,35 @@
 	H.STAWIL = 10
 	H.STAPER = 10
 	H.STAINT = 10
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/spear
-	else
-		r_hand = /obj/item/rogueweapon/spear/militia
-
-	if(prob(20))
-		r_hand = /obj/item/rogueweapon/sword/falchion/militia
-	if(prob(20))
-		r_hand = /obj/item/rogueweapon/pick/militia
-	if(prob(75))	
-		l_hand = /obj/item/rogueweapon/shield/wood
+	switch(rand(1, 11))
+		// Militia Weapon. Of course they spawn with it
+		if(1)
+			r_hand = /obj/item/rogueweapon/woodstaff/militia
+		if(2)
+			r_hand = /obj/item/rogueweapon/greataxe/militia
+		if(3)
+			r_hand = /obj/item/rogueweapon/spear/militia
+		if(4)
+			r_hand = /obj/item/rogueweapon/spear
+			l_hand = /obj/item/rogueweapon/shield/wood
+		if(5)
+			r_hand = /obj/item/rogueweapon/scythe
+		if(6)
+			r_hand = /obj/item/rogueweapon/pick/militia
+			l_hand = /obj/item/rogueweapon/shield/wood
+		if(7)
+			r_hand = /obj/item/rogueweapon/sword/falchion/militia
+			l_hand = /obj/item/rogueweapon/shield/wood
+		if(8)
+			r_hand = /obj/item/rogueweapon/mace/cudgel
+			l_hand = /obj/item/rogueweapon/shield/wood
+		if(9)
+			r_hand = /obj/item/rogueweapon/mace/goden
+		if(10)
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
+			l_hand = /obj/item/rogueweapon/shield/wood
+		if(11)
+			r_hand = /obj/item/rogueweapon/flail/peasantwarflail
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	H.eye_color = pick("27becc", "35cc27", "000000")
 	H.hair_color = pick ("4f4f4f", "61310f", "faf6b9")
@@ -137,3 +164,8 @@
 
 /mob/living/carbon/human/species/human/northern/militia/deserter // Bad deserter, trash mob
 	faction = list("viking", "station")
+
+/mob/living/carbon/human/species/human/northern/militia/after_creation()
+	..()
+	var/obj/item/bodypart/head/head = get_bodypart(BODY_PART_HEAD)
+	head.sellprice = 20 // Gobbo sellprice
