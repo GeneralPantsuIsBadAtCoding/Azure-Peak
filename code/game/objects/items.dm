@@ -732,6 +732,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
 
+//pulled from Vanderlin
+// called just as an item is picked up (loc is not yet changed)
+/obj/item/proc/afterpickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	/* leaving this out since we don't use encumbrance here
+	if(isliving(user))
+		user:encumbrance_to_speed()
+	*/
+
+/obj/item/proc/afterdrop(mob/user)
+
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
 	return

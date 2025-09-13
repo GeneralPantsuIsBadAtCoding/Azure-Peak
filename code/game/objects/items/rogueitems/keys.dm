@@ -737,3 +737,14 @@
 				KE.name = src.holdname
 			to_chat(user, span_notice("You add [src] to [K]."))
 			qdel(src)
+	if(istype(K, /obj/structure/englauncher))
+		var/obj/structure/englauncher/KE = K
+		if(KE.keylock == TRUE)
+			to_chat(user, span_warning("[K] already has a lock."))
+		else
+			KE.keylock = TRUE
+			KE.lockhash = src.lockhash
+			if(src.holdname)
+				KE.name = src.holdname
+			to_chat(user, span_notice("You add [src] to [K]."))
+			qdel(src)	

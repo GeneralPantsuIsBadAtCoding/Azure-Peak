@@ -49,3 +49,7 @@
 		if(findtext("[key]", filter) || findtext("[value]", filter))
 			matches[key] = value
 	return matches
+
+//pulled in from Vanderlin
+/proc/return_typenames(type)
+	return splittext("[type]", "/")
