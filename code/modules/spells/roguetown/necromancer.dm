@@ -164,6 +164,9 @@
 		return TRUE
 	return FALSE
 
+
+#define ZIZOFIRE_FILTER "zizo_fireimmunity"
+
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff
 	name = "Progressive Rigor"
 	desc = "Place a ward upon any undead within 3 tiles that heals them, and then additionally makes them immune to flames for 2 minutes."
