@@ -169,7 +169,14 @@
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff
 	name = "Progressive Rigor"
-	desc = "Place a ward upon any undead within 3 tiles that heals them, applies battle-enhancing magycks, and makes them immune to flames. Powerful, but it takes a long time to prepare again."
+	desc = "Place a ward upon any undead within 3 tiles that heals them, and then additionally makes them immune to flames for 2 minutes."
+	overlay_state = "KCEHCTOOB" //heh
+	releasedrain = 30
+	chargetime = 30
+	chargedloop = /datum/looping_sound/invokegen
+	gesture_required = TRUE // Summon spell
+	associated_skill = /datum/skill/magic/arcane
+	recharge_time = 30 SECONDS
 
 
 /datum/status_effect/buff/fire_immunity_zizo
@@ -185,11 +192,6 @@
 /datum/status_effect/buff/fire_immunity_zizo/on_apply()
 	.=..()
 
-/*	var/filter = owner.get_filter(ZIZOFIRE_FILTER)
-	if (!filter)
-		owner.add_filter(ZIZOFIRE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("My limbs move with uncanny swiftness."))*/
-
 	ADD_TRAIT(owner, TRAIT_NOFIRE, TRAIT_GENERIC)
 
 	var/filter = owner.get_filter(ZIZOFIRE_FILTER)
@@ -199,7 +201,7 @@
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
 
-	user.visible_message("[user] mutters an arcyne incantation.")
+	user.visible_message("[user] mutters an ancient arcyne incantation.")
 
 	var/is_project_zomboid = FALSE
 	var/list/zizo_buff_party = list()
@@ -219,8 +221,7 @@
 			zizo_buff_party += L
 
 		if (L in zizo_buff_party)
-			L.apply_status_effect(/datum/status_effect/buff/fortitude/other)
-			L.apply_status_effect(/datum/status_effect/buff/giants_strength/other)
+			L.apply_status_effect(/datum/status_effect/buff/fire_immunity_zizo)
 			var/obj/item/bodypart/affecting = L.get_bodypart(check_zone(user.zone_selected))
 			if(affecting && (affecting.heal_damage(50, 50) || affecting.heal_wounds(50)))
 				L.update_damage_overlays()
