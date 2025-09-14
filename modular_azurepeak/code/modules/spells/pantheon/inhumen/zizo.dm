@@ -248,33 +248,3 @@
 		for(var/obj/O in M.contents)
 			O.extinguish()
 	return TRUE
-
-
-/obj/effect/proc_holder/spell/self/zizo_aoe_buff
-	name = "Progressive Rigor"
-	desc = "Place a ward upon any undead within 3 tiles that heals them, fortifies them, and renders them immune to flames. Powerful, but costly, and with a large ."
-
-
-/obj/effect/proc_holder/spell/self/zizo_aoe_buff/cast(list/targets, mob/user = usr)
-
-	user.visible_message("[user] mutters an arcyne incantation.")
-
-	var/is_project_zomboid = FALSE
-	var/list/zizo_buff_party = list()
-
-	for(var/mob/living/L in range(3, usr))
-
-		if (L.mind)
-			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser) //not really sure why but it got incredibly pissy when I started trying to combine these into one statement
-			if (V && !V.disguised)
-				is_project_zomboid = TRUE
-			if (L.mind.has_antag_datum(/datum/antagonist/zombie))
-				is_project_zomboid = TRUE
-			if (L.mind.special_role == "Vampire Lord")
-				is_project_zomboid = TRUE
-
-		if (L.mob_biotypes & MOB_UNDEAD || is_project_zomboid)
-			zizo_buff_party += L
-
-		if (L.in zizo_buff_party)
-			L.apply_status_effect(/datum/status_effect/buff/longstrider) //placeholder shut up
