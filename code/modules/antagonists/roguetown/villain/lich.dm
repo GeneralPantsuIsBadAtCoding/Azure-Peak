@@ -12,7 +12,7 @@
 	var/list/phylacteries = list()
 	var/out_of_lives = FALSE
 
-	var/traits_lich = list(
+	var/traits_lich = list(	
 		TRAIT_INFINITE_STAMINA,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
@@ -141,7 +141,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/lich_announce)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/zizo_aoe_buff)
 	H.ambushable = FALSE
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "LICH"), 5 SECONDS)
@@ -174,7 +174,7 @@
 
 ///Called post death to equip new body with armour and stats. Order of equipment matters
 /datum/antagonist/lich/proc/equip_and_traits()
-	var/mob/living/carbon/human/body = owner.current
+	var/mob/living/carbon/human/body = owner.current 
 	var/list/equipment_slots = list(
 		SLOT_PANTS,
 		SLOT_SHOES,
@@ -219,7 +219,7 @@
 /datum/antagonist/lich/proc/rise_anew()
 	if (!owner.current.mind)
 		CRASH("Lich: rise_anew called with no mind")
-
+	
 	var/mob/living/carbon/human/old_body = owner.current
 	var/turf/phylactery_turf = get_turf(old_body)
 	var/mob/living/carbon/human/new_body = new /mob/living/carbon/human/species/human/northern(phylactery_turf)
@@ -228,7 +228,7 @@
 
 	if (new_body.charflaw)
 		QDEL_NULL(new_body.charflaw)
-
+	
 	new_body.real_name = old_body.name
 	new_body.dna.real_name = old_body.real_name
 	new_body.mob_biotypes |= MOB_UNDEAD
@@ -238,7 +238,7 @@
 
 	for (var/obj/item/bodypart/body_part in new_body.bodyparts)
 		body_part.skeletonize(FALSE)
-
+		
 	replace_eyes(new_body)
 	set_stats()
 	skele_look()
@@ -273,12 +273,11 @@
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = -1) //start shaking
 	visible_message(span_warning("[src] begins to glow and shake violently!"))
-
+	
 	spawn(timer)
 		possessor.owner.current.forceMove(get_turf(src))
 		possessor.rise_anew()
 		qdel(src)
-
 
 /obj/effect/proc_holder/spell/invoked/raise_undead
 	name = "Raise Greater Undead"
@@ -357,7 +356,7 @@
 		return FALSE
 	playsound(get_turf(user), 'sound/magic/antimagic.ogg', 100)
 	user.visible_message(
-		span_danger("[user] begins to shake violently, a blindingly bright light beginning to emanate from them!"),
+		span_danger("[user] begins to shake violently, a blindingly bright light beginning to emanate from them!"), 
 		span_danger("Powerful energy begins to expand outwards from inside me!")
 	)
 
@@ -382,7 +381,6 @@
 	exp_flash = 2
 	exp_fire = 0
 
-
 /obj/effect/proc_holder/spell/self/lich_announce
 	name = "Command Will"
 	desc = "Send a booming message to the undead under your will."
@@ -391,7 +389,7 @@
 /obj/effect/proc_holder/spell/self/lich_announce/cast(list/targets, mob/user)
 	if(user.stat)
 		return FALSE
-
+	
 	var/calltext = input("Send Your Will To Your Undead", "UNDEAD ANNOUNCE") as text|null
 	if(!calltext)
 		return FALSE
@@ -399,3 +397,4 @@
 	priority_announce("[calltext]", title = "Your Lich King Commands", sound = 'sound/misc/deadbell.ogg', sender = user, receiver = /mob/living/carbon/human/species/skeleton)
 
 	..()
+
