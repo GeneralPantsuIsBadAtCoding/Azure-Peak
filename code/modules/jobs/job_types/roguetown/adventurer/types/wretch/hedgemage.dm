@@ -59,4 +59,5 @@
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/magic/arcane, SKILL_LEVEL_MASTER, TRUE)
 		H.mind?.adjust_spellpoints(6)
-	wretch_select_bounty(H)
+	if(H.mind)
+		wretch_select_bounty(H)

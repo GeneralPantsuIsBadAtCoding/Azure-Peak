@@ -51,13 +51,14 @@
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
-	var/weapons = list("Katar","Knuckle Dusters")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Katar")
-			backpack_contents += list(/obj/item/rogueweapon/katar = 1)
-		if("Knuckle Dusters")
-			backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
+	if(H.mind)
+		var/weapons = list("Katar","Knuckle Dusters")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Katar")
+				backpack_contents += list(/obj/item/rogueweapon/katar = 1)
+			if("Knuckle Dusters")
+				backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -177,13 +178,14 @@
 		if(/datum/patron/old_god)
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 			cloak = /obj/item/clothing/cloak/psydontabard
-			var/helmets = list("Armet","Bucket Helm")
-			var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
-			switch(helmet_choice)
-				if("Bucket Helm")
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
-				if("Armet")
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+			if(H.mind)
+				var/helmets = list("Armet","Bucket Helm")
+				var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
+				switch(helmet_choice)
+					if("Bucket Helm")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+					if("Armet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 		if(/datum/patron/divine/astrata)
 			cloak = /obj/item/clothing/cloak/templar/astrata
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -220,25 +222,26 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
-	var/weapons = list("Longsword","Mace","Flail")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Longsword")
-			if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-				beltr = /obj/item/rogueweapon/sword/long/oldpsysword
-			else
-				beltr = /obj/item/rogueweapon/sword/long
-			r_hand = /obj/item/rogueweapon/scabbard/sword
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
-		if("Mace")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
-			if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-				beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
-			else
-				beltr = /obj/item/rogueweapon/mace
-		if("Flail")
-			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
-			beltr = /obj/item/rogueweapon/flail
+	if(H.mind)
+		var/weapons = list("Longsword","Mace","Flail")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Longsword")
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					beltr = /obj/item/rogueweapon/sword/long/oldpsysword
+				else
+					beltr = /obj/item/rogueweapon/sword/long
+				r_hand = /obj/item/rogueweapon/scabbard/sword
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
+				else
+					beltr = /obj/item/rogueweapon/mace
+			if("Flail")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltr = /obj/item/rogueweapon/flail
 	H.set_blindness(0)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -352,24 +355,25 @@
 			cloak = /obj/item/clothing/cloak/templar/pestra
 		else
 			cloak = /obj/item/clothing/cloak/cape/crusader
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
+	if(H.mind)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals
 
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -492,9 +496,9 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_3)	//Minor regen, capped to T3.
 	if(istype(H.patron, /datum/patron/divine))
 		// For now, only Tennites get this. Heretics can have a special treat later
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
+		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 	if(istype(H.patron, /datum/patron/inhumen))
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
+		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross

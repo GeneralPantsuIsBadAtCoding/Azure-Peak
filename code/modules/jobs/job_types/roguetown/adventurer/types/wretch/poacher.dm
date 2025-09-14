@@ -58,21 +58,22 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
-	var/weapons = list("Dagger","Axe", "Cudgel", "My Bow Is Enough")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Dagger")
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-			beltr = /obj/item/rogueweapon/scabbard/sheath
-			r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
-		if("Axe")
-			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
-			beltr = /obj/item/rogueweapon/stoneaxe/woodcut
-		if ("Cudgel")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if ("My Bow Is Enough")
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
-			head = /obj/item/clothing/head/roguetown/duelhat
-	wretch_select_bounty(H)
+	if(H.mind)
+		var/weapons = list("Dagger","Axe", "Cudgel", "My Bow Is Enough")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Dagger")
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+				beltr = /obj/item/rogueweapon/scabbard/sheath
+				r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+			if("Axe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
+				beltr = /obj/item/rogueweapon/stoneaxe/woodcut
+			if ("Cudgel")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if ("My Bow Is Enough")
+				H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
+				head = /obj/item/clothing/head/roguetown/duelhat
+		wretch_select_bounty(H)

@@ -279,6 +279,7 @@
 		possessor.rise_anew()
 		qdel(src)
 
+
 /obj/effect/proc_holder/spell/invoked/raise_undead
 	name = "Raise Greater Undead"
 	desc = ""
@@ -380,6 +381,7 @@
 	exp_light = 2
 	exp_flash = 2
 	exp_fire = 0
+
 
 /obj/effect/proc_holder/spell/self/lich_announce
 	name = "Command Will"

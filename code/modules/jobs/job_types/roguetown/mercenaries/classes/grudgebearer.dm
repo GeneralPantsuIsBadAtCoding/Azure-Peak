@@ -100,13 +100,14 @@
 			/obj/item/paper/scroll/grudge,
 			/obj/item/natural/feather,
 			)
-		var/weapons = list("Axe", "Mace")
-		var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
-		switch(wepchoice)
-			if("Axe")
-				backr = /obj/item/rogueweapon/stoneaxe/battle
-			if("Mace")
-				backr = /obj/item/rogueweapon/mace/goden/steel
+		if(H.mind)
+			var/weapons = list("Axe", "Mace")
+			var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
+			switch(wepchoice)
+				if("Axe")
+					backr = /obj/item/rogueweapon/stoneaxe/battle
+				if("Mace")
+					backr = /obj/item/rogueweapon/mace/goden/steel
 		H.merctype = 8
 
 

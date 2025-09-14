@@ -40,24 +40,25 @@
 		/obj/item/flashlight/flare/torch/lantern,
 		)
 	H.set_blindness(0)
-	var/weapons = list("Naginata","Quarterstaff","Hwando")
-	var/weapon_choice = input("Choose your weapon", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Naginata")
-			r_hand = /obj/item/rogueweapon/spear/naginata
-			backr = /obj/item/rogueweapon/scabbard/gwstrap
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-			armor = /obj/item/clothing/suit/roguetown/armor/basiceast/mentorsuit
-		if("Quarterstaff")
-			backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-			armor = /obj/item/clothing/suit/roguetown/armor/basiceast/mentorsuit
-		if("Hwando")
-			beltl = /obj/item/rogueweapon/sword/sabre/mulyeog
-			beltr = /obj/item/rogueweapon/scabbard/sword/kazengun
-			armor = /obj/item/clothing/suit/roguetown/armor/basiceast
-			H.adjust_skillrank_up_to(/datum/skill/combat/shields, 3, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+	if(H.mind)
+		var/weapons = list("Naginata","Quarterstaff","Hwando")
+		var/weapon_choice = input("Choose your weapon", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Naginata")
+				r_hand = /obj/item/rogueweapon/spear/naginata
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+				armor = /obj/item/clothing/suit/roguetown/armor/basiceast/mentorsuit
+			if("Quarterstaff")
+				backr = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+				armor = /obj/item/clothing/suit/roguetown/armor/basiceast/mentorsuit
+			if("Hwando")
+				beltl = /obj/item/rogueweapon/sword/sabre/mulyeog
+				beltr = /obj/item/rogueweapon/scabbard/sword/kazengun
+				armor = /obj/item/clothing/suit/roguetown/armor/basiceast
+				H.adjust_skillrank_up_to(/datum/skill/combat/shields, 3, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 
 /datum/advclass/foreigner/yoruku
 	name = "Eastern Assassin"
@@ -102,24 +103,25 @@
 	cloak = /obj/item/clothing/cloak/thief_cloak/yoruku
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	H.set_blindness(0)
-	var/weapons = list("Tanto","Kodachi")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Tanto")
-			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
-			beltl = /obj/item/rogueweapon/scabbard/sheath/kazengun
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-		if("Kodachi")
-			beltr = /obj/item/rogueweapon/sword/short/kazengun
-			beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-	var/masks = list("Oni","Kitsune")
-	var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
-	switch(mask_choice)
-		if("Oni")
-			mask = /obj/item/clothing/mask/rogue/facemask/yoruku_oni
-		if("Kitsune")
-			mask = /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
+	if(H.mind)
+		var/weapons = list("Tanto","Kodachi")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Tanto")
+				beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
+				beltl = /obj/item/rogueweapon/scabbard/sheath/kazengun
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			if("Kodachi")
+				beltr = /obj/item/rogueweapon/sword/short/kazengun
+				beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		var/masks = list("Oni","Kitsune")
+		var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
+		switch(mask_choice)
+			if("Oni")
+				mask = /obj/item/clothing/mask/rogue/facemask/yoruku_oni
+			if("Kitsune")
+				mask = /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
 
 /datum/advclass/foreigner/repentant
 	name = "Otavan Repentant"

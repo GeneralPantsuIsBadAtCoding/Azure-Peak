@@ -249,7 +249,7 @@
 //			backpack_contents.Insert(1, box)
 //			backpack_contents[box] = 1
 
-		if(backpack_contents)
+		if(backpack_contents && !visualsOnly)
 			for(var/path in backpack_contents)
 				var/number = backpack_contents[path]
 				if(!isnum(number))//Default to 1

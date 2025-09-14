@@ -322,3 +322,10 @@
 				/obj/item/rogueore/silver= 1,
 				/obj/item/rogueore/cinnabar = 1)
 	craftdiff = 5
+
+/datum/crafting_recipe/roguetown/arcana/findfamiliar
+	name = "Find Familiar - (Crystalised Mana, Scroll)"
+	result = /obj/item/book/granter/spell/blackstone/familiar
+	reqs = list(/obj/item/magic/manacrystal = 1,
+				/obj/item/paper/scroll = 1)
+	craftdiff = 1
