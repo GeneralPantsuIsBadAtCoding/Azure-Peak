@@ -33,6 +33,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 	)
+	extra_context = "This subclass is race-limited to: Dark Elves Only. Please note: Drow Society is Matriarchal. You will receive different sets of equipment depending on your character's gender. Women are heavy warriors, men are fast and light assassins."
 
 /datum/outfit/job/roguetown/mercenary/anthrax
 	allowed_patrons = ALL_INHUMEN_PATRONS
