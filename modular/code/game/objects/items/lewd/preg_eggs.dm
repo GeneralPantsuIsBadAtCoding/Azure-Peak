@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(pregnancy_egg_skins, list( \
 /obj/item/food/egg/oviposition
 	name = "peculiar egg"
 	desc = "An egg, this one looks suspiciously large though."
-	icon = 'modular_zzplurt/icons/obj/lewd/egg.dmi'
+	icon = 'modular\icons\obj\lewd\eggs.dmi'
 	icon_state = "egg"
 	base_icon_state = "egg"
 	w_class = WEIGHT_CLASS_HUGE
