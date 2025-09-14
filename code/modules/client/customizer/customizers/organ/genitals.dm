@@ -327,6 +327,45 @@
 		/datum/sprite_accessory/breasts/sextuple,
 		)
 
+/datum/customizer/organ/anus
+	abstract_type = /datum/customizer/organ/anus
+	name = "Anus"
+	allows_disabling = FALSE	//not doll
+	default_disabled = FALSE	//not doll
+	gender_enabled = list(MALE, FEMALE)
+
+/datum/customizer/organ/anus/is_allowed(datum/preferences/prefs)
+	return TRUE
+
+/datum/customizer_choice/organ/anus
+	abstract_type = /datum/customizer_choice/organ/anus
+	name = "Anus"
+	customizer_entry_type = /datum/customizer_entry/organ/anus
+	organ_type = /obj/item/organ/anus
+	organ_slot = ORGAN_SLOT_ANUS
+	organ_dna_type = /datum/organ_dna/anus
+
+/datum/customizer_entry/organ/anus
+	var/fertility = TRUE
+
+/datum/customizer_choice/organ/anus/imprint_organ_dna(datum/organ_dna/organ_dna, datum/customizer_entry/entry, datum/preferences/prefs)
+	..()
+	var/datum/organ_dna/vagina/anus_dna = organ_dna
+	var/datum/customizer_entry/organ/anus/anus_entry = entry
+	anus_dna.fertility = anus_entry.fertility
+
+/datum/customizer_choice/organ/anus/generate_pref_choices(list/dat, datum/preferences/prefs, datum/customizer_entry/entry, customizer_type)
+	..()
+	var/datum/customizer_entry/organ/anus/anus_entry = entry
+	dat += "<br>Fertile: <a href='?_src_=prefs;task=change_customizer;customizer=[customizer_type];customizer_task=fertile''>[anus_entry.fertility ? "Fertile" : "Sterile"]</a>"
+
+/datum/customizer_choice/organ/anus/handle_topic(mob/user, list/href_list, datum/preferences/prefs, datum/customizer_entry/entry, customizer_type)
+	..()
+	var/datum/customizer_entry/organ/anus/anus_entry = entry
+	switch(href_list["customizer_task"])
+		if("fertile")
+			anus_entry.fertility = !anus_entry.fertility
+
 /datum/customizer/organ/vagina
 	abstract_type = /datum/customizer/organ/vagina
 	name = "Vagina"

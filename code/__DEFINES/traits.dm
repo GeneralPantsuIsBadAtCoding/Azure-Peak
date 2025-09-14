@@ -207,6 +207,9 @@
 #define TRAIT_MONK_ROBE	"Holy Vestatures"
 #define TRAIT_RACISMISBAD "Heritage Vision"
 
+//if pregnot
+#define TRAIT_INFERTILE "Barren"
+
 // If you want description to show up you gotta have the trait name defined BEFORE this lol
 
 GLOBAL_LIST_INIT(roguetraits, list(
@@ -379,6 +382,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_COMBAT_AWARE = span_notice("My honed senses and intuition allow me to spot notable things in the midst of battle with ease."),
 	TRAIT_RACISMISBAD = span_warning("The Black Oaks can spot ANY Foreigners and Outsiders, no matter how long they've lived in Azuria. This is an easy skill to master, as it is simply identifying who isn't an elf."),
 	TRAIT_DREAMWALKER = span_warning("I walk the dream and reality at the same time. My mind frays, but my vision shall be reality."),
+	TRAIT_INFERTILE = span_warning("I not able to bear child due to bad genetic.")
 ))
 
 // trait accessor defines

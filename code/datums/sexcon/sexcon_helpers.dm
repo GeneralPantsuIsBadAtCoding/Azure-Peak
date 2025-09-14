@@ -70,8 +70,18 @@
 	var/obj/item/organ/vagina/vag = wife.getorganslot(ORGAN_SLOT_VAGINA)
 	if(!vag)
 		return
-	if(prob(25) && wife.is_fertile() && is_virile())
+	if(prob(25) && wife.is_fertile() && is_virile() && !HAS_TRAIT(wife, TRAIT_INFERTILE))
 		vag.be_impregnated(src)
+
+/mob/living/carbon/human/proc/try_impregnate_ass(mob/living/carbon/human/wife)
+	var/obj/item/organ/testicles/testes = getorganslot(ORGAN_SLOT_TESTICLES)
+	if(!testes)
+		return
+	var/obj/item/organ/anus/anus = wife.getorganslot(ORGAN_SLOT_ANUS)
+	if(!anus)
+		return
+	if(prob(25) && wife.is_fertile_ass() && is_virile() && !HAS_TRAIT(wife, TRAIT_INFERTILE))
+		anus.be_impregnated_ass(src)
 
 /mob/living/carbon/human/proc/get_highest_grab_state_on(mob/living/carbon/human/victim)
 	var/grabstate = null

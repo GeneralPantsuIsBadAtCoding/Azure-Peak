@@ -81,6 +81,25 @@
 	penis_type = PENIS_TYPE_TENTACLE
 	sheath_type = SHEATH_TYPE_NONE
 
+/obj/item/organ/anus
+	name = "anus"
+	icon_state = "severedtail" //placeholder
+	visible_organ = FALSE	//not see
+	zone = BODY_ZONE_PRECISE_GROIN
+	slot = ORGAN_SLOT_ANUS
+	accessory_type = /datum/sprite_accessory/vagina/human
+	var/pregnant = FALSE
+	var/fertility = TRUE
+
+/obj/item/organ/anus/proc/be_impregnated_ass(mob/living/carbon/human/father)
+	if(pregnant)
+		return
+	if(!owner)
+		return
+	if(owner.stat == DEAD)
+		return
+	to_chat(owner, span_love("I feel a surge of warmth in my belly, I’m definitely pregnant!"))
+	pregnant = TRUE
 	
 /obj/item/organ/vagina
 	name = "vagina"

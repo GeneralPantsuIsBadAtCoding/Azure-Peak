@@ -74,3 +74,11 @@
 	..()
 	var/obj/item/organ/vagina/vagina_organ = organ
 	vagina_organ.fertility = fertility
+
+/datum/organ_dna/anus
+	var/fertility = TRUE
+
+/datum/organ_dna/anus/imprint_organ(obj/item/organ/organ)
+	..()
+	var/obj/item/organ/anus/anus_organ = organ
+	anus_organ.fertility = fertility

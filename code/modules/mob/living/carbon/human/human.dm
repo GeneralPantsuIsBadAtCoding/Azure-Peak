@@ -891,6 +891,10 @@
 	var/obj/item/organ/vagina/vagina = getorganslot(ORGAN_SLOT_VAGINA)
 	return vagina.fertility
 
+/mob/living/carbon/human/proc/is_fertile_ass()
+	var/obj/item/organ/anus/anus = getorganslot(ORGAN_SLOT_ANUS)
+	return anus.fertility
+
 /mob/living/carbon/human/proc/is_virile()
 	var/obj/item/organ/testicles/testicles = getorganslot(ORGAN_SLOT_TESTICLES)
 	return testicles.virility
