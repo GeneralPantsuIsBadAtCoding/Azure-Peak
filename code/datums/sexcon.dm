@@ -1379,7 +1379,7 @@
 		return
 	if(stat == DEAD)
 		return
-
+	apply_status_effect(/datum/status_effect/pregnancy, src)
 	to_chat(src, "<span class='warning'>I don't feel so good...I'm definetly pregnant!</span>")	//Some kind of a notification - by Gardelin0
 //	add_nausea(101)	Stop throwing up after sex - by Gardelin0
 
