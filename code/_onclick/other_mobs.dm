@@ -418,6 +418,11 @@
 				if(ishuman(A))
 					var/mob/living/carbon/human/U = src
 					var/mob/living/carbon/human/V = A
+
+					if(HAS_TRAIT(U, TRAIT_LUX_THIEF) && V.stat == DEAD)
+						if(U.zone_selected == BODY_ZONE_PRECISE_NOSE)
+							V.tryextractluxstrand(U)
+							return
 					var/thiefskill = src.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
 					var/stealroll = roll("[thiefskill]d6")
 					var/targetperception = (V.STAPER)
