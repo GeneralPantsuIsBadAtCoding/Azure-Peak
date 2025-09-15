@@ -156,6 +156,14 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 
+/area/rogue/druidsgrove
+	name = "Druids grove"
+	icon_state = "rtfield"
+	first_time_text = "Druids grove"
+	droning_sound = list('sound/ambience/riverday (1).ogg','sound/ambience/riverday (2).ogg','sound/ambience/riverday (3).ogg')
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = list ('sound/ambience/rivernight (1).ogg','sound/ambience/rivernight (2).ogg','sound/ambience/rivernight (3).ogg' )
+
 /area/rogue/outdoors/rtfield/eora
 	name = "Eoran Shrine"
 	icon_state = "eora"
@@ -248,6 +256,12 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/spidercave
+
+/area/rogue/under/cave/peace
+	icon_state = "caves"
+	droning_sound = 'sound/music/area/peace.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
 
 /area/rogue/outdoors/spidercave
 	icon_state = "spidercave"
