@@ -59,7 +59,8 @@
 	var/resident_role
 	/// The requied advclass of the resident
 	var/list/resident_advclass
-
+	//a door name a skilled artisan can make 
+	var/doorname = null
 
 /obj/structure/mineral_door/onkick(mob/user)
 	if(isSwitchingStates)
@@ -387,6 +388,24 @@
 	else
 		if(repairable && (user.get_skill_level(repair_skill) > 0) && ((istype(I, repair_cost_first)) || (istype(I, repair_cost_second)))) // At least 1 skill level needed
 			repairdoor(I,user)
+		else if(user.used_intent.type == /datum/intent/chisel )
+			if (user.get_skill_level(repair_skill) <= 3)
+				to_chat(user, span_warning("I need more skill to carve a name into this door."))
+				return
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+			user.visible_message("<span class='info'>[user] Carves a name into the door.</span>")
+			if(do_after(user, 10))
+				doorname = input("What name would you like to carve into the door?")
+				if (doorname)
+					name = doorname + "(door)"
+					desc = "a door with a name carved into it"
+				else
+					name = "door"
+					desc = "a door with a carving scratched out"
+				playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+			return
+		else if(istype(I, /obj/item/rogueweapon/chisel/assembly))
+			to_chat(user, span_warning("You most use both hands to rename doors."))
 		else
 			return ..()
 

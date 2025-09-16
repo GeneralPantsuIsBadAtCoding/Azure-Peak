@@ -1589,6 +1589,19 @@
 
 	emote("blink", intentional = TRUE)
 
+/datum/emote/living/stomp
+	key = "stomp"
+	key_third_person = "stomps!"
+	message = "stomps!"
+	emote_type = EMOTE_VISIBLE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_stomp()
+	set name = "Stomp"
+	set category = "Noises"
+
+	emote("stomp", intentional = TRUE)
+
 /datum/emote/living/snap2
 	key = "snap2"
 	key_third_person = "finger snaps twice!"

@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			if((!Zs_too && !isobserver(AM)) || message_mode == MODE_WHISPER)
 				if(AM.z != src.z)
 					continue
-		if(Zs_too && AM.z != src.z && !Zs_all)
+		if(Zs_too && listener_turf.z != speaker_turf.z && !Zs_all)
 			if(!Zs_yell && !HAS_TRAIT(AM, TRAIT_KEENEARS) && !hearall)
 				if(listener_turf.z < speaker_turf.z && listener_has_ceiling)	//Listener is below the speaker and has a ceiling above them
 					continue

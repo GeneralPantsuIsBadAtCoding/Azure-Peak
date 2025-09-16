@@ -9,16 +9,30 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = ""
 	shot_glass_icon_state = "shotglassred"
+/datum/reagent/blood/shitty
+	name = "Dirty blood"
+	color = "#941010" // rgb: 148, 16, 16
+	taste_description = "rancid iron"
+	taste_mult = 1.5
+	glass_name = "glass of dirty tomato juice"
 
 /datum/reagent/blood/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) || !HAS_TRAIT(C,TRAIT_NASTY_EATER))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
 				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-
+//Dirty blood shouldn't go in your veins!
+/datum/reagent/blood/shitty/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && C.dna && C.dna.species && (DRINKSBLOOD in C.dna.species.species_traits))))
+			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)) || !(HAS_TRAIT(C, TRAIT_NASTY_EATER) && HAS_TRAIT(C, TRAIT_WILD_EATER)))
+				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.8)
+			else
+				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
 
 /datum/reagent/blood/on_merge(list/mix_data)
 	if(data && mix_data)
@@ -38,16 +52,29 @@
 	if(data["blood_DNA"])
 		B.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
+/datum/reagent/blood/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if(method == INGEST) // Make sure you DRANK the blood before giving damage
+		..()
+
 /datum/reagent/blood/on_mob_life(mob/living/carbon/H)//I hate you
 	..()
 	if(HAS_TRAIT(H, TRAIT_NASTY_EATER))
 		return
 	H.add_nausea(12) //Over 8 units will cause puking
 
+/datum/reagent/blood/shitty/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if (method == INGEST)
+		..()
+/datum/reagent/blood/shitty/on_mob_life(mob/living/carbon/H)
+	..()
+	if(HAS_TRAIT(H, TRAIT_NASTY_EATER) && HAS_TRAIT(H, TRAIT_WILD_EATER))
+		return
+	H.add_nausea(18) //Do not drink dirty blood!
+
 /datum/reagent/blood/green
 	color = "#05af01"
 
-/datum/reagent/liquidgibs
+/datum/reagent/liquidgibs // Editor's note: what the fuck
 	name = "Liquid gibs"
 	color = "#CC4633"
 	description = "You don't even want to think about what's in here."
@@ -89,6 +116,8 @@
 	taste_description = "something vile"
 	color = "#98934bc6"
 	harmful = TRUE
+/datum/reagent/water/gross/sewage
+	taste_description = "repulsive sulfur and decaying shit"
 
 /datum/reagent/water/gross/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(method == INGEST) // Make sure you DRANK the toxic water before giving damage
@@ -100,7 +129,14 @@
 		return
 	M.adjustToxLoss(1)
 	M.add_nausea(12) //Over 8 units will cause puking
-
+/datum/reagent/water/gross/sewage/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	if (method == INGEST)
+		..()
+/datum/reagent/water/gross/sewage/on_mob_life(mob/living/carbon/M)
+	..()
+	//I am not putting in a NASTY_EATER check for this. He's the god of bloodshed, not the god of coprophagia.
+	M.adjustToxLoss(4) //Horrible day for poop drinkers
+	M.add_nausea(20)
 /datum/chemical_reaction/grosswaterboil //boiling water purifies it
 	name = "gross water purification"
 	id = /datum/reagent/water
@@ -123,10 +159,12 @@
 /datum/reagent/water/salty/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER)&&!HAS_TRAIT(H, TRAIT_SEA_DRINKER))
-			H.adjust_hydration(-6)  //saltwater dehydrates more than it hydrates
+		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_SEA_DRINKER))) // Small edit for readability. De Morgans Law my beloved
+			H.adjust_hydration(-hydration)  //saltwater dehydrates more than it hydrates
+			M.adjustToxLoss(0.25) // Slightly toxic
+			M.add_nausea(2)
 		else if(HAS_TRAIT(H, TRAIT_SEA_DRINKER))
-			H.adjust_hydration(hydration)  //saltwater dehydrates more than it hydrates
+			H.adjust_hydration(hydration)
 	..()
 
 /datum/chemical_reaction/saltwaterify

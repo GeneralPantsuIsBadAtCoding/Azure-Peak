@@ -34,7 +34,7 @@
 		real_name = pref_species.random_name(gender,1)
 	set_new_race(new random_species_type)
 
-/datum/preferences/proc/update_preview_icon()
+/datum/preferences/proc/update_preview_icon(jobOnly = FALSE)
 	set waitfor = 0
 	if(!parent)
 		return
@@ -51,7 +51,11 @@
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin, 1, TRUE, TRUE)
 
-	if(preview_subclass && previewJob)
+	if(jobOnly)
+		mannequin.job = previewJob.title
+		previewJob.equip(mannequin, TRUE, preference_source = parent)
+
+	if(preview_subclass && !jobOnly)
 		testing("previewjob")
 		mannequin.job = previewJob.title
 		mannequin.patron = selected_patron

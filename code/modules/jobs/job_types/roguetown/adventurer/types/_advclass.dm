@@ -134,9 +134,11 @@
 		if(total_slots_occupied >= maximum_possible_slots)
 			return FALSE
 
+	#ifdef USES_PQ
 	if(min_pq != -100) // If someone sets this we actually do the check.
 		if(!(get_playerquality(H.client.ckey) >= min_pq))
 			return FALSE
+	#endif
 
 	if(prob(pickprob))
 		return TRUE

@@ -37,7 +37,13 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	else 
 		reaction_structure = TRUE
 		trigger_structure = FALSE
-
+	//can't link a launcher while its locked
+	if (istype(src, /obj/structure/englauncher)) 
+		var obj/structure/englauncher/launchercheck = src
+		if(launchercheck.locked)
+			to_chat(user, span_warning("It's locked!"))
+			playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
 	//check if the buffer is a trigger or reaction
 	if ((istype(multitool.buffer, /obj/structure/pressure_plate)) || (istype(multitool.buffer, /obj/structure/lever)))
 		trigger_buffer = TRUE
@@ -152,6 +158,29 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 			icon_state = "leverfloor[toggled]"
 			playsound(src, 'sound/foley/lever.ogg', 100, extrarange = 3)
 
+
+/obj/structure/lever/attackby(obj/item/I, mob/user, params)
+	var/obj/item = user.get_active_held_item()
+	if(user.used_intent.type == /datum/intent/chisel )
+		if (user.get_skill_level(/datum/skill/craft/engineering) <= 3)
+			to_chat(user, span_warning("I need more skill to carve a name into this lever."))
+			return
+		playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		user.visible_message("<span class='info'>[user] Carves a name into the lever.</span>")
+		if(do_after(user, 10))
+			var/levername
+			levername = input("What name would you like to carve into the lever?")
+			if (levername)
+				name = levername + "(lever)"
+				desc = "a lever with a name carved into it"
+			else
+				name = "lever"
+				desc = "a lever with a carving scratched out"
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		return
+	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
+		to_chat(user, span_warning("You most use both hands to rename doors."))
+
 /obj/structure/lever/onkick(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
@@ -224,6 +253,31 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	playsound(src, 'sound/misc/pressurepad_up.ogg', 65, extrarange = 2)
 	for(var/obj/structure/O in redstone_attached)
 		spawn(0) O.redstone_triggered()
+
+/obj/structure/pressure_plate/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	var/obj/item = user.get_active_held_item()
+	if(user.used_intent.type == /datum/intent/chisel )
+		if (user.get_skill_level(/datum/skill/craft/engineering) <= 3)
+			to_chat(user, span_warning("I need more skill to carve a name into this plate."))
+			return
+		playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		user.visible_message("<span class='info'>[user] Carves a name into the plate.</span>")
+		if(do_after(user, 10))
+			var/platename
+			platename = input("What name would you like to carve into the plate?")
+			if (platename)
+				name = platename + "(plate)"
+				desc = "a plate with a name carved into it"
+			else
+				name = "plate"
+				desc = "a plate with a carving scratched out"
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		return
+	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
+		to_chat(user, span_warning("You most use both hands to rename doors."))
+
+
 /*
 /obj/structure/pressure_plate/attack_hand(mob/user) //commented out for now, they're stuposed to be anchored structures for dungeons. End of vanderlin traps port. Maybe an artificer subtype craft in the future.
 	. = ..()
@@ -251,6 +305,16 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	var/firedirectiontwo = NORTHEAST //bullet variation for spread mode
 	var/firedirectionthree = NORTHWEST //bullet variation for spread mode
 	var/spreadmode = FALSE //spread out your shots, waste your ammo
+	var/locked = FALSE
+	var/keylock = FALSE
+	var/lockhash = 0
+	var/lockid = null
+	var/lockbroken = 0
+	var/locksound = 'sound/foley/doors/woodlock.ogg'
+	var/unlocksound = 'sound/foley/doors/woodlock.ogg'
+	var/rattlesound = 'sound/foley/doors/lockrattle.ogg'
+	var/masterkey = TRUE //if masterkey can open this regardless
+	
 /obj/structure/englauncher/Initialize()
 	. = ..()
 	update_icon()
@@ -285,6 +349,30 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 
 /obj/structure/englauncher/attack_hand(mob/user)
 	. = ..()
+	if(locked)
+		to_chat(user, span_warning("It's locked!"))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
+	var/obj/item = user.get_active_held_item()
+	if(user.used_intent.type == /datum/intent/chisel )
+		if (user.get_skill_level(/datum/skill/craft/engineering) <= 3)
+			to_chat(user, span_warning("I need more skill to carve a name into this launcher."))
+			return
+		playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		user.visible_message("<span class='info'>[user] Carves a name into the launcher.</span>")
+		if(do_after(user, 10))
+			var/launchername
+			launchername = input("What name would you like to carve into the launcher?")
+			if (launchername)
+				name = launchername + "(launcher)"
+				desc = "a launcher with a name carved into it"
+			else
+				name = "engineer's launcher"
+				desc = "a launcher with a carving scratched out"
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		return
+	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
+		to_chat(user, span_warning("You most use both hands to rename the launcher."))
 	playsound(loc, 'sound/misc/keyboard_enter.ogg', 100, FALSE, -1)
 	sleep(7)
 	if(containment)
@@ -299,7 +387,18 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	return TRUE
 
 /obj/structure/englauncher/attack_right(mob/user)
-	
+	var/obj/item = user.get_active_held_item()
+	if(istype(item, /obj/item/roguekey) || istype(item, /obj/item/storage/keyring))
+		if(locked)
+			to_chat(user, span_warning("It won't turn this way. Try turning to the left."))
+			launcher_rattle()
+			return
+		trykeylock(item, user)
+		return
+	if(locked)
+		to_chat(user, span_warning("It's locked!"))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	if (user.rmb_intent)
 		if (user.is_holding_item_of_type(/obj/item/contraption/linker))
 			sleep(1)
@@ -344,6 +443,19 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		return
 
 /obj/structure/englauncher/attackby(obj/item/I, mob/user, params)
+	user.changeNext_move(CLICK_CD_FAST)
+	if(istype(I, /obj/item/roguekey) || istype(I, /obj/item/storage/keyring))
+		if(!locked)
+			to_chat(user, span_warning("It won't turn this way. Try turning to the right."))
+			playsound(src, rattlesound, 100)
+			return
+		else
+			trykeylock(I, user)
+			return
+	if(locked)
+		to_chat(user, span_warning("It's locked!"))
+		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		return
 	if(!containment && (istype(I,/obj/item/reagent_containers) || istype(I, /obj/item/bomb) || istype(I, /obj/item/flint))) //loading in items
 		if(!user.transferItemToLoc(I, src))
 			return ..()
@@ -417,6 +529,62 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 					//user.visible_message(span_warning("[user] sprays the contents of the [held_item], creating a cloud!"), span_warning("You spray the contents of the [held_item], creating a cloud!"))
 					con.reagents.clear_reagents() //empty the container
 					playsound(src, 'sound/magic/webspin.ogg', 100)
+
+/obj/structure/englauncher/proc/trykeylock(obj/item/I, mob/user, autobump = FALSE)
+	if(!keylock)
+		return
+	if(lockbroken)
+		to_chat(user, span_warning("The lock to this device is broken."))
+	if(lockhash == 0)
+		to_chat(user, span_warning("There is no lock installed"))
+		return
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+	if(istype(I,/obj/item/storage/keyring))
+		var/obj/item/storage/keyring/R = I
+		if(!R.contents.len)
+			return
+		var/list/keysy = shuffle(R.contents.Copy())
+		for(var/obj/item/roguekey/K in keysy)
+			if(user.cmode)
+				if(!do_after(user, 10, TRUE, src))
+					break
+			if(K.lockhash == lockhash)
+				lock_toggle(user)
+				return
+			else
+				if(user.cmode)
+					launcher_rattle()
+		to_chat(user, span_warning("None of the keys on my keyring go to this device."))
+		launcher_rattle()
+		return
+	else
+		var/obj/item/roguekey/K = I
+		if(K.lockhash == lockhash || istype(K, /obj/item/roguekey/lord)) //master key cares not for lockhashes
+			lock_toggle(user)
+			return
+		else
+			to_chat(user, span_warning("This is not the correct key that goes to this device."))
+			launcher_rattle()
+		return
+
+/obj/structure/englauncher/proc/lock_toggle(mob/user)
+	if(locked)
+		user.visible_message(span_warning("[user] unlocks [src]."), \
+			span_notice("I unlock [src]."))
+		playsound(src, unlocksound, 100)
+		locked = 0
+	else
+		user.visible_message(span_warning("[user] locks [src]."), \
+			span_notice("I lock [src]."))
+		playsound(src, locksound, 100)
+		locked = 1
+
+/obj/structure/englauncher/proc/launcher_rattle()
+	playsound(src, rattlesound, 100)
+	var/oldx = pixel_x
+	animate(src, pixel_x = oldx+1, time = 0.5)
+	animate(pixel_x = oldx-1, time = 0.5)
+	animate(pixel_x = oldx, time = 0.5)
 
 /obj/structure/floordoor
 	name = "floorhatch"
@@ -508,6 +676,29 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 /obj/structure/floordoor/gatehatch/outer
 	delay2open = 30
 	delay2close = 10
+
+/obj/structure/floordoor/attackby(mob/user)
+	. = ..()
+	var/obj/item = user.get_active_held_item()
+	if(user.used_intent.type == /datum/intent/chisel )
+		if (user.get_skill_level(/datum/skill/craft/engineering) <= 3)
+			to_chat(user, span_warning("I need more skill to carve a name into this hatch."))
+			return
+		playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		user.visible_message("<span class='info'>[user] Carves a name into the plate.</span>")
+		if(do_after(user, 10))
+			var/hatchname
+			hatchname = input("What name would you like to carve into the hatch?")
+			if (hatchname)
+				name = hatchname + "(hatch)"
+				desc = "a hatch with a name carved into it"
+			else
+				name = ""
+				desc = "a hatch with a carving scratched out"
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+		return
+	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
+		to_chat(user, span_warning("You most use both hands to rename the plate."))
 
 /obj/structure/kybraxor
 	name = "Kybraxor the Devourer"

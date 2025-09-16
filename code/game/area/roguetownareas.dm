@@ -60,6 +60,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/indoors/ravoxarena
 	name = "ravox arena"
+	deathsight_message = "an arena of justice"
 
 /area/rogue/indoors/ravoxarena/can_craft_here()
 	return FALSE
@@ -71,6 +72,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/indoors/eventarea
 	name = "eventarea"
+	deathsight_message = "a place shielded from mortal eyes"
 
 ///// OUTDOORS AREAS //////
 
@@ -89,19 +91,21 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	converted_type = /area/rogue/indoors/shelter
 	soundenv = 16
-
+	deathsight_message = "somewhere in the wilds"
 
 /area/rogue/outdoors/banditcamp
 	name = "bandit camp outdoors"
 	droning_sound = 'sound/music/area/banditcamp.ogg'
 	droning_sound_dusk = 'sound/music/area/banditcamp.ogg'
 	droning_sound_night = 'sound/music/area/banditcamp.ogg'
+	deathsight_message = "somewhere in the wilds"
 
 /area/rogue/indoors/shelter
 	icon_state = "shelter"
 	droning_sound = 'sound/music/area/townstreets.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
+	deathsight_message = "somewhere in the wilds, under a roof"
 
 /area/rogue/outdoors/mountains
 	name = "mountains"
@@ -116,20 +120,16 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	warden_area = TRUE
 	soundenv = 17
 	converted_type = /area/rogue/indoors/shelter/mountains
+	deathsight_message = "a twisted tangle of soaring peaks"
+	// I SURE HOPE NO ONE USE THIS HUH
+
 
 /area/rogue/indoors/shelter/mountains
 	icon_state = "mountains"
 	droning_sound = 'sound/music/area/townstreets.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
-
-/area/rogue/outdoors/mountains/deception
-	name = "deception"
-	icon_state = "deception"
-	first_time_text = "THE CANYON OF DECEPTION"
-
-
-
+	deathsight_message = "a twisted tangle of soaring peaks"
 
 /area/rogue/outdoors/rtfield
 	name = "Azure Basin"
@@ -181,19 +181,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30
 	)
 	first_time_text = "ABYSSOR'S GRASP"
-
-/area/rogue/outdoors/river
-	name = "river"
-	icon_state = "river"
-	warden_area = TRUE
-	ambientsounds = AMB_RIVERDAY
-	ambientnight = AMB_RIVERNIGHT
-	spookysounds = SPOOKY_FROG
-	spookynight = SPOOKY_FOREST
-	droning_sound = 'sound/music/area/forest.ogg'
-	droning_sound_dusk = 'sound/music/area/septimus.ogg'
-	droning_sound_night = 'sound/music/area/forestnight.ogg'
-	converted_type = /area/rogue/indoors/shelter/woods
+	deathsight_message = "amidst abyssor's"
 
 //// UNDER AREAS (no indoor rain sound usually)
 

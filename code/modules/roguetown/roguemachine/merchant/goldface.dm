@@ -212,7 +212,7 @@
 		var/shoplength = PA.contains.len
 		var/l
 		for(l=1,l<=shoplength,l++)
-			var/pathi = pick(PA.contains)
+			var/pathi = PA.contains[l]
 			new pathi(get_turf(M))
 	if(href_list["change"])
 		if(budget > 0)

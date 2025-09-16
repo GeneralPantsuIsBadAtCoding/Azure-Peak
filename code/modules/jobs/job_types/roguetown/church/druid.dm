@@ -89,7 +89,7 @@
 	head = /obj/item/clothing/head/roguetown/dendormask
 	wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
-	backpack_contents = list(/obj/item/ritechalk)
+	backpack_contents = list(/obj/item/ritechalk, /obj/item/storage/keyring/churchie)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/magic/holy, 5, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/magic/druidic, 5, TRUE)
