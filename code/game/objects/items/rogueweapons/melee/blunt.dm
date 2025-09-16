@@ -24,6 +24,9 @@
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
+/datum/intent/mace/smash/warhammer
+	damfactor = 1.3
+
 /datum/intent/mace/smash/flataxe
 	damfactor = 1.2
 	clickcd = 10
@@ -475,7 +478,7 @@
 
 /obj/item/rogueweapon/mace/warhammer
 	force = 20
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick)
+	possible_item_intents = list(/datum/intent/mace/warhammer/stab, /datum/intent/mace/smash/warhammer)
 	gripped_intents = null
 	name = "warhammer"
 	desc = "Made to punch through armor and skull alike."
@@ -498,7 +501,7 @@
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/warhammer, /datum/intent/mace/warhammer/stab)
 	name = "steel warhammer"
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
 	icon_state = "swarhammer"
