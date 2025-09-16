@@ -267,14 +267,14 @@
 
 /obj/effect/proc_holder/spell/self/zizo_aoe_buff
 	name = "Progressive Rigor"
-	desc = "Place a ward upon any undead within 3 tiles that heals them, and then additionally makes them immune to flames for 2 minutes."
+	desc = "Place a ward upon any undead within 3 tiles that heals them, and then additionally makes them immune to flames for a minute."
 	overlay_state = "KCEHCTOOB" //heh
 	releasedrain = 30
 	chargetime = 30
 	chargedloop = /datum/looping_sound/invokegen
 	gesture_required = TRUE // Summon spell
 	associated_skill = /datum/skill/magic/arcane
-	recharge_time = 120 SECONDS
+	recharge_time = 5 MINUTES
 
 /datum/status_effect/buff/fire_immunity_zizo
 	id = "fireimmunezizo"
