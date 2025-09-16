@@ -270,9 +270,9 @@
 	desc = "Place a ward upon any undead within 3 tiles that heals them, and then additionally makes them immune to flames for a minute."
 	overlay_state = "KCEHCTOOB" //heh
 	releasedrain = 30
-	chargetime = 30
+	chargetime = 60
 	chargedloop = /datum/looping_sound/invokegen
-	gesture_required = TRUE // Summon spell
+	gesture_required = TRUE
 	associated_skill = /datum/skill/magic/arcane
 	recharge_time = 5 MINUTES
 
