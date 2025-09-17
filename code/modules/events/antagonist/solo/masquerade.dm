@@ -6,7 +6,7 @@
 		TAG_VILLIAN,
 	)
 	roundstart = TRUE
-	antag_flag = ROLE_NBEAST
+	antag_flag = ROLE_VAMPIRE
 	shared_occurence_type = SHARED_HIGH_THREAT
 
 	weight = 12
@@ -157,11 +157,6 @@
 
 /datum/action/vampire_vote/IsAvailable()
 	return TRUE
-
-/datum/mind/proc/test_vampire_vote()
-	var/datum/vampire_clan_vote/vampire_clan_vote = new()
-	var/datum/action/vampire_vote/vvote = new(vampire_clan_vote)
-	vvote.Grant(current)
 
 /datum/asset/spritesheet/vampire_clan_icons
 	name = "vampire_clan_icons"
