@@ -1,4 +1,4 @@
-#define HEAL_MULTIPLIER 2.5
+#define HEAL_MULTIPLIER 4.5
 /datum/coven/bloodheal
 	name = "Bloodheal"
 	desc = "Use the power of your Vitae to slowly regenerate your flesh."
