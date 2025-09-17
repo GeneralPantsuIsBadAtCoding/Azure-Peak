@@ -92,6 +92,36 @@
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = EYES
 	anvilrepair = /datum/skill/craft/armorsmithing
+	var/active_item = FALSE
+
+/obj/item/clothing/mask/rogue/spectacles/golden/equipped(mob/user, slot)
+	..()
+	if(active_item)
+		return
+	else if(slot == SLOT_WEAR_MASK || slot == SLOT_HEAD)
+		if (user.get_skill_level(/datum/skill/craft/engineering) >= 2)
+			ADD_TRAIT(user, TRAIT_ENGINEERING_GOGGLES, "[type]")
+			user.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/engineeranalyze)
+			to_chat(user, span_notice("Time to build"))
+			active_item = TRUE
+			return
+		else 
+			to_chat(user, span_notice("I can't understand these words and numbers before my eyes"))
+			return
+	else
+		return
+
+				
+		
+		
+
+/obj/item/clothing/mask/rogue/spectacles/golden/dropped(mob/user, slot)
+	..()
+	if(active_item)
+		active_item = FALSE
+		REMOVE_TRAIT(user, TRAIT_ENGINEERING_GOGGLES, "[type]")
+		user.mind.RemoveSpell(new /obj/effect/proc_holder/spell/invoked/engineeranalyze)
+		to_chat(user, span_notice("Time to stop working"))
 
 /obj/item/clothing/mask/rogue/spectacles/Initialize()
 	..()

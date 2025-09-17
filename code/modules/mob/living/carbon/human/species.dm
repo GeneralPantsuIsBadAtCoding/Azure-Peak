@@ -1450,19 +1450,28 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(target_collateral_mob)
 			if(stander)
 				shove_blocked = TRUE
+
+		target.Move(target_shove_turf, shove_dir)
+
+		if(get_turf(target) == target_oldturf)
+			if(stander)
+				target_table = locate(/obj/structure/table) in target_shove_turf.contents
+				shove_blocked = TRUE
 		else
-			target.Move(target_shove_turf, shove_dir)
-			if(get_turf(target) == target_oldturf)
-				if(stander)
-					target_table = locate(/obj/structure/table) in target_shove_turf.contents
-					shove_blocked = TRUE
-			else
-				if((stander && target.stamina >= target.max_stamina) || target.IsOffBalanced()) //if you are kicked while fatigued, you are knocked down no matter what
-					target.Knockdown(target.IsOffBalanced() ? SHOVE_KNOCKDOWN_SOLID : 100)
-					target.visible_message(span_danger("[user.name] kicks [target.name], knocking them down!"),
-					span_danger("I'm knocked down from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
-					to_chat(user, span_danger("I kick [target.name], knocking them down!"))
-					log_combat(user, target, "kicked", "knocking them down")
+			if(HAS_TRAIT(user, TRAIT_STRONGKICK))
+				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
+				target.throw_at(target_shove_turf, 1, 1)
+				target.visible_message(span_danger("[user.name] kicks [target.name], knocking them back!"),
+				span_danger("I'm knocked back from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+				to_chat(user, span_danger("I kick [target.name], knocking them back!"))
+				log_combat(user, target, "kicked", "knocking them back")
+
+			else if((stander && target.stamina >= target.max_stamina) || target.IsOffBalanced()) //if you are kicked while fatigued, you are knocked down no matter what
+				target.Knockdown(target.IsOffBalanced() ? SHOVE_KNOCKDOWN_SOLID : 100)
+				target.visible_message(span_danger("[user.name] kicks [target.name], knocking them down!"),
+				span_danger("I'm knocked down from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+				to_chat(user, span_danger("I kick [target.name], knocking them down!"))
+				log_combat(user, target, "kicked", "knocking them down")
 
 		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
 			var/directional_blocked = FALSE

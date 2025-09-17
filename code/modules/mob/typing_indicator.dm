@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	if(((!typing_indicator_enabled || (stat != CONSCIOUS)) && !force) || typing_indicator_current)
 		return
 	typing_indicator_current = state_override
+	log_message("started typing", LOG_ATTACK)
 	add_overlay(state_override)
 	update_vision_cone()
 	typing_indicator_timerid = addtimer(CALLBACK(src, PROC_REF(clear_typing_indicator)), timeout_override, TIMER_STOPPABLE)

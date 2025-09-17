@@ -1,6 +1,6 @@
 /datum/job/roguetown/crier
 	title = "Town Crier"
-	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. From your desk in the SCOM atelier, you decide which words will thunder across the realm and which will die in the throats of petitioners who didn't pay enough ratfeed. Nobles and cutpurses alike shuffle up to your counter, coins in hand, desperate for a moment in the golden glow of the broadcast horn. In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. After all, you hold the true power: the power to decide what all of the city hears... and how loudly."
+	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. From your desk in the SCOM atelier, you decide which words will thunder across the realm and which will die in the throats of petitioners who didn't pay enough ratfeed. In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. All ears are turned toward you - so speak wisely."
 	flag = CRIER
 	department_flag = YEOMEN
 	faction = "Station"
@@ -36,8 +36,7 @@
 	name = "Town Crier"
 	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. \
 	From your desk in the SCOM atelier, you decide which words will thunder across the realm and which will die in the throats of petitioners who didn't pay enough ratfeed. \
-	Nobles and cutpurses alike shuffle up to your counter, coins in hand, desperate for a moment in the golden glow of the broadcast horn. \
-	In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. After all, you hold the true power: the power to decide what all of the city hears... and how loudly."
+	In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. All ears are turned toward you - so speak wisely."
 	outfit = /datum/outfit/job/roguetown/loudmouth/basic
 	subclass_languages = list(
 		/datum/language/elvish,

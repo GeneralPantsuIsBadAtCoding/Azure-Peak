@@ -118,6 +118,8 @@
 				used = list('sound/vo/fsnap2.ogg')
 			if("snap3")
 				used = list('sound/vo/fsnap3.ogg')
+			if("stomp")
+				used = list('sound/foley/brickdrop.ogg')
 			if("blink")
 				used = list('sound/vo/blink.ogg')
 			if("cackle")

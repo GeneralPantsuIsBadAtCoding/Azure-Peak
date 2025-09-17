@@ -27,6 +27,8 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	npc_max_jump_stamina = 0
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 	var/preset = "matthios"
+	var/forced_preset = "" // If set, force a specific preset instead of randomizing.
+	var/never_goon = FALSE // If TRUE, this DK will not spawn goons on creation.
 
 /mob/living/carbon/human/species/human/northern/deranged_knight/retaliate(mob/living/L)
 	var/newtarg = target
@@ -80,25 +82,35 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_STUCKITEMS, TRAIT_GENERIC)
-	switch(rand(0, 100))
-		if(0 to 25)
-			preset = "graggar"
+	if(forced_preset)
+		preset = forced_preset
+	else
+		switch(rand(1, 4))
+			if(1)
+				preset = "graggar"
+			if(2)
+				preset = "matthios"
+			if(3)
+				preset = "zizo"
+			if(4)
+				preset = "hedgeknight"
+	switch(preset)
+		if("graggar")
 			ADD_TRAIT(src, TRAIT_HORDE, TRAIT_GENERIC)
 			equipOutfit(new /datum/outfit/job/roguetown/quest_miniboss/graggar)
-		if(26 to 49)
-			preset = "matthios"
+		if ("matthios")
 			ADD_TRAIT(src, TRAIT_COMMIE, TRAIT_GENERIC)
 			equipOutfit(new /datum/outfit/job/roguetown/quest_miniboss/matthios)
-		if(50 to 75)
-			preset = "zizo"
+		if ("zizo")
 			ADD_TRAIT(src, TRAIT_CABAL, TRAIT_GENERIC)
 			equipOutfit(new /datum/outfit/job/roguetown/quest_miniboss/zizo)
-		else
-			preset = "hedgeknight"
+		if ("hedgeknight")
 			if(prob(50))
 				equipOutfit(new /datum/outfit/job/roguetown/quest_miniboss/hedge_knight)
 			else
 				equipOutfit(new /datum/outfit/job/roguetown/quest_miniboss/blacksteel)
+			// No special trait for hedgeknight, he's just a generic tough guy.
+
 	gender = pick(MALE,FEMALE)
 	regenerate_icons()
 
@@ -148,6 +160,11 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	var/list/possible_turfs = list()
 	for(var/turf/open/T in oview(2, src))
 		possible_turfs += T
+	
+	def_intent_change(INTENT_PARRY)
+
+	if(never_goon)
+		return
 
 	for(var/i in 1 to rand(2, 5))
 		var/turf/open/spawn_turf = pick_n_take(possible_turfs)
@@ -155,8 +172,6 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 			break
 
 		new /mob/living/carbon/human/species/human/northern/highwayman/dk_goon(spawn_turf)
-
-	def_intent_change(INTENT_PARRY)
 
 /mob/living/carbon/human/species/human/northern/deranged_knight/npc_idle()
 	if(m_intent == MOVE_INTENT_SNEAK)
@@ -210,11 +225,11 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	. = ..()
 	H.STASTR = 15
 	H.STASPD = 14
-	H.STACON = 16
-	H.STAWIL = 20
+	H.STACON = 15
+	H.STAWIL = 14
 	H.STAPER = 12
 	H.STAINT = 12  
-	H.STALUC = 12
+	H.STALUC = 10
 
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
@@ -306,3 +321,19 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 
 /mob/living/carbon/human/species/human/northern/highwayman/dk_goon
 	faction = list("dundead")
+
+/mob/living/carbon/human/species/human/northern/deranged_knight/matthios
+	never_goon = TRUE
+	forced_preset = "matthios"
+
+/mob/living/carbon/human/species/human/northern/deranged_knight/zizo
+	never_goon = TRUE
+	forced_preset = "zizo"
+
+/mob/living/carbon/human/species/human/northern/deranged_knight/graggar
+	never_goon = TRUE
+	forced_preset = "graggar"
+
+/mob/living/carbon/human/species/human/northern/deranged_knight/hedgeknight
+	never_goon = TRUE
+	forced_preset = "hedgeknight"

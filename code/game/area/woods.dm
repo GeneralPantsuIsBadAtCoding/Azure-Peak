@@ -17,7 +17,8 @@
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 				/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 				/mob/living/carbon/human/species/goblin/npc/ambush = 30,
-				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
+				/mob/living/carbon/human/species/human/northern/militia/deserter = 20,
+				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 10)
 	first_time_text = "THE AZURE GROVE"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
@@ -30,6 +31,7 @@
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/forestnight.ogg'
 	threat_region = THREAT_REGION_AZURE_GROVE
+	deathsight_message = "somewhere in the wilds"
 
 
 /area/rogue/outdoors/woods/north

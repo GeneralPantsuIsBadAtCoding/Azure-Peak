@@ -186,6 +186,10 @@
 			say("There are no rats running this jabberline.", spans = list("info"))
 			return
 		var/obj/structure/roguemachine/scomm/S = SSroguemachine.scomm_machines[nightcall]
+		if(istype(S, /obj/item/scomstone))
+			say("The jabberline's rats cannot travel to SCOMstones.") //Check prevents a runtime and leaves room to potentially make scomstones callable by ID later.
+			playsound(src, 'sound/vo/mobs/rat/rat_life.ogg', 100, TRUE, -1)
+			return
 		if(!S)
 			to_chat(user, span_warning("Nothing but rats squeaking back at you."))
 			playsound(src, 'sound/vo/mobs/rat/rat_life.ogg', 100, TRUE, -1)
@@ -267,7 +271,7 @@
 	animate(pixel_x = oldx-1, time = 0.5)
 	animate(pixel_x = oldx, time = 0.5)
 
-/obj/structure/roguemachine/scomm/proc/repeat_message(message, atom/A, tcolor, message_language)
+/obj/structure/roguemachine/scomm/proc/repeat_message(message, atom/A, tcolor, message_language, list/tspans, broadcaster_tag)
 	if(A == src)
 		return
 	if(tcolor)
@@ -284,10 +288,12 @@
 		return
 	if(!listening)
 		return
+	#ifdef USES_SCOM_RESTRICTION
 	if(!calling && !garrisonline)
 		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
 		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 		return
+	#endif
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
@@ -310,6 +316,17 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
+		#ifndef USES_SCOM_RESTRICTION
+		else 
+			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+				if(!S.calling)
+					S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
+			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
+		#endif
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
@@ -359,6 +376,7 @@
 	var/speaking = TRUE
 	var/loudmouth_listening = TRUE
 	var/messagereceivedsound = 'sound/misc/scom.ogg'
+	var/scomstone_number
 	var/hearrange = 1 // change to 0 if you want your special scomstone to be only hearable by wearer
 	drop_sound = 'sound/foley/coinphy (1).ogg'
 	sellprice = 100
@@ -391,6 +409,13 @@
 	on_cooldown = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_cooldown), user), cooldown)
 
+	//Log message to global broadcast list.
+	GLOB.broadcast_list += list(list(
+	"message"   = input_text,
+	"tag"		= "SCOMSTONE #[scomstone_number]",
+	"timestamp" = station_time_timestamp("hh:mm:ss")
+	))
+
 /obj/item/scomstone/proc/reset_cooldown(mob/living/carbon/human/user)
 	to_chat(user, span_notice("[src] is ready for use again."))
 	playsound(loc, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
@@ -422,6 +447,12 @@
 	become_hearing_sensitive()
 	update_icon()
 	SSroguemachine.scomm_machines += src
+	scomstone_number = SSroguemachine.scomm_machines.len
+
+/obj/item/scomstone/examine(mob/user)
+	. = ..()
+	if(scomstone_number)
+		. += "Its designation is #[scomstone_number]."
 
 /obj/item/scomstone/proc/repeat_message(message, atom/A, tcolor, message_language)
 	if(A == src)
@@ -506,7 +537,7 @@
 /obj/item/listenstone/Initialize()
 	. = ..()
 	update_icon()
-	SSroguemachine.scomm_machines += src//dont know what this is for
+	SSroguemachine.scomm_machines += src
 
 
 /obj/item/listenstone/proc/repeat_message(message, atom/A, tcolor, message_language)
@@ -886,6 +917,14 @@
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
 	on_cooldown = TRUE
+	
+	//Log messages that aren't sent on the garrison line.
+	GLOB.broadcast_list += list(list(
+	"message"   = input_text,
+	"tag"		= "CROWNSTONE #[scomstone_number]",
+	"timestamp" = station_time_timestamp("hh:mm:ss")
+	))
+
 	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 
 /obj/item/scomstone/garrison/attack_self(mob/living/user)
@@ -923,6 +962,7 @@
 	var/listening = FALSE
 	var/speech_color = null
 	var/loudmouth = FALSE
+	var/broadcaster_tag
 
 /obj/structure/broadcast_horn/examine(mob/user)
 	. = ..()
@@ -930,6 +970,8 @@
 		. += "There's a faint skittering coming out of it."
 	else
 		. += "The rats within are quiet."
+	if(broadcaster_tag)
+		. += "It's[broadcaster_tag ? " labeled as [broadcaster_tag]" : ""]."
 
 /obj/structure/broadcast_horn/redstone_triggered()
 	toggle_horn()
@@ -963,6 +1005,15 @@
 	tspans |= speech_span
 	if(speech_color)
 		raw_message = "<span style='color: [speech_color]'>[raw_message]</span>"
+
+	//Log the broadcast here
+	GLOB.broadcast_list += list(list(
+		"message"   = raw_message,
+		"tag"       = broadcaster_tag,
+		"timestamp" = station_time_timestamp("hh:mm:ss")
+	))
+
+	//Forward to all listeners
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 		if(!S.calling && (!loudmouth || S.loudmouth_listening))
 			S.repeat_message(raw_message, src, usedcolor, message_language, tspans)
@@ -984,6 +1035,7 @@
 	desc = "The Loudmouth's own gleaming horn, its surface engraved with the ducal crest."
 	icon_state = "broadcaster"
 	speech_color = COLOR_ASSEMBLY_GOLD
+	broadcaster_tag = "Golden Mouth"
 	loudmouth = TRUE
 
 /obj/structure/broadcast_horn/loudmouth/attack_hand(mob/living/user)
@@ -996,92 +1048,61 @@
 /obj/structure/broadcast_horn/loudmouth/guest
 	name = "\improper Silver Tongue"
 	desc = "A guest's horn. Not as gaudy as the Loudmouth's own, but still a fine piece of craftsmanship. "
+	broadcaster_tag = "Silver Tongue"
 	icon_state = "broadcaster_crass"
 	speech_color = COLOR_ASSEMBLY_GURKHA
 
 /obj/structure/broadcast_horn/paid
 	name = "\improper Streetpipe"
-	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a zenny to send a message over the SCOM network. Foreigners pay extra."
+	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a ziliqua to broadcast a message to every SCOM."
 	icon_state = "broadcaster_crass"
 	icon = 'icons/roguetown/misc/machines.dmi'
 	var/is_locked = FALSE
-	var/stored_zen = 0
-	var/stored_zil = 0
 
 /obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
+	// Handle locking/unlocking with crier key
 	if(istype(P, /obj/item/roguekey/crier))
 		is_locked = !is_locked
 		listening = FALSE
 		playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
-		if(is_locked)
-			say("Streetpipe has been locked.")
-		else
-			say("Streetpipe has been unlocked.")
+		say(is_locked ? "Streetpipe has been locked." : "Streetpipe has been unlocked.")
+		return
+
+	// Handle coin payment
 	if(istype(P, /obj/item/roguecoin))
-		var/has_paid = FALSE
-		var/paid_zen = FALSE
-		if(HAS_TRAIT(user, TRAIT_OUTLANDER))
-			if(istype(P, /obj/item/roguecoin/silver))
-				has_paid = TRUE
-			else
-				say("Foreigners pay extra. Insert a ziliqua.")
-				playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-				return
-		else if(istype(P, /obj/item/roguecoin/copper))
-			has_paid = TRUE
-			paid_zen = TRUE
-		if(!has_paid)
-			return
+		var/obj/item/roguecoin/C = P
 		if(is_locked)
 			say("Streetpipe is locked. Consult the crier.")
 			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 			return
+
 		if(listening)
 			say("Coin already loaded.")
 			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 			return
-		var/obj/item/roguecoin/C = P
-		if(C.quantity > 1)
+
+		if(C.get_real_price() != 5)
+			to_chat(user, span_warning("Invalid payment! Insert coin worth 5 mammon."))
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 			return
+
 		listening = TRUE
 		qdel(C)
-		if(paid_zen)
-			stored_zen += 1
-		else
-			stored_zil +=1
+
+		// Route payments to rousmaster
+		for(var/obj/structure/roguemachine/crier/Crier in world)
+			Crier.total_payments += 5
+			break // Safety. Prevents a runtime if more than 1 rousmaster exists.
+
 		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 		return
-	..()
 
-/obj/structure/broadcast_horn/paid/attack_right(mob/user)
-	if(.)
-		return
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(H.job == "Town Crier")
-		var/dispensed = FALSE
-		if(stored_zen)
-			var/obj/item/roguecoin/Z = new /obj/item/roguecoin/copper(H, stored_zen)
-			if(H)
-				H.put_in_hands(Z)
-				stored_zen = 0
-				dispensed = TRUE
-				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
-		if(stored_zil)
-			var/obj/item/roguecoin/S = new /obj/item/roguecoin/silver(H, stored_zil)
-			if(H)
-				H.put_in_hands(S)
-				stored_zil = 0
-				dispensed = TRUE
-				playsound(src, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
-		else if(!dispensed)
-			say("There's no mammon inside.")
-			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+	..()
 
 /obj/structure/broadcast_horn/Initialize()
 	. = ..()
 	become_hearing_sensitive()
+	SSroguemachine.broadcaster_machines += src
 
 /obj/structure/broadcast_horn/Destroy()
 	lose_hearing_sensitivity()

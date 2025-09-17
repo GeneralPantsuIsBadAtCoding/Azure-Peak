@@ -212,9 +212,9 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 5
 	throwforce = 10
-	amount_per_transfer_from_this = 33
-	possible_transfer_amounts = list(33)
-	volume = 99
+	amount_per_transfer_from_this = 25
+	possible_transfer_amounts = list(25)
+	volume = 100
 	flags_inv = HIDEHAIR
 	reagent_flags = OPENCONTAINER
 	obj_flags = CAN_BE_HIT

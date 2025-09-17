@@ -7,7 +7,7 @@
 		if(1)
 			cloak = /obj/item/clothing/cloak/stabard/bog
 		if(2)
-			cloak = /obj/item/clothing/cloak/stabard/guard
+			cloak = /obj/item/clothing/cloak/stabard/dungeon
 		if(3)
 			cloak = /obj/item/clothing/suit/roguetown/armor/longcoat/brown
 
