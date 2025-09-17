@@ -34,11 +34,11 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	if ((istype(src, /obj/structure/pressure_plate)) || (istype(src, /obj/structure/lever)))
 		trigger_structure = TRUE
 		reaction_structure = FALSE
-	else 
+	else
 		reaction_structure = TRUE
 		trigger_structure = FALSE
 	//can't link a launcher while its locked
-	if (istype(src, /obj/structure/englauncher)) 
+	if (istype(src, /obj/structure/englauncher))
 		var obj/structure/englauncher/launchercheck = src
 		if(launchercheck.locked)
 			to_chat(user, span_warning("It's locked!"))
@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	if ((istype(multitool.buffer, /obj/structure/pressure_plate)) || (istype(multitool.buffer, /obj/structure/lever)))
 		trigger_buffer = TRUE
 		reaction_buffer = FALSE
-	else 
+	else
 		if (isnull(multitool.buffer)) //we need to check if the buffer is empty
 			reaction_buffer = FALSE
 			trigger_buffer = FALSE
@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 */
 
 /obj/structure/englauncher
-	name = "Engineer's Launcher" 
+	name = "Engineer's Launcher"
 	desc = "A engineering contraption made to launch various objects in the direction its pointed."
 	icon = 'icons/roguetown/misc/engineering_structure.dmi'
 	icon_state = "activator"
@@ -305,16 +305,16 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 	var/firedirectiontwo = NORTHEAST //bullet variation for spread mode
 	var/firedirectionthree = NORTHWEST //bullet variation for spread mode
 	var/spreadmode = FALSE //spread out your shots, waste your ammo
-	var/locked = FALSE
+	locked = FALSE
 	var/keylock = FALSE
-	var/lockhash = 0
-	var/lockid = null
+	lockhash = 0
+	lockid = null
 	var/lockbroken = 0
 	var/locksound = 'sound/foley/doors/woodlock.ogg'
 	var/unlocksound = 'sound/foley/doors/woodlock.ogg'
 	var/rattlesound = 'sound/foley/doors/lockrattle.ogg'
 	var/masterkey = TRUE //if masterkey can open this regardless
-	
+
 /obj/structure/englauncher/Initialize()
 	. = ..()
 	update_icon()
@@ -509,7 +509,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 			BT.fire_casing(get_step(src, launcher_direction), src, null, null, null, launcher_bodyzone, 0,  src)
 			ammo.contents -= BT
 			ammo.update_icon()
-			break		
+			break
 
 /obj/structure/englauncher/proc/container_aerosolize(var/launcher_liquid, var/launcher_direction)
 	var/turf/T = get_step(src, launcher_direction) //check for turf
@@ -522,7 +522,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 					var/datum/effect_system/smoke_spread/chem/smoke = new
 					if(spreadmode)
 						smoke.set_up(R, 3, T, FALSE)
-					else 
+					else
 						smoke.set_up(R, 1, T, FALSE)
 					smoke.start()
 
