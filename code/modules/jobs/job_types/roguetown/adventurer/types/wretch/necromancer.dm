@@ -7,8 +7,7 @@
 	cmode_music = 'sound/music/combat_heretic.ogg'
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_ARCYNE_T3)
-	maximum_possible_slots = 3 //Onutsio said 2 was stupid
-	// Necromancer get the most +4 Int, +2 Perception just like Sorc (Adv Mage), and a bit of endurance / speed
+	maximum_possible_slots = 2 //Bumped from 3 to 2. Every necromancer gets 2 player summons; this role is functionally 3 wretch slots.
 	subclass_stats = list(
 		STATKEY_INT = 4,
 		STATKEY_PER = 2,
