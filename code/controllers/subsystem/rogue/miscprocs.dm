@@ -52,7 +52,7 @@
 	holder?.devotion = src
 	src.patron = patron
 	holder?.hud_used?.initialize_bloodpool()
-	holder?.hud_used?.bloodpool.set_fill_color(COLOR_BLUE_GRAY)
+	holder?.hud_used?.bloodpool.set_fill_color("#3C41A4")
 	if (patron.type == /datum/patron/inhumen/zizo || patron.type == /datum/patron/divine/necra)
 		ADD_TRAIT(holder, TRAIT_DEATHSIGHT, "devotion")
 

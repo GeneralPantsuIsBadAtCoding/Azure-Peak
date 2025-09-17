@@ -333,6 +333,7 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 /datum/hud/proc/initialize_bloodpool()
 	bloodpool = new /atom/movable/screen/bloodpool(null, src)
 	infodisplay += bloodpool
+	show_hud(HUD_STYLE_STANDARD)
 
 /datum/hud/proc/shutdown_bloodpool()
 	infodisplay -= bloodpool
