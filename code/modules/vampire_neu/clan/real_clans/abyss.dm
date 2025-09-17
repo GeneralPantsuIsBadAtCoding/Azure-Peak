@@ -3,6 +3,7 @@
 	name = "Children of the Abyss"
 	desc = "The Children of the Abyss are a bloodline of vampires that worship the demons of old. Because of their affinity with the unholy, they are extremely vulnerable to the Church."
 	curse = "Fear of the Religion."
+	clanicon = "daimonion"
 	clane_covens = list(
 		/datum/coven/obfuscate,
 		/datum/coven/presence,

@@ -12,8 +12,9 @@
 
 /datum/clan/thronleer
 	name = "House Thronleer"
-	desc = "TBA"
+	desc = "THONGleer he he hehehehee (retard do not forget to change this)"
 	curse = "Weakness of the soul."
+	clanicon = "bloodheal"
 	blood_preference = BLOOD_PREFERENCE_FANCY
 	clane_covens = list(
 		/datum/coven/obfuscate,
