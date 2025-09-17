@@ -7,7 +7,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	allowed_races = RACES_ALL_KINDS
-	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. You spend your daes fleeing from the consequences of your actions - hiding in the wilderness, prowling the roads for easy marks and loose purses, and scraping to get by."
+	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. Houndred by the consequences of your actions - you spend your daes hiding in the wilderness, prowling the roads for easy marks and loose purses, and scraping to get by."
 	outfit = null
 	outfit_female = null
 	display_order = JDO_WRETCH
