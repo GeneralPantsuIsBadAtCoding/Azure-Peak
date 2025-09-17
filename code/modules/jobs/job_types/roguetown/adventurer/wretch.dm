@@ -4,10 +4,10 @@
 	flag = WRETCH
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = 8
-	spawn_positions = 8
+	total_positions = 3
+	spawn_positions = 3
 	allowed_races = RACES_ALL_KINDS
-	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. Hounded by the consequences of your actions, you now threaten the peace of those who still heed the authority that condemned you."
+	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. You spend your daes fleeing from the consequences of your actions - hiding in the wilderness, prowling the roads for easy marks and loose purses, and scraping to get by."
 	outfit = null
 	outfit_female = null
 	display_order = JDO_WRETCH
@@ -85,3 +85,20 @@
 		my_crime = "crimes against the Crown"
 	add_bounty(H.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, bounty_total, FALSE, my_crime, bounty_poster)
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+
+/proc/update_wretch_slots()
+    var/datum/job/wretch_job = SSjob.GetJob("Wretch")
+    if(!wretch_job)
+        return
+
+    var/player_count = length(GLOB.joined_player_list)
+
+    var/slots = 3
+    if(player_count > 30)
+        var/extra = floor((player_count - 30) / 10)
+        slots += extra
+
+    slots = min(slots, 10)
+
+    wretch_job.total_positions = slots
+    wretch_job.spawn_positions = slots

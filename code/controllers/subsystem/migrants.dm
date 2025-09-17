@@ -215,6 +215,7 @@ SUBSYSTEM_DEF(migrants)
 
 	SSticker.minds += character.mind
 	GLOB.joined_player_list += character.ckey
+	update_wretch_slots()
 
 	if(humanc)
 		var/fakekey = character.ckey
