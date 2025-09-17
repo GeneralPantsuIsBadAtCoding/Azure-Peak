@@ -799,7 +799,6 @@
 #include "code\datums\weather\weather_types\roguetown\rain.dm"
 #include "code\datums\world_factions\_base.dm"
 #include "code\datums\world_traits\_base.dm"
-#include "code\datums\world_traits\death_knight.dm"
 #include "code\datums\world_traits\event_traits.dm"
 #include "code\datums\world_traits\gods_boons.dm"
 #include "code\datums\world_traits\sieges.dm"

@@ -130,7 +130,7 @@
 								L.grabbedby(src)
 							L.visible_message("<span class='warning'><b>[src] bites [L]'s neck!</b></span>", "<span class='warning'><b>[src] bites your neck!</b></span>")
 							face_atom(L)
-							H.drinksomeblood(L)
+							H.drinksomeblood(L, BODY_ZONE_PRECISE_NECK)
 							if(CheckEyewitness(L, src, 7, FALSE))
 								H.AdjustMasquerade(-1)
 						else

@@ -123,14 +123,6 @@
 			addtimer(CALLBACK(choice, TYPE_PROC_REF(/mob/living, dust)), 10 SECONDS)
 	visible_message(span_danger("[src] reaches out, gripping [choice]'s soul, inflicting punishment!"), ignored_mobs = list(choice))
 
-/mob/proc/death_knight_spawn()
-	SEND_SOUND(src, sound('sound/misc/notice (2).ogg'))
-	if(alert(src, "A Vampire Lord is summoning you from the Underworld.", "Be Risen?", "Yes", "No") == "Yes")
-		if(!has_world_trait(/datum/world_trait/death_knight))
-			to_chat(src, span_warning("Another soul was chosen."))
-		returntolobby()
-
-
 ////////Outfits////////
 /obj/item/clothing/under/roguetown/platelegs/vampire
 	name = "ancient plate greaves"

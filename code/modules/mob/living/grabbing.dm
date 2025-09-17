@@ -589,7 +589,6 @@
 	d_type = "stab"
 	slot_flags = ITEM_SLOT_MOUTH
 	bleed_suppressing = 1
-	var/last_drink
 
 /obj/item/grabbing/bite/Click(location, control, params)
 	var/list/modifiers = params2list(params)
@@ -681,130 +680,12 @@
 	if(!user.Adjacent(grabbed))
 		qdel(src)
 		return
-	if(world.time <= user.next_move)
-		return
-	if(world.time < last_drink + 2 SECONDS)
-		return
+
 	if(!limb_grabbed.get_bleed_rate())
 		to_chat(user, span_warning("Sigh. It's not bleeding."))
 		return
-	var/mob/living/carbon/C = grabbed
-	if(C.dna?.species && (NOBLOOD in C.dna.species.species_traits))
-		to_chat(user, span_warning("Sigh. No blood."))
-		return
-	if(C.blood_volume <= 0)
-		to_chat(user, span_warning("Sigh. No blood."))
-		return
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(istype(H.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver))
-			to_chat(user, span_userdanger("SILVER! HISSS!!!"))
-			return
-		// Add bite animation to the victim
-		H.add_bite_animation()
 
-	last_drink = world.time
-	user.changeNext_move(CLICK_CD_MELEE)
-
-	if(user.mind && C.mind)
-		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
-		var/datum/antagonist/vampire/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampire)
-		if(VVictim)
-			to_chat(user, span_userdanger("<b>YOU TRY TO COMMIT DIABLERIE ON [C].</b>"))
-		var/zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/werewolf)
-		if(!zomwerewolf)
-			if(C.stat != DEAD)
-				zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/zombie)
-		if(VDrinker)
-			if(zomwerewolf)
-				to_chat(user, span_danger("I'm going to puke..."))
-				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
-			else
-				var/blood_handle
-				if(C.stat == DEAD)
-					blood_handle |= BLOOD_PREFERENCE_DEAD
-				else
-					blood_handle |= BLOOD_PREFERENCE_LIVING
-
-				if(C.job in list("Priest", "Priestess", "Cleric", "Acolyte", "Templar", "Churchling", "Crusader", "Inquisitor"))
-					blood_handle |= BLOOD_PREFERENCE_HOLY
-				if(VVictim)
-					blood_handle |= BLOOD_PREFERENCE_KIN
-					blood_handle  &= ~BLOOD_PREFERENCE_LIVING
-
-				if(C.bloodpool > 0)
-					C.blood_volume = max(C.blood_volume-45, 0)
-					if(ishuman(C))
-						var/used_vitae = 150
-						if(C.bloodpool < used_vitae)
-							used_vitae = C.bloodpool // We assume they're left with 250 vitae or less, so we take it all
-							to_chat(user, "<span class='warning'>...But alas, only leftovers...</span>")
-						user.adjust_bloodpool(used_vitae)
-						user.adjust_hydration(used_vitae * 0.1)
-						if(VVictim)
-							C.adjust_bloodpool(-used_vitae) //twice the loss
-						C.adjust_bloodpool(-used_vitae)
-					user.clan.handle_bloodsuck(user, blood_handle)
-				else
-					if(ishuman(C))
-						if(C.clan && user.clan)
-							user.AdjustMasquerade(-1)
-							message_admins("[ADMIN_LOOKUPFLW(user)] successfully Diablerized [ADMIN_LOOKUPFLW(C)]")
-							log_attack("[key_name(user)] successfully Diablerized [key_name(C)].")
-							to_chat(user, span_danger("I have... Consumed my kindred!"))
-							if(VVictim.generation > VDrinker.generation)
-								VDrinker.generation = VVictim.generation
-							VDrinker.research_points += VVictim.research_points
-							C.death()
-							C.adjustBruteLoss(-50, TRUE)
-							C.adjustFireLoss(-50, TRUE)
-							return
-						else
-							C.blood_volume = 0
-					if(ishuman(C) && !C.clan)
-						if(C.stat != DEAD)
-							to_chat(src, "<span class='warning'>This sad sacrifice for your own pleasure affects something deep in your mind.</span>")
-							user.AdjustMasquerade(-1)
-							C.death()
-					if(!ishuman(C))
-						if(C.stat != DEAD)
-							C.death()
-		else // Don't larp as a vampire, kids.
-			to_chat(user, span_warning("I'm going to puke..."))
-			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
-	else
-		if(user.mind) // We're drinking from a mob or a person who disconnected from the game
-			if(user.mind.has_antag_datum(/datum/antagonist/vampire))
-				C.blood_volume = max(C.blood_volume-45, 0)
-				if(C.bloodpool >= 250)
-					user.adjust_bloodpool(250, 250)
-				else
-					to_chat(user, span_warning("And yet, not enough vitae can be extracted from them... Tsk."))
-
-	C.blood_volume = max(C.blood_volume-5, 0)
-	C.handle_blood()
-
-	playsound(user.loc, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
-
-	C.visible_message(span_danger("[user] drinks from [C]'s [parse_zone(sublimb_grabbed)]!"), \
-					span_userdanger("[user] drinks from my [parse_zone(sublimb_grabbed)]!"), span_hear("..."), COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_warning("I drink from [C]'s [parse_zone(sublimb_grabbed)]."))
-	log_combat(user, C, "drank blood from ")
-
-	if(ishuman(C) && C.mind)
-		if(user.clan_position?.can_assign_positions && C.bloodpool <= 150)
-			if(alert(user, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
-				to_chat(user, span_warning("I decide [C] is unworthy."))
-			else
-				user.visible_message(span_danger("Some dark energy begins to flow from [user] into [C]..."), span_userdanger("I begin siring [C]..."))
-				if(do_after(user, 3 SECONDS, C))
-					C.visible_message(span_red("[C] rises as a new spawn!"))
-					var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(user.clan, TRUE)
-					C.mind.add_antag_datum(new_antag)
-					C.adjust_bloodpool(500)
-					// this is bad, should give them a healing buff instead
-					sleep(2 SECONDS)
-					C.fully_heal()
+	user.drinksomeblood(grabbed, sublimb_grabbed)
 
 /datum/status_effect/buff/oiled
 	id = "oiled"

@@ -34,11 +34,25 @@
 			user.adjust_bloodpool(DEATH_KNIGHT_COST)
 			user.playsound_local(get_turf(src), 'sound/misc/vcraft.ogg', 100, FALSE, pressure_affected = FALSE)
 			to_chat(user, span_notice("I have summoned a knight from the underworld. I need only wait for them to materialize."))
-			SSmapping.add_world_trait(/datum/world_trait/death_knight, -1)
-			for(var/mob/dead/observer/D in GLOB.player_list)
-				D.death_knight_spawn()
-			for(var/mob/living/carbon/spirit/D in GLOB.player_list)
-				D.death_knight_spawn()
+			var/list/candidates = pollGhostCandidates("Do you want to play as a Necromancer's skeleton?", ROLE_DEATH_KNIGHT, null, null, 10 SECONDS, POLL_IGNORE_DEATHKNIGHT)
+			if(!LAZYLEN(candidates))
+				to_chat(user, span_warning("The depths are hollow."))
+				return FALSE
+
+			var/mob/C = pick(candidates)
+			if(!C || !istype(C, /mob/dead))
+				return FALSE
+
+			if (istype(C, /mob/dead/new_player))
+				var/mob/dead/new_player/N = C
+				N.close_spawn_windows()
+
+			var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(get_turf(src))
+			target.key = C.key
+			SSjob.EquipRank(target, "Death Knight", TRUE)
+			target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "DEATH KNIGHT"), 3 SECONDS)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_pronouns_and_body)), 7 SECONDS)
 
 		if("Steal the Sun")
 			if(!can_steal_sun(user))
