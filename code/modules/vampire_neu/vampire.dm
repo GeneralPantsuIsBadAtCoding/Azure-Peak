@@ -55,11 +55,14 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	SSmapping.retainer.vampires |= owner
 	//move_to_spawnpoint()
 	owner.special_role = name
-
 	owner.current.adjust_bloodpool()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/vampdude = owner.current
-		vampdude.hud_used?.bloodpool?.set_fill_color("#510000")
+		if(owner.current.bloodpool)
+			QDEL_NULL(owner.current.bloodpool)
+
+		vampdude.hud_used?.initialize_bloodpool()
+		vampdude.hud_used?.bloodpool.set_fill_color("#510000")
 
 		if(!forced)
 			// Show clan selection interface
@@ -136,6 +139,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		var/mob/living/carbon/human/vampdude = owner.current
 		// Remove the clan when losing antagonist status
 		vampdude.set_clan(null)
+	owner.current?.hud_used?.shutdown_bloodpool()
 	if(!silent && owner.current)
 		to_chat(owner.current, span_danger("I am no longer a [job_rank]!"))
 	owner.special_role = null

@@ -122,8 +122,8 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	if(mymob.hud_used == src)
 		mymob.hud_used = null
 
+	QDEL_NULL(bloodpool)
 	QDEL_NULL(vis_holder)
-//	QDEL_NULL(hide_actions_toggle)
 	QDEL_NULL(module_store_icon)
 	QDEL_LIST(static_inventory)
 
@@ -330,3 +330,10 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	icon = ""
 	invisibility = INVISIBILITY_MAXIMUM
 
+/datum/hud/proc/initialize_bloodpool()
+	bloodpool = new /atom/movable/screen/bloodpool(null, src)
+	infodisplay += bloodpool
+
+/datum/hud/proc/shutdown_bloodpool()
+	infodisplay -= bloodpool
+	QDEL_NULL(bloodpool)
