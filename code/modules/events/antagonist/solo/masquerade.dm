@@ -14,7 +14,7 @@
 	denominator = 80
 
 	base_antags = 2
-	maximum_antags = 2
+	maximum_antags = 4
 
 	earliest_start = 0 SECONDS
 
@@ -55,10 +55,10 @@
 #define PRIORITY_MEDIUM "medium"
 #define PRIORITY_HIGH "high"
 
-/datum/round_event/antagonist/solo/start()
+/datum/round_event/antagonist/solo/masquerade/start()
 	INVOKE_ASYNC(src, PROC_REF(distribute_clans), setup_minds)
 
-/datum/round_event/antagonist/solo/proc/distribute_clans(list/datum/mind/minds_to_distribute)
+/datum/round_event/antagonist/solo/masquerade/proc/distribute_clans(list/datum/mind/minds_to_distribute)
 	var/datum/vampire_clan_vote/vampire_clan_vote = new()
 	var/list/mind_to_action = list()
 	for(var/datum/mind/mind as anything in minds_to_distribute)
