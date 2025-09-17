@@ -94,7 +94,15 @@
 	for(var/obj/item/rogueweapon/gangrel/claws in owner)
 		qdel(claws)
 
-/datum/coven_power/demonic/conflagration/post_gain()
+//PSYCHOMACHIA
+/datum/coven_power/demonic/psychomachia
+	name = "Psychomachia"
+	desc = "Set your foes on fire with a fireball."
+
+	level = 4
+	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
+
+/datum/coven_power/demonic/psychomachia/post_gain()
 	. = ..()
 	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball/baali)
 
@@ -102,32 +110,10 @@
 	name = "Infernal Fireball"
 	desc = "This spell fires an explosive fireball at a target."
 	school = "evocation"
-	recharge_time = 4 SECONDS
+	recharge_time = 6 SECONDS
 	invocation_type = "whisper"
 	projectile_type = /obj/projectile/magic/aoe/fireball/rogue
 	sound = 'sound/magic/fireball.ogg'
-
-//PSYCHOMACHIA
-/datum/coven_power/demonic/psychomachia
-	name = "Psychomachia"
-	desc = "Bring forth the target's greatest fear."
-
-	level = 4
-	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
-
-	violates_masquerade = TRUE
-	target_type = TARGET_LIVING
-	range = 7
-	vitae_cost = 100
-
-	cooldown_length = 60 SECONDS
-
-/datum/coven_power/demonic/psychomachia/activate(mob/living/target)
-	. = ..()
-	to_chat(target, span_boldwarning("You hear an infernal laugh!"))
-	//handle_maniac_hallucinations(target)
-	//handle_maniac_walls(target)
-	return TRUE
 
 //CONDEMNTATION
 /datum/coven_power/demonic/condemnation
