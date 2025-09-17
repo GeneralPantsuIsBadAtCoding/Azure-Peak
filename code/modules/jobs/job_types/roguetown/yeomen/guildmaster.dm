@@ -26,7 +26,7 @@
 
 	job_traits = list(TRAIT_TRAINED_SMITH, TRAIT_SEEPRICES)
 
-	advclass_cat_rolls = list(CTAG_GUILDMASTER = 2)
+	advclass_cat_rolls = list(CTAG_GUILDSMASTER = 2)
 	job_subclasses = list(
 		/datum/advclass/guildmaster
 	)

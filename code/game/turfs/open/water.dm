@@ -180,6 +180,9 @@
 			L.visible_message(span_warning("[L] spasms violently upon touching the water!"), span_danger("The water... it burns me!"))
 			L.adjustFireLoss(25)
 			return
+		if (istype(src,/turf/open/water/bloody))
+			L.add_mob_blood(L)
+
 		if(!(L.mobility_flags & MOBILITY_STAND) || water_level == 3)
 			L.SoakMob(FULL_BODY)
 		else
@@ -232,22 +235,43 @@
 			return
 		var/list/wash = list('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg')
 		playsound(user, pick_n_take(wash), 100, FALSE)
-		var/item2wash = user.get_active_held_item()
+		var/obj/item2wash = user.get_active_held_item()
 		if(!item2wash)
 			user.visible_message(span_info("[user] starts to wash in [src]."))
 			if(do_after(L, 3 SECONDS, target = src))
 				if(wash_in)
 					wash_atom(user, CLEAN_STRONG)
+					user.remove_stress(/datum/stressevent/sewertouched)
 				playsound(user, pick(wash), 100, FALSE)
+				if(istype(src,/turf/open/water/sewer) || istype(src,/turf/open/water/swamp) || istype(src, /turf/open/water/sewer))
+					if (istype(src, /turf/open/water/sewer))
+						user.add_stress(/datum/stressevent/sewertouched)
+					if (!HAS_TRAIT(L,TRAIT_LEECHIMMUNE)) // cleaning yourself in nasty water is a wonderful way to get leeches.
+						if (prob(20)) // 1 in 5 chance of getting leeched if you wash up in gross water.
+							var/list/zones = list(BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_NECK, BODY_ZONE_HEAD)
+							var/zone = pick(zones)
+							var/obj/item/bodypart/BP = L.get_bodypart(zone)
+							if (BP && !(BP.skeletonized))
+								var/obj/item/natural/worms/leech/I = new(L)
+								BP.add_embedded_object(I, silent = TRUE)
 /*				if(water_reagent == /datum/reagent/water) //become shittified, checks so bath water can be naturally gross but not discolored
 					water_reagent = /datum/reagent/water/gross
 					water_color = "#a4955b"
 					update_icon()*/
+				if (istype(src,/turf/open/water/bloody))
+					L.add_mob_blood(L) //Yes its their own DNA
+
 		else
 			user.visible_message(span_info("[user] starts to wash [item2wash] in [src]."))
 			if(do_after(L, 30, target = src))
 				if(wash_in)
 					wash_atom(item2wash, CLEAN_STRONG)
+					L.update_inv_hands()
+				if(istype(src,/turf/open/water/bloody))
+					item2wash.add_blood_DNA(list("Blood" = random_blood_type()))
+				if(iscarbon(L))
+					var/mob/living/carbon/C = user
+					C.update_inv_hands()
 				playsound(user, pick(wash), 100, FALSE)
 		return
 	..()
@@ -270,8 +294,11 @@
 	playsound(user, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
 	if(L.stat != CONSCIOUS)
 		return
+
 	if(do_after(L, 25, target = src))
-		var/list/waterl = list(/datum/reagent/water = 5)
+		if (istype(src,/turf/open/water/sewer))
+			to_chat(user, span_userdanger("Have I gone mad!? Why am I drinking sewage!?"))
+		var/list/waterl = list(src.water_reagent = 5)
 		var/datum/reagents/reagents = new()
 		reagents.add_reagent_list(waterl)
 		reagents.trans_to(L, reagents.total_volume, transfered_by = user, method = INGEST)
@@ -336,9 +363,9 @@
 	icon_state = "pavingW"
 	water_level = 1
 	water_color = "#705a43"
-	slowdown = 1
+	slowdown = 3
 	wash_in = FALSE
-	water_reagent = /datum/reagent/water/gross
+	water_reagent = /datum/reagent/water/gross/sewage
 
 /turf/open/water/sewer/Initialize()
 	icon_state = "paving"
@@ -362,10 +389,10 @@
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "dirtW2"
 	water_level = 2
-	water_color = "#880808"
+	water_color = "#941010"
 	slowdown = 3
-	wash_in = TRUE
-	water_reagent = /datum/reagent/blood
+	wash_in = FALSE
+	water_reagent = /datum/reagent/blood/shitty
 
 /turf/open/water/swamp/Initialize()
 	icon_state = "dirt"
@@ -378,6 +405,10 @@
 	dir = pick(GLOB.cardinals)
 	water_color = pick("#880808")
 	.  = ..()
+
+
+
+
 
 /turf/open/water/swamp/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()

@@ -52,6 +52,13 @@
 				S.repeat_message(input_text, src, usedcolor)
 			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, usedcolor)
+
+			GLOB.broadcast_list += list(list(
+			"message"   = input_text,
+			"tag"		= "The Crown of Azuria",
+			"timestamp" = station_time_timestamp("hh:mm:ss")
+			))
+
 		if(garrisonline)
 			input_text = "<big><span style='color: [GARRISON_CROWN_COLOR]'>[input_text]</span></big>" // Prettying up for Garrison line
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)

@@ -148,7 +148,7 @@
 /datum/status_effect/fire_handler/fire_stacks/on_remove()
 	pass()
 
-/datum/status_effect/fire_handler/fire_stacks/tick(seconds_between_ticks)
+/datum/status_effect/fire_handler/fire_stacks/tick(wait)
 	if(stacks <= 0)
 		qdel(src)
 		return TRUE
@@ -156,13 +156,13 @@
 	if(!on_fire)
 		return TRUE
 
-	adjust_stacks(owner.fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * seconds_between_ticks)
+	adjust_stacks(owner.fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * wait * 0.1)
 
 	if(stacks <= 0)
 		qdel(src)
 		return TRUE
 
-	deal_damage(seconds_between_ticks)
+	deal_damage(wait)
 
 /datum/status_effect/fire_handler/fire_stacks/proc/update_particles()
 	pass()
@@ -175,11 +175,11 @@
  *
  */
 
-/datum/status_effect/fire_handler/fire_stacks/proc/deal_damage(seconds_per_tick)
-	owner.on_fire_stack(seconds_per_tick, src)
+/datum/status_effect/fire_handler/fire_stacks/proc/deal_damage(wait)
+	owner.on_fire_stack(wait * 0.1, src)
 
 	var/turf/location = get_turf(owner)
-	location?.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
+	location?.hotspot_expose(700, 25 * wait * 0.1, TRUE)
 
 /**
  * Used to deal damage to humans and count their protection.
@@ -269,7 +269,7 @@
 	var/mob/living/carbon/human/victim = owner
 	if(istype(victim))
 		victim?.dna?.species?.handle_fire(victim, no_protection)
-	victim.adjustFireLoss((owner.getFireLoss() >= 100) ? 1.5 : 0.5)
+	victim.adjustFireLoss((owner.getFireLoss() >= 100) ? 4 : 2)
 
 /datum/status_effect/fire_handler/fire_stacks/sunder/blessed
 	id = "fire_stacks_sunder_blessed"
@@ -279,7 +279,7 @@
 	var/mob/living/carbon/human/victim = owner
 	if(istype(victim))
 		victim?.dna?.species?.handle_fire(victim, no_protection)
-	victim.adjustFireLoss(3)
+	victim.adjustFireLoss(8)
 
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"

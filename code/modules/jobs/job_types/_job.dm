@@ -437,6 +437,12 @@
 	return (H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F || H.pronouns == HE_HIM_F)
 // LETHALSTONE EDIT END
 
+/datum/job/proc/get_informed_title(mob/mob)
+	if(mob.gender == FEMALE && f_title)
+		return f_title
+
+	return title
+
 /datum/job/Topic(href, list/href_list)
 	if(href_list["explainjob"])
 		var/list/dat = list()
@@ -531,7 +537,7 @@
 				dat += "<br><i>Regardless of your statpacks or race choice, you will not be able to exceed these stats on spawn.</i></font>"
 				dat += "</font>"	//Ends the stat limit colors
 		if(length(job_traits) && (show_job_traits || sclass_count > 1))
-			dat += "<font color ='#7a4d0a'><b>Class</b></font> Traits:</font> "
+			dat += "<b>Class</b></font> Traits: "
 			for(var/trait in job_traits)
 				dat += "<details><summary><i><font color ='#ccbb82'>[trait]</font></i></summary>"
 				dat += "<i><font color = '#a3ffe0'>[GLOB.roguetraits[trait]]</font></i></details>"
@@ -554,4 +560,30 @@
 		popup.open(FALSE)
 		if(winexists(usr, "classhelp"))
 			winset(usr, "classhelp", "focus=true")
+	if(href_list["jobsubclassinfo"])
+		var/list/dat = list()
+		for(var/adv in job_subclasses)
+			var/datum/advclass/advpath = adv
+			var/datum/advclass/subclass = SSrole_class_handler.get_advclass_by_name(initial(advpath.name))
+			if(subclass.maximum_possible_slots != -1)
+				dat += "[subclass.name] — <b>"
+				if(subclass.total_slots_occupied >= subclass.maximum_possible_slots)
+					dat += "FULL!"
+				else
+					dat += "[subclass.total_slots_occupied] / [subclass.maximum_possible_slots]"
+				dat += "</b><br>"
+		var/datum/browser/popup = new(usr, "subclassslots", "<div style='text-align: center'>[title]</div>", nwidth = 200, nheight = 300)
+		popup.set_content(dat.Join())
+		popup.open(FALSE)
+		if(winexists(usr, "subclassslots"))
+			winset(usr, "subclassslots", "focus=true")
 	. = ..()
+
+/datum/job/proc/has_limited_subclasses()
+	if(length(job_subclasses) <= 0)
+		return FALSE
+	for(var/adv in job_subclasses)
+		var/datum/advclass/subclass = adv
+		if(initial(subclass.maximum_possible_slots) != -1)
+			return TRUE
+	return FALSE

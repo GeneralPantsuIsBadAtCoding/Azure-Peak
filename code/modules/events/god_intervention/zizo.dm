@@ -5,7 +5,7 @@
 	weight = 4
 	earliest_start = 25 MINUTES
 	max_occurrences = 2
-	min_players = 40
+	min_players = 2
 	allowed_storytellers = list(/datum/storyteller/zizo)
 
 /datum/round_event/zizo_defilement/start()
@@ -18,7 +18,7 @@
 	weight = 8
 	earliest_start = 25 MINUTES
 	max_occurrences = 2
-	min_players = 40
+	min_players = 35
 	allowed_storytellers = list(/datum/storyteller/zizo)
 
 /datum/round_event/zizo_pet_cementery/start()

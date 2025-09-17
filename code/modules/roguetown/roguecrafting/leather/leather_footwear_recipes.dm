@@ -3,7 +3,7 @@
 	category = "Footwear"
 
 /datum/crafting_recipe/roguetown/leather/footwear/shoes
-	name = "shoes x3 (1 leather)"
+	name = "shoes x3"
 	result = list(/obj/item/clothing/shoes/roguetown/simpleshoes,
 				/obj/item/clothing/shoes/roguetown/simpleshoes,
 				/obj/item/clothing/shoes/roguetown/simpleshoes)
@@ -11,43 +11,43 @@
 	sellprice = 10
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots
-	name = "leather boots (1 leather)"
+	name = "leather boots"
 	result = /obj/item/clothing/shoes/roguetown/boots/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	sellprice = 27
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots_heavy
-	name = "heavy leather boots (1 leather, 1 fur)"
+	name = "heavy leather boots"
 	result = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	reqs = list(/obj/item/natural/hide/cured = 1,
 				/obj/item/natural/fur = 1)
 	craftdiff = 3	//Same as the heavy leather gloves.
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots_heavy_b
-	name = "dress boots (1 leather, 1 fur)"
+	name = "dress boots"
 	result = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced/short
 	reqs = list(/obj/item/natural/hide/cured = 1,
 				/obj/item/natural/fur = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots/furlinedboots
-	name = "fur-lined boots (1 leather, 1 fur)"
+	name = "fur-lined boots"
 	result = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
 	reqs = list(/obj/item/natural/hide/cured = 1,
 				/obj/item/natural/fur = 1)
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots/short
-	name = "shortboots (1 leather)"
+	name = "shortboots"
 	result = /obj/item/clothing/shoes/roguetown/shortboots
 	reqs = list(/obj/item/natural/hide/cured = 1)
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots/dark
-	name = "dark boots (1 leather)"
+	name = "dark boots"
 	result = /obj/item/clothing/shoes/roguetown/boots
 	reqs = list(/obj/item/natural/hide/cured = 1)
 
 /datum/crafting_recipe/roguetown/leather/footwear/boots/noble
-	name = "noble boots (1 leather, 1 fur)"
+	name = "noble boots"
 	result = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	reqs = list(/obj/item/natural/hide/cured = 3,
 				/obj/item/natural/fur = 1)

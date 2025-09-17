@@ -125,116 +125,117 @@
 		/mob/living/carbon/human/mind/proc/setorders
 	)
 	H.adjust_blindness(-3)
-	var/weapons = list(
-		"Zweihander",
-		"Great Mace",
-		"Battle Axe",
-		"Greataxe",
-		"Estoc",
-		"Longsword",
-		"Flail",
-		"Sabre",
-		"Lance",
+	if(H.mind)
+		var/weapons = list(
+			"Zweihander",
+			"Great Mace",
+			"Battle Axe",
+			"Greataxe",
+			"Estoc",
+			"Longsword",
+			"Flail",
+			"Sabre",
+			"Lance",
+			)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Zweihander")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/greatsword/zwei
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Greataxe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Estoc")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/estoc
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Battle Axe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/stoneaxe/battle
+			if("Great Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/mace/goden/steel
+			if("Longsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/long
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Flail")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 5, TRUE)
+				beltr = /obj/item/rogueweapon/flail/sflail
+			if("Sabre")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/sabre
+			if("Lance")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/spear/lance
+		if(weapon_choice in list("Battle Axe", "Great Mace", "Longsword", "Flail", "Sabre", "Lance"))
+			var/secondary = list(
+				"Kite Shield",
+				"Crossbow",
+				"Recurve Bow",
+			)
+			var/secondary_choice = input("Choose your secondary.", "TAKE UP ARMS") as anything in secondary
+			switch(secondary_choice)
+				if("Kite Shield")
+					backl = /obj/item/rogueweapon/shield/tower/metal
+				if("Crossbow")
+					H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
+					backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+					beltl = /obj/item/quiver/bolts
+				if("Recurve Bow")
+					H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
+					beltl = /obj/item/quiver/arrows
+					backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+
+		var/armors = list(
+			"Brigandine",
+			"Coat of Plates",
+			"Steel Cuirass",
+			"Captain's armor"
 		)
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Zweihander")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/greatsword/zwei
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Greataxe")
-			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Estoc")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/estoc
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Battle Axe")
-			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/stoneaxe/battle
-		if("Great Mace")
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/mace/goden/steel
-		if("Longsword")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/sword/long
-			beltr = /obj/item/rogueweapon/scabbard/sword
-		if("Flail")
-			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 5, TRUE)
-			beltr = /obj/item/rogueweapon/flail/sflail
-		if("Sabre")
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/sabre
-		if("Lance")
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
-			r_hand = /obj/item/rogueweapon/spear/lance
-	if(weapon_choice in list("Battle Axe", "Great Mace", "Longsword", "Flail", "Sabre", "Lance"))
-		var/secondary = list(
-			"Kite Shield",
-			"Crossbow",
-			"Recurve Bow",
+		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		switch(armorchoice)
+			if("Brigandine")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				cloak = /obj/item/clothing/cloak/stabard
+			if("Coat of Plates")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				cloak = /obj/item/clothing/cloak/stabard
+			if("Fluted Cuirass")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				cloak = /obj/item/clothing/cloak/stabard
+			if("Captain's armor")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/captain
+				pants = /obj/item/clothing/under/roguetown/chainlegs/captain
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/captain
+				cloak = /obj/item/clothing/cloak/captain
+
+		if(armorchoice == "Captain's armor")
+			return // Get helmet from armor selection
+
+		var/helmets = list(
+			"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+			"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+			"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+			"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+			"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+			"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+			"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+			"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+			"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+			"Slitted Kettle"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
+			"None"
 		)
-		var/secondary_choice = input("Choose your secondary.", "TAKE UP ARMS") as anything in secondary
-		switch(secondary_choice)
-			if("Kite Shield")
-				backl = /obj/item/rogueweapon/shield/tower/metal
-			if("Crossbow")
-				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
-				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-				beltl = /obj/item/quiver/bolts
-			if("Recurve Bow")
-				H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
-				beltl = /obj/item/quiver/arrows
-				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-
-	var/armors = list(
-		"Brigandine",
-		"Coat of Plates",
-		"Steel Cuirass",
-		"Captain's armor"
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	switch(armorchoice)
-		if("Brigandine")
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine
-			pants = /obj/item/clothing/under/roguetown/chainlegs
-			cloak = /obj/item/clothing/cloak/stabard
-		if("Coat of Plates")
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
-			pants = /obj/item/clothing/under/roguetown/chainlegs
-			cloak = /obj/item/clothing/cloak/stabard
-		if("Fluted Cuirass")
-			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
-			pants = /obj/item/clothing/under/roguetown/chainlegs
-			cloak = /obj/item/clothing/cloak/stabard
-		if("Captain's armor")
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/captain
-			pants = /obj/item/clothing/under/roguetown/chainlegs/captain
-			head = /obj/item/clothing/head/roguetown/helmet/heavy/captain
-			cloak = /obj/item/clothing/cloak/captain
-
-	if(armorchoice == "Captain's armor")
-		return // Get helmet from armor selection
-
-	var/helmets = list(
-		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
-		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
-		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
-		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
-		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
-		"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
-		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
-		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
-		"Slitted Kettle"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
-		"None"
-	)
-	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-	if(helmchoice != "None")
-		head = helmets[helmchoice]
+		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
 
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"

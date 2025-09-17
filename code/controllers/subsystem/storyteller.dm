@@ -226,6 +226,8 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[event.track] += event //Add it to the categorized event pools
 
 	load_roundstart_data()
+
+	check_roundstart_gods_rankings()
 	. = ..()
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
@@ -534,7 +536,14 @@ SUBSYSTEM_DEF(gamemode)
 	if(!length(storytellers))
 		for(var/type in subtypesof(/datum/storyteller))
 			storytellers[type] = new type()
-	set_storyteller(/datum/storyteller/astrata)
+	for(var/storyteller_name in storytellers)
+		var/datum/storyteller/initialized_storyteller = storytellers[storyteller_name]
+		if(initialized_storyteller?.ascendant)
+			to_chat(world, "<br>")
+			to_chat(world, span_reallybig("[initialized_storyteller.name] is ascendant!"))
+			to_chat(world, "<br>")
+
+	pick_most_influential(TRUE)
 	calculate_ready_players()
 	roll_pre_setup_points()
 	//handle_pre_setup_roundstart_events()
@@ -1080,7 +1089,7 @@ SUBSYSTEM_DEF(gamemode)
 			if(listed.name != event_name)
 				continue
 			listed.occurrences++
-			listed.occurrences++
+			listed.last_round_occurrences++
 
 /// Compares influence of all storytellers and sets a new storyteller with a highest influence
 /datum/controller/subsystem/gamemode/proc/pick_most_influential(roundstart = FALSE)
@@ -1128,55 +1137,66 @@ SUBSYSTEM_DEF(gamemode)
 
 	GLOB.patron_follower_counts.Cut()
 
-	// General / Patron count
-	GLOB.azure_round_stats[STATS_TOTAL_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_PSYCROSS_USERS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_NOBLES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_GARRISON] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_CLERGY] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN] = 0
-	GLOB.azure_round_stats[STATS_WEREVOLVES] = 0
-	GLOB.azure_round_stats[STATS_BANDITS] = 0
-	GLOB.azure_round_stats[STATS_VAMPIRES] = 0
-	GLOB.azure_round_stats[STATS_DEADITES_ALIVE] = 0
-	GLOB.azure_round_stats[STATS_CLINGY_PEOPLE] = 0
-	GLOB.azure_round_stats[STATS_ALCOHOLICS] = 0
-	GLOB.azure_round_stats[STATS_JUNKIES] = 0
-	GLOB.azure_round_stats[STATS_GREEDY_PEOPLE] = 0
-	GLOB.azure_round_stats[STATS_PLEASURES] = 0
+	var/list/statistics_to_clear = list(
+		STATS_TOTAL_POPULATION,
+        STATS_PSYCROSS_USERS,
+        STATS_ALIVE_NOBLES,
+        STATS_ALIVE_GARRISON,
+        STATS_ALIVE_CLERGY,
+        STATS_ALIVE_TRADESMEN,
+        STATS_WEREVOLVES,
+        STATS_BANDITS,
+        STATS_VAMPIRES,
+        STATS_DEADITES_ALIVE,
+        STATS_CLINGY_PEOPLE,
+        STATS_ALCOHOLICS,
+        STATS_JUNKIES,
+        STATS_GREEDY_PEOPLE,
+        STATS_PLEASURES,
+        STATS_MALE_POPULATION,
+        STATS_FEMALE_POPULATION,
+        STATS_OTHER_GENDER,
+        STATS_ADULT_POPULATION,
+        STATS_MIDDLEAGED_POPULATION,
+        STATS_ELDERLY_POPULATION,
+        STATS_ALIVE_NORTHERN_HUMANS,
+        STATS_ALIVE_DWARVES,
+        STATS_ALIVE_DARK_ELVES,
+        STATS_ALIVE_WOOD_ELVES,
+        STATS_ALIVE_HALF_ELVES,
+        STATS_ALIVE_HALF_ORCS,
+        STATS_ALIVE_GOBLINS,
+        STATS_ALIVE_KOBOLDS,
+        STATS_ALIVE_LIZARDS,
+        STATS_ALIVE_AASIMAR,
+        STATS_ALIVE_TIEFLINGS,
+        STATS_ALIVE_HALFKIN,
+        STATS_ALIVE_WILDKIN,
+        STATS_ALIVE_CONSTRUCTS,
+        STATS_ALIVE_VERMINFOLK,
+        STATS_ALIVE_DRACON,
+        STATS_ALIVE_AXIAN,
+        STATS_ALIVE_TABAXI,
+        STATS_ALIVE_VULPS,
+        STATS_ALIVE_LUPIANS,
+        STATS_ALIVE_MOTHS
+	)
 
-	// Gender count
-	GLOB.azure_round_stats[STATS_MALE_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_FEMALE_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_OTHER_GENDER] = 0
+	for(var/stat_name in statistics_to_clear)
+		force_set_round_statistic(stat_name, 0)
 
-	// Age count
-	GLOB.azure_round_stats[STATS_ADULT_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_MIDDLEAGED_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_ELDERLY_POPULATION] = 0
+	var/total_wealth = 0
 
-	// Races count
-	GLOB.azure_round_stats[STATS_ALIVE_NORTHERN_HUMANS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DWARVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_GOBLINS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_LIZARDS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_AASIMAR] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALFKIN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_WILDKIN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_CONSTRUCTS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_VERMINFOLK] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DRACON] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_AXIAN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TABAXI] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_VULPS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_LUPIANS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_MOTHS] = 0
+	var/highest_strength = -1
+	var/highest_intelligence = -1
+	var/highest_wealth = -1
+	var/highest_luck = -1
+	var/highest_speed = -1
+
+	var/lowest_intelligence
+	var/lowest_speed
+	var/lowest_luck
+
 
 	for(var/client/client in GLOB.clients)
 		if(roundstart)
@@ -1192,101 +1212,143 @@ SUBSYSTEM_DEF(gamemode)
 			if(living.patron)
 				GLOB.patron_follower_counts[living.patron.name]++
 				if(living.job == "Grand Duke")
-					GLOB.azure_round_stats[STATS_MONARCH_PATRON] = "[living.patron.name]"
+					force_set_round_statistic(STATS_MONARCH_PATRON, living.patron.name)
 		if(living.mind.has_antag_datum(/datum/antagonist/bandit))
-			GLOB.azure_round_stats[STATS_BANDITS]++
+			record_round_statistic(STATS_BANDITS)
 		if(living.mind.has_antag_datum(/datum/antagonist/werewolf))
-			GLOB.azure_round_stats[STATS_WEREVOLVES]++
+			record_round_statistic(STATS_WEREVOLVES)
 		if(living.mind.has_antag_datum(/datum/antagonist/vampire))
-			GLOB.azure_round_stats[STATS_VAMPIRES]++
+			record_round_statistic(STATS_VAMPIRES)
 		if(living.mind.has_antag_datum(/datum/antagonist/zombie) || living.mind.has_antag_datum(/datum/antagonist/skeleton) || living.mind.has_antag_datum(/datum/antagonist/lich))
-			GLOB.azure_round_stats[STATS_DEADITES_ALIVE]++
+			record_round_statistic(STATS_DEADITES_ALIVE)
 		if(ishuman(living))
 			var/mob/living/carbon/human/human_mob = client.mob
-			GLOB.azure_round_stats[STATS_TOTAL_POPULATION]++
+			record_round_statistic(STATS_TOTAL_POPULATION)
 			for(var/obj/item/clothing/neck/current_item in human_mob.get_equipped_items(TRUE))
 				if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
-					GLOB.azure_round_stats[STATS_PSYCROSS_USERS]++
+					record_round_statistic(STATS_PSYCROSS_USERS)
 					break
 			switch(human_mob.pronouns)
 				if(HE_HIM)
-					GLOB.azure_round_stats[STATS_MALE_POPULATION]++
+					record_round_statistic(STATS_MALE_POPULATION)
 				if(HE_HIM_F)
-					GLOB.azure_round_stats[STATS_MALE_POPULATION]++
+					record_round_statistic(STATS_MALE_POPULATION)
 				if(SHE_HER)
-					GLOB.azure_round_stats[STATS_FEMALE_POPULATION]++
+					record_round_statistic(STATS_FEMALE_POPULATION)
 				if(SHE_HER_M)
-					GLOB.azure_round_stats[STATS_FEMALE_POPULATION]++
+					record_round_statistic(STATS_FEMALE_POPULATION)
 				else
-					GLOB.azure_round_stats[STATS_OTHER_GENDER]++
+					record_round_statistic(STATS_OTHER_GENDER)
 			switch(human_mob.age)
 				if(AGE_ADULT)
-					GLOB.azure_round_stats[STATS_ADULT_POPULATION]++
+					record_round_statistic(STATS_ADULT_POPULATION)
 				if(AGE_MIDDLEAGED)
-					GLOB.azure_round_stats[STATS_MIDDLEAGED_POPULATION]++
+					record_round_statistic(STATS_MIDDLEAGED_POPULATION)
 				if(AGE_OLD)
-					GLOB.azure_round_stats[STATS_ELDERLY_POPULATION]++
+					record_round_statistic(STATS_ELDERLY_POPULATION)
 			if(human_mob.is_noble())
-				GLOB.azure_round_stats[STATS_ALIVE_NOBLES]++
+				record_round_statistic(STATS_ALIVE_NOBLES)
 			if(human_mob.mind.assigned_role in GLOB.garrison_positions)
-				GLOB.azure_round_stats[STATS_ALIVE_GARRISON]++
+				record_round_statistic(STATS_ALIVE_GARRISON)
 			if(human_mob.mind.assigned_role in GLOB.church_positions)
-				GLOB.azure_round_stats[STATS_ALIVE_CLERGY]++
+				record_round_statistic(STATS_ALIVE_CLERGY)
 			if((human_mob.mind.assigned_role in GLOB.yeoman_positions) || (human_mob.mind.assigned_role in GLOB.peasant_positions) || (human_mob.mind.assigned_role in GLOB.mercenary_positions))
-				GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN]++
+				record_round_statistic(STATS_ALIVE_TRADESMEN)
 			if(human_mob.has_flaw(/datum/charflaw/clingy))
-				GLOB.azure_round_stats[STATS_CLINGY_PEOPLE]++
+				record_round_statistic(STATS_CLINGY_PEOPLE)
 			if(human_mob.has_flaw(/datum/charflaw/addiction/alcoholic))
-				GLOB.azure_round_stats[STATS_ALCOHOLICS]++
+				record_round_statistic(STATS_ALCOHOLICS)
 			if(human_mob.has_flaw(/datum/charflaw/addiction/junkie))
-				GLOB.azure_round_stats[STATS_JUNKIES]++
+				record_round_statistic(STATS_JUNKIES)
 			if(human_mob.has_flaw(/datum/charflaw/greedy))
-				GLOB.azure_round_stats[STATS_GREEDY_PEOPLE]++
+				record_round_statistic(STATS_GREEDY_PEOPLE)
 
 			// Races - proper alive checking (We have so fucking many, kill me..)
 			if(ishumannorthern(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_NORTHERN_HUMANS]++
+				record_round_statistic(STATS_ALIVE_NORTHERN_HUMANS)
 			if(isdwarf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DWARVES]++
+				record_round_statistic(STATS_ALIVE_DWARVES)
 			if(isdarkelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES]++
+				record_round_statistic(STATS_ALIVE_DARK_ELVES)
 			if(iswoodelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES]++
+				record_round_statistic(STATS_ALIVE_WOOD_ELVES)
 			if(ishalfelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES]++
+				record_round_statistic(STATS_ALIVE_HALF_ELVES)
 			if(ishalforc(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS]++
+				record_round_statistic(STATS_ALIVE_HALF_ORCS)
 			if(isgoblinp(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_GOBLINS]++
+				record_round_statistic(STATS_ALIVE_GOBLINS)
 			if(iskobold(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS]++
+				record_round_statistic(STATS_ALIVE_KOBOLDS)
 			if(islizard(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_LIZARDS]++
+				record_round_statistic(STATS_ALIVE_LIZARDS)
 			if(isaasimar(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_AASIMAR]++
+				record_round_statistic(STATS_ALIVE_AASIMAR)
 			if(istiefling(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS]++
+				record_round_statistic(STATS_ALIVE_TIEFLINGS)
 			if(ishalfkin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALFKIN]++
+				record_round_statistic(STATS_ALIVE_HALFKIN)
 			if(iswildkin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_WILDKIN]++
+				record_round_statistic(STATS_ALIVE_WILDKIN)
 			if(isconstruct(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_CONSTRUCTS]++
+				record_round_statistic(STATS_ALIVE_CONSTRUCTS)
 			if(isvermin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_VERMINFOLK]++
+				record_round_statistic(STATS_ALIVE_VERMINFOLK)
 			if(isdracon(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DRACON]++
+				record_round_statistic(STATS_ALIVE_DRACON)
 			if(isaxian(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_AXIAN]++
+				record_round_statistic(STATS_ALIVE_AXIAN)
 			if(istabaxi(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_TABAXI]++
+				record_round_statistic(STATS_ALIVE_TABAXI)
 			if(isvulp(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_VULPS]++
+				record_round_statistic(STATS_ALIVE_VULPS)
 			if(islupian(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_LUPIANS]++
+				record_round_statistic(STATS_ALIVE_LUPIANS)
 			if(ismoth(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_MOTHS]++
+				record_round_statistic(STATS_ALIVE_MOTHS)
 
+			// Chronicle statistics
+			if(human_mob.STASTR > highest_strength)
+				highest_strength = human_mob.STASTR
+				set_chronicle_stat(CHRONICLE_STATS_STRONGEST_PERSON, human_mob)
+			if(human_mob.STAINT > highest_intelligence)
+				highest_intelligence = human_mob.STAINT
+				set_chronicle_stat(CHRONICLE_STATS_WISEST_PERSON, human_mob)
+			if(human_mob.STALUC > highest_luck)
+				highest_luck = human_mob.STALUC
+				set_chronicle_stat(CHRONICLE_STATS_LUCKIEST_PERSON, human_mob)
+			if(human_mob.STASPD > highest_speed)
+				highest_speed = human_mob.STASPD
+				set_chronicle_stat(CHRONICLE_STATS_FASTEST_PERSON, human_mob)
+
+			var/wealth = get_mammons_in_atom(human_mob)
+			total_wealth += wealth
+			if(wealth > highest_wealth)
+				highest_wealth = wealth
+				set_chronicle_stat(CHRONICLE_STATS_RICHEST_PERSON, human_mob)
+
+			if(!lowest_intelligence)
+				lowest_intelligence = human_mob.STAINT
+				set_chronicle_stat(CHRONICLE_STATS_DUMBEST_PERSON, human_mob)
+			else if(human_mob.STAINT < lowest_intelligence)
+				lowest_intelligence = human_mob.STAINT
+				set_chronicle_stat(CHRONICLE_STATS_DUMBEST_PERSON, human_mob)
+
+			if(!lowest_speed)
+				lowest_speed = human_mob.STASPD
+				set_chronicle_stat(CHRONICLE_STATS_SLOWEST_PERSON, human_mob)
+			else if(human_mob.STASPD < lowest_speed)
+				lowest_speed = human_mob.STASPD
+				set_chronicle_stat(CHRONICLE_STATS_SLOWEST_PERSON, human_mob)
+
+			if(!lowest_luck)
+				lowest_luck = human_mob.STALUC
+				set_chronicle_stat(CHRONICLE_STATS_UNLUCKIEST_PERSON, human_mob)
+			else if(human_mob.STALUC < lowest_luck)
+				lowest_luck = human_mob.STALUC
+				set_chronicle_stat(CHRONICLE_STATS_UNLUCKIEST_PERSON, human_mob)
+
+			force_set_round_statistic(STATS_MAMMONS_HELD, total_wealth)
 
 /// Returns total follower influence for the given storyteller
 /datum/controller/subsystem/gamemode/proc/get_follower_influence(datum/storyteller/chosen_storyteller)
@@ -1310,6 +1372,8 @@ SUBSYSTEM_DEF(gamemode)
 			total_influence += max(min_mod, base_mod - (i - diminish_threshold))
 		else
 			total_influence += max(second_min_mod, base_mod - (i - diminish_threshold))
+
+	total_influence = total_influence * initialized_storyteller.influence_modifier
 
 	return total_influence
 

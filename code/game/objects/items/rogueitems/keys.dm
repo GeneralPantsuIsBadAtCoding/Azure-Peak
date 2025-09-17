@@ -576,6 +576,36 @@
 	icon_state = "brownkey"
 	lockid = "stable2"
 
+/obj/item/roguekey/apartments/stablemaster_1
+	name = "stable i key"
+	icon_state = "brownkey"
+	lockid = "stable_master_1"
+
+/obj/item/roguekey/apartments/stablemaster_2
+	name = "stable ii key"
+	icon_state = "brownkey"
+	lockid = "stable_master_2"
+
+/obj/item/roguekey/apartments/stablemaster_3
+	name = "stable iii key"
+	icon_state = "brownkey"
+	lockid = "stable_master_3"
+
+/obj/item/roguekey/apartments/stablemaster_4
+	name = "stable iv key"
+	icon_state = "brownkey"
+	lockid = "stable_master_4"
+
+/obj/item/roguekey/apartments/stablemaster_5
+	name = "stable v key"
+	icon_state = "brownkey"
+	lockid = "stable_master_5"
+
+/obj/item/roguekey/apartments/stablemaster
+	name = "stablemaster key"
+	icon_state = "brownkey"
+	lockid = "stablemaster"
+
 //custom key
 /obj/item/roguekey/custom
 	name = "custom key"
@@ -707,3 +737,14 @@
 				KE.name = src.holdname
 			to_chat(user, span_notice("You add [src] to [K]."))
 			qdel(src)
+	if(istype(K, /obj/structure/englauncher))
+		var/obj/structure/englauncher/KE = K
+		if(KE.keylock == TRUE)
+			to_chat(user, span_warning("[K] already has a lock."))
+		else
+			KE.keylock = TRUE
+			KE.lockhash = src.lockhash
+			if(src.holdname)
+				KE.name = src.holdname
+			to_chat(user, span_notice("You add [src] to [K]."))
+			qdel(src)	

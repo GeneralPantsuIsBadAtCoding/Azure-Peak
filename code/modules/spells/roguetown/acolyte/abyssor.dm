@@ -167,7 +167,7 @@
 			else
 				AF.throw_at(get_turf(user), 5, 1, null)
 			record_featured_stat(FEATURED_STATS_FISHERS, user)
-			GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+			record_round_statistic(STATS_FISH_CAUGHT)
 			playsound(T, 'sound/foley/footsteps/FTWAT_1.ogg', 100)
 			teleport_to_dream(user, 10000, 1)
 			user.visible_message("<font color='yellow'>[user] makes a beckoning gesture at [T]!</font>")

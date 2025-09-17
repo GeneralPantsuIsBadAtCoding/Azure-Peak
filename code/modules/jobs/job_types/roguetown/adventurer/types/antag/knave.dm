@@ -53,37 +53,38 @@
 	id = /obj/item/mattcoin
 	H.adjust_blindness(-3)
 	var/weapons = list("Crossbow & Dagger", "Bow & Sword")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Crossbow & Dagger") //Rogue
-			backl= /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow //we really need to make this not a grenade launcher subtype
-			beltr = /obj/item/quiver/bolts
-			cloak = /obj/item/clothing/cloak/raincloak/mortus //cool cloak
-			beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
-			backr = /obj/item/storage/backpack/rogue/satchel
-			backpack_contents = list(
-						/obj/item/needle/thorn = 1,
-						/obj/item/natural/cloth = 1,
-						/obj/item/lockpickring/mundane = 1,
-						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/rogueweapon/scabbard/sheath = 1
-						) //rogue gets lockpicks
-			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_EXPERT, TRUE)
-		if("Bow & Sword") //Poacher
-			backl= /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			l_hand = /obj/item/rogueweapon/sword/short
-			beltl = /obj/item/rogueweapon/scabbard/sword
-			beltr = /obj/item/quiver/arrows
-			head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm //cool hat
-			backr = /obj/item/storage/backpack/rogue/satchel
-			backpack_contents = list(
-						/obj/item/needle/thorn = 1,
-						/obj/item/natural/cloth = 1,
-						/obj/item/restraints/legcuffs/beartrap = 2,
-						/obj/item/flashlight/flare/torch = 1,
-						) //poacher gets mantraps
-			H.adjust_skillrank(/datum/skill/combat/bows, SKILL_LEVEL_EXPERT, TRUE)
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Crossbow & Dagger") //Rogue
+				backl= /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow //we really need to make this not a grenade launcher subtype
+				beltr = /obj/item/quiver/bolts
+				cloak = /obj/item/clothing/cloak/raincloak/mortus //cool cloak
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+				backr = /obj/item/storage/backpack/rogue/satchel
+				backpack_contents = list(
+							/obj/item/needle/thorn = 1,
+							/obj/item/natural/cloth = 1,
+							/obj/item/lockpickring/mundane = 1,
+							/obj/item/flashlight/flare/torch = 1,
+							/obj/item/rogueweapon/scabbard/sheath = 1
+							) //rogue gets lockpicks
+				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_EXPERT, TRUE)
+			if("Bow & Sword") //Poacher
+				backl= /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+				l_hand = /obj/item/rogueweapon/sword/short
+				beltl = /obj/item/rogueweapon/scabbard/sword
+				beltr = /obj/item/quiver/arrows
+				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm //cool hat
+				backr = /obj/item/storage/backpack/rogue/satchel
+				backpack_contents = list(
+							/obj/item/needle/thorn = 1,
+							/obj/item/natural/cloth = 1,
+							/obj/item/restraints/legcuffs/beartrap = 2,
+							/obj/item/flashlight/flare/torch = 1,
+							) //poacher gets mantraps
+				H.adjust_skillrank(/datum/skill/combat/bows, SKILL_LEVEL_EXPERT, TRUE)
 
 	if(!istype(H.patron, /datum/patron/inhumen/matthios))
 		var/inputty = input(H, "Would you like to change your patron to Matthios?", "The Transactor calls", "No") as anything in list("Yes", "No")

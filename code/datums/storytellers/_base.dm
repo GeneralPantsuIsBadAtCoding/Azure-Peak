@@ -70,8 +70,12 @@
 	var/always_votable = FALSE
 	///weight this has of being picked for random storyteller/showing up in the vote if not always_votable
 	var/weight = 0
-	/// Influence factors, which are used to calculate storyteller influence. List of lists, which looks like RELEVANT_STATS = list(point gain, max capacity)
+	/// List of all influence sets. One factor is picked from each set during initialization to create the final influence factors. Example: "Set 1" = list(STATS1 = list("points" = 0.015, "capacity" = 90), STATS2 = list("points" = 8, "capacity" = 50))
+	var/list/influence_sets = list()
+	/// Chosen influence factors, which are used to calculate storyteller influence. List of lists, which looks like RELEVANT_STATS = list(point gain, max capacity)
 	var/influence_factors = list()
+	/// Point modifier to all influence factors including the follower count, default is 1 (100%)
+	var/influence_modifier = 1
 	/// How many influence points storyteller gets for each follower
 	var/follower_modifier = STANDARD_FOLLOWER_MODIFIER
 	/// Thematic color of the storyteller, used in statistics menu
@@ -80,6 +84,16 @@
 	var/times_chosen = 0
 	/// Bonus points to the storyteller total influence
 	var/bonus_points = 0
+	/// If the storyteller is ascendant this round, that is if he reached over 100 points in rankings of the gods
+	var/ascendant = FALSE
+
+/datum/storyteller/New()
+	. = ..()
+	for(var/set_name in influence_sets)
+		var/list/current_set = influence_sets[set_name]
+		var/selected_stat = pick(current_set)
+		influence_factors[selected_stat] = current_set[selected_stat]
+
 
 /datum/storyteller/process()
 	if(!round_started || disable_distribution) // we are differing roundstarted ones until base roundstart so we can get cooler stuff

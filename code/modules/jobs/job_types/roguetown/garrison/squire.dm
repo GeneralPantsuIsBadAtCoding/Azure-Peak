@@ -136,15 +136,16 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot
 	)
 	H.adjust_blindness(-3)
-	var/weapons = list("Iron Sword","Cudgel",)
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Iron Sword")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/iron
-		if("Cudgel")	
-			beltr = /obj/item/rogueweapon/mace/cudgel
+	if(H.mind)
+		var/weapons = list("Iron Sword","Cudgel",)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Iron Sword")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/iron
+			if("Cudgel")	
+				beltr = /obj/item/rogueweapon/mace/cudgel
 
 /datum/advclass/squire/skirmisher
 	name = "Irregular Squire"

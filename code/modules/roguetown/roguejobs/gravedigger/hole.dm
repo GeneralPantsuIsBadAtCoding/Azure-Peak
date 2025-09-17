@@ -199,7 +199,7 @@
 			open()
 			for(var/obj/structure/gravemarker/G in loc)
 				record_featured_stat(FEATURED_STATS_CRIMINALS, user)
-				GLOB.azure_round_stats[STATS_GRAVES_ROBBED]++
+				record_round_statistic(STATS_GRAVES_ROBBED)
 				qdel(G)
 				if(isliving(user))
 					var/mob/living/L = user

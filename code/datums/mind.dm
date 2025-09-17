@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	var/memory
 
-	var/assigned_role
+	var/datum/job/assigned_role
 	var/special_role
 	var/list/restricted_roles = list()
 
@@ -58,6 +58,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/bolstertext = "Hold the line!!"
 	var/brotherhoodtext = "Stand proud, for the Brotherhood!!"
 	var/chargetext = "Chaaaaaarge!!"
+
+	var/mob/living/carbon/champion = null
+	var/mob/living/carbon/ward = null
+
 
 	var/linglink
 	var/datum/martial_art/martial_art

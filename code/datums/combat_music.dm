@@ -397,15 +397,6 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "Heilung - Elddansurin"
 	musicpath = list('sound/music/combat_shaman2.ogg')
 
-/* Unused
-/datum/combat_music/shaman_old
-	name = "Shaman, Atgervi (Old)"
-	desc = ""
-	shortname = "Shaman Old"
-	credits = "Heilung - Hakkerskaldyr"
-	musicpath = list('sound/music/combat_shaman.ogg')
-*/
-
 /datum/combat_music/spymaster
 	name = "Spymaster"
 	desc = ""

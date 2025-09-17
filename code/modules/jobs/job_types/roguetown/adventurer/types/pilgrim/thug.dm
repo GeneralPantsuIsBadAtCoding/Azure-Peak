@@ -34,14 +34,15 @@
 
 /datum/outfit/job/roguetown/adventurer/thug/pre_equip(mob/living/carbon/human/H)
 	..()
-	var/weapons = list("Knuckles","Cudgel")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Knuckles")
-			beltr = /obj/item/rogueweapon/knuckles/bronzeknuckles
-		if("Cudgel")
-			beltl = /obj/item/rogueweapon/mace/cudgel
+	if(H.mind)
+		var/weapons = list("Knuckles","Cudgel")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Knuckles")
+				beltr = /obj/item/rogueweapon/knuckles/bronzeknuckles
+			if("Cudgel")
+				beltl = /obj/item/rogueweapon/mace/cudgel
 	head = /obj/item/clothing/head/roguetown/roguehood/random 
 	belt = /obj/item/storage/belt/rogue/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light

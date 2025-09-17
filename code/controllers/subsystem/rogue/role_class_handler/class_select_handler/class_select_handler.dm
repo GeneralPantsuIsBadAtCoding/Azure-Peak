@@ -335,7 +335,7 @@
 	</html>
 	"}
 	if(!cur_picked_class.classes)
-		linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+		linked_client << browse(data, "window=class_select_yea;size=610x350;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 	else
 		linked_client << browse(data, "window=class_select_yea;size=610x405;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 

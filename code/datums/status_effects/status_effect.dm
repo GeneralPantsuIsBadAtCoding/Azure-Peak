@@ -47,12 +47,12 @@
 	effectedstats = list()
 	return ..()
 
-/datum/status_effect/process()
+/datum/status_effect/process(wait)
 	if(QDELETED(owner))
 		qdel(src)
 		return
 	if(tick_interval < world.time)
-		tick()
+		tick(wait)
 		tick_interval = world.time + initial(tick_interval)
 	if(duration != -1 && duration < world.time)
 		qdel(src)

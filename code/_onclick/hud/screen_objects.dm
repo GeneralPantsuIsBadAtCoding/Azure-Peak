@@ -136,7 +136,10 @@
 			if(H.craftingthing)
 				last_craft = world.time
 				var/datum/component/personal_crafting/C = H.craftingthing
-				C.roguecraft(location, control, params, H)
+				if(H.client.legacycraft)
+					C.roguecraft(location, control, params, H)
+				else
+					C.ui_interact(H)
 			else
 				testing("what")
 

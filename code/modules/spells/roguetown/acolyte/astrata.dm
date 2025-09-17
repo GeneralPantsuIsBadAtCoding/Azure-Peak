@@ -131,7 +131,7 @@
 	target.grab_ghost(force = TRUE) // even suicides
 	target.emote("breathgasp")
 	target.Jitter(100)
-	GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]++
+	record_round_statistic(STATS_ASTRATA_REVIVALS)
 	target.update_body()
 	target.visible_message(span_notice("[target] is revived by holy light!"), span_green("I awake from the void."))
 	if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)

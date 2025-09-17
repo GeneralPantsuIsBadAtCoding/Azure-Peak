@@ -167,6 +167,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	var/swinging = FALSE
 
+	var/familiar_headshot_link = null
+	var/familiar_ooc_notes = null
+	var/familiar_flavortext = null
+
 	buckle_lying = FALSE
 	cmode = 1
 

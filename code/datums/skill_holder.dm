@@ -101,12 +101,12 @@
 				current.playsound_local(current, pick(LEVEL_UP_SOUNDS), 100, TRUE)
 				COOLDOWN_START(src, level_up, XP_SHOW_COOLDOWN)
 			SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, S, known_skills[S], old_level)
-			GLOB.azure_round_stats[STATS_SKILLS_LEARNED]++
+			record_round_statistic(STATS_SKILLS_LEARNED)
 			S.skill_level_effect(known_skills[S], src)
 			if(istype(known_skills, /datum/skill/combat))
-				GLOB.azure_round_stats[STATS_COMBAT_SKILLS]++
+				record_round_statistic(STATS_COMBAT_SKILLS)
 			if(istype(known_skills, /datum/skill/craft))
-				GLOB.azure_round_stats[STATS_CRAFT_SKILLS]++
+				record_round_statistic(STATS_CRAFT_SKILLS)
 	else
 		to_chat(current, span_warning("My [S.name] has weakened to [SSskills.level_names[known_skills[S]]]!"))
 
@@ -197,7 +197,6 @@
 	if(known_skills[skill_ref] >= old_level)
 		SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, skill_ref, known_skills[skill_ref], old_level)
 		to_chat(current, span_nicegreen("I feel like I've become more proficient at [skill_ref.name]!"))
-/* used in round statistics in Vanderline, but AP doesn't track this?
 		record_round_statistic(STATS_SKILLS_LEARNED)
 		if(istype(skill_ref, /datum/skill/combat))
 			record_round_statistic(STATS_COMBAT_SKILLS)
@@ -205,7 +204,6 @@
 			record_round_statistic(STATS_CRAFT_SKILLS)
 		if(skill == /datum/skill/misc/reading && old_level == SKILL_LEVEL_NONE && current.is_literate())
 			record_round_statistic(STATS_LITERACY_TAUGHT)
-*/
 	else
 		to_chat(current, span_warning("I feel like I've become worse at [skill_ref.name]!"))
 

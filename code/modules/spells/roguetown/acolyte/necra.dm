@@ -28,6 +28,7 @@
 		success = pacify_coffin(hole, user)
 		if(success)
 			user.visible_message("[user] consecrates [hole]!", "My funeral rites have been performed on [hole]!")
+			record_round_statistic(STATS_GRAVES_CONSECRATED)
 			return
 	to_chat(user, span_red("I failed to perform the rites."))
 

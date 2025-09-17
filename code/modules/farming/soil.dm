@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(soil_list)
 		modifier += 3
 
 	record_featured_stat(FEATURED_STATS_FARMERS, user)
-	GLOB.azure_round_stats[STATS_PLANTS_HARVESTED]++
+	record_round_statistic(STATS_PLANTS_HARVESTED)
 	to_chat(user, span_notice(feedback))
 	yield_produce(modifier, is_legendary)
 

@@ -66,7 +66,7 @@
 	. = ..()
 	var/filter = owner.get_filter(HASTE_FILTER)
 	if (!filter)
-		owner.add_filter(HASTE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(HASTE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 25, "size" = 1))
 	to_chat(owner, span_warning("My limbs move with uncanny swiftness."))
 
 /datum/status_effect/buff/haste/on_remove()

@@ -263,7 +263,7 @@
 	verbage_simple = "transmute"
 
 /datum/crafting_recipe/roguetown/alchemy/frankenbrew
-	name = "Reanimation Elixir"
+	name = "reanimation elixir"
 	category = "Table"
 	result = list(
 		/obj/item/reagent_containers/glass/bottle/frankenbrew,

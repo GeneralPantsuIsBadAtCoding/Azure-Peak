@@ -141,8 +141,6 @@
 			C.mob.playsound_local(C.mob, 'sound/music/roundend.ogg', 100, FALSE)
 		if(isliving(C.mob) && C.ckey)
 			key_list += C.ckey
-//	if(key_list.len)
-//		add_roundplayed(key_list)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat != DEAD)
 			if(H.get_triumphs() < 0)
@@ -154,9 +152,8 @@
 					to_chat(H, "\n<font color='purple'><b>[job.round_contrib_points]</b> ROUND CONTRIBUTOR POINTS AWARDED. Thank you for playing!</font>")
 					add_roundpoints(job.round_contrib_points, H.ckey)
 	add_roundplayed(key_list)
-//	SEND_SOUND(world, sound(pick('sound/misc/roundend1.ogg','sound/misc/roundend2.ogg')))
-//	SEND_SOUND(world, sound('sound/misc/roundend.ogg'))
-
+	update_god_rankings()
+	
 	for(var/mob/M in GLOB.mob_list)
 		M.do_game_over()
 
@@ -565,24 +562,16 @@
 	if(ply.key)
 		usede = ckey(ply.key)
 		if(ckey(ply.key) in GLOB.anonymize)
-//			if(check_whitelist(ckey(ply.key)))
 			usede = get_fake_key(ckey(ply.key))
 	var/text = "<b>[usede]</b> was <b>[ply.name]</b>[jobtext] and"
 	if(ply.current)
-		if(ply.current.real_name != ply.name)
-			text += " <span class='redtext'>died</span>"
+		if(ply.current.stat == DEAD)
+			text += span_redtext(" died.")
 		else
-			if(ply.current.stat == DEAD)
-				text += " <span class='redtext'>died</span>"
-			else
-				text += " <span class='greentext'>survived</span>"
-//		if(fleecheck)
-//			var/turf/T = get_turf(ply.current)
-//			if(!T || !is_station_level(T.z))
-//				text += " while <span class='redtext'>fleeing the station</span>"
-//		if(ply.current.real_name != ply.name)
-//			text += " as <b>[ply.current.real_name]</b>"
-	to_chat(world, "[text]")
+			text += span_greentext(" survived.")
+	else
+		text += span_redtext(" died.")
+	return text
 
 /proc/printplayerlist(list/players,fleecheck)
 	var/list/parts = list()

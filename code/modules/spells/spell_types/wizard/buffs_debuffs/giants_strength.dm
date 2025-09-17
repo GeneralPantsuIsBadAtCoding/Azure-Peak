@@ -62,7 +62,7 @@
 	. = ..()
 	var/filter = owner.get_filter(GIANTSSTRENGTH_FILTER)
 	if (!filter)
-		owner.add_filter(GIANTSSTRENGTH_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(GIANTSSTRENGTH_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
 	to_chat(owner, span_warning("My muscles strengthen."))
 
 

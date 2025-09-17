@@ -30,20 +30,21 @@
 	l_hand = /obj/item/rogueweapon/scabbard/sword
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer	//Experimental.
 	var/weapons = list("Modified Training Sword !!!CHALLENGE!!!", "Etruscan Longsword", "Kriegsmesser", "Field Longsword")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Modified Training Sword !!!CHALLENGE!!!")		//A sharp feder. Less damage, better defense. Definitely not a good choice.
-			r_hand = /obj/item/rogueweapon/sword/long/frei
-			beltr = /obj/item/rogueweapon/huntingknife/idagger
-		if("Etruscan Longsword")		//A longsword with a compound ricasso. Accompanied by a traditional flip knife.
-			r_hand = /obj/item/rogueweapon/sword/long/etruscan
-			beltr = /obj/item/rogueweapon/huntingknife/idagger/navaja
-		if("Kriegsmesser")		//Och- eugh- German!
-			r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
-			beltr = /obj/item/rogueweapon/huntingknife/idagger
-		if("Field Longsword")		//A common longsword.
-			r_hand = /obj/item/rogueweapon/sword/long
-			beltr = /obj/item/rogueweapon/huntingknife/idagger
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Modified Training Sword !!!CHALLENGE!!!")		//A sharp feder. Less damage, better defense. Definitely not a good choice.
+				r_hand = /obj/item/rogueweapon/sword/long/frei
+				beltr = /obj/item/rogueweapon/huntingknife/idagger
+			if("Etruscan Longsword")		//A longsword with a compound ricasso. Accompanied by a traditional flip knife.
+				r_hand = /obj/item/rogueweapon/sword/long/etruscan
+				beltr = /obj/item/rogueweapon/huntingknife/idagger/navaja
+			if("Kriegsmesser")		//Och- eugh- German!
+				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
+				beltr = /obj/item/rogueweapon/huntingknife/idagger
+			if("Field Longsword")		//A common longsword.
+				r_hand = /obj/item/rogueweapon/sword/long
+				beltr = /obj/item/rogueweapon/huntingknife/idagger
 	belt = /obj/item/storage/belt/rogue/leather/sash
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
@@ -84,17 +85,18 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	var/weapons = list("Graduate's Spear", "Boar Spear", "Lucerne")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Graduate's Spear")		//A steel spear with a cool-looking stick & a banner sticking out of it.
-			r_hand = /obj/item/rogueweapon/spear/boar/frei
-			l_hand = /obj/item/rogueweapon/katar/punchdagger/frei
-		if("Boar Spear")
-			r_hand = /obj/item/rogueweapon/spear/boar
-			wrists = /obj/item/rogueweapon/katar/punchdagger
-		if("Lucerne")		//A normal lucerne for the people that get no drip & no bitches.
-			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-			wrists = /obj/item/rogueweapon/katar/punchdagger
+	if(H.mind)
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Graduate's Spear")		//A steel spear with a cool-looking stick & a banner sticking out of it.
+				r_hand = /obj/item/rogueweapon/spear/boar/frei
+				l_hand = /obj/item/rogueweapon/katar/punchdagger/frei
+			if("Boar Spear")
+				r_hand = /obj/item/rogueweapon/spear/boar
+				wrists = /obj/item/rogueweapon/katar/punchdagger
+			if("Lucerne")		//A normal lucerne for the people that get no drip & no bitches.
+				r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
+				wrists = /obj/item/rogueweapon/katar/punchdagger
 
 	belt = /obj/item/storage/belt/rogue/leather/sash
 	beltl = /obj/item/flashlight/flare/torch/lantern

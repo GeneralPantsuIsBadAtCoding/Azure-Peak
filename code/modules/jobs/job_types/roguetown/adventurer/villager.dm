@@ -21,8 +21,27 @@
 	advjob_examine = TRUE
 	always_show_on_latechoices = TRUE
 	same_job_respawn_delay = 0
-	class_setup_examine = FALSE	//Nooo thank you
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
+	job_subclasses = list(
+		/datum/advclass/blacksmith,
+		/datum/advclass/carpenter,
+		/datum/advclass/cheesemaker,
+		/datum/advclass/drunkard,
+		/datum/advclass/fisher,
+		/datum/advclass/homesteader,
+		/datum/advclass/hunter,
+		/datum/advclass/hunter/spear,
+		/datum/advclass/miner,
+		/datum/advclass/minstrel,
+		/datum/advclass/peasant,
+		/datum/advclass/potter,
+		/datum/advclass/seamstress,
+		/datum/advclass/butcher,
+		/datum/advclass/thug,
+		/datum/advclass/towndoctor,
+		/datum/advclass/witch,
+		/datum/advclass/woodcutter
+	)
 
 /datum/job/roguetown/villager/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()

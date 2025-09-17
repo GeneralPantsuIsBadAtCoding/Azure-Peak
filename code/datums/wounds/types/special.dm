@@ -327,6 +327,7 @@
 		"Molten lux splatters out from %VICTIM's sundered ribs!",
 	)
 	severity = WOUND_SEVERITY_FATAL
+	bypass_bloody_wound_check = TRUE
 	whp = 100
 	sewn_whp = 35
 	bleed_rate = 50
@@ -344,7 +345,37 @@
 		"MY LUX MELTS AWAY FROM THIS PIERCED HEART!",\
 		"OH, SHIT!"\
 	)
-	to_chat(affected, span_userdanger(goodbye))
+	to_chat(affected, span_userdanger(pick(goodbye)))
 	affected.apply_status_effect(/datum/status_effect/debuff/devitalised)
+	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
+		affected.death()
+
+/datum/wound/sunder/head
+	name = "sundered head"
+	check_name = span_artery("<B>SUNDERED HEAD</B>")
+	crit_message = list(
+		"Blessed flames erupt from %VICTIM's head!",
+		"%VICTIM's head is set on fire by the SACRED FLAMES!",
+	)
+	severity = WOUND_SEVERITY_FATAL
+	bypass_bloody_wound_check = TRUE
+	whp = 100
+	sewn_whp = 35
+	bleed_rate = 50
+	sewn_bleed_rate = 0.8
+	woundpain = 100
+	sewn_woundpain = 50
+
+/datum/wound/sunder/head/on_mob_gain(mob/living/affected)
+	. = ..()
+	if(iscarbon(affected))
+		var/mob/living/carbon/carbon_affected = affected
+		carbon_affected.vomit(blood = TRUE)
+	var/goodbye = list(\
+		"MY HEAD, MY HEAD! IT BURNS!!!",\
+		"MY HEAD IS ENGULFED IN FLAMES!!!",\
+		"OH, SHIT!"\
+	)
+	to_chat(affected, span_userdanger(pick(goodbye)))
 	if(HAS_TRAIT(owner, TRAIT_SILVER_WEAK) && !owner.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
 		affected.death()

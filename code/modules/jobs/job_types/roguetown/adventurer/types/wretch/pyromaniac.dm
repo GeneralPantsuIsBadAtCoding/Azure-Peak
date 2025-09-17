@@ -51,25 +51,26 @@
 		/obj/item/flint = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
-	wretch_select_bounty(H)
-	var/weapons = list("Archery", "Crossbows", "LET THERE BE FLAME!!!")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Archery")
-			H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			beltl = /obj/item/quiver/pyroarrows
-		if("Crossbows")
-			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			beltl = /obj/item/quiver/pyrobolts
-		if("LET THERE BE FLAME!!!")
-			H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 2, TRUE)
-			backr = /obj/item/rogueweapon/woodstaff/toper
-			if(H.mind)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/spitfire)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/rebuke)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stoneskin) // To not be instapaincritted if you accidentally hit yourself
+	if(H.mind)
+		var/weapons = list("Archery", "Crossbows", "LET THERE BE FLAME!!!")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Archery")
+				H.adjust_skillrank_up_to(/datum/skill/combat/bows, 4, TRUE)
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+				beltl = /obj/item/quiver/pyroarrows
+			if("Crossbows")
+				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				beltl = /obj/item/quiver/pyrobolts
+			if("LET THERE BE FLAME!!!")
+				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 2, TRUE)
+				backr = /obj/item/rogueweapon/woodstaff/toper
+				if(H.mind)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/spitfire)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/rebuke)
+					H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stoneskin) // To not be instapaincritted if you accidentally hit yourself
+		wretch_select_bounty(H)
