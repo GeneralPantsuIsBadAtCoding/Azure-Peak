@@ -8,41 +8,13 @@
 	name = "Fae Trickery power name"
 	desc = "Fae Trickery power description"
 
-//FEY SIGHT
-/datum/coven_power/fae_trickery/fey_sight
-	name = "Fey Sight"
-	desc = "Sense magical items on another person."
-
-	level = 1
-	research_cost = 0
-	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE
-	target_type = TARGET_MOB
-	range = 7
-	research_cost = 0
-
-	cooldown_length = 10 SECONDS
-
-/datum/coven_power/fae_trickery/fey_sight/activate(mob/living/target)
-	. = ..()
-	var/list/total_list = list()
-	for(var/obj/item/item in target.contents)
-		if(istype(item, /obj/item/storage))
-			total_list |= item.contents
-		total_list |= item
-	to_chat(owner, span_purple("Your fae senses reach out to detect what they're carrying..."))
-	for(var/obj/item/item in total_list)
-		if(item)
-			if(item.is_silver)
-				to_chat(owner, "- [span_danger(item.name)]")
-			else
-				to_chat(owner, "- [item.name]")
-
 //DARKLING TRICKERY
 /datum/coven_power/fae_trickery/darkling_trickery
 	name = "Darkling Trickery"
 	desc = "Disarm your victims from afar."
 
-	level = 2
+	level = 1
+	research_cost = 0
 	vitae_cost = 80
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND | COVEN_CHECK_LYING
 	target_type = TARGET_MOB
@@ -70,8 +42,8 @@
 	desc = "Summon a mischievous goblin to latch onto your enemies' faces."
 
 	research_cost = 2
-	level = 3
-	vitae_cost = 80
+	level = 1
+	vitae_cost = 100
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_MOB
 	range = 5
@@ -362,7 +334,7 @@
 	desc = "Create a symbol that disorientates your victim."
 
 	research_cost = 2
-	level = 4
+	level = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
 	target_type = TARGET_MOB
 	range = 5
@@ -403,6 +375,7 @@
 	name = "Riddle Phantastique"
 	desc = "Pose a confounding riddle to your victim, forcing them to answer it before they can do anything else."
 
+	level = 4
 	research_cost = 3
 	vitae_cost = 250
 	minimal_generation = GENERATION_ANCILLAE
@@ -528,3 +501,51 @@
 		answerer.remove_movespeed_modifier("riddle")
 		answerer.say(the_answer)
 		answerer.clear_alert("riddle")
+
+//FAE WRATH T5
+/datum/coven_power/fae_trickery/fae_wrath
+	name = "Fae Wrath"
+	desc = "Unleash a barrage of strikes upon thine foes."
+
+	level = 5
+	research_cost = 4
+	vitae_cost = 250
+	minimal_generation = GENERATION_ANCILLAE
+	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
+	range = 7
+
+	cooldown_length = 40 SECONDS
+
+/datum/coven_power/fae_trickery/fae_wrath/activate()
+	. = ..()
+	var/turf/initial = get_turf(owner)
+	INVOKE_ASYNC(src, PROC_REF(aftervisual), initial)
+	for(var/mob/living/carbon/human/viewer in oviewers(range, owner))
+		if(viewer.clan == owner.clan)
+			continue
+
+		var/turf/T = get_step(viewer, GLOB.flip_dir[viewer.dir])
+		if(!isfloorturf(T))
+			continue
+
+		INVOKE_ASYNC(src, PROC_REF(aftervisual), get_turf(viewer))
+		owner.doMove(T)
+		owner.face_atom(viewer)
+		var/obj/item/W = owner.get_active_held_item()
+		if(!istype(W))
+			W = owner.get_inactive_held_item()
+		owner.resolveAdjacentClick(viewer, W)
+		owner.resolveAdjacentClick(viewer, W)
+		sleep(0.5 SECONDS)
+	owner.doMove(initial)
+	INVOKE_ASYNC(src, PROC_REF(aftervisual), initial)
+
+/datum/coven_power/fae_trickery/fae_wrath/proc/aftervisual(turf/target)
+	var/list/turfs = RANGE_TURFS(1, target)
+	for(var/turf/T in turfs)
+		spawn()
+			var/obj/effect/celerity/C = new(T)
+			C.name = owner.name
+			C.appearance = owner.appearance
+			C.dir = get_dir(T, target)
+			animate(C, pixel_x = rand(-16, 16), pixel_y = rand(-16, 16), alpha = 0, time = 1.5 SECONDS)

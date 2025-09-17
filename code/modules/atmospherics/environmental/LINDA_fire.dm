@@ -31,6 +31,10 @@
 	var/life = 20
 	var/firelevel = 1 //RTD new firehotspot mechanics
 
+/obj/effect/hotspot/shortduration
+	life = 6
+	firelevel = 3
+
 //obj/effect/hotspot/extinguish() handled in other_reagents
 //	if(isturf(loc))
 //		new /obj/effect/temp_visual/small_smoke(src.loc)

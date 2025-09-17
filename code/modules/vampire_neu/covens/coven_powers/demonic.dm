@@ -117,68 +117,40 @@
 
 //CONDEMNTATION
 /datum/coven_power/demonic/condemnation
-	name = "Condemnation"
-	desc = "Condemn a soul and their bloodline to suffering."
+	name = "Wall of Fire"
+	desc = "Firebolt? Fireball? No. Wall of Fire!"
 	level = 5
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
-	target_type = TARGET_LIVING
-	range = 7
+	range = 10
 	vitae_cost = 250
 	cooldown_length = 120 SECONDS
 	violates_masquerade = TRUE
 	var/initialized_curses = FALSE
 	var/list/curse_names = list()
 	var/list/curses = list()
-/**
-/datum/coven_power/demonic/condemnation/activate(mob/living/target)
+
+/datum/coven_power/demonic/condemnation/activate(atom/target)
 	. = ..()
-	if(!initialized_curses)
-		for(var/i in subtypesof(/datum/family_curse/demonic))
-			var/datum/family_curse/demonic/demonic_curse = new i
-			curses += demonic_curse
-			curse_names += initial(demonic_curse.name)
-		initialized_curses = TRUE
+	INVOKE_ASYNC(src, PROC_REF(wall_of_fire))
 
-	to_chat(owner, span_userdanger("The greatest of curses come with the greatest of costs. Are you willing to condemn an entire bloodline?"))
-	var/chosencurse = input(owner, "Pick a curse to bestow upon their family:", "Demonic Condemnation", curse_names)
-	if(!chosencurse)
-		return
+/datum/coven_power/demonic/condemnation/proc/wall_of_fire()
+	var/turf/initial_turf = get_turf(owner)
+	var/list/burnt_turfs = list()
+	for(var/i = 1, i < range, ++i)
+		var/list/turfs = border_diamond_range_turfs(initial_turf, i)
+		for(var/turf/T in turfs)
+			if(!isopenturf(T) || (T in burnt_turfs))
+				continue
+			new /obj/effect/hotspot/shortduration(T)
+			for(var/mob/living/L in T.contents)
+				if(L.clan == owner.clan)
+					continue
+				L.adjustFireLoss(20)
+				L.adjust_fire_stacks(4)
+				L.ignite_mob()
+			burnt_turfs |= T
+		sleep(0.5 SECONDS)
 
-	for(var/datum/family_curse/demonic/C in curses)
-		if(C.name == chosencurse)
-			// Get or create heritage for the target
-			var/datum/heritage/target_heritage = get_or_create_heritage(target)
-			if(!target_heritage)
-				to_chat(owner, span_warning("Something prevents you from cursing their bloodline!"))
-				return
-
-			// Apply the family curse
-			target_heritage.AddFamilyCurse(C.type, C.severity, owner)
-
-			// Reduce caster's blood pool based on curse severity
-			var/blood_cost = C.severity * 50 // Scale cost with severity
-			owner.maxbloodpool -= blood_cost
-			if(owner.bloodpool > owner.maxbloodpool)
-				owner.bloodpool = owner.maxbloodpool
-
-			to_chat(owner, span_userdanger("You have condemned [target]'s entire bloodline with [C.name]!"))
-			to_chat(target, span_userdanger("A terrible curse settles upon your family line! You feel the weight of [C.name]!"))
-
-			return TRUE
-
-/datum/coven_power/demonic/condemnation/proc/get_or_create_heritage(mob/living/carbon/human/target)
-	if(!istype(target))
-		return null
-
-	// Check if target already has a heritage
-	if(target.family_datum)
-		return target.family_datum
-
-	// Create new heritage if none exists
-	var/datum/heritage/new_heritage = new /datum/heritage(src, "Cursed Bloodline")
-	target.family_datum = new_heritage
-	return new_heritage
-*/
 /obj/item/rogueweapon/gangrel
 	name = "claws"
 	desc = ""
