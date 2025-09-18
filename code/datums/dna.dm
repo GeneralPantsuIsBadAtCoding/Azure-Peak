@@ -49,13 +49,12 @@
 	destination.dna.real_name = real_name
 	destination.dna.temporary_mutations = temporary_mutations.Copy()
 	destination.dna.organ_dna = organ_dna.Copy()
-	destination.gender = holder.gender
 	destination.regenerate_organs()
-	var/obj/item/bodypart/head/my_head = holder.get_bodypart(BODY_ZONE_HEAD)
-	var/obj/item/bodypart/head/their_head = destination.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head/my_head = holder?.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head/their_head = destination?.get_bodypart(BODY_ZONE_HEAD)
 	if(my_head && their_head)
-		their_head.bodypart_features = my_head.bodypart_features.Copy()
-	destination.dna.body_markings = body_markings.Copy()
+		their_head.bodypart_features = my_head.bodypart_features?.Copy()
+	destination.dna.body_markings = deepCopyList(body_markings)
 	destination.dna.update_body_size()
 
 /datum/dna/proc/copy_dna(datum/dna/new_dna)

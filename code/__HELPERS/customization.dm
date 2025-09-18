@@ -36,7 +36,7 @@
 	return null
 
 /mob/living/carbon/human/proc/cache_hair_color(facial = FALSE)
-	var/datum/bodypart_feature/hair/feature = get_bodypart_feature_of_slot(facial ? BODYPART_FEATURE_HAIR : BODYPART_FEATURE_FACIAL_HAIR)
+	var/datum/bodypart_feature/hair/feature = get_bodypart_feature_of_slot(facial ? BODYPART_FEATURE_FACIAL_HAIR : BODYPART_FEATURE_HAIR)
 	if(!feature)
 		return
 

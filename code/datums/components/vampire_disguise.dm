@@ -29,8 +29,8 @@
 /datum/component/vampire_disguise/proc/cache_original_appearance(mob/living/carbon/human/H)
 	cache_skin = H.skin_tone
 	cache_eyes = H.cache_eye_color()
-	cache_hair = H.cache_hair_color(TRUE)
-	cache_facial = H.cache_hair_color(FALSE)
+	cache_hair = H.cache_hair_color(FALSE)
+	cache_facial = H.cache_hair_color(TRUE)
 
 /datum/component/vampire_disguise/proc/handle_disguise_upkeep(mob/living/carbon/human/source)
 	SIGNAL_HANDLER
@@ -64,22 +64,24 @@
 
 	// Restore human appearance
 	H.skin_tone = cache_skin
-	H.set_hair_color(
-		cache_hair["hair_color"],
-		cache_hair["natural_gradient"],
-		cache_hair["natural_color"],
-		cache_hair["hair_dye_gradient"],
-		cache_hair["hair_dye_color"],
-		FALSE
-	)
-	H.set_facial_hair_color(
-		cache_hair["hair_color"],
-		cache_hair["natural_gradient"],
-		cache_hair["natural_color"],
-		cache_hair["hair_dye_gradient"],
-		cache_hair["hair_dye_color"],
-		FALSE
-	)
+	if(islist(cache_hair))
+		H.set_hair_color(
+			cache_hair["hair_color"],
+			cache_hair["natural_gradient"],
+			cache_hair["natural_color"],
+			cache_hair["hair_dye_gradient"],
+			cache_hair["hair_dye_color"],
+			FALSE
+		)
+	if(islist(cache_facial))
+		H.set_facial_hair_color(
+			cache_facial["hair_color"],
+			cache_facial["natural_gradient"],
+			cache_facial["natural_color"],
+			cache_facial["hair_dye_gradient"],
+			cache_facial["hair_dye_color"],
+			FALSE
+		)
 	H.set_eye_color(cache_eyes["eye_color"], cache_eyes["second_color"], TRUE)
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
 	ears.accessory_colors = cache_skin

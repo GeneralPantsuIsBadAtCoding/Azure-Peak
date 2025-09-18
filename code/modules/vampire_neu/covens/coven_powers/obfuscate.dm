@@ -181,7 +181,8 @@
 
 	var/datum/bodypart_feature/hair/feature = transformer.get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
 	var/datum/bodypart_feature/hair/facial = transformer.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
-	old_dna = transformer.dna
+	old_dna = new ()
+	transformer.dna.copy_dna(old_dna)
 	old_hair = feature?.accessory_type
 	cache_hair = transformer.cache_hair_color()
 	cache_eyes = transformer.cache_eye_color()
@@ -195,7 +196,7 @@
 
 	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/target in oviewers(7, owner))
-		if(target.client && target.stat < DEAD)
+		if(target.stat < DEAD)
 			potential_targets[target.real_name] = target
 
 	if(!length(potential_targets))
@@ -241,23 +242,25 @@
 		FALSE
 	)
 	var/list/haircache = target.cache_hair_color()
-	user.set_hair_color(
-		haircache["hair_color"],
-		haircache["natural_gradient"],
-		haircache["natural_color"],
-		haircache["hair_dye_gradient"],
-		haircache["hair_dye_color"],
-		FALSE
-	)
+	if(islist(haircache))
+		user.set_hair_color(
+			haircache["hair_color"],
+			haircache["natural_gradient"],
+			haircache["natural_color"],
+			haircache["hair_dye_gradient"],
+			haircache["hair_dye_color"],
+			FALSE
+		)
 	var/list/facialcache = target.cache_hair_color(TRUE)
-	user.set_facial_hair_color(
-		facialcache["hair_color"],
-		facialcache["natural_gradient"],
-		facialcache["natural_color"],
-		facialcache["hair_dye_gradient"],
-		facialcache["hair_dye_color"],
-		FALSE
-	)
+	if(islist(facialcache))
+		user.set_facial_hair_color(
+			facialcache["hair_color"],
+			facialcache["natural_gradient"],
+			facialcache["natural_color"],
+			facialcache["hair_dye_gradient"],
+			facialcache["hair_dye_color"],
+			FALSE
+		)
 
 	user.updateappearance(mutcolor_update = TRUE)
 	transformed = TRUE
@@ -283,7 +286,6 @@
 	user.gender = old_gender
 
 	user.skin_tone = cache_skin
-	user.set_facial_hair_style(old_facial_hair, FALSE)
 	user.set_hair_style(old_hair, FALSE)
 	user.set_hair_color(
 		cache_hair["hair_color"],
@@ -293,14 +295,21 @@
 		cache_hair["hair_dye_color"],
 		FALSE
 	)
-	user.set_facial_hair_color(
-		cache_hair["hair_color"],
-		cache_hair["natural_gradient"],
-		cache_hair["natural_color"],
-		cache_hair["hair_dye_gradient"],
-		cache_hair["hair_dye_color"],
-		FALSE
-	)
+	if(old_facial_hair)
+		user.set_facial_hair_style(old_facial_hair, FALSE)
+	else
+		var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
+		var/datum/bodypart_feature/hair/facial/facial_feature = locate() in head?.bodypart_features
+		head?.remove_bodypart_feature(facial_feature)
+	if(islist(cache_facial))
+		user.set_facial_hair_color(
+			cache_facial["hair_color"],
+			cache_facial["natural_gradient"],
+			cache_facial["natural_color"],
+			cache_facial["hair_dye_gradient"],
+			cache_facial["hair_dye_color"],
+			FALSE
+		)
 	user.set_eye_color(
 		cache_eyes["eye_color"], 
 		cache_eyes["second_color"], 

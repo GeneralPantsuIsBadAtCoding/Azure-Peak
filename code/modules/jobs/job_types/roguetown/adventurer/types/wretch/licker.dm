@@ -6,8 +6,8 @@
 	outfit = /datum/outfit/job/roguetown/wretch/licker
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(
-		TRAIT_STEELHEARTED
-		TRAIT_SILVER_WEAK
+		TRAIT_STEELHEARTED,
+		TRAIT_SILVER_WEAK,
 	)
 
 /datum/outfit/job/roguetown/wretch/licker/pre_equip(mob/living/carbon/human/H)
