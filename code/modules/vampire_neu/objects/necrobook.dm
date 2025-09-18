@@ -17,7 +17,7 @@
 
 	switch(input(user, "What to do?", "VAMPYRE") as null|anything in useoptions)
 		if("Create Death Knight")
-			if(alert(user, "Create a Death Knight?<BR>Cost:[DEATH_KNIGHT_COST]", src, "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
+			if(alert(user, "Create a Death Knight? Cost:[DEATH_KNIGHT_COST]", src, "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 				return
 			if(length(SSmapping.retainer.death_knights) >= 3)
 				to_chat(user, span_warning("I cannot summon any more death knights."))
@@ -57,7 +57,7 @@
 		if("Steal the Sun")
 			if(!can_steal_sun(user))
 				return
-			if(alert(user, "Force Azuria into Night?<BR>Cost:[SUN_STEAL_COST]", src, "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
+			if(alert(user, "Force Azuria into Night? Cost:[SUN_STEAL_COST]", src, "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 				return
 			if(!do_after(user, 10 SECONDS, src))
 				return
