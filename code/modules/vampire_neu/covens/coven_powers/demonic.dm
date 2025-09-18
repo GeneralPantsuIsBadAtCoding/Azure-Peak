@@ -116,7 +116,7 @@
 	sound = 'sound/magic/fireball.ogg'
 
 //CONDEMNTATION
-/datum/coven_power/demonic/condemnation
+/datum/coven_power/demonic/wall_of_fire
 	name = "Wall of Fire"
 	desc = "Firebolt? Fireball? No. Wall of Fire!"
 	level = 5
@@ -129,11 +129,12 @@
 	var/list/curse_names = list()
 	var/list/curses = list()
 
-/datum/coven_power/demonic/condemnation/activate(atom/target)
+/datum/coven_power/demonic/wall_of_fire/activate(atom/target)
 	. = ..()
+	playsound(get_turf(owner), list('sound/misc/explode/incendiary (1).ogg', 'sound/misc/explode/incendiary (2).ogg'), 100, -1, 0)
 	INVOKE_ASYNC(src, PROC_REF(wall_of_fire))
 
-/datum/coven_power/demonic/condemnation/proc/wall_of_fire()
+/datum/coven_power/demonic/wall_of_fire/proc/wall_of_fire()
 	var/turf/initial_turf = get_turf(owner)
 	var/list/burnt_turfs = list()
 	for(var/i = 1, i < range, ++i)
@@ -141,7 +142,7 @@
 		for(var/turf/T in turfs)
 			if(!isopenturf(T) || (T in burnt_turfs))
 				continue
-			new /obj/effect/hotspot/shortduration(T)
+			new /obj/effect/hotspot/vampiric(T, 125, 100+T0C, owner.clan)
 			for(var/mob/living/L in T.contents)
 				if(L.clan == owner.clan)
 					continue
