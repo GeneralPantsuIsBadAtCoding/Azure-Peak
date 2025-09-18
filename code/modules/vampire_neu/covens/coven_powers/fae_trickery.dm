@@ -53,6 +53,7 @@
 	violates_masquerade = TRUE
 
 	cooldown_length = 30 SECONDS
+	cooldown_length = 40 SECONDS
 
 /datum/coven_power/fae_trickery/goblinism/activate(mob/living/target)
 	. = ..()

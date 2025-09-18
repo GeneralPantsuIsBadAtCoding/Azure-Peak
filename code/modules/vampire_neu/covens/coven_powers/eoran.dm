@@ -88,12 +88,9 @@
 
 	to_chat(owner, span_notice("You whisper words of divine inspiration to [inspired]."))
 	to_chat(inspired, span_purple("You feel a surge of creative energy flow through you, your mind buzzing with artistic possibilities!"))
-
-	// Visual effect
-	inspired.remove_overlay(MUTATIONS_LAYER)
-	var/mutable_appearance/inspiration_overlay = mutable_appearance('icons/effects/clan.dmi', "inspiration", -MUTATIONS_LAYER)
-	inspired.overlays_standing[MUTATIONS_LAYER] = inspiration_overlay
-	inspired.apply_overlay(MUTATIONS_LAYER)
+	target.heal_overall_damage(30, 30)
+	target.mind?.sleep_adv?.retained_dust += 200
+	target.mind?.sleep_adv?.grant_inspiration_xp(2)
 
 	// Boost mood and give temporary creative buff do this for now until we add some form of creation quality outside of blacksmithing
 	SEND_SIGNAL(inspired, COMSIG_ADD_MOOD_EVENT, "beautiful", /datum/mood_event/artistic_inspiration)
@@ -102,7 +99,6 @@
 
 /datum/coven_power/eora/artistic_inspiration/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
 	to_chat(target, span_info("The divine inspiration fades, but the memory of it remains."))
 
 //FAMILIAL BOND
@@ -172,7 +168,7 @@
 	patient.apply_overlay(MUTATIONS_LAYER)
 
 	// Heal brute and burn damage (representing restoration of beauty)
-	patient.heal_overall_damage(30, 30)
+	patient.heal_overall_damage(60, 60)
 
 	SEND_SIGNAL(patient, COMSIG_ADD_MOOD_EVENT, "beautiful", /datum/mood_event/beautiful)
 
