@@ -32,7 +32,7 @@
 
 	qdel(L) // consume the lux
 	current_charges = min(current_charges + 1, max_charges)
-	to_chat(user, span_notice("The crystal hums as it drinks in the light."))
+	to_chat(user, span_notice("The crystal hums as it drinks in the lyfe essence."))
 	playsound(src, 'sound/magic/churn.ogg', 70, TRUE)
 	return TRUE
 
