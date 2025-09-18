@@ -39,6 +39,7 @@
 		TRAIT_DARKVISION,
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_KEENEARS,
+		TRAIT_SILVER_WEAK,
 	)
 
 /datum/clan/nosferatu/get_downside_string()
