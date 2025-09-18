@@ -10,7 +10,6 @@
 		/datum/coven/quietus
 	)
 	clane_traits = list(
-		//TRAIT_VITAE_ADDICTION,	
 		TRAIT_STRONGBITE,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
