@@ -53,6 +53,7 @@
 		if(H.mind && !H.mind.has_antag_datum(/datum/antagonist/wretch))
 			var/datum/antagonist/new_antag = new /datum/antagonist/wretch()
 			H.mind.add_antag_datum(new_antag)
+
 // Proc for wretch to select a bounty
 /proc/wretch_select_bounty(mob/living/carbon/human/H)
 	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Azuria", "The Grenzelhoftian Holy See", "The Otavan Orthodoxy")
