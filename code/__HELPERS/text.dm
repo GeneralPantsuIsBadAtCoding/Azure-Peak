@@ -107,6 +107,12 @@
 /proc/adminscrub(t,limit=MAX_MESSAGE_LEN)
 	return copytext((html_encode(strip_html_simple(t))),1,limit)
 
+/proc/remove_color_tags(html_text)
+    var/output = html_text
+    output = replacetext(output, regex("<font\[^>\]*color=\[^>\]*>", "g"), "")
+    output = replacetext(output, "</font>", "")
+    output = replacetext(output, regex("color=\[^ >\]*", "g"), "")
+    return output
 
 //Returns null if there is any bad text in the string
 /proc/reject_bad_text(text, max_length=512)

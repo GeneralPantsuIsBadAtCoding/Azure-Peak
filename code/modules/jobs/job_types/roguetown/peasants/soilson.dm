@@ -48,6 +48,24 @@
 		STATKEY_CON = 1,
 		STATKEY_SPD = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE, //So they can actually even craft their makeshift weapons
+		/datum/skill/craft/masonry = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/tanning = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/butchering = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 	
 /datum/outfit/job/roguetown/farmer/basic/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -65,25 +83,9 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/flint = 1,
 		)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE) //So they can actually even craft their makeshift weapons
-	H.adjust_skillrank(/datum/skill/craft/masonry, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/tanning, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/butchering, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	if(H.age == AGE_OLD)//So ppl have reason to pick this I guess?
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/labor/farming, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/labor/butchering, 6, TRUE)
 
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random

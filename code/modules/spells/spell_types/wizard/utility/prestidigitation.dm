@@ -52,9 +52,9 @@
 	switch (user.used_intent.type)
 		if (INTENT_HELP) // Clean something like a bar of soap
 			if(istype(target, /obj/structure/well/fountain/mana) || istype(target, /turf/open/lava))
-				if(gather_thing(target, user))
-					handle_cost(user, PRESTI_CLEAN)
-					return
+				gather_thing(target, user)
+				handle_cost(user, PRESTI_CLEAN)
+				return
 			if(clean_thing(target, user))
 				handle_cost(user, PRESTI_CLEAN)
 		if (INTENT_DISARM) // Snap your fingers and produce a spark

@@ -7,6 +7,25 @@
 	allowed_patrons = list(/datum/patron/divine/dendor)
 	outfit = /datum/outfit/job/roguetown/adventurer/nudist
 	category_tags = list(CTAG_ADVENTURER)
+	subclass_stats = list(
+		STATKEY_SPD = 2,
+		STATKEY_CON = 2,
+		STATKEY_WIL = 1,
+		STATKEY_INT = -2
+	)
+	subclass_skills = list(
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/lumberjacking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_JOURNEYMAN,
+	)
 
 /datum/outfit/job/roguetown/adventurer/nudist/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -14,18 +33,3 @@
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/rogueweapon/huntingknife/stoneknife
 	neck = /obj/item/clothing/neck/roguetown/psicross/dendor
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/lumberjacking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 3, TRUE)
-	H.change_stat(STATKEY_SPD, 2)
-	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_CON, 2)
-	H.change_stat(STATKEY_INT, -2)

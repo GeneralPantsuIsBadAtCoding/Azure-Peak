@@ -10,7 +10,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	gender = PLURAL //placeholder
 
 	status_flags = CANPUSH
-
+	fire_stack_decay_rate = -3
 	var/icon_living = ""
 	///Icon when the animal is dead. Don't use animated icons for this.
 	var/icon_dead = ""
@@ -167,6 +167,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	var/swinging = FALSE
 
+	var/familiar_headshot_link = null
+	var/familiar_ooc_notes = null
+	var/familiar_flavortext = null
+
 	buckle_lying = FALSE
 	cmode = 1
 
@@ -175,6 +179,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 	var/botched_butcher_results
 	var/perfect_butcher_results
+	var/list/inherent_spells = list()
 
 	///What distance should we be checking for interesting things when considering idling/deidling? Defaults to AI_DEFAULT_INTERESTING_DIST
 	var/interesting_dist = AI_DEFAULT_INTERESTING_DIST
@@ -195,6 +200,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	set_new_cells()
 //	if(dextrous)
 //		AddComponent(/datum/component/personal_crafting)
+	for(var/spell in inherent_spells)
+		var/obj/effect/proc_holder/spell/newspell = new spell()
+		AddSpell(newspell)
 
 /mob/living/simple_animal/Destroy()
 	our_cells = null
@@ -434,7 +442,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	var/botch_chance = 0
 	if(length(botched_butcher_results) && butchery_skill_level < SKILL_LEVEL_JOURNEYMAN)
 		botch_chance = 70 - (20 * butchery_skill_level) // 70% at unskilled, 20% lower for each level above it, 0% at journeyman or higher
-	
+
 	var/perfect_chance = 0
 	if(length(perfect_butcher_results))
 		switch(butchery_skill_level)
@@ -492,7 +500,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			if(rotstuff && istype(I,/obj/item/reagent_containers/food/snacks))
 				var/obj/item/reagent_containers/food/snacks/F = I
 				F.become_rotten()
-		
+
 		if(user.mind)
 			user.mind.add_sleep_experience(/datum/skill/labor/butchering, user.STAINT * 0.5)
 		playsound(src, 'sound/foley/gross.ogg', 100, FALSE)
@@ -577,6 +585,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		..()
 
 /mob/living/simple_animal/proc/CanAttack(atom/the_target)
+	if(binded)
+		return FALSE
 	if(see_invisible < the_target.invisibility)
 		return FALSE
 	if(ismob(the_target))
@@ -589,19 +599,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return FALSE
 	return TRUE
 
-/mob/living/simple_animal/handle_fire()
-	. = ..()
-	if(!on_fire)
-		return TRUE
-	if(fire_stacks + divine_fire_stacks > 0)
-		apply_damage(5, BURN)
-		if(fire_stacks + divine_fire_stacks > 5)
-			apply_damage(10, BURN)
-
-//mob/living/simple_animal/IgniteMob()
+//mob/living/simple_animal/ignite_mob()
 //	return FALSE
 
-///mob/living/simple_animal/ExtinguishMob()
+///mob/living/simple_animal/extinguish_mob()
 //	return
 
 /mob/living/simple_animal/revive(full_heal = FALSE, admin_revive = FALSE)
@@ -937,6 +938,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		toggle_ai(initial(AIStatus))
 
 /mob/living/simple_animal/Move()
+	if(binded)
+		return FALSE
 	. = ..()
 //	if(!stat)
 //		eat_plants()

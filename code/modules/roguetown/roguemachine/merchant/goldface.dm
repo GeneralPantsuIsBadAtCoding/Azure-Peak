@@ -194,17 +194,25 @@
 		cost = round(cost)
 		if(budget >= cost)
 			budget -= cost
+			if(is_public)
+				record_round_statistic(STATS_SILVERFACE_VALUE_SPENT)
+				record_round_statistic(STATS_TRADE_VALUE_IMPORTED, cost)
+			else
+				record_round_statistic(STATS_GOLDFACE_VALUE_SPENT)
+				record_round_statistic(STATS_TRADE_VALUE_IMPORTED, cost)
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				SStreasury.give_money_treasury(tax_amt, "goldface import tax")
 				record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
-				GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
+				record_round_statistic(STATS_TAXES_COLLECTED, tax_amt)
+			else
+				record_round_statistic(STATS_TAXES_EVADED, tax_amt)
 		else
 			say("Not enough!")
 			return
 		var/shoplength = PA.contains.len
 		var/l
 		for(l=1,l<=shoplength,l++)
-			var/pathi = pick(PA.contains)
+			var/pathi = PA.contains[l]
 			new pathi(get_turf(M))
 	if(href_list["change"])
 		if(budget > 0)

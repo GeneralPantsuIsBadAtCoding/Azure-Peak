@@ -109,7 +109,7 @@ with edits to work for roguecode */
 
 	to_chat(user, span_notice("You start crafting \a [initial(final_result.name)]..."))
 
-	var/error_string = craft_sheet.construct_item(user, actual_recipe)
+	var/error_string = craft_sheet.construct_item_repeatable(user, actual_recipe)
 
 	if(istext(error_string))
 		to_chat(user, span_warning("Crafting failed[error_string]"))

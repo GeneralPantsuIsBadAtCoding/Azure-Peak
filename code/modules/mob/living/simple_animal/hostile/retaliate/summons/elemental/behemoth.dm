@@ -47,16 +47,23 @@
 	STASPD = 5
 
 	var/rock_cd
+	inherent_spells = list(/obj/effect/proc_holder/spell/invoked/ele_quake)
+
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
-	new /obj/item/magic/elementalfragment(deathspot)
-	new /obj/item/magic/elementalfragment(deathspot)
-	new /obj/item/magic/elementalshard(deathspot)
-	new /obj/item/magic/elementalshard(deathspot)
-	new /obj/item/magic/elementalmote(deathspot)
-	new /obj/item/magic/elementalmote(deathspot)
+	new /obj/item/magic/elemental/fragment(deathspot)
+	new /obj/item/magic/elemental/fragment(deathspot)
+	new /obj/item/magic/elemental/shard(deathspot)
+	new /obj/item/magic/elemental/shard(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
 	new /obj/item/magic/melded/t1(deathspot)
 	update_icon()
 	spill_embedded_objects()
@@ -95,8 +102,8 @@
 		if(!Process_Spacemove()) //Drifting
 			walk(src,0)
 			return 1
-		if(world.time >= src.rock_cd + 200)
-			quake()
+		if(world.time >= src.rock_cd + 200 && !client)//players get a spell)
+			quake(target)
 			src.rock_cd = world.time
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
@@ -121,8 +128,32 @@
 		FindHidden()
 		return 1
 
-/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/quake()
-	var/turf/focalpoint = get_turf(target)
+/obj/effect/proc_holder/spell/invoked/ele_quake
+	name = "Quake"
+	recharge_time = 20 SECONDS
+	overlay_state = "bloodrage"
+	chargetime = 0
+
+/obj/effect/proc_holder/spell/invoked/ele_quake/cast(list/targets, mob/living/user = usr)
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/rockguy = user
+		if(world.time >= rockguy.rock_cd + 20 SECONDS)
+			if(!rockguy.quake(targets[1]))
+				revert_cast()
+				return
+			rockguy.rock_cd = world.time
+		else
+			revert_cast()
+
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/quake(atom/target)
+	if(!target)
+		return FALSE
+	var/turf/target_turf = target
+	if(isliving(target))
+		target_turf = target.loc
+	visible_message(span_colossus("[src] shakes the ground beneath [target]!"))
+	playsound(src,'sound/combat/hits/onstone/wallhit.ogg', 600, TRUE, 10)
+	var/turf/focalpoint = target_turf
 	for (var/turf/open/visual in view(1, focalpoint))
 		new /obj/effect/temp_visual/marker(visual)
 	sleep(1.5 SECONDS)
@@ -133,6 +164,7 @@
 		shaken.Paralyze(50)
 		var/obj/structure/flora/rock/giant_rock = new(get_turf(shaken))
 		QDEL_IN(giant_rock, 200)
+	return TRUE
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth/proc/yeet(target)
 	var/atom/throw_target = get_edge_target_turf(src, get_dir(src, target)) //ill be real I got no idea why this worked.

@@ -6,12 +6,22 @@
 	vampcompat = FALSE
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	class_select_category = CLASS_CAT_CLERIC
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_CIVILIZEDBARBARIAN)
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_WIL = 2,
 		STATKEY_CON = 2,
 		STATKEY_SPD = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/adventurer/cleric
@@ -41,20 +51,14 @@
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-	var/weapons = list("Katar","Knuckle Dusters")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Katar")
-			backpack_contents += list(/obj/item/rogueweapon/katar = 1)
-		if("Knuckle Dusters")
-			backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
+	if(H.mind)
+		var/weapons = list("Katar","Knuckle Dusters")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Katar")
+				backpack_contents += list(/obj/item/rogueweapon/katar = 1)
+			if("Knuckle Dusters")
+				backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -139,6 +143,19 @@
 		STATKEY_WIL = 1,
 		STATKEY_CON = 2,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/paladin/pre_equip(mob/living/carbon/human/H)
 	to_chat(H, span_warning("A holy warrior. Where others of the clergy may have spent their free time studying scriptures, you have instead honed your skills with a blade."))
@@ -156,29 +173,19 @@
 		/obj/item/flashlight/flare/torch = 1, 
 		/obj/item/recipe_book/survival = 1,
 		)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 			cloak = /obj/item/clothing/cloak/psydontabard
-			var/helmets = list("Armet","Bucket Helm")
-			var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
-			switch(helmet_choice)
-				if("Bucket Helm")
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
-				if("Armet")
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
+			if(H.mind)
+				var/helmets = list("Armet","Bucket Helm")
+				var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
+				switch(helmet_choice)
+					if("Bucket Helm")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+					if("Armet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 		if(/datum/patron/divine/astrata)
 			cloak = /obj/item/clothing/cloak/templar/astrata
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
@@ -215,25 +222,26 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
-	var/weapons = list("Longsword","Mace","Flail")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Longsword")
-			if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-				beltr = /obj/item/rogueweapon/sword/long/oldpsysword
-			else
-				beltr = /obj/item/rogueweapon/sword/long
-			r_hand = /obj/item/rogueweapon/scabbard/sword
-			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Mace")
-			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-			if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-				beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
-			else
-				beltr = /obj/item/rogueweapon/mace
-		if("Flail")
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-			beltr = /obj/item/rogueweapon/flail
+	if(H.mind)
+		var/weapons = list("Longsword","Mace","Flail")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Longsword")
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					beltr = /obj/item/rogueweapon/sword/long/oldpsysword
+				else
+					beltr = /obj/item/rogueweapon/sword/long
+				r_hand = /obj/item/rogueweapon/scabbard/sword
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					beltr = /obj/item/rogueweapon/mace/cudgel/psy/old
+				else
+					beltr = /obj/item/rogueweapon/mace
+			if("Flail")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltr = /obj/item/rogueweapon/flail
 	H.set_blindness(0)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -288,6 +296,17 @@
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 2,
 	)
+	subclass_skills = list(
+		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
+		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+	)
 	
 /datum/outfit/job/roguetown/adventurer/cantor/pre_equip(mob/living/carbon/human/H)
 	to_chat(H, span_warning("You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness."))
@@ -309,15 +328,6 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 	switch(H.patron?.type)
@@ -345,24 +355,25 @@
 			cloak = /obj/item/clothing/cloak/templar/pestra
 		else
 			cloak = /obj/item/clothing/cloak/cape/crusader
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
+	if(H.mind)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals
 
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -418,6 +429,17 @@
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 1,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+	)
 	
 /datum/outfit/job/roguetown/adventurer/missionary/pre_equip(mob/living/carbon/human/H)
 	to_chat(H, span_warning("You are a devout worshipper of the divine with a strong connection to your patron god. You've spent years studying scriptures and serving your deity - now you wander into foreign lands, spreading the word of your faith."))
@@ -433,15 +455,6 @@
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/recipe_book/survival = 1,
 		)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -483,9 +496,9 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_3)	//Minor regen, capped to T3.
 	if(istype(H.patron, /datum/patron/divine))
 		// For now, only Tennites get this. Heretics can have a special treat later
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
+		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
 	if(istype(H.patron, /datum/patron/inhumen))
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
+		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross

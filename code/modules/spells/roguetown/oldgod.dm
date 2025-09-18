@@ -363,7 +363,7 @@
 			H.emote("breathgasp")
 			H.Jitter(100)
 			H.update_body()
-			GLOB.azure_round_stats[STATS_LUX_REVIVALS]++
+			record_round_statistic(STATS_LUX_REVIVALS)
 			ADD_TRAIT(H, TRAIT_IWASREVIVED, "[type]")
 			H.apply_status_effect(/datum/status_effect/buff/psyvived)
 			user.apply_status_effect(/datum/status_effect/buff/psyvived)

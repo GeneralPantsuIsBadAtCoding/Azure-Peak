@@ -4,12 +4,25 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/mage
+	class_select_category = CLASS_CAT_MAGE
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 2,
 		STATKEY_SPD = 1,
+	)
+	subclass_spellpoints = 18
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/arcane = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
 
 /datum/outfit/job/roguetown/adventurer/mage/pre_equip(mob/living/carbon/human/H)
@@ -35,21 +48,10 @@
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/chalk = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/magic/arcane, SKILL_LEVEL_EXPERT, TRUE)
 		H.mind?.adjust_spellpoints(6)
-	H.mind?.adjust_spellpoints(18)
-	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander4.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -65,6 +67,18 @@
 		STATKEY_INT = 1,
 		STATKEY_CON = 1,
 		STATKEY_WIL = 1,
+	)
+	subclass_spellpoints = 12
+	subclass_skills = list(
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/shields = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
 
 /datum/outfit/job/roguetown/adventurer/spellblade/pre_equip(mob/living/carbon/human/H)
@@ -82,44 +96,34 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
-		H.mind.adjust_spellpoints(12)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	var/weapons = list("Longsword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	switch(weapon_choice)
-		if("Longsword")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			r_hand = /obj/item/rogueweapon/sword/long
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-		if("Falchion & Wooden Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backr = /obj/item/rogueweapon/shield/wood
-			r_hand = /obj/item/rogueweapon/sword/short/falchion
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-		if("Messer & Wooden Shield")
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backr = /obj/item/rogueweapon/shield/wood
-			r_hand = /obj/item/rogueweapon/sword/short/messer/iron
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-		if("Hwando")
-			r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			armor = /obj/item/clothing/suit/roguetown/armor/basiceast
+	if(H.mind)
+		var/weapons = list("Longsword", "Falchion & Wooden Shield", "Messer & Wooden Shield", "Hwando") // Much smaller selection with only three swords. You will probably want to upgrade.
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Longsword")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+			if("Falchion & Wooden Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backr = /obj/item/rogueweapon/shield/wood
+				r_hand = /obj/item/rogueweapon/sword/short/falchion
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
+			if("Messer & Wooden Shield")
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backr = /obj/item/rogueweapon/shield/wood
+				r_hand = /obj/item/rogueweapon/sword/short/messer/iron
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_APPRENTICE, TRUE)
+			if("Hwando")
+				r_hand = /obj/item/rogueweapon/sword/sabre/mulyeog // Meant to not have the special foreign scabbards.
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				armor = /obj/item/clothing/suit/roguetown/armor/basiceast
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -133,6 +137,18 @@
 		STATKEY_INT = 2,
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 1,
+	)
+	subclass_spellpoints = 12
+	subclass_skills = list(
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
 /datum/outfit/job/roguetown/adventurer/spellsinger/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -152,39 +168,29 @@
 	r_hand = /obj/item/rogueweapon/sword/sabre
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
-		H.mind.adjust_spellpoints(12)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
+	if(H.mind)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals

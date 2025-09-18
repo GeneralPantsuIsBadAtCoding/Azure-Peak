@@ -45,29 +45,28 @@
 		STATKEY_INT = 1,
 		STATKEY_SPD = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
+	)
+
+/datum/outfit/job/roguetown/knavewench
+	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/knavewench/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/butchering, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
-	if(H.age == AGE_MIDDLEAGED)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/tavern
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -82,3 +81,12 @@
 	backpack_contents = list(
 		/obj/item/bottle_kit
 	)
+
+/datum/outfit/job/roguetown/knavewench/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	if(H.age == AGE_MIDDLEAGED)
+		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)

@@ -382,6 +382,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		charflaw = GLOB.character_flaws[charflaw]
 		charflaw = new charflaw()
 
+/datum/preferences/proc/_load_culinary_preferences(S)
+	var/list/loaded_culinary_preferences
+	S["culinary_preferences"] >> loaded_culinary_preferences
+	if(loaded_culinary_preferences)
+		culinary_preferences = loaded_culinary_preferences
+		validate_culinary_preferences()
+	else
+		reset_culinary_preferences()
+
 /datum/preferences/proc/_load_statpack(S)
 	var/statpack_type
 	S["statpack"] >> statpack_type
@@ -473,6 +482,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["taur_type"]			>> taur_type
 	S["taur_color"]			>> taur_color
 
+/datum/preferences/proc/_load_familiar_prefs(S)
+	S["familiar_name"]					>> familiar_prefs.familiar_name
+	S["familiar_pronouns"]				>> familiar_prefs.familiar_pronouns
+	S["familiar_specie"]				>> familiar_prefs.familiar_specie
+	S["familiar_headshot_link"]			>> familiar_prefs.familiar_headshot_link
+	S["familiar_flavortext"]			>> familiar_prefs.familiar_flavortext
+	S["familiar_flavortext_display"]	>> familiar_prefs.familiar_flavortext_display
+	S["familiar_ooc_notes"]				>> familiar_prefs.familiar_ooc_notes
+	S["familiar_ooc_notes_display"]		>> familiar_prefs.familiar_ooc_notes_display
+	S["familiar_ooc_extra"]				>> familiar_prefs.familiar_ooc_extra
+	S["familiar_ooc_extra_link"]		>> familiar_prefs.familiar_ooc_extra_link
+
 /datum/preferences/proc/load_character(slot)
 	if(!path)
 		return FALSE
@@ -500,6 +521,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	_load_virtue(S)
 	_load_flaw(S)
 
+	_load_culinary_preferences(S)
+
 	// LETHALSTONE edit: jank-ass load our statpack choice
 	_load_statpack(S)
 
@@ -522,6 +545,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Character
 	_load_appearence(S)
 	_load_height(S)
+	_load_familiar_prefs(S)
 
 	var/patron_typepath
 	S["selected_patron"]	>> patron_typepath
@@ -545,6 +569,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Quirks
 	S["all_quirks"] >> all_quirks
+
+	S["dnr"] >> dnr_pref
 
 	S["update_mutant_colors"]			>> update_mutant_colors
 	update_mutant_colors = sanitize_integer(update_mutant_colors, FALSE, TRUE, initial(update_mutant_colors))
@@ -690,6 +716,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["highlight_color"]		, highlight_color)
 	WRITE_FILE(S["taur_type"]			, taur_type)
 	WRITE_FILE(S["taur_color"]			, taur_color)
+	WRITE_FILE(S["culinary_preferences"], culinary_preferences)
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
@@ -718,6 +745,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["descriptor_entries"] , descriptor_entries)
 	WRITE_FILE(S["custom_descriptors"] , custom_descriptors)
 
+	WRITE_FILE(S["dnr"] , dnr_pref)
 	WRITE_FILE(S["update_mutant_colors"] , update_mutant_colors)
 	WRITE_FILE(S["headshot_link"] , headshot_link)
 	WRITE_FILE(S["flavortext"] , html_decode(flavortext))
@@ -747,6 +775,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["loadout3"] , loadout3.type)
 	else
 		WRITE_FILE(S["loadout3"] , null)
+
+	//Familiar Files
+	WRITE_FILE(S["familiar_name"] , familiar_prefs.familiar_name)
+	WRITE_FILE(S["familiar_pronouns"] , familiar_prefs.familiar_pronouns)
+	WRITE_FILE(S["familiar_specie"] , familiar_prefs.familiar_specie)
+	WRITE_FILE(S["familiar_headshot_link"] , familiar_prefs.familiar_headshot_link)
+	WRITE_FILE(S["familiar_flavortext"] , familiar_prefs.familiar_flavortext)
+	WRITE_FILE(S["familiar_flavortext_display"] , familiar_prefs.familiar_flavortext_display)
+	WRITE_FILE(S["familiar_ooc_notes"] , familiar_prefs.familiar_ooc_notes)
+	WRITE_FILE(S["familiar_ooc_notes_display"] , familiar_prefs.familiar_ooc_notes_display)
+	WRITE_FILE(S["familiar_ooc_extra"] , familiar_prefs.familiar_ooc_extra)
+	WRITE_FILE(S["familiar_ooc_extra_link"] , familiar_prefs.familiar_ooc_extra_link)
 
 	return TRUE
 

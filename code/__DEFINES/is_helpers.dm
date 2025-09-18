@@ -22,7 +22,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 	/area/rogue/outdoors/woods,
 	/area/rogue/indoors/shelter/woods,
-	/area/rogue/outdoors/river,
 	/area/rogue/outdoors/bog,
 	/area/rogue/indoors/shelter/bog,
 	/area/rogue/outdoors/rtfield,

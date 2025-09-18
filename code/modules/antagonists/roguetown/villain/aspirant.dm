@@ -65,10 +65,10 @@
 
 /datum/antagonist/aspirant/ruler/greet() // No alert for the ruler to always keep them guessing.
 
-/datum/antagonist/prebel/can_be_owned(datum/mind/new_owner)
+/datum/antagonist/aspirant/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(.)
-		if(!(new_owner.assigned_role in GLOB.noble_positions) || !(new_owner.assigned_role in GLOB.garrison_positions))
+		if(!((new_owner.assigned_role in GLOB.noble_positions) || (new_owner.assigned_role in GLOB.garrison_positions) || (new_owner.assigned_role in GLOB.courtier_positions)))
 			return FALSE
 
 /datum/antagonist/aspirant/on_gain()
@@ -117,7 +117,7 @@
 	triumph_count = 5
 
 /datum/objective/aspirant/coup/one/check_completion()
-	if(owner.current == SSticker.rulermob)
+	if(owner?.current == SSticker.rulermob)
 		return TRUE
 	else
 		return FALSE
@@ -147,7 +147,7 @@
 	triumph_count = 3
 
 /datum/objective/aspirant/loyal/one/check_completion()
-	if(owner.current == SSticker.rulermob)
+	if(owner?.current == SSticker.rulermob)
 		return TRUE
 	else
 		return FALSE

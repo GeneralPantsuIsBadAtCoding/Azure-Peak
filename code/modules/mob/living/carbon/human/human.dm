@@ -24,7 +24,7 @@
 				if(do_after(user, 50, needhand = 1, target = src))
 					facial_hairstyle = "None"
 					update_hair()
-					GLOB.azure_round_stats[STATS_BEARDS_SHAVED]++
+					record_round_statistic(STATS_BEARDS_SHAVED)
 					if(dna?.species)
 						if(dna.species.id == "dwarf")
 							add_stress(/datum/stressevent/dwarfshaved)
@@ -90,8 +90,8 @@
 	var/obj/item/bodypart/affecting
 	var/dam = levels * rand(10,50)
 	add_stress(/datum/stressevent/felldown)
-	GLOB.azure_round_stats[STATS_MOAT_FALLERS]-- // If you get your ankles broken you fall. This makes sure only those that DIDN'T get damage get counted.
-	GLOB.azure_round_stats[STATS_ANKLES_BROKEN]++
+	record_round_statistic(STATS_MOAT_FALLERS, -1)
+	record_round_statistic(STATS_ANKLES_BROKEN)
 	var/chat_message
 	switch(rand(1,4))
 		if(1)
@@ -134,6 +134,7 @@
 	QDEL_NULL(sexcon)
 	STOP_PROCESSING(SShumannpc, src)
 	QDEL_NULL(physiology)
+	QDEL_NULL(sunder_light_obj)
 	GLOB.human_list -= src
 	return ..()
 

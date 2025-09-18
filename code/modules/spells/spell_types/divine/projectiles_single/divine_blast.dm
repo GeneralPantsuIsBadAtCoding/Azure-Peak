@@ -71,30 +71,10 @@
 			damage += 20
 		if(istype(H.patron, /datum/patron/old_god))
 			damage += 20
-		if(H.mind) // vampire/ww stuff - Apply BANE debuff.
-			var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-			var/datum/antagonist/vampirelord/lesser/V = H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-			if(V)
-				if(V.disguised)
-					H.visible_message("<font color='white'>The divine strike weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				else
-					H.visible_message("<font color='white'>The divine strike weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-			if(V_lord)
-				if(V_lord.vamplevel < 4 && !V)
-					H.visible_message("<font color='white'>The divine strike weakens the curse temporarily!</font>")
-					to_chat(H, span_userdanger("I'm hit by my BANE!"))
-					H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				if(V_lord.vamplevel == 4 && !V)
-					H.visible_message(H, span_userdanger("This feeble divinity can't hurt me, I AM ANCIENT!"))
-			if(W && W.transformed == TRUE)
-				H.visible_message("<font color='white'>The divine strike weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
+		if(HAS_TRAIT(H, TRAIT_SILVER_WEAK) && !H.has_status_effect(STATUS_EFFECT_ANTIMAGIC))
+			H.visible_message("<font color='white'>The unholy strike weakens the curse temporarily!</font>")
+			to_chat(H, span_userdanger("Silver rebukes my presence! My vitae smolders, and my powers wane!"))
+			H.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/sunder)
 		var/mob/living/carbon/human/caster
 		if (ishuman(firer))
 			caster = firer
@@ -103,7 +83,7 @@
 					damage += 15 // just more raw damage. As mentioned in UNDIVIDED. Our generics are better as a trade off of not having higher tier uniques.
 				if(/datum/patron/divine/astrata)
 					H.adjust_fire_stacks(2)
-					H.IgniteMob()
+					H.ignite_mob()
 				if(/datum/patron/divine/abyssor)
 					H.visible_message(span_warning("Water seeps from [H]'s lips!"), span_warning("Choking water in my lungs!"))
 					H.Dizzy(5)
@@ -114,7 +94,7 @@
 				if(/datum/patron/divine/necra)
 					if(H.mob_biotypes & MOB_UNDEAD)
 						H.adjust_fire_stacks(4)
-						H.IgniteMob()
+						H.ignite_mob()
 				if(/datum/patron/divine/pestra)
 					H.vomit(stun = 0)
 					H.adjustToxLoss(10)

@@ -14,6 +14,25 @@
 		STATKEY_LCK = 2,
 		STATKEY_WIL = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, // Tough. Well fed. The strongest of the strong.
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/engineering = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/masonry = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/mining = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/smelting = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/miner/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -40,20 +59,3 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/workervest
 		pants = /obj/item/clothing/under/roguetown/trou
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // Tough. Well fed. The strongest of the strong.
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/engineering, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/masonry, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/mining, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/smelting, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)

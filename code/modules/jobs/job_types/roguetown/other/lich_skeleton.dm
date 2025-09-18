@@ -86,6 +86,8 @@ LICH SKELETONS
 			beltr = /obj/item/rogueweapon/flail/sflail/paflail
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 
+	H.energy = H.max_energy
+
 // Ranged goon w/ a dumb bow. Ranger, what else is there to say.
 /datum/advclass/greater_skeleton/lich/ballistiares
 	name = "Ancient Ballistiares"
@@ -130,7 +132,7 @@ LICH SKELETONS
 
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	H.adjust_blindness(-3)
-	var/weapons = list("Recurve Bow","Yew Longbow","Sling")
+	var/weapons = list("Recurve Bow","Yew Longbow", "Crossbow", "Sling")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
@@ -138,6 +140,10 @@ LICH SKELETONS
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			beltl = /obj/item/quiver/paalloy
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+		if("Crossbow")
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			beltl = /obj/item/quiver/bolts/paalloy
+			H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 		if("Yew Longbow")
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 			beltl = /obj/item/quiver/paalloy
@@ -146,6 +152,8 @@ LICH SKELETONS
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 			beltl = /obj/item/quiver/sling/paalloy
 			H.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
+
+	H.energy = H.max_energy
 
 // Heavy/Tanky goon. Not heavy armor but due to the steel + weapons they'll fare just fine.
 /datum/advclass/greater_skeleton/lich/bulwark
@@ -189,7 +197,7 @@ LICH SKELETONS
 	shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Greatsword", "Bardiche", "Mace + Shield","Spear", "Warhammer + Shield")
+	var/weapons = list("Greatsword", "Bardiche", "Grand Mace", "Mace + Shield","Spear", "Warhammer + Shield")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
@@ -199,6 +207,8 @@ LICH SKELETONS
 		if("Bardiche")
 			r_hand = /obj/item/rogueweapon/halberd/bardiche/paalloy
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+		if("Grand Mace")
+			r_hand = /obj/item/rogueweapon/mace/goden/steel/paalloy
 		if("Mace + Shield")
 			r_hand = /obj/item/rogueweapon/mace/steel/palloy
 			l_hand = /obj/item/rogueweapon/shield/wood
@@ -211,6 +221,8 @@ LICH SKELETONS
 			l_hand = /obj/item/rogueweapon/shield/wood
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+
+	H.energy = H.max_energy
 
 // non-Combat crafter goon. Worse weapons + armor but does base-building. Fortnite.
 /datum/advclass/greater_skeleton/lich/sapper
@@ -260,3 +272,5 @@ LICH SKELETONS
 
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut
 	beltl = /obj/item/rogueweapon/pick/copper
+
+	H.energy = H.max_energy

@@ -11,6 +11,7 @@
 	var/maximum_possible_slots = -1
 	var/total_slots_occupied = 0
 	var/min_pq = -100
+	var/class_select_category
 
 	var/horse = FALSE
 	var/vampcompat = TRUE
@@ -34,17 +35,29 @@
 	/// Subclass stat bonuses.
 	var/list/subclass_stats
 
+	/// Subclass skills. Everything here is leveled UP TO using adjust_skillrank_up_to EX. list(/datum/skill = SKILL_LEVEL_JOURNEYMAN)
+	var/list/subclass_skills
+
+	/// Subclass languages.
+	var/list/subclass_languages
+
+	/// Spellpoints. If More than 0, Gives Prestidigitation & the Learning Spell.
+	var/subclass_spellpoints = 0
+
 	/// Extra fluff added to the role explanation in class selection.
 	var/extra_context
 
-/datum/advclass/proc/equipme(mob/living/carbon/human/H)
+/datum/advclass/proc/equipme(mob/living/carbon/human/H, dummy = FALSE)
 	// input sleeps....
 	set waitfor = FALSE
 	if(!H)
 		return FALSE
 
 	if(outfit)
-		H.equipOutfit(outfit)
+		H.equipOutfit(outfit, dummy)
+
+		if(dummy)	//This means we're doing a Char Sheet preview. We don't need to equip the dummy with anything else, the outfits are likely to runtime on their own.
+			return
 
 	post_equip(H)
 
@@ -64,10 +77,20 @@
 	if(adaptive_name)
 		H.adaptive_name = TRUE
 
+	if(length(subclass_languages))
+		for(var/lang in subclass_languages)
+			H.grant_language(lang)
+
 	if(length(subclass_stats))
 		for(var/stat in subclass_stats)
 			H.change_stat(stat, subclass_stats[stat])
 
+	if(length(subclass_skills))
+		for(var/skill in subclass_skills)
+			H.adjust_skillrank_up_to(skill, subclass_skills[skill], TRUE)
+
+	if(subclass_spellpoints > 0)
+		H.mind?.adjust_spellpoints(subclass_spellpoints)
 
 	// After the end of adv class equipping, apply a SPECIAL trait if able
 
@@ -111,9 +134,11 @@
 		if(total_slots_occupied >= maximum_possible_slots)
 			return FALSE
 
+	#ifdef USES_PQ
 	if(min_pq != -100) // If someone sets this we actually do the check.
 		if(!(get_playerquality(H.client.ckey) >= min_pq))
 			return FALSE
+	#endif
 
 	if(prob(pickprob))
 		return TRUE

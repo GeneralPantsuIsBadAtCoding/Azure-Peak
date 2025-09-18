@@ -19,11 +19,11 @@
 /datum/component/storage/concrete/roguetown/surgery_bag/New(datum/P, ...)
 	. = ..()
 	can_hold = typecacheof(list(
-	/obj/item/rogueweapon/surgery, 
-	/obj/item/needle, 
-	/obj/item/natural/worms/leech, 
+	/obj/item/rogueweapon/surgery,
+	/obj/item/needle,
+	/obj/item/natural/worms/leech,
 	/obj/item/reagent_containers/lux,
-	/obj/item/natural/bundle/cloth, 
+	/obj/item/natural/bundle/cloth,
 	/obj/item/natural/cloth))
 
 /datum/component/storage/concrete/roguetown/messkit
@@ -146,18 +146,18 @@
 /datum/component/storage/concrete/grid/magebag/New(datum/P, ...)
 	. = ..()
 	set_holdable(list(
-		/obj/item/magic/infernalash,
-		/obj/item/magic/hellhoundfang,
-		/obj/item/magic/infernalash,
-		/obj/item/magic/abyssalflame,
+		/obj/item/magic/infernal/ash,
+		/obj/item/magic/infernal/fang,
+		/obj/item/magic/infernal/core,
+		/obj/item/magic/infernal/flame,
 		/obj/item/magic/fairydust,
 		/obj/item/magic/iridescentscale,
 		/obj/item/magic/heartwoodcore,
 		/obj/item/magic/sylvanessence,
-		/obj/item/magic/elementalmote,
-		/obj/item/magic/elementalshard,
-		/obj/item/magic/elementalfragment,
-		/obj/item/magic/elementalrelic,
+		/obj/item/magic/elemental/mote,
+		/obj/item/magic/elemental/shard,
+		/obj/item/magic/elemental/fragment,
+		/obj/item/magic/elemental/relic,
 		/obj/item/magic/obsidian,
 		/obj/item/magic/leyline,
 		/obj/item/reagent_containers/food/snacks/grown/manabloom,

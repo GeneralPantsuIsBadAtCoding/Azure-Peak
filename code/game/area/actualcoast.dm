@@ -10,6 +10,7 @@
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	converted_type = /area/rogue/under/lake
 	first_time_text = "CENTRAL COAST"
+	deathsight_message = "a windswept shore"
 
 /area/rogue/outdoors/beach/north
 	name = "Northern Coast"

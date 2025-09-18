@@ -44,17 +44,39 @@
 	The forest is the most comfortable place for you, toiling alongside soilsons and soilbrides...although sometimes what lies beyond the gates fills your soul with a feral yearning."
 	outfit = /datum/outfit/job/roguetown/druid/basic
 	category_tags = list(CTAG_DRUID)
+	subclass_languages = list(/datum/language/beast)
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_WIL = 2,
 		STATKEY_SPD = 1,
 		STATKEY_PER = -1
 	)
+	subclass_skills = list(
+		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/tanning = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/farming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/magic/druidic = SKILL_LEVEL_JOURNEYMAN, //Shapeshifting.
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT, //Druids know the forest and when it has been disturbed
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_NOVICE, //To help them defend themselves with parrying
+	)
 
 /datum/outfit/job/roguetown/druid
 	name = "Druid"
 	jobtype = /datum/job/roguetown/druid
 	allowed_patrons = list(/datum/patron/divine/dendor)
+	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/druid/basic/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -67,30 +89,14 @@
 	head = /obj/item/clothing/head/roguetown/dendormask
 	wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
-	backpack_contents = list(/obj/item/ritechalk)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/druidic, 3, TRUE) //Shapeshifting.
-	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE) //Druids know the forest and when it has been disturbed
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE) //To help them defend themselves with parrying
-	H.grant_language(/datum/language/beast)
-	H.put_in_hands(new /obj/item/rogueweapon/woodstaff(H), TRUE) //To encourage them to wander the forests and to help defend themselves
+	backpack_contents = list(/obj/item/ritechalk, /obj/item/storage/keyring/churchie)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/magic/druidic, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/magic/holy, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/magic/druidic, 5, TRUE)
 	H.ambushable = FALSE
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
+
+/datum/outfit/job/roguetown/druid/basic/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	H.put_in_hands(new /obj/item/rogueweapon/woodstaff(H)) //To encourage them to wander the forests and to help defend themselves

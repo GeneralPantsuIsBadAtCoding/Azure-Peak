@@ -365,10 +365,23 @@
 	desc = "This silver dagger can be the banishment of vampires and werewolves."
 	icon_state = "sildagger"
 	sheathe_icon = "sildagger"
+	force = 15
+	wdefense = 6
 	sellprice = 50
 	smeltresult = /obj/item/ingot/silver
 	last_used = 0
 	is_silver = TRUE
+
+/obj/item/rogueweapon/huntingknife/idagger/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	name = "psydonian dagger"
@@ -378,60 +391,16 @@
 	sellprice = 70
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
-	. = ..()				//It's preblessed with silver only. Mostly redundant, but safely prevents double-blessing.
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 0, bonus_sharpness = 0, bonus_integrity = 0, bonus_wdef = 0, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 	sellprice += 200
-
-/obj/item/rogueweapon/huntingknife/idagger/silver/pickup(mob/user)
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(ishuman(H))
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				H.Knockdown(10)
-				H.adjustFireLoss(25)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-
-
-/obj/item/rogueweapon/huntingknife/idagger/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	. = ..()
-	if(ishuman(M) && M.mind)
-		var/mob/living/carbon/human/H = M
-		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-				H.Knockdown(5)
-				H.Paralyze(5)
-				H.adjustFireLoss(25)
-				H.fire_act(1,5)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
 
 /obj/item/weapon/knife/dagger/silver/arcyne
 	name = "glowing purple silver dagger"
@@ -523,7 +492,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	name = "elvish dagger"
 	desc = "This beautiful dagger is of intricate, elvish design. Sharper, too."
-	force = 22
+	force = 18
 	icon_state = "elfdagger"
 	item_state = "elfdag"
 	last_used = 0
@@ -532,7 +501,7 @@
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/drow
 	name = "dark elvish dagger"
 	desc = "A vicious wave-bladed dagger from the Underdark."
-	force = 25
+	force = 18
 	last_used = 0
 	is_silver = TRUE
 
@@ -635,15 +604,27 @@
 	name = "psydonian tossblade"
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
 	item_state = "bone_dagger"
-	force = 12
-	throwforce = 28
+	force = 10
+	throwforce = 20
 	armor_penetration = 50
 	max_integrity = 150
 	wdefense = 3
 	icon_state = "throw_knifep"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 	sellprice = 6
+
+/obj/item/rogueweapon/huntingknife/throwingknife/psydon/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 3,\
+	)
 
 /obj/item/rogueweapon/huntingknife/scissors
 	possible_item_intents = list(/datum/intent/snip, /datum/intent/dagger/thrust, /datum/intent/dagger/cut)

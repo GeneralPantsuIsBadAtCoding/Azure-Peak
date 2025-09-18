@@ -19,6 +19,17 @@
 		STATKEY_CON = 1,
 		STATKEY_PER = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/mining = SKILL_LEVEL_LEGENDARY,
+		/datum/skill/craft/smelting = SKILL_LEVEL_LEGENDARY,
+	)
 
 /datum/outfit/job/roguetown/adventurer/minermaster/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -34,13 +45,4 @@
 	backpack_contents = list(
 						/obj/item/flashlight/flare/torch = 1,
 						)
-	H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/mining, 6, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/smelting, 6, TRUE)
 

@@ -122,23 +122,24 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		STATKEY_SPD = 1,
 		STATKEY_STR = 1,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+	)
 
 /datum/outfit/job/roguetown/lord/warrior/pre_equip(mob/living/carbon/human/H)
 	..()
 	l_hand = /obj/item/rogueweapon/lordscepter
-
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 
@@ -164,23 +165,24 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		STATKEY_SPD = 1,
 		STATKEY_WIL = 1,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT, // Weapons suitable for defending yourself as a merchant.
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/lord/merchant/pre_equip(mob/living/carbon/human/H)
 	..()
 	l_hand = /obj/item/rogueweapon/lordscepter
-
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE) // Weapons suitable for defending yourself as a merchant.
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 
@@ -196,7 +198,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	tutorial = "Psydon and Astrata smiles upon you. For despite your inbred and weak body, and your family's conspiracies to remove you from succession, you have somehow become the Lord of Azure Peak. May your reign lasts a hundred years."
 	outfit = /datum/outfit/job/roguetown/lord/inbred
 	category_tags = list(CTAG_LORD)
-	traits_applied = list(TRAIT_NOBLE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NORUN, TRAIT_HEAVYARMOR)
+	traits_applied = list(TRAIT_NOBLE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NORUN, TRAIT_HEAVYARMOR, TRAIT_GOODLOVER)
 	subclass_stats = list(
 		STATKEY_LCK = 10,
 		STATKEY_INT = -2,
@@ -205,22 +207,20 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		STATKEY_WIL = -2,
 		STATKEY_STR = -2,
 	)
+	subclass_skills = list(
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/lord/inbred/pre_equip(mob/living/carbon/human/H)
 	..()
 	l_hand = /obj/item/rogueweapon/lordscepter
-	H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, pick(0,1), TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE) // Sorry you get +1 :)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, pick(0,0,1), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, pick(0,1), TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 
 /datum/outfit/job/roguetown/lord/visuals/pre_equip(mob/living/carbon/human/H)
 	..()

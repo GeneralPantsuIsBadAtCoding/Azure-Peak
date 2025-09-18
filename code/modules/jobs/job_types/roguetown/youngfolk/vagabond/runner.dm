@@ -10,6 +10,11 @@
 		STATKEY_SPD = 1,
 		STATKEY_INT = -2
 	)
+	subclass_skills = list(
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/vagabond/runner/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -30,7 +35,3 @@
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
 
-	if (H.mind)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)

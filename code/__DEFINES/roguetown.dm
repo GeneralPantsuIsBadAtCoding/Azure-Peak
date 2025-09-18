@@ -149,6 +149,8 @@
 #define ARMOR_ASCENDANT list("blunt" = 50, "slash" = 100, "stab" = 80, "piercing" = 80, "fire" = 0, "acid" = 0)
 #define ARMOR_GRUDGEBEARER list("blunt" = 40, "slash" = 200, "stab" = 200, "piercing" = 100, "fire" = 0, "acid" = 0)
 #define ARMOR_ZIZOCONCSTRUCT list("blunt" = 60, "slash" = 70, "stab" = 70, "piercing" = 60, "fire" = 40, "acid" = 10)
+#define ARMOR_DRAGONHIDE list("blunt" = 30, "slash" = 30, "stab" = 30, "piercing" = 30, "fire" = 40, "acid" = 0) // snowflake armor for dragonhide, fire resist but lower other values from the ring since more integ
+
 
 // Weapon balance defines
 #define WBALANCE_NORMAL 0
@@ -418,6 +420,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_VAGABOND		"CAT_VAGABOND"		// Vagabond class - start with nothing and work your way up
 #define CTAG_INQUISITION	"CAT_INQUISITION"	// For Orthodoxist subclasses
 #define CTAG_PURITAN		"CAT_PURITAN"		// For Inquisitor subclasses
+#define CTAG_ABSOLVER		"CAT_ABSOLVER"		// For Absolver (sub)class
 #define CTAG_COURTAGENT		"CAT_COURTAGENT"	// Court agent classes
 #define CTAG_WRETCH			"CAT_WRETCH"		// Wretch classes untethered from adventurer
 #define CTAG_LSKELETON		"CAT_LSKELETON"		// Lich Fortified Skeleton classes
@@ -487,3 +490,27 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define ARMOR_CLASS_MEDIUM 2
 #define ARMOR_CLASS_HEAVY 3
 
+/*
+	Defines for class select categories
+*/
+
+//Adventurer categories
+#define CLASS_CAT_NOBLE	"Noble"
+#define CLASS_CAT_CLERIC "Cleric"
+#define CLASS_CAT_ROGUE	"Rogue"
+#define CLASS_CAT_RANGER "Ranger"
+#define CLASS_CAT_MAGE "Mage"
+#define CLASS_CAT_WARRIOR "Warrior"
+#define CLASS_CAT_TRADER "Trader"
+#define CLASS_CAT_NOMAD "Nomad"
+
+//Mercenary categories
+#define CLASS_CAT_ETRUSCA "Etrusca"
+#define CLASS_CAT_GRENZELHOFT "Grenzelhoft"
+#define CLASS_CAT_NALEDI "Naledi"
+#define CLASS_CAT_RANESHENI "Ranesheni"
+#define CLASS_CAT_AAVNR "Aavnr"
+#define CLASS_CAT_GRONN "Gronn"
+#define CLASS_CAT_OTAVA "Otava"
+#define CLASS_CAT_KAZENGUN "Kazengun"
+#define CLASS_CAT_RACIAL "Race Exclusive" //Used for black oaks, grudgebearer dwarves, etc.

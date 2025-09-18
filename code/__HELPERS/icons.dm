@@ -1061,6 +1061,10 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		else if (outfit_override)
 			body.equipOutfit(outfit_override,visualsOnly = TRUE)
 
+		body.update_inv_hands(hide_experimental = TRUE)
+		body.update_inv_belt(hide_experimental = TRUE)
+		body.update_inv_back(hide_experimental = TRUE)
+		body.update_inv_head(hide_nonstandard = TRUE)
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
 		for(var/D in showDirs)
@@ -1068,6 +1072,11 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			COMPILE_OVERLAYS(body)
 			var/icon/partial = getFlatIcon(body)
 			out_icon.Insert(partial,dir=D)
+
+		body.update_inv_hands()
+		body.update_inv_belt()
+		body.update_inv_back()
+		body.update_inv_head()
 
 		humanoid_icon_cache[icon_id] = out_icon
 		dummy_key? unset_busy_human_dummy(dummy_key) : qdel(body)
@@ -1403,3 +1412,58 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+GLOBAL_LIST_EMPTY(headshot_cache)
+
+/proc/get_headshot_icon(mob/living/carbon/human/target, size = 64, crop_height = 32)
+	if(!target || !istype(target))
+		return ""
+
+	var/datum/weakref/weak_target = WEAKREF(target)
+	var/cache_key = weak_target
+	var/appearance_signature = "[target.icon]-[target.icon_state]-[length(target.overlays)]-[length(target.underlays)]-[target.color]"
+
+	var/list/cache_entry = GLOB.headshot_cache[cache_key]
+	if(cache_entry)
+		var/mob/living/cached_target = weak_target.resolve()
+		if(cached_target && cache_entry["signature"] == appearance_signature)
+			return cache_entry["html"]
+		else
+			GLOB.headshot_cache -= cache_key
+
+	target.update_inv_hands()
+	target.update_inv_belt()
+	target.update_inv_back()
+	target.update_inv_head()
+	// Better include this later uh oh!
+	// var/was_typing = target.typing
+	// if(was_typing)
+	// 	target.set_typing_indicator(FALSE)
+
+	var/image/dummy = image(target.icon, target, target.icon_state, target.layer, target.dir)
+	dummy.appearance = target.appearance
+	dummy.dir = SOUTH
+
+	target.update_inv_hands()
+	target.update_inv_belt()
+	target.update_inv_back()
+	target.update_inv_head()
+	// if(was_typing)
+	// 	target.set_typing_indicator(TRUE)
+
+	var/icon/headshot = getFlatIcon(dummy, SOUTH, no_anim = TRUE)
+	headshot.Scale(size, size)
+	headshot.Crop(1, size - crop_height + 1, size, size)
+
+	var/icon_html = "<img src='data:image/png;base64,[icon2base64(headshot)]' style='width:[size]px;height:[crop_height]px;image-rendering:pixelated;'>"
+
+	if(length(GLOB.headshot_cache) >= 200)
+		var/num_to_remove = round(200 * 0.15)
+		for(var/i in 1 to num_to_remove)
+			GLOB.headshot_cache.Cut(1, 2)
+
+	GLOB.headshot_cache[cache_key] = list(
+		"signature" = appearance_signature,
+		"html" = icon_html
+	)
+	return icon_html

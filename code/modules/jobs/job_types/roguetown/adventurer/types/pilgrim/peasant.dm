@@ -10,19 +10,21 @@
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_INT = -1
-		)
+	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/peasant/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
 	pants = /obj/item/clothing/under/roguetown/trou

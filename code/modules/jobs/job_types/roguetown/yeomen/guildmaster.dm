@@ -26,7 +26,7 @@
 
 	job_traits = list(TRAIT_TRAINED_SMITH, TRAIT_SEEPRICES)
 
-	advclass_cat_rolls = list(CTAG_GUILDMASTER = 2)
+	advclass_cat_rolls = list(CTAG_GUILDSMASTER = 2)
 	job_subclasses = list(
 		/datum/advclass/guildmaster
 	)
@@ -51,6 +51,31 @@
 		STATKEY_WIL = 2,
 		STATKEY_INT = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/lumberjacking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/mining = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/masonry = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/blacksmithing = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/armorsmithing = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/weaponsmithing = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/smelting = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/engineering = SKILL_LEVEL_JOURNEYMAN, // 2 Engineering, let them make more artificers stuffs
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE, // Worse than the real tailor, so can't steal their job right away 
+		/datum/skill/craft/tanning = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/ceramics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+	)
+
+/datum/outfit/job/roguetown/guildmaster
+	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/guildmaster/basic/pre_equip(mob/living/carbon/human/H)
 	H.adjust_blindness(-3)
@@ -60,33 +85,6 @@
 		// Skillset is a combo of Artificer + Blacksmith with Labor Skills. 
 		// And Tailor / Leathercrafting
 		H.verbs += /mob/living/carbon/human/proc/guild_announcement
-		H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/lumberjacking, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/mining, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/carpentry, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/masonry, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 5, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 5, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 5, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/smelting, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/engineering, 3, TRUE) // 2 Engineering, let them make more artificers stuffs
-		H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE) // Worse than the real tailor, so can't steal their job right away 
-		H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/ceramics, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-		if(H.age == AGE_OLD)
-			H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE) // Worse than the real tailor, so can't steal their job right away 
-			H.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket
 		pants = /obj/item/clothing/under/roguetown/trou/artipants
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -102,6 +100,16 @@
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
 		beltr = /obj/item/storage/keyring/guildmaster
+
+/datum/outfit/job/roguetown/guildmaster/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE) // Worse than the real tailor, so can't steal their job right away 
+		H.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)
 
 /mob/living/carbon/human/proc/guild_announcement()
 	set name = "Announcement"

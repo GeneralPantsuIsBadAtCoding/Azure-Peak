@@ -52,6 +52,7 @@
 	name = "Veteran Battlemaster"
 	tutorial = "You have served under a hundred masters, some good, some bad. You were a general once. A marshal, a captain. To some a hero, others a monster. Something of the sorts. You made strategies, tactics, new innovations of war. A thousand new ways for one man to kill another. It still keeps you up at night."
 	outfit = /datum/outfit/job/roguetown/vet/battlemaster
+	cmode_music = 'sound/music/cmode/towner/combat_retired.ogg'
 
 	category_tags = list(CTAG_VETERAN)
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR, TRAIT_STEELHEARTED)
@@ -62,6 +63,24 @@
 		STATKEY_WIL = 1,
 		STATKEY_CON = 1,
 		STATKEY_PER = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/maces = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 // Normal veteran start, from the olden days.
@@ -82,30 +101,13 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/maces, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 5, TRUE)
 		H.change_stat(STATKEY_WIL, 1)
 
 	H.verbs |= /mob/proc/haltyell
-	H.cmode_music = 'sound/music/cmode/towner/combat_retired.ogg'
 
 /datum/advclass/veteran/footman
 	name = "Retired Footman"
@@ -120,6 +122,24 @@
 		STATKEY_STR = 1,
 		STATKEY_PER = 1,
 		STATKEY_WIL = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT, // this is a kinda scary skill to give them, surely it won't go wrong though.
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/polearms = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN, // two handed weapons require a LOT of stamina.
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
 	)
 
 // No hero, just a normal guy who happened to survive war.
@@ -146,29 +166,13 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE) // this is a kinda scary skill to give them, surely it won't go wrong though.
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) // two handed weapons require a LOT of stamina.
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/shields, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 5, TRUE)
 	H.verbs |= /mob/proc/haltyell
 
 /datum/advclass/veteran/calvaryman
@@ -185,6 +189,25 @@
 		STATKEY_PER = 1,
 		STATKEY_INT = 1,
 		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_EXPERT,
 	)
 
 // You get a SAIGA. Saigas are pretty good, you lose out on your legendary weapon skills and you suck more on foot though.
@@ -206,58 +229,44 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/storage/keyring/guardcastle = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE) // You get a lot of weapon skills, but none are legendary. Jack of all trades, master of none. This is probably worse than just having legendary in one, as people rarely swap weapons mid-combat.
-		H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/maces, 5, TRUE) // You get a lot of weapon skills, but none are legendary. Jack of all trades, master of none. This is probably worse than just having legendary in one, as people rarely swap weapons mid-combat.
+		H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 5, TRUE)
 	H.verbs |= /mob/proc/haltyell
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Sword + Recurve Bow")
-			r_hand = /obj/item/rogueweapon/sword/long
-			beltl = /obj/item/quiver/arrows
-			beltr = /obj/item/rogueweapon/scabbard/sword
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+	if(H.mind)
+		var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Sword + Recurve Bow")
+				r_hand = /obj/item/rogueweapon/sword/long
+				beltl = /obj/item/quiver/arrows
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 
-		if("Axe + Crossbow")
-			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			beltl = /obj/item/quiver/bolts
+			if("Axe + Crossbow")
+				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				beltl = /obj/item/quiver/bolts
 
-		if ("Spear + Shield")
-			r_hand = /obj/item/rogueweapon/spear
-			backl = /obj/item/rogueweapon/shield/tower/metal
+			if ("Spear + Shield")
+				r_hand = /obj/item/rogueweapon/spear
+				backl = /obj/item/rogueweapon/shield/tower/metal
 
 /datum/advclass/veteran/merc
 	name = "Retired Mercenary"
 	tutorial = "You were a sell-sword, a warrior of coin. Your pockets were never light, you always had a warm place to stay and food in your belly, but you knew that every battle could be your last. You're the last of your unit, and you can't help but regret it. You specialize in swords and polearms, or axes and polearms."
 	outfit = /datum/outfit/job/roguetown/vet/merc
 
+	subclass_languages = list(/datum/language/grenzelhoftian)
+	cmode_music = 'sound/music/combat_grenzelhoft.ogg'
 	category_tags = list(CTAG_VETERAN)
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR, TRAIT_STEELHEARTED)
 	subclass_stats = list(
@@ -267,8 +276,29 @@
 		STATKEY_INT = 1,
 		STATKEY_SPD = -1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+	)
 
 // Normal veteran start, from the olden days
+
+/datum/outfit/job/roguetown/vet/merc
+	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/vet/merc/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -288,45 +318,31 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE) // two handed weapons require a LOT of stamina.
 	H.verbs |= /mob/proc/haltyell
-	H.grant_language(/datum/language/grenzelhoftian)
-	H.cmode_music = 'sound/music/combat_grenzelhoft.ogg'
+
+/datum/outfit/job/roguetown/vet/merc/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 4, TRUE) // two handed weapons require a LOT of stamina.
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Zweihander","Halberd")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Zweihander")
-			r_hand = /obj/item/rogueweapon/greatsword/grenz
-			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-		if("Halberd")
-			r_hand = /obj/item/rogueweapon/halberd
-			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.
-			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	if(H.mind)
+		var/weapons = list("Zweihander","Halberd")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Zweihander")
+				r_hand = /obj/item/rogueweapon/greatsword/grenz
+				H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+				H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.
+				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 
 /datum/advclass/veteran/scout
 	name = "Former Scout"
@@ -342,6 +358,27 @@
 		STATKEY_CON = 1,
 		STATKEY_SPD = 1,// You get -2 speed from being old.
 		STATKEY_STR = -1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT, // I very rarely see ranged weapons outside of PVE. Maybe this'll fix that?
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/stealing = SKILL_LEVEL_APPRENTICE,
 	)
 
 // Originally was meant to be a horse archer. I decided that was a bad idea.
@@ -366,31 +403,12 @@
 		/obj/item/storage/keyring/guardcastle = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE) // I very rarely see ranged weapons outside of PVE. Maybe this'll fix that?
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/bows, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/axes, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/tracking, 6, TRUE)
 		H.change_stat(STATKEY_PER, 2)
 	H.verbs |= /mob/proc/haltyell
 	H.cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg' // so apparently this works for veteran, but not for advents. i dont know why.
@@ -399,7 +417,8 @@
 	name = "Ex-Spy"
 	tutorial = "You didn't serve on the frontlines, you were an informant, a spy, an assassin. You wove your way through enemy courts, finding information, neutralizing loose ends. You lived old in a career that many die young. It's a miracle you stand here today. You specialize in knives, whips, and stealth."
 	outfit = /datum/outfit/job/roguetown/vet/spy
-
+	subclass_languages = list(/datum/language/thievescant)
+	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 	category_tags = list(CTAG_VETERAN)
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_CICERONE, TRAIT_STEELHEARTED)
 	subclass_stats = list(
@@ -408,6 +427,28 @@
 		STATKEY_CON = 1,
 		STATKEY_SPD = 1,
 		STATKEY_STR = -2
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/stealing = SKILL_LEVEL_EXPERT,
 	)
 
 // The sneaker. Not really typical, but hey, wildcard. Wanna-be Spymaster. I guess that just makes them a normal spy, or, once one.
@@ -432,36 +473,14 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,
 		/obj/item/lockpickring/mundane,
 		)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE) ///Having Master Knives is extremely negligible for a singular role that isn't even meant to be combative.
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/stealing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/knives, 5, TRUE) ///Having Master Knives is extremely negligible for a singular role that isn't even meant to be combative.
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/bows, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/stealing, 5, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 6, TRUE)
 		H.change_stat(STATKEY_SPD, 1) // You get -2 speed from being old. You are still in the negative stat wise from picking old.
 		H.change_stat(STATKEY_PER, 2) // You get -2 perception from being old. I want you to at least have a positive perception, to represent that you're observant. The highest perception you can get with this is a 13, so I think we'll be okayed.
 	H.verbs |= /mob/proc/haltyell
-	H.grant_language(/datum/language/thievescant)
-	H.cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'

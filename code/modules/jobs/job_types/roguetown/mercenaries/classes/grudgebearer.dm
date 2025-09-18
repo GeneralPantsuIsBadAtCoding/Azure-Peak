@@ -8,6 +8,7 @@
 		/datum/species/dwarf/mountain
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer
+	class_select_category = CLASS_CAT_RACIAL
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_dwarf.ogg'
 	extra_context = "This subclass is race-limited to: Dwarves."
@@ -19,21 +20,23 @@
 		STATKEY_STR = 1,
 		STATKEY_SPD = -2
 	)
+	subclass_skills = list(
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/armorsmithing = SKILL_LEVEL_EXPERT,	//Shouldn't be better than the smith (though the stats are already)
+		/datum/skill/craft/blacksmithing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/smelting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/weaponsmithing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+	)
 
 //Because the armor is race-exclusive for repairs, these guys *should* be able to repair their own guys armor layers. A Dwarf smith isn't guaranteed, after all.
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)	//Shouldn't be better than the smith (though the stats are already)
-		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 		cloak = /obj/item/clothing/cloak/forrestercloak/snow
 		belt = /obj/item/storage/belt/rogue/leather/black
@@ -66,18 +69,20 @@
 		STATKEY_STR = 2,
 		STATKEY_SPD = -2
 	)
+	subclass_skills = list(
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/armorsmithing = SKILL_LEVEL_APPRENTICE,	//Only here so they'd be able to repair their own armor integrity
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+	)
 /datum/outfit/job/roguetown/mercenary/grudgebearer_soldier/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)	//Only here so they'd be able to repair their own armor integrity
-		H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 		cloak = /obj/item/clothing/cloak/forrestercloak/snow
 		belt = /obj/item/storage/belt/rogue/leather/black
@@ -95,13 +100,14 @@
 			/obj/item/paper/scroll/grudge,
 			/obj/item/natural/feather,
 			)
-		var/weapons = list("Axe", "Mace")
-		var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
-		switch(wepchoice)
-			if("Axe")
-				backr = /obj/item/rogueweapon/stoneaxe/battle
-			if("Mace")
-				backr = /obj/item/rogueweapon/mace/goden/steel
+		if(H.mind)
+			var/weapons = list("Axe", "Mace")
+			var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
+			switch(wepchoice)
+				if("Axe")
+					backr = /obj/item/rogueweapon/stoneaxe/battle
+				if("Mace")
+					backr = /obj/item/rogueweapon/mace/goden/steel
 		H.merctype = 8
 
 
@@ -222,7 +228,7 @@
 	repair_items = list(/obj/machinery/anvil)
 
 	repair_skills = list(
-		/datum/skill/craft/armorsmithing = 2,
+		/datum/skill/craft/armorsmithing = SKILL_LEVEL_APPRENTICE,
 	)
 
 	race_repair = list(

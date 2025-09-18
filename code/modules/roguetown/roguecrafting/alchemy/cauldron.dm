@@ -118,7 +118,7 @@
 					//handle player perception and reset for next time
 					src.visible_message("<span class='info'>The cauldron finishes boiling with a faint [found_recipe.smells_like] smell.</span>")
 					record_featured_stat(FEATURED_STATS_ALCHEMISTS, lastuser)
-					GLOB.azure_round_stats[STATS_POTIONS_BREWED]++
+					record_round_statistic(STATS_POTIONS_BREWED)
 					//give xp for /datum/skill/craft/alchemy
 					lastuser?.adjust_experience(/datum/skill/craft/alchemy, amt2raise, FALSE)
 					playsound(src, "bubbles", 100, TRUE)

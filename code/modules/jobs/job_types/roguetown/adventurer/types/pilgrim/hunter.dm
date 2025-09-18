@@ -13,6 +13,28 @@
 		STATKEY_INT = 1,
 		STATKEY_SPD = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/axes = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/tanning = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/fishing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/hunter/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -40,36 +62,34 @@
 				)
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/tanning, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-
-
 /datum/advclass/hunter/spear
 	name = "Spear-Hunter"
 	tutorial = "You are a hunter. With your bow you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
 	outfit = /datum/outfit/job/roguetown/adventurer/hunter_spear
+	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_CON = 1,
 		STATKEY_WIL = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/tanning = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/fishing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
 	
 /datum/outfit/job/roguetown/adventurer/hunter_spear/pre_equip(mob/living/carbon/human/H)
@@ -96,22 +116,4 @@
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/tanning, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/fishing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 	return

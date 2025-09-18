@@ -48,24 +48,26 @@
 		STATKEY_INT = 2,
 		STATKEY_STR = -1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/stealing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/merchant/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/navaja)
 	neck = /obj/item/clothing/neck/roguetown/horus
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/merchant

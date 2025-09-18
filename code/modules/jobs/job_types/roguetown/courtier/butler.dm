@@ -44,6 +44,34 @@
 		STATKEY_LCK = 1, // Usual leadership carrot.
 		STATKEY_SPD = 1
 	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sewing = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+	)
+
+/datum/outfit/job/roguetown/seneschal
+	has_loadout = TRUE
+
+//This applies to all Seneschal subclasses
+/datum/outfit/job/roguetown/seneschal/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
+	if(H.age == AGE_MIDDLEAGED)
+		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 
 /datum/outfit/job/roguetown/seneschal/seneschal/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -57,25 +85,6 @@
 	id = /obj/item/scomstone/bad
 	if(should_wear_femme_clothes(H)) 
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	if(H.age == AGE_MIDDLEAGED)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 
 /datum/advclass/seneschal/headmaid
 	name = "Head Maid"
@@ -86,6 +95,18 @@
 		STATKEY_PER = 2,
 		STATKEY_LCK = 1, // Usual leadership carrot.
 		STATKEY_SPD = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sewing = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/seneschal/headmaid/pre_equip(mob/living/carbon/human/H)
@@ -99,25 +120,7 @@
 	beltr = /obj/item/storage/keyring/servant
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	if(H.age == AGE_MIDDLEAGED)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+
 
 /datum/advclass/seneschal/chiefbutler
 	name = "Chief Butler"
@@ -128,6 +131,18 @@
 		STATKEY_PER = 2,
 		STATKEY_LCK = 1, // Usual leadership carrot.
 		STATKEY_SPD = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sewing = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/seneschal/chiefbutler/pre_equip(mob/living/carbon/human/H)
@@ -141,22 +156,3 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 	id = /obj/item/scomstone/bad
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	if(H.age == AGE_MIDDLEAGED)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)

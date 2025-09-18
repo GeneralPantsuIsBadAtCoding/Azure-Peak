@@ -4,14 +4,31 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/rogue
+	cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_SEEPRICES, TRAIT_GRAVEROBBER)
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	class_select_category = CLASS_CAT_ROGUE
 	subclass_stats = list(
 		STATKEY_STR = -1,
 		STATKEY_INT = 1,
 		STATKEY_PER = 1,
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 3,
+	)
+	subclass_skills = list(
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/traps = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 /datum/outfit/job/roguetown/adventurer/rogue/pre_equip(mob/living/carbon/human/H)
@@ -35,36 +52,25 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
-	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	var/weapons = list("Sabre","Whip")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Sabre")
-			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			beltr = /obj/item/rogueweapon/sword/sabre
-			r_hand = /obj/item/rogueweapon/scabbard/sword
-		if("Whip")
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-			beltr = /obj/item/rogueweapon/whip
+	if(H.mind)
+		var/weapons = list("Sabre","Whip")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Sabre")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltr = /obj/item/rogueweapon/sword/sabre
+				r_hand = /obj/item/rogueweapon/scabbard/sword
+			if("Whip")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltr = /obj/item/rogueweapon/whip
 
 /datum/advclass/rogue/thief
 	name = "Thief"
 	tutorial = "You are a scoundrel and a thief. A master in getting into places you shouldn't be and taking things that aren't rightfully yours."
 	outfit = /datum/outfit/job/roguetown/adventurer/thief
+	subclass_languages = list(/datum/language/thievescant)
+	cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_STR = -1,
@@ -72,6 +78,22 @@
 		STATKEY_PER = 1,
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 3,
+	)
+	subclass_skills = list(
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_LEGENDARY,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/stealing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/traps = SKILL_LEVEL_EXPERT,
 	)
 
 /datum/outfit/job/roguetown/adventurer/thief/pre_equip(mob/living/carbon/human/H)
@@ -97,50 +119,37 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
-	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
-	H.grant_language(/datum/language/thievescant)
 
 /datum/advclass/rogue/bard
 	name = "Bard"
 	tutorial = "You make your fortune in brothels, flop houses, and taverns – gaining fame for your songs and legends. If there is any truth to them, that is."
 	outfit = /datum/outfit/job/roguetown/adventurer/bard
+	cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_GOODLOVER, TRAIT_EMPATH)
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 1,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/music = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/bard/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("You make your fortune in brothels, flop houses, and taverns – gaining fame for your songs and legends. If there is any truth to them, that is."))
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/music, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 	head = /obj/item/clothing/head/roguetown/bardhat
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -160,35 +169,49 @@
 		)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
-	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Harp")
-			backr = /obj/item/rogue/instrument/harp
-		if("Lute")
-			backr = /obj/item/rogue/instrument/lute
-		if("Accordion")
-			backr = /obj/item/rogue/instrument/accord
-		if("Guitar")
-			backr = /obj/item/rogue/instrument/guitar
-		if("Hurdy-Gurdy")
-			backr = /obj/item/rogue/instrument/hurdygurdy
-		if("Viola")
-			backr = /obj/item/rogue/instrument/viola
-		if("Vocal Talisman")
-			backr = /obj/item/rogue/instrument/vocals
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Harp")
+				backr = /obj/item/rogue/instrument/harp
+			if("Lute")
+				backr = /obj/item/rogue/instrument/lute
+			if("Accordion")
+				backr = /obj/item/rogue/instrument/accord
+			if("Guitar")
+				backr = /obj/item/rogue/instrument/guitar
+			if("Hurdy-Gurdy")
+				backr = /obj/item/rogue/instrument/hurdygurdy
+			if("Viola")
+				backr = /obj/item/rogue/instrument/viola
+			if("Vocal Talisman")
+				backr = /obj/item/rogue/instrument/vocals
 
 /datum/advclass/rogue/swashbuckler
 	name = "Swashbuckler"
 	tutorial = "You are a daring rogue of the seas! Swashbucklers wield agile swordplay and acrobatic prowess - fighting dirty to outmaneuver foes with flair."
 	outfit = /datum/outfit/job/roguetown/adventurer/swashbuckler
+	cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_NUTCRACKER, TRAIT_DECEIVING_MEEKNESS)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_STR = 1,
 		STATKEY_WIL = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/music = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/adventurer/swashbuckler/pre_equip(mob/living/carbon/human/H)
@@ -213,16 +236,3 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
-	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/music, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)

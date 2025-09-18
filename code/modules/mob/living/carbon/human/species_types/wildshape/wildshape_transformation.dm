@@ -15,8 +15,6 @@
 	if(client)
 		SSdroning.play_area_sound(get_area(src), client)
 
-	fully_heal(FALSE) //If we don't do this, even a single cut will mean the player's real body will die in the void while they run around wildshaped
-	
 	var/mob/living/carbon/human/species/wildshape/W = new shapepath(loc) //We crate a new mob for the wildshaping player to inhabit
 
 	W.set_patron(src.patron)
@@ -37,6 +35,19 @@
 	W.voice_color = voice_color
 	W.cmode_music_override = cmode_music_override
 	W.cmode_music_override_name = cmode_music_override_name
+
+	var/list/datum/wound/woundlist = get_wounds()
+	if(woundlist.len)
+		for(var/datum/wound/wound in woundlist)
+			var/obj/item/bodypart/c_BP = get_bodypart(wound.bodypart_owner.body_zone)
+			var/obj/item/bodypart/w_BP = W.get_bodypart(wound.bodypart_owner.body_zone)
+			w_BP.add_wound(wound.type)
+			c_BP.remove_wound(wound.type)
+
+	W.adjustBruteLoss(getBruteLoss())
+	W.adjustFireLoss(getFireLoss())
+	W.adjustOxyLoss(getOxyLoss())
+
 	mind.transfer_to(W)
 	skills?.known_skills = list()
 	skills?.skill_experience = list()
@@ -68,6 +79,18 @@
 
 	if(dead)
 		W.death()
+
+	var/list/datum/wound/woundlist = get_wounds()
+	if(woundlist.len)
+		for(var/datum/wound/wound in woundlist)
+			var/obj/item/bodypart/c_BP = get_bodypart(wound.bodypart_owner.body_zone)
+			var/obj/item/bodypart/w_BP = W.get_bodypart(wound.bodypart_owner.body_zone)
+			w_BP.add_wound(wound.type)
+			c_BP.remove_wound(wound.type)
+
+	W.adjustBruteLoss(getBruteLoss())
+	W.adjustFireLoss(getFireLoss())
+	W.adjustOxyLoss(getOxyLoss())
 
 	W.forceMove(get_turf(src))
 

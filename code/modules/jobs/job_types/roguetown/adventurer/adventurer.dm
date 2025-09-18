@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 	spawn_positions = 20
 	allowed_races = RACES_ALL_KINDS
 	tutorial = "Hero of nothing, a wanderer in foreign lands in search of fame and riches. Whatever led you to this fate is up to the wind to decide, and you've never fancied yourself for much other than the thrill. Some day your pride is going to catch up to you, and you're going to find out why most men don't end up in the annals of history."
-
+	class_categories = TRUE
 
 	outfit = null
 	outfit_female = null
@@ -43,7 +43,6 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 		/datum/advclass/sfighter,
 		/datum/advclass/sfighter/duelist,
 		/datum/advclass/sfighter/mhunter,
-		/datum/advclass/sfighter/flagellant,
 		/datum/advclass/sfighter/barbarian,
 		/datum/advclass/sfighter/ironclad,
 		/datum/advclass/rogue,
@@ -68,8 +67,10 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 		/datum/advclass/trader/brewer,
 		/datum/advclass/trader/cuisiner,
 		/datum/advclass/foreigner,
-		/datum/advclass/foreigner/custodian,
-		/datum/advclass/foreigner/yoruku
+		/datum/advclass/foreigner/yoruku,
+		/datum/advclass/foreigner/repentant,
+		/datum/advclass/foreigner/refugee,
+		/datum/advclass/foreigner/slaver
 	)
 
 /datum/job/roguetown/adventurer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

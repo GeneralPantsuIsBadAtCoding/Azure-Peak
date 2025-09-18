@@ -277,7 +277,7 @@
 /obj/item/rogueweapon/spear/trident
 	// Better one handed & throwing weapon, flimsier.
 	name = "bronze trident"
-	desc = "A bronze trident from the seas. Feels balanced in your hand, like you could throw it quite easily."
+	desc = "A bronze trident from the seas designed to pierce fish upon its hooked teeth. Feels balanced in your hand, like you could throw it quite easily."
 	icon_state = "bronzetri"
 	force = 25
 	force_wielded = 20
@@ -285,6 +285,78 @@
 	max_blade_int = 175
 	max_integrity = 225
 	throwforce = 30
+	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH, SPEAR_CAST)
+	fishingMods=list(
+		"commonFishingMod" = 0.8,
+		"rareFishingMod" = 1.4,
+		"treasureFishingMod" = 0,
+		"trashFishingMod" = 0,
+		"dangerFishingMod" = 0.9,
+		"ceruleanFishingMod" = 0, // 1 on cerulean aril, 0 on everything else
+	)
+
+/obj/item/rogueweapon/spear/trident/afterattack(obj/target, mob/user, proximity)
+	var/sl = user.get_skill_level(/datum/skill/labor/fishing)
+	var/ft = 150
+	var/fpp =  130 - (40 + (sl * 15))
+	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
+	var/salwt_coast = list(/turf/open/water/ocean)
+	var/salwt_deep = list(/turf/open/water/ocean/deep)
+	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
+	if(istype(target, /turf/open/water))
+		if(user.used_intent.type == SPEAR_CAST && !user.doing)
+			if(target in range(user,3))
+				user.visible_message("<span class='warning'>[user] searches for a fish!</span>", \
+									"<span class='notice'>I begin looking for a fish to spear.</span>")
+				playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
+				ft -= (sl * 20)
+				ft = max(20,ft)
+				if(do_after(user,ft, target = target))
+					var/fishchance = 100
+					if(user.mind)
+						if(!sl)
+							fishchance -= 50
+						else
+							fishchance -= fpp
+					var/mob/living/fisherman = user
+					if(prob(fishchance))
+						var/A
+						if(target.type in frwt)
+							A = pickweightAllowZero(createFreshWaterFishWeightListModlist(fishingMods))
+						else if(target.type in salwt_coast)
+							A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(fishingMods))
+						else if(target.type in salwt_deep)
+							A = pickweightAllowZero(createDeepSeaFishWeightListModlist(fishingMods))
+						else if(target.type in mud)
+							A = pickweightAllowZero(createMudFishWeightListModlist(fishingMods))
+						if(A)
+							var/ow = 30 + (sl * 10)
+							to_chat(user, "<span class='notice'>You see something!</span>")
+							playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
+							if(!do_after(user,ow, target = target))
+								if(ismob(A))
+									var/mob/M = A
+									if(M.type in subtypesof(/mob/living/simple_animal/hostile))
+										new M(target)
+									else
+										new M(user.loc)
+									user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT*2)
+								else
+									new A(user.loc)
+									teleport_to_dream(user, 10000, 1)
+									to_chat(user, "<span class='warning'>Pull 'em in!</span>")
+									user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE)
+									record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
+									GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)	
+							else
+								to_chat(user, "<span class='warning'>Damn, it got away... I should <b>pull away</b> next time.</span>")								
+					else
+						to_chat(user, "<span class='warning'>Not a single fish...</span>")
+						user.mind.add_sleep_experience(/datum/skill/labor/fishing, fisherman.STAINT/2)
+				else
+					to_chat(user, "<span class='warning'>I must stand still to fish.</span>")
+			update_icon()
 
 /obj/item/rogueweapon/spear/aalloy
 	name = "decrepit spear"
@@ -310,11 +382,24 @@
 	name = "psydonian spear"
 	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
 	icon_state = "psyspear"
+	force = 15
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
 	resistance_flags = FIRE_PROOF	//It's meant to be smacked by a "lamptern", and is special enough to warrant overriding the spear weakness
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/spear/psyspear/ComponentInitialize()
-	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
@@ -504,7 +589,7 @@
 									to_chat(user, "<span class='warning'>Pull 'em in!</span>")
 									user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 									record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
-									GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+									record_round_statistic(STATS_FISH_CAUGHT)
 									playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)	
 							else
 								to_chat(user, "<span class='warning'>Damn, it got away... I should <b>pull away</b> next time.</span>")								
@@ -609,6 +694,7 @@
 	desc = "A spear against the darkness, a glimmer of Eclipsum in its metal veins. "
 	icon_state = "gsspear"
 	force = 25 // better in one hand. Use it with the shield.
+	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/halberd/bardiche
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
@@ -653,17 +739,38 @@
 	desc = "Christened in the Siege of Lirvas, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
 	icon_state = "psyhalberd"
 
-/obj/item/rogueweapon/halberd/psyhalberd/relic/ComponentInitialize()	//Pre-blessed, +5 force, +100 blade int, +100 int, +2 def, make silver.
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+/obj/item/rogueweapon/halberd/psyhalberd/relic/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/halberd/psyhalberd	
 	name = "psydonian halberd"
 	desc = "A reliable design that has served humenkind to fell the enemy and defend Psydon's flock - now fitted with a lengthier blade and twin, silver-tipped beaks."
 	icon_state = "silverhalberd"
+	force = 10
+	force_wielded = 25
+	minstr = 11
+	wdefense = 7
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/halberd/glaive
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
@@ -851,10 +958,23 @@
 	name = "psydonian greatsword"
 	desc = "It is said that a Psydonian smith was guided by Saint Malum himself to forge such a formidable blade, and given the task to slay a daemon preying on the Otavan farmlands. The design was retrieved, studied, and only a few replicas made - for they believe it dulls its edge."
 	icon_state = "silverexealt"
+	force = 8
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic
 	name = "Apocrypha"
@@ -864,23 +984,48 @@
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/exe, /datum/intent/rend, /datum/intent/axe/chop)
 
-/obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+/obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/greatsword/bsword/psy
 	name = "old psydonian broadsword"
 	desc = "Even the most ignorant of zealots know that the holy silver loses its properties when not blessed by Adjudicators and Priests of the Holy See for an extended period of time. Its edge remains as lethal as ever, however."
 	icon_state = "oldpsybroadsword"
-	force = 25
-	force_wielded = 30
+	force = 8
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
 	possible_item_intents = list(/datum/intent/sword/cut,/datum/intent/sword/chop,/datum/intent/stab,/datum/intent/rend/krieg)
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/lunge, /datum/intent/sword/thrust/estoc)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/greatsword/bsword/psy/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic
 	name = "Creed"
 	desc = "Psydonian prayers and Tennite smiths, working as one to craft a weapon to slay the Four. A heavy and large blade, favored by Saint Ravox, to lay waste to those who threaten His flock. The crossguard's psycross reflects even the faintest of Noc's light. You're the light - show them the way."
 	icon_state = "psybroadsword"
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greatsword/bsword/psy/getonmobprop(tag)
 	. = ..()
@@ -892,17 +1037,33 @@
 			if("onbelt") return list("shrink" = 0.3, "sx" = -4, "sy" = -6, "nx" = 5, "ny" = -6, "wx" = 0, "wy" = -6, "ex" = -1, "ey" = -6, "nturn" = 100, "sturn" = 156, "wturn" = 90, "eturn" = 180, "nflip" = 0, "sflip" = 0, "wflip" = 0, "eflip" = 0, "northabove" = 0, "southabove" = 1, "eastabove" = 1, "westabove" = 0)
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic/ComponentInitialize()
-	. = ..()					//Pre-blessed, +5 DMG, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/greatsword/bsword/psy/unforgotten
 	name = "unforgotten blade"
 	desc = "High Inquisitor Archibald once recorded an expedition of seven brave Adjudicators into Gronnian snow-felled wastes to root out evil. Its leader, Holy Ordinator Guillemin, was said to have held on for seven daes and seven nights against darksteel-clad heretics before Psydon acknowledged his endurance. Nothing but his blade remained - his psycross wrapped around its hilt in rememberance."
 	icon_state = "forgottenblade"
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greatsword/bsword/psy/unforgotten/ComponentInitialize()
-	. = ..()					//+50 Blade int, +3 DMG, +50 int, +1 def, make it silver
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 50, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/estoc
 	name = "estoc"
@@ -1115,3 +1276,22 @@
 				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
 			if("wielded")
 				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+
+
+/obj/item/rogueweapon/spear/assegai/iron
+	name = "iron assegai"
+	desc = "A long spear originating from the southern regions of Naledi. Commoners living along the great river Bilomari are taught to use assegai so they can defend themselves against the Djinn."
+	icon = 'icons/roguetown/weapons/64.dmi'
+	max_integrity = 150
+	max_blade_int = 150
+	icon_state = "assegai_iron"
+	gripsprite = FALSE
+
+/obj/item/rogueweapon/spear/assegai
+	name = "steel assegai"
+	desc = "A long spear originating from the southern regions of Naledi. Commoners living along the great river Bilomari are taught to use assegai so they can defend themselves against the Djinn."
+	icon = 'icons/roguetown/weapons/64.dmi'
+	max_integrity = 250
+	max_blade_int = 200
+	icon_state = "assegai_steel"
+	gripsprite = FALSE

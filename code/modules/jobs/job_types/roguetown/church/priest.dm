@@ -55,6 +55,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
 	It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
 	outfit = /datum/outfit/job/roguetown/priest/basic
+	subclass_languages = list(/datum/language/grenzelhoftian)
 	category_tags = list(CTAG_BISHOP)
 	subclass_stats = list(
 		STATKEY_INT = 4,
@@ -62,6 +63,19 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		STATKEY_STR = -1,
 		STATKEY_CON = -1,
 		STATKEY_SPD = -1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/polearms = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/reading = SKILL_LEVEL_LEGENDARY,
+		/datum/skill/misc/medicine = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/cooking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 /datum/outfit/job/roguetown/priest
@@ -90,20 +104,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/obj/item/rogueweapon/huntingknife/idagger/steel/holysee = 1,	//Unique knife from the Holy See
 		/obj/item/rogueweapon/scabbard/sheath = 1
 	)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/holy, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
-	H.grant_language(/datum/language/grenzelhoftian)
 	if(H.age == AGE_OLD)
-		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/magic/holy, 6, TRUE)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 

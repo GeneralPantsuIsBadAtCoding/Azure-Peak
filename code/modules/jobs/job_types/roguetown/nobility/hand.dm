@@ -65,6 +65,20 @@
 		STATKEY_INT = 3,
 		STATKEY_STR = 2
 	)
+	subclass_skills = list(
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
+	)
 
 //Classical hand start - same as before, nothing changed. 
 /datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
@@ -78,18 +92,6 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	id = /obj/item/scomstone/garrison
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 
 /datum/advclass/hand/spymaster
 	name = "Spymaster"
@@ -97,12 +99,31 @@
 	outfit = /datum/outfit/job/roguetown/hand/spymaster
 
 	category_tags = list(CTAG_HAND)
+	subclass_languages = list(/datum/language/thievescant)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_PER = 2,
 		STATKEY_INT = 2,
 		STATKEY_STR = -1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_LEGENDARY,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/stealing = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_MASTER, // not like they're gonna break into the vault.
 	)
 
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
@@ -128,23 +149,6 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		id = /obj/item/scomstone/garrison
-	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 5, TRUE) // not like they're gonna break into the vault.
-	H.grant_language(/datum/language/thievescant)
 
 /datum/advclass/hand/advisor
 	name = "Advisor"
@@ -156,6 +160,22 @@
 	subclass_stats = list(
 		STATKEY_INT = 4,
 		STATKEY_PER = 3,
+	)
+	subclass_spellpoints = 15
+	subclass_skills = list(
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/medicine = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
+		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 	)
 
 //Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors. 
@@ -171,22 +191,6 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	id = /obj/item/scomstone/garrison
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-	if(H.mind)
-		H.mind.adjust_spellpoints(15)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_STR, -1)

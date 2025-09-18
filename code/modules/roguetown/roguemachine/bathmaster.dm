@@ -89,7 +89,7 @@
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				SStreasury.give_money_treasury(tax_amt, "brassface import tax")
 				record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
-				GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
+				record_round_statistic(STATS_TAXES_COLLECTED, tax_amt)
 		else
 			say("Not enough!")
 			return

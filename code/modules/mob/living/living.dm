@@ -60,7 +60,7 @@
 	playsound(src.loc, 'sound/foley/zfall.ogg', 100, FALSE)
 	if(!isgroundlessturf(T))
 		ZImpactDamage(T, levels)
-		GLOB.azure_round_stats[STATS_MOAT_FALLERS]++
+		record_round_statistic(STATS_MOAT_FALLERS)
 	return ..()
 
 /mob/living/proc/ZImpactDamage(turf/T, levels)
@@ -126,7 +126,7 @@
 	if(!M.buckled && !M.has_buckled_mobs())
 		var/mob_swap = FALSE
 		var/too_strong = (M.move_resist > move_force) //can't swap with immovable objects unless they help us
-		if(istype(M,/mob/living/simple_animal/hostile/retaliate)) 
+		if(istype(M,/mob/living/simple_animal/hostile/retaliate))
 			if(!M:aggressive)
 				mob_swap = TRUE
 		if(!they_can_move) //we have to physically move them
@@ -600,7 +600,7 @@
 				var/obj/item/inqarticles/garrote/gcord = src.get_active_held_item()
 				if(!gcord)
 					gcord = src.get_inactive_held_item()
-				gcord.wipeslate(src)	
+				gcord.wipeslate(src)
 
 		if(forced) //if false, called by the grab item itself, no reason to drop it again
 			if(istype(get_active_held_item(), /obj/item/grabbing))
@@ -651,9 +651,9 @@
 		return
 	if (InCritical() || health <= 0 || (blood_volume < BLOOD_VOLUME_SURVIVE))
 		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
-		
+
 		if(istype(src.loc, /turf/open/water) && !HAS_TRAIT(src, TRAIT_NOBREATH) && lying && client)
-			GLOB.azure_round_stats[STATS_PEOPLE_DROWNED]++
+			record_round_statistic(STATS_PEOPLE_DROWNED)
 
 		adjustOxyLoss(201)
 		updatehealth()
@@ -809,6 +809,25 @@
 	update_stat()
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
+/mob/living/proc/check_revive(mob/living/user)
+	if(src == user)
+		return FALSE
+	if(!mind)
+		return FALSE
+	if(!mind.active)
+		to_chat(user, span_warning("Astrata is not done with [src], yet."))
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_DNR))
+		to_chat(user, span_danger("None of the Ten have them. Their only chance is spent. Where did they go?"))
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_NECRAS_VOW))
+		to_chat(user, span_warning("This one has pledged themselves whole to Necra. They are Hers."))
+		return FALSE
+	if(stat < DEAD)
+		to_chat(user, span_warning("Nothing happens."))
+		return FALSE
+	return TRUE
+
 //Proc used to resuscitate a mob, for full_heal see fully_heal()
 /mob/living/proc/revive(full_heal = FALSE, admin_revive = FALSE)
 	SEND_SIGNAL(src, COMSIG_LIVING_REVIVE, full_heal, admin_revive)
@@ -882,9 +901,7 @@
 			qdel(wound)
 		else
 			wound.heal_wound(wound.whp)
-	ExtinguishMob()
-	fire_stacks = 0
-	divine_fire_stacks = 0
+	extinguish_mob()
 	confused = 0
 	dizziness = 0
 	drowsyness = 0
@@ -1093,7 +1110,7 @@
 			return
 	log_combat(src, null, "surrendered")
 	surrendering = 1
-	GLOB.azure_round_stats[STATS_YIELDS]++
+	record_round_statistic(STATS_YIELDS)
 	toggle_cmode()
 	changeNext_move(CLICK_CD_EXHAUSTED)
 	var/obj/effect/temp_visual/surrender/flaggy = new(src)
@@ -1184,7 +1201,7 @@
 			combat_modifier -= 0.3
 		else
 			if(HAS_TRAIT(L, TRAIT_BLACKBAGGER))
-				combat_modifier -= 0.3	
+				combat_modifier -= 0.3
 	for(var/obj/item/grabbing/G in grabbedby)
 		if(G.chokehold == TRUE)
 			combat_modifier -= 0.15
@@ -1214,7 +1231,7 @@
 				gcord = L.get_inactive_held_item()
 			to_chat(pulledby, span_warning("[src] struggles against the [gcord]!"))
 			gcord.take_damage(25)
-		if(!HAS_TRAIT(src, TRAIT_GARROTED))	
+		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
 						span_warning("I struggle against [L]'s grip![rchance]"), null, null, L)
 		else
@@ -1222,7 +1239,7 @@
 			if(!gcord)
 				gcord = L.get_inactive_held_item()
 			visible_message(span_warning("[src] struggles to break free from [L]'s [gcord]!"), \
-						span_warning("I struggle against [L]'s [gcord]![rchance]"), null, null, L)					
+						span_warning("I struggle against [L]'s [gcord]![rchance]"), null, null, L)
 		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			to_chat(pulledby, span_warning("[src] struggles against my grip!"))
@@ -1234,7 +1251,7 @@
 	else
 		var/obj/item/inqarticles/garrote/gcord = L.get_active_held_item()
 		if(!gcord)
-			gcord = L.get_inactive_held_item()	
+			gcord = L.get_inactive_held_item()
 		visible_message(span_warning("[src] breaks free of [L]'s [gcord]!"), \
 						span_notice("I break free of [L]'s [gcord]!"), null, null, L)
 		to_chat(L, span_danger("[src] breaks free from my [gcord]!"))
@@ -1243,7 +1260,7 @@
 		if(!gcord)
 			gcord = L.get_inactive_held_item()
 		gcord.take_damage(gcord.max_integrity)
-		gcord.wipeslate(src)	
+		gcord.wipeslate(src)
 	log_combat(L, src, "broke grab")
 	L.changeNext_move(agg_grab ? CLICK_CD_GRABBING : CLICK_CD_GRABBING + 1 SECONDS)
 	playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
@@ -1330,7 +1347,7 @@
 
 	if(!who.Adjacent(src))
 		return
-		
+
 	who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
 					span_danger("[src] tries to remove my [what.name]."), null, null, src)
 	to_chat(src, span_danger("I try to remove [who]'s [what.name]..."))
@@ -1528,68 +1545,134 @@
 	return
 
 //Mobs on Fire
-/mob/living/proc/IgniteMob()
-	if((fire_stacks > 0 || divine_fire_stacks > 0) && !on_fire)
-		if(HAS_TRAIT(src, TRAIT_NOFIRE) && prob(90)) // Nofire is described as nonflammable, not immune. 90% chance of avoiding ignite
-			return
-		testing("ignis")
-		on_fire = 1
-		src.visible_message(span_warning("[src] catches fire!"), \
-						span_danger("I'm set on fire!"))
-		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
-		throw_alert("fire", /atom/movable/screen/alert/fire)
-		update_fire()
-		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED,src)
-		return TRUE
-	return FALSE
+/mob/living/proc/ignite_mob(silent)
+	if("lava" in weather_immunities)//immune to lava = immune to burning
+		return FALSE
+	if(fire_stacks <= 0)
+		return FALSE
+
+	var/datum/status_effect/fire_handler/fire_stacks/fire_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/sunder_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
+	var/datum/status_effect/fire_handler/fire_stacks/divine/divine_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/blessed_sunder = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+
+	if(HAS_TRAIT(src, TRAIT_NOFIRE) && prob(90)) // Nofire is described as nonflammable, not immune. 90% chance of avoiding ignite
+		return
+
+	if(!fire_status?.on_fire)
+		fire_status?.ignite(silent)
+
+	if(!divine_status?.on_fire)
+		divine_status?.ignite(silent)
+
+	if(!sunder_status?.on_fire)
+		sunder_status?.ignite(silent)
+
+	if(!blessed_sunder?.on_fire)
+		blessed_sunder?.ignite(silent)
 
 /mob/living/proc/SoakMob(locations)
 	if(locations & CHEST)
-		ExtinguishMob()
+		extinguish_mob()
 
-/mob/living/proc/ExtinguishMob()
-	if(on_fire)
-		on_fire = 0
-		fire_stacks = 0
-		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
-			qdel(F)
-		clear_alert("fire")
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
-		SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISHED, src)
-		update_fire()
+/mob/living/proc/extinguish_mob()
+	if(HAS_TRAIT(src, TRAIT_NO_EXTINGUISH)) //The everlasting flames will not be extinguished
+		return
 
-/mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
-	if(on_fire && fire_stacks <= 0)
-		ExtinguishMob()
+	var/datum/status_effect/fire_handler/fire_stacks/fire_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	if(fire_status?.on_fire)
+		remove_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/sunder_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
+	if(sunder_status?.on_fire)
+		remove_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder)
+	var/datum/status_effect/fire_handler/fire_stacks/divine/divine_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
+	if(divine_status?.on_fire)
+		remove_status_effect(/datum/status_effect/fire_handler/fire_stacks/divine)
+	var/datum/status_effect/fire_handler/fire_stacks/sunder/blessed/blessed_sunder = has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+	if(blessed_sunder?.on_fire)
+		remove_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
 
-/mob/living/proc/adjust_divine_fire_stacks(add_fire_stacks) //Adjusting the amount of divine_fire_stacks we have on person
-	divine_fire_stacks = CLAMP(divine_fire_stacks + add_fire_stacks, 0, 100)
+/**
+ * Handles effects happening when mob is on normal fire
+ *
+ * Vars:
+ * * seconds_per_tick
+ * * times_fired
+ * * fire_handler: Current fire status effect that called the proc
+ */
+
+/mob/living/proc/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	adjust_bodytemperature(((fire_handler.stacks * 12)) * 0.5 * seconds_per_tick)
+
+/**
+ * Adjust the amount of fire stacks on a mob
+ *
+ * This modifies the fire stacks on a mob.
+ *
+ * Vars:
+ * * stacks: int The amount to modify the fire stacks
+ * * fire_type: type Type of fire status effect that we apply, should be subtype of /datum/status_effect/fire_handler/fire_stacks
+ */
+/mob/living/proc/adjust_fire_stacks(stacks, fire_type = /datum/status_effect/fire_handler/fire_stacks)
+	if(stacks < 0)
+		if(HAS_TRAIT(src, TRAIT_NO_EXTINGUISH)) //You can't reduce fire stacks of the everlasting flames
+			return
+		stacks = max(-fire_stacks, stacks)
+	apply_status_effect(fire_type, stacks)
+
+/**
+ * Set the fire stacks on a mob
+ *
+ * This sets the fire stacks on a mob, stacks are clamped between -20 and 20.
+ * If the fire stacks are reduced to 0 then we will extinguish the mob.
+ *
+ * Vars:
+ * * stacks: int The amount to set fire_stacks to
+ * * fire_type: type Type of fire status effect that we apply, should be subtype of /datum/status_effect/fire_handler/fire_stacks
+ * * remove_wet_stacks: bool If we remove all wet stacks upon doing this
+ */
+
+/mob/living/proc/set_fire_stacks(stacks, fire_type = /datum/status_effect/fire_handler/fire_stacks)
+	if(stacks < 0) //Shouldn't happen, ever
+		CRASH("set_fire_stacks received negative [stacks] fire stacks")
+
+	if(stacks == 0)
+		remove_status_effect(fire_type)
+		return
+
+	apply_status_effect(fire_type, stacks, TRUE)
 
 //Share fire evenly between the two mobs
 //Called in MobBump() and Crossed()
-/mob/living/proc/spreadFire(mob/living/L)
-	if(!istype(L))
-		return
-		
-	if(HAS_TRAIT(L, TRAIT_NOFIRE) || HAS_TRAIT(src, TRAIT_NOFIRE))
+/mob/living/proc/spreadFire(mob/living/spread_to)
+	if(!istype(spread_to))
 		return
 
-	if(on_fire)
-		if(L.on_fire) // If they were also on fire
-			var/firesplit = (fire_stacks + L.fire_stacks)/2
-			fire_stacks = firesplit
-			L.fire_stacks = firesplit
-		else // If they were not
-			fire_stacks /= 2
-			L.fire_stacks += fire_stacks
-			if(L.IgniteMob()) // Ignite them
-				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
+	if(HAS_TRAIT(spread_to, TRAIT_NOFIRE) || HAS_TRAIT(src, TRAIT_NOFIRE))
+		return
 
-	else if(L.on_fire) // If they were on fire and we were not
-		L.fire_stacks /= 2
-		fire_stacks += L.fire_stacks
-		IgniteMob() // Ignite us
+	var/datum/status_effect/fire_handler/fire_stacks/fire_status = has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	var/datum/status_effect/fire_handler/fire_stacks/their_fire_status = spread_to.has_status_effect(/datum/status_effect/fire_handler/fire_stacks)
+	if(fire_status && fire_status.on_fire)
+		if(their_fire_status && their_fire_status.on_fire)
+			var/firesplit = (fire_stacks + spread_to.fire_stacks) / 2
+			var/fire_type = (spread_to.fire_stacks > fire_stacks) ? their_fire_status.type : fire_status.type
+			set_fire_stacks(firesplit, fire_type)
+			spread_to.set_fire_stacks(firesplit, fire_type)
+			return
+
+		adjust_fire_stacks(-fire_stacks / 2, fire_status.type)
+		spread_to.adjust_fire_stacks(fire_stacks, fire_status.type)
+		if(spread_to.ignite_mob())
+			log_message("bumped into [key_name(spread_to)] and set them on fire.", LOG_ATTACK)
+		return
+
+	if(!their_fire_status || !their_fire_status.on_fire)
+		return
+
+	spread_to.adjust_fire_stacks(-spread_to.fire_stacks / 2, their_fire_status.type)
+	adjust_fire_stacks(spread_to.fire_stacks, their_fire_status.type)
+	ignite_mob()
 
 //Mobs on Fire end
 
@@ -2156,3 +2239,16 @@
 	reset_perspective()
 	update_cone_show()
 //	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
+
+/**
+ * Gets the fire overlay to use for this mob
+ *
+ * Args:
+ * * stacks: Current amount of fire_stacks
+ * * on_fire: If we're lit on fire
+ *
+ * Return a mutable appearance, the overlay that will be applied.
+ */
+/mob/living/proc/get_fire_overlay(stacks, on_fire)
+	RETURN_TYPE(/mutable_appearance)
+	return null

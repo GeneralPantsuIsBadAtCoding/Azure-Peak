@@ -52,14 +52,16 @@
 		"Unknown Man",
 		"Unknown Woman",
 	)
-	if(get_visible_name() in unknown_names)
+	if(get_face_name() != real_name)
 		obscure_name = TRUE
 
 	if(observer_privilege)
 		obscure_name = FALSE
 
-	if(obscure_name)
-		. = list(span_info("ø ------------ ø\nThis is <EM>Unknown</EM>."))
+	if(name in unknown_names)
+		. = list(span_info("ø ------------ ø\nThis is <EM>[name]</EM>."))
+	else if(obscure_name)
+		. = list(span_info("ø ------------ ø\nThis is an unknown <EM>[name]</EM>."))
 	else
 		on_examine_face(user)
 		var/used_name = name
@@ -94,6 +96,12 @@
 				. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the [is_returning ? "returning " : ""][race_name] [used_title]."))
 			else
 				. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
+
+		if(HAS_TRAIT(src, TRAIT_DNR) && src != user)
+			if(HAS_TRAIT(src, TRAIT_DEATHSIGHT))
+				. += span_danger("They extrude a pale aura. Their soul [user.stat == DEAD ? "was not" : "is not"] clean. This is it for them.")
+			else if(user.stat == DEAD)
+				. += span_danger("This was their only chance at lyfe.")
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
@@ -181,9 +189,9 @@
 						. += span_nicegreen("[m1] privy to the dangers of all these strangers around us. [m1] just as afraid as I am.")
 					else
 						. += span_nicegreen("[m1] one of the good ones. [m1] just as afraid as I am.")
-			if(has_flaw(/datum/charflaw/masochist) && user.has_flaw(/datum/charflaw/addiction/sadist))
+			if(has_flaw(/datum/charflaw/addiction/masochist) && user.has_flaw(/datum/charflaw/addiction/sadist))
 				. += span_secradio("[m1] marked by scars inflicted for pleasure. A delectable target for my urges.")
-			if(has_flaw(/datum/charflaw/addiction/sadist) && user.has_flaw(/datum/charflaw/masochist))
+			if(has_flaw(/datum/charflaw/addiction/sadist) && user.has_flaw(/datum/charflaw/addiction/masochist))
 				. += span_secradio("[m1] looking with eyes filled with a desire to inflict pain. So exciting.")
 			if(HAS_TRAIT(user, TRAIT_EMPATH) && HAS_TRAIT(src, TRAIT_PERMAMUTE))
 				. += span_notice("[m1] lacks a voice. [m1] is a mute!")
@@ -644,9 +652,9 @@
 				msg += "[m1] looking parched."
 
 	//Fire/water stacks
-	if(fire_stacks + divine_fire_stacks > 0)
+	if(has_status_effect(/datum/status_effect/fire_handler))
 		msg += "[m1] covered in something flammable."
-	else if(fire_stacks < 0)
+	if(has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
 		msg += "[m1] soaked."
 
 	//Status effects
@@ -832,7 +840,7 @@
 
 
 	var/list/lines
-	if(get_visible_name() in unknown_names)
+	if((get_face_name() != real_name) && !observer_privilege)
 		lines = build_cool_description_unknown(get_mob_descriptors_unknown(obscure_name, user), src)
 	else
 		lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
