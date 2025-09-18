@@ -334,7 +334,7 @@
 	desc = ""
 	icon_state = "bleed1"
 
-/datum/status_effect/buff/fortitude/on_apply()
+/datum/status_effect/buff/blood_fortitude/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -342,7 +342,7 @@
 		H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude(H)
 	owner.add_stress(/datum/stressevent/weed)
 
-/datum/status_effect/buff/fortitude/on_remove()
+/datum/status_effect/buff/blood_fortitude/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		if(istype(H.skin_armor, /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude))

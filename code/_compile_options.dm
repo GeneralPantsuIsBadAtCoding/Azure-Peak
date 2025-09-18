@@ -83,3 +83,5 @@
 
 // Comment this to remove the PQ system
 #define USES_PQ
+// Comment this to remove the SCOM restrictions
+#define USES_SCOM_RESTRICTION

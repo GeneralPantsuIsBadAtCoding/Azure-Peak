@@ -33,6 +33,10 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
 	)
+	subclass_stashed_items = list(
+		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+	)
+
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_CHURCH
 

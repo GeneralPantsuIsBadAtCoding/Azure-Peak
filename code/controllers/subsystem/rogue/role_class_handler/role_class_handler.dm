@@ -109,7 +109,8 @@ SUBSYSTEM_DEF(role_class_handler)
 				XTRA_MEATY.special_session_queue += XTRA_SPECIAL
 
 	XTRA_MEATY.register_id = register_id
-	XTRA_MEATY.initial_setup()
+	if(!XTRA_MEATY.initial_setup())
+		return // There was just one advclass that got automatically selected
 	class_select_handlers[H.client.ckey] = XTRA_MEATY
 
 

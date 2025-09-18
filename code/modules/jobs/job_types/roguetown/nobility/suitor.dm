@@ -22,14 +22,6 @@
 	cmode_music = 'sound/music/combat_noble.ogg'
 	job_traits = list(TRAIT_NOBLE, TRAIT_OUTLANDER)
 
-/datum/job/roguetown/suitor/after_spawn(mob/living/H, mob/M, latejoin)
-	. = ..()
-	if(ishuman(H))
-		var/mob/living/carbon/human/Q = H
-		Q.advsetup = 1
-		Q.invisibility = INVISIBILITY_MAXIMUM
-		Q.become_blind("advsetup")
-
 /datum/outfit/job/roguetown/suitor
 	job_bitflag = BITFLAG_ROYALTY
 

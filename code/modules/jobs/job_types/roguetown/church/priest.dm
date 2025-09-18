@@ -41,14 +41,6 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/datum/advclass/bishop
 	)
 
-/datum/job/roguetown/priest/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/bishop
 	name = "Bishop"
 	tutorial = "The Divine is all that matters in a world of the immoral. \
@@ -76,6 +68,9 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_MASTER,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
+	)
+	subclass_stashed_items = list(
+		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
 
 /datum/outfit/job/roguetown/priest

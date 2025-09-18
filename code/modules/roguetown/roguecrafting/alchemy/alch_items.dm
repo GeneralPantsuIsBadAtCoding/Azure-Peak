@@ -3,10 +3,10 @@
 	desc = "A cute bottle that can hold three swigs of liquid, which is useful for both miserly business practices and preventing accidental overdosing. This one lacks a cork."
 	icon = 'icons/roguetown/misc/alchemy.dmi'
 	icon_state = "vial_bottle"
-	amount_per_transfer_from_this = 9
-	amount_per_gulp = 9
-	possible_transfer_amounts = list(9)
-	volume = 27
+	amount_per_transfer_from_this = 10
+	amount_per_gulp = 10
+	possible_transfer_amounts = list(10)
+	volume = 30
 	fill_icon_thresholds = list(0, 33, 66, 100)
 	w_class = WEIGHT_CLASS_TINY
 	experimental_onhip = FALSE

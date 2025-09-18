@@ -288,10 +288,12 @@
 		return
 	if(!listening)
 		return
+	#ifdef USES_SCOM_RESTRICTION
 	if(!calling && !garrisonline)
 		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
 		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
 		return
+	#endif
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
@@ -314,6 +316,17 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
+		#ifndef USES_SCOM_RESTRICTION
+		else 
+			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+				if(!S.calling)
+					S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)
+			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+				S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
+			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
+		#endif
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)

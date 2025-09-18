@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 			return FALSE
 		if(world.time > last_client_interact + 0.3 SECONDS)
 			return FALSE // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
-	if(get_will_block_ambush(src))
+	if(get_will_block_ambush())
 		return FALSE
 	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)

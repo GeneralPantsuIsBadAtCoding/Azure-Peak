@@ -31,14 +31,6 @@
 		/datum/advclass/nightmaiden/courtesan
 	)
 
-/datum/job/roguetown/nightmaiden/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	. = ..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup") // Classes are for aesthetic clothing only, mechanically they're identical.
-
 /datum/outfit/job/roguetown/nightmaiden
 	name = "Bathhouse Attendant"
 	// This is just a base outfit, the actual outfits are defined in the advclasses

@@ -4,6 +4,8 @@
 	var/t_is = p_are()
 
 	. = list("<span class='info'>✠ ------------ ✠\nThis is \a <EM>[src]</EM>.")
+	if(desc)
+		. += desc
 
 	var/m1 = "[t_He] [t_is]"
 	var/m2 = "[t_his]"
