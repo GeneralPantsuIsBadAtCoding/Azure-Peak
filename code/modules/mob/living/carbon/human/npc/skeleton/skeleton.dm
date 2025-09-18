@@ -96,13 +96,16 @@
 
 /mob/living/carbon/human/species/skeleton/no_equipment
 	skel_outfit = null
-	var/obj/item/necro_relics/necro_crystal/crystal
+	var/datum/weakref/crystal
 
-/mob/living/carbon/human/species/skeleton/no_equipment/death()
+/mob/living/carbon/human/species/skeleton/no_equipment/death(gibbed, nocutscene = FALSE)
 	..()
-	for(var/datum/weakref/W in crystal.active_skeletons)
+	var/obj/item/necro_relics/necro_crystal/active_crystal = crystal.resolve()
+	for(var/datum/weakref/W in active_crystal.active_skeletons)
 		if(W.resolve() == src)
-			crystal.active_skeletons -= W
+			active_crystal.active_skeletons -= W
+	active_crystal = null
+	gib(no_brain = TRUE, no_organs = TRUE)
 
 /mob/living/carbon/human/species/skeleton/npc/bogguard
 	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/npc/bogguard

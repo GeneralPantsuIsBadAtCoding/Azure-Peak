@@ -91,7 +91,7 @@
 		N.close_spawn_windows()
 
 	var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
-	target.crystal = src
+	target.crystal = WEAKREF(src)
 	target.key = C.key
 	current_charges--
 	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
