@@ -2765,6 +2765,10 @@
 "yB" = (
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/eventarea)
+"yE" = (
+/obj/effect/landmark/start/vampirelord,
+/turf/open/floor/carpet/inn,
+/area/rogue/indoors)
 "yF" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/reagent_containers/glass/bucket/pot,
@@ -3655,7 +3659,6 @@
 /obj/item/pestle,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/table/wood{
@@ -13299,7 +13302,7 @@ Ys
 Yj
 WB
 fU
-bO
+yE
 bO
 Sh
 WB

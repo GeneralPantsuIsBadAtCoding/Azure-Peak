@@ -85,7 +85,10 @@
 	bloodpool = CLAMP(bloodpool + adjust, 0, maxbloodpool)
 	hud_used?.bloodpool?.name = "Bloodpool: [bloodpool]"
 	hud_used?.bloodpool?.desc = "Bloodpool: [bloodpool]/[maxbloodpool]"
-	hud_used?.bloodpool?.set_value((100 / (maxbloodpool / bloodpool)) / 100, 1 SECONDS)
+	if(bloodpool <= 0)
+		hud_used?.bloodpool?.set_value(0, 1 SECONDS)
+	else
+		hud_used?.bloodpool?.set_value((100 / (maxbloodpool / bloodpool)) / 100, 1 SECONDS)
 
 /mob/living/proc/CheckEyewitness(mob/living/source, mob/attacker, range = 0, affects_source = FALSE)
 	var/actual_range = max(1, round(range*(attacker.alpha/255)))

@@ -187,7 +187,7 @@
 	return TRUE
 
 /datum/vampire_project/proc/confirm_start(mob/living/user)
-	return alert(user, "Begin [display_name]?<BR>[description]<BR>Total Cost: [total_cost]<BR>You can contribute vitae over time.", "PROJECT START", "MAKE IT SO", "I RESCIND") == "MAKE IT SO"
+	return alert(user, "Begin [display_name]? [description]. Total Cost: [total_cost].You can contribute vitae over time.", "PROJECT START", "MAKE IT SO", "I RESCIND") == "MAKE IT SO"
 
 /datum/vampire_project/proc/on_start(mob/living/user)
 	return
@@ -212,7 +212,7 @@
 		contributors += user
 
 	to_chat(user, span_greentext("Contributed [contribution] vitae to [display_name]. ([paid_amount]/[total_cost])"))
-	make_tracker_effects(user.loc, src, 1, "soul", 3, /obj/effect/tracker/drain, 1)
+	make_tracker_effects(user.loc, bloodpool, 1, "soul", 3, /obj/effect/tracker/drain, 1)
 
 	if(paid_amount >= total_cost)
 		bloodpool.complete_project(type)

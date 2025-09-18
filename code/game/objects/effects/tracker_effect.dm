@@ -32,13 +32,11 @@
 	var/maxdist = 320
 	var/refresh = 1
 
-/obj/effect/tracker/New()
+/obj/effect/tracker/Initialize()
 	. = ..()
 	absolute_X = (x * 32)
 	absolute_Y = (y * 32)
-
-	spawn(1)
-		process_step()
+	INVOKE_ASYNC(src, PROC_REF(process_step))
 
 /obj/effect/tracker/soul
 	name = "soul"

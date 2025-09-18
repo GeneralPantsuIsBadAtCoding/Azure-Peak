@@ -58,9 +58,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	owner.current.adjust_bloodpool()
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/vampdude = owner.current
-		if(owner.current.bloodpool)
-			QDEL_NULL(owner.current.bloodpool)
-
+		vampdude.hud_used?.shutdown_bloodpool()
 		vampdude.hud_used?.initialize_bloodpool()
 		vampdude.hud_used?.bloodpool.set_fill_color("#510000")
 
