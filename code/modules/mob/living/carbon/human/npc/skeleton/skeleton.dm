@@ -92,10 +92,17 @@
 	update_body()
 
 /mob/living/carbon/human/species/skeleton/npc/no_equipment
-    skel_outfit = null
+	skel_outfit = null
 
 /mob/living/carbon/human/species/skeleton/no_equipment
-    skel_outfit = null
+	skel_outfit = null
+	var/obj/item/necro_relics/necro_crystal/crystal
+
+/mob/living/carbon/human/species/skeleton/no_equipment/death()
+	..()
+	for(var/datum/weakref/W in crystal.active_skeletons)
+		if(W.resolve() == src)
+			crystal.active_skeletons -= W
 
 /mob/living/carbon/human/species/skeleton/npc/bogguard
 	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/npc/bogguard
