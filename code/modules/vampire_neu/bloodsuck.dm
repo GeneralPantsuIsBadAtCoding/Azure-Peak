@@ -117,7 +117,7 @@
 	log_combat(src, victim, "drank blood from ")
 
 	if(ishuman(victim) && mind)
-		if(clan_position?.can_assign_positions && victim.bloodpool <= 150)
+		if(VDrinker.generation > 1 &&  victim.bloodpool <= 150)
 			if(alert(src, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 				to_chat(src, span_warning("I decide [victim] is unworthy."))
 			else
