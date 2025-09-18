@@ -49,6 +49,7 @@
 /datum/job/roguetown/wretch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
 	if(L)
+		var/mob/living/carbon/human/H = L
 		// Assign wretch antagonist datum so wretches appear in antag list
 		if(H.mind && !H.mind.has_antag_datum(/datum/antagonist/wretch))
 			var/datum/antagonist/new_antag = new /datum/antagonist/wretch()
