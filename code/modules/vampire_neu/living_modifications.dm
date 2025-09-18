@@ -48,7 +48,6 @@
 	var/datum/clan_menu_interface/clan_menu_interface
 	var/datum/clan_hierarchy_node/clan_position
 
-
 /mob/living/proc/has_bloodpool_cost(cost)
 	if(cost > bloodpool)
 		return FALSE

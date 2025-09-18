@@ -65,9 +65,15 @@
 				return
 
 			user.adjust_bloodpool(SUN_STEAL_COST)
-
+			RegisterSignal(user, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(on_sunstealer_death))
 			sunstolen = TRUE
 			sunsteal()
+
+/obj/structure/vampire/necromanticbook/proc/on_sunstealer_death()
+	GLOB.todoverride = null
+	sunstolen = FALSE
+	settod()
+	SSParticleWeather.run_weather(/datum/particle_weather/rain_gentle, TRUE)
 
 /proc/sunsteal()
 	GLOB.todoverride = "night"
