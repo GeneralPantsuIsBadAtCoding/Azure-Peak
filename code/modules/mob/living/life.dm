@@ -87,7 +87,7 @@
 			if(istype(drownrelay.loc, /turf/open/water))
 				handle_inwater(drownrelay.loc, extinguish = FALSE, force_drown = TRUE)
 			if(istype(loc, /turf/open/water)) // Extinguish ourselves if our body is in water.	
-				ExtinguishMob()
+				extinguish_mob()
 			return
 	. =..()
 
@@ -102,8 +102,6 @@
 		handle_embedded_objects()
 		handle_blood()
 	update_sneak_invis()
-	handle_fire()
-	check_drowning()
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
