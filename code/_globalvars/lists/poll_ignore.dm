@@ -24,6 +24,7 @@
 #define POLL_IGNORE_LICH_SKELETON			"lich_skeleton"
 #define POLL_IGNORE_MAGE_SUMMON             "mage_summon"
 #define POLL_IGNORE_DEATHKNIGHT_TARGET      "deathknight_target"
+#define POLL_IGNORE_DEATHKNIGHT             "deathknight"
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SENTIENCE_POTION = "Sentience potion",

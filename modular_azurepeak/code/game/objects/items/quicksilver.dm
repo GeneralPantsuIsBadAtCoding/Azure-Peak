@@ -67,8 +67,7 @@
 
 	var/datum/antagonist/werewolf/Were = M.mind.has_antag_datum(/datum/antagonist/werewolf/)
 	var/datum/antagonist/werewolf/lesser/Wereless = M.mind.has_antag_datum(/datum/antagonist/werewolf/lesser/)
-	var/datum/antagonist/vampirelord/Vamp = M.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/vampirelord/lesser/Vampless = M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
+	var/datum/antagonist/vampire/Vamp = M.mind.has_antag_datum(/datum/antagonist/vampire)
 
 	user.visible_message(span_notice("[user] begins to anoint [M] with [src]."))
 	if(do_after(user, 10 SECONDS, target = M))
@@ -130,51 +129,12 @@
 			M.Jitter(30)
 			return
 
-	else if(Vamp && !Vampless) //We're the vampire lord, we can't be saved.
+	else if(Vamp) //We're the vampire, we can't be saved.
 		to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. An insult I shall never forget, for as long as I die."))
 		user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
 		M.Stun(30)
 		M.Knockdown(30)
 		return
-	
-	else if(Vampless) //Lesser vampires being saved
-		M.mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-		var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
-		if(eyes)
-			eyes.Remove(M,1)
-			QDEL_NULL(eyes)
-			eyes = new /obj/item/organ/eyes/
-			eyes.Insert(M)
-		M.skin_tone = Vampless.cache_skin
-		M.hair_color = Vampless.cache_hair
-		M.facial_hair_color = Vampless.cache_hair 
-		M.eye_color = Vampless.cache_eyes
-		M.update_body()
-		M.update_hair()
-		M.update_body_parts(redraw = TRUE)
-		Vampless.on_removal()
-		M.mind.special_role = null
-		M.emote("agony", forced = TRUE)
-		to_chat(M, span_userdanger("THE FOUL SILVER! IT QUICKENS MY HEART!"))
-		REMOVE_TRAIT(M, TRAIT_INFINITE_STAMINA, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_NOSLEEP, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_NOBREATH, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_NOPAIN, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_NOHUNGER, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_TOXIMMUNE, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_VAMP_DREAMS, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_HEAVYARMOR, "/datum/antagonist/vampirelord/lesser")
-		REMOVE_TRAIT(M, TRAIT_STEELHEARTED, "/datum/antagonist/vampirelord/lesser")
-		M.verbs -= /mob/living/carbon/human/proc/disguise_button
-		M.verbs -= /mob/living/carbon/human/proc/vampire_telepathy
-		M.verbs -= /mob/living/carbon/human/proc/vamp_regenerate
-		M.RemoveSpell(/obj/effect/proc_holder/spell/targeted/transfix)
-		ADD_TRAIT(M, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
-		M.Stun(30)
-		M.Knockdown(30)
-		M.Jitter(30)
-		return
-
 //A letter to give info on how to make this thing.
 /obj/item/paper/inquisition_poultice_info
 	name = "Inquisitorial Missive"

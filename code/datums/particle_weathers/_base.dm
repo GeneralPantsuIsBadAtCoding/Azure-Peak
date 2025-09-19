@@ -130,6 +130,7 @@
 
 	var/blend_type
 	var/filter_type
+	var/secondary_filter_type
 
 /datum/particle_weather/proc/severityMod()
 	return max(0.3, severity / maxSeverity)
@@ -163,7 +164,7 @@
 	addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration)
 
 	if(particleEffectType)
-		SSParticleWeather.SetparticleEffect(new particleEffectType, blend_type, filter_type, color);
+		SSParticleWeather.SetparticleEffect(new particleEffectType, blend_type, filter_type, color, secondary_filter_type)
 
 	//Always step severity to start
 	ChangeSeverity()
