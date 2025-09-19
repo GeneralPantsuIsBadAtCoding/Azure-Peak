@@ -25,7 +25,7 @@
 	wanderer_examine = TRUE
 	advjob_examine = TRUE
 	always_show_on_latechoices = TRUE
-	job_reopens_slots_on_death = TRUE
+	job_reopens_slots_on_death = FALSE
 	same_job_respawn_delay = 1 MINUTES
 	virtue_restrictions = list(/datum/virtue/heretic/zchurch_keyholder) //all wretch classes automatically get this
 	job_traits = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_HERESIARCH)
@@ -90,15 +90,15 @@
 		return
 
 	var/player_count = length(GLOB.joined_player_list)
-	var/slots = 3
+	var/slots = 4
 	
-	//Add 1 slot for every 10 players over 20. @ 30 players, 4 slots. 40 players, 5 slots. Etc.
-	if(player_count > 20)
-		var/extra = floor((player_count - 20) / 10)
+	//Add 1 slot for every 10 players over 30. @ Less than 40 players, 4 slots. 41 players, 5 slots. 51 players, 6 slots - etc. 
+	if(player_count > 30)
+		var/extra = floor((player_count - 30) / 10)
 		slots += extra
 
-	//3 slots minimum, 10 maximum.
-	slots = min(slots, 10)
+	//4 slots minimum, 8 maximum.
+	slots = min(slots, 8)
 
-    wretch_job.total_positions = slots
-    wretch_job.spawn_positions = slots
+	wretch_job.total_positions = slots
+	wretch_job.spawn_positions = slots
