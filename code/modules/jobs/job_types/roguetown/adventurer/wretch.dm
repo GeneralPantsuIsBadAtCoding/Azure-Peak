@@ -82,21 +82,23 @@
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
 	add_bounty(H.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, bounty_total, FALSE, my_crime, bounty_poster)
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	to_chat(H, span_danger("You are playing an Antagonist role. By choosing to spawn as a Wretch, you are expected to actively create conflict with other players. Failing to play this role with the appropriate gravitas may result in punishment for Low Roleplay standards."))
 
 /proc/update_wretch_slots()
-    var/datum/job/wretch_job = SSjob.GetJob("Wretch")
-    if(!wretch_job)
-        return
+	var/datum/job/wretch_job = SSjob.GetJob("Wretch")
+	if(!wretch_job)
+		return
 
-    var/player_count = length(GLOB.joined_player_list)
+	var/player_count = length(GLOB.joined_player_list)
+	var/slots = 3
+	
+	//Add 1 slot for every 10 players over 20. @ 30 players, 4 slots. 40 players, 5 slots. Etc.
+	if(player_count > 20)
+		var/extra = floor((player_count - 20) / 10)
+		slots += extra
 
-    var/slots = 3
-    if(player_count > 30)
-        var/extra = floor((player_count - 30) / 10)
-        slots += extra
-
-    slots = min(slots, 10)
+	//3 slots minimum, 10 maximum.
+	slots = min(slots, 10)
 
     wretch_job.total_positions = slots
     wretch_job.spawn_positions = slots
