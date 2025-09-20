@@ -2345,6 +2345,7 @@
 #include "code\modules\spells\spell_types\wizard\misc\magicians_brick.dm"
 #include "code\modules\spells\spell_types\wizard\misc\shadowstep.dm"
 #include "code\modules\spells\spell_types\wizard\projectiles_aoe\fireball.dm"
+#include "code\modules\spells\spell_types\wizard\projectiles_aoe\fireball_artillery.dm"
 #include "code\modules\spells\spell_types\wizard\projectiles_aoe\greater_fireball.dm"
 #include "code\modules\spells\spell_types\wizard\projectiles_single\acid_splash.dm"
 #include "code\modules\spells\spell_types\wizard\projectiles_single\air_blade.dm"
