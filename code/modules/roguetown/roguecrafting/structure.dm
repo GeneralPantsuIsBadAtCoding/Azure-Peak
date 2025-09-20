@@ -49,7 +49,7 @@
 	name = "wooden psydonic cross"
 	result = /obj/structure/fluff/psycross/psycrucifix
 	reqs = list(/obj/item/grown/log/tree/small = 1,
-				/obj/item/grown/log/tree/stake = 3) 
+				/obj/item/grown/log/tree/stake = 3)
 	verbage_simple = "construct"
 	verbage = "constructs"
 
@@ -64,9 +64,9 @@
 	name = "silver psydonic cross"
 	result = /obj/structure/fluff/psycross/psycrucifix/silver
 	reqs = list(/obj/item/ingot/silverblessed = 1,
-				/obj/item/ingot/steel = 2)	
+				/obj/item/ingot/steel = 2)
 	verbage_simple = "construct"
-	verbage = "constructs"	
+	verbage = "constructs"
 	skillcraft = /datum/skill/craft/masonry
 	craftdiff = 3
 
@@ -312,6 +312,14 @@
 	verbage_simple = "build"
 	verbage = "builds"
 	craftsound = null
+
+/datum/crafting_recipe/roguetown/structure/art_table
+	name = "artificer table"
+	result = /obj/machinery/artificer_table
+	reqs = list(/obj/item/natural/wood/plank = 1)
+	skillcraft = /datum/skill/craft/engineering
+	verbage_simple = "constructs"
+	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/loom
 	name = "loom"
@@ -702,7 +710,7 @@
 	name = "floorgrille"
 	result = /obj/structure/bars/grille
 	reqs = list(/obj/item/ingot/iron = 1,
-					/obj/item/roguegear = 1)
+					/obj/item/roguegear/bronze = 1)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
@@ -839,7 +847,7 @@
 /datum/crafting_recipe/roguetown/structure/ceramicswheel
 	name = "potter's wheel"
 	result = /obj/structure/fluff/ceramicswheel
-	reqs = list(/obj/item/natural/stone = 2, /obj/item/grown/log/tree/small = 2, /obj/item/roguegear = 1)
+	reqs = list(/obj/item/natural/stone = 2, /obj/item/grown/log/tree/small = 2, /obj/item/roguegear/bronze = 1)
 	verbage_simple = "construct"
 	craftdiff = 2
 	verbage = "constructs"

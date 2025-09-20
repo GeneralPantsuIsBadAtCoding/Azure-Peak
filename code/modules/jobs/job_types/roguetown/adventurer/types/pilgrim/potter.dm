@@ -5,7 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/potter
-	
+
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	subclass_stats = list(
 		STATKEY_PER = 2,
@@ -45,9 +45,9 @@
 
 	backpack_contents = list(
 		/obj/item/natural/clay = 3,
-		/obj/item/natural/clay/glassbatch = 1, 
+		/obj/item/natural/clay/glassbatch = 1,
 		/obj/item/rogueore/coal = 1,
-		/obj/item/roguegear = 1,
+		/obj/item/roguegear/bronze = 1,
 		/obj/item/dye_brush = 1,
 		/obj/item/recipe_book/ceramics = 1)
 	// Clay and glassBatch are raw materials

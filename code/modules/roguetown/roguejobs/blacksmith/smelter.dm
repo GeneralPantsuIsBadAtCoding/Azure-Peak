@@ -1,6 +1,5 @@
 
 /obj/item
-	var/smeltresult
 	var/smelt_bar_num = 1 //variable for tracking how many bars things smelt back into for multi-bar items
 // MULTIBAR SMELTING WAS DISABLED FOR BALANCE REASONS
 // DO NOT RE-ENABLE IT UNTIL FURTHER NOTICE
@@ -67,7 +66,7 @@
 	if(W.smeltresult)
 		addOre(W, user) // Adds the item to the smelter's ore list, if it can be smelted.
 		return
-	
+
 	else
 		if(!W.firefuel && !istype(W, /obj/item/flint) && !istype(W, /obj/item/flashlight/flare/torch) && !istype(W, /obj/item/rogueore/coal))
 			to_chat(user, span_warning("\The [W.name] cannot be smelted."))
@@ -229,7 +228,7 @@
 						maxore = 2
 						alloy = /obj/item/ingot/purifiedaalloy // 3 aaslag, 1 gold, makes 2 purified alloy.
 					else if(blacksteelalloy == 7)
-						maxore = 1 // Blacksteel is supposed to be rare and inefficient. 3 steel and 1 silver into one. 
+						maxore = 1 // Blacksteel is supposed to be rare and inefficient. 3 steel and 1 silver into one.
 						alloy = /obj/item/ingot/blacksteel
 					else
 						alloy = null

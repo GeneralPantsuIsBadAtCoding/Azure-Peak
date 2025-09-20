@@ -527,6 +527,7 @@
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
 	attacked_sound = list('sound/combat/hits/onmetal/grille (1).ogg', 'sound/combat/hits/onmetal/grille (2).ogg', 'sound/combat/hits/onmetal/grille (3).ogg')
 	var/togg = FALSE
+	smeltresult = /obj/item/ingot/bronze
 
 /obj/structure/bars/pipe/left
 	name = "bronze pipe"
@@ -555,6 +556,7 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	var/datum/looping_sound/clockloop/soundloop
 	drag_slowdown = 3
+	metalizer_result = /obj/item/roguegear/bronze
 
 /obj/structure/fluff/clock/Initialize()
 	soundloop = new(src, FALSE)
@@ -642,6 +644,7 @@
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	pixel_y = 32
+	metalizer_result = /obj/item/roguegear/bronze
 
 /obj/structure/fluff/wallclock/attack_right(mob/user)
 	if(user.mind && isliving(user))
@@ -1096,7 +1099,7 @@
 					if(player.mind)
 						if(player.mind.has_antag_datum(/datum/antagonist/bandit))
 							var/datum/antagonist/bandit/bandit_players = player.mind.has_antag_datum(/datum/antagonist/bandit)
-							record_round_statistic(STATS_SHRINE_VALUE, W.get_real_price()) 
+							record_round_statistic(STATS_SHRINE_VALUE, W.get_real_price())
 							bandit_players.favor += donatedamnt
 							bandit_players.totaldonated += donatedamnt
 							to_chat(player, ("<font color='yellow'>[user.name] donates [donatedamnt] to the shrine! You now have [bandit_players.favor] favor.</font>"))

@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(materials_list)				//list of all /datum/material datums indexe
 GLOBAL_LIST_EMPTY(tech_list)					//list of all /datum/tech datums indexed by id.
 GLOBAL_LIST_EMPTY(crafting_recipes)				//list of all table craft recipes
 GLOBAL_LIST_EMPTY(anvil_recipes)				//list of all table craft recipes
+GLOBAL_LIST_EMPTY(artificer_recipes)			//list of all artificer recipes
 GLOBAL_LIST_EMPTY(alch_grind_recipes)			//list of all alchemy grinding recipes
 GLOBAL_LIST_EMPTY(alch_cauldron_recipes)		//list of all alchemy cauldron recipes
 GLOBAL_LIST_EMPTY(cooking_recipes)				//list of all cooking recipes. currently unused, pending a broader crafting refactor.
