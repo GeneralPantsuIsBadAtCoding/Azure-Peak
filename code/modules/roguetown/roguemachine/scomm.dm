@@ -361,13 +361,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	experimental_inhand = FALSE
 	muteinmouth = TRUE
-	var/cooldown = 60 SECONDS
-	var/on_cooldown = FALSE
 	var/listening = TRUE
 	var/speaking = TRUE
 	var/loudmouth_listening = TRUE
 	var/messagereceivedsound = 'sound/misc/scom.ogg'
-	var/scomstone_number
 	var/hearrange = 1 // change to 0 if you want your special scomstone to be only hearable by wearer
 	drop_sound = 'sound/foley/coinphy (1).ogg'
 	sellprice = 100
@@ -375,10 +372,6 @@
 	grid_height = 32
 
 /obj/item/scomstone/attack_right(mob/living/carbon/human/user)
-	if(on_cooldown)
-		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
-		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		return
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
@@ -397,20 +390,6 @@
 	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines) //make the listenstone hear scomstone
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
-	on_cooldown = TRUE
-	addtimer(CALLBACK(src, PROC_REF(reset_cooldown), user), cooldown)
-
-	//Log message to global broadcast list.
-	GLOB.broadcast_list += list(list(
-	"message"   = input_text,
-	"tag"		= "SCOMSTONE #[scomstone_number]",
-	"timestamp" = station_time_timestamp("hh:mm:ss")
-	))
-
-/obj/item/scomstone/proc/reset_cooldown(mob/living/carbon/human/user)
-	to_chat(user, span_notice("[src] is ready for use again."))
-	playsound(loc, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
-	on_cooldown = FALSE
 
 /obj/item/scomstone/MiddleClick(mob/user)
 	if(.)
@@ -438,12 +417,7 @@
 	become_hearing_sensitive()
 	update_icon()
 	SSroguemachine.scomm_machines += src
-	scomstone_number = SSroguemachine.scomm_machines.len
 
-/obj/item/scomstone/examine(mob/user)
-	. = ..()
-	if(scomstone_number)
-		. += "Its designation is #[scomstone_number]."
 
 /obj/item/scomstone/proc/repeat_message(message, atom/A, tcolor, message_language)
 	if(A == src)
@@ -872,10 +846,6 @@
 
 /obj/item/scomstone/garrison/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_INTENTCAP)
-	if(on_cooldown)
-		to_chat(user, span_warning("The gemstone inside the ring radiates heat. It's still cooling down from its last use."))
-		playsound(loc, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		return
 	visible_message(span_notice ("[user] presses their ring against their mouth."))
 	var/input_text = input(user, "Enter your message:", "Message")
 	if(!input_text)
@@ -897,8 +867,6 @@
 			if(S.garrisonline)
 				S.repeat_message(input_text, src, usedcolor)
 		SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
-		on_cooldown = TRUE
-		addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
 		return
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
@@ -907,17 +875,7 @@
 	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 		S.repeat_message(input_text, src, usedcolor)
 	SSroguemachine.crown?.repeat_message(input_text, src, usedcolor)
-	on_cooldown = TRUE
 	
-	//Log messages that aren't sent on the garrison line.
-	GLOB.broadcast_list += list(list(
-	"message"   = input_text,
-	"tag"		= "CROWNSTONE #[scomstone_number]",
-	"timestamp" = station_time_timestamp("hh:mm:ss")
-	))
-
-	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown)
-
 /obj/item/scomstone/garrison/attack_self(mob/living/user)
 	if(.)
 		return
@@ -996,13 +954,6 @@
 	tspans |= speech_span
 	if(speech_color)
 		raw_message = "<span style='color: [speech_color]'>[raw_message]</span>"
-
-	//Log the broadcast here
-	GLOB.broadcast_list += list(list(
-		"message"   = raw_message,
-		"tag"       = broadcaster_tag,
-		"timestamp" = station_time_timestamp("hh:mm:ss")
-	))
 
 	//Forward to all listeners
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
