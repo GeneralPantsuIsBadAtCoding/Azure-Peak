@@ -1,40 +1,81 @@
 macro "default"
 
 
+menu "menu"
+	elem 
+		name = "&File"
+		command = ""
+		saved-params = "is-checked"
+	elem 
+		name = "&Quick screenshot\tF2"
+		command = ".screenshot auto"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Save screenshot as...\tShift+F2"
+		command = ".screenshot"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = ""
+		command = ""
+		category = "&File"
+		saved-params = "is-checked"
+	elem "reconnectbutton"
+		name = "&Reconnect"
+		command = ".reconnect"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Quit\tAlt-F4"
+		command = ".quit"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Help"
+		command = ""
+		saved-params = "is-checked"
+	elem 
+		name = "&Admin Help\tF1"
+		command = "adminhelp"
+		category = "&Help"
+		saved-params = "is-checked"
+	elem 
+		name = "&Hotkeys"
+		command = "hotkeys-help"
+		category = "&Help"
+		saved-params = "is-checked"
+
+
 window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 0,0
-		size = 640x480
+		size = 640x440
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = #000000
 		is-default = true
-		saved-params = "pos;size;is-maximized;titlebar;can-resize;menu"
-		statusbar = false
-		is-maximized = true
-		icon = 'icons\\tg_32.png'
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "Coyote Bayou"
+		icon = 'icons\\deathclawlogo.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
 		type = CHILD
 		pos = 3,0
-		size = 640x480
+		size = 637x440
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #000000
 		saved-params = "splitter"
 		left = "mapwindow"
 		right = "infowindow"
 		is-vert = true
-		splitter = 68
 	elem "asset_cache_browser"
 		type = BROWSER
 		pos = 0,0
 		size = 200x200
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = #000000
 		is-visible = false
 		saved-params = ""
 	elem "tooltip"
@@ -50,22 +91,23 @@ window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
 		pos = 0,0
-		size = 640x480
+		size = 1024x1024
 		anchor1 = -1,-1
 		anchor2 = -1,-1
+		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "map"
 		type = MAP
 		pos = 0,0
-		size = 640x480
+		size = 1024x1024
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Arial"
 		font-size = 7
+		text-color = none
 		is-default = true
-		saved-params = "icon-size;zoom-mode"
-		style = ".center { text-align: center; }\n.maptext { font-family: 'Pterra'; font-size: 8pt; text-shadow:0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000 ; -dm-text-outline: 1px black; color: white; line-height: 1.1; }\n.command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; }\n.big { font-size: 8px; }\n.reallybig { font-size: 8px; }\n.extremelybig { font-size: 8px; }\n.greentext { color: #00ff00; font-size: 7px; }\n.redtext { color: #ff0000; font-size: 7px; }\n.clown { color: #ff69bf; font-size: 7px;  font-weight: bold; }\n.his_grace { color: #15d512; }\n.hypnophrase { color: #0d0d0d; font-weight: bold; }\n.yell { font-weight: bold; }\n.italics { font-size: 6px; }"
-
+		saved-params = "zoom;letterbox;zoom-mode"
+		style = ".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; } .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .greentext { color: #00FF00; font-size: 7px; } .redtext { color: #FF0000; font-size: 7px; } .clown { color: #FF69Bf; font-size: 7px;  font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-size: 6px; }"
 
 window "infowindow"
 	elem "infowindow"
@@ -74,169 +116,189 @@ window "infowindow"
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = #000000
-		saved-params = "pos;size"
+		background-color = none
+		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		image = 'icons\\CoyoteBayouServerBanner.png'
 		outer-size = 656x538
 		inner-size = 640x499
+	elem "setoocstatus"
+		type = BUTTON
+		pos = 10,5
+		size = 160x20
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		saved-params = "is-checked"
+		text = "Set OOC Status"
+		command = "setoocstatus"
 	elem "info"
 		type = CHILD
-		pos = 0,5
-		size = 640x480
+		pos = 0,30
+		size = 640x445
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #000000
+		background-color = none
 		saved-params = "splitter"
 		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
-		splitter = 25
+	elem "tgwiki"
+		type = BUTTON
+		pos = 220,5
+		size = 100x20
+		anchor1 = 34,0
+		anchor2 = 50,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Coyote Wiki"
+		command = "tgwiki"
+	elem "changelog"
+		type = BUTTON
+		pos = 320,5
+		size = 100x20
+		anchor1 = 50,0
+		anchor2 = 66,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Changelog"
+		command = "Changelog"
+	elem "github"
+		type = BUTTON
+		pos = 420,5
+		size = 100x20
+		anchor1 = 66,0
+		anchor2 = 81,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Github"
+		command = "github"
+	elem "discord"
+		type = BUTTON
+		pos = 520,5
+		size = 100x20
+		anchor1 = 81,0
+		anchor2 = 97,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Discord/Rules"
+		command = "discord"
 
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 0,0
+		pos = 1423,709
 		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
-		background-color = #000000
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "legacy_output_selector"
-		type = CHILD
-		pos = 0,0
-		size = 640x440
-		anchor1 = 0,0
-		anchor2 = 100,100
-		saved-params = "splitter"
-		left = "output_legacy"
-		is-vert = false
 	elem "input"
 		type = INPUT
-		pos = 0,445
-		size = 630x25
+		pos = 2,460
+		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
-		font-size = 12
-		text-color = #ad9eb4
-		background-color = #000000
+		font-style = "bold"
 		is-default = true
 		border = sunken
-		saved-params = ""
-		command = "say"
-
-window "output_legacy"
-	elem "output_legacy"
-		type = MAIN
-		pos = 0,0
-		size = 640x480
-		anchor1 = -1,-1
+		saved-params = "command"
+	elem "saybutton"
+		type = BUTTON
+		pos = 600,460
+		size = 37x20
+		anchor1 = 100,100
 		anchor2 = -1,-1
-		background-color = #000000
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
-	elem "output"
-		type = OUTPUT
-		pos = 0,0
-		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-default = true
-		saved-params = "max-lines"
-		background-color = #000000
-		style = ".system {color:#FF0000;}"
-		enable-http-images = true
-
-window "output_browser"
-	elem "output_browser"
-		type = MAIN
-		pos = 0,0
-		size = 640x480
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		background-color = #000000
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
+		saved-params = "is-checked"
+		text = "Chat"
+		command = ".winset \"saybutton.is-checked=true ? input.command=\"!say \\\"\" : input.command=\""
+		is-flat = true
+		button-type = pushbox
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
-		size = 640x480
+		size = 640x456
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #000000
+		background-color = #ffffff
+		is-visible = false
+		is-disabled = true
 		saved-params = ""
-
-window "statwindow"
-	elem "statwindow"
-		type = MAIN
+	elem "output"
+		type = OUTPUT
 		pos = 0,0
-		size = 640x480
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		text-color = #d6dbd5
-		background-color = #000000
-		saved-params = "pos;size"
-		is-pane = true
-	elem "stat"
-		type = INFO
-		pos = 0,0
-		size = 640x480
+		size = 640x456
 		anchor1 = 0,0
 		anchor2 = 100,100
-		font-family = "Pterra"
-		font-size = 12
-		font-style = "6"
-		text-color = #d6dbd5
-		background-color = #000000
 		is-default = true
 		saved-params = ""
-		highlight-color = #f9bb00
-		tab-text-color = #d6dbd5
-		tab-background-color = #000000
-		tab-font-family = "Blackmoor LET"
-		tab-font-size = 20
-		prefix-color = #f9bb00
-		suffix-color = #d6dbd5
 
 window "popupwindow"
 	elem "popupwindow"
 		type = MAIN
-		pos = 281,150
-		size = 120x120
+		pos = 281,0
+		size = 549x549
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
 		can-resize = false
-		icon = 'icons\\tg_32.png'
 
-window "preferencess_window"
-	elem "preferencess_window"
+window "preferences_window"
+	elem "preferences_window"
 		type = MAIN
-		pos = 372,150
-		size = 700x630
+		pos = 281,0
+		size = 1280x1001
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
+		focus = false
+		saved-params = "pos;size;is-maximized;focus"
 		statusbar = false
-		can-close = false
-		can-resize = false
-		icon = 'icons\\tg_32.png'
+		image = 'icons\\CharacterCreator.png'
+	elem "Powerbutton"
+		type = BUTTON
+		pos = 922,891
+		size = 39x46
+		anchor1 = 72,89
+		anchor2 = 75,94
+		saved-params = "is-checked"
+		text = ""
+		image = 'icons\\Chargenbutton.png'
+		command = "Powerbutton"
 	elem "preferences_browser"
 		type = BROWSER
-		pos = 0,0
-		size = 700x630
+		pos = 31,19
+		size = 830x837
 		anchor1 = 0,0
 		anchor2 = 75,100
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
-		pos = 228,230
-		size = 172x192
-		anchor1 = 75,30
-		anchor2 = 100,20
-		background-color = #000000
+		pos = 861,10
+		size = 393x847
+		anchor1 = 75,0
+		anchor2 = 100,100
 		right-click = true
-		icon-size = 64
-		zoom-mode = "distort"
+		saved-params = "zoom;letterbox;zoom-mode"
+
+window "statwindow"
+	elem "statwindow"
+		type = MAIN
+		pos = 281,0
+		size = 1121x827
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+		image = 'icons\\pipscreen.png'
+	elem "statbrowser"
+		type = BROWSER
+		pos = 18,14
+		size = 1077x792
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-visible = false
+		saved-params = ""
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # This bot was made by tkdrg.
 # Ask #coderbus@irc.rizon.net if this breaks.
 # See LICENSE-bot_folder.txt for the license of the files in this folder.
@@ -149,7 +149,7 @@ def irc_handler():
 
 def signal_handler(signum, frame):
 	global irc, running, con_attempts, logger
-	logger.info("Received term kill, closing")
+	logger.info("Recieved term kill, closing")
 	running = False
 
 if __name__ == "__main__":

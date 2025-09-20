@@ -1,13 +1,31 @@
 ## About The Pull Request
+<!-- Write here -->
 
-<!-- Describe your pull request. Avoid text walls, use concise bullet points for easier readability. Document every change, or this can delay review and even discourage maintainers from merging your PR. -->
+## Pre-Merge Checklist
+- [ ] You tested this on a local server.
+- [ ] This code did not runtime during testing.
+- [ ] You documented all of your changes.
+<!-- Tick these after making the PR. -->
 
-## Testing Evidence
+## Changelog
+:cl:
+add: Added new things
+add: Added more things
+del: Removed old things
+tweak: tweaked a few things
+balance: rebalanced something
+fix: fixed a few things
+soundadd: added a new sound thingy
+sounddel: removed an old sound thingy
+imageadd: added some icons and images
+imagedel: deleted some icons and images
+spellcheck: fixed a few typos
+code: changed some code
+refactor: refactored some code
+config: changed some config setting
+admin: messed with admin stuff
+server: something server ops should know
+/:cl:
 
-<!-- It's mandatory to test your PR. Provide images, clips or description of how you tested your changes where possible. -->
-
-## Why It's Good For The Game
-
-<!-- Argue for the merits of your changes and how they benefit the game, especially if they are controversial. If you can't, then it probably isn't good for the game in the first place. -->
-
-<!-- By contributing to this codebase, you confirm that any code and sprites you provide are legal to share and will be licensed under the terms specified in README.md — AGPLv3 for code and CC-BY-SA 3.0 for assets, unless otherwise stated. You acknowledge that the project maintainers are under no obligation to remove any materials that do not violate these licenses. -->
+<!-- Both :cl:'s are required for the changelog to work! You can put your name to the right of the first :cl: if you want to overwrite your GitHub username as author ingame. -->
+<!-- You can use multiple of the same prefix (they're only used for the icon ingame) and delete the unneeded ones. Despite some of the tags, changelogs should generally represent how a player might be affected by the changes rather than a summary of the PR's contents. -->

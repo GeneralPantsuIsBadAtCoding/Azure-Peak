@@ -1,6 +1,0 @@
-bin
-.gradle
-.classpath
-.settings
-.project
-*.class

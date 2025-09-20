@@ -15,7 +15,7 @@
 //MOVE (not copy) the node_modules folder next to this file
 try{
 	//CONFIG
-	$repo_dir = 'tgstation';
+	$repo_dir = 'fortune13';
 	$path_to_tgui_from_repo = '/tgui';
 	$full_path_to_gulp = 'C:/Users/Cyberboss/AppData/Roaming/npm/gulp';	//this needs to be read/executable by the PHP app pool
 	$max_number_of_uploads = 20;

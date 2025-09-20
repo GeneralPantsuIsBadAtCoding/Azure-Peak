@@ -4,7 +4,7 @@
 
 	NOTE: The below functions are part of BYOND user Deadron's "TextHandling" library.
 		[ http://www.byond.com/developer/Deadron/TextHandling ]
- */
+*/
 
 
 proc
@@ -20,9 +20,9 @@ proc
 		return dd_text2list(file2text(file), separator)
 
 
-    ////////////////////
-    // Replacing text //
-    ////////////////////
+	////////////////////
+	// Replacing text //
+	////////////////////
 	dd_replacetext(text, search_string, replacement_string)
 		// A nice way to do this is to split the text into an array based on the search_string,
 		// then put it back together into text using replacement_string as the new separator.
@@ -35,21 +35,21 @@ proc
 		return dd_list2text(textList, replacement_string)
 
 
-    /////////////////////
+	/////////////////////
 	// Prefix checking //
 	/////////////////////
 	dd_hasprefix(text, prefix)
 		var/start = 1
-		var/end = lentext(prefix) + 1
+		var/end = length(prefix) + 1
 		return findtext(text, prefix, start, end)
 
 	dd_hasPrefix(text, prefix)
 		var/start = 1
-		var/end = lentext(prefix) + 1
+		var/end = length(prefix) + 1
 		return findtextEx(text, prefix, start, end)
 
 
-    /////////////////////
+	/////////////////////
 	// Suffix checking //
 	/////////////////////
 	dd_hassuffix(text, suffix)
@@ -66,8 +66,8 @@ proc
 	// Turning text into lists //
 	/////////////////////////////
 	dd_text2list(text, separator)
-		var/textlength      = lentext(text)
-		var/separatorlength = lentext(separator)
+		var/textlength      = length(text)
+		var/separatorlength = length(separator)
 		var/list/textList   = new /list()
 		var/searchPosition  = 1
 		var/findPosition    = 1
@@ -86,8 +86,8 @@ proc
 					return textList
 
 	dd_text2List(text, separator)
-		var/textlength      = lentext(text)
-		var/separatorlength = lentext(separator)
+		var/textlength      = length(text)
+		var/separatorlength = length(separator)
 		var/list/textList   = new /list()
 		var/searchPosition  = 1
 		var/findPosition    = 1

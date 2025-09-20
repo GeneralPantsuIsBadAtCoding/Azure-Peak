@@ -7,112 +7,150 @@
 // Sample font-size: DM: 8 CSS: 64px
 
 /client/script = {"<style>
-body					{word-wrap: break-word; overflow-x: hidden; overflow-y: scroll; color: #c9c1ba; font-size: 16px; font-family: "Pterra";}
+body					{font-family: Verdana, sans-serif;}
 
-h1, h2, h3, h4, h5, h6	{color: #c9c1ba;	font-family: Pterra;}
+h1, h2, h3, h4, h5, h6	{color: #0000ff;	font-family: Georgia, Verdana, sans-serif;}
 
-em						{font-style: normal;	font-weight: bold; font-family: Pterra;}
+em						{font-style: normal;	font-weight: bold;}
 
-a:link						{color: #ae83cb;	font-weight: bold;}
-
-.motd					{color: #638500;	font-family: Pterra;}
+.motd					{color: #638500;	font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
 	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 	{color: #638500;}
-h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
-.italics				{font-style: italic;}
 
-.bold					{font-weight: bold;}
+.italics				{					font-style: italic;}
 
-.prefix					{font-weight: bold;}
+.bold					{					font-weight: bold;}
 
-.ooc					{color: #c5c5c5;	font-weight: bold; font-family: Pterra;}
-.adminobserverooc		{color: #cca300;	font-weight: bold; font-family: Pterra;}
-.adminooc				{color: #4972bc;	font-weight: bold;}
+.prefix					{					font-weight: bold;}
 
+.ooc					{					font-weight: bold;}
+.looc					{color: #6699CC;	font-weight: bold;}
+.antagooc				{color: #b8002e;	font-weight: bold;}
+.adminobserverooc		{color: #0099cc;	font-weight: bold;}
+.adminooc				{color: #700038;	font-weight: bold;}
+
+.adminobserver			{color: #996600;	font-weight: bold;}
 .adminsay				{color:	#FF4500;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 
+.mentorsay				{color: #E236D8;	font-weight: bold;}
+.mentorsay_admin		{color: #8A2BE2;	font-weight: bold;}
+
 .name					{					font-weight: bold;}
 
-.say					{font-family: Pterra;}
-.deadsay				{color: #e2c1ff;}
+.say					{}
+.deadsay				{color: #5c00e6;}
 .binarysay				{color: #20c20e;	background-color: #000000;	display: block;}
 .binarysay a			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
-.radio					{color: #1ecc43;}
-.sciradio				{color: #c68cfa;}
-.comradio				{color: #5177ff;}
-.secradio				{color: #dd3535;}
-.medradio				{color: #57b8f0;}
-.engradio				{color: #f37746;}
-.suppradio				{color: #b88646;}
-.servradio				{color: #6ca729;}
-.syndradio				{color: #8f4a4b;}
-.centcomradio			{color: #2681a5;}
-.aiprivradio			{color: #d65d95;}
-.redteamradio			{color: #ff4444;}
-.blueteamradio			{color: #3434fd;}
+.radio					{color: #008000;}
+.sciradio				{color: #993399;}
+.comradio				{color: #948f02;}
+.secradio				{color: #a30000;}
+.medradio				{color: #337296;}
+.engradio				{color: #fb5613;}
+.suppradio				{color: #a8732b;}
+.servradio				{color: #6eaa2c;}
+.syndradio				{color: #6d3f40;}
+.centcomradio			{color: #686868;}
+.aiprivradio			{color: #ff00ff;}
+.redteamradio			{color: #ff0000;}
+.blueteamradio			{color: #0000ff;}
+.vaultradio				{color: #6eaa2c;}
+.ncrradio				{color: #eaaa54;}
+.bosradio				{color: #686868;}
+.enclaveradio			{color: #67696b;}
+.denradio				{color: #a8732b;}
+.legionradio			{color: #c24d44;}
+.rangerradio			{color: #83733c;}
+.khansradio				{color: #f0420d;}
+.respondersradio		{color: #dd3535;}
 
+.yell					{					font-weight: bold;}
 
-.yell					{font-weight: bold;}
+.alert					{color: #ff0000;}
+h1.alert, h2.alert		{color: #000000;}
 
-.alert					{color: #d82020;}
+.emote					{ }
+.subtle					{ }
+.subtler				{ }
+.selecteddna			{color: #ffffff; 	background-color: #001B1B}
 
-.emote					{color: #b1bb9f; font-size: 75%;}
+.attack					{color: #ff0000;}
+.disarm					{color: #990000;}
+.passive				{color: #660000;}
 
-.crit					{color: #c71d76;}
-.userdanger				{color: #c71d76;	font-weight: bold;	font-size: 120%;}
-.danger					{color: #b9322b;	font-weight: bold;}
-.warning				{color: #bb4e28;	font-size: 75%;}
-.boldwarning			{color: #bb4e28;	font-weight: bold}
-.announce				{color: #c51e1e;	font-weight: bold;}
-.boldannounce			{color: #c51e1e;	font-weight: bold;}
-.greenannounce			{color: #059223;	font-weight: bold;}
-.rose					{color: #e7bed8;}
-.love					{color: #e7bed8;	font-size: 75%;}
-.info					{color: #a9a5b6;						font-size: 75%;}
-.biginfo				{color: #a9a5b6;}
-.notice					{color: #f1d669;}
-.boldnotice				{color: #f1d669;	font-weight: bold;}
-.smallnotice			{color: #f1d669;	font-size: 75%;}
-.hear					{color: #6685f5;	font-style: italic;}
-.adminnotice			{color: #6685f5;}
+.userdanger				{color: #ff0000;	font-weight: bold;	font-size: 3;}
+.danger					{color: #ff0000;	font-weight: bold;}
+.tinydanger				{color: #ff0000; font-size: 85%;}
+.smalldanger			{color: #ff0000; font-size: 90%;}
+.warning				{color: #ff0000;	font-style: italic;}
+.boldwarning			{color: #ff0000;	font-style: italic;	font-weight: bold}
+.announce				{color: #228b22;	font-weight: bold;}
+.boldannounce			{color: #ff0000;	font-weight: bold;}
+.greenannounce			{color: #00ff00;	font-weight: bold;}
+.rose					{color: #ff5050;}
+.info					{color: #0000CC;}
+.notice					{color: #000099;}
+.tinynotice				{color: #000099; font-size: 85%;}
+.smallnotice			{color: #000099; font-size: 90%;}
+.smallnoticeital		{color: #000099; font-style: italic;	font-size: 90%;}
+.boldnotice				{color: #000099;	font-weight: bold;}
+.hear					{color: #000099;	font-style: italic;}
+.adminnotice			{color: #0000ff;}
 .adminhelp				{color: #ff0000;	font-weight: bold;}
-.unconscious			{color: #c9c1ba;	font-weight: bold;}
+.unconscious			{color: #0000ff;	font-weight: bold;}
 .suicide				{color: #ff5050;	font-style: italic;}
-.green					{color: #80b077;}
-.smallgreen				{color: #80b077;	font-size: 75%;}
-.boldgreen				{color: #80b077;	font-weight: bold;}
-.red					{color: #b84d47;}
-.smallred				{color: #b84d47;	font-size: 75%;}
-.boldred				{color: #b84d47;	font-weight: bold;}
-.blue					{color: #6a8cb7;}
-.purple					{color: #967aaf;}
-.nicegreen				{color: #9bccd0;}
+.green					{color: #03ff39;}
+.nicegreen				{color: #14a833;}
+.shadowling				{color: #3b2769;}
 .cult					{color: #960000;}
 .cultlarge				{color: #960000;	font-weight: bold;	font-size: 3;}
-.cultsmall				{color: #960000;	font-size: 75%;}
-.narsie					{color: #960000;	font-weight: bold;	font-size: 12;}
+.narsie					{color: #960000;	font-weight: bold;	font-size: 15;}
 .narsiesmall			{color: #960000;	font-weight: bold;	font-size: 6;}
 .colossus				{color: #7F282A;	font-size: 5;}
 .hierophant				{color: #660099;	font-weight: bold;	font-style: italic;}
 .hierophant_warning		{color: #660099;	font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
-.beautifulmasc			{color: #083eab;}
-.beautifulfem			{color: #d70a74;}
-.beautifulnb			{color: #9656c9;}
+.bounty					{color: #ab6613;	font-style: italic;}
 
-.revennotice			{color: #1d2953;	font-size: 85%;}
+.revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}
-.revenbignotice			{color: #1d2953;	font-weight: bold;	font-size: 185%;}
-.revenminor				{color: #823abb;	font-size: 85%;}
-.revenwarning			{color: #760fbb;	font-style: italic;	font-size: 85%}
-.revendanger			{color: #760fbb;	font-weight: bold;	font-size: 185%;}
+.revenbignotice			{color: #1d2953;	font-weight: bold;	font-size: 3;}
+.revenminor				{color: #823abb}
+.revenwarning			{color: #760fbb;	font-style: italic;}
+.revendanger			{color: #760fbb;	font-weight: bold;	font-size: 3;}
+.umbra					{color: #5000A0;}
+.umbra_emphasis			{color: #5000A0;	font-weight: bold;	font-style: italic;}
+.umbra_large			{color: #5000A0; font-size: 3; font-weight: bold; font-style: italic;}
 
-.deconversion_message	{color: #5000A0;	font-size: 3;	font-style: italic;}
+.deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
+
+.brass					{color: #BE8700;}
+.heavy_brass			{color: #BE8700; font-weight: bold; font-style: italic;}
+.large_brass			{color: #BE8700; font-size: 3;}
+.big_brass				{color: #BE8700; font-size: 3; font-weight: bold; font-style: italic;}
+.ratvar					{color: #BE8700; font-size: 6; font-weight: bold; font-style: italic;}
+.alloy					{color: #42474D;}
+.heavy_alloy			{color: #42474D; font-weight: bold; font-style: italic;}
+.nezbere_large			{color: #42474D; font-size: 3; font-weight: bold; font-style: italic;}
+.nezbere				{color: #42474D; font-weight: bold; font-style: italic;}
+.nezbere_small			{color: #42474D;}
+.sevtug_large			{color: #AF0AAF; font-size: 3; font-weight: bold; font-style: italic;}
+.sevtug					{color: #AF0AAF; font-weight: bold; font-style: italic;}
+.sevtug_small			{color: #AF0AAF;}
+.inathneq_large			{color: #1E8CE1; font-size: 3; font-weight: bold; font-style: italic;}
+.inathneq				{color: #1E8CE1; font-weight: bold; font-style: italic;}
+.inathneq_small			{color: #1E8CE1;}
+.nzcrentr_large			{color: #DAAA18; font-size: 3; font-weight: bold; font-style: italic;}
+.nzcrentr				{color: #DAAA18; font-weight: bold; font-style: italic;}
+.nzcrentr_small			{color: #DAAA18;}
+.neovgre_large			{color: #6E001A; font-size: 3; font-weight: bold; font-style: italic;}
+.neovgre				{color: #6E001A; font-weight: bold; font-style: italic;}
+.neovgre_small			{color: #6E001A;}
 
 .ghostalert				{color: #5c00e6;	font-style: italic;	font-weight: bold;}
 
@@ -129,41 +167,42 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .papyrus				{font-family: "Papyrus", cursive, sans-serif;}
 .robot					{font-family: "Courier New", cursive, sans-serif;}
 
-
-.orator					{font-family: "Project Sans", Pterra; font-size: 100%;}
-.sandwauk				{font-family: "Almalik", Pterra; font-size: 100%;}
-.human					{font-family: "Honoka Mincho", Pterra;}
-.elf					{font-family: "Dauphin", cursive, Pterra;}
-.dwarf					{font-family: "MasonAlternate", Pterra;}
-.sandspeak				{font-family: "Arabolical", Pterra;}
-.delf					{font-family: "Dauphin", Pterra;}
-.hellspeak				{font-family: "Xaphan", Pterra; font-size: 110%}
-.undead					{font-family: "FriskyVampire", Pterra;}
-.orc					{font-family: "Thief by The Riddler", Pterra;}
-.beast					{font-family: "Thief by The Riddler", Pterra;}
-.reptile				{font-family: "Kingthings Petrock", Pterra; font-size: 120%;}
-.grenzelhoftian			{font-family: "Emperialisme", Pterra; font-size: 120%;}
-.kazengunese 			{font-family: "Yuji Boku", Pterra;}
-.otavan					{font-family: "Notredame", "Pterra"; font-size: 200%;}
-.etruscan				{font-family: "Feronia", "Pterra"; font-size: 100%;}
-.gronnic				{font-family: "Jorvik Informal", "Pterra"; font-size: 100%;}
-.aavnic					{font-family: "Romeodn", "Pterra"; font-size: 100%;}
-
-.torture				{color: #42ff20}
-
 .command_headset		{font-weight: bold;	font-size: 3;}
-.small					{font-size: 50%;}
-.smallyell				{font-size: 70%;font-family: Pterra;}
-.big					{font-size: 120%;}
-.reallybig				{font-size: 180%;}
-.extremelybig			{font-size: 220%;}
-.greentext				{color: #00FF00;}
-.redtext				{color: #FF0000;}
+.small					{font-size: 1;}
+.big					{font-size: 3;}
+.reallybig				{font-size: 4;}
+.extremelybig			{font-size: 5;}
+.greentext				{color: #00FF00;	font-size: 3;}
+.redtext				{color: #FF0000;	font-size: 3;}
+.yellowtext				{color: #FFCC00;	font-size: 3;}
 .clown					{color: #FF69Bf;	font-size: 3;	font-family: "Comic Sans MS", cursive, sans-serif;	font-weight: bold;}
+.singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif;	font-style: italic;}
-.hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite;}
+.velvet					{color: #660015; 	font-weight: bold; animation: velvet 5000ms infinite;}
+@keyframes velvet {
+	0% { color: #400020; }
+	40% { color: #FF0000; }
+	50% { color: #FF8888; }
+	60% { color: #FF0000; }
+	100% { color: #400020; }
+}
 
-.phobia					{color: #dd0000;	font-weight: bold;}
+.hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite; animation-direction: alternate;}
+	@keyframes hypnocolor {
+		0%		{color: #0d0d0d;}
+		25%		{color: #410194;}
+		50%		{color: #7f17d8;}
+		75%		{color: #410194;}
+		100%	{color: #3bb5d3;}
+}
+
+
+.phobia			{color: #dd0000;	font-weight: bold;	animation: phobia 750ms infinite;}
+	@keyframes phobia {
+		0%		{color: #0d0d0d;}
+		50%		{color: #dd0000;}
+		100%	{color: #0d0d0d;}
+}
 
 .icon					{height: 1em;	width: auto;}
 
@@ -179,15 +218,4 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
-
-.dead					{color: #b280df;}
-.bloody					{color: #cc0f0f;}
-.artery					{color: #9B5455;}
-.infection				{color: #77c72b;}
-.necrosis				{color: #558d20;}
-.bone					{color: #e3dac9;}
-.love_low					{color: #eac8de;	font-size: 75%;}
-.love_mid					{color: #e9a8d1;	font-size: 75%;}
-.love_high					{color: #f05ee1;	font-size: 75%;}
-.love_extreme					{color: #d146f5;	font-size: 75%;}
 </style>"}

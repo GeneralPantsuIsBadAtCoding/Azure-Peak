@@ -188,7 +188,7 @@ public class IconState {
             int[] sl = ili.getScanline();
             px[i] = sl.clone();
         }
-
+        
         int channelCount = in.imgInfo.alpha ? 4 : 3;
         Image[] images = new Image[frames*dirs];
         for(int imageY=0; imageY<dirs; imageY++) {

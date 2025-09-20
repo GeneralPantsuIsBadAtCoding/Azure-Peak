@@ -63,55 +63,54 @@ GLOBAL_LIST_EMPTY(menulist)
 		return
 	M.Set_checked(src, verbpath)
 
-/*
 /datum/verbs/menu/Icon/Load_checked(client/C) //So we can be lazy, we invoke the "checked" menu item on menu load.
 	var/procpath/verbpath = Get_checked(C)
 	if (!verbpath || !(verbpath in typesof("[type]/verb")))
 		return
 
-	if (copytext(verbpath.name,1,2) == "@")
-		winset(C, null, list2params(list("command" = copytext(verbpath.name,2))))
+	if (verbpath.name[1] == "@")
+		winset(C, null, list2params(list("command" = copytext(verbpath.name, length(verbpath.name[1]) + 1))))
 	else
 		winset(C, null, list2params(list("command" = replacetext(verbpath.name, " ", "-"))))
 
 /datum/verbs/menu/Icon/Size
 	checkbox = CHECKBOX_GROUP
-	default = /datum/verbs/menu/Icon/Size/verb/IconFittofit
+	default = /datum/verbs/menu/Icon/Size/verb/iconstretchtofit
 
-/datum/verbs/menu/Icon/Size/verb/IconFittofit()
+/datum/verbs/menu/Icon/Size/verb/iconstretchtofit()
 	set name = "@.winset \"mapwindow.map.icon-size=0\""
-	set desc = ""
+	set desc = "&Auto (stretch-to-fit)"
 
 /datum/verbs/menu/Icon/Size/verb/icon96()
 	set name = "@.winset \"mapwindow.map.icon-size=96\""
-	set desc = ""
+	set desc = "&96x96 (3x)"
 
 /datum/verbs/menu/Icon/Size/verb/icon64()
 	set name = "@.winset \"mapwindow.map.icon-size=64\""
-	set desc = ""
+	set desc = "&64x64 (2x)"
 
 /datum/verbs/menu/Icon/Size/verb/icon48()
 	set name = "@.winset \"mapwindow.map.icon-size=48\""
-	set desc = ""
+	set desc = "&48x48 (1.5x)"
 
 /datum/verbs/menu/Icon/Size/verb/icon32()
 	set name = "@.winset \"mapwindow.map.icon-size=32\""
-	set desc = ""
+	set desc = "&32x32 (1x)"
 
 
 /datum/verbs/menu/Icon/Scaling
 	checkbox = CHECKBOX_GROUP
 	name = "Scaling Mode"
-	default = /datum/verbs/menu/Icon/Scaling/verb/PS
-
-/datum/verbs/menu/Icon/Scaling/verb/PS()
-	set name = "@.winset \"mapwindow.map.zoom-mode=normal\""
-	set desc = ""
+	default = /datum/verbs/menu/Icon/Scaling/verb/NN
 
 /datum/verbs/menu/Icon/Scaling/verb/NN()
 	set name = "@.winset \"mapwindow.map.zoom-mode=distort\""
-	set desc = ""
+	set desc = "Nearest Neighbor"
+
+/datum/verbs/menu/Icon/Scaling/verb/PS()
+	set name = "@.winset \"mapwindow.map.zoom-mode=normal\""
+	set desc = "Point Sampling"
 
 /datum/verbs/menu/Icon/Scaling/verb/BL()
-	set name = "@.winset \"mapwindow.map.zoom-mode=blur\""*/
-//	set desc = ""
+	set name = "@.winset \"mapwindow.map.zoom-mode=blur\""
+	set desc = "Bilinear"

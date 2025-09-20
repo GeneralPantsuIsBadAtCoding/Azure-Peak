@@ -1,20 +1,17 @@
 .job {
   display: block;
   width: 173px;
-  color: #ffffff;
 }
 
 .command {
   font-weight: bold;
-  color: #ffffff;
 }
 
 .priority {
-  color: #ffffff;
+  color: #00ff00;
   font-weight: bold;
 }
 
 .nopositions {
-  color: #ffffff;
   font-style: italic;
 }

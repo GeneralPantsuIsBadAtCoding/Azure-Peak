@@ -20,8 +20,6 @@ Cook=2,1
 Botanist=3,2
 Janitor=2,1
 
-Clown=1,1
-Mime=1,1
 Curator=1,1
 Lawyer=2,2
 
@@ -31,6 +29,7 @@ Station Engineer=5,5
 Atmospheric Technician=3,2
 
 Medical Doctor=5,3
+Paramedic=2,2
 Chemist=2,2
 Geneticist=2,2
 Virologist=1,1
