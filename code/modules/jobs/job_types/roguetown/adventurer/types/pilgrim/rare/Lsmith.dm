@@ -10,7 +10,7 @@
 
 	maximum_possible_slots = 1
 	pickprob = 5
-	category_tags = list(CTAG_TOWNER)
+	category_tags = list(CTAG_PILGRIM)
 	traits_applied = list(TRAIT_TRAINED_SMITH)
 	subclass_stats = list(
 		STATKEY_LCK = 4,

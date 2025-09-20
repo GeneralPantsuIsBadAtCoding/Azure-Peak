@@ -11,7 +11,7 @@
 
 	maximum_possible_slots = 1
 	pickprob = 5
-	category_tags = list(CTAG_TOWNER)
+	category_tags = list(CTAG_PILGRIM)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_CON = 2,
