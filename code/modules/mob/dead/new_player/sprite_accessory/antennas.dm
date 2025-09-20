@@ -15,6 +15,10 @@
 	relevant_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	default_colors = list("#FFFFFF")
 
+/datum/sprite_accessory/antenna/moth/none
+	name = "None"
+	icon_state = null
+
 /datum/sprite_accessory/antenna/moth/plain
 	name = "Plain"
 	icon_state = "plain"
