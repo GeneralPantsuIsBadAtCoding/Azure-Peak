@@ -68,6 +68,14 @@
 	name = "fresh baked prezzel"
 	scent = "fresh baked prezzel"
 
+/datum/pollutant/food/cake
+	name = "fresh baked cake"
+	scent = "fresh baked cake"
+
+/datum/pollutant/food/frosted_cake
+	name = "fresh baked frosted cake"
+	scent = "fresh baked frosted cake"
+
 /datum/pollutant/food/honey_cake
 	name = "fresh baked honey cake"
 	scent = "fresh baked honey cake"
