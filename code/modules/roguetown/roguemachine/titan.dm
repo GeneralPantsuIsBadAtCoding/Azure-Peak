@@ -267,10 +267,6 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 					say("You have not the noble blood to be regent.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return
-				if(HAS_TRAIT(H, TRAIT_OUTLANDER))
-					say("You are too estranged from this realm to be regent.")
-					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-					return
 				if(SSticker.regentday == GLOB.dayspassed)
 					say("A regent has already been declared this dae!")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)

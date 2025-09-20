@@ -288,12 +288,6 @@
 		return
 	if(!listening)
 		return
-	#ifdef USES_SCOM_RESTRICTION
-	if(!calling && !garrisonline)
-		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
-		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
-		return
-	#endif
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
@@ -316,17 +310,14 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
-		#ifndef USES_SCOM_RESTRICTION
-		else 
-			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-				if(!S.calling)
-					S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+			if(!S.calling)
 				S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
-				S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
-			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
-		#endif
+		for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+			S.repeat_message(raw_message, src, usedcolor, message_language)
+		for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+			S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
+		SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
@@ -1026,9 +1017,6 @@
 	var/obj/item/clothing/head/roguetown/crown/serpcrown/crowne = SSroguemachine.crown
 	if(crowne && (!loudmouth || crowne.loudmouth_listening))
 		crowne.repeat_message(raw_message, src, usedcolor, message_language, tspans)
-	if(istype(src, /obj/structure/broadcast_horn/paid))
-		listening = FALSE
-		playsound(src, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
 
 /obj/structure/broadcast_horn/loudmouth
 	name = "\improper Golden Mouth"
@@ -1051,53 +1039,6 @@
 	broadcaster_tag = "Silver Tongue"
 	icon_state = "broadcaster_crass"
 	speech_color = COLOR_ASSEMBLY_GURKHA
-
-/obj/structure/broadcast_horn/paid
-	name = "\improper Streetpipe"
-	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it. Insert a ziliqua to broadcast a message to every SCOM."
-	icon_state = "broadcaster_crass"
-	icon = 'icons/roguetown/misc/machines.dmi'
-	var/is_locked = FALSE
-
-/obj/structure/broadcast_horn/paid/attackby(obj/item/P, mob/user, params)
-	// Handle locking/unlocking with crier key
-	if(istype(P, /obj/item/roguekey/crier))
-		is_locked = !is_locked
-		listening = FALSE
-		playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
-		say(is_locked ? "Streetpipe has been locked." : "Streetpipe has been unlocked.")
-		return
-
-	// Handle coin payment
-	if(istype(P, /obj/item/roguecoin))
-		var/obj/item/roguecoin/C = P
-		if(is_locked)
-			say("Streetpipe is locked. Consult the crier.")
-			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-			return
-
-		if(listening)
-			say("Coin already loaded.")
-			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-			return
-
-		if(C.get_real_price() != 5)
-			to_chat(user, span_warning("Invalid payment! Insert coin worth 5 mammon."))
-			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-			return
-
-		listening = TRUE
-		qdel(C)
-
-		// Route payments to rousmaster
-		for(var/obj/structure/roguemachine/crier/Crier in world)
-			Crier.total_payments += 5
-			break // Safety. Prevents a runtime if more than 1 rousmaster exists.
-
-		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
-		return
-
-	..()
 
 /obj/structure/broadcast_horn/Initialize()
 	. = ..()

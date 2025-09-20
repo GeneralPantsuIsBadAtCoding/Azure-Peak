@@ -341,17 +341,12 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	if(QDELETED(recruit) || QDELETED(recruiter))
 		return FALSE
 	if(HAS_TRAIT(recruit, TRAIT_NOBLE))
-		if(!HAS_TRAIT(recruit,TRAIT_OUTLANDER))
-			recruiter.say("I HEREBY STRIP YOU, [uppertext(recruit.name)], OF NOBILITY!!")
-			REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
-			REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_VIRTUE)
-			return FALSE
-		else
-			to_chat(recruiter, span_warning("Their nobility is not mine to strip!"))
-			return FALSE
+		recruiter.say("I HEREBY STRIP YOU, [uppertext(recruit.name)], OF NOBILITY!!")
+		REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
+		REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_VIRTUE)
+		return FALSE
 	recruiter.say("I HEREBY GRANT YOU, [uppertext(recruit.name)], NOBILITY!")
 	ADD_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
-	REMOVE_TRAIT(recruit, TRAIT_OUTLANDER, ADVENTURER_TRAIT)
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/convertrole/servant
