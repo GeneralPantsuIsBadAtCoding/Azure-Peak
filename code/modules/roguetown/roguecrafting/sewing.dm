@@ -432,6 +432,20 @@
 				/obj/item/jingle_bells = 1)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/paddedsackmask
+	name = "padded sack mask"
+	result = list(/obj/item/clothing/mask/rogue/sack)
+	reqs = list(/obj/item/natural/cloth = 3,
+	            /obj/item/natural/fibers = 2)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/wornbamboohat
+	name = "worn bamboo hat"
+	result = list(/obj/item/clothing/head/roguetown/mentorhat)
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/sugarcane = 4,
+	            /obj/item/natural/fibers = 4)
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/sewing/bardress
 	name = "bar dress"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/dress)
