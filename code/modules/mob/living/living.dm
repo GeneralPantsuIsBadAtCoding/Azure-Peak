@@ -476,8 +476,6 @@
 				C.grippedby(src)
 			if(!supress_message)
 				send_pull_message(target)
-			if(C.cmode)
-				C.resist_grab(reflexive = TRUE)
 		else
 			var/obj/item/grabbing/O = new()
 			O.name = "[target.name]"
@@ -497,6 +495,8 @@
 
 		update_pull_movespeed()
 		set_pull_offsets(target, state)
+		if(target.stat == CONSCIOUS && target.cmode)
+			target.resist_grab(reflexive = TRUE)
 	else
 		if(!supress_message)
 			var/sound_to_play = 'sound/combat/shove.ogg'
