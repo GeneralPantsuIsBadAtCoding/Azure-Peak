@@ -162,8 +162,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 			else
 				referred_gender = "Androgynous"
 		known_people[H.real_name]["FGENDER"] = referred_gender
+		if(H.dna && H.dna.species)
+			known_people[H.real_name]["FSPECIES"] = H.dna.species.name
 		known_people[H.real_name]["FAGE"] = H.age
-		if (ishuman(current))
+		if(ishuman(current))
 			var/mob/living/carbon/human/C = current
 			var/heretic_text = H.get_heretic_symbol(C)
 			if (heretic_text)

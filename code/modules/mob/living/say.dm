@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	return new_msg
 
-/mob/living/say(message, bubble_type,list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/say(message, bubble_type,list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, message_mode = null)
 	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/talk_key = get_key(message)
@@ -105,7 +105,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 
 	var/datum/saymode/saymode = SSradio.saymodes[talk_key]
-	var/message_mode = get_message_mode(message)
+	if(!message_mode)
+		message_mode = get_message_mode(message)
 	var/original_message = message
 	var/in_critical = InCritical()
 
@@ -238,6 +239,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return 1
 
 	var/datum/language/D = GLOB.language_datum_instances[language]
+	var/postsigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY_POSTPROCESS, args)
+	if(postsigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
+	if(!message)
+		return
 	if(D.flags & SIGNLANG)
 		send_speech_sign(message, message_range, src, bubble_type, spans, language, message_mode, original_message)
 	else
@@ -360,7 +366,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
 			deaf_type = 1
 	else
-		deaf_message = span_notice("I can't hear yourself!")
+		deaf_message = span_notice("I can't hear myself!")
 		deaf_type = 2 // Since you should be able to hear myself without looking
 
 	// Create map text prior to modifying message for goonchat
@@ -417,6 +423,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 //	var/list/yellareas	//CIT CHANGE - adds the ability for yelling to penetrate walls and echo throughout areas
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
+		var/atom/movable/tocheck = M
+		if(isdullahan(M))
+			var/mob/living/carbon/human/target = M
+			var/datum/species/dullahan/target_species = target.dna.species
+			tocheck = target_species.headless ? target_species.my_head : M
 //		if(M.stat != DEAD) //not dead, not important
 //			if(yellareas)	//CIT CHANGE - see above. makes yelling penetrate walls
 //				var/area/A = get_area(M)	//CIT CHANGE - ditto
@@ -429,13 +440,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			continue
 		if(!M.client)
 			continue
-		if(get_dist(M, src) > message_range) //they're out of range of normal hearing
+		if(get_dist(tocheck, src) > message_range) //they're out of range of normal hearing
 			if(M.client.prefs)
 				if(eavesdropping_modes[message_mode] && !(M.client.prefs.chat_toggles & CHAT_GHOSTWHISPER)) //they're whispering and we have hearing whispers at any range off
 					continue
 				if(!(M.client.prefs.chat_toggles & CHAT_GHOSTEARS)) //they're talking normally and we have hearing at any range off
 					continue
-		if(!is_in_zweb(src.z,M.z))
+		if(!is_in_zweb(src.z,tocheck.z))
 			continue
 		listening |= M
 		the_dead[M] = TRUE
@@ -497,7 +508,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			var/name_to_highlight = H.nickname
 			if(name_to_highlight && name_to_highlight != "" && name_to_highlight != "Please Change Me")	//We don't need to highlight an unset or blank one.
 				highlighted_message = replacetext_char(message, name_to_highlight, "<b><font color = #[H.highlight_color]>[name_to_highlight]</font></b>")
-		if(eavesdrop_range && get_dist(source, AM) > message_range+keenears && !(the_dead[AM]))
+		var/atom/movable/tocheck = AM
+		if(isdullahan(AM))
+			var/mob/living/carbon/human/target = AM
+			var/datum/species/dullahan/target_species = target.dna.species
+			tocheck = target_species.headless ? target_species.my_head : AM
+		if(eavesdrop_range && get_dist(source, tocheck) > message_range+keenears && !(the_dead[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode, original_message)
 		else if(highlighted_message)
 			AM.Hear(rendered, src, message_language, highlighted_message, , spans, message_mode, original_message)
