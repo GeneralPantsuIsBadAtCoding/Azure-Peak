@@ -1247,6 +1247,9 @@
 	color = null
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/cloak/half/shadowcloak/elflock
+	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
+
 /obj/item/clothing/cloak/thief_cloak
 	name = "rapscallion's shawl"
 	desc = "A simple shawl clapsed with an ersatz fastener. Practical and functional, though the fabric is rough and wearing bare."
