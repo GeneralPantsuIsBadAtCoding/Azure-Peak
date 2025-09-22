@@ -91,3 +91,4 @@
 #define MOVESPEED_ID_CUFFED_LEG_SLOWDOWN 				"CUFFED_LEGS"
 
 #define MOVESPEED_ID_CELERITY                           "CELERITY_BUFF"
+#define MOVESPEED_ID_FOTV                               "FOTV_BUFF"

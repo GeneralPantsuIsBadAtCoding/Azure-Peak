@@ -49,25 +49,28 @@
 	update_body_parts(TRUE)
 
 /datum/coven_power/demonic/fear_of_the_void_below
-	name = "Fear of the Void Below"
-	desc = "Sprout wings and become able to fly."
+	name = "Fear of the Void"
+	desc = "Short burst of speed and resilience."
 
 	level = 2
+	research_cost = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 30 SECONDS
-	cooldown_length = 20 SECONDS
+	duration_length = 15 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/demonic/fear_of_the_void_below/activate()
 	. = ..()
-	owner.give_demon_flight()
+	owner.add_movespeed_modifier(MOVESPEED_ID_FOTV, multiplicative_slowdown = -0.2)
+	owner.apply_status_effect(/datum/status_effect/buff/fotv)
 
 /datum/coven_power/demonic/fear_of_the_void_below/deactivate()
 	. = ..()
-	owner.remove_demon_flight()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_FOTV)
+	owner.remove_status_effect(/datum/status_effect/buff/fotv)
 
 //CONFLAGRATION
 /datum/coven_power/demonic/conflagration

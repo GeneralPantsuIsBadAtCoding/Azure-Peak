@@ -1327,3 +1327,9 @@
 /datum/status_effect/buff/celerity/New(list/arguments)
 	effectedstats[STATKEY_SPD] = arguments[2]
 	. = ..()
+
+/datum/status_effect/buff/fotv
+	id = "fotv"
+	alert_type = /atom/movable/screen/alert/status_effect/buff
+	effectedstats = list(STATKEY_SPD = 3, STATKEY_WIL = 1, STATKEY_CON = 1)
+	status_type = STATUS_EFFECT_REPLACE

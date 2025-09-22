@@ -42,7 +42,7 @@
 	desc = "Summon a mischievous goblin to latch onto your enemies' faces."
 
 	research_cost = 2
-	level = 1
+	level = 2
 	vitae_cost = 100
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_MOB
