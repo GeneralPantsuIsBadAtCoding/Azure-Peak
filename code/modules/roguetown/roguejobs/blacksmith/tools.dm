@@ -187,6 +187,7 @@
 	desc = "A wooden mallet is an artificers second best friend! But it may also come in handy to a smith..."
 	icon_state = "hammer_w"
 	force = 16
+	metalizer_result = /obj/item/rogueweapon/hammer
 
 /obj/item/rogueweapon/hammer/stone	// stone hammer
 	name = "stone hammer"

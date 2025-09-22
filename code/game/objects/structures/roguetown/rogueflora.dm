@@ -19,6 +19,8 @@
 	static_debris = list(/obj/item/grown/log/tree = 1)
 	alpha = 200
 	var/stump_type = /obj/structure/flora/roguetree/stump
+	metalizer_result = /obj/machinery/light/rogue/lanternpost
+	smeltresult = /obj/item/rogueore/coal
 
 /obj/structure/flora/roguetree/attack_right(mob/user)
 	if(user.mind && isliving(user))
@@ -168,6 +170,7 @@
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	stump_type = null
 	pixel_x = -32
+	metalizer_result = /obj/machinery/anvil
 
 /obj/structure/flora/roguetree/stump/burnt/Initialize()
 	. = ..()
@@ -214,10 +217,40 @@
 	pixel_x = -16
 	climb_offset = 14
 	stump_type = FALSE
+	metalizer_result = /obj/machinery/anvil
+	var/lumber_amount = 1
+	var/lumber = /obj/item/grown/log/tree/small
 
 /obj/structure/flora/roguetree/stump/Initialize()
 	. = ..()
 	icon_state = "t[rand(1,4)]stump"
+
+/obj/structure/flora/roguetree/stump/attackby(obj/item/I, mob/living/user)
+	if(user.used_intent.blade_class == BCLASS_CHOP && lumber_amount)
+		var/skill_level = user.get_skill_level(/datum/skill/labor/lumberjacking)
+		var/lumber_time = (120 - (skill_level * 15))
+		playsound(src, 'sound/misc/woodhit.ogg', 100, TRUE)
+		if(!do_after(user, lumber_time, target = user))
+			return
+		lumber_amount = rand(lumber_amount, max(lumber_amount, round(skill_level / 2)))
+		var/essense_sound_played = FALSE //This is here so the sound wont play multiple times if the essense itself spawns multiple times
+		for(var/i = 0; i < lumber_amount; i++)
+			if(prob(skill_level + user.goodluck(2)))
+				new /obj/item/grown/log/tree/small/essence(get_turf(src))
+				if(!essense_sound_played)
+					essense_sound_played = TRUE
+					to_chat(user, span_warning("Dendor watches over us..."))
+					playsound(src,pick('sound/items/gem.ogg'), 100, FALSE)
+			else
+				new lumber(get_turf(src))
+		if(!skill_level)
+			to_chat(user, span_info("I could have gotten more timber were I more skilled..."))
+		user.mind.add_sleep_experience(/datum/skill/labor/lumberjacking, (user.STAINT*0.5))
+		playsound(src, destroy_sound, 100, TRUE)
+		qdel(src)
+		return TRUE
+	else
+		..()
 
 /obj/structure/flora/roguetree/stump/log
 	name = "ancient log"
@@ -623,7 +656,7 @@
 
 /obj/structure/flora/roguegrass/pyroclasticflowers/update_icon()
 	icon_state = "pyroflower[rand(1,3)]"
-	
+
 /obj/structure/flora/roguegrass/pyroclasticflowers/Initialize()
 	. = ..()
 	if(prob(88))

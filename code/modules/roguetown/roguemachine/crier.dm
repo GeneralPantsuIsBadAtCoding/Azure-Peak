@@ -13,7 +13,7 @@
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	var/current_tab = TAB_ROUSMAIN
-	var/locked = FALSE
+	locked = FALSE
 	var/keycontrol = "crier"
 	var/total_payments = 0 // Central storage of all broadcaster payments.
 
@@ -89,7 +89,7 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_SCOMLOG]'>\[Broadcast Log\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_MANAGESCOMS]'>\[Manage Broadcasters\]</a><BR>"
 			contents += "</center>"
-	
+
 		if(TAB_SCOMLOG)
 			contents += "<center><b>BROADCAST LOG</b></center><hr>"
 			if(!length(GLOB.broadcast_list))

@@ -14,9 +14,9 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = GAME_PLANE_UPPER
 	var/latched = FALSE
-	var/locked = FALSE
+	locked = FALSE
 	var/base_icon = "pillory_single"
-	var/list/lockid = list()
+	lockid = list()
 
 /obj/structure/pillory/double
 	icon_state = "pillory_double"

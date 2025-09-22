@@ -294,6 +294,7 @@
 	buckle_lying = 90
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 1)
+	metalizer_result = /obj/machinery/anvil/crafted
 
 /obj/structure/bed/rogue/OnCrafted(dirin)
 	dirin = turn(dirin, 180)
@@ -310,6 +311,7 @@
 	desc = "A rough bed of straw. It's scratchy, and probably hides lots of bugs, but at least it's dry and warm."
 	icon_state = "shitbed"
 	sleepy = 1
+	metalizer_result = null
 
 /obj/structure/bed/rogue/post_buckle_mob(mob/living/M)
 	..()
@@ -326,6 +328,7 @@
 	attacked_sound = 'sound/foley/cloth_rip.ogg'
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	sleepy = 2
+	metalizer_result = null
 
 /obj/structure/bed/rogue/bedroll/attack_hand(mob/user, params)
 	..()

@@ -149,6 +149,7 @@
 	light_height = 0
 	grid_width = 32
 	grid_height = 32
+	metalizer_result = /obj/item/flashlight/flare/torch/lantern
 
 /obj/item/flashlight/flare/torch/getonmobprop(tag)
 	. = ..()
@@ -277,6 +278,7 @@
 	fuel = 120 MINUTES
 	should_self_destruct = TRUE
 	extinguishable = TRUE
+	metalizer_result = null
 
 /obj/item/flashlight/flare/torch/metal/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
@@ -311,6 +313,8 @@
 	grid_height = 64
 	extinguishable = FALSE
 	weather_resistant = TRUE
+	metalizer_result = null
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/flashlight/flare/torch/lantern/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()
@@ -350,6 +354,7 @@
 	light_outer_range = 6
 	light_color ="#4ac77e"
 	on = FALSE
+	smeltresult = /obj/item/ingot/bronze
 
 /obj/item/flashlight/flare/torch/lantern/bronzelamptern/malums_lamptern //unqiue item as a dungeon reward. Functionally a kite shield and a bronze lamptern combined into one
 	name = "ancient lamptern"

@@ -15,34 +15,9 @@
 
 	var/arbitrary_living_creature_weight = 10 // The arbitrary weight for any thing of a mob and living variety
 	var/upgrade_level = 0 // This is the carts upgrade level, capacity increases with upgrade level
-	var/obj/item/cart_upgrade/upgrade = null
+	var/obj/item/roguegear/wood/upgrade = null
 	facepull = FALSE
 	throw_range = 1
-
-/obj/item/cart_upgrade
-	name = "Example upgrade cog"
-	desc = "Example upgrade."
-	icon_state = "upgrade"
-	icon = 'icons/roguetown/misc/structure.dmi'
-	var/ulevel = 0
-	grid_width = 64
-	grid_height = 32
-
-/obj/item/cart_upgrade/level_1
-	name = "woodcutters wheelbrace"
-	desc = "A wheelbrace, skillfully cut by a woodworker that can increase the carry capacity of a wooden cart."
-	icon_state = "upgrade"
-	ulevel = 1
-	//filters = filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(26, 13, 150, 150))
-	//Commented out the filter effect until I or somebody else can properly fix it I guess
-
-/obj/item/cart_upgrade/level_2
-	name = "reinforced woodcutters wheelbrace"
-	desc = "A wheelbrace, expertly crafted by a woodworker that can further increase the carry capacity of a wooden cart. The first upgrade is required for this one to function."
-	icon_state = "upgrade2"
-	ulevel = 2
-	//filters = filter(type="drop_shadow", x=0, y=0, size=0.5, offset=1, color=rgb(32, 196, 218, 200))
-	//Commented out the filter effect until I or somebody else can properly fix it I guess
 
 /obj/structure/handcart/examine(mob/user)
 	. = ..()
@@ -115,28 +90,43 @@
 		return TRUE
 
 /obj/structure/handcart/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/cart_upgrade))
-		var/obj/item/cart_upgrade/item = I
-		if(item.ulevel == 1)
+	if(istype(I, /obj/item/roguegear/wood))
+		var/obj/item/roguegear/wood/cog = I
+		if(cog.ulevel == 0)
+			upgrade = I
+			upgrade_level = cog.ulevel
+			maximum_capacity = cog.cart_capacity
+			qdel(cog)
+			playsound(src, pick('sound/combat/hits/onwood/fence_hit1.ogg', 'sound/combat/hits/onwood/fence_hit2.ogg', 'sound/combat/hits/onwood/fence_hit3.ogg'), 100, FALSE)
+			shake_camera(user, 1, 1)
+			to_chat(user, span_warning("[cog.name] inserted!"))
+			return
+		if(cog.ulevel == 1)
 			if(upgrade_level != 0)
-				to_chat(user, "<span class='warning'>This wheelbrace is obsolete.</span>")
+				to_chat(user, span_warning("This [I] is obsolete."))
 				return
 			else
-				upgrade = item
-				upgrade_level = item.ulevel
-				qdel(item)
-				manage_upgrade()
-				playsound(loc, 'sound/foley/cartadd.ogg', 100, FALSE, -1)
-		if(item.ulevel == 2)
-			if(upgrade_level != 1)
-				to_chat(user, "<span class='warning'>The cart needs a normal wheelbrace before this one can be used!</span>")
+				upgrade = I
+				upgrade_level = cog.ulevel
+				maximum_capacity = cog.cart_capacity
+				qdel(cog)
+				playsound(src, pick('sound/combat/hits/onwood/fence_hit1.ogg', 'sound/combat/hits/onwood/fence_hit2.ogg', 'sound/combat/hits/onwood/fence_hit3.ogg'), 100, FALSE)
+				shake_camera(user, 1, 1)
+				to_chat(user, span_warning("[cog.name] inserted!"))
+				return
+		if(cog.ulevel == 2)
+			if(upgrade_level == 2)
+				to_chat(user, span_warning("This [I] is obsolete."))
 				return
 			else
-				upgrade = item
-				upgrade_level = item.ulevel
-				qdel(item)
-				manage_upgrade()
-				playsound(loc, 'sound/foley/cartadd.ogg', 100, FALSE, -1)
+				upgrade = I
+				upgrade_level = cog.ulevel
+				maximum_capacity = cog.cart_capacity
+				qdel(cog)
+				playsound(src, pick('sound/combat/hits/onwood/fence_hit1.ogg', 'sound/combat/hits/onwood/fence_hit2.ogg', 'sound/combat/hits/onwood/fence_hit3.ogg'), 100, FALSE)
+				shake_camera(user, 1, 1)
+				to_chat(user, span_warning("[cog.name] inserted!"))
+				return
 	if(!user.cmode)
 		if(!insertion_allowed(I))
 			return
