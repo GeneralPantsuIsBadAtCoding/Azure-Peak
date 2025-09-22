@@ -54,7 +54,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,				/* Almost entirely non-functional after Azure Peak Debloatening. Final few are redundant, but keeping just in case */
 	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
@@ -102,7 +101,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
-	/client/proc/deadchat,
 	/client/proc/toggleprayers,
 	/client/proc/toggle_prayer_sound,
 	/client/proc/colorasay,

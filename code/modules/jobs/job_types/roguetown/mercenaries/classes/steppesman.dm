@@ -44,7 +44,7 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/classes = list("Szabrista - Saber Veteran", "Árkász - Elite Sapper", "Druzhina - Light Archer","Kozak - Light Infantry")
-		var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
+		var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes
 
 		switch(classchoice)
 			if("Szabrista - Saber Veteran")	//Tl;dr - medium armor class for Mount and Blade larpers who still get a saiga. Akin to Vaquero with specific drip.

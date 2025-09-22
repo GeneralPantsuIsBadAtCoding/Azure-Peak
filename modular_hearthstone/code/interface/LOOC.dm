@@ -42,7 +42,7 @@
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
 	
-	if(isobserver(mob))
+	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
 		return
 

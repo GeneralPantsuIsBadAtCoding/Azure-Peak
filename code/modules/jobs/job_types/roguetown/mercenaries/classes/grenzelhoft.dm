@@ -40,7 +40,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 	if(H.mind)
 		var/weapons = list("Zweihander", "Kriegmesser & Buckler")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Zweihander")
 				r_hand = /obj/item/rogueweapon/greatsword/grenz
@@ -102,7 +102,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 	if(H.mind)
 		var/weapons = list("Halberd", "Partizan")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Halberd")
 				r_hand = /obj/item/rogueweapon/halberd
@@ -168,7 +168,7 @@
 	r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	if(H.mind)
 		var/armor_options = list("Light Brigandine", "Studded Leather Vest")
-		var/armor_choice = input("Choose your armor.", "DRESS UP") as anything in armor_options
+		var/armor_choice = input(H, "Choose your armor.", "DRESS UP") as anything in armor_options
 		switch(armor_choice)
 			if("Light Brigandine")
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light	// find a smithy to fix it

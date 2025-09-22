@@ -7,6 +7,13 @@
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/allow_dreamwalkers = FALSE
+
+/obj/structure/ritualcircle/attack_hand(mob/living/user)
+	if(!allow_dreamwalkers && HAS_TRAIT(user, TRAIT_DREAMWALKER))
+		to_chat(user, span_danger("Only the rune of stirring calls to me now..."))
+		return FALSE
+	return TRUE
 
 /obj/structure/ritualcircle/attack_right(mob/living/carbon/human/user)
 	user.visible_message(span_warning("[user] begins wiping away the rune"))
@@ -21,7 +28,9 @@
 	desc = "A Holy Rune of Astrata. Warmth irradiates from the rune." // description on examine
 	var/solarrites = list("Guiding Light") // This is important - This is the var which stores every ritual option available to a ritualist - Ideally, we'd have like, 3 for each God. Right now, just 1.
 
-/obj/structure/ritualcircle/astrata/attack_hand(mob/living/user) 
+/obj/structure/ritualcircle/astrata/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/astrata)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -35,7 +44,7 @@
 	switch(riteselection) // rite selection goes in this section, try to do something fluffy. Presentation is most important here, truthfully.
 		if("Guiding Light") // User selects Guiding Light, begins the stuff for it
 			if(do_after(user, 50)) // just flavor stuff before activation
-				user.say("I beseech the she-form of the Twinned God!!")
+				user.say("I beseech the guidance of the Sun!!")
 				if(do_after(user, 50))
 					user.say("To bring Order to a world of naught!!")
 					if(do_after(user, 50))
@@ -70,6 +79,8 @@
 	var/lunarrites = list("Moonlight Dance") // list for more to be added later
 
 /obj/structure/ritualcircle/noc/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/noc)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -83,7 +94,7 @@
 	switch(riteselection) // put ur rite selection here
 		if("Moonlight Dance")
 			if(do_after(user, 50))
-				user.say("I beseech the he-form of the Twinned God!!")
+				user.say("I beseech the guidance of the Moon!!")
 				if(do_after(user, 50))
 					user.say("To bring Wisdom to a world of naught!!")
 					if(do_after(user, 50))
@@ -116,6 +127,8 @@
 
 
 /obj/structure/ritualcircle/pestra/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/pestra)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -164,6 +177,8 @@
 	var/bestialrites = list("Rite of the Lesser Wolf")
 
 /obj/structure/ritualcircle/dendor/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/dendor)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -207,6 +222,8 @@
 var/forgerites = list("Ritual of Blessed Reforgance")
 
 /obj/structure/ritualcircle/malum/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/malum)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -262,11 +279,14 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	name = "Rune of Stirring"
 	desc = "A Holy Rune of Abyssor. This one seems different to the rest. Something observes."
 	icon_state = "abyssoralt_chalky"
+	allow_dreamwalkers = TRUE
 	var/stirringrites = list("Rite of the Crystal Spire")
 	var/list/dreamwalker_rites = list("Rite of Dreamcraft")
 
 // Ritual implementation
 /obj/structure/ritualcircle/abyssor_alt_inactive/attack_hand(mob/living/user)
+	if(!..())
+		return
 	// Allow both Abyssorites and Dreamwalkers to use the rune
 	if((user.patron?.type) != /datum/patron/divine/abyssor && !HAS_TRAIT(user, TRAIT_DREAMWALKER))
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
@@ -402,6 +422,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			to_chat(target, span_purple("Reality is but a fragile dream. You are the dreamer, and your will is law."))
 
 /obj/structure/ritualcircle/abyssor/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/abyssor)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -824,6 +846,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			qdel(I)
 
 /obj/structure/ritualcircle/necra/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/divine/necra)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -1055,6 +1079,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/zizorites = list("Rite of Armaments")
 
 /obj/structure/ritualcircle/zizo/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/inhumen/zizo)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -1135,6 +1161,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 
 
 /obj/structure/ritualcircle/matthios/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/inhumen/matthios)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -1291,6 +1319,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/graggarrites = list("Rite of Armaments", "War Ritual")
 
 /obj/structure/ritualcircle/graggar/attack_hand(mob/living/user)
+	if(!..())
+		return
 	if((user.patron?.type) != /datum/patron/inhumen/graggar)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return

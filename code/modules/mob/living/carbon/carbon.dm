@@ -108,7 +108,7 @@
 	// Special case for scissors with snip intent targeting the head or skull
 	if(istype(I, /obj/item/rogueweapon/huntingknife/scissors) && user.used_intent.type == /datum/intent/snip && (user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_SKULL))
 		return I.attack(src, user)
-		
+
 	if(!user.cmode)
 		var/try_to_fail = !istype(user.rmb_intent, /datum/rmb_intent/weak)
 		var/list/possible_steps = list()
@@ -776,7 +776,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_NOCSHADES))
 		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_NOCSHADES)
-		see_in_dark = max(see_in_dark, 12)	
+		see_in_dark = max(see_in_dark, 12)
 		add_client_colour(/datum/client_colour/nocshaded)
 		overlay_fullscreen("inqvision", /atom/movable/screen/fullscreen/inqvision)
 	else
@@ -1025,6 +1025,9 @@
 			return
 		if(((blood_volume in -INFINITY to BLOOD_VOLUME_SURVIVE) && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) || IsUnconscious() || IsSleeping() || getOxyLoss() > 75 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
 			stat = UNCONSCIOUS
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.dna?.species?.stop_wagging_tail(H)
 			become_blind(UNCONSCIOUS_BLIND)
 			if(CONFIG_GET(flag/near_death_experience) && health <= HEALTH_THRESHOLD_NEARDEATH && !HAS_TRAIT(src, TRAIT_NODEATH))
 				ADD_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")

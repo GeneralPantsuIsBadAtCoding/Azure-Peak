@@ -32,6 +32,7 @@
 		return
 
 	var/area/A = get_area(src)
+	dna?.species?.stop_wagging_tail(src)
 
 	if(client)
 		SSdroning.kill_droning(client)
@@ -84,7 +85,7 @@
 			if(!is_in_roguetown(src) || has_world_trait(/datum/world_trait/zizo_defilement))
 				if(!zombie_check_can_convert()) //Gives the dead unit the zombie antag flag
 					to_chat(src, span_userdanger("..is this to be my end..?"))
-					to_chat(src, span_danger("The cold consumes the final flicker of warmth in your chest and begins to seep into your limbs...")) 
+					to_chat(src, span_danger("The cold consumes the final flicker of warmth in your chest and begins to seep into your limbs..."))
 
 	stop_sound_channel(CHANNEL_HEARTBEAT)
 	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)

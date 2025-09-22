@@ -44,6 +44,9 @@
 	/// Spellpoints. If More than 0, Gives Prestidigitation & the Learning Spell.
 	var/subclass_spellpoints = 0
 
+	/// List of items to put in an item stash
+	var/list/subclass_stashed_items = list()
+
 	/// Extra fluff added to the role explanation in class selection.
 	var/extra_context
 
@@ -89,6 +92,11 @@
 		for(var/skill in subclass_skills)
 			H.adjust_skillrank_up_to(skill, subclass_skills[skill], TRUE)
 
+	if(length(subclass_stashed_items))
+		if(!H.mind)
+			return
+		for(var/stashed_item in subclass_stashed_items)
+			H.mind?.special_items[stashed_item] = subclass_stashed_items[stashed_item]
 	if(subclass_spellpoints > 0)
 		H.mind?.adjust_spellpoints(subclass_spellpoints)
 

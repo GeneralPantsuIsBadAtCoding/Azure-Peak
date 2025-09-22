@@ -663,7 +663,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "<br>"
-				dat += "<b>Hide Dead Chat:</b> <a href = '?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DEAD)?"Shown":"Hidden"]</a><br>"
+				dat += "<b>Hide Dead Chat:</b> <a href = '?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DSAY)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Radio Messages:</b> <a href = '?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Prayers:</b> <a href = '?_src_=prefs;preference=toggle_prayers'>[(chat_toggles & CHAT_PRAYER)?"Shown":"Hidden"]</a><br>"
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
@@ -2279,8 +2279,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					user.client.toggleannouncelogin()
 				if("combohud_lighting")
 					toggles ^= COMBOHUD_LIGHTING
-				if("toggle_dead_chat")
-					user.client.deadchat()
 				if("toggle_radio_chatter")
 					user.client.toggle_hear_radio()
 				if("toggle_prayers")
@@ -2529,8 +2527,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	if(charflaw)
 		character.charflaw = new charflaw.type()
-		if(dnr_pref)
-			character.charflaw = new /datum/charflaw/dnr
 		character.charflaw.on_mob_creation(character)
 
 	character.dna.real_name = character.real_name

@@ -34,7 +34,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Longsword","Mace","Billhook","Battle Axe","Short Sword & Iron Shield","Iron Saber & Wood Shield")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
@@ -63,7 +63,7 @@
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				backr = /obj/item/rogueweapon/shield/wood
 		var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet","Light Raneshi Armor")
-		var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		switch(armor_choice)
 			if("Chainmaille Set")
 				armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
@@ -133,7 +133,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Rapier","Dagger")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Rapier")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
@@ -194,7 +194,7 @@
 	to_chat(H, span_warning("You specialize in hunting down monsters and the undead, carrying two blades - one of silver, one of steel."))
 	if(H.mind)
 		var/steel = list("Parrying Dagger","Sword","Dagger")
-		var/steel_choice = input("Choose your steel.", "PURGE THE LIVING") as anything in steel
+		var/steel_choice = input(H, "Choose your steel.", "PURGE THE LIVING") as anything in steel
 		switch(steel_choice)
 			if ("Parrying Dagger")
 				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
@@ -206,7 +206,7 @@
 				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 				beltr = /obj/item/rogueweapon/scabbard/sheath
 		var/silver = list("Silver Sword","Silver Dagger")
-		var/silver_choice = input("Choose your silver.", "PURGE THE CURSED") as anything in silver
+		var/silver_choice = input(H, "Choose your silver.", "PURGE THE CURSED") as anything in silver
 		switch(silver_choice)
 			if("Silver Sword")
 				r_hand = /obj/item/rogueweapon/sword/silver
@@ -272,7 +272,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Katar","Axe","Sword","Club","Spear","MY BARE HANDS!!!")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if ("Katar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_EXPERT, TRUE)
@@ -354,7 +354,7 @@
 			"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/iron,
 			"None"
 			)
-		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
@@ -362,7 +362,7 @@
 			"Breastplate + Hauberk",
 			"Half-Plate + Light Gambeson"
 			)
-		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		switch(armorchoice)
 			if("Breastplate + Hauberk")
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
@@ -375,7 +375,7 @@
 			"Chain Chausses"	= /obj/item/clothing/under/roguetown/chainlegs/iron,
 			"Chain Kilt"		= /obj/item/clothing/under/roguetown/chainlegs/iron/kilt
 			)
-		var/legschoice = input("Choose your Pants.", "TAKE UP PANTS") as anything in legs
+		var/legschoice = input(H, "Choose your Pants.", "TAKE UP PANTS") as anything in legs
 		pants = legs[legschoice]
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	neck = /obj/item/clothing/neck/roguetown/bevor/iron
@@ -392,7 +392,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Executioner's Sword","Warhammer + Shield","Flail + Shield","Lucerne","Greataxe")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Executioner's Sword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)

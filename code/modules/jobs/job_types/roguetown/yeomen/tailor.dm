@@ -22,14 +22,6 @@
 		/datum/advclass/tailor
 	)
 
-/datum/job/roguetown/tailor/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/tailor
 	name = "Tailor"
 	tutorial = "You have worked sleepless nights on honing your craft. From sacks, to tapestry and luxurious clothing, there is little you cannot sew into existence. Use your storefront to turn even the ugliest peasant into a proper gentleman; who knows, even the nobility may pay you a visit."

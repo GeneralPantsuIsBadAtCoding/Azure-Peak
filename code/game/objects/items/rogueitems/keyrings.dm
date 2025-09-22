@@ -309,3 +309,6 @@
 
 /obj/item/storage/keyring/tailor
 	keys = list(/obj/item/roguekey/crafterguild, /obj/item/roguekey/tailor)
+
+/obj/item/storage/keyring/vampire
+	keys = list(/obj/item/roguekey/vampire, /obj/item/roguekey/vampire/guest, /obj/item/roguekey/vampire/maid)

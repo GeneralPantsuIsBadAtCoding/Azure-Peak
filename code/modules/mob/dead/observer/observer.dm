@@ -78,15 +78,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	icon_state = "hollow"
 	alpha = 150
 
-/mob/dead/observer/rogue/Move(n, direct)
-	if(world.time < next_gmove)
-		return
-	next_gmove = world.time + 2
-
-	setDir(direct)
-
-	. = ..()
-
 /mob/dead/observer/screye
 //	see_invisible = SEE_INVISIBLE_LIVING
 	sight = 0

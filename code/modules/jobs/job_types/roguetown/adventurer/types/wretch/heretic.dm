@@ -38,7 +38,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Longsword", "Mace", "Flail", "Axe")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
@@ -220,7 +220,7 @@
 	H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 	if(H.mind)
 		var/weapons = list("Rapier","Dagger", "Bow", "Crossbow")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Rapier")

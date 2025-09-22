@@ -58,7 +58,6 @@
 	if(victim.electrocute_act(30, src))
 		victim.emote("painscream")
 		victim.update_sneak_invis(TRUE)
-		victim.consider_ambush(always = TRUE)
 		if(victim.throwing)
 			victim.throwing.finalize(FALSE)
 		return TRUE

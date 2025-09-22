@@ -24,14 +24,6 @@
 		/datum/advclass/towncrier
 	)
 
-/datum/job/roguetown/crier/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/towncrier
 	name = "Town Crier"
 	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. \

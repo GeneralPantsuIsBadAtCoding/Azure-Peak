@@ -65,10 +65,6 @@
 					MF.known_people -= prev_real_name
 					H.mind.person_knows_me(MF)
 
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/captain/infantry
 	name = "Knight Captain"
 	tutorial = "You've fought shoulder to shoulder with the realm's worthiest Knights while embedded directly within \
@@ -137,7 +133,7 @@
 			"Sabre",
 			"Lance",
 			)
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Zweihander")
@@ -178,7 +174,7 @@
 				"Crossbow",
 				"Recurve Bow",
 			)
-			var/secondary_choice = input("Choose your secondary.", "TAKE UP ARMS") as anything in secondary
+			var/secondary_choice = input(H, "Choose your secondary.", "TAKE UP ARMS") as anything in secondary
 			switch(secondary_choice)
 				if("Kite Shield")
 					backl = /obj/item/rogueweapon/shield/tower/metal
@@ -197,7 +193,7 @@
 			"Steel Cuirass",
 			"Captain's armor"
 		)
-		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		switch(armorchoice)
 			if("Brigandine")
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine
@@ -233,7 +229,7 @@
 			"Slitted Kettle"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
 			"None"
 		)
-		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 

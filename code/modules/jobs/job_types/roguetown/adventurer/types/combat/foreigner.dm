@@ -42,7 +42,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Naginata","Quarterstaff","Hwando")
-		var/weapon_choice = input("Choose your weapon", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Naginata")
 				r_hand = /obj/item/rogueweapon/spear/naginata
@@ -105,7 +105,7 @@
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Tanto","Kodachi")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Tanto")
 				beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
@@ -116,7 +116,7 @@
 				beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/kodachi
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 		var/masks = list("Oni","Kitsune")
-		var/mask_choice = input("Choose your mask.", "HIDE YOURSELF") as anything in masks
+		var/mask_choice = input(H, "Choose your mask.", "HIDE YOURSELF") as anything in masks
 		switch(mask_choice)
 			if("Oni")
 				mask = /obj/item/clothing/mask/rogue/facemask/yoruku_oni

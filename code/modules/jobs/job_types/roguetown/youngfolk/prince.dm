@@ -30,14 +30,6 @@
 		/datum/advclass/heir/scamp
 	)
 
-/datum/job/roguetown/prince/after_spawn(mob/living/H, mob/M, latejoin)
-	. = ..()
-	if(ishuman(H))
-		var/mob/living/carbon/human/Q = H
-		Q.advsetup = 1
-		Q.invisibility = INVISIBILITY_MAXIMUM
-		Q.become_blind("advsetup")
-
 /datum/outfit/job/roguetown/heir/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.verbs |= /mob/living/carbon/human/proc/declarechampion
