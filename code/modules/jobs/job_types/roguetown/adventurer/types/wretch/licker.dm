@@ -9,6 +9,7 @@
 		TRAIT_STEELHEARTED,
 		TRAIT_SILVER_WEAK,
 	)
+	maximum_possible_slots = 2
 
 /datum/outfit/job/roguetown/wretch/licker/pre_equip(mob/living/carbon/human/H)
 	..()
