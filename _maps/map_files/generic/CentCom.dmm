@@ -729,25 +729,10 @@
 /obj/structure/flora/roguetree/burnt,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
-"bF" = (
-/obj/structure/fluff/walldeco/rpainting/crown,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"bH" = (
-/obj/structure/fluff/walldeco/rpainting/forest,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "bM" = (
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"bN" = (
-/obj/effect/decal/cleanable/dirt/cobweb,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"bO" = (
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
 "bX" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue)
@@ -762,9 +747,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
-"cL" = (
-/turf/closed/mineral/random/rogue/high,
-/area/rogue/outdoors/woods)
 "cR" = (
 /obj/structure/closet/crate/chest,
 /obj/item/paper,
@@ -773,13 +755,6 @@
 /obj/item/natural/feather,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"cZ" = (
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"da" = (
-/obj/structure/bars,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "dl" = (
 /obj/structure/toilet,
 /obj/machinery/light/rogue/wallfire/candle/r,
@@ -794,13 +769,10 @@
 /obj/item/rogueweapon/sword/sabre,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"dp" = (
-/turf/open/floor/rogue/dirt,
-/area/rogue/indoors)
 "dq" = (
 /obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
+/area/rogue/under/cave/inhumen)
 "dv" = (
 /obj/structure/fluff/traveltile/bandit{
 	aportalgoesto = "banditexit";
@@ -808,10 +780,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
-"dx" = (
-/obj/structure/fluff/walldeco/chains,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "dF" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/cleanshallow,
@@ -820,18 +788,6 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
-"dT" = (
-/obj/structure/bed/rogue/inn/hay,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"dU" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"dX" = (
-/obj/structure/bed/rogue/shit,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "dZ" = (
 /obj/effect/proc_holder/spell/invoked/heal,
 /turf/open/floor/rogue/dirt/road,
@@ -846,10 +802,6 @@
 /obj/structure/bars,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"ej" = (
-/obj/structure/fermentation_keg/random/water,
-/turf/closed,
-/area/rogue)
 "ek" = (
 /obj/structure/fluff/railing/border{
 	dir = 4;
@@ -863,55 +815,16 @@
 "es" = (
 /turf/open/floor/rogue/shroud,
 /area/rogue/indoors/eventarea)
-"ev" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"ew" = (
-/obj/structure/roguemachine/scomm,
-/turf/closed,
-/area/rogue)
 "ey" = (
 /obj/structure/mineral_door/wood/donjon/stone{
 	name = "Forgotten Chapel"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"ez" = (
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue)
-"eB" = (
-/obj/structure/gate/bars/preopen{
-	redstone_id = "vamplordmanor"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors)
-"eF" = (
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue)
-"eG" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "eN" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/wallfire/candle/l,
 /obj/effect/decal/cleanable/dirt/cobweb,
-/turf/open/floor/rogue/blocks/paving,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "eO" = (
 /obj/structure/table/wood{
@@ -921,17 +834,6 @@
 /obj/item/reagent_containers/glass/cup/skull,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"eQ" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue/indoors)
 "eS" = (
 /obj/structure/flora/roguetree,
 /turf/open/floor/rogue/dirt,
@@ -940,7 +842,7 @@
 /obj/machinery/light/rogue/wallfire/candle{
 	pixel_y = -32
 	},
-/turf/open/floor/rogue/metal/barograte,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "eW" = (
 /obj/structure/table/wood{
@@ -951,31 +853,10 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"fa" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
 "fd" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"fh" = (
-/obj/structure/fluff/walldeco/chains,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors)
 "fi" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -986,54 +867,21 @@
 /obj/item/rogueweapon/eaglebeak,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"fo" = (
-/obj/structure/vampire/bloodpool{
-	pixel_x = -18
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "fu" = (
 /turf/open/floor/rogue/blocks/bluestone,
 /area/rogue/indoors/eventarea)
 "fw" = (
-/obj/structure/table/vtable,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/natural/feather,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/wallfire/candle/r,
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
 /obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/rogue/blocks/paving,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "fB" = (
-/obj/structure/flora/roguegrass,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/flora/rogueshroom,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/inhumen)
-"fE" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"fF" = (
-/obj/item/natural/rock,
-/turf/closed,
-/area/rogue)
 "fH" = (
 /obj/machinery/light/rogue/firebowl{
 	light_color = "#b30202"
@@ -1054,33 +902,9 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"fZ" = (
-/obj/structure/fermentation_keg/beer,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/stairs/stone/d{
-	dir = 4
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
 "ga" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "gc" = (
 /obj/structure/roguemachine/mail/r{
@@ -1089,15 +913,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"gd" = (
-/obj/structure/flora/roguegrass/herb/random,
-/obj/structure/flora/roguegrass,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"gf" = (
-/obj/structure/mannequin/male/female,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "gm" = (
 /turf/open/floor/rogue/ruinedwood/platform,
 /area/rogue/indoors/eventarea)
@@ -1105,167 +920,20 @@
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
-"gt" = (
-/obj/structure/bars,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"gA" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
-/turf/closed,
-/area/rogue)
-"gE" = (
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"gF" = (
-/obj/structure/closet/crate/coffin/vampire,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"gI" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/obj/machinery/light/rogue/firebowl/church{
-	light_color = "#b30202"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"gM" = (
-/obj/structure/closet/crate/drawer,
-/turf/closed,
-/area/rogue)
 "gN" = (
 /obj/structure/mineral_door/bars{
 	lockid = "inhumen"
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"gP" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"gQ" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/sickle,
-/obj/item/rogueweapon/hoe,
-/obj/item/rogueweapon/pitchfork,
-/obj/item/rogueweapon/stoneaxe/woodcut,
-/obj/item/rogueweapon/shovel,
-/obj/item/rogueweapon/thresher,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"gT" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 4;
-	icon_state = "chair1"
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
-"gW" = (
-/obj/structure/table/wood{
-	icon_state = "longtable"
-	},
-/obj/item/natural/feather{
-	pixel_x = 5
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "gX" = (
 /obj/structure/fluff/statue/knight/r,
 /turf/open/water/pond,
 /area/rogue/indoors/ravoxarena)
-"gY" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"hc" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"hd" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"hf" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"hk" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
-"hm" = (
-/obj/structure/roguerock,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
-"hq" = (
-/obj/structure/fluff/traveltile/wretch{
-	aportalgoesto = "wretchout2";
-	aportalid = "wretchin2"
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "hr" = (
 /obj/item/roguebin/water,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"ht" = (
-/obj/structure/bars,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"hw" = (
-/obj/item/natural/rock,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "hy" = (
 /obj/structure/fluff/railing/border{
 	dir = 8;
@@ -1273,148 +941,29 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"hz" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"hA" = (
-/obj/structure/table/wood,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"hB" = (
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
 "hK" = (
 /obj/effect/solid_invisible_barrier,
 /turf/open/floor/rogue/underworld/space/quiet,
 /area/rogue)
-"hL" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 4;
-	icon_state = "chair1"
-	},
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/herringbone,
-/area/rogue)
-"hM" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "hQ" = (
 /turf/open/floor/rogue/blocks,
 /area/rogue)
-"hT" = (
-/obj/structure/closet/dirthole/closed/loot,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/roguerock,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
 "hX" = (
 /turf/open/floor/rogue/sand,
 /area/rogue/indoors/eventarea)
-"ia" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/structure/roguemachine/mail/r{
-	mailtag = "Vampire";
-	obfuscated = 1;
-	pixel_x = -32
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors)
-"id" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "if" = (
 /obj/structure/roguemachine/bounty{
 	color = "#F75D59"
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
-"ig" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
-"ih" = (
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"ii" = (
-/obj/effect/decal/cleanable/dirt/cobweb,
-/obj/effect/decal/remains/human,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "ij" = (
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors)
-"il" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate/chest,
-/obj/item/reagent_containers/powder/salt,
-/obj/item/reagent_containers/powder/salt,
-/obj/item/reagent_containers/powder/salt,
-/obj/item/reagent_containers/powder/salt,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
 "im" = (
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/eventarea)
-"in" = (
-/obj/structure/bed/rogue/shit,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors)
 "iy" = (
 /obj/effect/landmark/start/bandit{
 	dir = 8;
@@ -1426,11 +975,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"iC" = (
-/obj/structure/table/vtable/v2,
-/obj/item/candle/skull/lit,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
 "iD" = (
 /obj/machinery/light/rogue/firebowl,
 /turf/open/floor/rogue/blocks,
@@ -1438,125 +982,26 @@
 "iE" = (
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/indoors/ravoxarena)
-"iG" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
 "iH" = (
 /obj/effect/landmark/start/wretch,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"iL" = (
-/obj/structure/flora/roguegrass/bush/wall/tall,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"iP" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "tablewood2"
-	},
-/turf/closed,
-/area/rogue)
-"iS" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"iW" = (
-/obj/structure/closet/dirthole/closed/loot,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/item/natural/rock,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"iY" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"jb" = (
-/turf/open/floor/rogue/herringbone,
-/area/rogue)
 "jc" = (
 /turf/open/floor/rogue/tile/checker,
 /area/rogue/indoors/eventarea)
 "jg" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"jh" = (
-/obj/structure/rack/rogue,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
 "jj" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"jk" = (
-/obj/machinery/light/rogue/firebowl/church,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"jm" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/blocks/paving/vert,
 /area/rogue/under/cave/inhumen)
 "jn" = (
 /turf/open/floor/rogue/rooftop/north,
 /area/rogue/indoors/eventarea)
-"jp" = (
-/obj/structure/chair/bench/church,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "jr" = (
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/eventarea)
-"js" = (
-/obj/effect/landmark/start/wretch,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"ju" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "tablewood2"
-	},
-/obj/item/rogueweapon/shovel,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "jw" = (
 /obj/structure/flora/roguetree/burnt,
 /turf/open/floor/rogue/dirt,
@@ -1564,40 +1009,6 @@
 "jz" = (
 /turf/open/floor/rogue/carpet/lord/left,
 /area/rogue/indoors/eventarea)
-"jC" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/mineral_door/bars{
-	lockid = "inhumen"
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"jE" = (
-/obj/structure/closet/crate/chest/wicker,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"jF" = (
-/obj/structure/roguerock,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "jG" = (
 /turf/open/floor/rogue/woodturned/nosmooth,
 /area/rogue/indoors/eventarea)
@@ -1611,26 +1022,12 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "jO" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 5;
 	icon_state = "largetable"
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"jP" = (
-/obj/structure/fluff/walldeco/wallshield,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "jQ" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -1645,26 +1042,6 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
-"jZ" = (
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"kc" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"ke" = (
-/obj/structure/globe,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"kg" = (
-/obj/structure/fluff/statue/knight,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors)
 "ki" = (
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/indoors/eventarea)
@@ -1678,17 +1055,6 @@
 /obj/structure/fluff/railing/fence,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"kr" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "kv" = (
 /obj/machinery/light/rogue/wallfire/candle/blue{
 	pixel_x = 32;
@@ -1707,10 +1073,6 @@
 "kB" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/woods)
-"kC" = (
-/obj/item/natural/rock,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "kE" = (
 /turf/open/floor/rogue/snowrough,
 /area/rogue/indoors/eventarea)
@@ -1725,39 +1087,16 @@
 /obj/item/rogueweapon/greatsword,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"kH" = (
-/obj/structure/table/vtable/v2,
-/obj/item/candle/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "kJ" = (
 /obj/structure/roguemachine/Hoardmaster{
 	pixel_x = -16
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors/banditcamp)
-"kM" = (
-/obj/item/chair/rogue,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "kN" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
-"kP" = (
-/obj/structure/bed/rogue/shit,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "kR" = (
 /obj/structure/pillory{
 	lockid = list("bandit")
@@ -1765,102 +1104,14 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
 "kS" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/thresher,
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"kT" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"kU" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bed/rogue/shit,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"kV" = (
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"kW" = (
-/obj/structure/fluff/statue/knight/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "kX" = (
 /turf/open/water/bloody,
 /area/rogue/under/cave/inhumen)
-"kY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
-"la" = (
-/obj/structure/flora/rogueshroom{
-	icon_state = "mush3"
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue)
-"le" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "longtable"
-	},
-/obj/item/paper/scroll,
-/turf/closed,
-/area/rogue)
-"lh" = (
-/obj/structure/mannequin/male,
-/obj/structure/fluff/walldeco/maidendrape,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
-"lk" = (
-/obj/machinery/light/rogue/wallfire/candle/blue/l,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "lo" = (
 /obj/structure/fluff/ravox/challenged,
 /turf/open/floor/rogue/blocks,
@@ -1878,103 +1129,20 @@
 "lw" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"lB" = (
-/obj/structure/chair/bench/church/mid,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"lH" = (
-/obj/structure/table/wood{
-	dir = 5;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/bowl{
-	pixel_x = -8
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "lJ" = (
 /turf/open/floor/rogue/volcanic,
 /area/rogue/indoors/eventarea)
-"lN" = (
-/obj/structure/flora/roguegrass/bush/wall/tall,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue/under/cave/inhumen)
-"lP" = (
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/turf/closed,
-/area/rogue)
 "lQ" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"lU" = (
-/obj/structure/bars/cemetery,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"lW" = (
-/obj/machinery/light/rogue/smelter,
-/turf/closed,
-/area/rogue)
-"lX" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 4
-	},
-/area/rogue)
-"lY" = (
-/obj/structure/chair/bench/church/r,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "mb" = (
 /obj/structure/spider/stickyweb,
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"mf" = (
-/obj/structure/winch{
-	redstone_id = "vamplordthrone"
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
 "mg" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/eventarea)
-"mj" = (
-/obj/machinery/light/rogue/wallfire/candle{
-	pixel_y = -32
-	},
-/turf/closed,
-/area/rogue)
-"mk" = (
-/obj/structure/noose/gallows,
-/turf/closed,
-/area/rogue)
-"ml" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rogueweapon/huntingknife/cleaver,
-/obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"mp" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
 "ms" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
@@ -1998,24 +1166,6 @@
 "mw" = (
 /turf/open/floor/rogue/metal,
 /area/rogue/indoors/eventarea)
-"mx" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/millstone,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"mA" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/herringbone,
-/area/rogue)
-"mE" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
 "mM" = (
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/indoors/banditcamp)
@@ -2027,15 +1177,6 @@
 /obj/structure/flora/roguetree,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"mQ" = (
-/obj/structure/roguewindow/stained/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "mR" = (
 /obj/structure/table/wood{
 	dir = 9;
@@ -2054,107 +1195,16 @@
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/whip,
 /obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "na" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/cooking/pan,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
-"ne" = (
-/obj/structure/fluff/statue/gargoyle,
-/obj/machinery/light/rogue/torchholder/c,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue/under/cave/inhumen)
-"ng" = (
-/obj/structure/fluff/statue/gargoyle,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"nm" = (
-/obj/structure/fermentation_keg/random/beer,
-/obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"no" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/water/swamp,
-/area/rogue/under/cave/inhumen)
-"np" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"nr" = (
-/obj/structure/rack/rogue,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"ny" = (
-/obj/structure/fluff/statue/femalestatue/zizo{
-	desc = "An ancient statue depicting an elven woman.";
-	name = "Ancient Statue";
-	pixel_y = 0
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"nz" = (
-/turf/closed/mineral/random/rogue/high,
-/area/rogue)
 "nA" = (
 /obj/structure/fluff/psycross/zizocross,
 /turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
-"nJ" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
-"nK" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"nM" = (
-/obj/structure/fluff/walldeco/chains,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
-"nN" = (
-/obj/structure/closet/crate/coffin/vampire,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "nQ" = (
 /obj/structure/table/wood{
@@ -2177,21 +1227,6 @@
 /obj/item/rogueweapon/pick,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"nU" = (
-/obj/structure/stairs/stone/d{
-	dir = 8
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"nV" = (
-/obj/machinery/gear_painter,
-/turf/closed,
-/area/rogue)
 "ob" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/hexstone,
@@ -2204,23 +1239,11 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"oe" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"oh" = (
-/obj/structure/chair/bench/church/mid,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "oj" = (
 /obj/structure/mineral_door/wood/donjon/stone{
 	name = "Forgotten Chapel"
 	},
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"ok" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave/inhumen)
 "ol" = (
 /obj/structure/stairs/stone{
@@ -2256,15 +1279,6 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"ot" = (
-/obj/structure/chair/bench/church/mid,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "ou" = (
 /turf/open/floor/rogue/rooftop/green/corner1/direight,
 /area/rogue/indoors/eventarea)
@@ -2283,15 +1297,6 @@
 "oC" = (
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/indoors/eventarea)
-"oF" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/chair/bench/church/mid,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "oO" = (
 /turf/open/floor/rogue/rooftop/green/corner1/dirten,
 /area/rogue/indoors/eventarea)
@@ -2300,28 +1305,11 @@
 /turf/closed,
 /area/rogue/outdoors/woods)
 "oR" = (
-/obj/structure/closet/crate/drawer,
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/item/rope/chain,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/wallfire/candle/r,
 /obj/structure/fluff/walldeco/stone{
 	pixel_y = 32
 	},
 /turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"oS" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end,
 /area/rogue/under/cave/inhumen)
 "oV" = (
 /obj/structure/fluff/railing/fence{
@@ -2335,13 +1323,6 @@
 /obj/structure/bed/rogue/inn/wool,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"oY" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "pd" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/mask/cigarette/rollie/nicotine,
@@ -2364,10 +1345,6 @@
 "pe" = (
 /turf/open/floor/rogue/greenstone/runed,
 /area/rogue/indoors/eventarea)
-"pg" = (
-/obj/structure/bed/rogue/shit,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "pj" = (
 /obj/structure/stairs,
 /obj/structure/fluff/railing/border{
@@ -2376,66 +1353,30 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods)
-"pp" = (
-/obj/structure/table/wood{
-	dir = 5;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/golden,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "pq" = (
 /obj/structure/stairs/stone/d{
 	dir = 8
 	},
-/turf/open/floor/rogue/blocks/paving,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "pr" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors)
 "ps" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 1;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/item/reagent_containers/food/snacks/smallrat,
-/turf/open/floor/carpet/red,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "pu" = (
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "pv" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 8;
 	icon_state = "largetable"
 	},
 /obj/item/candle/skull,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"pC" = (
-/obj/structure/closet/crate/chest,
-/obj/item/clothing/suit/roguetown/shirt/rags,
-/obj/item/clothing/suit/roguetown/shirt/rags,
-/obj/item/clothing/suit/roguetown/shirt/rags,
-/obj/item/clothing/suit/roguetown/shirt/rags,
-/obj/item/clothing/suit/roguetown/shirt/rags,
-/turf/open/floor/rogue/blocks/paving/vert,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "pE" = (
 /obj/structure/table/wood{
@@ -2451,33 +1392,6 @@
 "pN" = (
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/eventarea)
-"pR" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"pT" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red,
-/area/rogue)
-"pY" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"qf" = (
-/obj/structure/vampire/necromanticbook{
-	pixel_x = -16;
-	pixel_y = -11
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"qg" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/closed,
-/area/rogue)
 "qh" = (
 /obj/structure/stairs,
 /obj/structure/fluff/railing/border{
@@ -2489,36 +1403,9 @@
 "qi" = (
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/indoors/eventarea)
-"qn" = (
-/obj/structure/handcart,
-/turf/closed,
-/area/rogue)
-"qr" = (
-/obj/structure/vampire/portalmaker,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "qx" = (
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/indoors/eventarea)
-"qy" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/shield/wood{
-	pixel_y = 7;
-	pixel_x = -4
-	},
-/obj/item/rogueweapon/shield/wood,
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"qB" = (
-/obj/structure/fluff/walldeco/chains,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "qC" = (
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/eventarea)
@@ -2531,19 +1418,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"qH" = (
-/obj/structure/flora/roguegrass/bush/wall/tall,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"qI" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors)
 "qO" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
@@ -2556,19 +1430,11 @@
 /obj/item/natural/bundle/stick,
 /obj/item/natural/bundle/stick,
 /obj/item/natural/bundle/stick,
-/turf/open/water/cleanshallow,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
-"qW" = (
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/indoors)
 "qX" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/decal/remains/human,
-/turf/open/floor/carpet/red,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "re" = (
 /obj/structure/table/wood{
@@ -2578,94 +1444,19 @@
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_y = 12
 	},
-/turf/open/floor/rogue/metal/barograte,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"rg" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "largetable"
-	},
-/turf/closed,
-/area/rogue)
-"ri" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"rk" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
-"ro" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "rr" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"rs" = (
-/obj/structure/flora/roguegrass/thorn_bush,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"rt" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/table/optable,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "rw" = (
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/eventarea)
-"rx" = (
-/obj/structure/closet/crate/drawer,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"ry" = (
-/obj/effect/decal/cobbleedge,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "rz" = (
 /obj/structure/fluff/ravox/challenger,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/ravoxarena)
-"rC" = (
-/obj/machinery/light/rogue/wallfire/candle/blue{
-	pixel_x = 32;
-	pixel_y = 0
-	},
-/obj/item/bedsheet/rogue/cloth,
-/obj/structure/bed/rogue/inn/wool,
-/turf/closed,
-/area/rogue)
-"rE" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"rG" = (
-/obj/structure/flora/roguegrass/herb/random,
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
 "rH" = (
 /obj/structure/fluff/statue/knight,
 /turf/open/water/pond,
@@ -2679,41 +1470,12 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"rO" = (
-/turf/open/water/bloody,
-/area/rogue)
-"rP" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/obj/item/roguekey/inhumen,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "rQ" = (
 /turf/closed,
 /area/rogue)
 "rR" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/eventarea)
-"rT" = (
-/obj/structure/fluff/psycross/zizocross,
-/turf/open/floor/rogue/dirt,
-/area/rogue)
-"rW" = (
-/obj/structure/stairs/stone/d{
-	dir = 4
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "rX" = (
 /turf/open/floor/rogue/greenstone/glyph6,
 /area/rogue/indoors/eventarea)
@@ -2724,87 +1486,22 @@
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"sh" = (
-/obj/structure/flora/roguetree/burnt,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "sj" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/banditcamp)
-"sn" = (
-/obj/structure/roguemachine/mail{
-	mailtag = "Forgotten Chapel"
-	},
-/turf/closed,
-/area/rogue)
 "sp" = (
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/eventarea)
-"sq" = (
-/obj/structure/roguemachine/bounty,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"st" = (
-/obj/structure/flora/roguegrass/thorn_bush,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
 "sw" = (
 /obj/structure/noose,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"sy" = (
-/obj/effect/landmark/vteleport,
-/obj/structure/fluff/walldeco/church/line,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "sz" = (
 /obj/effect/landmark/events/testportal{
 	aportalloc = "bandit"
 	},
 /turf/open/floor/rogue/blocks,
-/area/rogue)
-"sA" = (
-/obj/structure/fluff/walldeco/bigpainting/lake,
-/obj/structure/table/church{
-	icon_state = "churchtable_end"
-	},
-/obj/item/book/rogue/nitebeast,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"sC" = (
-/obj/effect/landmark/start/wretch,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"sE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/inhumen)
-"sF" = (
-/obj/structure/winch{
-	redstone_id = "vamplordmanor"
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"sI" = (
-/obj/machinery/light/rogue/smelter/great,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue)
-"sN" = (
-/turf/open/water/cleanshallow,
 /area/rogue)
 "sP" = (
 /obj/structure/table/wood{
@@ -2820,19 +1517,12 @@
 "sU" = (
 /turf/open/floor/rogue/rooftop/green/east,
 /area/rogue/indoors/eventarea)
-"sV" = (
-/obj/structure/rack/rogue,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "sY" = (
 /obj/structure/chair/wood/rogue/fancy{
 	dir = 8
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"sZ" = (
-/turf/open/floor/rogue/grassred,
-/area/rogue)
 "th" = (
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/eventarea)
@@ -2840,33 +1530,10 @@
 /obj/structure/chair/bench/church,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"tk" = (
-/obj/machinery/loom,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"tn" = (
-/obj/structure/chair/bench,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"tq" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "tr" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"tw" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/closed,
-/area/rogue)
 "tx" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -2877,15 +1544,6 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/sling,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
-"tA" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "tF" = (
 /obj/structure/closet/crate/chest/neu,
 /obj/item/paper/scroll,
@@ -2895,28 +1553,9 @@
 /obj/item/paper/scroll,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"tG" = (
-/mob/living/simple_animal/pet/cat/rogue/black,
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "largetable_mid"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
 "tI" = (
 /obj/structure/roguewindow/stained/zizo,
 /turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"tM" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/inhumen)
 "tN" = (
 /turf/closed,
@@ -2927,64 +1566,13 @@
 "tX" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/cand,
 /area/rogue/under/cave/inhumen)
-"tZ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"ud" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"ue" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"ug" = (
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/turf/open/floor/rogue/cobble,
-/area/rogue)
 "uh" = (
-/obj/machinery/tanningrack,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"ui" = (
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "uj" = (
 /turf/open/floor/rogue/greenstone/glyph1,
 /area/rogue/indoors/eventarea)
-"ul" = (
-/obj/structure/closet/crate/coffin/vampire,
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
-"um" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt/cobweb,
-/turf/closed,
-/area/rogue)
 "un" = (
 /obj/structure/closet/crate/chest/old_crate,
 /obj/item/reagent_containers/powder/ozium,
@@ -2993,35 +1581,12 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"uq" = (
-/obj/structure/fluff/traveltile/wretch{
-	aportalgoesto = "wretchout1";
-	aportalid = "wretchin1"
-	},
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"ux" = (
-/obj/structure/fluff/statue/knight/r,
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
 "uy" = (
 /obj/effect/decal/cobbleedge{
 	dir = 6
 	},
-/turf/open/water/cleanshallow,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"uC" = (
-/obj/structure/table/wood{
-	dir = 5;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "uE" = (
 /obj/structure/table/wood{
 	dir = 6;
@@ -3030,16 +1595,6 @@
 /obj/item/paper,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"uF" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/wooden{
-	pixel_y = 12
-	},
-/turf/closed,
-/area/rogue)
 "uI" = (
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/herringbone,
@@ -3048,11 +1603,6 @@
 /turf/open/water/cleanshallow,
 /area/rogue/under/cave/inhumen)
 "uK" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 6;
 	icon_state = "largetable"
@@ -3060,34 +1610,8 @@
 /obj/item/reagent_containers/glass/bowl{
 	pixel_x = -8
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"uM" = (
-/obj/structure/handcart,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"uO" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/item/rogueweapon/huntingknife/cleaver,
-/turf/closed,
-/area/rogue)
-"uQ" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"uT" = (
-/obj/structure/bars,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"uZ" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "va" = (
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/ravoxarena)
@@ -3095,30 +1619,6 @@
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"vc" = (
-/obj/structure/closet/dirthole/closed/loot,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"vd" = (
-/obj/effect/decal/cobbleedge{
-	dir = 6
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
-"ve" = (
-/obj/structure/fluff/walldeco/wallshield,
-/turf/closed,
-/area/rogue)
-"vf" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"vj" = (
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "vl" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -3143,68 +1643,10 @@
 /obj/item/rogueweapon/shield/tower,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"vt" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"vv" = (
-/obj/structure/closet/crate/chest/wicker,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/item/reagent_containers/food/snacks/grown/oat,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
 "vx" = (
 /obj/structure/toilet,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"vz" = (
-/obj/structure/table/wood{
-	dir = 2;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
-"vD" = (
-/obj/structure/bars/cemetery,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
 "vF" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -3226,43 +1668,6 @@
 	icon_state = "vertw"
 	},
 /area/rogue/outdoors/woods)
-"vL" = (
-/obj/structure/bookcase,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/inhumen)
-"vM" = (
-/obj/structure/fluff/walldeco/wallshield,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"vN" = (
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"vO" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
 "vP" = (
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue)
@@ -3275,28 +1680,7 @@
 /obj/item/rogue/instrument/guitar,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"vY" = (
-/obj/machinery/light/rogue/cauldron,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/inhumen)
-"vZ" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "wc" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
@@ -3310,7 +1694,7 @@
 /obj/item/roguekey/inhumen,
 /obj/item/roguekey/inhumen,
 /obj/item/roguekey/inhumen,
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "wd" = (
 /obj/structure/closet/crate/roguecloset,
@@ -3331,44 +1715,9 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"wf" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"wj" = (
-/obj/machinery/light/rogue/torchholder/r,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "wk" = (
-/obj/structure/closet/dirthole/closed/loot,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/wallfire/candle/blue/l,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"wm" = (
-/obj/effect/landmark/start/wretch,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"wo" = (
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors)
-"wp" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/psycross/zizocross,
-/turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/under/cave/inhumen)
 "ws" = (
 /turf/open/floor/rogue/hexstone,
@@ -3381,9 +1730,6 @@
 /obj/structure/stairs/d,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"wv" = (
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
 "ww" = (
 /obj/structure/fluff/railing/border{
 	dir = 4;
@@ -3395,17 +1741,6 @@
 /obj/structure/chair/frankenstein/zizo,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"wz" = (
-/obj/structure/rack/rogue/shelf/biggest,
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy,
-/obj/item/clothing/shoes/roguetown/boots/nobleboot,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
 "wA" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
@@ -3416,30 +1751,6 @@
 "wB" = (
 /obj/effect/landmark/start/new_player,
 /area/start)
-"wJ" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"wK" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/closed,
-/area/rogue)
-"wM" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/candle/skull,
-/turf/closed,
-/area/rogue)
 "wN" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave/inhumen)
@@ -3456,47 +1767,9 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"wV" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/peppermill,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
 "wZ" = (
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/indoors/eventarea)
-"xf" = (
-/obj/structure/closet/crate/chest/wicker,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat/oat,
-/obj/item/seeds/wheat/oat,
-/obj/item/seeds/swampweed,
-/obj/item/seeds/swampweed,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/pipeweed,
-/obj/item/seeds/pipeweed,
-/obj/item/seeds/onion,
-/obj/item/seeds/onion,
-/obj/item/seeds/coffee,
-/obj/item/seeds/coffee,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/berryrogue,
-/obj/item/seeds/berryrogue,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/cabbage,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
 "xg" = (
 /turf/open/floor/rogue/rooftop/green,
 /area/rogue/indoors/eventarea)
@@ -3504,25 +1777,9 @@
 /obj/effect/proc_holder/spell/invoked/heal,
 /turf/open/floor/rogue/blocks,
 /area/rogue)
-"xj" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 4;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue)
 "xm" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/inhumen)
-"xr" = (
-/obj/machinery/light/rogue/cauldron,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "xt" = (
 /obj/structure/fluff/psycross/crafted,
 /turf/open/floor/rogue/dirt,
@@ -3531,18 +1788,9 @@
 /obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
-"xB" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue/indoors)
 "xC" = (
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"xD" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "xF" = (
 /obj/structure/fluff/railing/fence,
 /turf/open/floor/rogue/dirt/road,
@@ -3555,10 +1803,6 @@
 /area/rogue/indoors/banditcamp)
 "xL" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red,
-/area/rogue/under/cave/inhumen)
-"xM" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/inhumen)
 "xO" = (
 /obj/structure/table/wood{
@@ -3590,106 +1834,25 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"xT" = (
-/obj/structure/flora/roguegrass/herb/random,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"xX" = (
-/obj/structure/table/wood{
-	dir = 9;
-	icon_state = "largetable"
-	},
-/obj/item/paper,
-/turf/closed,
-/area/rogue)
 "xY" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 9;
 	icon_state = "largetable"
 	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"xZ" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/effect/landmark/start/vampireknight,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/blocks/paving,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "yd" = (
 /turf/open/floor/rogue/rooftop/green/corner1/dirnine,
 /area/rogue/indoors/eventarea)
-"yg" = (
-/obj/structure/table/vtable/v2,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/natural/feather,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/railing/border{
-	dir = 8;
-	icon_state = "border"
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "yn" = (
-/obj/structure/healingfountain,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/roguerock,
 /obj/effect/decal/cobbleedge,
-/turf/open/floor/rogue/concrete,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"yp" = (
-/obj/structure/flora/roguetree,
-/turf/open/water/swamp,
-/area/rogue/under/cave/inhumen)
-"yq" = (
-/obj/machinery/light/rogue/oven/south,
-/obj/machinery/light/rogue/hearth,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"yr" = (
-/obj/item/natural/rock,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "yu" = (
 /obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"yv" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/mineral_door/wood/donjon/stone,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "yy" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/cloak/raincloak/blue,
@@ -3712,53 +1875,11 @@
 "yB" = (
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/eventarea)
-"yC" = (
-/obj/structure/chair/bench/church/r,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "yF" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/reagent_containers/glass/bucket/pot,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
-"yJ" = (
-/obj/structure/closet/crate/chest/crate,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/curred_hide,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/silk,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/obj/item/natural/bundle/fibers/full,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "yK" = (
 /turf/closed,
 /area/rogue/indoors)
@@ -3793,56 +1914,6 @@
 /obj/projectile/bullet/sling_bullet,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
-"yS" = (
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"yT" = (
-/obj/structure/mineral_door/bars{
-	locked = 1;
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue)
-"yV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"yY" = (
-/obj/structure/fluff/alch,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"yZ" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/paper/scroll,
-/obj/item/natural/feather{
-	pixel_x = 5
-	},
-/turf/closed,
-/area/rogue)
-"zb" = (
-/obj/structure/fluff/railing/border{
-	dir = 10;
-	icon_state = "border"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"zf" = (
-/obj/structure/flora/roguegrass/thorn_bush,
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
 "zh" = (
 /obj/structure/bookcase/random/archive,
 /turf/open/floor/rogue/hexstone,
@@ -3857,14 +1928,6 @@
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"zl" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/quiver/bolts,
-/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "zm" = (
 /turf/open/floor/rogue/underworld/space,
 /area/rogue/indoors/eventarea)
@@ -3873,79 +1936,15 @@
 	dir = 8;
 	icon_state = "largetable"
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"zq" = (
-/obj/structure/table/church/m,
-/turf/closed,
-/area/rogue)
-"zr" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "zs" = (
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"zw" = (
-/obj/item/roguebin/water/gross,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"zz" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/closed,
-/area/rogue)
-"zA" = (
-/obj/item/natural/worms/leech{
-	pixel_x = 10
-	},
-/obj/item/natural/worms/leech{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/natural/worms/leech{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/obj/item/natural/worms/leech{
-	pixel_x = -1;
-	pixel_y = 1
-	},
-/obj/item/natural/worms/leech{
-	pixel_x = 7;
-	pixel_y = -8
-	},
-/obj/structure/fluff/railing/border/east,
-/obj/structure/fluff/railing/border,
-/turf/open/water/cleanshallow,
-/area/rogue/under/cave/inhumen)
 "zB" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
-"zC" = (
-/obj/effect/landmark/vteleportsending,
-/obj/structure/fluff/walldeco/church/line,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "zD" = (
 /obj/structure/fluff/railing/border{
 	dir = 4;
@@ -3953,15 +1952,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"zJ" = (
-/obj/structure/chair/bench/church/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "zK" = (
 /obj/effect/landmark/start/bandit,
 /turf/open/floor/rogue/herringbone,
@@ -3974,87 +1964,9 @@
 	dir = 4
 	},
 /area/rogue/indoors/banditcamp)
-"zR" = (
-/obj/structure/closet/crate/chest/wicker,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/item/reagent_containers/food/snacks/rogue/cheese,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"zU" = (
-/obj/structure/bars,
-/turf/open/water/cleanshallow,
-/area/rogue/indoors)
 "zV" = (
 /turf/open/floor/rogue/tile/harem2,
 /area/rogue/indoors/eventarea)
-"zW" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"Ab" = (
-/obj/structure/table/church,
-/obj/effect/spawner/lootdrop/roguetown/dungeon/money,
-/turf/closed,
-/area/rogue)
-"Ac" = (
-/obj/structure/chair/bench/coucha/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
-"Af" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/mineral_door/wood/donjon/stone,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"Al" = (
-/obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"Ap" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
-"At" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/item/chair/rogue,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"Aw" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/water/cleanshallow,
-/area/rogue/indoors)
-"Ax" = (
-/obj/structure/stairs/stone/d{
-	dir = 8
-	},
-/turf/closed,
-/area/rogue)
 "Ay" = (
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
@@ -4070,36 +1982,16 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "AH" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 10;
 	icon_state = "largetable"
 	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"AI" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/water/swamp,
-/area/rogue/under/cave/inhumen)
-"AJ" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "AK" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"AM" = (
-/obj/structure/flora/roguegrass/herb/random,
-/turf/closed/mineral/random/rogue/high,
-/area/rogue/under/cave/inhumen)
 "AQ" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -4120,17 +2012,9 @@
 /turf/open/floor/rogue/rooftop,
 /area/rogue/indoors/eventarea)
 "AZ" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/rogue/blocks/paving,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"Bb" = (
-/turf/open/water/cleanshallow,
-/area/rogue/indoors)
 "Bc" = (
 /obj/effect/solid_invisible_barrier,
 /turf/open/floor/rogue/underworld/space/quiet,
@@ -4138,10 +2022,6 @@
 "Bd" = (
 /obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Bg" = (
-/obj/structure/flora/roguegrass/thorn_bush,
-/turf/closed/mineral/random/rogue/high,
 /area/rogue/under/cave/inhumen)
 "Bi" = (
 /turf/open/floor/rogue/blocks,
@@ -4153,30 +2033,14 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"Bu" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/inhumen)
 "Bw" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 4;
 	icon_state = "largetable"
 	},
 /obj/item/rogueweapon/huntingknife/cleaver,
-/turf/open/floor/rogue/metal/barograte,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"Bx" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "By" = (
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/eventarea)
@@ -4185,18 +2049,6 @@
 	dir = 4
 	},
 /area/rogue/under/cave/inhumen)
-"BD" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal{
-	pixel_y = 7;
-	pixel_x = -10
-	},
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/indoors)
 "BF" = (
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/herringbone,
@@ -4206,18 +2058,11 @@
 /area/rogue/indoors/eventarea)
 "BJ" = (
 /obj/structure/fluff/alch,
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"BS" = (
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors)
 "BV" = (
 /turf/open/floor/rogue/underworld/space/quiet,
 /area/rogue/indoors/eventarea)
-"BX" = (
-/obj/structure/bookcase,
-/turf/open/floor/rogue/herringbone,
-/area/rogue)
 "BY" = (
 /obj/effect/landmark/mapGenerator/rogue/forest{
 	endTurfX = 128;
@@ -4234,22 +2079,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Cb" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "largetable_mid"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
-"Cd" = (
-/obj/item/rogueweapon/shovel,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "Ce" = (
 /obj/structure/stairs,
 /obj/structure/fluff/railing/border{
@@ -4258,11 +2087,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
-"Cg" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 1
-	},
-/area/rogue)
 "Cj" = (
 /obj/item/candle/skull,
 /obj/structure/table/wood{
@@ -4270,24 +2094,10 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Cl" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "Co" = (
 /obj/effect/landmark/start/wretch,
-/turf/open/floor/rogue/grassred,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"Ct" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue)
 "Cv" = (
 /obj/structure/mineral_door/wood/donjon/stone,
 /turf/open/floor/rogue/concrete,
@@ -4307,13 +2117,6 @@
 /obj/structure/fluff/grindwheel,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
-"CI" = (
-/obj/structure/table/wood{
-	dir = 6;
-	icon_state = "largetable"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "CL" = (
 /turf/open/water/river{
 	dir = 4;
@@ -4323,30 +2126,11 @@
 "CN" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
 /obj/structure/table/optable,
-/turf/open/floor/carpet/red,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "CQ" = (
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/eventarea)
-"CW" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
-"Da" = (
-/obj/machinery/light/rogue/smelter/hiron,
-/turf/closed,
-/area/rogue)
-"Di" = (
-/obj/structure/chair/bench/church{
-	dir = 1
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "Dk" = (
 /obj/structure/mineral_door/wood/deadbolt,
 /turf/open/floor/rogue/herringbone,
@@ -4373,39 +2157,6 @@
 "Do" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
-"Dp" = (
-/obj/structure/closet/crate/roguecloset/inn/chest,
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
-/obj/item/rogueore/coal,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/rogueore/iron,
-/obj/item/rogueore/iron,
-/obj/item/rogueore/iron,
-/obj/item/rogueore/iron,
-/obj/item/rogueore/iron,
-/obj/item/rogueore/iron,
-/turf/closed,
-/area/rogue)
-"Dv" = (
-/obj/structure/closet/crate/chest/neu,
-/obj/item/paper/scroll,
-/obj/item/paper/scroll,
-/obj/item/paper/scroll,
-/obj/item/paper/scroll,
-/obj/item/paper/scroll,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "Dw" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
@@ -4413,38 +2164,6 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"DA" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "largetable_mid"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"DE" = (
-/obj/structure/bars/cemetery,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"DH" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"DJ" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
 "DL" = (
 /turf/open/floor/rogue/snow,
 /area/rogue/indoors/eventarea)
@@ -4471,12 +2190,6 @@
 /obj/structure/bed/rogue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"DS" = (
-/obj/structure/flora/roguetree/burnt,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
 "DT" = (
 /obj/structure/chair/bench/church{
 	dir = 1
@@ -4491,40 +2204,20 @@
 /obj/item/paper/scroll,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"DV" = (
-/obj/structure/closet/crate/chest/neu_iron,
-/obj/item/rogueweapon/thresher,
-/obj/item/rogueweapon/hoe,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "DW" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"DX" = (
-/obj/item/roguebin/water/gross,
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"Ef" = (
-/obj/item/chair/rogue,
-/turf/closed,
-/area/rogue)
 "Eh" = (
 /obj/machinery/light/rogue/smelter/hiron,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/cave/inhumen)
 "Ei" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/chair/wood/rogue{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/rogue/metal/barograte,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Ep" = (
 /obj/structure/fluff/railing/fence,
@@ -4549,39 +2242,12 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"Ev" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "largetable_mid"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
-"Ey" = (
-/obj/structure/flora/roguegrass/herb/random,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"EH" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"EI" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "EL" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
 /obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/carpet/inn,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "EP" = (
 /obj/effect/landmark/start/banditlate,
@@ -4590,53 +2256,21 @@
 	},
 /area/rogue/indoors/banditcamp)
 "ET" = (
-/obj/structure/roguewindow/stained/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 6;
 	icon_state = "largetable"
 	},
-/turf/open/floor/rogue/metal/barograte,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"EV" = (
-/obj/structure/flora/roguetree,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/forge,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/woods)
 "EX" = (
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/eventarea)
-"EY" = (
-/turf/open/water/swamp,
-/area/rogue/under/cave/inhumen)
 "Fb" = (
 /turf/open/floor/rogue/greenstone,
 /area/rogue/indoors/eventarea)
 "Fd" = (
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/eventarea)
-"Fk" = (
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
-"Fm" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Fp" = (
-/obj/structure/mineral_door/wood/donjon/stone{
-	name = "Forgotten Chapel"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Fs" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/closed/wall/mineral/rogue/decostone,
@@ -4645,17 +2279,6 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
-"Fv" = (
-/obj/effect/landmark/start/wretch,
-/turf/closed,
-/area/rogue)
-"Fw" = (
-/obj/structure/flora/rogueshroom,
-/turf/open/floor/rogue/dirt,
-/area/rogue)
-"Fz" = (
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "FF" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/river{
@@ -4663,84 +2286,16 @@
 	icon_state = "rockwd"
 	},
 /area/rogue/outdoors/woods)
-"FL" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "FO" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"FP" = (
-/obj/structure/roguewindow/stained/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
-"FQ" = (
-/obj/structure/mineral_door/bars{
-	locked = 1;
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"FR" = (
-/obj/structure/bars,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"FV" = (
-/obj/effect/landmark/start/vampirespawn,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"FW" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 4;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
 "FY" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/indoors/eventarea)
 "Ga" = (
 /obj/structure/noose/gallows,
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/outdoors/woods)
-"Gb" = (
-/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"Gf" = (
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"Gk" = (
-/obj/structure/fluff/walldeco/chains,
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/blocks/paving/vert,
+/turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/inhumen)
 "Gl" = (
 /turf/open/floor/rogue/metal/barograte/open,
@@ -4752,43 +2307,12 @@
 "Gx" = (
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/eventarea)
-"GE" = (
-/obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "GI" = (
 /obj/structure/closet/crate/chest/neu_iron,
 /obj/item/rogueweapon/thresher,
 /obj/item/rogueweapon/hoe,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"GJ" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/bottle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"GO" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "GP" = (
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/eventarea)
@@ -4799,28 +2323,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"GU" = (
-/obj/structure/chair/frankenstein/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"GX" = (
-/obj/structure/flora/roguetree/burnt,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "Hc" = (
 /obj/effect/landmark/start/bandit{
 	dir = 4;
@@ -4836,116 +2338,16 @@
 /obj/structure/table/church/m,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"Hh" = (
-/obj/structure/flora/roguegrass,
-/turf/closed/mineral/random/rogue/high,
-/area/rogue/under/cave/inhumen)
 "Hi" = (
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "Hj" = (
-/obj/structure/table/wood{
-	dir = 6;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Hk" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"Hl" = (
-/obj/structure/rack/rogue/shelf/biggest,
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_y = -8
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = 6;
-	pixel_y = -5
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -5;
-	pixel_y = -8
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -6;
-	pixel_y = -2
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -11;
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -11;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/glass/bottle/alchemical{
-	pixel_x = -11;
-	pixel_y = 5
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"Hp" = (
-/obj/structure/table/vtable,
-/obj/item/paper,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"Hr" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"Hv" = (
-/turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/inhumen)
 "Hy" = (
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/indoors/eventarea)
-"Hz" = (
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"HC" = (
-/turf/open/floor/rogue/grassred,
-/area/rogue/outdoors/woods)
 "HD" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/hammer/iron,
@@ -4953,10 +2355,6 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"HE" = (
-/obj/structure/bars/cemetery,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "HG" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -4964,8 +2362,8 @@
 /obj/item/natural/feather{
 	pixel_x = 5
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/cave/inhumen)
 "HH" = (
 /obj/effect/landmark/start/bandit{
 	dir = 4;
@@ -4984,64 +2382,14 @@
 "HN" = (
 /turf/open/floor/rogue/rooftop/green/corner1,
 /area/rogue/indoors/eventarea)
-"HO" = (
-/obj/structure/vampire/scryingorb{
-	pixel_x = -16
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue)
 "HP" = (
 /turf/open/floor/rogue/twig/platform,
 /area/rogue/indoors/eventarea)
-"HQ" = (
-/obj/structure/closet/crate/chest/old_crate,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"HR" = (
-/obj/structure/fluff/statue/knightalt,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"HS" = (
-/obj/structure/roguerock,
-/turf/closed,
-/area/rogue)
 "HT" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/eventarea)
 "HV" = (
 /obj/structure/rack/rogue,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Ia" = (
-/obj/structure/flora/roguetree,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/anvil,
-/obj/item/rogueweapon/hammer/iron,
-/obj/item/rogueweapon/tongs,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/woods)
-"Ib" = (
-/obj/structure/flora/roguegrass/bush/wall/tall,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Ie" = (
@@ -5062,36 +2410,11 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"In" = (
-/obj/structure/fluff/walldeco/chains,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Io" = (
 /obj/structure/fluff/statue/gargoyle,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"Ip" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"Iq" = (
-/obj/structure/fluff/walldeco/church/line,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "Ir" = (
-/obj/structure/fluff/statue/knightalt/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 5;
 	icon_state = "largetable"
@@ -5099,7 +2422,7 @@
 /obj/item/reagent_containers/glass/bowl{
 	pixel_x = -8
 	},
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Is" = (
 /obj/machinery/gear_painter,
@@ -5109,27 +2432,6 @@
 /obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Iv" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/item/natural/rock,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"Iy" = (
-/obj/structure/mineral_door/bars{
-	locked = 1;
-	lockid = "mansionvampire"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "Iz" = (
 /obj/structure/roguerock,
 /turf/open/floor/rogue/naturalstone,
@@ -5142,45 +2444,12 @@
 "IE" = (
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/eventarea)
-"IF" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
-"IH" = (
-/obj/item/bedsheet/rogue/cloth,
-/obj/structure/bed/rogue/inn/wool,
-/turf/closed,
-/area/rogue)
-"II" = (
-/obj/effect/landmark/start/vampirelord,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
-"IL" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/thresher,
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "IM" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"IN" = (
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "IO" = (
 /obj/structure/flora/roguetree,
 /turf/open/water/river{
@@ -5188,31 +2457,6 @@
 	icon_state = "rockwd"
 	},
 /area/rogue/outdoors/woods)
-"IQ" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/closed,
-/area/rogue)
-"IR" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/candle/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/cave/inhumen)
-"IS" = (
-/obj/machinery/light/rogue/hearth,
-/obj/item/cooking/pan,
-/obj/machinery/light/rogue/oven/east,
-/turf/closed,
-/area/rogue)
 "IV" = (
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/grass,
@@ -5234,21 +2478,6 @@
 "Jc" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"Ji" = (
-/obj/structure/chair/bench/church/r,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"Jo" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Jp" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -5262,11 +2491,6 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Ju" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_y = -8
@@ -5313,7 +2537,7 @@
 	pixel_x = -11;
 	pixel_y = 5
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "Jx" = (
 /turf/open/floor/rogue/cobble/mossy,
@@ -5331,21 +2555,6 @@
 /obj/item/quiver/arrows,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors)
-"JB" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
-"JD" = (
-/obj/machinery/anvil,
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"JG" = (
-/obj/structure/bars/cemetery,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/cand,
-/area/rogue/under/cave/inhumen)
 "JJ" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -5368,76 +2577,13 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"JP" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/storage/roguebag,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "JQ" = (
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/indoors/eventarea)
-"JV" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end,
-/area/rogue)
-"JZ" = (
-/obj/structure/flora/roguetree/burnt,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
-"Kb" = (
-/obj/effect/decal/remains/human,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "Kd" = (
 /obj/structure/flora/roguetree,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods)
-"Ke" = (
-/obj/structure/mineral_door/wood/donjon/stone{
-	name = "Forgotten Chapel"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"Ko" = (
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 4
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors)
-"Kq" = (
-/obj/effect/decal/cleanable/dirt/cobweb,
-/obj/structure/bookcase/random/archive,
-/turf/closed,
-/area/rogue)
-"Ks" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"Kt" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/indoors)
 "Kv" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
 /area/rogue/under/cave/inhumen)
@@ -5447,10 +2593,6 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"KC" = (
-/obj/structure/bookcase,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "KD" = (
 /turf/open/floor/rogue/rooftop/green/corner1/dirfour,
 /area/rogue/indoors/eventarea)
@@ -5458,78 +2600,9 @@
 /obj/structure/chair/bench/church/r,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"KI" = (
-/obj/structure/closet/crate/chest/old_crate,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/friedrat,
-/obj/item/reagent_containers/food/snacks/rogue/friedrat,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"KJ" = (
-/obj/structure/fluff/grindwheel,
-/turf/closed,
-/area/rogue)
-"KK" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"KN" = (
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/turf/closed,
-/area/rogue)
-"KO" = (
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
-"KR" = (
-/obj/structure/closet/crate/coffin/vampire,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"KV" = (
-/obj/structure/roguerock,
-/obj/effect/decal/cobbleedge,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
-"KW" = (
-/obj/structure/roguewindow/stained/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "KZ" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Lb" = (
-/obj/machinery/light/rogue/torchholder/c,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
 /area/rogue/under/cave/inhumen)
 "Ld" = (
 /obj/machinery/light/rogue/firebowl/standing/blue,
@@ -5541,47 +2614,11 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue)
-"Lf" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"Lm" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Lo" = (
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/indoors)
 "Lp" = (
 /obj/machinery/light/rogue/firebowl{
 	light_color = "#b30202"
 	},
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Lq" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"Lt" = (
-/obj/structure/fluff/railing/border{
-	dir = 8;
-	icon_state = "border"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Lu" = (
-/obj/structure/fluff/walldeco/chains,
-/turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/cave/inhumen)
 "Lx" = (
 /obj/structure/table/church{
@@ -5607,26 +2644,10 @@
 /obj/item/rogueweapon/spear/billhook,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
-"LM" = (
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "LN" = (
 /obj/structure/fermentation_keg/random/water,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"LR" = (
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 8
-	},
-/obj/structure/closet/crate/roguecloset,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
 "LS" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -5637,48 +2658,17 @@
 /area/rogue/indoors/banditcamp)
 "Md" = (
 /obj/effect/landmark/start/wretch,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"Mf" = (
-/obj/structure/closet/dirthole/grave,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bookcase/random/archive,
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Mi" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
-"Ml" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "Mm" = (
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/eventarea)
 "Mo" = (
 /turf/open/floor/rogue/tile/brick,
 /area/rogue/indoors/eventarea)
-"Mp" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "largetable"
-	},
-/obj/item/natural/feather,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"Mq" = (
-/obj/structure/flora/roguegrass,
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/inhumen)
 "Mt" = (
 /turf/open/floor/rogue/carpet/lord/right,
 /area/rogue/indoors/eventarea)
@@ -5692,46 +2682,6 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods)
-"MC" = (
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"ME" = (
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/rogue/dirt,
-/area/rogue/indoors)
-"MF" = (
-/obj/effect/decal/cleanable/dirt/cobweb,
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"MM" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"MS" = (
-/obj/structure/fluff/walldeco/chains,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/effect/landmark/start/wretch,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "MW" = (
 /obj/structure/fluff/statue/femalestatue/zizo{
 	desc = "An ancient statue depicting an elven woman.";
@@ -5739,7 +2689,7 @@
 	pixel_y = 0
 	},
 /turf/open/floor/rogue/concrete,
-/area/rogue/indoors)
+/area/rogue/under/cave/inhumen)
 "MX" = (
 /obj/structure/closet/crate/chest/old_crate,
 /turf/open/floor/rogue/hexstone,
@@ -5751,28 +2701,14 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 4
 	},
-/turf/open/water/cleanshallow,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"Nc" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/closed,
-/area/rogue/indoors)
-"Ne" = (
-/obj/machinery/light/rogue/torchholder/r,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
 "Nf" = (
 /obj/effect/landmark/start/bandit,
 /turf/open/floor/rogue/tile{
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"Ng" = (
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/closed,
-/area/rogue)
 "Nh" = (
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/eventarea)
@@ -5785,41 +2721,14 @@
 /obj/item/natural/feather{
 	pixel_x = 5
 	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"Nl" = (
-/obj/structure/rack/rogue/shelf/biggest,
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/item/reagent_containers/glass/cup/skull,
-/obj/item/reagent_containers/glass/cup/wooden,
-/obj/item/reagent_containers/glass/cup/wooden,
-/obj/item/reagent_containers/glass/cup/wooden,
-/obj/item/reagent_containers/glass/cup/wooden,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"Np" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Nq" = (
 /obj/structure/table/wood{
 	dir = 4;
 	icon_state = "largetable"
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "ND" = (
 /obj/structure/stairs{
@@ -5836,62 +2745,11 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"NK" = (
-/obj/structure/closet/dirthole/grave,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"NL" = (
-/turf/open/floor/carpet/inn,
-/area/rogue)
-"NP" = (
-/obj/effect/landmark/start/wretch,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"NT" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rope,
-/obj/item/rope,
-/obj/item/rope/chain,
-/obj/item/rope/chain,
-/obj/item/rope/chain,
-/obj/item/rope/chain,
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
-"NV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"NW" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
-/turf/open/floor/rogue/grassred,
-/area/rogue)
 "NY" = (
 /obj/effect/dream_horror,
 /obj/effect/solid_invisible_barrier,
 /turf/open/floor/rogue/underworld/space/quiet,
 /area/rogue)
-"NZ" = (
-/turf/open/water/swamp,
-/area/rogue)
-"Od" = (
-/obj/structure/flora/roguegrass,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "Of" = (
 /obj/structure/flora/rogueshroom{
 	icon_state = "mush3"
@@ -5900,51 +2758,14 @@
 /area/rogue/under/cave/inhumen)
 "Oh" = (
 /obj/effect/decal/cobbleedge,
-/turf/open/floor/rogue/grassred,
-/area/rogue/outdoors/woods)
-"Ol" = (
-/obj/effect/landmark/start/wretch,
-/turf/open/floor/rogue/cobble/mossy,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"On" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/structure/meathook,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
-"Or" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
-"Ou" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/spear,
-/obj/item/rogueweapon/mace,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Ov" = (
 /obj/structure/chair/freedomchair{
 	color = "#F75D59"
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
-"OA" = (
-/obj/machinery/light/rogue/wallfire/candle/blue/l,
-/obj/structure/closet/crate/chest/neu,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/grown/log/tree/small,
-/obj/item/natural/bundle/stick,
-/obj/item/natural/bundle/stick,
-/obj/item/natural/bundle/stick,
-/turf/closed,
-/area/rogue)
 "OC" = (
 /obj/structure/fluff/railing/border{
 	dir = 4;
@@ -5952,30 +2773,11 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"OD" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/cand,
-/area/rogue)
-"OH" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/whip,
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"OI" = (
-/obj/structure/table/church{
-	icon_state = "churchtable_end"
-	},
-/obj/item/reagent_containers/glass/cup/silver{
-	name = "pewter goblet";
-	pixel_x = -11
-	},
-/turf/closed,
-/area/rogue)
 "OK" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "OM" = (
 /turf/open/floor/rogue/rooftop/green/west,
@@ -5992,87 +2794,22 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
 "OW" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/needle,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/fluff/walldeco/chains,
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
-"OX" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"OY" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue)
-"Pc" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/cooking/pan,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"Pd" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Pe" = (
 /obj/structure/roguemachine/bounty,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Ph" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors)
 "Pk" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/silver,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/pillory{
 	lockid = "inhumen"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"Pm" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/turf/closed,
-/area/rogue)
 "Pp" = (
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/dirt,
@@ -6082,77 +2819,18 @@
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Pr" = (
-/obj/effect/decal/cobbleedge{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 4
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "Ps" = (
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/eventarea)
-"Pv" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Pz" = (
-/obj/structure/fluff/traveltile/wretch{
-	aportalgoesto = "wretchout2";
-	aportalid = "wretchin2"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/under/cave/inhumen)
-"PE" = (
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
-"PL" = (
-/obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
-"PN" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end,
-/area/rogue/under/cave/inhumen)
-"PO" = (
-/obj/structure/mannequin/male/female,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 4
-	},
-/area/rogue/under/cave/inhumen)
 "PP" = (
 /turf/open/floor/rogue/greenstone/glyph2,
 /area/rogue/indoors/eventarea)
-"PT" = (
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/effect/decal/cleanable/dirt/cobweb,
-/turf/open/floor/rogue/blocks,
-/area/rogue)
 "PU" = (
 /obj/structure/fluff/railing/border{
 	dir = 5
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"PZ" = (
-/obj/structure/mineral_door/wood/donjon/stone,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "Qa" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
@@ -6160,14 +2838,8 @@
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/eventarea)
 "Qd" = (
-/obj/machinery/gear_painter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/bed/rogue/shit,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Qg" = (
 /obj/structure/composter,
@@ -6184,19 +2856,8 @@
 "Qo" = (
 /obj/structure/fermentation_keg/random/beer,
 /obj/structure/fluff/railing/border,
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
-"Qp" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /turf/open/floor/rogue/blocks,
-/area/rogue)
+/area/rogue/under/cave/inhumen)
 "Qr" = (
 /obj/structure/closet/crate/chest,
 /obj/item/rope/chain,
@@ -6205,11 +2866,6 @@
 /obj/item/rope/chain,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"Qu" = (
-/obj/structure/table/church,
-/obj/item/candle/skull,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "Qw" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -6217,60 +2873,15 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"Qx" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Qy" = (
 /obj/structure/fluff/customsign{
 	name = "EXAMPLE TILES"
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/eventarea)
-"QB" = (
-/obj/machinery/light/rogue/forge,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"QC" = (
-/obj/machinery/light/rogue/torchholder/r,
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
 "QE" = (
 /turf/open/floor/rogue/rooftop/green/corner1/dirone,
 /area/rogue/indoors/eventarea)
-"QJ" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red,
-/area/rogue/under/cave/inhumen)
-"QM" = (
-/obj/structure/closet/crate/roguecloset/inn/chest,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"QO" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"QQ" = (
-/obj/structure/bars,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"QR" = (
-/obj/structure/chair/bench/church/mid,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "QS" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -6300,98 +2911,20 @@
 "Rb" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/eventarea)
-"Rh" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/closed,
-/area/rogue)
 "Ro" = (
 /turf/open/floor/rogue/rooftop/west,
 /area/rogue/indoors/eventarea)
-"Rp" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"Rq" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"RA" = (
-/obj/machinery/light/rogue/smelter,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue)
-"RG" = (
-/obj/item/rogueweapon/pick,
-/turf/closed,
-/area/rogue)
 "RH" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors)
-"RI" = (
-/obj/structure/table/wood{
-	dir = 9;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/food/snacks/butter,
-/turf/closed,
-/area/rogue)
-"RK" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 8
-	},
-/area/rogue)
 "RM" = (
 /obj/structure/roguetent,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/banditcamp)
-"RO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 4
-	},
-/area/rogue/under/cave/inhumen)
-"RP" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue/under/cave/inhumen)
 "RR" = (
 /obj/structure/handcart,
-/turf/open/floor/rogue/grassred,
+/turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"RS" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
-"RT" = (
-/obj/structure/fluff/psycross/zizocross,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue)
 "RV" = (
 /obj/structure/fluff/traveltile/eventarea,
 /turf/open/floor/rogue/hexstone,
@@ -6399,26 +2932,6 @@
 "RX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
-"RY" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
-"Sb" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/stairs/stone/d{
-	dir = 4
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
 "Sc" = (
 /obj/structure/flora/roguetree/stump/log,
 /turf/open/water/cleanshallow,
@@ -6429,73 +2942,21 @@
 /obj/machinery/light/rogue/oven/east,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"Sg" = (
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "Sn" = (
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/indoors/eventarea)
-"St" = (
-/obj/structure/composter,
-/obj/structure/composter,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"Su" = (
-/obj/structure/closet/crate/roguecloset/inn,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/under/cave/inhumen)
 "Sv" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/eventarea)
 "Sz" = (
 /turf/open/floor/rogue/tile/harem1,
 /area/rogue/indoors/eventarea)
-"SA" = (
-/obj/structure/chair/bench,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/firebowl{
-	light_color = "#b30202"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"SF" = (
-/obj/structure/chair/bench/coucha,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"SH" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "SM" = (
 /obj/structure/fluff/railing/border{
 	dir = 5
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"SS" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/paper{
-	pixel_y = -2;
-	pixel_x = -5
-	},
-/obj/item/paper{
-	pixel_y = 12;
-	pixel_x = 5
-	},
-/obj/item/clothing/neck/roguetown/gorget,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
 "SX" = (
 /obj/structure/fluff/traveltile/wretch{
 	aportalgoesto = "wretchout2";
@@ -6503,87 +2964,13 @@
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"Ta" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rogueore/coal,
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Tb" = (
-/obj/structure/table/wood{
-	dir = 4;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"Tc" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/cand,
-/area/rogue/under/cave/inhumen)
 "Te" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
-"Ti" = (
-/obj/structure/mineral_door/bars{
-	lockid = "inhumen"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Tj" = (
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
 "Tl" = (
 /obj/machinery/light/rogue/smelter,
-/turf/open/water/cleanshallow,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
-"To" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"Tp" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "tablewood2"
-	},
-/obj/item/storage/belt/rogue/surgery_bag/full,
-/obj/effect/decal/cleanable/dirt/cobweb,
-/turf/closed,
-/area/rogue)
-"Tq" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/item/flashlight/flare/torch/metal,
-/obj/item/flashlight/flare/torch/metal,
-/obj/item/flashlight/flare/torch/metal,
-/obj/item/flashlight/flare/torch/metal,
-/obj/item/flashlight/flare/torch/metal,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long,
-/area/rogue/indoors)
-"Tt" = (
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 1
-	},
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "Tw" = (
 /obj/structure/fluff/railing/fence{
 	dir = 8;
@@ -6591,18 +2978,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"Tx" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
 "Tz" = (
 /obj/structure/fluff/railing/fence{
 	dir = 1;
@@ -6610,25 +2985,12 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
-"TA" = (
-/obj/machinery/light/rogue/wallfire/candle/blue,
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "TD" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/hammer/iron,
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/inhumen)
-"TJ" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "TK" = (
 /obj/structure/table/wood{
 	dir = 4;
@@ -6637,10 +2999,6 @@
 /obj/item/reagent_containers/glass/cup/skull,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"TN" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
 "TS" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
 	dir = 1
@@ -6653,21 +3011,6 @@
 "TU" = (
 /turf/open/floor/rogue/grassyel,
 /area/rogue/indoors/eventarea)
-"TW" = (
-/obj/structure/flora/roguetree,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/wallfire/candle/blue{
-	pixel_x = 32;
-	pixel_y = 0
-	},
-/obj/effect/decal/cobbleedge,
-/obj/item/roguebin/water/gross,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/woods)
 "TY" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
 	dir = 1
@@ -6707,43 +3050,17 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "Ug" = (
-/obj/structure/table/vtable,
-/obj/item/candle/skull,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/hearth,
 /obj/machinery/light/rogue/oven/east,
 /obj/item/reagent_containers/glass/bucket/pot,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Ui" = (
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/eventarea)
-"Un" = (
-/obj/structure/fluff/statue/gargoyle/moss,
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "Up" = (
 /turf/open/floor/rogue/churchrough,
 /area/rogue/indoors/eventarea)
-"Uq" = (
-/obj/structure/fluff/wallclock/vampire,
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 1
-	},
-/obj/structure/chair/bench/coucha/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
 "Ur" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -6751,10 +3068,6 @@
 	},
 /obj/item/storage/belt/rogue/surgery_bag/full,
 /obj/effect/decal/cleanable/dirt/cobweb,
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
-"Us" = (
-/obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Ut" = (
@@ -6765,17 +3078,6 @@
 	},
 /obj/item/rogueweapon/mace/cudgel,
 /turf/open/floor/rogue/cobble,
-/area/rogue)
-"Uu" = (
-/obj/structure/table/wood{
-	dir = 9;
-	icon_state = "largetable"
-	},
-/turf/closed,
-/area/rogue)
-"Uw" = (
-/obj/structure/roguewindow/stained/zizo,
-/turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue)
 "Ux" = (
 /turf/open/floor/rogue/underworld/space/sparkle_quiet,
@@ -6793,89 +3095,21 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"UE" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/bucket,
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
-	dir = 8
-	},
-/area/rogue/under/cave/inhumen)
 "UG" = (
-/obj/structure/roguewindow/stained/zizo,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
 	},
 /obj/item/paper/scroll,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"UJ" = (
-/obj/structure/fermentation_keg/water,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "UK" = (
 /turf/open/floor/rogue/grasscold,
 /area/rogue/indoors/eventarea)
-"UN" = (
-/obj/structure/chair/bench/church{
-	dir = 1
-	},
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
-"UO" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/mortar,
-/obj/item/pestle,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/table/wood{
-	dir = 9;
-	icon_state = "largetable"
-	},
-/obj/machinery/light/rogue/wallfire/candle/l,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
 "UR" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
-"UT" = (
-/obj/structure/table/wood{
-	dir = 6;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/bowl{
-	pixel_x = -8
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "UW" = (
 /obj/structure/flora/roguetree,
 /turf/open/floor/rogue/dirt/road,
@@ -6892,14 +3126,7 @@
 	dir = 10;
 	icon_state = "border"
 	},
-/turf/open/floor/carpet/red,
-/area/rogue/under/cave/inhumen)
-"Vg" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Vh" = (
 /obj/structure/table/wood{
@@ -6925,23 +3152,12 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Vm" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 9;
 	icon_state = "largetable"
 	},
 /obj/item/reagent_containers/food/snacks/butter,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"Vr" = (
-/obj/structure/mannequin/male,
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Vz" = (
 /turf/closed/indestructible/splashscreen,
@@ -6950,55 +3166,12 @@
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors)
-"VG" = (
-/obj/structure/chair/bench/coucha,
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
 "VN" = (
 /turf/open/floor/rogue/blocks/paving,
 /area/rogue/indoors/eventarea)
-"VP" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
 "VS" = (
 /turf/open/water/swamp,
 /area/rogue/outdoors)
-"VU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/under/cave/inhumen)
-"VV" = (
-/obj/structure/mineral_door/wood{
-	lockid = "mansionvampire"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Wb" = (
-/obj/structure/table/wood{
-	dir = 10;
-	icon_state = "largetable"
-	},
-/obj/item/reagent_containers/glass/cup/wooden{
-	pixel_y = 12
-	},
-/turf/closed,
-/area/rogue)
 "Wc" = (
 /obj/structure/fluff/railing/fence{
 	dir = 4;
@@ -7006,20 +3179,7 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
-"Wd" = (
-/obj/structure/rack/rogue,
-/obj/item/quiver,
-/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "We" = (
-/obj/machinery/light/rogue/oven/south,
-/obj/machinery/light/rogue/hearth,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 10;
 	icon_state = "largetable"
@@ -7027,7 +3187,7 @@
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_y = 12
 	},
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "Wf" = (
 /turf/open/floor/rogue/cobblerock,
@@ -7036,22 +3196,9 @@
 /obj/structure/fluff/walldeco/chains,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Wh" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/grassred,
-/area/rogue/under/cave/inhumen)
 "Wm" = (
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/eventarea)
-"Wo" = (
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue/under/cave/inhumen)
 "Wp" = (
 /obj/machinery/light/rogue/campfire,
 /turf/open/floor/rogue/dirt/road,
@@ -7066,16 +3213,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Wx" = (
-/obj/structure/bars,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"Wy" = (
-/turf/open/floor/rogue/dirt,
-/area/rogue)
-"WB" = (
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
 "WC" = (
 /obj/structure/table/church,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
@@ -7085,32 +3222,9 @@
 /obj/effect/landmark/start/wretch,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"WG" = (
-/obj/structure/fluff/railing/border{
-	dir = 9
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "WJ" = (
 /obj/machinery/gear_painter,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"WM" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rogueweapon/scabbard,
-/obj/item/rogueweapon/sword,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors)
-"WN" = (
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/cave/inhumen)
 "WO" = (
 /obj/structure/fluff/walldeco/stone{
@@ -7118,48 +3232,11 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"WS" = (
-/obj/structure/fluff/walldeco/stone{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue)
-"WU" = (
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue/under/cave/inhumen)
-"WV" = (
-/obj/structure/gate/bars/preopen{
-	redstone_id = "vamplordthrone"
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue)
 "WW" = (
 /obj/structure/rack/rogue,
 /obj/item/coveter,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"WX" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/end,
-/area/rogue/indoors)
-"WZ" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/effect/landmark/start/vampireknight,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"Xe" = (
-/obj/structure/closet/dirthole/grave,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
 "Xi" = (
 /obj/structure/fluff/statue/gargoyle,
 /turf/open/floor/rogue/blocks,
@@ -7173,79 +3250,9 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"Xq" = (
-/obj/structure/bars/passage{
-	density = 0;
-	icon_state = "passage1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "Xr" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/under/cave/inhumen)
-"Xs" = (
-/obj/structure/fluff/traveltile/wretch{
-	aportalgoesto = "wretchout1";
-	aportalid = "wretchin1"
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
-"Xu" = (
-/obj/structure/closet/crate/roguecloset/inn/chest,
-/obj/item/rogueore/copper,
-/obj/item/rogueore/copper,
-/obj/item/rogueore/copper,
-/obj/item/rogueore/copper,
-/obj/item/rogueore/copper,
-/obj/item/rogueore/copper,
-/obj/item/grown/log/tree/stick,
-/obj/item/grown/log/tree/stick,
-/obj/item/grown/log/tree/stick,
-/obj/item/grown/log/tree/stick,
-/obj/item/rogueore/tin,
-/obj/item/rogueore/tin,
-/obj/item/rogueore/tin,
-/turf/closed,
-/area/rogue)
-"Xv" = (
-/obj/structure/stairs/stone{
-	dir = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"Xw" = (
-/obj/item/natural/bundle/cloth,
-/obj/item/natural/bundle/cloth,
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/needle,
-/obj/item/needle,
-/turf/open/floor/rogue/blocks/paving/vert,
-/area/rogue/under/cave/inhumen)
-"Xx" = (
-/obj/structure/fluff/walldeco/maidendrape,
-/turf/open/floor/rogue/metal/barograte,
-/area/rogue)
-"Xz" = (
-/obj/structure/bars/cemetery,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave/inhumen)
 "XC" = (
 /obj/structure/mineral_door/wood/deadbolt{
@@ -7287,33 +3294,12 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"XK" = (
-/obj/item/reagent_containers/food/snacks/smallrat,
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "XN" = (
 /obj/structure/fluff/walldeco/stone{
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/dirt/cobweb,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors)
-"XS" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
-"XU" = (
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "XV" = (
 /turf/closed/mineral/random/rogue/high,
@@ -7330,34 +3316,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/ravoxarena)
 "Ye" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/effect/decal/cleanable/dirt/cobweb,
 /obj/effect/decal/remains/human,
-/turf/open/floor/rogue/herringbone,
-/area/rogue/under/cave/inhumen)
-"Yf" = (
-/obj/structure/closet/crate/roguecloset/inn,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/carpet/inn,
-/area/rogue/under/cave/inhumen)
-"Yj" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Yn" = (
 /turf/open/floor/rogue/blocks/green,
@@ -7369,54 +3330,15 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Yq" = (
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "stairs"
-	},
-/turf/open/floor/rogue/blocks/paving,
-/area/rogue/under/cave/inhumen)
-"Ys" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/sword/iron,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "Yv" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "Yz" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/chair/wood/rogue{
 	dir = 8
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cave/inhumen)
-"YB" = (
-/obj/structure/closet/crate/roguecloset,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
-"YC" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate/chest,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/butter,
-/obj/item/reagent_containers/food/snacks/butter,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "YE" = (
 /obj/structure/table/wood{
@@ -7426,61 +3348,17 @@
 /obj/item/rogueweapon/shovel,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
-"YG" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/rogueweapon/hammer/iron{
-	pixel_y = 7;
-	pixel_x = -4
-	},
-/obj/item/rogueweapon/tongs{
-	pixel_x = 3
-	},
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
 "YH" = (
 /obj/structure/fluff/wallclock,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
-"YI" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/under/cave/inhumen)
-"YN" = (
-/obj/structure/bookcase/random/archive,
-/turf/closed,
-/area/rogue)
-"YO" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 8;
-	icon_state = "chair1"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
 "YR" = (
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "YT" = (
-/obj/structure/fluff/walldeco/bigpainting,
-/obj/structure/bookcase,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/fermentation_keg/random/water,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "YU" = (
 /obj/structure/stairs{
@@ -7503,57 +3381,17 @@
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"YZ" = (
-/obj/structure/well,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave/inhumen)
-"Zb" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue)
 "Zf" = (
 /obj/structure/roguemachine/mail{
 	mailtag = "Forgotten Chapel"
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
-"Zi" = (
-/turf/open/floor/rogue/hexstone,
-/area/rogue)
-"Zl" = (
-/turf/open/floor/rogue/herringbone,
-/area/rogue/indoors)
 "Zn" = (
 /turf/open/floor/rogue/blocks/newstone,
 /area/rogue/indoors/eventarea)
-"Zq" = (
-/obj/machinery/light/rogue/hearth,
-/obj/machinery/light/rogue/oven/east,
-/obj/item/reagent_containers/glass/bucket/pot,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed,
-/area/rogue)
-"Zs" = (
-/obj/item/roguebin/water,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors)
 "Zt" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -7570,30 +3408,14 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "ZF" = (
-/obj/structure/fermentation_keg/random/beer,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/stairs/stone/d{
 	dir = 4
 	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
 "ZI" = (
-/obj/machinery/light/rogue/oven/south,
-/obj/machinery/light/rogue/hearth,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/item/chair/rogue,
-/turf/open/floor/rogue/herringbone,
+/turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
 "ZK" = (
 /turf/open/floor/rogue/tile/masonic,
@@ -7606,17 +3428,6 @@
 /obj/structure/chair/bench/church/mid,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/inhumen)
-"ZO" = (
-/obj/structure/pillory{
-	lockid = "inhumen"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/concrete,
-/area/rogue)
 "ZQ" = (
 /obj/structure/fluff/walldeco/stone{
 	pixel_y = 32
@@ -7624,10 +3435,6 @@
 /obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
-"ZS" = (
-/obj/structure/vampthrone,
-/turf/open/floor/carpet/inn,
-/area/rogue/indoors)
 "ZZ" = (
 /turf/open/floor/rogue/greenstone/glyph4,
 /area/rogue/indoors/eventarea)
@@ -12313,70 +8120,6 @@ kB
 kB
 "}
 (37,1,1) = {"
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
-FY
 rQ
 rQ
 rQ
@@ -12384,6 +8127,70 @@ rQ
 rQ
 rQ
 rQ
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
+FY
 rQ
 rQ
 rQ
@@ -12443,6 +8250,13 @@ wN
 wN
 "}
 (38,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 FY
@@ -12523,16 +8337,9 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-gA
-sZ
-sZ
-rQ
-hk
-On
-jh
+wN
+wN
+wN
 wN
 wN
 wN
@@ -12560,7 +8367,7 @@ wN
 XV
 XV
 XV
-vj
+XV
 XV
 XV
 XV
@@ -12573,6 +8380,13 @@ wN
 wN
 "}
 (39,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -12653,17 +8467,10 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-sZ
-sZ
-sZ
-rQ
 wN
 wN
 Ld
-Iv
+DQ
 wN
 wN
 wN
@@ -12671,27 +8478,27 @@ wN
 wN
 Jc
 Jc
-hk
-Lb
+wN
+TS
 tX
 Io
 tX
 TS
 ID
-ih
+ws
 WJ
 wk
 ws
-hT
+Iz
 DQ
-NK
+Jc
 TS
 wN
 XV
-Bg
-vj
-vj
-vj
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -12703,6 +8510,13 @@ wN
 wN
 "}
 (40,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -12783,13 +8597,6 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-sZ
-sZ
-sZ
-rQ
-rQ
 wN
 SX
 Jc
@@ -12817,11 +8624,11 @@ XV
 Gq
 TS
 wN
-vj
-vj
-vj
-vj
-vj
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -12833,6 +8640,13 @@ wN
 wN
 "}
 (41,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -12913,15 +8727,8 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-sZ
-sZ
-NW
-rQ
-yT
-Fk
-Pz
+wN
+SX
 Jc
 Jc
 Jc
@@ -12940,21 +8747,21 @@ tX
 lQ
 ws
 Jc
-Xe
+ws
 zh
-Mf
+zh
 XV
-iW
+DQ
 TS
 wN
-vj
-vj
-vj
-vj
-AM
 XV
-vj
-vj
+XV
+XV
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -12963,6 +8770,13 @@ wN
 wN
 "}
 (42,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13043,23 +8857,16 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-sZ
-NZ
-rQ
-rQ
-rQ
-JZ
+wN
 SX
 Jc
 Jc
-EY
-xf
-gQ
-hk
-Hz
-YZ
+Jc
+Jc
+Jc
+Jc
+Jc
+Jc
 tr
 tr
 ey
@@ -13075,24 +8882,31 @@ Jc
 Jc
 Iz
 Jc
-vj
+TS
 wN
-vj
-vj
 XV
 XV
 XV
 XV
 XV
-vj
-vj
-vj
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 wN
 wN
 "}
 (43,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13171,40 +8985,33 @@ rQ
 rQ
 rQ
 rQ
-bX
-bX
 rQ
 rQ
-NZ
-NZ
-NZ
-rQ
-rQ
-ok
-CW
+wN
+wN
 Jc
-EY
-EY
-WB
-WB
-WB
-MM
-WB
-WB
+xm
+xm
+xm
+Jc
+Jc
+Jc
+Jc
+Jc
 Jc
 tX
-iG
+KZ
 ws
 ws
 tX
 lQ
 ws
 ws
-vc
 ws
-NK
+ws
 Jc
-Xe
+Jc
+ws
 TS
 wN
 XV
@@ -13212,17 +9019,24 @@ XV
 XV
 XV
 XV
-Bg
 XV
-vj
-vj
-vj
-vj
+XV
+XV
+XV
+XV
+XV
 XV
 wN
 wN
 "}
 (44,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13301,38 +9115,31 @@ rQ
 rQ
 rQ
 rQ
-bX
-Lo
-WB
-rQ
-rQ
-KW
-Qx
 rQ
 rQ
 wN
 wN
-rE
 xm
-wp
 xm
-KC
-xM
-XU
-Hp
+nA
+xm
+xm
+wN
+wN
+Jc
 wN
 wN
 TS
-iS
+WO
 Bi
-Bu
+Bi
 BC
 HG
 ws
 ws
 ws
 ws
-Cd
+ws
 ws
 ws
 TS
@@ -13346,13 +9153,20 @@ XV
 XV
 XV
 XV
-vj
+XV
 XV
 XV
 wN
 wN
 "}
 (45,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13431,32 +9245,25 @@ rQ
 rQ
 rQ
 rQ
-bX
-Lo
-WB
-Ta
-hA
-uQ
-qy
-Ou
 rQ
-wv
-lh
+rQ
 wN
-vO
-wz
-wv
-XU
-XU
-XU
-kH
-wv
-zA
-UJ
-Sb
-fZ
+wN
+wN
+xm
+xm
+xm
+wN
+wN
+wN
+wN
+wN
+wN
+TS
 ZF
-zR
+ZF
+ZF
+TS
 UG
 sY
 ws
@@ -13465,17 +9272,17 @@ LA
 oX
 LA
 oX
-DS
+TS
 wN
 XV
 XV
 XV
 XV
-vj
-vj
 XV
 XV
-Bg
+XV
+XV
+XV
 XV
 XV
 XV
@@ -13483,6 +9290,13 @@ wN
 wN
 "}
 (46,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13561,34 +9375,27 @@ rQ
 rQ
 rQ
 rQ
-bX
-Lo
-WB
-YG
-Zi
-Zi
-Zi
-Zi
-Ys
-Fm
-PO
-hB
-hB
+rQ
+rQ
+wN
+BC
+Kv
+Kv
 TY
-RP
 Kv
-hB
 Kv
-XU
-wv
-vt
-vt
-To
-To
-To
-vt
-WB
-ne
+Kv
+Kv
+Kv
+Kv
+Kv
+xL
+lq
+lq
+lq
+xL
+Kv
+Kv
 Kv
 Kv
 Kv
@@ -13599,10 +9406,10 @@ xL
 wN
 XV
 XV
-rs
-Od
-Od
-Od
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -13613,6 +9420,13 @@ wN
 wN
 "}
 (47,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13691,49 +9505,42 @@ rQ
 rQ
 rQ
 rQ
-bX
-Lo
-WB
-Xx
-ez
-uQ
-zl
-Zi
-Wd
-wv
-Ip
+rQ
+rQ
+wN
+TS
 Ur
 CN
 mT
-wv
-vL
+xL
+Kw
 Qo
 Sd
 Ug
 YV
-Rp
-UE
-vY
-UO
-VU
-vt
-mQ
-vD
-FQ
-lU
-HE
-HE
-HE
-DE
-JG
-Xz
+Kw
+If
+WO
+Bi
+Bi
+Bi
+Bi
+QT
+ws
+ws
+ws
+ws
+ws
+Lp
+tX
+wN
 XV
-Od
-Od
-Od
-rs
-Od
-gd
+XV
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -13743,6 +9550,13 @@ wN
 wN
 "}
 (48,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13821,49 +9635,42 @@ rQ
 rQ
 rQ
 rQ
-bX
-Lo
-Kt
-sI
-ez
-ez
-ez
-ez
-ez
-Gf
+rQ
+rQ
+wN
 TS
-rk
-hB
+ws
+Qn
 uh
-wv
+BC
 YT
 Vc
 hy
-yg
+hy
 OK
-vt
-nJ
-ml
-JP
-yV
-Nl
-jZ
-Cl
-Hv
+ws
+lq
+ws
+ws
+ws
+ws
+ws
+ol
+ws
 ws
 WE
-EY
-EY
+ws
+ws
 ws
 DM
 wN
 XV
-Od
-Od
-vj
-Od
-kC
-Od
+XV
+XV
+XV
+XV
+xm
+Jc
 Jc
 XV
 XV
@@ -13873,6 +9680,13 @@ wN
 wN
 "}
 (49,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -13952,48 +9766,41 @@ rQ
 rQ
 rQ
 rQ
-yK
-Kt
-RA
-ez
-ez
-ez
-ez
-ez
-Gf
-XU
+rQ
+wN
+TS
 OW
 ps
-tk
+ws
 Xr
-KC
-hB
 ws
-XU
-rE
-yV
-kY
-oe
-yV
-oe
-jE
-mQ
-Or
-Hv
 ws
-EY
-EY
-EY
-no
+ws
+ws
+ws
+ws
+lq
+ws
+ws
+ws
+ws
+ws
+ol
+ws
+ws
+ws
+ws
+ws
+Lp
 tX
 wN
 XV
-Od
-Od
-Od
-Od
-Od
-Od
+XV
+XV
+XV
+uJ
+xm
+xm
 nS
 Jc
 XV
@@ -14003,6 +9810,13 @@ wN
 wN
 "}
 (50,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14075,64 +9889,64 @@ rQ
 rQ
 rQ
 rQ
-yK
-yK
-yK
-yK
-yK
-yK
-yK
-Lo
-WB
-BD
-qW
-WM
-SS
-Zi
-KJ
-wv
-tM
-hB
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+ws
 qX
-yJ
-jC
-Qu
-hB
+ws
+gN
+ws
+ws
 Qn
 Md
-wv
-vt
-RO
-sE
-vt
-vt
-vv
-WB
+ws
+ws
+BC
+WO
+Bi
+Bi
+Kw
+DM
 Kv
 Kv
 lq
-AI
-AI
-yp
-EY
+lq
+lq
+Kv
+TY
 xL
 wN
 XV
-Od
-kC
-Od
-Od
-rs
-Od
+XV
+XV
+uJ
+uJ
+xm
+xm
 Jc
-Ey
+Jc
 RR
-vj
+XV
 XV
 wN
 wN
 "}
 (51,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14205,64 +10019,64 @@ rQ
 rQ
 rQ
 rQ
-yK
-yK
-yK
-yK
-yK
-yK
-yK
-Lo
-WB
-JD
-jZ
-QB
-uM
-Zi
-Dp
-FP
-gf
-mE
-hB
-XU
-Lf
-sA
-hB
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+uh
 Qn
-wv
-yq
-vt
-Pc
-IR
-mx
+ws
+Xr
+ws
+Qn
+Qn
+Qn
+Qn
+ws
+TS
 ga
-VU
-DH
+Bi
+ga
+xL
+xL
 WO
 QT
 ws
 ws
-EY
-no
-EY
-EY
+ws
+Lp
+xL
+xL
 wN
 XV
 XV
-xT
-Od
-Od
-Od
+uJ
+uJ
+uJ
+xm
 nA
 xm
-vj
-vj
-vj
+Jc
+Jc
+XV
 XV
 wN
 wN
 "}
 (52,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14335,47 +10149,40 @@ rQ
 rQ
 rQ
 rQ
-WB
-WB
-bF
-WB
-WB
-WB
-WB
-WB
-WB
-DX
-jZ
-jZ
-Ne
-Zi
-Xu
-wv
-Vr
-kU
-XU
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 Qd
-wv
-SF
-Yj
+ws
+Qd
+If
+ws
 ON
-wv
+ON
+Qn
 ZI
-vt
-wV
-Tc
-NV
-vt
-vt
+ws
+TS
+tX
+Io
+tX
+xL
 XN
 Bi
 ol
-vj
-vj
 ws
-EY
-EY
-EY
+ws
+ws
+ws
+ws
+xL
 BC
 wN
 XV
@@ -14384,15 +10191,22 @@ uJ
 xm
 xm
 xm
-vj
-vj
-vj
-jF
+Jc
+Jc
+Jc
+Iz
 XV
 wN
 wN
 "}
 (53,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14460,48 +10274,41 @@ FY
 rQ
 rQ
 rQ
-kB
-kB
-kB
-kB
 rQ
-vM
-bN
-Zl
-Zl
-Zl
-Zl
-Zl
-WB
-WB
-WB
-WB
-WB
-WB
 rQ
-eF
-wv
-wv
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 DM
-ri
-wv
-wv
-Uq
+Xr
+TY
+xL
+KZ
 Vm
-Vg
+zn
 zn
 We
-vt
-hc
-oS
-il
-YC
+ws
+TS
+DM
+Kv
+Kv
 Kw
-WB
 Bi
-hd
-vj
-UN
+Bi
+ol
+ws
+DT
 DT
 tj
 ws
@@ -14515,14 +10322,21 @@ xm
 Jc
 Jc
 Jc
-vj
-vj
+Jc
+Jc
 Jc
 XV
 wN
 wN
 "}
 (54,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14590,32 +10404,25 @@ FY
 rQ
 rQ
 rQ
-kB
-WB
-WB
-WB
-WB
-WB
-Un
-Zl
-Zl
-WB
-Un
-Zl
-Zl
-Zl
-Zl
-Zl
 rQ
-mA
-jb
-jb
-XU
-XU
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 mZ
-XU
-sV
-wv
+ws
+HV
+BC
 Zf
 jO
 Bw
@@ -14627,12 +10434,12 @@ Bi
 Bi
 Bi
 Bi
-kg
-vj
-Wh
-vj
-oh
-oF
+Bi
+Bi
+QT
+ws
+ZN
+ZN
 ZN
 ws
 ws
@@ -14644,15 +10451,22 @@ Jc
 Jc
 Jc
 Jc
-Ey
 Jc
-st
+Jc
+Jc
 Jc
 Ld
 wN
 wN
 "}
 (55,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14720,48 +10534,41 @@ FY
 rQ
 rQ
 rQ
-kB
-Nc
-jk
-Zl
-RY
-ui
-Zl
-Zl
-Zl
-ui
-Zl
-Zl
-WB
-Un
-Zl
-Zl
-ve
 rQ
-NL
-xj
-gT
-FW
-gT
-FW
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+Qn
+Qn
 fd
-FL
+Xr
 ws
-HR
-Gf
-nK
-RS
-sF
+Yz
+Qn
+Yz
+Qn
+ws
 If
-cZ
-ia
-Ko
-wo
-cZ
+Bi
+Qn
+Qn
+Qn
+Bi
 WC
-YI
-vj
-lY
+QT
+ws
+KG
 KG
 KG
 ws
@@ -14770,9 +10577,9 @@ xL
 Jc
 Jc
 Jc
-vj
-vj
-st
+Jc
+Jc
+Jc
 Jc
 Jc
 Jc
@@ -14783,6 +10590,13 @@ yL
 wN
 "}
 (56,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14850,43 +10664,36 @@ FY
 rQ
 rQ
 rQ
-kB
-WB
-mf
-bO
-ig
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-PE
-bO
-bO
-bO
-WV
-NL
-xX
-KK
-mp
-ud
-WU
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+Qn
 Pk
-KO
+Qn
 gN
 ws
-tA
-ws
-Gf
-Gf
+Qn
+Qn
+Qn
+Qn
 eV
 tX
 jj
-wo
+Qn
 MW
-eB
+Qn
 iH
 Hg
 mv
@@ -14897,22 +10704,29 @@ ws
 ws
 ws
 oj
-hz
-hf
-vj
-vj
+tr
+tr
+Jc
+Jc
 Co
-vj
 Jc
 Jc
 Jc
 Jc
-Hv
-Hv
-uq
+Jc
+Jc
+Jc
+yL
 wN
 "}
 (57,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -14980,43 +10794,36 @@ FY
 rQ
 rQ
 rQ
-kB
-WB
-ZS
-bO
-ig
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-NL
-NL
 rQ
-Mp
-DA
-Ev
-tG
-Cb
-vz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+Qn
+Qn
 Qn
 Xr
 ws
-MC
-ws
-Wo
+ON
+Qn
+ON
 Ei
-Gf
+ws
 BC
-cZ
-wo
-wo
-wo
+Bi
+Qn
+Qn
+Qn
 Bi
 Lx
 QT
@@ -15031,18 +10838,25 @@ Jc
 Jc
 Jc
 Jc
-Fk
 Jc
 Jc
 Jc
 Jc
-Hv
-Hv
-Hv
-uq
+Jc
+Jc
+Jc
+Jc
+yL
 wN
 "}
 (58,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15110,28 +10924,21 @@ FY
 rQ
 rQ
 rQ
-kB
-WB
-bO
-bO
-ig
-bO
-bO
-bO
-bO
-bO
-bO
-bO
-QC
-bO
-bO
-NL
-NL
 rQ
-pp
-Hk
-Np
-Tb
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 kS
 Hj
 HV
@@ -15141,12 +10948,12 @@ xY
 pv
 Nj
 AH
-Gf
+ws
 tI
 dq
-cZ
-cZ
-cZ
+Bi
+Bi
+Bi
 Bi
 Bi
 QT
@@ -15159,20 +10966,27 @@ ws
 tI
 Ld
 Jc
-Fk
 Jc
 Jc
-Hv
-Hv
 Jc
-Hv
-Hv
-Hv
-DJ
+Jc
+Jc
+Jc
+xm
+xm
+xm
+Ld
 wN
 wN
 "}
 (59,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15240,53 +11054,46 @@ FY
 rQ
 rQ
 rQ
-kB
-Nc
-jk
-Zl
-RY
-wj
-Zl
-Zl
-Zl
-wj
-Zl
-Zl
-WB
-Un
-Zl
-jb
-jP
-jb
 rQ
-YO
-fa
-XS
-PN
-Pd
-XU
-QJ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+DM
+Xr
+TY
+xL
 KZ
 Ir
 re
-wJ
+Nq
 ET
-LR
+ws
 TS
-WX
-xB
-Tq
-ue
-cZ
-xm
-JB
-xm
-Ji
-Ji
+DM
+Kv
+Kv
+Kw
+Bi
+Bi
+ol
+ws
+KG
+KG
 KG
 ws
-vj
-vj
+ws
+BC
 wN
 XV
 Jc
@@ -15297,12 +11104,19 @@ xm
 xm
 xm
 Of
-Hv
+xm
 xm
 wN
 wN
 "}
 (60,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15370,62 +11184,55 @@ FY
 rQ
 rQ
 rQ
-kB
-WB
-WB
-WB
-WB
-WB
-Un
-Zl
-Zl
-WB
-Un
-Zl
-Zl
-Zl
-Zl
-Zl
 rQ
-TJ
-jb
-jb
-XU
-XU
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 Ye
-XU
-MX
-wv
 ws
-At
-Hr
-Al
+MX
+BC
+ws
+ZI
+Qn
 Yz
-wv
+Yz
+ws
 TS
 tX
 Io
 tX
 xL
-kW
+WO
 Bi
 ol
 ws
-Hv
-Hv
 ws
-vj
-vj
-vj
+ws
+ws
+ws
+xL
+If
 wN
 XV
-AM
+XV
 XV
 xm
-Mq
+xm
 fB
 xm
-zf
+xm
 xm
 xm
 XV
@@ -15433,6 +11240,13 @@ wN
 wN
 "}
 (61,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15500,62 +11314,55 @@ FY
 rQ
 rQ
 rQ
-kB
-kB
-kB
-kB
-kB
-vM
-Tt
-Zl
-Zl
-Zl
-Zl
-Zl
-WB
-WB
-WB
-WB
 rQ
-eF
-eF
-eF
-wv
-wv
-wv
-wv
-Yq
-Wx
-XU
-zC
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+Qn
+Qn
+Qn
+Xr
 ws
+Qn
+Qn
+Qn
+Qn
 ws
-wv
-NT
-Tj
+TS
 eN
-yS
-Ks
+Bi
+Es
 xL
-WB
+xL
 ZQ
 QT
-tn
-Hv
-Hv
-SA
-vj
-qH
-vj
+ws
+ws
+ws
+Lp
+xL
+xL
+wN
 wN
 XV
 XV
 XV
-Hh
-Od
-Od
-Mq
-rG
+XV
+xm
+xm
+xm
+xm
 xm
 XV
 XV
@@ -15563,6 +11370,13 @@ wN
 wN
 "}
 (62,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15634,57 +11448,50 @@ rQ
 rQ
 rQ
 rQ
-kB
-WB
-WB
-WB
-WB
-bH
-WB
-WB
-WB
 rQ
-bX
-WB
 rQ
-hL
-HO
-BX
-KC
-zW
-QM
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
+Qn
 wy
-QO
-jC
-qr
-Iq
+Qn
+gN
 ws
-WE
-wv
-Xw
-Tj
-Rq
-WZ
-yS
-KR
-WB
-lN
+ws
+Qn
+Md
+ws
+ws
+If
+WO
+Bi
+Bi
+Kw
+DM
 Kv
-fE
-fE
+Kv
 lq
-vj
-vj
-qH
-vj
+lq
+lq
+Kv
+Kv
+xL
+wN
 XV
 XV
 XV
-Od
-Od
-vj
-Od
-Od
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -15693,6 +11500,13 @@ wN
 wN
 "}
 (63,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15764,57 +11578,50 @@ rQ
 rQ
 rQ
 rQ
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
 rQ
-bX
-WB
-fo
-Zl
-Zl
-jb
-XU
-yS
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+wN
+TS
 AZ
-yS
-yS
-Lf
-XU
-Iq
+Qn
+Qn
+Xr
 ws
 ws
-VV
-Tj
-jm
-gt
-yS
-FV
-nN
-WB
-iL
 ws
-Hv
-Us
-Us
-Us
-Ib
+ws
+ws
+ws
+lq
+ws
+ws
+ws
+ws
+ws
+ol
+ws
+ws
+ws
+ws
+ws
+Lp
 tX
 wN
 XV
-Bg
 XV
-vj
-Od
-Od
-Od
-Od
+XV
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 XV
@@ -15823,6 +11630,13 @@ wN
 wN
 "}
 (64,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -15903,56 +11717,56 @@ rQ
 rQ
 rQ
 rQ
-rQ
-bX
-WB
-WB
-vZ
-Zl
-jb
-yS
-yS
-Lu
-yS
-WN
-wv
+wN
+TS
+OW
+ws
+ws
+If
 Pe
-sy
 ws
 ws
-wv
-Tj
-jm
-gt
-yS
-FV
-gF
-WB
-iL
-Us
-Hv
-Ol
-uJ
 ws
-sh
+ws
+ws
+lq
+ws
+ws
+ws
+ws
+ws
+ol
+ws
+ws
+WE
+ws
+ws
+ws
 DM
 wN
 XV
 XV
 XV
-xT
-Od
-vj
-Bg
 XV
 XV
-AM
+XV
+XV
+XV
+XV
+XV
 XV
 XV
 wN
 wN
 "}
 (65,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16033,37 +11847,30 @@ rQ
 rQ
 rQ
 rQ
-rQ
-bX
-bX
-WB
-qf
-ke
-rQ
-VG
-II
+wN
+TS
 EL
 fw
 mb
-wv
+xL
 fH
 wc
 BJ
 wt
 Ju
-nM
-IF
-QQ
-wf
-FV
-gF
-WB
-GX
-uJ
-uJ
-Hv
-uJ
-uJ
+Kw
+BC
+WO
+Bi
+Bi
+Bi
+Bi
+QT
+ws
+ws
+ws
+ws
+ws
 Lp
 tX
 wN
@@ -16083,6 +11890,13 @@ wN
 wN
 "}
 (66,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16163,38 +11977,31 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-bX
-WB
-WB
-WB
-rQ
-Ac
+wN
 If
 Kv
-iC
+Kv
 TY
-pC
-Gk
 Kv
 Kv
-AJ
-Tj
-Tj
-Tj
-Tx
-xZ
-VP
-gF
-WB
-uJ
-uJ
-uJ
-Hv
-uJ
-uJ
-uJ
+Kv
+Kv
+Kv
+Kv
+Kv
+xL
+lq
+lq
+lq
+xL
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
 xL
 wN
 XV
@@ -16213,6 +12020,13 @@ wN
 wN
 "}
 (67,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16293,26 +12107,19 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-bX
-bX
-bX
-bX
-rQ
-Yf
-ul
-Su
-wv
 wN
-Tj
-Tj
-pR
-yS
-Lu
-Tj
-TN
-Tj
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+TS
 pq
 pq
 pq
@@ -16320,17 +12127,17 @@ TS
 Eh
 Tl
 qV
-uJ
-Qn
+qO
+qO
 MZ
-uJ
-uJ
+TS
+wN
 wN
 wN
 XV
 XV
-vj
-vj
+XV
+XV
 XV
 XV
 XV
@@ -16343,6 +12150,13 @@ wN
 wN
 "}
 (68,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16423,44 +12237,37 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-bX
-rQ
-wv
-wv
-wv
-wv
+wN
+wN
 xm
-da
-ht
-Iy
-Iy
-ht
-ht
-WB
-WB
-kr
-eQ
-WB
-WB
+xm
+xm
+xm
+xm
+xm
+wN
+wN
+wN
+wN
+TS
+WO
+Bi
+Bi
+If
 qO
-uJ
-uJ
-ux
+qO
+qO
+qO
 yn
-ux
-uJ
-uJ
+kX
+TS
+wN
 XV
 XV
 XV
-vj
-vj
-vj
+XV
+XV
+XV
 XV
 XV
 XV
@@ -16473,6 +12280,13 @@ wN
 wN
 "}
 (69,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16553,43 +12367,36 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-bX
-kB
-kB
-kB
-kB
+wN
+uJ
+xm
 Ga
 xm
-cZ
-dp
-BS
-BS
-Lo
-Lo
-WB
-zw
-Zs
-cZ
-cZ
-WB
+xm
+xm
+Jc
+Jc
+wN
+wN
+Jc
+tX
+KZ
+ws
+ws
+tX
 kN
-uJ
-uJ
-uJ
+qO
+qO
+qO
 uy
-uJ
-uJ
-uJ
+kX
+kX
 XV
 XV
 XV
-xT
-vj
+XV
+XV
+XV
 XV
 XV
 XV
@@ -16603,6 +12410,13 @@ wN
 wN
 "}
 (70,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16667,16 +12481,6 @@ Gx
 Gx
 FY
 FY
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
 rQ
 rQ
 rQ
@@ -16694,27 +12498,30 @@ rQ
 rQ
 rQ
 wN
-WB
-Bb
-qI
-BS
-in
-fh
-cZ
-WB
-yv
-cZ
-MS
-pY
-Af
-vj
+uJ
+uJ
+xm
+xm
+xm
+Jc
+Jc
+Jc
+Jc
+Jc
+Jc
+Cv
+ws
+WE
+ws
+Cv
 qO
-uJ
-uJ
-uJ
-uJ
-uJ
-uJ
+qO
+qO
+qO
+kX
+kX
+kX
+kX
 XV
 XV
 XV
@@ -16733,6 +12540,13 @@ wN
 wN
 "}
 (71,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16813,40 +12627,33 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+wN
 uJ
-zU
-Bb
-dx
-ME
-dp
-dU
-cZ
-WB
-dx
-jj
-cZ
-YB
-WB
-TA
-vj
+uJ
+uJ
 xm
+Jc
+Jc
+Jc
+Jc
+Jc
+Jc
+Jc
+tX
+KZ
+ws
+ws
+tX
+kN
+qO
+qO
 uy
-uJ
-uJ
-uJ
-xm
-vj
-vj
+kX
+kX
+kX
+kX
+kX
+XV
 XV
 XV
 XV
@@ -16863,6 +12670,13 @@ wN
 wN
 "}
 (72,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -16943,56 +12757,56 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-Te
-WB
-Bb
-Aw
-dX
-cZ
-uZ
-cZ
-iY
-dT
+wN
+uJ
+uJ
+xm
+xm
+Jc
+wN
+Jc
+Jc
+Jc
+Jc
+Ld
+TS
 oR
-dT
-Ml
-WB
-Te
-HC
+Bi
+ga
+TS
+qO
+qO
 Oh
-HC
-HC
-HC
-HC
-HC
-HC
-Te
-cL
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+kX
+kX
+kX
+kX
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+wN
+wN
 "}
 (73,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17073,56 +12887,56 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-Te
-iY
-WB
-WB
-WB
-St
-ju
-DV
-WB
-WB
-WB
-kT
-WB
-WB
-EV
-Ia
-TW
-bz
-bz
-bz
-bz
-bz
-bz
-Kd
-kB
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+wN
+wN
+uJ
+xm
+Ld
+wN
+wN
+wN
+Qg
+YE
+GI
+wN
+TS
+tX
+Io
+tX
+TS
+xA
+TD
+ow
+kX
+kX
+kX
+TS
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+wN
+wN
 "}
 (74,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17203,56 +13017,56 @@ rQ
 rQ
 rQ
 rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-kB
-cL
-kB
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+wN
+xL
+Kv
+Kv
+Kv
+xL
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
+xL
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+XV
+wN
+wN
 "}
 (75,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17317,13 +13131,6 @@ Gx
 Gx
 FY
 FY
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
-rQ
 rQ
 rQ
 rQ
@@ -17383,6 +13190,13 @@ wN
 wN
 "}
 (76,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17471,31 +13285,24 @@ rQ
 rQ
 rQ
 rQ
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-pT
-Ct
-Ct
-Ct
-pT
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-pT
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -17513,6 +13320,13 @@ rQ
 rQ
 "}
 (77,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17601,29 +13415,22 @@ rQ
 rQ
 rQ
 rQ
-bX
-wK
-fF
-bX
-bX
-bX
-bX
-bX
 rQ
 rQ
-bX
-OY
-OD
-ng
-OD
-OY
-Kq
 rQ
-nV
-lk
-Zi
-HS
-yr
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -17643,6 +13450,13 @@ rQ
 rQ
 "}
 (78,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17731,30 +13545,23 @@ rQ
 rQ
 rQ
 rQ
-hq
-rQ
-Sg
-Sg
-bX
-bX
-bX
-HS
-rQ
-rQ
-wK
-OY
-MF
-hQ
-np
-RK
-Dv
 rQ
 rQ
 rQ
-YN
-nz
-nz
-Zb
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -17773,6 +13580,13 @@ rQ
 rQ
 "}
 (79,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17861,30 +13675,23 @@ rQ
 rQ
 rQ
 rQ
-hq
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
 rQ
-Sg
-Sg
-OD
-Lm
-Zi
-Zi
-OD
-gE
 rQ
-Sg
 rQ
-YN
-YN
-nz
-hw
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -17903,6 +13710,13 @@ rQ
 rQ
 "}
 (80,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 Gx
@@ -17991,30 +13805,23 @@ rQ
 rQ
 rQ
 rQ
-hq
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Ap
-Ap
-Ke
-Zi
-wm
-Zi
-PZ
 rQ
 rQ
 rQ
 rQ
-Sg
-Sg
-hm
-Sg
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18033,6 +13840,13 @@ rQ
 rQ
 "}
 (81,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 FY
@@ -18121,31 +13935,24 @@ rQ
 rQ
 rQ
 rQ
-bX
-Sg
-Wy
-Wy
-Wy
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-OD
-Lm
-Zi
-Zi
-OD
-IN
-Zi
-Zi
-Zi
-Zi
-Sg
-Sg
-Zi
-OY
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18163,6 +13970,13 @@ rQ
 rQ
 "}
 (82,1,1) = {"
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 FY
 FY
 FY
@@ -18251,23 +14065,6 @@ rQ
 rQ
 rQ
 rQ
-bX
-Wy
-Wy
-RT
-Wy
-Wy
-bX
-bX
-Sg
-bX
-bX
-OY
-rQ
-rQ
-rQ
-lX
-gW
 rQ
 rQ
 rQ
@@ -18275,7 +14072,17 @@ rQ
 rQ
 rQ
 rQ
-OY
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18381,40 +14188,40 @@ rQ
 rQ
 rQ
 rQ
-bX
-bX
-Wy
-Wy
-Wy
-bX
-bX
-bX
-bX
-bX
-bX
-OY
-rW
-rW
-rW
-OY
-le
-eG
-rQ
-rC
-rx
-IH
-gM
-IH
-OY
 rQ
 rQ
 rQ
 rQ
 rQ
 rQ
-nz
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18511,41 +14318,41 @@ rQ
 rQ
 rQ
 rQ
-lX
-Ct
-Ct
-Cg
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-pT
-OX
-OX
-OX
-pT
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-pT
 rQ
 rQ
 rQ
 rQ
 rQ
-nz
-nz
-nz
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18642,41 +14449,41 @@ rQ
 rQ
 rQ
 rQ
-Tp
-rt
-iP
-pT
-tq
-nm
-IS
-Zq
-KI
-tq
-RK
 rQ
 rQ
 rQ
 rQ
-hQ
-vf
-Zi
-Zi
-Zi
-Zi
-Zi
-xD
-OD
 rQ
 rQ
 rQ
 rQ
-nz
-nz
-nz
-nz
-nz
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18774,39 +14581,39 @@ rQ
 rQ
 rQ
 rQ
-qg
-lX
-ej
-zb
-Lt
-Lt
-WG
-rQ
-OX
-Zi
-Zi
-Zi
-Zi
-Zi
-Jo
-rQ
-rQ
-Fv
-rQ
-rQ
-Zi
-JV
 rQ
 rQ
 rQ
-nz
-nz
-nz
 rQ
-Sg
-Sg
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -18902,42 +14709,42 @@ rQ
 rQ
 rQ
 rQ
-qB
-XK
-rQ
-uT
-rQ
-Zi
-Zi
-Zi
-Zi
-rQ
-OX
-Zi
-Zi
-Zi
-Zi
-Zi
-Pv
 rQ
 rQ
 rQ
 rQ
 rQ
-Ng
-OD
-bX
-nz
-rQ
-nz
-nz
-sN
 rQ
 rQ
-RG
 rQ
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -19032,42 +14839,42 @@ rQ
 rQ
 rQ
 rQ
-Zi
-Kb
-Zi
-Ti
-rQ
-Zi
-rQ
-js
-Zi
-rQ
-lX
-WS
-hQ
-hQ
-rQ
-JV
-Ct
-Ct
-OX
-Xq
-Xq
-Ct
-Cg
-pT
-bX
-nz
-rQ
-nz
-sN
-sN
-Wy
-Wy
 rQ
 rQ
-qn
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -19162,43 +14969,43 @@ rQ
 rQ
 rQ
 rQ
-kc
-Fz
-rQ
-uT
 rQ
 rQ
 rQ
 rQ
 rQ
 rQ
-OY
-tw
-rQ
-tw
-pT
-pT
-IQ
 rQ
 rQ
-Zi
-Zi
-zr
-pT
-pT
-bX
-nz
-nz
-sN
-sN
-sN
-Wy
-rT
-Wy
 rQ
 rQ
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 "}
@@ -19292,44 +15099,44 @@ rQ
 rQ
 rQ
 rQ
-pg
-Zi
-kP
-RK
-rQ
-kV
-lP
-rQ
-Ef
-rQ
-OY
-OD
-hM
-OD
-pT
-um
-rQ
-Xv
-rQ
-Zi
-Zi
-Zi
-rQ
-pT
-lX
-bX
-nz
-sN
-sN
-Wy
-Wy
-Wy
 rQ
 rQ
 rQ
-HS
-nz
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (91,1,1) = {"
@@ -19422,44 +15229,44 @@ rQ
 rQ
 rQ
 rQ
-JV
-FR
-Cg
-pT
-TT
-RI
-Pm
-Pm
-Wb
-rQ
-OY
-JV
-Ct
-Ct
-tq
-rQ
-rQ
-Xv
-rQ
-Di
-Di
-jp
-rQ
-rQ
-RK
-bX
-nz
-Wy
-Wy
-Wy
 rQ
 rQ
 rQ
 rQ
 rQ
 rQ
-nz
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (92,1,1) = {"
@@ -19552,32 +15359,6 @@ rQ
 rQ
 rQ
 rQ
-OH
-Zi
-nr
-lX
-sn
-uC
-uO
-Hk
-UT
-rQ
-Uw
-rQ
-hQ
-hQ
-hQ
-rQ
-rQ
-rQ
-rQ
-ot
-ot
-ot
-rQ
-rQ
-Uw
-wK
 rQ
 rQ
 rQ
@@ -19588,8 +15369,34 @@ rQ
 rQ
 rQ
 rQ
-wK
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (93,1,1) = {"
@@ -19682,31 +15489,6 @@ rQ
 rQ
 rQ
 rQ
-Fz
-Fz
-gY
-uT
-rQ
-GE
-rQ
-GE
-rQ
-rQ
-RK
-rQ
-Fz
-Fz
-Fz
-rQ
-Ab
-rQ
-rQ
-zJ
-zJ
-zJ
-rQ
-rQ
-pT
 rQ
 rQ
 rQ
@@ -19715,11 +15497,36 @@ rQ
 rQ
 rQ
 rQ
-Sg
-Sg
-Sg
 rQ
-Xs
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (94,1,1) = {"
@@ -19812,44 +15619,44 @@ rQ
 rQ
 rQ
 rQ
-Fz
-ZO
-Fz
-Ti
 rQ
 rQ
 rQ
 rQ
 rQ
-mj
-OD
-LM
-Fz
-ny
-Fz
-Fv
-zq
-gI
-rQ
-Zi
-Zi
-Zi
 rQ
 rQ
-Fp
-Ap
-Ap
 rQ
 rQ
-Fv
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Xs
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (95,1,1) = {"
@@ -19942,44 +15749,44 @@ rQ
 rQ
 rQ
 rQ
-Fz
-Fz
-Fz
-uT
 rQ
-kV
 rQ
-kV
-vN
 rQ
-lX
-hQ
-Fz
-Fz
-Fz
 rQ
-OI
-gP
 rQ
-Di
-Di
-jp
 rQ
-Zi
-pT
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Xs
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 "}
 (96,1,1) = {"
@@ -20072,43 +15879,43 @@ rQ
 rQ
 rQ
 rQ
-IL
-EI
-nr
-RK
-ew
-Uu
-wM
-yZ
-rg
-rQ
-Uw
-Gb
-rQ
-rQ
-hQ
-hQ
 rQ
 rQ
 rQ
-QR
-QR
-lB
-Zi
-Zi
-Uw
-SH
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
 rQ
 rQ
-Wy
-SH
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 "}
@@ -20202,43 +16009,43 @@ rQ
 rQ
 rQ
 rQ
-JV
-FR
-Cg
-pT
-TT
-lH
-uF
-Hk
-CI
 rQ
-OY
-JV
-Ct
-Ct
 rQ
-hQ
-hQ
-Pv
-Zi
-zJ
-zJ
-yC
-Zi
-Zi
-lX
-bX
 rQ
-Sg
-hw
-Sg
-Wy
-Wy
-Wy
-Wy
-la
-Wy
-Wy
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 "}
@@ -20332,42 +16139,42 @@ rQ
 rQ
 rQ
 rQ
-ii
-Zi
-HQ
-lX
-rQ
-kM
-Fz
-PL
-PL
-rQ
-OY
-OD
-hM
-OD
-pT
-WS
-hQ
-zz
 rQ
 rQ
 rQ
 rQ
 rQ
-pT
-RK
-bX
 rQ
 rQ
 rQ
-Wy
-Wy
-Fw
-Wy
-Wy
-Wy
-Wy
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -20462,41 +16269,41 @@ rQ
 rQ
 rQ
 rQ
-Fz
-Fz
-Fz
-uT
-rQ
-Fz
-Fz
-Fz
-Fz
-rQ
-OY
-PT
-hQ
-np
-pT
-pT
-GO
-Rh
-rQ
-rQ
-rQ
-Ng
-pT
-pT
-rQ
-bX
 rQ
 rQ
 rQ
 rQ
-Wy
-Wy
-Wy
-Wy
-Wy
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -20592,30 +16399,30 @@ rQ
 rQ
 rQ
 rQ
-Fz
-GU
-Fz
-Ti
-Zi
-Zi
-Fz
-NP
-Zi
-Zi
-RK
 rQ
 rQ
 rQ
-Ng
-JV
-Ct
-Ct
-OX
-OX
-OX
-Ct
-Ct
-pT
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -20721,31 +16528,31 @@ rQ
 rQ
 rQ
 rQ
-OY
-tZ
-Fz
-Fz
-uT
-Zi
-Zi
-Zi
-Zi
-Zi
-Zi
-OX
-Zi
-Zi
-Zi
-Zi
-Zi
-Pv
-Zi
-Zi
-Zi
-Zi
-Zi
-xD
-OD
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -20851,31 +16658,31 @@ rQ
 rQ
 rQ
 rQ
-OY
-In
-Zi
-Zi
-RK
-sq
-Zi
-Zi
-Zi
-Zi
-Zi
-OX
 rQ
 rQ
 rQ
-Zi
-Zi
-Jo
-Zi
-Zi
-sC
-Zi
-Zi
-Zi
-JV
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -20981,32 +16788,32 @@ rQ
 rQ
 rQ
 rQ
-OY
-ev
-GJ
-Bx
-pT
-oY
-rP
-yY
-xr
-Hl
-tq
-lX
 rQ
 rQ
 rQ
-hQ
-hQ
-vf
-Zi
-Zi
-Zi
-Zi
-Zi
-xD
-OD
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21111,32 +16918,32 @@ rQ
 rQ
 rQ
 rQ
-RK
-Ct
-Ct
-Cg
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-pT
-id
-OX
-OX
-pT
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-Ct
-pT
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21241,32 +17048,32 @@ rQ
 rQ
 rQ
 rQ
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-bX
-OY
-Ax
-nU
-Ax
-OY
-Da
-lW
-OA
 rQ
-lw
-Pr
-OY
-bX
-bX
-bX
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21371,31 +17178,31 @@ rQ
 rQ
 rQ
 rQ
-bX
-Wy
-Wy
-rQ
-Wy
-Wy
-Wy
-bX
-bX
-bX
-bX
-OY
-Qp
-hQ
-hQ
-RK
 rQ
 rQ
 rQ
-lw
-KV
 rQ
-OY
-bX
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21502,26 +17309,26 @@ rQ
 rQ
 rQ
 rQ
-Wy
-mk
-rQ
-Wy
-Wy
 rQ
 rQ
-bX
-bX
 rQ
-OD
-Lm
-Zi
-Zi
-OD
-KN
 rQ
-lw
-lw
-vd
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21631,30 +17438,30 @@ rQ
 rQ
 rQ
 rQ
-sN
-rQ
-rQ
-Wy
-Wy
-Sg
-Sg
 rQ
 rQ
 rQ
-Sg
-PZ
-Zi
-wm
-Zi
-PZ
 rQ
 rQ
-lw
-lw
 rQ
 rQ
-rO
-rO
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21761,31 +17568,31 @@ rQ
 rQ
 rQ
 rQ
-sN
-sN
-sN
-Wy
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-OD
-ro
-Zi
-Zi
-OD
-ug
-lw
-lw
-vd
-rO
-rO
-rO
-rO
-rO
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 rQ
@@ -21891,44 +17698,44 @@ rQ
 rQ
 rQ
 rQ
-sN
-sN
-Wy
-Wy
-Sg
 rQ
-Sg
-Sg
-Sg
-Sg
-SH
-OY
-EH
-hQ
-Lq
-OY
-lw
-lw
-ry
-rO
-rO
-rO
-rO
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
-nz
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 rQ
 rQ
 "}
@@ -22020,47 +17827,47 @@ rQ
 rQ
 rQ
 rQ
-wN
-wN
-uJ
-xm
-Ld
-wN
-wN
-wN
-Qg
-YE
-GI
-wN
-TS
-tX
-Io
-tX
-TS
-xA
-TD
-ow
-kX
-kX
-kX
-TS
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-wN
-wN
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 "}
 (112,1,1) = {"
 rQ
@@ -22150,47 +17957,47 @@ rQ
 rQ
 rQ
 rQ
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-xL
-Kv
-Kv
-Kv
-xL
-Kv
-Kv
-Kv
-Kv
-Kv
-Kv
-xL
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
-wN
-wN
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 "}
 (113,1,1) = {"
 rQ
@@ -22280,47 +18087,47 @@ rQ
 rQ
 rQ
 rQ
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
-wN
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
+rQ
 "}
 (114,1,1) = {"
 rQ
