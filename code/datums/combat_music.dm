@@ -117,13 +117,6 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "T-87 SULFURHEAD - Cutpurse (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/cmode/antag/combat_cutpurse.ogg')
 
-/datum/combat_music/bandit_mage
-	name = "Bandit Mage (Hedge Mage)"
-	desc = ""
-	shortname = "Bandit Mage"
-	credits = "Timestopper Tactics - corru.works"
-	musicpath = list('sound/music/combat_bandit_mage.ogg')
-
 /datum/combat_music/barbarian
 	name = "Barbarian"
 	desc = ""

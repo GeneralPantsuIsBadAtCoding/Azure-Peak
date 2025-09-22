@@ -836,6 +836,7 @@
 #include "code\game\world.dm"
 #include "code\game\area\actualcoast.dm"
 #include "code\game\area\areas.dm"
+#include "code\game\area\hotsprings.dm"
 #include "code\game\area\mountdecap.dm"
 #include "code\game\area\northcoast.dm"
 #include "code\game\area\roguetownareas.dm"

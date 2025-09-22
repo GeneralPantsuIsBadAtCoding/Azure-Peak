@@ -30,6 +30,7 @@
 
 	var/resting = FALSE
 	var/wallpressed = FALSE
+	var/climbing = FALSE
 
 	var/pixelshift_layer = 0
 

@@ -78,5 +78,5 @@
 	for(var/mob/living/L in T.contents)
 		if(L.anti_magic_check())
 			continue
-		L.electrocute_act(50)
+		L.electrocute_act(65)	//a little over half the damage of thunderstrike, but doesn't degrade on each subsequent ring.
 		to_chat(L, span_userdanger("You're hit by lightning!!!"))

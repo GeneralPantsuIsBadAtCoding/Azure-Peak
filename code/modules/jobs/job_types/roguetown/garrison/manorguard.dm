@@ -192,10 +192,10 @@
 
 /datum/outfit/job/roguetown/manorguard/skirmisher/pre_equip(mob/living/carbon/human/H)
 	..()
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson			// Cant wear chainmail anymoooree
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	pants = /obj/item/clothing/under/roguetown/trou/leather
+	pants = /obj/item/clothing/under/roguetown/splintlegs
+	wrists = /obj/item/clothing/wrists/roguetown/splintarms
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 
 	H.adjust_blindness(-3)
@@ -218,21 +218,11 @@
 
 		switch(armor_choice)
 			if("Light Armor")
-				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			if("Medium Armor")
-				pants = /obj/item/clothing/under/roguetown/chainlegs
-				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-
-		var/arms = list(
-			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-		)
-		var/armschoice = input(H, "Choose your arm protection.", "READY THYSELF") as anything in arms
-		wrists = arms[armschoice]
 
 		backpack_contents = list(
 			/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -256,7 +246,6 @@
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
-		
 
 /datum/advclass/manorguard/cavalry
 	name = "Cavalryman"
