@@ -349,6 +349,17 @@
 	desc = "The key to a vampire lord's castle."
 	icon_state = "vampkey"
 	lockid = "mansionvampire"
+
+/obj/item/roguekey/vampire/guest
+
+	name = "mansion guest key"
+	icon_state = "brownkey"
+	lockid = "mansionvampire_guest"
+
+/obj/item/roguekey/vampire/maid
+	name = "mansion maid key"
+	icon_state = "ekey"
+	lockid = "mansionvampire_maid"
 //
 
 /obj/item/roguekey/crafterguild

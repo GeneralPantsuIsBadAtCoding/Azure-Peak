@@ -5,7 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/hedgemage
-	cmode_music = 'sound/music/combat_bandit_mage.ogg'
+	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
 	// Same stat spread as necromancer, same reasoning

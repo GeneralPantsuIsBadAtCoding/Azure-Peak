@@ -28,6 +28,9 @@
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 	)
+	subclass_stashed_items = list(
+		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+	)
 
 /datum/outfit/job/roguetown/psydoniantemplar
 	job_bitflag = BITFLAG_CHURCH

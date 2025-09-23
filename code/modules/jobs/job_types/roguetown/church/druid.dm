@@ -29,14 +29,6 @@
 		/datum/advclass/druid
 	)
 
-/datum/job/roguetown/druid/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/druid
 	name = "Druid"
 	tutorial = "You have always been drawn to the wild, and the wild drawn to you. When your calling came, it was from Dendor. \

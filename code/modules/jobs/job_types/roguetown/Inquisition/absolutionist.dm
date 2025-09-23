@@ -34,14 +34,6 @@
 		/datum/advclass/absolver
 	)
 
-/datum/job/roguetown/absolver/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/absolver
 	name = "Absolver"
 	tutorial = "The Orthodoxy claims you are naught more than a 'cleric', but you know the truth; you are a sacrifical lamb. Your hands, unmarred through prayer and pacifism, have been gifted with the power to manipulate lux - to siphon away the wounds of others, so that you may endure in their stead. Let your censer's light shepherd the Inquisitor's retinue forth, lest they're led astray by wrath and temptation."
@@ -65,6 +57,9 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT, // Psydon's Holiest Guy
+	)
+	subclass_stashed_items = list(
+		"Of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 // REMEMBER FLAGELLANT? REMEMBER LASZLO? THIS IS HIM NOW. FEEL OLD YET?

@@ -89,7 +89,7 @@
 
 /mob/living/carbon/human/proc/process_ai()
 	// Prevent expensive pathing if it is in idle mode and there's no players
-	if(!scan_for_player_in_range(x, y, z) && (mode == NPC_AI_IDLE || mode == NPC_AI_OFF))
+	if((mode == NPC_AI_IDLE || mode == NPC_AI_OFF) && !scan_for_player_in_range(x, y, z))
 		return FALSE
 	if(IsDeadOrIncap())
 		walk_to(src,0)

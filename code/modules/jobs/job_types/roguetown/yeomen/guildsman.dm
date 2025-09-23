@@ -29,14 +29,6 @@
 		/datum/advclass/guildsman/architect
 	)
 
-/datum/job/roguetown/guildsman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	. = ..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/guildsman/blacksmith
 	name = "Guild Blacksmith"
 	tutorial = "You've studied for many yils under quite a number of master smiths. Whether it's cookware or tools of war, you're unmatched at the art of bending metal to your will."

@@ -64,66 +64,42 @@
 /datum/virtue/combat/duelist
 	name = "Duelist's Apprentice"
 	desc = "I have trained under a duelist of considerable skill, and always have my swift hunting sword close at hand."
-	custom_text = "+1 to Swords and Knives, Up to Journeyman, Minimum Apprentice."
+	custom_text = "Guaranteed Journeyman for Swords & Knives."
 	added_stashed_items = list("Duelist's Hunting Sword" = /obj/item/rogueweapon/sword/short/messer/iron/virtue)
 
 /datum/virtue/combat/duelist/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.get_skill_level(/datum/skill/combat/swords) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	if(recipient.get_skill_level(/datum/skill/combat/knives) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else	
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/executioner
 	name = "Dungeoneer's Apprentice"
 	desc = "I was set to be a dungeoneer some time ago, and I was taught by one. I have a whip stashed away if the need arises."
-	custom_text = "+1 to Axes and Whips/Flails, Up to Journeyman, Minimum Apprentice."
+	custom_text = "Guaranteed Journeyman for Axes & Whips/Flails."
 	added_stashed_items = list("Leather Whip" = /obj/item/rogueweapon/whip)
 
 /datum/virtue/combat/executioner/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.get_skill_level(/datum/skill/combat/whipsflails) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	if(recipient.get_skill_level(/datum/skill/combat/axes) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/militia
 	name = "Militiaman"
 	desc = "I have trained with the local garrison in case I'm ever to be levied to fight for my lord. I have a spear stashed away in the event I'm called to arms."
-	custom_text = "+1 to Maces and Polearms, Up to Journeyman, Minimum Apprentice."
+	custom_text = "Guaranteed Journeyman for Polearms & Maces."
 	added_stashed_items = list("Spear" = /obj/item/rogueweapon/spear)
 
 /datum/virtue/combat/militia/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.get_skill_level(/datum/skill/combat/polearms) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	if(recipient.get_skill_level(/datum/skill/combat/maces) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 /datum/virtue/combat/brawler
 	name = "Brawler's Apprentice"
 	desc = "I have trained under a skilled brawler, and have some experience fighting with my fists."
-	custom_text = "+1 to Unarmed and Wrestling, Up to Journeyman, Minimum Apprentice."
+	custom_text = "Guaranteed Journeyman for Unarmed & Wrestling."
 	added_stashed_items = list("Katar" = /obj/item/rogueweapon/katar)
 	
 /datum/virtue/combat/brawler/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.get_skill_level(/datum/skill/combat/unarmed) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	if(recipient.get_skill_level(/datum/skill/combat/wrestling) < SKILL_LEVEL_APPRENTICE)
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_APPRENTICE, silent = TRUE)
-	else
-		recipient.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/wrestling, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
 
 /datum/virtue/combat/bowman

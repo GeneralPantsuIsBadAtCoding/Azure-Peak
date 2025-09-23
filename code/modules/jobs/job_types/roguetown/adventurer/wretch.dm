@@ -46,17 +46,6 @@
 		/datum/advclass/wretch/blackoakwyrm
 	)
 
-/datum/job/roguetown/wretch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(L)
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
-		if(GLOB.adventurer_hugbox_duration)
-			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_start)), 1)
-
 // Proc for wretch to select a bounty
 /proc/wretch_select_bounty(mob/living/carbon/human/H)
 	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Azuria", "The Grenzelhoftian Holy See", "The Otavan Orthodoxy")

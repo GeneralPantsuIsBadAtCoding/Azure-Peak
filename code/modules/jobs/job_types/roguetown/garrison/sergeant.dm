@@ -35,9 +35,6 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(ishuman(L))
-			H.advsetup = 1
-			H.invisibility = INVISIBILITY_MAXIMUM
-			H.become_blind("advsetup")
 			if(istype(H.cloak, /obj/item/clothing/cloak/stabard/surcoat/guard))
 				var/obj/item/clothing/S = H.cloak
 				var/index = findtext(H.real_name, " ")
@@ -115,7 +112,7 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
@@ -140,7 +137,7 @@
 			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
 			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
 		)
-		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		armor = armors[armorchoice]
 
 /obj/effect/proc_holder/spell/invoked/order

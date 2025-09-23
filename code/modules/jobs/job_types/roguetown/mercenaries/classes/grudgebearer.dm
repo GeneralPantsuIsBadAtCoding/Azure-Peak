@@ -102,7 +102,7 @@
 			)
 		if(H.mind)
 			var/weapons = list("Axe", "Mace")
-			var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
+			var/wepchoice = input(H, "Choose your weapon", "Available weapons") as anything in weapons
 			switch(wepchoice)
 				if("Axe")
 					backr = /obj/item/rogueweapon/stoneaxe/battle

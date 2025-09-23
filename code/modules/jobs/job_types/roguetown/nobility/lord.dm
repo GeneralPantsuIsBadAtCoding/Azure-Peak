@@ -45,11 +45,6 @@ GLOBAL_LIST_EMPTY(lord_titles)
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/Q = L
-		Q.advsetup = 1
-		Q.invisibility = INVISIBILITY_MAXIMUM
-		Q.become_blind("advsetup")
 	if(L)
 		var/list/chopped_name = splittext(L.real_name, " ")
 		if(length(chopped_name) > 1)

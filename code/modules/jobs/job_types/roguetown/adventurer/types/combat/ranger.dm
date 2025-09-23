@@ -54,7 +54,7 @@
 		)
 	if(H.mind)
 		var/weapons = list("Recurve Bow","Crossbow")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Recurve Bow")
@@ -210,7 +210,7 @@
 		)
 	if(H.mind)
 		var/weapons = list("Recurve Bow","Billhook","Sling","Crossbow")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Recurve Bow")
 				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
@@ -229,7 +229,7 @@
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 				beltl = /obj/item/quiver/bolts
 		var/armors = list("Light Armor","Medium Armor")
-		var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armors
+		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMS") as anything in armors
 		switch(armor_choice)
 			if("Light Armor")
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/hide

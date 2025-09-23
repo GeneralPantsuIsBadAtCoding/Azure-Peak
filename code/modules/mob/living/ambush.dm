@@ -11,6 +11,8 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 	var/area/AR = get_area(src)
 	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
 	var/danger_level = DANGER_LEVEL_MODERATE // Fallback if there's no region
+	if(!AR.ambush_mobs)
+		return FALSE
 	if(TR)
 		danger_level = TR.get_danger_level()
 	if(danger_level == DANGER_LEVEL_SAFE)

@@ -53,7 +53,7 @@
 		)
 	if(H.mind)
 		var/weapons = list("Archery", "Crossbows", "LET THERE BE FLAME!!!")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Archery")

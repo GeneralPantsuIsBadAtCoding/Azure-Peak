@@ -25,13 +25,3 @@
 		/datum/advclass/disciple,
 		/datum/advclass/confessor
 	)
-
-/datum/job/roguetown/orthodoxist/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(L)
-		var/mob/living/carbon/human/H = L
-		if(!H.mind)
-			return
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")

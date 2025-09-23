@@ -27,14 +27,6 @@
 		/datum/advclass/merchant
 	)
 
-/datum/job/roguetown/merchant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/merchant
 	name = "Merchant"
 	tutorial = "You were born into wealth, learning from before you could talk about the basics of mathematics. \

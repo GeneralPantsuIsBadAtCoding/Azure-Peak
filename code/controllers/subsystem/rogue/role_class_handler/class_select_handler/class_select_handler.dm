@@ -63,12 +63,14 @@
 	var/register_id = null
 
 
-// The normal route for first use of this list.
+/// The normal route for first use of this list. Returns TRUE if there is more than one advclass (need user input), FALSE - if just one (no need for select menu)
 /datum/class_select_handler/proc/initial_setup()
 	if(register_id)
 		SSrole_class_handler.add_class_register_listener(register_id, linked_client.mob)
-	assemble_the_CLASSES()
+	if(!assemble_the_CLASSES())
+		return FALSE
 	second_step()
+	return TRUE
 
 // The second step, aka we just want to make sure the resources are there and that the menu is being displayed
 /datum/class_select_handler/proc/second_step()
@@ -89,6 +91,7 @@
 	. = ..()
 
 // I hope to god you have a client before you call this, cause the checks on the SS
+/// Returns TRUE if there is more than one advclass, FALSE - if just one (no need for select menu)
 /datum/class_select_handler/proc/assemble_the_CLASSES()
 	var/mob/living/carbon/human/H = linked_client.mob
 
@@ -160,6 +163,12 @@
 	if(!rolled_classes.len)
 		linked_client.mob.returntolobby()
 		message_admins("CLASS_SELECT_HANDLER HAD PERSON WITH 0 CLASS SELECT OPTIONS. THIS IS REALLY BAD! RETURNED THEM TO LOBBY")
+
+	if(rolled_classes.len == 1)
+		SSrole_class_handler.finish_class_handler(linked_client.mob, pick(rolled_classes), src, plus_power, special_selected)
+		return FALSE
+
+	return TRUE
 
 // Something is calling to tell this datum a class it rolled is currently maxed out.
 // More shitcode!

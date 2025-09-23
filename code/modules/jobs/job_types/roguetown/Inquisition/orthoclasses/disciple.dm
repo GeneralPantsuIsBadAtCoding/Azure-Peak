@@ -29,6 +29,9 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
 	)
+	subclass_stashed_items = list(
+		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+	)
 
 /datum/outfit/job/roguetown/disciple
 	job_bitflag = BITFLAG_CHURCH

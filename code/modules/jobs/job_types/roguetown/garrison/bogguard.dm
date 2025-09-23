@@ -41,14 +41,6 @@
 	id = /obj/item/scomstone/bad/garrison
 	job_bitflag = BITFLAG_GARRISON
 
-/datum/job/roguetown/bogguardsman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/bogguardsman/ranger
 	name = "Ranger"
 	tutorial = "You are a ranger, a hunter who volunteered to become a part of the wardens. You have experience using bows and daggers."
@@ -109,7 +101,7 @@
 			"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
 			"None"
 		)
-		var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+		var/helmchoice = input(H, "Choose your Path.", "HELMET SELECTION") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
@@ -118,7 +110,7 @@
 			"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
 			"None"
 		)
-		var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]
 
@@ -185,7 +177,7 @@
 			"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
 			"None"
 		)
-		var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+		var/helmchoice = input(H, "Choose your Path.", "HELMET SELECTION") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
@@ -194,6 +186,6 @@
 			"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
 			"None"
 		)
-		var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]

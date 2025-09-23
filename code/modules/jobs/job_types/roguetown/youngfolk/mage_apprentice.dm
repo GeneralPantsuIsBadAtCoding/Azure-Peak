@@ -40,14 +40,6 @@
 	backr = /obj/item/rogueweapon/woodstaff
 	shoes = /obj/item/clothing/shoes/roguetown/gladiator // FANCY SANDALS
 
-/datum/job/roguetown/wapprentice/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	. = ..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
 /datum/advclass/wapprentice/associate
 	name = "Magician's Associate"
 	tutorial = "You were once an apprentice, though through your studies and practice you've mastered the basics of the arcyne. You now spend your days working under your master, honing your skills so that you might one day be considered a true master yourself."
