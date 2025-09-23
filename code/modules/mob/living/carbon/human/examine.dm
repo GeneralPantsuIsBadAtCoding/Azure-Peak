@@ -819,6 +819,29 @@
 			if(!(mobility_flags & MOBILITY_STAND) && user != src && (user.zone_selected == BODY_ZONE_CHEST))
 				. += "<a href='?src=[REF(src)];check_hb=1'>Listen to Heartbeat</a>"
 
+	if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && user != src)
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.STAINT > 9 && L.STAPER > 9)
+				if(HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+					. += span_warning("<i>They look battle-aware.</i>")
+				if(HAS_TRAIT(user, TRAIT_COMBAT_AWARE))
+					var/userheld = user.get_active_held_item()
+					var/srcheld = get_active_held_item()
+					var/datum/skill/user_skill = /datum/skill/combat/unarmed	//default
+					var/datum/skill/src_skill = /datum/skill/combat/unarmed
+					if(userheld)
+						var/obj/item/I = userheld
+						if(I.associated_skill)
+							user_skill = I.associated_skill
+					if(srcheld)
+						var/obj/item/I = srcheld
+						if(I.associated_skill)
+							src_skill = I.associated_skill
+					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
+					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
+
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
