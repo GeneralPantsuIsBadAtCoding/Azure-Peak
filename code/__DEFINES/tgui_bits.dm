@@ -14,7 +14,7 @@
 #define WHIS_CHANNEL "Whis"
 #define SUBTLE_CHANNEL "Subtle"
 
-#define MAX_MESSAGE_CHUNKS 1
+#define MAX_MESSAGE_CHUNKS 1023
 
 
 /**
