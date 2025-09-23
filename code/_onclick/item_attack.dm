@@ -584,7 +584,7 @@
 /obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone, thrown = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, victim, selzone)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_EFFECT_SELF, user, affecting, intent, victim, selzone)
 
 	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
 		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)

@@ -128,9 +128,8 @@
 	if(!istype(VDrinker))
 		return
 
-	if(alert(src, "Would you like to rise as a vampire spawn? Warning: you will die shall you reject.", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
+	if(alert(src, "Would you like to rise as a vampire spawn? Warning: refusal may or may not mortally wound you.", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 		to_chat(sire, span_danger("Your victim twitches, yet the curse fails to take over. As if something otherworldly intervenes..."))
-		death()
 		return
 
 	visible_message(span_danger("Some dark energy begins to flow from [sire] into [src]..."))

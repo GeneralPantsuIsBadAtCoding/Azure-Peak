@@ -3,7 +3,7 @@
 	desc = "Get a help from the Hell creatures, resist THE FIRE, transform into an imp. Violates Masquerade."
 	icon_state = "daimonion"
 	power_type = /datum/coven_power/quietus
-	clan_restricted = TRUE
+	clan_restricted = FALSE
 
 /datum/coven_power/quietus
 	name = "Quietus power name"

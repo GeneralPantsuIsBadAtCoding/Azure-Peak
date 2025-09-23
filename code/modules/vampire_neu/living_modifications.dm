@@ -12,8 +12,6 @@
 	var/list/frenzy_cached_path = null
 	var/turf/frenzy_last_pos = null
 
-	var/list/taboos
-
 	var/enhanced_strip = FALSE
 	var/datum/clan/clan
 	var/bloodpool = 1000
