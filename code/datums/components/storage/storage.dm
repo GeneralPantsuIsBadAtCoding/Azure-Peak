@@ -611,6 +611,9 @@
 
 	var/atom/A = parent
 	A.add_fingerprint(M)
+	if(SEND_SIGNAL(over_object, COMSIG_STORAGE_MOUSEDROP, src, parent) & COMPONENT_RELEASE_TO_MOUSEDROPPED)
+		. = NONE
+		return
 	// this must come before the screen objects only block, dunno why it wasn't before
 	if(over_object == M)
 		user_show_to_mob(M)
@@ -646,9 +649,6 @@
 			if(!L.incapacitated() && I == L.get_active_held_item())
 				if(!SEND_SIGNAL(I, COMSIG_CONTAINS_STORAGE) && can_be_inserted(I, FALSE))	//If it has storage it should be trying to dump, not insert.
 					handle_item_insertion(I, FALSE, L)
-
-/obj/item/proc/StorageBlock(obj/item/I, mob/user)
-	return FALSE
 
 /obj
 	var/component_block = FALSE
@@ -709,8 +709,6 @@
 			if(!stop_messages)
 				to_chat(M, span_warning("[IP] cannot hold [I] as it's a storage item of the same size!"))
 			return FALSE //To prevent the stacking of same sized storage items.
-		if(IP.StorageBlock(I, M))
-			return FALSE
 	if(HAS_TRAIT(I, TRAIT_NODROP)) //SHOULD be handled in unEquip, but better safe than sorry.
 		if(!stop_messages)
 			to_chat(M, span_warning("\the [I] is stuck to your hand, you can't put it in \the [host]!"))

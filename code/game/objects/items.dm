@@ -951,10 +951,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if (callback) //call the original callback
 		. = callback.Invoke()
 	item_flags &= ~IN_INVENTORY
-	if(!pixel_y && !pixel_x)
-		pixel_x = rand(-8,8)
-		pixel_y = rand(-8,8)
-
+	randomize_offsets()
 
 /obj/item/proc/remove_item_from_storage(atom/newLoc) //please use this if you're going to snowflake an item out of a obj/item/storage
 	if(!newLoc)
@@ -1564,3 +1561,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/update_force_dynamic()
 	force_dynamic = (wielded ? force_wielded : force)
+
+/obj/item/proc/randomize_offsets()
+	if(!pixel_y && !pixel_x)
+		pixel_x = rand(-8,8)
+		pixel_y = rand(-8,8)

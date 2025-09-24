@@ -259,8 +259,8 @@
 		O.visible_message(span_notice("The <font color=[O.color]>paint</font> on [O] washes away!"))
 		O.color = initial(O.color)
 
-	if(istype(O, /obj/item/roguebin))
-		var/obj/item/roguebin/RB = O
+	if(istype(O, /obj/structure/roguebin))
+		var/obj/structure/roguebin/RB = O
 		if(!RB.kover)
 			if(RB.reagents)
 				RB.reagents.add_reagent(src.type, reac_volume)

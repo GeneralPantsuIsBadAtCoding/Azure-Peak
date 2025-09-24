@@ -287,6 +287,8 @@
 		if(!stop_messages)
 			to_chat(user, span_warning("[storing] won't fit in [host], make some space!"))
 		return FALSE
+	if(SEND_SIGNAL(host, COMSIG_STORAGE_CAN_BE_INSERTED, storing, user) & COMPONENT_STORAGE_BLOCK)
+		return FALSE
 	if(isitem(host))
 		var/obj/item/host_item = host
 		var/datum/component/storage/storage_internal = storing.GetComponent(/datum/component/storage)
@@ -294,8 +296,6 @@
 			if(!stop_messages)
 				to_chat(user, span_warning("[host_item] cannot hold [storing] as it's a storage item of the same size!"))
 			return FALSE //To prevent the stacking of same sized storage items
-		if(host_item.StorageBlock(storing, user))
-			return FALSE
 	//SHOULD be handled in unEquip, but better safe than sorry
 	if(HAS_TRAIT(storing, TRAIT_NODROP))
 		if(!stop_messages)

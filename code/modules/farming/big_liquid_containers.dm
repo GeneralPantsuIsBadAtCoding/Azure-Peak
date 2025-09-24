@@ -1,12 +1,12 @@
 // For storing roguebin and fermenting barrel or something
 
 // Bin
-/obj/item/roguebin/water/Initialize()
+/obj/structure/roguebin/water/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water,500)
 	update_icon()
 
-/obj/item/roguebin/water/gross/Initialize()
+/obj/structure/roguebin/water/gross/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water/gross,500)
 	update_icon()

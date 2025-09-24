@@ -198,7 +198,13 @@
 	#define COMPONENT_NO_MOUSEDROP 1
 #define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"			//from base of atom/MouseDrop_T: (/atom/from, /mob/user)
 
+#define COMSIG_STORAGE_MOUSEDROP "storage_mousedrop"			//from base of datum/component/storage/mousedrop_onto: (datum/component/storage/storage_datum, atom/actual_dropped_atom)
+
 #define COMSIG_CLICK_RIGHT_SHIFT "shift_right_click"
+	#define COMPONENT_RELEASE_TO_MOUSEDROPPED (1<<0)
+
+#define COMSIG_STORAGE_CAN_BE_INSERTED "can_be_inserted"		//from base of datum/component/storage/can_be_inserted: (obj/item/storing)
+	#define COMPONENT_STORAGE_BLOCK (1<<0)
 
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)

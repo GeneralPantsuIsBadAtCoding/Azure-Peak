@@ -618,7 +618,7 @@
 	},
 /area/rogue/indoors)
 "vf" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "vg" = (

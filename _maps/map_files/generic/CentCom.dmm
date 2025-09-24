@@ -614,7 +614,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "bn" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "bo" = (
@@ -948,7 +948,7 @@
 /turf/open/water/pond,
 /area/rogue/indoors/ravoxarena)
 "hr" = (
-/obj/item/roguebin/water,
+/obj/structure/roguebin/water,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "hy" = (
@@ -1327,7 +1327,7 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cobbleedge,
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/inhumen)
 "oy" = (

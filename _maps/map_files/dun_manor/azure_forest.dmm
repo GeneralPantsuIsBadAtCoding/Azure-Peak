@@ -965,7 +965,7 @@
 /obj/effect/decal/wood/herringbone2{
 	dir = 8
 	},
-/obj/item/roguebin/water,
+/obj/structure/roguebin/water,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/shelter/woods)
 "hX" = (
@@ -1420,7 +1420,7 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "lD" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
 "lF" = (
@@ -1876,7 +1876,7 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/basement)
 "pv" = (
-/obj/item/roguebin/water,
+/obj/structure/roguebin/water,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "px" = (
@@ -5076,7 +5076,7 @@
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "PC" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/shelter/woods)
 "PD" = (
@@ -5828,7 +5828,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods)
 "Vt" = (
-/obj/item/roguebin/water,
+/obj/structure/roguebin/water,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves)
 "Vu" = (

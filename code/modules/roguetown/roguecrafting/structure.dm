@@ -180,7 +180,7 @@
 
 /datum/crafting_recipe/roguetown/roguebin
 	name = "wooden bin"
-	result = /obj/item/roguebin
+	result = /obj/structure/roguebin
 	reqs = list(/obj/item/grown/log/tree/small = 2)
 	verbage_simple = "make"
 	verbage = "makes"

@@ -15,7 +15,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "k" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "l" = (
