@@ -16,6 +16,7 @@
 
 //Human Overlays Indexes/////////
 
+#define POTENCE_LAYER			53
 #define MUTATIONS_LAYER			52		//mutations. Tk headglows, cold resistance glow, etc
 #define CLOAK_BEHIND_LAYER		51
 #define HANDS_BEHIND_LAYER		50
@@ -65,10 +66,10 @@
 #define BODY_FRONT_LAYER		6
 #define BODY_FRONT_FRONT_LAYER	5
 #define HALO_LAYER				4		//blood cult ascended halo, because there's currently no better solution for adding/removing
-#define SUNDER_LAYER            3
+#define SUNDER_LAYER			3
 #define FIRE_LAYER				2		//If you're on fire
 #define TURF_LAYER				1		//If you're on fire
-#define TOTAL_LAYERS			52		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
+#define TOTAL_LAYERS			53		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 
 #define BACK_CLOAK_SOUTH_LAYER		(BODY_BEHIND_LAYER+1)
 

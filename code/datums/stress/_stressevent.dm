@@ -6,6 +6,8 @@
 	var/stacks = 0
 	var/max_stacks = 1
 	var/stressadd_per_extra_stack = 0
+	///this is how much we affect quality in the end
+	var/quality_modifier = 0
 
 /datum/stressevent/proc/can_apply(mob/living/user)
 	return TRUE

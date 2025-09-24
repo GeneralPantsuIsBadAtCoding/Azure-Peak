@@ -61,6 +61,7 @@
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
 	var/fueluse = -1 // How much fuel the machinery starts with. At -1, it is never turned off with the passing of time.
+	var/obj/effect/fog_parter/fog_parter_effect = /obj/effect/fog_parter // set to null to remove fog parter
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -107,6 +108,7 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
+	fog_parter_effect = new fog_parter_effect(get_turf(src), light_outer_range)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/light/LateInitialize()
@@ -187,6 +189,13 @@
 	update_icon()
 
 	broken_sparks(start_only=TRUE)
+
+/obj/machinery/light/set_light_range()
+	. = ..()
+	if(isnull(.))
+		return
+	if(istype(fog_parter_effect))
+		fog_parter_effect.set_range(light_outer_range)
 
 /obj/machinery/light/update_atom_colour()
 	..()

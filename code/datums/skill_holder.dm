@@ -257,3 +257,12 @@
 	msg += "</span>"
 
 	to_chat(user, msg)
+
+/mob/proc/get_inspirational_bonus()
+	return 0
+
+/mob/living/carbon/get_inspirational_bonus()
+	var/bonus = 0
+	for(var/datum/stressevent/event in stressors)
+		bonus += event.quality_modifier
+	return bonus
