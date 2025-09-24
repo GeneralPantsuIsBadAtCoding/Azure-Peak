@@ -380,6 +380,12 @@
 	icon_state = "rustkey"
 	lockid = "walls"
 
+/obj/item/roguekey/bandit
+	name = "old key"
+	desc = "This is a rusty key."
+	icon_state = "rustkey"
+	lockid = "bandit"
+
 /obj/item/roguekey/farm
 	name = "farm key"
 	desc = "This is a rusty key that'll open farm doors."
