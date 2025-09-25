@@ -638,3 +638,16 @@
 			if(r)
 				construct_item_repeatable(user, r)
 				user.mind.lastrecipe = r
+
+
+
+
+/client/verb/toggle_legacycraft()
+	set name = "Toggle legacy craft"
+	set category = "Options"
+	set desc = "Toggles between legacy and miacraft"
+	usr.client.legacycraft = !legacycraft
+
+/client
+	var/legacycraft = FALSE
+
