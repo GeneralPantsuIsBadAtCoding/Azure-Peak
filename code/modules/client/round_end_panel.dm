@@ -111,16 +111,19 @@
 	data += "<div style='display: inline-block; text-align: left; margin-left: auto; margin-right: auto;'>"
 	
 	var/stat_is_object = GLOB.featured_stats[current_featured]["object_stat"]
+	var/stat_is_admin_only = GLOB.featured_stats[current_featured]["admin_only"]
 	var/has_entries = length(GLOB.featured_stats[current_featured]["entries"])
 
-	if(has_entries)
+	if(stat_is_admin_only && !holder)
+		data += "<div style='margin-top: 20px;'>Admin Eyes Only...</div>"
+	else if(has_entries)
 		if(stat_is_object)
 			data += format_top_stats_objects(current_featured)
 		else
 			data += format_top_stats(current_featured)
 	else
 		data += "<div style='margin-top: 20px;'>[stat_is_object ? "None" : "Nobody"]</div>"
-	
+
 	data += "</div>"
 	data += "</div>"
 	data += "</div>"

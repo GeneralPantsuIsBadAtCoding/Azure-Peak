@@ -40,7 +40,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 	if(H.mind)
 		var/weapons = list("Zweihander", "Kriegmesser & Buckler")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Zweihander")
 				r_hand = /obj/item/rogueweapon/greatsword/grenz
@@ -75,9 +75,9 @@
 	subclass_stats = list(
 		STATKEY_STR = 2,//same str, worse end, more speed - actually a good tradeoff, now.
 		STATKEY_CON = 2,
-		STATKEY_WIL = 2, 
+		STATKEY_WIL = 2,
 		STATKEY_SPD = 1,
-		STATKEY_PER = -1 
+		STATKEY_PER = -1
 	)
 	subclass_skills = list(
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
@@ -102,7 +102,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate
 	if(H.mind)
 		var/weapons = list("Halberd", "Partizan")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Halberd")
 				r_hand = /obj/item/rogueweapon/halberd
@@ -136,9 +136,9 @@
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 2,
-		STATKEY_PER = 2, 
+		STATKEY_PER = 2,
 		STATKEY_STR = 1,// 1 STR for the axe and crossbow reload. END for chopping trees, a bit of SPD for running, PER for shooting. -1 CON bc you aint a frontliner
-		STATKEY_CON = -1 
+		STATKEY_CON = -1
 	)
 	subclass_skills = list(
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
@@ -156,7 +156,7 @@
 		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,		// learn 2 maintain your uniform.
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,		// Just so you don't suck at cooking
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,	
+		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,	// crafting for pallisades, lumberjacking for not fucking up wood
 	)
 
@@ -168,7 +168,7 @@
 	r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 	if(H.mind)
 		var/armor_options = list("Light Brigandine", "Studded Leather Vest")
-		var/armor_choice = input("Choose your armor.", "DRESS UP") as anything in armor_options
+		var/armor_choice = input(H, "Choose your armor.", "DRESS UP") as anything in armor_options
 		switch(armor_choice)
 			if("Light Brigandine")
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light	// find a smithy to fix it
@@ -193,3 +193,83 @@
 		)
 	H.merctype = 7
 
+/datum/advclass/mercenary/grenzelhoft/mage
+	name = "Gefechtsgelehrter"
+	tutorial = "You are a Gefechtsgelehrter - \"Combat Scholar\" - A proud magos from the Celestial Academy of Magos, who's skills in Siege Magic and Arcyne Physics are unmatched."
+	allowed_sexes = list(MALE, FEMALE)
+	allowed_races = RACES_ALL_KINDS
+	outfit = /datum/outfit/job/roguetown/mercenary/grenzelhoft_mage
+	class_select_category = CLASS_CAT_GRENZELHOFT
+	category_tags = list(CTAG_MERCENARY)
+	cmode_music = 'sound/music/combat_grenzelhoft.ogg'
+	subclass_languages = list(/datum/language/grenzelhoftian)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_INTELLECTUAL, TRAIT_STEELHEARTED)
+	subclass_stats = list(
+		STATKEY_INT = 3,
+		STATKEY_WIL = 3,
+		STATKEY_STR = -1,
+		STATKEY_PER = 3,
+		STATKEY_SPD = 1
+	)
+	subclass_skills = list(
+		/datum/skill/magic/arcane = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
+	)
+
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_mage/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a Gefechtgelehrter - \"Combat Scholar\" - A proud magos from the Celestial Academy of Magos, who's skills in Siege Magic and Arcyne Physics are unmatched."))
+	belt = /obj/item/storage/belt/rogue/leather/battleskirt
+	backl = /obj/item/rogueweapon/woodstaff/emerald/blacksteelstaff
+	cloak = /obj/item/clothing/cloak/stabard/grenzelmage
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	//General gear regardless of class.
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
+	head = /obj/item/clothing/head/roguetown/grenzelhofthat
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
+	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
+	if(H.mind) // State mandated spells c:
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball/artillery)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/spitfire)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/arcynebolt)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/magicians_brick)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/conjure_armor)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/counterspell)
+	if(H.age == AGE_OLD) // FEAR the old man in a profession where men die young, or something corny like that.
+		H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 5, TRUE)
+		H.change_stat(STATKEY_SPD, -1)
+		H.change_stat(STATKEY_STR, -1)
+		H.change_stat(STATKEY_CON, -2)
+		H.change_stat(STATKEY_PER, 2)
+		H.change_stat(STATKEY_INT, 2)
+		H.mind?.adjust_spellpoints(3)
+		ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC) // Only T2 arcyne (Unless they're old) so if they get spell points from something they can only pick from the curated spellblade list
+	H.merctype = 7

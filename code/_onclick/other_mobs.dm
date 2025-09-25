@@ -702,6 +702,11 @@
 		animate(transform = prev_transform, time = 0)
 		throw_at(A, 1, 1, src, spin = FALSE)
 
+	if(mob_offsets)
+		for(var/o in mob_offsets)
+			if(mob_offsets[o])
+				reset_offsets(o)
+
 #undef FLIP_DIRECTION_CLOCKWISE
 #undef FLIP_DIRECTION_ANTICLOCKWISE
 

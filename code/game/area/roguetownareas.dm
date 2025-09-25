@@ -57,6 +57,9 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = 'sound/music/area/banditcamp.ogg'
 	droning_sound_night = 'sound/music/area/banditcamp.ogg'
 
+/area/rogue/indoors/vampire_manor
+	name = "vampire estate indoors"
+	droning_sound = 'sound/music/area/manor2.ogg'
 
 /area/rogue/indoors/ravoxarena
 	name = "ravox arena"
@@ -150,23 +153,19 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	warden_area = TRUE
 	threat_region = THREAT_REGION_AZURE_BASIN
 
+/area/rogue/druidsgrove
+	name = "Druids grove"
+	icon_state = "rtfield"
+	first_time_text = "Druids grove"
+	droning_sound = list('sound/ambience/riverday (1).ogg','sound/ambience/riverday (2).ogg','sound/ambience/riverday (3).ogg')
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = list ('sound/ambience/rivernight (1).ogg','sound/ambience/rivernight (2).ogg','sound/ambience/rivernight (3).ogg' )
+
 /area/rogue/indoors/shelter/rtfield
 	icon_state = "rtfield"
 	droning_sound = 'sound/music/area/field.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
-
-/area/rogue/outdoors/rtfield/eora
-	name = "Eoran Shrine"
-	icon_state = "eora"
-	soundenv = 19
-	ambush_times = list("night")
-	first_time_text = "EORAN SHRINE"
-	droning_sound = 'sound/newmusic/lovecraft2.ogg'
-	droning_sound_dusk = 'sound/newmusic/lovecraft2.ogg'
-	droning_sound_night = 'sound/newmusic/lovecraft2.ogg'
-	converted_type = /area/rogue/indoors/shelter/rtfield
-	deathsight_message = "somewhere high up in a mountains, where cherry blossoms bloom"
 
 /area/rogue/outdoors/abisland
 	name = "abyssors grasp"
@@ -221,6 +220,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 5,
 				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5)
 	converted_type = /area/rogue/outdoors/caves
+
+/area/rogue/under/cave/peace
+	icon_state = "caves"
+	droning_sound = 'sound/music/area/peace.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
 /area/rogue/outdoors/caves
 	icon_state = "caves"
 	droning_sound = 'sound/music/area/caves.ogg'

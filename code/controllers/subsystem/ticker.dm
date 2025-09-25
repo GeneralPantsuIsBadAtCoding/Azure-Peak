@@ -493,6 +493,7 @@ SUBSYSTEM_DEF(ticker)
 				S.Fade(TRUE)
 			livings += living
 			if(ishuman(living))
+				SSrole_class_handler.setup_class_handler(living)
 				try_apply_character_post_equipment(living)
 		else
 			continue

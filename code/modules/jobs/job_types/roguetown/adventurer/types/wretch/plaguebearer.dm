@@ -56,7 +56,7 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	if(H.mind)
 		var/weapons = list("Archery", "LET THERE BE PLAGUE!!!")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Archery")

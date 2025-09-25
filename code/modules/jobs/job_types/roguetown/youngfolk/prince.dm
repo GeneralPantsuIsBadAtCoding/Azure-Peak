@@ -30,14 +30,6 @@
 		/datum/advclass/heir/scamp
 	)
 
-/datum/job/roguetown/prince/after_spawn(mob/living/H, mob/M, latejoin)
-	. = ..()
-	if(ishuman(H))
-		var/mob/living/carbon/human/Q = H
-		Q.advsetup = 1
-		Q.invisibility = INVISIBILITY_MAXIMUM
-		Q.become_blind("advsetup")
-
 /datum/outfit/job/roguetown/heir/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.verbs |= /mob/living/carbon/human/proc/declarechampion
@@ -241,6 +233,7 @@
 	adv_stat_ceiling = list(STAT_STRENGTH = 8, STAT_CONSTITUTION = 8, STAT_SPEED = 15)	//don't get caught
 
 /datum/outfit/job/roguetown/heir/scamp/pre_equip(mob/living/carbon/human/H)
+	..()
 	head = /obj/item/clothing/head/roguetown/circlet
 	mask = /obj/item/clothing/head/roguetown/roguehood/black
 	neck = /obj/item/storage/keyring/heir

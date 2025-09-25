@@ -96,6 +96,14 @@
 	using.hud = src
 	static_inventory += using
 
+	using = new /atom/movable/screen/ghost/moveup(null, src)
+	using.screen_loc = ui_ghost_moveup
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/movedown(null, src)
+	using.screen_loc = ui_ghost_movedown
+	static_inventory += using
+
 	grain = new /atom/movable/screen/grain
 	grain.hud = src
 	static_inventory += grain

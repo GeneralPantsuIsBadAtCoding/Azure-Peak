@@ -231,6 +231,7 @@
 		send_item_attack_message(I, user, affecting.name, affecting)
 
 	if(statforce)
+		I.remove_bintegrity(1)
 		var/probability = I.get_dismemberment_chance(affecting, user)
 		if(prob(probability) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, user.zone_selected))
 			I.add_mob_blood(src)

@@ -65,3 +65,7 @@
 	cost = 200
 	contains = list(/obj/item/grapplinghook)
 
+/datum/supply_pack/rogue/bath_rogue/climbing_gear
+	name = "Climbing Gear"
+	cost = 150
+	contains = list(/obj/item/clothing/climbing_gear)
