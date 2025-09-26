@@ -103,7 +103,7 @@
 
 /datum/skill/craft/tanning
 	name = "Skincrafting"
-	desc = "Determines whether you can craft or repair various leather items. Reduces the work time on the tanning rack and improves minimum yield per hide by 1 per skill level."
+	desc = "Determines whether you can craft or repair various leather items. Reduces the work time on the tanning rack and improves minimum yield per hide by 1 per skill level. Also increases chance of getting an essence of wilderness from tanning hide."
 	dreams = list(
 		"...your knife scrapes away at skin, flesh and fat, cleaning up the piece of hide so that it may be made into a wonderful cloak for the lord...",
 		"...the hunter, their voice as rough as bark and their skin weathered like grain lets out a hearty laugh as he shows you his stitching..."
