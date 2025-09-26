@@ -136,8 +136,11 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
 		if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
-			JobDebug("FOC incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
-			continue
+			if(!player.client?.has_triumph_buy(TRIUMPH_BUY_RACE_ALL))
+				JobDebug("FOC incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+				continue
+			else
+				player.client?.activate_triumph_buy(TRIUMPH_BUY_RACE_ALL)
 		if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron.type in job.allowed_patrons))
 			JobDebug("FOC incompatible with patron, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 			continue
@@ -825,6 +828,12 @@ SUBSYSTEM_DEF(job)
 		JobDebug("Popcap overflow Check observer located, Player: [player]")
 	JobDebug("Player rejected :[player]")
 	to_chat(player, "<b>I couldn't find a job to be..</b>")
+
+	var/list/client_triumphs = SStriumphs.triumph_buy_owners[player.ckey]
+	if(islist(client_triumphs))
+		for(var/datum/triumph_buy/race_all_jobs/R in client_triumphs)
+			SStriumphs.attempt_to_unbuy_triumph_condition(player.client, R, reason = "FAILING TO GET A JOB", force = TRUE)
+
 	unassigned -= player
 	player.ready = PLAYER_NOT_READY
 

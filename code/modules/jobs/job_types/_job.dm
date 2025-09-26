@@ -184,7 +184,7 @@
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
-/datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+/datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE, client/player_client)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
@@ -243,6 +243,11 @@
 
 	if(islist(advclass_cat_rolls))
 		hugboxify_for_class_selection(H)
+	
+	var/list/owned_triumph_buys = SStriumphs.triumph_buy_owners[player_client.ckey]
+	if(length(owned_triumph_buys))
+		for(var/datum/triumph_buy/T in owned_triumph_buys)
+			T.on_after_spawn(H)
 
 /client/verb/set_mugshot()
 	set category = "OOC"

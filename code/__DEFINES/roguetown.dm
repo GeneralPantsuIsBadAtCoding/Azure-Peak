@@ -473,13 +473,48 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_BATHMOM		"CAT_BATHMOM"
 #define CTAG_TAPSTER		"CAT_TAPSTER"
 #define CTAG_LUNATIC		"CAT_LUNATIC"
-/*
-	Defines for the triumph buy datum categories
-*/
-#define TRIUMPH_CAT_ROUND_EFX "ROUND-EFX"
+
+// Character category and its buys
 #define TRIUMPH_CAT_CHARACTER "CHARACTER"
-#define TRIUMPH_CAT_MISC "MISC!"
-#define TRIUMPH_CAT_ACTIVE_DATUMS "ACTIVE"
+
+#define TRIUMPH_BUY_RACE_ALL "race_all"
+#define TRIUMPH_BUY_ANY_CLASS "pick_any"
+
+// Storyteller category and its buys
+#define TRIUMPH_CAT_STORYTELLER "STORYTELLER"
+
+#define TRIUMPH_BUY_ASTRATA_INFLUENCE "astrata_influence"
+#define TRIUMPH_BUY_NOC_INFLUENCE "noc_influence"
+#define TRIUMPH_BUY_RAVOX_INFLUENCE "ravox_influence"
+#define TRIUMPH_BUY_ABYSSOR_INFLUENCE "abyssor_influence"
+#define TRIUMPH_BUY_XYLIX_INFLUENCE "xylix_influence"
+#define TRIUMPH_BUY_NECRA_INFLUENCE "necra_influence"
+#define TRIUMPH_BUY_PESTRA_INFLUENCE "pestra_influence"
+#define TRIUMPH_BUY_MALUM_INFLUENCE "malum_influence"
+#define TRIUMPH_BUY_EORA_INFLUENCE "eora_influence"
+#define TRIUMPH_BUY_DENDOR_INFLUENCE "dendor_influence"
+#define TRIUMPH_BUY_ZIZO_INFLUENCE "zizo_influence"
+#define TRIUMPH_BUY_BAOTHA_INFLUENCE "baotha_influence"
+#define TRIUMPH_BUY_GRAGGAR_INFLUENCE "graggar_influence"
+#define TRIUMPH_BUY_MATTHIOS_INFLUENCE "matthios_influence"
+
+// Misc category and its buys
+#define TRIUMPH_CAT_MISC "MISC"
+
+#define TRIUMPH_BUY_PSYDON_FAVOURITE "psydon_favourite"
+#define TRIUMPH_BUY_WIPE_TRIUMPHS "wipe_triumphs"
+
+// Misc category and its buys
+#define TRIUMPH_CAT_COMMUNAL "COMMUNAL"
+
+#define TRIUMPH_BUY_PSYDON_RETIREMENT "psydon_retirement"
+
+// Bought triumph buys category
+#define TRIUMPH_CAT_ACTIVE_DATUMS "BOUGHT"
+
+/*
+	Defines for armor classes
+*/
 
 #define ARMOR_CLASS_NONE 0
 #define ARMOR_CLASS_LIGHT 1
