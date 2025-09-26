@@ -44,7 +44,7 @@
 		produce_seed()
 		seednutrition = 0
 	if(!has_buckled_mobs())
-		if(world.time > last_eat + 80)
+		if(world.time > last_eat + 50)
 			var/list/around = view(1, src)
 			for(var/mob/living/M in around)
 				HasProximity(M)
@@ -63,7 +63,7 @@
 			STOP_PROCESSING(SSobj, src)
 			return TRUE
 	for(var/mob/living/L in buckled_mobs)
-		if(world.time > last_eat + 100)
+		if(world.time > last_eat + 200)
 			last_eat = world.time
 			L.flash_fullscreen("redflash3")
 			playsound(src.loc, list('sound/vo/mobs/plant/attack (1).ogg','sound/vo/mobs/plant/attack (2).ogg','sound/vo/mobs/plant/attack (3).ogg','sound/vo/mobs/plant/attack (4).ogg'), 100, FALSE, -1)
