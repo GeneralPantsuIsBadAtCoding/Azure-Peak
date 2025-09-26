@@ -33,7 +33,7 @@
 	beltl = /obj/item/rogueweapon/scabbard/sheath
 	job_bitflag = BITFLAG_ROYALTY
 
-/datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE, visuals_only, client/player_client)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(know_agents), L), 5 SECONDS)
 

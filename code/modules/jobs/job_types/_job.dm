@@ -409,7 +409,7 @@
 		holder = "[uniform]"
 	uniform = text2path(holder)*/
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/player_client)
 	if(visualsOnly)
 		return
 

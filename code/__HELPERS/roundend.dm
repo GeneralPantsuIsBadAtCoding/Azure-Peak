@@ -170,6 +170,12 @@
 
 	sleep(8 SECONDS)
 
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			if(H.get_triumphs() < 0)
+				H.adjust_triumphs(1)
+			H.adjust_triumphs(H.charflaw?.roundend_triumph_award)
+
 	var/datum/triumph_buy/communal/psydon_retirement_fund/fund = locate() in SStriumphs.triumph_buy_datums
 	if(fund && SStriumphs.communal_pools[fund.type] > 0)
 		fund.on_activate()

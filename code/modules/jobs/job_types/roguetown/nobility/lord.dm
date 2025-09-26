@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 /datum/outfit/job/roguetown/lord
 	job_bitflag = BITFLAG_ROYALTY
 
-/datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE, visuals_only, client/player_client)
 	. = ..()
 	if(L)
 		var/list/chopped_name = splittext(L.real_name, " ")

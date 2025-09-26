@@ -22,7 +22,7 @@
 
 	cmode_music = 'sound/music/combat_weird.ogg'
 
-/datum/job/roguetown/deathknight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/deathknight/after_spawn(mob/living/L, mob/M, latejoin = TRUE, visuals_only, client/player_client)
 	SSmapping.find_and_remove_world_trait(/datum/world_trait/death_knight)
 	SSmapping.retainer.death_knights |= L.mind
 	..()
