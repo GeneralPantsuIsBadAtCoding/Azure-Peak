@@ -63,7 +63,7 @@
 			STOP_PROCESSING(SSobj, src)
 			return TRUE
 	for(var/mob/living/L in buckled_mobs)
-		if(world.time > last_eat + 200)
+		if(world.time > last_eat + 120)
 			last_eat = world.time
 			L.flash_fullscreen("redflash3")
 			playsound(src.loc, list('sound/vo/mobs/plant/attack (1).ogg','sound/vo/mobs/plant/attack (2).ogg','sound/vo/mobs/plant/attack (3).ogg','sound/vo/mobs/plant/attack (4).ogg'), 100, FALSE, -1)
