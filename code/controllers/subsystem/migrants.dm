@@ -12,7 +12,10 @@ SUBSYSTEM_DEF(migrants)
 	var/wave_wait_time = 30 SECONDS
 
 	var/list/spawned_waves = list()
-
+	/// Track triumph contributions across all waves
+	var/list/global_triumph_contributions = list()
+	/// Track parent wave for downgrades
+	var/current_parent_wave = null
 
 /datum/controller/subsystem/migrants/Initialize()
 	return ..()
@@ -21,9 +24,11 @@ SUBSYSTEM_DEF(migrants)
 	process_migrants(2 SECONDS)
 	update_ui()
 
-/datum/controller/subsystem/migrants/proc/set_current_wave(wave_type, time)
+/datum/controller/subsystem/migrants/proc/set_current_wave(wave_type, time, parent_wave = -1)
 	current_wave = wave_type
 	wave_timer = time
+	if(parent_wave != -1)
+		current_parent_wave = parent_wave
 
 /datum/controller/subsystem/migrants/proc/process_migrants(dt)
 	if(current_wave)
@@ -41,17 +46,34 @@ SUBSYSTEM_DEF(migrants)
 		log_game("Migrants: Successfully spawned wave: [current_wave]")
 	else
 		log_game("Migrants: FAILED to spawn wave: [current_wave]")
+
+	// Handle downgrade logic
+	var/datum/migrant_wave/wave = MIGRANT_WAVE(current_wave)
+	var/parent_wave = current_parent_wave
+
 	// Unset some values, increment wave number if success
 	if(success)
 		wave_number++
-	var/datum/migrant_wave/wave = MIGRANT_WAVE(current_wave)
+		// Reset parent wave triumph if this was a downgrade that succeeded
+		if(parent_wave)
+			reset_wave_contributions(MIGRANT_WAVE(parent_wave))
+
 	set_current_wave(null, 0)
+
 	if(success)
 		time_until_next_wave = time_between_waves
+		current_parent_wave = null
 	else
 		if(wave.downgrade_wave)
-			set_current_wave(wave.downgrade_wave, wave_wait_time)
+			// Apply triumph weighting to downgrade decision
+			var/datum/migrant_wave/downgrade_wave = MIGRANT_WAVE(wave.downgrade_wave)
+			var/downgrade_weight = calculate_triumph_weight(downgrade_wave)
+			// Use parent wave if this was already a downgrade, otherwise use current wave as parent
+			var/new_parent = parent_wave ? parent_wave : current_wave
+			set_current_wave(wave.downgrade_wave, wave_wait_time, new_parent)
+			log_game("Migrants: Downgrading to [wave.downgrade_wave] (parent: [new_parent]) with triumph weight [downgrade_weight]")
 		else
+			current_parent_wave = null
 			time_until_next_wave = time_between_fail_wave
 
 /datum/controller/subsystem/migrants/proc/try_spawn_wave()
@@ -79,7 +101,7 @@ SUBSYSTEM_DEF(migrants)
 			break // Out of migrants, we're screwed and will fail
 		if(assignment.client)
 			continue
-		var/list/priority = get_priority_players(active_migrants, assignment.role_type)
+		var/list/priority = get_priority_players(active_migrants, assignment.role_type, current_wave)
 		if(!length(priority))
 			continue
 		var/client/picked
@@ -153,17 +175,38 @@ SUBSYSTEM_DEF(migrants)
 		spawned_waves[used_wave_type] = 0
 	spawned_waves[used_wave_type] += 1
 
+	reset_wave_contributions(wave)
 	message_admins("MIGRANTS: Spawned wave: [wave.name] (players: [assignments.len]) at [ADMIN_VERBOSEJMP(spawn_location)]")
 
 	unset_all_active_migrants()
 
 	return TRUE
 
+/datum/controller/subsystem/migrants/proc/get_influenceable_waves()
+	var/list/waves = list()
+	for(var/wave_type in GLOB.migrant_waves)
+		var/datum/migrant_wave/wave = MIGRANT_WAVE(wave_type)
+		if(!wave.can_roll)
+			continue
+		// Only show waves that haven't hit max spawns
+		if(!isnull(wave.max_spawns))
+			var/used_wave_type = wave.type
+			if(wave.shared_wave_type)
+				used_wave_type = wave.shared_wave_type
+			if(spawned_waves[used_wave_type] && spawned_waves[used_wave_type] >= wave.max_spawns)
+				continue
+		waves += wave_type
+	return waves
+
 /datum/controller/subsystem/migrants/proc/get_status_line()
 	var/string = ""
 	if(current_wave)
 		var/datum/migrant_wave/wave = MIGRANT_WAVE(current_wave)
-		string = "[wave.name] ([get_active_migrant_amount()]/[wave.get_roles_amount()]) - [wave_timer / (1 SECONDS)]s"
+		var/parent_info = ""
+		if(current_parent_wave)
+			var/datum/migrant_wave/parent = MIGRANT_WAVE(current_parent_wave)
+			parent_info = " (downgrade from [parent.name])"
+		string = "[wave.name][parent_info] ([get_active_migrant_amount()]/[wave.get_roles_amount()]) - [wave_timer / (1 SECONDS)]s"
 	else
 		string = "Mist - [time_until_next_wave / (1 SECONDS)]s"
 	return "Migrants: [string]"
@@ -262,18 +305,42 @@ SUBSYSTEM_DEF(migrants)
 
 	if(role.advclass_cat_rolls)
 		SSrole_class_handler.setup_class_handler(character, role.advclass_cat_rolls)
-		hugboxify_for_class_selection(character)
 	else
 		// Apply a special if we're not applying an adv class, otherwise let the adv class apply it afterwards
 		try_apply_character_post_equipment(character, character.client)
 
-/datum/controller/subsystem/migrants/proc/get_priority_players(list/players, role_type)
+/datum/controller/subsystem/migrants/proc/get_priority_players(list/players, role_type, wave_type)
 	var/list/priority = list()
+	var/list/triumph_weighted = list()
+
 	for(var/client/client as anything in players)
-		if(!(role_type in client.prefs.migrant.role_preferences))
-			continue
-		priority += client
+		var/base_priority = 0
+
+		// Standard role preference priority
+		if(role_type in client.prefs.migrant.role_preferences)
+			base_priority = 100
+
+		var/final_priority = base_priority + 100 * get_triumph_selection_bonus(client, wave_type)
+
+		if(final_priority > 0)
+			triumph_weighted[client] = final_priority
+
+	// Convert weighted list back to prioritized list
+	while(length(triumph_weighted))
+		var/client/highest = null
+		var/highest_priority = 0
+
+		for(var/client/client in triumph_weighted)
+			if(triumph_weighted[client] > highest_priority)
+				highest_priority = triumph_weighted[client]
+				highest = client
+
+		if(highest)
+			priority += highest
+			triumph_weighted -= highest
+
 	return priority
+
 
 /datum/controller/subsystem/migrants/proc/can_be_role(client/player, role_type)
 	var/datum/migrant_role/role = MIGRANT_ROLE(role_type)
@@ -297,16 +364,21 @@ SUBSYSTEM_DEF(migrants)
 	var/wave_type = roll_wave()
 	if(wave_type)
 		log_game("Migrants: Rolled wave: [wave_type]")
-		set_current_wave(wave_type, wave_wait_time)
+		set_current_wave(wave_type, wave_wait_time, wave_type)
 
 	time_until_next_wave = time_between_fail_wave
 
 /datum/controller/subsystem/migrants/proc/roll_wave()
 	var/list/available_weighted_waves = list()
-
 	var/active_migrants = get_active_migrant_amount()
 	var/active_players = get_round_active_players()
 
+	// Check for auto-triggered waves first
+	var/auto_wave = check_triumph_threshold_waves()
+	if(auto_wave)
+		return auto_wave
+
+	// Build available waves with triumph-modified weights
 	for(var/wave_type in GLOB.migrant_waves)
 		var/datum/migrant_wave/wave = MIGRANT_WAVE(wave_type)
 		if(!wave.can_roll)
@@ -325,11 +397,135 @@ SUBSYSTEM_DEF(migrants)
 				used_wave_type = wave.shared_wave_type
 			if(spawned_waves[used_wave_type] && spawned_waves[used_wave_type] >= wave.max_spawns)
 				continue
-		available_weighted_waves[wave_type] = wave.weight
+
+		// Calculate triumph-modified weight
+		var/final_weight = calculate_triumph_weight(wave)
+		available_weighted_waves[wave_type] = final_weight
 
 	if(!length(available_weighted_waves))
 		return null
 	return pickweight(available_weighted_waves)
+
+
+/datum/controller/subsystem/migrants/proc/check_triumph_threshold_waves()
+	// Find waves that have hit their triumph threshold
+	var/list/threshold_waves = list()
+
+	for(var/wave_type in GLOB.migrant_waves)
+		var/datum/migrant_wave/wave = MIGRANT_WAVE(wave_type)
+		if(!wave.can_roll)
+			continue
+		if(wave.triumph_total >= wave.triumph_threshold)
+			// Still need to check population/active requirements
+			var/active_migrants = get_active_migrant_amount()
+			var/active_players = get_round_active_players()
+
+			if(!isnull(wave.min_active) && active_migrants < wave.min_active)
+				continue
+			if(!isnull(wave.max_active) && active_migrants > wave.max_active)
+				continue
+			if(!isnull(wave.min_pop) && active_players < wave.min_pop)
+				continue
+			if(!isnull(wave.max_pop) && active_players > wave.max_pop)
+				continue
+			if(!isnull(wave.max_spawns))
+				var/used_wave_type = wave.type
+				if(wave.shared_wave_type)
+					used_wave_type = wave.shared_wave_type
+				if(spawned_waves[used_wave_type] && spawned_waves[used_wave_type] >= wave.max_spawns)
+					continue
+
+			threshold_waves[wave_type] = wave.triumph_total
+
+	if(!length(threshold_waves))
+		return null
+
+	// Return the wave with highest triumph investment if multiple hit threshold
+	var/chosen_wave = null
+	var/highest_triumph = 0
+	for(var/wave_type in threshold_waves)
+		if(threshold_waves[wave_type] > highest_triumph)
+			highest_triumph = threshold_waves[wave_type]
+			chosen_wave = wave_type
+
+	return chosen_wave
+
+/datum/controller/subsystem/migrants/proc/calculate_triumph_weight(datum/migrant_wave/wave)
+	var/base_weight = wave.weight
+	var/triumph_bonus = wave.triumph_total
+
+	// Triumph provides a linear bonus to weight (configurable multiplier)
+	var/triumph_multiplier = 2 // Each triumph point adds 2x weight
+	var/final_weight = base_weight + (triumph_bonus * triumph_multiplier)
+
+	return max(final_weight, 1) // Ensure minimum weight of 1
+
+
+/datum/controller/subsystem/migrants/proc/contribute_triumph_to_wave(client/player, wave_type, amount)
+	if(!player || !player.ckey)
+		return FALSE
+
+	var/datum/migrant_wave/wave = MIGRANT_WAVE(wave_type)
+	if(!wave)
+		return FALSE
+
+	// Check if player has enough triumph
+	var/current_triumph = SStriumphs.get_triumphs(player.ckey)
+	if(current_triumph < amount)
+		to_chat(player, span_warning("You don't have enough triumph! You have [current_triumph], need [amount]."))
+		return FALSE
+
+	// Deduct triumph from player
+	player.adjust_triumphs(-amount, TRUE, "Wave influence: [wave.name]")
+
+	// Add to wave contributions
+	if(!wave.triumph_contributions[player.ckey])
+		wave.triumph_contributions[player.ckey] = 0
+	wave.triumph_contributions[player.ckey] += amount
+	wave.triumph_total += amount
+
+	// Track globally for selection chances
+	if(!global_triumph_contributions[player.ckey])
+		global_triumph_contributions[player.ckey] = list()
+	if(!global_triumph_contributions[player.ckey][wave_type])
+		global_triumph_contributions[player.ckey][wave_type] = 0
+	global_triumph_contributions[player.ckey][wave_type] += amount
+
+	to_chat(player, span_notice("You've contributed [amount] triumph to '[wave.name]'. Total: [wave.triumph_total]/[wave.triumph_threshold]"))
+
+	// Announce if threshold reached
+	if(wave.triumph_total >= wave.triumph_threshold)
+		message_admins("TRIUMPH: Wave '[wave.name]' has reached its triumph threshold ([wave.triumph_total]/[wave.triumph_threshold]) and will be prioritized!")
+		log_game("TRIUMPH: Wave '[wave.name]' reached triumph threshold via player contributions")
+
+	return TRUE
+
+/datum/controller/subsystem/migrants/proc/get_triumph_selection_bonus(client/player, wave_type)
+	if(current_parent_wave)
+		wave_type = current_parent_wave
+	if(!player?.ckey)
+		return 0
+
+	if(!global_triumph_contributions[player.ckey])
+		return 0
+
+	if(!global_triumph_contributions[player.ckey][wave_type])
+		return 0
+
+	return global_triumph_contributions[player.ckey][wave_type]
+
+/datum/controller/subsystem/migrants/proc/reset_wave_contributions(datum/migrant_wave/wave)
+	if(!wave.reset_contributions_on_spawn)
+		return
+
+	// Clear contributions for this wave
+	wave.triumph_contributions.Cut()
+	wave.triumph_total = 0
+
+	// Clear from global tracking
+	for(var/ckey in global_triumph_contributions)
+		if(global_triumph_contributions[ckey][wave.type])
+			global_triumph_contributions[ckey] -= wave.type
 
 /datum/controller/subsystem/migrants/proc/update_ui()
 	for(var/client/client as anything in get_all_migrants())
@@ -385,6 +581,8 @@ SUBSYSTEM_DEF(migrants)
 		if(!player.client)
 			continue
 		if(!player.client.prefs)
+			continue
+		if(!player.client.prefs.migrant?.viewer)
 			continue
 		migrants += player.client
 	return migrants
