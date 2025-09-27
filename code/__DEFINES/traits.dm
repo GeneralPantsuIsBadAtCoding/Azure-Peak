@@ -210,8 +210,15 @@
 // Economic Roles Traits
 // Most of these should NOT be given to any true combat roles (I.E. anything with Dexpert or Miracle / Good Magic) with very few exceptions
 // Pilgrims and non-combat roles can have these as a treat
-// Unless they take the corresponding virtues.
-#define TRAIT_MEDICINE_EXPERT "Medicine Expert" // We don't give this to Physician's Apprentice
+// Most crafting skills are now gated to Apprentice, unless there's a corresponding trait that unlocks them. These are gained for free by economic roles, and towner jobs
+// Carpentry and Masonry are niche skills used for building and repairing structures, therefore they're not gated.
+#define TRAIT_MEDICINE_EXPERT "Expert Physicker" // Medicine
+#define TRAIT_ALCHEMY_EXPERT "Expert Alchemist" // Alchemy. This is gated to Jman by default.
+#define TRAIT_SMITHING_EXPERT "Expert Forgehand" // X-Smithing, Smelting, Engineering, Trapmaking, Mining
+#define TRAIT_SEWING_EXPERT "Expert Clothier" // Sewing, Skincrafting, Leathercraft and Butchering.
+#define TRAIT_SURVIVAL_EXPERT "Expert Survivalist" // Butchering, Cooking and Fishing. Skincraft + Sewing = Jman.
+#define TRAIT_HOMESTEAD_EXPERT "Expert Homesteader" // Farming, Mining, Cooking, Fishing, Butchering, Lumberjacking (All Labor), Pottery. Skincraft + Sewing = Jman.
+#define TRAIT_SELF_SUSTENANCE "Self-Sustenance" // Unlocks all gated crafting skills to Jman. Wretches & Antags only.
 
 
 //item and enchantment traits should go under here as new ones get added

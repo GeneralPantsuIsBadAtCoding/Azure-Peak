@@ -13,6 +13,9 @@
 		"...you kneel in the soil, watering the seeds you've sown. The rows stretch out before you, green and thriving. You are filled with satisfaction, knowing your labor will soon bloom into abundance..."
 	)
 	expert_name = "Farmer"
+	max_untraited_level = SKILL_LEVEL_APPRENTICE
+	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 
 /datum/skill/labor/mining
 	name = "Mining"
@@ -25,6 +28,10 @@
 		"...and then the answer to his riddle comes to you, as if it was there all along. A lump of coal. With a satisfied smile, the dwarf hands you the heart of the mountain..."
 	)
 	expert_name = "Miner"
+	max_untraited_level = SKILL_LEVEL_APPRENTICE
+	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SMITHING_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 
 /datum/skill/labor/fishing
 	name = "Fishing"
@@ -34,6 +41,9 @@
 		"...the old merchant nods his head, and gives you a small sack of baits: worms, grubs and even slices of cheese - each said to bring you another of Abyssor's bounties..."
 	)
 	expert_name = "Fisher"
+	max_untraited_level = SKILL_LEVEL_APPRENTICE
+	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 
 /datum/skill/labor/butchering
 	name = "Butchering"
@@ -44,6 +54,10 @@
 		"...you pull the knife through fat, sinew and bone, the carcass giving way under your touch. The butcher's art is the transformation of life into sustenance...",
 	)
 	expert_name = "Butcher"
+	max_untraited_level = SKILL_LEVEL_APPRENTICE
+	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SURVIVAL_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 
 /datum/skill/labor/lumberjacking
 	name = "Lumberjacking"
@@ -53,3 +67,5 @@
 		"...you pull on a saw, and the bearded lumberjack across from you pulls back on it. The great oak yawns as it threatens to topple over..."
 	)
 	expert_name = "Lumberjack"
+	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
