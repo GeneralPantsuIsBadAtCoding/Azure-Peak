@@ -91,8 +91,6 @@
 		"...the gleam of the trap's sharp teeth catches the dim light as you conceal it beneath layers of brush and foliage. To the untrained eye, it's nothing more than a harmless patch of grass - but you know better..."
 	)
 	expert_name = "Trapper"
-	max_untraited_level = SKILL_LEVEL_APPRENTICE
-	trait_uncap = list(TRAIT_SMITHING_EXPERT = SKILL_LEVEL_LEGENDARY, TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 
 /datum/skill/craft/engineering
 	name = "Engineering"
