@@ -171,6 +171,7 @@
 /datum/virtue/utility/hunter
 	name = "Hunter's Apprentice"
 	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide."
+	added_traits = list(TRAIT_SURVIVAL_EXPERT)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/traps, 2, 2),
 						list(/datum/skill/labor/butchering, 2, 2),
@@ -182,6 +183,7 @@
 /datum/virtue/utility/artificer
 	name = "Artificer's Apprentice"
 	desc = "In my youth, I worked under a skilled artificer, studying construction and engineering."
+	added_traits = list(TRAIT_SMITHING_EXPERT)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/carpentry, 2, 2),
 						list(/datum/skill/craft/masonry, 2, 2),
@@ -198,6 +200,7 @@
 /datum/virtue/utility/physician
 	name = "Physician's Apprentice"
 	desc = "In my youth, I worked under a skilled physician, studying medicine and alchemy."
+	added_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_ALCHEMY_EXPERT)
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
@@ -258,6 +261,7 @@
 
 /datum/virtue/utility/granary
 	name = "Cunning Provisioner"
+	added_traits = list(TRAIT_HOMESTEAD_EXPERT)
 	desc = "You've worked in or around the docks enough to steal away a sack of supplies that no one would surely miss, just in case. You've picked up on some cooking and fishing tips in your spare time, as well."
 	added_stashed_items = list("Bag of Food" = /obj/item/storage/roguebag/food)
 	added_skills = list(list(/datum/skill/craft/cooking, 3, 6),
@@ -265,6 +269,7 @@
 
 /datum/virtue/utility/forester
 	name = "Forester"
+	added_traits = list(TRAIT_HOMESTEAD_EXPERT)
 	desc = "The forest is your home, or at least, it used to be. You always long to return and roam free once again, and you have not forgotten your knowledge on how to be self sufficient."
 	added_stashed_items = list("Trusty hoe" = /obj/item/rogueweapon/hoe)
 	added_skills = list(list(/datum/skill/craft/cooking, 2, 2),
@@ -276,6 +281,7 @@
 
 /datum/virtue/utility/mining
 	name = "Miner's Apprentice"
+	added_traits = list(TRAIT_SMITHING_EXPERT) // Not sure whether smithing or homestead but given mining goods goes into smithing this fits better?
 	desc = "The dark shafts, the damp smells of ichor and the laboring hours are no stranger to me. I keep my pickaxe and lamptern close, and have been taught how to mine well."
 	added_stashed_items = list(
 		"Steel Pickaxe" = /obj/item/rogueweapon/pick/steel,
