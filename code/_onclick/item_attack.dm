@@ -131,7 +131,7 @@
 		return
 	if(!user.CanReach(M,src))
 		return
-	if(user.get_active_held_item() != src)
+	if(user.get_active_held_item() != src && !HAS_TRAIT(user, TRAIT_DUALWIELDER))
 		return
 	if(user.incapacitated())
 		return
