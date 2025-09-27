@@ -495,6 +495,8 @@
 
 		update_pull_movespeed()
 		set_pull_offsets(target, state)
+		if(target.stat == CONSCIOUS && target.cmode)
+			target.resist_grab(reflexive = TRUE)
 	else
 		if(!supress_message)
 			var/sound_to_play = 'sound/combat/shove.ogg'
@@ -1167,10 +1169,10 @@
 	..()
 	update_charging_movespeed()
 
-/mob/proc/resist_grab(moving_resist)
+/mob/proc/resist_grab(reflexive = FALSE)
 	return TRUE //returning 0 means we successfully broke free
 
-/mob/living/resist_grab(moving_resist)
+/mob/living/resist_grab(reflexive = FALSE)
 	. = TRUE
 
 	var/wrestling_diff = 0
@@ -1215,9 +1217,10 @@
 	if(L.compliance)
 		resist_chance = 100
 
-	if(moving_resist && client) //we resisted by trying to move
-		client.move_delay = world.time + 20
-	stamina_add(rand(5,15))
+	if(!reflexive)
+		stamina_add(rand(5,15))
+	else
+		stamina_add(rand(1,5))
 
 	if(!prob(resist_chance))
 		var/rchance = ""
