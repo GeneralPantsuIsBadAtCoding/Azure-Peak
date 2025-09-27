@@ -125,3 +125,6 @@
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	ceiling_protected = TRUE
 	threat_region = THREAT_REGION_MOUNT_DECAP
+
+/area/rogue/outdoors/mountains/decap/minotaurfort/can_craft_here()
+	return FALSE
