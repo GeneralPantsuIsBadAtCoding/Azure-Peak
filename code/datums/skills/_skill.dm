@@ -53,4 +53,14 @@
 	. = ..()
 
 	if(href_list["skill_detail"])
-		to_chat(usr, desc)
+		var/msg = ""
+		msg += "[desc] <br>"
+		if(max_untraited_level < SKILL_LEVEL_LEGENDARY)
+			msg += "------ <br>"
+			msg += "This skill is capped at [skill_to_string(max_untraited_level)] without the proper traits. The following traits increase the maximum level you can reach:<br>"
+		if(LAZYLEN(trait_uncap))
+			for(var/trait_name in trait_uncap)
+				var/trait_level = trait_uncap[trait_name]
+				msg += "[span_greentext(trait_name)]: [skill_to_string(trait_level)]. <br>"
+		to_chat(usr, span_info(msg))
+
