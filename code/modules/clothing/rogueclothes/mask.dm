@@ -297,6 +297,11 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
+/obj/item/clothing/mask/rogue/facemask/shadowfacemask
+	name = "anthraxi war mask"
+	desc = "A metal mask resembling a spider's face. Such a visage haunts many an older dark elf's nitemares - while the younger generation simply scoffs at such relics."
+	icon_state = "shadowfacemask"
+
 /obj/item/clothing/mask/rogue/facemask/aalloy
 	name = "decrepit mask"
 	desc = "Frayed bronze, molded into an unblinking visage. Only the statues, buried within the innards of Mount Decapitation, share its wrinkled lip and sneer of cold command."
@@ -458,6 +463,9 @@
 	name = "purple halfmask"
 	icon_state = "shadowmask"
 	desc = "For when one wants to conceal their face while performing dastardly deeds in the name of the crown."
+
+/obj/item/clothing/mask/rogue/shepherd/shadowmask/delf
+	desc = "Tiny drops of white dye mark its front, not unlike teeth. A smile that leers from shadow."
 
 /obj/item/clothing/mask/rogue/physician
 	name = "plague mask"

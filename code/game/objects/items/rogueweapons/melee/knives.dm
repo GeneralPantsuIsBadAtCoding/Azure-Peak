@@ -297,11 +297,17 @@
 	name = "corroded dagger"
 	desc = "While this is a dagger made of solid steel it has become discolored; the leftovers of the poisons used on this blade.."
 	icon_state = "pdagger"
-	sheathe_icon = "pdagger"
+	sheathe_icon = "sdagger"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/corroded/Initialize()
 	. = ..()
 	AddElement(/datum/element/tipped_item)	//Lets you tip your weapon in poison
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/corroded/dirk //Let's poison that shit!
+	name = "fanged dagger"
+	desc = "A dagger modeled after the fang of an anthrax spider. Can be poisoned."
+	icon_state = "spiderdagger"
+	smeltresult = null
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/holysee
 	name = "eclipsum dagger"
