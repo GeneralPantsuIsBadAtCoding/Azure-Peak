@@ -26,6 +26,14 @@ SUBSYSTEM_DEF(treasury)
 	name = "treasury"
 	wait = 1
 	priority = FIRE_PRIORITY_WATER_LEVEL
+	var/noble_tax_value = 0
+	var/noble_fine_exemption = TRUE
+	var/church_tax_value = 6
+	var/church_fine_exemption = TRUE
+	var/yeomen_tax_value = 12
+	var/yeomen_fine_exemption = FALSE
+	var/peasant_tax_value = 12
+	var/peasant_fine_exemption = FALSE
 	var/tax_value = 0.11
 	var/queens_tax = 0.10
 	var/treasury_value = 0
@@ -165,20 +173,16 @@ SUBSYSTEM_DEF(treasury)
 	var/taxed_amount = 0
 	var/original_amt = amt
 	treasury_value += amt
-	if(character in bank_accounts)
-		if(HAS_TRAIT(character, TRAIT_NOBLE))
-			bank_accounts[character] += amt
-		else
-			taxed_amount = round(amt * tax_value)
-			amt -= taxed_amount
-			bank_accounts[character] += amt
-	else
+	if(!(character in bank_accounts))
 		return FALSE
+
+	taxed_amount = round(amt * get_tax_value_for(character))
+	amt -= taxed_amount
+	bank_accounts[character] += amt
 
 	log_to_steward("+[original_amt] deposited by [character.real_name] of which taxed [taxed_amount]")
 
 	return list(original_amt, taxed_amount)
-
 
 /datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, target)
 	if(!amt)
@@ -260,3 +264,71 @@ SUBSYSTEM_DEF(treasury)
 	noble_incomes -= person
 	bank_accounts -= person
 	return TRUE
+
+/// Boilerplate that sets taxes and announces it to the world. Only changed taxes are announced. 
+/datum/controller/subsystem/treasury/proc/set_taxes(
+	new_noble_tax = 0,
+	new_noble_fine = FALSE,
+	new_yeomen_tax = 0,
+	new_yeomen_fine = FALSE,
+	new_church_tax = 0,
+	new_church_fine = FALSE,
+	new_peasant_tax = 0,
+	new_peasant_fine = FALSE,
+)
+	var/final_text = null
+	if(noble_tax_value != new_noble_tax)
+		final_text += "<br>Noble tax: [new_noble_tax]%. "
+	noble_tax_value = new_noble_tax
+	if(noble_fine_exemption != new_noble_fine)
+		final_text += "The Nobility is [new_noble_fine ? "now exempt from fines" : "no longer exempt from fines"]."
+
+	noble_fine_exemption = new_noble_fine
+
+	if(church_tax_value != new_church_tax)
+		final_text += "<br>Church tax: [new_church_tax]%. "
+	church_tax_value = new_church_tax
+	if(church_fine_exemption != new_church_fine)
+		final_text += "The Church is [new_church_fine ? "now exempt from fines" : "no longer exempt from fines"]."
+	church_fine_exemption = new_church_fine
+
+	if(yeomen_tax_value != new_yeomen_tax)
+		final_text += "<br>Yeoman tax: [new_yeomen_tax]%. "
+	yeomen_tax_value = new_yeomen_tax
+	if(yeomen_fine_exemption != new_yeomen_fine)
+		final_text += "Yeomen are [new_yeomen_fine ? "now exempt from fines" : "no longer exempt from fines"]."
+	yeomen_fine_exemption = new_yeomen_fine
+
+	if(peasant_tax_value != new_peasant_tax)
+		final_text += "<br>Peasant tax: [new_peasant_tax]%. "
+	peasant_tax_value = new_peasant_tax
+	if(peasant_fine_exemption != new_peasant_fine)
+		final_text += "Peasants are [new_peasant_fine ? "now exempt from fines" : "no longer exempt from fines"]."
+	peasant_fine_exemption = new_peasant_fine
+
+	if(isnull(final_text))
+		return
+
+	priority_announce(final_text, "The Generous Lord Decrees", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
+
+/// Returns correct tax (0, 100) for a living mob based on its traits & job
+/datum/controller/subsystem/treasury/proc/get_tax_value_for(mob/living/person)
+	if(HAS_TRAIT(person, TRAIT_NOBLE))
+		return noble_tax_value / 100
+	else if(HAS_TRAIT(person, TRAIT_RESIDENT) || (person.job in GLOB.yeoman_positions))
+		return yeomen_tax_value / 100
+	else if(person.job in GLOB.church_positions)
+		return church_tax_value / 100
+	else
+		return peasant_tax_value / 100
+
+/// Checks if a given mob can be fined, based on its traits & job. TRUE if can be fined, FALSE if protected by decrees
+/datum/controller/subsystem/treasury/proc/check_fine_exemption(mob/living/person)
+	if(HAS_TRAIT(person, TRAIT_NOBLE))
+		return noble_fine_exemption
+	else if(HAS_TRAIT(person, TRAIT_RESIDENT) || (person.job in GLOB.yeoman_positions))
+		return yeomen_fine_exemption
+	else if(person.job in GLOB.church_positions)
+		return church_fine_exemption
+	else
+		return peasant_fine_exemption

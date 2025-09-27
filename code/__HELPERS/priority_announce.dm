@@ -1,4 +1,4 @@
-/proc/priority_announce(text, title = "", sound, type , mob/living/sender = null, mob/living/receiver = null)
+/proc/priority_announce(text, title = "", sound, type , mob/living/sender = null, mob/living/receiver = null, strip_html = TRUE)
 	if(!text)
 		return
 
@@ -6,7 +6,10 @@
 
 	if (title && length(title) > 0)
 		announcement += "<h1 class='alert'>[title]</h1>"
-	announcement += "<br><span class='alert'>[STRIP_HTML_SIMPLE(text, MAX_MESSAGE_LEN)]</span>"
+	if(strip_html)
+		announcement += "<br><span class='alert'>[STRIP_HTML_SIMPLE(text, MAX_MESSAGE_LEN)]</span>"
+	else
+		announcement += "<br><span class='alert'>[text]</span>"
 
 	if (sender)
 		sender.log_talk(text, LOG_SAY, tag="priority announcement")
