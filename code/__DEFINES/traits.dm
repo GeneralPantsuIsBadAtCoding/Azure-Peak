@@ -176,6 +176,7 @@
 #define TRAIT_CICERONE "Cicerone"
 #define TRAIT_EASYDISMEMBER	"Easy Dismemberment"
 #define TRAIT_HARDDISMEMBER	"Hard Dismemberment"
+#define TRAIT_EASYDECAPITATION "Easy Decapitation"
 #define TRAIT_NOPAIN	"Painless"
 #define TRAIT_NOPAINSTUN	"Enduring"
 #define TRAIT_NOBREATH	"Breathless"

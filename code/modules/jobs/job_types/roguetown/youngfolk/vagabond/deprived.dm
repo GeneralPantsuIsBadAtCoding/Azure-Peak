@@ -2,7 +2,7 @@
 	name = "Deprived"
 	tutorial = "You have nothing left but your trusty shield and club - war took away everything you had but will you manage to reclaim what was yours or succumb to the horrors of Psydonia."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	outfit = /datum/outfit/job/roguetown/vagabond/deprived
 	category_tags = list(CTAG_VAGABOND)
 	subclass_stats = list(

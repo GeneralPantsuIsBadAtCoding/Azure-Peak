@@ -1084,7 +1084,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			max_sharp = max(max_sharp, IS_SHARP)
 	return max_sharp
 
-/obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user)
+/obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user, zone_sel)
 	if(!get_sharpness() || !affecting.can_dismember(src))
 		return 0
 
@@ -1119,14 +1119,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/probability = nuforce * (total_dam / affecting.max_damage)
 	var/hard_dismember = HAS_TRAIT(affecting, TRAIT_HARDDISMEMBER)
 	var/easy_dismember = affecting.rotted || affecting.skeletonized || HAS_TRAIT(affecting, TRAIT_EASYDISMEMBER)
+	var/easy_decapitation = HAS_TRAIT(affecting, TRAIT_EASYDECAPITATION)
 	if(affecting.owner)
 		if(!hard_dismember)
 			hard_dismember = HAS_TRAIT(affecting.owner, TRAIT_HARDDISMEMBER)
 		if(!easy_dismember)
 			easy_dismember = HAS_TRAIT(affecting.owner, TRAIT_EASYDISMEMBER)
+		if(!easy_decapitation)
+			easy_decapitation = HAS_TRAIT(affecting.owner, TRAIT_EASYDECAPITATION)
 	// If you don't have easy dismember, then you must hit 90% damage or more to dismember a limb.
 	if((affecting.get_damage() <= (affecting.max_damage * CRIT_DISMEMBER_DAMAGE_THRESHOLD)) && !easy_dismember)
 		return FALSE
+	if(easy_decapitation && zone_sel == BODY_ZONE_PRECISE_NECK)
+		// May want to include hard dismember compatibility.
+		return probability * 1.5
 	if(hard_dismember)
 		return min(probability, 5)
 	else if(easy_dismember)

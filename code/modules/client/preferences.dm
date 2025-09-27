@@ -1974,7 +1974,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
-						if (istype(V, /datum/virtue/utility/noble) && (pref_species == /datum/species/construct/metal))		//Stops bypass of nobility for constructs.
+						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
+							continue
+						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
@@ -1995,7 +1997,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
-						if (istype(V, /datum/virtue/utility/noble) && (pref_species == /datum/species/construct/metal))		//Stops bypass of nobility for constructs.
+						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
+							continue
+						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)

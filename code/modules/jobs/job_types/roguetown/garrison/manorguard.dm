@@ -7,7 +7,7 @@
 	spawn_positions = 8
 
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
 	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \

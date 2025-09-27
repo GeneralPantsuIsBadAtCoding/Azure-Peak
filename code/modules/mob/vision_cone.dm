@@ -78,8 +78,21 @@
 /mob/living/update_vision_cone()
 	if(client)
 		if(hud_used && hud_used.fov)
-			hud_used.fov.dir = src.dir
-			hud_used.fov_blocker.dir = src.dir
+			if(isdullahan(src))
+				// Matches the direction our parent is looking if we're viewing through a relay.
+				var/mob/living/carbon/human/user = src
+				var/datum/species/dullahan/user_species = user.dna.species
+				var/obj/item/bodypart/head/dullahan/user_head = user_species.my_head
+				if(user_species.headless && user_head && ishuman(user_head.loc))
+					var/mob/living/head_parent = user_head.loc
+					hud_used.fov.dir = head_parent.dir
+					hud_used.fov_blocker.dir = head_parent.dir
+				else if(!user_species.headless)
+					hud_used.fov.dir = src.dir
+					hud_used.fov_blocker.dir = src.dir
+			else
+				hud_used.fov.dir = src.dir
+				hud_used.fov_blocker.dir = src.dir
 		START_PROCESSING(SSincone, client)
 
 /client/proc/update_cone()
@@ -248,6 +261,12 @@
 	if(!client)
 		return
 	if(client.perspective != MOB_PERSPECTIVE)
+		// Show cone if we're looking at our head.
+		if(isdullahan(src))
+			var/mob/living/carbon/human/human = src
+			var/obj/item/organ/dullahan_vision/vision = human.getorganslot(ORGAN_SLOT_HUD)
+			if(vision.viewing_head)
+				return show_cone()
 		return hide_cone()
 	if(client.eye != src)
 		return hide_cone()
@@ -267,15 +286,27 @@
 	fovangle = initial(fovangle)
 	if(ishuman(src) && fovangle)
 		var/mob/living/carbon/human/H = src
+		var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+		if(!head && isdullahan(src))
+			var/datum/species/dullahan/dullahan = H.dna.species
+			head = dullahan.my_head
+
+		var/cyclops_left = HAS_TRAIT(src, TRAIT_CYCLOPS_LEFT) 
+		var/cyclops_right = HAS_TRAIT(src, TRAIT_CYCLOPS_RIGHT)
+
+		if(head)
+			cyclops_left = cyclops_left || head.has_wound(/datum/wound/facial/eyes/left)
+			cyclops_right = cyclops_right || head.has_wound(/datum/wound/facial/eyes/right)
+
 		if(H.head)
 			if(H.head.block2add)
 				fovangle |= H.head.block2add
 		if(H.wear_mask)
 			if(H.wear_mask.block2add)
 				fovangle |= H.wear_mask.block2add
-		if(HAS_TRAIT(src, TRAIT_CYCLOPS_LEFT))
+		if(cyclops_left)
 			fovangle |= FOV_LEFT
-		if(HAS_TRAIT(src, TRAIT_CYCLOPS_RIGHT))
+		if(cyclops_right)
 			fovangle |= FOV_RIGHT
 
 	if(!hud_used)
