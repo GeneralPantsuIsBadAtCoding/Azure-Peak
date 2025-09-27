@@ -118,6 +118,15 @@
 		"...the hunter, their voice as rough as bark and their skin weathered like grain lets out a hearty laugh as he shows you his stitching..."
 	)
 	expert_name = "Tanner"
+
+/datum/skill/craft/ceramics
+	name = "Pottery"
+	desc = "Handles crafting and making of clay into vases and other fine-craft works."
+	dreams = list(
+		"...the wheel spins, and spins.. yet you watch as a work of art grows from its center...",
+		"...a slab of clay is molded into a beautiful statue. A testiment to Malum's blessings, and Xylix's insperation. A pure work of beauty..."
+	)
+	expert_name = "Potter"
 	
 /datum/skill/craft/alchemy
 	name = "Alchemy"

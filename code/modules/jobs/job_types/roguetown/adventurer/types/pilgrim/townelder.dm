@@ -37,7 +37,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/cooking = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/ceramics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/ceramics = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 /datum/outfit/job/roguetown/elder/pre_equip(mob/living/carbon/human/H)

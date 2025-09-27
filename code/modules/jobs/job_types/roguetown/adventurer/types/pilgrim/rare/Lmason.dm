@@ -35,7 +35,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/smelting = SKILL_LEVEL_LEGENDARY,
-		/datum/skill/misc/ceramics = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/ceramics = SKILL_LEVEL_EXPERT,
 	)
 /datum/outfit/job/roguetown/adventurer/grandmastermason/pre_equip(mob/living/carbon/human/H)
 	..()

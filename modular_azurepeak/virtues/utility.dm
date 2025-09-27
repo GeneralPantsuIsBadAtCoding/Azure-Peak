@@ -187,7 +187,7 @@
 						list(/datum/skill/craft/masonry, 2, 2),
 						list(/datum/skill/craft/engineering, 2, 2),
 						list(/datum/skill/craft/smelting, 2, 2),
-						list(/datum/skill/misc/ceramics, 2, 2)
+						list(/datum/skill/craft/ceramics, 2, 2)
 	)
 	added_stashed_items = list(
 		"Hammer" = /obj/item/rogueweapon/hammer/wood,
