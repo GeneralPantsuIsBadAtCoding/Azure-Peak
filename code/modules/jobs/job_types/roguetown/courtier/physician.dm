@@ -1,5 +1,5 @@
 /datum/job/roguetown/physician
-	title = "Court Physician"
+	title = "Head Physician"
 	flag = PHYSICIAN
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -9,11 +9,9 @@
 	allowed_races = RACES_ALL_KINDS
 	allowed_sexes = list(MALE, FEMALE)
 	display_order = JDO_PHYSICIAN
-	tutorial = "You were a child born into good wealth--but poor health. \
-		Perhaps in another life, you would have turned out to be a powerful mage, wise archivist or a shrewd steward, \
-		but leprosy took away your younger years. \
-		Out of desperation, you followed the ways of Pestra and managed to be cured. \
-		Now you serve in the Duke's court ensuring the good health of those inhabiting the keep."
+	tutorial = "You are a master physician and the current head of the clinic. \
+		Oversee your clinic and the apothecaries under you. \
+		As a member of the upper class, expect to treat nobility. You have access to accommodate this."
 	outfit = /datum/outfit/job/roguetown/physician
 	whitelist_req = TRUE
 	advclass_cat_rolls = list(CTAG_COURTPHYS = 2)
@@ -31,12 +29,10 @@
 	)
 
 /datum/advclass/physician
-	name = "Court Physician"
-	tutorial = "You were a child born into good wealth--but poor health. \
-		Perhaps in another life, you would have turned out to be a powerful mage, wise archivist or a shrewd steward, \
-		but leprosy took away your younger years. \
-		Out of desperation, you followed the ways of Pestra and managed to be cured. \
-		Now you serve in the Duke's court ensuring the good health of those inhabiting the keep."
+	name = "Head Physician"
+	tutorial = "You are a master physician and the current head of the clinic. \
+		Oversee your clinic and the apothecaries under you. \
+		As a member of the upper class, expect to treat nobility. You have access to accommodate this."
 	outfit = /datum/outfit/job/roguetown/physician/basic
 	category_tags = list(CTAG_COURTPHYS)
 	subclass_stats = list(
