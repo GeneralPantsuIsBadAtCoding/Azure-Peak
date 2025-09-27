@@ -157,6 +157,7 @@
 	expert_name = "Potter"
 	max_untraited_level = SKILL_LEVEL_APPRENTICE
 	trait_uncap = list(TRAIT_HOMESTEAD_EXPERT = SKILL_LEVEL_LEGENDARY,
+	TRAIT_SMITHING_EXPERT = SKILL_LEVEL_LEGENDARY,
 	TRAIT_SELF_SUSTENANCE = SKILL_LEVEL_JOURNEYMAN)
 	
 /datum/skill/craft/alchemy
