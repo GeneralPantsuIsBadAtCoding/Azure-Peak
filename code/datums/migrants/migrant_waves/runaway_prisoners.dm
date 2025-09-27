@@ -112,7 +112,7 @@
 	name = "Runaway Prisoner (Mage)"
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/adventurer/runaway_prisoner
-	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_ARCYNE_T3)
+	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	category_tags = list(CTAG_RUNAWAY_PRISONER)
 	subclass_spellpoints = 18
 	subclass_stats = list(

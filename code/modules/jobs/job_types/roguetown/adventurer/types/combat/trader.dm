@@ -102,6 +102,7 @@
 	name = "Scholar"
 	tutorial = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."
 	outfit = /datum/outfit/job/roguetown/adventurer/scholar
+	traits_applied = list(TRAIT_ALCHEMY_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,
@@ -211,6 +212,7 @@
 	name = "Peddler"
 	tutorial = "You make your coin peddling in spices and performing back-alley 'medical' procedures. Hope your patient didn't need that kidney."
 	outfit = /datum/outfit/job/roguetown/adventurer/peddler
+	traits_applied = list(TRAIT_ALCHEMY_EXPERT, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 2,

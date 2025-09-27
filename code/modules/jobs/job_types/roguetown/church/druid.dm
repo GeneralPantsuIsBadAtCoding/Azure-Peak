@@ -35,6 +35,7 @@
 	Your patron claims dominion over all nature--promising bounties to those who act in his name to bring balance to His domain. \
 	The forest is the most comfortable place for you, toiling alongside soilsons and soilbrides...although sometimes what lies beyond the gates fills your soul with a feral yearning."
 	outfit = /datum/outfit/job/roguetown/druid/basic
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT) // Self-sustaining
 	category_tags = list(CTAG_DRUID)
 	subclass_languages = list(/datum/language/beast)
 	subclass_stats = list(
