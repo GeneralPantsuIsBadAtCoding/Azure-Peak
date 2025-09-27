@@ -201,12 +201,18 @@
 #define TRAIT_EORAN_SERENE "Eoran Serenity"
 #define TRAIT_NECRAS_VOW "Necra's Vow"
 #define TRAIT_ADRENALINE_RUSH "Adrenaline Rush"
-#define TRAIT_MEDICINE_EXPERT "Medicine Expert"
 #define TRAIT_COMBAT_AWARE	"Combat Aware"
 #define TRAIT_SILVER_WEAK "Silver Weakness"
 // ARMOR / CLOTHING GIVEN TRAITS (GIVEN BY WEARING CLOTHES/ARMOR PIECES)
 #define TRAIT_MONK_ROBE	"Holy Vestatures"
 #define TRAIT_RACISMISBAD "Heritage Vision"
+
+// Economic Roles Traits
+// Most of these should NOT be given to any true combat roles (I.E. anything with Dexpert or Miracle / Good Magic) with very few exceptions
+// Pilgrims and non-combat roles can have these as a treat
+// Unless they take the corresponding virtues.
+#define TRAIT_MEDICINE_EXPERT "Medicine Expert" // We don't give this to Physician's Apprentice
+
 
 //item and enchantment traits should go under here as new ones get added
 #define TRAIT_ENGINEERING_GOGGLES "Engineering Goggles"

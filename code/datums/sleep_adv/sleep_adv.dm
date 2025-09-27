@@ -85,17 +85,19 @@
 				COOLDOWN_START(src, xp_show, XP_SHOW_COOLDOWN)
 		return
 	var/datum/skill/skillref = GetSkillRef(skill)
-	var/trait_capped_level = FALSE
-	if(length(skillref.trait_restrictions))
-		for(var/trait in skillref.trait_restrictions)
-			trait_capped_level = skillref.trait_restrictions[trait]
-			if(!HAS_TRAIT(mind.current, trait) && mind.current.get_skill_level(skill) >= skillref.trait_restrictions[trait])	//We don't have the trait & we're at the skill limit.
-				return
+	var/trait_capped_level = skillref.max_untraited_level
+
+	for(var/trait in skillref.trait_uncap)
+		if(HAS_TRAIT(mind.current, trait) && skillref.trait_uncap[trait] > trait_capped_level)
+			trait_capped_level = skillref.trait_uncap[trait]
+
+	// If we are already at or above the capped level, do not add XP
+	if(mind.current.get_skill_level(skill) >= trait_capped_level) 
+		amt = 0
+		return
+
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)
-
-	if(can_advance_pre && trait_capped_level && (trait_capped_level <= (mind.current.get_skill_level(skill) + 1)))
-		amt = 0
 
 	adjust_sleep_xp(skill, amt)
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)

@@ -8,15 +8,21 @@
 	var/dream_legendary_extra_cost = 1
 	var/list/specific_dream_costs
 	var/list/dreams
+
+	// Can this skill be randomly chosen when the player is sleeping? Restricted to Level 2.
 	var/randomable_dream_xp = TRUE
+
+	// Name for the expert level of this skill on Homesteader
 	var/expert_name
 	var/color = null
 
-	/// Any skill levelling restrictions based on traits. If the trait is present, it can level past the level.
-	var/list/trait_restrictions
-	//Example:
-	//list(TRAIT_EXAMPLE = SKILL_LEVEL_MAXIMUM_WITHOUT_THE_TRAIT)
-	//Feel free to refactor it to work more sanely, it was concepted for a specific case. - F
+	// Maximum level a player can reach in this skill without any enabling traits
+	var/max_untraited_level = SKILL_LEVEL_LEGENDARY 
+	// If the player has a certain trait(s), what is the maximum level they can reach in this skill  
+	var/list/trait_uncap
+	// Example:
+	// list(TRAIT_EXAMPLE = SKILL_LEVEL_MAXIMUM_WITH_TRAIT, TRAIT_EXAMPLE2 = SKILL_LEVEL_MAXIMUM_WITH_TRAIT2)
+	// Originally designed for Medicine Expert and now used to protect economic roles's niche 
 
 /datum/skill/proc/get_skill_speed_modifier(level)
 	return

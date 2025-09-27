@@ -100,7 +100,8 @@
 		"...a student to your left pales, her queasiness overwhelming before she faints. You steel yourself, and look at the voidlike ribcage in the torso before you. Well-preserved chunks of flesh lie beside it, waiting for you to restore them to their rightful places..."
 	)
 	expert_name = "Barber"
-	trait_restrictions = list(TRAIT_MEDICINE_EXPERT = SKILL_LEVEL_EXPERT)
+	max_untraited_level = SKILL_LEVEL_EXPERT // We'll let people get to Expert as an exception because reviving someone is very important to keep players in round
+	trait_uncap = list(TRAIT_MEDICINE_EXPERT = SKILL_LEVEL_LEGENDARY)
 
 /datum/skill/misc/sewing
 	name = "Sewing"
