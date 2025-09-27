@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_JACKOFALLTRADES = span_notice("Skills cost half as much for me to raise."),
 	TRAIT_BLOODLOSS_IMMUNE = span_notice("While I may bleed, I will feel nothing from it."),
 	TRAIT_ADRENALINE_RUSH = span_notice("I'm invigorated in the midst of battle! I don't feel my wounds!"),
-	TRAIT_MEDICINE_EXPERT = span_greentext("I've deep, intricate knowledge of my craft. I can learn to become a Master or above."),
+	TRAIT_MEDICINE_EXPERT = span_greentext("I've deep, intricate knowledge of the medicinal arts. This skill can progress to Master and Legendary levels."),
 	TRAIT_SILVER_WEAK = span_notice("Silver is my bane."),
 	TRAIT_COMBAT_AWARE = span_notice("My honed senses and intuition allow me to spot notable things in the midst of battle with ease."),
 	TRAIT_RACISMISBAD = span_warning("The Black Oaks can spot ANY Foreigners and Outsiders, no matter how long they've lived in Azuria. This is an easy skill to master, as it is simply identifying who isn't an elf."),
