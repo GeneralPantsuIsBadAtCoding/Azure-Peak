@@ -35,7 +35,7 @@
 		cost += dream_legendary_extra_cost
 	
 	// Malum worshippers (with TRAIT_FORGEBLESSED) spend fewer dream points on craft skills
-	if(user && HAS_TRAIT(user, TRAIT_FORGEBLESSED) && (istype(src, /datum/skill/craft) || (istype(src, /datum/skill/misc/sewing))))
+	if(user && HAS_TRAIT(user, TRAIT_FORGEBLESSED) && (istype(src, /datum/skill/craft) || (istype(src, /datum/skill/craft/sewing))))
 		cost = max(1, FLOOR(cost * 0.5, 1)) // 50% reduction, minimum cost of 1
 	else if(user && HAS_TRAIT(user, TRAIT_JACKOFALLTRADES))
 		cost = max(1, FLOOR(cost * 0.5, 1)) // Ditto for Homesteader towners

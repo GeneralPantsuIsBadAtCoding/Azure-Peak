@@ -103,15 +103,6 @@
 	max_untraited_level = SKILL_LEVEL_EXPERT // We'll let people get to Expert as an exception because reviving someone is very important to keep players in round
 	trait_uncap = list(TRAIT_MEDICINE_EXPERT = SKILL_LEVEL_LEGENDARY)
 
-/datum/skill/misc/sewing
-	name = "Sewing"
-	desc = "Determines whether you can craft various sewing-related items and repair them."
-	dreams = list(
-		"...as the years go by, the mantra becomes increasingly oppressive. Stitch, sew, cut ties, stitch, sew, thread the needle twice...",
-		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."
-	)
-	expert_name = "Sewer"
-
 /datum/skill/misc/tracking
 	name = "Tracking"
 	desc = "Increases your chance to find tracks. Increases the information you gain from them, alongside your perception stats. \n \

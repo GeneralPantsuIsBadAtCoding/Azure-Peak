@@ -259,7 +259,7 @@
 		to_chat(mind.current, span_notice(dream_text))
 	
 	// Notify player if they're benefiting from Malum's blessing for craft skills or sewing
-	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/misc/sewing)))
+	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/craft/sewing)))
 		to_chat(mind.current, span_notice("Malum's blessing reduces the dream point cost of your crafting training."))
 	
 	sleep_adv_points -= get_skill_cost(skill_type)

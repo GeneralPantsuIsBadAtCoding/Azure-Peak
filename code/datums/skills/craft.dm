@@ -101,6 +101,15 @@
 	)
 	expert_name = "Engineer"
 
+/datum/skill/craft/sewing
+	name = "Sewing"
+	desc = "Determines whether you can craft various sewing-related items and repair them."
+	dreams = list(
+		"...as the years go by, the mantra becomes increasingly oppressive. Stitch, sew, cut ties, stitch, sew, thread the needle twice...",
+		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."
+	)
+	expert_name = "Sewer"
+
 /datum/skill/craft/tanning
 	name = "Skincrafting"
 	desc = "Determines whether you can craft or repair various leather items. Reduces the work time on the tanning rack and improves minimum yield per hide by 1 per skill level. Also increases chance of getting an essence of wilderness from tanning hide."
