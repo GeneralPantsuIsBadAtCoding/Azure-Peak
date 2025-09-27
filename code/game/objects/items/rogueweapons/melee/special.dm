@@ -6,7 +6,7 @@
 	animname = "cut"
 	blade_class = BCLASS_CUT
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = 0
+	penfactor = 20
 	chargetime = 0
 	swingdelay = 0
 	damfactor = 1.3
@@ -20,7 +20,7 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 40
+	penfactor = 25
 	chargetime = 0
 	clickcd = CLICK_CD_FAST
 	item_d_type = "stab"
@@ -269,11 +269,11 @@
 /obj/item/rogueweapon/katar
 	slot_flags = ITEM_SLOT_HIP
 	force = 24
-	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust)
+	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust, /datum/intent/sword/peel)
 	name = "katar"
 	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
 	icon_state = "katar"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	gripsprite = FALSE
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_SMALL
@@ -285,7 +285,7 @@
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
 	throwforce = 12
 	wdefense = 0	//Meant to be used with bracers
-	wbalance = WBALANCE_SWIFT
+	wbalance = WBALANCE_NORMAL
 	thrown_bclass = BCLASS_CUT
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -371,9 +371,9 @@
 /obj/item/rogueweapon/knuckles
 	name = "steel knuckles"
 	desc = "A mean looking pair of steel knuckles."
-	force = 22
+	force = 25
 	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash)
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	icon_state = "steelknuckle"
 	gripsprite = FALSE
 	wlength = WLENGTH_SHORT
@@ -381,12 +381,12 @@
 	slot_flags = ITEM_SLOT_HIP
 	parrysound = list('sound/combat/parry/pugilism/unarmparry (1).ogg','sound/combat/parry/pugilism/unarmparry (2).ogg','sound/combat/parry/pugilism/unarmparry (3).ogg')
 	sharpness = IS_BLUNT
-	max_integrity = 150
+	max_integrity = 200
 	swingsound = list('sound/combat/wooshes/punch/punchwoosh (1).ogg','sound/combat/wooshes/punch/punchwoosh (2).ogg','sound/combat/wooshes/punch/punchwoosh (3).ogg')
 	associated_skill = /datum/skill/combat/unarmed
 	throwforce = 12
 	wdefense = 4
-	wbalance = WBALANCE_NORMAL
+	wbalance = WBALANCE_SWIFT
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	grid_width = 64
@@ -404,9 +404,9 @@
 /obj/item/rogueweapon/knuckles/bronzeknuckles
 	name = "bronze knuckles"
 	desc = "A mean looking pair of bronze knuckles. Mildly heavier than it's steel counterpart, making it a solid defensive option, if less wieldy."
-	force = 18
+	force = 22
 	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash)
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	icon_state = "bronzeknuckle"
 	gripsprite = FALSE
 	wlength = WLENGTH_SHORT
@@ -419,7 +419,6 @@
 	associated_skill = /datum/skill/combat/unarmed
 	throwforce = 12
 	wdefense = 6
-	wbalance = WBALANCE_HEAVY
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
 
@@ -443,7 +442,7 @@
 /obj/item/rogueweapon/knuckles/eora
 	name = "close caress"
 	desc = "Some times call for a more intimate approach."
-	force = 25
+	force = 27
 	icon_state = "eoraknuckle"
 
 ///Peasantry / Militia Weapon Pack///
@@ -713,3 +712,143 @@
 	wdefense = 3
 	wbalance = WBALANCE_HEAVY
 	intdamage_factor = 0.6
+
+
+/obj/item/rogueweapon/handclaw
+	slot_flags = ITEM_SLOT_HIP
+	name = "Iron Hound Claws"
+	desc = "A pair of heavily curved claws, styled after beasts of the wilds for rending bare flesh, \
+			A show of the continual worship and veneration of beasts of strength in Gronn."
+	icon_state = "ironclaws"
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	wdefense = 5
+	force = 30
+	possible_item_intents = list(/datum/intent/claw/cut/iron, /datum/intent/claw/lunge/iron, /datum/intent/claw/rend)
+	wbalance = WBALANCE_NORMAL
+	max_blade_int = 300
+	max_integrity = 200
+	gripsprite = FALSE
+	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
+	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
+	swingsound = BLADEWOOSH_SMALL
+	wlength = WLENGTH_NORMAL
+	w_class = WEIGHT_CLASS_NORMAL
+	associated_skill = /datum/skill/combat/unarmed
+	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
+	throwforce = 12
+	thrown_bclass = BCLASS_CUT
+	anvilrepair = /datum/skill/craft/weaponsmithing
+	smeltresult = /obj/item/ingot/iron
+	grid_height = 96
+	grid_width = 32
+
+/obj/item/rogueweapon/handclaw/steel
+	name = "Steel Mantis Claws"
+	desc = "A pair of steel claws, An uncommon sight in Gronn as they do not forge their own steel, \
+			Their longer blades offer a superior defence option but their added weight slows them down."
+	icon_state = "steelclaws"
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	wdefense = 6
+	force = 35
+	possible_item_intents = list(/datum/intent/claw/cut/steel, /datum/intent/claw/lunge/steel, /datum/intent/claw/rend/steel)
+	wbalance = WBALANCE_HEAVY
+	max_blade_int = 180
+	max_integrity = 200
+	smeltresult = /obj/item/ingot/steel
+	sharpness_mod = 2
+
+/obj/item/rogueweapon/handclaw/gronn
+	name = "Gronn Beast Claws"
+	desc = "A pair of uniquely reinforced iron claws forged with the addition of bone by the Iskarn shamans of the Northern Empty. \
+			Their unique design aids them in slipping between the plates in armor and their light weight supports rapid aggressive slashes. \
+			'To see the claws of the four, Is to see the true danger of the north. Not man, Not land but beast. We are all prey in their eyes.'"
+	icon_state = "gronnclaws"
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	wdefense = 3
+	force = 25
+	possible_item_intents = list(/datum/intent/claw/cut/gronn, /datum/intent/claw/lunge/gronn, /datum/intent/claw/rend)
+	wbalance = WBALANCE_SWIFT
+	max_blade_int = 200
+	max_integrity = 200
+
+
+/obj/item/rogueweapon/handclaw/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -7,"sy" = -4,"nx" = 7,"ny" = -4,"wx" = -3,"wy" = -4,"ex" = 1,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 110,"sturn" = -110,"wturn" = -110,"eturn" = 110,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/datum/intent/claw/lunge
+	name = "lunge"
+	icon_state = "inimpale"
+	attack_verb = list("lunges")
+	animname = "stab"
+	blade_class = BCLASS_STAB
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+
+/datum/intent/claw/lunge/iron
+	damfactor = 1.2
+	swingdelay = 8
+	clickcd = CLICK_CD_MELEE
+	penfactor = 35
+
+/datum/intent/claw/lunge/steel
+	damfactor = 1.2
+	swingdelay = 12
+	clickcd = CLICK_CD_HEAVY
+	penfactor = 35
+
+/datum/intent/claw/lunge/gronn
+	damfactor = 1.1
+	swingdelay = 5
+	clickcd = 10
+	penfactor = 45
+
+/datum/intent/claw/cut
+	name = "cut"
+	icon_state = "incut"
+	attack_verb = list("cuts", "slashes")
+	animname = "cut"
+	blade_class = BCLASS_CUT
+	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
+	item_d_type = "slash"
+
+/datum/intent/claw/cut/iron
+	penfactor = 20
+	swingdelay = 8
+	damfactor = 1.4
+	clickcd = CLICK_CD_HEAVY
+
+/datum/intent/claw/cut/steel
+	penfactor = 10
+	swingdelay = 4
+	damfactor = 1.3
+	clickcd = CLICK_CD_HEAVY
+
+/datum/intent/claw/cut/gronn
+	penfactor = 30
+	swingdelay = 0
+	damfactor = 1.1
+	clickcd = CLICK_CD_MELEE
+
+/datum/intent/claw/rend
+	name = "rend"
+	icon_state = "inrend"
+	attack_verb = list("rends")
+	animname = "cut"
+	blade_class = BCLASS_CHOP
+	reach = 1
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 2.5
+	clickcd = CLICK_CD_HEAVY
+	no_early_release = TRUE
+	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
+	item_d_type = "slash"
+	misscost = 10
+	intent_intdamage_factor = 0.05
+
+/datum/intent/claw/rend/steel
+	damfactor = 3
