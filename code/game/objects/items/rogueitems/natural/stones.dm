@@ -350,11 +350,13 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 		return ..()
 
 /obj/item/natural/rock
-	name = "rock"
+	name = "boulder"
 	desc = "A rock protudes from the ground."
 	icon_state = "stonebig1"
 	dropshrink = 0
 	throwforce = 25
+	grid_width = 96
+	grid_height = 96
 	throw_range = 2
 	force = 20
 	obj_flags = CAN_BE_HIT
@@ -380,7 +382,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 /obj/item/natural/rock/Crossed(mob/living/L)
 	if(istype(L) && !L.throwing)
 		if(L.m_intent == MOVE_INTENT_RUN)
-			L.visible_message(span_warning("[L] trips over the rock!"),span_warning("I trip over the rock!"))
+			L.visible_message(span_warning("[L] trips over the boulder!"),span_warning("I trip over the boulder!"))
 			L.Knockdown(10)
 			L.consider_ambush(always = TRUE)
 	..()
@@ -420,7 +422,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	var/skill_level = user.get_skill_level(/datum/skill/craft/masonry)
 	var/work_time = (120 - (skill_level * 15))
 	if(istype(W, /obj/item/natural/stone))
-		user.visible_message(span_info("[user] strikes the stone against the rock."))
+		user.visible_message(span_info("[user] strikes the stone against the boulder."))
 		playsound(src.loc, 'sound/items/stonestone.ogg', 100)
 		if(prob(35))
 			var/datum/effect_system/spark_spread/S = new()
@@ -430,7 +432,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 		return
 	if(istype(W, /obj/item/natural/rock))
 		playsound(src.loc, pick('sound/items/stonestone.ogg'), 100)
-		user.visible_message(span_info("[user] strikes the rocks together."))
+		user.visible_message(span_info("[user] strikes the boulders together."))
 		if(prob(10))
 			var/datum/effect_system/spark_spread/S = new()
 			var/turf/front = get_turf(src)
@@ -439,7 +441,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 		return
 	if( user.used_intent.type == /datum/intent/chisel )
 		playsound(src.loc, pick('sound/combat/hits/onrock/onrock (1).ogg', 'sound/combat/hits/onrock/onrock (2).ogg', 'sound/combat/hits/onrock/onrock (3).ogg', 'sound/combat/hits/onrock/onrock (4).ogg'), 100)
-		user.visible_message("<span class='info'>[user] chisels the rock into blocks.</span>")
+		user.visible_message("<span class='info'>[user] chisels the boulder into blocks.</span>")
 		if(do_after(user, work_time))
 			new /obj/item/natural/stoneblock(get_turf(src.loc))
 			new /obj/item/natural/stoneblock(get_turf(src.loc))

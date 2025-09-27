@@ -53,3 +53,5 @@
 	// Clay and glassBatch are raw materials
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/digclay)

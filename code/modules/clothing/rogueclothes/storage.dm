@@ -510,3 +510,19 @@
 /obj/item/clothing/wall_grab/intercept_zImpact(atom/movable/AM, levels = 1) // with this shit it doesn't generate "X falls through open space". thank u guppyluxx
     . = ..()
     . |= FALL_NO_MESSAGE
+
+/obj/item/storage/hip/orestore/bronze
+	name = "mechanized ore bag"
+	desc = "a ticking Ore bag for sorting and compressing ore, ingots, and gems"
+	icon = 'icons/roguetown/items/misc.dmi'
+	//mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
+	icon_state = "rucksack"
+	item_state = "rucksack"
+	slot_flags = ITEM_SLOT_HIP
+	w_class = WEIGHT_CLASS_NORMAL
+	max_integrity = 400
+	equip_sound = 'sound/blank.ogg'
+	//content_overlays = FALSE
+	anvilrepair = /datum/skill/craft/blacksmithing
+	smeltresult = /obj/item/ingot/bronze
+	component_type = /datum/component/storage/concrete/grid/orestore/bronze
