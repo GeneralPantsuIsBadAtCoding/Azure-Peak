@@ -7,7 +7,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/miner
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
-	traits_applied = list(TRAIT_DARKVISION)
+	traits_applied = list(TRAIT_DARKVISION, TRAIT_SMITHING_EXPERT) // Smithing Expert, because from what I observe of miner players they tend to do smithing far more than farming etc.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_CON = 2,
