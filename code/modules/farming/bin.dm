@@ -1,4 +1,4 @@
-/obj/item/roguebin
+/obj/structure/roguebin
 	name = "wood bin"
 	desc = "A washbin, a trashbin, a bloodbin... Your choices are limitless."
 	icon = 'icons/roguetown/misc/structure.dmi'
@@ -8,7 +8,6 @@
 	opacity = FALSE
 	anchored = FALSE
 	max_integrity = 300
-	w_class = WEIGHT_CLASS_GIGANTIC
 	var/kover = FALSE
 	drag_slowdown = 2
 	throw_speed = 1
@@ -16,11 +15,11 @@
 	blade_dulling = DULLING_BASHCHOP
 	obj_flags = CAN_BE_HIT
 
-/obj/item/roguebin/weather_trigger(W)
+/obj/structure/roguebin/weather_trigger(W)
 	if(W==/datum/weather/rain)
 		START_PROCESSING(SSweather,src)
 
-/obj/item/roguebin/Initialize()
+/obj/structure/roguebin/Initialize()
 	if(!base_state)
 		create_reagents(600, DRAINABLE | AMOUNT_VISIBLE | REFILLABLE)
 		icon_state = "washbin[rand(1,2)]"
@@ -30,8 +29,9 @@
 	pixel_x = 0
 	pixel_y = 0
 	update_icon()
+	RegisterSignal(src, COMSIG_STORAGE_CAN_BE_INSERTED, PROC_REF(storage_block))
 
-/obj/item/roguebin/Destroy()
+/obj/structure/roguebin/Destroy()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		var/list/things = STR.contents()
@@ -40,7 +40,7 @@
 	return ..()
 
 
-/obj/item/roguebin/update_icon()
+/obj/structure/roguebin/update_icon()
 	if(kover)
 		icon_state = "[base_state]over"
 	else
@@ -53,7 +53,7 @@
 			filling.alpha = mix_alpha_from_reagents(reagents.reagent_list)
 			add_overlay(filling)
 
-/obj/item/roguebin/onkick(mob/user)
+/obj/structure/roguebin/onkick(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(kover)
@@ -78,13 +78,13 @@
 			user.visible_message(span_warning("[user] kicks [src]!"), \
 				span_warning("I kick [src]!"))
 
-/obj/item/roguebin/attack_hand(mob/user)
+/obj/structure/roguebin/attack_hand(mob/user)
 	var/datum/component/storage/CP = GetComponent(/datum/component/storage)
 	if(CP)
 		CP.rmb_show(user)
 		return TRUE
 
-/obj/item/roguebin/attack_right(mob/user)
+/obj/structure/roguebin/attack_right(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -135,18 +135,18 @@
 					reagents.add_reagent(/datum/reagent/water/gross, amount_to_dirty)
 			return
 
-//We need to use this or the object will be put in storage instead of attacking it
-/obj/item/roguebin/StorageBlock(obj/item/I, mob/user)
-	if(user.used_intent)
-		if(user.used_intent.type in list(/datum/intent/fill,/datum/intent/pour,/datum/intent/splash))
-			return TRUE
+/obj/structure/roguebin/proc/storage_block(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+
+	if(user.used_intent?.type in list(/datum/intent/fill,/datum/intent/pour,/datum/intent/splash))
+		return COMPONENT_STORAGE_BLOCK
 	if(istype(I, /obj/item/rogueweapon/tongs))
 		var/obj/item/rogueweapon/tongs/T = I
 		if(T.hingot && istype(T.hingot))
-			return TRUE
-	return FALSE
+			return COMPONENT_STORAGE_BLOCK
+	return NONE
 
-/obj/item/roguebin/attackby(obj/item/I, mob/user, params)
+/obj/structure/roguebin/attackby(obj/item/I, mob/user, params)
 	if(!reagents || !reagents.maximum_volume) //trash
 		return ..()
 	if(istype(I, /obj/item/rogueweapon/tongs))
@@ -232,11 +232,12 @@
 			return
 	. = ..()
 
-/obj/item/roguebin/trash
+/obj/structure/roguebin/trash
 	name = "trash bin"
 	desc = "An eyesore that is meant to make things look cleaner."
 	icon_state = "trashbin"
 	base_state = "trashbin"
 
-/obj/item/roguebin/trash/StorageBlock(obj/item/I, mob/user)
-	return FALSE
+/obj/structure/roguebin/trash/Initialize(mapload)
+	. = ..()
+	UnregisterSignal(src, COMSIG_STORAGE_CAN_BE_INSERTED) //everything will be inserted

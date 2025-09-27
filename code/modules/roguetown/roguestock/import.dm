@@ -5,11 +5,11 @@
 /datum/roguestock/import/crackers
 	name = "Bin of Rations"
 	desc = "Low moisture bread that keeps well."
-	item_type = /obj/item/roguebin/crackers
+	item_type = /obj/structure/roguebin/crackers
 	export_price = 100
 	importexport_amt = 1
 
-/obj/item/roguebin/crackers/Initialize()
+/obj/structure/roguebin/crackers/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/food/snacks/rogue/crackerscooked(src)
 	new /obj/item/reagent_containers/food/snacks/rogue/crackerscooked(src)
@@ -231,7 +231,7 @@
 	new /obj/item/natural/stone(src)
 	new /obj/item/natural/stone(src)
 	new /obj/item/natural/stone(src)
-	new /obj/item/roguebin(src)
+	new /obj/structure/roguebin(src)
 	new /obj/item/reagent_containers/glass/bucket(src)
 
 /datum/roguestock/import/craftsman

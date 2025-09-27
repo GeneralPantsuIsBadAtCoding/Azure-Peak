@@ -2137,7 +2137,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dungeon1)
 "Wj" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon1)
 "Wv" = (

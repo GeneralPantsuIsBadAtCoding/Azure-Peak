@@ -325,7 +325,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "bh" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors/shelter)
 "bk" = (
@@ -1691,7 +1691,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/cave)
 "kO" = (
-/obj/item/roguebin/water,
+/obj/structure/roguebin/water,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
 "kP" = (
@@ -2509,7 +2509,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/orcdungeon)
 "qz" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/mazedungeon)
 "qA" = (
@@ -3182,7 +3182,7 @@
 	},
 /area/rogue/under/cave/dukecourt)
 "vf" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "vg" = (
@@ -4379,7 +4379,7 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/cave/dukecourt)
 "CP" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
 "CQ" = (
@@ -4413,7 +4413,7 @@
 /area/rogue/indoors/cave)
 "CW" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "CZ" = (
@@ -4800,7 +4800,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "FK" = (
-/obj/item/roguebin/water/gross,
+/obj/structure/roguebin/water/gross,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach)
 "FP" = (
