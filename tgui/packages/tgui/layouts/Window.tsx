@@ -39,6 +39,7 @@ type Props = Partial<{
   theme: string;
   title: string;
   width: number;
+  disablesidebar: boolean;
 }> &
   PropsWithChildren;
 
@@ -51,6 +52,7 @@ export const Window = (props: Props) => {
     buttons,
     width,
     height,
+    disablesidebar,
   } = props;
 
   const { config, suspended } = useBackend();
@@ -110,12 +112,15 @@ export const Window = (props: Props) => {
     (config.user.observer
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE);
-
   return suspended ? null : (
-    <Layout className="Window" theme={theme}>
+    <Layout className="Window" theme={theme} /* style={disablesidebar ? { paddingLeft : 0 } : { paddingLeft : "64px" }} */>
+      {disablesidebar ? "" : (
       <div className="SideBar">
         <div className="SideBarDecoration" />
       </div>
+      )
+      }
+      
       <TitleBar
         title={title || decodeHtmlEntities(config.title)}
         status={config.status}
@@ -126,6 +131,7 @@ export const Window = (props: Props) => {
           dispatch(backendSuspendStart());
         }}
         canClose={canClose}
+        disablesidebar={disablesidebar}
       >
         {buttons}
       </TitleBar>
@@ -158,20 +164,22 @@ type ContentProps = Partial<{
   fitted: boolean;
   scrollable: boolean;
   vertical: boolean;
+  disablesidebar : boolean;
 }> &
   ComponentProps<typeof Box> &
   PropsWithChildren;
 
 const WindowContent = (props: ContentProps) => {
-  const { className, fitted, children, ...rest } = props;
+  const { className, fitted, children, disablesidebar, ...rest } = props;
 
   return (
     <Layout.Content
       className={classes(['Window__content', className])}
       {...rest}
+      
     >
       {(fitted && children) || (
-        <div className="Window__contentPadding">{children}</div>
+        <div className="Window__contentPadding" style={disablesidebar ? { paddingLeft : 0 } : { paddingLeft : "64px" }}>{children}</div>
       )}
     </Layout.Content>
   );
