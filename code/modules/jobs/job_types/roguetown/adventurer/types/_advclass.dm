@@ -130,7 +130,8 @@
 		return FALSE
 
 	if(length(allowed_races) && !(H.dna.species.type in allowed_races))
-		return FALSE
+		if(!(H.client.has_triumph_buy(TRIUMPH_BUY_RACE_ALL)))
+			return FALSE
 
 	if(length(allowed_ages) && !(H.age in allowed_ages))
 		return FALSE

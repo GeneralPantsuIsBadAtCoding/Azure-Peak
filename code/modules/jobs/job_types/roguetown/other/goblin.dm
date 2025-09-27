@@ -29,7 +29,7 @@
 	. = ..()
 	return  H.change_mob_type(/mob/living/carbon/human/species/goblin/cave, delete_old_mob = TRUE)
 
-/datum/job/roguetown/goblin/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/goblin/after_spawn(mob/living/L, mob/M, latejoin = TRUE, visuals_only, client/player_client)
 	..()
 	if(L)
 		var/mob/living/carbon/human/H = L

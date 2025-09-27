@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<td style='width:33%;text-align:center'>"
 			dat += "<a href='?_src_=prefs;preference=triumphs;task=menu'><b>TRIUMPHS:</b></a> [user.get_triumphs() ? "\Roman [user.get_triumphs()]" : "None"]"
 			if(SStriumphs.triumph_buys_enabled)
-				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Buy</a>"
+				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Shop</a>"
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:right'>"
@@ -923,6 +923,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(length(job.vice_restrictions))
 				if(charflaw.type in job.vice_restrictions)
 					HTML += "<font color='#a56161'>[used_name] (Disallowed by Vice: [charflaw.name])</font></td> <td> </td></tr>"
+					continue
+			if(length(job.allowed_races) && !(user.client.prefs.pref_species.type in job.allowed_races))
+				if(!(user.client.has_triumph_buy(TRIUMPH_BUY_RACE_ALL)))
+					HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 					continue
 			var/job_unavailable = JOB_AVAILABLE
 			if(isnewplayer(parent?.mob))
