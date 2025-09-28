@@ -1,5 +1,5 @@
 /datum/advclass/wapprentice/practice
-	name = "Magician's Practice"
+	name = "Magician Practice"
 	tutorial = "You are a magician who has chosen the path of the blade and magic. You still have a lot to learn, both swordsmanship and magic."
 	outfit = /datum/outfit/job/roguetown/wapprentice/practice
 

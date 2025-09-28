@@ -345,7 +345,7 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 			if(!SSmapping.retainer.head_rebel_decree)
 				user.mind.adjust_triumphs(1)
 			SSmapping.retainer.head_rebel_decree = TRUE
-	GLOB.azure_round_stats[STATS_LAWS_AND_DECREES_MADE]++
+	record_round_statistic(STATS_LAWS_AND_DECREES_MADE)
 	SScommunications.make_announcement(user, TRUE, raw_message)
 
 /obj/structure/roguemachine/titan/proc/declare_outlaw(mob/living/user, raw_message)
@@ -376,7 +376,7 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 /proc/make_law(raw_message)
 	GLOB.laws_of_the_land += raw_message
 	priority_announce("[length(GLOB.laws_of_the_land)]. [raw_message]", "A LAW IS DECLARED", pick('sound/misc/new_law.ogg', 'sound/misc/new_law2.ogg'), "Captain")
-	GLOB.azure_round_stats[STATS_LAWS_AND_DECREES_MADE]++
+	record_round_statistic(STATS_LAWS_AND_DECREES_MADE)
 
 /proc/remove_law(law_index)
 	if(!GLOB.laws_of_the_land[law_index])
@@ -384,7 +384,7 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 	var/law_text = GLOB.laws_of_the_land[law_index]
 	GLOB.laws_of_the_land -= law_text
 	priority_announce("[law_index]. [law_text]", "A LAW IS ABOLISHED", pick('sound/misc/new_law.ogg', 'sound/misc/new_law2.ogg'), "Captain")
-	GLOB.azure_round_stats[STATS_LAWS_AND_DECREES_MADE]--
+	record_round_statistic(STATS_LAWS_AND_DECREES_MADE, -1)
 
 /proc/purge_laws()
 	GLOB.laws_of_the_land = list()

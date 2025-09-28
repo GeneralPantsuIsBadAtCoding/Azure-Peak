@@ -62,7 +62,7 @@
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 1, 2)
 	addtimer(CALLBACK(src, PROC_REF(give_patron_toll)), 10 SECONDS) // For you, no charge.
 
-/mob/living/carbon/spirit/IgniteMob() // Override so they don't catch on fire.
+/mob/living/carbon/spirit/ignite_mob() // Override so they don't catch on fire.
 	return
 
 /mob/living/carbon/spirit/proc/give_patron_toll()
@@ -87,6 +87,9 @@
 	internal_organs += new /obj/item/organ/ears
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach
+
+	visible_organs += new /obj/item/organ/eyes
+	visible_organs += new /obj/item/organ/ears
 	..()
 
 /mob/living/carbon/spirit/Destroy()

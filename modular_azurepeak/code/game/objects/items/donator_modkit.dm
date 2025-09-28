@@ -13,6 +13,7 @@
 	if(is_type_in_list(I, target_items))
 		var/obj/item/R = new result_item(get_turf(user))
 		to_chat(user, span_notice("You apply the [src] to [I], using the enchanting dust and tools to turn it into [R]."))
+		R.name += " <font size = 1>([I.name])</font>"
 		remove_item_from_storage(I)
 		qdel(I)
 		user.put_in_hands(R)
@@ -22,7 +23,7 @@
 		return ..()
 
 /////////////////////////////
-// ! Player / Donar Kits ! //
+// ! Player / Donor Kits ! //
 /////////////////////////////
 
 //Plexiant - Custom rapier type
@@ -74,6 +75,20 @@
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/dress/silkydress)
 	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress
 
+//Eiren - Custom zweihander type
+/obj/item/enchantingkit/eiren
+	name = "'Regret' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Zweihander"
+	target_items = list(/obj/item/rogueweapon/greatsword/zwei)		//now only takes the zwei and nothing else
+	result_item = /obj/item/rogueweapon/greatsword/zwei/eiren
+
+//pretzel - custom steel greatsword. PSYDON LYVES. PSYDON ENDVRES.
+/obj/item/enchantingkit/waff
+	name = "'Weeper's Lathe' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Any Greatsword"
+	target_items = list(/obj/item/rogueweapon/greatsword)		// i, uh. i really do promise i'm only gonna use it on steel greatswords.
+	result_item = /obj/item/rogueweapon/greatsword/weeperslathe
+ 
 /obj/item/enchantingkit/psydonianarmet
 	name = "'Psydonian armet morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Armet"

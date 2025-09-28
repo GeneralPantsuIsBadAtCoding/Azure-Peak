@@ -28,6 +28,14 @@
 	var/shared_wave_type = null
 	/// Whether we want to spawn people on the rolled location, this may not be desired for bandits or other things that set the location
 	var/spawn_on_location = TRUE
+	/// Triumph contributions for this wave type (ckey -> amount)
+	var/list/triumph_contributions = list()
+	/// Total triumph invested in this wave
+	var/triumph_total = 0
+	/// Threshold at which this wave is guaranteed to be next
+	var/triumph_threshold = 25
+	/// Whether triumph contributions reset after wave spawns
+	var/reset_contributions_on_spawn = TRUE
 
 /datum/migrant_wave/proc/get_roles_amount()
 	var/amount = 0

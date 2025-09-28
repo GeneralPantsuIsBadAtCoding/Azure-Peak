@@ -4,6 +4,7 @@
 GLOBAL_LIST_EMPTY(patronlist)
 GLOBAL_LIST_EMPTY(patrons_by_faith)
 GLOBAL_LIST_EMPTY(preference_patrons)
+GLOBAL_LIST_EMPTY(prayers)
 
 /datum/patron
 	/// Name of the god
@@ -91,6 +92,8 @@ GLOBAL_LIST_EMPTY(preference_patrons)
 		follower.mob_timers[MT_PSYPRAY] = world.time
 
 	. = TRUE //the prayer has succeeded by this point forward
+	GLOB.prayers |= prayer 
+	record_round_statistic(STATS_PRAYERS_MADE)
 	for(var/patron_namerus in rusgodnames)
 		var/regex/p_name = regex("([patron_namerus])", "im")
 		if(p_name.Find(prayer))
@@ -98,9 +101,10 @@ GLOBAL_LIST_EMPTY(preference_patrons)
 
 /// The follower has somehow offended the patron and is now being punished.
 /datum/patron/proc/punish_prayer(mob/living/follower)
-	follower.adjust_divine_fire_stacks(20)
-	follower.IgniteMob()
+	follower.adjust_fire_stacks(20, /datum/status_effect/fire_handler/fire_stacks/divine)
+	follower.ignite_mob()
 	follower.add_stress(/datum/stressevent/psycurse)
+	record_round_statistic(STATS_PEOPLE_SMITTEN)
 
 /// The follower has prayed in a special way to the patron and is being rewarded.
 /datum/patron/proc/reward_prayer(mob/living/follower)

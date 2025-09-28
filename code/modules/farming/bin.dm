@@ -100,7 +100,7 @@
 		if(!reagents || !reagents.maximum_volume)
 			return
 		if(isliving(user))
-			var/mob/living/L = user
+			var/mob/living/carbon/L = user
 			if(L.stat != CONSCIOUS)
 				return
 			var/removereg = /datum/reagent/water
@@ -118,11 +118,15 @@
 				if(do_after(L, 30, target = src))
 					wash_atom(user, CLEAN_STRONG)
 					playsound(user, pick(wash), 100, FALSE)
+					user.remove_stress(/datum/stressevent/sewertouched)
 			else
 				user.visible_message(span_info("[user] starts to wash [item2wash] in [src]."))
 				if(do_after(L, 30, target = src))
 					wash_atom(item2wash, CLEAN_STRONG)
 					playsound(user, pick(wash), 100, FALSE)
+					if(iscarbon(user))
+						var/mob/living/carbon/C = user
+						C.update_inv_hands()
 			var/datum/reagent/water_to_dirty = reagents.has_reagent(/datum/reagent/water, 5)
 			if(water_to_dirty)
 				var/amount_to_dirty = water_to_dirty.volume

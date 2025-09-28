@@ -12,6 +12,22 @@
 	cmode_music = 'sound/music/combat_inqordinator.ogg'
 
 	category_tags = list(CTAG_PURITAN)
+	traits_applied = list(
+		TRAIT_STEELHEARTED,
+		TRAIT_MEDIUMARMOR,
+		TRAIT_SILVER_BLESSED,
+		TRAIT_INQUISITION,
+		TRAIT_PERFECT_TRACKER,
+		TRAIT_PURITAN,
+		)
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_WIL = 3,
+		STATKEY_SPD = 1,
+		STATKEY_PER = 3,
+		STATKEY_CON = 3,
+		STATKEY_INT = 3,
+	)
 
 /datum/outfit/job/roguetown/puritan/blackpowder/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -30,20 +46,8 @@
 	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	H.change_stat("strength", 2)
-	H.change_stat("endurance", 3)
-	H.change_stat("constitution", 3)
-	H.change_stat("perception", 3)
-	H.change_stat("speed", 1)
-	H.change_stat("intelligence", 3)
 	H.verbs |= /mob/living/carbon/human/proc/faith_test
 	H.verbs |= /mob/living/carbon/human/proc/torture_victim
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel

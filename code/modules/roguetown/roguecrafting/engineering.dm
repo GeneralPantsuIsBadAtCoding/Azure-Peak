@@ -2,7 +2,7 @@
 	abstract_type = /datum/crafting_recipe/roguetown/engineering
 
 /datum/crafting_recipe/roguetown/engineering/coolingtable
-	name = "Cooling Table"
+	name = "cooling table"
 	result = /obj/structure/table/cooling
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/ingot/iron = 1,
@@ -131,3 +131,21 @@
 	req_table = TRUE
 	craftdiff = 1
 	skillcraft = /datum/skill/craft/engineering
+
+/datum/crafting_recipe/roguetown/engineering/pressure_plate
+	name = "pressure plate"
+	result = /obj/structure/pressure_plate
+	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/engineering/activator
+	name = "engineer's launcher"
+	result = /obj/structure/englauncher
+	reqs = list(/obj/item/roguegear = 1, /obj/item/natural/wood/plank = 4, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4

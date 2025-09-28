@@ -11,12 +11,12 @@
 
 	if(amt > 0)
 		if(counted)
-			GLOB.azure_round_stats[STATS_TRIUMPHS_AWARDED] += amt
+			record_round_statistic(STATS_TRIUMPHS_AWARDED, amt)
 		if(current)
 			to_chat(current, "\n<font color='purple'>[amt] TRIUMPH(S) awarded.</font>")
 	else if(amt < 0)
 		if(counted)
-			GLOB.azure_round_stats["triumphs_stolen"] += amt
+			record_round_statistic(STATS_TRIUMPHS_STOLEN, amt)
 		if(current)
 			to_chat(current, "\n<font color='purple'>[amt*-1] TRIUMPH(S) lost.</font>")
 
@@ -35,11 +35,11 @@
 
 	if(amt > 0)
 		if(counted)
-			GLOB.azure_round_stats[STATS_TRIUMPHS_AWARDED] += amt
+			record_round_statistic(STATS_TRIUMPHS_AWARDED, amt)
 		to_chat(src, "\n<font color='purple'>[amt] TRIUMPH(S) awarded.</font>")
 	else if(amt < 0)
 		if(counted)
-			GLOB.azure_round_stats["triumphs_stolen"] += amt
+			record_round_statistic(STATS_TRIUMPHS_STOLEN, amt)
 		to_chat(src, "\n<font color='purple'>[amt*-1] TRIUMPH(S) lost.</font>")
 
 /*
@@ -54,9 +54,9 @@
 
 	if(amt > 0)
 		if(counted)
-			GLOB.azure_round_stats[STATS_TRIUMPHS_AWARDED] += amt
+			record_round_statistic(STATS_TRIUMPHS_AWARDED, amt)
 		to_chat(src, "\n<font color='purple'>[amt] TRIUMPH(S) awarded.</font>")
 	else if(amt < 0)
 		if(counted)
-			GLOB.azure_round_stats["triumphs_stolen"] += amt
+			record_round_statistic(STATS_TRIUMPHS_STOLEN, amt)
 		to_chat(src, "\n<font color='purple'>[amt*-1] TRIUMPH(S) lost.</font>")

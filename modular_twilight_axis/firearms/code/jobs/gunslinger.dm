@@ -7,10 +7,18 @@
 	maximum_possible_slots = 2
 	min_pq = 10
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_gunslinger.ogg'
+	class_select_category = CLASS_CAT_OTAVA
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_OUTLANDER, TRAIT_MEDIUMARMOR)
 	classes = list("Lone Wolf" = "With no allegiance but to self, you travel through many different lands, finding yourself in employ of those who can afford to pay for your meals and ammunition. Working for the Guild is a novelty for you, but perhaps this is where you'll find a camaraderie you've never known?",
 					"Otavan Dragoon" = "Having left the ranks of the Otavan militant orders, you set off into the wider world, selling your combat skills to the highest bidder. Your rare runelock firearm, once awarded to you for your service, is now your primary tool of the trade.")
+	subclass_stats = list(
+		STATKEY_STR = 1,
+		STATKEY_PER = 2,
+		STATKEY_CON = 1,
+		STATKEY_SPD = 2,
+		STATKEY_WIL = 2,
+	)
 
 /datum/outfit/job/roguetown/mercenary/twilight_gunslinger/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -79,9 +87,3 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
 	backr = /obj/item/rogueweapon/scabbard/sword
 	cloak = /obj/item/clothing/suit/roguetown/armor/longcoat
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("speed", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("constitution", 1)

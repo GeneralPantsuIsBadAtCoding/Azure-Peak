@@ -148,6 +148,12 @@
 	valid_outputs = list(/obj/item/alch/silverdust = 1)
 	bonus_chance_outputs = list(/obj/item/alch/silverdust = 33, /obj/item/alch/firedust = 25)
 
+/datum/alch_grind_recipe/blessed_silver_bar
+	name = "Blessed Silver Bar"
+	valid_input = /obj/item/ingot/silverblessed
+	valid_outputs = list(/obj/item/alch/silverdust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/silverdust = 33, /obj/item/alch/firedust = 25)
+
 /datum/alch_grind_recipe/iron_bar
 	name = "Iron Bar"
 	valid_input = /obj/item/ingot/iron
@@ -164,6 +170,12 @@
 	valid_input = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
 	valid_outputs = list(/obj/item/alch/berrypowder = 1)
 	bonus_chance_outputs = list(/obj/item/alch/waterdust = 25)
+
+/datum/alch_grind_recipe/manabloompowder
+	name = "Manabloom Powder"
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/manabloom
+	valid_outputs = list(/obj/item/alch/manabloompowder = 1)
+	bonus_chance_outputs = list(/obj/item/alch/manabloompowder = 25)
 
 // Start of gem dust section - I've included gold dust as an additional product because of lesser alchemy, grinding up a gem should give you a bit extra (I mean come on it's a gem)
 
@@ -281,8 +293,3 @@
 	name = "Herb Seed (Rosa)"
 	valid_input = /obj/item/alch/rosa
 	valid_outputs = list(/obj/item/herbseed/rosa = 1)
-
-/datum/alch_grind_recipe/manabloom_seed
-	name = "Herb Seed (Manabloom)"
-	valid_input = /obj/item/reagent_containers/food/snacks/grown/manabloom
-	valid_outputs = list(/obj/item/herbseed/manabloom = 1)

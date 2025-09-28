@@ -59,28 +59,14 @@
 			to_chat(user, span_warning("I need a holy [initial(temp_structure.name)] near [target]."))
 			revert_cast()
 			return FALSE
-		if(!target.mind)
-			to_chat(user, "This one is inert.")
-			revert_cast()
-			return FALSE
-		if(HAS_TRAIT(target, TRAIT_NECRAS_VOW))
-			to_chat(user, "This one has pledged themselves whole to Necra. They are Hers.")
-			revert_cast()
-			return FALSE
-		if(!target.mind.active)
-			to_chat(user, "Necra is not done with [target], yet.")
-			revert_cast()
-			return FALSE
-		if(target == user)
-			to_chat(user, "By focusing divine energies on myself, I can summise I have every component I need where I'm standing.")
-			revert_cast()
-			return FALSE
-		if(target.stat < DEAD)
-			to_chat(user, span_warning("Nothing happens."))
+		if(!target.check_revive(user))
 			revert_cast()
 			return FALSE
 		if(target.mob_biotypes & MOB_UNDEAD && harms_undead) //positive energy harms the undead
-			target.visible_message(span_danger("[target] is unmade by divine magic!"), span_userdanger("I'm unmade by divine magic!"))
+			target.visible_message(
+				span_danger("[target] is unmade by divine magic!"), 
+				span_userdanger("I'm unmade by divine magic!")
+			)
 			target.gib()
 			return TRUE
 		if(alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
@@ -230,8 +216,8 @@
 	desc = "Summon the dreamfiend haunting you to confront it directly"
 	overlay_state = "terrors"
 	chargetime = 0
-	invocations = list("Face me daemon!")
-	invocation_type = "shout"
+	invocations = list(span_danger("begins to smell of saltwater. You can hear waves crashing nearby..."))
+	invocation_type = "emote"
 	sound = 'modular_azurepeak/sound/mobs/abyssal/abyssal_teleport.ogg'
 	/// Type of dreamfiend to summon
 	var/dreamfiend_type
@@ -515,7 +501,7 @@
 
 /obj/effect/proc_holder/spell/invoked/resurrect/malum
 	name = "Diligent Revival"
-	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets willpower and strenght will be sapped for a time."
+	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets willpower and strength will be sapped for a time."
 	required_items = list(
 		/obj/item/ingot/iron = 3
 	)
@@ -524,7 +510,7 @@
 
 /obj/effect/proc_holder/spell/invoked/resurrect/ravox
 	name = "Just Revival"
-	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets strenght and speed will be sapped for a time."
+	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets strength and speed will be sapped for a time."
 	// The items here are somewhat hard to pick as it still has to be something a ravox acolyte would reasonably obtain.
 	// Bones insinuate that mayhaps, they went out there to delete some skeletons for justice?
 	required_items = list(

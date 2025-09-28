@@ -9,6 +9,11 @@
 
 	. += integrity_check()
 
+	if(istype(src, /mob/living))
+		var/mob/living/L = src
+		if(L.has_status_effect(/datum/status_effect/leash_pet))
+			. += "<A href='?src=[REF(src)];'><span class='warning'>A leash is hooked to a collar!</span></A>"
+
 	var/real_value = get_real_price()
 	if(real_value > 0)
 		if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)

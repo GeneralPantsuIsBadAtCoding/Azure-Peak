@@ -143,3 +143,21 @@
 /// Убирает предмет лодаута
 /datum/preferences/proc/remove_loadout_item(item_name)
 	selected_loadout_items.RemoveAll(item_name)
+
+//
+
+/client/verb/boosty()
+	set name = "boosty"
+	set desc = ""
+	set category = "OOC"
+	var/boostyurl = CONFIG_GET(string/boostyurl)
+	if(boostyurl)
+		if(alert("This will open the boosty in your browser. Are you sure?",,"Yes","No")!="Yes")
+			return
+		src << link(boostyurl)
+	else
+		to_chat(src, span_danger("The forum URL is not set in the server configuration."))
+	return
+
+/datum/config_entry/string/boostyurl
+	config_entry_value = ""

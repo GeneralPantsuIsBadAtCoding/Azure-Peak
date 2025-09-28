@@ -50,6 +50,19 @@
 	GLOB.traveltiles -= src
 	. = ..()
 
+/obj/structure/fluff/traveltile/proc/return_connected_turfs()
+	if(!aportalgoesto)
+		return list()
+
+	var/list/travels = list()
+	for(var/obj/structure/fluff/traveltile/travel in shuffle(GLOB.traveltiles))
+		if(travel == src)
+			continue
+		if(travel.aportalid != aportalgoesto)
+			continue
+		travels |= get_turf(travel)
+	return travels
+
 /obj/structure/fluff/traveltile/attack_ghost(mob/dead/observer/user)
 	if(!aportalgoesto)
 		return
@@ -111,10 +124,16 @@
 		return FALSE
 	if(L.pulledby)
 		return FALSE
+	if(leashed_by_other(L))
+		to_chat(L, span_warning("I can't travel! Someone is holding my leash!"))
+		return FALSE
 	to_chat(L, "<b>I begin to travel...</b>")
 	if(do_after(L, 50, needhand = FALSE, target = src))
 		if(L.pulledby)
 			to_chat(L, span_warning("I can't go, something's holding onto me."))
+			return FALSE
+		if(leashed_by_other(L))
+			to_chat(L, span_warning("I can't go, somebody has me on their leash."))
 			return FALSE
 		perform_travel(T, L)
 		return TRUE
@@ -129,13 +148,34 @@
 					to_chat(L, "<b>[H.name ? H : "Someone"] watches me pass through the entrance.</b>")
 				ADD_TRAIT(H, required_trait, TRAIT_GENERIC)
 
+	/*
+	Prior to writing:
+	On their own, leashes do not play nice at all with travel tile teleports. At best, they do not follow leashed "pets" to new z-levels if the leash is dropped.
+	At worst, they cause the "pet" to fall to 1 z-level lower from where they previously were, and not get teleported, if the "master" isn't also pulling them by hand.
+	Thus, the following jank is necessary.
+	Procs for getting/checking leash stuff that I made for this got moved to leash.dm as global procs, because their code was entirely independent of this type. - Zoktiik
+	*/
 	var/atom/movable/pullingg = L.pulling
+	var/list/master_leashed_mobs = get_master_leashed_mobs(L, FALSE)
+	var/obj/item/leash/user_freepet_leash = get_freepet_leash(L)
+	var/obj/item/leash/pullingg_freepet_leash
+	// leashes automatically handle "reattachment" to the "master" so we can just move them
 
 	L.recent_travel = world.time
 	if(pullingg)
+		pullingg_freepet_leash = get_freepet_leash(pullingg)
+		if(pullingg_freepet_leash)
+			pullingg_freepet_leash.forceMove(T.loc)
 		pullingg.recent_travel = world.time
 		pullingg.forceMove(T.loc)
+	if(length(master_leashed_mobs))
+		for(var/mob/living/leashed in master_leashed_mobs)
+			if(leashed != pullingg) // we didn't already handle u
+				leashed.recent_travel = world.time
+				leashed.forceMove(T.loc)
 
+	if(user_freepet_leash)
+		user_freepet_leash.forceMove(T.loc)
 	L.forceMove(T.loc)
 
 	if(pullingg)

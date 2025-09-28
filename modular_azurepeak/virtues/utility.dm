@@ -15,6 +15,8 @@
 	desc = "Wherever I go, I turn heads, such is my natural beauty. I am also rather good in bed, though they always say that."
 	custom_text = "Incompatible with Ugly virtue."
 	added_traits = list(TRAIT_BEAUTIFUL,TRAIT_GOODLOVER)
+	added_stashed_items = list(
+		"Hand Mirror" = /obj/item/handmirror)
 
 /datum/virtue/utility/beautiful/handle_traits(mob/living/carbon/human/recipient)
 	..()

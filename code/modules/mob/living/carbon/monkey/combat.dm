@@ -43,7 +43,7 @@
 
 	// failed to path correctly so just try to head straight for a bit
 	walk_to(src,get_turf(target),0,5)
-	sleep(1)
+	stoplag(1)
 	walk_to(src,0)
 
 	return 0

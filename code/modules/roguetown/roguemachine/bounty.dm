@@ -104,16 +104,19 @@
 	var/list/eligible_players = list()
 
 	if(user.mind.known_people.len)
-		for(var/guys_name in user.mind.known_people)
-			eligible_players += guys_name
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.real_name in user.mind.known_people)
+				eligible_players[H.real_name] = H
 	else
 		to_chat(user, span_warning("I don't know anyone."))
 		return
-	eligible_players = sortList(eligible_players)
-	var/target = input(user, "Whose name shall be etched on the wanted list?", src) as null|anything in eligible_players
-	if(isnull(target))
+
+	var/choice = input(user, "Whose name shall be etched on the wanted list?", src) as null|anything in eligible_players
+	if(isnull(choice))
 		say("No target selected.")
 		return
+
+	var/mob/living/carbon/human/target = eligible_players[choice]
 
 	var/amount = input(user, "How many mammons shall be stained red for their demise?", src) as null|num
 	if(isnull(amount))
@@ -154,8 +157,15 @@
 
 	amount -= royal_tax
 
+	var/race = target.dna.species
+	var/gender = target.gender
+	var/list/d_list = target.get_mob_descriptors()
+	var/descriptor_height = build_coalesce_description_nofluff(d_list, target, list(MOB_DESCRIPTOR_SLOT_HEIGHT), "%DESC1%")
+	var/descriptor_body = build_coalesce_description_nofluff(d_list, target, list(MOB_DESCRIPTOR_SLOT_BODY), "%DESC1%")
+	var/descriptor_voice = build_coalesce_description_nofluff(d_list, target, list(MOB_DESCRIPTOR_SLOT_VOICE), "%DESC1%")
+
 	// Finally create bounty
-	add_bounty(target, amount, FALSE, reason, user.real_name)
+	add_bounty(target.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, amount, FALSE, reason, user.real_name)
 
 	//Announce it locally and on scomm
 	playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
@@ -394,28 +404,28 @@
 
 	say(pick(list("Performing intra-cranial inspection...", "Analyzing skull structure...", "Commencing cephalic dissection...")))
 
-	sleep(1 SECONDS)
+	stoplag(1 SECONDS)
 
 	if(M.stat == DEAD)
 		reward_amount = reward_amount / 2
 		say("Subject is deceased. Rewarding half of posted bounty amount.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		sleep(1 SECONDS)
+		stoplag(1 SECONDS)
 
 	INVOKE_ASYNC(src, PROC_REF(giveup), M)
 	say("Assessing value of lyfe...")
-	sleep(10 SECONDS)
+	stoplag(10 SECONDS)
 
 	var/list/headcrush = list('sound/combat/fracture/headcrush (2).ogg', 'sound/combat/fracture/headcrush (3).ogg', 'sound/combat/fracture/headcrush (4).ogg')
 	playsound(src, pick_n_take(headcrush), 100, FALSE, -1)
 	M.emote("scream")
 	M.apply_damage(50, BRUTE, BODY_ZONE_HEAD, FALSE)
-	sleep(1 SECONDS)
+	stoplag(1 SECONDS)
 	playsound(src, pick(headcrush), 100, FALSE, -1)
 	M.emote("agony")
 	M.apply_damage(50, BRUTE, BODY_ZONE_HEAD, FALSE)
 
-	sleep(2 SECONDS)
+	stoplag(2 SECONDS)
 
 	if(correct_head)
 		say("A bounty has been sated.")

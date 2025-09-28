@@ -117,13 +117,6 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "T-87 SULFURHEAD - Cutpurse (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/cmode/antag/combat_cutpurse.ogg')
 
-/datum/combat_music/bandit_mage
-	name = "Bandit Mage (Hedge Mage)"
-	desc = ""
-	shortname = "Bandit Mage"
-	credits = "Timestopper Tactics - corru.works"
-	musicpath = list('sound/music/combat_bandit_mage.ogg')
-
 /datum/combat_music/barbarian
 	name = "Barbarian"
 	desc = ""
@@ -229,6 +222,13 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	shortname = "Grenzelhoft"
 	credits = "Helbrede - Sons of Tyr"
 	musicpath = list('sound/music/combat_grenzelhoft.ogg')
+
+/datum/combat_music/grenzelhoft_mage //TA mandated cmode music
+	name = "Grenzelhoft Gefechtsgelehrter"
+	desc = ""
+	shortname = "Gefechtsgelehrter"
+	credits = "Helbrede - Helheim"
+	musicpath = list('modular_twilight_axis/sound/music/combat_grenzelhoft_mage.ogg')
 
 /datum/combat_music/heretic_zizo
 	name = "Heretic - Zizo (Lich)"
@@ -396,15 +396,6 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	shortname = "Shaman"
 	credits = "Heilung - Elddansurin"
 	musicpath = list('sound/music/combat_shaman2.ogg')
-
-/* Unused
-/datum/combat_music/shaman_old
-	name = "Shaman, Atgervi (Old)"
-	desc = ""
-	shortname = "Shaman Old"
-	credits = "Heilung - Hakkerskaldyr"
-	musicpath = list('sound/music/combat_shaman.ogg')
-*/
 
 /datum/combat_music/spymaster
 	name = "Spymaster"

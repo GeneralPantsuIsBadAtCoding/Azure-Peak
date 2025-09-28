@@ -3,7 +3,7 @@
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/pestra_mercy
 	weight = 8
-	earliest_start = 0 SECONDS
+	earliest_start = 10 MINUTES
 	max_occurrences = 2
 	min_players = 10
 	allowed_storytellers = list(/datum/storyteller/pestra)

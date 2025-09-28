@@ -55,14 +55,15 @@
 	internal_organs += new /obj/item/organ/ears
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach
+
+	visible_organs += new /obj/item/organ/eyes
+	visible_organs += new /obj/item/organ/ears
 	..()
 
 /mob/living/carbon/monkey/on_reagent_change()
 	. = ..()
 	remove_movespeed_modifier(MOVESPEED_ID_MONKEY_REAGENT_SPEEDMOD, TRUE)
 	var/amount
-	if(reagents.has_reagent(/datum/reagent/consumable/nuka_cola))
-		amount = -1
 	if(amount)
 		add_movespeed_modifier(MOVESPEED_ID_MONKEY_REAGENT_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
 

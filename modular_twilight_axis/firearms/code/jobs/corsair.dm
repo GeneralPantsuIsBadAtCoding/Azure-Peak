@@ -21,6 +21,11 @@
 	maximum_possible_slots = 2
 	
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_corsair.ogg'
+	subclass_stats = list(
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 2,
+		STATKEY_PER = 2,
+	)
 
 /datum/outfit/job/roguetown/wretch/twilight_corsair/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -61,9 +66,6 @@
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
-	H.change_stat("perception", 2)
-	H.change_stat("endurance", 2)
-	H.change_stat("speed", 2)
 
 	var/masks = list(
 		"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,

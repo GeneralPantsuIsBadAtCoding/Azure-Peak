@@ -28,17 +28,23 @@
 	job_reopens_slots_on_death = TRUE
 	same_job_respawn_delay = 30 MINUTES
 	virtue_restrictions = list(/datum/virtue/heretic/zchurch_keyholder) //all wretch classes automatically get this
-
-/datum/job/roguetown/wretch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(L)
-		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-
-		if(GLOB.adventurer_hugbox_duration)
-			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, adv_hugboxing_start)), 1)
+	job_traits = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_HERESIARCH)
+	job_subclasses = list(
+		/datum/advclass/wretch/deserter,
+		/datum/advclass/wretch/deserter/maa,
+		/datum/advclass/wretch/berserker,
+		/datum/advclass/wretch/hedgemage,
+		/datum/advclass/wretch/necromancer,
+		/datum/advclass/wretch/heretic,
+		/datum/advclass/wretch/heretic/spy,
+		/datum/advclass/wretch/outlaw,
+		/datum/advclass/wretch/outlaw/marauder,
+		/datum/advclass/wretch/poacher,
+		/datum/advclass/wretch/plaguebearer,
+		/datum/advclass/wretch/pyromaniac,
+		/datum/advclass/wretch/vigilante,
+		/datum/advclass/wretch/blackoakwyrm
+	)
 
 // Proc for wretch to select a bounty
 /proc/wretch_select_bounty(mob/living/carbon/human/H)

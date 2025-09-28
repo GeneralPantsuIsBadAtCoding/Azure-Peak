@@ -6,6 +6,8 @@ GLOBAL_LIST_INIT(t3summoningrunerituallist, generate_t3summoning_rituallist())
 GLOBAL_LIST_INIT(t4summoningrunerituallist, generate_t4summoning_rituallist())
 GLOBAL_LIST_INIT(t2wallrunerituallist, generate_t2wall_rituallist())
 GLOBAL_LIST_INIT(t4wallrunerituallist, generate_t4wall_rituallist())
+GLOBAL_LIST_INIT(buffrunerituallist, generate_buff_rituallist())
+GLOBAL_LIST_INIT(t2buffrunerituallist, generate_t2buff_rituallist())
 GLOBAL_LIST_INIT(t2enchantmentrunerituallist,generate_t2enchantment_rituallist())
 GLOBAL_LIST_INIT(t4enchantmentrunerituallist,generate_t4enchantment_rituallist())
 
@@ -86,6 +88,26 @@ GLOBAL_LIST_INIT(t4enchantmentrunerituallist,generate_t4enchantment_rituallist()
 		runerituals[initial(runeritual.name)] = runeritual
 	return runerituals
 
+/proc/generate_buff_rituallist()	//list of all rituals for player use
+	RETURN_TYPE(/list)
+	var/list/runerituals = list()
+	for(var/datum/runeritual/runeritual as anything in subtypesof(/datum/runeritual/buff))
+		if(runeritual.tier > 1)
+			continue
+		if(runeritual.blacklisted)
+			continue
+		runerituals[initial(runeritual.name)] = runeritual
+	return runerituals
+
+/proc/generate_t2buff_rituallist()	//list of all rituals for player use
+	RETURN_TYPE(/list)
+	var/list/runerituals = list()
+	for(var/datum/runeritual/runeritual as anything in subtypesof(/datum/runeritual/buff))
+		if(runeritual.blacklisted)
+			continue
+		runerituals[initial(runeritual.name)] = runeritual
+	return runerituals
+
 /proc/generate_t2enchantment_rituallist()	//list of all rituals for player use
 	RETURN_TYPE(/list)
 	var/list/runerituals = list()
@@ -123,7 +145,7 @@ GLOBAL_LIST_INIT(t4enchantmentrunerituallist,generate_t4enchantment_rituallist()
 
 /datum/runeritual/proc/generate_html(mob/user)
 	var/client/client = user
-	var/tool = tier >= 2 ? "Arcyne Silver Dagger" : "Arcyne Chalk" 
+	var/tool = tier >= 2 ? "Arcyne Silver Dagger" : "Arcyne Chalk"
 	if(!istype(client))
 		client = user.client
 	user << browse_rsc('html/book.png')
@@ -148,7 +170,7 @@ GLOBAL_LIST_INIT(t4enchantmentrunerituallist,generate_t4enchantment_rituallist()
 			var/count = required_atoms[path]
 			if(ispath(path, /datum/reagent))
 				var/datum/reagent/R = path
-				html += "- [CEILING(count / 3, 1)] oz of [initial(R.name)]<br>"
+				html += "- [FLOOR(count, 1)] [UNIT_FORM_STRING(FLOOR(count, 1))] of [initial(R.name)]<br>"
 			else
 				html += "- [count] counts of [initial(path.name)]<br>"
 

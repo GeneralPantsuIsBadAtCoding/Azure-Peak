@@ -85,11 +85,14 @@
 				full_price = held_items[O]["PRICE"]
 			if(budget >= full_price)
 				budget -= full_price
+				record_round_statistic(STATS_PURITY_VALUE_SPENT, full_price)
 				recent_payments += held_items[O]["PRICE"]
 				if(!(drugrade_flags & DRUGRADE_NOTAX))
 					SStreasury.give_money_treasury(tax_amt, "purity import tax")
 					record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
-					GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
+					record_round_statistic(STATS_TAXES_COLLECTED, tax_amt)
+				else
+					record_round_statistic(STATS_TAXES_EVADED, tax_amt)
 			else
 				say("Not enough!")
 				return

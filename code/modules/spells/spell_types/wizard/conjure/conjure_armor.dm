@@ -23,7 +23,12 @@
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 
+
+	var/objtoequip = /obj/item/clothing/ring/fate_weaver
+	var/slottoequip = SLOT_RING
 	var/obj/item/clothing/conjured_armor = null
+	var/checkspot = "ring"
+
 
 /obj/effect/proc_holder/spell/self/conjure_armor/cast(list/targets, mob/living/user = usr)
 	var/mob/living/carbon/human/H = user
@@ -38,15 +43,26 @@
 		return FALSE
 	if(src.conjured_armor)
 		qdel(src.conjured_armor)
-	if(H.wear_ring)
-		to_chat(user, span_warning("My ring finger must be free!"))
-		revert_cast()
-		return FALSE
+	switch(checkspot)
+		if("ring")
+			if(user.get_num_arms() <= 0)
+				to_chat(user, span_warning("I don't have any usable hands!"))
+				revert_cast()
+				return FALSE
+			if(H.wear_ring)
+				to_chat(user, span_warning("My ring finger must be free!"))
+				revert_cast()
+				return FALSE
+		if("armor")
+			if(H.wear_armor)
+				to_chat(user, span_warning("I cannot wear this while wearing armor over my chest!"))
+				revert_cast()
+				return FALSE
 
 	user.visible_message("[user]'s existence briefly jitters, conjuring protection from doomed fates!")
-	var/ring = /obj/item/clothing/ring/fate_weaver
-	conjured_armor = new ring(user)
-	user.equip_to_slot_or_del(conjured_armor, SLOT_RING)
+	var/item = objtoequip
+	conjured_armor = new item(user)
+	user.equip_to_slot_or_del(conjured_armor, slottoequip)
 	if(!QDELETED(conjured_armor))
 		conjured_armor.AddComponent(/datum/component/conjured_item, GLOW_COLOR_ARCANE)
 	return TRUE

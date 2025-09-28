@@ -101,7 +101,7 @@
 		new_mob.AddComponent(/datum/component/quest_object, quest)
 		add_quest_faction_to_nearby_mobs(spawn_turf)
 		quest.add_tracked_atom(new_mob)
-		sleep(1)
+		stoplag(1)
 
 /obj/effect/landmark/quest_spawner/proc/add_quest_faction_to_nearby_mobs(turf/center)
 	for(var/mob/living/M in view(7, center))
@@ -217,7 +217,7 @@
 		new_mob.AddComponent(/datum/component/quest_object, quest)
 		quest.add_tracked_atom(new_mob)
 		add_quest_faction_to_nearby_mobs(spawn_turf)
-		sleep(1)
+		stoplag(1)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_miniboss(datum/quest/quest, boss_type)
 	var/turf/spawn_turf = get_safe_spawn_turf()

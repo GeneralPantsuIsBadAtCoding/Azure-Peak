@@ -74,7 +74,7 @@
 	if(BP)
 		testing("projwound")
 		var/newdam = P.damage * (100-blocked)/100
-		BP.bodypart_attacked_by(P.woundclass, newdam, zone_precise = def_zone, crit_message = TRUE)
+		BP.bodypart_attacked_by(P.woundclass, newdam, zone_precise = def_zone, crit_message = TRUE, weapon = P)
 		return TRUE
 
 /mob/living/carbon/check_projectile_embed(obj/projectile/P, def_zone, blocked)
@@ -202,7 +202,7 @@
 	var/statforce = get_complex_damage(I, user)
 	if(statforce)
 		next_attack_msg.Cut()
-		affecting.bodypart_attacked_by(user.used_intent.blade_class, statforce, crit_message = TRUE)
+		affecting.bodypart_attacked_by(user.used_intent.blade_class, statforce, crit_message = TRUE, weapon = I)
 		apply_damage(statforce, I.damtype, affecting)
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			if(prob(statforce))
@@ -231,7 +231,9 @@
 		send_item_attack_message(I, user, affecting.name, affecting)
 
 	if(statforce)
-		var/probability = I.get_dismemberment_chance(affecting, user)
+		I.remove_bintegrity(1)
+		var/probability = I.get_dismemberment_chance(affecting, user, useder)
+    
 		if(prob(probability) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, user.zone_selected))
 			I.add_mob_blood(src)
 			playsound(get_turf(src), I.get_dismember_sound(), 80, TRUE)
@@ -482,5 +484,11 @@
 /mob/living/carbon/can_hear()
 	. = FALSE
 	var/obj/item/organ/ears/ears = getorganslot(ORGAN_SLOT_EARS)
+	if(isdullahan(src))
+		var/mob/living/carbon/human/user = src
+		var/datum/species/dullahan/dullahan = user.dna.species
+		var/obj/item/bodypart/head/dullahan/head = dullahan.my_head
+		if(dullahan.headless && head.ears)
+			ears = head.ears
 	if((istype(ears) && !ears.deaf) || (src.stat == DEAD)) // 2nd check so you can hear messages when beheaded
 		. = TRUE

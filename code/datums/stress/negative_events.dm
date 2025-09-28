@@ -73,7 +73,7 @@
 	desc = list(span_red("I think I'm bleeding."),span_red("I'm bleeding."))
 
 /datum/stressevent/bleeding/can_apply(mob/living/user)
-	if(user.has_flaw(/datum/charflaw/masochist))
+	if(user.has_flaw(/datum/charflaw/addiction/masochist))
 		return FALSE
 	return TRUE
 
@@ -83,7 +83,7 @@
 	desc = span_red("THE PAIN!")
 
 /datum/stressevent/painmax/can_apply(mob/living/user)
-	if(user.has_flaw(/datum/charflaw/masochist))
+	if(user.has_flaw(/datum/charflaw/addiction/masochist))
 		return FALSE
 	return TRUE
 
@@ -135,6 +135,20 @@
 	max_stacks = 3
 	stressadd_per_extra_stack = 2
 	desc = span_red("I puked on myself!")
+
+/datum/stressevent/vomitother
+	timer = 3 MINUTES
+	stressadd = 3
+	max_stacks = 3
+	stressadd_per_extra_stack = 3
+	desc = span_red("I have someone's puke on myself!")
+
+/datum/stressevent/vomitedonother
+	timer = 3 MINUTES
+	stressadd = 2
+	max_stacks = 3
+	stressadd_per_extra_stack = 2
+	desc = span_red("I puked on someone!")
 
 /datum/stressevent/cumbad
 	timer = 5 MINUTES
@@ -270,7 +284,7 @@
 /datum/stressevent/tortured/on_apply(mob/living/user)
 	. = ..()
 	if(user.client)
-		GLOB.azure_round_stats[STATS_TORTURES]++
+		record_round_statistic(STATS_TORTURES)
 
 /datum/stressevent/noble_bad_manners
 	stressadd = 1
@@ -323,25 +337,43 @@
 	desc = span_red("Oww, my head...")
 
 /datum/stressevent/psycurse
-
 	stressadd = 3
 	desc = span_boldred("Oh no! I've received divine punishment!")
 	timer = 999 MINUTES
 
 /datum/stressevent/excommunicated
-
 	stressadd = 5
 	desc = span_boldred("The Ten have forsaken me!")
 	timer = 999 MINUTES
 
 /datum/stressevent/apostasy
-
 	stressadd = 3
 	desc = span_boldred("The apostasy's mark is upon me!")
 	timer = 999 MINUTES
 
 /datum/stressevent/heretic_on_sermon
-
 	stressadd = 5
 	desc = span_red("My PATRON is NOT PROUD of ME!")
 	timer = 20 MINUTES
+
+/datum/stressevent/lostchampion
+	stressadd = 8
+	desc = span_red("I feel I have lost my champion! Oh, my stricken heart!")
+	timer = 25 MINUTES
+
+/datum/stressevent/lostward
+	stressadd = 8
+	desc = span_red("I have failed my ward! My ribbon fades in color!")
+	timer = 25 MINUTES
+
+
+/datum/stressevent/necrarevive
+	stressadd = 15
+	desc = span_boldred("SO CLOSE TO BEING GRASPED, SO COLD!")
+	timer = 15 MINUTES
+
+/datum/stressevent/blessed_weapon
+	stressadd = -3
+	timer = 999 MINUTES
+	desc = span_green("I'm wielding a BLESSED weapon!")
+

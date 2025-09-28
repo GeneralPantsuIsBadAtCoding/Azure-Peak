@@ -587,7 +587,7 @@
 	return
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 	return
 
@@ -884,7 +884,7 @@
 
 /atom/proc/ShiftRightClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_RIGHT_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 
 /mob/proc/addtemptarget()
@@ -916,9 +916,6 @@
 
 	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
 	return TRUE
-
-/mob/living/carbon/human/species/skeleton/try_special_attack(atom/A, list/modifiers)
-	return FALSE
 
 /// Used for "directional" style rmb attacks on a turf, prioritizing standing targets
 /mob/living/proc/get_foe_from_turf(turf/T)

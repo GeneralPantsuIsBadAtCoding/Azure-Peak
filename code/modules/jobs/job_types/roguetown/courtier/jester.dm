@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 
 	tutorial = "The Grenzelhofts were known for their Jesters, wisemen with a tongue just as sharp as their wit. \
 		You command a position of a fool, envious of the position your superiors have upon you. \
@@ -39,9 +39,12 @@
 	H.adjust_skillrank(/datum/skill/misc/music, rand(1,6), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, rand(1,3), TRUE)
-	H.STASTR = rand(1, 20)
-	H.STAINT = rand(1, 20)
-	H.STALUC = rand(1, 20)
+	H.STASTR = rand(1, 21)
+	H.STAWIL = rand(1, 21)
+	H.STACON = rand(1, 21)
+	H.STAINT = rand(1, 21)
+	H.STAPER = rand(1, 21)
+	H.STALUC = rand(1, 21)
 	H.cmode_music = 'sound/music/combat_jester.ogg'
 	if(H.mind)
 		// Mime vs Jester. 

@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(biggates)
 	playsound(src, 'sound/misc/gate.ogg', 100, extrarange = 5)
 	flick("[base_state]_opening",src)
 	layer = initial(layer)
-	sleep(15)
+	stoplag(1.5 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	for(var/obj/gblock/B in blockers)
@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(biggates)
 	layer = ABOVE_MOB_LAYER
 	playsound(src, 'sound/misc/gate.ogg', 100, extrarange = 5)
 	flick("[base_state]_closing",src)
-	sleep(10)
+	stoplag(1 SECONDS)
 	for(var/turf/T in turfsy)
 		for(var/mob/living/L in T)
 			var/def_zone = BODY_ZONE_CHEST

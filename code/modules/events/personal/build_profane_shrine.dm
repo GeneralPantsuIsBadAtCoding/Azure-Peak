@@ -2,7 +2,7 @@
 	name = "Profane Construction"
 	track = EVENT_TRACK_PERSONAL
 	typepath = /datum/round_event/zizo_shrines
-	weight = 10
+	weight = 7
 	earliest_start = 20 MINUTES
 	max_occurrences = 1
 	min_players = 25

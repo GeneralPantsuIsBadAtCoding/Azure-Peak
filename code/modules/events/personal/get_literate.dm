@@ -7,10 +7,6 @@
 	max_occurrences = 1
 	min_players = 20
 
-	tags = list(
-		TAG_BOON,
-	)
-
 /datum/round_event_control/noc_literacy/canSpawnEvent(players_amt, gamemode, fake_check)
 	. = ..()
 	if(!.)

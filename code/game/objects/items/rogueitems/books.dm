@@ -174,6 +174,10 @@
 	base_icon_state = "bibble"
 	title = "The Verses and Acts of the Ten"
 	dat = "gott.json"
+	possible_item_intents = list(
+		/datum/intent/use, 
+		/datum/intent/bless,
+	)
 
 /obj/item/book/rogue/bibble/read(mob/user)
 	if(!open)
@@ -203,16 +207,35 @@
 		if(m)
 			user.say(m)
 
-/obj/item/book/rogue/bibble/attack(mob/living/M, mob/user)
-	if(user.mind && user.mind.assigned_role == "Bishop")
+/obj/item/book/rogue/bibble/attack(atom/M, mob/user)
+	if(user.mind?.assigned_role == "Bishop" && user.used_intent?.type == /datum/intent/bless && isliving(M))
 		if(!user.can_read(src))
 			to_chat(user, span_warning("I don't understand these scribbly black lines."))
 			return
-		M.apply_status_effect(/datum/status_effect/buff/blessed)
-		M.add_stress(/datum/stressevent/blessed)
+		var/mob/living/to_bless = M
+		to_bless.apply_status_effect(/datum/status_effect/buff/blessed)
+		to_bless.add_stress(/datum/stressevent/blessed)
 		user.visible_message(span_notice("[user] blesses [M]."))
 		playsound(user, 'sound/magic/bless.ogg', 100, FALSE)
 		return
+
+/obj/item/book/rogue/bibble/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(user.mind?.assigned_role == "Bishop" && isitem(target) && user.used_intent?.type == /datum/intent/bless)
+		var/datum/component/silverbless/CP = target.GetComponent(/datum/component/silverbless)
+		if(!CP)
+			to_chat(user, span_info("\The [target] can not be blessed."))
+			return
+		else if(!CP.is_blessed && (CP.silver_type & SILVER_TENNITE))
+			playsound(user, 'sound/magic/censercharging.ogg', 100)
+			user.visible_message(span_info("[user] holds \the [src] over \the [target]..."))
+			if(do_after(user, 5 SECONDS, target = target))
+				CP.try_bless(BLESSING_TENNITE)
+				new /obj/effect/temp_visual/censer_dust(get_turf(target))
+			return
+		else
+			to_chat(user, span_info("It has already been blessed."))
+			return
 
 /obj/item/book/rogue/bibble/psy
 	name = "Of Psydon"

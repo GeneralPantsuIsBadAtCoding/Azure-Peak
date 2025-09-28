@@ -17,7 +17,6 @@
 	show_in_credits = FALSE
 	give_bank_account = FALSE
 	announce_latejoin = FALSE
-	
 	cmode_music = 'sound/music/combat_weird.ogg'
 
 /datum/outfit/job/roguetown/deathknight/pre_equip(mob/living/carbon/human/H)

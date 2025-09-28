@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/items/valuable.dmi'
 	name = "statue"
 	icon_state = ""
+	obj_flags = CAN_BE_HIT
 	w_class = WEIGHT_CLASS_NORMAL
 	experimental_inhand = FALSE
 	smeltresult = null

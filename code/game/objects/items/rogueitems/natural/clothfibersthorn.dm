@@ -34,7 +34,6 @@
 		/datum/crafting_recipe/roguetown/survival/stonesword,
 		/datum/crafting_recipe/roguetown/survival/woodsword,
 		/datum/crafting_recipe/roguetown/survival/bag,
-		/datum/crafting_recipe/roguetown/survival/bagx5,
 		/datum/crafting_recipe/roguetown/survival/rod,
 		/datum/crafting_recipe/roguetown/survival/pearlcross,
 		/datum/crafting_recipe/roguetown/survival/bpearlcross,
@@ -176,7 +175,6 @@
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/longbowpartial,
 		/datum/crafting_recipe/roguetown/survival/bag,
-		/datum/crafting_recipe/roguetown/survival/bagx5,
 		/datum/crafting_recipe/roguetown/survival/book_crafting_kit,
 		/datum/crafting_recipe/roguetown/survival/slingpouchcraft,
 		)

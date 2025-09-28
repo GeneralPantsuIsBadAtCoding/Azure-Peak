@@ -437,7 +437,42 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		<b>Grand Shaft</b>: [DULLFACTOR_ANTAG]x vs Everything but Smash. 1x vs Smash. Only present on certain special weapons. \n\
 		<b>Conjured Shaft</b>: [DULLFACTOR_COUNTERED_BY]x vs Everything. Present on Conjured or Decrepit weapons. Also meant to represent crumbling weapons. \n\
 		"))
+
+	if(href_list["explaindef"])
+		to_chat(usr, span_info("Each point of defense adds 10% to your parry chance.\n\
+		Your parry chance is increased by 20% per skill level in the weapon, and reduced by 20% per skill level of your attacker.\n\
+		Defense is often increased when you wield a weapon two-handed."))
+
+	if(href_list["explainlength"])
+		to_chat(usr, span_info("A short weapon gains +10% accuracy on hitting any bodypart and can only attack the legs from the ground.\n\
+		A long weapon can hit chest or below from the ground, and can hit the feet while standing.\n\
+		A great weapon can hit any bodypart from anywhere."))
+
+	if(href_list["explainbalance"])
+		to_chat(usr, span_info("A heavy weapon is easier to dodge, and inflicts 2 stamina damage per level of strength differences on a parrying defender. \n\
+		A swift balance weapon reduce the enemy's parry chance by 10% per level of speed difference, by up to 30%, \n\
+		If the defender have higher perception however, the penalty is reduced by 10% per point of difference, down to none.\n\
+		Intelligence also reduces the penalty by 3% per point of difference, down to none."))
+	var/additional_explanation = "This determines the damage dealt by this weapon. Force is increased / decrease by strength above / below 10 by 10% per point of differences,\n\
+	Each point of strength at 15 or above only applies an additional +3% damage, except on punches. Damage is also multiplied by damage factor on intents. \n\
+	Both multiplication are applied to the base number, and does not multiply each other. Reduced sharpness decrease the contribution of strength\n\
+	Force, combined with armor penetration on an intent determines whether an attack penetrate the target's armor. Armor penetrating attack deals less damage to the armor itself."
+	if(href_list["showforce"])
+		to_chat(usr, span_info("Actual Force: ([force]). [additional_explanation]"))
 	
+	if(href_list["showforcewield"])
+		to_chat(usr, span_info("Wielded Force: ([force_wielded]). [additional_explanation]"))
+
+	if(href_list["explainsharpness"])
+		to_chat(usr, span_info("Bladed weapons have sharpness. At [SHARPNESS_TIER1_THRESHOLD * 100]%, damage factor and strength damage starts to fall off gradually. \n\
+		At [SHARPNESS_TIER1_FLOOR * 100]%, strength and damage factor no longer applies. Below [SHARPNESS_TIER2_THRESHOLD * 100]%, the base damage value also starts to decline\n\
+		Sharpness declines by [SHARPNESS_ONHIT_DECAY] on parry for bladed weapon."))
+
+	if(href_list["explaindurability"])
+		to_chat(usr, span_info("How durable your item is. On weapons, [INTEG_PARRY_DECAY] is lost on parry on a main hand bladed weapon. \n\
+		Blunt weapon or off-hand weapon loses [INTEG_PARRY_DECAY_NOSHARP] per parry instead. \n\
+		On armor, the blunt rating of an armor multiplies its effective durability against blunt damage."))
+
 	if(href_list["inspect"])
 		if(!usr.canUseTopic(src, be_close=TRUE))
 			return
@@ -446,10 +481,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "\n<b>MIN.STR:</b> [minstr]"
 		
 		if(force)
-			inspec += "\n<b>FORCE:</b> [get_force_string(force)]"
+			inspec += "\n<b>FORCE:</b> [get_force_string(force)] <span class='info'><a href='?src=[REF(src)];showforce=1'>{?}</a></span>"
 		if(gripped_intents && !wielded)
 			if(force_wielded)
-				inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)]"
+				inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)] <span class='info'><a href='?src=[REF(src)];showforcewield=1'>{?}</a></span>"
 
 		if(wbalance)
 			inspec += "\n<b>BALANCE: </b>"
@@ -457,6 +492,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				inspec += "Heavy"
 			if(wbalance == WBALANCE_SWIFT)
 				inspec += "Swift"
+			inspec += " <span class='info'><a href='?src=[REF(src)];explainbalance=1'>{?}</a></span>"
 
 		if(wlength != WLENGTH_NORMAL)
 			inspec += "\n<b>LENGTH:</b> "
@@ -467,6 +503,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					inspec += "Long"
 				if(WLENGTH_GREAT)
 					inspec += "Great"
+			inspec += " <span class='info'><a href='?src=[REF(src)];explainlength=1'>{?}</a></span>"
 
 		if(alt_intents)
 			inspec += "\n<b>ALT-GRIP (RIGHT CLICK WHILE IN HAND)</b>"
@@ -482,12 +519,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "\n<b>BULKY</b>"
 
 		if(can_parry)
-			inspec += "\n<b>DEFENSE:</b> [wdefense_dynamic]"
+			inspec += "\n<b>DEFENSE:</b> [wdefense_dynamic] <span class='info'><a href='?src=[REF(src)];explaindef=1'>{?}</a></span>"
 
 		if(max_blade_int)
 			inspec += "\n<b>SHARPNESS:</b> "
 			var/percent = round(((blade_int / max_blade_int) * 100), 1)
-			inspec += "[percent]% ([blade_int])"
+			inspec += "[percent]% ([blade_int]) <span class='info'><a href='?src=[REF(src)];explainsharpness=1'>{?}</a></span>"
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
@@ -546,6 +583,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/ratio =	(eff_currint / eff_maxint)
 			var/percent = round((ratio * 100), 1)
 			inspec += "[percent]% ([floor(eff_currint)])"
+			if(force >= 5) // Durability is rather obvious for non-weapons
+				inspec += " <span class='info'><a href='?src=[REF(src)];explaindurability=1'>{?}</a></span>"
 
 		to_chat(usr, "[inspec.Join()]")
 
@@ -732,6 +771,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
 
+//pulled from Vanderlin
+// called just as an item is picked up (loc is not yet changed)
+/obj/item/proc/afterpickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	/* leaving this out since we don't use encumbrance here
+	if(isliving(user))
+		user:encumbrance_to_speed()
+	*/
+
+/obj/item/proc/afterdrop(mob/user)
+
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
 	return
@@ -788,6 +838,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if((is_silver || smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(M, TRAIT_SILVER_WEAK) &&  !M.has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
+		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
+		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+			return
+
+		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))
+		M.Knockdown(10)
+		M.Paralyze(10)
+		M.adjustFireLoss(25)
+		M.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		M.ignite_mob()
+		return FALSE
+	//else if(is_blessed && slot == SLOT_HANDS)
+	//	user.add_stress(/datum/stressevent/blessed_weapon)
 	if(twohands_required)
 		if(!disable_warning)
 			to_chat(M, span_warning("[src] is too bulky to carry with anything but my hands!"))
@@ -896,7 +960,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 		if(get_temperature() && isliving(hit_atom))
 			var/mob/living/L = hit_atom
-			L.IgniteMob()
+			L.ignite_mob()
 		var/itempush = 0
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
@@ -1020,7 +1084,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			max_sharp = max(max_sharp, IS_SHARP)
 	return max_sharp
 
-/obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user)
+/obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user, zone_sel)
 	if(!get_sharpness() || !affecting.can_dismember(src))
 		return 0
 
@@ -1055,14 +1119,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/probability = nuforce * (total_dam / affecting.max_damage)
 	var/hard_dismember = HAS_TRAIT(affecting, TRAIT_HARDDISMEMBER)
 	var/easy_dismember = affecting.rotted || affecting.skeletonized || HAS_TRAIT(affecting, TRAIT_EASYDISMEMBER)
+	var/easy_decapitation = HAS_TRAIT(affecting, TRAIT_EASYDECAPITATION)
 	if(affecting.owner)
 		if(!hard_dismember)
 			hard_dismember = HAS_TRAIT(affecting.owner, TRAIT_HARDDISMEMBER)
 		if(!easy_dismember)
 			easy_dismember = HAS_TRAIT(affecting.owner, TRAIT_EASYDISMEMBER)
+		if(!easy_decapitation)
+			easy_decapitation = HAS_TRAIT(affecting.owner, TRAIT_EASYDECAPITATION)
 	// If you don't have easy dismember, then you must hit 90% damage or more to dismember a limb.
 	if((affecting.get_damage() <= (affecting.max_damage * CRIT_DISMEMBER_DAMAGE_THRESHOLD)) && !easy_dismember)
 		return FALSE
+	if(easy_decapitation && zone_sel == BODY_ZONE_PRECISE_NECK)
+		// May want to include hard dismember compatibility.
+		return probability * 1.5
 	if(hard_dismember)
 		return min(probability, 5)
 	else if(easy_dismember)

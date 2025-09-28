@@ -65,3 +65,17 @@
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
 	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi' //No sleeves
+
+//Eiren's donator item - custom zweihander
+/obj/item/rogueweapon/greatsword/zwei/eiren
+	name = "Regret"
+	desc = "People bring the small flames of their wishes together... to keep them from burning out, we cast our own flames into the biggest fire we can find. But you know... I didn't bring a flame with me. As for me, maybe I just wandered up to the campfire to warm myself a little..."
+	icon_state = "eiren"
+	icon = 'modular_azurepeak/icons/obj/items/donor_weapons_64.dmi'
+
+//pretzel's special sword
+/obj/item/rogueweapon/greatsword/weeperslathe
+	name = "Weeper's Lathe"
+	desc = "A modern recreation of a gilbronze greatsword. Inscribed on the blade is a simple message: \"I have only a short time to lyve, but I am not afraid to die." 
+	icon_state = "weeperslathe"
+	icon = 'modular_azurepeak/icons/obj/items/donor_weapons_64.dmi'

@@ -5,6 +5,12 @@
 	var/list/stored_skills
 	var/list/stored_experience
 
+/mob/living/carbon/human/species/werewolf/updatehealth()
+	..()
+
+	remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
+	remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING)
+
 /mob/living/carbon/human/species/werewolf/male
 	gender = MALE
 
@@ -16,24 +22,34 @@
 	id = "werewolf"
 	species_traits = list(NO_UNDERWEAR, NO_ORGAN_FEATURES, NO_BODYPART_FEATURES)
 	inherent_traits = list(
-		TRAIT_STRONGBITE,
-		TRAIT_ZJUMP,
-		TRAIT_NOFALLDAMAGE1,
-		TRAIT_INFINITE_STAMINA,
-		TRAIT_BASHDOORS,
-		TRAIT_SHOCKIMMUNE,
-		TRAIT_STEELHEARTED,
-		TRAIT_BREADY,
-		TRAIT_TOXIMMUNE,
-		TRAIT_ORGAN_EATER,
-		TRAIT_NASTY_EATER,
-		TRAIT_NOSTINK,
-		TRAIT_CRITICAL_RESISTANCE,
-		TRAIT_IGNOREDAMAGESLOWDOWN,
-		TRAIT_HARDDISMEMBER, //Decapping Volfs causes them to bug out, badly, and need admin intervention to fix. Bandaid fix.
-		TRAIT_PIERCEIMMUNE, //Prevents weapon dusting and caltrop effects due to them transforming when killed/stepping on shards.
+		TRAIT_LONGSTRIDER,
 		TRAIT_IGNORESLOWDOWN,
-		TRAIT_LONGSTRIDER
+		TRAIT_IGNOREDAMAGESLOWDOWN,
+		TRAIT_STRONGKICK,
+		TRAIT_NOPAIN, 
+		TRAIT_NOPAINSTUN, 
+		TRAIT_CRITICAL_RESISTANCE, 
+		TRAIT_NOFALLDAMAGE1, 
+		TRAIT_KNEESTINGER_IMMUNITY, 
+		TRAIT_SHOCKIMMUNE,
+		TRAIT_SILVER_WEAK,
+		TRAIT_STRENGTH_UNCAPPED,
+		TRAIT_LONGSTRIDER,
+		TRAIT_SPELLCOCKBLOCK,
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_HARDDISMEMBER,
+		TRAIT_NOSTINK,
+		TRAIT_NASTY_EATER,
+		TRAIT_ORGAN_EATER,
+		TRAIT_TOXIMMUNE,
+		TRAIT_BREADY,
+		TRAIT_STEELHEARTED,
+		TRAIT_BASHDOORS,
+		TRAIT_INFINITE_STAMINA,
+		TRAIT_ZJUMP,
+		TRAIT_NOSLEEP,
+		TRAIT_GRABIMMUNE,
+		TRAIT_STRONGBITE
 	)
 	inherent_biotypes = MOB_HUMANOID
 	armor = 30
@@ -54,10 +70,6 @@
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver,
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
 		ORGAN_SLOT_APPENDIX = /obj/item/organ/appendix,
-		//ORGAN_SLOT_TESTICLES = /obj/item/organ/testicles,
-		//ORGAN_SLOT_PENIS = /obj/item/organ/penis/knotted/big,
-		//ORGAN_SLOT_BREASTS = /obj/item/organ/breasts,
-		//ORGAN_SLOT_VAGINA = /obj/item/organ/vagina,
 		)
 	languages = list(
 		/datum/language/beast,

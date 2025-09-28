@@ -63,12 +63,14 @@
 	var/register_id = null
 
 
-// The normal route for first use of this list.
+/// The normal route for first use of this list. Returns TRUE if there is more than one advclass (need user input), FALSE - if just one (no need for select menu)
 /datum/class_select_handler/proc/initial_setup()
 	if(register_id)
 		SSrole_class_handler.add_class_register_listener(register_id, linked_client.mob)
-	assemble_the_CLASSES()
+	if(!assemble_the_CLASSES())
+		return FALSE
 	second_step()
+	return TRUE
 
 // The second step, aka we just want to make sure the resources are there and that the menu is being displayed
 /datum/class_select_handler/proc/second_step()
@@ -89,6 +91,7 @@
 	. = ..()
 
 // I hope to god you have a client before you call this, cause the checks on the SS
+/// Returns TRUE if there is more than one advclass, FALSE - if just one (no need for select menu)
 /datum/class_select_handler/proc/assemble_the_CLASSES()
 	var/mob/living/carbon/human/H = linked_client.mob
 
@@ -161,6 +164,12 @@
 		linked_client.mob.returntolobby()
 		message_admins("CLASS_SELECT_HANDLER HAD PERSON WITH 0 CLASS SELECT OPTIONS. THIS IS REALLY BAD! RETURNED THEM TO LOBBY")
 
+	if(rolled_classes.len == 1)
+		SSrole_class_handler.finish_class_handler(linked_client.mob, pick(rolled_classes), src, plus_power, special_selected)
+		return FALSE
+
+	return TRUE
+
 // Something is calling to tell this datum a class it rolled is currently maxed out.
 // More shitcode!
 /datum/class_select_handler/proc/rolled_class_is_full(datum/advclass/filled_class)
@@ -232,14 +241,29 @@
 					plus_str += "+" */
 			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>\n"
 	else if(!showing_combat_classes)
-		for(var/datum/advclass/datums in rolled_classes)
-			var/plus_str = ""
-/*			if(rolled_classes[datums] > 0)
-				var/plus_factor = rolled_classes[datums]
+		var/datum/job/selected_job = SSjob.GetJob(H.job)
+		if(selected_job.class_categories == TRUE)
+			var/list/class_cat_list = list()
 
-				for(var/i in 1 to plus_factor)
-					plus_str += "+" */
-			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>\n"
+			for(var/datum/advclass/class_categories in rolled_classes)
+				if(!(class_cat_list.Find(class_categories.class_select_category)))
+					class_cat_list += class_categories.class_select_category
+
+			for(var/rolled_categories in class_cat_list)
+				data += "<details class='class_dropdown'>"
+				data += "<summary class='class_category'>[rolled_categories]</summary>\n"
+				for(var/datum/advclass/datums in rolled_classes)
+					if(datums.class_select_category == rolled_categories)
+						var/plus_str = ""
+						data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'>"
+						data += "<img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32>"
+						data += "</a></div>\n"
+				data += "</details>"
+
+		else
+			for(var/datum/advclass/datums in rolled_classes)
+				var/plus_str = ""
+				data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>\n"
 
 	if(special_session_queue && special_session_queue.len)
 		for(var/datum/advclass/datums in special_session_queue)
@@ -279,7 +303,7 @@
 	</html>
 	"}
 
-	linked_client << browse(data, "window=class_handler_main;size=330x430;can_close=0;can_minimize=0;can_maximize=0;can_resize=1;titlebar=1")
+	linked_client << browse(data, "window=class_handler_main;size=400x520;can_close=0;can_minimize=0;can_maximize=0;can_resize=1;titlebar=1")
 
 /datum/class_select_handler/proc/class_select_slop()
 
@@ -320,7 +344,7 @@
 	</html>
 	"}
 	if(!cur_picked_class.classes)
-		linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+		linked_client << browse(data, "window=class_select_yea;size=610x350;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 	else
 		linked_client << browse(data, "window=class_select_yea;size=610x405;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 

@@ -6,6 +6,21 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/drunkard
 	
 	category_tags = list(CTAG_TOWNER)
+	subclass_stats = list(
+		STATKEY_FOR = 2,
+		STATKEY_CON = 1,
+		STATKEY_STR = 1,
+		STATKEY_INT = -2
+	)
+	subclass_skills = list(
+		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE, //Climbing into windows to steal drugs or booze.
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
 
 /datum/outfit/job/roguetown/adventurer/drunkard/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -25,16 +40,5 @@
 						/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
 						/obj/item/flashlight/flare/torch = 1,
 						)
-	H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE) //Climbing into windows to steal drugs or booze.
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.change_stat(STATKEY_INT, -2)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_STR, 1)
-	H.change_stat(STATKEY_LCK, 2)
 	if(H.patron.type == /datum/patron/divine/xylix)
 		ADD_TRAIT(H, TRAIT_CRACKHEAD, TRAIT_GENERIC)

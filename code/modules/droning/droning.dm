@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(droning)
 			sound_killer.volume = max(sound_killer.volume - 5, 0)
 			sound_killer.status = SOUND_UPDATE
 			SEND_SOUND(listener, sound_killer)
-			sleep(1)
+			stoplag(1)
 		listener.droning_sound = null
 		listener.last_droning_sound = null
 		var/sound/droning = sound(pick(area_player.droning_sound_current), area_player.droning_repeat, area_player.droning_wait, area_player.droning_channel, listener?.prefs.musicvol)

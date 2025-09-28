@@ -10,8 +10,15 @@
 	maximum_possible_slots = 4
 	min_pq = 15
 	cmode_music = 'sound/music/combat_grenzelhoft.ogg'
+	class_select_category = CLASS_CAT_GRENZELHOFT
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_OUTLANDER, TRAIT_DODGEEXPERT)
+	subclass_stats = list(
+		STATKEY_CON = 1,
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 3,
+		STATKEY_PER = 2,
+	)
 
 /datum/outfit/job/roguetown/mercenary/twilight_grenzelhoft_jager/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -30,7 +37,6 @@
 	backr = /obj/item/gun/ballistic/twilight_firearm/arquebus
 	backpack_contents = list(/obj/item/roguekey/mercenary = 1, /obj/item/twilight_powderflask = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/flint = 1, /obj/item/bedroll = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1)
 
-	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	H.grant_language(/datum/language/grenzelhoftian)
 
 	H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 5, TRUE)
@@ -51,9 +57,5 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
-	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 2)
-	H.change_stat("perception", 2)
-	H.change_stat("speed", 3)
 
 	H.merctype = 7

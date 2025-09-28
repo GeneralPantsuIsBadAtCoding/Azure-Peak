@@ -89,7 +89,7 @@
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				SStreasury.give_money_treasury(tax_amt, "brassface import tax")
 				record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
-				GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
+				record_round_statistic(STATS_TAXES_COLLECTED, tax_amt)
 		else
 			say("Not enough!")
 			return
@@ -206,7 +206,7 @@ SUBSYSTEM_DEF(BMtreasury)
 	var/list/vault_accounting = list()
 
 /datum/controller/subsystem/BMtreasury/proc/add_to_vault(var/obj/item/I)
-	if(I.get_real_price() <= 0 || istype(I, /obj/item/roguecoin))
+	if(I.get_real_price() <= 0 || istype(I, /obj/item/roguecoin) || istype(I, /obj/item/storage))
 		return
 	if(I.type in vault_accounting)
 		vault_accounting[I.type] *= multiple_item_penalty

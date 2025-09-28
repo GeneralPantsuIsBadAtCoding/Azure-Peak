@@ -22,7 +22,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 	/area/rogue/outdoors/woods,
 	/area/rogue/indoors/shelter/woods,
-	/area/rogue/outdoors/river,
 	/area/rogue/outdoors/bog,
 	/area/rogue/indoors/shelter/bog,
 	/area/rogue/outdoors/rtfield,
@@ -85,6 +84,7 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 #define iswoodelf(A) (is_species(A, /datum/species/elf/wood))
 #define ishalfelf(A) (is_species(A, /datum/species/human/halfelf))
 #define istiefling(A) (is_species(A, /datum/species/tieberian))
+#define isdullahan(A) (is_species(A, /datum/species/dullahan))
 #define ishalforc(A) (is_species(A, /datum/species/halforc))
 #define islizard(A) (is_species(A, /datum/species/lizardfolk))
 #define isgoblinp(A) (is_species(A, /datum/species/goblinp))

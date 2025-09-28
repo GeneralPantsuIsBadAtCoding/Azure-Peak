@@ -426,11 +426,13 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	if(job.plevel_req > client.patreonlevel())
 		testing("PATREONLEVEL [client.patreonlevel()] req [job.plevel_req]")
 		return JOB_UNAVAILABLE_GENERIC
+	#ifdef USES_PQ
 	if(!job.required || latejoin)
 		if(!isnull(job.min_pq) && (get_playerquality(ckey) < job.min_pq))
 			return JOB_UNAVAILABLE_GENERIC
 		if(!isnull(job.max_pq) && (get_playerquality(ckey) > job.max_pq))
 			return JOB_UNAVAILABLE_GENERIC
+	#endif
 	var/datum/species/pref_species = client.prefs.pref_species
 	if(length(job.allowed_races) && !(pref_species.type in job.allowed_races))
 		return JOB_UNAVAILABLE_RACE
@@ -580,6 +582,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		GLOB.respawncounts[character.ckey] = 1
 //	add_roundplayed(character.ckey)
 	if(humanc)
+		SSrole_class_handler.setup_class_handler(humanc)
 		try_apply_character_post_equipment(humanc)
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
@@ -671,17 +674,19 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 			for(var/job in available_jobs)
 				var/datum/job/job_datum = SSjob.name_occupations[job]
+				var/do_elaborate = job_datum.has_limited_subclasses()
 				if(job_datum)
-					var/command_bold = ""
+					var/command_bold = FALSE
 					if(job in GLOB.noble_positions)
-						command_bold = " command"
+						command_bold = TRUE
 					var/used_name = job_datum.title
 					if(client.prefs.pronouns == SHE_HER && job_datum.f_title)
 						used_name = job_datum.f_title
 					if(job_datum in SSjob.prioritized_jobs)
 						dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'><span class='priority'>[used_name] ([job_datum.current_positions])</span></a>"
 					else
-						dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[used_name] ([job_datum.current_positions]/[job_datum.total_positions])</a>"
+						dat += "<font size = 3>[do_elaborate ? "<a href='?src=[REF(job_datum)];jobsubclassinfo=1'><b><font color = '#6b6743'>(!)</font></b></a>" : ""]<a href='byond://?src=[REF(src)];SelectedJob=[job_datum.title]'>[command_bold ? "<b>" : ""][used_name] ([job_datum.current_positions]/[job_datum.total_positions])[command_bold ? "</b>" : ""]</a></font>"
+						dat += "<br>"
 
 			dat += "</fieldset><br>"
 			column_counter++
@@ -771,6 +776,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	src << browse(null, "window=mob_occupation")
 	src << browse(null, "window=latechoices") //closes late job selection
 	src << browse(null, "window=migration") // Closes migrant menu
+	src << browse(null, "window=familiar_prefs") // Closes familiar prefs menu
 
 	SStriumphs.remove_triumph_buy_menu(client)
 

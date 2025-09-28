@@ -1,6 +1,3 @@
-/obj/item/clothing/mask/rogue/lordmask/naledi
-	flags_inv = HIDEFACE|HIDESNOUT
-
 /obj/item/clothing/mask/rogue/lordmask/naledi/decorated
 	armor = null
 	prevent_crits = null

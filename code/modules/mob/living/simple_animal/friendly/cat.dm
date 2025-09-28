@@ -74,7 +74,7 @@
 
 /mob/living/simple_animal/proc/personal_space()
 	if(locate(/mob/living/carbon) in get_turf(src))
-		sleep(1)
+		stoplag(1)
 		dir = pick(GLOB.alldirs)
 		step(src, dir)
 		personal_space()

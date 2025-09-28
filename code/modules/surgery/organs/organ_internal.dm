@@ -67,6 +67,10 @@
 
 	owner = M
 	last_owner = M
+
+	if (visible_organ)
+		M.visible_organs |= src
+
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
 	moveToNullspace()
@@ -84,6 +88,9 @@
 /obj/item/organ/proc/Remove(mob/living/carbon/M, special = FALSE, drop_if_replaced = TRUE)
 	owner = null
 	if(M)
+		if (visible_organ)
+			M.visible_organs -= src
+			
 		M.internal_organs -= src
 		if(M.internal_organs_slot[slot] == src)
 			M.internal_organs_slot.Remove(slot)
@@ -99,6 +106,11 @@
 		humanized.update_body_parts(TRUE)
 //	START_PROCESSING(SSobj, src)
 
+/obj/item/organ/forceMove(atom/destination)
+	if((organ_flags & ORGAN_INTERNAL_ONLY) && last_owner)
+		qdel(src)
+		return
+	..()
 
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return
@@ -164,7 +176,7 @@
 		foodtype = initial(foodtype)
 	if(bitecount >= bitesize)
 		record_featured_stat(FEATURED_STATS_CRIMINALS, eater)
-		GLOB.azure_round_stats[STATS_ORGANS_EATEN]++
+		record_round_statistic(STATS_ORGANS_EATEN)
 		check_culling(eater)
 		SEND_SIGNAL(eater, COMSIG_ORGAN_CONSUMED, src.type)
 	. = ..()

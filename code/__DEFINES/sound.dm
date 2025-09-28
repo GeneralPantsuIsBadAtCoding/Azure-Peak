@@ -195,6 +195,13 @@
 #define SFX_JINGLE_BELLS "jingle_bells"
 #define SFX_WOOD_ARMOR "wood_armor"
 
+#define SFX_COLLARJINGLE list('sound/items/jinglebell1.ogg',\
+							'sound/items/jinglebell2.ogg',\
+							'sound/items/jinglebell3.ogg',\
+							'sound/items/jinglebell4.ogg',\
+							'sound/items/jinglebell5.ogg',\
+							'sound/items/jinglebell6.ogg')
+
 #define INTERACTION_SOUND_RANGE_MODIFIER 0
 #define EQUIP_SOUND_VOLUME 100
 #define PICKUP_SOUND_VOLUME 100

@@ -5,12 +5,22 @@
 
 /datum/sex_action/force_crotch_nuzzle/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
-		return FALSE
+		if(isdullahan(user))
+			var/datum/species/dullahan/dullahan = user.dna.species
+			if(dullahan.headless && !user.is_holding(dullahan.my_head))
+				return FALSE
+		else
+			return FALSE
 	return TRUE
 
 /datum/sex_action/force_crotch_nuzzle/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
-		return FALSE
+		if(isdullahan(user))
+			var/datum/species/dullahan/dullahan = user.dna.species
+			if(dullahan.headless && !user.is_holding(dullahan.my_head))
+				return FALSE
+		else
+			return FALSE
 	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	if(!get_location_accessible(target, BODY_ZONE_PRECISE_MOUTH))
