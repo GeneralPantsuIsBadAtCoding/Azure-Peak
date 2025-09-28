@@ -39,7 +39,8 @@
 			return
 	if((user.used_intent.type == /datum/intent/dagger/cut || user.used_intent.type == /datum/intent/sword/cut || user.used_intent.type == /datum/intent/axe/cut) && hide)
 		if(anchored)
-			var/skill_level = user.get_skill_level(/datum/skill/craft/tanning)
+			// Uses either or tannning or butchering skill. So I don't need to ungate tanning on hunter.
+			var/skill_level = max(user.get_skill_level(/datum/skill/craft/tanning), user.get_skill_level(/datum/skill/labor/butchering))
 			var/work_time = (120 - (skill_level * 15))
 			var/pieces_to_spawn = rand(1, min(skill_level + 1, 6)) //Random number from 1 to skill level
 			var/sound_played = FALSE
@@ -58,13 +59,13 @@
 				if(SKILL_LEVEL_APPRENTICE)
 					essence_factor = 2
 				if(SKILL_LEVEL_JOURNEYMAN)
-					essence_factor = 4
+					essence_factor = 3
 				if(SKILL_LEVEL_EXPERT)
-					essence_factor = 8 // Big Jump here - Hunter can level to this quickly. Tailor start w/ it
+					essence_factor = 6 // Big Jump here - Hunter can level to this quickly. Tailor start w/ it
 				if(SKILL_LEVEL_MASTER)
-					essence_factor = 12
+					essence_factor = 8
 				if(SKILL_LEVEL_LEGENDARY)
-					essence_factor = 15
+					essence_factor = 10
 			for(var/i = 0; i < pieces_to_spawn; i++)
 				if(prob(essence_factor + user.goodluck(2)))
 					new /obj/item/natural/cured/essence(get_turf(user))

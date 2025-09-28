@@ -62,25 +62,11 @@
 		if(skill_level > 0) // If skill level is 1 or higher, we get more minimum wood!
 			minimum = 2
 		lumber_amount = rand(minimum, max(round(skill_level), minimum))
-		var/essence_factor = 1
-		// Scaling is less steep than tanning as lumberjacking is easier to level and get
-		switch(skill_level)
-			if(SKILL_LEVEL_NOVICE)
-				essence_factor = 1
-			if(SKILL_LEVEL_APPRENTICE)
-				essence_factor = 2
-			if(SKILL_LEVEL_JOURNEYMAN)
-				essence_factor = 4
-			if(SKILL_LEVEL_EXPERT)
-				essence_factor = 6
-			if(SKILL_LEVEL_MASTER)
-				essence_factor = 8
-			if(SKILL_LEVEL_LEGENDARY)
-				essence_factor = 10
 		var/sound_played = FALSE
 		for(var/i = 0; i < lumber_amount; i++)
 			new lumber(get_turf(src))
-			if(prob(essence_factor + user.goodluck(2)))
+				// Scaling is less steep than tanning as lumberjacking is easier to level and get
+			if(prob(skill_level + user.goodluck(2)))
 				new /obj/item/natural/cured/essence(get_turf(user))
 				if(!sound_played)
 					sound_played = TRUE
