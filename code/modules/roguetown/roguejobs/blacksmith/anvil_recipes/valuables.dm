@@ -138,7 +138,7 @@
 
 /datum/anvil_recipe/valuables/signet/silver/inq
 	name = "Blessed Silver Signet Ring"
-		craftdiff = SKILL_LEVEL_MASTER
+	craftdiff = SKILL_LEVEL_MASTER
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	created_item = /obj/item/clothing/ring/signet/silver	
 
