@@ -20,7 +20,7 @@
 	round_contrib_points = 2
 	advclass_cat_rolls = list(CTAG_CLERK = 2)
 
-	job_traits = list(TRAIT_SEEPRICES_SHITTY)
+	job_traits = list(TRAIT_SEEPRICES)
 	job_subclasses = list(
 		/datum/advclass/clerk
 	)
