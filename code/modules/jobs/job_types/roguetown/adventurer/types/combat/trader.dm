@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/trader
 	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
-	traits_applied = list(TRAIT_SEEPRICES)
+	traits_applied = list(TRAIT_SEEPRICES, TRAIT_SMITHING_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,
@@ -61,6 +61,7 @@
 		STATKEY_STR = 1,
 		STATKEY_CON = 1
 	)
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT) // Look they can't fight
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/axes = SKILL_LEVEL_NOVICE,
@@ -152,7 +153,7 @@
 	tutorial = "You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."
 	outfit = /datum/outfit/job/roguetown/adventurer/harlequin
 	cmode_music = 'sound/music/combat_jester.ogg'
-	traits_applied = list(TRAIT_SEEPRICES, TRAIT_NUTCRACKER)
+	traits_applied = list(TRAIT_SEEPRICES, TRAIT_NUTCRACKER, TRAIT_HOMESTEAD_EXPERT) // No combat ability so I'll give them hoemstead expert
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 1,
@@ -259,7 +260,7 @@
 	name = "Brewer"
 	tutorial = "You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch. You have the equipments and know how on how to make your own distiller, too."
 	outfit = /datum/outfit/job/roguetown/adventurer/brewer
-	traits_applied = list(TRAIT_SEEPRICES, TRAIT_CICERONE)
+	traits_applied = list(TRAIT_SEEPRICES, TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,
@@ -310,7 +311,7 @@
 	tutorial = "Whether a disciple of a culinary school, a storied royal chef, or a mercenary cook for hire, your trade is plied at the counter, \
 	the cutting board, and the hearth."
 	outfit = /datum/outfit/job/roguetown/adventurer/cuisiner
-	traits_applied = list(TRAIT_SEEPRICES, TRAIT_GOODLOVER)
+	traits_applied = list(TRAIT_SEEPRICES, TRAIT_GOODLOVER, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,
