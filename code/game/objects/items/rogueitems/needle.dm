@@ -92,7 +92,7 @@
 			/// The chance to damage an item when entirely unskilled.
 			var/const/BASE_FAIL_CHANCE = 60
 			/// The (combined) skill level at or above which repairs can't fail.
-			var/const/SKILL_NO_FAIL = SKILL_LEVEL_JOURNEYMAN
+			var/const/SKILL_NO_FAIL = SKILL_LEVEL_APPRENTICE
 			/// Each level in tanning/sewing reduces the skill chance by this much, so that at SKILL_NO_FAIL you don't fail anymore.
 			var/const/FAIL_REDUCTION_PER_LEVEL = BASE_FAIL_CHANCE / SKILL_NO_FAIL
 			/// The damage done to an item when sewing fails while entirely unskilled.
