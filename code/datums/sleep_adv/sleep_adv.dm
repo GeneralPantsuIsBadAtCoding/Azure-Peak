@@ -87,9 +87,14 @@
 	var/datum/skill/skillref = GetSkillRef(skill)
 	var/trait_capped_level = skillref.max_untraited_level
 
+	#ifdef USES_TRAIT_SKILL_GATING
 	for(var/trait in skillref.trait_uncap)
 		if(HAS_TRAIT(mind.current, trait) && (skillref.trait_uncap[trait] > trait_capped_level))
 			trait_capped_level = skillref.trait_uncap[trait]
+	#endif
+	#ifndef USES_TRAIT_SKILL_GATING
+		trait_capped_level = SKILL_LEVEL_LEGENDARY
+	#endif
 
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)

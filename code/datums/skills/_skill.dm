@@ -55,6 +55,10 @@
 	if(href_list["skill_detail"])
 		var/msg = ""
 		msg += "[desc] <br>"
+		#ifndef USES_TRAIT_SKILL_GATING
+			msg += span_warning("Note: Trait based skill gating is disabled on this server. The traits exist, but the skill cap will not apply.")
+		#endif
+		#ifdef USES_TRAIT_SKILL_GATING
 		if(max_untraited_level < SKILL_LEVEL_LEGENDARY)
 			msg += "------ <br>"
 			msg += "This skill is capped at [skill_to_string(max_untraited_level)] without the proper traits. The following traits increase the maximum level you can reach:<br>"
@@ -62,5 +66,6 @@
 			for(var/trait_name in trait_uncap)
 				var/trait_level = trait_uncap[trait_name]
 				msg += "[span_greentext(trait_name)]: [skill_to_string(trait_level)]. <br>"
+		#endif
 		to_chat(usr, span_info(msg))
 
