@@ -36,7 +36,6 @@
 		/datum/advclass/peasant,
 		/datum/advclass/potter,
 		/datum/advclass/seamstress,
-		/datum/advclass/butcher,
 		/datum/advclass/thug,
 		/datum/advclass/towndoctor,
 		/datum/advclass/witch,

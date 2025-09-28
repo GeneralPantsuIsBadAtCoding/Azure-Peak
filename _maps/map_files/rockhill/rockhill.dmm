@@ -7248,7 +7248,6 @@
 /area/rogue/under/town/sewer)
 "gLk" = (
 /obj/structure/chair/stool/rogue,
-/obj/effect/landmark/start/beastmonger,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors)
 "gLq" = (
