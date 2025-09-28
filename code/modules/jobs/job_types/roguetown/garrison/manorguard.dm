@@ -7,7 +7,7 @@
 	spawn_positions = 8
 
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
 	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \
@@ -51,8 +51,8 @@
 	cloak = /obj/item/clothing/cloak/stabard/surcoat/guard
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	beltl = /obj/item/rogueweapon/mace/cudgel
-	belt = /obj/item/storage/belt/rogue/leather/black
-	backr = /obj/item/storage/backpack/rogue/satchel/black
+	belt = /obj/item/storage/belt/rogue/leather
+	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone/bad/garrison
 
 // Melee goon
@@ -123,6 +123,22 @@
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
+		var/armor_options = list("Brigandine Set", "Maille Set")
+		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMS") as anything in armor_options
+
+		switch(armor_choice)
+			if("Brigandine Set")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+				wrists = /obj/item/clothing/wrists/roguetown/splintarms
+				pants = /obj/item/clothing/under/roguetown/splintlegs
+
+			if("Maille Set")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+				wrists = /obj/item/clothing/wrists/roguetown/bracers
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+
 		var/helmets = list(
 		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
 		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
@@ -135,29 +151,6 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
-
-		var/armors = list(
-			"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-			"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
-			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-		)
-		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
-		armor = armors[armorchoice]
-
-		var/arms = list(
-			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-		)
-		var/armschoice = input(H, "Choose your arm protection.", "READY THYSELF") as anything in arms
-		wrists = arms[armschoice]
-
-		var/chausses = list(
-			"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
-			"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
-		)
-		var/chausseschoice = input(H, "Choose your chausses.", "READY THYSELF") as anything in chausses
-		pants = chausses[chausseschoice]
 
 // Ranged weapons and daggers on the side - lighter armor, but fleet!
 /datum/advclass/manorguard/skirmisher
@@ -195,7 +188,7 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/splintlegs
 	wrists = /obj/item/clothing/wrists/roguetown/splintarms
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 
 	H.adjust_blindness(-3)
@@ -221,7 +214,7 @@
 				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			if("Medium Armor")
-				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 		backpack_contents = list(
@@ -282,10 +275,6 @@
 
 /datum/outfit/job/roguetown/manorguard/cavalry/pre_equip(mob/living/carbon/human/H)
 	..()
-
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson		//Bit worse shirt protection than the archer -- as foot soldier.
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection
-	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 
@@ -312,6 +301,22 @@
 			)
 		H.verbs |= /mob/proc/haltyell
 
+		var/armor_options = list("Brigandine Set", "Maille Set")
+		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMS") as anything in armor_options
+
+		switch(armor_choice)
+			if("Brigandine Set")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+				wrists = /obj/item/clothing/wrists/roguetown/splintarms
+				pants = /obj/item/clothing/under/roguetown/splintlegs
+
+			if("Maille Set")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+				wrists = /obj/item/clothing/wrists/roguetown/bracers
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+
 		var/helmets = list(
 		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
 		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
@@ -324,26 +329,3 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
-
-		var/armors = list(
-			"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-			"Iron Hauberk"		= /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron,
-			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-		)
-		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
-		armor = armors[armorchoice]
-
-		var/arms = list(
-			"Brigandine Splint Arms"		= wrists = /obj/item/clothing/wrists/roguetown/splintarms,
-			"Steel Bracers"		= wrists = /obj/item/clothing/wrists/roguetown/bracers,
-			"Jack Chains"		= wrists = /obj/item/clothing/wrists/roguetown/bracers/jackchain,
-		)
-		var/armschoice = input(H, "Choose your arm protection.", "READY THYSELF") as anything in arms
-		wrists = arms[armschoice]
-
-		var/chausses = list(
-			"Brigandine Chausses"		= /obj/item/clothing/under/roguetown/splintlegs,
-			"Steel Chain Chausses"		= /obj/item/clothing/under/roguetown/chainlegs,
-		)
-		var/chausseschoice = input(H, "Choose your chausses.", "READY THYSELF") as anything in chausses
-		pants = chausses[chausseschoice]

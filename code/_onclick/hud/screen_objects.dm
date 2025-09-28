@@ -126,6 +126,10 @@
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(modifiers["right"])
+			var/area/A = get_area(H)
+			if(!A.can_craft_here())
+				to_chat(H, span_warning("You cannot craft here."))
+				return
 			if(H.craftingthing && (H.mind?.lastrecipe != null))
 				last_craft = world.time
 				var/datum/component/personal_crafting/C = H.craftingthing

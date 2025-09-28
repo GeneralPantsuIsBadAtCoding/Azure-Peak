@@ -514,11 +514,23 @@
 	return data
 
 /datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui)
+	var/area/A = get_area(user)
+	if(!A.can_craft_here())
+		to_chat(user, span_warning("You cannot craft here."))
+		if(ui) ui.close()
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MiaCraft", "Crafting Menu", 700, 800)
 		ui.set_state(GLOB.not_incapacitated_turf_state)
 		ui.open()
+
+/datum/component/personal_crafting/ui_state(mob/user)
+	var/area/A = get_area(user)
+	if(!A.can_craft_here())
+		return UI_CLOSE
+	return ..()
 
 /datum/component/personal_crafting/ui_act(action, params)
 	. = ..()
@@ -640,6 +652,8 @@
 				user.mind.lastrecipe = r
 
 
+
+
 /client/verb/toggle_legacycraft()
 	set name = "Toggle legacy craft"
 	set category = "Options"
@@ -648,3 +662,4 @@
 
 /client
 	var/legacycraft = FALSE
+

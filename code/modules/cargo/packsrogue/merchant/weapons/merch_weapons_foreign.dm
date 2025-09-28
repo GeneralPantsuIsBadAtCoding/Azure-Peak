@@ -77,4 +77,4 @@
 /datum/supply_pack/rogue/merc_weapons/grenzelstaff
 	name = "Grenzelhoftian Blacksteel Staff"
 	cost = 100
-	contains = (/obj/item/rogueweapon/woodstaff/emerald/blacksteelstaff)
+	contains = list(/obj/item/rogueweapon/woodstaff/emerald/blacksteelstaff)

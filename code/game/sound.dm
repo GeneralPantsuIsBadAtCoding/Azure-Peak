@@ -6,11 +6,23 @@
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
+	var/soundfile = soundin
+	if(istype(soundin, /sound))
+		var/sound/sound = soundin
+		soundfile = sound.file
+	// Voice over sound, which implies it should come from the head.
+	if(isdullahan(source) && findtext("[soundfile]", @"sound/vo"))
+		var/mob/living/carbon/human/human = source
+		var/datum/species/dullahan/dullahan = human.dna.species
+		if(dullahan.headless)
+			var/obj/item/bodypart/head/dullahan/head = dullahan.my_head
+			source = head
+
 	var/turf/turf_source = get_turf(source)
 	if(isturf(source))
 		turf_source = source
 
-	if (!turf_source)
+	if(!turf_source)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -48,6 +60,14 @@
 	. = list()
 
 	for(var/mob/M as anything in listeners)
+		var/turf/tocheck = get_turf(M)
+		// Check relay instead.
+		if(isdullahan(M))
+			var/mob/living/carbon/human = M
+			var/datum/species/dullahan/dullahan = human.dna.species
+			if(dullahan.headless)
+				tocheck = get_turf(dullahan.my_head)
+
 		if(get_dist(get_turf(M), turf_source) <= maxdistance)
 			if(animal_pref)
 				if(M.client?.prefs?.mute_animal_emotes)
@@ -102,6 +122,14 @@
 	if(!S.channel)
 		S.channel = SSsounds.random_available_channel()
 
+	var/obj/item/bodypart/head/dullahan/user_head
+	if(isdullahan(src))
+		var/mob/living/carbon/human = src
+		var/datum/species/dullahan/dullahan = human.dna.species
+		if(dullahan.headless)
+			user_head = dullahan.my_head
+			muffled = istype(user_head.loc, /obj/structure/closet) || istype(user_head.loc, /obj/item/storage/)
+
 	if(muffled)
 		S.environment = 11
 		if(falloff)
@@ -128,7 +156,10 @@
 		S.frequency = frequency
 
 	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
+		// Check distance to relay instead.
+		var/atom/movable/tocheck = user_head ? user_head : src
+
+		var/turf/T = get_turf(tocheck)
 
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)

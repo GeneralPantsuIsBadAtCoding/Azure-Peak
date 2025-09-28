@@ -3,6 +3,7 @@
 	desc = ""
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = "default_human_head"
+	slot_flags = ITEM_SLOT_HIP
 	max_damage = 200
 	body_zone = BODY_ZONE_HEAD
 	body_part = HEAD
