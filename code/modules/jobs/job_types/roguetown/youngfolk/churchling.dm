@@ -22,6 +22,7 @@
 	job_subclasses = list(
 		/datum/advclass/churchling
 	)
+	job_traits = list(TRAIT_HOMESTEAD_EXPERT)
 
 /datum/advclass/churchling
 	name = "Churchling"

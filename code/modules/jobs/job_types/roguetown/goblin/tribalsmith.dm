@@ -11,6 +11,7 @@
 	tutorial = "Goblin rensposible for fresh iron and steel"
 	display_order = JDO_GOBLINSMITH
 	outfit = /datum/outfit/job/roguetown/goblinsmith
+	job_traits = list(TRAIT_SMITHING_EXPERT)
 	min_pq = 0
 	max_pq = null
 

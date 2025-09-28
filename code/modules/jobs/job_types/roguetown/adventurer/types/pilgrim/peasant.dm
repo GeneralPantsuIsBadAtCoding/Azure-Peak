@@ -11,6 +11,7 @@
 		STATKEY_STR = 1,
 		STATKEY_INT = -1
 	)
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
