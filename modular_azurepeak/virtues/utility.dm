@@ -161,6 +161,7 @@
 /datum/virtue/utility/blacksmith
 	name = "Blacksmith's Apprentice"
 	desc = "In my youth, I worked under a skilled blacksmith, honing my skills with an anvil."
+	added_traits = list(TRAIT_SMITHING_EXPERT)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/weaponsmithing, 2, 2),
 						list(/datum/skill/craft/armorsmithing, 2, 2),
