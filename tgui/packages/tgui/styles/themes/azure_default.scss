@@ -39,6 +39,7 @@
   // Basics
   .Layout__content {
     background-image: none;
+    padding-left: 64px;
 
     font-size: 14px;
   }
@@ -47,6 +48,8 @@
     background-image: url('../assets/azure_default/topbar.svg');
     background-repeat: repeat-x;
     background-size: 64px;
+
+    padding-left: 64px;
     border: none;
     box-shadow: none;
 

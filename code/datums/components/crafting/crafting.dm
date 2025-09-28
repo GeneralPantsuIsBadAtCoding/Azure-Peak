@@ -652,8 +652,6 @@
 				user.mind.lastrecipe = r
 
 
-
-
 /client/verb/toggle_legacycraft()
 	set name = "Toggle legacy craft"
 	set category = "Options"
@@ -662,4 +660,3 @@
 
 /client
 	var/legacycraft = FALSE
-
