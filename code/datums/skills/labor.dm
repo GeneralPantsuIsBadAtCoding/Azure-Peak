@@ -47,7 +47,7 @@
 
 /datum/skill/labor/butchering
 	name = "Butchering"
-	desc = "Increases butchering speed. Increases yields from butchering a bodypart. Higher skill levels increase chances of getting an essence of wilderness."
+	desc = "Increases butchering speed. Increases yields from butchering a bodypart."
 	dreams = list(
 		"...someone you recognize as a father twists the neck of the family rooster. He keeps you captivated as he guts it, speaking of gore and frugality...",
 		"...your hands are bloodied and as you wipe them on your butcher's apron, a bell rings. A hooded customer enters your butcher's shop, and asks what meats you have for sale with a bemused look at your bloodied attire...",
@@ -61,7 +61,7 @@
 
 /datum/skill/labor/lumberjacking
 	name = "Lumberjacking"
-	desc = "Increases lumberjacking speed. At Novice or higher, guarantee at least two small log from a tree. Higher skills increases minimum yield."
+	desc = "Increases lumberjacking speed. At Novice or higher, guarantee at least two small log from a tree. Higher skills increases minimum yield and chance of getting an essence of wilderness."
 	dreams = list(
 		"...splinters fly off as a tree falls down on the ground, sending a thundering boom throughout the forest...",
 		"...you pull on a saw, and the bearded lumberjack across from you pulls back on it. The great oak yawns as it threatens to topple over..."

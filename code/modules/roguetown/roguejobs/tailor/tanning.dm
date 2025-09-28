@@ -60,7 +60,7 @@
 				if(SKILL_LEVEL_JOURNEYMAN)
 					essence_factor = 4
 				if(SKILL_LEVEL_EXPERT)
-					essence_factor = 8
+					essence_factor = 8 // Big Jump here - Hunter can level to this quickly. Tailor start w/ it
 				if(SKILL_LEVEL_MASTER)
 					essence_factor = 12
 				if(SKILL_LEVEL_LEGENDARY)
