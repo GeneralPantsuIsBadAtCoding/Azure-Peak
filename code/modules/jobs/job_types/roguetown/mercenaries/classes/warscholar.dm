@@ -8,7 +8,7 @@
 	class_select_category = CLASS_CAT_NALEDI
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/warscholar.ogg'
-	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_WIL = 2,
