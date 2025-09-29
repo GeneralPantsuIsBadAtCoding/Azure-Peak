@@ -14,15 +14,14 @@ type BoxProps = React.ComponentProps<typeof Box>;
 
 type Props = Partial<{
   theme: string;
-  disablesidebar: boolean;
 }> &
   BoxProps;
 
 export function Layout(props: Props) {
-  const { className, theme = 'azure_default', children, disablesidebar, ...rest } = props;
+  const { className, theme = 'azure_default', children, ...rest } = props;
 
   const themeClass = `theme-${theme}`;
-  
+
   useEffect(() => {
     document.documentElement.className = themeClass;
   }, [themeClass]);
@@ -41,12 +40,11 @@ export function Layout(props: Props) {
 
 type ContentProps = Partial<{
   scrollable: boolean;
-  disablesidebar: Boolean;
 }> &
   BoxProps;
 
 function LayoutContent(props: ContentProps) {
-  const { className, scrollable, children, disablesidebar, ...rest } = props;
+  const { className, scrollable, children, ...rest } = props;
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -68,7 +66,6 @@ function LayoutContent(props: ContentProps) {
         'Layout__content',
         scrollable && 'Layout__content--scrollable',
         className,
-
         computeBoxClassName(rest),
       ])}
       ref={node}

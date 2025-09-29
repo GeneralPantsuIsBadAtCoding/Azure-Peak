@@ -12,7 +12,7 @@
 	return TRUE
 
 /client/proc/get_looc()
-	var/msg = tgui_input_text(src, null, "looc \"text\"", encode = FALSE)
+	var/msg = input(src, null, "looc \"text\"") as text|null
 	do_looc(msg, FALSE)
 
 /client/verb/looc(msg as text)

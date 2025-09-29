@@ -13,7 +13,6 @@ type TitleBarProps = Partial<{
   status: number;
   fancy: BooleanLike;
   canClose: BooleanLike;
-  disablesidebar : Boolean;
   onClose: (e) => void;
   onDragStart: (e) => void;
 }> &
@@ -41,7 +40,6 @@ export function TitleBar(props: TitleBarProps) {
     onDragStart,
     onClose,
     children,
-    disablesidebar,
   } = props;
   const dispatch = globalStore.dispatch;
 
@@ -52,7 +50,7 @@ export function TitleBar(props: TitleBarProps) {
     title;
 
   return (
-    <div className={classes(['TitleBar', className])} style={disablesidebar ? { paddingLeft : 0 } : { paddingLeft : "64px" }}>
+    <div className={classes(['TitleBar', className])}>
       <div
         className="TitleBar__dragZone"
         onMouseDown={(e) => fancy && onDragStart && onDragStart(e)}
