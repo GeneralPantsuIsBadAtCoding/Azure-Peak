@@ -23,7 +23,7 @@
 	)
 
 /datum/advclass/seneschal
-	traits_applied = list(TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
+	traits_applied = list(TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT, TRAIT_SEWING_EXPERT) // They have Expert Sewing
 	category_tags = list(CTAG_SENESCHAL)
 
 /datum/advclass/seneschal/seneschal
