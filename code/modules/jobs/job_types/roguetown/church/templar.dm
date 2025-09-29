@@ -117,7 +117,7 @@
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
-	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk
+	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid

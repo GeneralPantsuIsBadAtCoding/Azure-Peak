@@ -139,6 +139,13 @@
 	additional_items = list(/obj/item/natural/fibers, /obj/item/natural/fibers)
 	craftdiff = 3
 
+/datum/anvil_recipe/engineering/bronze/orestore
+	name = "Mechanized Ore Bag, Bronze (+1 sac, +1 cog)"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/storage/hip/orestore/bronze
+	additional_items = list(/obj/item/roguegear, /obj/item/storage/roguebag)
+	craftdiff = 3
+
 // ------------ PROSTHETICS ----------------
 
 /datum/anvil_recipe/engineering/bronze/prosthetic/bronzeleftarm

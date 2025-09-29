@@ -83,6 +83,8 @@
 	else
 		belt = /obj/item/storage/belt/rogue/leather
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 
 /datum/advclass/nightmaiden/concubine
 	name = "Concubine"
@@ -137,6 +139,7 @@
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")
@@ -224,6 +227,7 @@
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")

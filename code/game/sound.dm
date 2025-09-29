@@ -60,15 +60,15 @@
 	. = list()
 
 	for(var/mob/M as anything in listeners)
-		var/turf/tocheck = get_turf(M)
+		var/turf/turf_check = get_turf(M)
 		// Check relay instead.
 		if(isdullahan(M))
 			var/mob/living/carbon/human = M
 			var/datum/species/dullahan/dullahan = human.dna.species
 			if(dullahan.headless)
-				tocheck = get_turf(dullahan.my_head)
+				turf_check = get_turf(dullahan.my_head)
 
-		if(get_dist(get_turf(M), turf_source) <= maxdistance)
+		if(get_dist(turf_check, turf_source) <= maxdistance)
 			if(animal_pref)
 				if(M.client?.prefs?.mute_animal_emotes)
 					continue

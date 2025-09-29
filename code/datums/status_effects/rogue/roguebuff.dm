@@ -1340,3 +1340,48 @@
 	name = "Noc's blessing"
 	desc = "Gazing Noc helps me think."
 	icon_state = "buff"
+
+/datum/status_effect/buff/massage
+	id = "massage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/massage
+	effectedstats = list(STATKEY_CON = 1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/massage
+	name = "Massage"
+	desc = "My muscles feel relaxed"
+	icon_state = "buff"
+
+/datum/status_effect/buff/goodmassage
+	id = "goodmassage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/goodmassage
+	effectedstats = list(STATKEY_CON = 1, STATKEY_SPD = 1, STATKEY_STR = 1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/goodmassage
+	name = "Good Massage"
+	desc = "My muscles feel relaxed and better than before"
+	icon_state = "buff"
+
+/datum/status_effect/buff/greatmassage
+	id = "greatmassage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/greatmassage
+	effectedstats = list(STATKEY_CON = 2, STATKEY_SPD = 1, STATKEY_STR = 1, STATKEY_LCK =1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/greatmassage
+	name = "Great Massage"
+	desc = "My body feels better than ever!"
+	icon_state = "buff"
+
+
+/datum/status_effect/buff/refocus
+	id = "refocus"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/refocus
+	effectedstats = list(STATKEY_INT = 2, STATKEY_WIL = -1)
+	duration = 15 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/refocus
+	name = "Refocus"
+	desc = "I've sacrificed some of my learning to help me learn something new"
+	icon_state = "buff"

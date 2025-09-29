@@ -746,10 +746,11 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		return FALSE
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
-		if(istype(S, spell))
+		if(S.name == spell.name && S.type == spell.type) //match by name and type to avoid issues with multiple instances of the same spell
 			spell_list -= S
 			qdel(S)
-			success = TRUE // won't return here because of possibility of duplicate spells in spell_list
+			success = TRUE
+			return TRUE // We're deleting only one spell
 	return success
 
 /datum/mind/proc/RemoveAllSpells()

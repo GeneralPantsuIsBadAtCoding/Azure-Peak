@@ -525,12 +525,12 @@
 // Unique loot axes; mostly from mobs //
 ////////////////////////////////////////
 
-/obj/item/rogueweapon/greataxe/minotaur
+/obj/item/rogueweapon/greataxe/steel/doublehead/minotaur
 	name = "minotaur greataxe"
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
-	minstr = 15	
-	max_blade_int = 150 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
+	max_blade_int = 250
+	minstr = 14 //Double-headed greataxe with extra durability. Rare dungeon loot in minotaur dungeons; no longer drops from every single minotaur.
 
 /obj/item/rogueweapon/stoneaxe/woodcut/troll
 	name = "crude heavy axe"

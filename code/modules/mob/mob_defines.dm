@@ -279,6 +279,7 @@
 
 	var/last_dodge = 0
 	var/last_parry = 0
+	var/last_used_double_attack = 0 //Used for Dual Wielder virtue, holds the timer since the double attack was last used
 	var/next_emote = 0
 	var/next_me_emote = 0
 	var/lastpoint = 0
