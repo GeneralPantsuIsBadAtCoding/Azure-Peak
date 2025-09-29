@@ -258,7 +258,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/astrata_favor
 
 /datum/status_effect/astrata_favor/on_apply()
-	effectedstats = list("constitution" = 5, "endurance" = 5)
+	effectedstats = list("constitution" = 5, "willpower" = 5)
 	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, XYLIX_LUCK_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NOPAINSTUN, XYLIX_LUCK_TRAIT)
 	ADD_TRAIT(owner, TRAIT_STEELHEARTED, XYLIX_LUCK_TRAIT)
@@ -309,7 +309,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/zizo_unfavor
 
 /datum/status_effect/zizo_unfavor/on_apply()
-	effectedstats = list("strength" = -3, "perception" = -3, "intelligence" = -3, "constitution" = -3, "endurance" = -3, "speed" = -3)
+	effectedstats = list("strength" = -3, "perception" = -3, "intelligence" = -3, "constitution" = -3, "willpower" = -3, "speed" = -3)
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/zizo_unfavor
@@ -325,7 +325,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/ravox_favor
 
 /datum/status_effect/ravox_favor/on_apply()
-	effectedstats = list("strength" = 3, "speed" = 3, "endurance" = 3)
+	effectedstats = list("strength" = 3, "speed" = 3, "willpower" = 3)
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/ravox_favor

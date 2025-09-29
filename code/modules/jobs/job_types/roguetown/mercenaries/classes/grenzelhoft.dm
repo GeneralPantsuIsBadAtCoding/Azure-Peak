@@ -261,6 +261,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/conjure_armor)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/counterspell)
+		H.mind?.adjust_spellpoints(3)
 	if(H.age == AGE_OLD) // FEAR the old man in a profession where men die young, or something corny like that.
 		H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 5, TRUE)
 		H.change_stat(STATKEY_SPD, -1)

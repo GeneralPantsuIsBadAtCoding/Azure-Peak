@@ -43,7 +43,7 @@
 	H.change_stat("strength", 2)
 	H.change_stat("intelligence", 1)
 	H.change_stat("constitution", 1)
-	H.change_stat("endurance", 1)
+	H.change_stat("willpower", 1)
 	H?.mind.adjust_spellpoints(15)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)

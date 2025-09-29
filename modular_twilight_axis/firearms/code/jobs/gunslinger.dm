@@ -9,7 +9,7 @@
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_gunslinger.ogg'
 	class_select_category = CLASS_CAT_OTAVA
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_OUTLANDER, TRAIT_MEDIUMARMOR)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
 	classes = list("Lone Wolf" = "With no allegiance but to self, you travel through many different lands, finding yourself in employ of those who can afford to pay for your meals and ammunition. Working for the Guild is a novelty for you, but perhaps this is where you'll find a camaraderie you've never known?",
 					"Otavan Dragoon" = "Having left the ranks of the Otavan militant orders, you set off into the wider world, selling your combat skills to the highest bidder. Your rare runelock firearm, once awarded to you for your service, is now your primary tool of the trade.")
 	subclass_stats = list(
@@ -19,6 +19,19 @@
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 2,
 	)
+	subclass_skills = list(
+		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+	)
+	extra_context = "Chooses between Lone Wolf (Sabre & Arquebus Pistol) and Otavan Dragoon (Falchion & Runelock Pistol) subclasses."
 
 /datum/outfit/job/roguetown/mercenary/twilight_gunslinger/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -31,17 +44,7 @@
 		if("Lone Wolf")
 			H.set_blindness(0)
 			to_chat(H, span_warning("With no allegiance but to self, you travel through many different lands, finding yourself in employ of those who can afford to pay for your meals and ammunition. Working for the Guild is a novelty for you, but perhaps this is where you'll find a camaraderie you've never known?"))
-			H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			beltl = /obj/item/quiver/twilight_bullet/lead
 			beltr = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol
 			backl = /obj/item/storage/backpack/rogue/satchel/black
@@ -57,17 +60,7 @@
 			if(istype(H.patron, /datum/patron/inhumen/zizo) || istype(H.patron, /datum/patron/inhumen/matthios) || istype(H.patron, /datum/patron/inhumen/graggar) || istype(H.patron, /datum/patron/inhumen/baotha))
 				to_chat(H, span_warning("Even if Inhumen once watched over me, my loyalty to them did not survive the trials of Otava. Psydon is one true God!"))
 				H.set_patron(/datum/patron/old_god)
-			H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 			beltl = /obj/item/quiver/twilight_bullet/runed
 			beltr = /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock
 			backl = /obj/item/storage/backpack/rogue/satchel/otavan

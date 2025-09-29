@@ -41,6 +41,9 @@
 	/// The id of any ByondUi elements that we have opened
 	var/list/open_byondui_elements
 
+	/// Any partial packets that we have received from TGUI, waiting to be sent
+	var/partial_packets
+
 /**
  * public
  *

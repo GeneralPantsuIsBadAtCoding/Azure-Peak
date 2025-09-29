@@ -35,9 +35,14 @@
 			ritechoices+="Rune of Justice"
 		if(/datum/patron/divine/abyssor)
 			ritechoices+="Rune of Storm"
-			ritechoices+="Rune of Stirring"
 		if(/datum/patron/old_god)
 			ritechoices+="Rune of Sacrament"
+
+	if(HAS_TRAIT(user, TRAIT_HERESIARCH) && (user.patron?.type == /datum/patron/divine/abyssor) && !("Rune of Stirring" in ritechoices))
+		ritechoices+="Rune of Stirring"
+
+	if(HAS_TRAIT(user, TRAIT_DREAMWALKER) && !("Rune of Stirring" in ritechoices))
+		ritechoices+="Rune of Stirring"
 
 	var/runeselection = input(user, "Which rune shall I inscribe?", src) as null|anything in ritechoices
 	var/turf/step_turf = get_step(get_turf(user), user.dir)

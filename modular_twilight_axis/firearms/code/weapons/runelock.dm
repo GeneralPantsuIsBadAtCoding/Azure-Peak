@@ -27,7 +27,7 @@
 	/// Reload time, in SECONDS
 	var/reload_time = 8
 	damfactor = 0.7
-	var/speedfactor = 1
+	var/critfactor = 0.7
 	var/rangefactor = 1
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/getonmobprop(tag)
@@ -170,9 +170,9 @@
 		qdel(src)
 		return
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
-		var/obj/projectile/BB = CB.BB
-		BB.speed = BB.speed / speedfactor
-		BB.range = BB.range * rangefactor
+		var/obj/projectile/bullet/BB = CB.BB
+		BB.range *= rangefactor
+		BB.critfactor *= critfactor
 		BB.damage *= damfactor * (user.STAPER > 10 ? user.STAPER / 10 : 1)
 	cocked = FALSE
 	update_icon()
@@ -217,8 +217,9 @@
 	wlength = WLENGTH_LONG
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	wdefense = 3
 	damfactor = 1
-	speedfactor = 1.5
+	critfactor = 1
 	rangefactor = 2
 	reload_time = 12
 

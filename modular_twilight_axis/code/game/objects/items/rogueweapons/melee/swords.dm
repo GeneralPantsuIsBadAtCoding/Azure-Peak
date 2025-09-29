@@ -5,6 +5,9 @@
 	icon_state = "psyrapier"
 	item_state = "psyrapier"
 	resistance_flags = FIRE_PROOF
+	force = 17
+	force_wielded = 20
+	is_silver = TRUE
 
 /obj/item/rogueweapon/sword/rapier/psyrapier/ComponentInitialize()
 	AddComponent(\
