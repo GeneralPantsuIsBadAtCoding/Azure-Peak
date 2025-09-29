@@ -213,7 +213,7 @@
 	name = "Peddler"
 	tutorial = "You make your coin peddling in spices and performing back-alley 'medical' procedures. Hope your patient didn't need that kidney."
 	outfit = /datum/outfit/job/roguetown/adventurer/peddler
-	traits_applied = list(TRAIT_ALCHEMY_EXPERT, TRAIT_HOMESTEAD_EXPERT)
+	traits_applied = list(TRAIT_ALCHEMY_EXPERT, TRAIT_MEDICINE_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 2,
