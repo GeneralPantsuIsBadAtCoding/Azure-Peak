@@ -2,7 +2,7 @@
 /datum/status_effect/buff/frostbite
 	id = "frostbite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
-	duration = 20 SECONDS
+	duration = 6 SECONDS
 	effectedstats = list(STATKEY_SPD = -2)
 
 /atom/movable/screen/alert/status_effect/buff/frostbite
@@ -17,7 +17,7 @@
 	target.update_vision_cone()
 	var/newcolor = rgb(136, 191, 255)
 	target.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 20 SECONDS)
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 6 SECONDS)
 	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
 
 /datum/status_effect/buff/frostbite/on_remove()
