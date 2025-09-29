@@ -2620,6 +2620,7 @@
 #include "modular_azurepeak\statpacks\physical.dm"
 #include "modular_azurepeak\statpacks\wildcard.dm"
 #include "modular_azurepeak\virtues\combat.dm"
+#include "modular_azurepeak\virtues\crafter.dm"
 #include "modular_azurepeak\virtues\items.dm"
 #include "modular_azurepeak\virtues\movement.dm"
 #include "modular_azurepeak\virtues\size.dm"
