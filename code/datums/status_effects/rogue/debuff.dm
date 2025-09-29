@@ -511,6 +511,17 @@
 	icon_state = "debuff"
 	color ="#af9f9f"
 
+/datum/status_effect/debuff/kickcd
+	id = "kick_cooldown"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/kickcd
+	duration = 3 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/kickcd
+	name = "Kick Cooldown"
+	desc = "I can't kick right now."
+	icon_state = "debuff"
+	color ="#c50b0b"
+
 ///////////////////////
 /// CLIMBING STUFF ///
 /////////////////////

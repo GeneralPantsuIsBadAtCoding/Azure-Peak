@@ -60,7 +60,7 @@
 			M.onkick(src)
 	else
 		A.onkick(src)
-	OffBalance(3 SECONDS)
+	apply_status_effect(/datum/status_effect/debuff/kickcd)
 	return TRUE
 
 /mob/living/proc/can_kick(atom/A, do_message = TRUE)
@@ -72,7 +72,7 @@
 		return FALSE
 	if(isliving(A) && !(mobility_flags & MOBILITY_STAND) && pulledby)
 		return FALSE
-	if(IsOffBalanced())
+	if(has_status_effect(/datum/status_effect/debuff/kickcd))
 		if(do_message)
 			to_chat(src, span_warning("I haven't regained my balance yet."))
 		return FALSE
