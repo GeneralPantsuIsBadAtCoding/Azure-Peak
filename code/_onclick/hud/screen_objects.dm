@@ -1659,6 +1659,9 @@
 					M.add_stress(/datum/stressevent/triumph)
 					M.adjust_triumphs(-1)
 					M.playsound_local(M, 'sound/misc/notice (2).ogg', 100, FALSE)
+					if(M.sexcon)
+						var/datum/sex_controller/sexo = M.sexcon
+						sexo.adjust_charge(SEX_MAX_CHARGE)
 
 
 /atom/movable/screen/rmbintent
