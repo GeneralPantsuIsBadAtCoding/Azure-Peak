@@ -91,7 +91,7 @@
 	)
 
 /datum/outfit/job/roguetown/mercenary/atgervishaman
-	allowed_patrons = ALL_INHUMEN_PATRONS
+	allowed_patrons = ALL_INHUMEN_AND_PSYDON
 
 /datum/outfit/job/roguetown/mercenary/atgervishaman/pre_equip(mob/living/carbon/human/H)
 	..()
