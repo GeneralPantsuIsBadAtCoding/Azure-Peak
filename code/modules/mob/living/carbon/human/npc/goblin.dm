@@ -338,7 +338,7 @@
 		if(5) //heavy armored sword/flail/shields
 			ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			if(prob(30))
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
 			else
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/goblin
 			if(prob(80))
