@@ -239,7 +239,7 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Sword + Recurve Bow","Axe + Crossbow","Spear + Shield")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Sword + Recurve Bow")
@@ -328,18 +328,19 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Zweihander","Halberd")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Zweihander")
-				r_hand = /obj/item/rogueweapon/greatsword/grenz
+				H.put_in_hands(new /obj/item/rogueweapon/greatsword/grenz)
 				H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_L)
 			if("Halberd")
-				r_hand = /obj/item/rogueweapon/halberd
+				H.put_in_hands(new /obj/item/rogueweapon/halberd)
 				H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) // SO, fun fact. The description of the grenzel halbardier says they specialize in axes, but they get no axe skill. Maybe this guy is where that rumor came from.
 				H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BACK_L)
 
 /datum/advclass/veteran/scout
 	name = "Former Scout"

@@ -62,6 +62,19 @@ GLOBAL_LIST_EMPTY(hellspawns)
 			playsound_local(src, 'sound/misc/hel.ogg', 100)
 			isinhell = TRUE
 
+/mob/dead/observer/say_verb(message as text)
+	set name = "Say"
+	set category = "IC"
+	set hidden = 1
+
+#ifdef MATURESERVER
+	if(!client)
+		return
+	if(!message)
+		return
+	client.do_dsay(message)
+#endif
+
 /obj/structure/fluff/psyexit
 	name = "escape"
 	icon = 'icons/roguetown/misc/hell.dmi'

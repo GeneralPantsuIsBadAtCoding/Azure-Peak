@@ -43,14 +43,14 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.cloak, /obj/item/clothing/cloak/stabard))
+		if(istype(H.cloak, /obj/item/clothing/cloak/tabard/knight/guard)  || (istype(H.cloak, /obj/item/clothing/cloak/captain)))
 			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
 			if(index)
 				index = copytext(H.real_name, 1,index)
 			if(!index)
 				index = H.real_name
-			S.name = "Captain Tabard ([index])"
+			S.name = "Captain Tabard ([index])" //This doesn't even actually work but you know.
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Ser"
@@ -123,7 +123,7 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list(
-			"Zweihander",
+			"Claymore",
 			"Great Mace",
 			"Battle Axe",
 			"Greataxe",
@@ -133,10 +133,10 @@
 			"Sabre",
 			"Lance",
 			)
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
-			if("Zweihander")
+			if("Claymore")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
@@ -174,7 +174,7 @@
 				"Crossbow",
 				"Recurve Bow",
 			)
-			var/secondary_choice = input("Choose your secondary.", "TAKE UP ARMS") as anything in secondary
+			var/secondary_choice = input(H, "Choose your secondary.", "TAKE UP ARMS") as anything in secondary
 			switch(secondary_choice)
 				if("Kite Shield")
 					backl = /obj/item/rogueweapon/shield/tower/metal
@@ -193,20 +193,20 @@
 			"Steel Cuirass",
 			"Captain's armor"
 		)
-		var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		switch(armorchoice)
 			if("Brigandine")
-				armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/retinue
 				pants = /obj/item/clothing/under/roguetown/chainlegs
-				cloak = /obj/item/clothing/cloak/stabard
+				cloak = /obj/item/clothing/cloak/tabard/retinue/captain
 			if("Coat of Plates")
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 				pants = /obj/item/clothing/under/roguetown/chainlegs
-				cloak = /obj/item/clothing/cloak/stabard
+				cloak = /obj/item/clothing/cloak/tabard/retinue/captain
 			if("Fluted Cuirass")
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 				pants = /obj/item/clothing/under/roguetown/chainlegs
-				cloak = /obj/item/clothing/cloak/stabard
+				cloak = /obj/item/clothing/cloak/tabard/retinue/captain
 			if("Captain's armor")
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/captain
 				pants = /obj/item/clothing/under/roguetown/chainlegs/captain
@@ -229,7 +229,7 @@
 			"Slitted Kettle"	= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
 			"None"
 		)
-		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 

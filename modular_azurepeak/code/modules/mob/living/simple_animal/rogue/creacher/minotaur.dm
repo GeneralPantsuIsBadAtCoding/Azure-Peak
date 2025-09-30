@@ -18,13 +18,13 @@
 	STASTR = 16
 	STASPD = 5
 	base_intents = list(/datum/intent/simple/minotaur_unarmed)
-	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
-						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 2) // Made in-line w/ troll..
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
-						/obj/item/natural/hide = 3, /obj/item/natural/bundle/bone/full = 2,
+	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
+						/obj/item/natural/hide = 1, /obj/item/natural/bundle/bone/full = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
+						/obj/item/natural/hide = 2, /obj/item/natural/bundle/bone/full = 2,
 						/obj/item/natural/head/minotaur = 1)
-	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 5,
-						/obj/item/natural/hide = 5, /obj/item/natural/bundle/bone/full = 2,
+	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 4,
+						/obj/item/natural/hide = 4, /obj/item/natural/bundle/bone/full = 2,
 						/obj/item/natural/head/minotaur = 1)
 	faction = list("caves")
 
@@ -76,7 +76,6 @@
 	icon_dead = "MinotaurFem_dead"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
-	loot = list(/obj/item/rogueweapon/greataxe/minotaur = 1) //Acquiring an axe from their cold, dead hands.
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"

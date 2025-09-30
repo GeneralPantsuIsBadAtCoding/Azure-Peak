@@ -59,7 +59,7 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 	if(H.mind)
 		var/weapons = list("Katar","Knuckle Dusters")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Katar")
 				backpack_contents += list(/obj/item/rogueweapon/katar = 1)
@@ -190,7 +190,7 @@
 			cloak = /obj/item/clothing/cloak/psydontabard
 			if(H.mind)
 				var/helmets = list("Armet","Bucket Helm")
-				var/helmet_choice = input("Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
+				var/helmet_choice = input(H, "Choose your Psydonian Helm", "WALK IN HIS LIGHT") as anything in helmets
 				switch(helmet_choice)
 					if("Bucket Helm")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
@@ -234,7 +234,7 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 	if(H.mind)
 		var/weapons = list("Longsword","Mace","Flail")
-		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
 				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
@@ -371,7 +371,7 @@
 			cloak = /obj/item/clothing/cloak/cape/crusader
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
-		var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")

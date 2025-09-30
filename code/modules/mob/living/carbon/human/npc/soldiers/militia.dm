@@ -123,13 +123,10 @@
 			r_hand = /obj/item/rogueweapon/scythe
 		if(6)
 			r_hand = /obj/item/rogueweapon/pick/militia
-			l_hand = /obj/item/rogueweapon/shield/wood
 		if(7)
 			r_hand = /obj/item/rogueweapon/sword/falchion/militia
-			l_hand = /obj/item/rogueweapon/shield/wood
 		if(8)
 			r_hand = /obj/item/rogueweapon/mace/cudgel
-			l_hand = /obj/item/rogueweapon/shield/wood
 		if(9)
 			r_hand = /obj/item/rogueweapon/mace/goden
 		if(10)

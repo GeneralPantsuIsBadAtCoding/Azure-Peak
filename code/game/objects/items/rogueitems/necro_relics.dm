@@ -43,8 +43,7 @@
 
 /obj/item/necro_relics/necro_crystal/attack_self(mob/living/user)
 	..()
-
-	if(!user)
+	if(!user) 
 		return FALSE
 		
 	if(length(active_skeletons) >= max_summons)
@@ -53,6 +52,13 @@
 
 	if(world.time - src.last_use_time < src.use_cooldown)
 		to_chat(user, span_warning("The crystal thrums under your touch, but remains inert."))
+		return FALSE
+
+	// Ask the Necromancer for a task for the skeleton BEFORE the timer
+	var/tasks = list("TOIL","FIGHT","GUARD","SEEK")
+	var/tasks_choice = input(user, "WHAT IS THY BIDDING?", "IN HER NAME") as anything in tasks
+	if(!tasks_choice)
+		to_chat(user, span_warning("You must assign a task for your skeleton!"))
 		return FALSE
 
 	if(current_charges <= 0)
@@ -77,7 +83,8 @@
 		to_chat(user, span_warning("The targeted location is blocked. My summon fails to come forth."))
 		return FALSE
 
-	var/list/candidates = pollGhostCandidates("Do you want to play as a Necromancer's skeleton?", ROLE_NECRO_SKELETON, null, null, 10 SECONDS, POLL_IGNORE_NECROMANCER_SKELETON)
+	var/necro_name = user.real_name ? user.real_name : user.name
+	var/list/candidates = pollGhostCandidates("The veil splits! A hand reaches forth! Serve [necro_name] in undeath as a Greater Skeleton? YOU WILL [tasks_choice]", ROLE_NECRO_SKELETON, null, null, 10 SECONDS, POLL_IGNORE_NECROMANCER_SKELETON)
 	if(!LAZYLEN(candidates))
 		to_chat(user, span_warning("The depths are hollow."))
 		return FALSE
@@ -114,9 +121,9 @@
 	return TRUE
 
 /mob/living/carbon/human/proc/choose_pronouns_and_body()
-    var/p_input = input(src, "Choose your character's pronouns", "Pronouns") as null|anything in GLOB.pronouns_list
-    if(p_input)
-        src.pronouns = p_input
-    if(alert(src, "Do you wish to change your frame?", "Body Type", "Yes", "No") == "Yes")
-        src.gender = (src.gender == "male") ? "female" : "male"
-    src.regenerate_icons()
+	var/p_input = input(src, "Choose your character's pronouns", "Pronouns") as anything in GLOB.pronouns_list
+	if(p_input)
+		src.pronouns = p_input
+	if(alert(src, "Do you wish to change your frame?", "Body Type", "Yes", "No") == "Yes")
+		src.gender = (src.gender == MALE) ? FEMALE : MALE
+	src.regenerate_icons()

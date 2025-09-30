@@ -213,8 +213,8 @@ window "popupwindow"
 window "preferencess_window"
 	elem "preferencess_window"
 		type = MAIN
-		pos = 372,150
-		size = 700x630
+		pos = 280,80
+		size = 820x850
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
@@ -225,13 +225,13 @@ window "preferencess_window"
 	elem "preferences_browser"
 		type = BROWSER
 		pos = 0,0
-		size = 700x630
+		size = 820x850
 		anchor1 = 0,0
 		anchor2 = 75,100
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
-		pos = 228,230
+		pos = 310,230
 		size = 172x192
 		anchor1 = 75,30
 		anchor2 = 100,20

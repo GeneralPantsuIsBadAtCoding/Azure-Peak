@@ -11,7 +11,7 @@
 	return TRUE
 
 /client/proc/get_looc()
-	var/msg = input(src, null, "looc \"text\"") as text|null
+	var/msg = tgui_input_text(src, null, "looc \"text\"", encode = FALSE)
 	do_looc(msg, FALSE)
 
 /client/verb/looc(msg as text)
@@ -42,7 +42,7 @@
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
 	
-	if(isobserver(mob))
+	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
 		return
 

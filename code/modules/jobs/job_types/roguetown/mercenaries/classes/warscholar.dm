@@ -117,6 +117,7 @@
 		/datum/skill/misc/stealing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_JOURNEYMAN,
 	)
+	subclass_spellpoints = 0 // Override inheritance lol
 
 /datum/outfit/job/roguetown/mercenary/warscholar_pontifex
 	var/detailcolor
@@ -194,6 +195,7 @@
 		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT,
 	)
+	subclass_spellpoints = 0 // Override inheritance lol
 
 /datum/outfit/job/roguetown/mercenary/warscholar_vizier
 	var/detailcolor

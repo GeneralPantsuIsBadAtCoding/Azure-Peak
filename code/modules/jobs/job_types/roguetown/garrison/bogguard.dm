@@ -8,7 +8,7 @@
 	selection_color = JCOLOR_SOLDIER
 
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Typically a denizen of the sparsely populated Azurian woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilderness. \
 				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Marshal or the Crown. \
@@ -101,7 +101,7 @@
 			"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
 			"None"
 		)
-		var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+		var/helmchoice = input(H, "Choose your Path.", "HELMET SELECTION") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
@@ -110,7 +110,7 @@
 			"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
 			"None"
 		)
-		var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]
 
@@ -177,7 +177,7 @@
 			"Path of the Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
 			"None"
 		)
-		var/helmchoice = input("Choose your Path.", "HELMET SELECTION") as anything in helmets
+		var/helmchoice = input(H, "Choose your Path.", "HELMET SELECTION") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
 
@@ -186,6 +186,6 @@
 			"Antlered Shroud"		= /obj/item/clothing/head/roguetown/roguehood/warden/antler,
 			"None"
 		)
-		var/hoodchoice = input("Choose your Shroud.", "HOOD SELECTION") as anything in hoods
+		var/hoodchoice = input(H, "Choose your Shroud.", "HOOD SELECTION") as anything in hoods
 		if(helmchoice != "None")
 			mask = hoods[hoodchoice]

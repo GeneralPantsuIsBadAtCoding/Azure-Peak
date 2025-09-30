@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_CTF_BLUE]" = "blueteamradio"
 	))
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, message_range = 7, message_mode = null)
 	if(!can_speak())
 		return
 	if(message == "" || !message)
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	spans |= speech_span
 	if(!language)
 		language = get_default_language()
-	send_speech(message, 7, src, , spans, message_language=language)
+	send_speech(message, message_range, src, , spans, message_language=language, message_mode = message_mode)
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
@@ -73,8 +73,15 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/arrowpart = ""
 
 	if(istype(src,/mob/living))
+		var/atom/movable/tocheck = src
+		// Check relay instead.
+		if(isdullahan(src))
+			var/mob/living/carbon/human = src
+			var/datum/species/dullahan/dullahan = human.dna.species
+			if(dullahan.headless)
+				tocheck = dullahan.my_head
 		var/turf/speakturf = get_turf(speaker)
-		var/turf/sourceturf = get_turf(src)
+		var/turf/sourceturf = get_turf(tocheck)
 		if(istype(speakturf) && istype(sourceturf) && !(speakturf in get_hear(7, sourceturf)))
 			switch(get_dir(src,speaker))
 				if(NORTH)

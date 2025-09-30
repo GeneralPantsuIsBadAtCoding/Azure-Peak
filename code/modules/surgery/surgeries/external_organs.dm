@@ -17,7 +17,7 @@
 	var/list/initial_organs = target.getorganszone(target_zone, subzones = FALSE)
 	var/list/organs = list()
 	for(var/obj/item/organ/cur_organ as anything in initial_organs)
-		if(cur_organ.visible_organ || cur_organ.slot == ORGAN_SLOT_TONGUE)
+		if((cur_organ.visible_organ || cur_organ.slot == ORGAN_SLOT_TONGUE) && !(cur_organ.organ_flags & ORGAN_SURGERY_HIDDEN))
 			organs += cur_organ
 
 	if(!length(organs))

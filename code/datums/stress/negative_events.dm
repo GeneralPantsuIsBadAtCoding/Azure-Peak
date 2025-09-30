@@ -136,6 +136,20 @@
 	stressadd_per_extra_stack = 2
 	desc = span_red("I puked on myself!")
 
+/datum/stressevent/vomitother
+	timer = 3 MINUTES
+	stressadd = 3
+	max_stacks = 3
+	stressadd_per_extra_stack = 3
+	desc = span_red("I have someone's puke on myself!")
+
+/datum/stressevent/vomitedonother
+	timer = 3 MINUTES
+	stressadd = 2
+	max_stacks = 3
+	stressadd_per_extra_stack = 2
+	desc = span_red("I puked on someone!")
+
 /datum/stressevent/cumbad
 	timer = 5 MINUTES
 	stressadd = 5
@@ -363,3 +377,12 @@
 	timer = 999 MINUTES
 	desc = span_green("I'm wielding a BLESSED weapon!")
 
+/datum/stressevent/naledimasklost
+	stressadd = 3
+	desc = span_boldred("The mask! Anyone here could be a djinn. I'm exposed.")
+	timer = 999 MINUTES
+
+/datum/stressevent/shamanhoodlost
+	stressadd = 3
+	desc = span_boldred("The hood! My faith wavers without it. I feel ashamed.")
+	timer = 999 MINUTES
