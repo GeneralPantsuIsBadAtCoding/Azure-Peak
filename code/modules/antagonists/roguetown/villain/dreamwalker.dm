@@ -103,6 +103,8 @@
 	H.change_stat(STATKEY_PER, 2)
 	H.change_stat(STATKEY_SPD, 2)
 	H.change_stat(STATKEY_WIL, 2)
+	if(H.construct)
+		REMOVE_TRAIT(body, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
