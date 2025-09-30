@@ -118,23 +118,20 @@
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = inserted.reagents.maximum_volume
-		var/vol_rounded = round(min(buyer_volume,volume) / 3, 0.1)
-		if(volume < 3) // do not let user buy reagants less than 3 oz due to coin rounding
-			return
+		var/vol_max = min(buyer_volume,volume)
 		if(price > 0)
-			quantity = input(usr, "How much to pour into \the [inserted] ([vol_rounded] oz)? ([price] mammons per oz)", "\The [held_items[R.type]["NAME"]]") as num|null
+			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])? ([price] mammons per dram)", "\The [held_items[R.type]["NAME"]]") as num|null
 		else
-			quantity = input(usr, "How much to pour into \the [inserted] ([vol_rounded] oz)?", "\The [held_items[R.type]["NAME"]]") as num|null
+			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
 		quantity = round(quantity)
 		if(quantity <= 0 || !usr.Adjacent(src))
 			return
-		quantity *= 3
 		if(quantity > buyer_volume)
 			quantity = buyer_volume
 		if(quantity > volume)
 			quantity = volume
 		if(price > 0)
-			price = round(price*(quantity/3))
+			price *= quantity
 			if(budget >= price)
 				budget -= price
 				wgain += price
@@ -157,12 +154,11 @@
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = sold_bottle.reagents.maximum_volume
-		var/vol_rounded = round(min(buyer_volume,volume) / 3, 0.1)
-		quantity = input(usr, "How much to pour into \the [sold_bottle] ([vol_rounded] oz)?", "\The [held_items[R.type]["NAME"]]") as num|null
+		var/vol_max = min(buyer_volume,volume)
+		quantity = input(usr, "How much to pour into \the [sold_bottle] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
 		quantity = round(text2num(quantity))
 		if(quantity <= 0 || !usr.Adjacent(src))
 			return
-		quantity *= 3
 		if(quantity > buyer_volume)
 			quantity = buyer_volume
 		if(quantity > volume)
@@ -209,7 +205,7 @@
 			var/preprice
 			if(held_items[R]["PRICE"])
 				preprice = held_items[R]["PRICE"]
-			var/newprice = input(usr, "SET A NEW PRICE FOR THIS POTION PER OZ (0 IS FREE)", src, preprice) as null|num
+			var/newprice = input(usr, "SET A NEW PRICE FOR THIS POTION PER DRAM (0 IS FREE)", src, preprice) as null|num
 			if(newprice)
 				if(newprice < 0)
 					return attack_hand(usr)
@@ -240,7 +236,7 @@
 		else if(!inserted)
 			contents += "No container inserted<HR>"
 		else
-			contents += "Container inserted: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
+			contents += "Container inserted: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
 		if(locked)
 			contents += "<a href='?src=[REF(src)];change=1'>Stored Mammon:</a> [budget]<BR>"
 		else
@@ -252,7 +248,7 @@
 		else if(!inserted)
 			contents += "[stars("No container inserted")]<HR>"
 		else
-			contents += "[stars("Container inserted")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
+			contents += "[stars("Container inserted")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
 		if(locked)
 			contents += "<a href='?src=[REF(src)];change=1'>[stars("Stored Mammon:")]</a> [budget]<BR>"
 		else
@@ -264,22 +260,21 @@
 		var/price = held_items[I]["PRICE"]
 		var/namer = held_items[I]["NAME"]
 		var/volume = reagents.get_reagent_amount(I)
-		volume = round(volume / 3, 0.1)
-		if(volume < 1) // do not sell reagents less than 1 oz
+		if(volume < 1) // do not sell reagents less than 1 dram
 			continue
 		if(!namer)
 			held_items[I]["NAME"] = "thing"
 			namer = "thing"
 		if(locked)
 			var/buy = !price ? "TAKE" : "BUY"
-			price = !price ? "FREE" : "[price] per oz"
+			price = !price ? "FREE" : "[price] per dram"
 			if(canread)
-				contents += "[namer] ([volume] oz) - [price] <a href='?src=[REF(src)];buy=[REF(I)]'>[buy]</a>"
+				contents += "[namer] ([volume] [UNIT_FORM_STRING(volume)]) - [price] <a href='?src=[REF(src)];buy=[REF(I)]'>[buy]</a>"
 			else
 				contents += "[stars(namer)] - [stars(price)] <a href='?src=[REF(src)];buy=[REF(I)]'>[stars("[buy]")]</a>"
 		else
 			if(canread)
-				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[namer]</a> ([volume] oz) - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price] per oz</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>TAKE</a>"
+				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[namer]</a> ([volume] [UNIT_FORM_STRING(volume)]) - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price] per dram</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>TAKE</a>"
 			else
 				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[stars(namer)]</a> - <a href='?src=[REF(src)];setprice=[REF(I)]'>[stars(price)]</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>[stars("TAKE")]</a>"
 		contents += "<BR>"
