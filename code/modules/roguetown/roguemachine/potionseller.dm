@@ -125,6 +125,7 @@
 			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
 		quantity = round(quantity)
 		if(quantity <= 0 || !usr.Adjacent(src))
+			to_chat(usr, span_warning("The machine cannot pour such an small amount"))
 			return
 		if(quantity > buyer_volume)
 			quantity = buyer_volume
@@ -207,11 +208,9 @@
 				preprice = held_items[R]["PRICE"]
 			var/newprice = input(usr, "SET A NEW PRICE FOR THIS POTION PER DRAM (0 IS FREE)", src, preprice) as null|num
 			if(newprice)
-				if(newprice < 0)
+				if(newprice < 0.1)
 					return attack_hand(usr)
-				if(findtext(num2text(newprice), "."))
-					return attack_hand(usr)
-				held_items[R]["PRICE"] = newprice
+				held_items[R]["PRICE"] = round(newprice, 0.1)
 			else if(text2num(newprice) == 0)
 				held_items[R]["PRICE"] = 0 // free!
 	if(href_list["eject"])
