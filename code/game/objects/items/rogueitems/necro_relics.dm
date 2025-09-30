@@ -54,15 +54,15 @@
 		to_chat(user, span_warning("The crystal thrums under your touch, but remains inert."))
 		return FALSE
 
+	if(current_charges <= 0)
+		to_chat(user, span_warning("The crystal feels hollow. It hungers for lux."))
+		return FALSE
+
 	// Ask the Necromancer for a task for the skeleton BEFORE the timer
 	var/tasks = list("TOIL","FIGHT","GUARD","SEEK")
 	var/tasks_choice = input(user, "WHAT IS THY BIDDING?", "IN HER NAME") as anything in tasks
 	if(!tasks_choice)
 		to_chat(user, span_warning("You must assign a task for your skeleton!"))
-		return FALSE
-
-	if(current_charges <= 0)
-		to_chat(user, span_warning("The crystal feels hollow. It hungers for lux."))
 		return FALSE
 
 	src.last_use_time = world.time
