@@ -292,6 +292,8 @@
 	..()
 	held_items = list()
 	reagents.clear_reagents()
+	if(inserted)
+		inserted.forceMove(drop_location())
 	budget2change(budget)
 	set_light(0)
 	update_icon()
