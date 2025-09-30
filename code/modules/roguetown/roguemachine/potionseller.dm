@@ -123,8 +123,10 @@
 			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])? ([price] mammons per dram)", "\The [held_items[R.type]["NAME"]]") as num|null
 		else
 			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
+		if(!usr.Adjacent(src))
+			return
 		quantity = round(quantity)
-		if(quantity <= 0 || !usr.Adjacent(src))
+		if(quantity <= 0)
 			to_chat(usr, span_warning("The machine cannot pour such an small amount"))
 			return
 		if(quantity > buyer_volume)
