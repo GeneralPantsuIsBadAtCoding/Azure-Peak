@@ -51,7 +51,7 @@
 	chargetime = 0
 	recovery = 10
 	damfactor = 1.1
-	penfactor = 20
+	penfactor = 10
 	reach = 2
 	icon_state = "incrack"
 	item_d_type = "slash"
@@ -80,6 +80,13 @@
 	reach = 2			//Less range than a normal whip by 1 compared to crack.
 	icon_state = "instrike"
 	item_d_type = "blunt"
+
+/obj/item/rogueweapon/whip/spiderwhip
+	force = 22
+	name = "lashkiss whip"
+	desc = "A dark whip with segmented, ashen spines for a base. Claimed to be hewn from dendrified prisoners of terror."
+	icon_state = "spiderwhip"
+	minstr = 6
 
 /obj/item/rogueweapon/whip/nagaika
 	name = "nagaika whip"

@@ -49,7 +49,7 @@
 	icon_state = "gryphon"
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING
 	sellprice = 15
 
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/grenzelhoft
@@ -124,3 +124,7 @@
 /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/warscholar
 // NOT CURRENTLY IMPLEMENTED
 
+/obj/item/clothing/neck/roguetown/luckcharm/mercmedal/anthrax
+	name = "petrified larvae charm"
+	desc = "The husk of a desiccated beespider larva, passed down within the ranks of those whose names have been struck from dark elven history. The old tyranny's uprooting would be their last act of true valor."
+	icon_state = "spider"
