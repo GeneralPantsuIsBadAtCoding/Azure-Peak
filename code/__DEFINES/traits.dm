@@ -217,7 +217,7 @@
 #define TRAIT_ALCHEMY_EXPERT "Expert Alchemist" // Alchemy. This is gated to Jman by default.
 #define TRAIT_SMITHING_EXPERT "Expert Forgehand" // X-Smithing, Smelting, Engineering, Mining, Pottery.
 #define TRAIT_SEWING_EXPERT "Expert Clothier" // Sewing, Skincrafting, Leathercraft and Butchering.
-#define TRAIT_SURVIVAL_EXPERT "Expert Survivalist" // Butchering, Cooking and Fishing. Skincraft + Sewing = Jman.
+#define TRAIT_SURVIVAL_EXPERT "Expert Survivalist" // Butchering, Cooking, Fishing & Skincraft, Sewing = Jman.
 #define TRAIT_HOMESTEAD_EXPERT "Expert Homesteader" // Farming, Mining, Cooking, Fishing, Butchering, Lumberjacking (All Labor), Pottery. Skincraft + Sewing = Jman.
 #define TRAIT_SELF_SUSTENANCE "Self-Sustenance" // Unlocks all gated crafting skills to Jman. Wretches & Antags only.
 
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_ALCHEMY_EXPERT = span_greentext("I've deep, intricate knowledge of the alchemical arts. This skill can progress to Expert and above levels."),
 	TRAIT_SMITHING_EXPERT = span_greentext("I'm experienced with the arts of smithing and engineering. Smithing, Smelting, Engineering, Mining and Pottery can progress to Legendary levels."),
 	TRAIT_SEWING_EXPERT = span_greentext("I'm experienced with the arts of sewing and leathercraft. Sewing, Skincrafting, Leathercraft and Butchering can progress to Legendary levels."),
-	TRAIT_SURVIVAL_EXPERT = span_greentext("I'm experienced with the arts of survival in the wild. Cooking, Fishing, Butchering. Skincrafting and Sewing can progress to Journeyman levels."),
+	TRAIT_SURVIVAL_EXPERT = span_greentext("I'm experienced with the arts of survival in the wild. Cooking, Fishing, Butchering and Skincrafting can progress to Legendary levels. Sewing can progress to Journeyman levels."),
 	TRAIT_HOMESTEAD_EXPERT = span_greentext("I'm experienced with the arts of homesteading. Farming, Mining, Cooking, Fishing, Butchering, Lumberjacking and Pottery can progress to Legendary levels. Sewing and Skincrafting can progress to Journeyman levels."),
 	TRAIT_SELF_SUSTENANCE = span_greentext("Yils of experience running from the law and living off the land have made me a jack of all trades. All crafting and labor skills can progress to Journeyman levels."),
 	TRAIT_SILVER_WEAK = span_notice("Silver is my bane."),
