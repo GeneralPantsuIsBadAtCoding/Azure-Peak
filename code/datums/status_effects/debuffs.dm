@@ -493,7 +493,7 @@
 	duration = 30 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/feintcd
-	name = "Feint Cooldown"
+	name = "Feint Cool down"
 	desc = "I used it. I must wait, or risk a lower chance of success."
 	icon_state = "feintcd"
 
