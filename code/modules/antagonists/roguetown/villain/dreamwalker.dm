@@ -81,6 +81,8 @@
 	REMOVE_TRAIT(body, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 	REMOVE_TRAIT(body, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 	REMOVE_TRAIT(body, TRAIT_ARCYNE_T4, TRAIT_GENERIC)
+	if(body.construct)
+		REMOVE_TRAIT(body, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	body.devotion = null
 
 /datum/outfit/job/roguetown/dreamwalker/pre_equip(mob/living/carbon/human/H) //Equipment is located below
@@ -103,8 +105,6 @@
 	H.change_stat(STATKEY_PER, 2)
 	H.change_stat(STATKEY_SPD, 2)
 	H.change_stat(STATKEY_WIL, 2)
-	if(H.construct)
-		REMOVE_TRAIT(body, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
