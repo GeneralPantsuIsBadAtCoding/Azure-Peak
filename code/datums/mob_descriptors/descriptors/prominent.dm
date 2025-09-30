@@ -145,6 +145,11 @@
 	verbage = "%HAVE%"
 	prefix = "a"
 
+/datum/mob_descriptor/prominent/prominent_bulge
+	name = "Prominent Bulge"
+	verbage = "%HAVE%"
+	prefix = "a"
+
 /datum/mob_descriptor/prominent/prominent_bottom
 	name = "Prominent Posterior"
 	verbage = "%HAVE%"

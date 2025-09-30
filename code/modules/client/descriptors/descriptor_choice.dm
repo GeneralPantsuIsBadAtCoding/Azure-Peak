@@ -315,6 +315,7 @@
 	/datum/mob_descriptor/prominent/move_strange,\
 	/datum/mob_descriptor/prominent/ghoulish_appearance,\
 	/datum/mob_descriptor/prominent/prominent_chest,\
+	/datum/mob_descriptor/prominent/prominent_bulge,\
 	/datum/mob_descriptor/prominent/prominent_thighs,\
 	/datum/mob_descriptor/prominent/prominent_shoulders,\
 	/datum/mob_descriptor/prominent/prominent_jawline,\
