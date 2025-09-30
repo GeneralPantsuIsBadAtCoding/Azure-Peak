@@ -13,7 +13,7 @@
 	var/locked = TRUE
 	var/budget = 0
 	var/wgain = 0
-	var/keycontrol = "merchant"
+	var/keycontrol = "physician"
 	var/obj/item/reagent_containers/glass/bottle/inserted
 
 /obj/structure/roguemachine/potionseller/Initialize()
