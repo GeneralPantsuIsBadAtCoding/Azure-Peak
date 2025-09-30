@@ -891,7 +891,6 @@
 #include "code\game\objects\buckling.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\examine.dm"
-#include "code\game\objects\icons_cache.dm"
 #include "code\game\objects\inhands_rogue.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\obj_defense.dm"

@@ -148,18 +148,8 @@
 			var/flipsprite = FALSE
 			if(!(get_held_index_of_item(I) % 2 == 0)) //righthand
 				flipsprite = TRUE
-
-			// Get cached mutable appearances directly
-			
-			inhand_overlay = I.getmoboverlay(used_prop, prop, mirrored=flipsprite)
-			behindhand_overlay = I.getmoboverlay(used_prop, prop, behind=TRUE, mirrored=flipsprite)
-
-			if(inhand_overlay)
-				inhand_overlay = new /mutable_appearance(inhand_overlay)
-				inhand_overlay.layer = -HANDS_LAYER
-			if(behindhand_overlay)
-				behindhand_overlay = new /mutable_appearance(behindhand_overlay)
-				behindhand_overlay.layer = -HANDS_BEHIND_LAYER
+			inhand_overlay = mutable_appearance(I.getmoboverlay(used_prop,prop,mirrored=flipsprite), layer=-HANDS_LAYER)
+			behindhand_overlay = mutable_appearance(I.getmoboverlay(used_prop,prop,behind=TRUE,mirrored=flipsprite), layer=-HANDS_BEHIND_LAYER)
 
 			inhand_overlay = center_image(inhand_overlay, I.inhand_x_dimension, I.inhand_y_dimension)
 			behindhand_overlay = center_image(behindhand_overlay, I.inhand_x_dimension, I.inhand_y_dimension)
