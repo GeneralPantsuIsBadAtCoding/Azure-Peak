@@ -96,11 +96,11 @@
 		trait_capped_level = SKILL_LEVEL_LEGENDARY
 	#endif
 
+	if(trait_capped_level && (trait_capped_level <= mind.current.get_skill_level(skill)))
+		amt = 0
+
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)
-
-	if(can_advance_pre && trait_capped_level && (trait_capped_level <= mind.current.get_skill_level(skill) + 1))
-		amt = 0
 
 	adjust_sleep_xp(skill, amt)
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
