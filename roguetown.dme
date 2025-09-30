@@ -2242,6 +2242,7 @@
 #include "code\modules\roguetown\roguemachine\mail.dm"
 #include "code\modules\roguetown\roguemachine\money.dm"
 #include "code\modules\roguetown\roguemachine\noticeboard.dm"
+#include "code\modules\roguetown\roguemachine\potionseller.dm"
 #include "code\modules\roguetown\roguemachine\scomm.dm"
 #include "code\modules\roguetown\roguemachine\submission.dm"
 #include "code\modules\roguetown\roguemachine\throne.dm"
