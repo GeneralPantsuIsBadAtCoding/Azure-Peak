@@ -113,7 +113,7 @@
 			say(!price ? "INSERT A BOTTLE BEFORE 'YA TAKE" : "INSERT A BOTTLE BEFORE 'YA BUY")
 			return
 		if(price > budget)
-			say(pick("NO MONEY NO HONEY!","OI, GET SOME DOSH OR +FUCK+ OFF!","DO SOME TEN O'CLOCK WORK AND COME BACK","EVERYBODY LAUGH AT YE POOR POCKETS"))
+			say("NO MONEY NO HONEY!")
 			return
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
