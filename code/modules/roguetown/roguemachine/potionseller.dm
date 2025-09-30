@@ -238,9 +238,9 @@
 		if(!locked)
 			contents += "UNLOCKED<HR>"
 		else if(!inserted)
-			contents += "No item inserted<HR>"
+			contents += "No container inserted<HR>"
 		else
-			contents += "Item inserted: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
+			contents += "Container inserted: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
 		if(locked)
 			contents += "<a href='?src=[REF(src)];change=1'>Stored Mammon:</a> [budget]<BR>"
 		else
@@ -250,9 +250,9 @@
 		if(!locked)
 			contents += "[stars("UNLOCKED")]<HR>"
 		else if(!inserted)
-			contents += "[stars("No item inserted")]<HR>"
+			contents += "[stars("No container inserted")]<HR>"
 		else
-			contents += "[stars("Item inserted")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
+			contents += "[stars("Container inserted")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume / 3, 0.1)]/[round(inserted.reagents.maximum_volume / 3, 0.1)] oz)<HR>"
 		if(locked)
 			contents += "<a href='?src=[REF(src)];change=1'>[stars("Stored Mammon:")]</a> [budget]<BR>"
 		else
