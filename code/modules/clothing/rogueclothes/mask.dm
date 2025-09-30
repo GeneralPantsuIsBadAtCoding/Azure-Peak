@@ -503,6 +503,9 @@
 /obj/item/clothing/mask/rogue/ragmask/red //predyed mask for NPCs
 	color = CLOTHING_RED
 
+/obj/item/clothing/mask/rogue/ragmask/black
+	color = CLOTHING_BLACK
+
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
 	item_state = "naledimask"
