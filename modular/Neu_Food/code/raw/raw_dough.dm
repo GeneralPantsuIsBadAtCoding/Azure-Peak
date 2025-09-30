@@ -205,17 +205,13 @@
 		else
 			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
 	if(I.get_sharpness())
-		if(!isdwarf(user))
-			to_chat(user, span_warning("You lack knowledge of dwarven pastries!"))
-			return
-		else
-			if(isturf(loc)&& (found_table))
-				playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-				to_chat(user, span_notice("Cutting the dough in strips and making a prezzel..."))
-				if(do_after(user,short_cooktime, target = src))
-					add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-					new /obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw(loc)
-					qdel(src)
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
+			to_chat(user, span_notice("Cutting the dough in strips and making a prezzel..."))
+			if(do_after(user,short_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw(loc)
+				qdel(src)
 			else
 				to_chat(user, span_warning("You need to put [src] on a table to cut it!"))
 	else
