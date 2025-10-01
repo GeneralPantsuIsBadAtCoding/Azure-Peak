@@ -22,7 +22,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE, //Wrestling down those nasty carp.
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/polearms = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN, // Fisher can also pole
 		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,

@@ -16,6 +16,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE, // Unlike most towner, you get Apprentice since that is the norm for magic class
 		/datum/skill/labor/farming = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,

@@ -20,6 +20,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 /datum/outfit/job/roguetown/adventurer/minstrel/pre_equip(mob/living/carbon/human/H)

@@ -16,7 +16,7 @@
 		STATKEY_SPD = -1
 	)
 	subclass_skills = list(
-		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE, // They use hammers, sawes and axes all day.
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN, // They use hammers, sawes and axes all day.
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE, 
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, 
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,

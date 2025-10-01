@@ -17,7 +17,7 @@
 	)
 	subclass_skills = list(
 		/datum/skill/combat/swords = SKILL_LEVEL_NOVICE,
-		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
