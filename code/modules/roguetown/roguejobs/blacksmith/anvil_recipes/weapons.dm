@@ -481,6 +481,14 @@
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/rogueweapon/sword/long
 
+/datum/anvil_recipe/weapons/steel/trainingsword
+	name = "Training Sword, Steel (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_sword
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/rogueweapon/sword/long/training
+	craftdiff = 3
+
 /datum/anvil_recipe/weapons/steel/kriegmesser
 	name = "Kriegmesser, Steel (+1 Steel)"
 	req_bar = /obj/item/ingot/steel

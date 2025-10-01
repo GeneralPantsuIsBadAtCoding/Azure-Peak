@@ -99,7 +99,7 @@
 	peel_divisor = 5
 
 /datum/intent/sword/peel/weak
-	name = "terrible armor peel"
+	name = "weak armor peel"
 	peel_divisor = 8
 
 /datum/intent/sword/chop
