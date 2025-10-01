@@ -132,6 +132,9 @@
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = inserted.reagents.maximum_volume - inserted.reagents.total_volume
+		if(buyer_volume < 1)
+			say("[uppertext("\the [inserted]")] IS FULL, INSERT AN EMPTY CONTAINER")
+			return
 		if(price > 0)
 			var/budget_vol = round(budget / price)
 			if(budget_vol > volume)
@@ -172,7 +175,7 @@
 		var/obj/item/reagent_containers/glass/bottle/alchemical/sold_bottle = new /obj/item/reagent_containers/glass/bottle/alchemical(get_turf(src))
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
-		var/buyer_volume = sold_bottle.reagents.maximum_volume
+		var/buyer_volume = sold_bottle.reagents.maximum_volume - sold_bottle.reagents.total_volume
 		var/vol_max = min(buyer_volume,volume)
 		quantity = input(usr, "How many dram to pour into \the [sold_bottle] ([vol_max] [UNIT_FORM_STRING(vol_max)] free)?", "\The [held_items[R.type]["NAME"]]") as num|null
 		quantity = round(text2num(quantity))
