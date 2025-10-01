@@ -9,6 +9,7 @@
 	cmode_music = 'sound/music/combat_physician.ogg'
 	subclass_stats = list(
 		STATKEY_INT = 3,
+		STATKEY_SPD = 2, // PATIENT IN MEDBAY STAT!!!
 		STATKEY_LCK = 1
 	)
 	subclass_skills = list(

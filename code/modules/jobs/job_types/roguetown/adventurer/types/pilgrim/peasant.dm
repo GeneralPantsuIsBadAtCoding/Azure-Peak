@@ -1,6 +1,6 @@
 /datum/advclass/peasant
 	name = "Farmer"
-	tutorial = "As a Peasant, you are a skilled farmer, able to grow a variety of crops \
+	tutorial = "You are a skilled farmer, able to grow a variety of crops \
 	Join the local Soilsmen at their farm, or make your own little orchard."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
@@ -9,7 +9,9 @@
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	subclass_stats = list(
 		STATKEY_STR = 1,
-		STATKEY_INT = -1
+		STATKEY_CON = 1,
+		STATKEY_WIL = 3, // Hard labor m'lord
+		STATKEY_INT = 1, // +1 Int is good for letting them "reach" higher level recipes
 	)
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	subclass_skills = list(

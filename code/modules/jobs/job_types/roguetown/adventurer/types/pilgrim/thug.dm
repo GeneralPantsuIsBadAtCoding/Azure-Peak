@@ -11,7 +11,7 @@
 	subclass_stats = list(
 		STATKEY_CON = 3,
 		STATKEY_STR = 2,
-		STATKEY_WIL = 1,
+		STATKEY_WIL = 2, // This is literally Struggler stats
 		STATKEY_INT = -1,
 		STATKEY_SPD = -1
 	)

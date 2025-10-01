@@ -9,8 +9,8 @@
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	subclass_stats = list(
-		STATKEY_PER = 3,
-		STATKEY_INT = 1,
+		STATKEY_PER = 3, // 3 Perception make for good scaling on bow
+		STATKEY_INT = 2, // + 1 Int for slightly faster learning / grinding
 		STATKEY_SPD = 1
 	)
 	subclass_skills = list(
@@ -73,7 +73,7 @@
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_CON = 1,
-		STATKEY_WIL = 1
+		STATKEY_WIL = 2, // + 1 Will for kiting
 	)
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,

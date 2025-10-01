@@ -8,7 +8,9 @@
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	traits_applied = list(TRAIT_CAUTIOUS_FISHER, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
-		STATKEY_PER = 2,
+		STATKEY_PER = 2, // No Str. Just perception and patience.
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2,
 		STATKEY_LCK = 2,
 		STATKEY_SPD = 1
 	)

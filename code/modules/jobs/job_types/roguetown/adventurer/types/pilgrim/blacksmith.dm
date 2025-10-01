@@ -10,8 +10,9 @@
 	traits_applied = list(TRAIT_TRAINED_SMITH, TRAIT_SMITHING_EXPERT)
 	subclass_stats = list(
 		STATKEY_WIL = 2,
-		STATKEY_CON = 2,
+		STATKEY_CON = 3,
 		STATKEY_STR = 1,
+		STATKEY_PER = 1, // Perception affect smithing from what I know
 		STATKEY_LCK = 1,
 		STATKEY_SPD = -1
 	)

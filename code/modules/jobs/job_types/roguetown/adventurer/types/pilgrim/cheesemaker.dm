@@ -10,9 +10,9 @@
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	subclass_stats = list(
-		STATKEY_INT = 2,
-		STATKEY_CON = 2,//Cheeese diet
-		STATKEY_WIL = 1
+		STATKEY_INT = 3, // Towner, more int for faster learning
+		STATKEY_CON = 2, //Cheeese diet
+		STATKEY_WIL = 2 // Endurance for working
 	)
 	subclass_skills = list(
 		/datum/skill/combat/swords = SKILL_LEVEL_NOVICE,

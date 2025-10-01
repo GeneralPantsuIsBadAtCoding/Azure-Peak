@@ -8,9 +8,10 @@
 	
 	category_tags = list(CTAG_TOWNER)
 	subclass_stats = list(
-		STATKEY_FOR = 2,
-		STATKEY_CON = 1,
+		STATKEY_FOR = 5, // High fortune just make sense. Inb4 Gambler Struggler Meta.
+		STATKEY_CON = 1, // One exception to the 7 points stats. 3 Weight not including Fortune
 		STATKEY_STR = 1,
+		STATKEY_SPD = 1, // Running away from your debt
 		STATKEY_INT = -2
 	)
 	subclass_skills = list(
