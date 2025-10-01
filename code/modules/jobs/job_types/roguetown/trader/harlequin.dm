@@ -4,6 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/harlequin
 	cmode_music = 'sound/music/combat_jester.ogg'
 	traits_applied = list(TRAIT_NUTCRACKER)
+	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
 	subclass_stats = list(
 		STATKEY_SPD = 2,

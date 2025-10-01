@@ -3,6 +3,7 @@
 	tutorial = "THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly."
 	outfit = /datum/outfit/job/roguetown/adventurer/doomsayer
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
+	class_select_category = CLASS_CAT_TRADER
 	traits_applied = list(TRAIT_SCHIZO_AMBIENCE)
 	subclass_stats = list(
 		STATKEY_INT = 3,

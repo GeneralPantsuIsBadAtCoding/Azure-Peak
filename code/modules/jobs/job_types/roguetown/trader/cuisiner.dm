@@ -4,6 +4,7 @@
 	the cutting board, and the hearth."
 	outfit = /datum/outfit/job/roguetown/adventurer/cuisiner
 	traits_applied = list(TRAIT_GOODLOVER)
+	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
 	subclass_stats = list(
 		STATKEY_INT = 3,

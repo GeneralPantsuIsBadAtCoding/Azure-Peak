@@ -3,6 +3,7 @@
 	tutorial = "You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch. You have the equipments and know how on how to make your own distiller, too."
 	outfit = /datum/outfit/job/roguetown/adventurer/brewer
 	traits_applied = list(TRAIT_CICERONE)
+	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
