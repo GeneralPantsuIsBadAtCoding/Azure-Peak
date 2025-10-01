@@ -25,7 +25,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/carpentry = SKILL_LEVEL_EXPERT, // Consolidating carpentry into this class
 		/datum/skill/craft/masonry = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/engineering = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
@@ -52,6 +52,7 @@
 						/obj/item/flint = 1,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/huntingknife = 1,
+						/obj/item/dye_brush = 1,
 						/obj/item/recipe_book/builder = 1,
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1

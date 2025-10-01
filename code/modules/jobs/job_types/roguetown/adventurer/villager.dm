@@ -24,7 +24,6 @@
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
 	job_subclasses = list(
 		/datum/advclass/blacksmith,
-		/datum/advclass/carpenter,
 		/datum/advclass/cheesemaker,
 		/datum/advclass/drunkard,
 		/datum/advclass/fisher,
