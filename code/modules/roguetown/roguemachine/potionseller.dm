@@ -117,7 +117,7 @@
 			return
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
-		var/buyer_volume = inserted.reagents.maximum_volume
+		var/buyer_volume = inserted.reagents.maximum_volume - inserted.reagents.total_volume
 		if(price > 0)
 			var/budget_vol = round(budget / price)
 			if(budget_vol > volume)
