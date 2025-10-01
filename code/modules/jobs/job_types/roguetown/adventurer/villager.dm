@@ -39,7 +39,7 @@
 		/datum/advclass/thug,
 		/datum/advclass/towndoctor,
 		/datum/advclass/witch,
-		/datum/advclass/woodcutter
+		/datum/advclass/woodworker
 	)
 
 /*

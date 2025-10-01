@@ -1,7 +1,7 @@
-/datum/advclass/woodcutter
-	name = "Woodcutter"
-	tutorial = "You are a strong Lumberjack, armed with an axe, you can gather wood \
-	either for yourself, or for others. You are a novice carpenter too, so you can bend wood into some items you need, and chop it efficiently"
+/datum/advclass/woodworker
+	name = "Woodworker"
+	tutorial = "You are a strong woodworker, armed with an axe, you can gather wood \
+	either for yourself, or for others. You are an expert carpenter too, so you can bend wood into items you need, and chop it efficiently"
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/woodcutter
