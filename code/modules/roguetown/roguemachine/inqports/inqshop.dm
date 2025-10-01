@@ -143,10 +143,10 @@
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/smokes/Initialize()
 	. = ..()
-	new /obj/item/smokebomb(src)
-	new /obj/item/smokebomb(src)
-	new /obj/item/smokebomb(src)
-	new /obj/item/smokebomb(src)
+	new /obj/item/bomb/smoke(src)
+	new /obj/item/bomb/smoke(src)
+	new /obj/item/bomb/smoke(src)
+	new /obj/item/bomb/smoke(src)
 
 /datum/inqports/supplies/psybuns
 	name = "The Otavan Bakery Special"

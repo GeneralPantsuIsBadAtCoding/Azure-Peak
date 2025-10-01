@@ -18,7 +18,18 @@
 	max_pq = null
 	round_contrib_points = 3
 
-	job_traits = list(TRAIT_ARCYNE_T2, TRAIT_MAGEARMOR, TRAIT_INTELLECTUAL, TRAIT_SEEPRICES_SHITTY)
+	job_traits = list(
+		TRAIT_ARCYNE_T2,
+		TRAIT_MAGEARMOR,
+		TRAIT_INTELLECTUAL,
+		TRAIT_SEEPRICES_SHITTY,
+		TRAIT_MEDICINE_EXPERT,
+		TRAIT_ALCHEMY_EXPERT,
+		TRAIT_SMITHING_EXPERT,
+		TRAIT_SEWING_EXPERT,
+		TRAIT_SURVIVAL_EXPERT,
+		TRAIT_HOMESTEAD_EXPERT, // Archivist teaches everyone everything.
+		)
 	advclass_cat_rolls = list(CTAG_ARCHIVIST = 2)
 	job_subclasses = list(
 		/datum/advclass/archivist
@@ -90,5 +101,3 @@
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)
-
-

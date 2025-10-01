@@ -7,9 +7,6 @@
 	/// Determines whether this intent can be used during click cd
 	var/bypasses_click_cd = FALSE
 
-/mob/living/carbon/human
-	var/bait_stacks
-
 /mob/living/carbon/human/on_cmode()
 	if(!cmode)	//We just toggled it off.
 		addtimer(CALLBACK(src, PROC_REF(purge_bait)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)

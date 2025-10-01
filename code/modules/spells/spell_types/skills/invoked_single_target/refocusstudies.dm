@@ -26,6 +26,8 @@
 	/datum/skill/craft/engineering,
 	/datum/skill/craft/tanning,
 	/datum/skill/craft/alchemy,
+	/datum/skill/craft/ceramics,
+	/datum/skill/craft/sewing,
 
 	/datum/skill/combat/knives,
 	/datum/skill/combat/swords,
@@ -58,9 +60,7 @@
 	/datum/skill/misc/riding,
 	/datum/skill/misc/music,
 	/datum/skill/misc/medicine,
-	/datum/skill/misc/sewing,
 	/datum/skill/misc/tracking,
-	/datum/skill/misc/ceramics
     )
 	for(var/i = 1, i <= skill_choices.len, i++)
 		var/datum/skill/learn_item = skill_choices[i]

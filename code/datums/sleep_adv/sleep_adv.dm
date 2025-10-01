@@ -85,17 +85,22 @@
 				COOLDOWN_START(src, xp_show, XP_SHOW_COOLDOWN)
 		return
 	var/datum/skill/skillref = GetSkillRef(skill)
-	var/trait_capped_level = FALSE
-	if(length(skillref.trait_restrictions))
-		for(var/trait in skillref.trait_restrictions)
-			trait_capped_level = skillref.trait_restrictions[trait]
-			if(!HAS_TRAIT(mind.current, trait) && mind.current.get_skill_level(skill) >= skillref.trait_restrictions[trait])	//We don't have the trait & we're at the skill limit.
-				return
+	var/trait_capped_level = skillref.max_untraited_level
+
+	#ifdef USES_TRAIT_SKILL_GATING
+	for(var/trait in skillref.trait_uncap)
+		if(HAS_TRAIT(mind.current, trait) && (skillref.trait_uncap[trait] > trait_capped_level))
+			trait_capped_level = skillref.trait_uncap[trait]
+	#endif
+	#ifndef USES_TRAIT_SKILL_GATING
+		trait_capped_level = SKILL_LEVEL_LEGENDARY
+	#endif
+
+	if(trait_capped_level && (trait_capped_level <= mind.current.get_skill_level(skill)))
+		amt = 0
+
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)
 	var/can_advance_pre = enough_sleep_xp_to_advance(skill, 1)
-
-	if(can_advance_pre && trait_capped_level && (trait_capped_level <= (mind.current.get_skill_level(skill) + 1)))
-		amt = 0
 
 	adjust_sleep_xp(skill, amt)
 	var/can_advance_post = enough_sleep_xp_to_advance(skill, 1)
@@ -257,7 +262,7 @@
 		to_chat(mind.current, span_notice(dream_text))
 	
 	// Notify player if they're benefiting from Malum's blessing for craft skills or sewing
-	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/misc/sewing)))
+	if(HAS_TRAIT(mind.current, TRAIT_FORGEBLESSED) && (istype(skill, /datum/skill/craft) || istype(skill, /datum/skill/craft/sewing)))
 		to_chat(mind.current, span_notice("Malum's blessing reduces the dream point cost of your crafting training."))
 	
 	sleep_adv_points -= get_skill_cost(skill_type)

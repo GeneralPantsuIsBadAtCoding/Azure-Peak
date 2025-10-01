@@ -154,8 +154,13 @@
 		if(T.hingot && istype(T.hingot, /obj/item/ingot))
 			var/obj/item/ingot/ingot = T.hingot
 
+			var/datum/component/anvil_quenchable/existing = ingot.GetComponent(/datum/component/anvil_quenchable)
+			if(!existing)
+				to_chat(user, span_warning("This item isn't finished yet, it requires more work."))
+				return
+
 			if(!T.hott)
-				to_chat(user, span_warning("The ingot must be hot to temper the metal"))
+				to_chat(user, span_warning("The ingot must be hot to temper the metal."))
 				return
 
 			// Check if we have enough water

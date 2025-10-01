@@ -76,5 +76,5 @@ GLOBAL_LIST_INIT(animal_to_undead, list(
 
 /datum/component/deadite_animal_reanimation/proc/get_reanimation_time()
 	if(has_world_trait(/datum/world_trait/zizo_pet_cementery))
-		return 1 MINUTES
+		return 1.5 MINUTES
 	return ZOMBIE_REANIMATION_TIMER
