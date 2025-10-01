@@ -109,6 +109,7 @@
 /obj/item/ammo_casing/caseless/rogue/arrow/blunt
 	name = "blunt arrow"
 	desc = "For when you really need to kill a zad."
+	icon_state = "arrow_blunt"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/blunt
 	force = 5
 	possible_item_intents = list(/datum/intent/mace/strike)
