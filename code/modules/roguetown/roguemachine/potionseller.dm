@@ -7,12 +7,14 @@
 	blade_dulling = DULLING_BASH
 	integrity_failure = 0.1
 	max_integrity = 0
+	debris = list(/obj/item/grown/log/tree/small, /obj/item/roguegear, /obj/item/natural/glass)
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	var/list/held_items = list()
 	var/locked = TRUE
 	var/budget = 0
 	var/wgain = 0
+	var/is_crafted = FALSE
 	var/keycontrol = "physician"
 	var/obj/item/reagent_containers/glass/bottle/inserted
 
@@ -32,6 +34,17 @@
 		inserted.forceMove(drop_location())
 	set_light(0)
 	return ..()
+
+/obj/structure/roguemachine/potionseller/crafted
+	is_crafted = TRUE
+	max_integrity = 100
+
+/obj/structure/roguemachine/potionseller/crafted/Initialize()
+	. = ..()
+	var/obj/item/roguekey/key = new /obj/item/roguekey/physician(get_turf(src))
+	key.lockid = "random_potion_peddler_id_[rand(1,9999999)]" // I know, not foolproof
+	key.name = "potion seller key"
+	keycontrol = key.lockid
 
 /obj/structure/roguemachine/potionseller/proc/insert(obj/item/P, mob/living/user)
 	if(!istype(P, /obj/item/reagent_containers/glass/bottle))
