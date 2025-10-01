@@ -47,10 +47,11 @@
 	testing("startadd")
 	for(var/datum/reagent/to_add in B.reagents.reagent_list)
 		var/already_exists = FALSE
-		for(var/datum/reagent/existing in reagents.reagent_list)
-			if(to_add == existing)
-				already_exists = TRUE
-				break
+		if(length(reagents.reagent_list))
+			for(var/datum/reagent/existing in reagents.reagent_list)
+				if(existing.type == to_add.type)
+					already_exists = TRUE
+					break
 		if(!already_exists)
 			held_items[to_add.type] = list()
 			held_items[to_add.type]["NAME"] = to_add.name
