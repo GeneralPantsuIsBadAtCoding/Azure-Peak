@@ -39,6 +39,7 @@
 /obj/item/ammo_casing/caseless/rogue/bolt/blunt
 	name = "blunt bolt"
 	desc = "A crossbow bolt without the part that pierces skulls. That doesn't mean it won't kill you."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/blunt
 	possible_item_intents = list(/datum/intent/mace/strike)
 	icon_state = "bolt_blunt"
 	force = 5
