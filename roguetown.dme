@@ -1921,6 +1921,7 @@
 #include "code\modules\mob\living\carbon\human\npc\orc\orc.dm"
 #include "code\modules\mob\living\carbon\human\npc\orc\orc_outfits.dm"
 #include "code\modules\mob\living\carbon\human\npc\skeleton\skeleton.dm"
+#include "code\modules\mob\living\carbon\human\npc\skeleton\skeleton_bogguard.dm"
 #include "code\modules\mob\living\carbon\human\npc\skeleton\skeleton_outfits.dm"
 #include "code\modules\mob\living\carbon\human\npc\soldiers\bog_deserters.dm"
 #include "code\modules\mob\living\carbon\human\npc\soldiers\highwayman.dm"
