@@ -12,7 +12,7 @@
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_dwarf.ogg'
 	extra_context = "This subclass is race-limited to: Dwarves."
-	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_TRAINED_SMITH)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_TRAINED_SMITH, TRAIT_SMITHING_EXPERT) // Another one off exception for a combat role
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_WIL = 3,

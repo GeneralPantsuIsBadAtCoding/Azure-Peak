@@ -59,6 +59,9 @@
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	if(skel_fragile)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(src, TRAIT_SELF_SUSTENANCE, TRAIT_GENERIC) // If not fragile, then you're summoned by a real antag
+		// Therefore you get the trait to grind up to Jman.
 	skeletonize()
 	if(skel_outfit)
 		var/datum/outfit/OU = new skel_outfit

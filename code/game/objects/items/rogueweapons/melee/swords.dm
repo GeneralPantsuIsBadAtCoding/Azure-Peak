@@ -977,25 +977,14 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 17
-	force_wielded = 20
+	force = 25
+	force_wielded = 25
 	minstr = 7
 	wdefense = 9
 	last_used = 0
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/gold
 	smelt_bar_num = 2
-
-/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 100,\
-		added_int = 100,\
-		added_def = 2,\
-	)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"

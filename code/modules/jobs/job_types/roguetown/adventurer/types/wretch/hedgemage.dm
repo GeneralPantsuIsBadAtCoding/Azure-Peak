@@ -7,7 +7,7 @@
 	outfit = /datum/outfit/job/roguetown/wretch/hedgemage
 	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	// Same stat spread as necromancer, same reasoning
 	subclass_stats = list(
 		STATKEY_INT = 4,

@@ -326,6 +326,11 @@
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
 
+/datum/stressevent/uncanny
+	stressadd = 2
+	desc = span_red("Their face is.. wrong!")
+	timer = 3 MINUTES	
+
 /datum/stressevent/syoncalamity
 	stressadd = 15
 	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
@@ -386,3 +391,8 @@
 	stressadd = 3
 	desc = span_boldred("The hood! My faith wavers without it. I feel ashamed.")
 	timer = 999 MINUTES
+
+/datum/stressevent/headless
+	stressadd = 3
+	desc = span_red("Where is their head? What is that flame?!")
+	timer = 5 MINUTES

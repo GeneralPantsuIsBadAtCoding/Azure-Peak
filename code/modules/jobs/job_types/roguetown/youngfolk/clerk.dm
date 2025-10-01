@@ -20,7 +20,7 @@
 	round_contrib_points = 2
 	advclass_cat_rolls = list(CTAG_CLERK = 2)
 
-	job_traits = list(TRAIT_SEEPRICES_SHITTY)
+	job_traits = list(TRAIT_SEEPRICES)
 	job_subclasses = list(
 		/datum/advclass/clerk
 	)
@@ -40,7 +40,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
