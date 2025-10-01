@@ -118,6 +118,11 @@
 	var/ooc_extra
 	var/is_legacy = FALSE
 	var/received_resident_key = FALSE
+	var/nsfwflavortext = null
+	var/nsfwflavortext_display = null
+	var/erpprefs = null
+	var/erpprefs_display = null
+	
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

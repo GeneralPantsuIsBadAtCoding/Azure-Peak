@@ -586,6 +586,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["ooc_extra"]			>> ooc_extra
 	S["ooc_extra_link"]		>> ooc_extra_link
 	S["is_legacy"]			>> is_legacy
+	S["nsfwflavortext"]	>> nsfwflavortext
+	S["nsfwflavortext_display"]	>> nsfwflavortext_display
+	S["erpprefs"]			>> erpprefs
+	S["erpprefs_display"]	>> erpprefs_display
 
 	S["char_accent"]		>> char_accent
 	if (!char_accent)
@@ -763,6 +767,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["virtuetwo"], virtuetwo.type)
 	WRITE_FILE(S["combat_music"], combat_music.type)
 	WRITE_FILE(S["body_size"] , features["body_size"])
+	WRITE_FILE(S["nsfwflavortext"], html_decode(nsfwflavortext))
+	WRITE_FILE(S["nsfwflavortext_display"], nsfwflavortext_display)
+	WRITE_FILE(S["erpprefs"], html_decode(erpprefs))
+	WRITE_FILE(S["erpprefs_display"], erpprefs_display)
+	
 	if(loadout)
 		WRITE_FILE(S["loadout"] , loadout.type)
 	else

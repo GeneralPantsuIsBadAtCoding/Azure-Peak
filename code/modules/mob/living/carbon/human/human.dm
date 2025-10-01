@@ -654,6 +654,8 @@
 						if("Flavor")
 							is_legacy = FALSE
 							flavortext = null
+							nsfwflavortext = null
+							nsfwflavortext_display = null
 							flavortext_display = null
 							client.prefs?.flavortext = null
 							client.prefs?.flavortext_display = null
@@ -661,6 +663,8 @@
 							is_legacy = FALSE
 							ooc_notes = null
 							ooc_notes_display = null
+							erpprefs = null
+							erpprefs_display = null
 							client.prefs?.ooc_notes = null
 							client.prefs?.ooc_notes_display = null
 						if("Extra")
@@ -683,6 +687,10 @@
 			if(alert(usr,"This cannot be undone. Are you sure?","DON'T FATFINGER THIS","Yes","No") == "Yes")
 				flavortext = null
 				flavortext_display = null
+				nsfwflavortext = null
+				nsfwflavortext_display = null
+				erpprefs = null
+				erpprefs_display = null
 				is_legacy = FALSE
 				ooc_notes = null
 				ooc_notes_display = null
@@ -691,6 +699,10 @@
 				if(client)
 					client.prefs?.flavortext = null
 					client.prefs?.flavortext_display = null
+					client.prefs?.nsfwflavortext = null
+					client.prefs?.nsfwflavortext_display = null
+					client.prefs?.erpprefs = null
+					client.prefs?.erpprefs_display = null
 					client.prefs?.is_legacy = FALSE
 					client.prefs?.ooc_notes = null
 					client.prefs?.ooc_notes_display = null
