@@ -135,10 +135,6 @@
 		return
 	qdel(src)
 
-/mob/living/carbon/human
-	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
-	var/mob/living/carbon/human/hostage //What hostage we have
-
 /mob/living/carbon/human/proc/attackhostage()
 	if(!istype(hostagetaker.get_active_held_item(), /obj/item/rogueweapon))
 		return
@@ -382,6 +378,34 @@
 	if(ishuman(user) && user.mind)
 		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
 		user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
+
+	// Dealing damage to the head beforehand is intentional.
+	if(limb_grabbed.body_zone == BODY_ZONE_HEAD && isdullahan(C))
+		var/mob/living/carbon/human/target = C
+		var/datum/species/dullahan/target_species = target.dna.species
+		var/obj/item/equipped_nodrop = target_species.get_nodrop_head()
+		if(equipped_nodrop)
+			target.visible_message(span_danger("[target]'s head fails to be twisted off!"), \
+				span_danger("[user] Tries to twist my head off but the [equipped_nodrop.name] keeps it bound to my neck!"))
+			to_chat(user, span_warning("[target]'s head stays bound to their neck because of the [equipped_nodrop.name]!"))
+			return
+
+		target.visible_message(span_danger("[target]'s head is being forcefully twisted off!"), \
+			span_danger("My head is being forcefully twisted off!"))
+		to_chat(user, span_warning("I begin twisting [target]'s head off."))
+
+		if(do_after(user, 6, target = target))
+			target.visible_message(span_danger("[target]'s head has been twisted off!"), \
+				span_userdanger("My head was twisted off!"))
+			to_chat(user, span_warning("I twist [target]'s head off."))
+
+			limb_grabbed.drop_limb(FALSE)
+
+			if(QDELETED(limb_grabbed))
+				return
+
+			qdel(src)
+			user.put_in_active_hand(limb_grabbed)
 
 /obj/item/grabbing/proc/headbutt(mob/living/carbon/human/H)
 	var/mob/living/carbon/C = grabbed

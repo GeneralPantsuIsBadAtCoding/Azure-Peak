@@ -855,10 +855,18 @@
 	if(HAS_TRAIT(user, TRAIT_BEAUTIFUL))
 		H.add_stress(/datum/stressevent/beautiful)
 		H.visible_message(span_notice("[H] admires [H.p_their()] reflection in [src]."), span_smallgreen("I look great!"))
-		// Apply Xylix buff when examining someone with the beautiful trait
-		if(HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy))
-			H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
-			to_chat(H, span_info("My beauty brings a smile to my face, and fortune to my steps!"))
+	if(HAS_TRAIT(H, TRAIT_BEAUTIFUL_UNCANNY))
+		if(prob(50) && !H.has_stress_event(/datum/stressevent/uncanny))
+			H.add_stress(/datum/stressevent/beautiful)
+			H.visible_message(span_notice("[H] admires [H.p_their()] reflection in [src]."), span_smallgreen("I look great.. From this angle."))
+		else 
+			if(!H.has_stress_event(/datum/stressevent/beautiful))
+				H.add_stress(/datum/stressevent/uncanny)
+				H.visible_message(span_notice("[H] admires [H.p_their()] reflection in [src]."), span_warning("I look awful!"))
 	if(HAS_TRAIT(H, TRAIT_UNSEEMLY))
 		to_chat(H, span_warning("Another reminder of my own horrid visage."))
 		H.add_stress(/datum/stressevent/unseemly)
+	// Apply Xylix buff when examining someone with the beautiful trait
+	if(HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy) && H.has_stress_event(/datum/stressevent/beautiful))
+		H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+		to_chat(H, span_info("My beauty brings a smile to my face, and fortune to my steps!"))

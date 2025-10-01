@@ -10,13 +10,19 @@
 		user.add_stress(/datum/stressevent/jesterphobia)
 	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL) && user != src)//it doesn't really make sense that you can examine your own face
 		user.add_stress(/datum/stressevent/beautiful)
-		// Apply Xylix buff when examining someone with the beautiful trait
-		if(HAS_TRAIT(user, TRAIT_XYLIX) && !user.has_status_effect(/datum/status_effect/buff/xylix_joy))
-			user.apply_status_effect(/datum/status_effect/buff/xylix_joy)
-			to_chat(user, span_info("Their beauty brings a smile to my face, and fortune to my steps!"))
 	if(HAS_TRAIT(src, TRAIT_UNSEEMLY) && user != src)
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
+	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL_UNCANNY) && user != src)
+		if(prob(50) && !user.has_stress_event(/datum/stressevent/uncanny))
+			user.add_stress(/datum/stressevent/beautiful)
+		else 
+			if(!user.has_stress_event(/datum/stressevent/beautiful))
+				user.add_stress(/datum/stressevent/uncanny)
+	// Apply Xylix buff when examining someone with the beautiful trait
+	if(HAS_TRAIT(user, TRAIT_XYLIX) && !user.has_status_effect(/datum/status_effect/buff/xylix_joy) && user.has_stress_event(/datum/stressevent/beautiful))
+		user.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+		to_chat(user, span_info("Their beauty brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/examine(mob/user)
 	var/observer_privilege = isobserver(user)
@@ -612,6 +618,10 @@
 	for(var/missing_zone in get_missing_limbs())
 		if(missing_zone == BODY_ZONE_HEAD)
 			missing_head = TRUE
+			if (isdullahan(src))
+				var/datum/species/dullahan/user_species = dna.species
+				if(user_species.headless && user != src && !isdullahan(user))
+					user.add_stress(/datum/stressevent/headless)
 		missing_limbs += parse_zone(missing_zone)
 
 	if(length(missing_limbs))
@@ -818,6 +828,29 @@
 			. += "<a href='?src=[REF(src)];inspect_limb=[checked_zone]'>Inspect [parse_zone(checked_zone)]</a>"
 			if(!(mobility_flags & MOBILITY_STAND) && user != src && (user.zone_selected == BODY_ZONE_CHEST))
 				. += "<a href='?src=[REF(src)];check_hb=1'>Listen to Heartbeat</a>"
+
+	if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && user != src)
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.STAINT > 9 && L.STAPER > 9)
+				if(HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+					. += span_warning("<i>They look battle-aware.</i>")
+				if(HAS_TRAIT(user, TRAIT_COMBAT_AWARE))
+					var/userheld = user.get_active_held_item()
+					var/srcheld = get_active_held_item()
+					var/datum/skill/user_skill = /datum/skill/combat/unarmed	//default
+					var/datum/skill/src_skill = /datum/skill/combat/unarmed
+					if(userheld)
+						var/obj/item/I = userheld
+						if(I.associated_skill)
+							user_skill = I.associated_skill
+					if(srcheld)
+						var/obj/item/I = srcheld
+						if(I.associated_skill)
+							src_skill = I.associated_skill
+					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
+					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
+
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

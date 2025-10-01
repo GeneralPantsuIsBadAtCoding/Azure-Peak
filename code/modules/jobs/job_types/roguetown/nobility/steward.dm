@@ -86,13 +86,5 @@ GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
 	if(world.time < GLOB.steward_tax_cooldown + 600 SECONDS)
 		to_chat(src, span_warning("You must wait [round((GLOB.steward_tax_cooldown + 600 SECONDS - world.time)/600, 0.1)] minutes before adjusting taxes again! Think of the realm."))
 		return FALSE
-	var/newtax = input(src, "Set a new tax percentage (1-99)", src, SStreasury.tax_value*100) as null|num
-	if(newtax)
-		if(findtext(num2text(newtax), "."))
-			return
-		newtax = CLAMP(newtax, 1, 99)
-		if(stat)
-			return
-		SStreasury.tax_value = newtax / 100
-		priority_announce("The new tax in Azure Peak shall be [newtax] percent.", "The Steward Meddles", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain")
-		GLOB.steward_tax_cooldown = world.time
+	var/datum/taxsetter/taxsetter = new("The Steward Meddles")
+	taxsetter.ui_interact(src)

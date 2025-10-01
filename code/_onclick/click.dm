@@ -349,6 +349,15 @@
 		return
 	if(W)
 		W.melee_attack_chain(src, A, params)
+		if(isliving(src))
+			var/mob/living/L = src
+			var/obj/item/offh = L.get_inactive_held_item()
+			if(offh && HAS_TRAIT(L, TRAIT_DUALWIELDER))
+				if((istype(W, offh) || istype(offh, W)) && W != offh && !(L.check_arm_grabbed(L.get_inactive_hand_index())) && (L.last_used_double_attack <= world.time))
+					if(L.stamina_add(2))
+						L.last_used_double_attack = world.time + 3 SECONDS
+						L.visible_message(span_warning("There's an opening! I strike with my off-hand weapon!"))
+						offh.melee_attack_chain(src, A, params)
 	else
 		if(ismob(A))
 			var/adf = used_intent.clickcd
@@ -587,7 +596,7 @@
 	return
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 	return
 
@@ -884,7 +893,7 @@
 
 /atom/proc/ShiftRightClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_RIGHT_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 
 /mob/proc/addtemptarget()

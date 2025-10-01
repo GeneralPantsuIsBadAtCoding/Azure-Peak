@@ -59,6 +59,9 @@
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	if(skel_fragile)
 		ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(src, TRAIT_SELF_SUSTENANCE, TRAIT_GENERIC) // If not fragile, then you're summoned by a real antag
+		// Therefore you get the trait to grind up to Jman.
 	skeletonize()
 	if(skel_outfit)
 		var/datum/outfit/OU = new skel_outfit
@@ -126,13 +129,14 @@
 		neck= /obj/item/clothing/neck/roguetown/chaincoif
 	if(prob(50))//CLOAK
 		cloak = /obj/item/clothing/cloak/stabard/bog
-	if(prob(45))//HANDS
-		r_hand = /obj/item/rogueweapon/sword
-		if(prob(45))
+	switch(rand(1, 3))
+		if(1)
+			r_hand = /obj/item/rogueweapon/sword/iron
+		if(2)
 			r_hand = /obj/item/rogueweapon/spear
-			if(prob(10))
-				r_hand = /obj/item/rogueweapon/mace
-	H.STASTR = rand(15,16)
+		if(3)
+			r_hand = /obj/item/rogueweapon/mace
+	H.STASTR = rand(12,14)
 	H.STASPD = 8
 	H.STACON = 4
 	H.STAWIL = 15

@@ -4,7 +4,13 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/homesteader
-	traits_applied = list(TRAIT_JACKOFALLTRADES)
+	traits_applied = list(TRAIT_JACKOFALLTRADES,
+		TRAIT_ALCHEMY_EXPERT,
+		TRAIT_SMITHING_EXPERT,
+		TRAIT_SEWING_EXPERT,
+		TRAIT_SURVIVAL_EXPERT,
+		TRAIT_HOMESTEAD_EXPERT // No medicine but they get the full package
+	)
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	adaptive_name = TRUE
 	subclass_stats = list(
@@ -28,8 +34,8 @@
 		/datum/skill/misc/music = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/ceramics = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/ceramics = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,

@@ -8,7 +8,7 @@
 	selection_color = JCOLOR_SOLDIER
 
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Typically a denizen of the sparsely populated Azurian woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilderness. \
 				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Marshal or the Crown. \
@@ -25,7 +25,7 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg'
-	job_traits = list(TRAIT_OUTDOORSMAN, TRAIT_WOODSMAN)
+	job_traits = list(TRAIT_OUTDOORSMAN, TRAIT_WOODSMAN, TRAIT_SURVIVAL_EXPERT)
 	job_subclasses = list(
 		/datum/advclass/bogguardsman/ranger,
 		/datum/advclass/bogguardsman/forester

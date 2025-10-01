@@ -33447,14 +33447,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
-"xtf" = (
-/obj/structure/bed/rogue,
-/obj/effect/landmark/start/beastmonger{
-	dir = 4
-	},
-/obj/item/bedsheet/rogue/wool,
-/turf/open/floor/rogue/twig,
-/area/rogue/indoors/town)
 "xtL" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -89923,7 +89915,7 @@ mbj
 mbj
 gXl
 bmi
-xtf
+jxA
 mbj
 tXZ
 tXZ

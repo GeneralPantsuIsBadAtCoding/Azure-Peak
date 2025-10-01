@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(media_tracks)
 		return
 
 	// Required
-	var/url = tgui_input_text(C, "REQUIRED: Provide URL for track, or paste JSON if you know what you're doing. See code comments.", "Track URL", multiline = TRUE)
+	var/url = tgui_input_text(C, "REQUIRED: Provide URL for track, or paste JSON if you know what you're doing. See code comments.", "Track URL", multiline = TRUE,  encode = FALSE)
 	if(!url)
 		return
 
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(media_tracks)
 		sort_tracks()
 		return
 
-	var/title = tgui_input_text(C, "REQUIRED: Provide title for track", "Track Title")
+	var/title = tgui_input_text(C, "REQUIRED: Provide title for track", "Track Title" ,  encode = FALSE)
 	if(!title)
 		return
 
@@ -121,11 +121,11 @@ SUBSYSTEM_DEF(media_tracks)
 		return
 
 	// Optional
-	var/artist = tgui_input_text(C, "Optional: Provide artist for track", "Track Artist")
+	var/artist = tgui_input_text(C, "Optional: Provide artist for track", "Track Artist",  encode = FALSE)
 	if(isnull(artist)) // Cancel rather than empty string
 		return
 
-	var/genre = tgui_input_text(C, "Optional: Provide genre for track (try to match an existing one)", "Track Genre")
+	var/genre = tgui_input_text(C, "Optional: Provide genre for track (try to match an existing one)", "Track Genre", encode = FALSE)
 	if(isnull(genre)) // Cancel rather than empty string
 		return
 
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(media_tracks)
 	if(!check_rights(R_DEBUG|R_FUN))
 		return
 
-	var/track = tgui_input_text(C, "Input track title or URL to remove (must be exact)", "Remove Track")
+	var/track = tgui_input_text(C, "Input track title or URL to remove (must be exact)", "Remove Track",  encode = FALSE)
 	if(!track)
 		return
 

@@ -232,6 +232,8 @@
 	if(mob_charge_effect)
 		mastermob?.vis_contents -= mob_charge_effect
 
+/datum/intent/proc/on_mmb(atom/target, mob/living/user, params)
+	return
 
 /datum/intent/use
 	name = "use"
@@ -245,48 +247,6 @@
 	releasedrain = 0
 	blade_class = BCLASS_PUNCH
 
-/datum/intent/kick
-	name = "kick"
-	candodge = TRUE
-	canparry = TRUE
-	chargetime = 0
-	chargedrain = 0
-	noaa = FALSE
-	swingdelay = 5
-	misscost = 20
-	unarmed = TRUE
-	animname = "kick"
-	pointer = 'icons/effects/mousemice/human_kick.dmi'
-
-/datum/intent/bite
-	name = "bite"
-	candodge = TRUE
-	canparry = TRUE
-	chargedrain = 0
-	chargetime = 0
-	swingdelay = 0
-	unarmed = TRUE
-	noaa = FALSE
-	animname = "bite"
-	attack_verb = list("bites")
-
-/datum/intent/jump
-	name = "jump"
-	candodge = FALSE
-	canparry = FALSE
-	chargedrain = 0
-	chargetime = 0
-	noaa = TRUE
-	pointer = 'icons/effects/mousemice/human_jump.dmi'
-
-/datum/intent/steal
-	name = "steal"
-	candodge = FALSE
-	canparry = FALSE
-	chargedrain = 0
-	chargetime = 0
-	noaa = TRUE
-
 /datum/intent/give
 	name = "give"
 	candodge = FALSE
@@ -295,14 +255,6 @@
 	chargetime = 0
 	noaa = TRUE
 	pointer = 'icons/effects/mousemice/human_give.dmi'
-
-/datum/intent/spell
-	name = "spell"
-	tranged = 1
-	chargedrain = 0
-	chargetime = 0
-	warnie = "aimwarn"
-	warnoffset = 0
 
 /datum/looping_sound/invokegen
 	mid_sounds = list('sound/magic/charging.ogg')
@@ -376,6 +328,19 @@
 	chargetime = 0
 	clickcd = 14 // Just like knife pick!
 	swingdelay = 12
+
+/datum/intent/pick/bad	//One-handed intents
+	name = "sluggish pick"
+	icon_state = "inpick"
+	attack_verb = list("picks","impales")
+	hitsound = list('sound/combat/hits/pick/genpick (1).ogg', 'sound/combat/hits/pick/genpick (2).ogg')
+	penfactor = 60
+	animname = "strike"
+	item_d_type = "stab"
+	blade_class = BCLASS_PICK
+	chargetime = 0
+	clickcd = 16 // Just like knife pick!
+	swingdelay = 16
 
 /datum/intent/pick/ranged
 	name = "ranged pick"

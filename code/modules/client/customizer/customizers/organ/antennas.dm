@@ -15,7 +15,6 @@
 	name = "Fluvian Antennas"
 	organ_type = /obj/item/organ/antennas/moth
 	sprite_accessories = list(
-		/datum/sprite_accessory/antenna/moth/none,
 		/datum/sprite_accessory/antenna/moth/plain,
 		/datum/sprite_accessory/antenna/moth/reddish,
 		/datum/sprite_accessory/antenna/moth/royal,

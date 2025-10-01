@@ -59,7 +59,7 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 	name = "sling"
 	desc = "Twisted fibers manifest into a strung pouch capable of hurling stones afar."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "sling"
 	item_state = "sling"
 	experimental_onhip = TRUE

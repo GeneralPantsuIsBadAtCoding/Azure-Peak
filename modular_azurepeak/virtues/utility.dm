@@ -13,16 +13,20 @@
 /datum/virtue/utility/beautiful
 	name = "Beautiful"
 	desc = "Wherever I go, I turn heads, such is my natural beauty. I am also rather good in bed, though they always say that."
-	custom_text = "Incompatible with Ugly virtue."
+	custom_text = "Incompatible with Ugly virtue. Has a special interaction with Revenants."
 	added_traits = list(TRAIT_BEAUTIFUL,TRAIT_GOODLOVER)
 	added_stashed_items = list(
 		"Hand Mirror" = /obj/item/handmirror)
 
 /datum/virtue/utility/beautiful/handle_traits(mob/living/carbon/human/recipient)
 	..()
+	if(isdullahan(recipient))
+		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
+		ADD_TRAIT(recipient, TRAIT_BEAUTIFUL_UNCANNY, TRAIT_VIRTUE)
 	if(HAS_TRAIT(recipient, TRAIT_UNSEEMLY))
 		to_chat(recipient, "Your attractiveness is cancelled out! You become normal.")
-		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
+		if(HAS_TRAIT(recipient, TRAIT_BEAUTIFUL))
+			REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
 		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
 
 /datum/virtue/utility/deadened
@@ -158,56 +162,6 @@
 	desc = "Some fell magick has rendered me inwardly unliving - I do not hunger, and I do not breathe."
 	added_traits = list(TRAIT_NOHUNGER, TRAIT_NOBREATH)
 
-/datum/virtue/utility/blacksmith
-	name = "Blacksmith's Apprentice"
-	desc = "In my youth, I worked under a skilled blacksmith, honing my skills with an anvil."
-	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
-						list(/datum/skill/craft/weaponsmithing, 2, 2),
-						list(/datum/skill/craft/armorsmithing, 2, 2),
-						list(/datum/skill/craft/blacksmithing, 2, 2),
-						list(/datum/skill/craft/smelting, 2, 2)
-	)
-
-/datum/virtue/utility/hunter
-	name = "Hunter's Apprentice"
-	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide."
-	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
-						list(/datum/skill/craft/traps, 2, 2),
-						list(/datum/skill/labor/butchering, 2, 2),
-						list(/datum/skill/misc/sewing, 2, 2),
-						list(/datum/skill/craft/tanning, 2, 2),
-						list(/datum/skill/misc/tracking, 2, 2)
-	)
-
-/datum/virtue/utility/artificer
-	name = "Artificer's Apprentice"
-	desc = "In my youth, I worked under a skilled artificer, studying construction and engineering."
-	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
-						list(/datum/skill/craft/carpentry, 2, 2),
-						list(/datum/skill/craft/masonry, 2, 2),
-						list(/datum/skill/craft/engineering, 2, 2),
-						list(/datum/skill/craft/smelting, 2, 2),
-						list(/datum/skill/misc/ceramics, 2, 2)
-	)
-	added_stashed_items = list(
-		"Hammer" = /obj/item/rogueweapon/hammer/wood,
-		"Chisel" = /obj/item/rogueweapon/chisel,
-		"Hand Saw" = /obj/item/rogueweapon/handsaw
-	)
-
-/datum/virtue/utility/physician
-	name = "Physician's Apprentice"
-	desc = "In my youth, I worked under a skilled physician, studying medicine and alchemy."
-	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
-	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
-						list(/datum/skill/craft/alchemy, 2, 2),
-						list(/datum/skill/misc/medicine, 2, 2)
-	)
-
-/datum/virtue/utility/physician/apply_to_human(mob/living/carbon/human/recipient)
-	if(!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/invoked/diagnose/secular))
-		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-
 /datum/virtue/utility/feral_appetite
 	name = "Feral Appetite"
 	desc = "Raw, toxic or spoiled food doesn't bother my superior digestive system."
@@ -258,6 +212,7 @@
 
 /datum/virtue/utility/granary
 	name = "Cunning Provisioner"
+	added_traits = list(TRAIT_HOMESTEAD_EXPERT)
 	desc = "You've worked in or around the docks enough to steal away a sack of supplies that no one would surely miss, just in case. You've picked up on some cooking and fishing tips in your spare time, as well."
 	added_stashed_items = list("Bag of Food" = /obj/item/storage/roguebag/food)
 	added_skills = list(list(/datum/skill/craft/cooking, 3, 6),
@@ -265,6 +220,7 @@
 
 /datum/virtue/utility/forester
 	name = "Forester"
+	added_traits = list(TRAIT_HOMESTEAD_EXPERT)
 	desc = "The forest is your home, or at least, it used to be. You always long to return and roam free once again, and you have not forgotten your knowledge on how to be self sufficient."
 	added_stashed_items = list("Trusty hoe" = /obj/item/rogueweapon/hoe)
 	added_skills = list(list(/datum/skill/craft/cooking, 2, 2),
@@ -273,14 +229,6 @@
 						list(/datum/skill/labor/fishing, 2, 2),
 						list(/datum/skill/labor/lumberjacking, 2, 2)
 	)
-
-/datum/virtue/utility/mining
-	name = "Miner's Apprentice"
-	desc = "The dark shafts, the damp smells of ichor and the laboring hours are no stranger to me. I keep my pickaxe and lamptern close, and have been taught how to mine well."
-	added_stashed_items = list(
-		"Steel Pickaxe" = /obj/item/rogueweapon/pick/steel,
-		"Lamptern" = /obj/item/flashlight/flare/torch/lantern)
-	added_skills = list(list(/datum/skill/labor/mining, 3, 6))
 
 /datum/virtue/utility/ugly
 	name = "Ugly"

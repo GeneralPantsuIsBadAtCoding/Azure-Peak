@@ -80,7 +80,7 @@
 	name = "crude selfbow"
 	desc = "This roughly hewn selfbow is just a bit too little of everything. Too little length, \
 	too little poundage, too slow a shot."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "bow"
 	item_state = "bow"
 	experimental_onhip = TRUE

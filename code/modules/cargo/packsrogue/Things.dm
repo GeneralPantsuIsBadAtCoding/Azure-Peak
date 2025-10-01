@@ -108,4 +108,20 @@
 /datum/supply_pack/rogue/Things/smokebomb
 	name = "Smoke Bomb"
 	cost = 30
-	contains = list(/obj/item/smokebomb)
+	contains = list(/obj/item/bomb/smoke)
+
+/datum/supply_pack/rogue/Things/satchel
+	name = "Satchel"
+	cost = 5
+	contains = list(/obj/item/storage/backpack/rogue/satchel)
+
+/datum/supply_pack/rogue/Things/backpack
+	name = "Backpack"
+	cost = 15
+	contains = list(/obj/item/storage/backpack/rogue/backpack)
+
+/datum/supply_pack/rogue/Things/belt
+	name = "Leather Belt"
+	cost = 5
+	contains = list(/obj/item/storage/belt/rogue/leather)
+

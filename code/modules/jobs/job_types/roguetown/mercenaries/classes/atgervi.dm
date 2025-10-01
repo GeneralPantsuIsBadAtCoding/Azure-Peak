@@ -42,8 +42,8 @@
 	to_chat(H, span_warning("You are a Varangian of the Gronn Highlands. Warrior-Traders whose exploits into the Raneshen Empire will be forever remembered by historians."))
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet/atgervi
 	gloves = /obj/item/clothing/gloves/roguetown/angle/atgervi
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi	//This is in armor and not shirt just to avoid seeing titty through it.
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/gronn
 	pants = /obj/item/clothing/under/roguetown/trou/leather/atgervi
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/atgervi
@@ -99,8 +99,8 @@
 	to_chat(H, span_warning("You are a Shaman of the Fjall, The Northern Empty. Savage combatants who commune with the Ecclesical Beast gods through ritualistic violence, rather than idle prayer."))
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 
-	head = /obj/item/clothing/head/roguetown/helmet/leather/saiga/atgervi
-	gloves = /obj/item/clothing/gloves/roguetown/plate/atgervi
+	head = /obj/item/clothing/head/roguetown/helmet/leather/shaman_hood
+	gloves = /obj/item/clothing/gloves/roguetown/angle/gronnfur
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/atgervi
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/trou/leather/atgervi
@@ -110,6 +110,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltl = /obj/item/flashlight/flare/torch
+	H.put_in_hands(new /obj/item/rogueweapon/handclaw/gronn, FALSE)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles.
@@ -126,6 +127,7 @@
 	desc = "The pride of the Hammerhold mercenaries a well crafted blend of chain and leather into a dense protective coat."
 	icon_state = "atgervi_raider_mail"
 	item_state = "atgervi_raider_mail"
+	max_integrity = 400
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/atgervi
 	name = "shamanic coat"
@@ -159,6 +161,7 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/32x48/atgervi.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	block2add = null
 	worn_x_dimension = 32
 	worn_y_dimension = 48
@@ -196,7 +199,7 @@
 	coverage = 80
 	attacked_sound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
-	max_integrity = 250
+	max_integrity = 300
 	experimental_inhand = FALSE
 
 /obj/item/rogueweapon/shield/atgervi/getonmobprop(tag)
@@ -215,6 +218,10 @@
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
 	wlength = WLENGTH_LONG
 	experimental_onhip = TRUE
+	wdefense = 5
+	max_blade_int = 250
+	force = 26
+	force_wielded = 33
 
 /obj/item/rogueweapon/stoneaxe/woodcut/steel/atgervi/getonmobprop(tag)
 	. = ..()

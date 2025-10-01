@@ -138,7 +138,7 @@
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
 	parrysound = list(
@@ -977,25 +977,14 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 17
-	force_wielded = 20
+	force = 25
+	force_wielded = 25
 	minstr = 7
 	wdefense = 9
 	last_used = 0
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/gold
 	smelt_bar_num = 2
-
-/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 100,\
-		added_int = 100,\
-		added_def = 2,\
-	)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
@@ -1190,7 +1179,7 @@
 /obj/item/rogueweapon/sword/rapier/eora
 	name = "\"Heartstring\""
 	desc = "A specialty-made bilbo hilt rapier made in service to Lady Eora. For the time when soft words can no longer be spoken, and hearts are to be pierced."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	icon_state = "eorarapier"
 	sheathe_icon = "eorarapier"
 	grid_width = 32
