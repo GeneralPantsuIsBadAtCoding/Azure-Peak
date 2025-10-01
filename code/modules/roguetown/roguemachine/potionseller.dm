@@ -118,11 +118,13 @@
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = inserted.reagents.maximum_volume
-		var/vol_max = min(buyer_volume,volume)
 		if(price > 0)
-			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])? ([price] mammons per dram)", "\The [held_items[R.type]["NAME"]]") as num|null
+			var/budget_vol = round(budget / price)
+			if(budget_vol > volume)
+				budget_vol = volume
+			quantity = input(usr, "How many dram to buy (can afford [budget_vol] [UNIT_FORM_STRING(budget_vol)])?", "\The [held_items[R.type]["NAME"]]") as num|null
 		else
-			quantity = input(usr, "How much to pour into \the [inserted] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
+			quantity = input(usr, "How many dram to pour?", "\The [held_items[R.type]["NAME"]]") as num|null
 		if(!usr.Adjacent(src))
 			return
 		quantity = round(quantity)
@@ -158,7 +160,7 @@
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = sold_bottle.reagents.maximum_volume
 		var/vol_max = min(buyer_volume,volume)
-		quantity = input(usr, "How much to pour into \the [sold_bottle] ([vol_max] [UNIT_FORM_STRING(vol_max)])?", "\The [held_items[R.type]["NAME"]]") as num|null
+		quantity = input(usr, "How many dram to pour into \the [sold_bottle] ([vol_max] [UNIT_FORM_STRING(vol_max)] free)?", "\The [held_items[R.type]["NAME"]]") as num|null
 		quantity = round(text2num(quantity))
 		if(quantity <= 0 || !usr.Adjacent(src))
 			qdel(sold_bottle)
@@ -248,7 +250,7 @@
 		if(!locked)
 			contents += "UNLOCKED<HR>"
 		else if(!inserted)
-			contents += "No container inserted<BR><a href='?src=[REF(src)];buybottle=1'>Buy a bottle for 10 mammons</a><HR>"
+			contents += "No container inserted<BR><a href='?src=[REF(src)];buybottle=1'>Buy bottle for 10 mammons</a><HR>"
 		else
 			contents += "Container inserted: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
 		if(locked)
@@ -260,7 +262,7 @@
 		if(!locked)
 			contents += "[stars("UNLOCKED")]<HR>"
 		else if(!inserted)
-			contents += "[stars("No container inserted")]<BR><a href='?src=[REF(src)];buybottle=1'>[stars("Buy a bottle for 10 mammons")]</a><HR>"
+			contents += "[stars("No container inserted")]<BR><a href='?src=[REF(src)];buybottle=1'>[stars("Buy bottle for 10 mammons")]</a><HR>"
 		else
 			contents += "[stars("Container inserted")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
 		if(locked)
