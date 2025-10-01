@@ -186,7 +186,7 @@
 	name = "blunt arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
 	damage = 15
-	armor_penetraton = 0
+	armor_penetration = 0
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
 
