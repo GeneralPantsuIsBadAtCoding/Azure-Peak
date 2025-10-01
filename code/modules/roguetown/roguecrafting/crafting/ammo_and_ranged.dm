@@ -145,11 +145,11 @@
 	name = "blunt arrow (x5)"
 	category = "Ranged"
 	result = list(
-		/obj/item/ammo_casing/caseless/rogue/arrow/blunt
-		/obj/item/ammo_casing/caseless/rogue/arrow/blunt
-		/obj/item/ammo_casing/caseless/rogue/arrow/blunt
-		/obj/item/ammo_casing/caseless/rogue/arrow/blunt
-		/obj/item/ammo_casing/caseless/rogue/arrow/blunt
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
 	)
 	reqs = list(
 		/obj/item/grown/log/tree/stick = 5,
