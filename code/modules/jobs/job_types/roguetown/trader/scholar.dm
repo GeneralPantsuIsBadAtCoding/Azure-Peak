@@ -2,7 +2,7 @@
 	name = "Scholar"
 	tutorial = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."
 	outfit = /datum/outfit/job/roguetown/adventurer/scholar
-	traits_applied = list(TRAIT_MAGEARMOR)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ALCHEMY_EXPERT)
 	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
 	subclass_stats = list(
