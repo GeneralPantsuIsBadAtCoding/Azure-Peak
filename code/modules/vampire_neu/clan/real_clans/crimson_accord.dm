@@ -23,3 +23,4 @@
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_SILVER_WEAK,
 	)
+	covens_to_select = 0

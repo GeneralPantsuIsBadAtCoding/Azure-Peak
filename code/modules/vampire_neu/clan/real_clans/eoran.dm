@@ -42,7 +42,7 @@
 		/datum/coven/eora
 	)
 	leader = /datum/clan_leader/eoran
-
+	covens_to_select = 0
 /datum/clan/eoran/get_blood_preference_string()
 	return "Regular blood, blood of your loved ones"
 

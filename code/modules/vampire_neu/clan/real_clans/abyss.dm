@@ -9,6 +9,7 @@
 		/datum/coven/presence,
 		/datum/coven/demonic,
 	)
+	covens_to_select = 0
 
 /datum/clan/abyss/on_gain(mob/living/carbon/human/H, is_vampire = TRUE)
 	. = ..()

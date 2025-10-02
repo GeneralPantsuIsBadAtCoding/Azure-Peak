@@ -41,6 +41,7 @@
 		TRAIT_KEENEARS,
 		TRAIT_SILVER_WEAK,
 	)
+	covens_to_select = 0
 
 /datum/clan/nosferatu/get_downside_string()
 	return "have a hideous face, and suffer in the sun"

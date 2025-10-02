@@ -22,6 +22,7 @@
 		/datum/coven/bloodheal
 	)
 	leader = /datum/clan_leader/thronleer
+	covens_to_select = 0
 
 /datum/clan/thronleer/get_blood_preference_string()
 	return "prepared blood"
