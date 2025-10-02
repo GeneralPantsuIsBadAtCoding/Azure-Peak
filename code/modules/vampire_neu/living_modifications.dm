@@ -19,7 +19,6 @@
 	var/masquerade = 5
 
 	var/last_masquerade_violation = 0
-	var/resistant_to_covens = FALSE
 
 	var/coven_time_plus = 0
 
@@ -29,17 +28,11 @@
 	var/atom/frenzy_target = null
 
 	var/last_drinkblood_use = 0
-	var/last_bloodpower_click = 0
-	var/last_drinkblood_click = 0
-
-	var/list/drunked_of = list()
 
 	var/frenzy_chance_boost = 10
 	var/humanity = 7
 
 	var/potence_weapon_buff = 0
-
-	var/celerity_visual = FALSE
 
 	/// List of covens this mob possesses
 	var/list/datum/coven/covens
