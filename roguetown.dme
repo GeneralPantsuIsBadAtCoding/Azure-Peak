@@ -582,6 +582,7 @@
 #include "code\datums\character_flaw\addiction.dm"
 #include "code\datums\character_flaw\limbloss.dm"
 #include "code\datums\components\_component.dm"
+#include "code\datums\components\after_image.dm"
 #include "code\datums\components\anti_magic.dm"
 #include "code\datums\components\art.dm"
 #include "code\datums\components\baothajoyride.dm"

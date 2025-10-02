@@ -7,29 +7,19 @@
 /datum/coven_power/celerity
 	name = "Celerity power name"
 	desc = "Celerity power description"
-	var/multiplicative_slowdown = -0.5
+	var/multiplicative_slowdown = -0.2
 
-/datum/coven_power/celerity/proc/celerity_visual(datum/coven_power/celerity/source, atom/newloc, dir)
-	SIGNAL_HANDLER
-
-	spawn()
-		var/obj/effect/celerity/C = new(owner.loc)
-		C.name = owner.name
-		C.appearance = owner.appearance
-		C.dir = owner.dir
-		animate(C, pixel_x = rand(-16, 16), pixel_y = rand(-16, 16), alpha = 0, time = 0.5 SECONDS)
-		if(owner.CheckEyewitness(owner, owner, 7, FALSE))
-			owner.AdjustMasquerade(-1)
-
-/obj/effect/celerity
-	name = "Afterimage"
-	desc = "..."
-	anchored = TRUE
-
-/obj/effect/celerity/Initialize()
+/datum/coven_power/celerity/activate(atom/target)
 	. = ..()
-	spawn(0.5 SECONDS)
-		qdel(src)
+	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = src.multiplicative_slowdown)
+	owner.apply_status_effect(/datum/status_effect/buff/celerity, level)
+	owner.AddComponent(/datum/component/after_image)
+
+/datum/coven_power/celerity/deactivate(atom/target, direct)
+	. = ..()
+	qdel(owner.GetComponent(/datum/component/after_image))
+	owner.remove_status_effect(/datum/status_effect/buff/celerity)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
 
 //CELERITY 1
 /datum/coven_power/celerity/one
@@ -49,20 +39,7 @@
 		/datum/coven_power/celerity/five
 	)
 
-/datum/coven_power/celerity/one/activate()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(celerity_visual))
-
-	owner.celerity_visual = TRUE
-	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = -0.2)
-	owner.apply_status_effect(/datum/status_effect/buff/celerity, level)
-
-/datum/coven_power/celerity/one/deactivate()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-	owner.celerity_visual = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
+	multiplicative_slowdown = -0.2
 
 //CELERITY 2
 
@@ -82,19 +59,7 @@
 		/datum/coven_power/celerity/five
 	)
 
-/datum/coven_power/celerity/two/activate()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(celerity_visual))
-
-	owner.celerity_visual = TRUE
-	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = -0.4)
-
-/datum/coven_power/celerity/two/deactivate()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-	owner.celerity_visual = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
+	multiplicative_slowdown = -0.4
 
 //CELERITY 3
 /datum/coven_power/celerity/three
@@ -114,19 +79,7 @@
 		/datum/coven_power/celerity/five
 	)
 
-/datum/coven_power/celerity/three/activate()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(celerity_visual))
-
-	owner.celerity_visual = TRUE
-	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = -0.5)
-
-/datum/coven_power/celerity/three/deactivate()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-	owner.celerity_visual = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
+	multiplicative_slowdown = -0.5
 
 //CELERITY 4
 /datum/coven_power/celerity/four
@@ -147,19 +100,7 @@
 		/datum/coven_power/celerity/five
 	)
 
-/datum/coven_power/celerity/four/activate()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(celerity_visual))
-
-	owner.celerity_visual = TRUE
-	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = -0.8)
-
-/datum/coven_power/celerity/four/deactivate()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-	owner.celerity_visual = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
+	multiplicative_slowdown = -0.8
 
 //CELERITY 5
 /datum/coven_power/celerity/five
@@ -180,16 +121,4 @@
 		/datum/coven_power/celerity/four
 	)
 
-/datum/coven_power/celerity/five/activate()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(celerity_visual))
-
-	owner.celerity_visual = TRUE
-	owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY, multiplicative_slowdown = -1)
-
-/datum/coven_power/celerity/five/deactivate()
-	. = ..()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-
-	owner.celerity_visual = FALSE
-	owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY)
+	multiplicative_slowdown = -1
