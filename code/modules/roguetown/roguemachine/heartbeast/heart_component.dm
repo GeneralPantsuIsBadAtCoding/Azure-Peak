@@ -26,6 +26,9 @@
 	var/list/active_quirks = list()
 	var/list/language_quirks = list()
 
+	var/task_presentation_time = 0 // When the current task was last presented to the listener
+	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
+
 /datum/component/chimeric_heart_beast/Initialize()
 	. = ..()
 	if(!istype(parent, /obj/structure/roguemachine/chimeric_heart_beast))
@@ -54,7 +57,7 @@
 /datum/component/chimeric_heart_beast/proc/has_quirk(quirk_type)
 	return active_quirks[quirk_type] != null
 
-/datum/component/chimeric_heart_beast/proc/apply_language_quirks(mob/speaker, message)
+/datum/component/chimeric_heart_beast/proc/apply_language_quirks(mob/speaker, message, response_time)
 	var/list/penalties = list()
 	penalties["score_penalty"] = 0
 	penalties["score_bonus"] = 0
@@ -68,7 +71,7 @@
 
 	// Use default values, but apply differences for each language quirk that acts up
 	for(var/datum/flesh_quirk/quirk in language_quirks)
-		var/list/quirk_effects = quirk.apply_language_quirk(speaker, message, src)
+		var/list/quirk_effects = quirk.apply_language_quirk(speaker, message, response_time, src)
 		if(quirk_effects)
 			penalties["score_penalty"] += quirk_effects["score_penalty"]
 			penalties["score_bonus"] += quirk_effects["score_bonus"]
@@ -136,6 +139,7 @@
 /datum/component/chimeric_heart_beast/proc/set_current_listener(mob/user)
 	current_listener = user
 	listener_timeout_time = world.time + 1 MINUTES
+	task_presentation_time = world.time
 
 /datum/component/chimeric_heart_beast/proc/clear_listener()
 	current_listener = null
@@ -159,7 +163,8 @@
 	if(!istype(task))
 		return
 
-	var/list/quirk_effects = apply_language_quirks(speaker, message)
+	var/response_time = world.time - task_presentation_time
+	var/list/quirk_effects = apply_language_quirks(speaker, message, response_time)
 
 	var/score = 0
 	var/word_count = length(splittext(message, " "))

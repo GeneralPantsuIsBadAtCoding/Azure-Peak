@@ -3,10 +3,10 @@
 	var/description = "A behavioral quirk"
 	var/list/conflicting_quirks = list()
 	var/special_behavior = null // Proc reference for special behavior
-	var/rarity = 1 // Higher = less common
+	var/rarity = 10 // Higher = more common
 	var/quirk_type = QUIRK_LANGUAGE
 
-/datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	return null
 
 /datum/flesh_quirk/obedient
@@ -15,7 +15,7 @@
 	conflicting_quirks = list(/datum/flesh_quirk/stubborn, /datum/flesh_quirk/timid, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
 
-/datum/flesh_quirk/obedient/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/obedient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
 	var/last_char = copytext(message, -1)
 
@@ -34,7 +34,7 @@
 	rarity = 2
 	quirk_type = QUIRK_LANGUAGE
 
-/datum/flesh_quirk/curious/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/curious/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
 	var/last_char = copytext(message, -1)
 
@@ -50,13 +50,50 @@
 	name = "Impatient"
 	description = "Prefers quick responses and gets frustrated by delays"
 	conflicting_quirks = list(/datum/flesh_quirk/patient)
-	//special_behavior = /proc/quirk_impatient_behavior
+	quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/impatient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+
+	if(response_time > beast.response_time_threshold)
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0.5
+
+	return effects
 
 /datum/flesh_quirk/royal
 	name = "Royal"
 	description = "Demands to be addressed by a specific title"
-	//special_behavior = /proc/quirk_royal_behavior
-	rarity = 3
+	quirk_type = QUIRK_LANGUAGE
+	rarity = 5
+
+/datum/flesh_quirk/royal/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast, response_time)
+	var/list/effects = list()
+	
+	// Royal quirk only manifests at tier 2 and above
+	if(beast.language_tier < 2)
+		return effects
+
+	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast = beast.heart_beast
+	var/royal_title = heart_beast.royal_title
+
+	var/has_title = findtext(lowertext(message), lowertext(royal_title))
+	if(!has_title)
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0
+
+		var/feedback_chance = beast.language_tier * 25
+		// Tier-appropriate feedback
+		if(prob(feedback_chance))
+			switch(beast.language_tier)
+				if(2)
+					heart_beast.visible_message(span_warning("[heart_beast] seems offended!"))
+				if(3)
+					heart_beast.visible_message(span_warning("[heart_beast] appears deeply offended!"))
+				if(4)
+					heart_beast.visible_message(span_cultlarge("[heart_beast] radiates displeasure!"))
+
+	return effects
 
 /datum/flesh_quirk/discharge
 	name = "Discharge"
@@ -74,7 +111,7 @@
 	conflicting_quirks = list(/datum/flesh_quirk/royal, /datum/flesh_quirk/obedient, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
 
-/datum/flesh_quirk/timid/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/timid/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
 	var/last_char = copytext(message, -1)
 
@@ -94,7 +131,7 @@
 	name = "Ambitious"
 	description = "Responds better to people with titles or authority"
 	//special_behavior = /proc/quirk_ambitious_behavior
-	rarity = 2
+	rarity = 1
 
 /datum/flesh_quirk/forgetful
 	name = "Forgetful"
@@ -106,7 +143,7 @@
 	description = "Seeks physical proximity and gentle treatment"
 	quirk_type = QUIRK_LANGUAGE
 
-/datum/flesh_quirk/affectionate/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/affectionate/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
 	var/distance = get_dist(beast.heart_beast, speaker)
 	to_chat(world, span_userdanger("DISTANCE = [distance]"))
@@ -126,7 +163,7 @@
 	name = "Mimic"
 	description = "Tends to copy speech patterns and behaviors"
 	//special_behavior = /proc/quirk_mimic_behavior
-	rarity = 3
+	rarity = 1
 
 /datum/flesh_quirk/hoarder
 	name = "Hoarder"
@@ -143,5 +180,14 @@
 	name = "Patient"
 	description = "Willing to wait for thoughtful responses"
 	conflicting_quirks = list(/datum/flesh_quirk/impatient)
-	//special_behavior = /proc/quirk_patient_behavior
-	rarity = 2
+	quirk_type = QUIRK_LANGUAGE
+	rarity = 5
+
+/datum/flesh_quirk/patient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+
+	if(response_time < beast.response_time_threshold)
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0
+
+	return effects
