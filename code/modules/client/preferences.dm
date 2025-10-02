@@ -181,18 +181,14 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/datum/loadout_item/loadout3
 
 	var/flavortext
-	var/flavortext_display
-
-	var/is_legacy = FALSE
 
 	var/ooc_notes
-	var/ooc_notes_display
 
 	var/nsfwflavortext
-	var/nsfwflavortext_display
 
 	var/erpprefs
-	var/erpprefs_display
+
+	var/list/img_gallery = list()
 	
 	var/datum/familiar_prefs/familiar_prefs
 
@@ -496,14 +492,14 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
 				dat += "<br><img src='[headshot_link]' width='100px' height='100px'>"
-			if(is_legacy)
-				dat += "<br><i><font size = 1>(Legacy)<a href='?_src_=prefs;preference=legacyhelp;task=input'>(?)</a></font></i>"
 
 			dat += "<br><b>[(length(flavortext) < MINIMUM_FLAVOR_TEXT) ? "<font color = '#802929'>" : ""]Flavortext:[(length(flavortext) < MINIMUM_FLAVOR_TEXT) ? "</font>" : ""]</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=flavortext;task=input'>Change</a>"
 			dat += "<br><b>NSFW Flavortext:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=nsfwflavortext;task=input'>Change</a>"
 			dat += "<br><b>[(length(ooc_notes) < MINIMUM_OOC_NOTES) ? "<font color = '#802929'>" : ""]OOC Notes:[(length(ooc_notes) < MINIMUM_OOC_NOTES) ? "</font>" : ""]</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=ooc_notes;task=input'>Change</a>"
 			dat += "<br><b>ERP Preferences:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=erpprefs;task=input'>Change</a>"
 			dat += "<br><b>OOC Extra:</b> <a href='?_src_=prefs;preference=ooc_extra;task=input'>Change</a>"
+			dat += "<br><B>Image Gallery:</b> <a href='?_src_=prefs;preference=img_gallery;task=input'>Add</a>"
+			dat+= "<br><a href='?_src_=prefs;preference=clear_gallery;task=input'><b>Clear Gallery</b></a>"
 			dat += "<br><a href='?_src_=prefs;preference=ooc_preview;task=input'><b>Preview Examine</b></a>"
 
 			dat += "<br><b>Loadout Item I:</b> <a href='?_src_=prefs;preference=loadout_item;task=input'>[loadout ? loadout.name : "None"]</a>"
@@ -1765,16 +1761,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(new_flavortext == "")
 						flavortext = null
-						flavortext_display = null
-						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					flavortext = new_flavortext
-					var/ft = flavortext
-					ft = html_encode(ft)
-					ft = replacetext(parsemarkdown_basic(ft), "\n", "<BR>")
-					flavortext_display = ft
-					is_legacy = FALSE
 					to_chat(user, "<span class='notice'>Successfully updated flavortext</span>")
 					log_game("[user] has set their flavortext'.")
 				if("ooc_notes")
@@ -1784,16 +1773,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(new_ooc_notes == "")
 						ooc_notes = null
-						ooc_notes_display = null
-						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					ooc_notes = new_ooc_notes
-					var/ooc = ooc_notes
-					ooc = html_encode(ooc)
-					ooc = replacetext(parsemarkdown_basic(ooc), "\n", "<BR>")
-					ooc_notes_display = ooc
-					is_legacy = FALSE
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
 					log_game("[user] has set their OOC notes'.")
 				if("nsfwflavortext")
@@ -1802,17 +1784,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(new_nsfwflavortext == null)
 						return
 					if(new_nsfwflavortext == "")
-						nsfwflavortext = null
-						nsfwflavortext_display = null
-						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					nsfwflavortext = new_nsfwflavortext
-					var/nsfwft = nsfwflavortext
-					nsfwft = html_encode(nsfwft)
-					nsfwft = replacetext(parsemarkdown_basic(nsfwft), "\n", "<BR>")
-					nsfwflavortext_display = nsfwft
-					is_legacy = FALSE
 					to_chat(user, "<span class='notice'>Successfully updated NSFW flavortext</span>")
 					log_game("[user] has set their NSFW flavortext'.")
 				if("erpprefs")
@@ -1822,45 +1796,57 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(new_erpprefs == "")
 						erpprefs = null
-						erpprefs_display = null
-						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					erpprefs = new_erpprefs
-					var/eprefs = erpprefs
-					eprefs = html_encode(eprefs)
-					eprefs = replacetext(parsemarkdown_basic(eprefs), "\n", "<BR>")
-					erpprefs_display = eprefs
-					is_legacy = FALSE
 					to_chat(user, "<span class='notice'>Successfully updated ERP Preferences.</span>")
 					log_game("[user] has set their ERP preferences'.")
+
+				if("img_gallery")
+
+					if(img_gallery.len >= 3)
+						to_chat(user, "You already have three images in your gallery!")
+						return
+
+					to_chat(user, "<span class='notice'>Please use a relatively SFW image ["<span class='bold>of your character</span>"] to maintain immersion level. Lastly, ["<span class='bold'>do not use a real life photo or use any image that is less than serious.</span>"]</span>")
+					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
+					to_chat(user, "<span class='notice'>Keep in mind that all three images are displayed next to eachother and justified to fill a horizontal rectangle. As such, vertical images work best.</span>")
+					to_chat(user, "<span class='notice'>You can only have a maximum of ["span class='bold>THREE IMAGES</span>"] in your gallery at a time.</span>")
+					
+					var/new_galleryimg = tgui_input_text(user, "Input the image link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "Gallery Image",  encode = FALSE)
+
+					if(new_galleryimg == null)
+						return
+					if(new_galleryimg == "")
+						new_galleryimg = null
+						ShowChoices(user)
+						return
+					if(!valid_headshot_link(user, new_galleryimg))
+						to_chat(user, "<span class='notice'>Invalid image link. Make sure it's a direct link from a valid host (gyazo, discord, lensdump, imgbox, catbox).</span>")
+						new_galleryimg = null
+						ShowChoices(user)
+						return
+					img_gallery += new_galleryimg
+					to_chat(user, "<span class='notice'>Successfully added image to gallery.</span>")
+					log_game("[user] has added an image to their gallery: '[new_galleryimg]'.")
+
+				if("clear_gallery")
+					if(!img_gallery.len)
+						to_chat(user, "You don't have any images in your gallery to clear!")
+						return
+					var/dachoice = tgui_alert(user, "Do you really want to clear your image gallery?", "Clear Gallery", list("Yae", "Nae"))
+					if(dachoice == "Nae")
+						ShowChoices(user)
+						return
+					img_gallery = list()
+					to_chat(user, "<span class='notice'>Successfully cleared image gallery.</span>")
+					log_game("[user] has cleared their image gallery.")
 
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
-					var/legacy_check = FALSE
-					if(isnull(flavortext_display) && !isnull(flavortext))	//If there's an FT already in the slot, but no _display, that means it's a legacy slot.
-						is_legacy = TRUE
-						legacy_check = TRUE
-						flavortext_display = replacetext(flavortext, "\n", "<BR>")
-					if(isnull(ooc_notes_display) && !isnull(ooc_notes))
-						is_legacy = TRUE
-						legacy_check = TRUE
-						ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
-					if(legacy_check)
-						save_character()
-						ShowChoices(user)
-						return
-					if(is_legacy)
-						dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
 					if(valid_headshot_link(null, headshot_link, TRUE))
 						dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
-					if(flavortext && flavortext_display)
-						dat += "<div align='left'>[flavortext_display]</div>"
-					if(ooc_notes && ooc_notes_display)
-						dat += "<br>"
-						dat += "<div align='center'><b>OOC notes</b></div>"
-						dat += "<div align='left'>[ooc_notes_display]</div>"
 					if(ooc_extra)
 						dat += "<div align='center'>[ooc_extra]</div>"
 					var/datum/browser/popup = new(user, "[real_name]", nwidth = 600, nheight = 800)
@@ -2590,22 +2576,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.statpack = statpack
 
 	character.flavortext = flavortext
-
-	character.flavortext_display = flavortext_display
 	
 	character.ooc_notes = ooc_notes
 
-	character.ooc_notes_display = ooc_notes_display
-
 	character.nsfwflavortext = nsfwflavortext
-
-	character.nsfwflavortext_display = nsfwflavortext_display
 
 	character.erpprefs = erpprefs
 
-	character.erpprefs_display = erpprefs_display
-
-	character.is_legacy = is_legacy
+	character.img_gallery = img_gallery
 
 	character.ooc_extra_link = ooc_extra_link
 
