@@ -139,14 +139,14 @@
 /datum/coven_power/siren/sirens_beckoning/activate()
 	. = ..()
 	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
-		listener.Stun(2 SECONDS)
+		listener.Stun(5 SECONDS)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
 		var/mutable_appearance/song_overlay = mutable_appearance('icons/effects/clan.dmi', "song", -MUTATIONS_LAYER)
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 5 SECONDS)
 
 /datum/coven_power/siren/sirens_beckoning/deactivate(mob/living/carbon/human/target)
 	. = ..()
@@ -168,7 +168,7 @@
 /datum/coven_power/siren/shattering_crescendo/activate()
 	. = ..()
 	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
-		listener.Stun(2 SECONDS)
+		listener.Stun(5 SECONDS)
 		listener.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -176,7 +176,7 @@
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 5 SECONDS)
 
 /datum/coven_power/siren/shattering_crescendo/deactivate(mob/living/carbon/human/target)
 	. = ..()

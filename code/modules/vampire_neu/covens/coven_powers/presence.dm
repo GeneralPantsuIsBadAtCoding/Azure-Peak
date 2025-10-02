@@ -68,15 +68,6 @@
 	multi_activate = TRUE
 	cooldown_length = 15 SECONDS
 
-/datum/coven_power/presence/dread_gaze/pre_activation_checks(mob/living/target)
-	var/mypower = owner.STAINT
-	var/theirpower = owner.STAINT - 5
-	if((theirpower >= mypower))
-		to_chat(owner, span_warning("[target]'s mind is too powerful to sway!"))
-		return FALSE
-
-	return TRUE
-
 /datum/coven_power/presence/dread_gaze/activate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
@@ -115,16 +106,7 @@
 	range = 7
 
 	multi_activate = TRUE
-	cooldown_length = 120 SECONDS
-
-/datum/coven_power/presence/fall/pre_activation_checks(mob/living/target)
-	var/mypower = owner.STAINT
-	var/theirpower = owner.STAINT - 5
-	if((theirpower >= mypower))
-		to_chat(owner, span_warning("[target]'s mind is too powerful to sway!"))
-		return FALSE
-
-	return TRUE
+	cooldown_length = 1 MINUTE
 
 /datum/coven_power/presence/fall/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -134,7 +116,7 @@
 	target.overlays_standing[MUTATIONS_LAYER] = presence_overlay
 	target.apply_overlay(MUTATIONS_LAYER)
 
-	target.Stun(1 SECONDS)
+	target.Stun(3 SECONDS)
 	to_chat(target, "<span class='userlove'><b>KNEEL</b></span>")
 	owner.say("KNEEL!!")
 	target.set_resting(TRUE, TRUE)
@@ -142,7 +124,6 @@
 /datum/coven_power/presence/fall/deactivate(mob/living/carbon/human/target)
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
-
 
 //SUMMON
 /datum/coven_power/presence/summon
@@ -157,15 +138,6 @@
 	range = 7
 	multi_activate = TRUE
 	cooldown_length = 45 SECONDS
-
-/datum/coven_power/presence/summon/pre_activation_checks(mob/living/target)
-	var/mypower = owner.STAINT
-	var/theirpower = owner.STAINT - 5
-	if((theirpower >= mypower))
-		to_chat(owner, span_warning("[target]'s mind is too powerful to sway!"))
-		return FALSE
-
-	return TRUE
 
 /datum/coven_power/presence/summon/activate(mob/living/carbon/human/target)
 	. = ..()

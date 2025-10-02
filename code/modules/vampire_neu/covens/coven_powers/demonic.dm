@@ -28,26 +28,6 @@
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.physiology.burn_mod *= 100
 
-//FEAR OF THE VOID BELOW
-/mob/living/carbon/human/proc/give_demon_flight()
-	var/obj/item/organ/wings/old_wings = getorganslot(ORGAN_SLOT_WINGS)
-	if(old_wings)
-		return
-
-	var/obj/item/organ/wings/flight/night_kin/demon_wings = new(get_turf(src))
-	demon_wings.Insert(src)
-	update_body()
-	update_body_parts(TRUE)
-
-/mob/living/carbon/human/proc/remove_demon_flight()
-	var/obj/item/organ/wings/flight/night_kin/old_wings = getorganslot(ORGAN_SLOT_WINGS)
-	if(!istype(old_wings))
-		return
-	old_wings.Remove(src)
-	qdel(old_wings)
-	update_body()
-	update_body_parts(TRUE)
-
 /datum/coven_power/demonic/fear_of_the_void_below
 	name = "Fear of the Void"
 	desc = "Short burst of speed and resilience."

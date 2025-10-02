@@ -111,10 +111,6 @@
 		/datum/coven_power/obfuscate/cloak_the_gathering
 	)
 
-/datum/coven_power/obfuscate/unseen_presence/pre_activation_checks()
-	. = ..()
-	return is_seen_check()
-
 /datum/coven_power/obfuscate/unseen_presence/activate()
 	. = ..()
 	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
