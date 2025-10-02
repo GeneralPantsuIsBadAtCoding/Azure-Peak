@@ -2251,6 +2251,7 @@
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_beast.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_component.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_concepts.dm"
+#include "code\modules\roguetown\roguemachine\heartbeast\heart_discharge.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_personalities.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_quirks.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_traits.dm"

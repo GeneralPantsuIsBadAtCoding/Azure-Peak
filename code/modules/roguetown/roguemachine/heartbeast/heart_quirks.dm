@@ -9,6 +9,9 @@
 /datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	return null
 
+/datum/flesh_quirk/proc/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	return null
+
 /datum/flesh_quirk/obedient
 	name = "Obedient"
 	description = "Can be intimidated into compliance"
@@ -23,7 +26,7 @@
 
 	if(last_char != "!")
 		effects["score_penalty"] = 25
-		effects["happiness_multiplier"] = 0.5
+		effects["happiness_multiplier"] = 0
 
 	return effects
 
@@ -69,7 +72,7 @@
 
 /datum/flesh_quirk/royal/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast, response_time)
 	var/list/effects = list()
-	
+
 	// Royal quirk only manifests at tier 2 and above
 	if(beast.language_tier < 2)
 		return effects
@@ -98,7 +101,39 @@
 /datum/flesh_quirk/discharge
 	name = "Discharge"
 	description = "Produces colored discharge when emotional"
-	//special_behavior = /proc/quirk_discharge_behavior
+	quirk_type = QUIRK_BEHAVIOR
+
+/datum/flesh_quirk/discharge/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	if(beast.happiness >= beast.max_happiness * 0.75)
+		return
+
+	var/happiness_percentage = (1 - (beast.happiness / beast.max_happiness))
+	var/discharge_chance = calculate_discharge_chance(beast.language_tier, score, happiness_percentage)
+
+	if(prob(discharge_chance))
+		beast.trigger_discharge_effect()
+
+/datum/flesh_quirk/discharge/proc/calculate_discharge_chance(language_tier, score, happiness_percentage)
+	var/base_chance = 0
+
+	switch(language_tier)
+		if(1)
+			base_chance = 60
+		if(2)
+			base_chance = 40
+		if(3)
+			base_chance = 25
+		if(4)
+			base_chance = 15
+
+	// 26% at 74% happiness. up to 100% at 0% happiness.
+	base_chance *= happiness_percentage
+	// 1 at 0 or 100, 0 at 50
+	var/score_modifier = 1 - (abs(score - 50) / 50)
+	// Up to 200%
+	base_chance *= (1 + score_modifier)
+
+	return base_chance
 
 /datum/flesh_quirk/repetitive
 	name = "Repetitive"

@@ -1,4 +1,5 @@
 #define QUIRK_LANGUAGE (1<<0)
+#define QUIRK_BEHAVIOR (1<<1)
 
 /datum/component/chimeric_heart_beast
 	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast
@@ -25,6 +26,7 @@
 
 	var/list/active_quirks = list()
 	var/list/language_quirks = list()
+	var/list/behavior_quirks = list()
 
 	var/task_presentation_time = 0 // When the current task was last presented to the listener
 	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
@@ -53,6 +55,8 @@
 
 		if(quirk.quirk_type & QUIRK_LANGUAGE)
 			language_quirks += quirk
+		if(quirk.quirk_type & QUIRK_BEHAVIOR)
+			behavior_quirks += quirk
 
 /datum/component/chimeric_heart_beast/proc/has_quirk(quirk_type)
 	return active_quirks[quirk_type] != null
@@ -81,6 +85,35 @@
 			if(quirk_effects["punctuation_override"])
 				penalties["punctuation_override"] = quirk_effects["punctuation_override"]
 	return penalties
+
+/datum/component/chimeric_heart_beast/proc/trigger_behavior_quirks(score, mob/speaker)
+	if(!behavior_quirks.len)
+		return
+
+	for(var/datum/flesh_quirk/quirk in behavior_quirks)
+		quirk.apply_behavior_quirk(score, speaker, src)
+
+/datum/component/chimeric_heart_beast/proc/trigger_discharge_effect()
+	var/list/valid_turfs = list()
+	for(var/turf/T in view(7, heart_beast))
+		if(!T.density)
+			valid_turfs += T
+
+	if(!valid_turfs.len)
+		return
+
+	heart_beast.visible_message(span_warning("[heart_beast] shudders and releases a colorful discharge!"))
+
+	var/num_projectiles = rand(3, 6)
+	for(var/i = 1 to num_projectiles)
+		if(!valid_turfs.len)
+			break
+
+		spawn(rand(1, 5) SECONDS)
+			var/turf/target_turf = pick(valid_turfs)
+			valid_turfs -= target_turf
+			playsound(heart_beast, 'sound/misc/machinevomit.ogg', 75, TRUE)
+			create_discharge_projectile(target_turf)
 
 /datum/component/chimeric_heart_beast/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -204,6 +237,8 @@
 		complete_task(score, speaker, quirk_effects)
 	else
 		fail_task(score, speaker)
+
+	trigger_behavior_quirks(score, speaker)
 
 /datum/component/chimeric_heart_beast/proc/complete_task(score, mob/speaker, list/quirk_effects)
 	var/reward_multiplier = score / 100
