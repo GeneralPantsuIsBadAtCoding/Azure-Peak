@@ -23,17 +23,18 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	var/generation
 	var/research_points = 10
 
-/datum/antagonist/vampire/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
+/datum/antagonist/vampire/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation)
 	. = ..()
 	if(forced_clan)
 		forced = forced_clan
 		forcing_clan = incoming_clan
 	else
 		default_clan = incoming_clan
-	src.generation = generation
+	if(generation)
+		src.generation = generation
 	switch(generation)
 		if(GENERATION_METHUSELAH)
-			research_points = 20
+			research_points = 30
 		if(GENERATION_ANCILLAE)
 			research_points = 15
 		if(GENERATION_NEONATE)
