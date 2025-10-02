@@ -18,12 +18,21 @@
 	var/keycontrol = "merchant"
 	var/obj/item/reagent_containers/glass/bottle/inserted
 
+/obj/structure/roguemachine/potionseller/crafted
+	is_crafted = TRUE
+	max_integrity = 100
+
 /obj/structure/roguemachine/potionseller/Initialize()
 	. = ..()
 	if(!reagents)
 		create_reagents(200*3)
 		reagents.flags |= NO_REACT
 		reagents.flags &= ~OPENCONTAINER
+	if(is_crafted) // spawn a key
+		var/obj/item/roguekey/key = new /obj/item/roguekey/physician(get_turf(src))
+		key.lockid = "random_potion_peddler_id_[rand(1,9999999)]" // I know, not foolproof
+		key.name = "potion seller key"
+		keycontrol = key.lockid
 	update_icon()
 
 /obj/structure/roguemachine/potionseller/Destroy()
@@ -34,17 +43,6 @@
 		inserted.forceMove(drop_location())
 	set_light(0)
 	return ..()
-
-/obj/structure/roguemachine/potionseller/crafted
-	is_crafted = TRUE
-	max_integrity = 100
-
-/obj/structure/roguemachine/potionseller/crafted/Initialize()
-	. = ..()
-	var/obj/item/roguekey/key = new /obj/item/roguekey/physician(get_turf(src))
-	key.lockid = "random_potion_peddler_id_[rand(1,9999999)]" // I know, not foolproof
-	key.name = "potion seller key"
-	keycontrol = key.lockid
 
 /obj/structure/roguemachine/potionseller/proc/insert(obj/item/P, mob/living/user)
 	if(!istype(P, /obj/item/reagent_containers/glass/bottle))
