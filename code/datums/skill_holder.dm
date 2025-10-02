@@ -266,6 +266,7 @@
 
 /mob/living/carbon/get_inspirational_bonus()
 	var/bonus = 0
-	for(var/datum/stressevent/event in stressors)
+	for(var/event_type in stressors)
+		var/datum/stressevent/event = stressors[event_typeq]
 		bonus += event.quality_modifier
 	return bonus
