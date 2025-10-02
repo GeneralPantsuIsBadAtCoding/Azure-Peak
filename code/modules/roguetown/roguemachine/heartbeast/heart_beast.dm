@@ -9,6 +9,8 @@
 	var/understanding_bonus = 0 // Bonus from correctly identifying traits/quirks
 	icon = 'icons/obj/structures/heart_beast.dmi'
 	icon_state = "heart_beast"
+	flags_1 = HEAR_1
+	pixel_x = -32
 
 /obj/structure/roguemachine/chimeric_heart_beast/proc/initialize_personality()
 	// Pick random archetype
@@ -97,6 +99,23 @@
 
 	to_chat(world, span_userdanger("[debug_info.Join("\n")]"))
 
+/obj/structure/roguemachine/chimeric_heart_beast/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
+	// . = ..()
+
+	if(get_dist(src, speaker) > 7)
+		return
+	if(speaker == src)
+		return
+	if(!ishuman(speaker))
+		return
+	SEND_SIGNAL(src, COMSIG_HEART_BEAST_HEAR, speaker, raw_message)
+
 /obj/structure/roguemachine/chimeric_heart_beast/Initialize()
 	. = ..()
 	initialize_personality()
+	AddComponent(/datum/component/chimeric_heart_beast)
+	become_hearing_sensitive()
+
+/obj/structure/roguemachine/chimeric_heart_beast/Destroy()
+	lose_hearing_sensitivity()
+	return ..()
