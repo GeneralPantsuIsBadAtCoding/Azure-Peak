@@ -237,11 +237,13 @@
 		if(!usr.canUseTopic(src, BE_CLOSE) || !locked)
 			return
 		if(ishuman(usr))
-			if(budget < 10)
+			var/price = 10
+			if(budget < price)
 				say("MY BOTTLES ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 				return
-			record_round_statistic(STATS_PEDDLER_REVENUE, 10)
-			budget -= 10
+			budget -= price
+			wgain += price
+			record_round_statistic(STATS_PEDDLER_REVENUE, price)
 			var/obj/item/reagent_containers/glass/bottle/rogue/sold_bottle = new /obj/item/reagent_containers/glass/bottle/rogue(get_turf(src))
 			if(!usr.put_in_hands(sold_bottle))
 				sold_bottle.forceMove(get_turf(src))
