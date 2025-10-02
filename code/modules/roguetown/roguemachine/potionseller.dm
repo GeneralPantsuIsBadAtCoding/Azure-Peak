@@ -17,6 +17,7 @@
 	var/is_crafted = FALSE
 	var/keycontrol = "merchant"
 	var/obj/item/reagent_containers/glass/bottle/inserted
+	var/bottle_sold_max = 5
 
 /obj/structure/roguemachine/potionseller/crafted
 	is_crafted = TRUE
@@ -238,11 +239,15 @@
 			return
 		if(ishuman(usr))
 			var/price = 10
+			if(bottle_sold_max < 1)
+				say("MY BOTTLES ARE ALL SOLD OUT, TRAVELER")
+				return
 			if(budget < price)
 				say("MY BOTTLES ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 				return
 			budget -= price
 			wgain += price
+			bottle_sold_max--
 			record_round_statistic(STATS_PEDDLER_REVENUE, price)
 			var/obj/item/reagent_containers/glass/bottle/rogue/sold_bottle = new /obj/item/reagent_containers/glass/bottle/rogue(get_turf(src))
 			if(!usr.put_in_hands(sold_bottle))
