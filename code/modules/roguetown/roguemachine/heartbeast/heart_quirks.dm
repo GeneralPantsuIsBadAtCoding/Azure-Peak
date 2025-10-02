@@ -4,18 +4,47 @@
 	var/list/conflicting_quirks = list()
 	var/special_behavior = null // Proc reference for special behavior
 	var/rarity = 1 // Higher = less common
+	var/quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	return null
 
 /datum/flesh_quirk/obedient
 	name = "Obedient"
 	description = "Can be intimidated into compliance"
-	conflicting_quirks = list(/datum/flesh_quirk/stubborn)
-	//special_behavior = /proc/quirk_obedient_behavior
+	conflicting_quirks = list(/datum/flesh_quirk/stubborn, /datum/flesh_quirk/timid, /datum/flesh_quirk/curious)
+	quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/obedient/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+	var/last_char = copytext(message, -1)
+
+	effects["punctuation_override"] = "!"
+
+	if(last_char != "!")
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0.5
+
+	return effects
 
 /datum/flesh_quirk/curious
 	name = "Curious"
 	description = "Might be pleased by unexpected but interesting answers"
-	//special_behavior = /proc/quirk_curious_behavior
+	conflicting_quirks = list(/datum/flesh_quirk/timid, /datum/flesh_quirk/obedient)
 	rarity = 2
+	quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/curious/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+	var/last_char = copytext(message, -1)
+
+	effects["punctuation_override"] = "?"
+
+	if(last_char != "?")
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0
+
+	return effects
 
 /datum/flesh_quirk/impatient
 	name = "Impatient"
@@ -42,8 +71,24 @@
 /datum/flesh_quirk/timid
 	name = "Timid"
 	description = "Easily frightened by aggressive behavior"
-	conflicting_quirks = list(/datum/flesh_quirk/royal)
-	//special_behavior = /proc/quirk_timid_behavior
+	conflicting_quirks = list(/datum/flesh_quirk/royal, /datum/flesh_quirk/obedient, /datum/flesh_quirk/curious)
+	quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/timid/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+	var/last_char = copytext(message, -1)
+
+	//Honestly, they're happy if you say nothing at all :)
+	effects["punctuation_override"] = " "
+	
+	if(last_char == "!")
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0
+	else
+		// Any other form of punctuation is good
+		effects["score_bonus"] = 20
+
+	return effects
 
 /datum/flesh_quirk/ambitious
 	name = "Ambitious"
@@ -59,7 +104,18 @@
 /datum/flesh_quirk/affectionate
 	name = "Affectionate"
 	description = "Seeks physical proximity and gentle treatment"
-	//special_behavior = /proc/quirk_affectionate_behavior
+	quirk_type = QUIRK_LANGUAGE
+
+/datum/flesh_quirk/affectionate/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	var/list/effects = list()
+	var/distance = get_dist(beast.heart_beast, speaker)
+	to_chat(world, span_userdanger("DISTANCE = [distance]"))
+
+	if(distance > 1)
+		effects["score_penalty"] = 25
+		effects["happiness_multiplier"] = 0
+
+	return effects
 
 /datum/flesh_quirk/territorial
 	name = "Territorial"

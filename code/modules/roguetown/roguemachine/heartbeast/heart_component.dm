@@ -1,3 +1,5 @@
+#define QUIRK_LANGUAGE (1<<0)
+
 /datum/component/chimeric_heart_beast
 	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast
 	var/base_blood_output = 1
@@ -21,6 +23,9 @@
 	var/last_happiness_decay = 0
 	var/happiness_decay_interval = 30 SECONDS
 
+	var/list/active_quirks = list()
+	var/list/language_quirks = list()
+
 /datum/component/chimeric_heart_beast/Initialize()
 	. = ..()
 	if(!istype(parent, /obj/structure/roguemachine/chimeric_heart_beast))
@@ -33,6 +38,46 @@
 
 	RegisterSignal(heart_beast, COMSIG_HEART_BEAST_HEAR, .proc/on_hear)
 	RegisterSignal(heart_beast, COMSIG_ATOM_ATTACK_HAND, .proc/on_interact)
+
+	initialize_quirks()
+
+/datum/component/chimeric_heart_beast/proc/initialize_quirks()
+	if(!heart_beast.quirks)
+		return
+
+	for(var/datum/flesh_quirk/quirk in heart_beast.quirks)
+		active_quirks[quirk.type] = quirk
+
+		if(quirk.quirk_type & QUIRK_LANGUAGE)
+			language_quirks += quirk
+
+/datum/component/chimeric_heart_beast/proc/has_quirk(quirk_type)
+	return active_quirks[quirk_type] != null
+
+/datum/component/chimeric_heart_beast/proc/apply_language_quirks(mob/speaker, message)
+	var/list/penalties = list()
+	penalties["score_penalty"] = 0
+	penalties["score_bonus"] = 0
+	penalties["happiness_multiplier"] = 1
+	penalties["blood_multiplier"] = 1
+	penalties["tech_multiplier"] = 1
+	penalties["punctuation_override"] = 0
+
+	if(!language_quirks.len)
+		return penalties
+
+	// Use default values, but apply differences for each language quirk that acts up
+	for(var/datum/flesh_quirk/quirk in language_quirks)
+		var/list/quirk_effects = quirk.apply_language_quirk(speaker, message, src)
+		if(quirk_effects)
+			penalties["score_penalty"] += quirk_effects["score_penalty"]
+			penalties["score_bonus"] += quirk_effects["score_bonus"]
+			penalties["happiness_multiplier"] *= (quirk_effects["happiness_multiplier"])
+			penalties["blood_multiplier"] *= (quirk_effects["blood_multiplier"])
+			penalties["tech_multiplier"] *= (quirk_effects["tech_multiplier"])
+			if(quirk_effects["punctuation_override"])
+				penalties["punctuation_override"] = quirk_effects["punctuation_override"]
+	return penalties
 
 /datum/component/chimeric_heart_beast/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -114,6 +159,8 @@
 	if(!istype(task))
 		return
 
+	var/list/quirk_effects = apply_language_quirks(speaker, message)
+
 	var/score = 0
 	var/word_count = length(splittext(message, " "))
 	var/last_char = copytext(message, -1)
@@ -123,7 +170,8 @@
 		score += 30
 
 	// Check punctuation
-	if(last_char == task.preferred_punctuation)
+	var/expected_punctuation = quirk_effects["punctuation_override"] ? quirk_effects["punctuation_override"] : task.preferred_punctuation
+	if(last_char == expected_punctuation)
 		score += 20
 
 	// Check for keywords (up to 2)
@@ -134,25 +182,32 @@
 			if(keywords_found >= 2)
 				break
 
+	to_chat(world, span_userdanger("KEYWORDS FOUND: [keywords_found]"))
 	score += min(keywords_found, 2) * 25
 
-	// Apply understanding bonus
-	score += heart_beast.understanding_bonus
+	// If our quirks act up for whatever reason, reduce our score by a flat amount
+	to_chat(world, span_userdanger("SCORE BEFORE REDUCE: [score]"))
+	if(quirk_effects["score_penalty"])
+		score = max(score - quirk_effects["score_penalty"], 0)
+		to_chat(world, span_userdanger("SCORE AFTER REDUCE: [score]"))
+	else if(quirk_effects["score_bonus"])
+		score = min(score + quirk_effects["score_bonus"], 100)
+		to_chat(world, span_userdanger("SCORE AFTER INCREASE: [score]"))
 
 	// Determine success
 	if(score >= 20) // Passing score
-		complete_task(score, speaker)
+		complete_task(score, speaker, quirk_effects)
 	else
 		fail_task(score, speaker)
 
-/datum/component/chimeric_heart_beast/proc/complete_task(score, mob/speaker)
+/datum/component/chimeric_heart_beast/proc/complete_task(score, mob/speaker, list/quirk_effects)
 	var/reward_multiplier = score / 100
 
 	// Calculate rewards
-	var/blood_reward = (max_blood_pool / 10) * reward_multiplier
+	var/blood_reward = (max_blood_pool / 10) * reward_multiplier * (quirk_effects["blood_multiplier"] || 1)
 	// 5 - 10 - 20 - 40 Under perfect circumstances
-	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier
-	var/happiness_reward = (max_happiness / 4) * reward_multiplier
+	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * (quirk_effects["tech_multiplier"] || 1)
+	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
 	var/language_progress_reward = (max_language_progress / 4) * reward_multiplier
 
 	// Apply rewards
@@ -163,7 +218,7 @@
 	update_blood_output()
 	upgrade_language_tier()
 
-	var/feedback_message = get_tier_feedback("success")
+	var/feedback_message = get_tier_feedback("success", score)
 	heart_beast.say(feedback_message)
 	playsound(heart_beast, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
 
@@ -177,7 +232,7 @@
 	happiness = max(happiness - happiness_penalty, 0)
 	update_blood_output()
 
-	var/feedback_message = get_tier_feedback("failure")
+	var/feedback_message = get_tier_feedback("failure", score)
 	heart_beast.say(feedback_message)
 	playsound(heart_beast, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 
@@ -190,9 +245,19 @@
 		heart_beast.visible_message(span_notice("[heart_beast] seems to resonate with newfound understanding!"))
 		playsound(heart_beast, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
 
-/datum/component/chimeric_heart_beast/proc/get_tier_feedback(type)
+/datum/component/chimeric_heart_beast/proc/get_tier_feedback(type, score)
 	var/list/success_responses = list()
 	var/list/failure_responses = list()
+
+	//25% increased chance per language tier to give extra feedback on how good answers are.
+	if(prob(language_tier * 25))
+		switch(score)
+			if(0 to 49)
+				heart_beast.visible_message(span_warning("[heart_beast] seems only moderately satisfied."))
+			if(50 to 74)
+				heart_beast.visible_message(span_notice("[heart_beast] pulses gently, seeming satisfied."))
+			if(75 to 100)
+				heart_beast.visible_message(span_cult("[heart_beast] pulses strongly, seeming deeply satisfied!"))
 
 	switch(language_tier)
 		if(1)
