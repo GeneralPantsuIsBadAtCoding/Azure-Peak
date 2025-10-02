@@ -93,7 +93,7 @@
 	target.mind?.sleep_adv?.grant_inspiration_xp(2)
 
 	// Boost mood and give temporary creative buff do this for now until we add some form of creation quality outside of blacksmithing
-	SEND_SIGNAL(inspired, COMSIG_ADD_MOOD_EVENT, "beautiful", /datum/mood_event/artistic_inspiration)
+	target.add_stress(/datum/stressevent/artistic_inspiration)
 
 	addtimer(CALLBACK(src, PROC_REF(deactivate), inspired), duration_length)
 
@@ -170,7 +170,7 @@
 	// Heal brute and burn damage (representing restoration of beauty)
 	patient.heal_overall_damage(60, 60)
 
-	SEND_SIGNAL(patient, COMSIG_ADD_MOOD_EVENT, "beautiful", /datum/mood_event/beautiful)
+	patient.add_stress(/datum/stressevent/artistic_inspiration_minor)
 
 	addtimer(CALLBACK(src, PROC_REF(deactivate), patient), 3 SECONDS)
 	owner.AddComponent(/datum/component/empathic_obsession, patient, 5 MINUTES)
@@ -179,21 +179,17 @@
 	. = ..()
 	target.remove_overlay(MUTATIONS_LAYER)
 
-// Helper mood events (these would need to be defined in your mood system)
-/datum/mood_event/artistic_inspiration
-	description = "I feel divinely inspired to create something beautiful!"
-	mood_change = 3
-	timeout = 5 MINUTES
+/datum/stressevent/artistic_inspiration
+	desc = span_love("I feel divinely inspired to create something beautiful!")
+	stressadd = -3
+	timer = 5 MINUTES
+	quality_modifier = 3
 
-/datum/mood_event/beautiful
-	description = "I feel beautiful and radiant!"
-	mood_change = 2
-	timeout = 10 MINUTES
-
-/datum/mood_event/divine_love
-	description = "I felt touched by divine love and compassion."
-	mood_change = 4
-	timeout = 15 MINUTES
+/datum/stressevent/artistic_inspiration_minor
+	desc = span_love("I feel... Inspired!")
+	stressadd = -1
+	timer = 2 MINUTES
+	quality_modifier = 1
 
 /datum/component/familial_bond
 	var/mob/living/carbon/human/bonded_with

@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		default_clan = incoming_clan
 	if(generation)
 		src.generation = generation
-	switch(generation)
+	switch(src.generation)
 		if(GENERATION_METHUSELAH)
 			research_points = 30
 		if(GENERATION_ANCILLAE)
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		if(GENERATION_NEONATE)
 			research_points = 8
 		if(GENERATION_THINBLOOD)
-			research_points = 4
+			research_points = 2
 
 /datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire/lord))

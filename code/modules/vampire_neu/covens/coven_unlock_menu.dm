@@ -258,6 +258,7 @@
 			// Check prerequisites
 			if(node.minimal_generation > user.get_vampire_generation())
 				to_chat(user, span_warning("[node.name] can be unlocked only by vampires of [GLOB.vamp_generation_to_text[node.minimal_generation]]. You are [GLOB.vamp_generation_to_text[user.get_vampire_generation()]]")) 
+				return
 			var/prereqs_met = TRUE
 			var/missing_prereqs = list()
 			for(var/prereq in node.prerequisites)
@@ -269,8 +270,8 @@
 
 			var/datum/antagonist/vampire/vampire = parent_coven.owner.mind?.has_antag_datum(/datum/antagonist/vampire)
 			if(prereqs_met && node.research_cost && vampire.research_points < node.research_cost)
-				prereqs_met = FALSE
-				info_text = "<span class='warning'>[node.name] requires [node.research_cost] RP.</span>"
+				to_chat(user, "<span class='warning'>[node.name] requires [node.research_cost] RP.</span>")
+				return
 
 			if(prereqs_met)
 				// Auto-unlock if available

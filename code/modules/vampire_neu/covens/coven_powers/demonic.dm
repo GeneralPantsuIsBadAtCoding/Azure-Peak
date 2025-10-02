@@ -102,6 +102,7 @@
 	name = "Psychomachia"
 	desc = "Set your foes on fire with a fireball."
 
+	research_cost = 3
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 
@@ -113,9 +114,10 @@
 	name = "Infernal Fireball"
 	desc = "This spell fires an explosive fireball at a target."
 	school = "evocation"
-	recharge_time = 6 SECONDS
+	recharge_time = 60 SECONDS
 	invocation_type = "whisper"
 	projectile_type = /obj/projectile/magic/aoe/fireball/rogue
+	associated_skill = /datum/skill/magic/blood
 	sound = 'sound/magic/fireball.ogg'
 
 //CONDEMNTATION
@@ -128,6 +130,8 @@
 	vitae_cost = 250
 	cooldown_length = 120 SECONDS
 	violates_masquerade = TRUE
+	research_cost = 4
+	minimal_generation = GENERATION_ANCILLAE
 	var/initialized_curses = FALSE
 	var/list/curse_names = list()
 	var/list/curses = list()

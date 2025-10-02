@@ -335,7 +335,7 @@
 	desc = "Create a symbol that disorientates your victim."
 
 	research_cost = 2
-	level = 2
+	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
 	target_type = TARGET_MOB
 	range = 5
@@ -380,7 +380,6 @@
 	research_cost = 3
 	vitae_cost = 250
 	minimal_generation = GENERATION_ANCILLAE
-	level = 5
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING
 	range = 7
