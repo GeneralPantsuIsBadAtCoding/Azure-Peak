@@ -45,6 +45,25 @@
 	RegisterSignal(heart_beast, COMSIG_ATOM_ATTACK_HAND, .proc/on_interact)
 
 	initialize_quirks()
+	setup_heartbeast_turfs()
+
+/datum/component/chimeric_heart_beast/proc/setup_heartbeast_turfs()
+	var/turf/center_turf = get_turf(heart_beast)
+
+	var/turf/top_left = locate(center_turf.x - 1, center_turf.y + 2, center_turf.z)
+	var/turf/top_center = locate(center_turf.x, center_turf.y + 2, center_turf.z)
+	var/turf/top_right = locate(center_turf.x + 1, center_turf.y + 2, center_turf.z)
+	var/turf/mid_left = locate(center_turf.x - 1, center_turf.y + 1, center_turf.z)
+	var/turf/mid_center = locate(center_turf.x, center_turf.y + 1, center_turf.z)
+	var/turf/mid_right = locate(center_turf.x + 1, center_turf.y + 1, center_turf.z)
+
+	var/list/dense_turfs = list(top_left, top_center, top_right, mid_left, mid_center, mid_right)
+	for(var/turf/T in dense_turfs)
+		if(T)
+			T.density = TRUE
+			T.opacity = FALSE
+
+	heart_beast.dense_turfs = dense_turfs
 
 /datum/component/chimeric_heart_beast/proc/initialize_quirks()
 	if(!heart_beast.quirks)

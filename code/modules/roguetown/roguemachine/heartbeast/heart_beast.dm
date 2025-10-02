@@ -4,6 +4,7 @@
 	var/list/datum/flesh_quirk/quirks = list()
 	var/list/identified_traits = list() // Traits players have figured out
 	var/list/identified_quirks = list() // Quirks players have figured out
+	var/list/dense_turfs = list()
 	var/royal_title = "" // For royal quirk
 	var/discharge_color = "#ffffff" // Current discharge color
 	var/understanding_bonus = 0 // Bonus from correctly identifying traits/quirks
@@ -118,4 +119,9 @@
 
 /obj/structure/roguemachine/chimeric_heart_beast/Destroy()
 	lose_hearing_sensitivity()
+
+	for(var/turf/T in dense_turfs)
+		if(T)
+			T.density = initial(T.density)
+			T.opacity = initial(T.opacity)
 	return ..()
