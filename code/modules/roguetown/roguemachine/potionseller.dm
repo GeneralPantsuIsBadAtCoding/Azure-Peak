@@ -122,18 +122,18 @@
 		var/datum/reagent/R = locate(href_list["buy"]) in held_items
 		if(!R || !ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE) || !locked)
 			return
-		var/price = held_items[R.type]["PRICE"]
 		if(!inserted)
-			say(!price ? "INSERT A BOTTLE BEFORE 'YA TAKE" : "INSERT A BOTTLE BEFORE 'YA BUY")
+			say("MY POTIONS NEEDS A BOTTLE TO FILL, TRAVELER")
 			return
+		var/price = held_items[R.type]["PRICE"]
 		if(price > budget)
-			say("NO MONEY NO HONEY!")
+			say("MY POTIONS ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 			return
 		var/quantity = 0
 		var/volume = reagents.get_reagent_amount(R)
 		var/buyer_volume = inserted.reagents.maximum_volume - inserted.reagents.total_volume
 		if(buyer_volume < 1)
-			say("[uppertext("\the [inserted]")] IS FULL, INSERT AN EMPTY CONTAINER")
+			say("[uppertext("\the [inserted]")] IS TOO SMALL FOR MY POTIONS, TRAVELER")
 			return
 		if(price > 0)
 			var/budget_vol = round(budget / price)
@@ -158,7 +158,7 @@
 				budget -= price
 				wgain += price
 			else
-				say("NOT ENOUGH COINS")
+				say("MY POTIONS ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 				return
 		record_round_statistic(STATS_PEDDLER_REVENUE, price)
 		inserted.reagents.add_reagent(R.type, quantity)
@@ -240,7 +240,7 @@
 			return
 		if(ishuman(usr))
 			if(budget < 10)
-				say("NOT ENOUGH COINS")
+				say("MY BOTTLES ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 				return
 			record_round_statistic(STATS_PEDDLER_REVENUE, 10)
 			budget -= 10
