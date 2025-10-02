@@ -545,7 +545,7 @@
 	var/list/turfs = RANGE_TURFS(1, target)
 	for(var/turf/T in turfs)
 		spawn()
-			var/obj/effect/celerity/C = new(T)
+			var/obj/effect/after_image/C = new(T)
 			C.name = owner.name
 			C.appearance = owner.appearance
 			C.dir = get_dir(T, target)
