@@ -48,10 +48,6 @@
 		"Squire",
 	)
 
-/datum/round_event/antagonist/solo/masquerade
-	var/leader = FALSE
-
-#define PRIORITY_LOW "low"
-#define PRIORITY_MEDIUM "medium"
-#define PRIORITY_HIGH "high"
-
+/datum/round_event/antagonist/solo/masquerade/add_datum_to_mind(datum/mind/antag_mind)
+	var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(forced_clan = FALSE, generation = GENERATION_ANCILLAE)
+	antag_mind.add_antag_datum(new_antag)
