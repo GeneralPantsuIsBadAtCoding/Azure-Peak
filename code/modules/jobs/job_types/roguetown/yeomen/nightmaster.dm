@@ -83,3 +83,4 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)

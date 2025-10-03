@@ -40,6 +40,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	job_subclasses = list(
 		/datum/advclass/bishop
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/bishop
 	name = "Bishop"
