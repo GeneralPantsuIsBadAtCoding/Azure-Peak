@@ -8,6 +8,8 @@
 	var/royal_title = "" // For royal quirk
 	var/discharge_color = "#ffffff" // Current discharge color
 	var/understanding_bonus = 0 // Bonus from correctly identifying traits/quirks
+	var/being_fed = FALSE
+	var/recently_fed = FALSE
 	icon = 'icons/obj/structures/heart_beast.dmi'
 	icon_state = "heart_beast"
 	flags_1 = HEAR_1
@@ -125,3 +127,43 @@
 			T.density = initial(T.density)
 			T.opacity = initial(T.opacity)
 	return ..()
+
+/obj/structure/roguemachine/chimeric_heart_beast/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat))
+		if(!(I.item_flags & FRESH_FOOD_ITEM))
+			to_chat(user, span_warning("The beast doesn't seem to like this dusty piece of meat..."))
+			return ..()
+		if(being_fed)
+			to_chat(user, span_warning("Someone is already feeding [src]!"))
+			return TRUE
+
+		var/datum/component/chimeric_heart_beast/heart_component = GetComponent(/datum/component/chimeric_heart_beast)
+		if(heart_component && heart_component.happiness >= heart_component.max_happiness * 0.9)
+			to_chat(user, span_warning("[src] seems content and uninterested in food."))
+			return TRUE
+
+		being_fed = TRUE
+		user.visible_message(span_notice("[user] starts feeding [I] to [src]."), span_notice("You start feeding [I] to [src]."))
+		if(!do_after(user, 3 SECONDS, target = src))
+			being_fed = FALSE
+			return TRUE
+
+		feed_heartbeast(I, user, heart_component)
+		return TRUE
+	return ..()
+
+/obj/structure/roguemachine/chimeric_heart_beast/proc/feed_heartbeast(obj/item/meat, mob/user, datum/component/chimeric_heart_beast/heart_component)
+	if(!heart_component)
+		heart_component = GetComponent(/datum/component/chimeric_heart_beast)
+		if(!heart_component)
+			being_fed = FALSE
+			return
+
+	heart_component.happiness = min(heart_component.happiness + (heart_component.max_happiness * 0.2), heart_component.max_happiness)
+
+	visible_message(span_notice("[user] feeds [meat] to [src]. It seems pleased!"))
+	playsound(src, 'sound/misc/eat.ogg', 100, TRUE)
+	qdel(meat)
+	heart_component.update_blood_output()
+	recently_fed = TRUE
+	being_fed = FALSE

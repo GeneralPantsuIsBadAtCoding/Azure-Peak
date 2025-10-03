@@ -2254,6 +2254,7 @@
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_discharge.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_personalities.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_quirks.dm"
+#include "code\modules\roguetown\roguemachine\heartbeast\heart_status_effects.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_traits.dm"
 #include "code\modules\roguetown\roguemachine\inqports\_inqports.dm"
 #include "code\modules\roguetown\roguemachine\inqports\inqshop.dm"

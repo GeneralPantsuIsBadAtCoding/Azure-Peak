@@ -1,5 +1,6 @@
 #define QUIRK_LANGUAGE (1<<0)
 #define QUIRK_BEHAVIOR (1<<1)
+#define QUIRK_ENVIRONMENT (1<<2)
 
 /datum/component/chimeric_heart_beast
 	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast
@@ -23,10 +24,13 @@
 	var/listener_timeout_time = 0
 	var/last_happiness_decay = 0
 	var/happiness_decay_interval = 30 SECONDS
+	var/last_environment_process = 0
+	var/environment_process_interval = 3 SECONDS
 
 	var/list/active_quirks = list()
 	var/list/language_quirks = list()
 	var/list/behavior_quirks = list()
+	var/list/environment_quirks = list()
 
 	var/task_presentation_time = 0 // When the current task was last presented to the listener
 	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
@@ -76,6 +80,8 @@
 			language_quirks += quirk
 		if(quirk.quirk_type & QUIRK_BEHAVIOR)
 			behavior_quirks += quirk
+		if(quirk.quirk_type & QUIRK_ENVIRONMENT)
+			environment_quirks += quirk
 
 /datum/component/chimeric_heart_beast/proc/has_quirk(quirk_type)
 	return active_quirks[quirk_type] != null
@@ -134,6 +140,18 @@
 			playsound(heart_beast, 'sound/misc/machinevomit.ogg', 75, TRUE)
 			create_discharge_projectile(target_turf)
 
+/datum/component/chimeric_heart_beast/proc/process_environment_quirks()
+	if(!environment_quirks.len)
+		return
+
+	var/list/visible_turfs = list()
+	for(var/turf/T in view(7, heart_beast))
+		if(can_see(heart_beast, T, 7))
+			visible_turfs += T
+
+	for(var/datum/flesh_quirk/quirk in environment_quirks)
+		quirk.apply_environment_quirk(visible_turfs, src)
+
 /datum/component/chimeric_heart_beast/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(heart_beast, list(COMSIG_HEART_BEAST_HEAR, COMSIG_ATOM_ATTACK_HAND))
@@ -155,6 +173,10 @@
 
 	if(current_listener && world.time > listener_timeout_time)
 		clear_listener()
+
+	if(world.time > last_environment_process + environment_process_interval)
+		process_environment_quirks()
+		last_environment_process = world.time
 
 /datum/component/chimeric_heart_beast/proc/decay_happiness()
 	happiness = max(happiness - (max_happiness * 0.05), 0)

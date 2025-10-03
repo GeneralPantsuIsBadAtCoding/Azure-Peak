@@ -12,6 +12,9 @@
 /datum/flesh_quirk/proc/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
 	return null
 
+/datum/flesh_quirk/proc/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)
+	return null
+
 /datum/flesh_quirk/obedient
 	name = "Obedient"
 	description = "Can be intimidated into compliance"
@@ -192,7 +195,75 @@
 /datum/flesh_quirk/territorial
 	name = "Territorial"
 	description = "Protective of its space and possessions"
-	//special_behavior = /proc/quirk_territorial_behavior
+	quirk_type = QUIRK_ENVIRONMENT
+	var/last_attack_time = 0
+	var/attack_cooldown = 0
+	var/saw_meat = FALSE
+
+/datum/flesh_quirk/territorial/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)
+	// Check cooldown
+	if(world.time < last_attack_time + attack_cooldown)
+		return
+
+	if(beast.heart_beast.recently_fed)
+		attack_cooldown = 120 SECONDS
+		last_attack_time = world.time
+		beast.heart_beast.recently_fed = FALSE
+		return
+
+	// Calculate happiness percentage (1-100)
+	var/happiness_percent = round((beast.happiness / beast.max_happiness) * 100)
+
+	if(happiness_percent >= 75)
+		return
+
+	var/attack_prob = 100 - happiness_percent
+	var/attack_prob_fraction = attack_prob / 100
+	var/cooldown_lower_limit = round(30 * attack_prob_fraction)
+	var/cooldown_upper_limit = cooldown_lower_limit * 2
+	var/cooldown = (rand(cooldown_lower_limit, cooldown_upper_limit) SECONDS)
+
+	// Look for mobs within 2 tiles in visible turfs
+	var/attack_triggered = FALSE
+	for(var/turf/T in visible_turfs)
+		if(get_dist(beast.heart_beast, T) > 2)
+			continue
+
+		for(var/mob/living/L in T)
+			if(L.stat == DEAD)
+				continue
+			var/has_meat = FALSE
+			if(!saw_meat)
+				for(var/obj/item/I in L.held_items)
+					if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat))
+						if(I.item_flags & FRESH_FOOD_ITEM)
+							has_meat = TRUE
+							break
+
+				if(has_meat)
+					cooldown = 20 SECONDS
+					last_attack_time = world.time
+					attack_triggered = TRUE
+					saw_meat = TRUE
+					break
+
+			// Calculate attack probability based on unhappiness
+			if(prob(attack_prob))
+				trigger_territorial_attack(L, beast)
+				attack_triggered = TRUE
+				saw_meat = FALSE
+				break
+
+		if(attack_triggered)
+			break
+
+	if(attack_triggered)
+		last_attack_time = world.time
+		attack_cooldown = cooldown
+
+/datum/flesh_quirk/territorial/proc/trigger_territorial_attack(mob/living/target, datum/component/chimeric_heart_beast/beast)
+	target.apply_status_effect(/datum/status_effect/territorial_rage, beast.heart_beast)
+	beast.heart_beast.visible_message(span_userdanger("Tendrils from [beast.heart_beast] lash out at [target]!"))
 
 /datum/flesh_quirk/mimic
 	name = "Mimic"
