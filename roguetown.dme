@@ -1614,7 +1614,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\towndoctor.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\townelder.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\witch.dm"
-#include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\woodworker.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\woodcutter.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\rare\Lchef.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\rare\Lfish.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\rare\Lminer.dm"
