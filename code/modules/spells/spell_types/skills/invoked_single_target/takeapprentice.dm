@@ -87,7 +87,7 @@
 	ADD_TRAIT(L, chosen_trait, TRAIT_GENERIC)
 	for(var/skill in traits_to_skills[chosen_trait])
 		// We can just skip the check because it only adjust up to 1 anyway
-		to_chat(L, greentext("[user] has taken you as an apprentice, teaching you the basics of being an [chosen_trait]."))
+		to_chat(L, span_greentext("[user] has taken you as an apprentice, teaching you the basics of being an [chosen_trait]."))
 		L.adjust_skillrank_up_to(skill, SKILL_LEVEL_NOVICE)
 		L.set_mentor(user)
 		user.set_apprentice(L)
