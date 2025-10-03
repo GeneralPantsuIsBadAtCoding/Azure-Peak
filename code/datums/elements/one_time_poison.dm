@@ -8,7 +8,7 @@
 	if(!LAZYLEN(reagent_list))
 		return ELEMENT_INCOMPATIBLE
 	if(!target.reagents)
-		target.create_reagents(1)
+		target.create_reagents(2)
 	target.reagents.add_reagent_list(reagent_list)
 	RegisterSignal(target, COMSIG_ITEM_ATTACK_EFFECT_SELF, PROC_REF(try_inject))
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
@@ -23,7 +23,7 @@
 		return
 
 	log_combat(user, victim, "poisoned", addition="with [reagentlog2]")
-	source.reagents.trans_to(victim, source.reagents.get_reagent_amount(), transfered_by = user)
+	source.reagents.trans_to(victim, source.reagents.total_volume, transfered_by = user)
 	Detach(src, TRUE)
 	qdel(src, TRUE)
 

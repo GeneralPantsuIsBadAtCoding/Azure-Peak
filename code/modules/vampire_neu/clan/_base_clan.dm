@@ -101,6 +101,7 @@ And it also helps for the character set panel
 
 		// Apply vampire-specific changes
 		H.mob_biotypes = MOB_UNDEAD
+		H.maxbloodpool += 2000
 
 		if(alt_sprite)
 			if (!alt_sprite_greyscale)
@@ -253,16 +254,16 @@ And it also helps for the character set panel
 	for (var/trait in clane_traits)
 		REMOVE_TRAIT(vampire, trait, "clan")
 
-
 	vampire.update_body()
+	vampire.maxbloodpool = initial(vampire.maxbloodpool)
 
-	//var/datum/component/sunlight_vulnerability/sun_comp = vampire.GetComponent(/datum/component/sunlight_vulnerability)
-	//if(sun_comp)
-	//	qdel(sun_comp)
+	var/datum/component/sunlight_vulnerability/sun_comp = vampire.GetComponent(/datum/component/sunlight_vulnerability)
+	if(sun_comp)
+		qdel(sun_comp)
 
-	//var/datum/component/vampire_disguise/disguise_comp = vampire.GetComponent(/datum/component/vampire_disguise)
-	//if(disguise_comp)
-	//	qdel(disguise_comp)
+	var/datum/component/vampire_disguise/disguise_comp = vampire.GetComponent(/datum/component/vampire_disguise)
+	if(disguise_comp)
+		qdel(disguise_comp)
 
 	clan_members -= vampire
 

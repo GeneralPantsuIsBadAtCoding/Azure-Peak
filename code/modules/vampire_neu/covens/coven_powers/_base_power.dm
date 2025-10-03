@@ -83,6 +83,10 @@
 
 	src.discipline = discipline
 
+	desc += "\n\nCost: [vitae_cost] vitae"
+	desc += "\nCooldown: [cooldown_length > 0 ? DisplayTimeText(cooldown_length) : "None"]"
+	desc += "\nRight click to switch this coven's level, alt right click to cycle backwards."
+
 /**
  * Setter to handle registering of signals.
  */

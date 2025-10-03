@@ -106,7 +106,7 @@
 	range = 7
 
 	multi_activate = TRUE
-	cooldown_length = 1 MINUTE
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/presence/fall/activate(mob/living/carbon/human/target)
 	. = ..()

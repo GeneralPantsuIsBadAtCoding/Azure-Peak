@@ -76,7 +76,7 @@
 	level = 3
 	research_cost = 3
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
-	vitae_cost = 3
+	vitae_cost = 150
 	target_type = TARGET_OBJ
 	range = 15
 	violates_masquerade = TRUE

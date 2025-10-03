@@ -483,13 +483,21 @@
 		to_chat(answerer,
 			span_danger("WRONG ANSWER."))
 		if(alert.bad_answers >= round(length(riddle_options)/2))
-			if(iscarbon(answerer))
-				var/mob/living/carbon/C = answerer
-				var/obj/item/organ/tongue/tongue = locate(/obj/item/organ/tongue) in C.internal_organs
-				if(tongue)
-					tongue.Remove(C)
-			to_chat(answerer,
-				span_danger("THE RIDDLE REMOVES YOUR LYING TONGUE AS IT FLEES."))
+			if(HAS_TRAIT(answerer, TRAIT_CRITICAL_WEAKNESS))
+				if(iscarbon(answerer))
+					var/mob/living/carbon/C = answerer
+					var/obj/item/organ/tongue/tongue = locate(/obj/item/organ/tongue) in C.internal_organs
+					if(tongue)
+						tongue.Remove(C)
+				to_chat(answerer,
+					span_danger("THE RIDDLE REMOVES YOUR LYING TONGUE AS IT FLEES."))
+			else
+				to_chat(answerer,
+					span_danger("THE RIDDLE PUNISHES YOU FOR LYING."))
+				answerer.adjust_fire_stacks(6)
+				answerer.ignite_mob()
+				answerer.adjustFireLoss(45)
+				answerer.Knockdown(10)
 			answerer.remove_movespeed_modifier("riddle")
 			alert.bad_answers = 0
 			alert.riddle = null
@@ -541,11 +549,13 @@
 	INVOKE_ASYNC(src, PROC_REF(aftervisual), initial)
 
 /datum/coven_power/fae_trickery/fae_wrath/proc/aftervisual(turf/target)
+	var/list/afterimages = list()
 	var/list/turfs = RANGE_TURFS(1, target)
 	for(var/turf/T in turfs)
-		spawn()
-			var/obj/effect/after_image/C = new(T)
-			C.name = owner.name
-			C.appearance = owner.appearance
-			C.dir = get_dir(T, target)
-			animate(C, pixel_x = rand(-16, 16), pixel_y = rand(-16, 16), alpha = 0, time = 1.5 SECONDS)
+		var/obj/effect/after_image/C = new(T, -8, 8, -8, 8, 0.5 SECONDS, 3 SECONDS, 0)
+		afterimages += C
+		C.name = owner.name
+		C.appearance = owner.appearance
+		C.dir = get_dir(T, target)
+
+	QDEL_LIST_IN(afterimages, 3 SECONDS)

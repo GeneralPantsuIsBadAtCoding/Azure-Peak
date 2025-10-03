@@ -15,7 +15,7 @@
 	var/enhanced_strip = FALSE
 	var/datum/clan/clan
 	var/bloodpool = 1000
-	var/maxbloodpool = 3000
+	var/maxbloodpool = 1000
 	var/masquerade = 5
 
 	var/last_masquerade_violation = 0
