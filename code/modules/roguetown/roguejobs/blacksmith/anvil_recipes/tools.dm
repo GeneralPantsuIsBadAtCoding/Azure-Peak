@@ -1,36 +1,60 @@
 /datum/anvil_recipe/tools
 	abstract_type = /datum/anvil_recipe/tools
 	i_type = "Utilities"
-	craftdiff = 1
+
+// Material parent classes - one skill level lower than weapons
+/datum/anvil_recipe/tools/aalloy
+	abstract_type = /datum/anvil_recipe/tools/aalloy
+	craftdiff = SKILL_LEVEL_NOVICE
+
+/datum/anvil_recipe/tools/copper
+	abstract_type = /datum/anvil_recipe/tools/copper
+	craftdiff = SKILL_LEVEL_NOVICE
+
+/datum/anvil_recipe/tools/iron
+	abstract_type = /datum/anvil_recipe/tools/iron
+	craftdiff = SKILL_LEVEL_NOVICE
+
+/datum/anvil_recipe/tools/steel
+	abstract_type = /datum/anvil_recipe/tools/steel
+	craftdiff = SKILL_LEVEL_APPRENTICE
+
+/datum/anvil_recipe/tools/gold
+	abstract_type = /datum/anvil_recipe/tools/gold
+	craftdiff = SKILL_LEVEL_JOURNEYMAN
+
+/datum/anvil_recipe/tools/tin
+	abstract_type = /datum/anvil_recipe/tools/tin
+	craftdiff = SKILL_LEVEL_NOVICE
 
 // --------- Copper -----------
-/datum/anvil_recipe/tools/sickle/copper
+/datum/anvil_recipe/tools/copper/sickle
 	name = "Sickle, Copper (+1 Stick)"
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/sickle/copper
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/pick/copper
+/datum/anvil_recipe/tools/copper/pick
 	name = "Pick, Copper (+1 Stick)"
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/pick/copper
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/pitchfork/copper
+/datum/anvil_recipe/tools/copper/pitchfork
 	name = "Pitchfork, Copper (+2 Sticks)"
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/pitchfork/copper
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/lamptern/copper
+/datum/anvil_recipe/tools/copper/lamptern
 	name = "Lamptern, Copper"
 	req_bar = /obj/item/ingot/copper
 	created_item = /obj/item/flashlight/flare/torch/lantern/copper
 
-/datum/anvil_recipe/tools/hammer/copper
+/datum/anvil_recipe/tools/copper/hammer
 	name = "Hammer, Copper (+Stick)"
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/grown/log/tree/stick)
@@ -101,13 +125,11 @@
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/needle/aalloy
 	createditem_num = 3
-	craftdiff = 0
 
 /datum/anvil_recipe/tools/aalloy/pan
 	name = "Frypan, Decrepit"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/cooking/pan/aalloy
-	craftdiff = 0
 
 /datum/anvil_recipe/tools/aalloy/agobs
 	name = "Goblet, Decrepit (x3)"
@@ -128,32 +150,28 @@
 	created_item = /obj/item/reagent_containers/glass/bucket/pot/aalloy
 
 
-/datum/anvil_recipe/tools/platter
+/datum/anvil_recipe/tools/aalloy/platter
 	name = "Platter, Decrepit (x3)"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/cooking/platter/aalloy
-	craftdiff = 1
 	createditem_num = 3
 
 /datum/anvil_recipe/tools/aalloy/bowl
 	name = "Bowl, Decrepit"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/reagent_containers/glass/bowl/aalloy
-	craftdiff = 1
 
 /datum/anvil_recipe/tools/aalloy/fork
 	name = "Fork, Decrepit (x3)"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/kitchen/fork/aalloy
 	createditem_num = 3
-	craftdiff = 1
 
 /datum/anvil_recipe/tools/aalloy/spoon
 	name = "Spoon, Decrepit (x3)"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/kitchen/spoon/aalloy
 	createditem_num = 3
-	craftdiff = 1
 
 
 // --------- IRON -----------
@@ -162,9 +180,8 @@
 	name = "Glass Blowing Rod"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rogueweapon/blowrod
-	craftdiff = 0
 
-/datum/anvil_recipe/tools/surgery/surgerytools
+/datum/anvil_recipe/tools/iron/surgerytools
 	name = "Surgeon's Bag (+1 Iron, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron, /obj/item/natural/hide/cured)
@@ -176,27 +193,23 @@
 	additional_items = list(/obj/item/rogueore/coal)
 	created_item = /obj/item/flashlight/flare/torch/metal
 	createditem_num = 5
-	craftdiff = 0
 	
 /datum/anvil_recipe/tools/iron/pan
 	name = "Frypan, Iron"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/cooking/pan
-	craftdiff = 0
 
 /datum/anvil_recipe/tools/iron/keyring
 	name = "Keyrings (x3)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/storage/keyring
 	createditem_num = 3
-	craftdiff = 0
 
-/datum/anvil_recipe/tools/ironsewingneedle
+/datum/anvil_recipe/tools/iron/sewingneedle
 	name = "Needles, Iron (x3)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/needle
 	createditem_num = 3 // They can be refilled with fiber now
-	craftdiff = 0
 
 /* Movning under Engineering
 /datum/anvil_recipe/tools/iron/lockpicks
@@ -204,14 +217,12 @@
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/lockpick
 	createditem_num = 3
-	craftdiff = 2
 
 /datum/anvil_recipe/tools/iron/lockpickring
 	name = "Lockpickrings x3"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/lockpickring
 	createditem_num = 3
-	craftdiff = 0
 */
 
 /datum/anvil_recipe/tools/iron/shovel
@@ -284,7 +295,6 @@
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/reagent_containers/glass/cup
 	createditem_num = 3
-	craftdiff = 0
 
 /datum/anvil_recipe/tools/iron/thresher
 	name = "Thresher, Iron (+1 Stick)"
@@ -293,25 +303,24 @@
 	created_item = /obj/item/rogueweapon/thresher
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/scissors
+/datum/anvil_recipe/tools/iron/scissors
 	name = "Scissors, Iron"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rogueweapon/huntingknife/scissors
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/headhook
+/datum/anvil_recipe/tools/iron/headhook
 	name = "Headhook, Iron (+2 Fibers)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/natural/fibers, /obj/item/natural/fibers)
 	created_item = /obj/item/storage/hip/headhook
-	craftdiff = 3
 	i_type = "Tools"
 
 // --------- Steel -----------
 
 /datum/anvil_recipe/tools/steel/hammer
 	name = "Claw Hammer (+1 Stick)"
-	req_bar = /obj/item/ingot/iron
+	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/hammer/steel
 
@@ -340,7 +349,7 @@
 	created_item = /obj/item/rogueweapon/huntingknife/cleaver
 	createditem_num = 1
 
-/datum/anvil_recipe/tools/steelscissors
+/datum/anvil_recipe/tools/steel/scissors
 	name = "Scissors, Steel"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/rogueweapon/huntingknife/scissors/steel
@@ -354,7 +363,6 @@
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/reagent_containers/glass/cup/silver
 	createditem_num = 3
-	craftdiff = 2
 
 // --------- GOLD RECIPES-----------
 
@@ -363,7 +371,6 @@
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/reagent_containers/glass/cup/golden
 	createditem_num = 3
-	craftdiff = 2
 
 
 // --------- COOKING RECIPES -----------
@@ -377,53 +384,50 @@
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/reagent_containers/glass/bucket/pot/kettle
 
-/datum/anvil_recipe/tools/pote/copper
+/datum/anvil_recipe/tools/copper/pot
 	name = "Cooking Pot, Copper"
 	req_bar = /obj/item/ingot/copper
 	created_item = /obj/item/reagent_containers/glass/bucket/pot/copper
 
-/datum/anvil_recipe/tools/platter
+/datum/anvil_recipe/tools/copper/platter
 	name = "Platter, Copper (x2)"
 	req_bar = /obj/item/ingot/copper
 	created_item = /obj/item/cooking/platter/copper
-	craftdiff = 1
 	createditem_num = 2
 
-/datum/anvil_recipe/tools/platter/tin
+/datum/anvil_recipe/tools/tin/platter
 	name = "Platter, Tin (x2)"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/cooking/platter/pewter
 
-/datum/anvil_recipe/tools/platter/gold
+/datum/anvil_recipe/tools/gold/platter
 	name = "Platter, Gold (x2)"
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/cooking/platter/gold
 
-/datum/anvil_recipe/tools/platter/silver
+/datum/anvil_recipe/tools/silver/platter
 	name = "Platter, Silver (x2)"
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/cooking/platter/silver
 
-/datum/anvil_recipe/tools/spoon
+/datum/anvil_recipe/tools/iron/spoon
 	name = "Spoon, Iron (x3)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/kitchen/spoon/iron
 	createditem_num = 3
-	craftdiff = 1
 
-/datum/anvil_recipe/tools/spoon/tin
+/datum/anvil_recipe/tools/tin/spoon
 	name = "Spoon, Tin (x3)"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/kitchen/spoon/tin
 
-/datum/anvil_recipe/tools/fork
+/datum/anvil_recipe/tools/iron/fork
 	name = "Fork, Iron (x3)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/kitchen/fork/iron
 	createditem_num = 3
-	craftdiff = 1
 
-/datum/anvil_recipe/tools/fork/tin
+/datum/anvil_recipe/tools/tin/fork
 	name = "Fork, Tin (x3)"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/kitchen/fork/tin
@@ -441,54 +445,54 @@
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/reagent_containers/glass/crucible
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/sprue_funnel
 	name = "Sprue and Funnel"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/sprue_funnel
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_axe
 	name = "Axe Blade Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/axe
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_sword
 	name = "Sword Blade Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/sword
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_knife
 	name = "Knife Blade Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/knife
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_mace
 	name = "Mace Head Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/mace
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_polearm
 	name = "Polearm Blade Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/polearm
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"
 
 /datum/anvil_recipe/tools/mold_plate
 	name = "Plate Mold"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/mold/plate
-	craftdiff = 5
+	craftdiff = SKILL_LEVEL_MASTER
 	i_type = "Casting"

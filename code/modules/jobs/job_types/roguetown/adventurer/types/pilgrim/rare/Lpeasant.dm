@@ -6,6 +6,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/farmermaster
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 
 	maximum_possible_slots = 1
 	pickprob = 5
@@ -23,7 +24,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/labor/farming = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/craft/cooking = SKILL_LEVEL_APPRENTICE,

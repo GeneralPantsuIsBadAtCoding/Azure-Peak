@@ -96,11 +96,6 @@
 	cost = 25
 	contains = list(/obj/item/clothing/mask/rogue/wildguard)
 
-/datum/supply_pack/rogue/armor_iron/mask_hound
-	name = "Mask, Hound"
-	cost = 25
-	contains = list(/obj/item/clothing/mask/rogue/facemask/hound)
-
 /datum/supply_pack/rogue/armor_iron/boots_iron
 	name = "Plated Boots"
 	cost = 25

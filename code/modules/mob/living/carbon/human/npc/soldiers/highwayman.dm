@@ -83,17 +83,11 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	if(prob(50))
 		mask = /obj/item/clothing/mask/rogue/ragmask/red
-	if(prob(50))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 	armor = /obj/item/clothing/suit/roguetown/armor/leather
-	if(prob(50))
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 	if(prob(50))
-		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	if(prob(50))
-		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/helmet/leather
 	if(prob(30))
@@ -101,8 +95,6 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	if(prob(50))
 		neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/leather
-	if(prob(50))
-		gloves = /obj/item/clothing/gloves/roguetown/angle
 	H.STASTR = rand(12,14) //GENDER EQUALITY!!
 	H.STASPD = 11
 	H.STACON = rand(10,12) //so their limbs no longer pop off like a skeleton

@@ -145,7 +145,6 @@
 
 #define HUNTER		(1<<0)
 #define FARMER		(1<<1)
-#define BUTCHER		(1<<2)
 #define FISHER		(1<<3)
 #define LUMBERJACK	(1<<4)
 #define MINER		(1<<5)
@@ -352,7 +351,6 @@
 	/datum/job/roguetown/villager,\
 	/datum/job/roguetown/nightmaiden,\
 	/datum/job/roguetown/beggar,\
-	/datum/job/roguetown/butcher,\
 	/datum/job/roguetown/cook,\
 	/datum/job/roguetown/knavewench,\
 	/datum/job/roguetown/lunatic,\

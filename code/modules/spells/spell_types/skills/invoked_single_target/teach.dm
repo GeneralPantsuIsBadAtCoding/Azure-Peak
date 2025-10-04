@@ -1,6 +1,8 @@
 //A spell to teach other characters new skills
 /obj/effect/proc_holder/spell/invoked/teach
 	name = "The Tutor's Calling"
+	desc = "You can teach a skill or language to another person, provided they are not more skilled than you in it. \n\
+	You cannot teach the same person twice. Teaching takes 30 seconds, and requires both you and your student to be focused on the lesson."
 	overlay_state = "book3"
 	releasedrain = 50
 	chargedrain = 0
@@ -22,7 +24,7 @@
 	/datum/skill/labor/butchering,
 
 	/datum/skill/craft/carpentry,
-	/datum/skill/misc/ceramics,
+	/datum/skill/craft/ceramics,
 	/datum/skill/misc/climbing,
 	/datum/skill/craft/cooking,
 	/datum/skill/craft/crafting,
@@ -42,7 +44,7 @@
 
 
 
-    /datum/skill/misc/sewing,
+    /datum/skill/craft/sewing,
     /datum/skill/craft/smelting,
 	/datum/skill/misc/sneaking,
 	/datum/skill/misc/stealing,
@@ -101,7 +103,7 @@
 					to_chat(L, span_warning("There's no way I could handle all that knowledge!"))
 					to_chat(usr, span_warning("My student cannot handle that much knowledge at once!"))
 					return // cannot teach the same student twice
-				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/misc/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing, /datum/language/aavnic, /datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/etruscan, /datum/language/grenzelhoftian, /datum/language/gronnic, /datum/language/hellspeak, /datum/language/kazengunese, /datum/language/orcish, /datum/language/otavan)) && L.get_skill_level(item) < SKILL_LEVEL_NOVICE)
+				if(!(item in list(/datum/skill/misc/music, /datum/skill/craft/cooking, /datum/skill/craft/sewing, /datum/skill/misc/lockpicking, /datum/skill/misc/climbing, /datum/language/aavnic, /datum/language/celestial, /datum/language/draconic, /datum/language/dwarvish, /datum/language/elvish, /datum/language/etruscan, /datum/language/grenzelhoftian, /datum/language/gronnic, /datum/language/hellspeak, /datum/language/kazengunese, /datum/language/orcish, /datum/language/otavan)) && L.get_skill_level(item) < SKILL_LEVEL_NOVICE)
 					to_chat(L, span_warning("I cannot understand the lesson on [item.name], I need to get more skilled first!"))
 					to_chat(usr, span_warning("I try teaching [L] [item.name] but my student couldnt grasp the lesson!"))
 					return // some basic skill will not require you novice level

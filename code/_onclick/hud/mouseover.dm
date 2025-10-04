@@ -243,8 +243,8 @@
 		maptext_y = 28
 		maptext_x = -32
 
-	if(text2num(screen_loc_X[1]) <= 0)
-		screen_loc_X[1] = 1
+	if(text2num(screen_loc_X[1]) <= -3)
+		screen_loc_X[1] = -3
 	if(text2num(screen_loc_Y[1]) <= 0)
 		screen_loc_Y[1] = 1
 

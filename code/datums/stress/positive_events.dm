@@ -331,3 +331,7 @@
 	timer = 999 MINUTES
 	desc = span_green("I'm wielding a BLESSED weapon!")
 
+/datum/stressevent/hand_fed_fruit
+	stressadd = -1
+	timer = 5 MINUTES
+	desc = span_green("How decadent!")

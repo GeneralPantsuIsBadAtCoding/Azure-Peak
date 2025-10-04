@@ -413,6 +413,8 @@ All foods are distributed among various categories. Use common sense.
 				if(!do_mob(user, M, double_progress = TRUE))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
+				if(istype(src, /obj/item/reagent_containers/food/snacks/grown/berries/rogue) || istype(src, /obj/item/reagent_containers/food/snacks/grown/fruit))
+					M.add_stress(/datum/stressevent/hand_fed_fruit)
 //				M.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_danger("[user] forces you to eat [src]!"))
 			else
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))

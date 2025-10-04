@@ -358,7 +358,7 @@
 	H.adjust_skillrank_up_to(/datum/skill/craft/carpentry, 1, TRUE)
 	H.adjust_skillrank_up_to(/datum/skill/craft/masonry, 1, TRUE)
 	H.adjust_skillrank_up_to(/datum/skill/craft/crafting, 1, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/sewing, 1, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/craft/sewing, 1, TRUE)
 
 	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 	H.adjust_skillrank_up_to(/datum/skill/combat/maces, 3, TRUE)

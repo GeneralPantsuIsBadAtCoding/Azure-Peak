@@ -20,7 +20,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 			return FALSE
 		if(TR.latent_ambush <= DANGER_SAFE_LIMIT && !always) // Signal horn can dip below 10
 			return FALSE
-	if(TR && ((world.time - TR.last_natural_ambush_time + 1 MINUTES) < 1 MINUTES))
+	if(TR && ((world.time - TR.last_natural_ambush_time) < 2 MINUTES))
 		return FALSE
 	var/true_ambush_chance = GLOB.ambush_chance_pct
 	if(TR)

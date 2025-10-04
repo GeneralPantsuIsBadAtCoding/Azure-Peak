@@ -20,6 +20,7 @@
 		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
@@ -27,6 +28,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 	)
+	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
 
 /datum/outfit/job/roguetown/wretch/heretic
 	has_loadout = TRUE
@@ -37,7 +39,7 @@
 	H.mind.current.faction += "[H.name]_faction"
 	H.set_blindness(0)
 	if(H.mind)
-		var/weapons = list("Longsword", "Mace", "Flail", "Axe")
+		var/weapons = list("Longsword", "Mace", "Flail", "Axe", "Billhook")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
@@ -53,12 +55,16 @@
 			if("Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+			if("Billhook")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_EXPERT, TRUE)
+				r_hand = /obj/item/rogueweapon/spear/billhook
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
 		C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_4)	//Minor regen, can level up to T4.
 		wretch_select_bounty(H)
 
 	// You can convert those the church has shunned.
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
+	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/wound_heal)
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
 		if(H.mind)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
@@ -154,6 +160,7 @@
 			H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+			ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
 		if(/datum/patron/old_god)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross, SLOT_WRISTS, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet, SLOT_HEAD, TRUE)
@@ -189,6 +196,8 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/traps = SKILL_LEVEL_JOURNEYMAN,
 	)
+	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
+
 
 /datum/outfit/job/roguetown/wretch/hereticspy
 	has_loadout = TRUE
@@ -250,6 +259,7 @@
 			H.mind.current.faction += "[H.name]_faction"
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic)
+	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/wound_heal)
 
 /datum/outfit/job/roguetown/wretch/hereticspy/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

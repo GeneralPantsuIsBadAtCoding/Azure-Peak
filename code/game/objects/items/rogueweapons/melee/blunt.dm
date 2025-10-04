@@ -201,7 +201,7 @@
 	icon_state = "cudgel"
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/mace/strike)
-	gripped_intents = list(/datum/intent/mace/smash, /datum/intent/mace/strike)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 	smeltresult = /obj/item/ash
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
