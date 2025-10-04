@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(agevetted_list, load_agevets_from_file())
 GLOBAL_PROTECT(agevetted_list)
 
 /client/proc/check_agevet()
-	if(LAZYACCESS(GLOB.agevetted_list, ckey) || holder)
+	if(LAZYACCESS(GLOB.agevetted_list, ckey))
 		return TRUE
 	return FALSE
 

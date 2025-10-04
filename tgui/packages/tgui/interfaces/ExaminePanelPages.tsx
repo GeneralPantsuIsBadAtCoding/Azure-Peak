@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Section, Stack, Box, Image } from 'tgui-core/components';
+import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { ExaminePanelData } from './ExaminePanelData';
@@ -145,10 +146,10 @@ export const ImageGalleryPage = (props) => {
   } = data;
   
   return (
-        <Stack maxHeight="85%" maxWidth="100%" fill align="center" justify="space-evenly">
+        <Stack fill justify="space-evenly">
             {img_gallery.map((val) => (
               <Stack.Item grow key={val}>
-                  <Section align = "center">
+                  <Section align="center">
                   <Image
                     maxHeight="100%"
                     maxWidth="100%"

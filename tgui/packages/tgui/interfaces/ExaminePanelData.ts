@@ -12,4 +12,5 @@ export type ExaminePanelData = {
   img_gallery: string[];
   is_playing: boolean;
   has_song: boolean;
+  is_vet: boolean;
 };

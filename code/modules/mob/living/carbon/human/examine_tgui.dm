@@ -44,6 +44,7 @@
 	var/char_name
 	var/song_url
 	var/has_song = FALSE
+	var/is_vet = FALSE
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
@@ -54,9 +55,11 @@
 		ooc_notes_nsfw += holder.erpprefs
 		char_name = holder.name
 		song_url = holder.ooc_extra
+		is_vet = holder.check_agevet()
 		if(!obscured)
 			headshot += holder.headshot_link
-			img_gallery = holder.img_gallery			
+			img_gallery = holder.img_gallery
+
 	else if(pref)
 		obscured = FALSE
 		flavor_text = pref.flavortext
@@ -67,6 +70,7 @@
 		img_gallery = pref.img_gallery
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
+		is_vet = viewing.check_agevet()
 	
 	if(song_url)
 		has_song = TRUE
@@ -94,6 +98,7 @@
 		"img_gallery" = img_gallery,
 		"is_playing" = is_playing,
 		"has_song" = has_song,
+		"is_vet" = is_vet,
 	)
 	return data
 
@@ -145,7 +150,9 @@
 				is_playing = FALSE
 				C.tgui_panel?.stop_music()
 			return TRUE
-
+		if("vet_chat")
+			to_chat(viewing, span_boldgreen("This user is age-verified!"))
+			return TRUE
 
 /datum/examine_panel/ui_close()
 	viewing.client?.tgui_panel?.stop_music()

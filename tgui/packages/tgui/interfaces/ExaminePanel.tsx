@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Stack, Button } from 'tgui-core/components';
+import { Button, Stack } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { PageButton } from '../components/PageButton';
+import { Window } from '../layouts';
+import { ExaminePanelData } from './ExaminePanelData';
 import { FlavorTextPage } from './ExaminePanelPages';
 import { ImageGalleryPage } from './ExaminePanelPages';
-import { Window } from '../layouts';
-import { useBackend } from '../backend';
-import { ExaminePanelData } from './ExaminePanelData';
 
 enum Page {
   FlavorText,
@@ -14,7 +15,7 @@ enum Page {
 
 export const ExaminePanel = (props) => {
   const { act, data } = useBackend<ExaminePanelData>();
-  const { character_name, is_playing, has_song, img_gallery } = data;
+  const { is_vet, character_name, is_playing, has_song, img_gallery } = data;
   const [currentPage, setCurrentPage] = useState(Page.FlavorText);
 
   let pageContents;
@@ -29,15 +30,27 @@ export const ExaminePanel = (props) => {
   }
 
   return (
-    <Window title={character_name} width={1000} height={700} buttons={<Button
-            color={'green'}
-            icon="music"
-            tooltip="Music player"
-            tooltipPosition="bottom-start"
-            onClick={() => act('toggle')}
-            disabled={!has_song}
-            selected={!is_playing}
-          />}>
+    <Window title={character_name} width={1000} height={700} buttons={
+      <>
+      {!!is_vet && (
+        <Button
+          color="gold"
+          icon="crown"
+          tooltip="This player is age-verified!"
+          tooltipPosition="bottom-start"
+          onClick={() => act('vet_chat')}
+        />
+      )}
+      <Button
+      color="green"
+      icon="music"
+      tooltip="Music player"
+      tooltipPosition="bottom-start"
+      onClick={() => act('toggle')}
+      disabled={!has_song}
+      selected={!is_playing}
+      />
+      </>}>
       <Window.Content>
         <Stack vertical fill>
           {img_gallery.length > 0 && (
