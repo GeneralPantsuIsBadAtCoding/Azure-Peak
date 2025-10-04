@@ -36,3 +36,6 @@
 
 ///From living/Life() (seconds, times_fired)
 #define COMSIG_LIVING_LIFE "living_life"
+
+/// From /obj/item/grabbing/bite/drinklimb() (mob/living/target)
+#define COMSIG_LIVING_DRINKED_LIMB_BLOOD "living_drinked_limb_blood"
