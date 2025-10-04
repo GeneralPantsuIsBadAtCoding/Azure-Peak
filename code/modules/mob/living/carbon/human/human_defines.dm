@@ -148,8 +148,6 @@
 	/// Assoc list of culinary preferences of the mob
 	var/list/culinary_preferences = list()
 
-	var/datum/examine_panel/mob_examine_panel
-
 	var/datum/charflaw/charflaw
 
 	// curse list and cooldown
