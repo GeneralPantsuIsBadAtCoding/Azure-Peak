@@ -64,6 +64,7 @@
 			if(AGE_MIDDLEAGED)
 				change_stat(STATKEY_SPD, -1)
 				change_stat(STATKEY_WIL, 1)
+				change_stat(STATKEY_LCK, 1)
 			if(AGE_OLD)
 				change_stat(STATKEY_STR, -1)
 				change_stat(STATKEY_SPD, -2)
