@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	"Colorblind"=/datum/charflaw/colorblind,
 	"Smoker"=/datum/charflaw/addiction/smoker,
 	"Junkie"=/datum/charflaw/addiction/junkie,
+	"Unintelligible"=/datum/charflaw/unintelligible,
 	"Greedy"=/datum/charflaw/greedy,
 	"Narcoleptic"=/datum/charflaw/narcoleptic,
 	"Nymphomaniac"=/datum/charflaw/addiction/lovefiend,
@@ -281,6 +282,21 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/colorblind/on_mob_creation(mob/user)
 	..()
 	user.add_client_colour(/datum/client_colour/monochrome)
+
+/datum/charflaw/unintelligible
+	name = "Unintelligible"
+	desc = "I cannot speak the common tongue!"
+
+/datum/charflaw/unintelligible/on_mob_creation(mob/user)
+	var/mob/living/carbon/human/recipient = user
+	addtimer(CALLBACK(src, .proc/unintelligible_apply, recipient), 5 SECONDS)
+
+/datum/charflaw/unintelligible/proc/unintelligible_apply(mob/living/carbon/human/user)
+	if(user.advsetup)
+		addtimer(CALLBACK(src, .proc/unintelligible_apply, user), 5 SECONDS)
+		return
+	user.remove_language(/datum/language/common)
+	user.adjust_skillrank(/datum/skill/misc/reading, -6, TRUE)
 
 /datum/charflaw/greedy
 	name = "Greedy"
