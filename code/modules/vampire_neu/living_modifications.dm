@@ -71,8 +71,11 @@
 	hud_used?.bloodpool?.desc = "Bloodpool: [bloodpool]/[maxbloodpool]"
 	hud_used?.bloodpool?.set_value((100 / (maxbloodpool / bloodpool)) / 100, 1 SECONDS)
 
-/mob/living/proc/adjust_bloodpool(adjust)
+/mob/living/proc/adjust_bloodpool(adjust, visible = TRUE)
 	bloodpool = CLAMP(bloodpool + adjust, 0, maxbloodpool)
+	if(!visible)
+		return
+
 	hud_used?.bloodpool?.name = "Bloodpool: [bloodpool]"
 	hud_used?.bloodpool?.desc = "Bloodpool: [bloodpool]/[maxbloodpool]"
 	if(bloodpool <= 0)

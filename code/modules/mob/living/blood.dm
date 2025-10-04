@@ -74,7 +74,7 @@
 	// Non-vampiric bloodpool regen.
 	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
 	if(!clan && blood_volume > BLOOD_VOLUME_SAFE)
-		adjust_bloodpool(BLOODPOL_REGEN)
+		adjust_bloodpool(BLOODPOL_REGEN, FALSE)
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/handle_blood()
@@ -160,7 +160,7 @@
 	// Non-vampiric bloodpool regen.
 	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
 	if(!clan && blood_volume > BLOOD_VOLUME_SAFE)
-		adjust_bloodpool(BLOODPOL_REGEN)
+		adjust_bloodpool(BLOODPOL_REGEN, FALSE)
 
 /mob/living/proc/get_bleed_rate()
 	var/bleed_rate = 0
