@@ -32,6 +32,7 @@
 #define IN_STORAGE				(1<<11) //is this item in the storage item, such as backpack? used for tooltips
 #define SURGICAL_TOOL			(1<<12)	//Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)
 #define DREAM_ITEM				(1<<13) //Otherworldly items from Abyssor's dream. Tend to have special effects!
+#define FRESH_FOOD_ITEM			(1<<14) // Currently only used for fresh meat from butchering to differentiate it from stockpile magic meat.
 
 // Flags for the clothing_flags var on /obj/item/clothing
 

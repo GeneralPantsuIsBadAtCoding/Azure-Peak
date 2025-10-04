@@ -12,6 +12,7 @@
 	foodtype = MEAT
 	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	cooked_smell = /datum/pollutant/food/fried_meat
+	var/fresh_meat = FALSE
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/attackby(obj/item/I, mob/living/user)
 	update_cooktime(user)
