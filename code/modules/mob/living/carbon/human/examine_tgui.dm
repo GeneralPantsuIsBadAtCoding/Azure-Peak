@@ -151,7 +151,7 @@
 				C.tgui_panel?.stop_music()
 			return TRUE
 		if("vet_chat")
-			to_chat(viewing, span_boldgreen("This user is age-verified!"))
+			to_chat(viewing, span_boldgreen("This player is age-verified!"))
 			return TRUE
 
 /datum/examine_panel/ui_close()
