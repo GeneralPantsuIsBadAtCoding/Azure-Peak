@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		if(GENERATION_NEONATE)
 			research_points = 8
 		if(GENERATION_THINBLOOD)
-			research_points = 2
+			research_points = 0
 
 /datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire/lord))
