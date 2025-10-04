@@ -12,6 +12,8 @@
   --font-family: Pterra, TrueType;
   --color-text: #897472;
   --line-height: 170%;
+  --color-scrollbar-thumb: #7b5353;
+  --color-scrollbar-base: #7b;
 
 
   /* Semantic colors */ 
@@ -53,9 +55,7 @@
 
   .TitleBar {
     background-color: #000000;
-    border: none;
     box-shadow: none;
-    font-size: 14px;
 
     &__title {
       font-size: 1.6rem;
@@ -64,7 +64,8 @@
 
   .TitleBar__title {
     padding-left: 12px;
-    font-size: 14px;
+    font-size: 15px;
+    color: #ae3636;
   }
 
   // Component overrides
@@ -76,8 +77,13 @@
   --button-background-default: #7b5353;
   --button-background-selected: #7b5353;
   .Button {
-    margin-bottom: 2px;
     transition: all 0.5s;
+    --color-text: #897472;
+  }
+  .Button--color--transparent {
+    --button-background: transparent;
+    --button-background-hover: #7b5353;
+    --button-background-active: #7b5353;
   }
 
   // Input
