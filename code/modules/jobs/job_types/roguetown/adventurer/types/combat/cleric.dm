@@ -64,7 +64,10 @@
 			if("Katar")
 				backpack_contents += list(/obj/item/rogueweapon/katar = 1)
 			if("Knuckle Dusters")
-				backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/psydon/old = 1)
+				else
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -256,7 +259,10 @@
 				beltr = /obj/item/rogueweapon/flail
 			if("Spear")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				r_hand = /obj/item/rogueweapon/spear
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					r_hand = /obj/item/rogueweapon/spear/psyspear/old
+				else
+					r_hand = /obj/item/rogueweapon/spear
 			if("Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut

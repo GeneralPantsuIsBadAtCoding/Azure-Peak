@@ -401,6 +401,21 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/spear/psyspear/old
+	name = "old psydonian spear"
+	desc = "An ornate spear, its silver tarnished by neglect. HE still guides the faithful's hand, if not this weapon."
+	icon_state = "psyspear"
+	force = 20
+	force_wielded = 30
+	minstr = 8
+	wdefense = 5
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/spear/psyspear/old/ComponentInitialize()
+	return
+
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
 	if(tag)
