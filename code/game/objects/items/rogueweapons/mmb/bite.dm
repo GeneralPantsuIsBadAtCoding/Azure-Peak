@@ -283,8 +283,4 @@
 		qdel(src)
 		return
 
-	if(!limb_grabbed.get_bleed_rate())
-		to_chat(user, span_warning("Sigh. It's not bleeding."))
-		return
-
 	user.drinksomeblood(grabbed, sublimb_grabbed)
