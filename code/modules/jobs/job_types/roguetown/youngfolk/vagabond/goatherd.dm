@@ -4,6 +4,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = ACCEPTED_RACES
 	outfit = /datum/outfit/job/roguetown/vagabond/goatherd
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	category_tags = list(CTAG_VAGABOND)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/goatmale/tame
 	subclass_stats = list(

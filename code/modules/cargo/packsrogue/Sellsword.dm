@@ -150,6 +150,11 @@
 	cost = 60
 	contains = list(/obj/item/rogueweapon/greatsword/grenz)
 
+/datum/supply_pack/rogue/Sellsword/SFlamberge
+	name = "Steel Flamberge"
+	cost = 60
+	contains = list(/obj/item/rogueweapon/greatsword/grenz/flamberge)
+
 //////////////////////
 // RANESHEN - RIDER //
 //////////////////////

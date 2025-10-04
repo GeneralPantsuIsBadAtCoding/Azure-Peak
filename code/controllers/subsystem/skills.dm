@@ -39,6 +39,11 @@ SUBSYSTEM_DEF(skills)
 		var/datum/skill/ref = new type
 		all_skills[type] = ref
 
+/proc/skill_to_string_fancy(var/skill_level)
+	if(!skill_level)
+		return span_warning("None")
+	return SSskills.level_names[skill_level]
+
 /proc/skill_to_string(var/skill_level)
 	if(!skill_level)
 		return "None"

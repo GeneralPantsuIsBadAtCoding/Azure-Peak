@@ -214,7 +214,7 @@
 	throwforce = 10
 	amount_per_transfer_from_this = 25
 	possible_transfer_amounts = list(25)
-	volume = 100
+	volume = 120
 	flags_inv = HIDEHAIR
 	reagent_flags = OPENCONTAINER
 	obj_flags = CAN_BE_HIT

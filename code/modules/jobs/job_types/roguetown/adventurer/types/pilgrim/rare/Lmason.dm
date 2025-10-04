@@ -7,6 +7,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/grandmastermason
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT, TRAIT_SMITHING_EXPERT)
 	category_tags = list(CTAG_TOWNER)
 	maximum_possible_slots = 1
 	pickprob = 5
@@ -17,6 +18,7 @@
 		STATKEY_WIL = 2,
 		STATKEY_STR = 1
 	)
+	applied_traits = list(TRAIT_SMITHING_EXPERT, TRAIT_HOMESTEAD_EXPERT)
 	subclass_skills = list(
 		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
@@ -34,8 +36,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/craft/smelting = SKILL_LEVEL_LEGENDARY,
-		/datum/skill/misc/ceramics = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/ceramics = SKILL_LEVEL_EXPERT,
 	)
 /datum/outfit/job/roguetown/adventurer/grandmastermason/pre_equip(mob/living/carbon/human/H)
 	..()
