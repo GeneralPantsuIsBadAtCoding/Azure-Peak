@@ -72,7 +72,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/assassin
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander.ogg'
 	subclass_languages = list(/datum/language/thievescant)
-	traits_applied = list(TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_ASSASSIN)
 	subclass_stats = list(
 		STATKEY_PER = 2,
 		STATKEY_SPD = 2,

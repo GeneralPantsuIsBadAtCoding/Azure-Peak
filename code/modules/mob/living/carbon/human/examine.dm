@@ -244,6 +244,9 @@
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
 
+	var/obscured = check_obscured_slots()
+	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
+
 	var/is_stupid = FALSE
 	var/is_smart = FALSE
 	var/is_normal = FALSE
@@ -267,9 +270,6 @@
 						. += shit
 			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord) || user.mind.has_antag_datum(/datum/antagonist/vampire))
 				. += span_userdanger("Blood Volume: [blood_volume]")
-
-	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
 		if(!wear_armor)
@@ -880,6 +880,11 @@
 
 	for(var/line in lines)
 		. += span_info(line)
+
+	// Characters with the hunted flaw will freak out if they can't see someone's face.
+	if(!appears_dead)
+		if(skipface && user.has_flaw(/datum/charflaw/hunted) && user != src)
+			user.add_stress(/datum/stressevent/hunted)
 
 	var/trait_exam = common_trait_examine()
 	if(!isnull(trait_exam))
