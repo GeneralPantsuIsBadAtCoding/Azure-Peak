@@ -12,6 +12,7 @@
 	resistance_flags = FIRE_PROOF
 	experimental_inhand = FALSE
 	salvage_amount = 0
+	salvage_result = null
 
 /obj/item/clothing/shoes/roguetown/boots
 	name = "dark boots"
@@ -120,8 +121,7 @@
 	sewrepair = TRUE
 	resistance_flags = null
 	color = "#473a30"
-	salvage_amount = 1
-	salvage_result = /obj/item/natural/hide/cured
+	salvage_result = null
 
 /obj/item/clothing/shoes/roguetown/simpleshoes/white
 	color = null

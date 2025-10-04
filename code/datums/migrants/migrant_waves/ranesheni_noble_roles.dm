@@ -14,7 +14,7 @@
 /datum/advclass/ranesheni_emir
 	name = "Emir"
 	outfit = /datum/outfit/job/roguetown/ranesheni/emir
-	traits_applied = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
 	category_tags = list(CTAG_RANESHENI_EMIR)
 	subclass_stats = list(
 		STATKEY_INT = 2,
@@ -75,7 +75,7 @@
 /datum/advclass/ranesheni_amirah
 	name = "Amirah"
 	outfit = /datum/outfit/job/roguetown/ranesheni/amirah
-	traits_applied = list(TRAIT_NOBLE, TRAIT_SEEPRICES, TRAIT_NUTCRACKER, TRAIT_GOODLOVER, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_NOBLE, TRAIT_SEEPRICES, TRAIT_NUTCRACKER, TRAIT_GOODLOVER)
 	category_tags = list(CTAG_RANESHENI_AMIRAH)
 	subclass_stats = list(
 		STATKEY_INT = 3,
@@ -133,7 +133,7 @@
 /datum/advclass/ranesheni_janissary
 	name = "Janissary"
 	outfit = /datum/outfit/job/roguetown/ranesheni/janissary
-	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
 	category_tags = list(CTAG_RANESHENI_JANISSARY)
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -192,7 +192,7 @@
 /datum/advclass/ranesheni_advisor
 	name = "Janissary"
 	outfit = /datum/outfit/job/roguetown/ranesheni/advisor
-	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
 	category_tags = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)
 	subclass_stats = list(
 		STATKEY_SPD = 2,

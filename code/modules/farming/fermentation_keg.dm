@@ -246,7 +246,7 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 	if(options.len == 0)
 		return
 
-	if(user.get_skill_level(/datum/skill/craft/cooking) < 3)
+	if(user.get_skill_level(/datum/skill/craft/cooking) < SKILL_LEVEL_APPRENTICE)
 		to_chat(user, span_notice("I am not knowledgable enough to brew."))
 		return FALSE
 

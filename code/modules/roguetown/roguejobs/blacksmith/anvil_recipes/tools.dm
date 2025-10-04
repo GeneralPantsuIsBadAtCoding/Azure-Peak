@@ -320,7 +320,7 @@
 
 /datum/anvil_recipe/tools/steel/hammer
 	name = "Claw Hammer (+1 Stick)"
-	req_bar = /obj/item/ingot/iron
+	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/hammer/steel
 

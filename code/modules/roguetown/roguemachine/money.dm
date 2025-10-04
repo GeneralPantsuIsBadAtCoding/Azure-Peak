@@ -162,18 +162,34 @@ GLOBAL_VAR(moneymaster)
 				type_to_put = /obj/item/roguecoin/silver
 				zenars_to_put = zenars
 			else
-				new /obj/item/roguecoin/silver(T, zenars)
+				// Create multiple stacks if needed
+				while(zenars > 0)
+					var/stack_size = min(zenars, 20)
+					var/obj/item/roguecoin/silver_stack = new /obj/item/roguecoin/silver(T, stack_size)
+					if(user && zenars == stack_size) // Only put first stack in hands
+						user.put_in_hands(silver_stack)
+					zenars -= stack_size
 		if(budget >= 1)
 			if(!highest_found)
 				type_to_put = /obj/item/roguecoin/copper
 				zenars_to_put = budget
 			else
-				new /obj/item/roguecoin/copper(T, budget)
+				// Create multiple stacks if needed
+				while(budget > 0)
+					var/stack_size = min(budget, 20)
+					var/obj/item/roguecoin/copper_stack = new /obj/item/roguecoin/copper(T, stack_size)
+					if(user && budget == stack_size) // Only put first stack in hands
+						user.put_in_hands(copper_stack)
+					budget -= stack_size
 	if(!type_to_put || zenars_to_put < 1)
 		return
-	var/obj/item/roguecoin/G = new type_to_put(T, floor(zenars_to_put))
-	if(user)
-		user.put_in_hands(G)
+	// Create multiple stacks if needed for the main type
+	while(zenars_to_put > 0)
+		var/stack_size = min(zenars_to_put, 20)
+		var/obj/item/roguecoin/G = new type_to_put(T, stack_size)
+		if(user && zenars_to_put == stack_size) // Only put first stack in hands
+			user.put_in_hands(G)
+		zenars_to_put -= stack_size
 	playsound(T, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
 /*
 /obj/structure/roguemachine/money/attack_right(mob/user)

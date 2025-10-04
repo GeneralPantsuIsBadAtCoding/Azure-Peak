@@ -913,6 +913,15 @@
 			if("altgrip")
 				return list("shrink" = 0.6,"sx" = 4,"sy" = 0,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
+/obj/item/rogueweapon/greatsword/iron
+	name = "iron greatsword"
+	desc = "Wrought in iron. Heftier and less sturdier than its steel equivalent - but it still does the job."
+	icon_state = "igsw"
+	max_blade_int = 200
+	max_integrity = 200
+	wdefense = 4
+	smelt_bar_num = 3
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/greatsword/aalloy
 	name = "decrepit greatsword"
@@ -954,6 +963,32 @@
 	wdefense = 4
 	force = 14
 	force_wielded = 35
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge
+	name = "steel flamberge"
+	desc = "A close relative of the Grenzelhoftian \"zweihander\", favored by Otavan nobility. The name comes from its unique, flame-shaped blade; a labor only surmountable by Psydonia's finest weaponsmiths."
+	icon_state = "steelflamb"
+	max_blade_int = 180
+	max_integrity = 130
+	wdefense = 6
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/malum
+	name = "forgefiend flamberge"
+	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
+	icon_state = "malumflamberge"
+	max_integrity = 200
+	max_blade_int = 200
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
+	name = "blacksteel flamberge"
+	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. \
+	The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \
+	\"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
+	icon_state = "blackflamb"
+	force = 25
+	force_wielded = 40
+	max_blade_int = 200
+	smeltresult = /obj/item/ingot/blacksteel
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "psydonian greatsword"

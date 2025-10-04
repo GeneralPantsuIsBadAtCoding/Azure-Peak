@@ -96,7 +96,8 @@
 		trait_capped_level = SKILL_LEVEL_LEGENDARY
 	#endif
 
-	if(trait_capped_level && (trait_capped_level <= mind.current.get_skill_level(skill)))
+	// Using this prevent a bug where you can bank xp to go one beyond cap
+	if(trait_capped_level && enough_sleep_xp_to_advance(skill, trait_capped_level - mind.current.get_skill_level(skill)))
 		amt = 0
 
 	var/capped_pre = enough_sleep_xp_to_advance(skill, 2)

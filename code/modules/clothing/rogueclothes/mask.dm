@@ -17,6 +17,32 @@
 	experimental_onhip = FALSE
 	var/overarmor = TRUE
 
+/obj/item/clothing/mask/rogue/AltRightClick(mob/user)
+	if(!istype(loc, /mob/living/carbon))
+		return
+	var/mob/living/carbon/H = user
+	if(icon_state == "[initial(icon_state)]_snout")
+		icon_state = initial(icon_state)
+		flags_inv &= ~HIDESNOUT
+		H.update_inv_wear_mask()
+		update_icon()
+		return
+
+	var/icon/J = new('icons/roguetown/clothing/onmob/masks.dmi')
+	var/list/istates = J.IconStates()
+	for(var/icon_s in istates)
+		if(findtext(icon_s, "[icon_state]_snout"))
+			icon_state += "_snout"
+			flags_inv &= HIDESNOUT
+			H.update_inv_wear_mask()
+			update_icon()
+			return
+
+/obj/item/clothing/mask/rogue/examine()
+	. = ..()
+
+	. += "[span_notice("Alt+RMB while on face to swap sprites between snout and standard variant, if it exists.")]"
+
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
 	icon_state = "glasses"
@@ -313,24 +339,6 @@
 	armor = ARMOR_MASK_METAL_BAD
 	smeltresult = /obj/item/ingot/copper
 
-/obj/item/clothing/mask/rogue/facemask/hound
-	name = "hound mask"
-	icon_state = "imask_hound"
-	max_integrity = 100
-	blocksound = PLATEHIT
-	break_sound = 'sound/foley/breaksound.ogg'
-	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
-	resistance_flags = FIRE_PROOF
-	armor = ARMOR_MASK_METAL
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
-	flags_inv = HIDEFACE|HIDESNOUT
-	body_parts_covered = FACE
-	block2add = FOV_BEHIND
-	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
-	experimental_onhip = TRUE
-	anvilrepair = /datum/skill/craft/armorsmithing
-	smeltresult = /obj/item/ingot/iron
-
 /obj/item/clothing/mask/rogue/facemask/psydonmask
 	name = "psydonian mask"
 	desc = "A silver mask, forever locked in a rigor of uncontestable joy. The Order of Saint Xylix can't decide on whether it's meant to represent Psydon's 'mirthfulness,' 'theatricality,' or the unpredictable melding of both."
@@ -419,11 +427,6 @@
 	icon_state = "steppemask"
 	layer = HEAD_LAYER
 
-/obj/item/clothing/mask/rogue/facemask/steel/steppesman/anthro
-	name = "steppesman beast mask"
-	desc = "A steel mask shaped like the face of a rather charismatic beastman! Pronounced cheeks, a nose, and small spikes for whiskers. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."
-	icon_state = "steppebeast"
-	
 /obj/item/clothing/mask/rogue/facemask/goldmask
 	name = "Gold Mask"
 	icon_state = "goldmask"
