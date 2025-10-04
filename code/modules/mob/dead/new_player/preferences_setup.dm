@@ -12,15 +12,16 @@
 	var/list/skins = pref_species.get_skin_list()
 	skin_tone = skins[pick(skins)]
 	eye_color = random_eye_color()
-	is_legacy = FALSE
 	if(ft_reset)
 		flavortext = null
-		flavortext_display = " "	//_display left not null to prevent any legacy bugs.
-		ooc_notes_display = " "		//You can't join without filling in the blank FT / OOC notes, so these should be overriden before the character is ever examined.
+		nsfwflavortext = null
+		erpprefs = null
 		ooc_notes = null
-		ooc_extra_link = null
 		ooc_extra = null
+		song_title = null
+		song_artist = null
 		headshot_link = null
+		img_gallery = null
 	features = pref_species.get_random_features()
 	body_markings = pref_species.get_random_body_markings(features)
 	accessory = "Nothing"
