@@ -567,6 +567,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		energy_add(5)
 		if(mind?.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 			energy_add(10)
+		if(construct) 
+			energy_add(15) // takes about 2 minutes to get to full from no blue bar
 		return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
