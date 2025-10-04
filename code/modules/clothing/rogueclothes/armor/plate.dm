@@ -138,6 +138,13 @@
 	if(istype(user) && user?.wear_armor == src)
 		user.remove_status_effect(/datum/status_effect/buff/psydonic_endurance)
 
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/shadowplate
+	name = "scourge breastplate"
+	desc = "More form over function, this armor is fit for demonstration of might rather than open combat. The aged gilding slowly tarnishes away."
+	icon_state = "shadowplate"
+	item_state = "shadowplate"
+	armor_class = ARMOR_CLASS_MEDIUM
+	allowed_race = NON_DWARVEN_RACE_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/ordinator
 	name = "inquisitorial ordinator's plate"

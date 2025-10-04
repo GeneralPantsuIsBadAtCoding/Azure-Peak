@@ -216,6 +216,8 @@
 			H.update_inv_neck()
 			H.update_inv_head()
 
+/obj/item/clothing/neck/roguetown/chaincoif/full/black
+	color = "#323232"
 
 /obj/item/clothing/neck/roguetown/bevor
 	name = "bevor"
