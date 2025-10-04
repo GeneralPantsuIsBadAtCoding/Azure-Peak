@@ -2,7 +2,7 @@
 	name = "Seonjang"
 	tutorial = "The respected leader and singular representative of the Ruma clan, you're an experienced swordsman. It matters not where the coin comes from, so long as you can make enough to support the clan in its survival from the Xinyi Dynasty and its conflicts, now in strange lands."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = NON_DWARVEN_RACE_TYPES
+	allowed_races = RACES_NO_CONSTRUCT_NO_DWARF //no dwarf sprites
 	outfit = /datum/outfit/job/roguetown/mercenary/seonjang
 	subclass_languages = list(/datum/language/kazengunese)
 	class_select_category = CLASS_CAT_KAZENGUN
