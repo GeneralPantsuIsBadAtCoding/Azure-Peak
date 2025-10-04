@@ -86,8 +86,6 @@
 	AddComponent(/datum/component/footstep, footstep_type, 1, 2)
 	GLOB.human_list += src
 
-	mob_examine_panel = new(src)
-
 /mob/living/carbon/human/ZImpactDamage(turf/T, levels)
 	var/obj/item/bodypart/affecting
 	var/dam = levels * rand(10,50)
@@ -138,7 +136,6 @@
 	QDEL_NULL(physiology)
 	QDEL_NULL(sunder_light_obj)
 	GLOB.human_list -= src
-	QDEL_NULL(mob_examine_panel)
 	return ..()
 
 /mob/living/carbon/human/Stat()

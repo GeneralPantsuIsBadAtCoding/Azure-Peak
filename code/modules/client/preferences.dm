@@ -203,8 +203,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/tgui_pref = TRUE
 
-	var/datum/examine_panel/preview_examine_panel
-
 /datum/preferences/New(client/C)
 	parent = C
 	migrant  = new /datum/migrant_pref(src)
@@ -1856,10 +1854,10 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					log_game("[user] has cleared their image gallery.")
 
 				if("ooc_preview")
-
-					preview_examine_panel = new(user)
+					var/datum/examine_panel/preview_examine_panel = new(user)
 					preview_examine_panel.pref = src
 					preview_examine_panel.holder = user
+					preview_examine_panel.viewing = user
 					preview_examine_panel.ui_interact(user)
 
 				if("ooc_extra")
@@ -2751,7 +2749,3 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		dat += "[V.custom_text]"
 		dat += "</font>"
 	return dat
-
-/datum/preferences/Destroy()
-	QDEL_NULL(preview_examine_panel)
-	return ..()

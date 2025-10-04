@@ -8,12 +8,15 @@
 
 	var/is_playing = FALSE
 
+	var/mob/viewing
+
 /datum/examine_panel/New(mob/holder_mob)
 	if(holder_mob)
 		holder = holder_mob
 
 /datum/examine_panel/Destroy(force)
 	holder = null
+	viewing = null
 	qdel(examine_panel_screen)
 	return ..()
 
@@ -100,21 +103,24 @@
 	if(.)
 		return
 
+	if(!viewing)
+		return
+
 	var/client/C
 	var/web_sound_url
 	var/artist_name = "Song Artist Hidden"
 	var/song_title
 	var/list/music_extra_data = list()
 	
+	C = viewing.client
+
 	if(ishuman(holder))
-		C = holder.client
 		web_sound_url = holder.ooc_extra
 		if(holder.song_artist)
 			artist_name = holder.song_artist
 		song_title = holder.song_title
 
 	else if(pref)
-		C = pref.parent
 		web_sound_url= pref.ooc_extra
 		if(pref.song_artist)
 			artist_name = pref.song_artist
@@ -128,14 +134,19 @@
 
 	switch(action)
 		if("toggle")
-			if(!src.is_playing)
-				src.is_playing = TRUE
+			if(!is_playing)
+				is_playing = TRUE
 				music_extra_data["link"] = web_sound_url
 				music_extra_data["title"] = song_title
 				music_extra_data["duration"] = "Song Duration Hidden"
 				music_extra_data["artist"] = artist_name
 				C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			else
-				src.is_playing = FALSE
+				is_playing = FALSE
 				C.tgui_panel?.stop_music()
 			return TRUE
+
+
+/datum/examine_panel/ui_close()
+	viewing.client?.tgui_panel?.stop_music()
+	QDEL_NULL(src)
