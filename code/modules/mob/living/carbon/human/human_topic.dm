@@ -32,9 +32,10 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(legacy_check)	//If this is how a Legacy char was established, we save it.
 			client.prefs?.save_character()
 		if(is_legacy)
-			dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
+			dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY profile from the naive daes of Psydon!</font></i></center>"
 		var/agevetted = client.check_agevet()
-		dat += "<center>This person is [agevetted ? "<font color='#1cb308'>Age Vetted.</font>" : "<font color='#aa0202'>Not Age Vetted</font>"]</center>"
+		if(agevetted)
+			dat += "<center><i><font color = '#74cde0'; font size = 1>This profile belongs to an AGE-VERIFIED traveler of Azuria!</font></i></center>"
 		if(valid_headshot_link(null, headshot_link, TRUE))
 			dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
 		if(flavortext)

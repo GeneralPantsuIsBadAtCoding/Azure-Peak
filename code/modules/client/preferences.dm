@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			var/agevetted = user.check_agevet()
 			dat += "<td style='width:33%;text-align:right'>"
-			dat += "<a href='?_src_=prefs;preference=agevet'><b>Age Vetted:</b></a> [agevetted ? "<font color='#1cb308'>Yes!</font>" : "<font color='#aa0202'>No.</font>"]"
+			dat += "<a href='?_src_=prefs;preference=agevet'><b>VERIFIED:</b></a> [agevetted ? "<font color='#74cde0'>YAE!</font>" : "<font color='#897472'>NAE?</font>"]"
 			dat += "</td>"
 
 			dat += "</table>"
@@ -1310,9 +1310,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	else if(href_list["preference"] == "agevet")
 		if(!user.check_agevet())
-			to_chat(usr, span_warning("You are not age verified. Other players can see your age verification status. To become age verified, open a ticket in Azure Peak's community Discord server.</b>"))
+			to_chat(usr, span_info("- You are a whitelisted player with full access to the server's features. If you'd also like to show others that you've been <b>AGE-VERIFIED</b> with a censored ID, you can open a ticket in Azure Peak's <b>#vet-here</b> channel. Note that this is a purely optional process, and - besides awarding a special header for your flavortext - doesn't affect you in any other way."))
 		else
-			to_chat(usr, span_nicegreen("You are already age verified. <b>Yippee!</b>"))
+			to_chat(usr, span_love("- You have been successfully <b>AGE-VERIFIED!</b>"))
 
 	else if(href_list["preference"] == "culinary")
 		show_culinary_ui(user)
