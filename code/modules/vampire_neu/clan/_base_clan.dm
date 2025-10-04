@@ -26,6 +26,7 @@ And it also helps for the character set panel
 		TRAIT_DARKVISION,
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_SILVER_WEAK,
+		TRAIT_VAMPMANSION,
 	)
 
 	var/blood_preference = BLOOD_PREFERENCE_ALL
