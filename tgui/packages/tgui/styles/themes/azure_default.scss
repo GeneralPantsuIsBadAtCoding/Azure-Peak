@@ -1,15 +1,24 @@
 @font-face {
-  font-family: 'Pterra';
+  font-family: Pterra, TrueType;
   src: url('~roguefont/pterra.ttf');
 }
 
 .theme-azure_default:root {
-  --color-base: #141b15;
-  --color-base-start: #141b15;
-  --color-base-end: #141b15;
+  --color-base: #000000;
+  --color-base-start: #000000;
+  --color-base-end: #000000;
 
-  --font-size: 12px;
-  --font-family: 'Pterra';
+  --font-size: 14px;
+  --font-family: Pterra, TrueType;
+  --color-text: #897472;
+  --line-height: 170%;
+
+
+  /* Semantic colors */ 
+  --color-label: #897472;
+
+  // Scrollbar
+  scrollbar-color: #7b5353 #000000;
 
   // Sidebar
   .SideBarDecoration {
@@ -40,34 +49,39 @@
   .Layout__content {
     background-image: none;
 
-    font-size: 14px;
   }
 
   .TitleBar {
-    background-image: url('../assets/azure_default/topbar.svg');
-    background-repeat: repeat-x;
-    background-size: 64px;
+    background-color: #000000;
     border: none;
     box-shadow: none;
+    font-size: 14px;
 
     &__title {
       font-size: 1.6rem;
     }
   }
 
+  .TitleBar__title {
+    padding-left: 12px;
+    font-size: 14px;
+  }
+
   // Component overrides
 
-  // Section
-  --section-separator-color: #619940;
+  --section-separator-color: #7b5353;
 
   // Button
-  --button-background-default: #29332b;
-  --button-background-selected: #404744;
+  --button-background: #7b5353;
+  --button-background-default: #7b5353;
+  --button-background-selected: #7b5353;
   .Button {
     margin-bottom: 2px;
     transition: all 0.5s;
   }
 
   // Input
-  --input-border-color: #56853e;
+  --input-border-color: #7b5353;
+  --input-border-color-focus: #7b5353;
 }
+
