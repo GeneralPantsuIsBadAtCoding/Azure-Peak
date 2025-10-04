@@ -488,9 +488,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["familiar_specie"]				>> familiar_prefs.familiar_specie
 	S["familiar_headshot_link"]			>> familiar_prefs.familiar_headshot_link
 	S["familiar_flavortext"]			>> familiar_prefs.familiar_flavortext
-	S["familiar_flavortext_display"]	>> familiar_prefs.familiar_flavortext_display
 	S["familiar_ooc_notes"]				>> familiar_prefs.familiar_ooc_notes
-	S["familiar_ooc_notes_display"]		>> familiar_prefs.familiar_ooc_notes_display
 	S["familiar_ooc_extra"]				>> familiar_prefs.familiar_ooc_extra
 	S["familiar_ooc_extra_link"]		>> familiar_prefs.familiar_ooc_extra_link
 
@@ -580,16 +578,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		headshot_link = null
 
 	S["flavortext"]			>> flavortext
-	S["flavortext_display"]	>> flavortext_display
 	S["ooc_notes"]			>> ooc_notes
-	S["ooc_notes_display"]	>> ooc_notes_display
 	S["ooc_extra"]			>> ooc_extra
-	S["ooc_extra_link"]		>> ooc_extra_link
-	S["is_legacy"]			>> is_legacy
+	S["song_artist"]		>> song_artist
+	S["song_title"]			>> song_title
 	S["nsfwflavortext"]	>> nsfwflavortext
-	S["nsfwflavortext_display"]	>> nsfwflavortext_display
 	S["erpprefs"]			>> erpprefs
-	S["erpprefs_display"]	>> erpprefs_display
+
+	S["img_gallery"]	>> img_gallery
+	img_gallery = SANITIZE_LIST(img_gallery)
 
 	S["char_accent"]		>> char_accent
 	if (!char_accent)
@@ -753,12 +750,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["update_mutant_colors"] , update_mutant_colors)
 	WRITE_FILE(S["headshot_link"] , headshot_link)
 	WRITE_FILE(S["flavortext"] , html_decode(flavortext))
-	WRITE_FILE(S["flavortext_display"], flavortext_display)
 	WRITE_FILE(S["ooc_notes"] , html_decode(ooc_notes))
-	WRITE_FILE(S["ooc_notes_display"], ooc_notes_display)
-	WRITE_FILE(S["ooc_extra"],	ooc_extra)
-	WRITE_FILE(S["ooc_extra_link"],	ooc_extra_link)
-	WRITE_FILE(S["is_legacy"], is_legacy)
+	WRITE_FILE(S["ooc_extra"] ,	ooc_extra)
+	WRITE_FILE(S["song_artist"] , song_artist)
+	WRITE_FILE(S["song_title"] , song_title)
 	WRITE_FILE(S["char_accent"] , char_accent)
 	WRITE_FILE(S["voice_type"] , voice_type)
 	WRITE_FILE(S["pronouns"] , pronouns)
@@ -767,10 +762,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["virtuetwo"], virtuetwo.type)
 	WRITE_FILE(S["combat_music"], combat_music.type)
 	WRITE_FILE(S["body_size"] , features["body_size"])
-	WRITE_FILE(S["nsfwflavortext"], html_decode(nsfwflavortext))
-	WRITE_FILE(S["nsfwflavortext_display"], nsfwflavortext_display)
-	WRITE_FILE(S["erpprefs"], html_decode(erpprefs))
-	WRITE_FILE(S["erpprefs_display"], erpprefs_display)
+	WRITE_FILE(S["nsfwflavortext"] , html_decode(nsfwflavortext))
+	WRITE_FILE(S["erpprefs"] , html_decode(erpprefs))
+	WRITE_FILE(S["img_gallery"] , img_gallery)
 	
 	if(loadout)
 		WRITE_FILE(S["loadout"] , loadout.type)
@@ -791,9 +785,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["familiar_specie"] , familiar_prefs.familiar_specie)
 	WRITE_FILE(S["familiar_headshot_link"] , familiar_prefs.familiar_headshot_link)
 	WRITE_FILE(S["familiar_flavortext"] , familiar_prefs.familiar_flavortext)
-	WRITE_FILE(S["familiar_flavortext_display"] , familiar_prefs.familiar_flavortext_display)
 	WRITE_FILE(S["familiar_ooc_notes"] , familiar_prefs.familiar_ooc_notes)
-	WRITE_FILE(S["familiar_ooc_notes_display"] , familiar_prefs.familiar_ooc_notes_display)
 	WRITE_FILE(S["familiar_ooc_extra"] , familiar_prefs.familiar_ooc_extra)
 	WRITE_FILE(S["familiar_ooc_extra_link"] , familiar_prefs.familiar_ooc_extra_link)
 
