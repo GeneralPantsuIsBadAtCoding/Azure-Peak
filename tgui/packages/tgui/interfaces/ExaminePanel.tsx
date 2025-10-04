@@ -61,8 +61,8 @@ export const ExaminePanel = (props) => {
               </PageButton>
             </Stack.Item>
           </Stack>
-          
-          ) && (<Stack.Divider />)}
+          )}
+          {img_gallery.length > 0 && (<Stack.Divider />)}
           <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
             {pageContents}
           </Stack.Item>
