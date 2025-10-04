@@ -2,11 +2,8 @@
 /datum/clan_leader/eoran
 	lord_spells = list(
 		/obj/effect/proc_holder/spell/targeted/shapeshift/cabbit,
-		//datum/action/cooldown/spell/charm/vampire,
-		//datum/action/cooldown/spell/undirected/list_target/encode_thoughts/vampire
 	)
 	lord_verbs = list(
-		/mob/living/carbon/human/proc/demand_submission,
 		/mob/living/carbon/human/proc/punish_spawn
 	)
 	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY)

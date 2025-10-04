@@ -32,6 +32,7 @@
 	H.equipOutfit(/datum/outfit/job/vamplord)
 	H.set_patron(/datum/patron/inhumen/zizo)
 	H.forceMove(pick(GLOB.vlord_starts))
+	H.verbs |= /mob/living/carbon/human/proc/demand_submission
 
 /datum/antagonist/vampire/lord/greet()
 	to_chat(owner.current, span_userdanger("I am ancient. I am the Land. And I am now awoken to trespassers upon my domain."))

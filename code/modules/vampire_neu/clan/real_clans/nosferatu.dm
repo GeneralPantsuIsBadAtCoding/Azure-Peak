@@ -7,7 +7,6 @@
 		/obj/effect/proc_holder/spell/targeted/shapeshift/rat
 	)
 	lord_verbs = list(
-		/mob/living/carbon/human/proc/demand_submission,
 		/mob/living/carbon/human/proc/punish_spawn
 	)
 	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY)
