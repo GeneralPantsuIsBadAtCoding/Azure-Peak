@@ -13,16 +13,9 @@
 		return zone
 	if(zone == BODY_ZONE_CHEST)
 		return zone
-	if(HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
-		return zone
-	if(target.pulledby || target.pulling)
-		return zone
-	if(!(target.mobility_flags & MOBILITY_STAND))
-		return zone
-	// If you're floored, you will aim feet and legs easily. There's a check for whether the victim is laying down already.
-	if(!(user.mobility_flags & MOBILITY_STAND) && (zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)))
-		return zone
 	if( (target.dir == turn(get_dir(target,user), 180)))
+		return zone
+	if(target.stat == UNCONSCIOUS || target.stat == DEAD)
 		return zone
 
 	var/chance2hit = 0
@@ -59,6 +52,18 @@
 	
 	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
 		chance2hit -= 40
+
+	if(HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) && (zone == BODY_ZONE_L_LEG || zone == BODY_ZONE_R_LEG))
+		chance2hit += 24
+	if(target.pulledby || target.pulling)
+		chance2hit += 40
+	if(!(target.mobility_flags & MOBILITY_STAND))
+		chance2hit += 32
+	// If you're floored, you will aim feet and legs easily. There's a check for whether the victim is laying down already.
+	if(!(user.mobility_flags & MOBILITY_STAND) && (zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)))
+		chance2hit += 32
+	if(!target.mind)	//Bandaid / cope change to alleviate lack of forced accuracy
+		chance2hit += 24
 
 	chance2hit = CLAMP(chance2hit, 5, 93)
 

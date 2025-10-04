@@ -184,6 +184,10 @@
 			bait_stacks = 0
 			to_chat(src, span_info("My focus and balance returns. I won't lose my footing if I am baited again."))
 
+/mob/living/carbon/human/proc/expire_peel()
+	if(!cmode)
+		purge_peel(99)
+
 /mob/living/carbon/human/proc/measured_statcheck(mob/living/carbon/human/HT)
 	var/finalprob = 40
 
