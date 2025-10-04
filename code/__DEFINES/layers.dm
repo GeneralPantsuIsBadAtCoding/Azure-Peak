@@ -105,7 +105,7 @@
 
 /// Fog weather rendering
 #define PLANE_FOG_CUTTER 14
-#define FOG_RENDER_TARGET "FOG_RENDER_TARGET"
+#define FOG_RENDER_TARGET "*FOG_RENDER_TARGET"
 
 #define INDOOR_PLANE 15
 
