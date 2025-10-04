@@ -42,7 +42,6 @@
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
-	clickcd = ""
 
 /datum/intent/sword/thrust/short
 	clickcd = 8
