@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		src.generation = generation
 	switch(src.generation)
 		if(GENERATION_METHUSELAH)
-			research_points = 30
+			research_points = 50
 		if(GENERATION_ANCILLAE)
 			research_points = 15
 		if(GENERATION_NEONATE)
