@@ -607,7 +607,32 @@
 	desc = ""
 	icon_state = "intake"
 
-//For grabbing oiled person section
+/obj/item/grabbing/bite
+	name = "bite"
+	icon_state = "bite"
+	d_type = "stab"
+	slot_flags = ITEM_SLOT_MOUTH
+	bleed_suppressing = 1
+
+/obj/item/grabbing/bite/Click(location, control, params)
+	var/list/modifiers = params2list(params)
+	if(!valid_check())
+		return
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		if(C != grabbee || C.incapacitated() || C.stat == DEAD)
+			qdel(src)
+			return 1
+		if(modifiers["right"])
+			qdel(src)
+			return 1
+		var/_y = text2num(params2list(params)["icon-y"])
+		if(_y>=17)
+			bitelimb(C)
+		else
+			drinklimb(C)
+	return 1
+
 /datum/status_effect/buff/oiled
 	id = "oiled"
 	duration = 5 MINUTES

@@ -42,6 +42,9 @@
 #define BLOOD_VOLUME_BAD 224
 #define BLOOD_VOLUME_SURVIVE 122
 
+/// Blood pool regeneration in non-vampiric living mobs per SSmobs tick. 
+#define BLOODPOL_REGEN 2
+
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
 #define MOB_SIZE_SMALL 1

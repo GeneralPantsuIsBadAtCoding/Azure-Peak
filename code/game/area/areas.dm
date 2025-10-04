@@ -113,6 +113,8 @@
 	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
 	// Try to be deliberately obtuse but not too obtuse.
 
+	var/coven_protected = FALSE
+
 
 /**
   * A list of teleport locations
@@ -156,6 +158,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	// rather than waiting for atoms to initialize.
 	if (unique)
 		GLOB.areas_by_type[type] = src
+	GLOB.areas += src
 	return ..()
 
 /area/proc/can_craft_here()
@@ -249,6 +252,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
 		GLOB.areas_by_type[type] = null
+	GLOB.areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

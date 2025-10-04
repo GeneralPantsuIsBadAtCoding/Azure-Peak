@@ -10,7 +10,7 @@
 	add_gradient_overlay(standing, hair_dye_gradient, hair_dye_color)
 
 /datum/bodypart_feature/hair/proc/add_gradient_overlay(mutable_appearance/standing, gradient_type, gradient_color)
-	if(gradient_type == /datum/hair_gradient/none)
+	if(gradient_type == /datum/hair_gradient/none || isnull(gradient_type))
 		return
 	var/datum/hair_gradient/gradient = HAIR_GRADIENT(gradient_type)
 	var/icon/temp = icon(gradient.icon, gradient.icon_state)

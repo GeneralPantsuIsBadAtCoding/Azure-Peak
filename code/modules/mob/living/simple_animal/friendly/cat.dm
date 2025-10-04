@@ -291,7 +291,7 @@
 		step(src, dir)
 		personal_space()
 
-	if(M.mind && M.mind.has_antag_datum(/datum/antagonist/vampirelord))
+	if(M.mind && M.mind.has_antag_datum(/datum/antagonist/vampire))
 		visible_message("<span class='notice'>The cat hisses at [M] and recoils in disgust.</span>")
 		icon_state = "[icon_living]"
 		set_resting(FALSE)
