@@ -30,13 +30,13 @@ export const ExaminePanel = (props) => {
 
   return (
     <Window title={character_name} width={1000} height={700} buttons={<Button
-            color="grey"
+            color={'green'}
             icon="music"
             tooltip="Music player"
             tooltipPosition="bottom-start"
             onClick={() => act('toggle')}
             disabled={!has_song}
-            selected={is_playing}
+            selected={!is_playing}
           />}>
       <Window.Content>
         <Stack vertical fill>
