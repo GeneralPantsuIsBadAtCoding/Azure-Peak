@@ -300,7 +300,7 @@
 			var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = MASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi')
 			. += mask_overlay
 
-/obj/item/bodypart/head/dullahan/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone)
+/obj/item/bodypart/head/dullahan/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -311,18 +311,6 @@
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return FALSE
-	// Armor can't save you from being decapitated.
-	/*
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		var/obj/item/clothing/checked_armor = H.checkcritarmorreference(src.body_zone, bclass)
-		if(checked_armor && checked_armor.max_integrity != 0)
-			var/int_percent = round(((checked_armor.obj_integrity / checked_armor.max_integrity) * 100), 1) //lifted from examine
-			if(int_percent > 80 && !HAS_TRAIT(H, TRAIT_CRITICAL_WEAKNESS))
-				to_chat(H, span_warning("My [checked_armor.name] just saved me from losing my [src.name]!"))
-				checked_armor.obj_integrity -= checked_armor.max_integrity / 2 //Armor sundered
-				return FALSE
-	*/
 
 	playsound(C, pick(dismemsound), 50, FALSE, -1)
 	C.visible_message(span_danger("<B>[C] is EASILY DECAPITATED!</B>"))

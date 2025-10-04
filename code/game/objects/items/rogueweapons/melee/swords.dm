@@ -521,14 +521,6 @@
 	wdefense = 5		//+1
 	wbalance = WBALANCE_SWIFT
 
-/obj/item/rogueweapon/sword/long/malumflamm
-	name = "forgefiend flamberge"
-	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
-	icon_state = "malumflamberge"
-	force = 28 // +3 force as a unique sword. Longsword isn't THAT good anyway
-	force_wielded = 33 // Also +3
-	max_integrity = 200
-
 /obj/item/rogueweapon/sword/long/zizo
 	name = "avantyne longsword"
 	desc = "A wicked, unconventional, and otherwordly blade that was created by no swordsmith - a manifestation of hate for the state of this world that follows no design principles but spite and anger."
@@ -986,6 +978,15 @@
 	smeltresult = /obj/item/ingot/gold
 	smelt_bar_num = 2
 
+/obj/item/rogueweapon/sword/sabre/stalker
+	name = "stalker sabre"
+	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
+	icon_state = "spidersaber"
+	force = 17
+	force_wielded = 20
+	minstr = 7
+	wdefense = 9
+
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
 	desc = "A curved one-handed longsword. This type of scimitar is the quintessential armament of Ranesheni horsemen, its name derived from Sama'glos for \"Tiger's claw\"."
@@ -1227,16 +1228,7 @@
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/sword/long/blackflamb
-	name = "blacksteel flamberge"
-	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
-	force = 20
-	force_wielded = 32
-	icon_state = "blackflamb"
-	smeltresult = /obj/item/ingot/blacksteel
-	max_integrity = 200
-
-/obj/item/rogueweapon/sword/long/blackflamb/getonmobprop(tag)
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

@@ -11,7 +11,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_NO_CONSTRUCT
 	outfit = /datum/outfit/job/roguetown/adventurer/knighte_expert
-	traits_applied = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
 	category_tags = list(CTAG_KJ_KNIGHT)
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -116,7 +116,7 @@
 /datum/advclass/kj_squire
 	name = "Squire"
 	outfit = /datum/outfit/job/roguetown/adventurer/squire
-	traits_applied = list(TRAIT_SQUIRE_REPAIR, TRAIT_MEDIUMARMOR, TRAIT_OUTLANDER)
+	traits_applied = list(TRAIT_SQUIRE_REPAIR, TRAIT_MEDIUMARMOR)
 	category_tags = list(CTAG_KG_SQUIRE)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled	
 	subclass_stats = list(

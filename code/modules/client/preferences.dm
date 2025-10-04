@@ -327,7 +327,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Buy</a>"
 			dat += "</td>"
 
+			var/agevetted = user.check_agevet()
 			dat += "<td style='width:33%;text-align:right'>"
+			dat += "<a href='?_src_=prefs;preference=agevet'><b>Age Vetted:</b></a> [agevetted ? "<font color='#1cb308'>Yes!</font>" : "<font color='#aa0202'>No.</font>"]"
 			dat += "</td>"
 
 			dat += "</table>"
@@ -1306,6 +1308,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	else if(href_list["preference"] == "playerquality")
 		check_pq_menu(user.ckey)
 
+	else if(href_list["preference"] == "agevet")
+		if(!user.check_agevet())
+			to_chat(usr, span_warning("You are not age verified. Other players can see your age verification status. To become age verified, open a ticket in Azure Peak's community Discord server.</b>"))
+		else
+			to_chat(usr, span_nicegreen("You are already age verified. <b>Yippee!</b>"))
+
 	else if(href_list["preference"] == "culinary")
 		show_culinary_ui(user)
 		return
@@ -1811,6 +1819,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(valid_headshot_link(null, headshot_link, TRUE))
 						dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
 					if(flavortext && flavortext_display)
+						dat += "<br>"
 						dat += "<div align='left'>[flavortext_display]</div>"
 					if(ooc_notes && ooc_notes_display)
 						dat += "<br>"

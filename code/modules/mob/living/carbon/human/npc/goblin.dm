@@ -46,6 +46,10 @@
 	id = "goblin_hell"
 	raceicon = "goblin_hell"
 
+/datum/species/goblin/hell/spec_death(gibbed, mob/living/carbon/human/H)
+	new /obj/item/alch/infernaldust(get_turf(H))
+	H.visible_message("<span class='blue'>Infernal dust falls from [H]!</span>")
+
 /mob/living/carbon/human/species/goblin/cave
 	name = "cave goblin"
 	race = /datum/species/goblin/cave

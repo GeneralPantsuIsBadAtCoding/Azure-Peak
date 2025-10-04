@@ -20,7 +20,7 @@
 	)
 
 //Dismember a limb
-/obj/item/bodypart/proc/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone)
+/obj/item/bodypart/proc/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -32,6 +32,13 @@
 		if(!HAS_TRAIT(C, TRAIT_CRITICAL_WEAKNESS) && !HAS_TRAIT(C, TRAIT_EASYDISMEMBER))	//People with these traits can be decapped standing, or buckled, or however.
 			if(!isnull(C.mind) && (C.mobility_flags & MOBILITY_STAND) && !C.buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
 				return FALSE
+
+	if(body_zone != BODY_ZONE_HEAD)
+		var/mob/living/carbon/human/victim = owner
+		if(victim.run_armor_check(zone_precise, bclass, damage = damage))
+			to_chat(victim, span_warning("My armour just saved me from losing my [C.get_bodypart(body_zone).name]!"))
+			return FALSE
+
 	if(C.status_flags & GODMODE)
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
@@ -51,7 +58,7 @@
 	if(!HAS_TRAIT(C, TRAIT_NOPAIN))
 		C.emote("painscream")
 	if(!(NOBLOOD in C.dna?.species?.species_traits))
-		src.add_mob_blood(C)
+		add_mob_blood(C)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
@@ -111,9 +118,10 @@
 		if(new_turf.density)
 			break
 	throw_at(target_turf, throw_range, throw_speed)
+	owner = C
 	return TRUE
 
-/obj/item/bodypart/chest/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone)
+/obj/item/bodypart/chest/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner

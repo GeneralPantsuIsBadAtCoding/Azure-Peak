@@ -480,3 +480,12 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	if(M.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
 		M.remove_status_effect(/datum/status_effect/debuff/ritualdefiled)
 	return ..()
+
+/datum/reagent/fire_resist
+	name = "Fire Resistance"
+	color = "#ff7300"
+	taste_description = "burning coal"
+
+/datum/reagent/fire_resist/on_mob_life(mob/living/carbon/M)
+	M.apply_status_effect(/datum/status_effect/buff/alch/fire_resist)
+	return ..()

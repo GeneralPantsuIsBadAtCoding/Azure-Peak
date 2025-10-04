@@ -112,7 +112,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/steel/tasset
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	backr = /obj/item/storage/backpack/rogue/satchel
-	l_hand = /obj/item/rogueweapon/sword/long/blackflamb
+	l_hand = /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
 
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel = 1, 

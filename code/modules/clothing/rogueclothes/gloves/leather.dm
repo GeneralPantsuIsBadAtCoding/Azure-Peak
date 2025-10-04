@@ -37,6 +37,14 @@
 	icon_state = "shadowgloves"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/gloves/roguetown/fingerless/shadowgloves/elflock
+	name = "fingerless gloves"
+	desc = "Cloth gloves to absorb palm sweat while leaving the fingers free for fine manipulation."
+	icon_state = "shadowgloves"
+	armor = ARMOR_GLOVES_CHAIN
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
+	allowed_race = NON_DWARVEN_RACE_TYPES
+
 /obj/item/clothing/gloves/roguetown/fingerless_leather
 	name = "fingerless leather gloves"
 	desc = "A pair of protective gloves favored by lockshimmers, laborers, and smokers for maintaining \
