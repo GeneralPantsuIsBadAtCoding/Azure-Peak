@@ -112,8 +112,9 @@
 	var/headshot_link = null
 	var/flavortext = null
 	var/ooc_notes = null
-	var/ooc_extra_link
 	var/ooc_extra
+	var/song_title
+	var/song_artist
 	var/received_resident_key = FALSE
 	var/nsfwflavortext = null
 	var/erpprefs = null

@@ -4,8 +4,13 @@
 	/// The screen containing the appearance of the mob
 	var/atom/movable/screen/map_view/examine_panel_screen/examine_panel_screen
 
+	var/datum/preferences/pref = null
+
+	var/is_playing = FALSE
+
 /datum/examine_panel/New(mob/holder_mob)
-	holder = holder_mob
+	if(holder_mob)
+		holder = holder_mob
 
 /datum/examine_panel/Destroy(force)
 	holder = null
@@ -15,36 +20,14 @@
 /datum/examine_panel/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/examine_panel/ui_close(mob/user)
-	// user.client?.clear_map(examine_panel_screen.assigned_map)
-
 /atom/movable/screen/map_view/examine_panel_screen
 	name = "examine panel screen"
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
-/*	if(!examine_panel_screen)
-		examine_panel_screen = new
-		examine_panel_screen.name = "screen"
-		examine_panel_screen.assigned_map = "examine_panel_[REF(holder)]_map"
-		examine_panel_screen.del_on_map_removal = FALSE
-		examine_panel_screen.screen_loc = "[examine_panel_screen.assigned_map]:1,1"
-
-	var/mutable_appearance/current_mob_appearance = new(holder)
-	current_mob_appearance.setDir(SOUTH)
-	current_mob_appearance.transform = matrix() // We reset their rotation, in case they're lying down.
-
-	// In case they're pixel-shifted, we bring 'em back!
-	current_mob_appearance.pixel_x = 0
-	current_mob_appearance.pixel_y = 0
-
-	examine_panel_screen.cut_overlays()
-	examine_panel_screen.add_overlay(current_mob_appearance) */
-
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
-	//	examine_panel_screen.display_to(user, ui.window)
 
 /datum/examine_panel/ui_data(mob/user)
 
@@ -55,9 +38,9 @@
 	var/ooc_notes_nsfw
 	var/headshot = ""
 	var/list/img_gallery = list()
-
-	// Now we handle silicon and/or human, order doesn't matter as both obviously can't fire.
-	// If other variants of mob/living need to be handled at some point, put them here.
+	var/char_name
+	var/song_url
+	var/has_song = FALSE
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
@@ -66,22 +49,37 @@
 		flavor_text_nsfw = obscured ? "Obscured" : holder.nsfwflavortext
 		ooc_notes += holder.ooc_notes
 		ooc_notes_nsfw += holder.erpprefs
+		char_name = holder.name
+		song_url = holder.ooc_extra
 		if(!obscured)
 			headshot += holder.headshot_link
-			img_gallery = holder.img_gallery
+			img_gallery = holder.img_gallery			
+	else if(pref)
+		obscured = FALSE
+		flavor_text = pref.flavortext
+		flavor_text_nsfw = pref.nsfwflavortext
+		ooc_notes = pref.ooc_notes
+		ooc_notes_nsfw = pref.erpprefs
+		headshot = pref.headshot_link
+		img_gallery = pref.img_gallery
+		char_name = pref.real_name
+		song_url = pref.ooc_extra
+	
+	if(song_url)
+		has_song = TRUE
 
-		ooc_notes = html_encode(ooc_notes)
-		ooc_notes = replacetext(parsemarkdown_basic(ooc_notes), "\n", "<br>")
-		ooc_notes_nsfw = html_encode(ooc_notes_nsfw)
-		ooc_notes_nsfw = replacetext(parsemarkdown_basic(ooc_notes_nsfw), "\n", "<br>")
-		flavor_text = html_encode(flavor_text)
-		flavor_text = replacetext(parsemarkdown_basic(flavor_text), "\n", "<br>")
-		flavor_text_nsfw = html_encode(flavor_text_nsfw)
-		flavor_text_nsfw = replacetext(parsemarkdown_basic(flavor_text_nsfw), "\n", "<br>")
+	ooc_notes = html_encode(ooc_notes)
+	ooc_notes = replacetext(parsemarkdown_basic(ooc_notes), "\n", "<br>")
+	ooc_notes_nsfw = html_encode(ooc_notes_nsfw)
+	ooc_notes_nsfw = replacetext(parsemarkdown_basic(ooc_notes_nsfw), "\n", "<br>")
+	flavor_text = html_encode(flavor_text)
+	flavor_text = replacetext(parsemarkdown_basic(flavor_text), "\n", "<br>")
+	flavor_text_nsfw = html_encode(flavor_text_nsfw)
+	flavor_text_nsfw = replacetext(parsemarkdown_basic(flavor_text_nsfw), "\n", "<br>")
 
 	var/list/data = list(
 		// Identity
-		"character_name" = obscured ? "Unknown" : holder.name,
+		"character_name" = obscured ? "Unknown" : char_name,
 		"headshot" = headshot,
 		"obscured" = obscured ? TRUE : FALSE,
 		// Descriptions
@@ -91,7 +89,53 @@
 		"flavor_text_nsfw" = flavor_text_nsfw,
 		"ooc_notes_nsfw" = ooc_notes_nsfw,
 		"img_gallery" = img_gallery,
+		"is_playing" = is_playing,
+		"has_song" = has_song,
 	)
 	return data
 
+/datum/examine_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
 
+	if(.)
+		return
+
+	var/client/C
+	var/web_sound_url
+	var/artist_name = "Song Artist Hidden"
+	var/song_title
+	var/list/music_extra_data = list()
+	
+	if(ishuman(holder))
+		C = holder.client
+		web_sound_url = holder.ooc_extra
+		if(holder.song_artist)
+			artist_name = holder.song_artist
+		song_title = holder.song_title
+
+	else if(pref)
+		C = pref.parent
+		web_sound_url= pref.ooc_extra
+		if(pref.song_artist)
+			artist_name = pref.song_artist
+		song_title = pref.song_title
+
+	if(!C || !web_sound_url)
+		return
+
+	if(!web_sound_url)
+		return
+
+	switch(action)
+		if("toggle")
+			if(!src.is_playing)
+				src.is_playing = TRUE
+				music_extra_data["link"] = web_sound_url
+				music_extra_data["title"] = song_title
+				music_extra_data["duration"] = "Song Duration Hidden"
+				music_extra_data["artist"] = artist_name
+				C.tgui_panel?.play_music(web_sound_url, music_extra_data)
+			else
+				src.is_playing = FALSE
+				C.tgui_panel?.stop_music()
+			return TRUE

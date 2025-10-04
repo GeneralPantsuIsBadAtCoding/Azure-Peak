@@ -663,10 +663,12 @@
 							erpprefs = null
 							client.prefs?.ooc_notes = null
 						if("Extra")
-							ooc_extra_link = null
 							ooc_extra = null
+							song_artist = null
+							song_title = null
+							client.prefs?.song_artist = null
+							client.prefs?.song_title = null
 							client.prefs?.ooc_extra = null
-							client.prefs?.ooc_extra_link = null
 							img_gallery = list()
 							client.prefs?.img_gallery = list()
 						else
@@ -686,7 +688,8 @@
 				erpprefs = null
 				ooc_notes = null
 				ooc_extra = null
-				ooc_extra_link = null
+				song_artist = null
+				song_title = null
 				img_gallery = list()
 				if(client)
 					client.prefs?.flavortext = null
@@ -694,7 +697,8 @@
 					client.prefs?.erpprefs = null
 					client.prefs?.ooc_notes = null
 					client.prefs?.ooc_extra = null
-					client.prefs?.ooc_extra_link = null
+					client.prefs?.song_artist = null
+					client.prefs?.song_title = null
 					client.prefs?.img_gallery = list()
 					client.prefs?.save_preferences()
 					client.prefs?.save_character()

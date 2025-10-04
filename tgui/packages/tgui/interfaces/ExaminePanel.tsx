@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack } from 'tgui-core/components';
+import { Stack, Button } from 'tgui-core/components';
 import { PageButton } from '../components/PageButton';
 import { FlavorTextPage } from './ExaminePanelPages';
 import { ImageGalleryPage } from './ExaminePanelPages';
@@ -13,8 +13,8 @@ enum Page {
 }
 
 export const ExaminePanel = (props) => {
-  const { data } = useBackend<ExaminePanelData>();
-  const { character_name } = data;
+  const { act, data } = useBackend<ExaminePanelData>();
+  const { character_name, is_playing, has_song, img_gallery } = data;
   const [currentPage, setCurrentPage] = useState(Page.FlavorText);
 
   let pageContents;
@@ -29,9 +29,18 @@ export const ExaminePanel = (props) => {
   }
 
   return (
-    <Window title={character_name} width={1000} height={700}>
+    <Window title={character_name} width={1000} height={700} buttons={<Button
+            color="grey"
+            icon="music"
+            tooltip="Music player"
+            tooltipPosition="bottom-start"
+            onClick={() => act('toggle')}
+            disabled={!has_song}
+            selected={is_playing}
+          />}>
       <Window.Content>
         <Stack vertical fill>
+          {img_gallery.length > 0 && (
           <Stack>
             <Stack.Item grow>
               <PageButton
@@ -42,7 +51,6 @@ export const ExaminePanel = (props) => {
                 Flavor Text
               </PageButton>
             </Stack.Item>
-
             <Stack.Item grow>
               <PageButton
               currentPage={currentPage}
@@ -53,7 +61,8 @@ export const ExaminePanel = (props) => {
               </PageButton>
             </Stack.Item>
           </Stack>
-          <Stack.Divider />
+          
+          ) && (<Stack.Divider />)}
           <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
             {pageContents}
           </Stack.Item>

@@ -10,4 +10,6 @@ export type ExaminePanelData = {
   flavor_text_nsfw: string;
   ooc_notes_nsfw: string;
   img_gallery: string[];
+  is_playing: boolean;
+  has_song: boolean;
 };

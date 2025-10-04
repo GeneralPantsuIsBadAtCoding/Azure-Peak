@@ -17,8 +17,9 @@
 		nsfwflavortext = null
 		erpprefs = null
 		ooc_notes = null
-		ooc_extra_link = null
 		ooc_extra = null
+		song_title = null
+		song_artist = null
 		headshot_link = null
 		img_gallery = null
 	features = pref_species.get_random_features()
