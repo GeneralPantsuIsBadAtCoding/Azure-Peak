@@ -42,6 +42,10 @@
 		reagents = null
 	if(inserted)
 		inserted.forceMove(drop_location())
+		inserted = null
+	if(budget > 0)
+		budget2change(budget)
+		budget = 0
 	set_light(0)
 	return ..()
 
@@ -327,7 +331,10 @@
 	reagents.clear_reagents()
 	if(inserted)
 		inserted.forceMove(drop_location())
-	budget2change(budget)
+		inserted = null
+	if(budget > 0)
+		budget2change(budget)
+		budget = 0
 	set_light(0)
 	update_icon()
 	icon_state = "streetvendor0"
