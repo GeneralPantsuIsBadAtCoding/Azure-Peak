@@ -1,6 +1,7 @@
 //A skill to help others learn new skills by forgetting old ones
 /obj/effect/proc_holder/spell/invoked/refocusstudies
 	name = "Refocus Studies"
+	desc = "Help another refocus their studies. Sacrifice a skill level in a skill above Journeyman to gain 3 sleep advancement points and a 30 minutes buff that will increase intelligence by +2 but reduce willpower by 1."
 	overlay_state = "book3"
 	releasedrain = 50
 	chargedrain = 0

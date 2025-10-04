@@ -18,7 +18,11 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 
-	job_traits = list(TRAIT_SEEPRICES_SHITTY, TRAIT_CICERONE, TRAIT_NUTCRACKER, TRAIT_GOODLOVER, TRAIT_HOMESTEAD_EXPERT)
+	job_traits = list(TRAIT_SEEPRICES, 
+		TRAIT_CICERONE, 
+		TRAIT_NUTCRACKER,
+		TRAIT_GOODLOVER, 
+		TRAIT_HOMESTEAD_EXPERT)
 
 	advclass_cat_rolls = list(CTAG_BATHMOM = 2)
 	job_subclasses = list(
@@ -79,3 +83,4 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)

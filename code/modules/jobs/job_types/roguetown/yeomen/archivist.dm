@@ -98,6 +98,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/refocusstudies)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)
