@@ -33,6 +33,14 @@
 	H.set_patron(/datum/patron/inhumen/zizo)
 	H.forceMove(pick(GLOB.vlord_starts))
 	H.verbs |= /mob/living/carbon/human/proc/demand_submission
+	H.maxbloodpool += 3000
+	H.adjust_bloodpool(3000)
+
+	H.change_stat(STATKEY_STR, 2)
+	H.change_stat(STATKEY_INT, 2)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_CON, 1)
+	H.change_stat(STATKEY_SPD, 1)
 
 /datum/antagonist/vampire/lord/greet()
 	to_chat(owner.current, span_userdanger("I am ancient. I am the Land. And I am now awoken to trespassers upon my domain."))
@@ -40,7 +48,7 @@
 
 /datum/outfit/job/vamplord/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/magic/blood, 1, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/magic/blood, 6, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
