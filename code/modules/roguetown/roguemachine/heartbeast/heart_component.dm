@@ -17,6 +17,7 @@
 	var/max_language_progress = 1000
 
 	var/datum/flesh_task/current_task
+	var/datum/flesh_task/next_task
 	var/last_task_time = 0
 	var/task_cooldown = 0.1 MINUTES
 
@@ -113,10 +114,11 @@
 
 /datum/component/chimeric_heart_beast/proc/trigger_behavior_quirks(score, mob/speaker)
 	if(!behavior_quirks.len)
-		return
+		return score
 
 	for(var/datum/flesh_quirk/quirk in behavior_quirks)
-		quirk.apply_behavior_quirk(score, speaker, src)
+		score = quirk.apply_behavior_quirk(score, speaker, src)
+	return score
 
 /datum/component/chimeric_heart_beast/proc/trigger_discharge_effect()
 	var/list/valid_turfs = list()
@@ -193,7 +195,11 @@
 		heart_beast.add_overlay(mutable_appearance('icons/obj/structures/heart_beast.dmi', "blood_[chunk]"))
 
 /datum/component/chimeric_heart_beast/proc/generate_new_task()
-	current_task = new /datum/flesh_task/knowledge(language_tier, heart_beast)
+	if(next_task)
+		current_task = next_task
+		next_task = null
+	else
+		current_task = new /datum/flesh_task/knowledge(language_tier, heart_beast)
 	last_task_time = world.time
 
 	heart_beast.say(current_task.question)
@@ -273,13 +279,13 @@
 		score = min(score + quirk_effects["score_bonus"], 100)
 		to_chat(world, span_userdanger("SCORE AFTER INCREASE: [score]"))
 
+	score = trigger_behavior_quirks(score, speaker)
+
 	// Determine success
 	if(score >= 20) // Passing score
 		complete_task(score, speaker, quirk_effects)
 	else
 		fail_task(score, speaker)
-
-	trigger_behavior_quirks(score, speaker)
 
 /datum/component/chimeric_heart_beast/proc/complete_task(score, mob/speaker, list/quirk_effects)
 	var/reward_multiplier = score / 100

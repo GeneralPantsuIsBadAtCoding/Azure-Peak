@@ -107,13 +107,14 @@
 
 /datum/flesh_quirk/discharge/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
 	if(beast.happiness >= beast.max_happiness * 0.75)
-		return
+		return score
 
 	var/happiness_percentage = (1 - (beast.happiness / beast.max_happiness))
 	var/discharge_chance = calculate_discharge_chance(beast.language_tier, score, happiness_percentage)
 
 	if(prob(discharge_chance))
 		beast.trigger_discharge_effect()
+	return score
 
 /datum/flesh_quirk/discharge/proc/calculate_discharge_chance(language_tier, score, happiness_percentage)
 	var/base_chance = 0
@@ -140,6 +141,12 @@
 /datum/flesh_quirk/repetitive
 	name = "Repetitive"
 	description = "Often repeats similar topics or questions"
+	quirk_type = QUIRK_BEHAVIOR
+
+/datum/flesh_quirk/repetitive/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	if(prob(75) && !beast.next_task)
+		beast.next_task = beast.current_task
+	return score
 
 /datum/flesh_quirk/timid
 	name = "Timid"
@@ -353,6 +360,18 @@
 	name = "Stubborn"
 	description = "Resistant to change and new ideas"
 	conflicting_quirks = list(/datum/flesh_quirk/obedient)
+	quirk_type = QUIRK_LANGUAGE
+	var/last_successful_score = null
+
+/datum/flesh_quirk/stubborn/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	if(last_successful_score)
+		var/score_difference = abs(score - last_successful_score)
+		if(score_difference > 25)
+			score -= 25
+		last_successful_score = null
+	else
+		last_successful_score = score
+	return score
 
 /datum/flesh_quirk/patient
 	name = "Patient"
