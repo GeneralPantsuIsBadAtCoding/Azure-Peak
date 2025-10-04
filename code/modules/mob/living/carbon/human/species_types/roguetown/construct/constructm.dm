@@ -20,7 +20,7 @@
 	skinned_type = /obj/item/ingot/steel
 	disliked_food = NONE
 	liked_food = NONE
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_BLOODLOSS_IMMUNE, TRAIT_NOBREATH, TRAIT_NOSLEEP)
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_BLOODLOSS_IMMUNE, TRAIT_NOBREATH, TRAIT_NOSLEEP, TRAIT_EASYDISMEMBER)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mcom.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fcom.dmi'
@@ -85,7 +85,7 @@
 
 /datum/species/construct/metal/check_roundstart_eligible()
 	return TRUE
-	
+
 /datum/species/construct/metal/get_skin_list()
 	return list(
 		"BRASS" = "dfbd6c",
