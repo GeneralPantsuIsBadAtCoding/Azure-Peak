@@ -34,7 +34,7 @@
 /datum/outfit/job/roguetown/manorguard
 	job_bitflag = BITFLAG_GARRISON
 
-/datum/job/roguetown/manorguard/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/manorguard/after_spawn(mob/living/L, mob/M, latejoin = TRUE, visuals_only, client/player_client)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
