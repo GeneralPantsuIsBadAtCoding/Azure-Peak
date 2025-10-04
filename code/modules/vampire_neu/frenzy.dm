@@ -64,9 +64,10 @@
 				frenzy_hardness = min(10, frenzy_hardness + 1)
 
 /mob/living/carbon/proc/enter_frenzymod()
-	if (HAS_TRAIT(src, TRAIT_IN_FRENZY))
+	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
 		return
 	ADD_TRAIT(src, TRAIT_IN_FRENZY, MAGIC_TRAIT)
+	log_combat(src, src, "enters frenzy!")
 	add_client_colour(/datum/client_colour/glass_colour/red)
 	GLOB.frenzy_list += src
 
@@ -76,6 +77,7 @@
 
 	REMOVE_TRAIT(src, TRAIT_IN_FRENZY, MAGIC_TRAIT)
 	remove_client_colour(/datum/client_colour/glass_colour/red)
+	log_combat(src, src, "exits frenzy!")
 	GLOB.frenzy_list -= src
 	clear_frenzy_cache()
 	last_frenzy_check = world.time
