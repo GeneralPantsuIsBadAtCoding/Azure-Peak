@@ -78,8 +78,8 @@
 	if(!length(choices))
 		to_chat(user, span_warning("Somehow, you do not have any traits that [L.name] can learn."))
 		revert_cast()
-	var/chosen_trait = tgui_input_list(user, "Choose a trait for [L.name] to learn.", "IMPART YOUR KNOWLEDGE", choices)
-	if(tgui_alert(L, "[user.name] is offering to take you as an apprentice, teaching you the basics of being a [chosen_trait]. Do you accept?", "Apprenticeship", list("SERVE AND LEARN", "I REFUSE")) == "I REFUSE")
+	var/chosen_trait = input(user, "Choose a trait for [L.name] to learn.", "IMPART YOUR KNOWLEDGE") as null|anything in choices
+	if(alert(L, "[user.name] is offering to take you as an apprentice, teaching you the basics of being a [chosen_trait]. Do you accept?", "Apprenticeship", "SERVE AND LEARN", "I REFUSE") == "I REFUSE")
 		// Daga Kotowaru
 		to_chat(user, span_warning("[L.name] has declined your offer to take them as an apprentice."))
 		revert_cast()
