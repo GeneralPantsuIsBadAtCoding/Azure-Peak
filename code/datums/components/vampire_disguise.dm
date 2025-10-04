@@ -6,6 +6,8 @@
 	var/cache_eyes
 	var/cache_hair
 	var/cache_facial
+	var/cache_boobs
+	var/cache_ears
 	/// Transform cooldown
 	COOLDOWN_DECLARE(transform_cooldown)
 	/// Bloodpool cost per life tick while disguised
@@ -31,6 +33,10 @@
 	cache_eyes = H.cache_eye_color()
 	cache_hair = H.cache_hair_color(FALSE)
 	cache_facial = H.cache_hair_color(TRUE)
+	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
+	cache_ears = ears.accessory_colors
+	var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
+	cache_boobs = breasts?.accessory_colors
 
 /datum/component/vampire_disguise/proc/handle_disguise_upkeep(mob/living/carbon/human/source)
 	SIGNAL_HANDLER
@@ -82,9 +88,13 @@
 			cache_facial["hair_dye_color"],
 			FALSE
 		)
-	H.set_eye_color(cache_eyes["eye_color"], cache_eyes["second_color"], TRUE)
+
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	ears.accessory_colors = cache_skin
+	ears.accessory_colors = cache_ears
+	var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
+	breasts?.accessory_colors = cache_boobs
+
+	H.set_eye_color(cache_eyes["eye_color"], cache_eyes["second_color"], TRUE)
 
 	to_chat(H, span_notice("I assume a mortal guise."))
 	return TRUE

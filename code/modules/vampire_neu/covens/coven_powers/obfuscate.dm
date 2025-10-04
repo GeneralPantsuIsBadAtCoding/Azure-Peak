@@ -60,7 +60,6 @@
 	grouped_powers = list(
 		/datum/coven_power/obfuscate/cloak_of_shadows,
 		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/coven_power/obfuscate/cloak_the_gathering
 	)
@@ -106,7 +105,6 @@
 	grouped_powers = list(
 		/datum/coven_power/obfuscate/cloak_of_shadows,
 		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/coven_power/obfuscate/cloak_the_gathering
 	)
@@ -135,195 +133,13 @@
 		deltimer(cooldown_timer)
 		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(cooldown_expire)), REVEAL_COOLDOWN_LENGTH, TIMER_STOPPABLE)
 
-//MASK OF A THOUSAND FACES - Disguise system instead of invisibility
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces
-	name = "Mask of a Thousand Faces"
-	desc = "Be noticed, but incorrectly. Assume the appearance of others for a limited time."
-
-	research_cost = 2
-	level = 3
-	check_flags = COVEN_CHECK_CAPABLE
-	vitae_cost = 50
-	duration_length = 30 SECONDS
-
-	toggled = FALSE
-
-	var/mask_timer
-
-	var/datum/dna/old_dna
-
-	var/cache_skin
-	var/cache_eyes
-	var/old_hair
-	var/cache_hair
-	var/old_facial_hair
-	var/cache_facial
-	var/old_gender
-	var/cache_voice
-
-	var/transformed = FALSE
-	var/mob/living/carbon/human/current_target
-
-	grouped_powers = list(
-		/datum/coven_power/obfuscate/cloak_of_shadows,
-		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/mask_of_a_thousand_faces,
-		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/coven_power/obfuscate/cloak_the_gathering
-	)
-
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces/proc/store_original_appearance(mob/living/carbon/human/user)
-	var/mob/living/carbon/human/transformer = owner
-
-	var/datum/bodypart_feature/hair/feature = transformer.get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
-	var/datum/bodypart_feature/hair/facial = transformer.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
-	old_dna = new ()
-	transformer.dna.copy_dna(old_dna)
-	old_hair = feature?.accessory_type
-	cache_hair = transformer.cache_hair_color()
-	cache_eyes = transformer.cache_eye_color()
-	cache_facial = transformer.cache_hair_color(TRUE)
-	old_facial_hair = facial?.accessory_type
-	old_gender = transformer.gender
-	cache_skin = transformer.skin_tone
-
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces/activate()
-	. = ..()
-
-	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/target in oviewers(7, owner))
-		if(target.stat < DEAD)
-			potential_targets[target.real_name] = target
-
-	if(!length(potential_targets))
-		to_chat(owner, span_warning("There are no suitable targets nearby to mimic!"))
-		return FALSE
-
-	var/chosen_name = input(owner, "Choose someone to mimic:", "Mask of a Thousand Faces") as null|anything in potential_targets
-	if(!chosen_name)
-		return FALSE
-
-	var/mob/living/carbon/human/target = potential_targets[chosen_name]
-	if(!target || get_dist(owner, target) > 7)
-		to_chat(owner, span_warning("Your target is no longer in range!"))
-		return FALSE
-
-	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
-
-	// Store original appearance and copy target's
-	store_original_appearance(owner)
-	transform_into_target(target, owner)
-
-	to_chat(owner, span_notice("You assume the appearance of [target.real_name]."))
-
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces/proc/transform_into_target(mob/living/carbon/human/target, mob/living/carbon/human/user)
-	// Complete transformation
-	target.dna.transfer_identity(user)
-	user.updateappearance(mutcolor_update = TRUE)
-	user.real_name = target.dna.real_name
-	user.name = target.get_visible_name()
-	user.gender = target.gender
-
-	// Copy physical features with high accuracy
-	var/datum/bodypart_feature/hair/target_feature = target.get_bodypart_feature_of_slot(BODYPART_FEATURE_HAIR)
-	var/datum/bodypart_feature/hair/target_facial = target.get_bodypart_feature_of_slot(BODYPART_FEATURE_FACIAL_HAIR)
-
-	user.set_hair_style(target_feature?.accessory_type, FALSE)
-	user.set_facial_hair_style(target_facial?.accessory_type, FALSE)
-	user.skin_tone = target.skin_tone
-	var/list/eyecache = target.cache_eye_color()
-	user.set_eye_color(
-		eyecache["eye_color"], 
-		eyecache["second_color"],
-		FALSE
-	)
-	var/list/haircache = target.cache_hair_color()
-	if(islist(haircache))
-		user.set_hair_color(
-			haircache["hair_color"],
-			haircache["natural_gradient"],
-			haircache["natural_color"],
-			haircache["hair_dye_gradient"],
-			haircache["hair_dye_color"],
-			FALSE
-		)
-	var/list/facialcache = target.cache_hair_color(TRUE)
-	if(islist(facialcache))
-		user.set_facial_hair_color(
-			facialcache["hair_color"],
-			facialcache["natural_gradient"],
-			facialcache["natural_color"],
-			facialcache["hair_dye_gradient"],
-			facialcache["hair_dye_color"],
-			FALSE
-		)
-
-	user.updateappearance(mutcolor_update = TRUE)
-	transformed = TRUE
-
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces/deactivate()
-	. = ..()
-	UnregisterSignal(owner, aggressive_signals)
-
-	deltimer(mask_timer)
-	return_to_normal(owner)
-	to_chat(owner, span_warning("Your disguise begins to fade..."))
-
-/datum/coven_power/obfuscate/mask_of_a_thousand_faces/proc/return_to_normal(mob/living/carbon/human/user)
-	if(!transformed)
-		return
-
-	owner.visible_message(span_notice("[owner]'s form begins to revert to its original state."))
-	user.Immobilize(1.5 SECONDS)
-
-	old_dna.transfer_identity(user)
-	user.real_name = old_dna.real_name
-	user.name = user.get_visible_name()
-	user.gender = old_gender
-
-	user.skin_tone = cache_skin
-	user.set_hair_style(old_hair, FALSE)
-	user.set_hair_color(
-		cache_hair["hair_color"],
-		cache_hair["natural_gradient"],
-		cache_hair["natural_color"],
-		cache_hair["hair_dye_gradient"],
-		cache_hair["hair_dye_color"],
-		FALSE
-	)
-	if(old_facial_hair)
-		user.set_facial_hair_style(old_facial_hair, FALSE)
-	else
-		var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
-		var/datum/bodypart_feature/hair/facial/facial_feature = locate() in head?.bodypart_features
-		head?.remove_bodypart_feature(facial_feature)
-	if(islist(cache_facial))
-		user.set_facial_hair_color(
-			cache_facial["hair_color"],
-			cache_facial["natural_gradient"],
-			cache_facial["natural_color"],
-			cache_facial["hair_dye_gradient"],
-			cache_facial["hair_dye_color"],
-			FALSE
-		)
-	user.set_eye_color(
-		cache_eyes["eye_color"], 
-		cache_eyes["second_color"], 
-		FALSE
-	)
-
-	user.updateappearance(mutcolor_update = TRUE)
-	transformed = FALSE
-	current_target = null
-	return TRUE
-
 //VANISH FROM THE MIND'S EYE - Instant stealth activation + memory wipe
 /datum/coven_power/obfuscate/vanish_from_the_minds_eye
 	name = "Vanish from the Mind's Eye"
 	desc = "Disappear from plain view instantly, and wipe your presence from recent memory."
 
 	research_cost = 2
-	level = 4
+	level = 3
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 100
 
@@ -332,7 +148,6 @@
 	grouped_powers = list(
 		/datum/coven_power/obfuscate/cloak_of_shadows,
 		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/coven_power/obfuscate/cloak_the_gathering
 	)
@@ -373,7 +188,7 @@
 	desc = "Hide yourself and others in a small area. All nearby allies become invisible."
 
 	research_cost = 3
-	level = 5
+	level = 4
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 150
 
@@ -384,7 +199,6 @@
 	grouped_powers = list(
 		/datum/coven_power/obfuscate/cloak_of_shadows,
 		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/mask_of_a_thousand_faces,
 		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
 		/datum/coven_power/obfuscate/cloak_the_gathering
 	)

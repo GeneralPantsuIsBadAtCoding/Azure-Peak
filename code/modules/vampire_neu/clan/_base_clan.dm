@@ -84,7 +84,6 @@ And it also helps for the character set panel
 
 /datum/clan/proc/on_gain(mob/living/carbon/human/H, is_vampire = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	//initialize_rune_words()
 
 	var/datum/action/clan_menu/menu_action = new /datum/action/clan_menu(H.mind)
 	menu_action.Grant(H)
@@ -96,8 +95,21 @@ And it also helps for the character set panel
 		RegisterSignal(H, COMSIG_HUMAN_LIFE, PROC_REF(on_vampire_life))
 
 		// Apply vampire-specific traits
-		for (var/trait in clane_traits)
+		for(var/trait in clane_traits)
 			ADD_TRAIT(H, trait, "clan")
+
+		var/list/eyecache = H.cache_eye_color()
+		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
+		if(eyes)
+			eyes.Remove(H, TRUE)
+			QDEL_NULL(eyes)
+		eyes = new /obj/item/organ/eyes/night_vision
+		eyes.Insert(H)
+		H.set_eye_color(
+			eyecache["eye_color"], 
+			eyecache["second_color"],
+			TRUE,
+		)
 
 		// Apply vampire-specific changes
 		H.mob_biotypes = MOB_UNDEAD

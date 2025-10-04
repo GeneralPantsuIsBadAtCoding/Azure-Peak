@@ -157,7 +157,8 @@
 /obj/item/clothing/mask/rogue/goblin_mask/dropped(mob/living/carbon/user)
 	. = ..() // Retarded istype cuz we are doing retarded typecasting here.
 	if(istype(user) && user?.wear_mask == src && istype(headgear))
-		user.equip_to_slot(headgear, SLOT_HEAD)	
+		user.equip_to_slot(headgear, SLOT_HEAD)
+		headgear = null
 
 /obj/item/clothing/mask/rogue/goblin_mask/Crossed(atom/target)
 	. = ..()

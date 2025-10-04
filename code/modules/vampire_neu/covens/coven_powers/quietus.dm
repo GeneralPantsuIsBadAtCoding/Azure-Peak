@@ -41,10 +41,11 @@
 	desc = "Create a powerful venom to apply to your enemies."
 
 	level = 2
-	research_cost = 1
+	research_cost = 2
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING | COVEN_CHECK_FREE_HAND
 	violates_masquerade = TRUE
-	cooldown_length = 5 SECONDS
+	cooldown_length = 30 SECONDS
+	vitae_cost = 150
 
 /datum/coven_power/quietus/scorpions_touch/activate()
 	. = ..()
@@ -64,8 +65,8 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.adjustFireLoss(10)
-		L.AdjustKnockdown(3 SECONDS)
-		L.adjustStaminaLoss(50)
+		L.adjust_fire_stacks(3)
+		L.ignite_mob()
 	return ..()
 
 //BAAL'S CARESS

@@ -19,7 +19,6 @@
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_LIVING | TARGET_HUMAN
 	range = 1
-	research_cost = 0
 
 	cooldown_length = 10 SECONDS
 
@@ -71,6 +70,7 @@
 	desc = "Inspire others with divine creativity, enhancing their artistic abilities and mood."
 
 	level = 2
+	research_cost = 0
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING | TARGET_HUMAN
 	range = 3
@@ -106,7 +106,7 @@
 	name = "Familial Bond"
 	desc = "Create a temporary spiritual connection between two people, allowing them to sense each other's location and well-being."
 
-	research_cost = 2
+	research_cost = 1
 	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING | TARGET_HUMAN
@@ -142,7 +142,7 @@
 	name = "Beauty's Restoration"
 	desc = "Channel Eora's power to restore physical beauty and heal disfigurements."
 
-	research_cost = 2
+	research_cost = 1
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_LIVING | TARGET_HUMAN | TARGET_SELF
@@ -331,7 +331,7 @@
 
 	if(bonded_with)
 		to_chat(bonded_with, span_danger("You feel a terrible emptiness as your bond with [source] is severed by death."))
-		SEND_SIGNAL(bonded_with, COMSIG_ADD_MOOD_EVENT, "bond_death", /datum/mood_event/bond_death)
+		bonded_with.add_stress(/datum/stressevent/bond_death)
 	end_bond()
 
 /datum/component/familial_bond/proc/on_bonded_death(mob/living/source)
@@ -340,7 +340,7 @@
 	var/mob/living/carbon/human/parent_mob = parent
 	if(parent_mob)
 		to_chat(parent_mob, span_danger("You feel a terrible emptiness as your bond with [source] is severed by death."))
-		SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "bond_death", /datum/mood_event/bond_death)
+		parent_mob.add_stress(/datum/stressevent/bond_death)
 	end_bond()
 
 /datum/component/familial_bond/proc/on_movement(mob/living/source)
@@ -375,24 +375,24 @@
 
 	if(parent_mob)
 		to_chat(parent_mob, span_info("Your familial bond fades away, but the memory of connection remains."))
-		SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "bond_ended", /datum/mood_event/bond_ended)
+		parent_mob.add_stress(/datum/stressevent/bond_ended)
 
 	if(bonded_with)
 		to_chat(bonded_with, span_info("Your familial bond fades away, but the memory of connection remains."))
-		SEND_SIGNAL(bonded_with, COMSIG_ADD_MOOD_EVENT, "bond_ended", /datum/mood_event/bond_ended)
+		bonded_with.add_stress(/datum/stressevent/bond_ended)
 
 	STOP_PROCESSING(SSprocessing, src)
 	qdel(src)
 
-/datum/mood_event/bond_death
-	description = "Someone I was bonded with has died. I feel empty inside."
-	mood_change = -6
-	timeout = 30 MINUTES
+/datum/stressevent/bond_death
+	desc = "Someone I was bonded with has died. I feel empty inside."
+	stressadd = 6
+	timer = 30 MINUTES
 
-/datum/mood_event/bond_ended
-	description = "A familial bond has ended, but I feel grateful for the connection we shared."
-	mood_change = 1
-	timeout = 10 MINUTES
+/datum/stressevent/bond_ended
+	desc = "A familial bond has ended, but I feel grateful for the connection we shared."
+	stressadd = -1
+	timer = 10 MINUTES
 
 /datum/component/empathic_obsession
 	var/mob/living/carbon/human/obsession_target
@@ -422,7 +422,7 @@
 	to_chat(parent_mob, span_purple("You feel an intense emotional connection forming with [target]. Their wellbeing becomes deeply important to you."))
 
 	// Initial positive mood from forming the bond
-	SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "empathic_bond_formed", /datum/mood_event/empathic_bond_formed)
+	parent_mob.add_stress(/datum/stressevent/empathic_bond_formed)
 
 	// Set up termination timer
 	addtimer(CALLBACK(src, PROC_REF(end_obsession)), duration)
@@ -464,22 +464,22 @@
 	if(!parent_mob || !obsession_target)
 		return
 
-	var/current_health = (obsession_target.health / obsession_target.maxHealth) * 100
+	var/current_health = obsession_target.getBruteLoss() + obsession_target.getFireLoss() + obsession_target.getToxLoss() + obsession_target.getOxyLoss() + obsession_target.getOrganLoss(ORGAN_SLOT_BRAIN)
 	var/health_change = current_health - last_known_health
 
 	// React to health changes
-	if(health_change < -15) // Significant health loss
+	if(health_change < 25) // Significant health loss
 		to_chat(parent_mob, span_danger("You feel a wave of distress - [obsession_target] is being hurt!"))
-		SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_target_hurt", /datum/mood_event/obsession_target_hurt)
+		parent_mob.add_stress(/datum/stressevent/obsession_target_hurt)
 
 		// Visual distress effect
 		parent_mob.overlay_fullscreen("empathic_distress", /atom/movable/screen/fullscreen/painflash, 2)
 		addtimer(CALLBACK(parent_mob, TYPE_PROC_REF(/mob, clear_fullscreen), "empathic_distress"), 5 SECONDS)
 
-	else if(health_change > 15) // Significant healing
+	else if(health_change > -25) // Significant healing
 		to_chat(parent_mob, span_notice("You feel relief as [obsession_target] recovers."))
-		SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_target_healed", /datum/mood_event/obsession_target_healed)
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_target_hurt")
+		parent_mob.add_stress(/datum/stressevent/obsession_target_healed)
+		parent_mob.remove_stress(/datum/stressevent/obsession_target_hurt)
 
 	// Critical health panic
 	if(current_health <= critical_health_threshold && !panic_mode)
@@ -502,13 +502,13 @@
 		if(!separation_anxiety_active)
 			separation_anxiety_active = TRUE
 			to_chat(parent_mob, span_warning("You feel anxious being separated from [obsession_target]."))
-			SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "separation_anxiety", /datum/mood_event/separation_anxiety)
+			parent_mob.add_stress(/datum/stressevent/separation_anxiety)
 	else
 		if(separation_anxiety_active)
 			separation_anxiety_active = FALSE
 			to_chat(parent_mob, span_notice("You feel calmer now that [obsession_target] is nearby."))
-			SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "separation_anxiety")
-			SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "proximity_comfort", /datum/mood_event/proximity_comfort)
+			parent_mob.remove_stress(/datum/stressevent/separation_anxiety)
+			parent_mob.add_stress(/datum/stressevent/proximity_comfort)
 
 /datum/component/empathic_obsession/proc/adjust_obsession_intensity()
 	var/mob/living/carbon/human/parent_mob = parent
@@ -532,7 +532,7 @@
 	var/mob/living/carbon/human/parent_mob = parent
 
 	to_chat(parent_mob, span_userdanger("You feel overwhelming panic - [obsession_target] is in mortal danger!"))
-	SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_panic", /datum/mood_event/obsession_panic)
+	parent_mob.add_stress(/datum/stressevent/obsession_panic)
 
 	// Strong visual effect
 	parent_mob.overlay_fullscreen("empathic_panic", /atom/movable/screen/fullscreen/high, 1)
@@ -547,8 +547,8 @@
 	var/mob/living/carbon/human/parent_mob = parent
 
 	to_chat(parent_mob, span_notice("You feel intense relief as [obsession_target] seems to be recovering."))
-	SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_panic")
-	SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "crisis_relief", /datum/mood_event/crisis_relief)
+	parent_mob.remove_stress(/datum/stressevent/obsession_panic)
+	parent_mob.add_stress(/datum/stressevent/crisis_relief)
 	parent_mob.clear_fullscreen("empathic_panic")
 
 /datum/component/empathic_obsession/proc/on_target_death(mob/living/source)
@@ -561,10 +561,10 @@
 	to_chat(parent_mob, span_userdanger("You feel a devastating emptiness as [source] dies. Part of you dies with them."))
 
 	// Severe negative mood effects
-	SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_death", /datum/mood_event/obsession_death)
-	SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "empathic_bond_formed")
-	SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "proximity_comfort")
-	SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "crisis_relief")
+	parent_mob.add_stress(/datum/stressevent/obsession_death)
+	parent_mob.remove_stress(/datum/stressevent/empathic_bond_formed)
+	parent_mob.remove_stress(/datum/stressevent/proximity_comfort)
+	parent_mob.remove_stress(/datum/stressevent/crisis_relief)
 
 	// Dramatic visual effect
 	parent_mob.overlay_fullscreen("empathic_death", /atom/movable/screen/fullscreen/blind, 2)
@@ -582,8 +582,8 @@
 		return
 
 	to_chat(parent_mob, span_purple("You feel overwhelming joy and relief as [source] returns to life!"))
-	SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_death")
-	SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_revival", /datum/mood_event/obsession_revival)
+	parent_mob.add_stress(/datum/stressevent/obsession_revival)
+	parent_mob.remove_stress(/datum/stressevent/obsession_death)
 	panic_mode = FALSE
 
 /datum/component/empathic_obsession/proc/on_parent_death(mob/living/source)
@@ -600,16 +600,16 @@
 
 	if(parent_mob)
 		to_chat(parent_mob, span_info("Your intense emotional connection to [obsession_target] gradually fades, though the memory remains."))
-		SEND_SIGNAL(parent_mob, COMSIG_ADD_MOOD_EVENT, "obsession_ended", /datum/mood_event/obsession_ended)
+		parent_mob.add_stress(/datum/stressevent/obsession_ended)
 
 		// Clear all obsession-related mood events
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "empathic_bond_formed")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "separation_anxiety")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "proximity_comfort")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_panic")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "crisis_relief")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_target_hurt")
-		SEND_SIGNAL(parent_mob, COMSIG_CLEAR_MOOD_EVENT, "obsession_target_healed")
+		parent_mob.remove_stress(/datum/stressevent/empathic_bond_formed)
+		parent_mob.remove_stress(/datum/stressevent/separation_anxiety)
+		parent_mob.remove_stress(/datum/stressevent/proximity_comfort)
+		parent_mob.remove_stress(/datum/stressevent/obsession_panic)
+		parent_mob.remove_stress(/datum/stressevent/crisis_relief)
+		parent_mob.remove_stress(/datum/stressevent/obsession_target_hurt)
+		parent_mob.remove_stress(/datum/stressevent/obsession_target_healed)
 
 		parent_mob.clear_fullscreen("empathic_panic")
 		parent_mob.clear_fullscreen("empathic_distress")
@@ -620,52 +620,52 @@
 
 // Missing mood events for the empathic obsession component
 
-/datum/mood_event/empathic_bond_formed
-	description = "I feel a deep emotional connection with someone special."
-	mood_change = 3
-	timeout = 30 MINUTES
+/datum/stressevent/empathic_bond_formed
+	desc = "I feel a deep emotional connection with someone special."
+	stressadd = -3
+	timer = 30 MINUTES
 
-/datum/mood_event/obsession_target_hurt
-	description = "Someone I care deeply about is hurt! I feel their pain."
-	mood_change = -4
-	timeout = 10 MINUTES
+/datum/stressevent/obsession_target_hurt
+	desc = "Someone I care deeply about is hurt! I feel their pain."
+	stressadd = 4
+	timer = 10 MINUTES
 
-/datum/mood_event/obsession_target_healed
-	description = "I feel relief knowing someone important to me is recovering."
-	mood_change = 2
-	timeout = 5 MINUTES
+/datum/stressevent/obsession_target_healed
+	desc = "I feel relief knowing someone important to me is recovering."
+	stressadd = -2
+	timer = 5 MINUTES
 
-/datum/mood_event/separation_anxiety
-	description = "I feel anxious being away from someone I'm emotionally connected to."
-	mood_change = -3
-	timeout = 0 // Persistent while active
+/datum/stressevent/separation_anxiety
+	desc = "I feel anxious being away from someone I'm emotionally connected to."
+	stressadd = 3
+	timer = 0 // Persistent while active
 
-/datum/mood_event/proximity_comfort
-	description = "I feel calm and comfortable being near someone I care about."
-	mood_change = 2
-	timeout = 5 MINUTES
+/datum/stressevent/proximity_comfort
+	desc = "I feel calm and comfortable being near someone I care about."
+	stressadd = -2
+	timer = 5 MINUTES
 
-/datum/mood_event/obsession_panic
-	description = "I'm overwhelmed with panic about someone's safety!"
-	mood_change = -6
-	timeout = 0 // Persistent while active
+/datum/stressevent/obsession_panic
+	desc = "I'm overwhelmed with panic about someone's safety!"
+	stressadd = 6
+	timer = 0 // Persistent while active
 
-/datum/mood_event/crisis_relief
-	description = "I feel intense relief that a crisis has passed."
-	mood_change = 4
-	timeout = 15 MINUTES
+/datum/stressevent/crisis_relief
+	desc = "I feel intense relief that a crisis has passed."
+	stressadd = -4
+	timer = 15 MINUTES
 
-/datum/mood_event/obsession_death
-	description = "Someone I was deeply connected to has died. I feel devastated."
-	mood_change = -8
-	timeout = 60 MINUTES
+/datum/stressevent/obsession_death
+	desc = "Someone I was deeply connected to has died. I feel devastated."
+	stressadd = 8
+	timer = 60 MINUTES
 
-/datum/mood_event/obsession_revival
-	description = "Someone precious to me has returned to life! I feel overwhelming joy!"
-	mood_change = 6
-	timeout = 30 MINUTES
+/datum/stressevent/obsession_revival
+	desc = "Someone precious to me has returned to life! I feel overwhelming joy!"
+	stressadd = -6
+	timer = 30 MINUTES
 
-/datum/mood_event/obsession_ended
-	description = "An intense emotional connection has faded, but I remember it fondly."
-	mood_change = 1
-	timeout = 10 MINUTES
+/datum/stressevent/obsession_ended
+	desc = "An intense emotional connection has faded, but I remember it fondly."
+	stressadd = -1
+	timer = 10 MINUTES

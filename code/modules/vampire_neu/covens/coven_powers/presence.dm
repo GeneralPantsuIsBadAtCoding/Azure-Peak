@@ -128,7 +128,7 @@
 //SUMMON
 /datum/coven_power/presence/summon
 	name = "Summon"
-	desc = "Call anyone you've ever met to be by your side."
+	desc = "Keep your friends close, but your enemies closer. Teleport a target to you."
 
 	research_cost = 2
 	level = 4
@@ -279,11 +279,11 @@
 
 /datum/status_effect/majesty_active/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(owner, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
 
 /datum/status_effect/majesty_active/on_remove()
 	. = ..()
-	UnregisterSignal(owner, list(COMSIG_ATOM_ATTACKBY))
+	UnregisterSignal(owner, list(COMSIG_PARENT_ATTACKBY))
 
 /datum/status_effect/majesty_active/proc/on_attackby(atom/source, obj/item/attacking_item, mob/living/user, params)
 	SIGNAL_HANDLER

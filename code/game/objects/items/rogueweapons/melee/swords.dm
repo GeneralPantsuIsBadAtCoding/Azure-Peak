@@ -42,6 +42,7 @@
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
+	clickcd = ""
 
 /datum/intent/sword/thrust/short
 	clickcd = 8
@@ -726,6 +727,7 @@
 	name = "steel shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers."
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
+	force = ""
 	icon_state = "swordshort"
 	sheathe_icon = "swordshort"
 	gripped_intents = null
