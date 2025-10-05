@@ -55,12 +55,14 @@ export const TextInputModal = (props) => {
 
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
+  const dynamicHeight = message.length > 30 ? 
+    (message.length / 40) * 18 : 0;
+
   let windowHeight =
-    135 +
-    (message.length > 30 ? Math.ceil(message.length / 4) : 0) +
+    135 + dynamicHeight +
     (visualMultiline ? 75 : 0) +
     (message.length && large_buttons ? 5 : 0);
-  if (bigmodal) windowHeight = 425; // Override and just make a big modal for FT / OOC Notes 
+  if (bigmodal) windowHeight = 425; // Override and just make a big modal for FT / OOC Notes
   const windowWidth = bigmodal ? 530 : 325;
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
