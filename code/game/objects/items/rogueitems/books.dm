@@ -239,7 +239,7 @@
 
 /obj/item/book/rogue/bibble/psy
 	name = "Tome of Psydon"
-	desc = "'And HE WEEPS. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent invention by Otava's clergymen, has ensured that no corner of Psydonia would remain unlit by His teachings. Inside are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING INTERPRETATION </br>GENESIS - TESTAMENTS OF PSYDONIA'S CREATION, FOR WHAT ONCE WAS </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
+	desc = "'And HE WEEPS. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent invention by Otava's clergymen, has ensured that no corner of Psydonia would remain unlit by His teachings. Inside are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING INTERPRETATION. </br>GENESIS - TESTAMENTS OF PSYDONIA'S CREATION, FOR WHAT ONCE WAS. </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
 	icon_state = "psyble_0"
 	base_icon_state = "psyble"
 	title = "psyble"
