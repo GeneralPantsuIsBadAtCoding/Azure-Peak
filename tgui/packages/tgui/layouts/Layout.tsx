@@ -14,12 +14,11 @@ type BoxProps = React.ComponentProps<typeof Box>;
 
 type Props = Partial<{
   theme: string;
-  disablesidebar: boolean;
 }> &
   BoxProps;
 
 export function Layout(props: Props) {
-  const { className, theme = 'azure_default', children, disablesidebar, ...rest } = props;
+  const { className, theme = 'azure_default', children, ...rest } = props;
 
   const themeClass = `theme-${theme}`;
   

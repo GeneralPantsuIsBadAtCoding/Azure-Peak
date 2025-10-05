@@ -72,9 +72,9 @@ export const TextInputModal = (props) => {
     }
   }
   return (
-    <Window title={title} width={windowWidth} height={windowHeight} disablesidebar>
+    <Window title={title} width={windowWidth} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
-      <Window.Content onKeyDown={handleKeyDown} disablesidebar>
+      <Window.Content onKeyDown={handleKeyDown}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item>

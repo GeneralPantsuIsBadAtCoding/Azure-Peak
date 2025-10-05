@@ -123,9 +123,9 @@ export const ListInputModal = (props) => {
   }
 
   return (
-    <Window title={title} width={325} height={windowHeight} disablesidebar>
+    <Window title={title} width={325} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
-      <Window.Content disablesidebar
+      <Window.Content
         onKeyDown={(event) => {
           handleKeyDown(event);
         }}
