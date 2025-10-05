@@ -164,6 +164,7 @@
 #define BANDIT		(1<<19)
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
+#define ASSASSIN	(1<<22)
 
 #define YOUNGFOLK	(1<<6)
 
