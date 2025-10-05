@@ -46,9 +46,8 @@ export const InputButtons = (props: InputButtonsProps) => {
       pt={large_buttons ? 0.33 : 0}
       textAlign="center"
       tooltip={large_buttons && message}
-      width={!large_buttons && 6}
     >
-      {large_buttons ? 'MAKE IT SO' : 'Make it so'}
+      MAKE IT SO
     </Button>
   );
   const cancelButton = (
@@ -60,9 +59,8 @@ export const InputButtons = (props: InputButtonsProps) => {
       m={0.5}
       pt={large_buttons ? 0.33 : 0}
       textAlign="center"
-      width={!large_buttons && 6}
     >
-      {large_buttons ? 'I RESCIND' : 'I rescind'}
+      I RESCIND
     </Button>
   );
 
