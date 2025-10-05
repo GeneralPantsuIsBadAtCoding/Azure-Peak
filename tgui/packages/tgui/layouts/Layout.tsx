@@ -40,12 +40,11 @@ export function Layout(props: Props) {
 
 type ContentProps = Partial<{
   scrollable: boolean;
-  disablesidebar: Boolean;
 }> &
   BoxProps;
 
 function LayoutContent(props: ContentProps) {
-  const { className, scrollable, children, disablesidebar, ...rest } = props;
+  const { className, scrollable, children, ...rest } = props;
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
