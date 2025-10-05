@@ -238,8 +238,8 @@
 			return
 
 /obj/item/book/rogue/bibble/psy
-	name = "Of Psydon"
-	desc = "And HE WEEPS. Not for you, not for me, but for it all."
+	name = "Tome of Psydon"
+	desc = "'And HE WEEPS. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent invention by Otava's clergymen, has ensured that no corner of Psydonia would remain unlit by His teachings. Inside are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING INTERPRETATION </br>GENESIS - TESTAMENTS OF PSYDONIA'S CREATION, FOR WHAT ONCE WAS </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
 	icon_state = "psyble_0"
 	base_icon_state = "psyble"
 	title = "psyble"
@@ -275,14 +275,14 @@
 
 /obj/item/book/rogue/bibble/psy/MiddleClick(mob/user, params)
 	. = ..()
-	var/sects = list("Sect 1 - PSALMS", "Sect 2 - OF LYFE", "Sect 3 - CHANTS")
-	var/sect_choice = input(user, "Select a Sect", "OF PSYDONIA") as anything in sects
+	var/sects = list("PSALMS", "GENESIS", "INVOCATIONS")
+	var/sect_choice = input(user, "SELECT YOUR TESTAMENT", "OF PSYDONIA") as anything in sects
 	switch(sect_choice)
-		if("Sect 1 - PSALMS")
+		if("PSALMS")
 			sect = "sect1"
-		if("Sect 2 - OF LYFE")
+		if("GENESIS")
 			sect = "sect2"
-		if("Sect 3 - CHANTS")
+		if("INVOCATIONS")
 			sect = "sect3"
 
 /datum/status_effect/buff/blessed
