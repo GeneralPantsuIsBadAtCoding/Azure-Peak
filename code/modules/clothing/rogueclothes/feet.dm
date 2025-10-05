@@ -121,7 +121,8 @@
 	sewrepair = TRUE
 	resistance_flags = null
 	color = "#473a30"
-	salvage_result = null
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/shoes/roguetown/simpleshoes/white
 	color = null

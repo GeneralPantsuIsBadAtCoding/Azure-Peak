@@ -36,7 +36,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/amend_player_book,
 	/client/proc/enable_browser_debug,
 	/client/proc/pull_book_file_names,
-	/client/proc/adminwho,
 	/client/proc/admin_spread_effect,
 	/client/proc/open_bounty_menu,
 	/client/proc/remove_bounty,

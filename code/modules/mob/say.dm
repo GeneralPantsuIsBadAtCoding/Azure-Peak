@@ -9,7 +9,7 @@
 	set category = "IC"
 	
 	display_typing_indicator()
-	var/message = tgui_input_text(usr, "", "say", multiline = tgui_multiline, encode = FALSE)
+	var/message = input(usr, "", "say") as text|null
 	// If they don't type anything just drop the message.
 	clear_typing_indicator()
 	if(!length(message))
@@ -52,7 +52,7 @@
 	set category = "IC"
 
 	display_typing_indicator()
-	var/message = tgui_input_text(usr, "", "me", multiline = tgui_multiline, encode = FALSE)
+	var/message = input(usr, "", "me") as text|null
 	// If they don't type anything just drop the message.
 	clear_typing_indicator()		// clear it immediately!
 	if(!length(message))

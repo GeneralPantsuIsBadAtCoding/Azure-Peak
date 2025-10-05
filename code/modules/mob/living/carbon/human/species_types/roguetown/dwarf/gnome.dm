@@ -29,7 +29,7 @@ Even though they are of mixed blood and smaller than typical dwarves, most gnome
 	soundpack_m = /datum/voicepack/male/elf
 	soundpack_f = /datum/voicepack/female/elf
 	use_f = TRUE
-	use_m = TRUE
+	//use_m = TRUE
 	custom_clothes = TRUE
 	clothes_id = "dwarf"
 	offset_features = list(

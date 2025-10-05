@@ -20,7 +20,7 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 5
 	sellprice = 20
-		
+
 /datum/crafting_recipe/roguetown/leatherunique/gladsandals
 	name = "gladiator sandals"
 	result = list(/obj/item/clothing/shoes/roguetown/gladiator)
@@ -40,7 +40,7 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 6
 	sellprice = 15
-	
+
 /datum/crafting_recipe/roguetown/leather/unique/otavanleatherpants
 	name = "otavan leather trousers"
 	result = list(/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan)
@@ -53,7 +53,7 @@
 	sellprice = 30
 
 /datum/crafting_recipe/roguetown/leather/unique/fencingbreeches
-	name = "frencing breeches"
+	name = "fencing breeches"
 	result = list(/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic)
 	reqs = list(/obj/item/natural/fibers = 1,
 				/obj/item/natural/hide/cured = 2,
