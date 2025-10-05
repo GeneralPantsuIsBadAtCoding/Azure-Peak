@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Pterra, TrueType;
+  font-family: 'Pterra';
   src: url('~roguefont/pterra.ttf');
 }
 
@@ -9,7 +9,7 @@
   --color-base-end: #000000;
 
   --font-size: 14px;
-  --font-family: Pterra, TrueType;
+  --font-family: 'Pterra';
   --color-text: #897472;
   --line-height: 170%;
   --color-scrollbar-thumb: #7b5353;
@@ -24,7 +24,7 @@
 
   // Sidebar
   .SideBarDecoration {
-    background-image: url('../assets/azure_default/snek.svg');
+    background-image: url('../assets/azure_default/snek_shifted.svg');
     background-repeat: no-repeat;
     background-size: 64px;
     width: 64px;
@@ -33,7 +33,7 @@
   }
 
   .SideBar {
-    background-image: url('../assets/azure_default/columns.svg');
+    background-image: url('../assets/azure_default/columns_shifted.svg');
     background-repeat: repeat-y;
     background-size: 64px;
 
@@ -54,6 +54,9 @@
   }
 
   .TitleBar {
+    background-image: url('../assets/azure_default/topbar_shifted.svg');
+    background-repeat: repeat-x;
+    background-size: 64px;
     background-color: #000000;
     box-shadow: none;
 
