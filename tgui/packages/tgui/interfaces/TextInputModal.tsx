@@ -56,7 +56,7 @@ export const TextInputModal = (props) => {
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
   const dynamicHeight = message.length > 30 ? 
-    (message.length / 40) * 18 : 0;
+    (message.length / 40) * 18 : 18;
 
   let windowHeight =
     135 + dynamicHeight +
