@@ -44,6 +44,7 @@
     padding-left: 12px;
     font-size: 15px;
     color: #ae3636;
+    font-weight: bolder;
   }
 
   // Component overrides
@@ -51,9 +52,9 @@
   --section-separator-color: #7b5353;
 
   // Button
-  --button-background: #9B7653 ;
-  --button-background-default: #9B7653  ;
-  --button-background-selected: #9B7653  ;
+  --button-background: #7b5353 ;
+  --button-background-default: #7b5353  ;
+  --button-background-selected: #7b5353  ;
   .Button {
     transition: all 0.5s;
     --color-text: #897472;
@@ -67,5 +68,11 @@
   // Input
   --input-border-color: #7b5353;
   --input-border-color-focus: #7b5353;
+
+  .Window__contentPadding {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
 }
 

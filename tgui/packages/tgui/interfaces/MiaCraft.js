@@ -126,7 +126,7 @@ export const MiaCraft = (props, context) => {
   const renderColumn = () => {
     return (
       <Stack vertical>
-          <Stack.Item style={{ 'position': 'sticky', 'paddingLeft': '10px' }}>
+          <Stack.Item style={{ 'position': 'sticky' }}>
               <Stack>
                 <Stack.Item>
                   <Input placeholder="Search..." autoFocus value={searchText} onInput={(e) => SearchTextModify(e.target.value.toLowerCase())} />
@@ -149,7 +149,7 @@ export const MiaCraft = (props, context) => {
   };
   
   return(
-    <Window title='Crafting' width={425} height={600} resizeable>
+    <Window title='Crafting' width={340} height={600} resizeable>
       <Window.Content scrollable>
         <Stack horizontal>
           {renderColumn()}
