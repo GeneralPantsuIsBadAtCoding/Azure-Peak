@@ -65,6 +65,15 @@
     --button-background-active: #7b5353;
   }
 
+  .input-button {
+    color: #ae3636;
+    font-weight: 600;
+    :hover {
+      background: rgba(123, 83, 83, 0.2);
+      transition: all 0.5s;
+    }
+  }
+
   // Input
   --input-border-color: #7b5353;
   --input-border-color-focus: #7b5353;
