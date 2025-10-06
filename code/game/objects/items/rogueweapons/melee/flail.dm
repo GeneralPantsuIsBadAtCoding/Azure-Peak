@@ -122,19 +122,51 @@
 	smeltresult = /obj/item/ingot/steel
 	minstr = 5
 
+/obj/item/rogueweapon/flail/sflail/silver
+	force = 35
+	icon_state = "silverflail"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
+	smeltresult = /obj/item/ingot/silver
+	minstr = 12
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+
 /obj/item/rogueweapon/flail/sflail/necraflail
 	name = "swift journey"
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
-	force = 33 // 10% force increase, yippee
+	force = 35
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/necraflail/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail
 	name = "psydonian flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
-	force = 25
-	minstr = 9
-	wdefense = 3
+	force = 35
+	minstr = 10
+	wdefense = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 
@@ -146,7 +178,7 @@
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
-		added_def = 1,\
+		added_def = 0,\
 	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic
@@ -162,7 +194,7 @@
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 100,\
-		added_def = 2,\
+		added_def = 0,\
 	)
 
 /obj/item/rogueweapon/flail/peasantwarflail
