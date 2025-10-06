@@ -403,7 +403,7 @@
 
 /obj/item/rogueweapon/spear/silver
 	name = "silver spear"
-	desc = "A hefty, silver spear. An unorthodox implement, but one tremendously favored for those who travel through cursed forests; the winged edges excel at stopping deadite-animals before they can get too close."
+	desc = "A winged staff, tipped with a silver spearhead. A firm thrust to the chest'll stop a charging deadite in its tracks, and will almost-certainly punch through unholy maille."
 	icon_state = "silverspear"
 	force = 15
 	force_wielded = 25
@@ -1258,7 +1258,7 @@
 	max_integrity = 200
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/silver
-	name = "steel quarterstaff"
+	name = "silver quarterstaff"
 	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
 	force = 20
 	force_wielded = 27
