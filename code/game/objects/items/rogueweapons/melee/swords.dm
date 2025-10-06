@@ -725,6 +725,56 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/sword/long/silver
+	name = "silver longsword"
+	desc = "A hefty, silver longsword. The bread-and-butter of a seasoned paladin; the tip for cursed hide, the blade for rotting limbs, and the pommel for unholy helmets."
+	icon_state = "silverlongsword"
+	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 9
+	wdefense = 6
+	dropshrink = 1
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/sword/long/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/kriegmesser/silver
+	name = "silver broadsword"
+	desc = "A hefty, silver broadsword. Each swing commands more effort than the last, but not without recompense: watch as the rotting limbs arc through the air, trailed by spirals of coagulated blackness."
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "silverbroadsword"
+	force = 20
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	alt_intents = null // Can't mordhau this
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/long/kriegmesser/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 /obj/item/rogueweapon/sword/short
 	name = "steel shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers."
@@ -832,8 +882,8 @@
 	sheathe_icon = "psyswordshort"
 	force = 20
 	force_wielded = 20
-	minstr = 6
-	wdefense = 5
+	minstr = 7
+	wdefense = 3
 	wbalance = WBALANCE_SWIFT
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -854,6 +904,30 @@
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_PSYDONIAN,\
 		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/short/silver
+	name = "silver shortsword"
+	desc = "A shortsword of pure silver. The tip naturally gravitates towards the bowels of monsters and heathens, alike."
+	icon_state = "silverswordshort"
+	sheathe_icon = "psyswordshort"
+	force = 20
+	force_wielded = 20
+	minstr = 7
+	wdefense = 3
+	wbalance = WBALANCE_SWIFT
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/sword/short/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -1151,6 +1225,32 @@
 	sheathe_icon = "decrapier"
 	sellprice = 140
 
+/obj/item/rogueweapon/sword/rapier/silver
+	name = "silver rapier"
+	desc = "A hefty, silver rapier. Immortalized by Rockhill's witch hunters, this weapon - though cumberstone in an untrained hand - is surprisingly adept at both parrying and riposting."
+	icon_state = "silverrapier"
+	sheathe_icon = "psyrapier"
+	max_integrity = 225
+	max_blade_int = 225
+	force = 20
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/rapier/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+
 /obj/item/rogueweapon/sword/rapier/psy/relic
 	name = "Eucharist"
 	desc = "Etruscan shape falling prey to Otavan craftsmanship. Saint Malum's smiths created an uniquely thin blade, capable of swiftly skewering the unholy and the miscreants through gaps that most claim to have never existed in the first place. <b> Silver-dipped steel crowned upon a basket hilt that keeps righteous hands safe from harm."
@@ -1158,7 +1258,7 @@
 	sheathe_icon = "psyrapier"
 	max_integrity = 300
 	max_blade_int = 300
-	force = 17
+	force = 20
 	force_wielded = 20
 	minstr = 8
 	wdefense = 8
@@ -1215,11 +1315,11 @@
 
 /obj/item/rogueweapon/sword/silver
 	name = "silver sword"
-	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
+	desc = "A shortsword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
-	force = 17
-	force_wielded = 20
+	force = 18
+	force_wielded = 23
 	minstr = 9
 	wdefense = 5
 	is_silver = TRUE
