@@ -129,7 +129,7 @@
 	force = 30
 	force_wielded = 35
 	name = "silver mace"
-	desc = "A silver mace. It carries Astrata's judgement unto the monsters that relish far too much in the nite."
+	desc = "A heavy, silver mace. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For their knight, however, there's no better implement for cracking skulls."
 	icon_state = "silvermace"
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/silver
@@ -151,7 +151,7 @@
 
 /obj/item/rogueweapon/mace/silver
 	name = "silver warhammer"
-	desc = "A silver warhammer. It represents Malum's pragmaticism, condensed into a briquette of maille-splintering might."
+	desc = "A heavy, silver warhammer. The Otavan Routiers covet such a weapon above all else; a tool of maille-shattering might, perfectly balanced for use in one hand."
 	icon_state = "silverhammer"
 	force = 25
 	force_wielded = 25
