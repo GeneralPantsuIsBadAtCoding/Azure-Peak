@@ -34,7 +34,7 @@
 	cache_hair = H.cache_hair_color(FALSE)
 	cache_facial = H.cache_hair_color(TRUE)
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	cache_ears = ears.accessory_colors
+	cache_ears = ears?.accessory_colors
 	var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
 	cache_boobs = breasts?.accessory_colors
 
@@ -90,7 +90,7 @@
 		)
 
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	ears.accessory_colors = cache_ears
+	ears?.accessory_colors = cache_ears
 	var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
 	breasts?.accessory_colors = cache_boobs
 
@@ -131,13 +131,13 @@
 
 /datum/component/vampire_disguise/nosferatu/cache_original_appearance(mob/living/carbon/human/H)
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	original_ear_accessory_type = ears.accessory_type
-	original_ear_accessory_colors = ears.accessory_colors
+	original_ear_accessory_type = ears?.accessory_type
+	original_ear_accessory_colors = ears?.accessory_colors
 	return ..()
 
 /datum/component/vampire_disguise/nosferatu/apply_disguise(mob/living/carbon/human/H)
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	ears.set_accessory_type(original_ear_accessory_type)
-	ears.accessory_colors = original_ear_accessory_colors
+	ears?.set_accessory_type(original_ear_accessory_type)
+	ears?.accessory_colors = original_ear_accessory_colors
 	return ..()
 

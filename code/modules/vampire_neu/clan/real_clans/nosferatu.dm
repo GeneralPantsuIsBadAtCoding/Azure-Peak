@@ -65,7 +65,7 @@
 /datum/clan/nosferatu/apply_vampire_look(mob/living/carbon/human/H)
 	. = ..()
 	var/obj/item/organ/ears/ears = H.getorganslot(ORGAN_SLOT_EARS)
-	ears.set_accessory_type(/datum/sprite_accessory/ears/nosferatu)
+	ears?.set_accessory_type(/datum/sprite_accessory/ears/nosferatu)
 
 /datum/clan/nosferatu/remove_vampire_look(mob/living/carbon/human/H)
 
