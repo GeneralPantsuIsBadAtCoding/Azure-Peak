@@ -136,8 +136,6 @@ GLOBAL_LIST_EMPTY(quest_components)
 		return
 
 /datum/component/quest_object/retrieval/on_item_dropped(obj/item/dropped_item, mob/user)
-	SIGNAL_HANDLER
-
 	var/datum/quest/Q = quest_ref.resolve()
 	if(!Q || Q.complete)
 		return
@@ -164,8 +162,6 @@ GLOBAL_LIST_EMPTY(quest_components)
 		return
 
 /datum/component/quest_object/courier/on_item_dropped(obj/item/dropped_item, mob/user)
-	SIGNAL_HANDLER
-
 	var/datum/quest/Q = quest_ref.resolve()
 	if(!Q || Q.complete)
 		return
