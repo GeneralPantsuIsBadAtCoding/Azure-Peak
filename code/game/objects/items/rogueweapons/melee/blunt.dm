@@ -236,7 +236,7 @@
 
 /obj/item/rogueweapon/mace/cudgel/psy
 	name = "psydonian handmace"
-	desc = "A flanged mace of pure silver. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
+	desc = "A shorter variant of the flanged silver mace, rebalanced for one-handed usage. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
 	force = 25
 	force_wielded = 30
 	minstr = 9
