@@ -16,7 +16,7 @@
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY,MUTCOLORS_PARTSONLY)
 	default_features = MANDATORY_FEATURE_LIST
-	inherent_traits = list(TRAIT_EASYDECAPITATION)
+	inherent_traits = list(TRAIT_EASYDECAPITATION,TRAIT_NOHUNGER,TRAIT_NOBREATH,TRAIT_ZOMBIE_IMMUNE)
 	use_skintones = 1
 	disliked_food = NONE
 	liked_food = NONE
