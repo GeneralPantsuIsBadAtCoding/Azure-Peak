@@ -129,7 +129,7 @@
 	force = 30
 	force_wielded = 35
 	name = "silver mace"
-	desc = "A heavy, silver mace. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For their knight, however, there's no better implement for cracking skulls."
+	desc = "A heavy flanged mace, forged from pure silver. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For a paladin, however, there's no better implement for shattering avantyne-maille into a putrid pile of debris."
 	icon_state = "silvermace"
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/silver
@@ -151,7 +151,7 @@
 
 /obj/item/rogueweapon/mace/silver
 	name = "silver warhammer"
-	desc = "A heavy, silver warhammer. The Otavan Routiers covet such a weapon above all else; a tool of maille-shattering might, perfectly balanced for use in one hand."
+	desc = "A heavy warhammer, forged from pure silver. It follows the Otavan design of a 'lucerene'; a shortened polehammer with a pronounced spike, rebalanced for one-handed usage. Resplendent in presentation, righteous in purpose."
 	icon_state = "silverhammer"
 	force = 25
 	force_wielded = 25
@@ -236,9 +236,9 @@
 
 /obj/item/rogueweapon/mace/cudgel/psy
 	name = "psydonian handmace"
-	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
-	force = 20
-	force_wielded = 20
+	desc = "A flanged mace of pure silver. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
+	force = 25
+	force_wielded = 30
 	minstr = 9
 	wdefense = 5
 	wbalance = WBALANCE_SWIFT
