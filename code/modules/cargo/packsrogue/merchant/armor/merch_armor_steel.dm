@@ -206,11 +206,6 @@
 	cost = 50 // 1 Steel
 	contains = list(/obj/item/clothing/mask/rogue/facemask/steel)
 
-/datum/supply_pack/rogue/armor_steel/mask_steel_hound
-	name = "Mask, Hound"
-	cost = 50 // 1 Steel
-	contains = list(/obj/item/clothing/mask/rogue/facemask/steel/hound)
-
 /datum/supply_pack/rogue/armor_steel/steel/belt
 	name = "Belt"
 	cost = 50 // 1 Steel

@@ -423,6 +423,21 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/spear/psyspear/old
+	name = "old psydonian spear"
+	desc = "An ornate spear, its silver tarnished by neglect. HE still guides the faithful's hand, if not this weapon."
+	icon_state = "psyspear"
+	force = 20
+	force_wielded = 30
+	minstr = 8
+	wdefense = 5
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/spear/psyspear/old/ComponentInitialize()
+	return
+
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -989,7 +1004,7 @@
 /obj/item/rogueweapon/greatsword/grenz/flamberge
 	name = "steel flamberge"
 	desc = "A close relative of the Grenzelhoftian \"zweihander\", favored by Otavan nobility. The name comes from its unique, flame-shaped blade; a labor only surmountable by Psydonia's finest weaponsmiths."
-	icon_state = "flamberge"
+	icon_state = "steelflamberge"
 	max_blade_int = 180
 	max_integrity = 130
 	wdefense = 6

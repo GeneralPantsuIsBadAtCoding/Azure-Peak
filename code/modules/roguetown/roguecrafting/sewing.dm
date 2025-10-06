@@ -303,6 +303,13 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/psydon
+	name = "tabard, psydon orthodoxist"
+	result = list(/obj/item/clothing/cloak/psydontabard)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/astrata
 	name = "tabard, astrata"
 	result = list(/obj/item/clothing/cloak/templar/astrata)

@@ -396,3 +396,8 @@
 	stressadd = 3
 	desc = span_red("Where is their head? What is that flame?!")
 	timer = 5 MINUTES
+
+/datum/stressevent/fermented_crab_bad
+	stressadd = 2
+	desc = span_red("That fermented crab was truly rancid, abhorrent and disgusting.")
+	timer = 3 MINUTES

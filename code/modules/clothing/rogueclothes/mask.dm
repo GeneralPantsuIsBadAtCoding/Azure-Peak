@@ -420,11 +420,6 @@
 	icon_state = "ancientmask"
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/mask/rogue/facemask/steel/hound
-	name = "steel hound mask"
-	desc = "A steel mask, made for those who have snouts, protecting the eyes, nose and muzzle while obscuring the face."
-	icon_state = "smask_hound"
-
 /obj/item/clothing/mask/rogue/facemask/steel/steppesman
 	name = "steppesman war mask"
 	desc = "A steel mask shaped like the face of a rather charismatic fellow! Pronounced cheeks, a nose, and a large mustache. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."

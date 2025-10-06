@@ -82,6 +82,9 @@
 /obj/item/reagent_containers/glass/bottle/alchemical/strongmanapot
 	list_reagents = list(/datum/reagent/medicine/strongmana = 30)	
 
+/obj/item/reagent_containers/glass/bottle/alchemical/fermented_crab
+	list_reagents = list(/datum/reagent/fermented_crab = 15)
+
 //////////////////////////
 /// ALCOHOLIC BOTTLES ///
 //////////////////////////

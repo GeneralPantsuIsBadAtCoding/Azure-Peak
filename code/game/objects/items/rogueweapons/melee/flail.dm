@@ -180,6 +180,20 @@
 		added_int = 50,\
 		added_def = 0,\
 	)
+	
+/obj/item/rogueweapon/flail/sflail/psyflail/old
+	name = "old psydonian flail"
+	desc = "An ornate flail, its silver tarnished by neglect. Bring down the COMET on the unholy."
+	icon_state = "psyflail"
+	force = 30
+	minstr = 5
+	wdefense = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
+	return
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic
 	name = "Consecratia"
