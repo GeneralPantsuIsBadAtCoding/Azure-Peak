@@ -125,14 +125,37 @@
 	icon_state = "amace"
 	smeltresult = /obj/item/ingot/aaslag
 
+/obj/item/rogueweapon/mace/steel/silver
+	force = 30
+	force_wielded = 35
+	name = "silver mace"
+	desc = "A silver mace. It carries Astrata's judgement unto the monsters that relish far too much in the nite."
+	icon_state = "silvermace"
+	wbalance = WBALANCE_HEAVY
+	smeltresult = /obj/item/ingot/silver
+	minstr = 10
+	wdefense = 5
+	smelt_bar_num = 2
+	is_silver = TRUE
+
+/obj/item/rogueweapon/mace/steel/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/mace/silver
-	name = "silver war hammer"
-	desc = "A light war hammer forged of silver."
+	name = "silver warhammer"
+	desc = "A silver warhammer. It represents Malum's pragmaticism, condensed into a briquette of maille-splintering might."
 	icon_state = "silverhammer"
-	force = 18
-	force_wielded = 20
-	minstr = 9
+	force = 25
+	force_wielded = 25
+	minstr = 10
 	wdefense = 5
 	gripped_intents = null
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze)
@@ -156,12 +179,11 @@
 	if(tag)
 		switch(tag)
 			if("gen")
-				return list("shrink" = 0.85,"sx" = -7,"sy" = 4,"nx" = 7,"ny" = 4,"wx" = -2,"wy" = 5,"ex" = 1,"ey" = 5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -25,"sturn" = 25,"wturn" = 35,"eturn" = -35,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+				return list("shrink" = 0.5,"sx" = -9,"sy" = -8,"nx" = 9,"ny" = -7,"wx" = -7,"wy" = -8,"ex" = 3,"ey" = -8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 90,"sturn" = -90,"wturn" = -90,"eturn" = 90,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("wielded")
-				return list("shrink" = 0.85,"sx" = 5,"sy" = -4,"nx" = -5,"ny" = -4,"wx" = -5,"wy" = -3,"ex" = 7,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -45,"sturn" = 45,"wturn" = -45,"eturn" = 45,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+				return list("shrink" = 0.6,"sx" = 3,"sy" = -7,"nx" = -6,"ny" = -3,"wx" = 3,"wy" = -4,"ex" = 4,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -44,"sturn" = 45,"wturn" = 47,"eturn" = 33,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 			if("onbelt")
-				return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
-
+				return list("shrink" = 0.4,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/mace/woodclub
 	force = 15
@@ -446,8 +468,8 @@
 	name = "psydonian mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
-	force = 20
-	force_wielded = 25
+	force = 30
+	force_wielded = 35
 	minstr = 12
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
