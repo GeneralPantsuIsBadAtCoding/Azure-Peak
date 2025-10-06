@@ -102,13 +102,16 @@
 			victim.death()
 			return
 
-	if(ishuman(victim) && VDrinker.generation > GENERATION_THINBLOOD && victim.bloodpool <= 150)
+	if(victim.mind && ishuman(victim) && VDrinker.generation > GENERATION_THINBLOOD && victim.bloodpool <= 150)
 		if(alert(src, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 			to_chat(src, span_warning("I decide [victim] is unworthy."))
 		else
 			INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/carbon/human, vampire_conversion_prompt), src)
 
 /mob/living/carbon/human/proc/vampire_conversion_prompt(mob/living/carbon/sire)
+	if(!mind)
+		return
+
 	var/datum/antagonist/vampire/VDrinker = sire?.mind?.has_antag_datum(/datum/antagonist/vampire)
 	if(!istype(VDrinker))
 		return
