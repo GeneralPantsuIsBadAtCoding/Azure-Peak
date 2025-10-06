@@ -401,6 +401,28 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/spear/silver
+	name = "silver spear"
+	desc = "A hefty, silver spear. An unorthodox implement, but one tremendously favored for those who travel through cursed forests; the winged edges excel at stopping deadite-animals before they can get too close."
+	icon_state = "silverspear"
+	force = 15
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/spear/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -967,7 +989,7 @@
 /obj/item/rogueweapon/greatsword/grenz/flamberge
 	name = "steel flamberge"
 	desc = "A close relative of the Grenzelhoftian \"zweihander\", favored by Otavan nobility. The name comes from its unique, flame-shaped blade; a labor only surmountable by Psydonia's finest weaponsmiths."
-	icon_state = "steelflamb"
+	icon_state = "flamberge"
 	max_blade_int = 180
 	max_integrity = 130
 	wdefense = 6
@@ -1234,6 +1256,27 @@
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
 	max_integrity = 200
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/silver
+	name = "steel quarterstaff"
+	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
+	force = 20
+	force_wielded = 27
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff_silver"
+	max_integrity = 250
+	is_silver = TRUE
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/spear/partizan
 	name = "partizan"
