@@ -3,7 +3,7 @@
 
 /datum/species/goblinp
 	name = "Goblin"
-	id = "goblinp"
+	id = SPEC_ID_GOBLINP
 	desc = "<b>Goblin</b><br>\
 	A clever and stubborn nature are two charitable qualities of a goblin - scheming and selfish are less so. The Fell Gods use them as an avatar of malice, sending out \
 	mindless, enthralled waves of the creatures to attack civilization from lunar portals. It leaves the typical goblinoid to cloister in their hidden away tribes, stealing \
