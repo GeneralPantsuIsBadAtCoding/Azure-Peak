@@ -25,9 +25,8 @@
 	if(assigned_quest)
 		// Return deposit if scroll is destroyed before completion
 		if(!assigned_quest.complete)
-			var/refund = assigned_quest.quest_difficulty == "Easy" ? 5 : \
-						assigned_quest.quest_difficulty == "Medium" ? 10 : 20
-			
+			var/refund = assigned_quest.calculate_deposit()
+
 			// First try to return to quest giver if available
 			var/mob/giver = assigned_quest.quest_giver_reference?.resolve()
 			if(giver && (giver in SStreasury.bank_accounts))
@@ -41,7 +40,7 @@
 					SStreasury.bank_accounts[receiver] += refund
 					SStreasury.treasury_value -= refund
 					SStreasury.log_entries += "-[refund] from treasury (contract scroll destroyed refund to receiver [receiver.real_name])"
-		
+
 		// Clean up the quest
 		qdel(assigned_quest)
 		assigned_quest = null
@@ -145,7 +144,7 @@
 		return
 
 	var/scroll_text = "<center>HELP NEEDED</center><br>"
-	scroll_text += "<center><b>[assigned_quest.title]</b></center><br><br>"
+	scroll_text += "<center><b>[assigned_quest.get_title()]</b></center><br><br>"
 	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? "[assigned_quest.quest_giver_name]" : "The Mercenary's Guild"].<br>"
 	scroll_text += "<b>Issued to:</b> [assigned_quest.quest_receiver_name ? assigned_quest.quest_receiver_name : "whoever it may concern"].<br>"
 	scroll_text += "<b>Type:</b> [assigned_quest.quest_type] contract.<br>"
@@ -155,33 +154,24 @@
 		scroll_text += "<b>Direction:</b> The target is [last_compass_direction]. "
 		if(last_z_level_hint)
 			scroll_text += " ([last_z_level_hint])"
-	scroll_text += "<br>"
+		scroll_text += "<br>"
 
-	switch(assigned_quest.quest_type)
-		if(QUEST_RETRIEVAL)
-			scroll_text += "<b>Objective:</b> Retrieve [assigned_quest.target_amount] [initial(assigned_quest.target_item_type.name)].<br>"
-			scroll_text += "<b>Last Seen Location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
-		if(QUEST_KILL, QUEST_OUTLAW)
-			scroll_text += "<b>Objective:</b> Slay [assigned_quest.target_amount] [initial(assigned_quest.target_mob_type.name)].<br>"
-			scroll_text += "<b>Last Seen Location:</b> [assigned_quest.target_spawn_area ? "Reported sighting in [assigned_quest.target_spawn_area] region." : "Reported sighting in Azuria region."]<br>"
-		if(QUEST_CLEAR_OUT)
-			scroll_text += "<b>Objective:</b> Eliminate [assigned_quest.target_amount] [initial(assigned_quest.target_mob_type.name)].<br>"
-			scroll_text += "<b>Infestation Location:</b> [assigned_quest.target_spawn_area ? "Reported sighting in [assigned_quest.target_spawn_area] region." : "Reported infestations in Azuria region."]<br>"
-		if(QUEST_COURIER)
-			scroll_text += "<b>Objective:</b> Deliver [initial(assigned_quest.target_delivery_item.name)] to [initial(assigned_quest.target_delivery_location.name)].<br>"
-			scroll_text += "<b>Delivery Instructions:</b> Package is hidden by a spell in the designated location. Spell will falter once this scroll is brought nearby. Package must remain intact and be delivered directly to the recipient.<br>"
-			scroll_text += "<b>Pickup location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
-			scroll_text += "<b>Destination Description:</b> [initial(assigned_quest.target_delivery_location.name)].<br>" // TODO: brief_descriptor
+	scroll_text += "<b>Objective:</b> [assigned_quest.get_objective_text()]<br>"
 
+	// Show progress if applicable
+	if(assigned_quest.progress_required > 1)
+		scroll_text += "<b>Progress:</b> [assigned_quest.progress_current]/[assigned_quest.progress_required]<br>"
+
+	scroll_text += "<b>Location:</b> [assigned_quest.get_location_text()]<br>"
 	scroll_text += "<br><b>Reward:</b> [assigned_quest.reward_amount] mammon upon completion<br>"
-	
+
 	if(assigned_quest.complete)
 		scroll_text += "<br><center><b>CONTRACT COMPLETE</b></center>"
 		scroll_text += "<br><b>Return this scroll to the Notice Board to claim your reward!</b>"
 		scroll_text += "<br><i>Place it on the marked area next to the book.</i>"
 	else
 		scroll_text += "<br><i>The magic in this scroll will update as you progress.</i>"
-	
+
 	info = scroll_text
 	update_icon()
 
@@ -213,22 +203,9 @@
 	last_compass_direction = "Searching for target..."
 	last_z_level_hint = ""
 
-	var/atom/target
-	var/turf/target_turf
-	var/min_distance = INFINITY
-
-	// Find the appropriate target based on quest type
-	for(var/datum/weakref/tracked_weakref in assigned_quest.tracked_atoms)
-		var/atom/target_atom = tracked_weakref.resolve()
-		if(QDELETED(target_atom))
-			continue
-
-		var/dist = get_dist(user_turf, target_atom)
-		if(!target || dist < min_distance)
-			target = target_atom
-			min_distance = dist
-
-	if(!target || !(target_turf = get_turf(target)))
+	// Get target location from quest datum
+	var/turf/target_turf = assigned_quest.get_target_location()
+	if(!target_turf)
 		last_compass_direction = "location unknown"
 		last_z_level_hint = ""
 		return

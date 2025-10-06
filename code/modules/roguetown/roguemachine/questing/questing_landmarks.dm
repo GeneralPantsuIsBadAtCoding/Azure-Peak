@@ -26,82 +26,11 @@
 	GLOB.quest_landmarks_list -= src
 	return ..()
 
-/obj/effect/landmark/quest_spawner/proc/generate_quest(datum/quest/new_quest, mob/user)
-	new_quest.quest_receiver_reference = user ? WEAKREF(user) : null
-	new_quest.quest_receiver_name = user ? user.real_name : null
-	new_quest.target_spawn_area = get_area_name(get_turf(src))
+// Note: generate_quest has been removed - quest generation is now handled by quest datum subtypes
+// Each quest type (retrieval, kill, courier, etc.) has its own generate() method
 
-	switch(new_quest.quest_difficulty)
-		if(QUEST_DIFFICULTY_EASY)
-			new_quest.reward_amount = rand(QUEST_REWARD_EASY_LOW, QUEST_REWARD_EASY_HIGH)
-		if(QUEST_DIFFICULTY_MEDIUM)
-			new_quest.reward_amount = rand(QUEST_REWARD_MEDIUM_LOW, QUEST_REWARD_MEDIUM_HIGH)
-		if(QUEST_DIFFICULTY_HARD)
-			new_quest.reward_amount = rand(QUEST_REWARD_HARD_LOW, QUEST_REWARD_HARD_HIGH)
-
-	switch(new_quest.quest_type)
-		if(QUEST_RETRIEVAL)
-			new_quest.title = "Retrieve [pick("an ancient", "a rare", "a stolen", "a magical")] [pick("artifact", "relic", "doohickey", "treasure")]"
-			new_quest.target_item_type = pick(fetch_items)
-			new_quest.target_amount = rand(1, 3)
-			spawn_fetch_items(new_quest.target_item_type, new_quest.target_amount, new_quest)
-		if(QUEST_KILL)
-			new_quest.title = "Slay [pick("a dangerous", "a fearsome", "a troublesome", "an elusive")] [pick("beast", "monster", "brigand", "creature")]"
-			new_quest.target_mob_type = pick(kill_mobs)
-			new_quest.target_amount = rand(1, 3)
-			spawn_kill_mob(new_quest.target_mob_type, new_quest)
-		if(QUEST_CLEAR_OUT)
-			new_quest.title = "Clear out [pick("a nest of", "a den of", "a group of", "a pack of")] [pick("monsters", "bandits", "creatures", "vermin")]"
-			new_quest.target_mob_type = pick(kill_mobs)
-			new_quest.target_amount = rand(3, 6)
-			spawn_clear_out_mobs(new_quest.target_mob_type, new_quest.target_amount, new_quest)
-		if(QUEST_COURIER)
-			new_quest.title = "Deliver [pick("an important", "a sealed", "a confidential", "a valuable")] [pick("package", "parcel", "letter", "delivery")]"
-			new_quest.target_delivery_location = pick(
-				/area/rogue/indoors/town/tavern,
-				/area/rogue/indoors/town/church,
-				/area/rogue/indoors/town/dwarfin,
-				/area/rogue/indoors/town/shop,
-				/area/rogue/indoors/town/manor,
-				/area/rogue/indoors/town/magician,
-			)
-			spawn_courier_item(new_quest, new_quest.target_delivery_location)
-		if(QUEST_OUTLAW)
-			new_quest.title = "Defeat [pick("the terrible", "the dreadful", "the monstrous", "the infamous")] [pick("warlord", "beast", "sorcerer", "abomination")]"
-			new_quest.target_mob_type = pick(miniboss_mobs)
-			new_quest.target_amount = 1
-			spawn_miniboss(new_quest, new_quest.target_mob_type)
-
-	// Initialize compass data for the quest
-	if(new_quest.quest_scroll_ref)
-		var/obj/item/paper/scroll/quest/scroll = new_quest.quest_scroll_ref.resolve()
-		if(scroll)
-			scroll.update_compass(user)
-
-	return new_quest
-
-/obj/effect/landmark/quest_spawner/proc/spawn_fetch_items(item_type, amount, datum/quest/quest)
-	var/turf/spawn_turf = get_safe_spawn_turf()
-	if(!spawn_turf)
-		return
-
-	for(var/i in 1 to amount)
-		var/obj/item/new_item = new item_type(spawn_turf)
-		new_item.AddComponent(/datum/component/quest_object, quest)
-		quest.add_tracked_atom(new_item)
-
-/obj/effect/landmark/quest_spawner/proc/spawn_kill_mob(mob_type, datum/quest/quest)
-	for(var/i in 1 to quest.target_amount)
-		var/turf/spawn_turf = get_safe_spawn_turf()
-		if(!spawn_turf)
-			return
-
-		var/mob/living/new_mob = new mob_type(spawn_turf)
-		new_mob.faction |= "quest"
-		new_mob.AddComponent(/datum/component/quest_object, quest)
-		add_quest_faction_to_nearby_mobs(spawn_turf)
-		quest.add_tracked_atom(new_mob)
-		sleep(1)
+// Note: spawn_fetch_items, spawn_kill_mob, spawn_clear_out_mobs have been removed
+// These are now handled directly in quest datum subtypes via their generate() method
 
 /obj/effect/landmark/quest_spawner/proc/add_quest_faction_to_nearby_mobs(turf/center)
 	for(var/mob/living/M in view(7, center))
@@ -200,37 +129,14 @@
 	delivery_parcel.update_icon()
 
 	quest.target_delivery_item = contained_item_type
-	delivery_parcel.AddComponent(/datum/component/quest_object, quest)
-	contained_item.AddComponent(/datum/component/quest_object, quest)
+	delivery_parcel.AddComponent(/datum/component/quest_object/courier, quest)
+	contained_item.AddComponent(/datum/component/quest_object/courier, quest)
 	quest.add_tracked_atom(delivery_parcel)
 
 	return delivery_parcel
 
-/obj/effect/landmark/quest_spawner/proc/spawn_clear_out_mobs(mob_type, amount, datum/quest/quest)
-	for(var/i in 1 to amount)
-		var/turf/spawn_turf = get_safe_spawn_turf()
-		if(!spawn_turf)
-			return
-		
-		var/mob/living/new_mob = new mob_type(spawn_turf)
-		new_mob.faction |= "quest"
-		new_mob.AddComponent(/datum/component/quest_object, quest)
-		quest.add_tracked_atom(new_mob)
-		add_quest_faction_to_nearby_mobs(spawn_turf)
-		sleep(1)
-
-/obj/effect/landmark/quest_spawner/proc/spawn_miniboss(datum/quest/quest, boss_type)
-	var/turf/spawn_turf = get_safe_spawn_turf()
-	if(!spawn_turf)
-		return
-	
-	var/mob/living/new_mob = new boss_type(spawn_turf)
-	new_mob.faction |= "quest"
-	new_mob.AddComponent(/datum/component/quest_object, quest)
-	new_mob.maxHealth *= 2
-	new_mob.health = new_mob.maxHealth
-	add_quest_faction_to_nearby_mobs(spawn_turf)
-	quest.add_tracked_atom(new_mob)
+// Note: spawn_clear_out_mobs and spawn_miniboss have been removed
+// These are now handled directly in quest datum subtypes (clearout, outlaw) via their generate() method
 
 /obj/effect/landmark/quest_spawner/easy
 	name = "easy quest landmark"

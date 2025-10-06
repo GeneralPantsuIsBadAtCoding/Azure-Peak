@@ -320,21 +320,21 @@
 
 	var/list/difficulty_data = list(
 		QUEST_DIFFICULTY_EASY = list(
-			deposit = QUEST_DEPOSIT_EASY, 
-			reward_min = QUEST_REWARD_EASY_LOW, 
-			reward_max = QUEST_REWARD_EASY_HIGH, 
+			deposit = QUEST_DEPOSIT_EASY,
+			reward_min = QUEST_REWARD_EASY_LOW,
+			reward_max = QUEST_REWARD_EASY_HIGH,
 			icon = "scroll_quest_low"
 		),
 		QUEST_DIFFICULTY_MEDIUM = list(
-			deposit = QUEST_DEPOSIT_MEDIUM, 
-			reward_min = QUEST_REWARD_MEDIUM_LOW, 
-			reward_max = QUEST_REWARD_MEDIUM_HIGH, 
+			deposit = QUEST_DEPOSIT_MEDIUM,
+			reward_min = QUEST_REWARD_MEDIUM_LOW,
+			reward_max = QUEST_REWARD_MEDIUM_HIGH,
 			icon = "scroll_quest_mid"
 		),
 		QUEST_DIFFICULTY_HARD = list(
-			deposit = QUEST_DEPOSIT_HARD, 
-			reward_min = QUEST_REWARD_HARD_LOW, 
-			reward_max = QUEST_REWARD_HARD_HIGH, 
+			deposit = QUEST_DEPOSIT_HARD,
+			reward_min = QUEST_REWARD_HARD_LOW,
+			reward_max = QUEST_REWARD_HARD_HIGH,
 			icon = "scroll_quest_high"
 		)
 	)
@@ -363,22 +363,34 @@
 		QUEST_DIFFICULTY_HARD = list(QUEST_OUTLAW)
 	)
 
-	var/type_selection = input(user, "Select contract type", src) as null|anything in type_choices[actual_difficulty] // Changed from selection to actual_difficulty
+	var/type_selection = input(user, "Select contract type", src) as null|anything in type_choices[actual_difficulty]
 	if(!type_selection)
 		return
 
-	// Continue with the rest of the proc using actual_difficulty instead of selection
-	var/datum/quest/attached_quest = new()
-	attached_quest.reward_amount = rand(difficulty_data[actual_difficulty]["reward_min"], difficulty_data[actual_difficulty]["reward_max"]) // Changed from selection to actual_difficulty
-	attached_quest.quest_difficulty = actual_difficulty // Changed from selection to actual_difficulty
-	attached_quest.quest_type = type_selection
+	// Instantiate appropriate quest subtype
+	var/datum/quest/attached_quest
+	switch(type_selection)
+		if(QUEST_RETRIEVAL)
+			attached_quest = new /datum/quest/retrieval()
+		if(QUEST_KILL)
+			attached_quest = new /datum/quest/kill()
+		if(QUEST_COURIER)
+			attached_quest = new /datum/quest/courier()
+		if(QUEST_CLEAR_OUT)
+			attached_quest = new /datum/quest/clearout()
+		if(QUEST_OUTLAW)
+			attached_quest = new /datum/quest/outlaw()
 
-	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
-	user.put_in_hands(spawned_scroll)
-	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
-	spawned_scroll.assigned_quest = attached_quest
-	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
+	if(!attached_quest)
+		to_chat(user, span_warning("Invalid quest type selected!"))
+		return
 
+	// Configure quest
+	attached_quest.quest_difficulty = actual_difficulty
+	attached_quest.reward_amount = attached_quest.calculate_reward()
+	attached_quest.deposit_amount = attached_quest.calculate_deposit()
+
+	// Set giver or receiver
 	if(user.job != "Merchant" && user.job != "Steward")
 		attached_quest.quest_receiver_reference = WEAKREF(user)
 		attached_quest.quest_receiver_name = user.real_name
@@ -386,15 +398,31 @@
 		attached_quest.quest_giver_name = user.real_name
 		attached_quest.quest_giver_reference = WEAKREF(user)
 
-	var/obj/effect/landmark/quest_spawner/chosen_landmark = find_quest_landmark(actual_difficulty, type_selection) // Changed from selection to actual_difficulty
+	// Find appropriate landmark
+	var/obj/effect/landmark/quest_spawner/chosen_landmark = find_quest_landmark(actual_difficulty, type_selection)
 	if(!chosen_landmark)
 		to_chat(user, span_warning("No suitable location found for this contract!"))
 		qdel(attached_quest)
-		qdel(spawned_scroll)
 		return
 
-	chosen_landmark.generate_quest(attached_quest, (user.job == "Steward" || user.job == "Merchant") ? null : user)
+	// Generate quest content (spawns mobs/items)
+	if(!attached_quest.generate(chosen_landmark))
+		to_chat(user, span_warning("Failed to generate quest content!"))
+		qdel(attached_quest)
+		return
+
+	// Create scroll
+	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
+	user.put_in_hands(spawned_scroll)
+	spawned_scroll.base_icon_state = attached_quest.get_scroll_icon()
+	spawned_scroll.assigned_quest = attached_quest
+	attached_quest.quest_scroll = spawned_scroll
+	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
+
+	// Update scroll text
 	spawned_scroll.update_quest_text()
+
+	// Charge deposit
 	SStreasury.bank_accounts[user] -= deposit
 	SStreasury.treasury_value += deposit
 	SStreasury.log_entries += "+[deposit] to treasury (quest deposit)"
@@ -466,10 +494,9 @@
 		// Calculate base reward
 		var/base_reward = scroll.assigned_quest.reward_amount
 		original_reward += base_reward
-		
-		// Calculate deposit return based on difficulty
-		var/deposit_return = scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_EASY ? QUEST_DEPOSIT_EASY : \
-							scroll.assigned_quest.quest_difficulty == QUEST_DIFFICULTY_MEDIUM ? QUEST_DEPOSIT_MEDIUM : QUEST_DEPOSIT_HARD
+
+		// Calculate deposit return
+		var/deposit_return = scroll.assigned_quest.calculate_deposit()
 		total_deposit_return += deposit_return
 		
 		// Apply Steward/Mechant bonus if applicable (only to the base reward)
@@ -522,8 +549,7 @@
 		turn_in_contract(user)
 		return
 
-	var/refund = quest.quest_difficulty == QUEST_DIFFICULTY_EASY ? QUEST_DEPOSIT_EASY : \
-				quest.quest_difficulty == QUEST_DIFFICULTY_MEDIUM ? QUEST_DEPOSIT_MEDIUM : QUEST_DEPOSIT_HARD
+	var/refund = quest.calculate_deposit()
 
 	// First try to return to quest giver
 	var/mob/giver = quest.quest_giver_reference?.resolve()
