@@ -17,6 +17,7 @@
 	var/is_crafted = FALSE
 	var/keycontrol = "merchant"
 	var/obj/item/reagent_containers/glass/bottle/inserted
+	var/bottle_price = 10
 	var/bottle_sold_max = 10
 
 /obj/structure/roguemachine/potionseller/crafted
@@ -238,21 +239,29 @@
 				held_items[R]["PRICE"] = round(newprice, 0.1)
 			else if(text2num(newprice) == 0)
 				held_items[R]["PRICE"] = 0 // free!
+	if(href_list["setbottleprice"])
+		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
+			return
+		if(ishuman(usr))
+			var/newprice = input(usr, "SET A NEW PRICE FOR BOTTLES (0 IS FREE)", src, bottle_price) as null|num
+			bottle_price = round(newprice)
+			if(bottle_price < 0)
+				bottle_price = 0
 	if(href_list["buybottle"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || !locked)
 			return
 		if(ishuman(usr))
-			var/price = 10
 			if(bottle_sold_max < 1)
 				say("MY BOTTLES ARE ALL SOLD OUT, TRAVELER")
 				return
-			if(budget < price)
-				say("MY BOTTLES ARE TOO EXPENSIVE FOR YOU, TRAVELER")
-				return
-			budget -= price
-			wgain += price
+			if(bottle_price > 0)
+				if(budget < bottle_price)
+					say("MY BOTTLES ARE TOO EXPENSIVE FOR YOU, TRAVELER")
+					return
+				budget -= bottle_price
+				wgain += bottle_price
+				record_round_statistic(STATS_PEDDLER_REVENUE, bottle_price)
 			bottle_sold_max--
-			record_round_statistic(STATS_PEDDLER_REVENUE, price)
 			var/obj/item/reagent_containers/glass/bottle/rogue/sold_bottle = new /obj/item/reagent_containers/glass/bottle/rogue(get_turf(src))
 			if(!usr.put_in_hands(sold_bottle))
 				sold_bottle.forceMove(get_turf(src))
@@ -274,9 +283,9 @@
 	if(canread)
 		contents = "<center>POTION SELLER, FIRST ITERATION<BR>"
 		if(!locked)
-			contents += "UNLOCKED<HR>"
+			contents += "UNLOCKED<BR><a href='?src=[REF(src)];setbottleprice=1'>SET BOTTLE PRICE:</a> [bottle_price ? bottle_price : "FREE"]<HR>"
 		else if(!inserted)
-			contents += "No container inserted<BR><a href='?src=[REF(src)];buybottle=1'>Buy bottle for 10 mammons</a><HR>"
+			contents += "No container inserted<BR><a href='?src=[REF(src)];buybottle=1'>[bottle_price ? "Buy bottle for [bottle_price] mammons" : "Take a FREE bottle"]</a><HR>"
 		else
 			contents += "Container: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
 		if(locked)
@@ -286,11 +295,11 @@
 	else
 		contents = "<center>[stars("POTION SELLER, FIRST ITERATION")]<BR>"
 		if(!locked)
-			contents += "[stars("UNLOCKED")]<HR>"
+			contents += "[stars("UNLOCKED")]<BR><a href='?src=[REF(src)];setbottleprice=1'>[stars("SET BOTTLE PRICE:")]</a> [bottle_price ? bottle_price : stars("FREE")]<HR>"
 		else if(!inserted)
-			contents += "[stars("No container inserted")]<BR><a href='?src=[REF(src)];buybottle=1'>[stars("Buy bottle for 10 mammons")]</a><HR>"
+			contents += "[stars("No container inserted")]<BR><a href='?src=[REF(src)];buybottle=1'>[bottle_price ? stars("Buy bottle for [bottle_price] mammons") : stars("Take a FREE bottle")]</a><HR>"
 		else
-			contents += "[stars("Container")]: <a href='?src=[REF(src)];eject=1'>[inserted]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] DRAMS)<HR>"
+			contents += "[stars("Container")]: <a href='?src=[REF(src)];eject=1'>[stars("[inserted]")]</a> ([round(inserted.reagents.total_volume)]/[round(inserted.reagents.maximum_volume)] [stars("DRAMS")])<HR>"
 		if(locked)
 			contents += "<a href='?src=[REF(src)];change=1'>[stars("Stored Mammon:")]</a> [budget]<BR>"
 		else
@@ -318,7 +327,7 @@
 			if(canread)
 				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[namer]</a> ([volume] [UNIT_FORM_STRING(volume)]) - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price] per dram</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>TAKE</a>"
 			else
-				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[stars(namer)]</a> - <a href='?src=[REF(src)];setprice=[REF(I)]'>[stars(price)]</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>[stars("TAKE")]</a>"
+				contents += "<a href='?src=[REF(src)];setname=[REF(I)]'>[stars(namer)]</a> - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price] [stars("per dram")]</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>[stars("TAKE")]</a>"
 		contents += "<BR>"
 
 	var/datum/browser/popup = new(user, "VENDORTHING", "", 370, 300)
