@@ -727,7 +727,8 @@
 
 /obj/item/rogueweapon/sword/long/silver
 	name = "silver longsword"
-	desc = "A hefty, silver longsword. The bread-and-butter of a seasoned paladin; the tip for cursed hide, the blade for rotting limbs, and the pommel for unholy helmets."
+	desc = "A longsword with a blade of pure silver. The weight doesn't just burden your hand, but your very soul as well; an unspoken oath, to stand against the horrors that lurk within the nite.\
+		\"Swing with precision and purpose, levyman o' the Gods. The nite is long and many-an-evil cur would engineer civilization's destruction, while Astrata's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.\""
 	icon_state = "silverlongsword"
 	sheathe_icon = "psysword"
 	force = 20
@@ -751,7 +752,7 @@
 
 /obj/item/rogueweapon/sword/long/kriegmesser/silver
 	name = "silver broadsword"
-	desc = "A hefty, silver broadsword. Each swing commands more effort than the last, but not without recompense: watch as the rotting limbs arc through the air, trailed by spirals of coagulated blackness."
+	desc = "A two-handed broadsword, fitted with a blade of pure silver. Each swing commands more effort than the last, but not without purpose. One blow to crack the deadite's leg in twain; and a heartbeat later, another to splatter the soil with bile and teeth."
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "silverbroadsword"
 	force = 20
@@ -912,7 +913,7 @@
 
 /obj/item/rogueweapon/sword/short/silver
 	name = "silver shortsword"
-	desc = "A shortsword of pure silver. The tip naturally gravitates towards the bowels of monsters and heathens, alike."
+	desc = "A shortsword with a blade of pure silver. In the marginalia of tomes depicting Psydonia's crusading orders, there is no sight more iconic than that of the hauberk-draped paladin; a kite shield in one hand, and this glimmering sidearm in the other."
 	icon_state = "silverswordshort"
 	sheathe_icon = "psyswordshort"
 	force = 20
@@ -1227,7 +1228,7 @@
 
 /obj/item/rogueweapon/sword/rapier/silver
 	name = "silver rapier"
-	desc = "A hefty, silver rapier. Immortalized by Rockhill's witch hunters, this weapon - though cumberstone in an untrained hand - is surprisingly adept at both parrying and riposting."
+	desc = "A basket-hilted rapier, fitted with a thin blade of pure silver. Immortalized by Rockhill's witch hunters, this weapon - though cumberstone in an untrained hand - is surprisingly adept at both parrying and riposting."
 	icon_state = "silverrapier"
 	sheathe_icon = "psyrapier"
 	max_integrity = 225
@@ -1314,8 +1315,8 @@
 
 
 /obj/item/rogueweapon/sword/silver
-	name = "silver sword"
-	desc = "A shortsword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
+	name = "silver arming sword"
+	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Psydonia; cursed flesh erupts into holy fire, and unholy bravado twists into mortal fear."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
 	force = 18
