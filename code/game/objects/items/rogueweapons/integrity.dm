@@ -89,7 +89,7 @@
 			if(!ST.sharpening_factor)
 				return
 			var/loopcount = round(max_blade_int / ST.sharpening_factor, 1) + 1
-			sharpen(ST, user)
+			sharpen(ST, user, 0.3)
 			user.changeNext_move(CLICK_CD_TRACKING)
 			if(blade_int >= max_blade_int)
 				to_chat(user, span_info("Fully sharpened."))
@@ -98,19 +98,19 @@
 				if(blade_int >= max_blade_int)
 					to_chat(user, span_info("Fully sharpened."))
 					break
-				if(do_after(user, 1.5 SECONDS))
+				if(do_after(user, 1.5 SECONDS, same_direction = TRUE))
 					sharpen(ST, user)
 				else
 					break
 			return
 	. = ..()
 
-/obj/item/proc/sharpen(obj/item/natural/ST, mob/user)
+/obj/item/proc/sharpen(obj/item/natural/ST, mob/user, factor = 1)
 	playsound(src.loc, pick('sound/items/sharpen_long1.ogg','sound/items/sharpen_long2.ogg'), 100, TRUE)
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message(span_notice("[user] sharpens [src]!"))
 	degrade_bintegrity(0.5)
-	add_bintegrity(ST.sharpening_factor, user)
+	add_bintegrity((ST.sharpening_factor * factor), user)
 
 	if(prob(ST.spark_chance))
 		var/datum/effect_system/spark_spread/S = new()

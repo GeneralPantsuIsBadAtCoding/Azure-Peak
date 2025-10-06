@@ -33,6 +33,9 @@
 			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
 	..()
 
+/mob/living/carbon/human/species/skeleton/npc/mediumspread/lich
+	faction = list("lich")
+
 // for Lich Dungeon
 /mob/living/carbon/human/species/skeleton/npc/hardspread/Initialize()
 	var/outfit = rand(1,4)

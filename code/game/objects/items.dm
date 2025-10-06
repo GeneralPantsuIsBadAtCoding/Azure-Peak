@@ -1492,42 +1492,44 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /// Proc that is only called with the Peel intent. Stacks consecutive hits, shreds coverage once a threshold is met. Thresholds are defined on /obj/item
 /obj/item/proc/peel_coverage(bodypart, divisor, mob/living/carbon/human/owner)
 	var/coveragezone = attackzone2coveragezone(bodypart)
-	if(!(body_parts_inherent & coveragezone))
-		if(!last_peeled_limb || coveragezone == last_peeled_limb)
-			var/peel_goal = peel_threshold
-			if(divisor > peel_goal)
-				peel_goal = divisor
-				
-			var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
+	if((body_parts_inherent & coveragezone))
+		playsound(src, 'sound/combat/failpeel.ogg', 100, TRUE)
+		visible_message(span_warning("Peel struck an area too thick!"))
+		last_peeled_limb = coveragezone
+		reset_peel()
+		return
+	if(!last_peeled_limb || coveragezone == last_peeled_limb)
+		var/peel_goal = peel_threshold
+		if(divisor > peel_goal)
+			peel_goal = divisor
+			
+		var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 
-			if(peel_count < peel_goal)
-				peel_count++
+		if(peel_count < peel_goal)
+			peel_count++
 
-			if(peel_count >= peel_goal)
-				body_parts_covered_dynamic &= ~coveragezone
-				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
-				var/parttext
-				if(length(peeledpart))
-					parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
-				visible_message("<font color = '#f5f5f5'><b>[parttext ? parttext : "Coverage"]</font></b> gets peeled off of [src]!")
-				var/balloon_msg = "<font color = '#bb1111'>[parttext] peeled!</font>"
-				if(length(peeledpart))
-					balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
-				reset_peel(success = TRUE)
-			else
-				if(owner)
-					owner.visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
-				var/balloon_msg = "Peel! \Roman[ROUND_UP(peel_count)] <br><font color = '#8b7330'>[peeledpart[1]]!</font>"
-				var/has_guarded = HAS_TRAIT(owner, TRAIT_DECEIVING_MEEKNESS)
-				if(length(peeledpart) && !has_guarded)
-					filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
-				else if(length(peeledpart) && has_guarded)
-					if(prob(10))
-						balloon_msg = "<i>Guarded...</i>"
-						filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
+		if(peel_count >= peel_goal)
+			body_parts_covered_dynamic &= ~coveragezone
+			playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
+			var/parttext
+			if(length(peeledpart))
+				parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
+			visible_message("<font color = '#f5f5f5'><b>[parttext ? parttext : "Coverage"]</font></b> gets peeled off of [src]!")
+			var/balloon_msg = "<font color = '#bb1111'>[parttext] peeled!</font>"
+			if(length(peeledpart))
+				balloon_alert_to_viewers(balloon_msg, balloon_msg, DEFAULT_MESSAGE_RANGE)
+			reset_peel(success = TRUE)
 		else
-			last_peeled_limb = coveragezone
-			reset_peel()
+			if(owner)
+				owner.visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
+			var/balloon_msg = "Peel! \Roman[ROUND_UP(peel_count)] <br><font color = '#8b7330'>[peeledpart[1]]!</font>"
+			var/has_guarded = HAS_TRAIT(owner, TRAIT_DECEIVING_MEEKNESS)
+			if(length(peeledpart) && !has_guarded)
+				filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
+			else if(length(peeledpart) && has_guarded)
+				if(prob(10))
+					balloon_msg = "<i>Guarded...</i>"
+					filtered_balloon_alert(TRAIT_COMBAT_AWARE, balloon_msg)
 	else
 		last_peeled_limb = coveragezone
 		reset_peel()

@@ -239,6 +239,41 @@
 
 	. = ..()
 
+/datum/status_effect/buff/fermented_crab
+	id = "fermented_crab"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/fermented_crab
+	effectedstats = list(STATKEY_WIL = 2, STATKEY_CON = -2)
+	duration = 5 MINUTES
+	/// TRUE if the user had TRAIT_LIMPDICK and we have to reapply if after the trait expires
+	var/had_limpdick = FALSE
+	/// TRUE if the user had disfunctional pintle and we have to make it disfunctional again on trait expiration
+	var/had_disfunctional_pintle = FALSE
+
+/datum/status_effect/buff/fermented_crab/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
+		REMOVE_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
+		had_limpdick = TRUE
+
+	var/obj/item/organ/penis/pintle = owner.getorganslot(ORGAN_SLOT_PENIS)
+	if(!pintle.functional)
+		pintle.functional = TRUE
+		had_disfunctional_pintle = TRUE
+
+	owner?.sexcon?.adjust_charge(SEX_MAX_CHARGE)
+
+/datum/status_effect/buff/fermented_crab/on_remove()
+	. = ..()
+	if(had_limpdick)
+		ADD_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
+	if(had_disfunctional_pintle)
+		var/obj/item/organ/penis/pintle = owner.getorganslot(ORGAN_SLOT_PENIS)
+		pintle.functional = FALSE
+
+/atom/movable/screen/alert/status_effect/buff/fermented_crab
+	name = "INVIGORATED"
+	desc = "Fermented crab tasted like shit. But I'm full of vigor now!"
+
 /atom/movable/screen/alert/status_effect/buff/vitae
 	name = "Invigorated"
 	desc = "I have supped on the finest of delicacies: life!"

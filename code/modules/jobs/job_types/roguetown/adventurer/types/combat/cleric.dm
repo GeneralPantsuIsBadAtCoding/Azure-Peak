@@ -64,7 +64,10 @@
 			if("Katar")
 				backpack_contents += list(/obj/item/rogueweapon/katar = 1)
 			if("Knuckle Dusters")
-				backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/psydon/old = 1)
+				else
+					backpack_contents += list(/obj/item/rogueweapon/knuckles/bronzeknuckles = 1)
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -156,6 +159,8 @@
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
@@ -233,7 +238,7 @@
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 	if(H.mind)
-		var/weapons = list("Longsword","Mace","Flail")
+		var/weapons = list("Longsword","Mace","Flail","Spear","Axe")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Longsword")
@@ -252,6 +257,15 @@
 			if("Flail")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				beltr = /obj/item/rogueweapon/flail
+			if("Spear")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					r_hand = /obj/item/rogueweapon/spear/psyspear/old
+				else
+					r_hand = /obj/item/rogueweapon/spear
+			if("Axe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 	H.set_blindness(0)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)

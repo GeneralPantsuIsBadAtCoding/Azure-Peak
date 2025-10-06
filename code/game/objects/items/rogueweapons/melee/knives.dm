@@ -178,7 +178,7 @@
 	desc = "Chop, chop, chop!"
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver)
 	icon_state = "cleaver"
-	icon = 'icons/roguetown/weapons/misc32.dmi'
+	icon = 'icons/roguetown/weapons/daggers32.dmi'
 	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
 	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
 	throwforce = 15
@@ -302,6 +302,13 @@
 /obj/item/rogueweapon/huntingknife/idagger/steel/corroded/Initialize()
 	. = ..()
 	AddElement(/datum/element/tipped_item)	//Lets you tip your weapon in poison
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/corroded/dirk
+	name = "fanged dagger"
+	desc = "A dagger modeled after the fang of an anthrax spider. Can be poisoned."
+	icon_state = "spiderdagger"
+	sheathe_icon = "spiderdagger"
+	smeltresult = null
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/holysee
 	name = "eclipsum dagger"

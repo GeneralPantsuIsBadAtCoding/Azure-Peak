@@ -370,7 +370,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE) // actually makes them usable for the templar.
 		if("Forgefiend")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/long/malumflamm(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/greatsword/grenz/flamberge/malum(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Summer Scythe")
 			H.put_in_hands(new /obj/item/rogueweapon/halberd/bardiche/scythe(H), TRUE)

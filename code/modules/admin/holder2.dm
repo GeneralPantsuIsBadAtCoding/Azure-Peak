@@ -89,7 +89,6 @@ GLOBAL_PROTECT(href_token)
 	if ((C = owner) || (C = GLOB.directory[target]))
 		disassociate()
 		C.verbs += /client/proc/readmin
-		C.verbs += /client/proc/adminwho
 
 /datum/admins/proc/associate(client/C)
 	if(IsAdminAdvancedProcCall())

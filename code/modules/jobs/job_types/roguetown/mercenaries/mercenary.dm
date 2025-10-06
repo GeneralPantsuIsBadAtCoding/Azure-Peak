@@ -16,10 +16,11 @@
 	outfit = null	//Handled by classes
 	outfit_female = null
 	advclass_cat_rolls = list(CTAG_MERCENARY = 20)
-	job_traits = list(TRAIT_OUTLANDER, TRAIT_STEELHEARTED)
+	job_traits = list(TRAIT_STEELHEARTED)
 	always_show_on_latechoices = TRUE
 	class_categories = TRUE
 	job_subclasses = list(
+		/datum/advclass/mercenary/anthrax,
 		/datum/advclass/mercenary/atgervi,
 		/datum/advclass/mercenary/atgervi/shaman,
 		/datum/advclass/mercenary/condottiero,

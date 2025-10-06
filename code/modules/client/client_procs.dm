@@ -276,7 +276,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		connecting_admin = TRUE
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
-		verbs += /client/proc/adminwho
 		connecting_admin = TRUE
 	if(CONFIG_GET(flag/autoadmin))
 		if(!GLOB.admin_datums[ckey])
@@ -1197,3 +1196,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		log_admin("COMMEND: [ckey] commends [theykey].")
 	return
 
+/client/proc/preload_music()
+	if(SSsounds.initialized == TRUE)
+		for(var/sound_path as anything in SSsounds.all_music_sounds)
+			src << load_resource(sound_path, -1)

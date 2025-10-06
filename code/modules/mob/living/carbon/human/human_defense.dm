@@ -30,6 +30,8 @@
 		if(blade_dulling == BCLASS_PEEL)	//Peel shouldn't be dealing any damage through armor, or to armor itself.
 			used.peel_coverage(def_zone, peeldivisor, src)
 			damage = 0
+			if(def_zone == BODY_ZONE_CHEST)
+				purge_peel(99)
 		if(used.blocksound)
 			playsound(loc, get_armor_sound(used.blocksound, blade_dulling), 100)
 		var/intdamage = damage
@@ -55,7 +57,7 @@
 
 /mob/living/carbon/human/proc/checkcritarmor(def_zone, d_type)
 	if(!d_type)
-		return 0
+		return FALSE
 	if(isbodypart(def_zone))
 		var/obj/item/bodypart/CBP = def_zone
 		def_zone = CBP.body_zone

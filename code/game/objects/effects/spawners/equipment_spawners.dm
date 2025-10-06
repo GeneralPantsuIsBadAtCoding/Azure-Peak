@@ -337,5 +337,5 @@
 		/obj/item/clothing/gloves/roguetown/blacksteel/plategloves = 1,
 		/obj/item/clothing/head/roguetown/helmet/blacksteel/bucket = 1,
 		/obj/item/clothing/under/roguetown/platelegs/blacksteel = 1,
-		/obj/item/rogueweapon/sword/long/blackflamb = 1,
+		/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel = 1,
 	)

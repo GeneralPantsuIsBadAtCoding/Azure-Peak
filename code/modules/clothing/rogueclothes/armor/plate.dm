@@ -25,8 +25,8 @@
 /obj/item/clothing/suit/roguetown/armor/plate/iron
 	name = "iron half-plate"
 	desc = "A basic half-plate of iron, protective and moderately durable."
-	icon_state = "ironplate"
-	item_state = "ironplate"
+	icon_state = "ihalfplate"
+	item_state = "ihalfplate"
 	boobed = FALSE	//the armor just looks better with this, makes sense and is 8 sprites less
 	max_integrity = ARMOR_INT_CHEST_PLATE_IRON
 	smeltresult = /obj/item/ingot/iron
@@ -52,7 +52,7 @@
 	name = "fluted half-plate"
 	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
 	Supposedly made to deflect blows."
-	icon_state = "flutedhalfplate"
+	icon_state = "ornatehalfplate"
 
 	equip_delay_self = 6 SECONDS
 	unequip_delay_self = 6 SECONDS
@@ -105,7 +105,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/iron
 	name = "iron plate armor"
-	icon_state = "iplate"
+	icon_state = "ironplate"
 	desc = "Full iron plate armor. Slow to don and doff without the aid of a good squire."
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_CHEST_PLATE_IRON
@@ -113,7 +113,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted
 	name = "fluted plate"
 	desc = "A sturdily made fluted full-plate. Supposedly made to deflect blows from blades and arrows."
-	icon_state = "flutedplate"
+	icon_state = "ornateplate"
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
 
@@ -138,6 +138,13 @@
 	if(istype(user) && user?.wear_armor == src)
 		user.remove_status_effect(/datum/status_effect/buff/psydonic_endurance)
 
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/shadowplate
+	name = "scourge breastplate"
+	desc = "More form over function, this armor is fit for demonstration of might rather than open combat. The aged gilding slowly tarnishes away."
+	icon_state = "shadowplate"
+	item_state = "shadowplate"
+	armor_class = ARMOR_CLASS_MEDIUM
+	allowed_race = NON_DWARVEN_RACE_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/ordinator
 	name = "inquisitorial ordinator's plate"
@@ -341,7 +348,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
-	icon_state = "flutedcuirass"
+	icon_state = "ornatecuirass"
 	desc = "A sturdy steel cuirass with tassets. Supposedly protective, though maybe not against crossbow bolts."
 
 	body_parts_covered = CHEST | VITALS | LEGS 
