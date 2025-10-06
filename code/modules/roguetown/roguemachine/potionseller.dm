@@ -17,7 +17,7 @@
 	var/is_crafted = FALSE
 	var/keycontrol = "merchant"
 	var/obj/item/reagent_containers/glass/bottle/inserted
-	var/bottle_sold_max = 5
+	var/bottle_sold_max = 10
 
 /obj/structure/roguemachine/potionseller/crafted
 	is_crafted = TRUE
