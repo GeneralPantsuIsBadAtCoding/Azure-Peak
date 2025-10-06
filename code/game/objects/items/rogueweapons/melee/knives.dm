@@ -607,6 +607,32 @@
 	desc = "A sliver of polished gilbranze, delicately carved into a throwing dagger. A favorite amongst Zizo's undying cabal, and especially amongst Her assassins; what better-a-tool to slip through another's neck?"
 	icon_state = "throw_knifea"
 
+/obj/item/rogueweapon/huntingknife/throwingknife/silver
+	name = "silver tossblade"
+	desc = "A relative to the silver dagger; thinner, flimsier, but capable of being thrown with exceptional accuracy. Seasoned monster hunters oft-keep such a tossblade in their boots, just in case."
+	item_state = "bone_dagger"
+	force = 10
+	throwforce = 20
+	armor_penetration = 50
+	max_integrity = 150
+	wdefense = 3
+	icon_state = "throw_knifesil"
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+	sellprice = 6
+
+/obj/item/rogueweapon/huntingknife/throwingknife/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 100,\
+		added_def = 3,\
+	)
+
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon
 	name = "psydonian tossblade"
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
