@@ -161,10 +161,10 @@
 			if(budget >= price)
 				budget -= price
 				wgain += price
+				record_round_statistic(STATS_PEDDLER_REVENUE, price)
 			else
 				say("MY POTIONS ARE TOO EXPENSIVE FOR YOU, TRAVELER")
 				return
-		record_round_statistic(STATS_PEDDLER_REVENUE, price)
 		inserted.reagents.add_reagent(R.type, quantity)
 		reagents.remove_reagent(R.type, quantity, FALSE)
 		if(volume - quantity < 1)
