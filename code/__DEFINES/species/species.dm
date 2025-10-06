@@ -18,62 +18,68 @@
 #define SPEC_ID_HALFORC "halforc"
 #define SPEC_ID_KOBOLD "kobold"
 #define SPEC_ID_GOBLINP "goblinp" // Goblin
+#define SPEC_ID_CONSTRUCT "construct" // Metal Construct
 
 //used in various places
 #define ALL_RACES_TYPES list(\
-	/datum/species/human/northern,\
-	/datum/species/human/halfelf,\
-	/datum/species/elf/dark,\
-	/datum/species/elf/wood,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/tieberian,\
-	/datum/species/aasimar,\
-	/datum/species/lizardfolk,\
-	/datum/species/lupian,\
-	/datum/species/tabaxi,\
-	/datum/species/vulpkanin,\
-	/datum/species/akula,\
-	/datum/species/moth,\
-	/datum/species/dracon,\
-	/datum/species/anthromorph,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/demihuman,\
-	/datum/species/halforc,\
-	/datum/species/kobold,\
-	/datum/species/goblinp,\
+	SPEC_ID_HUMAN,\
+	SPEC_ID_HALFELF,\
+	SPEC_ID_DARKELF,\
+	SPEC_ID_WOODELF,\
+	SPEC_ID_MOUNTAINDWARF,\
+	SPEC_ID_TIEFLING,\
+	SPEC_ID_AASIMAR,\
+	SPEC_ID_LIZARDFOLK,\
+	SPEC_ID_LUPIAN,\
+	SPEC_ID_TABAXI,\
+	SPEC_ID_VENARDINE,\
+	SPEC_ID_AXIAN,\
+	SPEC_ID_MOTH,\
+	SPEC_ID_DRACON,\
+	SPEC_ID_ANTHROMORPH,\
+	SPEC_ID_ANTHROMORPHSMALL,\
+	SPEC_ID_DEMIHUMAN,\
+	SPEC_ID_HALFORC,\
+	SPEC_ID_KOBOLD,\
+	SPEC_ID_GOBLINP,\
 )
 
+// These list are functionally useless atm to be tweaked later
 #define RACES_RESPECTED \
-	/datum/species/human/northern,\
-	/datum/species/elf/wood,\
-	/datum/species/human/halfelf,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/aasimar,\
-	/datum/species/lupian,\
-	/datum/species/vulpkanin,\
-	/datum/species/moth,\
-	/datum/species/dracon,
+	SPEC_ID_HUMAN,\
+	SPEC_ID_HALFELF,\
+	SPEC_ID_DARKELF,\
+	SPEC_ID_WOODELF,\
+	SPEC_ID_MOUNTAINDWARF,\
+	SPEC_ID_TIEFLING,\
+	SPEC_ID_AASIMAR,\
+	SPEC_ID_LIZARDFOLK,\
+	SPEC_ID_LUPIAN,\
+	SPEC_ID_TABAXI,\
+	SPEC_ID_VENARDINE,\
+	SPEC_ID_AXIAN,\
+	SPEC_ID_MOTH,\
+	SPEC_ID_DRACON,\
+	SPEC_ID_ANTHROMORPH,\
+	SPEC_ID_ANTHROMORPHSMALL,\
+	SPEC_ID_DEMIHUMAN,\
+	SPEC_ID_HALFORC,\
+	SPEC_ID_KOBOLD,\
+	SPEC_ID_GOBLINP,\
 
 #define RACES_TOLERATED \
-	/datum/species/elf/dark,\
-	/datum/species/tieberian,\
-	/datum/species/lizardfolk,\
-	/datum/species/tabaxi,\
-	/datum/species/akula,\
-	/datum/species/anthromorph,\
-	/datum/species/demihuman,\
-
+	SPEC_ID_DARKELF
 
 #define RACES_SHUNNED \
-	/datum/species/halforc,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/kobold,\
+	SPEC_ID_HALFORC,\
+	SPEC_ID_ANTHROMORPHSMALL,\
+	SPEC_ID_KOBOLD,\
 
 #define RACES_DESPISED \
-	/datum/species/goblinp,\
+	SPEC_ID_GOBLINP,\
 
 #define RACES_CONSTRUCT \
-	/datum/species/construct/metal,\
+	SPEC_ID_CONSTRUCT
 
 #define RACES_ALL_KINDS list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
 
