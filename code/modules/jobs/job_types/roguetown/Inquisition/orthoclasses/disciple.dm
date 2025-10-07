@@ -75,5 +75,5 @@
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		if("Quarterstaff")
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/silver(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/psy(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
