@@ -10,7 +10,6 @@
 	traits_applied = list(
 		TRAIT_DODGEEXPERT,
 		TRAIT_BLACKBAGGER,
-		TRAIT_SILVER_BLESSED,
 		TRAIT_PERFECT_TRACKER,
 		TRAIT_PSYDONITE,
 	)
@@ -87,5 +86,7 @@
 	switch(boltchoice)
 		if("Blessed Water Bolts")
 			H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
+			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
 		if("Bolts")
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
+			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
