@@ -34,7 +34,7 @@
 		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
 	)
 	subclass_stashed_items = list(
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 /datum/outfit/job/roguetown/confessor
@@ -69,7 +69,7 @@
 /datum/outfit/job/roguetown/confessor/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	var/weapons = list("Shortsword", "Handmace", "Dagger")
-	var/weapon_choice = input(H,"Choose your PSYDONIAN weapon.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Shortsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy/preblessed(H), TRUE)
@@ -83,7 +83,7 @@
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 	var/quivers = list("Blessed Water Bolts", "Bolts")
-	var/boltchoice = input(H,"Choose your QUIVER", "TAKE UP PSYDON'S ARMS") as anything in quivers
+	var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S ARMS") as anything in quivers
 	switch(boltchoice)
 		if("Blessed Water Bolts")
 			H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
