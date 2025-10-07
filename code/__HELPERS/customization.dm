@@ -98,6 +98,8 @@
 		"eye_color" = eyes.eye_color,
 		"second_color" = eyes.second_color
 	)
+	if(!eyes.heterochromia)
+		cache["second_color"] = eyes.eye_color
 	return cache
 
 /mob/living/carbon/human/proc/set_eye_color(new_color, new_secondary_color, updates_body = TRUE)
