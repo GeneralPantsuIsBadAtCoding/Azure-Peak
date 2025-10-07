@@ -214,6 +214,7 @@
 		if("Psydonic Poleaxe + Dagger")
 			H.put_in_hands(new /obj/item/rogueweapon/greataxe/psy/preblessed/(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap, SLOT_BELT_L, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 5, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
