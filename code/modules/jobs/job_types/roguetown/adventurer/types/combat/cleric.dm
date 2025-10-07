@@ -27,7 +27,7 @@
 	// Also because the alternative is not very clean codewise.
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 /datum/outfit/job/roguetown/adventurer/cleric
@@ -169,7 +169,7 @@
 	)
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 /datum/outfit/job/roguetown/adventurer/paladin/pre_equip(mob/living/carbon/human/H)
@@ -333,7 +333,7 @@
 	)
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 	
 /datum/outfit/job/roguetown/adventurer/cantor/pre_equip(mob/living/carbon/human/H)
@@ -470,7 +470,7 @@
 	)
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 	
 /datum/outfit/job/roguetown/adventurer/missionary/pre_equip(mob/living/carbon/human/H)
