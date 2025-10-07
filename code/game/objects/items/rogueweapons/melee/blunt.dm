@@ -149,20 +149,6 @@
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/mace/silver
-	name = "silver warhammer"
-	desc = "A heavy warhammer, forged from pure silver. It follows the Otavan design of a 'lucerene'; a shortened polehammer with a pronounced spike, rebalanced for one-handed usage. Resplendent in presentation, righteous in purpose."
-	icon_state = "silverhammer"
-	force = 25
-	force_wielded = 25
-	minstr = 10
-	wdefense = 5
-	gripped_intents = null
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze)
-	smeltresult = /obj/item/ingot/silver
-	smelt_bar_num = 2
-	is_silver = TRUE
-
 /obj/item/rogueweapon/mace/silver/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
@@ -558,6 +544,18 @@
 	desc = "A macehead of polished gilbranze, spiked and perched atop a reinforced shaft. An elegant weapon from a more civilized age; when Man lived in harmony with one-another, and when 'the undying' was nothing more than a nitemare's thought."
 	icon_state = "awarhammer"
 	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/rogueweapon/mace/wawrhammer/steel/silver
+	name = "silver warhammer"
+	desc = "A heavy warhammer, forged from pure silver. It follows the Otavan design of a 'lucerene'; a shortened polehammer with a pronounced spike, rebalanced for one-handed usage. Resplendent in presentation, righteous in purpose."
+	icon_state = "silverhammer"
+	force = 30
+	force_wielded = 30
+	minstr = 10
+	wdefense = 5
+	smeltresult = /obj/item/ingot/silver
+	smelt_bar_num = 2
+	is_silver = TRUE
 
 /datum/intent/mace/warhammer/stab
 	name = "thrust"
