@@ -683,14 +683,14 @@
 	return
 
 /obj/item/rogueweapon/sword/long/oldpsysword
-	name = "old psydonian longsword"
-	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes. Yet alike PSYDON, it ENDURES."
+	name = "enduring longsword"
+	desc = "A steel longsword with an angled crossguard. The lesser clerics of the Psydonic Orders oft-carry these blades, and - though it may not carry the bite of silver - it still humbles men and monsters alike with a well-poised strike."
 	icon_state = "opsysword"
 	sheathe_icon = "opsysword"
 	dropshrink = 1
 
 /obj/item/rogueweapon/sword/long/psysword
-	name = "psydonian longsword"
+	name = "psydonic longsword"
 	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
 		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
@@ -778,8 +778,8 @@
 	)
 
 /obj/item/rogueweapon/sword/long/kriegmesser/psy
-	name = "psydonian broadsword"
-	desc = ""Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost."\
+	name = "psydonic broadsword"
+	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost."\
 		\"Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - 'HOPE RIDES ALONE..'\""
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "silverbroadsword"
@@ -906,7 +906,7 @@
 	max_integrity = 75
 
 /obj/item/rogueweapon/sword/short/psy
-	name = "psydonian shortsword"
+	name = "psydonic shortsword"
 	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
 	icon_state = "psyswordshort"
 	sheathe_icon = "psyswordshort"
@@ -1280,6 +1280,30 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/sword/rapier/psy
+	name = "psydonic rapier"
+	desc = "A basket-hilted rapier, fitted with a thin blade of pure silver. Such a resplendent weapon not only pierces the gaps within a heathen's maille, but also serves as the symbol of an Otavan diplomat's authority."
+	icon_state = "silverrapier"
+	sheathe_icon = "rapier"
+	max_integrity = 225
+	max_blade_int = 225
+	force = 20
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/rapier/psy/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/sword/rapier/psy/relic
 	name = "Eucharist"
