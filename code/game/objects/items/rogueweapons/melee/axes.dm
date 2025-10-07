@@ -524,6 +524,7 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
 	max_blade_int = 350
+	slot_flags = ITEM_SLOT_BACK
 	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greataxe/silver/ComponentInitialize()
@@ -548,6 +549,7 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
 	max_blade_int = 350
+	slot_flags = ITEM_SLOT_BACK
 	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greataxe/psy/ComponentInitialize()
