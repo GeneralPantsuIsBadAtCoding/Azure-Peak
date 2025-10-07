@@ -464,11 +464,11 @@
 	if(!parent_mob || !obsession_target)
 		return
 
-	var/current_health = obsession_target.getBruteLoss() + obsession_target.getFireLoss() + obsession_target.getToxLoss() + obsession_target.getOxyLoss() + obsession_target.getOrganLoss(ORGAN_SLOT_BRAIN)
+	var/current_health = (obsession_target.health / obsession_target.maxHealth) * 100
 	var/health_change = current_health - last_known_health
 
 	// React to health changes
-	if(health_change < 25) // Significant health loss
+	if(health_change < -15) // Significant health loss
 		to_chat(parent_mob, span_danger("You feel a wave of distress - [obsession_target] is being hurt!"))
 		parent_mob.add_stress(/datum/stressevent/obsession_target_hurt)
 
@@ -476,7 +476,7 @@
 		parent_mob.overlay_fullscreen("empathic_distress", /atom/movable/screen/fullscreen/painflash, 2)
 		addtimer(CALLBACK(parent_mob, TYPE_PROC_REF(/mob, clear_fullscreen), "empathic_distress"), 5 SECONDS)
 
-	else if(health_change > -25) // Significant healing
+	else if(health_change > 15) // Significant healing
 		to_chat(parent_mob, span_notice("You feel relief as [obsession_target] recovers."))
 		parent_mob.add_stress(/datum/stressevent/obsession_target_healed)
 		parent_mob.remove_stress(/datum/stressevent/obsession_target_hurt)
