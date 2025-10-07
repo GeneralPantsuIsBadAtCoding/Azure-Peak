@@ -8,7 +8,7 @@
 /datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	return null
 
-/datum/flesh_quirk/proc/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/proc/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	return null
 
 /datum/flesh_quirk/proc/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)
@@ -105,7 +105,7 @@
 	description = "Produces colored discharge when emotional"
 	quirk_type = QUIRK_BEHAVIOR
 
-/datum/flesh_quirk/discharge/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/discharge/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	if(beast.happiness >= beast.max_happiness * 0.75)
 		return score
 
@@ -143,7 +143,7 @@
 	description = "Often repeats similar topics or questions"
 	quirk_type = QUIRK_BEHAVIOR
 
-/datum/flesh_quirk/repetitive/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
+/datum/flesh_quirk/repetitive/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	if(prob(75) && !beast.next_task)
 		beast.next_task = beast.current_task
 	return score
@@ -190,9 +190,9 @@
 		if(prob(feedback_chance))
 			switch(beast.language_tier)
 				if(3)
-					heart_beast.visible_message(span_warning("[heart_beast] sneers!"))
+					beast.heart_beast.visible_message(span_warning("[beast.heart_beast] sneers!"))
 				if(4)
-					heart_beast.visible_message(span_cultlarge("[heart_beast] scoffs!"))
+					beast.heart_beast.visible_message(span_cultlarge("[beast.heart_beast] scoffs!"))
 
 	return effects
 
@@ -200,6 +200,7 @@
 	name = "Forgetful"
 	description = "Sometimes forgets what it was talking about"
 	quirk_type = QUIRK_LANGUAGE
+	var/forget_chance = 25
 
 /datum/flesh_quirk/forgetful/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -242,15 +243,15 @@
 		return
 
 	if(prob(beast.language_tier * 25))
-	switch(beast.language_tier)
-		if(1)
-			beast.heart_beast.say("What...?")
-		if(2)
-			beast.heart_beast.say("I've forgotten...")
-		if(3)
-			beast.heart_beast.say("My thoughts have scattered...")
-		if(4)
-			beast.heart_beast.say("The thread of our discourse has escaped me...")
+		switch(beast.language_tier)
+			if(1)
+				beast.heart_beast.say("What...?")
+			if(2)
+				beast.heart_beast.say("I've forgotten...")
+			if(3)
+				beast.heart_beast.say("My thoughts have scattered...")
+			if(4)
+				beast.heart_beast.say("The thread of our discourse has escaped me...")
 
 	beast.current_task = null
 	beast.clear_listener()
@@ -350,7 +351,75 @@
 /datum/flesh_quirk/mimic
 	name = "Mimic"
 	description = "Tends to copy speech patterns and behaviors"
-	rarity = 1
+	rarity = 100
+	quirk_type = QUIRK_BEHAVIOR
+	var/base_mimic_chance = 4
+	var/current_mimic_chance = 20
+	var/next_mimic_time
+	var/mimic_cooldown = 20 MINUTES
+
+/datum/flesh_quirk/mimic/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
+	if(world.time < next_mimic_time)
+		return score
+
+	if(score < 20)
+		return score
+
+	if(prob(current_mimic_chance))
+		trigger_mimic_announcement(message, speaker, beast)
+		next_mimic_time = world.time + mimic_cooldown
+		current_mimic_chance = base_mimic_chance
+	else
+		current_mimic_chance += base_mimic_chance
+
+	return score
+
+/datum/flesh_quirk/mimic/proc/trigger_mimic_announcement(message, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	var/announcement_text = generate_mimic_text(message, speaker, beast)
+	var/speaker_name = speaker ? speaker.real_name : "Unknown"
+	minor_announce(html_decode(announcement_text), "[speaker_name]", TRUE)
+	playsound(beast.heart_beast, 'sound/misc/machinelong.ogg', 100, FALSE, -1)
+
+//Splitting this up into a bunch of procs to avoid tons of confusing loops
+/datum/flesh_quirk/mimic/proc/generate_mimic_text(message, mob/speaker, datum/component/chimeric_heart_beast/beast)
+	switch(beast.language_tier)
+		if(1)
+			return garble_text(message, 40)
+		if(2)
+			return garble_text(message, 25)
+		if(3)
+			return garble_text(message, 10)
+		if(4)
+			return message
+
+/datum/flesh_quirk/mimic/proc/garble_text(message, garbling_chance)
+	var/list/words = splittext(message, " ")
+	var/list/garbled_words = list()
+
+	for(var/word in words)
+		if(prob(garbling_chance))
+			var/garbled_word = garble_word(word)
+			garbled_words += garbled_word
+		else
+			garbled_words += word
+	return jointext(garbled_words, " ")
+
+/datum/flesh_quirk/mimic/proc/garble_word(word)
+	// Not doing super short words
+	if(length(word) <= 2)
+		return word
+	var/list/chars = splittext(word, "")
+	var/swap_count = max(1, round(length(word) * 0.3))
+
+	for(var/i = 1 to swap_count)
+		var/pos1 = rand(1, length(word))
+		var/pos2 = rand(1, length(word))
+		if(pos1 != pos2)
+			var/temp = chars[pos1]
+			chars[pos1] = chars[pos2]
+			chars[pos2] = temp
+
+	return jointext(chars, "")
 
 /datum/flesh_quirk/hoarder
 	name = "Hoarder"

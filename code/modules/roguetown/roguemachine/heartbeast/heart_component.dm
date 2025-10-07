@@ -112,12 +112,12 @@
 				penalties["punctuation_override"] = quirk_effects["punctuation_override"]
 	return penalties
 
-/datum/component/chimeric_heart_beast/proc/trigger_behavior_quirks(score, mob/speaker)
+/datum/component/chimeric_heart_beast/proc/trigger_behavior_quirks(score, mob/speaker, message)
 	if(!behavior_quirks.len)
 		return score
 
 	for(var/datum/flesh_quirk/quirk in behavior_quirks)
-		score = quirk.apply_behavior_quirk(score, speaker, src)
+		score = quirk.apply_behavior_quirk(score, speaker, message, src)
 	return score
 
 /datum/component/chimeric_heart_beast/proc/trigger_discharge_effect()
@@ -279,7 +279,7 @@
 		score = min(score + quirk_effects["score_bonus"], 100)
 		to_chat(world, span_userdanger("SCORE AFTER INCREASE: [score]"))
 
-	score = trigger_behavior_quirks(score, speaker)
+	score = trigger_behavior_quirks(score, speaker, message)
 
 	// Determine success
 	if(score >= 20) // Passing score
