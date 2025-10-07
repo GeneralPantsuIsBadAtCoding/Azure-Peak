@@ -125,6 +125,7 @@
 /obj/item/rogueweapon/flail/sflail/silver
 	force = 35
 	icon_state = "silverflail"
+	name = "silver morningstar"
 	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
 	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
 	smeltresult = /obj/item/ingot/silver
