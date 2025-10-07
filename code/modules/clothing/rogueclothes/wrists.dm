@@ -41,7 +41,7 @@
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/wrists/roguetown/bracers/psythorns
-	name = "psydonian thorns"
+	name = "psydonic thorns"
 	desc = "Thorns fashioned from pliable yet durable blacksteel - woven and interlinked, fashioned to be wrapped around the wrists."
 	body_parts_covered = ARMS
 	icon_state = "psybarbs"
