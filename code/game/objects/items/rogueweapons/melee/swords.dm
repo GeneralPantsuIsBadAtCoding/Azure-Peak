@@ -755,6 +755,7 @@
 	desc = "A two-handed broadsword, fitted with a blade of pure silver. Each swing commands more effort than the last, but not without purpose. One blow to crack the deadite's leg in twain; and a heartbeat later, another to splatter the soil with bile and teeth."
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "silverbroadsword"
+	sheathe_icon = "psysword"
 	force = 20
 	force_wielded = 25
 	minstr = 11
@@ -782,6 +783,7 @@
 		\"Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - 'HOPE RIDES ALONE..'\""
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "silverbroadsword"
+	sheathe_icon = "psysword"
 	force = 20
 	force_wielded = 25
 	minstr = 11
