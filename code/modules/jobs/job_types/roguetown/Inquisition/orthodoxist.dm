@@ -7,7 +7,7 @@
 	spawn_positions = 3
 	allowed_races = RACES_ALL_KINDS
 	allowed_patrons = list(/datum/patron/old_god) //Requires your character's patron to be Psydon.
-	tutorial = "Monsters and heathens walk amongst us; they feign civility at dae, so that they may further Psydonia's destruction under the cover of nite. You must root them out from wherever they dwell, and - whether with a clenched fist or open palm - bring them back to the light."
+	tutorial = "Praise. Atone. Mourn. A hundred different paths across a hundred different lyves, all ending the same; with you swearing fealty to Psydon, and your admittance into the Inquisitor's retinue. Root the abberants out from wherever they dwell, and - whether with a clenched fist or open palm - bring them back to the light."
 	selection_color = JCOLOR_INQUISITION
 	outfit = null
 	outfit_female = null
