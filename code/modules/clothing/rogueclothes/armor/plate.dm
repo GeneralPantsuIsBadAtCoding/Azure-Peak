@@ -73,7 +73,7 @@
 	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonian half-plate"
+	name = "psydonic half-plate"
 	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornatehalfplate"
@@ -118,7 +118,7 @@
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonian plate"
+	name = "psydonic plate"
 	desc = "A sturdily made fluted full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornateplate"
@@ -325,7 +325,7 @@
 	item_state = "fencercuirass"
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fencer/psydon
-	name = "psydonian chestplate"
+	name = "psydonic chestplate"
 	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
 	smelt_bar_num = 1
 	icon_state = "ornatechestplate"
@@ -355,7 +355,7 @@
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-	name = "psydonian cuirass"
+	name = "psydonic cuirass"
 	icon_state = "ornatecuirass"
 	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
 			Made to endure."
