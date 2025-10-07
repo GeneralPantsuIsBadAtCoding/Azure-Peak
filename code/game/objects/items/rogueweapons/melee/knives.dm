@@ -418,7 +418,7 @@
 	)
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
-	name = "psydonian dagger"
+	name = "psydonic dagger"
 	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
 	sheathe_icon = "psydagger"
@@ -661,7 +661,7 @@
 	)
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon
-	name = "psydonian tossblade"
+	name = "psydonic tossblade"
 	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
 	item_state = "bone_dagger"
 	force = 10
