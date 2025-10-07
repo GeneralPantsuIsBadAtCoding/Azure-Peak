@@ -403,7 +403,7 @@
 
 /obj/item/rogueweapon/spear/silver
 	name = "silver spear"
-	desc = "A winged staff, tipped with a silver spearhead. A firm thrust to the chest'll stop a charging deadite in its tracks, and will almost-certainly punch through unholy maille."
+	desc = "A winged staff, tipped with a silver spearhead. It bares a resemblenece to the 'boar spear', but with a critical difference; instead of stopping hogs, it halts charging deadites from spreading their sickness any further."
 	icon_state = "silverspear"
 	force = 15
 	force_wielded = 25
