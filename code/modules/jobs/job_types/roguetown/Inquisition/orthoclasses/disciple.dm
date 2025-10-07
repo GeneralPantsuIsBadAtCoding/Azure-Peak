@@ -1,15 +1,13 @@
 /datum/advclass/disciple
 	name = "Disciple"
-	tutorial = "Psydonite monks trained in the martial arts. They excel at shrugging off terrible blows while wrestling foes into submission."
+	tutorial = "Psydonite monks, practiced in both martiality and scripture. Spilling blood on sacred grounds is considered 'sinful'; shattered teeth seems to be fair game, however."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
 	subclass_languages = list(/datum/language/otavan)
 	category_tags = list(CTAG_INQUISITION)
 	traits_applied = list(
-		TRAIT_CRITICAL_RESISTANCE,
 		TRAIT_CIVILIZEDBARBARIAN,
-		TRAIT_NOPAINSTUN,
 	)
 	subclass_stats = list(
 		STATKEY_STR = 3,
@@ -19,18 +17,18 @@
 		STATKEY_SPD = -1
 	)
 	subclass_skills = list(
-		/datum/skill/misc/athletics = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
 	)
 	subclass_stashed_items = list(
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 /datum/outfit/job/roguetown/disciple
@@ -47,6 +45,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	id = /obj/item/clothing/ring/signet/silver
+	armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/disciple
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
@@ -61,13 +60,20 @@
 
 /datum/outfit/job/roguetown/disciple/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("MY BARE HANDS", "Katar", "Knuckles")
-	var/weapon_choice = input(H,"Choose your PSYDONIAN weapon.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	var/weapons = list("Discipline", "Katar", "Knuckles", "Quarterstaff")
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
-		if("MY BARE HANDS")
+		if("Discipline")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 5, TRUE)
+			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar/psydon(H), TRUE)
+			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		if("Knuckles")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/psydon(H), TRUE)
-
+			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+		if("Quarterstaff")
+			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/silver(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
