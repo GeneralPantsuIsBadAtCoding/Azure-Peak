@@ -235,7 +235,7 @@
 	grid_height = 96
 
 /obj/item/rogueweapon/mace/cudgel/psy
-	name = "psydonian handmace"
+	name = "psydonic handmace"
 	desc = "A shorter variant of the flanged silver mace, rebalanced for one-handed usage. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
 	force = 25
 	force_wielded = 30
@@ -270,7 +270,7 @@
 	)
 
 /obj/item/rogueweapon/mace/cudgel/psy/old
-	name = "old psydonian handmace"
+	name = "enduring handmace"
 	desc = "A shorthanded mace and convenient sleeping aid, its grown harder to swing with age, though it hasn't lost reliability."
 	force = 20
 	wbalance = WBALANCE_NORMAL
@@ -465,7 +465,7 @@
 	max_integrity = 350 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
 
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonian mace"
+	name = "psydonic mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
 	force = 30
@@ -490,7 +490,7 @@
 	)
 
 /obj/item/rogueweapon/mace/goden/psymace/old
-	name = "old psydonian mace"
+	name = "enduring mace"
 	desc = "An ornate mace, its silver tarnished by neglect. Even without HIS holy blessing, its weight ENDURES."
 	icon_state = "psymace"
 	force = 15
