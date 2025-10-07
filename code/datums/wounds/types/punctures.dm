@@ -41,7 +41,7 @@
 	name = "puncture"
 	whp = 1
 	sewn_whp = 0
-	bleed_rate = 1
+	bleed_rate = 0.5 // Lower than usual to reflect that those are often penetrative weapons.
 	sewn_bleed_rate = 0.04
 	clotting_rate = 0.01
 	sewn_clotting_rate = 0.01
@@ -66,7 +66,7 @@
 #define PUNC_UPG_WHPRATE 0.5
 #define PUNC_UPG_SEWRATE 0.65
 #define PUNC_UPG_PAINRATE 0.05
-#define PUNC_UPG_CLAMP_ARMORED 0.75
+#define PUNC_UPG_CLAMP_ARMORED 0.375 // Bleed rate from penetrative damage upgrade is also capped
 #define PUNC_UPG_CLAMP_RAW 1.3
 #define PUNC_ARMORED_BLEED_CLAMP 6
 
@@ -91,7 +91,7 @@
 	name = "gouge"
 	whp = 1
 	sewn_whp = 0
-	bleed_rate = 1
+	bleed_rate = 0.25 // Lower than usual to reflect that these are often penetrative weapons.
 	sewn_bleed_rate = 0.04
 	clotting_rate = 0.01
 	sewn_clotting_rate = 0.01
