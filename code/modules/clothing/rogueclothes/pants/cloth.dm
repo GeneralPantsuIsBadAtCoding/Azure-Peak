@@ -43,6 +43,12 @@
 	name = "sailor's pants"
 	icon_state = "sailorpants"
 
+/obj/item/clothing/under/roguetown/tights/puritan
+	name = "formal breeches"
+	icon_state = "monkpants"
+	item_state = "monkpants"
+	color = CLOTHING_BLACK
+
 /obj/item/clothing/under/roguetown/webs
 	name = "webbing"
 	desc = "a fine webbing made from spidersilk, popular fashion within the underdark"
