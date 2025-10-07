@@ -19,6 +19,8 @@
 #define SPEC_ID_KOBOLD "kobold"
 #define SPEC_ID_GOBLINP "goblinp" // Goblin
 #define SPEC_ID_CONSTRUCT "construct" // Metal Construct
+#define SPEC_ID_REVENANT "revenant"	//Dullahan / Revenants
+#define SPEC_ID_GNOME "gnome"	//I'm gnot a gnelf, I'm a GNOME!!!
 
 //used in various places
 #define ALL_RACES_TYPES list(\
@@ -42,16 +44,17 @@
 	SPEC_ID_HALFORC,\
 	SPEC_ID_KOBOLD,\
 	SPEC_ID_GOBLINP,\
+	SPEC_ID_REVENANT,\
+	SPEC_ID_GNOME,\
 )
 
-// These list are functionally useless atm to be tweaked later
+// List of the "Accepted" races which have no limitations.
 #define RACES_RESPECTED \
 	SPEC_ID_HUMAN,\
 	SPEC_ID_HALFELF,\
 	SPEC_ID_DARKELF,\
 	SPEC_ID_WOODELF,\
 	SPEC_ID_MOUNTAINDWARF,\
-	SPEC_ID_TIEFLING,\
 	SPEC_ID_AASIMAR,\
 	SPEC_ID_LIZARDFOLK,\
 	SPEC_ID_LUPIAN,\
@@ -65,27 +68,26 @@
 	SPEC_ID_DEMIHUMAN,\
 	SPEC_ID_HALFORC,\
 	SPEC_ID_KOBOLD,\
-	SPEC_ID_GOBLINP,\
+	SPEC_ID_DARKELF,\
 
+// List of the "Tolerated" races which have mild limitations (No KC, Marshal, hier/duke, etc)
 #define RACES_TOLERATED \
-	SPEC_ID_DARKELF
-
-#define RACES_SHUNNED \
-	SPEC_ID_HALFORC,\
-	SPEC_ID_ANTHROMORPHSMALL,\
+	SPEC_ID_TIEFLING,\
 	SPEC_ID_KOBOLD,\
-
-#define RACES_DESPISED \
 	SPEC_ID_GOBLINP,\
+	SPEC_ID_GNOME,\
 
+// List of the "Shunned" races which are heavily limited to 'foreigner' roles/wanderer roles.
+#define RACES_SHUNNED \
+	SPEC_ID_REVENANT
+
+//Constructs are similar to "Tolerated" but have a few extra restrictions that don't match the.
 #define RACES_CONSTRUCT \
 	SPEC_ID_CONSTRUCT
 
-#define RACES_ALL_KINDS list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
+#define RACES_ALL_KINDS list(RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
 
-#define RACES_NO_CONSTRUCT list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
-
-#define RACES_SHUNNED_UP list(RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
+#define RACES_NO_CONSTRUCT list(RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
 
 #define RACES_TOLERATED_UP list(RACES_TOLERATED, RACES_RESPECTED)
 
