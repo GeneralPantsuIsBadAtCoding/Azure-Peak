@@ -205,3 +205,17 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 /obj/effect/landmark/vteleportsenddest
 	name = "Sending Destination"
 	icon_state = "x2"
+
+/// Just a prefab for admins to give them via Traitor Panel, otherwise unused because vars can be normally passed in parent's New()
+/datum/antagonist/vampire/ancillae
+	name = "Vampire Ancillae"
+
+/datum/antagonist/vampire/ancillae/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_ANCILLAE)
+	. = ..()
+
+/// Similarly as before, just a prefab for admins to give them via Traitor Panel
+/datum/antagonist/vampire/licker
+	name = "Licker"
+
+/datum/antagonist/vampire/licker/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_NEONATE)
+	. = ..(incoming_clan, forced_clan, generation)
