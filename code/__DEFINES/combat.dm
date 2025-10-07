@@ -360,7 +360,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BULLET_ACT_MISS				"MISS"
 
 //Weapon values
-#define BLUNT_DEFAULT_PENFACTOR		-100
+#define BLUNT_DEFAULT_PENFACTOR		0
 #define INTEG_PARRY_DECAY			1	//Default integrity decay on parry.
 #define INTEG_PARRY_DECAY_NOSHARP	5	//Integrity decay on parry for weapons with no sharpness OR for off-hand parries.
 #define SHARPNESS_ONHIT_DECAY		3	//Sharpness decay on parry.
