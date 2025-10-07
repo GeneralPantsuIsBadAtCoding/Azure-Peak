@@ -379,7 +379,7 @@
 
 
 /obj/item/rogueweapon/spear/psyspear
-	name = "psydonian spear"
+	name = "psydonic spear"
 	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
 	icon_state = "psyspear"
 	force = 15
@@ -424,7 +424,7 @@
 	)
 
 /obj/item/rogueweapon/spear/psyspear/old
-	name = "old psydonian spear"
+	name = "enduring spear"
 	desc = "An ornate spear, its silver tarnished by neglect. HE still guides the faithful's hand, if not this weapon."
 	icon_state = "psyspear"
 	force = 20
