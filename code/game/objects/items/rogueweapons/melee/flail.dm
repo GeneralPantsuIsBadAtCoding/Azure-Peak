@@ -161,7 +161,7 @@
 	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail
-	name = "psydonian flail"
+	name = "psydonic flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
 	force = 35
@@ -182,7 +182,7 @@
 	)
 	
 /obj/item/rogueweapon/flail/sflail/psyflail/old
-	name = "old psydonian flail"
+	name = "enduring flail"
 	desc = "An ornate flail, its silver tarnished by neglect. Bring down the COMET on the unholy."
 	icon_state = "psyflail"
 	force = 30
@@ -199,6 +199,7 @@
 	name = "Consecratia"
 	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
 	icon_state = "psymorningstar"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()
 	AddComponent(\
