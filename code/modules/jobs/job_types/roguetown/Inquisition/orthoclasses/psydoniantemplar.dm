@@ -11,7 +11,8 @@
 	subclass_stats = list(
 		STATKEY_WIL = 3,
 		STATKEY_CON = 2,
-		STATKEY_STR = 2
+		STATKEY_STR = 2,
+		STATKEY_SPD = -1
 	)
 	subclass_skills = list(
 		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
@@ -19,17 +20,17 @@
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 	)
 	subclass_stashed_items = list(
-		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 
 /datum/outfit/job/roguetown/psydoniantemplar
@@ -63,7 +64,7 @@
 /datum/outfit/job/roguetown/psydoniantemplar/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	var/helmets = list("Barbute", "Sallet", "Armet", "Bucket Helm")
-	var/helmet_choice = input(H,"Choose your PSYDONIAN helmet.", "TAKE UP PSYDON'S HELMS") as anything in helmets
+	var/helmet_choice = input(H,"Choose your HELMET.", "TAKE UP PSYDON'S HELMS") as anything in helmets
 	switch(helmet_choice)
 		if("Barbute")
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute, SLOT_HEAD, TRUE)
@@ -75,7 +76,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket, SLOT_HEAD, TRUE)
 
 	var/weapons = list("Sword", "Axe", "Whip", "Flail", "Mace", "Spear")
-	var/weapon_choice = input(H,"Choose your PSYDONIAN weapon.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Sword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H), TRUE)
