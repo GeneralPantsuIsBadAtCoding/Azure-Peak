@@ -27,6 +27,7 @@
 
 	RegisterSignal(parent, COMSIG_HUMAN_LIFE, PROC_REF(handle_disguise_upkeep))
 	RegisterSignal(parent, COMSIG_DISGUISE_STATUS, PROC_REF(disguise_status))
+	RegisterSignal(parent, COMSIG_FORCE_UNDISGUISE, PROC_REF(force_undisguise))
 
 /datum/component/vampire_disguise/proc/cache_original_appearance(mob/living/carbon/human/H)
 	cache_skin = H.skin_tone
@@ -115,9 +116,10 @@
 	return TRUE
 
 /datum/component/vampire_disguise/proc/force_undisguise(mob/living/carbon/human/H)
-	if(!disguised)
+	if(!disguised || (H.get_vampire_generation() >= GENERATION_METHUSELAH))
 		return FALSE
 
+	H.visible_message("<font color='white'>[H]'s curse manifests!</font>", ignored_mobs = list(H))
 	remove_disguise(H)
 	to_chat(H, span_danger("My disguise is forcibly broken!"))
 	return TRUE

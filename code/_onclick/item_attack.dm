@@ -587,6 +587,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_EFFECT_SELF, user, affecting, intent, victim, selzone)
 
 	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
+		SEND_SIGNAL(victim, COMSIG_FORCE_UNDISGUISE)
 		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
 		if(blesscomp?.is_blessed)
 			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))

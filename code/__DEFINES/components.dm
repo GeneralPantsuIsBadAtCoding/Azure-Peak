@@ -486,6 +486,7 @@
 #define COMSIG_TRAIT_LOSS "trait_loss"    // (trait, source)				//from monkey CtrlClickOn(): (/mob)
 
 #define COMSIG_DISGUISE_STATUS "comsig_disguise_status"
+#define COMSIG_FORCE_UNDISGUISE "comsig_force_undisguise"
 
 #define COMSIG_ITEM_ATTACK_EFFECT "item_attack_effect"
 #define COMSIG_ITEM_ATTACK_EFFECT_SELF "item_attack_effect_self"
