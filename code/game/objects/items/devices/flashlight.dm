@@ -128,14 +128,14 @@
 	should you choose to ford across water."
 	w_class = WEIGHT_CLASS_NORMAL
 	light_outer_range = 7
-	force = 1
+	force = 5
 	icon = 'icons/roguetown/items/lighting.dmi'
 	icon_state = "torch"
 	item_state = "torch"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	light_color = "#f5a885"
-	on_damage = 2
+	on_damage = 10
 	flags_1 = null
 	possible_item_intents = list(/datum/intent/use, /datum/intent/hit)
 	slot_flags = ITEM_SLOT_HIP
@@ -143,7 +143,7 @@
 	var/datum/looping_sound/torchloop/soundloop = null
 	//added for torch burnout
 	var/should_self_destruct = TRUE
-	max_integrity = 40
+	max_integrity = 50
 	fuel = 30 MINUTES
 	light_depth = 0
 	light_height = 0
@@ -270,12 +270,17 @@
 	spark_act()
 
 /obj/item/flashlight/flare/torch/metal
-	name = "torch"
-	force = 1
+	name = "fieftorch"
+	desc = "A candleholder of wrought iron, oft-found mounted to the sconces in a castle's hallway."
 	icon_state = "mtorch"
 	light_outer_range = 6
+	force = 10 //Doubled from the regular torch, to reflect its sturdier construction. Classified as an improvised weapon, as it shouldn't scale off any weapon skill.
+	on_damage = 15
+	wdefense = 1 //Metal rod. Offers a pittance-of-a-chance to parry an incoming strike.
+	max_integrity = 100	
 	fuel = 120 MINUTES
-	should_self_destruct = TRUE
+	should_self_destruct = FALSE
+	possible_item_intents = list(/datum/intent/use, /datum/intent/hit, /datum/intent/mace/strike) //Reflects the fact that it is, in essence, a heavy rod of iron. 
 	extinguishable = TRUE
 
 /obj/item/flashlight/flare/torch/metal/afterattack(atom/movable/A, mob/user, proximity)
