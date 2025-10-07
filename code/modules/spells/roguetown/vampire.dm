@@ -1,5 +1,19 @@
+/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/Shapeshift(mob/living/carbon/human/caster)
+	if(!istype(caster)) // FVCK OFF
+		return
 
-/obj/effect/proc_holder/spell/targeted/shapeshift/bat
+	var/obj/shapeshift_holder/H = locate() in caster
+	if(H)
+		to_chat(caster, span_warning("You're already shapeshifted!"))
+		return
+
+	if(!move_after(caster, (SHAPESHIFT_MOVEAFTER - caster.get_vampire_generation()) SECONDS))
+		to_chat(caster, span_userdanger("You are unable to concentrate enough to shapeshift!"))
+		return
+
+	return ..()
+
+/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/bat
 	name = "Bat Form"
 	desc = ""
 	recharge_time = 50

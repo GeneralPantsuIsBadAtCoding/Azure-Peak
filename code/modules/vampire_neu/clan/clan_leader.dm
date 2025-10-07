@@ -10,7 +10,7 @@
 
 /datum/clan_leader/lord
 	lord_spells = list(
-		/obj/effect/proc_holder/spell/targeted/shapeshift/bat,
+		/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/bat,
 		/obj/effect/proc_holder/spell/targeted/shapeshift/gaseousform,
 	)
 	lord_verbs = list(
@@ -23,7 +23,7 @@
 
 /datum/clan_leader/wretch
 	lord_spells = list(
-		/obj/effect/proc_holder/spell/targeted/shapeshift/bat,
+		/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/bat,
 	)
 	lord_verbs = list(
 		/mob/living/carbon/human/proc/punish_spawn
