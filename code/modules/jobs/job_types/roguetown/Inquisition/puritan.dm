@@ -279,10 +279,10 @@
 		return
 	if(!H.stat)
 		var/static/list/faith_lines = list(
-			"DO YOU DENY THE ALLFATHER?",
-			"WHO IS YOUR GOD?",
-			"ARE YOU FAITHFUL?",
-			"WHO IS YOUR SHEPHERD?",
+			"TO WHOM DO YOU PRAY!?",
+			"WHO IS YOUR GOD!?",
+			"ARE YOU FAITHFUL!?",
+			"WHO IS YOUR SHEPHERD!?",
 		)
 		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(faith_lines), spans = list("torture"))
