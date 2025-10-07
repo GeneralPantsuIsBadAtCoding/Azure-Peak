@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	antagpanel_category = "Vampire"
 	job_rank = ROLE_VAMPIRE
 	antag_hud_type = ANTAG_HUD_VAMPIRE
-	antag_hud_name = "vamp"
+	antag_hud_name = "Vspawn"
 	confess_lines = list(
 		"I WANT YOUR BLOOD!",
 		"DRINK THE BLOOD!",
@@ -132,8 +132,10 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /datum/antagonist/vampire/proc/after_gain()
 	owner.current.set_bloodpool(owner.current.maxbloodpool / 100 * INITIAL_BLOODPOOL_PERCENTAGE)
+	add_antag_hud(antag_hud_type, antag_hud_name, owner.current)
 
 /datum/antagonist/vampire/on_removal()
+	remove_antag_hud(antag_hud_type, owner.current)
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/vampdude = owner.current
 		// Remove the clan when losing antagonist status
