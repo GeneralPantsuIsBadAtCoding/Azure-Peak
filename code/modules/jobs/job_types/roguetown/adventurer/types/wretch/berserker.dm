@@ -55,6 +55,7 @@
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/berserk_trance)
 		var/weapons = list("Katar","Steel Knuckles","Punch Dagger","MY BARE HANDS!!!","Battle Axe","Mace","Sword")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
@@ -82,3 +83,25 @@
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/falx
 		wretch_select_bounty(H)
+
+
+/obj/effect/proc_holder/spell/self/berserk_trance
+	name = "Berserker Trance"
+	overlay_state = "giantsstrength"
+	desc = "I stop holding back and shatter myne bindings; and their flesh. (+3 Strength)" // Design Note: +3 instead of +5 for direct damage stats
+	recharge_time = 5 MINUTES
+	overlay_state = "giants_strength"
+	range = 0
+
+
+/obj/effect/proc_holder/spell/self/berserk_trance/cast(list/targets, mob/user)
+	if (!isliving(user))
+		revert_cast()
+		return
+
+	var/mob/living/carbon/human/H = user
+	playsound(get_turf(H), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
+
+	H.apply_status_effect(/datum/status_effect/buff/giants_strength)
+	H.visible_message(span_danger("[usr] enters a rage!"), span_notice("I enter a rage!"))
+	H.emote("rage")
