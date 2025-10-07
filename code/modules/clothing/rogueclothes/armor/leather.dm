@@ -94,6 +94,12 @@
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
+	
+/obj/item/clothing/suit/roguetown/armor/leather/studded/psyalmist
+	name = "cuir bouilli"
+	desc = "A set of boiled leather, light and flexible."
+	icon_state = "cuirbouilli"
+	item_state = "cuirbouilli"
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy
 	name = "hardened leather armor"

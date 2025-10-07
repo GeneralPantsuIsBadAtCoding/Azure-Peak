@@ -1822,6 +1822,16 @@
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/cloak/psyalmist
+	name = "psyalmist stole"
+	desc = "Fashionable and free flowing."
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	icon_state = "psaltertabard"
+	item_state = "psaltertabard"
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE
+
 /obj/item/clothing/cloak/ordinatorcape
 	name = "ordinator cape"
 	desc = "A flowing red cape complete with an ornately patterned steel shoulderguard. Made to last. Made to ENDURE. Made to LYVE."

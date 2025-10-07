@@ -32,6 +32,21 @@
 	effect_color = colour
 	return ..()
 
+/datum/status_effect/buff/playing_music/on_remove()
+	. = ..()
+	to_chat(owner, "removing music")
+	if(!ishuman(owner))
+		to_chat(owner, "owner is not human")
+		return
+	var/mob/living/carbon/human/H = owner
+	if(!H.inspiration)
+		return
+	for(var/mob/living/carbon/human/guy in H.inspiration.audience)
+		for(var/datum/status_effect/buff/song/song2remove in guy.status_effects)
+			guy.remove_status_effect(song2remove)
+	return ..()
+	
+
 /datum/status_effect/buff/playing_music/tick()
 	var/obj/effect/temp_visual/music_rogue/M = new /obj/effect/temp_visual/music_rogue(get_turf(owner))
 	M.color = effect_color
