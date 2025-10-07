@@ -390,6 +390,33 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/huntingknife/idagger/silver/stake
+	name = "silver-tipped stake"
+	desc = "A branch that has been broken off of a boswellia tree, sharpened to a fine point and tipped with blessed silver. It can lay most unholy creechers to rest, but only by piercing their hearts."
+	icon_state = "stake" //Should hopefully autogenerate an inhand. Need to politely ask a coder to import a custom sprite for this stake, later.
+	icon = 'icons/roguetown/items/natural.dmi'
+	sheathe_icon = "null"
+	force = 20 
+	throwforce = 20
+	wdefense = 0
+	max_integrity = 50
+	sellprice = 50
+	slot_flags = ITEM_SLOT_HIP
+	smeltresult = /obj/item/ash
+	last_used = 0
+	is_silver = TRUE
+
+/obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_TENNITE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 0,\
+		added_def = 0,\
+	)
+
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	name = "psydonian dagger"
 	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
@@ -609,7 +636,7 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife/silver
 	name = "silver tossblade"
-	desc = "A relative to the silver dagger; thinner, flimsier, but capable of being thrown with exceptional accuracy. Seasoned monster hunters oft-keep such a tossblade in their boots, just in case."
+	desc = "A relative to the silver dagger; thinner, flimsier, but capable of being thrown with exceptional accuracy. Seasoned pursuers of unholy creechers oft-keep one hidden away in their boots, just in case."
 	item_state = "bone_dagger"
 	force = 10
 	throwforce = 20
