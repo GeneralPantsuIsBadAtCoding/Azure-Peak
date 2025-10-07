@@ -85,11 +85,43 @@
 		wretch_select_bounty(H)
 
 
+
+#define BERSERKRAGE_FILTER "berserkrage_glow"
+/atom/movable/screen/alert/status_effect/buff/berserk_rage
+	name = "Berserking Trance"
+	desc = "My muscles are strengthened, and I am numb to pain. (+3 Strength)"
+	icon_state = "buff"
+
+/datum/status_effect/buff/giants_strength
+	var/outline_colour ="#8B0000" //same as giant's
+	id = "giantstrength"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/berserk_rage
+	effectedstats = list(STATKEY_STR = 3)
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/buff/berserk_rage/on_apply()
+	. = ..()
+	var/filter = owner.get_filter(BERSERKRAGE_FILTER)
+	if (!filter)
+		owner.add_filter(BERSERKRAGE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
+	ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	to_chat(owner, span_warning("I SEE ONLY RED."))
+
+
+/datum/status_effect/buff/giants_strength/on_remove()
+	. = ..()
+	to_chat(owner, span_warning("My muscles ache."))
+	owner.remove_filter(BERSERKRAGE_FILTER)
+	REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+
+#undef BERSERKRAGE_FILTE
+
+
 /obj/effect/proc_holder/spell/self/berserk_trance
 	name = "Berserker Trance"
 	overlay_state = "giantsstrength"
-	desc = "I stop holding back and shatter myne bindings; and their flesh. (+3 Strength)" // Design Note: +3 instead of +5 for direct damage stats
-	recharge_time = 5 MINUTES
+	desc = "I stop holding back. I will shatter myne bindings and their bones both. (+3 Strength)" // Design Note: +3 instead of +5 for direct damage stats
+	recharge_time = 10 MINUTES //longe
 	overlay_state = "giants_strength"
 	range = 0
 
@@ -105,3 +137,4 @@
 	H.apply_status_effect(/datum/status_effect/buff/giants_strength)
 	H.visible_message(span_danger("[usr] enters a rage!"), span_notice("I enter a rage!"))
 	H.emote("rage")
+
