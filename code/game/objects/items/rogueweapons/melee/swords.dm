@@ -138,7 +138,7 @@
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
 	parrysound = list(
@@ -520,14 +520,6 @@
 	force_wielded = 27
 	wdefense = 5		//+1
 	wbalance = WBALANCE_SWIFT
-
-/obj/item/rogueweapon/sword/long/malumflamm
-	name = "forgefiend flamberge"
-	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
-	icon_state = "malumflamberge"
-	force = 28 // +3 force as a unique sword. Longsword isn't THAT good anyway
-	force_wielded = 33 // Also +3
-	max_integrity = 200
 
 /obj/item/rogueweapon/sword/long/zizo
 	name = "avantyne longsword"
@@ -977,25 +969,23 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 25
+	force_wielded = 25
+	minstr = 7
+	wdefense = 9
+	last_used = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/gold
+	smelt_bar_num = 2
+
+/obj/item/rogueweapon/sword/sabre/stalker
+	name = "stalker sabre"
+	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
+	icon_state = "spidersaber"
 	force = 17
 	force_wielded = 20
 	minstr = 7
 	wdefense = 9
-	last_used = 0
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
-	smelt_bar_num = 2
-
-/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 100,\
-		added_int = 100,\
-		added_def = 2,\
-	)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
@@ -1190,7 +1180,7 @@
 /obj/item/rogueweapon/sword/rapier/eora
 	name = "\"Heartstring\""
 	desc = "A specialty-made bilbo hilt rapier made in service to Lady Eora. For the time when soft words can no longer be spoken, and hearts are to be pierced."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	icon_state = "eorarapier"
 	sheathe_icon = "eorarapier"
 	grid_width = 32
@@ -1238,16 +1228,7 @@
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/sword/long/blackflamb
-	name = "blacksteel flamberge"
-	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
-	force = 20
-	force_wielded = 32
-	icon_state = "blackflamb"
-	smeltresult = /obj/item/ingot/blacksteel
-	max_integrity = 200
-
-/obj/item/rogueweapon/sword/long/blackflamb/getonmobprop(tag)
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

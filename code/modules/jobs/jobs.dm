@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(noble_positions, list(
 
 GLOBAL_LIST_INIT(courtier_positions, list(
 	"Court Magician",
-	"Court Physician",
+	"Head Physician",
 	"Jester",
 	"Seneschal",
 ))
@@ -176,6 +176,18 @@ GLOBAL_LIST_INIT(roguefight_positions, list(
 	"Green Caster",
 	"Green Ranger",
 	"Green Fighter",
+))
+
+//This list is used to prevent the duke from stripping nobility from certain jobs that aren't intrinsically a part of the town.
+GLOBAL_LIST_INIT(foreign_positions, list(
+	"Adventurer", 
+	"Mercenary", 
+	"Bandit", 
+	"Wretch",
+	"Inquisitor",
+	"Suitor",
+	"Orthodoxist",
+	"Migrant",
 ))
 
 GLOBAL_LIST_INIT(test_positions, list(

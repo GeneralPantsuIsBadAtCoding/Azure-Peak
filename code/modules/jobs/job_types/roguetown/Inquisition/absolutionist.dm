@@ -26,7 +26,6 @@
 		TRAIT_SILVER_BLESSED,
 		TRAIT_STEELHEARTED,
 		TRAIT_INQUISITION,
-		TRAIT_OUTLANDER
 	)
 
 	advclass_cat_rolls = list(CTAG_ABSOLVER = 2)
@@ -48,7 +47,7 @@
 	subclass_skills = list(
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN, // Enduring.
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/sewing = SKILL_LEVEL_JOURNEYMAN, // A hobbyist.
+		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN, // A hobbyist.
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE, // Parry things.
 		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,

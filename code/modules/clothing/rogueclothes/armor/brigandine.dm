@@ -47,13 +47,13 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/Initialize()
+/obj/item/clothing/suit/roguetown/armor/brigandine/retinue/Initialize()
 	. = ..()
 	if(GLOB.lordprimary)
 		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
 	GLOB.lordcolor += src
 
-/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/lordcolor(primary,secondary)
+/obj/item/clothing/suit/roguetown/armor/brigandine/retinue/lordcolor(primary,secondary)
 	detail_tag = "_det"
 	detail_color = primary
 	update_icon()
@@ -61,7 +61,7 @@
 		var/mob/L = loc
 		L.update_inv_armor()
 
-/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/Destroy()
+/obj/item/clothing/suit/roguetown/armor/brigandine/retinue/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
 
@@ -74,7 +74,7 @@
 	armor_class = ARMOR_CLASS_HEAVY
 	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE + 50
 
-/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
+/obj/item/clothing/suit/roguetown/armor/brigandine/retinue/coat
 	name = "coat of the commander"
 	desc = "A thick boiled leather surcoat with enough plates concealed within the folds to offer superior protection. It weighs a ton and takes a great man to wear."
 	icon_state = "leathercoat"
@@ -83,7 +83,7 @@
 	sleeved_detail = TRUE
 	boobed_detail = TRUE
 
-/obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat/attack_right(mob/user)
+/obj/item/clothing/suit/roguetown/armor/brigandine/retinue/coat/attack_right(mob/user)
 	if(picked)
 		return
 	var/the_time = world.time
@@ -142,6 +142,24 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue/Initialize()
+	. = ..()
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	GLOB.lordcolor += src
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue/lordcolor(primary,secondary)
+	detail_tag = "_detail"
+	detail_color = primary
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_armor()
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/captain
 	name = "captain's brigandine"

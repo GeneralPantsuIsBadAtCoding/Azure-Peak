@@ -52,3 +52,22 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 			continue
 		.[path] = new path()
 	return .
+
+/////////////////
+
+// Called when a bodypart is checked from an action: /datums/sexcon/sexcon.dm
+#define COMSIG_ERP_LOCATION_ACCESSIBLE "erp_location_accessible"
+	// Bitflags
+	#define SIG_CHECK_FAIL (1 << 0)
+	#define SKIP_ADJACENCY_CHECK (1 << 1)
+	#define SKIP_TILE_CHECK (1 << 2)
+	#define SKIP_GRAB_CHECK (1 << 3)
+	// Args
+	#define ERP_ACTION 1
+	#define ERP_BODYPART 2
+	#define ERP_SELF_TARGET 3
+	#define ERP_USER 4
+	#define ERP_TARGET 5
+	#define ERP_LOCATION 6
+	#define ERP_GRABS 7
+	#define ERP_SKIPUNDIES 8

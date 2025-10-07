@@ -92,6 +92,8 @@
 /obj/item/proc/can_craft_with()
 	if(craft_blocked)
 		return FALSE
+	if(istype(src, /obj/item/storage/roguebag) && src.contents.len > 0) //for bait bags
+		return FALSE
 	return TRUE
 
 /datum/component/personal_crafting/proc/get_surroundings(mob/user)
@@ -115,7 +117,13 @@
 				if(RC.is_drainable())
 					for(var/datum/reagent/A in RC.reagents.reagent_list)
 						.["other"][A.type] += A.volume
-			.["other"][I.type] += 1
+				if(istype(RC, /obj/item/reagent_containers/glass)) // Only count glass bottles themselves as a valid crafting item if it's empty
+					if(RC.reagents.total_volume == 0)
+						.["other"][I.type] += 1
+				else
+					.["other"][I.type] += 1
+			else
+				.["other"][I.type] += 1
 
 /datum/component/personal_crafting/proc/check_tools(mob/user, datum/crafting_recipe/R, list/contents)
 	if(!R.tools.len)
@@ -433,6 +441,17 @@
 						Deletion += I
 						surroundings -= I
 						amt--
+			else if(ispath(A, /obj/item/reagent_containers/glass)) //Don't eat bottles with reagents in them
+				var/atom/movable/I
+				while(amt > 0)
+					I = locate(A) in surroundings
+					var/obj/item/reagent_containers/glass/RC = I
+					if(RC.reagents?.total_volume > 0)
+						surroundings -= I
+						continue
+					Deletion += I
+					surroundings -= I
+					amt--
 			else
 				var/atom/movable/I
 				while(amt > 0)
@@ -514,11 +533,23 @@
 	return data
 
 /datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui)
+	var/area/A = get_area(user)
+	if(!A.can_craft_here())
+		to_chat(user, span_warning("You cannot craft here."))
+		if(ui) ui.close()
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MiaCraft", "Crafting Menu", 700, 800)
 		ui.set_state(GLOB.not_incapacitated_turf_state)
 		ui.open()
+
+/datum/component/personal_crafting/ui_state(mob/user)
+	var/area/A = get_area(user)
+	if(!A.can_craft_here())
+		return UI_CLOSE
+	return ..()
 
 /datum/component/personal_crafting/ui_act(action, params)
 	. = ..()
@@ -640,6 +671,8 @@
 				user.mind.lastrecipe = r
 
 
+
+
 /client/verb/toggle_legacycraft()
 	set name = "Toggle legacy craft"
 	set category = "Options"
@@ -648,3 +681,4 @@
 
 /client
 	var/legacycraft = FALSE
+

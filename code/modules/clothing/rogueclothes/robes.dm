@@ -131,24 +131,31 @@
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
 	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
+//This for adventurers. Base type, same armor. No holy-bonus.
 /obj/item/clothing/suit/roguetown/shirt/robe/monk
-	name = "monk vestments"
-	desc = "Nomadic vestments, worn by those who pursue faith above all else. The burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
+	name = "nomadic monk vestments"
+	desc = "Nomadic vestments, worn by those who pursue faith above all else. The red burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
 	icon_state = "monkvestments"
 	item_state = "monkvestments"
 	armor = ARMOR_PADDED_GOOD	//Equal to a padded gambeson, like before.
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)	 //Ensures that this inherits the padded gambeson's resistances, too.
-	color = null
+	color = "#662315"
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 
-/obj/item/clothing/suit/roguetown/shirt/robe/monk/equipped(mob/living/user, slot)
+//This is for templars/psydonites. Gives a boon for wearing it to counter-act giving up plate and such.
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
+	name = "holy monk vestments"
+	desc = "Holy vestments, worn by those who pursue faith above all else. The burlap is thickly-woven, padded, and blessed in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows. Ble"
+	color = null	//Base sprite
+
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/equipped(mob/living/user, slot)
 	..()
 	if(!HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN))	//Requires this cus it's a monk-only thing.
 		return
 	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
 	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigorous - empowered by my God!"))
 
-/obj/item/clothing/suit/roguetown/shirt/robe/monk/dropped(mob/living/user)
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/dropped(mob/living/user)
 	..()
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
 	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))

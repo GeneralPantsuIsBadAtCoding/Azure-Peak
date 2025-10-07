@@ -1,6 +1,6 @@
 /datum/crafting_recipe/roguetown/weaving
 	structurecraft = /obj/machinery/loom
-	skillcraft = /datum/skill/misc/sewing
+	skillcraft = /datum/skill/craft/sewing
 	subtype_reqs = TRUE		//For subtypes of fur
 
 /datum/crafting_recipe/roguetown/weaving/rags

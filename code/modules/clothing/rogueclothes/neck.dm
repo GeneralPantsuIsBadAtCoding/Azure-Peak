@@ -216,6 +216,8 @@
 			H.update_inv_neck()
 			H.update_inv_head()
 
+/obj/item/clothing/neck/roguetown/chaincoif/full/black
+	color = "#323232"
 
 /obj/item/clothing/neck/roguetown/bevor
 	name = "bevor"
@@ -403,7 +405,11 @@
 	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
 	color = "#bb9696"
+	resistance_flags = FIRE_PROOF
 	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	grid_width = 32
+	grid_height = 32
 
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
@@ -640,10 +646,13 @@
 
 /obj/item/clothing/neck/roguetown/luckcharm
 	name = "luck charm"
-	desc = "A cabbit's foot necklace. Some say it brings good luck."
+	desc = "A cabbit's foot necklace. Some say it brings good luck. It only feels more lucky when it's worn around the neck."
 	icon_state = "luckcharm"
 	sellprice = 15
-	slot_flags = ITEM_SLOT_NECK
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	grid_width = 32
+	grid_height = 32
 	var/goodluckactivated = FALSE
 
 /obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)

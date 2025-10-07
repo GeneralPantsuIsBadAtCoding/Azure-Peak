@@ -5,7 +5,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
 	experimental_inhand = FALSE
-	grid_width = 32
+	grid_width = 64
 	grid_height = 32
 
 /obj/item/rogueore/gold

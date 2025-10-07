@@ -132,6 +132,8 @@
 						new /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/vaquero(src.loc)
 					if(14)
 						new /obj/item/clothing/neck/roguetown/luckcharm/mercmedal(src.loc) // NOT CURRENTLY IMPLEMENTED
+					if(15)
+						new /obj/item/clothing/neck/roguetown/luckcharm/mercmedal/anthrax(src.loc)
 			if(C.signed == 0)
 				to_chat(H, "<span class='warning'>I cannot send an unsigned token.</span>")
 				return

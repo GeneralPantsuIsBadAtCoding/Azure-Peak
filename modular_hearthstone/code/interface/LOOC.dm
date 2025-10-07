@@ -11,8 +11,9 @@
 	return TRUE
 
 /client/proc/get_looc()
-	var/msg = input(src, null, "looc \"text\"") as text|null
+	var/msg = input(src, "", "looc") as text|null
 	do_looc(msg, FALSE)
+	
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"

@@ -59,7 +59,7 @@
 	name = "stone axe"
 	desc = "A rough stone axe. Badly balanced."
 	icon_state = "stoneaxe"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/axes32.dmi'
 	item_state = "axe"
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
@@ -252,7 +252,7 @@
 	name = "Tidecleaver"
 	desc = "An axe made in image and inspiration of the rumored Tidecleaver, an axe capable of parting the ocean itself. The steel hums the crash of waves."
 	icon_state = "abyssoraxe"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/axes32.dmi'
 	max_integrity = 400 // higher int than usual
 
 //Pickaxe-axe ; Technically both a tool and a weapon, but it goes here due to weapon function. Subtype of woodcutter axe, mostly a weapon.
@@ -431,6 +431,22 @@
 		added_int = 50,\
 		added_def = 1,\
 	)
+
+/obj/item/rogueweapon/stoneaxe/battle/psyaxe/old
+	name = "old psydonian war axe"
+	desc = "An ornate battle axe, its silver tarnished by neglect. Even a dim light can pierce the dark."
+	icon_state = "psyaxe"
+	force = 25
+	force_wielded = 30
+	minstr = 9
+	wdefense = 4
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/stoneaxe/battle/psyaxe/old/ComponentInitialize()
+	return
+
 /obj/item/rogueweapon/stoneaxe/battle/steppesman
 	name = "aavnic valaška"
 	desc = "A steel axe of Aavnic make that combines a deadly weapon with a walking stick - hence its pointed end. It has a flat head that fits the hand comfortably, and it's usable for chopping and smashing. You could probably stab someone if you tried really hard."
@@ -525,12 +541,12 @@
 // Unique loot axes; mostly from mobs //
 ////////////////////////////////////////
 
-/obj/item/rogueweapon/greataxe/minotaur
+/obj/item/rogueweapon/greataxe/steel/doublehead/minotaur
 	name = "minotaur greataxe"
 	desc = "An incredibly heavy and large axe, pried from the cold-dead hands of Dendor's most wicked of beasts."
 	icon_state = "minotaurgreataxe"
-	minstr = 15	
-	max_blade_int = 150 //This is dropped by a relatively common mob, so it's iron now and has shit durability.
+	max_blade_int = 250
+	minstr = 14 //Double-headed greataxe with extra durability. Rare dungeon loot in minotaur dungeons; no longer drops from every single minotaur.
 
 /obj/item/rogueweapon/stoneaxe/woodcut/troll
 	name = "crude heavy axe"

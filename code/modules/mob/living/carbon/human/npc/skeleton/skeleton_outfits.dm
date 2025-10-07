@@ -33,6 +33,9 @@
 			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
 	..()
 
+/mob/living/carbon/human/species/skeleton/npc/mediumspread/lich
+	faction = list("lich")
+
 // for Lich Dungeon
 /mob/living/carbon/human/species/skeleton/npc/hardspread/Initialize()
 	var/outfit = rand(1,4)
@@ -162,7 +165,8 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
 	gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
-	l_hand = /obj/item/rogueweapon/shield/tower/metal/alloy
+	if(prob(33)) // 33% chance of shield, so ranged don't get screwed over entirely
+		l_hand = /obj/item/rogueweapon/shield/tower/metal/alloy
 	if(prob(33))
 		r_hand = /obj/item/rogueweapon/spear/aalloy
 	else if(prob(33))

@@ -4,7 +4,7 @@
 	name = "flail"
 	desc = "This is a swift, iron flail. Strikes hard and far."
 	icon_state = "iflail"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/blunt32.dmi'
 	sharpness = IS_BLUNT
 	//dropshrink = 0.75
 	wlength = WLENGTH_NORMAL
@@ -148,6 +148,20 @@
 		added_int = 50,\
 		added_def = 1,\
 	)
+	
+/obj/item/rogueweapon/flail/sflail/psyflail/old
+	name = "old psydonian flail"
+	desc = "An ornate flail, its silver tarnished by neglect. Bring down the COMET on the unholy."
+	icon_state = "psyflail"
+	force = 30
+	minstr = 5
+	wdefense = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
+	return
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic
 	name = "Consecratia"

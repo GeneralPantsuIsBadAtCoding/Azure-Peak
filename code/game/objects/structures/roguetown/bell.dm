@@ -63,7 +63,7 @@
 				if("Shop")
 					rolestonotify = list("Merchant", "Shophand")
 				if("Physician")
-					rolestonotify = list("Court Physician", "Apothecary")
+					rolestonotify = list("Head Physician", "Apothecary")
 				if("The Guild of Craft")
 					rolestonotify = list("Guildmaster", "Guildsman")
 				if("Steward")
@@ -72,6 +72,8 @@
 					rolestonotify = list("Bathmaster", "Bathhouse Attendant")
 				if("The Inquisition")
 					rolestonotify = list("Inquisitor", "Orthodoxist", "Absolver")
+				if("Garrison")
+					rolestonotify = list("Man at Arms", "Sergeant", "Dungeoneer", "Watchman")
 			send_ooc_note(("I hear the distant sounds of [src] ringing. I'm being called to the [localarea]."), job = rolestonotify)
 
 /obj/structure/standingbell/proc/reset_cooldown()

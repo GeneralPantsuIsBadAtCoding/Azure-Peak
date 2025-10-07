@@ -72,7 +72,7 @@
 	// The visuals are here, the lava is just for visuals and doesn't ACTUALLY damage you! Just looks cool and indicates what is structures will be damaged.
 	for(var/turf/open/visual in view(radius, fallzone))
 		var/obj/effect/temp_visual/lavastaff/Lava = new /obj/effect/temp_visual/lavastaff(visual)
-		var/datum/effect_system/smoke_spread/S = new /datum/effect_system/smoke_spread // SMOKE EFFECT
+		var/datum/effect_system/smoke_spread/S = new /datum/effect_system/smoke_spread/fast // SMOKE EFFECT
 		animate(Lava, alpha = 255, time = 5)
 		S.set_up(radius, fallzone)
 		S.start()

@@ -12,6 +12,7 @@
 	resistance_flags = FIRE_PROOF
 	experimental_inhand = FALSE
 	salvage_amount = 0
+	salvage_result = null
 
 /obj/item/clothing/shoes/roguetown/boots
 	name = "dark boots"

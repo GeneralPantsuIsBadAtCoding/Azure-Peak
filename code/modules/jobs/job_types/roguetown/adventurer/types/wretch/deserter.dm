@@ -2,7 +2,7 @@
 	name = "Disgraced Knight"
 	tutorial = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You lyve the lyfe of an outlaw, shunned and looked down upon by society."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	outfit = /datum/outfit/job/roguetown/wretch/deserter
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_WRETCH)
@@ -206,7 +206,6 @@
 			head = helmets[helmchoice]
 
 		var/masks = list(
-		"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
 		"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
 		"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
 		"None"

@@ -41,7 +41,7 @@
 		"Princess",
 		"Hand",
 		"Steward",
-		"Court Physician",
+		"Head Physician",
 		"Town Crier",
 		"Captain",
 		"Archivist",

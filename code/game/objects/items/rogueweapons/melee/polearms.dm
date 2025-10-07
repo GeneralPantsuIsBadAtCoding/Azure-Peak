@@ -227,7 +227,7 @@
 	force = 25
 	force_wielded = 28
 	icon_state = "aries"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	pixel_y = 0
 	pixel_x = 0
 	inhand_x_dimension = 64
@@ -401,6 +401,21 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/spear/psyspear/old
+	name = "old psydonian spear"
+	desc = "An ornate spear, its silver tarnished by neglect. HE still guides the faithful's hand, if not this weapon."
+	icon_state = "psyspear"
+	force = 20
+	force_wielded = 30
+	minstr = 8
+	wdefense = 5
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/spear/psyspear/old/ComponentInitialize()
+	return
+
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -483,7 +498,7 @@
 	pixel_y = 0
 	pixel_x = 0
 	max_integrity = 100
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	dam_icon = 'icons/effects/item_damage32.dmi'
 	icon_state = "cspear"
 	smeltresult = null
@@ -913,6 +928,15 @@
 			if("altgrip")
 				return list("shrink" = 0.6,"sx" = 4,"sy" = 0,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
+/obj/item/rogueweapon/greatsword/iron
+	name = "iron greatsword"
+	desc = "Wrought in iron. Heftier and less sturdier than its steel equivalent - but it still does the job."
+	icon_state = "igsw"
+	max_blade_int = 200
+	max_integrity = 200
+	wdefense = 4
+	smelt_bar_num = 3
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/greatsword/aalloy
 	name = "decrepit greatsword"
@@ -935,9 +959,9 @@
 	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/rogueweapon/greatsword/zwei
-	name = "zweihander"
+	name = "claymore"
 	desc = "This is much longer than a common greatsword, and well balanced too!"
-	icon_state = "zwei"
+	icon_state = "claymore"
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
 	max_blade_int = 220
@@ -954,6 +978,32 @@
 	wdefense = 4
 	force = 14
 	force_wielded = 35
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge
+	name = "steel flamberge"
+	desc = "A close relative of the Grenzelhoftian \"zweihander\", favored by Otavan nobility. The name comes from its unique, flame-shaped blade; a labor only surmountable by Psydonia's finest weaponsmiths."
+	icon_state = "steelflamberge"
+	max_blade_int = 180
+	max_integrity = 130
+	wdefense = 6
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/malum
+	name = "forgefiend flamberge"
+	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
+	icon_state = "malumflamberge"
+	max_integrity = 200
+	max_blade_int = 200
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
+	name = "blacksteel flamberge"
+	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. \
+	The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \
+	\"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
+	icon_state = "blackflamb"
+	force = 25
+	force_wielded = 40
+	max_blade_int = 200
+	smeltresult = /obj/item/ingot/blacksteel
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "psydonian greatsword"
@@ -1159,7 +1209,7 @@
 	desc = "A staff carrying the crescent moon of Psydon's knowledge, as well as the black and gold insignia of the war scholars."
 	icon_state = "naledistaff"
 	possible_item_intents = list(SPEAR_BASH, /datum/intent/special/magicarc)
-	gripped_intents = list(/datum/intent/spear/bash/ranged, /datum/intent/mace/smash/wood/ranged, /datum/intent/special/magicarc)
+	gripped_intents = list(/datum/intent/spear/bash/ranged, /datum/intent/special/magicarc, /datum/intent/mace/smash/wood/ranged)
 	force = 18
 	force_wielded = 22
 	max_integrity = 250
