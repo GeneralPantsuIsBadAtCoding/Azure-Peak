@@ -349,7 +349,7 @@ SUBSYSTEM_DEF(migrants)
 	if(!player.prefs)
 		return FALSE
 	var/datum/preferences/prefs = player.prefs
-	if(role.allowed_races && !(prefs.pref_species.type in role.allowed_races))
+	if(role.allowed_races && !(prefs.pref_species.id in role.allowed_races))
 		if(!(player.has_triumph_buy(TRIUMPH_BUY_RACE_ALL)))
 			to_chat(player, span_warning("Wrong species. Your prioritized role only allows [role.allowed_races.Join(", ")]."))
 			return FALSE

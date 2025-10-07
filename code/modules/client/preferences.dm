@@ -924,7 +924,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				if(charflaw.type in job.vice_restrictions)
 					HTML += "<font color='#a56161'>[used_name] (Disallowed by Vice: [charflaw.name])</font></td> <td> </td></tr>"
 					continue
-			if(length(job.allowed_races) && !(user.client.prefs.pref_species.type in job.allowed_races))
+			if(length(job.allowed_races) && !(user.client.prefs.pref_species.id in job.allowed_races))
 				if(!(user.client.has_triumph_buy(TRIUMPH_BUY_RACE_ALL)))
 					HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 					continue
@@ -2491,7 +2491,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		real_name = pref_species.random_name(gender)
 
 	if(roundstart_checks)
-		if(CONFIG_GET(flag/humans_need_surnames) && ((pref_species.id == "human") || (pref_species.id == "humen")))
+		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == SPEC_ID_HUMAN))
 			var/firstspace = findtext(real_name, " ")
 			var/name_length = length(real_name)
 			if(!firstspace)	//we need a surname
