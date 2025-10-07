@@ -776,6 +776,33 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/sword/long/kriegmesser/psy
+	name = "psydonian broadsword"
+	desc = ""Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost."\
+		\"Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - 'HOPE RIDES ALONE..'\""
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "silverbroadsword"
+	force = 20
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	alt_intents = null // Can't mordhau this
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/long/kriegmesser/psy/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 /obj/item/rogueweapon/sword/short
 	name = "steel shortsword"
 	desc = "The arming sword's shorter and much older brother. Despite being centuries older than the swords of todae, it remains in use as a cheap sidearm for shieldbearers and archers."
