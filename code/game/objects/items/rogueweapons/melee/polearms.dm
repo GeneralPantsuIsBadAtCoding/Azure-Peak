@@ -913,7 +913,6 @@
 	max_blade_int = 300
 	wdefense = 5
 	smelt_bar_num = 3
-	intdamage_factor = 0.7
 
 /obj/item/rogueweapon/greatsword/getonmobprop(tag)
 	. = ..()
