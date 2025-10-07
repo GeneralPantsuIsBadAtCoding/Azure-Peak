@@ -67,7 +67,7 @@
 #define TRAIT_INTELLECTUAL "Intellectual"
 #define TRAIT_GRAVEROBBER "Experienced Grave Robber"
 #define TRAIT_PURITAN "Otavan Emissary"
-#define TRAIT_PURITAN_ADVENTURER "Skilled Interrogator"
+#define TRAIT_PURITAN_ADVENTURER "Interrogator"
 #define TRAIT_MIRROR_MAGIC "Mirror Magic"
 #define TRAIT_WITCH "They fear me, but I am useful to them."
 #define TRAIT_INFINITE_ENERGY "Boundless Energy" //infinite fatigue (blue bar) but not infinite stamina
