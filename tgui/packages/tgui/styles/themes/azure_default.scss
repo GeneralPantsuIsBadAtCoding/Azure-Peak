@@ -68,8 +68,12 @@
   .input-button {
     color: #ae3636;
     font-weight: 600;
-    :hover {
-      background: rgba(123, 83, 83, 0.2);
+    &__submit:hover {
+      background: rgba(74, 140, 74, 0.3) ;
+      transition: all 0.5s;
+    }
+    &__cancel:hover {
+      background: rgba(140, 74, 74, 0.3);
       transition: all 0.5s;
     }
   }

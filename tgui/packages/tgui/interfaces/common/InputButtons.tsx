@@ -38,7 +38,7 @@ export const InputButtons = (props: InputButtonsProps) => {
   const submitButton = (
     <Button
       color="transparent"
-      className="input-button"
+      className="input-button__submit"
       disabled={disabled}
       fluid={!!large_buttons}
       height={!!large_buttons && 2}
@@ -54,7 +54,7 @@ export const InputButtons = (props: InputButtonsProps) => {
   const cancelButton = (
     <Button
       color="transparent"
-      className="input-button"
+      className="input-button__cancel"
       fluid={!!large_buttons}
       height={!!large_buttons && 2}
       onClick={on_cancel_actual}
@@ -73,10 +73,10 @@ export const InputButtons = (props: InputButtonsProps) => {
       fill
       justify="space-around"
     >
-      {large_buttons ? (
-        <Stack.Item grow>{cancelButton}</Stack.Item>
+     {large_buttons ? (
+        <Stack.Item grow>{submitButton}</Stack.Item>
       ) : (
-        <Stack.Item>{cancelButton}</Stack.Item>
+        <Stack.Item>{submitButton}</Stack.Item>
       )}
       {!large_buttons && message && (
         <Stack.Item>
@@ -85,10 +85,10 @@ export const InputButtons = (props: InputButtonsProps) => {
           </Box>
         </Stack.Item>
       )}
-      {large_buttons ? (
-        <Stack.Item grow>{submitButton}</Stack.Item>
+            {large_buttons ? (
+        <Stack.Item grow>{cancelButton}</Stack.Item>
       ) : (
-        <Stack.Item>{submitButton}</Stack.Item>
+        <Stack.Item>{cancelButton}</Stack.Item>
       )}
     </Stack>
   );
