@@ -124,7 +124,7 @@
 	)
 
 /obj/item/rogueweapon/whip/psywhip_lesser
-	name = "psydonian whip"
+	name = "psydonic whip"
 	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
 	icon_state = "psywhip_lesser"
 	force = 18
