@@ -57,12 +57,13 @@
 	color = "#bb9696"
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	name = "psydonian boots"
+	name = "psydonic leather boots"
 	desc = "Blacksteel-heeled boots. The leather refuses to be worn down, no matter how far you march through these lands."
 	icon_state = "psydonboots"
 	item_state = "psydonboots"
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_BOOTS
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)	//On par with Heavy Leather Boots.
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
