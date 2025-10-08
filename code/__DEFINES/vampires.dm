@@ -27,6 +27,8 @@
 
 /// Vitae drained from mobs **with client** is multiplied by this define
 #define CLIENT_VITAE_MULTIPLIER 3
+/// Given to the vampire in case their victim refuses to be converted. Given only once per unique vamp victim.
+#define VITAE_PER_UNIQUE_CONVERSION_REJECT 500
 
 GLOBAL_LIST_INIT(vamp_generation_to_rpoints, list(
 	GENERATION_METHUSELAH = 50,
