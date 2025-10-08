@@ -71,11 +71,11 @@
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Shortsword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy/preblessed(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 		if("Handmace")
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy/preblessed, SLOT_BELT_L, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 		if("Dagger")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
