@@ -420,6 +420,17 @@
 	last_used = 0
 	is_silver = TRUE
 
+/obj/item/rogueweapon/huntingknife/idagger/silver/stake/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 0,\
+		added_def = 0,\
+	)
+
 /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
