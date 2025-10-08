@@ -344,8 +344,8 @@
 	tutorial = "You are a specialist who hunts terrible monsters; nitebeasts, vampyres, deadites and more. Your humenity might be limiting - but with silver weapons and steel maille, you may yet slight the odds in your favor."
 	outfit = /datum/outfit/job/roguetown/adventurer/mhunter
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR, TRAIT_PURITAN_ADVENTURER, TRAIT_ALCHEMY_EXPERT)
-	maximum_possible_slots = 4 //While not necessarily Wretch-tier, they can be conditionally deadlier than most Adventurers. Less silver floating around is good, too. Adjust slots as needed, or remove if deemed unnecessary in practice.
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_PURITAN_ADVENTURER, TRAIT_ALCHEMY_EXPERT)
+	maximum_possible_slots = 4 //Not a Wretch or Towner, but still conditionally lethal for an Adventurer - especially with a steel chestpiece and round-start access to a silver weapon. Adjust the amount of available slots as needed.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_PER = 2,
@@ -366,12 +366,12 @@
 /datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
-	to_chat(H, span_warning("You specialize in hunting terrible monsters; nitebeasts, vampyres, deadites and more. Against your curseless limitations, you field silver weapons and steel maille to even the odds."))
+	to_chat(H, span_warning("You are a specialist who hunts terrible monsters; nitebeasts, vampyres, deadites and more. Your humenity might be limiting - but with silver weapons and steel maille, you may yet slight the odds in your favor."))
 	H.verbs |= /mob/living/carbon/human/proc/faith_test //Allows the Exorcist to interrogate others for their faith. Trait's agnostically worded, to allow more flexiable usage by Pantheoneers and Ascendants in this role.
 	H.verbs |= /mob/living/carbon/human/proc/torture_victim //Not as scary as it sounds. Mostly. Okay, just a little bit.
 	if(H.mind)
 		var/silver = list("Silver Dagger","Silver Shortsword","Silver Arming Sword","Silver Rapier","Silver Longsword","Silver Mace","Silver Warhammer","Silver Morningstar","Silver Whip","Silver War Axe","Silver Poleaxe","Silver Spear","Silver Quarterstaff","Silver Shovel")
-		var/silver_choice = input(H, "Choose your WEAPON.", "PREPARE YOUR ARMS.") as anything in silver
+		var/silver_choice = input(H, "Choose your WEAPON.", "PREPARE YOUR ARMS.") as anything in silver //Trim down to five or six choices, later? See what's the most popular, first. Gives people a chance to experiment with all of the new silver weapons.
 		switch(silver_choice)
 			if("Silver Dagger")
 				r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
@@ -390,6 +390,11 @@
 			if("Silver Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/long/silver
+				head = /obj/item/clothing/head/roguetown/puritan
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Broadsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser/silver
 				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Arming Sword")
@@ -438,7 +443,7 @@
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
 				head = /obj/item/clothing/head/roguetown/necrahood
 		var/steel = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver-Tipped Stake")
-		var/steel_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in steel
+		var/steel_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in steel //Stake is preblessed with steel dagger-tier damage, but no defense and incredibly low durability. 
 		switch(steel_choice)
 			if("Dagger")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
@@ -448,12 +453,14 @@
 				beltl = /obj/item/rogueweapon/huntingknife/combat
 			if("Blessed Silver-Tipped Stake")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
-
-		var/discipline = list("Traditionalist - Silverblessed + Elixer", "Orthodoxist - Heavy Armor Training", "Agnostic")
-		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
+		var/discipline = list("Traditionalist - Alchemical Preperations + Hauberk", "Reformist - Skilled Footwork + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
+		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline //Paladin-tier, with the potential to step into Knight-Errant tier. For Lyndvhar, downgrade into iron?
 		switch(discipline_choice)
-			if("Traditionalist - Silverblessed + Elixer")
-				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+			if("Traditionalist - Alchemical Preperations + Hauberk")
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC) 
+				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 				l_hand = pick(
 					/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
 					/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
@@ -463,17 +470,19 @@
 					/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
 					/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 					)
-			if("Orthodoxist - Silverblessed + Elixer")
-				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
-			if("Seax")
-				l_hand = /obj/item/rogueweapon/huntingknife/combat
-			if("Blessed Silver-Tipped Stake")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
+			if("Reformist - Skilled Footwork + Haubergeon")
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
+				l_hand = /obj/item/rogueweapon/huntingknife/throwingknife/silver
+			if("Orthodoxist - Plate Training + Cuirass")
+				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted //To note, this is the steel cuirass with tassets. Around the same durability as a haubergeon, but with inverted limb coverage and a little extra protection.
+				shirt = /obj/item/clothing/suit/roguetown/armor/undershirt/puritan
+				l_hand = /obj/item/clothing/head/roguetown/helmet/heavy/knight
 
 	backl = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
-	armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	belt = /obj/item/storage/belt/rogue/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	pants = /obj/item/clothing/under/roguetown/tights/puritan
