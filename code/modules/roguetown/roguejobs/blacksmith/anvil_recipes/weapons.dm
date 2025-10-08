@@ -32,7 +32,7 @@
 	craftdiff = SKILL_LEVEL_EXPERT
 
 /datum/anvil_recipe/weapons/silver
-	abstract_type = /datum/anvil_recipe/weapons/silver
+	abstract_type = /datum/anvil_recipe/weapons/
 	craftdiff = SKILL_LEVEL_EXPERT
 
 /datum/anvil_recipe/weapons/psy
