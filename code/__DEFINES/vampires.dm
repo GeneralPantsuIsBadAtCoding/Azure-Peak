@@ -25,6 +25,9 @@
 /// Mandatory mofe_after() before a vampire can batform. (SHAPESHIFT_MOVEAFTER - vampire.generation) SECONDS 
 #define SHAPESHIFT_MOVEAFTER 5
 
+/// Vitae drained from mobs **with client** is multiplied by this define
+#define CLIENT_VITAE_MULTIPLIER 3
+
 GLOBAL_LIST_INIT(vamp_generation_to_rpoints, list(
 	GENERATION_METHUSELAH = 50,
 	GENERATION_ANCILLAE = 15,

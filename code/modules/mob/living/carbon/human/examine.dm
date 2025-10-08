@@ -266,6 +266,7 @@
 					if(shit)
 						. += shit
 		if(user.mind?.has_antag_datum(/datum/antagonist/vampire) || user.mind?.has_antag_datum(/datum/antagonist/vampire))
+			var/factual_vitae = mind ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool
 			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [bloodpool]; Blood: [blood_volume]</a>")
 
 	var/list/obscured = check_obscured_slots()

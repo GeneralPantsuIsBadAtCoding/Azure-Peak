@@ -79,6 +79,8 @@
 		if(victim.bloodpool < used_vitae)  // We assume they're left with 250 vitae or less, so we take it all
 			used_vitae = victim.bloodpool
 			to_chat(src, span_warning("...But alas, only leftovers..."))
+		if(victim.mind && !victim.clan)
+			used_vitae = used_vitae * CLIENT_VITAE_MULTIPLIER
 		adjust_bloodpool(used_vitae)
 		adjust_hydration(used_vitae * 0.1)
 		victim.adjust_bloodpool(-used_vitae)
