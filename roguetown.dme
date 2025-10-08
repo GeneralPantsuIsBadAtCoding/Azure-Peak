@@ -2017,6 +2017,7 @@
 #include "code\modules\mob\living\combat\accuracy_checks.dm"
 #include "code\modules\mob\living\combat\checkdefense.dm"
 #include "code\modules\mob\living\combat\clashpurgepeelstuffs.dm"
+#include "code\modules\mob\living\combat\disarm.dm"
 #include "code\modules\mob\living\combat\dodge.dm"
 #include "code\modules\mob\living\combat\parry.dm"
 #include "code\modules\mob\living\combat\shared.dm"
