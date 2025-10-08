@@ -345,12 +345,12 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/mhunter
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_PURITAN_ADVENTURER, TRAIT_ALCHEMY_EXPERT)
-	maximum_possible_slots = 4 //Not a Wretch or Towner, but still conditionally lethal for an Adventurer - especially with a steel chestpiece and round-start access to a silver weapon. Adjust the amount of available slots as needed.
+	maximum_possible_slots = 5 //Not a Wretch or Towner, but still conditionally lethal for an Adventurer - especially with steel coverage and round-start access to silver weapons. Adjust the amount of available slots as needed.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_PER = 2,
 		STATKEY_WIL = 1,
-	)
+	) //Follows the Adventurer's seven-point statblock rule. Adds an eighth point to an unoccupied statkey, when a discipline is selected.
 	subclass_skills = list(
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
@@ -442,23 +442,30 @@
 				r_hand = /obj/item/rogueweapon/shovel/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
 				head = /obj/item/clothing/head/roguetown/necrahood
-		var/steel = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver-Tipped Stake")
-		var/steel_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in steel //Stake is preblessed with steel dagger-tier damage, but no defense and incredibly low durability. 
-		switch(steel_choice)
+		var/sidearm = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver Stake", "Belt Of Silver Tossblades")
+		var/sidearm_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in sidearm
+		switch(sidearm_choice)
 			if("Dagger")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+				belt = /obj/item/storage/belt/rogue/leather/black
 			if("Parrying Dagger")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				belt = /obj/item/storage/belt/rogue/leather/black
 			if("Seax")
 				beltl = /obj/item/rogueweapon/huntingknife/combat
-			if("Blessed Silver-Tipped Stake")
-				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
+				belt = /obj/item/storage/belt/rogue/leather/black
+			if("Blessed Silver Stake")
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed
+				belt = /obj/item/storage/belt/rogue/leather/black
+			if("Belt Of Silver Tossblades")
+				belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/silver
 		var/discipline = list("Traditionalist - Alchemical Preperations + Hauberk", "Reformist - Skilled Footwork + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
-		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline //Paladin-tier, with the potential to step into Knight-Errant tier. For Lyndvhar, downgrade into iron?
+		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
 		switch(discipline_choice)
 			if("Traditionalist - Alchemical Preperations + Hauberk")
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC) 
+				H.change_stat(STATKEY_INT, 1)
 				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 				l_hand = pick(
@@ -472,18 +479,19 @@
 					)
 			if("Reformist - Skilled Footwork + Haubergeon")
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.change_stat(STATKEY_SPD, 1)
 				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-				l_hand = /obj/item/rogueweapon/huntingknife/throwingknife/silver
 			if("Orthodoxist - Plate Training + Cuirass")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted //To note, this is the steel cuirass with tassets. Around the same durability as a haubergeon, but with inverted limb coverage and a little extra protection.
+				H.change_stat(STATKEY_CON, 1)
+				H.change_stat(STATKEY_SPD, -1)
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				l_hand = /obj/item/clothing/head/roguetown/helmet/heavy/knight
 
 	backl = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
-	belt = /obj/item/storage/belt/rogue/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	pants = /obj/item/clothing/under/roguetown/tights/puritan
 	cloak = /obj/item/clothing/cloak/cape/puritan
