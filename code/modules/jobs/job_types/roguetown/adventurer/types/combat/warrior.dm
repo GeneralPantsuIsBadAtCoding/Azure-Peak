@@ -441,21 +441,30 @@
 		var/steel_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in steel
 		switch(steel_choice)
 			if("Dagger")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
 			if("Parrying Dagger")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
 			if("Seax")
-				l_hand = /obj/item/rogueweapon/huntingknife/combat
+				beltl = /obj/item/rogueweapon/huntingknife/combat
 			if("Blessed Silver-Tipped Stake")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
+				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
 
-		var/discipline = list("Anointed - Silverblessed", "Orthodoxic - Heavy Armor Training", "Agnostic")
+		var/discipline = list("Traditionalist - Silverblessed + Elixer", "Orthodoxist - Heavy Armor Training", "Agnostic")
 		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
 		switch(discipline_choice)
-			if("None")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
-			if("Parrying Dagger")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+			if("Traditionalist - Silverblessed + Elixer")
+				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+				l_hand = pick(
+					/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/spdpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/perpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
+					)
+			if("Orthodoxist - Silverblessed + Elixer")
+				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 			if("Seax")
 				l_hand = /obj/item/rogueweapon/huntingknife/combat
 			if("Blessed Silver-Tipped Stake")
@@ -478,13 +487,4 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
-		)
-	beltl = pick(
-		/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/spdpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/perpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 		)
