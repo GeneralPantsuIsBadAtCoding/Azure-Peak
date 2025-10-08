@@ -2567,6 +2567,7 @@
 #include "code\modules\vampire_neu\covens\coven_powers\quietus.dm"
 #include "code\modules\vampire_neu\covens\coven_powers\siren.dm"
 #include "code\modules\vampire_neu\objects\bloodpool.dm"
+#include "code\modules\vampire_neu\objects\ichor_fang_stone.dm"
 #include "code\modules\vampire_neu\objects\portal.dm"
 #include "code\modules\vampire_neu\objects\scrying.dm"
 #include "code\modules\vampire_neu\objects\throne.dm"

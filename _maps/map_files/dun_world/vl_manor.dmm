@@ -288,6 +288,11 @@
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/indoors/vampire_manor)
+"eB" = (
+/obj/machinery/light/rogue/wallfire/candle/r,
+/obj/structure/ichor_stone,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/vampire_manor)
 "eG" = (
 /obj/structure/chair/bench/couchamagenta,
 /turf/open/floor/rogue/tile,
@@ -14243,7 +14248,7 @@ LI
 LI
 sX
 sX
-DV
+eB
 nZ
 EN
 sX
