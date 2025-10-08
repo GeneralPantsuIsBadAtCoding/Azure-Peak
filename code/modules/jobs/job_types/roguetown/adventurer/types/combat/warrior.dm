@@ -478,7 +478,7 @@
 			if("Orthodoxist - Plate Training + Cuirass")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted //To note, this is the steel cuirass with tassets. Around the same durability as a haubergeon, but with inverted limb coverage and a little extra protection.
-				shirt = /obj/item/clothing/suit/roguetown/armor/undershirt/puritan
+				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				l_hand = /obj/item/clothing/head/roguetown/helmet/heavy/knight
 
 	backl = /obj/item/storage/backpack/rogue/satchel
