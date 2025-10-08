@@ -104,7 +104,7 @@ And it also helps for the character set panel
 		if(eyes)
 			eyes.Remove(H, TRUE)
 			QDEL_NULL(eyes)
-		eyes = new /obj/item/organ/eyes/night_vision
+		eyes = new /obj/item/organ/eyes/night_vision/vampire
 		eyes.Insert(H)
 		H.set_eye_color(
 			eyecache["eye_color"], 

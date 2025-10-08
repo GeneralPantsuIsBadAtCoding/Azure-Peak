@@ -52,7 +52,7 @@
 	. = ..()
 
 	if(is_vampire)
-		var/obj/item/organ/eyes/night_vision/NV = new()
+		var/obj/item/organ/eyes/night_vision/vampire/NV = new()
 		NV.Insert(H, TRUE, FALSE)
 		H.ventcrawler = VENTCRAWLER_ALWAYS //I don't think this does anything because we have no vents
 
