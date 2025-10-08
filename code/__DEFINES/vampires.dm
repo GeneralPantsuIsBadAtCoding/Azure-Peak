@@ -22,6 +22,7 @@
 #define COVENS_PER_CLAN 3
 #define COVENS_PER_WRETCH_CLAN 2
 
+/// Mandatory mofe_after() before a vampire can batform. (SHAPESHIFT_MOVEAFTER - vampire.generation) SECONDS 
 #define SHAPESHIFT_MOVEAFTER 5
 
 GLOBAL_LIST_INIT(vamp_generation_to_rpoints, list(
