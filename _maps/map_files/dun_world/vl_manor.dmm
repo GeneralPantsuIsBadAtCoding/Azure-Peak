@@ -2663,14 +2663,6 @@
 /obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/vampire_manor)
-"QP" = (
-/obj/structure/table/vtable,
-/obj/structure/vampire/necromanticbook{
-	pixel_x = -16;
-	pixel_y = 3
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors/vampire_manor)
 "QS" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/blocks,
@@ -13961,7 +13953,7 @@ LI
 LI
 sX
 sX
-QP
+NB
 lw
 UY
 UY

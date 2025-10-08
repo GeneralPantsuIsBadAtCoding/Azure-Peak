@@ -24,20 +24,16 @@
 	for(var/datum/mind/MF in get_minds("Vampire Spawn"))
 		owner.i_know_person(MF)
 		owner.person_knows_me(MF)
-	for(var/datum/mind/MF in get_minds("Death Knight"))
-		owner.i_know_person(MF)
-		owner.person_knows_me(MF)
 
 	var/mob/living/carbon/human/H = owner.current
 	H.equipOutfit(/datum/outfit/job/vamplord)
 	H.set_patron(/datum/patron/inhumen/zizo)
-	H.forceMove(pick(GLOB.vlord_starts))
 	H.verbs |= /mob/living/carbon/human/proc/demand_submission
 	H.maxbloodpool += 3000
 	H.adjust_bloodpool(3000)
-
 	for(var/S in MOBSTATS)
 		H.change_stat(S, 2)
+	H.forceMove(pick(GLOB.vlord_starts))
 
 /datum/antagonist/vampire/lord/greet()
 	to_chat(owner.current, span_userdanger("I am ancient. I am the Land. And I am now awoken to trespassers upon my domain."))

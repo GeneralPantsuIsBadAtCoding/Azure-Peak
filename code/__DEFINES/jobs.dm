@@ -198,6 +198,9 @@
 #define DEATHKNIGHT (1<<1)
 #define SKELETON	(1<<2)
 #define GOBLIN		(1<<3)
+#define VAMPIRE_SERVANT (1<<4)
+#define VAMPIRE_GUARD (1<<5)
+#define VAMPIRE_SPAWN (1<<6)
 
 #define INQUISITION (1<<10)
 

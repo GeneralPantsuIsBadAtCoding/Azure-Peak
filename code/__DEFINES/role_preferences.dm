@@ -52,7 +52,7 @@
 #define ROLE_NECRO_SKELETON		"Necromancer Skeleton"
 #define ROLE_LICH_SKELETON		"Lich Skeleton"
 #define ROLE_CHOSEN				"Chosen"
-#define ROLE_DEATH_KNIGHT       "Death Knight"
+#define ROLE_VAMPIRE_SUMMON		"Vampire Summon"
 
 GLOBAL_LIST_INIT(special_roles_rogue, list(
 	ROLE_MANIAC = /datum/antagonist/maniac,

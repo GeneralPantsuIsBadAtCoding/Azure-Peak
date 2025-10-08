@@ -2,20 +2,31 @@
 #define VAMPCOST_TWO 10000
 #define VAMPCOST_THREE 12000
 #define VAMPCOST_FOUR 14000
+#define ARMOR_COST 5000
+#define SUN_STEAL_COST 10000
+#define SERVANT_COST 800
+#define SERVANT_T2_COST 2500
+#define SERVANT_T3_COST 4000
+
+#define INITIATE_LORDE 1
+#define INITIATE_ANYONE 2
 
 /obj/structure/vampire/bloodpool
 	name = "Crimson Crucible"
 	icon_state = "vat"
-	var/maximum = 8000
-	var/current = 8000
+	var/current = 0
 	var/datum/clan/owner_clan
 
 	var/list/active_projects = list()
 	var/list/available_project_types = list(
 		/datum/vampire_project/power_growth,
-		/datum/vampire_project/amulet_crafting,
-		/datum/vampire_project/armor_crafting
+		/datum/vampire_project/armor_crafting,
+		/datum/vampire_project/servant/servant_t1,
+		/datum/vampire_project/servant/servant_t2,
+		/datum/vampire_project/servant/servant_t3,
+		/datum/vampire_project/sunsteal,
 	)
+	var/sunstolen = FALSE
 
 /obj/structure/vampire/bloodpool/Initialize()
 	. = ..()
@@ -34,41 +45,52 @@
 			to_chat(user, span_notice("- [project.display_name]: [project.paid_amount]/[project.total_cost] ([progress_percent]%)"))
 
 /obj/structure/vampire/bloodpool/attack_hand(mob/living/user)
-	var/datum/antagonist/vampire/lord/lord = user.mind.has_antag_datum(/datum/antagonist/vampire/lord)
-	if(!lord)
+	var/datum/antagonist/vampire/vampire = user.mind.has_antag_datum(/datum/antagonist/vampire)
+	if(!vampire)
 		return
 
-	var/list/available_options = list()
+	var/lord = FALSE
+	if(user.clan.clan_leader == user)
+		lord = TRUE
+
+	var/list/available_options_lord = list()
+	var/list/available_options_contributor = list()
 
 	// Add available project types that aren't already active
 	for(var/project_type in available_project_types)
 		var/datum/vampire_project/temp_project = new project_type()
-		if(temp_project.can_start(user, src) && !(project_type in active_projects))
-			available_options[temp_project.display_name] = project_type
+		if(temp_project.can_start(user, src, TRUE) && !(project_type in active_projects))
+			available_options_lord[temp_project.display_name] = project_type
 		qdel(temp_project)
 
 	// Add option to contribute to existing projects
 	if(active_projects.len)
-		available_options["Contribute to Project"] = "contribute"
-
+		available_options_lord["Contribute to Project"] = "contribute"
+		available_options_contributor["Contribute to Project"] = "contribute"
 	// Add option to view/cancel projects
 	if(active_projects.len)
-		available_options["Manage Projects"] = "manage"
+		available_options_lord["Manage Projects"] = "manage"
 
-	var/choice = input(user, "What to do?", "VAMPYRE") as null|anything in available_options
+	var/choice = input(user, "What to do?", "VAMPYRE") as null|anything in available_options_lord
 	if(!choice)
 		return
 
-	var/action = available_options[choice]
+	var/action_lord = available_options_lord[choice]
+	var/action_contributor = available_options_contributor[choice]
 
-	switch(action)
-		if("contribute")
-			handle_project_contribution(user)
-		if("manage")
-			handle_project_management(user)
-		else
-			// It's a project type
-			start_new_project(action, user)
+	if(lord)
+		switch(action_lord)
+			if("contribute")
+				handle_project_contribution(user)
+			if("manage")
+				handle_project_management(user)
+			else
+				// It's a project type
+				start_new_project(action_lord, user)
+	else
+		switch(action_contributor)
+			if("contribute")
+				handle_project_contribution(user)
 
 /obj/structure/vampire/bloodpool/proc/start_new_project(project_type, mob/living/user)
 	var/datum/vampire_project/project = new project_type()
@@ -84,6 +106,7 @@
 
 	project.bloodpool = src
 	project.initiator = user
+	project.initiator_clan = user.clan
 	project.on_start(user)
 
 	active_projects[project_type] = project
@@ -159,19 +182,6 @@
 	active_projects.Remove(project_type)
 	qdel(project)
 
-/obj/structure/vampire/bloodpool/proc/update_pool(change)
-	if(!change)
-		return
-	if(owner_clan)
-		owner_clan.adjust_bloodpool_size(change)
-	current = clamp(current + change, 0, maximum)
-
-/obj/structure/vampire/bloodpool/proc/check_withdraw(change)
-	if(change < 0)
-		if(abs(change) > current)
-			return FALSE
-		return TRUE
-
 /datum/vampire_project
 	var/display_name = "Unknown Project"
 	var/description = "A mysterious undertaking."
@@ -180,10 +190,25 @@
 	var/list/contributors = list()
 	var/obj/structure/vampire/bloodpool/bloodpool
 	var/mob/living/initiator
+	var/datum/clan/initiator_clan
 	var/start_failure_message = "This project cannot be started."
 	var/completion_sound = 'sound/misc/batsound.ogg'
+	var/can_be_initiated_by = INITIATE_ANYONE
 
-/datum/vampire_project/proc/can_start(mob/living/user, obj/structure/vampire/bloodpool/pool)
+/datum/vampire_project/proc/can_start(mob/living/carbon/human/user, obj/structure/vampire/bloodpool/pool, silent = FALSE)
+	if(!istype(user) || !istype(pool))
+		return FALSE
+
+	if(can_be_initiated_by == INITIATE_ANYONE)
+		return TRUE
+	else if(can_be_initiated_by == INITIATE_LORDE)
+		if(user.clan.clan_leader == user)
+			return TRUE
+		else
+			if(!silent)
+				to_chat(user, span_warning("This project can only be initiate by your Lorde."))
+			return FALSE
+
 	return TRUE
 
 /datum/vampire_project/proc/confirm_start(mob/living/user)
@@ -193,7 +218,12 @@
 	return
 
 /datum/vampire_project/proc/handle_contribution(mob/living/user)
+	var/datum/antagonist/vampire/lord/lord = user.mind?.has_antag_datum(/datum/antagonist/vampire/lord)
 	var/max_contribution = min(user.bloodpool, total_cost - paid_amount)
+	if(!lord)
+		if(display_name != "Wicked Plate" || display_name != "World Anchor")
+			max_contribution = min(user.bloodpool, (total_cost - paid_amount) - 100)
+
 	var/contribution = input(user, "How much vitae to contribute? (Max: [max_contribution])", "CONTRIBUTION") as num|null
 
 	if(!contribution || contribution <= 0)
@@ -326,24 +356,6 @@
 
 			bloodpool.available_project_types -= /datum/vampire_project/power_growth_4
 			break
-/datum/vampire_project/amulet_crafting
-	display_name = "World Anchor"
-	description = "Forge a mystical amulet to bind souls across realms."
-	total_cost = 500
-	completion_sound = 'sound/misc/vcraft.ogg'
-	var/amulet_name
-
-/datum/vampire_project/amulet_crafting/confirm_start(mob/living/user)
-	if(..())
-		amulet_name = input(user, "Select a name for the amulet.", "VAMPYRE") as text|null
-		return TRUE
-	return FALSE
-
-/datum/vampire_project/amulet_crafting/on_complete(atom/movable/creation_point)
-	var/obj/item/clothing/neck/portalamulet/P = new(bloodpool.loc)
-	if(amulet_name)
-		P.name = amulet_name
-	creation_point.visible_message(span_notice("An amulet materializes from the crimson crucible."))
 
 /datum/vampire_project/armor_crafting
 	display_name = "Wicked Plate"
@@ -360,7 +372,92 @@
 	new /obj/item/clothing/gloves/roguetown/chain/vampire (bloodpool.loc)
 	creation_point.visible_message(span_notice("A complete set of armor materializes from the crimson crucible."))
 
+/datum/vampire_project/sunsteal
+	display_name = "Steal the Sun"
+	description = "The scorching gaze of the Sun-Tyrant shall hamper our plans no more. This project can only be initiated by your lorde."
+	total_cost = SUN_STEAL_COST
+	completion_sound = 'sound/misc/vcraft.ogg'
+	can_be_initiated_by = INITIATE_LORDE
+
+/datum/vampire_project/sunsteal/on_complete(atom/movable/creation_point)
+	var/obj/structure/vampire/bloodpool/bloodpool = creation_point
+	if(!istype(bloodpool))
+		return
+
+	SSticker.sunsteal(initiator_clan?.clan_leader)
+
+/datum/vampire_project/servant/proc/summon(type, atom/feedback_atom)
+	feedback_atom.visible_message("The crucible stirs, summoning a servant from the realms beyond...")
+	var/list/candidates = pollGhostCandidates("Do you want to play as a Vampire's [type]?", ROLE_VAMPIRE_SUMMON, null, null, 10 SECONDS, POLL_IGNORE_VL_SERVANT)
+	if(!LAZYLEN(candidates))
+		feedback_atom.visible_message("But alas, the depths are hollow...")
+		return FALSE
+
+	var/mob/C = pick(candidates)
+	if(!C || !istype(C, /mob/dead))
+		feedback_atom.visible_message("But alas, the depths are hollow...")
+		return FALSE
+
+	. = TRUE
+
+	if(istype(C, /mob/dead/new_player))
+		var/mob/dead/new_player/N = C
+		N.close_spawn_windows()
+
+	var/mob/living/carbon/human/species/human/northern/target = new /mob/living/carbon/human/species/human/northern(get_turf(feedback_atom))
+	target.key = C.key
+	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, load_char_or_namechoice)), 3 SECONDS)
+	switch(type)
+		if("Vampire Servant")
+			SSjob.EquipRank(target, "Vampire Servant", TRUE)
+			var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(incoming_clan = initiator_clan, forced_clan = TRUE, generation = GENERATION_THINBLOOD)
+			target.mind.add_antag_datum(new_antag)
+		if("Vampire Guard")
+			SSjob.EquipRank(target, "Vampire Guard", TRUE)
+			var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(incoming_clan = initiator_clan, forced_clan = TRUE, generation = GENERATION_NEONATE)
+			target.mind.add_antag_datum(new_antag)
+		if("Vampire Spawn")
+			SSjob.EquipRank(target, "Vampire Spawn", TRUE)
+			var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(incoming_clan = initiator_clan, forced_clan = TRUE, generation = GENERATION_ANCILLAE)
+			target.mind.add_antag_datum(new_antag)
+
+/datum/vampire_project/servant/servant_t1
+	display_name = "Summon Servant"
+	description = "A loyal servant to do your bidding."
+	total_cost = SERVANT_COST
+	completion_sound = 'sound/misc/vcraft.ogg'
+
+/datum/vampire_project/servant/servant_t1/on_complete(obj/structure/vampire/bloodpool/creation_point)
+	if(!summon("Vampire Servant", creation_point))
+		on_cancel()
+
+/datum/vampire_project/servant/servant_t2
+	display_name = "Summon Guard"
+	description = "A loyal servant to do your bidding."
+	total_cost = SERVANT_T2_COST
+	completion_sound = 'sound/misc/vcraft.ogg'
+
+/datum/vampire_project/servant/servant_t2/on_complete(obj/structure/vampire/bloodpool/creation_point)
+	if(!summon("Vampire Guard", creation_point))
+		on_cancel()
+
+/datum/vampire_project/servant/servant_t3
+	display_name = "Summon Knight Spawn"
+	description = "A loyal servant to do your bidding."
+	total_cost = SERVANT_T3_COST
+	completion_sound = 'sound/misc/vcraft.ogg'
+
+/datum/vampire_project/servant/servant_t3/on_complete(obj/structure/vampire/bloodpool/creation_point)
+	if(!summon("Vampire Spawn", creation_point))
+		on_cancel()
+
 #undef VAMPCOST_ONE
 #undef VAMPCOST_TWO
 #undef VAMPCOST_THREE
 #undef VAMPCOST_FOUR
+#undef ARMOR_COST
+#undef SUN_STEAL_COST
+#undef SERVANT_COST
+#undef SERVANT_T2_COST
+#undef SERVANT_T3_COST

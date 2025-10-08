@@ -36,8 +36,9 @@
 
 			apply_sunlight_damage(H)
 		else
+			if(in_sunlight)
+				to_chat(H, span_notice("The scorching gaze of the Sun-Tyrant burns me no more."))
 			in_sunlight = FALSE
-			to_chat(H, span_notice("The scorching gaze of the Sun-Tyrant no longer burns me."))
 	else
 		in_sunlight = FALSE
 

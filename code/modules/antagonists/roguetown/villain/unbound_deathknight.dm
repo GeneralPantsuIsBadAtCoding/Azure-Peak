@@ -236,3 +236,14 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/suit/roguetown/armor/plate/blkknight/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/shoes/roguetown/boots/armor/blkknight/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/gloves/roguetown/plate/blk/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/under/roguetown/platelegs/blk/death
+	color = CLOTHING_BLACK
