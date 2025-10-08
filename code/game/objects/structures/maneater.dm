@@ -132,8 +132,6 @@
 		return
 	visible_message(span_danger("[src] spits out [C]!"))
 	unbuckle_mob(C)
-	var/turf/target = get_ranged_target_turf(src, pick(GLOB.alldirs), 3)
-	C.throw_at(target, 3, 2)
 	playsound(src,'sound/misc/maneaterspit.ogg', 100)
 	return TRUE
 

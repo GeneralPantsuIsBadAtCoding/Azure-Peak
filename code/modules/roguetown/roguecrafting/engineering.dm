@@ -12,6 +12,18 @@
 	skillcraft = /datum/skill/craft/engineering
 	craftdiff = 4
 
+/datum/crafting_recipe/roguetown/engineering/potionseller
+	name = "potion seller peddler"
+	result = /obj/structure/roguemachine/potionseller/crafted
+	reqs = list(/obj/item/grown/log/tree/small = 1,
+				/obj/item/ingot/iron = 1,
+				/obj/item/natural/glass = 1,
+				/obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/engineering/lever
 	name = "lever"
 	result = /obj/structure/lever

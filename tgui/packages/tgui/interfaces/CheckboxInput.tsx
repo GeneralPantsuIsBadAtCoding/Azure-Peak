@@ -51,9 +51,9 @@ export const CheckboxInput = (props) => {
   };
 
   return (
-    <Window title={title} width={425} height={300} disablesidebar>
+    <Window title={title} width={425} height={300}>
       {!!timeout && <Loader value={timeout} />}
-      <Window.Content disablesidebar>
+      <Window.Content>
         <Stack fill vertical g={0}>
           <Stack.Item>
             <NoticeBox info textAlign="center">

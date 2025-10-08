@@ -131,6 +131,32 @@
         )
     req_table = TRUE
 
+/datum/crafting_recipe/roguetown/survival/bluntarrow
+	name = "blunt arrow"
+	category = "Ranged"
+	result = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	reqs = list(
+		/obj/item/grown/log/tree/stick = 1,
+		/obj/item/natural/stone = 1,
+	)
+	req_table = TRUE
+
+/datum/crafting_recipe/roguetown/survival/bluntarrow_five
+	name = "blunt arrow (x5)"
+	category = "Ranged"
+	result = list(
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+		/obj/item/ammo_casing/caseless/rogue/arrow/blunt,
+	)
+	reqs = list(
+		/obj/item/grown/log/tree/stick = 5,
+		/obj/item/natural/stone = 5,
+		)
+	req_table = TRUE
+
 /datum/crafting_recipe/roguetown/survival/poisonarrow
     name = "poisoned arrow"
     category = "Ranged"
