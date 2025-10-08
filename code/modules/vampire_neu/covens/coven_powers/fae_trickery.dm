@@ -72,6 +72,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
 	max_integrity = 10000 // No breaking it. NO CHEAP FRAGS.
 	body_parts_covered = FULL_HEAD
+	embedding = list("embedded_pain_multiplier" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 	var/stat = CONSCIOUS
 	var/strength = 5
 	var/attached = 0
