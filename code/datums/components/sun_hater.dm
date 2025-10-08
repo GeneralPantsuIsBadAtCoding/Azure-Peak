@@ -3,7 +3,7 @@
 	/// How much damage per tick in sunlight
 	var/burn_damage = 5
 	/// How much bloodpool drain per tick
-	var/bloodpool_drain = 5
+	var/bloodpool_drain = 2.5
 	/// Whether this mob is currently in sunlight
 	var/in_sunlight = FALSE
 
@@ -37,6 +37,7 @@
 			apply_sunlight_damage(H)
 		else
 			in_sunlight = FALSE
+			to_chat(H, span_notice("The scorching gaze of the Sun-Tyrant no longer burns me."))
 	else
 		in_sunlight = FALSE
 
