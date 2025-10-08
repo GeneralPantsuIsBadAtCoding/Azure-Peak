@@ -120,12 +120,12 @@
 
 	if(alert(src, "Would you like to rise as a vampire spawn? Warning: refusal may or may not mortally wound you.", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 		to_chat(sire, span_danger("Your victim twitches, yet the curse fails to take over. As if something otherworldly intervenes..."))
-		if(HAS_TRAIT_FROM(src, REFUSED_VAMP_CONVERT, REF(sire)))
+		if(HAS_TRAIT_FROM(src, TRAIT_REFUSED_VAMP_CONVERT, REF(sire)))
 			return
 
 		to_chat(sire, span_danger("The curse fails to take hold of [src], yet you still manage to squeeze the last drop of vitae out of them."))
 		sire.adjust_bloodpool(VITAE_PER_UNIQUE_CONVERSION_REJECT)
-		ADD_TRAIT(src, REFUSED_VAMP_CONVERT, REF(sire))
+		ADD_TRAIT(src, TRAIT_REFUSED_VAMP_CONVERT, REF(sire))
 		return
 
 	visible_message(span_danger("Some dark energy begins to flow from [sire] into [src]..."))
