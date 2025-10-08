@@ -97,7 +97,7 @@
 	force = 15
 	force_wielded = 15
 	throwforce = 20
-	max_integrity = 50
+	max_integrity = 100
 	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/silver/small
@@ -109,7 +109,7 @@
 	force = 10
 	force_wielded = 10
 	throwforce = 15
-	max_integrity = 50
+	max_integrity = 75
 	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden
@@ -120,7 +120,7 @@
 	force = 15
 	force_wielded = 15
 	throwforce = 20
-	max_integrity = 50
+	max_integrity = 100
 	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden/small
@@ -131,7 +131,7 @@
 	force = 10
 	force_wielded = 10
 	throwforce = 15
-	max_integrity = 50
+	max_integrity = 75
 	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden/poison
@@ -143,7 +143,7 @@
 	force = 15
 	force_wielded = 15
 	throwforce = 20
-	max_integrity = 50
+	max_integrity = 100
 	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/skull
