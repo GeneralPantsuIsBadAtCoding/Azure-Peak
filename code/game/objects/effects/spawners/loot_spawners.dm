@@ -355,7 +355,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel = 4,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 3,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero = 2,
-		/obj/item/rogueweapon/huntingknife/idagger/elvish = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/silver/elvish = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/navaja = 3,
 		/obj/item/rogueweapon/sword = 2,
 		/obj/item/rogueweapon/sword/long = 2,
