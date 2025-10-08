@@ -277,27 +277,12 @@
 	force = 10 //Doubled from the regular torch, to reflect its sturdier construction. Classified as an improvised weapon, as it shouldn't scale off any weapon skill.
 	on_damage = 15
 	wdefense = 1 //Metal rod. Offers a pittance-of-a-chance to parry an incoming strike.
+	smeltresult = /obj/item/rogueore/coal
 	max_integrity = 100	
 	fuel = 120 MINUTES
 	should_self_destruct = FALSE
 	possible_item_intents = list(/datum/intent/use, /datum/intent/hit, /datum/intent/mace/strike) //Reflects the fact that it is, in essence, a heavy rod of iron. 
-	extinguishable = TRUE
-
-/obj/item/flashlight/flare/torch/metal/afterattack(atom/movable/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(on && (prob(50) || (user.used_intent.type == /datum/intent/use)))
-		if(ismob(A))
-			A.spark_act()
-		else
-			A.fire_act(3,3)
-
-		if (should_self_destruct)  // check if self-destruct
-			times_used += 1
-			if (times_used >= 13) //amount used before burning out
-				user.visible_message("<span class='warning'>[src] has burnt out and falls apart!</span>")
-				qdel(src)
+	extinguishable = FALSE
 
 /obj/item/flashlight/flare/torch/lantern
 	name = "iron lamptern"
