@@ -20,6 +20,11 @@
 	drinksounds = list('sound/items/drink_cup (1).ogg','sound/items/drink_cup (2).ogg','sound/items/drink_cup (3).ogg','sound/items/drink_cup (4).ogg','sound/items/drink_cup (5).ogg')
 	fillsounds = list('sound/items/fillcup.ogg')
 	anvilrepair = /datum/skill/craft/blacksmithing
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/update_icon(dont_fill=FALSE)
 	testing("cupupdate")
@@ -41,12 +46,22 @@
 	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	anvilrepair = null
 	sellprice = 0
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike/wood)
 
 /obj/item/reagent_containers/glass/cup/steel
 	name = "goblet"
 	desc = "A steel goblet, its surface adorned with intricate carvings."
 	icon_state = "steel"
 	sellprice = 10
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/aalloymug
 	name = "decrepit mug"
@@ -54,6 +69,11 @@
 	color = "#bb9696"
 	icon_state = "amug"
 	sellprice = 10
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 25
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/aalloygob
 	name = "decrepit goblet"
@@ -61,6 +81,11 @@
 	color = "#bb9696"
 	icon_state = "agoblet"
 	sellprice = 20
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 25
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/silver
 	name = "silver goblet"
@@ -69,6 +94,11 @@
 	sellprice = 30
 	last_used = 0
 	is_silver = TRUE
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/silver/small
 	name = "silver cup"
@@ -76,18 +106,33 @@
 	icon_state = "scup"
 	sellprice = 20
 	is_silver = TRUE
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden
 	name = "golden goblet"
 	desc = "Adorned with gemstones, this goblet radiates opulence and grandeur."
 	icon_state = "golden"
 	sellprice = 50
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden/small
 	name = "golden cup"
 	desc = "Adorned with gemstones, this cup radiates opulence and grandeur."
 	icon_state = "gcup"
 	sellprice = 40
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/golden/poison
 	name = "golden goblet"
@@ -95,11 +140,21 @@
 	icon_state = "golden"
 	sellprice = 50
 	list_reagents = list(/datum/reagent/toxin/killersice = 1, /datum/reagent/consumable/ethanol/elfred = 20)
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/skull
 	name = "skull goblet"
 	desc = "The hollow eye sockets tell me of forgotten, dark rituals."
 	icon_state = "skull"
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/ceramic
 	name = "teacup"
@@ -107,6 +162,11 @@
 	dropshrink = 0.7
 	icon_state = "cup"
 	sellprice = 10
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
 
 /obj/item/reagent_containers/glass/cup/ceramic/examine()
 	. = ..()
@@ -129,3 +189,8 @@
 	desc = "A fancy tea cup made out of ceramic. Used to serve tea."
 	icon_state = "cup_fancy"
 	sellprice = 12
+	force = 10
+	force_wielded = 10
+	throwforce = 15
+	max_integrity = 50
+	gripped_intents = list(/datum/intent/mace/strike)
