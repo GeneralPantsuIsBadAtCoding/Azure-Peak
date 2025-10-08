@@ -28,7 +28,7 @@
 		lastcheck = world.time
 		var/preserve = FALSE
 		for(var/turf/T in view(5, owner))
-			var/mercyarea = get_area(T)
+			var/area/rogue/mercyarea = get_area(T)
 			if(mercyarea.holy_area)
 				preserve = TRUE
 		for(var/mob/living/carbon/human/H in view(7, owner))
