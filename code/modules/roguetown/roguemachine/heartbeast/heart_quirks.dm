@@ -14,6 +14,9 @@
 /datum/flesh_quirk/proc/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)
 	return null
 
+/datum/flesh_quirk/proc/apply_item_interaction_quirk(obj/item/I, mob/user, datum/component/chimeric_heart_beast/beast)
+	return null
+
 /datum/flesh_quirk/obedient
 	name = "Obedient"
 	description = "Can be intimidated into compliance"
@@ -351,7 +354,7 @@
 /datum/flesh_quirk/mimic
 	name = "Mimic"
 	description = "Tends to copy speech patterns and behaviors"
-	rarity = 100
+	rarity = 1
 	quirk_type = QUIRK_BEHAVIOR
 	var/base_mimic_chance = 4
 	var/current_mimic_chance = 20
@@ -420,10 +423,6 @@
 			chars[pos2] = temp
 
 	return jointext(chars, "")
-
-/datum/flesh_quirk/hoarder
-	name = "Hoarder"
-	description = "Constantly wants to acquire new items"
 
 /datum/flesh_quirk/stubborn
 	name = "Stubborn"

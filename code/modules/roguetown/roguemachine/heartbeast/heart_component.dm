@@ -1,6 +1,7 @@
-#define QUIRK_LANGUAGE (1<<0)
-#define QUIRK_BEHAVIOR (1<<1)
-#define QUIRK_ENVIRONMENT (1<<2)
+#define QUIRK_LANGUAGE 		(1<<0)
+#define QUIRK_BEHAVIOR 		(1<<1)
+#define QUIRK_ENVIRONMENT 	(1<<2)
+#define QUIRK_INTERACT 		(1<<3)
 
 /datum/component/chimeric_heart_beast
 	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast
@@ -9,6 +10,8 @@
 	var/blood_pool = 0
 	var/max_blood_pool = 20000
 	var/happiness = 0
+	// True by default, some quirks can make the beast dissatisfied.
+	var/satisfied = TRUE
 	var/max_happiness = 1000
 	var/tech_points = 0
 	var/language_tier = 1
@@ -28,10 +31,12 @@
 	var/last_environment_process = 0
 	var/environment_process_interval = 3 SECONDS
 
+	// The first list here is just used to keep track of all active quirks, should we wish to be able to disable any later
 	var/list/active_quirks = list()
 	var/list/language_quirks = list()
 	var/list/behavior_quirks = list()
 	var/list/environment_quirks = list()
+	var/list/item_interaction_quirks = list()
 
 	var/task_presentation_time = 0 // When the current task was last presented to the listener
 	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
@@ -48,6 +53,7 @@
 
 	RegisterSignal(heart_beast, COMSIG_HEART_BEAST_HEAR, .proc/on_hear)
 	RegisterSignal(heart_beast, COMSIG_ATOM_ATTACK_HAND, .proc/on_interact)
+	RegisterSignal(heart_beast, COMSIG_PARENT_ATTACKBY, .proc/on_item_interact)
 
 	initialize_quirks()
 	setup_heartbeast_turfs()
@@ -83,9 +89,16 @@
 			behavior_quirks += quirk
 		if(quirk.quirk_type & QUIRK_ENVIRONMENT)
 			environment_quirks += quirk
+		if(quirk.quirk_type & QUIRK_INTERACT)
+			item_interaction_quirks += quirk
 
 /datum/component/chimeric_heart_beast/proc/has_quirk(quirk_type)
 	return active_quirks[quirk_type] != null
+
+/datum/component/chimeric_heart_beast/proc/get_quirk(quirk_type_path)
+	if(active_quirks)
+		return active_quirks[quirk_type_path]
+	return null
 
 /datum/component/chimeric_heart_beast/proc/apply_language_quirks(mob/speaker, message, response_time)
 	var/list/penalties = list()
@@ -208,13 +221,23 @@
 /datum/component/chimeric_heart_beast/proc/on_interact(datum/source, mob/user)
 	SIGNAL_HANDLER
 
-	if(current_task)
+	if(current_task && satisfied)
 		heart_beast.say(current_task.question)
 		playsound(heart_beast, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
-
 		set_current_listener(user)
-
 		heart_beast.visible_message(span_warning("Tendrils from [heart_beast] extend towards [user] attentively!"))
+	else if (!satisfied)
+		playsound(heart_beast, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+		heart_beast.visible_message(span_warning("The [heart_beast] seems too grumpy to learn right now..."))
+
+/datum/component/chimeric_heart_beast/proc/on_item_interact(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+
+	if(!item_interaction_quirks.len)
+		return
+
+	for(var/datum/flesh_quirk/quirk in item_interaction_quirks)
+		quirk.apply_item_interaction_quirk(I, user, src)
 
 /datum/component/chimeric_heart_beast/proc/set_current_listener(mob/user)
 	current_listener = user

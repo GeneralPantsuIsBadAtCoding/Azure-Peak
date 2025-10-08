@@ -51,7 +51,6 @@
 /datum/status_effect/territorial_rage/proc/remove_limb(mob/living/carbon/C)
 	if(limb_removed)
 		return
-	limb_removed = TRUE
 
 	// Check which limbs are available to remove
 	var/obj/item/bodypart/left_arm = C.get_bodypart(BODY_ZONE_L_ARM)
@@ -88,6 +87,7 @@
 
 		var/obj/effect/temp_visual/dir_setting/bloodsplatter/splatter = new(get_turf(C), pick(GLOB.cardinals))
 		splatter.color = "#880000"
+		limb_removed = TRUE
 
 /datum/status_effect/territorial_rage/proc/remove_head(mob/living/carbon/C)
 	var/obj/item/bodypart/head = C.get_bodypart(BODY_ZONE_HEAD)
