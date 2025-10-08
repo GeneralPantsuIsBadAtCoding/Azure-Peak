@@ -341,7 +341,7 @@
 
 /datum/advclass/sfighter/mhunter
 	name = "Exorcist"
-	tutorial = "You specialize in hunting terrible monsters; nitebeasts, vampyres, deadites and more. In lieu of an expertise, you field silver weapons and steel maille to even the odds."
+	tutorial = "You are a specialist who hunts terrible monsters; nitebeasts, vampyres, deadites and more. Your humenity might be limiting - but with silver weapons and steel maille, you may yet slight the odds in your favor."
 	outfit = /datum/outfit/job/roguetown/adventurer/mhunter
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR, TRAIT_PURITAN_ADVENTURER, TRAIT_ALCHEMY_EXPERT)
@@ -352,7 +352,7 @@
 		STATKEY_WIL = 1,
 	)
 	subclass_skills = list(
-		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
@@ -366,63 +366,93 @@
 /datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
-	to_chat(H, span_warning("You specialize in hunting terrible monsters; nitebeasts, vampyres, deadites and more. In lieu of an expertise, you field silver weapons and steel maille to even the odds."))
+	to_chat(H, span_warning("You specialize in hunting terrible monsters; nitebeasts, vampyres, deadites and more. Against your curseless limitations, you field silver weapons and steel maille to even the odds."))
 	H.verbs |= /mob/living/carbon/human/proc/faith_test //Allows the Exorcist to interrogate others for their faith. Trait's agnostically worded, to allow more flexiable usage by Pantheoneers and Ascendants in this role.
 	H.verbs |= /mob/living/carbon/human/proc/torture_victim //Not as scary as it sounds. Mostly. Okay, just a little bit.
 	if(H.mind)
-		var/silver = list("Silver Dagger","Silver Shortsword","Silver Arming Sword","Silver Rapier","Silver Longsword","Silver Mace","Silver Warhammer","Silver Morningstar","Silver Whip","Silver War Axe","Silver Poleaxe","Silver Spear","Silver Quarterstaff")
-		var/silver_choice = input(H, "Choose your WEAPON.", "SILVER; TO CONFRONT THE NITEMARE.") as anything in silver
+		var/silver = list("Silver Dagger","Silver Shortsword","Silver Arming Sword","Silver Rapier","Silver Longsword","Silver Mace","Silver Warhammer","Silver Morningstar","Silver Whip","Silver War Axe","Silver Poleaxe","Silver Spear","Silver Quarterstaff","Silver Shovel")
+		var/silver_choice = input(H, "Choose your WEAPON.", "PREPARE YOUR ARMS.") as anything in silver
 		switch(silver_choice)
 			if("Silver Dagger")
 				r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sheath
 			if("Silver Shortsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/short/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Rapier")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/rapier/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/long/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Arming Sword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Mace")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/mace/steel/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Warhammer")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/mace/warhammer/steel/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Morningstar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/flail/sflail/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Whip")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/whip/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver War Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/silver
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Poleaxe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/greataxe/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Spear")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/spear/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Quarterstaff")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				head = /obj/item/clothing/head/roguetown/headband
+			if("Silver Shovel")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/shovel/silver
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				head = /obj/item/clothing/head/roguetown/necrahood
 		var/steel = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver-Tipped Stake")
-		var/steel_choice = input(H, "Choose your SIDEARM.", "STEEL; TO PROLONG THE DAE.") as anything in steel
+		var/steel_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in steel
 		switch(steel_choice)
 			if("Dagger")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+			if("Parrying Dagger")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+			if("Seax")
+				l_hand = /obj/item/rogueweapon/huntingknife/combat
+			if("Blessed Silver-Tipped Stake")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/stake
+
+		var/discipline = list("Anointed - Silverblessed", "Orthodoxic - Heavy Armor Training", "Agnostic")
+		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
+		switch(discipline_choice)
+			if("None")
 				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 			if("Parrying Dagger")
 				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
@@ -440,11 +470,11 @@
 	pants = /obj/item/clothing/under/roguetown/tights/puritan
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	head = /obj/item/clothing/head/roguetown/puritan
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch/metal = 1,
 		/obj/item/reagent_containers/powder/salt = 1,
+		/obj/item/natural/bone = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
