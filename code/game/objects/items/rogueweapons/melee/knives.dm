@@ -232,17 +232,18 @@
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/combat
-	force = 16
+	force = 20
 	name = "seax"
-	desc = "A fighting knife used amongst the Grenzels and Northerners for centuries, serving dual purpose as a \
-	tool of daily life and as a capable fighting knife."
-	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch,)
+	desc = "An intimidatingly large sidearm that's been used amongst the Grenzels and Northerners for centuries, both as a combat knife and as a tool for dae-to-dae laboring."
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch, /datum/intent/dagger/thrust/combat)
 	icon_state = "combatknife"
 	sheathe_icon = "combatknife"
 	icon = 'icons/roguetown/weapons/daggers32.dmi'
 	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
 	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
 	throwforce = 16
+	minstr = 9
+	wdefense = 4
 	slot_flags = ITEM_SLOT_HIP
 	thrown_bclass = BCLASS_CHOP
 	w_class = WEIGHT_CLASS_NORMAL
@@ -254,6 +255,19 @@
 		switch(tag)
 			if("gen")
 				return list("shrink" = 0.4,"sx" = -9,"sy" = 0,"nx" = 10,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 21,"sturn" = -29,"wturn" = -29,"eturn" = 33,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+
+/datum/intent/dagger/thrust/combat
+	name = "wedged thrust"
+	icon_state = "instab"
+	attack_verb = list("gouges")
+	animname = "stab"
+	blade_class = BCLASS_STAB
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 20
+	damfactor = 0.9
+	chargetime = 0
+	clickcd = 8
+	item_d_type = "stab"
 
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
