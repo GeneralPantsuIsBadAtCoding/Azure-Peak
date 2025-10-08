@@ -26,18 +26,16 @@
 	var/area/rogue/our_area = get_area(owner)
 	if(!(our_area.holy_area) && !(world.time < lastcheck + 10 SECONDS))
 		lastcheck = world.time
-		var/priest = FALSE
+		var/preserve = FALSE
+		for(var/turf/T in view(5, owner))
+			var/mercyarea = get_area(T)
+			if(mercyarea.holy_area)
+				preserve = TRUE
 		for(var/mob/living/carbon/human/H in view(7, owner))
 			if(H.mind?.assigned_role == "Bishop")
-				priest = TRUE
-		if(!priest)
+				preserve = TRUE
+		if(!preserve)
 			owner.remove_status_effect(/datum/status_effect/buff/templarbuff)
-
-/area/rogue/Entered(mob/living/carbon/human/guy)
-
-	.=..()
-	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_TEMPLAR) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff))
-		guy.apply_status_effect(/datum/status_effect/buff/templarbuff)
 	
 /mob/living/carbon/human
 	var/priest_timer_check = 0
@@ -49,3 +47,28 @@
 		for(var/mob/living/carbon/human/H in view(7, src))
 			if(HAS_TRAIT(H, TRAIT_TEMPLAR) && !H.has_status_effect(/datum/status_effect/buff/templarbuff))
 				H.apply_status_effect(/datum/status_effect/buff/templarbuff)
+
+/atom/movable/screen/alert/status_effect/buff/chosenbuff
+	name = "Astrata's Chosen"
+	desc = "This temple is my sanctum. Within its walls, Astrata grants me strength."
+	icon_state = "buff"
+
+/datum/status_effect/buff/chosenbuff
+	id = "chosenbuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/chosenbuff
+	effectedstats = list(STATKEY_STR = 2,STATKEY_CON = 2)
+
+/datum/status_effect/buff/chosenbuff/process()
+
+	.=..()
+	var/area/rogue/our_area = get_area(owner)
+	if(!(our_area.holy_area))
+			owner.remove_status_effect(/datum/status_effect/buff/chosenbuff)
+
+/area/rogue/Entered(mob/living/carbon/human/guy)
+
+	.=..()
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_TEMPLAR) && !guy.has_status_effect(/datum/status_effect/buff/templarbuff))
+		guy.apply_status_effect(/datum/status_effect/buff/templarbuff)
+	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_CHOSEN) && !guy.has_status_effect(/datum/status_effect/buff/chosenbuff))
+		guy.apply_status_effect(/datum/status_effect/buff/chosenbuff)
