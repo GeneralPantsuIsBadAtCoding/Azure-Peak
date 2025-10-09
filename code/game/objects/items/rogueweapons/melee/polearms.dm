@@ -163,6 +163,7 @@
 
 /datum/intent/spear/disarm/quarterstaff
 	name = "disarm"
+	desc = "This does no damage, but if used on an opponent who is off-balanced, it will disarm their weapon in a grand flourish."
 	icon_state = "intake"
 	animname = "strike"
 	attack_verb = list("sweeps", "disarms")

@@ -1734,9 +1734,10 @@
 
 /datum/intent/sword/disarm
 	name = "disarm"
+	desc = "This does no damage, but if used on an opponent who is off-balanced, it will disarm their weapon in a grand flourish."
 	icon_state = "intake"
 	animname = "strike"
-	attack_verb = "hooks"
+	attack_verb = list("hooks", "pries")
 	blade_class = BCLASS_DISARM
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
