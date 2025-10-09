@@ -1,6 +1,6 @@
 /datum/advclass/disciple
 	name = "Disciple"
-	tutorial = "Psydonite monks, practiced in both martiality and scripture. Spilling blood on sacred grounds is considered 'sinful'; shattered teeth seems to be fair game, however."
+	tutorial = "Psydonite monks, practiced in both martiality and scripture. Spilling blood on sacred grounds is considered 'sinful' to the clergymen, though no qualms are spared towards knocking someone's lights out."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
@@ -60,10 +60,10 @@
 
 /datum/outfit/job/roguetown/disciple/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Discipline", "Katar", "Knuckles", "Quarterstaff")
+	var/weapons = list("Discipline - Unarmed", "Katar", "Knuckles", "Quarterstaff")
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
-		if("Discipline")
+		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 5, TRUE)
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
@@ -74,6 +74,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/psydon(H), TRUE)
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		if("Quarterstaff")
-			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/psy(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
