@@ -106,7 +106,6 @@
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	cooldown_length = 5 SECONDS
 	duration_length = 2 SECONDS
-	duration_override = TRUE
 
 /datum/coven_power/siren/madrigal/activate()
 	. = ..()
@@ -116,6 +115,9 @@
 		return
 
 	for(var/mob/living/carbon/human/listener in mobs_in_view)
+		if(listener.clan == owner.clan)
+			continue
+
 		listener.create_walk_to(2 SECONDS, owner)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -123,10 +125,9 @@
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), 2 SECONDS)
 
-/datum/coven_power/siren/madrigal/deactivate(mob/living/carbon/human/target)
-	. = ..()
+/datum/coven_power/siren/madrigal/proc/remove_effects(mob/living/carbon/human/target)
 	target?.remove_overlay(MUTATIONS_LAYER)
 
 //SIREN'S BECKONING
@@ -139,7 +140,6 @@
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	duration_length = 2 SECONDS
 	cooldown_length = 7.5 SECONDS
-	duration_override = TRUE
 
 /datum/coven_power/siren/sirens_beckoning/activate()
 	. = ..()
@@ -149,6 +149,9 @@
 		return
 
 	for(var/mob/living/carbon/human/listener in mobs_in_view)
+		if(listener.clan == owner.clan)
+			continue
+
 		listener.Stun(5 SECONDS)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -156,10 +159,9 @@
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), 5 SECONDS)
 
-/datum/coven_power/siren/sirens_beckoning/deactivate(mob/living/carbon/human/target)
-	. = ..()
+/datum/coven_power/siren/sirens_beckoning/proc/remove_effects(mob/living/carbon/human/target)
 	target?.remove_overlay(MUTATIONS_LAYER)
 
 //SHATTERING CRESCENDO
@@ -173,7 +175,6 @@
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	duration_length = 2 SECONDS
 	cooldown_length = 7.5 SECONDS
-	duration_override = TRUE
 
 /datum/coven_power/siren/shattering_crescendo/activate()
 	. = ..()
@@ -183,6 +184,9 @@
 		return
 
 	for(var/mob/living/carbon/human/listener in mobs_in_view)
+		if(listener.clan == owner.clan)
+			continue
+
 		listener.Stun(5 SECONDS)
 		listener.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
 
@@ -191,8 +195,7 @@
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(deactivate), listener), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), 5 SECONDS)
 
-/datum/coven_power/siren/shattering_crescendo/deactivate(mob/living/carbon/human/target)
-	. = ..()
+/datum/coven_power/siren/shattering_crescendo/proc/remove_effects(mob/living/carbon/human/target)
 	target?.remove_overlay(MUTATIONS_LAYER)
