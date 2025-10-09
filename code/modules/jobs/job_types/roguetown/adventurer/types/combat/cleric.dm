@@ -200,20 +200,20 @@
 		if(/datum/patron/old_god)
 			cloak = /obj/item/clothing/cloak/psydontabard
 			if(H.mind)
-				var/helmets = list("Armet","Greathelm")
+				var/helmets = list("Armet","Buckethelm")
 				var/helmet_choice = input(H, "Choose your HELMET.", "WALK IN HIS LIGHT.") as anything in helmets
 				switch(helmet_choice)
 					if("Armet")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
-					if("Greathelm")
+					if("Buckethelm")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 				var/armors = list("Hauberk","Cuirass")
 				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in armors
 				switch(armor_choice)
 					if("Hauberk")
-						armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-					if("Cuirass")
 						armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+					if("Cuirass")
+						armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 		if(/datum/patron/divine/astrata)
 			cloak = /obj/item/clothing/cloak/templar/astrata
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
