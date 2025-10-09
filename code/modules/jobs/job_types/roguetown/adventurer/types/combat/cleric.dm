@@ -74,8 +74,8 @@
 			if("Quarterstaff")
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with the new Quarterstaff-centric virtue. A monk can take said-virtue if they want the best of both worlds.
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE) //Balance idea's pretty simple. A dedicated staff user can use polearms too - as both weapon types are fundamentally similar, but it'd always be a skill level lower than the staff.
-				H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/iron(H), TRUE)
-				H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
+				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
+				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
@@ -551,14 +551,14 @@
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_3)	//Minor regen, capped to T3.
 	if(H.mind)
-		var/weapons = list("Woodstaff", "Iron Quarterstaff")
+		var/weapons = list("Woodstaff", "Quarterstaff")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Woodstaff")
 				backr = /obj/item/rogueweapon/woodstaff
 			if("Quarterstaff")
-				H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/iron(H), TRUE)
-				H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
+				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
+				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 	if(istype(H.patron, /datum/patron/divine))
 		// For now, only Tennites get this. Heretics can have a special treat later
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
