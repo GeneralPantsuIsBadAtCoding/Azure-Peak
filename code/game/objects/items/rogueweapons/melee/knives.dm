@@ -416,7 +416,7 @@
 	max_integrity = 50
 	sellprice = 50
 	slot_flags = ITEM_SLOT_HIP
-	smeltresult = /obj/item/ash
+	smeltresult = /obj/item/rogueore/coal
 	last_used = 0
 	is_silver = TRUE
 
@@ -617,7 +617,7 @@
 	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/chop)
 	smeltresult = null
 	sellprice = 1
-	smeltresult = /obj/item/rogueore/coal
+	smeltresult = /obj/item/ingot/iron
 	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
 
 /obj/item/rogueweapon/huntingknife/throwingknife/getonmobprop(tag)
@@ -633,8 +633,8 @@
 	name = "eastern tossblade"
 	desc = "A four pointed throwing knife ground and sharpened from a single piece of metal. The design is intended to solve one of weaknesses of basic tossblades; \
 	more points means these are more likely to land point-first."
+	smeltresult = /obj/item/ingot/iron
 	icon_state = "easttossblade"
-	smeltresult = /obj/item/rogueore/coal
 
 /obj/item/rogueweapon/huntingknife/throwingknife/aalloy
 	name = "decrepit tossblade"
@@ -643,7 +643,7 @@
 	color = "#bb9696"
 	force = 7
 	throwforce = 16
-	smeltresult = /obj/item/rogueore/coal
+	smeltresult = /obj/item/ingot/aaslag
 	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
@@ -654,13 +654,14 @@
 	max_integrity = 100
 	armor_penetration = 40
 	icon_state = "throw_knifes"
-	smeltresult = /obj/item/rogueore/coal
+	smeltresult = /obj/item/ingot/steel
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 30, "embedded_fall_chance" = 5)
 	sellprice = 2
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel/palloy
 	name = "ancient alloy tossblade"
 	desc = "A sliver of polished gilbranze, delicately carved into a throwing dagger. A favorite amongst Zizo's undying cabal, and especially amongst Her assassins; what better-a-tool to slip through another's neck?"
+	smeltresult = /obj/item/ingot/aaslag	
 	icon_state = "throw_knifea"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/silver
