@@ -691,8 +691,7 @@
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonic longsword"
-	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
-		\</br>"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
+	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike. </br>'Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.'"
 	icon_state = "psysword"
 	sheathe_icon = "psysword"
 	force = 20
@@ -727,8 +726,7 @@
 
 /obj/item/rogueweapon/sword/long/silver
 	name = "silver longsword"
-	desc = "A longsword with a blade of pure silver. The weight doesn't just burden your hand, but your very soul as well; an unspoken oath, to stand against the horrors that lurk within the nite.\
-		\</br>"Swing with precision and purpose, levyman o' the Gods. The nite is long and many-an-evil cur would engineer civilization's destruction, while Astrata's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.\""
+	desc = "A longsword with a blade of pure silver. The weight doesn't just burden your hand, but your very soul as well; an unspoken oath, to stand against the horrors that lurk within the nite. </br>'Swing with precision and purpose, levyman o' the Gods. The nite is long and many-an-evil cur would engineer civilization's destruction, while Astrata's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.'"
 	icon_state = "silverlongsword"
 	sheathe_icon = "psysword"
 	force = 20
@@ -779,8 +777,7 @@
 
 /obj/item/rogueweapon/sword/long/kriegmesser/psy
 	name = "psydonic broadsword"
-	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost.\
-		\</br>"Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - HOPE RIDES ALONE..\""
+	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost. </br>'Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - HOPE RIDES ALONE..'"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	icon_state = "silverbroadsword"
 	sheathe_icon = "psysword"
