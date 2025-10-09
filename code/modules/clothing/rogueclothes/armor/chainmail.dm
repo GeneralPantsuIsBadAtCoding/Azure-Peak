@@ -82,8 +82,7 @@
 	armor_class = ARMOR_CLASS_HEAVY
 	armor = ARMOR_CUIRASS
 	name = "psydonic hauberk"
-	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, \
-			these interlinked layers are superb at warding off the blows of inhumen claws and axes."
+	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, these interlinked layers are superb at warding off the blows of inhumen claws and axes. With the assistance of a blacksmith and some blessed silver ingots, this set can further be upgraded."
 	icon_state = "ornatehauberk"
 	item_state = "ornatehauberk"
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
