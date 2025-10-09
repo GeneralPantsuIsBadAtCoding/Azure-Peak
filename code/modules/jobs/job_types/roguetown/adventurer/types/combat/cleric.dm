@@ -504,7 +504,6 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots
-	backr = /obj/item/rogueweapon/woodstaff
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backpack_contents = list(
@@ -551,6 +550,15 @@
 			head = /obj/item/clothing/head/roguetown/roguehood
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_3)	//Minor regen, capped to T3.
+	if(H.mind)
+		var/weapons = list("Woodstaff", "Iron Quarterstaff")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Woodstaff")
+				backr = /obj/item/rogueweapon/woodstaff
+			if("Quarterstaff")
+				H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/iron(H), TRUE)
+				H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
 	if(istype(H.patron, /datum/patron/divine))
 		// For now, only Tennites get this. Heretics can have a special treat later
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast)
