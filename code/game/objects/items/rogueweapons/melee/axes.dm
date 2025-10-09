@@ -519,7 +519,7 @@
 	gripped_intents = list(/datum/intent/axe/cut/battle/greataxe, /datum/intent/axe/chop/battle/greataxe, /datum/intent/mace/rangedthrust, /datum/intent/mace/strike) //Axe-equivalent to the Godendag or Grand Mace.
 	name = "silver poleaxe"
 	desc = "A poleaxe, fitted with a reinforced shaft and a beaked axhead of pure silver. It may not stop the darkness; but it will halt its march, long enough, to shepherd away the defenseless.\
-		\"O'er the Horizon, the stars and spirals I see; and below it, the horrors that've been felled by me. Through the darkness, I see my home and its beautiful light; and it will continue to shimmer, as long as I fight. Forever I stand, forever I'll hold - 'til the Horizon grows still, and my spirit trails home..\""
+		\</br>"O'er the Horizon, the stars and spirals I see; and below it, the horrors that've been felled by me. Through the darkness, I see my home and its beautiful light; and it will continue to shimmer, as long as I fight. Forever I stand, forever I'll hold - 'til the Horizon grows still, and my spirit trails home..\""
 	icon_state = "silverpolearm"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
