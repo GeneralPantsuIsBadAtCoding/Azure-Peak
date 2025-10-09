@@ -65,12 +65,12 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 4, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 4, TRUE)
 			if("Katar")
-				beltl = /obj/item/rogueweapon/katar/bronze = 1
+				beltl = /obj/item/rogueweapon/katar/bronze
 			if("Knuckledusters")
 				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
-					beltl = /obj/item/rogueweapon/knuckles/psydon/old = 1
+					beltl = /obj/item/rogueweapon/knuckles/psydon/old
 				else
-					beltl = /obj/item/rogueweapon/knuckles/bronzeknuckles = 1
+					beltl = /obj/item/rogueweapon/knuckles/bronzeknuckles
 			if("Quarterstaff")
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with the new Quarterstaff-centric virtue. A monk can take said-virtue if they want the best of both worlds.
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE) //Balance idea's pretty simple. A dedicated staff user can use polearms too - as both weapon types are fundamentally similar, but it'd always be a skill level lower than the staff.
@@ -208,7 +208,7 @@
 					if("Armet")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 				var/armor = list("Tasseted Cuirass","Hauberk")
-				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in helmets
+				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in armor
 				switch(armor_choice)
 					if("Hauberk")
 						armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
