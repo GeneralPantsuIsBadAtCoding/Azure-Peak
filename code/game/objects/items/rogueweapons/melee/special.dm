@@ -272,7 +272,7 @@
 	force = 24
 	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust, /datum/intent/sword/peel)
 	name = "katar"
-	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
+	desc = "A steel blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
 	icon_state = "katar"
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	gripsprite = FALSE
@@ -310,6 +310,14 @@
 	icon_state = "abyssorclaw"
 	force = 27	//Its thrust will be able to pen 80 stab armor if the wielder has 17 STR. (With softcap)
 	max_integrity = 80
+
+/obj/item/rogueweapon/katar/bronze
+	name = "bronze katar"
+	desc = "A bronze blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
+	force = 21 //-3 damage malus, same as the knuckles.
+	color = "#f9d690" //Not perfect, but should nearly replicate the bronze knuckle's palette. Someone could replace with an actual palette swap in the .dmi, when able.
+	max_integrity = 80
+	smeltresult = /obj/item/ingot/bronze
 
 /obj/item/rogueweapon/katar/punchdagger
 	name = "punch dagger"
