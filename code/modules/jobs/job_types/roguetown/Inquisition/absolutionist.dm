@@ -42,7 +42,7 @@
 	subclass_stats = list(
 		STATKEY_CON = 7,
 		STATKEY_WIL = 3,
-		STATKEY_SPD = -2
+		STATKEY_SPD = -3
 	)
 	subclass_skills = list(
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN, // Enduring.
