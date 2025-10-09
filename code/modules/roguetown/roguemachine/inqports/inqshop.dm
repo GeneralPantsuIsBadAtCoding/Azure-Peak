@@ -61,6 +61,7 @@
 	. = ..()
 	icon_state = "clothroll2"
 	amount = 10
+	grid_width = 64
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/medical/Initialize()
 	. = ..()

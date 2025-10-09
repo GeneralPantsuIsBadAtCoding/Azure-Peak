@@ -59,6 +59,13 @@
 /datum/intent/sword/thrust/krieg
 	damfactor = 0.9
 
+/datum/intent/sword/thrust/blunt
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
+	attack_verb = list("prods", "pokes")
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	item_d_type = "blunt"
+
 /datum/intent/sword/strike
 	name = "pommel strike"
 	icon_state = "instrike"
@@ -71,6 +78,10 @@
 	swingdelay = 0
 	damfactor = 1
 	item_d_type = "blunt"
+
+// A weaker strike for sword with high damage so that it don't end up becoming better than mace
+/datum/intent/sword/strike/bad
+	damfactor = 0.7 
 
 /datum/intent/sword/peel
 	name = "armor peel"
@@ -90,6 +101,10 @@
 	name = "big sword armor peel"
 	reach = 2
 	peel_divisor = 5
+
+/datum/intent/sword/peel/weak
+	name = "weak armor peel"
+	peel_divisor = 8
 
 /datum/intent/sword/chop
 	name = "chop"
@@ -270,6 +285,18 @@
 	wdefense_wbonus = 4
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/sword/long/training
+	name = "training sword"
+	desc = "Swords like these, with blunted tips and dull edges, are often used for practice without much risk of injury."
+	force = 5
+	force_wielded = 8
+	sharpness = IS_BLUNT
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/sword/thrust/blunt, /datum/intent/sword/peel/weak)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/sword/thrust/blunt, /datum/intent/sword/peel/weak)
+	icon_state = "feder"
+	throwforce = 5
+	thrown_bclass = BCLASS_BLUNT
 
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"

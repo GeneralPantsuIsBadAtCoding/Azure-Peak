@@ -23,7 +23,6 @@
 	var/mob/living/carbon/H = user
 	if(icon_state == "[initial(icon_state)]_snout")
 		icon_state = initial(icon_state)
-		flags_inv &= ~HIDESNOUT
 		H.update_inv_wear_mask()
 		update_icon()
 		return
@@ -33,7 +32,6 @@
 	for(var/icon_s in istates)
 		if(findtext(icon_s, "[icon_state]_snout"))
 			icon_state += "_snout"
-			flags_inv &= HIDESNOUT
 			H.update_inv_wear_mask()
 			update_icon()
 			return

@@ -18,7 +18,11 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 
-	job_traits = list(TRAIT_SEEPRICES_SHITTY, TRAIT_CICERONE, TRAIT_NUTCRACKER, TRAIT_GOODLOVER, TRAIT_HOMESTEAD_EXPERT)
+	job_traits = list(TRAIT_SEEPRICES, 
+		TRAIT_CICERONE, 
+		TRAIT_NUTCRACKER,
+		TRAIT_GOODLOVER, 
+		TRAIT_HOMESTEAD_EXPERT)
 
 	advclass_cat_rolls = list(CTAG_BATHMOM = 2)
 	job_subclasses = list(
@@ -51,6 +55,8 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
 	)
 
 /datum/outfit/job/roguetown/niteman/basic/pre_equip(mob/living/carbon/human/H)
@@ -79,3 +85,4 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)

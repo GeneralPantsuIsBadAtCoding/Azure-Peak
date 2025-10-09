@@ -60,8 +60,8 @@
 	icon_state = "celestial_light"
 	brightness = 10
 	bulb_power = 1
-	bulb_colour = "#fcd294"
-	light_color = "#75021d"
+	bulb_colour = "#87050e"
+	light_color = "#87050e"
 	max_integrity = 0
 	fueluse = 0
 	light_on = 1
