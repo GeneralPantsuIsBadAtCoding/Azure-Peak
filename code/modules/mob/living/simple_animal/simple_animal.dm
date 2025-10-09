@@ -885,7 +885,9 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 					riding_datum.vehicle_move_delay -= 3
 			if(loc != oldloc)
 				var/obj/structure/mineral_door/MD = locate() in loc
-				if(MD && !MD.ridethrough)
+				if(MD && !MD.ridethrough && HAS_TRAIT(user, TRAIT_EQUESTRIAN))
+					return
+				else if(MD && !MD.ridethrough && !HAS_TRAIT(user, TRAIT_EQUESTRIAN))
 					violent_dismount(user)
 
 /mob/living/simple_animal/proc/violent_dismount(mob/living/user)
