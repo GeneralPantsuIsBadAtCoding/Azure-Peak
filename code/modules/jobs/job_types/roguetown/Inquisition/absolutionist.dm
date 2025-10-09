@@ -42,7 +42,7 @@
 	subclass_stats = list(
 		STATKEY_CON = 7,
 		STATKEY_WIL = 3,
-		STATKEY_SPD = -3
+		STATKEY_SPD = -2 //Originally swapped to -3, but this probably isn't as important due to the pacifism trait.
 	)
 	subclass_skills = list(
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN, // Enduring.
