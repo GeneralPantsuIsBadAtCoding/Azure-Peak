@@ -203,61 +203,61 @@
 				var/helmets = list("Armet","Greathelm")
 				var/helmet_choice = input(H, "Choose your HELMET.", "WALK IN HIS LIGHT.") as anything in helmets
 				switch(helmet_choice)
-					if("Greathelm")
-						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 					if("Armet")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
-				var/armor = list("Tasseted Cuirass","Hauberk")
-				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in armor
+					if("Greathelm")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
+				var/armors = list("Hauberk","Cuirass")
+				var/armor_choice = input(H, "Choose your MAILLE.", "STAND AGAINST HER DARKNESS.") as anything in armors
 				switch(armor_choice)
 					if("Hauberk")
 						armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-					if("Tasseted Cuirass")
+					if("Cuirass")
 						armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/divine/astrata)
 			cloak = /obj/item/clothing/cloak/templar/astrata
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/astratan
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/divine/noc)
 			cloak = /obj/item/clothing/cloak/templar/noc
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/divine/abyssor)
 			cloak = /obj/item/clothing/cloak/abyssortabard
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/divine/dendor)
 			cloak = /obj/item/clothing/cloak/templar/dendor
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if(/datum/patron/divine/necra)
 			cloak = /obj/item/clothing/cloak/templar/necra
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/divine/malum)
 			cloak = /obj/item/clothing/cloak/templar/malum
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/malum
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/divine/eora)
 			cloak = /obj/item/clothing/cloak/templar/eora
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/eoran
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/divine/ravox)
 			cloak = /obj/item/clothing/cloak/cleric/ravox
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/divine/xylix)
 			cloak = /obj/item/clothing/cloak/templar/xylix
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		if (/datum/patron/divine/pestra)
 			cloak = /obj/item/clothing/cloak/templar/pestra
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/pestran
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 		else
 			cloak = /obj/item/clothing/cloak/cape/crusader
-			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
