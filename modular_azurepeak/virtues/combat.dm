@@ -124,7 +124,7 @@
 								"Sling" = /obj/item/gun/ballistic/revolver/grenadelauncher/sling,
 								"Pouch of Iron Sling Bullets" = /obj/item/quiver/sling/iron)
 
-/datum/virtue/combat/brawler/apply_to_human(mob/living/carbon/human/recipient)
+/datum/virtue/combat/shepherd/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 	recipient.adjust_skillrank_up_to(/datum/skill/combat/slings, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
