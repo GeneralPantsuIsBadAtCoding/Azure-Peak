@@ -60,7 +60,7 @@
 
 /datum/outfit/job/roguetown/disciple/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Discipline - Unarmed", "Katar", "Knuckles", "Quarterstaff")
+	var/weapons = list("Discipline - Unarmed", "Katar", "Knuckledusters", "Quarterstaff")
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Discipline - Unarmed")
