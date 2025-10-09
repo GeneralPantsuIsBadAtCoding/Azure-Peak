@@ -176,7 +176,7 @@
 
 // --------- IRON -----------
 
-datum/anvil_recipe/tools/iron/chain
+/datum/anvil_recipe/tools/iron/chain
 	name = "Chains (x2)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rope/chain
