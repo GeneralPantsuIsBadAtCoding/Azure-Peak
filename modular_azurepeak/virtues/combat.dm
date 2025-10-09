@@ -59,7 +59,7 @@
 			recipient.mind?.special_items["Malum Psycross"] = /obj/item/clothing/neck/roguetown/psicross/malum
 		if(/datum/patron/old_god)
 			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
-			recipient.mind?.special_items["Psydon Psycross"] = /obj/item/clothing/neck/roguetown/psicross
+			recipient.mind?.special_items["Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 
 /datum/virtue/combat/duelist
 	name = "Duelist's Apprentice"
@@ -115,6 +115,19 @@
 		recipient.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_APPRENTICE, silent = TRUE)
 	else
 		added_skills = list(list(/datum/skill/combat/bows, 1, 6))
+
+/datum/virtue/combat/shepherd
+	name = "Capable Shepherd"
+	desc = "Years of protecting my herd from brigands and thieves have taught me how to use the simplest of weapons in self-defense."
+	custom_text = "Guaranteed Journeyman for Staffs & Slings."
+	added_stashed_items = list("Iron Quarterstaff" = /obj/item/rogueweapon/woodstaff/quarterstaff/iron,
+								"Sling" = /obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+								"Pouch of Iron Sling Bullets" = /obj/item/quiver/sling/iron)
+
+/datum/virtue/combat/brawler/apply_to_human(mob/living/carbon/human/recipient)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+	recipient.adjust_skillrank_up_to(/datum/skill/combat/slings, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
+
 /*/datum/virtue/combat/tavern_brawler
 	name = "Tavern Brawler"
 	desc = "I've never met a problem my fists couldn't solve."
