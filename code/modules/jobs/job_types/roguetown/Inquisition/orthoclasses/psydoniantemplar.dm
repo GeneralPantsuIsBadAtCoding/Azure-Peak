@@ -75,7 +75,7 @@
 		if("Bucket Helm")
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket, SLOT_HEAD, TRUE)
 
-	var/weapons = list("Psydonic Longsword", "Psydonic War Axe", "Psydonic Whip", "Psydonic Flail", "Psydonic Mace", "Psydonic Spear", "Psydonic Poleaxe + Shortsword")
+	var/weapons = list("Psydonic Longsword", "Psydonic War Axe", "Psydonic Whip", "Psydonic Flail", "Psydonic Mace", "Psydonic Spear + Handmace", "Psydonic Poleaxe + Shortsword")
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Psydonic Longsword")
