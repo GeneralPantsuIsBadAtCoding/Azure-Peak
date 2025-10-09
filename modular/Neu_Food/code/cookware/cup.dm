@@ -20,10 +20,8 @@
 	drinksounds = list('sound/items/drink_cup (1).ogg','sound/items/drink_cup (2).ogg','sound/items/drink_cup (3).ogg','sound/items/drink_cup (4).ogg','sound/items/drink_cup (5).ogg')
 	fillsounds = list('sound/items/fillcup.ogg')
 	anvilrepair = /datum/skill/craft/blacksmithing
-	force = 10
-	force_wielded = 10
-	throwforce = 15
-	max_integrity = 50
+	force = 5
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/update_icon(dont_fill=FALSE)
 	testing("cupupdate")
@@ -45,10 +43,8 @@
 	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	anvilrepair = null
 	sellprice = 0
-	force = 10
-	force_wielded = 10
-	throwforce = 15
-	max_integrity = 50
+	force = 5
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/steel
 	name = "goblet"
@@ -56,9 +52,7 @@
 	icon_state = "steel"
 	sellprice = 10
 	force = 10
-	force_wielded = 15
-	throwforce = 20
-	max_integrity = 50
+	throwforce = 15
 
 /obj/item/reagent_containers/glass/cup/aalloymug
 	name = "decrepit mug"
@@ -67,9 +61,7 @@
 	icon_state = "amug"
 	sellprice = 5
 	force = 5
-	force_wielded = 15
-	throwforce = 20
-	max_integrity = 25
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/aalloygob
 	name = "decrepit goblet"
@@ -78,9 +70,7 @@
 	icon_state = "agoblet"
 	sellprice = 10
 	force = 10
-	force_wielded = 15
-	throwforce = 20
-	max_integrity = 25
+	throwforce = 15
 
 /obj/item/reagent_containers/glass/cup/silver
 	name = "silver goblet"
@@ -90,9 +80,7 @@
 	last_used = 0
 	is_silver = TRUE
 	force = 10
-	force_wielded = 10
-	throwforce = 20
-	max_integrity = 100
+	throwforce = 15
 
 /obj/item/reagent_containers/glass/cup/silver/small
 	name = "silver cup"
@@ -101,9 +89,7 @@
 	sellprice = 20
 	is_silver = TRUE
 	force = 5
-	force_wielded = 5
-	throwforce = 15
-	max_integrity = 75
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/golden
 	name = "golden goblet"
@@ -111,9 +97,7 @@
 	icon_state = "golden"
 	sellprice = 50
 	force = 10
-	force_wielded = 10
-	throwforce = 20
-	max_integrity = 100
+	throwforce = 15
 
 /obj/item/reagent_containers/glass/cup/golden/small
 	name = "golden cup"
@@ -121,9 +105,7 @@
 	icon_state = "gcup"
 	sellprice = 40
 	force = 5
-	force_wielded = 5
-	throwforce = 15
-	max_integrity = 75
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/golden/poison
 	name = "golden goblet"
@@ -132,18 +114,14 @@
 	sellprice = 50
 	list_reagents = list(/datum/reagent/toxin/killersice = 1, /datum/reagent/consumable/ethanol/elfred = 20)
 	force = 10
-	force_wielded = 10
-	throwforce = 20
-	max_integrity = 100
+	throwforce = 15
 
 /obj/item/reagent_containers/glass/cup/skull
 	name = "skull goblet"
 	desc = "The hollow eye sockets tell me of forgotten, dark rituals."
 	icon_state = "skull"
 	force = 5
-	force_wielded = 5
-	throwforce = 15
-	max_integrity = 50
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/ceramic
 	name = "teacup"
@@ -152,9 +130,7 @@
 	icon_state = "cup"
 	sellprice = 10
 	force = 5
-	force_wielded = 5
-	throwforce = 15
-	max_integrity = 50
+	throwforce = 10
 
 /obj/item/reagent_containers/glass/cup/ceramic/examine()
 	. = ..()
@@ -178,6 +154,4 @@
 	icon_state = "cup_fancy"
 	sellprice = 12
 	force = 5
-	force_wielded = 5
-	throwforce = 15
-	max_integrity = 50
+	throwforce = 10
