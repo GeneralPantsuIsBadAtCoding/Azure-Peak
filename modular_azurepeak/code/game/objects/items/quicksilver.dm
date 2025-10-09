@@ -3,7 +3,7 @@
 	icon_state = "quicksilver"
 	possible_item_intents = list(/datum/intent/use)
 	icon = 'modular_azurepeak/icons/obj/items/quicksilver.dmi'
-	desc = "A daring blend of alchemy, aberrant blood, and divine silver, this poultice can lift some of the most fell of curses."
+	desc = "A daring blend of alchemy, aberrant blood, and divine silver. This panacea fortifies the anointed's body with blessed silverdust, protecting them from the curses of vampyrism and lycanthropy."
 	w_class = WEIGHT_CLASS_TINY
 	dropshrink = 1
 	drop_sound = 'sound/items/gem.ogg'
@@ -15,7 +15,7 @@
 /obj/item/quicksilver/luxinfused
 	name = "absolving silver"
 	icon_state = "quicksilverlux"
-	desc = "A daring blend of trace amounts of purifying lux, aberrant blood, and divine silver, this poultice can lift some of the most fell of curses."
+	desc = "A daring blend of trace amounts of purifying lux, aberrant blood, and divine silver. This panacea fortifies the anointed's body with blessed silverdust, protecting them from the curses of vampyrism and lycanthropy."
 
 /obj/item/quicksilver/examine(mob/user)
 	. = ..()
