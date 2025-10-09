@@ -165,11 +165,12 @@
 	name = "disarm"
 	icon_state = "intake"
 	animname = "strike"
-	blade_class = BCLASS_DISARM	//We don't use a blade class because it has on damage.
+	attack_verb = list("sweeps", "disarms")
+	blade_class = BCLASS_DISARM
 	hitsound =list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 2	//Small delay to hook
-	damfactor = 0	//No real damage
+	damfactor = 0
 	clickcd = 22	//Can't spam this; long delay.
 	item_d_type = "blunt"
 
