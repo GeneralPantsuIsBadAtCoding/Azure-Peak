@@ -110,7 +110,12 @@
 
 /datum/coven_power/siren/madrigal/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	var/list/mobs_in_view = oviewers(7, owner)
+	if(!LAZYLEN(mobs_in_view))
+		deactivate()
+		return
+
+	for(var/mob/living/carbon/human/listener in mobs_in_view)
 		listener.create_walk_to(2 SECONDS, owner)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -122,7 +127,7 @@
 
 /datum/coven_power/siren/madrigal/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target?.remove_overlay(MUTATIONS_LAYER)
 
 //SIREN'S BECKONING
 /datum/coven_power/siren/sirens_beckoning
@@ -138,7 +143,12 @@
 
 /datum/coven_power/siren/sirens_beckoning/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	var/list/mobs_in_view = oviewers(7, owner)
+	if(!LAZYLEN(mobs_in_view))
+		deactivate()
+		return
+
+	for(var/mob/living/carbon/human/listener in mobs_in_view)
 		listener.Stun(5 SECONDS)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -150,7 +160,7 @@
 
 /datum/coven_power/siren/sirens_beckoning/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target?.remove_overlay(MUTATIONS_LAYER)
 
 //SHATTERING CRESCENDO
 /datum/coven_power/siren/shattering_crescendo
@@ -167,7 +177,12 @@
 
 /datum/coven_power/siren/shattering_crescendo/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/listener in oviewers(7, owner))
+	var/list/mobs_in_view = oviewers(7, owner)
+	if(!LAZYLEN(mobs_in_view))
+		deactivate()
+		return
+
+	for(var/mob/living/carbon/human/listener in mobs_in_view)
 		listener.Stun(5 SECONDS)
 		listener.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
 
@@ -180,4 +195,4 @@
 
 /datum/coven_power/siren/shattering_crescendo/deactivate(mob/living/carbon/human/target)
 	. = ..()
-	target.remove_overlay(MUTATIONS_LAYER)
+	target?.remove_overlay(MUTATIONS_LAYER)

@@ -18,23 +18,128 @@
 	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 	duration_length = 5 SECONDS
-	cooldown_length = 15 SECONDS
-	duration_override = TRUE
+	cooldown_length = 20 SECONDS
+	var/datum/proximity_monitor/advanced/silence_field/proximity_field
+	var/silence_range = 7
+	var/validation_timer
 
 /datum/coven_power/quietus/silence_of_death/activate()
 	. = ..()
-	for(var/mob/living/carbon/human/H in get_hearers_in_range(7, owner))
-		if(H == owner)
-			continue
+	ADD_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, "quietus")
+	if(!proximity_field)
+		proximity_field = new /datum/proximity_monitor/advanced/silence_field(owner, silence_range, FALSE, src)
+		// Apply silence to all mobs currently in range
+		apply_initial_silence()
+		// Start validation timer to check positions periodically - this is really redundant but its useful incases of forceMove
+		validation_timer = addtimer(CALLBACK(src, PROC_REF(validate_silence_field)), 1 SECONDS, TIMER_LOOP | TIMER_STOPPABLE)
 
-		ADD_TRAIT(H, TRAIT_DEAF, "quietus")
-		if(H.confused < 25)
-			H.confused += 25
-		addtimer(CALLBACK(src, PROC_REF(deactivate), H), duration_length)
-
-/datum/coven_power/quietus/silence_of_death/deactivate(mob/living/carbon/human/deafened)
+/datum/coven_power/quietus/silence_of_death/deactivate()
 	. = ..()
-	REMOVE_TRAIT(deafened, TRAIT_DEAF, "quietus")
+	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, "quietus")
+	if(proximity_field)
+		QDEL_NULL(proximity_field)
+	if(validation_timer)
+		deltimer(validation_timer)
+		validation_timer = null
+
+/datum/coven_power/quietus/silence_of_death/proc/apply_initial_silence()
+	if(!owner || !proximity_field)
+		return
+
+	// Find all mobs within range and apply silence
+	for(var/mob/living/carbon/human/target in range(silence_range, owner))
+		if(should_affect_target(target))
+			proximity_field.add_affected_mob(target)
+
+/datum/coven_power/quietus/silence_of_death/proc/validate_silence_field()
+	if(!owner || !proximity_field)
+		return
+
+	var/list/current_affected = proximity_field.affected_mobs.Copy()
+
+	// Check each affected mob to see if they're still in range
+	for(var/mob/living/carbon/human/target in current_affected)
+		if(!target || target.z != owner.z || get_dist(owner, target) > silence_range)
+			proximity_field.remove_affected_mob(target)
+
+	// Check for new mobs that entered range
+	for(var/mob/living/carbon/human/target in range(silence_range, owner))
+		if(should_affect_target(target) && !(target in proximity_field.affected_mobs))
+			proximity_field.add_affected_mob(target)
+
+/datum/coven_power/quietus/silence_of_death/proc/should_affect_target(mob/living/carbon/human/target)
+	if(target == owner)
+		return FALSE
+	if(target.clan_position?.is_subordinate_to(owner))
+		return FALSE
+	if(target.clan_position?.is_superior_to(owner))
+		return FALSE
+	return TRUE
+
+/datum/coven_power/quietus/silence_of_death/proc/apply_silence(mob/living/carbon/human/target)
+	if(!should_affect_target(target))
+		return
+	if(!HAS_TRAIT(target, TRAIT_SILENT_FOOTSTEPS))
+		ADD_TRAIT(target, TRAIT_SILENT_FOOTSTEPS, "quietus")
+	if(!HAS_TRAIT(target, TRAIT_DEAF))
+		ADD_TRAIT(target, TRAIT_DEAF, "quietus")
+		if(target.confused < 20)
+			target.confused += 20
+
+/datum/coven_power/quietus/silence_of_death/proc/remove_silence(mob/living/carbon/human/target)
+	if(HAS_TRAIT_FROM(target, TRAIT_DEAF, "quietus"))
+		REMOVE_TRAIT(target, TRAIT_DEAF, "quietus")
+	if(HAS_TRAIT_FROM(target, TRAIT_SILENT_FOOTSTEPS, "quietus"))
+		REMOVE_TRAIT(target, TRAIT_SILENT_FOOTSTEPS, "quietus")
+
+// Proximity monitor for the silence field
+/datum/proximity_monitor/advanced/silence_field
+	var/datum/coven_power/quietus/silence_of_death/parent_power
+	var/list/affected_mobs = list()
+
+/datum/proximity_monitor/advanced/silence_field/New(atom/center, range, ignore_if_not_on_turf, datum/coven_power/quietus/silence_of_death/power)
+	parent_power = power
+	. = ..()
+
+/datum/proximity_monitor/advanced/silence_field/setup_field_turf(turf/target)
+	. = ..()
+	// Check for any mobs already on this turf
+	for(var/mob/living/carbon/human/H in target)
+		if(parent_power.should_affect_target(H))
+			add_affected_mob(H)
+
+/datum/proximity_monitor/advanced/silence_field/field_edge_crossed(atom/movable/movable, turf/location, direction)
+	. = ..()
+	if(istype(movable, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = movable
+		if(parent_power.should_affect_target(H))
+			add_affected_mob(H)
+
+/datum/proximity_monitor/advanced/silence_field/field_edge_uncrossed(atom/movable/movable, turf/location, direction)
+	. = ..()
+	if(istype(movable, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = movable
+		remove_affected_mob(H)
+
+/datum/proximity_monitor/advanced/silence_field/proc/add_affected_mob(mob/living/carbon/human/target)
+	if(target in affected_mobs)
+		return
+	affected_mobs |= target
+	parent_power.apply_silence(target)
+
+/datum/proximity_monitor/advanced/silence_field/proc/remove_affected_mob(mob/living/carbon/human/target)
+	if(!(target in affected_mobs))
+		return
+	affected_mobs -= target
+	parent_power.remove_silence(target)
+
+/datum/proximity_monitor/advanced/silence_field/Destroy()
+	// Clean up all affected mobs when the field is destroyed
+	for(var/mob/living/carbon/human/H in affected_mobs)
+		parent_power.remove_silence(H)
+	affected_mobs.Cut()
+	parent_power = null
+	return ..()
 
 /datum/coven_power/quietus/scorpions_touch
 	name = "Scorpion's Touch"
