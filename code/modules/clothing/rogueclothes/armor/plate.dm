@@ -25,6 +25,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/iron
 	name = "iron half-plate"
 	desc = "A basic half-plate of iron, protective and moderately durable."
+	body_parts_covered = COVERAGE_ALL_BUT_ARMS // Reflects the sprite, which lacks pauldrons.
 	icon_state = "ihalfplate"
 	item_state = "ihalfplate"
 	boobed = FALSE	//the armor just looks better with this, makes sense and is 8 sprites less
@@ -58,7 +59,7 @@
 	unequip_delay_self = 6 SECONDS
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
-	body_parts_covered = COVERAGE_SHIRT
+	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar
 	name = "vicious half-plate"
@@ -74,9 +75,9 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	name = "psydonic half-plate"
-	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+	desc = "An ornate half-plate, decorated with silver fluting and reeking with the madness of an Enduring God. With the assistance of a blacksmith and some blessed silver ingots, this set can further be upgraded."
 	icon_state = "ornatehalfplate"
+	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
 
@@ -358,7 +359,7 @@
 	name = "psydonic cuirass"
 	icon_state = "ornatecuirass"
 	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
-			Made to endure."
+			Made to endure. With the assistance of a blacksmith and some blessed silver ingots, this set can further be upgraded."
 	
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
