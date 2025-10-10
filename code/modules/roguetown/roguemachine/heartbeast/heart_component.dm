@@ -52,6 +52,7 @@
 
 	initialize_quirks()
 	setup_heartbeast_turfs()
+	link_to_nearby_racks()
 
 /datum/component/chimeric_heart_beast/proc/setup_heartbeast_turfs()
 	var/turf/center_turf = get_turf(heart_beast)
@@ -458,3 +459,17 @@
 			max_words = trait.preferred_approaches["max_words"]
 		if(trait.preferred_approaches["punctuation"])
 			preferred_punctuation = trait.preferred_approaches["punctuation"]
+
+/datum/component/chimeric_heart_beast/proc/link_to_racks()
+	var/search_range = 7
+
+	var/x1 = x - search_range
+	var/y1 = y - search_range
+	var/x2 = x + search_range
+	var/y2 = y + search_range
+
+	for(var/obj/structure/stone_rack/rack in world.contents_rect(x1, y1, x2, y2, z))
+		if(!rack.heart_component)
+			linked_rack = rack
+			rack.heart_component = src
+			return
