@@ -92,7 +92,7 @@
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
 
 /area/rogue/outdoors/woods/vampire_lair
-	warden_area = TRUE
+	warden_area = FALSE
 	ambush_times = list()
 	ambush_mobs = null
 	threat_region = ""
