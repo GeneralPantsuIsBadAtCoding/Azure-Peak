@@ -193,7 +193,7 @@
 	var/datum/clan/initiator_clan
 	var/start_failure_message = "This project cannot be started."
 	var/completion_sound = 'sound/misc/batsound.ogg'
-	var/can_be_initiated_by = INITIATE_ANYONE
+	var/can_be_initiated_by = INITIATE_LORDE
 
 /datum/vampire_project/proc/can_start(mob/living/carbon/human/user, obj/structure/vampire/bloodpool/pool, silent = FALSE)
 	if(!istype(user) || !istype(pool))

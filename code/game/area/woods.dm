@@ -90,3 +90,9 @@
 		/mob/living/carbon/human/species/skeleton/npc/hard = 10,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 30,
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
+
+/area/rogue/outdoors/woods/vampire_lair
+	warden_area = TRUE
+	ambush_times = list()
+	ambush_mobs = null
+	threat_region = ""

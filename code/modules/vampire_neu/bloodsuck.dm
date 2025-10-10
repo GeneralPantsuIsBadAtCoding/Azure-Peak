@@ -79,12 +79,12 @@
 		if(victim.bloodpool < used_vitae)  // We assume they're left with 250 vitae or less, so we take it all
 			used_vitae = victim.bloodpool
 			to_chat(src, span_warning("...But alas, only leftovers..."))
+		victim.adjust_bloodpool(-used_vitae)
+		victim.adjust_hydration(- used_vitae * 0.1)
 		if(victim.mind && !victim.clan)
 			used_vitae = used_vitae * CLIENT_VITAE_MULTIPLIER
 		adjust_bloodpool(used_vitae)
 		adjust_hydration(used_vitae * 0.1)
-		victim.adjust_bloodpool(-used_vitae)
-		victim.adjust_hydration(- used_vitae * 0.1)
 	else // Successful diablerie, yes, you can become a vampire lord by sucking him dry. Intentional!
 		if(VVictim)
 			AdjustMasquerade(-1)
@@ -118,6 +118,8 @@
 	if(!istype(VDrinker))
 		return
 
+	var/datum/mind/original_mind = mind
+
 	if(alert(src, "Would you like to rise as a vampire spawn? Warning: refusal may or may not mortally wound you.", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 		to_chat(sire, span_danger("Your victim twitches, yet the curse fails to take over. As if something otherworldly intervenes..."))
 		if(HAS_TRAIT_FROM(src, TRAIT_REFUSED_VAMP_CONVERT, REF(sire)))
@@ -128,9 +130,10 @@
 		ADD_TRAIT(src, TRAIT_REFUSED_VAMP_CONVERT, REF(sire))
 		return
 
+	fully_heal(TRUE)
 	visible_message(span_danger("Some dark energy begins to flow from [sire] into [src]..."))
 	visible_message(span_red("[src] rises as a new spawn!"))
-	fully_heal(TRUE)
+	original_mind?.transfer_to(src, TRUE)
 	var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(incoming_clan = sire.clan, forced_clan = TRUE, generation = VDrinker.generation-1)
-	mind.add_antag_datum(new_antag)
+	mind?.add_antag_datum(new_antag)
 	adjust_bloodpool(500)
