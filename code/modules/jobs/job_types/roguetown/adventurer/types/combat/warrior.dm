@@ -361,6 +361,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
+		)
 		if(H.age == AGE_OLD)
 			H.change_stat(STATKEY_INT, 1)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
