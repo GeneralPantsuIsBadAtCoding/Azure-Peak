@@ -10,6 +10,19 @@
 	icon_state = "puritan_hat"
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/puritan/armored
+	name = "puritan's hat"
+	desc = "A buckled capotain, woven atop a steel skull cap. Discrete enough to wear for a diplomatic affair, but durable enough to thwart a heathen's blade."
+	icon_state = "puritan_hat"
+	sewrepair = FALSE
+	armor = ARMOR_HEAD_HELMET
+	blocksound = PLATEHIT
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	body_parts_covered = HEAD|HAIR
+	max_integrity = ARMOR_INT_HELMET_STEEL
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
+
 /obj/item/clothing/head/roguetown/nightman
 	name = "teller's hat"
 	icon_state = "tophat"
