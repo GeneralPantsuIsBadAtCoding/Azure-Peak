@@ -247,9 +247,20 @@
 
 /obj/item/storage/backpack/rogue/satchel/short
 	name = "short satchel"
-	desc = "A leather satchel that's meant to  clip to a belt or to a pair of pants, freeing the shoulders from any weight."
+	desc = "A leather satchel that's meant to clip to a belt or to a pair of pants, freeing the shoulders from any weight."
 	icon_state = "satchelshort"
 	item_state = "satchelshort"
+
+/obj/item/storage/backpack/rogue/satchel/beltpack
+	name = "beltpack" //Satchel that fits on the cloak or belt slot. Should be exceptionally rare for on-spawn loadouts, but still craftable or importable.
+	desc = "A lighter satchel that rests against the rump, freeing the shoulders from any weight. It's traditionally worn in place of a belt or cloak."
+	icon_state = "satchel"
+	item_state = "gamesatchel"
+	icon = 'icons/roguetown/clothing/storage.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
+	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BELT
+	max_integrity = 300
+	component_type = /datum/component/storage/concrete/roguetown/satchel
 
 /obj/item/storage/backpack/rogue/backpack
 	name = "backpack"
