@@ -11,7 +11,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/head/roguetown/puritan/armored
-	name = "puritan's hat"
+	name = "puritan's hat" //Puritan hat subtype, meant for the Exorcist's heaviest classes. Steel skullcap-tier protection.
 	desc = "A buckled capotain, woven atop a steel skull cap. Discrete enough to wear for a diplomatic affair, but durable enough to thwart a heathen's blade."
 	icon_state = "puritan_hat"
 	sewrepair = FALSE
