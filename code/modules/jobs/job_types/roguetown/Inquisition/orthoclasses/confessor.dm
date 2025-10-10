@@ -20,8 +20,8 @@
 		STATKEY_STR = -1
 	)
 	subclass_skills = list(
-		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE, //Should rely on the seizing garrote to properly subdue foes.
-		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN, //Should rely on the seizing garrote to properly subdue foes.
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, 
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
@@ -46,14 +46,10 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
-	head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
 	id = /obj/item/clothing/ring/signet/silver
 	backpack_contents = list(
 		/obj/item/roguekey/inquisition = 1,
@@ -67,26 +63,41 @@
 
 /datum/outfit/job/roguetown/confessor/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Psydonic Shortsword", "Psydonic Handmace", "Blessed Psydonic Dagger")
-	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	var/weapons = list("Blessed Psydonic Dagger", "Psydonic Handmace", "Psydonic Shortsword")
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
 	switch(weapon_choice)
-		if("Psydonic Shortsword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		if("Psydonic Handmace")
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 		if("Blessed Psydonic Dagger")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-	var/quivers = list("Blessed Water Bolts", "Bolts")
-	var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S ARMS") as anything in quivers
+		if("Psydonic Handmace")
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
+		if("Psydonic Shortsword")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+	var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
+	var/armor_choice = input(H, "Choose your ARMOR.", "PROFESS YOUR SPECIALITY.") as anything in armors
+	switch(armor_choice)
+		if("Confessor - Slurbow, Leather Maillecoat")
+			head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
+		if("Arbalist - Crossbow, Lightweight Brigandine")
+			head = /obj/item/clothing/head/roguetown/headband/bloodied
+			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			H.change_stat(STATKEY_CON, 1)
+			H.change_stat(STATKEY_STR, 2)
+			H.change_stat(STATKEY_SPD, -2) //Applies a base statblock of 11/11/11 to CON, STR, and SPD - compared to the standard 10/9/13. Less coverage but better protection, -30% dodge chance.
+	var/quivers = list("Bolts", "Blessed Water Bolts")
+	var/boltchoice = input(H,"Choose your MUNITIONS.", "LOCK AND LOAD.") as anything in quivers
 	switch(boltchoice)
-		if("Blessed Water Bolts")
-			H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
-			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
 		if("Bolts")
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
+			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
+		if("Blessed Water Bolts")
+			H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
 			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
