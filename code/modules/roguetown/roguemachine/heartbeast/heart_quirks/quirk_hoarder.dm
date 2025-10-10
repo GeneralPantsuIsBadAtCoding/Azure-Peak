@@ -2,7 +2,6 @@
 // May refactor territorial to be similar later
 /datum/flesh_quirk/hoarder
 	name = "Hoarder"
-	rarity = 1000
 	description = "Constantly wants to acquire new items"
 	quirk_type = QUIRK_INTERACT | QUIRK_BEHAVIOR | QUIRK_ENVIRONMENT
 
@@ -11,7 +10,7 @@
 	var/value_cap = 20
 
 	var/theft_cooldown = 6 MINUTES
-	var/next_theft = 10 SECONDS
+	var/next_theft = 6 MINUTES
 
 /datum/flesh_quirk/hoarder/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	// if happy, may not demand another item

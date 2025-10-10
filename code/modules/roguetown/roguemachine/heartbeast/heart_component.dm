@@ -1,8 +1,3 @@
-#define QUIRK_LANGUAGE 		(1<<0)
-#define QUIRK_BEHAVIOR 		(1<<1)
-#define QUIRK_ENVIRONMENT 	(1<<2)
-#define QUIRK_INTERACT 		(1<<3)
-
 /datum/component/chimeric_heart_beast
 	var/obj/structure/roguemachine/chimeric_heart_beast/heart_beast
 	var/base_blood_output = 1
