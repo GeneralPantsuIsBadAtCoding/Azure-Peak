@@ -96,3 +96,57 @@
 	allowed_race = CLOTHED_RACES_TYPES
 	body_parts_covered = CHEST|GROIN
 	armor_class = ARMOR_CLASS_LIGHT //placed in the medium category to keep it with its parent obj
+
+//UNIQUE//
+// Context: Disciples were able to wear maille on the shirt slot, but not any actual shirts. We don't have any variables that specifically allow for blacklisting certain clothes, too.
+// This is a hackjobbed solution, in the internim, for now. My guess is that the filepath determines what 'type' the item belongs to, and whether you can wear multiples or not.
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/disciple
+	name = "disciple's skin"
+	desc = "'..they will say of you; you descended into Hell, and gave justice to those within..' </br>'..in the heart of the abyss, you faced down the Archdevil, and slew them in a triumph of Man over God..' '</br>'..and on the third dae, you rose again from the dead and were seated at the right hand of Adonai..' </br>'..the risen messiah for the Gospel of Violence.'"
+	resistance_flags = FIRE_PROOF
+	icon_state = null
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	armor = list("blunt" = 30, "slash" = 50, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0) //Custom value; padded gambeson's slash- and stab- armor.
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
+	body_parts_covered = COVERAGE_FULL
+	body_parts_inherent = COVERAGE_FULL
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg' //If you hear this, something has gone terribly wrong.
+	blocksound = SOFTUNDERHIT
+	blade_dulling = DULLING_BASHCHOP
+	anvilrepair = null //Should hopefully replicate the 'shirt' path's function, without exploding everything. Remove 'anvilrepair' ASAP if it prevents the armor's regeneration.
+	sewrepair = TRUE
+	max_integrity = 600 //Difficult to completely break.
+	flags_inv = null //Exposes the chest and-or breasts. Should allow for a Disciple's thang to swang.
+	surgery_cover = FALSE //Should permit surgery and other invasive processes.
+	var/repair_amount = 6 
+	var/repair_time = 20 SECONDS
+	var/last_repair 
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/disciple/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/disciple/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/disciple/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
+	. = ..()
+	if(obj_integrity < max_integrity)
+		START_PROCESSING(SSobj, src)
+		return
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/disciple/process()
+	if(obj_integrity >= max_integrity) 
+		STOP_PROCESSING(SSobj, src)
+		src.visible_message(span_notice("[src] tautens with newfound vigor, before relaxing once more."), vision_distance = 1)
+		return
+	else if(world.time > src.last_repair + src.repair_time)
+		src.last_repair = world.time
+		obj_integrity = min(obj_integrity + src.repair_amount, src.max_integrity)
+	..()
