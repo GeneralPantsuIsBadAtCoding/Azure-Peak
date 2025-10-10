@@ -195,6 +195,7 @@
 	desc = "A headband that's been soaked in the blood of a terrible nitebeast. The coagulative properties of cursed blood has stiffened the cloth, gifting it a texture not unlike spongy leather. Wearing it emboldens you with determination."
 	icon_state = "headband"
 	item_state = "headband"
+	color = "#851a16"
 	armor = ARMOR_HEAD_LEATHER
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	body_parts_covered = HEAD|HAIR|EARS
