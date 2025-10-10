@@ -42,6 +42,7 @@
 /datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H)
 	..()
 	has_loadout = TRUE
+	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	neck = /obj/item/clothing/neck/roguetown/gorget
