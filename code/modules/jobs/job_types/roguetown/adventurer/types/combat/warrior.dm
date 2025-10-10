@@ -375,73 +375,58 @@
 		switch(silver_choice)
 			if("Silver Dagger")
 				r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sheath
 			if("Silver Shortsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/short/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Arming Sword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Rapier")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/rapier/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/long/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Broadsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 				beltr = /obj/item/rogueweapon/scabbard/sword
 			if("Silver Mace")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/mace/steel/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Warhammer")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/mace/warhammer/steel/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Morningstar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/flail/sflail/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Whip")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/whip/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver War Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/silver
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Poleaxe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/greataxe/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Spear")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/spear/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-				head = /obj/item/clothing/head/roguetown/puritan
 			if("Silver Quarterstaff")
-				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-				head = /obj/item/clothing/head/roguetown/headband
 			if("Silver Shovel")
-				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/shovel/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-				head = /obj/item/clothing/head/roguetown/necrahood
+
 		var/sidearm = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver Stake", "Belt Of Silver Tossblades")
 		var/sidearm_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in sidearm
 		switch(sidearm_choice)
@@ -459,13 +444,14 @@
 				belt = /obj/item/storage/belt/rogue/leather/black
 			if("Belt Of Silver Tossblades")
 				belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/silver
+
 		var/discipline = list("Traditionalist - Alchemical Preperations + Hauberk", "Reformist - Skilled Footwork + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
 		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
 		switch(discipline_choice)
 			if("Traditionalist - Alchemical Preperations + Hauberk")
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC) 
-				H.change_stat(STATKEY_INT, 1)
+				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC) //'Witcher' archetype. Weaponized alchemy gifts both immunity to nitebeastly curses and a self-suppliable +3 statboost. Well-rounded in almost every facet.
+				head = /obj/item/clothing/head/roguetown/puritan/armored
 				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 				l_hand = pick(
@@ -478,17 +464,29 @@
 					/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 					)
 			if("Reformist - Skilled Footwork + Haubergeon")
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) //'Puritan' archetype. Closer to the Roguetown-era Inquisitor in portrayal; lighter-armored, but far better at evading strikes. Potentially evil with the polearm choices.
 				H.change_stat(STATKEY_SPD, 1)
+				head = /obj/item/clothing/head/roguetown/puritan
 				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 			if("Orthodoxist - Plate Training + Cuirass")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC) //'Templar' archetype. Leans more into tanking oncoming strikes, with finer armor and supplemental immunity to deadite-bites.
 				H.change_stat(STATKEY_CON, 1)
 				H.change_stat(STATKEY_SPD, -1)
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
-				l_hand = /obj/item/clothing/head/roguetown/helmet/heavy/knight
+					var/visage = list("Puritan's Armored Hat", "Visored Sallet", "Volfskulle Bascinet", "Fluted Armet")
+					var/visage_choice = input(H, "Choose your VISAGE.", "GET PSYCHED.") as anything in visage
+					switch(visage_choice)
+						if("Puritan's Armored Hat")
+							head = /obj/item/clothing/head/roguetown/puritan/armored
+						if("Visored Sallet")
+							head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
+						if("Volfskulle Bascinet")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/puritan
+						if("Fluted Armet")
+							head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/fluted
 
 	backl = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
@@ -499,8 +497,6 @@
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch/metal = 1,
-		/obj/item/reagent_containers/powder/salt = 1,
-		/obj/item/natural/bone = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
