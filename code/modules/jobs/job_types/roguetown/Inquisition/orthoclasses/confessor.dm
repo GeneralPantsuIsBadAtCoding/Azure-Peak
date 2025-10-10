@@ -77,9 +77,9 @@
 			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-	var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
-	var/armor_choice = input(H, "Choose your ARCHETYPE.", "PROFESS YOUR SPECIALITY.") as anything in armors
-	switch(armor_choice)
+	var/archetypes = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
+	var/archetype_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in archetypes
+	switch(archetype_choice)
 		if("Confessor - Slurbow, Leather Maillecoat")
 			head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
@@ -93,7 +93,7 @@
 			H.change_stat(STATKEY_STR, 2)
 			H.change_stat(STATKEY_SPD, -2) //Applies a base statblock of 11/11/11 to CON, STR, and SPD - compared to the standard 10/9/13. Less coverage but better protection, -30% dodge chance.
 	var/quivers = list("Bolts", "Blessed Water Bolts")
-	var/boltchoice = input(H,"Choose your MUNITIONS.", "LOCK AND LOAD.") as anything in quivers
+	var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S MISSILES.") as anything in quivers
 	switch(boltchoice)
 		if("Bolts")
 			H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
