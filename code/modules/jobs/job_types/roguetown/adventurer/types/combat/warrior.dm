@@ -471,11 +471,12 @@
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 			if("Orthodoxist - Plate Training + Cuirass")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-				ADD_TRAIT(H, TRAIT_TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC) //'Templar' archetype. Leans more into tanking oncoming strikes, with finer armor and supplemental immunity to deadite-bites.
+				ADD_TRAIT(H, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC) //'Templar' archetype. Leans more into tanking oncoming strikes, with finer armor and supplemental immunity to deadite-bites.
 				H.change_stat(STATKEY_CON, 1)
 				H.change_stat(STATKEY_SPD, -1)
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+
 					var/visage = list("Puritan's Armored Hat", "Visored Sallet", "Volfskulle Bascinet", "Fluted Armet")
 					var/visage_choice = input(H, "Choose your VISAGE.", "GET PSYCHED.") as anything in visage
 					switch(visage_choice)
