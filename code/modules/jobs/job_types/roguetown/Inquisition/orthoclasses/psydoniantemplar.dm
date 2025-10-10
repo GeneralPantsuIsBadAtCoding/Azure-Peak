@@ -64,7 +64,7 @@
 /datum/outfit/job/roguetown/psydoniantemplar/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	var/helmets = list("Barbute", "Sallet", "Armet", "Bucket Helm")
-	var/helmet_choice = input(H,"Choose your HELMET.", "TAKE UP PSYDON'S HELMS") as anything in helmets
+	var/helmet_choice = input(H,"Choose your HELMET.", "TAKE UP PSYDON'S HELMS.") as anything in helmets
 	switch(helmet_choice)
 		if("Barbute")
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute, SLOT_HEAD, TRUE)
@@ -75,8 +75,17 @@
 		if("Bucket Helm")
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/helmet/heavy/psybucket, SLOT_HEAD, TRUE)
 
+	var/armors = list("Hauberk", "Cuirass")
+	var/armor_choice = input(H, "Choose your ARMOR.", "TAKE UP PSYDON'S MANTLE.") as anything in armors
+	switch(armor_choice)
+		if("Hauberk")
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate
+		if("Cuirass")
+			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
+			H.change_stat(STATKEY_SPD, 1) //Less durability and coverage, but still upgradable. Balances out the innate -1 SPD debuff.
+
 	var/weapons = list("Psydonic Longsword", "Psydonic War Axe", "Psydonic Whip", "Psydonic Flail", "Psydonic Mace", "Psydonic Spear + Handmace", "Psydonic Poleaxe + Shortsword")
-	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS") as anything in weapons
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
 	switch(weapon_choice)
 		if("Psydonic Longsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H), TRUE)
