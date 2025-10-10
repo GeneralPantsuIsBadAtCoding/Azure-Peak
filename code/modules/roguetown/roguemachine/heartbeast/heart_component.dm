@@ -36,6 +36,8 @@
 	var/task_presentation_time = 0 // When the current task was last presented to the listener
 	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
 
+	var/obj/structure/stone_rack/linked_rack
+
 /datum/component/chimeric_heart_beast/Initialize()
 	. = ..()
 	if(!istype(parent, /obj/structure/roguemachine/chimeric_heart_beast))
@@ -52,7 +54,7 @@
 
 	initialize_quirks()
 	setup_heartbeast_turfs()
-	link_to_nearby_racks()
+	addtimer(CALLBACK(src, .proc/link_to_racks), 5 SECONDS)
 
 /datum/component/chimeric_heart_beast/proc/setup_heartbeast_turfs()
 	var/turf/center_turf = get_turf(heart_beast)
@@ -461,15 +463,39 @@
 			preferred_punctuation = trait.preferred_approaches["punctuation"]
 
 /datum/component/chimeric_heart_beast/proc/link_to_racks()
+	if(!heart_beast || !heart_beast.loc) 
+		to_chat(world, span_userdanger("LINK FAILED: heart_beast is not located on map (QDELETED or loc=null)."))
+		return
+
 	var/search_range = 7
+	var/center_x = heart_beast.x
+	var/center_y = heart_beast.y
+	var/center_z = heart_beast.z
 
-	var/x1 = x - search_range
-	var/y1 = y - search_range
-	var/x2 = x + search_range
-	var/y2 = y + search_range
+	to_chat(world, span_userdanger("LINK DEBUG: Starting link search from [center_x],[center_y],[center_z] (Range: [search_range])."))
 
-	for(var/obj/structure/stone_rack/rack in world.contents_rect(x1, y1, x2, y2, z))
-		if(!rack.heart_component)
-			linked_rack = rack
-			rack.heart_component = src
-			return
+	var/x1 = center_x - search_range
+	var/y1 = center_y - search_range
+	var/x2 = center_x + search_range
+	var/y2 = center_y + search_range
+	
+	to_chat(world, span_userdanger("LINK DEBUG: Searching bounds X:[x1] to [x2], Y:[y1] to [y2]."))
+
+	for(var/i in x1 to x2)
+		for(var/j in y1 to y2)
+			var/turf/T = locate(i, j, center_z)
+
+			if(!T)
+				continue
+
+			var/obj/structure/stone_rack/rack = locate(/obj/structure/stone_rack) in T.contents
+			if(rack)
+				to_chat(world, span_userdanger("LINK DEBUG: Found object at [i],[j],[center_z]: [rack.type] ([rack])."))
+				
+				if(!rack.heart_component)
+					linked_rack = rack
+					rack.heart_component = src
+					to_chat(world, span_userdanger("LINK SUCCESS: Linked to [rack]!"))
+					return
+				else
+					to_chat(world, span_userdanger("LINK DEBUG: Rack found at [i],[j] is already linked."))
