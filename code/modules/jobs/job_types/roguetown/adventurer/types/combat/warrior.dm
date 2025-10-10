@@ -476,17 +476,17 @@
 				H.change_stat(STATKEY_SPD, -1)
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
-					var/helmets = list("Puritan's Armored Hat", "Visored Sallet", "Volfskulle Bascinet", "Fluted Armet")
-					var/helmet_choice = input(H, "Choose your VISAGE.", "GET PSYCHED.") as anything in helmets
-					switch(helmet_choice)
-						if("Puritan's Armored Hat")
-							head = /obj/item/clothing/head/roguetown/puritan/armored
-						if("Visored Sallet")
-							head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
-						if("Volfskulle Bascinet")
-							head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/puritan
-						if("Fluted Armet")
-							head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/fluted
+				var/helmets = list("Puritan's Armored Hat", "Visored Sallet", "Volfskulle Bascinet", "Fluted Armet")
+				var/helmet_choice = input(H, "Choose your VISAGE.", "GET PSYCHED.") as anything in helmets
+				switch(helmet_choice)
+					if("Puritan's Armored Hat")
+						head = /obj/item/clothing/head/roguetown/puritan/armored
+					if("Visored Sallet")
+						head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
+					if("Volfskulle Bascinet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/puritan
+					if("Fluted Armet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/fluted
 
 	backl = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
