@@ -215,7 +215,7 @@
 	else
 		to_chat(user, span_warning("Their blood is not robust enough to hold to the warmth of [src]."))
 	if(success)
-		changefood(/obj/item/clothing/head/roguetown/headband/bloodied, user)
+		changeitem(/obj/item/clothing/head/roguetown/headband/bloodied, user)
 
 /obj/item/clothing/head/roguetown/headband/bloodied
 	name = "bloodied headband"
