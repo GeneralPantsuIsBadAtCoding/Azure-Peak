@@ -15,7 +15,7 @@
 	target_type = TARGET_OBJ | TARGET_LIVING
 	range = 7
 
-	cooldown_length = 5 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/siren/the_missing_voice/activate(atom/movable/target)
 	. = ..()
@@ -71,7 +71,7 @@
 	level = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_SPEAK
 
-	cooldown_length = 5 SECONDS
+	cooldown_length = 10 SECONDS
 
 /datum/coven_power/siren/phantom_speaker/activate()
 	. = ..()
@@ -104,7 +104,7 @@
 	research_cost = 2
 	level = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-	cooldown_length = 5 SECONDS
+	cooldown_length = 30 SECONDS
 	duration_length = 2 SECONDS
 
 /datum/coven_power/siren/madrigal/activate()
@@ -138,8 +138,8 @@
 	research_cost = 2
 	level = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-	duration_length = 2 SECONDS
-	cooldown_length = 7.5 SECONDS
+	duration_length = 3 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/siren/sirens_beckoning/activate()
 	. = ..()
@@ -152,14 +152,14 @@
 		if(listener.clan == owner.clan)
 			continue
 
-		listener.Stun(5 SECONDS)
+		listener.Stun(duration_length)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
 		var/mutable_appearance/song_overlay = mutable_appearance('icons/effects/clan.dmi', "song", -MUTATIONS_LAYER)
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), duration_length)
 
 /datum/coven_power/siren/sirens_beckoning/proc/remove_effects(mob/living/carbon/human/target)
 	target?.remove_overlay(MUTATIONS_LAYER)
@@ -173,8 +173,8 @@
 	research_cost = 3
 	minimal_generation = GENERATION_ANCILLAE
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-	duration_length = 2 SECONDS
-	cooldown_length = 7.5 SECONDS
+	duration_length = 3 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/siren/shattering_crescendo/activate()
 	. = ..()
@@ -187,7 +187,7 @@
 		if(listener.clan == owner.clan)
 			continue
 
-		listener.Stun(5 SECONDS)
+		listener.Stun(duration_length)
 		listener.apply_damage(50, BRUTE, BODY_ZONE_HEAD)
 
 		listener.remove_overlay(MUTATIONS_LAYER)
@@ -195,7 +195,7 @@
 		listener.overlays_standing[MUTATIONS_LAYER] = song_overlay
 		listener.apply_overlay(MUTATIONS_LAYER)
 
-		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(remove_effects), listener), duration_length)
 
 /datum/coven_power/siren/shattering_crescendo/proc/remove_effects(mob/living/carbon/human/target)
 	target?.remove_overlay(MUTATIONS_LAYER)
