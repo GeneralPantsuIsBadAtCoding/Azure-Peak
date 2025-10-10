@@ -12,6 +12,10 @@
 	var/theft_cooldown = 6 MINUTES
 	var/next_theft = 6 MINUTES
 
+	color = "#cd7f32"
+	required_item = /obj/item/alch/benedictus
+	calibration_required = 3
+
 /datum/flesh_quirk/hoarder/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	// if happy, may not demand another item
 	if(score >= 75 && prob(50))

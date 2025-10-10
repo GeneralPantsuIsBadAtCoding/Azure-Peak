@@ -6,10 +6,13 @@
 	var/list/discharge_colors = list()
 	var/color = "#ffffff"
 	var/required_item
+	var/calibration_required = 5
 
 /datum/flesh_archetype/fearful
 	name = "Fearful"
 	description = "Anxious and easily frightened"
+	color = "#373777"
+	required_item = /obj/item/alch/valeriana
 	possible_traits = list(
 		/datum/flesh_trait/cautious,
 		/datum/flesh_trait/observant,
@@ -31,6 +34,8 @@
 /datum/flesh_archetype/authoritarian
 	name = "Authoritarian"
 	description = "Demands order and respect"
+	color = "#880000"
+	required_item = /obj/item/alch/salvia
 	possible_traits = list(
 		/datum/flesh_trait/ambitious,
 		/datum/flesh_trait/logical,
@@ -53,8 +58,8 @@
 /datum/flesh_archetype/aggressive
 	name = "Aggressive"
 	description = "Prone to anger and violence"
-	color = "#880000"
-	required_item = /obj/item/alch/atropa
+	color = "#dc143c"
+	required_item = /obj/item/alch/urtica
 	possible_traits = list(
 		/datum/flesh_trait/violent,
 		/datum/flesh_trait/impulsive,
@@ -78,6 +83,8 @@
 /datum/flesh_archetype/arbitrary
 	name = "Arbitrary"
 	description = "Unpredictable and whimsical"
+	color = "#9370db"
+	required_item = /obj/item/alch/artemisia
 	possible_traits = list(
 		/datum/flesh_trait/playful,
 		/datum/flesh_trait/creative,
@@ -109,6 +116,8 @@
 /datum/flesh_archetype/inquisitive
 	name = "Inquisitive"
 	description = "Constantly seeking knowledge"
+	color = "#1e90ff"
+	required_item = /obj/item/alch/mentha
 	possible_traits = list(
 		/datum/flesh_trait/curious,
 		/datum/flesh_trait/philosophical,
@@ -135,6 +144,8 @@
 /datum/flesh_archetype/split_personality
 	name = "Split personality"
 	description = "A constantly shifting and contradictory inner self"
+	color = "#00ff7f"
+	required_item = /obj/item/alch/rosa
 	possible_traits = list(
 		/datum/flesh_trait/cautious,
 		/datum/flesh_trait/observant,

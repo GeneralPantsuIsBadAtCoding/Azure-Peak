@@ -14,8 +14,15 @@
 	var/aspect_datum_ref = null
 	var/attuned = FALSE
 	var/calibrated = FALSE
+	var/calibration_progress = 0
+	var/calibration_required = 0
+	var/broken = FALSE
 
 /obj/item/heart_canister/attack_self(mob/user)
+	if(broken)
+		to_chat(user, span_warning("This canister is broken and useless."))
+		return
+
 	if(filled)
 		to_chat(user, span_warning("This canister is already filled!"))
 		return
@@ -78,14 +85,17 @@
 			archetype = A
 			aspect_name = archetype.name
 			required_item_type = archetype.required_item
+			calibration_required = archetype.calibration_required
 		else if(istype(A, /datum/flesh_trait))
 			trait = A
 			aspect_name = trait.name
 			required_item_type = trait.required_item
+			calibration_required = trait.calibration_required
 		else if(istype(A, /datum/flesh_quirk))
 			quirk = A
 			aspect_name = quirk.name
 			required_item_type = quirk.required_item
+			calibration_required = quirk.calibration_required
 		else
 			continue
 
@@ -111,6 +121,8 @@
 	. = ..()
 	cut_overlays()
 
+	if(broken)
+		icon_state = "canister_broken"
 	if(filled)
 		var/mutable_appearance/fluid = mutable_appearance(icon, "canister_fluid")
 		fluid.color = current_color
@@ -143,6 +155,8 @@
 
 /obj/item/heart_canister/examine(mob/user)
 	. = ..()
+	if(broken)
+		return
 	if(!filled && attuned)
 		var/obj/item/temp_item = required_item_type
 		var/required_item_name = initial(temp_item.name)
@@ -197,3 +211,49 @@
 
 	update_icon()
 	to_chat(usr, span_notice("You attune the canister to [aspect_name]. It now requires [required_item_name] to fill."))
+
+/obj/item/heart_canister/proc/advance_calibration()
+	if(calibrated || broken || !filled)
+		return FALSE
+
+	calibration_progress++
+	if(calibration_progress >= calibration_required)
+		if(check_aspect_match())
+			calibrated = TRUE
+			return TRUE
+		else
+			break_canister()
+			return FALSE
+	update_icon()
+	return FALSE
+
+/obj/item/heart_canister/proc/check_aspect_match()
+	if(!parent_rack)
+		return FALSE
+
+	var/datum/A = aspect_datum_ref
+	var/obj/structure/roguemachine/chimeric_heart_beast/heart = parent_rack.heart_component.heart_beast
+
+	if(istype(A, /datum/flesh_archetype))
+		return heart.archetype && A.type == heart.archetype.type
+	else if(istype(A, /datum/flesh_trait))
+		for(var/datum/flesh_trait/trait in heart.traits)
+			if(A.type == trait.type)
+				return TRUE
+		return FALSE
+	else if (istype(A, /datum/flesh_quirk))
+		for(var/datum/flesh_quirk/quirk in heart.quirks)
+			if(A.type == quirk.type)
+				return TRUE
+		return FALSE
+	return FALSE
+
+/obj/item/heart_canister/proc/break_canister()
+	broken = TRUE
+	calibrated = FALSE
+	filled = FALSE
+	name = "Broken canister"
+	desc = "It's irreversibly damaged."
+	icon = "canister_broken"
+	playsound(src, 'sound/foley/glassbreak.ogg', 75, TRUE)
+	update_icon()

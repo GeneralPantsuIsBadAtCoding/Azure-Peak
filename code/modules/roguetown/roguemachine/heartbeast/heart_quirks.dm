@@ -6,6 +6,7 @@
 	var/quirk_type = QUIRK_LANGUAGE
 	var/color = "#ffffff"
 	var/required_item
+	var/calibration_required = 4
 
 /datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	return null
@@ -24,6 +25,8 @@
 	description = "Can be intimidated into compliance"
 	conflicting_quirks = list(/datum/flesh_quirk/stubborn, /datum/flesh_quirk/timid, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
+	color = "#8b4513"
+	required_item = /obj/item/alch/taraxacum
 
 /datum/flesh_quirk/obedient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -43,6 +46,8 @@
 	conflicting_quirks = list(/datum/flesh_quirk/timid, /datum/flesh_quirk/obedient)
 	rarity = 5
 	quirk_type = QUIRK_LANGUAGE
+	color = "#ffd700"
+	required_item = /obj/item/alch/euphrasia
 
 /datum/flesh_quirk/curious/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -61,6 +66,8 @@
 	description = "Prefers quick responses and gets frustrated by delays"
 	conflicting_quirks = list(/datum/flesh_quirk/patient)
 	quirk_type = QUIRK_LANGUAGE
+	color = "#ff4500"
+	required_item = /obj/item/alch/urtica
 
 /datum/flesh_quirk/impatient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -76,6 +83,8 @@
 	description = "Demands to be addressed by a specific title"
 	quirk_type = QUIRK_LANGUAGE
 	rarity = 5
+	color = "#daa520"
+	required_item = /obj/item/alch/rosa
 
 /datum/flesh_quirk/royal/apply_language_quirk(mob/speaker, message, datum/component/chimeric_heart_beast/beast, response_time)
 	var/list/effects = list()
@@ -109,6 +118,9 @@
 	name = "Discharge"
 	description = "Produces colored discharge when emotional"
 	quirk_type = QUIRK_BEHAVIOR
+	color = "#9370db"
+	required_item = /obj/item/alch/manabloompowder
+	calibration_required = 3
 
 /datum/flesh_quirk/discharge/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	if(beast.happiness >= beast.max_happiness * 0.75)
@@ -147,6 +159,8 @@
 	name = "Repetitive"
 	description = "Often repeats similar topics or questions"
 	quirk_type = QUIRK_BEHAVIOR
+	color = "#808080"
+	required_item = /obj/item/alch/paris
 
 /datum/flesh_quirk/repetitive/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	if(prob(75) && !beast.next_task)
@@ -158,6 +172,8 @@
 	description = "Easily frightened by aggressive behavior"
 	conflicting_quirks = list(/datum/flesh_quirk/royal, /datum/flesh_quirk/obedient, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
+	color = "#add8e6"
+	required_item = /obj/item/alch/valeriana
 
 /datum/flesh_quirk/timid/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -180,6 +196,8 @@
 	description = "Responds better to people with titles or authority"
 	rarity = 1
 	quirk_type = QUIRK_LANGUAGE
+	color = "#b22222"
+	required_item = /obj/item/alch/salvia
 
 /datum/flesh_quirk/ambitious/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	// Too tired for this, but allow wearing a crown or circlet for this later.
@@ -206,6 +224,8 @@
 	description = "Sometimes forgets what it was talking about"
 	quirk_type = QUIRK_LANGUAGE
 	var/forget_chance = 25
+	color = "#d3d3d3"
+	required_item = /obj/item/alch/matricaria
 
 /datum/flesh_quirk/forgetful/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -268,6 +288,8 @@
 	name = "Affectionate"
 	description = "Seeks physical proximity and gentle treatment"
 	quirk_type = QUIRK_LANGUAGE
+	color = "#ff69b4"
+	required_item = /obj/item/alch/calendula
 
 /datum/flesh_quirk/affectionate/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
@@ -287,6 +309,9 @@
 	var/last_attack_time = 0
 	var/attack_cooldown = 0
 	var/saw_meat = FALSE
+	color = "#8b0000"
+	required_item = /obj/item/alch/atropa
+	calibration_required = 3
 
 /datum/flesh_quirk/territorial/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)
 	// Check cooldown
@@ -362,6 +387,8 @@
 	var/current_mimic_chance = 20
 	var/next_mimic_time
 	var/mimic_cooldown = 20 MINUTES
+	color = "#00ffff"
+	required_item = /obj/item/alch/artemisia
 
 /datum/flesh_quirk/mimic/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	if(world.time < next_mimic_time)
@@ -432,6 +459,8 @@
 	conflicting_quirks = list(/datum/flesh_quirk/obedient)
 	quirk_type = QUIRK_LANGUAGE
 	var/last_successful_score = null
+	color = "#2f4f4f"
+	required_item = /obj/item/alch/symphitum
 
 /datum/flesh_quirk/stubborn/apply_behavior_quirk(score, mob/speaker, datum/component/chimeric_heart_beast/beast)
 	if(last_successful_score)
@@ -449,6 +478,8 @@
 	conflicting_quirks = list(/datum/flesh_quirk/impatient)
 	quirk_type = QUIRK_LANGUAGE
 	rarity = 5
+	color = "#006400"
+	required_item = /obj/item/alch/hypericum
 
 /datum/flesh_quirk/patient/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()

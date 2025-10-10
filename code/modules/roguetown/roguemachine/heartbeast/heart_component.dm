@@ -303,6 +303,7 @@
 	score = trigger_behavior_quirks(score, speaker, message)
 
 	// Determine success
+	linked_rack.advance_calibration()
 	if(score >= 20) // Passing score
 		complete_task(score, speaker, quirk_effects)
 	else
@@ -314,7 +315,9 @@
 	// Calculate rewards
 	var/blood_reward = (max_blood_pool / 10) * reward_multiplier * (quirk_effects["blood_multiplier"] || 1)
 	// 5 - 10 - 20 - 40 Under perfect circumstances
-	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * (quirk_effects["tech_multiplier"] || 1)
+	var/rack_multiplier = linked_rack.update_rack_stats()
+	to_chat(world, span_userdanger("TECH MULTIPLIER: [rack_multiplier]"))
+	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
 	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
 	var/language_progress_reward = (max_language_progress / 4) * reward_multiplier
 
