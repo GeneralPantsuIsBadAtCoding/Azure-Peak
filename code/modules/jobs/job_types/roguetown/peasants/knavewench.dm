@@ -18,12 +18,13 @@
 	round_contrib_points = 2
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
 	
-	job_traits = list(TRAIT_CICERONE)
+	job_traits = list(TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
 
 	advclass_cat_rolls = list(CTAG_TAPSTER = 2)
 	job_subclasses = list(
 		/datum/advclass/tapster
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/tapster
 	name = "Tapster"

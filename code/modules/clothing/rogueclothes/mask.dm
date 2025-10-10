@@ -23,7 +23,6 @@
 	var/mob/living/carbon/H = user
 	if(icon_state == "[initial(icon_state)]_snout")
 		icon_state = initial(icon_state)
-		flags_inv &= ~HIDESNOUT
 		H.update_inv_wear_mask()
 		update_icon()
 		return
@@ -33,7 +32,6 @@
 	for(var/icon_s in istates)
 		if(findtext(icon_s, "[icon_state]_snout"))
 			icon_state += "_snout"
-			flags_inv &= HIDESNOUT
 			H.update_inv_wear_mask()
 			update_icon()
 			return
@@ -323,6 +321,11 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
+/obj/item/clothing/mask/rogue/facemask/shadowfacemask
+	name = "anthraxi war mask"
+	desc = "A metal mask resembling a spider's face. Such a visage haunts many an older dark elf's nitemares - while the younger generation simply scoffs at such relics."
+	icon_state = "shadowfacemask"
+
 /obj/item/clothing/mask/rogue/facemask/aalloy
 	name = "decrepit mask"
 	desc = "Frayed bronze, molded into an unblinking visage. Only the statues, buried within the innards of Mount Decapitation, share its wrinkled lip and sneer of cold command."
@@ -415,11 +418,6 @@
 	icon_state = "ancientmask"
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/mask/rogue/facemask/steel/hound
-	name = "steel hound mask"
-	desc = "A steel mask, made for those who have snouts, protecting the eyes, nose and muzzle while obscuring the face."
-	icon_state = "smask_hound"
-
 /obj/item/clothing/mask/rogue/facemask/steel/steppesman
 	name = "steppesman war mask"
 	desc = "A steel mask shaped like the face of a rather charismatic fellow! Pronounced cheeks, a nose, and a large mustache. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."
@@ -461,6 +459,9 @@
 	name = "purple halfmask"
 	icon_state = "shadowmask"
 	desc = "For when one wants to conceal their face while performing dastardly deeds in the name of the crown."
+
+/obj/item/clothing/mask/rogue/shepherd/shadowmask/delf
+	desc = "Tiny drops of white dye mark its front, not unlike teeth. A smile that leers from shadow."
 
 /obj/item/clothing/mask/rogue/physician
 	name = "plague mask"

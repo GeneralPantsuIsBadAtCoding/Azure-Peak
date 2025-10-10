@@ -886,7 +886,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			if(loc != oldloc)
 				var/obj/structure/mineral_door/MD = locate() in loc
 				if(MD && !MD.ridethrough)
-					violent_dismount(user)
+					if(!HAS_TRAIT(user, TRAIT_EQUESTRIAN))
+						violent_dismount(user)
 
 /mob/living/simple_animal/proc/violent_dismount(mob/living/user)
 	if(isliving(user))

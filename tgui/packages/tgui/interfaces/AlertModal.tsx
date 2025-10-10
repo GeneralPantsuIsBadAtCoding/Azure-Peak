@@ -97,9 +97,9 @@ export function AlertModal(props) {
   }
 
   return (
-    <Window height={windowHeight} title={title} width={windowWidth} disablesidebar>
+    <Window height={windowHeight} title={title} width={windowWidth}>
       {!!timeout && <Loader value={timeout} />}
-      <Window.Content onKeyDown={keyDownHandler} disablesidebar>
+      <Window.Content onKeyDown={keyDownHandler}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item m={1} grow>

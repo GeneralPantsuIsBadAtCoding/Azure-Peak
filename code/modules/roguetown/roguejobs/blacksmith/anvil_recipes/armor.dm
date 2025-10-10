@@ -791,6 +791,13 @@
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard
 
+/datum/anvil_recipe/armor/steel/bogman
+	name = "Bogman Helmet, Steel (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/bogman
+
 /datum/anvil_recipe/armor/steel/barredhelm
 	name = "Barred Helmet, Steel (+1 Steel)"
 	req_bar = /obj/item/ingot/steel

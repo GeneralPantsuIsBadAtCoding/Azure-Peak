@@ -276,7 +276,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		connecting_admin = TRUE
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
-		verbs += /client/proc/adminwho
 		connecting_admin = TRUE
 	if(CONFIG_GET(flag/autoadmin))
 		if(!GLOB.admin_datums[ckey])
@@ -1147,7 +1146,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(whitelisted != 2)
 		return whitelisted
 	else
-		if(check_whitelist(ckey))
+		if(BC_IsKeyWhitelisted(ckey))
 			whitelisted = 1
 		else
 			whitelisted = 0

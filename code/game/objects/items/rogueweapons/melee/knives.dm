@@ -303,6 +303,13 @@
 	. = ..()
 	AddElement(/datum/element/tipped_item)	//Lets you tip your weapon in poison
 
+/obj/item/rogueweapon/huntingknife/idagger/steel/corroded/dirk
+	name = "fanged dagger"
+	desc = "A dagger modeled after the fang of an anthrax spider. Can be poisoned."
+	icon_state = "spiderdagger"
+	sheathe_icon = "spiderdagger"
+	smeltresult = null
+
 /obj/item/rogueweapon/huntingknife/idagger/steel/holysee
 	name = "eclipsum dagger"
 	desc = "A blade forged from the Holy metals of the twinned gods Noc and Astrata, Silver and Gold fused under an Eclipse and blessed, these daggers are very grudgingly given out by the Grenzelhoftian See to ordained Priests of the Ten."

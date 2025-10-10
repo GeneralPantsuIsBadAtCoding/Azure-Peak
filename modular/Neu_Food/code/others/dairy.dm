@@ -282,7 +282,7 @@
 	tastes = list("cheese" = 1)
 	eat_effect = null
 	faretype = FARE_FINE
-	rotprocess = 20 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 	slices_num = null
 	slice_path = null
 	become_rot_type = null

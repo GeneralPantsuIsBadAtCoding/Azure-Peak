@@ -35,7 +35,11 @@
 	STALUC = 15
 	loot = list(/obj/effect/temp_visual/lich_dying)
 	projectiletype = /obj/projectile/magic
-	var/allowed_projectile_types = list(/obj/projectile/magic/lightning, /obj/projectile/magic/sickness, /obj/projectile/magic/arcane_barrage, /obj/projectile/magic/acidsplash)
+	var/allowed_projectile_types = list(/obj/projectile/magic/lightning, 
+	/obj/projectile/magic/sickness,
+	/obj/projectile/magic/arcane_barrage, 
+	/obj/projectile/magic/acidsplash,
+	/obj/projectile/magic/aoe/fireball/spitfire)
 	patron = /datum/patron/inhumen/zizo
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
@@ -44,17 +48,15 @@
 	var/next_cast = 0
 	var/next_blink = 0
 	var/list/taunt = list("Witness my power!", "Die!", "Suffer!")
-	var/minions_to_spawn = 10
+	var/minions_to_spawn = 6
 	var/next_summon = 0
 	var/next_blaststrong = 0
 	var/mob_type
 	var/mob/new_mob
 	var/spawned_mobs = 0
 	var/list/minions = list(
-		/mob/living/simple_animal/hostile/rogue/skeleton/guard/shield/lich = 40,
-		/mob/living/simple_animal/hostile/rogue/skeleton/guard/xbow/lich = 30,
-		/mob/living/simple_animal/hostile/rogue/skeleton/guard/crypt_guard/lich = 20,
-		/mob/living/simple_animal/hostile/rogue/skeleton/guard/crypt_guard_spear/lich = 20)
+		/mob/living/carbon/human/species/skeleton/npc/mediumspread/lich = 60,
+	)
 
 /mob/living/simple_animal/hostile/boss/lich/Initialize()
 	projectiletype = /obj/projectile/bullet/reusable/deepone
@@ -68,6 +70,7 @@
 	blink.invocations += pick(taunt)
 	blink.invocation_type = "shout"
 	AddSpell(blink)
+	ADD_TRAIT(src, TRAIT_NOFIRE, TRAIT_GENERIC)
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/boss/lich/Shoot()
@@ -310,84 +313,6 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "stab"
-
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/shield/lich
-	wander = FALSE
-	stat_attack = UNCONSCIOUS
-	STAPER = 20
-	faction = list("lich")
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/xbow/lich
-	wander = FALSE
-	stat_attack = UNCONSCIOUS
-	STAPER = 20
-	faction = list("lich")
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/crypt_guard/lich
-	wander = FALSE
-	stat_attack = UNCONSCIOUS
-	STAPER = 20
-	faction = list("lich")
-/mob/living/simple_animal/hostile/rogue/skeleton/guard/crypt_guard_spear/lich
-	wander = FALSE
-	stat_attack = UNCONSCIOUS
-	STAPER = 20
-	faction = list("lich")
-
-/mob/living/carbon/human/species/skeleton/npc/dungeon/lich
-	skel_fragile = FALSE
-	skel_outfit = /datum/outfit/job/roguetown/npc/skeleton/dungeon/lich
-
-/datum/outfit/job/roguetown/npc/skeleton/dungeon/lich/pre_equip(mob/living/carbon/human/H)
-	..()
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	gloves = /obj/item/clothing/gloves/roguetown/plate/blk/death
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/blkknight/death
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blkknight/death
-	pants = /obj/item/clothing/under/roguetown/platelegs/blk/death
-	neck = /obj/item/clothing/neck/roguetown/bevor
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
-	belt = /obj/item/storage/belt/rogue/leather/black
-	H.STASTR = 20
-	H.STAPER = 20
-	H.STASPD = 10
-	H.STACON = 20
-	H.STAWIL = 20
-	H.STAINT = 1
-	H.faction = list("lich")
-	H.wander = FALSE
-
-	H.adjust_skillrank_up_to(/datum/skill/craft/carpentry, 1, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/masonry, 1, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/crafting, 1, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/craft/sewing, 1, TRUE)
-
-	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/maces, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 4, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/shields, 2, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 2, TRUE)
-
-	H.set_patron(/datum/patron/inhumen/zizo)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-
-	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
-	/datum/rmb_intent/aimed,\
-	/datum/rmb_intent/strong,\
-	/datum/rmb_intent/swift,\
-	/datum/rmb_intent/riposte,\
-	/datum/rmb_intent/weak)
-	H.swap_rmb_intent(num=1)
-
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-		l_hand = null
-	else
-		r_hand = /obj/item/rogueweapon/greatsword/zwei
-		l_hand = null
 
 /obj/effect/oneway
 	name = "one way effect"

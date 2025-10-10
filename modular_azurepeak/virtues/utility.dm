@@ -309,6 +309,6 @@
 	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
 /datum/virtue/heretic/zchurch_keyholder
-	name = "Heresiarch"
+	name = "Defiled Keyholder"
 	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods - I know the location of the local heretic conclave. Secrecy is paramount. If found out, I will surely be killed."
-	added_traits = list(TRAIT_HERESIARCH)
+	added_traits = list(TRAIT_ZURCH)

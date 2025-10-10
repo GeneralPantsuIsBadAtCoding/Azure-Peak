@@ -58,10 +58,11 @@
 	var/icon3 = null
 	var/stacktype = /obj/item/natural/fibers/
 	var/stackname = "fibers"
-	var/items_per_increase = 5
-
 	var/base_width = 32
 	var/base_height = 32
+
+/obj/item/natural/bundle/burn()
+	. = ..(amount)
 
 /obj/item/natural/bundle/attackby(obj/item/W, mob/living/user)
 	if(item_flags & IN_STORAGE)
@@ -169,18 +170,10 @@
 	else
 		if(icon3 != null)
 			icon_state = icon3
-	var/increases = FLOOR(amount / items_per_increase, 1)
-
-	var/height = FALSE
 	grid_height = base_height
 	grid_width = base_width
-	for(var/i = 1 to increases)
-		if(height)
-			height = FALSE
-			grid_height += 32
-		else
-			height = TRUE
-			grid_width += 32
+	if(FLOOR(maxamount / 2, 1) < amount)
+		grid_width += base_width
 	if(item_flags & IN_STORAGE)
 		var/obj/item/location = loc
 		var/datum/component/storage/storage = location.GetComponent(/datum/component/storage)

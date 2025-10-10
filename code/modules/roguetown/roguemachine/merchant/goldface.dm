@@ -123,7 +123,7 @@
 	)
 	categories_gamer = list()
 
-/obj/structure/roguemachine/goldface/public/tailor/examine()
+/obj/structure/roguemachine/goldface/public/apothecary/examine()
 	. = ..()
 	. += span_info("This can be locked by a physician's key")
 

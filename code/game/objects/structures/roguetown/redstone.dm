@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		var/mob/living/L = AM
 		to_chat(L, "<span class='info'>I feel something click beneath me.</span>")
 		AM.log_message("has activated a pressure plate", LOG_GAME)
-		playsound(src, 'sound/misc/pressurepad_down.ogg', 65, extrarange = 2)
+		playsound(src, 'sound/misc/pressurepad_down.ogg', 35, extrarange = 2)
 
 /obj/structure/pressure_plate/Uncrossed(atom/movable/AM)
 	. = ..()
@@ -250,13 +250,29 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		triggerplate()
 
 /obj/structure/pressure_plate/proc/triggerplate()
-	playsound(src, 'sound/misc/pressurepad_up.ogg', 65, extrarange = 2)
+	playsound(src, 'sound/misc/pressurepad_up.ogg', 35, extrarange = 2)
 	for(var/obj/structure/O in redstone_attached)
 		spawn(0) O.redstone_triggered()
 
 /obj/structure/pressure_plate/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	var/obj/item = user.get_active_held_item()
+	if(istype(item,/obj/item/natural/cloth))
+		if(alpha<36)
+			to_chat(user, span_warning("I wipe away the dirt concealing the [name]"))
+			if(do_after(user, 10))
+				alpha = 255
+			return
+	if(istype(item,/obj/item/natural/dirtclod))
+		if(alpha>= 36)
+			to_chat(user, span_warning("I begin to conceal the [name]"))
+			if(do_after(user, 10))
+				alpha = 35
+				qdel(item)
+			return
+		else
+			to_chat(user, span_warning("[name] is already concealed"))
+			return
 	if(user.used_intent.type == /datum/intent/chisel )
 		if (user.get_skill_level(/datum/skill/craft/engineering) <= 3)
 			to_chat(user, span_warning("I need more skill to carve a name into this plate."))

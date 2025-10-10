@@ -95,7 +95,7 @@
 		msg += "<br><b>Whitelisted players:</b> [wled]"
 	to_chat(src, msg)
 
-/client/proc/adminwho()
+/client/verb/adminwho()
 	set category = "-Admin-"
 	set name = "Adminwho"
 	set desc = "Lists all admins currently online."
