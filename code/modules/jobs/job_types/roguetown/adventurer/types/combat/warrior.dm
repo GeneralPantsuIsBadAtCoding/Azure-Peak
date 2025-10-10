@@ -361,15 +361,15 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
-		if(H.age == AGE_OLD) //Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff..
+		if(H.age == AGE_OLD)
+			H.change_stat(STATKEY_INT, 1)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) 	
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/staves, 1, TRUE)
-			H.change_stat(STATKEY_INT, 1)
-	)
+	) //Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff.
 
 /datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
