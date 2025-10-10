@@ -259,6 +259,8 @@
 	icon = 'icons/roguetown/clothing/storage.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
 	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BELT
+	edelay_type = 1
+	equip_delay_self = 10
 	max_integrity = 300
 	component_type = /datum/component/storage/concrete/roguetown/satchel
 
