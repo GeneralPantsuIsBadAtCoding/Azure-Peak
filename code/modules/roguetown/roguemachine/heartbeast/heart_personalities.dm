@@ -4,6 +4,8 @@
 	var/list/possible_traits = list()
 	var/list/possible_quirks = list()
 	var/list/discharge_colors = list()
+	var/color = "#ffffff"
+	var/required_item
 
 /datum/flesh_archetype/fearful
 	name = "Fearful"
@@ -51,6 +53,8 @@
 /datum/flesh_archetype/aggressive
 	name = "Aggressive"
 	description = "Prone to anger and violence"
+	color = "#880000"
+	required_item = /obj/item/alch/atropa
 	possible_traits = list(
 		/datum/flesh_trait/violent,
 		/datum/flesh_trait/impulsive,

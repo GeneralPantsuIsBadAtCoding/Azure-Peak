@@ -1,18 +1,199 @@
-/obj/item/stone_canister
-    name = "alchemical canister"
-    desc = "A crystal canister that seems to pulse with latent energy. Use in-hand to choose an aspect to attune to."
-    icon = 'icons/obj/structures/heart_beast.dmi'
-    icon_state = "canister_empty"
-    pixel_x = 0
-    pixel_y = 0
-    layer = ABOVE_MOB_LAYER
-    
-    var/obj/structure/stone_rack/parent_rack
-    var/filled = FALSE
-    var/current_color = "#ffffff"
-    var/current_aspect_name = ""
-    var/current_aspect_type = null
-    var/required_item_type = null
-    var/expected_color = "#ffffff"
-    var/aspect_datum_ref = null
-    var/attuned = FALSE
+/obj/item/heart_canister
+	name = "alchemical canister"
+	desc = ""
+	icon = 'icons/obj/structures/heart_items.dmi'
+	icon_state = "canister_empty"
+	
+	var/obj/structure/stone_rack/parent_rack
+	var/filled = FALSE
+	var/current_color = "#ffffff"
+	var/current_aspect_name = ""
+	var/current_aspect_type = null
+	var/required_item_type = null
+	var/expected_color = "#ffffff"
+	var/aspect_datum_ref = null
+	var/attuned = FALSE
+	var/calibrated = FALSE
+
+/obj/item/heart_canister/attack_self(mob/user)
+	if(filled)
+		to_chat(user, span_warning("This canister is already filled!"))
+		return
+
+	if(attuned)
+		to_chat(user, span_warning("This canister is already attuned to [current_aspect_name]!"))
+		return
+
+	show_aspect_menu(user)
+
+/obj/item/heart_canister/proc/show_aspect_menu(mob/user)
+	var/list/categories = list(
+		"Archetypes" = "Choose from available archetypes",
+		"Traits" = "Choose from available traits", 
+		"Quirks" = "Choose from available quirks",
+		"Cancel" = "Do not attune"
+	)
+
+	var/category_choice = input(user, "Select aspect category to attune:", "Canister Attunement") as null|anything in categories
+	if(!category_choice || category_choice == "Cancel")
+		return
+
+	show_aspects_in_category(category_choice, user)
+
+/obj/item/heart_canister/proc/show_aspects_in_category(category, mob/user)
+	var/list/aspects = list()
+	var/category_name = ""
+	var/singular_name = ""
+
+	switch(category)
+		if("Archetypes")
+			aspects = get_global_archetypes()
+			category_name = "archetypes"
+			singular_name = "archetype"
+		if("Traits")
+			aspects = get_global_traits()
+			category_name = "traits"
+			singular_name = "trait"
+		if("Quirks")
+			aspects = get_global_quirks()
+			category_name = "quirks"
+			singular_name = "quirk"
+
+	if(!aspects.len)
+		to_chat(usr, span_warning("No [category_name] found!"))
+		return
+
+	var/list/selection_options = list()
+	for(var/datum_type in aspects)
+		var/datum/A = aspects[datum_type]
+
+		var/datum/flesh_archetype/archetype
+		var/datum/flesh_trait/trait  
+		var/datum/flesh_quirk/quirk
+		
+		var/aspect_name
+		var/required_item_type
+		
+		if(istype(A, /datum/flesh_archetype))
+			archetype = A
+			aspect_name = archetype.name
+			required_item_type = archetype.required_item
+		else if(istype(A, /datum/flesh_trait))
+			trait = A
+			aspect_name = trait.name
+			required_item_type = trait.required_item
+		else if(istype(A, /datum/flesh_quirk))
+			quirk = A
+			aspect_name = quirk.name
+			required_item_type = quirk.required_item
+		else
+			continue
+
+		var/obj/item/temp_item = required_item_type
+		var/required_item_name = initial(temp_item.name)
+
+		selection_options["[aspect_name] (Requires: [required_item_name])"] = A
+
+	// Sort alphabetically
+	selection_options = sortList(selection_options)
+	selection_options["Cancel"] = "CANCEL"
+
+	var/choice = input(user, "Select a [singular_name] to attune", "[category_name] Selection") as null|anything in selection_options
+	to_chat(world, span_warning("[choice] CHOICE IS"))
+	if(!choice || choice == "Cancel")
+		return
+
+	var/datum/selected_aspect = selection_options[choice]
+	if(selected_aspect && selected_aspect != "CANCEL")
+		attune_to_aspect(user, selected_aspect)
+
+/obj/item/heart_canister/update_icon()
+	. = ..()
+	cut_overlays()
+
+	if(filled)
+		var/mutable_appearance/fluid = mutable_appearance(icon, "canister_fluid")
+		fluid.color = current_color
+		add_overlay(fluid)
+	else
+		icon_state = "canister_empty"
+
+/obj/item/heart_canister/attackby(obj/item/I, mob/user)
+	if(filled)
+		to_chat(user, span_warning("This canister is already filled!"))
+		return TRUE
+
+	if(!attuned)
+		to_chat(user, span_warning("This canister needs to be attuned to an aspect first! Use in-hand to choose an aspect."))
+		return TRUE
+
+	if(!istype(I, required_item_type))
+		var/obj/item/temp_item = required_item_type
+		var/required_item_name = initial(temp_item.name)
+		to_chat(user, span_warning("This canister requires [required_item_name]! You're holding [I.name]."))
+		return TRUE
+
+	// Correct item - fill the canister
+	if(do_after(user, 3 SECONDS))
+		qdel(I)
+		filled = TRUE
+		current_color = expected_color
+		update_icon()
+	return TRUE
+
+/obj/item/heart_canister/examine(mob/user)
+	. = ..()
+	if(!filled && attuned)
+		var/obj/item/temp_item = required_item_type
+		var/required_item_name = initial(temp_item.name)
+		. += span_notice("It is attuned to [current_aspect_name] and requires [required_item_name] to fill.")
+	else if(!attuned)
+		. += span_notice("Use in-hand to attune this canister to an aspect.")
+	else if (filled)
+		. += span_notice("It is attuned to [current_aspect_name]")
+
+/obj/item/heart_canister/proc/attune_to_aspect(mob/user, datum/A)
+	var/datum/flesh_archetype/archetype
+	var/datum/flesh_trait/trait
+	var/datum/flesh_quirk/quirk
+
+	var/aspect_name
+	var/aspect_color
+
+	if(istype(A, /datum/flesh_archetype))
+		archetype = A
+		aspect_name = archetype.name
+		aspect_color = archetype.color
+		required_item_type = archetype.required_item
+	else if(istype(A, /datum/flesh_trait))
+		trait = A
+		aspect_name = trait.name
+		aspect_color = trait.color
+		required_item_type = trait.required_item
+	else if(istype(A, /datum/flesh_quirk))
+		quirk = A
+		aspect_name = quirk.name
+		aspect_color = quirk.color
+		required_item_type = quirk.required_item
+	else
+		return
+
+	current_aspect_name = aspect_name
+	current_aspect_type = A.type
+	expected_color = aspect_color
+	aspect_datum_ref = A
+	required_item_type = required_item_type
+	attuned = TRUE
+
+	var/obj/item/temp_item = required_item_type
+	var/required_item_name = initial(temp_item.name)
+
+	if(istype(A, /datum/flesh_archetype))
+		name = "[aspect_name] personality canister"
+	else if(istype(A, /datum/flesh_trait))
+		name = "[aspect_name] trait canister"
+	else if(istype(A, /datum/flesh_quirk))
+		name = "[aspect_name] quirk canister"
+
+	update_icon()
+	to_chat(usr, span_notice("You attune the canister to [aspect_name]. It now requires [required_item_name] to fill."))

@@ -4,6 +4,8 @@
 	var/list/conflicting_quirks = list()
 	var/rarity = 10 // Higher = more common
 	var/quirk_type = QUIRK_LANGUAGE
+	var/color = "#ffffff"
+	var/required_item
 
 /datum/flesh_quirk/proc/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	return null

@@ -4,6 +4,8 @@
 	var/list/conflicting_traits = list() // Types of traits that can't coexist
 	var/list/liked_concepts = list() // Topics this trait enjoys
 	var/list/preferred_approaches = list()
+	var/color = "#ffffff"
+	var/required_item
 
 /datum/flesh_trait/deception
 	name = "Deception"
