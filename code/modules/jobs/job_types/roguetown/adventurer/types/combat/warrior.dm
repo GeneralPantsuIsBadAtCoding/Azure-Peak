@@ -352,7 +352,6 @@
 		STATKEY_WIL = 1,
 	) //Follows the Adventurer's seven-point statblock rule. Adds an eighth point to an unoccupied statkey, when a discipline is selected.
 	subclass_skills = list(
-		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
@@ -423,21 +422,24 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/silver
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
-			if("Silver Shovel")
-				r_hand = /obj/item/rogueweapon/shovel/silver
-				backr = /obj/item/rogueweapon/scabbard/gwstrap
 
 		var/sidearm = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver Stake")
 		var/sidearm_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in sidearm
 		switch(sidearm_choice)
 			if("Dagger")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Parrying Dagger")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Seax")
 				beltl = /obj/item/rogueweapon/huntingknife/combat
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Blessed Silver Stake")
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Silver Shovel")
+				l_hand = /obj/item/rogueweapon/shovel/silver //Sacrifice your knife skills for this. For what purpose? I couldn't say.
 
 		var/discipline = list("Traditionalist - Bewitched Alchemics + Hauberk", "Reformist - Dodge Expert + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
 		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
