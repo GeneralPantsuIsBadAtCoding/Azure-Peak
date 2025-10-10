@@ -215,7 +215,8 @@
 	else
 		to_chat(user, span_warning("Their blood is not robust enough to hold to the warmth of [src]."))
 	if(success)
-		changeitem(/obj/item/clothing/head/roguetown/headband/bloodied, user)
+		new /obj/item/clothing/head/roguetown/headband/bloodied(src.loc)
+		qdel(/obj/item/clothing/head/roguetown/headband)
 
 /obj/item/clothing/head/roguetown/headband/bloodied
 	name = "bloodied headband"
