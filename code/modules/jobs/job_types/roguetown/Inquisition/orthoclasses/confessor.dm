@@ -78,7 +78,7 @@
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 	var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
-	var/armor_choice = input(H, "Choose your ARMOR.", "PROFESS YOUR SPECIALITY.") as anything in armors
+	var/armor_choice = input(H, "Choose your ARCHETYPE.", "PROFESS YOUR SPECIALITY.") as anything in armors
 	switch(armor_choice)
 		if("Confessor - Slurbow, Leather Maillecoat")
 			head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
