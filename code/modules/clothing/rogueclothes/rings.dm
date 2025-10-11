@@ -426,7 +426,7 @@
 		return
 	else if(slot == SLOT_RING)
 		active_item = TRUE
-		to_chat(user, span_blue("'..the way of hope, unbreakable and '" </br>'..the d))
+		to_chat(user, span_blue("'..the way of hope, unbreakable and unifying..'"))
 		user.change_stat(STATKEY_SPD, 1)
 		user.change_stat(STATKEY_LCK, 1)
 		user.change_stat(STATKEY_INT, 1)
@@ -441,7 +441,7 @@
 /obj/item/clothing/ring/statdorpel/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_blue("'..I know that kindness exists, for I am kind..' </br>'..I know hope exists, for I have hope..' </br>'..and I know love exists, for I love.' </br>''"))
+		to_chat(user, span_blue("'..I know that kindness exists, for I am kind..' </br>'..I know hope exists, for I have hope..' </br>'..and I know love exists, for I love.'"))
 		user.change_stat(STATKEY_SPD, -1)
 		user.change_stat(STATKEY_LCK, -1)
 		user.change_stat(STATKEY_INT, -1)
@@ -479,7 +479,7 @@
 /obj/item/clothing/ring/dragon_ring/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_suicide("A chilling sensation courses through my body; the ring's heat remains oh-so-alluring.."))
+		to_chat(user, span_suicide("A chilling sensation courses through my body, and the ring's heat remains oh-so-alluring.."))
 		user.change_stat(STATKEY_STR, -2)
 		user.change_stat(STATKEY_CON, -2)
 		user.change_stat(STATKEY_WIL, -2)
