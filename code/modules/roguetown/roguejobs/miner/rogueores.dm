@@ -281,3 +281,13 @@
 	icon_state = "ancientslag"
 	smeltresult = /obj/item/ingot/aaslag
 	sellprice = 1
+
+//Anomalous Smeltings
+/obj/item/ingot/weeping
+	name = "familiar ingot"
+	desc = "A slab of metal, aged and bare. You finally know what it is, yet no word can be sired to describe it. </br>'..none will ever know the greatest truths; of Aeon's grasp, of Adonai's presence, of Psydon's fate..' </br>'..but, perhaps, that's for the better.'"
+	icon_state = "ingotsilv"
+	smeltresult = /obj/item/ingot/weeping
+	filters = filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(64,65),rand(1,5),rand(1,5)))
+	color = "#CECA9C"
+	sellprice = 133
