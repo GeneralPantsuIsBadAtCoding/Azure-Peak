@@ -2,7 +2,7 @@
 	name = "Psydon"
 	domain = "Everything."
 	desc = "He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
-	worshippers = "Traditionalists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
+	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
 	associated_faith = /datum/faith/old_god
 	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
