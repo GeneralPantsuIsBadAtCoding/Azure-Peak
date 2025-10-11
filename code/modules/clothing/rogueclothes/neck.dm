@@ -411,7 +411,7 @@
 	grid_width = 32
 	grid_height = 32
 
-//Cursed artifact. Should remove the negative traits upon taking it off. If not, can fluff as being-- well, cursed. Provides some potential lore.
+//Cursed artifacts. Should remove the negative traits upon taking it off. If not, can fluff as being-- well, cursed. Provides some potential lore.
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
 	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
@@ -421,7 +421,7 @@
 	sellprice = 111
 	var/active_item
 
-/obj/item/ingot/weeping/Initialize()
+/obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
   ..()
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,5),rand(1,5)))
 
@@ -453,6 +453,18 @@
 		active_item = FALSE
 	return
 
+/obj/item/clothing/neck/roguetown/zcross/aalloy
+	name = "decrepit zcross"
+	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
+	icon_state = "zcross_a"
+	color = "#bb9696"
+	resistance_flags = FIRE_PROOF
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	grid_width = 32
+	grid_height = 32
+
+//
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
 	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
