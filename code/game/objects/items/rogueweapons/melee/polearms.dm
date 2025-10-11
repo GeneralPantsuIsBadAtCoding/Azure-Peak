@@ -388,7 +388,7 @@
 	wdefense = 6
 	resistance_flags = FIRE_PROOF	//It's meant to be smacked by a "lamptern", and is special enough to warrant overriding the spear weakness
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/spear/psyspear/ComponentInitialize()
 	AddComponent(\
@@ -796,7 +796,7 @@
 	minstr = 11
 	wdefense = 7
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
 	AddComponent(\
@@ -1036,7 +1036,7 @@
 	minstr = 11
 	wdefense = 6
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
 	AddComponent(\
@@ -1308,6 +1308,7 @@
 	associated_skill = /datum/skill/combat/staves
 	max_integrity = 250
 	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/psy/ComponentInitialize()
 	AddComponent(\
