@@ -209,7 +209,7 @@
 	resistance_flags = FIRE_PROOF
 	icon_state = "psyflangedmace"
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/mace/cudgel/psy/ComponentInitialize()
 	AddComponent(\
@@ -440,7 +440,7 @@
 	dropshrink = 0.75
 	smelt_bar_num = 2
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
 	AddComponent(\
