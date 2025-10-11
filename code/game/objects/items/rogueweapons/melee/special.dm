@@ -508,6 +508,43 @@
 	wdefense = 4
 	wbalance = WBALANCE_HEAVY
 
+/obj/item/rogueweapon/greataxe/militia/silver
+	name = "silver militia axe"
+	desc = "'Do you think Psydon stays in Heaven because He too lives in fear of what He's created?' </br>A silver shovel, improvised - perhaps, by the hands of a particularly desperate gravedigger - to fill a polearm's duty."
+	icon_state = "silvershovelwaraxe"
+	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(/datum/intent/rend/reach, /datum/intent/axe/chop/battle/greataxe, /datum/intent/sword/peel/big, SPEAR_BASH)
+	force = 15
+	force_wielded = 25
+	minstr = 11
+	max_blade_int = 200
+	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/ingot/silver
+	wdefense = 6
+	wbalance = WBALANCE_HEAVY
+
+/obj/item/rogueweapon/greataxe/militia/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/greataxe/militia/silver/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_TENNITE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 /obj/item/rogueweapon/spear/militia
 	force = 18
 	force_wielded = 30
