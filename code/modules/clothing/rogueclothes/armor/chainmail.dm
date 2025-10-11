@@ -86,6 +86,7 @@
 	icon_state = "ornatehauberk"
 	item_state = "ornatehauberk"
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
 	name = "chainmail corslet"	// corslet, from the old French 'cors' or bodice, with the diminutive 'let', used to describe lightweight military armor since 1500. Chosen here to replace 'bikini', an extreme anachronism.
