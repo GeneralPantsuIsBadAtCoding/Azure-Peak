@@ -46,15 +46,15 @@
 		var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
 		switch(weapon_choice)
 			if("Blessed Psydonic Dagger")
-				H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
-				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
+				r_hand = /obj/item/rogueweapon/scabbard/sheath
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 			if("Psydonic Handmace")
-				H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
+				l_hand = /obj/item/rogueweapon/mace/cudgel/psy
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
 			if("Psydonic Shortsword")
-				H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
-				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
+				l_hand = /obj/item/rogueweapon/sword/short/psy
+				r_hand = /obj/item/rogueweapon/scabbard/sword
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 		var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
 		var/armor_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in armors
@@ -75,11 +75,9 @@
 		var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S MISSILES.") as anything in quivers
 		switch(boltchoice)
 			if("Bolts")
-				H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
-				H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
+				beltl = /obj/item/quiver/bolts
 			if("Blessed Water Bolts")
-				H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
-				H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
+				beltl = /obj/item/quiver/holybolts
 
 	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
@@ -87,6 +85,7 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	backr = /obj/item/storage/backpack/rogue/satchel/otavan
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
