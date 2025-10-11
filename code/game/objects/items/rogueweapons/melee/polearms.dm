@@ -1417,3 +1417,115 @@
 	max_blade_int = 200
 	icon_state = "assegai_steel"
 	gripsprite = FALSE
+
+
+/////////////////////
+// Special Weapon! //
+/////////////////////
+
+
+/datum/intent/sword/thrust/estoc/dragonslayer
+	name = "impale"
+	icon_state = "inimpale"
+	penfactor = 55
+	attack_verb = list("impales", "runs through")
+	reach = 3
+	damfactor = 1.25
+	clickcd = 20
+	swingdelay = 10
+
+/datum/intent/sword/chop/dragonslayer
+	name = "eviscerate"
+	icon_state = "inrend"
+	blade_class = BCLASS_CHOP
+	attack_verb = list("splits", "eviscerates")
+	animname = "chop"
+	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
+	penfactor = 45
+	damfactor = 1.5
+	swingdelay = 10
+	reach = 2
+	clickcd = 20
+	item_d_type = "slash"
+
+/datum/intent/sword/smash/dragonslayer
+	name = "pulverize"
+	blade_class = BCLASS_SMASH
+	attack_verb = list("clangs", "pulverizes")
+	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	reach = 2
+	damfactor = 2.5
+	swingdelay = 10
+	clickcd = 20
+	icon_state = "insmash"
+	item_d_type = "blunt"
+
+/datum/intent/sword/sucker_punch/dragonslayer
+	name = "sucker punch"
+	icon_state = "inpunch"
+	attack_verb = list("punches", "throttles", "clocks")
+	animname = "strike"
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
+	damfactor = 4
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	clickcd = 20
+	recovery = 10
+	item_d_type = "blunt"
+	canparry = FALSE
+	candodge = FALSE
+
+/datum/intent/sword/flay/dragonslayer
+	name = "flay"
+	icon_state = "inpeel"
+	attack_verb = list("<font color ='#e7e7e7'>flays</font>")
+	animname = "cut"
+	blade_class = BCLASS_PEEL
+	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
+	reach = 2
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	swingdelay = 10
+	clickcd = 20
+	damfactor = 0.5
+	item_d_type = "slash"
+	peel_divisor = 1
+
+//
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer
+	name = "\"Daemonslayer\""
+	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
+	icon_state = "machaslayer"
+	possible_item_intents = list(/datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/sucker_punch/dragonslayer)
+	gripped_intents = list(/datum/intent/sword/chop/dragonslayer, /datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/smash/dragonslayer, /datum/intent/sword/flay/dragonslayer)
+	force = 5
+	force_wielded = 55
+	minstr = 14
+	wdefense = 10
+	max_integrity = 666
+	max_blade_int = 666
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
+	)
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
+	)
