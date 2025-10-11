@@ -411,101 +411,6 @@
 	grid_width = 32
 	grid_height = 32
 
-//Cursed artifacts. Should remove the negative traits upon taking it off. If not, can fluff as being-- well, cursed. Provides some potential lore.
-/obj/item/clothing/neck/roguetown/psicross/weeping
-	name = "weeping psicross"
-	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
-	slot_flags = ITEM_SLOT_NECK
-	icon_state = "psicrossblood"
-	smeltresult = /obj/item/ingot/weeping
-	sellprice = 111
-	var/active_item
-
-/obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
-  ..()
-  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,5),rand(1,5)))
-
-/obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
-	. = ..()
-	if(active_item)
-		return
-	else if(slot == SLOT_NECK)
-		active_item = TRUE
-		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY.' </br>'I AM GOING TO DIE! THERE IS NOTHING BEYOND THE VEIL! MY GOD, SAVE ME!'"))
-		user.change_stat(STATKEY_SPD, 3)
-		user.change_stat(STATKEY_CON, -3)
-		user.change_stat(STATKEY_WIL, -3)
-		user.change_stat(STATKEY_LCK, -3)
-		ADD_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-	return
-
-/obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
-	..()
-	if(active_item)
-		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
-		user.change_stat(STATKEY_SPD, -3)
-		user.change_stat(STATKEY_CON, 3)
-		user.change_stat(STATKEY_WIL, 3)
-		user.change_stat(STATKEY_LCK, 3)
-		REMOVE_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-		active_item = FALSE
-	return
-
-/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring
-	name = "alluring zcross"
-	desc = "'Let Her works be understood, not misaligned.' </br>A fell breeze rushes past you, and a whisper's carried along with it; unintelligable, yet heard. You try to respond, but nothing comes out. Why does your throat feel so stiff, all of a sudden?"
-	slot_flags = ITEM_SLOT_NECK
-	smeltresult = /obj/item/ingot/alluring
-	sellprice = 111
-	var/active_item
-
-/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/Initialize()
-  ..()
-  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(204,205),rand(102,105),rand(1,5)))
-
-/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/equipped(mob/living/user, slot)
-	. = ..()
-	if(active_item)
-		return
-	else if(slot == SLOT_NECK)
-		active_item = TRUE
-		to_chat(user, span_monkeyhive("'PSYDON AND ZIZO, GOOD AND EVIL. SUCH PRIMITIVE NOTIONS - AS IF IT COULD EVER BE SO SIMPLE.' </br>'SHE WAS MORTAL, BUT WAS DIVINED FOR A GREATER PURPOSE. THE ARCHDEVIL - REDUCED TO NAUGHT BUT A GALE - GIFTED HER THE KNOWLEDGE TO ASCEND.' </br>'THE DAGGER TORE OPEN DIVINE FLESH, AND STEAMING ENTRAILS POURED ONTO PSYDONIA. HER HOLOCAUST BROUGHT MAN CLOSER THAN EVER TO GOD; BUT AT WHAT COST?'"))
-		user.change_stat(STATKEY_INT, 3)
-		user.change_stat(STATKEY_STR, -3)
-		user.change_stat(STATKEY_PER, -3)
-		user.change_stat(STATKEY_LCK, -3)
-		ADD_TRAIT(user, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-	return
-
-/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/dropped(mob/living/user)
-	..()
-	if(active_item)
-		to_chat(user, span_red("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
-		user.change_stat(STATKEY_INT, -3)
-		user.change_stat(STATKEY_STR, 3)
-		user.change_stat(STATKEY_PER, 3)
-		user.change_stat(STATKEY_LCK, 3)
-		REMOVE_TRAIT(user, TRAIT_HERESIARCH, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-		active_item = FALSE
-	return
-
-//
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
 	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
@@ -762,4 +667,109 @@
 	if(goodluckactivated == TRUE)
 		user.change_stat(STATKEY_LCK, -1) //how much luck stat taken away when unequipped
 		goodluckactivated = FALSE
+	return
+
+
+//////////////////////////
+// Cursed Lore-Trinkets //
+//////////////////////////
+
+//A little framework for special dungeon drops; special trinkets of forbidden - and dubiously authenticated.. - knowledge. Imitates the consequence of beaming the entire Wikipedia into a fifteenth-century peasant's brain.
+//Environmental storytelling, reflected through the statblock and traits. Incredibly detrimental to wear beyond a couple seconds, or outside of a very specific circumstance. Wearing this into a fight will likely result in an unrevivable death.
+//Mechanically, the real purpose is to be sold off for coinage after being lorechecked. Bathmatrons, Stewards, and Merchants would certainly enjoy acquiring expensive artifacts.
+/obj/item/clothing/neck/roguetown/psicross/weeping
+	name = "weeping psicross"
+	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "psicrossblood"
+	edelay_type = 1
+	equip_delay_self = 10
+	smeltresult = /obj/item/ingot/weeping
+	sellprice = 333
+	var/active_item
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,5),rand(1,5)))
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_NECK)
+		active_item = TRUE
+		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY. SYON'S COMET DESTROYED THE LEYLINES, AND HAVE STRANDED US FROM THE STARS ABOVE.' </br>'I AM GOING TO DIE! THERE IS NOTHING BEYOND THE VEIL! WE ARE IN HELL! MY GOD, SAVE ME!'"))
+		user.change_stat(STATKEY_INT, 9)
+		user.change_stat(STATKEY_CON, -3)
+		user.change_stat(STATKEY_WIL, -3)
+		user.change_stat(STATKEY_LCK, -3)
+		ADD_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+	return
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_INT, -9)
+		user.change_stat(STATKEY_CON, 3)
+		user.change_stat(STATKEY_WIL, 3)
+		user.change_stat(STATKEY_LCK, 3)
+		REMOVE_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		active_item = FALSE
+	return
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring
+	name = "alluring zcross"
+	desc = "'Let Her works be understood, not misaligned.' </br>A fell breeze rushes past you, and a whisper's carried along with it; unintelligable, yet heard. You try to respond, but nothing comes out. Why does your throat feel so stiff, all of a sudden?"
+	slot_flags = ITEM_SLOT_NECK
+	edelay_type = 1
+	equip_delay_self = 10
+	smeltresult = /obj/item/ingot/alluring
+	sellprice = 333
+	var/active_item
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(204,205),rand(102,105),rand(1,5)))
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_NECK)
+		active_item = TRUE
+		to_chat(user, span_monkeyhive("'PSYDON AND ZIZO, GOOD AND EVIL. SUCH PRIMITIVE NOTIONS - AS IF IT COULD EVER BE SO SIMPLE.' </br>'SHE WAS MORTAL, BUT WAS DIVINED FOR A GREATER PURPOSE. THE ARCHDEVIL - REDUCED TO NAUGHT BUT A GALE - GIFTED HER THE KNOWLEDGE TO ASCEND.' </br>'THE DAGGER TORE OPEN DIVINE FLESH, AND STEAMING ENTRAILS POURED ONTO PSYDONIA. HER HOLOCAUST BROUGHT MAN CLOSER THAN EVER TO GOD; BUT AT WHAT COST?'"))
+		user.change_stat(STATKEY_INT, 9)
+		user.change_stat(STATKEY_STR, -3)
+		user.change_stat(STATKEY_PER, -3)
+		user.change_stat(STATKEY_LCK, -3)
+		ADD_TRAIT(user, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+	return
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_red("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_INT, -9)
+		user.change_stat(STATKEY_STR, 3)
+		user.change_stat(STATKEY_PER, 3)
+		user.change_stat(STATKEY_LCK, 3)
+		REMOVE_TRAIT(user, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		active_item = FALSE
 	return
