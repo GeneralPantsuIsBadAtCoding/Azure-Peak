@@ -39,9 +39,48 @@
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_CHURCH
 
-/datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
-	has_loadout = TRUE
+	if(H.mind)
+		var/weapons = list("Blessed Psydonic Dagger", "Psydonic Handmace", "Psydonic Shortsword")
+		var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
+		switch(weapon_choice)
+			if("Blessed Psydonic Dagger")
+				H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
+			if("Psydonic Handmace")
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
+			if("Psydonic Shortsword")
+				H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
+		var/armor_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in armors
+		switch(armor_choice)
+			if("Confessor - Slurbow, Leather Maillecoat")
+				head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
+			if("Arbalist - Crossbow, Lightweight Brigandine")
+				head = /obj/item/clothing/head/roguetown/headband/bloodied
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				H.change_stat(STATKEY_CON, 1)
+				H.change_stat(STATKEY_STR, 2)
+				H.change_stat(STATKEY_SPD, -2) //Applies a base statblock of 11/11/11 to CON, STR, and SPD - compared to the standard 10/9/13. Less coverage but better protection, -30% dodge chance.
+		var/quivers = list("Bolts", "Blessed Water Bolts")
+		var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S MISSILES.") as anything in quivers
+		switch(boltchoice)
+			if("Bolts")
+				H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
+				H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
+			if("Blessed Water Bolts")
+				H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
+				H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
+
 	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
@@ -61,44 +100,3 @@
 		/obj/item/grapplinghook = 1,
 		/obj/item/paper/inqslip/arrival/ortho = 1
 		)
-
-/datum/outfit/job/roguetown/confessor/choose_loadout(mob/living/carbon/human/H)
-	. = ..()
-	var/weapons = list("Blessed Psydonic Dagger", "Psydonic Handmace", "Psydonic Shortsword")
-	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
-	switch(weapon_choice)
-		if("Blessed Psydonic Dagger")
-			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(H), TRUE)
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sheath, SLOT_BELT_L, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-		if("Psydonic Handmace")
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/cudgel/psy, SLOT_BELT_L, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)	
-		if("Psydonic Shortsword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-	var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
-	var/armor_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in armors
-	switch(armor_choice)
-		if("Confessor - Slurbow, Leather Maillecoat")
-			head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
-		if("Arbalist - Crossbow, Lightweight Brigandine")
-			head = /obj/item/clothing/head/roguetown/headband/bloodied
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			H.change_stat(STATKEY_CON, 1)
-			H.change_stat(STATKEY_STR, 2)
-			H.change_stat(STATKEY_SPD, -2) //Applies a base statblock of 11/11/11 to CON, STR, and SPD - compared to the standard 10/9/13. Less coverage but better protection, -30% dodge chance.
-	var/quivers = list("Bolts", "Blessed Water Bolts")
-	var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S MISSILES.") as anything in quivers
-	switch(boltchoice)
-		if("Bolts")
-			H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
-			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
-		if("Blessed Water Bolts")
-			H.equip_to_slot_or_del(new /obj/item/quiver/holybolts, SLOT_BELT_R, TRUE)
-			H.put_in_hands(new /obj/item/storage/belt/rogue/pouch/coins/mid(H), TRUE)
