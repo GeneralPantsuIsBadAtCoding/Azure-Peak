@@ -284,11 +284,8 @@
 /obj/item/clothing/ring/statgemerald
 	name = "ring of swiftness"
 	desc = "A gemerald ring, glimmering with verdant brilliance. The closer your hand drifts to it, the stronger that the wind howls."
-	icon_state = "g_ring"
-	item_state = "ring_emerald"
+	icon_state = "ring_emerald"
 	icon = 'icons/roguetown/items/misc.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sellprice = 222
 	var/active_item
 
@@ -315,11 +312,8 @@
 /obj/item/clothing/ring/statonyx
 	name = "ring of vitality"
 	desc = "An onyx ring, shining with violet determination. The closer your hand drifts to it, the faster your heart pounds."
-	icon_state = "g_ring"
-	item_state = "ring_onyx"
+	icon_state = "ring_onyx"
 	icon = 'icons/roguetown/items/misc.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sellprice = 222
 	var/active_item
 
@@ -346,11 +340,8 @@
 /obj/item/clothing/ring/statamythortz
 	name = "ring of wisdom"
 	desc = "An amythortz ring, crackling with azuric fascination. The closer your hand drifts to it, the clearer your mind becomes."
-	icon_state = "g_ring"
-	item_state = "ring_spinel"
+	icon_state = "ring_spinel"
 	icon = 'icons/roguetown/items/misc.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sellprice = 222
 	var/active_item
 
@@ -377,11 +368,8 @@
 /obj/item/clothing/ring/statrontz
 	name = "ring of courage"
 	desc = "A rontz ring, radiating with crimson authority. The closer your hand drifts to it, the tighter your knuckles curl."
-	icon_state = "g_ring"
-	item_state = "ring_ruby"
+	icon_state = "ring_ruby"
 	icon = 'icons/roguetown/items/misc.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sellprice = 222
 	var/active_item
 
@@ -410,11 +398,8 @@
 /obj/item/clothing/ring/statdorpel
 	name = "ring of hope"
 	desc = "A dorpel ring, glowing with resplendent beauty. The closer your hand drifts to it, the more that your fears melt away."
-	icon_state = "s_ring"
-	item_state = "ring_sapphire"
+	icon_state = "ring_sapphire"
 	icon = 'icons/roguetown/items/misc.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
 	smeltresult = /obj/item/riddleofsteel
 	is_silver = TRUE
 	sellprice = 777
