@@ -414,12 +414,11 @@
 //Cursed artifact. Should remove the negative traits upon taking it off. If not, can fluff as being-- well, cursed. Provides some potential lore.
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
-	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. Just looking at it fills you with a sense of unspeakable sorrow."
+	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
 	icon_state = "psicrossblood"
 	smeltresult = /obj/item/ingot/weeping
-	glow_color = GLOW_COLOR_VAMPIRIC
-	glow_intensity = GLOW_INTENSITY_HIGH
+	filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb((255),(1),(1)))
 	sellprice = 111
 	var/active_item
 
@@ -427,7 +426,7 @@
 	. = ..()
 	if(active_item)
 		return
-	else if(slot == SLOT_NECK, SLOT_WRISTS)
+	else if(slot == SLOT_NECK)
 		active_item = TRUE
 		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY.' </br>'I AM GOING TO DIE! THERE IS NOTHING BEYOND THE VEIL! MY GOD, SAVE ME!'"))
 		user.change_stat(STATKEY_STR, 3)
