@@ -648,6 +648,7 @@
 	..()
 
 //
+//I lack the skill or strength to fix this. I've been awake all night, and I can see the morning light. Entrust another coder with fixing any QOL issues that arise from this, please.
 /obj/item/clothing/suit/roguetown/shirt/undershirt/disciple
 	name = "disciple's skin"
 	desc = "It's far more than just an oath. </br>'They will say of you; you descended into Hell, and gave justice to those within. In the heart of the abyss, you faced down the Archdevil, and slew It with weapons in a triumph of Man under Psydon. And on the third dae, you rose again from the dead and were seated at the right hand of Adonis - the risen Messiah for the Gospel of Violence.'"
