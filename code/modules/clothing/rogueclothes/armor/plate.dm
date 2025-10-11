@@ -76,6 +76,7 @@
 	name = "psydonic half-plate"
 	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Psydon oft-decorate these sets with dyed cloths, so that those who're wounded can still find salvation in the madness of battle. </br>'..the thrumbing of madness, to think that your suffering was all-for-naught to Adonai's sacrifical lamb..'"
 	icon_state = "ornatehalfplate"
+	smeltresult = /obj/item/ingot/silverblessed
 	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
@@ -121,6 +122,7 @@
 	name = "psydonic plate"
 	desc = "A suit of beautiful plate armor, meticulously fluted with blessed silver. This design's origins lay in the hands of a legendary armorsmith, who sought to mimic the heavenly maille that Psydon's angels once wore. </br>'..the refusal of despair, and the resolve to defend Psydonia in its darkest hour..'"
 	icon_state = "ornateplate"
+	smeltresult = /obj/item/ingot/silverblessed
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
 
@@ -327,6 +329,7 @@
 	name = "psydonic chestplate"
 	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
 	smelt_bar_num = 1
+	smeltresult = /obj/item/ingot/silverblessed
 	icon_state = "ornatechestplate"
 	item_state = "ornatechestplate"
 
@@ -356,8 +359,9 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 	name = "psydonic cuirass"
 	icon_state = "ornatecuirass"
-	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..'"
-	
+	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>With a blacksmith's assistance and some blessed silver ingots, all forms of Psydonic maille can be further improved. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..'"
+	smeltresult = /obj/item/ingot/silverblessed
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
 	desc = "A basic cuirass of iron, protective and moderately durable."
