@@ -509,7 +509,7 @@
 	wbalance = WBALANCE_HEAVY
 
 /obj/item/rogueweapon/greataxe/militia/silver
-	name = "silver militia axe"
+	name = "silver militia shovelaxe"
 	desc = "'Do you think Psydon stays in Heaven because He too lives in fear of what He's created?' </br>A silver shovel, improvised - perhaps, by the hands of a particularly desperate gravedigger - to fill a polearm's duty."
 	icon_state = "silvershovelwaraxe"
 	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
