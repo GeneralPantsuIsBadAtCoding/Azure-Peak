@@ -224,9 +224,6 @@
 /obj/effect/landmark/mob_spawner/mimic/gold
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
 
-/obj/effect/landmark/mob_spawner/zombie
-	type_path = /mob/living/simple_animal/hostile/zombie
-
 //PEACEFULL SIMPLE
 
 /obj/effect/landmark/mob_spawner/cat/rogue
