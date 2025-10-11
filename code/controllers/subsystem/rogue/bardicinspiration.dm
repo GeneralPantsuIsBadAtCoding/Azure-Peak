@@ -4,26 +4,40 @@
 #define BARD_T2 2
 #define BARD_T3 3
 
-GLOBAL_LIST_INIT(learnable_songs, (list(/obj/effect/proc_holder/spell/invoked/song/fervor_song,
+GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/song/fervor_song,
 		)
 ))
 
 
+GLOBAL_LIST_INIT(learnable_songst2, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
+		)
+))
+
+
+GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
+		)
+))
 
 
 /datum/inspiration
 	var/mob/living/carbon/human/holder
 	var/level = BARD_T1
-	var/songpoints = BARD_T1
+	var/maxaudience = 2
 	var/list/audience = list()
+	var/maxsongs = BARD_T1
+	var/songsbought = 0
+	var/tier1acquired = FALSE
+	var/tier2acquired = FALSE
+	var/tier3acquired = FALSE
 
 
 /datum/inspiration/proc/grant_inspiration(mob/living/carbon/human/H, bard_tier)
 	if(!H || !H.mind)
 		return
-	try_add_songs(H, bard_tier)
-	songpoints = bard_tier
-	H.verbs += list(/mob/living/carbon/human/proc/setaudience, /mob/living/carbon/human/proc/clearaudience, /mob/living/carbon/human/proc/checkaudience)
+	level = bard_tier
+	maxaudience = 2*bard_tier
+	maxsongs = bard_tier
+	H.verbs += list(/mob/living/carbon/human/proc/setaudience, /mob/living/carbon/human/proc/clearaudience, /mob/living/carbon/human/proc/checkaudience, /mob/living/carbon/human/proc/picksongs)
 
 
 /mob/living/carbon/human/proc/setaudience()
@@ -31,6 +45,9 @@ GLOBAL_LIST_INIT(learnable_songs, (list(/obj/effect/proc_holder/spell/invoked/so
 	set category = "Inspiration"
 
 	if(!inspiration)
+		return FALSE
+	if(inspiration.audience >= inspiration.maxaudience)
+		to_chat(src, "I cannot maintain a audience larger than [inspiration.maxaudience]!")
 		return FALSE
 	var/list/folksnearby = list()
 	for(var/mob/living/carbon/human/folks in view(5, loc))
@@ -79,34 +96,69 @@ GLOBAL_LIST_INIT(learnable_songs, (list(/obj/effect/proc_holder/spell/invoked/so
 	ADD_TRAIT(holder, INSPIRING_MUSICIAN, "inspiration")
 
 
-/datum/inspiration/proc/try_add_songs(mob/living/carbon/human/holder, bard_tier)
-	if(!holder || !holder.mind)
+/mob/living/carbon/human/proc/picksongs()
+	set name = "Fill Songbook"
+	set category = "Inspiration"
+
+
+	if(!mind)
 		return
-	level = bard_tier
-	var/list/choices = list()
-	var/list/songs = GLOB.learnable_songs
+	var/list/songs = GLOB.learnable_songst1
+
+	var/choosablesongtiers = list()
+
+	switch(inspiration.level)
+		if(1)
+			choosablesongtiers += ("TIER1")
+		if(2)
+			choosablesongtiers += ("TIER1")
+			choosablesongtiers += ("TIER2")
+		if(3)
+			choosablesongtiers += ("TIER1")
+			choosablesongtiers += ("TIER2")
+			choosablesongtiers += ("TIER3")
+
+	if(inspiration.tier1acquired)
+		choosablesongtiers -= ("TIER1")
+	if(inspiration.tier2acquired)
+		choosablesongtiers -= ("TIER2")
+	if(inspiration.tier3acquired)
+		choosablesongtiers -= ("TIER3")
+
+	var/chosensongtier = input("Choose a tier of song to add to your songbook") as null | anything in choosablesongtiers
 
 
-	for(var/i = 1, i <= songs.len, i++)
-		var/obj/effect/proc_holder/spell/invoked/song/song_item = songs[i]
-		if(song_item.song_tier > bard_tier)
-			continue
-		choices["[song_item.name]"] = song_item
-	
-	choices = sortList(choices)
-	var/song_count = bard_tier
-	for(var/l, l <= song_count, l++)
-		var/choice = input("Choose a song") as anything in choices
-		var/obj/effect/proc_holder/spell/item = choices[choice]
+	switch(chosensongtier)
+		if("TIER1")
+			songs = GLOB.learnable_songst1
+		if("TIER2")
+			songs = GLOB.learnable_songst2
+		if("TIER3")
+			songs = GLOB.learnable_songst3
 
-		if(!item)
-			return     // user canceled;
-		if(alert(holder, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
+
+
+	var/choice = input("Choose a song") as anything in songs
+	var/obj/effect/proc_holder/spell/invoked/song/item = choice
+
+	if(!item)
+		return     // user canceled;
+	if(alert(holder, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
+		return
+
+	for(var/obj/effect/proc_holder/spell/knownsong in mind.spell_list)
+		if(knownsong.type == item.type)
+			to_chat(span_warning("You already know this one!"))
 			return
-
-		for(var/obj/effect/proc_holder/spell/knownsong in holder.mind.spell_list)
-			if(knownsong.type == item.type)
-				to_chat(holder,span_warning("You already know this one!"))
-				return
-			var/obj/effect/proc_holder/spell/new_song = new item
-			holder.mind.AddSpell(new_song)
+	var/obj/effect/proc_holder/spell/invoked/song/new_song = new item
+	mind.AddSpell(new_song)
+	inspiration.songsbought += 1
+	switch(item.song_tier)
+		if(1)
+			inspiration.tier1acquired = TRUE
+		if(2)
+			inspiration.tier1acquired = TRUE
+		if(3)
+			inspiration.tier1acquired = TRUE
+	if(inspiration.songsbought >= inspiration.level)
+		verbs -= /mob/living/carbon/human/proc/picksongs
