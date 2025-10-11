@@ -2260,6 +2260,8 @@
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_status_effects.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_traits.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_quirks\quirk_hoarder.dm"
+#include "code\modules\roguetown\roguemachine\heartbeast\research_subsystem\heart_tech_node.dm"
+#include "code\modules\roguetown\roguemachine\heartbeast\research_subsystem\heart_tech_subsystem.dm"
 #include "code\modules\roguetown\roguemachine\inqports\_inqports.dm"
 #include "code\modules\roguetown\roguemachine\inqports\inqshop.dm"
 #include "code\modules\roguetown\roguemachine\merchant\goldface.dm"
