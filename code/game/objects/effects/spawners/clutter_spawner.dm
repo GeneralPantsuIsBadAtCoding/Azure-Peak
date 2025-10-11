@@ -99,8 +99,8 @@
 	lootcount = 1
 	loot = list(
 		/obj/item/clothing/ring/aalloy = 6,
-		/obj/item/clothing/neck/roguetown/psicross = 1,
-		/obj/item/clothing/neck/roguetown/psicross/aalloy = 1,
+		/obj/item/clothing/neck/roguetown/psicross = 2,
+		/obj/item/clothing/neck/roguetown/psicross/aalloy = 2,
 		/obj/item/clothing/neck/roguetown/psicross/astrata = 6,
 		/obj/item/clothing/neck/roguetown/psicross/noc = 6,
 		/obj/item/clothing/neck/roguetown/psicross/abyssor = 6,
@@ -110,12 +110,14 @@
 		/obj/item/clothing/neck/roguetown/psicross/ravox = 6,
 		/obj/item/clothing/neck/roguetown/psicross/malum = 6,
 		/obj/item/clothing/neck/roguetown/psicross/eora = 6,
-		/obj/item/clothing/neck/roguetown/psicross/wood = 1,
+		/obj/item/clothing/neck/roguetown/psicross/wood = 2,
 		/obj/item/clothing/neck/roguetown/psicross/shell = 6,
 		/obj/item/clothing/neck/roguetown/psicross/shell/bracelet = 6,
-		/obj/item/clothing/neck/roguetown/horus = 1,
-		/obj/item/clothing/neck/roguetown/luckcharm = 1,
-	)
+		/obj/item/clothing/neck/roguetown/horus = 2,
+		/obj/item/clothing/neck/roguetown/luckcharm = 2,
+		/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring = 1,
+		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
+	) //The 'alluring_' and 'weeping_' trinkets are special fluffpieces with a high price. Should hopefully be rare.
 
 /obj/effect/spawner/lootdrop/valuable_jewelry_spawner
 	name = "valuable jewelry spawner"
@@ -129,7 +131,7 @@
 		/obj/item/clothing/ring/topaz = 6,
 		/obj/item/clothing/ring/quartz = 3,
 		/obj/item/clothing/ring/sapphire = 4,
-		/obj/item/clothing/ring/diamond = 1,
+		/obj/item/clothing/ring/diamond = 2,
 		/obj/item/clothing/ring/signet = 7,
 		/obj/item/clothing/ring/emeralds = 6,
 		/obj/item/clothing/ring/rubys = 3,
