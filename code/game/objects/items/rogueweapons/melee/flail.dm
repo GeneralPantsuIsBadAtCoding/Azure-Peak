@@ -169,7 +169,7 @@
 	minstr = 10
 	wdefense = 0
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
 	AddComponent(\
