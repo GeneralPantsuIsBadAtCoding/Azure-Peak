@@ -411,6 +411,46 @@
 	grid_width = 32
 	grid_height = 32
 
+//Cursed artifact. Should remove the negative traits upon taking it off. If not, can fluff as being-- well, cursed. Provides some potential lore.
+/obj/item/clothing/neck/roguetown/psicross/weeping
+	name = "weeping psicross"
+	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. Just looking at it fills you with a sense of unspeakable sorrow."
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	icon_state = "psicrossblood"
+	smeltresult = /obj/item/ingot/weeping
+	glow_color = GLOW_COLOR_VAMPIRIC
+	glow_intensity = GLOW_INTENSITY_HIGH
+	sellprice = 111
+	var/active_item
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_NECK, SLOT_WRISTS)
+		active_item = TRUE
+		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY.' </br>'I AM GOING TO DIE! THERE IS NOTHING BEYOND THE VEIL! MY GOD, SAVE ME!'"))
+		user.change_stat(STATKEY_STR, +3)
+		user.change_stat(STATKEY_CON, -2)
+		user.change_stat(STATKEY_WIL, -2)
+		user.change_stat(STATKEY_LCK, -2)
+		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+	return
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_STR, -3)
+		user.change_stat(STATKEY_CON, 2)
+		user.change_stat(STATKEY_WIL, 2)
+		user.change_stat(STATKEY_LCK, 2)
+		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		active_item = FALSE
+	return
+
 /obj/item/clothing/neck/roguetown/psicross/undivided
 	name = "amulet of Ten"
 	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
