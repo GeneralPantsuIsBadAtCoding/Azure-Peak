@@ -1619,10 +1619,10 @@
 	sleeved = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
 
 /obj/item/clothing/neck/roguetown/blkknight
-	name = "dragonscale necklace"
-	desc = ""
+	name = "dragonscale necklace" //Who the hell put a NECKLACE in the CLOAKS file?
+	desc = "A blacksteel chain, laced through a dozen of the Hoardmaster's golden teeth. Atuned to the beating heart of Psydonia's financial systems, its true strength can only be harnessed by those who covet wealth above all else."
 	icon_state = "bktrinket"
-	max_integrity = 100000
+	max_integrity = 666 //Exceptionally strong, can be purchased multiple times, and provides a flat +2 to the entire statblock. If it gets destroyed in a fight, that's fair game. Reduced from the original value of 100,000.
 	armor = ARMOR_DRAGONSCALE
 	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
 	blocksound = PLATEHIT
@@ -1632,7 +1632,9 @@
 	resistance_flags = FIRE_PROOF
 	sellprice = 666
 	static_price = TRUE
-	var/active_item = FALSE
+	smeltresult = /obj/item/riddleofsteel
+	anvilrepair = /datum/skill/craft/armorsmithing
+	var/active_item = FALSE 
 
 /obj/item/clothing/neck/roguetown/blkknight/equipped(mob/living/user, slot)
 	. = ..()
@@ -1641,16 +1643,17 @@
 	if(slot == SLOT_NECK)
 		active_item = TRUE
 		if(user.mind.special_role == "Bandit")
-			to_chat(user, span_notice("I feel bolstered by Matthios' Power!"))
+			to_chat(user, span_monkeyhive("Matthios empowers me! My body glistens with spiritual wealth!"))
 			user.change_stat(STATKEY_STR, 2)
 			user.change_stat(STATKEY_PER, 2)
 			user.change_stat(STATKEY_INT, 2)
 			user.change_stat(STATKEY_CON, 2)
 			user.change_stat(STATKEY_WIL, 2)
 			user.change_stat(STATKEY_SPD, 2)
+			user.change_stat(STATKEY_LCK, 2)
 			armor = getArmor("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 50, "acid" = 0)
 		else
-			to_chat(user, span_notice("I feel an evil power about that necklace..."))
+			to_chat(user, span_suicide("As I don the necklace, I feel my very worth draining away.."))
 			armor = getArmor("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/neck/roguetown/blkknight/dropped(mob/living/user)
@@ -1659,15 +1662,16 @@
 		return
 	active_item = FALSE
 	if(user.mind.special_role == "Bandit")
-		to_chat(user, span_notice("I've removed the necklace of Matthios..."))
+		to_chat(user, span_monkeyhive("Golden sparks flutter from the teeth, before they fade away - and with it, the blessing of Matthios.."))
 		user.change_stat(STATKEY_STR, -2)
 		user.change_stat(STATKEY_PER, -2)
 		user.change_stat(STATKEY_INT, -2)
 		user.change_stat(STATKEY_CON, -2)
 		user.change_stat(STATKEY_WIL, -2)
 		user.change_stat(STATKEY_SPD, -2)
+		user.change_stat(STATKEY_LCK, -2)
 	else
-		to_chat(user, span_notice("Strange, I don't feel that power anymore..."))
+		to_chat(user, span_suicide("..dripping down from the heavens, I feel my worth returning once more.."))
 		armor = getArmor("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 50, "acid" = 0)
 
 /obj/item/clothing/suit/roguetown/armor/plate/blkknight
