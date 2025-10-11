@@ -7,11 +7,11 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "f" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/sewer)
 "i" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "j" = (
@@ -35,7 +35,7 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/sewer)
 "x" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
 "y" = (

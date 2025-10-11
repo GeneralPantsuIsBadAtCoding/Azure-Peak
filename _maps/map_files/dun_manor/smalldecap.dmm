@@ -134,7 +134,7 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "cq" = (
-/mob/living/carbon/human/species/goblin/npc/hell,
+/obj/effect/landmark/mob_spawner/goblin/hell,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/goblinfort)
 "cu" = (
@@ -142,7 +142,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "cx" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
 "cz" = (
@@ -578,7 +578,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/undeadmanor)
 "hB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "hF" = (
@@ -1061,7 +1061,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
 "nt" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated,
+/obj/effect/landmark/mob_spawner/spider/mutated,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/spidercave)
 "nv" = (
@@ -1076,7 +1076,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "nA" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe{
+/obj/effect/landmark/mob_spawner/minotaur/axe{
 	name = "Warden"
 	},
 /turf/open/floor/rogue/concrete,
@@ -1104,7 +1104,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "om" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
@@ -1228,7 +1228,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "qr" = (
-/mob/living/carbon/human/species/goblin/npc/hell,
+/obj/effect/landmark/mob_spawner/goblin/hell,
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/goblinfort)
 "qu" = (
@@ -1513,7 +1513,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/spidercave)
 "uv" = (
-/mob/living/simple_animal/hostile/rogue/dragger,
+/obj/effect/landmark/mob_spawner/dragger,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "uw" = (
@@ -1626,7 +1626,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
 "vC" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon{
+/obj/effect/landmark/mob_spawner/dragon{
 	faction = list("wolfs");
 	retreat_health = 0.1
 	},
@@ -1958,7 +1958,7 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "zm" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "zp" = (
@@ -2075,7 +2075,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Az" = (
-/mob/living/carbon/human/species/goblin/npc/hell,
+/obj/effect/landmark/mob_spawner/goblin/hell,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
 "AB" = (
@@ -2405,7 +2405,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "EE" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "EP" = (
@@ -2575,7 +2575,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
 "Hb" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother{
+/obj/effect/landmark/mob_spawner/dragon/broodmother{
 	retreat_health = 0.1;
 	faction = list("wolfs")
 	},
@@ -2784,7 +2784,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Jx" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/concrete{
 	dir = 1
 	},
@@ -2794,7 +2794,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblinfort)
 "JE" = (
-/mob/living/simple_animal/hostile/rogue/dragger,
+/obj/effect/landmark/mob_spawner/dragger,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/scarymaze)
 "JG" = (
@@ -2877,7 +2877,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Ku" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains)
 "Ky" = (
@@ -3074,7 +3074,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "NH" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/undeadmanor)
 "NL" = (
@@ -3201,7 +3201,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "PD" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "PF" = (
@@ -3289,7 +3289,7 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "QJ" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur,
+/obj/effect/landmark/mob_spawner/minotaur,
 /turf/open/water/swamp,
 /area/rogue/under/cave)
 "QL" = (
@@ -3349,7 +3349,7 @@
 /area/rogue/under/cave/undeadmanor)
 "Rn" = (
 /obj/structure/closet/dirthole/closed,
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains)
 "Rr" = (
@@ -3425,7 +3425,7 @@
 /area/rogue/outdoors/mountains/decap)
 "Sy" = (
 /obj/item/grown/log/tree/small,
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "SA" = (
@@ -3468,7 +3468,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Ti" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2";
 	dir = 1
@@ -3809,7 +3809,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Xz" = (
-/mob/living/carbon/human/species/goblin/npc/hell,
+/obj/effect/landmark/mob_spawner/goblin/hell,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/goblinfort)
 "XA" = (
@@ -3834,14 +3834,14 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/goblinfort)
 "XT" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "Yh" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
 "Yq" = (

@@ -16,7 +16,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/town/sewer)
 "S" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "T" = (

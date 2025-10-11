@@ -255,7 +255,7 @@
 	},
 /area/rogue/under/town/basement)
 "bU" = (
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
 "bX" = (
@@ -327,7 +327,7 @@
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "cy" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/town/basement)
 "cz" = (
@@ -376,7 +376,7 @@
 /area/rogue/outdoors/woods)
 "cZ" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach/forest)
 "da" = (
@@ -421,7 +421,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "do" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "dr" = (
@@ -589,7 +589,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "ez" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "eA" = (
@@ -656,7 +656,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/under/cave)
 "fj" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "fn" = (
@@ -779,7 +779,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "gk" = (
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter/woods)
 "gq" = (
@@ -878,7 +878,7 @@
 	},
 /area/rogue/outdoors/town/roofs)
 "hk" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "hl" = (
@@ -1007,7 +1007,7 @@
 	},
 /area/rogue/under/cavewet/bogcaves)
 "ij" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /obj/structure/fluff/walldeco/church/line,
 /turf/open/floor/rogue/church,
 /area/rogue/under/town/basement)
@@ -1077,7 +1077,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "iL" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "iP" = (
@@ -1196,7 +1196,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "jQ" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
+/obj/effect/landmark/mob_spawner/skeleton/no_equipment,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "jR" = (
@@ -1315,7 +1315,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "kR" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2"
 	},
@@ -1441,7 +1441,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "lM" = (
-/mob/living/carbon/human/species/skeleton/npc/easy,
+/obj/effect/landmark/mob_spawner/skeleton/easy,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "lN" = (
@@ -1538,7 +1538,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains)
 "mr" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "ms" = (
@@ -1600,7 +1600,7 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "na" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet/bogcaves)
 "nb" = (
@@ -1739,7 +1739,7 @@
 /area/rogue/outdoors/town/roofs)
 "nY" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "nZ" = (
@@ -1751,7 +1751,7 @@
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/indoors/shelter/woods)
 "oc" = (
-/mob/living/carbon/human/species/skeleton/npc/easy,
+/obj/effect/landmark/mob_spawner/skeleton/easy,
 /obj/machinery/light/rogue/wallfire{
 	pixel_y = 32
 	},
@@ -1788,7 +1788,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "ot" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /obj/structure/fluff/walldeco/church/line{
 	dir = 8;
 	icon_state = "churchslate"
@@ -1809,7 +1809,7 @@
 	},
 /area/rogue/outdoors/town/roofs)
 "oB" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "oC" = (
@@ -1869,7 +1869,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "pq" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "ps" = (
@@ -2057,7 +2057,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/outdoors/mountains)
 "qN" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "qR" = (
@@ -2208,7 +2208,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/basement)
 "sa" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
@@ -2217,7 +2217,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains)
 "se" = (
-/mob/living/simple_animal/hostile/rogue/skeleton/bow,
+/obj/effect/landmark/mob_spawner/skeleton/bow,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "sh" = (
@@ -2285,7 +2285,7 @@
 	},
 /area/rogue/indoors/shelter/woods)
 "sH" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "sJ" = (
@@ -2300,7 +2300,7 @@
 	dir = 8;
 	icon_state = "border"
 	},
-/mob/living/carbon/human/species/skeleton/npc/easy,
+/obj/effect/landmark/mob_spawner/skeleton/easy,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter/woods)
 "sR" = (
@@ -2472,7 +2472,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/shelter/woods)
 "uj" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
 "um" = (
@@ -2486,7 +2486,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "uq" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "ur" = (
@@ -2525,7 +2525,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "uI" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "uQ" = (
@@ -2785,7 +2785,7 @@
 	},
 /area/rogue/under/town/basement)
 "wQ" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
+/obj/effect/landmark/mob_spawner/skeleton/no_equipment,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "wU" = (
@@ -2843,7 +2843,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/shelter/woods)
 "xv" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "xx" = (
@@ -2897,10 +2897,10 @@
 "xU" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "xV" = (
@@ -2999,7 +2999,7 @@
 	},
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "yR" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "yS" = (
@@ -3033,7 +3033,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
 "zk" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/basement)
 "zo" = (
@@ -3498,7 +3498,7 @@
 /area/rogue/indoors/shelter/woods)
 "Cs" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "Cy" = (
@@ -3513,11 +3513,11 @@
 	dir = 10;
 	icon_state = "cobbleedge-n"
 	},
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
+/obj/effect/landmark/mob_spawner/skeleton/no_equipment,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/town/basement)
 "CB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/swamp,
 /area/rogue/outdoors/woods)
 "CC" = (
@@ -3528,7 +3528,7 @@
 	},
 /area/rogue/outdoors/beach/forest)
 "CF" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/troll,
+/obj/effect/landmark/mob_spawner/troll,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/basement)
 "CG" = (
@@ -3540,7 +3540,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
 "CI" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "CJ" = (
@@ -3600,7 +3600,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "Dk" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
@@ -3707,7 +3707,7 @@
 /area/rogue/under/cavewet/bogcaves)
 "Ed" = (
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "Ef" = (
@@ -3809,7 +3809,7 @@
 /area/rogue/under/cavewet/bogcaves)
 "Fa" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "Fb" = (
@@ -3887,7 +3887,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "FC" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "FE" = (
@@ -3972,7 +3972,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "Gn" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
 "Gp" = (
@@ -4042,7 +4042,7 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/basement)
 "GQ" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "GR" = (
@@ -4062,7 +4062,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/basement)
 "GZ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "Hb" = (
@@ -4136,7 +4136,7 @@
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "Ht" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cavewet/bogcaves)
 "Hu" = (
@@ -4361,7 +4361,7 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "IX" = (
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
 "IY" = (
@@ -4646,7 +4646,7 @@
 /turf/closed/wall/mineral/rogue/wooddark/horizontal,
 /area/rogue/indoors/shelter/woods)
 "Ly" = (
-/mob/living/carbon/human/species/skeleton/npc/easy,
+/obj/effect/landmark/mob_spawner/skeleton/easy,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter/woods)
 "Lz" = (
@@ -4864,7 +4864,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
+/obj/effect/landmark/mob_spawner/bigrat/gethsmane,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "Nl" = (
@@ -4874,7 +4874,7 @@
 /area/rogue/indoors)
 "Nq" = (
 /obj/structure/bed/rogue/inn/hay,
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "Nt" = (
@@ -4883,7 +4883,7 @@
 	},
 /area/rogue/indoors/shelter/woods)
 "Nu" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "Nx" = (
@@ -5091,7 +5091,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "PF" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "PN" = (
@@ -5198,11 +5198,11 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "QC" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "QI" = (
-/mob/living/carbon/human/species/goblin/npc/ambush,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "QJ" = (
@@ -5413,7 +5413,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "Si" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/woods)
 "Sm" = (
@@ -5543,7 +5543,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "Tf" = (
-/mob/living/carbon/human/species/goblin/npc/ambush/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
 "Tg" = (
@@ -5644,12 +5644,12 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "TN" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/woods)
 "TT" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/town/basement)
 "Ua" = (
@@ -5921,7 +5921,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains)
 "Wg" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/woods)
 "Wh" = (
@@ -5959,7 +5959,7 @@
 	},
 /area/rogue/under/cave/dungeon1/gethsmane)
 "Wz" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/obj/effect/landmark/mob_spawner/goat,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
 "WD" = (
@@ -6153,7 +6153,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 9
 	},
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/town/basement)
 "Yb" = (

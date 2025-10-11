@@ -176,7 +176,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/manor)
 "aaD" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
@@ -325,7 +325,7 @@
 	},
 /area/rogue/outdoors/town)
 "abc" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /obj/item/natural/stone,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town/manor)
@@ -340,12 +340,12 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/cavewet/bogcaves)
 "abf" = (
-/mob/living/carbon/human/species/goblin/npc/sea,
+/obj/effect/landmark/mob_spawner/goblin/sea,
 /obj/structure/fluff/railing/fence,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/bog)
 "abg" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /obj/structure/fluff/railing/wood{
 	dir = 1;
 	layer = 2.7;
@@ -438,7 +438,7 @@
 /turf/open/floor/rogue/blocks/newstone,
 /area/rogue/under/cavewet/bogcaves)
 "aby" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
+/obj/effect/landmark/mob_spawner/skeleton/no_equipment,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/cavewet/bogcaves)
 "abz" = (
@@ -483,7 +483,7 @@
 /turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cavewet/bogcaves)
 "abG" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/blocks/newstone,
 /area/rogue/under/cavewet/bogcaves)
 "abH" = (
@@ -529,7 +529,7 @@
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/under/cavewet/bogcaves)
 "abO" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
+/obj/effect/landmark/mob_spawner/skeleton/no_equipment,
 /obj/structure/chair/wood/rogue/fancy,
 /turf/open/floor/rogue/blocks/newstone,
 /area/rogue/under/cavewet/bogcaves)
@@ -621,7 +621,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cavewet/bogcaves)
 "acg" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /obj/item/natural/fibers,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cavewet/bogcaves)
@@ -693,7 +693,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cavewet/bogcaves)
 "act" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/bogcaves)
 "acu" = (
@@ -733,7 +733,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves)
 "acE" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -759,7 +759,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cavewet/bogcaves)
 "acJ" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cavewet/bogcaves)
 "acM" = (
@@ -817,7 +817,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cavewet/bogcaves)
 "ada" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /obj/structure/bars/pipe{
 	dir = 1
 	},
@@ -1051,7 +1051,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/cavewet/bogcaves)
 "adU" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves)
 "adV" = (
@@ -1558,7 +1558,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church/chapel)
 "aFX" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet/bogcaves)
 "aFY" = (
@@ -1608,7 +1608,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/chapel)
 "aIh" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/twig{
 	dir = 4
 	},
@@ -1766,7 +1766,7 @@
 	},
 /area/rogue/indoors/town)
 "aQl" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/bog)
 "aQO" = (
@@ -1958,7 +1958,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
 "baO" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cavewet/bogcaves)
 "baS" = (
@@ -2350,7 +2350,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/town/manor)
 "buv" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken,
+/obj/effect/landmark/mob_spawner/chicken,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors)
 "bvs" = (
@@ -2565,7 +2565,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/beach)
 "bIs" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/bog)
 "bIt" = (
@@ -3007,7 +3007,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/manor)
 "cld" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bull,
+/obj/effect/landmark/mob_spawner/bull,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "clr" = (
@@ -3095,7 +3095,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church/chapel)
 "cqm" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "cqv" = (
@@ -3394,7 +3394,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/church/chapel)
 "cDU" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet/bogcaves)
 "cEv" = (
@@ -5186,7 +5186,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/dwarfin)
 "etD" = (
-/mob/living/simple_animal/pet/cat,
+/obj/effect/landmark/mob_spawner/cat,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
 "etE" = (
@@ -5913,7 +5913,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "fjO" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/obj/effect/landmark/mob_spawner/goat,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "fjX" = (
@@ -6097,7 +6097,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/garrison)
 "fuF" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/bogcaves)
 "fwE" = (
@@ -6430,7 +6430,7 @@
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/indoors/shelter/mountains)
 "fPm" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bog)
 "fPw" = (
@@ -6593,7 +6593,7 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/bogcaves)
 "fYm" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/bog)
 "fYH" = (
@@ -7840,7 +7840,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "hmk" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame,
+/obj/effect/landmark/mob_spawner/saiga/saigabuck/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "hmt" = (
@@ -8112,7 +8112,7 @@
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor)
 "hwg" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur,
+/obj/effect/landmark/mob_spawner/minotaur,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cavewet/bogcaves)
 "hxj" = (
@@ -8154,7 +8154,7 @@
 	},
 /area/rogue/indoors/town)
 "hzb" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /obj/structure/bars/pipe{
 	dir = 4
 	},
@@ -8490,7 +8490,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "hRl" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -8799,7 +8799,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/tavern)
 "ikM" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame,
+/obj/effect/landmark/mob_spawner/saiga/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "ikP" = (
@@ -9247,7 +9247,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
 "iHw" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "iHz" = (
@@ -11183,7 +11183,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog)
 "kXN" = (
-/mob/living/carbon/human/species/goblin,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog)
 "kXO" = (
@@ -11541,7 +11541,7 @@
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/beach)
 "lqR" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/twig{
 	dir = 8
 	},
@@ -12033,7 +12033,7 @@
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue/outdoors/town)
 "lUQ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cavewet/bogcaves)
 "lVe" = (
@@ -12150,7 +12150,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/town/magician)
 "mcm" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor)
 "mcI" = (
@@ -12164,7 +12164,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/tavern)
 "mdw" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors)
 "mdz" = (
@@ -12276,7 +12276,7 @@
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/manor)
 "mhq" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /obj/structure/rack/rogue,
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/dirt/road,
@@ -12497,7 +12497,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "muB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/swamp,
 /area/rogue/outdoors/bog)
 "muD" = (
@@ -12935,7 +12935,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "mXg" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/bog)
 "mXn" = (
@@ -13028,7 +13028,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "ndL" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
 "ndT" = (
@@ -13208,7 +13208,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/church/chapel)
 "nrO" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat/goatlet,
+/obj/effect/landmark/mob_spawner/goat/goatlet,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield)
 "nss" = (
@@ -13447,7 +13447,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/church/chapel)
 "nDm" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
+/obj/effect/landmark/mob_spawner/goatmale,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/rtfield)
 "nDw" = (
@@ -16048,7 +16048,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/town/manor)
 "qwp" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck{
+/obj/effect/landmark/mob_spawner/saiga/saigabuck{
 	tame = 1
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -16668,7 +16668,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/town)
 "rjB" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cavewet/bogcaves)
 "rjZ" = (
@@ -19504,7 +19504,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/chapel)
 "uod" = (
-/mob/living/carbon/human/species/goblin/npc,
+/obj/effect/landmark/mob_spawner/goblin,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "uot" = (
@@ -19686,7 +19686,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
 "uxf" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
+/obj/effect/landmark/mob_spawner/cow,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "uxU" = (
@@ -20380,7 +20380,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "vfj" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cavewet/bogcaves)
 "vfH" = (
@@ -20509,7 +20509,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/bog)
 "voi" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/rtfield)
 "vox" = (
@@ -21856,7 +21856,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "wNP" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/rtfield)
 "wOm" = (
@@ -22196,7 +22196,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/dwarfin)
 "xhv" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog)
 "xhF" = (
@@ -23243,7 +23243,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "yib" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/tile{
 	icon_state = "greenstone"
 	},

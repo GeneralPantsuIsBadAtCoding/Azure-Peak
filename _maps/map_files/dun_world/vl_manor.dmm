@@ -2103,7 +2103,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/vampire_manor)
 "IV" = (
-/mob/living/simple_animal/pet/cat/rogue{
+/obj/effect/landmark/mob_spawner/cat/rogue{
 	name = "vampire lord manor - debug cat for teleporting to"
 	},
 /turf/open/floor/rogue/grass,
@@ -2266,7 +2266,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/vampire_manor)
 "Lf" = (
-/mob/living/simple_animal/pet/cat/rogue/black,
+/obj/effect/landmark/mob_spawner/cat/rogue/black,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/vampire_manor)
 "Lh" = (

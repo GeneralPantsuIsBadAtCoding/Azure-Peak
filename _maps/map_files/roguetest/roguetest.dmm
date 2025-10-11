@@ -77,7 +77,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
 "cP" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/obj/effect/landmark/mob_spawner/goat,
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
@@ -97,7 +97,7 @@
 	dir = 1;
 	icon_state = "borderfall"
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/obj/effect/landmark/mob_spawner/chicken{
 	gender = "male"
 	},
 /turf/open/floor/rogue/hay,
@@ -266,7 +266,7 @@
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "lS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
+/obj/effect/landmark/mob_spawner/cow,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "lY" = (
@@ -329,7 +329,7 @@
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors)
 "nJ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine,
+/obj/effect/landmark/mob_spawner/swine,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "nN" = (
@@ -475,7 +475,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woods/north)
 "rB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/obj/effect/landmark/mob_spawner/chicken{
 	gender = "male"
 	},
 /turf/open/floor/rogue/hay,
@@ -525,7 +525,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "tt" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
+/obj/effect/landmark/mob_spawner/saiga/saigabuck/tame/saddled,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "tu" = (
@@ -543,7 +543,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
 "tT" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bull,
+/obj/effect/landmark/mob_spawner/bull,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "tX" = (
@@ -820,7 +820,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "Br" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog,
+/obj/effect/landmark/mob_spawner/swine/hog,
 /turf/closed,
 /area)
 "BH" = (
@@ -864,7 +864,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
 "CB" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig,
+/obj/effect/landmark/mob_spawner/trufflepig,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "CH" = (
@@ -1018,7 +1018,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "HT" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/obj/effect/landmark/mob_spawner/chicken{
 	gender = "male"
 	},
 /obj/structure/fluff/nest,
@@ -1172,7 +1172,7 @@
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors)
 "Oj" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
+/obj/effect/landmark/mob_spawner/saiga/tame/saddled,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "Om" = (
@@ -1334,7 +1334,7 @@
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
+/obj/effect/landmark/mob_spawner/goatmale,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "UX" = (
@@ -1386,7 +1386,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "Wh" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog,
+/obj/effect/landmark/mob_spawner/swine/hog,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "WK" = (
