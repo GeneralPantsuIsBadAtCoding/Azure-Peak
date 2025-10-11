@@ -78,9 +78,9 @@
 			H.put_in_hands(new /obj/item/rogueweapon/sword/short/psy(H), TRUE)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-	var/archetypes = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
-	var/archetype_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in archetypes
-	switch(archetype_choice)
+	var/armors = list("Confessor - Slurbow, Leather Maillecoat", "Arbalist - Crossbow, Lightweight Brigandine")
+	var/armor_choice = input(H, "Choose your ARCHETYPE.", "TAKE UP PSYDON'S DUTY.") as anything in armors
+	switch(armor_choice)
 		if("Confessor - Slurbow, Leather Maillecoat")
 			head = /obj/item/clothing/head/roguetown/roguehood/psydon/confessor
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
