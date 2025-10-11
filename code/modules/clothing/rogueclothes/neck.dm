@@ -418,7 +418,7 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
 	icon_state = "psicrossblood"
 	smeltresult = /obj/item/ingot/weeping
-	filters = filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,5),rand(1,5)))
+	const filters = filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,5),rand(1,5)))
 	sellprice = 111
 	var/active_item
 
