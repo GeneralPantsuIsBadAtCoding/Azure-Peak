@@ -347,7 +347,7 @@
 	name = "ring of wisdom"
 	desc = "An amythortz ring, crackling with azuric fascination. The closer your hand drifts to it, the clearer your mind becomes."
 	icon_state = "g_ring"
-	item_state = "ring_rose"
+	item_state = "ring_spinel"
 	icon = 'icons/roguetown/items/misc.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
@@ -378,7 +378,7 @@
 	name = "ring of courage"
 	desc = "A rontz ring, radiating with crimson authority. The closer your hand drifts to it, the tighter your knuckles curl."
 	icon_state = "g_ring"
-	item_state = "ring_sapphire"
+	item_state = "ring_ruby"
 	icon = 'icons/roguetown/items/misc.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
@@ -411,7 +411,7 @@
 	name = "ring of hope"
 	desc = "A dorpel ring, glowing with resplendent beauty. The closer your hand drifts to it, the more that your fears melt away."
 	icon_state = "s_ring"
-	item_state = "ring_sapphira"
+	item_state = "ring_sapphire"
 	icon = 'icons/roguetown/items/misc.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/rings.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/rings.dmi'
