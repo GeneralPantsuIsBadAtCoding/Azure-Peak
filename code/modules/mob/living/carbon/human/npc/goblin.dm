@@ -69,6 +69,8 @@
 	race = /datum/species/goblin/sea
 /mob/living/carbon/human/species/goblin/npc/sea
 	race = /datum/species/goblin/sea
+/mob/living/carbon/human/species/goblin/npc/sea/orc_faction
+	faction = list("orcs")
 /mob/living/carbon/human/species/goblin/npc/ambush/sea
 	race = /datum/species/goblin/sea
 /datum/species/goblin/sea

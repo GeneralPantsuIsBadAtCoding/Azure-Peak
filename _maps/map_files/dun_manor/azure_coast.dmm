@@ -1330,10 +1330,7 @@
 /area/rogue/under/cave/orcdungeon)
 "hZ" = (
 /obj/structure/chair/wood/rogue/throne,
-/obj/effect/landmark/mob_spawner/orc/warlord{
-	name = "Orc Chief";
-	health = 650
-	},
+/obj/effect/landmark/mob_spawner/orc/chief,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "ib" = (
@@ -4046,9 +4043,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "AR" = (
-/obj/effect/landmark/mob_spawner/goblin/sea{
-	faction = list("orcs")
-	},
+/obj/effect/landmark/mob_spawner/goblin/sea/orc_faction,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
 "AS" = (
@@ -4441,9 +4436,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/shelter)
 "Dq" = (
-/obj/effect/landmark/mob_spawner/goblin/sea{
-	faction = list("orcs")
-	},
+/obj/effect/landmark/mob_spawner/goblin/sea/orc_faction,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "Ds" = (

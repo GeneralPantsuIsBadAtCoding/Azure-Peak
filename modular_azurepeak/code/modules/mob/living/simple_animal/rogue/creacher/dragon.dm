@@ -209,6 +209,9 @@
     var/exp_flash = 3
     var/exp_fire = 3
 
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/wolf_faction
+	faction = list("wolfs")
+	retreat_health = 0.1
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 	health = DRAGON_BROODMOTHER_HEALTH
@@ -240,3 +243,7 @@
 	fire_breath.Remove(src)
 	QDEL_NULL(fire_breath)
 	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/wolf_faction
+	faction = list("wolfs")
+	retreat_health = 0.1

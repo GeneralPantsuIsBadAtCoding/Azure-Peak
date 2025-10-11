@@ -69,6 +69,9 @@
 /obj/effect/landmark/mob_spawner/orc/warlord
 	type_path = /mob/living/carbon/human/species/orc/npc/warlord
 
+/obj/effect/landmark/mob_spawner/orc/chief
+	type_path = /mob/living/carbon/human/species/orc/npc/warlord/chief
+
 /obj/effect/landmark/mob_spawner/human
 	type_path = /mob/living/carbon/human/species/human/northern/bum/ambush
 
@@ -105,6 +108,9 @@
 /obj/effect/landmark/mob_spawner/goblin/sea
 	type_path = /mob/living/carbon/human/species/goblin/npc/sea
 
+/obj/effect/landmark/mob_spawner/goblin/sea/orc_faction
+	type_path = /mob/living/carbon/human/species/goblin/npc/sea/orc_faction
+
 /obj/effect/landmark/mob_spawner/goblin/hell
 	type_path = /mob/living/carbon/human/species/goblin/npc/hell
 
@@ -116,8 +122,14 @@
 /obj/effect/landmark/mob_spawner/dragon/broodmother
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother
 
+/obj/effect/landmark/mob_spawner/dragon/broodmother/wolf_faction
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/wolf_faction
+
 /obj/effect/landmark/mob_spawner/dragon
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/dragon
+
+/obj/effect/landmark/mob_spawner/dragon/wolf_faction
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/dragon/wolf_faction
 
 /obj/effect/landmark/mob_spawner/baroness
 	type_path = /mob/living/simple_animal/hostile/boss/baroness
@@ -130,6 +142,9 @@
 
 /obj/effect/landmark/mob_spawner/fox
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/fox
+
+/obj/effect/landmark/mob_spawner/fox/mimi
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/fox/mimi
 
 /obj/effect/landmark/mob_spawner/bigrat
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/bigrat

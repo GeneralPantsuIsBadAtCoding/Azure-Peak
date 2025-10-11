@@ -1626,10 +1626,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
 "vC" = (
-/obj/effect/landmark/mob_spawner/dragon{
-	faction = list("wolfs");
-	retreat_health = 0.1
-	},
+/obj/effect/landmark/mob_spawner/dragon/wolf_faction,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "vD" = (
@@ -2575,10 +2572,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
 "Hb" = (
-/obj/effect/landmark/mob_spawner/dragon/broodmother{
-	retreat_health = 0.1;
-	faction = list("wolfs")
-	},
+/obj/effect/landmark/mob_spawner/dragon/broodmother/wolf_faction,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "Hh" = (

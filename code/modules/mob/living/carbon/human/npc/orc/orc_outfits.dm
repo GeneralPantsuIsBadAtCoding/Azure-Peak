@@ -11,6 +11,10 @@
 /mob/living/carbon/human/species/orc/npc/warlord
 	orc_outfit = /datum/outfit/job/roguetown/orc/npc/warlord
 
+/mob/living/carbon/human/species/orc/npc/warlord/chief
+	name = "Orc Chief"
+	health = 650
+
 // Underarmored orc with incomplete protection, bone axe / spear, and slow speed
 /datum/outfit/job/roguetown/orc/npc/footsoldier/pre_equip(mob/living/carbon/human/H)
 	name = "Orc Footsoldier"
