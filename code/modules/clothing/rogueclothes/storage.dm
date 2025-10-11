@@ -255,7 +255,7 @@
 /obj/item/storage/backpack/rogue/satchel/beltpack
 	name = "beltpack" //Satchel that fits on the cloak or belt slot. Should be exceptionally rare for on-spawn loadouts, unless a flag's added to make it incompatable with regular satchels.
 	desc = "A lighter satchel that rests against the rump, freeing the shoulders from any weight. It's traditionally worn in place of a belt or cloak."
-	icon_state = "gamesatchel"
+	icon_state = "gamesatchel" //Later down the line, take the unused belt-satchel onmob and rename it to 'gamesatchel'.
 	item_state = "satchel"
 	icon = 'icons/roguetown/clothing/storage.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
