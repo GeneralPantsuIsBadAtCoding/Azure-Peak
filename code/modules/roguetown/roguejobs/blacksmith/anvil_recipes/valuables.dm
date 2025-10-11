@@ -196,8 +196,15 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/valuables/dragon
-	name = "Dragon Ring (+ Secrets)"
-	req_bar =  /obj/item/ingot/blacksteel
+	name = "Dragonstone Ring (Blacksteel, +1 Gold Bar, +1 Blortz, +1 Saffira, +1 Silver Psycross)"
+	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/gold, /obj/item/roguegem/blue, /obj/item/roguegem/violet, /obj/item/clothing/neck/roguetown/psicross/silver)
 	created_item = /obj/item/clothing/ring/dragon_ring
+	craftdiff = SKILL_LEVEL_LEGENDARY
+
+/datum/anvil_recipe/valuables/dragon
+	name = "Ring Of Hope (Silver, +1 Ring Of Swiftness, +1 Ring Of Vitality, +1 Ring Of Wisdom, +1 Ring Of Courage)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
+	created_item = /obj/item/clothing/ring/statdorpel
 	craftdiff = SKILL_LEVEL_LEGENDARY
