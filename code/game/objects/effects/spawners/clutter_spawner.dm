@@ -136,11 +136,15 @@
 		/obj/item/clothing/ring/topazs = 7,
 		/obj/item/clothing/ring/quartzs = 4,
 		/obj/item/clothing/ring/sapphires = 5,
-		/obj/item/clothing/ring/diamonds = 1,
+		/obj/item/clothing/ring/diamonds = 2,
 		/obj/item/clothing/neck/roguetown/psicross/silver = 2,
 		/obj/item/clothing/neck/roguetown/psicross/g = 2,
 		/obj/item/clothing/neck/roguetown/psicross/pearl = 3,
 		/obj/item/clothing/neck/roguetown/psicross/bpearl = 2,
 		/obj/item/clothing/neck/roguetown/ornateamulet = 3,
 		/obj/item/clothing/neck/roguetown/skullamulet = 3,
-	)
+		/obj/item/clothing/ring/statgemerald = 2,
+		/obj/item/clothing/ring/statonyx = 2,
+		/obj/item/clothing/ring/statamythortz = 2,
+		/obj/item/clothing/ring/statrontz = 2,
+	) // 'stat_' rings provide a special +2 statboost when worn. Should be rare, but not to the extent of being unobtanium. Knock the droprate down to 1, if they become too common.
