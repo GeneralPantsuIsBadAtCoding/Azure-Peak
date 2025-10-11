@@ -427,16 +427,16 @@
 		var/sidearm_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in sidearm
 		switch(sidearm_choice)
 			if("Dagger")
-				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Parrying Dagger")
-				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Seax")
-				beltl = /obj/item/rogueweapon/huntingknife/combat
+				l_hand = /obj/item/rogueweapon/huntingknife/combat
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Blessed Silver Stake")
-				beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			if("Blessed Silver Shovel")
 				l_hand = /obj/item/rogueweapon/shovel/silver/preblessed //Unlocks the secret 'Shovel Knight' subclass. No dagger skills if you take this. Doesn't scale off anything, I think. Raw style.
@@ -453,7 +453,7 @@
 				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 				belt = /obj/item/storage/belt/rogue/leather/black
-				l_hand = pick(
+				beltl = pick(
 					/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
 					/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
 					/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
