@@ -447,6 +447,7 @@
 	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
 	sheathe_icon = "psydagger"
+	smeltresult = /obj/item/ingot/silverblessed
 	sellprice = 70
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
