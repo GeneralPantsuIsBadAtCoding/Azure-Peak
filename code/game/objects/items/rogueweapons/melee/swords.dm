@@ -727,7 +727,7 @@
 	wdefense = 6
 	dropshrink = 1
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
 	AddComponent(\
@@ -815,7 +815,7 @@
 	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	alt_intents = null // Can't mordhau this
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 	is_silver = TRUE
 
 /obj/item/rogueweapon/sword/long/kriegmesser/psy/preblessed/ComponentInitialize()
@@ -940,7 +940,7 @@
 	wdefense = 3
 	wbalance = WBALANCE_SWIFT
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
 	AddComponent(\
@@ -1316,7 +1316,7 @@
 	force_wielded = 20
 	minstr = 8
 	wdefense = 8
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 	is_silver = TRUE
 
 /obj/item/rogueweapon/sword/rapier/psy/preblessed/ComponentInitialize()
