@@ -430,7 +430,7 @@
 	else if(slot == SLOT_NECK, SLOT_WRISTS)
 		active_item = TRUE
 		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY.' </br>'I AM GOING TO DIE! THERE IS NOTHING BEYOND THE VEIL! MY GOD, SAVE ME!'"))
-		user.change_stat(STATKEY_STR, +3)
+		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, -2)
 		user.change_stat(STATKEY_WIL, -2)
 		user.change_stat(STATKEY_LCK, -2)
