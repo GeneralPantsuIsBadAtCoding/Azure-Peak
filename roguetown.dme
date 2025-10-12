@@ -2397,7 +2397,6 @@
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\counterspell.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\frostbite.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\gravity.dm"
-#include "code\modules\spells\spell_types\wizard\invoked_single_target\hellishrebuke.dm"
 #include "code\modules\spells\spell_types\wizard\misc\arcyne_prison.dm"
 #include "code\modules\spells\spell_types\wizard\misc\blink.dm"
 #include "code\modules\spells\spell_types\wizard\misc\enchant_weapon.dm"
