@@ -35,7 +35,7 @@
 
 	var/obj/item/sacrifice
 	for(var/obj/item/I in user.held_items)
-		if(istype(I, /obj/item/alch/waterdust)||istype(I, /obj/item/alch/airdust)|| istype(I, /obj/item/alch/firedust))
+		if(istype(I, /obj/item/magic/elementalshard)||istype(I, /obj/item/magic/iridescentscale)|| istype(I, /obj/item/magic/hellhoundfang))
 			sacrifice = I
 			break
 
