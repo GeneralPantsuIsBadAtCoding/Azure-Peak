@@ -1,0 +1,42 @@
+/obj/effect/proc_holder/spell/invoked/song/intellectual_interval
+	name = "Intellectual Interval"
+	desc = "A song for thinkers, +3 INT"
+	overlay_state = "conjure_weapon"
+	sound = list('sound/magic/whiteflame.ogg')
+	releasedrain = 60
+	chargedrain = 1
+	chargetime = 1 SECONDS
+	no_early_release = TRUE
+	recharge_time = 2 MINUTES
+	song_tier = 1
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+
+
+/obj/effect/proc_holder/spell/invoked/song/intellectual_interval/cast(mob/living/user = usr)
+	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
+		for(var/datum/status_effect/buff/playing_melody/melodies in user.status_effects)
+			user.remove_status_effect(melodies)
+		for(var/datum/status_effect/buff/playing_dirge/dirges in user.status_effects)
+			user.remove_status_effect(dirges)
+		user.apply_status_effect(/datum/status_effect/buff/playing_melody/intellectual_interval)
+	else
+		revert_cast()
+		return
+
+/datum/status_effect/buff/playing_melody/intellectual_interval
+	buff_to_apply = /datum/status_effect/buff/song/intellectual_interval
+
+
+/atom/movable/screen/alert/status_effect/buff/song/intellectual_interval
+	name = "Intellectual Interval"
+	desc = "This tune is intellectually stimulating."
+	icon_state = "buff"
+	
+
+/datum/status_effect/buff/song/intellectual_interval
+	id = "intellectualinterval"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/song/intellectual_interval
+	duration = 15 SECONDS
+	effectedstats = list(STATKEY_INT = 3)

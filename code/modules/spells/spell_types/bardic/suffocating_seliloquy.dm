@@ -19,6 +19,10 @@
 
 /obj/effect/proc_holder/spell/invoked/song/suffocating_seliloquy/cast(mob/living/user = usr)
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
+		for(var/datum/status_effect/buff/playing_melody/melodies in user.status_effects)
+			user.remove_status_effect(melodies)
+		for(var/datum/status_effect/buff/playing_dirge/dirges in user.status_effects)
+			user.remove_status_effect(dirges)
 		user.apply_status_effect(/datum/status_effect/buff/playing_dirge/suffocating_seliloquy)
 	else
 		revert_cast()

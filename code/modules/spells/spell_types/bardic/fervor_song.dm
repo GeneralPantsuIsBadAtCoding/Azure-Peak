@@ -24,6 +24,10 @@
 
 /obj/effect/proc_holder/spell/invoked/song/fervor_song/cast(mob/living/user = usr)
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
+		for(var/datum/status_effect/buff/playing_melody/melodies in user.status_effects)
+			user.remove_status_effect(melodies)
+		for(var/datum/status_effect/buff/playing_dirge/dirges in user.status_effects)
+			user.remove_status_effect(dirges)
 		user.apply_status_effect(/datum/status_effect/buff/playing_melody/fervor)
 	else
 		revert_cast()
