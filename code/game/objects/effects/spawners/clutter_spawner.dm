@@ -149,5 +149,4 @@
 		/obj/item/clothing/ring/statamythortz = 2,
 		/obj/item/clothing/ring/statrontz = 2,
 		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
-		/obj/item/clothing/neck/roguetown/psicross/malum/secret = 1,
 	) // The 'stat_' rings, alongside the 'weeping' psicross, are experimental additions. If they're showing up too much, don't be afraid to remove them or restrict them to a new lootdrop category.
