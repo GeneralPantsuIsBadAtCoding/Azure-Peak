@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(chimeric_tech)
 /datum/controller/subsystem/chimeric_tech/proc/load_all_tech_nodes()
 	for(var/T in typesof(/datum/chimeric_tech_node) - /datum/chimeric_tech_node)
 		var/datum/chimeric_tech_node/new_node = new T()
-		all_tech_nodes[T] = new_node
+		all_tech_nodes[new_node.string_id] = new_node
 
 /datum/controller/subsystem/chimeric_tech/proc/get_node_status(var/node_path)
 	var/datum/chimeric_tech_node/node = all_tech_nodes[node_path]
@@ -89,8 +89,9 @@ SUBSYSTEM_DEF(chimeric_tech)
 
 	return final_choices
 
-/datum/controller/subsystem/chimeric_tech/proc/unlock_node(var/node_path, var/datum/component/chimeric_heart_beast/beast_component)
-	var/datum/chimeric_tech_node/node = all_tech_nodes[node_path]
+/datum/controller/subsystem/chimeric_tech/proc/unlock_node(var/string_id, var/datum/component/chimeric_heart_beast/beast_component)
+	to_chat(world, span_userdanger("[string_id] string id!"))
+	var/datum/chimeric_tech_node/node = all_tech_nodes[string_id]
 
 	if(!node)
 		return "Error: Node not found."

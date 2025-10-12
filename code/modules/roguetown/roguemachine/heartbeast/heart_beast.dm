@@ -200,7 +200,7 @@
 			"name" = N.name,
 			"desc" = N.description,
 			"cost" = N.cost,
-			"path" = N.type, // Send the path back for the unlock proc
+			"path" = N.string_id, // Send the path back for the unlock proc
 			"required_tier" = N.required_tier,
 			"can_afford" = heart_component.tech_points >= N.cost,
 		))
@@ -225,8 +225,8 @@
 
 	switch(action)
 		if("unlock_node")
-			var/node_path = params["path"]
-			var/result = SSchimeric_tech.unlock_node(node_path, heart_component)
+			var/string_id = params["path"]
+			var/result = SSchimeric_tech.unlock_node(string_id, heart_component)
 			to_chat(user, result)
 			SStgui.try_update_ui(user, src)
 			return TRUE
