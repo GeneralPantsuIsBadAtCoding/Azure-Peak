@@ -50,7 +50,7 @@ export const FlavorTextPage = (props) => {
               )}
               <Stack.Item grow>
                 <Stack fill>
-                  <Stack.Item grow>
+                  <Stack.Item grow width="350px">
                     <Section
                       scrollable
                       fill
