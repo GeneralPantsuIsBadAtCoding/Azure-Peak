@@ -294,14 +294,3 @@
 /obj/item/ingot/weeping/Initialize()
   ..()
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(64,65),rand(1,5),rand(1,5)))
-
-/obj/item/ingot/alluring
-	name = "sorrowful remains"
-	desc = "The remnants of something more, twisted into something almost unrecognizable. Confliction and pity creeps into your mind, if only for a moment.  </br>'..a cyclone of incomprehensibility; the fragments of Zizo's imperfect ascension, stretched across the stars..' </br>'..forever weeping for the sacrificed, and for the misled.'"
-	icon_state = "ancientslag"
-	smeltresult = /obj/item/ingot/alluring
-	sellprice = 111
-
-/obj/item/ingot/alluring/Initialize()
-  ..()
-  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(124,125),rand(62,65),rand(1,5)))
