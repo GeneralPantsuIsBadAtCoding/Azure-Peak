@@ -681,36 +681,6 @@
 	smeltresult = /obj/item/roguegem/green
 	anvilrepair = /datum/skill/craft/armorsmithing
 
-/obj/item/clothing/neck/roguetown/psicross/malum/secret
-	name = "beriddled amulet"
-	desc = "A familiar necklace, blisteringly hot to the touch. Yet, as warm as it gets, the metal does not sear my flesh. </br>Perhaps, if I donned it..?"
-	icon_state = "malum"
-	sellprice = 333
-	edelay_type = 1
-	equip_delay_self = 30
-	smeltresult = /obj/item/riddleofsteel
-	var/active_item
-
-/obj/item/clothing/neck/roguetown/psicross/malum/secret/Initialize()
-  ..()
-  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(1,2),rand(127,128),rand(254,255)))
-
-/obj/item/clothing/neck/roguetown/psicross/malum/secret/equipped(mob/living/user, slot)
-	. = ..()
-	if(slot == SLOT_NECK)
-		active_item = TRUE
-		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'))
-		user.change_stat(STATKEY_INT, 3)
-	return
-
-/obj/item/clothing/neck/roguetown/psicross/malum/secret/dropped(mob/living/user)
-..()
-	if(active_item)
-		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
-		user.change_stat(STATKEY_INT, -3)
-		active_item = FALSE
-	return
-
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
 	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
@@ -729,7 +699,7 @@
 	var/active_item
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
-..()
+  ..()
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,2),rand(1,2)))
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
