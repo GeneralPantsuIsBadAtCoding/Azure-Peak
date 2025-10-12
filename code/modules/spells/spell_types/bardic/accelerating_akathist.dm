@@ -1,0 +1,61 @@
+/obj/effect/proc_holder/spell/invoked/song/accelakathist
+	name = "Accelerating Akathist"
+	desc = "Accelerate your allies with your bardic song!"
+	overlay_state = "conjure_weapon"
+	sound = list('sound/magic/whiteflame.ogg')
+
+	releasedrain = 60
+	chargedrain = 1
+	chargetime = 1 SECONDS
+	no_early_release = TRUE
+	recharge_time = 2 MINUTES
+	song_tier = 2
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	invocations = list("Time to accelerate!") 
+	invocation_type = "shout"
+
+
+/obj/effect/proc_holder/spell/invoked/song/accelakathist/cast(mob/living/user = usr)
+	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
+		user.apply_status_effect(/datum/status_effect/buff/playing_melody/accelakathist)
+	else
+		revert_cast()
+		return
+
+
+
+/datum/status_effect/buff/playing_melody/accelakathist
+	buff_to_apply = /datum/status_effect/buff/song/accelakathist
+	
+/atom/movable/screen/alert/status_effect/buff/song/accelakathist
+	name = "Accelerating Akathist"
+	desc = "I am musically hastened."
+	icon_state = "buff"
+
+#define ACCELAKATHIST_FILTER "akathist_glow"
+
+/datum/status_effect/buff/song/accelakathist
+	var/outline_colour ="#F0E68C"
+	id = "haste"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/song/accelakathist
+	effectedstats = list(STATKEY_SPD = 2)
+	duration = 15 SECONDS
+
+/datum/status_effect/buff/song/accelakathist/on_apply()
+	. = ..()
+	var/filter = owner.get_filter(ACCELAKATHIST_FILTER)
+	if (!filter)
+		owner.add_filter(ACCELAKATHIST_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 25, "size" = 1))
+	to_chat(owner, span_warning("My limbs move with uncanny swiftness."))
+
+/datum/status_effect/buff/song/accelakathist/on_remove()
+	. = ..()
+	owner.remove_filter(ACCELAKATHIST_FILTER)
+	to_chat(owner, span_warning("My body move slowly again..."))
+
+#undef ACCELAKATHIST_FILTER
+
+/datum/status_effect/buff/song/accelakathist/nextmove_modifier()
+	return 0.85
