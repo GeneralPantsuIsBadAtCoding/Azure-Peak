@@ -8,13 +8,7 @@
 /datum/coven_power/quietus
 	name = "Quietus power name"
 	desc = "Quietus power description"
-	grouped_powers = list(
-		/datum/coven_power/quietus/silence_of_death,
-		/datum/coven_power/quietus/scorpions_touch,
-		/datum/coven_power/quietus/baals_caress,
-		/datum/coven_power/quietus/taste_of_death,
-		/datum/coven_power/quietus/dagons_call,
-	)
+
 //SILENCE OF DEATH
 /datum/coven_power/quietus/silence_of_death
 	name = "Silence of Death"

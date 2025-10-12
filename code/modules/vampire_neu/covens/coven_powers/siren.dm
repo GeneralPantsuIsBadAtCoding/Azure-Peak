@@ -8,14 +8,6 @@
 	name = "Siren Blessing power name"
 	desc = "Siren Blessing power description"
 
-	grouped_powers = list(
-		/datum/coven_power/siren/the_missing_voice,
-		/datum/coven_power/siren/phantom_speaker,
-		/datum/coven_power/siren/madrigal,
-		/datum/coven_power/siren/sirens_beckoning,
-		/datum/coven_power/siren/shattering_crescendo,
-	)
-
 //THE MISSING VOICE
 /datum/coven_power/siren/the_missing_voice
 	name = "The Missing Voice"
