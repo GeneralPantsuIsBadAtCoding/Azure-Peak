@@ -11,14 +11,14 @@
 
 /datum/clan/thronleer
 	name = "House Thronleer"
-	desc = "THONGleer he he hehehehee (retard do not forget to change this)"
+	desc = "House Thronleer is a secretive, tradition‑bound clan that favors ritual, subtlety, and guile."
 	curse = "Weakness of the soul."
 	clanicon = "bloodheal"
 	blood_preference = BLOOD_PREFERENCE_FANCY
 	clane_covens = list(
 		/datum/coven/obfuscate,
 		/datum/coven/presence,
-		/datum/coven/bloodheal
+		/datum/coven/demonic,
 	)
 	leader = /datum/clan_leader/thronleer
 	covens_to_select = 0
