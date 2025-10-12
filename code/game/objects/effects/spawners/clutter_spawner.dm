@@ -113,11 +113,9 @@
 		/obj/item/clothing/neck/roguetown/psicross/wood = 2,
 		/obj/item/clothing/neck/roguetown/psicross/shell = 6,
 		/obj/item/clothing/neck/roguetown/psicross/shell/bracelet = 6,
-		/obj/item/clothing/neck/roguetown/horus = 2,
-		/obj/item/clothing/neck/roguetown/luckcharm = 2,
-		/obj/item/clothing/neck/roguetown/zcross/aalloy/alluring = 1,
-		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
-	) //The 'alluring_' and 'weeping_' trinkets are special fluffpieces with a high price. Should hopefully be rare.
+		/obj/item/clothing/neck/roguetown/horus = 1,
+		/obj/item/clothing/neck/roguetown/luckcharm = 1,
+	)
 
 /obj/effect/spawner/lootdrop/valuable_jewelry_spawner
 	name = "valuable jewelry spawner"
@@ -149,4 +147,5 @@
 		/obj/item/clothing/ring/statonyx = 2,
 		/obj/item/clothing/ring/statamythortz = 2,
 		/obj/item/clothing/ring/statrontz = 2,
+		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
 	) // 'stat_' rings provide a special +2 statboost when worn. Should be rare, but not to the extent of being unobtanium. Knock the droprate down to 1, if they become too common.
