@@ -40,13 +40,13 @@
 	blade_class = BCLASS_PICK
 
 /datum/intent/dagger/sucker_punch
-	name = "sucker punch"
+	name = "unevadable punch"
 	icon_state = "inpunch"
-	attack_verb = list("punches", "jabs",)
+	attack_verb = list("punches", "jabs", "clocks", "swings past")
 	animname = "strike"
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
-	damfactor = 1
+	damfactor = 1.5
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	clickcd = 14
 	recovery = 10
