@@ -23,14 +23,14 @@
 
 
 /obj/effect/proc_holder/spell/invoked/song/fervor_song/cast(mob/living/user = usr)
-	var/mob/living/carbon/human/H = user
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
-		for(var/mob/living/carbon/human/folks in view(5, loc))
-			if(folks in H.inspiration.audience)
-				folks.apply_status_effect(/datum/status_effect/buff/song/fervor)
+		user.apply_status_effect(/datum/status_effect/buff/playing_melody/fervor)
 	else
 		revert_cast()
 		return
+
+/datum/status_effect/buff/playing_melody/fervor
+	buff_to_apply = /datum/status_effect/buff/song/fervor
 
 
 #define FERVOR_FILTER "fervor_glow"
@@ -44,7 +44,7 @@
 	var/outline_colour ="#f58e2d"
 	id = "fervor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/song/fervor
-	duration = 2 MINUTES
+	duration = 30 SECONDS
 
 /datum/status_effect/buff/song/fervor/on_apply()
 	. = ..()

@@ -4,13 +4,13 @@
 #define BARD_T2 2
 #define BARD_T3 3
 
-GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/song/fervor_song,
+GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/song/dirge_fortune,
 		)
 ))
 
 
 GLOBAL_LIST_INIT(learnable_songst2, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
-		/obj/effect/proc_holder/spell/invoked/song/dirge_fortune,
+		/obj/effect/proc_holder/spell/invoked/song/fervor_song,
 		)
 ))
 
