@@ -18,6 +18,7 @@
 	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
+	vitae_cost = 100
 	range = 4
 	multi_activate = TRUE
 	cooldown_length = 60 SECONDS
@@ -100,7 +101,7 @@
 
 	level = 3
 	research_cost = 2
-	vitae_cost = 150
+	vitae_cost = 200
 	check_flags = COVEN_CHECK_CAPABLE|COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
 	range = 4
