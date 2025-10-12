@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		if(GENERATION_METHUSELAH)
 			research_points = 50
 		if(GENERATION_ANCILLAE)
-			research_points = 15
+			research_points = 16
 		if(GENERATION_NEONATE)
 			research_points = 8
 		if(GENERATION_THINBLOOD)
