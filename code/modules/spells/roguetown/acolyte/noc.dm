@@ -102,10 +102,10 @@
 		/obj/effect/proc_holder/spell/invoked/blink,
 	)
 	var/list/offensive_bundle = list(	//This is not meant to make them combat-capable. A weak offensive, and mostly defensive option.
-		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt, // PLACEHOLDER
+		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
 		/obj/effect/proc_holder/spell/self/conjure_armor/miracle,
 		/obj/effect/proc_holder/spell/invoked/conjure_weapon/miracle,
-		/obj/effect/proc_holder/spell/invoked/rebuke, // By points, this adds up to 8 points total. However it is the strongest Acolyte combo offensively.
+		/obj/effect/proc_holder/spell/invoked/counterspell
 	)
 	var/list/buff_bundle = list(	//Buffs! An Acolyte being a supportive caster is 100% what they already are, so this fits neatly. No debuffs -- every patron already has a plethora of those.
 		/obj/effect/proc_holder/spell/invoked/hawks_eyes::name 			= /obj/effect/proc_holder/spell/invoked/hawks_eyes,
