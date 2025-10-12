@@ -704,7 +704,7 @@
 	return
 
 /obj/item/clothing/neck/roguetown/psicross/malum/secret/dropped(mob/living/user)
-	..()
+..()
 	if(active_item)
 		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
 		user.change_stat(STATKEY_INT, -3)
@@ -729,14 +729,14 @@
 	var/active_item
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
-  ..()
+..()
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,2),rand(1,2)))
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I won't let them destroy this world..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
+		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I can't let them triumph..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
 		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, 3)
