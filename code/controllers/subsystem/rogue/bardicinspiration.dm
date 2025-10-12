@@ -5,6 +5,7 @@
 #define BARD_T3 3
 
 GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/song/dirge_fortune,
+		/obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo
 		)
 ))
 

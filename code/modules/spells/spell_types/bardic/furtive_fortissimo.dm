@@ -1,0 +1,50 @@
+/obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo
+	name = "Furtive Fortissimo"
+	desc = "Sneaky, sneaky! Play the song of sneaking!"
+	overlay_state = "conjure_weapon"
+	sound = list('sound/magic/whiteflame.ogg')
+
+	releasedrain = 60
+	chargedrain = 1
+	chargetime = 1 SECONDS
+	no_early_release = TRUE
+	recharge_time = 2 MINUTES
+	song_tier = 1
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	invocations = list("Sneaking, sneaking, oh, we-go-a-sneaking!") 
+	invocation_type = "shout"
+
+
+/obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo/cast(mob/living/user = usr)
+	if(user.has_status_effect(/datum/status_effect/buff/playing_music))
+		user.apply_status_effect(/datum/status_effect/buff/playing_melody/furtive_fortissimo)
+	else
+		revert_cast()
+		return
+
+/datum/status_effect/buff/playing_melody/furtive_fortissimo
+	buff_to_apply = /datum/status_effect/buff/song/furtive_fortissimo
+
+
+/atom/movable/screen/alert/status_effect/buff/song/furtive_fortissimo
+	name = "Furtive Fortissimo"
+	desc = "With cat like tread, the sneaking song begins."
+	icon_state = "buff"
+
+/datum/status_effect/buff/song/furtive_fortissimo
+	id = "furtivefortissimo"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/song/furtive_fortissimo
+	duration = 15 SECONDS
+
+/datum/status_effect/buff/song/furtive_fortissimo/on_apply()
+	. = ..()
+	to_chat(owner, span_warning("I feel sneakier than usual... Something about that music..."))
+	ADD_TRAIT(owner, TRAIT_LIGHT_STEP, id)
+
+/datum/status_effect/buff/furtive_fortissimo/on_remove()
+	. = ..()
+	to_chat(owner, span_warning("I feel as sneaky as I normally am, now that the song is over..."))
+	REMOVE_TRAIT(owner, TRAIT_LIGHT_STEP, id)
+
