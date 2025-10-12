@@ -23,10 +23,10 @@
 	level = 1
 	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
-	duration_length = 5 SECONDS
-	cooldown_length = 20 SECONDS
+	duration_length = 2 SECONDS
+	cooldown_length = 60 SECONDS
 	var/datum/proximity_monitor/advanced/silence_field/proximity_field
-	var/silence_range = 7
+	var/silence_range = 4
 	var/validation_timer
 
 /datum/coven_power/quietus/silence_of_death/activate()
@@ -155,7 +155,7 @@
 	research_cost = 1
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING | COVEN_CHECK_FREE_HAND
 	violates_masquerade = TRUE
-	cooldown_length = 30 SECONDS
+	cooldown_length = 60 SECONDS
 	vitae_cost = 150
 
 /datum/coven_power/quietus/scorpions_touch/activate()
@@ -190,9 +190,9 @@
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 	vitae_cost = 150
 	target_type = TARGET_OBJ
-	range = 15
+	range = 3
 	violates_masquerade = TRUE
-	cooldown_length = 30 SECONDS
+	cooldown_length = 60 SECONDS
 
 /datum/coven_power/quietus/baals_caress/can_activate(atom/target, alert = FALSE)
 	. = ..()

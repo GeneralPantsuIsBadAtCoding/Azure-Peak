@@ -22,13 +22,12 @@
 
 	level = 1
 	research_cost = 0
-	vitae_cost = 80
+	vitae_cost = 100
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND | COVEN_CHECK_LYING
 	target_type = TARGET_MOB
-	range = 7
+	range = 5
 
-	duration_length = 10 SECONDS
-	cooldown_length = 25 SECONDS
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/fae_trickery/darkling_trickery/activate(mob/living/target)
 	. = ..()
@@ -37,11 +36,11 @@
 	playsound(get_turf(target), 'sound/magic/mockery.ogg', 40, FALSE)
 	var/turnangle = (prob(50) ? 270 : 90)
 	var/turndir = turn(target.dir, turnangle)
-	var/dist = rand(1, 5)
+	var/dist = rand(1, owner.get_vampire_generation())
 	var/current_turf = get_turf(target)
 	var/target_turf = get_ranged_target_turf(current_turf, turndir, dist)
 	target.throw_item(target_turf, FALSE)
-	target.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
+	target.apply_status_effect(/datum/status_effect/debuff/clickcd, (owner.get_vampire_generation() - 1) SECONDS)
 
 //GOBLINISM
 /datum/coven_power/fae_trickery/goblinism
@@ -59,8 +58,7 @@
 	hostile = TRUE
 	violates_masquerade = TRUE
 
-	cooldown_length = 30 SECONDS
-	cooldown_length = 40 SECONDS
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/fae_trickery/goblinism/activate(mob/living/target)
 	. = ..()
@@ -72,7 +70,7 @@
 	desc = "A green changeling creature."
 	icon_state = "goblin"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
-	max_integrity = 10000 // No breaking it. NO CHEAP FRAGS.
+	max_integrity = 200
 	body_parts_covered = FULL_HEAD
 	embedding = list("embedded_pain_multiplier" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 	var/stat = CONSCIOUS
@@ -317,12 +315,12 @@
 	level = 3
 	research_cost = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
-	vitae_cost = 40
+	vitae_cost = 80
 
 	aggravating = TRUE
 	hostile = TRUE
 
-	cooldown_length = 10 SECONDS
+	cooldown_length = 30 SECONDS
 
 /datum/coven_power/fae_trickery/chanjelin_ward/activate()
 	. = ..()

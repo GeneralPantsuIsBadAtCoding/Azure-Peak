@@ -24,9 +24,9 @@
 	research_cost = 0
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
-	range = 7
+	range = 4
 	multi_activate = TRUE
-	cooldown_length = 30 SECONDS
+	cooldown_length = 60 SECONDS
 
 /datum/coven_power/presence/awe/pre_activation_checks(mob/living/target)
 	var/mypower = owner.STAINT
@@ -68,11 +68,11 @@
 	research_cost = 1
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
-	range = 7
+	range = 4
 	vitae_cost = 100
 
 	multi_activate = TRUE
-	cooldown_length = 30 SECONDS
+	cooldown_length = 60 SECONDS
 
 /datum/coven_power/presence/dread_gaze/activate(mob/living/carbon/human/target)
 	. = ..()
@@ -109,7 +109,7 @@
 	vitae_cost = 150
 	check_flags = COVEN_CHECK_CAPABLE|COVEN_CHECK_SPEAK
 	target_type = TARGET_HUMAN
-	range = 7
+	range = 4
 
 	multi_activate = TRUE
 	cooldown_length = 1 MINUTES
@@ -143,7 +143,7 @@
 	target_type = TARGET_HUMAN
 	range = 7
 	multi_activate = TRUE
-	cooldown_length = 45 SECONDS
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/presence/summon/activate(mob/living/carbon/human/target)
 	. = ..()

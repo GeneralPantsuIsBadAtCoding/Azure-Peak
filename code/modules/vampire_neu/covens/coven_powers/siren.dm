@@ -119,12 +119,12 @@
 	research_cost = 2
 	vitae_cost = 150
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-	cooldown_length = 30 SECONDS
+	cooldown_length = 1 MINUTES
 	duration_length = 2 SECONDS
 
 /datum/coven_power/siren/madrigal/activate()
 	. = ..()
-	var/list/mobs_in_view = oviewers(7, owner)
+	var/list/mobs_in_view = oviewers(4, owner)
 	if(!LAZYLEN(mobs_in_view))
 		deactivate()
 		return
@@ -153,12 +153,12 @@
 	level = 4
 	research_cost = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
-	duration_length = 3 SECONDS
-	cooldown_length = 30 SECONDS
+	duration_length = 2 SECONDS
+	cooldown_length = 2 MINUTES
 
 /datum/coven_power/siren/sirens_beckoning/activate()
 	. = ..()
-	var/list/mobs_in_view = oviewers(7, owner)
+	var/list/mobs_in_view = oviewers(4, owner)
 	if(!LAZYLEN(mobs_in_view))
 		deactivate()
 		return

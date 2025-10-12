@@ -51,7 +51,7 @@
 
 	cancelable = TRUE
 	duration_length = 15 SECONDS
-	cooldown_length = 30 SECONDS
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/demonic/fear_of_the_void_below/activate()
 	. = ..()
@@ -77,7 +77,7 @@
 
 	cancelable = TRUE
 	duration_length = 30 SECONDS
-	cooldown_length = 10 SECONDS
+	cooldown_length = 1 MINUTES
 
 /datum/coven_power/demonic/conflagration/activate()
 	. = ..()
