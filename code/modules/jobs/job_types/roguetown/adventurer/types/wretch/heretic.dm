@@ -450,6 +450,7 @@
 	// Final conversion
 	ADD_TRAIT(target, TRAIT_HERESIARCH, TRAIT_GENERIC)
 	ADD_TRAIT(target, TRAIT_EXCOMMUNICATED, TRAIT_GENERIC)
+	ADD_TRAIT(target, TRAIT_ZURCH, TRAIT_GENERIC)
 	to_chat(user, span_danger("You've converted [target.name] to [user.patron.name]!"))
 	to_chat(target, span_danger("You feel ancient powers lifting divine burdens from your soul..."))
 	

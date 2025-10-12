@@ -371,6 +371,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			pref_species = new default_species.type()
 	else
 		pref_species = new default_species.type()
+	if(pref_species.custom_selection)
+		S["race_bonus"] >> race_bonus
 
 /datum/preferences/proc/_load_flaw(S)
 	var/charflaw_type
@@ -761,6 +763,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["statpack"] , statpack.type)
 	WRITE_FILE(S["virtue"] , virtue.type)
 	WRITE_FILE(S["virtuetwo"], virtuetwo.type)
+	WRITE_FILE(S["race_bonus"], race_bonus)
 	WRITE_FILE(S["combat_music"], combat_music.type)
 	WRITE_FILE(S["body_size"] , features["body_size"])
 	if(loadout)

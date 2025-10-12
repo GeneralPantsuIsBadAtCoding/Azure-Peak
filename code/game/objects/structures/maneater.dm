@@ -58,7 +58,7 @@
 	..()
 	if(obj_broken)
 		return
-	if(world.time <= last_eat + 5 SECONDS)
+	if(world.time <= last_eat + 8 SECONDS)
 		return
 	if(has_buckled_mobs())
 		return
@@ -86,10 +86,12 @@
 
 	buckle_mob(victim, TRUE, check_loc = FALSE)
 	visible_message(span_warningbig("[src] begins to gnaw on [victim]!"))
-	addtimer(CALLBACK(src, PROC_REF(begin_eat), victim), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(begin_eat), victim), 3 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /obj/structure/flora/roguegrass/maneater/real/proc/begin_eat(mob/living/victim, var/chew_factor = 1)
 	if(victim.loc != loc)
+		return
+	if(!(has_buckled_mobs() && victim.buckled))
 		return
 
 	visible_message(span_warning("[src] chews on [victim]!"))
@@ -116,14 +118,15 @@
 		else
 			victim.run_armor_check(zone, BCLASS_CUT, damage = 20)
 
-	if(victim.stat == DEAD)
+	if(victim.stat == DEAD || victim.stat == UNCONSCIOUS)
 		if(!victim.mind)
 			victim.gib()
 			seednutrition += 50
 			return
 		maneater_spit_out(victim)
 
-	addtimer(CALLBACK(src, PROC_REF(begin_eat), victim, chew_factor * 2), 2 SECONDS)
+	last_eat = world.time
+	addtimer(CALLBACK(src, PROC_REF(begin_eat), victim, chew_factor * 2), 3 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /obj/structure/flora/roguegrass/maneater/real/proc/maneater_spit_out(mob/living/C)
 	if(!C)

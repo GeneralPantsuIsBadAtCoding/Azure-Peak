@@ -239,7 +239,7 @@
 			if(L.STAINT > 9 && L.STAPER > 9)
 				. += span_redtext("<i>[m1] critically fragile!</i>")
 
-	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
+	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES) && (!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)))
 		var/atom/item = get_most_expensive()
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
@@ -955,13 +955,13 @@
 /mob/living/proc/get_inquisition_text(mob/examiner)
 	var/inquisition_text
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text = "A Practical of our Psydonic Inquisitorial Sect."
+		inquisition_text = "A fellow adherent to the Holy Otavan Inquisition's missives."
 	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text = "The Lorde-Inquisitor of our Psydonic Inquisitorial Sect."
+		inquisition_text = "My superior, sent by the Holy Otavan Inquisition to lead our sect."
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_PURITAN))
-		inquisition_text = "Subordinate to me in the Psydonic Inquisitorial Sect."
+		inquisition_text = "A subordinate to my authority, as willed by the Holy Otavan Inquisition."
 	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_PURITAN))
-		inquisition_text = "The Lorde-Inquisitor of the Sect sent here. That's me."
+		inquisition_text = "Myself. I lead this sect of the Holy Otavan Inquisition."
 
 	return inquisition_text
 

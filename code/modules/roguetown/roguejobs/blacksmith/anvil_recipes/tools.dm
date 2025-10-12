@@ -176,6 +176,12 @@
 
 // --------- IRON -----------
 
+/datum/anvil_recipe/tools/iron/chain
+	name = "Chains (x2)"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/rope/chain
+	createditem_num = 2
+
 /datum/anvil_recipe/tools/iron/blowrod
 	name = "Glass Blowing Rod"
 	req_bar = /obj/item/ingot/iron
@@ -188,7 +194,7 @@
 	created_item = /obj/item/storage/belt/rogue/surgery_bag/full
 
 /datum/anvil_recipe/tools/iron/torch
-	name = "Torches, Iron (x5) (+1 Coal)"
+	name = "Fieftorches (x5) (+1 Coal)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/rogueore/coal)
 	created_item = /obj/item/flashlight/flare/torch/metal
@@ -363,6 +369,12 @@
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/reagent_containers/glass/cup/silver
 	createditem_num = 3
+
+/datum/anvil_recipe/tools/silver/shovel
+	name = "Shovel, Silver (+1 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/shovel/silver
 
 // --------- GOLD RECIPES-----------
 

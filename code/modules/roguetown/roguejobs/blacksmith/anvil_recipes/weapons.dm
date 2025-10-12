@@ -32,7 +32,7 @@
 	craftdiff = SKILL_LEVEL_EXPERT
 
 /datum/anvil_recipe/weapons/silver
-	abstract_type = /datum/anvil_recipe/weapons/silver
+	abstract_type = /datum/anvil_recipe/weapons/
 	craftdiff = SKILL_LEVEL_EXPERT
 
 /datum/anvil_recipe/weapons/psy
@@ -701,40 +701,102 @@
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 
 /datum/anvil_recipe/weapons/silver/dagger
-	name = "Dagger, Silver"
-	req_bar = /obj/item/ingot/silver
-	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver
-
-/datum/anvil_recipe/weapons/silver/sword
-	name = "Sword, Silver (+1 Silver)"
+	name = "Dagger, Silver (+1 Silver"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/ingot/silver)
+	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver
+
+/datum/anvil_recipe/weapons/silver/shortsword
+	name = "Shortsword, Silver (+1 Silver)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver)
+	created_item = /obj/item/rogueweapon/sword/short/silver
+
+/datum/anvil_recipe/weapons/silver/sword
+	name = "Arming Sword, Silver (+2 Silver)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver)
 	created_item = /obj/item/rogueweapon/sword/silver
 
-/datum/anvil_recipe/weapons/silver/waraxe
-	name = "War Axe, Silver (+1 Silver, +1 Stick)"
+/datum/anvil_recipe/weapons/silver/sword
+	name = "Rapier, Silver (+2 Silver)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/stick)
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver)
+	created_item = /obj/item/rogueweapon/sword/rapier/silver
+
+/datum/anvil_recipe/weapons/silver/longsword
+	name = "Longsword, Silver (+3 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/sword/long/silver
+
+/datum/anvil_recipe/weapons/silver/broadsword
+	name = "Broadsword, Silver (+3 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/sword/long/kriegmesser/silver
+
+/datum/anvil_recipe/weapons/silver/waraxe
+	name = "War Axe, Silver (+2 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/stoneaxe/woodcut/silver
 
-/datum/anvil_recipe/weapons/silver/warhammer
-	name = "Warhammer, Silver (+1 Silver, +1 Stick)"
+/datum/anvil_recipe/weapons/silver/poleaxe
+	name = "Poleaxe, Silver (+3 Silver, +2 Small Logs)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/stick)
-	created_item = /obj/item/rogueweapon/mace/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/greataxe/silver
+
+/datum/anvil_recipe/weapons/silver/mace
+	name = "Mace, Silver (+2 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/mace/steel/silver
+
+/datum/anvil_recipe/weapons/silver/warhammer
+	name = "Warhammer, Silver (+2 Silver, +1 Small Log)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/mace/warhammer/steel/silver
+
+/datum/anvil_recipe/weapons/silver/quarterstaff
+	name = "Quarterstaff, Silver (+1 Silver, +3 Small Logs)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/woodstaff/quarterstaff/silver
+
+/datum/anvil_recipe/weapons/silver/spear
+	name = "Spear, Silver (+1 Silver, +3 Small Logs)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/silver
+
+/datum/anvil_recipe/weapons/silver/morningstar
+	name = "Morningstar, Silver (+3 Silver, +1 Chain)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/rope/chain)
+	created_item = /obj/item/rogueweapon/flail/sflail/silver
+
+/datum/anvil_recipe/weapons/silver/whip
+	name = "Whip, Silver (+1 Leather Whip)"
+	req_bar = /obj/item/ingot/silver
+	additional_items = list(/obj/item/rogueweapon/whip)
+	created_item = /obj/item/rogueweapon/flail/sflail/silver
 
 /datum/anvil_recipe/weapons/silver/tossblade
-	name = "Tossblades, Silver (x4)"
+	name = "Tossblades, Silver (+1 Silver)"
 	req_bar = /obj/item/ingot/silver
-	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/psydon
+	additional_items = list(/obj/item/ingot/silver)
+	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/silver
 	createditem_num = 4
 
 /datum/anvil_recipe/weapons/silver/javelin
-	name = "Javelin, Silver (+1 Small Log)"
+	name = "Javelins, Silver (+1 Silver, Small Log)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/grown/log/tree/small)
+	additional_items = list(/obj/item/ingot/silver, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/silver
-
+	createditem_num = 2
 
 // BRONZE
 

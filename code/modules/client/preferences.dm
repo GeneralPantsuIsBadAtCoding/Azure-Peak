@@ -200,6 +200,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/tgui_pref = TRUE
 
+	var/race_bonus
+
 /datum/preferences/New(client/C)
 	parent = C
 	migrant  = new /datum/migrant_pref(src)
@@ -367,6 +369,16 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<BR>"
 			dat += "<b>Race:</b> <a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>[spec_check(user) ? "" : " (!)"]<BR>"
+			if(length(pref_species.custom_selection))
+				var/race_bonus_display
+				if(race_bonus)
+					for(var/bonus in pref_species.custom_selection)
+						if(pref_species.custom_selection[bonus] == race_bonus)
+							race_bonus_display = bonus
+							break
+				dat += "<b>Race Bonus:</b> <a href='?_src_=prefs;preference=race_bonus_select;task=input'>[race_bonus_display ? "[race_bonus_display]" : "None"]</a><BR>"
+			else
+				race_bonus = null
 
 			// LETHALSTONE EDIT BEGIN: add statpack selection
 			dat += "<b>Statpack:</b> <a href='?_src_=prefs;preference=statpack;task=input'>[statpack.name]</a><BR>"
@@ -404,9 +416,16 @@ GLOBAL_LIST_EMPTY(chosen_names)
 //				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>When Antagonist: [(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A>"
 
 //			dat += "<b><a href='?_src_=prefs;preference=name;task=random'>Random Name</A></b><BR>"
+			if(length(pref_species.restricted_virtues))
+				if(virtue.type in pref_species.restricted_virtues)
+					virtue = GLOB.virtues[/datum/virtue/none]
+				if(virtuetwo.type in pref_species.restricted_virtues)
+					virtuetwo = GLOB.virtues[/datum/virtue/none]
 			dat += "<b>Virtue:</b> <a href='?_src_=prefs;preference=virtue;task=input'>[virtue]</a><BR>"
 			if(statpack.name == "Virtuous")
 				dat += "<b>Second Virtue:</b> <a href='?_src_=prefs;preference=virtuetwo;task=input'>[virtuetwo]</a><BR>"
+			else
+				virtuetwo = GLOB.virtues[/datum/virtue/none]
 			dat += "<b>Vice:</b> <a href='?_src_=prefs;preference=charflaw;task=input'>[charflaw]</a><BR>"
 			var/datum/faith/selected_faith = GLOB.faithlist[selected_patron?.associated_faith]
 			dat += "<b>Faith:</b> <a href='?_src_=prefs;preference=faith;task=input'>[selected_faith?.name || "FUCK!"]</a><BR>"
@@ -1981,13 +2000,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						var/datum/virtue/V = GLOB.virtues[path]
 						if (!V.name)
 							continue
-						if (V.name == virtue.name || V.name == virtuetwo.name)
+						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
-						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
-							continue
-						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
+						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
@@ -2004,13 +2021,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						var/datum/virtue/V = GLOB.virtues[path]
 						if (!V.name)
 							continue
-						if (V.name == virtue.name || V.name == virtuetwo.name)
+						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
+							continue
+						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
-							continue
-						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
-							continue
-						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
@@ -2033,6 +2048,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						charflaw = C
 						if(charflaw.desc)
 							to_chat(user, "<span class='info'>[charflaw.desc]</span>")
+
+				if("race_bonus_select")
+					if(length(pref_species.custom_selection))
+						var/choice = tgui_input_list(user, "What has fate blessed your race with?", "BONUS", pref_species.custom_selection)
+						if(choice)
+							race_bonus = pref_species.custom_selection[choice]
 
 				if("body_size")
 					var/new_body_size = tgui_input_number(user, "Choose your desired sprite size:\n([BODY_SIZE_MIN*100]%-[BODY_SIZE_MAX*100]%), Warning: May make your character look distorted", "Character Preference", features["body_size"]*100)

@@ -154,6 +154,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	/// List all of body markings that the player can choose from in customization. Body markings from sets get added to here
 	var/list/body_markings
 	var/list/languages = list(/datum/language/common)
+
+	var/list/restricted_virtues
+
+	var/list/custom_selection
+
 	/// Some species have less than standard gender locks
 	var/gender_swapping = FALSE
 	var/stress_examine = FALSE

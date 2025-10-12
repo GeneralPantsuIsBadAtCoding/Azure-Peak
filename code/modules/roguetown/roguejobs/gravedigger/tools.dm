@@ -180,6 +180,37 @@
 	color = "#bb9696"
 	sellprice = 15
 
+/obj/item/rogueweapon/shovel/silver
+	force = 25
+	name = "silver shovel"
+	desc = "The only trait that distinguishes a man from a beast is their empathy. To mutilate the dead, regardless of what they've done in lyfe, is to invoke divine wrath. See them buried beneath crossed soil; ferry their spirit to the world beyond Psydonia, and towards their final judgement."
+	icon_state = "silvershovel"
+	icon = 'icons/roguetown/weapons/misc32.dmi'
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/shovel/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/shovel/silver/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_TENNITE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 /obj/item/burial_shroud
 	name = "winding sheet"
 	desc = "A burial veil for the deceased. It makes transporting bodies slightly more tolerable."
