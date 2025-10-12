@@ -34,7 +34,7 @@
 	if(VD && SEND_SIGNAL(user, COMSIG_DISGUISE_STATUS))
 		to_chat(usr, span_warning("My curse is hidden."))
 		return
-	if(restrained(ignore_grab = FALSE))
+	if(usr.restrained(ignore_grab = FALSE))
 		return
 	if(src in user.mob_spell_list)
 		user.mob_spell_list.Remove(src)
