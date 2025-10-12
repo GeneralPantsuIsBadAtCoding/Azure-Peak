@@ -38,7 +38,6 @@ export const FlavorTextPage = (props) => {
 
   return (
         <Stack fill>
-          <Stack.Item grow maxWidth="36%">
             <Stack fill vertical>
               {headshot && (
                 <Stack.Item align="center">
@@ -96,7 +95,6 @@ export const FlavorTextPage = (props) => {
                 </Stack>
               </Stack.Item>
             </Stack>
-          </Stack.Item>
           <Stack.Item grow>
             <Section
               scrollable
@@ -110,7 +108,7 @@ export const FlavorTextPage = (props) => {
                     bold={flavorTextIndex === 'SFW'}
                     onClick={() => setFlavorTextIndex('SFW')}
                     textAlign="center"
-                    width="150px"
+                    width="60px"
                   >
                     SFW
                   </Button>
@@ -120,7 +118,7 @@ export const FlavorTextPage = (props) => {
                     bold={flavorTextIndex === 'NSFW'}
                     onClick={() => setFlavorTextIndex('NSFW')}
                     textAlign="center"
-                    width="150px"
+                    width="60px"
                   >
                     NSFW
                   </Button> 
