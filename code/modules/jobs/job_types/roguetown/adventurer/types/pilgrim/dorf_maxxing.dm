@@ -42,9 +42,6 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/ceramics = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE,
@@ -58,11 +55,33 @@
 		/datum/skill/labor/lumberjacking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/labor/fishing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/labor/butchering = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/labor/mining = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/labor/mining = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/homesteader/pre_equip(mob/living/carbon/human/H)
 	..()
+
+	//first, randomized skills
+
+	H.adjust_skillrank(/datum/skill/combat/swords, rand(0,1), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/crossbows, rand(0,2) ,TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/polearms, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/maces, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/axes, rand(0,1), TRUE)
+	H.adjust_skillrank(/datum/skill/combat/bows, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/climbing, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/medicine, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/athletics, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/sneaking, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/medicine, rand(0,2), TRUE)
+	H.adjust_skillrank(/datum/skill/misc/reading, rand(0,2), TRUE)
+
+	H.set_patron(/datum/patron/divine/malum) //sire you are a dorf
+
 	head = pick(/obj/item/clothing/head/roguetown/hatfur,
 	/obj/item/clothing/head/roguetown/hatblu,
 	/obj/item/clothing/head/roguetown/nightman,
