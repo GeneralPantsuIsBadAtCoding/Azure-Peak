@@ -203,7 +203,7 @@
 	craftdiff = SKILL_LEVEL_LEGENDARY
 
 /datum/anvil_recipe/valuables/hope
-	name = "Ring Of Hope (Secret!)"
+	name = "Ring Of Omnipotence (Secret!)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/ring/statgemerald, /obj/item/clothing/ring/statonyx, /obj/item/clothing/ring/statamythortz, /obj/item/clothing/ring/statrontz)
 	created_item = /obj/item/clothing/ring/statdorpel
@@ -212,6 +212,6 @@
 /datum/anvil_recipe/valuables/daemonslayer
 	name = "''Daemonslayer'' (Secret!)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver,  /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small, /obj/item/riddleofsteel)
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small, /obj/item/riddleofsteel)
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	craftdiff = SKILL_LEVEL_LEGENDARY
