@@ -59,15 +59,15 @@
 
 
 /datum/status_effect/buff/playing_dirge/misfortune
-	debuff_to_apply = /datum/status_effect/debuff/dirge_misfortune
+	debuff_to_apply = /datum/status_effect/debuff/song/dirge_misfortune
 
-/datum/status_effect/debuff/dirge_misfortune
+/datum/status_effect/debuff/song/dirge_misfortune
 	id = "ravox_burden"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/dirge_misfortune
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/song/dirge_misfortune
 	effectedstats = list(STATKEY_LCK = -2)
 	duration = 20 SECONDS
 
-/atom/movable/screen/alert/status_effect/debuff/dirge_misfortune
+/atom/movable/screen/alert/status_effect/debuff/song/dirge_misfortune
 	name = "Dirge of Misfortune"
 	desc = "The blasted dirge drives me mad! My fortune is sapped!"
 	icon_state = "restrained"

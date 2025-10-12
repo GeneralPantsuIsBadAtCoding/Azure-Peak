@@ -34,9 +34,7 @@
 
 /datum/status_effect/buff/playing_music/on_remove()
 	. = ..()
-	to_chat(owner, "removing music")
 	if(!ishuman(owner))
-		to_chat(owner, "owner is not human")
 		return
 	var/mob/living/carbon/human/H = owner
 	if(!H.inspiration)

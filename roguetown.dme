@@ -2328,6 +2328,7 @@
 #include "code\modules\spells\spell_types\bardic\fervor_song.dm"
 #include "code\modules\spells\spell_types\bardic\recovery_song.dm"
 #include "code\modules\spells\spell_types\bardic\rejuvenation_song.dm"
+#include "code\modules\spells\spell_types\bardic\suffocating_seliloquy.dm"
 #include "code\modules\spells\spell_types\divine\projectiles_single\divine_blast.dm"
 #include "code\modules\spells\spell_types\divine\projectiles_single\unholy_blast.dm"
 #include "code\modules\spells\spell_types\skills\invoked_aoe\huntersyell.dm"

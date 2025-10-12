@@ -28,7 +28,7 @@
 
 
 
-/atom/movable/screen/alert/status_effect/buff/song/recovery // spicy guidance
+/atom/movable/screen/alert/status_effect/buff/song/recovery
 	name = "Musical Recovery"
 	desc = "I am refreshed by the song!"
 	icon_state = "buff"
