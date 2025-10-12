@@ -54,11 +54,11 @@
 
 	var/mob/living/simple_animal/hostile/retaliate/rogue/primordial/conjured
 	switch(sacrifice.type)
-		if(/obj/item/alch/waterdust)
+		if(/obj/item/magic/elementalshard)
 			conjured = new /mob/living/simple_animal/hostile/retaliate/rogue/primordial/water(T,user)
-		if(/obj/item/alch/firedust)
+		if(/obj/item/magic/hellhoundfang)
 			conjured = new /mob/living/simple_animal/hostile/retaliate/rogue/primordial/fire(T, user)
-		if(/obj/item/alch/airdust)
+		if(/obj/item/magic/iridescentscale)
 			conjured = new /mob/living/simple_animal/hostile/retaliate/rogue/primordial/air(T, user)
 	conjured_mobs += conjured
 	RegisterSignal(conjured, COMSIG_QDELETING, PROC_REF(remove_conjure), conjured)
