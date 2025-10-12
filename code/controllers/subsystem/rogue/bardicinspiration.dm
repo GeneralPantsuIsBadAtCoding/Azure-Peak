@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/
 
 
 GLOBAL_LIST_INIT(learnable_songst2, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
+		/obj/effect/proc_holder/spell/invoked/song/dirge_fortune
 		)
 ))
 
@@ -30,6 +31,17 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	var/tier2acquired = FALSE
 	var/tier3acquired = FALSE
 
+/mob/living/carbon/human/proc/in_audience(var/mob/living/carbon/human/audiencee)
+	if(!src.mind)
+		return FALSE
+	if(!src.inspiration)
+		return FALSE
+		
+	if(audiencee in src.inspiration.audience)
+		return TRUE
+	else
+		return FALSE
+
 
 /datum/inspiration/proc/grant_inspiration(mob/living/carbon/human/H, bard_tier)
 	if(!H || !H.mind)
@@ -46,7 +58,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	if(!inspiration)
 		return FALSE
-	if(inspiration.audience >= inspiration.maxaudience)
+	if(inspiration.audience.len >= inspiration.maxaudience)
 		to_chat(src, "I cannot maintain a audience larger than [inspiration.maxaudience]!")
 		return FALSE
 	var/list/folksnearby = list()
@@ -127,7 +139,6 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	var/chosensongtier = input("Choose a tier of song to add to your songbook") as null | anything in choosablesongtiers
 
-
 	switch(chosensongtier)
 		if("TIER1")
 			songs = GLOB.learnable_songst1
@@ -135,7 +146,6 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 			songs = GLOB.learnable_songst2
 		if("TIER3")
 			songs = GLOB.learnable_songst3
-
 
 
 	var/choice = input("Choose a song") as anything in songs
@@ -157,8 +167,8 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 		if(1)
 			inspiration.tier1acquired = TRUE
 		if(2)
-			inspiration.tier1acquired = TRUE
+			inspiration.tier2acquired = TRUE
 		if(3)
-			inspiration.tier1acquired = TRUE
+			inspiration.tier3acquired = TRUE
 	if(inspiration.songsbought >= inspiration.level)
 		verbs -= /mob/living/carbon/human/proc/picksongs

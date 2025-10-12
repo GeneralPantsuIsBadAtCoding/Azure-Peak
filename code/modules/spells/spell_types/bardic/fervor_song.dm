@@ -13,7 +13,7 @@
 	chargedrain = 1
 	chargetime = 1 SECONDS
 	no_early_release = TRUE
-	recharge_time = 4 MINUTES
+	recharge_time = 2 MINUTES
 	song_tier = 1
 	warnie = "spellwarning"
 	no_early_release = TRUE

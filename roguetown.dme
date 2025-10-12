@@ -2324,6 +2324,7 @@
 #include "code\modules\spells\spell_types\trigger.dm"
 #include "code\modules\spells\spell_types\turf_teleport.dm"
 #include "code\modules\spells\spell_types\wildshape.dm"
+#include "code\modules\spells\spell_types\bardic\dirge_misfortune.dm"
 #include "code\modules\spells\spell_types\bardic\fervor_song.dm"
 #include "code\modules\spells\spell_types\bardic\recovery_song.dm"
 #include "code\modules\spells\spell_types\divine\projectiles_single\divine_blast.dm"
