@@ -115,3 +115,13 @@ SUBSYSTEM_DEF(chimeric_tech)
 		multiplier = 1.1
 	
 	return multiplier
+
+/datum/controller/subsystem/chimeric_tech/proc/get_resurrection_multiplier()
+	var/multiplier = 2
+
+	if(get_node_status("REVIVE_TIER1"))
+		multiplier = 1
+	return multiplier
+
+/datum/controller/subsystem/chimeric_tech/proc/has_revival_cost_reduction()
+	return get_node_status("REVIVE_TIER2")

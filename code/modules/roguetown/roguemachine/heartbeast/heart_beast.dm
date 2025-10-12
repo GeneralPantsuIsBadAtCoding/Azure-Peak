@@ -168,14 +168,9 @@
 	recently_fed = TRUE
 	being_fed = FALSE
 
-/obj/structure/roguemachine/chimeric_heart_beast/MiddleClick(mob/user)
+/obj/structure/roguemachine/chimeric_heart_beast/MiddleClick(mob/user, params)
+	. = ..()
 	ui_interact(user)
-
-/obj/structure/roguemachine/chimeric_heart_beast/proc/open_tech_ui(mob/user)
-	to_chat(world, span_userdanger("TECH UI TRIGGERERED"))
-	if(!user || !user.client)
-		return
-	SStgui.try_update_ui(user, src, null)
 
 /obj/structure/roguemachine/chimeric_heart_beast/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -183,7 +178,8 @@
 		ui = new(user, src, "ChimericTechWeb", "Chimeric Tech Web")
 		ui.open()
 
-/obj/structure/roguemachine/chimeric_heart_beast/ui_static_data(mob/user)
+// Probably don't need static data for this
+/obj/structure/roguemachine/chimeric_heart_beast/ui_data(mob/user)
 	. = ..()
 
 	var/datum/component/chimeric_heart_beast/heart_component

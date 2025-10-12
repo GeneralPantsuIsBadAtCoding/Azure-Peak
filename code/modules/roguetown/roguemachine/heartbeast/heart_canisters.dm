@@ -257,3 +257,25 @@
 	icon = "canister_broken"
 	playsound(src, 'sound/foley/glassbreak.ogg', 75, TRUE)
 	update_icon()
+
+/obj/item/heart_blood_canister
+	name = "Heartblood canister"
+	desc = "An empty canister yearning to be filled with chimeric heartbeast blood."
+	icon = 'icons/obj/structures/heart_items.dmi'
+	icon_state = "blood_canister_empty"
+
+/obj/item/heart_blood_canister/filled
+	name = "Full heartblood canister"
+	desc = "A canister full of viscous blood, despite being closed it somehow still exudes a putrid smell. Highly valued, due to their ability to purify lux."
+	icon_state = "blood_canister_filled"
+
+/obj/item/heart_blood_vial
+	name = "Heartblood vial"
+	desc = "An empty vial yearning to be filled with chimeric heartbeast blood."
+	icon = 'icons/obj/structures/heart_items.dmi'
+	icon_state = "blood_vial_empty"
+
+/obj/item/heart_blood_vial/filled
+	name = "Full heartblood vial"
+	desc = "A vial full of viscous blood, despite being closed it somehow still exudes a putrid smell. Highly valued, due to their ability to purify lux."
+	icon_state = "blood_vial_filled"
