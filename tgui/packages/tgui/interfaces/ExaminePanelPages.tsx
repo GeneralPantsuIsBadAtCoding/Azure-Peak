@@ -41,7 +41,7 @@ export const FlavorTextPage = (props) => {
           <Stack.Item grow maxWidth="36%">
             <Stack fill vertical>
               {headshot && (
-                <Stack.Item align="center" backgroundColor="#0E120D">
+                <Stack.Item align="center">
                   <img
                     src={resolveAsset(headshot)}
                     width="350px"
