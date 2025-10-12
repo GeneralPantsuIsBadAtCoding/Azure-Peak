@@ -1,5 +1,4 @@
 #define SPAWN_DISTANCE 20
-#define FORCESPAWN_DISTANCE 5
 
 SUBSYSTEM_DEF(mob_spawners)
 	name = "Mob Spawners"
@@ -23,21 +22,8 @@ SUBSYSTEM_DEF(mob_spawners)
 
 		if(mob_spawner && !QDELETED(mob_spawner))
 			for(var/mob/living/mob_player in GLOB.player_list)
-				var/turf/im_here = get_turf(mob_spawner)
-				var/turf/you_here = get_turf(mob_player)
-				var/list/turf_list = getline(im_here, you_here)
-				if(you_here.z != im_here.z)
-					return
-				if(get_dist(mob_spawner, mob_player) <= FORCESPAWN_DISTANCE) //Ignores wall. If player to close
-					new /obj/effect/temp_visual/bluespace_fissure(im_here)
-					mob_spawner.spawn_and_destroy()
-				if(length(turf_list) > 0)
-					turf_list.len--
-				for(var/turf/turf in turf_list)
-					if(turf.density)
-						return
-				if(get_dist(mob_spawner, mob_player) <= SPAWN_DISTANCE) //Not ignores wall. For big dungeon room
-					new /obj/effect/temp_visual/bluespace_fissure(im_here)
+				if(can_see(mob_player, mob_spawner, SPAWN_DISTANCE))
+					new /obj/effect/temp_visual/bluespace_fissure(mob_spawner)
 					mob_spawner.spawn_and_destroy()
 
 		if (MC_TICK_CHECK)
