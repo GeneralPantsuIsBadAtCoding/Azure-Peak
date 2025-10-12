@@ -113,6 +113,7 @@
 		/obj/item/clothing/neck/roguetown/psicross/wood = 2,
 		/obj/item/clothing/neck/roguetown/psicross/shell = 6,
 		/obj/item/clothing/neck/roguetown/psicross/shell/bracelet = 6,
+		/obj/item/clothing/neck/roguetown/psicross/pearl = 3,
 		/obj/item/clothing/neck/roguetown/horus = 1,
 		/obj/item/clothing/neck/roguetown/luckcharm = 1,
 	)
@@ -137,9 +138,9 @@
 		/obj/item/clothing/ring/quartzs = 4,
 		/obj/item/clothing/ring/sapphires = 5,
 		/obj/item/clothing/ring/diamonds = 2,
+		/obj/item/clothing/neck/roguetown/skullamulet/gemerald = 3,
 		/obj/item/clothing/neck/roguetown/psicross/silver = 2,
 		/obj/item/clothing/neck/roguetown/psicross/g = 2,
-		/obj/item/clothing/neck/roguetown/psicross/pearl = 3,
 		/obj/item/clothing/neck/roguetown/psicross/bpearl = 2,
 		/obj/item/clothing/neck/roguetown/ornateamulet = 3,
 		/obj/item/clothing/neck/roguetown/skullamulet = 3,
@@ -148,4 +149,5 @@
 		/obj/item/clothing/ring/statamythortz = 2,
 		/obj/item/clothing/ring/statrontz = 2,
 		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
-	) // 'stat_' rings provide a special +2 statboost when worn. Should be rare, but not to the extent of being unobtanium. Knock the droprate down to 1, if they become too common.
+		/obj/item/clothing/neck/roguetown/psicross/malum/secret = 1,
+	) // The 'stat_' rings, alongside the 'weeping' psicross, are experimental additions. If they're showing up too much, don't be afraid to remove them or restrict them to a new lootdrop category.
