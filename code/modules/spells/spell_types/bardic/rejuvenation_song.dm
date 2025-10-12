@@ -18,6 +18,7 @@
 	var/mob/living/carbon/human/O = owner
 	if(!O.inspiration)
 		return
+	new /obj/effect/temp_visual/inspiration_melody(get_turf(owner))
 	pulse += 1
 	if (pulse >= ticks_to_apply)
 		pulse = 0
@@ -71,7 +72,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = 15 SECONDS
 	healing_on_tick = 0.2
-	outline_colour = "#b12f9b"
+	outline_colour = "#c92f2f"
 
 /datum/status_effect/buff/healing/rejuvenationsong/on_apply()
 	healing_on_tick = max(owner.get_skill_level(/datum/skill/misc/music)*0.1, 0.6)

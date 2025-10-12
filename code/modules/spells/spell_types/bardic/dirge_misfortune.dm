@@ -19,6 +19,7 @@
 	if(!O.inspiration)
 		return
 	pulse += 1
+	new /obj/effect/temp_visual/inspiration_dirge(get_turf(owner))
 	if (pulse >= ticks_to_apply)
 		pulse = 0
 		O.energy_add(-50)

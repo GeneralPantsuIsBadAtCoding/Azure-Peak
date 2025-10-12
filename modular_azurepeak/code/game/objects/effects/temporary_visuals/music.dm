@@ -70,3 +70,20 @@
 				H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
 				to_chat(H, span_info("The music brings a smile to my face, and fortune to my steps!"))
 
+
+
+/obj/effect/temp_visual/inspiration_dirge
+	name = "dirge"
+	icon = 'modular_azurepeak/icons/effects/music-note.dmi'
+	icon_state = "music_note"
+	duration = 15
+	plane = GAME_PLANE_UPPER
+	layer = ABOVE_ALL_MOB_LAYER
+
+/obj/effect/temp_visual/inspiration_melody
+	name = "melody"
+	icon = 'modular_azurepeak/icons/effects/music-note.dmi'
+	icon_state = "music_note"
+	duration = 15
+	plane = GAME_PLANE_UPPER
+	layer = ABOVE_ALL_MOB_LAYER
