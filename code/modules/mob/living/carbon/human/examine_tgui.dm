@@ -80,13 +80,13 @@
 		has_song = TRUE
 
 	ooc_notes = html_encode(ooc_notes)
-	ooc_notes = replacetext(parsemarkdown_basic(ooc_notes), "\n", "<br>")
+	ooc_notes = parsemarkdown_basic(ooc_notes, hyperlink=TRUE)
 	ooc_notes_nsfw = html_encode(ooc_notes_nsfw)
-	ooc_notes_nsfw = replacetext(parsemarkdown_basic(ooc_notes_nsfw), "\n", "<br>")
+	ooc_notes_nsfw = parsemarkdown_basic(ooc_notes_nsfw, hyperlink=TRUE)
 	flavor_text = html_encode(flavor_text)
-	flavor_text = replacetext(parsemarkdown_basic(flavor_text), "\n", "<br>")
+	flavor_text = parsemarkdown_basic(flavor_text, hyperlink=TRUE)
 	flavor_text_nsfw = html_encode(flavor_text_nsfw)
-	flavor_text_nsfw = replacetext(parsemarkdown_basic(flavor_text_nsfw), "\n", "<br>")
+	flavor_text_nsfw = parsemarkdown_basic(flavor_text_nsfw, hyperlink=TRUE)
 
 	var/list/data = list(
 		// Identity
