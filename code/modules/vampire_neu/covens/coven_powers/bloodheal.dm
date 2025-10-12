@@ -1,4 +1,4 @@
-#define HEAL_MULTIPLIER 4.5
+#define HEAL_MULTIPLIER 3.8
 /datum/coven/bloodheal
 	name = "Bloodheal"
 	desc = "Use the power of your Vitae to slowly regenerate your flesh."
@@ -105,3 +105,15 @@
 	duration_length = 0.8 SECONDS
 	violates_masquerade = TRUE
 
+/datum/coven_power/bloodheal/five/trigger_healing()
+	// Uses old heal multiplier
+	owner.adjustBruteLoss(-4.5 * level, 0)
+	owner.adjustFireLoss(-4.5 * level, 0)
+	owner.adjustOxyLoss(-4.5 * level, 0)
+	owner.adjustToxLoss(-4.5 * level, 0)
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -4.5 * level)
+	owner.adjustCloneLoss(-4.5 * level, 0)
+
+	owner.heal_wounds(level * 5)
+
+#undef HEAL_MULTIPLIER
