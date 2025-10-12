@@ -5,6 +5,7 @@
 	var/datum/status_effect/debuff/debuff_to_apply
 	var/pulse = 0
 	var/ticks_to_apply = 10
+	duration = 2 MINUTES
 
 
 /atom/movable/screen/alert/status_effect/buff/playing_dirge
@@ -37,7 +38,7 @@
 	chargetime = 1 SECONDS
 	no_early_release = TRUE
 	recharge_time = 2 MINUTES
-	song_tier = 2
+	song_tier = 1
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

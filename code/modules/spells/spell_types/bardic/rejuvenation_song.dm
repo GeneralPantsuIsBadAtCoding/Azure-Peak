@@ -5,6 +5,7 @@
 	var/datum/status_effect/buff/buff_to_apply
 	var/pulse = 0
 	var/ticks_to_apply = 10
+	duration = 2 MINUTES
 
 
 /atom/movable/screen/alert/status_effect/buff/playing_melody
