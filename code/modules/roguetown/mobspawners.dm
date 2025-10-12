@@ -23,7 +23,6 @@ SUBSYSTEM_DEF(mob_spawners)
 		if(mob_spawner && !QDELETED(mob_spawner))
 			for(var/mob/living/mob_player in GLOB.player_list)
 				if(can_see(mob_player, mob_spawner, SPAWN_DISTANCE))
-					new /obj/effect/temp_visual/bluespace_fissure(mob_spawner)
 					mob_spawner.spawn_and_destroy()
 
 		if (MC_TICK_CHECK)
