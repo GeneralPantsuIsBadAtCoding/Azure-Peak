@@ -44,7 +44,7 @@
 	var/outline_colour ="#f58e2d"
 	id = "fervor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/song/fervor
-	duration = 30 SECONDS
+	duration = 15 SECONDS
 
 /datum/status_effect/buff/song/fervor/on_apply()
 	. = ..()

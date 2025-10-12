@@ -22,10 +22,8 @@
 		pulse = 0
 		for (var/mob/living/carbon/human/H in hearers(7, owner))
 			if(O.in_audience(H))
-				to_chat(H, "Returning because I'm in their audience")
 				return
-			if (!H.has_status_effect(debuff_to_apply))
-				H.apply_status_effect(debuff_to_apply)
+			H.apply_status_effect(debuff_to_apply)
 
 
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune
@@ -62,10 +60,10 @@
 	debuff_to_apply = /datum/status_effect/debuff/song/dirge_misfortune
 
 /datum/status_effect/debuff/song/dirge_misfortune
-	id = "ravox_burden"
+	id = "dirge_misfortune"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/song/dirge_misfortune
 	effectedstats = list(STATKEY_LCK = -2)
-	duration = 20 SECONDS
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/song/dirge_misfortune
 	name = "Dirge of Misfortune"

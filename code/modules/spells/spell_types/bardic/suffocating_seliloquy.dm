@@ -40,7 +40,7 @@
 /datum/status_effect/debuff/song/suffocationsong
 	id = "suffocationsong"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/song/suffocationsong
-	duration = 30 SECONDS
+	duration = 15 SECONDS
 
 /datum/status_effect/debuff/song/suffocationsong/tick()
-	owner.adjustOxyLoss(2.5)
+	owner.adjustOxyLoss(1.5)

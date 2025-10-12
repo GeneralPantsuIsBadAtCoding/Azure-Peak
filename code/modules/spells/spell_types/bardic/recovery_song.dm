@@ -36,7 +36,7 @@
 /datum/status_effect/buff/song/recovery
 	id = "recoverysong"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/song/recovery
-	duration = 30 SECONDS
+	duration = 15 SECONDS
 
 /datum/status_effect/buff/song/recovery/tick()
 	owner.stamina_add(-5)

@@ -23,8 +23,7 @@
 		for (var/mob/living/carbon/human/H in hearers(7, owner))
 			if(!O.in_audience(H))
 				return
-			if (!H.has_status_effect(buff_to_apply))
-				H.apply_status_effect(buff_to_apply)
+			H.apply_status_effect(buff_to_apply)
 
 
 
@@ -63,9 +62,9 @@
 	buff_to_apply = /datum/status_effect/buff/healing/rejuvenationsong
 	
 /datum/status_effect/buff/healing/rejuvenationsong
-	id = "healing"
+	id = "healingrejuvesong"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
-	duration = 10 SECONDS
+	duration = 15 SECONDS
 	healing_on_tick = 0.2
 	outline_colour = "#b12f9b"
 
