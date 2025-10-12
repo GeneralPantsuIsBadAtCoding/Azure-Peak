@@ -671,14 +671,46 @@
 
 /obj/item/clothing/neck/roguetown/skullamulet/gemerald
 	name = "gemerald skull amulet"
-	desc = "A massive gemerald, meticulously chiseled into a skull and affixed to a chain. </br>It radiates an aura; churlish and mocking."
+	desc = "A massive gemerald, meticulously chiseled into a skull and affixed to a chain. </br>It's mocking me, isn't it?"
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "skullamulet"
 	//dropshrink = 0.75
 	color = "#00FF00"
 	resistance_flags = FIRE_PROOF
 	sellprice = 222
+	smeltresult = /obj/item/roguegem/green
 	anvilrepair = /datum/skill/craft/armorsmithing
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret
+	name = "beriddled amulet"
+	desc = "A familiar necklace, blisteringly hot to the touch. Yet, as warm as it gets, the metal does not sear my flesh. </br>Perhaps, if I donned it..?"
+	icon_state = "malum"
+	sellprice = 333
+	edelay_type = 1
+	equip_delay_self = 30
+	smeltresult = /obj/item/riddleofsteel
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(1,2),rand(127,128),rand(254,255)))
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_NECK)
+		active_item = TRUE
+		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'))
+		user.change_stat(STATKEY_INT, 3)
+	return
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_INT, -3)
+		active_item = FALSE
+	return
 
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
@@ -686,9 +718,15 @@
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "psicrossblood"
 	edelay_type = 1
-	equip_delay_self = 10
+	max_integrity = ARMOR_INT_SIDE_STEEL
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_GORGET
+	blocksound = PLATEHIT
+	body_parts_covered = NECK
+	edelay_type = 1
+	equip_delay_self = 30
 	smeltresult = /obj/item/ingot/weeping
-	sellprice = 333
+	sellprice = 666
 	var/active_item
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
@@ -701,36 +739,28 @@
 		return
 	else if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_red("'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY. HEAVEN CLOSED ITS GATES TO US, LONG AGO.' </br>'YET, HIS CHILDREN PERSIST; AND AS LONG AS THEY DO, SO MUST I. HAPPINESS MUST BE FOUGHT FOR.'"))
+		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I won't let them destroy this world..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
 		user.change_stat(STATKEY_STR, 3)
-		user.change_stat(STATKEY_SPD, 3)
-		user.change_stat(STATKEY_PER, 3)
-		user.change_stat(STATKEY_CON, -3)
-		user.change_stat(STATKEY_WIL, -3)
-		user.change_stat(STATKEY_INT, -3)
-		ADD_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		user.change_stat(STATKEY_CON, 3)
+		user.change_stat(STATKEY_WIL, 3)
+		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
 		ADD_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
 		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	return
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_hypnophrase("'..and at once, the mania subsides. Yet, the thought lingers - was it merely a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
 		user.change_stat(STATKEY_STR, -3)
-		user.change_stat(STATKEY_SPD, -3)
-		user.change_stat(STATKEY_PER, -3)
-		user.change_stat(STATKEY_CON, 3)
-		user.change_stat(STATKEY_WIL, 3)
-		user.change_stat(STATKEY_INT, 3)
-		REMOVE_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		user.change_stat(STATKEY_CON, -3)
+		user.change_stat(STATKEY_WIL, -3)
+		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		active_item = FALSE
 	return
