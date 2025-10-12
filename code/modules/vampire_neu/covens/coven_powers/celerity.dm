@@ -14,7 +14,7 @@
 		/datum/coven_power/celerity/four,
 		/datum/coven_power/celerity/five,
 	)
-	var/multiplicative_slowdown = -0.2
+	var/multiplicative_slowdown = -0.1
 
 /datum/coven_power/celerity/activate(atom/target)
 	. = ..()
@@ -39,7 +39,7 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	multiplicative_slowdown = -0.2
+	multiplicative_slowdown = -0.15
 
 //CELERITY 2
 
@@ -48,11 +48,13 @@
 	desc = "Significantly improves your speed and reaction time."
 
 	level = 2
+	research_cost = 1
+	vitae_cost = 55
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	multiplicative_slowdown = -0.4
+	multiplicative_slowdown = -0.2
 
 //CELERITY 3
 /datum/coven_power/celerity/three
@@ -61,11 +63,12 @@
 
 	level = 3
 	research_cost = 2
+	vitae_cost = 60
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	multiplicative_slowdown = -0.5
+	multiplicative_slowdown = -0.25
 
 //CELERITY 4
 /datum/coven_power/celerity/four
@@ -73,13 +76,13 @@
 	desc = "Breach the limits of what is humanly possible. Move like a lightning bolt."
 
 	level = 4
-	research_cost = 2
-	minimal_generation = GENERATION_ANCILLAE
+	research_cost = 3
+	vitae_cost = 65
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	multiplicative_slowdown = -0.8
+	multiplicative_slowdown = -0.3
 
 //CELERITY 5
 /datum/coven_power/celerity/five
@@ -87,10 +90,10 @@
 	desc = "You are like light. Blaze your way through the world."
 
 	level = 5
-	minimal_generation = GENERATION_ANCILLAE
-	research_cost = 3
+	research_cost = 4
+	vitae_cost = 70
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	multiplicative_slowdown = -1
+	multiplicative_slowdown = -0.35

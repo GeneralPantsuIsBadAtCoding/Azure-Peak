@@ -48,8 +48,8 @@
 	name = "Goblinism"
 	desc = "Summon a mischievous goblin to latch onto your enemies' faces."
 
-	research_cost = 2
 	level = 2
+	research_cost = 1
 	vitae_cost = 100
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_MOB
@@ -314,8 +314,8 @@
 	name = "Chanjelin Ward"
 	desc = "Plants a symbol under you. Brutal traps throw victims violently, spin makes them dizzy, drop knocks them on the ground and throws their weapon away."
 
-	research_cost = 2
 	level = 3
+	research_cost = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
 	vitae_cost = 40
 

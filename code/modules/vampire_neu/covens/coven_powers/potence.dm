@@ -44,7 +44,8 @@
 	desc = "Become powerful beyond your muscles. Wreck people and things."
 
 	level = 2
-
+	research_cost = 1
+	vitae_cost = 55
 	check_flags = COVEN_CHECK_CAPABLE
 
 	toggled = TRUE
@@ -66,8 +67,9 @@
 	name = "Potence 3"
 	desc = "Become a force of destruction. Lift and break the unliftable and the unbreakable."
 
-	research_cost = 2
 	level = 3
+	research_cost = 2
+	vitae_cost = 60
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS
@@ -89,8 +91,9 @@
 	name = "Potence 4"
 	desc = "Become an unyielding machine for as long as your Vitae lasts."
 
-	research_cost = 2
 	level = 4
+	research_cost = 3
+	vitae_cost = 65
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS
@@ -112,8 +115,9 @@
 	name = "Potence 5"
 	desc = "The people could worship you as a god if you showed them this."
 
-	research_cost = 3
 	level = 5
+	research_cost = 4
+	vitae_cost = 70
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS

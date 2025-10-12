@@ -97,6 +97,7 @@
 	desc = "Move among the crowds without ever being noticed. Achieve invisibility while walking."
 
 	level = 2
+	research_cost = 1
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 25
 
@@ -131,10 +132,10 @@
 	name = "Vanish from the Mind's Eye"
 	desc = "Disappear from plain view instantly, and wipe your presence from recent memory."
 
-	research_cost = 2
 	level = 3
-	check_flags = COVEN_CHECK_CAPABLE
+	research_cost = 2
 	vitae_cost = 100
+	check_flags = COVEN_CHECK_CAPABLE
 
 	toggled = TRUE
 
@@ -173,8 +174,8 @@
 	name = "Cloak the Gathering"
 	desc = "Hide yourself and others in a small area. All nearby allies become invisible."
 
-	research_cost = 3
 	level = 4
+	research_cost = 3
 	check_flags = COVEN_CHECK_CAPABLE
 	vitae_cost = 150
 

@@ -44,7 +44,7 @@
 	desc = "Short burst of speed and resilience."
 
 	level = 2
-	research_cost = 2
+	research_cost = 1
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 
 	violates_masquerade = TRUE
@@ -69,7 +69,9 @@
 	desc = "Turn your hands into deadly claws."
 
 	level = 3
+	research_cost = 2
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE
+	vitae_cost = 250
 
 	violates_masquerade = TRUE
 
@@ -93,8 +95,8 @@
 	name = "Psychomachia"
 	desc = "Set your foes on fire with a fireball."
 
-	research_cost = 3
 	level = 4
+	research_cost = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 
 /datum/coven_power/demonic/psychomachia/post_gain()
@@ -116,6 +118,7 @@
 	name = "Wall of Fire"
 	desc = "Firebolt? Fireball? No. Wall of Fire!"
 	level = 5
+	research_cost = 4
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE
 	range = 10
 	vitae_cost = 250

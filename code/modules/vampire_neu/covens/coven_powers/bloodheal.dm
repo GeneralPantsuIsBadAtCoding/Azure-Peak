@@ -53,6 +53,7 @@
 /datum/coven_power/bloodheal/one
 	name = "Minor Bloodheal"
 	desc = "Slowly regenerate minor wounds using your vitae."
+
 	level = 1
 	research_cost = 0
 	vitae_cost = 5
@@ -64,8 +65,9 @@
 /datum/coven_power/bloodheal/two
 	name = "Bloodheal"
 	desc = "Regenerate wounds at a steady pace."
-	research_cost = 1
+
 	level = 2
+	research_cost = 1
 	vitae_cost = 8
 	duration_length = 2 SECONDS
 	violates_masquerade = FALSE
@@ -74,6 +76,7 @@
 /datum/coven_power/bloodheal/three
 	name = "Quick Bloodheal"
 	desc = "Regenerate wounds with visible speed."
+
 	level = 3
 	research_cost = 2
 	vitae_cost = 16
@@ -84,8 +87,9 @@
 /datum/coven_power/bloodheal/four
 	name = "Major Bloodheal"
 	desc = "Rapidly regenerate even serious injuries."
+
 	level = 4
-	research_cost = 2
+	research_cost = 3
 	vitae_cost = 20
 	duration_length = 1 SECONDS
 	violates_masquerade = TRUE
@@ -94,6 +98,7 @@
 /datum/coven_power/bloodheal/five
 	name = "Greater Bloodheal"
 	desc = "Regenerate injuries and restore damaged organs."
+
 	level = 5
 	research_cost = 4
 	vitae_cost = 30

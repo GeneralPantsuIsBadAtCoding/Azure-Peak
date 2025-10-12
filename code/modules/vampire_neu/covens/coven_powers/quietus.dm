@@ -152,7 +152,7 @@
 	desc = "Create a powerful venom to apply to your enemies."
 
 	level = 2
-	research_cost = 2
+	research_cost = 1
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING | COVEN_CHECK_FREE_HAND
 	violates_masquerade = TRUE
 	cooldown_length = 30 SECONDS
@@ -186,7 +186,7 @@
 	desc = "Transmute your vitae into a toxin that destroys all flesh it touches."
 
 	level = 3
-	research_cost = 3
+	research_cost = 2
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 	vitae_cost = 150
 	target_type = TARGET_OBJ
@@ -240,8 +240,8 @@
 	desc = "Curse the last person you attacked to drown in their own blood."
 
 	level = 5
-	minimal_generation = GENERATION_ANCILLAE
 	research_cost = 4
+	minimal_generation = GENERATION_ANCILLAE
 	check_flags = COVEN_CHECK_CAPABLE | COVEN_CHECK_CONSCIOUS | COVEN_CHECK_IMMOBILE | COVEN_CHECK_LYING
 	cooldown_length = 30 SECONDS
 

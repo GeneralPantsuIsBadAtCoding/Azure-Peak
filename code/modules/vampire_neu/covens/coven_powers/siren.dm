@@ -81,6 +81,8 @@
 	desc = "Project your voice to anyone you've met, speaking to them from afar."
 
 	level = 2
+	research_cost = 1
+	vitae_cost = 100
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_SPEAK
 
 	cooldown_length = 10 SECONDS
@@ -113,8 +115,9 @@
 	name = "Madrigal"
 	desc = "Sing a siren song, calling all nearby to you."
 
-	research_cost = 2
 	level = 3
+	research_cost = 2
+	vitae_cost = 150
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	cooldown_length = 30 SECONDS
 	duration_length = 2 SECONDS
@@ -147,8 +150,8 @@
 	name = "Siren's Beckoning"
 	desc = "Sing an unearthly song to stun those around you."
 
-	research_cost = 2
 	level = 4
+	research_cost = 3
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	duration_length = 3 SECONDS
 	cooldown_length = 30 SECONDS
@@ -182,7 +185,7 @@
 	desc = "Scream at an unnatural pitch, shattering the bodies of your enemies."
 
 	level = 5
-	research_cost = 3
+	research_cost = 4
 	minimal_generation = GENERATION_ANCILLAE
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_SPEAK
 	duration_length = 3 SECONDS

@@ -70,7 +70,7 @@
 	desc = "Inspire others with divine creativity, enhancing their artistic abilities and mood."
 
 	level = 2
-	research_cost = 0
+	research_cost = 1
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING | TARGET_HUMAN
 	range = 3
@@ -106,8 +106,8 @@
 	name = "Familial Bond"
 	desc = "Create a temporary spiritual connection between two people, allowing them to sense each other's location and well-being."
 
-	research_cost = 1
 	level = 3
+	research_cost = 1
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_SPEAK
 	target_type = TARGET_LIVING | TARGET_HUMAN
 	range = 5
@@ -142,8 +142,8 @@
 	name = "Beauty's Restoration"
 	desc = "Channel Eora's power to restore physical beauty and heal disfigurements."
 
-	research_cost = 1
 	level = 4
+	research_cost = 1
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_FREE_HAND
 	target_type = TARGET_LIVING | TARGET_HUMAN | TARGET_SELF
 	range = 1
