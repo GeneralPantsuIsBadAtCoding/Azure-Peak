@@ -10,7 +10,7 @@
 	name = ""
 	desc = ""
 	icon_state = ""
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/shields32.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	flags_1 = null
 	force = 10
@@ -309,6 +309,12 @@
 				return list("shrink" = 0.6,"sx" = -5,"sy" = -1,"nx" = 6,"ny" = -1,"wx" = 0,"wy" = -2,"ex" = 0,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 1,"eflip" = 0)
 			if("onback")
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+
+/obj/item/rogueweapon/shield/tower/spidershield
+	name = "spider shield"
+	desc = "A bulky shield of spike-like lengths molten together. The motifs evoke anything but safety and protection."
+	icon_state = "spidershield"
+	coverage = 55
 
 /obj/item/rogueweapon/shield/buckler
 	name = "buckler shield"

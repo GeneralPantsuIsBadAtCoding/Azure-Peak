@@ -48,7 +48,7 @@
 
 /datum/supply_pack/rogue/Knave/hgambeson
 	name = "Heavy Gambeson"
-	cost = 15
+	cost = 20
 	contains = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy)
 
 /datum/supply_pack/rogue/Knave/leather

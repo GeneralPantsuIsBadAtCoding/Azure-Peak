@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 
 /datum/combat_music/town_leaders
 	name = "Town Leaders"
-	desc = "Butcher, Innkeeper, Guildmaster, Village Chief, Normal Veteran."
+	desc = "Innkeeper, Guildmaster, Village Chief, Normal Veteran."
 	shortname = "Town Leads"
 	credits = "T-87 SULFURHEAD - How Sausage is Made (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/cmode/towner/combat_retired.ogg')

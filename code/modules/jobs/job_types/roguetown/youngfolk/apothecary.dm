@@ -7,9 +7,8 @@
 	spawn_positions = 2
 
 	allowed_races = ACCEPTED_RACES
-	allowed_ages = list(AGE_ADULT)
 
-	tutorial = "Working under the tutelage of the court physician, you still remain a mere apprentice in the medical arts. Woe is the one who has to suffer your hand holding the scalpel when your master is out."
+	tutorial = "You are an accomplished physician, trained and practiced in the art of medicine. You answer to the Head Physician, who enables your practice. Woe betide the one who suffers your scalpel."
 
 	outfit = /datum/outfit/job/roguetown/apothecary
 
@@ -23,15 +22,15 @@
 	round_contrib_points = 5
 
 	advclass_cat_rolls = list(CTAG_APOTH = 2)
-	job_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH)
+	job_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_ALCHEMY_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH)
 	job_subclasses = list(
 		/datum/advclass/apothecary
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/apothecary
 	name = "Apothecary"
-	tutorial = "Working under the tutelage of the court physician, you still remain a mere apprentice in the medical arts. \
-	Woe is the one who has to suffer your hand holding the scalpel when your master is out."
+	tutorial = "You are an accomplished physician, trained and practiced in the art of medicine. You answer to the Head Physician, who enables your practice. Woe betide the one who suffers your scalpel."
 	outfit = /datum/outfit/job/roguetown/apothecary/basic
 	category_tags = list(CTAG_APOTH)
 	subclass_stats = list(
@@ -47,7 +46,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_MASTER,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
 	)
 

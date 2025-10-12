@@ -55,12 +55,7 @@
 			if(C.mind)
 				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 			if(do_after(user, used_time, target = src))
-				armed = FALSE
-				w_class = WEIGHT_CLASS_NORMAL
-				grid_width = 64
-				grid_height = 64
-				update_icon()
-				alpha = 255
+				close_trap(FALSE)
 				C.visible_message(span_notice("[C] disarms \the [src]."), \
 						span_notice("I disarm \the [src]."))
 				return FALSE

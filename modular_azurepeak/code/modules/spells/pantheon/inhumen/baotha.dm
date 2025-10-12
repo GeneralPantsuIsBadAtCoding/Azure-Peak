@@ -123,12 +123,14 @@
 	if(ishuman(targets[1]))
 		var/vice_found
 		var/mob/living/carbon/human/H = targets[1]
-		if(HAS_TRAIT(H, TRAIT_DECEIVING_MEEKNESS) && user.get_skill_level(/datum/skill/magic/holy) > SKILL_LEVEL_NOVICE)
+		if(HAS_TRAIT(H, TRAIT_DECEIVING_MEEKNESS) && user.get_skill_level(/datum/skill/magic/holy) <= SKILL_LEVEL_NOVICE)
 			if(!(H in fake_vices))
 				fake_vices[H] = pick(GLOB.character_flaws)
 				vice_found = fake_vices[H]
 			else
 				vice_found = fake_vices[H]
+			if(prob(50 + ((H.STAPER - 10) * 10)))
+				to_chat(H, span_warning("A pair of prying eyes were laid on me..."))
 		if(!vice_found)
 			vice_found = H.charflaw.name
 		to_chat(user, span_info("They are... [span_warning("a [vice_found]")]"))

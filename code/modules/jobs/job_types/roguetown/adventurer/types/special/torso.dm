@@ -26,7 +26,7 @@
 	H.adjust_skillrank(/datum/skill/combat/bows, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, rand(0,4), TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, rand(0,4), TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, rand(0,4), TRUE)

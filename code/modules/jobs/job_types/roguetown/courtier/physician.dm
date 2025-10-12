@@ -1,5 +1,5 @@
 /datum/job/roguetown/physician
-	title = "Court Physician"
+	title = "Head Physician"
 	flag = PHYSICIAN
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -9,11 +9,9 @@
 	allowed_races = ACCEPTED_RACES
 	allowed_sexes = list(MALE, FEMALE)
 	display_order = JDO_PHYSICIAN
-	tutorial = "You were a child born into good wealth--but poor health. \
-		Perhaps in another life, you would have turned out to be a powerful mage, wise archivist or a shrewd steward, \
-		but leprosy took away your younger years. \
-		Out of desperation, you followed the ways of Pestra and managed to be cured. \
-		Now you serve in the Duke's court ensuring the good health of those inhabiting the keep."
+	tutorial = "You are a master physician and the current head of the clinic. \
+		Oversee your clinic and the apothecaries under you. \
+		As a member of the upper class, expect to treat nobility. You have access to accommodate this."
 	outfit = /datum/outfit/job/roguetown/physician
 	whitelist_req = TRUE
 	advclass_cat_rolls = list(CTAG_COURTPHYS = 2)
@@ -25,18 +23,17 @@
 
 	cmode_music = 'sound/music/combat_physician.ogg'
 
-	job_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH)
+	job_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_ALCHEMY_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH)
 	job_subclasses = list(
 		/datum/advclass/physician
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/physician
-	name = "Court Physician"
-	tutorial = "You were a child born into good wealth--but poor health. \
-		Perhaps in another life, you would have turned out to be a powerful mage, wise archivist or a shrewd steward, \
-		but leprosy took away your younger years. \
-		Out of desperation, you followed the ways of Pestra and managed to be cured. \
-		Now you serve in the Duke's court ensuring the good health of those inhabiting the keep."
+	name = "Head Physician"
+	tutorial = "You are a master physician and the current head of the clinic. \
+		Oversee your clinic and the apothecaries under you. \
+		As a member of the upper class, expect to treat nobility. You have access to accommodate this."
 	outfit = /datum/outfit/job/roguetown/physician/basic
 	category_tags = list(CTAG_COURTPHYS)
 	subclass_stats = list(
@@ -55,7 +52,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_LEGENDARY,
 	)
 
@@ -92,7 +89,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	if(H.age == AGE_MIDDLEAGED)
-		H.adjust_skillrank_up_to(/datum/skill/misc/sewing, 4, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/craft/sewing, 4, TRUE)
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, 6, TRUE) //small carrot to play old
 		H.change_stat(STATKEY_SPD, -1)

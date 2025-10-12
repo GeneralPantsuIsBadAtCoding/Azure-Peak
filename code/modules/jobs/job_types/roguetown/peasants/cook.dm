@@ -18,12 +18,13 @@
 	cmode_music = 'sound/music/cmode/towner/combat_towner2.ogg'
 	//5 points (weighted)
 
-	job_traits = list(TRAIT_CICERONE)
+	job_traits = list(TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
 
 	advclass_cat_rolls = list(CTAG_COOK = 2)
 	job_subclasses = list(
 		/datum/advclass/cook
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/cook
 	name = "Cook"
@@ -42,8 +43,8 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
-		/datum/skill/labor/butchering = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_EXPERT,
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 

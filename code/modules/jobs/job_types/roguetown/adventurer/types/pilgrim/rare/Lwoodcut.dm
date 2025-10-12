@@ -8,6 +8,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/masterwoodcutter
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	maximum_possible_slots = 1
 	pickprob = 5
 	category_tags = list(CTAG_TOWNER)
@@ -28,7 +29,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/carpentry = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/engineering = SKILL_LEVEL_NOVICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/butchering = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/lumberjacking = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,

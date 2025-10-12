@@ -20,7 +20,7 @@
 
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
 	virtue_restrictions = list(/datum/virtue/utility/noble)
-	job_traits = list(TRAIT_RITUALIST, TRAIT_GRAVEROBBER)
+	job_traits = list(TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_HOMESTEAD_EXPERT)
 	advclass_cat_rolls = list(CTAG_ACOLYTE = 2)
 	job_subclasses = list(
 		/datum/advclass/acolyte
@@ -40,12 +40,13 @@
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/staves = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/cooking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_MASTER,
 	)
@@ -195,12 +196,14 @@
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
 	if(H.patron?.type == /datum/patron/divine/malum) // Craft and Creativity - they can make stuff.
+		ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
 		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
 		H.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
 	if(H.patron?.type == /datum/patron/divine/ravox) // Justice and Honor - athletics and probably a bit better at handling the horrors of war
 		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with an Adventuring Monk. Seems quite fitting.
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	if(H.patron?.type == /datum/patron/divine/xylix)  // Trickery and Inspiration - muxic and rogueish skills
 		H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)

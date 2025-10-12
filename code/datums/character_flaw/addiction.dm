@@ -1,7 +1,3 @@
-
-/mob/living/carbon/human
-	var/datum/charflaw/charflaw
-
 /mob/proc/sate_addiction()
 	return
 

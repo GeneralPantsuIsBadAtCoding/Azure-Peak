@@ -123,6 +123,12 @@
 	l_sleeve_status = SLEEVE_TORN
 	body_parts_covered = CHEST|VITALS
 
+/obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock
+	allowed_race = NON_DWARVEN_RACE_TYPES
+	body_parts_covered = COVERAGE_ALL_BUT_ARMS
+	max_integrity = ARMOR_INT_CHEST_LIGHT_BASE
+	armor = ARMOR_PADDED
+
 /obj/item/clothing/suit/roguetown/shirt/apothshirt
 	name = "apothecary shirt"
 	desc = "When trudging through late-autumn forests, one needs to keep warm."

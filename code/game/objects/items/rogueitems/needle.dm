@@ -62,7 +62,7 @@
 			return
 
 		to_chat(user, "I begin threading the needle with additional fibers...")
-		if(do_after(user, 6 SECONDS - user.get_skill_level(/datum/skill/misc/sewing), target = I))
+		if(do_after(user, 6 SECONDS - user.get_skill_level(/datum/skill/craft/sewing), target = I))
 			var/refill_amount
 			refill_amount = min(5, (maxstring - stringamt))
 			stringamt += refill_amount
@@ -92,7 +92,7 @@
 			/// The chance to damage an item when entirely unskilled.
 			var/const/BASE_FAIL_CHANCE = 60
 			/// The (combined) skill level at or above which repairs can't fail.
-			var/const/SKILL_NO_FAIL = SKILL_LEVEL_JOURNEYMAN
+			var/const/SKILL_NO_FAIL = SKILL_LEVEL_APPRENTICE
 			/// Each level in tanning/sewing reduces the skill chance by this much, so that at SKILL_NO_FAIL you don't fail anymore.
 			var/const/FAIL_REDUCTION_PER_LEVEL = BASE_FAIL_CHANCE / SKILL_NO_FAIL
 			/// The damage done to an item when sewing fails while entirely unskilled.
@@ -122,7 +122,7 @@
 
 			// This is the actual code that applies those constants.
 			// If you want to adjust the balance please try just tweaking the above constants first!
-			var/skill = user.get_skill_level(/datum/skill/misc/sewing) + user.get_skill_level(/datum/skill/craft/tanning)
+			var/skill = user.get_skill_level(/datum/skill/craft/sewing) + user.get_skill_level(/datum/skill/craft/tanning)
 			// The more knowlegeable we are the less chance we damage the object
 			var/failed = prob(BASE_FAIL_CHANCE - (skill * FAIL_REDUCTION_PER_LEVEL))
 			var/sewtime = max(SEW_MIN_TIME, BASE_SEW_TIME - (SEW_TIME_REDUCTION_PER_LEVEL * skill))
@@ -138,7 +138,7 @@
 				user.visible_message(span_info("[user] damages [I] due to a lack of skill!"))
 				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
 				if(XP_ON_FAIL > 0)
-					user.mind.add_sleep_experience(/datum/skill/misc/sewing, user.STAINT * XP_ON_FAIL)
+					user.mind.add_sleep_experience(/datum/skill/craft/sewing, user.STAINT * XP_ON_FAIL)
 				if(do_after(user, AUTO_SEW_DELAY, target = I))
 					attack_obj(I, user)
 				return
@@ -149,7 +149,7 @@
 					user.visible_message(span_info("[user] repairs [I]'s coverage!"))
 					I.repair_coverage()
 				if(XP_ON_SUCCESS > 0)
-					user.mind.add_sleep_experience(/datum/skill/misc/sewing, user.STAINT * XP_ON_SUCCESS)
+					user.mind.add_sleep_experience(/datum/skill/craft/sewing, user.STAINT * XP_ON_SUCCESS)
 				I.obj_integrity = min(I.obj_integrity + BASE_SEW_REPAIR + skill * SEW_REPAIR_PER_LEVEL, I.max_integrity)
 				if(I.obj_broken && istype(I, /obj/item/clothing) && I.obj_integrity >= I.max_integrity)
 					var/obj/item/clothing/cloth = I

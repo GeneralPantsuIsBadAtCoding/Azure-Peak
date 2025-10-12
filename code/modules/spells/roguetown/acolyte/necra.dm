@@ -100,7 +100,7 @@
 	charging_slowdown = 1
 	releasedrain = 20
 	chargedrain = 0
-	overlay_state = "speakwithdead"
+	overlay_state = "deathdoor" // Icon Credit to DelineFortune
 	chargetime = 2 SECONDS
 	chargedloop = null
 	sound = 'sound/misc/deadbell.ogg'

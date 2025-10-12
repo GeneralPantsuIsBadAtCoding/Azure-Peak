@@ -23,7 +23,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/farming = SKILL_LEVEL_JOURNEYMAN,
 	)
 

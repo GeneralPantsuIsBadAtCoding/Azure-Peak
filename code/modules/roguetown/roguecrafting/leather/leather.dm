@@ -52,6 +52,7 @@
 	result = /obj/item/clothing/gloves/roguetown/angle
 	reqs = list(/obj/item/natural/fur = 1)
 	sellprice = 20
+	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/leather/fingerless_leather_gloves
 	name = "fingerless leather gloves"
