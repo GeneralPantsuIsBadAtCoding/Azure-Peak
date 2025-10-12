@@ -24,6 +24,6 @@
 		var/datum/advclass/C = input(H.client, "What is my class?", "Adventure") as null|anything in possible_classes
 		C.equipme(H)
 
-		H.adjust_skillrank_up_to(/datum/skill/magic/blood, 3, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/magic/blood, 4, TRUE)
 		var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(generation = GENERATION_NEONATE)
 		H.mind.add_antag_datum(new_antag)

@@ -337,7 +337,7 @@ And it also helps for the character set panel
 
 	H.cmode_music = 'sound/music/cmode/antag/combat_thrall.ogg'
 
-	H.adjust_skillrank(/datum/skill/magic/blood, 2, TRUE)
+	H.adjust_skillrank_up_to(/datum/skill/magic/blood, 2, TRUE)
 
 	H.AddSpell(new /obj/effect/proc_holder/spell/targeted/transfix_neu)
 
