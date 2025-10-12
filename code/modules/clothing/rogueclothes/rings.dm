@@ -396,7 +396,7 @@
 ///
 
 /obj/item/clothing/ring/statdorpel
-	name = "ring of hope"
+	name = "ring of omnipotence"
 	desc = "A dorpel ring, glowing with resplendent beauty. The closer your hand drifts to it, the more that your fears melt away."
 	icon_state = "ring_sapphire"
 	icon = 'icons/roguetown/items/misc.dmi'
@@ -444,7 +444,7 @@
 /obj/item/clothing/ring/dragon_ring
 	name = "dragonstone ring"
 	icon_state = "dragonring"
-	desc = "A blacksteel ring with a drake's head, sculpted from silver. Perched within its sockets is a blortz and saffira - each, crackling with the reflection of a raging fire."
+	desc = "A gilded blacksteel ring with a drake's head, sculpted from silver. Perched within its sockets is a blortz and saffira - each, crackling with the reflection of a raging fire."
 	smeltresult = /obj/item/riddleofsteel
 	sellprice = 666
 	var/active_item
