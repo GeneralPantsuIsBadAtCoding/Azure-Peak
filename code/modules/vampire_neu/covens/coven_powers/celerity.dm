@@ -7,6 +7,13 @@
 /datum/coven_power/celerity
 	name = "Celerity power name"
 	desc = "Celerity power description"
+	grouped_powers = list(
+		/datum/coven_power/celerity/one,
+		/datum/coven_power/celerity/two,
+		/datum/coven_power/celerity/three,
+		/datum/coven_power/celerity/four,
+		/datum/coven_power/celerity/five,
+	)
 	var/multiplicative_slowdown = -0.2
 
 /datum/coven_power/celerity/activate(atom/target)
@@ -32,13 +39,6 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	grouped_powers = list(
-		/datum/coven_power/celerity/two,
-		/datum/coven_power/celerity/three,
-		/datum/coven_power/celerity/four,
-		/datum/coven_power/celerity/five
-	)
-
 	multiplicative_slowdown = -0.2
 
 //CELERITY 2
@@ -52,13 +52,6 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	grouped_powers = list(
-		/datum/coven_power/celerity/one,
-		/datum/coven_power/celerity/three,
-		/datum/coven_power/celerity/four,
-		/datum/coven_power/celerity/five
-	)
-
 	multiplicative_slowdown = -0.4
 
 //CELERITY 3
@@ -71,13 +64,6 @@
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
-
-	grouped_powers = list(
-		/datum/coven_power/celerity/one,
-		/datum/coven_power/celerity/two,
-		/datum/coven_power/celerity/four,
-		/datum/coven_power/celerity/five
-	)
 
 	multiplicative_slowdown = -0.5
 
@@ -93,13 +79,6 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	grouped_powers = list(
-		/datum/coven_power/celerity/one,
-		/datum/coven_power/celerity/two,
-		/datum/coven_power/celerity/three,
-		/datum/coven_power/celerity/five
-	)
-
 	multiplicative_slowdown = -0.8
 
 //CELERITY 5
@@ -113,12 +92,5 @@
 	check_flags = COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	toggled = TRUE
 	duration_length = 2 TURNS
-
-	grouped_powers = list(
-		/datum/coven_power/celerity/one,
-		/datum/coven_power/celerity/two,
-		/datum/coven_power/celerity/three,
-		/datum/coven_power/celerity/four
-	)
 
 	multiplicative_slowdown = -1

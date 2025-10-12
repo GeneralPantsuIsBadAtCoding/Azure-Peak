@@ -7,6 +7,13 @@
 /datum/coven_power/fae_trickery
 	name = "Fae Trickery power name"
 	desc = "Fae Trickery power description"
+	grouped_powers = list(
+		/datum/coven_power/fae_trickery/darkling_trickery,
+		/datum/coven_power/fae_trickery/goblinism,
+		/datum/coven_power/fae_trickery/chanjelin_ward,
+		/datum/coven_power/fae_trickery/riddle_phantastique,
+		/datum/coven_power/fae_trickery/fae_wrath,
+	)
 
 //DARKLING TRICKERY
 /datum/coven_power/fae_trickery/darkling_trickery

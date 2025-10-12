@@ -8,6 +8,14 @@
 	name = "Potence power name"
 	desc = "Potence power description"
 
+	grouped_powers = list(
+		/datum/coven_power/potence/one,
+		/datum/coven_power/potence/two,
+		/datum/coven_power/potence/three,
+		/datum/coven_power/potence/four,
+		/datum/coven_power/potence/five
+	)
+
 //POTENCE 1
 /datum/coven_power/potence/one
 	name = "Potence 1"
@@ -18,13 +26,6 @@
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS
-
-	grouped_powers = list(
-		/datum/coven_power/potence/two,
-		/datum/coven_power/potence/three,
-		/datum/coven_power/potence/four,
-		/datum/coven_power/potence/five
-	)
 
 /datum/coven_power/potence/one/activate()
 	. = ..()
@@ -49,13 +50,6 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	grouped_powers = list(
-		/datum/coven_power/potence/one,
-		/datum/coven_power/potence/three,
-		/datum/coven_power/potence/four,
-		/datum/coven_power/potence/five
-	)
-
 /datum/coven_power/potence/two/activate()
 	. = ..()
 	owner.dna.species.punch_damage += 16
@@ -77,13 +71,6 @@
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS
-
-	grouped_powers = list(
-		/datum/coven_power/potence/one,
-		/datum/coven_power/potence/two,
-		/datum/coven_power/potence/four,
-		/datum/coven_power/potence/five
-	)
 
 /datum/coven_power/potence/three/activate()
 	. = ..()
@@ -108,13 +95,6 @@
 	toggled = TRUE
 	duration_length = 2 TURNS
 
-	grouped_powers = list(
-		/datum/coven_power/potence/one,
-		/datum/coven_power/potence/two,
-		/datum/coven_power/potence/three,
-		/datum/coven_power/potence/five
-	)
-
 /datum/coven_power/potence/four/activate()
 	. = ..()
 	owner.dna.species.punch_damage += 32
@@ -137,13 +117,6 @@
 	check_flags = COVEN_CHECK_CAPABLE
 	toggled = TRUE
 	duration_length = 2 TURNS
-
-	grouped_powers = list(
-		/datum/coven_power/potence/one,
-		/datum/coven_power/potence/two,
-		/datum/coven_power/potence/three,
-		/datum/coven_power/potence/four
-	)
 
 /datum/coven_power/potence/five/activate()
 	. = ..()

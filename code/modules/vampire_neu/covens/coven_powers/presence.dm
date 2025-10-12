@@ -7,7 +7,13 @@
 /datum/coven_power/presence
 	name = "Presence power name"
 	desc = "Presence power description"
-
+	grouped_powers = list(
+		/datum/coven_power/presence/awe,
+		/datum/coven_power/presence/dread_gaze,
+		/datum/coven_power/presence/fall,
+		/datum/coven_power/presence/summon,
+		/datum/coven_power/presence/majesty,
+	)
 //AWE
 /datum/coven_power/presence/awe
 	name = "Awe"

@@ -13,6 +13,13 @@
 	desc = "Obfuscate power description"
 	duration_length = 0.5 MINUTES
 
+	grouped_powers = list(
+		/datum/coven_power/obfuscate/cloak_of_shadows,
+		/datum/coven_power/obfuscate/unseen_presence,
+		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
+		/datum/coven_power/obfuscate/cloak_the_gathering
+	)
+
 	var/static/list/aggressive_signals = list(
 		COMSIG_MOB_ATTACK_HAND,
 		COMSIG_ATOM_HITBY,
@@ -57,13 +64,6 @@
 
 	toggled = TRUE
 
-	grouped_powers = list(
-		/datum/coven_power/obfuscate/cloak_of_shadows,
-		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/coven_power/obfuscate/cloak_the_gathering
-	)
-
 /datum/coven_power/obfuscate/cloak_of_shadows/pre_activation_checks()
 	. = ..()
 	return is_seen_check()
@@ -102,13 +102,6 @@
 
 	toggled = TRUE
 
-	grouped_powers = list(
-		/datum/coven_power/obfuscate/cloak_of_shadows,
-		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/coven_power/obfuscate/cloak_the_gathering
-	)
-
 /datum/coven_power/obfuscate/unseen_presence/activate()
 	. = ..()
 	RegisterSignal(owner, aggressive_signals, PROC_REF(on_combat_signal), override = TRUE)
@@ -144,13 +137,6 @@
 	vitae_cost = 100
 
 	toggled = TRUE
-
-	grouped_powers = list(
-		/datum/coven_power/obfuscate/cloak_of_shadows,
-		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/coven_power/obfuscate/cloak_the_gathering
-	)
 
 /datum/coven_power/obfuscate/vanish_from_the_minds_eye/activate()
 	. = ..()
@@ -195,13 +181,6 @@
 	toggled = TRUE
 
 	var/list/cloaked_mobs = list()
-
-	grouped_powers = list(
-		/datum/coven_power/obfuscate/cloak_of_shadows,
-		/datum/coven_power/obfuscate/unseen_presence,
-		/datum/coven_power/obfuscate/vanish_from_the_minds_eye,
-		/datum/coven_power/obfuscate/cloak_the_gathering
-	)
 
 /datum/coven_power/obfuscate/cloak_the_gathering/pre_activation_checks()
 	. = ..()

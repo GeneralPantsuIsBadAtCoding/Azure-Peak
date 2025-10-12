@@ -5,6 +5,17 @@
 	clan_restricted = FALSE
 	power_type = /datum/coven_power/demonic
 
+/datum/coven_power/demonic
+	name = "Demonic power name"
+	desc = "Demonic power description"
+	grouped_powers = list(
+		/datum/coven_power/demonic/sense_the_sin,
+		/datum/coven_power/demonic/conflagration,
+		/datum/coven_power/demonic/fear_of_the_void_below,
+		/datum/coven_power/demonic/psychomachia,
+		/datum/coven_power/demonic/wall_of_fire,
+	)
+
 //SENSE THE SIN
 /datum/coven_power/demonic/sense_the_sin
 	name = "Sense the Sin"
