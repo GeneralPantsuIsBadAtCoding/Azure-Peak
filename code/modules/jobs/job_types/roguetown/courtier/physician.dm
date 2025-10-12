@@ -27,6 +27,7 @@
 	job_subclasses = list(
 		/datum/advclass/physician
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/physician
 	name = "Head Physician"

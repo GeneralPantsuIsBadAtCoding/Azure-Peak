@@ -33,7 +33,7 @@
 				dead = TRUE
 				playsound(get_turf(user), 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 				icon_state = "srat1"
-				rotprocess = 15 MINUTES
+				rotprocess = SHELFLIFE_SHORT
 				user.add_stress(/datum/stressevent/drankrat)
 			return
 	return ..()
@@ -48,7 +48,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	tastes = list("burnt flesh" = 1)
 	eat_effect = null
-	rotprocess = 15 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 	sellprice = 0
 
 /obj/item/reagent_containers/food/snacks/smallrat/burning(input as num)
@@ -57,7 +57,7 @@
 			dead = TRUE
 			playsound(src, 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 			icon_state = "srat1"
-			rotprocess = 15 MINUTES
+			rotprocess = SHELFLIFE_SHORT
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/smallrat/Crossed(mob/living/L)
@@ -73,14 +73,14 @@
 
 /obj/item/reagent_containers/food/snacks/smallrat/dead
 	dead = TRUE
-	rotprocess = 15 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/smallrat/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(dead)
 		icon_state = "sratl"
-		rotprocess = 15 MINUTES
+		rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/smallrat/attack_hand(mob/user)
 	if(isliving(user))
@@ -131,7 +131,7 @@
 	//..()
 	if(!dead)
 		dead = TRUE
-		rotprocess = 15 MINUTES
+		rotprocess = SHELFLIFE_SHORT
 		playsound(src, 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 		icon_state = "[icon_state]1"
 		return 1

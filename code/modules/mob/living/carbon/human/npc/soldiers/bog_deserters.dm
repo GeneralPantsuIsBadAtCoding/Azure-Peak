@@ -20,7 +20,7 @@
 		if(2)
 			r_hand = /obj/item/rogueweapon/spear
 		if(3)
-			r_hand = /obj/item/rogueweapon/stoneaxe/battle
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 
 /datum/outfit/job/roguetown/human/northern/bog_deserters/proc/add_random_deserter_weapon_hard(mob/living/carbon/human/H)
 	var/add_random_deserter_weapon_hard = rand(1,4)
@@ -32,7 +32,7 @@
 			r_hand = /obj/item/rogueweapon/mace/warhammer
 			l_hand = /obj/item/rogueweapon/shield/heater
 		if(3)
-			r_hand = /obj/item/rogueweapon/stoneaxe/battle
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 		if(4)
 			r_hand = /obj/item/rogueweapon/flail
 			l_hand = /obj/item/rogueweapon/shield/heater

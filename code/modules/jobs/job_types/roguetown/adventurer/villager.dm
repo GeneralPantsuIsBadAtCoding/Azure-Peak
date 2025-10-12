@@ -23,8 +23,8 @@
 	same_job_respawn_delay = 0
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
 	job_subclasses = list(
+		/datum/advclass/barbersurgeon,
 		/datum/advclass/blacksmith,
-		/datum/advclass/carpenter,
 		/datum/advclass/cheesemaker,
 		/datum/advclass/drunkard,
 		/datum/advclass/fisher,
@@ -37,9 +37,8 @@
 		/datum/advclass/potter,
 		/datum/advclass/seamstress,
 		/datum/advclass/thug,
-		/datum/advclass/towndoctor,
 		/datum/advclass/witch,
-		/datum/advclass/woodcutter
+		/datum/advclass/woodworker
 	)
 
 /*

@@ -14,15 +14,53 @@
 	var/budget = 0
 	var/wgain = 0
 	var/keycontrol = "merchant"
-	var/funynthing = FALSE
+	var/next_hawk = 0
+	var/will_hawk = TRUE
+	var/max_items = 30
+
+/obj/structure/roguemachine/vendor/proc/get_group_items(var/param)
+	// Accepts either:
+	// - an object/ref (e.g. REF(rep) from attack_hand links), or
+	// - a key string in the form "type_name"
+	// Returns a list of held_items keys (actual obj/item refs) that match the group.
+
+	var/obj/item/rep
+	// try to resolve param to a held item first (safe for REF strings)
+	if(param)
+		rep = locate(param) in held_items
+	// if param was already an object
+	if(!rep && istype(param, /obj/item))
+		rep = param
+
+	var/key
+	if(rep)
+		var/namer = held_items[rep]["NAME"] || rep.name
+		key = "[rep.type]_[namer]"
+	else
+		key = param
+
+	var/list/matches = list()
+	for(var/obj/item/O in held_items)
+		var/oname = held_items[O]["NAME"] || O.name
+		if("[O.type]_[oname]" == key)
+			matches += O
+
+	return matches
 
 /obj/structure/roguemachine/vendor/proc/insert(obj/item/P, mob/living/user)
 	if(P.w_class <= WEIGHT_CLASS_BULKY)
-		testing("startadd")
-		if(held_items.len < 15)
+		if(held_items.len < max_items)
+			var/price_to_set = 0
+
+			for(var/obj/item/I in held_items)
+				if(I.name == P.name)
+					price_to_set = held_items[I]["PRICE"]
+					break
+
 			held_items[P] = list()
 			held_items[P]["NAME"] = P.name
-			held_items[P]["PRICE"] = 0
+			held_items[P]["PRICE"] = price_to_set
+
 			P.forceMove(src)
 			playsound(loc, 'sound/misc/machinevomit.ogg', 100, TRUE, -1)
 			return attack_hand(user)
@@ -56,7 +94,7 @@
 				return
 	if(istype(P, /obj/item/storage/keyring))
 		var/obj/item/storage/keyring/K = P
-		for(var/obj/item/roguekey/KE in K.keys)
+		for(var/obj/item/roguekey/KE in K)
 			if(KE.lockid == keycontrol)
 				locked = !locked
 				playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
@@ -68,80 +106,113 @@
 
 /obj/structure/roguemachine/vendor/Topic(href, href_list)
 	. = ..()
+	// defensive checks
+	if(!usr || !ishuman(usr))
+		return
+
+	// BUY
 	if(href_list["buy"])
-		var/obj/item/O = locate(href_list["buy"]) in held_items
-		if(!O || !istype(O))
-			return
+		// ensure caller has permission; buying usually requires machine locked
 		if(!usr.canUseTopic(src, BE_CLOSE) || !locked)
 			return
-		if(ishuman(usr))
-			if(held_items[O]["PRICE"])
-				if(budget >= held_items[O]["PRICE"])
-					budget -= held_items[O]["PRICE"]
-					wgain += held_items[O]["PRICE"]
-				else
-					say("NO MONEY NO HONEY!")
-					return
-			record_round_statistic(STATS_PEDDLER_REVENUE, held_items[O]["PRICE"])
-			held_items -= O
-			if(!usr.put_in_hands(O))
-				O.forceMove(get_turf(src))
-			update_icon()
-	if(href_list["retrieve"])
-		var/obj/item/O = locate(href_list["retrieve"]) in held_items
-		if(!O || !istype(O))
+
+		var/keyorref = href_list["buy"]
+		var/list/matches = get_group_items(keyorref)
+		if(!length(matches))
 			return
+
+		// pick one item from the group to vend
+		var/obj/item/O = matches[1]
+		var/price = held_items[O]["PRICE"] || 0
+
+		// if price > 0, charge buyer; price == 0 is free
+		if(price > 0 && ishuman(usr))
+			if(budget >= price)
+				budget -= price
+				wgain += price
+			else
+				say("NO MONEY NO HONEY!")
+				return
+
+		record_round_statistic(STATS_PEDDLER_REVENUE, held_items[O]["PRICE"])
+		// remove one instance and deliver it
+		held_items -= O
+		if(!usr.put_in_hands(O))
+			O.forceMove(get_turf(src))
+		update_icon()
+
+	// RETRIEVE (take out of vendor by owner/operator; usually only when unlocked)
+	if(href_list["retrieve"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
-		if(ishuman(usr))
-			held_items -= O
-			if(!usr.put_in_hands(O))
-				O.forceMove(get_turf(src))
-			update_icon()
+
+		var/keyorref = href_list["retrieve"]
+		var/list/matches = get_group_items(keyorref)
+		if(!length(matches))
+			return
+
+		var/obj/item/O = matches[1]
+		held_items -= O
+		if(!usr.put_in_hands(O))
+			O.forceMove(get_turf(src))
+		update_icon()
+
+	// CHANGE (convert budget to change for player) - keep original permission logic
 	if(href_list["change"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || !locked)
 			return
-		if(ishuman(usr))
-			if(budget > 0)
-				budget2change(budget, usr)
-				budget = 0
+		if(ishuman(usr) && budget > 0)
+			budget2change(budget, usr)
+			budget = 0
+
+	// WITHDRAW GAIN (owner withdraws stored profit when unlocked)
 	if(href_list["withdrawgain"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
-		if(ishuman(usr))
-			if(wgain > 0)
-				budget2change(wgain, usr)
-				wgain = 0
+		if(ishuman(usr) && wgain > 0)
+			budget2change(wgain, usr)
+			wgain = 0
+
+	// SET NAME (apply name to the whole group)
 	if(href_list["setname"])
-		var/obj/item/O = locate(href_list["setname"]) in held_items
-		if(!O || !istype(O))
-			return
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
-		if(ishuman(usr))
-			var/prename
-			if(held_items[O]["NAME"])
-				prename = held_items[O]["NAME"]
-			var/newname = input(usr, "SET A NEW NAME FOR THIS PRODUCT", src, prename)
-			if(newname)
-				held_items[O]["NAME"] = newname
+
+		var/keyorref = href_list["setname"]
+		var/list/matches = get_group_items(keyorref)
+		if(!length(matches))
+			return
+
+		var/prename = held_items[matches[1]]["NAME"]
+		var/newname = input(usr, "SET A NEW NAME FOR THIS PRODUCT", src, prename)
+		// explicit null check: input returns null on cancel; empty string allowed? we block empty.
+		if(newname != null && newname != "")
+			for(var/obj/item/I in matches)
+				held_items[I]["NAME"] = newname
+			update_icon()
+
+	// SET PRICE (apply price to the whole group)
 	if(href_list["setprice"])
-		var/obj/item/O = locate(href_list["setprice"]) in held_items
-		if(!O || !istype(O))
-			return
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
-		if(ishuman(usr))
-			var/preprice
-			if(held_items[O]["PRICE"])
-				preprice = held_items[O]["PRICE"]
-			var/newprice = input(usr, "SET A NEW PRICE FOR THIS PRODUCT", src, preprice) as null|num
-			if(newprice)
-				if(newprice < 0)
-					return attack_hand(usr)
-				if(findtext(num2text(newprice), "."))
-					return attack_hand(usr)
-				held_items[O]["PRICE"] = newprice
+
+		var/keyorref = href_list["setprice"]
+		var/list/matches = get_group_items(keyorref)
+		if(!length(matches))
+			return
+
+		var/preprice = held_items[matches[1]]["PRICE"] || 0
+		var/newprice = input(usr, "SET A NEW PRICE FOR THIS PRODUCT", src, preprice) as null|num
+		// explicit null check so 0 is accepted
+		if(newprice != null)
+			// validation: no negative prices, no decimals
+			if(newprice < 0 || findtext(num2text(newprice), "."))
+				return attack_hand(usr)
+			for(var/obj/item/I in matches)
+				held_items[I]["PRICE"] = newprice
+			update_icon()
+
+	// redraw UI with updated groups / counts
 	return attack_hand(usr)
 
 /obj/structure/roguemachine/vendor/attack_hand(mob/living/user)
@@ -152,6 +223,7 @@
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	var/canread = user.can_read(src, TRUE)
 	var/contents
+
 	if(canread)
 		contents = "<center>THE PEDDLER, THIRD ITERATION<BR>"
 		if(locked)
@@ -167,27 +239,35 @@
 
 	contents += "</center>"
 
-	for(var/I in held_items)
-		var/price = held_items[I]["PRICE"]
-		var/namer = held_items[I]["NAME"]
-		if(!price)
-			price = "0"
-		if(!namer)
-			held_items[I]["NAME"] = "thing"
-			namer = "thing"
+	var/list/groups = list()
+	for(var/obj/item/I in held_items)
+		var/namer = held_items[I]["NAME"] || "thing"
+		var/key = "[I.type]_[namer]"
+		if(!groups[key])
+			groups[key] = list("REP" = I, "COUNT" = 0, "PRICE" = held_items[I]["PRICE"])
+		groups[key]["COUNT"] += 1
+
+	// render groups
+	for(var/key in groups)
+		var/obj/item/rep = groups[key]["REP"]
+		var/namer = held_items[rep]["NAME"]
+		var/price = groups[key]["PRICE"]
+		var/count = groups[key]["COUNT"]
+
 		if(locked)
 			if(canread)
-				contents += "[icon2html(I, user)] [namer] - [price] <a href='?src=[REF(src)];buy=[REF(I)]'>BUY</a>"
+				contents += "[icon2html(rep, user)] [namer] x[count] - [price] <a href='?src=[REF(src)];buy=[REF(rep)]'>BUY</a>"
 			else
-				contents += "[icon2html(I, user)] [stars(namer)] - [price] <a href='?src=[REF(src)];buy=[REF(I)]'>[stars("BUY")]</a>"
+				contents += "[icon2html(rep, user)] [stars(namer)] x[count] - [price] <a href='?src=[REF(src)];buy=[REF(rep)]'>[stars("BUY")]</a>"
 		else
 			if(canread)
-				contents += "[icon2html(I, user)] <a href='?src=[REF(src)];setname=[REF(I)]'>[namer]</a> - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price]</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>TAKE</a>"
+				contents += "[icon2html(rep, user)] <a href='?src=[REF(src)];setname=[REF(rep)]'>[namer]</a> x[count] - <a href='?src=[REF(src)];setprice=[REF(rep)]'>[price]</a> <a href='?src=[REF(src)];retrieve=[REF(rep)]'>TAKE</a>"
 			else
-				contents += "[icon2html(I, user)] <a href='?src=[REF(src)];setname=[REF(I)]'>[stars(namer)]</a> - <a href='?src=[REF(src)];setprice=[REF(I)]'>[price]</a> <a href='?src=[REF(src)];retrieve=[REF(I)]'>[stars("TAKE")]</a>"
+				contents += "[icon2html(rep, user)] <a href='?src=[REF(src)];setname=[REF(rep)]'>[stars(namer)]</a> x[count] - <a href='?src=[REF(src)];setprice=[REF(rep)]'>[price]</a> <a href='?src=[REF(src)];retrieve=[REF(rep)]'>[stars("TAKE")]</a>"
+
 		contents += "<BR>"
 
-	var/datum/browser/popup = new(user, "VENDORTHING", "", 370, 300)
+	var/datum/browser/popup = new(user, "VENDORTHING", "", 450, 350)
 	popup.set_content(contents)
 	popup.open()
 
@@ -204,6 +284,7 @@
 /obj/structure/roguemachine/vendor/Initialize()
 	. = ..()
 	update_icon()
+	START_PROCESSING(SSroguemachine, src)
 
 /obj/structure/roguemachine/vendor/update_icon()
 	cut_overlays()
@@ -220,11 +301,34 @@
 		add_overlay(mutable_appearance(icon, "vendor-gen"))
 
 /obj/structure/roguemachine/vendor/Destroy()
+	STOP_PROCESSING(SSroguemachine, src)
 	for(var/obj/item/I in held_items)
 		I.forceMove(src.loc)
 		held_items -= I
 	set_light(0)
 	return ..()
+
+/obj/structure/roguemachine/vendor/process()
+	if(obj_broken)
+		return
+	if(!will_hawk)
+		return
+	if(world.time > next_hawk)
+		next_hawk = world.time + rand(1 MINUTES, 2 MINUTES)
+		if(length(held_items))
+			var/obj/item/I = pick(held_items)
+			var/namer = held_items[I]["NAME"]
+			namer = capitalize(namer)
+
+			if(!findtext(namer, "s", -1)) // doesn't already end with "s"
+				for(var/obj/item/O in held_items)
+					if(O == I)
+						continue
+					if(O.type == I.type && (held_items[O]["NAME"]) == held_items[I]["NAME"])
+						namer += "s" //add a plural s!
+						break
+
+			say("[namer] for sale! [held_items[I]["PRICE"]] mammons!")
 
 /obj/structure/roguemachine/vendor/centcom
 	name = "LANDLORD"
@@ -267,28 +371,29 @@
 
 /obj/structure/roguemachine/vendor/inn
 	keycontrol = "tavern"
+	will_hawk = FALSE
 
 /obj/structure/roguemachine/vendor/bathhouse
 	keycontrol = "nightman"
 
 /obj/structure/roguemachine/vendor/inn/Initialize()
-    . = ..()
-    
-    // Add room keys with a price of 20
-    for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomvii, /obj/item/roguekey/roomviii))
-        var/obj/P = new X(src)
-        held_items[P] = list()
-        held_items[P]["NAME"] = P.name
-        held_items[P]["PRICE"] = 20
+	. = ..()
 
-    // Add fancy keys with a price of 100
-    for (var/Y in list(/obj/item/roguekey/fancyroomi, /obj/item/roguekey/fancyroomii, /obj/item/roguekey/fancyroomiii, /obj/item/roguekey/fancyroomiv, /obj/item/roguekey/fancyroomv))
-        var/obj/Q = new Y(src)
-        held_items[Q] = list()
-        held_items[Q]["NAME"] = Q.name
-        held_items[Q]["PRICE"] = 100
+	// Add room keys with a price of 20
+	for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomvii, /obj/item/roguekey/roomviii))
+		var/obj/P = new X(src)
+		held_items[P] = list()
+		held_items[P]["NAME"] = P.name
+		held_items[P]["PRICE"] = 20
 
-    update_icon()
+	// Add fancy keys with a price of 100
+	for (var/Y in list(/obj/item/roguekey/fancyroomi, /obj/item/roguekey/fancyroomii, /obj/item/roguekey/fancyroomiii, /obj/item/roguekey/fancyroomiv, /obj/item/roguekey/fancyroomv))
+		var/obj/Q = new Y(src)
+		held_items[Q] = list()
+		held_items[Q]["NAME"] = Q.name
+		held_items[Q]["PRICE"] = 100
+
+	update_icon()
 
 /obj/structure/roguemachine/vendor/merchant
 	keycontrol = "merchant"

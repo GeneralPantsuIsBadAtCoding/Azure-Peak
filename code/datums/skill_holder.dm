@@ -29,6 +29,18 @@
 /mob/proc/print_levels()
 	return ensure_skills().print_levels(src)
 
+/mob/proc/get_mentor()
+	return ensure_skills().mentor
+
+/mob/proc/set_mentor(mob/living/carbon/human/M)
+	ensure_skills().mentor = M
+
+/mob/proc/get_apprentice()
+	return ensure_skills().my_apprentice
+
+/mob/proc/set_apprentice(mob/living/carbon/human/A)
+	ensure_skills().my_apprentice = A
+
 /datum/skill_holder
 	///our current host
 	var/mob/living/current
@@ -38,6 +50,10 @@
 	var/list/skill_experience = list()
 	///Cooldown for level up effects. Duplicate from sleep_adv
 	COOLDOWN_DECLARE(level_up)
+	// Mentor & Apprentice system. Each person may only have one mentor and apprentice per round.
+	// This is used by the Take Apprentice spell.
+	var/mob/living/carbon/human/mentor = null
+	var/mob/living/carbon/human/my_apprentice = null
 
 /datum/skill_holder/New()
 	. = ..()

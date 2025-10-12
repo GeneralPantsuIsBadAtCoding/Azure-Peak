@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(hedgeknight_aggro, world.file2list("strings/rt/hedgeknightaggro
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	head = /obj/item/clothing/head/roguetown/helmet/blacksteel/modern/armet
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel
-	r_hand = /obj/item/rogueweapon/sword/long/blackflamb
+	r_hand = /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 

@@ -68,7 +68,7 @@
 
 	var/minimum_width = 360 //client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_width) || 1
 	var/minimum_height = 1 /*(client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_height) || 1)*/ * 20 + 10
-	winset(client, "tgui_say", "pos=410,400;is-visible=0;")
+	winset(client, "tgui_say", "is-visible=0;")
 
 	window.send_message("props", list(
 		"lightMode" = FALSE, //client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),

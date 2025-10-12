@@ -203,6 +203,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
+  /datum/species/dwarf/gnome\
 )
 
 #define RACES_RESPECTED \
@@ -214,7 +215,8 @@ Balloon Alert / Floating Text defines
 	/datum/species/lupian,\
 	/datum/species/vulpkanin,\
 	/datum/species/moth,\
-	/datum/species/dracon,
+	/datum/species/dracon,\
+	/datum/species/dwarf/gnome\
 
 #define RACES_TOLERATED \
 	/datum/species/elf/dark,\
@@ -293,6 +295,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
+	/datum/species/dwarf/gnome\
 )
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\

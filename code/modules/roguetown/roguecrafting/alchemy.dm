@@ -190,6 +190,14 @@
 	craftdiff = 3
 	verbage_simple = "transmute"
 
+/datum/crafting_recipe/roguetown/alchemy/c2sto
+	name = "clay to stone"
+	category = "Transmutation"
+	result = list(/obj/item/natural/stone = 1)
+	reqs = list(/obj/item/natural/clay = 2)
+	craftdiff = 2
+	verbage_simple = "transmute"
+
 /datum/crafting_recipe/roguetown/alchemy/s2coa
 	name = "stone to coal"
 	category = "Transmutation"

@@ -178,6 +178,18 @@ GLOBAL_LIST_INIT(roguefight_positions, list(
 	"Green Fighter",
 ))
 
+//This list is used to prevent the duke from stripping nobility from certain jobs that aren't intrinsically a part of the town.
+GLOBAL_LIST_INIT(foreign_positions, list(
+	"Adventurer", 
+	"Mercenary", 
+	"Bandit", 
+	"Wretch",
+	"Inquisitor",
+	"Suitor",
+	"Orthodoxist",
+	"Migrant",
+))
+
 GLOBAL_LIST_INIT(test_positions, list(
 	"Tester",
 ))

@@ -159,3 +159,12 @@
 
 /turf/open/floor/acid_melt()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+
+/turf/open/floor/MouseDrop_T(atom/movable/O, mob/user)
+	. = ..()
+	if(isliving(user))
+		var/mob/living/L = user
+		if(L.has_status_effect(/datum/status_effect/debuff/climbing_lfwb))
+			if(do_after(L, 10, target = src))
+				L.forceMove(src)
+				return

@@ -238,8 +238,8 @@
 			return
 
 /obj/item/book/rogue/bibble/psy
-	name = "Of Psydon"
-	desc = "And HE WEEPS. Not for you, not for me, but for it all."
+	name = "Tome of Psydon"
+	desc = "'And HE WEEPS. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent invention by Otava's clergymen, has ensured that no corner of Psydonia would remain unlit by His teachings. Inside are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING INTERPRETATION. </br>GENESIS - TESTAMENTS OF PSYDONIA'S CREATION, FOR WHAT ONCE WAS. </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
 	icon_state = "psyble_0"
 	base_icon_state = "psyble"
 	title = "psyble"
@@ -275,14 +275,14 @@
 
 /obj/item/book/rogue/bibble/psy/MiddleClick(mob/user, params)
 	. = ..()
-	var/sects = list("Sect 1 - PSALMS", "Sect 2 - OF LYFE", "Sect 3 - CHANTS")
-	var/sect_choice = input(user, "Select a Sect", "OF PSYDONIA") as anything in sects
+	var/sects = list("PSALMS", "GENESIS", "INVOCATIONS")
+	var/sect_choice = input(user, "SELECT YOUR TESTAMENT", "OF PSYDONIA") as anything in sects
 	switch(sect_choice)
-		if("Sect 1 - PSALMS")
+		if("PSALMS")
 			sect = "sect1"
-		if("Sect 2 - OF LYFE")
+		if("GENESIS")
 			sect = "sect2"
-		if("Sect 3 - CHANTS")
+		if("INVOCATIONS")
 			sect = "sect3"
 
 /datum/status_effect/buff/blessed
@@ -551,6 +551,53 @@
 	icon_state = "[player_book_icon]_0"
 	base_icon_state = "[player_book_icon]"
 	pages = list("<b3><h3>Title: [player_book_title]<br>Author: [player_book_author]</b><h3>[player_book_text]")
+
+
+/obj/item/book/rogue/loadoutbook
+	name = "book"
+	desc = "A bound book. Use in hand to edit name, description and sprite."
+	var/stage = 0
+
+/obj/item/book/rogue/loadoutbook/attack_self(mob/user)
+	if(stage == 0)
+		var/name_input = stripped_input(user, "Name your book - Leave empty for default.", "Book", max_length = MAX_NAME_LEN)
+		if(name_input)
+			name = name_input
+		stage++
+
+	if(stage == 1)
+		var/desc_input = stripped_input(user, "Describe your book - Leave empty for default.", "Book", max_length = MAX_BROADCAST_LEN)
+		if(desc_input)
+			desc = desc_input
+		stage++
+
+	if(stage == 2)
+		var/icon/J = new('icons/roguetown/items/books.dmi')
+		var/list/istates = J.IconStates()
+		var/list/icon_choice = list()
+		for(var/icon_s in istates)
+			if(icon_s == icon_state)
+				continue
+			if(!findtext(icon_s, "book", 1, 5))
+				continue
+			if(findtext(icon_s, "_1"))
+				continue
+			icon_choice += list(
+				"[icon_s]" = icon(icon = 'icons/roguetown/items/books.dmi', icon_state = icon_s)
+			)
+
+		var/icon_input = show_radial_menu(user, src, icon_choice, require_near = TRUE, tooltips = FALSE)
+		if(icon_input)
+			icon_state = icon_input
+			if(alert(user, "Are you happy with this?", "Book Cover", "Yes", "No") != "Yes")
+				icon_state = initial(icon_state)
+				return
+		stage++
+		return
+
+	if(stage > 2)
+		..()
+
 
 /obj/item/manuscript
 	name = "2 page manuscript"

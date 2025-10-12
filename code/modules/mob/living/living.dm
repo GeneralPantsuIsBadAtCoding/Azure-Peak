@@ -1998,7 +1998,7 @@
 				continue
 			var/probby = (2 * STAPER) + (get_skill_level(/datum/skill/misc/tracking)) * 5
 			if(M.mob_timers[MT_INVISIBILITY] > world.time) // Check if the mob is affected by the invisibility spell
-				if(get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_EXPERT)	//Master or Legendary from this point
+				if(get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_JOURNEYMAN)	//Expert / Master / Legendary can detect invisibility even if poorly.
 					continue
 			if(M.mind)	//We find the biggest value and use that, to account for mages / Nocites / sneaky people all at once
 				var/target_sneak = M.get_skill_level(/datum/skill/misc/sneaking)

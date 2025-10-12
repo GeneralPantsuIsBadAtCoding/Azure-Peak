@@ -76,6 +76,6 @@
 //pretzel's special sword
 /obj/item/rogueweapon/greatsword/weeperslathe
 	name = "Weeper's Lathe"
-	desc = "A modern recreation of a gilbronze greatsword. Inscribed on the blade is a simple message: \"I have only a short time to lyve, but I am not afraid to die." 
+	desc = "A recreation of a gilbronze greatsword, wrought in steel. Inscribed on the blade is a declaration: \"I HAVE ONLY A SHORT TYME TO LYVE, BUT I AM NOT AFRAID TO DIE.\"" 
 	icon_state = "weeperslathe"
 	icon = 'modular_azurepeak/icons/obj/items/donor_weapons_64.dmi'

@@ -267,7 +267,7 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 					say("You have not the noble blood to be regent.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return
-				if(HAS_TRAIT(H, TRAIT_OUTLANDER))
+				if(!(H.job in GLOB.noble_positions))
 					say("You are too estranged from this realm to be regent.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return

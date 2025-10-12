@@ -108,3 +108,9 @@
 	smells_like = "calming"
 	skill_required = SKILL_LEVEL_EXPERT
 	output_reagents = list(/datum/reagent/buff/fortune = 30)
+
+/datum/alch_cauldron_recipe/fire_potion
+	name = "Potion of Fire Warding"
+	smells_like = "authority"
+	skill_required = SKILL_LEVEL_MASTER
+	output_reagents =list(/datum/reagent/fire_resist = 30)
