@@ -696,7 +696,7 @@
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(1,2),rand(127,128),rand(254,255)))
 
 /obj/item/clothing/neck/roguetown/psicross/malum/secret/equipped(mob/living/user, slot)
-	. = ..()
+. = ..()
 	if(active_item)
 		return
 	else if(slot == SLOT_NECK)
@@ -735,7 +735,7 @@
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,2),rand(1,2)))
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
-	. = ..()
+. = ..()
 	if(active_item)
 		return
 	else if(slot == SLOT_NECK)
