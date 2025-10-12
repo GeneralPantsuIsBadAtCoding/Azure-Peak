@@ -12,13 +12,13 @@ GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/
 
 GLOBAL_LIST_INIT(learnable_songst2, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
 		/obj/effect/proc_holder/spell/invoked/song/fervor_song,
-		/obj/effect/proc_holder/spell/invoked/song/accelakathist
 		)
 ))
 
 
 GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/song/rejuvenation_song,
-		/obj/effect/proc_holder/spell/invoked/song/suffocating_seliloquy
+		/obj/effect/proc_holder/spell/invoked/song/suffocating_seliloquy,
+		/obj/effect/proc_holder/spell/invoked/song/accelakathist
 		)
 ))
 
