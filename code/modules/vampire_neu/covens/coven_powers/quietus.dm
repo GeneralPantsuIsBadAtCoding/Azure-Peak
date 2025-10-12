@@ -1,6 +1,6 @@
 /datum/coven/quietus
 	name = "Quietus"
-	desc = "Get a help from the Hell creatures, resist THE FIRE, transform into an imp. Violates Masquerade."
+	desc = "Live in the shadows striking only when needed. Poisons, mass-confusion and fire."
 	icon_state = "daimonion"
 	power_type = /datum/coven_power/quietus
 	clan_restricted = FALSE
