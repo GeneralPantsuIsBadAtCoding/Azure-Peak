@@ -270,7 +270,6 @@
 	chargetime = 0
 	clickcd = 8
 	item_d_type = "stab"
-	wdefense = 8	
 
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
