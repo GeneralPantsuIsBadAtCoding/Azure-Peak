@@ -37,8 +37,8 @@
 
 
 /atom/movable/screen/alert/status_effect/debuff/song/pestilentpiper
-	name = "Musical Suffocation!"
-	desc = "I am suffocating on the song!"
+	name = "Musical Droning!"
+	desc = "I am weakened by the song!"
 	icon_state = "debuff"
 
 /datum/status_effect/debuff/song/pestilentpiper
