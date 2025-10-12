@@ -3,7 +3,7 @@
 SUBSYSTEM_DEF(mob_spawners)
 	name = "Mob Spawners"
 
-	wait = 2 SECONDS
+	wait = 1 SECONDS
 	priority = FIRE_PRIORITY_NPC
 	flags = SS_POST_FIRE_TIMING|SS_NO_INIT|SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -24,9 +24,16 @@ SUBSYSTEM_DEF(mob_spawners)
 			for(var/mob/living/mob_player in GLOB.player_list)
 				var/turf/im_here = get_turf(mob_spawner)
 				var/turf/you_here = get_turf(mob_player)
+				var/list/turf_list = getline(im_here, you_here)
+				if(length(turf_list) > 0)
+					turf_list.len--
+				for(var/turf/turf in turf_list)
+					if(turf.density)
+						return
 				if(you_here.z != im_here.z)
 					return
 				if(get_dist(mob_spawner, mob_player) <= SPAWN_DISTANCE)
+					new /obj/effect/temp_visual/bluespace_fissure(im_here)
 					mob_spawner.spawn_and_destroy()
 
 		if (MC_TICK_CHECK)
