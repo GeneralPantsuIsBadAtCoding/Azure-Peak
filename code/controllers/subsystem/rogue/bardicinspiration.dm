@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	if(!mind)
 		return
 	var/list/songs = GLOB.learnable_songst1
-
+	var/list/choices = list()
 	var/choosablesongtiers = list()
 
 	switch(inspiration.level)
@@ -147,9 +147,12 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 		if("TIER3")
 			songs = GLOB.learnable_songst3
 
+	for(var/i = 1, i <= songs.len, i++)
+		var/obj/effect/proc_holder/spell/spell_item = songs[i]
+		choices["[spell_item.name]"] = spell_item
 
-	var/choice = input("Choose a song") as anything in songs
-	var/obj/effect/proc_holder/spell/invoked/song/item = choice
+	var/choice = input("Choose a song") as anything in choices
+	var/obj/effect/proc_holder/spell/invoked/song/item = choices[choice]
 
 	if(!item)
 		return     // user canceled;
