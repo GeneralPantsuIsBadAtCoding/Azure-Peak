@@ -56,7 +56,7 @@
 
 	var/bloodskill = user.get_skill_level(/datum/skill/magic/blood)
 	var/bloodroll = roll(bloodskill, blood_dice)
-	user.say(message, forced = "spell ([name])")
+	user.say(transfix_msg, forced = "spell ([name])")
 	if(powerful)
 		user.visible_message("<font color='red'>[user]'s eyes glow a ghastly red as they project their will outwards!</font>")
 
