@@ -38,61 +38,65 @@ export const FlavorTextPage = (props) => {
 
   return (
         <Stack fill>
-          <Stack fill vertical>
-            <Stack.Item align="center" backgroundColor="#0E120D">
-                <img
-                  src={resolveAsset(headshot)}
-                  width="350px"
-                  height="350px"
-                  /> 
-            </Stack.Item>
-            <Stack.Item grow>
-              <Stack fill>
-                <Stack.Item grow>
-                  <Section
-                    scrollable
-                    fill
-                    title="OOC Notes"
-                    preserveWhitespace
-                    buttons={
-                      <>
-                        <Button
-                          selected={oocNotesIndex === 'SFW'}
-                          bold={oocNotesIndex === 'SFW'}
-                          onClick={() => setOocNotesIndex('SFW')}
-                          textAlign="center"
-                          minWidth="60px"
-                        >
-                          SFW
-                        </Button>
-                        <Button
-                          selected={oocNotesIndex === 'NSFW'}
-                          disabled={!ooc_notes_nsfw}
-                          bold={oocNotesIndex === 'NSFW'}
-                          onClick={() => setOocNotesIndex('NSFW')}
-                          textAlign="center"
-                          minWidth="60px"
-                        >
-                          NSFW
-                        </Button>
-                      </>
-                    }
-                  >
-                    {oocNotesIndex === 'SFW' && (
-                  <Box
-                  dangerouslySetInnerHTML={oocHTML}
-                  />
-                  )}
-                    {oocNotesIndex === 'NSFW' && (
-                  <Box
-                  dangerouslySetInnerHTML={oocnsfwHTML}
-                  />
-                  )}
-                  </Section>
+          <Stack.Item grow maxWidth="33%">
+            <Stack fill vertical>
+              {headshot && (
+                <Stack.Item align="center" backgroundColor="#0E120D">
+                  <img
+                    src={resolveAsset(headshot)}
+                    width="350px"
+                    height="350px"
+                    /> 
                 </Stack.Item>
-              </Stack>
-            </Stack.Item>
-          </Stack>
+              )}
+              <Stack.Item grow>
+                <Stack fill>
+                  <Stack.Item grow>
+                    <Section
+                      scrollable
+                      fill
+                      title="OOC Notes"
+                      preserveWhitespace
+                      buttons={
+                        <>
+                          <Button
+                            selected={oocNotesIndex === 'SFW'}
+                            bold={oocNotesIndex === 'SFW'}
+                            onClick={() => setOocNotesIndex('SFW')}
+                            textAlign="center"
+                            minWidth="60px"
+                          >
+                            SFW
+                          </Button>
+                          <Button
+                            selected={oocNotesIndex === 'NSFW'}
+                            disabled={!ooc_notes_nsfw}
+                            bold={oocNotesIndex === 'NSFW'}
+                            onClick={() => setOocNotesIndex('NSFW')}
+                            textAlign="center"
+                            minWidth="60px"
+                          >
+                            NSFW
+                          </Button>
+                        </>
+                      }
+                    >
+                      {oocNotesIndex === 'SFW' && (
+                    <Box
+                    dangerouslySetInnerHTML={oocHTML}
+                    />
+                    )}
+                      {oocNotesIndex === 'NSFW' && (
+                    <Box
+                    dangerouslySetInnerHTML={oocnsfwHTML}
+                    />
+                    )}
+                    </Section>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
           <Stack.Item grow>
             <Section
               scrollable
