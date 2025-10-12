@@ -696,9 +696,9 @@
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(1,2),rand(127,128),rand(254,255)))
 
 /obj/item/clothing/neck/roguetown/psicross/malum/secret/equipped(mob/living/user, slot)
-. = ..()
+	. = ..()
 	if(active_item)
-		return
+	return
 	else if(slot == SLOT_NECK)
 		active_item = TRUE
 		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'))
@@ -735,9 +735,9 @@
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,2),rand(1,2)))
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
-. = ..()
+	. = ..()
 	if(active_item)
-		return
+	return
 	else if(slot == SLOT_NECK)
 		active_item = TRUE
 		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I won't let them destroy this world..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
