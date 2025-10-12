@@ -40,4 +40,4 @@
 	duration = 1 MINUTES
 
 /datum/status_effect/buff/song/recovery/tick()
-	owner.stamina_add(-25)
+	owner.stamina_add(-5)

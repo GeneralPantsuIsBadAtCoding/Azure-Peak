@@ -43,6 +43,8 @@
 		return
 	for(var/datum/status_effect/buff/playing_dirge/dirges in owner.status_effects)
 		owner.remove_status_effect(dirges)
+	for(var/datum/status_effect/buff/playing_melody/melodies in owner.status_effects)
+		owner.remove_status_effect(melodies)
 	for(var/mob/living/carbon/human/guy in H.inspiration.audience)
 		for(var/datum/status_effect/buff/song/song2remove in guy.status_effects)
 			guy.remove_status_effect(song2remove)

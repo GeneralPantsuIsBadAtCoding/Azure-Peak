@@ -10,12 +10,12 @@ GLOBAL_LIST_INIT(learnable_songst1, (list(/obj/effect/proc_holder/spell/invoked/
 
 
 GLOBAL_LIST_INIT(learnable_songst2, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
-		/obj/effect/proc_holder/spell/invoked/song/dirge_fortune
+		/obj/effect/proc_holder/spell/invoked/song/dirge_fortune,
 		)
 ))
 
 
-GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/song/recovery_song,
+GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/song/rejuvenation_song,
 		)
 ))
 
