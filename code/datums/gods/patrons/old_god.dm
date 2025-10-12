@@ -1,7 +1,7 @@
 /datum/patron/old_god
 	name = "Psydon"
 	domain = "Everything."
-	desc = "He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
+	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
 	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
 	associated_faith = /datum/faith/old_god
 	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
@@ -16,9 +16,8 @@
 		"PSYDON YET LYVES! PSYDON YET ENDURES!",
 		"REBUKE THE HEATHEN, SUNDER THE MONSTER!",
 		"WITH EVERY BROKEN BONE, I SWORE I LYVED!",
-		"FORGIVE THEM, FATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
+		"FORGIVE THEM, ALLFATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
 		"BARE WITNESS, MY GOD; THE SACRIFICE MADE MANIFEST!",
-		"PSSSSSSSSSSSYYYYY!!!",
 	)
 
 
