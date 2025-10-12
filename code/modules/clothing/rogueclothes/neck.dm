@@ -689,6 +689,7 @@
 	edelay_type = 1
 	equip_delay_self = 30
 	smeltresult = /obj/item/riddleofsteel
+	var/active_item
 
 /obj/item/clothing/neck/roguetown/psicross/malum/secret/Initialize()
   ..()
