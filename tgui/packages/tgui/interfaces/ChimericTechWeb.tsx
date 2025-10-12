@@ -43,12 +43,14 @@ export const ChimericTechWeb = (props) => {
   const { choices = [], points, tier } = data;
 
   // We only filter by search text here. Eligibility is handled by DM/SS.
-  const filteredChoices = (Array.isArray(choices) ? choices : []).filter((node) => {
+  const filteredChoices = (Array.isArray(choices) ? choices : [])
+  /*
+    .filter((node) => {
       if (search) {
         return node.name.toLowerCase().includes(search.toLowerCase());
       }
       return true;
-    })
+    })*/
     .sort(
       // Sort by affordability, then tier, then name
       (a, b) => 

@@ -196,14 +196,17 @@
 
 	var/list/choices_data = list()
 	for(var/datum/chimeric_tech_node/N in choices)
-		choices_data += list(
+		UNTYPED_LIST_ADD(choices_data, list(
 			"name" = N.name,
 			"desc" = N.description,
 			"cost" = N.cost,
 			"path" = N.type, // Send the path back for the unlock proc
 			"required_tier" = N.required_tier,
 			"can_afford" = heart_component.tech_points >= N.cost,
-		)
+		))
+
+	to_chat(world, "DEBUG: Serialized choices_data count: [choices_data.len]")
+	to_chat(world, "DEBUG: First Choice Name: [choices_data[1]["name"]]")
 
 	.["choices"] = choices_data
 	.["points"] = heart_component.tech_points
