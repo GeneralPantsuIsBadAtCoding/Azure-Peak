@@ -37,6 +37,7 @@
 	var/response_time_threshold = 10 SECONDS // 10 second threshold for patient/impatient quirks
 
 	var/obj/structure/stone_rack/linked_rack
+	var/list/tech_ui_data
 
 /datum/component/chimeric_heart_beast/Initialize()
 	. = ..()
@@ -502,3 +503,52 @@
 					return
 				else
 					to_chat(world, span_userdanger("LINK DEBUG: Rack found at [i],[j] is already linked."))
+
+// /datum/component/chimeric_heart_beast/proc/open_tech_ui(mob/user)
+// 	to_chat(world, span_userdanger("TECH UI TRIGGERERED"))
+// 	if(!user || !user.client)
+// 		return
+// 	SStgui.try_update_ui(user, src, null)
+
+// /datum/component/chimeric_heart_beast/proc/tgui_interact(mob/user, datum/tgui/ui)
+// 	ui = SStgui.try_update_ui(user, src, ui)
+// 	if(!ui)
+// 		ui = new(user, src, "ChimericTechWeb", "Chimeric Tech Web")
+// 		ui.open()
+
+// /datum/component/chimeric_heart_beast/ui_data(mob/user)
+// 	. = ..()
+
+// 	var/list/choices = SSchimeric_tech.get_available_choices(4, src.tech_points)
+
+// 	var/list/choices_data = list()
+// 	for(var/datum/chimeric_tech_node/N in choices)
+// 		choices_data += list(
+// 			"name" = N.name,
+// 			"desc" = N.description,
+// 			"cost" = N.cost,
+// 			"path" = N.type, // Send the path back for the unlock proc
+// 			"required_tier" = N.required_tier,
+// 			"can_afford" = src.tech_points >= N.cost,
+// 		)
+
+// 	.["choices"] = choices_data
+// 	.["points"] = src.tech_points
+// 	.["tier"] = src.language_tier
+
+// 	return .
+
+// /datum/component/chimeric_heart_beast/ui_act(action, list/params, datum/tgui/ui)
+// 	. = ..()
+// 	if(.)
+// 		return
+
+// 	var/mob/user = ui.user
+
+// 	switch(action)
+// 		if("unlock_node")
+// 			var/node_path = params["path"]
+// 			var/result = SSchimeric_tech.unlock_node(node_path, src)
+// 			to_chat(user, result)
+// 			SStgui.try_update_ui(user, src)
+// 			return TRUE

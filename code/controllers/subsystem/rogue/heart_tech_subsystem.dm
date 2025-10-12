@@ -1,12 +1,17 @@
-#define SSchimeric_Tech (SSchimeric_Tech)
-
-/datum/controller/subsystem/chimeric_tech
+SUBSYSTEM_DEF(chimeric_tech)
 	name = "Chimeric Tech Controller"
 	priority = FIRE_PRIORITY_DEFAULT
 	flags = SS_NO_FIRE
 
 	// The master list of all instantiated nodes, keyed by type path.
 	var/list/all_tech_nodes = list()
+	var/list/cached_choices = list() // Stores the currently offered choices
+	var/list/cached_choices_paths = list()
+
+/datum/controller/subsystem/chimeric_tech/proc/clear_cached_choices()
+	// Clears the cache when a tech is unlocked.
+	cached_choices = list()
+	cached_choices_paths = list()
 
 /datum/controller/subsystem/chimeric_tech/Initialize()
 	. = ..()
@@ -26,6 +31,9 @@
 	return FALSE
 
 /datum/controller/subsystem/chimeric_tech/proc/get_available_choices(var/current_tier, var/current_points, var/max_choices = 3)
+	if(cached_choices.len)
+		return cached_choices
+
 	var/list/eligible_nodes = list()
 	var/list/selection_pool = list()
 
@@ -33,7 +41,7 @@
 	for(var/node_path in all_tech_nodes)
 		var/datum/chimeric_tech_node/N = all_tech_nodes[node_path]
 
-		if(N.unlocked || current_tier < N.required_tier || current_points < N.cost)
+		if(N.unlocked || current_tier < N.required_tier)
 			continue
 
 		var/prereqs_met = TRUE
@@ -60,6 +68,9 @@
 
 		selection_pool -= chosen_node // Remove all instances of this node
 
+	cached_choices = final_choices
+	for(var/datum/chimeric_tech_node/N in final_choices)
+		cached_choices_paths += N.type
 	return final_choices
 
 /datum/controller/subsystem/chimeric_tech/proc/unlock_node(var/node_path, var/datum/component/chimeric_heart_beast/beast_component)
@@ -79,18 +90,19 @@
 
 	beast_component.tech_points -= node.cost
 	node.unlocked = TRUE
+	clear_cached_choices() 
 
 	return "Successfully unlocked [node.name]!"
 
 /datum/controller/subsystem/chimeric_tech/proc/get_healing_multiplier()
-    var/multiplier = 0.75
+	var/multiplier = 0.75
 
-    var/advanced_healing_path = /datum/chimeric_tech_node/awaken_healing
-	var/enhanced_healing_path = /dautm/chimeric_tech_node/enhanced_healing
-    
-    if(get_node_status(advanced_healing_path))
-        multiplier = 1.0
+	var/advanced_healing_path = /datum/chimeric_tech_node/awaken_healing
+	var/enhanced_healing_path = /datum/chimeric_tech_node/enhanced_healing
+	
+	if(get_node_status(advanced_healing_path))
+		multiplier = 1.0
 	if(get_node_status(enhanced_healing_path))
 		multiplier = 1.1
-    
-    return multiplier
+	
+	return multiplier

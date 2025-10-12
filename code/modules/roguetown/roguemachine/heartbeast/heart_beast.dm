@@ -167,3 +167,63 @@
 	heart_component.update_blood_output()
 	recently_fed = TRUE
 	being_fed = FALSE
+
+/obj/structure/roguemachine/chimeric_heart_beast/MiddleClick(mob/user)
+	ui_interact(user)
+	// return
+	// var/datum/component/chimeric_heart_beast/heart_component
+	// heart_component = GetComponent(/datum/component/chimeric_heart_beast)
+	// heart_component.tgui_interact(user)
+
+/obj/structure/roguemachine/chimeric_heart_beast/proc/open_tech_ui(mob/user)
+	to_chat(world, span_userdanger("TECH UI TRIGGERERED"))
+	if(!user || !user.client)
+		return
+	SStgui.try_update_ui(user, src, null)
+
+/obj/structure/roguemachine/chimeric_heart_beast/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ChimericTechWeb", "Chimeric Tech Web")
+		ui.open()
+
+/obj/structure/roguemachine/chimeric_heart_beast/ui_static_data(mob/user)
+	. = ..()
+
+	var/datum/component/chimeric_heart_beast/heart_component
+	heart_component = GetComponent(/datum/component/chimeric_heart_beast)
+	var/list/choices = SSchimeric_tech.get_available_choices(heart_component.language_tier, heart_component.tech_points)
+
+	var/list/choices_data = list()
+	for(var/datum/chimeric_tech_node/N in choices)
+		choices_data += list(
+			"name" = N.name,
+			"desc" = N.description,
+			"cost" = N.cost,
+			"path" = N.type, // Send the path back for the unlock proc
+			"required_tier" = N.required_tier,
+			"can_afford" = heart_component.tech_points >= N.cost,
+		)
+
+	.["choices"] = choices_data
+	.["points"] = heart_component.tech_points
+	.["tier"] = heart_component.language_tier
+
+	return .
+
+/obj/structure/roguemachine/chimeric_heart_beast/ui_act(action, list/params, datum/tgui/ui)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = ui.user
+	var/datum/component/chimeric_heart_beast/heart_component
+	heart_component = GetComponent(/datum/component/chimeric_heart_beast)
+
+	switch(action)
+		if("unlock_node")
+			var/node_path = params["path"]
+			var/result = SSchimeric_tech.unlock_node(node_path, heart_component)
+			to_chat(user, result)
+			SStgui.try_update_ui(user, src)
+			return TRUE

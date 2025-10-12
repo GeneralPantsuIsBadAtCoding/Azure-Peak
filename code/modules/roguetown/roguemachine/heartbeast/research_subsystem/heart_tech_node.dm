@@ -14,18 +14,18 @@
 
 /// HEALING MIRACLE TECHS
 /datum/chimeric_tech_node/awaken_healing
-    name = "Awaken divine regeneration"
-    description = "Increases the healing of most healing miracles significantly."
-    required_tier = 1
-    cost = 20
-    selection_weight = 15
+	name = "Awaken divine regeneration"
+	description = "Increases the healing of most healing miracles significantly."
+	required_tier = 1
+	cost = 20
+	selection_weight = 15
 
 /datum/chimeric_tech_node/enhanced_healing
-    name = "Enhance divine regeneration"
-    description = "Increases the healing of most healing miracles slightly."
-    required_tier = 3
-    cost = 85
-    selection_weight = 15
+	name = "Enhance divine regeneration"
+	description = "Increases the healing of most healing miracles slightly."
+	required_tier = 3
+	cost = 85
+	selection_weight = 15
 	prerequisites = list(/datum/chimeric_tech_node/awaken_healing) 
 
 /datum/chimeric_tech_node/awaken_resurrection
