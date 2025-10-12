@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	if(!item)
 		return     // user canceled;
-	if(alert(holder, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
+	if(alert(src, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
 		return
 
 	for(var/obj/effect/proc_holder/spell/knownsong in mind.spell_list)
