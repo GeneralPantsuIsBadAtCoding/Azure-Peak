@@ -4,9 +4,11 @@
 	var/type_path = /mob/living/carbon/human/species/skeleton/npc/ambush
 
 /obj/effect/landmark/mob_spawner/Initialize()
+	. = ..()
 	GLOB.mob_spawners += src
 
 /obj/effect/landmark/mob_spawner/Destroy()
+	. = ..()
 	GLOB.mob_spawners -= src
 
 /obj/effect/landmark/mob_spawner/proc/spawn_and_destroy()
