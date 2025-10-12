@@ -99,19 +99,8 @@ And it also helps for the character set panel
 		for(var/trait in clane_traits)
 			ADD_TRAIT(H, trait, "clan")
 
-		var/list/eyecache = H.cache_eye_color()
-		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
-		if(eyes)
-			eyes.Remove(H, TRUE)
-			QDEL_NULL(eyes)
-		eyes = new /obj/item/organ/eyes/night_vision/vampire
-		eyes.Insert(H)
-		H.set_eye_color(
-			eyecache["eye_color"], 
-			eyecache["second_color"],
-			TRUE,
-		)
-
+		implant_vampire_eyes(H)
+		RegisterSignal(H, COMSIG_MOB_ORGAN_REMOVED, PROC_REF(on_organ_loss))
 		// Apply vampire-specific changes
 		H.mob_biotypes = MOB_UNDEAD
 		H.maxbloodpool += 2000
@@ -465,6 +454,34 @@ And it also helps for the character set panel
 		return
 
 	clan.on_gain(src, joining_round)
+
+/// Sets vampire eyes into the owner
+/datum/clan/proc/implant_vampire_eyes(mob/living/carbon/human/to_insert)
+	if(!to_insert)
+		return
+
+	var/list/eyecache = to_insert.cache_eye_color()
+	var/obj/item/organ/eyes/eyes = to_insert.getorganslot(ORGAN_SLOT_EYES)
+	if(eyes)
+		eyes.Remove(to_insert, TRUE)
+		QDEL_NULL(eyes)
+	eyes = new /obj/item/organ/eyes/night_vision/vampire
+	eyes.Insert(to_insert)
+	to_insert.set_eye_color(
+		eyecache["eye_color"], 
+		eyecache["second_color"],
+		TRUE,
+	)
+
+/// Prevents tongue and eye loss by the vampyre
+/datum/clan/proc/on_organ_loss(mob/living/carbon/lost_organ, obj/item/organ/removed, special, drop_if_replaced)
+	if(!lost_organ || !removed)
+		return
+
+	if(removed.slot == ORGAN_SLOT_EYES)
+		implant_vampire_eyes(lost_organ)
+	else if(removed.slot == ORGAN_SLOT_TONGUE)
+		removed.Insert(lost_organ)
 
 /datum/clan/proc/open_clan_menu(mob/living/carbon/human/user)
 	if(!user.covens || !length(user.covens))
