@@ -270,6 +270,7 @@
 	chargetime = 0
 	clickcd = 8
 	item_d_type = "stab"
+	wdefense = 8	
 
 /obj/item/rogueweapon/huntingknife/idagger
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
@@ -280,6 +281,18 @@
 	icon_state = "idagger"
 	sheathe_icon = "idagger"
 	smeltresult = /obj/item/ingot/iron
+
+/obj/item/rogueweapon/huntingknife/idagger/virtue
+	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
+	force = 12
+	throwforce = 12
+	max_integrity = 100
+	name = "parrying dagger"
+	desc = "A dagger with an enlongated crossguard, curved upwards on both ends to catch oncoming strikes."
+	icon_state = "ddagger"
+	sheathe_icon = "idagger"
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 7
 
 /obj/item/rogueweapon/huntingknife/idagger/adagger
 	name = "decrepit dagger"
