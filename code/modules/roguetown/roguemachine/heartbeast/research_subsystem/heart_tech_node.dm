@@ -29,7 +29,7 @@
 	required_tier = 3
 	cost = 85
 	selection_weight = 15
-	prerequisites = list(/datum/chimeric_tech_node/awaken_healing) 
+	prerequisites = list("HEAL_TIER1") 
 
 /datum/chimeric_tech_node/awaken_resurrection
 	name = "Awaken divine resurrection"
@@ -38,7 +38,7 @@
 	required_tier = 2
 	cost = 40
 	selection_weight = 50
-	prerequisites = list(/datum/chimeric_tech_node/awaken_healing)
+	prerequisites = list("HEAL_TIER1")
 
 /datum/chimeric_tech_node/enhanced_resurrection
 	name = "Enhance divine resurrection"
@@ -47,4 +47,4 @@
 	required_tier = 3
 	cost = 120
 	selection_weight = 50
-	prerequisites = list(/datum/chimeric_tech_node/awaken_resurrection)
+	prerequisites = list("REVIVE_TIER1")

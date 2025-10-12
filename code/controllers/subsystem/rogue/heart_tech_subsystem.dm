@@ -31,40 +31,30 @@ SUBSYSTEM_DEF(chimeric_tech)
 	return FALSE
 
 /datum/controller/subsystem/chimeric_tech/proc/get_available_choices(var/current_tier, var/current_points, var/max_choices = 3)
-	to_chat(world, "DEBUG: get_available_choices called. Tier: [current_tier], Points: [current_points]")
 	if(cached_choices.len)
-		to_chat(world, "DEBUG: Returning cached choices ([cached_choices.len] nodes).")
 		return cached_choices
 
 	var/list/eligible_nodes = list()
 	var/list/selection_pool = list()
 
-	to_chat(world, "DEBUG: AMOUNT OF NODES ([all_tech_nodes.len] nodes).")
 	// Determine Eligibility and Cost Check
 	for(var/node_path in all_tech_nodes)
 		var/datum/chimeric_tech_node/N = all_tech_nodes[node_path]
-		to_chat(world, "DEBUG: Checking node: [N.name] ([node_path])")
 
 		if(N.unlocked)
-			to_chat(world, "DEBUG: - Skipping [N.name]: Already unlocked.")
 			continue
 
 		if(current_tier < N.required_tier)
-			to_chat(world, "DEBUG: - Skipping [N.name]: Tier [current_tier] < Required Tier [N.required_tier].")
 			continue
 
 		var/prereqs_met = TRUE
 		for(var/required_node_path in N.prerequisites)
 			if(!get_node_status(required_node_path)) // Use the global check proc
-				to_chat(world, "DEBUG: - Skipping [N.name]: Missing prerequisite [required_node_path].")
 				prereqs_met = FALSE
 				break
 
 		if(prereqs_met)
-			to_chat(world, "DEBUG: - Node [N.name] is eligible.")
 			eligible_nodes += N
-
-	to_chat(world, "DEBUG: Total eligible nodes: [eligible_nodes.len]")
 
 	// Build the Weighted Selection Pool
 	for(var/datum/chimeric_tech_node/N in eligible_nodes)
@@ -98,9 +88,11 @@ SUBSYSTEM_DEF(chimeric_tech)
 	if(node.unlocked)
 		return "Already unlocked."
 
+	// Sanity check
 	if(beast_component.language_tier < node.required_tier || beast_component.tech_points < node.cost)
 		return "Requirements not met."
 
+	// Sanity check
 	for(var/required_node_path in node.prerequisites)
 		if(!get_node_status(required_node_path))
 			return "Missing prerequisite: [required_node_path]"
@@ -114,8 +106,8 @@ SUBSYSTEM_DEF(chimeric_tech)
 /datum/controller/subsystem/chimeric_tech/proc/get_healing_multiplier()
 	var/multiplier = 0.75
 
-	var/advanced_healing_path = /datum/chimeric_tech_node/awaken_healing
-	var/enhanced_healing_path = /datum/chimeric_tech_node/enhanced_healing
+	var/advanced_healing_path = "HEAL_TIER1"
+	var/enhanced_healing_path = "HEAL_TIER2"
 	
 	if(get_node_status(advanced_healing_path))
 		multiplier = 1.0

@@ -170,10 +170,6 @@
 
 /obj/structure/roguemachine/chimeric_heart_beast/MiddleClick(mob/user)
 	ui_interact(user)
-	// return
-	// var/datum/component/chimeric_heart_beast/heart_component
-	// heart_component = GetComponent(/datum/component/chimeric_heart_beast)
-	// heart_component.tgui_interact(user)
 
 /obj/structure/roguemachine/chimeric_heart_beast/proc/open_tech_ui(mob/user)
 	to_chat(world, span_userdanger("TECH UI TRIGGERERED"))
@@ -204,9 +200,6 @@
 			"required_tier" = N.required_tier,
 			"can_afford" = heart_component.tech_points >= N.cost,
 		))
-
-	to_chat(world, "DEBUG: Serialized choices_data count: [choices_data.len]")
-	to_chat(world, "DEBUG: First Choice Name: [choices_data[1]["name"]]")
 
 	.["choices"] = choices_data
 	.["points"] = heart_component.tech_points
