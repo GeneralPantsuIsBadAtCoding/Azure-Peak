@@ -1,7 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/song/accelakathist
 	name = "Accelerating Akathist"
 	desc = "Accelerate your allies with your bardic song!"
-	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

@@ -1,12 +1,14 @@
 /obj/effect/proc_holder/spell/invoked/song
 	var/song_tier = 1
-
+	overlay_icon = 'icons/mob/actions/bardsongs.dmi'
+	overlay_state = "dirge_t1_base"
+	action_icon_state = "dirge_t1_base"
+	action_icon = 'icons/mob/actions/bardsongs.dmi'
 
 
 /obj/effect/proc_holder/spell/invoked/song/fervor_song
 	name = "Fervorous Fantasia"
 	desc = "Inspire the rhythm of battle, your allies strike and parry 20% better!"
-	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

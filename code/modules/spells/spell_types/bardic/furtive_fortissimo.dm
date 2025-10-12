@@ -1,7 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo
 	name = "Furtive Fortissimo"
 	desc = "Sneaky, sneaky! Play the song of sneaking!"
-	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

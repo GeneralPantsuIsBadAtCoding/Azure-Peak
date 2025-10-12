@@ -31,9 +31,7 @@
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune
 	name = "Misfortunate Melody"
 	desc = "Play a dirge which inflicts misfortune upon thy foes. -2 LUCK to non-audience members nearby. "
-	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
-
 	releasedrain = 60
 	chargedrain = 1
 	chargetime = 1 SECONDS
@@ -45,7 +43,8 @@
 	movement_interrupt = FALSE
 	invocations = list("HEAR YOUR DOOM!!") 
 	invocation_type = "shout"
-
+	overlay_state = "dirge_t1_base"
+	action_icon_state = "dirge_t1_base"
 
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune/cast(mob/living/user = usr)
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))

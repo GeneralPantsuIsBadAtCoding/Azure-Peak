@@ -1,7 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/song/suffocating_seliloquy
 	name = "Suffocating Seliloquy"
 	desc = "Play a dirge inspired by Abyssor, slowly suffocating with its call."
-	overlay_state = "conjure_weapon"
+	overlay_state = "dirge_t3_base"
+	action_icon_state = "dirge_t3_base"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

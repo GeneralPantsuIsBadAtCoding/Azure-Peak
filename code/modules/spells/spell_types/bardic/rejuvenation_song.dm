@@ -35,7 +35,6 @@
 /obj/effect/proc_holder/spell/invoked/song/rejuvenation_song
 	name = "Healing Hymn"
 	desc = "Recuperate your allies bodies with your song! Refills health slowly over time!"
-	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

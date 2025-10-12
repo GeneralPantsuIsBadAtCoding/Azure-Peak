@@ -1,7 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/song/pestilent_piedpiper
 	name = "Pestilent Pied Piper"
 	desc = "Play a dirge inspired by Pestra. Leaving the droning of insects in their ears! (-1 WIL -2 CON non-audience members)"
-	overlay_state = "conjure_weapon"
+	overlay_state = "dirge_t2_base"
+	action_icon_state = "dirge_t2_base"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60
@@ -9,7 +10,7 @@
 	chargetime = 1 SECONDS
 	no_early_release = TRUE
 	recharge_time = 2 MINUTES
-	song_tier = 3
+	song_tier = 2
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
