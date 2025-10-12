@@ -28,7 +28,7 @@
 
 
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune
-	name = "Dirge of Misfortune"
+	name = "Misfortunate Melody"
 	desc = "Play a dirge which inflicts misfortune upon thy foes. -2 LUCK to non-audience members nearby. "
 	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')

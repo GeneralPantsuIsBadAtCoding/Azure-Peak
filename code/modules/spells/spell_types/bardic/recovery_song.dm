@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/invoked/song/recovery_song
-	name = "Recovery Song"
+	name = "Resting Rhapsody"
 	desc = "Recuperate your allies spirit's with your song! Refills stamina over time!"
 	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')

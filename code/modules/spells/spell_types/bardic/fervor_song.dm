@@ -4,7 +4,7 @@
 
 
 /obj/effect/proc_holder/spell/invoked/song/fervor_song
-	name = "Fervor Song"
+	name = "Fervorous Fantasia"
 	desc = "Inspire the rhythm of battle, your allies strike and parry 20% better!"
 	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
