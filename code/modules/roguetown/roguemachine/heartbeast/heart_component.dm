@@ -232,10 +232,12 @@
 	SIGNAL_HANDLER
 
 	if(istype(I, /obj/item/heart_blood_canister))
-		try_fill_blood_container(I, user, (max_blood_pool / 10), /obj/item/heart_blood_canister/filled)
+		spawn(0)
+			try_fill_blood_container(I, user, (max_blood_pool / 10), /obj/item/heart_blood_canister/filled)
 		return
 	else if(istype(I, /obj/item/heart_blood_vial))
-		try_fill_blood_container(I, user, (max_blood_pool / 30), /obj/item/heart_blood_vial/filled)
+		spawn(0)
+			try_fill_blood_container(I, user, (max_blood_pool / 30), /obj/item/heart_blood_vial/filled)
 		return
 
 	if(!item_interaction_quirks.len)
