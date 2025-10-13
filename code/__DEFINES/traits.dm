@@ -420,7 +420,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_MASTER_CARPENTER = span_warning("I've been trained to make the most of wood"), 
 	TRAIT_MASTER_MASON = span_warning("I've been trained to make the most of stone"), 
 	TRAIT_EQUESTRIAN = span_warning("I am a capable rider. My mount is an extension of me."),
-	TRAIT_MANORKEEPER = span_info("I am the lord of this manor; a monastery of stone, once devoted to safeguard the Syon's fragments. Politicking between Otava and Azura has led to a sect of the Holy Otavan Inquisition being garrisoned here - and mineself, the good host."),
+	TRAIT_MANORKEEPER = span_info("I am the current lord of this manor; a monastery of stone, once devoted to safeguard the Syon's fragments. Politicking between Otava and Azura has led to a sect of the Holy Otavan Inquisition being garrisoned here - and mineself, the good host."),
 ))
 
 // trait accessor defines
