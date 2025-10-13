@@ -51,4 +51,5 @@
 	populate_contents = list(
 	/obj/item/needle,
 	/obj/item/natural/bundle/cloth/roll
+	/obj/item/reagent_containers/glass/bottle/alchemical/healthpot
 	)
