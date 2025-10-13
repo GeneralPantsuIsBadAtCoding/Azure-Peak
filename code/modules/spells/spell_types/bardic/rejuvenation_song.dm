@@ -49,6 +49,8 @@
 	movement_interrupt = FALSE
 	invocations = list("Broken bones mend, flesh knits, to the hymn!") 
 	invocation_type = "shout"
+	overlay_state = "melody_t3_base"
+	action_icon_state = "melody_t3_base"
 
 
 /obj/effect/proc_holder/spell/invoked/song/rejuvenation_song/cast(mob/living/user = usr)

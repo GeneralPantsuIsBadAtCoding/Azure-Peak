@@ -14,6 +14,8 @@
 	movement_interrupt = FALSE
 	invocations = list("Sneaking, sneaking, oh, we-go-a-sneaking!") 
 	invocation_type = "shout"
+	overlay_state = "bardsong_t1_base"
+	action_icon_state = "bardsong_t1_base"
 
 
 /obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo/cast(mob/living/user = usr)

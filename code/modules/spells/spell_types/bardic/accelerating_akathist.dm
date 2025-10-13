@@ -14,6 +14,8 @@
 	movement_interrupt = FALSE
 	invocations = list("Time to accelerate!") 
 	invocation_type = "shout"
+	overlay_state = "bardsong_t3_base"
+	action_icon_state = "bardsong_t3_base"
 
 
 /obj/effect/proc_holder/spell/invoked/song/accelakathist/cast(mob/living/user = usr)

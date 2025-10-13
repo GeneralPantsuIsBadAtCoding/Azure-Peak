@@ -14,6 +14,9 @@
 	movement_interrupt = FALSE
 	invocations = list("Thy muscles recuperate, thy limbs refresh!") 
 	invocation_type = "shout"
+	overlay_state = "melody_t2_base"
+	action_icon_state = "melody_t2_base"
+
 
 /obj/effect/proc_holder/spell/invoked/song/recovery_song/cast(mob/living/user = usr)
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))

@@ -22,6 +22,8 @@
 	movement_interrupt = FALSE
 	invocations = list("To my tune, strike and move thy feet!") 
 	invocation_type = "shout"
+	overlay_state = "bardsong_t2_base"
+	action_icon_state = "bardsong_t2_base"
 
 
 /obj/effect/proc_holder/spell/invoked/song/fervor_song/cast(mob/living/user = usr)

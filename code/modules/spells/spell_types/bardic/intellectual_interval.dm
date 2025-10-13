@@ -11,6 +11,8 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
+	overlay_state = "melody_t1_base"
+	action_icon_state = "melody_t1_base"
 
 
 /obj/effect/proc_holder/spell/invoked/song/intellectual_interval/cast(mob/living/user = usr)
