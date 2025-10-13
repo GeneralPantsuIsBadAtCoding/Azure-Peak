@@ -196,10 +196,9 @@
 	icon_state = "headband"
 	item_state = "headband"
 	color = "#851a16"
-	armor = ARMOR_HEAD_LEATHER
+	armor = list("blunt" = 45, "slash" = 70, "stab" = 30, "piercing" = 20, "fire" = 0, "acid" = 0) //Heavier slash protection, lesser blunt- and stab-protection.
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	body_parts_covered = HEAD|HAIR|EARS
-	var/pajamas = TRUE //Headbands. Still light enough to sleep in, despite the armor.
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_TWIST) //Themed to protect against deadites and nitebeasts. Doesn't stop blunt-, smash-, or stabbing crits.
 	sewrepair = TRUE
 	//dropshrink = 0.75
@@ -226,11 +225,10 @@
 	icon_state = "headband"
 	color = "#48443B"
 	sewrepair = TRUE
-	armor = ARMOR_PADDED_GOOD
+	armor = ARMOR_HEAD_PSYDON //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype. 
 	blade_dulling = DULLING_BASHCHOP
 	body_parts_covered = HEAD|HAIR|EARS
-	var/pajamas = TRUE
-	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
+	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	//dropshrink = 0.75
