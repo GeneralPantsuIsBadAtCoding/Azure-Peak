@@ -117,6 +117,7 @@
 	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
+	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	sellprice = 10
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -141,6 +142,28 @@
 	slot_flags = ITEM_SLOT_WRISTS
 	icon_state = "nocwrappings"
 	item_state = "nocwrappings"
+	sewrepair = TRUE
+
+/obj/item/clothing/wrists/roguetown/allwrappings
+	name = "wrappings"
+	desc = "Strips of cloth, snuggly winding around your arms."
+	slot_flags = ITEM_SLOT_WRISTS
+	icon_state = "nocwrappings"
+	item_state = "nocwrappings"
+	sewrepair = TRUE
+
+/obj/item/clothing/wrists/roguetown/allwrappings/naledi
+	name = "naledian wrappings"
+	desc = "Treated burlap, lined with thick layers of cloth. Naledian-trained monks rarely share the same fatalistic mindset as their Otavan cousins, and - consequency - tend to be averse with binding their wrists in jagged thorns. Unbloodied fingers work well with the arcyne, and even better with dispelling the djinn."
+	slot_flags = ITEM_SLOT_WRISTS
+	icon_state = "nocwrappings"
+	item_state = "nocwrappings"
+	armor = ARMOR_PADDED_GOOD
+	blade_dulling = DULLING_BASHCHOP
+	color = "#48443B"
+	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
+	blocksound = SOFTHIT
 	sewrepair = TRUE
 
 //Queensleeves
