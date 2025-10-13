@@ -7,7 +7,7 @@
 	total_positions = 999
 	spawn_positions = 999
 	allowed_races = list(/datum/species/dwarf/mountain, /datum/species/dwarf)
-	outfit = /datum/outfit/job/roguetown/homesteader
+	outfit = /datum/outfit/job/roguetown/dorfsteader
 	traits_applied = list(TRAIT_JACKOFALLTRADES,
 		TRAIT_ALCHEMY_EXPERT,
 		TRAIT_SMITHING_EXPERT,
@@ -58,7 +58,7 @@
 		/datum/skill/labor/mining = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/homesteader/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/dorfsteader/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	//first, randomized skills
@@ -149,7 +149,7 @@
 
 /datum/job/roguetown/pilgrim/dorf_guard //RAISED INSIDE A ROCKY ROOM,
 	name = "Dwarf Guard"
-	tutorial = "You guard this Dwarf Fortress. ...Wait, SAY THAT AGAIN SAY THAT AGAIN"
+	tutorial = "You guard your fellow Dwarves, remaining as stalwart as a Fortress. ...wait, say that again...
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/dwarf,
@@ -159,7 +159,6 @@
 	class_select_category = CLASS_CAT_RACIAL
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_dwarf.ogg'
-	extra_context = "This subclass is race-limited to: Dwarves."
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_TRAINED_SMITH, TRAIT_SMITHING_EXPERT) // Another one off exception for a combat role
 	subclass_stats = list(
 		STATKEY_INT = 3,
@@ -204,56 +203,4 @@
 			/obj/item/rogueweapon/tongs = 1,
 			/obj/item/clothing/head/roguetown/helmet/heavy/dwarven,
 			)
-		H.merctype = 8
-
-/datum/advclass/mercenary/grudgebearer/soldier
-	name = "Grudgebearer Soldier"
-	tutorial = "Bound by eternal grudges of eons past that have not been forgotten, the Grudgebearers are left to wander the surface, as every other clan has a grudge against you, and you against them. This putrid swampland of a Duchy has also wronged you and your people, you care little for it. Coins are a means to an end -- something you can mine and forge yourself. Trinkets -- made by true smiths, now that will carry respect among your clan. However, such artifacts might not buy you food, or a roof."
-	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer_soldier
-	traits_applied = list(TRAIT_HEAVYARMOR)
-	subclass_stats = list(
-		STATKEY_CON = 5,
-		STATKEY_WIL = 4,
-		STATKEY_STR = 2,
-		STATKEY_SPD = -2
-	)
-	subclass_skills = list(
-		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/craft/armorsmithing = SKILL_LEVEL_APPRENTICE,	//Only here so they'd be able to repair their own armor integrity
-		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
-	)
-/datum/outfit/job/roguetown/mercenary/grudgebearer_soldier/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(H.mind)
-		shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
-		cloak = /obj/item/clothing/cloak/forrestercloak/snow
-		belt = /obj/item/storage/belt/rogue/leather/black
-		beltl = /obj/item/flashlight/flare/torch
-		backl = /obj/item/storage/backpack/rogue/satchel
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-		gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
-		pants = /obj/item/clothing/under/roguetown/trou/leather
-		armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
-		head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
-		backpack_contents = list(
-			/obj/item/roguekey/mercenary,
-			/obj/item/storage/belt/rogue/pouch/coins/poor,
-			/obj/item/rogueweapon/hammer/iron,
-			/obj/item/paper/scroll/grudge,
-			/obj/item/natural/feather,
-			)
-		if(H.mind)
-			var/weapons = list("Axe", "Mace")
-			var/wepchoice = input(H, "Choose your weapon", "Available weapons") as anything in weapons
-			switch(wepchoice)
-				if("Axe")
-					backr = /obj/item/rogueweapon/stoneaxe/battle
-				if("Mace")
-					backr = /obj/item/rogueweapon/mace/goden/steel
 		H.merctype = 8
