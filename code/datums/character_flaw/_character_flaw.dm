@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/disfigured
     name = "Disfigured (2 TRI)"
     desc = "In the past, I had barely managed to escape death's grasp; though I still lyve, it is not without consequence. I am revolting to look upon, and misfortune seems to follow my every step."
-	var/nochekk = TRUE
+var/nochekk = TRUE
 
 /datum/charflaw/disfigured/on_mob_creation(mob/user)
     ADD_TRAIT(user, TRAIT_UNSEEMLY, TRAIT_GENERIC)
