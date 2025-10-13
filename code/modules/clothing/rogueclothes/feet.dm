@@ -314,9 +314,9 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
-/obj/item/clothing/shoes/roguetown/boots/armor/kazengun
+/obj/item/clothing/shoes/roguetown/boots/leather/reinforced/kazengun
 	name = "armored sandals"
-	desc = "todo"
+	desc = "Leather sandals, with steel ankle-protectors and socks of sturdy cloth."
 	icon_state = "kazengunboots"
 	item_state = "kazengunboots"
 	detail_tag = "_detail"

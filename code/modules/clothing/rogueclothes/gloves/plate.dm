@@ -90,8 +90,8 @@
 	body_parts_covered = HANDS|ARMS //For "heavy" drow merc
 
 /obj/item/clothing/gloves/roguetown/plate/kote
-	name = "kote gauntlets"
-	desc = "todo"
+	name = "jjajeungna gauntlets"
+	desc = "A set of reinforced Kazengunite gauntlets. Difficult to do much other than fight in, but not entirely arresting."
 	icon_state = "kazengungauntlets"
 	item_state = "kazengungauntlets"
 	body_parts_covered = HANDS|ARMS

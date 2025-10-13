@@ -448,14 +448,14 @@
 	icon_state = "kitsune"
 
 /obj/item/clothing/mask/rogue/facemask/steel/kazengun
-	name = "menpo half-mask"
+	name = "soldier's half-mask"
 	desc = "\"The first lesson of war is that it would be better to live in peace.\""
 	icon_state = "kazengunmouthguard"
 	item_state = "kazengunmouthguard"
 
 /obj/item/clothing/mask/rogue/facemask/steel/kazengun/full
-	name = "mengu mask"
-	desc = "\"The second lesson of war: no man lives forever, but the general whose armies believe they shall will always triumph over the hesitant.\""
+	name = "ogre mask"
+	desc = "\"The second lesson: Rich men have dreams. Poor men die to make them come true.\""
 	icon_state = "kazengunfaceguard"
 	item_state = "kazengunfaceguard"
 

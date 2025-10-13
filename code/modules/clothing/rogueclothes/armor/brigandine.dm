@@ -179,8 +179,8 @@
 	armor_class = ARMOR_CLASS_HEAVY
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/haraate
-	name = "hara-ate cuirass"
-	desc = "todo"
+	name = "hansimhae cuirass"
+	desc = "A more common form of Kazengunite armor, consisting of several interlocking plates of blacksteel-coated steel. Much cheaper than a full set of armor, these are commonly seen on militia forces and standing armies alike."
 	icon_state = "kazengunmedium"
 	item_state = "kazengunmedium"
 	detail_tag = "_detail"
