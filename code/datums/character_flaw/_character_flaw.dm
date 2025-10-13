@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	"Mute"=/datum/charflaw/mute,
 	"Critical Weakness"=/datum/charflaw/critweakness,
 	"Random or No Flaw"=/datum/charflaw/randflaw,
-	"Disfigured (1 TRIUMPH)"=/datum/charflaw/disfigured,
+	"Disfigured (2 TRIUMPHS)"=/datum/charflaw/disfigured,
 	"No Flaw (3 TRIUMPHS)"=/datum/charflaw/noflaw,
 	))
 
@@ -468,8 +468,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/disfigured/on_mob_creation(mob/user)
     ADD_TRAIT(user, TRAIT_UNSEEMLY, TRAIT_GENERIC)
-	H.change_stat(STATKEY_LCK, -1)
-	H.adjust_triumphs(-1)
+	H.adjust_triumphs(-2)
 
 /datum/virtue/utility/disfigured/handle_traits(mob/living/carbon/human/recipient)
 	..()
@@ -477,5 +476,4 @@ GLOBAL_LIST_INIT(character_flaws, list(
 		to_chat(recipient, "The miracles of both Acolytes and Physickers alike have triumphed in mending your body! The scars've healed, and your fortunes've lightened, but there still lingers a hollow sense..")
 		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
 		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
-		H.change_stat(STATKEY_LCK, 1)
-		H.adjust_triumphs(-2) //Totals out to -3, or the same cost of the 'No Flaw' vice, if taken with the 'Beautiful' virtue.
+		H.adjust_triumphs(-1) //Totals out to -3, or the same cost of the 'No Flaw' vice, if taken with the 'Beautiful' virtue.
