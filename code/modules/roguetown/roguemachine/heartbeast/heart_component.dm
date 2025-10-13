@@ -231,11 +231,38 @@
 /datum/component/chimeric_heart_beast/proc/on_item_interact(datum/source, obj/item/I, mob/user)
 	SIGNAL_HANDLER
 
+	if(istype(I, /obj/item/heart_blood_canister))
+		try_fill_blood_container(I, user, (max_blood_pool / 10), /obj/item/heart_blood_canister/filled)
+		return
+	else if(istype(I, /obj/item/heart_blood_vial))
+		try_fill_blood_container(I, user, (max_blood_pool / 30), /obj/item/heart_blood_vial/filled)
+		return
+
 	if(!item_interaction_quirks.len)
 		return
 
 	for(var/datum/flesh_quirk/quirk in item_interaction_quirks)
 		quirk.apply_item_interaction_quirk(I, user, src)
+
+/datum/component/chimeric_heart_beast/proc/try_fill_blood_container(obj/item/empty_container, mob/user, var/amount, var/filled_type)
+	if(blood_pool < amount)
+		to_chat(user, span_warning("The blood pool is too low to fill [empty_container]."))
+		return FALSE
+
+	to_chat(user, span_info("You begin filling up [empty_container] with blood from the pool."))
+
+	if(do_after(user, 10 SECONDS))
+		if(blood_pool >= amount)
+			blood_pool -= amount
+			qdel(empty_container)
+			var/obj/item/newcan = new filled_type (user.loc)
+			user.put_in_hands(newcan)
+			return TRUE
+		else
+			to_chat(user, span_warning("The blood pool ran dry while you were filling [empty_container]."))
+			return FALSE
+	to_chat(user, span_warning("You stop filling [empty_container]."))
+	return FALSE
 
 /datum/component/chimeric_heart_beast/proc/set_current_listener(mob/user)
 	current_listener = user
