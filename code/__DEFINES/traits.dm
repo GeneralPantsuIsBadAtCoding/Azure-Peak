@@ -77,6 +77,7 @@
 #define TRAIT_ZURCH 	"Hidden Domiciles" //allows entry to ascendant church
 #define TRAIT_DREAMWALKER "Dreamwalker"
 #define TRAIT_JACKOFALLTRADES "Jack of All Trades"	//Reduces skill up cost
+#define TRAIT_MANORKEEPER "Manorkeeper"
 
 //Hearthstone port (Tracking)
 #define TRAIT_PERFECT_TRACKER "Huntmaster" //Will always find any tracks and analyzes them perfectly.
@@ -419,6 +420,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_MASTER_CARPENTER = span_warning("I've been trained to make the most of wood"), 
 	TRAIT_MASTER_MASON = span_warning("I've been trained to make the most of stone"), 
 	TRAIT_EQUESTRIAN = span_warning("I am a capable rider. My mount is an extension of me."),
+	TRAIT_MANORKEEPER = span_info("I care for this manor, which currently hosts some 'esteemed' guests from the Holy Otavan Inquisition.),
 ))
 
 // trait accessor defines
