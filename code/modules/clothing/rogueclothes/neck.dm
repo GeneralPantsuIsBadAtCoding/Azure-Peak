@@ -697,16 +697,15 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'))
+		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'"))
 		user.change_stat(STATKEY_INT, 3)
 	return
 
 /obj/item/clothing/neck/roguetown/psicross/malum/secret/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge..'"))
 		user.change_stat(STATKEY_INT, -3)
-		active_item = FALSE
 		active_item = FALSE
 	return
 
@@ -751,7 +750,7 @@
 /obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge..'"))
 		user.change_stat(STATKEY_STR, -3)
 		user.change_stat(STATKEY_CON, -3)
 		user.change_stat(STATKEY_WIL, -3)
