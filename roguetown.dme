@@ -2731,6 +2731,7 @@
 #include "modular_twilight_axis\code\modules\clothing\rogueclothes\pants\plate.dm"
 #include "modular_twilight_axis\code\modules\hairstyles\module.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\wretch\lunacyembracer.dm"
+#include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\martyr.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\templar.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\youngfolk\mage_apprentice.dm"
 #include "modular_twilight_axis\code\modules\mob\dead\new_player\body_markings\body_marking_aura.dm"
