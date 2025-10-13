@@ -46,13 +46,13 @@
 			return
 		user.say("Крестоносцы, сосредоточьтесь на цели! Да направит Нок вашу руку!!")
 		var/area/rogue/our_area = get_area(target)
-		if(!(our_area.holy_area)
+		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance/church)
 		for (var/mob/living/carbon/human/H in view(7, target))
 			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
-				if(!(our_area.holy_area)
+				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance)
 				else
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance/church)
@@ -100,13 +100,13 @@
 			return
 		user.say("Вперёд, крестоносцы!! Ксайликс направит нас к победе!!")
 		var/area/rogue/our_area = get_area(target)
-		if(!(our_area.holy_area)
+		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite/church)
 		for (var/mob/living/carbon/human/H in view(7, target))
 			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
-				if(!(our_area.holy_area)
+				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite)
 				else
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite/church)
@@ -168,7 +168,7 @@
 			target.SetStun(0)
 			target.SetKnockdown(0)
 			target.set_resting(FALSE)
-		if((our_area.holy_area)
+		if(our_area.holy_area)
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet/church)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet)
@@ -182,7 +182,7 @@
 					H.SetStun(0)
 					H.SetKnockdown(0)
 					H.set_resting(FALSE)
-				if((our_area.holy_area)
+				if(our_area.holy_area)
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet/church)
 				else
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet)
@@ -230,13 +230,13 @@
 			return
 		user.say("Ни шагу назад, крестоносцы! Малум укрепит нашу волю!!")
 		var/area/rogue/our_area = get_area(target)
-		if(!(our_area.holy_area)
+		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand/church)
 		for (var/mob/living/carbon/human/H in view(7, target))
 			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
-				if(!(our_area.holy_area)
+				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand)
 				else
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand/church)
