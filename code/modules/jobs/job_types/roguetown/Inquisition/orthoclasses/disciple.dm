@@ -82,11 +82,11 @@
 				REMOVE_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
 				H.adjust_spellpoints(-6)
-				H.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // Pre-set spell list. Same as before. 
-				H.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
-				H.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
-				H.AddSpell(new /obj/effect/proc_holder/spell/self/message)
-				H.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // Pre-set spell list. Same as before. 
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
 				H.change_stat(STATKEY_CON, -3) 
 				H.change_stat(STATKEY_WIL, -1)
 				H.change_stat(STATKEY_INT, 3)
