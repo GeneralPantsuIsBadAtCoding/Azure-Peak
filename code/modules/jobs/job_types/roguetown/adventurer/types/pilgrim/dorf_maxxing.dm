@@ -1,12 +1,17 @@
-/datum/job/roguetown/pilgrima/dorf_maxxer //BORN UNDERGROUND,
-	name = "Dwarf"
+/datum/job/roguetown/pilgrim/dorf_maxxer //BORN UNDERGROUND,
+	title = "Dwarf"
 	tutorial = "A Dwarf. It really doesn't get better than this."
+	wanderer_examine = FALSE
 	allowed_sexes = list(MALE, FEMALE)
 	department_flag = PEASANTS
 	faction = "Station"
 	total_positions = 999
 	spawn_positions = 999
 	allowed_races = list(/datum/species/dwarf/mountain, /datum/species/dwarf)
+
+/datum/advclass/dorfsteader
+	name = "Dwarf"
+	tutorial = "Bourne underground, raised insyde a rocky roume; the earth 'tis a cradle, ant the mountains shalt become thy tomb."
 	outfit = /datum/outfit/job/roguetown/dorfsteader
 	traits_applied = list(TRAIT_JACKOFALLTRADES,
 		TRAIT_ALCHEMY_EXPERT,
@@ -15,7 +20,7 @@
 		TRAIT_SURVIVAL_EXPERT,
 		TRAIT_HOMESTEAD_EXPERT
 	)
-	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
+	advclass_cat_rolls = list(CTAG_PILGRIM = 20)
 	adaptive_name = TRUE
 	subclass_stats = list(
 		STATKEY_INT = 3, //dwarv SMART!!
@@ -147,9 +152,9 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 
 
-/datum/job/roguetown/pilgrim/dorf_guard //RAISED INSIDE A ROCKY ROOM,
+/datum/advclass/dorfsteader/dorf_guard //RAISED INSIDE A ROCKY ROOM,
 	name = "Dwarf Guard"
-	tutorial = "You guard your fellow Dwarves, remaining as stalwart as a Fortress. ...wait, say that again...
+	tutorial = "You are stalwart, and guard your fellow Dwarf like a Fortress. ...wait, say that again..."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/dwarf,
@@ -159,12 +164,11 @@
 	class_select_category = CLASS_CAT_RACIAL
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/combat_dwarf.ogg'
-	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_TRAINED_SMITH, TRAIT_SMITHING_EXPERT) // Another one off exception for a combat role
+	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(
-		STATKEY_INT = 3,
-		STATKEY_WIL = 3,
-		STATKEY_PER = 3,//Anvil"Strikes deftly" is based on PER
-		STATKEY_STR = 1,
+		STATKEY_CON = 5,
+		STATKEY_WIL = 4,
+		STATKEY_STR = 2,
 		STATKEY_SPD = -2
 	)
 	subclass_skills = list(

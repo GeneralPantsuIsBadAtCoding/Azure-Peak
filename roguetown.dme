@@ -1623,6 +1623,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\barbersurgeon.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\blacksmith.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\cheesemaker.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\dorf_maxxing.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\drunkard.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\fisher.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\pilgrim\homesteader.dm"
