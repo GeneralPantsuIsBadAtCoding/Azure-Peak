@@ -20,7 +20,7 @@
 #define TRAIT_BREADY "Battleready"
 #define TRAIT_MEDIUMARMOR "Maille Training"
 #define TRAIT_HEAVYARMOR "Plate Training"
-#define TRAIT_DODGEEXPERT "Dodging Expert"
+#define TRAIT_DODGEEXPERT "Mastered Dodging"
 #define TRAIT_MAGEARMOR "Magic Barrier"
 #define TRAIT_DECEIVING_MEEKNESS "Deceiving Meekness"
 #define TRAIT_CRITICAL_RESISTANCE "Critical Resistance"
@@ -86,7 +86,7 @@
 //Hearthstone/Azure end.
 
 // ROGUEspecialTRAITS (description when rmb skills button)
-#define TRAIT_CIVILIZEDBARBARIAN "Expert Pugilist"
+#define TRAIT_CIVILIZEDBARBARIAN "Mastered Pugilism"
 #define TRAIT_COMICSANS "Annoying Face"
 #define TRAIT_WATERBREATHING "Water Breathing"
 
