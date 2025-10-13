@@ -199,7 +199,7 @@
 	armor = ARMOR_HEAD_LEATHER
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	body_parts_covered = HEAD|HAIR|EARS
-	clothing_flags |= CANT_SLEEP_IN //Headbands. Still light enough to sleep in, despite the armor.
+	var/pajamas = TRUE //Headbands. Still light enough to sleep in, despite the armor.
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_TWIST) //Themed to protect against deadites and nitebeasts. Doesn't stop blunt-, smash-, or stabbing crits.
 	sewrepair = TRUE
 	//dropshrink = 0.75
@@ -229,6 +229,7 @@
 	armor = ARMOR_PADDED_GOOD
 	blade_dulling = DULLING_BASHCHOP
 	body_parts_covered = HEAD|HAIR|EARS
+	var/pajamas = TRUE
 	max_integrity = ARMOR_INT_SIDE_STEEL //Heavy leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
 	clothing_flags |= CANT_SLEEP_IN //Headbands. Still light enough to sleep in, despite the armor.
