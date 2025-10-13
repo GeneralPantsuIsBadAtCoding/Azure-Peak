@@ -88,7 +88,7 @@
 
 /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	name = "psydonic leather gloves"
-	desc = "Made with Otava's Finest leather, these gloves are fashioned to last."
+	desc = "Thick leather, stitched and cuffed to guard His children's palms from perforation.."
 	armor = ARMOR_GLOVES_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST) //Equivalent to Heavy Leather Gloves. Deinherits the durability and exclusive critprot of Otavan gloves.
 	icon_state = "psydongloves"
