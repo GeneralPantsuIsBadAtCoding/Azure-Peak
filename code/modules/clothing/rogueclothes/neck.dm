@@ -677,6 +677,8 @@
 	smeltresult = /obj/item/roguegem/green
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+//
+
 /obj/item/clothing/neck/roguetown/psicross/malum/secret
 	name = "beriddled amulet"
 	desc = "A familiar necklace, blisteringly hot to the touch. Yet, as warm as it gets, the metal does not sear my flesh. </br>Perhaps, if I donned it..?"
@@ -705,7 +707,10 @@
 		to_chat(user, span_monkeyhive("'..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
 		user.change_stat(STATKEY_INT, -3)
 		active_item = FALSE
+		active_item = FALSE
 	return
+
+//
 
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
@@ -758,3 +763,4 @@
 		active_item = FALSE
 	return
 
+//
