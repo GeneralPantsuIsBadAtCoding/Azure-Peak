@@ -965,15 +965,15 @@
 
 //
 	if(HAS_TRAIT(src, TRAIT_MANORKEEPER) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text = "The lord of this manor, and a honored priest of Psydon. I should be mindful of my manners."
+		inquisition_text = "The current lord of this manor, and a honored priest of Psydon. I should be mindful of my manners."
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_MANORKEEPER))
 		inquisition_text = "A guest of the Holy Otavan Inquisition, assigned to garrison my manor."
 	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_MANORKEEPER))
 		inquisition_text = "An 'esteemed' guest from the Holy Otavan Inquisition, who's sect I currently host."
 	if(HAS_TRAIT(src, TRAIT_MANORKEEPER) && HAS_TRAIT(examiner, TRAIT_PURITAN))
-		inquisition_text = "The lord of this manor, and a honored priest of Psydon. I should be mindful of my manners."
+		inquisition_text = "The current lord of this manor, and a honored priest of Psydon. I should be mindful of my manners."
 	if(HAS_TRAIT(src, TRAIT_MANORKEEPER) && HAS_TRAIT(examiner, TRAIT_MANORKEEPER))
-		inquisition_text = "Myself. I am a honored priest of Psydon, and the lord of this manor."
+		inquisition_text = "Myself. I am a priest of Psydon, and the current lord of this manor."
 
 	return inquisition_text
 
