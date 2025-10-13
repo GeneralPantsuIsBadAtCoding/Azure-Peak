@@ -88,9 +88,9 @@
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
 				H.change_stat(STATKEY_CON, -3) 
-				H.change_stat(STATKEY_WIL, -1)
+				H.change_stat(STATKEY_WIL, -3)
 				H.change_stat(STATKEY_INT, 3)
-				H.change_stat(STATKEY_SPD, 3) //Turns the Sojourner's unmodified statblock to 3/0/2/1/2, compared to the Disciple's 3/3/3/-2/-1.
+				H.change_stat(STATKEY_SPD, 2) //Turns the Sojourner's unmodified statblock to 3/0/0/1/1, compared to the Disciple's 3/3/3/-2/-1.
 
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/disciple
