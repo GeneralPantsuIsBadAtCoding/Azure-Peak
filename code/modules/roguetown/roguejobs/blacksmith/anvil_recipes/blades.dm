@@ -40,6 +40,7 @@
 	name = "iron plate"
 	icon_state = "blade_plate"
 	overlay_color = "#808080"
+	desc = "A cast plate waiting to be finished."
 
 /obj/item/blade/steel_axe
 	name = "steel axe blade"
@@ -64,3 +65,4 @@
 /obj/item/blade/steel_plate
 	name = "steel plate"
 	icon_state = "blade_plate"
+	desc = "A cast plate waiting to be finished."

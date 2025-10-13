@@ -511,6 +511,25 @@
 	icon_state = "debuff"
 	color ="#af9f9f"
 
+/datum/status_effect/debuff/lost_naledi_mask
+	id = "naledimask"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/naledimask
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+
+/atom/movable/screen/alert/status_effect/debuff/naledimask
+	name = "Lost Mask"
+	desc = "Djinns and daemons may claim me at any moment without the mask. It is not safe."
+	icon_state = "muscles"
+
+/datum/status_effect/debuff/lost_shaman_hood
+	id = "naledimask"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/shamanhood
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+
+/atom/movable/screen/alert/status_effect/debuff/shamanhood
+	name = "Lost Hood"
+	desc = "The sacred hood is lost. I feel frail and sapped without it."
+
 ///////////////////////
 /// CLIMBING STUFF ///
 /////////////////////
@@ -520,24 +539,30 @@
 	id = "climbing_lfwb"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/climbing_lfwb
 	tick_interval = 10
+	var/stamcost = 30
+	var/stamcost_final = 30
+	var/mob/living/carbon/human/climber
+
+/datum/status_effect/debuff/climbing_lfwb/on_creation(mob/living/new_owner, new_stamcost)
+    stamcost = new_stamcost
+    return ..()
 
 /datum/status_effect/debuff/climbing_lfwb/on_apply()
 	. = ..()
-	var/mob/living/climber = owner
+	climber = owner
 	climber.climbing = TRUE
 	climber.put_in_hands(new /obj/item/clothing/wall_grab, TRUE, FALSE, TRUE) // gotta have new before /obj/... , otherwise its gonna die
 
 /datum/status_effect/debuff/climbing_lfwb/tick() // do we wanna do this shit every single second? I guess we do boss
 	. = ..()
-	var/mob/living/carbon/human/climber = owner
-	var/baseline_stamina_cost = 35 // have to disable stamina regen while on wall bruh in energystamina.dm
-	var/climb_gear_bonus = 1
+	climber = owner
 	if((istype(climber.backr, /obj/item/clothing/climbing_gear)) || (istype(climber.backl, /obj/item/clothing/climbing_gear)))
-		climb_gear_bonus = 2
-	var/climbing_skill = max(climber.get_skill_level(/datum/skill/misc/climbing), SKILL_LEVEL_NOVICE) // freestyla hugboxed my shitcode FVCK
-	var/stamina_cost_final = round(((baseline_stamina_cost / climbing_skill) / climb_gear_bonus), 1) // each END is 10 stam, each athletics is 5 stam
-//	to_chat(climber, span_warningbig("[stamina_cost_final] REMOVED!")) // debug msg
-	climber.stamina_add(stamina_cost_final) // every tick interval this much stamina is deducted
+		stamcost_final = stamcost / 2
+		climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted
+	else
+		stamcost_final = stamcost
+		climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted
+//	to_chat(climber, span_warningbig("[stamcost_final] REMOVED!")) // debug msg
 	var/turf/tile_under_climber = climber.loc
 	var/list/random_shit_under_climber = list()
 	for(var/obj/structure/flora/newbranch/branch in climber.loc)
@@ -558,8 +583,9 @@
 
 /datum/status_effect/debuff/climbing_lfwb/on_remove()
 	. = ..()
-	var/mob/living/climber = owner
+	climber = owner
 	climber.climbing = FALSE
+	climber.reset_offsets("wall_press")
 	if(climber.is_holding_item_of_type(/obj/item/clothing/wall_grab)) // the slop slops itself holy shit
 		for(var/obj/item/clothing/wall_grab/I in climber.held_items)
 			if(istype(I, /obj/item/clothing/wall_grab))

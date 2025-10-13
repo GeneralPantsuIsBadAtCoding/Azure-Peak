@@ -227,7 +227,7 @@
 	force = 25
 	force_wielded = 28
 	icon_state = "aries"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	pixel_y = 0
 	pixel_x = 0
 	inhand_x_dimension = 64
@@ -379,7 +379,7 @@
 
 
 /obj/item/rogueweapon/spear/psyspear
-	name = "psydonian spear"
+	name = "psydonic spear"
 	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
 	icon_state = "psyspear"
 	force = 15
@@ -388,7 +388,7 @@
 	wdefense = 6
 	resistance_flags = FIRE_PROOF	//It's meant to be smacked by a "lamptern", and is special enough to warrant overriding the spear weakness
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/spear/psyspear/ComponentInitialize()
 	AddComponent(\
@@ -400,6 +400,43 @@
 		added_int = 50,\
 		added_def = 2,\
 	)
+
+/obj/item/rogueweapon/spear/silver
+	name = "silver spear"
+	desc = "A winged staff, tipped with a silver spearhead. It bares a resemblenece to the 'boar spear', but with a critical difference; instead of stopping hogs, it halts charging deadites from spreading their sickness any further."
+	icon_state = "silverspear"
+	force = 15
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/spear/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/spear/psyspear/old
+	name = "enduring spear"
+	desc = "An ornate spear, its silver tarnished by neglect. HE still guides the faithful's hand, if not this weapon."
+	icon_state = "psyspear"
+	force = 20
+	force_wielded = 30
+	minstr = 8
+	wdefense = 5
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/spear/psyspear/old/ComponentInitialize()
+	return
 
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
@@ -483,7 +520,7 @@
 	pixel_y = 0
 	pixel_x = 0
 	max_integrity = 100
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	dam_icon = 'icons/effects/item_damage32.dmi'
 	icon_state = "cspear"
 	smeltresult = null
@@ -751,7 +788,7 @@
 	)
 
 /obj/item/rogueweapon/halberd/psyhalberd	
-	name = "psydonian halberd"
+	name = "psydonic halberd"
 	desc = "A reliable design that has served humenkind to fell the enemy and defend Psydon's flock - now fitted with a lengthier blade and twin, silver-tipped beaks."
 	icon_state = "silverhalberd"
 	force = 10
@@ -759,7 +796,7 @@
 	minstr = 11
 	wdefense = 7
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
 	AddComponent(\
@@ -873,7 +910,8 @@
 	force = 12
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
-	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/sword/peel/big)
+	// Design Intent: I have a big fucking sword and I want to rend people in half.
+	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/rend, /datum/intent/sword/thrust/zwei, /datum/intent/sword/strike/bad)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	name = "greatsword"
 	desc = "Might be able to chop anything in half!"
@@ -898,7 +936,6 @@
 	max_blade_int = 300
 	wdefense = 5
 	smelt_bar_num = 3
-	intdamage_factor = 0.7
 
 /obj/item/rogueweapon/greatsword/getonmobprop(tag)
 	. = ..()
@@ -913,6 +950,15 @@
 			if("altgrip")
 				return list("shrink" = 0.6,"sx" = 4,"sy" = 0,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
+/obj/item/rogueweapon/greatsword/iron
+	name = "iron greatsword"
+	desc = "Wrought in iron. Heftier and less sturdier than its steel equivalent - but it still does the job."
+	icon_state = "igsw"
+	max_blade_int = 200
+	max_integrity = 200
+	wdefense = 4
+	smelt_bar_num = 3
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/greatsword/aalloy
 	name = "decrepit greatsword"
@@ -935,9 +981,9 @@
 	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/rogueweapon/greatsword/zwei
-	name = "zweihander"
+	name = "claymore"
 	desc = "This is much longer than a common greatsword, and well balanced too!"
-	icon_state = "zwei"
+	icon_state = "claymore"
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
 	max_blade_int = 220
@@ -955,8 +1001,34 @@
 	force = 14
 	force_wielded = 35
 
+/obj/item/rogueweapon/greatsword/grenz/flamberge
+	name = "steel flamberge"
+	desc = "A close relative of the Grenzelhoftian \"zweihander\", favored by Otavan nobility. The name comes from its unique, flame-shaped blade; a labor only surmountable by Psydonia's finest weaponsmiths."
+	icon_state = "steelflamberge"
+	max_blade_int = 180
+	max_integrity = 130
+	wdefense = 6
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/malum
+	name = "forgefiend flamberge"
+	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
+	icon_state = "malumflamberge"
+	max_integrity = 200
+	max_blade_int = 200
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
+	name = "blacksteel flamberge"
+	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. \
+	The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \
+	\"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
+	icon_state = "blackflamb"
+	force = 25
+	force_wielded = 40
+	max_blade_int = 200
+	smeltresult = /obj/item/ingot/blacksteel
+
 /obj/item/rogueweapon/greatsword/psygsword
-	name = "psydonian greatsword"
+	name = "psydonic greatsword"
 	desc = "It is said that a Psydonian smith was guided by Saint Malum himself to forge such a formidable blade, and given the task to slay a daemon preying on the Otavan farmlands. The design was retrieved, studied, and only a few replicas made - for they believe it dulls its edge."
 	icon_state = "silverexealt"
 	force = 8
@@ -964,7 +1036,7 @@
 	minstr = 11
 	wdefense = 6
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
 	AddComponent(\
@@ -980,9 +1052,10 @@
 /obj/item/rogueweapon/greatsword/psygsword/relic
 	name = "Apocrypha"
 	desc = "In the Otavan mosaics, Saint Ravox - bare in all but a beaked helmet and loincloth - is often depicted wielding such an imposing greatweapon against the Dark Star, Graggar. Regardless of whether this relic was actually wielded by divinity-or-not, its unparallel strength will nevertheless command even the greatest foes to fall."
-	force = 25
+	force = 12
+	force_wielded = 30
 	icon_state = "psygsword"
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust/exe, /datum/intent/rend, /datum/intent/axe/chop)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic/ComponentInitialize()
@@ -997,10 +1070,10 @@
 	)
 
 /obj/item/rogueweapon/greatsword/bsword/psy
-	name = "old psydonian broadsword"
-	desc = "Even the most ignorant of zealots know that the holy silver loses its properties when not blessed by Adjudicators and Priests of the Holy See for an extended period of time. Its edge remains as lethal as ever, however."
+	name = "forgotten blade"
+	desc = "'Let His name be naught but forgot'n.'"
 	icon_state = "oldpsybroadsword"
-	force = 8
+	force = 20
 	force_wielded = 25
 	minstr = 11
 	wdefense = 6
@@ -1180,6 +1253,7 @@
 	force_wielded = 20
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff"
+	associated_skill = /datum/skill/combat/staves
 	max_integrity = 150
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/iron
@@ -1189,6 +1263,7 @@
 	force_wielded = 22
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_iron"
+	associated_skill = /datum/skill/combat/staves
 	max_integrity = 200
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/steel
@@ -1198,7 +1273,53 @@
 	force_wielded = 25
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
+	associated_skill = /datum/skill/combat/staves
 	max_integrity = 200
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/silver
+	name = "silver quarterstaff"
+	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
+	force = 20
+	force_wielded = 27
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff_silver"
+	associated_skill = /datum/skill/combat/staves
+	max_integrity = 250
+	is_silver = TRUE
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/psy
+	name = "psydonic quarterstaff"
+	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
+	force = 20
+	force_wielded = 27
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff_silver"
+	associated_skill = /datum/skill/combat/staves
+	max_integrity = 250
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/psy/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/spear/partizan
 	name = "partizan"
@@ -1296,3 +1417,115 @@
 	max_blade_int = 200
 	icon_state = "assegai_steel"
 	gripsprite = FALSE
+
+
+/////////////////////
+// Special Weapon! //
+/////////////////////
+
+
+/datum/intent/sword/thrust/estoc/dragonslayer
+	name = "impale"
+	icon_state = "inimpale"
+	penfactor = 55
+	attack_verb = list("impales", "runs through")
+	reach = 3
+	damfactor = 1.25
+	clickcd = 20
+	swingdelay = 10
+
+/datum/intent/sword/chop/dragonslayer
+	name = "eviscerate"
+	icon_state = "inrend"
+	blade_class = BCLASS_CHOP
+	attack_verb = list("splits", "eviscerates")
+	animname = "chop"
+	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
+	penfactor = 45
+	damfactor = 1.5
+	swingdelay = 10
+	reach = 2
+	clickcd = 20
+	item_d_type = "slash"
+
+/datum/intent/sword/smash/dragonslayer
+	name = "pulverize"
+	blade_class = BCLASS_SMASH
+	attack_verb = list("clangs", "pulverizes")
+	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	reach = 2
+	damfactor = 2.5
+	swingdelay = 10
+	clickcd = 20
+	icon_state = "insmash"
+	item_d_type = "blunt"
+
+/datum/intent/sword/sucker_punch/dragonslayer
+	name = "sucker punch"
+	icon_state = "inpunch"
+	attack_verb = list("punches", "throttles", "clocks")
+	animname = "strike"
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
+	damfactor = 4
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	clickcd = 20
+	recovery = 10
+	item_d_type = "blunt"
+	canparry = FALSE
+	candodge = FALSE
+
+/datum/intent/sword/flay/dragonslayer
+	name = "flay"
+	icon_state = "inpeel"
+	attack_verb = list("<font color ='#e7e7e7'>flays</font>")
+	animname = "cut"
+	blade_class = BCLASS_PEEL
+	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
+	reach = 2
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	swingdelay = 10
+	clickcd = 20
+	damfactor = 0.5
+	item_d_type = "slash"
+	peel_divisor = 1
+
+//
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer
+	name = "\"Daemonslayer\""
+	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
+	icon_state = "machaslayer"
+	possible_item_intents = list(/datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/sucker_punch/dragonslayer)
+	gripped_intents = list(/datum/intent/sword/chop/dragonslayer, /datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/smash/dragonslayer, /datum/intent/sword/flay/dragonslayer)
+	force = 5
+	force_wielded = 55
+	minstr = 14
+	wdefense = 10
+	max_integrity = 666
+	max_blade_int = 666
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
+	)
+
+/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_TENNITE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
+	)

@@ -23,7 +23,7 @@
 
 /// Возвращает размер лодаута для указанного ника игрока
 /datum/preferences/proc/get_loadout_size(mob/user)
-	
+
 	var/loadout_size = 2
 	var/modifiers = 0
 	if(check_patreon_lvl(user.ckey))
@@ -37,8 +37,17 @@
 	content.Add("<div>")
 	content.Add("<span>Выберите предметы для вашего персонажа.</span>")
 	content.Add("<span>Вы их сможете забрать, когда нажмете правой кнопкой мыши по статуе или дереву.</span>")
-	if(!check_patreon_lvl(user.ckey))
-		content.Add("<span style='color: #EED775;'><strong>Если вы хотите больше слотов и уникальные вещи в лодаут, то подпишитесь на Boosty. Больше информации вы найдете в канале Discord #основная-информация</strong></span>")
+
+	if(check_patreon_lvl(user.ckey))
+		content.Add("<span>")
+		content.Add("Спасибо за поддержку проекта!")
+		content.Add("</span>")
+	else
+		content.Add("<span>")
+		content.Add("Если нужно больше слотов и уникальный вещей - поддержите проект!")
+		content.Add("<br><a class='boosty' href='?_src_=prefs;boosty=1'> Boosty </a>")
+		content.Add("</span>")
+
 	content.Add("<span> [selected_loadout_items.len] / [get_loadout_size(user)]. </span>")
 	content.Add("</div>")
 	content.Add("<hr style='width: 100%; border: 1px solid #7b5346;'>")
@@ -57,7 +66,7 @@
 
 	for(var/key in GLOB.loadout_items_by_name)
 		var/datum/loadout_item/item = GLOB.loadout_items_by_name[key]
-		
+
 		if(item.donatitem && !check_patreon_lvl(user.ckey))
 			continue
 
@@ -161,3 +170,4 @@
 
 /datum/config_entry/string/boostyurl
 	config_entry_value = ""
+

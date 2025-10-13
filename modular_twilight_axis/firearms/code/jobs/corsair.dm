@@ -17,7 +17,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/twilight_corsair
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT, TRAIT_OUTLANDER, TRAIT_OUTLAW, TRAIT_HERESIARCH)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT, TRAIT_OUTLAW, TRAIT_HERESIARCH)
 	maximum_possible_slots = 2
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_corsair.ogg'
@@ -68,7 +68,6 @@
 	
 
 	var/masks = list(
-		"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
 		"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
 		"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
 		"None"

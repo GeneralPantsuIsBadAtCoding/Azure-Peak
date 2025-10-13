@@ -4,7 +4,7 @@
 	item_state = "plate_armor"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
 	smeltresult = /obj/item/ingot/iron
-	allowed_race = list(/mob/living/carbon/human/species/goblin)
+	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	sellprice = 0
 
@@ -14,7 +14,7 @@
 	item_state = "leather_armor"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
-	allowed_race = list(/mob/living/carbon/human/species/goblin)
+	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
 	sellprice = 0
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide/goblin
@@ -22,7 +22,8 @@
 	icon_state = "cloth_armor"
 	item_state = "cloth_armor"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
-	allowed_race = list(/mob/living/carbon/human/species/goblin)
+	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
+	body_parts_covered = GROIN
 	armor = null
 	sellprice = 0
 
@@ -31,7 +32,7 @@
 	icon_state = "leather_helm_item"
 	item_state = "leather_helm"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
-	allowed_race = list(/mob/living/carbon/human/species/goblin)
+	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
 	sellprice = 0
 
 /obj/item/clothing/head/roguetown/helmet/goblin
@@ -39,7 +40,7 @@
 	icon_state = "plate_helm_item"
 	item_state = "plate_helm"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
-	allowed_race = list(/mob/living/carbon/human/species/goblin)
+	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
 	body_parts_covered = HEAD|EARS|HAIR|EYES
 	sellprice = 0
 	smeltresult = /obj/item/ingot/iron

@@ -7,7 +7,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/miner
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
-	traits_applied = list(TRAIT_DARKVISION)
+	traits_applied = list(TRAIT_DARKVISION, TRAIT_SMITHING_EXPERT) // Smithing Expert, because from what I observe of miner players they tend to do smithing far more than farming etc.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_CON = 2,
@@ -33,6 +33,7 @@
 		/datum/skill/craft/smelting = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
+	
 
 /datum/outfit/job/roguetown/adventurer/miner/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -41,7 +42,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltl = /obj/item/rogueweapon/pick
-	beltr = /obj/item/rogueweapon/huntingknife
+	beltr = /obj/item/storage/hip/orestore/bronze 
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
 						/obj/item/flint = 1,
@@ -50,7 +51,9 @@
 						/obj/item/rogueweapon/hammer/wood = 1,
 						/obj/item/recipe_book/survival = 1,
 						/obj/item/recipe_book/builder = 1,
-						/obj/item/rogueweapon/scabbard/sheath = 1
+						/obj/item/rogueweapon/scabbard/sheath = 1,
+						/obj/item/rogueweapon/huntingknife = 1,
+						/obj/item/storage/hip/orestore/bronze = 1
 						)
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen
@@ -59,3 +62,5 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/workervest
 		pants = /obj/item/clothing/under/roguetown/trou
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mineroresight)

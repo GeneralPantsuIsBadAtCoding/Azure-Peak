@@ -1,6 +1,9 @@
 /datum/sex_action/anal_sex
 	name = "Анал"
 	stamina_cost = 1.0
+	user_sex_part = SEX_PART_COCK
+	target_sex_part = SEX_PART_ANUS
+	category = SEX_CATEGORY_PENETRATE
 
 /datum/sex_action/anal_sex/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -19,7 +22,7 @@
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE
 	if(!user.sexcon.can_use_penis())
-		return
+		return FALSE
 	return TRUE
 
 /datum/sex_action/anal_sex/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -34,7 +37,7 @@
 	user.sexcon.perform_sex_action(user, 2, 0, TRUE)
 	if(user.sexcon.check_active_ejaculation())
 		user.visible_message(span_lovebold("[user.name] наполняет семенем попку [target]!"))
-		user.sexcon.cum_into()
+		user.sexcon.cum_into(splashed_user = target)
 		user.virginity = FALSE
 
 	if(user.sexcon.considered_limp())
@@ -52,7 +55,7 @@
 	return FALSE
 
 /datum/sex_action/anal_sex/knot
-	name = "Анал(кнот)"
+	name = "Анал (узел)"
 	knot_on_finish = TRUE
 
 /datum/sex_action/anal_sex/knot/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -66,14 +69,14 @@
 	return ..()
 
 /datum/sex_action/anal_sex/knot/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] knot-fucks [target]'s ass."))
+	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] долбит по самый узел задницу [target]."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(user, 2, 0, TRUE)
 	if(user.sexcon.check_active_ejaculation())
-		user.visible_message(span_love("[user] cums into [target]'s butt!"))
-		user.sexcon.cum_into()
+		user.visible_message(span_love("[user] кончает в попку [target]!"))
+		user.sexcon.cum_into(splashed_user = target)
 		user.virginity = FALSE
 
 	if(user.sexcon.considered_limp())

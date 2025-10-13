@@ -53,6 +53,21 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 #define PAIN_MINIMUM_FOR_DAMAGE PAIN_MED_EFFECT
 #define PAIN_DAMAGE_DIVISOR 50
 
+#define SEX_CATEGORY_NULL 0
+#define SEX_CATEGORY_MISC (1<<0)
+#define SEX_CATEGORY_HANDS (1<<1)
+#define SEX_CATEGORY_PENETRATE (1<<2)
+
+#define SEX_PART_NULL 0
+#define SEX_PART_COCK (1<<0)
+#define SEX_PART_CUNT (1<<1)
+#define SEX_PART_ANUS (1<<2)
+#define SEX_PART_JAWS (1<<3)
+
+#define KNOTTED_NULL 0
+#define KNOTTED_AS_TOP 1
+#define KNOTTED_AS_BTM 2
+
 /proc/build_sex_actions()
 	. = list()
 	for(var/path in typesof(/datum/sex_action))

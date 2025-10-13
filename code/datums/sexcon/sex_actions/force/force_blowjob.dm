@@ -2,6 +2,9 @@
 	name = "Заставить отсосать"
 	require_grab = TRUE
 	stamina_cost = 1.0
+	category = SEX_CATEGORY_PENETRATE
+	user_sex_part = SEX_PART_COCK
+	target_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/force_blowjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -45,7 +48,7 @@
 	user.sexcon.perform_sex_action(user, 2, 4, TRUE)
 	if(user.sexcon.check_active_ejaculation())
 		user.visible_message(span_lovebold("[user] кончает прямо в глотку [target]!"))
-		user.sexcon.cum_into(TRUE)
+		user.sexcon.cum_into(oral = TRUE, splashed_user = target)
 
 	user.sexcon.perform_sex_action(target, 0, 7, FALSE)
 	if(!user.sexcon.considered_limp())
@@ -53,7 +56,7 @@
 	target.sexcon.handle_passive_ejaculation()
 
 /datum/sex_action/force_blowjob/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s throat."))
+	user.visible_message(span_warning("[user] вытаскивает свой хер из глотки [target]."))
 
 /datum/sex_action/force_blowjob/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.finished_check())

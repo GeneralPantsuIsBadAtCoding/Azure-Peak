@@ -27,6 +27,7 @@
 
 /obj/structure/roguemachine/bathvend/Initialize()
 	. = ..()
+	SSBMtreasury.brassface = src
 	update_icon()
 
 /obj/structure/roguemachine/bathvend/update_icon()
@@ -185,25 +186,23 @@
 
 /obj/structure/roguemachine/bathvend/Destroy()
 	set_light(0)
+	SSBMtreasury.brassface = null // Clear our reference from the bath treasury subsystem.
 	return ..()
 
-/obj/structure/roguemachine/bathvend/Initialize()
-	. = ..()
-	update_icon()
-//	held_items[/obj/item/reagent_containers/glass/bottle/rogue/wine] = list("PRICE" = rand(23,33),"NAME" = "vino")
-//	held_items[/obj/item/dmusicbox] = list("PRICE" = rand(444,777),"NAME" = "Music Box")
 
 #undef UPGRADE_NOTAX
 
 SUBSYSTEM_DEF(BMtreasury)
 	name = "BMtreasury"
-	wait = 1
+	wait = 60 SECONDS // this should not need to run very often.
 	priority = FIRE_PRIORITY_WATER_LEVEL
 	var/treasury_value = 0
 	var/multiple_item_penalty = 0.7
 	var/interest_rate = 0.15 // Bit more interest, since it's gonna be much harder for the BMaster to get valuables.
 	var/next_treasury_check = 0
 	var/list/vault_accounting = list()
+	/// The reference to the map's brassface, populated when it initializes.
+	var/obj/structure/roguemachine/bathvend/brassface
 
 /datum/controller/subsystem/BMtreasury/proc/add_to_vault(var/obj/item/I)
 	if(I.get_real_price() <= 0 || istype(I, /obj/item/roguecoin) || istype(I, /obj/item/storage))
@@ -214,21 +213,35 @@ SUBSYSTEM_DEF(BMtreasury)
 		vault_accounting[I.type] = I.get_real_price()
 	return (vault_accounting[I.type]*interest_rate)
 
-/datum/controller/subsystem/BMtreasury/fire(resumed = 0)
-	set background=1
-	if(world.time > next_treasury_check)
-		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
-		vault_accounting = list()
-		var/area/A = GLOB.areas_by_type[/area/rogue/outdoors/exposed/bath/vault]
-		var/amt_to_generate = 0
-		for(var/obj/item/I in A)
-			if(!isturf(I.loc))
+/datum/controller/subsystem/BMtreasury/fire()
+	if(!brassface) // If there's no brassface there's no point in calculating the money it would be collecting.
+		return
+
+	if(!(world.time > next_treasury_check)) // Skip this fire if it's not time for another check.
+		return
+
+	next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES) // If we are going through with our check, set the time for the next one 5-8 minutes in the future.
+
+	vault_accounting = list()
+	var/amt_to_generate = 0
+
+	// Still absolutely sucks; Effectively looking through absolutely everything in range to find a couple floors; then again on things on bricks to calculate their value.
+	// Alternatively could check the brassface's area and iterate through the things within; in area == in world; so that'd be probably worse.
+	// Best way I think would be to add things to a list on area Entered and remove it on area Exit for the purposes of collection-- right now I'm just working on the world loops.
+	for(var/turf/open/floor/rogue/churchbrick/bathbrick in RANGE_TURFS(5, brassface))
+		for(var/obj/item/item in bathbrick.contents)
+			if(!isturf(item.loc)) // This shouldn't pick up things that aren't on the turf anyway-- should always be false.
 				continue
-			amt_to_generate += add_to_vault(I)
-		for(var/obj/structure/closet/C in A)
-			for(var/obj/item/I in C.contents)
-				amt_to_generate += add_to_vault(I)
-		amt_to_generate = round(amt_to_generate)
-		for(var/obj/structure/roguemachine/bathvend/brassface)
-			brassface.budget += amt_to_generate // goes directly into BRASSFACE rather than into any account.
-		send_ooc_note("Income from smuggling hoard to the BRASSFACE: +[amt_to_generate]", job = list("Bathmaster"))
+			amt_to_generate += add_to_vault(item)
+
+		for(var/obj/structure/closet/closet in bathbrick.contents)
+			for(var/obj/item/item in closet)
+				amt_to_generate += add_to_vault(item)
+
+	brassface.budget += round(amt_to_generate, 1) // goes directly into BRASSFACE rather than into any account.
+	send_ooc_note("Income from smuggling hoard to the BRASSFACE: +[amt_to_generate]", job = "Bathmaster")
+
+
+/datum/controller/subsystem/BMtreasury/Destroy()
+	brassface = null // If this somehow gets deleted, clean up the reference.
+	return ..()

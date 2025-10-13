@@ -509,7 +509,7 @@ BLIND     // can't see anything
 			return 1
 	return 0
 
-/obj/item/clothing/proc/step_action() //this was made to rewrite clown shoes squeaking
+/obj/item/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
 
 /obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
@@ -532,6 +532,3 @@ BLIND     // can't see anything
 	if(text)
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	. = ..()
-
-/obj/item/storage/proc/step_action() //this was made to rewrite clown shoes squeaking
-	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)

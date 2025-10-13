@@ -17,6 +17,12 @@
 	var/require_grab = FALSE
 	/// If a grab is required, this is the required state of it
 	var/required_grab_state = GRAB_AGGRESSIVE
+	/// Set the menu category for the action
+	var/category = SEX_CATEGORY_MISC
+	/// Set which part/oriface the user will be using
+	var/user_sex_part = SEX_PART_NULL
+	/// Set which part/oriface the target will be using
+	var/target_sex_part = SEX_PART_NULL
 	/// Only allow select actions to end with a knot-tie
 	var/knot_on_finish = FALSE
 

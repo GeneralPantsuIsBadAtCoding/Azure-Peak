@@ -36,6 +36,14 @@
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
 
+/obj/item/ammo_casing/caseless/rogue/bolt/blunt
+	name = "blunt bolt"
+	desc = "A crossbow bolt without the part that pierces skulls. That doesn't mean it won't kill you."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/blunt
+	possible_item_intents = list(/datum/intent/mace/strike)
+	icon_state = "bolt_blunt"
+	force = 5
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -59,6 +67,12 @@
 /obj/projectile/bullet/reusable/bolt/paalloy
 	damage = 50
 	armor_penetration = 35
+
+/obj/projectile/bullet/reusable/bolt/blunt
+	damage = 25
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
@@ -92,6 +106,14 @@
 	dropshrink = 0.6
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	max_integrity = 10
+
+/obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	name = "blunt arrow"
+	desc = "For when you really need to kill a zad."
+	icon_state = "arrow_blunt"
+	projectile_type = /obj/projectile/bullet/reusable/arrow/blunt
+	force = 5
+	possible_item_intents = list(/datum/intent/mace/strike)
 
 /obj/item/ammo_casing/caseless/rogue/arrow/stone
 	name = "stone arrow"
@@ -161,6 +183,14 @@
 
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/bows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/bows, L.STAINT * skill_multiplier)
+
+/obj/projectile/bullet/reusable/arrow/blunt
+	name = "blunt arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	damage = 15
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/arrow/stone
 	name = "stone arrow"

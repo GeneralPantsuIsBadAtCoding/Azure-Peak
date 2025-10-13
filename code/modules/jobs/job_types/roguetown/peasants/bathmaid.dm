@@ -24,7 +24,7 @@
 	round_contrib_points = 2
 	advjob_examine = TRUE
 	cmode_music = 'sound/music/cmode/towner/combat_towner.ogg'
-	job_traits = list(TRAIT_EMPATH, TRAIT_GOODLOVER)
+	job_traits = list(TRAIT_EMPATH, TRAIT_GOODLOVER, TRAIT_HOMESTEAD_EXPERT)
 	job_subclasses = list(
 		/datum/advclass/nightmaiden,
 		/datum/advclass/nightmaiden/concubine,
@@ -83,6 +83,8 @@
 	else
 		belt = /obj/item/storage/belt/rogue/leather
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 
 /datum/advclass/nightmaiden/concubine
 	name = "Concubine"
@@ -107,7 +109,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN,
 	)
 
 /datum/outfit/job/roguetown/nightmaiden/concubine/pre_equip(mob/living/carbon/human/H)
@@ -137,6 +139,7 @@
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")
@@ -175,7 +178,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
@@ -224,6 +227,7 @@
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/massage)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")

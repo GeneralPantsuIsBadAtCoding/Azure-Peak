@@ -31,7 +31,7 @@
 	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(user, 1, 3, TRUE)
-	user.sexcon.handle_passive_ejaculation()
+	user.sexcon.handle_passive_ejaculation(target)
 
 	user.sexcon.perform_deepthroat_oxyloss(target, 1.3)
 	user.sexcon.perform_sex_action(target, 0, 2, FALSE)

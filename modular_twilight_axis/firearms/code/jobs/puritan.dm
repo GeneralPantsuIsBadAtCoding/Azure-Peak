@@ -18,8 +18,7 @@
 		TRAIT_SILVER_BLESSED,
 		TRAIT_INQUISITION,
 		TRAIT_PERFECT_TRACKER,
-		TRAIT_PURITAN,
-		TRAIT_OUTLANDER
+		TRAIT_PURITAN
 		)
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -42,7 +41,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/puritan/blackpowder/pre_equip(mob/living/carbon/human/H)

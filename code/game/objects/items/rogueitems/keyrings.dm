@@ -211,9 +211,6 @@
 /obj/item/lockpickring/one
 	picks = list(/obj/item/lockpick)
 
-/obj/item/storage/keyring/butcher	// Just incase, butcher can at least see to getting farmers incase there are none given he sucks at farming.
-	keys = list(/obj/item/roguekey/farm, /obj/item/roguekey/butcher)
-
 /obj/item/storage/keyring/sheriff
 	keys = list(/obj/item/roguekey/sheriff, /obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/walls, /obj/item/roguekey/manor, /obj/item/roguekey/graveyard, /obj/item/roguekey/armory, /obj/item/roguekey/sergeant, /obj/item/roguekey/knight)
 

@@ -2,6 +2,9 @@
 	name = "Заставить отлизать"
 	require_grab = TRUE
 	stamina_cost = 1.0
+	user_sex_part = SEX_PART_CUNT
+	target_sex_part = SEX_PART_JAWS
+
 
 /datum/sex_action/force_cunnilingus/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

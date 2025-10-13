@@ -2,6 +2,9 @@
 	name = "Оседлать (вагина)"
 	stamina_cost = 1.0
 	aggro_grab_instead_same_tile = FALSE
+	user_sex_part = SEX_PART_CUNT
+	target_sex_part = SEX_PART_COCK
+	category = SEX_CATEGORY_PENETRATE
 
 /datum/sex_action/vaginal_ride_sex/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -37,8 +40,7 @@
 	target.sexcon.perform_sex_action(target, 2, 0, TRUE)
 	if(target.sexcon.check_active_ejaculation())
 		target.visible_message(span_lovebold("[target.name] наполняет лоно [user] своим горячим семенем!"))
-		target.sexcon.target = user
-		target.sexcon.cum_into(TRUE)
+		target.sexcon.cum_into(splashed_user = user)
 		target.try_impregnate(user)
 		target.virginity = FALSE
 		user.virginity = FALSE

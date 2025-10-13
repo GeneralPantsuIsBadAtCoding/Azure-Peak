@@ -17,7 +17,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_APPRENTICE, //To make your own costumes.
+		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE, //To make your own costumes.
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE, //You WILL be getting neckstabbed A LOT. 
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT, //SNIFF OUT JUSTICE.
 	)
@@ -70,8 +70,8 @@
 	backl = /obj/item/rogueweapon/woodstaff/quarterstaff/steel //nonlethal takedowns
 	beltr = /obj/item/quiver/sling/iron
 	l_hand = /obj/item/grapplinghook
-	r_hand = /obj/item/smokebomb
-	beltl = /obj/item/smokebomb
+	r_hand = /obj/item/bomb/smoke
+	beltl = /obj/item/bomb/smoke
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	mask = /obj/item/clothing/mask/rogue/duelmask
@@ -85,6 +85,7 @@
 	H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 4, TRUE) //Investigations
 	H.adjust_skillrank_up_to(/datum/skill/combat/slings, 4, TRUE) // Funny as shit to use. 
 	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE) //Last resort CQC. Enough def on a quarterstaff to fight defensively, not enough to be truly offensive.
+	H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //Nearly missed this while finishing up the staff-skill port.
 	H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 4, TRUE) //I lurk in the shadows...
 	H.adjust_skillrank_up_to(/datum/skill/craft/crafting, 4, TRUE) //Crafty
 	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 5, TRUE) // Escape routes

@@ -100,16 +100,8 @@
 		"...a student to your left pales, her queasiness overwhelming before she faints. You steel yourself, and look at the voidlike ribcage in the torso before you. Well-preserved chunks of flesh lie beside it, waiting for you to restore them to their rightful places..."
 	)
 	expert_name = "Barber"
-	trait_restrictions = list(TRAIT_MEDICINE_EXPERT = SKILL_LEVEL_EXPERT)
-
-/datum/skill/misc/sewing
-	name = "Sewing"
-	desc = "Determines whether you can craft various sewing-related items and repair them."
-	dreams = list(
-		"...as the years go by, the mantra becomes increasingly oppressive. Stitch, sew, cut ties, stitch, sew, thread the needle twice...",
-		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."
-	)
-	expert_name = "Sewer"
+	max_untraited_level = SKILL_LEVEL_EXPERT // We'll let people get to Expert as an exception because reviving someone is very important to keep players in round
+	trait_uncap = list(TRAIT_MEDICINE_EXPERT = SKILL_LEVEL_LEGENDARY)
 
 /datum/skill/misc/tracking
 	name = "Tracking"
@@ -122,13 +114,3 @@
 		"... the blood may have gotten lost in the rain, but the wounded man's boots are as fresh as jackberries, perfectly marked in the sand. You raise your bow, nock an arrow, and carefully trace them towards a cave..."
 	)
 	expert_name = "Tracker"
-
-
-/datum/skill/misc/ceramics
-	name = "Pottery"
-	desc = "Handles crafting and making of clay into vases and other fine-craft works."
-	dreams = list(
-		"...the wheel spins, and spins.. yet you watch as a work of art grows from its center...",
-		"...a slab of clay is molded into a beautiful statue. A testiment to Malum's blessings, and Xylix's insperation. A pure work of beauty..."
-	)
-	expert_name = "Potter"

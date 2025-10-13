@@ -21,6 +21,27 @@
 			"label": "Build All"
 		},
 		{
+			"type": "process",
+			"command": "tools/build/build.sh",
+			"args": ["-DLOCALTEST"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOCALTEST"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Local Testing)"
+		},
+		{
 			"type": "dreammaker",
 			"dme": "tgstation.dme",
 			"problemMatcher": ["$dreammaker"],
@@ -82,5 +103,29 @@
 			"dependsOn": "dm: reparse",
 			"label": "Build All (low memory mode)"
 		},
+		{
+            "type": "process",
+            "command": "tools/build/build",
+            "args": ["-DUNIT_TESTS -DLOCALTEST"],
+            "windows": {
+                "command": ".\\tools\\build\\build.bat",
+                "args": ["-DUNIT_TESTS -DLOCALTEST"]
+            },
+            "options": {
+                "env": {
+                    "DM_EXE": "${config:dreammaker.byondPath}"
+                }
+            },
+            "problemMatcher": [
+                "$dreammaker",
+                "$tsc",
+                "$eslint-stylish"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "dependsOn": "dm: reparse",
+            "label": "Build All (unit tests)"
+        },
 	]
 }

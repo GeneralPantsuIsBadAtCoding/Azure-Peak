@@ -1,6 +1,7 @@
 /datum/sex_action/kissing
 	name = "Поцеловаться"
 	check_same_tile = FALSE
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/kissing/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

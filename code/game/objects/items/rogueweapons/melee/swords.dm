@@ -59,6 +59,13 @@
 /datum/intent/sword/thrust/krieg
 	damfactor = 0.9
 
+/datum/intent/sword/thrust/blunt
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
+	attack_verb = list("prods", "pokes")
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	item_d_type = "blunt"
+
 /datum/intent/sword/strike
 	name = "pommel strike"
 	icon_state = "instrike"
@@ -71,6 +78,10 @@
 	swingdelay = 0
 	damfactor = 1
 	item_d_type = "blunt"
+
+// A weaker strike for sword with high damage so that it don't end up becoming better than mace
+/datum/intent/sword/strike/bad
+	damfactor = 0.7 
 
 /datum/intent/sword/peel
 	name = "armor peel"
@@ -90,6 +101,10 @@
 	name = "big sword armor peel"
 	reach = 2
 	peel_divisor = 5
+
+/datum/intent/sword/peel/weak
+	name = "weak armor peel"
+	peel_divisor = 8
 
 /datum/intent/sword/chop
 	name = "chop"
@@ -138,7 +153,7 @@
 	damage_deflection = 14
 	icon_state = "sword1"
 	sheathe_icon = "sword1"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
 	parrysound = list(
@@ -270,6 +285,18 @@
 	wdefense_wbonus = 4
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/sword/long/training
+	name = "training sword"
+	desc = "Swords like these, with blunted tips and dull edges, are often used for practice without much risk of injury."
+	force = 5
+	force_wielded = 8
+	sharpness = IS_BLUNT
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/sword/thrust/blunt, /datum/intent/sword/peel/weak)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/sword/thrust/blunt, /datum/intent/sword/peel/weak)
+	icon_state = "feder"
+	throwforce = 5
+	thrown_bclass = BCLASS_BLUNT
 
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"
@@ -521,14 +548,6 @@
 	wdefense = 5		//+1
 	wbalance = WBALANCE_SWIFT
 
-/obj/item/rogueweapon/sword/long/malumflamm
-	name = "forgefiend flamberge"
-	desc = "This sword's creation took a riddle in its own making. A great sacrifice was made for a blade of perfect quality."
-	icon_state = "malumflamberge"
-	force = 28 // +3 force as a unique sword. Longsword isn't THAT good anyway
-	force_wielded = 33 // Also +3
-	max_integrity = 200
-
 /obj/item/rogueweapon/sword/long/zizo
 	name = "avantyne longsword"
 	desc = "A wicked, unconventional, and otherwordly blade that was created by no swordsmith - a manifestation of hate for the state of this world that follows no design principles but spite and anger."
@@ -691,17 +710,51 @@
 	return
 
 /obj/item/rogueweapon/sword/long/oldpsysword
-	name = "old psydonian longsword"
-	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes. Yet alike PSYDON, it ENDURES."
+	name = "enduring longsword"
+	desc = "A steel longsword with an angled crossguard. The lesser clerics of the Psydonic Orders oft-carry these blades, and - though it may not carry the bite of silver - it still humbles men and monsters alike with a well-poised strike."
 	icon_state = "opsysword"
 	sheathe_icon = "opsysword"
 	dropshrink = 1
 
 /obj/item/rogueweapon/sword/long/psysword
-	name = "psydonian longsword"
-	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
-		\"Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
+	name = "psydonic longsword"
+	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike. </br>'Psydon will deliver those who were mindful of Him to their place of ultimate triumph. No evil will touch them, nor will they grieve.'"
 	icon_state = "psysword"
+	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 9
+	wdefense = 6
+	dropshrink = 1
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
+
+/obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/psysword/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/silver
+	name = "silver longsword"
+	desc = "A longsword with a blade of pure silver. The weight doesn't just burden your hand, but your very soul as well; an unspoken oath, to stand against the horrors that lurk within the nite. </br>'Swing with precision and purpose, levyman o' the Gods. The nite is long and many-an-evil cur would engineer civilization's destruction, while Astrata's gaze leers elsewhere. So long as you wield this sword, you have a duty that beckons.'"
+	icon_state = "silverlongsword"
 	sheathe_icon = "psysword"
 	force = 20
 	force_wielded = 25
@@ -711,10 +764,64 @@
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 
-/obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
+/obj/item/rogueweapon/sword/long/silver/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/kriegmesser/silver
+	name = "silver broadsword"
+	desc = "A two-handed broadsword, fitted with a blade of pure silver. Each swing commands more effort than the last, but not without purpose. One blow to crack the deadite's leg in twain; and a heartbeat later, another to splatter the soil with bile and teeth."
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "silverbroadsword"
+	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	alt_intents = null // Can't mordhau this
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/long/kriegmesser/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/long/kriegmesser/psy
+	name = "psydonic broadsword"
+	desc = "Sunder, cleave, smite; a sea of coagulated blackness, speckled with crimson. Absolve, cherish, endure; the will of one, christened to save Psydonia when all else is lost. </br>'Even here it is not safe, and even this grave has been defaced. Yet, someone has written on this stone, in some angry hand - HOPE RIDES ALONE..'"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "silverbroadsword"
+	sheathe_icon = "psysword"
+	force = 20
+	force_wielded = 25
+	minstr = 11
+	wdefense = 6
+	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	alt_intents = null // Can't mordhau this
+	smeltresult = /obj/item/ingot/silverblessed
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/long/kriegmesser/psy/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
 		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 100,\
@@ -823,17 +930,17 @@
 	max_integrity = 75
 
 /obj/item/rogueweapon/sword/short/psy
-	name = "psydonian shortsword"
-	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric blade was born: a blade with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
+	name = "psydonic shortsword"
+	desc = "Otavan smiths worked with Grenzelhoftian artificers, and an esoteric sidearm was born: a shortsword with an unique design, dismissing a crossguard in favor of a hollow beak to hook and draw harm away from its user. Short in length, yet lethally light in weight."
 	icon_state = "psyswordshort"
 	sheathe_icon = "psyswordshort"
-	force = 17
+	force = 20
 	force_wielded = 20
-	minstr = 6
-	wdefense = 5
+	minstr = 7
+	wdefense = 3
 	wbalance = WBALANCE_SWIFT
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/sword/short/psy/ComponentInitialize()
 	AddComponent(\
@@ -851,6 +958,31 @@
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_PSYDONIAN,\
 		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/short/silver
+	name = "silver shortsword"
+	desc = "A shortsword with a blade of pure silver. In the marginalia of tomes depicting Psydonia's crusading orders, there is no sight more iconic than that of the hauberk-draped paladin; a kite shield in one hand, and this glimmering sidearm in the other."
+	icon = 'icons/roguetown/weapons/daggers32.dmi'	
+	icon_state = "silverswordshort"
+	sheathe_icon = "psyswordshort"
+	force = 20
+	force_wielded = 20
+	minstr = 7
+	wdefense = 3
+	wbalance = WBALANCE_SWIFT
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/sword/short/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
 		added_force = 0,\
 		added_blade_int = 100,\
 		added_int = 50,\
@@ -977,25 +1109,23 @@
 	item_state = "esaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 25
+	force_wielded = 25
+	minstr = 7
+	wdefense = 9
+	last_used = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/gold
+	smelt_bar_num = 2
+
+/obj/item/rogueweapon/sword/sabre/stalker
+	name = "stalker sabre"
+	desc = "A once elegant blade of mythril, diminishing under the suns gaze"
+	icon_state = "spidersaber"
 	force = 17
 	force_wielded = 20
 	minstr = 7
 	wdefense = 9
-	last_used = 0
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
-	smelt_bar_num = 2
-
-/obj/item/rogueweapon/sword/sabre/elf/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 100,\
-		added_int = 100,\
-		added_def = 2,\
-	)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	name = "shamshir"
@@ -1150,6 +1280,56 @@
 	sheathe_icon = "decrapier"
 	sellprice = 140
 
+/obj/item/rogueweapon/sword/rapier/silver
+	name = "silver rapier"
+	desc = "A basket-hilted rapier, fitted with a thin blade of pure silver. Immortalized by Rockhill's witch hunters, this weapon - though cumberstone in an untrained hand - is surprisingly adept at both parrying and riposting."
+	icon_state = "silverrapier"
+	sheathe_icon = "psyrapier"
+	max_integrity = 225
+	max_blade_int = 225
+	force = 20
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
+	smeltresult = /obj/item/ingot/silver
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/rapier/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/sword/rapier/psy
+	name = "psydonic rapier"
+	desc = "A basket-hilted rapier, fitted with a thin blade of pure silver. Such a resplendent weapon not only pierces the gaps within a heathen's maille, but also serves as the symbol of an Otavan diplomat's authority."
+	icon_state = "silverrapier"
+	sheathe_icon = "rapier"
+	max_integrity = 225
+	max_blade_int = 225
+	force = 20
+	force_wielded = 20
+	minstr = 8
+	wdefense = 8
+	smeltresult = /obj/item/ingot/silverblessed
+	is_silver = TRUE
+
+/obj/item/rogueweapon/sword/rapier/psy/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 2,\
+	)
+
 /obj/item/rogueweapon/sword/rapier/psy/relic
 	name = "Eucharist"
 	desc = "Etruscan shape falling prey to Otavan craftsmanship. Saint Malum's smiths created an uniquely thin blade, capable of swiftly skewering the unholy and the miscreants through gaps that most claim to have never existed in the first place. <b> Silver-dipped steel crowned upon a basket hilt that keeps righteous hands safe from harm."
@@ -1157,7 +1337,7 @@
 	sheathe_icon = "psyrapier"
 	max_integrity = 300
 	max_blade_int = 300
-	force = 17
+	force = 20
 	force_wielded = 20
 	minstr = 8
 	wdefense = 8
@@ -1190,7 +1370,7 @@
 /obj/item/rogueweapon/sword/rapier/eora
 	name = "\"Heartstring\""
 	desc = "A specialty-made bilbo hilt rapier made in service to Lady Eora. For the time when soft words can no longer be spoken, and hearts are to be pierced."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	icon_state = "eorarapier"
 	sheathe_icon = "eorarapier"
 	grid_width = 32
@@ -1213,12 +1393,12 @@
 
 
 /obj/item/rogueweapon/sword/silver
-	name = "silver sword"
-	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
+	name = "silver arming sword"
+	desc = "An arming sword, fitted with a blade of pure silver. It is the bane of vampyres, nitebeasts, and deadites throughout all of Psydonia; cursed flesh erupts into holy fire, and unholy bravado twists into mortal fear."
 	icon_state = "silversword"
 	sheathe_icon = "silversword"
-	force = 17
-	force_wielded = 20
+	force = 18
+	force_wielded = 23
 	minstr = 9
 	wdefense = 5
 	is_silver = TRUE
@@ -1238,16 +1418,7 @@
 		added_def = 2,\
 	)
 
-/obj/item/rogueweapon/sword/long/blackflamb
-	name = "blacksteel flamberge"
-	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
-	force = 20
-	force_wielded = 32
-	icon_state = "blackflamb"
-	smeltresult = /obj/item/ingot/blacksteel
-	max_integrity = 200
-
-/obj/item/rogueweapon/sword/long/blackflamb/getonmobprop(tag)
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

@@ -81,11 +81,11 @@
 			var/rotation_chat = return_rotation_chat(p.client.mouseovertext)
 			p.client.mouseovertext.maptext_width = 96
 			p.client.mouseovertext.maptext = {"[rotation_chat]
-			<span style='font-size:8pt;font-family:"Pterra";color:#ddd7df;text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>[name]"}
+			<span style='font-size:8pt;font-family:"Mookmania";color:#ddd7df;text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>[name]"}
 		else
 			p.client.mouseovertext.maptext_height = 32
 			p.client.mouseovertext.maptext_width = 96
-			p.client.mouseovertext.maptext = {"<span style='font-size:8pt;font-family:"Pterra";color:#ddd7df;text-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>[name]"}
+			p.client.mouseovertext.maptext = {"<span style='font-size:8pt;font-family:"Mookmania";color:#ddd7df;text-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>[name]"}
 
 /atom/proc/return_rotation_chat(atom/movable/screen/movable/mouseover/mouseover)
 	return
@@ -243,8 +243,8 @@
 		maptext_y = 28
 		maptext_x = -32
 
-	if(text2num(screen_loc_X[1]) <= 0)
-		screen_loc_X[1] = 1
+	if(text2num(screen_loc_X[1]) <= -3)
+		screen_loc_X[1] = -3
 	if(text2num(screen_loc_Y[1]) <= 0)
 		screen_loc_Y[1] = 1
 

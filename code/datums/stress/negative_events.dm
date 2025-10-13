@@ -326,6 +326,11 @@
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
 
+/datum/stressevent/uncanny
+	stressadd = 2
+	desc = span_red("Their face is.. wrong!")
+	timer = 3 MINUTES	
+
 /datum/stressevent/syoncalamity
 	stressadd = 15
 	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
@@ -377,3 +382,22 @@
 	timer = 999 MINUTES
 	desc = span_green("I'm wielding a BLESSED weapon!")
 
+/datum/stressevent/naledimasklost
+	stressadd = 3
+	desc = span_boldred("The mask! Anyone here could be a djinn. I'm exposed.")
+	timer = 999 MINUTES
+
+/datum/stressevent/shamanhoodlost
+	stressadd = 3
+	desc = span_boldred("The hood! My faith wavers without it. I feel ashamed.")
+	timer = 999 MINUTES
+
+/datum/stressevent/headless
+	stressadd = 3
+	desc = span_red("Where is their head? What is that flame?!")
+	timer = 5 MINUTES
+
+/datum/stressevent/fermented_crab_bad
+	stressadd = 2
+	desc = span_red("That fermented crab was truly rancid, abhorrent and disgusting.")
+	timer = 3 MINUTES

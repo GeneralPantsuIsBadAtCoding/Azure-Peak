@@ -19,7 +19,7 @@
 	color = "#FFFFFF"
 	detail_color = "#4756d8"
 	altdetail_color = "#b8252c"
-	anvilrepair = /datum/skill/misc/ceramics
+	anvilrepair = /datum/skill/craft/ceramics
 	smeltresult = null
 
 /obj/item/clothing/mask/rogue/facemask/xylixmask/Initialize()

@@ -202,6 +202,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/tgui_pref = TRUE
 
+	var/race_bonus
+
 /datum/preferences/New(client/C)
 	parent = C
 	migrant  = new /datum/migrant_pref(src)
@@ -371,6 +373,16 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<BR>"
 			dat += "<b>Race:</b> <a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>[spec_check(user) ? "" : " (!)"]<BR>"
+			if(length(pref_species.custom_selection))
+				var/race_bonus_display
+				if(race_bonus)
+					for(var/bonus in pref_species.custom_selection)
+						if(pref_species.custom_selection[bonus] == race_bonus)
+							race_bonus_display = bonus
+							break
+				dat += "<b>Race Bonus:</b> <a href='?_src_=prefs;preference=race_bonus_select;task=input'>[race_bonus_display ? "[race_bonus_display]" : "None"]</a><BR>"
+			else
+				race_bonus = null
 
 			// LETHALSTONE EDIT BEGIN: add statpack selection
 			dat += "<b>Statpack:</b> <a href='?_src_=prefs;preference=statpack;task=input'>[statpack.name]</a><BR>"
@@ -408,9 +420,16 @@ GLOBAL_LIST_EMPTY(chosen_names)
 //				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_AGE_ANTAG]'>When Antagonist: [(randomise[RANDOM_AGE_ANTAG]) ? "Yes" : "No"]</A>"
 
 //			dat += "<b><a href='?_src_=prefs;preference=name;task=random'>Random Name</A></b><BR>"
+			if(length(pref_species.restricted_virtues))
+				if(virtue.type in pref_species.restricted_virtues)
+					virtue = GLOB.virtues[/datum/virtue/none]
+				if(virtuetwo.type in pref_species.restricted_virtues)
+					virtuetwo = GLOB.virtues[/datum/virtue/none]
 			dat += "<b>Virtue:</b> <a href='?_src_=prefs;preference=virtue;task=input'>[virtue]</a><BR>"
 			if(statpack.name == "Virtuous")
 				dat += "<b>Second Virtue:</b> <a href='?_src_=prefs;preference=virtuetwo;task=input'>[virtuetwo]</a><BR>"
+			else
+				virtuetwo = GLOB.virtues[/datum/virtue/none]
 			dat += "<b>Vice:</b> <a href='?_src_=prefs;preference=charflaw;task=input'>[charflaw]</a><BR>"
 			var/datum/faith/selected_faith = GLOB.faithlist[selected_patron?.associated_faith]
 			dat += "<b>Faith:</b> <a href='?_src_=prefs;preference=faith;task=input'>[selected_faith?.name || "FUCK!"]</a><BR>"
@@ -1229,6 +1248,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			C.clear_character_previews()
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(href_list["boosty"])
+		var/url = CONFIG_GET(string/boostyurl)
+		if (url)
+			user << link(url)
+		return
+
 	if(href_list["bancheck"])
 		var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["bancheck"])
 		var/admin = FALSE
@@ -1495,7 +1520,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							ghost_others = GHOST_OTHERS_SIMPLE
 
 				if("name")
-					var/new_name = tgui_input_text(user, "Choose your character's name:", "Identity", encode = FALSE)
+					var/new_name = tgui_input_text(user, "The name of this vessel?", "IDENTITY", encode = FALSE)
 					if(new_name)
 						new_name = reject_bad_name(new_name)
 						if(new_name)
@@ -1504,7 +1529,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ', . and ,.</font>")
 
 				if("nickname")
-					var/new_name = tgui_input_text(user, "Choose your character's nickname (For Highlighting):", "Nickname (For Chat Highlighting)",  encode = FALSE)
+					var/new_name = tgui_input_text(user, "Choose your character's nickname (For Highlighting):", "NICKNAME",  encode = FALSE)
 					if(new_name)
 						new_name = reject_bad_name(new_name)
 						if(new_name)
@@ -1540,7 +1565,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 //						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("age")
-					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "Yils Dead", pref_species.possible_ages) 
+					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "YILS LIVED", pref_species.possible_ages) 
 					if(new_age)
 						age = new_age
 						var/list/hairs
@@ -1573,7 +1598,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 					statpacks_available = sort_list(statpacks_available)
 
-					var/statpack_input = tgui_input_list(user, "Choose your character's statpack", "Statpack", statpacks_available, statpack)
+					var/statpack_input = tgui_input_list(user, "How shall your strengths manifest?", "STATPACK", statpacks_available, statpack)
 					if (statpack_input)
 						var/datum/statpack/statpack_chosen = statpacks_available[statpack_input]
 						statpack = statpack_chosen
@@ -1585,7 +1610,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, span_info("Your virtue has been removed due to taking a stat-altering statpack.")) */
 				// LETHALSTONE EDIT: add pronouns
 				if ("pronouns")
-					var pronouns_input = tgui_input_list(user, "Choose your character's pronouns", "Pronouns", GLOB.pronouns_list)
+					var pronouns_input = tgui_input_list(user, "Choose your character's pronouns", "PRONOUNS", GLOB.pronouns_list)
 					if(pronouns_input)
 						pronouns = pronouns_input
 						ResetJobs()
@@ -1594,7 +1619,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 				// LETHALSTONE EDIT: add voice type selection
 				if ("voicetype")
-					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "Voice Type", GLOB.voice_types_list) 
+					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "VOICE TYPE", GLOB.voice_types_list) 
 					if(voicetype_input)
 						voice_type = voicetype_input
 						to_chat(user, "<font color='red'>Your character will now vocalize with a [lowertext(voice_type)] affect.</font>")
@@ -1610,7 +1635,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					for(var/obj/item/bodypart/taur/tt as anything in pref_species.get_taur_list())
 						taur_selection[tt::name] = tt
 					
-					var/new_taur_type = tgui_input_list(user, "Choose your character's taur body", "Taur Body", taur_selection)
+					var/new_taur_type = tgui_input_list(user, "Choose your character's taur body", "TAUR BODY", taur_selection)
 					if(!new_taur_type)
 						return
 
@@ -1629,7 +1654,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						if(!faith.name)
 							continue
 						faiths_named[faith.name] = faith
-					var/faith_input = tgui_input_list(user, "Choose your character's faith", "Faith", faiths_named) 
+					var/faith_input = tgui_input_list(user, "The world rots. Which truth you bear?", "FAITH", faiths_named) 
 					if(faith_input)
 						var/datum/faith/faith = faiths_named[faith_input]
 						to_chat(user, "<font color='yellow'>Вера: [faith.translated_name]</font>") //	TA EDIT
@@ -1644,8 +1669,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						if(!patron.name)
 							continue
 						patrons_named[patron.name] = patron
-					var/datum/faith/current_faith = GLOB.faithlist[selected_patron?.associated_faith] || GLOB.faithlist[initial(default_patron.associated_faith)]
-					var/god_input = tgui_input_list(user, "Choose your character's patron god", "[current_faith.name]", patrons_named)
+					var/god_input = tgui_input_list(user, "The first amongst many.", "PATRON", patrons_named)
 					if(god_input)
 						selected_patron = patrons_named[god_input]
 						to_chat(user, "<font color='yellow'>Покровитель: [selected_patron.translated_name]</font>") //	TA EDIT
@@ -1660,7 +1684,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						which is influenced by your job class, villain status, or certain events.\n\
 						You can change this later through \"Combat Mode Music\" in the Options tab.\"</span>")
 						combat_music_helptext_shown = TRUE
-					var/track_select = tgui_input_list(user, "Set a track to be your combat music.", "Combat Music", GLOB.cmode_tracks_by_name, combat_music?.name)
+					var/track_select = tgui_input_list(user, "To you, the Signal sounds like:", "COMBAT MUSIC", GLOB.cmode_tracks_by_name, combat_music?.name)
 					if(track_select)
 						combat_music = GLOB.cmode_tracks_by_name[track_select]
 						to_chat(user, span_notice("Selected track: <b>[track_select]</b>."))
@@ -1703,8 +1727,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							continue
 						var/datum/language/a_language = new language()
 						choices[a_language.name] = language
-					
-					var/chosen_language = tgui_input_list(user, "Choose your character's extra language:", "Character Preference", choices)
+
+					var/chosen_language = tgui_input_list(user, "Choose your character's extra language:", "EXTRA LANGUAGE", choices)
 					if(chosen_language)
 						if(chosen_language == "None")
 							extra_language = "None"
@@ -1773,7 +1797,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					popup.open(FALSE)
 				if("flavortext")
 					to_chat(user, "<span class='notice'>["<span class='bold'>Flavortext should not include nonphysical nonsensory attributes such as backstory or the character's internal thoughts.</span>"]</span>")
-					var/new_flavortext = tgui_input_text(user, "Input your character description:", "Flavortext", flavortext, multiline = TRUE,  encode = FALSE)
+					var/new_flavortext = tgui_input_text(user, "Input your character description:", "Flavortext", flavortext, multiline = TRUE,  encode = FALSE, bigmodal = TRUE)
 					if(new_flavortext == null)
 						return
 					if(new_flavortext == "")
@@ -1792,7 +1816,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					log_game("[user] has set their flavortext'.")
 				if("ooc_notes")
 					to_chat(user, "<span class='notice'>["<span class='bold'>If you put 'anything goes' or 'no limits' here, do not be surprised if people take you up on it.</span>"]</span>")
-					var/new_ooc_notes = tgui_input_text(user, "Input your OOC preferences:", "OOC notes", ooc_notes, multiline = TRUE,  encode = FALSE)
+					var/new_ooc_notes = tgui_input_text(user, "Input your OOC preferences:", "OOC notes", ooc_notes, multiline = TRUE,  encode = FALSE, bigmodal = TRUE)
 					if(new_ooc_notes == null)
 						return
 					if(new_ooc_notes == "")
@@ -1936,7 +1960,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 					species = sortNames(species)
 
-					var/result = tgui_input_list(user, "Select a race", "RACE", species)
+					var/result = tgui_input_list(user, "By what shape are you bound?", "RACE", species)
 
 					if(result)
 						set_new_race(result, user)
@@ -1953,17 +1977,15 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						var/datum/virtue/V = GLOB.virtues[path]
 						if (!V.name)
 							continue
-						if (V.name == virtue.name || V.name == virtuetwo.name)
+						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
-						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
-							continue
-						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
+						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
-					var/result = tgui_input_list(user, "Select a virtue", "VIRTUES",virtue_choices)
+					var/result = tgui_input_list(user, "What strength shall you wield?", "VIRTUES",virtue_choices)
 
 					if (result)
 						var/datum/virtue/virtue_chosen = virtue_choices[result]
@@ -1976,17 +1998,15 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						var/datum/virtue/V = GLOB.virtues[path]
 						if (!V.name)
 							continue
-						if (V.name == virtue.name || V.name == virtuetwo.name)
+						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
+							continue
+						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
-						if (istype(V, /datum/virtue/utility/noble) && ((pref_species == /datum/species/construct/metal) || (pref_species ==/datum/species/dullahan)))		//Stops bypass of nobility for constructs.
-							continue
-						if (istype(V, /datum/virtue/utility/resident) && (pref_species == /datum/species/dullahan))
-							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
-					var/result = tgui_input_list(user, "Select a virtue", "VIRTUES",virtue_choices)
+					var/result = tgui_input_list(user, "What strength shall you wield?", "VIRTUES",virtue_choices)
 
 					if (result)
 						var/datum/virtue/virtue_chosen = virtue_choices[result]
@@ -1998,13 +2018,19 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 				if("charflaw")
 					var/list/coom = GLOB.character_flaws.Copy()
-					var/result = tgui_input_list(user, "Select a flaw", "FLAWS",coom)
+					var/result = tgui_input_list(user, "What burden will you bear?", "FLAWS",coom)
 					if(result)
 						result = coom[result]
 						var/datum/charflaw/C = new result()
 						charflaw = C
 						if(charflaw.desc)
 							to_chat(user, "<span class='info'>[charflaw.desc]</span>")
+
+				if("race_bonus_select")
+					if(length(pref_species.custom_selection))
+						var/choice = tgui_input_list(user, "What has fate blessed your race with?", "BONUS", pref_species.custom_selection)
+						if(choice)
+							race_bonus = pref_species.custom_selection[choice]
 
 				if("body_size")
 					var/new_body_size = tgui_input_number(user, "Choose your desired sprite size:\n([BODY_SIZE_MIN*100]%-[BODY_SIZE_MAX*100]%), Warning: May make your character look distorted", "Character Preference", features["body_size"]*100)
@@ -2050,14 +2076,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 */
 				if("s_tone")
 					var/listy = pref_species.get_skin_list()
-					var/new_s_tone = tgui_input_list(user, "Choose your character's skin tone:", "Sun", listy)
+					var/new_s_tone = tgui_input_list(user, "Choose your character's skin tone:", "SKINTONE", listy)
 					if(new_s_tone)
 						skin_tone = listy[new_s_tone]
 						try_update_mutant_colors()
 
 				if("charflaw")
 					var/selectedflaw
-					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "Character Preference", GLOB.character_flaws) 
+					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "FLAWS", GLOB.character_flaws) 
 					if(selectedflaw)
 						charflaw = GLOB.character_flaws[selectedflaw]
 						charflaw = new charflaw()

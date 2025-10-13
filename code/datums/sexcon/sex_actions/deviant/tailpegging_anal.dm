@@ -1,6 +1,10 @@
 /datum/sex_action/tailpegging_anal
 	name = "Трахнуть зад хвостом"
 	check_incapacitated = FALSE
+	stamina_cost = 1.0
+	category = SEX_CATEGORY_PENETRATE
+	target_sex_part = SEX_PART_ANUS
+
 
 /datum/sex_action/tailpegging_anal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

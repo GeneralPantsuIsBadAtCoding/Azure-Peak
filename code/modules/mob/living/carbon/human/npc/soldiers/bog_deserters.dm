@@ -20,8 +20,7 @@
 		if(2)
 			r_hand = /obj/item/rogueweapon/spear
 		if(3)
-			r_hand = /obj/item/rogueweapon/stoneaxe/battle
-			l_hand = /obj/item/rogueweapon/shield/heater
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 
 /datum/outfit/job/roguetown/human/northern/bog_deserters/proc/add_random_deserter_weapon_hard(mob/living/carbon/human/H)
 	var/add_random_deserter_weapon_hard = rand(1,4)
@@ -33,8 +32,7 @@
 			r_hand = /obj/item/rogueweapon/mace/warhammer
 			l_hand = /obj/item/rogueweapon/shield/heater
 		if(3)
-			r_hand = /obj/item/rogueweapon/stoneaxe/battle
-			l_hand = /obj/item/rogueweapon/shield/heater
+			r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 		if(4)
 			r_hand = /obj/item/rogueweapon/flail
 			l_hand = /obj/item/rogueweapon/shield/heater
@@ -197,12 +195,12 @@
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.STASTR = rand(14,16)
+	H.STASTR = rand(12,14)
 	H.STASPD = 11
 	H.STACON = rand(11,13)
 	H.STAWIL = 13
 	H.STAPER = 11
-	H.STAINT = 11
+	H.STAINT = 10
 	//Chest Gear
 	add_random_deserter_cloak(H)
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -285,12 +283,12 @@
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.STASTR = rand(14,16)
+	H.STASTR = rand(12,14)
 	H.STASPD = 11
 	H.STACON = rand(11,13)
 	H.STAWIL = 13
 	H.STAPER = 11
-	H.STAINT = 11
+	H.STAINT = 10
 	//Chest Gear
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 	add_random_deserter_armor_hard(H)

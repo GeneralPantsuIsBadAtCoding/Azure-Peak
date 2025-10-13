@@ -9,6 +9,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/mastercarpenter
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	category_tags = list(CTAG_TOWNER)
 	maximum_possible_slots = 1
 	pickprob = 5

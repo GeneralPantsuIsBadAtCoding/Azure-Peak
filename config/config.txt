@@ -15,16 +15,16 @@ $include resources.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-SERVERNAME Roguetown
+SERVERNAME AZURE PEAK
 
 ## Server tagline: This will appear right below the server's title.
-# SERVERTAGLINE A generic TG-based server
+# SERVERTAGLINE 18+ HRP Fantasy Server.
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME Roguetown
+STATIONNAME AZURE PEAK
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -401,7 +401,7 @@ PREFERENCE_MAP_VOTING 0
 AUTOADMIN_RANK Game Master
 
 ## Uncomment to automatically give that admin rank to all players
-AUTOADMIN
+#AUTOADMIN
 
 
 ## Uncomment to automatically deadmin players when the game starts.
@@ -522,6 +522,3 @@ DEFAULT_VIEW_SQUARE 15x15
 ## 1 Puts Border Control into 'learning mode' and will have it automatically whitelist new connections
 ## 2 Puts Border Control into 'enforcing mode' and will have it deny connections that are not already whitelisted.
 BORDER_CONTROL 0
-
-## Ticket ping frequency. Set 0 for disable that subsystem. 3000 - 5 minutes, 600 - 1 minute.
-TICKET_PING_FREQUENCY 1200

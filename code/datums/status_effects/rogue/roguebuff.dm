@@ -239,6 +239,41 @@
 
 	. = ..()
 
+/datum/status_effect/buff/fermented_crab
+	id = "fermented_crab"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/fermented_crab
+	effectedstats = list(STATKEY_WIL = 2, STATKEY_CON = -2)
+	duration = 5 MINUTES
+	/// TRUE if the user had TRAIT_LIMPDICK and we have to reapply if after the trait expires
+	var/had_limpdick = FALSE
+	/// TRUE if the user had disfunctional pintle and we have to make it disfunctional again on trait expiration
+	var/had_disfunctional_pintle = FALSE
+
+/datum/status_effect/buff/fermented_crab/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_LIMPDICK))
+		REMOVE_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
+		had_limpdick = TRUE
+
+	var/obj/item/organ/penis/pintle = owner.getorganslot(ORGAN_SLOT_PENIS)
+	if(!pintle.functional)
+		pintle.functional = TRUE
+		had_disfunctional_pintle = TRUE
+
+	owner?.sexcon?.adjust_charge(SEX_MAX_CHARGE)
+
+/datum/status_effect/buff/fermented_crab/on_remove()
+	. = ..()
+	if(had_limpdick)
+		ADD_TRAIT(owner, TRAIT_LIMPDICK, TRAIT_GENERIC)
+	if(had_disfunctional_pintle)
+		var/obj/item/organ/penis/pintle = owner.getorganslot(ORGAN_SLOT_PENIS)
+		pintle.functional = FALSE
+
+/atom/movable/screen/alert/status_effect/buff/fermented_crab
+	name = "INVIGORATED"
+	desc = "Fermented crab tasted like shit. But I'm full of vigor now!"
+
 /atom/movable/screen/alert/status_effect/buff/vitae
 	name = "Invigorated"
 	desc = "I have supped on the finest of delicacies: life!"
@@ -1339,4 +1374,49 @@
 /atom/movable/screen/alert/status_effect/buff/nocblessing
 	name = "Noc's blessing"
 	desc = "Gazing Noc helps me think."
+	icon_state = "buff"
+
+/datum/status_effect/buff/massage
+	id = "massage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/massage
+	effectedstats = list(STATKEY_CON = 1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/massage
+	name = "Massage"
+	desc = "My muscles feel relaxed"
+	icon_state = "buff"
+
+/datum/status_effect/buff/goodmassage
+	id = "goodmassage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/goodmassage
+	effectedstats = list(STATKEY_CON = 1, STATKEY_SPD = 1, STATKEY_STR = 1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/goodmassage
+	name = "Good Massage"
+	desc = "My muscles feel relaxed and better than before"
+	icon_state = "buff"
+
+/datum/status_effect/buff/greatmassage
+	id = "greatmassage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/greatmassage
+	effectedstats = list(STATKEY_CON = 2, STATKEY_SPD = 1, STATKEY_STR = 1, STATKEY_LCK =1)
+	duration = 30 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/greatmassage
+	name = "Great Massage"
+	desc = "My body feels better than ever!"
+	icon_state = "buff"
+
+
+/datum/status_effect/buff/refocus
+	id = "refocus"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/refocus
+	effectedstats = list(STATKEY_INT = 2, STATKEY_WIL = -1)
+	duration = 15 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/refocus
+	name = "Refocus"
+	desc = "I've sacrificed some of my learning to help me learn something new"
 	icon_state = "buff"

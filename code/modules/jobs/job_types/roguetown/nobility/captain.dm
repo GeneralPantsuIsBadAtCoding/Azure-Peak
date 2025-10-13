@@ -14,6 +14,7 @@
 	Lead your men to victory--and keep them in line--and you will see this realm prosper under a thousand suns."
 	display_order = JDO_GUARD_CAPTAIN
 	advclass_cat_rolls = list(CTAG_CAPTAIN = 20)
+	same_job_respawn_delay = 30 MINUTES
 
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard)
 	outfit = /datum/outfit/job/roguetown/captain
@@ -123,7 +124,7 @@
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list(
-			"Zweihander",
+			"Claymore",
 			"Great Mace",
 			"Battle Axe",
 			"Greataxe",
@@ -136,7 +137,7 @@
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
-			if("Zweihander")
+			if("Claymore")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
 				backl = /obj/item/rogueweapon/scabbard/gwstrap

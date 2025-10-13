@@ -1,5 +1,6 @@
 /datum/sex_action/thighjob
 	name = "Помочь бедрами"
+	user_sex_part = SEX_PART_COCK
 
 /datum/sex_action/thighjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -32,3 +33,8 @@
 
 /datum/sex_action/thighjob/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_warning("[user] вынимает свой хер из междуножья [target]."))
+
+/datum/sex_action/thighjob/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.sexcon.finished_check())
+		return TRUE
+	return FALSE

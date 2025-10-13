@@ -71,6 +71,11 @@
 	cost = 30
 	contains = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk)
 
+/datum/supply_pack/rogue/Iconoclast/hgambeson
+	name = "Padded Gambeson"
+	cost = 20
+	contains = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy)
+
 /datum/supply_pack/rogue/Iconoclast/halfplate
 	name = "Half-Plate"
 	cost = 30

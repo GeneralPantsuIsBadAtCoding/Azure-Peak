@@ -1,5 +1,6 @@
 /datum/sex_action/masturbate_container
 	name = "Мастурбация в контейнер"
+	category = SEX_CATEGORY_HANDS
 
 /datum/sex_action/masturbate_container/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user != target)

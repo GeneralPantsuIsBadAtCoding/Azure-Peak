@@ -356,7 +356,7 @@
 				if((istype(W, offh) || istype(offh, W)) && W != offh && !(L.check_arm_grabbed(L.get_inactive_hand_index())) && (L.last_used_double_attack <= world.time))
 					if(L.stamina_add(2))
 						L.last_used_double_attack = world.time + 3 SECONDS
-						L.visible_message(span_warning("There's an opening! I strike with my off-hand weapon!"))
+						L.visible_message(span_warning("[L] seizes an opening and strikes with [L.p_their()] off-hand weapon!"), span_green("There's an opening! I strike with my off-hand weapon!"))
 						offh.melee_attack_chain(src, A, params)
 	else
 		if(ismob(A))

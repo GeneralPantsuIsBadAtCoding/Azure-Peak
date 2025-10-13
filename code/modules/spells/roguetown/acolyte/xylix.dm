@@ -68,13 +68,13 @@
 	defprob = 50
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	del_on_death = TRUE
-	loot = list(/obj/item/smokebomb/decoy)
+	loot = list(/obj/item/bomb/smoke/decoy)
 	can_have_ai = FALSE
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/mudcrab // doesnt really matter
 
 
-/obj/item/smokebomb/decoy/Initialize()
+/obj/item/bomb/smoke/decoy/Initialize()
 	. = ..()
 	playsound(loc, 'sound/magic/decoylaugh.ogg', 50)
 	explode()

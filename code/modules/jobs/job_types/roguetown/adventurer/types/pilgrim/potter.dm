@@ -5,6 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/potter
+	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	subclass_stats = list(
@@ -23,7 +24,7 @@
 		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE, // They probably have some insight in carpentry and masonry.
 		/datum/skill/craft/masonry = SKILL_LEVEL_APPRENTICE, // They probably have some insight in carpentry and masonry.
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/ceramics = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/ceramics = SKILL_LEVEL_MASTER,
 	)
 
 /datum/outfit/job/roguetown/adventurer/potter/pre_equip(mob/living/carbon/human/H)
@@ -53,3 +54,5 @@
 	// Clay and glassBatch are raw materials
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/digclay)

@@ -2,7 +2,7 @@
 GLOBAL_DATUM_INIT(needs_eol_autopunctuation, /regex, regex(@"([a-zA-Z\dа-яА-ЯёЁ]|[^.?!~-][+|_])$"))
 
 //All non-capitalized 'i' surrounded with whitespace (aka, 'hello >i< am a cat')
-GLOBAL_DATUM_INIT(noncapital_i, /regex, regex(@"\b[и]\b", "g"))
+GLOBAL_DATUM_INIT(noncapital_i, /regex, regex(@"\b[i]\b", "g"))
 
 /// Ensures sentences end in appropriate punctuation (a period if none exist) and that all whitespace-bounded 'i' characters are capitalized.
 /// If the sentence ends in chat-flavored markdown for bolds, italics or underscores and does not have a preceding period, exclamation mark or other flavored sentence terminator, add a period.

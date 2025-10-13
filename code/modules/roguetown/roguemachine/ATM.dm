@@ -60,6 +60,12 @@
 		coin_amt = round(coin_amt)
 		if(coin_amt < 1)
 			return
+		// checks the maximum coin limit before deducting balance; prevents stacks of >=20
+		var/max_coins = 20
+		if(coin_amt > max_coins)
+			to_chat(user, span_warning("Maximum withdrawal limit exceeded. You can only withdraw up to [max_coins] coins at once."))
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
 		amt = SStreasury.bank_accounts[H]
 		if(!Adjacent(user))
 			return

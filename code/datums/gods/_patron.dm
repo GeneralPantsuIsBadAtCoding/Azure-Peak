@@ -52,6 +52,16 @@ GLOBAL_LIST_EMPTY(prayers)
 	for(var/trait in mob_traits)
 		REMOVE_TRAIT(pious, trait, "[type]")
 
+/datum/patron/proc/on_lesser_heal(
+	mob/living/user, 
+	mob/living/target, 
+	message_out, 
+	message_self, 
+	conditional_buff, 
+	situational_bonus
+	)
+	return
+
 /* -----PRAYERS----- */
 
 /// Called when a patron's follower attempts to pray.

@@ -4,50 +4,40 @@
 		{
 			"type": "byond",
 			"request": "launch",
-			"name": "Launch DreamSeeker",
-			"preLaunchTask": "Build All",
+			"name": "Launch DreamSeeker (Local Testing)",
+            "preLaunchTask": "Build All (Local Testing)",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}"
 		},
 		{
 			"type": "byond",
 			"request": "launch",
-			"name": "Launch DreamSeeker (low memory mode)",
-			"preLaunchTask": "Build All (low memory mode)",
+			"name": "Launch DreamSeeker",
+            "preLaunchTask": "Build All",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}"
+		},
+		{
+			"type": "byond",
+			"request": "launch",
+			"name": "Launch DreamDaemon (Local Testing)",
+            "preLaunchTask": "Build All (Local Testing)",
+			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
+			"dreamDaemon": true
 		},
 		{
 			"type": "byond",
 			"request": "launch",
 			"name": "Launch DreamDaemon",
-			"preLaunchTask": "Build All",
+            "preLaunchTask": "Build All",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 			"dreamDaemon": true
 		},
 		{
 			"type": "byond",
 			"request": "launch",
-			"name": "Launch DreamDaemon (low memory mode)",
-			"preLaunchTask": "Build All (low memory mode)",
+			"name": "Launch DreamDaemon (unit tests)",
+            "preLaunchTask": "Build All (unit tests)",
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 			"dreamDaemon": true
-		},
-		{
-			"name": "Debug External Libraries",
-			"type": "cppvsdbg",
-			"request": "launch",
-			"program": "${command:dreammaker.returnDreamDaemonPath}",
-			"cwd": "${workspaceRoot}",
-			"args": ["${command:dreammaker.getFilenameDmb}", "-trusted"],
-			"preLaunchTask": "Build All"
-		},
-		{
-			"name": "Debug External Libraries (low memory mode)",
-			"type": "cppvsdbg",
-			"request": "launch",
-			"program": "${command:dreammaker.returnDreamDaemonPath}",
-			"cwd": "${workspaceRoot}",
-			"args": ["${command:dreammaker.getFilenameDmb}", "-trusted"],
-			"preLaunchTask": "Build All (low memory mode)"
 		}
 	]
 }

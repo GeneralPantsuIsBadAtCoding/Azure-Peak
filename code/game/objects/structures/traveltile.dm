@@ -161,8 +161,16 @@
 	var/obj/item/leash/pullingg_freepet_leash
 	// leashes automatically handle "reattachment" to the "master" so we can just move them
 
+	// handle unknotting
+	if(L.sexcon.knotted_status)
+		L.sexcon.knot_remove()
+
 	L.recent_travel = world.time
 	if(pullingg)
+		if(isliving(pullingg)) // also check if pulled mob is knotted
+			var/mob/living/H = pullingg
+			if(H.sexcon.knotted_status)
+				H.sexcon.knot_remove()
 		pullingg_freepet_leash = get_freepet_leash(pullingg)
 		if(pullingg_freepet_leash)
 			pullingg_freepet_leash.forceMove(T.loc)
@@ -203,7 +211,7 @@
 /obj/structure/fluff/traveltile/vampire
 	required_trait = TRAIT_VAMPMANSION
 /obj/structure/fluff/traveltile/wretch
-	required_trait = TRAIT_HERESIARCH //I'd tie this to trait_outlaw but unfortunately the heresiarch virtue exists so we're making a new trait instead.
+	required_trait = TRAIT_ZURCH //I'd tie this to trait_outlaw but unfortunately the heresiarch virtue exists so we're making a new trait instead.
 /obj/structure/fluff/traveltile/dungeon
 	name = "gate"
 	desc = "This gate's enveloping darkness is so opressive you dread to step through it."

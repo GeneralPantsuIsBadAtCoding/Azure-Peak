@@ -237,10 +237,6 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/pronouns = null // LETHALSTONE ADDITION: this is cheap so i'm doing it. preferences in human will set this appropriately
 	var/obscured_flags = NONE
 
-#define DO_AFTER_MAX_STEPS_LONG 10
-#define DO_AFTER_MAX_STEPS_SHORT 3
-#define DO_AFTER_MAX_STEPS_CLIENTLESS 3
-#define DO_AFTER_SHORT_THRESHOLD 2 SECONDS
 /**
  * Timed action involving one mob user. Target is optional.
  *
@@ -265,12 +261,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	if(user.doing)
 		return 0
-
-	delay *= user.do_after_coefficent()
-
-	if (delay <= 1) //DO WE REALLY NEED TO USE DO_AFTER WITH 1 OR LESS DS DELAY??? I THINK NOT. FUCK YOU ALL, STOP USING DO_AFTER ONLY FOR VISUAL SHIT, IT'S TO HEAVY FOR THIS
-		return 1
-
 	user.doing = 1
 
 	var/atom/Tloc = null
@@ -290,6 +280,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
+	delay *= user.do_after_coefficent()
+
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, delay, user)
@@ -297,14 +289,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = 1
-
-	var/stoplag_steps = max(delay/(delay <= DO_AFTER_SHORT_THRESHOLD ? DO_AFTER_MAX_STEPS_SHORT : DO_AFTER_MAX_STEPS_LONG), 1) 
-
-	if (!user.client)
-		stoplag_steps = max(delay/DO_AFTER_MAX_STEPS_CLIENTLESS, 1)
-
 	while (world.time < endtime)
-		stoplag(stoplag_steps)
+		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
@@ -346,19 +332,12 @@ GLOBAL_LIST_EMPTY(species_list)
 		qdel(progbar)
 
 /// do_after copypasta but you can move
-// WHY ARE YOU EVEN DOING THIS COPYPASTE??? JUST ADD THE FUCKING ADDITIONAL ARGUMENT AND DON'T TOUCH THAT TRUCKLOAD OF SHIT CALLED "A CODE"
 /proc/move_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, same_direction = FALSE)
 	if(!user)
 		return 0
 
 	if(user.doing)
 		return 0
-
-	delay *= user.do_after_coefficent()
-
-	if (delay <= 1) //READ ABOVE
-		return 1
-
 	user.doing = 1
 
 	var/atom/Tloc = null
@@ -378,6 +357,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
+	delay *= user.do_after_coefficent()
+
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, delay, user)
@@ -385,14 +366,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = 1
-
-	var/stoplag_steps = max(delay/(delay < DO_AFTER_SHORT_THRESHOLD ? DO_AFTER_MAX_STEPS_SHORT : DO_AFTER_MAX_STEPS_LONG), 1) 
-
-	if (!user.client)
-		stoplag_steps = max(delay/DO_AFTER_MAX_STEPS_CLIENTLESS, 1)
-
 	while (world.time < endtime)
-		stoplag(stoplag_steps)
+		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
@@ -471,11 +446,9 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(isliving(user))
 		L = user
 	. = 1
-
-	var/stoplag_steps = max(time/(time < DO_AFTER_SHORT_THRESHOLD ? DO_AFTER_MAX_STEPS_SHORT : DO_AFTER_MAX_STEPS_LONG), 1) 
 	mainloop:
 		while(world.time < endtime)
-			stoplag(stoplag_steps)
+			stoplag(1)
 			if(progress)
 				progbar.update(world.time - starttime)
 			if(QDELETED(user) || !targets)
@@ -503,11 +476,6 @@ GLOBAL_LIST_EMPTY(species_list)
 	user.doing = 0
 	if(progbar)
 		qdel(progbar)
-
-#undef DO_AFTER_MAX_STEPS_LONG
-#undef DO_AFTER_MAX_STEPS_SHORT
-#undef DO_AFTER_MAX_STEPS_CLIENTLESS
-#undef DO_AFTER_SHORT_THRESHOLD
 
 /proc/is_species(A, species_datum)
 	. = FALSE
@@ -576,8 +544,8 @@ GLOBAL_LIST_EMPTY(species_list)
 			prefs = new
 
 		var/override = FALSE
-		if(M.client.holder && (prefs.chat_toggles & CHAT_DEAD))
-			override = TRUE
+	//	if(M.client.holder && (prefs.chat_toggles & CHAT_DSAY))
+	//		override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
 			override = TRUE
 		if(isnewplayer(M) && !override)

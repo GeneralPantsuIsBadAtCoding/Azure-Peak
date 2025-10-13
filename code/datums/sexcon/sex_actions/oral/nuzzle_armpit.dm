@@ -1,5 +1,6 @@
 /datum/sex_action/armpit_nuzzle
 	name = "Прижаться к подмышкам"
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/armpit_nuzzle/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

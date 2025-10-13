@@ -152,7 +152,7 @@
 #define ARMOR_DRAGONHIDE list("blunt" = 30, "slash" = 30, "stab" = 30, "piercing" = 30, "fire" = 40, "acid" = 0) // snowflake armor for dragonhide, fire resist but lower other values from the ring since more integ
 #define ARMOR_FATEWEAVER list("blunt" = 10, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 0, "acid" = 0)
 // Blocks every hit, at least once
-
+#define ARMOR_GRONN_LIGHT list("blunt" = 80, "slash" = 80, "stab" = 30, "piercing" = 30, "fire" = 0, "acid" = 0)
 // Weapon balance defines
 #define WBALANCE_NORMAL 0
 #define WBALANCE_HEAVY -1
@@ -203,7 +203,8 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
-	/datum/species/aura, \
+  /datum/species/dwarf/gnome,\
+	/datum/species/aura,\
 )
 
 #define RACES_RESPECTED \
@@ -215,8 +216,9 @@ Balloon Alert / Floating Text defines
 	/datum/species/lupian,\
 	/datum/species/vulpkanin,\
 	/datum/species/moth,\
-	/datum/species/dracon, \
-	/datum/species/aura, \
+	/datum/species/dracon,\
+	/datum/species/dwarf/gnome,\
+	/datum/species/aura,\
 
 #define RACES_TOLERATED \
 	/datum/species/elf/dark,\
@@ -227,7 +229,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/anthromorph,\
 	/datum/species/demihuman,\
 	/datum/species/halforc,\
-	/datum/species/aura, \
+	/datum/species/aura,\
 
 
 #define RACES_SHUNNED \
@@ -272,7 +274,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
-	/datum/species/aura, \
+	/datum/species/aura,\
 )
 
 #define CLOTHED_RACES_TYPES list(\
@@ -299,7 +301,8 @@ Balloon Alert / Floating Text defines
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
-	/datum/species/aura, \
+	/datum/species/dwarf/gnome,\
+	/datum/species/aura,\
 )
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\
@@ -321,7 +324,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/halforc,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
-	/datum/species/aura, \
+	/datum/species/aura,\
 )
 // Non-elf non-dwarf non-kobold non-goblin mostly
 #define HUMANLIKE_RACE_TYPES list(\
@@ -339,7 +342,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/demihuman,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
-	/datum/species/aura, \
+	/datum/species/aura,\
 )
 #define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/undivided) // Currently unused.
 

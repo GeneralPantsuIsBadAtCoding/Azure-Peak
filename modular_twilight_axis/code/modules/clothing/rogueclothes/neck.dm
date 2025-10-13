@@ -37,3 +37,11 @@
 	category = "Leatherwork"
 	subcategory = CAT_NONE
 	always_availible = TRUE
+
+/obj/item/clothing/neck/roguetown/loveamulet
+	name = "tears of love amulet"
+	desc = "This amulet is made in the southern county of the Black Empire called Sudstal. Faceted with black diamonds, this piece of jewelry symbolizes the pain and sadness that lies beneath the surface of happiness and tranquility."
+	icon_state = "loveamulet"
+	item_state = "loveamulet"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/neck.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/neck.dmi'
