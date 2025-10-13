@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(chimeric_tech)
 	var/list/all_tech_nodes = list()
 	var/list/cached_choices = list() // Stores the currently offered choices
 	var/list/cached_choices_paths = list()
+	var/list/tech_recipe_index = list() // Store references to recipes in the global recipe list to be able to iterate more efficiently later
 
 /datum/controller/subsystem/chimeric_tech/proc/clear_cached_choices()
 	// Clears the cache when a tech is unlocked.
@@ -17,6 +18,7 @@ SUBSYSTEM_DEF(chimeric_tech)
 	. = ..()
 	to_chat(world, span_userdanger("SUBSYSTEMO LOADED"))
 	load_all_tech_nodes()
+	init_unlockable_recipes()
 	return
 
 /datum/controller/subsystem/chimeric_tech/proc/load_all_tech_nodes()
@@ -99,9 +101,30 @@ SUBSYSTEM_DEF(chimeric_tech)
 
 	beast_component.tech_points -= node.cost
 	node.unlocked = TRUE
-	clear_cached_choices() 
+	clear_cached_choices()
+
+	if(node.is_recipe_node)
+		update_recipes_for_tech(string_id)
 
 	return "Successfully unlocked [node.name]!"
+
+/datum/controller/subsystem/chimeric_tech/proc/update_recipes_for_tech(var/tech_id)
+	var/list/recipes_to_unlock = tech_recipe_index[tech_id]
+
+	if(!recipes_to_unlock)
+		return
+	for(var/rec in recipes_to_unlock)
+		var/datum/crafting_recipe/R = rec
+		R.tech_unlocked = TRUE
+
+/datum/controller/subsystem/chimeric_tech/proc/init_unlockable_recipes()
+	tech_recipe_index = list()
+	for(var/rec_datum in GLOB.crafting_recipes)
+		var/datum/crafting_recipe/R = rec_datum
+		if(R.required_tech_node)
+			if(!tech_recipe_index[R.required_tech_node])
+				tech_recipe_index[R.required_tech_node] = list()
+			tech_recipe_index[R.required_tech_node] += R
 
 /datum/controller/subsystem/chimeric_tech/proc/get_healing_multiplier()
 	var/multiplier = 0.75

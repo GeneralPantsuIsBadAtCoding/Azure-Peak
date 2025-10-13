@@ -302,3 +302,5 @@
 	)
 	craftdiff = 4
 	verbage_simple = "mix"
+	required_tech_node = "LUX_FILTRATION"
+	tech_unlocked = FALSE

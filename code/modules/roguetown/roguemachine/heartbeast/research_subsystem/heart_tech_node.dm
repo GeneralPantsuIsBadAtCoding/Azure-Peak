@@ -6,6 +6,7 @@
 	var/string_id = "BASE_NODE" // Used to find the datums in the tech subsytem
 
 	var/unlocked = FALSE
+	var/is_recipe_node = FALSE
 
 	var/required_tier = 1        	// Heartbeast Language Tier requirement
 	var/cost = 50                	// Tech Points cost
@@ -48,3 +49,12 @@
 	cost = 120
 	selection_weight = 50
 	prerequisites = list("REVIVE_TIER1")
+
+/datum/chimeric_tech_node/residual_frankenbrew
+	name = "Impure lux filtration"
+	description = "Allows making a small amount of revival elixer for fulmenor chairs out of impure lux."
+	string_id = "LUX_FILTRATION"
+	required_tier = 1
+	cost = 5
+	selection_weight = 5
+	is_recipe_node = TRUE
