@@ -367,6 +367,9 @@
 	if(!type_selection)
 		return
 
+	if(user.mind.active_quest >= 2)
+		return
+
 	// Continue with the rest of the proc using actual_difficulty instead of selection
 	var/datum/quest/attached_quest = new()
 	attached_quest.reward_amount = rand(difficulty_data[actual_difficulty]["reward_min"], difficulty_data[actual_difficulty]["reward_max"]) // Changed from selection to actual_difficulty
@@ -375,6 +378,7 @@
 
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
+	user.mind.active_quest += 1
 	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -482,6 +486,7 @@
 		reward += deposit_return
 		original_reward += deposit_return
 		
+		user.mind.active_quest -= 1
 		qdel(scroll.assigned_quest)
 		qdel(scroll)
 
