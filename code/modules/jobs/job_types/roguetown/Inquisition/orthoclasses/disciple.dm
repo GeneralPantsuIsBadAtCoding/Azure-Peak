@@ -74,7 +74,7 @@
 				head = /obj/item/clothing/head/roguetown/headband/naledi
 				mask = /obj/item/clothing/mask/rogue/lordmask/naledi/sojourner
 				wrists = /obj/item/clothing/wrists/roguetown/allwrappings/naledi
-				neck = /obj/item/clothing/neck/roguetown/psicross/gold //Naledians covet gold far more than the Orthodoxists cover silver. Emphasizes their nature as 'visitors', more-so than anything else.
+				neck = /obj/item/clothing/neck/roguetown/psicross/g //Naledians covet gold far more than the Orthodoxists cover silver. Emphasizes their nature as 'visitors', more-so than anything else.
 				gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 				id = /obj/item/clothing/ring/signet
 				ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC) //Sojourners are magyck-inclined lightweights, relying on evasive maneuvers and unorthodox techniques - compared to the Disciple, who simply Kills People With Rocks.
@@ -87,10 +87,10 @@
 				H.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
 				H.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 				H.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
-				H.change_stat(STATKEY_CON, -2) 
-				H.change_stat(STATKEY_WIL, -2)
+				H.change_stat(STATKEY_CON, -3) 
+				H.change_stat(STATKEY_WIL, -1)
 				H.change_stat(STATKEY_INT, 3)
-				H.change_stat(STATKEY_SPD, 3) //Turns the Sojourner's unmodified statblock to 3/1/1/1/2, compared to the Disciple's 3/3/3/-2/-1.
+				H.change_stat(STATKEY_SPD, 3) //Turns the Sojourner's unmodified statblock to 3/0/2/1/2, compared to the Disciple's 3/3/3/-2/-1.
 
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/disciple
