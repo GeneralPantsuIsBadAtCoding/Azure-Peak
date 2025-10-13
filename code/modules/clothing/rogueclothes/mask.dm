@@ -447,6 +447,18 @@
 	desc = "A wood mask carved in the visage of the fox spirits said to ply their tricks in the forests of Kazengun."
 	icon_state = "kitsune"
 
+/obj/item/clothing/mask/rogue/facemask/steel/kazengun
+	name = "menpo half-mask"
+	desc = "\"The first lesson of war is that it would be better to live in peace.\""
+	icon_state = "kazengunmouthguard"
+	item_state = "kazengunmouthguard"
+
+/obj/item/clothing/mask/rogue/facemask/steel/kazengun/full
+	name = "mengu mask"
+	desc = "\"The second lesson of war: no man lives forever, but the general whose armies believe they shall will always triumph over the hesitant.\""
+	icon_state = "kazengunfaceguard"
+	item_state = "kazengunfaceguard"
+
 /obj/item/clothing/mask/rogue/shepherd
 	name = "halfmask"
 	icon_state = "shepherd"

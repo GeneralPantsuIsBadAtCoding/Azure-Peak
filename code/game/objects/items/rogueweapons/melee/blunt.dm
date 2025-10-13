@@ -421,6 +421,13 @@
 	smeltresult = /obj/item/ingot/steelholy
 	smelt_bar_num = 2
 
+/obj/item/rogueweapon/mace/goden/kanabo
+	name = "kanabo"
+	desc = "A steel-banded wooden club, made to break the enemy in spirit as much as in flesh. One of the outliers among the many more elegant weapons of Kazengun."
+	icon_state = "kanabo"
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick, /datum/intent/effect/daze) // have you ever heard the WoW ogre aggro noise? yeah
+	max_integrity = 275 // that's actually 25 more than the steel grandmace, but, uh...
+
 /obj/item/rogueweapon/mace/goden/steel/ravox
 	name = "duel settler"
 	desc = "The tenets of ravoxian duels are enscribed upon the head of this maul."

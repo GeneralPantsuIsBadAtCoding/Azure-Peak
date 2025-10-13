@@ -330,6 +330,11 @@
 	max_integrity = ARMOR_INT_SIDE_STEEL
 	icon_state = "sgorget"
 
+/obj/item/clothing/neck/roguetown/gorget/steel/kazengun
+	name = "nodawa gorget"
+	desc = "todo"
+	icon_state = "kazengunneckguard"
+
 /obj/item/clothing/neck/roguetown/gorget/paalloy
 	name = "ancient gorget"
 	desc = "Polished gilbranze plates, layered atop one-another to guard the neck. The spine; a sacred leyline between spirit and sinew. It must remain unsevered, lest Her blessings be lost."

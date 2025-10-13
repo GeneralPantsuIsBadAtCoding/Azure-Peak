@@ -88,3 +88,22 @@
 	icon_state = "shadowgauntlets"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	body_parts_covered = HANDS|ARMS //For "heavy" drow merc
+
+/obj/item/clothing/gloves/roguetown/plate/kote
+	name = "kote gauntlets"
+	desc = "todo"
+	icon_state = "kazengungauntlets"
+	item_state = "kazengungauntlets"
+	body_parts_covered = HANDS|ARMS
+	detail_tag = "_detail"
+	color = "#FFFFFF"
+	detail_color = "#FFFFFF"
+
+/obj/item/clothing/gloves/roguetown/plate/kote/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
