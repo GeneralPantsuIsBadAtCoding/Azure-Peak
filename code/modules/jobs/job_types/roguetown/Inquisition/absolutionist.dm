@@ -26,6 +26,7 @@
 		TRAIT_SILVER_BLESSED,
 		TRAIT_STEELHEARTED,
 		TRAIT_INQUISITION,
+		TRAIT_MANORKEEPER, //Adds extra information and better asserts the Absolver's position as 'lord of the house'. The Third Amendment won't be invented for another two centuries!
 	)
 
 	advclass_cat_rolls = list(CTAG_ABSOLVER = 2)
