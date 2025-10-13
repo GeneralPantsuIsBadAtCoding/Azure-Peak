@@ -354,6 +354,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Handwraps"
 	path = /obj/item/clothing/wrists/roguetown/wrappings
 
+/datum/loadout_item/allwrappings
+	name = "Cloth Wrappings"
+	path = /obj/item/clothing/wrists/roguetown/allwrappings
+
 /datum/loadout_item/loincloth
 	name = "Loincloth"
 	path = /obj/item/clothing/under/roguetown/loincloth
