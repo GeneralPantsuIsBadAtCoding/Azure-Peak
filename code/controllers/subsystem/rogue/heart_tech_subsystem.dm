@@ -110,12 +110,15 @@ SUBSYSTEM_DEF(chimeric_tech)
 
 /datum/controller/subsystem/chimeric_tech/proc/update_recipes_for_tech(var/tech_id)
 	var/list/recipes_to_unlock = tech_recipe_index[tech_id]
+	var/datum/chimeric_tech_node/node = all_tech_nodes[tech_id]
 
 	if(!recipes_to_unlock)
 		return
 	for(var/rec in recipes_to_unlock)
 		var/datum/crafting_recipe/R = rec
 		R.tech_unlocked = TRUE
+		if(node.recipe_override)
+			R.reqs = node.recipe_override
 
 /datum/controller/subsystem/chimeric_tech/proc/init_unlockable_recipes()
 	tech_recipe_index = list()

@@ -55,8 +55,10 @@
     message_out,
     message_self,
     conditional_buff,
-    situational_bonus
+    situational_bonus,
+	is_inhumen
 )
+	*is_inhumen = TRUE
 	*message_out = span_info("Hedonistic impulses and emotions throb all about from [target].")
 	*message_self = span_notice("An intoxicating rush of narcotic delight wipes away my pains!")
 
