@@ -468,7 +468,30 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/disfigured/on_mob_creation(mob/user)
     ADD_TRAIT(user, TRAIT_UNSEEMLY, TRAIT_GENERIC)
-	H.adjust_triumphs(-2)
+	var/nochekk = TRUE
+
+/datum/charflaw/disfigured/flaw_on_life(mob/user)
+	if(!nochekk)
+		return
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.ckey)
+			if(H.get_triumphs() < 2)
+				nochekk = FALSE
+				var/flawz = GLOB.character_flaws.Copy()
+				var/charflaw = pick_n_take(flawz)
+				charflaw = GLOB.character_flaws[charflaw]
+				if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
+					charflaw = pick_n_take(flawz)
+					charflaw = GLOB.character_flaws[charflaw]
+				if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
+					charflaw = pick_n_take(flawz)
+					charflaw = GLOB.character_flaws[charflaw]
+				H.charflaw = new charflaw()
+				H.charflaw.on_mob_creation(H)
+			else
+				nochekk = FALSE
+				H.adjust_triumphs(-2)
 
 /datum/virtue/utility/disfigured/handle_traits(mob/living/carbon/human/recipient)
 	..()
@@ -476,4 +499,3 @@ GLOBAL_LIST_INIT(character_flaws, list(
 		to_chat(recipient, "The miracles of both Acolytes and Physickers alike have triumphed in mending your body! The scars've healed, and your fortunes've lightened, but there still lingers a hollow sense..")
 		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
 		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
-		H.adjust_triumphs(-1) //Totals out to -3, or the same cost of the 'No Flaw' vice, if taken with the 'Beautiful' virtue.
