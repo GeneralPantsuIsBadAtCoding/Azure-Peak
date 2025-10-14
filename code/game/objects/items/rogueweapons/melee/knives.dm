@@ -172,6 +172,29 @@
 	max_integrity = 75
 	smeltresult = null // TODO: We don't have partial melt so coping time
 
+/obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
+	name = "bauernwehr"
+	desc = "The pilgrim's fondest friend - a short yet sharp blade, fitted to a wooden handle. Known in the Grenzelhoftian empire as a 'baurenwehr', these little knives ensure that no labors are without an answer. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
+	icon_state = "throw_knifei"
+	wdefense = 1
+	max_blade_int = 250
+	max_integrity = 250 //Subtype to the hunting dagger. Virtually no combat application - outside of a one-toss throw. Easily stowable, durable, and fit for the rigors of labor, however.
+	force = 10 //Lowest damage of any weapon in the game, save for the decrepit daggers and tossblades. And rocks, potentially. Far from a gamebreaker.
+	throwforce = 10
+	throw_speed = 2 //Flies ~50% slower than a traditional tossblade.
+	armor_penetration = 40 //Only called when throwing. Realistically, this shouldn't be an issue for balancing - especially as a loadout item. One toss, that's all.
+	embedding = list("embedded_pain_multiplier" = 5, "embed_chance" = 75, "embedded_fall_chance" = 10) //Extremely high embed chance. Serves as the 'last resort' option, if you have absolutely nothing better.
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/snip, /datum/intent/dagger/sucker_punch) //Can deal up to.. fifteen damage, with the biggest intents.
+
+obj/item/rogueweapon/huntingknife/throwingknife/baurenwehr/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -10,"sy" = 0,"nx" = 11,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/rogueweapon/huntingknife/cleaver
 	force = 15
 	name = "cleaver"
@@ -619,7 +642,8 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife
 	name = "iron tossblade"
-	desc = "Paradoxical; why is it called a blade when it is meant for tossing? Or is it the act of cutting post-toss that makes it a blade? ...Are arrows tossblades, too?"
+	desc = "Paradoxical; why is it called a blade when it is meant for tossing? Or is it the act of cutting post-toss that makes it a blade? ...Are arrows tossblades, too? </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
+	wdefense = 1
 	item_state = "bone_dagger"
 	force = 10
 	throwforce = 22
@@ -647,13 +671,13 @@
 /obj/item/rogueweapon/huntingknife/throwingknife/kazengun
 	name = "eastern tossblade"
 	desc = "A four pointed throwing knife ground and sharpened from a single piece of metal. The design is intended to solve one of weaknesses of basic tossblades; \
-	more points means these are more likely to land point-first."
+	more points means these are more likely to land point-first. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	smeltresult = /obj/item/ingot/iron
 	icon_state = "easttossblade"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/aalloy
 	name = "decrepit tossblade"
-	desc = "Chunks of frayed bronze, crudely sharpened into throwing daggers. You might be better off chucking the silverware at them, at this rate."
+	desc = "Chunks of frayed bronze, crudely sharpened into throwing daggers. You might be better off chucking the silverware at them, at this rate. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	icon_state = "throw_knifea"
 	color = "#bb9696"
 	force = 7
@@ -663,7 +687,7 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"
-	desc = "There are rumors of some sea-marauders loading these into metal tubes with explosive powder to launch then fast and far. Probably won't catch on."
+	desc = "There are rumors of some sea-marauders loading these into metal tubes with explosive powder to launch then fast and far. Probably won't catch on. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	item_state = "bone_dagger"
 	throwforce = 28
 	max_integrity = 100
@@ -675,13 +699,13 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel/palloy
 	name = "ancient alloy tossblade"
-	desc = "A sliver of polished gilbranze, delicately carved into a throwing dagger. A favorite amongst Zizo's undying cabal, and especially amongst Her assassins; what better-a-tool to slip through another's neck?"
+	desc = "A sliver of polished gilbranze, delicately carved into a throwing dagger. A favorite amongst Zizo's undying cabal, and especially amongst Her assassins; what better-a-tool to slip through another's neck? </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	smeltresult = /obj/item/ingot/aaslag	
 	icon_state = "throw_knifea"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/silver
 	name = "silver tossblade"
-	desc = "A relative to the silver dagger; thinner, flimsier, but capable of being thrown with exceptional accuracy. Seasoned pursuers of unholy creechers oft-keep one hidden away in their boots, just in case."
+	desc = "A relative to the silver dagger; thinner, flimsier, but capable of being thrown with exceptional accuracy. Seasoned pursuers of unholy creechers oft-keep one hidden away in their boots, just in case. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	item_state = "bone_dagger"
 	force = 10
 	throwforce = 20
@@ -707,7 +731,7 @@
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon
 	name = "psydonic tossblade"
-	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well."
+	desc = "An unconventional method of delivering silver to a heretic; but one PSYDON smiles at, all the same. Doubles as an actual knife in a pinch, though obviously not as well. </br>This knife is small enough to comfortably fit inside of my boot, for a quick-and-sightly drawing."
 	item_state = "bone_dagger"
 	force = 10
 	throwforce = 20
