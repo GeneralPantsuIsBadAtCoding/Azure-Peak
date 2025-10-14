@@ -323,6 +323,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/eastshirt2
 	name = "White Foreign Shirt"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt2
+
 //PANTS
 /datum/loadout_item/tights
 	name = "Cloth Tights"
@@ -349,6 +350,9 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/under/roguetown/skirt
 
 //ACCESSORIES
+/datum/loadout_item/bandages
+	name = "Bandages, Gloves"
+	path = /obj/item/clothing/gloves/roguetown/bandages
 
 /datum/loadout_item/wrappings
 	name = "Handwraps"
@@ -513,6 +517,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/cotehardie
 	name = "Fitted Coat"
 	path = /obj/item/clothing/cloak/cotehardie
+
+/datum/loadout_item/baurenwehr
+	name = "Baurenwehr, Knife (2 TRI)" //Trialing. Boot-fittable utility tool, weakest dagger - but solid 'last stand' throwing performance - in the game. Fit for Towners and some Adventurers.
+	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
+
+/datum/loadout_item/baurenwehr/on_mob_creation(mob/user)
+	if(H.mind)
+		H.adjust_triumphs(-2)
 
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
