@@ -111,6 +111,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/discord_id_manipulation, /* No Discord implementation? */
 	/datum/admins/proc/sleep_view,
 	/datum/admins/proc/wake_view,
+	/datum/admins/proc/extend_round,
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(
 	/client/proc/unban_panel,

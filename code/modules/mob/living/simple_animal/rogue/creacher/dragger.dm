@@ -18,7 +18,6 @@
 	response_help_simple = "pass through"
 	maxHealth = DRAGGER_HEALTH
 	health = DRAGGER_HEALTH
-	spacewalk = FALSE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	speed = 1

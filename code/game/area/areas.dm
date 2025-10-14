@@ -51,7 +51,6 @@
 	var/static_light = 0
 	var/static_environ
 
-	var/has_gravity = 0
 	///Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
 	var/noteleport = FALSE
 	///Hides area from player Teleport function.

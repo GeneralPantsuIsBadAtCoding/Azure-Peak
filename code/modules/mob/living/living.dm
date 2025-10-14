@@ -1013,8 +1013,6 @@
 			update_vision_cone()
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
-	if(!has_gravity())
-		return
 	var/blood_exists = FALSE
 
 	for(var/obj/effect/decal/cleanable/trail_holder/C in start) //checks for blood splatter already on the floor
@@ -1279,23 +1277,6 @@
 
 /mob/living/proc/get_visible_name()
 	return name
-
-/mob/living/update_gravity(has_gravity, override)
-	. = ..()
-	if(!SSticker.HasRoundStarted())
-		return
-	if(has_gravity)
-		if(has_gravity == 1)
-			clear_alert("gravity")
-		else
-			if(has_gravity >= GRAVITY_DAMAGE_TRESHOLD)
-				throw_alert("gravity", /atom/movable/screen/alert/veryhighgravity)
-			else
-				throw_alert("gravity", /atom/movable/screen/alert/highgravity)
-	else
-		throw_alert("gravity", /atom/movable/screen/alert/weightless)
-	if(!override && !is_flying())
-		float(!has_gravity)
 
 /mob/living/float(on)
 	if(throwing)
