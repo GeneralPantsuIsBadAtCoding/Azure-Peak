@@ -378,7 +378,7 @@
 	)
 
 /obj/item/rogueweapon/knuckles/psydon/old
-	name = "old psydonian knuckles"
+	name = "enduring knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, its holy blessing long since faded. You are HIS weapon, you needn't fear Aeon."
 	icon_state = "psyknuckle"
 	force = 22
