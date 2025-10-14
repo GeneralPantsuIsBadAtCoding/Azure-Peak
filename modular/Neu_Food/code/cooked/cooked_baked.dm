@@ -41,9 +41,10 @@
 /*	.................   Bread   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/bread
 	name = "bread loaf"
-	desc = "One of the staple foods of the world. With the decline of magic, the loss of bread-duplication has led to mass famines around Grimoria."
+	desc = "One of Psydonia's staple foodstuffs, made from leavened dough. From the pauper to the papal, none can deny the simplistic beauty of a freshly-baked loaf."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf6"
+	bitesize = 8 //It shouldn't take three bites to eat an entire loaf of bread. Indulge, ye-madmen!
 	slices_num = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/breadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = DOUGH_NUTRITION)
@@ -63,21 +64,21 @@
 /obj/item/reagent_containers/food/snacks/rogue/bread/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 5
-		if(bitecount == 2)
-			slices_num = 4
-		if(bitecount == 3)
-			slices_num = 3
 		if(bitecount == 4)
-			slices_num = 2
+			slices_num = 5
 		if(bitecount == 5)
+			slices_num = 4
+		if(bitecount == 6)
+			slices_num = 3
+		if(bitecount == 7)
+			slices_num = 2
+		if(bitecount == 8)
 			changefood(slice_path, eater)
 
 /*	.................   Breadslice & Toast   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/breadslice
 	name = "sliced bread"
-	desc = "A bit of comfort to start your dae."
+	desc = "A bit of comfort to start your dae. The finest choice-of-vessel for a slice of saloumi, salo, cheese, or fried bacon."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf_slice"
 	faretype = FARE_POOR
@@ -124,6 +125,7 @@
 //this is a child so we can be used in sammies
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast
 	name = "toast"
+	desc = "Crisp and crunchy, yet not burnt - truly, an alchemical wonder. Best enjoyed with a fried egg or knob of sliced butter."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "toast"
 	faretype = FARE_NEUTRAL
@@ -233,7 +235,7 @@
 	faretype = FARE_POOR
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /obj/item/reagent_containers/food/snacks/rogue/bun/attackby(obj/item/I, mob/living/user, params)
@@ -285,7 +287,7 @@
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
@@ -297,7 +299,7 @@
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /*	.................   Cheese bun   ................... */
@@ -322,7 +324,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("crispy bread and cream cheese" = 1)
 	foodtype = GRAIN | DAIRY
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/rogue/frybread
@@ -380,6 +382,7 @@
 	desc = "Bread enhanced with sweet raisins for a perfect addition to any meal."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "raisinbread6"
+	bitesize = 8 //Scarf it down like a barbarian, if you so wish.
 	slices_num = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE)
@@ -400,15 +403,15 @@
 /obj/item/reagent_containers/food/snacks/rogue/raisinbread/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 5
-		if(bitecount == 2)
-			slices_num = 4
-		if(bitecount == 3)
-			slices_num = 3
 		if(bitecount == 4)
-			slices_num = 2
+			slices_num = 5
 		if(bitecount == 5)
+			slices_num = 4
+		if(bitecount == 6)
+			slices_num = 3
+		if(bitecount == 7)
+			slices_num = 2
+		if(bitecount == 8)
 			changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
