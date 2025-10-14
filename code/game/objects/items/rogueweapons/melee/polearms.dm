@@ -728,7 +728,7 @@
 
 /obj/item/rogueweapon/spear/holysee
 	name = "see spear"
-	desc = "A spear against the darkness, a glimmer of Eclipsum in its metal veins. "
+	desc = "A spear against the darkness, a glimmer of Eclipsum in its metal veins."
 	icon_state = "gsspear"
 	force = 25 // better in one hand. Use it with the shield.
 	smeltresult = /obj/item/ingot/steel
