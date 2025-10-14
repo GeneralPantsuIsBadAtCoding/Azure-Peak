@@ -39,7 +39,6 @@ export const FlavorTextPage = (props) => {
   return (
         <Stack fill>
             <Stack fill vertical>
-              {headshot && (
                 <Stack.Item align="center">
                   <img
                     src={resolveAsset(headshot)}
@@ -47,7 +46,6 @@ export const FlavorTextPage = (props) => {
                     height="350px"
                     /> 
                 </Stack.Item>
-              )}
               <Stack.Item grow>
                 <Stack fill>
                   <Stack.Item grow width="300px">

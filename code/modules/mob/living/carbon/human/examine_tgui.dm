@@ -62,6 +62,8 @@
 		if(!obscured)
 			headshot += holder.headshot_link
 			img_gallery = holder.img_gallery
+		if(!holder.headshot_link)
+			headshot = "headshot_red.png"
 
 	else if(pref)
 		is_naked = TRUE
@@ -75,6 +77,8 @@
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
 		is_vet = viewing.check_agevet()
+		if(!headshot)
+			headshot = "headshot_red.png"
 	
 	if(song_url)
 		has_song = TRUE
@@ -162,3 +166,14 @@
 /datum/examine_panel/ui_close()
 	viewing.client?.tgui_panel?.stop_music()
 	QDEL_NULL(src)
+
+/datum/examine_panel/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/headshot_imgs),
+	)
+
+/datum/asset/simple/headshot_imgs
+	assets = list(
+		"headshot_background.png" = 'icons/tgui/headshot_background.png',
+		"headshot_red.png" = 'icons/tgui/headshot_red.png',
+		)
