@@ -16,8 +16,8 @@
 	name = "flesh decoy"
 	desc = "A fleshy, immoving golem with a nasty grin. You can clearly tell it isn't alive, yet the scent of its putrid flesh is strangely alluring."
 	w_class = WEIGHT_CLASS_SMALL
-	var/mob_health
-	var/mob_maxHealth
+	var/mob_health = 100
+	var/mob_maxHealth = 100
 
 /mob/living/simple_animal/flesh_decoy/death(gibbed)
 	. = ..()

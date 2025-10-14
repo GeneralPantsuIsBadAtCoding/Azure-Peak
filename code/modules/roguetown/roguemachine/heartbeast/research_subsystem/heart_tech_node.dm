@@ -21,7 +21,7 @@
 	description = "Increases the healing of most healing miracles significantly."
 	string_id = "HEAL_TIER1"
 	required_tier = 1
-	cost = 20
+	cost = 15
 	selection_weight = 15
 
 /datum/chimeric_tech_node/enhanced_healing
@@ -58,4 +58,22 @@
 	required_tier = 1
 	cost = 5
 	selection_weight = 5
+	is_recipe_node = TRUE
+
+/datum/chimeric_tech_node/meat_decoy
+	name = "meat decoys"
+	description = "Allows making flesh decoys out of fresh meat to distract hostile, unintelligent creechurs."
+	string_id = "FLESH_DECOYS"
+	required_tier = 1
+	cost = 5
+	selection_weight = 5
+	is_recipe_node = TRUE
+
+/datum/chimeric_tech_node/viscera_decoy
+	name = "Visceral decoys"
+	description = "Allows making flesh decoys out of viscera instead of fresh meat."
+	string_id = "VISCERA_DECOYS"
+	required_tier = 1
+	cost = 5
+	selection_weight = 1
 	is_recipe_node = TRUE
