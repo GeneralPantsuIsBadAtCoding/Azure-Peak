@@ -133,16 +133,6 @@
 	recipient.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 	recipient.adjust_skillrank_up_to(/datum/skill/combat/slings, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
 
-/datum/virtue/combat/physique
-	name = "Traveled Physique"
-	desc = "I've grown accustomed to traveling across Psydonia's roughest trails. Saigas might be daunted by cliffs and rivers, but I welcome the challenge."
-	custom_text = "Guaranteed Journeyman for Swimming, Climbing & Athletics."
-
-/datum/virtue/combat/physique/apply_to_human(mob/living/carbon/human/recipient)
-	recipient.adjust_skillrank_up_to(/datum/skill/misc/swimming, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	recipient.adjust_skillrank_up_to(/datum/skill/misc/climbing, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-	recipient.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_JOURNEYMAN, silent = TRUE)
-
 /*/datum/virtue/combat/tavern_brawler
 	name = "Tavern Brawler"
 	desc = "I've never met a problem my fists couldn't solve."
