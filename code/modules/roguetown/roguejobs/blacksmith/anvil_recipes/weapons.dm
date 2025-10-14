@@ -823,6 +823,11 @@
 	req_bar = /obj/item/ingot/bronze
 	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
 
+/datum/anvil_recipe/weapons/bronze/katar
+	name = "Katar, Bronze"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/katar/bronze
+
 
 // SHIELDS
 
