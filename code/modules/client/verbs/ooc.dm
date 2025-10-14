@@ -26,13 +26,15 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(get_playerquality(ckey) <= -5)
 		to_chat(src, span_danger("I can't use that."))
 		return
+
 	if(!holder)
+		if(SSticker.current_state < GAME_STATE_FINISHED && !istype(mob, /mob/dead/new_player))
+			to_chat(src, span_danger("OOC is lobby-only during the round. After the round ends it re-opens to everyone."))
+			return
 		if(!GLOB.ooc_allowed)
 			to_chat(src, span_danger("OOC is globally muted."))
 			return
-		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
-			return
+		// Allow lobby new_player usage regardless of dooc settings; preserve dead restriction for non-lobby via earlier check.
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, span_danger("I cannot use OOC (muted)."))
 			return
@@ -82,11 +84,31 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/msg_to_send = ""
 
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
-				msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
-			to_chat(C, msg_to_send)
+		// Treat anything at or beyond GAME_STATE_FINISHED as post-round for OOC visibility.
+		var/post_round = (SSticker.current_state >= GAME_STATE_FINISHED)
+		if(!post_round)
+			// Non-admin: must be lobby new_player during active round
+			if(!C.holder && !istype(C.mob, /mob/dead/new_player))
+				continue
+			// Admin: they can opt out while not in lobby
+			if(C.holder && !C.show_lobby_ooc && !istype(C.mob, /mob/dead/new_player))
+				continue
+		if(!(C.prefs.chat_toggles & CHAT_OOC))
+			continue
+		var/real_key = C.holder ? "([key])" : ""
+		// Precedence: sender-admin (blue) > recipient-admin non-lobby (green/small) > default gray
+		var/is_admin_nonlobby = (C.holder && !istype(C.mob, /mob/dead/new_player) && !post_round)
+		var/sender_nonlobby = (!istype(mob, /mob/dead/new_player) && !post_round)
+		var/sender_is_admin = holder
+		// Choose color: admin-sent stays blue; otherwise if admin recipient non-lobby, use green; else default gray
+		var/message_color = sender_is_admin ? "#4972bc" : (is_admin_nonlobby ? "#4CAF50" : chat_color)
+		var/base_msg = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[message_color]'><span class='message linkify'>[msg]</span></font>"
+		// Apply size reduction: if recipient is admin non-lobby OR (sender is admin non-lobby)
+		if(is_admin_nonlobby || (sender_is_admin && sender_nonlobby))
+			msg_to_send = "<span style='font-size:70%'>[base_msg]</span>"
+		else
+			msg_to_send = base_msg
+		to_chat(C, msg_to_send)
 
 //				if(!holder.fakekey || C.holder)
 //					if(check_rights_for(src, R_ADMIN))
@@ -184,15 +206,26 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/msg_to_send = ""
 
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(SSticker.current_state != GAME_STATE_FINISHED && !istype(C.mob, /mob/dead/new_player) && !C.holder)
+		if(!(C.prefs.chat_toggles & CHAT_OOC))
+			continue
+		var/post_round = (SSticker.current_state >= GAME_STATE_FINISHED)
+		if(!post_round)
+			if(!C.holder && !istype(C.mob, /mob/dead/new_player))
 				continue
-
-			msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
-				msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
-
-			to_chat(C, msg_to_send)
+			if(C.holder && !C.show_lobby_ooc && !istype(C.mob, /mob/dead/new_player))
+				continue
+		var/real_key = C.holder ? "([key])" : ""
+		// Precedence: sender-admin (blue) > recipient-admin non-lobby (green/small) > default gray
+		var/is_admin_nonlobby = (C.holder && !istype(C.mob, /mob/dead/new_player) && !post_round)
+		var/sender_nonlobby = (!istype(mob, /mob/dead/new_player) && !post_round)
+		var/sender_is_admin = holder
+		var/message_color = sender_is_admin ? "#4972bc" : (is_admin_nonlobby ? "#4CAF50" : chat_color)
+		var/base_msg = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[message_color]'><span class='message linkify'>[msg]</span></font>"
+		if(is_admin_nonlobby || (sender_is_admin && sender_nonlobby))
+			msg_to_send = "<span style='font-size:70%'>[base_msg]</span>"
+		else
+			msg_to_send = base_msg
+		to_chat(C, msg_to_send)
 
 
 /proc/toggle_ooc(toggle = null)
@@ -269,6 +302,21 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 		prefs.ooccolor = initial(prefs.ooccolor)
 		prefs.save_preferences()
+
+/client/verb/toggle_ooc_anonymize()
+	set name = "Toggle OOC Anonymize"
+	set category = "OOC"
+	set desc = "Use a random anonymized handle or show your real ckey in Lobby OOC."
+	if(!mob)
+		return
+	// Flip preference
+	prefs.anonymize = !prefs.anonymize
+	if(prefs.anonymize)
+		GLOB.anonymize |= ckey
+	else
+		GLOB.anonymize -= ckey
+	prefs.save_preferences()
+	to_chat(src, span_notice("OOC Anonymize is now [prefs.anonymize ? "ENABLED (your handle will be randomized)" : "DISABLED (your ckey will be shown)"]."))
 
 //Checks admin notice
 /client/verb/admin_notice()

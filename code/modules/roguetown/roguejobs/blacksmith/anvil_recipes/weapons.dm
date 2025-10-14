@@ -975,7 +975,7 @@
 // BLACKSTEEL
 
 /datum/anvil_recipe/weapons/blacksteel/flamberge
-	name = "Blacksteel Flamberge (+1 Blacksteel, +1 Ruby)"
+	name = "Blacksteel Flamberge (+1 Blacksteel, +1 Rontz)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/roguegem/ruby)
 	created_item = /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel

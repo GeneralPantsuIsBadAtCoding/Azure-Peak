@@ -1200,3 +1200,22 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(SSsounds.initialized == TRUE)
 		for(var/sound_path as anything in SSsounds.all_music_sounds)
 			src << load_resource(sound_path, -1)
+
+/**
+ * Ensures the OOC verb is only present for lobby (new_player) mobs or admins.
+ * Call this whenever the client's mob changes (e.g. after Login(), late-join, ghostize, etc.).
+ */
+/client/proc/update_ooc_verb_visibility()
+	// If admin (holder) always keep OOC for moderation.
+	if(holder)
+		if(!( /client/verb/ooc in verbs))
+			verbs += /client/verb/ooc
+		return
+
+	// Non-admins: only lobby new_player retains OOC verb.
+	if(istype(mob, /mob/dead/new_player))
+		if(!( /client/verb/ooc in verbs))
+			verbs += /client/verb/ooc
+	else
+		if(/client/verb/ooc in verbs)
+			verbs -= /client/verb/ooc

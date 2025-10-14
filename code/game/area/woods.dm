@@ -23,6 +23,7 @@
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
 	threat_region = THREAT_REGION_AZURE_GROVE
+	detail_text = DETAIL_TEXT_AZURE_GROVE
 
 /area/rogue/indoors/shelter/woods
 	name = "Azure Grove"

@@ -61,6 +61,7 @@
 	var/progress
 	var/doneset
 	var/aghost_toggle
+	var/show_lobby_ooc = TRUE // Admin preference: see lobby OOC even when not in lobby
 
 /atom
 	var/blockscharging = FALSE
