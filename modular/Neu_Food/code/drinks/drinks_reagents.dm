@@ -25,7 +25,7 @@
 // Reagents system don't have the idea of solute and solvent so we need a type for each
 /datum/reagent/consumable/caffeine/
 	name = "Caffeine"
-	description = "Why are you seeing this?"
+	description = "Raw, distilled energy. If you're seeing this, you're either an alchemical prodigy or a particularly unlucky person."
 	hydration_factor = 5
 	overdose_threshold = 60
 
@@ -104,7 +104,7 @@
 	..()
 
 /datum/reagent/consumable/soothing_valerian_tea
-	name = "Soothing Valerin Tea"
+	name = "Soothing Valerian Tea"
 	description = "A refreshing tea, great to ease fatigue and relieve stress."
 	color = "#3b9146"
 	quality = DRINK_FANTASTIC
