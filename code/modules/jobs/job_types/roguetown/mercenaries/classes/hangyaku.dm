@@ -10,13 +10,13 @@
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_NOBLE) //i hate nobles but it's thematic
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	maximum_possible_slots = 3
-	subclass_stats = list(  // mounted knight, but slower. you're paying an extra 2 for a greater variety.
+	subclass_stats = list(  // mounted knight, but slower.
 		STATKEY_STR = 2,
 		STATKEY_INT = 1,
-		STATKEY_CON = 2,
-		STATKEY_WIL = 2,
-		STATKEY_PER = 2,
-		STAKEY_SPD = -2
+		STATKEY_CON = 1,
+		STATKEY_WIL = 1,
+		STATKEY_PER = 2
+		STATKEY_SPD = -1
 	)
 	subclass_skills = list( //impressively limited in terms of what they can do. this is a wall that doesn't do much else.
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
