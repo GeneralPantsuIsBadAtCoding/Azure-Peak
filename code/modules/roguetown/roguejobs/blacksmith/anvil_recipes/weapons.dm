@@ -782,7 +782,7 @@
 	name = "Whip, Silver (+1 Leather Whip)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/rogueweapon/whip)
-	created_item = /obj/item/rogueweapon/flail/sflail/silver
+	created_item = /obj/item/rogueweapon/whip/silver
 
 /datum/anvil_recipe/weapons/silver/tossblade
 	name = "Tossblades, Silver (+1 Silver)"
