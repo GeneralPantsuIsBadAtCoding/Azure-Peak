@@ -23,7 +23,6 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	"Mute"=/datum/charflaw/mute,
 	"Critical Weakness"=/datum/charflaw/critweakness,
 	"Random or No Flaw"=/datum/charflaw/randflaw,
-	"Disfigured (2 TRIUMPHS)"=/datum/charflaw/disfigured,
 	"No Flaw (3 TRIUMPHS)"=/datum/charflaw/noflaw,
 	))
 
@@ -461,41 +460,3 @@ GLOBAL_LIST_INIT(character_flaws, list(
 
 /datum/charflaw/critweakness/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-
-/datum/charflaw/disfigured
-    name = "Disfigured (2 TRI)"
-    desc = "In the past, I had barely managed to escape death's grasp; though I still lyve, it is not without consequence. I am revolting to look upon, and misfortune seems to follow my every step."
-var/nochekk = TRUE
-
-/datum/charflaw/disfigured/on_mob_creation(mob/user)
-    ADD_TRAIT(user, TRAIT_UNSEEMLY, TRAIT_GENERIC)
-
-/datum/charflaw/disfigured/flaw_on_life(mob/user)
-	if(!nochekk)
-		return
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.ckey)
-			if(H.get_triumphs() < 2)
-				nochekk = FALSE
-				var/flawz = GLOB.character_flaws.Copy()
-				var/charflaw = pick_n_take(flawz)
-				charflaw = GLOB.character_flaws[charflaw]
-				if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
-					charflaw = pick_n_take(flawz)
-					charflaw = GLOB.character_flaws[charflaw]
-				if((charflaw == type) || (charflaw == /datum/charflaw/randflaw))
-					charflaw = pick_n_take(flawz)
-					charflaw = GLOB.character_flaws[charflaw]
-				H.charflaw = new charflaw()
-				H.charflaw.on_mob_creation(H)
-			else
-				nochekk = FALSE
-				H.adjust_triumphs(-2)
-
-/datum/virtue/utility/disfigured/handle_traits(mob/living/carbon/human/recipient)
-	..()
-	if(HAS_TRAIT(recipient, TRAIT_BEAUTIFUL))
-		to_chat(recipient, "The miracles of both Acolytes and Physickers alike have triumphed in mending your body! The scars've healed, and your fortunes've lightened, but there still lingers a hollow sense..")
-		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
-		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
