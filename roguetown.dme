@@ -2288,6 +2288,7 @@
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_rack.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_status_effects.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_traits.dm"
+#include "code\modules\roguetown\roguemachine\heartbeast\fleshcrafting\flesh_decoy.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\heart_quirks\quirk_hoarder.dm"
 #include "code\modules\roguetown\roguemachine\heartbeast\research_subsystem\heart_tech_node.dm"
 #include "code\modules\roguetown\roguemachine\inqports\_inqports.dm"
