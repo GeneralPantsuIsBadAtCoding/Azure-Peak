@@ -15,7 +15,7 @@
 		STATKEY_INT = 1,
 		STATKEY_CON = 1,
 		STATKEY_WIL = 1,
-		STATKEY_PER = 2
+		STATKEY_PER = 2,
 		STATKEY_SPD = -1
 	)
 	subclass_skills = list( //impressively limited in terms of what they can do. this is a wall that doesn't do much else.
