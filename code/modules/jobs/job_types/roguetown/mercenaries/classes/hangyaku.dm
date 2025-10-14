@@ -62,12 +62,12 @@
 			if("Heavy Armor")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa
-				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 				pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 			if("Medium Armor")
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/haraate
-				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/kazengun
 		var/masks = list("Full Mask","Half-Mask")
 		var/mask_choice = input(H, "Choose your mask.", "GREET THE SUN?") as anything in masks
