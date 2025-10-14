@@ -186,7 +186,7 @@
 
 /datum/alch_grind_recipe/infernaldust
 	name = "Infernal Dust"
-	valid_input = /datum/crafting_recipe/roguetown/arcana/hellhoundfang
+	valid_input = /obj/item/magic/infernal/fang
 	valid_outputs = list(/obj/item/alch/infernaldust = 1)
 	bonus_chance_outputs = list(/obj/item/alch/firedust = 25)
 

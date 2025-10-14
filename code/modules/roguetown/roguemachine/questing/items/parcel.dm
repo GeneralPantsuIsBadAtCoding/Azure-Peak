@@ -53,11 +53,11 @@
 	var/static/list/area_jobs = list(
 		/area/rogue/indoors/town/tavern = list("Innkeeper", "Tapster", "Cook"),
 		/area/rogue/indoors/town/bath = list("Bathhouse Attendant", "Bathmaster"),
-		/area/rogue/indoors/town/church = list("Priest", "Acolyte", "Templar", "Churchling"),
+		/area/rogue/indoors/town/church = list("Bishop", "Acolyte", "Templar", "Churchling", "Martyr"),
 		/area/rogue/indoors/town/dwarfin = list("Guildmaster", "Guildsman"),
 		/area/rogue/indoors/town/shop = list("Merchant", "Shophand"),
-		/area/rogue/indoors/town/manor = list("Councillor", "Nobleman", "Hand", "Knight Captain", "Marshal", "Steward", "Clerk", "Head Mage", "Duke"),
-		/area/rogue/indoors/town/magician = list("Court Magician", "Magicians Associate"),
+		/area/rogue/indoors/town/manor = list("Councillor", "Seneschal", "Servant", "Hand", "Knight Captain", "Marshal", "Steward", "Clerk", "Grand Duke"),
+		/area/rogue/indoors/town/magician = list("Court Magician", "Magicians Associate", "Archivist"),
 		/area/rogue/indoors/town = list("Guild Handler")
 	)
 	return area_jobs[area_type] || list("Town Crier", "Steward", "Merchant")

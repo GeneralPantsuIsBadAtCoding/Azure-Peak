@@ -22,7 +22,6 @@
 	retreat_distance = 0
 	minimum_distance = 0
 	retreat_health = 0.3
-	resize = 1.5
 	STASPD = 18
 	STACON = 8
 	STASTR = 10
@@ -67,7 +66,7 @@
 		D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 		D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale/get_sound(input)
+/mob/living/simple_animal/hostile/retaliate/rogue/drider/get_sound(input)
 	switch(input)
 		if("aggro")
 			return pick('sound/vo/mobs/spider/aggro (1).ogg','sound/vo/mobs/spider/aggro (2).ogg','sound/vo/mobs/spider/aggro (3).ogg')

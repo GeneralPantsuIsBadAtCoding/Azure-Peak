@@ -31,6 +31,11 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tarot Deck"
 	path = /obj/item/toy/cards/deck/tarot
 
+/datum/loadout_item/custom_book
+	name = "Custom Book"
+	path = /obj/item/book/rogue/loadoutbook
+
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
@@ -471,7 +476,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/psicross/zizo
 	name = "Decrepit Zcross"
-	path = /obj/item/clothing/neck/roguetown/zcross/aalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"

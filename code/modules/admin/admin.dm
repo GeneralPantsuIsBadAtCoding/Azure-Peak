@@ -893,3 +893,30 @@
 			M.set_resting(FALSE, TRUE)
 
 	message_admins("[key_name(usr)] used Toggle Wake In View.")
+
+GLOBAL_VAR_INIT(extend_round_timestamp, 0)
+/datum/admins/proc/extend_round()
+	set name = "Extend Round"
+	set category = "-Server-"
+	set hidden = FALSE
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(alert("Prolong the end of the round by 30 minutes. This delays the vote, or delays the end after the vote is successful. Are you sure?",,"Yes","Cancel") == "Cancel")
+		return
+
+	if(world.time < GLOB.extend_round_timestamp + (1 MINUTES))
+		to_chat(usr, "<span class='notice'>Someone recently pressed this button! Wait a minute before pressing it again.</span>")
+		return
+
+	if((GLOB.round_timer > world.time + (3 * ROUND_EXTENSION_TIME)) || SSgamemode.round_ends_at - world.time > (3 * ROUND_EXTENSION_TIME))
+		to_chat(usr, "<span class='notice'>Failsafe! Round end is already over 3 times out! Ignoring.</span>")
+		return
+	if(SSgamemode.round_ends_at != 0) // End round is already ticking.
+		SSgamemode.round_ends_at += ROUND_EXTENSION_TIME
+	else //We push back the automated endround vote.
+		GLOB.round_timer = GLOB.round_timer + ROUND_EXTENSION_TIME
+	log_admin("[key_name(usr)] extended the round by 30 minutes.")
+	message_admins("[key_name(usr)] extended the round by 30 minutes.")
+	GLOB.extend_round_timestamp = world.time

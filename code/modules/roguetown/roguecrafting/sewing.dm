@@ -63,6 +63,13 @@
 				/obj/item/natural/fibers = 2)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/sewing/necramask
+	name = "death mask, reassembled"
+	result = list(/obj/item/clothing/head/roguetown/necramask)
+	reqs = list(/obj/item/clothing/head/roguetown/necrahood = 1,
+				/obj/item/natural/bone = 1)
+	craftdiff = 0
+
 /* craftdif of 1 */
 
 /datum/crafting_recipe/roguetown/sewing/clothgloves
@@ -299,6 +306,13 @@
 /datum/crafting_recipe/roguetown/sewing/psydon
 	name = "tabard, psydon"
 	result = list(/obj/item/clothing/cloak/templar/psydon)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/psydon
+	name = "tabard, psydon orthodoxist"
+	result = list(/obj/item/clothing/cloak/psydontabard)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3

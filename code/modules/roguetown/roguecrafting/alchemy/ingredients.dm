@@ -276,8 +276,8 @@
 	icon_state = "infernaldust"
 
 	major_pot = /datum/alch_cauldron_recipe/fire_potion
-	med_pot = /datum/alch_cauldron_recipe/int_potion
-	minor_pot = /datum/alch_cauldron_recipe/per_potion
+	med_pot = /datum/alch_cauldron_recipe/big_stam_poison
+	minor_pot = /datum/alch_cauldron_recipe/int_potion
 
 /obj/item/alch/solardust
 	name = "solar dust"

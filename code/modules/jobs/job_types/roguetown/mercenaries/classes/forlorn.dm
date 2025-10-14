@@ -72,7 +72,7 @@
 	var/weapon_choice = input(H, "Choose your weapon.", "ARMS TO SLAY THE OPPRESSORS") as anything in weapons
 	switch(weapon_choice)
 		if("Warhammer")
-			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/warhammer/steel, ITEM_SLOT_HANDS)
+			H.equip_to_slot_or_del(new /obj/item/rogueweapon/mace/warhammer/steel, SLOT_BELT_L)
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/shield/heater, SLOT_BACK_L)
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT)
 		if("Militia Steel Warpick")

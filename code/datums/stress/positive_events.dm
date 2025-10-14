@@ -335,3 +335,8 @@
 	stressadd = -1
 	timer = 5 MINUTES
 	desc = span_green("How decadent!")
+
+/datum/stressevent/fermented_crab_good
+	stressadd = -1
+	desc = span_green("That fermented crab was not the most pleasant dish ever, but youthful vigor in my body was worth the sacrifice!")
+	timer = 3 MINUTES
