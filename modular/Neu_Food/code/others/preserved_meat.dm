@@ -1,7 +1,7 @@
 // -------------- SALUMOI (dwarven smoked sausage) -----------------
 /obj/item/reagent_containers/food/snacks/rogue/meat/salami
 	name = "salumoi"
-	desc = "Traveling food invented by dwarves. Said to last for ten yils before spoiling"
+	desc = "A salted sausage, allegedly invented by the dwarves as a 'traveling food'. Said to last for ten yils before spoiling."
 	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'
 	icon_state = "salumoi5"
 	eat_effect = null
