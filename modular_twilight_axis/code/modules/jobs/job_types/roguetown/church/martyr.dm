@@ -44,7 +44,7 @@
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
 			return
-		user.say("Крестоносцы, сосредоточьтесь на цели! Да направит Нок вашу руку!!")
+		user.say("Храмовники, сосредоточьтесь на цели! Да направит Нок вашу руку!!")
 		var/area/rogue/our_area = get_area(target)
 		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance)
@@ -98,7 +98,7 @@
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
 			return
-		user.say("Вперёд, крестоносцы!! Ксайликс направит нас к победе!!")
+		user.say("Вперёд, храмовники! Ксайликс направит нас к победе!!")
 		var/area/rogue/our_area = get_area(target)
 		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite)
@@ -158,7 +158,7 @@
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
 			return
-		user.say("Крестоносцы! Встаньте и сражайтесь! Равокс смотрит на вас!!")
+		user.say("Храмовники! Встаньте и сражайтесь! Равокс смотрит на вас!!")
 		var/area/rogue/our_area = get_area(target)
 		if(!(target.mobility_flags & MOBILITY_STAND))
 			target.SetUnconscious(0)
@@ -228,7 +228,7 @@
 			to_chat(user, span_alert("I cannot order myself!"))
 			revert_cast()
 			return
-		user.say("Ни шагу назад, крестоносцы! Малум укрепит нашу волю!!")
+		user.say("Ни шагу назад, храмовники! Малум укрепит нашу волю!!")
 		var/area/rogue/our_area = get_area(target)
 		if(!(our_area.holy_area))
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand)
