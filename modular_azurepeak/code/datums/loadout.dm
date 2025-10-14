@@ -518,14 +518,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Fitted Coat"
 	path = /obj/item/clothing/cloak/cotehardie
 
-/datum/loadout_item/baurenwehr
-	name = "Baurenwehr, Knife (2 TRI)" //Trialing. Boot-fittable utility tool, weakest dagger - but solid 'last stand' throwing performance - in the game. Fit for Towners and some Adventurers.
-	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
-
-/datum/loadout_item/baurenwehr/on_mob_creation(mob/user)
-	if(H.mind)
-		H.adjust_triumphs(-2)
-
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
