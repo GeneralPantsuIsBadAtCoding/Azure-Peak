@@ -368,7 +368,6 @@
 		return
 
 	if(user.mind.active_quest >= 2)
-		say("You take max count active quests.")
 		return
 
 	// Continue with the rest of the proc using actual_difficulty instead of selection
@@ -380,7 +379,6 @@
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
 	user.mind.active_quest += 1
-	say("You take [user.mind.active_quest] active quests.")
 	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -489,7 +487,6 @@
 		original_reward += deposit_return
 		
 		user.mind.active_quest -= 1
-		say("You now [user.mind.active_quest] active quests.")
 		qdel(scroll.assigned_quest)
 		qdel(scroll)
 
@@ -566,9 +563,6 @@
 					qdel(I)
 
 	abandoned_scroll.assigned_quest = null
-	if(user.mind.active_quest >= 1)
-		user.mind.active_quest -= 1
-		say("You now [user.mind.active_quest] active quests.")
 	qdel(quest)
 	qdel(abandoned_scroll)
 
