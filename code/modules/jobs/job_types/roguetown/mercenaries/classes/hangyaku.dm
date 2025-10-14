@@ -98,7 +98,7 @@
 	tutorial = "Once, you were a farmer, a miner, a seamstress, a commoner. Now the sword is your plow and war your field. You’ve hammered your scythes into spears and recast your knives into swords. Past the door, your daimyo is calling - and destiny awaits."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = ALL //do they have constructs in kazengun?
-	outfit = /datum/outfit/job/roguetown/mercenary/hangyaku
+	outfit = /datum/outfit/job/roguetown/mercenary/chonin
 	subclass_languages = list(/datum/language/kazengunese)
 	class_select_category = CLASS_CAT_KAZENGUN
 	category_tags = list(CTAG_MERCENARY)
