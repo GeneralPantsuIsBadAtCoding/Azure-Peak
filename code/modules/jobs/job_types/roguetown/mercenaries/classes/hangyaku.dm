@@ -25,6 +25,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
@@ -60,13 +61,11 @@
 		switch(armor_choice)
 			if("Heavy Armor")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 				pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 			if("Medium Armor")
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/haraate
 				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/kazengun
@@ -79,6 +78,7 @@
 				mask = /obj/item/clothing/mask/rogue/facemask/steel/kazengun
 
 	to_chat(H, span_warning("Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Psydonia, seeking a fresh start... or fresh coin, at least."))
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
 	cloak = /obj/item/clothing/cloak/kazengun
@@ -95,9 +95,9 @@
 
 /datum/advclass/mercenary/chonin
 	name = "Hangyaku-Chonin"
-	tutorial = "A low-born, but ascendant among the social ladder; your position was tenuous even before Kazengun was threatened by brewing civil conflict. Maybe your home was destroyed and you fled to start anew; maybe your family spoke too highly of themselves against the Order of Astrata. Now, you make a new history, all your own..."
+	tutorial = "Once, you were a farmer, a miner, a seamstress, a commoner. Now the sword is your plow and war your field. You’ve hammered your scythes into spears and recast your knives into swords. Past the door, your daimyo is calling - and destiny awaits."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_NO_CONSTRUCT //do they have constructs in kazengun?
+	allowed_races = ALL //do they have constructs in kazengun?
 	outfit = /datum/outfit/job/roguetown/mercenary/hangyaku
 	subclass_languages = list(/datum/language/kazengunese)
 	class_select_category = CLASS_CAT_KAZENGUN
@@ -117,6 +117,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/bows = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
@@ -124,60 +125,64 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN
 	)
-	extra_context = "This subclass is race-limited from: Constructs."
 
-/datum/outfit/job/roguetown/mercenary/hangyaku/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/mercenary/chonin/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.set_blindness(0)
-		var/weapons = list("Sword","Great Mace","Spear","Bow") //same as the kouken they're just worse at it
-		var/weapon_choice = input(H, "Choose your weapon.", "WHAT DID THEY GIVE YOU?") as anything in weapons
-		switch(weapon_choice)
-			if("Sword")
-				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				backr = /obj/item/rogueweapon/sword/long/kriegmesser/ssangsudo
-			if("Great Mace")
-				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				r_hand = /obj/item/rogueweapon/mace/goden/kanabo
-				backr = /obj/item/rogueweapon/scabbard/gwstrap
-			if("Spear")
-				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				r_hand = /obj/item/rogueweapon/spear/naginata
-				backr = /obj/item/rogueweapon/scabbard/gwstrap
-			if("Bow")
-				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-				beltr = /obj/item/quiver/arrows
-		var/trades = list("Town Physician","Farmer","Tailor","Laborer","Merchant") //JMAN COMBAT SKILLS... AND TOWNER TRADES. GOD I HOPE THIS ISN'T A TERRIBLE IDEA.
+		var/trades = list("Town Physician","Farmer","Tailor","Laborer","Merchant","Levy") //JMAN COMBAT SKILLS... AND TOWNER TRADES. GOD I HOPE THIS ISN'T A TERRIBLE IDEA.
 		var/trade_choice = input(H, "Choose your former trade.", "WHO ARE YOU?") as anything in trades
 		switch(trade_choice)
 			if("Town Physician") //alchemy and medicine. that's pretty strong as-is, so...
 				ADD_TRAIT(H, TRAIT_MEDICINE_EXPERT, TRAIT_GENERIC)
 				ADD_TRAIT(H, TRAIT_ALCHEMY_EXPERT, TRAIT_GENERIC)
+				r_hand = /obj/item/rogueweapon/woodstaff/militia
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/misc/medicine, SKILL_LEVEL_APPRENTICE, TRUE)
 			if("Farmer") //farming, cooking, butchery, fishing
-				ADD_TRAIT(H, TRAIT_SURVIVAL_EXPERT, TRAIT_GENERIC) 
+				ADD_TRAIT(H, TRAIT_SURVIVAL_EXPERT, TRAIT_GENERIC)
+				r_hand = /obj/item/rogueweapon/spear/militia
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/labor/farming, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/cooking, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/labor/butchering, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/labor/fishing, SKILL_LEVEL_APPRENTICE, TRUE)
 			if("Tailor") // sewing/etc.
 				ADD_TRAIT(H, TRAIT_SEWING_EXPERT, TRAIT_GENERIC)
+				r_hand = /obj/item/rogueweapon/sword/falchion/militia
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/sewing, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/tanning, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/labor/butchering, SKILL_LEVEL_APPRENTICE, TRUE)
 			if("Laborer") //physical labor; smelting, pottery, mining. you'll have to get the smithing yourself.
 				ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
+				r_hand = /obj/item/rogueweapon/pick/militia/steel
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/smelting, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/ceramics, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/craft/carpentry, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/labor/mining, SKILL_LEVEL_APPRENTICE, TRUE)
-			if("Merchant") //worst of the bunch, but it's thematic.
+			if("Merchant") //the sneaky one.
 				ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 				beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+				beltr = /obj/item/rogueweapon/scabbard/sheath/kazengun
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Levy") //straight-up fighter. gets a naginata AND a tanto.
+				r_hand = /obj/item/rogueweapon/spear/naginata
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_EXPERT, TRUE)
+				beltr = /obj/item/rogueweapon/scabbard/sheath/kazengun
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/kazengun
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				
 
-	to_chat(H, span_warning("A low-born, but ascendant among the social ladder; your position was tenuous even before Kazengun was threatened by brewing civil conflict. Maybe your home was destroyed and you fled to start anew; maybe your family spoke too highly of themselves against the Order of Astrata. Now, you make a new history, all your own..."))
+	to_chat(H, span_warning("Once, you were a farmer, a miner, a seamstress, a commoner. Now the sword is your plow and war your field. You’ve hammered your scythes into spears and recast your knives into swords. Past the door, your daimyo is calling - and destiny awaits."))
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
 	head = /obj/item/clothing/head/roguetown/helmet/kettle/jingasa

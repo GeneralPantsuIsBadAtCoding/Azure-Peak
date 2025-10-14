@@ -1974,7 +1974,7 @@
 
 /obj/item/clothing/cloak/kazengun
 	name = "jinbaori"
-	desc = "A simple kind of Kazengunite surcoat, worn in the distant battlefields of Azuria to differentiate friend from foe."
+	desc = "A simple kind of Kazengunite surcoat, worn here in the distant battlefields of Azuria to differentiate friend from foe."
 	icon_state = "kazenguncoat"
 	item_state = "kazenguncoat"
 	detail_tag = "_detail"
