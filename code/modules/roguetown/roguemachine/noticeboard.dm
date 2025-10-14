@@ -367,6 +367,10 @@
 	if(!type_selection)
 		return
 
+	if(user.mind.active_quest >= 2)
+		say("You take max count active quests.")
+		return
+
 	// Continue with the rest of the proc using actual_difficulty instead of selection
 	var/datum/quest/attached_quest = new()
 	attached_quest.reward_amount = rand(difficulty_data[actual_difficulty]["reward_min"], difficulty_data[actual_difficulty]["reward_max"]) // Changed from selection to actual_difficulty
@@ -375,6 +379,9 @@
 
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
+	user.mind.active_quest += 1
+	say("You take [user.mind.active_quest] active quests.")
+	log_quest(user.ckey, user.mind, user, "Take [attached_quest.quest_type]")
 	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -482,6 +489,10 @@
 		reward += deposit_return
 		original_reward += deposit_return
 		
+		if(user.mind.active_quest >= 1)
+			user.mind.active_quest -= 1
+			say("You now [user.mind.active_quest] active quests.")
+			log_quest(user.ckey, user.mind, user, "Finish [scroll.assigned_quest.quest_type]")
 		qdel(scroll.assigned_quest)
 		qdel(scroll)
 
@@ -557,6 +568,10 @@
 					qdel(Q)
 					qdel(I)
 
+	if(user.mind.active_quest >= 1)
+		user.mind.active_quest -= 1
+		say("You now [user.mind.active_quest] active quests.")
+		log_quest(user.ckey, user.mind, user, "Abandon [abandoned_scroll.assigned_quest.quest_type]")
 	abandoned_scroll.assigned_quest = null
 	qdel(quest)
 	qdel(abandoned_scroll)

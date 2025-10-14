@@ -1447,7 +1447,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	to_chat(M, "\The [src] BREAKS...!")
 
-/obj/item/obj_fix()
+/obj/item/obj_fix(mob/user, full_repair = TRUE)
 	..()
 	update_damaged_state()
 
