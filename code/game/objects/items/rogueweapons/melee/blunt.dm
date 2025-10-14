@@ -427,7 +427,7 @@
 	icon_state = "kanabo"
 	slot_flags = ITEM_SLOT_BACK
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick, /datum/intent/effect/daze) // have you ever heard the WoW ogre aggro noise? yeah
-	max_integrity = 275 // that's actually 25 more than the steel grandmace, but, uh...
+	max_integrity = 225 // it's strong wood, but it's still wood.
 
 /obj/item/rogueweapon/mace/goden/steel/ravox
 	name = "duel settler"
