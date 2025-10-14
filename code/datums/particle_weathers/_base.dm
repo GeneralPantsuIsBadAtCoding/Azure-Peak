@@ -31,20 +31,10 @@
 		spawning = 0
 		return
 
-	var newWind = wind * severityMod * pick(-1,1) //Wind can go left OR right!
 	var newSpawning = max(minSpawning, maxSpawning * severityMod)
 
-	//gravity might be x, xy, or xyz
-	var/newGravity = gravity
-	if(length(newGravity))
-		newGravity[1] = newWind
-	else
-		newGravity = list(newWind)
-
 	//The higher the severity, the faster the change - elastic easing for flappy wind
-	gravity = newGravity
 	spawning = newSpawning
-	// animate(src, gravity=newGravity, spawning=newSpawning, time=1/severity * 10, easing=ELASTIC_EASING)
 
 /**
  * Shitty particle weather by Gomble

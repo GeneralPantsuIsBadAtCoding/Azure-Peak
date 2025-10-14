@@ -5,7 +5,6 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue
 	name = "roguetown"
 	icon_state = "rogue"
-	has_gravity = STANDARD_GRAVITY
 	ambientsounds = null
 	always_unpowered = TRUE
 	poweralm = FALSE
