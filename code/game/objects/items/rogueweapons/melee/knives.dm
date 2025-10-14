@@ -368,6 +368,7 @@ obj/item/rogueweapon/huntingknife/throwingknife/baurenwehr/getonmobprop(tag)
 	max_integrity = 200
 	icon_state = "gsdagger"
 	sheathe_icon = "gsdagger"
+	smeltresult = /obj/item/ingot/gold
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
 	name ="plaguebringer sickle"
