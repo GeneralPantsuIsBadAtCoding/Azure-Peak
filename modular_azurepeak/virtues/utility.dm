@@ -218,6 +218,13 @@
 	added_skills = list(list(/datum/skill/craft/cooking, 3, 6),
 						list(/datum/skill/labor/fishing, 2, 6))
 
+/datum/virtue/utility/physique
+	name = "Traveled Physique"
+	desc = "I've grown accustomed to traveling across Psydonia's roughest trails. Saigas might be daunted by cliffs and rivers, but I welcome the challenge."
+	added_skills = list(list(/datum/skill/misc/swimming, 3, 3),
+						list(/datum/skill/misc/climbing, 3, 3),
+						list(/datum/skill/misc/athletics, 3, 3))
+
 /datum/virtue/utility/forester
 	name = "Forester"
 	added_traits = list(TRAIT_HOMESTEAD_EXPERT)
