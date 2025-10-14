@@ -70,6 +70,12 @@
 				/obj/item/natural/bone = 1)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/sewing/bandages
+	name = "bandages, gloves"
+	result = list(/obj/item/clothing/gloves/roguetown/bandages)
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+
 /* craftdif of 1 */
 
 /datum/crafting_recipe/roguetown/sewing/clothgloves
@@ -255,10 +261,26 @@
 	reqs = list(/obj/item/natural/cloth = 2)
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/sewing/allwrappings
+	name = "wrappings"
+	result = list(/obj/item/clothing/wrists/roguetown/allwrappings)
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/sewing/weightedbandages
+	name = "weighted bandages, gloves"
+	result = list(/obj/item/clothing/gloves/roguetown/bandages)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1,
+				/obj/item/natural/hide/cured = 1)
+	craftdiff = 2
+
 /datum/crafting_recipe/roguetown/sewing/nunveil
 	name = "nun veil"
 	result = list(/obj/item/clothing/head/roguetown/nun)
-	reqs = list(/obj/item/natural/cloth = 1)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1,
+				/obj/item/natural/bone = 1)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/nunhabit
@@ -1192,3 +1214,4 @@
 		/obj/item/natural/hide/cured = 1
 	)
 	craftdiff = 2
+	craftdiff = 1
