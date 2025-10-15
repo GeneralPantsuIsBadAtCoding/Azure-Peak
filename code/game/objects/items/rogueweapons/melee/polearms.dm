@@ -1503,8 +1503,9 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	name = "\"Daemonslayer\""
-	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
+	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts. </br>It's said that this weapon was once forged by a pair of legendary blacksmiths, in order to spite a Duke's flamboyant request; a sword that could 'banish the Archdevil itself'."
 	icon_state = "machaslayer"
+	icon = 'icons/roguetown/weapons/64.dmi'
 	possible_item_intents = list(/datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/sucker_punch/dragonslayer)
 	gripped_intents = list(/datum/intent/sword/chop/dragonslayer, /datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/smash/dragonslayer, /datum/intent/sword/flay/dragonslayer)
 	force = 5
@@ -1519,21 +1520,9 @@
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
-		added_int = 0,\
-		added_def = 0,\
-	)
-
-/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/preblessed/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_TENNITE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 0,\
-		added_int = 0,\
-		added_def = 0,\
-	)
+		added_int = 100,\
+		added_def = 2,\
