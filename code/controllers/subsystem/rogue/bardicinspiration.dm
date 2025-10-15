@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	if(!folksnearby)
 		return
-	var/target = input(src, "Who will you perform for?") as null|anything in folksnearby
+	var/target = tgui_input_list(src, "Who will you perform for?", "Audience Choice", folksnearby)
 	if(target)
 		inspiration.audience += target
 
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	if(inspiration.tier3acquired)
 		choosablesongtiers -= ("TIER3")
 
-	var/chosensongtier = input("Choose a tier of song to add to your songbook") as null | anything in choosablesongtiers
+	var/chosensongtier = tgui_input_list(src, "Choose a tier of song to add to your songbook", choosablesongtiers)
 
 	switch(chosensongtier)
 		if("TIER1")
