@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/song
 	var/song_tier = 1
+	sound = list('sound/magic/fireball.ogg')
 	overlay_icon = 'icons/mob/actions/bardsongs.dmi'
 	overlay_state = "dirge_t1_base"
 	action_icon_state = "dirge_t1_base"
@@ -32,9 +33,10 @@
 		for(var/datum/status_effect/buff/playing_dirge/dirges in user.status_effects)
 			user.remove_status_effect(dirges)
 		user.apply_status_effect(/datum/status_effect/buff/playing_melody/fervor)
+		return TRUE
 	else
 		revert_cast()
-		return
+		return FALSE
 
 /datum/status_effect/buff/playing_melody/fervor
 	effect = /obj/effect/temp_visual/songs/inspiration_bardsongt2

@@ -16,9 +16,10 @@
 		for(var/datum/status_effect/buff/playing_dirge/dirges in user.status_effects)
 			user.remove_status_effect(dirges)
 		user.apply_status_effect(/datum/status_effect/buff/playing_dirge/pestilent_piedpiper)
+		return TRUE
 	else
 		revert_cast()
-		return
+		return FALSE
 
 
 
