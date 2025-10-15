@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/song
 	var/song_tier = 1
-	sound = list('sound/magic/fireball.ogg')
+	sound = list('sound/magic/buffrollaccent.ogg')
 	overlay_icon = 'icons/mob/actions/bardsongs.dmi'
 	overlay_state = "dirge_t1_base"
 	action_icon_state = "dirge_t1_base"

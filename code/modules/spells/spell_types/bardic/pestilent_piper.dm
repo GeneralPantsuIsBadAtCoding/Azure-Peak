@@ -7,6 +7,7 @@
 	warnie = "spellwarning"
 	invocations = list("A festering performance!") 
 	invocation_type = "shout"
+	sound = list('sound/magic/debuffroll.ogg')
 
 
 /obj/effect/proc_holder/spell/invoked/song/pestilent_piedpiper/cast(mob/living/user = usr)

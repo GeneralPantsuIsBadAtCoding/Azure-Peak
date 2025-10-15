@@ -38,6 +38,7 @@
 	invocation_type = "shout"
 	overlay_state = "dirge_t1_base"
 	action_icon_state = "dirge_t1_base"
+	sound = list('sound/magic/debuffroll.ogg')
 
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune/cast(mob/living/user = usr)
 	if(user.has_status_effect(/datum/status_effect/buff/playing_music))

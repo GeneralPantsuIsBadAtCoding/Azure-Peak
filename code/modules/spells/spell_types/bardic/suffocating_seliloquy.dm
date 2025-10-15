@@ -8,6 +8,7 @@
 	invocation_type = "shout"
 	overlay_state = "dirge_t3_base"
 	action_icon_state = "dirge_t3_base"
+	sound = list('sound/magic/debuffroll.ogg')
 
 
 /obj/effect/proc_holder/spell/invoked/song/suffocating_seliloquy/cast(mob/living/user = usr)
