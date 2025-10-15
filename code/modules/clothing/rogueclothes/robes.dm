@@ -305,3 +305,19 @@
 	desc = "Part robe, part butcher's apron."
 	icon_state = "surgrobe"
 	item_state = "surgrobe"
+
+// Agnostic versions of the unused robes, for use in the Loadout.
+
+/obj/item/clothing/suit/roguetown/shirt/robe/tabardscarlet
+	name = "scarlet tabard"
+	desc = "Sleeveless robes, hued like rosas."
+	color = null
+	icon_state = "feldrobe"
+	item_state = "feldrobe"
+
+/obj/item/clothing/suit/roguetown/shirt/robe/tabardblack
+	name = "black tabard"
+	desc = "Sleeveless robes, tinged like charcoal."
+	color = null
+	icon_state = "surgrobe"
+	item_state = "surgrobe"
