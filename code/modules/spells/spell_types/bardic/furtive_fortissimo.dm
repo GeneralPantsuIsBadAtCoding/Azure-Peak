@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/song/furtive_fortissimo
 	name = "Furtive Fortissimo"
-	desc = "Sneaky, sneaky! Play the song of sneaking!"
+	desc = "With cat like tread, apply light steps to audience members"
 	song_tier = 1
-	invocations = list("Sneaking, sneaking, oh, we-go-a-sneaking!") 
+	invocations = list("With cat like tread!!") 
 	invocation_type = "shout"
 	overlay_state = "bardsong_t1_base"
 	action_icon_state = "bardsong_t1_base"
