@@ -178,8 +178,8 @@
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
 	if(H.mind)
-		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman", "Psyaltery")
-		var/weapon_choice = tgui_input_list(H, "Choose your instrument.", "SERENADE THEIR SPIRITS", weapons)
+		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman", "Psyaltery", "Flute")
+		var/weapon_choice = tgui_input_list(H, "Choose your instrument.", "TAKE UP ARMS", weapons)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")
@@ -198,3 +198,5 @@
 				backr = /obj/item/rogue/instrument/vocals
 			if("Psyaltery")
 				backr = /obj/item/rogue/instrument/psyaltery
+			if("Flute")
+				backr = /obj/item/rogue/instrument/flute

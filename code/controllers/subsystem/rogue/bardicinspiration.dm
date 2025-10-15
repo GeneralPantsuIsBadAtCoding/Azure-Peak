@@ -65,6 +65,8 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	H.verbs += list(/mob/living/carbon/human/proc/setaudience, /mob/living/carbon/human/proc/clearaudience, /mob/living/carbon/human/proc/checkaudience, /mob/living/carbon/human/proc/picksongs)
 
 
+
+
 /mob/living/carbon/human/proc/setaudience()
 	set name = "Audience Choice"
 	set category = "Inspiration"

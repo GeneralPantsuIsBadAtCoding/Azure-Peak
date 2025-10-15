@@ -21,6 +21,7 @@
 		return TRUE
 	else
 		revert_cast()
+		to_chat(user, span_warning("I must be playing something to inspire my audience!"))
 		return
 
 
