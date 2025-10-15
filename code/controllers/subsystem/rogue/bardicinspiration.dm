@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	if(!folksnearby)
 		return
-	var/target = input(src, "Who will you perform for?") as null|anything in folksnearby
+	var/target = tgui_input_list(src, "Who will you perform for?", "Audience Choice", folksnearby)
 	if(target)
 		inspiration.audience += target
 
