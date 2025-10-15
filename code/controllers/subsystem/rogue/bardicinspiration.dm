@@ -36,6 +36,14 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	var/tier2acquired = FALSE
 	var/tier3acquired = FALSE
 
+/datum/inspiration/Destroy(force)
+	. = ..()
+	holder?.inspiration = null
+	holder = null
+	STOP_PROCESSING(SSobj, src)
+
+
+
 /mob/living/carbon/human/proc/in_audience(var/mob/living/carbon/human/audiencee)
 	if(!src.mind)
 		return FALSE
