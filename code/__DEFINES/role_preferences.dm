@@ -11,6 +11,7 @@
 #define ROLE_VAMPIRE			"Vampire"
 #define ROLE_NBEAST				"Vampire Lord"
 #define ROLE_BANDIT				"Bandit"
+#define ROLE_ASSASSIN			"Assassin"
 #define ROLE_DELF				"Dark Elf"
 #define ROLE_PREBEL				"Peasant Rebel"
 #define ROLE_ASPIRANT			"Aspirant"

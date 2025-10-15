@@ -1,4 +1,5 @@
 /datum/job/roguetown/assassin
+	title = "Assassin"
 	flag = ASSASSIN
 	department_flag = PEASANTS
 	faction = "Station"
@@ -15,7 +16,7 @@
 
 	obsfuscated_job = TRUE
 
-	display_order = JDO_BANDIT
+	display_order = JDO_ASSASSIN
 	announce_latejoin = FALSE
 	round_contrib_points = 5
 
