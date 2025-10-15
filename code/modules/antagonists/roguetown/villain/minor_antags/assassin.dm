@@ -19,7 +19,6 @@
 		TRAIT_NOSTINK,
 		TRAIT_DODGEEXPERT,
 		TRAIT_STEELHEARTED,
-		TRAIT_STRONG_GRABBER,
 	)
 
 /datum/antagonist/assassin/on_gain()

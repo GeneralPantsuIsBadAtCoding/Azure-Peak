@@ -5,7 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/assassin/ranger
 	category_tags = list(CTAG_ASSASSIN)
-	traits_applied = list(TRAIT_LEECHIMMUNE)	// Master of the Forest - Tosses them a bone for swimming and chases.
+	traits_applied = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)	// Master of the Forest - Tosses them a bone for wilderness chases.
 	// Weighted 14
 	subclass_stats = list(
 		STATKEY_PER = 4,
@@ -16,12 +16,12 @@
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,			// Fall-back/melee weapon is using a big ol' axe.
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/bows = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/bows = SKILL_LEVEL_MASTER,			//Good ranged weapon options
 		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE,
@@ -49,7 +49,7 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 					/obj/item/flashlight/flare/torch/lantern/prelit = 1,
-					/obj/item/rogueweapon/scabbard/sheath = 1
+					/obj/item/rogueweapon/scabbard/sheath = 1, 
 					/obj/item/rogueweapon/huntingknife/idagger/steel = 1,
 					/obj/item/needle/thorn = 1,
 					/obj/item/natural/cloth = 1,
@@ -59,6 +59,7 @@
 	neck = /obj/item/clothing/neck/roguetown/coif
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Yew Longbow","Crossbow")

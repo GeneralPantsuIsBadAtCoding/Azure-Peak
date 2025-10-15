@@ -72,6 +72,15 @@
 	intent_intdamage_factor = 1.35
 	icon_state = "insmash"
 	item_d_type = "blunt"
+
+/datum/intent/knuckles/strike/wallop
+	name = "wallop"
+	blade_class = BCLASS_TWIST
+	attack_verb = list("wallops", "thwacks", "thwamps")
+	damfactor = 1.1
+	intent_intdamage_factor = 0.6
+	icon_state = "inbash"	// Wallop is too long for a button; placeholder.
+
 /// INTENT DATUMS	^
 
 /obj/item/rogueweapon/lordscepter
@@ -394,7 +403,7 @@
 	name = "steel knuckles"
 	desc = "A mean looking pair of steel knuckles."
 	force = 25
-	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash)
+	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash, /datum/intent/knuckles/strike/wallop)
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	icon_state = "steelknuckle"
 	gripsprite = FALSE
@@ -427,7 +436,7 @@
 	name = "bronze knuckles"
 	desc = "A mean looking pair of bronze knuckles. Mildly heavier than it's steel counterpart, making it a solid defensive option, if less wieldy."
 	force = 22
-	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash)
+	possible_item_intents = list(/datum/intent/knuckles/strike, /datum/intent/knuckles/smash, /datum/intent/knuckles/strike/wallop)
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	icon_state = "bronzeknuckle"
 	gripsprite = FALSE
