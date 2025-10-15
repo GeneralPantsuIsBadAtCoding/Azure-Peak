@@ -304,6 +304,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/ingot/copper = 2,
 		/obj/item/roguegear = 1, 
+		/obj/item/bottle_kit = 1,
 		/obj/item/recipe_book/survival = 1)
 
 /datum/advclass/trader/cuisiner
