@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 	if(inspiration.tier3acquired)
 		choosablesongtiers -= ("TIER3")
 
-	var/chosensongtier = tgui_input_list(src, "Choose a tier of song to add to your songbook", "SERENEADE" choosablesongtiers)
+	var/chosensongtier = tgui_input_list(src, "Choose a tier of song to add to your songbook", "SERENADE", choosablesongtiers)
 
 	switch(chosensongtier)
 		if("TIER1")

@@ -2357,6 +2357,7 @@
 #include "code\modules\spells\spell_types\bardic\fervor_song.dm"
 #include "code\modules\spells\spell_types\bardic\furtive_fortissimo.dm"
 #include "code\modules\spells\spell_types\bardic\intellectual_interval.dm"
+#include "code\modules\spells\spell_types\bardic\melody-dirges.dm"
 #include "code\modules\spells\spell_types\bardic\pestilent_piper.dm"
 #include "code\modules\spells\spell_types\bardic\recovery_song.dm"
 #include "code\modules\spells\spell_types\bardic\rejuvenation_song.dm"

@@ -1,39 +1,3 @@
-/datum/status_effect/buff/playing_melody
-	id = "play_melody"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/playing_melody
-	var/effect_color
-	var/datum/status_effect/buff/buff_to_apply
-	var/pulse = 0
-	var/ticks_to_apply = 10
-	duration = 2 MINUTES
-	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_melodyt1
-
-
-/atom/movable/screen/alert/status_effect/buff/playing_melody
-	name = "Playing Melody"
-	desc = "Healing the world with my craft."
-	icon_state = "buff"
-
-
-/datum/status_effect/buff/playing_melody/tick()
-	var/mob/living/carbon/human/O = owner
-	if(!O.inspiration)
-		return
-	new effect(get_turf(owner))
-	pulse += 1
-	if (pulse >= ticks_to_apply)
-		pulse = 0
-		O.energy_add(-50)
-		for (var/mob/living/carbon/human/H in hearers(7, owner))
-			if(!O.in_audience(H))
-				return
-			H.apply_status_effect(buff_to_apply)
-
-
-
-
-
-
 /obj/effect/proc_holder/spell/invoked/song/rejuvenation_song
 	name = "Healing Hymn"
 	desc = "Recuperate your allies bodies with your song! Refills health slowly over time!"

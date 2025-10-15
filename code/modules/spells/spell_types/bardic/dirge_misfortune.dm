@@ -1,34 +1,3 @@
-/datum/status_effect/buff/playing_dirge
-	id = "play_dirge"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/playing_dirge
-	var/effect_color
-	var/datum/status_effect/debuff/debuff_to_apply
-	var/pulse = 0
-	var/ticks_to_apply = 10
-	duration = 2 MINUTES
-	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_dirget1
-
-
-/atom/movable/screen/alert/status_effect/buff/playing_dirge
-	name = "Playing Dirge"
-	desc = "Terrorizing the world with my craft."
-	icon_state = "buff"
-
-
-/datum/status_effect/buff/playing_dirge/tick()
-	var/mob/living/carbon/human/O = owner
-	if(!O.inspiration)
-		return
-	pulse += 1
-	new effect(get_turf(owner))
-	if (pulse >= ticks_to_apply)
-		pulse = 0
-		O.energy_add(-50)
-		for (var/mob/living/carbon/human/H in hearers(7, owner))
-			if(O.in_audience(H))
-				return
-			H.apply_status_effect(debuff_to_apply)
-
 
 /obj/effect/proc_holder/spell/invoked/song/dirge_fortune
 	name = "Misfortunate Melody"

@@ -96,7 +96,7 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	
 /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
-	name = "cuir-bouilli"
+	name = "cuir-bouilli armor"
 	desc = "Treated, water-boiled and composite-layered leather armor of fine Otavan make."
 	icon_state = "cuirbouilli"
 	item_state = "cuirbouilli"
