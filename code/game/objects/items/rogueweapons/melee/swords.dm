@@ -300,14 +300,18 @@
 
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"
-	desc = "The workhorse of the Holy See. Blades like this have drawn blood against the  old Infidels and the modern Inhumen heretics alike for centuries."
+	desc = "A blessed longsword, wielded by the Holy See's templars in their stalwart defense against evil. Originating in the wake of the Celestial Empire's collapse, legends say that it is the grandfather to longswords all across Psydonia: the triumph of an ancient Malumite priest, stricken with divine inspiration in humenity's darkest hour. Centuries later, it still remains the ideal choice for skewering infidels and monsters alike. </br>'I am the holder of light, in the dark abyss..' </br>'..I am the holder of order and ward against vileness..' </br>'..let the Gods guide my hand, and let the Inhumen cower before me.'"
 	icon_state = "churchsword"
+	max_blade_int = 300
+	max_integrity = 180
 
 /obj/item/rogueweapon/sword/long/undivided
 	name = "decablade"
-	desc = "With a drop of holy Eclipsum, doth the blade rise. Gilded, gleaming, radiant heat, warm my soul, immolate my enemies."
+	desc = "A blessed longsword, held by the Holy See's templars in their stalwart defense against evil. The golden crossguard bares the winged motif of an angel, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'With a drop of holy Eclipsum, doth the blade rise..' </br>'..gilded, gleaming, radiant heat, warm my soul, immolate my enemies..' </br>'..and let me vanquish all those who would dare to Divide us, once more.'"
 	icon_state = "eclipsum"
 	sheathe_icon = "eclipsum"
+	max_blade_int = 300
+	max_integrity = 180
 	force = 28
 	force_wielded = 33
 
@@ -412,14 +416,18 @@
 
 /obj/item/rogueweapon/sword/long/church
 	name = "see longsword"
-	desc = "The workhorse of the Holy See. Blades like this have drawn blood against the  old Infidels and the modern Inhumen heretics alike for centuries."
+	desc = "A blessed longsword, wielded by the Holy See's templars in their stalwart defense against evil. Originating in the wake of the Celestial Empire's collapse, legends say that it is the grandfather to longswords all across Psydonia: the triumph of an ancient Malumite priest, stricken with divine inspiration in humenity's darkest hour. Centuries later, it still remains the ideal choice for skewering infidels and monsters alike. </br>'I am the holder of light, in the dark abyss..' </br>'..I am the holder of order and ward against vileness..' </br>'..let the Gods guide my hand, and let the Inhumen cower before me.'"
 	icon_state = "churchsword"
+	max_blade_int = 250
+	max_integrity = 180
 
 /obj/item/rogueweapon/sword/long/undivided
 	name = "decablade"
-	desc = "With a drop of holy Eclipsum, doth the blade rise. Gilded, gleaming, radiant heat, warm my soul, immolate my enemies."
+	desc = "A blessed longsword, held by the Holy See's templars in their stalwart defense against evil. The golden crossguard bares the winged motif of an angel, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'With a drop of holy Eclipsum, doth the blade rise..' </br>'..gilded, gleaming, radiant heat, warm my soul, immolate my enemies..' </br>'..and let me vanquish all those who would dare to Divide us, once more.'"
 	icon_state = "eclipsum"
 	sheathe_icon = "eclipsum"
+	max_blade_int = 250
+	max_integrity = 180
 	force = 28
 	force_wielded = 33
 
