@@ -138,7 +138,7 @@
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 1,
 	)
-	subclass_spellpoints = 8
+	subclass_spellpoints = 10
 	subclass_skills = list(
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
