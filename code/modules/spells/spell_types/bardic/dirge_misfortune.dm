@@ -6,6 +6,7 @@
 	var/pulse = 0
 	var/ticks_to_apply = 10
 	duration = 2 MINUTES
+	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_dirget1
 
 
 /atom/movable/screen/alert/status_effect/buff/playing_dirge
@@ -19,7 +20,7 @@
 	if(!O.inspiration)
 		return
 	pulse += 1
-	new /obj/effect/temp_visual/inspiration_dirge(get_turf(owner))
+	new effect(get_turf(owner))
 	if (pulse >= ticks_to_apply)
 		pulse = 0
 		O.energy_add(-50)
@@ -63,6 +64,7 @@
 
 
 /datum/status_effect/buff/playing_dirge/misfortune
+	effect = /obj/effect/temp_visual/songs/inspiration_dirget1
 	debuff_to_apply = /datum/status_effect/debuff/song/dirge_misfortune
 
 /datum/status_effect/debuff/song/dirge_misfortune

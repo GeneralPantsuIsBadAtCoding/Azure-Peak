@@ -38,6 +38,7 @@
 		return
 
 /datum/status_effect/buff/playing_melody/fervor
+	effect = /obj/effect/temp_visual/songs/inspiration_bardsongt2
 	buff_to_apply = /datum/status_effect/buff/song/fervor
 
 

@@ -34,6 +34,7 @@
 
 
 /datum/status_effect/buff/playing_dirge/pestilent_piedpiper
+	effect = /obj/effect/temp_visual/songs/inspiration_dirget2
 	debuff_to_apply = /datum/status_effect/debuff/song/pestilentpiper
 
 

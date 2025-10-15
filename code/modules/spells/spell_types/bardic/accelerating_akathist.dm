@@ -32,6 +32,7 @@
 
 
 /datum/status_effect/buff/playing_melody/accelakathist
+	effect = /obj/effect/temp_visual/songs/inspiration_bardsongt3
 	buff_to_apply = /datum/status_effect/buff/song/accelakathist
 	
 /atom/movable/screen/alert/status_effect/buff/song/accelakathist

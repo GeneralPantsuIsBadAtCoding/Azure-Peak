@@ -27,6 +27,7 @@
 		return
 
 /datum/status_effect/buff/playing_melody/intellectual_interval
+	effect = /obj/effect/temp_visual/songs/inspiration_melodyt1
 	buff_to_apply = /datum/status_effect/buff/song/intellectual_interval
 
 

@@ -36,6 +36,7 @@
 
 
 /datum/status_effect/buff/playing_dirge/suffocating_seliloquy
+	effect = /obj/effect/temp_visual/songs/inspiration_dirget3
 	debuff_to_apply = /datum/status_effect/debuff/song/suffocationsong
 
 

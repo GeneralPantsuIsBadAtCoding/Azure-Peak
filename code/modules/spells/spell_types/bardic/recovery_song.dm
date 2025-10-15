@@ -30,6 +30,7 @@
 		return
 
 /datum/status_effect/buff/playing_melody/recovery
+	effect = /obj/effect/temp_visual/songs/inspiration_melodyt2
 	buff_to_apply = /datum/status_effect/buff/song/recovery
 
 

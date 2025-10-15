@@ -30,6 +30,7 @@
 		return
 
 /datum/status_effect/buff/playing_melody/furtive_fortissimo
+	effect = /obj/effect/temp_visual/songs/inspiration_bardsongt1
 	buff_to_apply = /datum/status_effect/buff/song/furtive_fortissimo
 
 

@@ -6,6 +6,7 @@
 	var/pulse = 0
 	var/ticks_to_apply = 10
 	duration = 2 MINUTES
+	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_melodyt1
 
 
 /atom/movable/screen/alert/status_effect/buff/playing_melody
@@ -18,7 +19,7 @@
 	var/mob/living/carbon/human/O = owner
 	if(!O.inspiration)
 		return
-	new /obj/effect/temp_visual/inspiration_melody(get_turf(owner))
+	new effect(get_turf(owner))
 	pulse += 1
 	if (pulse >= ticks_to_apply)
 		pulse = 0
@@ -67,6 +68,7 @@
 
 
 /datum/status_effect/buff/playing_melody/rejuvenation
+	effect = /obj/effect/temp_visual/songs/inspiration_melodyt3
 	buff_to_apply = /datum/status_effect/buff/healing/rejuvenationsong
 	
 /datum/status_effect/buff/healing/rejuvenationsong
