@@ -7,7 +7,7 @@
 	subclass_languages = list(/datum/language/otavan)
 	subclass_stats = list(
 		STATKEY_STR = 1,
-		STATKEY_WIL = 2,
+		STATKEY_WIL = 1,
 		STATKEY_SPD = 3,
 	)
 	subclass_skills = list(
