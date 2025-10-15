@@ -697,7 +697,7 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'AVANTYNE'S GREATEST PERIL; A SILVER INGOT FOR EACH OF THE PANTHEON'S GODS, A GREATLOG IN HALVES, AND WHAT LIES WITHIN THIS AMULET.'"))
+		to_chat(user, span_hypnophrase("'..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before..' </br>'..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets..' </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'THE REMAINS OF A WEEPING PSICROSS, AND WHAT LIES WITHIN THIS AMULET.'"))
 		user.change_stat(STATKEY_INT, 3)
 	return
 
@@ -717,7 +717,7 @@
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "psicrossblood"
 	edelay_type = 1
-	max_integrity = ARMOR_INT_SIDE_STEEL
+	max_integrity = 666
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_GORGET
 	blocksound = PLATEHIT
@@ -736,28 +736,30 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I can't let them triumph..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
+		to_chat(user, span_red("As you don the psicross, you're overcome with a sense of terrible anguish - the weight of an unspeakable tragedy drives you mad! Your chest grows cold, yet your blood boils hotter than magma! </br>You've gone BERSERK!"))
 		user.change_stat(STATKEY_STR, 3)
-		user.change_stat(STATKEY_CON, 3)
-		user.change_stat(STATKEY_WIL, 3)
-		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		user.change_stat(STATKEY_SPD, 3)
+		user.change_stat(STATKEY_WIL, -3)
+		user.change_stat(STATKEY_CON, -3)
 		ADD_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC) 
+		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC) //Emulates a 'berserker's rage'. Uncapped strength and infinite fatigue, but with a permenant screenshake and unresurrectability - until, or unless, removed.
 	return
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge..'"))
+		to_chat(user, span_monkeyhive("..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more? </br>..perhaps, this would better fit in the smoldering heat of a forge.."))
 		user.change_stat(STATKEY_STR, -3)
-		user.change_stat(STATKEY_CON, -3)
-		user.change_stat(STATKEY_WIL, -3)
-		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		user.change_stat(STATKEY_SPD, -3)
+		user.change_stat(STATKEY_WIL, 3)
+		user.change_stat(STATKEY_CON, 3)
 		REMOVE_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
 		active_item = FALSE
 	return
