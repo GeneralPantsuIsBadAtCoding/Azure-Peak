@@ -37,17 +37,7 @@
 /obj/effect/proc_holder/spell/invoked/song/rejuvenation_song
 	name = "Healing Hymn"
 	desc = "Recuperate your allies bodies with your song! Refills health slowly over time!"
-	sound = list('sound/magic/whiteflame.ogg')
-
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	no_early_release = TRUE
-	recharge_time = 2 MINUTES
 	song_tier = 3
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
 	invocations = list("Broken bones mend, flesh knits, to the hymn!") 
 	invocation_type = "shout"
 	overlay_state = "melody_t3_base"

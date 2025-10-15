@@ -3,17 +3,7 @@
 	desc = "Play a dirge inspired by Abyssor, slowly suffocating with its call."
 	overlay_state = "dirge_t3_base"
 	action_icon_state = "dirge_t3_base"
-	sound = list('sound/magic/whiteflame.ogg')
-
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	no_early_release = TRUE
-	recharge_time = 2 MINUTES
 	song_tier = 3
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
 	invocations = list("Suffocating seliloquy, snuff the sinners' breath!") 
 	invocation_type = "shout"
 	overlay_state = "dirge_t3_base"

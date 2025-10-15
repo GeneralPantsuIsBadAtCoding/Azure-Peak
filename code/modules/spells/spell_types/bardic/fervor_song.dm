@@ -4,22 +4,21 @@
 	overlay_state = "dirge_t1_base"
 	action_icon_state = "dirge_t1_base"
 	action_icon = 'icons/mob/actions/bardsongs.dmi'
-
-
-/obj/effect/proc_holder/spell/invoked/song/fervor_song
-	name = "Fervorous Fantasia"
-	desc = "Inspire the rhythm of battle, your allies strike and parry 20% better!"
-	sound = list('sound/magic/whiteflame.ogg')
-
+	warnie = "spellwarning"
 	releasedrain = 60
 	chargedrain = 1
 	chargetime = 1 SECONDS
 	no_early_release = TRUE
 	recharge_time = 2 MINUTES
-	song_tier = 2
-	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
+
+
+/obj/effect/proc_holder/spell/invoked/song/fervor_song
+	name = "Fervorous Fantasia"
+	desc = "Inspire the rhythm of battle, your allies strike and parry 20% better!"
+	song_tier = 2
+	warnie = "spellwarning"
 	invocations = list("To my tune, strike and move thy feet!") 
 	invocation_type = "shout"
 	overlay_state = "bardsong_t2_base"

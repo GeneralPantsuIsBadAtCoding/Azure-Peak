@@ -1,12 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/song/intellectual_interval
 	name = "Intellectual Interval"
 	desc = "A song for thinkers, +3 INT"
-	sound = list('sound/magic/whiteflame.ogg')
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	no_early_release = TRUE
-	recharge_time = 2 MINUTES
 	song_tier = 1
 	warnie = "spellwarning"
 	no_early_release = TRUE

@@ -1,17 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/song/accelakathist
 	name = "Accelerating Akathist"
 	desc = "Accelerate your allies with your bardic song!"
-	sound = list('sound/magic/whiteflame.ogg')
-
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	no_early_release = TRUE
-	recharge_time = 2 MINUTES
 	song_tier = 3
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
 	invocations = list("Time to accelerate!") 
 	invocation_type = "shout"
 	overlay_state = "bardsong_t3_base"

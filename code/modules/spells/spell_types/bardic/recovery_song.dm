@@ -1,17 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/song/recovery_song
 	name = "Resting Rhapsody"
 	desc = "Recuperate your allies spirit's with your song! Refills stamina over time!"
-	sound = list('sound/magic/whiteflame.ogg')
-
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	no_early_release = TRUE
-	recharge_time = 2 MINUTES
 	song_tier = 2
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
 	invocations = list("Thy muscles recuperate, thy limbs refresh!") 
 	invocation_type = "shout"
 	overlay_state = "melody_t2_base"
