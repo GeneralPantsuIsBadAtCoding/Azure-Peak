@@ -138,7 +138,7 @@
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 1,
 	)
-	subclass_spellpoints = 12
+	subclass_spellpoints = 8
 	subclass_skills = list(
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
@@ -167,6 +167,8 @@
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	r_hand = /obj/item/rogueweapon/sword/sabre
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
+	var/datum/inspiration/I = new /datum/inspiration(H)
+	I.grant_inspiration(H, bard_tier = BARD_T2)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)

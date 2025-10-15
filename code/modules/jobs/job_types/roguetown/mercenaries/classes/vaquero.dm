@@ -62,6 +62,8 @@
 					/obj/item/roguekey/mercenary = 1,
 					/obj/item/rogueweapon/scabbard/sheath = 1
 					)
+	var/datum/inspiration/I = new /datum/inspiration(H)
+	I.grant_inspiration(H, bard_tier = BARD_T1)
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
 		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
