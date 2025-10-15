@@ -24,5 +24,5 @@
 		/datum/advclass/psydoniantemplar,
 		/datum/advclass/disciple,
 		/datum/advclass/confessor,
-		/datum/advclass/psyalmist
+		/datum/advclass/psyaltrist
 	)

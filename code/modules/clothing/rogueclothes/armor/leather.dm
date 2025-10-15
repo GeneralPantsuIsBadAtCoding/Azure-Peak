@@ -95,9 +95,9 @@
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
 	
-/obj/item/clothing/suit/roguetown/armor/leather/studded/psyalmist
-	name = "cuir bouilli"
-	desc = "A set of boiled leather, light and flexible."
+/obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
+	name = "cuir-bouilli"
+	desc = "Treated, water-boiled and composite-layered leather armor of fine Otavan make."
 	icon_state = "cuirbouilli"
 	item_state = "cuirbouilli"
 

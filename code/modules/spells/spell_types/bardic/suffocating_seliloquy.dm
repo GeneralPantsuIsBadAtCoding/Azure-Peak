@@ -21,7 +21,7 @@
 		return TRUE
 	else
 		revert_cast()
-		return FALSE
+		return
 
 
 

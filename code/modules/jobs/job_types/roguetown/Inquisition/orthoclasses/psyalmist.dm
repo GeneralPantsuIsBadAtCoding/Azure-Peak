@@ -1,7 +1,7 @@
-/datum/advclass/psyalmist
-	name = "Psyalmist"
+/datum/advclass/psyaltrist
+	name = "Psyaltrist"
 	tutorial = "You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness."
-	outfit = /datum/outfit/job/roguetown/psyalmist
+	outfit = /datum/outfit/job/roguetown/psyaltrist
 	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_EMPATH)
 	category_tags = list(CTAG_INQUISITION)
 	subclass_languages = list(/datum/language/otavan)
@@ -26,10 +26,10 @@
 		"Of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
 	
-/datum/outfit/job/roguetown/psyalmist/pre_equip(mob/living/carbon/human/H)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/psyalmist
+/datum/outfit/job/roguetown/psyaltrist/pre_equip(mob/living/carbon/human/H)
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
-	cloak = /obj/item/clothing/cloak/psyalmist
+	cloak = /obj/item/clothing/cloak/psyaltrist
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
@@ -72,5 +72,5 @@
 				backr = /obj/item/rogue/instrument/psyaltery
 
 
-/datum/outfit/job/roguetown/psyalmist
+/datum/outfit/job/roguetown/psyaltrist
 	job_bitflag = BITFLAG_CHURCH

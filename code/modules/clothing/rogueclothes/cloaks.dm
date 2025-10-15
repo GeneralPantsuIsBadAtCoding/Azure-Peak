@@ -1868,8 +1868,8 @@
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
-/obj/item/clothing/cloak/psyalmist
-	name = "psyalmist stole"
+/obj/item/clothing/cloak/psyaltrist
+	name = "psyaltrist stole"
 	desc = "Fashionable and free flowing."
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 	icon_state = "psaltertabard"

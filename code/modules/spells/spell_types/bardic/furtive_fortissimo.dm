@@ -18,7 +18,7 @@
 		return TRUE
 	else
 		revert_cast()
-		return FALSE
+		return
 
 /datum/status_effect/buff/playing_melody/furtive_fortissimo
 	effect = /obj/effect/temp_visual/songs/inspiration_bardsongt1
