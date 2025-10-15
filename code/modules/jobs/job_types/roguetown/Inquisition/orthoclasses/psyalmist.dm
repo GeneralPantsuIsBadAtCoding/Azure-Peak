@@ -51,7 +51,7 @@
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 	if(H.mind)
 		var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman", "Psyaltery")
-		var/weapon_choice = input(H, "Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+		var/weapon_choice = tgui_input_text(H, "Choose your instrument.", "TAKE UP ARMS", weapons)
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Harp")
