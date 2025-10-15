@@ -994,7 +994,7 @@
 				return
 			var/obj/item/bodypart/head/target_head = target.get_bodypart(BODY_ZONE_HEAD)
 			if(QDELETED(target_head))
-				to_chat(user, span_notice("I need their head or else i can't take their face!"))
+				to_chat(user, span_notice("I need their head or else I can't confirm the blood-bounty!"))
 				return
 
 			var/datum/beam/transfer_beam = user.Beam(target, icon_state = "drain_life", time = 6 SECONDS)
