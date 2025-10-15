@@ -115,7 +115,7 @@
 	AddComponent(/datum/component/butchering, 150, 65)
 
 /obj/item/natural/glass_shard/Crossed(mob/living/L)
-	if(istype(L) && has_gravity(loc))
+	if(istype(L))
 		playsound(loc, 'sound/foley/glass_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 30 : 50, TRUE)
 	return ..()
 

@@ -239,9 +239,10 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	balloon_alert_to_viewers("<font color = '#bb2b2b'>[src]<br>breaks!</font>")
 
 /// Called after obj is repaired (needle/hammer for items). Do not call unless obj_broken is true to avoid breaking armor.
-/obj/proc/obj_fix(mob/user)
+/obj/proc/obj_fix(mob/user, full_repair = TRUE)
 	obj_broken = FALSE
-	obj_integrity = max_integrity
+	if(full_repair)
+		obj_integrity = max_integrity
 	SEND_SIGNAL(src, COMSIG_ITEM_OBJFIX)
 
 ///what happens when the obj's integrity reaches zero.

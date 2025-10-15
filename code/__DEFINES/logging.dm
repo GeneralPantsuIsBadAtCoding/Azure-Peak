@@ -3,7 +3,6 @@
 #define INVESTIGATE_BOTANY			"botany"
 #define INVESTIGATE_CARGO			"cargo"
 #define INVESTIGATE_EXPERIMENTOR	"experimentor"
-#define INVESTIGATE_GRAVITY			"gravity"
 #define INVESTIGATE_RECORDS			"records"
 #define INVESTIGATE_SINGULO			"singulo"
 #define INVESTIGATE_SUPERMATTER		"supermatter"

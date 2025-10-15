@@ -69,7 +69,7 @@
 	if(steps % 2)
 		return
 
-	if(steps != 0 && !LM.has_gravity(T)) // don't need to step as often when you hop around
+	if(steps != 0) // don't need to step as often when you hop around
 		return
 	return T
 

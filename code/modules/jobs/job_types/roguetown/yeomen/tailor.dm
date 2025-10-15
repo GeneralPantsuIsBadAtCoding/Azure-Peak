@@ -68,3 +68,4 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fittedclothing)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)

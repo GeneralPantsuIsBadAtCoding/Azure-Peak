@@ -162,6 +162,7 @@
 		/datum/sprite_accessory/tail/forked_long,
 		/datum/sprite_accessory/tail/haven,
 		/datum/sprite_accessory/tail/swallow,
+		/datum/sprite_accessory/tail/zorzor
 		)
 
 /datum/customizer/organ/tail/anthro
@@ -234,6 +235,7 @@
 		/datum/sprite_accessory/tail/forked_long,
 		/datum/sprite_accessory/tail/haven,
 		/datum/sprite_accessory/tail/swallow,
+		/datum/sprite_accessory/tail/zorzor
 		)
 
 /datum/customizer/organ/tail/dullahan

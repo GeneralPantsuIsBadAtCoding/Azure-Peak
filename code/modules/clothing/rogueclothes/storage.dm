@@ -247,9 +247,23 @@
 
 /obj/item/storage/backpack/rogue/satchel/short
 	name = "short satchel"
-	desc = "A leather satchel that's meant to  clip to a belt or to a pair of pants, freeing the shoulders from any weight."
+	desc = "A leather satchel that's meant to clip to a belt or to a pair of pants, freeing the shoulders from any weight."
 	icon_state = "satchelshort"
 	item_state = "satchelshort"
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_HIP //Implement a check in the future that prevents more than one being worn at once.
+
+/obj/item/storage/backpack/rogue/satchel/beltpack
+	name = "beltpack" //Satchel that fits on the cloak or belt slot. Should be exceptionally rare for on-spawn loadouts, unless a flag's added to make it incompatable with regular satchels.
+	desc = "A lighter satchel that rests against the rump, freeing the shoulders from any weight. It's traditionally worn in place of a belt or cloak."
+	icon_state = "gamesatchel" //Later down the line, take the unused belt-satchel onmob and rename it to 'gamesatchel'.
+	item_state = "satchel"
+	icon = 'icons/roguetown/clothing/storage.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
+	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BELT //Implement a check that prevents one from being worn on both slots at once. Another coder's duty, I think.
+	edelay_type = 1
+	equip_delay_self = 10
+	max_integrity = 300
+	component_type = /datum/component/storage/concrete/roguetown/satchel
 
 /obj/item/storage/backpack/rogue/backpack
 	name = "backpack"
@@ -413,6 +427,13 @@
 	. = ..()
 	for(var/i in 1 to max_storage)
 		var/obj/item/rogueweapon/huntingknife/throwingknife/steel/K = new()
+		knives += K
+	update_icon()
+
+/obj/item/storage/belt/rogue/leather/knifebelt/black/silver/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/rogueweapon/huntingknife/throwingknife/silver/K = new()
 		knives += K
 	update_icon()
 

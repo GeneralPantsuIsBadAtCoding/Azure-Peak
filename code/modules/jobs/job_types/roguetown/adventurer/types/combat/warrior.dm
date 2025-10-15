@@ -164,83 +164,6 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
 
-/datum/advclass/sfighter/mhunter
-	name = "Monster Hunter"
-	tutorial = "You specialize in hunting down monsters and the undead, carrying two blades - one of silver, one of steel."
-	outfit = /datum/outfit/job/roguetown/adventurer/mhunter
-	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR, TRAIT_ALCHEMY_EXPERT)
-	subclass_stats = list(
-		STATKEY_STR = 2,
-		STATKEY_WIL = 1,
-		STATKEY_CON = 1,
-		STATKEY_INT = 1,
-	)
-	subclass_skills = list(
-		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
-		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
-	)
-
-/datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
-	..()
-	to_chat(H, span_warning("You specialize in hunting down monsters and the undead, carrying two blades - one of silver, one of steel."))
-	if(H.mind)
-		var/steel = list("Parrying Dagger","Sword","Dagger")
-		var/steel_choice = input(H, "Choose your steel.", "PURGE THE LIVING") as anything in steel
-		switch(steel_choice)
-			if ("Parrying Dagger")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
-				beltr = /obj/item/rogueweapon/scabbard/sheath
-			if("Sword")
-				l_hand = /obj/item/rogueweapon/sword
-				beltr = /obj/item/rogueweapon/scabbard/sword
-			if ("Dagger")
-				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
-				beltr = /obj/item/rogueweapon/scabbard/sheath
-		var/silver = list("Silver Sword","Silver Dagger")
-		var/silver_choice = input(H, "Choose your silver.", "PURGE THE CURSED") as anything in silver
-		switch(silver_choice)
-			if("Silver Sword")
-				r_hand = /obj/item/rogueweapon/sword/silver
-				backr = /obj/item/rogueweapon/scabbard/sword
-			if ("Silver Dagger")
-				r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
-				backr = /obj/item/rogueweapon/scabbard/sheath
-	backl = /obj/item/storage/backpack/rogue/satchel/black
-	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
-	armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/steel
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	cloak = /obj/item/clothing/cloak/cape/puritan
-	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	head = /obj/item/clothing/head/roguetown/bucklehat
-	gloves = /obj/item/clothing/gloves/roguetown/angle
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
-	beltl = pick(
-		/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/spdpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/perpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
-		/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
-		)
-
 /datum/advclass/sfighter/barbarian
 	name = "Barbarian"
 	tutorial = "You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."
@@ -415,3 +338,177 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				r_hand = /obj/item/rogueweapon/greataxe
 				backr = /obj/item/rogueweapon/scabbard/gwstrap
+
+/datum/advclass/sfighter/mhunter
+	name = "Exorcist"
+	tutorial = "You are a specialist who hunts terrible monsters; nitebeasts, vampyres, deadites and more. Your humenity might be limiting - but with silver weapons and steel maille, you may yet slight the odds in your favor."
+	outfit = /datum/outfit/job/roguetown/adventurer/mhunter
+	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_PURITAN_ADVENTURER, TRAIT_ALCHEMY_EXPERT)
+	maximum_possible_slots = 5 //Not a Wretch or Towner, but still conditionally lethal for an Adventurer - especially with steel coverage and round-start access to silver weapons. Adjust the amount of available slots as needed.
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_PER = 2,
+		STATKEY_WIL = 1,
+	) //Follows the Adventurer's seven-point statblock rule. Adds an eighth point to an unoccupied statkey, when a discipline is selected.
+	subclass_skills = list(
+		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
+		)
+
+/datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	..()
+	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
+	to_chat(H, span_warning("You are a specialist who hunts terrible monsters; nitebeasts, vampyres, deadites and more. Your humenity might be limiting - but with silver weapons and steel maille, you may yet slight the odds in your favor."))
+	H.verbs |= /mob/living/carbon/human/proc/faith_test //Allows the Exorcist to interrogate others for their faith. Trait's agnostically worded, to allow more flexiable usage by Pantheoneers and Ascendants in this role.
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim //Not as scary as it sounds. Mostly. Okay, just a little bit.
+	if(H.mind)
+		var/silver = list("Silver Dagger","Silver Shortsword","Silver Arming Sword","Silver Rapier","Silver Longsword","Silver Broadsword","Silver Mace","Silver Warhammer","Silver Morningstar","Silver Whip","Silver War Axe","Silver Poleaxe","Silver Spear","Silver Quarterstaff","Silver Shovel")
+		var/silver_choice = input(H, "Choose your WEAPON.", "PREPARE YOUR ARMS.") as anything in silver //Trim down to five or six choices, later? See what's the most popular, first. Gives people a chance to experiment with all of the new silver weapons.
+		switch(silver_choice)
+			if("Silver Dagger")
+				r_hand = /obj/item/rogueweapon/huntingknife/idagger/silver
+				beltr = /obj/item/rogueweapon/scabbard/sheath
+			if("Silver Shortsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/short/silver
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Arming Sword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/silver
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Rapier")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/rapier/silver
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Longsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/long/silver
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Broadsword")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser/silver
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Silver Mace")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/mace/steel/silver
+			if("Silver Warhammer")
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/mace/warhammer/steel/silver
+			if("Silver Morningstar")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/flail/sflail/silver
+			if("Silver Whip")
+				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/whip/silver
+			if("Silver War Axe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/silver
+			if("Silver Poleaxe")
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/greataxe/silver
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Silver Spear")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/spear/silver
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+			if("Silver Quarterstaff")
+				H.adjust_skillrank_up_to(/datum/skill/combat/staves, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/silver
+				backr = /obj/item/rogueweapon/scabbard/gwstrap
+
+		var/sidearm = list("Dagger", "Parrying Dagger", "Seax", "Blessed Silver Stake", "Blessed Silver Shovel")
+		var/sidearm_choice = input(H, "Choose your SIDEARM.", "SAY YOUR PRAYERS.") as anything in sidearm
+		switch(sidearm_choice)
+			if("Dagger")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Parrying Dagger")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Seax")
+				l_hand = /obj/item/rogueweapon/huntingknife/combat
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Blessed Silver Stake")
+				l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/stake/preblessed
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			if("Blessed Silver Shovel")
+				l_hand = /obj/item/rogueweapon/shovel/silver/preblessed //Unlocks the secret 'Shovel Knight' subclass. No dagger skills if you take this. Doesn't scale off anything, I think. Raw style.
+
+		var/discipline = list("Traditionalist - Bewitched Alchemics + Hauberk", "Reformist - Dodge Expert + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
+		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
+		switch(discipline_choice)
+			if("Traditionalist - Bewitched Alchemics + Hauberk")
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC) //'Witcher' archetype. Weaponized alchemy gifts both immunity to nitebeastly curses and a self-suppliable +3 statboost. Well-rounded in almost every facet, but leaves less to chance.
+				H.change_stat(STATKEY_INT, 1)
+				H.change_stat(STATKEY_LCK, -1)
+				head = /obj/item/clothing/head/roguetown/puritan/armored
+				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+				belt = /obj/item/storage/belt/rogue/leather/black
+				beltl = pick(
+					/obj/item/reagent_containers/glass/bottle/alchemical/strpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/conpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/spdpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/perpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
+					/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
+					)
+			if("Reformist - Dodge Expert + Haubergeon")
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) //'Puritan' archetype. Closer to the Roguetown-era Inquisitor in portrayal. No armor training, but overprepared with silver throwing daggers and excellent evasive maneuvers.
+				H.change_stat(STATKEY_SPD, 1)
+				H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				head = /obj/item/clothing/head/roguetown/puritan
+				armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
+				belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/silver
+			if("Orthodoxist - Plate Training + Cuirass")
+				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC) //'Templar' archetype. Blessings protect from the Rot, while opening the opportunity for heavy armor usage. Well-protected and resilient, but slower and visibly identifiable as a prioritable threat.
+				H.change_stat(STATKEY_CON, 1)
+				H.change_stat(STATKEY_SPD, -1)
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+				belt = /obj/item/storage/belt/rogue/leather/black
+				var/helmets = list("Puritan's Armored Hat", "Visored Sallet", "Volfskulle Bascinet", "Fluted Armet")
+				var/helmet_choice = input(H, "Choose your VISAGE.", "GET PSYCHED.") as anything in helmets
+				switch(helmet_choice)
+					if("Puritan's Armored Hat")
+						head = /obj/item/clothing/head/roguetown/puritan/armored
+					if("Visored Sallet")
+						head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
+					if("Volfskulle Bascinet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/puritan
+					if("Fluted Armet")
+						head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/fluted
+
+	backl = /obj/item/storage/backpack/rogue/satchel
+	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+	pants = /obj/item/clothing/under/roguetown/tights/puritan
+	cloak = /obj/item/clothing/cloak/cape/puritan
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch/metal = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
+	if(H.age == AGE_OLD)
+		H.change_stat(STATKEY_INT, 1)
+		H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE) 	
+		H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/staves, 1, TRUE)
+	//Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff.

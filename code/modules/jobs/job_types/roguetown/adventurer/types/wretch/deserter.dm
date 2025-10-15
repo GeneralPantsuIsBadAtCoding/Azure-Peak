@@ -206,7 +206,6 @@
 			head = helmets[helmchoice]
 
 		var/masks = list(
-		"Steel Houndmask" 	= /obj/item/clothing/mask/rogue/facemask/steel/hound,
 		"Steel Mask"		= /obj/item/clothing/mask/rogue/facemask/steel,
 		"Wildguard"			= /obj/item/clothing/mask/rogue/wildguard,
 		"None"

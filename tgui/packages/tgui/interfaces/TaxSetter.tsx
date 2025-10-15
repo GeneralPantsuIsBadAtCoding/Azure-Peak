@@ -13,12 +13,13 @@ import { useState } from 'react';
 
 import { Window } from '../layouts';
 
-interface TaxCategory {
+type TaxCategory = {
   categoryName: string;
   taxAmount: number;
   fineExemption: BooleanLike;
 }
-interface Data {
+
+type Data = {
   taxCategories: TaxCategory[];
 }
 
@@ -84,7 +85,8 @@ export const TaxSetter = (props: any, context: any) => {
           <Stack.Item>
             <Button.Confirm
               fluid
-              color="good"
+              color="transparent"
+              className="input-button__submit"
               textAlign="Center"
               onClick={() => act('set_taxes', { taxationCats })}
             >
@@ -130,8 +132,9 @@ export const TaxBlock = (props: TaxBlockProps) => {
         </LabeledList.Item>
         <LabeledList.Item label={<b>Fine exemption</b>}>
           <Button
+            color="transparent"
+            className={fineExempt ? "input-button__submit" : "input-button__cancel"}
             content={fineExempt ? 'by my mercy' : 'they shall pay'}
-            color={fineExempt ? 'bad' : 'good'}
             onClick={() => onFineChange(title, taxAmount, !fineExempt)}
           />
         </LabeledList.Item>

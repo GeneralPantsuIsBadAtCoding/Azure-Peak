@@ -55,7 +55,7 @@
 	if (!(type in list("vector", "box", "circle", "sphere", "square", "cube")))											// Valid types for generator(), sans color
 		return
 
-	if (target in list("width", "height", "count", "spawning", "bound1", "bound2", "gravity", "gradient", "transform"))	// These vars cannot be generators, per reference doc, and changing some breaks things anyways
+	if (target in list("width", "height", "count", "spawning", "bound1", "bound2", "gradient", "transform"))	// These vars cannot be generators, per reference doc, and changing some breaks things anyways
 		return
 
 	if (target in vars)

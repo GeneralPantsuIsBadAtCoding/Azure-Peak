@@ -323,8 +323,12 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 
-	if(!CONFIG_GET(flag/ooc_during_round))
-		toggle_ooc(FALSE) // Turn it off
+	// Previously: if(!CONFIG_GET(flag/ooc_during_round)) toggle_ooc(FALSE)
+	// OOC has been repurposed to be lobby-only (non-lobby players can't see or use it),
+	// so there's no longer a gameplay reason to auto-disable it at round start.
+	// Keeping it enabled prevents admins from needing to hit the toggle every round.
+	if(!GLOB.ooc_allowed)
+		toggle_ooc(TRUE) // Ensure lobby OOC is on for the new round
 
 	CHECK_TICK
 	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left

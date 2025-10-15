@@ -32,11 +32,10 @@
 	if(has_buckled_mobs())
 		for(var/m in buckled_mobs)
 			var/mob/living/buckled_mob = m
-			if(buckled_mob.has_gravity())
-				buckled_mob.visible_message("<span class='danger'>[buckled_mob] falls over and hits the ground!</span>")
-				to_chat(buckled_mob, "<span class='userdanger'>You fall over and hit the ground!</span>")
-				buckled_mob.adjustBruteLoss(10)
-				buckled_mob.Knockdown(60)
+			buckled_mob.visible_message("<span class='danger'>[buckled_mob] falls over and hits the ground!</span>")
+			to_chat(buckled_mob, "<span class='userdanger'>You fall over and hit the ground!</span>")
+			buckled_mob.adjustBruteLoss(10)
+			buckled_mob.Knockdown(60)
 	return ..()
 
 /obj/structure/noose/user_buckle_mob(mob/living/M, mob/user, check_loc)
@@ -76,25 +75,24 @@
 		return
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
-		if(buckled_mob.has_gravity())
-			if(buckled_mob.get_bodypart("head"))
-				if(buckled_mob.stat != DEAD)
-					if(locate(/obj/structure/chair) in get_turf(src)) // So you can kick down the chair and make them hang, and stuff.
-						return
-					if(!HAS_TRAIT(buckled_mob, TRAIT_NOBREATH))
-						buckled_mob.adjustOxyLoss(10)
-						if(prob(20))
-							buckled_mob.emote("gasp")
-					playsound(buckled_mob.loc, 'sound/foley/noose_idle.ogg', 30, 1, -3)
-				else
-					if(prob(1))
-						var/obj/item/bodypart/head/head = buckled_mob.get_bodypart("head")
-						if(head.brute_dam >= 50)
-							if(head.dismemberable)
-								head.dismember()
+		if(buckled_mob.get_bodypart("head"))
+			if(buckled_mob.stat != DEAD)
+				if(locate(/obj/structure/chair) in get_turf(src)) // So you can kick down the chair and make them hang, and stuff.
+					return
+				if(!HAS_TRAIT(buckled_mob, TRAIT_NOBREATH))
+					buckled_mob.adjustOxyLoss(10)
+					if(prob(20))
+						buckled_mob.emote("gasp")
+				playsound(buckled_mob.loc, 'sound/foley/noose_idle.ogg', 30, 1, -3)
 			else
-				buckled_mob.visible_message("<span class='danger'>[buckled_mob] drops from the noose!</span>")
-				buckled_mob.Knockdown(60)
-				buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
-				buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
-				unbuckle_all_mobs(force=1)
+				if(prob(1))
+					var/obj/item/bodypart/head/head = buckled_mob.get_bodypart("head")
+					if(head.brute_dam >= 50)
+						if(head.dismemberable)
+							head.dismember()
+		else
+			buckled_mob.visible_message("<span class='danger'>[buckled_mob] drops from the noose!</span>")
+			buckled_mob.Knockdown(60)
+			buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+			buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
+			unbuckle_all_mobs(force=1)

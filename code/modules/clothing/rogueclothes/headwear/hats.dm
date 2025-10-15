@@ -10,6 +10,19 @@
 	icon_state = "puritan_hat"
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/puritan/armored
+	name = "puritan's hat" //Puritan hat subtype, meant for the Exorcist's heaviest classes. Steel skullcap-tier protection.
+	desc = "A buckled capotain, woven atop a steel skull cap. Discrete enough to wear for a diplomatic affair, but durable enough to thwart a heathen's blade."
+	icon_state = "puritan_hat"
+	sewrepair = FALSE
+	armor = ARMOR_HEAD_HELMET
+	blocksound = PLATEHIT
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	body_parts_covered = HEAD|HAIR
+	max_integrity = ARMOR_INT_HELMET_STEEL
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
+
 /obj/item/clothing/head/roguetown/nightman
 	name = "teller's hat"
 	icon_state = "tophat"
@@ -176,6 +189,36 @@
 	sewrepair = TRUE
 	//dropshrink = 0.75
 	dynamic_hair_suffix = null
+
+/obj/item/clothing/head/roguetown/headband/bloodied
+	name = "bloodied headband"
+	desc = "A headband that's been soaked in the blood of a terrible nitebeast. The coagulative properties of cursed blood has stiffened the cloth, gifting it a texture not unlike spongy leather. Wearing it emboldens you with determination."
+	icon_state = "headband"
+	item_state = "headband"
+	color = "#851a16"
+	armor = ARMOR_HEAD_LEATHER
+	max_integrity = ARMOR_INT_HELMET_LEATHER
+	body_parts_covered = HEAD|HAIR|EARS
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_TWIST) //Themed to protect against deadites and nitebeasts. Doesn't stop blunt-, smash-, or stabbing crits.
+	sewrepair = TRUE
+	//dropshrink = 0.75
+	dynamic_hair_suffix = null
+
+	///Reen's work. Should make it so that you obtain special traits when taking it on-and-off, without outright removing inherent traits.
+	var/traited = FALSE
+
+/obj/item/clothing/head/roguetown/headband/bloodied/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot == SLOT_HEAD)
+		ADD_TRAIT(user, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
+
+/obj/item/clothing/head/roguetown/headband/bloodied/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(istype(user) && user?.head == src)
+		REMOVE_TRAIT(user, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
+
 
 /obj/item/clothing/head/roguetown/inqhat
 	name = "inquisitorial hat"

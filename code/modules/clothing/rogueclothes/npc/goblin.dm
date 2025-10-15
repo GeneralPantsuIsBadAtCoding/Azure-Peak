@@ -23,6 +23,7 @@
 	item_state = "cloth_armor"
 	icon = 'icons/roguetown/mob/monster/goblins.dmi'
 	allowed_race = list(/datum/species/goblin, /datum/species/goblin/hell, /datum/species/goblin/cave, /datum/species/goblin/sea, /datum/species/goblin/moon)
+	body_parts_covered = GROIN
 	armor = null
 	sellprice = 0
 

@@ -251,16 +251,6 @@
 	desc = ""
 	icon_state = "weightless"
 
-/atom/movable/screen/alert/highgravity
-	name = "High Gravity"
-	desc = ""
-	icon_state = "paralysis"
-
-/atom/movable/screen/alert/veryhighgravity
-	name = "Crushing Gravity"
-	desc = ""
-	icon_state = "paralysis"
-
 /atom/movable/screen/alert/fire
 	name = "On Fire"
 	desc = ""

@@ -14,7 +14,6 @@
 	speak_chance = 0
 	maxHealth = 50
 	health = 50
-	spacewalk = TRUE
 	see_in_dark = 10
 	harm_intent_damage = 6
 	melee_damage_lower = 6
