@@ -14,6 +14,8 @@
 	warden_area = TRUE
 	ambush_times = list("night","dawn","dusk","day")
 	ambush_mobs = list(
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 				/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 				/mob/living/carbon/human/species/goblin/npc/ambush = 30,
@@ -38,6 +40,8 @@
 /area/rogue/outdoors/woods/north
 	name = "Azure Grove - North"
 	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 		/mob/living/carbon/human/species/skeleton/npc/easy = 20,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 30,
@@ -47,6 +51,8 @@
 /area/rogue/outdoors/woods/northeast
 	name = "Azure Grove - Northeast"
 	ambush_mobs = list(
+			/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+			/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 			/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 			/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 			/mob/living/carbon/human/species/skeleton/npc/pirate = 10,
@@ -58,6 +64,8 @@
 /area/rogue/outdoors/woods/southeast
 	name = "Azure Grove - Southeast"
 	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 		/mob/living/carbon/human/species/skeleton/npc/easy = 10,
 		/mob/living/carbon/human/species/skeleton/npc/pirate = 10,
@@ -68,6 +76,8 @@
 /area/rogue/outdoors/woods/south
 	name = "Azure Grove - South"
 	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 		/mob/living/carbon/human/species/skeleton/npc/medium = 10,
 		/mob/living/carbon/human/species/skeleton/npc/hard = 10,
@@ -77,6 +87,8 @@
 /area/rogue/outdoors/woods/southwest
 	name = "Azure Grove - Southwest"
 	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 		/mob/living/carbon/human/species/skeleton/npc/medium = 10,
 		/mob/living/carbon/human/species/skeleton/npc/hard = 10,
@@ -86,8 +98,16 @@
 /area/rogue/outdoors/woods/northwest
 	name = "Azure Grove - Northwest"
 	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+		/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 30,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 40,
 		/mob/living/carbon/human/species/skeleton/npc/medium = 10,
 		/mob/living/carbon/human/species/skeleton/npc/hard = 10,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 30,
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
+
+/area/rogue/outdoors/woods/vampire_lair
+	warden_area = FALSE
+	ambush_times = list()
+	ambush_mobs = null
+	threat_region = ""

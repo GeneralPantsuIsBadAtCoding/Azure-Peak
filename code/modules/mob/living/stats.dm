@@ -64,6 +64,7 @@
 			if(AGE_MIDDLEAGED)
 				change_stat(STATKEY_SPD, -1)
 				change_stat(STATKEY_WIL, 1)
+				change_stat(STATKEY_LCK, 1)
 			if(AGE_OLD)
 				change_stat(STATKEY_STR, -1)
 				change_stat(STATKEY_SPD, -2)
@@ -298,3 +299,31 @@
 			return STASPD
 		if(STATKEY_LCK)
 			return STALUC
+
+///Effectively rolls a d20, with each point in the stat being a chance_per_point% chance to succeed per point in the stat. If no stat is provided, just returns 0.
+///dee_cee is a difficulty mod, a positive value makes the check harder, a negative value makes it easier.
+///invert_dc changes it from stat - dc to dc - stat, for inverted checks.
+///EG: A person with 10 luck and a dc of -10 effectively has a 100% chance of success. Or an inverted DC with 10 means 0% chance of success.
+/mob/living/proc/stat_roll(stat_key,chance_per_point = 5, dee_cee = null, invert_dc = FALSE)
+	if(!stat_key)
+		return FALSE
+	var/tocheck
+	switch(stat_key)
+		if(STATKEY_STR)
+			tocheck = STASTR
+		if(STATKEY_PER)
+			tocheck = STAPER
+		if(STATKEY_WIL)
+			tocheck = STAWIL
+		if(STATKEY_CON)
+			tocheck = STACON
+		if(STATKEY_INT)
+			tocheck = STAINT
+		if(STATKEY_SPD)
+			tocheck = STASPD
+		if(STATKEY_LCK)
+			tocheck = STALUC
+	if(invert_dc)
+		return isnull(dee_cee) ? prob(tocheck * chance_per_point) : prob(clamp((dee_cee - tocheck) * chance_per_point,0,100))
+	else
+		return isnull(dee_cee) ? prob(tocheck * chance_per_point) : prob(clamp((tocheck - dee_cee) * chance_per_point,0,100))

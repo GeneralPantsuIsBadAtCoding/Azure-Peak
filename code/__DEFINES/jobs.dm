@@ -165,6 +165,7 @@
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
 #define ASSASSIN	(1<<22)
+#define TRADER		(1<<22)
 
 #define YOUNGFOLK	(1<<6)
 
@@ -199,6 +200,9 @@
 #define DEATHKNIGHT (1<<1)
 #define SKELETON	(1<<2)
 #define GOBLIN		(1<<3)
+#define VAMPIRE_SERVANT (1<<4)
+#define VAMPIRE_GUARD (1<<5)
+#define VAMPIRE_SPAWN (1<<6)
 
 #define INQUISITION (1<<10)
 
@@ -289,6 +293,7 @@
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
 #define JDO_ASSASSIN 30.5
+#define JDO_TRADER 30.5
 
 #define JDO_MERCENARY 31
 #define JDO_GRENZELHOFT 31.1

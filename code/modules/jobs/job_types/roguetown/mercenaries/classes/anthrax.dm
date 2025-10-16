@@ -66,13 +66,14 @@
 	beltr = /obj/item/rogueweapon/whip/spiderwhip
 	beltl = /obj/item/rope/chain
 
-	var/riding = list("I'm a spider rider (your pet with you)", "I walk on my legs (+1 for athletics)")
-	var/ridingchoice = input(H, "Choose your faith", "FAITH") as anything in riding
-	switch(ridingchoice)
-		if("I'm a spider rider (your pet with you)")
-			l_hand = /obj/item/bait/spider
-		if("I walk on my legs (+1 for athletics)")
-			H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_MASTER, TRUE)
+	if(H.mind)
+		var/riding = list("I'm a spider rider (your pet with you)", "I walk on my legs (+1 for athletics)")
+		var/ridingchoice = input(H, "Choose your faith", "FAITH") as anything in riding
+		switch(ridingchoice)
+			if("I'm a spider rider (your pet with you)")
+				l_hand = /obj/item/bait/spider
+			if("I walk on my legs (+1 for athletics)")
+				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_MASTER, TRUE)
 
 	H.merctype = 15
 

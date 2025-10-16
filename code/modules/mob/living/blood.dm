@@ -71,6 +71,11 @@
 	else if(blood_volume < BLOOD_VOLUME_NORMAL)
 		blood_volume = min(blood_volume + 1, BLOOD_VOLUME_NORMAL)
 
+	// Non-vampiric bloodpool regen.
+	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
+	if(!clan && blood_volume > BLOOD_VOLUME_SAFE)
+		adjust_bloodpool(BLOODPOL_REGEN, FALSE)
+
 // Takes care blood loss and regeneration
 /mob/living/carbon/handle_blood()
 	if((bodytemperature <= TCRYO) || HAS_TRAIT(src, TRAIT_HUSK)) //cryosleep or husked people do not pump the blood.
@@ -151,6 +156,11 @@
 		add_stress(/datum/stressevent/bleeding)
 	else
 		remove_stress(/datum/stressevent/bleeding)
+
+	// Non-vampiric bloodpool regen.
+	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
+	if(!clan && blood_volume > BLOOD_VOLUME_SAFE)
+		adjust_bloodpool(BLOODPOL_REGEN, FALSE)
 
 /mob/living/proc/get_bleed_rate()
 	var/bleed_rate = 0

@@ -1,0 +1,164 @@
+import { useState } from 'react';
+import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
+
+import { resolveAsset } from '../assets';
+import { useBackend } from '../backend';
+import { ExaminePanelData } from './ExaminePanelData';
+
+export const FlavorTextPage = (props) => {
+  const { data } = useBackend<ExaminePanelData>();
+  const {
+    flavor_text,
+    flavor_text_nsfw,
+    ooc_notes,
+    ooc_notes_nsfw,
+    headshot,
+    is_naked,
+  } = data;
+  const [oocNotesIndex, setOocNotesIndex] = useState('SFW');
+  const [flavorTextIndex, setFlavorTextIndex] = useState('SFW');
+
+  const flavorHTML = {
+    __html: `<span className='Chat'>${flavor_text}</span>`,
+  };
+
+  const nsfwHTML = {
+    __html: `<span className='Chat'>${flavor_text_nsfw}</span>`,
+  };
+
+  const oocHTML = {
+    __html: `<span className='Chat'>${ooc_notes}</span>`,
+  };
+
+  const oocnsfwHTML = {
+    __html: `<span className='Chat'>${ooc_notes_nsfw}</span>`,
+  };
+
+
+
+  return (
+        <Stack fill>
+            <Stack fill vertical>
+                <Stack.Item align="center">
+                  <img
+                    src={resolveAsset(headshot)}
+                    width="350px"
+                    height="350px"
+                    /> 
+                </Stack.Item>
+              <Stack.Item grow>
+                <Stack fill>
+                  <Stack.Item grow width="300px">
+                    <Section
+                      scrollable
+                      fill
+                      title="OOC Notes"
+                      preserveWhitespace
+                      buttons={
+                        <>
+                          <Button
+                            selected={oocNotesIndex === 'SFW'}
+                            bold={oocNotesIndex === 'SFW'}
+                            onClick={() => setOocNotesIndex('SFW')}
+                            textAlign="center"
+                            minWidth="60px"
+                          >
+                            SFW
+                          </Button>
+                          <Button
+                            selected={oocNotesIndex === 'NSFW'}
+                            disabled={!ooc_notes_nsfw}
+                            bold={oocNotesIndex === 'NSFW'}
+                            onClick={() => setOocNotesIndex('NSFW')}
+                            textAlign="center"
+                            minWidth="60px"
+                          >
+                            NSFW
+                          </Button>
+                        </>
+                      }
+                    >
+                      {oocNotesIndex === 'SFW' && (
+                    <Box
+                    dangerouslySetInnerHTML={oocHTML}
+                    />
+                    )}
+                      {oocNotesIndex === 'NSFW' && (
+                    <Box
+                    dangerouslySetInnerHTML={oocnsfwHTML}
+                    />
+                    )}
+                    </Section>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          <Stack.Item grow>
+            <Section
+              scrollable
+              fill
+              preserveWhitespace
+              title="Flavor Text"
+              buttons={
+                <>
+                  <Button
+                    selected={flavorTextIndex === 'SFW'}
+                    bold={flavorTextIndex === 'SFW'}
+                    onClick={() => setFlavorTextIndex('SFW')}
+                    textAlign="center"
+                    width="60px"
+                  >
+                    SFW
+                  </Button>
+                  <Button
+                    selected={flavorTextIndex === 'NSFW'}
+                    disabled={!flavor_text_nsfw|| !is_naked}
+                    bold={flavorTextIndex === 'NSFW'}
+                    onClick={() => setFlavorTextIndex('NSFW')}
+                    textAlign="center"
+                    width="60px"
+                  >
+                    NSFW
+                  </Button> 
+                </> 
+              }
+            >                  
+              {flavorTextIndex === 'SFW' && (
+                <Box
+                dangerouslySetInnerHTML={flavorHTML}
+                />
+              )}
+              {flavorTextIndex === 'NSFW' && (
+                <Box
+                dangerouslySetInnerHTML={nsfwHTML}
+                />
+              )} 
+            </Section>
+          </Stack.Item>
+        </Stack>
+
+  );
+};
+
+export const ImageGalleryPage = (props) => {
+  const { data } = useBackend<ExaminePanelData>();
+  const {
+    img_gallery,
+  } = data;
+  
+  return (
+        <Stack fill justify="space-evenly">
+            {img_gallery.map((val) => (
+              <Stack.Item grow key={val}>
+                  <Section align="center">
+                  <Image
+                    maxHeight="100%"
+                    maxWidth="100%"
+                    src={resolveAsset(val)}
+                  />
+                  </Section>
+              </Stack.Item>
+            ))}
+        </Stack>
+  );
+};
