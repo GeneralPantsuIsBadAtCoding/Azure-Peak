@@ -78,8 +78,7 @@
 	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/zizo_shrine
-	name = "Profane Shrine"
-	always_availible = FALSE	//Has unique assign for certain roles.
+	name = "profane shrine"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 1,
 		/obj/item/natural/stone = 2,

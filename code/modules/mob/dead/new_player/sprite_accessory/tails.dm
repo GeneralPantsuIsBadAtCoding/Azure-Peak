@@ -395,3 +395,9 @@
 /datum/sprite_accessory/tail/swallow
 	name = "Swallow"
 	icon_state = "swallow"
+
+/datum/sprite_accessory/tail/zorzor
+	name = "Zorgoia"
+	icon_state = "zorgoia"
+	color_keys = 3
+	color_key_names = list("Tail", "Tail Fluff", "Tail Barb")

@@ -8,7 +8,7 @@
 	icon_state = "peaceflower"
 	item_state = "peaceflower"
 	dropshrink = 0.9
-	slot_flags = ITEM_SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	body_parts_covered = NONE
 	dynamic_hair_suffix = ""
 	force = 0

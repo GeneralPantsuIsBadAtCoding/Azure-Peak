@@ -8,13 +8,15 @@
 	name = "tray"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "tray"
-	desc = ""
+	desc = "A servant's most treasured helper, able to hold several platters of food, cutlery, bottles and cups. Don't trip!"
 	force = 5
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
+	component_type = /datum/component/storage/concrete/tray
+	var/tray_display_dummies = list()
 
 /obj/item/storage/bag/tray/psy
 	name = "tray"
@@ -64,13 +66,24 @@
 			sleep(rand(2, 4))
 
 /obj/item/storage/bag/tray/update_icon()
-	cut_overlays()
-	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
-		var/mutable_appearance/I_copy = new(I)
-		I_copy.plane = FLOAT_PLANE + 1
-		I_copy.layer = FLOAT_LAYER
-		add_overlay(I_copy)
+	// i cannot express how much i hate this stupid codebase sometimes. this is WRETCHED but it works
+	for(var/obj/dummy in tray_display_dummies)
+		qdel(dummy)
+	tray_display_dummies = list()
+	vis_contents = list()
+	
+	if (contents.len > 0)
+		for(var/obj/item/thing_in_tray in contents)
+			var/obj/dummy = new()
+			dummy.appearance = thing_in_tray.appearance
+			dummy.underlays = null
+			dummy.vis_contents = thing_in_tray.vis_contents
+			dummy.pixel_x = rand(-8, 8)
+			dummy.pixel_y = rand(-8, 8)
+			dummy.vis_flags = VIS_INHERIT_ID | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE
+			
+			tray_display_dummies += dummy
+			vis_contents += dummy
 
 
 /obj/item/storage/bag/tray/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)

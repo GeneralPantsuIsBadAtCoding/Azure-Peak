@@ -49,7 +49,9 @@
 
 #define HEALTH_THRESHOLD_NEARDEATH -90 //Not used mechanically, but to determine if someone is so close to death they hear the other side
 
-#define DAMAGE_THRESHOLD_FIRE_CRIT 150
+// Actually a divisor. Where 1 / this * 100% value of burn damage on lethal zones (Chest & Head) causes you to enter hardcrit. 
+#define FIRE_HARDCRIT_DIVISOR 106 // 106 = 94.5% burn damage = hardcrit
+#define FIRE_HARDCRIT_DIVISOR_MINDLESS 200 // 200 = 50% burn damage = hardcrit for mindless mobs  
 #define STRENGTH_SOFTCAP 14	//STR value past which we get diminishing returns in our damage calculations.
 #define STRENGTH_MULT 0.1	//STR multiplier per STR point up to the softcap. Works as a %-age. 0.1 = 10% per point.
 #define STRENGTH_CAPPEDMULT 0.034	//STR multiplier per STR point past the softcap
@@ -371,4 +373,4 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define UNARMED_DAMAGE_DEFAULT		12
 
 /// Damage multiplier of silver weapons against mobs with TRAIT_SIMPLE_WOUNDS
-#define SILVER_SIMPLEMOB_DAM_MULT 2
+#define SILVER_SIMPLEMOB_DAM_MULT 3

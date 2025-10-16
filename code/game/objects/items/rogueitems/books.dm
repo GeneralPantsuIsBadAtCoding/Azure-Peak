@@ -238,8 +238,8 @@
 			return
 
 /obj/item/book/rogue/bibble/psy
-	name = "Of Psydon"
-	desc = "And HE WEEPS. Not for you, not for me, but for it all."
+	name = "Tome of Psydon"
+	desc = "'And HE WEEPS. Not for you, not for me, but for it all.' </br>A leatherbound tome, chronicling the beliefs held by the Orthodoxy; the largest Psydonic denomination in the world. The 'Harlaus Press', a recent invention by Otava's clergymen, has ensured that no corner of Psydonia would remain unlit by His teachings. Inside are three seperate testaments, each marked with a velvet strap.. </br>PSALMS - TESTAMENTS OF CLERICAL WISDOM, COMMANDING INTERPRETATION. </br>GENESIS - TESTAMENTS OF PSYDONIA'S CREATION, FOR WHAT ONCE WAS. </br>INVOCATIONS - TESTAMENTS OF WILL, TO EXORCISE AND CHANT."
 	icon_state = "psyble_0"
 	base_icon_state = "psyble"
 	title = "psyble"
@@ -275,14 +275,14 @@
 
 /obj/item/book/rogue/bibble/psy/MiddleClick(mob/user, params)
 	. = ..()
-	var/sects = list("Sect 1 - PSALMS", "Sect 2 - OF LYFE", "Sect 3 - CHANTS")
-	var/sect_choice = input(user, "Select a Sect", "OF PSYDONIA") as anything in sects
+	var/sects = list("PSALMS", "GENESIS", "INVOCATIONS")
+	var/sect_choice = input(user, "SELECT YOUR TESTAMENT", "OF PSYDONIA") as anything in sects
 	switch(sect_choice)
-		if("Sect 1 - PSALMS")
+		if("PSALMS")
 			sect = "sect1"
-		if("Sect 2 - OF LYFE")
+		if("GENESIS")
 			sect = "sect2"
-		if("Sect 3 - CHANTS")
+		if("INVOCATIONS")
 			sect = "sect3"
 
 /datum/status_effect/buff/blessed
@@ -589,8 +589,10 @@
 		var/icon_input = show_radial_menu(user, src, icon_choice, require_near = TRUE, tooltips = FALSE)
 		if(icon_input)
 			icon_state = icon_input
+			base_icon_state = replacetextEx(icon_input, regex(@"_[0-1]"), "")
 			if(alert(user, "Are you happy with this?", "Book Cover", "Yes", "No") != "Yes")
 				icon_state = initial(icon_state)
+				base_icon_state = initial(base_icon_state)
 				return
 		stage++
 		return
@@ -612,6 +614,10 @@
 	var/compiled_pages = null
 	var/list/page_texts = list()
 	var/qdel_source = FALSE
+
+/obj/item/manuscript/examine()
+	. = ..()
+	. += span_info("It has [number_of_pages] pages. Use paper to add more. Finish the book with a book crafting kit.")
 
 /obj/item/manuscript/attackby(obj/item/I, mob/living/user)
 	// why is a book crafting kit using the craft system, but crafting a book isn't? Well the crafting system for *some reason* is made in such a way as to make reworking it to allow you to put reqs vars in the crafted item near *impossible.*

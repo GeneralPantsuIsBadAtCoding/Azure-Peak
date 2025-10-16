@@ -158,15 +158,13 @@
 /datum/keybinding/living/resist
 	hotkey_keys = list("X")
 	name = "cancelresist"
-	full_name = "Cancel/Resist"
-	description = "Stop an action such as a charged attack or spam this to resist against a grab."
+	full_name = "Resist"
+	description = "Spam this to resist against a grab."
 
 /datum/keybinding/living/resist/down(client/user)
 	var/mob/living/L = user.mob
 	if(!istype(L))
 		return FALSE
-	if(L.doing)
-		L.doing = 0
 	L.resist()
 	return TRUE
 

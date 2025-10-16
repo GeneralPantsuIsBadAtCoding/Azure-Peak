@@ -37,12 +37,12 @@
 
 /datum/supply_pack/rogue/luxury/silverpsicross
 	name = "Silver Psycross"
-	cost = 200
+	cost = 250
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver)
 
 /datum/supply_pack/rogue/luxury/silverdagger
 	name = "Silver Dagger"
-	cost = 150
+	cost = 250 //Note that the Merchant's abode always spawns with a free silver dagger.
 	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver)
 
 /datum/supply_pack/rogue/luxury/nomag

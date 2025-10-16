@@ -573,11 +573,9 @@ Inquisitorial armory down here
 					cursedblood = 3
 				if(M.mind.has_antag_datum(/datum/antagonist/werewolf/lesser, FALSE))
 					cursedblood = 2
-				if(M.mind.has_antag_datum(/datum/antagonist/vampire/lesser, FALSE))
-					cursedblood = 1
 				if(M.mind.has_antag_datum(/datum/antagonist/vampire, FALSE))
 					cursedblood = 2
-				if(M.mind.has_antag_datum(/datum/antagonist/vampirelord))
+				if(M.mind.has_antag_datum(/datum/antagonist/vampire))
 					cursedblood = 3
 			update_icon()
 			takeblood(M, user)
@@ -614,7 +612,7 @@ Inquisitorial armory down here
 
 /obj/item/inqarticles/tallowpot
 	name = "tallowpot"
-	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint. The warmth of a torch or lamptern should be enough to melt the redtallow for stamping writs."
+	desc = "A small metal pot meant for holding waxes or melted redtallow. Convenient for coating signet rings and making an imprint. The warmth of a torch, lamptern, or candle should be enough to melt the redtallow for stamping writs."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "tallowpot"
 	item_state = "tallowpot"
@@ -647,7 +645,7 @@ Inquisitorial armory down here
 /obj/item/inqarticles/tallowpot/process()
 	if(heatedup > 0)
 		heatedup -= 4
-		remaining = max(remaining - 20, 0)
+		remaining = max(remaining - -20, 0)
 		messageshown = 0
 	else
 		if(tallow)
@@ -673,6 +671,11 @@ Inquisitorial armory down here
 			to_chat(user, span_info("The [src] already has redtallow in it."))
 
 	if(istype(I, /obj/item/flashlight/flare/torch/))		
+		heatedup = 28
+		visible_message(span_info("[user] warms [src] with [I]."))
+		update_icon()
+
+	if(istype(I, /obj/item/candle/)) //Could optimize this, probably. Allows candles to be used in lighting up the tallow, too.	Remove if torches and lampterns suddenly stop working for this.
 		heatedup = 28
 		visible_message(span_info("[user] warms [src] with [I]."))
 		update_icon()
@@ -933,6 +936,8 @@ Inquisitorial armory down here
 		if(prob(40))
 			C.emote("choke")
 		C.adjustOxyLoss(choke_damage)
+		if(!C.mind) // NPCs can be choked out twice as fast
+			C.adjustOxyLoss(choke_damage)
 		C.visible_message(span_danger("[user] [pick("garrotes", "asphyxiates")] [C]!"), \
 		span_userdanger("[user] [pick("garrotes", "asphyxiates")] me!"), span_hear("I hear the sickening sound of cordage!"), COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger("I [pick("garrote", "asphyxiate")] [C]!"))	

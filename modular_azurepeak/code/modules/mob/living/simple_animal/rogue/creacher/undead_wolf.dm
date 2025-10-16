@@ -73,6 +73,7 @@
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_RIGIDMOVEMENT, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 	src.AddComponent(/datum/component/infection_spreader)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead/death()

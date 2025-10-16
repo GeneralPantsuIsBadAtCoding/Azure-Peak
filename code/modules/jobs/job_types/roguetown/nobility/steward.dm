@@ -87,5 +87,5 @@ GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
 	if(world.time < GLOB.steward_tax_cooldown + 600 SECONDS)
 		to_chat(src, span_warning("You must wait [round((GLOB.steward_tax_cooldown + 600 SECONDS - world.time)/600, 0.1)] minutes before adjusting taxes again! Think of the realm."))
 		return FALSE
-	var/datum/taxsetter/taxsetter = new("The Steward Meddles")
+	var/datum/taxsetter/taxsetter = new("The Diligent Steward Intervenes", "The Greedy Steward Imposes")
 	taxsetter.ui_interact(src)

@@ -213,7 +213,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/mask/rogue/sack/psy
-	name = "psydonian sack mask"
+	name = "psydonic sack mask"
 	desc = "An ordinary brown sack. This one has eyeholes cut into it, bearing a crude chalk drawing of Psydon's cross upon its visage. Unsettling for most."
 	icon_state = "sackmask_psy"
 
@@ -343,7 +343,7 @@
 	smeltresult = /obj/item/ingot/copper
 
 /obj/item/clothing/mask/rogue/facemask/psydonmask
-	name = "psydonian mask"
+	name = "psydonic mask"
 	desc = "A silver mask, forever locked in a rigor of uncontestable joy. The Order of Saint Xylix can't decide on whether it's meant to represent Psydon's 'mirthfulness,' 'theatricality,' or the unpredictable melding of both."
 	icon_state = "psydonmask"
 	item_state = "psydonmask"
@@ -512,6 +512,9 @@
 /obj/item/clothing/mask/rogue/ragmask/red //predyed mask for NPCs
 	color = CLOTHING_RED
 
+/obj/item/clothing/mask/rogue/ragmask/black
+	color = CLOTHING_BLACK
+
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
 	item_state = "naledimask"
@@ -563,14 +566,9 @@
 	mob_overlay_icon = 'icons/mob/clothing/eyes.dmi'
 	icon = 'icons/obj/clothing/glasses.dmi'
 
-/obj/item/clothing/mask/rogue/blindfold/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == ITEM_SLOT_MASK)
-		user.become_blind("blindfold_[REF(src)]")
-
-/obj/item/clothing/mask/rogue/blindfold/dropped(mob/living/carbon/human/user)
-	..()
-	user.cure_blind("blindfold_[REF(src)]")
+/obj/item/clothing/mask/rogue/blindfold/fake
+	desc = "A strip of cloth tied around the eyes. It's too transparent to block vision."
+	tint = 0
 
 /obj/item/clothing/mask/rogue/duelmask
 	name = "duelist's mask"

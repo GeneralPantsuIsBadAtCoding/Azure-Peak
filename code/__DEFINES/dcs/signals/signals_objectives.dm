@@ -16,3 +16,5 @@
 #define COMSIG_HEAD_PUNCHED "head_punched" // from base of //mob/living/carbon/monkey/attack_hand() (victim)
 #define COMSIG_TREE_TRANSFORMED "tree_transformed" // from base of /obj/effect/proc_holder/spell/invoked/transform_tree/cast() ()
 #define COMSIG_GLOB_ROLE_CONVERTED "role_converted" // from base of /obj/effect/proc_holder/spell/self/convertrole/proc/convert() (mob/living/carbon/human/recruiter, mob/living/carbon/human/recruit, newrole)
+/// From /obj/item/rogueweapon/sword/long/judgement/vlord/Initialize() (spawned sword) to prevent IF dupe
+#define COMSIG_NEW_ICHOR_FANG_SPAWNED "ichor_fang_spawned"

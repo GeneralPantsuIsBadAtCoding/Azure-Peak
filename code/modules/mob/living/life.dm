@@ -31,8 +31,6 @@
 	if(!loc)
 		return
 
-	//Breathing, if applicable
-	handle_breathing(times_fired)
 	if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		handle_wounds()
 		handle_embedded_objects()
@@ -49,15 +47,13 @@
 			for(var/datum/wound/wound as anything in get_wounds())
 				wound.heal_wound(0.6)		
 
-	if (QDELETED(src)) // diseases can qdel the mob via transformations
+	if(QDELETED(src)) // diseases can qdel the mob via transformations
 		return
 
 	handle_environment()
 	
 	//Random events (vomiting etc)
 	handle_random_events()
-
-	handle_gravity()
 
 	handle_traits() // eye, ear, brain damages
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
@@ -105,9 +101,6 @@
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
-/mob/living/proc/handle_breathing(times_fired)
-	return
-
 /mob/living/proc/handle_random_events()
 	//random painstun
 	if(!stat && !HAS_TRAIT(src, TRAIT_NOPAINSTUN))
@@ -131,13 +124,13 @@
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)
-		for(var/datum/wound/wound as anything in get_wounds())
-			if(istype(wound, /datum/wound))
-				wound.on_death()
+		for(var/datum/wound/wound in get_wounds())
+			wound.on_death()
+
 		return
-	for(var/datum/wound/wound as anything in get_wounds())
-		if(istype(wound, /datum/wound))
-			wound.on_life()
+
+	for(var/datum/wound/wound in get_wounds())
+		wound.on_life()
 
 /obj/item/proc/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
 	return
@@ -178,26 +171,3 @@
 
 /mob/living/proc/update_damage_hud()
 	return
-
-/mob/living/proc/handle_gravity()
-	var/gravity = mob_has_gravity()
-	update_gravity(gravity)
-
-	if(gravity > STANDARD_GRAVITY)
-		gravity_animate()
-		handle_high_gravity(gravity)
-
-/mob/living/proc/gravity_animate()
-	if(!get_filter("gravity"))
-		add_filter("gravity",1,list("type"="motion_blur", "x"=0, "y"=0))
-	INVOKE_ASYNC(src, PROC_REF(gravity_pulse_animation))
-
-/mob/living/proc/gravity_pulse_animation()
-	animate(get_filter("gravity"), y = 1, time = 10)
-	sleep(10)
-	animate(get_filter("gravity"), y = 0, time = 10)
-
-/mob/living/proc/handle_high_gravity(gravity)
-	if(gravity >= GRAVITY_DAMAGE_TRESHOLD) //Aka gravity values of 3 or more
-		var/grav_stregth = gravity - GRAVITY_DAMAGE_TRESHOLD
-		adjustBruteLoss(min(grav_stregth,3))

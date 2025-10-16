@@ -47,7 +47,7 @@
 	if(!check_conditions())
 		return stop()
 	if(oldposition && !(oldposition == get_turf(holder)))
-		if(!oldposition.has_gravity() || !nograv_required)
+		if(!nograv_required)
 			var/obj/effect/E = new effect_type(oldposition)
 			set_dir(E)
 			if(fade)

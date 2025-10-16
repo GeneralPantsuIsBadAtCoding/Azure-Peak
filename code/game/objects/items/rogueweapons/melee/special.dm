@@ -272,7 +272,7 @@
 	force = 24
 	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust, /datum/intent/sword/peel)
 	name = "katar"
-	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
+	desc = "A steel blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
 	icon_state = "katar"
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	gripsprite = FALSE
@@ -311,6 +311,14 @@
 	force = 27	//Its thrust will be able to pen 80 stab armor if the wielder has 17 STR. (With softcap)
 	max_integrity = 80
 
+/obj/item/rogueweapon/katar/bronze
+	name = "bronze katar"
+	desc = "A bronze blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
+	force = 21 //-3 damage malus, same as the knuckles.
+	color = "#f9d690" //Not perfect, but should nearly replicate the bronze knuckle's palette. Someone could replace with an actual palette swap in the .dmi, when able.
+	max_integrity = 80
+	smeltresult = /obj/item/ingot/bronze
+
 /obj/item/rogueweapon/katar/punchdagger
 	name = "punch dagger"
 	desc = "A weapon that combines the ergonomics of the Ranesheni katar with the capabilities of the Western Psydonian \"knight-killers\". It can be tied around the wrist."
@@ -330,13 +338,13 @@
 	slot_flags = ITEM_SLOT_RING
 
 /obj/item/rogueweapon/katar/psydon
-	name = "psydonian katar"
+	name = "psydonic katar"
 	desc = "An exotic weapon taken from the hands of wandering monks, an esoteric design to the Otavan Orthodoxy. Special care was taken into account towards the user's knuckles: silver-tipped steel from tip to edges, and His holy cross reinforcing the heart of the weapon, with curved shoulders to allow its user to deflect incoming blows - provided they lead it in with the blade."
 	icon_state = "psykatar"
 	force = 19
 	wdefense = 3
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/katar/psydon/ComponentInitialize()
 	AddComponent(\
@@ -350,13 +358,13 @@
 	)
 
 /obj/item/rogueweapon/knuckles/psydon
-	name = "psydonian knuckles"
+	name = "psydonic knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, finished with three stumps - Psydon's crown - to crush the heretics' garments and armor into smithereens."
 	icon_state = "psyknuckle"
 	force = 17
 	wdefense = 5
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/knuckles/psydon/ComponentInitialize()
 	AddComponent(\
@@ -499,6 +507,43 @@
 	smeltresult = /obj/item/rogueore/coal
 	wdefense = 4
 	wbalance = WBALANCE_HEAVY
+
+/obj/item/rogueweapon/greataxe/militia/silver
+	name = "silver militia shovelaxe"
+	desc = "'Do you think Psydon stays in Heaven because He too lives in fear of what He's created?' </br>A silver shovel, improvised - perhaps, by the hands of a particularly desperate gravedigger - to fill a polearm's duty."
+	icon_state = "silvershovelwaraxe"
+	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(/datum/intent/rend/reach, /datum/intent/axe/chop/battle/greataxe, /datum/intent/sword/peel/big, SPEAR_BASH)
+	force = 15
+	force_wielded = 25
+	minstr = 11
+	max_blade_int = 200
+	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/ingot/silver
+	wdefense = 6
+	wbalance = WBALANCE_HEAVY
+
+/obj/item/rogueweapon/greataxe/militia/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
+/obj/item/rogueweapon/greataxe/militia/silver/preblessed/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_TENNITE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
 
 /obj/item/rogueweapon/spear/militia
 	force = 18
