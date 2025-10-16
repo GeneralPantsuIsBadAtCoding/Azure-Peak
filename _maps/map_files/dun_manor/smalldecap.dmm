@@ -2036,7 +2036,7 @@
 "Af" = (
 /obj/structure/closet/crate/chest/lootbox,
 /obj/item/scomstone,
-/obj/item/rogueweapon/sword/long/blackflamb,
+/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel,
 /obj/effect/spawner/lootdrop/potion_stats,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)

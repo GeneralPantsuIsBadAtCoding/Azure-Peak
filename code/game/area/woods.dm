@@ -23,6 +23,7 @@
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
 	threat_region = THREAT_REGION_AZURE_GROVE
+	detail_text = DETAIL_TEXT_AZURE_GROVE
 
 /area/rogue/indoors/shelter/woods
 	name = "Azure Grove"
@@ -90,3 +91,9 @@
 		/mob/living/carbon/human/species/skeleton/npc/hard = 10,
 		/mob/living/carbon/human/species/goblin/npc/ambush = 30,
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
+
+/area/rogue/outdoors/woods/vampire_lair
+	warden_area = FALSE
+	ambush_times = list()
+	ambush_mobs = null
+	threat_region = ""

@@ -154,10 +154,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	/// List all of body markings that the player can choose from in customization. Body markings from sets get added to here
 	var/list/body_markings
 	var/list/languages = list(/datum/language/common)
+
+	var/list/restricted_virtues
+
+	var/list/custom_selection
+
 	/// Some species have less than standard gender locks
 	var/gender_swapping = FALSE
 	var/stress_examine = FALSE
 	var/stress_desc = null
+	
+	var/punch_damage
 
 ///////////
 // PROCS //
@@ -1215,6 +1222,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
 		target.lastattackerckey = user.ckey
+		target.lastattacker_weakref = WEAKREF(user)
 		user.dna.species.spec_unarmedattacked(user, target)
 
 		target.next_attack_msg.Cut()
@@ -1230,7 +1238,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 		log_combat(user, target, "punched")
 		if(ishuman(user) && user.mind)
-			var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+			var/text = "[bodyzone2readablezone(selzone)]..."
 			user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 		if(!nodmg)
@@ -1417,6 +1425,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!stander)
 			target.lastattacker = user.real_name
 			target.lastattackerckey = user.ckey
+			target.lastattacker_weakref = WEAKREF(user)	
 			if(target.mind)
 				target.mind.attackedme[user.real_name] = world.time
 			var/selzone = accuracy_check(user.zone_selected, user, target, /datum/skill/combat/unarmed, user.used_intent)
@@ -1438,7 +1447,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "kicked")
 
 			if(ishuman(user) && user.mind)
-				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+				var/text = "[bodyzone2readablezone(selzone)]..."
 				user.filtered_balloon_alert(TRAIT_COMBAT_AWARE, text)
 
 			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
@@ -1545,6 +1554,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
+		target.lastattacker_weakref = WEAKREF(user)
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
 		user.stamina_add(15)
@@ -1649,7 +1659,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		used_intfactor = higher_intfactor
 	
 	if(ishuman(user) && user.mind && user.used_intent.blade_class != BCLASS_PEEL)
-		var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+		var/text = "[bodyzone2readablezone(selzone)]..."
 		if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
 			if(prob(10))
 				text = "<i>I can't tell...</i>"
@@ -1698,8 +1708,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)
 
 	I.funny_attack_effects(H, user, nodmg)
-
-	H.send_item_attack_message(I, user, parse_zone(selzone, affecting), affecting)
+	H.send_item_attack_message(I, user, selzone, affecting, bladec)
 
 	if(nodmg)
 		return FALSE //dont play a sound

@@ -143,7 +143,7 @@
 
 /datum/supply_pack/rogue/food/clownfish
 	name = "Clownfish"
-	cost = 40
+	cost = 120
 	contains = list(
 					/obj/item/reagent_containers/food/snacks/fish/clownfish,
 					/obj/item/reagent_containers/food/snacks/fish/clownfish,

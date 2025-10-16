@@ -13,7 +13,7 @@
 	Because of their upbringing, they make for natural conduits for godly powers. \
 	Azure Peak's populace holds them with a mixture of uneasy mixture of fear and respect. \
 	Due to their celestial nature, it is widely believed that an Aasimar's death is a bad omen...<br>\
-	(+1 Fortune)"
+	(+1 Stat of their choice, or Lack of Hunger & Thirst)"
 
 	skin_tone_wording = "Craft"
 
@@ -43,7 +43,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,-1), \
 		)
-	race_bonus = list(STAT_FORTUNE = 1)
+	race_bonus = list()
 	enflamed_icon = "widefire"
 	customizers = list(
 		/datum/customizer/organ/eyes/humanoid,
@@ -76,6 +76,15 @@
 	languages = list(
 		/datum/language/common,
 		/datum/language/celestial
+	)
+
+	custom_selection = list(
+		"+1 FOR" = STATKEY_LCK,
+		"+1 INT" = STATKEY_INT,
+		"+1 CON" = STATKEY_CON,
+		"+1 WIL" = STATKEY_WIL,
+		"+1 PER" = STATKEY_PER,
+		"No Hunger & Thirst" = TRAIT_NOHUNGER
 	)
 
 /datum/species/aasimar/on_species_gain(mob/living/carbon/C, datum/species/old_species)

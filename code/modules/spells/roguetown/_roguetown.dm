@@ -88,7 +88,6 @@
 	if(!isturf(U) || !isturf(T))
 		return FALSE
 	fire_projectile(user, target)
-	user.newtonian_move(get_dir(U, T))
 	update_icon()
 	start_recharge()
 	return TRUE

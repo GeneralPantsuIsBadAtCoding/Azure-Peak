@@ -44,16 +44,35 @@
 	cloak = /obj/item/clothing/cloak/apron/blacksmith
 	mouth = /obj/item/rogueweapon/huntingknife
 	pants = /obj/item/clothing/under/roguetown/trou
-	backl = /obj/item/storage/backpack/rogue/satchel
+	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
-						/obj/item/flint = 1,
-						/obj/item/rogueore/coal=1,
-						/obj/item/rogueore/iron=1,
-						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/recipe_book/blacksmithing = 1,
-						/obj/item/recipe_book/survival = 1,
-						/obj/item/rogueweapon/scabbard/sheath = 1
-						)
+		/obj/item/flint = 1,
+		/obj/item/rogueore/coal = 4,
+		/obj/item/rogueore/iron = 5,
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/blacksmithing = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
+	if(H.mind)
+		var/molds = list(
+			"Iron sword mold" = /obj/item/mold/sword,
+			"Iron axe mold" = /obj/item/mold/axe,
+			"Iron mace mold" = /obj/item/mold/mace,
+			"Iron knife mold" = /obj/item/mold/knife,
+			"Iron polearm mold" = /obj/item/mold/polearm,
+			"Iron plate" = /obj/item/mold/plate
+		)
+		var/mold_names = list()
+		for (var/name in molds)
+			mold_names += name
+		for (var/i = 1 to 2)
+			var/mold_choice = input(H, "Choose your starting molds", "Select") as anything in mold_names
+			if (i == 1)
+				l_hand = molds[mold_choice]
+			else
+				r_hand = molds[mold_choice]
+		H.set_blindness(0)
 	if(H.pronouns == HE_HIM)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt

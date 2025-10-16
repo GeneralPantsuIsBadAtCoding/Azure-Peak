@@ -20,20 +20,19 @@
 
 /obj/item/reagent_containers/food/snacks/smallrat/onbite(mob/living/carbon/human/user)
 	if(loc == user)
-		if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampirelord))
+		if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
 			if(dead)
 				to_chat(user, span_warning("It's dead."))
 				return
-			var/datum/antagonist/vampirelord/VD = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
 			if(do_after(user, 30, target = src))
 				user.visible_message(span_warning("[user] drinks from [src]!"),\
 				span_warning("I drink from [src]!"))
 				playsound(user.loc, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
-				VD.handle_vitae(50)
+				user.adjust_bloodpool(50)
 				dead = TRUE
 				playsound(get_turf(user), 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 				icon_state = "srat1"
-				rotprocess = 15 MINUTES
+				rotprocess = SHELFLIFE_SHORT
 				user.add_stress(/datum/stressevent/drankrat)
 			return
 	return ..()
@@ -48,7 +47,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	tastes = list("burnt flesh" = 1)
 	eat_effect = null
-	rotprocess = 15 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 	sellprice = 0
 
 /obj/item/reagent_containers/food/snacks/smallrat/burning(input as num)
@@ -57,7 +56,7 @@
 			dead = TRUE
 			playsound(src, 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 			icon_state = "srat1"
-			rotprocess = 15 MINUTES
+			rotprocess = SHELFLIFE_SHORT
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/smallrat/Crossed(mob/living/L)
@@ -73,14 +72,14 @@
 
 /obj/item/reagent_containers/food/snacks/smallrat/dead
 	dead = TRUE
-	rotprocess = 15 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/smallrat/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(dead)
 		icon_state = "sratl"
-		rotprocess = 15 MINUTES
+		rotprocess = SHELFLIFE_SHORT
 
 /obj/item/reagent_containers/food/snacks/smallrat/attack_hand(mob/user)
 	if(isliving(user))
@@ -131,7 +130,7 @@
 	//..()
 	if(!dead)
 		dead = TRUE
-		rotprocess = 15 MINUTES
+		rotprocess = SHELFLIFE_SHORT
 		playsound(src, 'sound/vo/mobs/rat/rat_death.ogg', 100, FALSE, -1)
 		icon_state = "[icon_state]1"
 		return 1

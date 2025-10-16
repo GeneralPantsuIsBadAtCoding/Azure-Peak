@@ -554,7 +554,7 @@
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return
-		if((A.loc == src) && A.has_gravity())
+		if((A.loc == src))
 			A.ConveyorMove(dir)
 
 /turf/open/water/ocean
@@ -582,7 +582,7 @@
 
 /turf/open/water/pond
 	name = "pond"
-	desc = "Still and idyllic water that flows through meadows."
+	desc = "Still and alarmingly idyllic water. Covered in concerning overgrowth of duckweed."
 	icon_state = "pond"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
@@ -590,4 +590,4 @@
 	slowdown = 3
 	swim_skill = TRUE
 	wash_in = TRUE
-	water_reagent = /datum/reagent/water
+	water_reagent = /datum/reagent/water/gross

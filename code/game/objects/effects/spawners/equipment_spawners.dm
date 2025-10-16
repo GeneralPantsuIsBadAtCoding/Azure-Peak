@@ -238,9 +238,19 @@
 	lootcount = 1
 	loot = list(
 		/obj/item/rogueweapon/sword/silver = 1,
+		/obj/item/rogueweapon/mace/steel/silver = 1,
+		/obj/item/rogueweapon/greataxe/silver = 1,
+		/obj/item/rogueweapon/flail/sflail/silver = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/silver = 3,
-		/obj/item/rogueweapon/mace/silver = 1,
+		/obj/item/rogueweapon/mace/warhammer/steel/silver = 1,
 		/obj/item/rogueweapon/stoneaxe/woodcut/silver = 1,
+		/obj/item/rogueweapon/spear/silver = 1,
+		/obj/item/rogueweapon/sword/long/silver = 1,
+		/obj/item/rogueweapon/sword/long/kriegmesser/silver = 1,
+		/obj/item/rogueweapon/sword/short/silver = 1,
+		/obj/item/rogueweapon/sword/rapier/silver = 1,
+		/obj/item/rogueweapon/whip/silver = 1,
+		/obj/item/rogueweapon/woodstaff/quarterstaff/silver = 1,
 	)
 
 /obj/effect/spawner/lootdrop/decrepit_equipment_spawner
@@ -337,5 +347,5 @@
 		/obj/item/clothing/gloves/roguetown/blacksteel/plategloves = 1,
 		/obj/item/clothing/head/roguetown/helmet/blacksteel/bucket = 1,
 		/obj/item/clothing/under/roguetown/platelegs/blacksteel = 1,
-		/obj/item/rogueweapon/sword/long/blackflamb = 1,
+		/obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel = 1,
 	)

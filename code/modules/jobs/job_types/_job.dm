@@ -243,6 +243,8 @@
 
 	if(islist(advclass_cat_rolls))
 		hugboxify_for_class_selection(H)
+	
+	log_admin("[H.key]/([H.real_name]) has joined as [H.mind.assigned_role].")
 
 /client/verb/set_mugshot()
 	set category = "OOC"
@@ -510,7 +512,7 @@
 					dat += "<td width = 50%; style='text-align:right'>"
 					var/list/notable_skills = list()
 					for(var/sk in adv_ref.subclass_skills)
-						if(adv_ref.subclass_skills[sk] > SKILL_LEVEL_JOURNEYMAN)
+						if(adv_ref.subclass_skills[sk] >= SKILL_LEVEL_JOURNEYMAN)
 							notable_skills[sk] = adv_ref.subclass_skills[sk]
 						else if(ispath(sk, /datum/skill/combat))
 							notable_skills[sk] = adv_ref.subclass_skills[sk]

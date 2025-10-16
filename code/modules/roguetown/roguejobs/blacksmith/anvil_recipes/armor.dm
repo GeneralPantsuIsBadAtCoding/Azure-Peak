@@ -36,7 +36,9 @@
 //This way, we can avoid having to name things in strange ways and can simply have iron/cuirass, stee/cuirass, blacksteel/cuirass->
 //-> and not messy names like ibreastplate and hplate
 
-// --------- COPPER RECIPES -----------
+
+// COPPER
+
 /datum/anvil_recipe/armor/copper/mask
 	name = "Mask, Copper"
 	req_bar = /obj/item/ingot/copper
@@ -63,7 +65,7 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/copper
 
 
-// --------- Decrepit Alloy RECIPES -----------
+// DECREPIT/ANCIENT ALLOY
 
 /datum/anvil_recipe/armor/aalloy/barbute
 	name = "Barbute, Decrepit (+1 Alloy)"
@@ -216,7 +218,8 @@
 	additional_items = list(/obj/item/ingot/purifiedaalloy)
 	created_item = /obj/item/clothing/under/roguetown/platelegs/paalloy
 
-// --------- IRON RECIPES -----------
+
+// IRON
 
 /datum/anvil_recipe/armor/iron/haubergeon
 	name = "Haubergeon, Iron"
@@ -333,13 +336,6 @@
 	created_item = /obj/item/clothing/mask/rogue/facemask
 	createditem_num = 1
 
-/datum/anvil_recipe/armor/iron/mask/hound
-	name = "Hound Mask, Iron"
-	req_bar = /obj/item/ingot/iron
-	req_blade = /obj/item/blade/iron_plate
-	created_item = /obj/item/clothing/mask/rogue/facemask/hound
-	createditem_num = 1
-
 /datum/anvil_recipe/armor/iron/wildguard
 	name = "Wild Guard, Iron"
 	req_bar = /obj/item/ingot/iron
@@ -433,20 +429,8 @@
 	req_blade = /obj/item/blade/iron_plate
 	created_item = /obj/item/clothing/head/roguetown/helmet/horned
 	
-/*
-/datum/anvil_recipe/armor/helmetgoblin
-	name = "Goblin Helmet (+1 Iron)"
-	req_bar = /obj/item/ingot/iron
-	additional_items = list(/obj/item/ingot/iron)
-	created_item = /obj/item/clothing/head/roguetown/helmet/goblin
 
-/datum/anvil_recipe/armor/plategoblin
-	name = "Goblin Mail (+1 Iron)"
-	req_bar = /obj/item/ingot/iron
-	additional_items = list(/obj/item/ingot/iron)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
-*/
-// --------- STEEL RECIPES -----------
+// STEEL
 
 /datum/anvil_recipe/armor/steel/lbrigandine
 	name = "Light Brigandine (+1 cured leather)"
@@ -807,6 +791,13 @@
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard
 
+/datum/anvil_recipe/armor/steel/bogman
+	name = "Bogman Helmet, Steel (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/guard/bogman
+
 /datum/anvil_recipe/armor/steel/barredhelm
 	name = "Barred Helmet, Steel (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
@@ -834,13 +825,6 @@
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
 	created_item = /obj/item/clothing/mask/rogue/facemask/steel
-	createditem_num = 1
-
-/datum/anvil_recipe/armor/steel/mask/hound
-	name = "Hound Mask, Steel"
-	req_bar = /obj/item/ingot/steel
-	req_blade = /obj/item/blade/steel_plate
-	created_item = /obj/item/clothing/mask/rogue/facemask/steel/hound
 	createditem_num = 1
 
 /datum/anvil_recipe/armor/steel/astratahelm
@@ -911,14 +895,16 @@
 	additional_items = list(/obj/item/clothing/under/roguetown/trou/leather)//basically you just add a lot of iron bits to the pants
 	created_item = /obj/item/clothing/under/roguetown/splintlegs
 
-// --------- SILVER RECIPES-----------
+
+// SILVER
 
 /datum/anvil_recipe/armor/silver/belt
 	name = "Plated Belt, Silver"
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/storage/belt/rogue/leather/plaquesilver
 
-// --------- GOLD RECIPES-----------
+
+// GOLD
 
 /datum/anvil_recipe/armor/gold/belt
 	name = "Plated Belt, Gold"
@@ -930,7 +916,8 @@
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/clothing/mask/rogue/facemask/goldmask
 
-// --------- BLACKSTEEL RECIPES-----------
+
+// BLACKSTEEL
 
 /datum/anvil_recipe/armor/blacksteel/cuirass
 	name = "Cuirass, Blacksteel (+1 B.Steel)"

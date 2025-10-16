@@ -42,6 +42,9 @@
 #define BLOOD_VOLUME_BAD 224
 #define BLOOD_VOLUME_SURVIVE 122
 
+/// Blood pool regeneration in non-vampiric living mobs per SSmobs tick. 
+#define BLOODPOL_REGEN 2
+
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
 #define MOB_SIZE_SMALL 1
@@ -424,6 +427,12 @@
 #define SKIN_COLOR_KOREDYNN "242871"
 #define SKIN_COLOR_AISEEDRYNN "a3c1c9"
 #define SKIN_COLOR_GRENDUSKRA "969696"
+
+//GNOME UNIQUE SKIN TONES
+#define SKIN_COLOR_ASHEN "A79E96"
+#define SKIN_COLOR_UNDERDARK "7C8A97"
+#define SKIN_COLOR_BEACH "BE9D7B"
+#define SKIN_COLOR_PALM "795138"
 
 //WOOD ELF SKIN TONES
 #define SKIN_COLOR_GRENZEL_WOODS "fff0e9"

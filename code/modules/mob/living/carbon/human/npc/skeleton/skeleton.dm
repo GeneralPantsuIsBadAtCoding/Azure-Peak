@@ -42,7 +42,6 @@
 		src.dna.species.soundpack_f = new /datum/voicepack/skeleton()
 	if(src.charflaw)
 		QDEL_NULL(src.charflaw)
-	faction = list("undead")
 	name = "Skeleton"
 	real_name = "Skeleton"
 	voice_type = VOICE_TYPE_MASC //So that "Unknown Man" properly substitutes in with face cover

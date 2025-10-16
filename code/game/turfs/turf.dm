@@ -624,8 +624,7 @@
 /turf/handle_fall(mob/faller, forced)
 	if(!forced)
 		return
-	if(has_gravity(src))
-		playsound(src, "bodyfall", 100, TRUE)
+	playsound(src, "bodyfall", 100, TRUE)
 	faller.drop_all_held_items()
 
 /turf/proc/photograph(limit=20)

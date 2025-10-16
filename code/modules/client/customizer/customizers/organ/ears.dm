@@ -168,6 +168,7 @@
 		/datum/sprite_accessory/ears/big/acrador_short,
 		/datum/sprite_accessory/ears/big/sandfox_large,
 		/datum/sprite_accessory/ears/lynx,
+		/datum/sprite_accessory/ears/zorzor
 		)
 
 /datum/customizer/organ/ears/anthro
@@ -233,6 +234,7 @@
 		/datum/sprite_accessory/ears/big/acrador_short,
 		/datum/sprite_accessory/ears/big/sandfox_large,
 		/datum/sprite_accessory/ears/lynx,
+		/datum/sprite_accessory/ears/zorzor
 		)
 
 /datum/customizer/organ/ears/lizard

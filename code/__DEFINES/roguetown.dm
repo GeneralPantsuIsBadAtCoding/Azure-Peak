@@ -143,7 +143,7 @@
 #define ARMOR_PANTS_BRIGANDINE list("blunt" = 40, "slash" = 70, "stab" = 70, "piercing" = 50, "fire" = 0, "acid" = 0)
 
 //Antag / Special / Unique armor defines
-#define ARMOR_VAMP list("blunt" = 100, "slash" = 100, "stab" = 90, "piercing" = 0, "fire" = 0, "acid" = 0)
+#define ARMOR_VAMP list("blunt" = 100, "slash" = 100, "stab" = 90, "piercing" = 80, "fire" = 0, "acid" = 0)
 #define ARMOR_WWOLF list("blunt" = 100, "slash" = 90, "stab" = 80, "piercing" = 70, "fire" = 40, "acid" = 0)
 #define ARMOR_DRAGONSCALE list("blunt" = 100, "slash" = 100, "stab" = 100, "fire" = 50, "acid" = 0)
 #define ARMOR_ASCENDANT list("blunt" = 50, "slash" = 100, "stab" = 80, "piercing" = 80, "fire" = 0, "acid" = 0)
@@ -203,6 +203,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
+  /datum/species/dwarf/gnome\
 )
 
 #define RACES_RESPECTED \
@@ -214,7 +215,8 @@ Balloon Alert / Floating Text defines
 	/datum/species/lupian,\
 	/datum/species/vulpkanin,\
 	/datum/species/moth,\
-	/datum/species/dracon,
+	/datum/species/dracon,\
+	/datum/species/dwarf/gnome\
 
 #define RACES_TOLERATED \
 	/datum/species/elf/dark,\
@@ -293,6 +295,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/goblinp,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
+	/datum/species/dwarf/gnome\
 )
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\
@@ -426,6 +429,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_WRETCH			"CAT_WRETCH"		// Wretch classes untethered from adventurer
 #define CTAG_LSKELETON		"CAT_LSKELETON"		// Lich Fortified Skeleton classes
 #define CTAG_NSKELETON		"CAT_NSKELETON"		// Necromancer Greater Skeleton classes
+#define CTAG_LICKER_WRETCH  "CAT_LICKER_WRETCH" // Licker wretch. Nuff said.
 
 #define CTAG_WARDEN			"CAT_WARDEN"		// Warden class - Handles warden class selector.
 #define CTAG_WATCH			"CAT_WATCH"			// Watch class - Handles Town Watch class selector

@@ -246,7 +246,7 @@
 
 /obj/item/ingot/silverblessed/
 	name = "blessed silver bar"
-	desc = "This bar radiates a divine purity. Treasured by the realms and commonly found in Otavan weaponry."
+	desc = "This bar radiates a divine purity. Treasured by the realms and commonly found in Psydonic weaponry."
 	icon_state = "ingotsilvblessed"
 	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
 	sellprice = 100
@@ -281,3 +281,16 @@
 	icon_state = "ancientslag"
 	smeltresult = /obj/item/ingot/aaslag
 	sellprice = 1
+
+//Anomalous Smeltings
+/obj/item/ingot/weeping
+	name = "enduring ingot"
+	desc = "A slab of metal, aged and bare. You finally know what it is, yet no word can be sired to describe it. </br>'..none will ever know the greatest truths; of Aeon's grasp, of Adonai's presence, of Psydon's fate..' </br>'..but, perhaps, that's for the better.'"
+	icon_state = "ingotsilv"
+	smeltresult = /obj/item/ingot/weeping
+	color = "#CECA9C"
+	sellprice = 111
+
+/obj/item/ingot/weeping/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(64,65),rand(1,5),rand(1,5)))
