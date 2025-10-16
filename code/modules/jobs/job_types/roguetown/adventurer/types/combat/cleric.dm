@@ -13,7 +13,6 @@
 		STATKEY_WIL = 2,
 		STATKEY_CON = 2,
 		STATKEY_SPD = 1, //Base of +9, over the standard +7. Special clemency given to the Monk, as their playstyle is exceedingly lethal - light-to-no armor, while specializing in a dangerous melee style.
-		STATKEY_LCK = 1, //Experimenting. Statblockless +1 to FOR, to represent the Cleric's divine connection. Little sweetener for those who traditionally stick to Knight-Errants or Battlemasters.
 	)
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
@@ -31,7 +30,7 @@
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
-	extra_context = "This subclass can choose from multiple disciplines. The further your chosen discipline strays from unarmed combat, however, the greater your skills in fistfighting and wrestling will atrophy. Taking a Quarterstaff provides a minor bonus to Perception."
+	extra_context = "This subclass can choose from multiple disciplines. The further your chosen discipline strays from unarmed combat, however, the greater your skills in fistfighting and wrestling will atrophy. Taking a Quarterstaff provides a minor bonus to Perception, but removes the 'Dodge Expert' trait."
 
 /datum/outfit/job/roguetown/adventurer/cleric
 	allowed_patrons = ALL_PATRONS
@@ -85,11 +84,12 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with the new Quarterstaff-centric virtue. A monk can take said-virtue if they want the best of both worlds.
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE) //Balance idea's pretty simple. A dedicated staff user can use polearms too - as both weapon types are fundamentally similar, but it'd always be a skill level lower than the staff.
 				H.change_stat(STATKEY_PER, 1) //Compliments the quarterstaff's precision-based mechanics.
+				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
-	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide
+	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide TRAIT_DODGEEXPERT
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			cloak = /obj/item/clothing/cloak/psydontabard
@@ -172,7 +172,6 @@
 		STATKEY_STR = 2,
 		STATKEY_CON = 2,
 		STATKEY_WIL = 1,
-		STATKEY_LCK = 1, //Statblockless. Experiment - refer to the Monk's entry.
 	)
 	subclass_skills = list(
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
@@ -312,8 +311,8 @@
 		var/oath_choice = input(H, "Choose your OATH.", "PROFESS YOUR BLESSINGS.") as anything in oaths
 		switch(oath_choice)
 			if("Cleric - Medicine & Mirth")
-				H.adjust_skillrank_up_to(/datum/skill/misc/medicine, SKILL_LEVEL_APPRENTICE, TRUE) 
-				beltl = /obj/item/storage/belt/rogue/pouch/medicine //Turns the Cleric into the first official 'combat medic' subclass. Possibly. Same tierage as the 'Physician's Apprentice' virtue.
+				H.adjust_skillrank_up_to(/datum/skill/misc/medicine, SKILL_LEVEL_APPRENTICE, TRUE)
+				beltl = /obj/item/reagent_containers/glass/bottle/rogue/healthpot //No needles or cloth, but a basic potion of lifeblood - similar to the Sorcerer's manna potion. Take the 'Physician's Apprentice' virtue for that, uncapped skills, and more.
 			if("Crusader - Silver Longsword")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				l_hand = /obj/item/rogueweapon/sword/long/silver //Turns the Paladin into a pre-Exorcist version of the Monster Hunter. Differences are +1 CON / -1 INT, access to minor miracles, and more limb coverage.
@@ -372,7 +371,6 @@
 		STATKEY_STR = 1,
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 2,
-		STATKEY_LCK = 1, //Statblockless. Experiment - refer to the Monk's entry.
 	)
 	subclass_skills = list(
 		/datum/skill/misc/music = SKILL_LEVEL_EXPERT,
@@ -510,7 +508,6 @@
 		STATKEY_PER = 2,
 		STATKEY_WIL = 1,
 		STATKEY_SPD = 1,
-		STATKEY_LCK = 1, //Statblockless. Experiment - refer to the Monk's entry.
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
