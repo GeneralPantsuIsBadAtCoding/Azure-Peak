@@ -129,11 +129,30 @@
 			M.Jitter(30)
 			return
 
-	else if(Vamp) //We're the vampire, we can't be saved.
-		to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. An insult I shall never forget, for as long as I die."))
-		user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
+	else if(Vamp) //We're the vampire, WE CAN BE SAVED BECAUSE WE ARE THE HUGBOX PEAK!!! YIPPE, FRIEND, MAGIC, RAINBWOS AND SPARKLEDOGS~~~
+		if(tgui_alert(M, "Resist the curse?", "Silver Poultice", list("YES", "NO")) != "YES")
+			to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. An insult I shall never forget, for as long as I die."))
+			user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
+			M.Stun(30)
+			M.Knockdown(30)
+			return
+
+		to_chat(M, span_userdanger("THE FOUL SILVER! MY BODY RENDS ITSELF ASUNDER!"))
+		Vamp.on_removal()
 		M.Stun(30)
 		M.Knockdown(30)
+		M.Jitter(30)
+		for(var/trait in list(
+			TRAIT_EASYDISMEMBER, 
+			TRAIT_NOPAIN, 
+			TRAIT_NOPAINSTUN, 
+			TRAIT_NOBREATH, 
+			TRAIT_TOXIMMUNE, 
+			TRAIT_ZOMBIE_IMMUNE, 
+			TRAIT_ROTMAN, 
+			TRAIT_SILVER_WEAK
+		))
+			ADD_TRAIT(M, trait, TRAIT_GENERIC)
 		return
 //A letter to give info on how to make this thing.
 /obj/item/paper/inquisition_poultice_info
