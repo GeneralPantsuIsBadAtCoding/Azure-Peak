@@ -1413,6 +1413,93 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
 
+/proc/ma2html(mutable_appearance/appearance, mob/viewer, extra_classes = "")
+	if(isatom(appearance))
+		var/atom/atom = appearance
+		appearance = copy_appearance_filter_overlays(atom.appearance)
+	else if(isappearance_or_image(appearance) || isicon(appearance))
+		appearance = copy_appearance_filter_overlays(appearance)
+	else
+		CRASH("Invalid appearance passed to ma2html - either a appearance, image, icon, or atom must be passed!")
+
+	if(istype(viewer, /client))
+		var/client/client_user = viewer
+		viewer = client_user.mob
+	if(!ismob(viewer))
+		CRASH("Invalid viewer passed to ma2html")
+	var/atom/movable/screen/container = viewer.send_appearance(appearance)
+	if(QDELETED(container))
+		CRASH("Failed to send appearance to client")
+	return "<img class='icon [extra_classes]' src='\ref[container]' style='image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor'>"
+
+/**
+ * Copies the passed /appearance, returns a /mutable_appearance
+ *
+ * Filters out certain overlays from the copy, depending on their planes
+ * Prevents stuff like lighting from being copied to the new appearance
+ */
+/proc/copy_appearance_filter_overlays(appearance_to_copy) as /mutable_appearance
+	RETURN_TYPE(/mutable_appearance)
+	var/mutable_appearance/copy = new(appearance_to_copy)
+	var/static/list/plane_whitelist = list(FLOAT_PLANE, GAME_PLANE, FLOOR_PLANE)
+
+	copy.overlays = recursively_filter_emissive_blockers(copy.overlays, plane_whitelist)
+	copy.underlays = recursively_filter_emissive_blockers(copy.underlays, plane_whitelist)
+
+	return copy
+
+/proc/recursively_filter_emissive_blockers(list/input_list, list/plane_whitelist)
+	var/list/filtered_list = list()
+
+	for(var/mutable_appearance/overlay_item as anything in input_list)
+		if(isnull(overlay_item))
+			continue
+
+		var/mutable_appearance/real = new()
+		real.appearance = overlay_item
+
+		// Skip emissive blockers
+		if(is_emissive_blocker(real))
+			continue
+
+		// Skip non-whitelisted planes
+		if(!(real.plane in plane_whitelist))
+			continue
+
+		if(length(real.overlays))
+			real.overlays = recursively_filter_emissive_blockers(real.overlays, plane_whitelist)
+		if(length(real.underlays))
+			real.underlays = recursively_filter_emissive_blockers(real.underlays, plane_whitelist)
+
+		filtered_list += real
+
+	return filtered_list
+
+/proc/is_emissive_blocker(mutable_appearance/MA)
+	if(MA.plane == EMISSIVE_PLANE)
+		return TRUE
+	return FALSE
+
+/// Makes a client temporarily aware of an appearance via and invisible vis contents object.
+/mob/proc/send_appearance(mutable_appearance/appearance) as /atom/movable/screen
+	RETURN_TYPE(/atom/movable/screen)
+	if(!hud_used || isnull(appearance))
+		return
+
+	var/atom/movable/screen/container = new
+	container.appearance = appearance
+
+	hud_used.vis_holder.vis_contents += container
+	addtimer(CALLBACK(src, PROC_REF(remove_appearance), container), 5 SECONDS)
+
+	return container
+
+/mob/proc/remove_appearance(atom/movable/container)
+	if(!hud_used)
+		return
+
+	hud_used.vis_holder.vis_contents -= container
+
 GLOBAL_LIST_EMPTY(headshot_cache)
 
 /proc/get_headshot_icon(mob/living/carbon/human/target, size = 64, crop_height = 32)

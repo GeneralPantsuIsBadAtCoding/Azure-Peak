@@ -189,7 +189,7 @@ GLOBAL_LIST_EMPTY(biggates)
 /obj/structure/gate/psy_vault
 	name = "\improper HIS vault"
 	redstone_id = "swamp_psy_dungeon_hour"
-	max_integrity = "9999"
+	max_integrity = 9999
 
 /obj/structure/gate/psy_vault/Initialize()
 	. = ..()

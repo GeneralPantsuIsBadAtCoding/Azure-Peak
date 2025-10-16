@@ -399,6 +399,7 @@ type BackendState<TData> = {
       size: [number, number];
       fancy: BooleanLike;
       locked: BooleanLike;
+      theme: string;
       scale: BooleanLike;
     };
     client: {

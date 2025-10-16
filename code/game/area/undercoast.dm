@@ -5,6 +5,7 @@
 	ambientnight = AMB_GENCAVE
 	soundenv = 8
 	deathsight_message = "a dark cave where Abyssor's dream echoes"
+	detail_text = DETAIL_TEXT_UNDERCOAST
 
 /area/rogue/indoors/cave/underhamlet
 	name = "The Underhamlet"
@@ -31,7 +32,7 @@
 	first_time_text = "Southern Undercoast"
 
 /area/rogue/under/cave/mazedungeon
-	name = "mazedungeon"
+	name = "Temple of the Shattered God"
 	icon_state = "under"
 	first_time_text = "TEMPLE OF THE SHATTERED GOD"
 	droning_sound = 'sound/music/area/dungeon2.ogg'
@@ -40,9 +41,10 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a dark cave where Abyssor's dream echoes"
+	detail_text = DETAIL_TEXT_TEMPLE_SHATTERED_GOD
 
 /area/rogue/under/cave/orcdungeon
-	name = "orcdungeon"
+	name = "Old Ruin"
 	icon_state = "under"
 	first_time_text = "OLD RUIN"
 	droning_sound = 'sound/music/area/dungeon.ogg'
@@ -51,3 +53,4 @@
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 	deathsight_message = "a dark cave where Abyssor's dream echoes"
+	detail_text = DETAIL_TEXT_ORC_RUIN

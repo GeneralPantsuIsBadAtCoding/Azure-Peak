@@ -41,11 +41,11 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	if(player.prefs.dnr_pref)
 		apply_dnr_trait(character, player)
 	if(player.prefs.loadout)
-		character.mind.special_items[player.prefs.loadout::name] += player.prefs.loadout.path
+		character.mind.special_items[player.prefs.loadout::name] += player.prefs.loadout::path
 	if(player.prefs.loadout2)
-		character.mind.special_items[player.prefs.loadout2::name] += player.prefs.loadout2.path
+		character.mind.special_items[player.prefs.loadout2::name] += player.prefs.loadout2::path
 	if(player.prefs.loadout3)
-		character.mind.special_items[player.prefs.loadout3::name] += player.prefs.loadout3.path
+		character.mind.special_items[player.prefs.loadout3::name] += player.prefs.loadout3::path
 	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
 	if(assigned_job)
 		assigned_job.clamp_stats(character)
