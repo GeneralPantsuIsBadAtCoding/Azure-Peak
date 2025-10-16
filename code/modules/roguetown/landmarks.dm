@@ -149,6 +149,9 @@
 /obj/effect/landmark/mob_spawner/wolf
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/wolf
 
+/obj/effect/landmark/mob_spawner/direbear
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/direbear
+
 /obj/effect/landmark/mob_spawner/fox
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/fox
 
@@ -181,6 +184,9 @@
 
 /obj/effect/landmark/mob_spawner/spider/mutated
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated
+
+/obj/effect/landmark/mob_spawner/mirespider
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/mirespider
 
 /obj/effect/landmark/mob_spawner/mirespider_lurker
 	type_path = /mob/living/simple_animal/hostile/rogue/mirespider_lurker
@@ -230,6 +236,9 @@
 /obj/effect/landmark/mob_spawner/troll/bog
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/troll/bog
 
+/obj/effect/landmark/mob_spawner/troll/cave
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/troll/cave
+
 /obj/effect/landmark/mob_spawner/werewolf/f
 	type_path = /mob/living/simple_animal/hostile/rogue/werewolf/f
 
@@ -238,6 +247,9 @@
 
 /obj/effect/landmark/mob_spawner/fae/glimmerwing
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/fae/glimmerwing
+
+/obj/effect/landmark/mob_spawner/infernal/imp
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp
 
 /obj/effect/landmark/mob_spawner/infernal/hellhound
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound
@@ -288,6 +300,9 @@
 
 /obj/effect/landmark/mob_spawner/chicken
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/chicken
+
+/obj/effect/landmark/mob_spawner/saiga/saiga
+	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/saiga
 
 /obj/effect/landmark/mob_spawner/saiga/saigabuck
 	type_path = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck
