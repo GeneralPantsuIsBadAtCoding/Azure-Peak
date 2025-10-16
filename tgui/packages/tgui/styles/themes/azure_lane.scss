@@ -1,0 +1,102 @@
+@font-face {
+  font-family: 'Pterra';
+  src: url('~roguefont/pterra.ttf');
+}
+
+.theme-azure_lane:root {
+  --color-base: #141820;
+  --color-base-start: #141820;
+  --color-base-end: #141820;
+
+  --font-size: 14px;
+  --font-family: 'Pterra';
+  --color-text: #c8d4e0;
+  --line-height: 170%;
+
+  /* Semantic colors */
+  --color-label: #7284a8;
+
+
+  // Basics
+  .Layout__content {
+    background-image: none;
+
+  }
+
+  .TitleBar {
+    background-image: url('../assets/azure_default/topbar_blue.svg');
+    background-repeat: repeat-x;
+    background-size: 64px;
+    background-color: #000000;
+    box-shadow: none;
+  }
+
+  .TitleBar__title {
+    padding-left: 12px;
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: bolder;
+  }
+
+  // Component overrides
+  --section-separator-color: #4a7ba7;
+
+  .Button {
+    transition: all 0.5s;
+    --color-text: #7284a8;
+    --button-background-default: #2d4a6f;
+    --button-background-selected: #4a7ba7;
+  }
+
+  .input-button {
+    &__submit, &__cancel {
+      color: #ae3636;
+      font-weight: 600;
+    }
+    &__submit:hover {
+      background: rgba(74, 116, 140, 0.3);
+      transition: all 0.5s;
+    }
+    &__cancel:hover {
+      background: rgba(140, 74, 74, 0.3);
+      transition: all 0.5s;
+    }
+  }
+
+  --input-border-color: #3d6b99;
+  --input-border-color-focus: #5a8cbf;
+
+  .Window__contentPadding {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .Divider {
+    border-color: #4a7ba7;
+  }
+
+   a:link {
+    color: #892a2b;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: #e19d9e;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+}

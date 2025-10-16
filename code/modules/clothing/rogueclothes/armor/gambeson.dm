@@ -228,36 +228,41 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	body_parts_covered = COVERAGE_FULL
 	body_parts_inherent = COVERAGE_FULL
-	max_integrity = 600 //Difficult to completely break.
+	max_integrity = 300
 	flags_inv = null //Exposes the chest and-or breasts. Should allow for a Disciple's thang to swang.
 	surgery_cover = FALSE //Should permit surgery and other invasive processes.
-	var/repair_amount = 6 
 	var/repair_time = 20 SECONDS
-	var/last_repair 
+	var/reptimer
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/disciple/Initialize(mapload)
-	. = ..()
+	..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/disciple/dropped(mob/living/carbon/human/user)
-	. = ..()
+	..()
 	if(QDELETED(src))
 		return
 	qdel(src)
 
-
 /obj/item/clothing/suit/roguetown/armor/gambeson/disciple/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
-	. = ..()
-	if(obj_integrity < max_integrity)
-		START_PROCESSING(SSobj, src)
+	..()
+	if(reptimer)
+		visible_message(span_notice("My [name] stops mending from the onslaught!"), vision_distance = 1)
+		deltimer(reptimer)
+
+	visible_message(span_notice("My [name] begins to slowly mend its abuse.."), vision_distance = 1)
+	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/proc/skin_repair(var/repair_percent = 0.2 * max_integrity)
+	if(obj_integrity >= max_integrity)
+		visible_message(span_notice("My [name] has become taut with newfound vigor!"), vision_distance = 1)
+		if(reptimer)
+			deltimer(reptimer)
 		return
 
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/process()
-	if(obj_integrity >= max_integrity) 
-		STOP_PROCESSING(SSobj, src)
-		src.visible_message(span_notice("[src] tautens with newfound vigor, before relaxing once more."), vision_distance = 1)
-		return
-	else if(world.time > src.last_repair + src.repair_time)
-		src.last_repair = world.time
-		obj_integrity = min(obj_integrity + src.repair_amount, src.max_integrity)
-	..()
+	visible_message(span_notice("My [name] begins to mends some of its abuse.."), vision_distance = 1)
+	obj_integrity = min(obj_integrity + repair_percent, max_integrity)
+	if(obj_broken)
+		obj_fix(full_repair = FALSE)
+	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
+

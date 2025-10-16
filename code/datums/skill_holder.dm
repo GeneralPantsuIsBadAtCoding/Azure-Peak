@@ -249,9 +249,12 @@
 
 /datum/skill_holder/proc/get_skill_level(skill)
 	var/datum/skill/S = GetSkillRef(skill)
+	var/modifier = 0
+	if(S?.abstract_type in list(/datum/skill/labor, /datum/skill/craft))
+		modifier = current?.get_inspirational_bonus()
 	if(!(S in known_skills))
 		return SKILL_LEVEL_NONE
-	return known_skills[S] || SKILL_LEVEL_NONE
+	return known_skills[S] + modifier || SKILL_LEVEL_NONE
 
 /datum/skill_holder/proc/print_levels(user)
 	var/list/shown_skills = list()
@@ -273,3 +276,13 @@
 	msg += "</span>"
 
 	to_chat(user, msg)
+
+/mob/proc/get_inspirational_bonus()
+	return 0
+
+/mob/living/carbon/get_inspirational_bonus()
+	var/bonus = 0
+	for(var/event_type in stressors)
+		var/datum/stressevent/event = stressors[event_type]
+		bonus += event.quality_modifier
+	return bonus

@@ -356,6 +356,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/drug/nicotine = 45)
 
 /obj/item/clothing/mask/cigarette/rollie/trippy
+	name = "trippy zig"
+	desc = "A paper wrapped cartridge of... What?"
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/drug/mushroomhallucinogen = 35)
 	starts_lit = TRUE
 

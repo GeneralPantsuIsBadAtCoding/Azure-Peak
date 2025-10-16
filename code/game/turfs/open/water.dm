@@ -323,9 +323,7 @@
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
-	returned = returned - (user.get_skill_level(/datum/skill/misc/swimming))
 	if(ishuman(user))
-		returned = max(returned, 0.5)
 		var/mob/living/carbon/human/H = user
 		var/ac = H.highest_ac_worn()
 		switch(ac)
@@ -554,7 +552,7 @@
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return
-		if((A.loc == src) && A.has_gravity())
+		if((A.loc == src))
 			A.ConveyorMove(dir)
 
 /turf/open/water/ocean
