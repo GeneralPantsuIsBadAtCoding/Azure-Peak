@@ -1,6 +1,7 @@
 /obj/effect/landmark/mob_spawner
 	name = "Mob Spawner"
-	icon_state = "x3"
+	icon = 'icons/effects/landmark.dmi'
+	icon_state = "s"
 	var/type_path = /mob/living/carbon/human/species/skeleton/npc/ambush
 
 /obj/effect/landmark/mob_spawner/Initialize()
@@ -49,15 +50,18 @@
 
 /obj/effect/landmark/mob_spawner/skeleton/dwarf
 	type_path = /mob/living/carbon/human/species/dwarfskeleton/ambush
+	icon_state = "sd"
 
 /obj/effect/landmark/mob_spawner/skeleton/dwarf/knight
 	type_path = /mob/living/carbon/human/species/dwarfskeleton/ambush/knight/summoned
 
-/obj/effect/landmark/mob_spawner/skeleton/deadite
+/obj/effect/landmark/mob_spawner/deadite
 	type_path = /mob/living/carbon/human/species/npc/deadite
+	icon_state = "h"
 
 /obj/effect/landmark/mob_spawner/orc
 	type_path = /mob/living/carbon/human/species/orc/npc
+	icon_state = "h"
 
 /obj/effect/landmark/mob_spawner/orc/footsoldier
 	type_path = /mob/living/carbon/human/species/orc/npc/footsoldier
@@ -76,24 +80,26 @@
 
 /obj/effect/landmark/mob_spawner/human
 	type_path = /mob/living/carbon/human/species/human/northern/bum/ambush
+	icon_state = "h"
 
-/obj/effect/landmark/mob_spawner/thief
+/obj/effect/landmark/mob_spawner/human/thief
 	type_path = /mob/living/carbon/human/species/human/northern/thief/ambush
 
-/obj/effect/landmark/mob_spawner/highwayman
+/obj/effect/landmark/mob_spawner/human/highwayman
 	type_path = /mob/living/carbon/human/species/human/northern/highwayman
 
-/obj/effect/landmark/mob_spawner/searaider
+/obj/effect/landmark/mob_spawner/human/searaider
 	type_path = /mob/living/carbon/human/species/human/northern/searaider/ambush
 
-/obj/effect/landmark/mob_spawner/bog_deserters
+/obj/effect/landmark/mob_spawner/human/bog_deserters
 	type_path = /mob/living/carbon/human/species/human/northern/bog_deserters
 
-/obj/effect/landmark/mob_spawner/bog_deserters/better_gear
+/obj/effect/landmark/mob_spawner/human/bog_deserters/better_gear
 	type_path = /mob/living/carbon/human/species/human/northern/bog_deserters/better_gear
 
 /obj/effect/landmark/mob_spawner/drowraider
 	type_path = /mob/living/carbon/human/species/elf/dark/drowraider
+	icon_state = "e"
 
 /obj/effect/landmark/mob_spawner/psy_vault_guard
 	type_path = /mob/living/carbon/human/species/lizardfolk/psy_vault_guard
@@ -103,6 +109,7 @@
 
 /obj/effect/landmark/mob_spawner/goblin
 	type_path = /mob/living/carbon/human/species/goblin/npc/ambush
+	icon_state = "g"
 
 /obj/effect/landmark/mob_spawner/goblin/cave
 	type_path = /mob/living/carbon/human/species/goblin/npc/cave

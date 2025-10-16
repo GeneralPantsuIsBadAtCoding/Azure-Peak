@@ -5,7 +5,7 @@
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/outdoors/beach)
 "ab" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /obj/structure/toilet,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
@@ -17,7 +17,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/cave/dukecourt)
 "ad" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /obj/structure/bed/rogue/inn/hay,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
@@ -155,7 +155,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
 "aA" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter)
@@ -955,7 +955,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter)
 "fB" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
@@ -999,7 +999,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/shelter)
 "fM" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "fO" = (
@@ -1571,7 +1571,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/orcdungeon)
 "jJ" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "jO" = (
@@ -1996,7 +1996,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave/mazedungeon)
 "nj" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "nk" = (
@@ -2672,7 +2672,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/under/town/basement)
 "rx" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
 "ry" = (
@@ -2896,7 +2896,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "sZ" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /obj/structure/fluff/railing/wood{
 	dir = 1;
 	layer = 2.7;
@@ -3239,7 +3239,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/mazedungeon)
 "vy" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/indoors/shelter)
 "vA" = (
@@ -6022,7 +6022,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
 "NL" = (
-/obj/effect/landmark/mob_spawner/searaider,
+/obj/effect/landmark/mob_spawner/human/searaider,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "NM" = (
