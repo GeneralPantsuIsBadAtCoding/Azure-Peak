@@ -43,7 +43,7 @@
   .TitleBar__title {
     padding-left: 12px;
     font-size: 15px;
-    color: #ae3636;
+    color: #FFFFFF;
     font-weight: bolder;
   }
 
@@ -60,7 +60,6 @@
     --color-text: #897472;
   }
   .Button--color--transparent {
-    --button-background: transparent;
     --button-background-hover: #7b5353;
     --button-background-active: #7b5353;
   }
@@ -87,6 +86,30 @@
   .Window__contentPadding {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+
+  a:link {
+    color: #892a2b;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: #e19d9e;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
   }
 
 }

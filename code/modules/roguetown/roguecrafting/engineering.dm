@@ -161,3 +161,127 @@
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
 	craftdiff = 4
+
+//rotational and minecart parts
+/datum/crafting_recipe/roguetown/engineering/shaft
+	name = "wooden shaft(4x)"
+	category = "Rotational"
+	result = list(/obj/item/rotation_contraption/shaft,
+				  /obj/item/rotation_contraption/shaft,
+				  /obj/item/rotation_contraption/shaft,
+				  /obj/item/rotation_contraption/shaft)
+	reqs = list(/obj/item/grown/log/tree/small = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	tools = list(/obj/item/rogueweapon/huntingknife = 1)
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/engineering/stickshaft
+	name = "wooden shaft"
+	category = "Rotational"
+	result = list(/obj/item/rotation_contraption/shaft)
+	reqs = list(/obj/item/grown/log/tree/stick = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	tools = list(/obj/item/rogueweapon/huntingknife = 1)
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/engineering/cog
+	name = "wooden cogwheel(2x)"
+	category = "Rotational"
+	result = list(/obj/item/rotation_contraption/cog,
+				  /obj/item/rotation_contraption/cog)
+	reqs = list(/obj/item/grown/log/tree/small = 1, /obj/item/roguegear = 2, /obj/item/grown/log/tree/stick = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	tools = list(/obj/item/rogueweapon/huntingknife = 1)
+	craftdiff = 4
+
+
+/datum/crafting_recipe/roguetown/engineering/waterwheel
+	name = "wooden waterwheel"
+	category = "Rotational"
+	result = /obj/item/rotation_contraption/waterwheel
+	reqs = list(/obj/item/natural/wood/plank = 3, /obj/item/grown/log/tree/stick = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	tools = list(/obj/item/rogueweapon/huntingknife = 1)
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/engineering/large_cog
+	name = "large wooden cogwheel"
+	category = "Rotational"
+	result = /obj/item/rotation_contraption/large_cog
+	reqs = list(/obj/item/grown/log/tree/small = 1, /obj/item/ingot/bronze = 1, /obj/item/grown/log/tree/stick = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	tools = list(/obj/item/rogueweapon/huntingknife = 1)
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/structure/gearbox
+	name = "gearbox"
+	category = "Rotational"
+	result = /obj/item/rotation_contraption/horizontal
+	reqs = list(/obj/item/roguegear = 2, /obj/item/natural/stoneblock = 2,/obj/item/grown/log/tree/stick = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/structure/vertical_gearbox
+	name = "vertical gearbox"
+	category = "Rotational"
+	result = /obj/item/rotation_contraption/vertical
+	reqs = list(/obj/item/roguegear = 2, /obj/item/natural/stoneblock = 2, /obj/item/grown/log/tree/stick = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+
+/datum/crafting_recipe/roguetown/engineering/rails
+	name = "minecart rails (10x)"
+	category = "Minecarts"
+	result = list(/obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail,
+				  /obj/item/rotation_contraption/minecart_rail)
+	reqs = list(/obj/item/natural/wood/plank = 5, /obj/item/ingot/iron = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/engineering/railbreak
+	name = "minecart rail break (4x)"
+	category = "Minecarts"
+	result = list(/obj/item/rotation_contraption/minecart_rail/railbreak,
+				  /obj/item/rotation_contraption/minecart_rail/railbreak,
+				  /obj/item/rotation_contraption/minecart_rail/railbreak,
+				  /obj/item/rotation_contraption/minecart_rail/railbreak)
+	reqs = list(/obj/item/roguegear = 1, /obj/item/ingot/iron = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 3
+
+
+/datum/crafting_recipe/roguetown/engineering/minecart
+	name = "minecart"
+	category = "Minecarts"
+	result = /obj/structure/closet/crate/miningcar
+	reqs = list(/obj/item/grown/log/tree/small = 1, /obj/item/ingot/iron = 1, /obj/item/grown/log/tree/stick = 4, /obj/item/roguegear = 2)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4

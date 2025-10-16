@@ -4,7 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/scholar
 	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ALCHEMY_EXPERT)
 	class_select_category = CLASS_CAT_TRADER
-	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,

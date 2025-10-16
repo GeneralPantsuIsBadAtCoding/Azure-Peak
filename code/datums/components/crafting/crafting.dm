@@ -108,6 +108,9 @@
 		else if(istype(I, /obj/item/natural/bundle))
 			var/obj/item/natural/bundle/B = I
 			.["other"][B.stacktype] += B.amount
+		else if(istype(I, /obj/item/construction/bundle))
+			var/obj/item/construction/bundle/B = I
+			.["other"][B.stacktype] += B.amount
 		else if(I.tool_behaviour)
 			.["tool_behaviour"] += I.tool_behaviour
 			.["other"][I.type] += 1

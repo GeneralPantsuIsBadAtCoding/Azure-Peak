@@ -4,52 +4,17 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /mob/living/carbon/human/Topic(href, href_list)
 	var/observer_privilege = isobserver(usr)
 
+	if(href_list["task"] == "bloodpoolinfo")
+		to_chat(usr, span_notice("Usable blood that yields Vitae and total blood is not the same thing. It takes some time for blood to become nourishing for us."))
+		return
+
 	if(href_list["task"] == "view_headshot")
 		if(!ismob(usr))
 			return
-		var/mob/user = usr
-		var/list/dat = list()
-		dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[src]</b></font></div>"
-		var/legacy_check = FALSE
-		if(isnull(flavortext_display) && !isnull(flavortext))
-			if(isnull(client.prefs?.flavortext_display))	// They're both null, meaning this is a legacy char being examined.
-				is_legacy = TRUE		//We toggle it on in prefs and on mob
-				client.prefs.is_legacy = TRUE
-				legacy_check = TRUE
-				client.prefs?.flavortext_display = replacetext(flavortext, "\n", "<BR>")	//We only do the basic legacy conversion
-				flavortext_display = client.prefs?.flavortext_display
-			else
-				flavortext_display = client.prefs?.flavortext_display	//In this case, something went wrong and we can fix it.
-		if(isnull(ooc_notes_display) && !isnull(ooc_notes))		// Ditto for OOC notes.
-			if(isnull(client.prefs?.ooc_notes_display))
-				is_legacy = TRUE
-				client.prefs.is_legacy = TRUE
-				legacy_check = TRUE
-				client.prefs?.ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
-				ooc_notes_display = client.prefs?.ooc_notes_display
-			else
-				ooc_notes_display = client.prefs?.ooc_notes_display
-		if(legacy_check)	//If this is how a Legacy char was established, we save it.
-			client.prefs?.save_character()
-		if(is_legacy)
-			dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY profile from the naive daes of Psydon!</font></i></center>"
-		var/agevetted = client.check_agevet()
-		if(agevetted)
-			dat += "<center><i><font color = '#74cde0'; font size = 1>This profile belongs to an AGE-VERIFIED traveler of Azuria!</font></i></center>"
-		if(valid_headshot_link(null, headshot_link, TRUE))
-			dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
-		if(flavortext)
-			dat += "<br>"
-			dat += "<div align='left'>[flavortext_display]</div>"
-		if(ooc_notes)
-			dat += "<br>"
-			dat += "<div align='center'><b>OOC notes</b></div>"
-			dat += "<div align='left'>[ooc_notes_display]</div>"
-		if(ooc_extra)
-			dat += "<div align='center'>[ooc_extra]</div>"
-		var/datum/browser/popup = new(user, "[src]", nwidth = 600, nheight = 800)
-		popup.set_content(dat.Join())
-		popup.open(FALSE)
+		var/datum/examine_panel/mob_examine_panel = new(src)
+		mob_examine_panel.holder = src
+		mob_examine_panel.viewing = usr
+		mob_examine_panel.ui_interact(usr)
 		return
 
 	if(href_list["inspect_limb"] && (observer_privilege || usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY)))
@@ -120,6 +85,14 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(slot in check_obscured_slots(TRUE))
 			to_chat(usr, span_warning("I can't reach that! Something is covering it."))
 			return
+
+	if(href_list["species_lore"])
+		if(!dna?.species?.desc)
+			return
+		var/datum/browser/popup = new(usr, "species_info", "<center>Lore</center>", 460, 550)
+		popup.set_content(dna.species.desc)
+		popup.open()
+		return
 
 	if(href_list["undiesthing"]) //canUseTopic check for this is handled by mob/Topic()
 		if(!get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))

@@ -23,7 +23,6 @@
 	var/mob/living/carbon/H = user
 	if(icon_state == "[initial(icon_state)]_snout")
 		icon_state = initial(icon_state)
-		flags_inv &= ~HIDESNOUT
 		H.update_inv_wear_mask()
 		update_icon()
 		return
@@ -33,7 +32,6 @@
 	for(var/icon_s in istates)
 		if(findtext(icon_s, "[icon_state]_snout"))
 			icon_state += "_snout"
-			flags_inv &= HIDESNOUT
 			H.update_inv_wear_mask()
 			update_icon()
 			return
@@ -215,7 +213,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/mask/rogue/sack/psy
-	name = "psydonian sack mask"
+	name = "psydonic sack mask"
 	desc = "An ordinary brown sack. This one has eyeholes cut into it, bearing a crude chalk drawing of Psydon's cross upon its visage. Unsettling for most."
 	icon_state = "sackmask_psy"
 
@@ -345,7 +343,7 @@
 	smeltresult = /obj/item/ingot/copper
 
 /obj/item/clothing/mask/rogue/facemask/psydonmask
-	name = "psydonian mask"
+	name = "psydonic mask"
 	desc = "A silver mask, forever locked in a rigor of uncontestable joy. The Order of Saint Xylix can't decide on whether it's meant to represent Psydon's 'mirthfulness,' 'theatricality,' or the unpredictable melding of both."
 	icon_state = "psydonmask"
 	item_state = "psydonmask"
@@ -426,6 +424,11 @@
 	max_integrity = 250
 	icon_state = "steppemask"
 	layer = HEAD_LAYER
+
+/obj/item/clothing/mask/rogue/facemask/steel/steppesman/anthro
+	name = "steppesman beast mask"
+	desc = "A steel mask shaped like the face of a rather charismatic beastman! Pronounced cheeks, a nose, and small spikes for whiskers. Well, people outside of Aavnr don't think you'd look charismatic at all wearing this."
+	icon_state = "steppemask_snout"
 
 /obj/item/clothing/mask/rogue/facemask/goldmask
 	name = "Gold Mask"

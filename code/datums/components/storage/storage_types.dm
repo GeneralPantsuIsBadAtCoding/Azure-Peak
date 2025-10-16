@@ -186,9 +186,20 @@
 	screen_max_columns = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-/datum/component/storage/tray
+/datum/component/storage/concrete/tray
 	insert_preposition = "on"
 	max_w_class = WEIGHT_CLASS_NORMAL
+	screen_max_rows = 3
+	screen_max_columns = 4
+	allow_quick_gather = TRUE
+	allow_quick_empty = TRUE
+	allow_dump_out = TRUE
+	dump_time = 40
+	collection_mode = COLLECT_SAME
+
+/datum/component/storage/concrete/tray/New(datum/P, ...)
+	. = ..()
+	can_hold = typecacheof(list(/obj/item/cooking, /obj/item/reagent_containers/glass/bowl, /obj/item/reagent_containers/glass/cup, /obj/item/kitchen, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass/bottle))
 
 /datum/component/storage/concrete/grid/headhook
 	max_w_class = WEIGHT_CLASS_NORMAL
@@ -267,3 +278,13 @@
 /datum/component/storage/concrete/grid/orestore/bronze
 	screen_max_rows = 10
 	screen_max_columns = 8
+
+/datum/component/storage/concrete/roguetown/dice_pouch
+	screen_max_rows = 4
+	screen_max_columns = 2
+	max_w_class = WEIGHT_CLASS_TINY
+	not_while_equipped = FALSE
+
+/datum/component/storage/concrete/roguetown/dice_pouch/New(datum/P, ...)
+	. = ..()
+	can_hold = typecacheof(list(/obj/item/dice))

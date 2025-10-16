@@ -9,8 +9,8 @@
 	icon_dead = "wwolf_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 80
-	maxHealth = 220
-	health = 220
+	maxHealth = 333
+	health = 333
 	melee_damage_lower = 15
 	melee_damage_upper = 18
 	STASTR = 20
@@ -31,6 +31,7 @@
 	. = ..()
 	regenerate_icons()
 	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/rogue/werewolf/f
 	icon_state = "wwolf_f"

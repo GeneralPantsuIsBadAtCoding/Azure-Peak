@@ -2,7 +2,7 @@
 	name = "Doomsayer"
 	tutorial = "THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly."
 	outfit = /datum/outfit/job/roguetown/adventurer/doomsayer
-	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	class_select_category = CLASS_CAT_TRADER
 	traits_applied = list(TRAIT_SCHIZO_AMBIENCE, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(

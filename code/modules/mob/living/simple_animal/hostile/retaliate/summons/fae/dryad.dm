@@ -82,9 +82,6 @@
 		if(ranged) //We ranged? Shoot at em
 			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
 				OpenFire(target)
-		if(!Process_Spacemove()) //Drifting
-			walk(src,0)
-			return 1
 		if(world.time >= src.vine_cd + 100 && !mind)
 			vine()
 			src.vine_cd = world.time

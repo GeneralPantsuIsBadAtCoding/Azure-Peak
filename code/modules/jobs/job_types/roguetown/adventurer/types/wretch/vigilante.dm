@@ -85,6 +85,7 @@
 	H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 4, TRUE) //Investigations
 	H.adjust_skillrank_up_to(/datum/skill/combat/slings, 4, TRUE) // Funny as shit to use. 
 	H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE) //Last resort CQC. Enough def on a quarterstaff to fight defensively, not enough to be truly offensive.
+	H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //Nearly missed this while finishing up the staff-skill port.
 	H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 4, TRUE) //I lurk in the shadows...
 	H.adjust_skillrank_up_to(/datum/skill/craft/crafting, 4, TRUE) //Crafty
 	H.adjust_skillrank_up_to(/datum/skill/misc/climbing, 5, TRUE) // Escape routes

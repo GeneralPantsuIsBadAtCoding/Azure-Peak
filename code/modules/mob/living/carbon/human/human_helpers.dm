@@ -144,6 +144,7 @@
 		if(mind.has_antag_datum(/datum/antagonist/werewolf))
 			return 50
 
+	damage += dna.species.punch_damage
 	return damage
 
 /mob/living/carbon/human/is_floor_hazard_immune()
@@ -157,3 +158,58 @@
 	src.mob_timers[MT_INVISIBILITY] = world.time + timeinvis
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon/human, update_sneak_invis), TRUE), timeinvis)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[src] fades back into view."), span_notice("You become visible again.")), timeinvis)
+
+/mob/living/carbon/human/proc/create_walk_to(duration, mob/living/walk_to)
+	ADD_TRAIT(src, TRAIT_MOVEMENT_BLOCKED, VAMPIRE_TRAIT)
+	walk_to_target = walk_to
+	walk_to_duration = duration
+	walk_to_steps_taken = 0
+	walk_to_last_pos = get_turf(src)
+	walk_to_cached_path = null
+
+	// Start the walking process
+	walk_to_caster()
+	addtimer(CALLBACK(src, PROC_REF(remove_walk_to_trait)), 10 SECONDS)
+
+/mob/living/carbon/human/proc/walk_to_caster()
+	if(!walk_to_target || walk_to_steps_taken >= walk_to_duration)
+		remove_walk_to_trait()
+		return
+
+	if(can_frenzy_move())
+		var/turf/current_pos = get_turf(src)
+		var/turf/target_pos = get_turf(walk_to_target)
+
+		// Only regenerate path if we've moved to a different position or don't have a cached path
+		if(!walk_to_cached_path || walk_to_last_pos != current_pos)
+			walk_to_cached_path = get_path_to(src, target_pos, TYPE_PROC_REF(/turf, Heuristic_cardinal_3d), 33, 250, 1)
+			walk_to_last_pos = current_pos
+
+		var/moved = FALSE
+
+		if(length(walk_to_cached_path))
+			walk(src, 0) // Stop any existing walk
+			set_glide_size(DELAY_TO_GLIDE_SIZE(total_multiplicative_slowdown()))
+			step_to(src, walk_to_cached_path[1], 0)
+			face_atom(walk_to_target)
+
+			walk_to_cached_path.Cut(1, 2)
+			moved = TRUE
+		else
+			walk_towards(src, walk_to_target, 0, total_multiplicative_slowdown())
+			moved = TRUE
+
+		if(moved)
+			walk_to_steps_taken++
+
+	addtimer(CALLBACK(src, PROC_REF(walk_to_caster)), total_multiplicative_slowdown())
+
+/mob/living/carbon/human/proc/remove_walk_to_trait()
+	REMOVE_TRAIT(src, TRAIT_MOVEMENT_BLOCKED, VAMPIRE_TRAIT)
+	walk(src, 0) // Stop any walking
+	walk_to_target = null
+	walk_to_duration = 0
+	walk_to_steps_taken = 0
+	walk_to_last_pos = null
+	walk_to_cached_path = null
+

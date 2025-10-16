@@ -4,7 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/brewer
 	traits_applied = list(TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
 	class_select_category = CLASS_CAT_TRADER
-	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,
@@ -48,4 +48,5 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/ingot/copper = 2,
 		/obj/item/roguegear = 1, 
+		/obj/item/bottle_kit = 1,
 		/obj/item/recipe_book/survival = 1)

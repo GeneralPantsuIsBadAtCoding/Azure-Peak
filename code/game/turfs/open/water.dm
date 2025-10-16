@@ -554,7 +554,7 @@
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return
-		if((A.loc == src) && A.has_gravity())
+		if((A.loc == src))
 			A.ConveyorMove(dir)
 
 /turf/open/water/ocean

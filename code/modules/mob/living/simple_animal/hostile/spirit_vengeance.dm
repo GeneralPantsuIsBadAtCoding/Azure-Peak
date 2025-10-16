@@ -28,7 +28,6 @@
 	attack_sound = 'sound/blank.ogg'
 	canparry = TRUE
 	d_intent = INTENT_DODGE
-	spacewalk = TRUE
 	defprob = 20
 	speak_emote = list("growls")
 	footstep_type = null

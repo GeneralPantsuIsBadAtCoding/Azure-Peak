@@ -660,14 +660,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!(interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))		//See if we're supposed to auto pickup.
 		return
 
-	//Heavy gravity makes picking up things very slow.
-	var/grav = user.has_gravity()
-	if(grav > STANDARD_GRAVITY)
-		var/grav_power = min(3,grav - STANDARD_GRAVITY)
-		to_chat(user,span_notice("I start picking up [src]..."))
-		if(!do_mob(user,src,30*grav_power))
-			return
-
 
 	//If the item is in a storage item, take it out
 	if(inv_storage_delay && SEND_SIGNAL(loc, COMSIG_CONTAINS_STORAGE))
@@ -839,8 +831,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if((is_silver || smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(M, TRAIT_SILVER_WEAK) &&  !M.has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
-		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+		var/datum/antagonist/vampire/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampire/)
+		if(V_lord.generation >= GENERATION_METHUSELAH)
 			return
 
 		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))
@@ -1172,14 +1164,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return ..()
 	return 0
 
-/obj/item/burn()
+/obj/item/burn(amount = 1)
 	if(!QDELETED(src))
 		var/turf/T = get_turf(src)
 		var/ash_type = /obj/item/ash
 		if(w_class == WEIGHT_CLASS_HUGE || w_class == WEIGHT_CLASS_GIGANTIC)
 			ash_type = /obj/item/ash
-		var/obj/item/ash/A = new ash_type(T)
-		A.desc += "\nLooks like this used to be \an [name] some time ago."
+		// Override for children that want more than 1 ash per item (Bundle as pseudo-stack)
+		for(var/i in 1 to amount)
+			var/obj/item/ash/A = new ash_type(T)
+			A.desc += "\nLooks like this used to be \an [name] some time ago."
 		..()
 
 /obj/item/acid_melt()
@@ -1453,7 +1447,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	to_chat(M, "\The [src] BREAKS...!")
 
-/obj/item/obj_fix()
+/obj/item/obj_fix(mob/user, full_repair = TRUE)
 	..()
 	update_damaged_state()
 

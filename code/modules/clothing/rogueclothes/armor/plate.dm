@@ -25,6 +25,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/iron
 	name = "iron half-plate"
 	desc = "A basic half-plate of iron, protective and moderately durable."
+	body_parts_covered = CHEST | VITALS | LEGS // Reflects the sprite, which lacks pauldrons.
 	icon_state = "ihalfplate"
 	item_state = "ihalfplate"
 	boobed = FALSE	//the armor just looks better with this, makes sense and is 8 sprites less
@@ -50,15 +51,14 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted
 	name = "fluted half-plate"
-	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
-	Supposedly made to deflect blows."
+	desc = "An ornate steel cuirass, fitted with tassets and pauldrons for additional coverage. This lightweight deviation of 'plate armor' is favored by cuirassiers all across Psydonia, alongside fledging barons who've - up until now - waged their fiercest battles upon a chamberpot." 
 	icon_state = "ornatehalfplate"
 
 	equip_delay_self = 6 SECONDS
 	unequip_delay_self = 6 SECONDS
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
-	body_parts_covered = COVERAGE_SHIRT
+	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar
 	name = "vicious half-plate"
@@ -73,10 +73,11 @@
 	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonian half-plate"
-	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+	name = "psydonic half-plate"
+	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Psydon oft-decorate these sets with dyed cloths, so that those who're wounded can still find salvation in the madness of battle. </br>'..the thrumbing of madness, to think that your suffering was all-for-naught to Adonai's sacrifical lamb..'"
 	icon_state = "ornatehalfplate"
+	smeltresult = /obj/item/ingot/silverblessed
+	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
 
@@ -112,16 +113,16 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted
 	name = "fluted plate"
-	desc = "A sturdily made fluted full-plate. Supposedly made to deflect blows from blades and arrows."
+	desc = "A suit of ornate plate armor, noble in both presentation and protection. Such resplendent maille is traditionally reserved for the higher echelons of nobility; seasoned knights, venerated kings, and pot-bellied councilmen that wish to flaunt their opulence towards the unwashed masses."
 	icon_state = "ornateplate"
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonian plate"
-	desc = "A sturdily made fluted full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+	name = "psydonic plate"
+	desc = "A suit of beautiful plate armor, meticulously fluted with blessed silver. This design's origins lay in the hands of a legendary armorsmith, who sought to mimic the heavenly maille that Psydon's angels once wore. </br>'..the refusal of despair, and the resolve to defend Psydonia in its darkest hour..'"
 	icon_state = "ornateplate"
+	smeltresult = /obj/item/ingot/silverblessed
 
 	max_integrity = ARMOR_INT_CHEST_PLATE_PSYDON
 
@@ -325,9 +326,10 @@
 	item_state = "fencercuirass"
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fencer/psydon
-	name = "psydonian chestplate"
+	name = "psydonic chestplate"
 	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
 	smelt_bar_num = 1
+	smeltresult = /obj/item/ingot/silverblessed
 	icon_state = "ornatechestplate"
 	item_state = "ornatechestplate"
 
@@ -349,17 +351,17 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
 	icon_state = "ornatecuirass"
-	desc = "A sturdy steel cuirass with tassets. Supposedly protective, though maybe not against crossbow bolts."
+	desc = "An ornate steel cuirass, fitted with tassets for additional coverage. The intricate fluting not only attracts the maidens, but also strengthens the steel's resistance against repeated impacts."
 
 	body_parts_covered = CHEST | VITALS | LEGS 
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-	name = "psydonian cuirass"
+	name = "psydonic cuirass"
 	icon_state = "ornatecuirass"
-	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
-			Made to endure."
-	
+	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..'"
+	smeltresult = /obj/item/ingot/silverblessed
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
 	desc = "A basic cuirass of iron, protective and moderately durable."
@@ -409,7 +411,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
-	desc = "A heavy coat lined with thin metal plates; only the finest for the inquisition, complete with space to fit a Psydonian Cuirass."
+	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Otavan Inquisition's finest. </br>A Psydonic Cuirass can be fitted with this longcoat, in order to ward off deadlier blows without compromising one's fashion sense."
 	body_parts_covered = COVERAGE_FULL
 	allowed_sex = list(MALE, FEMALE)
 	allowed_sex = list(MALE, FEMALE)
@@ -448,7 +450,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/armored
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "armored inquisitorial duster"
-	desc = "Metal plates reinforce this heavy coat, worn over the top of the finest Psydonian plate."
+	desc = "A heavy longcoat with layers of maille hidden beneath the leather, donned by the Holy Otavan Inquisition's finest. Where the longcoat parts, a surprise awaits; an ornate steel cuirass, worn beneath the leathers to ward off crippling blows."
 	smeltresult = /obj/item/ingot/steel 
 	icon_state = "inqcoata"
 	item_state = "inqcoata"
