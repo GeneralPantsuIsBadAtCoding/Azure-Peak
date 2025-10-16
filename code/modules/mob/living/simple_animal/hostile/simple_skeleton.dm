@@ -153,6 +153,7 @@
 	if(!target)
 		if(prob(60))
 			emote(pick("idle"), TRUE)
+	/*  //////////////////////////////////////////////I FIX IT LATER///////////////////////////////////////////////////
 	var/list/mobs_in_range
 	mobs_in_range = oview(8, src)
 	if(world.time > damage_check + 10 SECONDS)
@@ -168,9 +169,10 @@
 				src.add_filter(NECRO_SEE, 2, list("type" = "outline", "color" = "#8a0deaff", "alpha" = 80, "size" = 1))
 				if(start_take_damage == TRUE)
 					src.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	*/  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if(start_take_damage == TRUE)
 		if(world.time > damage_check + 5 SECONDS)
-			src.adjustFireLoss(wither) //+- one minute for 100 HP (any skeleton) and two minute for guard skeleton (200 HP)
+			src.adjustFireLoss(8) //+- one minute for 100 HP (any skeleton) and two minute for guard skeleton (200 HP)
 
 #undef NECRO_SEE
 
