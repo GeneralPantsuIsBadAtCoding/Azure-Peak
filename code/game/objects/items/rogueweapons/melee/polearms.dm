@@ -1496,37 +1496,29 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	name = "\"Daemonslayer\""
-	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
+	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and stupendously heavy; a fitting compliment to the archetypical struggler."
 	icon_state = "machaslayer"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	wlength = WLENGTH_GREAT
+	w_class = WEIGHT_CLASS_BULKY
 	possible_item_intents = list(/datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/sucker_punch/dragonslayer)
 	gripped_intents = list(/datum/intent/sword/chop/dragonslayer, /datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/smash/dragonslayer, /datum/intent/sword/flay/dragonslayer)
-	force = 5
+	force = 35
 	force_wielded = 55
-	minstr = 14
+	minstr = 15
 	wdefense = 10
-	max_integrity = 666
-	max_blade_int = 666
+	max_integrity = 555
+	max_blade_int = 555
+	alt_intents = null 
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/rogueweapon/sword/long/kriegmesser/silver //Too thick to completely melt.
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 0,\
 		added_def = 0,\
-	)
-
-/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/preblessed/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_TENNITE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 0,\
-		added_int = 0,\
-		added_def = 0,\
-	)
