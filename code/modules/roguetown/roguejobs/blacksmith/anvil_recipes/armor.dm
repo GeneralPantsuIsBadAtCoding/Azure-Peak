@@ -969,7 +969,7 @@
 
 /datum/anvil_recipe/armor/blessedsilver/psyhalfplate
 	name = "Psydonic Half-Plate (+Psydonic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
-	req_bar = //obj/item/ingot/silverblessed
+	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 
