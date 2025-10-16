@@ -1659,15 +1659,17 @@
 
 /obj/item/rogueweapon/sword/long/holysee
 	name = "eclipsum sword"
-	desc = "A deadly longsword born of Astratan and Nocite hands, this blade was forged with both silver and gold alike. Blessed to hold strength and bring hope, whether it be during the dae or the nite."
+	desc = "A masterworked longsword, forged from the same divine alloy that decorates the Bishop's hip. As your fingers curl around the shaft, a blessed sensation rolls through your very soul: the resolve to stand against evil, and the determination to see it vanquished from this world. </br>'..blessed to hold strength and bring hope, whether it be during the dae or the nite..'"
 	icon_state = "seeblade"
-	force = 34
+	force = 35
 	force_wielded = 50
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
+	wdefense = 7
+	max_blade_int = 777
 	max_integrity = 999
 
 /obj/item/rogueweapon/sword/long/holysee/ComponentInitialize()
@@ -1676,9 +1678,9 @@
 		pre_blessed = BLESSING_NONE,\
 		silver_type = SILVER_TENNITE,\
 		added_force = 0,\
-		added_blade_int = 50,\
-		added_int = 50,\
-		added_def = 2,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
 	)
 
 /obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
