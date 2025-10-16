@@ -41,6 +41,9 @@
 
 	check_cremation()
 
+	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
+		handle_automated_frenzy()
+
 	if(stat != DEAD)
 		return 1
 
@@ -551,10 +554,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 */
 
 /mob/living/carbon/proc/handle_sleep()
-	if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !(mobility_flags & MOBILITY_STAND))
-		energy_add(5)
-		if(mind?.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			energy_add(10)
+	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+		if(!(mobility_flags & MOBILITY_STAND))
+			energy_add(5)
+		if(mind?.has_antag_datum(/datum/antagonist/vampire))
+			if(!(mobility_flags & MOBILITY_STAND))
+				energy_add(10)
+			energy_add(4)
 		return
 	//Healing while sleeping in a bed
 	if(IsSleeping())

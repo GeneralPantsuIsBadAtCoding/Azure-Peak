@@ -358,8 +358,8 @@ GLOBAL_LIST_EMPTY(species_list)
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		Uloc = user.loc
-		Tloc = target.loc
+		Uloc = user?.loc
+		Tloc = target?.loc
 
 		if(QDELETED(user) || user.stat || !Tloc?.Adjacent(Uloc) || (extra_checks && !extra_checks.Invoke()) || (same_direction && user.dir != original_dir))
 			. = 0

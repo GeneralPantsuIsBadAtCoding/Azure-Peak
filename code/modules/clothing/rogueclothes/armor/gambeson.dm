@@ -232,6 +232,7 @@
 	flags_inv = null //Exposes the chest and-or breasts. Should allow for a Disciple's thang to swang.
 	surgery_cover = FALSE //Should permit surgery and other invasive processes.
 	var/repair_time = 20 SECONDS
+	var/reptimer
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/disciple/Initialize(mapload)
 	..()
@@ -243,18 +244,25 @@
 		return
 	qdel(src)
 
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/obj_break(damage_flag)
+/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
 	..()
-	visible_message(span_notice("My [name] begins to tauten with newfound vigor.."), vision_distance = 1)
-	addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
+	if(reptimer)
+		visible_message(span_notice("My [name] stops mending from the onslaught!"), vision_distance = 1)
+		deltimer(reptimer)
+
+	visible_message(span_notice("My [name] begins to slowly mend its abuse.."), vision_distance = 1)
+	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/disciple/proc/skin_repair(var/repair_percent = 0.2 * max_integrity)
-	if(obj_integrity >= max_integrity) 
+	if(obj_integrity >= max_integrity)
+		visible_message(span_notice("My [name] has become taut with newfound vigor!"), vision_distance = 1)
+		if(reptimer)
+			deltimer(reptimer)
 		return
 
+	visible_message(span_notice("My [name] begins to mends some of its abuse.."), vision_distance = 1)
 	obj_integrity = min(obj_integrity + repair_percent, max_integrity)
-	visible_message(span_notice("My [name] slowly mends its abuse.."), vision_distance = 1)
 	if(obj_broken)
 		obj_fix(full_repair = FALSE)
-	addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
+	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
 

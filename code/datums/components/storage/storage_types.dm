@@ -146,39 +146,12 @@
 /datum/component/storage/concrete/grid/magebag/New(datum/P, ...)
 	. = ..()
 	set_holdable(list(
-		/obj/item/magic/infernal/ash,
-		/obj/item/magic/infernal/fang,
-		/obj/item/magic/infernal/core,
-		/obj/item/magic/infernal/flame,
-		/obj/item/magic/fairydust,
-		/obj/item/magic/iridescentscale,
-		/obj/item/magic/heartwoodcore,
-		/obj/item/magic/sylvanessence,
-		/obj/item/magic/elemental/mote,
-		/obj/item/magic/elemental/shard,
-		/obj/item/magic/elemental/fragment,
-		/obj/item/magic/elemental/relic,
-		/obj/item/magic/obsidian,
-		/obj/item/magic/leyline,
+		/obj/item/magic,
+		/obj/item/alch,
+		/obj/item/herbseed,
 		/obj/item/reagent_containers/food/snacks/grown/manabloom,
-		/obj/item/magic/manacrystal,
-		/obj/item/ash,
-		/obj/item/magic/artifact,
-		/obj/item/alch/atropa,
-		/obj/item/alch/matricaria,
-		/obj/item/alch/symphitum,
-		/obj/item/alch/taraxacum,
-		/obj/item/alch/euphrasia,
-		/obj/item/alch/paris,
-		/obj/item/alch/calendula,
-		/obj/item/alch/mentha,
-		/obj/item/alch/urtica,
-		/obj/item/alch/salvia,
-		/obj/item/alch/hypericum,
-		/obj/item/alch/benedictus,
-		/obj/item/alch/valeriana,
-		/obj/item/alch/artemisia,
-		/obj/item/alch/rosa
+		/obj/item/reagent_containers/food/snacks/grown/berries/rogue,
+		/obj/item/ash
 		))
 
 /datum/component/storage/concrete/roguetown/saddle

@@ -49,6 +49,7 @@
 
 // Initial bite on target
 // src is the target
+///Initial bite on target
 /mob/living/carbon/onbite(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("I don't want to harm [src]!"))
@@ -61,16 +62,8 @@
 	if(checkdefense(bitten, user))
 		return FALSE
 
-	var/datum/species/dullahan/user_species
-	if(isdullahan(user))
-		user_species = user.dna.species
-
 	if(user.pulling != src)
-		if(user_species && user_species.headless)
-			var/obj/item/bodypart/head/dullahan/user_head = user_species.my_head
-			if(!user_head.check_closest_zones(src))
-				return FALSE
-		else if(!lying_attack_check(user))
+		if(!lying_attack_check(user))
 			return FALSE
 
 	var/def_zone = check_zone(user.zone_selected)
@@ -96,17 +89,16 @@
 			nodmg = TRUE
 			next_attack_msg += span_warning("Armor stops the damage.")
 
+	var/datum/wound/caused_wound
 	if(!nodmg)
-		affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)
+		caused_wound = affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)
 	visible_message(span_danger("[user] bites [src]'s [parse_zone(user.zone_selected)]![next_attack_msg.Join()]"), \
 					span_userdanger("[user] bites my [parse_zone(user.zone_selected)]![next_attack_msg.Join()]"))
 
 	next_attack_msg.Cut()
-	/*
-		nodmg if they don't have an open wound
-		nodmg if we don't have strongbite
-		nodmg if our teeth can't break through their armour
-	*/
+//nodmg if they don't have an open wound
+//nodmg if we don't have strongbite
+//nodmg if our teeth can't break through their armour
 	if(!nodmg)
 		playsound(src, "smallslash", 100, TRUE, -1)
 		if(ishuman(src) && user.mind)
@@ -118,6 +110,7 @@
 				if(HAS_TRAIT(src, TRAIT_SILVER_BLESSED))
 					to_chat(user, span_warning("BLEH! [bite_victim] tastes of SILVER! My gift cannot take hold."))
 				else
+					caused_wound?.werewolf_infect_attempt()
 					if(prob(30))
 						user.werewolf_feed(bite_victim, 10)
 			/*
@@ -142,6 +135,7 @@
 
 		lastattacker = user.real_name
 		lastattackerckey = user.ckey
+		lastattacker_weakref = WEAKREF(user)
 		if(mind)
 			mind.attackedme[user.real_name] = world.time
 		log_combat(user, src, "bit")
@@ -285,116 +279,12 @@
 
 //this is for carbon mobs being drink only
 /obj/item/grabbing/bite/proc/drinklimb(mob/living/user) //implies limb_grabbed and sublimb are things
-	var/datum/species/dullahan/user_species
-	if(isdullahan(user) && ishuman(grabbed))
-		var/mob/living/carbon/human/target_human = grabbed
-		var/mob/living/carbon/human/user_human = user
-		user_species = user_human.dna.species
-		var/obj/item/bodypart/head/dullahan/user_head = user_species.my_head
-
-		var/same_tile = (get_turf(user_head) == get_turf(target_human))
-		var/head_close = target_human.is_holding(user_head) || same_tile
-		if((user_species.headless && !head_close) || (!user_species.headless && !target_human.Adjacent(user)))
-			qdel(src)
-			return
-	else if(!user.Adjacent(grabbed))
+	if(!user.Adjacent(grabbed))
 		qdel(src)
 		return
-	if(world.time <= user.next_move)
-		return
-	if(world.time < last_drink + 2 SECONDS)
-		return
+
 	if(!limb_grabbed.get_bleed_rate())
 		to_chat(user, span_warning("Sigh. It's not bleeding."))
 		return
-	var/mob/living/carbon/C = grabbed
-	if(C.dna?.species && (NOBLOOD in C.dna.species.species_traits))
-		to_chat(user, span_warning("Sigh. No blood."))
-		return
-	if(C.blood_volume <= 0)
-		to_chat(user, span_warning("Sigh. No blood."))
-		return
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(istype(H.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || HAS_TRAIT(H, TRAIT_SILVER_BLESSED))
-			to_chat(user, span_userdanger("SILVER! HISSS!!!"))
-			return
-	last_drink = world.time
-	user.changeNext_move(CLICK_CD_GRABBING)
 
-	if(user.mind)
-		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
-		var/datum/antagonist/vampirelord/VVictim = C.mind.has_antag_datum(/datum/antagonist/vampirelord)
-		var/zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/werewolf)
-		if(!zomwerewolf)
-			if(C.stat != DEAD)
-				zomwerewolf = C.mind.has_antag_datum(/datum/antagonist/zombie)
-
-		if(VDrinker)
-			// Regular vampire lords
-			if(zomwerewolf)
-				to_chat(user, span_danger("I'm going to puke..."))
-				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
-			else
-				if(VVictim)
-					to_chat(user, span_warning("It's vitae, just like mine."))
-				else if (C.vitae_pool > 500)
-					C.blood_volume = max(C.blood_volume-45, 0)
-					C.vitae_pool -= 500
-					if(ishuman(C))
-						var/mob/living/carbon/human/H = C
-						if(H.virginity)
-							to_chat(user, "<span class='love'>Virgin blood, delicious!</span>")
-							if(VDrinker.isspawn)
-								VDrinker.handle_vitae(1500, 1500)
-							else
-								VDrinker.handle_vitae(1500)
-					if(VDrinker.isspawn)
-						VDrinker.handle_vitae(1000, 1000)
-					else
-						VDrinker.handle_vitae(1000)
-				else
-					to_chat(user, span_warning("No more vitae from this blood..."))
-		else if(HAS_TRAIT(user, TRAIT_HORDE))
-			// Horde trait allows safe blood drinking
-		else
-			// Non-vampires will vomit
-			to_chat(user, "<span class='warning'>I'm going to puke...</span>")
-			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
-
-	C.blood_volume = max(C.blood_volume-15, 0)
-	C.handle_blood()
-
-	playsound(user.loc, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
-
-	C.visible_message(span_danger("[user] drinks from [C]'s [parse_zone(sublimb_grabbed)]!"), \
-					span_userdanger("[user] drinks from my [parse_zone(sublimb_grabbed)]!"), span_hear("..."), COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_warning("I drink from [C]'s [parse_zone(sublimb_grabbed)]."))
-	log_combat(user, C, "drank blood from ")
-
-	SEND_SIGNAL(user, COMSIG_LIVING_DRINKED_LIMB_BLOOD, C)
-
-	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
-		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
-		if(VDrinker && !C.mind)
-			to_chat(user, span_warning("This blood is not pure enough to nourish me properly!"))
-
-
-	if(C.mind && user.mind.has_antag_datum(/datum/antagonist/vampirelord))
-		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
-		if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
-			if(!VDrinker.isspawn)
-				switch(alert("Would you like to sire a new spawn?",,"Yes","No"))
-					if("Yes")
-						user.visible_message("[user] begins to infuse dark magic into [C]")
-						if(do_after(user, 30))
-							C.visible_message("[C] rises as a new spawn!")
-							var/datum/antagonist/vampirelord/lesser/new_antag = new /datum/antagonist/vampirelord/lesser()
-							new_antag.sired = TRUE
-							C.mind.add_antag_datum(new_antag)
-							sleep(10 SECONDS)
-							C.fully_heal()
-							C.energy = C.max_energy
-							C.update_health_hud()
-					if("No")
-						to_chat(user, span_warning("I decide [C] is unworthy."))
+	user.drinksomeblood(grabbed, sublimb_grabbed)

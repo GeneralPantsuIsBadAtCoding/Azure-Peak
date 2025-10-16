@@ -62,10 +62,9 @@
 		if(L.stat == DEAD)
 			continue
 		if(L.mind)
-			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			if(V)
-				if(!V.disguised)
-					isvampire = TRUE
+			var/datum/antagonist/vampire/V = L.mind.has_antag_datum(/datum/antagonist/vampire)
+			if(V && !SEND_SIGNAL(L, COMSIG_DISGUISE_STATUS))
+				isvampire = TRUE
 			if(L.mind.has_antag_datum(/datum/antagonist/zombie))
 				iszombie = TRUE
 			if(L.mind.special_role == "Vampire Lord" || L.mind.special_role == "Lich")	//Won't detonate Lich's or VLs but will fling them away.

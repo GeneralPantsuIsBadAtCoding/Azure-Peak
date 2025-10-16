@@ -182,6 +182,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tabard's Shroud, Black"
 	path = /obj/item/clothing/head/roguetown/roguehood/shroudblack
 
+/datum/loadout_item/poncho
+	name = "Poncho"
+	path = /obj/item/clothing/cloak/poncho
+
 //SHOES
 /datum/loadout_item/darkboots
 	name = "Dark Boots"
@@ -444,6 +448,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/cloth_blindfold
 	name = "Cloth Blindfold"
 	path = /obj/item/clothing/mask/rogue/blindfold
+
+/datum/loadout_item/fake_blindfold
+	name = "Fake Blindfold"
+	path = /obj/item/clothing/mask/rogue/blindfold/fake
 
 /datum/loadout_item/bases
 	name = "Cloth military skirt"

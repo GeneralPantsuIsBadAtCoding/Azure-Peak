@@ -473,6 +473,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		Blunt weapon or off-hand weapon loses [INTEG_PARRY_DECAY_NOSHARP] per parry instead. \n\
 		On armor, the blunt rating of an armor multiplies its effective durability against blunt damage."))
 
+	if(href_list["explainintdamage"])
+		to_chat(usr, span_info("Multiplies the damage done to armor on hit."))
+
+	if(href_list["explaindemolitionmod"])
+		to_chat(usr, span_info("Multiplies the damage done to objects when hitting them."))
+
+	if(href_list["explainskill"])
+		to_chat(usr, span_info("The skill associated with this weapon. Each level gives +20% to your parry chance, -20% to your opponent's parry chance. \n\
+		The same is applied to dodge but with a +/-10% bonus. It also adds +8% chance to hit the body part you're aiming for."))
+
 	if(href_list["inspect"])
 		if(!usr.canUseTopic(src, be_close=TRUE))
 			return
@@ -527,10 +537,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "[percent]% ([blade_int]) <span class='info'><a href='?src=[REF(src)];explainsharpness=1'>{?}</a></span>"
 
 		if(associated_skill && associated_skill.name)
-			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
+			inspec += "\n<b>SKILL:</b> [associated_skill.name] <span class='info'><a href='?src=[REF(src)];explainskill=1'>{?}</a></span>"
 		
 		if(intdamage_factor != 1 && force >= 5)
-			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]%"
+			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]% <span class='info'><a href='?src=[REF(src)];explainintdamage=1'>{?}</a></span>"
+
+		if(demolition_mod != 1 && force >= 5)
+			inspec += "\n<b>ANTI-OBJECT MOD:</b> [demolition_mod * 100]% <span class='info'><a href='?src=[REF(src)];explaindemolitionmod=1'>{?}</a></span>"
 
 //**** CLOTHING STUFF
 
@@ -831,8 +844,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if((is_silver || smeltresult == /obj/item/ingot/silver) && (HAS_TRAIT(M, TRAIT_SILVER_WEAK) &&  !M.has_status_effect(STATUS_EFFECT_ANTIMAGIC)))
-		var/datum/antagonist/vampirelord/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V_lord.vamplevel >= 4 && !M.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+		var/datum/antagonist/vampire/V_lord = M.mind?.has_antag_datum(/datum/antagonist/vampire/)
+		if(V_lord.generation >= GENERATION_METHUSELAH)
 			return
 
 		to_chat(M, span_userdanger("I can't pick up the silver, it is my BANE!"))

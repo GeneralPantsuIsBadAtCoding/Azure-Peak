@@ -573,11 +573,9 @@ Inquisitorial armory down here
 					cursedblood = 3
 				if(M.mind.has_antag_datum(/datum/antagonist/werewolf/lesser, FALSE))
 					cursedblood = 2
-				if(M.mind.has_antag_datum(/datum/antagonist/vampire/lesser, FALSE))
-					cursedblood = 1
 				if(M.mind.has_antag_datum(/datum/antagonist/vampire, FALSE))
 					cursedblood = 2
-				if(M.mind.has_antag_datum(/datum/antagonist/vampirelord))
+				if(M.mind.has_antag_datum(/datum/antagonist/vampire))
 					cursedblood = 3
 			update_icon()
 			takeblood(M, user)
@@ -938,6 +936,8 @@ Inquisitorial armory down here
 		if(prob(40))
 			C.emote("choke")
 		C.adjustOxyLoss(choke_damage)
+		if(!C.mind) // NPCs can be choked out twice as fast
+			C.adjustOxyLoss(choke_damage)
 		C.visible_message(span_danger("[user] [pick("garrotes", "asphyxiates")] [C]!"), \
 		span_userdanger("[user] [pick("garrotes", "asphyxiates")] me!"), span_hear("I hear the sickening sound of cordage!"), COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, span_danger("I [pick("garrote", "asphyxiate")] [C]!"))	

@@ -615,6 +615,10 @@
 	var/list/page_texts = list()
 	var/qdel_source = FALSE
 
+/obj/item/manuscript/examine()
+	. = ..()
+	. += span_info("It has [number_of_pages] pages. Use paper to add more. Finish the book with a book crafting kit.")
+
 /obj/item/manuscript/attackby(obj/item/I, mob/living/user)
 	// why is a book crafting kit using the craft system, but crafting a book isn't? Well the crafting system for *some reason* is made in such a way as to make reworking it to allow you to put reqs vars in the crafted item near *impossible.*
 	if(istype(I, /obj/item/book_crafting_kit))

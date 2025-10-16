@@ -133,6 +133,35 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	deathsight_message = "a twisted tangle of soaring peaks"
 
+/area/rogue/outdoors/rtfield
+	name = "Azure Basin"
+	icon_state = "rtfield"
+	soundenv = 19
+	ambush_times = list("night")
+	ambush_mobs = list(
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/badger = 10,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/raccoon = 25,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf/bobcat = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/fox = 30,
+				/mob/living/carbon/human/species/skeleton/npc/supereasy = 30)
+	first_time_text = "AZURE BASIN"
+	droning_sound = 'sound/music/area/field.ogg'
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = 'sound/music/area/sleeping.ogg'
+	converted_type = /area/rogue/indoors/shelter/rtfield
+	deathsight_message = "somewhere in the wilds, next to towering walls"
+	warden_area = TRUE
+	threat_region = THREAT_REGION_AZURE_BASIN
+
+/area/rogue/druidsgrove
+	name = "Druids grove"
+	icon_state = "rtfield"
+	first_time_text = "Druids grove"
+	droning_sound = list('sound/ambience/riverday (1).ogg','sound/ambience/riverday (2).ogg','sound/ambience/riverday (3).ogg')
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = list ('sound/ambience/rivernight (1).ogg','sound/ambience/rivernight (2).ogg','sound/ambience/rivernight (3).ogg' )
+
 /area/rogue/indoors/shelter/rtfield
 	icon_state = "rtfield"
 	droning_sound = 'sound/music/area/field.ogg'
