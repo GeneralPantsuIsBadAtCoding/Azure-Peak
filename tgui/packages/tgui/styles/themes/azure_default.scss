@@ -13,7 +13,6 @@
   --color-text: #897472;
   --line-height: 170%;
   --color-scrollbar-thumb: #7b5353;
-  --color-scrollbar-base: #7b;
 
 
   /* Semantic colors */ 
@@ -29,7 +28,7 @@
   }
 
   .TitleBar {
-    background-image: url('../assets/azure_default/topbar_shifted.svg');
+    background-image: url('../assets/azure_default/topbar_red.svg');
     background-repeat: repeat-x;
     background-size: 64px;
     background-color: #000000;
@@ -86,6 +85,34 @@
   .Window__contentPadding {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+
+  .Divider {
+    border-color: #7b5353;
+  }
+  
+  a:link {
+    color: #892a2b;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: #e19d9e;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
   }
 
 }

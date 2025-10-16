@@ -31,8 +31,6 @@
 	if(!loc)
 		return
 
-	//Breathing, if applicable
-	handle_breathing(times_fired)
 	if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		handle_wounds()
 		handle_embedded_objects()
@@ -49,7 +47,7 @@
 			for(var/datum/wound/wound as anything in get_wounds())
 				wound.heal_wound(0.6)		
 
-	if (QDELETED(src)) // diseases can qdel the mob via transformations
+	if(QDELETED(src)) // diseases can qdel the mob via transformations
 		return
 
 	handle_environment()
@@ -103,9 +101,6 @@
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
-/mob/living/proc/handle_breathing(times_fired)
-	return
-
 /mob/living/proc/handle_random_events()
 	//random painstun
 	if(!stat && !HAS_TRAIT(src, TRAIT_NOPAINSTUN))
@@ -129,13 +124,13 @@
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)
-		for(var/datum/wound/wound as anything in get_wounds())
-			if(istype(wound, /datum/wound))
-				wound.on_death()
+		for(var/datum/wound/wound in get_wounds())
+			wound.on_death()
+
 		return
-	for(var/datum/wound/wound as anything in get_wounds())
-		if(istype(wound, /datum/wound))
-			wound.on_life()
+
+	for(var/datum/wound/wound in get_wounds())
+		wound.on_life()
 
 /obj/item/proc/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
 	return

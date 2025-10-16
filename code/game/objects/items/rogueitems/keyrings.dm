@@ -251,7 +251,7 @@
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/tower, /obj/item/roguekey/mage)
 
 /obj/item/storage/keyring/innkeep
-	keys = list(/obj/item/roguekey/tavern, /obj/item/roguekey/tavernkeep, /obj/item/roguekey/roomviii, /obj/item/roguekey/roomvii, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomv, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomii, /obj/item/roguekey/roomi, /obj/item/roguekey/fancyroomi, /obj/item/roguekey/fancyroomii, /obj/item/roguekey/fancyroomiii, /obj/item/roguekey/fancyroomiv, /obj/item/roguekey/fancyroomv)
+	keys = list(/obj/item/roguekey/tavern, /obj/item/roguekey/tavernkeep, /obj/item/roguekey/roomhunt, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomv, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomii, /obj/item/roguekey/roomi, /obj/item/roguekey/fancyroomi, /obj/item/roguekey/fancyroomii, /obj/item/roguekey/fancyroomiii, /obj/item/roguekey/fancyroomiv, /obj/item/roguekey/fancyroomv)
 
 /obj/item/storage/keyring/priest
 	keys = list(/obj/item/roguekey/priest, /obj/item/roguekey/church, /obj/item/roguekey/graveyard)

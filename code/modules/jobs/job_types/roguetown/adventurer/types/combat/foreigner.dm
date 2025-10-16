@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/foreigner
 	class_select_category = CLASS_CAT_NOMAD
 	traits_applied = list(TRAIT_STEELHEARTED)
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	subclass_languages = list(/datum/language/kazengunese)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	subclass_stats = list(
@@ -132,6 +132,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/repentant
 	subclass_languages = list(/datum/language/otavan)
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOPAINSTUN)
 	subclass_stats = list(
 		STATKEY_CON = 3,

@@ -168,7 +168,7 @@
 	else
 		user.visible_message(span_warning("[user] tries to break free of [src]!"))
 
-	if(!do_after(user, 1.5 SECONDS))
+	if(do_after(user, 1.5 SECONDS, FALSE, src, TRUE, null, FALSE, TRUE))
 		user.visible_message(span_warning("[M] stops struggling!"))
 		return
 	if(!prob(time2mount))

@@ -411,8 +411,8 @@
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.slipouttime
 	if((STASTR > 10))
-		var/time_mod = (STASTR - 10) * 20 SECONDS
-		breakouttime -= time_mod
+		var/time_mod = breakouttime * (STASTR - 10) * 0.2
+		breakouttime = max(0, breakouttime - time_mod)
 	if(mind && mind.has_antag_datum(/datum/antagonist/zombie))
 		breakouttime = 10 SECONDS
 	if(STASTR > 15)
@@ -745,7 +745,8 @@
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts) //hardcoded to streamline things a bit
 		if(!(bodypart.body_zone in lethal_zones))
 			continue
-		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * DAMAGE_THRESHOLD_FIRE_CRIT)
+		var/hardcrit_divisor = !mind ? FIRE_HARDCRIT_DIVISOR_MINDLESS : FIRE_HARDCRIT_DIVISOR
+		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * hardcrit_divisor)
 		total_burn = max(total_burn, my_burn)
 		used_damage = max(used_damage, my_burn)
 	if(used_damage < total_tox)

@@ -48,6 +48,10 @@
 	air_update_turf()
 	addtimer(CALLBACK(src, PROC_REF(trigger_weather)), rand(5,20))
 
+/obj/effect/hotspot/proc/try_fire_act(atom/target, added, maxstacks)
+	SHOULD_CALL_PARENT(FALSE)
+	target.fire_act(added, maxstacks)
+
 /obj/effect/hotspot/proc/perform_exposure()
 
 	var/turf/open/location = loc
@@ -59,8 +63,7 @@
 	for(var/A in location)
 		var/atom/AT = A
 		if(!QDELETED(AT) && AT != src) // It's possible that the item is deleted in temperature_expose
-			AT.fire_act(1, 20)
-	return
+			try_fire_act(AT, 1, 20)
 
 /obj/effect/hotspot/proc/gauss_lerp(x, x1, x2)
 	var/b = (x1 + x2) * 0.5
@@ -154,7 +157,7 @@
 	..()
 	if(isliving(AM))
 		var/mob/living/L = AM
-		L.fire_act(1, 20)
+		try_fire_act(L, 1, 20)
 
 /obj/effect/dummy/lighting_obj/moblight/fire
 	name = "fire"
@@ -202,3 +205,27 @@
 	icon_state = "[firelevel]"
 
 #undef INSUFFICIENT
+
+/// For use with demonic T5 ability
+/obj/effect/hotspot/vampiric
+	life = 6
+	firelevel = 3
+	color = COLOR_LIME
+	light_color = COLOR_LIME
+	var/datum/clan/owner_clan
+
+/obj/effect/hotspot/vampiric/Initialize(mapload, starting_volume, starting_temperature, datum/clan/owner_clan)
+	if(!istype(owner_clan))
+		return INITIALIZE_HINT_QDEL
+	src.owner_clan = owner_clan
+	. = ..()
+
+/obj/effect/hotspot/vampiric/Destroy()
+	owner_clan = null
+	return ..()
+
+/obj/effect/hotspot/vampiric/try_fire_act(mob/living/carbon/human/target, added, maxstacks)
+	if(istype(target) && target.clan == owner_clan)
+		return
+
+	return ..()

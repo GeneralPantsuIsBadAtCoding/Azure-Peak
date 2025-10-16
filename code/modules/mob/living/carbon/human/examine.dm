@@ -32,7 +32,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name = FALSE
-	var/race_name = dna.species.name
+	var/race_name = "<a href='?src=[REF(src)];species_lore=1'><u>[dna.species.name]</u></A> "
 	var/datum/antagonist/maniac/maniac = user.mind?.has_antag_datum(/datum/antagonist/maniac)
 	var/datum/antagonist/skeleton/skeleton = user.mind?.has_antag_datum(/datum/antagonist/skeleton)
 	if(maniac && (user != src))
@@ -265,8 +265,8 @@
 					var/shit = bD.examine_friendorfoe(aD,user,src)
 					if(shit)
 						. += shit
-			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord) || user.mind.has_antag_datum(/datum/antagonist/vampire))
-				. += span_userdanger("Blood Volume: [blood_volume]")
+		if(user.mind?.has_antag_datum(/datum/antagonist/vampire) || user.mind?.has_antag_datum(/datum/antagonist/vampire))
+			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [(mind && !clan) ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool]; Blood: [blood_volume]</a>")
 
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
@@ -885,6 +885,8 @@
 	if(!isnull(trait_exam))
 		. += trait_exam
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
@@ -975,15 +977,9 @@
 			if(HAS_TRAIT(src,TRAIT_KNOWNCRIMINAL))
 				villain_text = span_userdanger("BANDIT!")
 		if(mind.special_role == "Vampire Lord")
-			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A MONSTER!")
-		if(mind.special_role == "Vampire Spawn")
-			var/datum/antagonist/vampirelord/lesser/VD = mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A LICKER!")
+			var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)
+			if(!SEND_SIGNAL(VD.owner, COMSIG_DISGUISE_STATUS))
+				villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 

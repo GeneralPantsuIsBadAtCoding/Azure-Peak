@@ -905,6 +905,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		ip_intel = res.intel
 
 /client/Click(atom/object, atom/location, control, params)
+	if(isatom(object) && HAS_TRAIT(mob, TRAIT_IN_FRENZY))
+		return
+
 	var/ab = FALSE
 	var/list/L = params2list(params)
 

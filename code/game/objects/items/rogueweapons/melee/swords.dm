@@ -636,6 +636,18 @@
 	equip_delay_self = 0
 	unequip_delay_self = 0
 
+/obj/item/rogueweapon/sword/long/judgement/vlord/Initialize()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_NEW_ICHOR_FANG_SPAWNED, src)
+	RegisterSignal(SSdcs, COMSIG_NEW_ICHOR_FANG_SPAWNED, PROC_REF(on_recall))
+
+/obj/item/rogueweapon/sword/long/judgement/vlord/proc/on_recall(obj/new_sword)
+	if(new_sword == src)
+		return
+
+	src.visible_message(span_warning("\The [src] crumbles to dust, the ashes spiriting away."))
+	qdel(src)
+
 /obj/item/rogueweapon/sword/long/marlin
 	name = "shalal saber"
 	desc = "A large yet surprisingly agile curved blade meant to be wielded in two hands. It has a similar composition to northwestern Psydonian longswords, but it's notably lighter."

@@ -1198,8 +1198,12 @@
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			combat_modifier -= 0.3
 		else
+			if(!src.mind)
+				combat_modifier -= 0.3
 			if(HAS_TRAIT(L, TRAIT_BLACKBAGGER))
 				combat_modifier -= 0.3
+				if(HAS_TRAIT(src, TRAIT_BAGGED))
+					combat_modifier -= 0.3
 	for(var/obj/item/grabbing/G in grabbedby)
 		if(G.chokehold == TRUE)
 			combat_modifier -= 0.15
@@ -1228,7 +1232,10 @@
 			if(!gcord)
 				gcord = L.get_inactive_held_item()
 			to_chat(pulledby, span_warning("[src] struggles against the [gcord]!"))
-			gcord.take_damage(25)
+			if(!src.mind) // NPCs do less damage to the garrote
+				gcord.take_damage(10)
+			else
+				gcord.take_damage(25)
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
 						span_warning("I struggle against [L]'s grip![rchance]"), null, null, L)
@@ -1329,12 +1336,18 @@
 	if(!who.Adjacent(src))
 		return
 
-	who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
-					span_danger("[src] tries to remove my [what.name]."), null, null, src)
+	if(!enhanced_strip)
+		who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
+						span_danger("[src] tries to remove my [what.name]."), null, null, src)
+
 	to_chat(src, span_danger("I try to remove [who]'s [what.name]..."))
 	what.add_fingerprint(src)
-	if(do_mob(src, who, what.strip_delay * surrender_mod))
-		if(what && Adjacent(who))
+	var/strip_delayed = what.strip_delay
+	if(enhanced_strip)
+		strip_delayed = 0.1 SECONDS
+	if(do_after(src, strip_delayed * surrender_mod, who))
+		if(what && (Adjacent(who) || (enhanced_strip && (get_dist(src, who) <= 3))))
+			enhanced_strip = FALSE
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
@@ -1343,7 +1356,6 @@
 			if(what == who.get_item_by_slot(where))
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
-					who.update_fov_angles()
 
 	if(Adjacent(who)) //update inventory window
 		who.show_inv(src)
