@@ -2,7 +2,7 @@
 	name = "Licker"
 	tutorial = "You have recently been embraced as a vampire. You do not know whom your sire is, strange urges, unnatural strength, a thirst you can barely control. You were outed as a monster and are now on the run."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = RACES_NO_CONSTRUCT
 	outfit = /datum/outfit/job/roguetown/wretch/licker
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(
