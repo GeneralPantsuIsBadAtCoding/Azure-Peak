@@ -124,7 +124,8 @@
 
 //this is a child so we can be used in sammies
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast
-	name = "Crisp and crunchy, yet not burnt - truly, an alchemical wonder. Best enjoyed with a fried egg or knob of sliced butter."
+	name = "toast"
+	desc = "Crisp and crunchy, yet not burnt - truly, an alchemical wonder. Best enjoyed with a fried egg or knob of sliced butter."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "toast"
 	faretype = FARE_NEUTRAL
