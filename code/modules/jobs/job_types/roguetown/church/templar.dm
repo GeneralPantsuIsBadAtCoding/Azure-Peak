@@ -44,7 +44,7 @@
 		STATKEY_STR = 3,
 		STATKEY_CON = 2,
 		STATKEY_WIL = 2,
-		STATKEY_SPD = 1 //-1, achieves parity with the Disciple's '3/3/3' statblock.
+		STATKEY_SPD = 2
 	)
 	subclass_skills = list(
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
