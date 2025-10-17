@@ -289,8 +289,16 @@
 	icon_state = "ingotsilv"
 	smeltresult = /obj/item/ingot/weeping
 	color = "#CECA9C"
-	sellprice = 111
+	sellprice = 222
 
 /obj/item/ingot/weeping/Initialize()
   ..()
   filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(64,65),rand(1,5),rand(1,5)))
+
+/obj/item/ingot/draconic
+	name = "draconic ingot"
+	desc = "A slab of obsidian, crackling with energy. Your fingers blister from the sheer heat, radiating off of its glassy surface. </br>'..no man, be-they a saint or sinner, can truly withstand such power..' </br>'..but, perhaps, you are different..' </br>'..find a way to give the remains a new lyfe; a new vessel that may yet make the Archdevil weep..'"
+	icon_state = "ingotblacksteel"
+	smeltresult = /obj/item/ingot/draconic
+	color = "#70b8ff"
+	sellprice = 333
