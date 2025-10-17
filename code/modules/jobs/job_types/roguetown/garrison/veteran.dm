@@ -95,7 +95,6 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	cloak = /obj/item/clothing/cloak/half/vet
 	belt = /obj/item/storage/belt/rogue/leather/black
-	id = /obj/item/scomstone/garrison/vet
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
@@ -174,7 +173,6 @@
 	backl = /obj/item/rogueweapon/shield/tower/metal
 	r_hand = /obj/item/rogueweapon/spear/billhook
 	belt = /obj/item/storage/belt/rogue/leather/black
-	id = /obj/item/scomstone/garrison/vet
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -237,7 +235,6 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	id = /obj/item/scomstone/garrison/vet
 	belt = /obj/item/storage/belt/rogue/leather/black
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(
@@ -329,7 +326,6 @@
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather/black
-	id = /obj/item/scomstone/garrison/vet
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -415,7 +411,6 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 	belt = /obj/item/storage/belt/rogue/leather/black
-	id = /obj/item/scomstone/garrison/vet
 	cloak = /obj/item/clothing/cloak/half/vet
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -484,7 +479,6 @@
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
-	id = /obj/item/scomstone/garrison/vet
 	cloak = /obj/item/clothing/cloak/raincloak/mortus
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/silver/elvish = 1,
