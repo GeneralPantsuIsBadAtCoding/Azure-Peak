@@ -166,6 +166,9 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 
 	var/chosensongtier = tgui_input_list(src, "Choose a tier of song to add to your songbook", "SERENADE", choosablesongtiers)
 
+	if(!chosensongtier)
+		return
+
 	switch(chosensongtier)
 		if("TIER1")
 			songs = GLOB.learnable_songst1
