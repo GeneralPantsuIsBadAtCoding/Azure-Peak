@@ -1432,8 +1432,8 @@
 	attack_verb = list("impales", "runs through")
 	reach = 3
 	damfactor = 1.25
-	clickcd = 20
-	swingdelay = 10
+	clickcd = 55
+	swingdelay = 15
 
 /datum/intent/sword/chop/dragonslayer
 	name = "eviscerate"
@@ -1442,11 +1442,11 @@
 	attack_verb = list("splits", "eviscerates")
 	animname = "chop"
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = 45
-	damfactor = 1.5
-	swingdelay = 10
+	penfactor = 40
+	damfactor = 2
+	swingdelay = 15
 	reach = 2
-	clickcd = 20
+	clickcd = 55
 	item_d_type = "slash"
 
 /datum/intent/sword/smash/dragonslayer
@@ -1457,13 +1457,13 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	reach = 2
 	damfactor = 2.5
-	swingdelay = 10
-	clickcd = 20
+	swingdelay = 25
+	clickcd = 55
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
 /datum/intent/sword/sucker_punch/dragonslayer
-	name = "sucker punch"
+	name = "unevadable haymaker"
 	icon_state = "inpunch"
 	attack_verb = list("punches", "throttles", "clocks")
 	animname = "strike"
@@ -1471,8 +1471,8 @@
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
 	damfactor = 4
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	clickcd = 20
-	recovery = 10
+	clickcd = 55
+	recovery = 15
 	item_d_type = "blunt"
 	canparry = FALSE
 	candodge = FALSE
@@ -1486,8 +1486,8 @@
 	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
 	reach = 2
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	swingdelay = 10
-	clickcd = 20
+	swingdelay = 15
+	clickcd = 50
 	damfactor = 0.5
 	item_d_type = "slash"
 	peel_divisor = 1
@@ -1496,7 +1496,7 @@
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	name = "\"Daemonslayer\""
-	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and stupendously heavy; a fitting compliment to the archetypical struggler."
+	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
 	icon_state = "machaslayer"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	wlength = WLENGTH_GREAT
@@ -1506,7 +1506,7 @@
 	force = 35
 	force_wielded = 55
 	minstr = 15
-	wdefense = 10
+	wdefense = 15
 	max_integrity = 555
 	max_blade_int = 555
 	alt_intents = null 
