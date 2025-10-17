@@ -1522,3 +1522,4 @@
 		added_blade_int = 0,\
 		added_int = 0,\
 		added_def = 0,\
+	)
