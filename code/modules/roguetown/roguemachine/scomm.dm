@@ -950,7 +950,7 @@
 
 /obj/item/scomstone/garrison/vet
 	name = "veteran's medallion"
-	icon_state = "0,0"
+	icon_state = "shalal"
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	desc = "A meritorious keepsake, dangling from a steel chain. One side bares the Church's psycross, while the other has a curious little button - hold it close, and you can almost hear the hum of a hidden gemerald inside. It was the only thing that escaped the killing fields; and even now, it still feels like a piece of you was left behind. </br>'I took an oath.. to fight for peace. So did you.. all of you.'"
 	slot_flags = ITEM_SLOT_RING|ITEM_SLOT_NECK
