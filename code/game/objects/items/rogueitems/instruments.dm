@@ -363,4 +363,4 @@
 	"Amoroso" = 'sound/music/instruments/psyaltery (7).ogg',
 	"Lupian's Lullaby" = 'sound/music/instruments/psyaltery (8).ogg',
 	"White Wine Before Breakfast" = 'sound/music/instruments/psyaltery (9).ogg',
-	"Otava" = 'sound/music/instruments/psyaltery (10).ogg')
+	"Chevalier de Naledi" = 'sound/music/instruments/psyaltery (10).ogg')
