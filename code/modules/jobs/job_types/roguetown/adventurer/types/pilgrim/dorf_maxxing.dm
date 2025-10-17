@@ -1,13 +1,15 @@
-/datum/job/roguetown/pilgrim/dorf_maxxer //BORN UNDERGROUND,
+/datum/job/roguetown/villager/dorf_maxxer //BORN UNDERGROUND,
 	title = "Dwarf"
 	tutorial = "A Dwarf. It really doesn't get better than this."
 	wanderer_examine = FALSE
 	allowed_sexes = list(MALE, FEMALE)
+	flag = VILLAGER
 	department_flag = PEASANTS
 	faction = "Station"
 	total_positions = 999
 	spawn_positions = 999
 	allowed_races = list(/datum/species/dwarf/mountain, /datum/species/dwarf)
+	advclass_cat_rolls = list(CTAG_TOWNER = 20)
 
 /datum/advclass/dorfsteader
 	name = "Dwarf"
@@ -20,7 +22,6 @@
 		TRAIT_SURVIVAL_EXPERT,
 		TRAIT_HOMESTEAD_EXPERT
 	)
-	advclass_cat_rolls = list(CTAG_PILGRIM = 20)
 	adaptive_name = TRUE
 	subclass_stats = list(
 		STATKEY_INT = 3, //dwarv SMART!!
