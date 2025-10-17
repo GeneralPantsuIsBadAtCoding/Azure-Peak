@@ -900,7 +900,8 @@
 		input_text = "<big><span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span></big>" //Prettying up for Garrison line
 		for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
 			S.repeat_message(input_text, src, usedcolor)
-		for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)
+		for(var/obj/item/scomstone/garrison/S in SSroguemachine.
+scomm_machines)
 			S.repeat_message(input_text, src, usedcolor)
 		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
 			if(S.garrisonline)
@@ -950,8 +951,7 @@
 
 /obj/item/scomstone/garrison/vet
 	name = "veteran's medallion"
-	icon_state = "shalal"
-	icon = 'icons/roguetown/clothing/neck.dmi'
+	icon_state = "ring_lamerald"
 	desc = "A meritorious keepsake, dangling from a steel chain. One side bares the Church's psycross, while the other has a curious little button - hold it close, and you can almost hear the hum of a hidden gemerald inside. It was the only thing that escaped the killing fields; and even now, it still feels like a piece of you was left behind. </br>'I took an oath.. to fight for peace. So did you.. all of you.'"
 	slot_flags = ITEM_SLOT_RING|ITEM_SLOT_NECK
 	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
