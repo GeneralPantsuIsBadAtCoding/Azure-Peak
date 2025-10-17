@@ -39,7 +39,7 @@
 	new effect(get_turf(owner))
 	if (pulse >= ticks_to_apply)
 		pulse = 0
-		O.energy_add(-50)
+		O.energy_add(-25)
 		for (var/mob/living/carbon/human/H in hearers(7, owner))
 			if(O.in_audience(H))
 				return
@@ -71,7 +71,7 @@
 	pulse += 1
 	if (pulse >= ticks_to_apply)
 		pulse = 0
-		O.energy_add(-50)
+		O.energy_add(-25)
 		for (var/mob/living/carbon/human/H in hearers(7, owner))
 			if(!O.in_audience(H))
 				return
