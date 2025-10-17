@@ -31,7 +31,7 @@
 		var/deposit = difficulty_data[difficulty]["deposit"]
 		difficulty_choices["[difficulty] ([deposit] mammon deposit)"] = difficulty
 
-	var/selection = input(user, "Select contract difficulty (deposit required)", src) as null|anything in difficulty_choices
+	var/selection = tgui_input_list(user, "Select contract difficulty (deposit required)", "CONTRACTS", difficulty_choices)
 	if(!selection)
 		return
 
@@ -49,7 +49,7 @@
 		QUEST_DIFFICULTY_HARD = list(QUEST_OUTLAW)
 	)
 
-	var/type_selection = input(user, "Select contract type", src) as null|anything in type_choices[actual_difficulty]
+	var/type_selection = tgui_input_list(user, "Select contract type", "CONTRACTS", type_choices[actual_difficulty])
 	if(!type_selection)
 		return
 
