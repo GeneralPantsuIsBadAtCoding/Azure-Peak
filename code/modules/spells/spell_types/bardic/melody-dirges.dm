@@ -21,7 +21,7 @@
 	var/datum/status_effect/debuff/debuff_to_apply
 	var/pulse = 0
 	var/ticks_to_apply = 10
-	duration = 2 MINUTES
+	duration = -1
 	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_dirget1
 
 
@@ -53,7 +53,7 @@
 	var/datum/status_effect/buff/buff_to_apply
 	var/pulse = 0
 	var/ticks_to_apply = 10
-	duration = 2 MINUTES
+	duration = -1
 	var/obj/effect/temp_visual/songs/effect = /obj/effect/temp_visual/songs/inspiration_melodyt1
 
 
