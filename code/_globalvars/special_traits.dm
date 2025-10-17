@@ -32,26 +32,26 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	apply_character_post_equipment(character, player)
 
 /proc/apply_character_post_equipment(mob/living/carbon/human/character, client/player)
-    if(!player)
-        player = character.client
-    apply_charflaw_equipment(character, player)
-    apply_prefs_special(character, player)
-    apply_prefs_virtue(character, player)
-    apply_prefs_race_bonus(character, player)
-    if(player.prefs.dnr_pref)
-        apply_dnr_trait(character, player)
-    if(player.prefs.loadout && character.get_triumphs() >= player.prefs.loadout.triumph_cost)
-        character.adjust_triumphs(-player.prefs.loadout.triumph_cost)
-        character.mind.special_items[player.prefs.loadout.name] += player.prefs.loadout.path
-    if(player.prefs.loadout2 && character.get_triumphs() >= player.prefs.loadout2.triumph_cost)
-        character.adjust_triumphs(-player.prefs.loadout2.triumph_cost)
-        character.mind.special_items[player.prefs.loadout2::name] += player.prefs.loadout2.path
-    if(player.prefs.loadout3 && character.get_triumphs() >= player.prefs.loadout3.triumph_cost)
-        character.adjust_triumphs(-player.prefs.loadout3.triumph_cost)
-        character.mind.special_items[player.prefs.loadout3::name] += player.prefs.loadout3.path
-    var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
-    if(assigned_job)
-        assigned_job.clamp_stats(character)
+	if(!player)
+		player = character.client
+	apply_charflaw_equipment(character, player)
+	apply_prefs_special(character, player)
+	apply_prefs_virtue(character, player)
+	apply_prefs_race_bonus(character, player)
+	if(player.prefs.dnr_pref)
+		apply_dnr_trait(character, player)
+	if(player.prefs.loadout && character.get_triumphs() >= player.prefs.loadout.triumph_cost)
+		character.adjust_triumphs(-player.prefs.loadout.triumph_cost)
+		character.mind.special_items[player.prefs.loadout.name] += player.prefs.loadout.path
+	if(player.prefs.loadout2 && character.get_triumphs() >= player.prefs.loadout2.triumph_cost)
+		character.adjust_triumphs(-player.prefs.loadout2.triumph_cost)
+		character.mind.special_items[player.prefs.loadout2::name] += player.prefs.loadout2.path
+	if(player.prefs.loadout3 && character.get_triumphs() >= player.prefs.loadout3.triumph_cost)
+		character.adjust_triumphs(-player.prefs.loadout3.triumph_cost)
+		character.mind.special_items[player.prefs.loadout3::name] += player.prefs.loadout3.path
+	var/datum/job/assigned_job = SSjob.GetJob(character.mind?.assigned_role)
+	if(assigned_job)
+		assigned_job.clamp_stats(character)
 
 /proc/apply_prefs_virtue(mob/living/carbon/human/character, client/player)
 	if (!player)
