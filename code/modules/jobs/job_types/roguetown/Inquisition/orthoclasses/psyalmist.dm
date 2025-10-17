@@ -34,7 +34,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid

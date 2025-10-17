@@ -1905,6 +1905,11 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 
+
+/obj/item/clothing/cloak/psyaltrist/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
 /obj/item/clothing/cloak/ordinatorcape
 	name = "ordinator cape"
 	desc = "A flowing red cape complete with an ornately patterned steel shoulderguard. Made to last. Made to ENDURE. Made to LYVE."
