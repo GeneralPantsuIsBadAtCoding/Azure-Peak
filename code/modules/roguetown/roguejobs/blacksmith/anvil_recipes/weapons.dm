@@ -987,13 +987,13 @@
 
 // HOLY STEEL
 
-/obj/item/rogueweapon/sword/long/church
+/datum/anvil_recipe/weapons/holysteel/church_longsword
 	name = "Longsword, Templaric"
 	req_bar = /obj/item/ingot/steelholy
 	created_item = /obj/item/rogueweapon/sword/long/church
 	i_type = "Weapons"
 
-/obj/item/rogueweapon/sword/long/church
+/datum/anvil_recipe/weapons/holysteel/church_spear
 	name = "Spear, Templaric (+1 Holy Steel)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy)
@@ -1102,9 +1102,7 @@
 	additional_items = list(/obj/item/natural/hide/cured, /obj/item/natural/hide/cured, /obj/item/natural/hide/cured)
 	i_type = "Weapons"
 
-///
-BLESSED SILVER, BULLION VARIANTS - FALLBACK
-///
+/// BLESSED SILVER, BULLION VARIANTS - FALLBACK
 
 /datum/anvil_recipe/weapons/psy/axe/inq
 	name = "Psydonic War Axe (+1 Blessed Silver, +1 Stick)"
