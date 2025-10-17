@@ -948,14 +948,6 @@
 	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
 	hearrange = 0
 
-/obj/item/scomstone/garrison/vet
-	name = "veteran's medallion"
-	desc = "A meritorious keepsake, dangling from a steel chain. One side bares the Church's psycross, while the other has a curious little button - hold it close, and you can almost hear the hum of a hidden gemerald inside. It was the only thing that escaped the killing fields; and even now, it still feels like a piece of you was left behind. </br>'I took an oath.. to fight for peace. So did you.. all of you.'"
-	slot_flags = ITEM_SLOT_RING|ITEM_SLOT_NECK
-	messagereceivedsound = 'sound/misc/garrisonscom.ogg'
-	hearrange = 0
-	sellprice = 77
-
 /obj/structure/broadcast_horn
 	name = "\improper Streetpipe"
 	desc = "Also known as the People's Mouth, so long as the people can afford the ratfeed to pay for it."
