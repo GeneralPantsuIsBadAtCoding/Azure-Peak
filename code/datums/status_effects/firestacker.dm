@@ -226,7 +226,6 @@
 /datum/status_effect/fire_handler/fire_stacks/proc/extinguish()
 	QDEL_NULL(moblight)
 	on_fire = FALSE
-	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 	SEND_SIGNAL(owner, COMSIG_LIVING_EXTINGUISHED, owner)
 	cache_stacks()
 

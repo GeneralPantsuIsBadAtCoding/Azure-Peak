@@ -6,7 +6,6 @@
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
-	antag_moodlet = /datum/mood_event/focused
 	antag_hud_type = ANTAG_HUD_TRAITOR
 	antag_hud_name = "traitor"
 	var/special_role = ROLE_TRAITOR

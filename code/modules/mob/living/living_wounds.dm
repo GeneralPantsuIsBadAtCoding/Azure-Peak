@@ -231,5 +231,4 @@
 		qdel(embedder)
 	if(!has_embedded_objects())
 		clear_alert("embeddedobject")
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 	return TRUE

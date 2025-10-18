@@ -216,7 +216,6 @@
 				emote("embed")
 				L.receive_damage(I.w_class*I.embedding.embedded_impact_pain_multiplier)
 //					visible_message("<span class='danger'>[I] embeds itself in [src]'s [L.name]!</span>","<span class='danger'>[I] embeds itself in my [L.name]!</span>")
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
 				hitpush = FALSE
 				skipcatch = TRUE //can't catch the now embedded item
 
