@@ -94,6 +94,12 @@
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
+	
+/obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
+	name = "cuir-bouilli armor"
+	desc = "Treated, water-boiled and composite-layered leather armor of fine Otavan make."
+	icon_state = "cuirbouilli"
+	item_state = "cuirbouilli"
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy
 	name = "hardened leather armor"

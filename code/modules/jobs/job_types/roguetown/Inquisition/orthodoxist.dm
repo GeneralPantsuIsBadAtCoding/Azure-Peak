@@ -23,5 +23,6 @@
 	job_subclasses = list(
 		/datum/advclass/psydoniantemplar,
 		/datum/advclass/disciple,
-		/datum/advclass/confessor
+		/datum/advclass/confessor,
+		/datum/advclass/psyaltrist
 	)
