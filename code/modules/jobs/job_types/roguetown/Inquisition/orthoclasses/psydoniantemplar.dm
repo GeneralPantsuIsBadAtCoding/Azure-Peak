@@ -32,6 +32,7 @@
 	subclass_stashed_items = list(
 		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
+	extra_context = "This subclass can choose between two types of armor: a set of plated hauberk, and a tasseted cuirass. Selecting the latter provides less coverage and durability, but removes the innate malus to Speed."
 
 /datum/outfit/job/roguetown/psydoniantemplar
 	job_bitflag = BITFLAG_CHURCH

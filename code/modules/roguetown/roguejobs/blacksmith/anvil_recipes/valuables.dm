@@ -210,8 +210,9 @@
 	craftdiff = SKILL_LEVEL_LEGENDARY
 
 /datum/anvil_recipe/valuables/daemonslayer
-	name = "''Daemonslayer'' (Secret!)"
+	name = "Daemonslayer (Secret!)"
 	req_bar = /obj/item/ingot/silver
-	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/grown/log/tree/small, /obj/item/grown/log/tree/small, /obj/item/riddleofsteel)
+	additional_items = list(/obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver, /obj/item/ingot/silver/, /obj/item/ingot/draconic, /obj/item/ingot/weeping, /obj/item/riddleofsteel, /obj/item/grown/log/tree)
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
+	appro_skill = /datum/skill/craft/weaponsmithing
 	craftdiff = SKILL_LEVEL_LEGENDARY

@@ -677,19 +677,57 @@
 	smeltresult = /obj/item/roguegem/green
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+//
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret
+	name = "beriddled amulet"
+	desc = "A familiar necklace, blisteringly hot to the touch. Yet, as warm as it gets, the metal does not sear my flesh. </br>It whispers with divine inspiration; should I dare don it?"
+	icon_state = "malum"
+	sellprice = 333
+	edelay_type = 1
+	equip_delay_self = 33
+	smeltresult = /obj/item/riddleofsteel
+	var/active_item
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(1,2),rand(127,128),rand(254,255)))
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		active_item = TRUE
+		to_chat(user, span_hypnophrase("..the warmth flows through my veins, yet I do not burn; in fact, my mind feels clearer than ever before.. </br>..glowing runes race past my eyes, gradually deciphering into the forge's greatest secrets.. </br>'BLACKSTEEL AND GOLD, SAFFIRA AND BLORTZ - BOUND WITH A PSICROSS O' SILVER, TO FOSTER THE DRAGON'S FURY.' </br>'FOUR ENCHANTED RINGS, BOUND IN SILVER. A GEMERALD, ONYX, AMYTHORTZ, RONTZ - OMNIPOTENT, TOGETHER. </br>'FIVE SLABS OF SILVER, THE REMAINS OF A DRACONIC RING AND WEEPING PSICROSS, A GREAT LOG, AND WHAT LIES WITHIN THIS AMULET; TO SLAY VHESLYN'S DAEMONS.'"))
+		user.change_stat(STATKEY_INT, 3)
+		user.change_stat(STATKEY_LCK, 3)
+		user.change_stat(STATKEY_STR, -3)
+		ADD_TRAIT(user, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_FORGEBLESSED, TRAIT_GENERIC)
+	return
+
+/obj/item/clothing/neck/roguetown/psicross/malum/secret/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_monkeyhive("..the runes morph into indiscernable smudges, before fading into the world once more. For just a moment, you forget that the heat's blistering within your palm.. </br>..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_INT, -3)
+		user.change_stat(STATKEY_LCK, -3)
+		user.change_stat(STATKEY_STR, 3)
+		REMOVE_TRAIT(user, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_FORGEBLESSED, TRAIT_GENERIC)
+		active_item = FALSE
+	return
+
+//
+
 /obj/item/clothing/neck/roguetown/psicross/weeping
 	name = "weeping psicross"
 	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
-	slot_flags = ITEM_SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_WRISTS
 	icon_state = "psicrossblood"
-	edelay_type = 1
-	max_integrity = ARMOR_INT_SIDE_STEEL
+	max_integrity = 666
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_GORGET
-	blocksound = PLATEHIT
-	body_parts_covered = NECK
 	edelay_type = 1
-	equip_delay_self = 30
+	equip_delay_self = 66
 	smeltresult = /obj/item/ingot/weeping
 	sellprice = 666
 	var/active_item
@@ -702,28 +740,28 @@
 	. = ..()
 	if(slot == SLOT_NECK)
 		active_item = TRUE
-		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I can't let them triumph..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
+		to_chat(user, span_red("As you don the psicross, the chains tighten like a vice around your neck! You're overcome with a sense of terrible anguish - all of humenity's suffering, thrust upon your very spirit! Your chest grows cold, yet your blood boils hotter than magma! Psydonia's villains may be brutal and merciless, but you will be WORSE! </br>You've gone BERSERK!"))
 		user.change_stat(STATKEY_STR, 3)
-		user.change_stat(STATKEY_CON, 3)
+		user.change_stat(STATKEY_CON, -3)
 		user.change_stat(STATKEY_WIL, 3)
-		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
+		ADD_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC) //Roughly ~30% reduced vision with a sharp red overlay. Provides night vision in the visible tiles.
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC) //If you die while the necklace's on, that's it. Technically saveable if someone knows to remove the necklace, before attempting resurrection.
+		ADD_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
 		ADD_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
 	return
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		to_chat(user, span_monkeyhive("..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more? </br>..perhaps, this would better fit in the smoldering heat of a forge.."))
 		user.change_stat(STATKEY_STR, -3)
-		user.change_stat(STATKEY_CON, -3)
+		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, -3)
-		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
-		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
 		active_item = FALSE
 	return

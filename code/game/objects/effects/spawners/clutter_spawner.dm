@@ -138,15 +138,16 @@
 		/obj/item/clothing/ring/quartzs = 4,
 		/obj/item/clothing/ring/sapphires = 5,
 		/obj/item/clothing/ring/diamonds = 2,
-		/obj/item/clothing/neck/roguetown/skullamulet/gemerald = 3,
 		/obj/item/clothing/neck/roguetown/psicross/silver = 2,
 		/obj/item/clothing/neck/roguetown/psicross/g = 2,
 		/obj/item/clothing/neck/roguetown/psicross/bpearl = 2,
 		/obj/item/clothing/neck/roguetown/ornateamulet = 3,
 		/obj/item/clothing/neck/roguetown/skullamulet = 3,
+		/obj/item/clothing/neck/roguetown/skullamulet/gemerald = 2,
 		/obj/item/clothing/ring/statgemerald = 2,
 		/obj/item/clothing/ring/statonyx = 2,
 		/obj/item/clothing/ring/statamythortz = 2,
 		/obj/item/clothing/ring/statrontz = 2,
+		/obj/item/clothing/neck/roguetown/psicross/malum/secret = 1,
 		/obj/item/clothing/neck/roguetown/psicross/weeping = 1,
-	) // The 'stat_' rings, alongside the 'weeping' psicross, are experimental additions. If they're showing up too much, don't be afraid to remove them or restrict them to a new lootdrop category.
+	) //'Stat_' and 'Psicross_' rings at '2' or below provide statbuffs, and should be kept rare. Move to a seperate drop table if they become too common. Likeliest find is from high-end dungeons and mimics.

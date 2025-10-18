@@ -31,7 +31,7 @@
 
 /obj/item/clothing/gloves/roguetown/chain/psydon
 	name = "psydonic chain-wrapped gloves"
-	desc = "Blacksteel-bound gauntlets. These ritualistic restraints, when left to dangle-and-sway, assist in the deflection of unpredictable blows."
+	desc = "Blacksteel-bound gauntlets. These ritualistic restraints, when left to dangle-and-sway, assist in the deflection of unpredictable blows. </br>I can adjust these chains to solely hang from my wrists, rather than having them wound across my arms."
 	icon_state = "psydongloveschain"
 	item_state = "psydongloveschains"
 	smeltresult = null	//So you can't melt down your start gear for blacksteel brigadines etc.

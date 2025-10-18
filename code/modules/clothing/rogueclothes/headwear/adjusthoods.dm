@@ -180,6 +180,26 @@
 	body_parts_covered = HEAD|EARS|NOSE
 	color = null
 
+//Agnostic variants for use in the loadout.
+
+/obj/item/clothing/head/roguetown/roguehood/shroudscarlet
+	name = "scarlet shroud"
+	desc = "A billowing hood, carrying the aroma of granulated rosas."
+	icon_state = "feldhood"
+	item_state = "feldhood"
+	body_parts_covered = HEAD|EARS|NOSE
+	color = null
+
+/obj/item/clothing/head/roguetown/roguehood/shroudblack
+	name = "black shroud"
+	desc = "A billowing hood, carrying the aroma of smoldering charcoal."
+	icon_state = "surghood"
+	item_state = "surghood"
+	body_parts_covered = HEAD|EARS|NOSE
+	color = null
+
+//
+
 /obj/item/clothing/head/roguetown/roguehood/psydon
 	name = "psydonian hood"
 	desc = "A hood worn by Psydon's disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."

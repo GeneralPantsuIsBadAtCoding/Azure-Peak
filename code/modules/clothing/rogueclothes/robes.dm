@@ -134,19 +134,27 @@
 //This for adventurers. Base type, same armor. No holy-bonus.
 /obj/item/clothing/suit/roguetown/shirt/robe/monk
 	name = "nomadic monk vestments"
-	desc = "Nomadic vestments, worn by those who pursue faith above all else. The red burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
-	icon_state = "monkvestments"
-	item_state = "monkvestments"
+	desc = "Nomadic vestments, worn by those who pursue faith above all else. The burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
+	icon_state = "priestunder"
+	item_state = "priestunder"
+	color = null
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
 	armor = ARMOR_PADDED_GOOD	//Equal to a padded gambeson, like before.
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)	 //Ensures that this inherits the padded gambeson's resistances, too.
-	color = "#662315"
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 
 //This is for templars/psydonites. Gives a boon for wearing it to counter-act giving up plate and such.
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
 	name = "holy monk vestments"
-	desc = "Holy vestments, worn by those who pursue faith above all else. The burlap is thickly-woven, padded, and blessed in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows. Ble"
-	color = null	//Base sprite
+	desc = "Holy vestments, worn by those who pursue faith above all else. Hundreds of heavy leather strips have been meticulously sheared-and-stitched onto the cloth, resulting in unparalleled comfort and protection. It's said that those who 'don the cloth' will never tire; a boon of unbreakable faith."
+	icon_state = "monkvestments"
+	item_state = "monkvestments"
+	icon = 'icons/roguetown/clothing/armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/equipped(mob/living/user, slot)
 	..()
@@ -303,5 +311,21 @@
 /obj/item/clothing/suit/roguetown/shirt/robe/phys
 	name = "physicker's robe"
 	desc = "Part robe, part butcher's apron."
+	icon_state = "surgrobe"
+	item_state = "surgrobe"
+
+// Agnostic versions of the unused robes, for use in the Loadout.
+
+/obj/item/clothing/suit/roguetown/shirt/robe/tabardscarlet
+	name = "scarlet tabard"
+	desc = "Sleeveless robes, hued like rosas."
+	color = null
+	icon_state = "feldrobe"
+	item_state = "feldrobe"
+
+/obj/item/clothing/suit/roguetown/shirt/robe/tabardblack
+	name = "black tabard"
+	desc = "Sleeveless robes, tinged like charcoal."
+	color = null
 	icon_state = "surgrobe"
 	item_state = "surgrobe"
