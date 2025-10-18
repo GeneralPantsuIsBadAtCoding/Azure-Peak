@@ -161,6 +161,20 @@
 	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
 	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
 
+/datum/intent/spear/disarm/quarterstaff
+	name = "disarm"
+	desc = "This does no damage, but if used on an opponent who is off-balanced, it will disarm their weapon in a grand flourish."
+	icon_state = "intake"
+	animname = "strike"
+	attack_verb = list("sweeps", "disarms")
+	blade_class = BCLASS_DISARM
+	hitsound =list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	swingdelay = 2	//Small delay to hook
+	damfactor = 0
+	clickcd = 22	//Can't spam this; long delay.
+	item_d_type = "blunt"
+
 /datum/intent/spear/thrust/lance
 	damfactor = 1.5 // Turns its base damage into 30 on the 2hand thrust. It keeps the spear thrust one handed.
 
@@ -1251,7 +1265,7 @@
 	desc = "A staff that makes any journey easier. Durable and swift, capable of bludgeoning stray volves and ruffians alike. Its length allow it to be used for a thrusting attack."
 	force = 15
 	force_wielded = 20
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff, /datum/intent/spear/disarm/quarterstaff)
 	icon_state = "quarterstaff"
 	associated_skill = /datum/skill/combat/staves
 	max_integrity = 150
@@ -1261,7 +1275,6 @@
 	desc = "A quarterstaff reinforced with iron tips. It is capable of dealing more damage than a wooden one, and its blunt ends make for a decent blunt thrusting weapon. Can be used to bash down your opponents weapons."
 	force = 16
 	force_wielded = 22
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_iron"
 	associated_skill = /datum/skill/combat/staves
 	max_integrity = 200
@@ -1271,17 +1284,15 @@
 	desc = "A quarterstaff reinforced with steel tips and steel rings, blurring the line between a light polehammer and a reinforced quarterstaff. Extremely durable, and more than capable of bludgeoning brigands to death. Durable enough to break your opponents weapons."
 	force = 18
 	force_wielded = 25
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
 	associated_skill = /datum/skill/combat/staves
-	max_integrity = 200
+	max_integrity = 250
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/silver
 	name = "silver quarterstaff"
 	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
 	force = 20
 	force_wielded = 27
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_silver"
 	associated_skill = /datum/skill/combat/staves
 	max_integrity = 250
@@ -1303,7 +1314,6 @@
 	desc = "A quarterstaff reinforced with silver tips. A relatively new design, purportedly inspired by the warstaffs oft-carried by Naledian warscholars. Durable enough to catch avantyne to the shaft, without so much as a splinter - or so, they say."
 	force = 20
 	force_wielded = 27
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_silver"
 	associated_skill = /datum/skill/combat/staves
 	max_integrity = 250
