@@ -45,7 +45,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	id = /obj/item/clothing/ring/signet/silver
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/disciple
+	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	mask = /obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
