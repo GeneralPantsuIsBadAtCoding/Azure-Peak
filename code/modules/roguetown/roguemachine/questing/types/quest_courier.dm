@@ -9,7 +9,6 @@
 		/area/rogue/indoors/town/magician,
 	)
 
-
 /datum/quest/courier/get_title()
 	if(title)
 		return title

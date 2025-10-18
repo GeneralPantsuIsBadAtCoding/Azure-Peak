@@ -3,7 +3,7 @@
 	icon = 'code/modules/roguetown/roguemachine/questing/questing.dmi'
 	icon_state = "quest_marker"
 	var/quest_difficulty = list(QUEST_DIFFICULTY_EASY, QUEST_DIFFICULTY_MEDIUM, QUEST_DIFFICULTY_HARD)
-	var/quest_type = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_CLEAR_OUT, QUEST_KILL_EASY, QUEST_BEACON, QUEST_OUTLAW)
+	var/quest_type = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_CLEAR_OUT, QUEST_RAID, QUEST_KILL_EASY, QUEST_BEACON, QUEST_OUTLAW)
 
 /obj/effect/landmark/quest_spawner/Initialize()
 	. = ..()
@@ -57,4 +57,4 @@
 	name = "hard quest landmark"
 	icon_state = "quest_marker_high"
 	quest_difficulty = "Hard"
-	quest_type = list(QUEST_CLEAR_OUT, QUEST_BEACON, QUEST_OUTLAW)
+	quest_type = list(QUEST_CLEAR_OUT, QUEST_RAID, QUEST_BEACON, QUEST_OUTLAW)

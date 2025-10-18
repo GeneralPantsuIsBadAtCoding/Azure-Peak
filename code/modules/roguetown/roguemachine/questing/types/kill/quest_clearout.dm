@@ -1,6 +1,6 @@
 /datum/quest/kill/clearout
 	quest_type = QUEST_CLEAR_OUT
-	mob_types_to_spawn = QUEST_KILL_MOBS_LIST
+	mob_types_to_spawn = QUEST_KILL_MEDIUM_LIST
 	count_min = 3
 	count_max = 6
 

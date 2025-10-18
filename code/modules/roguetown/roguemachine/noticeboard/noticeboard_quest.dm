@@ -50,6 +50,8 @@
 			attached_quest = new /datum/quest/courier()
 		if(QUEST_CLEAR_OUT)
 			attached_quest = new /datum/quest/kill/clearout()
+		if(QUEST_RAID)
+			attached_quest = new /datum/quest/kill/raid()
 		if(QUEST_OUTLAW)
 			attached_quest = new /datum/quest/kill/outlaw()
 
