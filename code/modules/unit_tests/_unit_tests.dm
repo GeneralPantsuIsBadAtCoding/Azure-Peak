@@ -88,6 +88,7 @@
 #include "anchored_mobs.dm"
 #include "component_tests.dm"
 #include "create_and_destroy.dm"
+#include "connect_loc.dm"
 #include "focus_only_tests.dm"
 #include "reagent_id_typos.dm"
 #include "reagent_recipe_collisions.dm"

@@ -68,7 +68,7 @@
 			if(M != user)
 				mobsadjacent += M
 		if(mobsadjacent.len)
-			chosenmob = input("[key] who?") in mobsadjacent
+			chosenmob = tgui_input_list(user, "[key] who?", "XYLIX", mobsadjacent) 
 		if(chosenmob)
 			if(user.Adjacent(chosenmob))
 				params = chosenmob.name
