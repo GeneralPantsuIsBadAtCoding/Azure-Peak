@@ -14,6 +14,15 @@
 /datum/quest/retrieval/get_objective_text()
 	return "Retrieve [progress_required] [initial(target_item_type.name)]."
 
+
+/datum/quest/retrieval/get_additional_reward(target_turf)
+	var/turf/scroll_turf = get_turf(quest_scroll)
+	var/distance = CLAMP(get_dist(scroll_turf, target_turf), 0, 200) // Avoid infinity rewards if it bugs out
+	var/distance_reward = (distance / QUEST_DELIVERY_DISTANCE_DIVISOR) * QUEST_DELIVERY_DISTANCE_BONUS
+	var/item_bonus = progress_required * QUEST_DELIVERY_PER_ITEM_BONUS
+
+	return ROUND_UP(distance_reward + item_bonus)
+
 /datum/quest/retrieval/generate(obj/effect/landmark/quest_spawner/landmark)
 	..()
 	if(!landmark)

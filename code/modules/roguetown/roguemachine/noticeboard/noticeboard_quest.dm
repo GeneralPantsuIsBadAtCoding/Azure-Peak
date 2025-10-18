@@ -82,9 +82,6 @@
 		qdel(attached_quest)
 		return
 
-	// Reward calculation comes after generation
-	attached_quest.reward_amount = attached_quest.calculate_reward()
-
 	// Create scroll
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
@@ -95,6 +92,9 @@
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll = spawned_scroll
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
+
+	// Reward calculation comes after generation & scroll creation to factor in distance for courier quests
+	attached_quest.reward_amount = attached_quest.calculate_reward(get_turf(chosen_landmark))
 
 	// Update scroll text
 	spawned_scroll.update_quest_text()

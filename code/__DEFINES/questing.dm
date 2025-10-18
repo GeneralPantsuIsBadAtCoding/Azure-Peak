@@ -9,10 +9,10 @@
 #define QUEST_OUTLAW "Outlaw"
 #define QUEST_BEACON "Beacon"
 
-#define QUEST_REWARD_EASY_LOW 15
+#define QUEST_REWARD_EASY_LOW 20
 #define QUEST_REWARD_EASY_HIGH 25
-#define QUEST_REWARD_MEDIUM_LOW 30
-#define QUEST_REWARD_MEDIUM_HIGH 50
+#define QUEST_REWARD_MEDIUM_LOW 35
+#define QUEST_REWARD_MEDIUM_HIGH 55
 #define QUEST_REWARD_HARD_LOW 100
 #define QUEST_REWARD_HARD_HIGH 140
 
@@ -22,7 +22,13 @@
 
 #define QUEST_HANDLER_REWARD_MULTIPLIER 2
 
-#define QUEST_MAX_ACTIVE_QUESTS 2
+#define QUEST_MAX_ACTIVE_QUESTS 3
+
+// Delivery quest additional reward scaling
+#define QUEST_DELIVERY_DISTANCE_DIVISOR 8 // Divides the distance for reward calculation
+#define QUEST_DELIVERY_DISTANCE_BONUS 1 // Adds a bonus for longer distances
+#define QUEST_COURIER_BONUS_FLAT 10 // Flat bonus for courier quests, since you gotta wait for a person to open a package
+#define QUEST_DELIVERY_PER_ITEM_BONUS 2 // Bonus per item delivered
 
 // All eligible quest kill mobs
 // Goblin = 3 because their head is worth 20 and they are very weak
