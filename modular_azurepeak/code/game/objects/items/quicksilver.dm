@@ -107,11 +107,11 @@
 		return
 
 	else if(Wereless) //A lesser werewolf can be deconverted
-		if(Were.transformed == TRUE)
+		if(Wereless.transformed == TRUE)
 			var/mob/living/carbon/human/I = M.stored_mob
 			to_chat(M, span_userdanger("THE FOUL SILVER! MY BODY RENDS ITSELF ASUNDER!"))
 			M.werewolf_untransform()
-			Were.on_removal()
+			Wereless.on_removal()
 			ADD_TRAIT(I, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 			I.emote("agony", forced = TRUE)
 			I.Stun(30)
@@ -129,12 +129,33 @@
 			M.Jitter(30)
 			return
 
-	else if(Vamp) //We're the vampire, we can't be saved.
-		to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. An insult I shall never forget, for as long as I die."))
-		user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
-		M.Stun(30)
-		M.Knockdown(30)
-		return
+	else if(Vamp) 
+		if(Vamp.generation >= GENERATION_METHUSELAH) //Vampire Lords cannot be deconverted.
+			to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. An insult I shall never forget, for as long as I die."))
+			user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
+			M.Stun(30)
+			M.Knockdown(30)
+			return
+
+		if(tgui_alert(M, "The poultice is burning my nature from my veins! Do I resist the anointment?", "Silver Poultice", list("YIELD", "RESIST")) == "RESIST") //Opt in convert, opt in deconvert
+			to_chat(M, span_userdanger("This wretched silver weighs heavy on my brow. But I am consigned to my reverie, and my heart remains still."))
+			user.visible_message(span_danger("The silver poultice boils away from [M]'s brow, viscerally rejecting the divine anointment."))
+			M.Stun(30)
+			M.Knockdown(30)
+			return
+		else
+			M.flash_fullscreen("redflash3")
+			M.emote("agony", forced = TRUE)
+			to_chat(M, span_userdanger("THE FOUL SILVER! MY STILL HEART QUICKENS ONCE MORE!"))
+			Vamp.on_removal()
+			M.Stun(30)
+			M.Knockdown(30)
+			M.Jitter(30)
+			ADD_TRAIT(M, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
+
+			return
+		
+
 //A letter to give info on how to make this thing.
 /obj/item/paper/inquisition_poultice_info
 	name = "Inquisitorial Missive"
