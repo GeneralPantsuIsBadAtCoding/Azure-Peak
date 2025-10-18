@@ -191,7 +191,11 @@
 
 	if(chokehold)
 		combat_modifier += 0.15
-
+	if(ishuman(user))
+		var/mob/living/carbon/human/HU = user
+		if(user.badluck(10, (HU.statpack.type == /datum/statpack/physical/struggler) ? TRUE : FALSE))
+			badluckmessage(user)
+			return
 	switch(user.used_intent.type)
 		if(/datum/intent/grab/upgrade)
 			if(!(M.status_flags & CANPUSH) || HAS_TRAIT(M, TRAIT_PUSHIMMUNE))
@@ -358,6 +362,11 @@
 				return
 
 /obj/item/grabbing/proc/twistlimb(mob/living/user) //implies limb_grabbed and sublimb are things
+	if(ishuman(user))
+		var/mob/living/carbon/human/HU = user
+		if(user.badluck(10, (HU.statpack.type == /datum/statpack/physical/struggler) ? TRUE : FALSE))
+			badluckmessage(user)
+			return
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(limb_grabbed, "slash")
 	var/damage = user.get_punch_dmg()
@@ -527,6 +536,11 @@
 
 
 /obj/item/grabbing/proc/smashlimb(atom/A, mob/living/user) //implies limb_grabbed and sublimb are things
+	if(ishuman(user))
+		var/mob/living/carbon/human/HU = user
+		if(user.badluck(10, (HU.statpack.type == /datum/statpack/physical/struggler) ? TRUE : FALSE))
+			badluckmessage(user)
+			return
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(limb_grabbed, d_type, armor_penetration = BLUNT_DEFAULT_PENFACTOR)
 	var/damage = user.get_punch_dmg()
