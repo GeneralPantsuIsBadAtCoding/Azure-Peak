@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(lobbymenu)
 	name = "Lobbyrefresh"
-	wait = 40
+	wait = 20
 	priority = 100
 	flags = SS_NO_INIT
 //	runlevels = RUNLEVEL_SETUP | RUNLEVEL_LOBBY | RUNLEVEL_GAME
