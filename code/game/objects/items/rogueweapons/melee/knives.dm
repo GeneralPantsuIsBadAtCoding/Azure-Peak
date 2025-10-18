@@ -450,7 +450,6 @@
 	smeltresult = /obj/item/rogueore/coal
 	last_used = 0
 	is_silver = TRUE
-	slot_flags = null //Martyrcode. Should prevent sheathing, all-together.
 	equip_delay_self = 0 //No delay when stowing away, without a scabbard. 
 	unequip_delay_self = 0 //No delay when drawing.
 	inv_storage_delay = 0 //No delay when retrieving from a storage slot.
