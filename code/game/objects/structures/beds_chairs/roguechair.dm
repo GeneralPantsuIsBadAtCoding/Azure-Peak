@@ -234,7 +234,6 @@
 		return FALSE
 	return ..()
 
-
 /obj/structure/chair/wood/rogue/fancy
 	icon_state = "chair1"
 	item_chair = /obj/item/chair/rogue/fancy
