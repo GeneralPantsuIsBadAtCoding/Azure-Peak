@@ -16,8 +16,8 @@
 
 /datum/statpack/agile/thug
 	name = "Thuggish"
-	desc = "Your robust physique and keen eyes oft been your most valuable friends in such trying times."
-	stat_array = list(STAT_STRENGTH = 2, STAT_PERCEPTION = 1, STAT_FORTUNE = 1, STAT_CONSTITUTION = -1, STAT_WILLPOWER = -1, STAT_SPEED = -1)
+	desc = "Your strong physique and keen eyes oft been your most valuable friends in such trying times."
+	stat_array = list(STAT_STRENGTH = 2, STAT_PERCEPTION = 1, STAT_FORTUNE = 1, STAT_WILLPOWER = -2, STAT_SPEED = -1)
 
 /datum/statpack/agile/wary
 	name = "Wary"

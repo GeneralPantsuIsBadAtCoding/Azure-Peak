@@ -27,7 +27,7 @@
 /datum/statpack/mental/aware
 	name = "Aware"
 	desc = "Your keen senses have not led you astray."
-	stat_array = list(STAT_PERCEPTION = 2, STAT_SPEED = 1, STAT_WILLPOWER = -1, STAT_CONSTITUTION = -1)
+	stat_array = list(STAT_PERCEPTION = 2, STAT_SPEED = 1, STAT_CONSTITUTION = -1, STAT_INTELLIGENCE = -1)
 
 /datum/statpack/mental/precise
 	name = "Precise"
