@@ -7,20 +7,14 @@
 	var/list/difficulty_data = list(
 		QUEST_DIFFICULTY_EASY = list(
 			deposit = QUEST_DEPOSIT_EASY,
-			reward_min = QUEST_REWARD_EASY_LOW,
-			reward_max = QUEST_REWARD_EASY_HIGH,
 			icon = "scroll_quest_low"
 		),
 		QUEST_DIFFICULTY_MEDIUM = list(
 			deposit = QUEST_DEPOSIT_MEDIUM,
-			reward_min = QUEST_REWARD_MEDIUM_LOW,
-			reward_max = QUEST_REWARD_MEDIUM_HIGH,
 			icon = "scroll_quest_mid"
 		),
 		QUEST_DIFFICULTY_HARD = list(
 			deposit = QUEST_DEPOSIT_HARD,
-			reward_min = QUEST_REWARD_HARD_LOW,
-			reward_max = QUEST_REWARD_HARD_HIGH,
 			icon = "scroll_quest_high"
 		)
 	)
