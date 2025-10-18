@@ -112,7 +112,7 @@
 
 /obj/structure/fluff/railing
 	name = "railing"
-	desc = ""
+	desc = "A simple barrier of wood meant to prevent falls."
 	icon = 'icons/obj/railing.dmi'
 	icon_state = "railing"
 	density = FALSE
@@ -125,9 +125,14 @@
 
 /obj/structure/fluff/railing/Initialize()
 	. = ..()
+	init_connect_loc_element()
 	var/lay = getwlayer(dir)
 	if(lay)
 		layer = lay
+
+/obj/structure/fluff/railing/proc/init_connect_loc_element()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/fluff/railing/proc/getwlayer(dirin)
 	switch(dirin)
@@ -172,36 +177,33 @@
 		return 0
 	return 1
 
-/obj/structure/fluff/railing/CheckExit(atom/movable/O, turf/target)
-//	if(istype(O) && (O.pass_flags & PASSTABLE))
-//		return 1
-	if(istype(O, /obj/projectile))
-		return 1
-	if(O.throwing)
-		return 1
-	if(isobserver(O))
-		return 1
-	if(isliving(O))
-		var/mob/living/M = O
-		if(!(M.mobility_flags & MOBILITY_STAND))
-			if(passcrawl)
-				return TRUE
-	if(icon_state == "woodrailing" && (dir in CORNERDIRS))
-		var/list/baddirs = list()
-		switch(dir)
-			if(SOUTHEAST)
-				baddirs = list(SOUTHEAST, SOUTH, EAST)
-			if(SOUTHWEST)
-				baddirs = list(SOUTHWEST, SOUTH, WEST)
-			if(NORTHEAST)
-				baddirs = list(NORTHEAST, NORTH, EAST)
-			if(NORTHWEST)
-				baddirs = list(NORTHWEST, NORTH, WEST)
-		if(get_dir(O.loc, target) in baddirs)
-			return 0
-	else if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+/obj/structure/fluff/railing/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+
+	if(dir in CORNERDIRS)
+		return
+
+	if(isobserver(leaving))
+		return
+
+	if(get_dir(leaving.loc, new_location) != dir)
+		return
+
+	if(leaving.movement_type & (FLOATING|FLYING))
+		if(istype(leaving, /obj/projectile) && (pass_projectile || allow_flying_outwards))
+			return
+
+	if(leaving.throwing)
+		if(pass_throwing || (allow_flying_outwards && !ismob(leaving)))
+			return
+
+	if(pass_crawl && isliving(leaving))
+		var/mob/living/M = leaving
+		if(M.body_position == LYING_DOWN)
+			return
+
+	leaving.Bump(src)
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/railing/OnCrafted(dirin)
 	. = ..()
@@ -222,6 +224,9 @@
 	icon_state = "border"
 	density = FALSE
 	dir = 9
+
+/obj/structure/fluff/railing/corner/init_connect_loc_element()
+	return
 
 /obj/structure/fluff/railing/corner/north_east
 	dir = 5
@@ -309,13 +314,6 @@
 
 /obj/structure/fluff/railing/fence/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, target) == dir)
-		return 0
-	return 1
-
-/obj/structure/fluff/railing/fence/CheckExit(atom/movable/O, turf/target)
-	if(istype(O, /obj/projectile))
-		return 1
-	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
 
@@ -560,6 +558,8 @@
 	soundloop = new(src, FALSE)
 	soundloop.start()
 	. = ..()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/fluff/clock/Destroy()
 	if(soundloop)
@@ -621,10 +621,11 @@
 		return 0
 	return 1
 
-/obj/structure/fluff/clock/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+/obj/structure/fluff/clock/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(get_dir(leaving.loc, new_location) == dir)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/wallclock
 	name = "clock"
@@ -835,6 +836,11 @@
 	max_integrity = 300
 	dir = SOUTH
 
+/obj/structure/fluff/statue/Initialize()
+	. = ..()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/fluff/statue/OnCrafted(dirin, user)
 	dirin = turn(dirin, 180)
 	. = ..()
@@ -863,10 +869,11 @@
 		return FALSE // don't even bother climbing over it
 	return ..()
 
-/obj/structure/fluff/statue/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return !density
+/obj/structure/fluff/statue/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(get_dir(leaving.loc, new_location) == dir)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/statue/gargoyle
 	icon_state = "gargoyle"
@@ -1132,6 +1139,8 @@
 /obj/structure/fluff/psycross/Initialize()
 	. = ..()
 	become_hearing_sensitive()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/fluff/psycross/Destroy()
 	lose_hearing_sensitivity()
@@ -1147,8 +1156,10 @@
 	M.reset_offsets("bed_buckle")
 
 /obj/structure/fluff/psycross/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/camera))
+		return TRUE
 	if(get_dir(loc, mover) == dir)
-		return 0
+		return FALSE
 	return !density
 
 /obj/structure/fluff/psycross/CanAStarPass(ID, to_dir, caller)
@@ -1156,10 +1167,11 @@
 		return FALSE // don't even bother climbing over it
 	return ..()
 
-/obj/structure/fluff/psycross/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return !density
+/obj/structure/fluff/psycross/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(get_dir(leaving.loc, new_location) == dir)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/psycross/copper
 	name = "pantheon cross"
