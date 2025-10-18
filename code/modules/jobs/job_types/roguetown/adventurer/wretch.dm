@@ -4,10 +4,10 @@
 	flag = WRETCH
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = 8
-	spawn_positions = 8
+	total_positions = 4
+	spawn_positions = 4
 	allowed_races = RACES_ALL_KINDS
-	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. Hounded by the consequences of your actions, you now threaten the peace of those who still heed the authority that condemned you."
+	tutorial = "Somewhere in your lyfe, you fell to the wrong side of civilization. Hounded by the consequences of your actions, you spend your daes prowling the roads for easy marks and loose purses, scraping to get by."
 	outfit = null
 	outfit_female = null
 	display_order = JDO_WRETCH
@@ -25,7 +25,7 @@
 	wanderer_examine = TRUE
 	advjob_examine = TRUE
 	always_show_on_latechoices = TRUE
-	job_reopens_slots_on_death = TRUE
+	job_reopens_slots_on_death = FALSE
 	same_job_respawn_delay = 1 MINUTES
 	virtue_restrictions = list(/datum/virtue/heretic/zchurch_keyholder) //all wretch classes automatically get this
 	job_traits = list(TRAIT_STEELHEARTED, TRAIT_OUTLAW, TRAIT_HERESIARCH, TRAIT_SELF_SUSTENANCE, TRAIT_ZURCH)
@@ -46,6 +46,15 @@
 		/datum/advclass/wretch/vigilante,
 		/datum/advclass/wretch/blackoakwyrm
 	)
+
+/datum/job/roguetown/wretch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	if(L)
+		var/mob/living/carbon/human/H = L
+		// Assign wretch antagonist datum so wretches appear in antag list
+		if(H.mind && !H.mind.has_antag_datum(/datum/antagonist/wretch))
+			var/datum/antagonist/new_antag = new /datum/antagonist/wretch()
+			H.mind.add_antag_datum(new_antag)
 
 // Proc for wretch to select a bounty
 /proc/wretch_select_bounty(mob/living/carbon/human/H)
@@ -74,4 +83,23 @@
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
 	add_bounty(H.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, bounty_total, FALSE, my_crime, bounty_poster)
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	to_chat(H, span_danger("You are playing an Antagonist role. By choosing to spawn as a Wretch, you are expected to actively create conflict with other players. Failing to play this role with the appropriate gravitas may result in punishment for Low Roleplay standards."))
+	
+/proc/update_wretch_slots()
+	var/datum/job/wretch_job = SSjob.GetJob("Wretch")
+	if(!wretch_job)
+		return
+
+	var/player_count = length(GLOB.joined_player_list)
+	var/slots = 4
+	
+	//Add 1 slot for every 10 players over 30. Less than 40 players, 4 slots. 40 or more players, 5 slots. 50 or more players, 6 slots - etc.
+	if(player_count > 30)
+		var/extra = floor((player_count - 30) / 10)
+		slots += extra
+
+	//4 slots minimum, 10 maximum.
+	slots = min(slots, 10)
+
+	wretch_job.total_positions = slots
+	wretch_job.spawn_positions = slots
