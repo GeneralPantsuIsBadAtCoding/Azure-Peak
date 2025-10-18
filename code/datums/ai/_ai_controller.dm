@@ -235,12 +235,12 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	if(ai_status == AI_STATUS_OFF)
 		return
 	if(should_idle())
-		set_ai_status(AI_STATUS_IDLE)
+		set_ai_status(AI_STATUS_OFF)
 
 /datum/ai_controller/proc/on_client_enter(datum/source, atom/target)
 	SIGNAL_HANDLER
-	if(ai_status == AI_STATUS_IDLE)
-		set_ai_status(AI_STATUS_ON)
+	if(ai_status == AI_STATUS_OFF || ai_status == AI_STATUS_IDLE)
+		set_ai_status(get_expected_ai_status())
 
 /datum/ai_controller/proc/on_client_exit(datum/source, datum/exited)
 	SIGNAL_HANDLER
@@ -328,12 +328,6 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	if(mob_pawn.stat >= UNCONSCIOUS)
 		return AI_STATUS_OFF
 
-	//if(!("[pawn_turf?.z]" in GLOB.weatherproof_z_levels))
-	//	if(SSmapping.level_has_any_trait(pawn_turf?.z, list(ZTRAIT_IGNORE_WEATHER_TRAIT)))
-	//		GLOB.weatherproof_z_levels |= "[pawn_turf?.z]"
-	//if("[pawn_turf?.z]" in GLOB.weatherproof_z_levels)
-	//	if(!length(SSmobs.clients_by_zlevel[pawn_turf?.z]))
-	//		return AI_STATUS_OFF
 	if(should_idle())
 		return AI_STATUS_IDLE
 	return AI_STATUS_ON

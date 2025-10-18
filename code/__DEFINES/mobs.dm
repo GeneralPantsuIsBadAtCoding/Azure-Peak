@@ -255,6 +255,7 @@
 #define NPC_AI_RETREAT	3
 #define NPC_AI_HUNT		4
 #define NPC_AI_FLEE		5
+#define NPC_AI_SLEEP    6
 
 //determines if a mob can smash through it
 #define ENVIRONMENT_SMASH_NONE			0
