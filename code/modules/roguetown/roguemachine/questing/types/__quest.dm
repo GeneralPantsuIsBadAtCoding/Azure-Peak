@@ -20,8 +20,6 @@
 	var/obj/item/target_delivery_item
 	/// Target mob type for kill quests
 	var/mob/target_mob_type
-	/// Number of targets needed (legacy, use progress_required instead)
-	var/target_amount = 1
 	/// Location for courier quests
 	var/area/rogue/indoors/town/target_delivery_location
 	/// Location name for kill/clear quests
@@ -95,9 +93,6 @@
 
 /// Called when progress is updated
 /datum/quest/proc/on_progress_update()
-	// Update legacy target_amount for compatibility
-	target_amount = progress_required - progress_current
-
 	if(check_completion())
 		mark_complete()
 	else

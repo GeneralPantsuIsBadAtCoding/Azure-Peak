@@ -1,5 +1,8 @@
 /datum/quest/outlaw
 	quest_type = QUEST_OUTLAW
+	var/miniboss_mobs = list(
+		/mob/living/carbon/human/species/human/northern/deranged_knight
+	)
 
 /datum/quest/outlaw/get_title()
 	if(title)
@@ -12,11 +15,8 @@
 /datum/quest/outlaw/generate(obj/effect/landmark/quest_spawner/landmark)
 	if(!landmark)
 		return FALSE
-
-	// Select miniboss type from landmark's list
-	target_mob_type = pick(landmark.miniboss_mobs)
+	target_mob_type = pick(miniboss_mobs)
 	progress_required = 1 // Outlaw is always a single strong target
-	target_amount = 1 // Legacy compatibility
 	target_spawn_area = get_area_name(get_turf(landmark))
 
 	// Generate title if not set

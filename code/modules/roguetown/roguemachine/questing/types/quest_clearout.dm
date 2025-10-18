@@ -19,7 +19,6 @@
 	// Select random mob type from landmark's list
 	target_mob_type = pick(landmark.kill_mobs)
 	progress_required = rand(3, 6) // Clearout has more targets
-	target_amount = progress_required // Legacy compatibility
 	target_spawn_area = get_area_name(get_turf(landmark))
 
 	// Generate title if not set

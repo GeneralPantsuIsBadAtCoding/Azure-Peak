@@ -1,5 +1,10 @@
 /datum/quest/kill
 	quest_type = QUEST_KILL
+	var/list/kill_mobs = list(
+		/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+		/mob/living/carbon/human/species/skeleton/npc/medium,
+		/mob/living/carbon/human/species/human/northern/searaider/ambush
+	)
 
 /datum/quest/kill/get_title()
 	if(title)
@@ -13,10 +18,8 @@
 	if(!landmark)
 		return FALSE
 
-	// Select random mob type from landmark's list
-	target_mob_type = pick(landmark.kill_mobs)
+	target_mob_type = pick(kill_mobs)
 	progress_required = rand(1, 3)
-	target_amount = progress_required // Legacy compatibility
 	target_spawn_area = get_area_name(get_turf(landmark))
 
 	// Generate title if not set

@@ -4,19 +4,6 @@
 	icon_state = "quest_marker"
 	var/quest_difficulty = list(QUEST_DIFFICULTY_EASY, QUEST_DIFFICULTY_MEDIUM, QUEST_DIFFICULTY_HARD)
 	var/quest_type = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_CLEAR_OUT, QUEST_KILL, QUEST_BEACON, QUEST_OUTLAW)
-	var/list/fetch_items = list(
-		/obj/item/rogueweapon/huntingknife/throwingknife/steel,
-		/obj/item/rogueweapon/huntingknife,
-		/obj/item/reagent_containers/glass/bottle/rogue/whitewine
-	)
-	var/list/kill_mobs = list(
-		/mob/living/carbon/human/species/goblin/npc/ambush/sea,
-		/mob/living/carbon/human/species/skeleton/npc/medium,
-		/mob/living/carbon/human/species/human/northern/searaider/ambush
-	)
-	var/miniboss_mobs = list(
-		/mob/living/carbon/human/species/human/northern/deranged_knight
-	)
 
 /obj/effect/landmark/quest_spawner/Initialize()
 	. = ..()
@@ -25,12 +12,6 @@
 /obj/effect/landmark/quest_spawner/Destroy()
 	GLOB.quest_landmarks_list -= src
 	return ..()
-
-// Note: generate_quest has been removed - quest generation is now handled by quest datum subtypes
-// Each quest type (retrieval, kill, courier, etc.) has its own generate() method
-
-// Note: spawn_fetch_items, spawn_kill_mob, spawn_clear_out_mobs have been removed
-// These are now handled directly in quest datum subtypes via their generate() method
 
 /obj/effect/landmark/quest_spawner/proc/add_quest_faction_to_nearby_mobs(turf/center)
 	for(var/mob/living/M in view(7, center))

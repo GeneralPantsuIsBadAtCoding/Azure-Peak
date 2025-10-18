@@ -1,5 +1,10 @@
 /datum/quest/retrieval
 	quest_type = QUEST_RETRIEVAL
+	var/list/fetch_items = list(
+		/obj/item/rogueweapon/huntingknife/throwingknife/steel,
+		/obj/item/rogueweapon/huntingknife,
+		/obj/item/reagent_containers/glass/bottle/rogue/whitewine
+	)
 
 /datum/quest/retrieval/get_title()
 	if(title)
@@ -14,9 +19,8 @@
 		return FALSE
 
 	// Select random item type from landmark's list
-	target_item_type = pick(landmark.fetch_items)
+	target_item_type = pick(fetch_items)
 	progress_required = rand(1, 3)
-	target_amount = progress_required // Legacy compatibility
 	target_spawn_area = get_area_name(get_turf(landmark))
 
 	// Generate title if not set
