@@ -10,6 +10,7 @@
 	var/obj/item/contained_item = null
 	var/list/allowed_jobs = list()
 	var/delivery_area_type
+	var/datum/proximity_monitor/proximity_monitor
 
 /obj/item/parcel/Initialize(mapload)
 	. = ..()

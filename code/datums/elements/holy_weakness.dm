@@ -18,7 +18,7 @@
 
 	RegisterSignal(target, COMSIG_HUMAN_LIFE, PROC_REF(handle_church))
 
-/datum/element/holy_weakness/Detach(datum/source, force)
+/datum/element/holy_weakness/Detach(datum/source)
 	UnregisterSignal(source, COMSIG_HUMAN_LIFE)
 	entered -= source
 
