@@ -73,6 +73,8 @@
 
 /// Generate quest content - override in subtypes
 /datum/quest/proc/generate(obj/effect/landmark/quest_spawner/landmark)
+	if(!title)
+		title = get_title()
 	return TRUE
 
 /// Get the quest title - override in subtypes for dynamic titles

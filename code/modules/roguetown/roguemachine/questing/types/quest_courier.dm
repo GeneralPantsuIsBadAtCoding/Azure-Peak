@@ -17,6 +17,7 @@
 	return text
 
 /datum/quest/courier/generate(obj/effect/landmark/quest_spawner/landmark)
+	..()
 	if(!landmark)
 		return FALSE
 
@@ -32,10 +33,6 @@
 
 	progress_required = 1
 	target_spawn_area = get_area_name(get_turf(landmark))
-
-	// Generate title if not set
-	if(!title)
-		title = get_title()
 
 	// Spawn courier item using landmark's method
 	var/obj/item/parcel/delivery_parcel = landmark.spawn_courier_item(src, target_delivery_location)

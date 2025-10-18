@@ -13,15 +13,12 @@
 	return "Slay [initial(target_mob_type.name)]."
 
 /datum/quest/outlaw/generate(obj/effect/landmark/quest_spawner/landmark)
+	..()
 	if(!landmark)
 		return FALSE
 	target_mob_type = pick(miniboss_mobs)
 	progress_required = 1 // Outlaw is always a single strong target
 	target_spawn_area = get_area_name(get_turf(landmark))
-
-	// Generate title if not set
-	if(!title)
-		title = get_title()
 
 	// Spawn miniboss
 	var/turf/spawn_turf = landmark.get_safe_spawn_turf()

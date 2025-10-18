@@ -15,6 +15,7 @@
 	return "Retrieve [progress_required] [initial(target_item_type.name)]."
 
 /datum/quest/retrieval/generate(obj/effect/landmark/quest_spawner/landmark)
+	..()
 	if(!landmark)
 		return FALSE
 
@@ -22,10 +23,6 @@
 	target_item_type = pick(fetch_items)
 	progress_required = rand(1, 3)
 	target_spawn_area = get_area_name(get_turf(landmark))
-
-	// Generate title if not set
-	if(!title)
-		title = get_title()
 
 	// Spawn items
 	for(var/i in 1 to progress_required)
