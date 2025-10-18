@@ -441,7 +441,6 @@
 	desc = "A branch that has been broken off of a boswellia tree, sharpened to a fine point and tipped with blessed silver. It can lay most unholy creechers to rest, but only by piercing their hearts."
 	icon_state = "stake" //Should hopefully autogenerate an inhand. Need to politely ask a coder to import a custom sprite for this stake, later.
 	icon = 'icons/roguetown/items/natural.dmi'
-	sheathe_icon = null
 	force = 20 
 	throwforce = 20
 	wdefense = 0
@@ -451,6 +450,10 @@
 	smeltresult = /obj/item/rogueore/coal
 	last_used = 0
 	is_silver = TRUE
+	I.slot_flags = null //Martyrcode. Should prevent sheathing, all-together.
+	equip_delay_self = 0 //No delay when stowing away, without a scabbard. 
+	unequip_delay_self = 0 //No delay when drawing.
+	inv_storage_delay = 0 //No delay when retrieving from a storage slot.
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/stake/ComponentInitialize()
 	AddComponent(\
