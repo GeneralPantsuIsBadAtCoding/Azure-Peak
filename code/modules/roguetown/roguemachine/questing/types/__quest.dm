@@ -105,8 +105,8 @@
 	complete = TRUE
 	quest_scroll?.update_quest_text()
 
-/// Calculate reward based on difficulty
-/datum/quest/proc/calculate_reward()
+// Base reward scaled only to difficulty
+/datum/quest/proc/get_base_reward()
 	switch(quest_difficulty)
 		if(QUEST_DIFFICULTY_EASY)
 			return rand(QUEST_REWARD_EASY_LOW, QUEST_REWARD_EASY_HIGH)
@@ -114,7 +114,16 @@
 			return rand(QUEST_REWARD_MEDIUM_LOW, QUEST_REWARD_MEDIUM_HIGH)
 		if(QUEST_DIFFICULTY_HARD)
 			return rand(QUEST_REWARD_HARD_LOW, QUEST_REWARD_HARD_HIGH)
+
+// Additional reward, override in subtypes for specific calculations
+/datum/quest/proc/get_additional_reward()
 	return 0
+
+/// Calculate reward based on base + additional reward
+/datum/quest/proc/calculate_reward()
+	var/base = get_base_reward()
+	var/additional = get_additional_reward()
+	return base + additional
 
 /// Calculate deposit based on difficulty
 /datum/quest/proc/calculate_deposit()
