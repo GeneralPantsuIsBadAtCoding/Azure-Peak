@@ -123,6 +123,13 @@
 		arrows += B
 	update_icon()
 
+/obj/item/quiver/twilight_bullet/cannonball/lead-ten/Initialize()
+	. = ..()
+	for(var/i in 1 to 10)
+		var/obj/item/ammo_casing/caseless/twilight_cannonball/B = new()
+		arrows += B
+	update_icon()
+
 /obj/item/quiver/twilight_bullet/cannonball/grapeshot/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
