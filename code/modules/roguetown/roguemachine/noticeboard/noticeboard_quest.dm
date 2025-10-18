@@ -43,11 +43,7 @@
 		say("Insufficient balance funds. You need [deposit] mammons in your meister.")
 		return
 
-	var/list/type_choices = list(
-		QUEST_DIFFICULTY_EASY = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_KILL),
-		QUEST_DIFFICULTY_MEDIUM = list(QUEST_CLEAR_OUT),
-		QUEST_DIFFICULTY_HARD = list(QUEST_OUTLAW)
-	)
+	var/type_choices = GLOB.global_quest_types
 
 	var/type_selection = tgui_input_list(user, "Select contract type", "CONTRACTS", type_choices[actual_difficulty])
 	if(!type_selection)

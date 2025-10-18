@@ -2280,6 +2280,7 @@
 #include "code\modules\roguetown\roguemachine\questing\items\parcel.dm"
 #include "code\modules\roguetown\roguemachine\questing\items\quest_scroll.dm"
 #include "code\modules\roguetown\roguemachine\questing\types\__quest.dm"
+#include "code\modules\roguetown\roguemachine\questing\types\__quest_list.dm"
 #include "code\modules\roguetown\roguemachine\questing\types\quest_clearout.dm"
 #include "code\modules\roguetown\roguemachine\questing\types\quest_courier.dm"
 #include "code\modules\roguetown\roguemachine\questing\types\quest_kill.dm"

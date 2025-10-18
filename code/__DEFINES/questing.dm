@@ -20,5 +20,11 @@
 #define QUEST_DEPOSIT_MEDIUM 10
 #define QUEST_DEPOSIT_HARD 20
 
-
 #define QUEST_HANDLER_REWARD_MULTIPLIER 2
+
+// All eligibile quest kill mobs
+#define QUEST_KILL_MOBS_LIST list(\
+	/mob/living/carbon/human/species/goblin/npc/ambush/sea,\
+	/mob/living/carbon/human/species/skeleton/npc/medium,\
+	/mob/living/carbon/human/species/human/northern/searaider/ambush\
+)

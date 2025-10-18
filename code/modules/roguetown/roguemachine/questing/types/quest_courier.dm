@@ -31,7 +31,6 @@
 	)
 
 	progress_required = 1
-	target_amount = 1 // Legacy compatibility
 	target_spawn_area = get_area_name(get_turf(landmark))
 
 	// Generate title if not set
