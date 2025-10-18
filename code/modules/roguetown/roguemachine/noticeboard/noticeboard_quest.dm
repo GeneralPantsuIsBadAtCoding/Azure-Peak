@@ -31,7 +31,12 @@
 	var/type_choices = GLOB.global_quest_types
 
 	var/type_selection = tgui_input_list(user, "Select contract type", "CONTRACTS", type_choices[actual_difficulty])
+	
 	if(!type_selection)
+		return
+
+	if(user.mind.active_quest >= QUEST_MAX_ACTIVE_QUESTS)
+		say("You have reached the maximum number of active quests. You can take up to [QUEST_MAX_ACTIVE_QUESTS] active quests at a time.")
 		return
 
 	// Instantiate appropriate quest subtype
@@ -81,6 +86,9 @@
 	// Create scroll
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
+	user.mind.active_quest += 1
+	to_chat(user, span_notice("You have taken [user.mind.active_quest] active quests."))
+	log_quest(user.ckey, user.mind, user, "Take [attached_quest.quest_type]")
 	spawned_scroll.base_icon_state = attached_quest.get_scroll_icon()
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll = spawned_scroll
@@ -175,6 +183,11 @@
 		// Add deposit return to both reward totals
 		reward += deposit_return
 		original_reward += deposit_return
+
+		if(user.mind.active_quest >= 1)
+			user.mind.active_quest -= 1
+			to_chat(span_notice("You now have [user.mind.active_quest] active quests."))
+			log_quest(user.ckey, user.mind, user, "Finish [scroll.assigned_quest.quest_type]")
 		
 		qdel(scroll.assigned_quest)
 		qdel(scroll)
@@ -250,6 +263,10 @@
 					qdel(Q)
 					qdel(I)
 
+
+	user.mind.active_quest -= 1
+	to_chat(user, span_notice("You now have [user.mind.active_quest] active quests."))
+	log_quest(user.ckey, user.mind, user, "Abandon [abandoned_scroll.assigned_quest.quest_type]")
 	abandoned_scroll.assigned_quest = null
 	qdel(quest)
 	qdel(abandoned_scroll)

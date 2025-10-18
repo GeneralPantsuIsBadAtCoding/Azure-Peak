@@ -154,9 +154,13 @@
 	origin_type = /obj/structure/chair/wood/rogue
 	blade_dulling = DULLING_BASHCHOP
 	can_parry = TRUE
-	gripped_intents = list(/datum/intent/hit)
+	force = 20
+	force_wielded = 20
+	throwforce = 25
+	wdefense = 1
+	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	max_integrity = 50
 	obj_flags = CAN_BE_HIT
-	max_integrity = 100
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
 	sleepy = 0.35
@@ -271,9 +275,13 @@
 	origin_type = /obj/structure/chair/stool/rogue
 	blade_dulling = DULLING_BASHCHOP
 	can_parry = TRUE
-	gripped_intents = list(/datum/intent/hit)
+	force = 15
+	force_wielded = 15
+	throwforce = 20
+	wdefense = 1
+	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	max_integrity = 50
 	obj_flags = CAN_BE_HIT
-	max_integrity = 100
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
 

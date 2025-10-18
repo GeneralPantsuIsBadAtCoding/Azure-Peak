@@ -4,5 +4,5 @@
 		<b>PSYDON YET LIVES. PSYDON YET ENDURES.</b>\n\
 		PSYDON sent the COMET SYON to destroy the rampaging ARCHDEVIL VHESLYN and save all Humenity. Though he rests now, the fools believe him DEAD - but \
 		PSYDON YET LIVES, AND PSYDON YET ENDURES. Unanswered prayers and impotent miracles - they are TESTS."
-	worshippers = "People of Naledi, Otavan Orthodoxists and Inquisitors, religious extremists, zealotry-filled fools."
+	worshippers = "Otavans, Naledians, Amazonians, Zealots and Pilgrims from all across Psydonia."
 	godhead = /datum/patron/old_god

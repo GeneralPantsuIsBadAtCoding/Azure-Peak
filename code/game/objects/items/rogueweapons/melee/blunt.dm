@@ -125,22 +125,20 @@
 	icon_state = "amace"
 	smeltresult = /obj/item/ingot/aaslag
 
-
-/obj/item/rogueweapon/mace/silver
-	name = "silver war hammer"
-	desc = "A light war hammer forged of silver."
-	icon_state = "silverhammer"
-	force = 18
-	force_wielded = 20
-	minstr = 9
-	wdefense = 5
-	gripped_intents = null
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze)
+/obj/item/rogueweapon/mace/steel/silver
+	force = 30
+	force_wielded = 35
+	name = "silver mace"
+	desc = "A heavy flanged mace, forged from pure silver. For a lord, it's the perfect symbol of authority; a decorative piece for the courts. For a paladin, however, there's no better implement for shattering avantyne-maille into a putrid pile of debris."
+	icon_state = "silvermace"
+	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/silver
+	minstr = 10
+	wdefense = 5
 	smelt_bar_num = 2
 	is_silver = TRUE
 
-/obj/item/rogueweapon/mace/silver/ComponentInitialize()
+/obj/item/rogueweapon/mace/steel/silver/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
@@ -150,18 +148,6 @@
 		added_int = 50,\
 		added_def = 2,\
 	)
-
-/obj/item/rogueweapon/mace/silver/getonmobprop(tag)
-	. = ..()
-	if(tag)
-		switch(tag)
-			if("gen")
-				return list("shrink" = 0.85,"sx" = -7,"sy" = 4,"nx" = 7,"ny" = 4,"wx" = -2,"wy" = 5,"ex" = 1,"ey" = 5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -25,"sturn" = 25,"wturn" = 35,"eturn" = -35,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
-			if("wielded")
-				return list("shrink" = 0.85,"sx" = 5,"sy" = -4,"nx" = -5,"ny" = -4,"wx" = -5,"wy" = -3,"ex" = 7,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -45,"sturn" = 45,"wturn" = -45,"eturn" = 45,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-			if("onbelt")
-				return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
-
 
 /obj/item/rogueweapon/mace/woodclub
 	force = 15
@@ -213,17 +199,17 @@
 	grid_height = 96
 
 /obj/item/rogueweapon/mace/cudgel/psy
-	name = "psydonian handmace"
-	desc = "A shorthanded mace, a convenient sleeping aid, or a means to root out heresy. It's all in the wrist."
-	force = 20
-	force_wielded = 20
+	name = "psydonic handmace"
+	desc = "A shorter variant of the flanged silver mace, rebalanced for one-handed usage. It isn't uncommon for these sidearms to mysteriously 'vanish' from an Adjudicator's belt, only to be 'rediscovered' - and subsequently kept - by a Confessor."
+	force = 25
+	force_wielded = 30
 	minstr = 9
 	wdefense = 5
 	wbalance = WBALANCE_SWIFT
 	resistance_flags = FIRE_PROOF
 	icon_state = "psyflangedmace"
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/mace/cudgel/psy/ComponentInitialize()
 	AddComponent(\
@@ -248,7 +234,7 @@
 	)
 
 /obj/item/rogueweapon/mace/cudgel/psy/old
-	name = "old psydonian handmace"
+	name = "enduring handmace"
 	desc = "A shorthanded mace and convenient sleeping aid, its grown harder to swing with age, though it hasn't lost reliability."
 	force = 20
 	wbalance = WBALANCE_NORMAL
@@ -443,18 +429,18 @@
 	max_integrity = 350 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
 
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonian mace"
+	name = "psydonic mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
-	force = 20
-	force_wielded = 25
+	force = 30
+	force_wielded = 35
 	minstr = 12
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
 	dropshrink = 0.75
 	smelt_bar_num = 2
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
 	AddComponent(\
@@ -468,7 +454,7 @@
 	)
 
 /obj/item/rogueweapon/mace/goden/psymace/old
-	name = "old psydonian mace"
+	name = "enduring mace"
 	desc = "An ornate mace, its silver tarnished by neglect. Even without HIS holy blessing, its weight ENDURES."
 	icon_state = "psymace"
 	force = 15
@@ -536,6 +522,30 @@
 	desc = "A macehead of polished gilbranze, spiked and perched atop a reinforced shaft. An elegant weapon from a more civilized age; when Man lived in harmony with one-another, and when 'the undying' was nothing more than a nitemare's thought."
 	icon_state = "awarhammer"
 	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/rogueweapon/mace/warhammer/steel/silver
+	name = "silver warhammer"
+	desc = "A heavy warhammer, forged from pure silver. It follows the Otavan design of a 'lucerene'; a shortened polehammer with a pronounced spike, rebalanced for one-handed usage. Resplendent in presentation, righteous in purpose."
+	icon_state = "silverhammer"
+	force = 30
+	force_wielded = 30
+	minstr = 10
+	wdefense = 5
+	smeltresult = /obj/item/ingot/silver
+	smelt_bar_num = 2
+	is_silver = TRUE
+
+/obj/item/rogueweapon/mace/warhammer/steel/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 50,\
+		added_def = 2,\
+	)
+
 
 /datum/intent/mace/warhammer/stab
 	name = "thrust"

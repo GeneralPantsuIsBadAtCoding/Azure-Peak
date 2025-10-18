@@ -22,6 +22,8 @@
 
 #define QUEST_HANDLER_REWARD_MULTIPLIER 2
 
+#define QUEST_MAX_ACTIVE_QUESTS 2
+
 // All eligible quest kill mobs
 #define QUEST_KILL_MOBS_LIST list(\
 	/mob/living/carbon/human/species/goblin/npc/ambush/sea,\

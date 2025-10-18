@@ -74,8 +74,9 @@
 				H.change_stat(STATKEY_SPD, 1)
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				H.dna.species.soundpack_m = new /datum/voicepack/male/evil() 	//Fits in my head all too well.
-				var/masks = list(
-				"Steppesman" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
+				var/masks = list(				
+				"Humen" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
+				"Beast"		= /obj/item/clothing/mask/rogue/facemask/steel/steppesman/anthro,
 				"None"
 		)
 				var/maskchoice = input("What fits your face?", "MASK SELECTION") as anything in masks
@@ -111,8 +112,9 @@
 				H.change_stat(STATKEY_SPD, -2)
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
-				var/masks = list(
-				"Steppesman" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
+				var/masks = list(				
+				"Humen" 	= /obj/item/clothing/mask/rogue/facemask/steel/steppesman,
+				"Beast"		= /obj/item/clothing/mask/rogue/facemask/steel/steppesman/anthro,
 				"None"
 		)
 				var/maskchoice = input("What fits your face?", "MASK SELECTION") as anything in masks

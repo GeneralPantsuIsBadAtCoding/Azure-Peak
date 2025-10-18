@@ -65,5 +65,13 @@
 			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)
 			return BULLET_ACT_BLOCK
+		if(M.has_status_effect(/datum/status_effect/buff/frost) || M.has_status_effect(/datum/status_effect/buff/frostbite))
+			visible_message(span_warning("[src] extinguishes on contact with [target]!"))
+			playsound(get_turf(target), 'sound/items/firesnuff.ogg', 100)
+			M.remove_status_effect(/datum/status_effect/buff/frost)
+			M.remove_status_effect(/datum/status_effect/buff/frostbite)
+			new /obj/effect/temp_visual/snap_freeze(get_turf(M))
+			qdel(src)
+			return BULLET_ACT_BLOCK
 		M.adjust_fire_stacks(1)
 		M.ignite_mob()

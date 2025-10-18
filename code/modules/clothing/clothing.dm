@@ -340,7 +340,7 @@
 			armorlist[x] = 0
 	..()
 
-/obj/item/clothing/obj_fix()
+/obj/item/clothing/obj_fix(mob/user, full_repair = TRUE)
 	..()
 	armor = original_armor
 

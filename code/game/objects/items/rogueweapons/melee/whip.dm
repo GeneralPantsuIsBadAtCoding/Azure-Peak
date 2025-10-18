@@ -107,9 +107,9 @@
 	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
 	icon_state = "psywhip"
 	is_silver = TRUE
-	force = 20
+	force = 25
 	minstr = 11
-	wdefense = 3
+	wdefense = 0
 	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/whip/antique/psywhip/ComponentInitialize()
@@ -120,18 +120,18 @@
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\
-		added_def = 2,\
+		added_def = 0,\
 	)
 
 /obj/item/rogueweapon/whip/psywhip_lesser
-	name = "psydonian whip"
+	name = "psydonic whip"
 	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
 	icon_state = "psywhip_lesser"
-	force = 16
+	force = 18
 	minstr = 9
-	wdefense = 3
+	wdefense = 0
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
 	AddComponent(\
@@ -141,7 +141,28 @@
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
-		added_def = 2,\
+		added_def = 0,\
+	)
+
+/obj/item/rogueweapon/whip/silver
+	name = "silver whip"
+	desc = "A hefty, silver whip. The uncoiled leather is tipped with a silver barb, which can sunder the blighted from a remarkable distance."
+	icon_state = "silverwhip"
+	force = 18
+	minstr = 9
+	wdefense = 0
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/whip/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
 	)
 
 /obj/item/rogueweapon/whip/spiderwhip

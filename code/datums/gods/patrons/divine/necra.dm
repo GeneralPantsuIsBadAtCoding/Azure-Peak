@@ -48,7 +48,7 @@
 )
 	*message_out = span_info("A sense of quiet respite radiates from [target]!")
 	*message_self = span_notice("I feel the Undermaiden's gaze turn from me for now!")
-				
+
 	if(iscarbon(target))
 		var/mob/living/carbon/carbon = target
 		if(carbon.health <= (carbon.maxHealth * 0.25))

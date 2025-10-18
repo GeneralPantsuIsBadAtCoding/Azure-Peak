@@ -7,7 +7,6 @@
 	spawn_positions = 2
 
 	allowed_races = ACCEPTED_RACES
-	allowed_ages = list(AGE_ADULT)
 
 	tutorial = "You are an accomplished physician, trained and practiced in the art of medicine. You answer to the Head Physician, who enables your practice. Woe betide the one who suffers your scalpel."
 
@@ -27,6 +26,7 @@
 	job_subclasses = list(
 		/datum/advclass/apothecary
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/apothecary
 	name = "Apothecary"
