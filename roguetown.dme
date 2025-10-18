@@ -743,6 +743,7 @@
 #include "code\datums\mob_descriptors\descriptors\prominent.dm"
 #include "code\datums\mob_descriptors\descriptors\skin.dm"
 #include "code\datums\mob_descriptors\descriptors\stature.dm"
+#include "code\datums\mob_descriptors\descriptors\trait.dm"
 #include "code\datums\mob_descriptors\descriptors\voice.dm"
 #include "code\datums\mood_events\_mood_event.dm"
 #include "code\datums\mood_events\beauty_events.dm"
