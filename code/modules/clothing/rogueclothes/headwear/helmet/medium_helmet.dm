@@ -438,6 +438,23 @@
 	block2add = null
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/clothing/head/roguetown/helmet/kettle/jingasa
+	name = "jingasa"
+	desc = "A steel-reinforced conical hat with a decorative rim of fabric. It protects the head and ears as much as it shields the eyes from the sun."
+	icon_state = "kazengunmedhelm"
+	item_state = "kazengunmedhelm"
+	detail_tag = "_detail"
+	detail_color = "#FFFFFF"
+
+/obj/item/clothing/head/roguetown/helmet/kettle/jingasa/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 //............... Eora Helmet ............... //
 /obj/item/clothing/head/roguetown/helmet/sallet/eoran
 	name = "eora helmet"

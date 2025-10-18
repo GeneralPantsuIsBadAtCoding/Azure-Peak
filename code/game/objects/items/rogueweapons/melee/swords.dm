@@ -1793,6 +1793,13 @@
 	alt_intents = null // Can't mordhau this
 	smeltresult = /obj/item/ingot/steel
 
+/obj/item/rogueweapon/sword/long/kriegmesser/ssangsudo
+	name = "ssangsudo"
+	desc = "A style of long blade used by the kouken of Kazengun. A weapon supremely skilled in the art of cutting."
+	icon = 'icons/roguetown/weapons/swords64.dmi'
+	icon_state = "ssangsudo"
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/rend, /datum/intent/sword/strike) // better rend by .05
+
 /obj/item/rogueweapon/sword/long/dec
 	name = "decorated longsword"
 	desc = "A valuable ornate longsword made for the purpose of ceremonial fashion, with a fine leather grip and a carefully engraved golden crossguard. \
