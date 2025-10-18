@@ -121,8 +121,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 		if(PL.len)
 			job_list += "<B>[job_title]</B> ([readiedas]) - [PL.Join(", ")]<br>"
-		else
-			job_list += "<B>[job_title]</B> ([readiedas])<br>"
 
 	if(wanderers.len)
 		var/wanderers_listing = "<B>Wanderers</B> ([wanderers.len]) - [wanderers.Join(", ")]<br>"
