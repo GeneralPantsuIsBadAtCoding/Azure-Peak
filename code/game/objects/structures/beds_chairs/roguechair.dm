@@ -214,7 +214,7 @@
 	if(!isliving(leaving))
 		return
 	var/mob/living/M = leaving
-	if(M.body_position == LYING_DOWN)
+	if(!(M.mobility_flags & MOBILITY_STAND))
 		return
 	if(get_dir(leaving.loc, new_location) == REVERSE_DIR(dir))
 		playsound(loc, 'sound/foley/chairfall.ogg', 100, FALSE)

@@ -120,8 +120,15 @@
 	deconstructible = FALSE
 	flags_1 = ON_BORDER_1
 	climbable = TRUE
-	var/passcrawl = TRUE
 	layer = ABOVE_MOB_LAYER
+	/// Living mobs can lay down to go past
+	var/pass_crawl = TRUE
+	/// Projectiles can go past
+	var/pass_projectile = TRUE
+	/// Throwing atoms can go past
+	var/pass_throwing = TRUE
+	/// Throwing/Flying non mobs can always exit the turf regardless of other flags
+	var/allow_flying_outwards = TRUE
 
 /obj/structure/fluff/railing/Initialize()
 	. = ..()
@@ -158,7 +165,7 @@
 	if(isliving(mover))
 		var/mob/living/M = mover
 		if(!(M.mobility_flags & MOBILITY_STAND))
-			if(passcrawl)
+			if(pass_crawl)
 				return TRUE
 	if(icon_state == "woodrailing" && (dir in CORNERDIRS))
 		var/list/baddirs = list()
@@ -189,17 +196,15 @@
 	if(get_dir(leaving.loc, new_location) != dir)
 		return
 
-	if(leaving.movement_type & (FLOATING|FLYING))
-		if(istype(leaving, /obj/projectile) && (pass_projectile || allow_flying_outwards))
-			return
+	if(pass_projectile && istype(leaving, /obj/projectile))
+		return
 
-	if(leaving.throwing)
-		if(pass_throwing || (allow_flying_outwards && !ismob(leaving)))
-			return
+	if(pass_throwing && leaving.throwing)
+		return
 
 	if(pass_crawl && isliving(leaving))
 		var/mob/living/M = leaving
-		if(M.body_position == LYING_DOWN)
+		if(!(M.mobility_flags & MOBILITY_STAND))
 			return
 
 	leaving.Bump(src)
@@ -260,7 +265,7 @@
 	name = "border"
 	desc = ""
 	icon_state = "border"
-	passcrawl = FALSE
+	pass_crawl = FALSE
 
 /obj/structure/fluff/railing/fence
 	name = "palisade"
@@ -275,7 +280,7 @@
 	layer = 2.91
 	climbable = FALSE
 	max_integrity = 400
-	passcrawl = FALSE
+	pass_crawl = FALSE
 	climb_offset = 6
 
 /obj/structure/fluff/railing/fence/Initialize()
