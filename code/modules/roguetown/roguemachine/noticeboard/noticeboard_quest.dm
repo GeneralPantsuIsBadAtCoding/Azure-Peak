@@ -59,7 +59,6 @@
 
 	// Configure quest
 	attached_quest.quest_difficulty = actual_difficulty
-	attached_quest.reward_amount = attached_quest.calculate_reward()
 	attached_quest.deposit_amount = attached_quest.calculate_deposit()
 
 	// Set giver or receiver
@@ -82,6 +81,9 @@
 		to_chat(user, span_warning("Failed to generate quest content!"))
 		qdel(attached_quest)
 		return
+
+	// Reward calculation comes after generation
+	attached_quest.reward_amount = attached_quest.calculate_reward()
 
 	// Create scroll
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))

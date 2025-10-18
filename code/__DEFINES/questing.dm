@@ -25,8 +25,11 @@
 #define QUEST_MAX_ACTIVE_QUESTS 2
 
 // All eligible quest kill mobs
+// Goblin = 3 because their head is worth 20 and they are very weak
+// Skeleton = 6 because their head is worth nothing and they are tough.
+// Searaider = 4 because their head is worth something and they are tough.
 #define QUEST_KILL_MOBS_LIST list(\
-	/mob/living/carbon/human/species/goblin/npc/ambush/sea,\
-	/mob/living/carbon/human/species/skeleton/npc/medium,\
-	/mob/living/carbon/human/species/human/northern/searaider/ambush\
+	/mob/living/carbon/human/species/goblin/npc/ambush/sea = 3,\
+	/mob/living/carbon/human/species/skeleton/npc/medium = 6,\
+	/mob/living/carbon/human/species/human/northern/searaider/ambush = 4\
 )

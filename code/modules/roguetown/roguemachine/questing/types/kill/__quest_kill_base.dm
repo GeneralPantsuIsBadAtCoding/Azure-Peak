@@ -21,3 +21,9 @@
 		add_tracked_atom(new_mob)
 		landmark.add_quest_faction_to_nearby_mobs(spawn_turf)
 		sleep(1)
+
+/datum/quest/kill/get_additional_reward()
+	..()
+	// Additional reward based on mob difficulty and number required
+	var/mob_type_difficulty = QUEST_KILL_MOBS_LIST[target_mob_type]
+	return progress_required * mob_type_difficulty
