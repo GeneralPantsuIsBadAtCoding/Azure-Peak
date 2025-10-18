@@ -4,7 +4,7 @@
 
 #define QUEST_RETRIEVAL "Retrieval"
 #define QUEST_COURIER "Courier"
-#define QUEST_KILL "Kill"
+#define QUEST_KILL_EASY "Kill"
 #define QUEST_CLEAR_OUT "Clear Out"
 #define QUEST_OUTLAW "Outlaw"
 #define QUEST_BEACON "Beacon"
@@ -22,7 +22,7 @@
 
 #define QUEST_HANDLER_REWARD_MULTIPLIER 2
 
-// All eligibile quest kill mobs
+// All eligible quest kill mobs
 #define QUEST_KILL_MOBS_LIST list(\
 	/mob/living/carbon/human/species/goblin/npc/ambush/sea,\
 	/mob/living/carbon/human/species/skeleton/npc/medium,\

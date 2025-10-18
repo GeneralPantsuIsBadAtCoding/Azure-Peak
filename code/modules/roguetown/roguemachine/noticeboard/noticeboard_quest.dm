@@ -5,18 +5,9 @@
 		return
 
 	var/list/difficulty_data = list(
-		QUEST_DIFFICULTY_EASY = list(
-			deposit = QUEST_DEPOSIT_EASY,
-			icon = "scroll_quest_low"
-		),
-		QUEST_DIFFICULTY_MEDIUM = list(
-			deposit = QUEST_DEPOSIT_MEDIUM,
-			icon = "scroll_quest_mid"
-		),
-		QUEST_DIFFICULTY_HARD = list(
-			deposit = QUEST_DEPOSIT_HARD,
-			icon = "scroll_quest_high"
-		)
+		QUEST_DIFFICULTY_EASY = list(deposit = QUEST_DEPOSIT_EASY),
+		QUEST_DIFFICULTY_MEDIUM = list(deposit = QUEST_DEPOSIT_MEDIUM),
+		QUEST_DIFFICULTY_HARD = list(deposit = QUEST_DEPOSIT_HARD)
 	)
 
 	// Create a list with formatted difficulty choices showing deposits
@@ -48,14 +39,14 @@
 	switch(type_selection)
 		if(QUEST_RETRIEVAL)
 			attached_quest = new /datum/quest/retrieval()
-		if(QUEST_KILL)
-			attached_quest = new /datum/quest/kill()
+		if(QUEST_KILL_EASY)
+			attached_quest = new /datum/quest/kill/easy()
 		if(QUEST_COURIER)
 			attached_quest = new /datum/quest/courier()
 		if(QUEST_CLEAR_OUT)
-			attached_quest = new /datum/quest/clearout()
+			attached_quest = new /datum/quest/kill/clearout()
 		if(QUEST_OUTLAW)
-			attached_quest = new /datum/quest/outlaw()
+			attached_quest = new /datum/quest/kill/outlaw()
 
 	if(!attached_quest)
 		to_chat(user, span_warning("Invalid quest type selected!"))
