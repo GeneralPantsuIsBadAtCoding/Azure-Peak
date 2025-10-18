@@ -6,11 +6,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	var/path
 	var/donoritem			//autoset on new if null
 	var/list/ckeywhitelist
+	var/triumph_cost
 
 /datum/loadout_item/New()
 	if(isnull(donoritem))
 		if(ckeywhitelist)
 			donoritem = TRUE
+	if (triumph_cost)
+		desc += "<b>Costs [triumph_cost] TRIUMPH.</b>"
 
 /datum/loadout_item/proc/donator_ckey_check(key)
 	if(ckeywhitelist && ckeywhitelist.Find(key))
@@ -35,6 +38,12 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Custom Book"
 	path = /obj/item/book/rogue/loadoutbook
 
+//TOOLS
+
+/datum/loadout_item/bauernwehr
+	name = "Bauernwehr (3 TRI)"
+	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
+	triumph_cost = 3
 
 //HATS
 /datum/loadout_item/shalal
