@@ -48,34 +48,159 @@
 		client = user.client
 	user << browse_rsc('html/book.png')
 	var/uncrafted_sellprice = 0
+	//var/atom/movable/created_item
+	//var/obj/structure/created_structure
+	//var/obj/machinery/created_machinery
+	var/obj/created_stuff
+	var/turf/created_stationary
 	if(islist(result))
 		var/list/result_list = result
 		if(result_list.len)
+			//created_item = result[1]
+			//created_machinery = result[1]
+			created_stuff = result[1]
 			if(istype(/atom/movable, result[1]))
 				var/atom/movable/AM = result[1]
 				if(AM.sellprice)
 					uncrafted_sellprice = AM.sellprice
-	else if(istype(result, /atom/movable))
+	if(ispath(result, /obj))
 		var/atom/movable/AM = result
+		created_stuff = result
+		created_stationary = result
 		if(AM.sellprice)
 			uncrafted_sellprice = AM.sellprice
-
+	if(ispath(result, /turf))
+		var/atom/movable/AM = result
+		created_stationary = result
+		if(AM.sellprice)
+			uncrafted_sellprice = AM.sellprice
 	var/final_sellprice = sellprice || uncrafted_sellprice
-	var/html = {"
-		<!DOCTYPE html>
-		<html lang="en">
-		<meta charset='UTF-8'>
-		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-		<body>
-		  <div>
-		    <h1>[name]</h1>
-		"}
+	var/html 
+	if (!isnull(created_stuff))
+		html = {"
+			<!DOCTYPE html>
+			<html lang="en">
+			<meta charset='UTF-8'>
+			<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+			<body>
+			<div>
+				<h1>[icon2html(created_stuff, user)][name]</h1>
+				<h4>DESCRIPTION: [initial(created_stuff.desc)]</h4>
+				<div>
+			"}
+	if (!isnull(created_stationary))
+		html = {"
+			<!DOCTYPE html>
+			<html lang="en">
+			<meta charset='UTF-8'>
+			<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+			<body>
+			<div>
+				<h1>[icon2html(created_stationary, user)][name]</h1>
+				<h4>DESCRIPTION: [initial(created_stationary.desc)]</h4>
+				<div>
+			"}
+	var/obj/item/clothing/suit/roguetown/armor/bookarmor = initial(created_stuff)
+	var/obj/item/rogueweapon/bookweapon = initial(created_stuff)
+
+	if(!(bookarmor?.armor == "")&&!isnull(bookarmor?.armor) )
+		var/obj/item/clothing/C = initial(created_stuff)
+		if(C.body_parts_covered)
+			html += "\n<b>COVERAGE: </b>"
+			html += " | "
+			if(C.body_parts_covered == C.body_parts_covered_dynamic)
+				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+					html += "<b>[capitalize(zone)]</b> | "
+			else
+				var/list/zones = list()
+				//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
+				for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
+					zones += zoneorg
+				for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
+					html += "<b>[capitalize(zonedyn)]</b> | "
+					if(zonedyn in zones)
+						zones.Remove(zonedyn)
+				for(var/zone in zones)			
+					html += "<b><font color = '#470000'>[capitalize(zone)]</font></b> | "
+			html += "<br>"
+		if(C.body_parts_inherent)
+			html += "<b>CANNOT BE PEELED: </b>"
+			var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
+			if(length(inherentList) == 1)
+				html += "<b><font color = '#000833'>[capitalize(inherentList[1])]</font></b><br>"
+			else
+				html += "| "
+				for(var/zone in inherentList)
+					html += "<b><font color = '#000833'>[capitalize(zone)]</b></font> | "
+			html += "<br>"
+		if(C.prevent_crits)
+			if(length(C.prevent_crits))
+				html += "\n<b>PREVENTS CRITS:</b>"
+				for(var/X in C.prevent_crits)
+					if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
+						X = "pick"
+					html += ("\n<b>[capitalize(X)]</b><br>")
+		html += "INTEGRITY: [bookarmor.max_integrity]<br>"
+		if(bookarmor.armor_class == ARMOR_CLASS_HEAVY)
+			html += "<b>AC: </b>HEAVY<br>"
+		if(bookarmor.armor_class == ARMOR_CLASS_MEDIUM)
+			html += "<b>AC: </b>MEDIUM<br>"
+		if(bookarmor.armor_class == ARMOR_CLASS_LIGHT)
+			html += "<b>AC: </b> LIGHT<br>"
+	else if (!isnull(bookweapon) && bookweapon.force>1)
+		html += "Combat Properties<br>"
+		if(bookweapon.minstr)
+			html += "\n<b>MIN.STR:</b> [bookweapon.minstr]<br>"
+		
+		if(bookweapon.force)
+			html += "\n<b>FORCE:</b> [bookweapon.force]<br>"
+		if(bookweapon.gripped_intents && !bookweapon.wielded)
+			if(bookweapon.force_wielded)
+				html += "\n<b>WIELDED FORCE:</b> [bookweapon.force_wielded]<br>"
+
+		if(bookweapon.wbalance)
+			html += "\n<b>BALANCE: </b>"
+			if(bookweapon.wbalance == WBALANCE_HEAVY)
+				html += "Heavy<br>"
+			if(bookweapon.wbalance == WBALANCE_SWIFT)
+				html += "Swift<br>"
+			
+
+		if(bookweapon.wlength != WLENGTH_NORMAL)
+			html += "\n<b>LENGTH:</b> "
+			switch(bookweapon.wlength)
+				if(WLENGTH_SHORT)
+					html += "Short<br>"
+				if(WLENGTH_LONG)
+					html += "Long<br>"
+				if(WLENGTH_GREAT)
+					html += "Great<br>"
+
+		if(bookweapon.alt_intents)
+			html += "\n<b>GRIP: ALT-GRIP (right click while in hand)</b><br>"
+		if(bookweapon.gripped_intents)
+			html += "\n<b>TWO-HANDED: Yes</b><br>"
+
+		var/shafttext = get_blade_dulling_text(bookweapon, verbose = TRUE)
+		if(shafttext)
+			html += "\n<b>SHAFT:</b> [shafttext] <br>"
+
+		if(bookweapon.twohands_required)
+			html += "\n<b>BULKY</b><br>"
+		if(bookweapon.can_parry)
+			html += "\n<b>DEFENSE:</b> [bookweapon.wdefense]<br>"
+		if(bookweapon.associated_skill && bookweapon.associated_skill.name)
+			html += "\n<b>SKILL:</b> [bookweapon.associated_skill.name]<br>"
+		
+		if(bookweapon.intdamage_factor != 1 && bookweapon.force >= 5)
+			html += "\n<b>INTEGRITY DAMAGE:</b> [bookweapon.intdamage_factor * 100]%<br>"
 
 	if(craftdiff > 0)
-		html += "For those of [SSskills.level_names_plain[craftdiff]] skills<br>"
+		html += "<h1></h1>For those of [SSskills.level_names_plain[craftdiff]] skills<br>"
 	else
-		html += "Suitable for all skills<br>"	
+		html += "<h1></h1>Suitable for all skills<br>"	
 
 	html += {"<div>
 		      <strong>Requirements</strong>

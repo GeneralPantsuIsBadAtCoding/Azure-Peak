@@ -23,11 +23,11 @@
 	</div>
 	"}
 
-/datum/book_entry/magic1
-	name = "Chapter I: Gathering Materials"
+/datum/book_entry/magic2
+	name = "Chapter II: Binding Creatures"
 	category = "Instructions"
 
-/datum/book_entry/magic1/inner_book_html(mob/user)
+/datum/book_entry/magic2/inner_book_html(mob/user)
 	return {"
 	<div>
 	<h2>Binding Creatures:</h2>
