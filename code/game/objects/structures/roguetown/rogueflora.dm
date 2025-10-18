@@ -499,7 +499,7 @@
 		return FALSE // just don't even try, not even if you can climb it
 	return ..()
 
-/obj/structure/flora/shroom_tree/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+/obj/structure/flora/rogueshroom/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
 	SIGNAL_HANDLER
 	if(get_dir(leaving.loc, new_location) == dir)
 		leaving.Bump(src)
