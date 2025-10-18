@@ -620,7 +620,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
 "oG" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
+/obj/effect/landmark/mob_spawner/swine/hog/tame,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
 "oI" = (
@@ -1706,7 +1706,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/banditcamp)
 "QQ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame,
+/obj/effect/landmark/mob_spawner/swine/hog/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/banditcamp)
 "QX" = (
@@ -2074,7 +2074,7 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/indoors/banditcamp)
 "ZW" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/swine,
+/obj/effect/landmark/mob_spawner/swine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
 
