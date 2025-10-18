@@ -4,11 +4,18 @@
 	added_traits = list(TRAIT_NOBLE)
 	added_skills = list(list(/datum/skill/misc/reading, 1, 6))
 	added_stashed_items = list("Heirloom Amulet" = /obj/item/clothing/neck/roguetown/ornateamulet/noble)
+	var/has_income = TRUE
 
 /datum/virtue/utility/noble/apply_to_human(mob/living/carbon/human/recipient)
-	SStreasury.noble_incomes[recipient] += 15
+	if(has_income)
+		SStreasury.noble_incomes[recipient] += 15
 	var/obj/item/pouch = new /obj/item/storage/belt/rogue/pouch/coins/virtuepouch(get_turf(recipient))
 	recipient.put_in_hands(pouch, forced = TRUE)
+
+/datum/virtue/utility/noble/impoverished
+	name = "Impoverished Nobility"
+	desc = "By birth, blade or brain, I am noble known to the royalty of these lands, though, by circumstances known only to myself, I do not gain an income here."
+	has_income = FALSE
 
 /datum/virtue/utility/beautiful
 	name = "Beautiful"
