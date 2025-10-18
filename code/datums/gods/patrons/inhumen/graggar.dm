@@ -25,8 +25,10 @@
     message_out,
     message_self,
     conditional_buff,
-    situational_bonus
+    situational_bonus,
+	is_inhumen
 )
+	*is_inhumen = TRUE
 	*message_out = span_info("Foul fumes billow outward as [target] is restored!")
 	*message_self = span_notice("A noxious scent burns my nostrils, but I feel better!")
 

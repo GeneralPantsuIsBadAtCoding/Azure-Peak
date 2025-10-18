@@ -422,3 +422,27 @@
 		)
 	skillcraft = /datum/skill/misc/medicine
 	craftdiff = SKILL_LEVEL_EXPERT
+
+/datum/crafting_recipe/roguetown/survival/purify_lux
+	name = "purifiy lux"
+	result = list(
+		/obj/item/reagent_containers/lux
+		)
+	reqs = list(
+		/obj/item/reagent_containers/lux_impure = 1,
+		/obj/item/heart_blood_canister/filled = 1,
+		)
+	skillcraft = /datum/skill/misc/medicine
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/purify_lux_vials
+	name = "purifiy lux (vials)"
+	result = list(
+		/obj/item/reagent_containers/lux
+		)
+	reqs = list(
+		/obj/item/reagent_containers/lux_impure = 1,
+		/obj/item/heart_blood_vial/filled = 3,
+		)
+	skillcraft = /datum/skill/misc/medicine
+	craftdiff = 2

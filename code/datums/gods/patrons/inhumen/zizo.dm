@@ -51,8 +51,10 @@
     message_out,
     message_self,
     conditional_buff,
-    situational_bonus
+    situational_bonus,
+	is_inhumen
 )
+	*is_inhumen = TRUE
 	*message_out = span_info("Vital energies are sapped towards [target]!")
 	*message_self = span_notice("The life around me pales as I am restored!")
 

@@ -167,6 +167,9 @@
 	desc = "A volatile chemical mixture that helps the deceased conduct electricity. Looks expensive..."
 	list_reagents = list(/datum/reagent/frankenbrew = 48)
 
+/obj/item/reagent_containers/glass/bottle/frankenbrew/third
+	list_reagents = list(/datum/reagent/frankenbrew = 16)
+
 /obj/structure/chair/frankenstein/proc/start_cranking_animation()
 	if(cranking)
 		return

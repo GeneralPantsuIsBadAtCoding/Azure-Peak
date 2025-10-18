@@ -58,7 +58,8 @@ GLOBAL_LIST_EMPTY(prayers)
 	message_out, 
 	message_self, 
 	conditional_buff, 
-	situational_bonus
+	situational_bonus,
+	is_inhumen
 	)
 	return
 

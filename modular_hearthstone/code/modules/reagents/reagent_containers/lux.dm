@@ -28,3 +28,11 @@
 		M.sate_addiction()
 	M.apply_status_effect(/datum/status_effect/buff/vitae)
 	..()
+
+/obj/item/reagent_containers/lux_impure
+	name = "impure lux"
+	desc = "The stuff of life and souls, retrieved from within a hopefully-willing donor. It's eerie and impure, requiring purification."
+	icon = 'icons/roguetown/items/produce.dmi'
+	icon_state = "lux_impure"
+	item_state = "lux_impure"
+	sellprice = 15
