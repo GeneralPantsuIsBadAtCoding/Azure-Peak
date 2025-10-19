@@ -258,13 +258,22 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 /datum/wound/proc/on_life()
 	if(!isnull(clotting_threshold) && clotting_rate && (bleed_rate > clotting_threshold))
 		bleed_rate = max(clotting_threshold, bleed_rate - clotting_rate)
-	if(passive_healing)
+	if (HAS_TRAIT(owner, TRAIT_PSYDONITE) && !passive_healing)
+		heal_wound(0.6) // psydonites are supposed to apparently slightly heal wounds whether dead or alive
+	if(owner.stat != DEAD && passive_healing) // passive healing is only called if we're like, you know, alive
 		heal_wound(passive_healing)
 	return TRUE
 
 /// Called on handle_wounds(), on the life() proc
 /datum/wound/proc/on_death()
-	return
+	// for optimization's sake, only do dead wound healing if the mob has a client.
+	if (!owner.client)
+		return
+
+	if (HAS_TRAIT(owner, TRAIT_PSYDONITE) && !passive_healing)
+		heal_wound(0.6) // psydonites are supposed to apparently slightly heal wounds whether dead or alive
+	
+	return TRUE
 
 /// Heals this wound by the given amount, and deletes it if it's healed completely
 /datum/wound/proc/heal_wound(heal_amount)
