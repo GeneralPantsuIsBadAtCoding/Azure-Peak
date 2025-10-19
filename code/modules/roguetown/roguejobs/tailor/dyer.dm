@@ -34,7 +34,9 @@ var/global/list/pridelist = list(
 			/obj/item/clothing,
 			/obj/item/storage,
 			/obj/item/bedroll,
-			/obj/item/flowercrown
+			/obj/item/flowercrown,
+			/obj/item/legwears,
+			/obj/item/undies
 			)
 	var/list/used_colors
 	var/list/extra_colors = list(

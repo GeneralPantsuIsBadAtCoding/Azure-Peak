@@ -26,14 +26,16 @@
 
 /obj/item/clothing/gloves/roguetown/plate/aalloy
 	name = "decrepit plate gauntlets"
-	desc = "Decrepit old plate gauntlets. Aeon's grasp is upon them."
+	desc = "Frayed bronze mechanisms, connected to form the shells of hands. Too clumsy to properly knock a bow, too rigid to comfortably grip a sword; clench those fists any tighter, and the segments'll cut into flesh."
 	icon_state = "agauntlets"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/gloves/roguetown/plate/paalloy
 	name = "ancient plate gauntlets"
-	desc = "Ancient plate gauntlets. Aeon's grasp lifed from them."
+	desc = "Polished gilbranze mechanisms, meticulously interconnected to shroud splayed hands. 'Mercy' and 'innocence' are concepts paraded by the unenlightened; spill their blood without guilt, so that the world may yet be remade in Her image." 
 	icon_state = "agauntlets"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -43,13 +45,9 @@
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 	icon_state = "graggarplategloves"
 
-/obj/item/clothing/gloves/roguetown/plate/graggar/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_HORDE))
-		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/clothing/gloves/roguetown/plate/graggar/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_HORDE, "ARMOR", "RENDERED ASUNDER")
 
 /obj/item/clothing/gloves/roguetown/plate/matthios
 	name = "gilded gauntlets"
@@ -69,8 +67,8 @@
 
 
 /obj/item/clothing/gloves/roguetown/plate/zizo
-	name = "darksteel gauntlets"
-	desc = "darksteel plate gauntlets. Called forth from the edge of what should be known. In Her name."
+	name = "avantyne gauntlets"
+	desc = "avantyne plate gauntlets. Called forth from the edge of what should be known. In Her name."
 	icon_state = "zizogauntlets"
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 
@@ -83,3 +81,10 @@
 	if(QDELETED(src))
 		return
 	qdel(src)
+
+/obj/item/clothing/gloves/roguetown/plate/shadowgauntlets
+	name = "darkplate gauntlets"
+	desc = "Gauntlets with gilded fingers fashioned into talons. The tips are all too dull to be of harm."
+	icon_state = "shadowgauntlets"
+	allowed_race = NON_DWARVEN_RACE_TYPES
+	body_parts_covered = HANDS|ARMS //For "heavy" drow merc

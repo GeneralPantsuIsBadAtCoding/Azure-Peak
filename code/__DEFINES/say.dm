@@ -58,6 +58,7 @@
 #define SPAN_SINGING "singing"
 
 #define SPAN_GEN "say"
+#define SPAN_ORATOR "orator"
 #define SPAN_DWARF "dwarf"
 #define SPAN_ELF "elf"
 #define SPAN_SAND "sandspeak"

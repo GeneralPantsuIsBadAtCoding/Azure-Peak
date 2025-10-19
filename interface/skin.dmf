@@ -64,7 +64,7 @@ window "mapwindow"
 		font-size = 7
 		is-default = true
 		saved-params = "icon-size;zoom-mode"
-		style = ".center { text-align: center; }\n.maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; }\n.command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; }\n.big { font-size: 8px; }\n.reallybig { font-size: 8px; }\n.extremelybig { font-size: 8px; }\n.greentext { color: #00ff00; font-size: 7px; }\n.redtext { color: #ff0000; font-size: 7px; }\n.clown { color: #ff69bf; font-size: 7px;  font-weight: bold; }\n.his_grace { color: #15d512; }\n.hypnophrase { color: #0d0d0d; font-weight: bold; }\n.yell { font-weight: bold; }\n.italics { font-size: 6px; }"
+		style = ".center { text-align: center; }\n.maptext { font-family: 'Small Fonts'; font-size: 6px; -dm-text-outline: 1px black; color: white; line-height: 1.1; }\n.command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; }\n.big { font-size: 8px; }\n.reallybig { font-size: 8px; }\n.extremelybig { font-size: 8px; }\n.greentext { color: #00ff00; font-size: 7px; }\n.redtext { color: #ff0000; font-size: 7px; }\n.clown { color: #ff69bf; font-size: 7px;  font-weight: bold; }\n.his_grace { color: #15d512; }\n.hypnophrase { color: #0d0d0d; font-weight: bold; }\n.yell { font-weight: bold; }\n.italics { font-size: 6px; }"
 
 
 window "infowindow"
@@ -100,28 +100,17 @@ window "outputwindow"
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		background-color = #000000
-		saved-params = "pos;size"
+		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "browseroutput"
-		type = BROWSER
+	elem "legacy_output_selector"
+		type = CHILD
 		pos = 0,0
-		size = 635x440
+		size = 640x440
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #000000
-		is-visible = false
-		is-disabled = true
-		saved-params = ""
-	elem "output"
-		type = OUTPUT
-		pos = 0,0
-		size = 635x440
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = #000000
-		is-default = true
-		max-lines = 200
-		enable-http-images = true
+		saved-params = "splitter"
+		left = "output_legacy"
+		is-vert = false
 	elem "input"
 		type = INPUT
 		pos = 0,445
@@ -135,6 +124,47 @@ window "outputwindow"
 		border = sunken
 		saved-params = ""
 		command = "say"
+
+window "output_legacy"
+	elem "output_legacy"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = "max-lines"
+		background-color = #000000
+		style = ".system {color:#FF0000;}"
+		enable-http-images = true
+
+window "output_browser"
+	elem "output_browser"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = #000000
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "browseroutput"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		saved-params = ""
 
 window "statwindow"
 	elem "statwindow"
@@ -183,8 +213,8 @@ window "popupwindow"
 window "preferencess_window"
 	elem "preferencess_window"
 		type = MAIN
-		pos = 372,150
-		size = 700x630
+		pos = 280,80
+		size = 820x850
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
@@ -195,14 +225,14 @@ window "preferencess_window"
 	elem "preferences_browser"
 		type = BROWSER
 		pos = 0,0
-		size = 700x630
+		size = 820x850
 		anchor1 = 0,0
 		anchor2 = 75,100
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
-		pos = 260,230
-		size = 140x192
+		pos = 310,230
+		size = 172x192
 		anchor1 = 75,30
 		anchor2 = 100,20
 		background-color = #000000

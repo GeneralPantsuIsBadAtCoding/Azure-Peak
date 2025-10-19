@@ -4,6 +4,7 @@
 GLOBAL_LIST_EMPTY(patronlist)
 GLOBAL_LIST_EMPTY(patrons_by_faith)
 GLOBAL_LIST_EMPTY(preference_patrons)
+GLOBAL_LIST_EMPTY(prayers)
 
 /datum/patron
 	/// Name of the god
@@ -51,17 +52,27 @@ GLOBAL_LIST_EMPTY(preference_patrons)
 	for(var/trait in mob_traits)
 		REMOVE_TRAIT(pious, trait, "[type]")
 
+/datum/patron/proc/on_lesser_heal(
+	mob/living/user, 
+	mob/living/target, 
+	message_out, 
+	message_self, 
+	conditional_buff, 
+	situational_bonus
+	)
+	return
+
 /* -----PRAYERS----- */
 
 /// Called when a patron's follower attempts to pray.
 /// Returns TRUE if they satisfy the needed conditions.
 /datum/patron/proc/can_pray(mob/living/follower)
+	SHOULD_CALL_PARENT(TRUE)
 	// Allows death-bed prayers
 	if(follower.has_status_effect(STATUS_EFFECT_UNCONSCIOUS))
 		if(follower.has_status_effect(STATUS_EFFECT_SLEEPING))
 			to_chat(follower, span_danger("I mustn't be sleeping to pray!"))
 			return FALSE	//Stops praying just by sleeping.
-	SHOULD_CALL_PARENT(TRUE)
 	. = TRUE
 
 /// Called when a patron's follower prays to them.
@@ -91,16 +102,18 @@ GLOBAL_LIST_EMPTY(preference_patrons)
         follower.mob_timers[MT_PSYPRAY] = world.time
 
     . = TRUE //the prayer has succeeded by this point forward
+    GLOB.prayers |= prayer
+    record_round_statistic(STATS_PRAYERS_MADE)
 
-    var/regex/p_name = regex("([patron_name])", "im")
-    if(p_name.Find(prayer))
+    if(findtext(prayer, name))
         reward_prayer(follower)
 
 /// The follower has somehow offended the patron and is now being punished.
 /datum/patron/proc/punish_prayer(mob/living/follower)
-	follower.adjust_divine_fire_stacks(20)
-	follower.IgniteMob()
+	follower.adjust_fire_stacks(20, /datum/status_effect/fire_handler/fire_stacks/divine)
+	follower.ignite_mob()
 	follower.add_stress(/datum/stressevent/psycurse)
+	record_round_statistic(STATS_PEOPLE_SMITTEN)
 
 /// The follower has prayed in a special way to the patron and is being rewarded.
 /datum/patron/proc/reward_prayer(mob/living/follower)

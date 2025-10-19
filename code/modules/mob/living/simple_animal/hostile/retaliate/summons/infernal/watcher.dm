@@ -23,7 +23,7 @@
 	melee_damage_upper = 30
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	simple_detect_bonus = 20
 	retreat_distance = 4
 	minimum_distance = 3
@@ -45,8 +45,12 @@
 //	stat_attack = UNCONSCIOUS
 	ranged = TRUE
 	ranged_cooldown = 40
-	projectiletype = /obj/projectile/magic/firebolt
+	projectiletype = /obj/projectile/magic/aoe/fireball/rogue
 	ranged_message = "stares"
+
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the watcher
 	return
@@ -68,12 +72,12 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
-	new /obj/item/magic/infernalcore(deathspot)
-	new /obj/item/magic/infernalcore(deathspot)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/infernalash(deathspot)
-	new /obj/item/magic/infernalash(deathspot)
+	new /obj/item/magic/infernal/core(deathspot)
+	new /obj/item/magic/infernal/core(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/ash(deathspot)
+	new /obj/item/magic/infernal/ash(deathspot)
 	new /obj/item/magic/melded/t1(deathspot)
 
 	update_icon()

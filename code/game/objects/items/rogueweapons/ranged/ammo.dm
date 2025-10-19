@@ -25,15 +25,24 @@
 
 /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
 	name = "decrepit bolt"
-	desc = "a decrepit old bolt, the head is nearly in shambles. Aeon's grasp is upon it."
+	desc = "An ancient bolt, tipped with frayed bronze. It lacks the luster that it once held, many centuries ago."
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/aalloy
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
 	name = "ancient bolt"
-	desc = "A ancient bolt. Aeon's grasp has been lifted from its form."
+	desc = "An ancient bolt, tipped with polished gilbranze. The razor-thin tip resembles a sabot more than an arrowhead; something that most alloys cannot reliably withstand."
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
+
+/obj/item/ammo_casing/caseless/rogue/bolt/blunt
+	name = "blunt bolt"
+	desc = "A crossbow bolt without the part that pierces skulls. That doesn't mean it won't kill you."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/blunt
+	possible_item_intents = list(/datum/intent/mace/strike)
+	icon_state = "bolt_blunt"
+	force = 5
 
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
@@ -49,7 +58,7 @@
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.5
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
@@ -58,6 +67,12 @@
 /obj/projectile/bullet/reusable/bolt/paalloy
 	damage = 50
 	armor_penetration = 35
+
+/obj/projectile/bullet/reusable/bolt/blunt
+	damage = 25
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
@@ -92,6 +107,14 @@
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	max_integrity = 10
 
+/obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	name = "blunt arrow"
+	desc = "For when you really need to kill a zad."
+	icon_state = "arrow_blunt"
+	projectile_type = /obj/projectile/bullet/reusable/arrow/blunt
+	force = 5
+	possible_item_intents = list(/datum/intent/mace/strike)
+
 /obj/item/ammo_casing/caseless/rogue/arrow/stone
 	name = "stone arrow"
 	desc = "A simple dowel sports lashed flint knapped and honed to a razor edge. Folk \
@@ -110,9 +133,10 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy 
 	name = "decrepit broadhead arrow"
-	desc = "A decrepit old arrow. Seems unlikely to penetrate anything."
+	desc = "An arrow; one end, tipped with flattened and frayed bronze - the other, inlaid with decayed feathers. The alloy's decrepity forces it to burst into shrapnel upon impact, shredding flesh."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/iron/aalloy
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/arrow/steel
 	name = "steel bodkin arrow"
@@ -123,7 +147,7 @@
 
 /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	name = "ancient bodkin arrow"
-	desc = "a bodkin formed of ancient metals. Aeon's grasp lifted from its form."
+	desc = "An arrow; one end, tipped with a sharpened rod of polished gilbranze - the other, inlaid with feathers. The razor-thin tip resembles a sabot; an alloyed sliver that can punch straight through steel."
 	icon_state = "ancientarrow"
 	projectile_type = /obj/projectile/bullet/reusable/arrow/steel/paalloy
 
@@ -131,7 +155,7 @@
 	name = "arrow"
 	damage = 20
 	damage_type = BRUTE
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	armor_penetration = 10
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -160,6 +184,14 @@
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/bows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/bows, L.STAINT * skill_multiplier)
 
+/obj/projectile/bullet/reusable/arrow/blunt
+	name = "blunt arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	damage = 15
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+
 /obj/projectile/bullet/reusable/arrow/stone
 	name = "stone arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
@@ -172,7 +204,7 @@
 	damage = 40
 	armor_penetration = 20
 	embedchance = 30
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 
 /obj/projectile/bullet/reusable/arrow/iron/aalloy
 	name = "decrepit broadhead arrow"
@@ -189,7 +221,7 @@
 	armor_penetration = 45
 	embedchance = 80
 	speed = 0.6
-	npc_damage_mult = 3
+	npc_simple_damage_mult = 3
 
 /obj/projectile/bullet/reusable/arrow/steel/paalloy
 	name = "decrepit bodkin arrow"
@@ -273,7 +305,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(6)
 	M.adjustFireLoss(15)
-	M.IgniteMob()
+	M.ignite_mob()
 
 
 /obj/item/ammo_casing/caseless/rogue/bolt/water
@@ -355,7 +387,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(4)
 	M.adjustFireLoss(10)
-	M.IgniteMob()
+	M.ignite_mob()
 
 /obj/item/ammo_casing/caseless/rogue/arrow/water
 	name = "water arrow"
@@ -545,11 +577,13 @@
 
 /obj/item/ammo_casing/caseless/rogue/javelin/aalloy
 	name = "decrepit javelin"
-	desc = "A decrepit old javelin, surely used centuries ago. Aeon's grasp is upon its form."
+	desc = "A missile of frayed bronze. Before you is your weapon; that which rose Man out of the mud, and brought the Beasts of Old Syon to heel. When were you last aware of any other part of you? Do you recall seeing the world in any other way?"
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aalloy
 	throwforce = 20
 	force = 9
+	color = "#bb9696"
+	smeltresult = null // Override iron inherit
+	anvilrepair = null
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
@@ -561,13 +595,13 @@
 	throwforce = 28							//Equal to steel knife BUT this has peircing damage type so..
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
-	smeltresult = /obj/item/ingot/steel
+	smeltresult = null // 1 Ingot = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	name = "ancient javelin"
-	desc = "A javelin made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
-	smeltresult = /obj/item/ingot/aaslag
+	smeltresult = null // 1 Ingots = 2 Javelin s
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"
@@ -579,45 +613,23 @@
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	smeltresult = /obj/item/ingot/silver
 
+/obj/item/ammo_casing/caseless/rogue/javelin/silver/ComponentInitialize()
+	. = ..()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = -3,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 3,\
+	)
+
 //Snowflake code to make sure the silver-bane is applied on hit to targeted mob. Thanks to Aurorablade for getting this code to work.
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..() 
 	if(!iscarbon(hit_atom))
 		return//abort
-	check_dmg(hit_atom)//apply effects and damages
-		
-/obj/item/ammo_casing/caseless/rogue/javelin/silver/proc/check_dmg(mob/living/hit_atom)
-	var/mob/living/carbon/human/H = hit_atom
-	if(H.mind)
-		var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-		var/datum/antagonist/vampirelord/lesser/V = H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V)
-			if(V.disguised)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			else
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !V)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			if(V_lord.vamplevel == 4 && !V)
-				to_chat(H, "<font color='red'> The silver weapon fails!</font>")
-				H.visible_message(H, span_userdanger("This feeble metal can't hurt me, I AM ANCIENT!"))
-		if(W && W.transformed == TRUE)
-			H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-			to_chat(H, span_userdanger("I'm hit by my BANE!"))
-			H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-			src.last_used = world.time
-	return
 
 //sling bullets
 
@@ -643,14 +655,15 @@
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
 	name = "decrepit sling bullet"
-	desc = "A decrepit ball of withered metal."
+	desc = "A pellet of frayed bronze. The alloy flakes apart in your grasp, staining the palm with flecks of brown-and-red."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/aalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
+	color = "#bb9696"
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
 	name = "ancient sling bullet"
-	desc = "A ancient ball of re-awakened metal."
+	desc = "A pellet of polished gilbranze. The bigger they are, the harder they'll fall; be it Man or God."
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/paalloy
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "ancient_sling_bullet"
@@ -668,7 +681,7 @@
 	damage = 25
 	damage_type = BRUTE
 	armor_penetration = 0
-	npc_damage_mult = 2
+	npc_simple_damage_mult = 2
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	range = 15
@@ -757,6 +770,37 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
+
+/obj/item/ammo_casing/caseless/rogue/bolt/holy
+	name = "holy water bolt"
+	desc = "One baptism for the remission of sins."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/holy
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
+	caliber = "regbolt"
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolt_holywater"
+	dropshrink = 0.6
+	max_integrity = 10
+	force = 10
+
+
+/obj/projectile/bullet/reusable/bolt/holy
+	name = "holy water bolt"
+	damage = 40 // way less damage
+	damage_type = BRUTE
+	armor_penetration = 50
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolthwater_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/holy
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 100
+	woundclass = BCLASS_PIERCE
+	flag = "piercing"
+	speed = 0.5
+	poisontype = /datum/reagent/water/blessed
+	poisonamount = 5
+	npc_simple_damage_mult = 2
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

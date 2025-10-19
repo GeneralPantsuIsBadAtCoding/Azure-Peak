@@ -52,7 +52,7 @@
 	name = "Falchion"
 	cost = 40 // 1 Steel Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/falchion,
+					/obj/item/rogueweapon/sword/short/falchion,
 				)
 
 /datum/supply_pack/rogue/steel_weapons/messer
@@ -78,6 +78,13 @@
 					/obj/item/rogueweapon/flail/sflail,
 				)
 
+/datum/supply_pack/rogue/steel_weapons/flail
+	name = "Warhammer"
+	cost = 40 // 1 Steel Ingot
+	contains = list(
+					/obj/item/rogueweapon/mace/warhammer/steel,
+				)
+
 /datum/supply_pack/rogue/steel_weapons/longsword
 	name = "Longsword"
 	cost = 70 // 2 Steel Ingot
@@ -86,7 +93,7 @@
 				)
 
 /datum/supply_pack/rogue/steel_weapons/kriegmesser
-	name = "Kriegmesser"
+	name = "Kriegsmesser"
 	cost = 70 // 2 Steel Ingot
 	contains = list(
 					/obj/item/rogueweapon/sword/long/kriegmesser,
@@ -119,6 +126,13 @@
 	contains = list(
 					/obj/item/rogueweapon/greatsword/grenz,
 				)
+
+/datum/supply_pack/rogue/steel_weapons/flamberge
+	name = "Steel Flamberge"
+	cost = 105
+	contains = list(
+		/obj/item/rogueweapon/greatsword/grenz/flamberge
+	)
 
 /datum/supply_pack/rogue/steel_weapons/estoc
 	name = "Estoc"

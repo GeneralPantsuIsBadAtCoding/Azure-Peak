@@ -92,6 +92,8 @@
 		return
 	next_click = world.time + 1
 
+	last_client_interact = world.time
+
 	if(check_click_intercept(params,A))
 		return
 
@@ -100,6 +102,10 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
+
+	if(modifiers["right"] && !modifiers["shift"] && !modifiers["alt"] && !modifiers["ctrl"])
+		if(try_special_attack(A, modifiers))
+			return
 
 	if(next_move > world.time)
 		return
@@ -305,14 +311,14 @@
 						changeNext_move(CLICK_CD_RAPID)
 						if(get_dist(get_turf(src), T) <= used_intent.reach)
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
+						var/adf = used_intent.clickcd
+						if(istype(rmb_intent, /datum/rmb_intent/aimed))
+							adf = round(adf * CLICK_CD_MOD_AIMED)
+						if(istype(rmb_intent, /datum/rmb_intent/swift))
+							adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
+						changeNext_move(adf)
 						if(W)
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
-							var/adf = used_intent.clickcd
-							if(istype(rmb_intent, /datum/rmb_intent/aimed))
-								adf = round(adf * CLICK_CD_MOD_AIMED)
-							if(istype(rmb_intent, /datum/rmb_intent/swift))
-								adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
-							changeNext_move(adf)
 						else
 							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
 							if(used_intent.miss_text)
@@ -343,6 +349,15 @@
 		return
 	if(W)
 		W.melee_attack_chain(src, A, params)
+		if(isliving(src))
+			var/mob/living/L = src
+			var/obj/item/offh = L.get_inactive_held_item()
+			if(offh && HAS_TRAIT(L, TRAIT_DUALWIELDER))
+				if((istype(W, offh) || istype(offh, W)) && W != offh && !(L.check_arm_grabbed(L.get_inactive_hand_index())) && (L.last_used_double_attack <= world.time))
+					if(L.stamina_add(2))
+						L.last_used_double_attack = world.time + 3 SECONDS
+						L.visible_message(span_warning("[L] seizes an opening and strikes with [L.p_their()] off-hand weapon!"), span_green("There's an opening! I strike with my off-hand weapon!"))
+						offh.melee_attack_chain(src, A, params)
 	else
 		if(ismob(A))
 			var/adf = used_intent.clickcd
@@ -581,7 +596,7 @@
 	return
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 	return
 
@@ -868,15 +883,17 @@
 			look_up()
 		else
 			if(istransparentturf(T))
-				look_down(T)
-			else
-				look_further(T)
+				var/turf/MT = get_turf(src)
+				if((T in view(MT))) // if we got line of sight, allow player to look down
+					look_down(T)
+					return
+			look_further(T)
 	else
 		look_further(T)
 
 /atom/proc/ShiftRightClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_RIGHT_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
+	if(user.client /*&& user.client.eye == user || user.client.eye == user.loc*/)
 		user.examinate(src)
 
 /mob/proc/addtemptarget()
@@ -891,3 +908,47 @@
 	tempfixeye = TRUE
 	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
 		eyet.update_icon(src) //Update eye icon
+
+/// A special proc to fire rmb_intents *before* checking click cooldown, since some intents (guard) should be used regardless of CD.
+/mob/proc/try_special_attack(atom/A, list/modifiers)
+	return FALSE
+
+/mob/living/try_special_attack(atom/A, list/modifiers)
+	if(!rmb_intent || !cmode || istype(A, /obj/item/clothing) || istype(A, /obj/item/quiver) || istype(A, /obj/item/storage))
+		return FALSE
+
+	if(next_move > world.time && !rmb_intent?.bypasses_click_cd)
+		return FALSE
+
+	if(rmb_intent?.adjacency && !Adjacent(A))
+		return FALSE
+
+	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
+	return TRUE
+
+/// Used for "directional" style rmb attacks on a turf, prioritizing standing targets
+/mob/living/proc/get_foe_from_turf(turf/T)
+	if(!istype(T))
+		return
+
+	var/list/mob/living/foes = list()
+	for(var/mob/living/foe_in_turf in T)
+		if(foe_in_turf == src)
+			continue
+
+		var/foe_prio = rand(4, 8)
+		if(foe_in_turf.mobility_flags & MOBILITY_STAND)
+			foe_prio += 10
+		else if(foe_in_turf.stat != CONSCIOUS)
+			foe_prio = 2
+		else if(foe_in_turf.surrendering)
+			foe_prio = -5
+
+		foes[foe_in_turf] = foe_prio
+
+	if(!foes.len)
+		return null
+
+	if(foes.len > 1)
+		sortTim(foes, cmp = /proc/cmp_numeric_dsc, associative = TRUE)
+	return foes[1]

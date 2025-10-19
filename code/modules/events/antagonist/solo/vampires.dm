@@ -9,8 +9,8 @@
 	antag_flag = ROLE_NBEAST
 	shared_occurence_type = SHARED_HIGH_THREAT
 
-	weight = 0		//Disabled cus vampires too strong
-	max_occurrences = 0
+	weight = 4
+	max_occurrences = 1
 
 	denominator = 80
 
@@ -20,7 +20,7 @@
 	earliest_start = 0 SECONDS
 
 	typepath = /datum/round_event/antagonist/solo/vampire
-	antag_datum = /datum/antagonist/vampirelord
+	antag_datum = /datum/antagonist/vampire
 
 	restricted_roles = list(
 		"Grand Duke",
@@ -31,7 +31,7 @@
 		"Men-at-arms",
 		"Marshal",
 		"Merchant",
-		"Priest",
+		"Bishop",
 		"Acolyte",
 		"Martyr",
 		"Templar",
@@ -41,14 +41,15 @@
 		"Princess",
 		"Hand",
 		"Steward",
-		"Court Physician",
-		"Town Elder",
+		"Head Physician",
+		"Town Crier",
 		"Captain",
 		"Archivist",
 		"Knight",
 		"Court Magician",
 		"Inquisitor",
 		"Orthodoxist",
+		"Absolver",
 		"Warden",
 		"Squire",
 		"Veteran",
@@ -63,7 +64,8 @@
 		var/datum/job/J = SSjob.GetJob(antag_mind.current?.job)
 		J?.current_positions = max(J?.current_positions-1, 0)
 		antag_mind.current.unequip_everything()
-		antag_mind.add_antag_datum(antag_datum)
+		var/datum/antagonist/vampire/lord/lorde = new /datum/antagonist/vampire/lord()
+		antag_mind.add_antag_datum(lorde)
 		leader = TRUE
 		return
 	else
@@ -71,5 +73,6 @@
 			var/datum/job/J = SSjob.GetJob(antag_mind.current?.job)
 			J?.current_positions = max(J?.current_positions-1, 0)
 			antag_mind.current.unequip_everything()
-			antag_mind.add_antag_datum(/datum/antagonist/vampirelord/lesser)
+			var/datum/antagonist/vampire/servante = new /datum/antagonist/vampire(forced_clan = null, generation = GENERATION_ANCILLAE)
+			antag_mind.add_antag_datum(servante)
 			return

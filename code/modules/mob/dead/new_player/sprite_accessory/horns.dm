@@ -66,6 +66,10 @@
 	name = "Drake"
 	icon_state = "drake"
 
+/datum/sprite_accessory/horns/drake_wide
+	name = "Drake, Wide"
+	icon_state = "drake_wide"
+
 /datum/sprite_accessory/horns/knight
 	name = "Knight"
 	icon_state = "knight"
@@ -109,6 +113,10 @@
 /datum/sprite_accessory/horns/liftedhorns
 	name = "Lifted Horns"
 	icon_state = "lifted"
+
+/datum/sprite_accessory/horns/brokenliftedhorns
+	name = "Lifted Horns (Broken)"
+	icon_state = "liftedbroken"
 
 /datum/sprite_accessory/horns/sideswept
 	name = "Side Swept Horns"

@@ -1061,6 +1061,10 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		else if (outfit_override)
 			body.equipOutfit(outfit_override,visualsOnly = TRUE)
 
+		body.update_inv_hands(hide_experimental = TRUE)
+		body.update_inv_belt(hide_experimental = TRUE)
+		body.update_inv_back(hide_experimental = TRUE)
+		body.update_inv_head(hide_nonstandard = TRUE)
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
 		for(var/D in showDirs)
@@ -1068,6 +1072,11 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			COMPILE_OVERLAYS(body)
 			var/icon/partial = getFlatIcon(body)
 			out_icon.Insert(partial,dir=D)
+
+		body.update_inv_hands()
+		body.update_inv_belt()
+		body.update_inv_back()
+		body.update_inv_head()
 
 		humanoid_icon_cache[icon_id] = out_icon
 		dummy_key? unset_busy_human_dummy(dummy_key) : qdel(body)
@@ -1403,3 +1412,145 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+/proc/ma2html(mutable_appearance/appearance, mob/viewer, extra_classes = "")
+	if(isatom(appearance))
+		var/atom/atom = appearance
+		appearance = copy_appearance_filter_overlays(atom.appearance)
+	else if(isappearance_or_image(appearance) || isicon(appearance))
+		appearance = copy_appearance_filter_overlays(appearance)
+	else
+		CRASH("Invalid appearance passed to ma2html - either a appearance, image, icon, or atom must be passed!")
+
+	if(istype(viewer, /client))
+		var/client/client_user = viewer
+		viewer = client_user.mob
+	if(!ismob(viewer))
+		CRASH("Invalid viewer passed to ma2html")
+	var/atom/movable/screen/container = viewer.send_appearance(appearance)
+	if(QDELETED(container))
+		CRASH("Failed to send appearance to client")
+	return "<img class='icon [extra_classes]' src='\ref[container]' style='image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor'>"
+
+/**
+ * Copies the passed /appearance, returns a /mutable_appearance
+ *
+ * Filters out certain overlays from the copy, depending on their planes
+ * Prevents stuff like lighting from being copied to the new appearance
+ */
+/proc/copy_appearance_filter_overlays(appearance_to_copy) as /mutable_appearance
+	RETURN_TYPE(/mutable_appearance)
+	var/mutable_appearance/copy = new(appearance_to_copy)
+	var/static/list/plane_whitelist = list(FLOAT_PLANE, GAME_PLANE, FLOOR_PLANE)
+
+	copy.overlays = recursively_filter_emissive_blockers(copy.overlays, plane_whitelist)
+	copy.underlays = recursively_filter_emissive_blockers(copy.underlays, plane_whitelist)
+
+	return copy
+
+/proc/recursively_filter_emissive_blockers(list/input_list, list/plane_whitelist)
+	var/list/filtered_list = list()
+
+	for(var/mutable_appearance/overlay_item as anything in input_list)
+		if(isnull(overlay_item))
+			continue
+
+		var/mutable_appearance/real = new()
+		real.appearance = overlay_item
+
+		// Skip emissive blockers
+		if(is_emissive_blocker(real))
+			continue
+
+		// Skip non-whitelisted planes
+		if(!(real.plane in plane_whitelist))
+			continue
+
+		if(length(real.overlays))
+			real.overlays = recursively_filter_emissive_blockers(real.overlays, plane_whitelist)
+		if(length(real.underlays))
+			real.underlays = recursively_filter_emissive_blockers(real.underlays, plane_whitelist)
+
+		filtered_list += real
+
+	return filtered_list
+
+/proc/is_emissive_blocker(mutable_appearance/MA)
+	if(MA.plane == EMISSIVE_PLANE)
+		return TRUE
+	return FALSE
+
+/// Makes a client temporarily aware of an appearance via and invisible vis contents object.
+/mob/proc/send_appearance(mutable_appearance/appearance) as /atom/movable/screen
+	RETURN_TYPE(/atom/movable/screen)
+	if(!hud_used || isnull(appearance))
+		return
+
+	var/atom/movable/screen/container = new
+	container.appearance = appearance
+
+	hud_used.vis_holder.vis_contents += container
+	addtimer(CALLBACK(src, PROC_REF(remove_appearance), container), 5 SECONDS)
+
+	return container
+
+/mob/proc/remove_appearance(atom/movable/container)
+	if(!hud_used)
+		return
+
+	hud_used.vis_holder.vis_contents -= container
+
+GLOBAL_LIST_EMPTY(headshot_cache)
+
+/proc/get_headshot_icon(mob/living/carbon/human/target, size = 64, crop_height = 32)
+	if(!target || !istype(target))
+		return ""
+
+	var/datum/weakref/weak_target = WEAKREF(target)
+	var/cache_key = weak_target
+	var/appearance_signature = "[target.icon]-[target.icon_state]-[length(target.overlays)]-[length(target.underlays)]-[target.color]"
+
+	var/list/cache_entry = GLOB.headshot_cache[cache_key]
+	if(cache_entry)
+		var/mob/living/cached_target = weak_target.resolve()
+		if(cached_target && cache_entry["signature"] == appearance_signature)
+			return cache_entry["html"]
+		else
+			GLOB.headshot_cache -= cache_key
+
+	target.update_inv_hands()
+	target.update_inv_belt()
+	target.update_inv_back()
+	target.update_inv_head()
+	// Better include this later uh oh!
+	// var/was_typing = target.typing
+	// if(was_typing)
+	// 	target.set_typing_indicator(FALSE)
+
+	var/image/dummy = image(target.icon, target, target.icon_state, target.layer, target.dir)
+	dummy.appearance = target.appearance
+	dummy.dir = SOUTH
+
+	target.update_inv_hands()
+	target.update_inv_belt()
+	target.update_inv_back()
+	target.update_inv_head()
+	// if(was_typing)
+	// 	target.set_typing_indicator(TRUE)
+
+	var/icon/headshot = getFlatIcon(dummy, SOUTH, no_anim = TRUE)
+	headshot.Scale(size, size)
+	headshot.Crop(1, size - crop_height + 1, size, size)
+
+	var/icon_html = "<img src='data:image/png;base64,[icon2base64(headshot)]' style='width:[size]px;height:[crop_height]px;image-rendering:pixelated;'>"
+
+	if(length(GLOB.headshot_cache) >= 200)
+		var/num_to_remove = round(200 * 0.15)
+		for(var/i in 1 to num_to_remove)
+			GLOB.headshot_cache.Cut(1, 2)
+
+	GLOB.headshot_cache[cache_key] = list(
+		"signature" = appearance_signature,
+		"html" = icon_html
+	)
+	return icon_html

@@ -2,24 +2,17 @@
 	var/name = "intent"
 	var/desc = ""
 	var/icon_state = ""
+	/// Whether this intent requires user to be adjacent to their target or not
 	var/adjacency = TRUE
-
-/mob/living/carbon/human
-	var/bait_stacks
+	/// Determines whether this intent can be used during click cd
+	var/bypasses_click_cd = FALSE
 
 /mob/living/carbon/human/on_cmode()
 	if(!cmode)	//We just toggled it off.
 		addtimer(CALLBACK(src, PROC_REF(purge_bait)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-/mob/living/carbon/human/RightClickOn(atom/A, params)
-	if(rmb_intent && !rmb_intent.adjacency && !istype(A, /obj/item/clothing) && cmode && !istype(src, /mob/living/carbon/human/species/skeleton) && !istype(A, /obj/item/quiver) && !istype(A, /obj/item/storage))
-		var/held = get_active_held_item()
-		if(held && istype(held, /obj/item))
-			var/obj/item/I = held
-			if(I.associated_skill)
-				rmb_intent.special_attack(src, A)
-	else
-		. = ..()
+		addtimer(CALLBACK(src, PROC_REF(expire_peel)), 60 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
+		filtered_balloon_alert(TRAIT_COMBAT_AWARE, (cmode ? ("<i><font color = '#831414'>Tense</font></i>") : ("<i><font color = '#c7c6c6'>Relaxed</font></i>")), y_offset = 32)
 
 /datum/rmb_intent/proc/special_attack(mob/living/user, atom/target)
 	return
@@ -30,8 +23,6 @@
 	icon_state = "rmbaimed"
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
-	if(istype(src, /mob/living/carbon/human/species/skeleton))
-		return
 	if(!user)
 		return
 	if(user.incapacitated())
@@ -48,7 +39,7 @@
 	var/target_zone = HT.zone_selected
 	var/user_zone = HU.zone_selected
 
-	if(HT.has_status_effect(/datum/status_effect/debuff/baited) && user.has_status_effect(/datum/status_effect/debuff/baitcd))
+	if(HT.has_status_effect(/datum/status_effect/debuff/baited) || user.has_status_effect(/datum/status_effect/debuff/baitcd))
 		return	//We don't do anything if either of us is affected by bait statuses
 
 	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))
@@ -127,8 +118,6 @@
 	icon_state = "rmbfeint"
 
 /datum/rmb_intent/feint/special_attack(mob/living/user, atom/target)
-	if(istype(src, /mob/living/carbon/human/species/skeleton))
-		return
 	if(!isliving(target))
 		return
 	if(!user)
@@ -187,6 +176,7 @@
 	desc = "No delay between dodge and parry rolls.\n(RMB WHILE NOT GRABBING ANYTHING AND HOLDING A WEAPON)\nEnter a defensive stance, guaranteeing the next hit is defended against.\nTwo people who hit each other with the Guard up will have their weapons Clash, potentially disarming them.\nLetting it expire or hitting someone with it who has no Guard up is tiresome."
 	icon_state = "rmbdef"
 	adjacency = FALSE
+	bypasses_click_cd = TRUE
 
 /datum/rmb_intent/riposte/special_attack(mob/living/user, atom/target)	//Wish we could breakline these somehow.
 	if(!user.has_status_effect(/datum/status_effect/buff/clash) && !user.has_status_effect(/datum/status_effect/debuff/clashcd))

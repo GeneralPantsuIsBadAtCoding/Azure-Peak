@@ -32,6 +32,8 @@
 	client.screen = list()				//remove hud items just in case
 	client.images = list()
 
+	canon_client = client
+
 	if(!hud_used)
 		create_mob_hud()
 	if(hud_used && client && client.prefs)
@@ -90,6 +92,8 @@
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	enable_client_mobs_in_contents(client)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+	if(client)
+		client.preload_music()
 
 /**
   * Checks if the attached client is an admin and may deadmin them

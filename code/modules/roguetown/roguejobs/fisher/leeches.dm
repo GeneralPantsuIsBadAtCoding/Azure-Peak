@@ -6,54 +6,13 @@
 	icon = 'icons/roguetown/items/surgery.dmi'
 	icon_state = "leech"
 	baitpenalty = 0
-	freshfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/carp = 200,
-		/obj/item/reagent_containers/food/snacks/fish/sunny = 305,
-		/obj/item/reagent_containers/food/snacks/fish/salmon = 210,
-		/obj/item/reagent_containers/food/snacks/fish/eel = 160,
-		/obj/item/grown/log/tree/stick = 3,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/natural/cloth = 1,
-		/obj/item/ammo_casing/caseless/rogue/arrow = 1,
-		/obj/item/clothing/ring/gold = 1,
-		/obj/item/reagent_containers/food/snacks/smallrat = 1, //That's not a fish...?
-		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue = 1,		
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 20,		
-	)
-	seafishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/cod = 230,
-		/obj/item/reagent_containers/food/snacks/fish/plaice = 180,
-		/obj/item/reagent_containers/food/snacks/fish/sole = 250,
-		/obj/item/reagent_containers/food/snacks/fish/angler = 170,
-		/obj/item/reagent_containers/food/snacks/fish/lobster = 180,
-		/obj/item/reagent_containers/food/snacks/fish/bass = 230,
-		/obj/item/reagent_containers/food/snacks/fish/clam = 50,
-		/obj/item/reagent_containers/food/snacks/fish/clownfish = 40,
-		/obj/item/grown/log/tree/stick = 3,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/natural/cloth = 1,
-		/obj/item/ammo_casing/caseless/rogue/arrow = 1,
-		/obj/item/clothing/ring/gold = 1,
-		/obj/item/reagent_containers/food/snacks/smallrat = 1, //That's not a fish...?
-		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue = 1,	
-		/mob/living/carbon/human/species/goblin/npc/sea = 25,
-		/mob/living/simple_animal/hostile/rogue/deepone = 30,
-		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30,			
-	)
-	mudfishloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/mudskipper = 200,
-		/obj/item/natural/worms/leech = 50,
-		/obj/item/clothing/ring/gold = 1,	
-		/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab = 25,			
-	)
-	// This is super trimmed down from the ratwood list to focus entirely on shellfishes
-	cageloot = list(
-		/obj/item/reagent_containers/food/snacks/fish/oyster = 214,
-		/obj/item/reagent_containers/food/snacks/fish/shrimp = 214,
-		/obj/item/reagent_containers/food/snacks/fish/crab = 214,
-		/obj/item/reagent_containers/food/snacks/fish/lobster = 214,
+	fishingMods=list(
+		"commonFishingMod" = 0.7,
+		"rareFishingMod" = 1.3,
+		"treasureFishingMod" = 1,
+		"trashFishingMod" = 1,
+		"dangerFishingMod" = 1.1,
+		"ceruleanFishingMod" = 0, // 1 on cerulean aril, 0 on everything else
 	)
 
 	embedding = list(
@@ -79,6 +38,10 @@
 	var/blood_maximum = BLOOD_VOLUME_SURVIVE
 	// Who are we latching onto?
 	var/mob/living/host
+	/// Multiplier for extracted blood. Mainly used by Cheeles or equivalent.
+	var/blood_multiplier = 1
+	/// Whether we can be attached to mindless mobs.
+	var/mindless_attach = TRUE
 
 /obj/item/natural/worms/leech/Initialize()
 	. = ..()
@@ -99,6 +62,8 @@
 		host = null
 		return FALSE
 	if(!host)
+		return FALSE
+	if(!giving && host.stat == DEAD)
 		return FALSE
 	host.adjustToxLoss(toxin_healing)
 	var/obj/item/bodypart/bp = loc
@@ -141,7 +106,7 @@
 	else
 		var/blood_extracted = min(blood_maximum - blood_storage, user.blood_volume, blood_sucking)
 		user.blood_volume = max(user.blood_volume - blood_extracted, 0)
-		blood_storage += blood_extracted
+		blood_storage += blood_extracted * blood_multiplier
 		if((blood_storage >= blood_maximum) || (user.blood_volume <= 0))
 			if(bodypart)
 				bodypart.remove_embedded_object(src)
@@ -175,6 +140,12 @@
 
 /obj/item/natural/worms/leech/attack(mob/living/M, mob/user)
 	if(ishuman(M))
+		if(!giving && M.stat == DEAD)
+			to_chat(user, span_warning("They are deceased. Only running blood may be extracted."))
+			return
+		if(!giving && !M.mind && !mindless_attach)
+			to_chat(user, span_warning("They are mindless. The [src] won't attach."))
+			return
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(!affecting)
@@ -281,8 +252,10 @@
 	drainage = 0
 	blood_sucking = 5
 	toxin_healing = -2
-	blood_storage = BLOOD_VOLUME_SURVIVE
-	blood_maximum = BLOOD_VOLUME_BAD
+	blood_multiplier = 3
+	blood_storage = BLOOD_VOLUME_BAD
+	blood_maximum = BLOOD_VOLUME_NORMAL
+	mindless_attach = FALSE
 
 /obj/item/natural/worms/leech/cheele/attack_self(mob/user)
 	. = ..()

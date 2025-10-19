@@ -48,7 +48,7 @@
 
 /datum/supply_pack/rogue/Knave/hgambeson
 	name = "Heavy Gambeson"
-	cost = 15
+	cost = 20
 	contains = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy)
 
 /datum/supply_pack/rogue/Knave/leather
@@ -156,6 +156,11 @@
 	name = "Crossbow"
 	cost = 20
 	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow)
+
+/datum/supply_pack/rogue/Knave/slurbow
+	name = "Slurbow"
+	cost = 20
+	contains = list(/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow)
 
 /datum/supply_pack/rogue/Knave/recurvebow
 	name = "Recurve Bow"

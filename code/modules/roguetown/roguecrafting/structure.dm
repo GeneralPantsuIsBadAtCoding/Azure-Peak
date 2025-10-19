@@ -78,8 +78,7 @@
 	verbage = "constructs"
 
 /datum/crafting_recipe/roguetown/structure/zizo_shrine
-	name = "Profane Shrine"
-	always_availible = FALSE	//Has unique assign for certain roles.
+	name = "profane shrine"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 1,
 		/obj/item/natural/stone = 2,
@@ -431,6 +430,29 @@
 			return FALSE
 	return TRUE
 
+/datum/crafting_recipe/roguetown/structure/bordercorner
+	name = "border corner"
+	result = /obj/structure/fluff/railing/corner
+	reqs = list(/obj/item/grown/log/tree/small = 1)
+	ontile = TRUE
+	verbage_simple = "construct"
+	verbage = "constructs"
+	skillcraft = /datum/skill/craft/carpentry
+	buildsame = TRUE
+	diagonal = TRUE
+	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/structure/border
+	name = "border"
+	result = /obj/structure/fluff/railing/border
+	reqs = list(/obj/item/grown/log/tree/small = 1)
+	ontile = TRUE
+	verbage_simple = "construct"
+	verbage = "constructs"
+	skillcraft = /datum/skill/craft/carpentry
+	buildsame = TRUE
+	craftdiff = 1
+
 /datum/crafting_recipe/roguetown/structure/railing
 	name = "railing"
 	result = /obj/structure/fluff/railing/wood
@@ -675,6 +697,24 @@
 		return FALSE
 	return ..()
 
+/datum/crafting_recipe/roguetown/structure/floorgrille
+	name = "floorgrille"
+	result = /obj/structure/bars/grille
+	reqs = list(/obj/item/ingot/iron = 1,
+					/obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/structure/floorgrille/TurfCheck(mob/user, turf/T)
+	if(istype(T,/turf/open/transparent/openspace))
+		return TRUE
+	if(istype(T,/turf/open/lava))
+		return FALSE
+	return ..()
+
+
 /datum/crafting_recipe/roguetown/structure/sign
 	name = "custom sign"
 	result = /obj/structure/fluff/customsign
@@ -838,7 +878,7 @@
 
 // Here for now until we get a new file for anything trap related.
 /datum/crafting_recipe/roguetown/structure/spike_pit
-	name = "spike pit (3 stakes + Shovel + Dirt Floor)"
+	name = "spike pit (Dirt Floor needed)"
 	result = list(/obj/structure/spike_pit)
 	tools = list(/obj/item/rogueweapon/shovel = 1)
 	reqs = list(/obj/item/grown/log/tree/stake = 3)
@@ -850,6 +890,10 @@
 	if(!istype(to_check, /turf/open/floor/rogue/dirt))
 		to_chat(user, span_info("I need a dirt floor to do this."))
 		return FALSE
+	for(var/obj/O in T.contents)
+		if(istype(O, /obj/structure/spike_pit))
+			to_chat(user, span_info("There's already a pit of spikes here."))
+			return FALSE
 	return TRUE
 
 /datum/crafting_recipe/roguetown/structure/wicker

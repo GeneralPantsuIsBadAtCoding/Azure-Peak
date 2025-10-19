@@ -126,6 +126,10 @@
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(modifiers["right"])
+			var/area/A = get_area(H)
+			if(!A.can_craft_here())
+				to_chat(H, span_warning("You cannot craft here."))
+				return
 			if(H.craftingthing && (H.mind?.lastrecipe != null))
 				last_craft = world.time
 				var/datum/component/personal_crafting/C = H.craftingthing
@@ -136,7 +140,10 @@
 			if(H.craftingthing)
 				last_craft = world.time
 				var/datum/component/personal_crafting/C = H.craftingthing
-				C.roguecraft(location, control, params, H)
+				if(H.client.legacycraft)
+					C.roguecraft(location, control, params, H)
+				else
+					C.ui_interact(H)
 			else
 				testing("what")
 
@@ -947,7 +954,14 @@
 	var/overlay_icon = 'icons/mob/roguehud64.dmi'
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
+	var/obj/effect/overlay/flash_layer
 	var/arrowheight = 0
+
+/atom/movable/screen/zone_sel/New()
+	..()
+	flash_layer = new
+	flash_layer.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_contents += flash_layer
 
 /atom/movable/screen/zone_sel/Click(location, control,params)
 	if(isobserver(usr))
@@ -1280,9 +1294,10 @@
 
 	if(hud.mymob.stat != DEAD && ishuman(hud.mymob))
 		var/mob/living/carbon/human/H = hud.mymob
+		var/list/missing_bodyparts_zones = H.get_missing_limbs()
 		for(var/X in H.bodyparts)
 			var/obj/item/bodypart/BP = X
-			if(BP.body_zone in H.get_missing_limbs())
+			if(BP.body_zone in missing_bodyparts_zones)
 				continue
 			if(HAS_TRAIT(H, TRAIT_NOPAIN))
 				var/mutable_appearance/limby = mutable_appearance('icons/mob/roguehud64.dmi', "[H.gender == "male" ? "m" : "f"]-[BP.body_zone]")
@@ -1299,13 +1314,37 @@
 			. += limby
 			if(BP.get_bleed_rate())
 				. += mutable_appearance('icons/mob/roguehud64.dmi', "[H.gender == "male" ? "m" : "f"]-[BP.body_zone]-bleed") //apply healthy limb
-		for(var/X in H.get_missing_limbs())
+		for(var/X in missing_bodyparts_zones)
 			var/mutable_appearance/limby = mutable_appearance('icons/mob/roguehud64.dmi', "[H.gender == "male" ? "m" : "f"]-[X]") //missing limb
 			limby.color = "#2f002f"
 			. += limby
 
 	. += mutable_appearance(overlay_icon, "[hud.mymob.gender == "male" ? "m" : "f"]_[hud.mymob.zone_selected]")
 //	. += mutable_appearance(overlay_icon, "height_arrow[hud.mymob.aimheight]")
+
+/atom/movable/screen/zone_sel/proc/flash_limb(zone, limb_color="#FF0000") //Flashes when an attack hits a limb
+	if(!zone || !hud?.mymob)
+		return
+
+	var/gender_prefix = (hud.mymob.gender == FEMALE) ? "f" : "m"
+
+	var/obj/effect/overlay/highlight = new
+	highlight.icon = 'icons/mob/roguehud64.dmi'
+	highlight.icon_state = "[gender_prefix]-[zone]"
+	highlight.color = limb_color
+	highlight.alpha = 180
+	highlight.layer = ABOVE_HUD_LAYER
+	highlight.plane = ABOVE_HUD_PLANE-0.1
+	highlight.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+	flash_layer.vis_contents += highlight
+
+	animate(highlight, alpha = 0, time = 20, easing = EASE_IN)
+
+	spawn(20)
+		if(highlight in flash_layer.vis_contents)
+			flash_layer.vis_contents -= highlight
+		qdel(highlight)
 
 /atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
@@ -1747,24 +1786,13 @@
 				hud_used.rmb_intent.collapse_intents()
 
 /mob/living/proc/cycle_rmb_intent()
-    if(!possible_rmb_intents?.len)
-        return
+	if(!possible_rmb_intents?.len)
+		return
 
-    // Find the index of the current intent
-    var/index = possible_rmb_intents.Find(rmb_intent)
+	// Find the index of the current intent
+	var/index = possible_rmb_intents.Find(rmb_intent?.type)
 
-    if(index == -1)
-        rmb_intent = possible_rmb_intents[1]
-    else
-        // Calculate the next index, wrapping around if at the end
-        index = (index % possible_rmb_intents.len) + 1
-        rmb_intent = possible_rmb_intents[index]
-
-    if(hud_used?.rmb_intent)
-    {
-        hud_used.rmb_intent.update_icon()
-        hud_used.rmb_intent.collapse_intents()
-    }
+	index == -1 ? swap_rmb_intent(possible_rmb_intents[1]) : swap_rmb_intent(possible_rmb_intents[(index % possible_rmb_intents.len) + 1])
 
 /atom/movable/screen/time
 	name = "Sir Sun"
@@ -1920,3 +1948,102 @@
 /atom/movable/screen/daynight/New(client/C) //TODO: Make this use INITIALIZE_IMMEDIATE, except its not easy
 	. = ..()
 	icon_state = GLOB.tod
+
+/atom/movable/screen/bloodpool
+	appearance_flags = KEEP_TOGETHER
+	icon_state = "empty"
+	icon = 'icons/mob/rogueheat.dmi'
+	screen_loc = rogueui_vitae
+	var/width = 4
+	var/height = 43
+	var/orientation = NORTH
+	var/atom/movable/screen/bloodpool_maskpart/background
+	var/atom/movable/screen/bloodpool_maskpart/foreground
+	var/atom/movable/screen/bloodpool_maskpart/fill
+	var/atom/movable/screen/bloodpool_maskpart/mask
+
+/atom/movable/screen/bloodpool/Initialize(mapload, ...)
+	. = ..()
+	foreground = new /atom/movable/screen/bloodpool_maskpart/foreground(null, icon, src)
+	background = new /atom/movable/screen/bloodpool_maskpart/background(null, icon, src)
+	fill = new /atom/movable/screen/bloodpool_maskpart/fill(null, icon, src)
+	mask = new /atom/movable/screen/bloodpool_maskpart/mask(null, icon, src)
+
+	background.vis_contents += fill
+	mask.vis_contents += background
+	vis_contents.Add(mask, foreground)
+
+/atom/movable/screen/bloodpool/Destroy()
+	QDEL_NULL(background)
+	QDEL_NULL(foreground)
+	QDEL_NULL(fill)
+	QDEL_NULL(mask)
+	return ..()
+
+/atom/movable/screen/bloodpool/proc/set_fill_color(new_color = "#ffffff")
+	fill.color = new_color
+
+/atom/movable/screen/bloodpool/proc/set_value(ratio = 1.0, duration = 0)
+	//constrain the ratio between 0 and 1
+	ratio = min(max(ratio,0),1)
+
+	//apply orientation factors for fill bar offsets
+	var/fx = 0, fy = 0
+	switch(orientation)
+		if(EAST)
+			fx = -1
+		if(WEST)
+			fx = 1
+		if(SOUTH)
+			fy = 1
+		if(NORTH)
+			fy = -1
+
+	//calculate the offset of the fill bar.
+	var/invratio = 1-ratio
+	var/epx = width * invratio * fx
+	var/epy = height * invratio * fy
+
+	//apply the offset to the fill bar
+	if(duration)
+		//if a time value has been supplied, animate the transition from the current position
+		animate(fill, pixel_w = epx,pixel_z = epy, time = duration)
+	else
+		//if a time value has not been supplied, instantly set to the new position
+		fill.pixel_w = epx
+		fill.pixel_z = epy
+
+	animate(fill, time = duration)
+
+/atom/movable/screen/bloodpool_maskpart
+	layer = FLOAT_LAYER
+	plane = FLOAT_PLANE
+	/// Ref to our parent screem, purely for examine purposes
+	var/atom/movable/screen/parent_screen
+
+/atom/movable/screen/bloodpool_maskpart/Initialize(mapload, icon, parent_screen)
+	. = ..()
+	src.icon = icon
+	src.parent_screen = parent_screen
+
+/atom/movable/screen/bloodpool_maskpart/examine_ui(mob/user)
+	return parent_screen?.examine_ui(user)
+
+/atom/movable/screen/bloodpool_maskpart/Destroy()
+	parent_screen = null
+	return ..()
+
+/atom/movable/screen/bloodpool_maskpart/background
+	icon_state = "mana_bg"
+	appearance_flags = KEEP_TOGETHER
+	blend_mode = BLEND_MULTIPLY
+
+/atom/movable/screen/bloodpool_maskpart/foreground
+	icon_state = "mana_fg"
+
+/atom/movable/screen/bloodpool_maskpart/fill
+	icon_state = "mana_fill"
+
+/atom/movable/screen/bloodpool_maskpart/mask
+	icon_state = "mana_mask"
+

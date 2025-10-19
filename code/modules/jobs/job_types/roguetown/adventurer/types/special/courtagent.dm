@@ -2,6 +2,7 @@
 	title = "Court Agent"
 	flag = COURTAGENT
 	display_order = JDO_COURTAGENT
+	allowed_races = RACES_ALL_KINDS
 	total_positions = 2
 	spawn_positions = 2
 	round_contrib_points = 2
@@ -12,6 +13,7 @@
 	show_in_credits = TRUE
 	advclass_cat_rolls = list(CTAG_COURTAGENT = 20)
 	obsfuscated_job = TRUE
+	class_setup_examine = FALSE
 
 //Hooking in here does not mess with their equipment procs
 /datum/job/roguetown/adventurer/courtagent/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

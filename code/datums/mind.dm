@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	var/memory
 
-	var/assigned_role
+	var/datum/job/assigned_role
 	var/special_role
 	var/list/restricted_roles = list()
 
@@ -58,6 +58,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/bolstertext = "Hold the line!!"
 	var/brotherhoodtext = "Stand proud, for the Brotherhood!!"
 	var/chargetext = "Chaaaaaarge!!"
+
+	var/mob/living/carbon/champion = null
+	var/mob/living/carbon/ward = null
+
 
 	var/linglink
 	var/datum/martial_art/martial_art
@@ -89,6 +93,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/list/known_people = list() //contains person, their job, and their voice color
 
 	var/list/notes = list() //RTD add notes button
+
+	var/active_quest = 0 //if you dont take any quest its 0. Max 2 quests for one player
 
 	var/lastrecipe
 
@@ -158,8 +164,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 			else
 				referred_gender = "Androgynous"
 		known_people[H.real_name]["FGENDER"] = referred_gender
+		if(H.dna && H.dna.species)
+			known_people[H.real_name]["FSPECIES"] = H.dna.species.name
 		known_people[H.real_name]["FAGE"] = H.age
-		if (ishuman(current))
+		if(ishuman(current))
 			var/mob/living/carbon/human/C = current
 			var/heretic_text = H.get_heretic_symbol(C)
 			if (heretic_text)
@@ -265,6 +273,19 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	return language_holder
 
+/datum/mind/proc/set_current(mob/new_current)
+	if(new_current && QDELETED(new_current))
+		CRASH("Tried to set a mind's current var to a qdeleted mob, what the fuck")
+	if(current)
+		UnregisterSignal(src, COMSIG_QDELETING)
+	current = new_current
+	if(current)
+		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(clear_current))
+
+/datum/mind/proc/clear_current(datum/source)
+	SIGNAL_HANDLER
+	set_current(null)
+
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
@@ -300,6 +321,9 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
+	if(old_current.skills)
+		old_current.skills.set_current(new_character)
+
 	RegisterSignal(new_character, COMSIG_MOB_DEATH, PROC_REF(set_death_time))
 	if(active || force_key_move)
 		testing("dotransfer to [new_character]")
@@ -310,6 +334,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 // adjusts the amount of available spellpoints
 /datum/mind/proc/adjust_spellpoints(points)
 	spell_points += points
+	if(!has_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation))
+		AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	check_learnspell() //check if we need to add or remove the learning spell
 
 /datum/mind/proc/set_death_time()
@@ -722,10 +748,11 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		return FALSE
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
-		if(istype(S, spell))
+		if(S.name == spell.name && S.type == spell.type) //match by name and type to avoid issues with multiple instances of the same spell
 			spell_list -= S
 			qdel(S)
-			success = TRUE // won't return here because of possibility of duplicate spells in spell_list
+			success = TRUE
+			return TRUE // We're deleting only one spell
 	return success
 
 /datum/mind/proc/RemoveAllSpells()

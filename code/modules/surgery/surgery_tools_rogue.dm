@@ -12,7 +12,7 @@
 	throwforce = 12
 	wdefense = 3
 	wbalance = WBALANCE_SWIFT
-	max_blade_int = 100
+	max_blade_int = 200
 	max_integrity = 175
 	thrown_bclass = BCLASS_CUT
 	associated_skill = /datum/skill/combat/knives
@@ -25,9 +25,6 @@
 /obj/item/rogueweapon/surgery/Initialize()
 	. = ..()
 	item_flags |= SURGICAL_TOOL //let's not stab patients for fun
-
-/obj/item/rogueweapon/surgery/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', initial(icon_state))
 
 /obj/item/rogueweapon/surgery/scalpel
 	name = "scalpel"
@@ -72,17 +69,14 @@
 	tool_behaviour = TOOL_HEMOSTAT
 	smeltresult = null
 
-/obj/item/rogueweapon/surgery/hemostat/first //Two different types for the purpose of having 2 slots for forceps in surgery bag.
+/obj/item/rogueweapon/surgery/hemostat/first //Three different types now to allow multiple surgical sites at once.
 	name = "\improper Tarsis forceps"
-
-/obj/item/rogueweapon/surgery/hemostat/first/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', "forceps")
 
 /obj/item/rogueweapon/surgery/hemostat/second
 	name = "\improper Sisrat forceps"
 
-/obj/item/rogueweapon/surgery/hemostat/second/get_belt_overlay()
-	return mutable_appearance('icons/roguetown/items/surgery_bag.dmi', "forceps_2")
+/obj/item/rogueweapon/surgery/hemostat/third
+	name = "\improper Medella forceps"
 
 /obj/item/rogueweapon/surgery/retractor
 	name = "speculum"
@@ -205,14 +199,15 @@
 /obj/item/rogueweapon/surgery/hammer/pre_attack(atom/A, mob/living/user, params)
 	if(!istype(user.a_intent, /datum/intent/use))
 		return ..()
-	if(user.get_skill_level(/datum/skill/misc/medicine) < 1)
+	var/medskill = user.get_skill_level(/datum/skill/misc/medicine)
+	if(medskill < SKILL_LEVEL_NOVICE)
 		return ..()
 	if(ishuman(A))
 		if(A == user)
 			user.visible_message("<span class='info'>[user] begins smacking themself with a small hammer.</span>")
 		else
 			user.visible_message("<span class='info'>[user] begins to smack [A] with a small hammer.</span>")
-		if(do_after(user, 2.5 SECONDS, target = A))
+		if(do_after(user, ((medskill > SKILL_LEVEL_EXPERT) ? 1 SECONDS : 2.5 SECONDS), target = A))
 			A.visible_message("<span class='info'>[A] jerks their knee after the hammer strikes!</span>")
 			if(prob(1))
 				playsound(user, 'sound/misc/bonk.ogg', 100, FALSE, -1)

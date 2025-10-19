@@ -35,6 +35,13 @@
 					/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
 				)
 
+/datum/supply_pack/rogue/ranged_weapons/crossbow/slurbow
+	name = "Slurbow"
+	cost = 30
+	contains = list(
+					/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow,
+				)
+
 /datum/supply_pack/rogue/ranged_weapons/recurvebow
 	name = "Bow, Recurve"
 	cost = 20
@@ -130,5 +137,4 @@
 	cost = 20
 	contains = list(
 					/obj/item/net,
-					/obj/item/net
 				)

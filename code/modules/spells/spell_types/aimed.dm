@@ -73,7 +73,6 @@
 	if(!isturf(U) || !isturf(T))
 		return FALSE
 	fire_projectile(user, target)
-	user.newtonian_move(get_dir(U, T))
 	if(current_amount <= 0)
 		charge_counter = 0
 		start_recharge()
@@ -102,7 +101,7 @@
 	school = "evocation"
 	recharge_time = 60
 	clothes_req = FALSE
-	invocation = "ONI SOMA"
+	invocations = list("ONI SOMA")
 	invocation_type = "shout"
 	range = 20
 	cooldown_min = 20 //10 deciseconds reduction per rank

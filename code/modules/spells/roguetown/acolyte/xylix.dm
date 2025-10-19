@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/wheel
 	name = "The Wheel"
+	desc = "Spins the wheel, either buffing or debuffing the targets fortune."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 3
@@ -24,6 +25,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mastersillusion
 	name = "Set Decoy"
+	desc = "Creates a body double of yourself and makes you invisible, after a delay your clone explodes into smoke."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -66,13 +68,13 @@
 	defprob = 50
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	del_on_death = TRUE
-	loot = list(/obj/item/smokebomb/decoy)
+	loot = list(/obj/item/bomb/smoke/decoy)
 	can_have_ai = FALSE
 	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/mudcrab // doesnt really matter
 
 
-/obj/item/smokebomb/decoy/Initialize()
+/obj/item/bomb/smoke/decoy/Initialize()
 	. = ..()
 	playsound(loc, 'sound/magic/decoylaugh.ogg', 50)
 	explode()
@@ -86,6 +88,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mockery
 	name = "Vicious Mockery"
+	desc = "Mock your target, reducing their INT, SPD, STR and END for a time."
 	releasedrain = 50
 	associated_skill = /datum/skill/misc/music
 	recharge_time = 2 MINUTES
@@ -102,7 +105,7 @@
 			return FALSE
 		target.apply_status_effect(/datum/status_effect/debuff/viciousmockery)
 		SEND_SIGNAL(user, COMSIG_VICIOUSLY_MOCKED, target)
-		GLOB.azure_round_stats[STATS_PEOPLE_MOCKED]++
+		record_round_statistic(STATS_PEOPLE_MOCKED)
 		return TRUE
 	revert_cast()
 	return FALSE
@@ -141,7 +144,7 @@
 	id = "viciousmockery"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/viciousmockery
 	duration = 600 // One minute
-	effectedstats = list("strength" = -1, "speed" = -1,"endurance" = -1, "intelligence" = -3)
+	effectedstats = list(STATKEY_STR = -1, STATKEY_SPD = -1,STATKEY_WIL = -1, STATKEY_INT = -3)
 
 /atom/movable/screen/alert/status_effect/debuff/viciousmockery
 	name = "Vicious Mockery"
@@ -150,6 +153,7 @@
 
 /obj/effect/proc_holder/spell/self/xylixslip
 	name = "Xylixian Slip"
+	desc = "Jumps you up to 3 tiles away."
 	overlay_state = "xylix_slip"
 	releasedrain = 10
 	chargedrain = 0

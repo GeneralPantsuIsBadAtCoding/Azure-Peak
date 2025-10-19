@@ -3,7 +3,7 @@
 	desc = "Conjure a 5x1 wall of arcyne force, preventing anyone and anything other than you from moving through it."
 	overlay_state = "forcewall"
 	spell_tier = 3 // Full Mage only.
-	invocation = "Murus Maior!" // Make a greater barrier
+	invocations = list("Murus Maior!") // Make a greater barrier
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_HIGH

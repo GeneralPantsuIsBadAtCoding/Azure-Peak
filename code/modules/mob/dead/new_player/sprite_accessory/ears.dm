@@ -157,6 +157,12 @@
 	color_keys = 2
 	color_key_names = list("Ears", "Inner")
 
+/datum/sprite_accessory/ears/bunny_long
+	name = "Bunny (Long)"
+	icon_state = "bunnylong"
+	color_keys = 2
+	color_key_names = list("Ears", "Tips")
+
 /datum/sprite_accessory/ears/big/rabbit_large
 	name = "Rabbit Ears (Large)"
 	icon_state = "rabbit_large"
@@ -355,6 +361,13 @@
 /datum/sprite_accessory/ears/lynx
 	name = "Lynx"
 	icon_state = "lynx"
+	color_keys = 3
+	color_key_names = list("Ears", "Inner", "Tips")
+	relevant_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
+
+/datum/sprite_accessory/ears/zorzor
+	name = "Zorgoia"
+	icon_state = "zorgoia"
 	color_keys = 3
 	color_key_names = list("Ears", "Inner", "Tips")
 	relevant_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)

@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/self/create_abyssoid
 	name = "Create Abyssoid"
+	desc = "Turn a leech into a Abyssoid using your own blood."
 	overlay_state = "bloodsteal"
 	chargedrain = 0
 	chargetime = 0

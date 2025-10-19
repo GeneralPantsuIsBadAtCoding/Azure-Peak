@@ -24,7 +24,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Aeris Gladios!"
+	invocations = list("Aeris Gladios!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -63,7 +63,7 @@
 	damage = 40
 	woundclass = BCLASS_CUT
 	nodamage = FALSE
-	npc_damage_mult = 1.5 // Makes it more effective against NPCs.
+	npc_simple_damage_mult = 1.5 // Makes it more effective against NPCs.
 	hitsound = 'sound/combat/hits/bladed/smallslash (1).ogg'
 	speed = 1
 

@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	if(ispath(state))
 		var/atom/thing = new state(null)
 		var/mutable_appearance/generated = new(thing)
+		generated.plane = FULLSCREEN_PLANE
 		return generated
 	else
 		CRASH("Unsupported typing indicator state: [state]")
@@ -36,6 +37,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	if(((!typing_indicator_enabled || (stat != CONSCIOUS)) && !force) || typing_indicator_current)
 		return
 	typing_indicator_current = state_override
+	log_message("started typing", LOG_ATTACK)
 	add_overlay(state_override)
 	update_vision_cone()
 	typing_indicator_timerid = addtimer(CALLBACK(src, PROC_REF(clear_typing_indicator)), timeout_override, TIMER_STOPPABLE)
@@ -57,5 +59,6 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	icon = 'icons/mob/typing_indicator.dmi'
 	icon_state = "default0"
 	appearance_flags = RESET_COLOR | TILE_BOUND | PIXEL_SCALE
-	layer = 5.1 // ABOVE_FLY_LAYER
+	layer = HUD_LAYER
+	plane = FULLSCREEN_PLANE
 	alpha = 175

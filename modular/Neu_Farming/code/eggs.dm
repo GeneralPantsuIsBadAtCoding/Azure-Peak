@@ -10,7 +10,7 @@
 	filling_color = "#F0E68C"
 	foodtype = MEAT
 	grind_results = list()
-	rotprocess = 15 MINUTES
+	rotprocess = SHELFLIFE_SHORT
 
 	var/fertile = FALSE
 

@@ -16,18 +16,12 @@
 	gesture_required = TRUE
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
-	invocation = "Congelationis!"
+	invocations = list("Congelationis!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 3
 	gesture_required = TRUE // Offensive spell
-
-	xp_gain = TRUE
-	miracle = FALSE
-
-	invocation = ""
-	invocation_type = "shout" //can be none, whisper, emote and shout
 
 /obj/effect/proc_holder/spell/invoked/frostbite/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))

@@ -10,9 +10,6 @@
 	. += integrity_check()
 
 	var/real_value = get_real_price()
-	for(var/obj/item/I in src.contents) // runs a loop on anytihng that's got contents under our current inv system
-		if(I)
-			real_value += I.get_real_price() // adds the price to the total real_value. simple, but it works!
 	if(real_value > 0)
 		if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
 			. += span_info("Value: [real_value] mammon")
@@ -22,6 +19,9 @@
 			var/fumbled_value = max(1, round(real_value + (real_value * clamp(noise_hash(real_value, fumbling_seed) - 0.25, -0.25, 0.25)), 1))
 			. += span_info("Value: [fumbled_value] mammon... <i>I think</i>")
 
+	if(smeltresult)
+		var/obj/item/smelted = smeltresult
+		. += span_info("Smelts into [smelted.name].")
 	for(var/datum/examine_effect/E in examine_effects)
 		E.trigger(user)
 

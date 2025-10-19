@@ -139,13 +139,12 @@
 #define ALCHEMIST	(1<<5)
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
-#define ELDER		(1<<10)
+#define CRIER		(1<<10)
 
 #define PEASANTS	(1<<5)
 
 #define HUNTER		(1<<0)
 #define FARMER		(1<<1)
-#define BUTCHER		(1<<2)
 #define FISHER		(1<<3)
 #define LUMBERJACK	(1<<4)
 #define MINER		(1<<5)
@@ -165,6 +164,7 @@
 #define BANDIT		(1<<19)
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
+#define TRADER		(1<<22)
 
 #define YOUNGFOLK	(1<<6)
 
@@ -199,11 +199,15 @@
 #define DEATHKNIGHT (1<<1)
 #define SKELETON	(1<<2)
 #define GOBLIN		(1<<3)
+#define VAMPIRE_SERVANT (1<<4)
+#define VAMPIRE_GUARD (1<<5)
+#define VAMPIRE_SPAWN (1<<6)
 
 #define INQUISITION (1<<10)
 
 #define PURITAN		(1<<0)
 #define ORTHODOXIST	(1<<1)
+#define ABSOLVER (1<<2)
 
 #define GUILDSMEN	(1<<11)
 #define GUILDMASTER (1<<1)
@@ -266,7 +270,7 @@
 #define JDO_GRABBER 17.2
 
 #define JDO_ARCHIVIST 18
-#define JDO_CHIEF 18.1
+#define JDO_CRIER 18.1
 
 #define JDO_GUILDMASTER 19.1
 #define JDO_GUILDSMAN 19.2
@@ -287,6 +291,7 @@
 #define JDO_BANDIT 31.3
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
+#define JDO_TRADER 30.5
 
 #define JDO_MERCENARY 31
 #define JDO_GRENZELHOFT 31.1
@@ -307,6 +312,7 @@
 #define JDO_TRIBALSMITH 39
 #define JDO_PURITAN 40
 #define JDO_ORTHODOXIST 40.1
+#define JDO_ABSOLVER 40.2
 
 #define BITFLAG_CHURCH (1<<0)
 #define BITFLAG_ROYALTY (1<<1)
@@ -350,7 +356,6 @@
 	/datum/job/roguetown/villager,\
 	/datum/job/roguetown/nightmaiden,\
 	/datum/job/roguetown/beggar,\
-	/datum/job/roguetown/butcher,\
 	/datum/job/roguetown/cook,\
 	/datum/job/roguetown/knavewench,\
 	/datum/job/roguetown/lunatic,\
@@ -363,7 +368,7 @@
 	/datum/job/roguetown/prisonerr
 
 #define YEOMEN_ROLES \
-	/datum/job/roguetown/elder,\
+	/datum/job/roguetown/crier,\
 	/datum/job/roguetown/niteman,\
 	/datum/job/roguetown/archivist,\
 	/datum/job/roguetown/barkeep,\

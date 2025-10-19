@@ -55,3 +55,8 @@
 	name = "Heavy Leather Gloves"
 	cost = 20 // No one buying this lmao it costs 1 fur
 	contains = list(/obj/item/clothing/gloves/roguetown/angle)
+
+/datum/supply_pack/rogue/light_armor/heavy_padded_coif
+	name = "Heavy Padded Coif"
+	cost = 35 // Equivalent to a padded gambeson on the head, so pricier
+	contains = list(/obj/item/clothing/neck/roguetown/coif/heavypadding)

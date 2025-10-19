@@ -4,7 +4,7 @@
 	school = "transmutation"
 	recharge_time = 100
 	clothes_req = FALSE
-	invocation = "TARCOL MINTI ZHERI"
+	invocations = list("TARCOL MINTI ZHERI")
 	invocation_type = "shout"
 	sound = 'sound/blank.ogg'
 	action_icon_state = "shield"

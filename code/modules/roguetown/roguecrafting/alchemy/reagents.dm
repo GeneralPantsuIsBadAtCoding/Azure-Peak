@@ -18,7 +18,7 @@
 	if(volume >= 60)
 		M.reagents.remove_reagent(/datum/reagent/medicine/healthpot, 2) //No overhealing.
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-		M.blood_volume = min(M.blood_volume+20, BLOOD_VOLUME_MAXIMUM)
+		M.blood_volume = min(M.blood_volume+15, BLOOD_VOLUME_NORMAL)
 	var/list/wCount = M.get_wounds()
 	if(wCount.len > 0)
 		M.heal_wounds(3) //at a motabalism of .5 U a tick this translates to 120WHP healing with 20 U Most wounds are unsewn 15-100. This is powerful on single wounds but rapidly weakens at multi wounds.
@@ -41,10 +41,7 @@
 	if(volume >= 60)
 		M.reagents.remove_reagent(/datum/reagent/medicine/healthpot, 2) //No overhealing.
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-		M.blood_volume = min(M.blood_volume+80, BLOOD_VOLUME_MAXIMUM)
-	else
-		//can overfill you with blood, but at a slower rate
-		M.blood_volume = min(M.blood_volume+10, BLOOD_VOLUME_MAXIMUM)
+		M.blood_volume = min(M.blood_volume+20, BLOOD_VOLUME_NORMAL)
 	var/list/wCount = M.get_wounds()
 	if(wCount.len > 0)
 		M.heal_wounds(6) //at a motabalism of .5 U a tick this translates to 240WHP healing with 20 U Most wounds are unsewn 15-100.
@@ -160,7 +157,7 @@
 	However it meant that putting it in an alchemical vial was a trap as it sipped 9 units instead of 5 units that is the required minimum.
 	And removed any excessive potion inside the body. This has been changed to apply a 3 seconds buff to the mob, but have much lower
 	metabolization rate, so that the duration of the buff depends on how long you last. 
-	Roughly tested. At Metabolization Rate 1. 9 units sip (1/3 of a vial) last 20 seconds.
+	Roughly tested. At Metabolization Rate 1. 10 units sip (1/3 of a vial) last 20 seconds.
 	To make this somewhat equal to the old system, base metabolization rate is 0.1 - making it last 200 seconds - 600 seconds if you sip an entire vial.
 	This is 2x on weaker potions (Intelligence, Fortune). However, overdose threshold is now 30 units so you can only drink one vial at once.
 	And potion stacking is not possible without neutralizing itself.
@@ -169,7 +166,7 @@
 	description = ""
 	reagent_state = LIQUID
 	metabolization_rate = REAGENTS_METABOLISM * 0.1
-	overdose_threshold = 30
+	overdose_threshold = 33
 
 /datum/reagent/buff/overdose_process(mob/living/carbon/M)
 	. = ..()
@@ -185,7 +182,7 @@
 	..()
 
 /datum/reagent/buff/strength
-	name = "Strength"
+	name = STATKEY_STR
 	color = "#ff9000"
 	taste_description = "old meat"
 
@@ -194,7 +191,7 @@
 	return ..()
 
 /datum/reagent/buff/perception
-	name = "Perception"
+	name = STATKEY_PER
 	color = "#ffff00"
 	taste_description = "cat piss"
 	metabolization_rate = REAGENTS_METABOLISM * 0.05
@@ -204,7 +201,7 @@
 	return ..()
 
 /datum/reagent/buff/intelligence
-	name = "Intelligence"
+	name = STATKEY_INT
 	color = "#438127"
 	taste_description = "bog water"
 	metabolization_rate = REAGENTS_METABOLISM * 0.05
@@ -214,7 +211,7 @@
 	return ..()
 
 /datum/reagent/buff/constitution
-	name = "Constitution"
+	name = STATKEY_CON
 	color = "#130604"
 	taste_description = "bile"
 
@@ -223,7 +220,7 @@
 	return ..()
 
 /datum/reagent/buff/endurance
-	name = "Endurance"
+	name = STATKEY_WIL
 	color = "#ffff00"
 	taste_description = "oversweetened milk"
 
@@ -232,7 +229,7 @@
 	return ..()
 
 /datum/reagent/buff/speed
-	name = "Speed"
+	name = STATKEY_SPD
 	color = "#ffff00"
 	taste_description = "raw egg yolk"
 
@@ -241,7 +238,7 @@
 	return ..()
 
 /datum/reagent/buff/fortune
-	name = "Fortune"
+	name = STATKEY_LCK
 	color = "#ffff00"
 	taste_description = "sour lemons"
 	metabolization_rate = REAGENTS_METABOLISM * 0.05
@@ -392,7 +389,12 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	required_reagents = list(/datum/reagent/stampoison = 1, /datum/reagent/additive = 1)
 	mix_message = "The cauldron glows for a moment."
 
-
+/datum/chemical_reaction/alch/vitae_essence
+	name = "Vitae Decoction"
+	id = /datum/reagent/medicine/vitae_essence
+	results = list(/datum/reagent/medicine/vitae_essence = 1)
+	required_reagents = list(/datum/reagent/vitae = 1, /datum/reagent/toxin/fyritiusnectar = 5)
+	mix_message = "The cauldron glows for a moment."
 
 /*----------\
 |Ingredients|
@@ -418,7 +420,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		M.add_nausea(9)
 		M.adjustFireLoss(2, 0)
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	return ..()
 //I'm stapling our infection reagents on the bottom, because IDEK where else to put them.
 
@@ -464,3 +466,62 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		to_chat(M, span_small("I feel even worse..."))
 	return ..()
 	
+
+/datum/reagent/medicine/vitae_essence
+	name = "Vitae Decoction"
+	description = "Decoction of essence of lyfe, used to restore one's lux humours."
+	color = "#67c7ff" // rgb: 96, 165, 132
+	overdose_threshold = 10
+	metabolization_rate = 0.1
+
+/datum/reagent/medicine/vitae_essence/on_mob_life(mob/living/carbon/M)
+	if(M.has_flaw(/datum/charflaw/addiction/junkie))
+		M.sate_addiction()
+	if(M.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
+		M.remove_status_effect(/datum/status_effect/debuff/ritualdefiled)
+	return ..()
+
+/datum/reagent/fire_resist
+	name = "Fire Resistance"
+	color = "#ff7300"
+	taste_description = "burning coal"
+
+/datum/reagent/fire_resist/on_mob_life(mob/living/carbon/M)
+	M.apply_status_effect(/datum/status_effect/buff/alch/fire_resist)
+	return ..()
+
+/datum/reagent/fermented_crab
+	name = "Fermented Crab"
+	description = ""
+	color = "#abaa7c"
+	overdose_threshold = 15
+	metabolization_rate = 0.2
+	taste_description = "randcid, putrid crab"
+
+/datum/reagent/fermented_crab/overdose_process(mob/living/M)
+	M.adjustToxLoss(1, FALSE)
+	if(iscarbon(M) && prob(1))
+		var/mob/living/carbon/carbon_consumer = M
+		carbon_consumer.vomit(1)
+	return ..()
+
+/datum/reagent/fermented_crab/on_mob_metabolize(mob/living/M)
+	var/mob/living/carbon/carbon_consumer = M
+	if(!istype(carbon_consumer))
+		return ..()
+	to_chat(M, span_userdanger("That fermented crab was truly rancid... You feel..."))
+	// Default chance to vomit with WIL 12 - 40%
+	// With WIL 10 - 48%; With WIL 14 - 32% and so on.
+	if(prob(40 - ((M.STAWIL - 12) * 4)))
+		to_chat(M, span_userdanger("You suddenly feel very sick... Mayhaps, eating the fermented crab wasn't the best idea..."))
+		carbon_consumer.vomit(5, blood = FALSE, stun = TRUE)
+		M.add_stress(/datum/stressevent/fermented_crab_bad)
+	else
+		to_chat(M, span_userdanger("You feel a bit queasy, but otherwise okay. And even greatly invigorated!"))
+		M.add_stress(/datum/stressevent/fermented_crab_good)
+	M.apply_status_effect(/datum/status_effect/buff/fermented_crab)
+	return ..()
+
+/datum/reagent/fermented_crab/overdose_start(mob/living/M)
+	M.playsound_local(M, 'sound/magic/heartbeat.ogg', 100, FALSE)
+	M.visible_message(span_warning("Blood runs from [M]'s nose."))

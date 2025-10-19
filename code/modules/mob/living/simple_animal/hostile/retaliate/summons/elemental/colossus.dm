@@ -19,11 +19,12 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = 1500
 	maxHealth = 1500
+	obj_damage = 150
 	melee_damage_lower = 40
 	melee_damage_upper = 70
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_WALLS
 	simple_detect_bonus = 20
 	retreat_distance = 0
 	minimum_distance = 0
@@ -44,13 +45,19 @@
 	pixel_x = -32
 	dodgetime = 0
 	aggressive = 1
+	inherent_spells = list(/obj/effect/proc_holder/spell/self/colossus_stomp)
+	ranged_message = "launches earth"
 
 	STACON = 20
-	STAEND = 20
+	STAWIL = 20
 	STASTR = 16
 	STASPD = 3
 
 	var/stomp_cd
+
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/Initialize()
+	src.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
@@ -64,9 +71,6 @@
 		if(ranged) //We ranged? Shoot at em
 			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
 				OpenFire(target)
-		if(!Process_Spacemove()) //Drifting
-			walk(src,0)
-			return 1
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
 				walk_away(src,target,retreat_distance,move_to_delay)
@@ -77,7 +81,7 @@
 		if(target)
 			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
 				MeleeAction()
-				if(world.time >= stomp_cd + 25 SECONDS)
+				if(world.time >= stomp_cd + 25 SECONDS && !client)//players get a spell
 					stomp(target)
 			else
 				if(rapid_melee > 1 && target_distance <= melee_queue_distance)
@@ -95,10 +99,31 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
-	new /obj/item/magic/elementalrelic(deathspot)
+	new /obj/item/magic/elemental/relic(deathspot)
+	new /obj/item/magic/elemental/fragment(deathspot)
+	new /obj/item/magic/elemental/fragment(deathspot)
+	new /obj/item/magic/elemental/shard(deathspot)
+	new /obj/item/magic/elemental/shard(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/elemental/mote(deathspot)
+	new /obj/item/magic/melded/t2(deathspot)
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
+
+/obj/effect/proc_holder/spell/self/colossus_stomp
+	name = "Stomp"
+	recharge_time = 25 SECONDS
+	overlay_state = "bloodrage"
+	chargetime = 0
+
+/obj/effect/proc_holder/spell/self/colossus_stomp/cast(list/targets, mob/living/user = usr)
+	if(istype(user, /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus))
+		var/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/rockguy = user
+		if(world.time <= rockguy.stomp_cd + 25 SECONDS)
+			rockguy.stomp(rockguy)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus/proc/stomp(target)
 	for (var/mob/living/stomped in view(1, src))
@@ -106,11 +131,13 @@
 		var/atom/throw_target = get_edge_target_turf(src, get_dir(src, stomped)) //ill be real I got no idea why this worked.
 		var/mob/living/L = stomped
 		L.throw_at(throw_target, 7, 4)
-		L.adjustBruteLoss(20)
+		L.adjustBruteLoss(60)
+	visible_message(span_colossus("[src] stomps the ground!"))
+	playsound(src,'sound/misc/bamf.ogg', 600, TRUE, 10)
 	stomp_cd = world.time
 
 /obj/projectile/earthenchunk
-	name = "Elemental Chunk"
+	name = "elemental chunk"
 	icon_state = "rock"
 	damage = 30
 	damage_type = BRUTE

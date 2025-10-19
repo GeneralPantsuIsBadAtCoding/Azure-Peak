@@ -65,6 +65,7 @@
 		/datum/customizer/bodypart_feature/accessory,
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
+		/datum/customizer/bodypart_feature/legwear,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
@@ -89,10 +90,6 @@
 		/datum/language/common,
 		/datum/language/elvish
 	)
-
-/datum/species/human/halfelf/on_species_gain(mob/living/carbon/literally_him, datum/species/old_species)
-	..()
-	languages(literally_him)
 
 /datum/species/human/halfelf/get_skin_list()
 	return list(
@@ -120,10 +117,6 @@
 		"Tafravma-kin" = SKIN_COLOR_TAFRAVMA,
 		"Yuethindrynn-kin" = SKIN_COLOR_YUETHINDRYNN
 	)
-
-/datum/species/human/halfelf/proc/languages(mob/living/carbon/human/literally_him)
-	if(literally_him.skin_tone == SKIN_COLOR_NALEDI_BORN)
-		literally_him.grant_language(/datum/language/celestial)
 
 /datum/species/human/halfelf/get_hairc_list()
 	return sortList(list(

@@ -237,6 +237,79 @@
 	if(!total_override)
 		..()
 
+/obj/structure/table/wood/poor
+	icon_state = "tablewood1"
+
+/obj/structure/table/wood/poor/alt
+	icon_state = "tablewood2"
+
+/obj/structure/table/wood/poor/alt_alt
+	icon_state = "tablewood3"
+
+/obj/structure/table/wood/large_table
+	icon_state = "largetable"
+
+/obj/structure/table/wood/large_table/south_west
+	dir = 10
+
+/obj/structure/table/wood/large_table/south_east
+	dir = 6
+
+/obj/structure/table/wood/large_table/north_west
+	dir = 9
+
+/obj/structure/table/wood/large_table/north_east
+	dir = 5
+
+/obj/structure/table/wood/large_table/middle_east
+	dir = 4
+
+/obj/structure/table/wood/large_table/middle_west
+	dir = 8
+
+/obj/structure/table/wood/large_table/middle
+	dir = 4
+
+/obj/structure/table/wood/large_table/north
+	dir = 1
+
+/obj/structure/table/wood/long_table
+	icon_state = "longtable"
+
+/obj/structure/table/wood/long_table/right
+	dir = 1
+
+/obj/structure/table/wood/long_table/north_east
+	dir = 4
+
+/obj/structure/table/wood/long_table/east
+	dir = 8
+
+/obj/structure/table/wood/long_table/mid
+	icon_state = "longtable_mid"
+
+/obj/structure/table/wood/long_table/mid/alt
+	icon_state = "longtable_mid"
+	dir = 1
+
+/obj/structure/table/wood/map
+	icon_state = "map1"
+
+/obj/structure/table/wood/map/two
+	icon_state = "map2"
+
+/obj/structure/table/wood/map/three
+	icon_state = "map3"
+
+/obj/structure/table/wood/map/four
+	icon_state = "map4"
+
+/obj/structure/table/wood/map/five
+	icon_state = "map5"
+
+/obj/structure/table/wood/map/six
+	icon_state = "map6"
+
 /obj/structure/table/church
 	name = "stone table"
 	desc = ""
@@ -257,9 +330,25 @@
 		icon_state = "churchtable_end"
 	. = ..()
 
+/obj/structure/table/church/alt
+	icon_state = "churchtable_alt"
+
+/obj/structure/table/church/end
+	icon_state = "churchtable_end"
+
+/obj/structure/table/church/end/alt
+	icon_state = "churchtable_end_alt"
+
+/obj/structure/table/church/end/alt/north
+	icon_state = "churchtable_end_alt"
+	dir = 1
+
 /obj/structure/table/church/m
 	icon = 'icons/roguetown/misc/tables.dmi'
 	icon_state = "churchtable_mid"
+
+/obj/structure/table/church/m/alt
+	icon_state = "churchtable_mid_alt"
 
 /obj/structure/table/vtable
 	name = "ancient wooden table"

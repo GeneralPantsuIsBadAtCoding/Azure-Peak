@@ -107,19 +107,21 @@
 	item_state = "chainkilt"
 	sleevetype = "chainkilt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
-	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
+	alternate_worn_layer = (SHIRT_LAYER)
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
 	name = "decrepit chain kilt"
-	desc = "A decrepit old kilt. Aeon's grasp is upon it."
+	desc = "Frayed bronze rings, linked together with bindings of rotting leather to form a waist's drape. The maille jingles with every step, singing the hymn to a cadence once savored by marching legionnaires."
 	icon_state = "achainkilt"
 	sleevetype = "achainkilt"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_LEG_DECREPIT_CHAIN
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
 	name = "ancient chain kilt"
-	desc = "A kilt formed out of ancient alloys. Aeon's grasp lifted from it."
+	desc = "Polished gilbranze rings, linked together with bindings of silk to form a waist's vestment. These undying legionnaires once marched for Vheslyn, and again for Zizo; but now, they are utterly beholden to the whims of their resurrector."
 	icon_state = "achainkilt"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -130,4 +132,12 @@
 	item_state = "ichainkilt"
 	sleevetype = "ichainkilt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
-	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
+	alternate_worn_layer = (SHIRT_LAYER)
+
+/obj/item/clothing/under/roguetown/chainlegs/captain
+	name = "captain's chausses"
+	desc = "Cuisses made of plated steel, offering additional protection against blunt force. These are specially fitted for the captain."
+	icon_state = "capplateleg"
+	item_state = "capplateleg"
+	icon = 'icons/roguetown/clothing/special/captain.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/captain.dmi'

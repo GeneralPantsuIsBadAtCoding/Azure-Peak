@@ -12,7 +12,7 @@
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	spell_tier = 1 // Not directly combat useful
-	invocation = "Lenis Cadere"
+	invocations = list("Lenis Cadere")
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW

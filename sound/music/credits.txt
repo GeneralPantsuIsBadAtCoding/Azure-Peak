@@ -17,7 +17,6 @@ tavern1.ogg: Pathologic 2 - Broken Heart Pub
 tavern2.ogg: Pathologic (Classic) - Broken Heart Pub
 combat_steppe.ogg: Tatar Theme (Hellish Quart OST)
 combat_bandit_brigand: Silent Scream - Lateralis
-combat_bandit_mage: Timestopper Tactics - corru.works
 combat_ascended: TO PIERCE THE BLACK SKY /// ENVY INTERLUDE - UNFORTUNATE DEVELOPMENT
 warscholar.ogg: Butcher's Boulevard - Kristjan Thomas Haaristo
 guitar (7).ogg: https://youtu.be/to2iDSr6_KA
@@ -65,3 +64,4 @@ combat_thewall: T-87 SULFURHEAD - The Wall[https://www.youtube.com/@T87-Sulfurhe
 combat_thrall: T-87 SULFURHEAD - STOLEN SKY[https://www.youtube.com/@T87-Sulfurhead]
 shisha.ogg: T-87 SULFURHEAD - Astral Eyes [https://www.youtube.com/@T87-Sulfurhead]
 combat_acolyte: T-87 SULFURHEAD - Hellions [https://www.youtube.com/@T87-Sulfurhead]
+ravoxarena.ogg: Mick Gordon - Polemos

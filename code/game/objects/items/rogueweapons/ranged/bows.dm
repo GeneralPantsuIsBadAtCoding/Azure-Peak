@@ -80,7 +80,7 @@
 	name = "crude selfbow"
 	desc = "This roughly hewn selfbow is just a bit too little of everything. Too little length, \
 	too little poundage, too slow a shot."
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "bow"
 	item_state = "bow"
 	experimental_onhip = TRUE
@@ -420,3 +420,49 @@
 					"eastabove" = 0,
 					"westabove" = 0,
 					)
+
+//Unique Bows
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/warden
+	name = "blackhorn bow"
+	desc = "When a northern black-horned saiga is old enough, it will shed its two-metre long antlers. As time passes, they harden progressively more but keep a degree of flexibility that can outdo even yew.\
+		Wardens often collect such antlers in the rare occasion they are found and send them to be filed, strung and treated by a master bowyer. Such tradition carries merit even todae, \
+		and thus one can see Azurian wardens carrying their endemic blackhorn bows with pride."
+	icon_state = "recurve_warden"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow/warden
+	name = "blackhorn longbow"
+	desc = "When a northern black-horned saiga is old enough, it will shed its two-metre long antlers. As time passes, they harden progressively more but keep a degree of flexibility that can outdo even yew.\
+		Wardens often collect such antlers in the rare occasion they are found and send them to be filed, strung and treated by a master bowyer. The end result is a war bow such as this one."
+	icon_state = "longbow_warden"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/steppesman
+	name = "aavnic riding bow"
+	desc = "A short recurve warbow made for the express purpose of shooting on saigaback, a skill every archer in Aavnr takes much more seriously than their Northern counterparts. Every seasoned Druzhina is themselves a good bowyer and usually makes their own bow, this one is made with the purpure-ish crimson wood of a Vörötslevé tree."
+	icon_state = "recurve_riding"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/short
+	name = "short bow"
+	desc = "As the eagle was killed by the arrow winged with his own feather, so the hand of the world is wounded by its own skill."
+	icon = 'icons/roguetown/weapons/misc32.dmi'
+	icon_state = "bow" //No time for sprite this shit
+	item_state = "bow" 
+	possible_item_intents = list(
+		/datum/intent/shoot/bow/short,
+		/datum/intent/arc/bow/short,
+		INTENT_GENERIC,
+		)
+	randomspread = 1
+	spread = 1
+	force = 9
+	damfactor = 0.9
+
+/datum/intent/shoot/bow/short
+	chargetime = 0.75
+	chargedrain = 1.5
+	charging_slowdown = 2.5
+
+/datum/intent/arc/bow/short
+	chargetime = 0.75
+	chargedrain = 1.5
+	charging_slowdown = 2.5

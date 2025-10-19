@@ -7,14 +7,14 @@
 	cooldown_min = 50
 	range = -1
 	include_user = TRUE
-	invocation = "RAC'WA NO!"
-	invocation_type = "shout"
+	invocation_type = "none"
 	action_icon_state = "shapeshift"
 
 	var/revert_on_death = TRUE
 	var/die_with_shapeshifted_form = TRUE
 	var/convert_damage = TRUE //If you want to convert the caster's health to the shift, and vice versa.
 	var/convert_damage_type = BRUTE //Since simplemobs don't have advanced damagetypes, what to convert damage back into.
+	var/do_gib = TRUE
 
 	var/pick_again = null
 	var/shapeshift_type
@@ -30,11 +30,13 @@
 	)
 /obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets,mob/user = usr)
 	. = ..()
-	var/datum/antagonist/vampirelord/VD = usr?.mind?.has_antag_datum(/datum/antagonist/vampirelord)
-	if(VD)
-		if(VD.disguised)
-			to_chat(usr, span_warning("My curse is hidden."))
-			return
+	var/datum/antagonist/vampire/VD = usr?.mind?.has_antag_datum(/datum/antagonist/vampire)
+	if(VD && SEND_SIGNAL(user, COMSIG_DISGUISE_STATUS))
+		to_chat(usr, span_warning("My curse is hidden."))
+		return
+	if(usr.restrained(ignore_grab = FALSE))
+		to_chat(usr, span_warn("I am restrained, I can't shapeshift!"))
+		return
 	if(src in user.mob_spell_list)
 		user.mob_spell_list.Remove(src)
 		user.mind.AddSpell(src)
@@ -76,8 +78,9 @@
 	clothes_req = FALSE
 	human_req = FALSE
 
-	playsound(caster.loc, pick('sound/combat/gib (1).ogg','sound/combat/gib (2).ogg'), 200, FALSE, 3)
-	caster.spawn_gibs(FALSE)
+	if(do_gib)
+		playsound(caster.loc, pick('sound/combat/gib (1).ogg','sound/combat/gib (2).ogg'), 200, FALSE, 3)
+		caster.spawn_gibs(FALSE)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/proc/Restore(mob/living/shape)
 	var/obj/shapeshift_holder/H = locate() in shape

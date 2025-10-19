@@ -62,8 +62,16 @@
 		if(skill_level > 0) // If skill level is 1 or higher, we get more minimum wood!
 			minimum = 2
 		lumber_amount = rand(minimum, max(round(skill_level), minimum))
+		var/sound_played = FALSE
 		for(var/i = 0; i < lumber_amount; i++)
 			new lumber(get_turf(src))
+				// Scaling is less steep than tanning as lumberjacking is easier to level and get
+			if(prob(skill_level + user.goodluck(2)))
+				new /obj/item/natural/cured/essence(get_turf(user))
+				if(!sound_played)
+					sound_played = TRUE
+					to_chat(user, span_warning("Dendor weeps..."))
+					playsound(src,pick('sound/items/gem.ogg'), 100, FALSE)
 		if(!skill_level)
 			to_chat(user, span_info("Due to inexperience, I ruin some of the timber..."))
 		user.mind.add_sleep_experience(/datum/skill/labor/lumberjacking, (user.STAINT*0.5))
@@ -126,7 +134,6 @@
 		/datum/crafting_recipe/roguetown/survival/prosthetic/woodrightleg,
 		/datum/crafting_recipe/roguetown/survival/tarot_deck,
 		/datum/crafting_recipe/roguetown/survival/heatershield,
-		/datum/crafting_recipe/roguetown/survival/woodshaft,
 		/datum/crafting_recipe/roguetown/survival/peasantry/thresher/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/shovel/whetstone,
 		/datum/crafting_recipe/roguetown/survival/peasantry/hoe/whetstone,
@@ -148,14 +155,34 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/skill_level = user.get_skill_level(/datum/skill/craft/carpentry)
 	var/planking_time = (45 - (skill_level * 5))
+	var/woodtotal = 1
+	switch (skill_level) //how many planks you get is random, but higher with more carpentry skill
+		if (0)
+			woodtotal = 1
+		if (1)
+			woodtotal = 1
+		if (2)
+			woodtotal = pick(1,2)
+		if (3)
+			woodtotal = pick(1,2,3)
+		if (4)
+			woodtotal = pick(2,3)
+		if (5)
+			woodtotal = pick(2,3,4)
+		if (6)
+			woodtotal = pick(3,4)
+		else
+			woodtotal = 1
+	if(HAS_TRAIT(user, TRAIT_MASTER_CARPENTER)) //we give extra to those in the role
+		woodtotal += pick(1,2)
 	if(I.tool_behaviour == TOOL_SAW)
 		playsound(get_turf(src.loc), 'sound/foley/sawing.ogg', 100)
 		user.visible_message("<span class='notice'>[user] starts sawing planks from [src].</span>")
 		if(do_after(user, planking_time))
-			var/obj/item/natural/wood/plank/S = new /obj/item/natural/wood/plank(get_turf(src.loc))
 			if(user.is_holding(src))
 				user.dropItemToGround(src)
-				user.put_in_hands(S)
+			for(var/i=1, i<=woodtotal, ++i)
+				new /obj/item/natural/wood/plank(get_turf(src.loc))
 			user.mind.add_sleep_experience(/datum/skill/craft/carpentry, (user.STAINT*0.5))
 			new /obj/effect/decal/cleanable/debris/woody(get_turf(src))
 			qdel(src)
@@ -388,6 +415,7 @@
 	max_integrity = 20
 	firefuel = 5 MINUTES
 	w_class = WEIGHT_CLASS_BULKY
+	sellprice = 4
 	bundletype = /obj/item/natural/bundle/plank
 	smeltresult = /obj/item/ash
 	

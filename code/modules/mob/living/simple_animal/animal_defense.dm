@@ -159,7 +159,7 @@
 	playsound(user.loc, "smallslash", 100, FALSE, -1)
 	user.next_attack_msg.Cut()
 	if(stat == DEAD)
-		if(user.has_status_effect(/datum/status_effect/debuff/silver_curse))
+		if(user.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))
 			to_chat(user, span_notice("My power is weakened, I cannot heal!"))
 			return
 		if(user.mind && istype(user, /mob/living/carbon/human/species/werewolf))
@@ -189,9 +189,10 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
-		to_chat(user, span_notice("I can't move my leg!"))
-		return
+	if(!HAS_TRAIT(user, TRAIT_GARROTED))	
+		if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
+			to_chat(user, span_notice("I can't move my leg!"))
+			return
 	if(user.stamina >= user.max_stamina)
 		return FALSE
 	if(user.loc == target.loc)
@@ -213,6 +214,7 @@
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
+		target.lastattacker_weakref = WEAKREF(user)
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
 		user.stamina_add(15)

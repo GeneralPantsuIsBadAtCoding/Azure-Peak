@@ -10,7 +10,7 @@
 	recharge_time = 10
 	clothes_req = FALSE
 	centcom_cancast = FALSE
-	invocation = "NECREM IMORTIUM!"
+	invocations = list("NECREM IMORTIUM!")
 	invocation_type = "shout"
 	range = -1
 	cooldown_min = 10

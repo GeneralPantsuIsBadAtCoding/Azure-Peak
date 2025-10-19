@@ -2,6 +2,11 @@
 #define TREASURY_TICK_AMOUNT 6 MINUTES
 #define EXPORT_ANNOUNCE_THRESHOLD 100
 
+#define TAX_CAT_NOBLE "Nobility"
+#define TAX_CAT_CHURCH "Church"
+#define TAX_CAT_YEOMEN "Yeomanry"
+#define TAX_CAT_PEASANTS "Peasantry"
+
 /proc/send_ooc_note(msg, name, job)
 	var/list/names_to = list()
 	if(name)
@@ -26,6 +31,13 @@ SUBSYSTEM_DEF(treasury)
 	name = "treasury"
 	wait = 1
 	priority = FIRE_PRIORITY_WATER_LEVEL
+	/// Assoc list of assoc lists for taxation settings. [category] = list("tax_percent" = num, "fine_exemption" = TRUE/FALSE)
+	var/list/taxation_cat_settings = list(
+		TAX_CAT_NOBLE = list("taxAmount" = 0, "fineExemption" = TRUE),
+		TAX_CAT_CHURCH = list("taxAmount" = 6, "fineExemption" = TRUE),
+		TAX_CAT_YEOMEN = list("taxAmount" = 12, "fineExemption" = FALSE),
+		TAX_CAT_PEASANTS = list("taxAmount" = 12, "fineExemption" = FALSE)
+	)
 	var/tax_value = 0.11
 	var/queens_tax = 0.10
 	var/treasury_value = 0
@@ -46,6 +58,7 @@ SUBSYSTEM_DEF(treasury)
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(1000, 2000)
+	force_set_round_statistic(STATS_STARTING_TREASURY, treasury_value)
 
 	for(var/path in subtypesof(/datum/roguestock/bounty))
 		var/datum/D = new path
@@ -76,6 +89,7 @@ SUBSYSTEM_DEF(treasury)
 			if(istype(VB))
 				VB.update_icon()
 		give_money_treasury(RURAL_TAX, "Rural Tax Collection") //Give the King's purse to the treasury
+		record_round_statistic(STATS_RURAL_TAXES_COLLECTED, RURAL_TAX)
 		total_rural_tax += RURAL_TAX
 		auto_export()
 
@@ -132,6 +146,7 @@ SUBSYSTEM_DEF(treasury)
 
 	if (amt > 0)
 		// Player received money
+		record_round_statistic(STATS_DIRECT_TREASURY_TRANSFERS, amt)
 		if(source)
 			send_ooc_note("<b>MEISTER:</b> You received [amt]m. ([source])", name = target_name)
 			log_to_steward("+[amt] from treasury to [target_name] ([source])")
@@ -140,6 +155,7 @@ SUBSYSTEM_DEF(treasury)
 			log_to_steward("+[amt] from treasury to [target_name]")
 	else
 		// Player was fined
+		record_round_statistic(STATS_FINES_INCOME, amt)
 		if(source)
 			send_ooc_note("<b>MEISTER:</b> You were fined [amt]m. ([source])", name = target_name)
 			log_to_steward("[target_name] was fined [amt] ([source])")
@@ -161,20 +177,16 @@ SUBSYSTEM_DEF(treasury)
 	var/taxed_amount = 0
 	var/original_amt = amt
 	treasury_value += amt
-	if(character in bank_accounts)
-		if(HAS_TRAIT(character, TRAIT_NOBLE))
-			bank_accounts[character] += amt
-		else
-			taxed_amount = round(amt * tax_value)
-			amt -= taxed_amount
-			bank_accounts[character] += amt
-	else
+	if(!(character in bank_accounts))
 		return FALSE
+
+	taxed_amount = round(amt * get_tax_value_for(character))
+	amt -= taxed_amount
+	bank_accounts[character] += amt
 
 	log_to_steward("+[original_amt] deposited by [character.real_name] of which taxed [taxed_amount]")
 
-	return TRUE
-
+	return list(original_amt, taxed_amount)
 
 /datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, target)
 	if(!amt)
@@ -209,6 +221,7 @@ SUBSYSTEM_DEF(treasury)
 /datum/controller/subsystem/treasury/proc/distribute_estate_incomes()
 	for(var/mob/living/welfare_dependant in noble_incomes)
 		var/how_much = noble_incomes[welfare_dependant]
+		record_round_statistic(STATS_NOBLE_INCOME_TOTAL, how_much)
 		give_money_treasury(how_much, silent = TRUE)
 		total_noble_income += how_much
 		if(welfare_dependant.job == "Merchant")
@@ -229,6 +242,7 @@ SUBSYSTEM_DEF(treasury)
 	SStreasury.treasury_value += amt
 	SStreasury.total_export += amt
 	SStreasury.log_to_steward("+[amt] exported [D.name]")
+	record_round_statistic(STATS_STOCKPILE_EXPORTS_VALUE, amt)
 	if(!silent && amt >= EXPORT_ANNOUNCE_THRESHOLD) //Only announce big spending.
 		scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
 	D.lower_demand()
@@ -249,3 +263,54 @@ SUBSYSTEM_DEF(treasury)
 			total_value_exported += exported
 	if(total_value_exported >= EXPORT_ANNOUNCE_THRESHOLD)
 		scom_announce("Azure Peak exports [total_value_exported] mammons of surplus goods.")
+
+/datum/controller/subsystem/treasury/proc/remove_person(mob/living/person)
+	noble_incomes -= person
+	bank_accounts -= person
+	return TRUE
+
+/// Boilerplate that sets taxes and announces it to the world. Only changed taxes are announced. 
+/datum/controller/subsystem/treasury/proc/set_taxes(list/categories, good_announcement_text, bad_announcement_text)
+	var/final_text = null
+	var/bad_guy = FALSE // If any fine exemptions are removed or tax is increased, uses an alternative message
+	for(var/category in categories)
+		if(taxation_cat_settings[category]["taxAmount"] != categories[category]["taxAmount"])
+			if(categories[category]["taxAmount"] > taxation_cat_settings[category]["taxAmount"])
+				bad_guy = TRUE
+			final_text += "<br>[category] tax: [categories[category]["taxAmount"]]%. "
+		if(taxation_cat_settings[category]["fineExemption"] != categories[category]["fineExemption"])
+			if(taxation_cat_settings[category]["fineExemption"] && !categories[category]["fineExemption"])
+				bad_guy = TRUE
+			final_text += "[category] is [categories[category]["fineExemption"] ? "now exempt from fines" : "no longer exempt from fines"]."
+		taxation_cat_settings[category] = categories[category]
+
+	if(isnull(final_text))
+		return
+	
+	var/final_announcement_text = good_announcement_text
+	if(bad_guy)
+		final_announcement_text = bad_announcement_text
+
+	priority_announce(final_text, final_announcement_text, pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
+
+/// Returns correct tax (0, 100) for a living mob based on its traits & job
+/datum/controller/subsystem/treasury/proc/get_tax_value_for(mob/living/person)
+	if(HAS_TRAIT(person, TRAIT_NOBLE))
+		return taxation_cat_settings[TAX_CAT_NOBLE]["taxAmount"] / 100
+	else if(HAS_TRAIT(person, TRAIT_RESIDENT) || (person.job in GLOB.yeoman_positions))
+		return taxation_cat_settings[TAX_CAT_YEOMEN]["taxAmount"] / 100
+	else if(person.job in GLOB.church_positions)
+		return taxation_cat_settings[TAX_CAT_CHURCH]["taxAmount"] / 100
+	else
+		return taxation_cat_settings[TAX_CAT_PEASANTS]["taxAmount"] / 100
+
+/// Checks if a given mob can be fined, based on its traits & job. TRUE if can be fined, FALSE if protected by decrees
+/datum/controller/subsystem/treasury/proc/check_fine_exemption(mob/living/person)
+	if(HAS_TRAIT(person, TRAIT_NOBLE))
+		return taxation_cat_settings[TAX_CAT_NOBLE]["fineExemption"]
+	else if(HAS_TRAIT(person, TRAIT_RESIDENT) || (person.job in GLOB.yeoman_positions))
+		return taxation_cat_settings[TAX_CAT_NOBLE]["fineExemption"]
+	else if(person.job in GLOB.church_positions)
+		return taxation_cat_settings[TAX_CAT_CHURCH]["fineExemption"]
+	else
+		return taxation_cat_settings[TAX_CAT_PEASANTS]["fineExemption"]

@@ -4,48 +4,17 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /mob/living/carbon/human/Topic(href, href_list)
 	var/observer_privilege = isobserver(usr)
 
+	if(href_list["task"] == "bloodpoolinfo")
+		to_chat(usr, span_notice("Usable blood that yields Vitae and total blood is not the same thing. It takes some time for blood to become nourishing for us."))
+		return
+
 	if(href_list["task"] == "view_headshot")
 		if(!ismob(usr))
 			return
-		var/mob/user = usr
-		var/list/dat = list()
-		dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[src]</b></font></div>"
-		var/legacy_check = FALSE
-		if(isnull(flavortext_display) && !isnull(flavortext))
-			if(isnull(client.prefs?.flavortext_display))	// They're both null, meaning this is a legacy char being examined.
-				is_legacy = TRUE		//We toggle it on in prefs and on mob
-				client.prefs.is_legacy = TRUE
-				legacy_check = TRUE
-				client.prefs?.flavortext_display = replacetext(flavortext, "\n", "<BR>")	//We only do the basic legacy conversion
-				flavortext_display = client.prefs?.flavortext_display
-			else
-				flavortext_display = client.prefs?.flavortext_display	//In this case, something went wrong and we can fix it.
-		if(isnull(ooc_notes_display) && !isnull(ooc_notes))		// Ditto for OOC notes.
-			if(isnull(client.prefs?.ooc_notes_display))
-				is_legacy = TRUE
-				client.prefs.is_legacy = TRUE
-				legacy_check = TRUE
-				client.prefs?.ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
-				ooc_notes_display = client.prefs?.ooc_notes_display
-			else
-				ooc_notes_display = client.prefs?.ooc_notes_display
-		if(legacy_check)	//If this is how a Legacy char was established, we save it.
-			client.prefs?.save_character()
-		if(is_legacy)
-			dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
-		if(valid_headshot_link(null, headshot_link, TRUE))
-			dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
-		if(flavortext)
-			dat += "<div align='left'>[flavortext_display]</div>"
-		if(ooc_notes)
-			dat += "<br>"
-			dat += "<div align='center'><b>OOC notes</b></div>"
-			dat += "<div align='left'>[ooc_notes_display]</div>"
-		if(ooc_extra)
-			dat += "[ooc_extra]"
-		var/datum/browser/popup = new(user, "[src]", nwidth = 600, nheight = 800)
-		popup.set_content(dat.Join())
-		popup.open(FALSE)
+		var/datum/examine_panel/mob_examine_panel = new(src)
+		mob_examine_panel.holder = src
+		mob_examine_panel.viewing = usr
+		mob_examine_panel.ui_interact(usr)
 		return
 
 	if(href_list["inspect_limb"] && (observer_privilege || usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY)))
@@ -117,6 +86,14 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(usr, span_warning("I can't reach that! Something is covering it."))
 			return
 
+	if(href_list["species_lore"])
+		if(!dna?.species?.desc)
+			return
+		var/datum/browser/popup = new(usr, "species_info", "<center>Lore</center>", 460, 550)
+		popup.set_content(dna.species.desc)
+		popup.open()
+		return
+
 	if(href_list["undiesthing"]) //canUseTopic check for this is handled by mob/Topic()
 		if(!get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
 			to_chat(usr, span_warning("I can't reach that! Something is covering it."))
@@ -127,6 +104,22 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(do_after(usr, 50, needhand = 1, target = src))
 			var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
 			chest.remove_bodypart_feature(underwear.undies_feature)
+			underwear.forceMove(get_turf(src))
+			if(iscarbon(usr))
+				var/mob/living/carbon/C = usr
+				C.put_in_hands(underwear)
+			underwear = null
+
+	if(href_list["legwearsthing"]) //canUseTopic check for this is handled by mob/Topic()
+		if(!get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
+			to_chat(usr, span_warning("I can't reach that! Something is covering it."))
+			return
+		if(!legwear_socks)
+			return
+		usr.visible_message(span_warning("[usr] starts taking off [src]'s [legwear_socks.name]."),span_warning("I start taking off [src]'s [legwear_socks.name]..."))
+		if(do_after(usr, 50, needhand = 1, target = src))
+			var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+			chest.remove_bodypart_feature(legwear_socks.legwears_feature)
 			underwear.forceMove(get_turf(src))
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
@@ -218,7 +211,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					dat +=("PER: \Roman [H.STAPER]<br>")
 					dat +=("INT: \Roman [H.STAINT]<br>")
 					dat +=("CON: \Roman [H.STACON]<br>")
-					dat +=("END: \Roman [H.STAEND]<br>")
+					dat +=("END: \Roman [H.STAWIL]<br>")
 					dat +=("SPD: \Roman [H.STASPD]<br>")
 				else
 					dat +=("STR: \Roman [rand(1,20)]<br>")
@@ -534,28 +527,28 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /proc/skilldiff_report(var/input)
 	switch (input)
 		if(-6)
-			return "<font color = '#ff4ad2'>I know nothing. They -- everything.</font>"
+			return "<font color = '#ff4ad2'>I know nothing. They -- everything</font>"
 		if(-5)
-			return "<font color = '#eb0000'<i>I stand no chance against them.</i></font>"
+			return "<font color = '#eb0000'><i>I stand no chance against them</i></font>"
 		if(-4)
-			return "<font color = '#c53c3c'<i>I am inferior.</i></font>"
+			return "<font color = '#c53c3c'><i>I am inferior</i></font>"
 		if(-3)
-			return "<font color = '#db8484'<i>I am notably worse.</i></font>"
+			return "<font color = '#db8484'><i>I am notably worse</i></font>"
 		if(-2)
-			return "<font color = '#e4a1a1'<i>I am worse.</i></font>"
+			return "<font color = '#e4a1a1'><i>I am worse</i></font>"
 		if(-1)
-			return "<font color = '#f8d3d3'<i>I am slightly worse.</i></font>"
+			return "<font color = '#f8d3d3'><i>I am slightly worse</i></font>"
 		if(0)
-			return "We are equal."
+			return "We are equal"
 		if(1)
-			return "<font color = '#3f6343'> I am slightly better.</font>"
+			return "<font color = '#3f6343'>I am slightly better</font>"
 		if(2)
-			return "<font color = '#49944f'> I am better.</font>"
+			return "<font color = '#49944f'>I am better</font>"
 		if(3)
-			return "<font color = '#44db51'> I am notably better.</font>"
+			return "<font color = '#44db51'>I am notably better</font>"
 		if(4)
-			return"<font color = '#62b4be'> I am superior.</font>"
+			return"<font color = '#62b4be'>I am superior</font>"
 		if(5)
-			return "<font color = '#2bdcfc'> They have no chance in this field.</font>"
+			return "<font color = '#2bdcfc'>They have no chance in this field</font>"
 		if(6)
-			return "<font color = '#ff4ad2'> They know nothing. A whelp.</font>"
+			return "<font color = '#ff4ad2'>They know nothing. A whelp</font>"

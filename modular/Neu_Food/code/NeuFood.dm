@@ -8,8 +8,8 @@
 
 /*	........   Templates / Base items   ................ */
 /obj/item/reagent_containers // added vars used in neu cooking, might be used for other things too in the future. How it works is in each items attackby code.
-	var/short_cooktime = 6 SECONDS
-	var/long_cooktime = 10 SECONDS
+	var/short_cooktime = 2 SECONDS
+	var/long_cooktime = 3 SECONDS
 
 /obj/item/reagent_containers/proc/update_cooktime(mob/user)
 	if(user.mind)

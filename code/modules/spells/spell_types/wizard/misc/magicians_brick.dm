@@ -14,7 +14,7 @@
 	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Valtarem!"
+	invocations = list("Valtarem!")
 	invocation_type = "shout"
 
 	glow_color = GLOW_COLOR_ARCANE

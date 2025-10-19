@@ -12,7 +12,7 @@
 	school = "transmutation"
 	overlay_state = "giants_strength"
 	spell_tier = 2
-	invocation = "Vis Gigantis." // Vis - Strength. Gigantis - Singular possessive form.
+	invocations = list("Vis Gigantis.") // Vis - Strength. Gigantis - Singular possessive form.
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -52,7 +52,7 @@
 	var/outline_colour ="#8B0000" // Different from strength potion cuz red = strong
 	id = "giantstrength"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/giants_strength
-	effectedstats = list("strength" = 3)
+	effectedstats = list(STATKEY_STR = 3)
 	duration = 1 MINUTES
 
 /datum/status_effect/buff/giants_strength/other
@@ -62,7 +62,7 @@
 	. = ..()
 	var/filter = owner.get_filter(GIANTSSTRENGTH_FILTER)
 	if (!filter)
-		owner.add_filter(GIANTSSTRENGTH_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(GIANTSSTRENGTH_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
 	to_chat(owner, span_warning("My muscles strengthen."))
 
 

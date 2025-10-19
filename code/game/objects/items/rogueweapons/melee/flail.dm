@@ -4,7 +4,7 @@
 	name = "flail"
 	desc = "This is a swift, iron flail. Strikes hard and far."
 	icon_state = "iflail"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/blunt32.dmi'
 	sharpness = IS_BLUNT
 	//dropshrink = 0.75
 	wlength = WLENGTH_NORMAL
@@ -15,7 +15,6 @@
 	smeltresult = /obj/item/ingot/iron
 	parrysound = list('sound/combat/parry/parrygen.ogg')
 	swingsound = BLUNTWOOSH_MED
-	blade_dulling = DULLING_SHAFT_WOOD
 	throwforce = 5
 	wdefense = 0
 	minstr = 4
@@ -55,7 +54,7 @@
 	no_early_release = TRUE
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	recovery = 10
-	damfactor = 1.6
+	damfactor = 1.9
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"
@@ -68,14 +67,14 @@
 	reach = 2
 
 /datum/intent/flail/strike/smash/militia
-	damfactor = 1.35
+	damfactor = 1.4
 
 /datum/intent/flail/strike/smash/golgotha
 	hitsound = list('sound/items/beartrap2.ogg')
 
 /datum/intent/flail/strike/smashrange
 	name = "ranged smash"
-	chargetime = 10
+	chargetime = 1 SECONDS
 	chargedrain = 2
 	no_early_release = TRUE
 	recovery = 30
@@ -102,16 +101,17 @@
 
 /obj/item/rogueweapon/flail/aflail
 	name = "decrepit flail"
-	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp is upon its form."
+	desc = "A spiked ball of wrought bronze, chained to a rotwooden handle. The chains groan with every twirl, strained by forces it hadn't felt in millenia; swing it a bit too hard, and there's a chance that the flailhead might completely fly off."
 	icon_state = "aflail"
 	force = 22
 	max_integrity = 175
-	smeltresult = /obj/item/ingot/aalloy
-	blade_dulling = DULLING_SHAFT_CONJURED
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/rogueweapon/flail/sflail/paflail
 	name = "ancient flail"
-	desc = "This is a swift, ancient flail. Strikes hard and far. Aeon's grasp has been molded away from its form."
+	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. They say that His children worshipped the flail above all else, for its twirls replicated the Comet Syon's blazing flights."
 	icon_state = "aflail"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -122,19 +122,93 @@
 	smeltresult = /obj/item/ingot/steel
 	minstr = 5
 
+/obj/item/rogueweapon/flail/sflail/silver
+	force = 35
+	icon_state = "silverflail"
+	name = "silver morningstar"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
+	smeltresult = /obj/item/ingot/silver
+	minstr = 12
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+
 /obj/item/rogueweapon/flail/sflail/necraflail
 	name = "swift journey"
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
+	force = 35
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/necraflail/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail
-	name = "psydonian flail"
+	name = "psydonic flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
+	force = 35
+	minstr = 10
+	wdefense = 0
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
-	. = ..()							//+3 force, +50 int, +1 def, make silver
-	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+	
+/obj/item/rogueweapon/flail/sflail/psyflail/old
+	name = "enduring flail"
+	desc = "An ornate flail, its silver tarnished by neglect. Bring down the COMET on the unholy."
+	icon_state = "psyflail"
+	force = 30
+	minstr = 5
+	wdefense = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
+
+/obj/item/rogueweapon/flail/sflail/psyflail/relic
+	name = "Consecratia"
+	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
+	icon_state = "psymorningstar"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+
+/obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 0,\
+	)
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10
@@ -160,7 +234,6 @@
 	associated_skill = /datum/skill/combat/polearms
 	anvilrepair = /datum/skill/craft/carpentry
 	dropshrink = 0.9
-	blade_dulling = DULLING_SHAFT_WOOD
 	wdefense = 4
 	resistance_flags = FLAMMABLE
 
@@ -183,17 +256,12 @@
 	gripped_intents = list(/datum/intent/flail/strike/matthiosflail, /datum/intent/flail/strike/smash/matthiosflail)
 	associated_skill = /datum/skill/combat/whipsflails
 	slot_flags = ITEM_SLOT_BACK
-	blade_dulling = DULLING_SHAFT_GRAND
 	anvilrepair = /datum/skill/craft/weaponsmithing
 
 
-/obj/item/rogueweapon/flail/peasantwarflail/matthios/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_COMMIE))
-		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCHING THIS FLAIL, CEASE OR BE PUNISHED!</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
+/obj/item/rogueweapon/flail/peasantwarflail/matthios/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_COMMIE, "FLAIL")
 
 /obj/item/rogueweapon/flail/militia
 	name = "militia flail"

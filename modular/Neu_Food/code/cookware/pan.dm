@@ -12,7 +12,6 @@
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	can_parry = TRUE
 	associated_skill = /datum/skill/craft/cooking // This make pan a "viable" weapon for cook with high hit / parry chance. Won't carry them alone ofc.
-	has_inspect_verb = TRUE // For snowflake and allowing you to examine the pan's properties lmao
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	force = 20
@@ -31,5 +30,7 @@
 
 /obj/item/cooking/pan/aalloy
 	name = "decrepit pan"
-	desc = "A decrepit old pan. Aeon's grasp is upon it."
+	desc = "Frayed bronze, wrought into a handheld griddle. Just a little oil's more than enough to slicken the surprisingly-unmarred surface."
 	icon_state = "apan"
+	color = "#bb9696"
+	sellprice = 25

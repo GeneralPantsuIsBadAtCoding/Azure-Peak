@@ -12,7 +12,7 @@
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 2
-	invocation = "Perstare Sicut Saxum." // Endure like Stone 
+	invocations = list("Perstare Sicut Saxum.") // Endure like Stone
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -52,7 +52,7 @@
 	var/outline_colour ="#808080" // Granite Grey
 	id = "stoneskin"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/stoneskin
-	effectedstats = list("constitution" = 5)
+	effectedstats = list(STATKEY_CON = 5)
 	var/hadcritres = FALSE
 	duration = 1 MINUTES
 
@@ -63,7 +63,7 @@
 	. = ..()
 	var/filter = owner.get_filter(STONESKIN_FILTER)
 	if (!filter)
-		owner.add_filter(STONESKIN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(STONESKIN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
 	to_chat(owner, span_warning("My skin hardens like stone."))
 
 /datum/status_effect/buff/stoneskin/on_remove()

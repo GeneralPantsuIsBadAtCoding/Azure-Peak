@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/wither
 	name = "Wither"
 	desc = "Lashes out a delayed line of dark magic, lowering the physical prowess of all in it's path."
-	cost = 6
+	cost = 3
 	releasedrain = 50
 	overlay_state = "wither" // just using the curse blob, it's placeholder.
 	chargedrain = 2
@@ -15,7 +15,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3 // AOE
-	invocation = "Arescentem!"
+	invocations = list("Arescentem!")
 	invocation_type = "shout"
 	glow_color = "#b884f8" // evil ass purple
 	glow_intensity = GLOW_INTENSITY_HIGH

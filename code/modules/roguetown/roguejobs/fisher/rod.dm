@@ -66,8 +66,10 @@
 	var/ft = 120 //Time to get a catch, in ticks
 	var/fpp =  100 - (40 + (sl * 10)) // Fishing power penalty based on fishing skill level
 	var/frwt = list(/turf/open/water/river, /turf/open/water/cleanshallow, /turf/open/water/pond)
-	var/salwt = list(/turf/open/water/ocean, /turf/open/water/ocean/deep)
+	var/salwt_coast = list(/turf/open/water/ocean)
+	var/salwt_deep = list(/turf/open/water/ocean/deep)
 	var/mud = list(/turf/open/water/swamp, /turf/open/water/swamp/deep)
+	var/list/modlist
 	if(user.used_intent.type == SPEAR_BASH)
 		return ..()
 
@@ -96,20 +98,39 @@
 							else
 								fishchance -= bp // Deduct penalties from bait quality, if any
 								fishchance -= fpp // Deduct a penalty the lower our fishing level is (-0 at legendary)
-						var/mob/living/fisherman = user
+						var/mob/living/carbon/human/fisherman = user
+						modlist = baited.fishingMods.Copy()
+						if(ishuman(fisherman))
+							if(fisherman.patron.type == /datum/patron/divine/abyssor)
+								modlist["dangerFishingMod"] *= 1.10  // +10% danger
+								modlist["treasureFishingMod"] *= 0.90  // -10% treasure
+								modlist["rareFishingMod"] *= 1.25  // +25% rare
+							if(fisherman.STALUC > 10)
+								var/trait_bonus = 0
+								if(HAS_TRAIT(fisherman, TRAIT_CAUTIOUS_FISHER))
+									trait_bonus = 0.20
+								var/tier1_bonus = min(fisherman.STALUC - 10, 5) // 5% bonus per point up until 15
+								var/tier2_bonus = max(fisherman.STALUC - 15, 0) // 1% bonus per point past 15
+								var/total_bonus = (tier1_bonus * 0.05) + (tier2_bonus * 0.01) + (trait_bonus)
+								modlist["rareFishingMod"] *= (1 + total_bonus)
+								modlist["treasureFishingMod"] *= (1 + total_bonus)
+								modlist["dangerFishingMod"] *= (1 - (trait_bonus * 3))
 						if(prob(fishchance)) // Finally, roll the dice to see if we fish.
 							var/A
 							if(target.type in frwt)
-								A = pickweight(baited.freshfishloot)
-							else if(target.type in salwt)
-								A = pickweight(baited.seafishloot)
+								A = pickweightAllowZero(createFreshWaterFishWeightListModlist(modlist))
+							else if(target.type in salwt_coast)
+								A = pickweightAllowZero(createCoastalSeaFishWeightListModlist(modlist))
+							else if(target.type in salwt_deep)
+								A = pickweightAllowZero(createDeepSeaFishWeightListModlist(modlist))
 							else if(target.type in mud)
-								A = pickweight(baited.mudfishloot)
+								A = pickweightAllowZero(createMudFishWeightListModlist(modlist))
 							if(A)
 								var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 								to_chat(user, "<span class='notice'>Something tugs the line!</span>")
+								target.balloon_alert_to_viewers("Tug!")
 								playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
-								if(!do_after(user,ow, target = target))
+								if(!do_after(user,ow, target = target, same_direction = TRUE))
 									if(ismob(A)) // TODO: Baits with mobs on their fishloot lists OR water tiles with their own fish loot pools
 										var/mob/M = A
 										if(M.type in subtypesof(/mob/living/simple_animal/hostile))
@@ -120,9 +141,10 @@
 									else
 										new A(user.loc)
 										to_chat(user, "<span class='warning'>Reel 'em in!</span>")
+										teleport_to_dream(user, 10000, 1)
 										user.mind.add_sleep_experience(/datum/skill/labor/fishing, round(fisherman.STAINT, 2), FALSE) // Level up!
 										record_featured_stat(FEATURED_STATS_FISHERS, fisherman)
-										GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+										record_round_statistic(STATS_FISH_CAUGHT)
 										playsound(src.loc, 'sound/items/Fish_out.ogg', 100, TRUE)
 									if(prob(80 - (sl * 10))) // Higher skill levels make you less likely to lose your bait
 										to_chat(user, "<span class='warning'>Damn, it ate my bait.</span>")
@@ -157,4 +179,7 @@
 
 /obj/item/fishingrod/aalloy
 	name = "decrepit fishing rod"
+	desc = "The Comet Syon's impact drowned the world, long ago. The waves've long since receded, but His greatest works remain shrouded far beneath the sea."
 	icon_state = "arod"
+	color = "#bb9696"
+	sellprice = 15

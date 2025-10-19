@@ -77,9 +77,13 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	dat += "</center>"
 
+	var/list/wanderers = list()
+	var/list/job_list = list()
+
 	for(var/datum/job/job in SSjob.occupations)
-		if(istype(job, /datum/job/roguetown/adventurer/courtagent) || istype(job, /datum/job/roguetown/wretch))
-			continue
+		var/wanderer_job = FALSE
+		if(istype(job, /datum/job/roguetown/adventurer) || istype(job, /datum/job/roguetown/wretch) || istype(job, /datum/job/roguetown/adventurer/courtagent))
+			wanderer_job = TRUE
 		if(!job)
 			continue
 		var/readiedas = 0
@@ -102,8 +106,12 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 										if(Lord.brohand == player.ckey)
 											thing = "*[thing]*"
 											break
-							PL += thing
-
+							if(wanderer_job)
+								wanderers += thing
+							else
+								PL += thing
+		if(wanderer_job)
+			continue
 		var/list/PL2 = list()
 		for(var/i in 1 to PL.len)
 			if(i == PL.len)
@@ -115,9 +123,19 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 		if(readiedas)
 			if(PL2.len)
-				dat += "<B>[str_job]</B> ([readiedas]) - [PL2.Join()]<br>"
+				job_list += "<B>[str_job]</B> ([readiedas]) - [PL2.Join()]<br>"
 			else
-				dat += "<B>[str_job]</B> ([readiedas])<br>"
+				job_list += "<B>[str_job]</B> ([readiedas])<br>"
+	if(length(wanderers))
+		var/wanderers_listing = "<B>Wanderers</B> ([wanderers.len]) - "
+		for(var/i in 1 to wanderers.len)
+			if(i == wanderers.len)
+				wanderers_listing += "[wanderers[i]]"
+			else
+				wanderers_listing += "[wanderers[i]], "
+		wanderers_listing += "<br>"
+		job_list.Insert(1, wanderers_listing)
+	dat += job_list
 	var/datum/browser/popup = new(src, "lobby_window", "<div align='center'>LOBBY</div>", 330, 430)
 	popup.set_window_options("can_close=1;can_minimize=0;can_maximize=0;can_resize=1;")
 	popup.set_content(dat.Join())

@@ -3,7 +3,7 @@
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/dendor_vines
 	weight = 8
-	earliest_start = 0 SECONDS
+	earliest_start = 10 MINUTES
 	max_occurrences = 2
 	min_players = 3
 	todreq = list("dusk", "night", "dawn", "day")
@@ -34,7 +34,7 @@
 	name = "Dendor's Vines (Boon)"
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/dendor_vines_good
-	earliest_start = 0 SECONDS
+	earliest_start = 10 MINUTES
 	weight = 4
 	max_occurrences = 2
 	min_players = 3
@@ -67,7 +67,7 @@
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/dendor_fertility
 	weight = 4
-	earliest_start = 0 SECONDS
+	earliest_start = 10 MINUTES
 	max_occurrences = 2
 	min_players = 3
 	allowed_storytellers = list(/datum/storyteller/dendor)
@@ -80,7 +80,7 @@
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/dendor_ire
 	weight = 4
-	earliest_start = 0 SECONDS
+	earliest_start = 10 MINUTES
 	max_occurrences = 2
 	min_players = 3
 	allowed_storytellers = list(/datum/storyteller/dendor)

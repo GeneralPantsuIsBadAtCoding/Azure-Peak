@@ -51,7 +51,7 @@ AI's work by planning specific behaviors, and subtrees are datums that bundle th
 ```dm
 /datum/ai_controller/basic/cow
 	ai_traits = null
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 	idle_behavior = null
 
 ```

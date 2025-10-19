@@ -9,6 +9,33 @@
  */
 
 
+/// Standard maptext
+/// Prepares a text to be used for maptext. Use this so it doesn't look hideous.
+#define MAPTEXT(text) {"<span class='maptext'>[##text]</span>"}
+
+
+/**
+ * Pixel-perfect scaled fonts for use in the MAP element as defined in skin.dmf
+ *
+ * Four sizes to choose from, use the sizes as mentioned below.
+ * Between the variations and a step there should be an option that fits your use case.
+ * BYOND uses pt sizing, different than px used in TGUI. Using px will make it look blurry due to poor antialiasing.
+ *
+ * Default sizes are prefilled in the macro for ease of use and a consistent visual look.
+ * To use a step other than the default in the macro, specify it in a span style.
+ * For example: MAPTEXT_PIXELLARI("<span style='font-size: 24pt'>Some large maptext here</span>")
+ */
+/// Large size (ie: context tooltips) - Size options: 12pt 24pt.
+#define MAPTEXT_PIXELLARI(text) {"<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px black'>[##text]</span>"}
+
+/// Standard size (ie: normal runechat) - Size options: 6pt 12pt 18pt.
+#define MAPTEXT_GRAND9K(text) {"<span style='font-family: \"Grand9K Pixel\"; font-size: 6pt; -dm-text-outline: 1px black'>[##text]</span>"}
+
+/// Small size. (ie: context subtooltips, spell delays) - Size options: 12pt 24pt.
+#define MAPTEXT_TINY_UNICODE(text) {"<span style='font-family: \"TinyUnicode\"; font-size: 12pt; line-height: 0.75; -dm-text-outline: 1px black'>[##text]</span>"}
+
+/// Smallest size. (ie: whisper runechat) - Size options: 6pt 12pt 18pt.
+#define MAPTEXT_SPESSFONT(text) {"<span style='font-family: \"Spess Font\"; font-size: 6pt; line-height: 1.4; -dm-text-outline: 1px black'>[##text]</span>"}
 
 /proc/format_table_name(table as text)
 	return CONFIG_GET(string/feedback_tableprefix) + table
@@ -80,6 +107,12 @@
 /proc/adminscrub(t,limit=MAX_MESSAGE_LEN)
 	return copytext((html_encode(strip_html_simple(t))),1,limit)
 
+/proc/remove_color_tags(html_text)
+    var/output = html_text
+    output = replacetext(output, regex("<font\[^>\]*color=\[^>\]*>", "g"), "")
+    output = replacetext(output, "</font>", "")
+    output = replacetext(output, regex("color=\[^ >\]*", "g"), "")
+    return output
 
 //Returns null if there is any bad text in the string
 /proc/reject_bad_text(text, max_length=512)
@@ -131,23 +164,25 @@
 		var/ascii_char = text2ascii(t_in,i)
 		switch(ascii_char)
 			// A  .. Z
-			if(65 to 90)			//Uppercase Letters
+			if(65 to 90)
 				t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 4
 
 			// a  .. z
-			if(97 to 122)			//Lowercase Letters
-				if(last_char_group<2)
-//					t_out += ascii2text(ascii_char-32)	//Force uppercase first character
-					t_out += ascii2text(ascii_char)
-				else
-					t_out += ascii2text(ascii_char)
+			if(97 to 122)
+				t_out += ascii2text(ascii_char)
+				number_of_alphanumeric++
+				last_char_group = 4
+
+			// special accented characters (diacritical)
+			if(192 to 383)
+				t_out+= ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 4
 
 			// 0  .. 9
-			if(48 to 57)			//Numbers
+			if(48 to 57)
 				if(!last_char_group)
 					continue	//suppress at start of string
 				if(!allow_numbers)
@@ -163,21 +198,16 @@
 				t_out += ascii2text(ascii_char)
 				last_char_group = 2
 
-			// ~   |   @  :  #  $  %  &  *  +
-			if(126,124,64,58,35,36,37,38,42,43)			//Other symbols that we'll allow (mainly for AI)
-				if(!last_char_group)
-					continue	//suppress at start of string
-				if(!allow_numbers)
-					continue
-				t_out += ascii2text(ascii_char)
-				last_char_group = 2
-
 			//Space
 			if(32)
 				if(last_char_group <= 1)
 					continue	//suppress double-spaces and spaces at start of string
 				t_out += ascii2text(ascii_char)
 				last_char_group = 1
+
+			// accounts for fallback character on poor encoding
+			if(65533)
+				continue
 			else
 				return
 
@@ -186,10 +216,6 @@
 
 	if(last_char_group == 1)
 		t_out = copytext(t_out,1,length(t_out))	//removes the last character (in this case a space)
-
-	for(var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai"))	//prevents these common metagamey names
-		if(cmptext(t_out,bad_name))
-			return	//(not case sensitive)
 
 	return t_out
 
@@ -551,7 +577,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 	return t
 
-/proc/parsemarkdown_basic_step2(t)
+/proc/parsemarkdown_basic_step2(t, hyperlink=FALSE)
 	if(length(t) <= 0)
 		return
 
@@ -573,11 +599,15 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	t = replacetext(t, "$0", "%")
 	t = replacetext(t, "$-", "$")
 
+	if(hyperlink)
+		testing("t is [t]")
+		t = replacetext(t, regex(@"https?:\/\/[^\s$.?#].[^\s]*", "gi"), "<a href=\"$0\">$0</a>")
+
 	return t
 
-/proc/parsemarkdown_basic(t, limited=FALSE, barebones = FALSE)
+/proc/parsemarkdown_basic(t, limited=FALSE, barebones = FALSE, hyperlink=FALSE)
 	t = parsemarkdown_basic_step1(t, limited, barebones)
-	t = parsemarkdown_basic_step2(t)
+	t = parsemarkdown_basic_step2(t, hyperlink)
 	return t
 
 /proc/parsemarkdown(t, mob/user=null, limited=FALSE)
@@ -888,3 +918,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /proc/sanitize_css_class_name(name)
 	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
 	return replacetext(name, regex, "")
+
+/proc/endswith(input_text, ending)
+	var/input_length = LAZYLEN(ending)
+	return !!findtext(input_text, ending, -input_length)

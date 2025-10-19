@@ -15,14 +15,14 @@
 	name = "Shortsword"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/iron/short,
+					/obj/item/rogueweapon/sword/short/iron,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/messer
 	name = "Messer"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/sword/iron/messer,
+					/obj/item/rogueweapon/sword/short/messer/iron,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/mace
@@ -54,28 +54,28 @@
 				)
 
 /datum/supply_pack/rogue/iron_weapons/spear
-	name = "Iron Spear"
+	name = "Spear"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/spear,
 				)
 
 /datum/supply_pack/rogue/iron_weapons/flail
-	name = "Iron Flail"
+	name = "Flail"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/flail,
 				)
 
-/datum/supply_pack/rogue/iron_weapons/flail
-	name = "Iron Flail"
+/datum/supply_pack/rogue/iron_weapons/hammer
+	name = "Warhammer"
 	cost = 25 // 1 Iron Ingot
 	contains = list(
-					/obj/item/rogueweapon/flail,
+					/obj/item/rogueweapon/mace/warhammer,
 				)
 
-/datum/supply_pack/rogue/iron_weapons/zweihander
-	name = "Iron Zweihander"
+/datum/supply_pack/rogue/iron_weapons/claymore
+	name = "Claymore"
 	cost = 40 // 2 Iron Ingot
 	contains = list(
 					/obj/item/rogueweapon/greatsword/zwei,

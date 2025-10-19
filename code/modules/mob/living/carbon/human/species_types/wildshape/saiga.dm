@@ -20,7 +20,7 @@
 
 		src.STASTR = 10
 		src.STACON = 13
-		src.STAEND = 18 //Because I don't want to give it TRAIT_INFINITE_STAMINA
+		src.STAWIL = 18 //Because I don't want to give it TRAIT_INFINITE_STAMINA
 		src.STASPD = 13
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/saigahoofs)
@@ -119,7 +119,7 @@
 	item_state = null
 	lefthand_file = null
 	righthand_file = null
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/misc32.dmi'
 	max_blade_int = 600
 	max_integrity = 600
 	force = 20
@@ -132,7 +132,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	can_parry = TRUE //I just think this is cool as fuck, sue me
 	sharpness = FALSE
-	demolition_mod = 1.25
+	demolition_mod = 1.5
 	swingsound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
 	possible_item_intents = list(/datum/intent/simple/saiga)
 	parrysound = list('sound/combat/parry/parrygen.ogg')

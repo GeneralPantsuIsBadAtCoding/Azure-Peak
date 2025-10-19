@@ -224,6 +224,14 @@
 			if (upd)
 				M.update_damage_overlays()
 
+/datum/reagent/water/blessed/on_mob_metabolize(mob/living/L)
+	..()
+	if(L.mob_biotypes & MOB_UNDEAD)
+		L.adjust_fire_stacks(2)
+		L.ignite_mob()
+		L.emote("scream")
+		L.visible_message(span_warning("[L] erupts into angry fizzling and hissing!"), span_warning("BLESSED WATER!!! IT BURNS!!!"))
+
 /datum/reagent/water/blessed/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if (!istype(M))
 		return ..()

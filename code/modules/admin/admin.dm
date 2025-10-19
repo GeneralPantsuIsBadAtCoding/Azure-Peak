@@ -5,6 +5,11 @@
 		if(check_rights_for(C, R_ADMIN))
 			to_chat(C, msg)
 
+/proc/spawn_message_admins(msg)
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	for(var/client/C in GLOB.admins)
+		if(check_rights_for(C, R_ADMIN) && (C.prefs.admin_chat_toggles & CHAT_ADMINSPAWN))
+			to_chat(C, msg)
 
 /proc/relay_msg_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
@@ -90,6 +95,16 @@
 			patron = initial(living.patron.name)
 		body += "<br><br>Current Patron: [patron]"
 
+		var/idstatus = "<br>ID Status: "
+		if(!M.ckey)
+			idstatus += "No key!"
+		else if(!M.check_agevet())
+			idstatus += "Unverified"
+		else
+			var/vetadmin = LAZYACCESS(GLOB.agevetted_list, M.ckey)
+			idstatus += "<b>Age Verified</b> by [vetadmin]"
+		body += idstatus
+
 		//Azure port. Incompatibility.
 		/*var/curse_string = ""
 		if(ishuman(M))
@@ -163,15 +178,14 @@
 
 	body += "<div id='skills-section'>"
 	body += "<h3>Skills</h3><ul>"
-	if(M.mind)
-		for(var/skill_type in SSskills.all_skills)
-			var/datum/skill/skill = GetSkillRef(skill_type)
-			if(skill in M.skills?.known_skills)
-				body += "<li>[initial(skill.name)]: [M.skills?.known_skills[skill]] "
-			else
-				body += "<li>[initial(skill.name)]: 0"
-			body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];increase_skill=[REF(M)];skill=[skill.type]'>+</a> "
-			body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];decrease_skill=[REF(M)];skill=[skill.type]'>-</a></li>"
+	for(var/skill_type in SSskills.all_skills)
+		var/datum/skill/skill = GetSkillRef(skill_type)
+		if(skill in M.skills?.known_skills)
+			body += "<li>[initial(skill.name)]: [M.skills?.known_skills[skill]] "
+		else
+			body += "<li>[initial(skill.name)]: 0"
+		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];increase_skill=[REF(M)];skill=[skill.type]'>+</a> "
+		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];decrease_skill=[REF(M)];skill=[skill.type]'>-</a></li>"
 	body += "</ul></div>"
 
 	body += "<div id='languages-section'>"
@@ -197,9 +211,9 @@
 		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];add_stat=[REF(M)];stat=perception'>+</a> "
 		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];lower_stat=[REF(M)];stat=perception'>-</a></li>"
 
-		body += "<li>Endurance: [living.STAEND] "
-		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];add_stat=[REF(M)];stat=endurance'>+</a> "
-		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];lower_stat=[REF(M)];stat=endurance'>-</a></li>"
+		body += "<li>Willpower: [living.STAWIL] "
+		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];add_stat=[REF(M)];stat=willpower'>+</a> "
+		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];lower_stat=[REF(M)];stat=willpower'>-</a></li>"
 
 		body += "<li>Constitution: [living.STACON] "
 		body += "<a class='skill-btn' href='?_src_=holder;[HrefToken()];add_stat=[REF(M)];stat=constitution'>+</a> "
@@ -879,3 +893,30 @@
 			M.set_resting(FALSE, TRUE)
 
 	message_admins("[key_name(usr)] used Toggle Wake In View.")
+
+GLOBAL_VAR_INIT(extend_round_timestamp, 0)
+/datum/admins/proc/extend_round()
+	set name = "Extend Round"
+	set category = "-Server-"
+	set hidden = FALSE
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(alert("Prolong the end of the round by 30 minutes. This delays the vote, or delays the end after the vote is successful. Are you sure?",,"Yes","Cancel") == "Cancel")
+		return
+
+	if(world.time < GLOB.extend_round_timestamp + (1 MINUTES))
+		to_chat(usr, "<span class='notice'>Someone recently pressed this button! Wait a minute before pressing it again.</span>")
+		return
+
+	if((GLOB.round_timer > world.time + (3 * ROUND_EXTENSION_TIME)) || SSgamemode.round_ends_at - world.time > (3 * ROUND_EXTENSION_TIME))
+		to_chat(usr, "<span class='notice'>Failsafe! Round end is already over 3 times out! Ignoring.</span>")
+		return
+	if(SSgamemode.round_ends_at != 0) // End round is already ticking.
+		SSgamemode.round_ends_at += ROUND_EXTENSION_TIME
+	else //We push back the automated endround vote.
+		GLOB.round_timer = GLOB.round_timer + ROUND_EXTENSION_TIME
+	log_admin("[key_name(usr)] extended the round by 30 minutes.")
+	message_admins("[key_name(usr)] extended the round by 30 minutes.")
+	GLOB.extend_round_timestamp = world.time

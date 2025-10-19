@@ -12,15 +12,16 @@
 	var/list/skins = pref_species.get_skin_list()
 	skin_tone = skins[pick(skins)]
 	eye_color = random_eye_color()
-	is_legacy = FALSE
 	if(ft_reset)
 		flavortext = null
-		flavortext_display = " "	//_display left not null to prevent any legacy bugs.
-		ooc_notes_display = " "		//You can't join without filling in the blank FT / OOC notes, so these should be overriden before the character is ever examined.
+		nsfwflavortext = null
+		erpprefs = null
 		ooc_notes = null
-		ooc_extra_link = null
 		ooc_extra = null
+		song_title = null
+		song_artist = null
 		headshot_link = null
+		img_gallery = null
 	features = pref_species.get_random_features()
 	body_markings = pref_species.get_random_body_markings(features)
 	accessory = "Nothing"
@@ -34,29 +35,32 @@
 		real_name = pref_species.random_name(gender,1)
 	set_new_race(new random_species_type)
 
-/datum/preferences/proc/update_preview_icon()
+/datum/preferences/proc/update_preview_icon(jobOnly = FALSE)
 	set waitfor = 0
 	if(!parent)
 		return
 	if(parent.is_new_player())
 		return
 //	last_preview_update = world.time
-	// Determine what job is marked as 'High' priority, and dress them up as such.
+	// Set up the dummy for its photoshoot
 	var/datum/job/previewJob
 	var/highest_pref = 0
 	for(var/job in job_preferences)
 		if(job_preferences[job] > highest_pref)
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
-
-	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin, 1, TRUE, TRUE)
 
-	if(previewJob)
-		testing("previewjob")
+	if(jobOnly)
 		mannequin.job = previewJob.title
 		previewJob.equip(mannequin, TRUE, preference_source = parent)
+
+	if(preview_subclass && !jobOnly)
+		testing("previewjob")
+		mannequin.job = previewJob.title
+		mannequin.patron = selected_patron
+		preview_subclass.equipme(mannequin, dummy = TRUE)
 
 	mannequin.rebuild_obscured_flags()
 	COMPILE_OVERLAYS(mannequin)

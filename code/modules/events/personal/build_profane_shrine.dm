@@ -2,7 +2,7 @@
 	name = "Profane Construction"
 	track = EVENT_TRACK_PERSONAL
 	typepath = /datum/round_event/zizo_shrines
-	weight = 10
+	weight = 7
 	earliest_start = 20 MINUTES
 	max_occurrences = 1
 	min_players = 25
@@ -18,7 +18,7 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!istype(H) || H.stat == DEAD || !H.client)
+		if(!istype(H) || H.stat == DEAD || !H.client || !user)
 			continue
 		if(!H.patron || !istype(H.patron, /datum/patron/inhumen/zizo))
 			continue

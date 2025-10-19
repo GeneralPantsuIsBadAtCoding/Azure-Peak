@@ -9,7 +9,7 @@
 	releasedrain = 60
 	recharge_time = 30 SECONDS
 	cooldown_min = 50
-	invocation = "Treefather grant me your form!"
+	invocations = list("Treefather grant me your form!")
 	invocation_type = "shout"
 	action_icon_state = "shapeshift"
 	associated_skill = /datum/skill/magic/holy
@@ -29,6 +29,9 @@
 /obj/effect/proc_holder/spell/targeted/wildshape/cast(list/targets, mob/user = usr)
 	. = ..()
 	for(var/mob/living/carbon/human/M in targets)
+		if (M.has_status_effect(/datum/status_effect/debuff/submissive))
+			to_chat(user, span_warning("Your will is too broken to change form."))
+			return FALSE
 		if(!istype(M, /mob/living/carbon/human/species/wildshape)) //If we aren't a wildshaped species, we can use this
 			var/list/animal_list = list()
 			
@@ -38,9 +41,15 @@
 
 			var/new_wildshape_type = input(M, "Choose Your Animal Form!", "It's Morphing Time!", null) as null|anything in sortList(animal_list)
 
+			if(!new_wildshape_type)
+				revert_cast()
+				return FALSE
+
 			for(var/crecher in possible_shapes) //Second pass to fetch the mob type itself and send it on wildshape_transformation
 				var/mob/living/carbon/human/species/wildshape/B = crecher
 				if(new_wildshape_type == B.name)
+					M.Stun(30)
+					M.Knockdown(30)
 					M.wildshape_transformation(B)
 
 		else //If we are a wildshaped species, we simply un-transform
@@ -68,4 +77,3 @@
 
 /mob/living/carbon/human/species/wildshape/update_inv_shoes() //Prevents weird blood overlays
 	remove_overlay(SHOES_LAYER)
-	remove_overlay(SHOESLEEVE_LAYER)

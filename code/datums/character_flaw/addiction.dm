@@ -1,7 +1,3 @@
-
-/mob/living/carbon/human
-	var/datum/charflaw/charflaw
-
 /mob/proc/sate_addiction()
 	return
 
@@ -38,7 +34,7 @@
 		return
 	if(user.mind?.antag_datums)
 		for(var/datum/antagonist/D in user.mind?.antag_datums)
-			if(istype(D, /datum/antagonist/vampirelord) || istype(D, /datum/antagonist/werewolf) || istype(D, /datum/antagonist/skeleton) || istype(D, /datum/antagonist/zombie) || istype(D, /datum/antagonist/lich))
+			if(istype(D, /datum/antagonist/vampire/lord) || istype(D, /datum/antagonist/werewolf) || istype(D, /datum/antagonist/skeleton) || istype(D, /datum/antagonist/zombie) || istype(D, /datum/antagonist/lich))
 				return
 	var/mob/living/carbon/human/H = user
 	var/oldsated = sated
@@ -60,7 +56,7 @@
 /datum/status_effect/debuff/addiction
 	id = "addiction"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction
-	effectedstats = list("endurance" = -1,"fortune" = -1)
+	effectedstats = list(STATKEY_WIL = -1,STATKEY_LCK = -1)
 	duration = 100
 
 
@@ -110,3 +106,12 @@
 	desc = "There is no greater pleasure than the suffering of another."
 	time = 40 MINUTES
 	needsate_text = "I need to hear someone whimper."
+
+/// MASOCHIST
+
+/datum/charflaw/addiction/masochist
+	name = "Masochist"
+	desc = "I love the feeling of pain, so much I can't get enough of it."
+	time = 40 MINUTES
+	needsate_text = "I need someone to HURT me."
+

@@ -2,9 +2,9 @@
 	name = "waterskin"
 	desc = "A leather waterskin."
 	icon_state = "waterskin"
-	amount_per_transfer_from_this = 6
-	possible_transfer_amounts = list(3,6,9)
-	volume = 64
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(5, 10)
+	volume = 75 // 3 cups
 	dropshrink = 1
 	sellprice = 10
 	closed = FALSE

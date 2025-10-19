@@ -18,8 +18,11 @@
 	generic_random_pick = TRUE
 	sprite_accessories = list(
 		/datum/sprite_accessory/frills/simple,
+		/datum/sprite_accessory/frills/simpledualcolor,
 		/datum/sprite_accessory/frills/short,
+		/datum/sprite_accessory/frills/shortdualcolor,
 		/datum/sprite_accessory/frills/aquatic,
+		/datum/sprite_accessory/frills/aquaticdualcolor,
 		/datum/sprite_accessory/frills/divinity,
 		/datum/sprite_accessory/frills/horns,
 		/datum/sprite_accessory/frills/horns_double,

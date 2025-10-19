@@ -7,7 +7,7 @@
 	startTurfY = 1
 
 /datum/mapGenerator/beach
-	modules = list(/datum/mapGeneratorModule/ambushing,/datum/mapGeneratorModule/beach,/datum/mapGeneratorModule/beachgrass,/datum/mapGeneratorModule/beachroad,/datum/mapGeneratorModule/beachcoast,/datum/mapGeneratorModule/beachsand)
+	modules = list(/datum/mapGeneratorModule/beach,/datum/mapGeneratorModule/beachgrass,/datum/mapGeneratorModule/beachroad,/datum/mapGeneratorModule/beachcoast,/datum/mapGeneratorModule/beachsand)
 
 /datum/mapGeneratorModule/beach
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS

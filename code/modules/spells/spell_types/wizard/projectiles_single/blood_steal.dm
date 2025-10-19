@@ -1,7 +1,7 @@
 // Lich / Vampire shared list only
 /obj/effect/proc_holder/spell/invoked/projectile/bloodsteal
 	name = "Blood Steal"
-	desc = ""
+	desc = "Steal anothers blood for your own collection."
 	clothes_req = FALSE
 	overlay_state = "bloodsteal"
 	sound = 'sound/magic/vlightning.ogg'
@@ -15,7 +15,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Sanguis Furtum!"
+	invocations = list("Sanguis Furtum!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_VAMPIRIC
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -50,12 +50,11 @@
 			return BULLET_ACT_BLOCK
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			var/datum/antagonist/vampirelord/VDrinker = sender.mind.has_antag_datum(/datum/antagonist/vampirelord)
 			H.blood_volume = max(H.blood_volume-45, 0)
 			H.handle_blood()
 			H.visible_message(span_danger("[target] has their blood ripped from their body!!"), \
 					span_userdanger("My blood erupts from my body!"), \
 					span_hear("..."), COMBAT_MESSAGE_RANGE, target)
 			new /obj/effect/decal/cleanable/blood/puddle(H.loc)
-			VDrinker.handle_vitae(400)
+			sender.adjust_bloodpool(400)
 	qdel(src)

@@ -147,6 +147,34 @@
 		prefs.save_preferences()
 	to_chat(src, "You will [prefs.toggles & CMODE_STRIPPING ? "" : "not"] be able to open the strip menu in combat mode.")
 
+/client/verb/toggle_xptext() // Whether the user can see the balloon XP pop ups.
+	set category = "Options"
+	set name = "Toggle XP Text"
+	if(prefs)
+		prefs.floating_text_toggles ^= XP_TEXT
+		prefs.save_preferences()
+	to_chat(src, "You will[prefs.floating_text_toggles & XP_TEXT ? "" : " not"] see XP pop ups.")
+
+/client/verb/toggle_floatingtext() // Whether the user can see the balloon pop ups at all.
+	set category = "Options"
+	set name = "Toggle Floating Text"
+	if(prefs)
+		prefs.floating_text_toggles ^= FLOATING_TEXT
+		prefs.save_preferences()
+	to_chat(src, "You will [prefs.floating_text_toggles & FLOATING_TEXT ? "see" : "not see any"] floating text.")
+
+/client/verb/toggle_deadchat() // Whether the user can see DSAY or not.
+	set name = "Show/Hide Deadchat"
+	set category = "Options"
+	set desc ="Toggles seeing deadchat"
+
+	if(prefs)
+		prefs.chat_toggles ^= CHAT_DSAY
+		prefs.save_preferences()
+	to_chat(src, "You will [(prefs.chat_toggles & CHAT_DSAY) ? "now" : "no longer"] see deadchat.")
+	if(holder)
+		SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Deadchat Visibility", "[prefs.chat_toggles & CHAT_DSAY ? "Enabled" : "Disabled"]"))
+
 /*
 //toggles
 /datum/verbs/menu/Settings/Ghost/chatterbox
@@ -554,17 +582,6 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	to_chat(usr, "You will [(prefs.chat_toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from nearby radios or speakers")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Radio Chatter", "[prefs.chat_toggles & CHAT_RADIO ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/deadchat()
-	set name = "Show/Hide Deadchat"
-	set category = "Prefs - Admin"
-	set desc ="Toggles seeing deadchat"
-	if(!holder)
-		return
-	prefs.chat_toggles ^= CHAT_DEAD
-	prefs.save_preferences()
-	to_chat(src, "You will [(prefs.chat_toggles & CHAT_DEAD) ? "now" : "no longer"] see deadchat.")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Deadchat Visibility", "[prefs.chat_toggles & CHAT_DEAD ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/toggleprayers()
 	set name = "Show/Hide Prayers"
 	set category = "Prefs - Admin"
@@ -614,3 +631,44 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 		return
 	prefs.asaycolor = initial(prefs.asaycolor)
 	prefs.save_preferences()
+
+/client/proc/hearallasghost()
+	set category = "Prefs - Admin"
+	set name = "HearAllAsAdmin"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.chat_toggles ^= CHAT_GHOSTEARS
+//	prefs.chat_toggles ^= CHAT_GHOSTSIGHT
+	prefs.chat_toggles ^= CHAT_GHOSTWHISPER
+	prefs.save_preferences()
+	if(prefs.chat_toggles & CHAT_GHOSTEARS)
+		to_chat(src, span_notice("I will hear all now."))
+	else
+		to_chat(src, span_info("I will hear like a mortal."))
+
+/client/proc/hearglobalLOOC()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Global LOOC"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.admin_chat_toggles ^= CHAT_ADMINLOOC
+	prefs.save_preferences()
+	if(prefs.admin_chat_toggles & CHAT_ADMINLOOC)
+		to_chat(src, span_notice("I will now hear all LOOC chatter."))
+	else
+		to_chat(src, span_info("I will now only hear LOOC chatter around me."))
+
+/client/proc/togglespawnmessages()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Spawn Logs"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.admin_chat_toggles ^= CHAT_ADMINSPAWN
+	prefs.save_preferences()
+	to_chat(src, "You will [prefs.admin_chat_toggles & CHAT_ADMINSPAWN ? "see" : "not see any"] spawn logs.")

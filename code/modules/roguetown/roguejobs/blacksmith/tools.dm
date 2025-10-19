@@ -167,12 +167,18 @@
 		H.adjustFireLoss(-10)
 		H.update_damage_overlays()
 		if(wCount.len > 0)
-			H.heal_wounds(2)
+			if(M == user)
+				H.heal_wounds(2)
+			else
+				H.heal_wounds(10) // Other heal are far more powerful and can heal skullcrack in 15 hits instead of 75
 			H.update_damage_overlays()
 		if(M == user)
 			user.visible_message(span_notice("[user] hammers [user.p_their()] [affecting]."), span_notice("I hammer my [affecting]."))
 		else
 			user.visible_message(span_notice("[user] hammers [M]'s [affecting]."), span_notice("I hammer [M]'s [affecting]."))
+		if(wCount.len > 0)
+			// Auto repeat healing
+			hammerheal(M, user)
 	else //Non-construct.
 		to_chat(user, span_warning("I can't tinker on living flesh!"))
 
@@ -191,11 +197,14 @@
 
 /obj/item/rogueweapon/hammer/aalloy
 	name = "decrepit hammer"
-	desc = "A decrepit old hammer."
+	desc = "A hammer of wrought bronze. It has pounded out the beginning of a thousand legacies; of humble adventurers, of noble legionnaires, and of foolish heroes."
 	icon_state = "ahammer"
 	force = 12
 	max_integrity = 10
-	smeltresult = /obj/item/ingot/aalloy
+	smeltresult = /obj/item/ingot/aaslag
+	color = "#bb9696"
+	sellprice = 15
+
 
 
 /obj/item/rogueweapon/hammer/copper
@@ -377,10 +386,13 @@
 
 /obj/item/rogueweapon/tongs/aalloy
 	name = "decrepit tongs"
+	desc = "Wrought bronze pincers the molten alloy, putting it before the anvil and hammer. Soon, it will fashion a new legacy; one unmarred by this dogmatic millenia."
 	icon_state = "atongs"
 	force = 5
 	smeltresult = null
 	max_integrity = 10
+	color = "#bb9696"
+	sellprice = 5
 
 /obj/item/rogueweapon/tongs/aalloy/update_icon()
 	. = ..()

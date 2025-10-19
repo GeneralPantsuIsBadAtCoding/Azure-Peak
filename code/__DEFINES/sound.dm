@@ -184,6 +184,11 @@
 						'sound/ambience/noises/birds (6).ogg',\
 						'sound/ambience/noises/birds (7).ogg')
 
+#define LEVEL_UP_SOUNDS list('sound/misc/levelup1.ogg',\
+					'sound/misc/levelup2.ogg',\
+					'sound/misc/levelup3.ogg')
+
+
 #define SFX_CHAIN_STEP "chain_step"
 #define SFX_PLATE_STEP	"plate_step"
 #define SFX_PLATE_COAT_STEP "plate_coat_step"

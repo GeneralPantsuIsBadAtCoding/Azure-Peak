@@ -138,13 +138,6 @@
 "bp" = (
 /turf/closed/mineral/rogue/salt,
 /area/rogue/outdoors/woods)
-"cL" = (
-/obj/effect/landmark/mapGenerator/sunlights{
-	endTurfX = 128;
-	endTurfY = 128
-	},
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/outdoors/mountains)
 "cM" = (
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/outdoors/woods)
@@ -17141,7 +17134,7 @@ ad
 ad
 ad
 ad
-cL
+ad
 "}
 (2,1,2) = {"
 om

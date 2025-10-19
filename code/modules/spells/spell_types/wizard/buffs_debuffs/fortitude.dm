@@ -13,7 +13,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Tenax"
+	invocations = list("Tenax")
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_BUFF
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -59,7 +59,7 @@
 	. = ..()
 	var/filter = owner.get_filter(FORTITUDE_FILTER)
 	if (!filter)
-		owner.add_filter(FORTITUDE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(FORTITUDE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
 	to_chat(owner, span_warning("My body feels lighter..."))
 	ADD_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)
 

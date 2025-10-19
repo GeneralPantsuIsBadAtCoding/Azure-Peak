@@ -51,4 +51,4 @@
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, rand(1,5), TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, rand(1,5), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, rand(1,5), TRUE)
-	H.change_stat("strength", 1)
+	H.change_stat(STATKEY_STR, 1)

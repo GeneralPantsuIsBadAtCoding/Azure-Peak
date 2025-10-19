@@ -1,3 +1,5 @@
+#define STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL -2
+
 /mob/living/proc/attempt_parry(datum/intent/intenty, mob/living/user)
 	var/prob2defend = user.defprob
 	var/mob/living/H = src
@@ -64,12 +66,14 @@
 
 	var/defender_skill = 0
 	var/attacker_skill = 0
+	var/obj/item/clothing/wrists/roguetown/bracers/unarmed_bracers
 
 	if(highest_defense <= (H.get_skill_level(/datum/skill/combat/unarmed) * 20))
 		defender_skill = H.get_skill_level(/datum/skill/combat/unarmed)
 		var/obj/B = H.get_item_by_slot(SLOT_WRISTS)
 		if(istype(B, /obj/item/clothing/wrists/roguetown/bracers))
-			prob2defend += (defender_skill * 30)
+			prob2defend += (defender_skill * 35)
+			unarmed_bracers = B
 		else
 			prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 		weapon_parry = FALSE
@@ -81,26 +85,25 @@
 		prob2defend += highest_defense
 		weapon_parry = TRUE
 
-	if(U.mind)
-		if(intenty.masteritem)
-			attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
-			prob2defend -= (attacker_skill * 20)
-			if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-				var/spdmod = ((user.STASPD - src.STASPD) * 10)
-				var/permod = ((src.STAPER - user.STAPER) * 10)
-				var/intmod = ((src.STAINT - user.STAINT) * 3)
-				if(mind)
-					if(permod > 0)
-						spdmod -= permod
-					if(intmod > 0)
-						spdmod -= intmod
-				var/finalmod = spdmod
-				if(mind)
-					finalmod = clamp(spdmod, 0, 30)
-				prob2defend -= finalmod
-		else
-			attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
-			prob2defend -= (attacker_skill * 20)
+	if(intenty.masteritem)
+		attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
+		prob2defend -= (attacker_skill * 20)
+		if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+			var/spdmod = ((user.STASPD - src.STASPD) * 10)
+			var/permod = ((src.STAPER - user.STAPER) * 10)
+			var/intmod = ((src.STAINT - user.STAINT) * 3)
+			if(mind)
+				if(permod > 0)
+					spdmod -= permod
+				if(intmod > 0)
+					spdmod -= intmod
+			var/finalmod = spdmod
+			if(mind)
+				finalmod = clamp(spdmod, 0, 30)
+			prob2defend -= finalmod
+	else
+		attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
+		prob2defend -= (attacker_skill * 20)
 
 	if(HAS_TRAIT(src, TRAIT_GUIDANCE))
 		prob2defend += 20
@@ -129,57 +132,32 @@
 		drained = drained + 5							//More stamina usage for not being trained in the armor you're using.
 
 	//Dual Wielding
-	var/attacker_dualw
 	var/defender_dualw
-	var/extraattroll
 	var/extradefroll
 
 	//Dual Wielder defense disadvantage
-	if(HAS_TRAIT(src, TRAIT_DUALWIELDER) && istype(offhand, mainhand))
+	if(HAS_TRAIT(src, TRAIT_DUALWIELDER) && (istype(offhand, mainhand) || istype(mainhand, offhand)))
 		extradefroll = prob(prob2defend)
 		defender_dualw = TRUE
 
-	//Dual Wielder attack advantage
-	var/obj/item/mainh = user.get_active_held_item()
-	var/obj/item/offh = user.get_inactive_held_item()
-	if(mainh && offh && HAS_TRAIT(user, TRAIT_DUALWIELDER))
-		if(istype(mainh, offh))
-			extraattroll = prob(prob2defend)
-			attacker_dualw = TRUE
-
 	if(src.client?.prefs.showrolls)
 		var/text = "Roll to parry... [prob2defend]%"
-		if((defender_dualw || attacker_dualw))
-			if(defender_dualw && attacker_dualw)
-				text += " Our dual wielding cancels out!"
-			else//If we're defending against or as a dual wielder, we roll disadv. But if we're both dual wielding it cancels out.
-				text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
+		if(defender_dualw)
+			text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
 		to_chat(src, span_info("[text]"))
-	
-	var/attacker_feedback 
-	if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
-		attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
 	var/parry_status = FALSE
-	if((defender_dualw && attacker_dualw) || (!defender_dualw && !attacker_dualw)) //They cancel each other out
-		if(attacker_feedback)
-			attacker_feedback = "Advantage cancelled out!"
-		if(prob(prob2defend))
-			parry_status = TRUE
-	else if(attacker_dualw)
-		if(prob(prob2defend) && extraattroll)
-			parry_status = TRUE
-	else if(defender_dualw)
+	if(defender_dualw)
 		if(prob(prob2defend) && extradefroll)
 			parry_status = TRUE
-
-	if(attacker_feedback)
-		to_chat(user, span_info("[attacker_feedback]"))
+	else
+		if(prob(prob2defend))
+			parry_status = TRUE
 
 	if(parry_status)
 		if(intenty.masteritem)
-			if(intenty.masteritem.wbalance < 0 && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
-				drained = drained + ( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * -5) )
+			if(intenty.masteritem.wbalance < WBALANCE_NORMAL && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
+				drained = drained + ( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) )
 	else
 		to_chat(src, span_warning("The enemy defeated my parry!"))
 		if(HAS_TRAIT(src, TRAIT_MAGEARMOR))
@@ -202,31 +180,37 @@
 	if(istype(user.rmb_intent, /datum/rmb_intent/weak))
 		exp_multi = exp_multi/2
 
+	var/obj/item/AB = intenty.masteritem
+	var/attacker_skill_type
+
+	if(AB)
+		attacker_skill_type = AB.associated_skill
+	else
+		attacker_skill_type = /datum/skill/combat/unarmed
+
 	if(weapon_parry == TRUE)
 		if(do_parry(used_weapon, drained, user)) //show message
-			if ((mobility_flags & MOBILITY_STAND))
-				var/skill_target = attacker_skill
-				if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
-					skill_target -= SKILL_LEVEL_NOVICE
-				if (can_train_combat_skill(src, used_weapon.associated_skill, skill_target))
-					mind.add_sleep_experience(used_weapon.associated_skill, max(round(STAINT*exp_multi), 0), FALSE)
-
-			var/obj/item/AB = intenty.masteritem
-
-			//attacker skill gain
-
-			if(U.mind)
-				var/attacker_skill_type
-				if(AB)
-					attacker_skill_type = AB.associated_skill
-				else
-					attacker_skill_type = /datum/skill/combat/unarmed
+			//only gain experience if attacker and defender aren't using non-combat skills for their weapons
+			if(ispath(attacker_skill_type, /datum/skill/combat) && ispath(used_weapon.associated_skill, /datum/skill/combat))
 				if ((mobility_flags & MOBILITY_STAND))
-					var/skill_target = defender_skill
-					if(!HAS_TRAIT(src, TRAIT_GOODTRAINER))
+					var/skill_target = attacker_skill
+					if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
 						skill_target -= SKILL_LEVEL_NOVICE
-					if (can_train_combat_skill(U, attacker_skill_type, skill_target))
-						U.mind.add_sleep_experience(attacker_skill_type, max(round(STAINT*exp_multi), 0), FALSE)
+					if(HAS_TRAIT(U, TRAIT_BADTRAINER))
+						skill_target -= SKILL_LEVEL_NOVICE
+					if (can_train_combat_skill(src, used_weapon.associated_skill, skill_target))
+						mind.add_sleep_experience(used_weapon.associated_skill, max(round(STAINT*exp_multi), 0), FALSE)
+
+				//attacker skill gain
+				if(U.mind)
+					if ((mobility_flags & MOBILITY_STAND))
+						var/skill_target = defender_skill
+						if(!HAS_TRAIT(src, TRAIT_GOODTRAINER))
+							skill_target -= SKILL_LEVEL_NOVICE
+						if(HAS_TRAIT(U, TRAIT_BADTRAINER))
+							skill_target -= SKILL_LEVEL_NOVICE
+						if (can_train_combat_skill(U, attacker_skill_type, skill_target))
+							U.mind.add_sleep_experience(attacker_skill_type, max(round(STAINT*exp_multi), 0), FALSE)
 
 			if(prob(66) && AB)
 				if((used_weapon.flags_1 & CONDUCT_1) && (AB.flags_1 & CONDUCT_1))
@@ -243,57 +227,39 @@
 
 			var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 			if(dam2take)
-				if(!user.mind)
-					dam2take = dam2take * 0.25
-				if(dam2take > 0 && (intenty.masteritem?.intdamage_factor != 1 || intenty.intent_intdamage_factor != 1))
-					var/higher_intfactor = max(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/lowest_intfactor = min(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
-					var/used_intfactor
-					if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
-						used_intfactor = lowest_intfactor
-					if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
-						used_intfactor = higher_intfactor
-					dam2take *= used_intfactor
-			else	//This is normally handled in get_complex_damage, but it doesn't support simple mobs... at all, so we do a clunky mini-version of it.
-				if(istype(user, /mob/living/simple_animal))
-					var/mob/living/simple_animal/SM = user
-					dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
-					dam2take *= (SM.STASTR / 10)
-					dam2take *= 0.25
-					switch(used_weapon.blade_dulling)
-						if(DULLING_SHAFT_CONJURED)
-							dam2take *= 1.3
-						if(DULLING_SHAFT_METAL)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.5
-								if("blunt")
-									dam2take *= 1.5
-						if(DULLING_SHAFT_WOOD)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 1.5
-								if("blunt")
-									dam2take *= 0.5
-						if(DULLING_SHAFT_REINFORCED)
-							switch(SM.d_type)
-								if("slash")
-									dam2take *= 0.75
-								if("stab")
-									dam2take *= 1.5
-			used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
+				var/intdam = used_weapon.max_blade_int ? INTEG_PARRY_DECAY : INTEG_PARRY_DECAY_NOSHARP
+				if(used_weapon == offhand)
+					intdam = INTEG_PARRY_DECAY_NOSHARP
+				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
+				used_weapon.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+
+			if(mind && user.mind && HAS_TRAIT(src, TRAIT_COMBAT_AWARE))
+				var/text = "[bodyzone2readablezone(user.zone_selected)]..."
+				if(HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS))
+					if(prob(10))
+						text = "<i>Somewhere...</i>"
+						user.balloon_alert(src, text)
+				else
+					user.balloon_alert(src, text)
 			return TRUE
 		else
 			return FALSE
 
 	if(weapon_parry == FALSE)
 		if(do_unarmed_parry(drained, user))
-			if((mobility_flags & MOBILITY_STAND))
-				var/skill_target = attacker_skill
-				if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
-					skill_target -= SKILL_LEVEL_NOVICE
-				if(can_train_combat_skill(H, /datum/skill/combat/unarmed, skill_target))
-					H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
+			//only gain experience if attacker isn't using a non-combat skill for their weapon
+			if(ispath(attacker_skill_type, /datum/skill/combat))
+				if((mobility_flags & MOBILITY_STAND))
+					var/skill_target = attacker_skill
+					if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
+						skill_target -= SKILL_LEVEL_NOVICE
+					if(HAS_TRAIT(U, TRAIT_BADTRAINER))
+						skill_target -= SKILL_LEVEL_NOVICE
+					if(can_train_combat_skill(H, /datum/skill/combat/unarmed, skill_target))
+						H.mind?.add_sleep_experience(/datum/skill/combat/unarmed, max(round(STAINT*exp_multi), 0), FALSE)
+
+			if(unarmed_bracers)
+				unarmed_bracers.take_damage(INTEG_PARRY_DECAY_NOSHARP, "slash", armor_penetration = 100)
 			flash_fullscreen("blackflash2")
 			return TRUE
 		else
@@ -307,11 +273,17 @@
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(src.client)
-				GLOB.azure_round_stats[STATS_PARRIES]++
+				record_round_statistic(STATS_PARRIES)
 			if(istype(rmb_intent, /datum/rmb_intent/riposte))
 				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
 				src.visible_message(span_boldwarning("<b>[src]</b> parries [user] with [W]!"))
+			if(!iscarbon(user))	//Non-carbon mobs never make it to the proper parry proc where the other calculations are done.
+				if(W.max_blade_int)
+					W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
+					W.take_damage(INTEG_PARRY_DECAY, BRUTE, "slash")
+				else
+					W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
 			return TRUE
 		else
 			to_chat(src, span_warning("I'm too tired to parry!"))
@@ -328,13 +300,13 @@
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
 			if(src.client)
-				GLOB.azure_round_stats[STATS_PARRIES]++
+				record_round_statistic(STATS_PARRIES)
 			return TRUE
 		else
 			to_chat(src, span_boldwarning("I'm too tired to parry!"))
 			return FALSE
 	else
 		if(src.client)
-			GLOB.azure_round_stats[STATS_PARRIES]++
+			record_round_statistic(STATS_PARRIES)
 		playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 		return TRUE

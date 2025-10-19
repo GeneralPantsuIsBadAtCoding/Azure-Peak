@@ -12,7 +12,6 @@
 	blade_dulling = DULLING_CUT
 	pixel_x = -16
 	layer = 4.81
-	plane = GAME_PLANE_UPPER
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	destroy_sound = 'sound/misc/woodhit.ogg'
 	debris = list(/obj/item/grown/log/tree/stick = 2)
@@ -39,7 +38,7 @@
 	if(.)
 		if(!was_destroyed && obj_destroyed)
 			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
-			GLOB.azure_round_stats[STATS_TREES_CUT]++
+			record_round_statistic(STATS_TREES_CUT)
 
 /obj/structure/flora/roguetree/spark_act()
 	fire_act()
@@ -244,7 +243,7 @@
 	icon_state = "grass1"
 	attacked_sound = "plantcross"
 	destroy_sound = "plantcross"
-	max_integrity = 5
+	max_integrity = 2
 	blade_dulling = DULLING_CUT
 	debris = list(/obj/item/natural/fibers = 1)
 

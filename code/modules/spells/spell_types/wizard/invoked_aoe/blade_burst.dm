@@ -17,7 +17,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "blade_burst"
 	spell_tier = 2 // AOE, but this is essential for PVE
-	invocation = "Erumpere Gladios!"
+	invocations = list("Erumpere Gladios!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_HIGH

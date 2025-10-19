@@ -102,12 +102,12 @@
 /datum/supply_pack/rogue/tools/prlegl
 	name = "Prosthetic Wood Leg (L)"
 	cost = 15
-	contains = /obj/item/bodypart/l_leg/prosthetic
+	contains = list(/obj/item/bodypart/l_leg/prosthetic)
 
 /datum/supply_pack/rogue/tools/prlegr
 	name = "Prosthetic Wood Leg (R)"
 	cost = 15
-	contains = /obj/item/bodypart/r_leg/prosthetic
+	contains = list(/obj/item/bodypart/r_leg/prosthetic)
 
 /datum/supply_pack/rogue/tools/hoe
 	name = "Hoe"
@@ -198,7 +198,7 @@
 /datum/supply_pack/rogue/tools/gwstrap
 	name = "Greatweapon Strap"
 	cost = 30
-	contains = list(/obj/item/gwstrap)
+	contains = list(/obj/item/rogueweapon/scabbard/gwstrap)
 
 /datum/supply_pack/rogue/tools/headhook
 	name = "Iron Head Hook"
@@ -224,3 +224,8 @@
 	name = "Surgeon's bag, Full"
 	cost = 80
 	contains = list(/obj/item/storage/belt/rogue/surgery_bag)
+
+/datum/supply_pack/rogue/tools/scissors
+	name = "Scissors, Iron"
+	cost = 30
+	contains = list(/obj/item/rogueweapon/huntingknife/scissors)

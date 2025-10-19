@@ -41,6 +41,9 @@
 	/// The id of any ByondUi elements that we have opened
 	var/list/open_byondui_elements
 
+	/// Any partial packets that we have received from TGUI, waiting to be sent
+	var/partial_packets
+
 /**
  * public
  *
@@ -262,6 +265,7 @@
 			"size" = window_size,
 			"fancy" = user.client.prefs.tgui_fancy,
 			"locked" = user.client.prefs.tgui_lock,
+			"theme" = user.client.prefs.tgui_theme,
 			"scale" = TRUE,
 		),
 		"client" = list(

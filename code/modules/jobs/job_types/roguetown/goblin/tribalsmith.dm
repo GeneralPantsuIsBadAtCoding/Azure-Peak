@@ -11,6 +11,7 @@
 	tutorial = "Goblin rensposible for fresh iron and steel"
 	display_order = JDO_GOBLINSMITH
 	outfit = /datum/outfit/job/roguetown/goblinsmith
+	job_traits = list(TRAIT_SMITHING_EXPERT)
 	min_pq = 0
 	max_pq = null
 
@@ -28,12 +29,12 @@
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2 , TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/engineering, pick(2,2,3), TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, pick(1,1,2), TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, pick(1,1,2), TRUE)
 	H.adjust_skillrank(/datum/skill/craft/traps, pick(1,1,2), TRUE)
 	H.adjust_skillrank(/datum/skill/craft/blacksmithing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/armorsmithing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 3, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("endurance", 1)
-	H.change_stat("speed", -2)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_WIL, 1)
+	H.change_stat(STATKEY_SPD, -2)

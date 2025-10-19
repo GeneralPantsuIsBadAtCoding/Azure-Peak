@@ -5,18 +5,6 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/spraytan
-	name = "Spray Tan"
-	id = /datum/reagent/spraytan
-	results = list(/datum/reagent/spraytan = 2)
-	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/fuel/oil = 1)
-
-/datum/chemical_reaction/spraytan2
-	name = "Spray Tan"
-	id = /datum/reagent/spraytan
-	results = list(/datum/reagent/spraytan = 2)
-	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cornoil = 1)
-
 /datum/chemical_reaction/impedrezene
 	name = "Impedrezene"
 	id = /datum/reagent/impedrezene
@@ -29,24 +17,11 @@
 	results = list(/datum/reagent/cryptobiolin = 3)
 	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
-/datum/chemical_reaction/glycerol
-	name = "Glycerol"
-	id = /datum/reagent/glycerol
-	results = list(/datum/reagent/glycerol = 1)
-	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
-
 /datum/chemical_reaction/sodiumchloride
 	name = "Sodium Chloride"
 	id = /datum/reagent/consumable/sodiumchloride
 	results = list(/datum/reagent/consumable/sodiumchloride = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1)
-
-
-/datum/chemical_reaction/capsaicincondensation
-	name = "Capsaicincondensation"
-	id = "capsaicincondensation"
-	results = list(/datum/reagent/consumable/condensedcapsaicin = 5)
-	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/ethanol = 5)
 
 /datum/chemical_reaction/candlefication
 	name = "Candlefication"
@@ -223,13 +198,6 @@
 	required_reagents = list(/datum/reagent/fuel/oil = 1)
 	required_temp = 480
 
-//monkey powder heehoo
-/datum/chemical_reaction/monkey_powder
-	name = /datum/reagent/monkey_powder
-	id = /datum/reagent/monkey_powder
-	results = list(/datum/reagent/monkey_powder = 3)
-	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment=2,/datum/reagent/liquidgibs = 1)
-
 /datum/chemical_reaction/monkey
 	name = "monkey"
 	id = "monkey"
@@ -239,12 +207,6 @@
 	var/location = get_turf(holder.my_atom)
 	new /mob/living/carbon/monkey(location)
 //water electrolysis
-/datum/chemical_reaction/electrolysis
-	name = "electrolysis"
-	id = "electrolysis"
-	results = list(/datum/reagent/oxygen = 10, /datum/reagent/hydrogen = 20)
-	required_reagents = list(/datum/reagent/consumable/liquidelectricity = 1, /datum/reagent/water = 5)
-
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
 	id = /datum/reagent/hair_dye
@@ -280,25 +242,6 @@
 	id = /datum/reagent/royal_bee_jelly
 	results = list(/datum/reagent/royal_bee_jelly = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 10, /datum/reagent/consumable/honey = 40)
-
-/datum/chemical_reaction/laughter
-	name = /datum/reagent/consumable/laughter
-	id = /datum/reagent/consumable/laughter
-	results = list(/datum/reagent/consumable/laughter = 10) // Fuck it. I'm not touching this one.
-	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/banana = 1)
-
-/datum/chemical_reaction/cellulose_carbonization
-	name = "Cellulose_Carbonization"
-	id = /datum/reagent/carbon
-	results = list(/datum/reagent/carbon = 1)
-	required_reagents = list(/datum/reagent/cellulose = 1)
-	required_temp = 512
-
-/datum/chemical_reaction/hydrogen_peroxide
-	name = "Hydrogen peroxide"
-	id = /datum/reagent/hydrogen_peroxide
-	results = list(/datum/reagent/hydrogen_peroxide = 3)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/acetone_oxide
 	name = "Acetone peroxide"

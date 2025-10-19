@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(statpacks)
 			else
 				var/list/stat_range = stat_array[stat]
 				recipient.change_stat(stat, rand(stat_range[1], stat_range[2]))
+		record_featured_object_stat(FEATURED_STATS_STATPACKS, name)
 		return TRUE
 	return FALSE
 
@@ -52,7 +53,7 @@ GLOBAL_LIST_EMPTY(statpacks)
 				if (sub_range >= 1)
 					modifier = "+"
 
-				chunk_string += "<b>[modifier][sub_range]</b>"
+				chunk_string += "[modifier][sub_range]"
 
 			var/statlabel = uppertext(copytext(stat, 1, 4))
 			concat += "[chunk_string.Join(" to ")] [statlabel]"

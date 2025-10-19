@@ -4,6 +4,8 @@
 #define MAX_PLANT_WEEDS 100
 #define SOIL_DECAY_TIME 10 MINUTES
 
+GLOBAL_LIST_EMPTY(soil_list)
+
 /obj/structure/soil
 	name = "soil"
 	desc = "Dirt, ready to give life like a womb."
@@ -43,6 +45,14 @@
 	///The time remaining in which the soil was given special fertilizer, effect is similar to being blessed but with less beneficial effects
 	var/fertilized_time = 0
 
+/obj/structure/soil/Initialize()
+	. = ..()
+	GLOB.soil_list += src
+
+/obj/structure/soil/Destroy()
+	GLOB.soil_list -= src
+	return ..()
+
 /obj/structure/soil/Crossed(atom/movable/AM)
 	. = ..()
 	if(isliving(AM))
@@ -79,7 +89,7 @@
 		modifier += 3
 
 	record_featured_stat(FEATURED_STATS_FARMERS, user)
-	GLOB.azure_round_stats[STATS_PLANTS_HARVESTED]++
+	record_round_statistic(STATS_PLANTS_HARVESTED)
 	to_chat(user, span_notice(feedback))
 	yield_produce(modifier, is_legendary)
 

@@ -35,7 +35,7 @@ LICH SKELETONS
 	H.STASTR = 12
 	H.STASPD = 8
 	H.STACON = 9
-	H.STAEND = 12
+	H.STAWIL = 12
 	H.STAINT = 3
 	H.STAPER = 11
 
@@ -54,7 +54,7 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
@@ -67,11 +67,11 @@ LICH SKELETONS
 	beltl = /obj/item/quiver/javelin/paalloy
 	H.adjust_blindness(-3)
 	var/weapons = list("Gladius","Kopesh","Shortsword","Axe", "Flail")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Gladius")
-			beltr = /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
+			beltr = /obj/item/rogueweapon/sword/short/gladius/pagladius
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Kopesh")
 			beltr = /obj/item/rogueweapon/sword/sabre/palloy
@@ -85,6 +85,8 @@ LICH SKELETONS
 		if("Flail")
 			beltr = /obj/item/rogueweapon/flail/sflail/paflail
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+
+	H.energy = H.max_energy
 
 // Ranged goon w/ a dumb bow. Ranger, what else is there to say.
 /datum/advclass/greater_skeleton/lich/ballistiares
@@ -100,7 +102,7 @@ LICH SKELETONS
 	H.STASTR = 10
 	H.STASPD = 10
 	H.STACON = 7
-	H.STAEND = 14
+	H.STAWIL = 14
 	H.STAINT = 6
 	H.STAPER = 15
 
@@ -119,7 +121,7 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
@@ -130,14 +132,18 @@ LICH SKELETONS
 
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	H.adjust_blindness(-3)
-	var/weapons = list("Recurve Bow","Yew Longbow","Sling")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapons = list("Recurve Bow","Yew Longbow", "Crossbow", "Sling")
+	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Recurve Bow")
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			beltl = /obj/item/quiver/paalloy
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+		if("Crossbow")
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			beltl = /obj/item/quiver/bolts/paalloy
+			H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 		if("Yew Longbow")
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 			beltl = /obj/item/quiver/paalloy
@@ -146,6 +152,8 @@ LICH SKELETONS
 			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 			beltl = /obj/item/quiver/sling/paalloy
 			H.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
+
+	H.energy = H.max_energy
 
 // Heavy/Tanky goon. Not heavy armor but due to the steel + weapons they'll fare just fine.
 /datum/advclass/greater_skeleton/lich/bulwark
@@ -161,7 +169,7 @@ LICH SKELETONS
 	H.STASTR = 13
 	H.STASPD = 5
 	H.STACON = 11
-	H.STAEND = 10
+	H.STAWIL = 10
 	H.STAINT = 1
 	H.STAPER = 10
 
@@ -180,7 +188,7 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
@@ -189,8 +197,8 @@ LICH SKELETONS
 	shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Greatsword", "Bardiche", "Mace + Shield","Spear", "Warhammer + Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapons = list("Greatsword", "Bardiche", "Grand Mace", "Mace + Shield","Spear", "Warhammer + Shield")
+	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Greatsword")
@@ -199,6 +207,8 @@ LICH SKELETONS
 		if("Bardiche")
 			r_hand = /obj/item/rogueweapon/halberd/bardiche/paalloy
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+		if("Grand Mace")
+			r_hand = /obj/item/rogueweapon/mace/goden/steel/paalloy
 		if("Mace + Shield")
 			r_hand = /obj/item/rogueweapon/mace/steel/palloy
 			l_hand = /obj/item/rogueweapon/shield/wood
@@ -211,6 +221,8 @@ LICH SKELETONS
 			l_hand = /obj/item/rogueweapon/shield/wood
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+
+	H.energy = H.max_energy
 
 // non-Combat crafter goon. Worse weapons + armor but does base-building. Fortnite.
 /datum/advclass/greater_skeleton/lich/sapper
@@ -226,7 +238,7 @@ LICH SKELETONS
 	H.STASTR = 10
 	H.STASPD = 6
 	H.STACON = 9
-	H.STAEND = 10
+	H.STAWIL = 10
 	H.STAINT = 6
 	H.STAPER = 10
 
@@ -245,7 +257,7 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/carpentry, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/masonry, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/engineering, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/mining, 4, TRUE)
@@ -260,3 +272,5 @@ LICH SKELETONS
 
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut
 	beltl = /obj/item/rogueweapon/pick/copper
+
+	H.energy = H.max_energy

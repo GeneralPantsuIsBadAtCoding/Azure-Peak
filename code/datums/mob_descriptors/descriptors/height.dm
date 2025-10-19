@@ -6,6 +6,10 @@
 	name = "Moderate"
 	prefix = "a"
 
+/datum/mob_descriptor/height/middling
+	name = "Middling"
+	prefix = "a"
+
 /datum/mob_descriptor/height/tall
 	name = "Tall"
 	prefix = "a"
@@ -16,6 +20,10 @@
 
 /datum/mob_descriptor/height/towering
 	name = "Towering"
+	prefix = "a"
+
+/datum/mob_descriptor/height/giant
+	name = "Giant"
 	prefix = "a"
 
 /datum/mob_descriptor/height/tiny

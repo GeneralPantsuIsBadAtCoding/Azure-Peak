@@ -73,7 +73,7 @@
 	maxHealth = ORC_HEALTH * 2 //TWICE THE ORC
 	health = ORC_HEALTH * 2
 	loot = list(/obj/effect/mob_spawn/human/orc/corpse/orcmarauder,
-			/obj/item/rogueweapon/sword/iron/messer,
+			/obj/item/rogueweapon/sword/short/messer/iron,
 			/obj/effect/decal/cleanable/blood)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear

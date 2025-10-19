@@ -10,6 +10,12 @@
 	experimental_inhand = FALSE
 	grid_width = 64
 	grid_height = 32
+	obj_flags = UNIQUE_RENAME
+
+
+/obj/item/cooking/platter/examine()
+	. = ..()
+	. += span_info("Can be renamed with a feather. Name will be overridden by plating or finishing food.")
 
 /*
 NEW SYSTEM
@@ -98,8 +104,10 @@ What it does:
 
 /obj/item/cooking/platter/aalloy
 	name = "decrepit platter"
-	desc = "A decrepit old platter. Aeon's grasp is upon its form."
+	desc = "Wrought bronze, flattened to serve. The edge remains wet with red; spilled merlot, meaty juices, or blood?"
 	icon_state = "aplatter"
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/cooking/platter/copper
 	name = "copper platter"

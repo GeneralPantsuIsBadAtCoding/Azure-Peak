@@ -10,7 +10,7 @@
 	layer = ABOVE_MOB_LAYER
 	plane = GAME_PLANE_UPPER
 	var/current_category = "Postings"
-	var/list/categories = list("Postings", "Premium Postings", "Quests")
+	var/list/categories = list("Postings", "Premium Postings", "Scout Report", "Contracts")
 	/// Place to deposit completed scrolls or items
 	var/input_point
 
@@ -27,13 +27,13 @@
 	SSroguemachine.noticeboards += src
 	input_point = locate(x, y - 1, z)
 	var/obj/effect/decal/marker_export/marker = new(get_turf(input_point))
-	marker.desc = "Place completed quest scrolls here to turn them in."
+	marker.desc = "Place completed contracft scrolls here to turn them in."
 	marker.layer = ABOVE_OBJ_LAYER
 
 /obj/structure/roguemachine/noticeboard/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	. = .. ()
 	if(istype(P, /obj/item/paper/scroll/quest))
-		turn_in_quest(user, P)
+		turn_in_contract(user, P)
 		return
 	return
 
@@ -86,17 +86,17 @@
 	if(href_list["authorityremovepost"])
 		authority_removepost(usr)
 		return attack_hand(usr) 
-	if(href_list["consultquests"])
-		consult_quests(usr)
+	if(href_list["consultcontracts"])
+		consult_contracts(usr)
 		return attack_hand(usr) 
-	if(href_list["turninquest"])
-		turn_in_quest(usr)
+	if(href_list["turnincontract"])
+		turn_in_contract(usr)
 		return attack_hand(usr) 
-	if(href_list["abandonquest"])
-		abandon_quest(usr)
+	if(href_list["abandoncontract"])
+		abandon_contract(usr)
 		return attack_hand(usr) 
-	if(href_list["printquests"])
-		print_quests(usr)
+	if(href_list["printcontracts"])
+		print_contracts(usr)
 		return attack_hand(usr) 
 	return attack_hand(usr)
 
@@ -105,9 +105,9 @@
 		return
 	var/can_remove = FALSE
 	var/can_premium = FALSE
-	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist"))
+	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist", "Absolver", "Marshal")) //why was KC here but not marshal ?
 		can_remove = TRUE
-	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician"))
+	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician", "Town Crier"))
 		can_premium = TRUE
 	var/contents
 	contents += "<center>NOTICEBOARD<BR>"
@@ -116,7 +116,7 @@
 	for(var/i = 1, i <= length(categories), i++)
 		var/category = categories[i]
 		if(category == current_category)
-			selection += "<b>[current_category]</b>"
+			selection += "<b>[current_category]</b> | "
 		else if(i != length(categories))
 			selection += "<a href='?src=[REF(src)];changecategory=[category]'>[category]</a> | "
 		else
@@ -143,12 +143,26 @@
 					board_empty = FALSE
 		if(board_empty)
 			contents += "<br><span class='notice'>No postings have been made yet!</span>"
-	else if(current_category == "Quests")
-		contents += "<a href='?src=[REF(src)];consultquests=1'>Consult Quests</a><br>"
-		contents += "<a href='?src=[REF(src)];turninquest=1'>Turn in Quest</a><br>"
-		contents += "<a href='?src=[REF(src)];abandonquest=1'>Abandon Quest</a><br>"
+	else if(current_category == "Contracts")
+		contents += "<a href='?src=[REF(src)];consultcontracts=1'>Consult Contracts</a><br>"
+		contents += "<a href='?src=[REF(src)];turnincontract=1'>Turn in Contract</a><br>"
+		contents += "<a href='?src=[REF(src)];abandoncontract=1'>Abandon Contract</a><br>"
 		if(user.job == "Steward" || user.job == "Merchant")
-			contents += "<a href='?src=[REF(src)];printquests=1'>Print Issued Quests</a><br>"
+			contents += "<a href='?src=[REF(src)];printcontracts=1'>Print Issued Contracts</a><br>"
+	else if(current_category == "Scout Report")
+		var/list/regional_threats = SSregionthreat.get_threat_regions_for_display()
+		contents += "<h2>Scout Report</h2>"
+		contents += "<hr></center>"
+		for(var/T in regional_threats)
+			var/datum/threat_region_display/TRS = T
+			contents += ("<div>[TRS?.region_name]: <font color=[TRS?.danger_color]>[TRS?.danger_level]</font></div>")
+		contents += "<hr>"
+		contents += "Scouts rate how dangerous a region is from Safe -> Low -> Moderate -> Dangerous -> Bleak <br>"
+		contents += "A safe region is safe and travelers are unlikely to be ambushed by common creechurs and brigands <br>"
+		contents += "A low threat region is unlikely to manifest any great threat and brigands and creechurs are often found alone.<br>"
+		contents += "Only Azure Basin, Azure Grove and the Terrorbog can be rendered safe entirely. <br>" 
+		contents += "Regions not listed are beyond the charge of the wardens. Danger will be constant in these regions.<br>"
+		contents += "Danger is reduced by luring villains and creechurs and killing them when they ambush you. The signal horns wardens have been issued can help with this. Take care with using it."
 	var/datum/browser/popup = new(user, "NOTICEBOARD", "", 800, 650)
 	popup.set_content(contents)
 	popup.open()
@@ -299,7 +313,7 @@
 	name = "Recent messenger"
 	desc = "I'll have to wait a bit before making another posting!"
 
-/obj/structure/roguemachine/noticeboard/proc/consult_quests(mob/user)
+/obj/structure/roguemachine/noticeboard/proc/consult_contracts(mob/user)
 	if(!(user in SStreasury.bank_accounts))
 		say("You have no bank account.")
 		return
@@ -331,7 +345,7 @@
 		var/deposit = difficulty_data[difficulty]["deposit"]
 		difficulty_choices["[difficulty] ([deposit] mammon deposit)"] = difficulty
 
-	var/selection = input(user, "Select quest difficulty (deposit required)", src) as null|anything in difficulty_choices
+	var/selection = input(user, "Select contract difficulty (deposit required)", src) as null|anything in difficulty_choices
 	if(!selection)
 		return
 
@@ -344,13 +358,17 @@
 		return
 
 	var/list/type_choices = list(
-		QUEST_DIFFICULTY_EASY = list(QUEST_FETCH, QUEST_COURIER, QUEST_KILL),
+		QUEST_DIFFICULTY_EASY = list(QUEST_RETRIEVAL, QUEST_COURIER, QUEST_KILL),
 		QUEST_DIFFICULTY_MEDIUM = list(QUEST_CLEAR_OUT),
-		QUEST_DIFFICULTY_HARD = list(QUEST_MINIBOSS)
+		QUEST_DIFFICULTY_HARD = list(QUEST_OUTLAW)
 	)
 
-	var/type_selection = input(user, "Select quest type", src) as null|anything in type_choices[actual_difficulty] // Changed from selection to actual_difficulty
+	var/type_selection = input(user, "Select contract type", src) as null|anything in type_choices[actual_difficulty] // Changed from selection to actual_difficulty
 	if(!type_selection)
+		return
+
+	if(user.mind.active_quest >= 2)
+		say("You take max count active quests.")
 		return
 
 	// Continue with the rest of the proc using actual_difficulty instead of selection
@@ -361,6 +379,9 @@
 
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(src))
 	user.put_in_hands(spawned_scroll)
+	user.mind.active_quest += 1
+	say("You take [user.mind.active_quest] active quests.")
+	log_quest(user.ckey, user.mind, user, "Take [attached_quest.quest_type]")
 	spawned_scroll.base_icon_state = difficulty_data[actual_difficulty]["icon"] // Changed from selection to actual_difficulty
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -374,7 +395,7 @@
 
 	var/obj/effect/landmark/quest_spawner/chosen_landmark = find_quest_landmark(actual_difficulty, type_selection) // Changed from selection to actual_difficulty
 	if(!chosen_landmark)
-		to_chat(user, span_warning("No suitable location found for this quest!"))
+		to_chat(user, span_warning("No suitable location found for this contract!"))
 		qdel(attached_quest)
 		qdel(spawned_scroll)
 		return
@@ -431,7 +452,7 @@
 
 	return null
 
-/obj/structure/roguemachine/noticeboard/proc/turn_in_quest(mob/user, obj/item/paper/scroll/quest/scroll_in_hand)
+/obj/structure/roguemachine/noticeboard/proc/turn_in_contract(mob/user, obj/item/paper/scroll/quest/scroll_in_hand)
 	var/obj/item/paper/scroll/quest/target_scroll = null
 
 	if(scroll_in_hand)
@@ -468,6 +489,10 @@
 		reward += deposit_return
 		original_reward += deposit_return
 		
+		if(user.mind.active_quest >= 1)
+			user.mind.active_quest -= 1
+			say("You now [user.mind.active_quest] active quests.")
+			log_quest(user.ckey, user.mind, user, "Finish [scroll.assigned_quest.quest_type]")
 		qdel(scroll.assigned_quest)
 		qdel(scroll)
 
@@ -493,19 +518,19 @@
 			"Your handler assistance-increased reward of [reward] mammons has been dispensed! The difference is [reward - original_reward] mammons." : \
 			"Your reward of [reward] mammons has been dispensed.")
 
-/obj/structure/roguemachine/noticeboard/proc/abandon_quest(mob/user)
+/obj/structure/roguemachine/noticeboard/proc/abandon_contract(mob/user)
 	var/obj/item/paper/scroll/quest/abandoned_scroll = locate() in input_point
 	if(!abandoned_scroll)
-		to_chat(user, span_warning("No quest scroll found in the input area!"))
+		to_chat(user, span_warning("No contract scroll found in the input area!"))
 		return
 
 	var/datum/quest/quest = abandoned_scroll.assigned_quest
 	if(!quest)
-		to_chat(user, span_warning("This scroll doesn't have an assigned quest!"))
+		to_chat(user, span_warning("This scroll doesn't have an assigned contract!"))
 		return
 
 	if(quest.complete)
-		turn_in_quest(user)
+		turn_in_contract(user)
 		return
 
 	var/refund = quest.quest_difficulty == QUEST_DIFFICULTY_EASY ? QUEST_DEPOSIT_EASY : \
@@ -516,20 +541,20 @@
 	if(giver && (giver in SStreasury.bank_accounts))
 		SStreasury.bank_accounts[giver] += refund
 		SStreasury.treasury_value -= refund
-		SStreasury.log_entries += "-[refund] from treasury (quest refund to handler)"
-		to_chat(user, span_notice("The deposit has been returned to the quest giver."))
+		SStreasury.log_entries += "-[refund] from treasury (contract refund to handler)"
+		to_chat(user, span_notice("The deposit has been returned to the contract giver."))
 	// Otherwise try quest receiver
 	else if(quest.quest_receiver_reference)
 		var/mob/receiver = quest.quest_receiver_reference.resolve()
 		if(receiver && (receiver in SStreasury.bank_accounts))
 			SStreasury.bank_accounts[receiver] += refund
 			SStreasury.treasury_value -= refund
-			SStreasury.log_entries += "-[refund] from treasury (quest refund to volunteer)"
-			to_chat(user, span_notice("You receive a [refund] mammon refund for abandoning the quest."))
+			SStreasury.log_entries += "-[refund] from treasury (contract refund to volunteer)"
+			to_chat(user, span_notice("You receive a [refund] mammon refund for abandoning the contract."))
 		else
 			cash_in(refund)
 			SStreasury.treasury_value -= refund
-			SStreasury.log_entries += "-[refund] from treasury (quest refund)"
+			SStreasury.log_entries += "-[refund] from treasury (contract refund)"
 			to_chat(user, span_notice("Your refund of [refund] mammon has been dispensed."))
 
 	// Clean up quest items
@@ -543,25 +568,29 @@
 					qdel(Q)
 					qdel(I)
 
+	if(user.mind.active_quest >= 1)
+		user.mind.active_quest -= 1
+		say("You now [user.mind.active_quest] active quests.")
+		log_quest(user.ckey, user.mind, user, "Abandon [abandoned_scroll.assigned_quest.quest_type]")
 	abandoned_scroll.assigned_quest = null
 	qdel(quest)
 	qdel(abandoned_scroll)
 
-/obj/structure/roguemachine/noticeboard/proc/print_quests(mob/user)
+/obj/structure/roguemachine/noticeboard/proc/print_contracts(mob/user)
 	var/list/active_quests = list()
 	for(var/obj/item/paper/scroll/quest/quest_scroll in world)
 		if(quest_scroll.assigned_quest && !quest_scroll.assigned_quest.complete)
 			active_quests += quest_scroll
 
 	if(!length(active_quests))
-		say("No active quests found.")
+		say("No active contracts found.")
 		return
 
 	var/obj/item/paper/scroll/report = new(get_turf(src))
-	report.name = "Guild Quest Report"
-	report.desc = "A list of currently active quests issued by the Adventurers' Guild."
+	report.name = "Guild Contract Report"
+	report.desc = "A list of currently active contracts issued by the Mercenary's Guild."
 
-	var/report_text = "<center><b>ADVENTURER'S GUILD - ACTIVE QUESTS</b></center><br><br>"
+	var/report_text = "<center><b>MERCENARY'S GUILD - ACTIVE CONTRACTS</b></center><br><br>"
 	report_text += "<i>Generated on [station_time_timestamp()]</i><br><br>"
 
 	for(var/obj/item/paper/scroll/quest/quest_scroll in active_quests)
@@ -575,4 +604,4 @@
 		report_text += "<b>Reward:</b> [quest.reward_amount] mammons.<br><br>"
 
 	report.info = report_text
-	say("Quest report printed.")
+	say("Contract report printed.")

@@ -8,6 +8,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list()
 	allowed_patrons = list(/datum/patron/inhumen/graggar)
+	job_traits = list(TRAIT_HOMESTEAD_EXPERT)
 	tutorial = "Cook, farm, butcher. Make king happy with apple pies! Don't forget about your brothers."
 
 
@@ -25,9 +26,9 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/farming, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.change_stat("intelligence", 1)
-	H.change_stat("fortune", 1)
+	H.change_stat(STATKEY_INT, 1)
+	H.change_stat(STATKEY_LCK, 1)

@@ -9,7 +9,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	projectile_type = /obj/projectile/magic/profane
 	chargedloop = /datum/looping_sound/invokeholy
-	invocation = "Oblino!"
+	invocations = list("Oblino!")
 	invocation_type = "whisper"
 	releasedrain = 30
 	chargedrain = 0
@@ -90,16 +90,29 @@
 
 // T2: just use lesser animate undead for now
 
-/obj/effect/proc_holder/spell/invoked/raise_lesser_undead/miracle
+/obj/effect/proc_holder/spell/invoked/raise_undead_formation/miracle
 	miracle = TRUE
 	devotion_cost = 75
 	cabal_affine = TRUE
+	to_spawn = 2
+
+// T2: carbon spawn
+
+/obj/effect/proc_holder/spell/invoked/raise_undead_guard/miracle
+	miracle = TRUE
+	devotion_cost = 75
+
+// T3: tames bio_type = undead mobs
+
+/obj/effect/proc_holder/spell/invoked/tame_undead/miracle
+	miracle = TRUE
+	devotion_cost = 100
 
 // T3: Rituos (usable once per sleep cycle, allows you to choose any 1 arcane spell to use for the duration w/ an associated devotion cost. each time you change it, 1 of your limbs is skeletonized, if all of your limbs are skeletonized, you gain access to arcane magic. continuing to use rituos after being fully skeletonized gives you additional spellpoints). Gives you the MOB_UNDEAD flag (needed for skeletonize to work) on first use.
 
 /obj/effect/proc_holder/spell/invoked/rituos
 	name = "Rituos"
-	desc = "Draw upon the Lesser Work of She Who Is Z, and expunge the trappings of mortal flesh from your form in exchange for power unimaginable. Be warned: indulging in even the first step of this ritual will make you more deadite than not..."
+	desc = "Do a ritual for she of Z that skeletonises a part of your body and bestows upon you arcyne magycks until you next sleep. Once your whole body has become skeletonised you gain full access to the Arcyne, bolstering your knowledge of spells with each additional ritual."
 	clothes_req = FALSE
 	overlay_state = "rituos"
 	associated_skill = /datum/skill/magic/arcane
@@ -220,19 +233,22 @@
 
 /obj/effect/proc_holder/spell/self/zizo_snuff
 	name = "Snuff Lights"
+	desc = "Extinguish all lights in range, with your Miracles skill increasing range."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
 	chargedloop = /datum/looping_sound/invokeholy
+	invocations = list("Embrace the darkness!")
+	invocation_type = "shout"
 	sound = 'sound/magic/zizo_snuff.ogg'
 	overlay_state = "rune2"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
-	recharge_time = 12 SECONDS
+	recharge_time = 20 SECONDS
 	miracle = TRUE
 	devotion_cost = 30
 	range = 2
-	
+
 /obj/effect/proc_holder/spell/self/zizo_snuff/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(!ishuman(user))

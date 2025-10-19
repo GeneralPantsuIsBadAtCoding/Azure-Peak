@@ -78,14 +78,20 @@
 	icon_state = "wool2"
 	color = "#cecac4"
 
+/obj/item/natural/fur/raccoon	
+	desc = "from a raccoon."
+	icon_state = "pelt_raccoon"
+	color = null
+	sellprice = 12
+
 //RTD make this a storage item and make clickign on animals with things put it in storage
 /obj/item/natural/saddle
 	name = "saddle"
 	icon_state = "saddle"
+	associated_skill = /datum/skill/misc/riding
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK_L
 	resistance_flags = FIRE_PROOF
-	gripped_intents = list(/datum/intent/use)
 	force = 0
 	throwforce = 0
 	sellprice = 10
@@ -173,9 +179,10 @@
 	icon2step = 10
 
 /obj/item/natural/cured/essence
-	name = "essense of wilderness"
+	name = "essence of wilderness"
 	icon_state = "wessence"
-	desc = "A mystical essense embued with the power of Dendor. Merely holding it transports one's mind to ancient times."
+	desc = "A large drop of mystical sap said to contain Dendor's own energies, \n\
+	often carried by hunters and other wildsmen as a token of luck. A skilled tailor can imbue it into certain clothing or leather to provide protection."
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	sellprice = 20

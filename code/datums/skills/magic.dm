@@ -3,6 +3,7 @@
 	name = "Magic"
 	desc = ""
 	randomable_dream_xp = FALSE
+	color = "#9f74d6"
 
 /datum/skill/magic/holy
 	name = "Miracles"

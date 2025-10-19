@@ -21,6 +21,9 @@
 
 	. = ..()
 	if(iscarbon(M))
+		if(HAS_TRAIT(M, TRAIT_DNR) && M.stat == DEAD)
+			to_chat(user, span_warning("[M] will never come back, again."))
+			return FALSE
 		M.apply_status_effect(/datum/status_effect/buff/eoran_balm_effect)
 	to_chat(user, span_notice("The bottle shatters after use!"))
 	qdel(src)

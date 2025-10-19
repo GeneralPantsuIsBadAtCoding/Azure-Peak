@@ -18,7 +18,6 @@
 	var/lifetime = 5
 	var/opaque = 1 //whether the smoke can block the view when in enough amount
 
-
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
 	if(alpha == 0) //Handle already transparent case
 		return
@@ -61,6 +60,8 @@
 	if(lifetime<1)
 		return 0
 	if(C.smoke_delay)
+		return 0
+	if(istype(C.wear_mask, /obj/item/clothing/mask/rogue/facemask/steel/confessor))
 		return 0
 	C.smoke_delay++
 	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
@@ -265,3 +266,11 @@
 	smoke.effect_type = smoke_type
 	smoke.set_up(range, location)
 	smoke.start()
+
+/datum/effect_system/smoke_spread/fast
+	effect_type = /obj/effect/particle_effect/smoke/fast
+
+// Very quick smoke meant for artillery fireball
+/obj/effect/particle_effect/smoke/fast
+	lifetime = 1
+

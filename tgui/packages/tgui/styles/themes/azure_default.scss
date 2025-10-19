@@ -4,53 +4,34 @@
 }
 
 .theme-azure_default:root {
-  --color-base: #141b15;
-  --color-base-start: #141b15;
-  --color-base-end: #141b15;
+  --color-base: #000000;
+  --color-base-start: #000000;
+  --color-base-end: #000000;
 
-  --font-size: 12px;
+  --font-size: 14px;
   --font-family: 'Pterra';
+  --color-text: #897472;
+  --line-height: 170%;
+  --color-scrollbar-thumb: #7b5353;
 
-  // Sidebar
-  .SideBarDecoration {
-    background-image: url('../assets/azure_default/snek.svg');
-    background-repeat: no-repeat;
-    background-size: 64px;
-    width: 64px;
-    height: 128px;
-    margin-top: 32px;
-  }
 
-  .SideBar {
-    background-image: url('../assets/azure_default/columns.svg');
-    background-repeat: repeat-y;
-    background-size: 64px;
+  /* Semantic colors */ 
+  --color-label: #897472;
 
-    width: 64px;
-    height: 100vh;
-
-    position: fixed;
-    z-index: 500;
-
-    pointer-events: none;
-    overflow: none;
-  }
+  // Scrollbar
+  scrollbar-color: #511111 #000000;
 
   // Basics
   .Layout__content {
     background-image: none;
-    padding-left: 64px;
 
-    font-size: 14px;
   }
 
   .TitleBar {
-    background-image: url('../assets/azure_default/topbar.svg');
+    background-image: url('../assets/azure_default/topbar_red.svg');
     background-repeat: repeat-x;
     background-size: 64px;
-
-    padding-left: 64px;
-    border: none;
+    background-color: #000000;
     box-shadow: none;
 
     &__title {
@@ -58,19 +39,81 @@
     }
   }
 
+  .TitleBar__title {
+    padding-left: 12px;
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: bolder;
+  }
+
   // Component overrides
 
-  // Section
-  --section-separator-color: #619940;
+  --section-separator-color: #7b5353;
 
   // Button
-  --button-background-default: #29332b;
-  --button-background-selected: #404744;
+  --button-background: #511111 ;
+  --button-background-default: #511111;
+  --button-background-selected: #511111;
   .Button {
-    margin-bottom: 2px;
     transition: all 0.5s;
+    --color-text: #897472;
+  }
+  .Button--color--transparent {
+    --button-background-hover: #7b5353;
+    --button-background-active: #7b5353;
+  }
+
+  .input-button {
+    &__submit, &__cancel {
+      color: #ae3636;
+      font-weight: 600;
+    }
+    &__submit:hover {
+      background: rgba(74, 140, 74, 0.3);
+      transition: all 0.5s;
+    }
+    &__cancel:hover {
+      background: rgba(140, 74, 74, 0.3);
+      transition: all 0.5s;
+    }
   }
 
   // Input
-  --input-border-color: #56853e;
+  --input-border-color: #7b5353;
+  --input-border-color-focus: #7b5353;
+
+  .Window__contentPadding {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .Divider {
+    border-color: #7b5353;
+  }
+  
+  a:link {
+    color: #892a2b;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: #e19d9e;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #c94f51;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
 }
+

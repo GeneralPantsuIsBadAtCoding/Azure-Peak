@@ -1,7 +1,7 @@
 // Lich / Vampire shared list only
 /obj/effect/proc_holder/spell/invoked/projectile/bloodlightning
 	name = "Blood Bolt"
-	desc = ""
+	desc = "Emit a bolt of lightning that burns a target harshly, preventing them from attacking and slowing them down for 8 seconds."
 	clothes_req = FALSE
 	overlay_state = "bloodlightning"
 	sound = 'sound/magic/vlightning.ogg'
@@ -10,12 +10,12 @@
 	releasedrain = 30
 	chargedrain = 1
 	chargetime = 25
-	recharge_time = 20 SECONDS
+	recharge_time = 15 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2 // Doesn't matter for the most part
-	invocation = "Sanguis Sagitta!"
+	invocations = list("Sanguis Sagitta!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_VAMPIRIC
 	glow_intensity = GLOW_INTENSITY_MEDIUM
@@ -31,7 +31,7 @@
 	impact_type = null
 	hitscan = TRUE
 	movement_type = UNSTOPPABLE
-	damage = 35
+	damage = 80
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
@@ -50,5 +50,8 @@
 			return BULLET_ACT_BLOCK
 		if(isliving(target))
 			var/mob/living/L = target
-			L.electrocute_act(3, src)
+			L.Immobilize(0.5 SECONDS)
+			L.apply_status_effect(/datum/status_effect/debuff/clickcd, 8 SECONDS)
+			L.electrocute_act(1, src, 1, SHOCK_NOSTUN)
+			L.apply_status_effect(/datum/status_effect/buff/lightningstruck, 8 SECONDS)
 	qdel(src)

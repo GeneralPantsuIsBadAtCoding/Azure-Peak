@@ -33,19 +33,19 @@
 	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] rides [target]."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
 
-	if(target.sexcon.considered_limp())
-		user.sexcon.perform_sex_action(target, 1.2, 3, TRUE)
-	else
-		user.sexcon.perform_sex_action(target, 2.4, 7, TRUE)
-	user.sexcon.handle_passive_ejaculation()
-
-	user.sexcon.perform_sex_action(target, 2, 4, FALSE)
+	target.sexcon.perform_sex_action(target, 2, 0, TRUE)
 	if(target.sexcon.check_active_ejaculation())
 		target.visible_message(span_love("[target] cums into [user]'s cunt!"))
 		target.sexcon.cum_into()
 		target.try_impregnate(user)
 		target.virginity = FALSE
 		user.virginity = FALSE
+
+	if(target.sexcon.considered_limp())
+		target.sexcon.perform_sex_action(user, 1.2, 3, FALSE)
+	else
+		target.sexcon.perform_sex_action(user, 2.4, 7, FALSE)
+	user.sexcon.handle_passive_ejaculation()
 
 /datum/sex_action/vaginal_ride_sex/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_warning("[user] gets off [target]."))

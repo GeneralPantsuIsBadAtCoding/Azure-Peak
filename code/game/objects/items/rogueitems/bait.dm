@@ -26,6 +26,11 @@
 	check_counter = world.time
 
 /obj/item/bait/attack_self(mob/user)
+	var/area/A = get_area(user.loc)
+	if(!is_valid_hunting_area(A))
+		to_chat(user, span_warning("I should save [name] for the wilderness..."))
+		return
+
 	. = ..()
 	user.visible_message(span_notice("[user] begins deploying the bait..."), \
 						span_notice("I begin deploying the bait..."))
@@ -120,3 +125,9 @@
 							/mob/living/simple_animal/hostile/retaliate/rogue/wolf/bobcat = 15,		//Annoying bastards
 							/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 10,
 							/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = 5)			//RUH-ROH
+
+/obj/item/bait/spider
+	name = "silk bag of bloodbait"
+	desc = "Bait for my little pet!"
+	icon_state = "baits"
+	attracted_types = list(/mob/living/simple_animal/hostile/retaliate/rogue/drider/tame/saddled = 100)

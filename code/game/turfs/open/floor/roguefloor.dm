@@ -698,7 +698,8 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_FALSE
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/floor/rogue/dark_ice)
 	slowdown = 50
 
 /turf/open/floor/rogue/underworld/space/sparkle_quiet
@@ -779,6 +780,9 @@
 	. = ..()
 	dir = pick(GLOB.cardinals)
 
+/turf/open/floor/rogue/blocks/flipped
+	dir = 8
+
 /turf/open/floor/rogue/blocks/stonered
 	icon_state = "stoneredlarge"
 	name = "large red tiles"
@@ -828,6 +832,24 @@
 
 /turf/open/floor/rogue/greenstone/runed
 	icon_state = "greenstoneruned"
+
+/turf/open/floor/rogue/greenstone/glyph1
+	icon_state = "glyph1"
+
+/turf/open/floor/rogue/greenstone/glyph2
+	icon_state = "glyph2"
+
+/turf/open/floor/rogue/greenstone/glyph3
+	icon_state = "glyph3"
+
+/turf/open/floor/rogue/greenstone/glyph4
+	icon_state = "glyph4"
+
+/turf/open/floor/rogue/greenstone/glyph5
+	icon_state = "glyph5"
+
+/turf/open/floor/rogue/greenstone/glyph6
+	icon_state = "glyph6"
 
 /turf/open/floor/rogue/hexstone
 	icon_state = "hexstone"
@@ -1061,6 +1083,17 @@
 	landsound = 'sound/foley/jumpland/woodland.wav'
 	icon_state = "herringbonewood"
 
+/turf/open/floor/rogue/ruinedwood/herringbone_clear
+	name = "wooden herringbone flooring"
+	desc = "Thin planks of wood carefully arranged in a rather pleasing pattern."
+	footstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_WOOD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+	landsound = 'sound/foley/jumpland/woodland.wav'
+	icon_state = "herringbonewood2"
+
 /turf/open/floor/rogue/wood/herringbone
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -1139,6 +1172,20 @@
 	icon_state = "mossystone_edges"
 	mouse_opacity = 0
 
+/obj/effect/decal/edge
+	name = "stone edge"
+	desc = "A piece of stone used to border city roads."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "border"
+	mouse_opacity = 0
+
+/obj/effect/decal/edge_corner
+	name = "stone edge corner"
+	desc = "A piece of stone used to border city roads."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "border_corner"
+	mouse_opacity = 0
+
 /turf/open/floor/rogue/cobblerock
 	icon_state = "cobblerock"
 	name = "cobbled rock path"
@@ -1173,19 +1220,19 @@
 	icon_state = "kover"
 
 /obj/effect/decal/carpet/kover_darkred
-	name = "exotic red rug"
+	name = "rustic red rug"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_darkred"
 
 /obj/effect/decal/carpet/kover_purple
-	name = "exotic purple rug"
+	name = "rustic purple rug"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_purple"
 
 /obj/effect/decal/carpet/kover_black
-	name = "exotic black carpet"
+	name = "rustic black carpet"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_black"
@@ -1203,6 +1250,19 @@
 	desc = "As black as the night sky during a storm."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "blackcarpet"
+
+/obj/structure/giantfur
+	name = "giant fur"
+	desc = "Pelt of some gigantic animal, made into a mat."
+	icon = 'icons/roguetown/misc/96x96.dmi'
+	icon_state = "fur"
+	density = FALSE
+	anchored = TRUE
+
+/obj/structure/giantfur/small // the irony
+	name = "fur pelt"
+	desc = "Pelt of a young animal, made into a mat."
+	icon_state = "fur_alt"
 
 /turf/open/floor/rogue/tile
 	icon_state = "chess"
@@ -1442,4 +1502,19 @@
 						/turf/closed/wall/mineral)
 
 /turf/open/floor/rogue/naturalstone/cardinal_smooth(adjacencies)
+	roguesmooth(adjacencies)
+
+/turf/open/floor/rogue/dark_ice
+	name = "black ice"
+	desc = "A deep black rock glazed over with unnaturally cold ice."
+	icon_state = "blackice"
+	footstep = FOOTSTEP_STONE
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	landsound = 'sound/foley/jumpland/grassland.wav'
+	smooth = SMOOTH_MORE
+	canSmoothWith = list(/turf/open/floor/rogue, /turf/open/floor/rogue/underworld)
+
+/turf/open/floor/rogue/dark_ice/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)

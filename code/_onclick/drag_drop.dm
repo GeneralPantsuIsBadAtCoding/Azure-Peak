@@ -61,6 +61,7 @@
 	var/progress
 	var/doneset
 	var/aghost_toggle
+	var/show_lobby_ooc = TRUE // Admin preference: see lobby OOC even when not in lobby
 
 /atom
 	var/blockscharging = FALSE
@@ -128,7 +129,7 @@
 				if(mob.next_rmove > world.time)
 					return
 			mob.used_intent = mob.o_intent
-			if(mob.used_intent.get_chargetime() && !AD.blockscharging && !mob.in_throw_mode)
+			if(mob.used_intent.get_chargetime() && mob.mmb_intent.can_charge() && !AD.blockscharging && !mob.in_throw_mode)
 				updateprogbar()
 			else
 				mouse_pointer_icon = 'icons/effects/mousemice/human_attack.dmi'
@@ -149,7 +150,7 @@
 		if(!mob.mmb_intent)
 			mouse_pointer_icon = 'icons/effects/mousemice/human_looking.dmi'
 		else
-			if(mob.mmb_intent.get_chargetime() && !AD.blockscharging)
+			if(mob.mmb_intent.get_chargetime() && mob.mmb_intent.can_charge() && !AD.blockscharging)
 				updateprogbar()
 			else
 				mouse_pointer_icon = mob.mmb_intent.pointer
@@ -247,13 +248,13 @@
 	L.used_intent.prewarning()
 
 	if(!charging) //This is for spell charging
-		charging = 1 
+		charging = 1
 		L.used_intent.on_charge_start()
 		L.update_charging_movespeed(L.used_intent)
 //		L.update_warning(L.used_intent)
-		progress = 0 
+		progress = 0
 
-//		if(L.used_intent.charge_invocation) 
+//		if(L.used_intent.charge_invocation)
 //			sections = 100/L.used_intent.charge_invocation.len
 //		else
 //			sections = null
@@ -270,33 +271,25 @@
 	STOP_PROCESSING(SSmousecharge, src)
 	return ..()
 
-/client/process()
+/client/process(seconds_per_tick)
 	if(!isliving(mob))
 		return PROCESS_KILL
 	var/mob/living/L = mob
-	if(!L?.client || !update_to_mob(L))
+	if(!L?.client || !update_to_mob(L, seconds_per_tick))
 		if(L.curplaying)
 			L.curplaying.on_mouse_up()
 		L.update_charging_movespeed()
 		return PROCESS_KILL
 
-/client/proc/update_to_mob(mob/living/L)
+/client/proc/update_to_mob(mob/living/L, seconds_per_tick)
 	if(charging)
 		if(progress < goal)
-			progress++
-			chargedprog = text2num("[((progress / goal) * 100)]")
-	//		mouseprog = round(text2num("[((progress / goal) * 20)]"), 1)
-	//		mouse_pointer_icon = GLOB.mouseicons_human[mouseprog]
-	//		testing("mouse[mouseprog]")
-//			if(sections && chargedprog > lastplayed) //used for changing icon based on action progress
-//				L.say(L.used_intent.charge_invocation[part])
-//				part++
-//				lastplayed = sections * part
+			progress += 1 * seconds_per_tick // Tickspeed independent. Should always be 1, isn't always 1 when under strain.
+			chargedprog = ((progress / goal) * 100)
+			mouse_pointer_icon = 'icons/effects/mousemice/swang/acharging.dmi'
 		else //Fully charged spell
-			if(!doneset) 
+			if(!doneset)
 				doneset = 1
-//				if(sections)
-//					L.say(L.used_intent.charge_invocation[L.used_intent.charge_invocation.len])
 				if(L.curplaying && !L.used_intent.keep_looping)
 					playsound(L, 'sound/magic/charged.ogg', 100, TRUE)
 					L.curplaying.on_mouse_up()

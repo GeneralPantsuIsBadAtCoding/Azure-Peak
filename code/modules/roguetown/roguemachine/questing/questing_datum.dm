@@ -41,7 +41,7 @@
 			continue
 
 		// Only delete the item if it's part of a fetch or courier quest
-		if(quest_type == QUEST_FETCH && istype(target_atom, target_item_type))
+		if(quest_type == QUEST_RETRIEVAL && istype(target_atom, target_item_type))
 			qdel(target_atom)
 		else if(quest_type == QUEST_COURIER && istype(target_atom, target_delivery_item))
 			qdel(target_atom)

@@ -4,7 +4,7 @@
 	school = "transmutation"
 	recharge_time = 100
 	clothes_req = FALSE
-	invocation = "GAR YOK"
+	invocations = list("GAR YOK")
 	invocation_type = "whisper"
 	range = -1
 	cooldown_min = 100

@@ -15,7 +15,6 @@
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/swift, /datum/rmb_intent/riposte, /datum/rmb_intent/weak)
 	flee_in_pain = TRUE
-	vitae_pool = 250 // Small, frail creechers with not so much vitality to gain from.
 
 /mob/living/carbon/human/species/goblin/npc
 	aggressive=1
@@ -45,6 +44,10 @@
 	name = "hell goblin"
 	id = "goblin_hell"
 	raceicon = "goblin_hell"
+
+/datum/species/goblin/hell/spec_death(gibbed, mob/living/carbon/human/H)
+	new /obj/item/alch/infernaldust(get_turf(H))
+	H.visible_message("<span class='blue'>Infernal dust falls from [H]!</span>")
 
 /mob/living/carbon/human/species/goblin/cave
 	name = "cave goblin"
@@ -115,7 +118,7 @@
 	name = "goblin"
 	id = "goblin"
 	species_traits = list(NO_UNDERWEAR,NOEYESPRITES)
-	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RADIMMUNE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NASTY_EATER)
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RADIMMUNE, TRAIT_CRITICAL_WEAKNESS, TRAIT_NASTY_EATER, TRAIT_LEECHIMMUNE)
 	no_equip = list(SLOT_SHIRT, SLOT_WEAR_MASK, SLOT_GLOVES, SLOT_SHOES, SLOT_PANTS, SLOT_S_STORE)
 	nojumpsuit = 1
 	sexes = 1
@@ -132,7 +135,6 @@
 	H.update_inv_hands()
 	H.update_inv_handcuffed()
 	H.update_inv_legcuffed()
-	H.update_fire()
 	H.update_body()
 	var/mob/living/carbon/human/species/goblin/G = H
 	G.update_wearable()
@@ -188,8 +190,9 @@
 
 	apply_overlay(ARMOR_LAYER)
 
-/mob/living/carbon/human/species/goblin/update_inv_head()
+/mob/living/carbon/human/species/goblin/update_inv_head(hide_nonstandard = FALSE)
 	update_wearable()
+
 /mob/living/carbon/human/species/goblin/update_inv_armor()
 	update_wearable()
 
@@ -234,7 +237,7 @@
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 	if(is_species(src, /datum/species/goblin/sea))
 		ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
@@ -304,7 +307,7 @@
 		H.tree_climber = TRUE
 		H.find_targets_above = TRUE // so they can taunt
 	H.STACON = 6
-	H.STAEND = 15
+	H.STAWIL = 15
 	if(is_species(H, /datum/species/goblin/moon))
 		H.STAINT = 8
 	else
@@ -338,7 +341,7 @@
 		if(5) //heavy armored sword/flail/shields
 			ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			if(prob(30))
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
 			else
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/goblin
 			if(prob(80))

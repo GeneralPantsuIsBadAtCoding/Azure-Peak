@@ -51,12 +51,37 @@
 #define STATS_LUX_REVIVALS "lux_revivals"
 #define STATS_DODGES "dodges_made"
 
+// Economic Statistics
+#define STATS_BATHMATRON_VAULT_INCOME "bath_vault_regular"
+#define STATS_BATHMATRON_VAULT_TOTAL_REVENUE "bath_vault_total"
+#define STATS_WAGES_PAID "wages_paid"
+#define STATS_FINES_INCOME "fines_income"
+#define STATS_TRADE_VALUE_EXPORTED "trade_exported"
+#define STATS_TRADE_VALUE_IMPORTED "trade_imported"
+#define STATS_GOLDFACE_VALUE_SPENT "goldface_spent"
+#define STATS_SILVERFACE_VALUE_SPENT "silverface_spent"
+#define STATS_PURITY_VALUE_SPENT "purity_spent"
+#define STATS_TAXES_EVADED "taxes_evaded"
+#define STATS_NOBLE_INCOME_TOTAL "noble_income_total"
+#define STATS_DIRECT_TREASURY_TRANSFERS "direct_treasury_transfers"
+#define STATS_STOCKPILE_EXPORTS_VALUE "stockpile_exports_value"
+#define STATS_STOCKPILE_IMPORTS_VALUE "stockpile_imports_value"
+#define STATS_STOCKPILE_EXPANSES "stockpile_expanses"
+#define STATS_STOCKPILE_REVENUE "stockpile_revenue"
+#define STATS_PEDDLER_REVENUE "peddler_revenue"
+#define STATS_MAMMONS_HELD "mammons_held"
+#define STATS_MAMMONS_DEPOSITED "mammons_deposited"
+#define STATS_MAMMONS_WITHDRAWN "mammons_withdrawn"
+#define STATS_STARTING_TREASURY "starting_treasury"
+#define STATS_RURAL_TAXES_COLLECTED "rural_taxes_collected" // Azure only. Lowpop safety
+
 // Influence related statistics
 
 //Psydon
 #define STATS_HUMEN_DEATHS "humen_deaths"
 #define STATS_PSYCROSS_USERS "people_wearing_psycross"
 #define STATS_LUX_HARVESTED "lux_harvested"
+#define STATS_MARQUES_MADE "marques_made"
 
 //Astratan
 #define STATS_LAWS_AND_DECREES_MADE "laws_and_decrees_made"
@@ -73,6 +98,7 @@
 
 //Necra
 #define STATS_SKELETONS_KILLED "skeletons_killed"
+#define STATS_GRAVES_CONSECRATED "graves_consecrated"
 #define STATS_GRAVES_ROBBED "graves_robbed"
 #define STATS_DEADITES_KILLED "deadites_killed"
 #define STATS_VAMPIRES_KILLED "vampires_killed"
@@ -113,6 +139,7 @@
 #define STATS_ABYSSOR_REMEMBERED "abyssor_remembered"
 #define STATS_LEECHES_EMBEDDED "leeches_embedded"
 #define STATS_PEOPLE_DROWNED "people_drowned"
+#define STATS_BATHS_TAKEN "baths_taken"
 
 //Eora
 #define STATS_KISSES_MADE "kisses_made"
@@ -205,7 +232,6 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_ALIVE_NORTHERN_HUMANS = 0,
 	STATS_ALIVE_DWARVES = 0,
 	STATS_ALIVE_DARK_ELVES = 0,
-	STATS_ALIVE_SNOW_ELVES = 0,
 	STATS_ALIVE_HALF_ELVES = 0,
 	STATS_ALIVE_HALF_ORCS = 0,
 	STATS_ALIVE_GOBLINS = 0,
@@ -251,6 +277,46 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_LUX_REVIVALS = 0,
 	STATS_PLEASURES = 0,
 	STATS_SKILLS_DREAMED = 0,
+	STATS_REGULAR_VAULT_INCOME = 0,
+	STATS_VAULT_TOTAL_REVENUE = 0,
+	STATS_FINES_INCOME = 0,
+	STATS_TRADE_VALUE_EXPORTED = 0,
+	STATS_TRADE_VALUE_IMPORTED = 0,
+	STATS_GOLDFACE_VALUE_SPENT = 0,
+	STATS_PURITY_VALUE_SPENT = 0,
+	STATS_TAXES_EVADED = 0,
+	STATS_NOBLE_INCOME_TOTAL = 0,
+	STATS_DIRECT_TREASURY_TRANSFERS = 0,
+	STATS_STOCKPILE_EXPORTS_VALUE = 0,
+	STATS_STOCKPILE_IMPORTS_VALUE = 0,
+	STATS_STOCKPILE_EXPANSES = 0,
+	STATS_STOCKPILE_REVENUE = 0,
+	STATS_PEDDLER_REVENUE = 0,
+	STATS_MAMMONS_HELD = 0,
+	STATS_MAMMONS_DEPOSITED = 0,
+	STATS_MAMMONS_WITHDRAWN = 0,
+	STATS_STARTING_TREASURY = 0,
+	STATS_BATHMATRON_VAULT_INCOME = 0,
+	STATS_BATHMATRON_VAULT_TOTAL_REVENUE = 0,
+	STATS_WAGES_PAID = 0,
+	STATS_FINES_INCOME = 0,
+	STATS_TRADE_VALUE_EXPORTED = 0,
+	STATS_TRADE_VALUE_IMPORTED = 0,
+	STATS_GOLDFACE_VALUE_SPENT = 0,
+	STATS_SILVERFACE_VALUE_SPENT = 0,
+	STATS_PURITY_VALUE_SPENT = 0,
+	STATS_TAXES_EVADED = 0,
+	STATS_NOBLE_INCOME_TOTAL = 0,
+	STATS_DIRECT_TREASURY_TRANSFERS = 0,
+	STATS_STOCKPILE_EXPORTS_VALUE = 0,
+	STATS_STOCKPILE_IMPORTS_VALUE = 0,
+	STATS_STOCKPILE_EXPANSES = 0,
+	STATS_STOCKPILE_REVENUE = 0,
+	STATS_PEDDLER_REVENUE = 0,
+	STATS_MAMMONS_HELD = 0,
+	STATS_MAMMONS_DEPOSITED = 0,
+	STATS_MAMMONS_WITHDRAWN = 0,
+	STATS_STARTING_TREASURY = 0,
 ))
 
 GLOBAL_LIST_EMPTY(patron_follower_counts)
@@ -271,102 +337,161 @@ GLOBAL_LIST_EMPTY(patron_follower_counts)
 #define FEATURED_STATS_CRAFTERS "crafters"
 #define FEATURED_STATS_FARMERS "farmers"
 #define FEATURED_STATS_STORYTELLERS "storytellers"
+#define FEATURED_STATS_VIRTUES	"virtues"
+#define FEATURED_STATS_STATPACKS "statpacks"
+#define FEATURED_STATS_VICES	"vices"
 
 // Featured objects stats
 #define FEATURED_STATS_CRAFTED_ITEMS "crafted_items"
+#define FEATURED_STATS_SPELLS "spells"
 #define FEATURED_STATS_DRINKS "drinks"
 
 GLOBAL_LIST_INIT(featured_stats, list(
 	FEATURED_STATS_TREE_FELLERS = list(
-		"name" = "TOP 10 Lumberjacks",
+		"name" = "TOP Lumberjacks",
 		"color" = "#9b6937",
 		"entries" = list()
 	),
 	FEATURED_STATS_TAX_PAYERS = list(
-		"name" = "TOP 10 Tax Payers",
+		"name" = "TOP Tax Payers",
 		"color" = "#f1e35d",
 		"entries" = list()
 	),
 	FEATURED_STATS_CRIMINALS = list(
-		"name" = "TOP 10 Criminals",
+		"name" = "TOP Criminals",
 		"color" = "#bb6976",
 		"entries" = list()
 	),
 	FEATURED_STATS_SPEAKERS = list(
-		"name" = "TOP 10 Speakers",
+		"name" = "TOP Speakers",
 		"color" = "#93cabe",
 		"entries" = list()
 	),
 	FEATURED_STATS_MINERS = list(
-		"name" = "TOP 10 Miners",
+		"name" = "TOP Miners",
 		"color" = "#bd8e60",
 		"entries" = list()
 	),
 	FEATURED_STATS_ALCHEMISTS = list(
-		"name" = "TOP 10 Alchemists",
+		"name" = "TOP Alchemists",
 		"color" = "#3bac5d",
 		"entries" = list()
 	),
 	FEATURED_STATS_STORYTELLERS = list(
-		"name" = "TOP 10 Reigning Gods",
+		"name" = "TOP Reigning Gods",
 		"color" = "#eeca2c",
 		"entries" = list()
 	),
 	FEATURED_STATS_GOURMETS = list(
-		"name" = "TOP 10 Gourmets",
+		"name" = "TOP Gourmets",
 		"color" = "#6765cf",
 		"entries" = list()
 	),
 	FEATURED_STATS_CRAFTED_ITEMS = list(
-		"name" = "TOP 10 Crafted Items",
+		"name" = "TOP Crafted Items",
 		"color" = "#a5953a",
 		"entries" = list(),
 		"object_stat" = TRUE
 	),
 	FEATURED_STATS_FISHERS = list(
-		"name" = "TOP 10 Fishers",
+		"name" = "TOP Fishers",
 		"color" = "#559bbb",
 		"entries" = list()
 	),
 	FEATURED_STATS_CRAFTERS = list(
-		"name" = "TOP 10 Crafters",
+		"name" = "TOP Crafters",
 		"color" = "#a8a24e",
 		"entries" = list()
 	),
 	FEATURED_STATS_FARMERS = list(
-		"name" = "TOP 10 Farmers",
+		"name" = "TOP Farmers",
 		"color" = "#50eb77",
 		"entries" = list()
 	),
 	FEATURED_STATS_DRINKS = list(
-		"name" = "TOP 10 Beverages",
+		"name" = "TOP Beverages",
 		"color" = "#5487c0",
 		"entries" = list(),
 		"object_stat" = TRUE
 	),
 	FEATURED_STATS_SCREAMERS = list(
-		"name" = "TOP 10 Screamers",
+		"name" = "TOP Screamers",
 		"color" = "#d34747",
 		"entries" = list()
 	),
 	FEATURED_STATS_THIEVES = list(
-		"name" = "TOP 10 Thieves",
+		"name" = "TOP Thieves",
 		"color" = "#6e4a25",
 		"entries" = list()
 	),
 	FEATURED_STATS_ALCOHOLICS = list(
-		"name" = "TOP 10 Alcoholics",
+		"name" = "TOP Alcoholics",
 		"color" = "#945d96",
 		"entries" = list()
 	),
 	FEATURED_STATS_MAGES = list(
-		"name" = "TOP 10 Mages",
+		"name" = "TOP Mages",
 		"color" = "#9eaceb",
 		"entries" = list()
 	),
-))
 
-/proc/format_top_ten(stat_category)
+	FEATURED_STATS_SPELLS = list(
+		"name" = "TOP Spells",
+		"color" = "#6375c5",
+		"entries" = list(),
+		"object_stat" = TRUE
+	),	FEATURED_STATS_VIRTUES = list(
+		"name" = "TOP 10 Virtues",
+		"color" = "#df5cb8",
+		"entries" = list(),
+		"object_stat" = TRUE,
+		"admin_only" = TRUE
+	),
+	FEATURED_STATS_STATPACKS = list(
+		"name" = "TOP 10 Statpacks",
+		"color" = "#3aa4e2",
+		"entries" = list(),
+		"object_stat" = TRUE,
+		"admin_only" = TRUE
+	),
+	FEATURED_STATS_VICES = list(
+		"name" = "TOP 10 Vices",
+		"color" = "#791368",
+		"entries" = list(),
+		"object_stat" = TRUE
+	),))
+
+// Chronicle statistics
+#define CHRONICLE_STATS_STRONGEST_PERSON "strongest_person"
+#define CHRONICLE_STATS_WISEST_PERSON "wisest_person"
+#define CHRONICLE_STATS_RICHEST_PERSON "richest_person"
+#define CHRONICLE_STATS_LUCKIEST_PERSON "luckiest_person"
+#define CHRONICLE_STATS_FASTEST_PERSON "fastest_person"
+#define CHRONICLE_STATS_DUMBEST_PERSON "dumbest_person"
+#define CHRONICLE_STATS_SLOWEST_PERSON "slowest_person"
+#define CHRONICLE_STATS_UNLUCKIEST_PERSON "unluckiest_person"
+
+GLOBAL_LIST_EMPTY(chronicle_stats)
+
+/// Increment a round statistic by a given amount
+/proc/record_round_statistic(name, amount = 1)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
+	if(!name || isnull(GLOB.azure_round_stats[name]))
+		return
+
+	GLOB.azure_round_stats[name] += amount
+
+/// Force set a value of a specific round statistic to a given value
+/proc/force_set_round_statistic(name, value)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
+	if(!name || isnull(GLOB.azure_round_stats[name]))
+		return
+
+	GLOB.azure_round_stats[name] = value
+
+/proc/format_top_stats(stat_category)
 	var/list/stat_data = GLOB.featured_stats[stat_category]
 	if(!stat_data || !stat_data["entries"])
 		return "Nobody"
@@ -375,17 +500,17 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	for(var/key in stat_data["entries"])
 		entries += list(list("name" = key, "count" = stat_data["entries"][key]))
 
-	entries = sortList(entries, /proc/cmp_stat_count_desc)
+	sortTim(entries, GLOBAL_PROC_REF(cmp_stat_count_desc))
 
 	var/list/result = list()
-	for(var/i in 1 to min(10, entries.len))
+	for(var/i in 1 to min(14, entries.len))
 		var/list/entry = entries[i]
 		var/rounded_count = round(entry["count"])
 		result += "[i]. [entry["name"]] - [rounded_count]"
 
 	return result.Join("<br>")
 
-/proc/format_top_ten_objects(stat_category)
+/proc/format_top_stats_objects(stat_category)
 	var/list/stat_data = GLOB.featured_stats[stat_category]
 	if(!stat_data || !stat_data["entries"])
 		return "None"
@@ -394,10 +519,10 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	for(var/key in stat_data["entries"])
 		entries += list(list("name" = key, "count" = stat_data["entries"][key]))
 
-	entries = sortList(entries, /proc/cmp_stat_count_desc)
+	sortTim(entries, GLOBAL_PROC_REF(cmp_stat_count_desc))
 
 	var/list/result = list()
-	for(var/i in 1 to min(10, entries.len))
+	for(var/i in 1 to min(14, entries.len))
 		var/list/entry = entries[i]
 		var/rounded_count = round(entry["count"])
 		result += "[i]. [entry["name"]] - [rounded_count]"
@@ -408,7 +533,11 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	return b["count"] - a["count"]
 
 /proc/record_featured_stat(stat_category, mob/living/user, increment = 1)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
 	if(!stat_category || !user?.real_name || !GLOB.featured_stats[stat_category])
+		return
+	if(!user)
 		return
 
 	var/list/stat_data = GLOB.featured_stats[stat_category]
@@ -431,8 +560,9 @@ GLOBAL_LIST_INIT(featured_stats, list(
 
 	stat_data["entries"][key] = (stat_data["entries"][key] || 0) + increment
 
-
 /proc/record_featured_object_stat(stat_category, object_name, increment = 1)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
 	if(!stat_category || !object_name || !GLOB.featured_stats[stat_category])
 		return
 
@@ -442,3 +572,20 @@ GLOBAL_LIST_INIT(featured_stats, list(
 		stat_data["entries"] = list()
 
 	stat_data["entries"][object_name] = (stat_data["entries"][object_name] || 0) + increment
+
+/// Records a chronicle stat (weakref to an atom/mob)
+/proc/set_chronicle_stat(stat_name, atom/target)
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return
+	if(!stat_name || !target || !GLOB.chronicle_stats)
+		return
+
+	GLOB.chronicle_stats[stat_name] = WEAKREF(target)
+
+/// Gets the recorded chronicle stat holder (returns the resolved weakref or null)
+/proc/get_chronicle_stat_holder(stat_name)
+	if(!stat_name || !GLOB.chronicle_stats)
+		return null
+
+	var/datum/weakref/ref = GLOB.chronicle_stats[stat_name]
+	return ref?.resolve()

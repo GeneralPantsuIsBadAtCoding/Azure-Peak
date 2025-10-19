@@ -15,7 +15,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 1
-	invocation = "Effingo"
+	invocations = list("Effingo")
 	invocation_type = "whisper"
 	hide_charge_effect = TRUE
 	charging_slowdown = 3

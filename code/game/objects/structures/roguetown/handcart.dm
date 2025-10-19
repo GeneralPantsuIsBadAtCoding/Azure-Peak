@@ -46,6 +46,7 @@
 
 /obj/structure/handcart/examine(mob/user)
 	. = ..()
+	. += span_info("Clicking and dragging an item onto the handcart from the tile you are on will put every items from the tile you can into the cart.")
 	if(upgrade_level == 1)
 		. += span_notice("This cart has a <i>level 1</i> woodcutters wheelbrace instaled.")
 	else if(upgrade_level == 2)

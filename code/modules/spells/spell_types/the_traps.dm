@@ -6,7 +6,7 @@
 	cooldown_min = 50
 
 	clothes_req = TRUE
-	invocation = "CAVERE INSIDIAS"
+	invocations = list("CAVERE INSIDIAS")
 	invocation_type = "shout"
 	range = 3
 

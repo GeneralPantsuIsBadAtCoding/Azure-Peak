@@ -1,7 +1,7 @@
 /datum/mob_descriptor/age
 	name = "Age"
 	slot = MOB_DESCRIPTOR_SLOT_AGE
-	verbage = "looks"
+	verbage = "%LOOK%"
 
 /datum/mob_descriptor/age/can_describe(mob/living/described)
 	if(!ishuman(described))

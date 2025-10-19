@@ -42,7 +42,7 @@
 	desc = "A cheap and simple gambeson coif meant to be worn on its own or under a helmet. It's better than nothing."
 	icon_state = "ccoif"
 	item_state = "ccoif"
-	color = null
+	color = "#ad977d"
 	flags_inv = HIDEHAIR
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
@@ -58,7 +58,7 @@
 	desc = "A heavier padded coif meant to be worn on its own or under a helmet. Layered properly, it can last through even the busiest of daes."
 	icon_state = "fullpadded"
 	item_state = "fullpadded"
-	color = null
+	color = "#976E6B"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
@@ -143,16 +143,18 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/paalloy
 	name = "ancient coif"
-	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "Polished gilbranze rings, linked together to form a billowing hood. Let it not be a crown of thorns that saves this dying world, but a crown of progress; of fettered metal and stained bone, rejuvenated by Zizo's will to herald Her greatest works yet."
 	icon_state = "achaincoif"
 	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
 	name = "decrepit coif"
-	desc = "a decrepit old coif. Aeon's grasp is upon it."
+	desc = "Frayed bronze rings, linked together to form a billowing hood. Shrapnel peppers the linkage; arrowheads and speartips, brought along from a battlefield who's history - and legionnaires - have been lost to tyme."
 	icon_state = "achaincoif"
-	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	name = "chain mantle"
@@ -214,6 +216,8 @@
 			H.update_inv_neck()
 			H.update_inv_head()
 
+/obj/item/clothing/neck/roguetown/chaincoif/full/black
+	color = "#323232"
 
 /obj/item/clothing/neck/roguetown/bevor
 	name = "bevor"
@@ -255,10 +259,12 @@
 
 /obj/item/clothing/neck/roguetown/gorget/aalloy
 	name = "decrepit gorget"
-	desc = "a decrepit, worn out gorget. Aeon's grasp is upon it."
+	desc = "Frayed bronze plates, shingled together to shroud the neck. Primitive scrapes line the flanks, yet the center seems to've been cored out by a spear's thrust."
 	icon_state = "ancientgorget"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
-	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	smeltresult = /obj/item/ingot/aaslag
+	anvilrepair = null
 
 /obj/item/clothing/neck/roguetown/gorget/copper
 	name = "neck protector"
@@ -308,6 +314,10 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+		
+/obj/item/clothing/neck/roguetown/fencerguard/Initialize()
+	. = ..()		
+	update_icon()		
 
 /obj/item/clothing/neck/roguetown/gorget/forlorncollar
 	name = "forlorn collar"
@@ -322,7 +332,7 @@
 
 /obj/item/clothing/neck/roguetown/gorget/paalloy
 	name = "ancient gorget"
-	desc = "A gorget made of ancient alloys. Aeon's grasp lifted from its form."
+	desc = "Polished gilbranze plates, layered atop one-another to guard the neck. The spine; a sacred leyline between spirit and sinew. It must remain unsevered, lest Her blessings be lost."
 	icon_state = "ancientgorget"
 	max_integrity = ARMOR_INT_SIDE_STEEL
 	smeltresult = /obj/item/ingot/aaslag
@@ -360,6 +370,7 @@
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
 	sellprice = 10
 	experimental_onhip = FALSE
 	anvilrepair = /datum/skill/craft/armorsmithing
@@ -385,13 +396,21 @@
 
 /obj/item/clothing/neck/roguetown/psicross/aalloy
 	name = "decrepit psicross"
-	desc = "Surely this one endures?"
+	desc = "'A comet capable of rending all the enemies of humanity apart; oh, how graceful His power was! And His sacrifice, ever so noble! Yet now He slumbers, unaware of the fruits His efforts came to give. And He sighs. And He weeps.'"
 	icon_state = "psycross_a"
+	color = "#bb9696"
 
-/obj/item/clothing/neck/roguetown/zcross/aalloy
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 	name = "decrepit zcross"
-	desc = "A symbol of progress from an era that had reason to believe in it."
+	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
+	color = "#bb9696"
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/neck/roguetown/psicross/undivided
+	name = "amulet of Ten"
+	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
+	icon_state = "undivided"
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"
@@ -451,62 +470,7 @@
 	icon_state = "psycross_s"
 	item_state = "psycross_s"
 	sellprice = 50
-
-/obj/item/clothing/neck/roguetown/psicross/silver/pickup(mob/user)
-	..()
-
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		return
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-	if(V_lord)
-		if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-
-/obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	..()
-
-	if(!ishuman(M))
-		return FALSE
-	var/mob/living/carbon/human/H = M
-	if(!H.mind)
-		return FALSE
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.adjustFireLoss(60)
-		H.Paralyze(20)
-		H.fire_act(1,5)
-		return FALSE
-	if(V_lord && V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(10)
-		H.Paralyze(10)
-		return FALSE
-	if(W && W.transformed == TRUE)
-		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-		H.Knockdown(20)
-		H.Paralyze(20)
-		return FALSE
-
-	return TRUE
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/g
 	name = "golden psycross"
@@ -582,15 +546,16 @@
 
 /obj/item/clothing/neck/roguetown/shalal
 	name = "desert rider medal"
-	desc = ""
+	desc = "Made out of the silver from the Ranesheni mercenaries' first pay. A tradition is kept between these hired blades: to give this one away to someone is to symbolize a debt in their favor - to be redeemed by any other mercenary in times of need."
 	icon_state = "shalal"
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS|ITEM_SLOT_RING		//Hey I guess you could pretend it is wrapped around your hand? Just keep it on, don't be a hoe.
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
-	sellprice = 15
+	sellprice = 30		// what if the economy crashes...........
 	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/neck/roguetown/ornateamulet
-	name = "Ornate Amulet"
+	name = "ornate amulet"
 	desc = "A beautiful amulet made of solid gold."
 	icon_state = "ornateamulet"
 	//dropshrink = 0.75
@@ -600,7 +565,7 @@
 
 /obj/item/clothing/neck/roguetown/ornateamulet/noble
 	var/choicename = FALSE
-	name = "Heirloom Amulet"
+	name = "heirloom amulet"
 	desc = "An ornate amulet representing a prestigious noble house."
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_WRISTS|ITEM_SLOT_HIP
 	sellprice = 10
@@ -619,7 +584,7 @@
 		return
 
 /obj/item/clothing/neck/roguetown/skullamulet
-	name = "Skull Amulet"
+	name = "skull amulet"
 	desc = "Gold shaped into the form of a skull and strung into an amulet."
 	icon_state = "skullamulet"
 	//dropshrink = 0.75
@@ -677,22 +642,88 @@
 
 /obj/item/clothing/neck/roguetown/luckcharm
 	name = "luck charm"
-	desc = "A cabbit's foot necklace. Some say it brings good luck."
+	desc = "A cabbit's foot necklace. Some say it brings good luck. It only feels more lucky when it's worn around the neck."
 	icon_state = "luckcharm"
 	sellprice = 15
-	slot_flags = ITEM_SLOT_NECK
+	possible_item_intents = list(/datum/intent/use, /datum/intent/special/magicarc)
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	grid_width = 32
+	grid_height = 32
 	var/goodluckactivated = FALSE
 
 /obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_NECK)
-		user.change_stat("fortune", 1) //how much luck stat it gives when equipped
+		user.change_stat(STATKEY_LCK, 1) //how much luck stat it gives when equipped
 		goodluckactivated = TRUE
 	return
 
 /obj/item/clothing/neck/roguetown/luckcharm/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(goodluckactivated == TRUE)
-		user.change_stat("fortune", -1) //how much luck stat taken away when unequipped
+		user.change_stat(STATKEY_LCK, -1) //how much luck stat taken away when unequipped
 		goodluckactivated = FALSE
+	return
+
+/obj/item/clothing/neck/roguetown/skullamulet/gemerald
+	name = "gemerald skull amulet"
+	desc = "A massive gemerald, meticulously chiseled into a skull and affixed to a chain. </br>It's mocking me, isn't it?"
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "skullamulet"
+	//dropshrink = 0.75
+	color = "#00FF00"
+	resistance_flags = FIRE_PROOF
+	sellprice = 222
+	smeltresult = /obj/item/roguegem/green
+	anvilrepair = /datum/skill/craft/armorsmithing
+
+/obj/item/clothing/neck/roguetown/psicross/weeping
+	name = "weeping psicross"
+	desc = "'Let His name be naught but forgot'n.' </br>The alloy is familiar, but unmentionable. Blood oozes from cracks within the psicross; ensnared in a perpetual state of half-coagulation. A deathly chill tugs your neck, and your cheeks feel wet - are those tears?"
+	slot_flags = ITEM_SLOT_NECK
+	icon_state = "psicrossblood"
+	edelay_type = 1
+	max_integrity = ARMOR_INT_SIDE_STEEL
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_GORGET
+	blocksound = PLATEHIT
+	body_parts_covered = NECK
+	edelay_type = 1
+	equip_delay_self = 30
+	smeltresult = /obj/item/ingot/weeping
+	sellprice = 666
+	var/active_item
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/Initialize()
+  ..()
+  filter(type="drop_shadow", x=0, y=0, size=1, offset=2, color=rgb(rand(254,255),rand(1,2),rand(1,2)))
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		active_item = TRUE
+		to_chat(user, span_red("'..the necklace tightens around your neck, and you feel the lux draining from your chest..' </br>... </br>'..of His comet parting the skies, and exploding with such fiery radiance..' </br>'..of the Archdevil's whispers, guiding Her to divinity..' </br>'..of a maelstrom, dragging this world screaming into Hell..' </br>... </br>'..I can't let them triumph..' </br>'I WON'T LET THEM FUCKING HAVE IT!'"))
+		user.change_stat(STATKEY_STR, 3)
+		user.change_stat(STATKEY_CON, 3)
+		user.change_stat(STATKEY_WIL, 3)
+		ADD_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+	return
+
+/obj/item/clothing/neck/roguetown/psicross/weeping/dropped(mob/living/user)
+	..()
+	if(active_item)
+		to_chat(user, span_monkeyhive("'..and at once, the mania subsides. A familiar warmth creeps back into your chest. Though your mind is clear, the thought lingers; was it truly just a malaise, or something more?' </br>'..perhaps, this would better fit in the smoldering heat of a forge.."))
+		user.change_stat(STATKEY_STR, -3)
+		user.change_stat(STATKEY_CON, -3)
+		user.change_stat(STATKEY_WIL, -3)
+		REMOVE_TRAIT(user, TRAIT_SCREENSHAKE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_STRENGTH_UNCAPPED, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
+		active_item = FALSE
 	return

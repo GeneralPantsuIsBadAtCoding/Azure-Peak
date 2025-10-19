@@ -17,9 +17,13 @@
 	generic_random_pick = TRUE
 	sprite_accessories = list(
 		/datum/sprite_accessory/snout/sharp,
+		/datum/sprite_accessory/snout/sharpdualcolor,
 		/datum/sprite_accessory/snout/round,
+		/datum/sprite_accessory/snout/rounddualcolor,
 		/datum/sprite_accessory/snout/sharplight,
+		/datum/sprite_accessory/snout/sharplightdualcolor,
 		/datum/sprite_accessory/snout/roundlight,
+		/datum/sprite_accessory/snout/roundlightdualcolor,
 		/datum/sprite_accessory/snout/front/sharp,
 		/datum/sprite_accessory/snout/front/round,
 		/datum/sprite_accessory/snout/front/sharplight,
@@ -40,6 +44,18 @@
 		/datum/sprite_accessory/snout/lcanidstriped,
 		/datum/sprite_accessory/snout/lcanidstripedalt,
 		/datum/sprite_accessory/snout/vulp,
+		/datum/sprite_accessory/snout/hjackal,
+		/datum/sprite_accessory/snout/front/husky,
+		/datum/sprite_accessory/snout/front/lcanid,
+		/datum/sprite_accessory/snout/front/lcanidalt,
+		/datum/sprite_accessory/snout/front/lcanidstriped,
+		/datum/sprite_accessory/snout/front/lcanidstripedalt,
+		/datum/sprite_accessory/snout/front/scanid,
+		/datum/sprite_accessory/snout/front/scanidalt,
+		/datum/sprite_accessory/snout/front/scanidalt2,
+		/datum/sprite_accessory/snout/front/scanidalt3,
+		/datum/sprite_accessory/snout/front/wolf,
+		/datum/sprite_accessory/snout/front/wolfalt
 		)
 
 /datum/customizer/organ/snout/lupian
@@ -72,7 +88,8 @@
 		/datum/sprite_accessory/snout/front/wolf,
 		/datum/sprite_accessory/snout/front/wolfalt,
 		/datum/sprite_accessory/snout/front/otie,
-		/datum/sprite_accessory/snout/hpanda
+		/datum/sprite_accessory/snout/hpanda,
+		/datum/sprite_accessory/snout/vulp
 		)
 
 /datum/customizer/organ/snout/tajaran

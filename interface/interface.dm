@@ -261,6 +261,18 @@ Hotkey-Mode: (hotkey-mode must be on)
 		fps = prefs.clientfps
 		prefs.save_preferences()
 
+/client/verb/set_picinchat()
+	set name = "Headshot in Chat"
+	set category = "Options"
+
+	if(prefs)
+		prefs.chatheadshot = !prefs.chatheadshot
+		prefs.save_preferences()
+		if(prefs.chatheadshot)
+			to_chat(src, "Headshot in chat Enabled")
+		else
+			to_chat(src, "Headshot in chat Disabled")
+
 /*
 /client/verb/set_blur()
 	set name = "AAOn"

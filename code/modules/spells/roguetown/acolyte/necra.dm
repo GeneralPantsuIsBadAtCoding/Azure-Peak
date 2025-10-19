@@ -1,6 +1,7 @@
 // Necrite
 /obj/effect/proc_holder/spell/targeted/burialrite
 	name = "Burial Rites"
+	desc = "Consecrate a coffin or a grave. Sending any spirits within to Necras realm."
 	range = 5
 	overlay_state = "consecrateburial"
 	releasedrain = 30
@@ -10,7 +11,7 @@
 	cast_without_targets = TRUE
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
-	invocation = "Undermaiden grant thee passage forth and spare the trials of the forgotten."
+	invocations = list("Undermaiden grant thee passage forth and spare the trials of the forgotten.")
 	invocation_type = "whisper" //can be none, whisper, emote and shout
 	miracle = TRUE
 	devotion_cost = 5 //very weak spell, you can just make a grave marker with a literal stick
@@ -27,11 +28,13 @@
 		success = pacify_coffin(hole, user)
 		if(success)
 			user.visible_message("[user] consecrates [hole]!", "My funeral rites have been performed on [hole]!")
+			record_round_statistic(STATS_GRAVES_CONSECRATED)
 			return
 	to_chat(user, span_red("I failed to perform the rites."))
 
 /obj/effect/proc_holder/spell/targeted/churn
 	name = "Churn Undead"
+	desc = "Stuns and explodes undead."
 	range = 4	//Way lower, halved.
 	overlay_state = "necra"
 	releasedrain = 30
@@ -42,7 +45,7 @@
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
-	invocation = "The Undermaiden rebukes!"
+	invocations = list("The Undermaiden rebukes!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	miracle = TRUE
 	devotion_cost = 50
@@ -59,10 +62,9 @@
 		if(L.stat == DEAD)
 			continue
 		if(L.mind)
-			var/datum/antagonist/vampirelord/lesser/V = L.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			if(V)
-				if(!V.disguised)
-					isvampire = TRUE
+			var/datum/antagonist/vampire/V = L.mind.has_antag_datum(/datum/antagonist/vampire)
+			if(V && !SEND_SIGNAL(L, COMSIG_DISGUISE_STATUS))
+				isvampire = TRUE
 			if(L.mind.has_antag_datum(/datum/antagonist/zombie))
 				iszombie = TRUE
 			if(L.mind.special_role == "Vampire Lord" || L.mind.special_role == "Lich")	//Won't detonate Lich's or VLs but will fling them away.
@@ -91,16 +93,17 @@
 
 /obj/effect/proc_holder/spell/invoked/deaths_door
 	name = "Death's Door"
+	desc = "Opens a portal into a realm between lyfe and death, People can be dragged into the portal to be put into stasis, though undead will never return. Casting the portal again while people are trapped inside spits them out of the gates. <br>Necras domain will only hold people for five minutes at a time."
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
 	releasedrain = 20
 	chargedrain = 0
-	overlay_state = "speakwithdead"
+	overlay_state = "deathdoor" // Icon Credit to DelineFortune
 	chargetime = 2 SECONDS
 	chargedloop = null
 	sound = 'sound/misc/deadbell.ogg'
-	invocation = "Necra, show me my destination!"
+	invocations = list("Necra, show me my destination!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -118,6 +121,7 @@
 		return FALSE
 	for (var/obj/structure/underworld_portal/e_portal in user.contents) // checks if the portal exists, and shits them out
 		if(istype(e_portal))
+			e_portal.dispelled = FALSE //we are recasting after dispelling, its safe to set this as false.
 			e_portal.spitout_mob(user, T)
 			return TRUE
 	if(!locate(/obj/structure/underworld_portal) in T)
@@ -138,6 +142,7 @@
 	var/mob/living/caster // stores the caster. obviously.
 	var/mob/living/trapped // stores the trapped.
 	var/time_id
+	var/dispelled = FALSE //Safety check
 
 
 /obj/structure/underworld_portal/examine(mob/living/carbon/user)
@@ -147,7 +152,7 @@
 		. += "A temporary gateway to the underworld. [span_warning("Faintly, you can see clutching fingers in the dark, reaching for you. If you go through, you won't come back.")]"
 	else
 		. += "A temporary gateway to the underworld. You can hear faint whispers through it. [span_warning("It might be possible to step through.")]"
-	
+
 	. += "[span_notice("As the caster, click on GRAB to store the portal, provided there are souls inside. Use HARM to destroy the portal.")]"
 	if(trapped)
 		. += "[span_notice("Right-click on the portal to pull trapped souls out.")]"
@@ -181,9 +186,10 @@
 
 
 /obj/structure/underworld_portal/Destroy()
-	visible_message(span_revenwarning("The portal collapses with an angry hiss."))
-	spitout_mob(caster, loc)
-
+	if(dispelled == FALSE)	//Only do this if we DON'T close it ourselves,that means something ELSE -FUNNY- happend.
+							//As we are already calling qdel on:Right click, if you do not have this is gonna to call spitout mob TWICE
+		spitout_mob(caster, loc)
+	visible_message(span_revenwarning("The portal collapses with an angry hiss."))//will keep this outside the if though, its coo
 	..()
 
 /obj/structure/underworld_portal/attack_right(mob/living/carbon/user, list/modifiers)
@@ -250,21 +256,24 @@
 
 	return TRUE
 
-
 /obj/structure/underworld_portal/proc/spitout_mob(mob/living/carbon/user, turf/T)
-	if(loc == user)
+	if(src.loc == user)
 		forceMove(T ? T : user.loc)
 		user.contents.Remove(src)
 
 	if(trapped)
-		trapped.forceMove(loc)
-		contents.Remove(trapped)
-		trapped.remove_client_colour(/datum/client_colour/monochrome)
-		REMOVE_TRAIT(trapped, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
-		REMOVE_TRAIT(trapped, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+		if(dispelled == TRUE)//dispelled at the caster, this is the case of we do not recast out dispelled portal and its been five minutes.
+			user.forceMove(caster.loc)//has to be user i tried doing it as trapped before but the TIMER calls user so that can trip it up.
+			dispelled = FALSE
+		else
+			user.forceMove(src.loc)
+		contents.Remove(user)
+		user.remove_client_colour(/datum/client_colour/monochrome)
+		REMOVE_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		REMOVE_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 		trapped = null
 
-		trapped.visible_message(
+		user.visible_message(
 			span_revenwarning("[trapped] slips out from the whispering portal. Shadow roils off their form like smoke."),
 			span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
 		)
@@ -307,7 +316,7 @@
 	cast_without_targets = TRUE
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/holy
-	invocation = "She-Below brooks thee respite, be heard, wanderer."
+	invocations = list("She-Below brooks thee respite, be heard, wanderer.")
 	invocation_type = "whisper" //can be none, whisper, emote and shout
 	miracle = TRUE
 	devotion_cost = 30

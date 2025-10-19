@@ -18,7 +18,7 @@
 	desc = "A ceramic bottle." //The sprite was anything but small
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "claybottlecook"
-	volume = 65 // Larger than glass bottle
+	volume = 75 // Larger than glass bottle
 	sellprice = 6
 	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 

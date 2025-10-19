@@ -27,36 +27,6 @@
 	locked = TRUE
 	masterkey = TRUE
 
-/datum/roguestock/import/bogguard
-	name = "Bog Guard Equipment Crate"
-	desc = "Starting kit for a new Bog Guard."
-	item_type = /obj/structure/closet/crate/chest/steward/bogguard
-	export_price = 50
-	importexport_amt = 1
-
-/obj/structure/closet/crate/chest/steward/bogguard/Initialize()
-	. = ..()
-	new /obj/item/clothing/cloak/stabard/bog(src)
-	new /obj/item/storage/keyring/guard(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson(src)
-	new /obj/item/rogueweapon/mace/cudgel(src)
-	new /obj/item/rope/chain(src)
-	
-/datum/roguestock/import/townguard
-	name = "Watchman Equipment Crate"
-	desc = "Starting kit for a new Watchman."
-	item_type = /obj/structure/closet/crate/chest/steward/townguard
-	export_price = 50
-	importexport_amt = 1
-
-/obj/structure/closet/crate/chest/steward/townguard/Initialize()
-	. = ..()
-	new /obj/item/clothing/cloak/stabard/guard(src)
-	new /obj/item/storage/keyring/guard(src)
-	new /obj/item/clothing/suit/roguetown/armor/gambeson(src)
-	new /obj/item/rogueweapon/mace/cudgel(src)
-	new /obj/item/rope/chain(src)
-
 /datum/roguestock/import/redpotion
 	name = "Crate of Health Potions"
 	desc = "Red that keeps men alive."
@@ -84,12 +54,11 @@
 	new /obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure(src)
 	new /obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure(src)
 
-
 /datum/roguestock/import/knight
 	name = "Knight Equipment Crate"
-	desc = "Kit for a Knight."
+	desc = "Starting kit for a new knight."
 	item_type = /obj/structure/closet/crate/chest/steward/knight
-	export_price = 490
+	export_price = 500
 	importexport_amt = 1
 
 /obj/structure/closet/crate/chest/steward/knight/Initialize()
@@ -99,17 +68,31 @@
 	new /obj/item/clothing/under/roguetown/platelegs(src)
 	new /obj/item/clothing/cloak/tabard/knight/guard(src)
 	new /obj/item/clothing/neck/roguetown/bevor(src)
-	new /obj/item/clothing/suit/roguetown/armor/chainmail(src)
+	new /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk(src)
 	new /obj/item/clothing/suit/roguetown/armor/plate/full(src)
 	new /obj/item/clothing/shoes/roguetown/boots/armor(src)
 	new /obj/item/storage/keyring/guardcastle(src)
 	new /obj/item/storage/belt/rogue/leather/steel(src)
 	new /obj/item/rogueweapon/sword/long(src)
 
+/datum/roguestock/import/warden
+	name = "Warden Equipment Crate"
+	desc = "Starting kit for a new warden."
+	item_type = /obj/structure/closet/crate/chest/steward/warden
+	export_price = 250
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/warden/Initialize()
+	. = ..()
+	new /obj/item/clothing/cloak/wardencloak(src)
+	new /obj/item/storage/keyring/guard(src)
+	new /obj/item/clothing/suit/roguetown/armor/leather/studded/warden(src)
+	new /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick(src)
+	new /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/warden(src)
 
 /datum/roguestock/import/manatarms
 	name = "Man at Arms Equipment Crate"
-	desc = "Kit for a Man at Arms."
+	desc = "Starting kit for a man at arms."
 	item_type = /obj/structure/closet/crate/chest/steward/manatarms
 	export_price = 250
 	importexport_amt = 1
@@ -279,14 +262,57 @@
 	new /obj/item/natural/glass(src)
 	new /obj/item/natural/glass(src)
 
+/datum/roguestock/import/tailor
+	name = "Tailor Crate"
+	desc = "A crate with basic tailoring tools."
+	item_type = /obj/structure/closet/crate/chest/steward/tailor
+	export_price = 150
+	importexport_amt = 1
 
+/obj/structure/closet/crate/chest/steward/tailor/Initialize()
+	. = ..()
+	new /obj/item/rogueweapon/huntingknife/scissors/steel(src)
+	new /obj/item/needle(src)
+	new /obj/item/grown/log/tree/small(src)
+	new /obj/item/grown/log/tree/small(src)
+	new /obj/item/natural/bundle/fibers(src)
+	new /obj/item/grown/log/tree/stick(src)	
+	new /obj/item/grown/log/tree/stick(src)
 
+/datum/roguestock/import/keyringsset
+	name = "Man-At-Arms Keyring Set Crate"
+	desc = "A set of keys for new hires."
+	item_type = /obj/structure/closet/crate/chest/steward/keyringsset
+	export_price = 100
+	importexport_amt = 1
 
+/obj/structure/closet/crate/chest/steward/keyringsset/Initialize()
+	. = ..()
+	new /obj/item/storage/keyring/guardcastle(src)
+	new /obj/item/storage/keyring/guardcastle(src)
+	new /obj/item/storage/keyring/guardcastle(src)
+	new /obj/item/storage/keyring/guardcastle(src)
 
+/datum/roguestock/import/alcoholset
+	name = "Alcohol Crate"
+	desc = "A crate with a selection of beers and liquors, fit for a party."
+	item_type = /obj/structure/closet/crate/chest/steward/alcoholset
+	export_price = 800
+	importexport_amt = 1
 
-
-
-
-
-
+/obj/structure/closet/crate/chest/steward/alcoholset/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/gronnmead(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/nred(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/voddena(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/whitewine(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/redwine(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/elfred(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/wine/sourwine(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/kgunplum(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/aurorian(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/butterhairs(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/avarmead(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/kgunshochu(src)
+	new /obj/item/reagent_containers/glass/bottle/rogue/beer/apfelweinheim(src)
 

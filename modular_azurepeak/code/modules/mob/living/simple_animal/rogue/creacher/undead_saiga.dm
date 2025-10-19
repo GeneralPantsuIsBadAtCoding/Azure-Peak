@@ -35,7 +35,7 @@
 
 	tame_chance = 0
 	bonus_tame_chance = 0
-	can_buckle = FALSE
+	can_buckle = TRUE
 	can_saddle = TRUE
 
 	attack_sound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
@@ -57,6 +57,9 @@
 	)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/undead/death()
+	unbuckle_all_mobs()
+	can_buckle = FALSE
+	can_saddle = FALSE
 	if(is_downed)
 		visible_message(span_danger("[src] has their head smashed to pulp!"))
 		. = ..()
@@ -112,4 +115,5 @@
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_RIGIDMOVEMENT, TRAIT_GENERIC)
-	src.AddComponent(/datum/component/infection_spreader)
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
+	AddComponent(/datum/component/infection_spreader)

@@ -4,9 +4,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 //client/verb/ooc(msg as text)
 
 /client/verb/ooc(msg as text)
-	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
+	set name = "OOC"
 	set category = "OOC"
-	set hidden = 1
+	set desc = "Talk with other players in the lobby."
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -26,13 +26,15 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(get_playerquality(ckey) <= -5)
 		to_chat(src, span_danger("I can't use that."))
 		return
+
 	if(!holder)
+		if(SSticker.current_state < GAME_STATE_FINISHED && !istype(mob, /mob/dead/new_player))
+			to_chat(src, span_danger("OOC is lobby-only during the round. After the round ends it re-opens to everyone."))
+			return
 		if(!GLOB.ooc_allowed)
 			to_chat(src, span_danger("OOC is globally muted."))
 			return
-		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
-			return
+		// Allow lobby new_player usage regardless of dooc settings; preserve dead restriction for non-lobby via earlier check.
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, span_danger("I cannot use OOC (muted)."))
 			return
@@ -82,11 +84,31 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/msg_to_send = ""
 
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
-				msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
-			to_chat(C, msg_to_send)
+		// Treat anything at or beyond GAME_STATE_FINISHED as post-round for OOC visibility.
+		var/post_round = (SSticker.current_state >= GAME_STATE_FINISHED)
+		if(!post_round)
+			// Non-admin: must be lobby new_player during active round
+			if(!C.holder && !istype(C.mob, /mob/dead/new_player))
+				continue
+			// Admin: they can opt out while not in lobby
+			if(C.holder && !C.show_lobby_ooc && !istype(C.mob, /mob/dead/new_player))
+				continue
+		if(!(C.prefs.chat_toggles & CHAT_OOC))
+			continue
+		var/real_key = C.holder ? "([key])" : ""
+		// Precedence: sender-admin (blue) > recipient-admin non-lobby (green/small) > default gray
+		var/is_admin_nonlobby = (C.holder && !istype(C.mob, /mob/dead/new_player) && !post_round)
+		var/sender_nonlobby = (!istype(mob, /mob/dead/new_player) && !post_round)
+		var/sender_is_admin = holder
+		// Choose color: admin-sent stays blue; otherwise if admin recipient non-lobby, use green; else default gray
+		var/message_color = sender_is_admin ? "#4972bc" : (is_admin_nonlobby ? "#4CAF50" : chat_color)
+		var/base_msg = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[message_color]'><span class='message linkify'>[msg]</span></font>"
+		// Apply size reduction: if recipient is admin non-lobby OR (sender is admin non-lobby)
+		if(is_admin_nonlobby || (sender_is_admin && sender_nonlobby))
+			msg_to_send = "<span style='font-size:70%'>[base_msg]</span>"
+		else
+			msg_to_send = base_msg
+		to_chat(C, msg_to_send)
 
 //				if(!holder.fakekey || C.holder)
 //					if(check_rights_for(src, R_ADMIN))
@@ -184,15 +206,26 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/msg_to_send = ""
 
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(SSticker.current_state != GAME_STATE_FINISHED && !istype(C.mob, /mob/dead/new_player) && !C.holder)
+		if(!(C.prefs.chat_toggles & CHAT_OOC))
+			continue
+		var/post_round = (SSticker.current_state >= GAME_STATE_FINISHED)
+		if(!post_round)
+			if(!C.holder && !istype(C.mob, /mob/dead/new_player))
 				continue
-
-			msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='[chat_color]'><span class='message linkify'>[msg]</span></font>"
-			if(holder)
-				msg_to_send = "<font color='[color2use]'><EM>[keyname]:</EM></font> <font color='#4972bc'><span class='message linkify'>[msg]</span></font>"
-
-			to_chat(C, msg_to_send)
+			if(C.holder && !C.show_lobby_ooc && !istype(C.mob, /mob/dead/new_player))
+				continue
+		var/real_key = C.holder ? "([key])" : ""
+		// Precedence: sender-admin (blue) > recipient-admin non-lobby (green/small) > default gray
+		var/is_admin_nonlobby = (C.holder && !istype(C.mob, /mob/dead/new_player) && !post_round)
+		var/sender_nonlobby = (!istype(mob, /mob/dead/new_player) && !post_round)
+		var/sender_is_admin = holder
+		var/message_color = sender_is_admin ? "#4972bc" : (is_admin_nonlobby ? "#4CAF50" : chat_color)
+		var/base_msg = "<font color='[color2use]'><EM>[keyname][real_key]:</EM></font> <font color='[message_color]'><span class='message linkify'>[msg]</span></font>"
+		if(is_admin_nonlobby || (sender_is_admin && sender_nonlobby))
+			msg_to_send = "<span style='font-size:70%'>[base_msg]</span>"
+		else
+			msg_to_send = base_msg
+		to_chat(C, msg_to_send)
 
 
 /proc/toggle_ooc(toggle = null)
@@ -269,6 +302,21 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 		prefs.ooccolor = initial(prefs.ooccolor)
 		prefs.save_preferences()
+
+/client/verb/toggle_ooc_anonymize()
+	set name = "Toggle OOC Anonymize"
+	set category = "OOC"
+	set desc = "Use a random anonymized handle or show your real ckey in Lobby OOC."
+	if(!mob)
+		return
+	// Flip preference
+	prefs.anonymize = !prefs.anonymize
+	if(prefs.anonymize)
+		GLOB.anonymize |= ckey
+	else
+		GLOB.anonymize -= ckey
+	prefs.save_preferences()
+	to_chat(src, span_notice("OOC Anonymize is now [prefs.anonymize ? "ENABLED (your handle will be randomized)" : "DISABLED (your ckey will be shown)"]."))
 
 //Checks admin notice
 /client/verb/admin_notice()
@@ -352,98 +400,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	set category = "Options"
 	set hidden = FALSE
 
-	prefs.prefer_old_chat = TRUE
-	prefs.save_preferences()
 	to_chat(src, "Going back to old chat.")
-	winset(src, "output", "is-visible=true;is-disabled=false")
-	winset(src, "browseroutput", "is-visible=false")
-
-/client/verb/fix_chat()
-	set name = "{Fix Chat}"
-	set category = "Options"
-	set hidden = FALSE
-
-	prefs.prefer_old_chat = FALSE
-	prefs.save_preferences()
-	if (!chatOutput || !istype(chatOutput))
-		var/action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Wot?", "Recreate Chat Output data", "Cancel")
-		if (action != "Recreate Chat Output data")
-			return
-		chatOutput = new /datum/chatOutput(src)
-		chatOutput.start()
-		action = alert(src, "Goon chat reloading, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-		if (action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum")
-		else
-			chatOutput.load()
-			action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-			if (action == "Yes")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum and forcing a load()")
-			else
-				action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-				if (action == "Switch to old chat")
-					winset(src, "output", "is-visible=true;is-disabled=false")
-					winset(src, "browseroutput", "is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after recreating the chatOutput and forcing a load()")
-
-	else if (chatOutput.loaded)
-		var/action = alert(src, "ChatOutput seems to be loaded\nDo you want me to force a reload, wiping the chat log or just refresh the chat window because it broke/went away?", "Hmmm", "Force Reload", "Refresh", "Cancel")
-		switch (action)
-			if ("Force Reload")
-				chatOutput.loaded = FALSE
-				chatOutput.start() //this is likely to fail since it asks , but we should try it anyways so we know.
-				action = alert(src, "Goon chat reloading, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-				if (action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a start()")
-				else
-					chatOutput.load()
-					action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-					if (action == "Yes")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-						if (action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a start() and forcing a load()")
-
-			if ("Refresh")
-				chatOutput.showChat()
-				action = alert(src, "Goon chat refreshing, wait a bit and tell me if it's fixed", "", "Fixed", "Nope, force a reload")
-				if (action == "Fixed")
-					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")
-				else
-					chatOutput.loaded = FALSE
-					chatOutput.load()
-					action = alert(src, "How about now? (give it a moment)", "", "Yes", "No")
-					if (action == "Yes")
-						log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
-					else
-						action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-						if (action == "Switch to old chat")
-							winset(src, "output", "is-visible=true;is-disabled=false")
-							winset(src, "browseroutput", "is-visible=false")
-						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a show() and forcing a load()")
-		return
-
-	else
-		chatOutput.start()
-		var/action = alert(src, "Manually loading Chat, wait a bit and tell me if it's fixed", "", "Fixed", "Nope")
-		if (action == "Fixed")
-			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start()")
-		else
-			chatOutput.load()
-			alert(src, "How about now? (give it a moment (it may also try to load twice))", "", "Yes", "No")
-			if (action == "Yes")
-				log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start() and forcing a load()")
-			else
-				action = alert(src, "Welp, I'm all out of ideas. Try closing byond and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "", "Thanks anyways", "Switch to old chat")
-				if (action == "Switch to old chat")
-					winset(src, "output", list2params(list("on-show" = "", "is-disabled" = "false", "is-visible" = "true")))
-					winset(src, "browseroutput", "is-disabled=true;is-visible=false")
-				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after manually calling start() and forcing a load()")
-
-
+	winset(src, "outputwindow.legacy_output_selector", "left=output_legacy")
 
 /client/verb/motd()
 	set name = "MOTD"
@@ -585,6 +543,42 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
+/client/verb/combat_music() // if you touch this, touch the option in game preferences too
+	set name = "Combat Mode Music"
+	set category = "Options"
+	set desc = ""
+	if(!isliving(mob))
+		to_chat(src, span_warning("You're not alive yet. Set this in your Game Preferences instead."))
+		return
+	var/mob/living/L = mob
+	var/track_select = input(src, "Choose a combat music track to use TEMPORARILY.\n\
+									You can set this permanently in Game Preferences.\
+									", "Combat Music", L.cmode_music_override_name)\
+									as null|anything in GLOB.cmode_tracks_by_name
+	if(track_select)
+		if(!isliving(mob)) // mob might've changed between then and now
+			return
+		L = mob
+		var/datum/combat_music/combat_music
+		combat_music = GLOB.cmode_tracks_by_name[track_select]
+		to_chat(src, span_notice("Selected track: <b>[track_select]</b>."))
+		if(combat_music.desc)
+			to_chat(src, "<i>[combat_music.desc]</i>")
+		if(combat_music.credits)
+			to_chat(src, span_info("Song name: <b>[combat_music.credits]</b>"))
+		// also change it for Werewolf & Wildshape transformations, else it'd be annoying to keep changing this (lol)
+		var/mob/living/carbon/human/H
+		var/mob/living/S
+		if(ishuman(mob))
+			H = mob
+			if(isliving(H.stored_mob))
+				S = H.stored_mob
+		L.cmode_music_override = combat_music.musicpath
+		L.cmode_music_override_name = combat_music.name
+		if(S)
+			S.cmode_music_override = combat_music.musicpath
+			S.cmode_music_override_name = combat_music.name
+	return
 
 /client/verb/policy()
 	set name = "Show Policy"
@@ -599,6 +593,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/header = get_policy(POLICY_VERB_HEADER)
 	var/list/policytext = list(header,"<hr>")
 	var/anything = FALSE
+
 	for(var/keyword in keywords)
 		var/p = get_policy(keyword)
 		if(p)

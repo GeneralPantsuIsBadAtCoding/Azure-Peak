@@ -1,7 +1,7 @@
 /datum/ai_controller/minotaur
 	movement_delay = MINOTAUR_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/astar
+	ai_movement = /datum/ai_movement/hybrid_pathing
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()

@@ -5,8 +5,8 @@
 		tamed()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/goat/Destroy()
-	..()
 	GLOB.farm_animals = max(GLOB.farm_animals - 1, 0)
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/rogue/goat/find_food()
 	..()

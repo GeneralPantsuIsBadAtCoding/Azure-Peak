@@ -225,6 +225,8 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 
 
 /mob/living/carbon/get_stress_amount()
+	var/willpowerresistance = CLAMP((STAWIL - 10), 0, 10)
+	var/wpmodifier = willpowerresistance / 3
 	if(HAS_TRAIT(src, TRAIT_NOMOOD))
 		return 0
 	var/total_stress = 0
@@ -235,6 +237,8 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 			stress_amt *= 2
 		if(stress_amt > 0 && HAS_TRAIT(src, TRAIT_EORAN_SERENE))
 			stress_amt = (stress_amt * -1)	//We make the bad things feel good.
+		if((stress_amt >= 0) && (wpmodifier > 0))
+			stress_amt = CLAMP((stress_amt -= wpmodifier), 0, INFINITY)
 		total_stress += stress_amt
 	return total_stress
 

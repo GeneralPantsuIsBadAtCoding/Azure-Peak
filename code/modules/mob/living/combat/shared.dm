@@ -5,9 +5,9 @@
 			for(var/S in status_effects)
 				var/datum/status_effect/status = S
 				if(status.effectedstats.len)
-					if(status.effectedstats["intelligence"])
-						if(status.effectedstats["intelligence"] > 0)
-							fakeint -= status.effectedstats["intelligence"]
+					if(status.effectedstats[STATKEY_INT])
+						if(status.effectedstats[STATKEY_INT] > 0)
+							fakeint -= status.effectedstats[STATKEY_INT]
 		if(fakeint > 10)
 			var/bonus = round(((fakeint - 10) / 2)) * 10
 			if(bonus > 0)

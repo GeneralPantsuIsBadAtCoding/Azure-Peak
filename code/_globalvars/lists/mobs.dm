@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs
 GLOBAL_LIST_EMPTY(bots_list)
 GLOBAL_LIST_EMPTY(aiEyes)
+GLOBAL_LIST_EMPTY(familiar_queue)			//all the registered familiars's clients, ready to spawn.
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
@@ -41,6 +42,13 @@ GLOBAL_LIST_EMPTY(latejoin_ai_cores)
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
 GLOBAL_LIST_EMPTY(emote_list)
+
+GLOBAL_LIST_EMPTY(broadcast_list)
+
+GLOBAL_LIST_INIT(dangerous_turfs, typecacheof(list(
+	/turf/open/lava,
+	/turf/open/transparent,
+	)))
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()

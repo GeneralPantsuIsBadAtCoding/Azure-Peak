@@ -18,7 +18,7 @@
 		"Men-at-arms",
 		"Marshal",
 		"Merchant",
-		"Priest",
+		"Bishop",
 		"Acolyte",
 		"Martyr",
 		"Templar",
@@ -27,26 +27,27 @@
 		"Princess",
 		"Hand",
 		"Steward",
-		"Court Physician",
-		"Town Elder",
+		"Head Physician",
+		"Town Crier",
 		"Captain",
 		"Archivist",
 		"Knight",
 		"Court Magician",
 		"Inquisitor",
 		"Orthodoxist",
+		"Absolver",
 		"Warden",
 		"Squire",
 		"Veteran",
 		"Apothecary"
 	)
 
-	base_antags = 4
-	maximum_antags = 6
+	base_antags = 5
+	maximum_antags = 10
 
 	earliest_start = 0 SECONDS
 
-	weight = 16
+	weight = 18
 
 	typepath = /datum/round_event/antagonist/solo/bandits
 	antag_datum = /datum/antagonist/bandit
@@ -72,3 +73,14 @@
 		antag_mind.current.hud_used?.set_advclass()
 
 	SSrole_class_handler.bandits_in_round = TRUE
+
+/datum/round_event_control/antagonist/solo/bandits/canSpawnEvent(players_amt, gamemode, fake_check)
+	. = ..()
+	if(!.)
+		return
+	var/list/candidates = get_candidates()
+
+	if(length(candidates) < 1)
+		return FALSE
+
+	return TRUE

@@ -58,12 +58,6 @@
 	required_reagents = list(/datum/reagent/toxin/formaldehyde = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1, /datum/reagent/lithium = 1)
 	mix_message = "<span class='danger'>The mixture thins and loses all color.</span>"
 
-/datum/chemical_reaction/mimesbane
-	name = "Mime's Bane"
-	id = /datum/reagent/toxin/mimesbane
-	results = list(/datum/reagent/toxin/mimesbane = 3)
-	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/toxin/mutetoxin = 1, /datum/reagent/consumable/nothing = 1)
-
 /datum/chemical_reaction/bonehurtingjuice
 	name = "Bone Hurting Juice"
 	id = /datum/reagent/toxin/bonehurtingjuice

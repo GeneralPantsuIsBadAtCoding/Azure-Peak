@@ -59,6 +59,30 @@
 	sewrepair = FALSE
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+/obj/item/storage/belt/rogue/leather/battleskirt
+	name = "cloth military skirt"
+	icon_state = "battleskirt"
+	sewrepair = FALSE
+	detail_tag = "_belt"
+
+/obj/item/storage/belt/rogue/leather/battleskirt/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/storage/belt/rogue/leather/battleskirt/black
+	color = CLOTHING_BLACK
+
+/obj/item/storage/belt/rogue/leather/battleskirt/faulds
+	name = "belt with faulds"
+	icon_state = "faulds"
+	sewrepair = FALSE
+	detail_tag = "_belt"
+
 /obj/item/storage/belt/rogue/leather/steel
 	name = "steel belt"
 	icon_state = "steelplaque"
@@ -161,6 +185,22 @@
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 				qdel(H)
 
+/obj/item/storage/belt/pouch/coins/veryrich/Initialize()
+	. = ..()
+	var/obj/item/roguecoin/gold/pile/H = new(loc)
+	if(istype(H))
+		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+			qdel(H)
+	H = new(loc)
+	if(istype(H))
+		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+			qdel(H)
+	if(prob(50))
+		H = new(loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				qdel(H)
+
 /obj/item/storage/belt/rogue/pouch/coins/virtuepouch/Initialize()
 	. = ..()
 	var/obj/item/roguecoin/gold/virtuepile/H = new(loc)
@@ -194,6 +234,12 @@
 		/obj/item/paper,
 	)
 
+/obj/item/storage/backpack/rogue/satchel/otavan
+	name = "otavan leather satchel"
+	desc = "A made to last leather bag from the Psydonian heart of Otava. It's Otava's finest."
+	icon_state = "osatchel"
+	item_state = "osatchel"
+
 /obj/item/storage/backpack/rogue/satchel/mule/PopulateContents()
 	for(var/i in 1 to 3)
 		switch(rand(1,4))
@@ -217,9 +263,23 @@
 
 /obj/item/storage/backpack/rogue/satchel/short
 	name = "short satchel"
-	desc = "A leather satchel that's meant to  clip to a belt or to a pair of pants, freeing the shoulders from any weight."
+	desc = "A leather satchel that's meant to clip to a belt or to a pair of pants, freeing the shoulders from any weight."
 	icon_state = "satchelshort"
 	item_state = "satchelshort"
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_HIP //Implement a check in the future that prevents more than one being worn at once.
+
+/obj/item/storage/backpack/rogue/satchel/beltpack
+	name = "beltpack" //Satchel that fits on the cloak or belt slot. Should be exceptionally rare for on-spawn loadouts, unless a flag's added to make it incompatable with regular satchels.
+	desc = "A lighter satchel that rests against the rump, freeing the shoulders from any weight. It's traditionally worn in place of a belt or cloak."
+	icon_state = "gamesatchel" //Later down the line, take the unused belt-satchel onmob and rename it to 'gamesatchel'.
+	item_state = "satchel"
+	icon = 'icons/roguetown/clothing/storage.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
+	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BELT //Implement a check that prevents one from being worn on both slots at once. Another coder's duty, I think.
+	edelay_type = 1
+	equip_delay_self = 10
+	max_integrity = 300
+	component_type = /datum/component/storage/concrete/roguetown/satchel
 
 /obj/item/storage/backpack/rogue/backpack
 	name = "backpack"
@@ -386,6 +446,13 @@
 		knives += K
 	update_icon()
 
+/obj/item/storage/belt/rogue/leather/knifebelt/black/silver/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/item/rogueweapon/huntingknife/throwingknife/silver/K = new()
+		knives += K
+	update_icon()
+
 /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
@@ -442,3 +509,57 @@
 	anvilrepair = /datum/skill/craft/blacksmithing
 	smeltresult = /obj/item/ingot/bronze
 	component_type = /datum/component/storage/concrete/grid/headhook/bronze
+
+/obj/item/clothing/climbing_gear
+	name = "climbing gear"
+	desc = "Lets you do the impossible."
+	color = null
+	icon = 'icons/roguetown/clothing/storage.dmi'
+	item_state = "climbing_gear" // sprites from lfwb kitbashed with grappler for inventory sprite
+	icon_state = "climbing_gear" // sprites from lfwb kitbashed among each other for onmob sprite
+	alternate_worn_layer = UNDER_CLOAK_LAYER
+	inhand_mod = FALSE
+	slot_flags = ITEM_SLOT_BACK
+
+/obj/item/clothing/climbing_gear/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	playsound(loc, 'sound/items/garrotegrab.ogg', 100, TRUE)
+
+/obj/item/clothing/wall_grab
+	name = "wall"
+	item_state = "grabbing"
+	icon_state = "grabbing"
+	icon = 'icons/mob/roguehudgrabs.dmi'
+	max_integrity = 10
+	w_class = WEIGHT_CLASS_HUGE
+	item_flags = ABSTRACT
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	no_effect = TRUE
+
+/obj/item/clothing/wall_grab/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+	var/turf/openspace = user.loc
+	openspace.zFall(user) // slop?
+
+/obj/item/clothing/wall_grab/intercept_zImpact(atom/movable/AM, levels = 1) // with this shit it doesn't generate "X falls through open space". thank u guppyluxx
+    . = ..()
+    . |= FALL_NO_MESSAGE
+
+/obj/item/storage/hip/orestore/bronze
+	name = "mechanized ore bag"
+	desc = "a ticking Ore bag for sorting and compressing ore, ingots, and gems"
+	icon = 'icons/roguetown/items/misc.dmi'
+	//mob_overlay_icon = 'icons/roguetown/clothing/onmob/belts.dmi'
+	icon_state = "rucksack"
+	item_state = "rucksack"
+	slot_flags = ITEM_SLOT_HIP
+	w_class = WEIGHT_CLASS_NORMAL
+	max_integrity = 400
+	equip_sound = 'sound/blank.ogg'
+	//content_overlays = FALSE
+	anvilrepair = /datum/skill/craft/blacksmithing
+	smeltresult = /obj/item/ingot/bronze
+	component_type = /datum/component/storage/concrete/grid/orestore/bronze

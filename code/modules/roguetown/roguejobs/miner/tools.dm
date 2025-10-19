@@ -1,7 +1,7 @@
 /obj/item/rogueweapon/pick
 	force = 17
 	force_wielded = 21
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	name = "iron pick"
 	desc = "This tool is essential to mine in the dark depths."
@@ -53,7 +53,7 @@
 	force = 21
 	force_wielded = 28
 	icon_state = "steelpick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 600
 	smeltresult = /obj/item/ingot/steel
@@ -64,21 +64,23 @@
 	force = 12
 	force_wielded = 17
 	icon_state = "stonepick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 250
 	smeltresult = null
 
 /obj/item/rogueweapon/pick/aalloy
 	name = "decrepit pick"
-	desc = "A decrepit old pick. Aeon's grasp is upon it."
+	desc = "A chisel of wrought bronze, which once labored to gather the ores necessary for an ancient alloy; such was lost in the aftermath of Her ascension."
 	force = 12
 	force_wielded = 17
 	icon_state = "apick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 150
-	smeltresult = /obj/item/ingot/aalloy
+	smeltresult = /obj/item/ingot/aaslag
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/pick/copper
 	name = "copper pick"

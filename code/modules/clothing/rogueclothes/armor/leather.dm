@@ -65,12 +65,20 @@
 	icon_state = "hidearmor"
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
 
-/obj/item/clothing/suit/roguetown/armor/leather/hide/warden
-	name = "forestry armor"
-	desc = "A light armor worn by the Wardens of Azuria. Far more durable than leather."
+/obj/item/clothing/suit/roguetown/armor/leather/studded/warden
+	name = "forester's armor"
+	desc = "A hardened leather harness with a large pauldron worn over a maille coat, associated with the Azurian wardens."
 	icon = 'icons/roguetown/clothing/special/warden.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
-	icon_state = "foresthide"
+	icon_state = "forestleather"
+
+/obj/item/clothing/suit/roguetown/armor/leather/studded/warden/upgraded
+	name = "forester's brigandine"
+	desc = "A hardened leather harness with a large pauldron worn over a tasseted brigandine, imbued with Dendor's essence."
+	icon_state = "forestbrig"
+	max_integrity = ARMOR_INT_CHEST_PLATE_BRIGANDINE + 50
+	equip_delay_self = 50
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded
 	name = "studded leather armor"
@@ -109,6 +117,17 @@
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor
+	name = "confessional coat"
+	desc = "A sturdy raincoat draped atop of a tightly-fastened boiled leather cuirass. Saint Astratan youths often fashion little pieces of memorabilia and stitch it on the inner pockets of the coat to remind the confessors that their cause is virtuous, and that they mustn't lose sight of what matters."
+	icon_state = "confessorcoat"
+	item_state = "confessorcoat"
+	body_parts_covered = COVERAGE_FULL
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	armor = ARMOR_LEATHER_STUDDED
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
+	max_integrity = ARMOR_INT_CHEST_LIGHT_BASE	
+
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 	name = "megarmach scale coat"
 	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
@@ -131,6 +150,29 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	sellprice = 25
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
+	name = "fencing jacket"
+	desc = "A light, flexible button-up leather jacket that will keep your vitals out of harm's way."
+	icon_state = "freijacket"
+	item_state = "freijacket"
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
+	detail_tag = "_detail"
+	color = "#5E4440"
+	detail_color = "#c08955"
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter/Initialize()
+	..()
+	update_icon()
 
 /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
 	name = "treated trophy fur robes"

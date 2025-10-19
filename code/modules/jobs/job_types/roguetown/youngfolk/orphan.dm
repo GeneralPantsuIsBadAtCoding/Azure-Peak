@@ -6,7 +6,7 @@
 	total_positions = 12
 	spawn_positions = 12
 
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT)
 
 	tutorial = "Dozens of people end up down on their luck in the kingdom of Psydonia every day. They sometimes make something of themselves but much more often die in the streets."
@@ -19,6 +19,18 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/combat_bum.ogg'
+	job_subclasses = list(
+		/datum/advclass/vagabond_original,
+		/datum/advclass/vagabond_beggar,
+		/datum/advclass/vagabond_courier,
+		/datum/advclass/vagabond_deprived,
+		/datum/advclass/vagabond_excommunicated,
+		/datum/advclass/vagabond_goatherd,
+		/datum/advclass/vagabond_mage,
+		/datum/advclass/vagabond_runner,
+		/datum/advclass/vagabond_scholar,
+		/datum/advclass/vagabond_wanted
+	)
 
 /datum/job/roguetown/orphan/New()
 	. = ..()
@@ -44,6 +56,6 @@
 	H.STALUC = rand(1, 20)
 	if(prob(10))
 		r_hand = /obj/item/rogue/instrument/flute
-	H.change_stat("intelligence", round(rand(-4,4)))
-	H.change_stat("constitution", -1)
-	H.change_stat("endurance", -1)
+	H.change_stat(STATKEY_INT, round(rand(-4,4)))
+	H.change_stat(STATKEY_CON, -1)
+	H.change_stat(STATKEY_WIL, -1)

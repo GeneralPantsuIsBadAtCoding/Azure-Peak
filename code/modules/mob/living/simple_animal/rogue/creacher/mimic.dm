@@ -8,12 +8,12 @@
 	icon_dead = "mimicdead"
 
 	speed = 0
-	maxHealth = 450
-	health = 450
+	maxHealth = MIMIC_HEALTH
+	health = MIMIC_HEALTH
 	gender = NEUTER
 	mob_biotypes = NONE
 	base_intents = list(/datum/intent/simple/bite)
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2, /obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1)
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 2
@@ -21,8 +21,8 @@
 
 	damage_coeff = list(BRUTE = 1, BURN = 0, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	harm_intent_damage = 5
-	melee_damage_lower = 24
-	melee_damage_upper = 32
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = list('sound/vo/mobs/mimic/mimic_attack1.ogg',
@@ -156,3 +156,6 @@
 	mimic_type = /mob/living/simple_animal/hostile/retaliate/rogue/mimic/gold
 	chest_type = /obj/structure/closet/crate/chest/gold
 
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped
+	mimic_type = /obj/structure/closet/crate/chest/trapped/locked
+	chest_type = /obj/structure/closet/crate/chest/loot_chest/locked

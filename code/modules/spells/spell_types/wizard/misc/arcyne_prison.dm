@@ -5,7 +5,7 @@
 	school = "transmutation"
 	releasedrain = 50
 	spell_tier = 4 // Trolling spell, CM only.
-	invocation = "Mysticus Carcer!" // Magical Prison of Mysterious Magic.
+	invocations = list("Mysticus Carcer!") // Magical Prison of Mysterious Magic.
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_HIGH

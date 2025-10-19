@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/vigorousexchange
 	name = "Vigorous Exchange"
+	desc = "Restores the targets Energy, Twice as effective on someone else."
 	overlay_state = "vigorousexchange"
 	releasedrain = 0
 	chargedrain = 0
@@ -9,7 +10,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "Through flame and ash, let vigor rise, by Malum’s hand, let strength reprise!"
+	invocations = list("Through flame and ash, let vigor rise, by Malum’s hand, let strength reprise!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -22,6 +23,7 @@
 	
 /obj/effect/proc_holder/spell/invoked/heatmetal
 	name = "Heat Metal"
+	desc= "Damages Armor, Forces target to drop a metallic weapon, heats up an ingot in tongs or smelts a single item."
 	overlay_state = "heatmetal"
 	releasedrain = 30
 	chargedrain = 0
@@ -32,7 +34,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "With heat I wield, with flame I claim, Let metal serve in Malum's name!"
+	invocations = list("With heat I wield, with flame I claim, Let metal serve in Malum's name!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -45,6 +47,7 @@
 
 /obj/effect/proc_holder/spell/invoked/hammerfall
 	name = "Hammerfall"
+	desc = "Damages structures in an area while possibly knocking down mobs in the area."
 	overlay_state = "Hammerfall"
 	releasedrain = 30
 	chargedrain = 0
@@ -55,7 +58,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "By molten might and hammer's weight, in Malum’s flame, the earth shall quake!"
+	invocations = list("By molten might and hammer's weight, in Malum’s flame, the earth shall quake!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -68,6 +71,7 @@
 
 /obj/effect/proc_holder/spell/invoked/craftercovenant
 	name = "The Crafter’s Covenant"
+	desc = "Melt a pile of valuables and convert them into a single item. Sacrifice is accepted even if its not valuable enough to make anything."
 	overlay_state = "craftercovenant"
 	releasedrain = 30
 	chargedrain = 0
@@ -78,7 +82,7 @@
 	no_early_release = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/items/bsmithfail.ogg'
-	invocation = "Coins to ash, flame to form, in Malum’s name, let creation be born!"
+	invocations = list("Coins to ash, flame to form, in Malum’s name, let creation be born!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -383,6 +387,7 @@ var/global/list/anvil_recipe_prices[][]
 
 /obj/effect/proc_holder/spell/invoked/malum_flame_rogue
 	name = "Malum's Fire"
+	desc = "Ignites target."
 	overlay_state = "sacredflame"
 	releasedrain = 15
 	chargedrain = 0
@@ -393,7 +398,7 @@ var/global/list/anvil_recipe_prices[][]
 	chargedloop = null
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/heal.ogg'
-	invocation = "Flame."
+	invocations = list("Flame.")
 	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
@@ -408,8 +413,8 @@ var/global/list/anvil_recipe_prices[][]
 		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
 			return FALSE
-		L.adjust_divine_fire_stacks(1)
-		L.IgniteMob()
+		L.adjust_fire_stacks(1, /datum/status_effect/fire_handler/fire_stacks/divine)
+		L.ignite_mob()
 		return TRUE
 
 	// Spell interaction with ignitable objects (burn wooden things, light torches up)

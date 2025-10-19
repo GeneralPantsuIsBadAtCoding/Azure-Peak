@@ -5,6 +5,7 @@
 	density = TRUE
 	blocks_air = TRUE
 	baseturfs = list(/turf/open/floor/rogue/naturalstone, /turf/open/transparent/openspace)
+	plane = WALL_PLANE
 	var/above_floor
 	var/wallpress = TRUE
 	var/wallclimb = FALSE
@@ -171,9 +172,35 @@
 			user.visible_message(span_warning("[user] starts to climb [src]."), span_warning("I start to climb [src]..."))
 			if(do_after(L, used_time, target = src))
 				var/pulling = user.pulling
+				var/mob/living/carbon/human/climber = user
+				var/baseline_stamina_cost = 30 // have to disable stamina regen while on wall bruh in energystamina.dm
+				var/climbing_skill = max(climber.get_skill_level(/datum/skill/misc/climbing), SKILL_LEVEL_NOVICE)
+				var/stamina_cost_final = round((baseline_stamina_cost / climbing_skill), 1)
 				if(ismob(pulling))
 					user.pulling.forceMove(target)
+				var/climber_armor_class = climber.highest_ac_worn()
+				if((climber_armor_class <= ARMOR_CLASS_LIGHT) && !(ismob(pulling))) // if our armour is not light or none OR we are pulling someone we eat shit and die and can't climb vertically at all, except for 'vaulting' aka we got a sold turf we can walk on in front of us
+					user.movement_type |= FLYING
+				L.stamina_add(stamina_cost_final)
 				user.forceMove(target)
+				user.movement_type &= ~FLYING
+				if(istype(user.loc, /turf/open/transparent/openspace)) // basically only apply this slop after we moved. if we are hovering on the openspace turf, then good, we are doing an 'active climb' instead of the usual vaulting action
+					var/climber2wall_dir = get_dir(climber, src)
+					climber.wallpressed = climber2wall_dir
+					switch(climber2wall_dir)// we are pressed against the wall after all that shit and are facing it, also hugging it too bcoz sou
+						if(NORTH)
+							climber.setDir(NORTH)
+							climber.set_mob_offsets("wall_press", _x = 0, _y = 20)
+						if(SOUTH)
+							climber.setDir(SOUTH)
+							climber.set_mob_offsets("wall_press", _x = 0, _y = -10)
+						if(EAST)
+							climber.setDir(EAST)
+							climber.set_mob_offsets("wall_press", _x = 12, _y = 0)
+						if(WEST)
+							climber.setDir(WEST)
+							climber.set_mob_offsets("wall_press", _x = -12, _y = 0)
+					L.apply_status_effect(/datum/status_effect/debuff/climbing_lfwb, stamina_cost_final)
 				user.start_pulling(pulling,supress_message = TRUE)
 				if(user.m_intent != MOVE_INTENT_SNEAK)
 					playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
@@ -189,8 +216,15 @@
 		var/skill = user.get_skill_level(/datum/skill/misc/climbing)
 		if(skill >= climbdiff)
 			. += span_info("I <b>can</b> climb this wall.")
+			if(skill == 6)
+				. += span_info("I <b>can</b> move along the ledge here.")
+			else if(skill > climbdiff)
+				. += span_info("I <b>can</b> move along the ledge here.")
+			else
+				. += span_info("I <b>cannot</b> move along the ledge here.")
 		else if(abs(skill - climbdiff) == 1)
 			. += span_info("I cannot climb this wall, but I could with the help of a table or a chair.")
+			. += span_info("I <b>cannot</b> move along the ledge here.")
 		else
 			. += span_info("I <b>cannot</b> climb this wall.")
 	else

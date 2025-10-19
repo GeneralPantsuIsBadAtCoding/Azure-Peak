@@ -15,57 +15,61 @@
 #define ISDIAGONALDIR(d) (d&(d-1))
 
 //Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			50		//mutations. Tk headglows, cold resistance glow, etc
-#define CLOAK_BEHIND_LAYER		49
-#define HANDS_BEHIND_LAYER		48
-#define BELT_BEHIND_LAYER		47
-#define BACK_BEHIND_LAYER		46
-#define BODY_BEHIND_LAYER		45		//certain mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODY_UNDER_LAYER		44		// Things under the bodyparts but above the "behind body" layer
-#define BODYPARTS_LAYER			43		//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
-#define BODY_ADJ_LAYER			42		//certain mutantrace features (snout, body markings) that must appear above the body parts
-#define BODY_LAYER				41		//underwear, undershirts, socks, eyes, lips(makeup)
-#define FRONT_MUTATIONS_LAYER	40		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
-#define DAMAGE_LAYER			39		//damage indicators (cuts and burns)
-#define LEG_PART_LAYER			38
-#define PANTS_LAYER				37
-#define SHOES_LAYER				36
-#define LEG_DAMAGE_LAYER		35
-#define LEGSLEEVE_LAYER			34
-#define SHOESLEEVE_LAYER		33
-#define SHIRT_LAYER				32
-#define WRISTS_LAYER			31
-#define ARMOR_LAYER				30
-#define TABARD_LAYER			29
-#define BELT_LAYER				28		//only when looking south
-#define UNDER_CLOAK_LAYER		27
-#define HANDS_PART_LAYER		26
-#define GLOVES_LAYER			25
-#define ARM_DAMAGE_LAYER		24
-#define SHIRTSLEEVE_LAYER		23
-#define WRISTSLEEVE_LAYER		22
-#define ARMORSLEEVE_LAYER		21
-#define GLOVESLEEVE_LAYER		20
-#define RING_LAYER				19
-#define GLASSES_LAYER			18
-#define NECK_LAYER				17
-#define CLOAK_LAYER				16		//only when looking north or west/east
-#define HOOD_LAYER				15
-#define HAIR_LAYER				14		//TODO: make part of head layer?
-#define MASK_LAYER				13
-#define HAIREXTRA_LAYER			12
-#define MOUTH_LAYER				11
-#define HEAD_LAYER				10
-#define BACK_LAYER				9		//only when looking north
-#define HANDS_LAYER				8
-#define HANDCUFF_LAYER			7
-#define LEGCUFF_LAYER			6
-#define BODY_FRONT_LAYER		5
-#define BODY_FRONT_FRONT_LAYER	4
-#define HALO_LAYER				3		//blood cult ascended halo, because there's currently no better solution for adding/removing
+
+#define POTENCE_LAYER			53
+#define MUTATIONS_LAYER			52		//mutations. Tk headglows, cold resistance glow, etc
+#define CLOAK_BEHIND_LAYER		51
+#define HANDS_BEHIND_LAYER		50
+#define BELT_BEHIND_LAYER		49
+#define BACK_BEHIND_LAYER		48
+#define BODY_BEHIND_LAYER		47		//certain mutantrace features (tail when looking south) that must appear behind the body parts
+#define BODY_UNDER_LAYER		46		// Things under the bodyparts but above the "behind body" layer
+#define BODYPARTS_LAYER			45		//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
+#define BODY_ADJ_LAYER			44		//certain mutantrace features (snout, body markings) that must appear above the body parts
+#define BODY_LAYER				43		//underwear, undershirts, socks, eyes, lips(makeup)
+#define FRONT_MUTATIONS_LAYER	42		//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
+#define DAMAGE_LAYER			41		//damage indicators (cuts and burns)
+#define LEG_PART_LAYER			40
+#define LEGWEAR_LAYER			39
+#define PANTS_LAYER				38
+#define SHOES_LAYER				37
+#define LEG_DAMAGE_LAYER		36
+#define LEGSLEEVE_LAYER			35
+#define SHOESLEEVE_LAYER		34
+#define SHIRT_LAYER				33
+#define WRISTS_LAYER			32
+#define ARMOR_LAYER				31
+#define TABARD_LAYER			30
+#define BELT_LAYER				29		//only when looking south
+#define UNDER_CLOAK_LAYER		28
+#define HANDS_PART_LAYER		27
+#define GLOVES_LAYER			26
+#define ARM_DAMAGE_LAYER		25
+#define SHIRTSLEEVE_LAYER		24
+#define WRISTSLEEVE_LAYER		23
+#define ARMORSLEEVE_LAYER		22
+#define GLOVESLEEVE_LAYER		21
+#define RING_LAYER				20
+#define GLASSES_LAYER			19
+#define NECK_LAYER				18
+#define CLOAK_LAYER				17		//only when looking north or west/east
+#define HOOD_LAYER				16
+#define HAIR_LAYER				15		//TODO: make part of head layer?
+#define MASK_LAYER				14
+#define HAIREXTRA_LAYER			13
+#define MOUTH_LAYER				12
+#define HEAD_LAYER				11
+#define BACK_LAYER				10		//only when looking north
+#define HANDS_LAYER				9
+#define HANDCUFF_LAYER			8
+#define LEGCUFF_LAYER			7
+#define BODY_FRONT_LAYER		6
+#define BODY_FRONT_FRONT_LAYER	5
+#define HALO_LAYER				4		//blood cult ascended halo, because there's currently no better solution for adding/removing
+#define SUNDER_LAYER			3
 #define FIRE_LAYER				2		//If you're on fire
 #define TURF_LAYER				1		//If you're on fire
-#define TOTAL_LAYERS			50		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
+#define TOTAL_LAYERS			53		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 
 #define BACK_CLOAK_SOUTH_LAYER		(BODY_BEHIND_LAYER+1)
 
@@ -308,12 +312,6 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 
-//debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, "DEBUG: [msg]")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, "DEBUG: [msg]")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, "DEBUG: [msg]")
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
-
 #define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
 
 //TODO Move to a pref
@@ -453,11 +451,9 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
 //Filters
-#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-0, size=1, offset = 0, color="#04080FAA")
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=3, offset=1, color="#04080f96")
+#define AMBIENT_OCCLUSION_WALLS filter(type="drop_shadow", x=0, y=-2, size=8, offset=4, color="#000000ff")
 #define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
-
-#define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
-#define GRAVITY_DAMAGE_TRESHOLD 3 //Starting with this value gravity will start to damage mobs
 
 #define CAMERA_NO_GHOSTS 0
 #define CAMERA_SEE_GHOSTS_BASIC 1

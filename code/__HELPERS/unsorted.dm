@@ -238,10 +238,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 			continue
 		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
 			continue
-		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
+		var/name = avoid_assoc_duplicate_keys(M.real_name, namecounts)
 
 		if(M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
+			name += " \[[M.name]\]"
 		if(M.stat == DEAD)
 			continue
 		pois[name] = M
@@ -251,7 +251,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 			if(!A || !A.loc)
 				continue
 			pois[avoid_assoc_duplicate_keys(A.name, namecounts)] = A
-
+	pois = sort_list(pois)
 	return pois
 //Orders mobs by type then by name
 /proc/sortmobs()
@@ -733,7 +733,6 @@ will handle it, but:
 Checks if that loc and dir has an item on the wall
 */
 GLOBAL_LIST_INIT(WALLITEMS, typecacheof(list(
-	/obj/structure/noticeboard,
 	/obj/structure/mirror,
 	/obj/structure/fireaxecabinet,
 	)))
@@ -1304,17 +1303,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
 	if(!user || !target)
 		return TRUE
-	var/user_loc = user.loc
-
-	var/drifting = FALSE
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = TRUE
-
-	var/target_drifting = FALSE
-	if(!target.Process_Spacemove(0) && target.inertia_dir)
-		target_drifting = TRUE
-
-	var/target_loc = target.loc
 
 	var/endtime = world.time+time
 	. = TRUE
@@ -1326,15 +1314,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		if(uninterruptible)
 			continue
 
-		if(drifting && !user.inertia_dir)
-			drifting = FALSE
-			user_loc = user.loc
-
-		if(target_drifting && !target.inertia_dir)
-			target_drifting = FALSE
-			target_loc = target.loc
-
-		if((!drifting && user.loc != user_loc) || (!target_drifting && target.loc != target_loc) || (extra_checks && !extra_checks.Invoke()))
+		if((extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
@@ -1621,3 +1601,17 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 			for(var/atom/contained_atom in M.component_parts)
 				contained_atom.flags_1 |= HOLOGRAM_1
 	return O
+
+#define VALID_HUNTING_AREAS list(\
+	/area/rogue/outdoors/beach/forest, \
+	/area/rogue/outdoors/woods, \
+	/area/rogue/outdoors/bog, \
+	/area/rogue/outdoors/mountains, \
+	/area/rogue/outdoors/rtfield \
+)
+
+/proc/is_valid_hunting_area(area/A)
+	for(var/i in VALID_HUNTING_AREAS)
+		if(istype(A, i))
+			return TRUE
+	return FALSE

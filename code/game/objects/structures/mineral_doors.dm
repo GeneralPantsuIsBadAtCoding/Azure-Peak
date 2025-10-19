@@ -59,7 +59,8 @@
 	var/resident_role
 	/// The requied advclass of the resident
 	var/list/resident_advclass
-
+	//a door name a skilled artisan can make 
+	var/doorname = null
 
 /obj/structure/mineral_door/onkick(mob/user)
 	if(isSwitchingStates)
@@ -387,6 +388,24 @@
 	else
 		if(repairable && (user.get_skill_level(repair_skill) > 0) && ((istype(I, repair_cost_first)) || (istype(I, repair_cost_second)))) // At least 1 skill level needed
 			repairdoor(I,user)
+		else if(user.used_intent.type == /datum/intent/chisel )
+			if (user.get_skill_level(repair_skill) <= 3)
+				to_chat(user, span_warning("I need more skill to carve a name into this door."))
+				return
+			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+			user.visible_message("<span class='info'>[user] Carves a name into the door.</span>")
+			if(do_after(user, 10))
+				doorname = input("What name would you like to carve into the door?")
+				if (doorname)
+					name = doorname + "(door)"
+					desc = "a door with a name carved into it"
+				else
+					name = "door"
+					desc = "a door with a carving scratched out"
+				playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
+			return
+		else if(istype(I, /obj/item/rogueweapon/chisel/assembly))
+			to_chat(user, span_warning("You most use both hands to rename doors."))
 		else
 			return ..()
 
@@ -552,7 +571,7 @@
 						message_admins("[H.real_name]([key_name(user)]) successfully lockpicked [src.name] & [locked ? "unlocked" : "locked"] it. [ADMIN_JMP(src)]")
 						log_admin("[H.real_name]([key_name(user)]) successfully lockpicked [src.name].")
 						record_featured_stat(FEATURED_STATS_CRIMINALS, user)
-						GLOB.azure_round_stats[STATS_LOCKS_PICKED]++
+						record_round_statistic(STATS_LOCKS_PICKED)
 						var/obj/effect/track/structure/new_track = new(get_turf(src))
 						new_track.handle_creation(user)
 					lock_toggle(user)
@@ -822,16 +841,6 @@
 	repair_cost_second = /obj/item/natural/stone
 	repair_skill = /datum/skill/craft/masonry
 
-/obj/structure/mineral_door/wood/donjon/stone/broken // no repair
-	icon_state = "stonebr"
-	base_state = "stone"
-	density = 0
-	opacity = 0
-	obj_integrity = 0
-	gc_destroyed = 1
-	brokenstate = 1
-	obj_broken = 1
-
 /obj/structure/mineral_door/wood/donjon/stone/attack_right(mob/user)
 	if(user.get_active_held_item())
 		..()
@@ -870,6 +879,21 @@
 		to_chat(user, span_info("I slide the viewport closed."))
 		opacity = TRUE
 		playsound(src, 'sound/foley/doors/windowup.ogg', 100, FALSE)
+
+/obj/structure/mineral_door/wood/donjon/stone/broken
+	desc = "A broken stone door from an era bygone. A new one must be constructed in its place."
+	icon_state = "stonebr"
+	base_state = "stone"
+	density = 0
+	opacity = 0
+	obj_integrity = 150
+	brokenstate = 1
+	obj_broken = 1
+	repairable = FALSE
+
+/obj/structure/mineral_door/wood/donjon/stone/broken/Initialize()
+	..()
+	icon_state = "stonebr" // Weird override otherwise
 
 
 /obj/structure/mineral_door/bars
@@ -955,9 +979,9 @@
 	resident_advclass = list(/datum/advclass/seamstress)
 	lockid = "towner_seamstress"
 
-/obj/structure/mineral_door/wood/towner/woodcutter
-	resident_advclass = list(/datum/advclass/woodcutter)
-	lockid = "towner_woodcutter"
+/obj/structure/mineral_door/wood/towner/woodworker
+	resident_advclass = list(/datum/advclass/woodworker)
+	lockid = "towner_woodworker"
 
 /obj/structure/mineral_door/wood/towner/fisher
 	resident_advclass = list(/datum/advclass/fisher)

@@ -10,6 +10,8 @@
 /obj/item/kitchen/fork/aalloy
 	name = "decrepit fork"
 	icon_state = "afork"
+	color = "#bb9696"
+	sellprice = 5
 
 /obj/item/kitchen/fork/iron
 	name = "iron fork"

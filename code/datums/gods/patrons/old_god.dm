@@ -1,24 +1,29 @@
 /datum/patron/old_god
 	name = "Psydon"
-	domain = "God of Ontological Reality"
-	desc = "The true God of everything, Psydon is maximally good - He created humen in his image to live in Psydonia, and defended the Azure Basin by sending the COMET SYON to defeat the rampaging archdemon."
-	worshippers = "Fanatics and Nostalgists"
+	domain = "Everything."
+	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
+	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
 	associated_faith = /datum/faith/old_god
-	mob_traits = list(TRAIT_PSYDONITE)
+	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
 	)
+	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
 	confess_lines = list(
 		"THERE IS ONLY ONE TRUE GOD!",
 		"PSYDON YET LYVES! PSYDON YET ENDURES!",
-		"REBUKE THE HERETICAL- PSYDON ENDURES!",
+		"REBUKE THE HEATHEN, SUNDER THE MONSTER!",
+		"WITH EVERY BROKEN BONE, I SWORE I LYVED!",
+		"FORGIVE THEM, ALLFATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
+		"BARE WITNESS, MY GOD; THE SACRIFICE MADE MANIFEST!",
 	)
 
 
 /obj/effect/proc_holder/spell/self/check_boot
-	name = "Check Your Boot"
+	name = "BOOT-CHECK"
+	desc = "Checks your boot for variety of items."
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -103,6 +108,7 @@
 // no he's dead - ok maybe he does
 
 /datum/patron/old_god/can_pray(mob/living/follower)
+	. = ..()
 	. = TRUE
 	// Allows prayer near psycross.
 	for(var/obj/structure/fluff/psycross/cross in view(4, get_turf(follower)))
@@ -129,6 +135,7 @@
 
 /obj/effect/proc_holder/spell/invoked/psydonendure
 	name = "ENDURE"
+	desc = "Mends the wounds of the target."
 	overlay_state = "ENDURE"
 	releasedrain = 20
 	chargedrain = 0
@@ -137,7 +144,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/ENDVRE.ogg'
-	invocation = "LYVE, ENDURE!" // holy larp yelling for healing is silly
+	invocations = list("LYVE, ENDURE!") // holy larp yelling for healing is silly
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -165,7 +172,7 @@
 
 		// Bonuses! Flavour! SOVL!
 		for(var/obj/item/clothing/neck/current_item in target.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/zcross/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
+			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
 				pp += 1
 				if(pp >= 12 & target == user) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
 					target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
@@ -194,7 +201,7 @@
 						psicross_bonus = 0.4	
 					if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 						psicross_bonus = 0.4
-					if(/obj/item/clothing/neck/roguetown/zcross/aalloy)
+					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 						zcross_trigger = TRUE	
 
 		if(damtotal >= 300) // ARE THEY ENDURING MUCH, IN ONE WAY OR ANOTHER?

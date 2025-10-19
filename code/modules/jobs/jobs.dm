@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(noble_positions, list(
 
 GLOBAL_LIST_INIT(courtier_positions, list(
 	"Court Magician",
-	"Court Physician",
+	"Head Physician",
 	"Jester",
 	"Seneschal",
 ))
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(garrison_positions, list(
 ))
 
 GLOBAL_LIST_INIT(church_positions, list(
-	"Priest",
+	"Bishop",
 	"Confessor",
 	"Acolyte",
 	"Mortician",
@@ -101,6 +101,7 @@ GLOBAL_LIST_INIT(church_positions, list(
 GLOBAL_LIST_INIT(inquisition_positions, list(
 	"Inquisitor",
 	"Orthodoxist",
+	"Absolver",
 ))
 
 
@@ -109,7 +110,7 @@ GLOBAL_LIST_INIT(yeoman_positions, list(
 	"Innkeeper",
 	"Archivist",
 	"Scribe",
-	"Town Elder",
+	"Town Crier",
 	"Bathmaster",
 	"Guildmaster",
 	"Guildsman",
@@ -133,6 +134,7 @@ GLOBAL_LIST_INIT(peasant_positions, list(
 	"Prisoner",
 	"Beggar",
 	"Adventurer",
+	"Trader",
 	"Pilgrim",
 	"Bandit",
 	"Court Agent",
@@ -175,6 +177,18 @@ GLOBAL_LIST_INIT(roguefight_positions, list(
 	"Green Caster",
 	"Green Ranger",
 	"Green Fighter",
+))
+
+//This list is used to prevent the duke from stripping nobility from certain jobs that aren't intrinsically a part of the town.
+GLOBAL_LIST_INIT(foreign_positions, list(
+	"Adventurer", 
+	"Mercenary", 
+	"Bandit", 
+	"Wretch",
+	"Inquisitor",
+	"Suitor",
+	"Orthodoxist",
+	"Migrant",
 ))
 
 GLOBAL_LIST_INIT(test_positions, list(

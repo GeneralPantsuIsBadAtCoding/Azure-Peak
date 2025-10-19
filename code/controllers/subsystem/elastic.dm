@@ -54,18 +54,11 @@ SUBSYSTEM_DEF(elastic)
 
 /datum/controller/subsystem/elastic/proc/get_round_data()
 	var/list/round_data = list()
-	/// For stats that need special formatting and must be send manually instead of as a part of the loop
-	var/list/special_stats = list(STATS_BLOOD_SPILT)
-
 
 	for(var/patron_name in GLOB.patron_follower_counts)
 		round_data["[patron_name]_followers"] = GLOB.patron_follower_counts[patron_name]
 
-	round_data[STATS_BLOOD_SPILT] = round(GLOB.azure_round_stats[STATS_BLOOD_SPILT] / 100, 1)
-
 	for(var/stat in GLOB.azure_round_stats)
-		if(stat in special_stats)
-			continue
 		round_data[stat] = GLOB.azure_round_stats[stat]
 
 	return round_data

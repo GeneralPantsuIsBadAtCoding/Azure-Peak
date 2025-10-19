@@ -92,6 +92,8 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
+	else if(HAS_TRAIT(mob, TRAIT_IN_FRENZY) || HAS_TRAIT(mob, TRAIT_MOVEMENT_BLOCKED))
+		return FALSE
 	if(mob.stat == DEAD)
 #ifdef TESTSERVER
 		mob.ghostize()
@@ -111,6 +113,8 @@
 		return FALSE
 	else if(mob.is_shifted)
 		mob.unpixel_shift()
+	
+	mob.last_client_interact = world.time
 
 	var/mob/living/L = mob  //Already checked for isliving earlier
 	if(L.incorporeal_move)	//Move though walls
@@ -133,8 +137,6 @@
 		var/atom/O = mob.loc
 		return O.relaymove(mob, direct)
 
-	if(!mob.Process_Spacemove(direct))
-		return FALSE
 	//We are now going to move
 	var/add_delay = mob.cached_multiplicative_slowdown
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
@@ -244,6 +246,8 @@
 		if (L.incapacitated())
 			return FALSE
 		if (M.grab_state > GRAB_PASSIVE)
+			return FALSE
+		if (L.compliance)
 			return FALSE
 		move_delay = world.time + 10
 		to_chat(src, span_warning("[L] still has footing! I need a stronger grip!"))
@@ -361,79 +365,9 @@
 			L.setDir(direct)
 	return TRUE
 
-
-/**
-  * Handles mob/living movement in space (or no gravity)
-  *
-  * Called by /client/Move()
-  *
-  * return TRUE for movement or FALSE for none
-  *
-  * You can move in space if you have a spacewalk ability
-  */
-/mob/Process_Spacemove(movement_dir = 0)
-	if(spacewalk || ..())
-		return TRUE
-	var/atom/movable/backup = get_spacemove_backup()
-	if(backup)
-		if(istype(backup) && movement_dir && !backup.anchored)
-			if(backup.newtonian_move(turn(movement_dir, 180))) //You're pushing off something movable, so it moves
-				to_chat(src, span_info("I push off of [backup] to propel myself."))
-		return TRUE
-	return FALSE
-
-/**
-  * Find movable atoms? near a mob that are viable for pushing off when moving
-  */
-/mob/get_spacemove_backup()
-	for(var/A in orange(1, get_turf(src)))
-		if(isarea(A))
-			continue
-		else if(isturf(A))
-			var/turf/turf = A
-			if(!turf.density && !mob_negates_gravity())
-				continue
-			return A
-		else
-			var/atom/movable/AM = A
-			if(AM == buckled)
-				continue
-			if(ismob(AM))
-				var/mob/M = AM
-				if(M.buckled)
-					continue
-			if(!AM.CanPass(src) || AM.density)
-				if(AM.anchored)
-					return AM
-				if(pulling == AM)
-					continue
-				. = AM
-
-/**
-  * Returns true if a mob has gravity
-  *
-  * I hate that this exists
-  */
-/mob/proc/mob_has_gravity()
-	return has_gravity()
-
-/**
-  * Does this mob ignore gravity
-  */
-/mob/proc/mob_negates_gravity()
-	return FALSE
-
 /// Called when this mob slips over, override as needed
 /mob/proc/slip(knockdown_amount, obj/O, lube, paralyze, force_drop)
 	return
-
-/// Update the gravity status of this mob
-/mob/proc/update_gravity(has_gravity, override=FALSE)
-	var/speed_change = max(0, has_gravity - STANDARD_GRAVITY)
-	if(!speed_change)
-		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE)
-	else
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAVITY, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=speed_change, blacklisted_movetypes=FLOATING)
 
 //bodypart selection verbs - Cyberboss
 //8:repeated presses toggles through head - eyes - mouth
@@ -460,6 +394,8 @@
 	switch(mob.zone_selected)
 		if(BODY_ZONE_HEAD)
 			next_in_line = BODY_ZONE_PRECISE_NECK
+		if(BODY_ZONE_PRECISE_NECK)
+			next_in_line = BODY_ZONE_PRECISE_SKULL
 		else
 			next_in_line = BODY_ZONE_HEAD
 
@@ -694,6 +630,12 @@
 		switch(intent)
 			if(MOVE_INTENT_SNEAK)
 				m_intent = MOVE_INTENT_SNEAK
+				if(isliving(src))
+					var/mob/living/L = src
+					if((/datum/mob_descriptor/prominent/prominent_bottom in L.mob_descriptors) || (/datum/mob_descriptor/prominent/prominent_thighs in L.mob_descriptors))
+						L.loud_sneaking = TRUE
+					else
+						L.loud_sneaking = FALSE
 				update_sneak_invis()
 
 			if(MOVE_INTENT_WALK)
@@ -823,38 +765,8 @@
 	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
 		eyet.update_icon(src)
 	playsound_local(src, 'sound/misc/click.ogg', 100)
-
-/client/proc/hearallasghost()
-	set category = "Prefs - Admin"
-	set name = "HearAllAsAdmin"
-	if(!holder)
-		return
-	if(!prefs)
-		return
-	prefs.chat_toggles ^= CHAT_GHOSTEARS
-//	prefs.chat_toggles ^= CHAT_GHOSTSIGHT
-	prefs.chat_toggles ^= CHAT_GHOSTWHISPER
-	prefs.save_preferences()
-	if(prefs.chat_toggles & CHAT_GHOSTEARS)
-		to_chat(src, span_notice("I will hear all now."))
-	else
-		to_chat(src, span_info("I will hear like a mortal."))
-
-/client/proc/hearglobalLOOC()
-	set category = "Prefs - Admin"
-	set name = "Show/Hide Global LOOC"
-	if(!holder)
-		return
-	if(!prefs)
-		return
-	prefs.chat_toggles ^= CHAT_ADMINLOOC
-	prefs.save_preferences()
-	if(prefs.chat_toggles & CHAT_ADMINLOOC)
-		to_chat(src, span_notice("I will now hear all LOOC chatter."))
-	else
-		to_chat(src, span_info("I will now only hear LOOC chatter around me."))
-
 ///Moves a mob upwards in z level
+
 /mob/proc/ghost_up()
 	if(zMove(UP, TRUE))
 		to_chat(src, span_notice("I move upwards."))

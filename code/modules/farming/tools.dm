@@ -57,11 +57,13 @@
 
 /obj/item/rogueweapon/thresher/aalloy
 	name = "decrepit thresher"
-	desc = "A withered old thresher. Aeon's grasp is upon it."
+	desc = "A thresher of wrought bronze; from when the wheat was plentiful, and when Man wasn't burdened with the weight of sin."
 	force = 5
 	force_wielded = 7
 	icon_state = "athresh"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 
 /obj/item/rogueweapon/sickle
@@ -78,7 +80,7 @@
 	//dropshrink = 0.8
 	wlength = WLENGTH_SHORT
 	slot_flags = ITEM_SLOT_HIP
-	max_blade_int = 50
+	max_blade_int = 300
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/sickle/examine(mob/user)
@@ -94,7 +96,10 @@
 
 /obj/item/rogueweapon/sickle/aalloy
 	name = "decrepit sickle"
+	desc = "Her thought was simple; to seperate the wheat from the chaff. By removing the limitations set upon one's spirit by lyfe, only then could divinity be obtained. She was correct - yet Her ascension had gone terribly awry, all-the-same."
 	icon_state = "asickle"
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/sickle/copper
 	name = "copper sickle"
@@ -124,8 +129,11 @@
 
 /obj/item/rogueweapon/hoe/aalloy
 	name = "decrepit hoe"
+	desc = "Food is what cultivates lyfe; and without lyfe, there would be nothing left. At least, that is what His children would want you to believe."
 	icon_state = "ahoe"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/hoe/copper
 	name = "copper hoe"
@@ -309,8 +317,11 @@
 
 /obj/item/rogueweapon/pitchfork/aalloy
 	name = "decrepit pitchfork"
+	desc = "Do not fault the layman for fearing Her disciples, nor for driving them out of the villages with pitchforks-and-torches. They, too, will come to see the blessings of Zizo, all in due tyme." 
 	icon_state = "apitchfork"
 	smeltresult = /obj/item/ingot/aalloy
+	color = "#bb9696"
+	sellprice = 15
 
 /obj/item/rogueweapon/pitchfork/copper
 	name = "copper pitchfork"

@@ -21,6 +21,10 @@
 	SSroguemachine.stock_machines -= src
 	return ..()
 
+/obj/structure/roguemachine/stockpile/examine(mob/user)
+	. = ..()
+	. += span_info("Right click to sell everything in front of the stockpile.")
+
 /obj/structure/roguemachine/stockpile/Topic(href, href_list)
 	. = ..()
 	if(!usr.canUseTopic(src, BE_CLOSE))
@@ -120,6 +124,8 @@
 					SStreasury.economic_output += R.export_price * B.amount
 					if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 						say("No account found. Submit your fingers to a Meister for inspection.")
+					else
+						record_round_statistic(STATS_STOCKPILE_EXPANSES, amt)
 			continue
 		// Bloc to replace old vault mechanics
 		else if(istype(I,R.item_type))
@@ -150,10 +156,18 @@
 				SStreasury.economic_output += true_value
 				if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 					say("No account found. Submit your fingers to a Meister for inspection.")
+			record_round_statistic(STATS_STOCKPILE_EXPANSES, amt) // Unlike deposit, a treasure minting is equal to both expending and profiting at the same time
+			record_round_statistic(STATS_STOCKPILE_REVENUE, true_value)
 			return
 
 /obj/structure/roguemachine/stockpile/attackby(obj/item/P, mob/user, params)
 	if(ishuman(user))
+		if(istype(P, /obj/item/roguecoin/aalloy))
+			return
+
+		if(istype(P, /obj/item/roguecoin/inqcoin))	
+			return
+	
 		if(istype(P, /obj/item/roguecoin))
 			withdraw_tab.insert_coins(P)
 			return attack_hand(user)

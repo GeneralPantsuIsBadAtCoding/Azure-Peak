@@ -3,11 +3,10 @@
 
 /obj/effect/proc_holder/spell/invoked/enchant_weapon
 	name = "Enchant Weapon"
-	desc = "Enchant a weapon of your choice in your hand or on the ground.\n\
+	desc = "Enchant a weapon of your choice in your hand or on the ground, replacing any existing enchantment. \n\
 	The enchantment will lasts for 15 minutes, and will automatically refresh in the hand of an Arcyne user.\n\
 	If the enchanter is holding a piece of gold ore in their hand, it will be consumed to enchant the weapon permanently (200 minutes).\n\
 	An enchantment cannot be applied to an already enchanted weapon.\n\
-	Searing Blade: Applies 8 burn damage through armor and parry / dodge, per strike.\n\
 	Force Blade: Increases the force of the weapon by 5.\n\
 	Durability: Increases the integrity and max integrity of the weapon by 100."
 	overlay_state = "enchant_weapon"
@@ -28,7 +27,7 @@
 	cost = 2 // Slightly discounted as it is mostly buff.
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Incantare Arma!" // Enchant Weapon(s)
+	invocations = list("Incantare Arma!") // Enchant Weapon(s)
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -38,7 +37,6 @@
 	var/obj/item/sacrifice
 
 	var/list/enchant_types = list(
-		"Searing Blade" = SEARING_BLADE_ENCHANT,
 		"Force Blade" = FORCE_BLADE_ENCHANT,
 		"Durability" = DURABILITY_ENCHANT
 	)
@@ -57,6 +55,8 @@
 		if(sacrifice)
 			qdel(sacrifice)
 			to_chat(user, "I consumes the [sacrifice] to enchant [I] permanently.")
+		if(I.GetComponent(/datum/component/enchanted_weapon))
+			qdel(I.GetComponent(/datum/component/enchanted_weapon))
 		I.AddComponent(/datum/component/enchanted_weapon, enchant_duration, TRUE, /datum/skill/magic/arcane, enchant_type)
 		user.visible_message("[user] enchants the [I], enveloping it in a magical glow.")
 		return TRUE

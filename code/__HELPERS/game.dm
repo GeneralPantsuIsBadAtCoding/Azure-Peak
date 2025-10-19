@@ -93,6 +93,12 @@
  * Helper atom that copies an appearance and exists for a period
 */
 /atom/movable/flick_visual
+	var/atom/movable/container = null
+
+/atom/movable/flick_visual/Destroy()
+	. = ..()
+	if(container)
+		container.vis_contents -= src
 
 /// Takes the passed in MA/icon_state, mirrors it onto ourselves, and displays that in world for duration seconds
 /// Returns the displayed object, you can animate it and all, but you don't own it, we'll delete it after the duration
@@ -116,6 +122,7 @@
 	// I hate /area
 	var/atom/movable/lies_to_children = src
 	lies_to_children.vis_contents += visual
+	visual.container = lies_to_children
 	QDEL_IN_CLIENT_TIME(visual, duration)
 	return visual
 
@@ -131,8 +138,19 @@
 	. = list()
 	while(processing_list.len)
 		var/atom/A = processing_list[1]
-		if(A.flags_1 & HEAR_1)
+		var/add = TRUE
+		if(isdullahan(A))
+			var/mob/living/carbon/human = A
+			// It's a headless Dullahan, they can't hear. Might have a relay in their inventory.
+			var/datum/species/dullahan/user_species = human.dna.species
+			if(user_species.headless)
+				add = FALSE
+
+		if((A.flags_1 & HEAR_1) && add)
 			. += A
+		else if(istype(A, /obj/item/bodypart/head/dullahan))
+			var/obj/item/bodypart/head/dullahan/head = A
+			. += head.original_owner
 		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
@@ -515,3 +533,16 @@
 		return FALSE
 
 	return pick(possible_loc)
+
+/// Removes an image from a client's `.images`. Useful as a callback.
+/proc/remove_image_from_client(image/image_to_remove, client/remove_from)
+	remove_from?.images -= image_to_remove
+
+/// Returns this user's display ckey, used in OOC contexts.
+/proc/get_display_ckey(key)
+	var/ckey = ckey(key)
+	if(ckey in GLOB.anonymize)
+		return get_fake_key(ckey)
+	if(!ckey || !istext(ckey))
+		return "some invalid"
+	return ckey

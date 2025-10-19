@@ -1,6 +1,7 @@
 // Diagnose
 /obj/effect/proc_holder/spell/invoked/diagnose
 	name = "Diagnose"
+	desc = "Examine anothers vitals."
 	overlay_state = "diagnose"
 	releasedrain = 10
 	chargedrain = 0
@@ -56,6 +57,7 @@
 // Limb or organ attachment
 /obj/effect/proc_holder/spell/invoked/attach_bodypart
 	name = "Bodypart Miracle"
+	desc = "Attach all limbs and organs you or your target is holding, and near your target."
 	overlay_state = "limb_attach"
 	releasedrain = 30
 	chargedrain = 0
@@ -171,14 +173,14 @@
 	movement_interrupt = FALSE
 	no_early_release = FALSE
 	devotion_cost = 50 // attack miracle
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross/pestra)
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/fliesloop
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	miracle = TRUE
 
-	invocation = "Rot, take them!"
+	invocations = list("Rot, take them!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
 
@@ -194,7 +196,7 @@
 	id = "infestation"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/infestation
 	duration = 10 SECONDS
-	effectedstats = list("constitution" = -2)
+	effectedstats = list(STATKEY_CON = -2)
 	var/static/mutable_appearance/rotten = mutable_appearance('icons/roguetown/mob/rotten.dmi', "rotten")
 
 /datum/status_effect/buff/infestation/on_apply()
@@ -247,6 +249,7 @@
 // Cure rot
 /obj/effect/proc_holder/spell/invoked/cure_rot
 	name = "Cure Rot"
+	desc = "Invoke Pestras will though a Psycross to cast out rot from people or regrow their flesh."
 	overlay_state = "cure_rot"
 	releasedrain = 90
 	chargedrain = 0
@@ -268,6 +271,7 @@
 	var/is_lethal = TRUE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/priest
+	desc = "Burn out the rot by Astratas will."
 	is_lethal = FALSE
 
 /obj/effect/proc_holder/spell/invoked/cure_rot/cast(list/targets, mob/living/user)
@@ -315,6 +319,7 @@
 
 /obj/effect/proc_holder/spell/invoked/pestra_leech
 	name = "Leeching Purge"
+	desc = "Manifest leeches inside of target, causing them to puke them out while restoring some blood and curing minor poisoning."
 	overlay_state = "leech_purge"
 	releasedrain = 30
 	chargedrain = 0

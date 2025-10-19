@@ -5,7 +5,6 @@
 	school = "transmutation"
 	recharge_time = 300
 	clothes_req = TRUE
-	invocation = "none"
 	invocation_type = "none"
 	range = -1
 	cooldown_min = 100 //50 deciseconds reduction per rank
@@ -27,7 +26,7 @@
 	var/turf/mobloc = get_turf(target)
 	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
 	new jaunt_out_type(mobloc, target.dir)
-	target.ExtinguishMob()
+	target.extinguish_mob()
 	target.forceMove(holder)
 	target.reset_perspective(holder)
 	target.notransform=0 //mob is safely inside holder now, no need for protection.

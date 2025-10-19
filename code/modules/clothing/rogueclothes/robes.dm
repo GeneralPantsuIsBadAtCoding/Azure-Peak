@@ -25,6 +25,7 @@
 	sleeved = null
 	boobed = TRUE
 	color = null
+	resistance_flags = FIRE_PROOF
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 
@@ -112,14 +113,9 @@
 	armor = ARMOR_PADDED	//Equal to gamby
 	color = null
 
-/obj/item/clothing/suit/roguetown/shirt/robe/priest/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_CHOSEN))
-		to_chat(user, "<font color='yellow'>UNWORTHY HANDS TOUCH THE VESTMENTS, CEASE OR BE PUNISHED</font>")
-		spawn(30)
-			if(loc == user)
-				user.adjust_fire_stacks(5)
-				user.IgniteMob()
-	..()
+/obj/item/clothing/suit/roguetown/shirt/robe/priest/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CHOSEN, "VESTMENTS")
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/equipped(mob/living/user, slot)
 	..()
@@ -128,32 +124,41 @@
 	if(!HAS_TRAIT(user, TRAIT_CHOSEN))	//Requires this cus it's a priest-only thing.
 		return
 	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigorous - empowered by my God!"))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/dropped(mob/living/user)
 	..()
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
+//This for adventurers. Base type, same armor. No holy-bonus.
 /obj/item/clothing/suit/roguetown/shirt/robe/monk
-	name = "monk vestments"
-	desc = "Holy vestments worn by the most faithful."
+	name = "nomadic monk vestments"
+	desc = "Nomadic vestments, worn by those who pursue faith above all else. The red burlap is thickly-woven and padded, in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows."
 	icon_state = "monkvestments"
 	item_state = "monkvestments"
-	armor = ARMOR_PADDED	//Equal to gamby
+	armor = ARMOR_PADDED_GOOD	//Equal to a padded gambeson, like before.
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)	 //Ensures that this inherits the padded gambeson's resistances, too.
+	color = "#662315"
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 
-/obj/item/clothing/suit/roguetown/shirt/robe/monk/equipped(mob/living/user, slot)
+//This is for templars/psydonites. Gives a boon for wearing it to counter-act giving up plate and such.
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
+	name = "holy monk vestments"
+	desc = "Holy vestments, worn by those who pursue faith above all else. The burlap is thickly-woven, padded, and blessed in order to ward off whatever threats may arise during one's pilgrimage: be it a biting chill or a volley of arrows. Ble"
+	color = null	//Base sprite
+
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/equipped(mob/living/user, slot)
 	..()
 	if(!HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN))	//Requires this cus it's a monk-only thing.
 		return
 	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigorous - empowered by my God!"))
 
-/obj/item/clothing/suit/roguetown/shirt/robe/monk/dropped(mob/living/user)
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/holy/dropped(mob/living/user)
 	..()
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
-	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
 /obj/item/clothing/suit/roguetown/shirt/robe/courtmage
 	color = "#6c6c6c"

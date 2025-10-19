@@ -99,6 +99,7 @@
 		/obj/item/rogueweapon/sword/cutlass = 2,
 		/obj/item/rogueweapon/sword/long = 2,
 		/obj/item/rogueweapon/katar = 1,
+		/obj/item/rogueweapon/katar/punchdagger = 1,
 		/obj/item/rogueweapon/flail = 1,
 		/obj/item/rogueweapon/estoc = 1,
 		/obj/item/rogueweapon/greatsword/zwei = 1,
@@ -365,7 +366,6 @@
 		/obj/item/book/granter/spell/blackstone/message = 3,
 		/obj/item/book/granter/spell/blackstone/ensnare = 2,
 		/obj/item/book/granter/spell/blackstone/lightning = 2,
-		/obj/item/book/granter/spell/blackstone/blindness = 2,
 		/obj/item/book/granter/spell/blackstone/invisibility = 2,
 		/obj/item/book/granter/spell/blackstone/greaterfireball = 1
 	)

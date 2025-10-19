@@ -60,7 +60,7 @@
 	STACON = 16
 	STASTR = 16
 	STASPD = 2
-	STAEND = 17
+	STAWIL = 17
 
 	retreat_distance = 0
 	minimum_distance = 0
@@ -116,7 +116,7 @@
 	if(pulledby)
 		Retaliate()
 		GiveTarget(pulledby)
-	if(fire_stacks <= 0)
+	if(has_status_effect(/datum/status_effect/fire_handler))
 		adjustHealth(-rand(20,35))
 
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/bog/LoseTarget()

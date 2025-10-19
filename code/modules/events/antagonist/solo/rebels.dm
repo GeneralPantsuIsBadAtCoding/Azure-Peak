@@ -11,6 +11,8 @@
 	base_antags = 1
 	maximum_antags = 3
 
+	denominator = 50 // adds 1 possible rebel for every 50 players
+
 	max_occurrences = 1
 
 	earliest_start = 0 SECONDS
@@ -18,7 +20,7 @@
 	typepath = /datum/round_event/antagonist/solo/rebel
 	antag_datum = /datum/antagonist/prebel/head
 
-	weight = 2
+	weight = 1
 
 	restricted_roles = list(
 		"Grand Duke",
@@ -29,24 +31,27 @@
 		"Men-at-arms",
 		"Marshal",
 		"Merchant",
-		"Priest",
+		"Bishop",
 		"Acolyte",
 		"Martyr",
 		"Templar",
 		"Councillor",
 		"Bandit",
+		"Servant",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Court Physician",
-		"Town Elder",
+		"Head Physician",
+		"Town Crier",
 		"Captain",
 		"Archivist",
 		"Knight",
+		"Knight Captain",
 		"Court Magician",
 		"Inquisitor",
 		"Orthodoxist",
+		"Absolver",
 		"Warden",
 		"Squire",
 		"Veteran",

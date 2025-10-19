@@ -38,7 +38,8 @@
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LIGHT_STEP, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/thief)
 	gender = pick(MALE, FEMALE)
 	regenerate_icons()
@@ -132,7 +133,7 @@
 	H.STASTR = 11
 	H.STASPD = 16
 	H.STACON = 11
-	H.STAEND = 11
+	H.STAWIL = 11
 	H.STAPER = 11
 	H.STAINT = 1
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)

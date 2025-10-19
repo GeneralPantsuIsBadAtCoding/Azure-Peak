@@ -16,15 +16,14 @@
 
 /datum/component/caltrop/proc/Crossed(datum/source, atom/movable/AM)
 	var/atom/A = parent
-	if(!A.has_gravity())
-		return
 
 	if(!prob(probability))
 		return
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
+		var/is_taur = !!H.get_taur_tail()
+		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE) || is_taur)
 			return
 
 		if((flags & CALTROP_IGNORE_WALKERS) && H.m_intent == MOVE_INTENT_WALK)

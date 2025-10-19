@@ -47,9 +47,10 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC) // We're moving away from infinite green, even on skeletons.
+	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC) // We're moving away from infinite green, even on skeletons.
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_LIMBATTACHMENT, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
@@ -96,7 +97,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	l_hand = /obj/item/rogueweapon/spear/bronze
 	if(prob(50))
-		l_hand = /obj/item/rogueweapon/sword/iron/short/gladius
+		l_hand = /obj/item/rogueweapon/sword/short/gladius
 		r_hand = /obj/item/rogueweapon/shield/wood
 		if(prob(20))
 			l_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles
@@ -104,7 +105,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	H.STASTR = 12
 	H.STASPD = 11
 	H.STACON = 12
-	H.STAEND = 12
+	H.STAWIL = 12
 	H.STAPER = 14
 	H.STAINT = 11
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
@@ -138,7 +139,7 @@ GLOBAL_LIST_INIT(dwarfskeleton_aggro, world.file2list("strings/rt/dskeletonaggro
 	H.STASTR = 16
 	H.STASPD = 11
 	H.STACON = 14
-	H.STAEND = 14
+	H.STAWIL = 14
 	H.STAPER = 14
 	H.STAINT = 11
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)

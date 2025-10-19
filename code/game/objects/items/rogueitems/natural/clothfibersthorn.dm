@@ -34,7 +34,6 @@
 		/datum/crafting_recipe/roguetown/survival/stonesword,
 		/datum/crafting_recipe/roguetown/survival/woodsword,
 		/datum/crafting_recipe/roguetown/survival/bag,
-		/datum/crafting_recipe/roguetown/survival/bagx5,
 		/datum/crafting_recipe/roguetown/survival/rod,
 		/datum/crafting_recipe/roguetown/survival/pearlcross,
 		/datum/crafting_recipe/roguetown/survival/bpearlcross,
@@ -176,7 +175,6 @@
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/longbowpartial,
 		/datum/crafting_recipe/roguetown/survival/bag,
-		/datum/crafting_recipe/roguetown/survival/bagx5,
 		/datum/crafting_recipe/roguetown/survival/book_crafting_kit,
 		/datum/crafting_recipe/roguetown/survival/slingpouchcraft,
 		)
@@ -368,6 +366,7 @@
 	icon_state = "fibersroll2"
 	amount = 6
 	firefuel = 30 MINUTES
+	grid_width = 64
 
 /obj/item/natural/bundle/silk
 	name = "silken weave"
@@ -411,7 +410,7 @@
 	icon2 = "clothroll2"
 	icon2step = 10
 	grid_width = 32
-	grid_height = 64
+	grid_height = 32
 
 /obj/item/natural/bundle/stick
 	name = "bundle of sticks"
@@ -490,9 +489,7 @@
 	stacktype = /obj/item/natural/bone
 	stackname = "bones"
 	icon1 = "bonestack1"
-	icon1step = 2
 	icon2 = "bonestack2"
-	icon2step = 4
 
 /obj/item/natural/bundle/bone/full
 	amount = 6
@@ -553,9 +550,9 @@
 	maxamount = 12
 	icon_state = "worm2"
 	icon1 = "worm2"
-	icon1step = 4
+	icon1step = 6
 	icon2 = "worm4"
-	icon2step = 6
+	icon2step = 12
 	icon3 = "worm6"
 	stacktype = /obj/item/natural/worms
 	stackname = "worms"

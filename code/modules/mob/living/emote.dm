@@ -258,7 +258,7 @@
 	. = ..()
 	if(. && iscarbon(user))
 		var/mob/living/carbon/L = user
-		if(L.get_complex_pain() > (L.STACON * 9))
+		if(L.get_complex_pain() > (L.STAWIL * 9))
 			L.setDir(2)
 			L.SetUnconscious(200)
 		else
@@ -489,9 +489,51 @@
 				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
-		GLOB.azure_round_stats[STATS_KISSES_MADE]++
+		record_round_statistic(STATS_KISSES_MADE)
 
+/datum/emote/living/lick
+	key = "lick"
+	key_third_person = "licks"
+	message = "licking."
+	message_param = "licks %t."
+	emote_type = EMOTE_VISIBLE
 
+/mob/living/carbon/human/verb/emote_lick()
+	set name = "Lick"
+	set category = "Emotes"
+	emote("lick", intentional = TRUE, targetted = TRUE)
+
+/datum/emote/living/lick/adjacentaction(mob/user, mob/target)
+	. = ..()
+	message_param = initial(message_param)
+	if(!user || !target)
+		return
+	if(ishuman(user) && ishuman(target))
+		var/mob/living/carbon/human/J = user
+		var/do_change
+		if(target.loc == user.loc)
+			do_change = TRUE
+		if(!do_change)
+			if(J.pulling == target)
+				do_change = TRUE
+		if(do_change)
+			if(J.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+				message_param = "licks %t lips."
+			else if(J.zone_selected == BODY_ZONE_PRECISE_EARS)
+				message_param = "licks the ear of %t."
+				var/mob/living/carbon/human/O = target
+				if(iself(O) || ishalfelf(O) || isdarkelf(O))
+					if(!O.cmode)
+						to_chat(target, span_love("It tickles..."))
+			else if(J.zone_selected == BODY_ZONE_PRECISE_GROIN)
+				message_param = "licks %t between the legs."
+				to_chat(target, span_love("It somewhat stimulating..."))
+			else if(J.zone_selected == BODY_ZONE_HEAD)
+				message_param = "licks %t cheek"
+			else
+				message_param = "licks %t [parse_zone(J.zone_selected)]."
+	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)	
+	
 /datum/emote/living/spit
 	key = "spit"
 	key_third_person = "spits"
@@ -548,7 +590,7 @@
 	if(ishuman(target))
 		playsound(target.loc, pick('sound/vo/hug.ogg'), 100, FALSE, -1)
 		if(user.mind)
-			GLOB.azure_round_stats[STATS_HUGS_MADE]++
+			record_round_statistic(STATS_HUGS_MADE)
 			SEND_SIGNAL(user, COMSIG_MOB_HUGGED, target)
 
 /datum/emote/living/holdbreath
@@ -644,7 +686,7 @@
 /datum/emote/living/laugh/run_emote(mob/user, params, type_override, intentional, targetted)
 	. = ..()
 	if(. && user.mind)
-		GLOB.azure_round_stats[STATS_LAUGHS_MADE]++
+		record_round_statistic(STATS_LAUGHS_MADE)
 
 /datum/emote/living/laugh
 	key = "laugh"
@@ -765,6 +807,8 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
 				continue
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
@@ -788,7 +832,9 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
-				continue
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
+				continue // i hope this shit works.
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
 
@@ -804,7 +850,9 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
-				continue
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
+				continue // i hope this shit works.
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
 
@@ -910,7 +958,7 @@
 /datum/emote/living/rage/run_emote(mob/user, params, type_override, intentional, targetted)
 	. = ..()
 	if(. && user.mind)
-		GLOB.azure_round_stats[STATS_WARCRIES]++
+		record_round_statistic(STATS_WARCRIES)
 
 /datum/emote/living/attnwhistle
 	key = "attnwhistle"
@@ -1583,6 +1631,19 @@
 
 	emote("blink", intentional = TRUE)
 
+/datum/emote/living/stomp
+	key = "stomp"
+	key_third_person = "stomps!"
+	message = "stomps!"
+	emote_type = EMOTE_VISIBLE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_stomp()
+	set name = "Stomp"
+	set category = "Noises"
+
+	emote("stomp", intentional = TRUE)
+
 /datum/emote/living/snap2
 	key = "snap2"
 	key_third_person = "finger snaps twice!"
@@ -1773,3 +1834,18 @@
 	set category = "Emotes"
 
 	emote("ffsalute", intentional =  TRUE)
+
+/datum/emote/living/yip
+	key = "yip"
+	key_third_person = "yips"
+	message = "yips!"
+	emote_type = EMOTE_AUDIBLE
+	message_muffled = "makes a muffled yip!"
+	is_animal = TRUE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/yip()
+	set name = "Yip"
+	set category = "Noises"
+
+	emote("yip", intentional = TRUE)

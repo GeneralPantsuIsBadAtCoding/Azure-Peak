@@ -251,16 +251,6 @@
 	desc = ""
 	icon_state = "weightless"
 
-/atom/movable/screen/alert/highgravity
-	name = "High Gravity"
-	desc = ""
-	icon_state = "paralysis"
-
-/atom/movable/screen/alert/veryhighgravity
-	name = "Crushing Gravity"
-	desc = ""
-	icon_state = "paralysis"
-
 /atom/movable/screen/alert/fire
 	name = "On Fire"
 	desc = ""
@@ -275,6 +265,15 @@
 	if(L.mobility_flags & MOBILITY_MOVE)
 		return L.resist_fire() //I just want to start a flame in your hearrrrrrtttttt.
 
+/atom/movable/screen/alert/fire/sunder
+	name = "Sundered!"
+	desc = ""
+	icon_state = "sunder"
+
+/atom/movable/screen/alert/fire/sunder/blessed
+	name = "Sundered!"
+	desc = ""
+	icon_state = "supersunder"
 
 //BLOBS
 

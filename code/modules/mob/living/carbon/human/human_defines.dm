@@ -46,9 +46,9 @@
 	var/accessory = "None"
 	var/detail = "None"
 	var/marking = "None"
-
+	
 	var/shavelevel = 0
-
+	var/breathe_tick = 0 // Used for gas mask delays.
 	var/socks = "Nude" //Which socks the player wants
 	var/backpack = DBACKPACK		//Which backpack type the player has chosen.
 	var/jumpsuit_style = PREF_SUIT		//suit/skirt
@@ -71,6 +71,9 @@
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/name_override //For temporary visible name changes
+
+	var/merctype = 0 // Used for mercenary backgrounds - check mail.dm
+	var/tokenclaimed = FALSE // Check for having received my medal. FUTURE: Persistent medals.
 
 	var/datum/physiology/physiology
 
@@ -108,15 +111,16 @@
 
 	var/headshot_link = null
 	var/flavortext = null
-	var/flavortext_display = null
 	var/ooc_notes = null
-	var/ooc_notes_display = null
-	var/ooc_extra_link
 	var/ooc_extra
-	var/is_legacy = FALSE
+	var/song_title
+	var/song_artist
 	var/received_resident_key = FALSE
+	var/nsfwflavortext = null
+	var/erpprefs = null
 
-	var/has_confessed = FALSE // Used to track if they have confessed it was written onto a confession paper
+	var/list/img_gallery = list()
+	
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
@@ -137,3 +141,32 @@
 
 	/// Whether our job title is adaptive to our skills.
 	var/adaptive_name
+
+	/// Ref to orison-like sunder object
+	var/sunder_light_obj = null
+
+	/// Assoc list of culinary preferences of the mob
+	var/list/culinary_preferences = list()
+
+	var/datum/charflaw/charflaw
+
+	// curse list and cooldown
+	var/list/curses = list()
+	COOLDOWN_DECLARE(priest_announcement)
+	COOLDOWN_DECLARE(guildmaster_announcement) //This is not for priest but if you are looking for GUILDMASTER announcements it's here, more so convinence than anything.
+	COOLDOWN_DECLARE(priest_sermon)
+	COOLDOWN_DECLARE(priest_apostasy)
+	COOLDOWN_DECLARE(priest_excommunicate)
+	COOLDOWN_DECLARE(priest_curse)
+	COOLDOWN_DECLARE(priest_change_miracles)
+
+	// bait stacks for aimed intent
+	var/bait_stacks
+
+	// werewolf mob storage (this is bad and probably causes hard dels)
+	var/mob/stored_mob = null
+
+	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
+	var/mob/living/carbon/human/hostage //What hostage we have
+
+	fovangle = FOV_DEFAULT

@@ -44,7 +44,7 @@
 	var/datum/objective/torture/new_objective = new(owner = chosen_one.mind)
 	chosen_one.mind.add_personal_objective(new_objective)
 
-	chosen_one.verbs |= /mob/living/carbon/human/proc/torture_victim
+	chosen_one.verbs |= /mob/living/carbon/human/proc/revelations
 
 	to_chat(chosen_one, span_userdanger("YOU ARE GOD'S CHOSEN!"))
 	to_chat(chosen_one, span_biginfo("Zizo demands suffering! Extract information through pain to earn Zizo's favor!"))

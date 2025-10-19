@@ -18,18 +18,16 @@
 	butcher_results = list()
 	faction = list("infernal")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	health = 170
-	maxHealth = 170
+	health = 270
+	maxHealth = 270
 	melee_damage_lower = 15
 	melee_damage_upper = 17
 	vision_range = 7
 	aggro_vision_range = 9
-	environment_smash = ENVIRONMENT_SMASH_NONE
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	simple_detect_bonus = 20
-	ranged = TRUE
-	projectiletype = /obj/projectile/magic/firebolt
-	retreat_distance = 4
-	minimum_distance = 3
+	retreat_distance = 0
+	minimum_distance = 0
 	food_type = list()
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	pooptype = null
@@ -49,17 +47,18 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound/death(gibbed)
 	..()
 	var/turf/deathspot = get_turf(src)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/hellhoundfang(deathspot)
-	new /obj/item/magic/infernalash(deathspot)
-	new /obj/item/magic/infernalash(deathspot)
-	new /obj/item/magic/infernalash(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/fang(deathspot)
+	new /obj/item/magic/infernal/ash(deathspot)
+	new /obj/item/magic/infernal/ash(deathspot)
+	new /obj/item/magic/infernal/ash(deathspot)
 	update_icon()
 	spill_embedded_objects()
 	qdel(src)
@@ -77,7 +76,7 @@
 		if(!isliving(target))
 			return
 		targetted.adjust_fire_stacks(5)
-		targetted.IgniteMob()
+		targetted.ignite_mob()
 		targetted.visible_message(span_danger("[src] sets [target] on fire!"))
 		src.flame_cd = world.time
 	if(!QDELETED(target))
