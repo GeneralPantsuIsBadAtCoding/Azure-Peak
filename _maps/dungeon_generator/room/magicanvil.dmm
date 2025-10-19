@@ -119,7 +119,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "E" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
@@ -137,14 +137,14 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "H" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "I" = (
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "J" = (
@@ -210,7 +210,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "U" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager,
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 "V" = (
@@ -237,7 +237,7 @@
 /area/rogue/under/tomb/cave/lava)
 "Z" = (
 /obj/structure/fluff/railing/wood,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/lava)
 

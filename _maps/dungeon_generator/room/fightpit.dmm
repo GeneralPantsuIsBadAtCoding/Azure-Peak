@@ -57,7 +57,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb)
 "eo" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "eN" = (
@@ -212,7 +212,7 @@
 /obj/item/natural/stone{
 	pixel_y = 5
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2{
+/mob/living/carbon/human/species/orc/npc/footsoldier{
 	name = "Slambo"
 	},
 /turf/open/floor/rogue/hexstone,

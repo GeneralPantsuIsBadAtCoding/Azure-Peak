@@ -198,7 +198,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb)
 "nR" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /obj/item/organ/stomach,
 /obj/effect/decal/cleanable/blood/gibs/down,
 /obj/effect/decal/cleanable/blood,
@@ -361,7 +361,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/under/tomb)
 "wc" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager,
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/tile/checker,
 /area/rogue/under/tomb/indoors)
 "wg" = (
@@ -538,7 +538,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb)
 "IY" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/water/swamp,
 /area/rogue/under/tomb)
 "Kh" = (
@@ -656,7 +656,7 @@
 /turf/open/water/swamp,
 /area/rogue/under/tomb)
 "OA" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb)
 "OP" = (
@@ -795,7 +795,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "TF" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /obj/effect/decal/cleanable/blood,
 /turf/open/water/swamp,
 /area/rogue/under/tomb)

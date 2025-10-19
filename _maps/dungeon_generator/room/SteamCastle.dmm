@@ -120,7 +120,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/tomb/indoors)
 "bF" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/tomb)
 "bL" = (
@@ -1893,7 +1893,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/wilds)
 "vT" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/tomb/indoors)
 "vX" = (
@@ -1984,7 +1984,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "wZ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb/indoors)
 "xc" = (
@@ -2096,7 +2096,7 @@
 /area/rogue/under/tomb/indoors)
 "xR" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/tomb/indoors)
 "xU" = (
@@ -2216,7 +2216,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/wilds)
 "zg" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "zh" = (
@@ -2238,7 +2238,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/wilds)
 "zp" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager,
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/tomb)
 "zu" = (
@@ -2314,7 +2314,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors)
 "Al" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "An" = (
@@ -2791,7 +2791,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/indoors/royal)
 "Fi" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "Fk" = (
@@ -3801,7 +3801,7 @@
 /area/rogue/under/tomb)
 "PW" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "PY" = (
@@ -3926,7 +3926,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors)
 "Rq" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/wilds)
 "Rv" = (
@@ -4006,7 +4006,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "Sm" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/wilds)
@@ -4108,7 +4108,7 @@
 /area/rogue/under/tomb/indoors)
 "TD" = (
 /obj/item/chair,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/tomb/indoors)
 "TF" = (
@@ -4231,7 +4231,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Ux" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb/indoors)
 "UB" = (
@@ -4312,7 +4312,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/wilds)
 "Vo" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager{
+/mob/living/carbon/human/species/orc/npc/berserker{
 	STASTR = 20;
 	STACON = 15;
 	STAEND = 15;
@@ -4390,7 +4390,7 @@
 /area/rogue/under/tomb/indoors/royal)
 "Wb" = (
 /obj/structure/bed/rogue/shit,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb/indoors)
 "Wi" = (

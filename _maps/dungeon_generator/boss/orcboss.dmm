@@ -10,14 +10,14 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "fZ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
 "hr" = (
 /obj/structure/fluff/railing/border{
 	dir = 5
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "ih" = (
@@ -38,7 +38,7 @@
 "mA" = (
 /obj/structure/chair/wood/rogue/throne,
 /obj/item/clothing/ring/active/nomag,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager{
+/mob/living/carbon/human/species/orc/npc/berserker{
 	health = 650;
 	name = "Orc Chief"
 	},
@@ -51,7 +51,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 6
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "qI" = (
@@ -84,7 +84,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "qW" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/dirt,
 /area/rogue)
 "tg" = (
@@ -126,7 +126,7 @@
 /obj/item/natural/poo{
 	pixel_x = -4
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/dirt,
 /area/rogue)
 "wJ" = (
@@ -152,7 +152,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "CV" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue)
 "Dd" = (
@@ -189,7 +189,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue)
 "Hr" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
@@ -206,7 +206,7 @@
 /area/rogue)
 "IJ" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager,
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/dirt,
 /area/rogue)
 "Kd" = (
@@ -230,7 +230,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue)
 "NI" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager,
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue)
 "OX" = (

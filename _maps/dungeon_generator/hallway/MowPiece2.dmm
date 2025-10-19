@@ -50,7 +50,7 @@
 /area/rogue/under/tomb)
 "eB" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/tomb)
 "eI" = (
@@ -180,7 +180,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Hf" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Ig" = (
@@ -189,7 +189,7 @@
 /area/rogue/under/tomb)
 "Kb" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Kr" = (

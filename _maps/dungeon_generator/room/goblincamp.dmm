@@ -74,7 +74,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/cave)
 "jO" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/under/tomb/wilds)
 "kc" = (
@@ -344,7 +344,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/wilds)
 "Ne" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2,
+/mob/living/carbon/human/species/orc/npc/footsoldier,
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/under/tomb/wilds)
 "Op" = (
