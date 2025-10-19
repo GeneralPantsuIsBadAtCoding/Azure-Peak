@@ -62,14 +62,15 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 		remove_stress(event_type)
 
 /mob/living/carbon/update_stress()
-	// Handle expiration
+	// Handle expiration and accumulate our new stress status in the same operation
+	var/new_stress = 0
 	for(var/stressor_type in stressors)
 		var/datum/stressevent/event = stressors[stressor_type]
+		var/stress_amt = event.get_stress(src)
 		if(event.time_added + event.timer > world.time)
+			new_stress += stress_amt
 			continue
 		remove_stress(stressor_type)
-	// Update stress status and prompts
-	var/new_stress = get_stress_amount()
 
 	var/ascending = (new_stress > oldstress)
 
