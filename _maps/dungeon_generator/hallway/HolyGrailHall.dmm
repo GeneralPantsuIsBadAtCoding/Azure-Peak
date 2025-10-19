@@ -338,7 +338,7 @@
 /area/rogue/under/tomb/wilds)
 "HW" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/item/rogueweapon/estoc,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb/wilds)
 "HY" = (
