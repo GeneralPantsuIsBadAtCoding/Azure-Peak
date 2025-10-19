@@ -11,9 +11,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/troll/axe,
 /obj/structure/fluff/nest,
 /obj/item/alch/bone,
-/obj/item/clothing/head/hatfur,
-/obj/item/clothing/shoes/roguetown/boots/leather/furlinedboots,
-/obj/item/clothing/armor/plate,
 /obj/item/clothing/head/roguetown/helmet/heavy/dwarven,
 /obj/item/rogueweapon/spear/billhook,
 /obj/item/clothing/ring/topaz,
@@ -28,7 +25,6 @@
 /area/rogue/under/tomb/cave)
 "m" = (
 /obj/item/rogueweapon/huntingknife/copper,
-/obj/item/clothing/suit/roguetown/armor/leather/splint,
 /obj/item/rogueweapon/shield/buckler/palloy,
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/blocks/paving/vert,
@@ -42,13 +38,11 @@
 "x" = (
 /obj/item/rogueweapon/shield/tower,
 /obj/item/clothing/cloak/templar/dendor,
-/obj/item/rogueweapon/mace/goden/shillelagh,
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/blocks/paving,
 /area/rogue/under/tomb/sewer)
 "B" = (
 /obj/structure/pillory,
-/obj/effect/spawner/map_spawner/hauntpile,
 /obj/item/natural/stone,
 /obj/item/natural/stone,
 /obj/item/natural/stone,
@@ -69,8 +63,8 @@
 /turf/open/floor/rogue/blocks/paving/vert,
 /area/rogue/under/tomb/sewer)
 "G" = (
-/obj/item/rogueweapon/whip/antique,
 /obj/structure/fluff/wallclock/vampire,
+/obj/item/rogueweapon/whip/nagaika,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/cave)
 "I" = (

@@ -163,14 +163,6 @@
 /area/rogue/under/tomb)
 "wm" = (
 /obj/item/ingot/gold,
-/obj/item/ingot/gold{
-	pixel_x = 9;
-	pixel_y = -4
-	},
-/obj/item/ingot/gold{
-	pixel_y = 4;
-	pixel_x = 5
-	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors/church)
 "Dn" = (
@@ -202,9 +194,6 @@
 /area/rogue/under/tomb)
 "Jr" = (
 /obj/structure/table/vtable/v2,
-/obj/item/roguestatue/gold{
-	pixel_y = 14
-	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors/church)
 "KA" = (
@@ -221,10 +210,6 @@
 /obj/item/reagent_containers/glass/cup/golden{
 	pixel_x = -6;
 	pixel_y = 14
-	},
-/obj/item/roguegem/blue{
-	pixel_y = 7;
-	pixel_x = 5
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors/church)
