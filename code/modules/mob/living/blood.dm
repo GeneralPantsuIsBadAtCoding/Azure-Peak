@@ -163,7 +163,7 @@
 		adjust_bloodpool(BLOODPOL_REGEN, FALSE)
 
 /mob/living/proc/get_bleed_rate()
-	if (blood_volume <= 0)
+	if (!blood_volume)
 		return FALSE //the blood bag is empty, brother.
 	var/bleed_rate = 0
 	for(var/datum/wound/wound as anything in get_wounds())
@@ -174,6 +174,10 @@
 
 /mob/living/carbon/get_bleed_rate()
 	var/bleed_rate = 0
+	if (!blood_volume) // if we have no blood, we can't rightly bleed, can we?
+		return 0
+	if(NOBLOOD in dna?.species?.species_traits)
+		return 0
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		bleed_rate += bodypart.get_bleed_rate()
 	return bleed_rate
@@ -182,7 +186,7 @@
 /mob/living/proc/bleed(amt)
 	if(!iscarbon(src) && !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
-	if(blood_volume <= 0)
+	if(!blood_volume)
 		return FALSE
 
 	//For each CON above 10, we bleed slower.
