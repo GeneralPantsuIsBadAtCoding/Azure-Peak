@@ -104,6 +104,7 @@
 /obj/item/bodypart/proc/get_bleed_rate()
 	var/bleed_rate = 0
 	if(bandage && !HAS_BLOOD_DNA(bandage))
+		try_bandage_expire()
 		return 0
 	for(var/datum/wound/wound in wounds)
 		if(istype(wound, /datum/wound))
