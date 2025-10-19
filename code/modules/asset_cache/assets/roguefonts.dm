@@ -18,6 +18,7 @@
 		"Kautiva Cyrillic Black.ttf" = 'interface/fonts/languages/Kautiva Cyrillic Black.ttf', // Ящерский
 		"ALOT Gutenberg B Normal.ttf" = 'interface/fonts/languages/ALOT Gutenberg B Normal.ttf', // Грензели
 		"kazengunese.ttf" = 'interface/fonts/languages/kazengunese.ttf',
+		"gyedzai.otf" = 'interface/fonts/languages/gyedzai.otf', // Китай
 		"Deutsch Gothic.ttf" = 'interface/fonts/languages/Deutsch Gothic.ttf', // Отава
 		"etruscan.ttf" = 'interface/fonts/languages/etruscan.ttf',
 		"gronnic.ttf" = 'interface/fonts/languages/gronnic.ttf',
