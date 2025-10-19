@@ -4,6 +4,7 @@
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	layer = BELOW_OBJ_LAYER
 	anchored = TRUE
+	plane = GAME_PLANE_LOWER
 	var/climb_time = 20
 	var/climb_stun = 0
 	var/climb_sound = 'sound/foley/woodclimb.ogg'

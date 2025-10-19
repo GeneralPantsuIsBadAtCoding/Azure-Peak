@@ -65,7 +65,6 @@
 	icon_state = "papakha"
 	item_state = "papakha"
 	sewrepair = TRUE
-	flags_inv = HIDEEARS
 	armor = ARMOR_HEAD_CLOTHING
 	blocksound = SOFTHIT
 

@@ -6,3 +6,5 @@
 	pixel_y = 32
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = 100
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 128

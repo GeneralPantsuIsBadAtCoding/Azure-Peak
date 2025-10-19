@@ -92,7 +92,7 @@
 
 /obj/effect/proc_holder/spell/invoked/raise_undead_formation/miracle
 	miracle = TRUE
-	devotion_cost = 50
+	devotion_cost = 75
 	cabal_affine = TRUE
 	to_spawn = 2
 

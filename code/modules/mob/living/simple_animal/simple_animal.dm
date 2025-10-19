@@ -415,7 +415,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				if(user.mind)
 					used_time -= (user.get_skill_level(/datum/skill/labor/butchering) * 30)
 				playsound(src, 'sound/foley/gross.ogg', 100, FALSE)
-				if(do_after(user, 3 SECONDS, target = src))
+				if(used_time <= 0 || do_after(user, used_time, target = src))
 					butcher(user, on_meathook)
 
 	else if (stat != DEAD && istype(ssaddle, /obj/item/natural/saddle))		//Fallback saftey for saddles

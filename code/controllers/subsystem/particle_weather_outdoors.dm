@@ -10,7 +10,7 @@
 
 /datum/time_of_day/sunrise
 	name = "Sunrise"
-	color = "#F598AB"
+	color = list("#F598AB","#e26d6d", "#e96e4f")
 	start = 9.5 HOURS  //9:30:00 AM
 
 /datum/time_of_day/daytime

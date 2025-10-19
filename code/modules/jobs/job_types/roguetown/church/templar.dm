@@ -356,6 +356,7 @@
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Spear")
 			H.put_in_hands(new /obj/item/rogueweapon/spear/holysee(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), FALSE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 		if("Flail")
 			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail(H), TRUE)
@@ -368,7 +369,7 @@
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 		if("Decablade")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/undivided(H), TRUE)
-			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)	
+			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Solar Judgement")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/exe/astrata(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
@@ -387,6 +388,7 @@
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Summer Scythe")
 			H.put_in_hands(new /obj/item/rogueweapon/halberd/bardiche/scythe(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), FALSE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE) // again, needs skill to actually use the weapon
 		if("Cackle Lash")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/xylix(H), TRUE)
@@ -400,7 +402,7 @@
 		if("Tidecleaver")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/abyssoraxe(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-			
+
 	// -- Start of section for god specific bonuses --
 	if(H.patron?.type == /datum/patron/divine/undivided)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
