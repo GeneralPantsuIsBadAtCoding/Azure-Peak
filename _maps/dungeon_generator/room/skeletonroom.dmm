@@ -54,12 +54,12 @@
 /area/rogue/under/tomb/indoors/church)
 "iu" = (
 /obj/structure/chair/bench/church,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/carpet/lord/left,
 /area/rogue/under/tomb/indoors/church)
 "kd" = (
 /obj/structure/chair/bench/church/r,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/carpet/lord/right,
 /area/rogue/under/tomb/indoors/church)
 "kp" = (
@@ -209,7 +209,7 @@
 /area/rogue/under/tomb/indoors/church)
 "KA" = (
 /obj/structure/chair/bench/church/mid,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/tomb/indoors/church)
 "KI" = (

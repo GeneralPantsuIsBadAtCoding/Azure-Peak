@@ -40,7 +40,7 @@
 /area/rogue/under/tomb/cave/wet)
 "bU" = (
 /obj/structure/chair/wood,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "ca" = (
@@ -785,7 +785,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/tomb/indoors/church)
 "Fk" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "FC" = (
@@ -928,7 +928,7 @@
 /obj/structure/bed/rogue/inn/hay,
 /obj/item/bedsheet/rogue/cloth,
 /obj/item/bedsheet/rogue/cloth,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "KF" = (

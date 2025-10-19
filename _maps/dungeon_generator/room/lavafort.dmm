@@ -96,7 +96,7 @@
 /obj/structure/fluff/walldeco/church/line{
 	dir = 4
 	},
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors/magic)
 "io" = (

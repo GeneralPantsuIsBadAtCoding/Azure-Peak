@@ -400,7 +400,7 @@
 /area/rogue/under/tomb/indoors)
 "Do" = (
 /obj/machinery/light/rogue/torchholder/l,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "Dz" = (
@@ -569,7 +569,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb)
 "Wk" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "Wt" = (
@@ -596,7 +596,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb)
 "Yg" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb)
 "Yv" = (

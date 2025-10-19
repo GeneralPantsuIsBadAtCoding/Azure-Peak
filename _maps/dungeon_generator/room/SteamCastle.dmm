@@ -1592,7 +1592,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors)
 "tU" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/under/tomb/indoors)
 "tY" = (
@@ -1956,7 +1956,7 @@
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/under/tomb/indoors)
 "yh" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "yi" = (
@@ -2372,7 +2372,7 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "Cm" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "Co" = (
@@ -2889,7 +2889,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "If" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Il" = (
@@ -3183,7 +3183,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/wilds)
 "Ml" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/under/tomb/indoors)
 "Mn" = (
@@ -3758,7 +3758,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "TI" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/tomb/indoors)
 "TM" = (
@@ -4123,7 +4123,7 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/tomb)
 "Xz" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb)
 "XJ" = (

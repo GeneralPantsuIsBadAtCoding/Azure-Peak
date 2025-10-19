@@ -69,7 +69,7 @@
 /area/rogue/under/tomb/indoors)
 "iO" = (
 /obj/effect/decal/cleanable/sigil/W,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "jl" = (
@@ -415,7 +415,7 @@
 /area/rogue/under/tomb/indoors)
 "Rj" = (
 /obj/structure/roguewindow/openclose/reinforced,
-/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/open/floor/rogue/ruinedwoodskeleton/npc/hardspread
 /area/rogue/under/tomb/indoors)
 "Rk" = (
 /obj/structure/fluff/railing/border{

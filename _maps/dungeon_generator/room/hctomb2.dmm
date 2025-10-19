@@ -261,7 +261,7 @@
 /obj/structure/closet/dirthole/closed,
 /obj/effect/spawner/lootdrop/general_loot_low,
 /mob/living/carbon/human/species/skeleton/npc/dungeon,
-/turf/open/floor/rogue/dirt/road,
+/turf/open/floor/rogue/dirt/road,skeleton/npc/hardspread
 /area/rogue/under/tomb)
 "xP" = (
 /obj/structure/gravemarker,

@@ -961,7 +961,7 @@
 /area/rogue/under/tomb/indoors)
 "Mp" = (
 /obj/item/chair/rogue,
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "Mv" = (

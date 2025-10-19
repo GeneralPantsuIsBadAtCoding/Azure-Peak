@@ -1211,7 +1211,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "IM" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon/lich,
+/mob/living/carbon/human/species/skeleton/npc/hardspread/lich,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/tomb/indoors)
 "IS" = (
@@ -1548,7 +1548,7 @@
 "Qt" = (
 /obj/item/clothing/cloak/cape/blkknight,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
-/mob/living/carbon/human/species/skeleton/npc/dungeon/lich,
+/mob/living/carbon/human/species/skeleton/npc/hardspread/lich,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Qv" = (
