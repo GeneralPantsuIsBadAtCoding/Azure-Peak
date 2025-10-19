@@ -2,7 +2,7 @@
 	force = 21
 	possible_item_intents = list(/datum/intent/whip/lash, /datum/intent/whip/crack, /datum/intent/whip/punish)
 	name = "whip"
-	desc = "A leather whip. Built to last, with a sharp stone for a tip."
+	desc = "A leather whip, tipped with a flintknapped stone. Though intended to shepherd unruly livestock, the tip's jagged points also suffice at leaving assailants with horrific lacerations."
 	icon_state = "whip"
 	icon = 'icons/roguetown/weapons/whips32.dmi'
 	sharpness = IS_BLUNT
@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BELT
 	associated_skill = /datum/skill/combat/whipsflails
-	anvilrepair = /datum/skill/craft/tanning
+	sewrepair = TRUE //Whips are mostly leather, with only a bit of metal or stone at the end. Should hopefully make more sense.
 	parrysound = list('sound/combat/parry/parrygen.ogg')
 	swingsound = WHIPWOOSH
 	throwforce = 5
@@ -70,6 +70,19 @@
 	icon_state = "inpunish"
 	item_d_type = "slash"
 
+//Holy Lash = 1:1 to the Lash, but permits dismemberment. Partially functions like the original whip. Keep this restricted to whips with high strength requirements and alloyed tips.
+/datum/intent/whip/lash/holy
+	name = "holy lash"
+	blade_class = BCLASS_CUT
+	attack_verb = list("lashes", "cracks")
+	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
+	chargetime = 0
+	recovery = 7
+	penfactor = 30 // Total AP potential of 53-55, discounting strength bonuses. Will likely penetrate non-slash resistant light armor, but fail to chunk through maille and plate.
+	reach = 3
+	icon_state = "inlash"
+	item_d_type = "slash"
+
 //Ranged mace-like mode - merc unique for Nagaika (steppesman)
 /datum/intent/whip/crack/blunt
 	name = "bludgen"
@@ -96,60 +109,42 @@
 	force = 24
 
 /obj/item/rogueweapon/whip/antique
-	force = 25
 	name = "Repenta En"
-	desc = "An extremely well maintained whip, with a polished steel tip and gilded handle"
+	desc = "A multi-tailed whip that's extremely well-maintained. The gilded handle first burdens the hand with its inordinate weight, and then the mind with an unsettling realization; this is not a tool of honor. </br>'Ravox stands for justice, not murder.'"
+	force = 25
 	minstr = 11
 	icon_state = "gwhip"
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	name = "Daybreak"
-	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
+	desc = "A chain-linked whip, meticulously assembled from a hundred pieces of blessed silver. Its origins are steeped in mythos: most believe it to originate from an ancient bloodline of vampyre-killers, which once saved Psydonia from a powerful lyckerlorde. Whether it was happenstance or fate itself that eventually led it into your grasp, however, is better left unspoken. </br>'There, upon the Cathedral's ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness.'"
 	icon_state = "psywhip"
 	is_silver = TRUE
 	force = 25
+	possible_item_intents = list(/datum/intent/whip/lash/holy, /datum/intent/whip/crack, /datum/intent/whip/punish)
 	minstr = 11
 	wdefense = 0
+	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/whip/antique/psywhip/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_PSYDONIAN,\
-		silver_type = SILVER_TENNITE,\
+		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 100,\
 		added_def = 0,\
 	)
 
-/obj/item/rogueweapon/whip/psywhip_lesser
-	name = "psydonic whip"
-	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
-	icon_state = "psywhip_lesser"
-	force = 18
-	minstr = 9
-	wdefense = 0
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silverblessed
-
-/obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_PSYDONIAN,\
-		added_force = 0,\
-		added_blade_int = 0,\
-		added_int = 50,\
-		added_def = 0,\
-	)
-
 /obj/item/rogueweapon/whip/silver
 	name = "silver whip"
-	desc = "A hefty, silver whip. The uncoiled leather is tipped with a silver barb, which can sunder the blighted from a remarkable distance."
+	desc = "A hefty, silver whip. The uncoiled leather is tipped with a silver barb, which can sunder the blighted from a remarkable distance. </br>'Die, monster! You don't belong in this world!'"
 	icon_state = "silverwhip"
-	force = 18
-	minstr = 9
+	force = 23 //Experimental change - adds a +2 to force, as a bridge between handweapons and blunt weapons. Higher strength minimum. Do not raise above 25, unless you want to resurrect maille-shatterers.
+	possible_item_intents = list(/datum/intent/whip/lash/holy, /datum/intent/whip/crack, /datum/intent/whip/punish)
+	minstr = 10
 	wdefense = 0
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -159,6 +154,28 @@
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_NONE,\
 		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+
+/obj/item/rogueweapon/whip/psywhip_lesser
+	name = "psydonic whip"
+	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
+	icon_state = "psywhip_lesser"
+	possible_item_intents = list(/datum/intent/whip/lash/holy, /datum/intent/whip/crack, /datum/intent/whip/punish)
+	force = 23
+	minstr = 10
+	wdefense = 0
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
+
+/obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 50,\
