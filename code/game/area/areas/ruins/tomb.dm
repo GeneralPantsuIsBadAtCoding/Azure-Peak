@@ -1,11 +1,12 @@
 // Areas for the tomb
-// Copied from other areas but they all have the "Tomb of Matthios" name
+// Copied from other areas but they all have the "Tomb of Alotheos" name
+// Originally Tomb of Matthios but changed to Alotheos for AP to avoid direct reference to a heretical god
 // The only real difference is audio
 
 /area/rogue/under/tomb
-	name = "Tomb of Matthios"
+	name = "Tomb of Alotheos"
 	icon_state = "basement"
-	first_time_text = "THE TOMB OF MATTHIOS"
+	first_time_text = "THE TOMB OF ALOTHEOS"
 	soundenv = 5
 	ambientsounds = AMB_BASEMENT
 	ambientnight = AMB_BASEMENT
@@ -14,6 +15,8 @@
 	droning_sound = 'sound/music/area/catacombs.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+	deathsight_message = "a tomb lost to time and dust"
+	detail_text = DETAIL_TEXT_TOMB_OF_ALOTHEOS
 
 /area/rogue/under/tomb/indoors
 	icon_state = "indoors"

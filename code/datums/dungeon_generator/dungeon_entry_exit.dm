@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 	dungeon_id = "center"
 
 /obj/structure/dungeon_entry
-	name = "The Tomb of Matthios"
+	name = "The Tomb of Alotheos"
 	desc = ""
 
 	icon = 'icons/roguetown/misc/portal.dmi'
