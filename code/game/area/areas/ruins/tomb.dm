@@ -1,6 +1,6 @@
 // Areas for the tomb
 // Copied from other areas but they all have the "Tomb of Alotheos" name
-// Originally Tomb of Matthios but changed to Alotheos for AP to avoid direct reference to a heretical god
+// Originally Tomb of Matthios but changed to Alotheos for AP to avoid direct reference to an ascendant god
 // The only real difference is audio
 
 /area/rogue/under/tomb
