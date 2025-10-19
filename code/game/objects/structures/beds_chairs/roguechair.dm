@@ -265,8 +265,6 @@
 	item_chair = /obj/item/chair/stool/bar/rogue
 	max_integrity = 100
 	blade_dulling = DULLING_BASHCHOP
-	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
-	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
 
