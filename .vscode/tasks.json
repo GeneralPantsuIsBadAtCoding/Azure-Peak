@@ -42,6 +42,27 @@
 			"label": "Build All (Local Testing)"
 		},
 		{
+			"type": "process",
+			"command": "tools/build/build.sh",
+			"args": ["-DLOCALTEST", "-DNO_DUNGEON"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOCALTEST", "-DNO_DUNGEON"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Local Testing - No Dungeon)"
+		},
+		{
 			"type": "dreammaker",
 			"dme": "tgstation.dme",
 			"problemMatcher": ["$dreammaker"],
