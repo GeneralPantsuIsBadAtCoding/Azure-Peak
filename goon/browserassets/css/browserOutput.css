@@ -86,6 +86,11 @@ body {
 	src: url("kazengunese.ttf");
 }
 
+@font-face {
+	font-family: "Sangha Kali";
+	src: url("gyedzai.otf");
+}
+
 @font-face { 
   font-family: "Deutsch Gothic"; 
 }
@@ -851,6 +856,9 @@ h2.alert {
 }
 .kazengunese {
 	font-family: "Yuji Boku", Mookmania;
+}
+.gyedzenese {
+	font-family: "Sangha Kali", Mookmania;
 }
 .orc {
 	font-family: "VizaviTYGRA", "Mookmania";
