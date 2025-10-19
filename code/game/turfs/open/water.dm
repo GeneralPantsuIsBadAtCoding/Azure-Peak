@@ -116,14 +116,14 @@
 			base_drain = MEDIUM_ARMOR_PENALTY
 
 	var/abyssor_swim_bonus = HAS_TRAIT(swimmer, TRAIT_ABYSSOR_SWIM) ? 5 : 0
-	var/swimming_skill_level = swimmer.get_skill_level(/datum/skill/misc/swimming) 
+	var/swimming_skill_level = swimmer.get_skill_level(/datum/skill/misc/swimming)
 	. = max(base_drain - (swimming_skill_level * STAM_PER_LEVEL) - abyssor_swim_bonus, MIN_STAM_DRAIN)
 	if(swimmer.mind)
 		swimmer.mind.add_sleep_experience(/datum/skill/misc/swimming, swimmer.STAINT * xpmod)
 //	. += (swimmer.checkwornweight()*2)
 	if(!swimmer.check_armor_skill())
 		. += UNSKILLED_ARMOR_PENALTY
-	if(.) // this check is expensive so we only run it if we do expect to use stamina	
+	if(.) // this check is expensive so we only run it if we do expect to use stamina
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return 0
@@ -415,6 +415,9 @@
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM
+			// check if we're riding a boat or a mount (we can presume a living mob is a mount), no leeches if so
+			if(istype(C.buckled, /obj/vehicle/ridden) || isliving(C.buckled))
+				return
 			var/chance = 3
 			if(C.m_intent == MOVE_INTENT_RUN)
 				chance = 6
@@ -452,6 +455,9 @@
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM
+			// check if we're riding a boat or a mount (we can presume a living mob is a mount), no leeches if so
+			if(istype(C.buckled, /obj/vehicle/ridden) || isliving(C.buckled))
+				return
 			var/chance = 6
 			if(C.m_intent == MOVE_INTENT_RUN)
 				chance = 12		//yikes
