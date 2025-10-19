@@ -96,7 +96,7 @@
 				H.change_stat(STATKEY_SPD, 2) //Turns the Sojourner's unmodified statblock to 3/0/0/1/1, compared to the Disciple's 3/3/3/-2/-1.
 
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/disciple
+	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1,
 	/obj/item/paper/inqslip/arrival/ortho = 1)

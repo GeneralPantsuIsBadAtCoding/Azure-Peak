@@ -12,7 +12,6 @@
 	blade_dulling = DULLING_CUT
 	pixel_x = -16
 	layer = 4.81
-	plane = GAME_PLANE_UPPER
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	destroy_sound = 'sound/misc/woodhit.ogg'
 	debris = list(/obj/item/grown/log/tree/stick = 2)

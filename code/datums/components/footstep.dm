@@ -69,8 +69,6 @@
 	if(steps % 2)
 		return
 
-	if(steps != 0) // don't need to step as often when you hop around
-		return
 	return T
 
 /datum/component/footstep/proc/play_simplestep()

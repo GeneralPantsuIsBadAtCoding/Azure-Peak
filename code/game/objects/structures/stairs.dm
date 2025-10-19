@@ -11,8 +11,9 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	anchored = TRUE
-	layer = 2
+	layer = 5
 	nomouseover = TRUE
+	plane = FLOOR_PLANE
 
 /obj/structure/stairs/stone
 	name = "stone stairs"
