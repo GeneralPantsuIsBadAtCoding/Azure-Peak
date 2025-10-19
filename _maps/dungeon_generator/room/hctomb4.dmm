@@ -50,7 +50,7 @@
 /area/rogue/under/tomb/indoors)
 "bC" = (
 /obj/item/chair/stool/bar/rogue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "ch" = (
@@ -154,7 +154,7 @@
 /obj/item/chair/rogue{
 	dir = 1
 	},
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/machinery/light/rogue/wallfire/candle/blue{
 	pixel_y = -32
 	},
@@ -207,7 +207,7 @@
 /area/rogue/under/tomb/indoors)
 "hq" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/tomb/indoors)
 "hN" = (
@@ -499,7 +499,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb)
 "sz" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "sF" = (
@@ -698,7 +698,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave)
 "Ay" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/under/tomb/indoors)
 "AK" = (
@@ -908,7 +908,7 @@
 /area/rogue/under/tomb/indoors)
 "Kz" = (
 /obj/item/chair/rogue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "KE" = (
@@ -1019,7 +1019,7 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "NM" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/twig,
 /area/rogue/under/tomb/indoors)
 "OC" = (
@@ -1042,7 +1042,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Ph" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile/checker,
 /area/rogue/under/tomb/indoors)
 "Pu" = (

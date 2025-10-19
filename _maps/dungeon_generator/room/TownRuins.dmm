@@ -261,7 +261,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb)
 "ff" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "fm" = (
@@ -319,7 +319,7 @@
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/tomb)
 "fZ" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
@@ -560,7 +560,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb/indoors)
 "lH" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
@@ -648,7 +648,7 @@
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/tomb/indoors)
 "og" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "oh" = (
@@ -742,7 +742,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb)
 "pb" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "pe" = (
@@ -868,7 +868,7 @@
 "rl" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/debris/stony,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/tomb/indoors)
 "rn" = (
@@ -878,7 +878,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/tomb/indoors)
 "rq" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "rt" = (
@@ -943,7 +943,7 @@
 /area/rogue/under/tomb)
 "sD" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/tomb/indoors)
 "sI" = (
@@ -1102,7 +1102,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb)
 "vx" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/tomb/indoors)
 "vB" = (
@@ -1171,7 +1171,7 @@
 /area/rogue/under/tomb)
 "wU" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "xe" = (
@@ -1269,7 +1269,7 @@
 /area/rogue/under/tomb/indoors)
 "zx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb)
 "zA" = (
@@ -1672,7 +1672,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/bench/coucha/r,
 /obj/item/clothing/mask/cigarette/pipe/crafted,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/tomb/indoors)
 "Hy" = (
@@ -1779,7 +1779,7 @@
 /area/rogue/under/tomb/indoors/church)
 "JA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "JE" = (
@@ -2047,7 +2047,7 @@
 /area/rogue/under/tomb/indoors/church)
 "Pl" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "Pn" = (
@@ -2406,7 +2406,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/tomb/indoors/church)
 "XT" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb)
 "XU" = (
@@ -2433,7 +2433,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Yq" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Yt" = (
@@ -2449,7 +2449,7 @@
 /area/rogue/under/tomb)
 "YN" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors/church)
 "YT" = (

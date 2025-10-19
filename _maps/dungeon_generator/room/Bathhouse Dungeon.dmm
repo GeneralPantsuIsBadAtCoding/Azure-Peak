@@ -92,7 +92,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/tomb/sewer)
 "bR" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors/royal)
 "bU" = (
@@ -423,7 +423,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "iF" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors)
 "iG" = (
@@ -529,7 +529,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/tomb/indoors)
 "kN" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "kO" = (
@@ -1304,7 +1304,7 @@
 /turf/open/water/bath,
 /area/rogue/under/tomb)
 "Bm" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/royal)
 "Bo" = (
@@ -1368,7 +1368,7 @@
 /obj/item/chair/rogue/fancy{
 	dir = 4
 	},
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "Cl" = (
@@ -1784,7 +1784,7 @@
 /area/rogue/under/tomb/indoors)
 "KV" = (
 /obj/item/chair/rogue/fancy,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/royal)
 "KX" = (
@@ -2345,7 +2345,7 @@
 /turf/open/water/bath,
 /area/rogue/under/tomb)
 "Zu" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors)

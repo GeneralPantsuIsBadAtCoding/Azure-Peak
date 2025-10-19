@@ -202,7 +202,7 @@
 /area/rogue/under/tomb)
 "tt" = (
 /obj/structure/fluff/walldeco/chains,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "tu" = (
@@ -387,7 +387,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors/church)
 "Ld" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/tomb)
 "LN" = (
@@ -477,7 +477,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/wet)
 "Sy" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "SE" = (

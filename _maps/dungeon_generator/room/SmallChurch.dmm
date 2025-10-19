@@ -381,7 +381,7 @@
 /area/rogue/under/tomb)
 "md" = (
 /obj/structure/chair/bench/church/r,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "me" = (
@@ -1012,7 +1012,7 @@
 /area/rogue/under/tomb/indoors/church)
 "Ne" = (
 /obj/structure/chair/bench/church/mid,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "NF" = (
@@ -1027,7 +1027,7 @@
 /area/rogue/under/tomb)
 "NY" = (
 /obj/structure/chair/bench/church,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "Oc" = (

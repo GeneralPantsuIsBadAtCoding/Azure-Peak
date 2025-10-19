@@ -285,7 +285,7 @@
 /obj/structure/chair/wood/rogue/chair3{
 	dir = 8
 	},
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/under/tomb)
 "sc" = (

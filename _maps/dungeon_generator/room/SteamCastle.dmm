@@ -200,7 +200,7 @@
 /turf/open/floor/carpet/purple,
 /area/rogue/under/tomb/indoors)
 "cA" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors)
 "cC" = (
@@ -502,7 +502,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "gj" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/purple,
 /area/rogue/under/tomb/indoors)
 "gk" = (
@@ -516,7 +516,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "gn" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/tomb/indoors)
 "gr" = (
@@ -1139,7 +1139,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/wilds)
 "mt" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors)
 "mw" = (
@@ -1228,7 +1228,7 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/tomb)
 "nw" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors)
 "ny" = (
@@ -1928,7 +1928,7 @@
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/tomb/indoors)
 "ws" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "wt" = (
@@ -2115,7 +2115,7 @@
 /area/rogue/under/tomb/indoors)
 "ya" = (
 /obj/structure/chair/stool/rogue,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "yb" = (
@@ -2127,7 +2127,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "yi" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "yj" = (
@@ -2155,7 +2155,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/wilds)
 "yp" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/under/tomb/indoors)
 "yv" = (
@@ -2363,7 +2363,7 @@
 /area/rogue/under/tomb/indoors)
 "AF" = (
 /obj/effect/spawner/lootdrop/general_loot_mid,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors)
 "AG" = (
@@ -2407,7 +2407,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors)
 "AX" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb)
 "AZ" = (
@@ -2474,7 +2474,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
@@ -2546,7 +2546,7 @@
 "Ca" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/tomb/indoors)
 "Cb" = (
@@ -3324,7 +3324,7 @@
 /area/rogue/under/tomb)
 "Li" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "Lj" = (
@@ -4679,7 +4679,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors)
 "Zm" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/under/tomb/indoors)
 "Zt" = (

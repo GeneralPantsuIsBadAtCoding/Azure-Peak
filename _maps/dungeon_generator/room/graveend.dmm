@@ -22,7 +22,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb)
 "aj" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb)
 "ak" = (
@@ -38,7 +38,7 @@
 /area/rogue/under/tomb)
 "aL" = (
 /obj/structure/closet/dirthole/closed/loot,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "aN" = (
@@ -83,7 +83,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb)
 "pp" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "qq" = (
@@ -113,7 +113,7 @@
 /area/rogue/under/tomb)
 "Ax" = (
 /obj/structure/closet/crate/coffin,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "HK" = (

@@ -47,7 +47,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "hL" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "hU" = (
@@ -73,12 +73,12 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "jl" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors)
 "js" = (
 /obj/structure/bed/rogue/shit,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "jL" = (
@@ -119,7 +119,7 @@
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors)
 "oo" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/tomb/indoors)
 "oR" = (
@@ -311,7 +311,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Fy" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/water/swamp/deep,
 /area/rogue/under/tomb/cave)
 "FC" = (
@@ -321,7 +321,7 @@
 /obj/item/soap/bath{
 	pixel_y = -5
 	},
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors)
 "Gm" = (
@@ -468,7 +468,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/cave/wet)
 "Yt" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/water/swamp/deep,
 /area/rogue/under/tomb/cave/wet)
 "Zk" = (

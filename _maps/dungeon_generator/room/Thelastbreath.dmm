@@ -692,7 +692,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/indoors)
 "jm" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/tile/checker,
 /area/rogue/under/tomb/indoors)
 "jo" = (
@@ -1157,7 +1157,7 @@
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/under/tomb)
 "pY" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/structure/table/wood/crafted{
 	icon_state = "largetable";
 	dir = 8
@@ -1184,7 +1184,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "qo" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/church,
 /area/rogue/under/tomb/indoors/church)
 "qp" = (
@@ -1358,7 +1358,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/indoors)
 "sJ" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "sO" = (
@@ -2205,7 +2205,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/under/tomb/indoors)
 "FR" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/tomb/indoors)
 "FT" = (
@@ -2270,7 +2270,7 @@
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/tomb/indoors/church)
 "GA" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "GB" = (
@@ -2510,7 +2510,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/indoors)
 "Jv" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors)
 "Jx" = (
@@ -3193,7 +3193,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "TD" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "TF" = (

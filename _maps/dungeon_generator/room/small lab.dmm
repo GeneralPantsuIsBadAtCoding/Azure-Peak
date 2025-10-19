@@ -28,7 +28,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/indoors)
 "dA" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/indoors)
 "ek" = (
@@ -157,7 +157,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/under/tomb)
 "rj" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb/indoors)
 "sO" = (

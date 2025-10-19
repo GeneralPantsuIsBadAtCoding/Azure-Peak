@@ -5,7 +5,7 @@
 /area/rogue/under/tomb/cave)
 "az" = (
 /obj/structure/closet/dirthole/closed,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/effect/spawner/lootdrop/general_loot_hi,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
@@ -54,7 +54,7 @@
 /obj/structure/closet/dirthole/closed,
 /obj/item/clothing/neck/roguetown/gorget/copper,
 /obj/item/clothing/head/roguetown/helmet/coppercap,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "eK" = (
@@ -91,14 +91,14 @@
 "hY" = (
 /obj/structure/closet/dirthole/closed,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/structure/closet/burial_shroud,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "if" = (
 /obj/structure/closet/dirthole/closed,
 /obj/structure/closet/burial_shroud,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
@@ -142,7 +142,7 @@
 /obj/effect/spawner/lootdrop/general_loot_low,
 /obj/structure/closet/burial_shroud,
 /obj/item/rogueweapon/sword/iron/messer/copper,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "mu" = (
@@ -251,7 +251,7 @@
 /area/rogue/under/tomb/cave)
 "wu" = (
 /obj/structure/closet/dirthole/closed,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "xc" = (
@@ -402,11 +402,11 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "EP" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/water/swamp/deep,
 /area/rogue/under/tomb/cave)
 "Ft" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Fy" = (
@@ -481,7 +481,7 @@
 /area/rogue/under/tomb/cave)
 "OW" = (
 /obj/structure/closet/dirthole/closed,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "Pt" = (
