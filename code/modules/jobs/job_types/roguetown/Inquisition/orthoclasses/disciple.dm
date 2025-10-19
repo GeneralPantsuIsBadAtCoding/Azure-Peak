@@ -49,11 +49,12 @@
 				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, 5, TRUE)
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 				ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC) //Removes pain-inflicted slowdowns. Does not immunize against pain, nor other means of slowdown - frostspells, unpaved terrain, etc.
 			if("Katar")
 				r_hand = /obj/item/rogueweapon/katar/psydon
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 				ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
-			if("Knuckles")
+			if("Knuckledusters")
 				r_hand = /obj/item/rogueweapon/knuckles/psydon
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 				ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
@@ -61,7 +62,6 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/psy
-				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 				H.change_stat(STATKEY_PER, 1)
 				H.change_stat(STATKEY_INT, 1) //Changes statblock from 3/3/3/-2/-1/0 to 3/3/3/-1/-1/1. Note that this comes at the cost of losing the 'critical resistance' trait, and retaining the unarmorable status.
@@ -80,12 +80,13 @@
 				wrists = /obj/item/clothing/wrists/roguetown/allwrappings/naledi
 				neck = /obj/item/clothing/neck/roguetown/psicross/g //Naledians covet gold far more than the Orthodoxists cover silver. Emphasizes their nature as 'visitors', more-so than anything else.
 				id = /obj/item/clothing/ring/signet
+				l_hand = /obj/item/spellbook_unfinished/pre_arcyne
 				ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC) //Sojourners are magyck-inclined lightweights, relying on evasive maneuvers and unorthodox techniques - compared to the Disciple, who simply Kills People With Rocks.
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				REMOVE_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
-				H.mind.adjust_spellpoints(-6)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) // Pre-set spell list. Same as before. 
+				H.mind.adjust_spellpoints(6) //Messed this up. Should add spellpoints for use, now.
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) //Pre-set spell list. Same as before. 
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
@@ -99,7 +100,8 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1,
-	/obj/item/paper/inqslip/arrival/ortho = 1)
+	/obj/item/paper/inqslip/arrival/ortho = 1,
+	/obj/item/roguegem/amethyst/naledi = 1) //Kept here for now, until we figure out how to make it better fit in overfilled hands.
 	belt = /obj/item/storage/belt/rogue/leather/rope/dark
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
