@@ -167,11 +167,12 @@
 /area/rogue/under/tomb/cave/lava)
 "M" = (
 /obj/machinery/anvil,
-/obj/item/riddleofsteel,
 /obj/item/rogueweapon/hammer/steel{
 	pixel_x = -6;
 	pixel_y = 5
 	},
+/obj/item/roguegem/random,
+/obj/item/roguegem/random,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/cave/lava)
 "N" = (

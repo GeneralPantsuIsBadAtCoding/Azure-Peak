@@ -141,7 +141,6 @@
 /obj/structure/closet/dirthole/closed,
 /obj/effect/spawner/lootdrop/general_loot_low,
 /obj/structure/closet/burial_shroud,
-/obj/item/rogueweapon/sword/iron/messer/copper,
 /mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
@@ -313,11 +312,6 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave)
 "Cj" = (
-/obj/item/ingot/gold,
-/obj/item/ingot/gold{
-	pixel_x = 8;
-	pixel_y = -4
-	},
 /obj/item/ingot/gold{
 	pixel_x = 4;
 	pixel_y = 3

@@ -97,15 +97,12 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb/wilds)
 "cT" = (
-/obj/item/roguestatue/gold/loot{
-	pixel_x = -16;
-	pixel_y = 13
-	},
 /obj/item/reagent_containers/glass/bottle/rogue/redwine,
 /obj/structure/table/wood{
 	icon_state = "longtable";
 	dir = 1
 	},
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors/royal)
 "dh" = (
@@ -556,10 +553,6 @@
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/general_loot_hi,
 /obj/item/roguegem/random,
-/obj/item/roguegem/random{
-	pixel_x = -9;
-	pixel_y = 5
-	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/royal)
 "vK" = (
@@ -794,10 +787,6 @@
 "Hh" = (
 /turf/open/floor/rogue/tile,
 /area/rogue/under/tomb/indoors/royal)
-"HB" = (
-/obj/item/roguestatue/silver,
-/turf/open/floor/carpet/red,
-/area/rogue/under/tomb/indoors/royal)
 "HJ" = (
 /obj/structure/fluff/railing/wood{
 	dir = 4
@@ -831,7 +820,7 @@
 /obj/item/clothing/wrists/roguetown/royalsleeves,
 /obj/item/clothing/shoes/roguetown/boots/nobleboot,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
-/obj/item/rogueweapon/huntingknife/idagger/silver,
+/obj/item/rogueweapon/sword/rapier/dec,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/royal)
 "IE" = (
@@ -2754,7 +2743,7 @@ GR
 GR
 Dm
 Dm
-HB
+Dm
 JC
 Lz
 Yl
@@ -2818,7 +2807,7 @@ uA
 GR
 Dm
 Dm
-HB
+Dm
 JC
 Lz
 Yl

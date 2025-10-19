@@ -13,7 +13,6 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/magic)
 "aR" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /obj/item/clothing/shoes/roguetown/boots/nobleboot,
 /obj/item/clothing/neck/roguetown/gorget,
@@ -22,6 +21,7 @@
 /obj/item/clothing/under/roguetown/chainlegs,
 /obj/item/rogueweapon/halberd,
 /obj/item/clothing/suit/roguetown/armor/plate/scale,
+/mob/living/carbon/human/species/skeleton/npc/hard/noequip,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors)
 "aW" = (

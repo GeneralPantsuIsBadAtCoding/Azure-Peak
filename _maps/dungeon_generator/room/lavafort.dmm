@@ -216,12 +216,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb/cave/lava)
-"nR" = (
-/obj/structure/ritualcircle/noc,
-/obj/item/alch/firedust,
-/obj/item/rogueweapon/sword/silver,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/under/tomb/cave/lava)
 "of" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -751,7 +745,7 @@
 "Yd" = (
 /obj/structure/ritualcircle/noc,
 /obj/item/alch/firedust,
-/obj/item/rogueweapon/sword/rapier/dec,
+/obj/effect/spawner/lootdrop/steel_weapon_spawner,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/tomb/cave/lava)
 "Ye" = (
@@ -1939,7 +1933,7 @@ Tr
 Tr
 Yn
 Jj
-nR
+Yd
 An
 Yn
 Tr
