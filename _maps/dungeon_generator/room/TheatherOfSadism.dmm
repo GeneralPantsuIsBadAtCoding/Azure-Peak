@@ -156,10 +156,6 @@
 /obj/structure/fluff/statue/femalestatue,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/tomb)
-"jq" = (
-/obj/item/ingot/gold,
-/turf/open/floor/rogue/blocks/stonered,
-/area/rogue/under/tomb)
 "jB" = (
 /obj/item/organ/stomach,
 /turf/open/water/swamp,
@@ -494,7 +490,6 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/tomb)
 "Ey" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
 /obj/item/clothing/shoes/roguetown/boots/nobleboot,
 /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat,
 /obj/item/clothing/head/roguetown/fancyhat,
@@ -503,6 +498,7 @@
 /obj/item/clothing/mask/rogue/facemask/goldmask,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /obj/item/rogueweapon/estoc,
+/mob/living/carbon/human/species/skeleton/npc/hard/noequip,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/tomb/indoors/royal)
 "EG" = (
@@ -1296,7 +1292,7 @@ ZA
 ik
 ZA
 Nl
-jq
+Si
 rl
 eh
 Si
@@ -1427,7 +1423,7 @@ XT
 RS
 Vk
 th
-jq
+Si
 Nl
 ZA
 ZA

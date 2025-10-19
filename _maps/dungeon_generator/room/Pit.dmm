@@ -101,10 +101,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/spider)
-"I" = (
-/obj/effect/landmark/ambush,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/tomb/cave/spider)
 "J" = (
 /obj/structure/spider/stickyweb,
 /turf/closed/mineral,
@@ -116,7 +112,6 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/spider)
 "L" = (
-/obj/item/ingot/iron,
 /obj/item/ingot/iron,
 /obj/item/ingot/iron{
 	pixel_x = 11;
@@ -327,7 +322,7 @@ X
 X
 X
 X
-I
+X
 M
 O
 M
@@ -520,7 +515,7 @@ M
 X
 M
 X
-I
+X
 X
 M
 L

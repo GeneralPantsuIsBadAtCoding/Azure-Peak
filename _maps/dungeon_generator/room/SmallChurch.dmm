@@ -19,15 +19,6 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors/church)
 "be" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STASPD = 15;
-	STAINT = 15;
-	STACON = 15;
-	STAEND = 15;
-	STALUC = 15;
-	STAPER = 15;
-	STASTR = 15
-	},
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /obj/item/clothing/head/roguetown/helmet/skullcap{
 	pixel_y = 10
@@ -35,11 +26,12 @@
 /obj/item/clothing/cloak/half/shadowcloak,
 /obj/item/rogueweapon/mace/warhammer/steel,
 /obj/item/clothing/suit/roguetown/armor/gambeson,
-/obj/item/clothing/gloves/roguetown/chain,
-/obj/item/clothing/under/roguetown/chainlegs,
+/obj/item/clothing/gloves/roguetown/chain/iron,
+/obj/item/clothing/under/roguetown/chainlegs/iron,
 /obj/item/clothing/wrists/roguetown/bracers/copper,
 /obj/item/clothing/shoes/roguetown/boots/leather,
 /obj/item/clothing/mask/rogue/facemask,
+/mob/living/carbon/human/species/skeleton/npc/hard/noequip,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/tomb/indoors/church)
 "by" = (
@@ -623,12 +615,10 @@
 /turf/open/water,
 /area/rogue/under/tomb/cave/wet)
 "wJ" = (
-/obj/item/roguestatue/silver{
-	pixel_y = 20
-	},
 /obj/structure/table/church{
 	icon_state = "churchtable_end"
 	},
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "wW" = (
@@ -891,15 +881,6 @@
 /area/rogue/under/tomb/indoors/church)
 "IX" = (
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	STAEND = 15;
-	STAINT = 15;
-	STALUC = 15;
-	STAPER = 15;
-	STASPD = 15;
-	STASTR = 15
-	},
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /obj/item/clothing/head/roguetown/helmet/skullcap{
 	pixel_y = 10
@@ -907,11 +888,12 @@
 /obj/item/clothing/cloak/half/shadowcloak,
 /obj/item/rogueweapon/greatsword/grenz,
 /obj/item/clothing/suit/roguetown/armor/gambeson,
-/obj/item/clothing/gloves/roguetown/chain,
-/obj/item/clothing/under/roguetown/chainlegs,
+/obj/item/clothing/gloves/roguetown/chain/iron,
+/obj/item/clothing/under/roguetown/chainlegs/iron,
 /obj/item/clothing/wrists/roguetown/bracers/copper,
 /obj/item/clothing/shoes/roguetown/boots/leather,
 /obj/item/clothing/mask/rogue/facemask,
+/mob/living/carbon/human/species/skeleton/npc/hard/noequip,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/tomb/indoors/church)
 "Jf" = (
@@ -964,7 +946,7 @@
 /area/rogue/under/tomb/indoors/church)
 "KW" = (
 /obj/structure/table/church,
-/obj/item/reagent_containers/glass/cup/golden,
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "KX" = (
@@ -1168,10 +1150,8 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "TQ" = (
-/obj/item/roguestatue/silver{
-	pixel_y = 20
-	},
 /obj/structure/table/church/m,
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "Uc" = (
