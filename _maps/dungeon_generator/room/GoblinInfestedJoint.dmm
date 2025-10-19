@@ -135,11 +135,6 @@
 /obj/machinery/light/rogue/torchholder,
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/under/tomb)
-"ec" = (
-/obj/structure/bars/grille,
-/obj/item/roguestatue/gold,
-/turf/open/transparent/openspace,
-/area/rogue/under/tomb)
 "ew" = (
 /obj/item/natural/rock,
 /obj/effect/decal/cleanable/dirt/cobweb,
@@ -849,10 +844,6 @@
 /area/rogue/under/tomb)
 "Ej" = (
 /obj/item/ingot/gold{
-	pixel_y = 11;
-	pixel_x = -14
-	},
-/obj/item/ingot/gold{
 	pixel_y = -2;
 	pixel_x = 4
 	},
@@ -1136,7 +1127,6 @@
 /obj/structure/closet/crate/chest/neu,
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow,
 /obj/item/quiver/arrows,
-/obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/under/tomb/indoors)
 "Rs" = (
@@ -2761,7 +2751,7 @@ EN
 AY
 Wr
 ga
-ec
+ga
 ga
 wf
 ga

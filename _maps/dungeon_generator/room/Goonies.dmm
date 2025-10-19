@@ -632,15 +632,8 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "qQ" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
-/obj/item/clothing/suit/roguetown/shirt/undershirt/sailor,
-/obj/item/clothing/under/roguetown/tights/sailor,
-/obj/item/clothing/shoes/roguetown/boots/leather,
-/obj/item/clothing/head/roguetown/bardhat,
-/obj/item/clothing/suit/roguetown/armor/leather/vest,
-/obj/item/rogueweapon/estoc,
-/obj/item/rogueweapon/shield/buckler/palloy,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/carbon/human/species/skeleton/npc/pirate,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "rg" = (
@@ -757,21 +750,6 @@
 /obj/structure/closet/crate/chest/old_crate,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
-"vT" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	STAEND = 15;
-	candodge = 0
-	},
-/obj/item/flowercrown/rosa,
-/obj/item/clothing/gloves/roguetown/plate/blk/death,
-/obj/item/clothing/suit/roguetown/armor/plate/blkknight/death,
-/obj/item/clothing/under/roguetown/platelegs/blk/death,
-/obj/item/clothing/shoes/roguetown/boots/armor/blkknight/death,
-/obj/item/rogueweapon/sword/long/death,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
-/turf/open/floor/rogue/ruinedwood/chevron,
-/area/rogue/under/tomb/indoors)
 "wg" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -813,15 +791,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "wB" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
-/obj/item/clothing/suit/roguetown/shirt/undershirt/sailor/red,
-/obj/item/clothing/under/roguetown/tights/sailor,
-/obj/item/clothing/shoes/roguetown/boots/leather,
-/obj/item/clothing/head/roguetown/bardhat,
-/obj/item/clothing/suit/roguetown/armor/leather/vest,
-/obj/item/rogueweapon/estoc,
-/obj/item/rogueweapon/shield/buckler/palloy,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
+/mob/living/carbon/human/species/skeleton/npc/pirate,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "wK" = (
@@ -1040,15 +1010,7 @@
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/under/tomb/indoors)
 "Cx" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
-/obj/item/clothing/suit/roguetown/shirt/undershirt/sailor/red,
-/obj/item/clothing/under/roguetown/tights/sailor,
-/obj/item/clothing/shoes/roguetown/boots/leather,
-/obj/item/clothing/head/roguetown/bardhat,
-/obj/item/clothing/suit/roguetown/armor/leather/vest,
-/obj/item/rogueweapon/estoc,
-/obj/item/rogueweapon/shield/buckler/palloy,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
+/mob/living/carbon/human/species/skeleton/npc/hard,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "CI" = (
@@ -1249,18 +1211,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "IM" = (
-/obj/item/clothing/shoes/roguetown/boots/armor/vampire,
-/obj/item/clothing/gloves/roguetown/chain/vampire,
-/obj/item/clothing/under/roguetown/platelegs/vampire,
-/obj/item/flowercrown/rosa,
-/obj/item/clothing/suit/roguetown/shirt/vampire,
-/obj/item/clothing/suit/roguetown/armor/plate/vampire,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
-/obj/item/rogueweapon/sword/sabre/elf,
-/obj/item/rogueweapon/sword/sabre/shamshir,
-/mob/living/carbon/human/species/npc/deadite{
-	candodge = 0
-	},
+/mob/living/carbon/human/species/skeleton/npc/dungeon/lich,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/tomb/indoors)
 "IS" = (
@@ -1364,7 +1315,6 @@
 "LT" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/effect/spawner/lootdrop/general_loot_mid,
-/obj/item/roguestatue/silver,
 /obj/structure/fluff/wallclock/vampire,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
@@ -1597,17 +1547,8 @@
 /area/rogue/under/tomb/indoors)
 "Qt" = (
 /obj/item/clothing/cloak/cape/blkknight,
-/obj/item/clothing/gloves/roguetown/plate/blk/death,
-/obj/item/clothing/suit/roguetown/armor/plate/blkknight/death,
-/obj/item/clothing/under/roguetown/platelegs/blk/death,
-/obj/item/clothing/shoes/roguetown/boots/armor/blkknight/death,
-/obj/item/rogueweapon/sword/long/death,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	STAEND = 15;
-	candodge = 0
-	},
+/mob/living/carbon/human/species/skeleton/npc/dungeon/lich,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "Qv" = (
@@ -1776,11 +1717,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
-"VJ" = (
-/obj/item/roguestatue/gold,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/rogue/carpet/lord/center,
-/area/rogue/under/tomb/indoors)
 "VY" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -1848,18 +1784,6 @@
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/ruinedwood,
-/area/rogue/under/tomb/indoors)
-"XY" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
-/obj/item/clothing/suit/roguetown/shirt/undershirt/sailor,
-/obj/item/clothing/under/roguetown/tights/sailor,
-/obj/item/clothing/shoes/roguetown/boots/leather,
-/obj/item/clothing/head/roguetown/bardhat,
-/obj/item/clothing/suit/roguetown/armor/leather/vest,
-/obj/item/rogueweapon/estoc,
-/obj/item/rogueweapon/shield/buckler/palloy,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
-/turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "Yf" = (
 /obj/structure/closet/crate/chest/neu_iron,
@@ -4760,7 +4684,7 @@ gZ
 gZ
 up
 oT
-qQ
+wB
 gZ
 gZ
 gZ
@@ -5559,7 +5483,7 @@ oT
 aL
 aL
 Na
-oT
+wB
 oT
 oT
 fw
@@ -5855,7 +5779,7 @@ Tv
 YH
 rC
 oT
-qQ
+wB
 gS
 gZ
 gZ
@@ -6016,11 +5940,11 @@ gZ
 gZ
 up
 oT
-eH
+qQ
 oT
 oT
 os
-qQ
+wB
 oT
 oT
 vl
@@ -6316,7 +6240,7 @@ UA
 OA
 Fn
 Xa
-XY
+rQ
 jn
 Cu
 gZ
@@ -6400,7 +6324,7 @@ yz
 hK
 cO
 cO
-vT
+Cx
 WC
 gZ
 gZ
@@ -6440,7 +6364,7 @@ Yf
 Uu
 Xa
 IM
-VJ
+cO
 Uu
 ar
 WC

@@ -43,7 +43,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "cP" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "dX" = (
@@ -91,7 +91,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb)
 "qK" = (
-/mob/living/carbon/human/species/skeleton/npc/dungeon,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "rG" = (
@@ -121,7 +121,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb)
 "uU" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "wK" = (

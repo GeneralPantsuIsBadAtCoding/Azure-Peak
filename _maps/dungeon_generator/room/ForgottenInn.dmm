@@ -117,10 +117,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "mI" = (
-/obj/effect/mapping_helpers/outfit_handler{
-	outfit_to_equip = /datum/outfit/job/adventurer/barbarian
-	},
-/mob/living/carbon/human/species/orc/npc,
+/mob/living/carbon/human/species/orc/npc/marauder,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "nC" = (
@@ -251,7 +248,7 @@
 /turf/closed/wall/mineral/rogue/decowood/vert,
 /area/rogue/under/tomb/indoors)
 "Bz" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/supereasy,
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors)
 "BG" = (
@@ -279,7 +276,7 @@
 /area/rogue/under/tomb/indoors)
 "Do" = (
 /obj/structure/bars/pipe/left,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/supereasy,
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors)
 "Du" = (
@@ -401,10 +398,7 @@
 /area/rogue/under/tomb)
 "Rh" = (
 /obj/structure/toilet,
-/mob/living/carbon/human/species/orc/npc,
-/obj/effect/mapping_helpers/outfit_handler{
-	outfit_to_equip = /datum/outfit/job/adventurer/barbarian
-	},
+/mob/living/carbon/human/species/orc/npc/berserker,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "RA" = (
@@ -414,10 +408,6 @@
 /obj/item/reagent_containers/powder/moondust{
 	pixel_y = -5;
 	pixel_x = -13
-	},
-/obj/item/reagent_containers/powder/moondust{
-	pixel_y = 12;
-	pixel_x = -7
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/rogueweapon/huntingknife{
@@ -688,7 +678,7 @@ lU
 AX
 VQ
 lU
-lU
+mI
 lU
 lU
 gS

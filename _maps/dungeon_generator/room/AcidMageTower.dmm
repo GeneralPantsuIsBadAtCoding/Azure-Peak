@@ -217,14 +217,14 @@
 "jO" = (
 /obj/item/natural/wood/plank,
 /obj/item/grown/log/tree/stick,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/tomb/indoors/magic)
 "jQ" = (
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/cave/wet)
 "ka" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors/magic)
 "kj" = (
@@ -279,6 +279,11 @@
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/magic)
+"mb" = (
+/obj/item/grown/log/tree/stick,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/under/tomb/indoors/magic)
 "mf" = (
 /obj/structure/stairs/fancy{
 	dir = 8
@@ -319,7 +324,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/ring/quartz,
-/mob/living/carbon/human/species/npc/deadite,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/magic)
 "on" = (
@@ -344,19 +349,7 @@
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "pd" = (
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	STAEND = 15;
-	STASTR = 15;
-	candodge = 0
-	},
-/obj/item/clothing/gloves/roguetown/plate/paalloy,
-/obj/item/clothing/head/roguetown/helmet/heavy/paalloy,
-/obj/item/clothing/shoes/roguetown/boots/leather/reinforced,
-/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
-/obj/item/clothing/under/roguetown/platelegs/paalloy,
-/obj/item/rogueweapon/halberd/bardiche,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/tomb/indoors/magic)
 "pj" = (
@@ -366,7 +359,7 @@
 /area/rogue/under/tomb/indoors/magic)
 "pn" = (
 /obj/structure/flora/roguegrass/herb/random,
-/mob/living/carbon/human/species/npc/deadite,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/tomb/indoors/magic)
 "qb" = (
@@ -446,8 +439,8 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/magic)
 "sg" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
-/turf/open/floor/rogue/churchbrick,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "sn" = (
 /obj/structure/forcefield_weak,
@@ -477,7 +470,7 @@
 /area/rogue/under/tomb/indoors/magic)
 "th" = (
 /obj/structure/table/wood,
-/obj/item/roguestatue/gold,
+/obj/effect/spawner/lootdrop/valuable_clutter_spawner,
 /turf/open/floor/carpet/red,
 /area/rogue/under/tomb/indoors/magic)
 "tl" = (
@@ -561,7 +554,7 @@
 "vt" = (
 /obj/structure/table/vtable/v2,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
-/obj/item/roguestatue/silver,
+/obj/effect/spawner/lootdrop/cheap_clutter_spawner,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/magic)
 "vu" = (
@@ -774,7 +767,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/tomb/indoors/magic)
 "CL" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors/magic)
 "CS" = (
@@ -902,7 +895,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/magic)
 "Kf" = (
-/obj/structure/closet/crate/chest/lootbox,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "Kj" = (
@@ -913,16 +906,20 @@
 "KA" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/glass/cup/silver{
-	pixel_y = -1;
-	pixel_x = 7
+	pixel_y = -7;
+	pixel_x = 12
 	},
-/obj/item/reagent_containers/glass/cup/silver{
-	pixel_x = 8;
-	pixel_y = 12
+/obj/item/reagent_containers/glass/cup/steel{
+	pixel_x = 7;
+	pixel_y = 13
 	},
-/obj/item/reagent_containers/glass/cup/silver{
+/obj/item/reagent_containers/glass/cup/steel{
 	pixel_x = -7;
-	pixel_y = 10
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/glass/cup/steel{
+	pixel_x = -7;
+	pixel_y = 12
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors/magic)
@@ -941,7 +938,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/magic)
 "KV" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "Lh" = (
@@ -1010,7 +1007,7 @@
 /area/rogue/under/tomb/indoors/magic)
 "NW" = (
 /obj/item/rope/chain,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb/indoors/magic)
 "Of" = (
@@ -1250,8 +1247,8 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/tomb/indoors/magic)
 "TM" = (
-/obj/item/roguestatue/gold,
 /obj/structure/table/church/m,
+/obj/effect/spawner/lootdrop/cheap_clutter_spawner,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "TP" = (
@@ -1264,8 +1261,8 @@
 /area/rogue/under/tomb/indoors/magic)
 "Ue" = (
 /obj/structure/trap/shock,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
 /obj/effect/particle_effect/steam,
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/water/bath,
 /area/rogue/under/tomb/indoors/magic)
 "Un" = (
@@ -1328,20 +1325,7 @@
 /turf/open/floor/rogue/carpet/lord/left,
 /area/rogue/under/tomb/indoors/magic)
 "Ya" = (
-/obj/item/clothing/under/roguetown/platelegs/paalloy,
-/obj/item/clothing/suit/roguetown/armor/plate/half/paalloy,
-/obj/item/clothing/shoes/roguetown/boots/leather/reinforced,
-/obj/item/clothing/head/roguetown/helmet/heavy/paalloy,
-/obj/item/clothing/gloves/roguetown/plate/paalloy,
-/obj/item/rogueweapon/sword/falchion,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	STAEND = 15;
-	STASPD = 15;
-	STASTR = 14;
-	candodge = 0
-	},
+/mob/living/carbon/human/species/skeleton/npc/hard,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors/magic)
 "Yc" = (
@@ -1395,18 +1379,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 10
 	},
-/obj/item/clothing/gloves/roguetown/plate/paalloy,
-/obj/item/clothing/head/roguetown/helmet/heavy/paalloy,
-/obj/item/clothing/shoes/roguetown/boots/leather/reinforced,
-/obj/item/clothing/suit/roguetown/armor/plate/half/iron,
-/obj/item/clothing/under/roguetown/platelegs/paalloy,
-/obj/item/rogueweapon/sword/iron,
-/obj/item/rogueweapon/shield/buckler/palloy,
-/obj/effect/mapping_helpers/floor_clothing_equipper,
-/mob/living/carbon/human/species/skeleton/npc/no_equipment{
-	STACON = 15;
-	candodge = 0
-	},
+/mob/living/carbon/human/species/skeleton/npc/hardspread,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "ZU" = (
@@ -1808,7 +1781,7 @@ FM
 FM
 uE
 UY
-sg
+Gc
 vB
 qV
 Tp
@@ -1840,7 +1813,7 @@ At
 Gh
 uE
 Ac
-Dj
+mb
 TF
 yV
 MO
@@ -2876,7 +2849,7 @@ TF
 vK
 vK
 vK
-KV
+sg
 vK
 vK
 TF
