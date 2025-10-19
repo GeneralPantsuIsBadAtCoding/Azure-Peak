@@ -140,7 +140,6 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
 /obj/item/clothing/cloak/apron/waist,
-/obj/item/clothing/under/roguetown/tights/stockings,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "pD" = (
@@ -218,7 +217,6 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
 /obj/item/clothing/cloak/apron/waist,
-/obj/item/clothing/under/roguetown/tights/stockings,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
@@ -234,10 +232,7 @@
 /area/rogue/under/tomb/cave/wet)
 "uv" = (
 /obj/structure/table/vtable,
-/obj/item/rogueweapon/huntingknife/idagger/silver{
-	pixel_y = 8;
-	pixel_x = 6
-	},
+/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/tomb/indoors)
 "uF" = (
