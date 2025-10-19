@@ -65,7 +65,7 @@
 		if(isnull(wound))
 			continue
 		if(heal_amount <= 0)
-			continue
+			break
 		if(length(specific_types))
 			var/found = FALSE
 			for(var/woundtype in specific_types)
