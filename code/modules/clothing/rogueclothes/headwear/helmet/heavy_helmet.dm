@@ -426,6 +426,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/ordinatorhelm/plume/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/natural/feather))
 		return
+	..()
 
 /obj/item/clothing/head/roguetown/helmet/heavy/absolver
 	name = "psydonic conical helm"

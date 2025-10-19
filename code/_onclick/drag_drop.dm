@@ -129,7 +129,7 @@
 				if(mob.next_rmove > world.time)
 					return
 			mob.used_intent = mob.o_intent
-			if(mob.used_intent.get_chargetime() && !AD.blockscharging && !mob.in_throw_mode)
+			if(mob.used_intent.get_chargetime() && mob.mmb_intent.can_charge() && !AD.blockscharging && !mob.in_throw_mode)
 				updateprogbar()
 			else
 				mouse_pointer_icon = 'icons/effects/mousemice/human_attack.dmi'
@@ -150,7 +150,8 @@
 		if(!mob.mmb_intent)
 			mouse_pointer_icon = 'icons/effects/mousemice/human_looking.dmi'
 		else
-			if(mob.mmb_intent.get_chargetime() && !AD.blockscharging)
+			if(mob.mmb_intent.get_chargetime() && mob.mmb_intent.can_charge() && !AD.blockscharging)
+				mob.face_atom(object, location, control, params)
 				updateprogbar()
 			else
 				mouse_pointer_icon = mob.mmb_intent.pointer
@@ -248,13 +249,13 @@
 	L.used_intent.prewarning()
 
 	if(!charging) //This is for spell charging
-		charging = 1 
+		charging = 1
 		L.used_intent.on_charge_start()
 		L.update_charging_movespeed(L.used_intent)
 //		L.update_warning(L.used_intent)
-		progress = 0 
+		progress = 0
 
-//		if(L.used_intent.charge_invocation) 
+//		if(L.used_intent.charge_invocation)
 //			sections = 100/L.used_intent.charge_invocation.len
 //		else
 //			sections = null
@@ -288,7 +289,7 @@
 			chargedprog = ((progress / goal) * 100)
 			mouse_pointer_icon = 'icons/effects/mousemice/swang/acharging.dmi'
 		else //Fully charged spell
-			if(!doneset) 
+			if(!doneset)
 				doneset = 1
 				if(L.curplaying && !L.used_intent.keep_looping)
 					playsound(L, 'sound/magic/charged.ogg', 100, TRUE)
@@ -355,8 +356,7 @@
 		else
 			middragtime = 0
 			middragatom = null
-	else
-		mob.face_atom(over_object, over_location, over_control, params)
+	mob.face_atom(over_object, over_location, over_control, params)
 
 	mouseParams = params
 	mouseLocation = over_location

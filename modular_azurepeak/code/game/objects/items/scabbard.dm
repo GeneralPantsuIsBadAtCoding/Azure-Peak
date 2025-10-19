@@ -27,10 +27,16 @@
 
 	COOLDOWN_DECLARE(shield_bang)
 
+	/// Weapon path and its children that are allowed
 	var/obj/item/rogueweapon/valid_blade
+	/// Specific weapons that are allowed. Bypasses valid_blade
 	var/list/obj/item/rogueweapon/valid_blades
+	/// Specific weapons that are not allowed. Bypassed valid_blade
 	var/list/obj/item/rogueweapon/invalid_blades
+
+	/// Stores weapon
 	var/obj/item/rogueweapon/sheathed
+
 	var/sheathe_time = 0.1 SECONDS
 	var/sheathe_sound = 'sound/foley/equip/scabbard_holster.ogg'
 
@@ -53,7 +59,7 @@
 		to_chat(user, span_warning("The sheath is occupied!"))
 		return FALSE
 	if(valid_blade && !istype(A, valid_blade))
-		to_chat(user, span_warning("[A] won't fit in there.."))
+		to_chat(user, span_warning("[A] won't fit in there."))
 		return FALSE
 	if(valid_blades)
 		if(!(A.type in valid_blades))
@@ -61,7 +67,7 @@
 			return FALSE
 	if(invalid_blades)
 		if(A.type in invalid_blades)
-			to_chat(user, span_warning("[A] won't fit in there.."))
+			to_chat(user, span_warning("[A] won't fit in there."))
 			return FALSE
 	return TRUE
 
@@ -124,7 +130,9 @@
 	..()
 	var/mob/living/M = usr
 
-	if(!M.incapacitated() && (loc == M || loc.loc == M) && istype(over, /atom/movable/screen/inventory/hand))
+	if(!Adjacent(M))
+		return
+	if(!M.incapacitated() && istype(over, /atom/movable/screen/inventory/hand))
 		var/atom/movable/screen/inventory/hand/H = over
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
@@ -141,6 +149,7 @@
 	if(!sheathed)
 		if(!eat_sword(user, I))
 			return ..()
+
 
 /obj/item/rogueweapon/scabbard/examine(mob/user)
 	. = ..()
@@ -265,6 +274,19 @@
 	max_integrity = 500
 	sellprice = 2
 
+	invalid_blades = list(
+		/obj/item/rogueweapon/huntingknife/idagger/silver/stake
+	)
+
+/obj/item/rogueweapon/scabbard/sheath/weapon_check(mob/living/user, obj/item/A)
+	. = ..()
+	if(.)
+		if(!istype(A, /obj/item/rogueweapon))
+			return
+		var/obj/item/rogueweapon/sheathing = A
+		if(!sheathing.sheathe_icon)
+			return FALSE
+
 /obj/item/rogueweapon/scabbard/sheath/getonmobprop(tag)
 	..()
 
@@ -378,7 +400,6 @@
 	max_integrity = 0
 	sellprice = 15
 
-
 /obj/item/rogueweapon/scabbard/gwstrap/weapon_check(mob/living/user, obj/item/A)
 	. = ..()
 	if(.)
@@ -389,7 +410,6 @@
 				return TRUE
 		if(!istype(A, /obj/item/clothing/neck/roguetown/psicross)) //snowflake that bypasses the valid_blades that i made. i will commit seppuku eventually
 			return FALSE
-
 
 /obj/item/rogueweapon/scabbard/gwstrap/update_icon(mob/living/user)
 	if(sheathed)
@@ -484,12 +504,22 @@
 
 	valid_blade = /obj/item/rogueweapon/sword
 	invalid_blades = list(
-		/obj/item/rogueweapon/sword/long/exe
+		/obj/item/rogueweapon/sword/long/exe,
+		/obj/item/rogueweapon/sword/long/martyr
 	)
 
 	force = 7
 	max_integrity = 750
 	sellprice = 3
+
+/obj/item/rogueweapon/scabbard/sheath/weapon_check(mob/living/user, obj/item/A)
+	. = ..()
+	if(.)
+		if(!istype(A, /obj/item/rogueweapon))
+			return
+		var/obj/item/rogueweapon/sheathing = A
+		if(!sheathing.sheathe_icon)
+			return FALSE
 
 
 /*

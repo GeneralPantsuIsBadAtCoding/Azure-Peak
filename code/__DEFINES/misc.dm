@@ -451,7 +451,8 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
 //Filters
-#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-0, size=1, offset = 0, color="#04080FAA")
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=3, offset=1, color="#04080f96")
+#define AMBIENT_OCCLUSION_WALLS filter(type="drop_shadow", x=0, y=-2, size=8, offset=4, color="#000000ff")
 #define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
 #define CAMERA_NO_GHOSTS 0

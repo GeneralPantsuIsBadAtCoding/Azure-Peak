@@ -1,4 +1,4 @@
-//gambeson family
+// GAMBESON ARMOUR
 
 /obj/item/clothing/suit/roguetown/armor/gambeson
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
@@ -216,53 +216,3 @@
 	icon_state = "shadowrobe"
 	armor = ARMOR_PADDED_GOOD
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM + 30 //280
-
-//
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple
-	name = "disciple's skin"
-	desc = "It's far more than just an oath. </br>'AEON, PSYDON, ADONAI - ENTROPY, HUMENITY, DIVINITY. A TRINITY THAT IS ONE, YET THREE; KNOWN BY ALL, YET FORGOTTEN TO TYME.' </br>'A CORPSE. I AM LIVING ON A FUCKING CORPSE. HE IS THE WORLD, AND THE WORLD IS ROTTING AWAY. HEAVEN CLOSED ITS GATES TO US, LONG AGO.' </br>'YET, HIS CHILDREN PERSIST; AND AS LONG AS THEY DO, SO MUST I. HAPPINESS MUST BE FOUGHT FOR.'"
-	resistance_flags = FIRE_PROOF
-	icon_state = null
-	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
-	armor = list("blunt" = 30, "slash" = 50, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0) //Custom value; padded gambeson's slash- and stab- armor.
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
-	body_parts_covered = COVERAGE_FULL
-	body_parts_inherent = COVERAGE_FULL
-	max_integrity = 300
-	flags_inv = null //Exposes the chest and-or breasts. Should allow for a Disciple's thang to swang.
-	surgery_cover = FALSE //Should permit surgery and other invasive processes.
-	var/repair_time = 20 SECONDS
-	var/reptimer
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/Initialize(mapload)
-	..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/dropped(mob/living/carbon/human/user)
-	..()
-	if(QDELETED(src))
-		return
-	qdel(src)
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
-	..()
-	if(reptimer)
-		visible_message(span_notice("My [name] stops mending from the onslaught!"), vision_distance = 1)
-		deltimer(reptimer)
-
-	visible_message(span_notice("My [name] begins to slowly mend its abuse.."), vision_distance = 1)
-	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/disciple/proc/skin_repair(var/repair_percent = 0.2 * max_integrity)
-	if(obj_integrity >= max_integrity)
-		visible_message(span_notice("My [name] has become taut with newfound vigor!"), vision_distance = 1)
-		if(reptimer)
-			deltimer(reptimer)
-		return
-
-	visible_message(span_notice("My [name] begins to mends some of its abuse.."), vision_distance = 1)
-	obj_integrity = min(obj_integrity + repair_percent, max_integrity)
-	if(obj_broken)
-		obj_fix(full_repair = FALSE)
-	reptimer = addtimer(CALLBACK(src, PROC_REF(skin_repair)), repair_time, TIMER_OVERRIDE|TIMER_UNIQUE|TIMER_STOPPABLE)
-
