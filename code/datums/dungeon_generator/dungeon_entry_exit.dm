@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 
 /obj/structure/dungeon_entry
 	name = "The Tomb of Alotheos"
-	desc = ""
+	desc = "Greedy fool, will you emerge rich and victorious, or be entombed forever?"
 
 	icon = 'icons/roguetown/misc/portal.dmi'
 	icon_state = "portal"
