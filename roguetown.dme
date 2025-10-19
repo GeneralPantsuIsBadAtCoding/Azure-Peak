@@ -958,10 +958,7 @@
 #include "code\game\objects\effects\portals.dm"
 #include "code\game\objects\effects\proximity.dm"
 #include "code\game\objects\effects\step_triggers.dm"
-<<<<<<< HEAD
 #include "code\game\objects\effects\waterfall_effect.dm"
-=======
->>>>>>> 26bdbcd982ca7c15b0c6922ddd7b22ff8587b9da
 #include "code\game\objects\effects\tracker_effect.dm"
 #include "code\game\objects\effects\decals\cleanable.dm"
 #include "code\game\objects\effects\decals\crayon.dm"
