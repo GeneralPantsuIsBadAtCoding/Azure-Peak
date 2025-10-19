@@ -93,6 +93,13 @@
 		arrows += B
 	update_icon()
 
+/obj/item/quiver/twilight_bullet/lead_ten/Initialize()
+	. = ..()
+	for(var/i in 1 to 10)
+		var/obj/item/ammo_casing/caseless/twilight_lead/B = new()
+		arrows += B
+	update_icon()
+
 /obj/item/quiver/twilight_bullet/silver/Initialize()
 	. = ..()
 	for(var/i in 1 to 10)
@@ -119,13 +126,6 @@
 /obj/item/quiver/twilight_bullet/cannonball/lead/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/ammo_casing/caseless/twilight_cannonball/B = new()
-		arrows += B
-	update_icon()
-
-/obj/item/quiver/twilight_bullet/cannonball/lead-ten/Initialize()
-	. = ..()
-	for(var/i in 1 to 10)
 		var/obj/item/ammo_casing/caseless/twilight_cannonball/B = new()
 		arrows += B
 	update_icon()
