@@ -14,9 +14,9 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/tomb/cave)
 "f" = (
-/obj/item/roguegem/diamond,
 /obj/structure/fluff/walldeco/vinez/offset,
 /obj/item/rogueweapon/pick/militia,
+/obj/item/roguegem/random,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave)
 "i" = (
@@ -122,8 +122,6 @@
 "Y" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/effect/landmark/chest_or_mimic,
-/obj/item/rogueore/gold,
-/obj/item/rogueore/gold,
 /obj/item/clothing/neck/roguetown/psicross/malum,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave)

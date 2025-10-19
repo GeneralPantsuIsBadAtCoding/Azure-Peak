@@ -127,17 +127,17 @@
 /area/rogue/under/tomb)
 "sO" = (
 /obj/structure/bed/rogue/shit,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/old,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/tomb)
 "to" = (
-/mob/living/carbon/human/species/skeleton/npc/ambush,
 /obj/structure/bed/rogue/inn/hay,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/effect/decal/cleanable/blood/gibs/old,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb)
 "tJ" = (
@@ -261,7 +261,7 @@
 /area/rogue/under/tomb)
 "Tw" = (
 /obj/structure/bed/rogue/shit,
-/mob/living/carbon/human/species/skeleton/npc/ambush,
+/mob/living/carbon/human/species/skeleton/npc/mediumspread,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "TS" = (

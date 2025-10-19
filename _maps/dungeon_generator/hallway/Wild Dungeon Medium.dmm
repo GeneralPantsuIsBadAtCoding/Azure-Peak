@@ -298,9 +298,9 @@
 /turf/open/floor/rogue/grassyel,
 /area/rogue/under/tomb/wilds)
 "Nx" = (
-/obj/effect/landmark/chest_or_mimic,
 /obj/effect/spawner/lootdrop/general_loot_mid,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb/wilds)
 "NE" = (

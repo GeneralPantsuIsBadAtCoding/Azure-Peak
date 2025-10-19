@@ -43,8 +43,9 @@
 /obj/item/clothing/head/roguetown/hatblu,
 /obj/item/clothing/cloak/raincloak/blue,
 /obj/item/clothing/gloves/roguetown/leather/black,
-/mob/living/carbon/human/species/skeleton/npc/no_equipment,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
+/mob/living/carbon/human/species/skeleton/npc/medium/noequip,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave)
 "aG" = (
@@ -86,7 +87,6 @@
 /obj/item/clothing/suit/roguetown/shirt/undershirt/webs,
 /obj/item/clothing/under/roguetown/webs,
 /obj/item/clothing/cloak/raincloak/purple,
-/obj/item/clothing/neck/roguetown/zcross/aalloy,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/cave)
 "aT" = (

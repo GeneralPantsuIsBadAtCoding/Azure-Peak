@@ -60,8 +60,8 @@
 /area/rogue/under/tomb/wilds)
 "jx" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/closet/crate/chest/lootbox,
 /obj/effect/spawner/lootdrop/general_loot_low,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb/wilds)
 "jY" = (
@@ -201,8 +201,8 @@
 "vp" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/palebush,
-/obj/structure/closet/crate/chest/lootbox,
 /obj/effect/spawner/lootdrop/general_loot_low,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb/wilds)
 "wz" = (
@@ -251,8 +251,8 @@
 /area/rogue/under/tomb/wilds)
 "BO" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/closet/crate/chest/lootbox,
 /obj/effect/spawner/lootdrop/general_loot_low,
+/obj/effect/landmark/chest_or_mimic/locked_or_trapped,
 /turf/open/floor/rogue/grass,
 /area/rogue/under/tomb/wilds)
 "CE" = (
