@@ -2,7 +2,7 @@
 	name = "plate gauntlets"
 	desc = "Plate gauntlets made out of steel. Good all-around protection for the hands."
 	icon_state = "gauntlets"
-	armor = ARMOR_GLOVES_PLATE
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CHOP, BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	resistance_flags = FIRE_PROOF
 	blocksound = PLATEHIT
