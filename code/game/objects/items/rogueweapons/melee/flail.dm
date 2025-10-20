@@ -50,7 +50,7 @@
 /datum/intent/flail/strike/smash
 	name = "smash"
 	chargetime = 5
-	chargedrain = 2
+	chargedrain = 1
 	no_early_release = TRUE
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	recovery = 10
