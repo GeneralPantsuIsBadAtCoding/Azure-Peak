@@ -463,6 +463,7 @@
 	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	body_parts_covered = HEAD|HAIR|EARS|NECK|MOUTH|NOSE|EYES
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	blocksound = SOFTHIT
