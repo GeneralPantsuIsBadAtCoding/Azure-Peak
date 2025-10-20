@@ -159,6 +159,7 @@
 	throwforce = 25
 	wdefense = 1
 	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	max_integrity = 50
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
@@ -280,6 +281,7 @@
 	throwforce = 20
 	wdefense = 1
 	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	max_integrity = 50
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'

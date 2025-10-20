@@ -14,7 +14,7 @@
 /*	.................   Hardtack   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
 	name = "hardtack"
-	desc = "Brittle and hard, like chewing on a rock."
+	desc = "Brittle and hard, like chewing on a rock. These salted biscuits will never expire, however: and for those who travel across Psydonia, that fact alone earns it a space in their packs."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "tack6"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
@@ -41,10 +41,11 @@
 /*	.................   Bread   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/bread
 	name = "bread loaf"
-	desc = "One of the staple foods of the world. With the decline of magic, the loss of bread-duplication has led to mass famines around Grimoria."
+	desc = "One of Psydonia's staple foodstuffs, made from leavened dough. From the pauper to the papal, none can deny the simplistic beauty of a freshly-baked loaf."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf6"
 	slices_num = 6
+	bitesize = 8
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/breadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = DOUGH_NUTRITION)
 	faretype = FARE_POOR
@@ -63,21 +64,21 @@
 /obj/item/reagent_containers/food/snacks/rogue/bread/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 5
-		if(bitecount == 2)
-			slices_num = 4
 		if(bitecount == 3)
-			slices_num = 3
+			slices_num = 5
 		if(bitecount == 4)
-			slices_num = 2
+			slices_num = 4
 		if(bitecount == 5)
+			slices_num = 3
+		if(bitecount == 6)
+			slices_num = 2
+		if(bitecount == 7)
 			changefood(slice_path, eater)
 
 /*	.................   Breadslice & Toast   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/breadslice
 	name = "sliced bread"
-	desc = "A bit of comfort to start your dae."
+	desc = "A bit of comfort to start your dae. The finest choice-of-vessel for a slice of saloumi, salo, cheese, or fried bacon."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf_slice"
 	faretype = FARE_POOR
@@ -124,13 +125,14 @@
 //this is a child so we can be used in sammies
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast
 	name = "toast"
+	desc = "Crisp and crunchy, yet not burnt - truly, an alchemical wonder. Best enjoyed with a fried egg or knob of sliced butter."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "toast"
 	faretype = FARE_NEUTRAL
 	tastes = list("crispy bread" = 1)
 	mill_result = /obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
 	cooked_type = null
-	bitesize = 2
+	bitesize = 3
 	rotprocess = null
 
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast/attackby(obj/item/I, mob/user, params)
@@ -179,6 +181,7 @@
 	desc = "A delightful piece of heaven in every slice."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
+	bitesize = 4
 	faretype = FARE_NEUTRAL
 	rotprocess = SHELFLIFE_DECENT
 	eat_effect = /datum/status_effect/buff/foodbuff
@@ -233,7 +236,7 @@
 	faretype = FARE_POOR
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /obj/item/reagent_containers/food/snacks/rogue/bun/attackby(obj/item/I, mob/living/user, params)
@@ -285,7 +288,7 @@
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
@@ -297,7 +300,7 @@
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_EXTREME
 
 /*	.................   Cheese bun   ................... */
@@ -322,7 +325,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("crispy bread and cream cheese" = 1)
 	foodtype = GRAIN | DAIRY
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/rogue/frybread
@@ -334,7 +337,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	tastes = list("crispy bread with a soft inside" = 1)
 	w_class = WEIGHT_CLASS_NORMAL
-	bitesize = 3
+	bitesize = 4
 	eat_effect = /datum/status_effect/buff/foodbuff
 
 /*	.................   Raisin bread   ................... */
@@ -377,9 +380,10 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbread
 	name = "raisin loaf"
-	desc = "Bread enhanced with sweet raisins for a perfect addition to any meal."
+	desc = "A popular dessert amongst the peasantry, this loaf of sweetbread's speckled with fruity surprises. In recent years, it has more palettes amongst the papacy: t'was Rockhill's abbey that christened a variant, glazed with a sugary veneer."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "raisinbread6"
+	bitesize = 8
 	slices_num = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE)
@@ -400,15 +404,15 @@
 /obj/item/reagent_containers/food/snacks/rogue/raisinbread/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 5
-		if(bitecount == 2)
-			slices_num = 4
 		if(bitecount == 3)
-			slices_num = 3
+			slices_num = 5
 		if(bitecount == 4)
-			slices_num = 2
+			slices_num = 4
 		if(bitecount == 5)
+			slices_num = 3
+		if(bitecount == 6)
+			slices_num = 2
+		if(bitecount == 7)
 			changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
@@ -421,7 +425,7 @@
 	faretype = FARE_NEUTRAL
 	cooked_type = null
 	tastes = list("spelt" = 1,"dried fruit" = 1)
-	bitesize = 2
+	bitesize = 3
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
 	dropshrink = 0.8

@@ -35,6 +35,7 @@
 	subclass_stashed_items = list(
 		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
+	extra_context = "This subclass can choose between two specialities: the slurbow or crossbow. Taking the latter will provide Master skills for their ranged weapon and a minor increase to all physical stats, but imparts a heavy Speed malus and removes the 'Dodge Expert' trait."
 
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_CHURCH
@@ -68,15 +69,18 @@
 				head = /obj/item/clothing/head/roguetown/headband/bloodied
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
 				H.change_stat(STATKEY_CON, 1)
 				H.change_stat(STATKEY_STR, 2)
-				H.change_stat(STATKEY_SPD, -2) //Applies a base statblock of 11/11/11 to CON, STR, and SPD - compared to the standard 10/9/13. Less coverage but better protection, -30% dodge chance.
-		var/quivers = list("Bolts", "Blessed Water Bolts")
+				H.change_stat(STATKEY_PER, 1) //Applies a base statblock of 11/11/11/13 to CON, STR, SPD and PER - compared to the standard 10/9/13/12 + DODGE EXPERT. Physically adept and capable of higher ranged damage..
+				H.change_stat(STATKEY_SPD, -2) //..but with a massive loss to mobility and damage evasion, alongside the naturally low defense of their sidearms.
+		var/quivers = list("Bolts - Steel-Tipped", "Sunderbolts - Silver-Tipped, Halved Damage")
 		var/boltchoice = input(H,"Choose your MUNITIONS.", "TAKE UP PSYDON'S MISSILES.") as anything in quivers
 		switch(boltchoice)
-			if("Bolts")
+			if("Bolts - Steel-Tipped")
 				beltl = /obj/item/quiver/bolts
-			if("Blessed Water Bolts")
+			if("Sunderbolts - Silver-Tipped, Halved Damage")
 				beltl = /obj/item/quiver/holybolts
 
 	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
