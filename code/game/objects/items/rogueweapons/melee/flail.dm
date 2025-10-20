@@ -1,6 +1,6 @@
 /obj/item/rogueweapon/flail
 	force = 25
-	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smash)
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/mace/smash/flail)
 	name = "flail"
 	desc = "This is a swift, iron flail. Strikes hard and far."
 	icon_state = "iflail"
@@ -50,14 +50,10 @@
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
-/datum/intent/flail/strike/smash
-	name = "smash"
-	chargetime = 5
-	chargedrain = 1
-	no_early_release = TRUE
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	recovery = 10
-	damfactor = 1.35 // Multiplies into 1.9x total int damage. Was 1.9x before.
+/datum/intent/mace/smash/flail
+	name = "flail smash"
+	chargetime = 0.8 SECONDS
+	damfactor = 1.3 // Flail smash has higher damage due to a longer charge.
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"
@@ -65,34 +61,28 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
-/datum/intent/flail/strike/smash/matthiosflail
+/datum/intent/mace/smash/flail/matthiosflail
 	reach = 2
 
-/datum/intent/flail/strike/smash/militia
-	damfactor = 1.2
+/datum/intent/mace/smash/flail/militia
+	damfactor = 0.9
 
-/datum/intent/flail/strike/smash/golgotha
+/datum/intent/mace/smash/flail/golgotha
 	hitsound = list('sound/items/beartrap2.ogg')
 
-/datum/intent/flail/strike/smashrange
+/datum/intent/mace/smash/flailrange
 	name = "ranged smash"
-	chargetime = 1 SECONDS
+	chargetime = 1.2 SECONDS
 	chargedrain = 1
-	no_early_release = TRUE
 	recovery = 30
 	damfactor = 1.5
-	penfactor = BLUNT_DEFAULT_PENFACTOR
 	reach = 2
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
-	icon_state = "insmash"
-	blade_class = BCLASS_SMASH
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
-	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /obj/item/rogueweapon/flail/getonmobprop(tag)
 	. = ..()
@@ -102,7 +92,6 @@
 				return list("shrink" = 0.5,"sx" = -10,"sy" = -3,"nx" = 11,"ny" = -2,"wx" = -7,"wy" = -3,"ex" = 3,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 22,"sturn" = -23,"wturn" = -23,"eturn" = 29,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
-
 
 /obj/item/rogueweapon/flail/aflail
 	name = "decrepit flail"
@@ -131,7 +120,7 @@
 	force = 35
 	icon_state = "silverflail"
 	name = "silver morningstar"
-	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/mace/smash/flailrange)
 	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
 	smeltresult = /obj/item/ingot/silver
 	minstr = 12
@@ -202,7 +191,7 @@
 	name = "Consecratia"
 	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
 	icon_state = "psymorningstar"
-	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/mace/smash/flailrange)
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()
 	AddComponent(\
@@ -219,7 +208,7 @@
 	force = 10
 	force_wielded = 35
 	possible_item_intents = list(/datum/intent/flail/strike)
-	gripped_intents = list(/datum/intent/flail/strikerange, /datum/intent/flail/strike/smashrange)
+	gripped_intents = list(/datum/intent/flail/strikerange, /datum/intent/mace/smash/flailrange)
 	name = "militia thresher"
 	desc = "Just like how a sling's bullet can fell a giant, so too does this great flail follow the principle of converting 'momentum' into 'plate-rupturing force'."
 	icon_state = "peasantwarflail"
@@ -258,7 +247,7 @@
 	sellprice = 250
 	smeltresult = /obj/item/ingot/steel
 	possible_item_intents = list(/datum/intent/flail/strike/matthiosflail)
-	gripped_intents = list(/datum/intent/flail/strike/matthiosflail, /datum/intent/flail/strike/smash/matthiosflail)
+	gripped_intents = list(/datum/intent/flail/strike/matthiosflail, /datum/intent/mace/smash/flail/matthiosflail)
 	associated_skill = /datum/skill/combat/whipsflails
 	slot_flags = ITEM_SLOT_BACK
 	anvilrepair = /datum/skill/craft/weaponsmithing
@@ -272,7 +261,7 @@
 	name = "militia flail"
 	desc = "In another lyfe, this humble thresher was used to pound stalks into grain. Under a militiaman's grasp, however, it has found a new purpose: to humble overconfident bandits with crippling blows."
 	icon_state = "milflail"
-	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smash/militia)
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/mace/smash/flail/militia)
 	force = 27
 	wdefense = 3
 	wbalance = WBALANCE_HEAVY

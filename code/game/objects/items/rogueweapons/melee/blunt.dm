@@ -32,6 +32,8 @@
 	var/chungus_khan_str = user.STASTR 
 	if(H.has_status_effect(/datum/status_effect/debuff/yeetcd))
 		return // Recently knocked back, cannot be knocked back again yet
+	if(H.resting)
+		return // Cannot knockback prone targets
 	if(chungus_khan_str < 10)
 		return // Too weak to have any effect
 	var/scaling = CLAMP((chungus_khan_str - 10), 1, 4)
