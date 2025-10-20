@@ -248,6 +248,7 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	if(!owner)
 		return FALSE
 	on_mob_loss(owner)
+	set_bleed_rate(0)
 	LAZYREMOVE(owner.simple_wounds, src)
 	owner = null
 	return TRUE
