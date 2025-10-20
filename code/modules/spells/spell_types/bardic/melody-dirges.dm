@@ -41,7 +41,7 @@
 		pulse = 0
 		O.energy_add(-25)
 		for (var/mob/living/carbon/human/H in hearers(10, owner))
-			if(O.in_audience(H))
+			if(!O.in_audience(H))
 				H.apply_status_effect(debuff_to_apply)
 
 
