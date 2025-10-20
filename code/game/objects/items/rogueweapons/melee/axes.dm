@@ -46,8 +46,9 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 5
-	damfactor = 1.1
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR // Not a real blunt weapon, so less damage.
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 //axe objs ฅ^•ﻌ•^ฅ
 

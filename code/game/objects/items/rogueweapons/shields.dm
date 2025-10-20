@@ -79,6 +79,7 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/shield/bash/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')

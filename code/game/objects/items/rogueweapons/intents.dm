@@ -646,6 +646,7 @@
 	item_d_type = "blunt"
 	intent_effect = /datum/status_effect/debuff/dazed
 	target_parts = list(BODY_ZONE_HEAD)
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /*/datum/intent/effect/daze/shield
 	intent_effect = /datum/status_effect/debuff/dazed/shield

@@ -7,10 +7,11 @@
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.1
+	damfactor = 1
 	swingdelay = 0
 	icon_state = "instrike"
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/mace/smash
 	name = "smash"
@@ -18,11 +19,12 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.7
+	damfactor = 1.4 // Multiplies into 1.96x against int so I think this is fine.
 	swingdelay = 10
 	clickcd = 14
 	icon_state = "insmash"
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/mace/smash/flataxe
 	damfactor = 1.2

@@ -23,8 +23,9 @@
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = 10
-	damfactor = 0.8
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/spear/bash/ranged
 	reach = 2
@@ -94,8 +95,9 @@
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.3
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 
 /datum/intent/rend

@@ -30,6 +30,7 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "instrike"
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/flail/strike/matthiosflail
 	reach = 2
@@ -41,10 +42,13 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
 	recovery = 15
+	damfactor = 1.2 // Extra damage. Flail babe flail.
 	penfactor = BLUNT_DEFAULT_PENFACTOR
+	clickcd = CLICK_CD_CHARGED // Higher delay for a powerful ranged attack
 	reach = 2
 	icon_state = "instrike"
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/flail/strike/smash
 	name = "smash"
@@ -53,7 +57,7 @@
 	no_early_release = TRUE
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	recovery = 10
-	damfactor = 1.9
+	damfactor = 1.35 // Multiplies into 1.9x total int damage. Was 1.9x before.
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"
@@ -61,12 +65,13 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/flail/strike/smash/matthiosflail
 	reach = 2
 
 /datum/intent/flail/strike/smash/militia
-	damfactor = 1.4
+	damfactor = 1.2
 
 /datum/intent/flail/strike/smash/golgotha
 	hitsound = list('sound/items/beartrap2.ogg')
@@ -74,7 +79,7 @@
 /datum/intent/flail/strike/smashrange
 	name = "ranged smash"
 	chargetime = 1 SECONDS
-	chargedrain = 2
+	chargedrain = 1
 	no_early_release = TRUE
 	recovery = 30
 	damfactor = 1.5
@@ -87,6 +92,7 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /obj/item/rogueweapon/flail/getonmobprop(tag)
 	. = ..()
