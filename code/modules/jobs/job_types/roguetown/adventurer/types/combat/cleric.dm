@@ -50,6 +50,7 @@
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	backl = /obj/item/storage/backpack/rogue/satchel
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	backpack_contents = list(
@@ -68,7 +69,6 @@
 			if("Discipline - Unarmed")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 4, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 4, TRUE)
-				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			if("Katar")
 				beltl = /obj/item/rogueweapon/katar/bronze
