@@ -88,6 +88,12 @@
 			blood_volume = BLOOD_VOLUME_NORMAL
 			return
 
+	// if we're dead and have no blood left, then there's nothing to do here: we can't regen it ourselves (in this proc), so...
+	// we'll continue to bleed out for as long as we have blood, but that's it
+	if (!blood_volume && stat == DEAD)
+		bleed_rate = 0 // just to be sure for anything else that cares about it, since we're ostensibly out of blood now
+		return
+
 	//Blood regeneration if there is some space
 	if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume)
 		var/nutrition_ratio = 1
