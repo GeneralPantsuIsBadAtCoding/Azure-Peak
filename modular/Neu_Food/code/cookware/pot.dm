@@ -15,7 +15,7 @@
 	reagent_flags = OPENCONTAINER
 	throwforce = 10
 	dropshrink = 1 // Override for bucket
-	volume = 198
+	volume = 240
 
 /obj/item/reagent_containers/glass/bucket/pot/update_icon()
 	cut_overlays()
@@ -45,14 +45,14 @@
 	name = "decrepit pot"
 	desc = "A kettle of wrought bronze. One could only imagine what the stews of millenia prior must've tasted like; do you suppose they knew of seasonings-and-spices, too?"
 	icon_state = "apote"
-	volume = 99
+	volume = 120
 	color = "#bb9696"
 	sellprice = 25
 
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"
 	desc = "A pot made out of stone. It can hold less than a metal pot."
-	volume = 99 // 99 is the max volume for a stone pot
+	volume = 120 // 99 is the max volume for a stone pot
 
 /obj/item/reagent_containers/glass/bucket/pot/kettle
 	name = "kettle"
@@ -61,7 +61,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	grid_width = 32
 	grid_height = 64
-	volume = 99
+	volume = 120
 
 /obj/item/reagent_containers/glass/bucket/pot/copper
 	name = "copper pot"
@@ -73,7 +73,7 @@
 	desc = "A teapot made out of ceramic. Used to serve tea, it can hold a lot of liquid. It can still spill, however."
 	dropshrink = 0.7
 	icon_state = "teapot"
-	volume = 99
+	volume = 120
 	sellprice = 20
 
 /obj/item/reagent_containers/glass/bucket/pot/teapot/examine()

@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "You are the most experienced of the Crown's Soldiery, leading the men-at-arms in maintaining order and attending to threats and crimes below the court's attention. \
 				See to those under your command and fill in the gaps knights leave in their wake. Obey the orders of your Marshal and the Crown."
@@ -22,6 +22,10 @@
 	min_pq = 6
 	max_pq = null
 	cmode_music = 'sound/music/combat_ManAtArms.ogg'
+	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR)
+	job_subclasses = list(
+		/datum/advclass/sergeant/sergeant
+	)
 	same_job_respawn_delay = 30 MINUTES
 
 /datum/outfit/job/roguetown/sergeant
@@ -32,9 +36,6 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(ishuman(L))
-			H.advsetup = 1
-			H.invisibility = INVISIBILITY_MAXIMUM
-			H.become_blind("advsetup")
 			if(istype(H.cloak, /obj/item/clothing/cloak/stabard/surcoat/guard))
 				var/obj/item/clothing/S = H.cloak
 				var/index = findtext(H.real_name, " ")
@@ -50,10 +51,10 @@
 	cloak = /obj/item/clothing/cloak/stabard/surcoat/guard
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
-	belt = /obj/item/storage/belt/rogue/leather/black
+	belt = /obj/item/storage/belt/rogue/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
-	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backr = /obj/item/storage/backpack/rogue/satchel
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	id = /obj/item/scomstone/garrison
@@ -65,34 +66,35 @@
 	outfit = /datum/outfit/job/roguetown/sergeant/sergeant
 
 	category_tags = list(CTAG_SERGEANT)
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_INT = 1,
+		STATKEY_CON = 1,
+		STATKEY_PER = 1, //Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
+		STATKEY_WIL = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,	
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_MASTER,	// We are basically identical to a regular MAA, except having better athletics to help us manage our order usage better
+		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,	//Decent tracking akin to Skirmisher.
+	)
 
 /datum/outfit/job/roguetown/sergeant/sergeant/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)	
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)	// We are basically identical to a regular MAA, except having better athletics to help us manage our order usage better
-	H.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)	//Decent tracking akin to Skirmisher.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_INT, 1)
-	H.change_stat(STATKEY_CON, 1)
-	H.change_stat(STATKEY_PER, 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat(STATKEY_WIL, 1)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
@@ -109,34 +111,35 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
 	H.adjust_blindness(-3)
-	var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
-			backl = /obj/item/rogueweapon/scabbard/sword
-			l_hand = /obj/item/rogueweapon/sword/long/rhomphaia
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
-			beltr = /obj/item/rogueweapon/flail/sflail
-			backl = /obj/item/rogueweapon/shield/tower
-		if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
-			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/rogueweapon/scabbard/gwstrap
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
-			beltr = /obj/item/quiver/bolts
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			r_hand = /obj/item/rogueweapon/sword/sabre
-			l_hand = /obj/item/rogueweapon/scabbard/sword
+	if(H.mind)
+		var/weapons = list("Rhomphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Rhomphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
+				backl = /obj/item/rogueweapon/scabbard/sword
+				l_hand = /obj/item/rogueweapon/sword/long/rhomphaia
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
+				beltr = /obj/item/rogueweapon/flail/sflail
+				backl = /obj/item/rogueweapon/shield/tower
+			if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
+				r_hand = /obj/item/rogueweapon/halberd
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/mace/cudgel
+			if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
+				beltr = /obj/item/quiver/bolts
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				r_hand = /obj/item/rogueweapon/sword/sabre
+				l_hand = /obj/item/rogueweapon/scabbard/sword
 
-	var/armors = list(
-		"Lightweight Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
-		"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
-		"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
-	)
-	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
-	armor = armors[armorchoice]
+		var/armors = list(
+			"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/retinue,
+			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
+		)
+		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
+		armor = armors[armorchoice]
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""
@@ -165,15 +168,18 @@
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
 		if(user.job == "Sergeant")
-			if(!target.job == "Man at Arms")
+			if(!(target.job in list("Man at Arms", "Watchman")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return
 		if(user.job == "Knight Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
 			return
 		user.say("[msg]")
 		target.apply_status_effect(/datum/status_effect/buff/order/movemovemove)
@@ -228,15 +234,18 @@
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
 		if(user.job == "Sergeant")
-			if(!target.job == "Man at Arms")
+			if(!(target.job in list("Man at Arms", "Watchman")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return
 		if(user.job == "Knight Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
 			return
 		user.say("[msg]")
 		target.apply_status_effect(/datum/status_effect/buff/order/takeaim)
@@ -260,15 +269,18 @@
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
 		if(user.job == "Sergeant")
-			if(!target.job == "Man at Arms")
+			if(!(target.job in list("Man at Arms", "Watchman")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return
 		if(user.job == "Knight Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
 			return
 		user.say("[msg]")
 		target.apply_status_effect(/datum/status_effect/buff/order/onfeet)
@@ -319,15 +331,18 @@
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
 		if(user.job == "Sergeant")
-			if(!target.job == "Man at Arms")
+			if(!(target.job in list("Man at Arms", "Watchman")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return
 		if(user.job == "Knight Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				revert_cast()
 				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
 			return
 		user.say("[msg]")
 		target.apply_status_effect(/datum/status_effect/buff/order/hold)

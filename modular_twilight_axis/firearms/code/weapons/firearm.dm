@@ -135,7 +135,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	randomspread = 1
 	spread = 0
-
+	wdefense = 3
 	can_parry = TRUE
 	minstr = 6
 	walking_stick = TRUE
@@ -160,6 +160,7 @@
 	var/gunpowder
 	var/powder_per_reload = 1
 	var/locktype = "Wheellock"
+	var/match_delay = 10
 	var/obj/item/twilight_ramrod/myrod = null
 
 	//Advanced icon stuff
@@ -488,15 +489,19 @@
 	var/firearm_skill = (user?.mind ? user.get_skill_level(/datum/skill/combat/twilight_firearms) : 1)
 	var/turf/knockback = get_ranged_target_turf(user, turn(user.dir, 180), rand(1,2))
 	spread = (spread_num - firearm_skill)
-	if(firearm_skill < 1)
-		accident_chance =80
-
-	if(firearm_skill < 2)
-		accident_chance =50
-	if(firearm_skill >= 2 && firearm_skill <= 5)
-		accident_chance =10
-	if(firearm_skill >= 5)
-		accident_chance =0
+	switch(firearm_skill)
+		if(0)
+			accident_chance = 80
+		if(1)
+			accident_chance = 50
+		if(2)
+			accident_chance = 30
+		if(3)
+			accident_chance = 10
+		if(4)
+			accident_chance = 10
+		else
+			accident_chance = 0
 	if(user.client)
 		if(user.client.chargedprog >= 100)
 			spread = 0
@@ -508,7 +513,7 @@
 		var/obj/projectile/bullet/BB = CB.BB
 		BB.damage *= damfactor * (user.STAPER > 10 ? user.STAPER / 10 : 1)
 		BB.critfactor *= critfactor
-		BB.npc_simple_damage_mult *= npcdamfactor
+		BB.gunpowder_npc_critfactor *= npcdamfactor
 		BB.gunpowder = gunpowder
 	reloaded = FALSE
 	if(advanced_icon)
@@ -573,18 +578,18 @@
 			user.apply_damage(rand(5,15), BURN, pick(BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND))
 			user.visible_message("<span class='danger'>[user] accidentally burnt themselves while firing the [src].</span>")
 			user.emote("painscream")
-			if(prob(60))
+			if(prob(60) && firearm_skill < 4)
 				user.dropItemToGround(src)
 				user.Knockdown(rand(15,30))
 				user.Immobilize(30)
 		if(prob(accident_chance))
 			user.visible_message("<span class='danger'>[user] is knocked back by the recoil!</span>")
 			user.throw_at(knockback, rand(1,2), 7)
-			if(prob(accident_chance))
+			if(prob(accident_chance) && firearm_skill < 4)
 				user.dropItemToGround(src)
 				user.Knockdown(rand(15,30))
 				user.Immobilize(30)
-			if(firearm_skill <= 2 && prob(50))
+			if(firearm_skill < 3 && prob(50))
 				var/def_zone = "[(user.active_hand_index == 2) ? "r" : "l" ]_arm"
 				var/obj/item/bodypart/BP = user.get_bodypart(def_zone)
 				BP.add_wound(/datum/wound/dislocation)
@@ -592,7 +597,7 @@
 		if(advanced_icon_f)
 			icon = advanced_icon_f
 		playsound(src, "modular_twilight_axis/firearms/sound/fuse.ogg", 100, FALSE)
-		spawn(rand(10,20))
+		spawn(match_delay)
 			..()
 			if(advanced_icon_s)
 				icon = advanced_icon_s
@@ -695,12 +700,13 @@
 	desc = "Пороховое оружие второго поколения, стреляющее бронебойными свинцовыми пулями. Оснащена штыком для использования в ближнем бою."
 	icon = 'modular_twilight_axis/firearms/icons/arquebusbaoynet.dmi'
 	gripped_intents = list(/datum/intent/shoot/twilight_firearm, /datum/intent/arc/twilight_firearm, INTENT_GENERIC, /datum/intent/spear/thrust/militia)
+	wdefense = 5
 	associated_skill = /datum/skill/combat/polearms
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/bayonet/pre_attack(atom/A, mob/living/user, params)
 	if(!user.used_intent.tranged)
-		if(isliving(A))
-			var/firearm_skill = (user?.mind ? user.get_skill_level(/datum/skill/combat/twilight_firearms) : 1)
+		if(!istype(A, /obj/structure/fluff/statue/tdummy))
+			var/firearm_skill = (user?.mind ? user.get_skill_level(/datum/skill/combat/twilight_firearms) : 0)
 			var/polearms_skill = (user?.mind ? user.get_skill_level(/datum/skill/combat/polearms) : 1)
 			if(firearm_skill > polearms_skill)
 				src.associated_skill = /datum/skill/combat/twilight_firearms
@@ -733,6 +739,7 @@
 	cartridge_wording = "bullet"
 	damfactor = 0.7
 	critfactor = 0.7
+	wdefense = 0
 	advanced_icon = 'modular_twilight_axis/firearms/icons/pistol/pistol.dmi'
 	advanced_icon_r = 'modular_twilight_axis/firearms/icons/pistol/pistol_r.dmi'
 	advanced_icon_norod	= 'modular_twilight_axis/firearms/icons/pistol/pistol_norod.dmi'
@@ -827,17 +834,7 @@
 	damfactor = 0.7
 	critfactor = 0.3
 	npcdamfactor = 2.5
-
-/obj/item/gun/ballistic/twilight_firearm/barker/getonmobprop(tag)
-	. = ..()
-	if(tag)
-		switch(tag)
-			if("gen")
-				return list("shrink" = 0.5,"sx" = -8,"sy" = -6,"nx" = 11,"ny" = -6,"wx" = -6,"wy" = -5,"ex" = 5,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 30,"sturn" = -30,"wturn" = -30,"eturn" = 30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
-			if("wielded")
-				return list("shrink" = 0.6,"sx" = 5,"sy" = -2,"nx" = -5,"ny" = -1,"wx" = -8,"wy" = -2,"ex" = 8,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 1,"nturn" = -15,"sturn" = 15,"wturn" = -15,"eturn" = 15,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-			if("onback")
-				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+	match_delay = 4
 
 /obj/item/gun/ballistic/twilight_firearm/handgonne/purgatory
 	name = "Purgatory"
@@ -856,7 +853,20 @@
 	is_silver = TRUE
 	force = 15
 	force_wielded = 20
+	wdefense = 5
+	match_delay = 8
 
 /obj/item/ammo_box/magazine/internal/twilight_firearm/handgonne/purgatory
 	name = "purgatory internal magazine"
 	caliber = "otavian grapeshot"
+
+/obj/item/gun/ballistic/twilight_firearm/handgonne/purgatory/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 2,\
+	)

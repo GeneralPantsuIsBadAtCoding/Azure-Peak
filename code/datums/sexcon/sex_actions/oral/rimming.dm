@@ -1,5 +1,6 @@
 /datum/sex_action/rimming
 	name = "Римминг"
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/rimming/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

@@ -237,7 +237,7 @@
 		/turf/closed/mineral/rogue/cinnabar = 15,
 		/turf/closed/mineral/rogue/copper = 15,
 		/turf/closed/mineral/rogue/tin = 10,
-		/turf/closed/mineral/rogue/coal = 14, 
+		/turf/closed/mineral/rogue/coal = 14,
 		/turf/closed/mineral/rogue/gem = 1)
 
 /turf/closed/mineral/random/rogue/high
@@ -252,7 +252,7 @@
 		/turf/closed/mineral/rogue/iron = 33,
 		/turf/closed/mineral/rogue/copper = 20,
 		/turf/closed/mineral/rogue/tin = 12,
-		/turf/closed/mineral/rogue/coal = 19, 
+		/turf/closed/mineral/rogue/coal = 19,
 		/turf/closed/mineral/rogue/gem = 3)
 
 
@@ -327,7 +327,7 @@
 
 /turf/closed/mineral/rogue/elementalmote //chance for elemental motes to drop, low, like with cinnabar
 	icon_state = "mingold"
-	mineralType = /obj/item/magic/elementalmote
+	mineralType = /obj/item/magic/elemental/mote
 	rockType = /obj/item/natural/rock/elementalmote
 	spreadChance = 23
 	spread = 5

@@ -56,7 +56,7 @@
 	var/list/finished_ckeys = list()
 	var/dice_roll = null
 	var/alert = null
-	sellprice = 10
+	sellprice = 15
 
 	grid_width = 32
 	grid_height = 32
@@ -141,3 +141,112 @@
 			finished_ckeys += ckey
 			playsound(src.loc, 'sound/foley/doors/lockrattle.ogg', 75, TRUE)
 
+
+// food cans
+
+/obj/item/reagent_containers/food/snacks/canned
+	name = "corrugated tinpot"
+	desc = "Corrugated tinplate concealing tinfood."
+	icon = 'modular_azurepeak/icons/obj/items/tincans.dmi'
+	icon_state = "acan_s"
+	sellprice = 70
+	var/can_sealed = 1
+	var/menu_item = 1
+	tastes = null
+	bitesize = 1
+	list_reagents = null
+	bitesize = 5
+	rotprocess = null
+	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
+
+/obj/item/reagent_containers/food/snacks/canned/Initialize()
+
+
+	menu_item = pick(1,2,3,4,5) //get the meal. rand does not work for this and i have no idea why.
+	switch(menu_item)
+		if(1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS, /datum/reagent/drug/space_drugs = 2, /datum/reagent/berrypoison = 1)
+			tastes = list("salty bitter syrup" = 2, "bad mushrooms" = 1)
+		if(2)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE, /datum/reagent/medicine/stronghealth = 1, /datum/reagent/water/salty = 3)
+			tastes = list("overpoweringly salty rous meat" = 2)
+		if(3)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/water/salty = 3)
+			tastes = list("cabbit meat" = 1, "thin stew" = 1)
+		if(4)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE, /datum/reagent/medicine/stronghealth = 3, /datum/reagent/medicine/strongmana = 3, /datum/reagent/water/salty = 3)
+			tastes = list("salt" = 2, "saiga meat" = 1, "vegetables" = 1)
+		if(5)
+			list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD, /datum/reagent/medicine/stronghealth = 6, /datum/reagent/medicine/strongmana = 6)
+			tastes = list("hearty meat stew" = 1, "fresh vegetables" = 1)
+	. = ..()
+
+
+/obj/item/reagent_containers/food/snacks/canned/proc/name_desc() //rename and new description upon opening
+	name = "saltpot"
+	desc += " It has been opened, revealing a salty-smelling mush on the inside. Somehow still seems like it'll last forever."
+
+
+/obj/item/reagent_containers/food/snacks/canned/attackby(obj/A, mob/living/user, loc, params)
+
+	if(src.can_sealed == 0)
+		to_chat(user, span_warning("It's already open!"))
+
+	if(src.can_sealed == 1)
+
+//		if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife)) //knife
+		if(istype(A, /obj/item/rogueweapon/huntingknife))
+			to_chat(user, span_notice("I dig in the blade and start opening the top of the container..."))
+			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
+			if(do_after(user,50, target = src))
+				update_icon()
+				src.name_desc()
+				src.can_sealed = 0
+				update_icon()
+				to_chat(user, span_notice("The scent of salty food hits my nostrils as I tear the flimsy top off of the saltpot."))
+				return
+
+//		if(A.type in subtypesof(/obj/item/natural/stone)) //in case someone wants to bash it open with a BOULDER i guess
+		if(istype(A, /obj/item/natural/stone))
+			to_chat(user, span_notice("I start messily bashing the can open..."))
+			playsound(src.loc, 'sound/items/canned_food_open.ogg', 75, TRUE)
+			if(do_after(user,70, target = src))
+				src.name_desc()
+				src.can_sealed = 0
+				update_icon()
+				to_chat(user, span_notice("The scent of salty food hits my nostrils as I bash the saltpot open."))
+				return
+
+		else
+			to_chat(user, span_warning("I can't open \the [src] with this..."))
+			return FALSE
+
+
+/obj/item/reagent_containers/food/snacks/canned/update_icon()
+
+	if(can_sealed == 0)
+		icon_state = "acan"
+
+	else
+		icon_state = "acan_s"
+
+
+
+
+/obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/living/user, def_zone)
+
+	if(src.can_sealed == 1)
+		return
+
+	if(bitecount == 4)
+		to_chat(user, span_warning("Empty."))
+		sellprice = 10 //u ate da FOOD
+		return
+	..()
+
+/obj/item/reagent_containers/food/snacks/canned/On_Consume()
+
+	if(bitecount == 4) //if it empty, throw up da empty sprite
+		icon_state = "acan_e"
+		name = "empty saltpot"
+		desc = "Corrugated tinplate and disgusting-smelling slime."

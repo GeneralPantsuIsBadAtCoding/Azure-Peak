@@ -40,7 +40,7 @@
 		"Princess",
 		"Hand",
 		"Steward",
-		"Court Physician",
+		"Head Physician",
 		"Town Crier",
 		"Knight Captain",
 		"Archivist",

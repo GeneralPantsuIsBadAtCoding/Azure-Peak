@@ -1,5 +1,7 @@
 /datum/sex_action/toy_other_oral
 	name = "Трахнуть игрушкой (орал)"
+	target_sex_part = SEX_PART_JAWS
+	category = SEX_CATEGORY_PENETRATE
 
 /datum/sex_action/toy_other_oral/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

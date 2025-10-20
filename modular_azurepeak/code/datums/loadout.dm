@@ -33,6 +33,11 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Tarot Deck"
 	path = /obj/item/toy/cards/deck/tarot
 
+/datum/loadout_item/custom_book
+	name = "Custom Book"
+	path = /obj/item/book/rogue/loadoutbook
+
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
@@ -42,7 +47,11 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	name = "Tricorn Hat"
 	path = /obj/item/clothing/head/roguetown/helmet/tricorn
 
-/datum/loadout_item/archercapc
+/datum/loadout_item/nurseveil
+	name = "Nurse Veil"
+	path = /obj/item/clothing/head/roguetown/veiled
+
+/datum/loadout_item/archercap
 	name = "Archer cap"
 	path = /obj/item/clothing/head/roguetown/archercap
 
@@ -401,19 +410,35 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 
 /datum/loadout_item/collar
 	name = "Collar"
-	path = /obj/item/clothing/neck/roguetown/collar
+	path = /obj/item/clothing/neck/roguetown/collar/leather
 
 /datum/loadout_item/forlon_collar
 	name = "Light Forlorn Collar"
 	path = /obj/item/clothing/neck/roguetown/collar/forlorn
 
+/datum/loadout_item/catbell_collar
+	name = "Catbell Collar"
+	path = /obj/item/clothing/neck/roguetown/collar/bell/catbell
+
 /datum/loadout_item/bell_collar
-	name = "Bell Collar"
-	path = /obj/item/clothing/neck/roguetown/collar/bell_collar
+	name = "Cowbell Collar"
+	path = /obj/item/clothing/neck/roguetown/collar/bell/cowbell
 
 /datum/loadout_item/cursed_collar
 	name = "Cursed Collar"
 	path = /obj/item/clothing/neck/roguetown/gorget/cursed_collar
+
+/datum/loadout_item/rope_leash
+	name = "Rope Leash"
+	path = /obj/item/leash
+
+/datum/loadout_item/leather_leash
+	name = "Leather Leash"
+	path = /obj/item/leash/leather
+
+/datum/loadout_item/chain_leash
+	name = "Chain Leash"
+	path = /obj/item/leash/chain
 
 /datum/loadout_item/cloth_blindfold
 	name = "Cloth Blindfold"
@@ -473,7 +498,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 
 /datum/loadout_item/psicross/zizo
 	name = "Decrepit Zcross"
-	path = /obj/item/clothing/neck/roguetown/zcross/aalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
@@ -547,6 +572,36 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	path = /obj/item/enchantingkit/zydras
 	donatitem = TRUE
 
+/datum/loadout_item/donator_eiren
+	name = "Donator Kit - Regret - Required: Zweihander"
+	path = /obj/item/enchantingkit/eiren
+	donatitem = TRUE
+
+/datum/loadout_item/donator_waff
+	name = "Donator Kit - Weeper Lathe - Required: Any Greatsword"
+	path = /obj/item/enchantingkit/waff
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie
+	name = "Donator Kit - Kumie - Required: Heavy Leather Boots"
+	path = /obj/item/enchantingkit/kumie_boots
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie2
+	name = "Donator Kit - Kumie Gloves - Required: Fingerless Leather Gloves"
+	path = /obj/item/enchantingkit/kumie_gloves
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie3
+	name = "Donator Kit - Kumie Shirt - Required: Gambeson(No Small Races)"
+	path = /obj/item/enchantingkit/kumie_shirt
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie4
+	name = "Donator Kit - Kumie Coat - Required: Hardened Leather Coat(No Small Races)"
+	path = /obj/item/enchantingkit/kumie_coat
+	donatitem = TRUE
+
 // Разное
 /datum/loadout_item/donat
 	name = "Музыкальная коробка"
@@ -592,6 +647,21 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 /datum/loadout_item/donat/corset
 	name = "Корсет"
 	path = /obj/item/clothing/suit/roguetown/armor/corset
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_suit
+	name = "Эльфийский костюм"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_coat
+	name = "Эльфийское пальто"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven/coat
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_coat_alt
+	name = "Эльфийское меховое пальто"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven/coat/alt
 	donatitem = TRUE
 
 // Табарды и плащи
@@ -674,6 +744,26 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 /datum/loadout_item/donat/tabard/crusader/psydon
 	name = "Табард Псайдона"
 	path = /obj/item/clothing/cloak/psydontabard
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elvencloak
+	name = "Эльфийский плащ"
+	path = /obj/item/clothing/cloak/twilight_elven
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elvencloak_short
+	name = "Короткий эльфийский плащ"
+	path = /obj/item/clothing/cloak/twilight_elven/short
+	donatitem = TRUE
+
+/datum/loadout_item/donat/scarf
+	name = "Шарф"
+	path = /obj/item/clothing/cloak/twilight_scarf
+	donatitem = TRUE
+
+/datum/loadout_item/donat/loveamulet
+	name = "Амулет Слез Любви"
+	path = /obj/item/clothing/neck/roguetown/loveamulet
 	donatitem = TRUE
 
 // Маски

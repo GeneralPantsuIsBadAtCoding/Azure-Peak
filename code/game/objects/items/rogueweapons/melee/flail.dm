@@ -4,7 +4,7 @@
 	name = "flail"
 	desc = "This is a swift, iron flail. Strikes hard and far."
 	icon_state = "iflail"
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/blunt32.dmi'
 	sharpness = IS_BLUNT
 	//dropshrink = 0.75
 	wlength = WLENGTH_NORMAL
@@ -54,7 +54,7 @@
 	no_early_release = TRUE
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	recovery = 10
-	damfactor = 1.6
+	damfactor = 1.9
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"
@@ -67,7 +67,7 @@
 	reach = 2
 
 /datum/intent/flail/strike/smash/militia
-	damfactor = 1.35
+	damfactor = 1.4
 
 /datum/intent/flail/strike/smash/golgotha
 	hitsound = list('sound/items/beartrap2.ogg')
@@ -122,28 +122,93 @@
 	smeltresult = /obj/item/ingot/steel
 	minstr = 5
 
+/obj/item/rogueweapon/flail/sflail/silver
+	force = 35
+	icon_state = "silverflail"
+	name = "silver morningstar"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
+	desc = "A heavy, silver flail. It follows the Grenzelhoftian design of a 'morning star', utilizing a longer chain to extend its reach. While stronger than a steel flail, it requires far more strength to effectively swing."
+	smeltresult = /obj/item/ingot/silver
+	minstr = 12
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/silver/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+
 /obj/item/rogueweapon/flail/sflail/necraflail
 	name = "swift journey"
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
-	force = 33 // 10% force increase, yippee
+	force = 35
+	is_silver = TRUE
+
+/obj/item/rogueweapon/flail/sflail/necraflail/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
 
 /obj/item/rogueweapon/flail/sflail/psyflail
-	name = "psydonian flail"
+	name = "psydonic flail"
 	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
+	force = 35
+	minstr = 10
+	wdefense = 0
+	is_silver = TRUE
+	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
-	. = ..()
-	add_psyblessed_component(is_preblessed = FALSE, bonus_force = 3, bonus_sharpness = 0, bonus_integrity = 50, bonus_wdef = 1, make_silver = TRUE)
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 50,\
+		added_def = 0,\
+	)
+	
+/obj/item/rogueweapon/flail/sflail/psyflail/old
+	name = "enduring flail"
+	desc = "An ornate flail, its silver tarnished by neglect. Bring down the COMET on the unholy."
+	icon_state = "psyflail"
+	force = 30
+	minstr = 5
+	wdefense = 0
+	is_silver = FALSE
+	smeltresult = /obj/item/ingot/steel
+	color = COLOR_FLOORTILE_GRAY
 
 /obj/item/rogueweapon/flail/sflail/psyflail/relic
 	name = "Consecratia"
 	desc = "The weight of His anguish, His pain, His hope and His love for humenkind - all hanging on the ornamental silver-steel head chained to this arm. <br><br>A declaration of love for all that Psydon lives for, and a crushing reminder to the arch-nemesis that they will not triumph as long as He endures."
 	icon_state = "psymorningstar"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smashrange)
 
-/obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()		//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
-	add_psyblessed_component(is_preblessed = TRUE, bonus_force = 5, bonus_sharpness = 100, bonus_integrity = 100, bonus_wdef = 2, make_silver = TRUE)
+/obj/item/rogueweapon/flail/sflail/psyflail/relic/ComponentInitialize()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
+		added_force = 0,\
+		added_blade_int = 100,\
+		added_int = 100,\
+		added_def = 0,\
+	)
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10

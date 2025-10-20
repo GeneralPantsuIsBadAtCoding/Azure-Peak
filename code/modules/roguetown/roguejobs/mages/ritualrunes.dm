@@ -186,6 +186,12 @@ GLOBAL_LIST(teleport_runes)
 					rituals += GLOB.t4wallrunerituallist
 				else
 					rituals += GLOB.t2wallrunerituallist
+			else if(istype(src,/obj/effect/decal/cleanable/roguerune/arcyne/empowerment))
+				var/tier = src.tier
+				if(tier == 1)
+					rituals += GLOB.buffrunerituallist
+				else
+					rituals+= GLOB.t2buffrunerituallist
 			else if(istype(src,/obj/effect/decal/cleanable/roguerune/arcyne/enchantment))
 				if(tier >= 3)
 					rituals += GLOB.t4enchantmentrunerituallist
@@ -343,6 +349,79 @@ GLOBAL_LIST(teleport_runes)
 		return
 	. = ..()
 
+
+
+/obj/effect/decal/cleanable/roguerune/arcyne/knowledge
+	name = "Knowledge rune"
+	desc = "arcane symbols pulse upon the ground..."
+	icon_state = "6"
+	invocation = "Thal’ un’vethar!"
+	color = "#3A0B61"
+	spellbonus = 15
+	scribe_damage = 10
+	can_be_scribed = TRUE
+	associated_ritual = /datum/runeritual/knowledge
+	var/buffed = FALSE
+
+/obj/effect/decal/cleanable/roguerune/arcyne/knowledge/attack_hand(mob/living/user)
+	. = ..()
+/obj/effect/decal/cleanable/roguerune/arcyne/knowledge/invoke(list/invokers, datum/runeritual/runeritual)
+	runeritual = associated_ritual
+	if(!..())	//VERY important. Calls parent and checks if it fails. parent/invoke has all the checks for ingredients
+		return
+//	if(!buffed)
+	var/mob/living/user = usr
+	user.apply_status_effect(/datum/status_effect/buff/magicknowledge)
+	buffed = TRUE
+	if(ritual_result)
+		pickritual.cleanup_atoms(selected_atoms)
+
+	for(var/atom/invoker in invokers)
+		if(!isliving(invoker))
+			continue
+		var/mob/living/living_invoker = invoker
+		if(invocation)
+			living_invoker.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")
+		if(invoke_damage)
+			living_invoker.apply_damage(invoke_damage, BRUTE)
+			to_chat(living_invoker,  span_italics("[src] saps your strength!"))
+	do_invoke_glow()
+
+
+/obj/effect/decal/cleanable/roguerune/arcyne/empowerment
+	name = "Empowerment Array"
+	desc = "arcane symbols pulse upon the ground..."
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "empowerment"
+	tier = 2
+	runesize = 1
+	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
+	pixel_y = -32
+	invocation = "Thal’miren vek’laris un’vethar!"
+	layer = SIGIL_LAYER
+	can_be_scribed = TRUE
+	ritual_number = TRUE
+
+/obj/effect/decal/cleanable/roguerune/arcyne/empowerment/invoke(list/invokers, datum/runeritual/buff/runeritual)
+	if(!..())	//VERY important. Calls parent and checks if it fails. parent/invoke has all the checks for ingredients
+		return
+
+	var/buffedstat = runeritual.buff
+	for(var/mob/living/invoker in range(runesize, src))
+		invoker.apply_status_effect(buffedstat)
+	if(ritual_result)
+		pickritual.cleanup_atoms(selected_atoms)
+
+	for(var/atom/invoker in invokers)
+		if(!isliving(invoker))
+			continue
+		var/mob/living/living_invoker = invoker
+		if(invocation)
+			living_invoker.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")
+		if(invoke_damage)
+			living_invoker.apply_damage(invoke_damage, BRUTE)
+			to_chat(living_invoker,  span_italics("[src] saps your strength!"))
+	do_invoke_glow()
 
 /obj/effect/decal/cleanable/roguerune/arcyne/enchantment
 	name = "Imbuement Array"
@@ -550,6 +629,113 @@ GLOBAL_LIST(teleport_runes)
 			living_invoker.apply_damage(invoke_damage, BRUTE)
 			to_chat(living_invoker,  span_italics("[src] saps your strength!"))
 	do_invoke_glow()
+
+/obj/effect/decal/cleanable/roguerune/arcyne/teleport
+	name = "planar convergence matrix"
+	desc = "A large spiraling sigil that seems to thrum with power."
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "portal"
+	tier = 2
+	req_invokers = 2
+	invocation = "Xel’tharr un’korel!"
+	ritual_number = FALSE
+	req_keyword = TRUE
+	runesize = 2
+	pixel_x = -64 //So the big ol' 96x96 sprite shows up right
+	pixel_y = -64
+	pixel_z = 0
+	can_be_scribed = TRUE
+	associated_ritual = /datum/runeritual/teleport
+	var/listkey
+/obj/effect/decal/cleanable/roguerune/arcyne/teleport/Initialize(mapload, set_keyword)
+	. = ..()
+	var/area/A = get_area(src)
+	var/locname = initial(A.name)
+	listkey = set_keyword ? "[set_keyword] [locname]":"[locname]"
+	LAZYADD(GLOB.teleport_runes, src)
+
+/obj/effect/rune/teleport/Destroy()
+	LAZYREMOVE(GLOB.teleport_runes, src)
+	return ..()
+
+/obj/effect/decal/cleanable/roguerune/arcyne/teleport/invoke(list/invokers, datum/runeritual/runeritual)
+	runeritual = associated_ritual
+	if(!..())	//VERY important. Calls parent and checks if it fails. parent/invoke has all the checks for ingredients
+		return
+	var/mob/living/user = invokers[1] //the first invoker is always the user
+	var/list/potential_runes = list()
+	var/list/teleportnames = list()
+	for(var/obj/effect/decal/cleanable/roguerune/arcyne/teleport/teleport_rune as anything in GLOB.teleport_runes)
+		if(teleport_rune != src)
+			potential_runes[avoid_assoc_duplicate_keys(teleport_rune.listkey, teleportnames)] = teleport_rune
+
+	if(!length(potential_runes))
+		to_chat(user, span_warning("There are no valid runes to teleport to!"))
+		log_game("Teleport rune activated by [user] at [COORD(src)] failed - no other teleport runes.")
+		fail_invoke()
+		return
+
+	var/input_rune_key = input(user, "Rune to teleport to", "Teleportation Target") as null|anything in potential_runes //we know what key they picked
+	if(isnull(input_rune_key))
+		return
+	if(isnull(potential_runes[input_rune_key]))
+		fail_invoke()
+		return
+	var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
+	if(!Adjacent(user) || QDELETED(src) || !actual_selected_rune)
+		fail_invoke()
+		return
+
+	var/turf/target = get_turf(actual_selected_rune)
+	if(target.is_blocked_turf(TRUE))
+		to_chat(user, span_warning("The target rune is blocked. Attempting to teleport to it would be massively unwise."))
+		log_game("Teleport rune activated by [user] at [COORD(src)] failed - destination blocked.")
+		fail_invoke()
+		return
+	var/movedsomething = FALSE
+	var/moveuserlater = FALSE
+	var/movesuccess = FALSE
+	if(ritual_result)
+		pickritual.cleanup_atoms(selected_atoms)
+	for(var/atom/movable/A in range(runesize, src))
+		if(istype(A, /obj/effect/dummy/phased_mob))
+			continue
+		if(ismob(A))
+			if(!isliving(A)) //Let's not teleport ghosts and AI eyes.
+				continue
+		if(A == user)
+			moveuserlater = TRUE
+			movedsomething = TRUE
+			continue
+		if(!A.anchored)
+			movedsomething = TRUE
+			if(do_teleport(A, target, channel = TELEPORT_CHANNEL_CULT))
+				movesuccess = TRUE
+	if(movedsomething)
+		//..()
+		playsound(src, 'sound/magic/cosmic_expansion.ogg', 50, TRUE)
+		playsound(target, 'sound/magic/cosmic_expansion.ogg', 50, TRUE)
+		if(moveuserlater)
+			if(do_teleport(user, target, channel = TELEPORT_CHANNEL_CULT))
+				movesuccess = TRUE
+		if(movesuccess)
+			visible_message(span_warning("There is a sharp crack of inrushing air, and everything above the rune disappears!"), null, "<i>You hear a sharp crack.</i>")
+			to_chat(user, span_cult("You[moveuserlater ? "r vision blurs, and with a falling feeling you suddenly appear somewhere else":" send everything above the rune away"]."))
+		else
+			to_chat(user, span_cult("You[moveuserlater ? "r vision blurs briefly, but nothing happens":" try send everything above the rune away, but the teleportation fails"]."))
+		if(movesuccess)
+			target.visible_message(span_warning("There is a boom of outrushing air as something appears above the rune!"), null, "<i>You hear a boom.</i>")
+		for(var/atom/invoker in invokers)
+			if(!isliving(invoker))
+				continue
+			var/mob/living/living_invoker = invoker
+			if(invocation)
+				living_invoker.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")
+			if(invoke_damage)
+				living_invoker.apply_damage(invoke_damage, BRUTE)
+				to_chat(living_invoker,  span_italics("[src] saps your strength!"))
+	else
+		fail_invoke()
 
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning	//32x32 rune t1(one tile)
 	name = "confinement matrix"

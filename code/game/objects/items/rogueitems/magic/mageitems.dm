@@ -37,6 +37,18 @@
 		icon_state = "summoning"
 		w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/storage/magebag/associate
+	populate_contents = list(
+		/obj/item/magic/manacrystal,
+		/obj/item/magic/manacrystal,
+		/obj/item/magic/manacrystal,
+		/obj/item/magic/obsidian,
+		/obj/item/magic/obsidian,
+		/obj/item/magic/obsidian,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom
+	)
 
 /obj/item/chalk
 	name = "stick of chalk"
@@ -458,6 +470,9 @@
 
 	to_chat(src, span_userdanger("My summoner is [master.real_name]. They will need to convince me to obey them."))
 	to_chat(src, span_notice("[summon_primer]"))
+
+	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE//easiest way to give mage summons proper darksight, although I'm wracking my brain for other angles since admin-spawned guys might happen
 
 /obj/item/rope/chain/bindingshackles/proc/custom_name(mob/awakener, var/mob/chosen_one, iteration = 1)
 	if(iteration > 5)

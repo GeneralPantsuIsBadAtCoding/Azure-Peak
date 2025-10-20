@@ -61,6 +61,7 @@
 	name = "roast pork"
 	desc = "A hunk of pigflesh, roasted to a perfect crispy texture"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat.dmi'
+	faretype = FARE_FINE
 	icon_state = "roastpork"
 	tastes = list("crispy pork" = 1)
 	bitesize = 3

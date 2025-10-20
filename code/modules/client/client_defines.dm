@@ -21,7 +21,7 @@
 	///contins a number of how many times a message identical to last_message was sent.
 	var/last_message_count = 0
 	///How many messages sent in the last 10 seconds
-	var/total_message_count = 0
+	var/total_message_count = 01
 	///Next tick to reset the total message counter
 	var/total_count_reset = 0
 	///Internal counter for clients sending irc relay messages via ahelp to prevent spamming. Set to a number every time an admin reply is sent, decremented for every client send.

@@ -26,6 +26,6 @@
 		spawn(0)
 			to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS [item_type], CEASE OR BE [verbed]!</font>")
 			user.adjust_fire_stacks(5)
-			user.IgniteMob()
+			user.ignite_mob()
 			user.Stun(40)
 

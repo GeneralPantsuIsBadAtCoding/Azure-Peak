@@ -36,22 +36,6 @@
 	desc = "My body can barely hold it!"
 	icon_state = "hunger3"
 
-//SILVER DAGGER EFFECT
-
-/datum/status_effect/debuff/silver_curse
-	id = "silver_curse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/silver_curse
-	effectedstats = list(STATKEY_STR = -2,STATKEY_PER = -2,STATKEY_INT = -2, STATKEY_CON = -2, STATKEY_WIL = -2, STATKEY_SPD = -2)
-	duration = 45 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/silver_curse
-	name = "Silver Curse"
-	desc = "My BANE!"
-	icon_state = "hunger3"
-
-////////////////////
-
-
 /datum/status_effect/debuff/thirstyt1
 	id = "thirsty1"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/thirstyt1
@@ -526,3 +510,89 @@
 	desc = "I was on the sermon. My patron is not proud of me."
 	icon_state = "debuff"
 	color ="#af9f9f"
+
+/datum/status_effect/debuff/lost_naledi_mask
+	id = "naledimask"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/naledimask
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+
+/atom/movable/screen/alert/status_effect/debuff/naledimask
+	name = "Lost Mask"
+	desc = "Djinns and daemons may claim me at any moment without the mask. It is not safe."
+	icon_state = "muscles"
+
+/datum/status_effect/debuff/lost_shaman_hood
+	id = "naledimask"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/shamanhood
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+
+/atom/movable/screen/alert/status_effect/debuff/shamanhood
+	name = "Lost Hood"
+	desc = "The sacred hood is lost. I feel frail and sapped without it."
+
+///////////////////////
+/// CLIMBING STUFF ///
+/////////////////////
+
+/// OPEN SPACE TURF BASED CLIMBING, MOB DRAG-DROP TILE
+/datum/status_effect/debuff/climbing_lfwb
+	id = "climbing_lfwb"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/climbing_lfwb
+	tick_interval = 10
+	var/stamcost = 30
+	var/stamcost_final = 30
+	var/mob/living/carbon/human/climber
+
+/datum/status_effect/debuff/climbing_lfwb/on_creation(mob/living/new_owner, new_stamcost)
+    stamcost = new_stamcost
+    return ..()
+
+/datum/status_effect/debuff/climbing_lfwb/on_apply()
+	. = ..()
+	climber = owner
+	climber.climbing = TRUE
+	climber.put_in_hands(new /obj/item/clothing/wall_grab, TRUE, FALSE, TRUE) // gotta have new before /obj/... , otherwise its gonna die
+
+/datum/status_effect/debuff/climbing_lfwb/tick() // do we wanna do this shit every single second? I guess we do boss
+	. = ..()
+	climber = owner
+	if((istype(climber.backr, /obj/item/clothing/climbing_gear)) || (istype(climber.backl, /obj/item/clothing/climbing_gear)))
+		stamcost_final = stamcost / 2
+		climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted
+	else
+		stamcost_final = stamcost
+		climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted
+//	to_chat(climber, span_warningbig("[stamcost_final] REMOVED!")) // debug msg
+	var/turf/tile_under_climber = climber.loc
+	var/list/random_shit_under_climber = list()
+	for(var/obj/structure/flora/newbranch/branch in climber.loc)
+		random_shit_under_climber += branch
+	for(var/obj/machinery/light/rogue/chand/chandelier in climber.loc)
+		random_shit_under_climber += chandelier
+	for(var/obj/structure/kybraxor/fucking_hatch in climber.loc)
+		random_shit_under_climber += fucking_hatch
+	if(!istype(tile_under_climber, /turf/open/transparent/openspace))// if we aren't on open space turf, remove debuff (aka our feet are on solid shi or water)
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+	if(random_shit_under_climber.len) // branches dont remove open space turf, so we have to check for it separately
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+	else if(climber.stamina >= climber.max_stamina) // if we run out of green bar stamina, we fall
+		to_chat(climber, span_dead("I can't hold onto the ledge for any longer!"))
+		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
+		tile_under_climber.zFall(climber)
+
+
+/datum/status_effect/debuff/climbing_lfwb/on_remove()
+	. = ..()
+	climber = owner
+	climber.climbing = FALSE
+	climber.reset_offsets("wall_press")
+	if(climber.is_holding_item_of_type(/obj/item/clothing/wall_grab)) // the slop slops itself holy shit
+		for(var/obj/item/clothing/wall_grab/I in climber.held_items)
+			if(istype(I, /obj/item/clothing/wall_grab))
+				qdel(I)
+				return
+
+/atom/movable/screen/alert/status_effect/debuff/climbing_lfwb
+	name = "Climbing..."
+	desc = "Guess what, you are climbing, buddy."
+	icon_state = "muscles"

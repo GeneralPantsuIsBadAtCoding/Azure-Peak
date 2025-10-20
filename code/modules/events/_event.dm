@@ -14,6 +14,8 @@
 	var/occurrences = 0				//How many times this event has occured
 	var/max_occurrences = 20		//The maximum number of times this event can occur (naturally), it can still be forced.
 									//By setting this to 0 you can effectively disable an event.
+	/// Loaded occurrences from the last round events
+	var/last_round_occurrences = 0
 
 	var/holidayID = ""				//string which should be in the SSeventss.holidays list if you wish this event to be holiday-specific
 									//anything with a (non-null) holidayID which does not match holiday, cannot run.

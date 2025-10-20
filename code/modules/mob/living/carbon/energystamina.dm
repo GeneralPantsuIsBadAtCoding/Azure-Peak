@@ -11,6 +11,8 @@
 	if(world.time > last_fatigued + delay) //regen fatigue
 		var/added = energy / max_energy
 		added = round(-10 + (added * - 40))
+		if(src.climbing) // no stam regen while climbing guh
+			added = 0
 		if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 			added = round(added * 0.5, 1)
 		if(HAS_TRAIT(src, TRAIT_MONK_ROBE))
@@ -29,6 +31,11 @@
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
 			energy_add(-2)
+	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
+		energy = max_energy
+	if(HAS_TRAIT(src, TRAIT_BREADY))
+		energy_add(4) // Battle Ready now gives you a small amount of regeneration.
+		// This generally cover most reasonable in combat usage.
 
 /mob/proc/energy_add(added as num)
 	return
@@ -36,8 +43,6 @@
 /mob/living/energy_add(added as num)
 	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return TRUE
-	//if(HAS_TRAIT(src, TRAIT_NOSLEEP))
-	//	return TRUE
 	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
 		return TRUE
 	if(m_intent == MOVE_INTENT_RUN && isnull(buckled) && (mobility_flags & MOBILITY_STAND))

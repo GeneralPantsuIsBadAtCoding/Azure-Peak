@@ -36,7 +36,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/amend_player_book,
 	/client/proc/enable_browser_debug,
 	/client/proc/pull_book_file_names,
-	/client/proc/adminwho,
 	/client/proc/admin_spread_effect,
 	/client/proc/open_bounty_menu,
 	/client/proc/remove_bounty,
@@ -51,6 +50,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/adjusttriumph,
 	/client/proc/end_party,
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
+	/client/proc/toggle_lobby_ooc,
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
@@ -195,6 +195,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/test_movable_UI,
 	/client/proc/test_snap_UI,
 	/client/proc/check_bomb_impacts,
+	/client/proc/debug_influences,
 	/client/proc/get_dynex_power,		//*debug verbs for dynex explosions.
 	/client/proc/get_dynex_range,		//*debug verbs for dynex explosions.
 	/client/proc/set_dynex_scale,
@@ -767,6 +768,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.deactivate()
 
 	to_chat(src, span_interface("I are now a normal player."))
+	update_ooc_verb_visibility()
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
@@ -795,6 +797,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
+	update_ooc_verb_visibility()
 
 /client/proc/toggle_AI_interact()
 	set name = "Toggle Admin AI Interact"
@@ -808,6 +811,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+/client/proc/toggle_lobby_ooc()
+	set name = "Show/Hide Lobby OOC"
+	set category = "Prefs - Admin"
+	set desc = "Toggle seeing lobby OOC messages while not in the lobby."
+	if(!holder)
+		return
+	show_lobby_ooc = !show_lobby_ooc
+	to_chat(src, span_interface("Lobby OOC visibility is now [show_lobby_ooc ? "ON" : "OFF"]."))
 
 /client/proc/end_party()
 	set category = "-GameMaster-"

@@ -22,9 +22,9 @@
 		else
 			return "creacher"
 
+
 /datum/mob_descriptor/stature/gentleman
 	name = "Gentleman/Gentlewoman"
-
 /datum/mob_descriptor/stature/gentleman/get_description(mob/living/described)
 	switch(described.pronouns)
 		if(SHE_HER)
@@ -41,39 +41,121 @@
 			return "gentleperson"
 		else
 			return "gentlecreacher"
+/datum/mob_descriptor/stature/patriarch
+	name = "Patriarch/Matriarch"
+/datum/mob_descriptor/stature/patriarch/get_description(mob/living/described)
+	switch(described.pronouns)
+		if(SHE_HER)
+			return "matriarch"
+		if(HE_HIM)
+			return "patriarch"
+		if(THEY_THEM)
+			return "hierarch"
+		if(THEY_THEM_F)
+			return "hierarch"
+		else
+			return "hierarch"
+/datum/mob_descriptor/stature/hag
+	name = "Hag/Codger"
+/datum/mob_descriptor/stature/hag/get_description(mob/living/described)
+	switch(described.pronouns)
+		if(SHE_HER)
+			return "hag"
+		if(HE_HIM)
+			return "codger"
+		if(THEY_THEM)
+			return "senior"
+		if(THEY_THEM_F)
+			return "senior"
+		else
+			return "elder"
+/datum/mob_descriptor/stature/villain
+	name = "Villain/Villainess"
+/datum/mob_descriptor/stature/villain/get_description(mob/living/described)
+	switch(described.pronouns)
+		if(SHE_HER)
+			return "villainess"
+		if(HE_HIM)
+			return "villain"
+		if(THEY_THEM)
+			return "antagonist"
+		if(THEY_THEM_F)
+			return "antagonist"
+		else
+			return "antagonist"
 
 /datum/mob_descriptor/stature/thug
 	name = "Thug"
-
 /datum/mob_descriptor/stature/knave
 	name = "Knave"
-
 /datum/mob_descriptor/stature/wench
 	name = "Wench"
-
 /datum/mob_descriptor/stature/snob
 	name = "Snob"
-
 /datum/mob_descriptor/stature/slob
 	name = "Slob"
-
 /datum/mob_descriptor/stature/brute
 	name = "Brute"
-
 /datum/mob_descriptor/stature/highbrow
 	name = "Highbrow"
-
+/datum/mob_descriptor/stature/scholar
+	name = "Scholar"
+/datum/mob_descriptor/stature/rogue
+	name = "Rogue"
+/datum/mob_descriptor/stature/hermit
+	name = "Hermit"
+/datum/mob_descriptor/stature/pushover
+	name = "Pushover"
+/datum/mob_descriptor/stature/beguiler
+	name = "Beguiler"
+/datum/mob_descriptor/stature/daredevil
+	name = "Daredevil"
+/datum/mob_descriptor/stature/valiant
+	name = "Valiant"
+/datum/mob_descriptor/stature/adventurer
+	name = "Adventurer"
+/datum/mob_descriptor/stature/fiend
+	name = "Fiend"
+/datum/mob_descriptor/stature/stoic
+	name = "Stoic"
 /datum/mob_descriptor/stature/stooge
 	name = "Stooge"
-
 /datum/mob_descriptor/stature/fool
 	name = "Fool"
-
 /datum/mob_descriptor/stature/bookworm
 	name = "Bookworm"
-
 /datum/mob_descriptor/stature/lowlife
 	name = "Lowlife"
 
 /datum/mob_descriptor/stature/dignitary
 	name = "Dignitary"
+
+/datum/mob_descriptor/stature/degenerate
+	name = "Degenerate"
+
+/datum/mob_descriptor/stature/zealot
+	name = "Zealot"
+
+/datum/mob_descriptor/stature/churl
+	name = "Churl"
+
+/datum/mob_descriptor/stature/archon
+	name = "Archon"
+
+/datum/mob_descriptor/stature/vizier
+	name = "Vizier"
+
+/datum/mob_descriptor/stature/blaggard
+	name = "Blaggard"
+
+/datum/mob_descriptor/stature/creep
+	name = "Creep"
+
+/datum/mob_descriptor/stature/freek
+	name = "Freek"
+
+/datum/mob_descriptor/stature/weerdoe
+	name = "Weerdoe"
+
+/datum/mob_descriptor/stature/plump
+	name = "Plump figure"

@@ -127,6 +127,13 @@
 					/obj/item/rogueweapon/greatsword/grenz,
 				)
 
+/datum/supply_pack/rogue/steel_weapons/flamberge
+	name = "Steel Flamberge"
+	cost = 105
+	contains = list(
+		/obj/item/rogueweapon/greatsword/grenz/flamberge
+	)
+
 /datum/supply_pack/rogue/steel_weapons/estoc
 	name = "Estoc"
 	cost = 70 // 2 Steel Ingot

@@ -21,7 +21,7 @@
 			to_chat(user, span_warning("[W] is full."))
 			return
 		if(do_after(user, 1 SECONDS, target = src))
-			var/list/waterl = list(/datum/reagent/water = 200)
+			var/list/waterl = list(/datum/reagent/water = 250)
 			W.reagents.add_reagent_list(waterl)
 			to_chat(user, "<span class='notice'>I fill [W] from [src].</span>")
 			playsound(user, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 80, FALSE)

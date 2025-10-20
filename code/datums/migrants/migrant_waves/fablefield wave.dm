@@ -1,7 +1,7 @@
 /datum/migrant_wave/fablefield
 	name = "The Fablefield Troupe"
 	max_spawns = 1
-	weight = 30
+	weight = 20
 	downgrade_wave = /datum/migrant_wave/fablefield_down_one
 	roles = list(
 		/datum/migrant_role/fablefield/goliard = 1,

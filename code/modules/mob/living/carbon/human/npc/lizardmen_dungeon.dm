@@ -78,7 +78,7 @@
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_BIGGUY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_STRONGBITE, TRAIT_GENERIC)
@@ -118,12 +118,12 @@
 	//Body Stufff
 	H.skin_tone = "e9d298"
 	//Stat Stuff
-	H.STASTR = 18
+	H.STASTR = 15
 	H.STASPD = 13
-	H.STACON = 18
-	H.STAWIL = 16
-	H.STAPER = 13
-	H.STAINT = 16
+	H.STACON = 15
+	H.STAWIL = 15
+	H.STAPER = 12
+	H.STAINT = 10
 	H.STALUC = 13
 	//skill Stuff
 	H.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE) //NPCs do not get these skills unless a mind takes them over, hopefully in the future someone can fix
@@ -152,7 +152,7 @@
 	add_random_psy_vault_guard_weapon(H)
 
 /datum/outfit/job/roguetown/human/species/lizardfolk/psy_vault_guard/proc/add_random_psy_vault_guard_weapon(mob/living/carbon/human/H)
-	var/add_random_psy_vault_guard_weapon = rand(1,4)
+	var/add_random_psy_vault_guard_weapon = rand(1, 7)
 	switch(add_random_psy_vault_guard_weapon)
 		if(1)
 			r_hand = /obj/item/rogueweapon/sword/short/messer
@@ -164,7 +164,14 @@
 		if(4)
 			r_hand = /obj/item/rogueweapon/mace/warhammer/steel
 			l_hand = /obj/item/rogueweapon/shield/tower/metal
-
+		if(5)
+			r_hand = /obj/item/rogueweapon/greatsword/grenz
+		if(6)
+			r_hand = /obj/item/rogueweapon/greataxe/steel
+		if(7)
+			r_hand = /obj/item/rogueweapon/mace/goden/steel
+		// 2 hand weapon to dilute the pool to keep ranged viable
+ 
 /datum/outfit/job/roguetown/human/species/lizardfolk/psy_vault_guard/proc/add_random_psy_vault_guard_mask(mob/living/carbon/human/H)
 	var/add_random_psy_vault_guard_mask = rand(1,5)
 	switch(add_random_psy_vault_guard_mask)

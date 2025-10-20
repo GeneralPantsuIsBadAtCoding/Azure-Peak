@@ -15,6 +15,7 @@ type Recipe = {
   name: string;
   category: string;
   req_bar: string;
+  req_blade: string;
   ref: string;
   icon: string;
 };
@@ -82,7 +83,9 @@ export const RecipeDisplay = (props) => {
   const { recipes, hingot_type } = data;
 
   const availableRecipes = recipes
-    .filter((recipe) => recipe.req_bar === hingot_type)
+    .filter((recipe) => {
+      return recipe.req_bar === hingot_type || recipe.req_blade === hingot_type;
+    })
     .filter((recipe) => {
       if (search) {
         return recipe.name.toLowerCase().includes(search.toLowerCase());

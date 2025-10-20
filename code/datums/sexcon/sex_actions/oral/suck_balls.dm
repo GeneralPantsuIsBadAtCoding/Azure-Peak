@@ -1,5 +1,6 @@
 /datum/sex_action/suck_balls
 	name = "Вылизать яйца"
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/suck_balls/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

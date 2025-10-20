@@ -640,9 +640,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		//Spooky scary skeletons
 		if("skele")
 			target.playsound_local(source, pick('sound/vo/mobs/skel/skeleton_idle (1).ogg','sound/vo/mobs/skel/skeleton_idle (2).ogg','sound/vo/mobs/skel/skeleton_idle (3).ogg'), 80, 1)
-			sleep(30)
+			stoplag(30 SECONDS)
 			target.playsound_local(source, pick('sound/vo/mobs/skel/skeleton_idle (1).ogg','sound/vo/mobs/skel/skeleton_idle (2).ogg','sound/vo/mobs/skel/skeleton_idle (3).ogg'), 80, 1)
-			sleep(105)
+			stoplag(10.5 SECONDS)
 			target.playsound_local(source, pick('sound/vo/mobs/skel/skeleton_laugh.ogg'), 60, 1)
 		//Hacking a door
 		if("door pick")
@@ -838,11 +838,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 					target.halitem.icon_state = "serpcrown"
 					target.halitem.name = "Crown of Twilight Axis"
 				if(4) //clawl
-					target.halitem.icon = 'icons/roguetown/weapons/32.dmi'
+					target.halitem.icon = 'icons/roguetown/weapons/unarmed32.dmi'
 					target.halitem.icon_state = "claw_l"
 					target.halitem.name = "ravager claws"
 				if(5) //clawr
-					target.halitem.icon = 'icons/roguetown/weapons/32.dmi'
+					target.halitem.icon = 'icons/roguetown/weapons/unarmed32.dmi'
 					target.halitem.icon_state = "claw_r"
 					target.halitem.name = "ravager claws"
 			feedback_details += "Type: [target.halitem.name]"
@@ -985,7 +985,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fire/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
 	..()
-	target.fire_stacks = max(target.fire_stacks, 0.1) //Placebo flammability
 	fire_overlay = image('icons/mob/OnFire.dmi', target, "Standing", ABOVE_MOB_LAYER)
 	if(target.client)
 		target.client.images += fire_overlay
@@ -993,16 +992,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	target.throw_alert("fire", /atom/movable/screen/alert/fire, override = TRUE)
 	sleep(20)
 	for(var/i in 1 to 3)
-		if(target.fire_stacks <= 0)
-			clear_fire()
-			return
 		stage++
 		update_temp()
 		sleep(30)
 	for(var/i in 1 to rand(5, 10))
-		if(target.fire_stacks <= 0)
-			clear_fire()
-			return
 		target.adjustStaminaLoss(15)
 		sleep(20)
 	clear_fire()

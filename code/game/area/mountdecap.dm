@@ -27,6 +27,7 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	threat_region = THREAT_REGION_MOUNT_DECAP
+	deathsight_message = "a twisted tangle of soaring peaks"
 
 
 /area/rogue/outdoors/mountains/decap/stepbelow
@@ -124,3 +125,6 @@
 	converted_type = /area/rogue/indoors/shelter/mountains/decap
 	ceiling_protected = TRUE
 	threat_region = THREAT_REGION_MOUNT_DECAP
+
+/area/rogue/outdoors/mountains/decap/minotaurfort/can_craft_here()
+	return FALSE

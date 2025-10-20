@@ -99,32 +99,6 @@
 	material = "silver"
 	is_silver = TRUE
 
-/obj/item/lockpick/goldpin/silver/pickup(mob/user)
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		return
-	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(ishuman(H))
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				H.Knockdown(10)
-				H.adjustFireLoss(25)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(10)
-			H.Paralyze(10)
-			H.adjustFireLoss(25)
-			H.fire_act(1,10)
-
 /obj/item/roguekey/lord
 	name = "master key"
 	desc = "The Lord's key."
@@ -375,6 +349,17 @@
 	desc = "The key to a vampire lord's castle."
 	icon_state = "vampkey"
 	lockid = "mansionvampire"
+
+/obj/item/roguekey/vampire/guest
+
+	name = "mansion guest key"
+	icon_state = "brownkey"
+	lockid = "mansionvampire_guest"
+
+/obj/item/roguekey/vampire/maid
+	name = "mansion maid key"
+	icon_state = "ekey"
+	lockid = "mansionvampire_maid"
 //
 
 /obj/item/roguekey/crafterguild
@@ -394,6 +379,12 @@
 	desc = "This is a rusty key."
 	icon_state = "rustkey"
 	lockid = "walls"
+
+/obj/item/roguekey/bandit
+	name = "old key"
+	desc = "This is a rusty key."
+	icon_state = "rustkey"
+	lockid = "bandit"
 
 /obj/item/roguekey/farm
 	name = "farm key"
@@ -602,6 +593,36 @@
 	icon_state = "brownkey"
 	lockid = "stable2"
 
+/obj/item/roguekey/apartments/stablemaster_1
+	name = "stable i key"
+	icon_state = "brownkey"
+	lockid = "stable_master_1"
+
+/obj/item/roguekey/apartments/stablemaster_2
+	name = "stable ii key"
+	icon_state = "brownkey"
+	lockid = "stable_master_2"
+
+/obj/item/roguekey/apartments/stablemaster_3
+	name = "stable iii key"
+	icon_state = "brownkey"
+	lockid = "stable_master_3"
+
+/obj/item/roguekey/apartments/stablemaster_4
+	name = "stable iv key"
+	icon_state = "brownkey"
+	lockid = "stable_master_4"
+
+/obj/item/roguekey/apartments/stablemaster_5
+	name = "stable v key"
+	icon_state = "brownkey"
+	lockid = "stable_master_5"
+
+/obj/item/roguekey/apartments/stablemaster
+	name = "stablemaster key"
+	icon_state = "brownkey"
+	lockid = "stablemaster"
+
 //custom key
 /obj/item/roguekey/custom
 	name = "custom key"
@@ -733,3 +754,14 @@
 				KE.name = src.holdname
 			to_chat(user, span_notice("You add [src] to [K]."))
 			qdel(src)
+	if(istype(K, /obj/structure/englauncher))
+		var/obj/structure/englauncher/KE = K
+		if(KE.keylock == TRUE)
+			to_chat(user, span_warning("[K] already has a lock."))
+		else
+			KE.keylock = TRUE
+			KE.lockhash = src.lockhash
+			if(src.holdname)
+				KE.name = src.holdname
+			to_chat(user, span_notice("You add [src] to [K]."))
+			qdel(src)	

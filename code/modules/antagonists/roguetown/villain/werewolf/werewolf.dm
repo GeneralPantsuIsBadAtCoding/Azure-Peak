@@ -3,7 +3,34 @@
 	roundend_category = "Werewolves"
 	antagpanel_category = "Werewolf"
 	job_rank = ROLE_WEREWOLF
-	var/list/inherent_traits = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOFALLDAMAGE1, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_SHOCKIMMUNE) // this doesn't do anything. that's pretty funny.
+	var/list/inherent_traits = list(
+		TRAIT_IGNORESLOWDOWN,
+		TRAIT_IGNOREDAMAGESLOWDOWN,
+		TRAIT_NOPAIN, 
+		TRAIT_NOPAINSTUN, 
+		TRAIT_CRITICAL_RESISTANCE, 
+		TRAIT_NOFALLDAMAGE1, 
+		TRAIT_KNEESTINGER_IMMUNITY, 
+		TRAIT_SHOCKIMMUNE,
+		TRAIT_SILVER_WEAK,
+		TRAIT_STRENGTH_UNCAPPED,
+		TRAIT_LONGSTRIDER,
+		TRAIT_SPELLCOCKBLOCK,
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_HARDDISMEMBER,
+		TRAIT_NOSTINK,
+		TRAIT_NASTY_EATER,
+		TRAIT_ORGAN_EATER,
+		TRAIT_TOXIMMUNE,
+		TRAIT_BREADY,
+		TRAIT_STEELHEARTED,
+		TRAIT_BASHDOORS,
+		TRAIT_INFINITE_STAMINA,
+		TRAIT_ZJUMP,
+		TRAIT_NOSLEEP,
+		TRAIT_GRABIMMUNE,
+		TRAIT_STRONGBITE
+	)
 	confess_lines = list(
 		"THE BEAST INSIDE ME!",
 		"BEWARE THE BEAST!",
@@ -109,7 +136,7 @@
 /mob/living/carbon/human/proc/werewolf_feed(mob/living/carbon/human/target, healing_amount = 10)
 	if(!istype(target))
 		return
-	if(src.has_status_effect(/datum/status_effect/debuff/silver_curse))
+	if(has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder) || has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
 		to_chat(src, span_notice("My power is weakened, I cannot heal!"))
 		return
 	if(target.mind)
@@ -161,7 +188,7 @@
 	item_state = null
 	lefthand_file = null
 	righthand_file = null
-	icon = 'icons/roguetown/weapons/32.dmi'
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	max_blade_int = 900
 	max_integrity = 900
 	force = 25
@@ -189,5 +216,4 @@
 
 /obj/item/rogueweapon/werewolf_claw/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOEMBED, TRAIT_GENERIC)

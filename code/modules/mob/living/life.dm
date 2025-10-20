@@ -2,6 +2,8 @@
 	set waitfor = FALSE
 	set invisibility = 0
 
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds, times_fired)
+
 	if((movement_type & FLYING) && !(movement_type & FLOATING))	//TODO: Better floating
 		float(on = TRUE)
 
@@ -61,16 +63,33 @@
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	update_sneak_invis()
-	handle_fire()
 
 	if(machine)
 		machine.check_eye(src)
 
-	if(istype(loc, /turf/open/water))
-		handle_inwater(loc)
+	check_drowning()
 
 	if(stat != DEAD)
 		return 1
+
+/mob/living/proc/check_drowning()
+	if(istype(loc, /turf/open/water))
+		handle_inwater(loc)
+
+/mob/living/carbon/human/check_drowning()
+	if(isdullahan(src))
+		var/mob/living/carbon/human = src
+		var/datum/species/dullahan/dullahan = human.dna.species
+		if(dullahan.headless)
+			var/obj/item/bodypart/head/dullahan/drownrelay = dullahan.my_head
+			if(!drownrelay)
+				return
+			if(istype(drownrelay.loc, /turf/open/water))
+				handle_inwater(drownrelay.loc, extinguish = FALSE, force_drown = TRUE)
+			if(istype(loc, /turf/open/water)) // Extinguish ourselves if our body is in water.	
+				extinguish_mob()
+			return
+	. =..()
 
 /mob/living/proc/DeadLife()
 	set invisibility = 0
@@ -83,7 +102,6 @@
 		handle_embedded_objects()
 		handle_blood()
 	update_sneak_invis()
-	handle_fire()
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
@@ -104,30 +122,12 @@
 					emote("painscream")
 					visible_message(span_warning("[src] freezes in pain!"),
 								span_warning("I'm frozen in pain!"))
-					sleep(10)
+					stoplag(10)
 					Stun(110)
 					Knockdown(110)
 
 /mob/living/proc/handle_environment()
 	return
-
-/mob/living/proc/handle_fire()
-	if(fire_stacks < 0) //If we've doused ourselves in water to avoid fire, dry off slowly
-		fire_stacks = min(0, fire_stacks + 1)//So we dry ourselves back to default, nonflammable.
-	if(!on_fire)
-//		testing("handlefyre0 [src]")
-		return TRUE //the mob is no longer on fire, no need to do the rest.
-//	testing("handlefyre1 [src]")
-	if(fire_stacks + divine_fire_stacks > 0)
-		adjust_divine_fire_stacks(-0.05)
-		if(fire_stacks > 0)
-			adjust_fire_stacks(-0.05) //the fire is slowly consumed
-	else
-		ExtinguishMob()
-		return TRUE //mob was put out, on_fire = FALSE via ExtinguishMob(), no need to update everything down the chain.
-	update_fire()
-	var/turf/location = get_turf(src)
-	location?.hotspot_expose(700, 50, 1)
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)
@@ -148,11 +148,12 @@
 			continue
 
 		if(prob(embedded.embedding.embedded_pain_chance))
-//			BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier)
+			if(embedded.is_silver && HAS_TRAIT(src, TRAIT_SILVER_WEAK) && !has_status_effect(STATUS_EFFECT_ANTIMAGIC))
+				var/datum/component/silverbless/psyblessed = embedded.GetComponent(/datum/component/silverbless)
+				adjust_fire_stacks(1, psyblessed?.is_blessed ? /datum/status_effect/fire_handler/fire_stacks/sunder/blessed : /datum/status_effect/fire_handler/fire_stacks/sunder)
 			to_chat(src, span_danger("[embedded] in me hurts!"))
 
 		if(prob(embedded.embedding.embedded_fall_chance))
-//			BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier)
 			simple_remove_embedded_object(embedded)
 			to_chat(src,span_danger("[embedded] falls out of me!"))
 
@@ -193,7 +194,7 @@
 
 /mob/living/proc/gravity_pulse_animation()
 	animate(get_filter("gravity"), y = 1, time = 10)
-	sleep(10)
+	stoplag(10)
 	animate(get_filter("gravity"), y = 0, time = 10)
 
 /mob/living/proc/handle_high_gravity(gravity)

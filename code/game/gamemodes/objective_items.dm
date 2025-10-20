@@ -37,12 +37,6 @@
 	difficulty = 3
 	excludefromjob = list("Lord", "Knight")
 
-/datum/objective_item/steal/rogue/spices
-	name = "a pepper mill."
-	targetitem = /obj/item/reagent_containers/food/condiment/peppermill
-	difficulty = 1
-	excludefromjob = list("Cook")
-
 /datum/objective_item/steal/rogue/crown
 	name = "the Lord's crown."
 	targetitem = /obj/item/clothing/head/roguetown/crown/serpcrown

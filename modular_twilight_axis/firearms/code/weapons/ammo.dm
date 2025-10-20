@@ -1,36 +1,10 @@
 /obj/projectile/bullet
 	var/silver = FALSE
+	var/blessed = FALSE
+	var/always_drop = FALSE
 	var/critfactor = 1
+	var/gunpowder_npc_critfactor = 1
 	var/gunpowder
-
-/**
- * Special runelock ammo
- * Meant to be LIMITED, but reusable
- */
-
-/obj/projectile/bullet/reusable/twilight_runelock
-	name = "runed sphere"
-	desc = "Небольшой, идеально круглый металлический шар, покрытый псайдонитскими рунами. Смертоносен на высокой скорости."
-	damage = 90
-	armor_penetration = 75
-	speed = 0.6
-	damage_type = BRUTE
-	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
-	icon_state = "musketball_runed"
-	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead/runelock
-	range = 20
-	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
-	embedchance = 100
-	woundclass = BCLASS_STAB
-	flag = "piercing"
-
-/obj/projectile/bullet/reusable/twilight_runelock/blessed
-	name = "blessed sphere"
-	desc = "Небольшой, идеально круглый шар, изготовленный из чистого серебра. Такие боеприпасы создаются лучшими из отавианских кузнецов и освящяются лично Великим Магистром. Смертоностны против нежити, но весьма эффективны и против других еретиков."
-	damage = 100
-	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead/runelock/blessed
-	icon_state = "musketball_blessed"
-	silver = TRUE
 
 /**
  * Generic ammo used by handgonnes and arquebuses
@@ -101,13 +75,44 @@
 	critfactor = 0.5
 	silver = TRUE
 
+/**
+ * Special runelock ammo
+ * Meant to be LIMITED, but reusable
+ */
+
+/obj/projectile/bullet/twilight_lead/twilight_runelock
+	name = "runed sphere"
+	desc = "Небольшой, идеально круглый металлический шар, покрытый псайдонитскими рунами. Смертоносен на высокой скорости."
+	damage = 90
+	armor_penetration = 75
+	speed = 0.6
+	damage_type = BRUTE
+	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
+	icon_state = "musketball_runed"
+	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead/runelock
+	range = 20
+	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
+	embedchance = 100
+	woundclass = BCLASS_STAB
+	flag = "piercing"
+	always_drop = TRUE
+
+/obj/projectile/bullet/twilight_lead/twilight_runelock/blessed
+	name = "blessed sphere"
+	desc = "Небольшой, идеально круглый шар, изготовленный из чистого серебра. Такие боеприпасы создаются лучшими из отавианских кузнецов и освящяются лично Великим Магистром. Смертоностны против нежити, но весьма эффективны и против других еретиков."
+	damage = 100
+	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead/runelock/blessed
+	icon_state = "musketball_blessed"
+	silver = TRUE
+	blessed = TRUE
+
 /obj/projectile/bullet/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/T = target
 		switch(gunpowder) //Hande gunpowder types
 			if("fyrepowder")
 				T.adjust_fire_stacks(round(10 * (damage / 100)))
-				T.IgniteMob()
+				T.ignite_mob()
 			if("thunderpowder")
 				T.Immobilize(30)
 			if("corrosive gunpowder")
@@ -121,7 +126,9 @@
 						H.wear_ring.obj_break()
 					H.set_silence(5 SECONDS)
 			if("terrorpowder")
-				npc_simple_damage_mult += 1
+				gunpowder_npc_critfactor += 1
+		if(!T.mind)
+			damage *= gunpowder_npc_critfactor
 	. = ..()
 	if(isliving(firer) && (istype(fired_from, /obj/item/gun/ballistic/twilight_firearm) || istype(fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)))
 		var/mob/living/M = firer
@@ -129,32 +136,27 @@
 		var/skill = (M?.mind ? M.get_skill_level(/datum/skill/combat/twilight_firearms) : 1)
 		if(isliving(target))
 			var/mob/living/T = target
-			if(skill >= 1) //Exp gain from firing a gun
+			if(skill >= 1 && M.mind) //Exp gain from firing a gun
 				if(isanimal(T) && (T.stat != DEAD || (T.stat == DEAD && T.timeofdeath == world.time)))
-					adjust_experience(M, /datum/skill/combat/twilight_firearms, M.STAINT * 3)
+					M.mind.add_sleep_experience(/datum/skill/combat/twilight_firearms, M.STAINT * 2)
 				else if(ishuman(T) && (T.stat != DEAD || (T.stat == DEAD && T.timeofdeath == world.time)))
-					adjust_experience(M, /datum/skill/combat/twilight_firearms, M.STAINT * 6)
-			if(silver) //Silver bullet effects
-				if(T.mind)
-					var/datum/antagonist/werewolf/W = T.mind.has_antag_datum(/datum/antagonist/werewolf/)
-					var/datum/antagonist/vampirelord/lesser/V = T.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-					var/datum/antagonist/vampirelord/V_lord = T.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-					if(V)
-						T.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-						to_chat(T, span_userdanger("I'm hit by my BANE!"))
-						T.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-					if(V_lord)
-						if(V_lord.vamplevel < 4 && !V)
-							T.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-							to_chat(T, span_userdanger("I'm hit by my BANE!"))
-							T.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-						if(V_lord.vamplevel == 4 && !V)
-							to_chat(T, "<font color='red'> The silver weapon fails!</font>")
-							T.visible_message(T, span_userdanger("This feeble metal can't hurt me, I AM ANCIENT!"))
-					if(W && W.transformed == TRUE)
-						T.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-						to_chat(T, span_userdanger("I'm hit by my BANE!"))
-						T.apply_status_effect(/datum/status_effect/debuff/silver_curse)
+					M.mind.add_sleep_experience(/datum/skill/combat/twilight_firearms, M.STAINT * 4)
+			if(silver && HAS_TRAIT(T, TRAIT_SILVER_WEAK))
+				if(blessed)
+					if(!T.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))
+						if(T.patron)
+							to_chat(T, span_danger("The trice-cursed Otavan silver! By [T.patron.name], it hurts!!"))
+						else
+							to_chat(T, span_danger("The trice-cursed Otavan silver! By all that's holy, it hurts!!"))
+					T.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder/blessed)
+				else
+					if(!T.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder/blessed))
+						to_chat(T, span_danger("Silver rebukes my presence! These fires are lashing at my very soul!"))
+					T.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
+				T.ignite_mob()
+		if(always_drop)
+			var/turf/T = get_turf(src)
+			dropped = new ammo_type(T)
 
 /mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, blocked)
 	if(isliving(P.firer) && (istype(P.fired_from, /obj/item/gun/ballistic/twilight_firearm) || istype(P.fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)))
@@ -219,7 +221,7 @@
 /obj/item/ammo_casing/caseless/twilight_lead/runelock
 	name = "runed sphere"
 	desc = "Небольшой, идеально круглый металлический шар, покрытый псайдонитскими рунами. Смертоносен на высокой скорости."
-	projectile_type = /obj/projectile/bullet/reusable/twilight_runelock
+	projectile_type = /obj/projectile/bullet/twilight_lead/twilight_runelock
 	caliber = "runed_sphere"
 	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
 	icon_state = "musketball_runed"
@@ -254,10 +256,22 @@
 	projectile_type = /obj/projectile/bullet/twilight_lead/silver
 	icon_state = "musketball_silver"
 
+/obj/item/ammo_casing/caseless/twilight_lead/silver/ComponentInitialize()
+	. = ..()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = 0,\
+		added_blade_int = 0,\
+		added_int = 0,\
+		added_def = 0,\
+	)
+
 /obj/item/ammo_casing/caseless/twilight_lead/runelock/blessed
 	name = "blessed sphere"
 	desc = "Небольшой, идеально круглый шар, изготовленный из чистого серебра. Такие боеприпасы создаются лучшими из отавианских кузнецов и освящяются лично Великим Магистром. Смертоностны против нежити, но весьма эффективны и против других еретиков."
-	projectile_type = /obj/projectile/bullet/reusable/twilight_runelock/blessed
+	projectile_type = /obj/projectile/bullet/twilight_lead/twilight_runelock/blessed
 	icon_state = "musketball_blessed"
 	w_class = WEIGHT_CLASS_TINY
 	smeltresult = /obj/item/rogueore/silver

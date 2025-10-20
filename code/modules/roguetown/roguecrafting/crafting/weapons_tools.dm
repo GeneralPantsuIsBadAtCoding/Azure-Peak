@@ -6,7 +6,7 @@
 	category = "Tools"
 
 /datum/crafting_recipe/roguetown/survival/peasantry/thresher
-	name = "thresher (+1 Iron Ingot)"
+	name = "thresher"
 	reqs = list(
 		/obj/item/grown/log/tree/stick = 1,
 		/obj/item/ingot/iron = 1,
@@ -15,7 +15,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/thresher/whetstone
-	name = "thresher (+4 Whetstones, +1 Log, +1 Rope)"
+	name = "thresher"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 1,
 		/obj/item/natural/whetstone = 4,
@@ -25,7 +25,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/shovel
-	name = "shovel (+1 Iron Ingot, +2 Sticks)"
+	name = "shovel - iron ingot"
 	reqs = list(
 		/obj/item/grown/log/tree/stick = 2,
 		/obj/item/ingot/iron = 1,
@@ -34,7 +34,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/shovel/whetstone
-	name = "shovel (+3 Whetstones, +2 Logs, +1 Rope)"
+	name = "shovel - whetstone"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 2,
 		/obj/item/natural/whetstone = 3,
@@ -44,7 +44,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/hoe
-	name = "hoe (+1 Iron Ingot, +2 Sticks)"
+	name = "hoe - iron ingot"
 	reqs = list(
 		/obj/item/grown/log/tree/stick = 2,
 		/obj/item/ingot/iron = 1,
@@ -53,7 +53,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/hoe/whetstone
-	name = "shovel (+3 Whetstones, +2 Logs, +1 Rope)"
+	name = "hoe - whetstone"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 2,
 		/obj/item/natural/whetstone = 3,
@@ -63,7 +63,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/pitchfork
-	name = "pitchfork (+1 Iron Ingot, +2 Sticks)"
+	name = "pitchfork - iron ingot"
 	reqs = list(
 		/obj/item/grown/log/tree/stick = 2,
 		/obj/item/ingot/iron = 1,
@@ -72,7 +72,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/survival/peasantry/pitchfork/whetstone
-	name = "pitchfork (+3 Whetstones, +2 Logs, +1 Rope)"
+	name = "pitchfork - whetstone"
 	reqs = list(
 		/obj/item/grown/log/tree/small = 2,
 		/obj/item/natural/whetstone = 3,
@@ -107,6 +107,26 @@
 	result = /obj/item/rogueweapon/greataxe/militia
 	reqs = list(
 		/obj/item/rogueweapon/shovel = 1,
+		/obj/item/grown/log/tree/small = 2,
+		/obj/item/rope = 1,
+		)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/peasantry/waraxe/silver
+	name = "silver militia shovelaxe"
+	result = /obj/item/rogueweapon/greataxe/militia/silver
+	reqs = list(
+		/obj/item/rogueweapon/shovel/silver = 1,
+		/obj/item/grown/log/tree/small = 2,
+		/obj/item/rope = 1,
+		)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/peasantry/waraxe/silver/preblessed
+	name = "silver militia shovelaxe (preblessed)"
+	result = /obj/item/rogueweapon/greataxe/militia/silver/preblessed
+	reqs = list(
+		/obj/item/rogueweapon/shovel/silver/preblessed = 1,
 		/obj/item/grown/log/tree/small = 2,
 		/obj/item/rope = 1,
 		)
@@ -445,3 +465,13 @@
 		/obj/item/grown/log/tree/stick = 2,
 		)
 	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/strucrepairkit
+	name = "Structure Repair Kit"
+	category = "Tools"
+	result = /obj/item/construction/repairkit/structure
+	reqs = list(/obj/item/construction/nail = 3,
+				/obj/item/natural/wood/plank = 3,
+				/obj/item/natural/stoneblock = 3)
+	skillcraft = /datum/skill/craft/carpentry
+	craftdiff = 5

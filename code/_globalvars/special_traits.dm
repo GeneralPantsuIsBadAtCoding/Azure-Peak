@@ -37,6 +37,9 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	apply_charflaw_equipment(character, player)
 	apply_prefs_special(character, player)
 	apply_prefs_virtue(character, player)
+	apply_prefs_race_bonus(character, player)
+	if(player.prefs.dnr_pref)
+		apply_dnr_trait(character, player)
 	if(player.prefs.selected_loadout_items)
 		for(var/key in player.prefs.selected_loadout_items)
 			var/datum/loadout_item/item = GLOB.loadout_items_by_name[key]
@@ -74,6 +77,25 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 		else
 			to_chat(character, "Incorrect Second Virtue parameters! (Heretic virtue on a non-heretic) It will not be applied.")
 
+/proc/apply_prefs_race_bonus(mob/living/carbon/human/character, client/player)
+	if (!player)
+		player = character.client
+	if (!player)
+		return
+	if (!player.prefs)
+		return
+	if (!player.prefs.race_bonus || player.prefs.race_bonus == "None")
+		return
+	var/bonus = player.prefs.race_bonus
+	if(ispath(bonus))	//The bonus is a real path
+		if(ispath(bonus, /datum/virtue))
+			var/datum/virtue/v = bonus
+			apply_virtue(character, new v)
+	if(bonus in MOBSTATS)
+		character.change_stat(bonus, 1) //atm it only supports one stat getting a +1
+	if(bonus in GLOB.roguetraits)
+		ADD_TRAIT(character, bonus, TRAIT_GENERIC)
+
 /proc/virtue_check(var/datum/virtue/V, heretic = FALSE)
 	if(V)
 		if(istype(V,/datum/virtue/heretic) && !heretic)
@@ -84,6 +106,10 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 /proc/apply_charflaw_equipment(mob/living/carbon/human/character, client/player)
 	if(character.charflaw)
 		character.charflaw.apply_post_equipment(character)
+		record_featured_object_stat(FEATURED_STATS_VICES, character.charflaw.name)
+
+/proc/apply_dnr_trait(mob/living/carbon/human/character, client/player)
+	ADD_TRAIT(player.mob, TRAIT_DNR, TRAIT_GENERIC)
 
 /proc/apply_prefs_special(mob/living/carbon/human/character, client/player)
 	if(!player)

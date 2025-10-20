@@ -46,6 +46,7 @@
 	name = "raw pigflesh"
 	icon_state = "pork"
 	color = "#f093c3"
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/fatty/roast
 	slices_num = 2
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/bacon
 	chopping_sound = TRUE

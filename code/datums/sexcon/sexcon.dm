@@ -23,6 +23,20 @@
 	var/last_ejaculation_time = 0
 	var/last_moan = 0
 	var/last_pain = 0
+	/// Menu based variables
+	var/action_category = SEX_CATEGORY_MISC
+	/// Show progress bar
+	var/show_progress = 1
+	/// Which zones we are using in the current action.
+	var/using_zones = list()
+	var/knotted_status = KNOTTED_NULL // knotted state and used to prevent multiple knottings when we do not handle that case
+	var/knotted_part = SEX_PART_NULL // which orifice was knotted (bitflag)
+	var/knotted_part_partner = SEX_PART_NULL // which orifice was knotted on partner (bitflag)
+	var/tugging_knot = FALSE
+	var/tugging_knot_check = 0
+	var/tugging_knot_blocked = FALSE
+	var/mob/living/carbon/knotted_owner = null // whom has the knot
+	var/mob/living/carbon/knotted_recipient = null // whom took the knot
 
 /datum/sex_controller/New(mob/living/carbon/human/owner)
 	user = owner
@@ -30,12 +44,52 @@
 /datum/sex_controller/Destroy()
 	user = null
 	target = null
+	if(knotted_status)
+		knot_exit()
 	. = ..()
 
 /datum/sex_controller/proc/is_spent()
 	if(charge < CHARGE_FOR_CLIMAX)
 		return TRUE
 	return FALSE
+
+/datum/sex_action/proc/check_location_accessible(mob/living/carbon/human/user, mob/living/carbon/human/target, location = BODY_ZONE_CHEST, grabs = FALSE, skipundies = TRUE)
+	var/obj/item/bodypart/bodypart = target.get_bodypart(location)
+
+	var/self_target = FALSE
+	var/datum/sex_controller/user_controller = user.sexcon
+	if(user_controller.target == user)
+		self_target = TRUE
+
+	var/signalargs = list(src, bodypart, self_target)
+	signalargs += args
+
+	var/sigbitflags = SEND_SIGNAL(target, COMSIG_ERP_LOCATION_ACCESSIBLE, signalargs)
+	bodypart = signalargs[ERP_BODYPART]
+
+	if(sigbitflags & SIG_CHECK_FAIL)
+		return FALSE
+
+	if(!user.Adjacent(target) && !(sigbitflags & SKIP_ADJACENCY_CHECK))
+		return FALSE
+
+	if(!bodypart)
+		return FALSE
+
+	if(src.check_same_tile && (user != target || self_target) && !(sigbitflags & SKIP_TILE_CHECK))
+		var/same_tile = (get_turf(user) == get_turf(target))
+		var/grab_bypass = (src.aggro_grab_instead_same_tile && user.get_highest_grab_state_on(target) == GRAB_AGGRESSIVE)
+		if(!same_tile && !grab_bypass)
+			return FALSE
+
+	if(src.require_grab && (user != target || self_target) && !(sigbitflags & SKIP_GRAB_CHECK))
+		var/grabstate = user.get_highest_grab_state_on(target)
+		if((grabstate == null || grabstate < src.required_grab_state))
+			return FALSE
+
+	var/result = get_location_accessible(target, location = location, grabs = grabs, skipundies = skipundies)
+	if(result && user == target && !(bodypart in user_controller.using_zones) && user_controller.current_action == SEX_ACTION(src))
+		user_controller.using_zones += location
 
 /datum/sex_controller/proc/finished_check()
 	if(!do_until_finished)
@@ -84,21 +138,72 @@
 	set_target(new_target)
 	show_ui()
 
-/datum/sex_controller/proc/cum_onto()
+/datum/sex_controller/proc/cum_onto(var/mob/living/carbon/human/splashed_user = null)
 	log_combat(user, target, "Кончает на партнера")
 	playsound(target, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
 	add_cum_floor(get_turf(target))
+	if(splashed_user)
+		var/datum/status_effect/facial/facial = splashed_user.has_status_effect(/datum/status_effect/facial)
+		if(!facial)
+			splashed_user.apply_status_effect(/datum/status_effect/facial)
+		else
+			facial.refresh_cum()
 	after_ejaculation()
 
-/datum/sex_controller/proc/cum_into(oral = FALSE)
+/datum/sex_controller/proc/cum_into(oral = FALSE, var/mob/living/carbon/human/splashed_user = null)
 	log_combat(user, target, "Кончает в партнера")
 	if(oral)
 		playsound(target, pick(list('sound/misc/mat/mouthend (1).ogg','sound/misc/mat/mouthend (2).ogg')), 100, FALSE, ignore_walls = FALSE)
 	else
 		playsound(target, 'sound/misc/mat/endin.ogg', 50, TRUE, ignore_walls = FALSE)
-	target.reagents.add_reagent(/datum/reagent/erpjuice/cum, 3)
+	if(user != target)
+		knot_try()
+	if(splashed_user && !splashed_user.sexcon.knotted_status)
+		var/status_type = !oral ? /datum/status_effect/facial/internal : /datum/status_effect/facial
+		var/datum/status_effect/facial/splashed_type = splashed_user.has_status_effect(status_type)
+		if(!splashed_type)
+			splashed_user.apply_status_effect(status_type)
+		else
+			splashed_type.refresh_cum()
 	after_ejaculation()
-	after_intimate_climax()
+	target.reagents.add_reagent(/datum/reagent/erpjuice/cum, 3)
+	if(!oral)
+		after_intimate_climax()
+
+/datum/status_effect/facial
+	id = "facial"
+	alert_type = null // don't show an alert on screen
+	tick_interval = 12 MINUTES // use this time as our dry count down
+	var/has_dried_up = FALSE // used as our dry status
+
+/datum/status_effect/facial/internal
+	id = "creampie"
+	alert_type = null // don't show an alert on screen
+	tick_interval = 7 MINUTES // use this time as our dry count down
+
+/datum/status_effect/facial/on_apply()
+	RegisterSignal(owner, list(COMSIG_COMPONENT_CLEAN_ACT, COMSIG_COMPONENT_CLEAN_FACE_ACT),PROC_REF(clean_up))
+	has_dried_up = FALSE
+	return ..()
+
+/datum/status_effect/facial/on_remove()
+	UnregisterSignal(owner, list(COMSIG_COMPONENT_CLEAN_ACT, COMSIG_COMPONENT_CLEAN_FACE_ACT))
+	return ..()
+
+/datum/status_effect/facial/tick()
+	has_dried_up = TRUE
+
+/datum/status_effect/facial/proc/refresh_cum()
+	has_dried_up = FALSE
+	tick_interval = world.time + initial(tick_interval)
+
+///Callback to remove pearl necklace
+/datum/status_effect/facial/proc/clean_up(datum/source, strength)
+	if(strength >= CLEAN_WEAK && !QDELETED(owner))
+		if(!owner.has_stress_event(/datum/stressevent/bathcleaned))
+			to_chat(owner, span_notice("I feel much cleaner now!"))
+			owner.add_stress(/datum/stressevent/bathcleaned)
+		owner.remove_status_effect(src)
 
 /datum/sex_controller/proc/ejaculate()
 	log_combat(user, user, "Кончает!")
@@ -116,7 +221,7 @@
 	user.emote("sexmoanhvy", forced = TRUE)
 	user.playsound_local(user, 'sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time
-	GLOB.azure_round_stats[STATS_PLEASURES]++
+	record_round_statistic(STATS_PLEASURES)
 
 /datum/sex_controller/proc/after_intimate_climax()
 	if(user == target)
@@ -361,8 +466,8 @@
 		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a></center>"
 	else
 		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a> ~|~ <a href='?src=[REF(src)];task=manual_arousal_down'>\<</a> [manual_arousal_name] <a href='?src=[REF(src)];task=manual_arousal_up'>\></a></center>"
-  dat += "<center>| <a href='?src=[REF(src)];task=toggle_finished'>[do_until_finished ? "ПОКА НЕ КОНЧУ" : "ПОКА НЕ ОСТАНОВЛЮСЬ"]</a> |</center>"
-  dat += "<center><a href='?src=[REF(src)];task=set_arousal'>ЗАДАТЬ ВОЗБУЖДЕНИЕ</a> | <a href='?src=[REF(src)];task=freeze_arousal'>[arousal_frozen ? "ВОЗБУЖДАТЬСЯ" : "НЕ ВОЗБУЖДАТЬСЯ"]</a></center>"
+	dat += "<center>| <a href='?src=[REF(src)];task=toggle_finished'>[do_until_finished ? "ПОКА НЕ КОНЧУ" : "ПОКА НЕ ОСТАНОВЛЮСЬ"]</a> |</center>"
+	dat += "<center><a href='?src=[REF(src)];task=set_arousal'>ЗАДАТЬ ВОЗБУЖДЕНИЕ</a> | <a href='?src=[REF(src)];task=freeze_arousal'>[arousal_frozen ? "ВОЗБУЖДАТЬСЯ" : "НЕ ВОЗБУЖДАТЬСЯ"]</a></center>"
 	if(target == user)
 		dat += "<center>Самоудовлетворение</center>"
 	else
@@ -371,10 +476,15 @@
 		dat += "<center><a href='?src=[REF(src)];task=stop'>Прекратить</a></center>"
 	else
 		dat += "<br>"
+	dat += "<center><a href='?src=[REF(src)];task=category_hands'>[action_category == SEX_CATEGORY_HANDS ? "<font color='#eac8de'>РУКИ</font>" : "РУКИ"]</a> | "
+	dat += "<a href='?src=[REF(src)];task=category_penetrate'>[action_category == SEX_CATEGORY_PENETRATE ? "<font color='#eac8de'>ПРОНИКНОВЕНИЕ</font>" : "ПРОНИКНОВЕНИЕ"]</a> | "
+	dat += "<a href='?src=[REF(src)];task=category_misc'>[action_category == SEX_CATEGORY_MISC ? "<font color='#eac8de'>ОСТАЛЬНОЕ</font>" : "ОСТАЛЬНОЕ"]</a></center>"
 	dat += "<table width='100%'><td width='50%'></td><td width='50%'></td><tr>"
 	var/i = 0
 	for(var/action_type in GLOB.sex_actions)
 		var/datum/sex_action/action = SEX_ACTION(action_type)
+		if(!(action_category&action.category))
+			continue
 		if(!action.shows_on_menu(user, target))
 			continue
 		dat += "<td>"
@@ -426,7 +536,14 @@
 			var/amount = input(user, "Значение выше 120 приведет к немедленному экстазу!", "Задать возбуждение", arousal) as num
 			set_arousal(amount)
 		if("freeze_arousal")
-			arousal_frozen = !arousal_frozen
+			if(aphrodisiac == 1)
+				arousal_frozen = !arousal_frozen
+		if("category_misc")
+			action_category = SEX_CATEGORY_MISC
+		if("category_hands")
+			action_category = SEX_CATEGORY_HANDS
+		if("category_penetrate")
+			action_category = SEX_CATEGORY_PENETRATE
 	show_ui()
 
 /datum/sex_controller/proc/try_stop_current_action()
@@ -439,10 +556,13 @@
 	if(!current_action)
 		return
 	var/datum/sex_action/action = SEX_ACTION(current_action)
-	action.on_finish(user, target)
+	show_progress = 1
+	if (!user.sexcon.knotted_status) // never show the remove message, unless unknotted
+		action.on_finish(user, target)
 	desire_stop = FALSE
 	user.doing = FALSE
 	current_action = null
+	using_zones = list()
 
 /datum/sex_controller/proc/try_start_action(action_type)
 	if(action_type == current_action)
@@ -455,6 +575,7 @@
 		return
 	if(!can_perform_action(action_type))
 		return
+	knot_check_remove(action_type)
 	// Set vars
 	desire_stop = FALSE
 	current_action = action_type
@@ -472,7 +593,7 @@
 			break
 		if(!user.stamina_add(action.stamina_cost * get_stamina_cost_multiplier()))
 			break
-		if(!do_after(user, (action.do_time / get_speed_multiplier()), target = target))
+		if(!do_after(user, (action.do_time / get_speed_multiplier()), target = target, progress = show_progress))
 			break
 		if(current_action == null || performed_action_type != current_action)
 			break

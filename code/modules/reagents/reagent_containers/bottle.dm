@@ -6,9 +6,10 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	desc = "A bottle with a cork."
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "clear_bottle1"
-	amount_per_transfer_from_this = 6
-	possible_transfer_amounts = list(6)
-	volume = 48
+	amount_per_transfer_from_this = 10
+	amount_per_gulp = 5
+	possible_transfer_amounts = list(10)
+	volume = 50
 	fill_icon_thresholds = list(0, 25, 50, 75, 100)
 	dropshrink = 0.8
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH

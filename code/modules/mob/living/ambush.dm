@@ -11,6 +11,8 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 	var/area/AR = get_area(src)
 	var/datum/threat_region/TR = SSregionthreat.get_region(AR.threat_region)
 	var/danger_level = DANGER_LEVEL_MODERATE // Fallback if there's no region
+	if(!AR.ambush_mobs)
+		return FALSE
 	if(TR)
 		danger_level = TR.get_danger_level()
 	if(danger_level == DANGER_LEVEL_SAFE)
@@ -18,7 +20,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 			return FALSE
 		if(TR.latent_ambush <= DANGER_SAFE_LIMIT && !always) // Signal horn can dip below 10
 			return FALSE
-	if(TR && ((world.time - TR.last_natural_ambush_time + 1 MINUTES) < 1 MINUTES))
+	if(TR && !(always && ignore_cooldown) && ((world.time - TR.last_natural_ambush_time) < 2 MINUTES))
 		return FALSE
 	var/true_ambush_chance = GLOB.ambush_chance_pct
 	if(TR)
@@ -35,7 +37,7 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 2 MINUTES) // Cooldown for each ind
 			return FALSE
 		if(world.time > last_client_interact + 0.3 SECONDS)
 			return FALSE // unmoving afks can't trigger random ambushes i.e. when being pulled/kicked/etc
-	if(get_will_block_ambush(src))
+	if(get_will_block_ambush())
 		return FALSE
 	if(mob_timers["ambush_check"] && !ignore_cooldown)
 		if(world.time < mob_timers["ambush_check"] + GLOB.ambush_mobconsider_cooldown)

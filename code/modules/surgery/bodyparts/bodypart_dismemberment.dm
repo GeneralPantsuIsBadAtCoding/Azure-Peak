@@ -20,7 +20,7 @@
 	)
 
 //Dismember a limb
-/obj/item/bodypart/proc/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone)
+/obj/item/bodypart/proc/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -32,6 +32,13 @@
 		if(!HAS_TRAIT(C, TRAIT_CRITICAL_WEAKNESS) && !HAS_TRAIT(C, TRAIT_EASYDISMEMBER))	//People with these traits can be decapped standing, or buckled, or however.
 			if(!isnull(C.mind) && (C.mobility_flags & MOBILITY_STAND) && !C.buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
 				return FALSE
+
+	if(body_zone != BODY_ZONE_HEAD)
+		var/mob/living/carbon/human/victim = owner
+		if(victim.run_armor_check(zone_precise, bclass, damage = damage))
+			to_chat(victim, span_warning("My armour just saved me from losing my [C.get_bodypart(body_zone).name]!"))
+			return FALSE
+
 	if(C.status_flags & GODMODE)
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
@@ -48,8 +55,10 @@
 		C.visible_message(span_danger("<B>[C] is [pick("BRUTALLY","VIOLENTLY","BLOODILY","MESSILY")] DECAPITATED!</B>"))
 	else
 		C.visible_message(span_danger("<B>The [src.name] is [pick("torn off", "sundered", "severed", "separated", "unsewn")]!</B>"))
-	C.emote("painscream")
-	src.add_mob_blood(C)
+	if(!HAS_TRAIT(C, TRAIT_NOPAIN))
+		C.emote("painscream")
+	if(!(NOBLOOD in C.dna?.species?.species_traits))
+		add_mob_blood(C)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
@@ -64,9 +73,26 @@
 					if(HAS_TRAIT(CA, TRAIT_STEELHEARTED))
 						continue
 				CA.add_stress(stress2give)
+	// Ensure grabbedby is a list so it can be properly .Cut()'d
+	grabbedby = SANITIZE_LIST(grabbedby)
 	if(grabbedby)
-		qdel(grabbedby)
-		grabbedby = null
+		if(dam_type != BURN)
+			for(var/obj/item/grabbing/grab in grabbedby)
+				if(grab.grab_state != GRAB_AGGRESSIVE)
+					continue
+
+				var/mob/living/carbon/human = grab.grabbee
+				var/hand_index = human.get_held_index_of_item(grab)
+				human.dropItemToGround(grab)
+				drop_limb()
+				human.put_in_hand(src, hand_index)
+
+				if(grabbedby)
+					grabbedby.Cut()
+				return TRUE
+
+		if(grabbedby)
+			grabbedby.Cut()
 
 	if(length(wounds))
 		for(var/datum/wound/wound in wounds)
@@ -92,9 +118,10 @@
 		if(new_turf.density)
 			break
 	throw_at(target_turf, throw_range, throw_speed)
+	owner = C
 	return TRUE
 
-/obj/item/bodypart/chest/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone)
+/obj/item/bodypart/chest/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0)
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -119,11 +146,12 @@
 	if(length(wounds))
 		var/list/stored_wounds = list()
 		for(var/datum/wound/wound as anything in wounds)
-			wound.remove_from_bodypart()
-			if(wound.qdel_on_droplimb)
-				qdel(wound)
-			else
-				stored_wounds += wound //store for later when the limb is reattached
+			if(wound)
+				wound.remove_from_bodypart()
+				if(wound.qdel_on_droplimb)
+					qdel(wound)
+				else
+					stored_wounds += wound //store for later when the limb is reattached
 		wounds = stored_wounds
 	//if we had an ongoing surgery on this limb, we stop it
 	for(var/body_zone in was_owner.surgeries)
@@ -295,7 +323,7 @@
 		var/list/worn_items = list(
 			owner.get_item_by_slot(SLOT_HEAD),
 			owner.get_item_by_slot(SLOT_GLASSES),
-			owner.get_item_by_slot(SLOT_NECK),
+			// owner.get_item_by_slot(SLOT_NECK), // We can still equip things in the neck, don't drop it.
 			owner.get_item_by_slot(SLOT_WEAR_MASK),
 			owner.get_item_by_slot(SLOT_MOUTH),
 		)
@@ -358,8 +386,9 @@
 		stored_organ.Insert(C)
 
 	for(var/datum/wound/wound as anything in wounds)
-		wounds -= wound
-		wound.apply_to_bodypart(src, silent = TRUE, crit_message = FALSE)
+		if(wound)
+			wounds -= wound
+			wound.apply_to_bodypart(src, silent = TRUE, crit_message = FALSE)
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound)

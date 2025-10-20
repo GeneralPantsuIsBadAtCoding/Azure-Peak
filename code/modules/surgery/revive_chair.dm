@@ -93,8 +93,10 @@
 				return
 
 			// Animate filling
-			user.visible_message(span_notice("[user] begins filling [src] with [container]."), 
-								span_notice("You begin filling [src] with [container]."))
+			user.visible_message(
+				span_notice("[user] begins filling [src] with [container]."), 
+				span_notice("You begin filling [src] with [container].")
+			)
 
 			var/skill_mod = get_user_skill(H)
 			var/transferred = 0
@@ -207,8 +209,10 @@
 		return
 
 	// Start cranking
-	user.visible_message(span_notice("[user] begins cranking [src]."), 
-						span_notice("You start cranking [src]..."))
+	user.visible_message(
+		span_notice("[user] begins cranking [src]."), 
+		span_notice("You start cranking [src]...")
+	)
 
 	start_cranking_animation()
 
@@ -270,17 +274,7 @@
 		return
 
 	// Check if occupant is valid
-	if(occupant.stat != DEAD)
-		to_chat(H, span_warning("[occupant] is still alive!"))
-		return
-	if(!occupant.mind)
-		to_chat(H, span_warning("The brain of [occupant] seems thoroughly fried."))
-		return
-	if(HAS_TRAIT(occupant, TRAIT_NECRAS_VOW))
-		to_chat(H, span_warning("This soul belongs to Necra and cannot be reclaimed! You feel her fury!"))
-		return
-	if(!occupant.mind.active)
-		to_chat(H, span_warning("The spirit has moved beyond recall."))
+	if(!occupant.check_revive(user))
 		return
 
 	// Prompt ghost

@@ -1,5 +1,6 @@
 /datum/sex_action/crotch_nuzzle
 	name = "Прижаться к паху"
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/crotch_nuzzle/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

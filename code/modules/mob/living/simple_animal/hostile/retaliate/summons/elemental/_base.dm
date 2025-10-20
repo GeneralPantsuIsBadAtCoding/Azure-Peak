@@ -5,6 +5,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
+	weather_immunities += "lava"
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/Life()
 	..()
@@ -56,3 +57,19 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/elemental/simple_add_wound(datum/wound/wound, silent = FALSE, crit_message = FALSE)	//no wounding the elementals
 	return
+
+/mob/living/simple_animal/hostile/retaliate/rogue/elemental/attackby(obj/item/I, mob/living/carbon/human/user, params)
+	if(istype(I, /obj/item/magic))
+		var/obj/item/magic/magicmaterial = I
+		if(istype(magicmaterial, /obj/item/magic/elemental))
+			if(health == maxHealth)
+				to_chat(user, "[src] is already healthy!")
+				return
+			to_chat(user, "I start healing [src] with [magicmaterial].")
+			if(do_mob(user, src, 20))
+				var/tier_diff = magicmaterial.tier / summon_tier //find the percentage of the guy we're healing based on the tier of our magic material
+				visible_message("[src] absorbs [magicmaterial] and is healed.")
+				adjustBruteLoss(-maxHealth * tier_diff)
+				qdel(magicmaterial)
+				return
+	..()

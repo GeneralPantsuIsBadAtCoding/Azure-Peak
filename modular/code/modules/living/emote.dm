@@ -38,8 +38,46 @@
 		var/T = get_turf(user)
 		if(M.stat == DEAD && M.client && (M.client.prefs?.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
 			M.show_message(message)*/
-	var/list/ghostless = get_hearers_in_view(1, user)
+	user.do_subtle_emote(message)
+
+/mob/proc/do_subtle_emote(var/message)
+	var/distance = 4
+	var/list/ghostless = get_hearers_in_view(distance, src)
+	var/list/mobsinview = list()
+	var/list/mobspickable = list("1-Tile Range", "Same Tile")
 	for(var/mob/living/L in ghostless)
-		if(L.stat == CONSCIOUS) // To those conscious only. Slightly more expensive but subtle is not spammed
+		if(L.stat != DEAD && L != src) // to those living only - slightly more expensive but subtle is not spammed
+			mobsinview += L
+			if(!L.rogue_sneaking && L.name != "Unknown") // do not let hidden/unknown targets be added to list
+				mobspickable += L
+	var/choice = input(src, "Pick a target?", "Subtle Emote") in mobspickable
+	to_chat(src, "<i>[message]</i>")
+
+	var/user_loc
+	if(choice == "1-Tile Range")
+		distance = 1
+	else if(choice == "Same Tile")
+		distance = 0
+	else // we picked a target
+		var/mob/living/target = choice
+		if(!isliving(target) || QDELETED(target)) // mob has since been deleted/destroyed, skip
+			to_chat(src, span_boldwarning("The subtle emote target no longer exists, try again."))
+			return
+		user_loc = get_turf(src)
+		if(get_dist(get_turf(target), user_loc) <= distance)
+			to_chat(target, "<i>[message]</i>")
+			target.playsound_local(target, 'sound/misc/subtle_emote.ogg', 100)
+		else
+			to_chat(src, span_boldwarning("The subtle emote target moved out of view, try again."))
+		return
+
+	if(!mobsinview.len) // nobody to target, don't test distance
+		return
+	user_loc = get_turf(src)
+	for(var/mob/living/L in mobsinview)
+		if(!isliving(L) || QDELETED(L)) // mob has since been deleted/destroyed, skip
+			continue
+		if(get_dist(get_turf(L), user_loc) <= distance)
 			to_chat(L, "<i>[message]</i>")
+			L.playsound_local(L, 'sound/misc/subtle_emote.ogg', 100)
 

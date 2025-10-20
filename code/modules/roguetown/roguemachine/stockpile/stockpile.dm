@@ -124,6 +124,8 @@
 					SStreasury.economic_output += R.export_price * B.amount
 					if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 						say("No account found. Submit your fingers to a Meister for inspection.")
+					else
+						record_round_statistic(STATS_STOCKPILE_EXPANSES, amt)
 			continue
 		// Bloc to replace old vault mechanics
 		else if(istype(I,R.item_type))
@@ -154,6 +156,8 @@
 				SStreasury.economic_output += true_value
 				if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 					say("No account found. Submit your fingers to a Meister for inspection.")
+			record_round_statistic(STATS_STOCKPILE_EXPANSES, amt) // Unlike deposit, a treasure minting is equal to both expending and profiting at the same time
+			record_round_statistic(STATS_STOCKPILE_REVENUE, true_value)
 			return
 
 /obj/structure/roguemachine/stockpile/attackby(obj/item/P, mob/user, params)

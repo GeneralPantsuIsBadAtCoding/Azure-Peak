@@ -60,6 +60,12 @@
 		coin_amt = round(coin_amt)
 		if(coin_amt < 1)
 			return
+		// checks the maximum coin limit before deducting balance; prevents stacks of >=20
+		var/max_coins = 20
+		if(coin_amt > max_coins)
+			to_chat(user, span_warning("Maximum withdrawal limit exceeded. You can only withdraw up to [max_coins] coins at once."))
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+			return
 		amt = SStreasury.bank_accounts[H]
 		if(!Adjacent(user))
 			return
@@ -69,6 +75,7 @@
 		if(!SStreasury.withdraw_money_account(coin_amt*mod, H))
 			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 			return
+		record_round_statistic(STATS_MAMMONS_WITHDRAWN, coin_amt * mod)
 		budget2change(coin_amt*mod, user, selection)
 	else
 		to_chat(user, span_warning("The machine bites my finger."))
@@ -104,14 +111,13 @@
 		if(istype(P, /obj/item/roguecoin))
 			var/mob/living/carbon/human/H = user
 			if(H in SStreasury.bank_accounts)
-				SStreasury.generate_money_account(P.get_real_price(), H)
-				if(!HAS_TRAIT(H, TRAIT_NOBLE))
-					var/T = round(P.get_real_price() * SStreasury.tax_value)
-					if(T != 0)
-						SStreasury.total_deposit_tax += T
-						say("Your deposit was taxed [T] mammon.")
-						record_featured_stat(FEATURED_STATS_TAX_PAYERS, H, T)
-						GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += T
+				var/list/deposit_results = SStreasury.generate_money_account(P.get_real_price(), H)
+				if(islist(deposit_results))
+					record_round_statistic(STATS_MAMMONS_DEPOSITED, deposit_results[1] - deposit_results[2])
+				if(deposit_results[2] != 0)
+					say("Your deposit was taxed [deposit_results[2]] mammon.")
+					record_featured_stat(FEATURED_STATS_TAX_PAYERS, H, deposit_results[2])
+					record_round_statistic(STATS_TAXES_COLLECTED, deposit_results[2])
 				qdel(P)
 				playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 				return

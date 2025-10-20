@@ -1,6 +1,9 @@
 /datum/sex_action/blowjob
 	name = "Отсосать"
 	check_same_tile = FALSE
+	user_sex_part = SEX_PART_JAWS
+	target_sex_part = SEX_PART_COCK
+	category = SEX_CATEGORY_PENETRATE
 
 /datum/sex_action/blowjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

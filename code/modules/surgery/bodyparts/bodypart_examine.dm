@@ -180,12 +180,13 @@
 	var/crazy_infection = FALSE
 	var/list/wound_strings = list()
 	for(var/datum/wound/wound as anything in wounds)
-		if(wound == null)
-			continue
-		crazy_infection ||= wound?.has_special_infection()
-		if(!wound.check_name)
-			continue
-		wound_strings |= wound.get_check_name(user)
+		if(wound)
+			if(wound == null)
+				continue
+			crazy_infection ||= wound?.has_special_infection()
+			if(!wound.check_name)
+				continue
+			wound_strings |= wound.get_check_name(user)
 	status += wound_strings
 
 	if(crazy_infection)

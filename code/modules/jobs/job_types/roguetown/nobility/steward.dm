@@ -19,11 +19,47 @@
 	cmode_music = 'sound/music/combat_noble.ogg'
 	same_job_respawn_delay = 30 MINUTES
 
+	advclass_cat_rolls = list(CTAG_STEWARD = 2)
+
+	job_traits = list(TRAIT_NOBLE, TRAIT_SEEPRICES)
+	job_subclasses = list(
+		/datum/advclass/steward
+	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
+
+/datum/advclass/steward
+	name = "Steward"
+	tutorial = "Coin, Coin, Coin! Oh beautiful coin: You're addicted to it, and you hold the position as the Grand Duke's personal treasurer of both coin and information. You know the power silver and gold has on a man's mortal soul, and you know just what lengths they'll go to in order to get even more. Keep your festering economy alive- for it is the only thing you can weigh any trust into anymore."
+	outfit = /datum/outfit/job/roguetown/steward/basic
+
+	category_tags = list(CTAG_STEWARD)
+	subclass_stats = list(
+		STATKEY_INT = 2,
+		STATKEY_PER = 2,
+		STATKEY_SPD = 2,
+		STATKEY_STR = -2
+	)
+	subclass_skills = list(
+		/datum/skill/misc/reading = SKILL_LEVEL_LEGENDARY,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/swords = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+	)
+
 /datum/outfit/job/roguetown/steward
 	job_bitflag = BITFLAG_ROYALTY
 
-/datum/outfit/job/roguetown/steward/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/steward/basic/pre_equip(mob/living/carbon/human/H)
 	..()
+	H.adjust_blindness(-3)
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/stewarddress
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -38,30 +74,12 @@
 	beltr = /obj/item/storage/keyring/steward
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone
-
-	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.change_stat(STATKEY_INT, 2)
-	H.change_stat(STATKEY_PER, 2)
-	H.change_stat(STATKEY_SPD, -1)
 	H.mind.special_items["Steward Tights"] = /obj/item/clothing/under/roguetown/tights/black
 	H.mind.special_items["Steward Tailcoat"] = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
 	H.mind.special_items["Steward Silkdress"] = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
 	H.mind.special_items["Steward Silktunic"] = /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_SEEPRICES, type)
 	H.verbs |= /mob/living/carbon/human/proc/adjust_taxes
 
 GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
@@ -77,13 +95,5 @@ GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
 	if(world.time < GLOB.steward_tax_cooldown + 600 SECONDS)
 		to_chat(src, span_warning("You must wait [round((GLOB.steward_tax_cooldown + 600 SECONDS - world.time)/600, 0.1)] minutes before adjusting taxes again! Think of the realm."))
 		return FALSE
-	var/newtax = input(src, "Set a new tax percentage (1-99)", src, SStreasury.tax_value*100) as null|num
-	if(newtax)
-		if(findtext(num2text(newtax), "."))
-			return
-		newtax = CLAMP(newtax, 1, 99)
-		if(stat)
-			return
-		SStreasury.tax_value = newtax / 100
-		priority_announce("The new tax in Twilight Axis shall be [newtax] percent.", "The Steward Meddles", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain")
-		GLOB.steward_tax_cooldown = world.time
+	var/datum/taxsetter/taxsetter = new("The Steward Meddles")
+	taxsetter.ui_interact(src)

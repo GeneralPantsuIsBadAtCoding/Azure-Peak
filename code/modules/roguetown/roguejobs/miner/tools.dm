@@ -1,7 +1,7 @@
 /obj/item/rogueweapon/pick
 	force = 17
 	force_wielded = 21
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	name = "iron pick"
 	desc = "This tool is essential to mine in the dark depths."
@@ -13,7 +13,7 @@
 	max_integrity = 400
 	slot_flags = ITEM_SLOT_HIP
 	toolspeed = 1
-	associated_skill = null
+	associated_skill = /datum/skill/labor/mining
 	smeltresult = /obj/item/ingot/iron
 	grid_width = 64
 	grid_height = 64
@@ -53,7 +53,7 @@
 	force = 21
 	force_wielded = 28
 	icon_state = "steelpick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 600
 	smeltresult = /obj/item/ingot/steel
@@ -64,7 +64,7 @@
 	force = 12
 	force_wielded = 17
 	icon_state = "stonepick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 250
 	smeltresult = null
@@ -75,7 +75,7 @@
 	force = 12
 	force_wielded = 17
 	icon_state = "apick"
-	possible_item_intents = list(/datum/intent/pick)
+	possible_item_intents = list(/datum/intent/pick/bad)
 	gripped_intents = list(/datum/intent/pick)
 	max_integrity = 150
 	smeltresult = /obj/item/ingot/aaslag

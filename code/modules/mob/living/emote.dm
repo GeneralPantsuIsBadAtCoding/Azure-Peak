@@ -45,7 +45,7 @@
 	var/follower_ident = "[follower.key]/([follower.real_name]) (follower of [patron])"
 	message_admins("[follower_ident] [ADMIN_SM(follower)] [ADMIN_FLW(follower)] prays: [span_info(prayer)]")
 	user.log_message("(follower of [patron]) prays: [prayer]", LOG_GAME)
-	GLOB.azure_round_stats[STATS_PRAYERS_MADE]++
+	record_round_statistic(STATS_PRAYERS_MADE)
 
 	follower.whisper(prayer)
 
@@ -498,7 +498,7 @@
 				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
-		GLOB.azure_round_stats[STATS_KISSES_MADE]++
+		record_round_statistic(STATS_KISSES_MADE)
 
 
 /datum/emote/living/spit
@@ -557,7 +557,7 @@
 	if(ishuman(target))
 		playsound(target.loc, pick('sound/vo/hug.ogg'), 100, FALSE, -1)
 		if(user.mind)
-			GLOB.azure_round_stats[STATS_HUGS_MADE]++
+			record_round_statistic(STATS_HUGS_MADE)
 			SEND_SIGNAL(user, COMSIG_MOB_HUGGED, target)
 
 /datum/emote/living/holdbreath
@@ -655,7 +655,7 @@
 /datum/emote/living/laugh/run_emote(mob/user, params, type_override, intentional, targetted)
 	. = ..()
 	if(. && user.mind)
-		GLOB.azure_round_stats[STATS_LAUGHS_MADE]++
+		record_round_statistic(STATS_LAUGHS_MADE)
 
 /datum/emote/living/laugh
 	key = "laugh"
@@ -776,6 +776,8 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
 				continue
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
@@ -799,7 +801,9 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
-				continue
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
+				continue // i hope this shit works.
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
 
@@ -815,7 +819,9 @@
 	if(.)
 		for(var/mob/living/carbon/human/L in viewers(7,user))
 			if(L == user)
-				continue
+				if(L.has_flaw(/datum/charflaw/addiction/masochist))
+					L.sate_addiction()
+				continue // i hope this shit works.
 			if(L.has_flaw(/datum/charflaw/addiction/sadist))
 				L.sate_addiction()
 
@@ -921,7 +927,7 @@
 /datum/emote/living/rage/run_emote(mob/user, params, type_override, intentional, targetted)
 	. = ..()
 	if(. && user.mind)
-		GLOB.azure_round_stats[STATS_WARCRIES]++
+		record_round_statistic(STATS_WARCRIES)
 
 /datum/emote/living/attnwhistle
 	key = "attnwhistle"
@@ -1601,6 +1607,19 @@
 	set category = "Noises"
 
 	emote("blink", intentional = TRUE)
+
+/datum/emote/living/stomp
+	key = "stomp"
+	key_third_person = "stomps!"
+	message = "stomps!"
+	emote_type = EMOTE_VISIBLE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_stomp()
+	set name = "Stomp"
+	set category = "Noises"
+
+	emote("stomp", intentional = TRUE)
 
 /datum/emote/living/snap2
 	key = "snap2"

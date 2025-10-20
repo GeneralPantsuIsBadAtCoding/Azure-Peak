@@ -59,7 +59,7 @@
 	. = ..()
 	var/filter = owner.get_filter(GUIDANCE_FILTER)
 	if (!filter)
-		owner.add_filter(GUIDANCE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
+		owner.add_filter(GUIDANCE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
 	to_chat(owner, span_warning("The arcyne aides me in battle."))
 	ADD_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
 

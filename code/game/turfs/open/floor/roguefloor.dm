@@ -1220,19 +1220,19 @@
 	icon_state = "kover"
 
 /obj/effect/decal/carpet/kover_darkred
-	name = "exotic red rug"
+	name = "rustic red rug"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_darkred"
 
 /obj/effect/decal/carpet/kover_purple
-	name = "exotic purple rug"
+	name = "rustic purple rug"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_purple"
 
 /obj/effect/decal/carpet/kover_black
-	name = "exotic black carpet"
+	name = "rustic black carpet"
 	desc = "Dazzling symmetrical patterns flow with an old culture's style."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "kover_black"
@@ -1250,6 +1250,19 @@
 	desc = "As black as the night sky during a storm."
 	icon = 'icons/roguetown/misc/64x64.dmi'
 	icon_state = "blackcarpet"
+
+/obj/structure/giantfur
+	name = "giant fur"
+	desc = "Pelt of some gigantic animal, made into a mat."
+	icon = 'icons/roguetown/misc/96x96.dmi'
+	icon_state = "fur"
+	density = FALSE
+	anchored = TRUE
+
+/obj/structure/giantfur/small // the irony
+	name = "fur pelt"
+	desc = "Pelt of a young animal, made into a mat."
+	icon_state = "fur_alt"
 
 /turf/open/floor/rogue/tile
 	icon_state = "chess"

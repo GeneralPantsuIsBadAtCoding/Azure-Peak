@@ -163,7 +163,7 @@
 				soundloop.cursound = null
 				soundloop.start()
 				user.apply_status_effect(/datum/status_effect/buff/playing_music, stressevent, note_color)
-				GLOB.azure_round_stats[STATS_SONGS_PLAYED]++
+				record_round_statistic(STATS_SONGS_PLAYED)
 			else
 				playing = FALSE
 				groupplaying = FALSE

@@ -202,3 +202,30 @@ a.class_desc_YES_LINK:hover
 .subclass_title:hover .subclasses{
     visibility: visible;
 }
+
+.class_dropdown {
+    margin: 1px 0;
+	text-align: center; 
+    font-family: 'VT323', monospace;
+    color: #e5e6cc;
+}
+
+.class_dropdown summary {
+    cursor: pointer;
+    font-size: 32px;
+    text-shadow: 1px 1px #000;
+    margin-bottom: 1px;
+}
+
+/* Remove the default arrow from <summary> */
+.class_dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.class_dropdown summary::marker {
+    content: "";
+}
+
+.class_dropdown[open] summary {
+    color: #ff0808; /* highlight when open */
+}

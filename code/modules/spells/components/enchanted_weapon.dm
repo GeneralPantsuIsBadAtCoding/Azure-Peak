@@ -59,12 +59,10 @@
 	if(!istype(itemloc, /mob/living))
 		while(!istype(itemloc, /mob/living))
 			if(isnull(itemloc))
-				remove()
 				qdel(src)
 				return // If the item is not in a mob, remove the refresh
 			itemloc = itemloc.loc
 			if(istype(itemloc, /turf))
-				remove()
 				qdel(src)
 				return // If the item is on the ground, remove the refresh
 	var/mob/living/current_user = itemloc
@@ -77,7 +75,6 @@
 			endtime = world.time + DEFAULT_DURATION
 			addtimer(CALLBACK(src, PROC_REF(refresh_check)), DEFAULT_DURATION)
 	else
-		remove()
 		qdel(src)
 		return
 

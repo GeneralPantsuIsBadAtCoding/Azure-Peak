@@ -168,6 +168,10 @@
 	verbage = "%HAVE%"
 	prefix = "a"
 
+/datum/mob_descriptor/prominent/prominent_ears
+	name = "Prominent Ears"
+	verbage = "%HAVE%"
+
 /datum/mob_descriptor/prominent/cold_gaze
 	name = "Cold Gaze"
 	verbage = "%HAVE%"

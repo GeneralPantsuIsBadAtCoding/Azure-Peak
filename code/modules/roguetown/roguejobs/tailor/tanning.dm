@@ -39,7 +39,7 @@
 			return
 	if((user.used_intent.type == /datum/intent/dagger/cut || user.used_intent.type == /datum/intent/sword/cut || user.used_intent.type == /datum/intent/axe/cut) && hide)
 		if(anchored)
-			var/skill_level = user.get_skill_level(/datum/skill/craft/tanning)
+			var/skill_level = max(user.get_skill_level(/datum/skill/craft/tanning))
 			var/work_time = (120 - (skill_level * 15))
 			var/pieces_to_spawn = rand(1, min(skill_level + 1, 6)) //Random number from 1 to skill level
 			var/sound_played = FALSE
@@ -50,15 +50,29 @@
 			QDEL_NULL(hide)
 			user.mind.add_sleep_experience(/datum/skill/craft/tanning, user.STAINT * 2) //these numbers may need some revision
 			update_icon()
+			var/essence_factor = 1 // Chance of getting an essence
+			// Not flat scaling, tilted toward the higher levels
+			switch(skill_level)
+				if(SKILL_LEVEL_NOVICE)
+					essence_factor = 1
+				if(SKILL_LEVEL_APPRENTICE)
+					essence_factor = 2
+				if(SKILL_LEVEL_JOURNEYMAN)
+					essence_factor = 3
+				if(SKILL_LEVEL_EXPERT)
+					essence_factor = 6 // Big Jump here - Hunter can level to this quickly. Tailor start w/ it
+				if(SKILL_LEVEL_MASTER)
+					essence_factor = 8
+				if(SKILL_LEVEL_LEGENDARY)
+					essence_factor = 10
 			for(var/i = 0; i < pieces_to_spawn; i++)
-				if(prob(skill_level + user.goodluck(2)))
+				if(prob(essence_factor + user.goodluck(2)))
 					new /obj/item/natural/cured/essence(get_turf(user))
 					if(!sound_played)
 						sound_played = TRUE
 						to_chat(user, span_warning("Dendor provides..."))
 						playsound(src,pick('sound/items/gem.ogg'), 100, FALSE)
-				else
-					new /obj/item/natural/hide/cured(get_turf(user))
+				new /obj/item/natural/hide/cured(get_turf(user))
 			return
 		else
 			to_chat(user, span_warning("I need to anchor this down with a wooden stake before I can work this hide."))

@@ -49,19 +49,13 @@
 			BP.update_disabled()
 			C.apply_damage(trap_damage, BRUTE, def_zone)
 			C.update_sneak_invis(TRUE)
-			C.consider_ambush(always = TRUE)
 			return FALSE
 		else
 			var/used_time = 10 SECONDS
 			if(C.mind)
 				used_time -= max((C.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 			if(do_after(user, used_time, target = src))
-				armed = FALSE
-				w_class = WEIGHT_CLASS_NORMAL
-				grid_width = 64
-				grid_height = 64
-				update_icon()
-				alpha = 255
+				close_trap(FALSE)
 				C.visible_message(span_notice("[C] disarms \the [src]."), \
 						span_notice("I disarm \the [src]."))
 				return FALSE
@@ -77,7 +71,6 @@
 				BP.update_disabled()
 				C.apply_damage(trap_damage, BRUTE, def_zone)
 				C.update_sneak_invis(TRUE)
-				C.consider_ambush(always = TRUE)
 				return FALSE
 	..()
 
@@ -90,7 +83,6 @@
 		if(isliving(user))
 			var/mob/living/L = user
 			L.update_sneak_invis(TRUE)
-			L.consider_ambush(always = TRUE)
 		return
 	..()
 
@@ -192,7 +184,6 @@
 						"<span class='danger'>I trigger \the [src]!</span>")
 				if(L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", damage = trap_damage)))
 					L.Stun(80)
-				L.consider_ambush(always = TRUE)
 	..()
 
 /obj/item/restraints/legcuffs/beartrap/dropped(mob/living/carbon/human/user)

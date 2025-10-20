@@ -84,7 +84,13 @@
 	devotion_cost = 30
 
 /obj/effect/proc_holder/spell/targeted/conjure_glowshroom/cast(list/targets, mob/user = usr)
-	. = ..()
+	..()
+
+	to_chat(user, span_notice("I begin enriching the soil around me!"))
+	if(!do_after(user, 2 SECONDS, progress = TRUE))
+		revert_cast()
+		return FALSE
+
 	var/turf/T = user.loc
 	for(var/X in GLOB.cardinals)
 		var/turf/TT = get_step(T, X)

@@ -59,14 +59,6 @@
 			playsound(src, 'sound/misc/lava_death.ogg', 100, FALSE)
 //			addomen("lava")
 
-/turf/open/lava/Exited(atom/movable/Obj, atom/newloc)
-	. = ..()
-	if(!Obj.throwing)
-		if(isliving(Obj))
-			var/mob/living/L = Obj
-			if(!islava(newloc) && !L.on_fire)
-				L.update_fire()
-
 /turf/open/lava/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
@@ -141,9 +133,6 @@
 			. = TRUE
 			var/mob/living/L = thing
 
-			if(!L.on_fire)
-				L.update_fire()
-
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				var/obj/item/clothing/S = C.get_item_by_slot(SLOT_ARMOR)
@@ -160,7 +149,7 @@
 			if(L)
 				L.adjustFireLoss(100)
 				L.adjust_fire_stacks(100)
-				L.IgniteMob()
+				L.ignite_mob()
 
 /turf/open/lava/onbite(mob/user)
 	if(isliving(user))
@@ -179,7 +168,7 @@
 			C.flash_fullscreen("redflash3")
 			C.emote("agony", forced = TRUE)
 			C.adjust_fire_stacks(500) //you deserve this.
-			C.IgniteMob()
+			C.ignite_mob()
 			C.adjustFireLoss(1000) //you, literally, deserve this.
 
 /turf/open/lava/smooth

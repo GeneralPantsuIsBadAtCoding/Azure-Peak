@@ -35,6 +35,20 @@
 		return FALSE
 	ejaculate_container(milker.get_active_held_item())
 
+/datum/sex_controller/proc/handle_breast_milking(mob/living/carbon/human/milker, mob/living/carbon/human/target)
+	var/obj/item/organ/breasts/breasts = target.getorganslot(ORGAN_SLOT_BREASTS)
+	var/milk_to_add = min(max(breasts.breast_size, 1), breasts.milk_stored)
+	if(breasts.lactating && milk_to_add > 0)
+		breasts.milk_stored -= milk_to_add
+		milk_container(milker.get_active_held_item(), milk_to_add)
+	else
+		to_chat(milker, span_notice("Молоко не выходит из груди..."))
+
+/datum/sex_controller/proc/milk_container(obj/item/reagent_containers/glass/C, amout)
+	user.visible_message(span_lovebold("[user.name] наполняет [C.name] молочком!"))
+	playsound(user, 'sound/misc/mat/segso.ogg', 50, TRUE, ignore_walls = FALSE)
+	C.reagents.add_reagent(/datum/reagent/consumable/milk, amout)
+
 /datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
 	log_combat(user, user, "Кончает в емкость")
 	user.visible_message(span_lovebold("[user.name] наполняет [C.name] семенем!"))

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/mending
 	name = "Mending"
-	desc = "Uses arcyne energy to mend an item."
+	desc = "Uses arcyne energy to mend an item. Effect of repair scales off of your Intellegence."
 	overlay_state = "mending"
 	releasedrain = 50
 	chargetime = 5
@@ -27,8 +27,13 @@
 			to_chat(user, span_warning("Not even magic can mend this item!"))
 			revert_cast()
 			return
+
 		if(I.obj_integrity < I.max_integrity)
-			var/repair_percent = 0.25
+			var/repair_percent = 0.20
+			var/int_bonus = 0.00
+
+			int_bonus = (user.STAINT * 0.01)
+			repair_percent += int_bonus
 			repair_percent *= I.max_integrity
 			I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity)
 			user.visible_message(span_info("[I] glows in a faint mending light."))

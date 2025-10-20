@@ -32,10 +32,10 @@
 			r_hand = /obj/item/rogueweapon/shield/wood // Help preserve integrity
 		if(3)
 			l_hand = /obj/item/rogueweapon/mace/cudgel/copper
-	H.STASTR = 12
+	H.STASTR = 11
 	H.STASPD = 8
-	H.STACON = 12
-	H.STAWIL = 12
+	H.STACON = 11
+	H.STAWIL = 11
 	H.STAINT = 4 // Very dumb
 	H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
@@ -70,10 +70,10 @@
 			l_hand = /obj/item/rogueweapon/greataxe
 		if(5)
 			l_hand = /obj/item/rogueweapon/pick/militia
-	H.STASTR = 14 // GAGGER GAGGER GAGGER
+	H.STASTR = 12 // GAGGER GAGGER GAGGER
 	H.STASPD = 8
-	H.STACON = 13
-	H.STAWIL = 13
+	H.STACON = 12
+	H.STAWIL = 10
 	H.STAINT = 4
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -104,10 +104,10 @@
 			l_hand = /obj/item/rogueweapon/huntingknife/idagger
 		if(2)
 			l_hand = /obj/item/rogueweapon/pick/militia
-	H.STASTR = 16 // GAGGER GAGGER GAGGER
+	H.STASTR = 13 // GAGGER GAGGER GAGGER
 	H.STASPD = 10 // Fast, for an orc
-	H.STACON = 16
-	H.STAWIL = 13
+	H.STACON = 12
+	H.STAWIL = 12
 	H.STAINT = 1 // Minmax department
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
@@ -145,11 +145,11 @@
 		if(6)
 			l_hand = /obj/item/rogueweapon/sword/short/falchion
 			r_hand = /obj/item/rogueweapon/sword/short/falchion // intrusive thoughts
-	H.STASTR = 16 // GAGGER GAGGER GAGGER
+	H.STASTR = 14 // GAGGER GAGGER GAGGER
 	H.STASPD = 10 // Fast, for an orc
-	H.STACON = 16
-	H.STAWIL = 13
-	H.STAINT = 1 // Minmax department
+	H.STACON = 12
+	H.STAWIL = 12
+	H.STAINT = 1
 	H.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
@@ -161,4 +161,3 @@
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, INNATE_TRAIT)

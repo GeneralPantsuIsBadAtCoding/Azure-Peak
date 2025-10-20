@@ -22,7 +22,7 @@
 		)
 	sellprice = 12
 	tools = list(/obj/item/needle)
-	skillcraft = /datum/skill/misc/sewing
+	skillcraft = /datum/skill/craft/sewing
 	verbage_simple = "sew"
 	verbage = "sews"
 	craftdiff = 0
@@ -37,7 +37,7 @@
 		)
 	sellprice = 6
 	tools = list(/obj/item/needle)
-	skillcraft = /datum/skill/misc/sewing
+	skillcraft = /datum/skill/craft/sewing
 	verbage_simple = "sew"
 	verbage = "sews"
 	craftdiff = 0
@@ -49,7 +49,7 @@
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/survival/bell_collar
+/* /datum/crafting_recipe/roguetown/survival/bell_collar TA EDIT START
 	name = "bell collar"
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/collar/bell_collar
@@ -57,7 +57,7 @@
 		/obj/item/natural/hide/cured = 1,
 		/obj/item/jingle_bells = 1,
 		)
-	craftdiff = 0
+	craftdiff = 0 */ // TA EDIT END
 
 /datum/crafting_recipe/roguetown/survival/feldcollar
 	name = "feldcollar"

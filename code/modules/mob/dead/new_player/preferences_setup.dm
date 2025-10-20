@@ -34,29 +34,32 @@
 		real_name = pref_species.random_name(gender,1)
 	set_new_race(new random_species_type)
 
-/datum/preferences/proc/update_preview_icon()
+/datum/preferences/proc/update_preview_icon(jobOnly = FALSE)
 	set waitfor = 0
 	if(!parent)
 		return
 	if(parent.is_new_player())
 		return
 //	last_preview_update = world.time
-	// Determine what job is marked as 'High' priority, and dress them up as such.
+	// Set up the dummy for its photoshoot
 	var/datum/job/previewJob
 	var/highest_pref = 0
 	for(var/job in job_preferences)
 		if(job_preferences[job] > highest_pref)
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
-
-	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin, 1, TRUE, TRUE)
 
-	if(previewJob)
-		testing("previewjob")
+	if(jobOnly)
 		mannequin.job = previewJob.title
 		previewJob.equip(mannequin, TRUE, preference_source = parent)
+
+	if(preview_subclass && !jobOnly)
+		testing("previewjob")
+		mannequin.job = previewJob.title
+		mannequin.patron = selected_patron
+		preview_subclass.equipme(mannequin, dummy = TRUE)
 
 	mannequin.rebuild_obscured_flags()
 	COMPILE_OVERLAYS(mannequin)

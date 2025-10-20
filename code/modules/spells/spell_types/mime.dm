@@ -22,7 +22,7 @@
 		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE)) // If somehow someone gets ahold of this spell...
 			to_chat(usr, span_warning("I am not a mute!"))
 			return
-		invocations = list("<B>[usr.real_name]</B> looks as if a wall is in front of [usr.p_them()].")
+		invocations = list("looks as if a wall is in front of [usr.p_them()].")
 	else
 		invocation_type ="none"
 	invocation(usr) // force invocation because invocation() only gets called on a specific spell (not aoe_turf)
@@ -52,7 +52,7 @@
 		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE))
 			to_chat(usr, span_warning("I am not a mute!"))
 			return
-		invocations = list("<B>[usr.real_name]</B> pulls out an invisible chair and sits down.")
+		invocations = list("pulls out an invisible chair and sits down.")
 	else
 		invocation_type ="none"
 	invocation(usr)
@@ -129,7 +129,7 @@
 		if(!usr.mind.miming)
 			to_chat(usr, "<span class='warning'>I must dedicate myself to silence first!</span>")
 			return
-		invocations = list("<B>[usr.real_name]</B> looks as if a blockade is in front of [usr.p_them()].")
+		invocations = list("looks as if a blockade is in front of [usr.p_them()].")
 	else
 		invocation_type ="none"
 	..()

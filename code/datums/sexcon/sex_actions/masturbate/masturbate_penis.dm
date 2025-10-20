@@ -1,5 +1,8 @@
 /datum/sex_action/masturbate_penis
 	name = "Вздрочнуть"
+	user_sex_part = SEX_PART_COCK
+	target_sex_part = SEX_PART_COCK
+	category = SEX_CATEGORY_HANDS
 
 /datum/sex_action/masturbate_penis/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user != target)
@@ -16,7 +19,7 @@
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE
 	if(!user.sexcon.can_use_penis())
-		return
+		return FALSE
 	return TRUE
 
 /datum/sex_action/masturbate_penis/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)

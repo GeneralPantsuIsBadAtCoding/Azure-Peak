@@ -7,10 +7,6 @@
 	max_occurrences = 1
 	min_players = 25
 
-	tags = list(
-		TAG_BOON,
-	)
-
 /datum/round_event_control/retainer_recruitment/canSpawnEvent(players_amt, gamemode, fake_check)
 	. = ..()
 	if(!.)

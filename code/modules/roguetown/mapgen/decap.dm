@@ -8,7 +8,7 @@
 
 
 /datum/mapGenerator/decap
-	modules = list(/datum/mapGeneratorModule/ambushing,/datum/mapGeneratorModule/decapsnow,/datum/mapGeneratorModule/decaproad, /datum/mapGeneratorModule/decapgrass)
+	modules = list(/datum/mapGeneratorModule/decapsnow,/datum/mapGeneratorModule/decaproad, /datum/mapGeneratorModule/decapgrass)
 
 
 /datum/mapGeneratorModule/decapsnow

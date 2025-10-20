@@ -155,7 +155,7 @@ All foods are distributed among various categories. Use common sense.
 			qdel(src)
 			if(!location || !SEND_SIGNAL(location, COMSIG_TRY_STORAGE_INSERT, NU, null, TRUE, TRUE))
 				NU.forceMove(get_turf(NU.loc))
-			GLOB.azure_round_stats[STATS_FOOD_ROTTED]++
+			record_round_statistic(STATS_FOOD_ROTTED)
 			return TRUE
 	else
 		color = "#6c6897"
@@ -168,7 +168,7 @@ All foods are distributed among various categories. Use common sense.
 		cooktime = 0
 		if(istype(src.loc, /obj/item/cooking/platter/))
 			src.loc.update_icon()
-		GLOB.azure_round_stats[STATS_FOOD_ROTTED]++
+		record_round_statistic(STATS_FOOD_ROTTED)
 		return TRUE
 
 
@@ -252,6 +252,41 @@ All foods are distributed among various categories. Use common sense.
 	// check to see if what we're eating is appropriate fare for our "social class" (aka nobles shouldn't be eating sticks of butter you troglodytes)
 	if (ishuman(eater))
 		var/mob/living/carbon/human/human_eater = eater
+		if(human_eater.culinary_preferences)
+			var/favorite_food_type = human_eater.culinary_preferences[CULINARY_FAVOURITE_FOOD]
+			if(favorite_food_type == type)
+				if(human_eater.add_stress(/datum/stressevent/favourite_food))
+					to_chat(human_eater, span_green("Yum! My favorite food!"))
+			else if(ispath(type, favorite_food_type))
+				var/obj/item/reagent_containers/food/snacks/favorite_food_instance = favorite_food_type
+				var/favorite_food_name = initial(favorite_food_instance.name)
+				if(favorite_food_name == name)
+					if(human_eater.add_stress(/datum/stressevent/favourite_food))
+						to_chat(human_eater, span_green("Yum! My favorite food!"))
+			else
+				var/obj/item/reagent_containers/food/snacks/favorite_food_instance = favorite_food_type
+				var/slice_path = initial(favorite_food_instance.slice_path)
+				if(slice_path && type == slice_path)
+					if(human_eater.add_stress(/datum/stressevent/favourite_food))
+						to_chat(human_eater, span_green("Yum! My favorite food!"))
+
+			var/hated_food_type = human_eater.culinary_preferences[CULINARY_HATED_FOOD]
+			if(hated_food_type == type)
+				if(human_eater.add_stress(/datum/stressevent/hated_food))
+					to_chat(human_eater, span_red("Yuck! My hated food!"))
+			else if(ispath(type, hated_food_type))
+				var/obj/item/reagent_containers/food/snacks/hated_food_instance = hated_food_type
+				var/hated_food_name = initial(hated_food_instance.name)
+				if(hated_food_name == name)
+					if(human_eater.add_stress(/datum/stressevent/hated_food))
+						to_chat(human_eater, span_red("Yuck! My hated food!"))
+			else
+				var/obj/item/reagent_containers/food/snacks/hated_food_instance = hated_food_type
+				var/slice_path = initial(hated_food_instance.slice_path)
+				if(slice_path && type == slice_path)
+					if(human_eater.add_stress(/datum/stressevent/hated_food))
+						to_chat(human_eater, span_red("Yuck! My hated food!"))
+
 		if (!HAS_TRAIT(human_eater, TRAIT_NASTY_EATER) && !HAS_TRAIT(human_eater, TRAIT_ORGAN_EATER))
 			if (human_eater.is_noble())
 				if (!portable)
@@ -378,6 +413,8 @@ All foods are distributed among various categories. Use common sense.
 				if(!do_mob(user, M, double_progress = TRUE))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
+				if(istype(src, /obj/item/reagent_containers/food/snacks/grown/berries/rogue) || istype(src, /obj/item/reagent_containers/food/snacks/grown/fruit))
+					M.add_stress(/datum/stressevent/hand_fed_fruit)
 //				M.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_danger("[user] forces you to eat [src]!"))
 			else
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
@@ -442,6 +479,32 @@ All foods are distributed among various categories. Use common sense.
 		else
 			return "a lavish, filling meal"
 
+/obj/item/reagent_containers/food/snacks/proc/rotprocess_to_text()
+	var/rot_text = ""
+	if(!rotprocess)
+		return "This food does not rot."
+	switch(initial(rotprocess))
+		if(0 to SHELFLIFE_TINY)
+			rot_text = "This food will rot in less than a third of a dae."
+		if(SHELFLIFE_TINY to SHELFLIFE_SHORT)
+			rot_text = "This food will rot in half a dae."
+		if(SHELFLIFE_SHORT to SHELFLIFE_DECENT)
+			rot_text = "This food will last about a dae."
+		if(SHELFLIFE_DECENT to SHELFLIFE_LONG)
+			rot_text = "This food will last a dae and a half."
+		if(SHELFLIFE_LONG to SHELFLIFE_EXTREME)
+			rot_text = "This food will last three daes."
+	switch(-1 * warming / initial(rotprocess))
+		if(-INFINITY to 0.25)
+			rot_text += " It is very fresh."
+		if(0.25 to 0.5)
+			rot_text += " It is fairly fresh."
+		if(0.5 to 0.75)
+			rot_text += " It is starting to go stale."
+		if(0.75 to 1)
+			rot_text += " It is about to rot."
+	return rot_text
+
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
 	if(!in_container)
@@ -478,6 +541,7 @@ All foods are distributed among various categories. Use common sense.
 			. += span_smallred("It is burned!")
 		if(/datum/status_effect/buff/foodbuff)
 			. += span_smallnotice("It looks great!")
+	. += span_smallnotice("[rotprocess_to_text()]")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/kitchen/fork))

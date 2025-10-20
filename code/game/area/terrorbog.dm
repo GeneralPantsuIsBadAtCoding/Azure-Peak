@@ -32,6 +32,7 @@
 	droning_sound = 'sound/music/area/bog.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+	deathsight_message = "a wretched, fetid bog"
 
 /area/rogue/outdoors/bog/north
 	name = "Northern Terrorbog"

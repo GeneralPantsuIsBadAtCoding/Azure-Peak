@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(statpacks)
 			else
 				var/list/stat_range = stat_array[stat]
 				recipient.change_stat(stat, rand(stat_range[1], stat_range[2]))
+		record_featured_object_stat(FEATURED_STATS_STATPACKS, name)
 		return TRUE
 	return FALSE
 

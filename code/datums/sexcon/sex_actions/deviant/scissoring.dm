@@ -1,5 +1,7 @@
 /datum/sex_action/scissoring
 	name = "Ножницы"
+	user_sex_part = SEX_PART_CUNT
+	target_sex_part = SEX_PART_CUNT
 
 /datum/sex_action/scissoring/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -39,3 +41,8 @@
 
 /datum/sex_action/scissoring/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_warning("[user] замерев, отодвигает ножку [target] в сторону."))
+
+/datum/sex_action/scissoring/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(target.sexcon.finished_check())
+		return TRUE
+	return FALSE

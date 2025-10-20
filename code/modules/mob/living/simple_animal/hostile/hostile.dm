@@ -239,6 +239,9 @@
 	if(isturf(the_target) || !the_target || the_target.type == /atom/movable/lighting_object) // bail out on invalids
 		return FALSE
 
+	if(binded)
+		return FALSE
+
 	if(ismob(the_target)) //Target is in godmode, ignore it.
 		var/mob/M = the_target
 		if(M.status_flags & GODMODE)
@@ -280,6 +283,8 @@
 
 //What we do after closing in
 /mob/living/simple_animal/hostile/proc/MeleeAction(patience = TRUE)
+	if(binded)
+		return FALSE
 	if(rapid_melee > 1)
 		var/datum/callback/cb = CALLBACK(src, PROC_REF(CheckAndAttack))
 		var/delay = SSnpcpool.wait / rapid_melee
@@ -429,6 +434,8 @@
 					return TRUE
 
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
+	if(binded)
+		return FALSE
 	if(CheckFriendlyFire(A))
 		return
 	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))

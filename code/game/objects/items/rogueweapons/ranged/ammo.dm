@@ -36,6 +36,14 @@
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
 
+/obj/item/ammo_casing/caseless/rogue/bolt/blunt
+	name = "blunt bolt"
+	desc = "A crossbow bolt without the part that pierces skulls. That doesn't mean it won't kill you."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/blunt
+	possible_item_intents = list(/datum/intent/mace/strike)
+	icon_state = "bolt_blunt"
+	force = 5
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -59,6 +67,12 @@
 /obj/projectile/bullet/reusable/bolt/paalloy
 	damage = 50
 	armor_penetration = 35
+
+/obj/projectile/bullet/reusable/bolt/blunt
+	damage = 25
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
@@ -92,6 +106,14 @@
 	dropshrink = 0.6
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	max_integrity = 10
+
+/obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	name = "blunt arrow"
+	desc = "For when you really need to kill a zad."
+	icon_state = "arrow_blunt"
+	projectile_type = /obj/projectile/bullet/reusable/arrow/blunt
+	force = 5
+	possible_item_intents = list(/datum/intent/mace/strike)
 
 /obj/item/ammo_casing/caseless/rogue/arrow/stone
 	name = "stone arrow"
@@ -161,6 +183,14 @@
 
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/bows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/bows, L.STAINT * skill_multiplier)
+
+/obj/projectile/bullet/reusable/arrow/blunt
+	name = "blunt arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	damage = 15
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/arrow/stone
 	name = "stone arrow"
@@ -275,7 +305,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(6)
 	M.adjustFireLoss(15)
-	M.IgniteMob()
+	M.ignite_mob()
 
 
 /obj/item/ammo_casing/caseless/rogue/bolt/water
@@ -357,7 +387,7 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(4)
 	M.adjustFireLoss(10)
-	M.IgniteMob()
+	M.ignite_mob()
 
 /obj/item/ammo_casing/caseless/rogue/arrow/water
 	name = "water arrow"
@@ -583,45 +613,23 @@
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	smeltresult = /obj/item/ingot/silver
 
+/obj/item/ammo_casing/caseless/rogue/javelin/silver/ComponentInitialize()
+	. = ..()
+	AddComponent(\
+		/datum/component/silverbless,\
+		pre_blessed = BLESSING_NONE,\
+		silver_type = SILVER_TENNITE,\
+		added_force = -3,\
+		added_blade_int = 50,\
+		added_int = 50,\
+		added_def = 3,\
+	)
+
 //Snowflake code to make sure the silver-bane is applied on hit to targeted mob. Thanks to Aurorablade for getting this code to work.
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..() 
 	if(!iscarbon(hit_atom))
 		return//abort
-	check_dmg(hit_atom)//apply effects and damages
-		
-/obj/item/ammo_casing/caseless/rogue/javelin/silver/proc/check_dmg(mob/living/hit_atom)
-	var/mob/living/carbon/human/H = hit_atom
-	if(H.mind)
-		var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-		var/datum/antagonist/vampirelord/lesser/V = H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-		var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
-		if(V)
-			if(V.disguised)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			else
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !V)
-				H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-				to_chat(H, span_userdanger("I'm hit by my BANE!"))
-				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-				src.last_used = world.time
-			if(V_lord.vamplevel == 4 && !V)
-				to_chat(H, "<font color='red'> The silver weapon fails!</font>")
-				H.visible_message(H, span_userdanger("This feeble metal can't hurt me, I AM ANCIENT!"))
-		if(W && W.transformed == TRUE)
-			H.visible_message("<font color='white'>The silver weapon weakens the curse temporarily!</font>")
-			to_chat(H, span_userdanger("I'm hit by my BANE!"))
-			H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
-			src.last_used = world.time
-	return
 
 //sling bullets
 
@@ -762,6 +770,37 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
+
+/obj/item/ammo_casing/caseless/rogue/bolt/holy
+	name = "holy water bolt"
+	desc = "One baptism for the remission of sins."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/holy
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
+	caliber = "regbolt"
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolt_holywater"
+	dropshrink = 0.6
+	max_integrity = 10
+	force = 10
+
+
+/obj/projectile/bullet/reusable/bolt/holy
+	name = "holy water bolt"
+	damage = 40 // way less damage
+	damage_type = BRUTE
+	armor_penetration = 50
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolthwater_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/holy
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 100
+	woundclass = BCLASS_PIERCE
+	flag = "piercing"
+	speed = 0.5
+	poisontype = /datum/reagent/water/blessed
+	poisonamount = 5
+	npc_simple_damage_mult = 2
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

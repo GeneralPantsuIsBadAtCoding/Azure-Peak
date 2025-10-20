@@ -21,11 +21,19 @@
 		/datum/species/aasimar,
 		/datum/species/human/halfelf,
 		/datum/species/halforc,
-		/datum/species/tieberian,
 	)
 
 	set_species(pick(species))
 	gender = pick(MALE, FEMALE)
+
+	var/obj/item/organ/ears/organ_ears = getorgan(/obj/item/organ/ears)
+	var/list/deadite_firstnames = world.file2list("strings/rt/names/other/deaditenpcfirst.txt")
+	var/list/deadite_lastnames  = world.file2list("strings/rt/names/other/deaditenpclast.txt")
+	
+	if(organ_ears)
+		organ_ears.accessory_colors = "#868e79"
+
+	real_name = "[pick(deadite_firstnames)] [pick(deadite_lastnames)]"
 
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 

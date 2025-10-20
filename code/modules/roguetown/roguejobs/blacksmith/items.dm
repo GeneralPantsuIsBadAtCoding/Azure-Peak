@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/items/valuable.dmi'
 	name = "statue"
 	icon_state = ""
+	obj_flags = CAN_BE_HIT
 	w_class = WEIGHT_CLASS_NORMAL
 	experimental_inhand = FALSE
 	smeltresult = null
@@ -138,6 +139,15 @@
 	grid_width = 32
 	grid_height = 64
 	var/roughness = 0 // 0  for a fine brush, 1 for a coarse brush
+
+/obj/item/armor_brush/examine()
+	. = ..()
+	. += span_info("To polish a weapon or a piece of armor, you must have the knowledge of a squire or how to repair the item. Follow the following steps:")
+	. += span_info("I. Apply polishing cream to the item.")
+	. += span_info("II. Use the coarse side (use the item to flip it) to scrub the item roughly.")
+	. += span_info("III. Use the fine side to gently polish the item.")
+	. += span_info("IV. Wash the item in a wooden bin with water to polish it.")
+	. += span_info("A fully polished item will be slightly stronger and or more durable.")
 
 /obj/item/armor_brush/attack_self(mob/user)
 	roughness = 1 - roughness

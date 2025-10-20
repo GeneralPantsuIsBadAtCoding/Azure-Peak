@@ -1,6 +1,9 @@
 /datum/sex_action/tailpegging_vaginal
 	name = "Трахнуть хвостом"
 	check_incapacitated = FALSE
+	stamina_cost = 1.0
+	category = SEX_CATEGORY_PENETRATE
+	target_sex_part = SEX_PART_CUNT
 
 /datum/sex_action/tailpegging_vaginal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
