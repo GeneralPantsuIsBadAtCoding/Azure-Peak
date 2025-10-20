@@ -113,7 +113,7 @@
 	desc = "A ragged hood of thick jute fibres. The itchiness is unbearable."
 	sewrepair = TRUE
 	color = "#999999"
-	armor = ARMOR_HEAD_HELMET_BAD
+	armor = ARMOR_LEATHER
 
 /obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched
 	name = "eerie ancient mask"
