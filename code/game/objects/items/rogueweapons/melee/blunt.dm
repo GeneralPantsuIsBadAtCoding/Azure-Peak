@@ -365,7 +365,6 @@
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	dropshrink = 0.6
 	bigboy = TRUE
 	gripsprite = TRUE
 
@@ -437,7 +436,6 @@
 	minstr = 12
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
-	dropshrink = 0.75
 	smelt_bar_num = 2
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed
