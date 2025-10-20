@@ -178,6 +178,7 @@
 #include "code\__DEFINES\mobs\simplemob_movement_speed.dm"
 #include "code\__DEFINES\roguetown\area_detail_text.dm"
 #include "code\__DEFINES\roguetown\combat.dm"
+#include "code\__DEFINES\roguetown\armor_defines.dm"
 #include "code\__DEFINES\roguetown\rebel.dm"
 #include "code\__DEFINES\roguetown\werewolf.dm"
 #include "code\__HELPERS\_auxtools_api.dm"
