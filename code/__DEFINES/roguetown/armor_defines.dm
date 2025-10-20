@@ -77,18 +77,24 @@
 #define ARMOR_CLOSET list("blunt" = 20, "slash" = 10, "stab" = 15, "piercing" = 10, "fire" = 70, "acid" = 60)
 #define ARMOR_BLACKBAG list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 100, "fire" = 75, "acid" = 100)	
 
-// Light AC | Chest
+// Light AC
+// In general, light armor should always be vulnerable to stab, somewhat weak vs high pen slash (for now).
+// Also good protection vs arrows.
+// Minimal blunt rating should be 50, because normal blunt multiplier is 1.4, thus making sure it trade poorly
+// Capped to 90 blunt rating. This means light armor will take approx. 75% damage from blunt-weapon blunt attacks.
+// So blunt weapon can still be used against light armor but just not as effective.  
 #define ARMOR_CLOTHING list("blunt" = 0, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
-#define ARMOR_PADDED_BAD list("blunt" = 40, "slash" = 30, "stab" = 20, "piercing" = 40, "fire" = 0, "acid" = 0)
-#define ARMOR_PADDED list("blunt" = 60, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0)
-#define ARMOR_PADDED_GOOD list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
+#define ARMOR_PADDED_BAD list("blunt" = 50, "slash" = 30, "stab" = 20, "piercing" = 40, "fire" = 0, "acid" = 0)
+#define ARMOR_PADDED list("blunt" = 70, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0)
+#define ARMOR_PADDED_GOOD list("blunt" = 90, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
 
-#define ARMOR_LEATHER list("blunt" = 60, "slash" = 50, "stab" = 40, "piercing" = 20, "fire" = 0, "acid" = 0)
-#define ARMOR_SPELLSINGER list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
-#define ARMOR_LEATHER_GOOD list("blunt" = 100, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
-#define ARMOR_LEATHER_STUDDED list("blunt" = 80, "slash" = 80, "stab" = 60, "piercing" = 20, "fire" = 0, "acid" = 0)
+// Leather should always be 10 less than their padded counterparts for piercing but is good vs arrows still.
+#define ARMOR_LEATHER list("blunt" = 60, "slash" = 50, "stab" = 40, "piercing" = 30, "fire" = 0, "acid" = 0)
+#define ARMOR_SPELLSINGER list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 40, "fire" = 0, "acid" = 0)
+#define ARMOR_LEATHER_GOOD list("blunt" = 90, "slash" = 70, "stab" = 50, "piercing" = 50, "fire" = 0, "acid" = 0)
+#define ARMOR_LEATHER_STUDDED list("blunt" = 80, "slash" = 80, "stab" = 60, "piercing" = 40, "fire" = 0, "acid" = 0) // Pseudo metallic armor therefore worse vs blunt and piercing
 
-// Medium AC | Chest
+// Medium AC
 #define ARMOR_CUIRASS list("blunt" = 40, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)	
 #define ARMOR_MAILLE list("blunt" = 40, "slash" = 100, "stab" = 80, "piercing" = 10, "fire" = 0, "acid" = 0)
 
