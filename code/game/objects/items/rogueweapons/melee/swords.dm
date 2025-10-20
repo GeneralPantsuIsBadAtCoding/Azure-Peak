@@ -283,7 +283,6 @@
 	thrown_bclass = BCLASS_CUT
 	max_blade_int = 280
 	wdefense_wbonus = 4
-	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/sword/long/training
