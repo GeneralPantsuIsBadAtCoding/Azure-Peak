@@ -141,7 +141,7 @@
 	switch(weapon_choice)
 		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
-			wrists = /obj/item/clothing/wrists/roguetown/allwrappings/monk
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Katar")
