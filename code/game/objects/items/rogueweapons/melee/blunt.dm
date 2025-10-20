@@ -19,16 +19,35 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.4 // Multiplies into 1.96x against int so I think this is fine.
-	swingdelay = 10
-	clickcd = 14
+	damfactor = 1 // It now has CC effective
+	chargedrain = 1 // Slight stamina drain on use
+	chargetime = 5 // Half a second of charge for a bit of a warning.
+	no_early_release = TRUE // Must be fully charged
 	icon_state = "insmash"
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
+	desc = "A powerful, charged up strike that deals normal damage but can throw a standing opponent back and slow them down, based on your strength. Ineffective below 10 strength. Slowdown & Knockback scales to your Strength up to 14 (1 - 4 tiles). Cannot be used on prone targets nor consecutively more than every 5 seconds"
 
-/datum/intent/mace/smash/flataxe
-	damfactor = 1.2
-	clickcd = 10
+/datum/intent/mace/smash/spec_on_apply_effect(mob/living/H, mob/living/user, params)
+	var/chungus_khan_str = user.STASTR 
+	if(H.has_status_effect(/datum/status_effect/debuff/yeetcd))
+		return // Recently knocked back, cannot be knocked back again yet
+	if(chungus_khan_str < 10)
+		return // Too weak to have any effect
+	var/scaling = CLAMP((chungus_khan_str - 10), 1, 4)
+	H.apply_status_effect(/datum/status_effect/debuff/yeetcd)
+	H.Slowdown(scaling)
+	// Copypasta from knockback proc cuz I don't want the math there
+	var/knockback_tiles = scaling // 1 to 4 tiles based on strength
+	var/turf/edge_target_turf = get_edge_target_turf(H, get_dir(user, H))
+	if(istype(edge_target_turf))
+		H.safe_throw_at(edge_target_turf, \
+		knockback_tiles, \
+		scaling, \
+		user, \
+		spin = FALSE, \
+		force = H.move_force)
+// Do not call handle_knockback like in knockback cuz that means it will hardstun
 
 /datum/intent/mace/rangedthrust
 	name = "thrust"
