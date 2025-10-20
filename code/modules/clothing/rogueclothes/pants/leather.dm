@@ -18,7 +18,7 @@
 
 /obj/item/clothing/under/roguetown/trou/leather
 	name = "leather trousers"
-	armor = ARMOR_PANTS_LEATHER
+	armor = ARMOR_LEATHER
 	icon_state = "leathertrou"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	max_integrity = ARMOR_INT_LEG_LEATHER
