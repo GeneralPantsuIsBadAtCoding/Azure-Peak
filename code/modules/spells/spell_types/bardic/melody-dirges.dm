@@ -40,10 +40,9 @@
 	if (pulse >= ticks_to_apply)
 		pulse = 0
 		O.energy_add(-25)
-		for (var/mob/living/carbon/human/H in hearers(7, owner))
+		for (var/mob/living/carbon/human/H in hearers(10, owner))
 			if(O.in_audience(H))
-				return
-			H.apply_status_effect(debuff_to_apply)
+				H.apply_status_effect(debuff_to_apply)
 
 
 /datum/status_effect/buff/playing_melody
@@ -72,7 +71,6 @@
 	if (pulse >= ticks_to_apply)
 		pulse = 0
 		O.energy_add(-25)
-		for (var/mob/living/carbon/human/H in hearers(7, owner))
-			if(!O.in_audience(H))
-				return
-			H.apply_status_effect(buff_to_apply)
+		for (var/mob/living/carbon/human/H in hearers(10, owner))
+			if(O.in_audience(H))
+				H.apply_status_effect(buff_to_apply)

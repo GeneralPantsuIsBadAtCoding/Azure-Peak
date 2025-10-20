@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 		to_chat(src, "I cannot maintain a audience larger than [inspiration.maxaudience]!")
 		return FALSE
 	var/list/folksnearby = list()
-	for(var/mob/living/carbon/human/folks in view(5, loc))
+	for(var/mob/living/carbon/human/folks in view(7, loc))
 		if(!src.in_audience(folks))
 			folksnearby += folks
 
@@ -85,20 +85,11 @@ GLOBAL_LIST_INIT(learnable_songst3, (list(/obj/effect/proc_holder/spell/invoked/
 		return
 	var/target = tgui_input_list(src, "Who will you perform for?", "Audience Choice", folksnearby)
 	if(target)
-		inspiration.add_audience_member(target)
+		inspiration.audience |= target
 
 
 	return TRUE
 
-
-/datum/inspiration/proc/add_audience_member(mob/living/target)
-    ASSERT(target)
-    audience |= target
-    RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_audience_member))
-
-/datum/inspiration/proc/remove_audience_member(mob/living/target)
-    audience -= target
-    UnregisterSignal(target, COMSIG_QDELETING)
 
 /mob/living/carbon/human/proc/clearaudience()
 	set name = "Clear Audience"
