@@ -770,8 +770,6 @@
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
 	wbalance = WBALANCE_HEAVY
-	intdamage_factor = 0.6
-
 
 /obj/item/rogueweapon/handclaw
 	slot_flags = ITEM_SLOT_HIP

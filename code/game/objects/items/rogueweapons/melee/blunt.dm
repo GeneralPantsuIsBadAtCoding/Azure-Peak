@@ -70,7 +70,6 @@
 	minstr = 7
 	wdefense = 2
 	wbalance = WBALANCE_HEAVY
-	intdamage_factor = 1.35
 	icon_angle_wielded = 50
 
 /obj/item/rogueweapon/mace/getonmobprop(tag)
@@ -399,7 +398,6 @@
 	force_wielded = 35
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
-	intdamage_factor = 1
 	wdefense_wbonus = 5
 
 /obj/item/rogueweapon/mace/goden/steel/paalloy
@@ -484,7 +482,6 @@
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
-	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/mace/warhammer/alloy
 	name = "decrepit warhammer"

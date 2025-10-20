@@ -20,7 +20,6 @@
 	minstr = 4
 	grid_width = 32
 	grid_height = 96
-	intdamage_factor = 1.1
 
 /datum/intent/flail/strike
 	name = "strike"
