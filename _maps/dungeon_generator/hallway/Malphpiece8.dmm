@@ -51,8 +51,8 @@
 /area/rogue/under/tomb/cave)
 "oX" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/reagent_containers/glass/cup/golden,
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/spawner/lootdrop/valuable_tableware_spawner,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/cave)
 "qw" = (
@@ -82,7 +82,6 @@
 "sa" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/effect/landmark/chest_or_mimic,
-/obj/item/reagent_containers/glass/bottle/rogue/new,
 /obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/blocks/paving/vert,
 /area/rogue/under/tomb/cave)
@@ -122,12 +121,6 @@
 /obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/blocks/paving/vert,
 /area/rogue/under/tomb/cave)
-"zx" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/rogueore/gold,
-/obj/effect/landmark/chest_or_mimic,
-/turf/open/floor/rogue/carpet,
-/area/rogue/under/tomb/cave)
 "zI" = (
 /obj/structure/flora/roguegrass/swampweed,
 /turf/open/floor/rogue/dirt/road,
@@ -142,8 +135,8 @@
 /area/rogue/under/tomb/cave)
 "Ev" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/clothing/ring/gold,
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/spawner/lootdrop/valuable_candle_spawner,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/cave)
 "EA" = (
@@ -182,8 +175,8 @@
 /area/rogue/under/tomb/cave)
 "Kf" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/roguestatue/gold,
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/spawner/lootdrop/valuable_clutter_spawner,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/cave)
 "Kt" = (
@@ -208,14 +201,14 @@
 /area/rogue/under/tomb/cave)
 "RZ" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/ingot/gold,
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/cave)
 "TV" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/roguestatue/gold/loot,
-/obj/effect/landmark/chest_or_mimic,
+/obj/effect/spawner/lootdrop/cheap_clutter_spawner,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/cave)
 "WT" = (
@@ -478,7 +471,7 @@ ed
 ds
 ds
 ds
-Kf
+TV
 ds
 tk
 "}
@@ -502,7 +495,7 @@ tk
 ds
 ds
 ds
-RZ
+Kf
 ds
 ds
 ds
@@ -590,7 +583,7 @@ eC
 (11,1,2) = {"
 tk
 ds
-oX
+TV
 ds
 ds
 ds
@@ -598,7 +591,7 @@ ed
 ds
 ds
 ds
-zx
+TV
 Yk
 kc
 "}
