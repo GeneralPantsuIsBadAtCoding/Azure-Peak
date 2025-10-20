@@ -564,6 +564,14 @@
 	craftdiff = 4
 	sellprice = 14
 
+/datum/crafting_recipe/roguetown/sewing/puritanhat
+	name = "puritan's buckled hat"
+	result = list(/obj/item/clothing/head/roguetown/puritan)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 4
+	sellprice = 14
+
 /datum/crafting_recipe/roguetown/sewing/nurseveil
 	name = "nurse's veil"
 	result = list(/obj/item/clothing/head/roguetown/veiled)
@@ -603,6 +611,20 @@
     result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy)
     reqs = list(/obj/item/natural/cloth = 6,
                 /obj/item/natural/fibers = 4)
+    craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/monkwraps
+    name = "padded arm wrappings"
+    result = list(/obj/item/clothing/wrists/roguetown/bracers/cloth/monk)
+    reqs = list(/obj/item/natural/cloth = 3,
+                /obj/item/natural/fibers = 2)
+    craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/monkheadband
+    name = "padded headband"
+    result = list(/obj/item/clothing/head/roguetown/headband/monk)
+    reqs = list(/obj/item/natural/cloth = 3,
+                /obj/item/natural/fibers = 2)
     craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/heavypadded
