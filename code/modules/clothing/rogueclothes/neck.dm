@@ -223,7 +223,7 @@
 	name = "bevor"
 	desc = "A series of steel plates designed to protect the neck."
 	icon_state = "bevor"
-	armor = ARMOR_BEVOR
+	armor = ARMOR_PLATE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
@@ -246,7 +246,7 @@
 	name = "gorget"
 	desc = "A series of iron plates designed to protect the neck."
 	icon_state = "gorget"
-	armor = ARMOR_GORGET
+	armor = ARMOR_PLATE
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = ARMOR_INT_SIDE_IRON
@@ -270,13 +270,13 @@
 	name = "neck protector"
 	icon_state = "copperneck"
 	desc = "An antique and simple protection for the neck, used more as an accessory by the common folk. But poor protection is still better than nothing."
-	armor = ARMOR_NECK_BAD
+	armor = ARMOR_PLATE_BAD
 	smeltresult = /obj/item/ingot/copper
 
 /obj/item/clothing/neck/roguetown/fencerguard
 	name = "fencing guard"
 	icon_state = "fencercollar"
-	armor = ARMOR_BEVOR
+	armor = ARMOR_PLATE
 	smeltresult = /obj/item/ingot/steel
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = ARMOR_INT_SIDE_STEEL
@@ -685,7 +685,7 @@
 	edelay_type = 1
 	max_integrity = ARMOR_INT_SIDE_STEEL
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_GORGET
+	armor = ARMOR_PLATE
 	blocksound = PLATEHIT
 	body_parts_covered = NECK
 	edelay_type = 1

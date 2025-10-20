@@ -294,7 +294,7 @@
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	max_integrity = 100
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_MASK_METAL
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
@@ -311,7 +311,7 @@
 	break_sound = 'sound/foley/breaksound.ogg'
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_MASK_METAL
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
@@ -339,7 +339,7 @@
 	name = "copper mask"
 	icon_state = "cmask"
 	desc = "A heavy copper mask that conceals and protects the face, though not very effectively."
-	armor = ARMOR_MASK_METAL_BAD
+	armor = ARMOR_PLATE_BAD
 	smeltresult = /obj/item/ingot/copper
 
 /obj/item/clothing/mask/rogue/facemask/psydonmask
@@ -487,7 +487,7 @@
 	break_sound = 'sound/foley/breaksound.ogg'
 	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_HEAD_BAD
+	armor = ARMOR_PADDED_BAD
 	prevent_crits = null
 	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
@@ -521,7 +521,7 @@
 	icon_state = "naledimask"
 	desc = "Runes and wards, meant for daemons; the gold has somehow rusted in unnatural, impossible agony. The most prominent of these etchings is in the shape of the Naledian psycross. Armored to protect the wearer's face."
 	max_integrity = 100
-	armor = ARMOR_MASK_METAL
+	armor = ARMOR_PLATE
 	flags_inv = HIDEFACE|HIDESNOUT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	sellprice = 0

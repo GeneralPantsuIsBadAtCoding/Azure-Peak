@@ -127,7 +127,7 @@
 	icon_state = "copperarm"
 	item_state = "copperarm"
 	smeltresult = /obj/item/ingot/copper
-	armor = ARMOR_MASK_METAL_BAD
+	armor = ARMOR_PLATE_BAD
 
 /obj/item/clothing/wrists/roguetown/wrappings
 	name = "solar wrappings"
