@@ -86,10 +86,6 @@
 	if(dna?.species)
 		if(NOBLOOD in dna.species.species_traits)
 			blood_volume = BLOOD_VOLUME_NORMAL
-			remove_stress(/datum/stressevent/bleeding)
-			remove_status_effect(/datum/status_effect/debuff/bleeding)
-			remove_status_effect(/datum/status_effect/debuff/bleedingworse)
-			remove_status_effect(/datum/status_effect/debuff/bleedingworst)
 			return
 
 	//Blood regeneration if there is some space
@@ -114,38 +110,56 @@
 	//Effects of bloodloss - only if we're actually alive, though
 	if (stat != DEAD)
 		if(!HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
+			var/current_bleeding_tier
 			switch(blood_volume)
+				if(BLOOD_VOLUME_SAFE to INFINITY)
+					current_bleeding_tier = 0
 				if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+					current_bleeding_tier = 1
 					if(prob(3))
 						to_chat(src, span_warning("I feel dizzy."))
-					remove_status_effect(/datum/status_effect/debuff/bleedingworse)
-					remove_status_effect(/datum/status_effect/debuff/bleedingworst)
-					apply_status_effect(/datum/status_effect/debuff/bleeding)
 				if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+					current_bleeding_tier = 2
 					if(prob(3))
 						blur_eyes(6)
 						to_chat(src, span_warning("I feel faint."))
-					remove_status_effect(/datum/status_effect/debuff/bleeding)
-					remove_status_effect(/datum/status_effect/debuff/bleedingworst)
-					apply_status_effect(/datum/status_effect/debuff/bleedingworse)
 				if(0 to BLOOD_VOLUME_BAD)
+					current_bleeding_tier = 3
 					if(prob(3))
 						blur_eyes(6)
 						to_chat(src, span_warning("I feel faint."))
-					if(prob(3) && !IsUnconscious())
+					if(prob(3))
 						Unconscious(rand(5 SECONDS,10 SECONDS))
 						to_chat(src, span_warning("I feel drained."))
-					remove_status_effect(/datum/status_effect/debuff/bleedingworse)
-					remove_status_effect(/datum/status_effect/debuff/bleeding)
-					apply_status_effect(/datum/status_effect/debuff/bleedingworst)
+				else
+					current_bleeding_tier = bleeding_tier
+
+			// only apply status effects if we've actually shifted a tier of bleeding instead of performing
+			// 3+ STATUS EFFECT CHECKS ON EVERY SINGLE LIFE TICK. HOLY SMOKES!!!
+			if (current_bleeding_tier != bleeding_tier)
+				bleeding_tier = current_bleeding_tier
+				switch (bleeding_tier)
+					if (0)
+						remove_status_effect(/datum/status_effect/debuff/bleeding)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworse)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworst)
+					if (1)
+						apply_status_effect(/datum/status_effect/debuff/bleeding)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworse)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworst)
+					if (2)
+						apply_status_effect(/datum/status_effect/debuff/bleedingworse)
+						remove_status_effect(/datum/status_effect/debuff/bleeding)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworst)
+					if (3)
+						apply_status_effect(/datum/status_effect/debuff/bleedingworst)
+						remove_status_effect(/datum/status_effect/debuff/bleeding)
+						remove_status_effect(/datum/status_effect/debuff/bleedingworse)
+
 			if(blood_volume <= BLOOD_VOLUME_BAD)
 				adjustOxyLoss(1)
 				if(blood_volume <= BLOOD_VOLUME_SURVIVE)
 					adjustOxyLoss(2)
-		else
-			remove_status_effect(/datum/status_effect/debuff/bleeding)
-			remove_status_effect(/datum/status_effect/debuff/bleedingworse)
-			remove_status_effect(/datum/status_effect/debuff/bleedingworst)
 
 	//Bleeding out
 	bleed_rate = get_bleed_rate() // expensive proc, but we zero it on bled-out mobs
@@ -153,9 +167,6 @@
 		bleed_rate = FALSE
 	if(bleed_rate)
 		bleed(bleed_rate) // bandage handling moved to bodypart.get_bleed_rate()
-		add_stress(/datum/stressevent/bleeding)
-	else
-		remove_stress(/datum/stressevent/bleeding)
 
 	// Non-vampiric bloodpool regen.
 	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
@@ -166,8 +177,9 @@
 	if (!blood_volume)
 		return FALSE //the blood bag is empty, brother.
 	var/bleed_rate = 0
-	for(var/datum/wound/wound as anything in get_wounds())
-		bleed_rate += wound.bleed_rate
+	/*for(var/datum/wound/wound as anything in get_wounds())
+		bleed_rate += wound.bleed_rate*/
+	bleed_rate += simple_bleeding
 	for(var/obj/item/embedded as anything in simple_embedded_objects)
 		bleed_rate += embedded.embedding?.embedded_bloodloss
 	return bleed_rate
@@ -184,9 +196,9 @@
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/proc/bleed(amt)
-	if(!iscarbon(src) && !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
-		return FALSE
 	if(!blood_volume)
+		return FALSE
+	if(!iscarbon(src) && !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
 
 	//For each CON above 10, we bleed slower.

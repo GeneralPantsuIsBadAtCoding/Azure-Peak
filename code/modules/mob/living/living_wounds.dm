@@ -3,6 +3,8 @@
 	var/list/datum/wound/simple_wounds
 	/// Simple embedded objects with no associated bodyparts
 	var/list/obj/item/simple_embedded_objects
+	/// Cached value of simple wound bleeding
+	var/simple_bleeding = 0
 
 /// Returns every embedded object we have, simple or not
 /mob/living/proc/get_embedded_objects()
