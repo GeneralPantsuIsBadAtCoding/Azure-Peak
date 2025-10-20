@@ -26,7 +26,7 @@
 	sewrepair = TRUE
 	var/atom/movable/holdingknife = null
 	salvage_amount = 1
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 
 /obj/item/clothing/shoes/roguetown/boots/attackby(obj/item/W, mob/living/carbon/user, params)
 	if(istype(W, /obj/item/rogueweapon/huntingknife/throwingknife))
@@ -62,7 +62,7 @@
 	icon_state = "psydonboots"
 	item_state = "psydonboots"
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS
+	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)	//On par with Heavy Leather Boots.
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -76,7 +76,7 @@
 	icon_state = "nobleboots"
 	item_state = "nobleboots"
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 	salvage_amount = 2
 	salvage_result = /obj/item/natural/hide/cured
 
@@ -181,7 +181,7 @@
 	icon_state = "leatherboots"
 	item_state = "leatherboots"
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
@@ -192,7 +192,7 @@
 	item_state = "alboots"
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)	//Same as gloves
 	max_integrity = 100			//Half that of iron boots
-	armor = ARMOR_BOOTS			//Better than regular leather.
+	armor = ARMOR_LEATHER_GOOD			//Better than regular leather.
 	color = null
 
 /obj/item/clothing/shoes/roguetown/boots/leather/reinforced/short
@@ -210,7 +210,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
-	armor = ARMOR_BOOTS
+	armor = ARMOR_LEATHER_GOOD
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -222,7 +222,7 @@
 	item_state = "grenzelboots"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_BOOTS
+	armor = ARMOR_LEATHER_GOOD
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
@@ -250,7 +250,7 @@
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
 	max_integrity = ARMOR_INT_SIDE_STEEL
-	armor = ARMOR_BOOTS_PLATED
+	armor = ARMOR_PLATE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
@@ -310,7 +310,7 @@
 	color = null
 	blocksound = PLATEHIT
 	max_integrity = ARMOR_INT_SIDE_IRON
-	armor = ARMOR_BOOTS_PLATED_IRON
+	armor = ARMOR_PLATE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
@@ -358,7 +358,7 @@
 	item_state = "furlinedboots"
 	sewrepair = TRUE
 	max_integrity = 160
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/fur
 
@@ -370,7 +370,7 @@
 	item_state = "furlinedanklets"
 	sewrepair = TRUE
 	is_barefoot = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 	is_barefoot = TRUE
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/fur
@@ -383,7 +383,7 @@
 	item_state = "furlinedanklets"
 	is_barefoot = TRUE
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 
 /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	name = "inquisitorial boots"
@@ -440,7 +440,7 @@
 	item_state = "anklets"
 	is_barefoot = TRUE
 	sewrepair = TRUE
-	armor = ARMOR_BOOTS_BAD
+	armor = ARMOR_CLOTHING
 
 //kazen update
 /obj/item/clothing/shoes/roguetown/armor/rumaclan
@@ -449,4 +449,4 @@
 	icon_state = "eastsandals"
 	item_state = "eastsandals"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
-	armor = ARMOR_BOOTS
+	armor = ARMOR_LEATHER_GOOD
