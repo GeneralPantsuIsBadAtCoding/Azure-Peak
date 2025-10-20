@@ -78,7 +78,7 @@
 			if(!E)
 				continue
 			for(var/obj/I in T)
-				if(I.anchored || !isturf(I.loc) || istype(I, /obj/item/roguecoin))
+				if(I.anchored || !isturf(I.loc) || istype(I, /obj/item/roguecoin)|| istype(I, /obj/structure/handcart))
 					continue
 				var/prize = I.get_real_price()
 				if(prize >= 1)

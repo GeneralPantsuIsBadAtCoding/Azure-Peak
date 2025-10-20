@@ -281,7 +281,7 @@
 	max_integrity = 100	
 	fuel = 120 MINUTES
 	should_self_destruct = FALSE
-	possible_item_intents = list(/datum/intent/use, /datum/intent/hit, /datum/intent/mace/strike) //Reflects the fact that it is, in essence, a heavy rod of iron. 
+	possible_item_intents = list(/datum/intent/use, /datum/intent/mace/strike) //Reflects the fact that it is, in essence, a heavy rod of iron. 
 	extinguishable = FALSE
 
 /obj/item/flashlight/flare/torch/lantern
