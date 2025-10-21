@@ -35,6 +35,7 @@
 
 /datum/outfit/job/roguetown/wretch/berserker/pre_equip(mob/living/carbon/human/H)
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
+	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
@@ -87,11 +88,4 @@
 			if("Steel Kettle + Wildguard")
 				head = /obj/item/clothing/head/roguetown/helmet/kettle
 				mask = /obj/item/clothing/mask/rogue/wildguard
-		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage")
-		var/glove_choice = input(H, "Choose your GLOVES.", "CRACK SOME SKULLS.") as anything in gloves
-		switch(glove_choice)
-			if("Plate Gauntlets")
-				gloves = /obj/item/clothing/gloves/roguetown/plate
-			if("Pugilist's Wrappings - Increased Unarmed Damage")
-				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 		wretch_select_bounty(H)
