@@ -54,11 +54,11 @@
 	if(H.mind)
 		var/weapons = list("Discipline - Unarmed","Katar","Knuckledusters","Punch Dagger","Battle Axe","Grand Mace","Falx")
 		var/weapon_choice = input(H, "Choose your WEAPON.", "SPILL THEIR ENTRAILS.") as anything in weapons
+		H.set_blindness(0)
 		switch(weapon_choice)
 			if ("Discipline - Unarmed")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-				ADD_TRAIT(H, TRAIT_STRONGKICK, TRAIT_GENERIC)
 			if ("Katar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
 				beltr = /obj/item/rogueweapon/katar
@@ -78,16 +78,15 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/falx
-		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage, No Protection")
+		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage")
 		var/glove_choice = input(H, "Choose your GLOVES.", "CRACK SOME SKULLS.") as anything in gloves
 		switch(glove_choice)
 			if ("Plate Gauntlets")
 				gloves = /obj/item/clothing/gloves/roguetown/plate
-			if ("Pugilist's Wrappings - Increased Unarmed Damage, No Protection")
+			if ("Pugilist's Wrappings - Increased Unarmed Damage")
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 		var/helmets = list("Berserker's Volfskulle Bascinet, Steel Kettle + Wildguard")
 		var/helmet_choice = input(H, "Choose your HELMET.", "STEEL YOURSELF.") as anything in helmets
-		H.set_blindness(0)
 		switch(helmet_choice)
 			if ("Berserker's Volfskulle Bascinet")
 				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
