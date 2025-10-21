@@ -554,25 +554,23 @@
 	name = "volfskulle bascinet"
 	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. Just like the nitebeasts it mimics, so too does the helmet's teeth glisten with flesh-sundering sharpness."
 	armor_class = ARMOR_CLASS_LIGHT //Pseudoantagonist-exclusive. Gives them an edge over traditional pugilists and barbarians. 
-	var/active_item
+	var/active_item = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/equipped(mob/living/user, slot)
 	. = ..()
-	if(active_item)
-		return
-	else if(slot == SLOT_HEAD)
+	if(slot == SLOT_HEAD)
 		active_item = TRUE
-		to_chat(user, span_red("The bascinet's visor chitters, and your jaw tightens with symbiotic intent.."))
 		ADD_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+		to_chat(user, span_red("The bascinet's visor chitters, and your jaw tightens with symbiotic intent.."))
 	return
 
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/dropped(mob/living/user)
 	..()
-	if(active_item)
-		to_chat(user, span_red("..and like that, the bascinet's visor goes dormant once more - a strange pressure, relieved from your jaw."))
-		REMOVE_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
-		active_item = FALSE
-	return
+	if(!active_item)
+		return
+	active_item = FALSE
+	REMOVE_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+	to_chat(user, span_red("..and like that, the bascinet's visor goes dormant once more - a strange pressure, relieved from your jaw."))
 
 /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 	name = "woad elven helm"
