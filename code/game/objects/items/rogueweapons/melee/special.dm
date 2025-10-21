@@ -378,7 +378,7 @@
 	)
 
 /obj/item/rogueweapon/knuckles/psydon/old
-	name = "old psydonian knuckles"
+	name = "enduring knuckles"
 	desc = "A simple piece of harm molded in a holy mixture of steel and silver, its holy blessing long since faded. You are HIS weapon, you needn't fear Aeon."
 	icon_state = "psyknuckle"
 	force = 22
@@ -387,7 +387,7 @@
 	smeltresult = /obj/item/ingot/steel
 	color = COLOR_FLOORTILE_GRAY
 
-/obj/item/rogueweapon/knuckles/psydon/ComponentInitialize()
+/obj/item/rogueweapon/knuckles/psydon/old/ComponentInitialize()
 	return
 
 /obj/item/rogueweapon/knuckles

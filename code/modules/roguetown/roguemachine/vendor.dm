@@ -380,7 +380,7 @@
 	. = ..()
 
 	// Add room keys with a price of 20
-	for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv, /obj/item/roguekey/roomvi, /obj/item/roguekey/roomvii, /obj/item/roguekey/roomviii))
+	for (var/X in list(/obj/item/roguekey/roomi, /obj/item/roguekey/roomii, /obj/item/roguekey/roomiii, /obj/item/roguekey/roomiv, /obj/item/roguekey/roomv, /obj/item/roguekey/roomvi))
 		var/obj/P = new X(src)
 		held_items[P] = list()
 		held_items[P]["NAME"] = P.name
@@ -392,6 +392,13 @@
 		held_items[Q] = list()
 		held_items[Q]["NAME"] = Q.name
 		held_items[Q]["PRICE"] = 100
+
+	// Add penthouse suite key
+	for (var/Z in list(/obj/item/roguekey/roomhunt))
+		var/obj/F = new Z(src)
+		held_items[F] = list()
+		held_items[F]["NAME"] = F.name
+		held_items[F]["PRICE"] = 200
 
 	update_icon()
 

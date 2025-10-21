@@ -1,13 +1,13 @@
 // -------------- SALUMOI (dwarven smoked sausage) -----------------
 /obj/item/reagent_containers/food/snacks/rogue/meat/salami
 	name = "salumoi"
-	desc = "Traveling food invented by dwarves. Said to last for ten yils before spoiling"
+	desc = "A salted sausage, said to last for ten yils before spoiling. As the legend goes, dwarven caravans used this 'travel food' to create the first sandwich: a slice of bread, crowned with this sliceable meat."
 	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'
 	icon_state = "salumoi5"
 	eat_effect = null
 	fried_type = null
 	slices_num = 4
-	bitesize = 5
+	bitesize = 7
 	slice_batch = FALSE
 	faretype = FARE_POOR
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
@@ -25,13 +25,13 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat/salami/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 4
-		if(bitecount == 2)
-			slices_num = 3
 		if(bitecount == 3)
-			slices_num = 2
+			slices_num = 4
 		if(bitecount == 4)
+			slices_num = 3
+		if(bitecount == 5)
+			slices_num = 2
+		if(bitecount == 6)
 			changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/salami/slice
@@ -42,7 +42,7 @@
 	faretype = FARE_NEUTRAL
 	fried_type = null
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
-	bitesize = 1
+	bitesize = 2
 	tastes = list("salted meat" = 1)
 
 // -------------- COPPIETTE (dried meat) -----------------
@@ -51,7 +51,7 @@
 	name = "coppiette"
 	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'
 	icon_state = "jerk5"
-	desc = "Dried meat sticks."
+	desc = "Dried mincesticks, prepared similarly to saloumi. While tougher to chew, it's certainly not as dry or firm as hardtack."
 	faretype = FARE_POOR
 	fried_type = null
 	bitesize = 5
@@ -74,11 +74,11 @@
 // -------------- SALO (salted fat) -----------------
 /obj/item/reagent_containers/food/snacks/fat/salo
 	name = "salo"
-	desc = "Salted pork fat, a staple of the poor. Quite delicious if watered down."
+	desc = "Salted pork fat, slabbed and ready for a slicing. A classic amongst the peasantry's pantry, when leaner cuts of meat are scarce. Quite delicious if watered down."
 	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'
 	icon_state = "salo4"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_CHUNKY)
-	bitesize = 4
+	bitesize = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/fat/salo/slice
 	faretype = FARE_POOR
 	slices_num = 4
@@ -96,11 +96,11 @@
 /obj/item/reagent_containers/food/snacks/fat/salo/On_Consume(mob/living/eater)
 	..()
 	if(slices_num)
-		if(bitecount == 1)
-			slices_num = 3
-		if(bitecount == 2)
-			slices_num = 2
 		if(bitecount == 3)
+			slices_num = 3
+		if(bitecount == 4)
+			slices_num = 2
+		if(bitecount == 5)
 			changefood(slice_path, eater)
 
 /obj/item/reagent_containers/food/snacks/fat/salo/slice

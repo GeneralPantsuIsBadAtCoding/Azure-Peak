@@ -18,6 +18,7 @@
 				/obj/item/dice/fourdd6,
 				/obj/item/dice/d100
 				)
+	component_type = /datum/component/storage/concrete/roguetown/dice_pouch
 
 /obj/item/storage/pill_bottle/dice/PopulateContents()
 	new /obj/item/dice/d4(src)

@@ -1,5 +1,12 @@
 /mob/living/carbon/Initialize()
-	. = ..()
+	..()
+
+	pain_threshold = HAS_TRAIT(src, TRAIT_ADRENALINE_RUSH) ? ((STAWIL + 5) * 10) : (STAWIL * 10)
+	if(has_flaw(/datum/charflaw/addiction/masochist)) // Masochists handle pain better by about 1 endurance point
+		pain_threshold += 10
+	if(HAS_TRAIT(src, TRAIT_NOPAIN))
+		pain_threshold = 250
+
 	create_reagents(1000)
 	update_body_parts() //to update the carbon's new bodyparts appearance
 	GLOB.carbon_list += src
@@ -110,7 +117,7 @@
 		return I.attack(src, user)
 
 	if(!user.cmode)
-		var/try_to_fail = !istype(user.rmb_intent, /datum/rmb_intent/weak)
+		var/try_to_fail = istype(user.rmb_intent, /datum/rmb_intent/strong)
 		var/list/possible_steps = list()
 		for(var/datum/surgery_step/surgery_step as anything in GLOB.surgery_steps)
 			if(!surgery_step.name)
@@ -255,7 +262,6 @@
 		visible_message("<span class='danger'>[src] throws [thrown_thing].</span>", \
 						"<span class='danger'>I toss [thrown_thing].</span>")
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
-		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_range, thrown_speed, src, null, null, null, move_force)
 		changeNext_move(CLICK_CD_MELEE)
 		if(!used_sound)
@@ -412,8 +418,8 @@
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.slipouttime
 	if((STASTR > 10))
-		var/time_mod = (STASTR - 10) * 20 SECONDS
-		breakouttime -= time_mod
+		var/time_mod = breakouttime * (STASTR - 10) * 0.2
+		breakouttime = max(0, breakouttime - time_mod)
 	if(mind && mind.has_antag_datum(/datum/antagonist/zombie))
 		breakouttime = 10 SECONDS
 	if(STASTR > 15)
@@ -568,6 +574,7 @@
 
 /mob/living/carbon
 	var/nausea = 0
+	var/pain_threshold = 0
 
 /mob/living/carbon/proc/add_nausea(amt)
 	nausea = clamp(nausea + amt, 0, 300)
@@ -746,7 +753,8 @@
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts) //hardcoded to streamline things a bit
 		if(!(bodypart.body_zone in lethal_zones))
 			continue
-		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * DAMAGE_THRESHOLD_FIRE_CRIT)
+		var/hardcrit_divisor = !mind ? FIRE_HARDCRIT_DIVISOR_MINDLESS : FIRE_HARDCRIT_DIVISOR
+		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * hardcrit_divisor)
 		total_burn = max(total_burn, my_burn)
 		used_damage = max(used_damage, my_burn)
 	if(used_damage < total_tox)

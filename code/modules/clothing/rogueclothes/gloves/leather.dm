@@ -81,14 +81,14 @@
 
 /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	name = "inquisitorial leather gloves"
-	desc = "Masterfully crafted leather gloves, psycross included."
+	desc = "Masterworked leather gloves, reinforced with a light weave of maille. Hanging from the left glove's cuff is a small rosary necklace; a warm reminder that even the Inquisitors are beholden to His authority."
 	icon_state = "inqgloves"
 	item_state = "inqgloves"
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	name = "psydonic leather gloves"
-	desc = "Made with Otava's Finest leather, these gloves are fashioned to last."
+	desc = "Thick leather mittens, stitched and cuffed to guard His children's palms from perforation."
 	armor = ARMOR_GLOVES_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST) //Equivalent to Heavy Leather Gloves. Deinherits the durability and exclusive critprot of Otavan gloves.
 	icon_state = "psydongloves"

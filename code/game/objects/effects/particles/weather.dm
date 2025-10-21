@@ -43,8 +43,5 @@
 	animate(src, transform = M, time = 300, loop = -1)
 	animate(transform = null, time = 0)
 
-//	animate(MA, transform = null, time = 100, loop = -1)
-//	animate(transform = MT, time = 0)
-//	add_overlay(MA)
-
-//	animate(transform = matrix(), time = 30)
+/atom/movable/screen/weather/fog/bloodfog
+	color = COLOR_MAROON

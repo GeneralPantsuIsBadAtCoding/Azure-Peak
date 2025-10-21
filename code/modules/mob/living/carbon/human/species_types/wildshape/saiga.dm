@@ -132,7 +132,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	can_parry = TRUE //I just think this is cool as fuck, sue me
 	sharpness = FALSE
-	demolition_mod = 1.25
+	demolition_mod = 1.5
 	swingsound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
 	possible_item_intents = list(/datum/intent/simple/saiga)
 	parrysound = list('sound/combat/parry/parrygen.ogg')

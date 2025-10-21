@@ -106,6 +106,7 @@
 
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
+	M.lastattacker_weakref = WEAKREF(user)
 	if(M.mind)
 		M.mind.attackedme[user.real_name] = world.time
 	if(force)
@@ -259,6 +260,10 @@
 		used_str++
 	if(istype(user.rmb_intent, /datum/rmb_intent/weak))
 		used_str--
+	if(ishuman(user))
+		var/mob/living/carbon/human/user_human = user
+		if(user_human.clan) // For each level of potence user gains 0.5 STR, at 5 Potence their STR buff is 2.5
+			used_str += floor(0.5 * user_human.potence_weapon_buff)
 	if(used_str >= 11)
 		var/strmod
 		if(used_str > STRENGTH_SOFTCAP && !HAS_TRAIT(user, TRAIT_STRENGTH_UNCAPPED))
@@ -579,8 +584,10 @@
 /obj/item/proc/do_special_attack_effect(user, obj/item/bodypart/affecting, intent, mob/living/victim, selzone, thrown = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(victim, COMSIG_ITEM_ATTACK_EFFECT, user, affecting, intent, selzone, src)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_EFFECT_SELF, user, affecting, intent, victim, selzone)
 
 	if(is_silver && HAS_TRAIT(victim, TRAIT_SILVER_WEAK))
+		SEND_SIGNAL(victim, COMSIG_FORCE_UNDISGUISE)
 		var/datum/component/silverbless/blesscomp = GetComponent(/datum/component/silverbless)
 		if(blesscomp?.is_blessed)
 			if(!victim.has_status_effect(/datum/status_effect/fire_handler/fire_stacks/sunder))

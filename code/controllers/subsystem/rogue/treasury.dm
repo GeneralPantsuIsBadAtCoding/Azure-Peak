@@ -270,19 +270,28 @@ SUBSYSTEM_DEF(treasury)
 	return TRUE
 
 /// Boilerplate that sets taxes and announces it to the world. Only changed taxes are announced. 
-/datum/controller/subsystem/treasury/proc/set_taxes(list/categories, announcement_text)
+/datum/controller/subsystem/treasury/proc/set_taxes(list/categories, good_announcement_text, bad_announcement_text)
 	var/final_text = null
+	var/bad_guy = FALSE // If any fine exemptions are removed or tax is increased, uses an alternative message
 	for(var/category in categories)
 		if(taxation_cat_settings[category]["taxAmount"] != categories[category]["taxAmount"])
+			if(categories[category]["taxAmount"] > taxation_cat_settings[category]["taxAmount"])
+				bad_guy = TRUE
 			final_text += "<br>[category] tax: [categories[category]["taxAmount"]]%. "
 		if(taxation_cat_settings[category]["fineExemption"] != categories[category]["fineExemption"])
+			if(taxation_cat_settings[category]["fineExemption"] && !categories[category]["fineExemption"])
+				bad_guy = TRUE
 			final_text += "[category] is [categories[category]["fineExemption"] ? "now exempt from fines" : "no longer exempt from fines"]."
 		taxation_cat_settings[category] = categories[category]
 
 	if(isnull(final_text))
 		return
+	
+	var/final_announcement_text = good_announcement_text
+	if(bad_guy)
+		final_announcement_text = bad_announcement_text
 
-	priority_announce(final_text, "The Generous Lord Decrees", pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
+	priority_announce(final_text, final_announcement_text, pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
 
 /// Returns correct tax (0, 100) for a living mob based on its traits & job
 /datum/controller/subsystem/treasury/proc/get_tax_value_for(mob/living/person)

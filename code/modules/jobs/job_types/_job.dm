@@ -243,6 +243,8 @@
 
 	if(islist(advclass_cat_rolls))
 		hugboxify_for_class_selection(H)
+	
+	log_admin("[H.key]/([H.real_name]) has joined as [H.mind.assigned_role].")
 
 /client/verb/set_mugshot()
 	set category = "OOC"

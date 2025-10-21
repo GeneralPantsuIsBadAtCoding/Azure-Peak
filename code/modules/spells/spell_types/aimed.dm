@@ -73,7 +73,6 @@
 	if(!isturf(U) || !isturf(T))
 		return FALSE
 	fire_projectile(user, target)
-	user.newtonian_move(get_dir(U, T))
 	if(current_amount <= 0)
 		charge_counter = 0
 		start_recharge()

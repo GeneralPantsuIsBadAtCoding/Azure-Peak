@@ -1,5 +1,7 @@
 /mob/dead/observer/Login()
 	..()
+	if(client)
+		client.update_ooc_verb_visibility()
 
 	if(client && client.prefs)
 		ghost_accs = client.prefs.ghost_accs

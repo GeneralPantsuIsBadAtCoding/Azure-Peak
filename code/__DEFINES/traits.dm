@@ -34,6 +34,7 @@
 #define TRAIT_INHUMEN_ANATOMY "Inhumen Anatomy" //can't wear hats and shoes
 #define TRAIT_NASTY_EATER "Inhumen Digestion" //can eat rotten food, organs, poison berries, and drink murky water
 #define TRAIT_WILD_EATER "Beastly Digestion" //can eat raw and rotten food and drink murky water
+#define INSPIRING_MUSICIAN "Inspiring Musician" // unlocks bardic inspiration stuff
 #define TRAIT_NOFALLDAMAGE1 "Fall Damage Reduction"
 #define TRAIT_NOFALLDAMAGE2 "Fall Damage Immunity"
 #define TRAIT_MISSING_NOSE "Missing Nose" //halved stamina regeneration
@@ -244,6 +245,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Azure Peak, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_DEATHBARGAIN = span_info("A horrible deal has been prepared in your name. May you never see it fulfilled..."),
 	TRAIT_RITUALIST = span_info("I am skilled in the holy arts. Using ritual chalk, I can more deftly channel my God's powers via runes."),
+	TRAIT_INSPIRING_MUSICIAN = span_info("The flow of battle dances to my song!"),
 	TRAIT_INQUISITION = span_info("I serve the Holy Otavan Inquisition. From a passing glance, I can recognize all other adherents within the local sect."),
 	TRAIT_CHOSEN = "Astrata choose you to represent her glory.",
 	TRAIT_WEBWALK = "I can move freely between webs.",
@@ -416,8 +418,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_RACISMISBAD = span_warning("The Black Oaks can spot ANY Foreigners and Outsiders, no matter how long they've lived in Azuria. This is an easy skill to master, as it is simply identifying who isn't an elf."),
 	TRAIT_DREAMWALKER = span_warning("I walk the dream and reality at the same time. My mind frays, but my vision shall be reality."),
 	TRAIT_ENGINEERING_GOGGLES = span_warning("I can see structural details others can't"),
-	TRAIT_MASTER_CARPENTER = span_warning("I've been trained to make the most of wood"), 
-	TRAIT_MASTER_MASON = span_warning("I've been trained to make the most of stone"), 
+	TRAIT_MASTER_CARPENTER = span_warning("I've been trained to make the most of wood"),
+	TRAIT_MASTER_MASON = span_warning("I've been trained to make the most of stone"),
 	TRAIT_EQUESTRIAN = span_warning("I am a capable rider. My mount is an extension of me."),
 ))
 
@@ -429,13 +431,17 @@ GLOBAL_LIST_INIT(roguetraits, list(
 			target.status_traits = list(); \
 			_L = target.status_traits; \
 			_L[trait] = list(source); \
+			SEND_SIGNAL(target, SIGNAL_ADDTRAIT(trait), trait); \
+			SEND_GLOBAL_SIGNAL(COMSIG_ATOM_ADD_TRAIT, target, trait); \
 		} else { \
 			_L = target.status_traits; \
 			if (_L[trait]) { \
 				_L[trait] |= list(source); \
 			} else { \
 				_L[trait] = list(source); \
-			} \
+				SEND_SIGNAL(target, SIGNAL_ADDTRAIT(trait), trait); \
+				SEND_GLOBAL_SIGNAL(COMSIG_ATOM_ADD_TRAIT, target, trait); \
+			}; \
 		} \
 	} while (0)
 #define REMOVE_TRAIT(target, trait, sources) \
@@ -445,19 +451,21 @@ GLOBAL_LIST_INIT(roguetraits, list(
 		if (sources && !islist(sources)) { \
 			_S = list(sources); \
 		} else { \
-			_S = sources\
+			_S = sources; \
 		}; \
 		if (_L && _L[trait]) { \
 			for (var/_T in _L[trait]) { \
 				if ((!_S && (_T != ROUNDSTART_TRAIT)) || (_T in _S)) { \
-					_L[trait] -= _T \
-				} \
+					_L[trait] -= _T; \
+				}; \
 			};\
 			if (!length(_L[trait])) { \
-				_L -= trait \
+				_L -= trait; \
+				SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(trait), trait); \
+				SEND_GLOBAL_SIGNAL(COMSIG_ATOM_REMOVE_TRAIT, target, trait); \
 			}; \
 			if (!length(_L)) { \
-				target.status_traits = null \
+				target.status_traits = null; \
 			}; \
 		} \
 	} while (0)
@@ -467,15 +475,19 @@ GLOBAL_LIST_INIT(roguetraits, list(
 		var/list/_S = sources; \
 		if (_L) { \
 			for (var/_T in _L) { \
-				_L[_T] &= _S;\
+				_L[_T] &= _S; \
 				if (!length(_L[_T])) { \
-					_L -= _T } \
-				};\
-				if (!length(_L)) { \
-					target.status_traits = null\
-				};\
+					_L -= _T; \
+					SEND_SIGNAL(target, SIGNAL_REMOVETRAIT(_T), _T); \
+					SEND_GLOBAL_SIGNAL(COMSIG_ATOM_REMOVE_TRAIT, target, trait); \
+				}; \
+			};\
+			if (!length(_L)) { \
+				target.status_traits = null\
+			};\
 		}\
 	} while (0)
+
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 #define HAS_TRAIT_FROM_ONLY(target, trait, source) (HAS_TRAIT(target, trait) && (source in target._status_traits[trait]) && (length(target.status_traits[trait]) == 1))
@@ -587,6 +599,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_BITE "no_bite" //prevents biting
 #define TRAIT_LEGENDARY_ALCHEMIST		"Expert Herb Finder"
 #define TRAIT_STUCKITEMS "stuck_items" // Prevents removing items except for hand slots
+/// Used to track if a player has rejected vampire convert
+#define TRAIT_REFUSED_VAMP_CONVERT "refused_vampire_conversion"
+/// makes your footsteps completely silent
+#define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
 
 //bodypart traits
 #define TRAIT_PARALYSIS	"paralysis" //Used for limb-based paralysis and full body paralysis
@@ -732,5 +748,16 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_AREA_SENSITIVE "area-sensitive"
 ///every hearing sensitive atom has this trait
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
+
+#define TRAIT_CLAN_LEADER "clan_leader"
+#define TRAIT_IN_FRENZY "in_frenzy"
+#define TRAIT_VIOLATOR "Violator of the Coven"
+#define TRAIT_TORPOR "Endless Slumber"
+/// Trait given as a result of vampiric activities
+#define VAMPIRE_TRAIT "vampire"
+#define TABOO_TRAIT "taboo"
+#define TRAIT_COVEN_BANE "coven_bane"
+#define TRAIT_COVEN_RESISTANT "coven_resistance"
+#define TRAIT_MOVEMENT_BLOCKED "movement_blocked"
 /// Mobs that have this trait cannot be extinguished
 #define TRAIT_NO_EXTINGUISH "no_extinguish"

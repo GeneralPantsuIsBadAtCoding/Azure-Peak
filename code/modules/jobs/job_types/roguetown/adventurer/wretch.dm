@@ -30,6 +30,7 @@
 	virtue_restrictions = list(/datum/virtue/heretic/zchurch_keyholder) //all wretch classes automatically get this
 	job_traits = list(TRAIT_STEELHEARTED, TRAIT_OUTLAW, TRAIT_HERESIARCH, TRAIT_SELF_SUSTENANCE, TRAIT_ZURCH)
 	job_subclasses = list(
+		/datum/advclass/wretch/licker,
 		/datum/advclass/wretch/deserter,
 		/datum/advclass/wretch/deserter/maa,
 		/datum/advclass/wretch/berserker,

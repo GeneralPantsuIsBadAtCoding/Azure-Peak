@@ -21,6 +21,11 @@
 /obj/structure/fluff/canopy/booth
 	icon_state = "canopyr-booth"
 
+/obj/structure/fluff/canopy/booth/Initialize()
+	. = ..()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/fluff/canopy/booth/booth02
 	icon_state = "canopyr-booth-2"
 
@@ -40,10 +45,11 @@
 		return FALSE // don't even bother climbing over it
 	return ..()
 
-/obj/structure/fluff/canopy/booth/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return !density
+/obj/structure/fluff/canopy/booth/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(get_dir(leaving.loc, new_location) == dir)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/canopy/MouseDrop(mob/over)
 	. = ..()

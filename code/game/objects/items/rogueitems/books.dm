@@ -589,8 +589,10 @@
 		var/icon_input = show_radial_menu(user, src, icon_choice, require_near = TRUE, tooltips = FALSE)
 		if(icon_input)
 			icon_state = icon_input
+			base_icon_state = replacetextEx(icon_input, regex(@"_[0-1]"), "")
 			if(alert(user, "Are you happy with this?", "Book Cover", "Yes", "No") != "Yes")
 				icon_state = initial(icon_state)
+				base_icon_state = initial(base_icon_state)
 				return
 		stage++
 		return
@@ -612,6 +614,10 @@
 	var/compiled_pages = null
 	var/list/page_texts = list()
 	var/qdel_source = FALSE
+
+/obj/item/manuscript/examine()
+	. = ..()
+	. += span_info("It has [number_of_pages] pages. Use paper to add more. Finish the book with a book crafting kit.")
 
 /obj/item/manuscript/attackby(obj/item/I, mob/living/user)
 	// why is a book crafting kit using the craft system, but crafting a book isn't? Well the crafting system for *some reason* is made in such a way as to make reworking it to allow you to put reqs vars in the crafted item near *impossible.*

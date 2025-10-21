@@ -114,8 +114,9 @@
 	added_skills = list(list(/datum/skill/misc/reading, 3, 6))
 	added_stashed_items = list(
 		"Quill" = /obj/item/natural/feather,
-		"Scroll" = /obj/item/paper/scroll,
-		"Book" = /obj/item/book/rogue/playerbook
+		"Scroll #1" = /obj/item/paper/scroll,
+		"Scroll #2" = /obj/item/paper/scroll,
+		"Book Crafting Kit" = /obj/item/book_crafting_kit
 	)
 
 /datum/virtue/utility/linguist/apply_to_human(mob/living/carbon/human/recipient)
