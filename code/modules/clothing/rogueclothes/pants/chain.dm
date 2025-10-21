@@ -102,14 +102,16 @@
 
 /obj/item/clothing/under/roguetown/chainlegs/skirt/bronze
 	name = "bronze chain skirt"
-	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
+	desc = "A knee-length maille skirt, made with hundreds of small bronze rings. It wards cuts against the thighs without slowing the feet."
 	icon_state = "chain_skirt"
 	item_state = "chain_skirt"
-	smeltresult = /obj/item/ingot/bronze //Unsmithable for now. Restricted to the Barbarian. If reception for wider adoption is positive, go ahead.
-	max_integrity = 150 //Less than iron, but lighter and more covering. Retains iron-tier protection.
+	smeltresult = /obj/item/ingot/bronze //Reskinned version of the Barbarian's heavy leather trousers. 1:1 functionality, but without the ability to sew-repair.
 	color = "#f9d690"
 	body_parts_covered = GROIN|LEGS
 	armor_class = ARMOR_CLASS_LIGHT
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+    armor = ARMOR_LEATHER_GOOD
+    max_integrity = ARMOR_INT_LEG_HARDLEATHER
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt
 	name = "steel chain kilt"
