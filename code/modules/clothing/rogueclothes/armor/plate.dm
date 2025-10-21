@@ -158,6 +158,8 @@
 	icon_state = "matthiosarmor"
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG	
 	peel_threshold = 5	//-Any- weapon will require 5 peel hits to peel coverage off of this armor.
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()
 	. = ..()
@@ -175,6 +177,8 @@
 	icon_state = "zizoplate"
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	peel_threshold = 5	//-Any- weapon will require 5 peel hits to peel coverage off of this armor.
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/zizo/Initialize()
 	. = ..()

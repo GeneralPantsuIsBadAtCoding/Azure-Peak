@@ -621,6 +621,8 @@
 	bloody_icon = 'icons/effects/blood64.dmi'
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/graggar
 	name = "vicious helmet"
@@ -661,6 +663,8 @@
 	max_integrity = ARMOR_INT_HELMET_ANTAG
 	peel_threshold = 4
 	var/frogstyle = FALSE
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/MiddleClick(mob/user)
 	frogstyle = !frogstyle

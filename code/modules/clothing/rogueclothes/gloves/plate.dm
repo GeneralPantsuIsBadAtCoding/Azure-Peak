@@ -54,6 +54,8 @@
 	desc = "Many a man his life hath sold,"
 	icon_state = "matthiosgloves"
 	max_integrity = ARMOR_INT_SIDE_ANTAG
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/gloves/roguetown/plate/matthios/Initialize()
 	. = ..()
@@ -71,6 +73,9 @@
 	desc = "avantyne plate gauntlets. Called forth from the edge of what should be known. In Her name."
 	icon_state = "zizogauntlets"
 	max_integrity = ARMOR_INT_SIDE_ANTAG
+	anvilrepair = null
+	sewrepair = FALSE
+
 
 /obj/item/clothing/gloves/roguetown/plate/zizo/Initialize()
 	. = ..()

@@ -65,6 +65,8 @@
 	icon_state = "matthioslegs"
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
 	armor = ARMOR_ASCENDANT
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/under/roguetown/platelegs/matthios/Initialize()
 	. = ..()
@@ -85,6 +87,8 @@
 	icon_state = "zizocloth"
 	armor = ARMOR_ASCENDANT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
+	anvilrepair = null
+	sewrepair = FALSE
 
 /obj/item/clothing/under/roguetown/platelegs/zizo/Initialize()
 	. = ..()
