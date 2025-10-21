@@ -48,14 +48,14 @@
 	/mob/living/carbon/human/species/human/northern/highwayman = 6,\
 	/mob/living/carbon/human/species/orc/npc/footsoldier = 6,\
 	/mob/living/carbon/human/species/orc/npc/marauder = 8,\
-	/mob/living/carbon/human/species/orc/npc/berserker = 10,\
 	/mob/living/carbon/human/species/skeleton/npc/mediumspread = 6,\
 	/mob/living/carbon/human/species/skeleton/npc/mediumspread = 6,\
 	/mob/living/carbon/human/species/human/northern/thief = 8,\
 	)
 
-// Raid difficulty kill mobs - Only two mobs for now. Per person reward is low because base / head reward is high
+// Raid difficulty kill mobs - Only three mobs for now. Per person reward is low because base / head reward is high
 #define QUEST_RAID_LIST list(\
+	/mob/living/carbon/human/species/orc/npc/berserker = 10,\
 	/mob/living/carbon/human/species/elf/dark/drowraider = 5, \
 	/mob/living/carbon/human/species/human/northern/bog_deserters = 5,\
 )
