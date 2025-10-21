@@ -162,3 +162,12 @@ SUBSYSTEM_DEF(chimeric_tech)
 	else if(SSchimeric_tech.get_node_status("INFESTATION_TIER1"))
 		max_charges = 50
 	return max_charges
+
+/datum/controller/subsystem/chimeric_tech/proc/get_infestation_food_rot_count()
+	var/amount = 0
+
+	if(SSchimeric_tech.get_node_status("INFESTATION_ROT_MULTIPLE_1"))
+		amount = 2
+	else if(SSchimeric_tech.get_node_status("INFESTATION_ROT_MULTIPLE_2"))
+		amount = 4
+	return amount

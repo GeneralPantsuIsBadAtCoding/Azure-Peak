@@ -114,3 +114,21 @@
 	required_tier = 1
 	cost = 8
 	selection_weight = 4
+
+/datum/chimeric_tech_node/infestation_rot_multiple_1
+	name = "Spread Contamination"
+	description = "Infestation now affects 1 additional nearby food item when cast on snacks."
+	string_id = "INFESTATION_ROT_MULTIPLE_1"
+	required_tier = 2
+	cost = 25
+	selection_weight = 10
+	prerequisites = list("INFESTATION_ROT_SNACKS")
+
+/datum/chimeric_tech_node/infestation_rot_multiple_2
+	name = "Mass Contamination"
+	description = "Infestation now affects 3 additional nearby food items when cast on snacks."
+	string_id = "INFESTATION_ROT_MULTIPLE_2"
+	required_tier = 3
+	cost = 40
+	selection_weight = 8
+	prerequisites = list("INFESTATION_ROT_MULTIPLE_1")
