@@ -34,13 +34,10 @@
 	)
 
 /datum/outfit/job/roguetown/wretch/berserker/pre_equip(mob/living/carbon/human/H)
-	head = /obj/item/clothing/head/roguetown/helmet/kettle
-	mask = /obj/item/clothing/mask/rogue/wildguard
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
-	gloves = /obj/item/clothing/gloves/roguetown/plate
 	backr = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/leather
@@ -55,30 +52,47 @@
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	if(H.mind)
-		var/weapons = list("Katar","Steel Knuckles","Punch Dagger","MY BARE HANDS!!!","Battle Axe","Mace","Sword")
-		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-		H.set_blindness(0)
+		var/weapons = list("Discipline - Unarmed","Katar","Knuckledusters","Punch Dagger","Battle Axe","Grand Mace","Falx")
+		var/weapon_choice = input(H, "Choose your WEAPON.", "SPILL THEIR ENTRAILS.") as anything in weapons
 		switch(weapon_choice)
+			if ("Discipline - Unarmed")
+				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
+				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_STRONGKICK, TRAIT_GENERIC)
 			if ("Katar")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
 				beltr = /obj/item/rogueweapon/katar
-			if ("Steel Knuckles")
+			if ("Knuckledusters")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
 				beltr = /obj/item/rogueweapon/knuckles
 			if ("Punch Dagger")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
 				beltr = /obj/item/rogueweapon/katar/punchdagger
-			if ("MY BARE HANDS!!!")
-				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_MASTER, TRUE)
-				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 			if ("Battle Axe")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/stoneaxe/battle
-			if ("Mace")
+			if ("Grand Mace")
 				H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/mace/goden/steel
-			if ("Sword")
+			if ("Falx")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/falx
+		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage, No Protection")
+		var/glove_choice = input(H, "Choose your GLOVES.", "CRACK SOME SKULLS.") as anything in gloves
+		switch(glove_choice)
+			if ("Plate Gauntlets")
+				gloves = /obj/item/clothing/gloves/roguetown/plate
+			if ("Pugilist's Wrappings - Increased Unarmed Damage, No Protection")
+				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
+		var/helmets = list("Berserker's Volfskulle Bascinet, Steel Kettle + Wildguard")
+		var/helmet_choice = input(H, "Choose your HELMET.", "STEEL YOURSELF.") as anything in helmets
+		H.set_blindness(0)
+		switch(helmet_choice)
+			if ("Berserker's Volfskulle Bascinet")
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
+				ADD_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC) //Similar boon to the Graggar helmet, as it lets you chew through the helmet.
+			if ("Steel Kettle + Wildguard")
+				head = /obj/item/clothing/head/roguetown/helmet/kettle
+				mask = /obj/item/clothing/mask/rogue/wildguard
 		wretch_select_bounty(H)
