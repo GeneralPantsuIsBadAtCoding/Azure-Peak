@@ -100,6 +100,17 @@
 	body_parts_covered = GROIN
 	armor_class = ARMOR_CLASS_LIGHT
 
+/obj/item/clothing/under/roguetown/chainlegs/skirt/bronze
+	name = "bronze chain skirt"
+	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
+	icon_state = "chain_skirt"
+	item_state = "chain_skirt"
+	smeltresult = /obj/item/ingot/bronze //Unsmithable for now. Restricted to the Barbarian. If reception for wider adoption is positive, go ahead.
+	max_integrity = 150 //Less than iron, but lighter and more covering. Retains iron-tier protection.
+	color = "#f9d690"
+	body_parts_covered = GROIN|LEGS
+	armor_class = ARMOR_CLASS_LIGHT
+
 /obj/item/clothing/under/roguetown/chainlegs/kilt
 	name = "steel chain kilt"
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
