@@ -52,6 +52,22 @@
 		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	if(H.mind)
+		var/helmets = list("Berserker's Volfskulle Bascinet, Steel Kettle + Wildguard")
+		var/helmet_choice = input(H, "Choose your HELMET.", "STEEL YOURSELF.") as anything in helmets
+		switch(helmet_choice)
+			if ("Berserker's Volfskulle Bascinet")
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
+				ADD_TRAIT(H, TRAIT_BITERHELM, TRAIT_GENERIC) //Similar boon to the Graggar helmet, as it lets you chew through the helmet.
+			if ("Steel Kettle + Wildguard")
+				head = /obj/item/clothing/head/roguetown/helmet/kettle
+				mask = /obj/item/clothing/mask/rogue/wildguard
+		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage")
+		var/glove_choice = input(H, "Choose your GLOVES.", "CRACK SOME SKULLS.") as anything in gloves
+		switch(glove_choice)
+			if ("Plate Gauntlets")
+				gloves = /obj/item/clothing/gloves/roguetown/plate
+			if ("Pugilist's Wrappings - Increased Unarmed Damage")
+				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 		var/weapons = list("Discipline - Unarmed","Katar","Knuckledusters","Punch Dagger","Battle Axe","Grand Mace","Falx")
 		var/weapon_choice = input(H, "Choose your WEAPON.", "SPILL THEIR ENTRAILS.") as anything in weapons
 		H.set_blindness(0)
@@ -78,20 +94,4 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/falx
-		var/gloves = list("Plate Gauntlets","Pugilist's Wrappings - Increased Unarmed Damage")
-		var/glove_choice = input(H, "Choose your GLOVES.", "CRACK SOME SKULLS.") as anything in gloves
-		switch(glove_choice)
-			if ("Plate Gauntlets")
-				gloves = /obj/item/clothing/gloves/roguetown/plate
-			if ("Pugilist's Wrappings - Increased Unarmed Damage")
-				gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
-		var/helmets = list("Berserker's Volfskulle Bascinet, Steel Kettle + Wildguard")
-		var/helmet_choice = input(H, "Choose your HELMET.", "STEEL YOURSELF.") as anything in helmets
-		switch(helmet_choice)
-			if ("Berserker's Volfskulle Bascinet")
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
-				ADD_TRAIT(H, TRAIT_BITERHELM, TRAIT_GENERIC) //Similar boon to the Graggar helmet, as it lets you chew through the helmet.
-			if ("Steel Kettle + Wildguard")
-				head = /obj/item/clothing/head/roguetown/helmet/kettle
-				mask = /obj/item/clothing/mask/rogue/wildguard
 		wretch_select_bounty(H)
