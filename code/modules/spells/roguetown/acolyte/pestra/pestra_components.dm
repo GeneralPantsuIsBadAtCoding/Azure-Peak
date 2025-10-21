@@ -1,6 +1,5 @@
 /datum/component/infestation_charges
 	var/current_charges = 0
-	var/max_charges = 100
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/obj/effect/proc_holder/spell/invoked/infestation/parent_spell
 	var/mob/living/parent_mob
@@ -13,16 +12,19 @@
 	parent_spell = spell
 	parent_mob = parent
 	current_charges = 0
+	to_chat(world, span_userdanger("COMPONENT INITIALIZED"))
 
 	RegisterSignal(parent_spell, COMSIG_INFESTATION_CHARGE_ADD, PROC_REF(add_charge))
 	RegisterSignal(parent_mob, COMSIG_INFESTATION_CHARGE_REMOVE, PROC_REF(remove_charge))
 
-/datum/component/infestation_charges/proc/add_charge(charge_amount)
+/datum/component/infestation_charges/proc/add_charge(source, charge_amount)
+	to_chat(world, span_userdanger("[parent_spell] is being added onto for [charge_amount]"))
+	var/max_charges = SSchimeric_tech.get_infestation_max_charges()
 	current_charges = min(current_charges + charge_amount, max_charges)
 	if(parent_spell)
 		parent_spell.update_charge_overlay(get_charges())
 
-/datum/component/infestation_charges/proc/remove_charge(charge_amount)
+/datum/component/infestation_charges/proc/remove_charge(source, charge_amount)
 	current_charges = max(current_charges - charge_amount, 0)
 	if(parent_spell)
 		parent_spell.update_charge_overlay(get_charges())

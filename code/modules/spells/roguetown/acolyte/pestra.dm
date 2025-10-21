@@ -60,7 +60,9 @@
 /obj/effect/proc_holder/spell/invoked/attach_bodypart
 	name = "Bodypart Miracle"
 	desc = "Attach all limbs and organs you or your target is holding, and near your target."
-	overlay_state = "limb_attach"
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "flextape"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
@@ -165,7 +167,7 @@
 
 /obj/effect/proc_holder/spell/invoked/infestation
 	name = "Infestation"
-	desc = "Causes a swarm of bugs to surround your target, bites them and causes sickness."
+	desc = "Causes a swarm of bugs to surround your target, bites them and causes sickness. Infecting targets gives you charges to use other spells."
 	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
 	action_icon = 'icons/mob/actions/pestraspells.dmi'
 	overlay_state = "infestation0"
@@ -191,6 +193,13 @@
 /obj/effect/proc_holder/spell/invoked/infestation/on_gain(mob/living/user)
 	// Note: there is no logic to remove the component yet, this should be fine
 	. = ..()
+	to_chat(world, span_userdanger("Initiating infestation!"))
+	if(overlay_state && !hide_charge_effect)
+		var/obj/effect/R = new /obj/effect/spell_rune
+		R.icon = action_icon
+		R.icon_state = "infestation10"
+		action.overlay_alpha = overlay_alpha
+		mob_charge_effect = R
 	if(user && !charge_component)
 		// Sanity check
 		var/datum/component/existing_component = user.GetComponent(/datum/component/infestation_charges)
@@ -201,22 +210,27 @@
 			charge_component = user.AddComponent(/datum/component/infestation_charges, src)
 
 /obj/effect/proc_holder/spell/invoked/infestation/proc/update_charge_overlay(charge_count)
+	to_chat(world, span_userdanger("updating spell icon with [charge_count]"))
 	overlay_state = "infestation[charge_count]"
-	if(overlay_state && !hide_charge_effect)
-		var/obj/effect/R = new /obj/effect/spell_rune
-		R.icon = action_icon
-		R.icon_state = overlay_state
-		action.overlay_alpha = overlay_alpha
-		mob_charge_effect = R
 	update_icon()
+	action.UpdateButtonIcon(FALSE, TRUE)
+	action.desc = "[desc]\n<span class='notice'>Charges = [charge_count]</span>"
 
 /obj/effect/proc_holder/spell/invoked/infestation/cast(list/targets, mob/living/user)
-	if(isliving(targets[1]))
-		var/mob/living/carbon/target = targets[1]
-		target.visible_message(span_warning("[target] is surrounded by a cloud of pestilent vermin!"), span_notice("You surround [target] in a cloud of pestilent vermin!"))
-		target.apply_status_effect(/datum/status_effect/buff/infestation/) //apply debuff
+	var/atom/target = targets[1]
+	if(isliving(target))
+		var/mob/living/carbon/M = target
+		M.visible_message(span_warning("[M] is surrounded by a cloud of pestilent vermin!"), span_notice("You surround [M] in a cloud of pestilent vermin!"))
+		M.apply_status_effect(/datum/status_effect/buff/infestation/) //apply debuff
 		SEND_SIGNAL(src, COMSIG_INFESTATION_CHARGE_ADD, 10)
 		return TRUE
+	if(SSchimeric_tech.get_node_status("INFESTATION_ROT_SNACKS") && istype(target, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/snack = target
+		snack.visible_message(span_warning("[snack] is swarmed by vermin and rapidly rots!"))
+		snack.become_rotten()
+		SEND_SIGNAL(src, COMSIG_INFESTATION_CHARGE_ADD, 5)
+		return TRUE
+	revert_cast()
 	return FALSE
 
 /datum/status_effect/buff/infestation

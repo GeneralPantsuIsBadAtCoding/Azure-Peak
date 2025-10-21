@@ -151,3 +151,14 @@ SUBSYSTEM_DEF(chimeric_tech)
 
 /datum/controller/subsystem/chimeric_tech/proc/has_revival_cost_reduction()
 	return get_node_status("REVIVE_TIER2")
+
+/datum/controller/subsystem/chimeric_tech/proc/get_infestation_max_charges()
+	var/max_charges = 30
+
+	if(SSchimeric_tech.get_node_status("INFESTATION_TIER3"))
+		max_charges = 100
+	else if(SSchimeric_tech.get_node_status("INFESTATION_TIER2"))
+		max_charges = 90
+	else if(SSchimeric_tech.get_node_status("INFESTATION_TIER1"))
+		max_charges = 50
+	return max_charges

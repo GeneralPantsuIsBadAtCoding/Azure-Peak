@@ -266,12 +266,15 @@
 	desc = "Revive the target by consuming extracted Lux."
 	sound = 'sound/magic/slimesquish.ogg'
 	required_items = list(
-		/obj/item/reagent_containers/lux = 1
+		/obj/item/heart_blood_canister/filled = 1,
+		/obj/item/heart_blood_vial/filled = 2
 	)
 	alt_required_items = list(
-		/obj/item/heart_blood_vial/filled = 1
+		/obj/item/heart_blood_vial/filled = 2
 	)
-	overlay_state = "pestra_revive"
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "resurrect"
 
 /obj/effect/proc_holder/spell/invoked/resurrect/eora
 	//Does heartfelt even exist?

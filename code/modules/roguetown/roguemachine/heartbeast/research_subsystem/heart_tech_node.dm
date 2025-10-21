@@ -51,6 +51,7 @@
 	selection_weight = 50
 	prerequisites = list("REVIVE_TIER1")
 
+// CRAFTING RECIPE TECHS
 /datum/chimeric_tech_node/residual_frankenbrew
 	name = "Impure lux filtration"
 	description = "Allows making a small amount of revival elixer for fulmenor chairs out of impure lux."
@@ -78,3 +79,38 @@
 	selection_weight = 1
 	is_recipe_node = TRUE
 	prerequisites = list("FLESH_DECOYS")
+
+/// INFESTATION CHARGE CAPACITY TECHS
+/datum/chimeric_tech_node/infestation_capacity_1
+	name = "Enhanced Infestation Capacity"
+	description = "Increases maximum infestation charges to 5."
+	string_id = "INFESTATION_TIER1"
+	required_tier = 1
+	cost = 20
+	selection_weight = 10
+
+/datum/chimeric_tech_node/infestation_capacity_2
+	name = "Superior Infestation Capacity"
+	description = "Increases maximum infestation charges to 9."
+	string_id = "INFESTATION_TIER2"
+	required_tier = 2
+	cost = 30
+	selection_weight = 8
+	prerequisites = list("INFESTATION_TIER1")
+
+/datum/chimeric_tech_node/infestation_capacity_3
+	name = "Reveal The Divine Gift Of Pestra"
+	description = "Increases maximum infestation charges to 10. At 10 charges, Master pestrans gain access to Divine Rebirth."
+	string_id = "INFESTATION_TIER3"
+	required_tier = 3
+	cost = 50
+	selection_weight = 6
+	prerequisites = list("INFESTATION_TIER2")
+
+/datum/chimeric_tech_node/infestation_rot_snacks
+	name = "Food Contamination"
+	description = "Allows infestation to be cast on food items, rotting them and granting half a charge."
+	string_id = "INFESTATION_ROT_SNACKS"
+	required_tier = 1
+	cost = 8
+	selection_weight = 4

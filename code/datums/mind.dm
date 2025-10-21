@@ -712,11 +712,13 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		add_antag_datum(/datum/antagonist/traitor)
 
 
-/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
+/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S, mob/living/user)
 	if(!S)
 		return
 	spell_list += S
 	S.action.Grant(current)
+	if(user)
+		S.on_gain(user)
 
 /datum/mind/proc/check_learnspell()
 	if(!has_spell(/obj/effect/proc_holder/spell/self/learnspell)) //are we missing the learning spell?
