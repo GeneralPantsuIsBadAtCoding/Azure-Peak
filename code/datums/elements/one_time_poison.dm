@@ -13,7 +13,7 @@
 	RegisterSignal(target, COMSIG_ITEM_ATTACK_EFFECT_SELF, PROC_REF(try_inject))
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
-/datum/element/one_time_poison/Detach(datum/source, force)
+/datum/element/one_time_poison/Detach(datum/source)
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_ITEM_ATTACK_EFFECT_SELF, COMSIG_PARENT_EXAMINE))
 

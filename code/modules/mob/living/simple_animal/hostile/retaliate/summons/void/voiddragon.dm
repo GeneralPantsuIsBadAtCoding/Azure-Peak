@@ -89,6 +89,8 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
+	canparry = TRUE
+	defprob = 70
 	pixel_x = -32
 	var/swooping = NONE
 	var/player_cooldown = 0
