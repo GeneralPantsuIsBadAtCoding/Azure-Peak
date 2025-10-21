@@ -473,6 +473,11 @@
 /obj/attacked_by(obj/item/I, mob/living/user)
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	var/newforce = (get_complex_damage(I, user, blade_dulling) * I.demolition_mod)
+	var/hand = user.get_inactive_hand_index()
+	if (hand && hand == 1)
+		hand = "R"
+	else if (hand && hand == 2)
+		hand = "L"
 	if(!newforce)
 		testing("dam33")
 		return 0
@@ -486,12 +491,12 @@
 	verbu = pick(user.used_intent.attack_verb)
 	if(newforce > 1)
 		if(user.stamina_add(5))
-			user.visible_message(span_danger("[user] [verbu] [src] with [I]!"))
+			user.visible_message(span_danger("[user] [verbu] [src] with [I] ([hand])!"))
 		else
-			user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
+			user.visible_message(span_warning("[user] [verbu] [src] with [I] ([hand])!"))
 			newforce = 1
 	else
-		user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
+		user.visible_message(span_warning("[user] [verbu] [src] with [I] ([hand])!"))
 	take_damage(newforce, I.damtype, I.d_type, 1)
 	if(newforce > 1)
 		I.take_damage(1, BRUTE, I.d_type)
@@ -500,6 +505,11 @@
 
 /turf/proc/attacked_by(obj/item/I, mob/living/user, multiplier)
 	var/newforce = get_complex_damage(I, user, blade_dulling)
+	var/hand = user.get_inactive_hand_index()
+	if (hand && hand == 1)
+		hand = "R"
+	else if (hand && hand == 2)
+		hand = "L"
 	if(!newforce)
 		testing("attack6")
 		return 0
@@ -514,12 +524,12 @@
 	verbu = pick(user.used_intent.attack_verb)
 	if(newforce > 1)
 		if(user.stamina_add(5))
-			user.visible_message(span_danger("[user] [verbu] [src] with [I]!"))
+			user.visible_message(span_danger("[user] [verbu] [src] with [I] ([hand])!"))
 		else
-			user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
+			user.visible_message(span_warning("[user] [verbu] [src] with [I] ([hand])!"))
 			newforce = 1
 	else
-		user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
+		user.visible_message(span_warning("[user] [verbu] [src] with [I] ([hand])!"))
 
 	if(multiplier)
 		newforce = newforce * multiplier
@@ -688,6 +698,11 @@
 	var/static/list/verb_override = list("hits", "strikes")
 	var/use_override = FALSE
 	var/verb_appendix
+	var/hand = user.get_inactive_hand_index()
+	if (hand && hand == 1)
+		hand = "R"
+	else if (hand && hand == 2)
+		hand = "L"
 	if(!I.force_dynamic)
 		return
 	if(bladec == BCLASS_PEEL)
@@ -712,11 +727,11 @@
 		message_verb += verb_appendix
 	if(hit_area)
 		message_hit_area = " in the [span_userdanger(hit_area)]"
-	var/attack_message = "[src] is [message_verb][message_hit_area] with [I]!"
-	var/attack_message_local = "I'm [message_verb][message_hit_area] with [I]!"
+	var/attack_message = "[src] is [message_verb][message_hit_area] with [I] ([hand])!"
+	var/attack_message_local = "I'm [message_verb][message_hit_area] with [I] ([hand])!"
 	if(user in viewers(src, null))
-		attack_message = "[user] [message_verb] [src][message_hit_area] with [I]!"
-		attack_message_local = "[user] [message_verb] me[message_hit_area] with [I]!"
+		attack_message = "[user] [message_verb] [src][message_hit_area] with [I] ([hand])!"
+		attack_message_local = "[user] [message_verb] me[message_hit_area] with [I] ([hand])!"
 	visible_message(span_danger("[attack_message][next_attack_msg.Join()]"),\
 		span_danger("[attack_message_local][next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 	next_attack_msg.Cut()
