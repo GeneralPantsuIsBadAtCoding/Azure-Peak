@@ -53,7 +53,7 @@
 /datum/intent/mace/smash/flail
 	name = "flail smash"
 	chargetime = 0.8 SECONDS
-	damfactor = 1.3 // Flail smash has higher damage due to a longer charge.
+	damfactor = 1.4 // Flail smash has higher damage due to a longer charge.
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	icon_state = "insmash"

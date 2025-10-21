@@ -22,11 +22,10 @@
 	damfactor = 1 // It now has CC effective
 	chargedrain = 1 // Slight stamina drain on use
 	chargetime = 5 // Half a second of charge for a bit of a warning.
-	no_early_release = TRUE // Must be fully charged
 	icon_state = "insmash"
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
-	desc = "A powerful, charged up strike that deals normal damage but can throw a standing opponent back and slow them down, based on your strength. Ineffective below 10 strength. Slowdown & Knockback scales to your Strength up to 14 (1 - 4 tiles). Cannot be used consecutively more than every 5 seconds on the same target. Prone targets halve the knockback distance."
+	desc = "A powerful, charged up strike that deals normal damage but can throw a standing opponent back and slow them down, based on your strength. Ineffective below 10 strength. Slowdown & Knockback scales to your Strength up to 14 (1 - 4 tiles). Cannot be used consecutively more than every 5 seconds on the same target. Prone targets halve the knockback distance. Not fully charging the attack limits knockback to 1 tile."
 
 /datum/intent/mace/smash/spec_on_apply_effect(mob/living/H, mob/living/user, params)
 	var/chungus_khan_str = user.STASTR 
@@ -41,6 +40,8 @@
 	var/knockback_tiles = scaling // 1 to 4 tiles based on strength
 	if(H.resting)
 		knockback_tiles = max(1, knockback_tiles / 2)
+	if(H.client.chargedprog < 100)
+		knockback_tiles = 1 // Minimal knockback on non-charged smash.
 	var/turf/edge_target_turf = get_edge_target_turf(H, get_dir(user, H))
 	if(istype(edge_target_turf))
 		H.safe_throw_at(edge_target_turf, \
