@@ -203,6 +203,19 @@
 	sellprice = 10
 	sheathe_icon = "isword"
 
+/obj/item/rogueweapon/sword/bronze
+	name = "bronze arming sword"
+	desc = "A long bronze blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations - and this implement is the grandfather of them all. Though it lacks the gladii's girth, this arming sword still feels well-balanced for one-handed use."
+	icon_state = "sword3"
+	force = 23 //Iron- and steel arming swords have the same force. +2 to mimic the one-handed nature of bronze swords.
+	force_wielded = 25
+	color = "#f9d690"
+	minstr = 5
+	smeltresult = /obj/item/ingot/bronze
+	max_blade_int = 250
+	max_integrity = 125
+	sheathe_icon = "decsword1" //Placeholder. Close enough.
+
 /obj/item/rogueweapon/sword/falx
 	name = "falx"
 	desc = "An unusual type of curved sword that evolved from the farmer's sickle. It has an inwards edge, making it useful for cutting and chopping."
