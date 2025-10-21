@@ -68,6 +68,11 @@
 		if(!(affected_turf in view(source_turf)))
 			continue
 		for(var/mob/living/L in affected_turf.contents)
+			if(L.anti_magic_check())
+				visible_message(span_warning("The blades dispel when they near [L]!"))
+				playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
+				qdel(src)
+				continue
 			play_cleave = TRUE
 			L.adjustBruteLoss(damage)
 			playsound(affected_turf, "genslash", 80, TRUE)

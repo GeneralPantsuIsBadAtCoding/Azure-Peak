@@ -33,7 +33,8 @@
 	pooptype = null
 	simple_detect_bonus = 20
 	deaggroprob = 0
-	defprob = 40
+	canparry = TRUE
+	defprob = 30
 	// del_on_deaggro = 44 SECONDS
 	retreat_health = 0.3
 	food = 0

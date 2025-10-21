@@ -981,7 +981,7 @@
 		var/datum/job/J = SSjob.GetJob(job)
 		if(!J)
 			return "unknown"
-		used_title = J.title
+		used_title =  J.display_title || J.title
 		if(J.f_title && (pronouns == SHE_HER || pronouns == THEY_THEM_F))
 			used_title = J.f_title
 		if(J.advjob_examine)
