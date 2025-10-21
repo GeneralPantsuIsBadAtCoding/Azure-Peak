@@ -83,8 +83,7 @@
 		var/helmet_choice = input(H, "Choose your HELMET.", "STEEL YOURSELF.") as anything in helmets
 		switch(helmet_choice)
 			if("Berserker's Volfskulle Bascinet")
-				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
-				ADD_TRAIT(H, TRAIT_BITERHELM, TRAIT_GENERIC) //Similar boon to the Graggar helmet, as it lets you chew through the helmet.
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker //Pseudoantagonistic-exclusive. Light AC with an on-wear trait for HELMBITING.
 			if("Steel Kettle + Wildguard")
 				head = /obj/item/clothing/head/roguetown/helmet/kettle
 				mask = /obj/item/clothing/mask/rogue/wildguard
