@@ -77,3 +77,4 @@
 	cost = 5
 	selection_weight = 1
 	is_recipe_node = TRUE
+	prerequisites = list("FLESH_DECOYS")

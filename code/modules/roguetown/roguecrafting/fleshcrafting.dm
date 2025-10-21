@@ -32,3 +32,59 @@
 	result = list(/obj/item/flesh_node)
 	reqs = list(/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 1)
 	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/fleshcrafting/lungs
+	name = "Lungs"
+	category = "Flesh"
+	result = list(/obj/item/organ/lungs)
+	reqs = list(/obj/item/flesh_node = 2,
+				/obj/item/heart_blood_vial/filled
+	)
+	craftdiff = 4
+	required_tech_node = "BASIC_ORGANS"
+	tech_unlocked = FALSE
+
+/datum/crafting_recipe/roguetown/fleshcrafting/heart
+	name = "Heart"
+	category = "Flesh"
+	result = list(/obj/item/organ/heart)
+	reqs = list(/obj/item/flesh_node = 2,
+				/obj/item/heart_blood_vial/filled
+	)
+	craftdiff = 4
+	required_tech_node = "BASIC_ORGANS"
+	tech_unlocked = FALSE
+
+/datum/crafting_recipe/roguetown/fleshcrafting/liver
+	name = "Liver"
+	category = "Flesh"
+	result = list(/obj/item/organ/liver)
+	reqs = list(/obj/item/flesh_node = 2,
+				/obj/item/heart_blood_vial/filled
+	)
+	craftdiff = 4
+	required_tech_node = "BASIC_ORGANS"
+	tech_unlocked = FALSE
+
+
+/datum/crafting_recipe/roguetown/fleshcrafting/eyes
+	name = "Eyes"
+	category = "Flesh"
+	result = list(/obj/item/organ/eyes)
+	reqs = list(/obj/item/flesh_node = 1,
+				/obj/item/heart_blood_vial/filled
+	)
+	craftdiff = 4
+	required_tech_node = "BASIC_ORGANS"
+	tech_unlocked = FALSE
+
+/datum/crafting_recipe/roguetown/fleshcrafting/tongue
+	name = "Tongue"
+	category = "Flesh"
+	result = list(/obj/item/organ/tongue)
+	reqs = list(/obj/item/flesh_node = 1,
+				/obj/item/heart_blood_vial/filled
+	)
+	craftdiff = 4
+	required_tech_node = "BASIC_ORGANS"
+	tech_unlocked = FALSE

@@ -2,6 +2,8 @@
 /obj/effect/proc_holder/spell/invoked/diagnose
 	name = "Diagnose"
 	desc = "Examine anothers vitals."
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
 	overlay_state = "diagnose"
 	releasedrain = 10
 	chargedrain = 0
@@ -164,7 +166,9 @@
 /obj/effect/proc_holder/spell/invoked/infestation
 	name = "Infestation"
 	desc = "Causes a swarm of bugs to surround your target, bites them and causes sickness."
-	overlay_state = "null" //sprite later
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "infestation0"
 	releasedrain = 50
 	chargetime = 10
 	recharge_time = 20 SECONDS
@@ -182,13 +186,36 @@
 
 	invocations = list("Rot, take them!")
 	invocation_type = "shout" //can be none, whisper, emote and shout
+	var/datum/component/infestation_charges/charge_component
 
+/obj/effect/proc_holder/spell/invoked/infestation/on_gain(mob/living/user)
+	// Note: there is no logic to remove the component yet, this should be fine
+	. = ..()
+	if(user && !charge_component)
+		// Sanity check
+		var/datum/component/existing_component = user.GetComponent(/datum/component/infestation_charges)
+		if(existing_component)
+			charge_component = existing_component
+			charge_component.parent_spell = src
+		else
+			charge_component = user.AddComponent(/datum/component/infestation_charges, src)
+
+/obj/effect/proc_holder/spell/invoked/infestation/proc/update_charge_overlay(charge_count)
+	overlay_state = "infestation[charge_count]"
+	if(overlay_state && !hide_charge_effect)
+		var/obj/effect/R = new /obj/effect/spell_rune
+		R.icon = action_icon
+		R.icon_state = overlay_state
+		action.overlay_alpha = overlay_alpha
+		mob_charge_effect = R
+	update_icon()
 
 /obj/effect/proc_holder/spell/invoked/infestation/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
 		target.visible_message(span_warning("[target] is surrounded by a cloud of pestilent vermin!"), span_notice("You surround [target] in a cloud of pestilent vermin!"))
 		target.apply_status_effect(/datum/status_effect/buff/infestation/) //apply debuff
+		SEND_SIGNAL(src, COMSIG_INFESTATION_CHARGE_ADD, 10)
 		return TRUE
 	return FALSE
 
@@ -250,7 +277,9 @@
 /obj/effect/proc_holder/spell/invoked/cure_rot
 	name = "Cure Rot"
 	desc = "Invoke Pestras will though a Psycross to cast out rot from people or regrow their flesh."
-	overlay_state = "cure_rot"
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "rot"
 	releasedrain = 90
 	chargedrain = 0
 	chargetime = 50
@@ -320,7 +349,9 @@
 /obj/effect/proc_holder/spell/invoked/pestra_leech
 	name = "Leeching Purge"
 	desc = "Manifest leeches inside of target, causing them to puke them out while restoring some blood and curing minor poisoning."
-	overlay_state = "leech_purge"
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "leech"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 0
