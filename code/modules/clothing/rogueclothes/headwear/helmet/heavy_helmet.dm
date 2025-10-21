@@ -550,6 +550,26 @@
 	name = "volfskulle bascinet"
 	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. It mimics the guise of a terrible nitebeast; intimidating to the levyman, inspiring to the hunter."
 
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
+	name = "volfskulle bascinet"
+	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. Just like the nitebeasts it mimics, so too does the helmet's teeth glisten with flesh-sundering sharpness."
+	armor_class = ARMOR_CLASS_LIGHT //Pseudoantagonist-exclusive. Gives them an edge over traditional pugilists and barbarians. 
+
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	if(slot == SLOT_HEAD)
+		active_item = TRUE
+		ADD_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/dropped(mob/living/user)
+	..()
+	if(!active_item)
+		return
+	active_item = FALSE
+	REMOVE_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 	name = "woad elven helm"
 	desc = "An assembly of woven trunk, kept alive by ancient song, now twisted and warped for battle and scorn."
