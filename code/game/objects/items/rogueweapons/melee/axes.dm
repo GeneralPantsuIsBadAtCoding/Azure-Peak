@@ -310,6 +310,10 @@
 	max_blade_int = 550
 	smeltresult = /obj/item/ingot/bronze
 	wdefense = 2
+	armor_penetration = 22 //In-between a hurblat and hatchet. Far harder to reproduce.
+	throwforce = 32
+	throw_speed = 6
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
 
 /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	name = "steel axe"
