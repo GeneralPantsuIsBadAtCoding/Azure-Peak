@@ -40,7 +40,7 @@
 	var/knockback_tiles = scaling // 1 to 4 tiles based on strength
 	if(H.resting)
 		knockback_tiles = max(1, knockback_tiles / 2)
-	if(H.client.chargedprog < 100)
+	if(user?.client?.chargedprog < 100)
 		knockback_tiles = 1 // Minimal knockback on non-charged smash.
 	var/turf/edge_target_turf = get_edge_target_turf(H, get_dir(user, H))
 	if(istype(edge_target_turf))
@@ -498,7 +498,7 @@
 
 /obj/item/rogueweapon/mace/warhammer
 	force = 20
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick)
 	gripped_intents = null
 	name = "warhammer"
 	desc = "Made to punch through armor and skull alike."
@@ -520,7 +520,7 @@
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
 	name = "steel warhammer"
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
 	icon_state = "swarhammer"
