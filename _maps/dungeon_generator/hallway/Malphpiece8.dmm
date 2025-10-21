@@ -45,6 +45,10 @@
 /obj/structure/fluff/walldeco/painting/skull,
 /turf/closed/wall/mineral/rogue/wood,
 /area/rogue/under/tomb/cave)
+"my" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe,
+/turf/open/floor/rogue/tile/checkeralt,
+/area/rogue/under/tomb/cave)
 "nq" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/carpet,
@@ -511,9 +515,9 @@ Yk
 ds
 Yk
 ds
-Yk
+my
 ds
-Yk
+my
 ds
 Yk
 ds
@@ -541,9 +545,9 @@ ds
 ds
 Yk
 ds
-Yk
+my
 ds
-Yk
+my
 ds
 Yk
 ds

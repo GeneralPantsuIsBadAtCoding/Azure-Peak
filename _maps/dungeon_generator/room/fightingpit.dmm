@@ -221,7 +221,6 @@
 "OB" = (
 /obj/structure/closet/crate/chest/gold,
 /obj/item/roguegem/green,
-/obj/item/roguegem/ruby,
 /obj/item/roguegem/random,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/tomb)

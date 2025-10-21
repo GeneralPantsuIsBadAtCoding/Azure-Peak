@@ -768,6 +768,10 @@
 /obj/structure/fluff/walldeco/painting/skull,
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/tomb/indoors/royal)
+"Sx" = (
+/mob/living/carbon/human/species/orc/npc/berserker,
+/turf/open/water/swamp,
+/area/rogue/under/tomb)
 "SU" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/blocks/stonered,
@@ -938,8 +942,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/under/tomb)
 "Zu" = (
-/obj/item/clothing/ring/diamond,
-/obj/effect/decal/cleanable/blood,
+/mob/living/carbon/human/species/orc/npc/warlord,
 /turf/open/water/swamp,
 /area/rogue/under/tomb)
 "ZA" = (
@@ -1520,7 +1523,7 @@ WV
 Oh
 WV
 uR
-WV
+Zu
 PK
 Nl
 Nl
@@ -1643,11 +1646,11 @@ Nl
 Si
 Si
 LZ
-WV
+Sx
 WE
 WV
 WV
-Zu
+WE
 WV
 fY
 Si
