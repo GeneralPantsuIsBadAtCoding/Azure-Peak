@@ -166,7 +166,7 @@
 
 /datum/advclass/sfighter/barbarian
 	name = "Barbarian"
-	tutorial = "You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."
+	tutorial = "You are a brutal warrior, who has foregone armor in favor of pure strength. Crush your enemies, see them driven before you, and hear the lamentations of their women! Oh, and you can specialize in unarmed combat and wrestling."
 	outfit = /datum/outfit/job/roguetown/adventurer/barbarian
 	cmode_music = 'sound/music/cmode/antag/combat_darkstar.ogg'
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOPAINSTUN)
@@ -187,14 +187,15 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 	)
+	extra_context = "This subclass has two disciplines to choose from: one provides Expert skills in fistfighting and the 'Expert Pugilist' trait, while the other provides unique equipment at the cost of a minor Speed malus."
 
 /datum/outfit/job/roguetown/adventurer/barbarian/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
-	to_chat(H, span_warning("You are a brutal warrior, ou are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."))
+	to_chat(H, span_warning("You are a brutal warrior, who has foregone armor in favor of pure strength. Crush your enemies, see them driven before you, and hear the lamentations of their women! Oh, and you can specialize in unarmed combat and wrestling."))
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	H.set_blindness(0)
 	if(H.mind)
-		var/weapons = list("Bronze Katar","Bronze Sword","Bronze Axe","Bronze Mace","Bronze Spear","Bronze-Tipped Whip","Discipline - Unarmed")
+		var/weapons = list("Bronze Katar","Bronze Sword","Bronze Axe","Bronze Mace","Bronze Spear","Discipline - Whiphunter","Discipline - Unarmed")
 		var/weapon_choice = input(H, "Choose your WEAPON.", "TAKE UP ARMS.") as anything in weapons
 		switch(weapon_choice)
 			if("Bronze Katar")
@@ -223,23 +224,24 @@
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				r_hand = /obj/item/rogueweapon/spear/bronze
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
-			if("Bronze-Tipped Whip")
+			if("Discipline - Whiphunter")
 				H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				head = /obj/item/clothing/head/roguetown/headband/monk/barbarian
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 				r_hand = /obj/item/rogueweapon/whip/bronze
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
+				H.change_stat(STATKEY_SPD, -1) //Little more protection, little less speed.
 			if ("Discipline - Unarmed")
 				H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, SKILL_LEVEL_EXPERT, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
-				head = /obj/item/clothing/head/roguetown/headband/monk/barbarian
+				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
-		belt = /obj/item/storage/belt/rogue/leather/battleskirt
+		belt = /obj/item/storage/belt/rogue/leather/battleskirt/barbarian
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/bronzeskirt
 		shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	if(should_wear_masc_clothes(H))
 		H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 		backl = /obj/item/storage/backpack/rogue/satchel
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/bikini
