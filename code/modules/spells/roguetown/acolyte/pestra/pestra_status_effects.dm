@@ -31,7 +31,7 @@
 	var/outline_colour = "#FFD700"
 	var/static/list/regenerable_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_TAUR)
 
-#define MIRACLE_HEALING_FILTER "miracle_heal_glow"
+#define MIRACLE_HEALING_FILTER "pestra_heal_glow"
 
 /datum/status_effect/buff/divine_rebirth_healing/on_apply()
 	. = ..()
@@ -113,3 +113,84 @@
 	name = "Divine Rebirth"
 	desc = "Miraculous divine energy is healing my wounds and regenerating my limbs."
 	icon_state = "divine_heal"
+
+/datum/status_effect/buff/pestra_care
+	id = "pestra_care"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/pestra_care
+	duration = 10 MINUTES
+	tick_interval = 20 SECONDS
+	var/healing_strength = 7.5
+	var/effect_colour = "#005532"
+
+/datum/status_effect/buff/pestra_care/on_apply()
+	. = ..()
+	SEND_SIGNAL(owner, COMSIG_LIVING_MIRACLE_HEAL_APPLY, healing_strength, src)
+
+/datum/status_effect/buff/pestra_care/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
+	H.color = effect_colour
+
+	if(!owner.construct)
+		if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
+			owner.blood_volume = min(owner.blood_volume + healing_strength, BLOOD_VOLUME_NORMAL)
+
+		var/list/wounds = owner.get_wounds()
+		if(length(wounds) > 0)
+			owner.heal_wounds(healing_strength)
+			owner.update_damage_overlays()
+		owner.adjustBruteLoss(-healing_strength, 0)
+		owner.adjustFireLoss(-healing_strength, 0)
+		owner.adjustOxyLoss(-healing_strength, 0)
+		owner.adjustToxLoss(-healing_strength, 0)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_strength)
+		owner.adjustCloneLoss(-healing_strength, 0)
+
+/atom/movable/screen/alert/status_effect/buff/pestra_care
+	name = "Pestra's embrace"
+	desc = "It's like something is wriggling around inside of me, but it's making me feel better..."
+	icon_state = "divine_heal"
+
+#define PLAGUE_GLOW_FILTER "plague_glow_filter"
+
+/datum/status_effect/debuff/pestilent_plague
+	id = "pestilent_plague"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/pestilent_plague
+	duration = 60 SECONDS
+	tick_interval = 3 SECONDS
+	effectedstats = list(STATKEY_CON = -1,
+						 STATKEY_STR = -3)
+	var/outline_colour = "#095000"
+
+/datum/status_effect/debuff/pestilent_plague/on_apply()
+	. = ..()
+	owner.adjustBruteLoss(30)
+	to_chat(owner, span_danger("My body is wracked by malaise!"))
+	var/filter = owner.get_filter(PLAGUE_GLOW_FILTER)
+	if (!filter)
+		owner.add_filter(PLAGUE_GLOW_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 90, "size" = 2))
+
+/datum/status_effect/debuff/pestilent_plague/on_remove()
+	owner.remove_filter(PLAGUE_GLOW_FILTER)
+	. = ..()
+
+/datum/status_effect/debuff/pestilent_plague/tick()
+	var/mob/living/target = owner
+	target.adjustBruteLoss(2)
+
+	if(prob(10))
+		var/message = pick(
+			"My flesh feels like it's crawling off my bones!",
+			"Worms writhe beneath my skin!",
+			"Every breath brings more pestilence into my lungs!",
+			"My blood feels thick with disease!",
+			"Bugs feast on my living flesh!",
+			"I'm just food for the bugs!",
+			"The plague consumes me from within!")
+		to_chat(target, span_danger(message))
+
+/atom/movable/screen/alert/status_effect/debuff/pestilent_plague
+	name = "Pestilent Plague"
+	desc = "A violent plague ravages my body, causing immense pain and decay."
+	icon_state = "debuff_severe"
+
+#undef PLAGUE_GLOW_FILTER

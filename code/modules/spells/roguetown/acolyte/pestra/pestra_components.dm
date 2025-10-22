@@ -95,3 +95,54 @@
 	if(parent_spell)
 		parent_spell.update_charge_overlay(get_charges())
 	to_chat(user, span_warning("The divine power leaves me completely exhausted. I won't be able to channel such power again for some time."))
+
+/datum/component/pestilent_blade_enchant
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+	var/obj/item/parent_weapon
+	var/duration = 20 SECONDS
+	var/outline_applied = FALSE
+
+/datum/component/pestilent_blade_enchant/Initialize()
+	. = ..()
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+	parent_weapon = parent
+
+	apply_outline()
+	RegisterSignal(parent_weapon, COMSIG_ITEM_ATTACK_SUCCESS, .proc/on_attack_success)
+	RegisterSignal(parent_weapon, COMSIG_PARENT_QDELETING, .proc/on_qdel)
+	addtimer(CALLBACK(src, .proc/remove_enchantment), duration)
+
+/datum/component/pestilent_blade_enchant/proc/apply_outline()
+	if(outline_applied)
+		return
+	parent_weapon.add_filter("pestilent_glow", 2, list("type" = "outline", "color" = "#5b7400", "alpha" = 150, "size" = 1))
+	outline_applied = TRUE
+
+/datum/component/pestilent_blade_enchant/proc/remove_outline()
+	if(!outline_applied)
+		return
+	parent_weapon.remove_filter("pestilent_glow")
+	outline_applied = FALSE
+
+/datum/component/pestilent_blade_enchant/proc/on_attack_success(obj/item/source, mob/living/target, mob/living/user)
+	SIGNAL_HANDLER
+	if(!isliving(target))
+		return
+	var/mob/living/living_target = target
+
+	if(living_target.has_status_effect(/datum/status_effect/buff/infestation))
+		living_target.apply_status_effect(/datum/status_effect/debuff/pestilent_plague)
+		living_target.visible_message(span_warning("[living_target]'s infestation erupts into a violent plague!"),span_userdanger("The infestation within me erupts into unbearable agony!"))
+		remove_enchantment()
+
+/datum/component/pestilent_blade_enchant/proc/on_qdel(datum/source)
+	SIGNAL_HANDLER
+	remove_enchantment()
+
+/datum/component/pestilent_blade_enchant/proc/remove_enchantment()
+	if(outline_applied)
+		remove_outline()
+	if(parent_weapon)
+		parent_weapon.visible_message(span_infection("The sickly glow fades from [parent_weapon]."))
+	qdel(src)

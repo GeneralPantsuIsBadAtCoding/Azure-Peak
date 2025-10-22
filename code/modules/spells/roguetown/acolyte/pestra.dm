@@ -477,6 +477,8 @@
 		var/healing = 5
 		target.visible_message(span_info("Skittering ghostly bugs envelop [target]!"), span_notice("Ethereal bugs knit my flesh back together with their mandibles!"))
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
+		// 225 healing but slowly released across 10 minutes, can't be refreshed.
+		target.apply_status_effect(/datum/status_effect/buff/pestra_care)
 		remove_infestation_charges(user, 10)
 		// We just reduced it by 1 so we can assume that we might not have enough charges to cast again.
 		update_charges(charge_count - 1)
@@ -527,5 +529,66 @@
 		target.apply_status_effect(/datum/status_effect/buff/divine_rebirth_healing)
 		SEND_SIGNAL(user, COMSIG_DIVINE_REBIRTH_CAST, target)
 		return TRUE
+	revert_cast()
+	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/pestilent_blade
+	name = "Pestilent Blade"
+	desc = "Enchant your blade with Pestra's power, consuming one infestation charge to make your next strike against an infested target more potent. Negligible effect if the target isn't infested..."
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "blade"
+	releasedrain = 20
+	chargedrain = 0
+	chargetime = 1 SECONDS
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	range = 1 // Self-target
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	sound = 'sound/magic/slimesquish.ogg'
+	invocations = list("Pestra, bless this blade!")
+	invocation_type = "whisper"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 30 SECONDS
+	miracle = TRUE
+	devotion_cost = 25
+	var/datum/component/infestation_charges/charge_component
+
+/obj/effect/proc_holder/spell/invoked/pestilent_blade/cast_check(skipcharge = 0, mob/user = usr)
+	if(!..())
+		return FALSE
+
+	if(!charge_component)
+		charge_component = user.GetComponent(/datum/component/infestation_charges)
+
+	if(!charge_component || charge_component.get_charges() < 1)
+		to_chat(user, span_warning("I need at least one infestation charge to enchant my blade!"))
+		return FALSE
+
+	var/obj/item/held_item = user.get_active_held_item()
+	if(!held_item || !isitem(held_item))
+		to_chat(user, span_warning("I need to be holding a weapon to enchant it!"))
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/pestilent_blade/cast(list/targets, mob/living/user)
+	var/obj/item/weapon = user.get_active_held_item()
+	if(!weapon || !isitem(weapon))
+		to_chat(user, span_warning("I must hold a weapon to enchant it!"))
+		revert_cast()
+		return FALSE
+
+	if(!charge_component || charge_component.get_charges() < 1)
+		to_chat(user, span_warning("The infestation charges have been depleted!"))
+		revert_cast()
+		return FALSE
+
+	if(weapon.AddComponent(/datum/component/pestilent_blade_enchant))
+		remove_infestation_charges(user, 10)
+		to_chat(user, span_infection("I feel pestilence flow into my [weapon.name]!"))
+		weapon.visible_message(span_infection("[weapon] glows with a sickly green light!"))
+		return TRUE
+
 	revert_cast()
 	return FALSE
