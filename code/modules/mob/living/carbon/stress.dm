@@ -63,6 +63,8 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 
 /mob/living/carbon/update_stress()
 	// Handle expiration and accumulate our new stress status in the same operation
+	if (!client) // no reason to fire stress at all on npcs
+		return
 	if (stat != CONSCIOUS) // oblivion preserves our stress, for better or worse. (read: life optimizations weewoo)
 		return
 	var/new_stress = 0
