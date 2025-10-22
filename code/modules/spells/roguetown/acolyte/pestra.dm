@@ -193,7 +193,6 @@
 /obj/effect/proc_holder/spell/invoked/infestation/on_gain(mob/living/user)
 	// Note: there is no logic to remove the component yet, this should be fine
 	. = ..()
-	to_chat(world, span_userdanger("Initiating infestation!"))
 	if(overlay_state && !hide_charge_effect)
 		var/obj/effect/R = new /obj/effect/spell_rune
 		R.icon = action_icon
@@ -210,7 +209,6 @@
 			charge_component = user.AddComponent(/datum/component/infestation_charges, src)
 
 /obj/effect/proc_holder/spell/invoked/infestation/proc/update_charge_overlay(charge_count)
-	to_chat(world, span_userdanger("updating spell icon with [charge_count]"))
 	overlay_state = "infestation[charge_count]"
 	update_icon()
 	action.UpdateButtonIcon(FALSE, TRUE)
@@ -474,8 +472,9 @@
 			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 			return FALSE
-		// Keep in mind this is 6 per tick with fortify!
-		var/healing = 4
+		// Keep in mind this is 7.5 per tick with fortify!
+		// Double the power of miracle
+		var/healing = 5
 		target.visible_message(span_info("Skittering ghostly bugs envelop [target]!"), span_notice("Ethereal bugs knit my flesh back together with their mandibles!"))
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		remove_infestation_charges(user, 10)
@@ -493,3 +492,40 @@
 	update_icon()
 	if(action)
 		action.UpdateButtonIcon(FALSE, TRUE)
+
+/obj/effect/proc_holder/spell/invoked/divine_rebirth
+	name = "Divine Rebirth"
+	desc = "A miraculous heal that can restore even the most grievous wounds, including missing limbs. But it requires being at maximum infestation capacity. No force can resist this miracle."
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "heal_ascended"
+	releasedrain = 50
+	chargedrain = 0
+	chargetime = 2 SECONDS
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	range = 7
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	sound = 'sound/magic/ahh2.ogg'
+	invocations = list("O SWARM MOTHER, CONSUME AND CLEANSE!!!")
+	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = FALSE
+	// Doesn't matter in the slightest, as the cooldown of this is handled by the component, not the spell.
+	recharge_time = 999 MINUTES
+	miracle = TRUE
+	devotion_cost = 250
+	chargedloop = /datum/looping_sound/invokeholy
+
+// Given this is Pestra's true T4 spell, and it is limited in availability and gated heavily behind tech, this heal does affect Psydonites.
+// You can't resist Pestra's most divine gift.
+/obj/effect/proc_holder/spell/invoked/divine_rebirth/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		target.visible_message(span_info("An ethereal, mushroom infested arm carresses [target]!"), span_notice("I feel a caring touch!"))
+		target.apply_status_effect(/datum/status_effect/buff/divine_rebirth_healing)
+		SEND_SIGNAL(user, COMSIG_DIVINE_REBIRTH_CAST, target)
+		return TRUE
+	revert_cast()
+	return FALSE

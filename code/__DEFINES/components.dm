@@ -398,6 +398,8 @@
 #define COMSIG_INFESTATION_CHARGE_ADD "infestation_charge_add"	//from /obj/effect/proc_holder/spell/invoked/infestation/cast(): (num/amount)
 #define COMSIG_INFESTATION_CHARGE_REMOVE "infestation_charge_remove"	//from /proc/remove_infestation_charges(mob/living/user, num/amount): (num/amount)
 
+#define COMSIG_DIVINE_REBIRTH_CAST "devine_rebirth_cast"				//from /obj/effect/proc_holder/spell/invoked/divine_rebirth/cast(): (mob/living/target)
+
 //Janitor
 #define COMSIG_TURF_IS_WET "check_turf_wet"							//(): Returns bitflags of wet values.
 #define COMSIG_TURF_MAKE_DRY "make_turf_try"						//(max_strength, immediate, duration_decrease = INFINITY): Returns bool.
