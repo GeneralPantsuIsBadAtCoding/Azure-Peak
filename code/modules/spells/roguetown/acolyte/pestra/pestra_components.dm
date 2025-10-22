@@ -12,17 +12,20 @@
 	parent_spell = spell
 	parent_mob = parent
 	current_charges = 0
-	to_chat(world, span_userdanger("COMPONENT INITIALIZED"))
-
 	RegisterSignal(parent_spell, COMSIG_INFESTATION_CHARGE_ADD, PROC_REF(add_charge))
 	RegisterSignal(parent_mob, COMSIG_INFESTATION_CHARGE_REMOVE, PROC_REF(remove_charge))
 
 /datum/component/infestation_charges/proc/add_charge(source, charge_amount)
-	to_chat(world, span_userdanger("[parent_spell] is being added onto for [charge_amount]"))
 	var/max_charges = SSchimeric_tech.get_infestation_max_charges()
 	current_charges = min(current_charges + charge_amount, max_charges)
+	var/rounded_charges = get_charges()
 	if(parent_spell)
-		parent_spell.update_charge_overlay(get_charges())
+		parent_spell.update_charge_overlay(rounded_charges)
+	// This is the only value update that isn't handled by the healing spell's internal logic, so we call the update here.
+	if(rounded_charges == 1)
+		var/obj/effect/proc_holder/spell/invoked/pestra_heal/heal_spell = parent_mob.mind?.get_spell(/obj/effect/proc_holder/spell/invoked/pestra_heal)
+		if(heal_spell)
+			heal_spell.update_charges(get_charges())
 
 /datum/component/infestation_charges/proc/remove_charge(source, charge_amount)
 	current_charges = max(current_charges - charge_amount, 0)

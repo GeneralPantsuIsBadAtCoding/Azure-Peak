@@ -740,6 +740,18 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 			return TRUE
 	return FALSE
 
+/datum/mind/proc/get_spell(spell_type, specific = FALSE)
+	var/spell_path = spell_type
+	if(istype(spell_type, /obj/effect/proc_holder))
+		var/obj/effect/proc_holder/instanced_spell = spell_type
+		spell_path = instanced_spell.type
+	for(var/obj/effect/proc_holder/spell as anything in spell_list)
+		if(specific && (spell.type == spell_path))
+			return spell
+		else if(!specific && istype(spell, spell_path))
+			return spell
+	return FALSE
+
 /datum/mind/proc/owns_soul()
 	return soulOwner == src
 

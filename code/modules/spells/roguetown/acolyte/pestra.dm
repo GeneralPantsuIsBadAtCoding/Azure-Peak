@@ -417,3 +417,79 @@
 		return TRUE
 	revert_cast()
 	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/pestra_heal
+	name = "Rebirth"
+	desc = "A greater heal, more effective on targets affected by some form of greater rot. Requires infestation charges to cast."
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "heal"
+	releasedrain = 30
+	chargedrain = 0
+	chargetime = 0.6 SECONDS
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	range = 7
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	sound = 'sound/magic/heal.ogg'
+	invocations = list("Pestra! Let them be reborn!")
+	invocation_type = "shout"
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 10 SECONDS
+	miracle = TRUE
+	// Greater heal, but requires a resource to cast.
+	devotion_cost = 45
+	var/datum/component/infestation_charges/charge_component
+
+/obj/effect/proc_holder/spell/invoked/pestra_heal/cast_check(skipcharge = 0, mob/user = usr)
+	if(!..())
+		return FALSE
+	if(!charge_component)
+		charge_component = user.GetComponent(/datum/component/infestation_charges)
+	// Check again just in case the component got deleted somehow!
+	if(!charge_component || charge_component.get_charges() < 1)
+		to_chat(user, span_warning("I need at least one infestation charge to cast this spell!"))
+		update_charges(0)
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/pestra_heal/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/charge_count
+		if(!charge_component)
+			to_chat(user, span_warning("Oopsie woopsie, seems the infestation gear somehow got lost... Make a bug report!"))
+			revert_cast()
+			return FALSE
+		charge_count = charge_component.get_charges()
+		if(charge_count < 1)
+			to_chat(user, span_warning("I need at least one infestation charge to cast this spell!"))
+			update_charges(charge_count)
+			revert_cast()
+			return FALSE
+		var/mob/living/target = targets[1]
+		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
+			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			return FALSE
+		// Keep in mind this is 6 per tick with fortify!
+		var/healing = 4
+		target.visible_message(span_info("Skittering ghostly bugs envelop [target]!"), span_notice("Ethereal bugs knit my flesh back together with their mandibles!"))
+		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
+		remove_infestation_charges(user, 10)
+		// We just reduced it by 1 so we can assume that we might not have enough charges to cast again.
+		update_charges(charge_count - 1)
+		return TRUE
+	revert_cast()
+	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/pestra_heal/proc/update_charges(charge_count)
+	if(charge_count > 0)
+		overlay_state = "heal"
+	else
+		overlay_state = "heal_disabled"
+	update_icon()
+	if(action)
+		action.UpdateButtonIcon(FALSE, TRUE)
