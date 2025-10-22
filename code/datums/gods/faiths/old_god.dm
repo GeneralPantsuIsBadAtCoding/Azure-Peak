@@ -1,8 +1,6 @@
 /datum/faith/old_god
-	name = "Old God"
-	desc = "The Holy See has been taken over by misguided fools who defile Psydon and worship false gods, but we survive.\n\
-		<b>PSYDON YET LIVES. PSYDON YET ENDURES.</b>\n\
-		PSYDON sent the COMET SYON to destroy the rampaging ARCHDEVIL VHESLYN and save all Humenity. Though he rests now, the fools believe him DEAD - but \
-		PSYDON YET LIVES, AND PSYDON YET ENDURES. Unanswered prayers and impotent miracles - they are TESTS."
-	worshippers = "Otavans, Naledians, Amazonians, Zealots and Pilgrims from all across Psydonia."
+	name = "Psydon"
+	domain = "Everything."
+	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
+	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
 	godhead = /datum/patron/old_god
