@@ -169,6 +169,9 @@
 
 			if(blood_volume <= BLOOD_VOLUME_BAD)
 				adjustOxyLoss(blood_volume <= BLOOD_VOLUME_SURVIVE ? 3 : 1)
+			else if((blood_volume > BLOOD_VOLUME_SURVIVE) || HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
+				if(getOxyLoss())
+					adjustOxyLoss(-1.6)
 
 	//Bleeding out
 	bleed_rate = get_bleed_rate() // expensive proc, but we zero it on bled-out mobs
