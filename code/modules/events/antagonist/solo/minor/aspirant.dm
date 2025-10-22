@@ -14,7 +14,7 @@
 		"Hand",
 		"Prince",
 		"Princess",
-		"Captain",
+		"Knight Captain",
 		"Marshal",
 		"Sergeant",
 		"Steward",

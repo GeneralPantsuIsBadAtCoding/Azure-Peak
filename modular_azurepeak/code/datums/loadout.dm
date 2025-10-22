@@ -1,10 +1,12 @@
 GLOBAL_LIST_EMPTY(loadout_items)
+GLOBAL_LIST_EMPTY(loadout_items_by_name)
 
 /datum/loadout_item
 	var/name = "Parent loadout datum"
 	var/desc
 	var/path
 	var/donoritem			//autoset on new if null
+	var/donatitem = FALSE
 	var/list/ckeywhitelist
 
 /datum/loadout_item/New()
@@ -46,16 +48,20 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/head/roguetown/helmet/tricorn
 
 /datum/loadout_item/nurseveil
-	name = "Nurse's Veil"
+	name = "Nurse Veil"
 	path = /obj/item/clothing/head/roguetown/veiled
 
 /datum/loadout_item/archercap
-	name = "Archer's cap"
+	name = "Archer cap"
 	path = /obj/item/clothing/head/roguetown/archercap
 
 /datum/loadout_item/strawhat
 	name = "Straw Hat"
 	path = /obj/item/clothing/head/roguetown/strawhat
+
+/datum/loadout_item/eaststrawhat
+	name = "Worn rice hat"
+	path = /obj/item/clothing/head/roguetown/eaststrawhat
 
 /datum/loadout_item/witchhat
 	name = "Witch Hat"
@@ -89,8 +95,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Folded Hat"
 	path = /obj/item/clothing/head/roguetown/bucklehat
 
-/datum/loadout_item/duelist_hat
-	name = "Duelist's Hat"
+/datum/loadout_item/duelist_hatc
+	name = "Duelist Hat"
 	path = /obj/item/clothing/head/roguetown/duelhat
 
 /datum/loadout_item/hood
@@ -162,8 +168,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Leather Cloak"
 	path = /obj/item/clothing/cloak/eastcloak2
 
-/datum/loadout_item/thief_cloak
-	name = "Rapscallion's Shawl"
+/datum/loadout_item/thief_cloakc
+	name = "Rapscallion Shawl"
 	path = /obj/item/clothing/cloak/thief_cloak
 
 /datum/loadout_item/tabardscarlet
@@ -171,7 +177,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/tabardscarlet
 
 /datum/loadout_item/shroudscarlet
-	name = "Tabard's Shroud, Scarlet"
+	name = "Tabard Shroud, Scarlet"
 	path = /obj/item/clothing/head/roguetown/roguehood/shroudscarlet
 
 /datum/loadout_item/tabardblack
@@ -179,12 +185,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/tabardblack
 
 /datum/loadout_item/shroudblack
-	name = "Tabard's Shroud, Black"
+	name = "Tabard Shroud, Black"
 	path = /obj/item/clothing/head/roguetown/roguehood/shroudblack
-
-/datum/loadout_item/poncho
-	name = "Poncho"
-	path = /obj/item/clothing/cloak/poncho
 
 //SHOES
 /datum/loadout_item/darkboots
@@ -241,11 +243,11 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
 
 /datum/loadout_item/phys_robe
-	name = "Physicker's Robe"
+	name = "Physicker Robe"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/phys
 
 /datum/loadout_item/feld_robe
-	name = "Feldsher's Robe"
+	name = "Feldsher Robe"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/feld
 
 /datum/loadout_item/formalsilks
@@ -421,8 +423,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Exotic Silk Mask"
 	path = /obj/item/clothing/mask/rogue/exoticsilkmask
 
-/datum/loadout_item/duelmask
-	name = "Duelist's Mask"
+/datum/loadout_item/duelmaskc
+	name = "Duelist Mask"
 	path = /obj/item/clothing/mask/rogue/duelmask
 
 /datum/loadout_item/pipe
@@ -439,19 +441,35 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/collar
 	name = "Collar"
-	path = /obj/item/clothing/neck/roguetown/collar
+	path = /obj/item/clothing/neck/roguetown/collar/leather
 
 /datum/loadout_item/forlon_collar
 	name = "Light Forlorn Collar"
 	path = /obj/item/clothing/neck/roguetown/collar/forlorn
 
+/datum/loadout_item/catbell_collar
+	name = "Catbell Collar"
+	path = /obj/item/clothing/neck/roguetown/collar/bell/catbell
+
 /datum/loadout_item/bell_collar
-	name = "Bell Collar"
-	path = /obj/item/clothing/neck/roguetown/collar/bell_collar
+	name = "Cowbell Collar"
+	path = /obj/item/clothing/neck/roguetown/collar/bell/cowbell
 
 /datum/loadout_item/cursed_collar
 	name = "Cursed Collar"
 	path = /obj/item/clothing/neck/roguetown/gorget/cursed_collar
+
+/datum/loadout_item/rope_leash
+	name = "Rope Leash"
+	path = /obj/item/leash
+
+/datum/loadout_item/leather_leash
+	name = "Leather Leash"
+	path = /obj/item/leash/leather
+
+/datum/loadout_item/chain_leash
+	name = "Chain Leash"
+	path = /obj/item/leash/chain
 
 /datum/loadout_item/cloth_blindfold
 	name = "Cloth Blindfold"
@@ -529,20 +547,20 @@ GLOBAL_LIST_EMPTY(loadout_items)
     name = "Chaperon (Alt)"
     path = /obj/item/clothing/head/roguetown/chaperon/greyscale
 
-/datum/loadout_item/chaperon/burgher
-    name = "Noble's Chaperon"
+/datum/loadout_item/chaperon/burgherc
+    name = "Noble Chaperon"
     path = /obj/item/clothing/head/roguetown/chaperon/noble
 
-/datum/loadout_item/jesterhat
-    name = "Jester's Hat"
+/datum/loadout_item/jesterhatc
+    name = "Jester Hat"
     path = /obj/item/clothing/head/roguetown/jester
 
-/datum/loadout_item/jestertunick
-    name = "Jester's Tunick"
+/datum/loadout_item/jestertunickc
+    name = "Jester Tunick"
     path = /obj/item/clothing/suit/roguetown/shirt/jester
 
-/datum/loadout_item/jestershoes
-    name = "Jester's Shoes"
+/datum/loadout_item/jestershoess
+    name = "Jester Shoes"
     path = /obj/item/clothing/shoes/roguetown/jester
 
 /datum/loadout_item/cotehardie
@@ -553,47 +571,260 @@ GLOBAL_LIST_EMPTY(loadout_items)
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
 
+// Энчант киты
 /datum/loadout_item/donator_plex
-	name = "Donator Kit - Rapier di Aliseo"
+	name = "Donator Kit - Rapier di Aliseo - Required: Rapier"
 	path = /obj/item/enchantingkit/plexiant
-	ckeywhitelist = list("plexiant")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_sru
-	name = "Donator Kit - Emerald Dress"
+	name = "Donator Kit - Emerald Dress - Required: Dress(No Small Races)"
 	path = /obj/item/enchantingkit/srusu
-	ckeywhitelist = list("cheekycrenando")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_strudel
-	name = "Donator Kit - Grenzelhoftian Mage Vest"
+	name = "Donator Kit - Grenzelhoftian Mage Vest - Required: Robe(No Small Races)"
 	path = /obj/item/enchantingkit/strudle
-	ckeywhitelist = list("toasterstrudes")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_bat
-	name = "Donator Kit - Handcarved Harp"
+	name = "Donator Kit - Handcarved Harp - Required: Harp"
 	path = /obj/item/enchantingkit/bat
-	ckeywhitelist = list("kitchifox")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_mansa
-	name = "Donator Kit - Wortträger"
+	name = "Donator Kit - Wortträger - Required: Estoc"
 	path = /obj/item/enchantingkit/ryebread
-	ckeywhitelist = list("pepperoniplayboy")	//Byond maybe doesn't like spaces. If a name has a space, do it as one continious name.
+	donatitem = TRUE
 
 /datum/loadout_item/donator_rebel
-	name = "Donator Kit - Gilded Sallet"
+	name = "Donator Kit - Gilded Sallet - Required: Visored Sallet"
 	path = /obj/item/enchantingkit/rebel
-	ckeywhitelist = list("rebel0")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_zydras
-	name = "Donator Kit - Padded silky dress"
+	name = "Donator Kit - Padded silky dress - Required: Silky Dress(No Small Races)"
 	path = /obj/item/enchantingkit/zydras
-	ckeywhitelist = list("1ceres")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_eiren
-	name = "Donator Kit - Regret"
+	name = "Donator Kit - Regret - Required: Zweihander"
 	path = /obj/item/enchantingkit/eiren
-	ckeywhitelist = list("eirenxiv")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_waff
-	name = "Donator Kit - Weeper's Lathe"
+	name = "Donator Kit - Weeper Lathe - Required: Any Greatsword"
 	path = /obj/item/enchantingkit/waff
-	ckeywhitelist = list("waffai")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie
+	name = "Donator Kit - Kumie - Required: Heavy Leather Boots"
+	path = /obj/item/enchantingkit/kumie_boots
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie2
+	name = "Donator Kit - Kumie Gloves - Required: Fingerless Leather Gloves"
+	path = /obj/item/enchantingkit/kumie_gloves
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie3
+	name = "Donator Kit - Kumie Shirt - Required: Gambeson(No Small Races)"
+	path = /obj/item/enchantingkit/kumie_shirt
+	donatitem = TRUE
+
+/datum/loadout_item/donator_kumie4
+	name = "Donator Kit - Kumie Coat - Required: Hardened Leather Coat(No Small Races)"
+	path = /obj/item/enchantingkit/kumie_coat
+	donatitem = TRUE
+
+// Разное
+/datum/loadout_item/donat
+	name = "Музыкальная коробка"
+	path = /obj/item/dmusicbox
+	donatitem = TRUE
+
+/datum/loadout_item/donat/lute
+	name = "Музыкальный инструмент: Лютня"
+	path = /obj/item/rogue/instrument/lute
+	donatitem = TRUE
+
+/datum/loadout_item/donat/accord
+	name = "Музыкальный инструмент: Аккордеон"
+	path = /obj/item/rogue/instrument/accord
+	donatitem = TRUE
+
+/datum/loadout_item/donat/guitar
+	name = "Музыкальный инструмент: Гитара"
+	path = /obj/item/rogue/instrument/guitar
+	donatitem = TRUE
+
+/datum/loadout_item/donat/harp
+	name = "Музыкальный инструмент: Арфа"
+	path = /obj/item/rogue/instrument/harp
+	donatitem = TRUE
+
+/datum/loadout_item/donat/flute
+	name = "Музыкальный инструмент: Флейта"
+	path = /obj/item/rogue/instrument/flute
+	donatitem = TRUE
+
+/datum/loadout_item/donat/drum
+	name = "Музыкальный инструмент: Барабан"
+	path = /obj/item/rogue/instrument/drum
+	donatitem = TRUE
+
+/datum/loadout_item/donat/shamisen
+	name = "Музыкальный инструмент: Сямисэн"
+	path = /obj/item/rogue/instrument/shamisen
+	donatitem = TRUE
+
+// Одежда для донатеров
+/datum/loadout_item/donat/corset
+	name = "Корсет"
+	path = /obj/item/clothing/suit/roguetown/armor/corset
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_suit
+	name = "Эльфийский костюм"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_coat
+	name = "Эльфийское пальто"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven/coat
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_coat_alt
+	name = "Эльфийское меховое пальто"
+	path = /obj/item/clothing/suit/roguetown/shirt/twilight_elven/coat/alt
+	donatitem = TRUE
+
+// Табарды и плащи
+
+/datum/loadout_item/donat/matron
+	name = "Плащ матроны"
+	path = /obj/item/clothing/cloak/matron
+	donatitem = TRUE
+
+/datum/loadout_item/donat/capeblkknight
+	name = "Кровавая мантия"
+	path = /obj/item/clothing/cloak/cape/blkknight
+	donatitem = TRUE
+
+/datum/loadout_item/donat/xylixiancloak
+	name = "Ксайликситский плащ"
+	path = /obj/item/clothing/cloak/templar/xylixian
+	donatitem = TRUE
+
+/datum/loadout_item/donat/furcloak
+	name = "Меховой плащ"
+	path = /obj/item/clothing/cloak/raincloak/furcloak
+	donatitem = TRUE
+
+/datum/loadout_item/donat/snowcloak
+	name = "Снежный плащ"
+	path = /obj/item/clothing/cloak/forrestercloak/snow
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/astata
+	name = "Табард-плащ Астраты"
+	path = /obj/item/clothing/cloak/templar/astratan
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/crusader/noc
+	name = "Табард-плащ Нок"
+	path = /obj/item/clothing/cloak/tabard/crusader/noc
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/crusader/dendor
+	name = "Табард-плащ Дендора"
+	path = /obj/item/clothing/cloak/tabard/crusader/dendor
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/pestra
+	name = "Табард-плащ Пестры"
+	path = /obj/item/clothing/cloak/templar/pestran
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/malum
+	name = "Табард-плащ Малума"
+	path = /obj/item/clothing/cloak/templar/malumite
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/abyssor
+	name = "Табард-плащ Абиссора"
+	path = /obj/item/clothing/cloak/abyssortabard
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/crusader/ravox
+	name = "Табард-плащ Равокса"
+	path = /obj/item/clothing/cloak/tabard/crusader/ravox
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/crusader/eora
+	name = "Табард-плащ Эоры(старый)"
+	path = /obj/item/clothing/cloak/tabard/crusader/eora
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/eora
+	name = "Табард-плащ Эоры"
+	path = /obj/item/clothing/cloak/templar/eoran
+	donatitem = TRUE
+
+/datum/loadout_item/donat/tabard/crusader/necra
+	name = "Табард Некры"
+	path = /obj/item/clothing/cloak/templar/necran
+	donatitem = TRUE
+	
+/datum/loadout_item/donat/tabard/crusader/psydon
+	name = "Табард Псайдона"
+	path = /obj/item/clothing/cloak/psydontabard
+	donatitem = TRUE
+
+/datum/loadout_item/poncho
+	name = "Пончо"
+	path = /obj/item/clothing/cloak/poncho
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elvencloak
+	name = "Эльфийский плащ"
+	path = /obj/item/clothing/cloak/twilight_elven
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elvencloak_short
+	name = "Короткий эльфийский плащ"
+	path = /obj/item/clothing/cloak/twilight_elven/short
+	donatitem = TRUE
+
+/datum/loadout_item/donat/scarf
+	name = "Шарф"
+	path = /obj/item/clothing/cloak/twilight_scarf
+	donatitem = TRUE
+
+/datum/loadout_item/donat/elven_burka
+	name = "Эльфийская бурка"
+	path = /obj/item/clothing/head/roguetown/twilight_elven_hat
+
+/datum/loadout_item/donat/loveamulet
+	name = "Амулет Слез Любви"
+	path = /obj/item/clothing/neck/roguetown/loveamulet
+	donatitem = TRUE
+
+// Маски
+
+/datum/loadout_item/donat/naledimask
+	name = "Маска Наледи"
+	path = /obj/item/clothing/mask/rogue/lordmask/naledi/decorated
+	donatitem = TRUE
+
+/datum/loadout_item/donat/eoramask
+	name = "Эоранская маска"
+	path = /obj/item/clothing/head/roguetown/eoramask
+	donatitem = TRUE
+
+// Шляпы
+
+/datum/loadout_item/donat/grenzelhofthat_decorated
+	name = "Грензельхофтская шляпа(без брони, декоративная)"
+	path = /obj/item/clothing/head/roguetown/grenzelhofthat/decorated
+	donatitem = TRUE

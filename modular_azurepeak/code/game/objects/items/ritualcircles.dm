@@ -702,7 +702,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 			turf_data[T] = T.type
 			T.ChangeTurf(/turf/open/floor/rogue/dark_ice, flags = CHANGETURF_IGNORE_AIR)
 			playsound(T, 'sound/magic/fleshtostone.ogg', 30, TRUE)
-			sleep(10)
+			stoplag(1 SECONDS)
 
 	end_conversion()
 

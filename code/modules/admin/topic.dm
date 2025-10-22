@@ -1198,6 +1198,9 @@
 		var/raisin = stripped_input("State a short reason for this change", "Game Master", "", null)
 		if(!amt2change && !raisin)
 			return
+		if(mob_client.ckey == usr.ckey)
+			to_chat(src, span_boldwarning("Самому себе PQ менять нельзя."))
+			return
 		adjust_playerquality(amt2change, mob_client.ckey, usr.ckey, raisin)
 		for(var/client/C in GLOB.clients) // I hate this, but I'm not refactoring the cancer above this point.
 			if(lowertext(C.key) == lowertext(mob_client.ckey))

@@ -1,6 +1,7 @@
 /datum/sex_action/kissing
-	name = "Make out with them"
+	name = "Поцеловаться"
 	check_same_tile = FALSE
+	user_sex_part = SEX_PART_JAWS
 
 /datum/sex_action/kissing/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -18,10 +19,10 @@
 
 /datum/sex_action/kissing/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	..()
-	user.visible_message(span_warning("[user] starts making out with [target]..."))
+	user.visible_message(span_warning("[user] сливается в поцелуе с [target]..."))
 
 /datum/sex_action/kissing/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] makes out with [target]..."))
+	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] целуется с [target]..."))
 	user.make_sucking_noise()
 
 	user.sexcon.perform_sex_action(user, 1, 2, TRUE)
@@ -32,4 +33,4 @@
 
 /datum/sex_action/kissing/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	..()
-	user.visible_message(span_warning("[user] stops making out with [target] ..."))
+	user.visible_message(span_warning("[user] разрывает поцелуй с [target] ..."))

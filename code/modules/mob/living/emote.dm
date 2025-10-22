@@ -45,6 +45,7 @@
 	var/follower_ident = "[follower.key]/([follower.real_name]) (follower of [patron])"
 	message_admins("[follower_ident] [ADMIN_SM(follower)] [ADMIN_FLW(follower)] prays: [span_info(prayer)]")
 	user.log_message("(follower of [patron]) prays: [prayer]", LOG_GAME)
+	record_round_statistic(STATS_PRAYERS_MADE)
 
 	follower.whisper(prayer)
 
@@ -485,6 +486,14 @@
 				message_param = "kisses %t on the brow."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
 				message_param = "kisses %t on the forehead."
+			else if(H.zone_selected == BODY_ZONE_HEAD)
+				message_param = "kisses %t on the cheek."
+			else if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
+				message_param = "kisses %t between the legs."
+				var/mob/living/carbon/human/L = target
+				if(isliving(L))
+					if(!L.cmode)
+						to_chat(target, span_love("It somewhat stimulating..."))
 			else
 				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
@@ -593,7 +602,7 @@
 			record_round_statistic(STATS_HUGS_MADE)
 			SEND_SIGNAL(user, COMSIG_MOB_HUGGED, target)
 
-/datum/emote/living/holdbreath
+/* /datum/emote/living/holdbreath
 	key = "hold"
 	key_third_person = "holds"
 	message = "begins to hold their breath."
@@ -622,7 +631,7 @@
 /datum/emote/living/holdbreath/select_message_type(mob/user, intentional)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_HOLDBREATH))
-		. = "stops holding their breath."
+		. = "stops holding their breath." */
 
 /datum/emote/living/slap
 	key = "slap"
@@ -643,6 +652,8 @@
 			message_param = "slaps %t's head!"
 		else if(H.zone_selected == BODY_ZONE_PRECISE_L_HAND || H.zone_selected == BODY_ZONE_PRECISE_R_HAND)
 			message_param = "slaps %t's hand!"
+		else if(H.zone_selected == BODY_ZONE_CHEST)
+			message_param = "slaps %t's chest!"
 	..()
 
 /mob/living/carbon/human/verb/emote_slap()
@@ -1488,6 +1499,10 @@
 		set name = "Hiss"
 		set category = "Noises"
 		emote("hiss", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+		set name = "Hiss"
+		set category = "Noises"
+		emote("hiss", intentional = TRUE, animal = TRUE)
 	else
 		to_chat(usr, span_warning("Your tongue doesn't do that"))
 		return
@@ -1507,6 +1522,10 @@
 		set name = "PHiss"
 		set category = "Noises"
 		emote("phiss", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+		set name = "PHiss"
+		set category = "Noises"
+		emote("hiss", intentional = TRUE, animal = TRUE)
 	else
 		to_chat(usr, span_warning("Your tongue doesn't do that"))
 		return
@@ -1777,6 +1796,10 @@
 
 /mob/living/carbon/human/verb/emote_chitter()
 	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/moth))
+		set name = "Chitter"
+		set category = "Noises"
+		emote("chitter", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
 		set name = "Chitter"
 		set category = "Noises"
 		emote("chitter", intentional = TRUE, animal = TRUE)

@@ -26,3 +26,5 @@
 		/datum/advclass/confessor,
 		/datum/advclass/psyaltrist
 	)
+	same_job_respawn_delay = 30 MINUTES
+

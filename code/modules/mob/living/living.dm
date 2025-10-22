@@ -1109,6 +1109,15 @@
 	else if(mobility_flags & MOBILITY_MOVE)
 		if(on_fire)
 			resist_fire() //stop, drop, and roll
+		else if(has_status_effect(/datum/status_effect/leash_pet))
+			if(istype(src, /mob/living/carbon))
+				src:resist_leash()
+		else if(last_special <= world.time)
+			resist_restraints() //trying to remove cuffs.
+
+	else if(mobility_flags & MOBILITY_MOVE)
+		if(on_fire)
+			resist_fire() //stop, drop, and roll
 		else if(last_special <= world.time)
 			resist_restraints() //trying to remove cuffs.
 
@@ -1308,7 +1317,7 @@
 		fixed = 1
 	if(on && !(movement_type & FLOATING) && !fixed)
 		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
+		stoplag(1 SECONDS)
 		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
@@ -2263,4 +2272,6 @@
  */
 /mob/living/proc/get_fire_overlay(stacks, on_fire)
 	RETURN_TYPE(/mutable_appearance)
-	return null
+
+/mob/living/proc/resist_leash()
+	return

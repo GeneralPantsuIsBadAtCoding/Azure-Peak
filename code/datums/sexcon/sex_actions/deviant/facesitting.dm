@@ -1,5 +1,5 @@
 /datum/sex_action/facesitting
-	name = "Sit on their face"
+	name = "Сесть на лицо"
 
 /datum/sex_action/facesitting/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
@@ -22,22 +22,23 @@
 	return TRUE
 
 /datum/sex_action/facesitting/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_warning("[user] sits [user.p_their()] butt on [target]'s face!"))
+	user.visible_message(span_warning("[user] присаживается на лицо [target]!"))
 
 /datum/sex_action/facesitting/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	var/verbstring = pick(list("rubs", "smushes", "forces"))
-	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] [verbstring] [user.p_their()] butt against [target] face."))
+	var/verbstring = pick(list("трется", "ерзает", "виляет"))
+	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] [verbstring] своим задом на лице [target]."))
 	target.make_sucking_noise()
+	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(user, 1, 3, TRUE)
-	user.sexcon.handle_passive_ejaculation()
+	user.sexcon.handle_passive_ejaculation(target)
 
 	user.sexcon.perform_deepthroat_oxyloss(target, 1.3)
 	user.sexcon.perform_sex_action(target, 0, 2, FALSE)
 	target.sexcon.handle_passive_ejaculation()
 
 /datum/sex_action/facesitting/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_warning("[user] gets off [target]'s face."))
+	user.visible_message(span_warning("[user] поднимается с лица [target]."))
 
 /datum/sex_action/facesitting/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.finished_check())

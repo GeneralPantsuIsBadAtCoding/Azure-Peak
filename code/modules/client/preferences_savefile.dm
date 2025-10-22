@@ -228,6 +228,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
 
+	S["defiant"]			>> defiant
+
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -267,7 +269,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_islist(key_bindings, list())
-	
+	defiant	= sanitize_integer(defiant, FALSE, TRUE, TRUE)
+
 	//ROGUETOWN
 	parallax = PARALLAX_INSANE
 
@@ -352,6 +355,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["defiant"], defiant)
 	return TRUE
 
 
@@ -422,22 +426,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		virtuetwo = new /datum/virtue/none
 
 /datum/preferences/proc/_load_loadout(S)
-	var/loadout_type
-	S["loadout"] >> loadout_type
-	if (loadout_type)
-		loadout = new loadout_type()
-
-/datum/preferences/proc/_load_loadout2(S)
-	var/loadout_type2
-	S["loadout2"] >> loadout_type2
-	if (loadout_type2)
-		loadout2 = new loadout_type2()
-
-/datum/preferences/proc/_load_loadout3(S)
-	var/loadout_type3
-	S["loadout3"] >> loadout_type3
-	if (loadout_type3)
-		loadout3 = new loadout_type3()
+	S["selected_loadout_items"] >> selected_loadout_items
+	selected_loadout_items = SANITIZE_LIST(selected_loadout_items)
 
 /datum/preferences/proc/_load_height(S)
 	var/preview_height
@@ -530,8 +520,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	_load_statpack(S)
 
 	_load_loadout(S)
-	_load_loadout2(S)
-	_load_loadout3(S)
+	//_load_loadout2(S)
+	//_load_loadout3(S)
 
 	_load_combat_music(S)
 
@@ -772,18 +762,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["erpprefs"] , html_decode(erpprefs))
 	WRITE_FILE(S["img_gallery"] , img_gallery)
 	
-	if(loadout)
-		WRITE_FILE(S["loadout"] , loadout.type)
-	else
-		WRITE_FILE(S["loadout"] , null)
-	if(loadout2)
-		WRITE_FILE(S["loadout2"] , loadout2.type)
-	else
-		WRITE_FILE(S["loadout2"] , null)
-	if(loadout3)
-		WRITE_FILE(S["loadout3"] , loadout3.type)
-	else
-		WRITE_FILE(S["loadout3"] , null)
+	WRITE_FILE(S["selected_loadout_items"], selected_loadout_items)
 
 	//Familiar Files
 	WRITE_FILE(S["familiar_name"] , familiar_prefs.familiar_name)

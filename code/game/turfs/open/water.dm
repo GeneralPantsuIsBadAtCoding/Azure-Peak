@@ -195,7 +195,7 @@
 				playsound(AM, pick('sound/foley/watermove (1).ogg','sound/foley/watermove (2).ogg'), 100, FALSE)
 			if(istype(oldLoc, type) && (get_dir(src, oldLoc) != SOUTH))
 				water_overlay.layer = ABOVE_MOB_LAYER
-				water_overlay.plane = water_overlay.plane = GAME_PLANE_HIGHEST
+				water_overlay.plane = GAME_PLANE_HIGHEST
 			else
 				spawn(6)
 					if(AM.loc == src)

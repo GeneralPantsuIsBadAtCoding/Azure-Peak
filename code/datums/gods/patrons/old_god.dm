@@ -177,16 +177,16 @@
 				if(pp >= 12 & target == user) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
 					target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
 					playsound(user, 'sound/magic/PSYDONE.ogg', 100, FALSE)
-					sleep(60)
+					stoplag(60)
 					user.psydo_nyte()
 					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(20)
+					stoplag(20)
 					user.psydo_nyte()
 					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(15)
+					stoplag(15)
 					user.psydo_nyte()
 					user.playsound_local(user, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(10)
+					stoplag(10)
 					user.gib()
 					return FALSE
 				

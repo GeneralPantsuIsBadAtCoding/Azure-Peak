@@ -22,7 +22,7 @@
 				else
 					return "slit_2"
 	if(pp.erect_state == ERECT_STATE_HARD)
-		return "[icon_state]_[min(3,pp.penis_size+1)]"
+		return "[icon_state]_[pp.penis_size]_erect"
 	else
 		return "[icon_state]_[pp.penis_size]"
 
@@ -81,6 +81,11 @@
 	default_colors = list("C52828", "C52828")
 
 /datum/sprite_accessory/penis/hemiknot
+	icon_state = "hemiknot"
+	name = "Knotted Hemi"
+	default_colors = list("C52828", "C52828")
+
+/datum/sprite_accessory/penis/hemiknot_mammal
 	icon_state = "hemiknot"
 	name = "Knotted Hemi"
 	default_colors = list("C52828", "C52828")
