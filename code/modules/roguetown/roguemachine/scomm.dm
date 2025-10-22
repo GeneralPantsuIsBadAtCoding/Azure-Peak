@@ -50,16 +50,15 @@
 	if(scom_number)
 		. += "Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""]."
 	. += "<a href='?src=[REF(src)];directory=1'>Directory</a>"
-	if(user.loc == loc)
-		. += "<b>THE LAWS OF THE LAND:</b>"
-		if(!length(GLOB.laws_of_the_land))
-			. += span_danger("The land has no laws! <b>We are doomed!</b>")
-			return
-		if(!user.is_literate())
-			. += span_warning("Uhhh... I can't read them...")
-			return
-		for(var/i in 1 to length(GLOB.laws_of_the_land))
-			. += span_small("[i]. [GLOB.laws_of_the_land[i]]")
+	. += "<b>THE LAWS OF THE LAND:</b>"
+	if(!length(GLOB.laws_of_the_land))
+		. += span_danger("The land has no laws! <b>We are doomed!</b>")
+		return
+	if(!user.is_literate())
+		. += span_warning("Uhhh... I can't read them...")
+		return
+	for(var/i in 1 to length(GLOB.laws_of_the_land))
+		. += span_small("[i]. [GLOB.laws_of_the_land[i]]")
 
 /obj/structure/roguemachine/scomm/Topic(href, href_list)
 	..()
@@ -134,10 +133,7 @@
 		return
 	var/canread = user.can_read(src, TRUE)
 	var/contents
-	if(SSticker.rulertype == "Grand Duke")
-		contents += "<center>GRAND DUKE'S DECREES<BR>"
-	else
-		contents += "<center>GRAND DUCHESS' DECREES<BR>"
+	contents += "<center>[uppertext(SSticker.rulertype)]'S DECREES<BR>"
 	contents += "-----------<BR><BR></center>"
 	for(var/i = GLOB.lord_decrees.len to 1 step -1)
 		contents += "[i]. <span class='info'>[GLOB.lord_decrees[i]]</span><BR>"
@@ -776,6 +772,7 @@
 	var/inqdesc = null
 	var/hidden = FALSE
 	layer = TURF_LAYER
+	plane = WALL_PLANE
 	var/active = FALSE
 	var/datum/status_effect/bugged/effect
 

@@ -146,6 +146,9 @@ GLOBAL_LIST_EMPTY(respawncounts)
 		show_chronicle(tab)
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
+
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
@@ -264,6 +267,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+
+	initialize_commandbar_spy()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.

@@ -43,7 +43,52 @@
 	base_icon_state = "book5"
 
 	types = list(
-		/datum/crafting_recipe/roguetown/structure
+		/datum/crafting_recipe/roguetown/structure,
+		/datum/crafting_recipe/roguetown/turfs,
+
+		/datum/crafting_recipe/roguetown/turfs/brick,
+		/datum/crafting_recipe/roguetown/turfs/brick/floor,
+		/datum/crafting_recipe/roguetown/turfs/brick/wall,
+		/datum/crafting_recipe/roguetown/turfs/brick/window,
+
+		/datum/crafting_recipe/roguetown/turfs/fancywindow,		
+		/datum/crafting_recipe/roguetown/turfs/fancywindow/openclose,
+
+		/datum/crafting_recipe/roguetown/turfs/hay,
+
+		/datum/crafting_recipe/roguetown/turfs/reinforcedwindow,
+		/datum/crafting_recipe/roguetown/turfs/reinforcedwindow/openclose,
+		/datum/crafting_recipe/roguetown/turfs/roguewindow,
+		/datum/crafting_recipe/roguetown/turfs/roguewindow/dynamic,
+		/datum/crafting_recipe/roguetown/turfs/roguewindow/stone,
+
+		/datum/crafting_recipe/roguetown/turfs/stone,
+		/datum/crafting_recipe/roguetown/turfs/stone/cobblerock,
+		/datum/crafting_recipe/roguetown/turfs/stone/cobble,
+		/datum/crafting_recipe/roguetown/turfs/stone/block,
+		/datum/crafting_recipe/roguetown/turfs/stone/newstone,
+		/datum/crafting_recipe/roguetown/turfs/stone/herringbone,
+		/datum/crafting_recipe/roguetown/turfs/stone/hexstone,
+		/datum/crafting_recipe/roguetown/turfs/stone/platform,
+		/datum/crafting_recipe/roguetown/turfs/stone/wall,
+		/datum/crafting_recipe/roguetown/turfs/stone/brick,
+		/datum/crafting_recipe/roguetown/turfs/stone/decorated,
+		/datum/crafting_recipe/roguetown/turfs/stone/craft,
+		/datum/crafting_recipe/roguetown/turfs/stone/window,
+
+		/datum/crafting_recipe/roguetown/turfs/tentwall,
+		/datum/crafting_recipe/roguetown/turfs/tentdoor,
+		/datum/crafting_recipe/roguetown/turfs/twigplatform,
+		/datum/crafting_recipe/roguetown/turfs/twig,
+
+		/datum/crafting_recipe/roguetown/turfs/wood,
+		/datum/crafting_recipe/roguetown/turfs/wood/floor,
+		/datum/crafting_recipe/roguetown/turfs/wood/platform,
+		/datum/crafting_recipe/roguetown/turfs/wood/wall,
+		/datum/crafting_recipe/roguetown/turfs/wood/wall/alt,
+		/datum/crafting_recipe/roguetown/turfs/wood/fancy,
+		/datum/crafting_recipe/roguetown/turfs/wood/murderhole,
+		/datum/crafting_recipe/roguetown/turfs/wood/murderhole/alt
 		)
 
 /obj/item/recipe_book/ceramics
@@ -102,6 +147,7 @@
 
 	types = list(
 		/datum/book_entry/magic1,
+		/datum/book_entry/magic2,
 		/datum/crafting_recipe/roguetown/arcana,
 		/datum/crafting_recipe/gemstaff,
 		/datum/runeritual,

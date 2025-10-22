@@ -130,9 +130,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	/// List of descriptor choices this species gets in preferences customization
 	var/list/descriptor_choices = list(
+		/datum/descriptor_choice/trait,
+		/datum/descriptor_choice/stature,
 		/datum/descriptor_choice/height,
 		/datum/descriptor_choice/body,
-		/datum/descriptor_choice/stature,
 		/datum/descriptor_choice/face,
 		/datum/descriptor_choice/face_exp,
 		/datum/descriptor_choice/skin,
@@ -1356,29 +1357,53 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						if(O.flags_1 & ON_BORDER_1 && O.dir == turn(shove_dir, 180) && O.density)
 							directional_blocked = TRUE
 							break
+
 			if((!target_table && !target_collateral_mob) || directional_blocked)
 				target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
-				target.visible_message(span_danger("[user.name] shoves [target.name], knocking them down!"),
-								span_danger("You're knocked down from a shove by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+				target.visible_message(
+					span_danger("[user.name] shoves [target.name], knocking them down!"),
+					span_danger("You're knocked down from a shove by [user.name]!"), 
+					span_hear("I hear aggressive shuffling followed by a loud thud!"), 
+					COMBAT_MESSAGE_RANGE, 
+					user
+				)
 				to_chat(user, span_danger("I shove [target.name], knocking them down!"))
 				log_combat(user, target, "shoved", "knocking them down")
+
 			else if(target_table)
 				target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
-				target.visible_message(span_danger("[user.name] shoves [target.name] onto \the [target_table]!"),
-								span_danger("I'm shoved onto \the [target_table] by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+				target.visible_message(
+					span_danger("[user.name] shoves [target.name] onto \the [target_table]!"),
+					span_danger("I'm shoved onto \the [target_table] by [user.name]!"), 
+					span_hear("I hear aggressive shuffling followed by a loud thud!"), 
+					COMBAT_MESSAGE_RANGE, 
+					user
+				)
 				to_chat(user, span_danger("I shove [target.name] onto \the [target_table]!"))
 				target.throw_at(target_table, 1, 1, null, FALSE) //1 speed throws with no spin are basically just forcemoves with a hard collision check
 				log_combat(user, target, "shoved", "onto [target_table] (table)")
+
 			else if(target_collateral_mob)
 				target.Knockdown(SHOVE_KNOCKDOWN_HUMAN)
 				target_collateral_mob.Knockdown(SHOVE_KNOCKDOWN_COLLATERAL)
-				target.visible_message(span_danger("[user.name] shoves [target.name] into [target_collateral_mob.name]!"),
-					span_danger("I'm shoved into [target_collateral_mob.name] by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+				target.visible_message(
+					span_danger("[user.name] shoves [target.name] into [target_collateral_mob.name]!"),
+					span_danger("I'm shoved into [target_collateral_mob.name] by [user.name]!"), 
+					span_hear("I hear aggressive shuffling followed by a loud thud!"),
+					COMBAT_MESSAGE_RANGE, 
+					user
+				)
 				to_chat(user, span_danger("I shove [target.name] into [target_collateral_mob.name]!"))
 				log_combat(user, target, "shoved", "into [target_collateral_mob.name]")
+
 		else
-			target.visible_message(span_danger("[user.name] shoves [target.name]!"),
-							span_danger("I'm shoved by [user.name]!"), span_hear("I hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, user)
+			target.visible_message(
+				span_danger("[user.name] shoves [target.name]!"),
+				span_danger("I'm shoved by [user.name]!"), 
+				span_hear("I hear aggressive shuffling!"), 
+				COMBAT_MESSAGE_RANGE, 
+				user
+			)
 			to_chat(user, span_danger("I shove [target.name]!"))
 			var/target_held_item = target.get_active_held_item()
 			var/knocked_item = FALSE
@@ -1387,20 +1412,57 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(!target.has_movespeed_modifier(MOVESPEED_ID_SHOVE))
 				target.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 				if(target_held_item)
-					target.visible_message(span_danger("[target.name]'s grip on \the [target_held_item] loosens!"),
-						span_warning("My grip on \the [target_held_item] loosens!"), null, COMBAT_MESSAGE_RANGE)
+					target.visible_message(
+						span_danger("[target.name]'s grip on \the [target_held_item] loosens!"),
+						span_warning("My grip on \the [target_held_item] loosens!"),
+						null,
+						COMBAT_MESSAGE_RANGE
+					)
 				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH)
+
 			else if(target_held_item)
 				target.dropItemToGround(target_held_item)
 				knocked_item = TRUE
-				target.visible_message(span_danger("[target.name] drops \the [target_held_item]!"),
-					span_warning("I drop \the [target_held_item]!"), null, COMBAT_MESSAGE_RANGE)
+				target.visible_message(
+					span_danger("[target.name] drops \the [target_held_item]!"),
+					span_warning("I drop \the [target_held_item]!"), 
+					null, 
+					COMBAT_MESSAGE_RANGE
+				)
+
 			var/append_message = ""
 			if(target_held_item)
 				if(knocked_item)
 					append_message = "causing them to drop [target_held_item]"
 				else
 					append_message = "loosening their grip on [target_held_item]"
+
+			if(target.pulling)
+				var/painpercent = (target.get_complex_pain() / target.pain_threshold) * 100
+				var/painchance = painpercent < 30 ? FALSE : prob(painpercent)
+
+				if(target.grab_state > GRAB_PASSIVE && painchance)
+					target.grab_state = GRAB_PASSIVE
+					append_message = "causing them to loosen up on [target.pulling]"
+					target.visible_message(
+						span_danger("[target.name]'s grip on [target.pulling] loosens up!"),
+						span_warning("My grip on [target.pulling] loosens up!"),
+						null,
+						COMBAT_MESSAGE_RANGE
+					)
+					playsound(target.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
+
+				else if(target.grab_state <= GRAB_PASSIVE && painchance)
+					target.visible_message(
+						span_danger("[target.name]'s grip on [target.pulling] drops!"),
+						span_warning("My grip on [target.pulling] drops!"),
+						null,
+						COMBAT_MESSAGE_RANGE
+					)
+					append_message = "causing them to let go of [target.pulling]"
+					target.stop_pulling(TRUE)
+					playsound(target.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
+
 			log_combat(user, target, "shoved", append_message)
 
 //shameless copypaste

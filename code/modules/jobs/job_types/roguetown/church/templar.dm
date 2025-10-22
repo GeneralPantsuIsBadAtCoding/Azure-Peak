@@ -61,6 +61,7 @@
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
+	extra_context = "This subclass can choose from multiple disciplines. The further your chosen discipline strays from unarmed combat, however, the greater your skills in fistfighting and wrestling will atrophy. Taking a Quarterstaff provides a minor bonus to Perception, but removes the 'Dodge Expert' trait."
 
 /datum/outfit/job/roguetown/templar/monk/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -122,8 +123,6 @@
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltr = /obj/item/storage/keyring/churchie
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	gloves = /obj/item/clothing/gloves/roguetown/angle
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -142,24 +141,32 @@
 	switch(weapon_choice)
 		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar(H), TRUE)
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Knuckledusters")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles(H), TRUE)
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Quarterstaff")
 			H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE) //Tested with Disciples, first. Should hopefully be not too busted - reduce to Journeyman, otherwise.
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/steel(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)
 			H.change_stat(STATKEY_PER, 1) //Matches the Disciple's balance; exchanges the 'dodge expert' trait for additional accuracy with the staff.
 		if("Close Caress")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/eora(H), TRUE)
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Barotrauma")
 			H.put_in_hands(new /obj/item/rogueweapon/katar/abyssor(H), TRUE)
+			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 	// -- Start of section for god specific bonuses --
@@ -235,7 +242,7 @@
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
-	extra_context = "This subclass gains Expert skill in their weapon of choice."
+	extra_context = "This subclass gains Expert skill in their weapon of choice. Taking a ranged option will provide Expert skills in Crossbows and Journeyman skills in Swordsmanship, at the cost of starting with reduced armor and atrophying in all other weapon skills."
 
 /datum/outfit/job/roguetown/templar/crusader/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -248,7 +255,8 @@
 	backpack_contents = list(
 		/obj/item/ritechalk = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/mid = 1
+		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
+		/obj/item/storage/keyring/churchie = 1
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg' // this is probably awful implementation. too bad!
 	switch(H.patron?.type)
@@ -276,6 +284,8 @@
 			cloak = /obj/item/clothing/cloak/templar/xylixian
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
+			var/datum/inspiration/I = new /datum/inspiration(H)
+			I.grant_inspiration(H, bard_tier = BARD_T1)
 		if(/datum/patron/divine/dendor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
@@ -316,16 +326,14 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/rogueweapon/scabbard/sword
-	beltr = /obj/item/storage/keyring/churchie
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	armor = /obj/item/clothing/suit/roguetown/armor/plate	///Half-Plate not fullplate
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
 
 /datum/outfit/job/roguetown/templar/crusader/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Longsword","Flail","Mace","Battle Axe", "Spear")
+	var/weapons = list("Longsword","Flail","Mace","Battle Axe","Spear","Crossbow + Shortsword")
 	switch(H.patron?.type)
 		if(/datum/patron/divine/astrata) //Unique patron weapons, more can be added here if wanted.
 			weapons += "Solar Judgement"
@@ -349,57 +357,84 @@
 			weapons += "The Heartstring"
 		if(/datum/patron/divine/abyssor)
 			weapons += "Tidecleaver"
-	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP YOUR GOD'S ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Longsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/church(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE) //Halfplate, not fullplate.
 		if("Spear")
 			H.put_in_hands(new /obj/item/rogueweapon/spear/holysee(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), FALSE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Flail")
 			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Mace")
 			H.put_in_hands(new /obj/item/rogueweapon/mace/steel(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Battle Axe")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
+		if("Crossbow + Shortsword")
+			H.equip_to_slot_or_del(new /obj/item/quiver/bolts, SLOT_BELT_R, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate/half, SLOT_ARMOR, TRUE) //Cuirass, not halfplate. Slightly reduced starting armor.
+			H.put_in_hands(new /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/sword/short(H), TRUE)
+			H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE) //Expert Crossbow, but Journeyman Swords and Apprentice-level combat skills elsewhere. 
+			H.adjust_skillrank(/datum/skill/combat/maces, -1, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/axes, -1, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, -1, TRUE)
 		if("Decablade")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/undivided(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)	
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Solar Judgement")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/exe/astrata(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Moonlight Khopesh")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/sabre/nockhopesh(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Swift End")
 			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail/necraflail(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Plaguebringer Sickles")
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle(H), TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE) // actually makes them usable for the templar.
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Forgefiend")
 			H.put_in_hands(new /obj/item/rogueweapon/greatsword/grenz/flamberge/malum(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Summer Scythe")
 			H.put_in_hands(new /obj/item/rogueweapon/halberd/bardiche/scythe(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), FALSE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE) // again, needs skill to actually use the weapon
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Cackle Lash")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/xylix(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Duel Settler")
 			H.put_in_hands(new /obj/item/rogueweapon/mace/goden/steel/ravox(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("The Heartstring")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/rapier/eora(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 		if("Tidecleaver")
 			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/abyssoraxe(H), TRUE)
 			H.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/plate, SLOT_ARMOR, TRUE)
 			
 	// -- Start of section for god specific bonuses --
 	if(H.patron?.type == /datum/patron/divine/undivided)

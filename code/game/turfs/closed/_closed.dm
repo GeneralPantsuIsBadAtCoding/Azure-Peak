@@ -5,6 +5,7 @@
 	density = TRUE
 	blocks_air = TRUE
 	baseturfs = list(/turf/open/floor/rogue/naturalstone, /turf/open/transparent/openspace)
+	plane = WALL_PLANE
 	var/above_floor
 	var/wallpress = TRUE
 	var/wallclimb = FALSE

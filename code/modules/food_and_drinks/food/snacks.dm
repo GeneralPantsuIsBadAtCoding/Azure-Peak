@@ -180,8 +180,12 @@ All foods are distributed among various categories. Use common sense.
 	if(!input)
 		return
 	if(cooktime)
+		var/added_input = input
+		// Pick flat burninput instead of skill-scaled input so high cooking skill doesn't make food burn faster 
+		if(!cooked_type && !fried_type) 
+			added_input = burninput
 		if(cooking < cooktime)
-			cooking = cooking + input
+			cooking = cooking + added_input
 			if(cooking >= cooktime)
 				return heating_act(A)
 			warming = 5 MINUTES
@@ -625,6 +629,15 @@ All foods are distributed among various categories. Use common sense.
 		if(!do_after(user, 1 SECONDS / cd, target = src))
 			return FALSE
 		var/reagents_per_slice = reagents.total_volume/slices_num
+		if (istype(src,/obj/item/reagent_containers/food/snacks/grown/onion/rogue))
+			if (ishuman(user))
+				var/mob/living/carbon/H = user
+				var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES) //FIXME: getorganslot() and getorgan() don't actually differentiate organ types! This means that transplanted eyes, regardless of type, will still cry, but I need to mess with all of the organ checking code to unfuck this!
+				if (E && !(H.eyesclosed || HAS_TRAIT(H,TRAIT_NOPAIN) || H.is_eyes_covered() || HAS_TRAIT(H,TRAIT_BLIND) || H.get_skill_level(/datum/skill/craft/cooking) > SKILL_LEVEL_JOURNEYMAN)) //The painless will not be irritated by onions. Golems, skellies, meth-heads, etc. Expert+ chefs will also be unaffected.
+					to_chat(user,span_warning("The onion's juices sting my eyes!"))
+					user.blur_eyes(4)
+					if (prob(50))
+						user.emote("cry",forced=TRUE)
 		for(var/i in 1 to slices_num)
 			var/obj/item/reagent_containers/food/snacks/slice = new slice_path(loc)
 			initialize_slice(slice, reagents_per_slice)
@@ -691,25 +704,6 @@ All foods are distributed among various categories. Use common sense.
 				S.reagents.add_reagent(r_id, amount)
 	S.filling_color = filling_color
 	S.update_snack_overlays(src)
-/*
-/obj/item/reagent_containers/food/snacks/heating_act(obj/machinery/microwave/M)
-	var/turf/T = get_turf(src)
-	var/obj/item/result
-
-	if(cooked_type)
-		result = new cooked_type(T)
-		if(istype(M))
-			initialize_cooked_food(result, M.efficiency)
-		else
-			initialize_cooked_food(result, 1)
-		SSblackbox.record_feedback("tally", "food_made", 1, result.type)
-	else
-		result = new /obj/item/reagent_containers/food/snacks/badrecipe(T)
-		if(istype(M) && M.dirty < 100)
-			M.dirty++
-	qdel(src)
-
-	return result*/
 
 /obj/item/reagent_containers/food/snacks/Destroy()
 	STOP_PROCESSING(SSobj, src)

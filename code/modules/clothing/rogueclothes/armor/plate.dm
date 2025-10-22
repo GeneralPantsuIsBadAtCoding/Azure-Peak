@@ -74,7 +74,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	name = "psydonic half-plate"
-	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Psydon oft-decorate these sets with dyed cloths, so that those who're wounded can still find salvation in the madness of battle. </br>'..the thrumbing of madness, to think that your suffering was all-for-naught to Adonai's sacrifical lamb..'"
+	desc = "A beautiful steel cuirass, fitted with tassets and pauldrons for additional coverage. Lesser clerics of Psydon oft-decorate these sets with dyed cloths, so that those who're wounded can still find salvation in the madness of battle. </br>'..the thrumbing of madness, to think that your suffering was all-for-naught to Adonai's sacrifical lamb..' </br>... </br>With some blessed silver and a blacksmith's assistance, I can turn this half-plate into a set of full-plate armor."
 	icon_state = "ornatehalfplate"
 	smeltresult = /obj/item/ingot/silverblessed
 	body_parts_covered = COVERAGE_FULL // Less durability than proper plate, more expensive to manufacture, and accurate to the sprite.
@@ -156,7 +156,7 @@
 	name = "gilded fullplate"
 	desc = "Often, you have heard that told,"
 	icon_state = "matthiosarmor"
-	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG	
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	peel_threshold = 5	//-Any- weapon will require 5 peel hits to peel coverage off of this armor.
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()
@@ -359,7 +359,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
 	name = "psydonic cuirass"
 	icon_state = "ornatecuirass"
-	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..'"
+	desc = "A beautiful steel cuirass, fitted with tassets for additional coverage. Strips of blessed silver have been meticulously incorporated into the fluting; a laborous decoration that denotes it as originating from the Order of the Silver Psycross. </br>'..the feeling of Aeon's grasp upon your shoulders, imparting the world's burden unto flesh and bone..' </br>... </br>With some blessed silver and a blacksmith's assistance, I can turn this cuirass into a set of half-plate armor."
 	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron

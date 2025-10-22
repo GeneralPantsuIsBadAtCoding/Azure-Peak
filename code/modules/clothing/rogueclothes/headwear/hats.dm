@@ -65,7 +65,6 @@
 	icon_state = "papakha"
 	item_state = "papakha"
 	sewrepair = TRUE
-	flags_inv = HIDEEARS
 	armor = ARMOR_HEAD_CLOTHING
 	blocksound = SOFTHIT
 
@@ -196,7 +195,8 @@
 	icon_state = "headband"
 	item_state = "headband"
 	color = "#851a16"
-	armor = ARMOR_HEAD_LEATHER
+	armor = list("blunt" = 40, "slash" = 70, "stab" = 30, "piercing" = 20, "fire" = 0, "acid" = 0) // Higher slash protection, but lesser blunt-and-stab protection.
+	resistance_flags = FIRE_PROOF
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	body_parts_covered = HEAD|HAIR|EARS
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_TWIST) //Themed to protect against deadites and nitebeasts. Doesn't stop blunt-, smash-, or stabbing crits.
@@ -219,15 +219,46 @@
 		REMOVE_TRAIT(user, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
 
+/obj/item/clothing/head/roguetown/headband/naledi
+	name = "sojourner's headband"
+	desc = "A traditional garment, carried by those who survived the lonesome pilgrimage through Naledi's cursed dunes. Like a helmet, it will ward off killing blows; but unlike a helmet, it will keep the sweat out of your eyes and the mistakes out of your incantations. </br>'..We had our tests; we had our places of sin and vice. We were to look out for brother and sister, arm-in-arm, to ensure none of us fell. And yet we all did. We all allowed that to become what is. The daemons that roam our streets, that snatch our children from our bed, that eat our wives and break our husbands. They are us, our own creations and perversions. They are humanity as humanity sees itself, made manifest through our own twisted arcyne magicks..'"
+	icon_state = "headband"
+	color = "#48443b"
+	sewrepair = TRUE
+	resistance_flags = FIRE_PROOF
+	armor = ARMOR_HEAD_PSYDON //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype. 
+	blade_dulling = DULLING_BASHCHOP
+	body_parts_covered = HEAD|HAIR|EARS
+	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
+	blocksound = SOFTHIT
+	//dropshrink = 0.75
+	dynamic_hair_suffix = null
+
+/obj/item/clothing/head/roguetown/headband/monk
+	name = "monk's headband"
+	desc = "A winding length of cloth, meticulously lined with heavy leather strips. Errant impacts are thwarted, yet not a degree of vision is impaired; valuable traits, for the Monk who must enlighten their villains with a white-knuckled sermon. </br>'..I kick ass for the Lord!'"
+	icon_state = "headband"
+	color = "#bfb8a9"
+	sewrepair = TRUE
+	resistance_flags = FIRE_PROOF
+	armor = ARMOR_HEAD_PSYDON //Highest preset protection value for head armor, without leaving people unable to sleep with the headband on. Should be appropriate for the Monk's role.
+	body_parts_covered = HEAD|HAIR|EARS
+	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity.
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
+	blocksound = SOFTHIT
+	//dropshrink = 0.75
+	dynamic_hair_suffix = null
 
 /obj/item/clothing/head/roguetown/inqhat
 	name = "inquisitorial hat"
-	desc = "To keep ones vision away from the heavens, and focused on the sin beneath the soil."
+	desc = "A fine leather slouch, beplumed with a crimson feather and fitted with a hidden steel skull cap. It serves as a reminder that the Holy Otavan Inquisition triumphs in one avenue above all else - fashion. </br>'To keep ones vision away from the heavens, and focused on the sin beneath the soil.'"
 	icon_state = "inqhat"
 	item_state = "inqhat"
-	max_integrity = 150
+	max_integrity = 200
+	armor = ARMOR_HEAD_PSYDON
+	body_parts_covered = HEAD|HAIR|EARS
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = ARMOR_SPELLSINGER // spellsinger hat stats
 	sewrepair = TRUE
 
 /obj/item/clothing/head/roguetown/headband/red
@@ -431,6 +462,7 @@
 	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	body_parts_covered = HEAD|HAIR|EARS|NECK|MOUTH|NOSE|EYES
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
 	blocksound = SOFTHIT
