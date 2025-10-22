@@ -573,3 +573,131 @@
 		if(/datum/patron/divine/xylix)
 			neck = /obj/item/clothing/neck/roguetown/luckcharm
 			H.cmode_music = 'sound/music/combat_jester.ogg'
+
+/datum/advclass/cleric/mystictheurge
+	name = "Mystic Theurge"
+	tutorial = "A student of both the arcyne and divine, you are a versatile caster and herald of your patron god- though such vigorous study leaves you less physically capable than most."
+	outfit = /datum/outfit/job/roguetown/adventurer/mystictheurge
+	traits_applied = list(TRAIT_ARCYNE_T2)
+	subclass_stats = list(
+		STATKEY_INT = 2,
+		STATKEY_PER = 2,
+		STATKEY_WIL = 1,
+		STATKEY_STR = -1, //hey four eyes maybe try hitting the gym
+		STATKEY_CON = -1,
+	)
+	subclass_spellpoints = 10 //a little less than other half-arcynes, and no freebie spells.
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/magic/holy = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE, 
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE, //no alch or medicine skill like the others get
+	)
+	subclass_stashed_items = list(
+		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
+		"Of Psydon" = /obj/item/book/rogue/bibble/psy
+	)
+	
+/datum/outfit/job/roguetown/adventurer/mystictheurge/pre_equip(mob/living/carbon/human/H)
+	to_chat(H, span_warning("A student of both the arcyne and divine, you are a versatile caster and herald of your patron god- though such vigorous study leaves you less physically capable than most."))
+	backl = /obj/item/storage/backpack/rogue/satchel
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	backr = /obj/item/rogueweapon/woodstaff
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/reagent_containers/glass/bottle/rogue/manapot
+	beltr = /obj/item/flashlight/flare/torch/lantern
+	backpack_contents = list(
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/recipe_book/magic = 1,
+		/obj/item/chalk = 1
+		)
+	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
+	switch(H.patron?.type)
+		if(/datum/patron/old_god)
+			cloak = /obj/item/clothing/cloak/psydontabard
+			head = /obj/item/clothing/head/roguetown/roguehood/psydon
+		if(/datum/patron/divine/astrata)
+			head = /obj/item/clothing/head/roguetown/roguehood/astrata
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+		if(/datum/patron/divine/noc)
+			head =  /obj/item/clothing/head/roguetown/nochood
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/noc
+		if(/datum/patron/divine/abyssor)
+			head = /obj/item/clothing/head/roguetown/roguehood/abyssor
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
+		if(/datum/patron/divine/dendor)
+			head = /obj/item/clothing/head/roguetown/dendormask
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+		if(/datum/patron/divine/necra)
+			head = /obj/item/clothing/head/roguetown/necrahood
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/necra
+		if (/datum/patron/divine/malum)
+			head = /obj/item/clothing/head/roguetown/roguehood
+			cloak = /obj/item/clothing/cloak/templar/malumite
+		if (/datum/patron/divine/eora)
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe/eora
+			head = /obj/item/clothing/head/roguetown/eoramask
+			backpack_contents[/obj/item/reagent_containers/eoran_seed] = 1
+		if (/datum/patron/divine/xylix)
+			cloak = /obj/item/clothing/cloak/templar/xylix
+		if(/datum/patron/inhumen/zizo)
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
+			head = /obj/item/clothing/head/roguetown/roguehood
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
+		else
+			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
+			head = /obj/item/clothing/head/roguetown/roguehood
+	var/datum/devotion/C = new /datum/devotion(H, H.patron)
+	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = CLERIC_REQ_2)
+	switch(H.patron?.type)
+		if(/datum/patron/old_god)
+			neck = /obj/item/clothing/neck/roguetown/psicross
+		if(/datum/patron/divine/undivided)
+			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
+		if(/datum/patron/divine/astrata)
+			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+			H.cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
+		if(/datum/patron/divine/noc)
+			neck = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/divine/abyssor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/divine/dendor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+			H.cmode_music = 'sound/music/cmode/garrison/combat_warden.ogg' // see: druid.dm
+		if(/datum/patron/divine/necra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+			H.cmode_music = 'sound/music/cmode/church/combat_necra.ogg'
+		if(/datum/patron/divine/pestra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/divine/ravox)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/divine/malum)
+			neck = /obj/item/clothing/neck/roguetown/psicross/malum
+		if(/datum/patron/divine/eora)
+			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+			H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+		if(/datum/patron/inhumen/zizo)
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/matthios)
+			H.cmode_music = 'sound/music/combat_matthios.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/graggar)
+			H.cmode_music = 'sound/music/combat_graggar.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/inhumen/baotha)
+			H.cmode_music = 'sound/music/combat_baotha.ogg'
+			ADD_TRAIT(H, TRAIT_HERESIARCH, TRAIT_GENERIC)
+		if(/datum/patron/divine/xylix)
+			neck = /obj/item/clothing/neck/roguetown/luckcharm
+			H.cmode_music = 'sound/music/combat_jester.ogg'
