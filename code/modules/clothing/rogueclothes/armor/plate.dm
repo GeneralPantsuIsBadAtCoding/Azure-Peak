@@ -117,10 +117,29 @@
 	icon_state = "kazengunheavy"
 	item_state = "kazengunheavy"
 	detail_tag = "_detail"
-	color = "#FFFFFF"
-	detail_color = "#FFFFFF"
+	color = null
+	detail_color = CLOTHING_WHITE
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
 	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL - 50 //slightly worse
+	var/picked = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_armor()
+			H.update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/Initialize()
+	. = ..()		
+	update_icon()
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/update_icon()
 	cut_overlays()

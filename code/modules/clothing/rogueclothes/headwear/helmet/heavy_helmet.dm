@@ -48,6 +48,8 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 	name = "kabuto"
 	desc = "A Kazengunite helmet of steel plates, gilded in blacksteel and gold trim alike to evoke feelings of nobility and strength. Commonly worn with a mask or mouthguard."
+	flags_inv = HIDEEARS
+	flags_cover = null
 	icon_state = "kazengunheavyhelm"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
