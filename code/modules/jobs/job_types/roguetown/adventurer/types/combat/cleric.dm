@@ -199,7 +199,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shield/iron
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
+	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
