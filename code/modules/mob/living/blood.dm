@@ -90,9 +90,14 @@
 
 	// if we're dead and have no blood left, then there's nothing to do here: we can't regen it ourselves (in this proc), so...
 	// we'll continue to bleed out for as long as we have blood, but that's it
-	if (!blood_volume && stat == DEAD)
-		bleed_rate = 0 // just to be sure for anything else that cares about it, since we're ostensibly out of blood now
-		return
+	if (!blood_volume)
+		if (stat == DEAD)
+			bleed_rate = 0 // just to be sure for anything else that cares about it, since we're ostensibly out of blood now
+			return
+		else
+			// handle just the oxyloss, and then abort. nothing else in here is relevant to us
+			adjustOxyLoss(blood_volume <= BLOOD_VOLUME_SURVIVE ? 3 : 1)
+			return
 
 	//Blood regeneration if there is some space
 	if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume)
@@ -163,9 +168,7 @@
 						remove_status_effect(/datum/status_effect/debuff/bleedingworse)
 
 			if(blood_volume <= BLOOD_VOLUME_BAD)
-				adjustOxyLoss(1)
-				if(blood_volume <= BLOOD_VOLUME_SURVIVE)
-					adjustOxyLoss(2)
+				adjustOxyLoss(blood_volume <= BLOOD_VOLUME_SURVIVE ? 3 : 1)
 
 	//Bleeding out
 	bleed_rate = get_bleed_rate() // expensive proc, but we zero it on bled-out mobs
@@ -222,7 +225,10 @@
 			amt = amt * 2
 	if(surrendering)
 		amt = amt / 4 // Helps yield condition not be a bloodloss failure state. Approx to grabbing all of your bodyparts at once
+	var/old_volume = blood_volume
 	blood_volume = max(blood_volume - amt, 0)
+	if (old_volume > 0 && !blood_volume) // it looks like we've just bled out. bummer.
+		to_chat(src, span_userdanger("The last of your lyfeblood ebbs from your ravaged body and soaks the cold earth below..."))
 	record_round_statistic(STATS_BLOOD_SPILT, amt)
 	if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
 		add_drip_floor(src.loc, amt)
@@ -238,7 +244,6 @@
 	if(vol2use)
 		playsound(get_turf(src), vol2use, 100, FALSE)
 
-	updatehealth()
 	return TRUE
 
 /mob/living/carbon/human/bleed(amt)
