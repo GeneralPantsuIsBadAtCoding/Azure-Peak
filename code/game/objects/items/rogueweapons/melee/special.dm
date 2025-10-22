@@ -522,6 +522,7 @@
 	smeltresult = /obj/item/ingot/silver
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
+	is_silver = TRUE
 
 /obj/item/rogueweapon/greataxe/militia/silver/ComponentInitialize()
 	AddComponent(\
