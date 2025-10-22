@@ -126,19 +126,13 @@ GLOBAL_LIST_INIT(peasant_positions, list(
 	"Fisher",
 	"Lumberjack",
 	"Towner",
-	"Grabber",
 	"Nightmaster",
 	"Tapster",
 	"Bathhouse Attendant",
-	"Docker",
 	"Prisoner",
 	"Beggar",
-	"Adventurer",
 	"Trader",
 	"Pilgrim",
-	"Bandit",
-	"Court Agent",
-	"Wretch",
 ))
 
 GLOBAL_LIST_INIT(mercenary_positions, list(
