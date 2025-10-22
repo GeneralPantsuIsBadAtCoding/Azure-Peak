@@ -224,7 +224,7 @@
 
 /obj/item/paper/inqslip
 	name = "inquisition slip"
-	var/base_icon_state = "slip"
+	base_icon_state = "slip"
 	dropshrink = 0.75		
 	icon_state = "slip"
 	obj_flags = CAN_BE_HIT

@@ -9,7 +9,7 @@
 	var/list/types = list()
 	var/mob/current_reader
 	var/open
-	var/base_icon_state
+	base_icon_state
 	var/can_spawn = TRUE
 	resistance_flags = FLAMMABLE
 	var/list/categories = list("All") // Default categories
