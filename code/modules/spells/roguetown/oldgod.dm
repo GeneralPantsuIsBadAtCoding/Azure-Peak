@@ -6,10 +6,10 @@
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
-	desc = "Bleed for the target, taking their wounds and refilling their blood level."
+	desc = "Endure the wounds of another, for their sake. </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psydonbleeds.ogg'
-	invocations = list("I BLEED, SO THAT YOU MIGHT ENDURE!")
+	invocations = list("I BLEED, SO THAT YOU MIGHT ENDURE!","PERSIST AGAINST THE PAIN!","LET YOUR WOUNDS WEEP NO MORE!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -90,7 +90,7 @@
 
 /obj/effect/proc_holder/spell/self/psydonrespite
 	name = "RESPITE"
-	desc = "Stand still to focus on mending your injuries."
+	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "RESPITE"
 	releasedrain = 20
 	chargedrain = 0
@@ -132,7 +132,7 @@
 				if(/obj/item/clothing/neck/roguetown/psicross/silver)
 					psicross_bonus = -7
 				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
-					psicross_bonus = -7
+					psicross_bonus = -9
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
 	if(brute > 100)
@@ -193,7 +193,7 @@
 
 /obj/effect/proc_holder/spell/self/psydonpersist
 	name = "PERSIST"
-	desc = "Stand still to focus on mending your injuries. You shall PERSIST."
+	desc = "Invoke your faith under hushed breaths, so that you may yet triumph over adversity. </br>Provides greater health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "PERSIST"
 	releasedrain = 20
 	chargedrain = 0
@@ -235,7 +235,7 @@
 				if(/obj/item/clothing/neck/roguetown/psicross/silver)
 					psicross_bonus = -7
 				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
-					psicross_bonus = -7
+					psicross_bonus = -9
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
 	if(brute > 100)
@@ -297,7 +297,7 @@
 /obj/effect/proc_holder/spell/invoked/psydonabsolve	
 	name = "ABSOLVE"
 	overlay_state = "ABSOLVE"
-	desc = "Absolve the target, taking their damage as your own, potentially even shouldering their death at the cost of your Lyfe."
+	desc = "Exchange your vitality for the sake of another. </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
 	releasedrain = 20
 	chargedrain = 0
 	chargetime = 0
@@ -305,7 +305,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psyabsolution.ogg'
-	invocations = list("BE ABSOLVED!")
+	invocations = list("BE ABSOLVED!","BREATHE ONCE MORE!","YOUR TIME IS NOT NOW!")
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
