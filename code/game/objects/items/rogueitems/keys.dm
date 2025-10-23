@@ -243,6 +243,12 @@
 	icon_state = "cheesekey"
 	lockid = "crier"
 
+/obj/item/roguekey/keeper
+	name = "beast sanctum key"
+	desc = "This key should open and close the heart beast's sanctum."
+	icon_state = "beastkey"
+	lockid = "keeper"
+
 /obj/item/roguekey/tavern/village
 	lockid = "vtavern"
 

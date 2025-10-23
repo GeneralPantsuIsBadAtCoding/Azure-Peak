@@ -5,6 +5,7 @@
 	icon_state = "rack"
 	var/datum/component/chimeric_heart_beast/heart_component
 	pixel_y = 32
+	resistance_flags = INDESTRUCTIBLE
 
 	var/list/obj/item/heart_canister/slots = list(null, null, null, null, null, null) // 6 slots
 	var/list/slot_types = list("archetype", "trait", "trait", "quirk", "quirk", "quirk") // Fixed slot types

@@ -10,6 +10,7 @@
 	var/understanding_bonus = 0 // Bonus from correctly identifying traits/quirks
 	var/being_fed = FALSE
 	var/recently_fed = FALSE
+	resistance_flags = INDESTRUCTIBLE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 	icon = 'icons/obj/structures/heart_beast.dmi'
 	icon_state = "heart_beast"

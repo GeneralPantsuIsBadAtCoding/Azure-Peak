@@ -3,6 +3,7 @@
 	desc = ""
 	icon = 'icons/obj/structures/heart_items.dmi'
 	icon_state = "canister_empty"
+	w_class = WEIGHT_CLASS_TINY
 	
 	var/obj/structure/stone_rack/parent_rack
 	var/filled = FALSE
@@ -262,6 +263,7 @@
 	desc = "An empty canister yearning to be filled with chimeric heartbeast blood."
 	icon = 'icons/obj/structures/heart_items.dmi'
 	icon_state = "blood_canister_empty"
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/heart_blood_canister/filled
 	name = "Full heartblood canister"
@@ -273,6 +275,7 @@
 	desc = "An empty vial yearning to be filled with chimeric heartbeast blood."
 	icon = 'icons/obj/structures/heart_items.dmi'
 	icon_state = "blood_vial_empty"
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/heart_blood_vial/filled
 	name = "Full heartblood vial"
