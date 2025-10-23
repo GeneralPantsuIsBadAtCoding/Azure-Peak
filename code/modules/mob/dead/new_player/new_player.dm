@@ -291,6 +291,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
 		vote_on_poll_handler(poll, href_list)
 
+	if(href_list["explainreadyupbonus"])
+		to_chat(src, span_smallnotice("Ready up for 30 mammons in a stashed pouch, full hydration, a great meal buff and +1 triumph!"))
 
 
 /mob/dead/new_player/verb/do_rp_prompt()
