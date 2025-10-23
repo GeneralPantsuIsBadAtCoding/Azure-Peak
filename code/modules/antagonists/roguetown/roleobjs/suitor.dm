@@ -1,6 +1,7 @@
 /datum/antagonist/suitor
 	name = "Suitor"
 	increase_votepwr = FALSE
+	antag_weight = 0
 
 /datum/antagonist/suitor/on_gain()
 	if(!(locate(/datum/objective/marry) in objectives))

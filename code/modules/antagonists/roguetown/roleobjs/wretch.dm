@@ -2,6 +2,7 @@
 	name = "Wretch"
 	roundend_category = "wretches"
 	antagpanel_category = "Wretches"
+	antag_weight = 0.5
 	show_name_in_check_antagonists = FALSE
 
 /datum/antagonist/wretch/on_gain()

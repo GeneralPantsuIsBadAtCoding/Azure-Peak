@@ -2,6 +2,7 @@
 /datum/antagonist/skeleton
 	name = "Skeleton"
 	increase_votepwr = FALSE
+	antag_weight = 0 // Spawned by lich / necromancer don't count
 
 /datum/antagonist/skeleton/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire))
