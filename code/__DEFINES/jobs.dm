@@ -219,7 +219,7 @@
 #define JCOLOR_YEOMAN "#819e82"
 #define JCOLOR_GUILD "#6e6259"
 #define JCOLOR_PEASANT "#b09262"
-#define JCOLOR_MERCENARY "#c86e3a"
+#define JCOLOR_WANDERER  "#c86e3a"
 #define JCOLOR_INQUISITION "#FF0000"
 
 // job display orders //
