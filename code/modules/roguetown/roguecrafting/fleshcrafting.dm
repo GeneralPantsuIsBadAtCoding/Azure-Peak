@@ -88,3 +88,13 @@
 	craftdiff = 4
 	required_tech_node = "BASIC_ORGANS"
 	tech_unlocked = FALSE
+
+/datum/crafting_recipe/roguetown/fleshcrafting/black_rose
+	name = "Black Rose"
+	category = "Flesh"
+	result = list(/obj/item/black_rose)
+	reqs = list(/obj/item/heart_blood_canister/filled = 5,
+				/obj/item/reagent_containers/food/snacks/rogue/meat_rotten = 15)
+	craftdiff = 5
+	required_tech_node = "BLACK_ROSE"
+	tech_unlocked = FALSE

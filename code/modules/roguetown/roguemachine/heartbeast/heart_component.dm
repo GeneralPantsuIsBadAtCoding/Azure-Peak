@@ -17,7 +17,7 @@
 	var/datum/flesh_task/current_task
 	var/datum/flesh_task/next_task
 	var/last_task_time = 0
-	var/task_cooldown = 0.1 MINUTES
+	var/task_cooldown = 2 MINUTES
 
 	var/mob/living/current_listener
 	var/listener_timeout_time = 0
@@ -348,7 +348,7 @@
 	to_chat(world, span_userdanger("TECH MULTIPLIER: [rack_multiplier]"))
 	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
 	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
-	var/language_progress_reward = (max_language_progress / 4) * reward_multiplier
+	var/language_progress_reward = (max_language_progress / 8) * reward_multiplier
 
 	// Apply rewards
 	blood_pool = min(blood_pool + blood_reward, max_blood_pool)

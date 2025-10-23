@@ -318,6 +318,9 @@
 /datum/status_effect/black_rot/proc/apply_damage_effects()
 	var/damage_multiplier = stacks * 0.25
 
+	if(prob(25))
+		owner.Jitter(20)
+
 	switch(tier)
 		if(1)
 			if(prob(25))

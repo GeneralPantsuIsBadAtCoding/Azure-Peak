@@ -149,3 +149,111 @@
 	if(parent_weapon)
 		parent_weapon.visible_message(span_infection("The sickly glow fades from [parent_weapon]."))
 	qdel(src)
+
+#define BLACK_ROT_FIRE_ICON 'icons/mob/onfireNEW.dmi'
+#define BLACK_ROT_FIRE_STATE "human_big_fire_long_pause"
+#define BLACK_ROT_FILTER "black_rot_glow"
+#define DARK_OUTLINE_COLOUR "#000000"
+
+/datum/component/infestation_black_rot
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+	var/mob/living/parent_mob
+	var/base_proc_chance = 10 // 10% base chance to apply rot
+	var/self_rot_stacks = 1
+	var/no_skill_targets_stacks = 2
+	var/low_skill_target_stacks = 3
+	var/high_skill_target_stacks = 4
+	var/high_skill_level = 5
+
+/datum/component/infestation_black_rot/Initialize()
+	. = ..()
+	if(!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+	parent_mob = parent
+	parent_mob.AddElement(/datum/element/relay_attackers)
+	apply_visuals()
+	RegisterSignal(parent_mob, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_struck))
+	RegisterSignal(parent_mob, COMSIG_MOB_ITEM_ATTACK, PROC_REF(on_attack_success))
+
+/datum/component/infestation_black_rot/proc/on_attack_success(mob/living/user, mob/living/target)
+	SIGNAL_HANDLER
+	to_chat(world, span_danger("Attacked someone [target]"))
+	if(user != parent_mob)
+		return
+	if(prob(5))
+		attempt_apply_rot(target, is_offensive = TRUE)
+
+/datum/component/infestation_black_rot/proc/on_struck(atom/victum, atom/attacker)
+	SIGNAL_HANDLER
+	to_chat(world, span_danger("Got attacked by [attacker]"))
+	if(!isliving(attacker))
+		return
+	var/mob/living/living_attacker = attacker
+	attempt_apply_rot(living_attacker, is_offensive = FALSE)
+
+/datum/component/infestation_black_rot/proc/attempt_apply_rot(mob/living/target, is_offensive)
+	if(!isliving(target) || target == parent_mob)
+		return
+
+	if(!target.mind)
+		return
+
+	var/skill_level = parent_mob.get_skill_level(/datum/skill/magic/holy)
+	var/chance = base_proc_chance + skill_level
+
+	var/target_rot = target.has_status_effect(/datum/status_effect/black_rot)
+	if(target_rot)
+		return
+
+	if(prob(chance))
+		var/stacks_to_apply
+		if(skill_level < 3)
+			stacks_to_apply = no_skill_targets_stacks
+		else if(skill_level < high_skill_level)
+			stacks_to_apply = low_skill_target_stacks
+		else
+			stacks_to_apply = high_skill_target_stacks
+
+		target.apply_status_effect(/datum/status_effect/black_rot, stacks_to_apply)
+		target.visible_message(span_userdanger("[target] twitches as a black rot begins to spread across their body!"))
+		parent_mob.apply_status_effect(/datum/status_effect/black_rot, self_rot_stacks)
+
+		var/datum/status_effect/black_rot/self_rot = parent_mob.has_status_effect(/datum/status_effect/black_rot)
+		if(self_rot)
+			self_rot.add_stack(self_rot_stacks)
+		else
+			parent_mob.apply_status_effect(/datum/status_effect/black_rot, self_rot_stacks)
+			if(is_offensive)
+				to_chat(parent_mob, span_notice("My touch spreads the rot to [target], but it takes a toll on my own body."))
+			else
+				to_chat(parent_mob, span_notice("The blight lashes out at [target] in defense, but it takes a toll on my own body."))
+
+/datum/component/infestation_black_rot/Destroy()
+	parent_mob.RemoveElement(/datum/element/relay_attackers)
+	remove_visuals()
+	return ..()
+
+/datum/component/infestation_black_rot/proc/apply_visuals()
+	if(!parent_mob)
+		return
+
+	// Apply Black Outline Filter
+	if(!parent_mob.get_filter(BLACK_ROT_FILTER))
+		parent_mob.add_filter(BLACK_ROT_FILTER, 2, list(
+			"type" = "outline",
+			"color" = DARK_OUTLINE_COLOUR,
+			"alpha" = 10,
+			"size" = 1,
+		))
+
+	var/mutable_appearance/new_fire_overlay = mutable_appearance(BLACK_ROT_FIRE_ICON, BLACK_ROT_FIRE_STATE, -BLACK_ROT_LAYER)
+	new_fire_overlay.color = list(0,0,0, 0,0,0, 0,0,0, 1,1,1)
+	new_fire_overlay.appearance_flags = RESET_COLOR
+	parent_mob.overlays_standing[BLACK_ROT_LAYER] = new_fire_overlay
+	parent_mob.apply_overlay(BLACK_ROT_LAYER)
+
+/datum/component/infestation_black_rot/proc/remove_visuals()
+	if(!parent_mob)
+		return
+	parent_mob.remove_filter(BLACK_ROT_FILTER)
+	parent_mob.remove_overlay(BLACK_ROT_LAYER)

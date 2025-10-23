@@ -80,6 +80,16 @@
 	is_recipe_node = TRUE
 	prerequisites = list("FLESH_DECOYS")
 
+/datum/chimeric_tech_node/black_rose
+	name = "Black Rose Synthesis"
+	description = "Allows crafting of black roses from corrupted flesh and beast blood. It is believe heartbeasts were in part created by Pestra herself to control the black rot that lingers withing these roses."
+	string_id = "BLACK_ROSE"
+	required_tier = 4
+	cost = 100
+	selection_weight = 2
+	prerequisites = list("INFESTATION_TIER3")
+	is_recipe_node = TRUE
+
 /// INFESTATION CHARGE CAPACITY TECHS
 /datum/chimeric_tech_node/infestation_capacity_1
 	name = "Enhanced Infestation Capacity"

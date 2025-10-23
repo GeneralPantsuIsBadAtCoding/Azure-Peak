@@ -337,8 +337,21 @@
 	var/stinky = FALSE
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(target == user)
-			return FALSE
+
+		var/obj/item/black_rose/rose = user.get_active_held_item()
+		// Check if the user is holding a black rose and the target follows Pestra.
+		if(istype(rose) && target.patron?.type == /datum/patron/divine/pestra)
+			// If the target is a Pestran and we are holding the rose, implant the component.
+			if(!target.GetComponent(/datum/component/infestation_black_rot))
+				target.AddComponent(/datum/component/infestation_black_rot)
+				target.visible_message(span_notice("[user] gently presses the [rose] against [target]'s flesh. The rose dissolves, leaving a black mark."), \
+										span_userdanger("The rose fuses with my flesh, granting me Pestra's protection."))
+				qdel(rose)
+				return TRUE
+			else
+				to_chat(user, span_warning("[target] is already infused with Pestra's black blessing."))
+				revert_cast()
+				return FALSE
 
 		if(GLOB.tod == "night")
 			to_chat(user, span_warning("Let there be light."))
