@@ -31,7 +31,7 @@
 	body_parts_covered = ARMS
 	icon_state = "bracers"
 	item_state = "bracers"
-	armor = ARMOR_BOOTS_PLATED
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF
@@ -127,7 +127,7 @@
 	icon_state = "copperarm"
 	item_state = "copperarm"
 	smeltresult = /obj/item/ingot/copper
-	armor = ARMOR_MASK_METAL_BAD
+	armor = ARMOR_PLATE_BAD
 
 /obj/item/clothing/wrists/roguetown/wrappings
 	name = "solar wrappings"

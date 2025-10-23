@@ -100,6 +100,12 @@
 	icon_state = "eastpants2"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/under/roguetown/heavy_leather_pants/kazengun //no, not 'eastpants3', silly!
+	name = "gambeson trousers"
+	desc = "A form of Kazengunite peasant's trousers. The fabric used in their manufacture is strong, and could probably turn away a few blows."
+	icon_state = "baggypants"
+	item_state = "baggypants"
+
 /obj/item/clothing/under/roguetown/heavy_leather_pants/shadowpants
 	name = "silk tights"
 	desc = "Form-fitting legwear. Almost too form-fitting."

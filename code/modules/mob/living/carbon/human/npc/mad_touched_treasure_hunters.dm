@@ -84,12 +84,12 @@
 
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	//carbon ai is still pretty dumb so making them a threat to players requires pretty crazy looking stats. don't think too hard about it.
-	H.STASTR = 18
-	H.STASPD = 18
-	H.STACON = 15 
-	H.STAWIL = 15 
+	H.STASTR = 15
+	H.STASPD = 15
+	H.STACON = 15
+	H.STAWIL = 15
 	H.STAPER = 15
-	H.STAINT = 15
+	H.STAINT = 12
 	H.eye_color = "27becc"
 	H.hair_color = "61310f"
 	H.facial_hair_color = H.hair_color
@@ -114,7 +114,7 @@
 	desc = "A ragged hood of thick jute fibres. The itchiness is unbearable."
 	sewrepair = TRUE
 	color = "#999999"
-	armor = ARMOR_HEAD_HELMET_BAD
+	armor = ARMOR_LEATHER
 
 /obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched
 	name = "eerie ancient mask"

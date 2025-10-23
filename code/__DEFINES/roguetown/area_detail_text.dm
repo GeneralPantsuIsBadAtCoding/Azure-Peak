@@ -27,7 +27,9 @@
 #define DETAIL_TEXT_ORC_RUIN ""
 
 // Terrorbog
-#define DETAIL_TEXT_TERRORBOG ""
+#define DETAIL_TEXT_TERRORBOG "Fetid sulfuric smell. The land is in misery; your feet find sogging ground choked in vine and scumwater. The land itself is engulfed in its own anguish. Somewhere, a baby bird has tumbled out of its nest and landed in a dark puddle, left to an uncertain fate.\n\
+There used to be temples here, she says. And they used to be tall and grand, and sung praises to Him in all His glory. For a moment, your mind's eagle-eye envisions a white-marble basin in upside-down ziggurat, guarded by an angelic protectorate- and then, the moment fades, and you are in the here and now. once more.\n\
+You wonder if those stygian-filligreed constructs have survived in the peat and moss."
 
 // North Coast
 #define DETAIL_TEXT_NORTH_COAST ""

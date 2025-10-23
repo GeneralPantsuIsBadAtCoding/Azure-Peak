@@ -67,7 +67,7 @@
 	icon_state = "gronnfurhood"
 	item_state = "gronnfurhood"
 	bloody_icon = 'icons/effects/blood64.dmi'
-	armor = ARMOR_HEAD_BAD
+	armor = ARMOR_LEATHER_GOOD
 	flags_inv = HIDEEARS|HIDEFACE
 	worn_x_dimension = 32
 	worn_y_dimension = 48

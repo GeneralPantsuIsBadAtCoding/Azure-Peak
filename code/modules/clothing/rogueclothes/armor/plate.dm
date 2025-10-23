@@ -111,6 +111,46 @@
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_CHEST_PLATE_IRON
 
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa
+	name = "samsibsa scaleplate"
+	desc = "A heavy set of armour worn by the kouken of distant Kazengun. As opposed to the plate armour utilized by most of Psydonia and the West, samsiba-cheolpan is made of thirty-four rows of composite scales, each an ultra-thin sheet of blacksteel gilded over steel. </br> It is an extremely common practice to engrave characters onto individual plates - such as LUCK, HONOR, or HEAVEN."
+	icon_state = "kazengunheavy"
+	item_state = "kazengunheavy"
+	detail_tag = "_detail"
+	boobed_detail = FALSE
+	color = null
+	detail_color = CLOTHING_WHITE
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS
+	max_integrity = ARMOR_INT_CHEST_PLATE_STEEL - 50 //slightly worse
+	var/picked = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_armor()
+			H.update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/Initialize()
+	. = ..()		
+	update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/samsibsa/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted
 	name = "fluted plate"
 	desc = "A suit of ornate plate armor, noble in both presentation and protection. Such resplendent maille is traditionally reserved for the higher echelons of nobility; seasoned knights, venerated kings, and pot-bellied councilmen that wish to flaunt their opulence towards the unwashed masses."
@@ -156,7 +196,7 @@
 	name = "gilded fullplate"
 	desc = "Often, you have heard that told,"
 	icon_state = "matthiosarmor"
-	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG	
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	peel_threshold = 5	//-Any- weapon will require 5 peel hits to peel coverage off of this armor.
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()

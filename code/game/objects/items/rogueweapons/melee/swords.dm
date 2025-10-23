@@ -65,6 +65,7 @@
 	attack_verb = list("prods", "pokes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/sword/strike
 	name = "pommel strike"
@@ -76,8 +77,9 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 0
-	damfactor = 1
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 // A weaker strike for sword with high damage so that it don't end up becoming better than mace
 /datum/intent/sword/strike/bad
@@ -1802,6 +1804,14 @@
 	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	alt_intents = null // Can't mordhau this
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/sword/long/kriegmesser/ssangsudo
+	name = "ssangsudo"
+	desc = "A style of long blade used by the kouken of Kazengun. A weapon supremely skilled in the art of cutting."
+	icon = 'icons/roguetown/weapons/swords64.dmi'
+	icon_state = "ssangsudo"
+	sheathe_icon = "ssangsudo"
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/rend, /datum/intent/sword/strike) // better rend by .05
 
 /obj/item/rogueweapon/sword/long/dec
 	name = "decorated longsword"

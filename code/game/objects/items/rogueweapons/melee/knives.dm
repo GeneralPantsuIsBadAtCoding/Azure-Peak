@@ -46,11 +46,12 @@
 	animname = "strike"
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
-	damfactor = 1.5
+	damfactor = 0.6 // Less damage than a normal attack I don't want this to be better than stabbing
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	clickcd = 14
 	recovery = 10
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	canparry = FALSE
 	candodge = FALSE
 
