@@ -772,6 +772,7 @@
 	var/inqdesc = null
 	var/hidden = FALSE
 	layer = TURF_LAYER
+	plane = WALL_PLANE
 	var/active = FALSE
 	var/datum/status_effect/bugged/effect
 

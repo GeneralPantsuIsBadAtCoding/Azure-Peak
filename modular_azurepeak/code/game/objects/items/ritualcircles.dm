@@ -1150,7 +1150,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	backr = /obj/item/rogueweapon/sword/long/zizo
 	neck = /obj/item/clothing/neck/roguetown/bevor
 
-
+	H.mind.AddSpell(/obj/effect/proc_holder/spell/invoked/mending/lesser)
 
 
 /obj/structure/ritualcircle/matthios
@@ -1310,6 +1310,8 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/matthios
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	backr = /obj/item/rogueweapon/flail/peasantwarflail/matthios
+
+	H.mind.AddSpell(/obj/effect/proc_holder/spell/invoked/mending/lesser)
 
 
 /obj/structure/ritualcircle/graggar
