@@ -43,6 +43,17 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 		if(GENERATION_THINBLOOD)
 			research_points = 0
 
+/datum/antagonist/vampire/get_antag_cap_weight()
+	switch(generation)
+		if(GENERATION_METHUSELAH)
+			return 3
+		if(GENERATION_ANCILLAE)
+			return 2
+		if(GENERATION_NEONATE)
+			return 0.75 // Licker Wretch
+		if(GENERATION_THINBLOOD)
+			return 0.25 // You are not even an antagonist
+
 /datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire/lord))
 		return span_boldnotice("Kaine's firstborn!")

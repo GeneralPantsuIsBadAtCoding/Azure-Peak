@@ -287,7 +287,7 @@ SUBSYSTEM_DEF(gamemode)
 	. = 0
 	var/list/already_counted = list() // Never count the same mind twice
 	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
-		if(QDELETED(antag) || QDELETED(antag.owner) || already_counted[antag.owner])
+		if(QDELETED(antag) || QDELETED(antag.owner))
 			continue
 		if((antag.antag_flags & (FLAG_FAKE_ANTAG | FLAG_ANTAG_CAP_IGNORE)))
 			continue
@@ -300,9 +300,15 @@ SUBSYSTEM_DEF(gamemode)
 		var/mob/antag_mob = antag.owner.current
 		if(QDELETED(antag_mob) || !antag_mob.key || antag_mob.stat == DEAD || antag_mob.client?.is_afk())
 			continue
-		already_counted[antag.owner] = TRUE
-		. += antag.get_antag_cap_weight()
-		
+		var/weight = antag.get_antag_cap_weight()
+		// If we have already counted this mind, and the new weight is higher, add the difference only (Strongest antag datum)
+		if(weight && already_counted[antag.owner] && weight > already_counted[antag.owner])
+			. += (weight - already_counted[antag.owner])
+			already_counted[antag.owner] = weight
+		else if(weight && !already_counted[antag.owner])
+			already_counted[antag.owner] = weight
+			. += weight // Just add normally
+
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
 	return (get_antag_cap() > get_antag_count())
