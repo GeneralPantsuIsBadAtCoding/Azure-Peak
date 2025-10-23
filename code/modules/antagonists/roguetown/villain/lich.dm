@@ -9,6 +9,8 @@
 		"YOU CANNOT KILL ME!",
 	)
 	rogue_enabled = TRUE
+	antag_weight = 3
+
 	var/list/phylacteries = list()
 	var/out_of_lives = FALSE
 

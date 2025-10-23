@@ -28,6 +28,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	///flags used by storytellers
 	var/antag_flags = NONE
+	/// How many antag this antag count as for storyteller purposes. Higher power one like VL / Lich should be higher.
+	var/antag_weight = 1
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
