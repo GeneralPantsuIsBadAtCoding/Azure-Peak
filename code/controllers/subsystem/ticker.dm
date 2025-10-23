@@ -64,10 +64,17 @@ SUBSYSTEM_DEF(ticker)
 	var/end_state = "undefined"
 	var/job_change_locked = FALSE
 	var/list/royals_readied = list()
-	var/rulertype = "Grand Duke" // reports whether king or queen rules
-	var/rulermob = null // reports what the ruling mob is.
-	var/regentmob = null // keeps track of regent mob
-	var/regentday = -1 // to prevent regent shuffling
+
+	/// Realm name, the location name of the current map
+	var/realm_name = "Azure Peak"
+	/// Reports the current ruler's display name
+	var/rulertype = "Grand Duke" 
+	/// The current ruling mob
+	var/rulermob = null
+	/// Current regent mob
+	var/regentmob = null
+	/// Prevent regent shuffling
+	var/regentday = -1
 	var/failedstarts = 0
 	var/list/manualmodes = list()
 
@@ -307,7 +314,8 @@ SUBSYSTEM_DEF(ticker)
 	message_admins(span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		
-
+	if(SSmapping.map_adjustment)
+		realm_name = SSmapping.map_adjustment.realm_name
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
@@ -759,10 +767,11 @@ SUBSYSTEM_DEF(ticker)
 /// Wrapper for setting rulermob and rulertype
 /datum/controller/subsystem/ticker/proc/set_ruler_mob(mob/newruler)
 	rulermob = newruler
+	var/datum/job/lord_job = SSjob.GetJob("Grand Duke")
 	if(should_wear_femme_clothes(rulermob))
-		SSticker.rulertype = "Grand Duchess"
+		SSticker.rulertype = lord_job?.f_title || lord_job.title
 	else
-		SSticker.rulertype = "Grand Duke"
+		SSticker.rulertype = lord_job?.display_title || lord_job?.title
 	SEND_GLOBAL_SIGNAL(COMSIG_TICKER_RULERMOB_SET, rulermob)
 
 /// Wrapper for sunsteal proc

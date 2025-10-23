@@ -156,7 +156,7 @@
 	name = "gilded fullplate"
 	desc = "Often, you have heard that told,"
 	icon_state = "matthiosarmor"
-	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG	
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 	peel_threshold = 5	//-Any- weapon will require 5 peel hits to peel coverage off of this armor.
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()
