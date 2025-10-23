@@ -12,8 +12,10 @@
 		"FIRSTBORNE CHILD OF KAIN!",
 	)
 	show_in_roundend = TRUE
-	antag_weight = 3
 	var/ascended = FALSE
+
+/datum/antagonist/vampire/lord/get_antag_cap_weight()
+	return 3
 
 /datum/antagonist/vampire/lord/on_gain()
 	. = ..()

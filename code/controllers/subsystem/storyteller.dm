@@ -301,8 +301,8 @@ SUBSYSTEM_DEF(gamemode)
 		if(QDELETED(antag_mob) || !antag_mob.key || antag_mob.stat == DEAD || antag_mob.client?.is_afk())
 			continue
 		already_counted[antag.owner] = TRUE
-		. += antag.antag_weight
-
+		. += antag.get_antag_cap_weight()
+		
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
 	return (get_antag_cap() > get_antag_count())

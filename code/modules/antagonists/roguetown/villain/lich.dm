@@ -9,7 +9,6 @@
 		"YOU CANNOT KILL ME!",
 	)
 	rogue_enabled = TRUE
-	antag_weight = 3
 
 	var/list/phylacteries = list()
 	var/out_of_lives = FALSE
@@ -44,6 +43,9 @@
 	var/STAINT = 10
 	var/STAWIL = 10
 	var/STAPER = 10
+
+/datum/antagonist/lich/get_antag_cap_weight()
+	return 3
 
 /datum/antagonist/lich/on_gain()
 	SSmapping.retainer.liches |= owner

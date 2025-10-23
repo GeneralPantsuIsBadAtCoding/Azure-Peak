@@ -28,8 +28,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	///flags used by storytellers
 	var/antag_flags = NONE
-	/// How many antag this antag count as for storyteller purposes. Higher power one like VL / Lich should be higher.
-	var/antag_weight = 1
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -58,6 +56,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 		var/datum/antagonist/A = i
 		if(is_type_in_typecache(src, A.typecache_datum_blacklist))
 			return FALSE
+
+/// Proc to return the weight of this antagonist for purpose of antag cap calculations. Meant to be overriddeable  
+/datum/antagonist/proc/get_antag_cap_weight()
+	return 1
 
 //This will be called in add_antag_datum before owner assignment.
 //Should return antag datum without owner.
