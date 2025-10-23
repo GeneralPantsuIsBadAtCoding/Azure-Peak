@@ -16,7 +16,6 @@ SUBSYSTEM_DEF(chimeric_tech)
 
 /datum/controller/subsystem/chimeric_tech/Initialize()
 	. = ..()
-	to_chat(world, span_userdanger("SUBSYSTEMO LOADED"))
 	load_all_tech_nodes()
 	init_unlockable_recipes()
 	return
@@ -77,12 +76,9 @@ SUBSYSTEM_DEF(chimeric_tech)
 	for(var/datum/chimeric_tech_node/N in final_choices)
 		cached_choices_paths += N.type
 
-	to_chat(world, "DEBUG: Final choices selected: [final_choices.len]")
-
 	return final_choices
 
 /datum/controller/subsystem/chimeric_tech/proc/unlock_node(var/string_id, var/datum/component/chimeric_heart_beast/beast_component)
-	to_chat(world, span_userdanger("[string_id] string id!"))
 	var/datum/chimeric_tech_node/node = all_tech_nodes[string_id]
 
 	if(!node)

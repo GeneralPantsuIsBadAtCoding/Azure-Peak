@@ -177,7 +177,6 @@
 
 /datum/component/infestation_black_rot/proc/on_attack_success(mob/living/user, mob/living/target)
 	SIGNAL_HANDLER
-	to_chat(world, span_danger("Attacked someone [target]"))
 	if(user != parent_mob)
 		return
 	if(prob(5))
@@ -185,7 +184,6 @@
 
 /datum/component/infestation_black_rot/proc/on_struck(atom/victum, atom/attacker)
 	SIGNAL_HANDLER
-	to_chat(world, span_danger("Got attacked by [attacker]"))
 	if(!isliving(attacker))
 		return
 	var/mob/living/living_attacker = attacker

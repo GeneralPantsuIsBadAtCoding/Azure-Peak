@@ -109,7 +109,6 @@
 	selection_options["Cancel"] = "CANCEL"
 
 	var/choice = input(user, "Select a [singular_name] to attune", "[category_name] Selection") as null|anything in selection_options
-	to_chat(world, span_warning("[choice] CHOICE IS"))
 	if(!choice || choice == "Cancel")
 		return
 

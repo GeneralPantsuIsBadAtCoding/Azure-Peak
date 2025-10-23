@@ -316,18 +316,13 @@
 			keywords_found++
 			if(keywords_found >= 2)
 				break
-
-	to_chat(world, span_userdanger("KEYWORDS FOUND: [keywords_found]"))
 	score += min(keywords_found, 2) * 25
 
 	// If our quirks act up for whatever reason, reduce our score by a flat amount
-	to_chat(world, span_userdanger("SCORE BEFORE REDUCE: [score]"))
 	if(quirk_effects["score_penalty"])
 		score = max(score - quirk_effects["score_penalty"], 0)
-		to_chat(world, span_userdanger("SCORE AFTER REDUCE: [score]"))
 	else if(quirk_effects["score_bonus"])
 		score = min(score + quirk_effects["score_bonus"], 100)
-		to_chat(world, span_userdanger("SCORE AFTER INCREASE: [score]"))
 
 	score = trigger_behavior_quirks(score, speaker, message)
 
@@ -345,7 +340,6 @@
 	var/blood_reward = (max_blood_pool / 10) * reward_multiplier * (quirk_effects["blood_multiplier"] || 1)
 	// 5 - 10 - 20 - 40 Under perfect circumstances
 	var/rack_multiplier = linked_rack.update_rack_stats()
-	to_chat(world, span_userdanger("TECH MULTIPLIER: [rack_multiplier]"))
 	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
 	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
 	var/language_progress_reward = (max_language_progress / 8) * reward_multiplier
@@ -504,30 +498,20 @@
 	var/center_y = heart_beast.y
 	var/center_z = heart_beast.z
 
-	to_chat(world, span_userdanger("LINK DEBUG: Starting link search from [center_x],[center_y],[center_z] (Range: [search_range])."))
-
 	var/x1 = center_x - search_range
 	var/y1 = center_y - search_range
 	var/x2 = center_x + search_range
 	var/y2 = center_y + search_range
-	
-	to_chat(world, span_userdanger("LINK DEBUG: Searching bounds X:[x1] to [x2], Y:[y1] to [y2]."))
 
 	for(var/i in x1 to x2)
 		for(var/j in y1 to y2)
 			var/turf/T = locate(i, j, center_z)
-
 			if(!T)
 				continue
-
 			var/obj/structure/stone_rack/rack = locate(/obj/structure/stone_rack) in T.contents
 			if(rack)
-				to_chat(world, span_userdanger("LINK DEBUG: Found object at [i],[j],[center_z]: [rack.type] ([rack])."))
-				
 				if(!rack.heart_component)
 					linked_rack = rack
 					rack.heart_component = src
-					to_chat(world, span_userdanger("LINK SUCCESS: Linked to [rack]!"))
 					return
 				else
-					to_chat(world, span_userdanger("LINK DEBUG: Rack found at [i],[j] is already linked."))

@@ -89,19 +89,21 @@
 	if(locate(/datum/flesh_quirk/royal) in quirks)
 		royal_title = pick("Majesty", "Great One", "Master", "Overlord", "Eminence")
 
-	var/list/debug_info = list()
-	debug_info += "Archetype: [archetype.name]"
-	debug_info += "Traits:"
-	for(var/datum/flesh_trait/trait in traits)
-		debug_info += "  - [trait.name]"
-	debug_info += "Quirks:"
-	for(var/datum/flesh_quirk/quirk in quirks)
-		debug_info += "  - [quirk.name]"
-	debug_info += "Discharge Color: [discharge_color]"
-	if(royal_title)
-		debug_info += "Royal Title: [royal_title]"
+	// TURN THIS INTO A ROUND END MESSAGE LATER BECAUSE IT IS NICE TO KNOW WHAT QUIRKS THE BEAST HAD..
 
-	to_chat(world, span_userdanger("[debug_info.Join("\n")]"))
+	// var/list/debug_info = list()
+	// debug_info += "Archetype: [archetype.name]"
+	// debug_info += "Traits:"
+	// for(var/datum/flesh_trait/trait in traits)
+	// 	debug_info += "  - [trait.name]"
+	// debug_info += "Quirks:"
+	// for(var/datum/flesh_quirk/quirk in quirks)
+	// 	debug_info += "  - [quirk.name]"
+	// debug_info += "Discharge Color: [discharge_color]"
+	// if(royal_title)
+	// 	debug_info += "Royal Title: [royal_title]"
+
+	// to_chat(world, span_userdanger("[debug_info.Join("\n")]"))
 
 /obj/structure/roguemachine/chimeric_heart_beast/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
 	// . = ..()

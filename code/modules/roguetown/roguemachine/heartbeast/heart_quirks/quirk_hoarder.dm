@@ -170,7 +170,6 @@
 /datum/component/hoarded_item/proc/on_pickup(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/I = parent
-	to_chat(world, span_danger("[get_dist(I, heart_component.heart_beast)] DISTANCE - PICKUP"))
 	if(get_dist(I, heart_component.heart_beast) > 3)
 		hoarder_quirk.handle_thief(I, user, heart_component)
 		qdel(src)
@@ -182,7 +181,6 @@
 /datum/component/hoarded_item/proc/on_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 	var/obj/item/I = parent
-	to_chat(world, span_danger("[get_dist(I, heart_component.heart_beast)] DISTANCE - MOVED"))
 
 	if(is_item_stolen(I))
 		var/mob/living/thief = find_culprit(I)

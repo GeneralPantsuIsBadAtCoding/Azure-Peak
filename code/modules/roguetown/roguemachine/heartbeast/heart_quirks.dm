@@ -294,7 +294,6 @@
 /datum/flesh_quirk/affectionate/apply_language_quirk(mob/speaker, message, response_time, datum/component/chimeric_heart_beast/beast)
 	var/list/effects = list()
 	var/distance = get_dist(beast.heart_beast, speaker)
-	to_chat(world, span_userdanger("DISTANCE = [distance]"))
 
 	if(distance > 1)
 		effects["score_penalty"] = 25
