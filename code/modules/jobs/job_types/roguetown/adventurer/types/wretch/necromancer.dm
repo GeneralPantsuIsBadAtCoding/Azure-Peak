@@ -7,7 +7,7 @@
 	cmode_music = 'sound/music/combat_heretic.ogg'
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT, TRAIT_MEDICINE_EXPERT)
-	maximum_possible_slots = 2
+	maximum_possible_slots = 1 // Back to 1 for now until Ketrai Lux PR is inegrated properly to limit rejuvenation to proper lux
 	subclass_stats = list(
 		STATKEY_INT = 4,
 		STATKEY_PER = 2,
