@@ -320,6 +320,7 @@
 	icon_state = "kazengunboots"
 	item_state = "kazengunboots"
 	detail_tag = "_detail"
+	color = "#FFFFFF"
 	detail_color = "#FFFFFF"
 
 /obj/item/clothing/shoes/roguetown/boots/armor/kazengun/update_icon()
