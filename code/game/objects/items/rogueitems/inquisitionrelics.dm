@@ -163,7 +163,7 @@
 				continue
 			if (!H.has_stress_event(/datum/stressevent/soulchurner))
 				switch(H.patron?.type)
-					if(/datum/patron/old_god)
+					if(ALL_PSYDONIC_PATRONS)
 						if (!H.has_stress_event(/datum/stressevent/soulchurnerpsydon))
 							H.add_stress(/datum/stressevent/soulchurnerpsydon)
 							to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
@@ -364,7 +364,7 @@ Inquisitorial armory down here
 		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
-			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
+			if(H.patron?.type == ALL_PSYDONIC_PATRONS)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
@@ -379,7 +379,7 @@ Inquisitorial armory down here
 				to_chat(user, span_info("It has already been blessed."))
 	if(ishuman(A) && on && (user.used_intent.type == /datum/intent/bless))
 		var/mob/living/carbon/human/H = A
-		if(H.patron?.type == /datum/patron/old_god)
+		if(H.patron?.type == ALL_PSYDONIC_PATRONS)
 			if(!H.has_status_effect(/datum/status_effect/buff/censerbuff))
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
 				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
