@@ -360,11 +360,6 @@
 	playsound(owner, 'sound/magic/magearmorup.ogg', 75, FALSE)
 	owner.magearmor = 0
 
-/atom/movable/screen/alert/status_effect/buff/guardbuffone
-	name = "Vigilant Guardsman"
-	desc = "My home. I watch vigilantly and respond swiftly."
-	icon_state = "buff"
-
 /atom/movable/screen/alert/status_effect/buff/barkeepbuff
 	name = "Vigilant Tavernkeep"
 	desc = "My home. I watch vigilantly and respond swiftly."
@@ -402,22 +397,10 @@
 	if(!(our_area.tavern_area))
 		owner.remove_status_effect(/datum/status_effect/buff/barkeepbuff)
 
-/datum/status_effect/buff/guardbuffone
-	id = "guardbuffone"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/guardbuffone
-	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1, STATKEY_SPD = 1, STATKEY_PER = 2)
-
 /datum/status_effect/buff/dungeoneerbuff
 	id = "dungeoneerbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/dungeoneerbuff
 	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1, STATKEY_STR = 2)//This only works in 2 small areas on the entire map
-
-/datum/status_effect/buff/guardbuffone/process()
-
-	.=..()
-	var/area/rogue/our_area = get_area(owner)
-	if(!(our_area.town_area))
-		owner.remove_status_effect(/datum/status_effect/buff/guardbuffone)
 
 /datum/status_effect/buff/wardenbuff/process()
 
