@@ -182,9 +182,26 @@
 	name = "hansimhae cuirass"
 	desc = "A more common form of Kazengunite armor, consisting of several interlocking plates of blacksteel-coated steel. Much cheaper than a full set of armor, these are commonly seen on militia forces and standing armies alike."
 	icon_state = "kazengunmedium"
+	boobed = FALSE
 	item_state = "kazengunmedium"
 	detail_tag = "_detail"
+	color = "#FFFFFF"
 	detail_color = "#FFFFFF"
+	var/picked = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/haraate/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_armor()
+			H.update_icon()
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/haraate/update_icon()
 	cut_overlays()

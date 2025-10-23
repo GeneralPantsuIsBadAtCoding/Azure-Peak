@@ -117,6 +117,7 @@
 	icon_state = "kazengunheavy"
 	item_state = "kazengunheavy"
 	detail_tag = "_detail"
+	boobed_detail = FALSE
 	color = null
 	detail_color = CLOTHING_WHITE
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS

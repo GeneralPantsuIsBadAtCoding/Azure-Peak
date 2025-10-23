@@ -98,6 +98,21 @@
 	detail_tag = "_detail"
 	color = "#FFFFFF"
 	detail_color = "#FFFFFF"
+	var/picked = FALSE
+
+/obj/item/clothing/gloves/roguetown/plate/kote/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_armor()
+			H.update_icon()
 
 /obj/item/clothing/gloves/roguetown/plate/kote/update_icon()
 	cut_overlays()
