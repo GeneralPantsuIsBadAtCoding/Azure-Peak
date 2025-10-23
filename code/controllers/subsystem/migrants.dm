@@ -258,7 +258,6 @@ SUBSYSTEM_DEF(migrants)
 
 	SSticker.minds += character.mind
 	GLOB.joined_player_list += character.ckey
-	update_wretch_slots()
 	if(character.client)
 		character.client.update_ooc_verb_visibility()
 

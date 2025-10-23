@@ -94,17 +94,7 @@
 	update_body()
 
 /mob/living/carbon/human/species/skeleton/npc/no_equipment
-	skel_outfit = null
+    skel_outfit = null
 
 /mob/living/carbon/human/species/skeleton/no_equipment
-	skel_outfit = null
-	var/datum/weakref/crystal
-
-/mob/living/carbon/human/species/skeleton/no_equipment/death(gibbed, nocutscene = FALSE)
-	..()
-	var/obj/item/necro_relics/necro_crystal/active_crystal = crystal.resolve()
-	for(var/datum/weakref/W in active_crystal.active_skeletons)
-		if(W.resolve() == src)
-			active_crystal.active_skeletons -= W
-	active_crystal = null
-	gib(no_brain = TRUE, no_organs = TRUE)
+    skel_outfit = null
