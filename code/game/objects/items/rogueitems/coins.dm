@@ -269,7 +269,7 @@
 
 /obj/item/roguecoin/silver/pile/readyuppile/Initialize()
 	. = ..()
-	set_quantity(6) // 30 mammons is a decent amount
+	set_quantity(4) // 20 mammons combine with starting pouch to buy something
 
 /obj/item/roguecoin/gold/pile/Initialize()
 	. = ..()
