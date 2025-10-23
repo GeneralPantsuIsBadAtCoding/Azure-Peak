@@ -1,7 +1,7 @@
 /datum/job/roguetown/veteran
 	title = "Veteran"
 	flag = VETERAN
-	department_flag = MERCENARIES
+	department_flag = WANDERERS
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
