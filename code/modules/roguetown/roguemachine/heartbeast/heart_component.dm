@@ -514,4 +514,3 @@
 					linked_rack = rack
 					rack.heart_component = src
 					return
-				else
