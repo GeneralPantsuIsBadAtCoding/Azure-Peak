@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/mending
 	name = "Mending"
-	desc = "Uses arcyne energy to mend an item. Effect of repair scales off of your Intellegence."
+	desc = "Uses arcyne energy to mend an item. Effect of repair scales off of your Intelligence."
 	overlay_state = "mending"
 	releasedrain = 50
 	chargetime = 5
@@ -20,6 +20,9 @@
 	invocations = list("Reficio")
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
+	var/repair_percent = 0.20
+	var/int_bonus = 0.00
+
 /obj/effect/proc_holder/spell/invoked/mending/cast(list/targets, mob/living/user)
 	if(istype(targets[1], /obj/item))
 		var/obj/item/I = targets[1]
@@ -29,9 +32,6 @@
 			return
 
 		if(I.obj_integrity < I.max_integrity)
-			var/repair_percent = 0.20
-			var/int_bonus = 0.00
-
 			int_bonus = (user.STAINT * 0.01)
 			repair_percent += int_bonus
 			repair_percent *= I.max_integrity
@@ -41,9 +41,19 @@
 			if(I.obj_broken && I.obj_integrity >= I.max_integrity)
 				I.obj_integrity = I.max_integrity
 				I.obj_fix()
+		else if(I.peel_count)
+			I.peel_count--
+			to_chat(user, span_info("[I]'s shorn layers mend together. ([I.peel_count])."))
 		else
 			to_chat(user, span_info("[I] appears to be in perfect condition."))
 			revert_cast()
 	else
 		to_chat(user, span_warning("There is no item here!"))
 		revert_cast()
+
+
+/obj/effect/proc_holder/spell/invoked/mending/lesser
+	name = "Lesser Mending"
+	repair_percent = 0.10
+	recharge_time = 30 SECONDS
+	cost = 1

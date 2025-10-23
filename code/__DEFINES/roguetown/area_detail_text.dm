@@ -18,7 +18,7 @@
 
 // Underdark
 #define DETAIL_TEXT_UNDERDARK ""
-#define DETAIL_TEXT_SOUTHERN_UNDERDARK "" 
+#define DETAIL_TEXT_SOUTHERN_UNDERDARK ""
 #define DETAIL_TEXT_MELTED_UNDERCITY ""
 
 // Undercoast
@@ -27,7 +27,9 @@
 #define DETAIL_TEXT_ORC_RUIN ""
 
 // Terrorbog
-#define DETAIL_TEXT_TERRORBOG ""
+#define DETAIL_TEXT_TERRORBOG "Fetid sulfuric smell. The land is in misery; my feet find sogging ground choked in vine and scumwater. The land itself is engulfed in its own anguish. Somewhere, a baby bird has tumbled out of its nest and landed in a dark puddle, left to an uncertain fate.\n\
+There used to be temples here, she says. And they used to be tall and grand, and sung praises to Him in all His glory. For a moment, my mind's eagle-eye envisions a white-marble basin in upside-down ziggurat, guarded by an angelic protectorate- and then, the moment fades, and I am in the here and now. once more.\n\
+One must wonder if those stygian-filligreed constructs have survived in the peat and moss."
 
 // North Coast
 #define DETAIL_TEXT_NORTH_COAST ""
@@ -36,9 +38,10 @@
 
 // Actual Azure Coast
 #define DETAIL_TEXT_ACTUAL_COAST "A windswept shore."
+#define DETAIL_TEXT_CITY_COAST "Close enough to the city that I can see its torchlight. It is easy to imagine why they say the Comet Syon landed here. The bay yawns like a giant concave lens; the hinted epicenter of ego-death. \n\\n\ The salted ocean air carries a bitter taste, here."
 
 // Mount Decap & Dungeons
-#define DETAIL_TEXT_DECAP ""
+#define DETAIL_TEXT_DECAP "Mount Golgotha and its lava-flows stretches to the north. An impossibly-tall sinewave of earth, full of rage at its severed futures. It is still, after a thousand years, screaming upwards at the sky; acrid smoke tries to choke the firmament above and jagged cliffs try to pierce its nebulous hide. The ancient alps (old- too old for rage) have cracks in them that break the massif northwards and spill a river with cool, clear water. \n\ Tarichea, o, glowing monument!, once powered by the lava flows of Mount Golgotha, now lays drowned in them."
 #define DETAIL_TEXT_DECAP_TARICHEA ""
 #define DETAIL_TEXT_DECAP_GUNDU_ZIRAK ""
 #define DETAIL_TEXT_DECAP_DRAGONDEN ""
@@ -53,8 +56,10 @@
 // Random Areas / Dungeons
 #define DETAIL_TEXT_ABYSSORS_GRASP ""
 #define DETAIL_TEXT_LICH_DOMAIN ""
-#define DETAIL_TEXT_SPILLWAY ""
-#define DETAIL_TEXT_GETHSMANE ""
+#define DETAIL_TEXT_SPILLWAY "Old Nemenor sewage. Fleeting sights of a once-future (a future!, but not the one that developed) renched from grasp and left to anaerobic scummery. The Rot has set a terminal infection here."
+#define DETAIL_TEXT_GETHSMANE "Leachate and hell-light; wading through bubbles of stinking broth roiled over a flameless brew with peristaltic standing-waves of shit and filth.\n\
+Rusted metals distantly grind in anoxic pus-condensate in-tune with the Signal. There is no peace, here; it has left the ground a long time ago. What killed them first? The Rot, or their own waterfunk-fuck waste?"
+
 #define DETAIL_TEXT_HIS_VAULT ""
 #define DETAIL_TEXT_FISHMAN_DUNGEON ""
 
@@ -66,9 +71,11 @@
 #define DETAIL_TEXT_KEEP ""
 #define DETAIL_TEXT_MANOR ""
 #define DETAIL_TEXT_UNIVERSITY_OF_AZURIA ""
-#define DETAIL_TEXT_CHAPEL ""
+#define DETAIL_TEXT_CHAPEL "Narthex of faith, roosting the Flock."
 #define DETAIL_TEXT_INQUISITION_HQ ""
-#define DETAIL_TEXT_AZUREAN_GUILD_OF_CRAFT ""
+#define DETAIL_TEXT_AZUREAN_GUILD_OF_CRAFT "\"We had a name fer it, eh? Called it the Dwarven Quarter. Forges an' 'ammers, underground an' wrapped in stone. Joos' like 'ome! Bu' then tha bloody bluebloods started complainin' aboot tha' dirt whenever they visited. Bloody brash-polishers! Well, we 'ad to move tha shop topside. \n\ \n\ Not as charmin, no moor.\""
+
 
 // Tomb of Alotheos
 #define DETAIL_TEXT_TOMB_OF_ALOTHEOS ""
+

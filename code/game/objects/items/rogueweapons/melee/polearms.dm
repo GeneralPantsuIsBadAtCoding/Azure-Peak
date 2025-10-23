@@ -22,9 +22,15 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = 10
-	damfactor = 0.8
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
+
+// Eaglebeak has a decent bash with range
+/datum/intent/spear/bash/eaglebeak
+	name = "eagle's beak bash"
+	damfactor = 1
+	reach = 2
 
 /datum/intent/spear/bash/ranged
 	reach = 2
@@ -94,8 +100,9 @@
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.3
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 
 /datum/intent/rend
@@ -159,7 +166,7 @@
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
-	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
+	clickcd = CLICK_CD_CHARGED
 
 /datum/intent/spear/thrust/lance
 	damfactor = 1.5 // Turns its base damage into 30 on the 2hand thrust. It keeps the spear thrust one handed.
@@ -728,9 +735,10 @@
 
 /obj/item/rogueweapon/spear/holysee
 	name = "see spear"
-	desc = "A spear against the darkness, a glimmer of Eclipsum in its metal veins. "
+	desc = "A blessed spear, wielded by the Holy See's templars to keep the forces of evil at bay. The design is remarkably well-balanced, allowing it for effective off-handed use with a shield. The prongs seem to catch even the tiniest glimmer of daelight, magnifying it into a blinding glare. </br>'I fear no evil, my Gods, for thou art with me!'"
 	icon_state = "gsspear"
 	force = 25 // better in one hand. Use it with the shield.
+	max_blade_int = 225
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/halberd/bardiche
@@ -836,8 +844,8 @@
 /obj/item/rogueweapon/eaglebeak
 	force = 15
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
-	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/mace/smash/eaglebeak, SPEAR_BASH)
+	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/bash/eaglebeak)
+	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/bash/eaglebeak, /datum/intent/mace/smash/eaglebeak)
 	name = "eagle's beak"
 	desc = "A reinforced pole affixed with an ornate steel eagle's head, of which its beak is intended to pierce with great harm."
 	icon_state = "eaglebeak"
@@ -858,7 +866,6 @@
 	wdefense = 5
 	wbalance = WBALANCE_HEAVY
 	sellprice = 60
-	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/eaglebeak/getonmobprop(tag)
 	. = ..()
@@ -882,9 +889,10 @@
 	max_blade_int = 150
 	sellprice = 40
 
+// A worse thrust for weapons specialized in other damage type like cut or blunt
 /datum/intent/spear/thrust/eaglebeak
-	penfactor = 50
-	damfactor = 1
+	penfactor = 20
+	damfactor = 0.9
 
 /datum/intent/spear/thrust/glaive
 	penfactor = 50
@@ -893,9 +901,7 @@
 
 /datum/intent/mace/smash/eaglebeak
 	reach = 2
-	swingdelay = 12
-	clickcd = 14
-	damfactor = 1.3
+	clickcd = CLICK_CD_HEAVY // Slightly longer since it has RANGE. Don't want to increase charge time more since it is unreliable.
 
 /obj/item/rogueweapon/spear/bronze
 	name = "Bronze Spear"
@@ -1431,8 +1437,8 @@
 	attack_verb = list("impales", "runs through")
 	reach = 3
 	damfactor = 1.25
-	clickcd = 20
-	swingdelay = 10
+	clickcd = 55
+	swingdelay = 15
 
 /datum/intent/sword/chop/dragonslayer
 	name = "eviscerate"
@@ -1441,11 +1447,11 @@
 	attack_verb = list("splits", "eviscerates")
 	animname = "chop"
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = 45
-	damfactor = 1.5
-	swingdelay = 10
+	penfactor = 40
+	damfactor = 2
+	swingdelay = 15
 	reach = 2
-	clickcd = 20
+	clickcd = 55
 	item_d_type = "slash"
 
 /datum/intent/sword/smash/dragonslayer
@@ -1456,13 +1462,13 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	reach = 2
 	damfactor = 2.5
-	swingdelay = 10
-	clickcd = 20
+	swingdelay = 25
+	clickcd = 55
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
 /datum/intent/sword/sucker_punch/dragonslayer
-	name = "sucker punch"
+	name = "unevadable haymaker"
 	icon_state = "inpunch"
 	attack_verb = list("punches", "throttles", "clocks")
 	animname = "strike"
@@ -1470,8 +1476,8 @@
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
 	damfactor = 4
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	clickcd = 20
-	recovery = 10
+	clickcd = 55
+	recovery = 15
 	item_d_type = "blunt"
 	canparry = FALSE
 	candodge = FALSE
@@ -1485,8 +1491,8 @@
 	hitsound = list('sound/combat/hits/blunt/frying_pan(1).ogg', 'sound/combat/hits/blunt/frying_pan(2).ogg', 'sound/combat/hits/blunt/frying_pan(3).ogg', 'sound/combat/hits/blunt/frying_pan(4).ogg')
 	reach = 2
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	swingdelay = 10
-	clickcd = 20
+	swingdelay = 15
+	clickcd = 50
 	damfactor = 0.5
 	item_d_type = "slash"
 	peel_divisor = 1
@@ -1497,33 +1503,26 @@
 	name = "\"Daemonslayer\""
 	desc = "'That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough. No, it was more like a large hunk of silver.' </br>Intimidatingly massive, unfathomably powerful, and - above all else - a testament to one's guts."
 	icon_state = "machaslayer"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	wlength = WLENGTH_GREAT
+	w_class = WEIGHT_CLASS_BULKY
 	possible_item_intents = list(/datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/sucker_punch/dragonslayer)
 	gripped_intents = list(/datum/intent/sword/chop/dragonslayer, /datum/intent/sword/thrust/estoc/dragonslayer, /datum/intent/sword/smash/dragonslayer, /datum/intent/sword/flay/dragonslayer)
-	force = 5
+	force = 35
 	force_wielded = 55
-	minstr = 14
-	wdefense = 10
-	max_integrity = 666
-	max_blade_int = 666
+	minstr = 15
+	wdefense = 15
+	max_integrity = 555
+	max_blade_int = 555
+	alt_intents = null 
 	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/rogueweapon/sword/long/kriegmesser/silver //Too thick to completely melt.
 
 /obj/item/rogueweapon/greatsword/psygsword/dragonslayer/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
-		pre_blessed = BLESSING_NONE,\
-		silver_type = SILVER_TENNITE,\
-		added_force = 0,\
-		added_blade_int = 0,\
-		added_int = 0,\
-		added_def = 0,\
-	)
-
-/obj/item/rogueweapon/greatsword/psygsword/dragonslayer/preblessed/ComponentInitialize()
-	AddComponent(\
-		/datum/component/silverbless,\
-		pre_blessed = BLESSING_TENNITE,\
-		silver_type = SILVER_TENNITE,\
+		pre_blessed = BLESSING_PSYDONIAN,\
+		silver_type = SILVER_PSYDONIAN,\
 		added_force = 0,\
 		added_blade_int = 0,\
 		added_int = 0,\

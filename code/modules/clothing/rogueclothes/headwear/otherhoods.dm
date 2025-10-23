@@ -10,7 +10,7 @@
 	slot_flags = ITEM_SLOT_HEAD
 	dynamic_hair_suffix = ""
 	max_integrity = 80
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_CLOTHING
 	prevent_crits = list(BCLASS_TWIST)
 	anvilrepair = null
 	sewrepair = TRUE

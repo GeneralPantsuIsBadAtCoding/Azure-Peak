@@ -247,6 +247,7 @@
 				else
 					M_job = "Ghost"
 
+			M_job = html_encode(M_job) // Encode so name like Magician's Apprentice don't break player panel
 			var/M_name = html_encode(M.name)
 			var/M_rname = html_encode(M.real_name)
 			var/M_key = html_encode(M.key)
