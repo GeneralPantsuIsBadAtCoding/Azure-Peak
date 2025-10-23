@@ -1,7 +1,7 @@
 /datum/patron/old_god
 	name = "Orthodoxism"
 	worshippers = "Commonfolk, Zealots, Otavans, and those of the Holy Psydonic Inquisition."
-	desc = "... </br>'PSYDON YET LYVES! PSYDON YET ENDURES!' </br>... </br>In the wake of the Comet Syon's impact, Psydon fell silent. None truly knew what became of Him, but most had assumed the worst: that He had undertaken the ultimate sacrifice to save His world from the Archdevil. Many of His grieving children would eventually turn their prayers to the Pantheon, but a select few held hope that Psydon still lyved. Together, these apostles pilgrimaged to an ancient kingdom and chiseled the Orthodoxy from its ruins: a cathedral that would eventually be rechristened as Otava. </br>... </br>...
+	desc = "... </br>'PSYDON YET LYVES! PSYDON YET ENDURES!' </br>... </br>In the wake of the Comet Syon's impact, Psydon fell silent. None truly knew what became of Him, but most had assumed the worst: that He had undertaken the ultimate sacrifice to save His world from the Archdevil. Many of His grieving children would eventually turn their prayers to the Pantheon, but a select few held hope that Psydon still lyved. Together, these apostles pilgrimaged to an ancient kingdom and chiseled the Orthodoxy from its ruins: a cathedral that would eventually be rechristened as Otava. </br>... </br>..."
 	associated_faith = /datum/faith/old_god
 	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
