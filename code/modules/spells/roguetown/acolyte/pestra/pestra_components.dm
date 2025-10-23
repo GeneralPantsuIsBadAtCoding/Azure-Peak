@@ -130,8 +130,11 @@
 	if(!isliving(target))
 		return
 	var/mob/living/living_target = target
+	var/infect_prob = 0
+	if(SSchimeric_tech.get_node_status("INFESTATION_ATTACK_VECTOR"))
+		infect_prob = 20
 
-	if(living_target.has_status_effect(/datum/status_effect/buff/infestation))
+	if(living_target.has_status_effect(/datum/status_effect/buff/infestation) || prob(infect_prob))
 		living_target.apply_status_effect(/datum/status_effect/debuff/pestilent_plague)
 		living_target.visible_message(span_warning("[living_target]'s infestation erupts into a violent plague!"),span_userdanger("The infestation within me erupts into unbearable agony!"))
 		remove_enchantment()
