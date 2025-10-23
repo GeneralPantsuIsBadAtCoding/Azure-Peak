@@ -173,7 +173,7 @@
 			H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
 			ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
-		if(/datum/patron/old_god)
+		if(ALL_PSYDONIC_PATRONS)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/silver, SLOT_WRISTS, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, SLOT_ARMOR, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq, SLOT_SHIRT, TRUE)
@@ -341,7 +341,7 @@
 			H.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
-		if(/datum/patron/old_god)
+		if(ALL_PSYDONIC_PATRONS)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/silver, SLOT_WRISTS, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/roguetown/roguehood/psydon/confessor, SLOT_HEAD, TRUE) // You do not get the NVGs. Explode.
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/confessor, SLOT_ARMOR, TRUE)
