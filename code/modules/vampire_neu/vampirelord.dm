@@ -167,6 +167,7 @@
 	name = "ancient chain shirt"
 	desc = ""
 	body_parts_covered = COVERAGE_TORSO
+	body_parts_inherent = FULL_BODY
 	armor_class = ARMOR_CLASS_HEAVY
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
 	armor = ARMOR_VAMP
@@ -178,6 +179,7 @@
 	name = "ancient ceremonial plate"
 	desc = ""
 	body_parts_covered = COVERAGE_FULL
+	body_parts_inherent = FULL_BODY
 	icon_state = "vplate"
 	item_state = "vplate"
 	armor = ARMOR_VAMP
@@ -195,6 +197,7 @@
 	name = "ancient ceremonial plated boots"
 	desc = ""
 	body_parts_covered = FEET
+	body_parts_inherent = FULL_BODY
 	icon_state = "vboots"
 	item_state = "vboots"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
@@ -208,6 +211,7 @@
 	name = "ancient ceremonial helm"
 	icon_state = "vhelmet"
 	max_integrity = ARMOR_INT_HELMET_ANTAG
+	body_parts_inherent = FULL_BODY
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)
 	block2add = FOV_BEHIND
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -233,5 +237,6 @@
 	icon_state = "vgloves"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = ARMOR_VAMP
+	body_parts_inherent = FULL_BODY
 	max_integrity = ARMOR_INT_SIDE_ANTAG
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PEEL, BCLASS_PIERCE, BCLASS_CHOP, BCLASS_LASHING, BCLASS_STAB)

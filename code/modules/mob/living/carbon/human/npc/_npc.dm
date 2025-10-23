@@ -272,6 +272,7 @@
 		QDEL_NULL(mmb_intent) // unset our intent after
 		m_intent = old_m_intent
 		if(.)
+			clear_path()
 			start_pathing_to(target) // regenerate path now that we've jumped
 		return
 	m_intent = old_m_intent

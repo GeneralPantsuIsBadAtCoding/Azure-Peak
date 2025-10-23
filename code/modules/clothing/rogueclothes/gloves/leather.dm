@@ -3,7 +3,7 @@
 	name = "leather gloves"
 	desc = "Gloves made out of sturdy leather. Barely offer any protection, but are better than nothing."
 	icon_state = "leather_gloves"
-	armor = ARMOR_GLOVES_LEATHER
+	armor = ARMOR_LEATHER
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
 	max_integrity = ARMOR_INT_SIDE_LEATHER
 	resistance_flags = FIRE_PROOF
@@ -41,7 +41,7 @@
 	name = "fingerless gloves"
 	desc = "Cloth gloves to absorb palm sweat while leaving the fingers free for fine manipulation."
 	icon_state = "shadowgloves"
-	armor = ARMOR_GLOVES_CHAIN
+	armor = ARMOR_MAILLE
 	max_integrity = ARMOR_INT_SIDE_HARDLEATHER
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
@@ -50,7 +50,7 @@
 	desc = "A pair of protective gloves favored by lockshimmers, laborers, and smokers for maintaining \
 	manual dexterity over regular gloves."
 	icon_state = "roguegloves"
-	armor = ARMOR_GLOVES_LEATHER_GOOD
+	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
@@ -67,7 +67,7 @@
 	desc = "A pair of heavy Otavan leather gloves, commonly used by fencers, renowned for their quality."
 	icon_state = "fencergloves"
 	item_state = "fencergloves"
-	armor = ARMOR_GLOVES_CHAIN
+	armor = ARMOR_MAILLE
 	prevent_crits = list(BCLASS_CHOP, BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
@@ -89,7 +89,7 @@
 /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	name = "psydonic leather gloves"
 	desc = "Thick leather mittens, stitched and cuffed to guard His children's palms from perforation."
-	armor = ARMOR_GLOVES_LEATHER_GOOD
+	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST) //Equivalent to Heavy Leather Gloves. Deinherits the durability and exclusive critprot of Otavan gloves.
 	icon_state = "psydongloves"
 	item_state = "psydongloves"
@@ -102,7 +102,7 @@
 	desc = "Sleek gloves typically used by swordsmen."
 	icon_state = "eastgloves1"
 	item_state = "eastgloves1"
-	armor = ARMOR_GLOVES_LEATHER
+	armor = ARMOR_LEATHER
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	resistance_flags = null
 	blocksound = SOFTHIT
@@ -117,7 +117,7 @@
 	desc = "Unusual gloves worn by foreign gangs."
 	icon_state = "eastgloves2"
 	item_state = "eastgloves2"
-	armor = ARMOR_GLOVES_LEATHER
+	armor = ARMOR_LEATHER
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	resistance_flags = null
 	blocksound = SOFTHIT

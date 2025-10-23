@@ -32,6 +32,7 @@
 	attack_verb = list("bashes", "strikes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/lord_electrocute
 	name = "electrocute"
@@ -55,10 +56,10 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	clickcd = 8
-	damfactor = 1.1
 	swingdelay = 0
 	icon_state = "inpunch"
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR // This might be a mistake
 
 /datum/intent/knuckles/smash
 	name = "smash"
@@ -66,10 +67,8 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.1
 	clickcd = CLICK_CD_MELEE
 	swingdelay = 8
-	intent_intdamage_factor = 1.35
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
@@ -473,7 +472,7 @@
 /obj/item/rogueweapon/knuckles/eora
 	name = "close caress"
 	desc = "Some times call for a more intimate approach."
-	force = 27
+	force = 24
 	icon_state = "eoraknuckle"
 
 ///Peasantry / Militia Weapon Pack///
@@ -779,8 +778,6 @@
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
 	wbalance = WBALANCE_HEAVY
-	intdamage_factor = 0.6
-
 
 /obj/item/rogueweapon/handclaw
 	slot_flags = ITEM_SLOT_HIP

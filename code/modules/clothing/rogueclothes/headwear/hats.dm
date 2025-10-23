@@ -15,7 +15,7 @@
 	desc = "A buckled capotain, woven atop a steel skull cap. Discrete enough to wear for a diplomatic affair, but durable enough to thwart a heathen's blade."
 	icon_state = "puritan_hat"
 	sewrepair = FALSE
-	armor = ARMOR_HEAD_HELMET
+	armor = ARMOR_PLATE
 	blocksound = PLATEHIT
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	body_parts_covered = HEAD|HAIR
@@ -65,7 +65,7 @@
 	icon_state = "papakha"
 	item_state = "papakha"
 	sewrepair = TRUE
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_CLOTHING
 	blocksound = SOFTHIT
 
 /obj/item/clothing/head/roguetown/hatblu
@@ -195,8 +195,7 @@
 	icon_state = "headband"
 	item_state = "headband"
 	color = "#851a16"
-	armor = list("blunt" = 40, "slash" = 70, "stab" = 30, "piercing" = 20, "fire" = 0, "acid" = 0) // Higher slash protection, but lesser blunt-and-stab protection.
-	resistance_flags = FIRE_PROOF
+	armor = ARMOR_LEATHER_GOOD
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	body_parts_covered = HEAD|HAIR|EARS
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_TWIST) //Themed to protect against deadites and nitebeasts. Doesn't stop blunt-, smash-, or stabbing crits.
@@ -226,7 +225,7 @@
 	color = "#48443b"
 	sewrepair = TRUE
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_HEAD_PSYDON //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype. 
+	armor = ARMOR_SPELLSINGER //Higher-tier protection for pugilist-centric classes. Fits the 'glass cannon' style, and prevents instant death through a glancing headshot on the intended archetype. 
 	blade_dulling = DULLING_BASHCHOP
 	body_parts_covered = HEAD|HAIR|EARS
 	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity. Integrity boost encourages hand-to-hand parrying. Weaker than the Psydonic Thorns.
@@ -242,7 +241,7 @@
 	color = "#bfb8a9"
 	sewrepair = TRUE
 	resistance_flags = FIRE_PROOF
-	armor = ARMOR_HEAD_PSYDON //Highest preset protection value for head armor, without leaving people unable to sleep with the headband on. Should be appropriate for the Monk's role.
+	armor = ARMOR_SPELLSINGER //Highest preset protection value for head armor, without leaving people unable to sleep with the headband on. Should be appropriate for the Monk's role.
 	body_parts_covered = HEAD|HAIR|EARS
 	max_integrity = ARMOR_INT_SIDE_STEEL //High leather-tier protection and critical resistances, steel-tier integrity.
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
@@ -256,7 +255,7 @@
 	icon_state = "inqhat"
 	item_state = "inqhat"
 	max_integrity = 200
-	armor = ARMOR_HEAD_PSYDON
+	armor = ARMOR_SPELLSINGER
 	body_parts_covered = HEAD|HAIR|EARS
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	sewrepair = TRUE
@@ -421,7 +420,7 @@
 	desc = ""
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "tricorn"
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_CLOTHING
 	max_integrity = 100
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
@@ -436,7 +435,7 @@
 /obj/item/clothing/head/roguetown/helmet/tricorn/lucky
 	name = "lucky tricorn"
 	desc = "A weathered tricorn that has seen many skirmishes. You'd feel lucky with this on your head."
-	armor = ARMOR_HEAD_HELMET_BAD
+	armor = ARMOR_LEATHER
 
 /obj/item/clothing/head/roguetown/helmet/bandana
 	slot_flags = ITEM_SLOT_HEAD
@@ -444,7 +443,7 @@
 	desc = ""
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "bandana"
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_CLOTHING
 	prevent_crits = list(BCLASS_TWIST)
 	anvilrepair = null
 	smeltresult = null

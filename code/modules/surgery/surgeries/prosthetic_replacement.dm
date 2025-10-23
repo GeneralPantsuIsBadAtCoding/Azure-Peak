@@ -27,6 +27,7 @@
 	requires_bodypart_type = NONE
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
+	visible_required_skill = TRUE
 
 /datum/surgery_step/add_taur/validate_bodypart(mob/user, mob/living/carbon/target, obj/item/bodypart/bodypart, target_zone)
 	var/obj/item/bodypart/left_leg = target.get_bodypart(BODY_ZONE_L_LEG)
@@ -87,6 +88,7 @@
 	requires_bodypart_type = NONE
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
+	visible_required_skill = TRUE
 
 /datum/surgery_step/add_prosthetic/tool_check(mob/user, obj/item/tool)
 	// Use Implant taur instead, which actually works correctly
@@ -170,6 +172,7 @@
 	surgery_flags = NONE
 	preop_sound = 'sound/foley/sewflesh.ogg'
 	success_sound = 'sound/items/wood_sharpen.ogg'
+	visible_required_skill = TRUE
 
 
 /datum/surgery_step/remove_prosthetic/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)

@@ -2013,3 +2013,26 @@
 /obj/item/clothing/cloak/captain/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
+
+/obj/item/clothing/cloak/kazengun
+	name = "jinbaori"
+	desc = "A simple kind of Kazengunite surcoat, worn here in the distant battlefields of Azuria to differentiate friend from foe."
+	icon_state = "kazenguncoat"
+	item_state = "kazenguncoat"
+	detail_tag = "_detail"
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	color = "#FFFFFF"
+	detail_color = "#FFFFFF"
+
+/obj/item/clothing/cloak/kazengun/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+	
+/obj/item/clothing/cloak/kazengun/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)

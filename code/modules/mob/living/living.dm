@@ -812,20 +812,35 @@
 /mob/living/proc/check_revive(mob/living/user)
 	if(src == user)
 		return FALSE
+	if(stat < DEAD)
+		to_chat(user, span_warning("Nothing happens."))
+		return FALSE
 	if(!mind)
 		return FALSE
 	if(!mind.active)
-		to_chat(user, span_warning("Astrata is not done with [src], yet."))
+		to_chat(user, span_warning("They are unresponsive to my attempts. For now."))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_DNR))
-		to_chat(user, span_danger("None of the Ten have them. Their only chance is spent. Where did they go?"))
+		to_chat(user, span_danger("None of the divine have them. Their only chance is spent. Where did they go?"))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NECRAS_VOW))
 		to_chat(user, span_warning("This one has pledged themselves whole to Necra. They are Hers."))
 		return FALSE
-	if(stat < DEAD)
-		to_chat(user, span_warning("Nothing happens."))
+
+	var/obj/item/bodypart/head = get_bodypart("head")
+	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+
+	if(!head)
+		to_chat(user, span_warning("[src] is missing their head!"))
 		return FALSE
+	if(!brain)
+		to_chat(user, span_warning("[src] is missing their brain!"))
+		return FALSE
+	if(!heart)
+		to_chat(user, span_warning("[src] is missing their heart!"))
+		return FALSE
+
 	return TRUE
 
 //Proc used to resuscitate a mob, for full_heal see fully_heal()
