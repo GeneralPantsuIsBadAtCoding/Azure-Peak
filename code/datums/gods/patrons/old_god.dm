@@ -72,6 +72,7 @@
 		"FORGIVE THEM, ALLFATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
 		"BARE WITNESS, MY GOD; THE SACRIFICE MADE MANIFEST!",
 	)
+)
 
 /obj/effect/proc_holder/spell/self/check_boot
 	name = "BOOT-CHECK"
