@@ -294,7 +294,7 @@
 	wlength = WLENGTH_SHORT
 	slot_flags = ITEM_SLOT_HIP
 	tool_behaviour = TOOL_IMPROVISED_HEMOSTAT
-	associated_skill = null
+	associated_skill = /datum/skill/craft/blacksmithing	//Tongs don't do a lot of damage and have 3 defense. This associated skill should be alright.
 	var/obj/item/ingot/hingot = null
 	var/hott = FALSE
 	smeltresult = /obj/item/ingot/iron
@@ -418,6 +418,16 @@
 	name = "blacksteel tongs"
 	desc = "A pair of blacksteel jaws almost certainly used as a sign of prestige."
 	icon_state = "bs_tongs"
-	wdefense = 2
+	wdefense = 6
 	icon = 'icons/roguetown/weapons/tools.dmi'
 	smeltresult = /obj/item/ingot/blacksteel
+
+/obj/item/rogueweapon/tongs/blacksteel/update_icon()
+	. = ..()
+	if(!hingot)
+		icon_state = "bs_tongs"
+	else
+		if(hott)
+			icon_state = "bs_tongsi1"
+		else
+			icon_state = "bs_tongsi0"

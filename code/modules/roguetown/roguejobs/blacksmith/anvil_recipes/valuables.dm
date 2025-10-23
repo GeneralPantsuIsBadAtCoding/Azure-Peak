@@ -31,6 +31,10 @@
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/roguestatue/steel
 
+/datum/anvil_recipe/valuables/blacksteel
+	name = "Statue, Blacksteel"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/roguestatue/blacksteel
 /*
 /datum/anvil_recipe/valuables/eargol
 	name = "gold earrings"
@@ -66,6 +70,12 @@
 	req_bar = /obj/item/ingot/silver
 	created_item = /obj/item/clothing/ring/silver
 	craftdiff = SKILL_LEVEL_EXPERT
+	createditem_num = 3
+
+/datum/anvil_recipe/valuables/ringbs
+	name = "Rings, Blacksteel (x3)"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/clothing/ring/blacksteel
 	createditem_num = 3
 
 /datum/anvil_recipe/valuables/ornateamulet
@@ -219,3 +229,46 @@
 	created_item = /obj/item/rogueweapon/greatsword/psygsword/dragonslayer
 	appro_skill = /datum/skill/craft/weaponsmithing
 	craftdiff = SKILL_LEVEL_LEGENDARY
+/datum/anvil_recipe/valuables/zcross_iron
+	name = "Inverted Psycross"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/neck/roguetown/zcross/iron
+	craftdiff = 1
+
+//blacksteel Rings
+/datum/anvil_recipe/valuables/emeringbs
+	name = "Gemerald Ring, Blacksteel (+1 Gemerald)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/green)
+	created_item = /obj/item/clothing/ring/emeraldbs
+
+/datum/anvil_recipe/valuables/rubybs
+	name = "Rontz Ring, Blacksteel (+1 Rontz)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/ruby)
+	created_item = /obj/item/clothing/ring/rubybs
+
+/datum/anvil_recipe/valuables/topazbs
+	name = "Toper Ring, Blacksteel (+1 Toper)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/yellow)
+	created_item = /obj/item/clothing/ring/topazbs
+
+/datum/anvil_recipe/valuables/quartzbs
+	name = "Blortz Ring, Blacksteel (+1 Blortz)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/blue)
+	created_item = /obj/item/clothing/ring/quartzbs
+	i_type = "Valuables"
+
+/datum/anvil_recipe/valuables/sapphirebs
+	name = "Saffira Ring, Blacksteel (+1 Saffira)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/violet)
+	created_item = /obj/item/clothing/ring/sapphirebs
+
+/datum/anvil_recipe/valuables/diamondbs
+	name = "Dorpel Ring, Blacksteel (+1 Dorpel)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/roguegem/diamond)
+	created_item = /obj/item/clothing/ring/diamondbs

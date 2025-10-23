@@ -445,7 +445,24 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/goblin
 	craftdiff = 2
 
-// STEEL
+/datum/anvil_recipe/armor/plategoblin
+	name = "Goblin Mail (+1 Iron)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/iron)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
+	craftdiff = 2
+
+// --------- STEEL RECIPES -----------
+
+/datum/anvil_recipe/armor/steel/lbrigandine
+	name = "Light Brigandine (+1 Cured Leather)"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_plate
+	additional_items = list(/obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	i_type = "Armor"
+	craftdiff = 2 //not any random can make it
+
 /datum/anvil_recipe/armor/steel/haubergeon
 	name = "Haubergeon, Steel"
 	req_bar = /obj/item/ingot/steel

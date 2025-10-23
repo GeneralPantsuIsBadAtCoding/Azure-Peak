@@ -1010,12 +1010,26 @@
 
 // BLACKSTEEL
 
+
+/datum/anvil_recipe/weapons/blacksteel/arming
+	name = "Blacksteel Arming Sword"
+	req_bar = /obj/item/ingot/blacksteel
+	created_item = /obj/item/rogueweapon/sword/blacksteel
+
 /datum/anvil_recipe/weapons/blacksteel/flamberge
 	name = "Blacksteel Flamberge (+1 Blacksteel, +1 Rontz)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/roguegem/ruby)
 	created_item = /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
 
+/datum/anvil_recipe/weapons/blacksteel/decsword
+	name = "Blacksteel Sword, Decorated (+1 Steel Sword)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/rogueweapon/sword)
+	created_item = /obj/item/rogueweapon/sword/decorated/blacksteel
+	craftdiff = 5
+
+//Church Weapons forged from Holy Steel
 
 // HOLY STEEL
 

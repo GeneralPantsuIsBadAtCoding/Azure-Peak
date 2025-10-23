@@ -519,6 +519,66 @@
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/reagent_containers/glass/bowl/aalloy
 
+
+// --------- CASTING TOOLS -----------
+
+/datum/anvil_recipe/tools/crucible
+	name = "Crucible"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/reagent_containers/glass/crucible
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/sprue_funnel
+	name = "Sprue and Funnel"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/sprue_funnel
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_axe
+	name = "Axe Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/axe
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_sword
+	name = "Sword Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/sword
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_knife
+	name = "Knife Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/knife
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_mace
+	name = "Mace Head Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/mace
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_polearm
+	name = "Polearm Blade Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/polearm
+	craftdiff = 5
+	i_type = "Casting"
+
+/datum/anvil_recipe/tools/mold_plate
+	name = "Plate Mold"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/mold/plate
+	craftdiff = 5
+	i_type = "Casting"
+
 //black steel tools
 /datum/anvil_recipe/tools/blacksteel/hammer
 	name = "Blacksteel hammer (+1 Stick)"
