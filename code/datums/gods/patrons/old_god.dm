@@ -1,5 +1,41 @@
 /datum/patron/old_god
-	name = "Psydon"
+	name = "Orthodoxism"
+	worshippers = "Commonfolk, Zealots, Otavans, and those of the Holy Psydonic Inquisition."
+	desc = "... </br>'PSYDON YET LYVES! PSYDON YET ENDURES!' </br>... </br>In the wake of the Comet Syon's impact, Psydon fell silent. None truly knew what became of Him, but most had assumed the worst: that He had undertaken the ultimate sacrifice to save His world from the Archdevil. Many of His grieving children would eventually turn their prayers to the Pantheon, but a select few held hope that Psydon still lyved. Together, these apostles pilgrimaged to an ancient kingdom and chiseled the Orthodoxy from its ruins: a cathedral that would eventually be rechristened as Otava. </br>... </br>...
+	associated_faith = /datum/faith/old_god
+	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
+	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
+					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
+					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T1,
+					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
+	)
+	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
+	confess_lines = list(
+		"THERE IS ONLY ONE TRUE GOD! TO HELL WITH YOU!",
+		"PSYDON YET LYVES! PSYDON YET ENDURES!",
+		"DEATH TO THE ARCHDEVIL'S SPAWN! UP THE PSY!",
+	)
+
+/datum/patron/old_god/mystic
+	name = "Mysticism"
+	worshippers = "Naledians, Amazonians, Kazengunites, the Lingyuese, and those from abroad."
+	desc = "..AAAAAAAH. AAAAAAAAH."
+	associated_faith = /datum/faith/old_god
+	mob_traits = list(TRAIT_PSYDONIAN_GRIT)
+	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
+					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
+					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T1,
+					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
+	)
+	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
+	confess_lines = list(
+		"MY SPIRIT WARDS OFF YOUR VILE CURSES, DJINN! ETERNITY AWAITS!",
+		"PSYDON WILL LYVE ONCE MORE! UNITY WILL RETURN TO THIS WORLD!",
+		"I WILL NOT RECANT THE TRUTH! HE IS NOTHING, YET EVERYTHING!",
+	)
+
+/datum/patron/old_god/hopeful
+	name = "Spiritualism"
 	domain = "Everything."
 	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
 	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
@@ -12,6 +48,23 @@
 	)
 	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
 	confess_lines = list(
+		"WITH EVERY BROKEN BONE, I SWORE I LYVED!",
+		"FORGIVE THEM, ALLFATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
+		"BARE WITNESS, MY GOD; THE SACRIFICE MADE MANIFEST!",
+	)
+
+/datum/patron/old_god/fatal
+	name = "Fatalism"
+	domain = "Everything."
+	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
+	worshippers = "Traditionalists, Spiritualists, Extremists, Blessed Idiots, Sacrificial Heroes, and everyone in-between."
+	associated_faith = /datum/faith/old_god
+	mob_traits = list(TRAIT_PSYDONIAN_GRIT, TRAIT_PSYDONITE)
+	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
+					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
+					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T4, //Impossible to achieve,
+					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T4, //
+	confess_lines = list(
 		"THERE IS ONLY ONE TRUE GOD!",
 		"PSYDON YET LYVES! PSYDON YET ENDURES!",
 		"REBUKE THE HEATHEN, SUNDER THE MONSTER!",
@@ -19,7 +72,6 @@
 		"FORGIVE THEM, ALLFATHER, FOR THEY KNOW-NOT WHAT THEY DO!",
 		"BARE WITNESS, MY GOD; THE SACRIFICE MADE MANIFEST!",
 	)
-
 
 /obj/effect/proc_holder/spell/self/check_boot
 	name = "BOOT-CHECK"
@@ -200,7 +252,7 @@
 					if(/obj/item/clothing/neck/roguetown/psicross/silver)
 						psicross_bonus = 0.4	
 					if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
-						psicross_bonus = 0.4
+						psicross_bonus = 0.5
 					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 						zcross_trigger = TRUE	
 
