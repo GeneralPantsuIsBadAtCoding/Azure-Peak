@@ -43,7 +43,6 @@
 
 /mob/living/simple_animal/hostile/rogue/skeleton/Initialize(mapload, mob/user, cabal_affine, is_summoned)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_SIMPLE_WOUNDS, TRAIT_GENERIC) //Testing something. Don't panic.
 	ADD_TRAIT(src, TRAIT_SILVER_WEAK, TRAIT_GENERIC)
 
 /mob/living/simple_animal/hostile/rogue/skeleton/axe
