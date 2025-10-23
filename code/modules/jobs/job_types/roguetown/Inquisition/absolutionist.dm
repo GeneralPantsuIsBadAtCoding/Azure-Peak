@@ -6,7 +6,7 @@
 	total_positions = 1 // THE ONE.
 	spawn_positions = 1
 	allowed_races = RACES_ALL_KINDS
-	allowed_patrons = list(/datum/patron/old_god) //Requires the character to be a practicing Psydonite.
+	allowed_patrons = ALL_PSYDONIC_PATRONS //Requires the character to be a practicing Psydonite.
 	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
 	selection_color = JCOLOR_INQUISITION
 	outfit = /datum/outfit/job/roguetown/absolver
