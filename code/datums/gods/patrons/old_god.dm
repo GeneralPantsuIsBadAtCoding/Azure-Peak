@@ -10,8 +10,7 @@
 					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
 	)
 	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
-	confess_lines = list(
-		"THERE IS ONLY ONE TRUE GOD! TO HELL WITH YOU!",
+	confess_lines = list("THERE IS ONLY ONE TRUE GOD! TO HELL WITH YOU!",
 		"PSYDON YET LYVES! PSYDON YET ENDURES!",
 		"DEATH TO THE ARCHDEVIL'S SPAWN! UP THE PSY!",
 	)
