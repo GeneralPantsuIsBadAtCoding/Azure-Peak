@@ -6,7 +6,7 @@
 	chargetime = 0
 	range = 2
 	warnie = "sydwarning"
-	desc = "Endure the wounds of another, for their sake. </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
+	desc = "Endure the wounds of another, for their sake. </br>‎  </br>Siphons away lesser injuries, such as gashes and fractures, from the target. In exchange, any siphoned injuries are subsequently imposed onto you. If the target has lost any blood, they will be fully replenished through your own veins."
 	movement_interrupt = FALSE
 	sound = 'sound/magic/psydonbleeds.ogg'
 	invocations = list("I BLEED, SO THAT YOU MIGHT ENDURE!","PERSIST AGAINST THE PAIN!","LET YOUR WOUNDS WEEP NO MORE!")
@@ -90,7 +90,7 @@
 
 /obj/effect/proc_holder/spell/self/psydonrespite
 	name = "RESPITE"
-	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
+	desc = "Gather yourself, so that you may ready yourself for whatever lies next. </br>‎  </br>Provides health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "RESPITE"
 	releasedrain = 20
 	chargedrain = 0
@@ -297,7 +297,7 @@
 /obj/effect/proc_holder/spell/invoked/psydonabsolve	
 	name = "ABSOLVE"
 	overlay_state = "ABSOLVE"
-	desc = "Exchange your vitality for the sake of another. </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
+	desc = "Exchange your vitality for the sake of another. </br>‎  </br>Siphons away all injuries - be it physical damage, blood loss, or dismemberment - from the target, completely healing them. In exchange, all siphoned injuries are subsequently inflicted unto you. Using this on a target who's dead will fully resurrect them, albeit at the cost of your own lyfe."
 	releasedrain = 20
 	chargedrain = 0
 	chargetime = 0
