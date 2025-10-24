@@ -794,7 +794,7 @@
 
 /obj/item/flora/rogueflora/jacko/lit/Initialize()
 	. = ..()
-	set_light(1.5, 1.5, 1.5, l_color = COLOR_ORANGE)
+	set_light(1.5, 1.5, 1.5, l_color = "#FF9900")
 	
 /obj/item/pumpkin
 	name = "blumpkin"
