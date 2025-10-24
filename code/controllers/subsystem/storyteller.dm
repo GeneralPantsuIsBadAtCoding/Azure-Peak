@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/royalty = 0
 	var/constructor = 0
 	var/garrison = 0
-	var/church = 0
+	var/holy_warrior = 0
 
 	/// Is storyteller secret or not
 	var/secret_storyteller = FALSE
@@ -279,7 +279,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Gets the number of antagonists the antagonist injection events will stop rolling after.
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
-	var/total_number = get_correct_popcount() + (garrison * 2)
+	var/total_number = get_correct_popcount() + (garrison * 2) + (holy_warrior * 2)
 	var/cap = FLOOR((total_number / ANTAG_CAP_DENOMINATOR), 1) + ANTAG_CAP_FLAT
 	return cap
 
@@ -482,7 +482,7 @@ SUBSYSTEM_DEF(gamemode)
 	active_players = 0
 	royalty = 0
 	constructor = 0
-	church = 0
+	holy_warrior = 0
 	garrison = 0
 	for(var/mob/player_mob as anything in GLOB.player_list)
 		if(!player_mob.client)
@@ -499,10 +499,11 @@ SUBSYSTEM_DEF(gamemode)
 				royalty++
 			if(player_mob.mind.job_bitflag & BITFLAG_CONSTRUCTOR)
 				constructor++
-			if(player_mob.mind.job_bitflag & BITFLAG_CHURCH)
-				church++
+			if(player_mob.mind.job_bitflag & BITFLAG_HOLY_WARRIOR)
+				holy_warrior++
 			if(player_mob.mind.job_bitflag & BITFLAG_GARRISON)
 				garrison++
+			if(player_mob.mind.job_bitflag & BITFLAG_I)
 	update_pop_scaling()
 
 /datum/controller/subsystem/gamemode/proc/update_pop_scaling()
@@ -767,7 +768,7 @@ SUBSYSTEM_DEF(gamemode)
 	dat += "Storyteller: [current_storyteller ? "[current_storyteller.name]" : "None"] "
 	dat += " <a href='byond://?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='byond://?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='byond://?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='byond://?src=[REF(user.client)];panel=main;viewinfluences=1'>View Influences</a> <a href='byond://?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
-	dat += "<BR>Active Players: [active_players]   (Royalty: [royalty], Garrison: [garrison], Town Workers: [constructor], Church: [church])"
+	dat += "<BR>Active Players: [active_players]   (Royalty: [royalty], Garrison: [garrison], Town Workers: [constructor], Holy Warriors: [holy_warrior])"
 	dat += "<BR>Antagonist Count vs Maximum: [get_antag_count()] / [get_antag_cap()]"
 	dat += "<HR>"
 	dat += "<a href='byond://?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_MAIN]' [panel_page == GAMEMODE_PANEL_MAIN ? "class='linkOn'" : ""]>Main</a>"
