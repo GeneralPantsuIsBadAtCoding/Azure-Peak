@@ -37,7 +37,7 @@
 
 		if(ispath(private, /datum/patron))	//Patron signs. 
 			var/icon_plane = WEATHER_EFFECT_PLANE	//Will show up through the cone.
-			if(!ispath(private, /datum/patron/old_god))
+			if(!ispath(private, /datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)) //Should allow all Psydonic denominations to sign each other.
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					var/pass = FALSE
 					if(H.patron?.type == private || private == /datum/patron/divine/xylix)	//Xylixians will always flash the observer's religion to them.
