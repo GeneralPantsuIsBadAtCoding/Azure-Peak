@@ -9,6 +9,8 @@
 #define DESC_POPUP_WIDTH 400
 /// Height of a popup window that opens when user presses (?) and contains storyteller description
 #define DESC_POPUP_HEIGHT 250
+/// A town combatant role counts as 1 + this value towards effective population
+#define TOWN_COMBATANT_ADDITIONAL_WEIGHT 2
 
 SUBSYSTEM_DEF(gamemode)
 	name = "Gamemode"
@@ -168,6 +170,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/constructor = 0
 	var/garrison = 0
 	var/holy_warrior = 0
+	/// Calculated effective pop after weighing garrison & holy warriors at 2x
+	var/effective_pop = 0 
 
 	/// Is storyteller secret or not
 	var/secret_storyteller = FALSE
@@ -279,7 +283,8 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Gets the number of antagonists the antagonist injection events will stop rolling after.
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
-	var/total_number = get_correct_popcount() + (garrison * 2) + (holy_warrior * 2)
+	var/total_number = get_correct_popcount() + (garrison * TOWN_COMBATANT_ADDITIONAL_WEIGHT) + (holy_warrior * TOWN_COMBATANT_ADDITIONAL_WEIGHT)
+	effective_pop = total_number // For panel tracking
 	var/cap = FLOOR((total_number / ANTAG_CAP_DENOMINATOR), 1) + ANTAG_CAP_FLAT
 	return cap
 
@@ -503,7 +508,6 @@ SUBSYSTEM_DEF(gamemode)
 				holy_warrior++
 			if(player_mob.mind.job_bitflag & BITFLAG_GARRISON)
 				garrison++
-			if(player_mob.mind.job_bitflag & BITFLAG_I)
 	update_pop_scaling()
 
 /datum/controller/subsystem/gamemode/proc/update_pop_scaling()
@@ -769,6 +773,7 @@ SUBSYSTEM_DEF(gamemode)
 	dat += " <a href='byond://?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='byond://?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='byond://?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='byond://?src=[REF(user.client)];panel=main;viewinfluences=1'>View Influences</a> <a href='byond://?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
 	dat += "<BR>Active Players: [active_players]   (Royalty: [royalty], Garrison: [garrison], Town Workers: [constructor], Holy Warriors: [holy_warrior])"
+	dat += "<BR>Effective Population: [effective_pop] (Total: [active_players] + Garrison Bonus: [garrison * 2] + Holy Warrior Bonus: [holy_warrior * 2])"
 	dat += "<BR>Antagonist Count vs Maximum: [get_antag_count()] / [get_antag_cap()]"
 	dat += "<HR>"
 	dat += "<a href='byond://?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_MAIN]' [panel_page == GAMEMODE_PANEL_MAIN ? "class='linkOn'" : ""]>Main</a>"
@@ -1439,3 +1444,4 @@ SUBSYSTEM_DEF(gamemode)
 #undef ROUNDSTART_VALID_TIMEFRAME
 #undef DESC_POPUP_WIDTH
 #undef DESC_POPUP_HEIGHT
+#undef TOWN_COMBATANT_ADDITIONAL_WEIGHT
