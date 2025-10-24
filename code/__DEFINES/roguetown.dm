@@ -347,6 +347,12 @@ Balloon Alert / Floating Text defines
 
 #define ALL_PSYDONIC_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal) //Technically, it's 'denominations' instead of 'patrons'. This should work, however.
 
+#define PSYDONIC_MAJORITY_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/mystic) //Restricts access to those with the 'Orthodoxism' and 'Mysticism' beliefs. Could be implemented for the Inquisition and Naledians.
+
+#define PSYDONIC_MINORITY_PATRONS list(/datum/patron/old_god/hopeful, /datum/patron/old_god/fatal) //Ditto, except reversed for the 'Syonacism' and 'Fatalism' beliefs. Adventurer- or Mercenary-only?
+
+#define PSYDONIC_NONFATAL_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful) //Likewise, but with only 'Fatalism' excluded.
+
 #define NON_PSYDON_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)	//For lord/heir usage
 
 #define ALL_PATRONS  list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha, /datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
