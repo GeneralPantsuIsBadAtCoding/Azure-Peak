@@ -62,7 +62,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/town/sewer)
 "R" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
@@ -71,11 +71,11 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/town/sewer)
 "V" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "W" = (
-/mob/living/carbon/human/species/skeleton/npc,
+/obj/effect/landmark/mob_spawner/skeleton,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 

@@ -39,7 +39,7 @@
 	},
 /area/rogue/outdoors/woods)
 "ak" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck{
+/obj/effect/landmark/mob_spawner/saiga/saigabuck{
 	tame = 1
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -128,7 +128,7 @@
 /turf/closed/indestructible/riveted/boss,
 /area/rogue/outdoors/woods)
 "aR" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mole,
+/obj/effect/landmark/mob_spawner/mole,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "aU" = (
@@ -142,7 +142,7 @@
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/outdoors/woods)
 "cS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
+/obj/effect/landmark/mob_spawner/goatmale,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
 "di" = (
@@ -153,11 +153,11 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/woods)
 "dZ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/obj/effect/landmark/mob_spawner/goat,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "es" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck,
+/obj/effect/landmark/mob_spawner/saiga/saigabuck,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "fA" = (

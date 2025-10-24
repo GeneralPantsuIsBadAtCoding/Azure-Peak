@@ -36,7 +36,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "k" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "l" = (
@@ -197,7 +197,7 @@
 /area/rogue/under/town/sewer)
 "T" = (
 /obj/item/reagent_containers/glass/bowl,
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "U" = (

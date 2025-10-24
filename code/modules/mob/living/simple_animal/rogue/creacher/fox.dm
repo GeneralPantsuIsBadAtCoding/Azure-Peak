@@ -65,7 +65,10 @@
 	dodgetime = 30
 	aggressive = 1
 	eat_forever = TRUE
-	
+
+/mob/living/simple_animal/hostile/retaliate/rogue/fox/mimi
+	name = "Mimi the fox"
+	aggressive = 0
 
 /obj/effect/decal/remains/fox
 	name = "remains"

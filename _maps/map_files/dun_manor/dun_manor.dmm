@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/mob/living/carbon/human/species/goblin/npc/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /obj/structure/bed/rogue/shit{
 	name = "makeshift bed"
 	},
@@ -52,7 +52,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "aam" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/goat,
+/obj/effect/landmark/mob_spawner/goat,
 /obj/effect/decal/cobbleedge{
 	dir = 5
 	},
@@ -1117,7 +1117,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "aLV" = (
-/mob/living/simple_animal/pet/cat/rogue/black{
+/obj/effect/landmark/mob_spawner/cat/rogue/black{
 	name = "Morticia"
 	},
 /turf/open/floor/rogue/cobble,
@@ -2154,7 +2154,7 @@
 	},
 /area/rogue/outdoors/town)
 "bsO" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "bsT" = (
@@ -2448,7 +2448,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/bath)
 "bGE" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
+/obj/effect/landmark/mob_spawner/cow,
 /obj/effect/decal/mossy,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
@@ -2474,7 +2474,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "bHp" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog,
+/obj/effect/landmark/mob_spawner/troll/bog,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "bHt" = (
@@ -4130,7 +4130,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "cOM" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/sewer)
 "cOV" = (
@@ -4496,7 +4496,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "cZX" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/cow,
+/obj/effect/landmark/mob_spawner/cow,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
 "dau" = (
@@ -5221,7 +5221,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/town/manor)
 "dwd" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bull,
+/obj/effect/landmark/mob_spawner/bull,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
 "dwf" = (
@@ -7511,7 +7511,7 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/town)
 "fgE" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/under/town/sewer)
 "fgI" = (
@@ -8864,7 +8864,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
 "gfS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken,
+/obj/effect/landmark/mob_spawner/chicken,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
 "gfW" = (
@@ -10414,7 +10414,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town)
 "hpr" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame,
+/obj/effect/landmark/mob_spawner/saiga/saigabuck/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "hpu" = (
@@ -11012,7 +11012,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors)
 "hNE" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
 "hOo" = (
@@ -15483,7 +15483,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/exposed/town/keep)
 "kTL" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/floor/rogue/sand,
 /area/rogue/outdoors/beach)
 "kTO" = (
@@ -15557,7 +15557,7 @@
 /area/rogue/indoors/town/manor)
 "kVa" = (
 /obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
 "kVE" = (
@@ -15863,7 +15863,7 @@
 /obj/effect/decal/cobbleedge{
 	icon_state = "cobbleedge-n"
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/goatmale,
+/obj/effect/landmark/mob_spawner/goatmale,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
 "lfB" = (
@@ -17893,7 +17893,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "mzS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
+/obj/effect/landmark/mob_spawner/mudcrab,
 /turf/open/water/cleanshallow,
 /area/rogue/outdoors/beach)
 "mAd" = (
@@ -19105,7 +19105,7 @@
 /obj/structure/stairs{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/obj/effect/landmark/mob_spawner/chicken{
 	gender = "male"
 	},
 /obj/structure/fluff/nest,
@@ -19662,7 +19662,7 @@
 /area/rogue/outdoors/mountains)
 "nLd" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "nLi" = (
@@ -22907,7 +22907,7 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "pUJ" = (
-/mob/living/carbon/human/species/skeleton/npc/medium,
+/obj/effect/landmark/mob_spawner/skeleton/medium,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains)
 "pUO" = (
@@ -23711,7 +23711,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
 "qEl" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/rtfield)
 "qFk" = (
@@ -25473,7 +25473,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
 "rQD" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "rQG" = (
@@ -25544,7 +25544,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/dwarfin)
 "rRK" = (
-/mob/living/simple_animal/pet/cat/inn{
+/obj/effect/landmark/mob_spawner/cat/inn{
 	name = "Bintu"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -26011,7 +26011,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
+/obj/effect/landmark/mob_spawner/saiga/saigabuck/tame/saddled,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "sjW" = (
@@ -26326,7 +26326,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
 "stm" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/obj/effect/landmark/mob_spawner/wolf,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/rtfield)
@@ -27427,7 +27427,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "tid" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)
 "tiq" = (
@@ -27877,7 +27877,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "txp" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/water/swamp,
 /area/rogue/under/town/sewer)
 "txv" = (
@@ -28193,7 +28193,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church)
 "tGy" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/obj/effect/landmark/mob_spawner/bigrat,
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
 "tGA" = (
@@ -28425,7 +28425,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "tQM" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame,
+/obj/effect/landmark/mob_spawner/saiga/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "tQO" = (
@@ -28703,7 +28703,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/church/basement)
 "tZW" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/chicken{
+/obj/effect/landmark/mob_spawner/chicken{
 	gender = "male"
 	},
 /turf/open/floor/rogue/hay,
@@ -28783,7 +28783,7 @@
 /obj/effect/decal/cobbleedge{
 	icon_state = "cobbleedge-n"
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/trufflepig,
+/obj/effect/landmark/mob_spawner/trufflepig,
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
 "udD" = (
@@ -28808,7 +28808,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/town/basement/keep)
 "ueS" = (
-/mob/living/carbon/human/species/goblin/npc/cave,
+/obj/effect/landmark/mob_spawner/goblin/cave,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "ufp" = (
@@ -30288,7 +30288,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
+/obj/effect/landmark/mob_spawner/saiga/tame/saddled,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "vnd" = (
