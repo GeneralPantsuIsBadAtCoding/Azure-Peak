@@ -80,6 +80,7 @@
 							 /obj/item/heart_blood_canister/filled = 1,
 							 /obj/item/heart_blood_vial = 5,
 							 /obj/item/heart_blood_canister = 1,
+							 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1,
 							 /obj/item/roguekey/keeper)
 	// I hate stuff like this, but it's just to let people know it exists.
 	if(prob(5))
