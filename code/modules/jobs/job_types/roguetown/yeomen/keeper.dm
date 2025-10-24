@@ -18,8 +18,7 @@
 
 	job_traits = list(TRAIT_MEDICINE_EXPERT, TRAIT_HOMESTEAD_EXPERT,
 						  TRAIT_ALCHEMY_EXPERT, TRAIT_SEWING_EXPERT,
-						  TRAIT_SURVIVAL_EXPERT, TRAIT_NOPAINSTUN,
-						  TRAIT_NOPAIN, TRAIT_NOSTINK,
+						  TRAIT_SURVIVAL_EXPERT, TRAIT_NOSTINK,
 						  TRAIT_GRABIMMUNE)
 
 	advclass_cat_rolls = list(CTAG_KEEPER = 2)
@@ -38,11 +37,11 @@
 		STATKEY_INT = 3,
 		STATKEY_WIL = 5,
 		STATKEY_CON = 3,
-		STATKEY_STR = -4
+		STATKEY_STR = -5,
+		STATKEY_PER = 2
 	)
 	subclass_skills = list(
-		/datum/skill/combat/knives = SKILL_LEVEL_MASTER,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE,
@@ -59,6 +58,7 @@
 		/datum/skill/labor/butchering = SKILL_LEVEL_EXPERT,
 		/datum/skill/magic/holy = SKILL_LEVEL_MASTER,
 	)
+	adv_stat_ceiling = list(STAT_STRENGTH = 6)
 
 /datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
 	..()
