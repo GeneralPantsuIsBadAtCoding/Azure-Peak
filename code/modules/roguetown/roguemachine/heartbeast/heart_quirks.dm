@@ -308,6 +308,7 @@
 	var/last_attack_time = 0
 	var/attack_cooldown = 0
 	var/saw_meat = FALSE
+	var/base_attack_time = 4 SECONDS
 	color = "#8b0000"
 	required_item = /obj/item/alch/atropa
 	calibration_required = 3
@@ -318,9 +319,10 @@
 		return
 
 	if(beast.heart_beast.recently_fed)
-		attack_cooldown = 120 SECONDS
+		attack_cooldown = 600 SECONDS
 		last_attack_time = world.time
 		beast.heart_beast.recently_fed = FALSE
+		base_attack_time = initial(base_attack_time)
 		return
 
 	// Calculate happiness percentage (1-100)
@@ -330,11 +332,6 @@
 		return
 
 	var/attack_prob = 100 - happiness_percent
-	var/attack_prob_fraction = attack_prob / 100
-	var/cooldown_lower_limit = round(30 * attack_prob_fraction)
-	var/cooldown_upper_limit = cooldown_lower_limit * 2
-	var/cooldown = (rand(cooldown_lower_limit, cooldown_upper_limit) SECONDS)
-
 	// Look for mobs within 2 tiles in visible turfs
 	var/attack_triggered = FALSE
 	for(var/turf/T in visible_turfs)
@@ -351,9 +348,11 @@
 						if(I.item_flags & FRESH_FOOD_ITEM)
 							has_meat = TRUE
 							break
+						else
+							beast.heart_beast.visible_message(span_infection("The beast touches the meat with one of it's tentacles, and recoils. Maybe it isn't fresh enough?"))
 
 				if(has_meat)
-					cooldown = 20 SECONDS
+					attack_cooldown = 20 SECONDS
 					last_attack_time = world.time
 					attack_triggered = TRUE
 					saw_meat = TRUE
@@ -361,21 +360,39 @@
 
 			// Calculate attack probability based on unhappiness
 			if(prob(attack_prob))
-				trigger_territorial_attack(L, beast)
+				trigger_territorial_attack(L, beast, TRUE)
 				attack_triggered = TRUE
-				saw_meat = FALSE
 				break
 
 		if(attack_triggered)
 			break
 
-	if(attack_triggered)
+/datum/flesh_quirk/territorial/proc/trigger_territorial_attack(mob/living/target, datum/component/chimeric_heart_beast/beast, grace_period = FALSE)
+	beast.heart_beast.visible_message(span_userdanger("Tendrils from [beast.heart_beast] lash out at [target]!"))
+	playsound(beast.heart_beast, 'sound/misc/murderbeast.ogg', 100, FALSE)
+	var/happiness_percent = round((beast.happiness / beast.max_happiness) * 100)
+	var/attack_prob = 100 - happiness_percent
+	var/attack_prob_fraction = attack_prob / 100
+	var/cooldown_lower_limit = round(30 * attack_prob_fraction)
+	var/cooldown_upper_limit = cooldown_lower_limit * 2
+	var/cooldown = (rand(cooldown_lower_limit, cooldown_upper_limit) SECONDS)
+	if(grace_period)
+		spawn(base_attack_time)
+			if(get_dist(beast.heart_beast, target) > 2)
+				beast.heart_beast.visible_message(span_infection("Tendrils from [beast.heart_beast] barely can't reach [target]! That was close..."))
+				base_attack_time = max(5, base_attack_time - 10)
+				return
+			target.apply_status_effect(/datum/status_effect/territorial_rage, beast.heart_beast)
+			saw_meat = FALSE
+			last_attack_time = world.time
+			attack_cooldown = cooldown
+			base_attack_time = initial(base_attack_time)
+	else
+		target.apply_status_effect(/datum/status_effect/territorial_rage, beast.heart_beast)
+		saw_meat = FALSE
 		last_attack_time = world.time
 		attack_cooldown = cooldown
-
-/datum/flesh_quirk/territorial/proc/trigger_territorial_attack(mob/living/target, datum/component/chimeric_heart_beast/beast)
-	target.apply_status_effect(/datum/status_effect/territorial_rage, beast.heart_beast)
-	beast.heart_beast.visible_message(span_userdanger("Tendrils from [beast.heart_beast] lash out at [target]!"))
+		base_attack_time = initial(base_attack_time)
 
 /datum/flesh_quirk/mimic
 	name = "Mimic"
