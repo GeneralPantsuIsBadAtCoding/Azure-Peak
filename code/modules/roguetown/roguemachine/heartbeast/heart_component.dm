@@ -226,7 +226,7 @@
 		heart_beast.visible_message(span_warning("Tendrils from [heart_beast] extend towards [user] attentively!"))
 	else if (!satisfied)
 		playsound(heart_beast, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		heart_beast.visible_message(span_warning("The [heart_beast] seems too grumpy to learn right now..."))
+		heart_beast.visible_message(span_warning("The [heart_beast] seems too grumpy to learn right now... perhaps it wants something else first."))
 
 /datum/component/chimeric_heart_beast/proc/on_item_interact(datum/source, obj/item/I, mob/user)
 	SIGNAL_HANDLER

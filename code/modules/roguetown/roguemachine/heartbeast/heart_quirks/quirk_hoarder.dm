@@ -221,7 +221,7 @@
 	if(get_dist(I, heart_component.heart_beast) > 3)
 		return TRUE
 
-	if(istype(I.loc, /obj/item/storage/roguebag))
+	if(istype(I.loc, /obj/item/storage))
 		return TRUE
 
 	if(istype(I.loc, /obj/structure/closet))

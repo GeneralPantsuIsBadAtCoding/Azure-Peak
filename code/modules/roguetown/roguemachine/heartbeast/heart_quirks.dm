@@ -340,6 +340,10 @@
 
 		for(var/mob/living/L in T)
 			if(L.stat == DEAD)
+				if(!iscarbon(L))
+					L.gib()
+					beast.heart_beast.visible_message(span_danger("[beast.heart_breast] tears [L] apart! It seems... deeply satisfied."))
+					beast.heart_beast.recently_fed = TRUE
 				continue
 			var/has_meat = FALSE
 			if(!saw_meat)
