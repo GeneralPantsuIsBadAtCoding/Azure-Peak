@@ -39,6 +39,10 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"bu" = (
+/obj/structure/roguemachine/contractledger,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "bT" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid";
@@ -2902,7 +2906,7 @@ Va
 yK
 yK
 rT
-vq
+bu
 rT
 rT
 rT
