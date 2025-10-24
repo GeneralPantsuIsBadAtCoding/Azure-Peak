@@ -1157,9 +1157,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 	var/lang = carbon.get_default_language()
 	var/picked_message = pick(messages)
-	var/msg = obj.compose_message(obj, carbon.get_default_language(), picked_message)
+	var/composed = obj.compose_message(obj, carbon.get_default_language(), picked_message)
 
-	carbon.Hear(msg, obj, lang, picked_message)
+	carbon.Hear(composed, obj, lang, picked_message)
 
 	if(prob(20))
 		carbon.emote("whimper")

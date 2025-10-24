@@ -1,6 +1,6 @@
 /datum/advclass/vagabond_unraveled
     name = "The Unraveled"
-    tutorial = "Your mind is frayed and unraveling — reality slips through your fingers like threads of a broken tapestry. Hallucinations blur truth and lie, driving you between brilliance and madness."
+    tutorial = "Once you sought to understand the mind’s decay — now you live within it, a wandering physician bound to his own affliction."
     allowed_sexes = list(MALE, FEMALE)
     allowed_races = RACES_NO_CONSTRUCT
     outfit = /datum/outfit/job/roguetown/vagabond/unraveled
@@ -11,18 +11,23 @@
         STATKEY_LCK = -2,
     )
     subclass_skills = list(
+        /datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
         /datum/skill/misc/medicine = SKILL_LEVEL_EXPERT,
-        /datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+        /datum/skill/misc/climbing = SKILL_LEVEL_EXPERT
     )
+    extra_context = "Constantly hallucinates."
 
 /datum/outfit/job/roguetown/vagabond/unraveled/pre_equip(mob/living/carbon/human/human)
     ..()
-        
+    
+    if(should_wear_femme_clothes(human))
+        armor = /obj/item/clothing/suit/roguetown/shirt/rags
+    
     pants = /obj/item/clothing/under/roguetown/loincloth
     r_hand = /obj/item/rogueweapon/woodstaff
 
     if(prob(33))
         cloak = /obj/item/clothing/cloak/half/brown
         gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	
+
     human.hallucination = INFINITY
