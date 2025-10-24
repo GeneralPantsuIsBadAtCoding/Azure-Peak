@@ -364,14 +364,14 @@ Inquisitorial armory down here
 		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
-			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
+			if(H.patron?.type == /datum/patron/old_god, /datum/patron/old_god/mystic) //Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
-			if(H.patron?.type == /datum/patron/old_god/hopeful)							//Syonics suffer a heavier mental break for longer, due to their more prominent connection to Syon's shard.
+			if(H.patron?.type == /datum/patron/old_god/hopeful) //Syonics suffer a heavier mental break for longer, due to their more prominent connection to Syon's shard.
 				H.add_stress(/datum/stressevent/syoncalamityhopeful)
-			if(H.patron?.type == /datum/patron/old_god/fatal)							//Fatalists are less effected, either due to their theological distance or due to more cynical beliefs.
+			if(H.patron?.type == /datum/patron/old_god/fatal) //Fatalists are less effected, either due to their theological distance or due to more cynical beliefs.
 				H.add_stress(/datum/stressevent/syoncalamityfatal)
 			else
-				H.add_stress(/datum/stressevent/syoncalamityother)						//Minor and short stress event to the Pantheoneers and Inhumane. Something terrible has happened - they may not know it, but they feel it.
+				H.add_stress(/datum/stressevent/syoncalamityother) //Minor and short stress event to the Pantheoneers and Inhumane. Something terrible has happened - they may not know it, but they feel it.
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
