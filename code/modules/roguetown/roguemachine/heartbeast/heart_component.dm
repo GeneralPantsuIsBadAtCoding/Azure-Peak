@@ -17,7 +17,7 @@
 	var/datum/flesh_task/current_task
 	var/datum/flesh_task/next_task
 	var/last_task_time = 0
-	var/task_cooldown = 90 SECONDS
+	var/task_cooldown = 75 SECONDS
 
 	var/mob/living/current_listener
 	var/listener_timeout_time = 0
@@ -341,9 +341,9 @@
 
 	// Calculate rewards
 	var/blood_reward = (max_blood_pool / 10) * reward_multiplier * (quirk_effects["blood_multiplier"] || 1)
-	// 12 - 24 - 48 - 96 Under perfect circumstances
+	// 20 - 40 - 80 - 160 Under perfect circumstances
 	var/rack_multiplier = linked_rack.update_rack_stats()
-	var/tech_reward = (12 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
+	var/tech_reward = (20 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
 	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
 	var/language_progress_reward = (max_language_progress / 8) * reward_multiplier
 
