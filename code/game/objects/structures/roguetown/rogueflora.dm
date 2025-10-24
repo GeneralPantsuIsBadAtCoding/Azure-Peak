@@ -764,3 +764,81 @@
 /obj/structure/flora/roguetree/pine/dead/Initialize()
 	. = ..()
 	icon_state = "dead[rand(1, 3)]"
+
+// Pumpkins!
+
+/obj/structure/flora/rogueflora/pumpkin
+	name = "blumpkin"
+	icon_state = "pumpkin"
+	desc = "A blumpkin. Spooky!"
+
+/obj/structure/flora/rogueflora/pumpkin/attack_hand(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		user.changeNext_move(CLICK_CD_INTENTCAP)
+		playsound(src.loc, "plantcross", 50, FALSE, -1)
+		if(do_after(L, SEARCHTIME, target = src))
+			var/obj/item/pumpkin/P = new /obj/item/pumpkin()
+			user.put_in_hands(P)
+			user.visible_message(span_warning("[user] lifts [src] from the ground."))
+			qdel(src) // Delete ground pumpkin after it's picked up.
+
+/obj/structure/flora/rogueflora/jacko
+	name = "jack-o-lantern"
+	icon_state = "jacko"
+	desc = "A blumpkin. This one has a face carved into it. Spooky!"
+
+/obj/structure/flora/rogueflora/jacko/lit
+	icon_state = "jackolit"
+	desc = "A blumpkin. This one has a face carved into it and a candle placed inside. Spooky!"
+
+/obj/item/flora/rogueflora/jacko/lit/Initialize()
+	. = ..()
+	set_light(1.5, 1.5, 1.5, l_color = COLOR_ORANGE)
+	
+/obj/item/pumpkin
+	name = "blumpkin"
+	icon_state = "pumpkinobj"
+	icon = 'icons/obj/flora/rogueflora.dmi'
+	var/carved = FALSE
+	var/lit = FALSE
+
+/obj/item/pumpkin/attackby(obj/item/I, mob/living/user, params)
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+
+	if(user.used_intent?.blade_class == BCLASS_CUT)
+		playsound(get_turf(src.loc), 'sound/items/wood_sharpen.ogg', 100)
+		user.visible_message(span_notice("Begins carving [src]..."))
+		if(do_after(user, 4 SECONDS))
+			user.visible_message(span_notice("[user] carves [src]."))
+			icon_state = "jackoobj"
+			carved = TRUE
+
+	if(istype(I, /obj/item/candle/yellow/lit) && (carved == TRUE))
+		if(do_after(user, 4 SECONDS))
+			user.visible_message(span_notice("[user] places the candle inside [src]."))
+			icon_state = "jackolitobj"
+			lit = TRUE
+			qdel(I)
+
+/obj/item/pumpkin/attack_self(mob/user)
+	. = ..()
+	var/turf/target_turf = get_step(user,user.dir)
+	if(target_turf.is_blocked_turf(TRUE) || (locate(/mob/living) in target_turf))
+		to_chat(user, span_danger("I can't place the blumpkin here!"))
+		return NONE
+	if(isopenturf(target_turf))
+		deploy_pumpkin(user, target_turf)
+		return TRUE
+	return NONE
+
+/obj/item/pumpkin/proc/deploy_pumpkin(mob/user, atom/location)
+	to_chat(user, "<span class='notice'>You set the blumpkin down!</span>")
+	if(carved)
+		if(lit)
+			new /obj/structure/flora/rogueflora/jacko/lit(location)
+		else
+			new /obj/structure/flora/rogueflora/jacko(location)
+	else
+		new /obj/structure/flora/rogueflora/pumpkin(location)
+	qdel(src)

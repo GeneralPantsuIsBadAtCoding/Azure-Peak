@@ -81,7 +81,8 @@
 	/obj/structure/flora/roguegrass/herb/valeriana,
 	/obj/structure/flora/roguegrass/herb/artemisia,
 	/obj/structure/flora/roguegrass/herb/rosa,
-	/obj/structure/flora/roguegrass/swampweed))
+	/obj/structure/flora/roguegrass/swampweed,
+	/obj/structure/flora/rogueflora/pumpkin))
 
 	var/obj/structure/flora/roguegrass/herb/boi = new type
 	boi.forceMove(get_turf(src))
