@@ -11,6 +11,7 @@
 	selection_color = JCOLOR_YEOMAN
 	allowed_races = ACCEPTED_RACES
 	display_order = JDO_TAILOR
+	job_traits = list(TRAIT_SEWING_EXPERT)
 	outfit = /datum/outfit/job/roguetown/tailor
 	give_bank_account = 16
 	min_pq = 0
@@ -35,7 +36,7 @@
 	)
 	subclass_skills = list(
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/sewing = SKILL_LEVEL_MASTER,
+		/datum/skill/craft/sewing = SKILL_LEVEL_MASTER,
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/tanning = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
@@ -67,3 +68,4 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fittedclothing)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice)

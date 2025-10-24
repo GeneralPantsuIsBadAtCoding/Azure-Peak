@@ -1,0 +1,33 @@
+
+/datum/clan_leader/thronleer
+	lord_spells = list(
+		/obj/effect/proc_holder/spell/targeted/shapeshift/gaseousform
+	)
+	lord_verbs = list(
+		/mob/living/carbon/human/proc/punish_spawn
+	)
+	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY)
+	lord_title = "Elder"
+
+/datum/clan/thronleer
+	name = "House Thronleer"
+	desc = "House Thronleer is a secretive, tradition‑bound clan that favors ritual, subtlety, and guile."
+	curse = "Weakness of the soul."
+	clanicon = "bloodheal"
+	blood_preference = BLOOD_PREFERENCE_FANCY
+	clane_covens = list(
+		/datum/coven/obfuscate,
+		/datum/coven/presence,
+		/datum/coven/demonic,
+	)
+	leader = /datum/clan_leader/thronleer
+	covens_to_select = 0
+
+/datum/clan/thronleer/get_blood_preference_string()
+	return "prepared blood"
+
+/datum/clan/thronleer/get_downside_string()
+	return "weak in fights"
+
+/datum/clan/thronleer/apply_clan_components(mob/living/carbon/human/H)
+	H.AddComponent(/datum/component/vampire_disguise)

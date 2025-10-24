@@ -7,7 +7,7 @@
 	outfit = /datum/outfit/job/roguetown/wretch/hedgemage
 	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	// Same stat spread as necromancer, same reasoning
 	subclass_stats = list(
 		STATKEY_INT = 4,
@@ -42,7 +42,7 @@
 	beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
 	neck = /obj/item/clothing/neck/roguetown/leather // No iron gorget vs necro. They will have to acquire one in round.
 	beltl = /obj/item/storage/magebag
-	backl = /obj/item/storage/backpack/rogue/satchel
+	backl = /obj/item/storage/backpack/rogue/backpack
 	backr = /obj/item/rogueweapon/woodstaff/ruby
 	backpack_contents = list(
 		/obj/item/spellbook_unfinished/pre_arcyne = 1, 

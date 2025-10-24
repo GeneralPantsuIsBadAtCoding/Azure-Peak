@@ -21,9 +21,9 @@
 
 /* Non-Ideal but a way to replicate old vault mechanics:
 	- Ore are not accepted
-	- Items that are important are not accepted. 
+	- Items that are important are not accepted.
 	- Statue, cups, ring, platter and candles  will always be allowed
-	- Otherwise, anything above 30 value can get eaten. 
+	- Otherwise, anything above 30 value can get eaten.
 */
 /datum/roguestock/bounty/treasure/check_item(obj/I)
 	if(!I)
@@ -38,6 +38,8 @@
 		return FALSE // Thats the HEADEATER's job
 	if(istype(I, /obj/item/natural/head))
 		return FALSE  // Thats the HEADEATER's job
+	if(istype(I, /obj/item/storage))
+		return FALSE //Anti-Exploit fix
 	if(I.get_real_price() > 0)
 		if(istype(I, /obj/item/roguestatue))
 			return TRUE

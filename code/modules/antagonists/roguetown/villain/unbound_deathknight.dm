@@ -52,6 +52,7 @@
 	ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(L, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(L, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(L, TRAIT_SELF_SUSTENANCE, TRAIT_GENERIC)
 
 /datum/antagonist/unbound_death_knight/proc/equip_knight()
 	owner.unknow_all_people()
@@ -235,3 +236,14 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/suit/roguetown/armor/plate/blkknight/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/shoes/roguetown/boots/armor/blkknight/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/gloves/roguetown/plate/blk/death
+	color = CLOTHING_BLACK
+
+/obj/item/clothing/under/roguetown/platelegs/blk/death
+	color = CLOTHING_BLACK

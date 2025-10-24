@@ -440,3 +440,29 @@
 	name = "aavnic riding bow"
 	desc = "A short recurve warbow made for the express purpose of shooting on saigaback, a skill every archer in Aavnr takes much more seriously than their Northern counterparts. Every seasoned Druzhina is themselves a good bowyer and usually makes their own bow, this one is made with the purpure-ish crimson wood of a Vörötslevé tree."
 	icon_state = "recurve_riding"
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/bow/short
+	name = "short bow"
+	desc = "As the eagle was killed by the arrow winged with his own feather, so the hand of the world is wounded by its own skill."
+	icon = 'icons/roguetown/weapons/misc32.dmi'
+	icon_state = "bow" //No time for sprite this shit
+	item_state = "bow" 
+	possible_item_intents = list(
+		/datum/intent/shoot/bow/short,
+		/datum/intent/arc/bow/short,
+		INTENT_GENERIC,
+		)
+	randomspread = 1
+	spread = 1
+	force = 9
+	damfactor = 0.9
+
+/datum/intent/shoot/bow/short
+	chargetime = 0.75
+	chargedrain = 1.5
+	charging_slowdown = 2.5
+
+/datum/intent/arc/bow/short
+	chargetime = 0.75
+	chargedrain = 1.5
+	charging_slowdown = 2.5

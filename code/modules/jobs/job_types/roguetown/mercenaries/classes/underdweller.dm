@@ -5,6 +5,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/dwarf/mountain,
+		/datum/species/dwarf/gnome,
 		/datum/species/elf/dark,
 		/datum/species/kobold,
 		/datum/species/goblinp,				//Might be a little weird but goblins do reside in caves, and they could use a unique merc class type.

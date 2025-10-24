@@ -4,6 +4,7 @@ import { Window } from 'tgui/layouts';
 import { Box, Section, Stack, TextArea } from 'tgui-core/components';
 import { isEscape, KEY } from 'tgui-core/keys';
 import type { BooleanLike } from 'tgui-core/react';
+
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -16,6 +17,7 @@ type TextInputData = {
   timeout: number;
   title: string;
   spellcheck: BooleanLike;
+  bigmodal?: boolean;
 };
 
 export const sanitizeMultiline = (toSanitize: string) => {
@@ -37,6 +39,7 @@ export const TextInputModal = (props) => {
     timeout,
     title,
     spellcheck,
+    bigmodal,
   } = data;
 
   const [input, setInput] = useState(placeholder || '');
@@ -53,11 +56,15 @@ export const TextInputModal = (props) => {
 
   const visualMultiline = multiline || input.length >= 30;
   // Dynamically changes the window height based on the message.
-  const windowHeight =
-    135 +
-    (message.length > 30 ? Math.ceil(message.length / 4) : 0) +
+  const dynamicHeight = message.length > 30 ? 
+    (message.length / 40) * 18 : 18;
+
+  let windowHeight =
+    135 + dynamicHeight +
     (visualMultiline ? 75 : 0) +
     (message.length && large_buttons ? 5 : 0);
+  if (bigmodal) windowHeight = 425; // Override and just make a big modal for FT / OOC Notes
+  const windowWidth = bigmodal ? 530 : 325;
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (event.key === KEY.Enter && (!visualMultiline || !event.shiftKey)) {
@@ -68,9 +75,9 @@ export const TextInputModal = (props) => {
     }
   }
   return (
-    <Window title={title} width={325} height={windowHeight} disablesidebar>
+    <Window title={title} width={windowWidth} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
-      <Window.Content onKeyDown={handleKeyDown} disablesidebar>
+      <Window.Content onKeyDown={handleKeyDown}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item>
@@ -93,7 +100,7 @@ export const TextInputModal = (props) => {
             <Stack.Item>
               <InputButtons
                 input={input}
-                message={`${input.length}/${max_length || '∞'}`}
+                message={`${input.length}`}
               />
             </Stack.Item>
           </Stack>

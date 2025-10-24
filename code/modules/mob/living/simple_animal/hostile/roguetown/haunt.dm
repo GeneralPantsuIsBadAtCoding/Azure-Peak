@@ -17,7 +17,6 @@
 	response_help_simple = "pass through"
 	maxHealth = HAUNT_HEALTH
 	health = HAUNT_HEALTH
-	spacewalk = TRUE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	speed = 1

@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(statpacks)
 				if (sub_range >= 1)
 					modifier = "+"
 
-				chunk_string += "<b>[modifier][sub_range]</b>"
+				chunk_string += "[modifier][sub_range]"
 
 			var/statlabel = uppertext(copytext(stat, 1, 4))
 			concat += "[chunk_string.Join(" to ")] [statlabel]"

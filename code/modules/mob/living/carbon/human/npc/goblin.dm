@@ -15,7 +15,6 @@
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/swift, /datum/rmb_intent/riposte, /datum/rmb_intent/weak)
 	flee_in_pain = TRUE
-	vitae_pool = 250 // Small, frail creechers with not so much vitality to gain from.
 
 /mob/living/carbon/human/species/goblin/npc
 	aggressive=1
@@ -45,6 +44,10 @@
 	name = "hell goblin"
 	id = "goblin_hell"
 	raceicon = "goblin_hell"
+
+/datum/species/goblin/hell/spec_death(gibbed, mob/living/carbon/human/H)
+	new /obj/item/alch/infernaldust(get_turf(H))
+	H.visible_message("<span class='blue'>Infernal dust falls from [H]!</span>")
 
 /mob/living/carbon/human/species/goblin/cave
 	name = "cave goblin"
@@ -338,7 +341,7 @@
 		if(5) //heavy armored sword/flail/shields
 			ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			if(prob(30))
-				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron/goblin
 			else
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/goblin
 			if(prob(80))

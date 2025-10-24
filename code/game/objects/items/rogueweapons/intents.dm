@@ -235,6 +235,10 @@
 /datum/intent/proc/on_mmb(atom/target, mob/living/user, params)
 	return
 
+// Do something special when this intent is applied to a living target, H being the receiver and user being the attacker
+/datum/intent/proc/spec_on_apply_effect(mob/living/H, mob/living/user, params)
+	return
+
 /datum/intent/use
 	name = "use"
 	icon_state = "inuse"
@@ -646,6 +650,7 @@
 	item_d_type = "blunt"
 	intent_effect = /datum/status_effect/debuff/dazed
 	target_parts = list(BODY_ZONE_HEAD)
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /*/datum/intent/effect/daze/shield
 	intent_effect = /datum/status_effect/debuff/dazed/shield

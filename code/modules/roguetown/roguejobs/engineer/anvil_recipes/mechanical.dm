@@ -2,6 +2,15 @@
 	i_type = "Engineering"
 	appro_skill = /datum/skill/craft/engineering
 	craftdiff = 1
+	
+//--------- TIN RECIPES -----------
+
+/datum/anvil_recipe/engineering/nails
+	name = "3x nails"
+	req_bar = /obj/item/ingot/tin
+	created_item = /obj/item/construction/nail
+	createditem_num = 3
+	craftdiff = 1
 
 // --------- IRON RECIPES -----------
 
@@ -120,7 +129,7 @@
 /datum/anvil_recipe/engineering/bronze/smokebomb
 	name = "Smoke Bomb (x3) (+Cog, +Ash)"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/smokebomb
+	created_item = /obj/item/bomb/smoke
 	additional_items = list(/obj/item/roguegear, /obj/item/ash)
 	createditem_num = 3
 	craftdiff = 3

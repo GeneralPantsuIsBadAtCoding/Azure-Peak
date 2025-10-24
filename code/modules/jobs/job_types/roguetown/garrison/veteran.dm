@@ -82,14 +82,15 @@
 
 // Normal veteran start, from the olden days.
 
+/datum/outfit/job/roguetown/vet/battlemaster
+	has_loadout = TRUE
+
 /datum/outfit/job/roguetown/vet/battlemaster/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/bevor
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	l_hand = /obj/item/rogueweapon/sword/sabre
-	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	cloak = /obj/item/clothing/cloak/half/vet
@@ -98,13 +99,28 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+	H.verbs |= /mob/proc/haltyell
+
+/datum/outfit/job/roguetown/vet/battlemaster/choose_loadout(mob/living/carbon/human/H)
+	. = ..()
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/combat/maces, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/combat/wrestling, 5, TRUE)
 		H.change_stat(STATKEY_WIL, 1)
 
-	H.verbs |= /mob/proc/haltyell
+	H.adjust_blindness(-3)
+	if(H.mind)
+		var/weapons = list("Longsword","Sabre")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Longsword")
+				H.put_in_hands(new /obj/item/rogueweapon/sword/long)
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L)
+			if("Sabre")
+				H.put_in_hands(new /obj/item/rogueweapon/sword/sabre)
+				H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword, SLOT_BELT_L)
 
 /datum/advclass/veteran/footman
 	name = "Retired Footman"

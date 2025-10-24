@@ -10,6 +10,7 @@
 	ambush_mobs = null
 	converted_type = /area/rogue/indoors/shelter/rtfield
 	deathsight_message = "somewhere high up in a mountains, where cherry blossoms bloom"
+	detail_text = DETAIL_TEXT_EORAN_SHRINE
 
 /area/rogue/outdoors/rtfield/abandonedhotsprings
 	name = "Abandoned Hot Springs"
@@ -23,6 +24,7 @@
 	ambush_mobs = null
 	converted_type = /area/rogue/indoors/abandonedhotsprings
 	deathsight_message = "somewhere above a swamp, where cherry blossoms bloom and spiders chitter"
+	detail_text = DETAIL_TEXT_ABANDONED_HOT_SPRINGS
 
 /area/rogue/indoors/abandonedhotsprings
 	icon_state = "eora"

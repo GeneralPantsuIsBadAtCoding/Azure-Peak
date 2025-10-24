@@ -180,8 +180,12 @@ All foods are distributed among various categories. Use common sense.
 	if(!input)
 		return
 	if(cooktime)
+		var/added_input = input
+		// Pick flat burninput instead of skill-scaled input so high cooking skill doesn't make food burn faster 
+		if(!cooked_type && !fried_type) 
+			added_input = burninput
 		if(cooking < cooktime)
-			cooking = cooking + input
+			cooking = cooking + added_input
 			if(cooking >= cooktime)
 				return heating_act(A)
 			warming = 5 MINUTES
@@ -413,6 +417,8 @@ All foods are distributed among various categories. Use common sense.
 				if(!do_mob(user, M, double_progress = TRUE))
 					return
 				log_combat(user, M, "fed", reagents.log_list())
+				if(istype(src, /obj/item/reagent_containers/food/snacks/grown/berries/rogue) || istype(src, /obj/item/reagent_containers/food/snacks/grown/fruit))
+					M.add_stress(/datum/stressevent/hand_fed_fruit)
 //				M.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_danger("[user] forces you to eat [src]!"))
 			else
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
@@ -477,6 +483,32 @@ All foods are distributed among various categories. Use common sense.
 		else
 			return "a lavish, filling meal"
 
+/obj/item/reagent_containers/food/snacks/proc/rotprocess_to_text()
+	var/rot_text = ""
+	if(!rotprocess)
+		return "This food does not rot."
+	switch(initial(rotprocess))
+		if(0 to SHELFLIFE_TINY)
+			rot_text = "This food will rot in less than a third of a dae."
+		if(SHELFLIFE_TINY to SHELFLIFE_SHORT)
+			rot_text = "This food will rot in half a dae."
+		if(SHELFLIFE_SHORT to SHELFLIFE_DECENT)
+			rot_text = "This food will last about a dae."
+		if(SHELFLIFE_DECENT to SHELFLIFE_LONG)
+			rot_text = "This food will last a dae and a half."
+		if(SHELFLIFE_LONG to SHELFLIFE_EXTREME)
+			rot_text = "This food will last three daes."
+	switch(-1 * warming / initial(rotprocess))
+		if(-INFINITY to 0.25)
+			rot_text += " It is very fresh."
+		if(0.25 to 0.5)
+			rot_text += " It is fairly fresh."
+		if(0.5 to 0.75)
+			rot_text += " It is starting to go stale."
+		if(0.75 to 1)
+			rot_text += " It is about to rot."
+	return rot_text
+
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
 	if(!in_container)
@@ -513,6 +545,7 @@ All foods are distributed among various categories. Use common sense.
 			. += span_smallred("It is burned!")
 		if(/datum/status_effect/buff/foodbuff)
 			. += span_smallnotice("It looks great!")
+	. += span_smallnotice("[rotprocess_to_text()]")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/kitchen/fork))
@@ -596,6 +629,15 @@ All foods are distributed among various categories. Use common sense.
 		if(!do_after(user, 1 SECONDS / cd, target = src))
 			return FALSE
 		var/reagents_per_slice = reagents.total_volume/slices_num
+		if (istype(src,/obj/item/reagent_containers/food/snacks/grown/onion/rogue))
+			if (ishuman(user))
+				var/mob/living/carbon/H = user
+				var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES) //FIXME: getorganslot() and getorgan() don't actually differentiate organ types! This means that transplanted eyes, regardless of type, will still cry, but I need to mess with all of the organ checking code to unfuck this!
+				if (E && !(H.eyesclosed || HAS_TRAIT(H,TRAIT_NOPAIN) || H.is_eyes_covered() || HAS_TRAIT(H,TRAIT_BLIND) || H.get_skill_level(/datum/skill/craft/cooking) > SKILL_LEVEL_JOURNEYMAN)) //The painless will not be irritated by onions. Golems, skellies, meth-heads, etc. Expert+ chefs will also be unaffected.
+					to_chat(user,span_warning("The onion's juices sting my eyes!"))
+					user.blur_eyes(4)
+					if (prob(50))
+						user.emote("cry",forced=TRUE)
 		for(var/i in 1 to slices_num)
 			var/obj/item/reagent_containers/food/snacks/slice = new slice_path(loc)
 			initialize_slice(slice, reagents_per_slice)
@@ -662,25 +704,6 @@ All foods are distributed among various categories. Use common sense.
 				S.reagents.add_reagent(r_id, amount)
 	S.filling_color = filling_color
 	S.update_snack_overlays(src)
-/*
-/obj/item/reagent_containers/food/snacks/heating_act(obj/machinery/microwave/M)
-	var/turf/T = get_turf(src)
-	var/obj/item/result
-
-	if(cooked_type)
-		result = new cooked_type(T)
-		if(istype(M))
-			initialize_cooked_food(result, M.efficiency)
-		else
-			initialize_cooked_food(result, 1)
-		SSblackbox.record_feedback("tally", "food_made", 1, result.type)
-	else
-		result = new /obj/item/reagent_containers/food/snacks/badrecipe(T)
-		if(istype(M) && M.dirty < 100)
-			M.dirty++
-	qdel(src)
-
-	return result*/
 
 /obj/item/reagent_containers/food/snacks/Destroy()
 	STOP_PROCESSING(SSobj, src)

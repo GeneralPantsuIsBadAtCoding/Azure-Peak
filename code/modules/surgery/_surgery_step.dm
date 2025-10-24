@@ -88,6 +88,7 @@
 	var/preop_sound //Sound played when the step is started
 	var/success_sound //Sound played if the step succeeded
 	var/failure_sound //Sound played if the step fails
+	var/visible_required_skill = FALSE //gives you a message about lacking skill, just used for re-adding limbs
 
 /datum/surgery_step/proc/can_do_step(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent, try_to_fail = FALSE)
 	if(!user || !target)
@@ -136,6 +137,8 @@
 		if(!found_intent)
 			return FALSE
 	if(skill_used && skill_min && (user.get_skill_level(skill_used) < skill_min))
+		if(visible_required_skill)
+			to_chat(user, span_warning("I'm not skilled enough to do this!"))
 		return FALSE
 	return TRUE
 

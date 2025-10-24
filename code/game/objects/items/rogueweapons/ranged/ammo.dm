@@ -36,6 +36,14 @@
 	icon_state = "ancientbolt"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/paalloy
 
+/obj/item/ammo_casing/caseless/rogue/bolt/blunt
+	name = "blunt bolt"
+	desc = "A crossbow bolt without the part that pierces skulls. That doesn't mean it won't kill you."
+	projectile_type = /obj/projectile/bullet/reusable/bolt/blunt
+	possible_item_intents = list(/datum/intent/mace/strike)
+	icon_state = "bolt_blunt"
+	force = 5
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -55,10 +63,19 @@
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
 	armor_penetration = 30
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
 
 /obj/projectile/bullet/reusable/bolt/paalloy
 	damage = 50
 	armor_penetration = 35
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
+
+/obj/projectile/bullet/reusable/bolt/blunt
+	damage = 25
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/blunt
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
@@ -92,6 +109,14 @@
 	dropshrink = 0.6
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	max_integrity = 10
+
+/obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	name = "blunt arrow"
+	desc = "For when you really need to kill a zad."
+	icon_state = "arrow_blunt"
+	projectile_type = /obj/projectile/bullet/reusable/arrow/blunt
+	force = 5
+	possible_item_intents = list(/datum/intent/mace/strike)
 
 /obj/item/ammo_casing/caseless/rogue/arrow/stone
 	name = "stone arrow"
@@ -161,6 +186,14 @@
 
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/bows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/bows, L.STAINT * skill_multiplier)
+
+/obj/projectile/bullet/reusable/arrow/blunt
+	name = "blunt arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
+	damage = 15
+	armor_penetration = 0
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
 
 /obj/projectile/bullet/reusable/arrow/stone
 	name = "stone arrow"
@@ -545,6 +578,17 @@
 	heavy_metal = FALSE						//Stops spin animation, maybe.
 	thrown_damage_flag = "piercing"			//Checks peircing protection.
 
+/obj/item/ammo_casing/caseless/rogue/javelin/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = -1,"nx" = 8,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/ammo_casing/caseless/rogue/javelin/aalloy
 	name = "decrepit javelin"
 	desc = "A missile of frayed bronze. Before you is your weapon; that which rose Man out of the mud, and brought the Beasts of Old Syon to heel. When were you last aware of any other part of you? Do you recall seeing the world in any other way?"
@@ -742,8 +786,8 @@
 	icon_state = "musketball_proj"
 
 /obj/item/ammo_casing/caseless/rogue/bolt/holy
-	name = "holy water bolt"
-	desc = "One baptism for the remission of sins."
+	name = "sunderbolt"
+	desc = "A silver-tipped bolt, containing a small vial of holy water. Though it inflicts lesser wounds on living flesh, it exceeds when employed against the unholy; a snap and a crack, followed by a fiery surprise. </br>'One baptism for the remission of sins.'"
 	projectile_type = /obj/projectile/bullet/reusable/bolt/holy
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust)
 	caliber = "regbolt"
@@ -753,10 +797,9 @@
 	max_integrity = 10
 	force = 10
 
-
 /obj/projectile/bullet/reusable/bolt/holy
-	name = "holy water bolt"
-	damage = 40 // way less damage
+	name = "sunderbolt"
+	damage = 35 //Halved damage, but same penetration.
 	damage_type = BRUTE
 	armor_penetration = 50
 	icon = 'icons/roguetown/weapons/ammo.dmi'
@@ -770,7 +813,7 @@
 	speed = 0.5
 	poisontype = /datum/reagent/water/blessed
 	poisonamount = 5
-	npc_simple_damage_mult = 2
+	npc_simple_damage_mult = 5 //175, compared to the regular bolt's 140. Slightly more damage, as to imitate its anti-unholy properties on mobs who aren't affected by any form of poison.
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

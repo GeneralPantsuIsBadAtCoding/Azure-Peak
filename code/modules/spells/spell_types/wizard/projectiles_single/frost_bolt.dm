@@ -10,7 +10,7 @@
 	releasedrain = 30
 	chargedrain = 1
 	chargetime = 8
-	recharge_time = 13 SECONDS //cooldown
+	recharge_time = 6 SECONDS
 
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -37,11 +37,13 @@
 /obj/projectile/magic/frostbolt
 	name = "Frost Dart"
 	icon_state = "ice_2"
-	damage = 25
+	damage = 20
+	npc_simple_damage_mult = 2
 	damage_type = BURN
 	flag = "magic"
 	range = 10
-	speed = 10 //higher is slower
+	speed = 1
+	nodamage = FALSE
 	var/aoe_range = 0
 
 /obj/projectile/magic/frostbolt/on_hit(target)
@@ -55,6 +57,14 @@
 			return BULLET_ACT_BLOCK
 		if(isliving(target))
 			var/mob/living/L = target
-			L.apply_status_effect(/datum/status_effect/buff/frostbite)
+			if(L.has_status_effect(/datum/status_effect/buff/frostbite))
+				return
+			else
+				if(L.has_status_effect(/datum/status_effect/buff/frost))
+					playsound(get_turf(target), 'sound/combat/fracture/fracturedry (1).ogg', 80, TRUE, soundping = TRUE)
+					L.remove_status_effect(/datum/status_effect/buff/frost)
+					L.apply_status_effect(/datum/status_effect/buff/frostbite)
+				else
+					L.apply_status_effect(/datum/status_effect/buff/frost)
 			new /obj/effect/temp_visual/snap_freeze(get_turf(L))
 	qdel(src)

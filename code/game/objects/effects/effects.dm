@@ -39,8 +39,6 @@
 /obj/effect/abstract/ex_act(severity, target)
 	return
 
-/obj/effect/abstract/has_gravity(turf/T)
-	return FALSE
 
 /obj/effect/solid_invisible_barrier
 	density = TRUE

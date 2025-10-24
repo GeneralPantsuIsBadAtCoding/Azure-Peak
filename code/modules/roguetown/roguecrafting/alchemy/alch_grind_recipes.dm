@@ -84,6 +84,7 @@
 	name = "Fyritius"
 	valid_input = /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius
 	valid_outputs = list(/obj/item/alch/firedust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/solardust = 50)
 
 /datum/alch_grind_recipe/poppy
 	name = "Poppy"
@@ -110,6 +111,12 @@
 	valid_input = /obj/item/reagent_containers/powder/ozium
 	valid_outputs = list(/obj/item/alch/ozium = 1)
 	bonus_chance_outputs = list(/obj/item/alch/airdust =25,/obj/item/alch/ozium = 25)
+
+/datum/alch_grind_recipe/sunflower
+	name = "Sunflower"
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/sunflower
+	valid_outputs = list(/obj/item/alch/solardust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/firedust = 25)
 
 //Ores -> dust
 /datum/alch_grind_recipe/gold_ore
@@ -176,6 +183,12 @@
 	valid_input = /obj/item/reagent_containers/food/snacks/grown/manabloom
 	valid_outputs = list(/obj/item/alch/manabloompowder = 1)
 	bonus_chance_outputs = list(/obj/item/alch/manabloompowder = 25)
+
+/datum/alch_grind_recipe/infernaldust
+	name = "Infernal Dust"
+	valid_input = /obj/item/magic/infernal/fang
+	valid_outputs = list(/obj/item/alch/infernaldust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/firedust = 25)
 
 // Start of gem dust section - I've included gold dust as an additional product because of lesser alchemy, grinding up a gem should give you a bit extra (I mean come on it's a gem)
 

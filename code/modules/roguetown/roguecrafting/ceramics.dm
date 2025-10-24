@@ -1,6 +1,6 @@
 /datum/crafting_recipe/roguetown/ceramics
 	abstract_type = /datum/crafting_recipe/roguetown/ceramics
-	skillcraft = /datum/skill/misc/ceramics
+	skillcraft = /datum/skill/craft/ceramics
 
 /datum/crafting_recipe/roguetown/ceramics/clay
 	structurecraft = /obj/structure/fluff/ceramicswheel

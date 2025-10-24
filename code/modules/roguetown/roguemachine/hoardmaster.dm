@@ -68,6 +68,13 @@
 			var/pathi = pick(PA.contains)
 			var/atom/hmasteritem = new pathi(get_turf(M))
 			hmasteritem.flags_1 |= HOARDMASTER_SPAWNED_1
+			if(istype(hmasteritem, /obj/item))
+				var/obj/item/newitem = hmasteritem
+				newitem.sellprice = 0
+				if(newitem.smeltresult)
+					newitem.smeltresult = /obj/item/ash
+				if(newitem.salvage_result)
+					newitem.salvage_result = /obj/item/ash
 	if(href_list["changecat"])
 		current_cat = href_list["changecat"]
 	return attack_hand(usr)

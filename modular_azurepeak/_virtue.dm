@@ -100,10 +100,6 @@ GLOBAL_LIST_EMPTY(virtues)
 			SStreasury.generate_money_account(20, recipient)
 		else
 			SStreasury.create_bank_account(recipient, 20)
-	if(HAS_TRAIT(recipient, TRAIT_RESIDENT))
-		REMOVE_TRAIT(recipient, TRAIT_OUTLANDER, ADVENTURER_TRAIT)
-		REMOVE_TRAIT(recipient, TRAIT_OUTLANDER, JOB_TRAIT)
-		REMOVE_TRAIT(recipient, TRAIT_OUTLANDER, TRAIT_GENERIC)
 	record_featured_object_stat(FEATURED_STATS_VIRTUES, virtue_type.name)
 /datum/virtue/none
 	name = "None"

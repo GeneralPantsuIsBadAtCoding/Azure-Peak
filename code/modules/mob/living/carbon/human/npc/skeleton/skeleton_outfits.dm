@@ -33,6 +33,9 @@
 			skel_outfit = /datum/outfit/job/roguetown/skeleton/npc/hard
 	..()
 
+/mob/living/carbon/human/species/skeleton/npc/mediumspread/lich
+	faction = list("lich")
+
 // for Lich Dungeon
 /mob/living/carbon/human/species/skeleton/npc/hardspread/Initialize()
 	var/outfit = rand(1,4)
@@ -199,7 +202,7 @@
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
 		pants = /obj/item/clothing/under/roguetown/platelegs/aalloy
 		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
-		neck = /obj/item/clothing/neck/roguetown/zcross/aalloy
+		neck = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
 		r_hand = /obj/item/rogueweapon/sword/sabre/alloy
 		l_hand = /obj/item/rogueweapon/sword/sabre/alloy

@@ -36,11 +36,12 @@
 		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
 		/obj/effect/spawner/lootdrop/valuable_candle_spawner = 2,
 		/obj/effect/spawner/lootdrop/valuable_clutter_spawner = 2,
+		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
 	)
 	loot_spawn_dice_string = "1d2+1"
 
 /obj/structure/closet/crate/chest/loot_chest/locked/indestructible //party up with rogues NOW
-	max_integrity = INFINITY
+	max_integrity = 2000 //Changed from 'INFINITY'. Still greatly encourages taking a rogue or lockpick, but doesn't make it impossible to crack, in a pinch, with enough time and stamina.
 	lock_strength = 200
 	loot_weighted_list = list(
 		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,

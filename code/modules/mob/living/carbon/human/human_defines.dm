@@ -108,16 +108,20 @@
 	var/funeral = FALSE // Whether the body has received rites or not.
 
 	var/datum/devotion/devotion = null // Used for cleric_holder for priests
+	var/datum/inspiration/inspiration = null
 
 	var/headshot_link = null
 	var/flavortext = null
-	var/flavortext_display = null
 	var/ooc_notes = null
-	var/ooc_notes_display = null
-	var/ooc_extra_link
 	var/ooc_extra
-	var/is_legacy = FALSE
+	var/song_title
+	var/song_artist
 	var/received_resident_key = FALSE
+	var/nsfwflavortext = null
+	var/erpprefs = null
+
+	var/list/img_gallery = list()
+	
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
@@ -144,3 +148,26 @@
 
 	/// Assoc list of culinary preferences of the mob
 	var/list/culinary_preferences = list()
+
+	var/datum/charflaw/charflaw
+
+	// curse list and cooldown
+	var/list/curses = list()
+	COOLDOWN_DECLARE(priest_announcement)
+	COOLDOWN_DECLARE(guildmaster_announcement) //This is not for priest but if you are looking for GUILDMASTER announcements it's here, more so convinence than anything.
+	COOLDOWN_DECLARE(priest_sermon)
+	COOLDOWN_DECLARE(priest_apostasy)
+	COOLDOWN_DECLARE(priest_excommunicate)
+	COOLDOWN_DECLARE(priest_curse)
+	COOLDOWN_DECLARE(priest_change_miracles)
+
+	// bait stacks for aimed intent
+	var/bait_stacks
+
+	// werewolf mob storage (this is bad and probably causes hard dels)
+	var/mob/stored_mob = null
+
+	var/mob/living/carbon/human/hostagetaker //Stores the person that took us hostage in a var, allows us to force them to attack the mob and such
+	var/mob/living/carbon/human/hostage //What hostage we have
+
+	fovangle = FOV_DEFAULT

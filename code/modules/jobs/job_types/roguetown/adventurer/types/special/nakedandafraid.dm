@@ -6,7 +6,7 @@
 	allowed_races = RACES_ALL_KINDS
 	allowed_patrons = list(/datum/patron/divine/dendor)
 	outfit = /datum/outfit/job/roguetown/adventurer/nudist
-	category_tags = list(CTAG_ADVENTURER)
+	category_tags = list(CTAG_ADVENTURER, CTAG_LICKER_WRETCH)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_CON = 2,
@@ -23,7 +23,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/sewing = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/farming = SKILL_LEVEL_JOURNEYMAN,
 	)
 

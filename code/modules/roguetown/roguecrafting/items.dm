@@ -25,7 +25,7 @@
 	result = /obj/item/natural/cloth
 	reqs = list(/obj/item/natural/fibers = 2)
 	tools = list(/obj/item/needle)
-	skillcraft = /datum/skill/misc/sewing
+	skillcraft = /datum/skill/craft/sewing
 	verbage_simple = "sew"
 	verbage = "sews"
 	craftdiff = 0
@@ -106,7 +106,7 @@
 		/obj/item/natural/cloth = 1,
 		)
 	tools = list(/obj/item/needle)
-	skillcraft = /datum/skill/misc/sewing
+	skillcraft = /datum/skill/craft/sewing
 
 /obj/item/storage/roguebag/crafted
 	sellprice = 4

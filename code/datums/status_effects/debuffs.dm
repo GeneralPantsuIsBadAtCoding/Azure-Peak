@@ -548,3 +548,13 @@
 	name = "Action Delayed"
 	desc = "I cannot take another action."
 	icon_state = "clickcd"
+
+/datum/status_effect/debuff/yeetcd
+	id = "yeetcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/yeetcd
+	duration = 5 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/yeetcd
+	name = "Knockback Cooldown"
+	desc = "I have been knocked back recently by an attack and cannot be knocked back again"
+	icon_state = "debuff" // Placeholder

@@ -116,14 +116,14 @@
 			base_drain = MEDIUM_ARMOR_PENALTY
 
 	var/abyssor_swim_bonus = HAS_TRAIT(swimmer, TRAIT_ABYSSOR_SWIM) ? 5 : 0
-	var/swimming_skill_level = swimmer.get_skill_level(/datum/skill/misc/swimming) 
+	var/swimming_skill_level = swimmer.get_skill_level(/datum/skill/misc/swimming)
 	. = max(base_drain - (swimming_skill_level * STAM_PER_LEVEL) - abyssor_swim_bonus, MIN_STAM_DRAIN)
 	if(swimmer.mind)
 		swimmer.mind.add_sleep_experience(/datum/skill/misc/swimming, swimmer.STAINT * xpmod)
 //	. += (swimmer.checkwornweight()*2)
 	if(!swimmer.check_armor_skill())
 		. += UNSKILLED_ARMOR_PENALTY
-	if(.) // this check is expensive so we only run it if we do expect to use stamina	
+	if(.) // this check is expensive so we only run it if we do expect to use stamina
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return 0
@@ -195,12 +195,12 @@
 				playsound(AM, pick('sound/foley/watermove (1).ogg','sound/foley/watermove (2).ogg'), 100, FALSE)
 			if(istype(oldLoc, type) && (get_dir(src, oldLoc) != SOUTH))
 				water_overlay.layer = ABOVE_MOB_LAYER
-				water_overlay.plane = GAME_PLANE_UPPER
+				water_overlay.plane = water_overlay.plane = GAME_PLANE_HIGHEST
 			else
 				spawn(6)
 					if(AM.loc == src)
 						water_overlay.layer = ABOVE_MOB_LAYER
-						water_overlay.plane = GAME_PLANE_UPPER
+						water_overlay.plane = GAME_PLANE_HIGHEST
 		if(!istype(L, /mob/living/carbon/human/species/skeleton))
 			return
 		if(!istype(src, /turf/open/water/sewer))
@@ -323,9 +323,7 @@
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
-	returned = returned - (user.get_skill_level(/datum/skill/misc/swimming))
 	if(ishuman(user))
-		returned = max(returned, 0.5)
 		var/mob/living/carbon/human/H = user
 		var/ac = H.highest_ac_worn()
 		switch(ac)
@@ -417,6 +415,9 @@
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM
+			// check if we're riding a boat or a mount (we can presume a living mob is a mount), no leeches if so
+			if(istype(C.buckled, /obj/vehicle/ridden) || isliving(C.buckled))
+				return
 			var/chance = 3
 			if(C.m_intent == MOVE_INTENT_RUN)
 				chance = 6
@@ -454,6 +455,9 @@
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM
+			// check if we're riding a boat or a mount (we can presume a living mob is a mount), no leeches if so
+			if(istype(C.buckled, /obj/vehicle/ridden) || isliving(C.buckled))
+				return
 			var/chance = 6
 			if(C.m_intent == MOVE_INTENT_RUN)
 				chance = 12		//yikes
@@ -554,7 +558,7 @@
 		for(var/obj/structure/S in src)
 			if(S.obj_flags & BLOCK_Z_OUT_DOWN)
 				return
-		if((A.loc == src) && A.has_gravity())
+		if((A.loc == src))
 			A.ConveyorMove(dir)
 
 /turf/open/water/ocean
@@ -582,7 +586,7 @@
 
 /turf/open/water/pond
 	name = "pond"
-	desc = "Still and idyllic water that flows through meadows."
+	desc = "Still and alarmingly idyllic water. Covered in concerning overgrowth of duckweed."
 	icon_state = "pond"
 	icon = 'icons/turf/roguefloor.dmi'
 	water_level = 3
@@ -590,4 +594,4 @@
 	slowdown = 3
 	swim_skill = TRUE
 	wash_in = TRUE
-	water_reagent = /datum/reagent/water
+	water_reagent = /datum/reagent/water/gross

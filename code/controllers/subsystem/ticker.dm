@@ -64,10 +64,17 @@ SUBSYSTEM_DEF(ticker)
 	var/end_state = "undefined"
 	var/job_change_locked = FALSE
 	var/list/royals_readied = list()
-	var/rulertype = "Grand Duke" // reports whether king or queen rules
-	var/rulermob = null // reports what the ruling mob is.
-	var/regentmob = null // keeps track of regent mob
-	var/regentday = -1 // to prevent regent shuffling
+
+	/// Realm name, the location name of the current map
+	var/realm_name = "Azure Peak"
+	/// Reports the current ruler's display name
+	var/rulertype = "Grand Duke" 
+	/// The current ruling mob
+	var/rulermob = null
+	/// Current regent mob
+	var/regentmob = null
+	/// Prevent regent shuffling
+	var/regentday = -1
 	var/failedstarts = 0
 	var/list/manualmodes = list()
 
@@ -78,6 +85,9 @@ SUBSYSTEM_DEF(ticker)
 
 	var/next_lord_check = 0
 	var/missing_lord_time = 0
+
+	/// Sunsteal gamestate bool.
+	var/sunstolen = FALSE
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
@@ -304,7 +314,8 @@ SUBSYSTEM_DEF(ticker)
 	message_admins(span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 		
-
+	if(SSmapping.map_adjustment)
+		realm_name = SSmapping.map_adjustment.realm_name
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
@@ -323,8 +334,12 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 
-	if(!CONFIG_GET(flag/ooc_during_round))
-		toggle_ooc(FALSE) // Turn it off
+	// Previously: if(!CONFIG_GET(flag/ooc_during_round)) toggle_ooc(FALSE)
+	// OOC has been repurposed to be lobby-only (non-lobby players can't see or use it),
+	// so there's no longer a gameplay reason to auto-disable it at round start.
+	// Keeping it enabled prevents admins from needing to hit the toggle every round.
+	if(!GLOB.ooc_allowed)
+		toggle_ooc(TRUE) // Ensure lobby OOC is on for the new round
 
 	CHECK_TICK
 	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
@@ -455,6 +470,7 @@ SUBSYSTEM_DEF(ticker)
 			continue
 		if(player.ready == PLAYER_READY_TO_PLAY)
 			GLOB.joined_player_list += player.ckey
+			update_wretch_slots()
 			player.create_character(FALSE)
 		else
 			player.new_player_panel()
@@ -752,8 +768,74 @@ SUBSYSTEM_DEF(ticker)
 /// Wrapper for setting rulermob and rulertype
 /datum/controller/subsystem/ticker/proc/set_ruler_mob(mob/newruler)
 	rulermob = newruler
+	var/datum/job/lord_job = SSjob.GetJob("Grand Duke")
 	if(should_wear_femme_clothes(rulermob))
-		SSticker.rulertype = "Grand Duchess"
+		SSticker.rulertype = lord_job?.f_title || lord_job.title
 	else
-		SSticker.rulertype = "Grand Duke"
+		SSticker.rulertype = lord_job?.display_title || lord_job?.title
 	SEND_GLOBAL_SIGNAL(COMSIG_TICKER_RULERMOB_SET, rulermob)
+
+/// Wrapper for sunsteal proc
+/datum/controller/subsystem/ticker/proc/sunsteal(mob/living/sunstealer)
+	ASSERT(sunstealer)
+	RegisterSignal(sunstealer, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(on_sunstealer_death))
+	INVOKE_ASYNC(src, PROC_REF(on_sunsteal)) // Invoke async since on_sunsteal() sleeps in CHECK_TICK
+
+/// Proc called when the sunstealer successfully steals the sun, causing world-wide effects
+/datum/controller/subsystem/ticker/proc/on_sunsteal()
+	GLOB.todoverride = "night"
+	settod()
+	priority_announce("The Sun is torn from the sky!", "Terrible Omen", 'sound/misc/astratascream.ogg')
+	addomen(OMEN_SUNSTEAL)
+	SSParticleWeather.run_weather(/datum/particle_weather/fog/blood, TRUE)
+	for(var/mob/living/carbon/human/astrater as anything in GLOB.human_list)
+		if(!istype(astrater.patron, /datum/patron/divine/astrata))
+			continue
+		to_chat(astrater, span_userdanger("You feel the pain of [astrater.patron]!"))
+		astrater.emote("painscream", intentional = FALSE)
+
+	for(var/turf/open/water/W in world)
+		W.water_reagent = /datum/reagent/blood
+		W.water_color = "#C80000"
+		W.mapped = FALSE
+		W.update_icon()
+		CHECK_TICK
+
+	for(var/obj/machinery/light/light in GLOB.machines)
+		if(prob(40))
+			light.extinguish()
+		else
+			light.flicker(rand(2, 5))
+		CHECK_TICK
+
+	for(var/obj/item/flashlight/flare/torch/torch in GLOB.weather_act_upon_list)
+		torch.turn_off()
+		CHECK_TICK
+
+	for(var/obj/structure/soil/soil in GLOB.soil_list)
+		soil.plant_dead = TRUE
+		soil.produce_ready = FALSE
+		soil.update_icon()
+		CHECK_TICK
+
+	for(var/mob/living/carbon/human in GLOB.human_list)
+		if(human.clan)
+			continue
+
+		human.stress_freakout()
+
+	var/list/spawn_locs = GLOB.hauntstart.Copy()
+	if(LAZYLEN(GLOB.hauntstart))
+		for(var/i in 1 to 20)
+			var/obj/effect/landmark/events/haunts/_T = pick_n_take(spawn_locs)
+			if(_T)
+				_T = get_turf(_T)
+				if(isfloorturf(_T))
+					new /mob/living/carbon/human/species/skeleton/npc(_T)
+
+/// Returns universe state to normal after the sunstealer has been slain
+/datum/controller/subsystem/ticker/proc/on_sunstealer_death()
+	GLOB.todoverride = null
+	sunstolen = FALSE
+	settod()
+	SSParticleWeather.run_weather(/datum/particle_weather/rain_gentle, TRUE)

@@ -1,15 +1,36 @@
 // Folder for any status effects that is shared between more than one spell. For now, just Frostbite
+/datum/status_effect/buff/frost
+	id = "frost"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/frost
+	duration = 25 SECONDS
+	effectedstats = list("speed" = -1)
+
+/atom/movable/screen/alert/status_effect/buff/frost
+	name = "Shivering"
+	desc = "My body can't stop shaking."
+	icon_state = "debuff"
+
+/datum/status_effect/buff/frost/tick()
+	var/mob/living/target = owner
+	if(prob(20))
+		target.emote(pick("shiver"))
+
+/datum/status_effect/buff/frost/on_apply()
+	. = ..()
+	var/mob/living/target = owner
+	target.update_vision_cone()
+	target.stamina_add(25)
+
 /datum/status_effect/buff/frostbite
 	id = "frostbite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
-	duration = 20 SECONDS
-	effectedstats = list(STATKEY_SPD = -2)
+	duration = 6 SECONDS
+	effectedstats = list("speed" = -2)
 
 /atom/movable/screen/alert/status_effect/buff/frostbite
 	name = "Frostbite"
-	desc = "I can feel myself slowing down."
+	desc = "My limbs are frozen stiff!"
 	icon_state = "debuff"
-	color = "#00fffb" //talk about a coder sprite
 
 /datum/status_effect/buff/frostbite/on_apply()
 	. = ..()
@@ -19,6 +40,11 @@
 	target.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 20 SECONDS)
 	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
+	target.stamina_add(25)
+
+/datum/status_effect/buff/frostbite/tick()
+	var/mob/living/target = owner
+	target.stamina_add(5)
 
 /datum/status_effect/buff/frostbite/on_remove()
 	var/mob/living/target = owner
@@ -30,7 +56,7 @@
 	id = "withered"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/witherd
 	duration = 30 SECONDS
-	effectedstats = list(STATKEY_SPD = -2,STATKEY_STR = -2,STATKEY_CON= -2,STATKEY_WIL = -2)
+	effectedstats = list("speed" = -2,"strength" = -2,"constitution"= -2,"endurance" = -2)
 
 /atom/movable/screen/alert/status_effect/buff/witherd
 	name = "Withering"
@@ -56,7 +82,7 @@
 	id = "lightningstruck"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/lightningstruck
 	duration = 6 SECONDS
-	effectedstats = list(STATKEY_SPD = -2)
+	effectedstats = list("speed" = -2)
 
 /atom/movable/screen/alert/status_effect/buff/lightningstruck
 	name = "Lightning Struck"
@@ -68,10 +94,10 @@
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
-	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
+	target.add_movespeed_modifier(MOVESPEED_ID_LIGHTNINGSTRUCK, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
 
 /datum/status_effect/buff/lightningstruck/on_remove()
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
-	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
+	target.remove_movespeed_modifier(MOVESPEED_ID_LIGHTNINGSTRUCK, TRUE)

@@ -90,4 +90,6 @@
 		/datum/sprite_accessory/legwear/stockings,
 		/datum/sprite_accessory/legwear/stockings/silk,
 		/datum/sprite_accessory/legwear/stockings/fishnet,
+		/datum/sprite_accessory/legwear/stockings/thigh_high,
+		/datum/sprite_accessory/legwear/stockings/knee_high,
 		)
