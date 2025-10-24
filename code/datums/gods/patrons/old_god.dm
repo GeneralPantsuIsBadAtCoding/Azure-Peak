@@ -66,6 +66,7 @@
 					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T4, // Removes access to all miracles, Psydonic or not, while providing both Psydonic-exclusive traits to the character.
 					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T4, // Note that the boon of 'passive wound regeneration' is offset by 'no longer being healed by almost every miracle'.
 					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T4, // Good luck. Oh, and Absolvers will still receive these miracles - a failsafe to prevent accidental softlocking.
+	)
 	confess_lines = list(
 		"FUCK YOU!",
 		"PSYDON YET LYVES! PSYDON YET ENDURES!",
