@@ -1,5 +1,6 @@
 /datum/component/infestation_charges
 	var/current_charges = 0
+	var/absolute_max_charges = 100
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/obj/effect/proc_holder/spell/invoked/infestation/parent_spell
 	var/mob/living/parent_mob
@@ -36,7 +37,7 @@
 		var/obj/effect/proc_holder/spell/invoked/pestra_heal/heal_spell = parent_mob.mind?.get_spell(/obj/effect/proc_holder/spell/invoked/pestra_heal)
 		if(heal_spell)
 			heal_spell.update_charges(get_charges())
-	if(!cooldown_active && current_charges >= max_charges && !was_at_max)
+	if(!cooldown_active && current_charges >= absolute_max_charges && !was_at_max)
 		was_at_max = TRUE
 		// Effectively a T4 spell in strength, as such, only pestrans get this.
 		if(parent_mob.get_skill_level(/datum/skill/magic/holy) >= 5)
@@ -87,14 +88,14 @@
 	SIGNAL_HANDLER
 	last_rebirth_use = world.time
 	next_rebirth_use = initial(next_rebirth_use)
-	remove_infestation_charges(100)
+	remove_charge(src, 100)
 	user.apply_status_effect(/datum/status_effect/divine_exhaustion, next_rebirth_use)
 	var/obj/effect/proc_holder/spell/invoked/pestra_heal/heal_spell = parent_mob.mind?.get_spell(/obj/effect/proc_holder/spell/invoked/pestra_heal)
 	if(heal_spell)
 		heal_spell.update_charges(get_charges())
 	if(parent_spell)
 		parent_spell.update_charge_overlay(get_charges())
-	to_chat(user, span_warning("The divine power leaves me completely exhausted. I won't be able to channel such power again for some time."))
+	to_chat(user, span_warning("The divine power leaves me completely exhausted. My body is purified of infestation thoroughly. I won't be able to channel such power again for some time."))
 
 /datum/component/pestilent_blade_enchant
 	dupe_mode = COMPONENT_DUPE_UNIQUE
