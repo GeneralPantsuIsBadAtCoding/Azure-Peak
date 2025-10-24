@@ -17,7 +17,7 @@
 	var/datum/flesh_task/current_task
 	var/datum/flesh_task/next_task
 	var/last_task_time = 0
-	var/task_cooldown = 2 MINUTES
+	var/task_cooldown = 90 SECONDS
 
 	var/mob/living/current_listener
 	var/listener_timeout_time = 0
