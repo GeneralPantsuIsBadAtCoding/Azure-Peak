@@ -5,7 +5,7 @@
     allowed_races = RACES_NO_CONSTRUCT
     outfit = /datum/outfit/job/roguetown/vagabond/unraveled
     category_tags = list(CTAG_VAGABOND)
-    traits_applied = list(TRAIT_SCHIZO_AMBIENCE)
+    traits_applied = list(TRAIT_SCHIZO_AMBIENCE, TRAIT_NOSTINK)
     subclass_stats = list(
         STATKEY_INT = -2,
         STATKEY_LCK = -2,
