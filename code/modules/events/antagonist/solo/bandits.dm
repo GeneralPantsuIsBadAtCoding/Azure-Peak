@@ -11,35 +11,17 @@
 
 	restricted_roles = list(
 		"Grand Duke",
-		"Grand Duchess",
-		"Consort",
-		"Dungeoneer",
-		"Sergeant",
-		"Men-at-arms",
 		"Marshal",
 		"Merchant",
 		"Bishop",
-		"Acolyte",
 		"Martyr",
-		"Templar",
-		"Councillor",
-		"Prince",
-		"Princess",
 		"Hand",
 		"Steward",
-		"Head Physician",
-		"Town Crier",
-		"Captain",
-		"Archivist",
+		"Knight Captain",
 		"Knight",
-		"Court Magician",
 		"Inquisitor",
-		"Orthodoxist",
 		"Absolver",
-		"Warden",
-		"Squire",
 		"Veteran",
-		"Apothecary"
 	)
 
 	base_antags = 5

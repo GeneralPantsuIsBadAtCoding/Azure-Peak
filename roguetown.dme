@@ -1520,6 +1520,7 @@
 #include "code\modules\events\ghost_role.dm"
 #include "code\modules\events\spacevine.dm"
 #include "code\modules\events\antagonist\_base.dm"
+#include "code\modules\events\antagonist\_blacklist_defines.dm"
 #include "code\modules\events\antagonist\migrant_waves\_base.dm"
 #include "code\modules\events\antagonist\migrant_waves\bandits.dm"
 #include "code\modules\events\antagonist\migrant_waves\dark_itinerant_knight_wave.dm"
