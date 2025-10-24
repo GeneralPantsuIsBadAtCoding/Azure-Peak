@@ -36,24 +36,6 @@
 		"I WILL NOT RECANT THE TRUTH! HE IS NOTHING, YET EVERYTHING!",
 	)
 
-/datum/patron/old_god/fatal
-	name = "Fatalism"
-	domain = "Rockhill, the ."
-	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
-	worshippers = "Accelerationists, and the Struggler."
-	associated_faith = /datum/faith/old_god
-	mob_traits = list(TRAIT_PSYDONIAN_GRIT, TRAIT_PSYDONITE) //Both Psydonic traits are applied no matter what, instead of just one.
-	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_T4, // An experiment. Ideal for those who want a challenge, or to simply thug it out like it's Roguetown 1E.
-					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T4, // Removes access to all miracles, Psydonic or not, while providing both Psydonic-exclusive traits to the character.
-					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T4, // Note that the boon of 'passive wound regeneration' is offset by 'no longer being healed by almost every miracle'.
-					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T4, // Good luck. Oh, and Absolvers will still receive these miracles - a failsafe to prevent accidental softlocking.
-	confess_lines = list(
-		"FUCK YOU!",
-		"PSYDON YET LYVES! PSYDON YET ENDURES!",
-		"REBUKE THE HEATHEN, SUNDER THE MONSTER!",
-		"WITH EVERY BROKEN BONE, I SWORE I LYVED!",
-	)
-
 /datum/patron/old_god/hopeful
 	name = "Syonacism"
 	domain = "Azuria, the Order of the Silver Psycross, and those who hold hope all throughout Psydonia."
@@ -71,6 +53,24 @@
 		"MY GOD - WITH EVERY BROKEN BONE, I SWORE I LYVED!",
 		"EVEN NOW, THERE IS STILL HOPE FOR MAN! AVE PSYDONIA!",
 		"WITNESS ME, PSYDON; THE SACRIFICE MADE MANIFEST!",
+	)
+
+/datum/patron/old_god/fatal
+	name = "Fatalism"
+	domain = "Rockhill, the ."
+	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
+	worshippers = "Accelerationists, and the Struggler."
+	associated_faith = /datum/faith/old_god
+	mob_traits = list(TRAIT_PSYDONIAN_GRIT, TRAIT_PSYDONITE) //Both Psydonic traits are applied no matter what, instead of just one.
+	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_T4, // An experiment. Ideal for those who want a challenge, or to simply thug it out like it's Roguetown 1E.
+					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T4, // Removes access to all miracles, Psydonic or not, while providing both Psydonic-exclusive traits to the character.
+					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T4, // Note that the boon of 'passive wound regeneration' is offset by 'no longer being healed by almost every miracle'.
+					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T4, // Good luck. Oh, and Absolvers will still receive these miracles - a failsafe to prevent accidental softlocking.
+	confess_lines = list(
+		"FUCK YOU!",
+		"PSYDON YET LYVES! PSYDON YET ENDURES!",
+		"REBUKE THE HEATHEN, SUNDER THE MONSTER!",
+		"WITH EVERY BROKEN BONE, I SWORE I LYVED!",
 	)
 
 )
