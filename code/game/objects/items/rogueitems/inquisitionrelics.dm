@@ -364,7 +364,7 @@ Inquisitorial armory down here
 		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
-			if(H.patron?.type == /datum/patron/old_god, /datum/patron/old_god/mystic)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
+			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
 			if(H.patron?.type == /datum/patron/old_god/hopeful)							//Syonics suffer a heavier mental break for longer, due to their more prominent connection to Syon's shard.
 				H.add_stress(/datum/stressevent/syoncalamityhopeful)
