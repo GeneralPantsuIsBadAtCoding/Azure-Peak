@@ -294,7 +294,7 @@
 
 /obj/effect/proc_holder/spell/self/psydonpray
 	name = "PRAY"
-	desc = "Catch your breath, recite a psalm betwixt huffs, and gather your wits before continuing forth. </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
+	desc = "Catch your breath, recite a psalm betwixt huffs, and gather your wits before continuing forth. </br>‎  </br>Provides minor health regeneration while standing still. The more damage that a caster has sustained - and the more valuable that their worn psycross is, the more health that they'll regenerate with each cycle."
 	overlay_state = "limb_attach"
 	releasedrain = 15
 	chargedrain = 0
@@ -400,15 +400,16 @@
 
 /obj/effect/proc_holder/spell/targeted/psydondefy
 	name = "DEFY"
-	desc = "Become a living conduit for the energies that teem from Syon's fragments, so that you may rebuke the Archdevil once more. </br>Unleashes a holy shockwave, barraging the deathless with explosive force. All deadites, skeletons, and vampyres within the caster's sight will be automatically struck. Requires several seconds to fully charge, and - upon release - completely exhausts the caster."
+	desc = "Become a living conduit for the energies that teem from Syon's fragments, so that you may rebuke the Archdevil once more. </br>‎  </br>Unleashes a holy shockwave, barraging the deathless with explosive force. All deadites, skeletons, and vampyres within the caster's sight will be automatically struck. Requires several seconds to fully charge, and - upon release - completely exhausts the caster."
 	range = 7
 	overlay_state = "DEFY"
+	chargedrain = 1
 	releasedrain = 222
+	no_early_release = TRUE
 	chargetime = 5 SECONDS
 	recharge_time = 77 SECONDS
-	no_early_release = TRUE
 	antimagic_allowed = FALSE
-	cast_without_targets = TRUE
+	cast_without_targets = FALSE
 	max_targets = 777
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	warnie = "sydwarning"
