@@ -14,4 +14,8 @@
 		"Inquisitor",\
 		"Absolver",\
 		"Veteran",\
+		"Bathmaster",\
+		"Bandit",\
+		"Guildmaster",\
+		"Court Magician",\
 	)
