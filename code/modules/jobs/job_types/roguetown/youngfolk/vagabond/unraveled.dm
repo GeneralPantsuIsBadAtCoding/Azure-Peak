@@ -11,7 +11,7 @@
         STATKEY_LCK = -2,
     )
     subclass_skills = list(
-        /datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
+        /datum/skill/misc/medicine = SKILL_LEVEL_EXPERT,
         /datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
     )
 
