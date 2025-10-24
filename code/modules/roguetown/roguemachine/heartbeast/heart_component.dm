@@ -341,9 +341,9 @@
 
 	// Calculate rewards
 	var/blood_reward = (max_blood_pool / 10) * reward_multiplier * (quirk_effects["blood_multiplier"] || 1)
-	// 5 - 10 - 20 - 40 Under perfect circumstances
+	// 12 - 24 - 48 - 96 Under perfect circumstances
 	var/rack_multiplier = linked_rack.update_rack_stats()
-	var/tech_reward = (5 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
+	var/tech_reward = (12 * (2 ^ (language_tier - 1))) * reward_multiplier * ((quirk_effects["tech_multiplier"] || 1) * rack_multiplier)
 	var/happiness_reward = (max_happiness / 4) * reward_multiplier * (quirk_effects["happiness_multiplier"] || 1)
 	var/language_progress_reward = (max_language_progress / 8) * reward_multiplier
 
