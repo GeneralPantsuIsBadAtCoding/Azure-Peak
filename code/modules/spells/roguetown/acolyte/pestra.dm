@@ -222,7 +222,7 @@
 		M.apply_status_effect(/datum/status_effect/buff/infestation/) //apply debuff
 		SEND_SIGNAL(src, COMSIG_INFESTATION_CHARGE_ADD, 10)
 		return TRUE
-	if(!SSchimeric_tech.get_node_status("INFESTATION_ROT_SNACKS") && istype(target, /obj/item/reagent_containers/food/snacks))
+	if(SSchimeric_tech.get_node_status("INFESTATION_ROT_SNACKS") && istype(target, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/snack = target
 		if(snack.eat_effect == /datum/status_effect/debuff/rotfood)
 			revert_cast()
