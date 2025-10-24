@@ -211,7 +211,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(in ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			cloak = /obj/item/clothing/cloak/psydontabard
 			if(H.mind)
 				var/helmets = list("Armet","Buckethelm")
@@ -320,7 +320,7 @@
 
 	H.set_blindness(0)
 	switch(H.patron?.type)
-		if(in ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided
