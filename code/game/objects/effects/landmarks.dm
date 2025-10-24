@@ -216,7 +216,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/keeper
-	name = "Heart Beast Keeper"
+	name = "Keeper"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/priest
