@@ -91,7 +91,7 @@
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
 	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide TRAIT_DODGEEXPERT
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			cloak = /obj/item/clothing/cloak/psydontabard
 			mask = /obj/item/clothing/head/roguetown/roguehood/psydon
 		if(/datum/patron/divine/astrata)
@@ -121,7 +121,7 @@
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 			mask = /obj/item/clothing/head/roguetown/roguehood
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
@@ -414,7 +414,7 @@
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			cloak = /obj/item/clothing/cloak/templar/psydon
 		if(/datum/patron/divine/astrata)
 			cloak = /obj/item/clothing/cloak/templar/astrata
@@ -463,7 +463,7 @@
 				backr = /obj/item/rogue/instrument/flute
 
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
@@ -549,7 +549,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			cloak = /obj/item/clothing/cloak/psydontabard
 			head = /obj/item/clothing/head/roguetown/roguehood/psydon
 		if(/datum/patron/divine/astrata)
@@ -601,7 +601,7 @@
 	if(istype(H.patron, /datum/patron/inhumen))
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/divineblast/unholyblast)
 	switch(H.patron?.type)
-		if(ALL_PSYDONIC_PATRONS)
+		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			neck = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
