@@ -222,24 +222,34 @@
 		M.apply_status_effect(/datum/status_effect/buff/infestation/) //apply debuff
 		SEND_SIGNAL(src, COMSIG_INFESTATION_CHARGE_ADD, 10)
 		return TRUE
-	if(SSchimeric_tech.get_node_status("INFESTATION_ROT_SNACKS") && istype(target, /obj/item/reagent_containers/food/snacks))
+	if(!SSchimeric_tech.get_node_status("INFESTATION_ROT_SNACKS") && istype(target, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/snack = target
+		if(snack.eat_effect == /datum/status_effect/debuff/rotfood)
+			revert_cast()
+			return FALSE
+
 		var/total_charge = 5
 		var/rotted_count = 1
 		var/search_count = SSchimeric_tech.get_infestation_food_rot_count()
 		snack.become_rotten()
 
-		// Check for additional food items if tech nodes are unlocked
-		if(search_count)
-			for(var/obj/item/reagent_containers/food/snacks/extra_snack in range(1, snack))
-				// I hate checking for rotten food this way but it's how it's done so let's be consistent?
-				if(extra_snack.eat_effect == /datum/status_effect/debuff/rotfood)
-					continue
-				if(rotted_count >= search_count)
-					break
-				extra_snack.become_rotten()
-				total_charge += 5
-				rotted_count++
+		var/list/potential_snacks = range(1, snack.loc)
+		var/list/valid_snacks = list()
+		for(var/atom/A in potential_snacks)
+			if(!istype(A, /obj/item/reagent_containers/food/snacks))
+				continue
+			var/obj/item/reagent_containers/food/snacks/S = A
+			if(S == snack)
+				continue
+			if(S.eat_effect == /datum/status_effect/debuff/rotfood)
+				continue
+			valid_snacks += S
+		for(var/obj/item/reagent_containers/food/snacks/extra_snack in valid_snacks)
+			if(rotted_count >= search_count)
+				break
+			extra_snack.become_rotten()
+			total_charge += 5
+			rotted_count++
 		if(rotted_count <= 1)
 			snack.visible_message(span_warning("[snack] is swarmed by vermin and rapidly rots!"))
 		else
