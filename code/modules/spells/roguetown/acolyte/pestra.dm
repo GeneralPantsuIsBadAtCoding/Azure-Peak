@@ -55,8 +55,6 @@
 	associated_skill = /datum/skill/misc/medicine
 	miracle = FALSE
 	devotion_cost = 0 //Doctors are not clerics
-
-// Limb or organ attachment
 /obj/effect/proc_holder/spell/invoked/attach_bodypart
 	name = "Bodypart Miracle"
 	desc = "Attach all limbs and organs you or your target is holding, and near your target."
@@ -74,11 +72,70 @@
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	recharge_time = 60 SECONDS //attaching a limb is pretty intense
+	recharge_time = 60 SECONDS
 	miracle = TRUE
 	devotion_cost = 20
 
-/obj/effect/proc_holder/spell/invoked/attach_bodypart/proc/get_organs(mob/living/target, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/attach_bodypart/cast(list/targets, mob/living/user)
+	if(!targets || !targets.len)
+		to_chat(user, span_warning("No target found!"))
+		revert_cast()
+		return FALSE
+	var/mob/living/target = targets[1]
+	if(!ishuman(target))
+		to_chat(user, span_warning("The spell can only be cast on humans!"))
+		revert_cast()
+		return FALSE
+
+	var/mob/living/carbon/human/human_target = target
+	var/same_owner = FALSE
+	var/attached_count = 0
+	if(human_target.has_status_effect(/datum/status_effect/buff/necras_vow))
+		same_owner = TRUE
+		to_chat(user, span_warning("This one has pledged a vow to Necra. Only their own limbs will be accepted."))
+
+	// Get missing limbs first
+	var/list/missing_limbs = human_target.get_missing_limbs()
+	// Search for limbs in three locations: user's hands, target's hands, and nearby
+	var/list/limb_locations = list()
+	if(user)
+		limb_locations += user.held_items
+	limb_locations += human_target.held_items
+	limb_locations += range(1, human_target)
+
+	// Try to attach limbs
+	for(var/location in limb_locations)
+		for(var/obj/item/bodypart/limb in location)
+			if(!istype(limb) || !(limb.body_zone in missing_limbs))
+				continue
+
+			// Skip if limb is already attached to someone
+			if(limb.owner && limb.owner != human_target)
+				continue
+
+			// Necra vow check
+			if(same_owner && limb.original_owner && limb.original_owner != human_target)
+				to_chat(user, span_warning("Limb [limb] doesn't belong to target due to Necra vow!"))
+				continue
+
+			// Check if target already has this limb
+			if(human_target.get_bodypart(limb.body_zone))
+				continue
+
+			// Try to attach the limb
+			if(limb.attach_limb(human_target))
+				human_target.visible_message(
+					span_info("\The [limb] attaches itself to [human_target]!"), 
+					span_notice("\The [limb] attaches itself to me!")
+				)
+				attached_count++
+				to_chat(user, span_green("Successfully attached [limb]"))
+				// Remove from missing limbs so we don't try to attach another to the same slot
+				missing_limbs -= limb.body_zone
+			else
+				to_chat(user, span_warning("Failed to attach [limb]"))
+
+	// Now handle organs
 	var/list/missing_organs = list(
 		ORGAN_SLOT_EARS,
 		ORGAN_SLOT_EYES,
@@ -89,81 +146,60 @@
 		ORGAN_SLOT_STOMACH,
 		ORGAN_SLOT_APPENDIX,
 	)
-	for(var/missing_organ_slot in missing_organs)
-		if(!target.getorganslot(missing_organ_slot))
-			continue
-		missing_organs -= missing_organ_slot
-	if(!length(missing_organs))
-		return
-	var/list/organs = list()
-	//try to get from user's hands first
-	for(var/obj/item/organ/potential_organ in user?.held_items)
-		if(potential_organ.owner || !(potential_organ.slot in missing_organs))
-			continue
-		organs += potential_organ
-	//then target's hands
-	for(var/obj/item/organ/dismembered in target.held_items)
-		if(dismembered.owner || !(dismembered.slot in missing_organs))
-			continue
-		organs += dismembered
-	//then finally, 1 tile range around target
-	for(var/obj/item/organ/dismembered in range(1, target))
-		if(dismembered.owner || !(dismembered.slot in missing_organs))
-			continue
-		organs += dismembered
-	return organs
 
-/obj/effect/proc_holder/spell/invoked/attach_bodypart/proc/get_limbs(mob/living/target, mob/living/user)
-	var/list/missing_limbs = target.get_missing_limbs()
-	if(!length(missing_limbs))
-		return
-	var/list/limbs = list()
-	//try to get from user's hands first
-	for(var/obj/item/bodypart/potential_limb in user?.held_items)
-		if(potential_limb.owner || !(potential_limb.body_zone in missing_limbs))
-			continue
-		limbs += potential_limb
-	//then target's hands
-	for(var/obj/item/bodypart/dismembered in target.held_items)
-		if(dismembered.owner || !(dismembered.body_zone in missing_limbs))
-			continue
-		limbs += dismembered
-	//then finally, 1 tile range around target
-	for(var/obj/item/bodypart/dismembered in range(1, target))
-		if(dismembered.owner || !(dismembered.body_zone in missing_limbs))
-			continue
-		limbs += dismembered
-	return limbs
+	// Remove organs that are already present
+	for(var/organ_slot in missing_organs)
+		if(human_target.getorganslot(organ_slot))
+			missing_organs -= organ_slot
 
-// consider adding functionality to regrow one entire organ or limb per casting?
-/obj/effect/proc_holder/spell/invoked/attach_bodypart/cast(list/targets, mob/living/user)
-	if(ishuman(targets[1]))
-		var/mob/living/carbon/human/human_target = targets[1]
-		var/same_owner = FALSE
-		if(human_target.has_status_effect(/datum/status_effect/buff/necras_vow))
-			same_owner = TRUE
-			to_chat(user, span_warning("This one has pledged a vow to Necra. Only their own limbs will be accepted."))
-		for(var/obj/item/bodypart/limb as anything in get_limbs(human_target, user))
-			if(!human_target.get_bodypart(limb.body_zone) && same_owner)
-				if(limb.original_owner != human_target)
-					continue
-			if(human_target.get_bodypart(limb.body_zone) || !limb.attach_limb(human_target))
+	// Search for organs in the same locations
+	var/list/organ_locations = list()
+	if(user)
+		organ_locations += user.held_items
+	organ_locations += human_target.held_items
+	organ_locations += range(1, human_target)
+
+	// Try to attach organs
+	for(var/location in organ_locations)
+		for(var/obj/item/organ/organ in location)
+			if(!istype(organ) || !(organ.slot in missing_organs))
 				continue
-			human_target.visible_message(span_info("\The [limb] attaches itself to [human_target]!"), \
-								span_notice("\The [limb] attaches itself to me!"))
-		for(var/obj/item/organ/organ as anything in get_organs(human_target, user))
-			if(human_target.getorganslot(organ.slot) || !organ.Insert(human_target))
+
+			// Skip if organ is already in someone
+			if(organ.owner && organ.owner != human_target)
 				continue
-			human_target.visible_message(span_info("\The [organ] attaches itself to [human_target]!"), \
-								span_notice("\The [organ] attaches itself to me!"))
+
+			// Necra vow check for organs
+			if(same_owner && organ.owner && organ.owner != human_target)
+				continue
+
+			// Check if target already has this organ
+			if(human_target.getorganslot(organ.slot))
+				continue
+
+			// Try to insert the organ
+			if(organ.Insert(human_target))
+				human_target.visible_message(
+					span_info("\The [organ] attaches itself to [human_target]!"), 
+					span_notice("\The [organ] attaches itself to me!")
+				)
+				attached_count++
+				to_chat(user, span_green("Successfully attached [organ]"))
+				// Remove from missing organs
+				missing_organs -= organ.slot
+			else
+				to_chat(user, span_warning("Failed to attach [organ]"))
+
+	if(attached_count > 0)
 		if(!(human_target.mob_biotypes & MOB_UNDEAD))
-			for(var/obj/item/bodypart/limb as anything in human_target.bodyparts)
+			for(var/obj/item/bodypart/limb in human_target.bodyparts)
 				limb.rotted = FALSE
 				limb.skeletonized = FALSE
 		human_target.update_body()
-		return TRUE
-	revert_cast()
-	return FALSE
+	else
+		to_chat(user, span_warning("No bodyparts were attached."))
+
+	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/infestation
 	name = "Infestation"
