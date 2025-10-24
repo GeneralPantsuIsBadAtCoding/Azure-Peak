@@ -421,7 +421,6 @@
 
 /obj/effect/proc_holder/spell/targeted/psydondefy/cast(list/targets,mob/living/user = usr)
 	user.emote("rage")
-	target.emote("scream")
 	var/prob2explode = 100
 	if(user && user.mind)
 		prob2explode = 0
