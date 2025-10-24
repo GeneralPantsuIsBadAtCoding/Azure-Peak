@@ -18,7 +18,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat_rotten
 	eat_effect = /datum/status_effect/debuff/rotfood
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
-	name = "meat"
+	name = "meat rotten"
 	desc = "This was edible once... To most it's just a putrid mess now."
 	icon = 'modular/Neu_Food/icons/raw/raw_meat.dmi'
 	icon_state = "meat_rotten"
