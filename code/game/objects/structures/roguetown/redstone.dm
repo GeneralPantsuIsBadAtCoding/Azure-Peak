@@ -241,13 +241,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		to_chat(L, "<span class='info'>I feel something click beneath me.</span>")
 		AM.log_message("has activated a pressure plate", LOG_GAME)
 		playsound(src, 'sound/misc/pressurepad_down.ogg', 35, extrarange = 2)
-
-/obj/structure/pressure_plate/Uncrossed(atom/movable/AM)
-	. = ..()
-	if(!anchored)
-		return
-	if(isliving(AM))
-		triggerplate()
+		triggerplate() //going to try and trigger this when people stand on the plate, no warning. 
 
 /obj/structure/pressure_plate/proc/triggerplate()
 	playsound(src, 'sound/misc/pressurepad_up.ogg', 35, extrarange = 2)
@@ -291,7 +285,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
 		return
 	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
-		to_chat(user, span_warning("You most use both hands to rename doors."))
+		to_chat(user, span_warning("You most use both hands to rename plates."))
 
 
 /*

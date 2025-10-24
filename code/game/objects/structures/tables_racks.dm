@@ -350,6 +350,16 @@
 /obj/structure/table/church/m/alt
 	icon_state = "churchtable_mid_alt"
 
+/obj/structure/table/finestone
+	name = "fine stone table"
+	desc = ""
+	icon = 'icons/roguetown/misc/tables.dmi'
+	icon_state = "stonetable_small"
+	max_integrity = 400
+	smooth = 0
+	climb_offset = 10
+	debris = list(/obj/item/natural/stoneblock = 1)
+
 /obj/structure/table/vtable
 	name = "ancient wooden table"
 	desc = ""
