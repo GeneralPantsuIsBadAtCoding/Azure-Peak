@@ -163,7 +163,7 @@
 				continue
 			if (!H.has_stress_event(/datum/stressevent/soulchurner))
 				switch(H.patron?.type)
-					if(ALL_PSYDONIC_PATRONS)
+					if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 						if (!H.has_stress_event(/datum/stressevent/soulchurnerpsydon))
 							H.add_stress(/datum/stressevent/soulchurnerpsydon)
 							to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
@@ -294,7 +294,7 @@ Inquisitorial armory down here
 /obj/item/flashlight/flare/torch/lantern/psycenser/examine(mob/user)
 	. = ..()
 	if(fuel > 0)
-		. += span_info("If opened, it may bless Psydon weapons and those of Psydon faith.")
+		. += span_info("If opened, it may bless Psydonic silver weapons and anoint those of Psydon's flock.")
 		. += span_warning("Smashing a creature with it open will create a devastating explosion and render it useless.")
 	if(fuel <= 0)
 		. += span_info("It is gone.")
@@ -364,8 +364,14 @@ Inquisitorial armory down here
 		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
-			if(H.patron?.type == ALL_PSYDONIC_PATRONS)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
+			if(H.patron?.type == /datum/patron/old_god, /datum/patron/old_god/mystic)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
+			if(H.patron?.type == /datum/patron/old_god/hopeful)							//Syonics suffer a heavier mental break for longer, due to their more prominent connection to Syon's shard.
+				H.add_stress(/datum/stressevent/syoncalamityhopeful)
+			if(H.patron?.type == /datum/patron/old_god/fatal)							//Fatalists are less effected, either due to their theological distance or due to more cynical beliefs.
+				H.add_stress(/datum/stressevent/syoncalamityfatal)
+			else
+				H.add_stress(/datum/stressevent/syoncalamityother)						//Minor and short stress event to the Pantheoneers and Inhumane. Something terrible has happened - they may not know it, but they feel it.
 	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/silverbless/CP = A.GetComponent(/datum/component/silverbless)
 		if(CP)
@@ -379,7 +385,7 @@ Inquisitorial armory down here
 				to_chat(user, span_info("It has already been blessed."))
 	if(ishuman(A) && on && (user.used_intent.type == /datum/intent/bless))
 		var/mob/living/carbon/human/H = A
-		if(H.patron?.type == ALL_PSYDONIC_PATRONS)
+		if(H.patron?.type == /datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
 			if(!H.has_status_effect(/datum/status_effect/buff/censerbuff))
 				playsound(user, 'sound/magic/censercharging.ogg', 100)
 				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
@@ -1120,7 +1126,7 @@ Inquisitorial armory down here
 /obj/item/inqarticles/bmirror/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(usr, TRAIT_INQUISITION))
-		desc = "A mass-produced relic of the Otavan Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret. One worth dying over, supposedly."
+		desc = "A mass-produced relic of the Holy Otavan Inquisition. The exact method of the Black Mirror's operation remains a well-kept secret. One worth dying over, supposedly."
 	else
 		desc = ""
 
