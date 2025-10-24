@@ -57,7 +57,6 @@
 					if(H.patron?.type == private)
 						if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT) && HAS_TRAIT(src, TRAIT_PSYDONIAN_GRIT))	//Bruteforced solution - should allow all practicing Psydonians to recognize each other.
 							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset, icon_plane)
-						else 
 						if(HAS_TRAIT(H, TRAIT_INQUISITION) && HAS_TRAIT(src, TRAIT_INQUISITION))	//Inquisition members will show a fancier symbol to one another.
 							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset, icon_plane)
 						else 
