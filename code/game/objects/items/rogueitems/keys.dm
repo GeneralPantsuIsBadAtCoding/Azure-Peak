@@ -249,6 +249,12 @@
 	icon_state = "beastkey"
 	lockid = "keeper"
 
+/obj/item/roguekey/keeper_inner
+	name = "beast inner sanctum key"
+	desc = "This key should open and close the iron gates within the beast's sanctum."
+	icon_state = "beastkey2"
+	lockid = "keeper2"
+
 /obj/item/roguekey/tavern/village
 	lockid = "vtavern"
 
