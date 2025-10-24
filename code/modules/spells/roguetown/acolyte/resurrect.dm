@@ -27,8 +27,8 @@
 	priest_excluded = TRUE
 
 /obj/effect/proc_holder/spell/invoked/resurrect/start_recharge()
+	recharge_time = initial(recharge_time) * SSchimeric_tech.get_resurrection_multiplier()
 	. = ..()
-	recharge_time *= SSchimeric_tech.get_resurrection_multiplier()
 
 /obj/effect/proc_holder/spell/invoked/resurrect/proc/get_current_required_items()
 	if(SSchimeric_tech.has_revival_cost_reduction() && length(alt_required_items))

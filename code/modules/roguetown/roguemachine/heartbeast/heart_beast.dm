@@ -184,7 +184,8 @@
 
 /obj/structure/roguemachine/chimeric_heart_beast/MiddleClick(mob/user, params)
 	. = ..()
-	ui_interact(user)
+	if(isliving(user))
+		ui_interact(user)
 
 /obj/structure/roguemachine/chimeric_heart_beast/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
