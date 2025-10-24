@@ -31,16 +31,19 @@
 			revert_cast()
 			return
 
-		if(I.obj_integrity < I.max_integrity)
+		if(I.obj_integrity < I.max_integrity || I.body_parts_covered_dynamic != I.body_parts_covered)
 			int_bonus = (user.STAINT * 0.01)
 			repair_percent += int_bonus
 			repair_percent *= I.max_integrity
 			I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity)
 			user.visible_message(span_info("[I] glows in a faint mending light."))
 			playsound(I, 'sound/foley/sewflesh.ogg', 50, TRUE, -2)
-			if(I.obj_broken && I.obj_integrity >= I.max_integrity)
+			if(I.obj_integrity >= I.max_integrity)
 				I.obj_integrity = I.max_integrity
-				I.obj_fix()
+				if(I.obj_broken)
+					I.obj_fix()
+				else
+					I.repair_coverage()
 		else if(I.peel_count)
 			I.peel_count--
 			to_chat(user, span_info("[I]'s shorn layers mend together. ([I.peel_count])."))
