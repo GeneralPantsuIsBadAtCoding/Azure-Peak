@@ -14,6 +14,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	)
 	rogue_enabled = TRUE
 	show_in_roundend = FALSE
+	show_in_antagpanel = FALSE // Base vampire shouldn't be directly selectable - use Vampire Lord or specific subtypes
 	var/datum/clan/default_clan = /datum/clan/nosferatu
 	// New variables for clan selection
 	var/clan_selected = FALSE
@@ -53,6 +54,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 			return 0.75 // Licker Wretch
 		if(GENERATION_THINBLOOD)
 			return 0.25 // You are not even an antagonist
+		else
+			return 1 // Default weight if generation not set
 
 /datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum, mob/examiner, mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire/lord))
@@ -220,16 +223,29 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	name = "Sending Destination"
 	icon_state = "x2"
 
+// Prefabs for admin
+/datum/antagonist/vampire/thinblood
+	name = "Thinblood"
+	show_in_antagpanel = TRUE
+
+/datum/antagonist/vampire/thinblood/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
+	. = ..(incoming_clan, forced_clan, generation)
+
+/// Similarly as before, just a prefab for admins to give them via Traitor Panel
+/datum/antagonist/vampire/licker
+	name = "Licker - Neonate"
+	show_in_antagpanel = TRUE
+
+/datum/antagonist/vampire/licker/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_NEONATE)
+	. = ..(incoming_clan, forced_clan, generation)
+
 /// Just a prefab for admins to give them via Traitor Panel, otherwise unused because vars can be normally passed in parent's New()
 /datum/antagonist/vampire/ancillae
-	name = "Vampire Ancillae"
+	name = "Ancillae"
+	show_in_antagpanel = TRUE
 
 /datum/antagonist/vampire/ancillae/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_ANCILLAE)
 	. = ..()
 
-/// Similarly as before, just a prefab for admins to give them via Traitor Panel
-/datum/antagonist/vampire/licker
-	name = "Licker"
 
-/datum/antagonist/vampire/licker/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_NEONATE)
-	. = ..(incoming_clan, forced_clan, generation)
+
