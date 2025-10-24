@@ -208,6 +208,7 @@
 	icon = 'icons/roguetown/misc/tree.dmi'
 	icon_state = "branch-end1"
 	attacked_sound = 'sound/misc/woodhit.ogg'
+	plane = FLOOR_PLANE
 //	var/tree_type = 1
 	var/base_state = TRUE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
