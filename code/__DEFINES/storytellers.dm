@@ -133,7 +133,7 @@
 
 /// Defines for the antag cap to prevent midround injections.
 #define ANTAG_CAP_FLAT 3
-#define ANTAG_CAP_DENOMINATOR 30
+#define ANTAG_CAP_DENOMINATOR 20
 
 ///Below are defines for roundstart point pool. The GAIN ones are multiplied by ready population
 #define ROUNDSTART_MUNDANE_BASE 20
