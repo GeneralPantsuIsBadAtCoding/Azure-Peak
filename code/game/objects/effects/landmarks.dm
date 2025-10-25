@@ -215,6 +215,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Town Crier"
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/keeper
+	name = "Keeper"
+	icon_state = "arrow"
+
 /obj/effect/landmark/start/priest
 	name = "Bishop"
 	icon_state = "arrow"

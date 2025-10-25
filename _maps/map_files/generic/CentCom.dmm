@@ -1114,6 +1114,10 @@
 "qx" = (
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/indoors/eventarea)
+"qz" = (
+/obj/item/reagent_containers/lux_impure,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/cave/inhumen)
 "qA" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/thresher,
@@ -1874,6 +1878,16 @@
 /area/rogue/indoors/eventarea)
 "MX" = (
 /obj/structure/closet/crate/chest/old_crate,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
+/obj/item/heart_blood_canister/filled,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/inhumen)
 "Nh" = (
@@ -5372,7 +5386,7 @@ rQ
 wN
 TS
 pV
-ws
+qz
 MX
 BC
 ws

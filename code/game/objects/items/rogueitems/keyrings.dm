@@ -257,7 +257,10 @@
 	keys = list(/obj/item/roguekey/priest, /obj/item/roguekey/church, /obj/item/roguekey/graveyard)
 
 /obj/item/storage/keyring/churchie
-	keys = list(/obj/item/roguekey/church, /obj/item/roguekey/graveyard)
+	keys = list(/obj/item/roguekey/church, /obj/item/roguekey/graveyard, /obj/item/roguekey/keeper)
+
+/obj/item/storage/keyring/keeper
+	keys = list(/obj/item/roguekey/keeper)
 
 /obj/item/storage/keyring/puritan
 	keys = list(/obj/item/roguekey/puritan, /obj/item/roguekey/inquisition)
@@ -284,7 +287,7 @@
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/archive, /obj/item/roguekey/tower)
 
 /obj/item/storage/keyring/physician
-	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/garrison, /obj/item/roguekey/physician)
+	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/garrison, /obj/item/roguekey/physician, /obj/item/roguekey/keeper)
 
 /obj/item/storage/keyring/royal
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/royal, /obj/item/roguekey/garrison)

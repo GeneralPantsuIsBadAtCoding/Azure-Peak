@@ -492,9 +492,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		for(var/j in 1 to amount)
 			var/obj/item/I = new path(Tsec)
 			I.add_mob_blood(src)
-			if(rotstuff && istype(I,/obj/item/reagent_containers/food/snacks))
-				var/obj/item/reagent_containers/food/snacks/F = I
-				F.become_rotten()
+			if(istype(I,/obj/item/reagent_containers/food/snacks))
+				I.item_flags |= FRESH_FOOD_ITEM
+				if(rotstuff)
+					var/obj/item/reagent_containers/food/snacks/F = I
+					F.become_rotten()
 
 		if(user.mind)
 			user.mind.add_sleep_experience(/datum/skill/labor/butchering, user.STAINT * 0.5)

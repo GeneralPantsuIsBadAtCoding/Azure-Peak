@@ -19,11 +19,21 @@
 	var/revive_pq = PQ_GAIN_REVIVE
 	var/required_structure = /obj/structure/fluff/psycross
 	var/required_items = list(/obj/item/clothing/neck/roguetown/psicross = 1)
+	var/alt_required_items = list(/obj/item/clothing/neck/roguetown/psicross = 1)
 	var/item_radius = 1
 	var/debuff_type = /datum/status_effect/debuff/revived
 	var/structure_range = 1
 	var/harms_undead = TRUE
 	priest_excluded = TRUE
+
+/obj/effect/proc_holder/spell/invoked/resurrect/start_recharge()
+	recharge_time = initial(recharge_time) * SSchimeric_tech.get_resurrection_multiplier()
+	. = ..()
+
+/obj/effect/proc_holder/spell/invoked/resurrect/proc/get_current_required_items()
+	if(SSchimeric_tech.has_revival_cost_reduction() && length(alt_required_items))
+		return alt_required_items
+	return required_items
 
 /obj/effect/proc_holder/spell/invoked/resurrect/cast(list/targets, mob/living/user)
 	. = ..()
@@ -108,6 +118,7 @@
 	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/resurrect/proc/validate_items(atom/center)
+	var/list/current_required_items = get_current_required_items()
 	var/list/available_items = list()
 	var/list/missing_items = list()
 
@@ -117,8 +128,8 @@
 			available_items[I.type] += 1
 
 	// Check quantities and compile missing list
-	for(var/item_type in required_items)
-		var/needed = required_items[item_type]
+	for(var/item_type in current_required_items)
+		var/needed = current_required_items[item_type]
 		var/have = available_items[item_type] || 0
 		
 		if(have < needed) {
@@ -156,6 +167,10 @@
 		/obj/item/reagent_containers/food/snacks/fish/bass = 2,
 		/obj/item/reagent_containers/food/snacks/fish/plaice = 1,
 		/obj/item/reagent_containers/food/snacks/fish/lobster = 1,
+	)
+	alt_required_items = list(
+		/obj/item/reagent_containers/food/snacks/fish/plaice = 2,
+		/obj/item/reagent_containers/food/snacks/fish/angler = 1
 	)
 	debuff_type = /datum/status_effect/debuff/dreamfiend_curse
 	//This will be Abyssor's statue soon.
@@ -248,12 +263,18 @@
 
 /obj/effect/proc_holder/spell/invoked/resurrect/pestra
 	name = "Putrid Revival"
-	desc = "Revive the target by consuming extracted Lux."
+	desc = "Revive the target by consuming heartblood. Self cast for more information."
 	sound = 'sound/magic/slimesquish.ogg'
 	required_items = list(
-		/obj/item/reagent_containers/lux = 1
+		/obj/item/heart_blood_canister/filled = 1,
+		/obj/item/heart_blood_vial/filled = 2
 	)
-	overlay_state = "pestra_revive"
+	alt_required_items = list(
+		/obj/item/heart_blood_vial/filled = 2
+	)
+	overlay_icon = 'icons/mob/actions/pestraspells.dmi'
+	action_icon = 'icons/mob/actions/pestraspells.dmi'
+	overlay_state = "resurrect"
 
 /obj/effect/proc_holder/spell/invoked/resurrect/eora
 	//Does heartfelt even exist?
@@ -261,6 +282,9 @@
 	desc = "Revive the target at a cost, cast on yourself to check.<br>The target will get hungry faster for a time."
 	required_items = list(
 		/obj/item/reagent_containers/food/snacks/rogue/breadslice/toast = 5
+	)
+	alt_required_items = list(
+		/obj/item/reagent_containers/food/snacks/rogue/bread = 1
 	)
 	debuff_type = /datum/status_effect/debuff/metabolic_acceleration
 	sound = 'sound/magic/heartbeat.ogg'
@@ -303,6 +327,9 @@
 	name = "Anastasis?"
 	desc = "Revives the target? Grants them a random debuff from other revivals, small change to be worse or better."
 	debuff_type = /datum/status_effect/debuff/random_revival
+	alt_required_items = list(
+		/obj/item/clothing/neck/roguetown/psicross/wood = 1
+	)
 
 /datum/status_effect/debuff/random_revival
 	id = "random_revival_debuff"
@@ -505,6 +532,9 @@
 	required_items = list(
 		/obj/item/ingot/iron = 3
 	)
+	alt_required_items = list(
+		/obj/item/ingot/copper = 1
+	)
 	debuff_type = /datum/status_effect/debuff/malum_revival
 	sound = 'sound/magic/clang.ogg'
 
@@ -515,6 +545,9 @@
 	// Bones insinuate that mayhaps, they went out there to delete some skeletons for justice?
 	required_items = list(
 		/obj/item/natural/bone = 10
+	)
+	alt_required_items = list(
+		/obj/item/natural/bone = 7
 	)
 	debuff_type = /datum/status_effect/debuff/ravox_revival
 
@@ -527,6 +560,10 @@
 		/obj/item/alch/mentha = 3,
 		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 3
 	)
+	alt_required_items = list(
+		/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 3,
+		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 1
+	)
 	debuff_type = /datum/status_effect/debuff/dendor_revival
 	required_structure = /obj/structure/flora/roguetree/wise
 	sound = 'sound/magic/birdsong.ogg'
@@ -536,6 +573,9 @@
 	desc = "Revive the target at a cost, cast on yourself to check.<br>Targets intelligence will be sapped for a time, in addition they will be burned by moonlight."
 	required_items = list(
 		/obj/item/paper/scroll = 15
+	)
+	alt_required_items = list(
+		/obj/item/paper = 15
 	)
 	debuff_type = /datum/status_effect/debuff/noc_revival
 	overlay_state = "noc_revive"

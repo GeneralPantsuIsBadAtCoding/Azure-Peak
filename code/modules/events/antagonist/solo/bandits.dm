@@ -29,6 +29,7 @@
 		"Steward",
 		"Head Physician",
 		"Town Crier",
+		"Keeper",
 		"Captain",
 		"Archivist",
 		"Knight",

@@ -139,7 +139,7 @@ All foods are distributed among various categories. Use common sense.
 		return FALSE
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/proc/become_rotten()
+/obj/item/reagent_containers/food/snacks/proc/become_rotten(to_color = TRUE)
 	if(isturf(loc) && istype(get_area(src),/area/rogue/under/town/sewer))
 		if(!istype(src,/obj/item/reagent_containers/food/snacks/smallrat))
 			new /obj/item/reagent_containers/food/snacks/smallrat(loc)
@@ -158,7 +158,8 @@ All foods are distributed among various categories. Use common sense.
 			record_round_statistic(STATS_FOOD_ROTTED)
 			return TRUE
 	else
-		color = "#6c6897"
+		if(to_color)
+			color = "#6c6897"
 		var/mutable_appearance/rotflies = mutable_appearance('icons/roguetown/mob/rotten.dmi', "rotten")
 		add_overlay(rotflies)
 		name = "rotten [initial(name)]"

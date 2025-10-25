@@ -712,11 +712,13 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		add_antag_datum(/datum/antagonist/traitor)
 
 
-/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
+/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S, mob/living/user)
 	if(!S)
 		return
 	spell_list += S
 	S.action.Grant(current)
+	if(user)
+		S.on_gain(user)
 
 /datum/mind/proc/check_learnspell()
 	if(!has_spell(/obj/effect/proc_holder/spell/self/learnspell)) //are we missing the learning spell?
@@ -736,6 +738,18 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	for(var/obj/effect/proc_holder/spell as anything in spell_list)
 		if((specific && spell.type == spell_type) || istype(spell, spell_type))
 			return TRUE
+	return FALSE
+
+/datum/mind/proc/get_spell(spell_type, specific = FALSE)
+	var/spell_path = spell_type
+	if(istype(spell_type, /obj/effect/proc_holder))
+		var/obj/effect/proc_holder/instanced_spell = spell_type
+		spell_path = instanced_spell.type
+	for(var/obj/effect/proc_holder/spell as anything in spell_list)
+		if(specific && (spell.type == spell_path))
+			return spell
+		else if(!specific && istype(spell, spell_path))
+			return spell
 	return FALSE
 
 /datum/mind/proc/owns_soul()
