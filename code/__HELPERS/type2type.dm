@@ -296,6 +296,30 @@
 		return (a+(b-a)*((2/3)-hue)*6)
 	return a
 
+///Converts the alist into a bitfield for compatibility with all the helper procs.
+/proc/body_parts_covered2bitfield(alist/bpc, check_for_broken = FALSE)
+	var/bitf = 0
+	for(var/zone in bpc)
+		if(bpc[zone] <= 0 && check_for_broken)
+			continue
+		bitf |= zone
+	return bitf
+
+/proc/body_parts_covered_makeverbose(alist/bpc)
+	var/list/zones2remove = list()
+	for(var/x in 0 to COVERAGE_BITFLAG_COUNT)
+		var/bflag = (1 << x)
+		if(bflag in bpc)
+			continue
+		for(var/zone in bpc)
+			if(zone & bflag)
+				bpc[bflag] = bpc[zone]
+				zones2remove += zone
+	for(var/delzone in zones2remove)
+		if(delzone in bpc)
+			bpc.Remove(delzone)
+	return bpc
+
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)
 //^ I did.

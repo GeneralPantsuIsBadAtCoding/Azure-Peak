@@ -178,6 +178,8 @@
 #define BLOCKCLOAK		(1<<6)
 #define BULKYBLOCKS		(1<<7)
 
+#define COVERAGE_BITFLAG_COUNT 19	//Keep this updated or armor printouts / coverage will break!
+
 //bitflags for clothing coverage - also used for limbs
 #define HEAD		(1<<0)
 #define CHEST		(1<<1)

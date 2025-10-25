@@ -248,19 +248,8 @@
 			html += "\n<b>COVERAGE: </b>"
 			html += " | "
 			if(C.body_parts_covered == C.body_parts_covered_dynamic)
-				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+				for(var/zone in body_parts_covered2organ_names(body_parts_covered2bitfield(C.body_parts_covered)))
 					html += "<b>[capitalize(zone)]</b> | "
-			else
-				var/list/zones = list()
-				//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
-				for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
-					zones += zoneorg
-				for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
-					html += "<b>[capitalize(zonedyn)]</b> | "
-					if(zonedyn in zones)
-						zones.Remove(zonedyn)
-				for(var/zone in zones)			
-					html += "<b><font color = '#470000'>[capitalize(zone)]</font></b> | "
 			html += "<br>"
 		if(C.body_parts_inherent)
 			html += "<b>CANNOT BE PEELED: </b>"

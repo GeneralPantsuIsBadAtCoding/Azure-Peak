@@ -5,7 +5,13 @@
 	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn with dyed leather and fitted with a wide skirt at the bottom to cover the groin."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS
+	body_parts_covered = alist(
+		CHEST = 500,
+		VITALS = 400,
+		GROIN = 300,
+		ARM_LEFT = 200,
+		ARM_RIGHT = 200
+	)
 	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	allowed_sex = list(MALE, FEMALE)

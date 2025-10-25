@@ -70,9 +70,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
 
-	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
-	var/body_parts_covered_dynamic = 0
-	var/body_parts_inherent	= 0 //bodypart coverage areas you cannot peel off because it wouldn't make any sense (peeling chest off of torso armor, hands off of gloves, head off of helmets, etc)
+	///General coverage using bitflags. See setup.dm for appropriate bit flags. This var is READ-ONLY as a reference and should not be edited directly.
+	var/body_parts_covered
+	///Coverage that is used by most mechanics. Can be edited freely. Reverts to body_parts_covered on repair.
+	var/body_parts_covered_dynamic
+	///Coverage areas you cannot peel off because it wouldn't make any sense (peeling chest off of torso armor, hands off of gloves, head off of helmets, etc)
+	var/body_parts_inherent	= 0 
 	var/surgery_cover = TRUE // binary, whether this item is considered covering its bodyparts in respect to surgery. Tattoos, etc. are false. 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
@@ -257,7 +260,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		grid_height = (w_class * world.icon_size)
 	
 	if(body_parts_covered)
-		body_parts_covered_dynamic = body_parts_covered
+		if(islist(body_parts_covered))
+			var/alist/bpc = body_parts_covered
+			body_parts_covered_dynamic = body_parts_covered_makeverbose(bpc.Copy())
+		else
+			body_parts_covered_dynamic = body_parts_covered
 	update_transform()
 
 
@@ -555,9 +562,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += C.defense_examine()
 			if(C.body_parts_covered)
 				inspec += "\n<b>COVERAGE: <br></b>"
-				inspec += " | "
-				if(C.body_parts_covered == C.body_parts_covered_dynamic)
-					for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+				if(islist(C.body_parts_covered_dynamic))
+					for(var/zone in C.body_parts_covered_dynamic)
+						for(var/subzone in body_parts_covered2organ_names(zone, precise = TRUE))	//This -should- only have 1 'subzone' to iterate through, but just in case we do a for anyway.
+							inspec += "<b>[capitalize(subzone)] 	— [C.body_parts_covered_dynamic[zone]]<br>"
+				else if(C.body_parts_covered_dynamic == C.body_parts_covered)
+					for(var/zone in body_parts_covered2organ_names(C.body_parts_covered_dynamic))
 						inspec += "<b>[capitalize(zone)]</b> | "
 				else
 					var/list/zones = list()
@@ -1518,8 +1528,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			peel_count++
 
 		if(peel_count >= peel_goal)
-			body_parts_covered_dynamic &= ~coveragezone
-			playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
+			remove_coverage(coveragezone, 'sound/foley/peeled_coverage.ogg')
 			var/parttext
 			if(length(peeledpart))
 				parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
@@ -1542,6 +1551,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else
 		last_peeled_limb = coveragezone
 		reset_peel()
+
+/obj/item/proc/remove_coverage(coverage_flag, custom_sound)
+	var/sfx = destroy_sound
+	if(body_parts_covered_dynamic & coverage_flag)
+		body_parts_covered_dynamic &= ~coverage_flag
+		//! INTEGRITY STUFF GOES HERE
+	if(custom_sound)
+		sfx = custom_sound
+	playsound(src, sfx, 100, TRUE)
 
 /obj/item/proc/repair_coverage()
 	body_parts_covered_dynamic = body_parts_covered
