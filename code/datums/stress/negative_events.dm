@@ -333,8 +333,23 @@
 
 /datum/stressevent/syoncalamity
 	stressadd = 15
-	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
+	desc = span_boldred("No! The Comet's Syon's shard is no more! Oh, God, what will we do now!?")
 	timer = 15 MINUTES
+
+/datum/stressevent/syoncalamityhopeful
+	stressadd = 20
+	desc = span_boldred("The maniacs, they've destroyed His fragment! Damn them - DAMN them all to HELL!")
+	timer = 20 MINUTES
+
+/datum/stressevent/syoncalamityfatal
+	stressadd = 10
+	desc = span_boldred("And now, His memory is gone: lost to time, like tears in the rain.. </br>Time to die.")
+	timer = 10 MINUTES
+
+/datum/stressevent/syoncalamityother
+	stressadd = 3
+	desc = span_red("A strange feeling washes over me, followed by a deathly silence.. </br>The wails of a dying world follow.")
+	timer = 3 MINUTES	
 
 /datum/stressevent/hithead
 	timer = 2 MINUTES
