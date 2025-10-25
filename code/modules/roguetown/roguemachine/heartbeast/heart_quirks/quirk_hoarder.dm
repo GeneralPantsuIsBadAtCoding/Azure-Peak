@@ -76,12 +76,12 @@
 	var/remaining_mammon = amt
 	var/list/coins_to_spawn = list()
 
-	if(remaining_mammon >= 105)
+	if(remaining_mammon > 100)
 		var/gold_count = floor(remaining_mammon / 10)
 		coins_to_spawn[ /obj/item/roguecoin/gold ] = gold_count
 		remaining_mammon -= gold_count * 10
 
-	if(remaining_mammon >= 25)
+	if(remaining_mammon > 20)
 		var/silver_count = floor(remaining_mammon / 5)
 		coins_to_spawn[ /obj/item/roguecoin/silver ] = silver_count
 		remaining_mammon -= silver_count * 5
