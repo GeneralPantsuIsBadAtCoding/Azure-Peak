@@ -28,6 +28,14 @@
 	abstract_type = /datum/anvil_recipe/armor/silver
 	craftdiff = SKILL_LEVEL_EXPERT
 
+/datum/anvil_recipe/armor/holysteel
+	abstract_type = /datum/anvil_recipe/armor/holysteel
+	craftdiff = SKILL_LEVEL_MASTER
+
+/datum/anvil_recipe/armor/blessedsilver
+	abstract_type = /datum/anvil_recipe/armor/blessedsilver
+	craftdiff = SKILL_LEVEL_MASTER
+
 /datum/anvil_recipe/armor/blacksteel
 	abstract_type = /datum/anvil_recipe/armor/blacksteel
 	craftdiff = SKILL_LEVEL_MASTER

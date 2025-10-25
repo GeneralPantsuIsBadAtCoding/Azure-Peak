@@ -77,6 +77,9 @@
 /obj/item/storage/belt/rogue/leather/battleskirt/black
 	color = CLOTHING_BLACK
 
+/obj/item/storage/belt/rogue/leather/battleskirt/barbarian
+	color = "#48443b"
+
 /obj/item/storage/belt/rogue/leather/battleskirt/faulds
 	name = "belt with faulds"
 	icon_state = "faulds"
