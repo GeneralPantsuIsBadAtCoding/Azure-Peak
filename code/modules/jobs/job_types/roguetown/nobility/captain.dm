@@ -73,12 +73,14 @@
 	outfit = /datum/outfit/job/roguetown/captain/infantry
 	category_tags = list(CTAG_CAPTAIN)
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
+	// Weighed 13 points. After guardsman buff were nerfed I assigned 1 pt to Spd to make them all around instead of minmaxable.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_CON = 2,
 		STATKEY_WIL = 2,
 		STATKEY_INT = 2,
 		STATKEY_PER = 1,
+		STATKEY_SPD = 1 
 		STATKEY_LCK = 1
 	)
 	subclass_skills = list(
