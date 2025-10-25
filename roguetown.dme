@@ -1495,6 +1495,7 @@
 #include "code\modules\clothing\rogueclothes\headwear\helmet\heavy_helmet.dm"
 #include "code\modules\clothing\rogueclothes\headwear\helmet\light_helmet.dm"
 #include "code\modules\clothing\rogueclothes\headwear\helmet\medium_helmet.dm"
+#include "code\modules\clothing\rogueclothes\headwear\helmet\special.dm"
 #include "code\modules\clothing\rogueclothes\npc\goblin.dm"
 #include "code\modules\clothing\rogueclothes\pants\_pants.dm"
 #include "code\modules\clothing\rogueclothes\pants\blacksteel.dm"
