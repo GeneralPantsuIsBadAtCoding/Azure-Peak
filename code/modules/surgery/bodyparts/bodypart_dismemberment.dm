@@ -60,7 +60,6 @@
 		C.emote("painscream")
 	if(!(NOBLOOD in C.dna?.species?.species_traits))
 		add_mob_blood(C)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
 	if(C.buckled)
