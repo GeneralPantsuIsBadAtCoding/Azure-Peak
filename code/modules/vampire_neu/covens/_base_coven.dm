@@ -47,7 +47,7 @@
 	var/research_points = 10
 
 	///Base XP gain for successful power use
-	var/base_power_xp = 5
+	var/base_power_xp = 10
 	///XP multiplier for higher level powers
 	var/power_level_multiplier = 1.5
 	///XP gain for discovering new things or unique actions
@@ -55,7 +55,7 @@
 	///XP gain for teaching others or mentoring
 	var/teaching_xp = 15
 	///XP gain for critical successes
-	var/critical_success_xp = 10
+	var/critical_success_xp = 20
 
 /datum/coven/New(level)
 	all_powers = subtypesof(power_type)
