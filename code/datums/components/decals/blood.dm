@@ -24,7 +24,9 @@
 	var/icon_state = I.icon_state
 	var/static/list/blood_splatter_appearances = list()
 	//try to find a pre-processed blood-splatter. otherwise, make a new one
-	var/index = "[REF(icon)]-[icon_state]"
+	// Use initial icon to avoid cache collisions from dynamic icon objects
+	var/base_icon = isfile(icon) ? "[icon]" : "[initial(I.icon)]"
+	var/index = "[base_icon]-[icon_state]"
 	pic = blood_splatter_appearances[index]
 
 	if(!pic)
