@@ -11,6 +11,7 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL
+	armor_class = ARMOR_CLASS_MEDIUM	//Heavy helmets require at least medium armor training. Stops no-armor training plate-headgear users.
 
 /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
 	name = "decrepit barbute"
@@ -549,6 +550,7 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL - ARMOR_INT_HELMET_HEAVY_ADJUSTABLE_PENALTY
+	armor_class = null	//Needs no armor class, snowflake merc gear.
 
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
