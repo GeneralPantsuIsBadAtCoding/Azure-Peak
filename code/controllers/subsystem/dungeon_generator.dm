@@ -7,12 +7,12 @@ SUBSYSTEM_DEF(dungeon_generator)
 	lazy_load = FALSE
 
 	var/list/parent_types = list()
-
 	var/list/created_types = list()
-
 	var/list/markers = list()
-
 	var/list/placed_types = list()
+
+	// How many entries must be created
+	var/required_entries = 2
 
 	var/created_since = 0
 	var/unlinked_dungeon_length = 0
@@ -76,9 +76,10 @@ SUBSYSTEM_DEF(dungeon_generator)
 
 	var/picked_type = pickweight(parent_types)
 	var/picking = TRUE
+	var/not_enough_entries = required_entries < placed_types[/datum/map_template/dungeon/entry]
 	if(unlinked_dungeon_length > 0)
-		if(created_since > 30)
-			if(prob(10 + created_since))
+		if(created_since > 70) // Used to be 30, but increases average distance of dungeon exits to create buffer room
+			if(not_enough_entries || prob(10 + created_since))
 				picked_type = /datum/map_template/dungeon/entry
 
 	if(!try_pickedtype_first(picked_type, direction, creator, looking_for_love))

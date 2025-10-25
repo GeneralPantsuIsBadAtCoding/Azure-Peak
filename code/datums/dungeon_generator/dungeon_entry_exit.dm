@@ -4,6 +4,12 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 
 /obj/structure/dungeon_entry/center
 	dungeon_id = "center"
+	target_exit_id = "hamlet"
+
+/obj/structure/dungeon_entry/hamlet
+	dungeon_id = "hamlet"
+	target_exit_id = "center"
+	claim_free_exit = TRUE
 
 /obj/structure/dungeon_entry
 	name = "The Tomb of Alotheos"
@@ -21,25 +27,48 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 	obj_flags = INDESTRUCTIBLE
 
 	var/dungeon_id
+	// If you have a dungeon_id but don't have a matching exit, you'll claim any free exit
+	var/claim_free_exit = FALSE 
+	// Where our exit will point toward for another exit
+	var/target_exit_id
 	var/list/dungeon_exits = list()
 	var/can_enter = TRUE
 
 
 /obj/structure/dungeon_entry/New(loc, ...)
 	GLOB.dungeon_entries |= src
-	if(!dungeon_id)
+	if(!dungeon_id || claim_free_exit)
 		GLOB.unlinked_dungeon_entries |= src
 	return ..()
 
 /obj/structure/dungeon_entry/Initialize()
 	. = ..()
 	if(dungeon_id)
+		var/linked = FALSE
 		for(var/obj/structure/dungeon_exit/exit as anything in GLOB.dungeon_exits)
 			if(exit.dungeon_id != dungeon_id)
 				continue
+			linked = TRUE
 			dungeon_exits |= exit
 			exit.entry = src
+			exit.target_exit_id = target_exit_id
+		if(!linked && claim_free_exit)
+			for(var/obj/structure/dungeon_exit/free_exit as anything in GLOB.dungeon_exits)
+				if(free_exit.entry)
+					continue
+				if(free_exit.dungeon_id && free_exit.dungeon_id != dungeon_id)
+					continue
+				dungeon_exits |= free_exit
+				free_exit.entry = src
+				free_exit.target_exit_id = target_exit_id
+				if(dungeon_id)
+					free_exit.dungeon_id = dungeon_id
+				linked = TRUE
+				break
+		if(linked)
 			GLOB.unlinked_dungeon_entries -= src
+		else
+			GLOB.unlinked_dungeon_entries |= src
 		return
 	shuffle_inplace(GLOB.dungeon_exits)
 	for(var/obj/structure/dungeon_exit/exit as anything in GLOB.dungeon_exits)
@@ -95,6 +124,8 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 	icon_state = "ladder10"
 
 	var/dungeon_id
+	// Which other exit this exit will guide you toward
+	var/target_exit_id
 	var/obj/structure/dungeon_entry/entry
 
 /obj/structure/dungeon_exit/Initialize()
@@ -106,17 +137,35 @@ GLOBAL_LIST_INIT(dungeon_exits, list())
 			if(exit.dungeon_id != dungeon_id)
 				continue
 			exit.dungeon_exits |= src
+			target_exit_id = exit.target_exit_id
 			entry = exit
 			GLOB.unlinked_dungeon_entries -= exit
 		return
 	shuffle_inplace(GLOB.unlinked_dungeon_entries)
 	for(var/obj/structure/dungeon_entry/exit as anything in GLOB.unlinked_dungeon_entries)
-		if(exit.dungeon_id)
+		if(exit.dungeon_id && !exit.claim_free_exit)
 			continue
 		exit.dungeon_exits |= src
+		target_exit_id = exit.target_exit_id
+		if(exit.dungeon_id)
+			dungeon_id = exit.dungeon_id
 		entry = exit
 		GLOB.unlinked_dungeon_entries -= exit
 		break
+
+/obj/structure/dungeon_exit/examine()
+	. = ..()
+	var/the_other_exit
+	for(var/obj/structure/dungeon_exit/exit in GLOB.dungeon_exits)
+		if(exit == src)
+			continue
+		if(exit.dungeon_id == target_exit_id)
+			the_other_exit = exit
+			break
+	if(the_other_exit)
+		var/direction_text = get_precise_direction_between(src, the_other_exit)
+		if(direction_text)
+			. += "The exit seems to hum with a faint magical energy, pulling you toward the [direction_text]."
 
 /obj/structure/dungeon_exit/Destroy()
 	entry = null

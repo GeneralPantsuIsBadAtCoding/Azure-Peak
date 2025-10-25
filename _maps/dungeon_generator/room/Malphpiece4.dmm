@@ -13,8 +13,8 @@
 /area/rogue/under/tomb/wilds/bog)
 "cq" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/reagent_containers/glass/cup/golden,
 /obj/structure/closet/crate/chest/gold,
+/obj/effect/spawner/lootdrop/valuable_clutter_spawner,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "cr" = (
@@ -54,9 +54,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "gl" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/roguestatue/gold/loot,
-/obj/structure/closet/crate/chest/gold,
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "iQ" = (
@@ -140,8 +138,8 @@
 /area/rogue/under/tomb/indoors/royal)
 "xu" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/clothing/ring/gold,
 /obj/structure/closet/crate/chest/gold,
+/obj/effect/spawner/lootdrop/valuable_tableware_spawner,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "xQ" = (
@@ -153,10 +151,8 @@
 /turf/closed/wall/mineral/rogue/wood,
 /area/rogue/under/tomb/indoors/royal)
 "Bv" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/roguestatue/gold,
-/obj/structure/closet/crate/chest/gold,
-/turf/open/floor/rogue/carpet,
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe/female,
+/turf/open/floor/rogue/tile/checkeralt,
 /area/rogue/under/tomb/indoors/royal)
 "CP" = (
 /turf/closed/wall/mineral/rogue/wood,
@@ -191,12 +187,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/trufflepig,
 /turf/open/floor/rogue/dirt/ambush,
 /area/rogue/under/tomb/wilds/bog)
-"Iq" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/rogueore/gold,
-/obj/structure/closet/crate/chest/gold,
-/turf/open/floor/rogue/carpet,
-/area/rogue/under/tomb/indoors/royal)
 "Lx" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/carpet,
@@ -219,8 +209,8 @@
 /area/rogue/under/tomb/wilds/bog)
 "NY" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/ingot/gold,
 /obj/structure/closet/crate/chest/gold,
+/obj/effect/spawner/lootdrop/valuable_candle_spawner,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "Oa" = (
@@ -230,7 +220,6 @@
 "Oc" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/item/clothing/mask/rogue/facemask/goldmask,
-/obj/item/roguecoin/gold/pile,
 /obj/item/storage/belt/rogue/leather/plaquegold,
 /obj/structure/closet/crate/chest/gold,
 /obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
@@ -241,6 +230,7 @@
 /obj/item/lockpick,
 /obj/item/lockpick,
 /obj/item/lockpickring,
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/tomb/indoors/royal)
 "RR" = (
@@ -499,7 +489,7 @@ CP
 (3,1,2) = {"
 CP
 pk
-gl
+gk
 gk
 gk
 gk
@@ -507,7 +497,7 @@ CX
 gk
 gk
 gk
-Bv
+gk
 gk
 Yd
 "}
@@ -550,7 +540,7 @@ gk
 sS
 gk
 pk
-gk
+gl
 pk
 gk
 gk
@@ -577,7 +567,7 @@ gk
 gk
 pk
 gk
-pk
+Bv
 gk
 sS
 gk
@@ -619,7 +609,7 @@ CP
 (11,1,2) = {"
 Yd
 gk
-cq
+gk
 gk
 gk
 gk
@@ -627,7 +617,7 @@ CX
 gk
 gk
 gk
-Iq
+gk
 pk
 xQ
 "}

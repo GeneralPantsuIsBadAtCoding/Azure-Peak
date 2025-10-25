@@ -618,7 +618,7 @@
 /obj/structure/table/church{
 	icon_state = "churchtable_end"
 	},
-/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
+/obj/effect/spawner/lootdrop/valuable_candle_spawner,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "wW" = (
@@ -946,7 +946,7 @@
 /area/rogue/under/tomb/indoors/church)
 "KW" = (
 /obj/structure/table/church,
-/obj/effect/spawner/lootdrop/valuable_jewelry_spawner,
+/obj/effect/spawner/lootdrop/valuable_clutter_spawner,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/tomb/indoors/church)
 "KX" = (

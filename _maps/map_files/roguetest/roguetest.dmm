@@ -1427,6 +1427,10 @@
 /obj/machinery/light/rogue/oven/south,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"XN" = (
+/obj/structure/dungeon_entry/hamlet,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "XU" = (
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/effect/decal/cleanable/dirt/cobweb,
@@ -2964,7 +2968,7 @@ rT
 rT
 rT
 rT
-rT
+XN
 rT
 rT
 rT
