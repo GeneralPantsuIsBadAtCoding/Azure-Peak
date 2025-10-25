@@ -22,6 +22,7 @@
 	round_contrib_points = 2
 
 	cmode_music = 'sound/music/combat_knight.ogg'
+	// Stat weight: 11 points as a heavy hitter post guardsman buff nerf.
 
 	job_subclasses = list(
 		/datum/advclass/knight/heavy,
@@ -85,7 +86,6 @@
 		STATKEY_INT = 3,
 		STATKEY_CON = 1,
 		STATKEY_WIL = 1,
-		STATKEY_SPD = -1
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT, //Polearms are pretty much explicitly a two-handed weapon, so I gave them a polearm option.
@@ -178,7 +178,8 @@
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(
 		STATKEY_STR = 1,//Tanky, less strength, but high con/end.
-		STATKEY_INT = 1,
+		STATKEY_INT = 2, // Decent feinter
+		STATKEY_PER = 1, // And decent at hitting precisely.
 		STATKEY_CON = 3,
 		STATKEY_WIL = 3,
 	)
@@ -265,11 +266,12 @@
 
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	//Decent all-around stats. Nothing spectacular. Ranged/melee hybrid class on horseback.
+	// All around defensive stats with con and wil but no speed addition or minus.
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_INT = 1,
-		STATKEY_CON = 1,
-		STATKEY_WIL = 1,
+		STATKEY_CON = 2, 
+		STATKEY_WIL = 2,
 		STATKEY_PER = 2
 	)
 	subclass_skills = list(
@@ -376,6 +378,7 @@
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_INT = 1,
+		STATKEY_PER = 2, // So they're actually good with a bow
 		STATKEY_WIL = 2,
 		STATKEY_SPD = 2
 	)
