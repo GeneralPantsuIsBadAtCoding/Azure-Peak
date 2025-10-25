@@ -164,6 +164,7 @@
 #define BANDIT		(1<<19)
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
+#define ASSASSIN	(1<<22)
 #define TRADER		(1<<22)
 
 #define YOUNGFOLK	(1<<6)
@@ -291,6 +292,7 @@
 #define JDO_BANDIT 31.3
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
+#define JDO_ASSASSIN 30.5
 #define JDO_TRADER 30.5
 
 #define JDO_MERCENARY 31
