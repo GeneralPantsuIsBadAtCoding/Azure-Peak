@@ -128,7 +128,7 @@
 /obj/item/ongive(mob/user, params) //take an item if hand is empty
 	if(user.get_active_held_item())
 		return
-	src.attack_hand(user, params)
+	attack_hand(user, params)
 
 /mob
 	var/mob/givingto
@@ -146,22 +146,22 @@
 		if(I)
 			transferItemToLoc(I, newloc = H, force = FALSE, silent = TRUE)
 			H.put_in_active_hand(I)
-			visible_message(span_notice("[src.name] gives [I] to [H.name]."))
+			visible_message(span_notice("[name] gives [I] to [H.name]."))
 			return
 		else
 			givingto = null
 	else if(!H.givingto && H.get_active_held_item()) //offer item
 		if(incapacitated(ignore_restraints = TRUE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE))
-			to_chat(H, span_warning("[src.name] is incapacitated!"))
+			to_chat(H, span_warning("[name] is incapacitated!"))
 			return
 		if(get_empty_held_indexes())
 			var/obj/item/I = H.get_active_held_item()
 			H.givingto = src
 			H.lastgiveaction = world.time
 			to_chat(src, span_notice("[H.name] offers [I] to me."))
-			to_chat(H, span_notice("I offer [I] to [src.name]."))
+			to_chat(H, span_notice("I offer [I] to [name]."))
 		else
-			to_chat(H, span_warning("[src.name]'s hands are full."))
+			to_chat(H, span_warning("[name]'s hands are full."))
 
 /mob/living/MiddleClickOn(atom/A, params)
 	..()

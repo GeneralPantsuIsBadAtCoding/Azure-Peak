@@ -1,24 +1,13 @@
-/datum/job/roguetown/absolver
-	title = "Absolver"
-	flag = ABSOLVER
-	department_flag = INQUISITION
-	faction = "Station"
-	total_positions = 1 // THE ONE.
-	spawn_positions = 1
-	allowed_races = RACES_ALL_KINDS
-	allowed_patrons = list(/datum/patron/old_god) //Requires the character to be a practicing Psydonite.
-	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
-	selection_color = JCOLOR_INQUISITION
-	outfit = /datum/outfit/job/roguetown/absolver
-	display_order = JDO_ABSOLVER
-	min_pq = 3 
-	max_pq = null
-	round_contrib_points = 2
-	wanderer_examine = FALSE
-	advjob_examine = FALSE
-	give_bank_account = 15
-
-	job_traits = list(
+/datum/advclass/absolver
+	name = "Absolver"
+	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. \
+	Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. \
+	Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
+	maximum_possible_slots = 1
+	outfit = /datum/outfit/job/roguetown/absolver/basic
+	subclass_languages = list(/datum/language/otavan)
+	category_tags = list(CTAG_INQUISITION)
+	traits_applied = list(
 		TRAIT_NOPAINSTUN,
 		TRAIT_PACIFISM,
 		TRAIT_EMPATH,
@@ -27,18 +16,6 @@
 		TRAIT_STEELHEARTED,
 		TRAIT_INQUISITION,
 	)
-
-	advclass_cat_rolls = list(CTAG_ABSOLVER = 2)
-	job_subclasses = list(
-		/datum/advclass/absolver
-	)
-
-/datum/advclass/absolver
-	name = "Absolver"
-	tutorial = "Once, you were alone in this monastery; a chapel of stone, protecting a shard of Psydon's divinity. Now, you've a whole sect to shepherd - and their propensity for violence oft-clashes with your own vows of pacifism. Temper the floch with your wisdom, siphon away their wounds with your blessings, and guide the wayard towards absolution."
-	outfit = /datum/outfit/job/roguetown/absolver/basic
-	subclass_languages = list(/datum/language/otavan)
-	category_tags = list(CTAG_ABSOLVER)
 	subclass_stats = list(
 		STATKEY_CON = 7,
 		STATKEY_WIL = 3,
