@@ -26,10 +26,6 @@ export const FlavorTextPage = (props) => {
   const nsfwHTML = {
     __html: `<span className='Chat'>${flavor_text_nsfw}</span>`,
   };
-  
-  const nsfwheadshotHTML = {
-    __html: `<img src=${nsfw_headshot} maxHeight="640px" maxWidth="480px"/>`,
-  };
 
   const oocHTML = {
     __html: `<span className='Chat'>${ooc_notes}</span>`,
@@ -125,16 +121,6 @@ export const FlavorTextPage = (props) => {
                   >
                     NSFW
                   </Button> 
-				  <Button
-                    selected={flavorTextIndex === 'NSFW Headshot'}
-                    disabled={!nsfw_headshot || !is_naked}
-                    bold={flavorTextIndex === 'NSFW Headshot'}
-                    onClick={() => setFlavorTextIndex('NSFW Headshot')}
-                    textAlign="center"
-                    width="150px"
-                  >
-                    NSFW Headshot
-                  </Button> 
                 </> 
               }
             >                  
@@ -146,11 +132,6 @@ export const FlavorTextPage = (props) => {
               {flavorTextIndex === 'NSFW' && (
                 <Box
                 dangerouslySetInnerHTML={nsfwHTML}
-                />
-              )} 
-			  {flavorTextIndex === 'NSFW Headshot' && (
-                <Box
-                dangerouslySetInnerHTML={nsfwheadshotHTML}
                 />
               )} 
             </Section>
@@ -179,6 +160,27 @@ export const ImageGalleryPage = (props) => {
                   </Section>
               </Stack.Item>
             ))}
+        </Stack>
+  );
+};
+
+export const NSFWHeadshotPage = (props) => {
+  const { data } = useBackend<ExaminePanelData>();
+  const {
+    nsfw_headshot,
+  } = data;
+  
+  return (
+        <Stack fill justify="space-evenly">
+            <Stack.Item grow>
+                <Section align="center">
+                <Image
+                  maxHeight="100%"
+                  maxWidth="100%"
+                  src={resolveAsset(nsfw_headshot)}
+                />
+                </Section>
+              </Stack.Item>
         </Stack>
   );
 };
