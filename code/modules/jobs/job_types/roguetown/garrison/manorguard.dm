@@ -64,10 +64,10 @@
 	category_tags = list(CTAG_MENATARMS)
 	traits_applied = list(TRAIT_MEDIUMARMOR)
 	subclass_stats = list(
-		STATKEY_STR = 2,// seems kinda lame but remember guardsman bonus!!
+		STATKEY_STR = 2,
 		STATKEY_INT = 1,
-		STATKEY_CON = 1,
-		STATKEY_WIL = 1
+		STATKEY_CON = 2,
+		STATKEY_WIL = 2
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
@@ -161,8 +161,8 @@
 	category_tags = list(CTAG_MENATARMS)
 	//Garrison ranged/speed class. Time to go wild
 	subclass_stats = list(
-		STATKEY_SPD = 2,// seems kinda lame but remember guardsman bonus!!
-		STATKEY_PER = 2,
+		STATKEY_SPD = 2,
+		STATKEY_PER = 4,
 		STATKEY_WIL = 1
 	)
 	subclass_skills = list(
@@ -250,10 +250,11 @@
 	traits_applied = list(TRAIT_MEDIUMARMOR)
 	//Garrison mounted class; charge and charge often.
 	subclass_stats = list(
-		STATKEY_CON = 2,// seems kinda lame but remember guardsman bonus!!
-		STATKEY_WIL = 2,// Your name is speed, and speed is running.
-		STATKEY_STR = 1,
-		STATKEY_INT = 1, // No strength to account for the nominally better weapons. We'll see.
+		STATKEY_CON = 1,
+		STATKEY_WIL = 1,
+		STATKEY_STR = 2,
+		STATKEY_INT = 1,
+		STATKEY_SPD = 1
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
