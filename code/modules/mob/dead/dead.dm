@@ -95,9 +95,9 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		var/job_choice = player.client?.prefs?.job_preferences
 		if (job_choice)
 			for (var/job_name in job_choice)
-				if (job_name in wanderer_jobs)
-					job_name = "Wanderer"
 				if (job_choice[job_name] == JP_HIGH)
+					if (job_name in wanderer_jobs)
+						job_name = "Wanderer"
 					if (player.ready == PLAYER_READY_TO_PLAY)
 						if (!ready_players_by_job[job_name])
 							ready_players_by_job[job_name] = list()
