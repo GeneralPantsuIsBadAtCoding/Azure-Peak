@@ -1,9 +1,10 @@
 /datum/antagonist/vampire/lord
-	name = "Vampire Lord"
+	name = "Methuselah"
 	roundend_category = "Vampires"
 	antagpanel_category = "Vampire"
 	job_rank = ROLE_VAMPIRE
 	generation = GENERATION_METHUSELAH
+	show_in_antagpanel = TRUE
 	antag_hud_type = ANTAG_HUD_VAMPIRE
 	antag_hud_name = "vamplord"
 	confess_lines = list(
@@ -13,6 +14,9 @@
 	)
 	show_in_roundend = TRUE
 	var/ascended = FALSE
+
+/datum/antagonist/vampire/lord/get_antag_cap_weight()
+	return 3
 
 /datum/antagonist/vampire/lord/on_gain()
 	. = ..()

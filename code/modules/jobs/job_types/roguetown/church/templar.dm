@@ -28,7 +28,7 @@
 	)
 
 /datum/outfit/job/roguetown/templar
-	job_bitflag = BITFLAG_CHURCH
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 	has_loadout = TRUE
 	allowed_patrons = ALL_DIVINE_PATRONS
 
