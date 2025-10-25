@@ -180,11 +180,12 @@
 	SIGNAL_HANDLER
 	if(user != parent_mob)
 		return
-	if(prob(5))
+	if(prob(25))
 		attempt_apply_rot(target, is_offensive = TRUE)
 
 /datum/component/infestation_black_rot/proc/on_struck(atom/victum, atom/attacker)
 	SIGNAL_HANDLER
+	to_chat(world, span_danger("[attacker] hit us oh my god!"))
 	if(!isliving(attacker))
 		return
 	var/mob/living/living_attacker = attacker

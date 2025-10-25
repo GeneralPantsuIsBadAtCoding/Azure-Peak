@@ -390,8 +390,9 @@
 			// If the target is a Pestran and we are holding the rose, implant the component.
 			if(!target.GetComponent(/datum/component/infestation_black_rot))
 				target.AddComponent(/datum/component/infestation_black_rot)
+				ADD_TRAIT(target, TRAIT_PESTRAS_BLESSING, TRAIT_MIRACLE)
 				target.visible_message(span_notice("[user] gently presses the [rose] against [target]'s flesh. The rose dissolves, leaving a black mark."), \
-										span_userdanger("The rose fuses with my flesh, granting me Pestra's protection."))
+										span_userdanger("The rose fuses with my flesh, granting me the trait of Pestra's protection."))
 				qdel(rose)
 				return TRUE
 			else
@@ -432,6 +433,7 @@
 		found = S
 	if(!found)
 		to_chat(user, span_warning("I need a holy cross."))
+		revert_cast()
 		return FALSE
 	return TRUE
 
