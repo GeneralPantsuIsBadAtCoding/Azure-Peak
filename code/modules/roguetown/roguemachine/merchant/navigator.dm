@@ -1,3 +1,6 @@
+#define EXPORT_TIME 2.5 MINUTES
+#define EXPORT_TIME_TESTING 5 SECONDS
+
 /obj/item/roguemachine/navigator
 	name = "navigator"
 	desc = "A machine that attracts the attention of trading balloons."
@@ -9,6 +12,24 @@
 	max_integrity = 0
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_GIGANTIC
+	/// A fixed tax on all items sold through the balloon that overrides queens tax. Used for blackmarket
+	var/fixed_tax = 0
+	/// Motto displayed at the top of the vendor interface
+	var/motto = "NAVIGATOR - Your goods, airborne."
+
+/obj/item/roguemachine/navigator/examine()
+	. = ..()
+	var/export_time = EXPORT_TIME
+	#ifdef LOCALTEST
+	export_time = EXPORT_TIME_TESTING
+	#endif
+	. += span_notice("This machine attracts trading balloons every [DisplayTimeText(export_time)]. Goods are sucked into the air and mammons are dropped after tax has been collected.")
+
+/obj/item/roguemachine/navigator/blackmarket
+	name = "suspicious navigator"
+	desc = "Freedom has a price."
+	motto = "NA?!G@#OR - ████ ██████ █████████ - FREEDOM OF TRANSACTION."
+	fixed_tax = 0.7 // 70% taxation and rip off to encourage people to risk it with merchant / others
 
 /obj/structure/roguemachine/balloon_pad
 	name = ""
@@ -26,8 +47,10 @@
 
 	var/contents
 
-	contents += "<center>MERCHANT'S GUILD<BR>"
+	contents += "<center>[motto]<BR>"
 	contents += "--------------<BR>"
+	if(fixed_tax > 0)
+		contents += "HANDLER'S FEE: [fixed_tax * 100] %<BR>"
 	contents += "Next Balloon: [time2text((next_airlift - world.time), "mm:ss")]</center><BR>"
 
 	if(!user.can_read(src, TRUE))
@@ -63,11 +86,12 @@
 /obj/item/roguemachine/navigator/process()
 	if(!anchored)
 		return TRUE
+	var/export_time = EXPORT_TIME
+	#ifdef LOCALTEST
+		export_time = EXPORT_TIME_TESTING
+	#endif
 	if(world.time > next_airlift)
-		next_airlift = world.time + rand(2 MINUTES, 3 MINUTES)
-#ifdef TESTSERVER
-		next_airlift = world.time + 5 SECONDS
-#endif
+		next_airlift = world.time + export_time
 		var/play_sound = FALSE
 		for(var/D in GLOB.alldirs)
 			var/budgie = 0
@@ -80,7 +104,7 @@
 			for(var/obj/I in T)
 				if(I.anchored || !isturf(I.loc) || istype(I, /obj/item/roguecoin)|| istype(I, /obj/structure/handcart))
 					continue
-				var/prize = I.get_real_price()
+				var/prize = I.get_real_price() * (1 - fixed_tax)
 				if(prize >= 1)
 					play_sound=TRUE
 					budgie += prize
