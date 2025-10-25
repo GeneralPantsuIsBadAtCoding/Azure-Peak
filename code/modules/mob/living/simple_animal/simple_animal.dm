@@ -403,11 +403,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(stat == DEAD)
 		var/obj/item/held_item = user.get_active_held_item()
 		if(held_item)
-			if((butcher_results || guaranteed_butcher_results) && held_item.get_sharpness() && held_item.wlength == WLENGTH_SHORT)
+			if((butcher_results || guaranteed_butcher_results) && ((held_item.get_sharpness() && held_item.wlength == WLENGTH_SHORT) || istype(held_item, /obj/item/contraption/shears)))
 				var/used_time = 3 SECONDS
 				var/on_meathook = FALSE
-				if(src.buckled && istype(src.buckled, /obj/structure/meathook))
-					on_meathook = TRUE
+				if((src.buckled && istype(src.buckled, /obj/structure/meathook))|| istype(held_item, /obj/item/contraption/shears))
+					on_meathook = TRUE //will work efficiently if they are using autosheers as well
 					used_time -= 3 SECONDS
 					visible_message("[user] begins to efficiently butcher [src]...")
 				else

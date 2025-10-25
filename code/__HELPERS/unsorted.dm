@@ -1026,28 +1026,40 @@ rough example of the "cone" made by the 3 dirs checked
 		for(x in x to t_center.x+c_dist)
 			T = locate(x,y,t_center.z)
 			if(T)
-				L += T
+				if(istype(T, /turf/closed/wall/mineral/rogue/stone/unbreakable)||istype(T, /turf/closed/mineral/rogue/bedrock))
+					continue //if its unbreakable or bedrock, we skip this one
+				else
+					L += T
 
 		y = t_center.y + c_dist - 1
 		x = t_center.x + c_dist
 		for(y in t_center.y-c_dist to y)
 			T = locate(x,y,t_center.z)
 			if(T)
-				L += T
+				if(istype(T, /turf/closed/wall/mineral/rogue/stone/unbreakable)||istype(T, /turf/closed/mineral/rogue/bedrock))
+					continue //if its unbreakable or bedrock, we skip this one
+				else
+					L += T
 
 		y = t_center.y - c_dist
 		x = t_center.x + c_dist - 1
 		for(x in t_center.x-c_dist to x)
 			T = locate(x,y,t_center.z)
 			if(T)
-				L += T
+				if(istype(T, /turf/closed/wall/mineral/rogue/stone/unbreakable)||istype(T, /turf/closed/mineral/rogue/bedrock))
+					continue //if its unbreakable or bedrock, we skip this one
+				else
+					L += T
 
 		y = t_center.y - c_dist + 1
 		x = t_center.x - c_dist
 		for(y in y to t_center.y+c_dist)
 			T = locate(x,y,t_center.z)
 			if(T)
-				L += T
+				if(istype(T, /turf/closed/wall/mineral/rogue/stone/unbreakable)||istype(T, /turf/closed/mineral/rogue/bedrock))
+					continue //if its unbreakable or bedrock, we skip this one
+				else
+					L += T
 		c_dist++
 		if(tick_checked)
 			CHECK_TICK

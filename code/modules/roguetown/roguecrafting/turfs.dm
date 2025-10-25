@@ -72,6 +72,52 @@
 /datum/crafting_recipe/roguetown/turfs/wood/murderhole/alt
 	reqs = list(/obj/item/natural/wood/plank = 2)
 
+/// carpet
+/datum/crafting_recipe/roguetown/turfs/carpet
+	name = "carpet(inn)"
+	result = /turf/open/floor/carpet/inn
+	reqs = list(/obj/item/natural/silk= 2)	
+	skillcraft = /datum/skill/craft/carpentry
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/turfs/carpet/purple
+	name = "carpet(purple)"
+	result = /turf/open/floor/carpet/purple
+	reqs = list(/obj/item/natural/silk= 2)	
+	skillcraft = /datum/skill/craft/carpentry
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/turfs/carpet/red
+	name = "carpet(red)"
+	result = /turf/open/floor/carpet/red
+	reqs = list(/obj/item/natural/silk= 2)	
+	skillcraft = /datum/skill/craft/carpentry
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/turfs/carpet/stellar
+	name = "carpet(stellar)"
+	result = /turf/open/floor/carpet/stellar
+	reqs = list(/obj/item/natural/silk= 2)	
+	skillcraft = /datum/skill/craft/carpentry
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/turfs/carpet/royalblack
+	name = "carpet(royal black)"
+	result = /turf/open/floor/carpet/royalblack
+	reqs = list(/obj/item/natural/silk= 2)	
+	skillcraft = /datum/skill/craft/carpentry
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 3
+
 /// STONE
 
 /datum/crafting_recipe/roguetown/turfs/stone
