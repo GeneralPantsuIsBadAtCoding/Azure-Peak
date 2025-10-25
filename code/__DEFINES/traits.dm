@@ -78,6 +78,7 @@
 #define TRAIT_ZURCH 	"Hidden Domiciles" //allows entry to ascendant church
 #define TRAIT_DREAMWALKER "Dreamwalker"
 #define TRAIT_JACKOFALLTRADES "Jack of All Trades"	//Reduces skill up cost
+#define TRAIT_BLOODPOOL_BORN "Bloodpool Born"
 
 //Hearthstone port (Tracking)
 #define TRAIT_PERFECT_TRACKER "Huntmaster" //Will always find any tracks and analyzes them perfectly.
@@ -421,6 +422,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_MASTER_CARPENTER = span_warning("I've been trained to make the most of wood"),
 	TRAIT_MASTER_MASON = span_warning("I've been trained to make the most of stone"),
 	TRAIT_EQUESTRIAN = span_warning("I am a capable rider. My mount is an extension of me."),
+	TRAIT_BLOODPOOL_BORN = span_bloody("I emerged from the bloodpool of a Vampire Lord. There is no possibility for redemption for me in this land.")
 ))
 
 // trait accessor defines
@@ -666,6 +668,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define GLASSES_TRAIT "glasses"
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
+#define POULTICE_TRAIT "poultice"
 
 // unique trait sources, still defines
 #define TRAIT_GUIDANCE "Guidance"
