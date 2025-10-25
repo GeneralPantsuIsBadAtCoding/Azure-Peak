@@ -17,7 +17,7 @@ enum Page {
 
 export const ExaminePanel = (props) => {
   const { act, data } = useBackend<ExaminePanelData>();
-  const { is_vet, character_name, is_playing, has_song, img_gallery, is_naked, } = data;
+  const { is_vet, character_name, is_playing, has_song, img_gallery, is_naked, nsfw_headshot } = data;
   const [currentPage, setCurrentPage] = useState(Page.FlavorText);
 
   let pageContents;
@@ -58,7 +58,7 @@ export const ExaminePanel = (props) => {
       </>}>
       <Window.Content>
         <Stack vertical fill>
-          {(img_gallery.length > 0 && !is_naked) && (
+          {((img_gallery.length > 0 && !is_naked) || (img_gallery.length > 0 && is_naked && !nsfw_headshot)) && (
           <Stack>
             <Stack.Item grow>
               <PageButton
@@ -80,7 +80,7 @@ export const ExaminePanel = (props) => {
             </Stack.Item>
           </Stack>
           )}
-		  {(!img_gallery.length > 0 && is_naked) && (
+		  {(!img_gallery.length > 0 && is_naked && nsfw_headshot) && (
           <Stack>
             <Stack.Item grow>
               <PageButton
@@ -102,7 +102,7 @@ export const ExaminePanel = (props) => {
             </Stack.Item>
           </Stack>
           )}
-		  {(img_gallery.length > 0 && is_naked) && (
+		  {(img_gallery.length > 0 && is_naked && nsfw_headshot) && (
           <Stack>
             <Stack.Item grow>
               <PageButton
@@ -133,7 +133,7 @@ export const ExaminePanel = (props) => {
             </Stack.Item>
           </Stack>
           )}
-          {(img_gallery.length > 0 || is_naked) && (<Stack.Divider />)}
+          {(img_gallery.length > 0 || (is_naked && nsfw_headshot)) && (<Stack.Divider />)}
           <Stack.Item grow position="relative" overflowX="hidden" overflowY="auto">
             {pageContents}
           </Stack.Item>
