@@ -1279,7 +1279,7 @@
 	desc = "Bestow a person with Eora's calm, if only for a little while."
 	sound = 'sound/magic/eora_bless.ogg'
 	devotion_cost = 80
-	recharge_time = 10 MINUTES
+	recharge_time = 5 MINUTES
 	miracle = TRUE
 	invocation_type = "shout"
 	invocations = list("Let the beauty of lyfe fill you whole.")

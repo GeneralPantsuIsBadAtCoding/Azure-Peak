@@ -364,7 +364,7 @@
 	invocation_type = "whisper"
 	sound = 'sound/magic/bless.ogg'
 	devotion_cost = 100
-	recharge_time = 60 MINUTES
+	recharge_time = 20 MINUTES
 	// Long to prevent combat casting and forcing popups.
 	chargetime = 10 SECONDS
 	associated_skill = /datum/skill/magic/holy

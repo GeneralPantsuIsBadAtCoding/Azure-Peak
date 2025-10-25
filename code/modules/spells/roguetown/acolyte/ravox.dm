@@ -242,7 +242,7 @@
 	overlay_state = "ravoxchallenge"
 	action_icon_state = "ravoxchallenge"
 	action_icon = 'icons/mob/actions/ravoxmiracles.dmi'
-	recharge_time = 20 MINUTES
+	recharge_time = 10 MINUTES
 	movement_interrupt = FALSE
 	chargedrain = 0
 	range = 5

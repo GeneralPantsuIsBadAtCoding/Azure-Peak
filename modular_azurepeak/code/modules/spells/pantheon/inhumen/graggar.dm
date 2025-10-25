@@ -45,31 +45,33 @@
 /obj/projectile/magic/unholy_grasp
 	name = "viceral organ net"
 	icon_state = "tentacle_end"
-	nodamage = TRUE	//No damage, just ensnaring a target.
+	nodamage = TRUE
 
 /obj/projectile/magic/unholy_grasp/on_hit(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(..() || !iscarbon(hit_atom))	//if it gets caught or the target can't be cuffed.
-		return	//Abort
+	if(..() || !iscarbon(hit_atom))
+		return
+	
 	ensnare(hit_atom)
 
-/obj/projectile/magic/unholy_grasp/proc/ensnare(mob/living/carbon/C)		//Same code as net but with le flavor.
-	if(!C.legcuffed && C.get_num_legs(FALSE) >= 2)
-		visible_message("<span class='danger'>\The [src] ensnares [C] in vicera!</span>")
-		C.legcuffed = src
-		forceMove(C)
-		C.update_inv_legcuffed()
-		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
-		to_chat(C, "<span class='danger'>\The [src] ensnares you!</span>")
-		C.Knockdown(knockdown)
-		C.apply_status_effect(/datum/status_effect/debuff/netted)
-		playsound(src, 'sound/combat/caught.ogg', 50, TRUE)
+/obj/projectile/magic/unholy_grasp/proc/ensnare(mob/living/carbon/carbon)
+	if(carbon.legcuffed || carbon.get_num_legs(FALSE) < 2)
+		return
 
-//Revel in Slaughter - Self-healing by consuming blood around you; large healing, has delay though.
+	visible_message(span_danger("\The [src] ensnares [carbon] in vicera!"))
+	carbon.legcuffed = src
+	forceMove(carbon)
+	carbon.update_inv_legcuffed()
+	SSblackbox.record_feedback("tally", "handcuffs", 1, type)
+	to_chat(carbon, span_danger("\The [src] ensnares you!"))
+	carbon.Knockdown(knockdown)
+	carbon.apply_status_effect(/datum/status_effect/debuff/netted)
+	playsound(src, 'sound/combat/caught.ogg', 50, TRUE)
+
 /obj/effect/proc_holder/spell/invoked/revel_in_slaughter
 	name = "Revel in Slaughter"
-	desc = "The blood of your enemy shall boil, their skin feeling as if it's being ripped apart! Gaggar demands their blood must FLOW!!!."
+	desc = "The blood of your enemy shall boil, their skin feeling as if it's being ripped apart! Graggar demands their blood must FLOW!!!"
 	overlay_state = "bloodsteal"
-	recharge_time = 5 MINUTES
+	recharge_time = 1 MINUTES
 	invocations = list("YOUR BLOOD WILL BOIL TILL IT'S SPILLED!")
 	invocation_type = "shout"
 	sound = 'sound/magic/antimagic.ogg'
@@ -77,27 +79,36 @@
 	miracle = TRUE
 	devotion_cost = 70
 
-/obj/effect/proc_holder/spell/invoked/revel_in_slaughter/cast(atom/A, list/targets, mob/living/user = usr)
-	var/success = 0
-	for(var/obj/effect/decal/cleanable/blood/B in view(3, user))
-		success++
-		qdel(B)
-	if(!success)	//Checks if there's blood around you. It's NEEEEEDED!!!
-		to_chat(user, span_warning("I need blood around me to !"))
+/obj/effect/proc_holder/spell/invoked/revel_in_slaughter/cast(list/targets, mob/living/user = usr)
+	var/mob/living/carbon/human/human = targets[1]
+
+	if(!istype(human) || human == user)
+		revert_cast()
 		return FALSE
-	if(isliving(targets[1]))
-		var/mob/living/target = targets[1]
-		if(ishuman(target)) //BLEED AND PAIN
-			var/mob/living/carbon/human/human_target = target
-			var/datum/physiology/phy = human_target.physiology
-			phy.bleed_mod *= 1.5
-			phy.pain_mod *= 1.5
-			addtimer(VARSET_CALLBACK(phy, bleed_mod, phy.bleed_mod /= 1.5), 25 SECONDS)
-			addtimer(VARSET_CALLBACK(phy, pain_mod, phy.pain_mod /= 1.5), 15 SECONDS)
-			human_target.visible_message(span_danger("[target]'s wounds become inflammed as their vitality is sapped away!"))
-			to_chat(target, span_warning("My skins feels like pins and needles, as if something were ripping and tearing at me!"))
-			return TRUE
-	return FALSE
+
+	var/success = 0
+
+	for(var/obj/effect/decal/cleanable/blood/blood in view(3, user))
+		success++
+		qdel(blood)
+
+	if(!success)
+		to_chat(user, span_warning("Graggar demands BLOOD to call upon his powers!"))
+		revert_cast()
+		return FALSE
+
+	var/datum/physiology/phy = human.physiology
+
+	phy.bleed_mod *= 1.5
+	phy.pain_mod *= 1.5
+
+	addtimer(VARSET_CALLBACK(phy, bleed_mod, phy.bleed_mod /= 1.5), 25 SECONDS)
+	addtimer(VARSET_CALLBACK(phy, pain_mod, phy.pain_mod /= 1.5), 15 SECONDS)
+
+	human.visible_message(span_danger("[human]'s wounds become inflammed as their vitality is sapped away!"))
+	to_chat(human, span_warning("My skins feels like pins and needles, as if something were ripping and tearing at me!"))
+
+	return TRUE
 
 //Bloodrage T0 -- Uncapped STR buff.
 /obj/effect/proc_holder/spell/self/graggar_bloodrage
