@@ -291,6 +291,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
 		vote_on_poll_handler(poll, href_list)
 
+	if(href_list["explainreadyupbonus"])
+		to_chat(src, span_smallnotice("Ready up for 20 mammons in a stashed pouch, full hydration, a great meal buff and +1 triumph!"))
 
 
 /mob/dead/new_player/verb/do_rp_prompt()
@@ -598,7 +600,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	omegalist += list(GLOB.inquisition_positions)
 	omegalist += list(GLOB.yeoman_positions)
 	omegalist += list(GLOB.peasant_positions)
-	omegalist += list(GLOB.mercenary_positions)
+	omegalist += list(GLOB.wanderer_positions)
 	omegalist += list(GLOB.youngfolk_positions)
 
 	for(var/list/category in omegalist)
@@ -636,8 +638,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 					cat_name = "Peasants"
 				if (YOUNGFOLK)
 					cat_name = "Sidefolk"
-				if (MERCENARIES)
-					cat_name = "Mercenaries"
+				if (WANDERERS)
+					cat_name = "Wanderers"
 				if (INQUISITION)
 					cat_name = "Inquisition"
 			//	if (GOBLIN)

@@ -225,6 +225,17 @@
 				continue
 			H.mind.i_know_person(MF)
 
+	// Ready up bonus
+	if(!H.islatejoin)
+		H.adjust_triumphs(1)
+		H.apply_status_effect(/datum/status_effect/buff/foodbuff)
+		H.hydration = 1000 // Set higher hydration
+
+		if(H.mind)
+			H.mind?.special_items["Pouch of Coins"] = /obj/item/storage/belt/rogue/pouch/coins/readyuppouch
+
+		to_chat(M, span_notice("Rising early, you made sure to pack a pouch of coins in your stash and eat a hearty breakfast before starting your day. A true TRIUMPH!"))
+
 	if(H.islatejoin && announce_latejoin)
 		var/used_title = display_title || title
 		if((H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F) && f_title)
