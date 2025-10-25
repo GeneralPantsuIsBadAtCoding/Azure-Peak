@@ -61,6 +61,8 @@
 	var/list/resident_advclass
 	//a door name a skilled artisan can make 
 	var/doorname = null
+	/// Prevents key interactions with this door
+	var/deadbolt = FALSE
 
 /obj/structure/mineral_door/onkick(mob/user)
 	if(isSwitchingStates)
@@ -463,15 +465,78 @@
 
 /obj/structure/mineral_door/attack_right(mob/user)
 	user.changeNext_move(CLICK_CD_FAST)
-	var/obj/item = user.get_active_held_item()
-	if(istype(item, /obj/item/roguekey) || istype(item, /obj/item/storage/keyring))
-		if(locked)
-			to_chat(user, span_warning("It won't turn this way. Try turning to the left."))
-			door_rattle()
-			return
-		trykeylock(item, user)
-	else
+	if(deadbolt) // Deadbolt doors are not supposed to be opened with a key
 		return ..()
+
+	// Check if user has a key in hand or belt slots
+	var/obj/item/key_item = find_key_for_door(user)
+	if(!isnull(key_item))
+		trykeylock(key_item, user)
+		return
+
+	return ..()
+
+/// Helper proc to find a matching key or keyring in hand or belt slots
+/obj/structure/mineral_door/proc/find_key_for_door(mob/user)
+	if(!user || !keylock)
+		return null
+
+	// Check hand first
+	var/obj/item/roguekey/W = check_key_or_keyring(user.get_active_held_item())
+	if(!isnull(W))
+		return W
+
+	// Check belt slots if human
+	if(!ishuman(user))
+		return null
+
+	var/mob/living/carbon/human/H = user
+	var/list/belt_slots = list(
+		H.get_item_by_slot(SLOT_BELT),
+		H.get_item_by_slot(SLOT_BELT_L),
+		H.get_item_by_slot(SLOT_BELT_R)
+	)
+
+	for(var/obj/item/I as anything in belt_slots)
+		if(QDELETED(I)) // Yeah, it can give nulls!
+			continue
+		// Check if the belt item itself is a key or keyring
+		var/obj/item/keycheck = check_key_or_keyring(I)
+		if(!isnull(keycheck))
+			return keycheck
+
+		// Check inside the belt item if it has contents (storage belts, etc.)
+		if(!LAZYLEN(I.contents))
+			continue
+
+		for(var/obj/item/contained_item in I.contents)
+			keycheck = check_key_or_keyring(contained_item)
+			if(!isnull(keycheck))
+				return keycheck
+
+	return null
+
+/// Helper to check if a passed item is a valid key or a keyring with a valid key
+/obj/structure/mineral_door/proc/check_key_or_keyring(obj/item/roguekey/keytest)
+	if(istype(keytest, /obj/item/roguekey) && (keytest.lockhash == lockhash || keytest == SSroguemachine.key))
+		return keytest
+	else if(istype(keytest, /obj/item/storage/keyring) && keyring_has_matching_key(keytest))
+		return keytest
+
+	return null
+
+/// Helper proc to check if a keyring contains a matching key
+/obj/structure/mineral_door/proc/keyring_has_matching_key(obj/item/storage/keyring/keyring)
+	if(!istype(keyring, /obj/item/storage/keyring))
+		return FALSE
+
+	for(var/obj/item/I in keyring.contents)
+		if(isnull(check_key_or_keyring(I)))
+			continue
+
+		return TRUE
+
+	return FALSE
 
 /obj/structure/mineral_door/proc/trykeylock(obj/item/I, mob/user, autobump = FALSE)
 	if(door_opened || isSwitchingStates)
@@ -787,6 +852,7 @@
 	openSound = 'sound/foley/doors/shittyopen.ogg'
 	closeSound = 'sound/foley/doors/shittyclose.ogg'
 	smashable = TRUE
+	deadbolt = TRUE
 
 /obj/structure/mineral_door/wood/deadbolt/OnCrafted(dirin)
 	dir = turn(dirin, 180)
@@ -841,10 +907,6 @@
 	repair_cost_second = /obj/item/natural/stone
 	repair_skill = /datum/skill/craft/masonry
 
-/obj/structure/mineral_door/wood/donjon/stone/attack_right(mob/user)
-	if(user.get_active_held_item())
-		..()
-
 /obj/structure/mineral_door/wood/donjon/stone/view_toggle(mob/user)
 	return
 
@@ -853,10 +915,9 @@
 	icon_state = base_state
 	..()
 
-/obj/structure/mineral_door/wood/donjon/attack_right(mob/user)
+/obj/structure/mineral_door/wood/donjon/MiddleClick(mob/user)
 	if(user.get_active_held_item())
-		..()
-		return
+		return ..()
 	if(door_opened || isSwitchingStates)
 		return
 	if(brokenstate)
