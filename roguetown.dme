@@ -1795,6 +1795,7 @@
 #include "code\modules\jobs\job_types\roguetown\youngfolk\vagabond\goatherd.dm"
 #include "code\modules\jobs\job_types\roguetown\youngfolk\vagabond\runner.dm"
 #include "code\modules\jobs\job_types\roguetown\youngfolk\vagabond\the_original.dm"
+#include "code\modules\jobs\job_types\roguetown\youngfolk\vagabond\unraveled.dm"
 #include "code\modules\jobs\job_types\roguetown\youngfolk\vagabond\wanted.dm"
 #include "code\modules\keybindings\bindings_atom.dm"
 #include "code\modules\keybindings\bindings_carbon.dm"
