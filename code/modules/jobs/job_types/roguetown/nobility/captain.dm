@@ -80,7 +80,7 @@
 		STATKEY_WIL = 2,
 		STATKEY_INT = 2,
 		STATKEY_PER = 1,
-		STATKEY_SPD = 1 
+		STATKEY_SPD = 1, 
 		STATKEY_LCK = 1
 	)
 	subclass_skills = list(
