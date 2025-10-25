@@ -45,13 +45,19 @@
 	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))
 	HU.apply_status_effect(/datum/status_effect/debuff/baitcd)
 
-	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest | Our zones do not match, or we were targeting chest
-		to_chat(HU, span_danger("It didn't work! [HT.p_their(TRUE)] footing returned!"))
-		to_chat(HT, span_notice("I fooled [HU.p_them()]! I've regained my footing!"))
-		HU.emote("groan")
-		HU.stamina_add(HU.max_stamina * 0.2)
-		HT.bait_stacks = 0
-		return
+	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones do not match OR either of us is targeting chest.
+		var/guaranteed_fail = TRUE
+		switch(target_zone)
+			if(BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_R_EYE)
+				if(user_zone == BODY_ZONE_PRECISE_L_EYE || user_zone == BODY_ZONE_PRECISE_R_EYE)
+					guaranteed_fail = FALSE
+		if(guaranteed_fail)
+			to_chat(HU, span_danger("It didn't work! [HT.p_their(TRUE)] footing returned!"))
+			to_chat(HT, span_notice("I fooled [HU.p_them()]! I've regained my footing!"))
+			HU.emote("groan")
+			HU.stamina_add(HU.max_stamina * 0.2)
+			HT.bait_stacks = 0
+			return
 
 	var/fatiguemod	//The heavier the target's armor, the more fatigue (green bar) we drain.
 	var/targetac = HT.highest_ac_worn()
