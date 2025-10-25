@@ -173,3 +173,7 @@
 /obj/item/seeds/tea
 	seed_identity = "tea seeds"
 	plant_def_type = /datum/plant_def/tea
+
+/obj/item/seeds/pumpkin
+	seed_identity = "pumpkin seeds"
+	plant_def_type = /datum/plant_def/pumpkin

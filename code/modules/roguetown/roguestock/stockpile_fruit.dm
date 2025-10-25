@@ -129,6 +129,19 @@
     stockpile_limit = 25
     category = "Fruits"
 
+/datum/roguestock/stockpile/pumpkin
+    name = "Pumpkin"
+    desc = "The thick pumpkin rind shields a surprisingly dense fleshy interior."
+    item_type = /obj/item/natural/shellplant/pumpkin
+    held_items = list(0, 4)
+    payout_price = 2
+    withdraw_price = 3
+    export_price = 4
+    importexport_amt = 5
+    passive_generation = 2
+    stockpile_limit = 25
+    category = "Fruits"
+
 /datum/roguestock/stockpile/jacksberry
 	name = "Jacksberries"
 	desc = "Sweet berries, prime for winemaking."
