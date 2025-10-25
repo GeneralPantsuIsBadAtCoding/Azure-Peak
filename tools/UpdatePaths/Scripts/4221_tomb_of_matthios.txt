@@ -1,0 +1,6 @@
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/ravager/@SUBTYPES : /mob/living/carbon/human/species/orc/npc/berserker{@OLD}
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/@SUBTYPES : /mob/living/carbon/human/species/orc/npc/marauder{@OLD}
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear2/@SUBTYPES : /mob/living/carbon/human/species/orc/npc/footsoldier{@OLD}
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/spear/@SUBTYPES : /mob/living/carbon/human/species/orc/npc/footsoldier{@OLD}
+/mob/living/simple_animal/hostile/retaliate/rogue/orc/orc2/@SUBTYPES : /mob/living/carbon/human/species/orc/npc/footsoldier{@OLD}
+/mob/living/simple_animal/hostile/retaliate/rogue/orc{@UNSET} : /mob/living/carbon/human/species/orc/npc/footsoldier

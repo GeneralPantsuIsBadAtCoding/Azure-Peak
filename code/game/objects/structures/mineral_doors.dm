@@ -590,12 +590,12 @@
 	if(isSwitchingStates || door_opened)
 		return
 	if(locked)
-		user.visible_message(span_warning("[user] unlocks [src]."), \
+		user?.visible_message(span_warning("[user] unlocks [src]."), \
 			span_notice("I unlock [src]."))
 		playsound(src, unlocksound, 100)
 		locked = 0
 	else
-		user.visible_message(span_warning("[user] locks [src]."), \
+		user?.visible_message(span_warning("[user] locks [src]."), \
 			span_notice("I lock [src]."))
 		playsound(src, locksound, 100)
 		locked = 1

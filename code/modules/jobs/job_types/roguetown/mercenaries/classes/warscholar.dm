@@ -249,6 +249,8 @@
 		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
 		detailcolor = naledicolors[detailcolor]
 		H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/lesser_heal)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/arcynebolt) // Give them little bit of offensive power to make them less boring.
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse) // A "defensive" spell to keep themselves safe
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/regression)

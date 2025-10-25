@@ -63,16 +63,19 @@
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
 	armor_penetration = 30
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
 
 /obj/projectile/bullet/reusable/bolt/paalloy
 	damage = 50
 	armor_penetration = 35
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/paalloy
 
 /obj/projectile/bullet/reusable/bolt/blunt
 	damage = 25
 	armor_penetration = 0
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/blunt
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
