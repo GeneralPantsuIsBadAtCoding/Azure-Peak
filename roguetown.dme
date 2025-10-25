@@ -2733,6 +2733,7 @@
 #include "modular_azurepeak\code\datums\loadout.dm"
 #include "modular_azurepeak\code\datums\mind.dm"
 #include "modular_azurepeak\code\datums\slapcrafting.dm"
+#include "modular_azurepeak\code\datums\status_effects\relaxing_bath.dm"
 #include "modular_azurepeak\code\datums\status_effects\spider_cocoon.dm"
 #include "modular_azurepeak\code\datums\status_effects\spider_speak.dm"
 #include "modular_azurepeak\code\game\objects\effects\temporary_visuals\miracles.dm"
