@@ -21,3 +21,14 @@
 	else
 		return 0
 
+/// Gets the "true" value of a stat on a human mob by eliminating all status effect modifiers that affect that stat.
+/mob/living/proc/get_true_stat(stat)
+	var/fakestat = get_stat(stat)
+	if(status_effects.len)
+		for(var/S in status_effects)
+			var/datum/status_effect/status = S
+			if(status.effectedstats.len)
+				if(status.effectedstats[stat])
+					if(status.effectedstats[stat] > 0)
+						fakestat -= status.effectedstats[stat]
+	return fakestat
