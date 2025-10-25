@@ -65,12 +65,13 @@
 	outfit = /datum/outfit/job/roguetown/sergeant/sergeant
 
 	category_tags = list(CTAG_SERGEANT)
+	// Weighted 11 points instead of 9 as MAA
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_INT = 1,
-		STATKEY_CON = 1,
+		STATKEY_CON = 2,
 		STATKEY_PER = 1, //Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-		STATKEY_WIL = 1,
+		STATKEY_WIL = 2,
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
