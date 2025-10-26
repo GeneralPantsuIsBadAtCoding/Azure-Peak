@@ -173,6 +173,7 @@
 	parent_mob = parent
 	parent_mob.AddElement(/datum/element/relay_attackers)
 	apply_visuals()
+	parent_mob.apply_status_effect(/datum/status_effect/buff/black_rot_carrier)
 	RegisterSignal(parent_mob, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_struck))
 	RegisterSignal(parent_mob, COMSIG_MOB_ITEM_ATTACK, PROC_REF(on_attack_success))
 
@@ -185,7 +186,6 @@
 
 /datum/component/infestation_black_rot/proc/on_struck(atom/victum, atom/attacker)
 	SIGNAL_HANDLER
-	to_chat(world, span_danger("[attacker] hit us oh my god!"))
 	if(!isliving(attacker))
 		return
 	var/mob/living/living_attacker = attacker
@@ -231,6 +231,7 @@
 /datum/component/infestation_black_rot/Destroy()
 	parent_mob.RemoveElement(/datum/element/relay_attackers)
 	remove_visuals()
+	parent_mob.remove_status_effect(/datum/status_effect/buff/black_rot_carrier)
 	return ..()
 
 /datum/component/infestation_black_rot/proc/apply_visuals()

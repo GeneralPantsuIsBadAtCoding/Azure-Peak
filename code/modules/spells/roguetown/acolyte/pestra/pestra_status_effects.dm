@@ -471,3 +471,13 @@
 	if(possible_turfs.len)
 		return pick(possible_turfs)
 	return owner_turf
+
+/datum/status_effect/buff/black_rot_carrier
+	id = "black_rot_carrier"
+	alert_type = /atom/movable/screen/alert/status_effect/black_rot_carrier
+	duration = -1
+	examine_text = "SUBJECTPRONOUN is surrounded by an ominous aura of disease."
+
+/atom/movable/screen/alert/status_effect/black_rot_carrier
+	name = "Pestra's blessing"
+	desc = "I carry Pestra's blessing, people should avoid my touch."
