@@ -46,8 +46,8 @@
 	HU.apply_status_effect(/datum/status_effect/debuff/baitcd)
 
 	if((target_zone != user_zone) || ((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest | Our zones do not match, or we were targeting chest
-		to_chat(HU, span_danger("It didn't work! Their footing returned!"))
-		to_chat(HT, span_notice("I fooled him! I've regained my footing!"))
+		to_chat(HU, span_danger("It didn't work! [HT.p_their(TRUE)] footing returned!"))
+		to_chat(HT, span_notice("I fooled [HU.p_them()]! I've regained my footing!"))
 		HU.emote("groan")
 		HU.stamina_add(HU.max_stamina * 0.2)
 		HT.bait_stacks = 0
@@ -75,15 +75,15 @@
 		HT.emote("huh")
 		HU.purge_peel(BAIT_PEEL_REDUCTION)
 		HU.changeNext_move(0.1 SECONDS, override = TRUE)
-		to_chat(HU, span_notice("[HT] fell for my bait <b>perfectly</b>! One more!"))
-		to_chat(HT, span_danger("I fall for [HU]'s bait <b>perfectly</b>! I'm losing my footing! <b>I can't let this happen again!</b>"))
+		to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for my bait <b>perfectly</b>! One more!"))
+		to_chat(HT, span_danger("I fall for [HU.p_their()]'s bait <b>perfectly</b>! I'm losing my footing! <b>I can't let this happen again!</b>"))
 	
 	if(HU.has_duelist_ring() && HT.has_duelist_ring() || HT.bait_stacks >= 2)	//We're explicitly (hopefully non-lethally) dueling. Flavor.
 		HT.emote("gasp")
 		HT.OffBalance(2 SECONDS)
 		HT.Immobilize(2 SECONDS)
-		to_chat(HU, span_notice("[HT] fell for it again and is off-balanced! NOW!"))
-		to_chat(HT, span_danger("I fall for [HU]'s bait <b>perfectly</b>! My balance is GONE!</b>"))
+		to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for it again and is off-balanced! NOW!"))
+		to_chat(HT, span_danger("I fall for [HU.p_their()] bait <b>perfectly</b>! My balance is GONE!</b>"))
 		HT.bait_stacks = 0
 
 
@@ -91,8 +91,8 @@
 		return
 
 	HT.stop_pulling()
-	to_chat(HU, span_notice("[HT] fell for my dirty trick! I am loose!"))
-	to_chat(HT, span_danger("I fall for [HU]'s dirty trick! My hold is broken!"))
+	to_chat(HU, span_notice("[HT.p_they(TRUE)] fell for my dirty trick! I am loose!"))
+	to_chat(HT, span_danger("I fall for [HU.p_their()] dirty trick! My hold is broken!"))
 	HU.OffBalance(2 SECONDS)
 	HT.OffBalance(2 SECONDS)
 	playsound(user, 'sound/combat/riposte.ogg', 100, TRUE)
@@ -155,19 +155,19 @@
 	if(!prob(perc)) //feint intent increases the immobilize duration significantly
 		playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
 		if(user.client?.prefs.showrolls)
-			to_chat(user, span_warning("[L] did not fall for my feint... [perc]%"))
+			to_chat(user, span_warning("[L.p_they(TRUE)] did not fall for my feint... [perc]%"))
 		return
 
 	if(L.has_status_effect(/datum/status_effect/buff/clash))
 		L.remove_status_effect(/datum/status_effect/buff/clash)
-		to_chat(user, span_notice("[L] had [L.p_their()] Guard disrupted!"))
+		to_chat(user, span_notice("[L.p_their(TRUE)] Guard disrupted!"))
 	L.apply_status_effect(/datum/status_effect/debuff/exposed, 7.5 SECONDS)
 	L.apply_status_effect(/datum/status_effect/debuff/clickcd, max(1.5 SECONDS + skill_factor, 2.5 SECONDS))
 	L.Immobilize(0.5 SECONDS)
 	L.stamina_add(L.stamina * 0.1)
 	L.Slowdown(2)
-	to_chat(user, span_notice("[L] fell for my feint attack!"))
-	to_chat(L, span_danger("I fall for [user]'s feint attack!"))
+	to_chat(user, span_notice("[L.p_they(TRUE)] fell for my feint attack!"))
+	to_chat(L, span_danger("I fall for [user.p_their()] feint attack!"))
 	playsound(user, 'sound/combat/riposte.ogg', 100, TRUE)
 
 

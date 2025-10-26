@@ -211,6 +211,11 @@ SUBSYSTEM_DEF(mapping)
 	#ifdef ROGUEWORLD
 	otherZ += load_map_config("_maps/map_files/otherz/rogueworld.json")
 	#endif
+
+	#ifndef NO_DUNGEON
+	otherZ += load_map_config("_maps/map_files/otherz/dungeon.json")
+	#endif
+
 	if(otherZ.len)
 		for(var/datum/map_config/OtherZ in otherZ)
 			LoadGroup(FailedZs, OtherZ.map_name, OtherZ.map_path, OtherZ.map_file, OtherZ.traits, ZTRAITS_STATION)

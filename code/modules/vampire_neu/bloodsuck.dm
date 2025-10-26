@@ -13,6 +13,9 @@
 		return
 	if(world.time < last_drinkblood_use + 2 SECONDS)
 		return
+	if(!istype(victim))
+		to_chat(src, span_warning("I can only drink blood from living, intelligent beings!"))
+		return
 	if(victim.dna?.species && (NOBLOOD in victim.dna.species.species_traits))
 		to_chat(src, span_warning("Sigh. No blood."))
 		return
