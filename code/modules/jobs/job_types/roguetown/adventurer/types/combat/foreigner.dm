@@ -128,7 +128,7 @@
 	tutorial = "An exile from the Holy See of Otava, accused of heresy and cast out of your homeland as penance. \
 	Some consider yours a fate worse than death; the metal alloy mask seared onto your face serving as a permanent reminder of your sins. \
 	You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/adventurer/repentant
 	subclass_languages = list(/datum/language/otavan)
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
@@ -172,7 +172,7 @@
 /datum/advclass/foreigner/refugee
 	name = "Naledi Refugee"
 	tutorial = "An asylum-seeker from the war-torn deserts of Naledi, driven north as your homeland continues to be ravaged by an endless conflict against the Djinn."
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/adventurer/refugee
 	subclass_languages = list(/datum/language/celestial)
 	cmode_music = 'sound/music/warscholar.ogg'
@@ -216,7 +216,7 @@
 	name = "Ranesheni Slaver"
 	tutorial = "In parts of Psydonia, the practice of slavery is still a common sight. \
 	You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/adventurer/slaver
 	subclass_languages = list(/datum/language/celestial)
 	cmode_music = 'sound/music/combat_desertrider.ogg'

@@ -2,7 +2,7 @@
 	name = "Naledi Hierophant"
 	tutorial ="You are a Naledi Hierophant, a magician who studied under cloistered sages, well-versed in all manners of arcyne. You prioritize enhancing your teammates and distracting foes while staying in the backline."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
 	subclass_languages = list(/datum/language/celestial)
 	class_select_category = CLASS_CAT_NALEDI

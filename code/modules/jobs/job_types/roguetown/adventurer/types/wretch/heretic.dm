@@ -2,7 +2,7 @@
 	name = "Heretic"
 	tutorial = "You father your unholy cause through the most time-tested of ways: hard, heavy steel in both arms and armor."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/wretch/heretic
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_RITUALIST, TRAIT_HEAVYARMOR)

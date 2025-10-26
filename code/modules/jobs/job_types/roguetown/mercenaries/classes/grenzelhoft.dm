@@ -2,7 +2,7 @@
 	name = "Doppelsoldner"
 	tutorial = "You are a Doppelsoldner - \"Double-pay Mercenary\" - an experienced frontline swordsman trained by the Zenitstadt fencing guild."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/mercenary/grenzelhoft
 	class_select_category = CLASS_CAT_GRENZELHOFT
 	category_tags = list(CTAG_MERCENARY)
@@ -197,7 +197,7 @@
 	name = "Gefechtsgelehrter"
 	tutorial = "You are a Gefechtsgelehrter - \"Combat Scholar\" - A proud magos from the Celestial Academy of Magos, who's skills in Siege Magic and Arcyne Physics are unmatched."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = list(RACES_ALL_KINDS)
 	outfit = /datum/outfit/job/roguetown/mercenary/grenzelhoft_mage
 	class_select_category = CLASS_CAT_GRENZELHOFT
 	category_tags = list(CTAG_MERCENARY)

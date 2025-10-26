@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 
-	allowed_races = ACCEPTED_RACES
+	allowed_races = list(RACES_TOLERATED_UP)
 	allowed_sexes = list(MALE, FEMALE)
 
 	job_traits = list(TRAIT_STEELHEARTED, TRAIT_DUNGEONMASTER, TRAIT_GUARDSMAN)
