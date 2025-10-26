@@ -583,7 +583,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/ttime = world.time - SSticker.round_start_time
 	if(ttime >= GLOB.round_timer)
 		if(roundvoteend)
-			if(ttime >= round_ends_at)
+			if(world.time >= round_ends_at)
 //				for(var/mob/living/carbon/human/H in GLOB.human_list)
 //					if(H.stat != DEAD)
 //						if(H.allmig_reward)

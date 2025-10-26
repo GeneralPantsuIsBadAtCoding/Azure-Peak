@@ -108,16 +108,20 @@
 	var/funeral = FALSE // Whether the body has received rites or not.
 
 	var/datum/devotion/devotion = null // Used for cleric_holder for priests
+	var/datum/inspiration/inspiration = null
 
 	var/headshot_link = null
 	var/flavortext = null
-	var/flavortext_display = null
 	var/ooc_notes = null
-	var/ooc_notes_display = null
-	var/ooc_extra_link
 	var/ooc_extra
-	var/is_legacy = FALSE
+	var/song_title
+	var/song_artist
 	var/received_resident_key = FALSE
+	var/nsfwflavortext = null
+	var/erpprefs = null
+
+	var/list/img_gallery = list()
+	
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

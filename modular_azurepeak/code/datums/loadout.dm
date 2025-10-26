@@ -31,6 +31,11 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tarot Deck"
 	path = /obj/item/toy/cards/deck/tarot
 
+/datum/loadout_item/custom_book
+	name = "Custom Book"
+	path = /obj/item/book/rogue/loadoutbook
+
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
@@ -161,6 +166,26 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Rapscallion's Shawl"
 	path = /obj/item/clothing/cloak/thief_cloak
 
+/datum/loadout_item/tabardscarlet
+	name = "Tabard, Scarlet"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/tabardscarlet
+
+/datum/loadout_item/shroudscarlet
+	name = "Tabard's Shroud, Scarlet"
+	path = /obj/item/clothing/head/roguetown/roguehood/shroudscarlet
+
+/datum/loadout_item/tabardblack
+	name = "Tabard, Black"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/tabardblack
+
+/datum/loadout_item/shroudblack
+	name = "Tabard's Shroud, Black"
+	path = /obj/item/clothing/head/roguetown/roguehood/shroudblack
+
+/datum/loadout_item/poncho
+	name = "Poncho"
+	path = /obj/item/clothing/cloak/poncho
+
 //SHOES
 /datum/loadout_item/darkboots
 	name = "Dark Boots"
@@ -214,6 +239,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/robe
 	name = "Robe"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
+
+/datum/loadout_item/phys_robe
+	name = "Physicker's Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/phys
+
+/datum/loadout_item/feld_robe
+	name = "Feldsher's Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/feld
 
 /datum/loadout_item/formalsilks
 	name = "Formal Silks"
@@ -335,6 +368,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Leather Trousers"
 	path = /obj/item/clothing/under/roguetown/trou/leather
 
+/datum/loadout_item/leathershorts
+	name = "Leather Shorts"
+	path = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
+
 /datum/loadout_item/sailorpants
 	name = "Seafaring Pants"
 	path = /obj/item/clothing/under/roguetown/tights/sailor
@@ -344,10 +381,13 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/under/roguetown/skirt
 
 //ACCESSORIES
-
 /datum/loadout_item/wrappings
 	name = "Handwraps"
 	path = /obj/item/clothing/wrists/roguetown/wrappings
+
+/datum/loadout_item/allwrappings
+	name = "Cloth Wrappings"
+	path = /obj/item/clothing/wrists/roguetown/allwrappings
 
 /datum/loadout_item/loincloth
 	name = "Loincloth"
@@ -360,6 +400,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/fingerless
 	name = "Fingerless Gloves"
 	path = /obj/item/clothing/gloves/roguetown/fingerless
+
+/datum/loadout_item/bandages
+	name = "Bandages, Gloves"
+	path = /obj/item/clothing/gloves/roguetown/bandages
 
 /datum/loadout_item/exoticsilkbelt
 	name = "Exotic Silk Belt"
@@ -417,6 +461,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Cloth Blindfold"
 	path = /obj/item/clothing/mask/rogue/blindfold
 
+/datum/loadout_item/fake_blindfold
+	name = "Fake Blindfold"
+	path = /obj/item/clothing/mask/rogue/blindfold/fake
+
 /datum/loadout_item/bases
 	name = "Cloth military skirt"
 	path = /obj/item/storage/belt/rogue/leather/battleskirt
@@ -471,7 +519,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/psicross/zizo
 	name = "Decrepit Zcross"
-	path = /obj/item/clothing/neck/roguetown/zcross/aalloy
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"

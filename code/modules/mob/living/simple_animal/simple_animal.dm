@@ -233,6 +233,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			playsound(loc,'sound/misc/eat.ogg', rand(30,60), TRUE)
 			qdel(O)
 			food = min(food + 30, 100)
+			adjustHealth(-rand(10,20))
 			if(tame && owner == user)
 				return
 			var/realchance = tame_chance
@@ -285,7 +286,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		move_to_delay = initial(move_to_delay)
 		return
 	var/health_deficiency = getBruteLoss() + getFireLoss()
-	if(health_deficiency >= ( maxHealth - (maxHealth*0.75) ))
+	if(health_deficiency >= ( maxHealth - (maxHealth*0.50) ))
 		move_to_delay = initial(move_to_delay) + 2
 	else
 		move_to_delay = initial(move_to_delay)
@@ -329,12 +330,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return FALSE
 		if((isturf(loc) || allow_movement_on_non_turfs) && (mobility_flags & MOBILITY_MOVE))		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
-			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Some animals don't move when pulled
-					var/anydir = pick(GLOB.cardinals)
-					if(Process_Spacemove(anydir))
-						Move(get_step(src, anydir), anydir)
-						turns_since_move = 0
 			return 1
 
 /mob/living/simple_animal/proc/handle_automated_speech(override)
@@ -420,7 +415,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				if(user.mind)
 					used_time -= (user.get_skill_level(/datum/skill/labor/butchering) * 30)
 				playsound(src, 'sound/foley/gross.ogg', 100, FALSE)
-				if(do_after(user, 3 SECONDS, target = src))
+				if(used_time <= 0 || do_after(user, used_time, target = src))
 					butcher(user, on_meathook)
 
 	else if (stat != DEAD && istype(ssaddle, /obj/item/natural/saddle))		//Fallback saftey for saddles
@@ -886,7 +881,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			if(loc != oldloc)
 				var/obj/structure/mineral_door/MD = locate() in loc
 				if(MD && !MD.ridethrough)
-					violent_dismount(user)
+					if(!HAS_TRAIT(user, TRAIT_EQUESTRIAN))
+						violent_dismount(user)
 
 /mob/living/simple_animal/proc/violent_dismount(mob/living/user)
 	if(isliving(user))
@@ -918,11 +914,14 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		else
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
-/mob/living/simple_animal/process(delta_time)
-	pass()
-
 /mob/living/simple_animal/proc/consider_wakeup()
-	pass()
+	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
+		if(length(grid.client_contents))
+			toggle_ai(AI_ON)
+			return TRUE
+
+	toggle_ai(AI_OFF)
+	return FALSE
 
 /mob/living/simple_animal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
@@ -952,6 +951,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		food = max(food + 30, 100)
 
 /mob/living/simple_animal/Life()
+	if(!client && can_have_ai && (AIStatus == AI_Z_OFF || AIStatus == AI_OFF))
+		return
 	. = ..()
 	if(.)
 		if(food > 0)

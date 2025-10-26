@@ -60,8 +60,6 @@
 	///overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
 	var/list/managed_overlays
 
-	///Proximity monitor associated with this atom
-	var/datum/proximity_monitor/proximity_monitor
 	///Cooldown tick timer for buckle messages
 	var/buckle_message_cooldown = 0
 	///Last fingerprints to touch this atom
@@ -336,9 +334,6 @@
 /atom/proc/AllowDrop()
 	return FALSE
 
-/atom/proc/CheckExit()
-	return 1
-
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
@@ -529,7 +524,7 @@
  */
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, AM, skipcatch, hitpush, blocked, throwingdatum, damage_flag)
-	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
+	if(density) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
 		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
 
 /**
@@ -884,13 +879,38 @@
  *
  * Default behaviour is to send the COMSIG_ATOM_EXIT
  *
- * Return value should be set to FALSE if the moving atom is unable to leave,
- * otherwise leave value the result of the parent call
  */
 /atom/Exit(atom/movable/AM, atom/newLoc)
-	. = ..()
+	// Don't call `..()` here, otherwise `Uncross()` gets called.
+	// See the doc comment on `Uncross()` to learn why this is bad.
 	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
 		return FALSE
+
+	return TRUE
+
+/**
+ * `Uncross()` is a default BYOND proc that is called when something is *going*
+ * to exit this atom's turf. It is prefered over `Uncrossed` when you want to
+ * deny that movement, such as in the case of border objects, objects that allow
+ * you to walk through them in any direction except the one they block
+ * (think side windows).
+ *
+ * While being seemingly harmless, almost everything doesn't actually want to
+ * use this, meaning that we are wasting proc calls for every single atom
+ * on a turf, every single time something exits it, when basically nothing
+ * cares.
+ *
+ * This overhead caused real problems on Sybil round #159709, where lag
+ * attributed to Uncross was so bad that the entire master controller
+ * collapsed and people made Among Us lobbies in OOC.
+ *
+ * If you want to replicate the old `Uncross()` behavior, the most apt
+ * replacement is [`/datum/element/connect_loc`] while hooking onto
+ * [`COMSIG_ATOM_EXIT`].
+ */
+/atom/movable/Uncross()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	CRASH("Uncross() should not be being called, please read the doc-comment for it for why.")
 
 /**
  * An atom has exited this atom's contents
@@ -1190,46 +1210,6 @@
 
 /atom/proc/intercept_zImpact(atom/movable/AM, levels = 1)
 	. |= SEND_SIGNAL(src, COMSIG_ATOM_INTERCEPT_Z_FALL, AM, levels)
-
-/**
- * Returns true if this atom has gravity for the passed in turf
- *
- * Sends signals COMSIG_ATOM_HAS_GRAVITY and COMSIG_TURF_HAS_GRAVITY, both can force gravity with
- * the forced gravity var
- *
- * Gravity situations:
- * * No gravity if you're not in a turf
- * * No gravity if this atom is in is a space turf
- * * Gravity if the area it's in always has gravity
- * * Gravity if there's a gravity generator on the z level
- * * Gravity if the Z level has an SSMappingTrait for ZTRAIT_GRAVITY
- * * otherwise no gravity
- */
-/atom/proc/has_gravity(turf/gravity_turf)
-	if(!isturf(gravity_turf))
-		gravity_turf = get_turf(src)
-
-	if(!gravity_turf)//no gravity in nullspace
-		return 0
-
-	//the list isnt created every time as this proc is very hot, its only accessed if anything is actually listening to the signal too
-	var/static/list/forced_gravity = list()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_HAS_GRAVITY, gravity_turf, forced_gravity))
-		if(!length(forced_gravity))
-			SEND_SIGNAL(gravity_turf, COMSIG_TURF_HAS_GRAVITY, src, forced_gravity)
-
-		var/max_grav = 0
-		for(var/i in forced_gravity)//our gravity is the strongest return forced gravity we get
-			max_grav = max(max_grav, i)
-		forced_gravity.Cut()
-		//cut so we can reuse the list, this is ok since forced gravity movers are exceedingly rare compared to all other movement
-		return max_grav
-
-	var/area/turf_area = gravity_turf.loc
-	// force_no_gravity has been removed because this is Roguetown code
-	// it'd be trivial to readd if you needed it, though
-	return SSmapping.gravity_by_z_level["[gravity_turf.z]"] || turf_area.has_gravity
-
 
 /**
 * Instantiates the AI controller of this atom. Override this if you want to assign variables first.

@@ -20,7 +20,13 @@
 	skinned_type = /obj/item/ingot/steel
 	disliked_food = NONE
 	liked_food = NONE
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_BLOODLOSS_IMMUNE, TRAIT_NOBREATH, TRAIT_NOSLEEP)
+	inherent_traits = list(
+		TRAIT_NOHUNGER,
+		TRAIT_BLOODLOSS_IMMUNE,
+		TRAIT_NOBREATH,
+		TRAIT_EASYDISMEMBER,
+		TRAIT_ZOMBIE_IMMUNE
+		)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mcom.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fcom.dmi'
@@ -82,6 +88,8 @@
 		/datum/body_marking/construct_visor_eyes,
 		/datum/body_marking/construct_psyclops_eye,
 	)
+
+	restricted_virtues = list(/datum/virtue/utility/noble, /datum/virtue/utility/deathless)
 
 /datum/species/construct/metal/check_roundstart_eligible()
 	return TRUE

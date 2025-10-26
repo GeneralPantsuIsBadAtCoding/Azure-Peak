@@ -7,11 +7,7 @@
 	a_intent = INTENT_HELP
 	m_intent = MOVE_INTENT_SNEAK
 	d_intent = INTENT_DODGE
-	possible_rmb_intents = list()
-	wander = FALSE
-
-/mob/living/carbon/human/species/human/northern/thief/ambush
-	aggressive=1
+	aggressive= TRUE
 	wander = TRUE
 
 /mob/living/carbon/human/species/human/northern/thief/retaliate(mob/living/L)
@@ -91,6 +87,7 @@
 		real_name = pick(world.file2list("strings/names/first_male.txt"))
 	update_hair()
 	update_body()
+	head.sellprice = 30
 
 /mob/living/carbon/human/species/human/northern/thief/npc_idle()
 	if(m_intent == MOVE_INTENT_WALK)

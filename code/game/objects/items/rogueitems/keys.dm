@@ -300,18 +300,11 @@
 	icon_state = "brownkey"
 	lockid = "roomvi"
 
-/obj/item/roguekey/roomvii
-	name = "room VII key"
-	desc = "The key to the seventh room."
+/obj/item/roguekey/roomhunt
+	name = "HUNT room key"
+	desc = "The key to the HUNT room, the penthouse suite of the local inn."
 	icon_state = "brownkey"
-	lockid = "roomvii"
-
-
-/obj/item/roguekey/roomviii
-	name = "room VIII key"
-	desc = "The key to the eight room."
-	icon_state = "brownkey"
-	lockid = "roomviii"
+	lockid = "roomhunt"
 
 /obj/item/roguekey/fancyroomi
 	name = "luxury room I key"

@@ -38,7 +38,12 @@
 	name = "Pipeweed Zig"
 	cost = 2
 	contains = list(/obj/item/clothing/mask/cigarette/rollie/nicotine)
-
+/*
+/datum/supply_pack/rogue/drugs/trippyzig
+	name = "Trippy Zig"
+	cost = 10
+	contains = list(/obj/item/clothing/mask/cigarette/rollie/trippy)
+*/
 /datum/supply_pack/rogue/drugs/starsugar
 	name = "Starsugar"
 	cost = 50
@@ -58,4 +63,23 @@
 	name = "Magickal Whip-Wine"
 	cost = 30
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/beer/whipwine)
-	
+
+/datum/supply_pack/rogue/drugs/zigbox
+	name = "Zigbox (Empty)"
+	cost = 5
+	contains = list(/obj/item/quiver/zigs)
+
+/datum/supply_pack/rogue/drugs/zigbox_pipezig
+	name = "Zigbox (Pipeweed)"
+	cost = 25
+	contains = list(/obj/item/quiver/zigs/nicotine)
+
+/datum/supply_pack/rogue/drugs/zigbox_swampzig
+	name = "Zigbox (Swampweed)"
+	cost = 55
+	contains = list(/obj/item/quiver/zigs/cannabis)
+
+/datum/supply_pack/rogue/drugs/fermented_crab
+	name = "Fermented Crab"
+	cost = 50
+	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/fermented_crab)

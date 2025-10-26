@@ -32,7 +32,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name = FALSE
-	var/race_name = dna.species.name
+	var/race_name = "<a href='?src=[REF(src)];species_lore=1'><u>[dna.species.name]</u></A> "
 	var/datum/antagonist/maniac/maniac = user.mind?.has_antag_datum(/datum/antagonist/maniac)
 	var/datum/antagonist/skeleton/skeleton = user.mind?.has_antag_datum(/datum/antagonist/skeleton)
 	if(maniac && (user != src))
@@ -102,12 +102,6 @@
 				. = list(span_info("ø ------------ ø\nThis is <EM>[used_name]</EM>, the [is_returning ? "returning " : ""][race_name] [used_title]."))
 			else
 				. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
-
-		if(HAS_TRAIT(src, TRAIT_DNR) && src != user)
-			if(HAS_TRAIT(src, TRAIT_DEATHSIGHT))
-				. += span_danger("They extrude a pale aura. Their soul [user.stat == DEAD ? "was not" : "is not"] clean. This is it for them.")
-			else if(user.stat == DEAD)
-				. += span_danger("This was their only chance at lyfe.")
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
@@ -232,6 +226,19 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
+		
+		// Shouldn't be able to tell they are unrevivable through a mask as a Necran
+		if(HAS_TRAIT(src, TRAIT_DNR) && src != user)
+			if(HAS_TRAIT(user, TRAIT_DEATHSIGHT))
+				. += span_danger("They extrude a pale aura. Their soul [src.stat == DEAD ? "was not" : "is not"] clean. This is it for them.")
+			else if(user.stat == DEAD)
+				. += span_danger("This was their only chance at lyfe.")
+
+	// Real medical role can tell at a glance it is a waste of time, but only if the Necra message don't come first.
+
+	if(user.get_skill_level(/datum/skill/misc/medicine) >= SKILL_LEVEL_EXPERT && src.stat == DEAD)
+		if(HAS_TRAIT(src, TRAIT_DNR) && src != user && !HAS_TRAIT(user, TRAIT_DEATHSIGHT)) // A lot of conditional to avoid a redundant message, but we also want unknown DNRs to be covered.
+			. += span_danger("Their body holds not even a glimmer of life. No medicine can bring them back.")
 
 	if (HAS_TRAIT(src, TRAIT_CRITICAL_WEAKNESS) && (!HAS_TRAIT(src, TRAIT_VAMP_DREAMS)))
 		if(isliving(user))
@@ -239,7 +246,7 @@
 			if(L.STAINT > 9 && L.STAPER > 9)
 				. += span_redtext("<i>[m1] critically fragile!</i>")
 
-	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
+	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES) && (!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)))
 		var/atom/item = get_most_expensive()
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
@@ -265,8 +272,8 @@
 					var/shit = bD.examine_friendorfoe(aD,user,src)
 					if(shit)
 						. += shit
-			if(user.mind.has_antag_datum(/datum/antagonist/vampirelord) || user.mind.has_antag_datum(/datum/antagonist/vampire))
-				. += span_userdanger("Blood Volume: [blood_volume]")
+		if(user.mind?.has_antag_datum(/datum/antagonist/vampire) || user.mind?.has_antag_datum(/datum/antagonist/vampire))
+			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [(mind && !clan) ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool]; Blood: [blood_volume]</a>")
 
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
@@ -885,6 +892,8 @@
 	if(!isnull(trait_exam))
 		. += trait_exam
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
@@ -955,13 +964,13 @@
 /mob/living/proc/get_inquisition_text(mob/examiner)
 	var/inquisition_text
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text = "A Practical of our Psydonic Inquisitorial Sect."
+		inquisition_text = "A fellow adherent to the Holy Otavan Inquisition's missives."
 	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_INQUISITION))
-		inquisition_text = "The Lorde-Inquisitor of our Psydonic Inquisitorial Sect."
+		inquisition_text = "My superior, sent by the Holy Otavan Inquisition to lead our sect."
 	if(HAS_TRAIT(src, TRAIT_INQUISITION) && HAS_TRAIT(examiner, TRAIT_PURITAN))
-		inquisition_text = "Subordinate to me in the Psydonic Inquisitorial Sect."
+		inquisition_text = "A subordinate to my authority, as willed by the Holy Otavan Inquisition."
 	if(HAS_TRAIT(src, TRAIT_PURITAN) && HAS_TRAIT(examiner, TRAIT_PURITAN))
-		inquisition_text = "The Lorde-Inquisitor of the Sect sent here. That's me."
+		inquisition_text = "Myself. I lead this sect of the Holy Otavan Inquisition."
 
 	return inquisition_text
 
@@ -975,15 +984,9 @@
 			if(HAS_TRAIT(src,TRAIT_KNOWNCRIMINAL))
 				villain_text = span_userdanger("BANDIT!")
 		if(mind.special_role == "Vampire Lord")
-			var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A MONSTER!")
-		if(mind.special_role == "Vampire Spawn")
-			var/datum/antagonist/vampirelord/lesser/VD = mind.has_antag_datum(/datum/antagonist/vampirelord/lesser)
-			if(VD)
-				if(!VD.disguised)
-					villain_text += span_userdanger("A LICKER!")
+			var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)
+			if(!SEND_SIGNAL(VD.owner, COMSIG_DISGUISE_STATUS))
+				villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 

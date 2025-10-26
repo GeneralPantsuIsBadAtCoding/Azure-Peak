@@ -112,6 +112,26 @@
 		)
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/survival/peasantry/waraxe/silver
+	name = "silver militia shovelaxe"
+	result = /obj/item/rogueweapon/greataxe/militia/silver
+	reqs = list(
+		/obj/item/rogueweapon/shovel/silver = 1,
+		/obj/item/grown/log/tree/small = 2,
+		/obj/item/rope = 1,
+		)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/peasantry/waraxe/silver/preblessed
+	name = "silver militia shovelaxe (preblessed)"
+	result = /obj/item/rogueweapon/greataxe/militia/silver/preblessed
+	reqs = list(
+		/obj/item/rogueweapon/shovel/silver/preblessed = 1,
+		/obj/item/grown/log/tree/small = 2,
+		/obj/item/rope = 1,
+		)
+	craftdiff = 2
+
 /datum/crafting_recipe/roguetown/survival/peasantry/warspear_hoe
 	name = "militia warspear (hoe)"
 	result = /obj/item/rogueweapon/spear/militia
@@ -445,3 +465,13 @@
 		/obj/item/grown/log/tree/stick = 2,
 		)
 	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/survival/strucrepairkit
+	name = "Structure Repair Kit"
+	category = "Tools"
+	result = /obj/item/construction/repairkit/structure
+	reqs = list(/obj/item/construction/nail = 3,
+				/obj/item/natural/wood/plank = 3,
+				/obj/item/natural/stoneblock = 3)
+	skillcraft = /datum/skill/craft/carpentry
+	craftdiff = 5

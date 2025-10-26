@@ -133,7 +133,7 @@
 
 /obj/effect/proc_holder/spell/invoked/regression
 	name = "Regression"
-	desc = "Rewinds the target wounds, Healing them over time. If target is under Stasis heals them twice as much."
+	desc = "Rewinds the target wounds, Healing them over time."
 	overlay_state = "regression"
 	releasedrain = 30
 	chargedrain = 0
@@ -155,8 +155,6 @@
 		var/mob/living/target = targets[1]
 		target.visible_message(span_info("Order filled magic rewind [target]'s wounds!"), span_notice("My wounds, undone!"))
 		var/healing = 2.5
-		if(target.has_status_effect(/datum/status_effect/buff/stasis))
-			healing += 2.5
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		return TRUE
 	revert_cast()

@@ -104,7 +104,7 @@
 	..()
 
 /datum/reagent/consumable/soothing_valerian_tea
-	name = "Soothing Valerin Tea"
+	name = "Soothing Valerian Tea"
 	description = "A refreshing tea, great to ease fatigue and relieve stress."
 	color = "#3b9146"
 	quality = DRINK_FANTASTIC

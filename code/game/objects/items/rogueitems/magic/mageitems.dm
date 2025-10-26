@@ -1,6 +1,6 @@
 /obj/item/storage/magebag
-	name = "summoners pouch"
-	desc = "A pouch for carrying handfuls of summoning ingredients."
+	name = "scholar's pouch"
+	desc = "A pouch to carry handfuls of ingredients for summoning and alchemy."
 	icon_state = "summoning"
 	item_state = "summoning"
 	icon = 'icons/roguetown/clothing/storage.dmi'

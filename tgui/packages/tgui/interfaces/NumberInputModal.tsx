@@ -57,9 +57,9 @@ export function NumberInputModal(props) {
   }
 
   return (
-    <Window title={title} width={270} height={windowHeight} disablesidebar>
+    <Window title={title} width={270} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
-      <Window.Content onKeyDown={handleKeyDown} disablesidebar>
+      <Window.Content onKeyDown={handleKeyDown}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item grow>

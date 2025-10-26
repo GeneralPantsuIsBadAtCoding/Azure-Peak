@@ -11,7 +11,7 @@
 	RegisterSignal(target, COMSIG_ITEM_PRE_ATTACK, PROC_REF(check_dip))
 	RegisterSignal(target, COMSIG_ITEM_AFTERATTACK, PROC_REF(try_inject))
 
-/datum/element/tipped_item/Detach(datum/source, force)
+/datum/element/tipped_item/Detach(datum/source)
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_PARENT_EXAMINE, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_AFTERATTACK))
 

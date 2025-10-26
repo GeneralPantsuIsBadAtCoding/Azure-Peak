@@ -51,7 +51,6 @@
 	var/static_light = 0
 	var/static_environ
 
-	var/has_gravity = 0
 	///Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
 	var/noteleport = FALSE
 	///Hides area from player Teleport function.
@@ -93,7 +92,10 @@
 	flags_1 = CAN_BE_DIRTY_1 | CULT_PERMITTED_1
 	var/soundenv = 0
 
+	/// The text displayed on top of the screen the first time a player enter an area in a round
 	var/first_time_text = null
+	/// Detail text. When a player enter an area, a small message appears in chat with a href. see area_detail_txt.dm for style guidee
+	var/detail_text = null
 
 	var/list/firedoors
 	var/list/cameras
@@ -109,9 +111,11 @@
 
 	var/converted_type
 
-	var/threat_region = "" // Key used to look up threat region this area belongs to 
-	var/deathsight_message = "a locale wreathed in enigmatic fog" // Message used for deathsight
-	// Try to be deliberately obtuse but not too obtuse.
+	var/threat_region = "" // Key used to look up threat region this area belongs to
+	/// Message used for deathsight. Try to be deliberately obtuse but not too obtuse.
+	var/deathsight_message = "a locale wreathed in enigmatic fog"
+
+	var/coven_protected = FALSE
 
 
 /**
@@ -156,6 +160,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	// rather than waiting for atoms to initialize.
 	if (unique)
 		GLOB.areas_by_type[type] = src
+	GLOB.areas += src
 	return ..()
 
 /area/proc/can_craft_here()
@@ -249,6 +254,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
 		GLOB.areas_by_type[type] = null
+	GLOB.areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -412,9 +418,13 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /mob/living/proc/intro_area(area/A)
 	if(!mind)
 		return
-	if(A.first_time_text in mind.areas_entered)
-		return
 	if(!client)
+		return
+	if(A.first_time_text && A.detail_text)
+		to_chat(client, span_info("You enter <a href='?src=[REF(A)];getdescription=1'>[A.name]</a>."))
+	else if (A.first_time_text) // Avoid trivial introduction
+		to_chat(client, span_info("You enter [A.name]."))
+	if(A.first_time_text in mind.areas_entered)
 		return
 	mind.areas_entered += A.first_time_text
 	var/atom/movable/screen/area_text/T = new()
@@ -550,3 +560,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			found = TRUE
 		if(found)
 			SSdroning.play_rain(get_area(boarder.client), boarder.client)
+
+/area/Topic(href, href_list)
+	..()
+	if(href_list["getdescription"])
+		if(detail_text)
+			to_chat(usr, span_info("[detail_text]"))

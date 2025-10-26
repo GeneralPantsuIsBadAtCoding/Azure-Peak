@@ -346,3 +346,21 @@
 	"Season" = 'sound/music/instruments/shamisen (6).ogg',
 	"Parade" = 'sound/music/instruments/shamisen (7).ogg',
 	"Koshiro" = 'sound/music/instruments/shamisen (8).ogg')
+
+
+
+/obj/item/rogue/instrument/psyaltery
+	name = "psyaltery"
+	desc = "A traditional form of boxed zither or box-harp that may be played plucked, with a plectrum or with hammers. They are particularly associated with divine beings, aasimars and liturgies."
+	icon_state = "psyaltery"
+	song_list = list(
+	"Disciples Tower" = 'sound/music/instruments/psyaltery (1).ogg',
+	"Green Sleeves" = 'sound/music/instruments/psyaltery (2).ogg',
+	"Midyear Melancholy" = 'sound/music/instruments/psyaltery (3).ogg',
+	"Santa Psydonia" = 'sound/music/instruments/psyaltery (4).ogg',
+	"Le Venardine" = 'sound/music/instruments/psyaltery (5).ogg',
+	"Azurea Fair" = 'sound/music/instruments/psyaltery (6).ogg',
+	"Amoroso" = 'sound/music/instruments/psyaltery (7).ogg',
+	"Lupian's Lullaby" = 'sound/music/instruments/psyaltery (8).ogg',
+	"White Wine Before Breakfast" = 'sound/music/instruments/psyaltery (9).ogg',
+	"Chevalier de Naledi" = 'sound/music/instruments/psyaltery (10).ogg')

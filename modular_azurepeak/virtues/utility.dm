@@ -114,8 +114,9 @@
 	added_skills = list(list(/datum/skill/misc/reading, 3, 6))
 	added_stashed_items = list(
 		"Quill" = /obj/item/natural/feather,
-		"Scroll" = /obj/item/paper/scroll,
-		"Book" = /obj/item/book/rogue/playerbook
+		"Scroll #1" = /obj/item/paper/scroll,
+		"Scroll #2" = /obj/item/paper/scroll,
+		"Book Crafting Kit" = /obj/item/book_crafting_kit
 	)
 
 /datum/virtue/utility/linguist/apply_to_human(mob/living/carbon/human/recipient)
@@ -309,6 +310,6 @@
 	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
 /datum/virtue/heretic/zchurch_keyholder
-	name = "Heresiarch"
+	name = "Defiled Keyholder"
 	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods - I know the location of the local heretic conclave. Secrecy is paramount. If found out, I will surely be killed."
-	added_traits = list(TRAIT_HERESIARCH)
+	added_traits = list(TRAIT_ZURCH)

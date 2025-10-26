@@ -232,3 +232,10 @@
 	set name = "HALT!"
 	set category = "Noises"
 	emote("haltyell")
+
+/mob/proc/haltyell_exhausting()
+	set name = "HALT!"
+	set category = "Noises"
+
+	emote("haltyell")
+	stamina_add(rand(5,15))

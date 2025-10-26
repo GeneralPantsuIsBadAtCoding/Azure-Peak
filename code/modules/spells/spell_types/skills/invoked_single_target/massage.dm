@@ -11,10 +11,13 @@
 
 /obj/effect/proc_holder/spell/invoked/massage/cast(list/targets, mob/user = usr)
 	var/mob/living/massagee = targets[1]
-	var/mob/massager = user
+	var/mob/living/massager = user
 	var/massagetime = 20 SECONDS
 	var/agreementone = FALSE
 	var/agreementtwo = FALSE
+	var/chance = rand(0,100)
+	var/chance_append = max((massager.get_stat(STATKEY_LCK) - 10) * 5, 0)
+	chance = min(chance + chance_append, 100)
 	if(isliving(massagee)) //target needs to be living
 		if(massagee == massager)
 			to_chat(massager, span_warning("Sadly, I can't give myself a pat on the back"))
@@ -64,23 +67,24 @@
 					playsound(massager, pick('modular/Neu_Food/sound/kneading.ogg','modular/Neu_Food/sound/kneading_alt.ogg'), 10, TRUE)
 					massagetime = pick(20 SECONDS, 25 SECONDS, 30 SECONDS, 35 SECONDS, 40 SECONDS) //randomize times
 					if(do_after(massager, massagetime, target = massagee))
-						if(prob(50))
-							to_chat(massagee, span_notice("Ah, a massage helps my body relax"))
-							massagee.apply_status_effect(/datum/status_effect/buff/massage)
-							to_chat(massager, span_warning("I gave an ok massage."))
-						else if (prob(95))
-							to_chat(massagee, span_notice("That massage made my body feel really good"))
-							massagee.apply_status_effect(/datum/status_effect/buff/goodmassage)
-							to_chat(massager, span_warning("I gave a good massage."))
-						else
-							to_chat(massagee, span_notice("WOW! That massage made me feel great!"))
-							massagee.apply_status_effect(/datum/status_effect/buff/greatmassage)
-							to_chat(massager, span_warning("I gave a great massage!"))
-					else
-						to_chat(massager, span_warning("the [massagee] needs to stay near me during their massage!"))
-						to_chat(massagee, span_warning("I need to stay near [massager] during my massage!"))
-						if(prob(55))
-							to_chat(massagee, span_warning("Ah, I barely managed to escape a cramp just then, I must be careful."))
-						else
-							to_chat(massagee, span_bad("Oh no, I can feel it, A CRAMP!"))
-							massagee.apply_status_effect(/datum/status_effect/debuff/muscle_sore)
+						switch(chance)
+							if(0 to 49)
+								to_chat(massagee, span_notice("Ah, a massage helps my body relax"))
+								massagee.apply_status_effect(/datum/status_effect/buff/massage)
+								to_chat(massager, span_warning("I gave an ok massage."))
+							if(50 to 95)
+								to_chat(massagee, span_notice("That massage made my body feel really good"))
+								massagee.apply_status_effect(/datum/status_effect/buff/goodmassage)
+								to_chat(massager, span_warning("I gave a good massage."))
+							if (96 to 100)
+								to_chat(massagee, span_notice("WOW! That massage made me feel great!"))
+								massagee.apply_status_effect(/datum/status_effect/buff/greatmassage)
+								to_chat(massager, span_warning("I gave a great massage!"))
+			else
+				to_chat(massager, span_warning("the [massagee] needs to stay near me during their massage!"))
+				to_chat(massagee, span_warning("I need to stay near [massager] during my massage!"))
+				if (prob(55))
+					to_chat(massagee, span_warning("Ah, I barely managed to escape a cramp just then, I must be careful."))
+				else
+					to_chat(massagee, span_bad("Oh no, I can feel it, A CRAMP!"))
+					massagee.apply_status_effect(/datum/status_effect/debuff/muscle_sore)

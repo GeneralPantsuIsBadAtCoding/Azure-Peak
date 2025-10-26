@@ -112,6 +112,7 @@
 	item_d_type = "blunt"
 	swingdelay = 10
 	clickcd = 14
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR // I'm evil
 
 /obj/item/rogueweapon/saiga_hoof //Like a less defense dagger
 	name = "saiga hoof"
@@ -132,7 +133,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	can_parry = TRUE //I just think this is cool as fuck, sue me
 	sharpness = FALSE
-	demolition_mod = 1.25
+	demolition_mod = 1.5
 	swingsound = list('sound/vo/mobs/saiga/attack (1).ogg','sound/vo/mobs/saiga/attack (2).ogg')
 	possible_item_intents = list(/datum/intent/simple/saiga)
 	parrysound = list('sound/combat/parry/parrygen.ogg')

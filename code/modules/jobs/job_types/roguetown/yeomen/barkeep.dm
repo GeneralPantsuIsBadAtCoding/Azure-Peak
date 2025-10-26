@@ -24,6 +24,7 @@
 	job_subclasses = list(
 		/datum/advclass/barkeep
 	)
+	spells = list(/obj/effect/proc_holder/spell/invoked/takeapprentice)
 
 /datum/advclass/barkeep
 	name = "Innkeeper"

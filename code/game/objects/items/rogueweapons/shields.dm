@@ -79,6 +79,7 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/shield/bash/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
@@ -174,7 +175,7 @@
 
 /obj/item/rogueweapon/shield/tower/holysee
 	name = "decablessed shield"
-	desc = "Protection of the Ten upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
+	desc = "A blessed kite shield, said to bestow the Pantheon's protection upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
 	icon_state = "gsshield"
 	force = 20
 	throwforce = 10

@@ -62,7 +62,6 @@
 #ifdef MATURESERVER
 	sexcon = new /datum/sex_controller(src)
 #endif
-	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
@@ -141,10 +140,10 @@
 /mob/living/carbon/human/Stat()
 	..()
 	if(mind)
-		var/datum/antagonist/vampirelord/VD = mind.has_antag_datum(/datum/antagonist/vampirelord)
+		var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)
 		if(VD)
 			if(statpanel("Stats"))
-				stat("Vitae:",VD.vitae)
+				stat("Vitae:", bloodpool)
 		if((mind.assigned_role == "Shepherd") || (mind.assigned_role == "Inquisitor"))
 			if(statpanel("Status"))
 				stat("Confessions sent: [GLOB.confessors.len]")
@@ -615,11 +614,6 @@
 /mob/living/carbon/human/can_hold_items()
 	return TRUE
 
-/mob/living/carbon/human/update_gravity(has_gravity,override = 0)
-	if(dna && dna.species) //prevents a runtime while a human is being monkeyfied
-		override = dna.species.override_float
-	..()
-
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = 0, stun = 1, distance = 0, message = 1, toxic = 0)
 	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
@@ -646,29 +640,28 @@
 			return
 		if(!client || !client.prefs)
 			return
-		if(alert(usr,"This will irreversibly an INDIVIDUAL PORTION of this slot. Is this what you want?","DON'T FATFINGER THIS","PURGE","Nevermind") == "PURGE")
+		if(alert(usr,"This will irreversibly purge an INDIVIDUAL PORTION of this slot. Is this what you want?","DON'T FATFINGER THIS","PURGE","Nevermind") == "PURGE")
 			if(alert(usr,"The next prompt will not have a Nevermind option. Are you sure you want this?","ITS NOT REVERSIBLE","Yes","Nevermind") == "Yes")
 				var/choice = alert(usr,"What would you like to purge?","ITS TOO LATE NOW","Flavor","Notes","Extra")
 				if(choice)
 					switch(choice)
 						if("Flavor")
-							is_legacy = FALSE
 							flavortext = null
-							flavortext_display = null
+							nsfwflavortext = null
 							client.prefs?.flavortext = null
-							client.prefs?.flavortext_display = null
 						if("Notes")
-							is_legacy = FALSE
 							ooc_notes = null
-							ooc_notes_display = null
+							erpprefs = null
 							client.prefs?.ooc_notes = null
-							client.prefs?.ooc_notes_display = null
 						if("Extra")
-							is_legacy = FALSE
-							ooc_extra_link = null
 							ooc_extra = null
+							song_artist = null
+							song_title = null
+							client.prefs?.song_artist = null
+							client.prefs?.song_title = null
 							client.prefs?.ooc_extra = null
-							client.prefs?.ooc_extra_link = null
+							img_gallery = list()
+							client.prefs?.img_gallery = list()
 						else
 							return
 					client.prefs?.save_preferences()
@@ -682,20 +675,22 @@
 		if(alert(usr,"This will irreversibly purge this ENTIRE character's slot (OOC, FT, OOC Ex.)","PURGE","PURGE","Nevermind") == "PURGE")
 			if(alert(usr,"This cannot be undone. Are you sure?","DON'T FATFINGER THIS","Yes","No") == "Yes")
 				flavortext = null
-				flavortext_display = null
-				is_legacy = FALSE
+				nsfwflavortext = null
+				erpprefs = null
 				ooc_notes = null
-				ooc_notes_display = null
 				ooc_extra = null
-				ooc_extra_link = null
+				song_artist = null
+				song_title = null
+				img_gallery = list()
 				if(client)
 					client.prefs?.flavortext = null
-					client.prefs?.flavortext_display = null
-					client.prefs?.is_legacy = FALSE
+					client.prefs?.nsfwflavortext = null
+					client.prefs?.erpprefs = null
 					client.prefs?.ooc_notes = null
-					client.prefs?.ooc_notes_display = null
 					client.prefs?.ooc_extra = null
-					client.prefs?.ooc_extra_link = null
+					client.prefs?.song_artist = null
+					client.prefs?.song_title = null
+					client.prefs?.img_gallery = list()
 					client.prefs?.save_preferences()
 					client.prefs?.save_character()
 					to_chat(usr, span_warn("Slot purged successfully."))

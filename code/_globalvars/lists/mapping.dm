@@ -88,9 +88,12 @@ GLOBAL_LIST_EMPTY(vr_spawnpoints)
 GLOBAL_LIST_EMPTY(sortedAreas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY_TYPED(areas_by_type, /area)
-
+GLOBAL_LIST_EMPTY(areas)
 GLOBAL_LIST_EMPTY(all_abstract_markers)
 
 GLOBAL_LIST_EMPTY(fires_list)
 
 GLOBAL_LIST_EMPTY(streetlamp_list)
+
+/// List of all the maps that have been cached for /proc/load_map
+GLOBAL_LIST_EMPTY(cached_maps)
