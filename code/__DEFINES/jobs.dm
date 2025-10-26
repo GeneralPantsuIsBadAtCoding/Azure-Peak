@@ -264,6 +264,7 @@
 #define JDO_MONK 13
 #define JDO_DRUID 13.1
 #define JDO_CHURCHLING 14
+#define JDO_KEEPER 14.1
 #define JDO_GRAVEMAN 15
 
 #define JDO_MERCHANT 17
@@ -272,7 +273,6 @@
 
 #define JDO_ARCHIVIST 18
 #define JDO_CRIER 18.1
-#define JDO_KEEPER 18.2
 
 #define JDO_GUILDMASTER 19.1
 #define JDO_GUILDSMAN 19.2
