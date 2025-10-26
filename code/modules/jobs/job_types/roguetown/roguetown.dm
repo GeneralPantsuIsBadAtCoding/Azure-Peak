@@ -92,11 +92,11 @@
 		// Ensure Wretches are granted their antagonist datum at post-equip
 		if(H.mind.assigned_role == "Wretch" && !H.mind.has_antag_datum(/datum/antagonist/wretch))
 			H.mind.add_antag_datum(/datum/antagonist/wretch)
-	var/list/owned_triumph_buys = SStriumphs.triumph_buy_owners[player_client.ckey]
-	if(length(owned_triumph_buys))
-		for(var/datum/triumph_buy/T in owned_triumph_buys)
-			if(!T.activated)
-				T.on_post_equip(H)
+		var/list/owned_triumph_buys = SStriumphs.triumph_buy_owners[player_client.ckey]
+		if(length(owned_triumph_buys))
+			for(var/datum/triumph_buy/T in owned_triumph_buys)
+				if(!T.activated)
+					T.on_post_equip(H)
 	if(has_loadout && H.mind)
 		addtimer(CALLBACK(src, PROC_REF(choose_loadout), H), 50)
 	return
