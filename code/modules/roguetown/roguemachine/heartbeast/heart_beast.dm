@@ -188,6 +188,8 @@
 		ui_interact(user)
 
 /obj/structure/roguemachine/chimeric_heart_beast/ui_interact(mob/user, datum/tgui/ui)
+	if(!isliving(user))
+		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChimericTechWeb", "Chimeric Tech Web")
