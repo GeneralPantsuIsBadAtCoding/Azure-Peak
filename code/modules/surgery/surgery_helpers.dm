@@ -128,63 +128,68 @@
 	return TRUE
 
 /proc/zone2covered(location, covered_locations)
-	switch(location)
-		if(BODY_ZONE_HEAD)
-			if(covered_locations & HEAD)
-				return TRUE
-		if(BODY_ZONE_PRECISE_EARS)
-			if(covered_locations & EARS)
-				return TRUE
-		if(BODY_ZONE_PRECISE_SKULL)
-			if(covered_locations & HAIR)
-				return TRUE
-		if(BODY_ZONE_PRECISE_NOSE)
-			if(covered_locations & NOSE)
-				return TRUE
-		if(BODY_ZONE_PRECISE_NECK)
-			if(covered_locations & NECK)
-				return TRUE
-		if(BODY_ZONE_PRECISE_L_EYE)
-			if(covered_locations & LEFT_EYE)
-				return TRUE
-		if(BODY_ZONE_PRECISE_R_EYE)
-			if(covered_locations & RIGHT_EYE)
-				return TRUE
-		if(BODY_ZONE_PRECISE_MOUTH)
-			if(covered_locations & MOUTH)
-				return TRUE
-		if(BODY_ZONE_CHEST)
-			if(covered_locations & CHEST)
-				return TRUE
-		if(BODY_ZONE_PRECISE_STOMACH)
-			if(covered_locations & VITALS)
-				return TRUE
-		if(BODY_ZONE_PRECISE_GROIN)
-			if(covered_locations & GROIN)
-				return TRUE
-		if(BODY_ZONE_L_ARM)
-			if(covered_locations & ARM_LEFT)
-				return TRUE
-		if(BODY_ZONE_R_ARM)
-			if(covered_locations & ARM_RIGHT)
-				return TRUE
-		if(BODY_ZONE_L_LEG)
-			if(covered_locations & LEG_LEFT)
-				return TRUE
-		if(BODY_ZONE_R_LEG)
-			if(covered_locations & LEG_RIGHT)
-				return TRUE
-		if(BODY_ZONE_PRECISE_L_HAND)
-			if(covered_locations & HAND_LEFT)
-				return TRUE
-		if(BODY_ZONE_PRECISE_R_HAND)
-			if(covered_locations & HAND_RIGHT)
-				return TRUE
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			if(covered_locations & FOOT_LEFT)
-				return TRUE
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			if(covered_locations & FOOT_RIGHT)
-				return TRUE
+	if(islist(covered_locations))
+		var/bitf_loc = attackzone2coveragezone(location)
+		if(covered_locations[bitf_loc] && covered_locations[bitf_loc] > 0)
+			return TRUE
+	else
+		switch(location)
+			if(BODY_ZONE_HEAD)
+				if(covered_locations & HEAD)
+					return TRUE
+			if(BODY_ZONE_PRECISE_EARS)
+				if(covered_locations & EARS)
+					return TRUE
+			if(BODY_ZONE_PRECISE_SKULL)
+				if(covered_locations & HAIR)
+					return TRUE
+			if(BODY_ZONE_PRECISE_NOSE)
+				if(covered_locations & NOSE)
+					return TRUE
+			if(BODY_ZONE_PRECISE_NECK)
+				if(covered_locations & NECK)
+					return TRUE
+			if(BODY_ZONE_PRECISE_L_EYE)
+				if(covered_locations & LEFT_EYE)
+					return TRUE
+			if(BODY_ZONE_PRECISE_R_EYE)
+				if(covered_locations & RIGHT_EYE)
+					return TRUE
+			if(BODY_ZONE_PRECISE_MOUTH)
+				if(covered_locations & MOUTH)
+					return TRUE
+			if(BODY_ZONE_CHEST)
+				if(covered_locations & CHEST)
+					return TRUE
+			if(BODY_ZONE_PRECISE_STOMACH)
+				if(covered_locations & VITALS)
+					return TRUE
+			if(BODY_ZONE_PRECISE_GROIN)
+				if(covered_locations & GROIN)
+					return TRUE
+			if(BODY_ZONE_L_ARM)
+				if(covered_locations & ARM_LEFT)
+					return TRUE
+			if(BODY_ZONE_R_ARM)
+				if(covered_locations & ARM_RIGHT)
+					return TRUE
+			if(BODY_ZONE_L_LEG)
+				if(covered_locations & LEG_LEFT)
+					return TRUE
+			if(BODY_ZONE_R_LEG)
+				if(covered_locations & LEG_RIGHT)
+					return TRUE
+			if(BODY_ZONE_PRECISE_L_HAND)
+				if(covered_locations & HAND_LEFT)
+					return TRUE
+			if(BODY_ZONE_PRECISE_R_HAND)
+				if(covered_locations & HAND_RIGHT)
+					return TRUE
+			if(BODY_ZONE_PRECISE_L_FOOT)
+				if(covered_locations & FOOT_LEFT)
+					return TRUE
+			if(BODY_ZONE_PRECISE_R_FOOT)
+				if(covered_locations & FOOT_RIGHT)
+					return TRUE
 
 	return FALSE

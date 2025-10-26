@@ -23,7 +23,7 @@
 	var/interrupt_dflag
 	var/interrupt_ddir
 
-/obj/item/clothing/suit/roguetown/armor/regenerating/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
+/obj/item/clothing/suit/roguetown/armor/regenerating/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration, def_zone)
 	..()
 	if(reptimer)
 		if(!regen_interrupt(damage_amount, damage_type, damage_flag, attack_dir))

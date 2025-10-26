@@ -512,7 +512,7 @@ BLIND     // can't see anything
 /obj/item/clothing/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
 
-/obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
+/obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration, def_zone)
 	var/newdam = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armor_penetration)
 	var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
 	var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
@@ -520,6 +520,16 @@ BLIND     // can't see anything
 	var/ratio_newinteg = (eff_currint - newdam) / eff_maxint
 	var/text
 	var/y_offset
+	if(islist(body_parts_covered_dynamic))
+		var/bflag_index = attackzone2coveragezone(def_zone)
+		var/armor_max
+		if(body_parts_covered_dynamic[bflag_index] > 0)
+			for(var/bflagzone in body_parts_covered)
+				if(bflagzone & bflag_index)
+					armor_max = body_parts_covered_dynamic[bflag_index]
+			ratio = body_parts_covered_dynamic[bflag_index] / armor_max
+			body_parts_covered_dynamic[bflag_index] = max((body_parts_covered_dynamic[bflag_index] - damage_amount), 0)
+			ratio_newinteg = body_parts_covered_dynamic[bflag_index] / armor_max
 	if(ratio > 0.75 && ratio_newinteg < 0.75)
 		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
 		y_offset = -5

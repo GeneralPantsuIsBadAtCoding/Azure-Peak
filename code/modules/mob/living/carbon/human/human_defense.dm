@@ -24,7 +24,7 @@
 	var/protection = 0
 	used = get_best_worn_armor(def_zone, d_type)
 	if(used)
-		protection = used.armor.getRating(d_type)
+		protection = used.armor?.getRating(d_type)
 		if(!blade_dulling)
 			blade_dulling = BCLASS_BLUNT
 		if(blade_dulling == BCLASS_PEEL)	//Peel shouldn't be dealing any damage through armor, or to armor itself.
@@ -35,22 +35,19 @@
 		if(used.blocksound)
 			playsound(loc, get_armor_sound(used.blocksound, blade_dulling), 100)
 		var/intdamage = damage
-		// Penetrative damage deals significantly less to the armor. Tentative.
-		if((damage + armor_penetration) > protection)
-			intdamage = (damage + armor_penetration) - protection
 		if(intdamfactor != 1)
 			intdamage *= intdamfactor
-		if(d_type == "blunt")
-			if(used.armor?.getRating("blunt") > 0)
-				var/bluntrating = used.armor.getRating("blunt")
-				intdamage -= intdamage * ((bluntrating / 2) / 100)	//Half of the blunt rating reduces blunt damage taken by %-age.
+		if(protection > 0)
+			intdamage -= intdamage * ((protection / 2) / 100)	//Half of the armort rating reduces the damage taken by a %-age.
+		else if(protection == -1)
+			intdamage *= (armor_penetration / 10)
 		if(istype(used_weapon) && used_weapon.is_silver && ((used.smeltresult in list(/obj/item/ingot/aaslag, /obj/item/ingot/aalloy, /obj/item/ingot/purifiedaalloy)) || used.GetComponent(/datum/component/cursed_item)))
 			// Blessed silver delivers more int damage against "cursed" alloys, see component for multiplier values
 			var/datum/component/silverbless/bless = used_weapon.GetComponent(/datum/component/silverbless)
 			if(bless.is_blessed)
 				// Apply multiplier if the blessing is active.
 				intdamage = round(intdamage * bless.cursed_item_intdamage)
-		used.take_damage(intdamage, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100)
+		used.take_damage(intdamage, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100, def_zone = def_zone)
 	if(physiology)
 		protection += physiology.armor.getRating(d_type)
 	return protection
@@ -793,10 +790,13 @@
 					if(C.obj_integrity <= 0)
 						continue
 				var/val = C.armor.getRating(d_type)
-				if(val > 0)
-					if(val > protection)
-						protection = val
-						used = C
+				if(islist(C.body_parts_covered_dynamic)) //We're using bodypart coverage w/ integrity
+					return C
+				else
+					if(val > 0)
+						if(val > protection)
+							protection = val
+							used = C
 	return used
 
 /mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)

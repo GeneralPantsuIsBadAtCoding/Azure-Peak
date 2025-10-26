@@ -75,7 +75,7 @@
 	. = ..() // Not the other way around as we need to restore our victim's headgear
 	QDEL_NULL(headgear)
 
-/obj/item/clothing/mask/rogue/goblin_mask/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
+/obj/item/clothing/mask/rogue/goblin_mask/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration, def_zone)
 	..()
 	if(obj_integrity < 90)
 		Die()

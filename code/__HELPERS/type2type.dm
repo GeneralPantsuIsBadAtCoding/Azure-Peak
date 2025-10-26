@@ -320,6 +320,89 @@
 			bpc.Remove(delzone)
 	return bpc
 
+/proc/body_parts_covered_try_simplify(alist/bpc, alist/bpc_org)
+	var/alist/bpc_curr = bpc.Copy()
+	for(var/zone in bpc_org)
+		if(zone & ARMS)
+			if(bpc[ARM_LEFT] == bpc[ARM_RIGHT])
+				bpc_curr[ARMS] = bpc[ARM_LEFT]
+				bpc_curr.Remove(ARM_LEFT, ARM_RIGHT)
+		if(zone & LEGS)
+			if(bpc[LEG_LEFT] == bpc[LEG_RIGHT])
+				bpc_curr[LEGS] = bpc[LEG_LEFT]
+				bpc_curr.Remove(LEG_LEFT, LEG_RIGHT)
+		if(zone & FACE)
+			if(bpc[MOUTH] == bpc_org[FACE] && bpc[NOSE] == bpc_org[FACE] && bpc[EYES] == bpc_org[FACE] && bpc[EARS] == bpc_org[FACE])
+				bpc_curr[FACE] = bpc_org[FACE]
+				bpc_curr.Remove(MOUTH, NOSE, EYES, EARS)
+	return bpc_curr
+
+/proc/bpc_names_simplified(bpc)
+	var/list/covered_parts = list()
+
+	if(!bpc)
+		return 0
+
+	if(bpc & HEAD)
+		covered_parts |= list(READABLE_ZONE_HEAD)
+	if(bpc & HAIR)
+		covered_parts |= list(READABLE_ZONE_SKULL)
+	if(bpc & NECK)
+		covered_parts |= list(READABLE_ZONE_NECK)
+	if(bpc & FACE)
+		covered_parts |= list(READABLE_ZONE_FACE)
+	else
+		if(bpc & MOUTH)
+			covered_parts |= list(READABLE_ZONE_MOUTH)
+		if(bpc & NOSE)
+			covered_parts |= list(READABLE_ZONE_NOSE)
+		if(bpc & EYES)
+			covered_parts |= list(READABLE_ZONE_EYES)
+		if(bpc & EARS)
+			covered_parts |= list(READABLE_ZONE_EARS)
+
+	if(bpc & CHEST)
+		covered_parts |= list(READABLE_ZONE_CHEST)
+	if(bpc & VITALS)
+		covered_parts |= list(READABLE_ZONE_VITALS)
+	if(bpc & GROIN)
+		covered_parts |= list(READABLE_ZONE_GROIN)
+
+	if(bpc & ARMS)
+		covered_parts |= list(READABLE_ZONE_ARMS)
+	else
+		if(bpc & ARM_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_ARM)
+		if(bpc & ARM_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_ARM)
+
+	if(bpc & HANDS)
+		covered_parts |= list(READABLE_ZONE_HANDS)
+	else
+		if(bpc & HAND_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_HAND)
+		if(bpc & HAND_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_HAND)
+
+	if(bpc & LEGS)
+		covered_parts |= list(READABLE_ZONE_LEGS)
+	else
+		if(bpc & LEG_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_LEG)
+		if(bpc & LEG_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_LEG)
+
+
+	if(bpc & FEET)
+		covered_parts |= list(READABLE_ZONE_FEET)
+	else
+		if(bpc & FOOT_LEFT)
+			covered_parts |= list(READABLE_ZONE_L_FOOT)
+		if(bpc & FOOT_RIGHT)
+			covered_parts |= list(READABLE_ZONE_R_FOOT)
+
+	return covered_parts
+
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)
 //^ I did.

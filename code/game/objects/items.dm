@@ -562,16 +562,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += C.defense_examine()
 			if(C.body_parts_covered)
 				inspec += "\n<b>COVERAGE: <br></b>"
-				if(islist(C.body_parts_covered_dynamic))
-					for(var/zone in C.body_parts_covered_dynamic)
-						for(var/subzone in body_parts_covered2organ_names(zone, precise = TRUE))	//This -should- only have 1 'subzone' to iterate through, but just in case we do a for anyway.
-							inspec += "<b>[capitalize(subzone)] 	— [C.body_parts_covered_dynamic[zone]]<br>"
-				else if(C.body_parts_covered_dynamic == C.body_parts_covered)
+				if(islist(C.body_parts_covered_dynamic))	//This item is using limb coverage integrity
+					var/alist/bpc_simplified = C.body_parts_covered_dynamic
+					for(var/zone in bpc_simplified)
+						for(var/subzone in body_parts_covered2organ_names(zone, precise = TRUE))
+							inspec += "<b>[capitalize(subzone)]</b><br>[bpc_simplified[zone]]<br>"
+				else if(C.body_parts_covered_dynamic == C.body_parts_covered)	//Defaults to regular bitflag comparisons if not a list
 					for(var/zone in body_parts_covered2organ_names(C.body_parts_covered_dynamic))
 						inspec += "<b>[capitalize(zone)]</b> | "
 				else
 					var/list/zones = list()
-					//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
+					//We have some part missing from baseline, so we turn the printout into precise mode and highlight the missing coverage
 					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 						zones += zoneorg
 					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
@@ -581,15 +582,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					for(var/zone in zones)			
 						inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> | "
 				inspec += "<br>"
-			if(C.body_parts_inherent)
-				inspec += "<b>CANNOT BE PEELED: </b>"
-				var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
-				if(length(inherentList) == 1)
-					inspec += "<b><font color = '#77cde2'>[capitalize(inherentList[1])]</font></b>"
-				else
-					inspec += "| "
-					for(var/zone in inherentList)
-						inspec += "<b><font color = '#77cde2'>[capitalize(zone)]</b></font> | "
 			if(C.prevent_crits)
 				if(length(C.prevent_crits))
 					inspec += "\n<b>PREVENTS CRITS:</b>"

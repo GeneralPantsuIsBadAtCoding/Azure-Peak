@@ -631,7 +631,7 @@
 	qdel(src)
 
 
-/obj/item/clothing/suit/roguetown/shirt/undershirt/easttats/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration)
+/obj/item/clothing/suit/roguetown/shirt/undershirt/easttats/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armor_penetration, def_zone)
 	. = ..()
 	if(obj_integrity < max_integrity)
 		START_PROCESSING(SSobj, src)

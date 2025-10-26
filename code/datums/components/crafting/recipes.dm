@@ -113,16 +113,6 @@
 			for(var/zone in body_parts_covered2organ_names(body_parts_covered2bitfield(C.body_parts_covered)))
 				html += "<b>[capitalize(zone)]</b> | "
 			html += "<br>"
-		if(C.body_parts_inherent)
-			html += "<b>CANNOT BE PEELED: </b>"
-			var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
-			if(length(inherentList) == 1)
-				html += "<b><font color = '#000833'>[capitalize(inherentList[1])]</font></b><br>"
-			else
-				html += "| "
-				for(var/zone in inherentList)
-					html += "<b><font color = '#000833'>[capitalize(zone)]</b></font> | "
-			html += "<br>"
 		if(C.prevent_crits)
 			if(length(C.prevent_crits))
 				html += "\n<b>PREVENTS CRITS:</b>"
