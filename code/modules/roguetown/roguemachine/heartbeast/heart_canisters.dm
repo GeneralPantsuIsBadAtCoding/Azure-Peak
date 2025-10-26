@@ -254,7 +254,7 @@
 	filled = FALSE
 	name = "Broken canister"
 	desc = "It's irreversibly damaged."
-	icon = "canister_broken"
+	icon_state = "canister_broken"
 	playsound(src, 'sound/foley/glassbreak.ogg', 75, TRUE)
 	update_icon()
 
