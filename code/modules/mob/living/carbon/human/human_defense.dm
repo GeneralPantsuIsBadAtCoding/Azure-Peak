@@ -38,7 +38,7 @@
 		if(intdamfactor != 1)
 			intdamage *= intdamfactor
 		if(protection > 0)
-			intdamage -= intdamage * ((protection / 2) / 100)	//Half of the armort rating reduces the damage taken by a %-age.
+			intdamage -= intdamage * ((protection / 1.4925) / 100)	//Armor reduces taken integrity damage by up to 67% at 100 (S).
 		else if(protection == -1)
 			intdamage *= (armor_penetration / 10)
 		if(istype(used_weapon) && used_weapon.is_silver && ((used.smeltresult in list(/obj/item/ingot/aaslag, /obj/item/ingot/aalloy, /obj/item/ingot/purifiedaalloy)) || used.GetComponent(/datum/component/cursed_item)))
