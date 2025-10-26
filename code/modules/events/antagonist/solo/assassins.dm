@@ -56,7 +56,7 @@
 /datum/round_event/antagonist/solo/assassins/start()
 	var/datum/job/assassin_job = SSjob.GetJob("Assassin")
 	assassin_job.total_positions = length(setup_minds)
-	assassin_job.spawn_positions = length(setup_minds)
+	assassin_job.total_positions = length(setup_minds)
 	for(var/datum/mind/antag_mind as anything in setup_minds)
 		var/datum/job/J = SSjob.GetJob(antag_mind.current?.job)
 		J?.current_positions = max(J?.current_positions-1, 0)
@@ -68,3 +68,16 @@
 		SSrole_class_handler.setup_class_handler(antag_mind.current, list(CTAG_ASSASSIN = 20))
 		antag_mind.current:advsetup = TRUE
 		antag_mind.current.hud_used?.set_advclass()
+
+	SSrole_class_handler.assassins_in_round = TRUE
+
+/datum/round_event_control/antagonist/solo/assassins/canSpawnEvent(players_amt, gamemode, fake_check)
+	. = ..()
+	if(!.)
+		return
+	var/list/candidates = get_candidates()
+
+	if(length(candidates) < 1)
+		return FALSE
+
+	return TRUE

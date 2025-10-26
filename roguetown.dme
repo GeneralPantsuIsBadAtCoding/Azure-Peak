@@ -1534,6 +1534,7 @@
 #include "code\modules\events\spacevine.dm"
 #include "code\modules\events\antagonist\_base.dm"
 #include "code\modules\events\antagonist\migrant_waves\_base.dm"
+#include "code\modules\events\antagonist\migrant_waves\assassins.dm"
 #include "code\modules\events\antagonist\migrant_waves\bandits.dm"
 #include "code\modules\events\antagonist\migrant_waves\dark_itinerant_knight_wave.dm"
 #include "code\modules\events\antagonist\migrant_waves\exiled_adventurer.dm"
