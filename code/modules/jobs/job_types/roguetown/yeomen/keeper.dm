@@ -12,6 +12,7 @@
 
 	outfit = /datum/outfit/job/roguetown/keeper
 	display_order = JDO_KEEPER
+	give_bank_account = 1
 	min_pq = 1
 	max_pq = null
 	round_contrib_points = 3
