@@ -441,11 +441,18 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	return mammons
 
 /datum/charflaw/sleepless
-	name = "Insomnia"
+	name = "Sleepless"
 	desc = "I do not sleep. I cannot sleep. I've tried everything."
+	var/drugged_up = FALSE
 
 /datum/charflaw/sleepless/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_NOSLEEP, TRAIT_GENERIC)
+
+/proc/sleepless_drug_up(mob/living/living)
+	var/datum/charflaw/sleepless/sleeper = living.get_flaw(/datum/charflaw/sleepless)
+	if(!sleeper)
+		return
+	sleeper.drugged_up = TRUE
 
 /datum/charflaw/mute
 	name = "Mute"

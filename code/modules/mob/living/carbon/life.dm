@@ -551,7 +551,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 */
 
 /mob/living/carbon/proc/handle_sleep()
-	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+	var/datum/charflaw/sleepless/sleeper = living.get_flaw(/datum/charflaw/sleepless)
+	if(HAS_TRAIT(src, TRAIT_NOSLEEP) && sleeper.drugged_up = FALSE)
 		if(!(mobility_flags & MOBILITY_STAND))
 			energy_add(5)
 		if(mind?.has_antag_datum(/datum/antagonist/vampire))
@@ -587,10 +588,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
-			if(eyesclosed && !HAS_TRAIT(src, TRAIT_NOSLEEP))
+			if(eyesclosed && (!HAS_TRAIT(src, TRAIT_NOSLEEP) || sleeper.drugged_up = TRUE))
 				teleport_to_dream(src, 10000, 2)
 				Sleeping(300)
-	else if(!IsSleeping() && !HAS_TRAIT(src, TRAIT_NOSLEEP))
+	else if(!IsSleeping() && (!HAS_TRAIT(src, TRAIT_NOSLEEP) || sleeper.drugged_up = TRUE))
 		// Resting on a bed or something
 		var/sleepy_mod = 0
 		if(buckled?.sleepy)
