@@ -327,7 +327,7 @@
 
 	//suit/armor
 	if(wear_armor && !(SLOT_ARMOR in obscured))
-		var/str = "[m3] [wear_armor.get_examine_string(user)]. "
+		var/str = "[m3] [span_tooltip("the defense stuff, with a \n to see if it works", wear_armor.get_examine_string(user))]."
 		if(is_smart)
 			str += wear_armor.integrity_check()
 		else if (is_stupid)

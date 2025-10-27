@@ -527,9 +527,18 @@ BLIND     // can't see anything
 			for(var/bflagzone in body_parts_covered)
 				if(bflagzone & bflag_index)
 					armor_max = body_parts_covered_dynamic[bflag_index]
+
+			//We set the variables up for the appropriate coverage zone and its integrity rather than the zone.
 			ratio = body_parts_covered_dynamic[bflag_index] / armor_max
 			body_parts_covered_dynamic[bflag_index] = max((body_parts_covered_dynamic[bflag_index] - damage_amount), 0)
 			ratio_newinteg = body_parts_covered_dynamic[bflag_index] / armor_max
+			eff_maxint = armor_max
+
+			damage_amount = 5	//Limb coverage integrity means we ignore the basic obj integrity. Mostly.
+
+			if(body_parts_covered_dynamic[bflag_index] == 0)
+				playsound(src, break_sound, 100, TRUE)
+				visible_message(span_warning("<b>[bodyzone2readablezone(def_zone)]</b> coverage breaks on \the [src]!"))
 	if(ratio > 0.75 && ratio_newinteg < 0.75)
 		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
 		y_offset = -5

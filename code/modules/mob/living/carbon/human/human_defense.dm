@@ -23,6 +23,7 @@
 	var/obj/item/clothing/used
 	var/protection = 0
 	used = get_best_worn_armor(def_zone, d_type)
+	to_chat(world, "damage pre armor anything: [damage]")
 	if(used)
 		protection = used.armor?.getRating(d_type)
 		if(!blade_dulling)
@@ -38,7 +39,7 @@
 		if(intdamfactor != 1)
 			intdamage *= intdamfactor
 		if(protection > 0)
-			intdamage -= intdamage * ((protection / 1.4925) / 100)	//Armor reduces taken integrity damage by up to 67% at 100 (S).
+			intdamage -= intdamage * ((protection / 2) / 100)	//Armor reduces taken integrity damage by up to 67% at 100 (S).
 		else if(protection == -1)
 			intdamage *= (armor_penetration / 10)
 		if(istype(used_weapon) && used_weapon.is_silver && ((used.smeltresult in list(/obj/item/ingot/aaslag, /obj/item/ingot/aalloy, /obj/item/ingot/purifiedaalloy)) || used.GetComponent(/datum/component/cursed_item)))
@@ -775,28 +776,24 @@
 
 /// Helper proc that returns the worn item ref that has the highest rating covering the def_zone (targeted zone) for the d_type (damage type)
 /mob/living/carbon/human/proc/get_best_worn_armor(def_zone, d_type)
-	var/protection = 0
 	var/obj/item/clothing/used
 	if(def_zone == BODY_ZONE_TAUR)
 		def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	//This list is now triply important because it dictates the order of layering for coverage integrity. //TODO: make it a define dumbass
 	var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
 		if(bp && istype(bp, /obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(zone2covered(def_zone, C.body_parts_covered_dynamic))
+			if(zone2covered(def_zone, C.body_parts_covered_dynamic))	//zone2covered checks for valid coverage whether it's a list or a bitflag
 				if(C.max_integrity)
 					if(C.obj_integrity <= 0)
 						continue
 				var/val = C.armor.getRating(d_type)
-				if(islist(C.body_parts_covered_dynamic)) //We're using bodypart coverage w/ integrity
-					return C
-				else
-					if(val > 0)
-						if(val > protection)
-							protection = val
-							used = C
+				if(val > 0)
+					used = C	//Be mindful of the order in body_parts list! This may result in weird outcomes.
+					break
 	return used
 
 /mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
