@@ -18,4 +18,5 @@
 		"Bandit",\
 		"Guildmaster",\
 		"Court Magician",\
+		"Keeper",\
 	)
