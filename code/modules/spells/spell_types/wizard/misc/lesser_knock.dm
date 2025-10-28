@@ -35,7 +35,7 @@
 	icon = 'icons/roguetown/items/keys.dmi'
 	icon_state = "lockpick"
 	color = "#3FBAFD" // spooky magic blue color that's also used by presti
-	picklvl = 1
+	picklvl = 0.99
 	max_integrity = 30
 	destroy_sound = 'sound/items/pickbreak.ogg'
 	resistance_flags = FIRE_PROOF

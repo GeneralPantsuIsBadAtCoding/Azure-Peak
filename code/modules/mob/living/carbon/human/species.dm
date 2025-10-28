@@ -1235,6 +1235,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 		else
 			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
+			SEND_SIGNAL(target, COMSIG_ATOM_ATTACK_HAND, user)
 			if(affecting.body_zone == BODY_ZONE_HEAD)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 		log_combat(user, target, "punched")
@@ -1681,8 +1682,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(!affecting)
 		return
-	if(istype(user.used_intent, /datum/intent/effect) && selzone)
-		var/datum/intent/effect/int = user.used_intent
+	var/datum/intent/effect/int = user.used_intent
+	if(istype(int, /datum/intent/effect) && selzone)
 		var/do_effect = FALSE
 		if(length(int.target_parts))
 			if(selzone in int.target_parts)
@@ -1691,6 +1692,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			do_effect = TRUE
 		if(do_effect)
 			H.apply_status_effect(int.intent_effect)
+	int.spec_on_apply_effect(H, user)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 

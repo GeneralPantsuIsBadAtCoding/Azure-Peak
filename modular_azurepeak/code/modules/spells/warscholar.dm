@@ -32,8 +32,9 @@
 	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
 	associated_skill = /datum/skill/combat/unarmed
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
-	wdefense = 4
+	wdefense = 0 // Like other katar meant to be used with unarmed parry
 	wbalance = WBALANCE_SWIFT
+	can_parry = TRUE
 
 /obj/item/melee/touch_attack/rogueweapon/attack_self()
 	attached_spell.remove_hand()

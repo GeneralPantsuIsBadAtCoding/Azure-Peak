@@ -65,6 +65,7 @@
 	attack_verb = list("prods", "pokes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /datum/intent/sword/strike
 	name = "pommel strike"
@@ -76,8 +77,9 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 0
-	damfactor = 1
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 // A weaker strike for sword with high damage so that it don't end up becoming better than mace
 /datum/intent/sword/strike/bad
@@ -203,6 +205,19 @@
 	sellprice = 10
 	sheathe_icon = "isword"
 
+/obj/item/rogueweapon/sword/bronze
+	name = "bronze arming sword"
+	desc = "A long bronze blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations - and this implement is the grandfather of them all. Though it lacks the gladii's girth, this arming sword still feels well-balanced for one-handed use."
+	icon_state = "sword3"
+	force = 23 //Iron- and steel arming swords have the same force. +2 to mimic the one-handed nature of bronze swords.
+	force_wielded = 25
+	color = "#f9d690"
+	minstr = 5
+	smeltresult = /obj/item/ingot/bronze
+	max_blade_int = 250
+	max_integrity = 125
+	sheathe_icon = "decsword1" //Placeholder. Close enough.
+
 /obj/item/rogueweapon/sword/falx
 	name = "falx"
 	desc = "An unusual type of curved sword that evolved from the farmer's sickle. It has an inwards edge, making it useful for cutting and chopping."
@@ -283,7 +298,6 @@
 	thrown_bclass = BCLASS_CUT
 	max_blade_int = 280
 	wdefense_wbonus = 4
-	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/sword/long/training
@@ -1802,6 +1816,14 @@
 	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	alt_intents = null // Can't mordhau this
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/sword/long/kriegmesser/ssangsudo
+	name = "ssangsudo"
+	desc = "A style of long blade used by the kouken of Kazengun. A weapon supremely skilled in the art of cutting."
+	icon = 'icons/roguetown/weapons/swords64.dmi'
+	icon_state = "ssangsudo"
+	sheathe_icon = "ssangsudo"
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/rend, /datum/intent/sword/strike) // better rend by .05
 
 /obj/item/rogueweapon/sword/long/dec
 	name = "decorated longsword"

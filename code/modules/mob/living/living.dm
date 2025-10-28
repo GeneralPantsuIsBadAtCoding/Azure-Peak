@@ -326,7 +326,7 @@
 		return FALSE
 	if(!(src.mobility_flags & MOBILITY_STAND))
 		return TRUE
-	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
+	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH)
 	if(HAS_TRAIT(L, TRAIT_CIVILIZEDBARBARIAN))
 		acceptable.Add(BODY_ZONE_HEAD)
 	if( !(check_zone(L.zone_selected) in acceptable) )

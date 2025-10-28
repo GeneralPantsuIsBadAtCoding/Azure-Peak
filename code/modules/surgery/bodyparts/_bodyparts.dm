@@ -51,6 +51,7 @@
 	var/species_icon = ""
 
 	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
+	var/prosthetic_prefix = "pr" // for unique prosthetic icons on mob
 	var/dismemberable = 1 //whether it can be dismembered with a weapon.
 	var/disableable = 1
 
@@ -85,6 +86,7 @@
 	var/skeletonized = FALSE
 
 	var/fingers = TRUE
+	var/organ_slowdown = 0 // Its here because this is first shared definition between two leg organ paths
 	var/is_prosthetic = FALSE
 
 	/// Visaul markings to be rendered alongside the bodypart
@@ -633,7 +635,7 @@
 
 	else
 		limb.icon = species_icon
-		limb.icon_state = "pr_[body_zone]"
+		limb.icon_state = "[prosthetic_prefix]_[body_zone]"
 		if(aux_zone)
 			if(!hideaux)
 				aux = image(limb.icon, "pr_[aux_zone]", -aux_layer, image_dir)

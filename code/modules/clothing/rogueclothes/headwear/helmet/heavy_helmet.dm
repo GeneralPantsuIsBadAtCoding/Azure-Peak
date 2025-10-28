@@ -6,7 +6,7 @@
 	item_state = "barbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	armor = ARMOR_HEAD_HELMET_VISOR
+	armor = ARMOR_PLATE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
@@ -44,6 +44,13 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/helmet/heavy/kabuto
+	name = "kabuto"
+	desc = "A Kazengunite helmet of steel plates, gilded in blacksteel and gold trim alike to evoke feelings of nobility and strength. Commonly worn with a mask or mouthguard."
+	flags_inv = HIDEEARS
+	flags_cover = null
+	icon_state = "kazengunheavyhelm"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	name = "ancient barbute"
@@ -549,6 +556,28 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/puritan
 	name = "volfskulle bascinet"
 	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. It mimics the guise of a terrible nitebeast; intimidating to the levyman, inspiring to the hunter."
+
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker
+	name = "volfskulle bascinet"
+	desc = "A steel bascinet helmet with a snarling visor that protects the entire head and face. Just like the nitebeasts it mimics, so too does the helmet's teeth glisten with flesh-sundering sharpness."
+	armor_class = ARMOR_CLASS_LIGHT //Pseudoantagonist-exclusive. Gives them an edge over traditional pugilists and barbarians. 
+	var/active_item = FALSE
+
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot == SLOT_HEAD)
+		active_item = TRUE
+		ADD_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+		to_chat(user, span_red("The bascinet's visor chitters, and your jaw tightens with symbiotic intent.."))
+	return
+
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/berserker/dropped(mob/living/user)
+	..()
+	if(!active_item)
+		return
+	active_item = FALSE
+	REMOVE_TRAIT(user, TRAIT_BITERHELM, TRAIT_GENERIC)
+	to_chat(user, span_red("..and like that, the bascinet's visor goes dormant once more - a strange pressure, relieved from your jaw."))
 
 /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 	name = "woad elven helm"

@@ -211,6 +211,7 @@
 //	var/tree_type = 1
 	var/base_state = TRUE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
+	plane = FLOOR_PLANE
 	static_debris = list(/obj/item/grown/log/tree/stick = 1)
 	density = FALSE
 	max_integrity = 30

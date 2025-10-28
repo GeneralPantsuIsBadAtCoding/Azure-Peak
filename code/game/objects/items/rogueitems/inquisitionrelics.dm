@@ -285,7 +285,7 @@ Inquisitorial armory down here
 	item_state = "psycenser"
 	light_outer_range = 8
 	light_color ="#70d1e2"
-	possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+	possible_item_intents = list(/datum/intent/mace/smash/flail/golgotha)
 	fuel = 999 MINUTES
 	force = 30
 	var/next_smoke
@@ -312,11 +312,11 @@ Inquisitorial armory down here
 	if(fuel > 0)
 		if(on)
 			turn_off()
-			possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+			possible_item_intents = list(/datum/intent/mace/smash/flail/golgotha)
 			user.update_a_intents()
 		else
 			playsound(src.loc, 'sound/items/censer_on.ogg', 100)
-			possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha, /datum/intent/bless)
+			possible_item_intents = list(/datum/intent/mace/smash/flail/golgotha, /datum/intent/bless)
 			user.update_a_intents()
 			on = TRUE
 			update_brightness()
@@ -355,7 +355,7 @@ Inquisitorial armory down here
 
 /obj/item/flashlight/flare/torch/lantern/psycenser/afterattack(atom/movable/A, mob/user, proximity)
 	. = ..()	//We smashed a guy with it turned on. Bad idea!
-	if(ismob(A) && on && (user.used_intent.type == /datum/intent/flail/strike/smash/golgotha) && user.cmode)
+	if(ismob(A) && on && (user.used_intent.type == /datum/intent/mace/smash/flail/golgotha) && user.cmode)
 		user.visible_message(span_warningbig("[user] smashes the exposed [src], shattering the shard of SYON!"))
 		explosion(get_turf(A),devastation_range = 2, heavy_impact_range = 3, light_impact_range = 4, flame_range = 2, flash_range = 4, smoke = FALSE)
 		fuel = 0

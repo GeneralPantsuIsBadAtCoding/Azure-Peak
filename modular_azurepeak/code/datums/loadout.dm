@@ -368,6 +368,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Leather Trousers"
 	path = /obj/item/clothing/under/roguetown/trou/leather
 
+/datum/loadout_item/leathershorts
+	name = "Leather Shorts"
+	path = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
+
 /datum/loadout_item/sailorpants
 	name = "Seafaring Pants"
 	path = /obj/item/clothing/under/roguetown/tights/sailor
@@ -583,6 +587,16 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/enchantingkit/rebel
 	ckeywhitelist = list("rebel0")
 
+/datum/loadout_item/donator_bigfoot
+	name = "Donator Kit - Gilded Knight Helm"
+	path = /obj/item/enchantingkit/bigfoot
+	ckeywhitelist = list("bigfoot02")
+
+/datum/loadout_item/donator_bigfoot_axe
+	name = "Donator kit - Gilded Greataxe"
+	path = /obj/item/enchantingkit/bigfoot_axe
+	ckeywhitelist = list("bigfoot02")
+
 /datum/loadout_item/donator_zydras
 	name = "Donator Kit - Padded silky dress"
 	path = /obj/item/enchantingkit/zydras
@@ -597,3 +611,13 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Donator Kit - Weeper's Lathe"
 	path = /obj/item/enchantingkit/waff
 	ckeywhitelist = list("waffai")
+
+/datum/loadout_item/donator_inverserun
+	name = "Donator Kit - Votive Thorns"
+	path = /obj/item/enchantingkit/inverserun
+	ckeywhitelist = list("inverserun")
+
+/datum/loadout_item/donator_zoe
+	name = "Donator Kit - Shroud of the Undermaiden"
+	path = /obj/item/enchantingkit/zoe
+	ckeywhitelist = list("zoetheorc")

@@ -178,6 +178,9 @@
 	if(held_index)
 		was_owner.dropItemToGround(owner.get_item_for_held_index(held_index), force = TRUE)
 		was_owner.hand_bodyparts[held_index] = null
+
+	if(organ_slowdown)
+		was_owner.remove_movespeed_modifier("[src.type]_slow", update = TRUE)
 	was_owner.bodyparts -= src
 	owner = null
 
@@ -397,6 +400,8 @@
 
 	update_bodypart_damage_state()
 
+	if(organ_slowdown)
+		C.add_movespeed_modifier("[src.type]_slow", update=TRUE, priority=100, flags=NONE, override=FALSE, multiplicative_slowdown=organ_slowdown, movetypes=GROUND, blacklisted_movetypes=NONE, conflict=FALSE)
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()

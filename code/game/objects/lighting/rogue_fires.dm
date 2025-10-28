@@ -776,7 +776,7 @@
 		L.visible_message("<span class='info'>[L] snuffs [src].</span>")
 		burn_out()
 
-/obj/machinery/light/rogue/campfire/attack_hand(mob/user)
+/obj/machinery/light/rogue/campfire/attack_hand(mob/user, first_call = TRUE)
 	. = ..()
 	if(.)
 		return
@@ -785,14 +785,19 @@
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
-			H.visible_message("<span class='info'>[H] warms [user.p_their()] hand near the fire.</span>")
+			if(first_call)
+				H.visible_message("<span class='info'>[H] warms [user.p_their()] hand near the fire.</span>")
 
-			if(do_after(H, 100, target = src))
-				H.apply_status_effect(/datum/status_effect/buff/healing, 1)
+			if(do_after(H, 105, target = src))
+				// Astrata followers get enhanced fire healing
+				var/buff_strength = 1
+				if(H.patron?.type == /datum/patron/divine/astrata || H.patron?.type == /datum/patron/inhumen/matthios) //Fire and the fire-stealer
+					buff_strength = 2
+				H.apply_status_effect(/datum/status_effect/buff/healing, buff_strength)
 				H.add_stress(/datum/stressevent/campfire)
 				to_chat(H, "<span class='info'>The warmth of the fire comforts me, affording me a short rest.</span>")
+				attack_hand(H, FALSE) // Recursion
 		return TRUE //fires that are on always have this interaction with lmb unless its a torch
-
 /obj/machinery/light/rogue/campfire/densefire
 	icon_state = "densefire1"
 	base_state = "densefire"

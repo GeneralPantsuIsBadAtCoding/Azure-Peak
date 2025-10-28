@@ -82,7 +82,8 @@
 	. = ..()
 
 /obj/item/attackby(obj/item/I, mob/user, params)
-	user.changeNext_move(user.used_intent.clickcd)
+	if(!no_use_cd)
+		user.changeNext_move(user.used_intent.clickcd)
 	if(max_blade_int)
 		if(istype(I, /obj/item/natural))
 			var/obj/item/natural/ST = I

@@ -1,4 +1,3 @@
-// One-use crystal that spawns a Greater Undead, should delete after use.
 /obj/item/necro_relics/necro_crystal
 	name = "dark crystal"
 	desc = "It feels cold in your hands. You shouldn't be holding this."
@@ -7,16 +6,56 @@
 	hitsound = 'sound/blank.ogg'
 	dropshrink = 0.6
 	var/last_use_time = 0
-	var/use_cooldown = 300 // 30 seconds to prevent spamming it for multiple free goons
+	var/use_cooldown = 300 // 30 seconds
+	var/list/active_skeletons = list() //List of active skeletons stored here.
+	var/max_summons = 2 //Maximum amount of skeletons that can be summoned at one time.
+	var/max_charges = 2 //Maximum amount of charges the crystal can hold.
+	var/current_charges = 2
 	grid_height = 32
 	grid_width = 32
+
+/obj/item/necro_relics/necro_crystal/examine(mob/user)
+	. = ..()
+	if(current_charges > 0)
+		. += span_notice("The crystal radiates with dark, brimming power.")
+	else
+		. += span_danger("The crystal lies hollow and inert, its magic drained.")
+
+/obj/item/necro_relics/necro_crystal/Initialize()
+	..()
+	set_light(2, 2, 1, l_color = "#551c1c")
+
+/obj/item/necro_relics/necro_crystal/proc/recharge(obj/item/reagent_containers/lux/L, mob/user)
+	if(current_charges >= max_charges)
+		to_chat(user, span_notice("The crystal is already brimming with power."))
+		return FALSE
+
+	qdel(L) // consume the lux
+	current_charges = min(current_charges + 1, max_charges)
+	to_chat(user, span_notice("The crystal hums as it drinks in the lyfe essence."))
+	playsound(src, 'sound/magic/churn.ogg', 70, TRUE)
+	return TRUE
+
+/obj/item/necro_relics/necro_crystal/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/reagent_containers/lux))
+		return recharge(I, user)
+	return ..()
 
 /obj/item/necro_relics/necro_crystal/attack_self(mob/living/user)
 	..()
 	if(!user) 
 		return FALSE
+		
+	if(length(active_skeletons) >= max_summons)
+		to_chat(user, span_warning("The crystal emits an ominous thrumming. The power within is too strained to conjure another skeleton right now."))
+		return FALSE
+
 	if(world.time - src.last_use_time < src.use_cooldown)
 		to_chat(user, span_warning("The crystal thrums under your touch, but remains inert."))
+		return FALSE
+
+	if(current_charges <= 0)
+		to_chat(user, span_warning("The crystal feels hollow. It hungers for lux."))
 		return FALSE
 
 	// Ask the Necromancer for a task for the skeleton BEFORE the timer
@@ -36,7 +75,7 @@
 		user.flash_fullscreen("redflash1")
 		new /obj/item/natural/glass_shard(get_turf(src))
 		playsound(src, "glassbreak", 70, TRUE)
-		qdel(src) 
+		qdel(src)
 		return FALSE
 
 	var/turf/T = get_step(user, user.dir)
@@ -54,30 +93,32 @@
 	if(!C || !istype(C, /mob/dead))
 		return FALSE
 
-	if (istype(C, /mob/dead/new_player))
+	if(istype(C, /mob/dead/new_player))
 		var/mob/dead/new_player/N = C
 		N.close_spawn_windows()
 
 	var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
+	target.crystal = WEAKREF(src)
 	target.key = C.key
+	current_charges--
 	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
 	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
+	var/datum/weakref/W = WEAKREF(target)
+	active_skeletons += W
 
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb/lesser)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "GREATER SKELETON"), 3 SECONDS)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_pronouns_and_body)), 7 SECONDS)
 
-	to_chat(user, span_notice("The crystal dissipates into dust."))
+	if(current_charges <= 0)
+		to_chat(user, span_notice("The crystal dims, its power spent."))
+	else
+		to_chat(user, span_notice("The crystal's glow lessens. [current_charges] use\s remain."))
+
 	user.flash_fullscreen("redflash1")
-	new /obj/item/natural/glass_shard(get_turf(src))
-	playsound(src, "shatter", 70, TRUE)
-	qdel(src) 
+	playsound(src, "shatter", 50, TRUE)
 
 	return TRUE
-
-/obj/item/necro_relics/necro_crystal/Initialize()
-	..()
-	set_light(2, 2, 1, l_color = "#551c1c")
 
 /mob/living/carbon/human/proc/choose_pronouns_and_body()
 	var/p_input = input(src, "Choose your character's pronouns", "Pronouns") as anything in GLOB.pronouns_list

@@ -46,11 +46,12 @@
 	animname = "strike"
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg', 'sound/combat/hits/kick/kick.ogg')
-	damfactor = 1.5
+	damfactor = 0.6 // Less damage than a normal attack I don't want this to be better than stabbing
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	clickcd = 14
 	recovery = 10
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	canparry = FALSE
 	candodge = FALSE
 
@@ -171,6 +172,42 @@
 	icon_state = "cdagger"
 	max_integrity = 75
 	smeltresult = null // TODO: We don't have partial melt so coping time
+
+/obj/item/rogueweapon/huntingknife/bronze
+	name = "bronze dagger"
+	desc = "A wide blade of bronze, fitted to a wooden handle. Ancient laborers and priests coveted this tool above all else: both as a means to handle the dae's labors, and to indulge in the rituos of sacrifice."
+	icon_state = "chefsknife"
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/bronze, /datum/intent/dagger/sucker_punch, /datum/intent/dagger/thrust/bronze)
+	color = "#f9d690"
+	force = 18
+	throwforce = 18
+	max_blade_int = 225
+	max_integrity = 175 
+	smeltresult = /obj/item/ingot/bronze
+
+/datum/intent/dagger/thrust/bronze
+	name = "piercing thrust"
+	icon_state = "inpick"
+	attack_verb = list("stabs", "impales")
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 55
+	clickcd = 12
+	swingdelay = 6 //Halfway point between a 'stab' and 'pick'.
+	damfactor = 1.05
+	blade_class = BCLASS_PICK
+
+/datum/intent/dagger/chop/bronze
+	name = "wedged chop"
+	icon_state = "inchop"
+	attack_verb = list("chops")
+	animname = "chop"
+	blade_class = BCLASS_CHOP
+	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
+	penfactor = 15
+	damfactor = 1.3
+	swingdelay = 5
+	clickcd = 10
+	item_d_type = "slash"
 
 /obj/item/rogueweapon/huntingknife/cleaver
 	force = 15
@@ -652,7 +689,6 @@
 	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/chop)
 	smeltresult = null
 	sellprice = 1
-	smeltresult = /obj/item/ingot/iron
 	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
 
 /obj/item/rogueweapon/huntingknife/throwingknife/getonmobprop(tag)
@@ -668,7 +704,6 @@
 	name = "eastern tossblade"
 	desc = "A four pointed throwing knife ground and sharpened from a single piece of metal. The design is intended to solve one of weaknesses of basic tossblades; \
 	more points means these are more likely to land point-first. </br>This dagger can be stowed away inside a pair of boots, permitting it to be quickly drawn when needed."
-	smeltresult = /obj/item/ingot/iron
 	icon_state = "easttossblade"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/aalloy
@@ -678,7 +713,6 @@
 	color = "#bb9696"
 	force = 7
 	throwforce = 16
-	smeltresult = /obj/item/ingot/aaslag
 	randomize_blade_int_on_init = TRUE
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
@@ -689,14 +723,12 @@
 	max_integrity = 100
 	armor_penetration = 40
 	icon_state = "throw_knifes"
-	smeltresult = /obj/item/ingot/steel
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 30, "embedded_fall_chance" = 5)
 	sellprice = 2
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel/palloy
 	name = "ancient alloy tossblade"
 	desc = "A sliver of polished gilbranze, delicately carved into a throwing dagger. A favorite amongst Zizo's undying cabal, and especially amongst Her assassins; what better-a-tool to slip through another's neck? </br>This dagger can be stowed away inside a pair of boots, permitting it to be quickly drawn when needed."
-	smeltresult = /obj/item/ingot/aaslag	
 	icon_state = "throw_knifea"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/silver
@@ -711,7 +743,6 @@
 	icon_state = "throw_knifesil"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
-	smeltresult = /obj/item/rogueore/coal
 	sellprice = 6
 
 /obj/item/rogueweapon/huntingknife/throwingknife/silver/ComponentInitialize()
@@ -737,7 +768,6 @@
 	icon_state = "throw_knifep"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
-	smeltresult = /obj/item/rogueore/coal
 	sellprice = 6
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon/ComponentInitialize()

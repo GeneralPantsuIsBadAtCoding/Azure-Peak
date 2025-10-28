@@ -22,9 +22,15 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = 10
-	damfactor = 0.8
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
+
+// Eaglebeak has a decent bash with range
+/datum/intent/spear/bash/eaglebeak
+	name = "eagle's beak bash"
+	damfactor = 1
+	reach = 2
 
 /datum/intent/spear/bash/ranged
 	reach = 2
@@ -94,8 +100,9 @@
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.3
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 
 /datum/intent/rend
@@ -837,8 +844,8 @@
 /obj/item/rogueweapon/eaglebeak
 	force = 15
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
-	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/mace/smash/eaglebeak, SPEAR_BASH)
+	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/bash/eaglebeak)
+	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/bash/eaglebeak, /datum/intent/mace/smash/eaglebeak)
 	name = "eagle's beak"
 	desc = "A reinforced pole affixed with an ornate steel eagle's head, of which its beak is intended to pierce with great harm."
 	icon_state = "eaglebeak"
@@ -859,7 +866,6 @@
 	wdefense = 5
 	wbalance = WBALANCE_HEAVY
 	sellprice = 60
-	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/eaglebeak/getonmobprop(tag)
 	. = ..()
@@ -883,9 +889,10 @@
 	max_blade_int = 150
 	sellprice = 40
 
+// A worse thrust for weapons specialized in other damage type like cut or blunt
 /datum/intent/spear/thrust/eaglebeak
-	penfactor = 50
-	damfactor = 1
+	penfactor = 20
+	damfactor = 0.9
 
 /datum/intent/spear/thrust/glaive
 	penfactor = 50
@@ -894,18 +901,20 @@
 
 /datum/intent/mace/smash/eaglebeak
 	reach = 2
-	swingdelay = 12
-	clickcd = 14
-	damfactor = 1.3
+	clickcd = CLICK_CD_HEAVY // Slightly longer since it has RANGE. Don't want to increase charge time more since it is unreliable.
 
 /obj/item/rogueweapon/spear/bronze
-	name = "Bronze Spear"
-	desc = "A spear forged of bronze. Much more durable than a regular spear."
+	name = "bronze spear"
+	desc = "An antiquital staff, adorned with a bronze spearhead. Ancient in both design and purpose, its lighter weight once complimented the towering shields of precivilizational legionnaires. While rarely seen beyond the Deadlands, nowadaes, its lightweight balance makes it perfect for one-handed thrusts and throws."
+	force = 25
+	force_wielded = 28
+	throwforce = 30
 	icon_state = "bronzespear"
-	max_blade_int = 200
 	smeltresult = /obj/item/ingot/bronze
-	smelt_bar_num = 2
-
+	armor_penetration = 22 //In-between a spear and javelin.
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
+	max_blade_int = 225
+	max_integrity = 155
 
 /obj/item/rogueweapon/greatsword
 	force = 12

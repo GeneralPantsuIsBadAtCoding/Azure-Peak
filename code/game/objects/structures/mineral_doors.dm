@@ -29,6 +29,7 @@
 	var/base_state = null
 
 	var/locked = FALSE
+	var/lockdifficulty = 1
 	var/last_bump = null
 	var/brokenstate = 0
 	var/keylock = FALSE
@@ -549,6 +550,17 @@
 		pickchance += perbonus
 		pickchance *= P.picklvl
 		pickchance = clamp(pickchance, 1, 95)
+		
+		if (lockdifficulty > 1) //each time the difficulty goes up, the harder the lock
+			picktime = picktime+(10*lockdifficulty)//add a flat 10 per level
+			pickchance = pickchance/(lockdifficulty*0.75)//reduce the chance by .75 per level
+
+		if(lockdifficulty > 2 && P.picklvl < 1) //disallowing lesser knock and poor locks from being used
+			to_chat(user, "<span class='warning'>my lockpick is too poor to handle this lock</span>")
+			playsound(loc, 'sound/items/pickbad.ogg', 40, TRUE)
+			I.take_damage(1, BRUTE, "blunt")
+			to_chat(user, "<span class='warning'>Clack.</span>")
+			return
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -590,12 +602,12 @@
 	if(isSwitchingStates || door_opened)
 		return
 	if(locked)
-		user.visible_message(span_warning("[user] unlocks [src]."), \
+		user?.visible_message(span_warning("[user] unlocks [src]."), \
 			span_notice("I unlock [src]."))
 		playsound(src, unlocksound, 100)
 		locked = 0
 	else
-		user.visible_message(span_warning("[user] locks [src]."), \
+		user?.visible_message(span_warning("[user] locks [src]."), \
 			span_notice("I lock [src]."))
 		playsound(src, locksound, 100)
 		locked = 1

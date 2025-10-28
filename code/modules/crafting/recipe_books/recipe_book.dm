@@ -314,6 +314,15 @@
 				if(!sub_path.name) // Also skip if there's no names
 					continue
 
+				if(ispath(sub_path, /datum/crafting_recipe))
+					var/datum/crafting_recipe/recipe = sub_path
+					if(initial(recipe.hides_from_books))
+						continue
+				if(ispath(sub_path, /datum/anvil_recipe))
+					var/datum/anvil_recipe/recipe = sub_path
+					if(initial(recipe.hides_from_books))
+						continue
+
 				var/recipe_name = initial(sub_path.name)
 
 				// Check if this recipe belongs to the current category

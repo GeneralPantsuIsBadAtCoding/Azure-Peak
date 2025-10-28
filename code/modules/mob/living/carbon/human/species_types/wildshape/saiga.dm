@@ -112,6 +112,7 @@
 	item_d_type = "blunt"
 	swingdelay = 10
 	clickcd = 14
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR // I'm evil
 
 /obj/item/rogueweapon/saiga_hoof //Like a less defense dagger
 	name = "saiga hoof"

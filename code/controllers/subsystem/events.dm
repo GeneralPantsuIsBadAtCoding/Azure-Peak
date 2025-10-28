@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(events)
 	SSgamemode.event_panel(user)
 
 /client/proc/forceGamemode()
-	set name = "Open Gamemode Panel"
+	set name = "Open Storyteller Panel"
 	set category = "-Fun-"
 	if(!holder ||!check_rights(R_FUN))
 		return

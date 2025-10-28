@@ -19,6 +19,8 @@ As of 2018-02-04, the typical z-levels for a single-level station are:
 Multi-Z stations are supported and multi-Z mining and away missions would
 require only minor tweaks.
 */
+/// A map key that corresponds to being one exclusively for Space.
+#define SPACE_KEY "space"
 
 #define SPACERUIN_MAP_EDGE_PAD 15
 
