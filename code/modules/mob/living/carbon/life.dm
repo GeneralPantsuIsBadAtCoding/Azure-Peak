@@ -589,9 +589,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
-			if(eyesclosed && (!HAS_TRAIT(src, TRAIT_NOSLEEP)))
-				teleport_to_dream(src, 10000, 2)
-				Sleeping(300)
 	else if(!IsSleeping())
 		// Resting on a bed or something
 		var/sleepy_mod = 1
