@@ -1,5 +1,17 @@
 // Putting it in defines so that it is more easily findable and editable in one location.
-// Azure Grove
+
+// STYLE GUIDE (these are SUGGESTIONS, NOT hard rules)
+
+// people who click on this stuff obviously want to be told more abt the world. you should reward ppl for showing interest: evocative language/background info, or any combo of the two
+// avoid just restating what an area looks like; roguetown is already dripping with visual/audio atmosphere. using that to set tone is good, but there should be more to the entry beyond that
+
+// generally, we want to match the 'vibes' of the place. the terrorbog is suffocating and scary. the in-town guild is obvs less scary so we set the tone with friendlier language and by having a quote from a person!
+// you don't necessarily need to do descriptions and prose. could be in-universe books or quotes or what have you (see the guild one for example)
+
+// and, importantly: not every area needs a description! don't feel obligated!! it's ok for a place to just be A Place :3
+// moderation may even be good here; the more text there is, the less impactful each entry individually becomes and the less visible
+
+// tl;dr my advice is: match vibe, write pretty word, don't feel forced
 
 
 // Hotsprings
@@ -23,7 +35,7 @@
 
 // Undercoast
 #define DETAIL_TEXT_UNDERCOAST ""
-#define DETAIL_TEXT_TEMPLE_SHATTERED_GOD ""
+#define DETAIL_TEXT_TEMPLE_SHATTERED_GOD "Masonry now forms impenetrable islands of purposeless granite. Cobblestone fractals underfoot. \n\ A sense of holiness lingers here, despite time."
 #define DETAIL_TEXT_ORC_RUIN ""
 
 // Terrorbog
@@ -32,12 +44,13 @@ There used to be temples here, she says. And they used to be tall and grand, and
 One must wonder if those stygian-filligreed constructs have survived in the peat and moss."
 
 // North Coast
-#define DETAIL_TEXT_NORTH_COAST ""
+#define DETAIL_TEXT_NORTH_COAST "Chilly winds blow from the palagic northways. This is the part of land where the trading ships hook 'round to return to land after months' voyages- and where they are plundered by ne'er-do-wells. \n\
+Abyssor rests offshore. Even his quietest exhale is enough to send waves from the hadal to crash onto sand."
 #define DETAIL_TEXT_NORTH_COAST_HAMLET ""
 #define DETAIL_TEXT_MAD_DUKE_COURT ""
 
 // Actual Azure Coast
-#define DETAIL_TEXT_ACTUAL_COAST "A windswept shore."
+#define DETAIL_TEXT_ACTUAL_COAST ""
 #define DETAIL_TEXT_CITY_COAST "Close enough to the city that I can see its torchlight. It is easy to imagine why they say the Comet Syon landed here. The bay yawns like a giant concave lens; the hinted epicenter of ego-death. \n\\n\ The salted ocean air carries a bitter taste, here."
 
 // Mount Decap & Dungeons
@@ -74,3 +87,8 @@ Rusted metals distantly grind in anoxic pus-condensate in-tune with the Signal. 
 #define DETAIL_TEXT_CHAPEL "Narthex of faith, roosting the Flock."
 #define DETAIL_TEXT_INQUISITION_HQ ""
 #define DETAIL_TEXT_AZUREAN_GUILD_OF_CRAFT "\"We had a name fer it, eh? Called it the Dwarven Quarter. Forges an' 'ammers, underground an' wrapped in stone. Joos' like 'ome! Bu' then tha bloody bluebloods started complainin' aboot tha' dirt whenever they visited. Bloody brash-polishers! Well, we 'ad to move tha shop topside. \n\ \n\ Not as charmin, no moor.\""
+
+
+// Tomb of Alotheos
+#define DETAIL_TEXT_TOMB_OF_ALOTHEOS ""
+

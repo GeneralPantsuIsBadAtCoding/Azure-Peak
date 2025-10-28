@@ -2,6 +2,7 @@
 /datum/crafting_recipe/roguetown/structure
 	abstract_type = /datum/crafting_recipe/roguetown/structure
 	req_table = FALSE
+	subtype_reqs = TRUE
 	craftsound = 'sound/foley/Building-01.ogg'
 
 /datum/crafting_recipe/roguetown/structure/TurfCheck(mob/user, turf/T)

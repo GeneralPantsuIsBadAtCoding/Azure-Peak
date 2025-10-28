@@ -603,16 +603,13 @@
 		value = initial(search_objects)
 	search_objects = value
 
-/mob/living/simple_animal/process(delta_time)
-	consider_wakeup()
-
 /mob/living/simple_animal/hostile/consider_wakeup()
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
 		if(length(grid.client_contents))
 			toggle_ai(AI_ON)
-			testing("becomeidle [src]")
 			return TRUE
 
+	toggle_ai(AI_OFF)
 	return FALSE
 
 /mob/living/simple_animal/hostile/proc/ListTargetsLazy(_Z)//Step 1, find out what we can see

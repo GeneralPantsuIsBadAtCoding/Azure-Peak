@@ -309,8 +309,18 @@ SUBSYSTEM_DEF(treasury)
 	if(HAS_TRAIT(person, TRAIT_NOBLE))
 		return taxation_cat_settings[TAX_CAT_NOBLE]["fineExemption"]
 	else if(HAS_TRAIT(person, TRAIT_RESIDENT) || (person.job in GLOB.yeoman_positions))
-		return taxation_cat_settings[TAX_CAT_NOBLE]["fineExemption"]
+		return taxation_cat_settings[TAX_CAT_YEOMEN]["fineExemption"]
 	else if(person.job in GLOB.church_positions)
 		return taxation_cat_settings[TAX_CAT_CHURCH]["fineExemption"]
 	else
 		return taxation_cat_settings[TAX_CAT_PEASANTS]["fineExemption"]
+
+/// Checks if there is a valid amount in the treasury, if so, withdraw that amount and log it
+/// Currently only used by Chimeric heartbeasts
+/datum/controller/subsystem/treasury/proc/withdraw_money_treasury(amt, target)
+	if(!amt || treasury_value < amt)
+		return FALSE // Not enough funds
+
+	treasury_value -= amt
+	log_to_steward("-[amt] withdrawn from treasury by [target]")
+	return TRUE
