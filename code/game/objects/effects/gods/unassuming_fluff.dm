@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 	stressadd = 20
 	desc = span_userdanger("WHAT IS THAT THING?!")
 
-/proc/teleport_to_dream(mob/living/carbon/human/user, base_probability = 10000, probability = 10)
+/proc/teleport_to_dream(mob/living/carbon/human/user, base_probability = 10000, probability = 10, forced = FALSE)
 	if(!ishuman(user))
 		return
 
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 
 	// Look kids, if you want accurate probability, don't use fractional numbers. Pickweight is safer and more accurate than prob() here.
 	var/list/options = list("teleport" = effective_probability, "no_teleport" = base_probability - effective_probability)
-	if(pickweight(options) == "no_teleport")
+	if(pickweight(options) == "no_teleport" && !forced)
 		return
 
 	var/area/dream_area = GLOB.areas_by_type[/area/rogue/underworld/dream]
@@ -75,10 +75,11 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 	if(!HAS_TRAIT(user, TRAIT_DARKVISION))
 		ADD_TRAIT(user, TRAIT_DARKVISION, CULT_TRAIT)
 
-	// Spawn weapons
-	for(var/i in 1 to 2)
-		var/turf/weapon_turf = pick(safe_turfs)
-		new /obj/effect/spawner/lootdrop/roguetown/abyssor(weapon_turf)
+	// Spawn weapons if it's a *random* nightmare
+	if (!forced) 
+		for(var/i in 1 to 2)
+			var/turf/weapon_turf = pick(safe_turfs)
+			new /obj/effect/spawner/lootdrop/roguetown/abyssor(weapon_turf)
 
 	// Schedule return
 	user.apply_status_effect(/datum/status_effect/dream_teleport, original_turf)
@@ -159,7 +160,7 @@ GLOBAL_LIST_EMPTY(players_in_dream)
 
 /datum/status_effect/dream_teleport
 	id = "dream_teleport"
-	duration = 3 MINUTES
+	duration = 2 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/dream_teleport
 	var/turf/original_turf
 

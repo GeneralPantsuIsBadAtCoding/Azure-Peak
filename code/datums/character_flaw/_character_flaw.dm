@@ -49,14 +49,10 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	if(istype(charflaw, flaw))
 		return TRUE
 
-/mob/proc/get_flaw(flaw_type)
+/mob/proc/get_flaw()
 	return
 
-/mob/living/carbon/human/get_flaw(flaw_type)
-	if(!flaw_type)
-		return
-	if(charflaw != flaw_type)
-		return
+/mob/living/carbon/human/get_flaw()
 	return charflaw
 
 /datum/charflaw/randflaw
@@ -418,15 +414,17 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	else
 		// Been conscious for ~10 minutes (whatever is the conscious timer)
 		if(last_unconsciousness + concious_timer < world.time)
-			drugged_up = FALSE
-			to_chat(user, span_blue("I'm getting drowsy..."))
 			user.emote("yawn", forced = TRUE)
 			next_sleep = world.time + rand(7 SECONDS, 11 SECONDS)
+			if(drugged_up)
+				to_chat(user, span_blue("The drugs keeps me awake, for now..."))
+			else
+				to_chat(user, span_blue("I'm getting drowsy..."))
 			do_sleep = TRUE
 
 /proc/narcolepsy_drug_up(mob/living/living)
-	var/datum/charflaw/narcoleptic/narco = living.get_flaw(/datum/charflaw/narcoleptic)
-	if(!narco)
+	var/datum/charflaw/narcoleptic/narco = living.get_flaw()
+	if (narco.name != "Narcoleptic")
 		return
 	narco.drugged_up = TRUE
 
@@ -449,8 +447,8 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	ADD_TRAIT(user, TRAIT_NOSLEEP, TRAIT_GENERIC)
 
 /proc/sleepless_drug_up(mob/living/living)
-	var/datum/charflaw/sleepless/sleeper = living.get_flaw(/datum/charflaw/sleepless)
-	if(!sleeper)
+	var/datum/charflaw/sleepless/sleeper = living.get_flaw()
+	if (sleeper.name != "Sleepless")
 		return
 	sleeper.drugged_up = TRUE
 
