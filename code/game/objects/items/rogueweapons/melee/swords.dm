@@ -2092,7 +2092,7 @@
 
 /obj/item/rogueweapon/sword/blacksteel
 	name = "blacksteel arming sword"
-	desc = "A long blacksteel blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations, this one is a great deal more expensive then it's steel brother."
+	desc = "A long blacksteel blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations. This one is a great deal more expensive than its steel counterparts."
 	icon_state = "bs_sword"
 	minstr = 6
 	smeltresult = /obj/item/ingot/blacksteel
@@ -2105,6 +2105,6 @@
 
 /obj/item/rogueweapon/sword/decorated/blacksteel
 	name = "decorated arming sword"
-	desc = "A valuable ornate arming sword made for the purpose of ceremonial fashion with a fine leather grip, a carefully engraved golden crossguard and a blade entirely of blacksteel."
+	desc = "A valuable ornate arming sword made for the purpose of ceremonial fashion. It has a fine leather grip, a carefully engraved gold-plated crossguard, and its blade is made entirely of blacksteel."
 	icon_state = "bs_swordregal"
 	sellprice = 200

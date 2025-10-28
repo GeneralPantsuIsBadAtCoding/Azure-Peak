@@ -246,7 +246,7 @@
 /obj/item/rogueweapon/hammer/blacksteel
 	force = 25
 	name = "blacksteel hammer"
-	desc = "BlackSteel to drive even the hardest metal into submission."
+	desc = "A hammer made of blacksteel, to drive even the hardest metals into submission."
 	icon = 'icons/roguetown/weapons/tools.dmi'
 	icon_state = "bs_masterhammer"
 	item_state = "bs_masterhammer"
@@ -286,7 +286,7 @@
 	force = 10
 	possible_item_intents = list(/datum/intent/mace/strike)
 	name = "tongs"
-	desc = "A pair of iron jaws used to carry hot ingots."
+	desc = "A pair of blacksteel tongs that'll hold onto Psydonia's hottest metal without ever warping. 'Tis a symbol of prestige."
 	icon_state = "tongs"
 	icon = 'icons/roguetown/weapons/tools.dmi'
 	sharpness = IS_BLUNT

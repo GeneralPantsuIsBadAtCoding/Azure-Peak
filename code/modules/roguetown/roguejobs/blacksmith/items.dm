@@ -78,7 +78,7 @@
 
 /obj/item/roguestatue/blacksteel
 	name = "blacksteel statue"
-	desc = "An dark statue of glimmering, resilient blacksteel."
+	desc = "A dark statue of glimmering, resilient blacksteel."
 	icon_state = "bsstatue1"
 	smeltresult = /obj/item/ingot/blacksteel
 	sellprice = 160
