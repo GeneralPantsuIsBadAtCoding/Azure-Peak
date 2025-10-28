@@ -20,7 +20,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 
-	job_traits = list(TRAIT_SEEPRICES, TRAIT_CICERONE)
+	job_traits = list(TRAIT_SEEPRICES, TRAIT_CICERONE, TRAIT_LICENSED)
 
 	advclass_cat_rolls = list(CTAG_MERCH = 2)
 	job_subclasses = list(

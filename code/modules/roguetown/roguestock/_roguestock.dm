@@ -5,6 +5,7 @@
 	var/held_items = list(0, 0)
 	var/payout_price = 1
 	var/withdraw_price = 1
+	var/unlicensed_price = 0
 	var/transport_fee = 1
 	var/withdraw_disabled = FALSE
 	var/demand = 100

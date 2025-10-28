@@ -211,7 +211,7 @@
 	desc = "An arcyne creation first theorized by malcontents with the resolution of Xylix's plays. It protects is wearer by tugging things gently toward less fatal potentials."
 	icon_state = "ring_s"
 	max_integrity = 50
-	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
+	body_parts_covered = FULL_BODY //field covers the whole body
 	armor = ARMOR_FATEWEAVER //even protection against most damage types
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_STAB, BCLASS_PIERCE, BCLASS_PICK, BCLASS_BLUNT)
 	blade_dulling = DULLING_BASHCHOP

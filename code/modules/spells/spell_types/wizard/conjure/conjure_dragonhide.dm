@@ -30,7 +30,7 @@
 
 /obj/effect/proc_holder/spell/self/conjure_armor/conjure_dragonhide/Destroy()
 	if(src.conjured_armor)
-		conjured_armor.visible_message(span_warning("The [conjured_armor]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		conjured_armor.visible_message(span_warning("The [src]'s scales begin turning to ash and flake off!"))
 		qdel(conjured_armor)
 	return ..()
 
@@ -63,7 +63,7 @@
 
 /obj/item/clothing/suit/roguetown/dragonhide/proc/dispel()
 	if(!QDELETED(src))
-		src.visible_message(span_warning("The [src]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		src.visible_message(span_warning("The [src]'s scales begin turning to ash and flake off!"))
 		qdel(src)
 
 /obj/item/clothing/suit/roguetown/dragonhide/obj_break()

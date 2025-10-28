@@ -89,6 +89,11 @@
 	. = ..()
 	if(.)
 		return
+	if(HAS_TRAIT(user, TRAIT_LICENSED))
+		withdraw_tab.licensed = TRUE
+	else
+		withdraw_tab.licensed = FALSE
+
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/keyboard_enter.ogg', 100, FALSE, -1)
 
@@ -106,6 +111,8 @@
 
 /obj/structure/roguemachine/stockpile/proc/attemptsell(obj/item/I, mob/H, message = TRUE, sound = TRUE)
 	for(var/datum/roguestock/R in SStreasury.stockpile_datums)
+		if(!HAS_TRAIT(H, TRAIT_LICENSED))
+			R.payout_price = ceil(R.payout_price / 2)
 		if(istype(I, /obj/item/natural/bundle))
 			var/obj/item/natural/bundle/B = I
 			if(B.stacktype == R.item_type)

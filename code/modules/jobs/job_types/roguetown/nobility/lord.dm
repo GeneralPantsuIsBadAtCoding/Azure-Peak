@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		if(istype(H.wear_mask, /obj/item/clothing/mask/rogue/eyepatch/left))
 			qdel(H.wear_mask)
 			mask = /obj/item/clothing/mask/rogue/lordmask/l
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC, TRAIT_LICENSED)
 
 //	SSticker.rulermob = H
 /** 
