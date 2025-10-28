@@ -414,13 +414,13 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	else
 		// Been conscious for ~10 minutes (whatever is the conscious timer)
 		if(last_unconsciousness + concious_timer < world.time)
+			do_sleep = TRUE
 			user.emote("yawn", forced = TRUE)
 			next_sleep = world.time + rand(7 SECONDS, 11 SECONDS)
 			if(drugged_up)
 				to_chat(user, span_blue("The drugs keeps me awake, for now..."))
 			else
 				to_chat(user, span_blue("I'm getting drowsy..."))
-			do_sleep = TRUE
 
 /proc/narcolepsy_drug_up(mob/living/living)
 	var/datum/charflaw/narcoleptic/narco = living.get_flaw()
