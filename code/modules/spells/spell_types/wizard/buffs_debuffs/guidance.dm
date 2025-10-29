@@ -50,10 +50,10 @@
 	var/outline_colour ="#f58e2d"
 	id = "guidance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
-	duration = 1 MINUTES
+	duration = 5 MINUTES
 
 /datum/status_effect/buff/guidance/other
-	duration = 2 MINUTES
+	duration = 10 MINUTES
 
 /datum/status_effect/buff/guidance/on_apply()
 	. = ..()
