@@ -851,10 +851,11 @@
 	if(!(mobility_flags & MOBILITY_STAND))
 		aimheight_change(rand(1, 4)) // Go for the knees!
 		return
+	// Specifically excluding 12 - Neck to prevent decap
 	if(HAS_TRAIT(victim, TRAIT_BLOODLOSS_IMMUNE)) // Go for the head!
-		aimheight_change(rand(12, 19))
+		aimheight_change(rand(13, 19))
 		return
-	aimheight_change(pick(rand(5, 8), rand(9, 11), rand(12, 19))) // Arms, chest, head. Equal chance for each.
+	aimheight_change(pick(rand(5, 8), rand(9, 11), rand(13, 19))) // Arms, chest, head. Equal chance for each.
 
 // attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /mob/living/carbon/human/proc/monkey_attack(mob/living/L)
