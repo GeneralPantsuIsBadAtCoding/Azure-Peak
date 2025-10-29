@@ -3,7 +3,7 @@
 	tutorial = "You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."
 	outfit = /datum/outfit/job/roguetown/adventurer/harlequin
 	cmode_music = 'sound/music/combat_jester.ogg'
-	traits_applied = list(TRAIT_NUTCRACKER, TRAIT_HOMESTEAD_EXPERT)
+	traits_applied = list(TRAIT_NUTCRACKER, TRAIT_HOMESTEAD_EXPERT, TRAIT_LICENSED)
 	class_select_category = CLASS_CAT_TRADER
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	subclass_stats = list(
