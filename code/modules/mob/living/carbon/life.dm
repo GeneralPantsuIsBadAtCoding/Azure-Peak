@@ -561,8 +561,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(!(mobility_flags & MOBILITY_STAND))
 				energy_add(10)
 			energy_add(4)
-		if(!flaw)
-			return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
 		var/sleepy_mod = 0.5
@@ -600,6 +598,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(buckled?.sleepy)
 			sleepy_mod = buckled.sleepy
 		if(isturf(loc) && !(mobility_flags & MOBILITY_STAND))
+			
 			var/obj/structure/bed/rogue/bed = locate() in loc
 			if(bed)
 				sleepy_mod = bed.sleepy
@@ -608,7 +607,13 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					var/obj/structure/flora/newbranch/branch = locate() in loc
 					if(branch)
 						sleepy_mod = 2 //Worse than a bedroll, better than nothing.
-			if(eyesclosed) 
+			if(eyesclosed)
+				if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+					message = "I am unable to sleep. I should just get up."
+					if(!fallingas)
+						to_chat(src, span_warning(message))
+					fallingas = TRUE
+					return
 				var/armor_blocked = FALSE
 				if(ishuman(src) && stat == CONSCIOUS)
 					var/mob/living/carbon/human/H = src
