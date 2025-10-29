@@ -166,6 +166,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/wdefense_dynamic = 0
 	/// Minimum STR required to use the weapon. Will reduce damage by 70% if not met. Wielding halves the requirement.
 	var/minstr = 0
+	///Wielding normally halves the requirement. If true, it does not.
+	var/minstr_req = FALSE
 	/// %-age of our raw damage that is dealt to armor or weapon on hit / parry / clip.
 	var/intdamage_factor = 1
 
@@ -527,6 +529,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/list/inspec = list(span_notice("Properties of [src.name]"))
 		if(minstr)
 			inspec += "\n<b>MIN.STR:</b> [minstr]"
+		if(minstr_req)
+			inspec += "\n<b>NO HALVING ON WIELD</b>"
 
 		if(force)
 			inspec += "\n<b>FORCE:</b> [get_force_string(force)] <span class='info'><a href='?src=[REF(src)];showforce=1'>{?}</a></span>"
