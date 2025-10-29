@@ -87,8 +87,7 @@
 				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
 				H.mind.adjust_spellpoints(6) //Messed this up. Should add spellpoints for use, now.
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) //Pre-set spell list. Same as before. 
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall) //Weak, destroyable forcewall.
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
 				H.change_stat(STATKEY_CON, -3) 

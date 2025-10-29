@@ -426,18 +426,6 @@
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
-
-/obj/item/clothing/head/roguetown/helmet/bascinet
-	name = "bascinet"
-	desc = "A steel bascinet helmet. Though it lacks a visor for the face, it still protects the head and ears."
-	icon_state = "bascinet_novisor"
-	item_state = "bascinet_novisor"
-	emote_environment = 3
-	body_parts_covered = HEAD|HAIR|EARS
-	flags_inv = HIDEHAIR
-	block2add = null
-	smeltresult = /obj/item/ingot/steel
-
 /obj/item/clothing/head/roguetown/helmet/kettle/jingasa
 	name = "jingasa"
 	desc = "A steel-reinforced conical hat with a decorative rim of fabric. It protects the head and ears as much as it shields the eyes from the sun."

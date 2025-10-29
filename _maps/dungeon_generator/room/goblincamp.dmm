@@ -47,7 +47,7 @@
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /mob/living/carbon/human/species/goblin/npc{
 	STACON = 20;
-	STAEND = 20;
+	STAWIL = 20;
 	STAINT = 20;
 	STALUC = 20;
 	STAPER = 20;

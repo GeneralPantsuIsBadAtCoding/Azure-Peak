@@ -140,6 +140,7 @@
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
 #define CRIER		(1<<10)
+#define KEEPER		(1<<11)
 
 #define PEASANTS	(1<<5)
 
@@ -263,6 +264,7 @@
 #define JDO_MONK 13
 #define JDO_DRUID 13.1
 #define JDO_CHURCHLING 14
+#define JDO_KEEPER 14.1
 #define JDO_GRAVEMAN 15
 
 #define JDO_MERCHANT 17
@@ -368,6 +370,7 @@
 	/datum/job/roguetown/prisonerr
 
 #define YEOMEN_ROLES \
+	/datum/job/roguetown/keeper,\
 	/datum/job/roguetown/crier,\
 	/datum/job/roguetown/niteman,\
 	/datum/job/roguetown/archivist,\

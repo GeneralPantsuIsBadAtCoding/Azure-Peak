@@ -508,7 +508,7 @@
 	STALUC = 14;
 	STAPER = 14;
 	STAINT = 15;
-	STAEND = 12;
+	STAWIL = 12;
 	STACON = 12
 	},
 /obj/item/clothing/suit/roguetown/shirt/robe/courtmage,
@@ -1429,7 +1429,7 @@
 	STASPD = 15;
 	STASTR = 15;
 	STACON = 12;
-	STAEND = 12;
+	STAWIL = 12;
 	candodge = 0
 	},
 /obj/item/rogueweapon/sword/decorated,
