@@ -561,6 +561,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(!(mobility_flags & MOBILITY_STAND))
 				energy_add(10)
 			energy_add(4)
+		if(!flaw)
+			return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
 		var/sleepy_mod = 0.5
