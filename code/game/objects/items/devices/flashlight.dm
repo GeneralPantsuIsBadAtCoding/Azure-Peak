@@ -283,6 +283,11 @@
 	should_self_destruct = FALSE
 	possible_item_intents = list(/datum/intent/use, /datum/intent/mace/strike) //Reflects the fact that it is, in essence, a heavy rod of iron. 
 	extinguishable = FALSE
+	weather_resistant = TRUE
+
+/obj/item/flashlight/flare/torch/metal/prelit/Initialize() //Prelit version
+	. = ..()
+	spark_act()
 
 /obj/item/flashlight/flare/torch/lantern
 	name = "iron lamptern"

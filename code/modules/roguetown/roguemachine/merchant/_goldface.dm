@@ -22,12 +22,19 @@
 	max_integrity = 0
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
-	var/list/held_items = list()
 	var/locked = FALSE
 	var/budget = 0
 	var/upgrade_flags
 	var/current_cat = "1"
+	// Motto displayed at the top of the vendor interface
+	var/motto = "GOLDFACE - In the name of greed."
 	var/lockid = "merchant"
+	// Which job can access profit from this vendor
+	var/profit_id = list("Merchant", "Shophand")
+	// Where to record value spent
+	var/value_record_key = STATS_GOLDFACE_VALUE_SPENT
+	// True to make sure it bypass all taxes no matter what
+	var/bypass_tax = FALSE
 	var/list/categories = list(
 		"Alcohols",
 		"Apparel",
@@ -62,6 +69,10 @@
 	extra_fee = 0.5
 	is_public = TRUE
 	locked = FALSE
+	motto = "SILVERFACE - Commerce for all."
+	// There's no profit but this is for futureproofing
+	profit_id = list("Merchant", "Shophand")
+	value_record_key = STATS_SILVERFACE_VALUE_SPENT
 	categories = list(
 		"Adventuring Supplies",
 		"Alcohols",
@@ -87,6 +98,7 @@
 /obj/structure/roguemachine/goldface/public/smith
 	name = "Smithy's SILVERFACE"
 	lockid = "crafterguild"
+	profit_id = list("Guildsman", "Guildmaster", "Tailor")
 	categories = list(
 		"Armor (Iron)",
 		"Armor (Steel)",
@@ -104,6 +116,7 @@
 /obj/structure/roguemachine/goldface/public/tailor
 	name = "Tailor's SILVERFACE"
 	lockid = "tailor"
+	profit_id = list("Guildsman", "Guildmaster", "Tailor")
 	categories = list(
 		"Apparel",
 		"Wardrobe",
@@ -118,6 +131,7 @@
 /obj/structure/roguemachine/goldface/public/apothecary
 	name = "Apothecary's SILVERFACE"
 	lockid = "physician"
+	profit_id = list("Head Physician","Apothecary")
 	categories = list(
 		"Potions",
 	)
@@ -191,18 +205,14 @@
 		var/datum/supply_pack/PA = SSmerchant.supply_packs[path]
 		var/cost = PA.cost + PA.cost * extra_fee
 		var/tax_amt = round(SStreasury.tax_value * PA.cost)
-		if(!(upgrade_flags & UPGRADE_NOTAX))
+		if(!(upgrade_flags & UPGRADE_NOTAX) && !bypass_tax)
 			cost = cost + tax_amt
 		cost = round(cost)
 		if(budget >= cost)
 			budget -= cost
-			if(is_public)
-				record_round_statistic(STATS_SILVERFACE_VALUE_SPENT)
-				record_round_statistic(STATS_TRADE_VALUE_IMPORTED, cost)
-			else
-				record_round_statistic(STATS_GOLDFACE_VALUE_SPENT)
-				record_round_statistic(STATS_TRADE_VALUE_IMPORTED, cost)
-			if(!(upgrade_flags & UPGRADE_NOTAX))
+			record_round_statistic(value_record_key, cost)
+			record_round_statistic(STATS_TRADE_VALUE_IMPORTED, cost)
+			if(!(upgrade_flags & UPGRADE_NOTAX) && !bypass_tax)
 				SStreasury.give_money_treasury(tax_amt, "goldface import tax")
 				record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
 				record_round_statistic(STATS_TAXES_COLLECTED, tax_amt)
@@ -227,8 +237,8 @@
 			return
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
-			if(!(H.job in list("Merchant","Shophand")))
-				return // Only merchants and shophands can withdraw profit. I see you href hacker
+			if(!(H.job in profit_id))
+				return
 	if(href_list["secrets"])
 		var/list/options = list()
 		if(upgrade_flags & UPGRADE_NOTAX)
@@ -262,14 +272,11 @@
 	playsound(loc, 'sound/misc/gold_menu.ogg', 100, FALSE, -1)
 	var/canread = user.can_read(src, TRUE)
 	var/contents
-	if(is_public)
-		contents = "<center>SILVERFACE - In the name of greed.<BR>"
-	else
-		contents = "<center>GOLDFACE - In the name of greed.<BR>"
+	contents = "<center>[motto]<BR>"
 	contents += "<a href='?src=[REF(src)];change=1'>MAMMON LOADED:</a> [budget]<BR>"
 
 	var/mob/living/carbon/human/H = user
-	if(H.job in list("Merchant","Shophand"))
+	if(H.job in profit_id)
 		if(!is_public)
 			if(canread)
 				contents += "<a href='?src=[REF(src)];secrets=1'>Secrets</a>"
@@ -332,7 +339,5 @@
 /obj/structure/roguemachine/goldface/Initialize()
 	. = ..()
 	update_icon()
-//	held_items[/obj/item/reagent_containers/glass/bottle/rogue/wine] = list("PRICE" = rand(23,33),"NAME" = "vino")
-//	held_items[/obj/item/dmusicbox] = list("PRICE" = rand(444,777),"NAME" = "Music Box")
 
 #undef UPGRADE_NOTAX

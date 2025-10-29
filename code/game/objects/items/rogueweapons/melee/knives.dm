@@ -173,6 +173,42 @@
 	max_integrity = 75
 	smeltresult = null // TODO: We don't have partial melt so coping time
 
+/obj/item/rogueweapon/huntingknife/bronze
+	name = "bronze dagger"
+	desc = "A wide blade of bronze, fitted to a wooden handle. Ancient laborers and priests coveted this tool above all else: both as a means to handle the dae's labors, and to indulge in the rituos of sacrifice."
+	icon_state = "chefsknife"
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/bronze, /datum/intent/dagger/sucker_punch, /datum/intent/dagger/thrust/bronze)
+	color = "#f9d690"
+	force = 18
+	throwforce = 18
+	max_blade_int = 225
+	max_integrity = 175 
+	smeltresult = /obj/item/ingot/bronze
+
+/datum/intent/dagger/thrust/bronze
+	name = "piercing thrust"
+	icon_state = "inpick"
+	attack_verb = list("stabs", "impales")
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 55
+	clickcd = 12
+	swingdelay = 6 //Halfway point between a 'stab' and 'pick'.
+	damfactor = 1.05
+	blade_class = BCLASS_PICK
+
+/datum/intent/dagger/chop/bronze
+	name = "wedged chop"
+	icon_state = "inchop"
+	attack_verb = list("chops")
+	animname = "chop"
+	blade_class = BCLASS_CHOP
+	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
+	penfactor = 15
+	damfactor = 1.3
+	swingdelay = 5
+	clickcd = 10
+	item_d_type = "slash"
+
 /obj/item/rogueweapon/huntingknife/cleaver
 	force = 15
 	name = "cleaver"
