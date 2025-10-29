@@ -3,8 +3,8 @@
 	flag = MAGEAPPRENTICE
 	department_flag = YOUNGFOLK
 	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 6
+	spawn_positions = 6
 
 	allowed_races = ACCEPTED_RACES
 	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
