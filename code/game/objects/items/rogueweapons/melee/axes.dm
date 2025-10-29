@@ -157,13 +157,6 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 	return ..()
 
-//Just a reskin of the battleaxe.
-/obj/item/rogueweapon/stoneaxe/battle/dwarf
-	name = "dwarvish handaxe"
-	desc = "An oddly proportioned axe, intended for use by Dwarves. \
-	A steady haft and a well-honed head. The weapon of a lunatic."
-	icon_state = "saxeold"//Temp reuse.
-
 /obj/item/rogueweapon/stoneaxe/oath
 	force = 30
 	force_wielded = 40

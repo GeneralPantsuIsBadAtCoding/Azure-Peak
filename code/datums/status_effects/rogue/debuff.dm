@@ -681,7 +681,7 @@
 
 /atom/movable/screen/alert/status_effect/debuff/hobbled
 	name = "Hobbled"
-	desc = "You've been struck in the leg! The force has left you staggered!."
+	desc = "You've been struck in the leg! The force has left you staggered!"
 	icon_state = "dazed"
 
 /datum/status_effect/debuff/hobbled/on_apply()
