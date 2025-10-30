@@ -69,7 +69,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
 	beltr = /obj/item/storage/keyring/steward
 	backr = /obj/item/storage/backpack/rogue/satchel
-	id = /obj/item/scomstone
+	id = /obj/item/scomstone/garrison
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 	H.verbs |= /mob/living/carbon/human/proc/adjust_taxes
