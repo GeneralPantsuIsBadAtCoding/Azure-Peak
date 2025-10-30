@@ -1,8 +1,9 @@
 #define GARRISON_SCOM_COLOR "#FF4242"
+#define NORMAL_SCOM_TRANSMISSION_DELAY 15 SECONDS
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
-	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology, a device able to receive remote messages from the town crier's office. There's a button in the MIDDLE for making private jabberline connections."
+	desc = "The Supernatural Communication Optical Machine is a wonder of magic and technology, able to transmit and receive messages across long distance. There's a button in the MIDDLE for making private jabberline connections."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "scomm1"
 	density = FALSE
@@ -47,6 +48,7 @@
 
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
+	. += "The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitations."
 	if(scom_number)
 		. += "Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""]."
 	. += "<a href='?src=[REF(src)];directory=1'>Directory</a>"
@@ -284,16 +286,12 @@
 		return
 	if(!listening)
 		return
-	#ifdef USES_SCOM_RESTRICTION
-	if(!calling && !garrisonline)
-		say(span_danger("Either connect to another SCOM via jabberline or go visit the town crier to broadcast a message."))
-		playsound(src, 'sound/vo/mobs/rat/rat_life2.ogg', 100, TRUE, -1)
-		return
-	#endif
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
 		usedcolor = H.voicecolor_override
+	// Feedback to indicate successful sending
+	playsound(src, 'sound/vo/mobs/rat/rat_life.ogg', 100, TRUE, -1)
 	if(raw_message)
 		if(calling)
 			if(calling.calling == src)
@@ -312,17 +310,19 @@
 					S.repeat_message(raw_message, src, usedcolor, message_language)
 			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 			return
-		#ifndef USES_SCOM_RESTRICTION
-		else 
-			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-				if(!S.calling)
-					S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
-				S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
-			SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
-		#endif
+		else
+			addtimer(CALLBACK(src, PROC_REF(repeat_message_scom), raw_message, usedcolor, message_language), NORMAL_SCOM_TRANSMISSION_DELAY)
+
+// Repeat message for normal SCOM. Meant to be used in a callback with delay 
+/obj/structure/roguemachine/scomm/proc/repeat_message_scom(raw_message, usedcolor, message_language)
+	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
+		if(!S.calling)
+			S.repeat_message(raw_message, src, usedcolor, message_language)
+	for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
+		S.repeat_message(raw_message, src, usedcolor, message_language)
+	for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
+		S.repeat_message(raw_message, src, usedcolor, message_language)//make the listenstone hear scom
+	SSroguemachine.crown?.repeat_message(raw_message, src, usedcolor, message_language)
 
 /obj/structure/roguemachine/scomm/proc/dictate_laws()
 	if(dictating)
