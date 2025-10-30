@@ -100,6 +100,11 @@
 	set name = "Adminwho"
 	set desc = "Lists all admins currently online."
 
+	var/datum/admins/A = GLOB.deadmins[ckey]
+	if(!A)
+		if(!check_rights(R_ADMIN))
+			return
+
 	var/msg = "<b>Current Admins:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.admins)

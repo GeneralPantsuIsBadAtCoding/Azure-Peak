@@ -1,0 +1,97 @@
+table {
+	width: 100%;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(26, 21, 22);
+}
+
+th {
+	color: #ae3636;
+}
+
+th:nth-child(1), td:nth-child(1) {
+
+    width: 25%;
+
+}
+
+.align-left {
+	text-align: left;
+	padding-left: 0.5rem;
+}
+
+a.take {
+	color: #AAFFAA;
+	background-color: transparent;
+	border: none;
+}
+
+a.take:hover {
+	color: #cef0ce;
+}
+
+a.remove {
+	color: #FFAAAA;
+	background-color: transparent;
+	border: none;
+}
+
+a.remove:hover {
+	color: #ffcece;
+}
+
+div {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	text-align: center;
+}
+
+.boosty {
+	color: coral;
+}
+
+.boosty:hover {
+	color: lightsalmon;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip .tooltip-text {
+	visibility: hidden;
+	background-color: rgb(26, 21, 22);
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px;
+
+    position: absolute;
+
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+	visibility: visible;
+}
+
+.category-button {
+    text-decoration: none;
+    color: #7b5346;
+    white-space: nowrap;
+}
+.category-button:hover {
+    color: #a67c52;
+}
+
+td:has(.category-button) {
+    width: 160px;
+    text-align: center;
+    padding: 0 5px;
+}

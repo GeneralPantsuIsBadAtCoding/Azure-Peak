@@ -131,14 +131,14 @@
 
 	log_game("The round has ended.")
 
-	to_chat(world, "<BR><BR><BR><span class='reallybig'>So ends this tale on Azure Peak.</span>")
+	to_chat(world, "<BR><BR><BR><span class='reallybig'>So ends this tale on Twilight Axis.</span>")
 	get_end_reason()
 
 	var/list/key_list = list()
 	for(var/client/C in GLOB.clients)
 		if(C.mob)
 			SSdroning.kill_droning(C)
-			C.mob.playsound_local(C.mob, 'sound/music/roundend.ogg', 100, FALSE)
+			C.mob.playsound_local(C.mob, 'modular_twilight_axis/sound/music/roundend.ogg', 100, FALSE)
 		if(isliving(C.mob) && C.ckey)
 			key_list += C.ckey
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -206,6 +206,8 @@
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
+	world.TgsAnnounceRoundEnd()
+
 	sleep(10 SECONDS)
 	SSvote.initiate_vote("map", "Actors")
 	ready_for_reboot = TRUE
@@ -226,7 +228,7 @@
 	if(vampire_werewolf() == "vampire")
 		end_reason = "When the Vampires finished sucking the town dry, they moved on to the next one."
 	if(vampire_werewolf() == "werewolf")
-		end_reason = "The Werevolves formed an unholy clan, marauding Azure Peak until the end of its daes."
+		end_reason = "The Werevolves formed an unholy clan, marauding Twilight Axis until the end of its daes."
 
 	if(SSmapping.retainer.head_rebel_decree)
 		end_reason = "The peasant rebels took control of the throne, hail the new community!"

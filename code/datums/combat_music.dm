@@ -223,6 +223,13 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "Helbrede - Sons of Tyr"
 	musicpath = list('sound/music/combat_grenzelhoft.ogg')
 
+/datum/combat_music/grenzelhoft_mage //TA mandated cmode music
+	name = "Grenzelhoft Gefechtsgelehrter"
+	desc = ""
+	shortname = "Gefechtsgelehrter"
+	credits = "Helbrede - Helheim"
+	musicpath = list('modular_twilight_axis/sound/music/combat_grenzelhoft_mage.ogg')
+
 /datum/combat_music/heretic_zizo
 	name = "Heretic - Zizo (Lich)"
 	desc = ""

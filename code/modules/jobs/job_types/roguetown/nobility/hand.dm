@@ -25,6 +25,7 @@
 		/datum/advclass/hand/spymaster,
 		/datum/advclass/hand/advisor
 	)
+	same_job_respawn_delay = 30 MINUTES
 
 /datum/outfit/job/roguetown/hand
 	shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -124,7 +125,7 @@
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
-	r_hand = /obj/item/rogueweapon/sword/rapier/dec
+	r_hand = /obj/item/rogueweapon/sword/rapier/foldsword
 	backpack_contents = list(
 		/obj/item/storage/keyring/hand = 1,
 		/obj/item/lockpickring/mundane = 1
