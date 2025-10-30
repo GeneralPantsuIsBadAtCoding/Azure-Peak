@@ -252,7 +252,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/tomb)
 "pO" = (
-/obj/structure/rack,
+/obj/structure/rack/rogue,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/tomb/indoors)
@@ -672,7 +672,7 @@
 /area/rogue/under/tomb/cave)
 "OL" = (
 /obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/rack,
+/obj/structure/rack/rogue,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/tomb/indoors)
 "OS" = (

@@ -1087,7 +1087,7 @@
 	STASTR = 15;
 	STASPD = 15;
 	STACON = 14;
-	STAEND = 14;
+	STAWIL = 14;
 	STALUC = 12;
 	candodge = 0
 	},
@@ -1173,7 +1173,7 @@
 	STASTR = 15;
 	STASPD = 15;
 	STACON = 14;
-	STAEND = 14;
+	STAWIL = 14;
 	STALUC = 12;
 	candodge = 0
 	},
@@ -2371,10 +2371,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
-"Cm" = (
-/mob/living/carbon/human/species/skeleton/npc/hardspread,
-/turf/open/floor/carpet/red,
-/area/rogue/under/tomb/indoors)
 "Co" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -2863,7 +2859,7 @@
 	STASTR = 15;
 	STASPD = 15;
 	STACON = 14;
-	STAEND = 14;
+	STAWIL = 14;
 	STALUC = 12;
 	candodge = 0
 	},
@@ -3934,7 +3930,7 @@
 /mob/living/carbon/human/species/orc/npc/berserker{
 	STASTR = 20;
 	STACON = 15;
-	STAEND = 15;
+	STAWIL = 15;
 	STASPD = 15;
 	STAINT = 5;
 	STAPER = 8;
@@ -8264,7 +8260,7 @@ rk
 pT
 cR
 cR
-Cm
+tO
 cR
 cA
 cR

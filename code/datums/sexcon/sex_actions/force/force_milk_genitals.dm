@@ -15,7 +15,7 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN))
 		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE

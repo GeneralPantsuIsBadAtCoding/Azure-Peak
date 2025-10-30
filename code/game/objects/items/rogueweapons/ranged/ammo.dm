@@ -573,7 +573,6 @@
 	possible_item_intents = list(/datum/intent/sword/thrust, /datum/intent/spear/bash, /datum/intent/spear/cut)	//Sword-thrust to avoid having 2 reach.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 35, "embedded_fall_chance" = 10)	//Better than iron throwing knife by 10%
 	anvilrepair = /datum/skill/craft/weaponsmithing
-	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
 	heavy_metal = FALSE						//Stops spin animation, maybe.
 	thrown_damage_flag = "piercing"			//Checks peircing protection.
@@ -615,7 +614,7 @@
 	name = "ancient javelin"
 	desc = "A missile of polished gilbranze. Old Syon had drowned beneath His tears, and Her ascension had brought forth this world's end - so that You, with the killing blow, could become God."
 	icon_state = "ajavelin"
-	smeltresult = null // 1 Ingots = 2 Javelin s
+	smeltresult = null // 1 Ingots = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"
@@ -625,7 +624,7 @@
 	throwforce = 25							//Less than steel because it's.. silver. Good at killing vampires/WW's still.
 	armor_penetration = 60
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
-	smeltresult = /obj/item/ingot/silver
+	smeltresult = /obj/item/ingot/silver // 2 ingots = 2 javelins so this can smelt.
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver/ComponentInitialize()
 	. = ..()
@@ -666,6 +665,14 @@
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/stone
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "stone_sling_bullet"
+
+/obj/item/ammo_casing/caseless/rogue/sling_bullet/bronze
+	name = "bronze sling bullet"
+	desc = "A small bronze sphere. It feels deceptively heavy in the palm of your hand."
+	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/bronze
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "stone_sling_bullet"
+	color = "#f9d690"
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
 	name = "decrepit sling bullet"
@@ -736,6 +743,7 @@
 	woundclass = BCLASS_BLUNT
 	flag = "piercing"
 	speed = 0.4		
+	npc_simple_damage_mult = 2.5 // Deals roughly ~75-95 damage against a simplemob, compared to the ~140 damage of a crossbolt or arrow.
 
 /obj/projectile/bullet/reusable/sling_bullet/on_hit(atom/target)
 	. = ..()
@@ -766,6 +774,14 @@
 	damage = 15 
 	armor_penetration = 0
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "musketball_proj"
+
+/obj/projectile/bullet/reusable/sling_bullet/bronze
+	name = "bronze sling bullet"
+	damage = 35
+	armor_penetration = 20 //Slightly more damage, but with -33% AP.
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/bronze
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
 

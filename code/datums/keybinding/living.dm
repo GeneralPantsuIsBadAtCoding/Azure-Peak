@@ -265,6 +265,17 @@
 	else
 		return FALSE
 
+/datum/keybinding/living/search
+	hotkey_keys = list("ShiftG")
+	name = "search"
+	full_name = "Search"
+	description = "Search the area around you for hidden items or compartments."
+
+/datum/keybinding/living/search/down(client/user)
+	var/mob/living/L = user.mob
+	if (isliving(L))
+		L.look_around()
+
 //layer shifting
 
 /datum/keybinding/living/pixel_shift_layerup

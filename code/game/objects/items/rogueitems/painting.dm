@@ -59,7 +59,7 @@
 	deployed_structure = /obj/structure/fluff/walldeco/painting/queen
 
 /obj/item/rogue/painting/seraphina
-	icon_state = "Seraphinapainting"
+	icon_state = "seraphinapainting"
 	desc = "It's holy priest Seraphina, first of her name, blessed be her name."
 	dropshrink = 0.5
 	sellprice = 40

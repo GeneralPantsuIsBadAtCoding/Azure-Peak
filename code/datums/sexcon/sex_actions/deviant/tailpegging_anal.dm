@@ -9,7 +9,7 @@
 /datum/sex_action/tailpegging_anal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!user.getorganslot(ORGAN_SLOT_TAIL))
+	if(!user.getorganslot(ORGAN_SLOT_TAIL) || !target.sexcon.can_zodomize())
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_TAIL).can_penetrate)
 		return FALSE
@@ -18,7 +18,7 @@
 /datum/sex_action/tailpegging_anal/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_TAIL))
 		return FALSE
@@ -34,7 +34,7 @@
 /datum/sex_action/tailpegging_anal/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] поступательными движениями, проталкивается глубже в попку [target] кончиком хвоста."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
-	do_thrust_animate(user, target)
+	user.sexcon.do_thrust_animate(target)
 
 	if(user.sexcon.considered_limp())
 		user.sexcon.perform_sex_action(target, 1.2, 4, FALSE)

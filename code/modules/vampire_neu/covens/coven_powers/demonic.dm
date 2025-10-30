@@ -69,7 +69,7 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 30 SECONDS
+	duration_length = 40 SECONDS
 	cooldown_length = 1 MINUTES
 
 /datum/coven_power/demonic/conflagration/activate()

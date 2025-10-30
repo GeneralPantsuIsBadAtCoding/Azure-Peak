@@ -497,7 +497,7 @@
 	)
 
 /datum/outfit/job/roguetown/martyr
-	job_bitflag = BITFLAG_CHURCH
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 
 /datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
 	..()

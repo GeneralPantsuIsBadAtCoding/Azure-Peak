@@ -7,17 +7,17 @@
 	if(user == target)
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_VAGINA))
-		return
+		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_VAGINA))
-		return
+		return FALSE
 	return TRUE
 
 /datum/sex_action/scissoring/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN))
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN))
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_VAGINA))
 		return FALSE
@@ -31,7 +31,7 @@
 /datum/sex_action/scissoring/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] трется влагалищами с [target]."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
-	do_thrust_animate(user, target)
+	user.sexcon.do_thrust_animate(target)
 
 	user.sexcon.perform_sex_action(user, 1, 4, TRUE)
 	user.sexcon.handle_passive_ejaculation()

@@ -286,3 +286,21 @@
 	)
 	craftdiff = 4
 	verbage_simple = "mix"
+
+/datum/crafting_recipe/roguetown/alchemy/frankenbrew_small
+	name = "reanimation elixir (impure lux)"
+	category = "Table"
+	result = list(
+		/obj/item/reagent_containers/glass/bottle/frankenbrew/third
+	)
+	reqs = list(
+		/obj/item/reagent_containers/glass/bottle = 1,
+		/obj/item/reagent_containers/food/snacks/grown/manabloom = 1,
+		/obj/item/reagent_containers/lux_impure = 1,
+		/obj/item/alch/calendula = 1,
+		/datum/reagent/water = 49
+	)
+	craftdiff = 4
+	verbage_simple = "mix"
+	required_tech_node = "LUX_FILTRATION"
+	tech_unlocked = FALSE

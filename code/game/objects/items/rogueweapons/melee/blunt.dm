@@ -107,6 +107,16 @@
 			if("onbelt")
 				return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/mace/bronze
+	force = 23
+	force_wielded = 29
+	name = "bronze mace"
+	color = "#f9d690"
+	desc = "An antiquital staff, crested with a studded sphere of bronze. Bludgeons were the first implements made for the explicit purpose of killing another; fittingly, this was the second."
+	wbalance = WBALANCE_HEAVY
+	smeltresult = /obj/item/ingot/bronze
+	max_integrity = 250
+	wdefense = 2
 
 /obj/item/rogueweapon/mace/alloy
 	name = "decrepit mace"
@@ -388,7 +398,6 @@
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	dropshrink = 0.6
 	bigboy = TRUE
 	gripsprite = TRUE
 
@@ -467,7 +476,6 @@
 	minstr = 12
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
-	dropshrink = 0.75
 	smelt_bar_num = 2
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed

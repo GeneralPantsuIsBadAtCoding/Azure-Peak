@@ -6,17 +6,17 @@
 	if(user == target)
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
-		return
+		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_BREASTS))
-		return
+		return FALSE
 	return TRUE
 
 /datum/sex_action/titjob/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN, TRUE))
+	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_CHEST))
+	if(!check_location_accessible(user, target, BODY_ZONE_CHEST))
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE

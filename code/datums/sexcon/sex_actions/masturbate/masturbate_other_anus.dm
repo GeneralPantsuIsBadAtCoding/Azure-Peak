@@ -5,14 +5,14 @@
 	category = SEX_CATEGORY_HANDS
 
 /datum/sex_action/masturbate_other_anus/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user == target)
+	if(user == target || !target.sexcon.can_zodomize())
 		return FALSE
 	return TRUE
 
 /datum/sex_action/masturbate_other_anus/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	if(user == target || !target.sexcon.can_zodomize())
+	if(user == target)
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN, TRUE))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	return TRUE
 

@@ -15,9 +15,9 @@
 /datum/sex_action/frotting/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(user, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, user, BODY_ZONE_PRECISE_GROIN))
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN))
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE
@@ -39,4 +39,4 @@
 	target.sexcon.handle_passive_ejaculation()
 
 /datum/sex_action/frotting/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	user.visible_message(span_warning("[user] уводит свой хер в сторону"))
+	user.visible_message(span_warning("[user] уводит свой хер в сторону."))

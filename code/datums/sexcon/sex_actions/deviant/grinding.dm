@@ -53,7 +53,7 @@
 			playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
 		else
 			user.make_sucking_noise()
-		do_thrust_animate(user, target)
+		user.sexcon.do_thrust_animate(target)
 
 	user.sexcon.perform_sex_action(user, 1, 0.5, TRUE)
 	user.sexcon.handle_passive_ejaculation()

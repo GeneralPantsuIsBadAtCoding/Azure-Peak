@@ -60,6 +60,39 @@
 	if(!edge)
 		playsound(AM, pick('sound/foley/watermove (1).ogg','sound/foley/watermove (2).ogg'), 40, FALSE)
 
+//Copying turf/water cleaning functionality here
+/obj/structure/hotspring/attack_right(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(L.stat != CONSCIOUS)
+			return
+		var/list/wash = list('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg')
+		playsound(user, pick_n_take(wash), 100, FALSE)
+		var/obj/item2wash = user.get_active_held_item()
+		if(!item2wash)
+			if(get_turf(src) == get_turf(user) && ishuman(user))
+				var/mob/living/carbon/human/bather = user
+				bather.relaxing_bath(2)
+				return
+			user.visible_message(span_info("[user] starts to wash in [src]."))
+			if(do_after(L, 3 SECONDS, target = src))
+				wash_atom(user, CLEAN_STRONG)
+				user.remove_stress(/datum/stressevent/sewertouched)
+				playsound(user, pick(wash), 100, FALSE)
+		else
+			user.visible_message(span_info("[user] starts to wash [item2wash] in [src]."))
+			if(do_after(L, 30, target = src))
+				wash_atom(item2wash, CLEAN_STRONG)
+				L.update_inv_hands()
+				if(iscarbon(L))
+					var/mob/living/carbon/C = user
+					C.update_inv_hands()
+				playsound(user, pick(wash), 100, FALSE)
+		return
+	..()
+
+	
+
 /obj/structure/hotspring/border
 	icon_state = "hotspring_border_1"
 	object_slowdown = 0

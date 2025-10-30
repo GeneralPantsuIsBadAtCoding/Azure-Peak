@@ -67,6 +67,7 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 #define SEX_PART_CUNT (1<<1)
 #define SEX_PART_ANUS (1<<2)
 #define SEX_PART_JAWS (1<<3)
+#define SEX_PART_SLIT_SHEATH (1<<4)
 
 #define KNOTTED_NULL 0
 #define KNOTTED_AS_TOP 1
