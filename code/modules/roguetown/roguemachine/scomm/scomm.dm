@@ -24,6 +24,8 @@
 	var/obj/structure/roguemachine/scomm/called_by = null
 	/// Last time the SCOM sent a message. Used to check delay  
 	var/last_message = 0
+	/// Whether this is a receive only SCOM, that cannot transmit any messages. Uses this for any kind of SCOM that is out of town and is not actionable
+	var/receive_only = FALSE
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
 
@@ -48,6 +50,11 @@
 /obj/structure/roguemachine/scomm/l
 	pixel_y = 0
 	pixel_x = -32
+
+/obj/structure/roguemachine/scomm/receive_only
+	name = "RCOM"
+	desc = "The Receiving Communication Optical Machine is a much cheaper, ubiquitous version of the SCOM, designed only to receive message over long distance. They are oft found outside of the town, especially in older ruins."
+	receive_only = TRUE
 
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
@@ -187,6 +194,9 @@
 			say("There are no rats running this jabberline.", spans = list("info"))
 			return
 		var/obj/structure/roguemachine/scomm/S = SSroguemachine.scomm_machines[nightcall]
+		if(istype(S, /obj/structure/roguemachine/scomm/receive_only))
+			say("The RCOM has no rats to answer jabberlines.")
+			return
 		if(istype(S, /obj/item/scomstone))
 			say("The jabberline's rats cannot travel to SCOMstones.") //Check prevents a runtime and leaves room to potentially make scomstones callable by ID later.
 			playsound(src, 'sound/vo/mobs/rat/rat_life.ogg', 100, TRUE, -1)
@@ -218,6 +228,10 @@
 		calling.called_by = null
 		calling = null
 		update_icon()
+
+/obj/structure/roguemachine/scomm/receive_only/MiddleClick(mob/living/carbon/human/user)
+	to_chat(user, span_warning("The RCOM has no rats to send - it can only receive messages."))
+	return
 
 /obj/structure/roguemachine/scomm/obj_break(damage_flag)
 	..()
@@ -289,7 +303,9 @@
 		return
 	if(!listening)
 		return
-	// Check cooldown
+	if(receive_only)
+		to_chat(speaker, span_warning("This RCOM is receive only!"))
+		return
 	if(world.time < last_message + NORMAL_SCOM_PER_MESSAGE_DELAY)
 		var/time_remaining = round((last_message + NORMAL_SCOM_PER_MESSAGE_DELAY - world.time) / 10)
 		to_chat(speaker, span_warning("The SCOM's rats are still recovering. Wait [time_remaining] more second[time_remaining != 1 ? "s" : ""]."))
