@@ -2,7 +2,7 @@
 // May refactor territorial to be similar later
 /datum/flesh_quirk/hoarder
 	name = "Hoarder"
-	description = "Constantly wants to acquire new items"
+	description = "Acquires valuables, demands valuables, hates thieves."
 	quirk_type = QUIRK_INTERACT | QUIRK_BEHAVIOR | QUIRK_ENVIRONMENT
 
 	var/value_current = 3
@@ -18,10 +18,11 @@
 
 /datum/flesh_quirk/hoarder/apply_behavior_quirk(score, mob/speaker, message, datum/component/chimeric_heart_beast/beast)
 	// if happy, may not demand another item
-	if(score >= 75 && prob(50))
+	if(score >= 75 && prob(85))
 		return score
 	else
-		beast.satisfied = FALSE
+		if(prob(60))
+			beast.satisfied = FALSE
 		return score
 
 /datum/flesh_quirk/hoarder/apply_environment_quirk(list/visible_turfs, datum/component/chimeric_heart_beast/beast)

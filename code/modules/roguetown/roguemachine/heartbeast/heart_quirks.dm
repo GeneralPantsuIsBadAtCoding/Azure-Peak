@@ -22,7 +22,7 @@
 
 /datum/flesh_quirk/obedient
 	name = "Obedient"
-	description = "Can be intimidated into compliance"
+	description = "Responds better to being shouted at."
 	conflicting_quirks = list(/datum/flesh_quirk/stubborn, /datum/flesh_quirk/timid, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
 	color = "#8b4513"
@@ -42,7 +42,7 @@
 
 /datum/flesh_quirk/curious
 	name = "Curious"
-	description = "Might be pleased by unexpected but interesting answers"
+	description = "Expects to be enticed with a questioning tone."
 	conflicting_quirks = list(/datum/flesh_quirk/timid, /datum/flesh_quirk/obedient)
 	rarity = 5
 	quirk_type = QUIRK_LANGUAGE
@@ -63,7 +63,7 @@
 
 /datum/flesh_quirk/impatient
 	name = "Impatient"
-	description = "Prefers quick responses and gets frustrated by delays"
+	description = "Prefers quick responses and gets frustrated by delays, answer within 10 seconds of interacting."
 	conflicting_quirks = list(/datum/flesh_quirk/patient)
 	quirk_type = QUIRK_LANGUAGE
 	color = "#ff4500"
@@ -80,7 +80,7 @@
 
 /datum/flesh_quirk/royal
 	name = "Royal"
-	description = "Demands to be addressed by a specific title"
+	description = "Demands to be addressed by a specific title. Can get offended. Possible titles are: Majesty, Great one, Master, Overlord, Eminence. Inactive on stupid beasts."
 	quirk_type = QUIRK_LANGUAGE
 	rarity = 5
 	color = "#daa520"
@@ -116,7 +116,7 @@
 
 /datum/flesh_quirk/discharge
 	name = "Discharge"
-	description = "Produces colored discharge when emotional"
+	description = "Produces colored discharge when emotional."
 	quirk_type = QUIRK_BEHAVIOR
 	color = "#9370db"
 	required_item = /obj/item/alch/manabloompowder
@@ -157,7 +157,7 @@
 
 /datum/flesh_quirk/repetitive
 	name = "Repetitive"
-	description = "Often repeats similar topics or questions"
+	description = "Often repeats similar topics twice in a row, after which the streak can break."
 	quirk_type = QUIRK_BEHAVIOR
 	color = "#808080"
 	required_item = /obj/item/alch/paris
@@ -169,7 +169,7 @@
 
 /datum/flesh_quirk/timid
 	name = "Timid"
-	description = "Easily frightened by aggressive behavior"
+	description = "Easily frightened by shouting, responding worse to such a tone."
 	conflicting_quirks = list(/datum/flesh_quirk/royal, /datum/flesh_quirk/obedient, /datum/flesh_quirk/curious)
 	quirk_type = QUIRK_LANGUAGE
 	color = "#add8e6"
@@ -193,7 +193,7 @@
 
 /datum/flesh_quirk/ambitious
 	name = "Ambitious"
-	description = "Responds better to people with titles or authority"
+	description = "Responds better to people with titles or authority, may get offended. Inactive on stupid beasts."
 	rarity = 1
 	quirk_type = QUIRK_LANGUAGE
 	color = "#b22222"
@@ -221,7 +221,7 @@
 
 /datum/flesh_quirk/forgetful
 	name = "Forgetful"
-	description = "Sometimes forgets what it was talking about"
+	description = "Might forget what you answered, giving you a negative result regardless of how good your answer was. Lessens with intelligence, can't forget 5 words or fewer."
 	quirk_type = QUIRK_LANGUAGE
 	var/forget_chance = 25
 	color = "#d3d3d3"
@@ -286,7 +286,7 @@
 
 /datum/flesh_quirk/affectionate
 	name = "Affectionate"
-	description = "Seeks physical proximity and gentle treatment"
+	description = "Wishes you stand very close to it whilst answering."
 	quirk_type = QUIRK_LANGUAGE
 	color = "#ff69b4"
 	required_item = /obj/item/alch/calendula
@@ -303,7 +303,7 @@
 
 /datum/flesh_quirk/territorial
 	name = "Territorial"
-	description = "Protective of its space and possessions"
+	description = "May attack anyone who steps near. Calmed by freshly butchered meat."
 	quirk_type = QUIRK_ENVIRONMENT
 	var/last_attack_time = 0
 	var/attack_cooldown = 0
@@ -400,7 +400,7 @@
 
 /datum/flesh_quirk/mimic
 	name = "Mimic"
-	description = "Tends to copy speech patterns and behaviors"
+	description = "Tends to copy and announce speech."
 	rarity = 1
 	quirk_type = QUIRK_BEHAVIOR
 	var/base_mimic_chance = 4
@@ -475,7 +475,7 @@
 
 /datum/flesh_quirk/stubborn
 	name = "Stubborn"
-	description = "Resistant to change and new ideas"
+	description = "Will often deny answers that aren't similar enough. Only occurs in streaks of two."
 	conflicting_quirks = list(/datum/flesh_quirk/obedient)
 	quirk_type = QUIRK_LANGUAGE
 	var/last_successful_score = null
@@ -494,7 +494,7 @@
 
 /datum/flesh_quirk/patient
 	name = "Patient"
-	description = "Willing to wait for thoughtful responses"
+	description = "Wishes for you to wait at least 10 seconds after interacting before answering a question."
 	conflicting_quirks = list(/datum/flesh_quirk/impatient)
 	quirk_type = QUIRK_LANGUAGE
 	rarity = 5

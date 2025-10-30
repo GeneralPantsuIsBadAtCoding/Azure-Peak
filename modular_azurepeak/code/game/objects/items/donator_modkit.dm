@@ -80,11 +80,21 @@
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/dress/silkydress)
 	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress
 
-//Eiren - Custom zweihander type
+//Eiren - Zweihander and sabres
 /obj/item/enchantingkit/eiren
 	name = "'Regret' morphing elixir"
 	target_items = list(/obj/item/rogueweapon/greatsword/zwei)		//now only takes the zwei and nothing else
 	result_item = /obj/item/rogueweapon/greatsword/zwei/eiren
+
+/obj/item/enchantingkit/eirensabre
+	name = "'Lunae' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/sword/sabre)
+	result_item = /obj/item/rogueweapon/sword/sabre/eiren
+
+/obj/item/enchantingkit/eirensabre2
+	name = "'Cinis' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/sword/sabre)
+	result_item = /obj/item/rogueweapon/sword/sabre/eiren2
 
 //pretzel - custom steel greatsword. PSYDON LYVES. PSYDON ENDVRES.
 /obj/item/enchantingkit/waff

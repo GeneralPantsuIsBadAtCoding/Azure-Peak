@@ -267,6 +267,10 @@
 	. = ..()
 	set_quantity(rand(4,19))	
 
+/obj/item/roguecoin/silver/pile/readyuppile/Initialize()
+	. = ..()
+	set_quantity(4) // 20 mammons combine with starting pouch to buy something
+
 /obj/item/roguecoin/gold/pile/Initialize()
 	. = ..()
 	set_quantity(rand(4,19))
