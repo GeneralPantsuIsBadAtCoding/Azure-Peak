@@ -410,3 +410,72 @@
 				return list("shrink" = 0.4,"sx" = -2,"sy" = -4,"nx" = 9,"ny" = -4,"wx" = -3,"wy" = -4,"ex" = 2,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin
+	name = "pumpkin lamptern"
+	desc = "A decorated pumpkin shell. Usually seasonal, a frightful beacon in the night."
+	icon_state = "pumpkinlamp"
+	w_class = WEIGHT_CLASS_SMALL
+	light_color = "#ffb272ff"
+	on = FALSE
+	slot_flags = null
+	force = 1
+	on_damage = 3
+	wdefense = 1 //The pumpkin has a chance of getting in the way of strikes.
+	fuel = 0 MINUTES
+	should_self_destruct = FALSE
+	sellprice = 8 //Allows a minor business to bloom from them. This may require adjustments.
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/examine(mob/user)
+	. = ..()
+	if(fuel <= 0)
+		. += span_smallnotice("It looks like it could use a new candle.")
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/attackby(obj/item/I, mob/living/user, params)
+	if((istype(I, /obj/item/candle/yellow)) && (fuel <= 0))
+		user.visible_message(span_notice("[user] inserts a candle into [src]."), \
+							span_notice("I insert a candle into [src]."))
+		if(do_after(user, 2 SECONDS))
+			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 60, TRUE, -1)
+			fuel += 120 MINUTES
+			if(istype(I, /obj/item/candle/yellow/lit))
+				on = TRUE
+				update_brightness()
+			qdel(I)
+	return ..()
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/psy
+	name = "psy-do-lamptern"
+	desc = "A large and decorated pumpkin shell. Usually seasonal, yet it ENDURES."
+	icon_state = "pumpkinlamppsy"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/ten
+	name = "tennite pumpkin lamptern"
+	desc = "A large and decorated pumpkin shell. It looks like a lot of work to make it stay in one piece."
+	icon_state = "pumpkinlampten"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/zizo
+	name = "zumpkin lamptern"
+	desc = "A large and decorated pumpkin shell. Its strangely gloomy."
+	icon_state = "pumpkinlampz"
+	light_color = "#ceff72ff"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/grin
+	name = "smiling pumpkin lamptern"
+	desc = "A large and decorated pumpkin shell. Its smile is not reassuring."
+	icon_state = "pumpkinlamp0"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/frown
+	name = "angry pumpkin lamptern"
+	desc = "A large and decorated pumpkin shell. It seems quite angry at something, hopefully not you."
+	icon_state = "pumpkinlamp1"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/surprise
+	name = "surprised pumpkin lamptern"
+	desc = "A large and decorated pumpkin shell. It is quite surprised to see you."
+	icon_state = "pumpkinlamp2"
+
+/obj/item/flashlight/flare/torch/lantern/pumpkin/woozy
+	name = "woozy pumpking lamptern"
+	desc = "A large and decorated pumpkin shell... It seems drunk?!"
+	icon_state = "pumpkinlamp3"

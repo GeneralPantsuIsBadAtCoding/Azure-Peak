@@ -88,7 +88,11 @@
 		if(!apply_damage(dam2do, BRUTE, def_zone, armor_block, user))
 			nodmg = TRUE
 			next_attack_msg += span_warning("Armor stops the damage.")
-
+		else if(!nodmg && (HAS_TRAIT(user, TRAIT_VAMPBITE)))
+			var/ramount = 15
+			var/rid = /datum/reagent/vampsolution
+			reagents.add_reagent(rid, ramount)
+			rid = /datum/reagent/vampsolution
 	var/datum/wound/caused_wound
 	if(!nodmg)
 		caused_wound = affecting.bodypart_attacked_by(BCLASS_BITE, dam2do, user, user.zone_selected, crit_message = TRUE)

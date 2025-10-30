@@ -56,6 +56,7 @@
 #define JOB_UNAVAILABLE_JOB_COOLDOWN 11
 #define JOB_UNAVAILABLE_SLOTFULL 12
 #define JOB_UNAVAILABLE_VIRTUESVICE 13
+#define JOB_UNAVAILABLE_PQ 14
 
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
@@ -155,17 +156,12 @@
 #define NITEMASTER	(1<<9)
 #define WENCH		(1<<10)
 #define BEGGAR		(1<<11)
-#define ADVENTURER	(1<<12)
 #define PILGRIM		(1<<13)
 #define VILLAGER	(1<<14)
 #define PRISONERR	(1<<15)
 #define PRISONERB	(1<<16)
 #define LUNATIC		(1<<17)
 #define MIGRANT		(1<<18)
-#define BANDIT		(1<<19)
-#define COURTAGENT	(1<<20)
-#define WRETCH		(1<<21)
-#define TRADER		(1<<22)
 
 #define YOUNGFOLK	(1<<6)
 
@@ -179,13 +175,15 @@
 #define MAGEAPPRENTICE	(1<<7)
 #define APOTHECARY	(1<<8)
 
-#define MERCENARIES		(1<<7)
+#define WANDERERS		(1<<7)
 
 #define VETERAN			(1<<1)
-#define MERCENARY		(1<<2)
-#define DESERT_RIDER	(1<<3)	//Unused
-#define GRENZELHOFT		(1<<4)	//Unused
-
+#define WANDERER		(1<<2)
+#define ADVENTURER      (1<<3)
+#define BANDIT		    (1<<4)
+#define COURTAGENT	    (1<<5)
+#define WRETCH          (1<<6)
+#define TRADER			(1<<7)
 
 #define TRIBAL		(1<<8)
 
@@ -211,6 +209,7 @@
 #define ABSOLVER (1<<2)
 
 #define GUILDSMEN	(1<<11)
+
 #define GUILDMASTER (1<<1)
 #define GUILDSMAN  	(1<<2)
 #define TAILOR		(1<<3)
@@ -222,7 +221,7 @@
 #define JCOLOR_YEOMAN "#819e82"
 #define JCOLOR_GUILD "#6e6259"
 #define JCOLOR_PEASANT "#b09262"
-#define JCOLOR_MERCENARY "#c86e3a"
+#define JCOLOR_WANDERER  "#c86e3a"
 #define JCOLOR_INQUISITION "#FF0000"
 
 // job display orders //
@@ -316,7 +315,7 @@
 #define JDO_ORTHODOXIST 40.1
 #define JDO_ABSOLVER 40.2
 
-#define BITFLAG_CHURCH (1<<0)
+#define BITFLAG_HOLY_WARRIOR (1<<0)
 #define BITFLAG_ROYALTY (1<<1)
 #define BITFLAG_CONSTRUCTOR (1<<2)
 #define BITFLAG_GARRISON (1<<3)
