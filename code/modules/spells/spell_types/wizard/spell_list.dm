@@ -2,6 +2,7 @@
 // Maybe one day we'll have different schools of spells etc. and a system tied to them but this is fine for now.
 
 GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/projectile/fireball,
+		/obj/effect/proc_holder/spell/invoked/melting,
 		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
 		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
 		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
@@ -22,10 +23,12 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 //		/obj/effect/proc_holder/spell/invoked/frostbite,
 		/obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/fortitude,
+		/obj/effect/proc_holder/spell/invoked/frosting,
 		/obj/effect/proc_holder/spell/invoked/snap_freeze,
 		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
 		/obj/effect/proc_holder/spell/invoked/gravity,
+		/obj/effect/proc_holder/spell/invoked/propulsion,
 		/obj/effect/proc_holder/spell/invoked/projectile/repel,
 		/obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
@@ -47,6 +50,7 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/self/magicians_brick,
 		/obj/effect/proc_holder/spell/invoked/thunderstrike,
 		/obj/effect/proc_holder/spell/invoked/sundering_lightning,
+		/obj/effect/proc_holder/spell/invoked/shoking,
 		/obj/effect/proc_holder/spell/invoked/meteor_storm,
 		/obj/effect/proc_holder/spell/invoked/enchant_weapon,
 		/obj/effect/proc_holder/spell/invoked/forcewall/arcyne_prison,
@@ -55,5 +59,9 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/rebuke,
 		/obj/effect/proc_holder/spell/invoked/projectile/fireball/artillery,
 		/obj/effect/proc_holder/spell/invoked/conjure_primordial,
+		/obj/effect/proc_holder/spell/invoked/projectile/teslaball,
+		/obj/effect/proc_holder/spell/invoked/projectile/wretchball,
+		/obj/effect/proc_holder/spell/invoked/projectile/iceball,
+		/obj/effect/proc_holder/spell/invoked/bridge,
 		)
 ))

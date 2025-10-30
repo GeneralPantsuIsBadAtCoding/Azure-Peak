@@ -1,0 +1,85 @@
+/obj/effect/proc_holder/spell/invoked/melting
+	name = "Cremation"
+	desc = "Heat your target."
+	overlay_state = "hellish_rebuke"
+	action_icon_state = "hellish_rebuke"
+	releasedrain = 30
+	chargedrain = 1
+	range = 5
+	cost = 6
+	chargetime = 3
+	ignore_los = FALSE
+	warnie = "sydwarning"
+	movement_interrupt = TRUE
+	no_early_release = TRUE
+	invocation_type = "none"
+	chargedloop = /datum/looping_sound/invokefire
+	associated_skill = /datum/skill/magic/arcane
+	antimagic_allowed = FALSE
+	spell_tier = 3
+	charging_slowdown = 2
+	recharge_time = 45 SECONDS
+	gesture_required = TRUE
+	var/delay = 0.5 SECONDS
+	var/outline_colour = "#c23d09"
+
+/obj/effect/proc_holder/spell/invoked/melting/cast(list/targets, mob/living/user)
+	if(isliving(targets[1]))
+		if(do_after(user, 3 SECONDS))
+			new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+			var/mob/living/T = targets[1]
+			var/mob/living/carbon/human/U = user
+			if(T.anti_magic_check())
+				visible_message(span_warning("The gravity fades away around you [T] "))  //antimagic needs some testing
+				playsound(get_turf(T), 'sound/magic/magic_nulled.ogg', 100)
+				return TRUE
+
+			U.visible_message(span_warning("Tiny strands of fire link between [U] and [T], heat being transferred!"))
+			playsound(U, 'sound/misc/explode/incendiary (1).ogg', 100, TRUE)
+			var/user_skill = U.get_skill_level(associated_skill)
+			var/greatheat = 0
+			var/datum/beam/hbeam = user.Beam(T,icon_state="heat_beam",time=(100 * 5))
+			var/heat = 0
+			var/filter = U.get_filter("AURA")
+			var/additional = 0
+			U.adjust_fire_stacks(2)
+			U.ignite_mob()
+			if(user_skill > SKILL_LEVEL_JOURNEYMAN)
+				additional = 1
+			if(!HAS_TRAIT(U, TRAIT_NOFIRE))
+				ADD_TRAIT(U, TRAIT_NOFIRE, TRAIT_GENERIC)
+			if (!filter)
+				U.add_filter("AURA", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+			for(var/i in 1 to 500)
+				if(do_after(U, delay))
+					var/damage = round(user_skill + greatheat/2) * 2
+					heat++
+					T.adjustFireLoss(damage)
+					U.stamina_add(1 + greatheat/2)
+					playsound(U, 'sound/magic/charging_fire.ogg', 100, TRUE)
+					if(heat > 3)
+						heat = 0
+						greatheat++
+						T.adjust_fire_stacks(1 + greatheat)
+						T.ignite_mob()
+						new /obj/effect/temp_visual/explosion/fast(get_turf(T))
+						playsound(U, 'sound/misc/explode/incendiary (1).ogg', 100, TRUE)
+					if(additional)
+						if(greatheat == 5)
+							greatheat++
+							explosion(T, -1, 0, 0, 2, 0, flame_range = 2, soundin = 'sound/misc/explode/incendiary (1).ogg')
+				else
+					U.visible_message(span_warning("Severs the firelink from [T]!"))
+					hbeam.End()
+					U.remove_filter("AURA")
+					REMOVE_TRAIT(U, TRAIT_NOFIRE, TRAIT_GENERIC)
+					new /obj/effect/temp_visual/explosion(get_turf(user))
+					return TRUE
+		user.adjustFireLoss(30)
+		user.adjust_fire_stacks(3)
+		user.ignite_mob()
+		new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+		revert_cast()
+		return FALSE
+	revert_cast()
+	return FALSE

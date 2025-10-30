@@ -34,6 +34,7 @@
 		return FALSE
 
 	var/list/affected_turfs = getline(source_turf, T)
+	affected_turfs |= T
 
 	for(var/i = 1, i < affected_turfs.len, i++)
 		var/turf/affected_turf = affected_turfs[i]
