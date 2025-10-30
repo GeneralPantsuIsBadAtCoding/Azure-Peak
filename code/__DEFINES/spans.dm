@@ -163,6 +163,10 @@
 #define span_beautiful_nb(str) ("<span class='beautifulnb'>" + str + "</span>")
 #define span_orator(str) ("<span class='orator'>" + str + "</span>")
 
-// Spans that use embedded tgui components:
-// Sorted alphabetically
-#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")
+
+/// Displays a tooltip. Tooltip is text-only, and HTML will be ignored.
+/// * SPAN_LINKIFY doesn't work here.
+#define SPAN_TOOLTIP(tip, str) ("<span data-component=\"Tooltip\" data-content=\"[html_encode(tip)]\" class=\"tooltip\">[str]</span>")
+/// Displays a tooltip. Accepts HTML. For the love of all that is holy, ensure input is trusted.
+/// * SPAN_LINKIFY doesn't work here.
+#define SPAN_TOOLTIP_DANGEROUS_HTML(tip, str) ("<span data-component=\"TooltipHTML\" data-html=\"[html_encode(tip)]\" class=\"tooltip\">[str]</span>")

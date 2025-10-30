@@ -15,14 +15,14 @@
  * * mob/viewer: The mob the text will be shown to. Nullable (But only in the form of it won't runtime).
  * * text: The text to be shown to viewer. Must not be null.
  */
-/atom/proc/balloon_alert(mob/viewer, text, x_offset, y_offset)
+/atom/proc/balloon_alert(mob/viewer, text, list/custom_args)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	INVOKE_ASYNC(src, PROC_REF(balloon_alert_perform), viewer, text, x_offset, y_offset)
+	INVOKE_ASYNC(src, PROC_REF(balloon_alert_perform), viewer, text, custom_args)
 
 /// Create balloon alerts (text that floats up) to everything within range.
 /// Will only display to people who can see.
-/atom/proc/balloon_alert_to_viewers(message, self_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, x_offset, y_offset)
+/atom/proc/balloon_alert_to_viewers(message, self_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, list/custom_args)
 	SHOULD_NOT_SLEEP(TRUE)
 
 	var/list/hearers = get_hearers_in_view(vision_distance, src, RECURSIVE_CONTENTS_CLIENT_MOBS)
@@ -32,13 +32,17 @@
 		if (is_blind(hearer))
 			continue
 
-		balloon_alert(hearer, (hearer == src && self_message) || message, x_offset, y_offset)
+		balloon_alert(hearer, (hearer == src && self_message) || message, custom_args)
+
+#define INDEX_CUSTOM_X 1
+#define INDEX_CUSTOM_Y 2
+
 
 // Do not use.
 // MeasureText blocks. I have no idea for how long.
 // I would've made the maptext_height update on its own, but I don't know
 // if this would look bad on laggy clients.
-/atom/proc/balloon_alert_perform(mob/viewer, text, x_offset, y_offset)
+/atom/proc/balloon_alert_perform(mob/viewer, text, list/custom_args)
 
 	var/client/viewer_client = viewer?.client
 	if (isnull(viewer_client))
@@ -51,7 +55,7 @@
 	balloon_alert.plane = BALLOON_CHAT_PLANE
 	balloon_alert.appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
 	balloon_alert.maptext = MAPTEXT("<span style='text-align: center; -dm-text-outline: 1px #0005'>[text]</span>")
-	balloon_alert.maptext_x = (BALLOON_TEXT_WIDTH - ICON_SIZE_X) * -0.5 - base_pixel_x + x_offset
+	balloon_alert.maptext_x = (BALLOON_TEXT_WIDTH - ICON_SIZE_X) * -0.5 - base_pixel_x + (custom_args[INDEX_CUSTOM_X] ? custom_args[INDEX_CUSTOM_X] : 0)
 	WXH_TO_HEIGHT(viewer_client?.MeasureText(text, null, BALLOON_TEXT_WIDTH), balloon_alert.maptext_height)
 	balloon_alert.maptext_width = BALLOON_TEXT_WIDTH
 
@@ -59,7 +63,7 @@
 
 	var/length_mult = 1 + max(0, length(strip_html_simple(text)) - BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN) * BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT
 
-	if(!y_offset)
+	if(!custom_args[INDEX_CUSTOM_Y])
 		animate(
 			balloon_alert,
 			pixel_y = ICON_SIZE_Y * 1.2,
@@ -67,10 +71,10 @@
 			easing = SINE_EASING | EASE_OUT,
 		)
 	else
-		balloon_alert.pixel_y = y_offset
+		balloon_alert.pixel_y = custom_args[INDEX_CUSTOM_Y]
 		animate(
 			balloon_alert,
-			pixel_y = y_offset + 5,
+			pixel_y = custom_args[INDEX_CUSTOM_Y] + 5,
 			time = BALLOON_TEXT_TOTAL_LIFETIME(length_mult),
 			easing = SINE_EASING | EASE_OUT,
 		)
@@ -109,7 +113,8 @@
 	else
 		CRASH("filtered_balloon_alert called without a trait, either it's an error or use balloon_alert instead.")
 
-	balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, x_offset, y_offset)
+	var/list/custom_args = list(x_offset, y_offset)
+	balloon_alert_to_viewers(text, null, DEFAULT_MESSAGE_RANGE, candidates, custom_args)
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT

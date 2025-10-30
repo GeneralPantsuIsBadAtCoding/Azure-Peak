@@ -426,6 +426,9 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		return
 	return ..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that. - I made it worse sorry guys.
 
+/proc/armor_tooltip(input)
+
+
 //Sorry colorblind folks...
 /proc/colorgrade_rating(input, rating, elaborate = FALSE)
 	var/str
