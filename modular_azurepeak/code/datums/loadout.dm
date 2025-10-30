@@ -771,14 +771,16 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_eiren2
-	name = "Donator Kit - Lunae"
+	name = "Donator Kit - Lunae - Required: Sabre"
+	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/eirensabre
-	ckeywhitelist = list("eirenxiv")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_eiren3
-	name = "Donator Kit - Cinis"
+	name = "Donator Kit - Cinis - Required: Sabre"
+	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/eirensabre2
-	ckeywhitelist = list("eirenxiv")
+	donatitem = TRUE
 
 /datum/loadout_item/donator_waff
 	name = "Donator Kit - Weeper Lathe - Required: Greatsword"

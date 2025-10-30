@@ -98,11 +98,13 @@
 
 /obj/item/enchantingkit/eirensabre
 	name = "'Lunae' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Sabre"
 	target_items = list(/obj/item/rogueweapon/sword/sabre)
 	result_item = /obj/item/rogueweapon/sword/sabre/eiren
 
 /obj/item/enchantingkit/eirensabre2
 	name = "'Cinis' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Sabre"
 	target_items = list(/obj/item/rogueweapon/sword/sabre)
 	result_item = /obj/item/rogueweapon/sword/sabre/eiren2
 
