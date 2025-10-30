@@ -1,5 +1,6 @@
 #define GARRISON_SCOM_COLOR "#FF4242"
 #define NORMAL_SCOM_TRANSMISSION_DELAY 15 SECONDS
+#define NORMAL_SCOM_PER_MESSAGE_DELAY 15 SECONDS 
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
@@ -21,6 +22,8 @@
 	var/scom_tag
 	var/obj/structure/roguemachine/scomm/calling = null
 	var/obj/structure/roguemachine/scomm/called_by = null
+	/// Last time the SCOM sent a message. Used to check delay  
+	var/last_message = 0
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
 
@@ -286,10 +289,17 @@
 		return
 	if(!listening)
 		return
+	// Check cooldown
+	if(world.time < last_message + NORMAL_SCOM_PER_MESSAGE_DELAY)
+		var/time_remaining = round((last_message + NORMAL_SCOM_PER_MESSAGE_DELAY - world.time) / 10)
+		to_chat(speaker, span_warning("The SCOM's rats are still recovering. Wait [time_remaining] more second[time_remaining != 1 ? "s" : ""]."))
+		return
 	var/mob/living/carbon/human/H = speaker
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
 		usedcolor = H.voicecolor_override
+	// Update last message time
+	last_message = world.time
 	// Feedback to indicate successful sending
 	playsound(src, 'sound/vo/mobs/rat/rat_life.ogg', 100, TRUE, -1)
 	if(raw_message)
