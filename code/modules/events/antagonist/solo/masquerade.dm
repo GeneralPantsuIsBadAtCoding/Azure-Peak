@@ -27,7 +27,6 @@
 		"Consort",
 		"Sergeant",
 		"Men-at-arms",
-		"Marshal",
 		"Bishop",
 		"Acolyte",
 		"Martyr",

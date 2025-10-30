@@ -27,7 +27,6 @@
 		"Dungeoneer",
 		"Sergeant",
 		"Men-at-arms",
-		"Marshal",
 		"Merchant",
 		"Bishop",
 		"Acolyte",

@@ -11,7 +11,7 @@
 	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
 	tutorial = "Typically a denizen of the sparsely populated Azurian woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilderness. \
-				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Marshal or the Crown. \
+				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Hand or the Crown. \
 				Serve their will and recieve what a ranger craves the most - freedom and safety."
 	display_order = JDO_TOWNGUARD
 	whitelist_req = TRUE

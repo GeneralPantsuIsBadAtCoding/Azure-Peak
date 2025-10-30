@@ -93,7 +93,7 @@
 		switch(user.job)
 			if("Warden")
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/bogguardhorn.ogg', 35, FALSE, pressure_affected = FALSE)
-			if("Marshall", "Watchman", "Sergeant", "Man at Arms")
+			if("Hand", "Watchman", "Sergeant", "Man at Arms")
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/watchhorn.ogg', 35, FALSE, pressure_affected = FALSE)
 			if("Knight Captain", "Knight")
 				player.playsound_local(get_turf(player), 'modular_hearthstone/sound/items/rghorn.ogg', 35, FALSE, pressure_affected = FALSE)

@@ -105,7 +105,7 @@
 		return
 	var/can_remove = FALSE
 	var/can_premium = FALSE
-	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist", "Absolver", "Marshal")) //why was KC here but not marshal ?
+	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist", "Absolver", "Hand"))
 		can_remove = TRUE
 	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician", "Town Crier", "Keeper"))
 		can_premium = TRUE

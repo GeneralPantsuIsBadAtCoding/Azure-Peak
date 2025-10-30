@@ -30,7 +30,6 @@
 		"Dungeoneer",
 		"Sergeant",
 		"Men-at-arms",
-		"Marshal",
 		"Bishop",
 		"Martyr",
 		"Keeper",
