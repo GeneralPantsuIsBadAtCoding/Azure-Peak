@@ -63,5 +63,8 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/projectile/wretchball,
 		/obj/effect/proc_holder/spell/invoked/projectile/iceball,
 		/obj/effect/proc_holder/spell/invoked/bridge,
+		/obj/effect/proc_holder/spell/invoked/frostarmor,
+		/obj/effect/proc_holder/spell/invoked/fireresist,
+		/obj/effect/proc_holder/spell/invoked/fireaura,
 		)
 ))

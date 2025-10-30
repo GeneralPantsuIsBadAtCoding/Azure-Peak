@@ -1,0 +1,4 @@
+<!-- Most valid html will work in here, excluding images. -->
+Roguetown Discord Server: <a href="https://discord.gg/9uYTPsRMKa">discord.gg/RogueTown</a>
+Roguetown Patreon: <a href="https://www.patreon.com/user?u=58204426">patreon.com/ROGUETOWN</a>
+<center>* Unstable Playtest - Expect Restarts *</center>
