@@ -56,6 +56,14 @@
 	desc = "The Receiving Communication Optical Machine is a much cheaper, ubiquitous version of the SCOM, designed only to receive message over long distance. They are oft found outside of the town, especially in older ruins."
 	receive_only = TRUE
 
+/obj/structure/roguemachine/scomm/receive_only/r
+	pixel_y = 0
+	pixel_x = 32
+
+/obj/structure/roguemachine/scomm/receive_only/l
+	pixel_y = 0
+	pixel_x = -32
+
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
 	. += "The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitations."
