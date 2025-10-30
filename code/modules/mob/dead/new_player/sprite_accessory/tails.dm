@@ -401,3 +401,16 @@
 	icon_state = "zorgoia"
 	color_keys = 3
 	color_key_names = list("Tail", "Tail Fluff", "Tail Barb")
+
+//From Caustic Cove
+/datum/sprite_accessory/tail/large_snake
+	icon = 'modular_causticcove/icons/mob/tails/large_snake.dmi'
+	name = "Large Snake"
+	icon_state = "large_snake"
+	color_keys = 2
+	color_key_names = list("Tail", "Underbelly")
+
+/datum/sprite_accessory/tail/large_snake_plain
+	icon = 'modular_causticcove/icons/mob/tails/large_snake.dmi'
+	name = "Large Snake Plain"
+	icon_state = "large_snake_plain"	

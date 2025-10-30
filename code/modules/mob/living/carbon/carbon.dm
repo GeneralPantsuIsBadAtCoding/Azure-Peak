@@ -158,14 +158,27 @@
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
+		if(cmode && m_intent == MOVE_INTENT_RUN)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if(!get_active_held_item())
+					var/grabprob
+					if(dir != turn(get_dir(victim, src), 180))
+						grabprob = 100
+					else
+						grabprob = ((get_stat(STATKEY_LCK) - 10) * 10) + ((get_stat(STATKEY_SPD) - 10) * 10) + ((get_stat(STATKEY_PER) - 10) * 10)
+						if(prob(grabprob))
+							H.dna?.species?.grab(H, victim)
+							visible_message("<span class='danger'>[src] leaps onto [victim]!",\
+								"<span class='danger'>I leap onto [victim]!</span>")
+							return
 		if(hurt)
 			victim.take_bodypart_damage(10,check_armor = TRUE)
 			take_bodypart_damage(10,check_armor = TRUE)
-			if(victim.IsOffBalanced())
-				victim.Knockdown(30)
 			visible_message("<span class='danger'>[src] crashes into [victim]!",\
 				"<span class='danger'>I violently crash into [victim]!</span>")
-		playsound(src,"genblunt",100,TRUE)
+			playsound(src,"genblunt",100,TRUE)
+
 
 
 //Throwing stuff
@@ -274,7 +287,8 @@
 		return TRUE
 	if(pulledby && !ignore_grab)
 		if(pulledby != src)
-			return TRUE
+			if(pulledby.grab_state >= GRAB_AGGRESSIVE)
+				return TRUE
 
 /mob/living/carbon/proc/canBeHandcuffed()
 	return 0

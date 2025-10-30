@@ -34,7 +34,6 @@
 /area/rogue/under/tomb/cave)
 "aA" = (
 /obj/item/clothing/suit/roguetown/shirt/tunic/blue,
-/obj/item/roguegem/blue,
 /obj/item/clothing/shoes/roguetown/boots/leather,
 /obj/item/clothing/neck/roguetown/psicross/malum,
 /obj/item/clothing/ring/sapphires,
@@ -45,7 +44,7 @@
 /obj/item/clothing/gloves/roguetown/leather/black,
 /obj/effect/mapping_helpers/floor_clothing_equipper,
 /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy,
-/mob/living/carbon/human/species/skeleton/npc/medium/noequip,
+/mob/living/carbon/human/species/skeleton/npc/hard/noequip,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave)
 "aG" = (
@@ -83,7 +82,6 @@
 /obj/structure/table/vtable,
 /obj/item/clothing/gloves/roguetown/elven_gloves,
 /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm,
-/obj/item/rogueweapon/huntingknife/idagger/silver/elvish,
 /obj/item/clothing/suit/roguetown/shirt/undershirt/webs,
 /obj/item/clothing/under/roguetown/webs,
 /obj/item/clothing/cloak/raincloak/purple,
@@ -123,7 +121,6 @@
 /obj/item/reagent_containers/glass/bottle/rogue/wine/sourwine,
 /obj/item/candle/skull/lit,
 /obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
-/obj/item/roguecoin/silver/pile,
 /obj/item/needle,
 /obj/item/natural/bundle/silk,
 /obj/item/natural/cloth,

@@ -230,13 +230,10 @@
 		last_z_level_hint = ""
 		return
 
-	// Calculate angle in degrees (0 = east, 90 = north)
-	var/angle = ATAN2(dx, dy)
-	if(angle < 0)
-		angle += 360
-
 	// Get precise direction text
-	var/direction_text = get_precise_direction_from_angle(angle)
+	var/direction_text = get_precise_direction_between(user_turf, target_turf)
+	if(!direction_text)
+		direction_text = "unknown direction"
 
 	// Determine distance description
 	var/distance_text
@@ -253,53 +250,5 @@
 	last_compass_direction = "[distance_text] to the [direction_text]"
 	if(!last_z_level_hint)
 		last_z_level_hint = "on this level"
-
-/obj/item/paper/scroll/quest/proc/get_precise_direction_from_angle(angle)
-	// ATAN2 gives angle from positive x-axis (east) to the vector
-	// We need to:
-	// 1. Convert to compass degrees (0°=north, 90°=east)
-	// 2. Invert the direction (show direction TO target FROM player)
-
-	// Normalize angle first
-	angle = (angle + 360) % 360
-
-	// Convert to compass bearing (0°=north, 90°=east)
-	var/compass_angle = (450 - angle) % 360  // 450 = 360 + 90
-
-	// Return direction based on inverted compass angle
-	// Return direction based on inverted compass angle
-	switch(compass_angle)
-		if(348.75 to 360, 0 to 11.25)
-			return "north"
-		if(11.25 to 33.75)
-			return "north-northeast"
-		if(33.75 to 56.25)
-			return "northeast"
-		if(56.25 to 78.75)
-			return "east-northeast"
-		if(78.75 to 101.25)
-			return "east"
-		if(101.25 to 123.75)
-			return "east-southeast"
-		if(123.75 to 146.25)
-			return "southeast"
-		if(146.25 to 168.75)
-			return "south-southeast"
-		if(168.75 to 191.25)
-			return "south"
-		if(191.25 to 213.75)
-			return "south-southwest"
-		if(213.75 to 236.25)
-			return "southwest"
-		if(236.25 to 258.75)
-			return "west-southwest"
-		if(258.75 to 281.25)
-			return "west"
-		if(281.25 to 303.75)
-			return "west-northwest"
-		if(303.75 to 326.25)
-			return "northwest"
-		if(326.25 to 348.75)
-			return "north-northwest"
 
 #undef WHISPER_COOLDOWN

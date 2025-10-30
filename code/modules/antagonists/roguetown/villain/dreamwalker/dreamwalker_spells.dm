@@ -174,7 +174,7 @@
 	desc = "Teleports you to a random coastal area after a short channel, leaving a temporary portal behind. You may be followed."
 	chargedrain = 0
 	chargetime = 2 SECONDS
-	recharge_time = 20 MINUTES
+	recharge_time = 15 MINUTES
 	invocation_type = "whisper"
 	invocations = list("Whisper of the dream...")
 	movement_interrupt = FALSE
@@ -371,7 +371,7 @@
 	while(TRUE)
 		if(do_after(H, 15 SECONDS, FALSE, H))
 			H.energy_add(0.2 * H.max_energy)
-			H.apply_status_effect(/datum/status_effect/buff/healing, 0.25)
+			H.apply_status_effect(/datum/status_effect/buff/healing, 5)
 		else
 			to_chat(user, span_info("I must remain still to focus energies and recover."))
 			break

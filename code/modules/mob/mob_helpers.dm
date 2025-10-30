@@ -604,7 +604,7 @@
 			SSdroning.play_combat_music(L.cmode_music_override, client)
 		else if(L.cmode_music)
 			SSdroning.play_combat_music(L.cmode_music, client)
-		if(client && HAS_TRAIT(src, TRAIT_SCHIZO_AMBIENCE))
+		if(client && HAS_TRAIT(src, TRAIT_PSYCHOSIS))
 			animate(client, pixel_y = 1, time = 1, loop = -1, flags = ANIMATION_RELATIVE)
 			animate(pixel_y = -1, time = 1, flags = ANIMATION_RELATIVE)
 	if(hud_used)

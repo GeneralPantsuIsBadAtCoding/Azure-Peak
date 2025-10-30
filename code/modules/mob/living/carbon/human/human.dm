@@ -449,7 +449,7 @@
 			else
 				. = INFINITY
 			return
-		
+
 	. = ..()
 	if(glasses)
 		. += glasses.tint
@@ -974,6 +974,12 @@
 /mob/living/carbon/human/proc/is_virile()
 	var/obj/item/organ/testicles/testicles = getorganslot(ORGAN_SLOT_TESTICLES)
 	return testicles.virility
+
+/mob/living/carbon/human/update_mobility()
+	. = ..()
+	if(!(mobility_flags & MOBILITY_CANSTAND) && mouth?.spitoutmouth)
+		visible_message(span_warning("[src] spits out [mouth]."))
+		dropItemToGround(mouth, silent = FALSE)
 
 /*/mob/living/carbon/human/proc/update_heretic_commune()
 	if(HAS_TRAIT(src, TRAIT_COMMIE) || HAS_TRAIT(src, TRAIT_CABAL) || HAS_TRAIT(src, TRAIT_HORDE) || HAS_TRAIT(src, TRAIT_DEPRAVED))

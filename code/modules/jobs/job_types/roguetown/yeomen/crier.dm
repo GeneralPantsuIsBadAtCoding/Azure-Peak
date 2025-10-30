@@ -1,3 +1,5 @@
+#define CRIER_ANNOUNCEMENT_COOLDOWN (10 MINUTES)//He has access to free SCOM he should be using this
+
 /datum/job/roguetown/crier
 	title = "Town Crier"
 	tutorial = "Keeper of the Horn, Master of the Jabberline, and self-appointed Voice of Reason. From your desk in the SCOM atelier, you decide which words will thunder across the realm and which will die in the throats of petitioners who didn't pay enough ratfeed. In your upstairs studio, you host debates, recite gossip, and spin tales that will ripple through every corner of town. All ears are turned toward you - so speak wisely."
@@ -86,3 +88,28 @@
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_INT, 1)
+
+/mob/living/carbon/human/proc/crier_announcement()
+	set name = "Announcement"
+	set category = "CRIER"
+	if(stat)
+		return
+	var/announcementinput = input("Bellow to the Peaks", "Make an Announcement") as text|null
+	if(announcementinput)
+		if(!src.can_speak_vocal())
+			to_chat(src,span_warning("I can't speak!"))
+			return FALSE
+		if(!istype(get_area(src), /area/rogue/outdoors/town))//Go touch grass
+			to_chat(src, span_warning("I can only speak from within premises of the Town."))
+			return FALSE
+		if(!COOLDOWN_FINISHED(src, crier_announcement))
+			to_chat(src, span_warning("You must wait before speaking again."))
+			return FALSE
+		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
+		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
+			say(announcementinput)
+			priority_announce("[announcementinput]", "The Crier Pontificates", 'sound/misc/bell.ogg', sender = src)
+			COOLDOWN_START(src, crier_announcement, CRIER_ANNOUNCEMENT_COOLDOWN)
+		else
+			to_chat(src, span_warning("Your announcement was interrupted!"))
+			return FALSE

@@ -117,7 +117,9 @@
 		if(/datum/patron/divine/malum)
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+	head = /obj/item/clothing/head/roguetown/headband/monk
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
+	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
@@ -141,7 +143,6 @@
 	switch(weapon_choice)
 		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
-			wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Katar")
@@ -155,7 +156,6 @@
 		if("Quarterstaff")
 			H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE) //Tested with Disciples, first. Should hopefully be not too busted - reduce to Journeyman, otherwise.
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
-			wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/steel(H), TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H), TRUE)

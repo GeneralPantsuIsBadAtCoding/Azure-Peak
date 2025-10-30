@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
@@ -18,23 +18,21 @@ export const FlavorTextPage = (props) => {
   const [oocNotesIndex, setOocNotesIndex] = useState('SFW');
   const [flavorTextIndex, setFlavorTextIndex] = useState('SFW');
 
-  const flavorHTML = {
+  const flavorHTML = useMemo(() => ({
     __html: `<span className='Chat'>${flavor_text}</span>`,
-  };
+  }), [flavor_text]);
 
-  const nsfwHTML = {
+  const nsfwHTML = useMemo(() => ({
     __html: `<span className='Chat'>${flavor_text_nsfw}</span>`,
-  };
+  }), [flavor_text_nsfw]);
 
-  const oocHTML = {
+  const oocHTML = useMemo(() => ({
     __html: `<span className='Chat'>${ooc_notes}</span>`,
-  };
+  }), [ooc_notes]);
 
-  const oocnsfwHTML = {
+  const oocnsfwHTML = useMemo(() => ({
     __html: `<span className='Chat'>${ooc_notes_nsfw}</span>`,
-  };
-
-
+  }), [ooc_notes_nsfw]);
 
   return (
         <Stack fill>

@@ -749,7 +749,7 @@
 		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, -3)
 		user.change_stat(STATKEY_WIL, 3)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
+		ADD_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
 		ADD_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC) //Roughly ~30% reduced vision with a sharp red overlay. Provides night vision in the visible tiles.
 		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC) //If you die while the necklace's on, that's it. Technically saveable if someone knows to remove the necklace, before attempting resurrection.
 		ADD_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
@@ -763,7 +763,7 @@
 		user.change_stat(STATKEY_STR, -3)
 		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, -3)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)

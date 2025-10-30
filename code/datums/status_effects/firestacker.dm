@@ -158,6 +158,9 @@
 	if(!on_fire)
 		return TRUE
 
+	if(owner.surrendering)
+		owner.resist_fire()
+
 	var/decay_multiplier = stacks / STACK_DECAY_SCALE_FACTOR
 	if(!(owner.mobility_flags & MOBILITY_STAND))
 		decay_multiplier *= STACK_DECAY_PRONE_MULTIPLIER
@@ -186,6 +189,7 @@
 
 	var/turf/location = get_turf(owner)
 	location?.hotspot_expose(700, 25 * wait * 0.1, TRUE)
+
 
 /**
  * Used to deal damage to humans and count their protection.

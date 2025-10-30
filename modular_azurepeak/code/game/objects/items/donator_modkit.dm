@@ -62,20 +62,54 @@
 	target_items = list(/obj/item/clothing/head/roguetown/helmet/sallet/visored)
 	result_item = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded
 
+//Bigfoot - Custom knight helm type
+/obj/item/enchantingkit/bigfoot
+	name = "'Gilded Knight Helm' morphing elixir"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/knight)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight/gilded
+
+//Bigfoot - Custom great axe type
+/obj/item/enchantingkit/bigfoot_axe
+	name = "'Gilded Great Axe' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/greataxe/steel)
+	result_item = /obj/item/rogueweapon/greataxe/steel/gilded
+
 //Zydras donator item - bathmatron padded dress
 /obj/item/enchantingkit/zydras
 	name = "'Gold-Black silky dress morphing elixir"
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/dress/silkydress)
 	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress
 
-//Eiren - Custom zweihander type
+//Eiren - Zweihander and sabres
 /obj/item/enchantingkit/eiren
 	name = "'Regret' morphing elixir"
 	target_items = list(/obj/item/rogueweapon/greatsword/zwei)		//now only takes the zwei and nothing else
 	result_item = /obj/item/rogueweapon/greatsword/zwei/eiren
+
+/obj/item/enchantingkit/eirensabre
+	name = "'Lunae' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/sword/sabre)
+	result_item = /obj/item/rogueweapon/sword/sabre/eiren
+
+/obj/item/enchantingkit/eirensabre2
+	name = "'Cinis' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/sword/sabre)
+	result_item = /obj/item/rogueweapon/sword/sabre/eiren2
 
 //pretzel - custom steel greatsword. PSYDON LYVES. PSYDON ENDVRES.
 /obj/item/enchantingkit/waff
 	name = "'Weeper's Lathe' morphing elixir"
 	target_items = list(/obj/item/rogueweapon/greatsword)		// i, uh. i really do promise i'm only gonna use it on steel greatswords.
 	result_item = /obj/item/rogueweapon/greatsword/weeperslathe
+
+//inverserun claymore
+/obj/item/enchantingkit/inverserun
+	name = "'Votive Thorns' morphing elixir"
+	target_items = list(/obj/item/rogueweapon/greatsword/zwei)
+	result_item = /obj/item/rogueweapon/greatsword/zwei/inverserun
+
+//Zoe - Tytos Blackwood cloak
+/obj/item/enchantingkit/zoe
+	name = "'Shroud of the Undermaiden' morphing elixir"
+	target_items = list(/obj/item/clothing/cloak/darkcloak/bear)
+	result_item = /obj/item/clothing/cloak/raincloak/feather_cloak
