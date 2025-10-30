@@ -608,8 +608,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(branch)
 						sleepy_mod = 2 //Worse than a bedroll, better than nothing.
 			if(eyesclosed)
-				if(HAS_TRAIT(src, TRAIT_NOSLEEP))
-					message = "I am unable to sleep. I should just get up."
+				if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !flaw)
+					message = "I am completely unable to sleep. I should just get up."
 					if(!fallingas)
 						to_chat(src, span_warning(message))
 					fallingas = TRUE
