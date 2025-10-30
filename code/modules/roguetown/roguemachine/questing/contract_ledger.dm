@@ -40,7 +40,7 @@
 		return attack_hand(usr)
 	return attack_hand(usr)
 
-/obj/structure/roguemachine/attack_hand(mob/living/carbon/human/user)
+/obj/structure/roguemachine/contractledger/attack_hand(mob/living/carbon/human/user)
 	if(!ishuman(user))
 		return
 	// Inshallah I'll make this TGUI one day.
