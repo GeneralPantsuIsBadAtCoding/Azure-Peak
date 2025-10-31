@@ -93,8 +93,29 @@
 /obj/item/enchantingkit/eiren
 	name = "'Regret' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Zweihander"
-	target_items = list(/obj/item/rogueweapon/greatsword/zwei)		//now only takes the zwei and nothing else
+	target_items = list(/obj/item/rogueweapon/greatsword/zwei, /obj/item/rogueweapon/greatsword/grenz)		//now only takes the zwei and nothing else
 	result_item = /obj/item/rogueweapon/greatsword/zwei/eiren
+
+/obj/item/enchantingkit/eiren/pre_attack(obj/item/I, mob/user)
+	if(is_type_in_list(I, target_items))
+		var/result_type
+		if(istype(I, /obj/item/rogueweapon/greatsword/zwei))
+			result_type = /obj/item/rogueweapon/greatsword/zwei/eiren
+		else if(istype(I, /obj/item/rogueweapon/greatsword/grenz))
+			result_type = /obj/item/rogueweapon/greatsword/zwei/eiren/steel
+		else
+			return ..()
+		
+		var/obj/item/R = new result_type(get_turf(user))
+		to_chat(user, span_notice("You apply the [src] to [I], using the enchanting dust and tools to turn it into [R]."))
+		R.name += " <font size = 1>([I.name])</font>"
+		remove_item_from_storage(I)
+		qdel(I)
+		user.put_in_hands(R)
+		qdel(src)
+		return TRUE
+	else
+		return ..()
 
 /obj/item/enchantingkit/eirensabre
 	name = "'Lunae' morphing elixir"
@@ -119,8 +140,29 @@
 /obj/item/enchantingkit/inverserun
 	name = "'Votive Thorns' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Zweihander"
-	target_items = list(/obj/item/rogueweapon/greatsword/zwei)
+	target_items = list(/obj/item/rogueweapon/greatsword/zwei, /obj/item/rogueweapon/greatsword/grenz)
 	result_item = /obj/item/rogueweapon/greatsword/zwei/inverserun
+
+/obj/item/enchantingkit/inverserun/pre_attack(obj/item/I, mob/user)
+	if(is_type_in_list(I, target_items))
+		var/result_type
+		if(istype(I, /obj/item/rogueweapon/greatsword/zwei))
+			result_type = /obj/item/rogueweapon/greatsword/zwei/inverserun
+		else if(istype(I, /obj/item/rogueweapon/greatsword/grenz))
+			result_type = /obj/item/rogueweapon/greatsword/zwei/inverserun/steel
+		else
+			return ..()
+		
+		var/obj/item/R = new result_type(get_turf(user))
+		to_chat(user, span_notice("You apply the [src] to [I], using the enchanting dust and tools to turn it into [R]."))
+		R.name += " <font size = 1>([I.name])</font>"
+		remove_item_from_storage(I)
+		qdel(I)
+		user.put_in_hands(R)
+		qdel(src)
+		return TRUE
+	else
+		return ..()
 
 //Zoe - Tytos Blackwood cloak
 /obj/item/enchantingkit/zoe

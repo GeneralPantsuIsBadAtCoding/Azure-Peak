@@ -765,7 +765,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_eiren
-	name = "Donator Kit - Regret - Required: Zweihander"
+	name = "Donator Kit - Regret - Required: Any Zweihander"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/eiren
 	donatitem = TRUE
@@ -789,7 +789,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_inverserun
-	name = "Donator Kit - Votive Thorns - Required: Zweihander"
+	name = "Donator Kit - Votive Thorns - Required: Any Zweihander"
 	path = /obj/item/enchantingkit/inverserun
 	category = list("Разное", "Донат")
 	donatitem = TRUE
@@ -801,19 +801,19 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie
-	name = "Donator Kit - Aristocratic Boots - Required: Heavy Leather Boots"
+	name = "Donator Kit - Aristocratic Boots - Required: Heavy Leather Boots or Noble Boots"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_boots
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie2
-	name = "Donator Kit - Aristocratic Gloves - Required: Fingerless Leather Gloves"
+	name = "Donator Kit - Aristocratic Gloves - Required: Fingerless Leather Gloves or Heavy Leather Gloves"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_gloves
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie3
-	name = "Donator Kit - Aristocratic Shirt - Required: Gambeson(No Small Races)"
+	name = "Donator Kit - Aristocratic Shirt - Required: Gambeson or Padded Gambeson(No Small Races)"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_shirt
 	donatitem = TRUE
