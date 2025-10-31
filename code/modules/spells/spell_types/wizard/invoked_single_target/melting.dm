@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/melting
 	name = "Cremation"
 	desc = "Heat your target."
-	overlay_state = "hellish_rebuke"
-	action_icon_state = "hellish_rebuke"
+	overlay_state = "justflame"
+	action_icon_state = "justflame"
 	releasedrain = 30
 	chargedrain = 1
 	range = 5

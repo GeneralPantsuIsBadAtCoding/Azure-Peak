@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/fireaura
 	name = "Fireaura"
-	overlay_state = "stoneskin"
+	overlay_state = "justflame"
 	desc = "Harden the target's skin like stone. (+5 Constitution)"
 	cost = 3
 	xp_gain = TRUE

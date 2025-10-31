@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/fireresist
 	name = "Fireresist"
-	overlay_state = "stoneskin"
+	overlay_state = "conjure_dragonhide"
 	desc = "Harden the target's skin like stone. (+5 Constitution)"
 	cost = 2
 	xp_gain = TRUE
