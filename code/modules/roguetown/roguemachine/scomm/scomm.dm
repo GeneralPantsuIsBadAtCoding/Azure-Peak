@@ -92,8 +92,7 @@
 /obj/structure/roguemachine/scomm/proc/view_directory(mob/user)
 	var/dat
 	for(var/obj/structure/roguemachine/scomm/X in SSroguemachine.scomm_machines)
-		if(X.scom_tag)
-			dat += "#[X.scom_number] [X.scom_tag]<br>"
+		dat += "#[X.scom_number] [X.scom_tag]<br>"
 
 	var/datum/browser/popup = new(user, "scom_directory", "<center>RAT REGISTER</center>", 387, 420)
 	popup.set_content(dat)
@@ -333,6 +332,14 @@
 			return
 		if(length(raw_message) > 100) //When these people talk too much, put that shit in slow motion, yeah
 			raw_message = "<small>[raw_message]</small>"
+
+		// Build message prefix with SCOM location.
+		var/message_prefix = ""
+		if(scom_number)
+			message_prefix = "#[scom_number] - [scom_tag ? "([scom_tag]) " : ""]"
+		if(message_prefix)
+			raw_message = "[message_prefix][raw_message]"
+
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)
