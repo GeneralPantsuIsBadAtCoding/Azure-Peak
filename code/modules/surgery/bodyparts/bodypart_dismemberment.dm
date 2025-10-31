@@ -47,6 +47,10 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)
 		return FALSE //signal handled the dropping
+	
+	if(C.try_resist_critical())
+		C.visible_message(span_danger("Critical resistance! [C]'s [src.name] hangs on by a thread!</span>"))
+		return FALSE
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound)

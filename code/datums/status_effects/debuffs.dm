@@ -549,6 +549,34 @@
 	desc = "I cannot take another action."
 	icon_state = "clickcd"
 
+/datum/status_effect/debuff/crit_resistance_cd
+	id = "crit_resist_cd"
+	duration = CRIT_RESISTANCE_TIMER_CD
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/crit_resistance_cd
+	var/my_stack = 1 // How many time it was triggered. Default to 1 because this is only created when it triggers
+
+// Helper, call this everytime you try to crit
+/datum/status_effect/debuff/crit_resistance_cd/proc/try_crit()
+	my_stack++
+	if(!owner) // wtf
+		return TRUE
+	if(owner.stat) // Dead / Unconscious	
+		return TRUE
+	if(iscarbon(owner))
+		var/mob/living/carbon/C = owner
+		if(NOBLOOD in C.dna?.species?.species_traits)
+			return (my_stack > CRIT_RESISTANCE_STACKS_OP)
+	if(isdullahan(owner))
+		return (my_stack > CRIT_RESISTANCE_STACKS_OP)
+	if(!owner.mind)
+		return (my_stack > CRIT_RESISTANCE_STACKS_NPC)
+	return (my_stack > CRIT_RESISTANCE_STACKS_PLAYER)
+
+/atom/movable/screen/alert/status_effect/debuff/crit_resistance_cd
+	name = "Critical Resistance"
+	desc = "My body is temporarily resisting critical wounds."
+	icon_state = "debuff"
+
 /datum/status_effect/debuff/yeetcd
 	id = "yeetcd"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/yeetcd
