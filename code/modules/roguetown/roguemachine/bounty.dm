@@ -101,13 +101,6 @@
 ///Sets a bounty on a target player through user input.
 ///@param user: The player setting the bounty.
 /obj/structure/roguemachine/bounty/proc/set_bounty(mob/living/carbon/human/user)
-	if(!HAS_TRAIT(user, TRAIT_JUSTICARSIGHT) || !user.devotion.level >= CLERIC_T1)
-		say("YOU LACK HIS CONVICTION.")
-		return
-	for(var/datum/bounty/b in GLOB.head_bounties)
-		if(b.target == user.real_name)
-			say("SEEK HIS REPENTANCE.")
-			return
 	var/list/eligible_players = list()
 
 	if(user.mind.known_people.len)
