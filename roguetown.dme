@@ -1755,7 +1755,6 @@
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\underdweller.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\vaquero.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\warscholar.dm"
-#include "code\modules\jobs\job_types\roguetown\nobility\bailiff.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\captain.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\consort.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\hand.dm"

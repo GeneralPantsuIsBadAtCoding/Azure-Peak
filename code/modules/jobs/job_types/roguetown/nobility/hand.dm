@@ -21,16 +21,18 @@
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
 	job_traits = list(TRAIT_NOBLE)
 	job_subclasses = list(
-		/datum/advclass/hand/hand,
+		/datum/advclass/hand/blademaster,
+		/datum/advclass/hand/marshal,
 		/datum/advclass/hand/spymaster,
 		/datum/advclass/hand/advisor
 	)
+	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard) // /obj/effect/proc_holder/spell/self/convertrole/bog
 
 /datum/outfit/job/roguetown/hand
+	backr = /obj/item/storage/backpack/rogue/satchel/short
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/steel
-	beltr = /obj/item/rogueweapon/scabbard/sword
-	beltl = /obj/item/rogueweapon/scabbard/sheath
+	id = /obj/item/scomstone/garrison
 	job_bitflag = BITFLAG_ROYALTY
 
 /datum/job/roguetown/hand/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
@@ -45,10 +47,16 @@
 		for(var/name in GLOB.court_agents)
 			to_chat(H, span_notice(name))
 
+/datum/outfit/job/roguetown/hand/pre_equip(mob/living/carbon/human/H)
+	H.verbs |= /mob/proc/haltyell
+	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/living/carbon/human/proc/request_law, /mob/living/carbon/human/proc/request_law_removal, /mob/living/carbon/human/proc/request_purge)
 
+///////////
+//CLASSES//
+///////////
 
-/datum/advclass/hand/hand
-	name = "Hand"
+/datum/advclass/hand/blademaster
+	name = "Blademaster"
 	tutorial = " You have played blademaster and strategist to the Noble-Family for so long that you are a master tactician, something you exploit with potent conviction. Let no man ever forget whose ear you whisper into. You've killed more men with swords than any spymaster could ever claim to."
 	outfit = /datum/outfit/job/roguetown/hand/handclassic
 
@@ -57,7 +65,8 @@
 	subclass_stats = list(
 		STATKEY_PER = 3,
 		STATKEY_INT = 3,
-		STATKEY_STR = 2
+		STATKEY_SPD = 2, //You are using swift balanced weapons why are you getting strenght
+		STATKEY_LCK = 1,
 	)
 	subclass_skills = list(
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
@@ -76,17 +85,23 @@
 
 //Classical hand start - same as before, nothing changed. 
 /datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
 	r_hand = /obj/item/rogueweapon/sword/rapier/dec
-	backpack_contents = list(
-		/obj/item/storage/keyring/hand = 1
-		)
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
-	id = /obj/item/scomstone/garrison
+	backpack_contents = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/keyring/hand = 1,
+	)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
+		H.change_stat(STATKEY_LCK, 2)
 
+
+//Spymaster start
 /datum/advclass/hand/spymaster
 	name = "Spymaster"
 	tutorial = " You have played spymaster and confidant to the Noble-Family for so long that you are a vault of intrigue, something you exploit with potent conviction. Let no man ever forget whose ear you whisper into. You've killed more men with those lips than any blademaster could ever claim to."
@@ -94,7 +109,7 @@
 
 	category_tags = list(CTAG_HAND)
 	subclass_languages = list(/datum/language/thievescant)
-	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)
+	traits_applied = list(TRAIT_LIGHT_STEP, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)//Spy not a royal champion
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_PER = 2,
@@ -102,18 +117,15 @@
 		STATKEY_STR = -1,
 	)
 	subclass_skills = list(
-		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/stealing = SKILL_LEVEL_MASTER,
@@ -122,28 +134,77 @@
 
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff. 
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
-	r_hand = /obj/item/rogueweapon/sword/rapier/dec
 	backpack_contents = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/storage/keyring/hand = 1,
-		/obj/item/lockpickring/mundane = 1
-		)
+		/obj/item/lockpickring/mundane = 1,
+	)
 	if(H.dna.species.type in NON_DWARVEN_RACE_TYPES)
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/shadowrobe
 		cloak = /obj/item/clothing/cloak/half/shadowcloak
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless/shadowgloves
 		mask = /obj/item/clothing/mask/rogue/shepherd/shadowmask
 		pants = /obj/item/clothing/under/roguetown/trou/shadowpants
-		id = /obj/item/scomstone/garrison
 	else
 		cloak = /obj/item/clothing/cloak/raincloak/mortus //cool spymaster cloak
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 		backr = /obj/item/storage/backpack/rogue/satchel/black
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 		pants = /obj/item/clothing/under/roguetown/tights/black
-		id = /obj/item/scomstone/garrison
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/stealing, 6, TRUE)
+		H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 6, TRUE)
 
+//Marshal start, mr mace guy with a fancy sword, Ned Stark larp I suppose
+/datum/outfit/job/roguetown/hand/marshal/pre_equip(mob/living/carbon/human/H)
+	r_hand = /obj/item/rogueweapon/sword/long/oathkeeper
+	beltl = /obj/item/rogueweapon/mace/cudgel/justice
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	backpack_contents = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/keyring/hand = 1,
+	)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		H.change_stat(STATKEY_LCK, 2)
+
+/datum/advclass/hand/marshal
+	name = "Marshal"
+	tutorial = "You've spent your daes in the courts and garrisons of the city. You've studied the law tome from back to front and enforce your word with the iron hand of justice, and the iron mace in your hands. More men have spent days rotting in the dungeon than that Knight Commander could ever have claimed, and every person in the realm respects your authority in matters of law and order."
+	outfit = /datum/outfit/job/roguetown/hand/marshal
+
+	category_tags = list(CTAG_HAND)
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_PERFECT_TRACKER)
+	subclass_stats = list(
+		STATKEY_INT = 2,
+		STATKEY_CON = 1,
+		STATKEY_WIL = 1,
+		STATKEY_SPD = 1,
+		STATKEY_STR = 2,
+		STATKEY_LCK = 1,
+	)//You are not exactly a knight but you sort of are
+	subclass_skills = list(
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
+	)
+
+//Advisor Start
 /datum/advclass/hand/advisor
 	name = "Advisor"
 	tutorial = " You have played researcher and confidant to the Noble-Family for so long that you are a vault of knowledge, something you exploit with potent conviction. Let no man ever forget the knowledge you wield. You've read more books than any blademaster or spymaster could ever claim to."
@@ -154,11 +215,14 @@
 	subclass_stats = list(
 		STATKEY_INT = 4,
 		STATKEY_PER = 3,
+		STATKEY_WIL = 2,
+		STATKEY_LCK = 2,		
 	)
 	subclass_spellpoints = 15
 	subclass_skills = list(
 		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
@@ -174,17 +238,19 @@
 
 //Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors. 
 /datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	l_hand = /obj/item/rogueweapon/huntingknife/idagger/dtace
 	r_hand = /obj/item/rogueweapon/sword/rapier/dec
-	backpack_contents = list(
-		/obj/item/storage/keyring/hand = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1 //starts with a vial of poison, like all wizened evil advisors do!
-		)
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
-	id = /obj/item/scomstone/garrison
+	backpack_contents = list(
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/keyring/hand = 1,
+		/obj/item/lockpickring/mundane = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,//starts with a vial of poison, like all wizened evil advisors do!
+	)
 	if(H.age == AGE_OLD)
 		H.change_stat(STATKEY_SPD, -1)
 		H.change_stat(STATKEY_STR, -1)
@@ -193,3 +259,123 @@
 		H.mind?.adjust_spellpoints(3)
 
 
+/////////////////////
+//BAILIFF ABILITIES//
+/////////////////////
+/mob/living/carbon/human/proc/request_law()
+	set name = "Request Law"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Write a new law", "JUSTICAR") as text|null
+	if(inputty)
+		if(hasomen(OMEN_NOLORD))
+			make_law(inputty)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_law_requested), src, lord, inputty)
+			else
+				make_law(inputty)
+
+/mob/living/carbon/human/proc/request_law_removal()
+	set name = "Request Law Removal"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Remove a law", "JUSTICAR") as text|null
+	var/law_index = text2num(inputty) || 0
+	if(law_index && GLOB.laws_of_the_land[law_index])
+		if(hasomen(OMEN_NOLORD))
+			remove_law(law_index)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_law_removal_requested), src, lord, law_index)
+			else
+				remove_law(law_index)
+
+/mob/living/carbon/human/proc/request_purge()
+	set name = "Request Purge"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	if(hasomen(OMEN_NOLORD))
+		purge_laws()
+	else
+		var/lord = find_lord()
+		if(lord)
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_purge_requested), src, lord)
+		else
+			purge_laws()
+
+/mob/living/carbon/human/proc/request_outlaw()
+	set name = "Request Outlaw"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Outlaw a person", "JUSTICAR") as text|null
+	if(inputty)
+		if(hasomen(OMEN_NOLORD))
+			make_outlaw(inputty)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_outlaw_requested), src, lord, inputty)
+			else
+				make_outlaw(inputty)
+
+/proc/find_lord(required_stat = CONSCIOUS)
+	var/mob/living/lord
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(!H.mind || H.job != "Grand Duke" || (H.stat > required_stat))
+			continue
+		lord = H
+		break
+	return lord
+
+/proc/lord_law_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_law)
+	var/choice = alert(lord, "The JUSTICAR requests a new law!\n[requested_law]", "JUSTICAR LAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a new law!"))
+		return
+	make_law(requested_law)
+
+/proc/lord_law_removal_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_law)
+	if(!requested_law || !GLOB.laws_of_the_land[requested_law])
+		return
+	var/choice = alert(lord, "The JUSTICAR requests the removal of a law!\n[GLOB.laws_of_the_land[requested_law]]", "JUSTICAR LAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a law removal!"))
+		return
+	remove_law(requested_law)
+
+/proc/lord_purge_requested(mob/living/bailiff, mob/living/carbon/human/lord)
+	var/choice = alert(lord, "The JUSTICAR requests a purge of all laws!", "JUSTICAR PURGE REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for a purge of all laws!"))
+		return
+	purge_laws()
+
+/proc/lord_outlaw_requested(mob/living/bailiff, mob/living/carbon/human/lord, requested_outlaw)
+	var/choice = alert(lord, "The JUSTICAR requests to outlaw someone!\n[requested_outlaw]", "JUSTICAR OUTLAW REQUEST", "Yes", "No")
+	if(choice != "Yes" || QDELETED(lord) || lord.stat > CONSCIOUS)
+		if(bailiff)
+			to_chat(span_warning("The lord has denied the request for declaring an outlaw!"))
+		return
+	make_outlaw(requested_outlaw)
+
+/mob/proc/haltyell()
+	set name = "HALT!"
+	set category = "Noises"
+	emote("haltyell")
+
+/mob/proc/haltyell_exhausting()
+	set name = "HALT!"
+	set category = "Noises"
+
+	emote("haltyell")
+	stamina_add(rand(5,15))
