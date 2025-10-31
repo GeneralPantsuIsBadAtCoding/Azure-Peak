@@ -316,3 +316,72 @@
 	new /obj/item/reagent_containers/glass/bottle/rogue/beer/kgunshochu(src)
 	new /obj/item/reagent_containers/glass/bottle/rogue/beer/apfelweinheim(src)
 
+/datum/roguestock/import/minecarttracks
+	name = "Minecart Tracks"
+	desc = "A crate with One hundred minecart tracks and four break tracks"
+	item_type = /obj/structure/closet/crate/chest/steward/minecarttracks
+	export_price = 310
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/minecarttracks/Initialize()
+	. = ..()
+	for(var/i = 1 to 100)
+		new /obj/item/rotation_contraption/minecart_rail(src)
+	for(var/i = 1 to 4)
+		new /obj/item/rotation_contraption/minecart_rail/railbreak(src)
+
+/datum/roguestock/import/rotationalnetwork
+	name = "Rotational Network"
+	desc = "A crate of ten large gears, sixteen small gears, three gearboxes, three verticle gearboxes, and twenty shafts"
+	item_type = /obj/structure/closet/crate/chest/steward/rotationalnetwork
+	export_price = 362
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/rotationalnetwork/Initialize()
+	. = ..()
+	for(var/i = 1 to 10)
+		new /obj/item/rotation_contraption/large_cog(src)
+	for(var/i = 1 to 16)
+		new /obj/item/rotation_contraption/cog(src)
+	for(var/i = 1 to 3)
+		new /obj/item/rotation_contraption/horizontal(src)
+	for(var/i = 1 to 3)
+		new /obj/item/rotation_contraption/vertical(src)
+	for(var/i = 1 to 20)
+		new /obj/item/rotation_contraption/shaft(src)
+
+/datum/roguestock/import/waterwheels
+	name = "Waterwheels"
+	desc = "A crate of five waterwheels"
+	item_type = /obj/structure/closet/crate/chest/steward/waterwheels
+	export_price = 75
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/waterwheels/Initialize()
+	. = ..()
+	for(var/i = 1 to 5)
+		new /obj/item/rotation_contraption/waterwheel(src)
+
+/datum/roguestock/import/stoneblocks
+	name = "Stoneblocks"
+	desc = "A crate of twenty Stoneblocks, useful in building"
+	item_type = /obj/structure/closet/crate/chest/steward/stoneblocks
+	export_price = 40
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/stoneblocks/Initialize()
+	. = ..()
+	for(var/i = 1 to 20)
+		new /obj/item/natural/stoneblock(src)
+
+/datum/roguestock/import/planks
+	name = "Planks"
+	desc = "A crate of twenty planks, useful in building"
+	item_type = /obj/structure/closet/crate/chest/steward/planks
+	export_price = 60
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/planks/Initialize()
+	. = ..()
+	for(var/i = 1 to 20)
+		new /obj/item/natural/wood/plank(src)

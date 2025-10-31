@@ -495,7 +495,6 @@
 	if(owner)
 		if(!owner.has_embedded_objects())
 			owner.clear_alert("embeddedobject")
-			SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 		update_disabled()
 	return TRUE
 

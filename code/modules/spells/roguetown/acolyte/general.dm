@@ -45,11 +45,12 @@
 
 	var/conditional_buff = FALSE
 	var/situational_bonus = 1
+	var/is_inhumen = FALSE
 
 	var/message_out = span_info("A choral sound comes from above and [target] is healed!")
 	var/message_self = span_notice("I am bathed in healing choral hymns!")
 		
-	user.patron.on_lesser_heal(user, target, &message_out, &message_self, &conditional_buff, &situational_bonus)
+	user.patron.on_lesser_heal(user, target, &message_out, &message_self, &conditional_buff, &situational_bonus, &is_inhumen)
 
 	var/healing = 2.5
 
@@ -58,7 +59,7 @@
 		healing += situational_bonus
 
 	if(!ishuman(target))
-		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
+		target.apply_status_effect(/datum/status_effect/buff/healing, healing, is_inhumen)
 		return TRUE
 
 	var/mob/living/carbon/human/human = target

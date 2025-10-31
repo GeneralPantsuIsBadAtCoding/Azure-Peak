@@ -136,7 +136,6 @@
 	pushed_mob.visible_message(span_danger("[user] slams [pushed_mob] onto \the [src]!"), \
 								span_danger("[user] slams you onto \the [src]!"))
 	log_combat(user, pushed_mob, "tabled", null, "onto [src]")
-	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 
 /obj/structure/table/proc/tableheadsmash(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.Knockdown(30)
@@ -149,7 +148,6 @@
 	pushed_mob.visible_message(span_danger("[user] smashes [pushed_mob]'s head against \the [src]!"),
 								span_danger("[user] smashes your head against \the [src]"))
 	log_combat(user, pushed_mob, "head slammed", null, "against [src]")
-	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_headsmash)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -379,6 +377,16 @@
 /obj/structure/table/church/m/alt
 	icon_state = "churchtable_mid_alt"
 
+/obj/structure/table/finestone
+	name = "fine stone table"
+	desc = ""
+	icon = 'icons/roguetown/misc/tables.dmi'
+	icon_state = "stonetable_small"
+	max_integrity = 400
+	smooth = 0
+	climb_offset = 10
+	debris = list(/obj/item/natural/stoneblock = 1)
+
 /obj/structure/table/vtable
 	name = "ancient wooden table"
 	desc = ""
@@ -432,6 +440,7 @@
 	desc = ""
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "fancy_table"
+	smooth = 1
 	canSmoothWith = list(/obj/structure/table/wood/fancy,
 		/obj/structure/table/wood/fancy/black,
 		/obj/structure/table/wood/fancy/blue,

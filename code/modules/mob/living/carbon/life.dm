@@ -35,10 +35,6 @@
 				heart_attacking = FALSE
 
 	handle_sleep()
-
-	handle_brain_damage()
-
-
 	check_cremation()
 
 	if(HAS_TRAIT(src, TRAIT_IN_FRENZY))
@@ -114,13 +110,13 @@
 	if(HAS_TRAIT(src, TRAIT_NOBREATH))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_HOLDBREATH))
-		adjustOxyLoss(5)
+		adjustOxyLoss(10)
 	if(istype(loc, /obj/structure/closet/dirthole))
 		adjustOxyLoss(5)
 	if(istype(loc, /obj/structure/closet/burial_shroud))
 		var/obj/O = loc
 		if(istype(O.loc, /obj/structure/closet/dirthole))
-			adjustOxyLoss(5)
+			adjustOxyLoss(10)
 	if(isopenturf(loc))
 		var/turf/open/T = loc
 		if(reagents && T.pollution)
@@ -135,7 +131,7 @@
 /mob/living/carbon/handle_inwater(turf/onturf, extinguish = TRUE, force_drown = FALSE)
 	..()
 	if(!(mobility_flags & MOBILITY_STAND) || force_drown)
-		if(HAS_TRAIT(src, TRAIT_NOBREATH) || HAS_TRAIT(src, TRAIT_WATERBREATHING))
+		if (HAS_TRAIT(src, TRAIT_NOBREATH) || HAS_TRAIT(src, TRAIT_WATERBREATHING) || HAS_TRAIT(src, TRAIT_HOLDBREATH))
 			return TRUE
 		if(stat == DEAD && client)
 			record_round_statistic(STATS_PEOPLE_DROWNED)
@@ -152,7 +148,8 @@
 /mob/living/carbon/human/handle_inwater(turf/onturf, extinguish = TRUE, force_drown = FALSE)
 	. = ..()
 	if(istype(onturf, /turf/open/water/sewer))
-		add_stress(/datum/stressevent/sewertouched)
+		if(!HAS_TRAIT(src, TRAIT_HOLDBREATH))
+			add_stress(/datum/stressevent/sewertouched)
 
 /mob/living/carbon/proc/get_complex_pain()
 	. = 0
@@ -301,9 +298,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
 		jitteriness = max(jitteriness - restingpwr, 0)
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "jittery", /datum/mood_event/jittery)
-	else
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "jittery")
 
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
@@ -326,7 +320,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
 		if(drunkenness >= 3)
-//			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			if(prob(3))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)
@@ -486,15 +479,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	if(should_update_body)
 		update_body()
-
-////////////////
-//BRAIN DAMAGE//
-////////////////
-
-/mob/living/carbon/proc/handle_brain_damage()
-	for(var/T in get_traumas())
-		var/datum/brain_trauma/BT = T
-		BT.on_life()
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//

@@ -232,7 +232,12 @@
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK|MOUTH|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	adjustable = CAN_CADJUST
+	toggle_icon_state = TRUE
 	blocksound = PLATEHIT
+
+/obj/item/clothing/neck/roguetown/bevor/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/items/visor.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK)) // adjustable falling buffe for the bevor
 
 /obj/item/clothing/neck/roguetown/bevor/iron
 	name = "iron bevor"
@@ -314,10 +319,10 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
-		
+
 /obj/item/clothing/neck/roguetown/fencerguard/Initialize()
-	. = ..()		
-	update_icon()		
+	. = ..()
+	update_icon()
 
 /obj/item/clothing/neck/roguetown/gorget/forlorncollar
 	name = "forlorn collar"
@@ -749,7 +754,7 @@
 		user.change_stat(STATKEY_STR, 3)
 		user.change_stat(STATKEY_CON, -3)
 		user.change_stat(STATKEY_WIL, 3)
-		ADD_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
+		ADD_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC) //Imitates the fact that you are, in fact, going bonkers.
 		ADD_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC) //Roughly ~30% reduced vision with a sharp red overlay. Provides night vision in the visible tiles.
 		ADD_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC) //If you die while the necklace's on, that's it. Technically saveable if someone knows to remove the necklace, before attempting resurrection.
 		ADD_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
@@ -763,7 +768,7 @@
 		user.change_stat(STATKEY_STR, -3)
 		user.change_stat(STATKEY_CON, 3)
 		user.change_stat(STATKEY_WIL, -3)
-		REMOVE_TRAIT(user, TRAIT_SCHIZO_AMBIENCE, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_PSYCHOSIS, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_NOCSHADES, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_DNR, TRAIT_GENERIC)
 		REMOVE_TRAIT(user, TRAIT_STRONGKICK, TRAIT_GENERIC)
