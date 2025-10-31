@@ -47,14 +47,16 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		)
 ))
 
-GLOBAL_LIST_INIT(Pyromancy_spells, (list(/obj/effect/proc_holder/spell/invoked/fireresist,
-		/obj/effect/proc_holder/spell/invoked/fireaura,
-		/obj/effect/proc_holder/spell/invoked/rebuke,
+GLOBAL_LIST_INIT(Pyromancy_spells, (list(/obj/effect/proc_holder/spell/invoked/pyro/fireresist,
+		/obj/effect/proc_holder/spell/invoked/pyro/fireaura,
+		/obj/effect/proc_holder/spell/invoked/pyro/rebuke,
 		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
 		/obj/effect/proc_holder/spell/invoked/projectile/fireball,
-		/obj/effect/proc_holder/spell/invoked/melting,
-		/obj/effect/proc_holder/spell/invoked/flamebust,
-		/obj/effect/proc_holder/spell/invoked/firewalk,
+		/obj/effect/proc_holder/spell/invoked/pyro/melting,
+		/obj/effect/proc_holder/spell/invoked/pyro/flamebust,
+		/obj/effect/proc_holder/spell/invoked/pyro/firewalk,
+		/obj/effect/proc_holder/spell/invoked/pyro/flamewave,
+		/obj/effect/proc_holder/spell/invoked/pyro/burn_wounds,
 		)
 ))
 

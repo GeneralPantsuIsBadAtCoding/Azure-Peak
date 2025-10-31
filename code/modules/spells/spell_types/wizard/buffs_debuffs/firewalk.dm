@@ -1,7 +1,10 @@
-/obj/effect/proc_holder/spell/invoked/firewalk
+/obj/effect/proc_holder/spell/invoked/pyro/firewalk
 	name = "Firewalker"
-	overlay_state = "justflame"
-	desc = "Harden the target's skin like stone. (+5 Constitution)"
+	overlay_state = "firewalk"
+	desc = "Watch the fire dance and join the dance together! \n\
+	The ground under your feet will burn! \n\
+	You can re-cast the spell to prematurely remove it and get rid of your weakening. \n\
+	don't forget to take care of fireimmunity..."
 	cost = 4
 	xp_gain = TRUE
 	releasedrain = 60
@@ -21,7 +24,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 
-/obj/effect/proc_holder/spell/invoked/firewalk/cast(mob/user)
+/obj/effect/proc_holder/spell/invoked/pyro/firewalk/cast(mob/user)
 	var/atom/A = user
 	if(!isliving(A))
 		revert_cast()
@@ -30,7 +33,7 @@
 	var/mob/living/spelltarget = A
 	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
 
-	spelltarget.visible_message("[user] mutters an incantation and their skin hardens.")
+	spelltarget.visible_message("[user] mutters an incantation and the ground beneath his feet begins to burn!")
 	spelltarget.apply_status_effect(/datum/status_effect/buff/firewalker)
 
 	return TRUE
@@ -39,14 +42,14 @@
 
 /atom/movable/screen/alert/status_effect/buff/firewalker
 	name = "Fire Aura"
-	desc = "Flames dance at my heels, yet do not sting!"
+	desc = "The ground is burning under my feet!"
 	icon_state = "fire"
 
 /datum/status_effect/buff/firewalker
 	id = "fireaura"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/firewalker
 	effectedstats = list(STATKEY_SPD = -2)
-	examine_text = "<font color='red'>Emit fireaura!"
+	examine_text = "<font color='red'>Dancing in the fire!!"
 	duration = 30 SECONDS
 	var/outline_colour ="#f96d1bff"
 
@@ -55,18 +58,17 @@
 	var/filter = owner.get_filter(FIREWALKER_FILTER)
 	if (!filter)
 		owner.add_filter(FIREWALKER_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 80, "size" = 1))
-	to_chat(owner, span_warning("My skin heat like fire."))
 
-/datum/status_effect/buff/fireaura/tick()
+/datum/status_effect/buff/firewalker/tick()
 	var/mob/living/user = owner
 	if(owner.stat == DEAD || owner.stat != CONSCIOUS)
 		owner.remove_status_effect(/datum/status_effect/buff/firewalker)
 		return FALSE
 	new /obj/effect/hotspot(get_turf(user))
 
-/datum/status_effect/buff/fireaura/on_remove()
+/datum/status_effect/buff/firewalker/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("The flame shell cracks away."))
+	to_chat(owner, span_warning("The flame under my feets fades away."))
 	owner.remove_filter(FIREWALKER_FILTER)
 
 #define FIREWALKER_FILTER

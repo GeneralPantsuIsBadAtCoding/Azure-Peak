@@ -1,7 +1,9 @@
-/obj/effect/proc_holder/spell/invoked/fireaura
-	name = "Fireaura"
-	overlay_state = "justflame"
-	desc = "Harden the target's skin like stone. (+5 Constitution)"
+/obj/effect/proc_holder/spell/invoked/pyro/fireaura
+	name = "Fire Aura"
+	overlay_state = "fireaura"
+	desc = "Subdue the fire and make it dance around you! \n\
+	Any living creatures near you will take damage within a short distance, \n\
+	and they also have a chance to catch fire every second!"
 	cost = 3
 	xp_gain = TRUE
 	releasedrain = 60
@@ -21,7 +23,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 
-/obj/effect/proc_holder/spell/invoked/fireaura/cast(mob/user)
+/obj/effect/proc_holder/spell/invoked/pyro/fireaura/cast(mob/user)
 	var/atom/A = user
 	if(!isliving(A))
 		revert_cast()
@@ -33,7 +35,7 @@
 	if(spelltarget.has_status_effect(/datum/status_effect/buff/fireaura))
 		spelltarget.remove_status_effect(/datum/status_effect/buff/fireaura)
 	else
-		spelltarget.visible_message("[user] mutters an incantation and their skin hardens.")
+		spelltarget.visible_message("[user] makes his own body burn with a bright, burning fire!")
 		spelltarget.apply_status_effect(/datum/status_effect/buff/fireaura)
 
 	return TRUE
@@ -42,14 +44,14 @@
 
 /atom/movable/screen/alert/status_effect/buff/fireaura
 	name = "Fire Aura"
-	desc = "Flames dance at my heels, yet do not sting!"
+	desc = "Flames dancing around me while all living things are burning nearby!"
 	icon_state = "fire"
 
 /datum/status_effect/buff/fireaura
 	id = "fireaura"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fireaura
 	effectedstats = list(STATKEY_WIL = -2)
-	examine_text = "<font color='red'>Emit fireaura!"
+	examine_text = "<font color='red'>Emit Fire Aura!"
 	duration = 1 MINUTES
 	var/outline_colour ="#e98e2dff"
 
@@ -73,7 +75,7 @@
 
 /datum/status_effect/buff/fireaura/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("The flame shell cracks away."))
+	to_chat(owner, span_warning("The flame shell fades away."))
 	owner.remove_filter(FIREAURA_FILTER)
 
 /datum/status_effect/buff/fireaurabad
@@ -84,8 +86,12 @@
 
 /atom/movable/screen/alert/status_effect/fireaurabad
 	name = "Magical Flame"
-	desc = "Flame!"
+	desc = "A magical flame is devouring my body! We need to move away from the source!"
 	icon_state = "fire"
+
+/datum/status_effect/buff/fireaura/on_apply()
+	. = ..()
+	to_chat(owner, span_warning("A magical flame is devouring my body! We need to move away from the source!"))
 
 /datum/status_effect/buff/fireaurabad/tick()
 	var/mob/living/target = owner

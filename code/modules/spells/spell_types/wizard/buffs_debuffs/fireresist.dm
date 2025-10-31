@@ -1,7 +1,8 @@
-/obj/effect/proc_holder/spell/invoked/fireresist
+/obj/effect/proc_holder/spell/invoked/pyro/fireresist
 	name = "Fireresist"
-	overlay_state = "conjure_dragonhide"
-	desc = "Harden the target's skin like stone. (+5 Constitution)"
+	overlay_state = "fireresist"
+	desc = "Weaken your body to grant fireresistance to anyone or yourself! \n\
+	You can re-cast the spell on the target to prematurely remove it and get rid of your weakening."
 	cost = 2
 	xp_gain = TRUE
 	releasedrain = 60
@@ -22,7 +23,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	range = 7
 
-/obj/effect/proc_holder/spell/invoked/fireresist/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/invoked/pyro/fireresist/cast(list/targets, mob/living/user)
 	var/atom/A = targets[1]
 	if(!isliving(A))
 		revert_cast()
@@ -32,15 +33,22 @@
 	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
 
 	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] 's skin hardens like coal.")
-		to_chat(user, span_notice("With another person as a conduit, my spell's duration is doubled."))
-		spelltarget.apply_status_effect(/datum/status_effect/buff/dragonhide/fireresist/other)
+		if(spelltarget.has_status_effect(/datum/status_effect/buff/dragonhide/fireresist))
+			spelltarget.visible_message("[user] mutters an incantation and [spelltarget] 's coal shell fades away.")
+			spelltarget.remove_status_effect(/datum/status_effect/buff/dragonhide/fireresist)
+			user.remove_status_effect(/datum/status_effect/buff/fireresistdebuff)
+		else
+			user.visible_message("[user] mutters an incantation and [spelltarget] 's skin hardens like coal.")
+			spelltarget.apply_status_effect(/datum/status_effect/buff/dragonhide/fireresist)
+			user.apply_status_effect(/datum/status_effect/buff/fireresistdebuff)
 	else
 		if(spelltarget.has_status_effect(/datum/status_effect/buff/dragonhide/fireresist))
 			spelltarget.remove_status_effect(/datum/status_effect/buff/dragonhide/fireresist)
+			spelltarget.remove_status_effect(/datum/status_effect/buff/fireresistdebuff)
 		else
-			user.visible_message("[user] mutters an incantation and their skin hardens.")
+			user.visible_message("[user] mutters an incantation and their skin hardens like coal.")
 			spelltarget.apply_status_effect(/datum/status_effect/buff/dragonhide/fireresist)
+			spelltarget.apply_status_effect(/datum/status_effect/buff/fireresistdebuff)
 
 	return TRUE
 
@@ -56,7 +64,16 @@
 	examine_text = "<font color='red'>A fireresistance!"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
 	effectedstats = list(STATKEY_CON = -2) //Target body loosing CON, but getting fireresist.
-	duration = 1 MINUTES
+	duration = 2 MINUTES
 
-/datum/status_effect/buff/dragonhide/fireresist/other
+/atom/movable/screen/alert/status_effect/buff/fireresistdebuff
+	name = "Fireresistance"
+	desc = "Flames dance at my heels, yet do not sting!"
+	icon_state = "fire"
+
+/datum/status_effect/buff/fireresistdebuff
+	id = "fireresist"
+	examine_text = "<font color='red'>A fireresistance!"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/fireresistdebuff
+	effectedstats = list(STATKEY_CON = -2) //Target body loosing CON, but getting fireresist.
 	duration = 2 MINUTES

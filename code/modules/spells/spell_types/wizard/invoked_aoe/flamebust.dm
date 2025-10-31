@@ -1,24 +1,27 @@
-/obj/effect/proc_holder/spell/invoked/flamebust
+/obj/effect/proc_holder/spell/invoked/pyro/flamebust
 	name = "Flame Bust"
-	desc = "Flame ground"
-	overlay_state = "justflame"
+	desc = "After a short delay, create a powerful burst of flame across the area! \n\
+	Damage is increased by 100% versus simple-minded creechurs \n\
+	True arcana masters can enhance this spell!"
+	overlay_state = "flamebust"
+	action_icon_state = "flamebust"
 	cost = 6
 	spell_tier = 3
 	releasedrain = 50
 	chargedrain = 1
-	chargetime = 20
+	chargetime = 5 SECONDS
 	recharge_time = 30 SECONDS //x2 bladebust
 	warnie = "spellwarning"
 	no_early_release = TRUE
-	movement_interrupt = TRUE
+	movement_interrupt = FALSE
 	charging_slowdown = 2
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_HIGH
-	chargedloop = /datum/looping_sound/invokegen
+	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
 	range = 1
 
-/obj/effect/proc_holder/spell/invoked/flamebust/cast(list/targets, mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/pyro/flamebust/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
 	var/user_skill = user.get_skill_level(associated_skill)
 	if(user_skill == 6) //legend
@@ -29,13 +32,15 @@
 	create_fire(T)
 
 //meteor storm and lightstorm.
-/obj/effect/proc_holder/spell/invoked/flamebust/proc/create_fire(atom/target)
+/obj/effect/proc_holder/spell/invoked/pyro/flamebust/proc/create_fire(atom/target)
 	if(!target)
 		return
 	var/turf/targetturf = get_turf(target)
 	for(var/t in spiral_range_turfs(range, targetturf))
 		var/turf/T = t
 		if(!T)
+			continue
+		if(istype(T, /turf/closed))
 			continue
 		new /obj/effect/temp_visual/targetflame(T)
 
@@ -61,5 +66,7 @@
 	for(var/mob/living/L in T.contents)
 		if(L.anti_magic_check())
 			continue
-		L.adjustFireLoss(20)
-		to_chat(L, span_userdanger("You're hit by lightning!!!"))
+		if (!L.mind && istype(L, /mob/living/simple_animal))
+			L.adjustFireLoss(30) //x2 VS mobs
+		L.adjustFireLoss(30)
+		to_chat(L, span_userdanger("You're hit by flame!!!"))

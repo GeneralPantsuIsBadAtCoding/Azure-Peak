@@ -5,6 +5,7 @@
 	range = 8
 	projectile_type = /obj/projectile/magic/aoe/fireball/rogue
 	overlay_state = "fireball"
+	base_icon_state = "spellpyro"
 	sound = list('sound/magic/fireball.ogg')
 	releasedrain = 30
 	chargedrain = 1
