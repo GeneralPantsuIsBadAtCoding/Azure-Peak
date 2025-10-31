@@ -25,7 +25,7 @@
 	for(var/datum/examine_effect/E in examine_effects)
 		E.trigger(user)
 
-/obj/item/proc/integrity_check()
+/obj/item/proc/integrity_check(elaborate = FALSE)
 	if(!max_integrity)
 		return
 	if(obj_integrity == max_integrity)
@@ -36,13 +36,14 @@
 
 	if(obj_broken)
 		return span_warning("It's broken.")
-	switch(int_percent)
-		if(1 to 20)
-			result = span_warning("It's nearly broken.")
-		if(10 to 30)
-			result = span_warning("It's severely damaged.")
-		if(30 to 80)
-			result = span_warning("It's damaged.")
-		if(80 to 99)
-			result = span_warning("It's a little damaged.")
+	if(elaborate)
+		switch(int_percent)
+			if(1 to 20)
+				result = span_warning("It's nearly broken.")
+			if(10 to 30)
+				result = span_warning("It's severely damaged.")
+			if(30 to 80)
+				result = span_warning("It's damaged.")
+			if(80 to 99)
+				result = span_warning("It's a little damaged.")
 	return result

@@ -536,9 +536,15 @@ BLIND     // can't see anything
 
 			damage_amount = 5	//Limb coverage integrity means we ignore the basic obj integrity. Mostly.
 
+			//We actively broke something in this strike. This should be /clothing exclusive. Should be its own proc maybe?
 			if(body_parts_covered_dynamic[bflag_index] == 0)
 				playsound(src, break_sound, 100, TRUE)
 				visible_message(span_warning("<b>[bodyzone2readablezone(def_zone)]</b> coverage breaks on \the [src]!"))
+				balloon_alert_to_viewers("<font color = '#bb2b2b'>[bodyzone2readablezone(def_zone)]<br>breaks!</font>")
+
+				//No text for Combat Aware on a break -- everyone can see it.
+				ratio = 0
+				ratio_newinteg = 0
 	if(ratio > 0.75 && ratio_newinteg < 0.75)
 		text = "Armor <br><font color = '#8aaa4d'>marred</font>"
 		y_offset = -5
@@ -551,3 +557,40 @@ BLIND     // can't see anything
 	if(text)
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	. = ..()
+
+/obj/item/clothing/proc/generate_tooltip(examine_text, showcrits)
+	if(!armor)	// No armor
+		return examine_text
+	
+	// Fake armor
+	if(armor.getRating("slash") == 0 && armor.getRating("stab") == 0 && armor.getRating("blunt") == 0 && armor.getRating("piercing") == 0)
+		return examine_text
+
+	var/str
+	str += "[colorgrade_rating("🔨 BLUNT ", armor.blunt, elaborate = TRUE)] | "
+	str += "[colorgrade_rating("🪓 SLASH ", armor.slash, elaborate = TRUE)]"
+	str += "<br>"
+	str += "[colorgrade_rating("🗡️ STAB ", armor.stab, elaborate = TRUE)] | "
+	str += "[colorgrade_rating("🏹 PIERCE ", armor.piercing, elaborate = TRUE)] "
+
+	if(showcrits && prevent_crits)
+		str += "<br>———————————————<br>"
+		str += "<font color = '#afaeae'>STOPS CRITS: <br>"
+		var/linebreak_count = 0
+		var/index = 0
+		for(var/flag in prevent_crits)
+			index++
+			if(flag == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
+				flag = "pick"
+			str += ("[capitalize(flag)] ")
+			linebreak_count++
+			if(linebreak_count >= 3)
+				str += "<br>"
+				linebreak_count = 0
+			else if(index != length(prevent_crits))
+				str += " | "
+		str += "</font>"
+
+	//This makes it appear a faint off-blue from the rest of examine text + gives it a "clickable" underline. Draws the cursor to it like to a Wetsquires.rt link.
+	examine_text = "<u><font color = '#a9dbdf'>[examine_text]</font></u>"
+	return SPAN_TOOLTIP_DANGEROUS_HTML(str, examine_text)

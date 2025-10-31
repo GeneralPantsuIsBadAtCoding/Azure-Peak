@@ -426,9 +426,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		return
 	return ..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that. - I made it worse sorry guys.
 
-/proc/armor_tooltip(input)
-
-
 //Sorry colorblind folks...
 /proc/colorgrade_rating(input, rating, elaborate = FALSE)
 	var/str
@@ -471,61 +468,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		else
 			str = "[input] (Under 0 or above 200! Contact coders.)"
 	return str
-
-/*/proc/defense_report(var/obj/item/clothing/C, var/stupid, var/normal, var/smart, var/stupid_string)
-	var/str
-
-	if(!istype(C, /obj/item/clothing))
-		str += "<br>---------------------------<br>"
-		return str
-	if(C.armor)
-		var/defense = "<u><b>ABSORPTION: </b></u><br>"
-		var/datum/armor/def_armor = C.armor
-		defense += "[colorgrade_rating("BLUNT", def_armor.blunt, smart)] | "
-		defense += "[colorgrade_rating("SLASH", def_armor.slash, smart)] | "
-		defense += "[colorgrade_rating("STAB", def_armor.stab, smart)] | "
-		defense += "[colorgrade_rating("PIERCING", def_armor.piercing, smart)] "
-		str += "[defense]<br>"
-
-	var/coverage = "<u><b>COVERS: </b></u><br>"
-	if(!stupid)
-		coverage += "<font color = '#cccccc'> | </font>"
-		for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
-			coverage += "<font color = '#cccccc'><b>[zone] | </b></font>"
-		str += "[coverage]<br>"
-	else
-		str += coverage
-		str += stupid_string
-	if(normal || smart)
-		var/list/critclasses = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_SMASH, BCLASS_PICK)
-		var/crits
-		if(C.prevent_crits || smart)
-			crits = "<b><u>PREVENTS CRITS: </u></b>"
-		if(C.prevent_crits)
-			crits += "<br>"
-			crits += "<font color = '#69a1a8'>| </font>"
-			for(var/zone in C.prevent_crits)
-				for(var/crit in critclasses)
-					if(zone == crit)
-						if(zone == BCLASS_PICK)
-							zone = "pick"		//Pick is labelled as 'Stab'
-						zone = "<font color = '#69a1a8'>[capitalize(zone)] | </font>"
-						crits += zone
-						LAZYREMOVE(critclasses, crit)
-						continue
-		if(smart)
-			crits += "<br>"
-			crits += "<font color = '#a35252'>| </font>"
-			for(var/crit in critclasses)
-				if(crit == BCLASS_PICK)
-					crit = "pick"		//Pick is labelled as 'Stab', this prevents confusion
-				crit = "<font color = '#a35252'>[capitalize(crit)] | </font>"
-				crits += crit
-
-		str += crits
-	str += "<br>---------------------------<br>"
-	
-	return str*/
 
 /proc/skilldiff_report(var/input)
 	switch (input)
