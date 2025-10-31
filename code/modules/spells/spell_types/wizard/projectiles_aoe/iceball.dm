@@ -54,8 +54,16 @@
 		M.OffBalance(10)
 		explosion(M, -1, 0, 1, 0, 0, flame_range = 0, soundin = 'sound/magic/whiteflame.ogg')
 
-		for(M in range(area_of_effect, T)) //apply damage over time to mobs
-			M.apply_status_effect(/datum/status_effect/buff/frostbite)
+		for(M in range(area_of_effect, T)) //apply stamina damage on mobs across target and status effect
+			if(M.has_status_effect(/datum/status_effect/buff/frostbite))
+				return
+			else
+				if(M.has_status_effect(/datum/status_effect/buff/frost))
+					playsound(get_turf(target), 'sound/combat/fracture/fracturedry (1).ogg', 80, TRUE, soundping = TRUE)
+					M.remove_status_effect(/datum/status_effect/buff/frost)
+					L.apply_status_effect(/datum/status_effect/buff/frostbite)
+				else
+					M.apply_status_effect(/datum/status_effect/buff/frost)
 			M.stamina_add(damage)
 
 		for(var/turf/affected_turf in view(area_of_effect, T))
@@ -74,7 +82,7 @@
 	desc = "A deep black rock glazed over with unnaturally cold ice."
 	randomdir = TRUE
 	duration = 20 SECONDS
-	layer = 1
+	layer = FLOOR_PLANE
 
 /obj/structure/roguerock/iceblast
 	name = "ice pillar"
@@ -84,9 +92,9 @@
 	opacity = 0
 	max_integrity = 10
 	climbable = TRUE
-	climb_time = 30
+	climb_time = 15
 	density = TRUE
-	layer = 1.1
+	layer = TABLE_LAYER
 	blade_dulling = DULLING_BASH
 	static_debris = null
 	debris = null

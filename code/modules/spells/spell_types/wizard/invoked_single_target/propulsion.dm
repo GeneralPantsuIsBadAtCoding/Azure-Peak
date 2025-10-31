@@ -21,6 +21,8 @@
 	recharge_time = 45 SECONDS
 	gesture_required = TRUE
 	var/delay = 0.5 SECONDS
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_HIGH
 	var/sparkle_path = /obj/effect/temp_visual/gravity_trap
 	var/outline_colour = "#f700ffff"
 	var/push_range = 1
@@ -49,10 +51,12 @@
 			U.add_filter("AURA", 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
 		for(var/i in 1 to 500)
 			if(do_after(U, delay))
-				push_range++
-				for(var/turf/T in view(push_range, U))
-					new /obj/effect/temp_visual/gravity_trap(T)
+				for(var/turf/T in range(push_range, U))
+					if(get_dist(U, T) == push_range)
+						new /obj/effect/temp_visual/gravity_trap(T)
 					for(var/atom/movable/AM in T)
+						if(get_dist(U, AM) != push_range)
+							continue
 						thrownatoms += AM
 				for(var/am in thrownatoms)
 					var/atom/movable/AM = am
@@ -78,6 +82,7 @@
 					thrownatoms = list()
 				if(push_range >= push_range_max)
 					push_range = 1
+				push_range++
 				U.stamina_add(1)
 				playsound(U, 'sound/magic/charging_fire.ogg', 100, TRUE)
 			else

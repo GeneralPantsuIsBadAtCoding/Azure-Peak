@@ -20,6 +20,8 @@
 	charging_slowdown = 2
 	recharge_time = 45 SECONDS
 	gesture_required = TRUE
+	glow_color = GLOW_COLOR_ICE
+	glow_intensity = GLOW_INTENSITY_HIGH
 	var/delay = 0.5 SECONDS
 	var/outline_colour = "#00b3ffff"
 

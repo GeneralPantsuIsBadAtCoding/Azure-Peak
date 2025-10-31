@@ -1,4 +1,3 @@
-// Spell is disabled because of snap freeze + frost bolt existing at the same time
 /obj/effect/proc_holder/spell/invoked/frostbite
 	name = "Frostbite"
 	desc = "Freeze your enemy with an icy blast that does low damage, but reduces the target's Speed for a considerable length of time."
@@ -21,11 +20,19 @@
 	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 3
-	gesture_required = TRUE // Offensive spell
 
 /obj/effect/proc_holder/spell/invoked/frostbite/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
-		var/mob/living/carbon/target = targets[1]
-		target.apply_status_effect(/datum/status_effect/buff/frostbite/) //apply debuff
-		target.adjustFireLoss(12) //damage
-		target.adjustBruteLoss(12)
+		var/mob/living/carbon/L = targets[1]
+		L.adjustFireLoss(12)
+		L.adjustBruteLoss(12)
+		if(L.has_status_effect(/datum/status_effect/buff/frostbite))
+				return
+			else
+				if(L.has_status_effect(/datum/status_effect/buff/frost))
+					playsound(get_turf(target), 'sound/combat/fracture/fracturedry (1).ogg', 80, TRUE, soundping = TRUE)
+					L.remove_status_effect(/datum/status_effect/buff/frost)
+					L.apply_status_effect(/datum/status_effect/buff/frostbite)
+				else
+					L.apply_status_effect(/datum/status_effect/buff/frost)
+			new /obj/effect/temp_visual/snap_freeze(get_turf(L))

@@ -49,6 +49,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	var/spell_points
 	var/used_spell_points
+	var/magic_scool
+	var/secondary_magic_scool
 	var/movemovemovetext = "Move!!"
 	var/takeaimtext = "Take aim!!"
 	var/holdtext = "Hold!!"

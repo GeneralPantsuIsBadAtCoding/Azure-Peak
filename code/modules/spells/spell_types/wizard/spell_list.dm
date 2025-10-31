@@ -1,13 +1,8 @@
 // Global list for all learnable spells.
 // Maybe one day we'll have different schools of spells etc. and a system tied to them but this is fine for now.
 
-GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/projectile/fireball,
-		/obj/effect/proc_holder/spell/invoked/melting,
-		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
-		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
-		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
+GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/projectile/fetch,
 		/obj/effect/proc_holder/spell/invoked/forcewall,
-		/obj/effect/proc_holder/spell/invoked/ensnare,
 		/obj/effect/proc_holder/spell/self/message,
 		/obj/effect/proc_holder/spell/invoked/repulse,
 		/obj/effect/proc_holder/spell/invoked/blade_burst,
@@ -18,17 +13,10 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/darkvision,
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
-		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
 		/obj/effect/proc_holder/spell/invoked/projectile/fireball/greater,
-//		/obj/effect/proc_holder/spell/invoked/frostbite,
 		/obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/fortitude,
-		/obj/effect/proc_holder/spell/invoked/frosting,
-		/obj/effect/proc_holder/spell/invoked/snap_freeze,
-		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
-		/obj/effect/proc_holder/spell/invoked/gravity,
-		/obj/effect/proc_holder/spell/invoked/propulsion,
 		/obj/effect/proc_holder/spell/invoked/projectile/repel,
 		/obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
@@ -48,23 +36,49 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/self/conjure_armor,
 		/obj/effect/proc_holder/spell/self/conjure_armor/dragonhide,
 		/obj/effect/proc_holder/spell/self/magicians_brick,
-		/obj/effect/proc_holder/spell/invoked/thunderstrike,
 		/obj/effect/proc_holder/spell/invoked/sundering_lightning,
-		/obj/effect/proc_holder/spell/invoked/shoking,
 		/obj/effect/proc_holder/spell/invoked/meteor_storm,
 		/obj/effect/proc_holder/spell/invoked/enchant_weapon,
 		/obj/effect/proc_holder/spell/invoked/forcewall/arcyne_prison,
 		/obj/effect/proc_holder/spell/invoked/forcewall/greater,
-		/obj/effect/proc_holder/spell/invoked/wither,
-		/obj/effect/proc_holder/spell/invoked/rebuke,
 		/obj/effect/proc_holder/spell/invoked/projectile/fireball/artillery,
 		/obj/effect/proc_holder/spell/invoked/conjure_primordial,
-		/obj/effect/proc_holder/spell/invoked/projectile/teslaball,
-		/obj/effect/proc_holder/spell/invoked/projectile/wretchball,
-		/obj/effect/proc_holder/spell/invoked/projectile/iceball,
 		/obj/effect/proc_holder/spell/invoked/bridge,
-		/obj/effect/proc_holder/spell/invoked/frostarmor,
-		/obj/effect/proc_holder/spell/invoked/fireresist,
+		)
+))
+
+GLOBAL_LIST_INIT(Pyromancy_spells, (list(/obj/effect/proc_holder/spell/invoked/fireresist,
 		/obj/effect/proc_holder/spell/invoked/fireaura,
+		/obj/effect/proc_holder/spell/invoked/rebuke,
+		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
+		/obj/effect/proc_holder/spell/invoked/projectile/fireball,
+		/obj/effect/proc_holder/spell/invoked/melting,
+		/obj/effect/proc_holder/spell/invoked/flamebust,
+		)
+))
+
+GLOBAL_LIST_INIT(Cryomancy_spells, (list(/obj/effect/proc_holder/spell/invoked/frostarmor,
+		/obj/effect/proc_holder/spell/invoked/projectile/iceball,
+		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
+		/obj/effect/proc_holder/spell/invoked/frosting,
+		/obj/effect/proc_holder/spell/invoked/frostbite, //I re-add it, for two-hit frostbite combo. Why not?
+		/obj/effect/proc_holder/spell/invoked/snap_freeze,
+		)
+))
+
+GLOBAL_LIST_INIT(Electromancy_spells, (list(/obj/effect/proc_holder/spell/invoked/projectile/teslaball,
+		/obj/effect/proc_holder/spell/invoked/thunderstrike,
+		/obj/effect/proc_holder/spell/invoked/shoking,
+		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
+		)
+))
+
+GLOBAL_LIST_INIT(Darkmagic_spells, (list(/obj/effect/proc_holder/spell/invoked/projectile/wretchball,
+		/obj/effect/proc_holder/spell/invoked/wither,
+		/obj/effect/proc_holder/spell/invoked/gravity,
+		/obj/effect/proc_holder/spell/invoked/propulsion,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
+		/obj/effect/proc_holder/spell/invoked/ensnare,
+		/obj/effect/proc_holder/spell/invoked/deadland,
 		)
 ))

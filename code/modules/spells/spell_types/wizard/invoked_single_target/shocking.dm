@@ -20,6 +20,8 @@
 	charging_slowdown = 2
 	recharge_time = 45 SECONDS
 	gesture_required = TRUE
+	glow_color = GLOW_COLOR_LIGHTNING
+	glow_intensity = GLOW_INTENSITY_HIGH
 	var/delay = 0.5 SECONDS
 	var/outline_colour = "#eeff00ff"
 	var/list/starget
@@ -30,6 +32,7 @@
 			new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 			var/mob/living/T = targets[1]
 			var/mob/living/carbon/human/U = user
+			var/mob/living/carbon/M
 			if(T.anti_magic_check())
 				visible_message(span_warning("The gravity fades away around you [T] "))  //antimagic needs some testing
 				playsound(get_turf(T), 'sound/magic/magic_nulled.ogg', 100)
@@ -70,6 +73,11 @@
 						var/turf/front = get_step(U,U.dir)
 						S.set_up(1, 1, front)
 						S.start()
+						for(M in range(area_of_effect, T)) //apply damage over time to mobs across target. Zap Zap!
+							M.adjustFireLoss(damage)
+							M.stamina_add(1 + greatshock/2)
+							M.electrocute_act(1, src, 1, SHOCK_NOSTUN)
+							M.apply_status_effect(/datum/status_effect/buff/lightningstruck, 6 SECONDS)
 					if(additional)
 						if(greatshock == 5)
 							greatshock++

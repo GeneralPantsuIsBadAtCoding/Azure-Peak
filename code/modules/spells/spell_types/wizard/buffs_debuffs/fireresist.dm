@@ -6,14 +6,14 @@
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
-	chargetime = 1 SECONDS
-	recharge_time = 2 MINUTES
+	chargetime = 5 SECONDS
+	recharge_time = 30 SECONDS
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 2
 	invocations = list("Perstare Sicut Saxum.") // Endure like Stone
 	invocation_type = "whisper"
-	glow_color = GLOW_COLOR_BUFF
+	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_LOW
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -46,15 +46,17 @@
 
 //VVV Just rename this shit. VVV
 
-/datum/status_effect/buff/dragonhide/fireresist
-	id = "fireresist"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
-	examine_text = "<font color='red'>Im a fireresistance!"
-
 /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
 	name = "Fireresistance"
 	desc = "Flames dance at my heels, yet do not sting!"
-	effectedstats = list(STATKEY_CON = -2) //Your body loosing CON, but getting fireresist.
+	icon_state = "fire"
+
+/datum/status_effect/buff/dragonhide/fireresist
+	id = "fireresist"
+	examine_text = "<font color='red'>A fireresistance!"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
+	effectedstats = list(STATKEY_CON = -2) //Target body loosing CON, but getting fireresist.
+	duration = 1 MINUTES
 
 /datum/status_effect/buff/dragonhide/fireresist/other
 	duration = 2 MINUTES

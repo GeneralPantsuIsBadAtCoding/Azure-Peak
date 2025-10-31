@@ -13,14 +13,14 @@
 	spell_tier = 3
 	invocations = list("Perstare Sicut Saxum.") // Endure like Stone
 	invocation_type = "whisper"
-	glow_color = GLOW_COLOR_ARCANE
+	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_LOW
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	range = 7
+	var/newcolor = rgb(136, 191, 255)
 
 /obj/effect/proc_holder/spell/invoked/frostarmor/cast(mob/user)
 	var/atom/A = user
@@ -31,13 +31,17 @@
 	var/mob/living/spelltarget = A
 	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
 
+	new /obj/effect/temp_visual/snap_freeze(get_turf(user))
+
 	if(spelltarget.has_status_effect(/datum/status_effect/buff/frostbite/frostarmor) && spelltarget.has_status_effect(/datum/status_effect/buff/frostarmor))
-		remove_status_effect(/datum/status_effect/buff/frostarmor)
-		remove_status_effect(/datum/status_effect/buff/frostbite/frostarmor)
+		spelltarget.remove_status_effect(/datum/status_effect/buff/frostarmor)
+		spelltarget.remove_status_effect(/datum/status_effect/buff/frostbite/frostarmor)
+		target.remove_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	else
 		spelltarget.visible_message("[user] mutters an incantation and their skin hardens.")
 		spelltarget.apply_status_effect(/datum/status_effect/buff/frostarmor)
 		spelltarget.apply_status_effect(/datum/status_effect/buff/frostbite/frostarmor)
+		target.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 
 	return TRUE
 
@@ -52,8 +56,8 @@
 	var/outline_colour ="#2dade9ff"
 	id = "frostarmor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostarmor
-	effectedstats = list("constitution"= 5,"endurance" = 3)
-	duration = -1 SECONDS
+	effectedstats = list(STATKEY_CON = 5, STATKEY_WIL = 3)
+	duration = 30 MINUTES
 
 /datum/status_effect/buff/stoneskin/on_apply()
 	. = ..()
@@ -70,4 +74,6 @@
 #undef FROSTARMOR_FILTER
 
 /datum/status_effect/buff/frostbite/frostarmor
-	duration = -1 SECONDS
+	duration = 30 MINUTES
+
+/datum/status_effect/buff/frostbite/frostarmor/tick()

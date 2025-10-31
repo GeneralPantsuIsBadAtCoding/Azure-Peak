@@ -43,6 +43,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
+		var/mob/living/L
 		var/turf/T = get_turf(M)
 		if(M.anti_magic_check())
 			visible_message(span_warning("[src] fizzles on contact with [target]!"))
@@ -52,9 +53,9 @@
 		M.apply_status_effect(/datum/status_effect/debuff/clickcd, 1 SECONDS)
 		M.electrocute_act(1, src, 1, SHOCK_NOSTUN)
 		M.apply_status_effect(/datum/status_effect/buff/lightningstruck, 6 SECONDS)
-		explosion(M, -1, 0, 1, 0, 0, flame_range = 0, soundin = 'sound/magic/lightning.ogg')
-		for(var/mob/living/L in range(area_of_effect, T) - M)
-			M.apply_status_effect(/datum/status_effect/debuff/clickcd, 1 SECONDS)
-			M.electrocute_act(1, src, 1, SHOCK_NOSTUN)
-			M.apply_status_effect(/datum/status_effect/buff/lightningstruck, 6 SECONDS)
-			M.adjustFireLoss(60)
+		explosion(M, -1, 0, 1, 4, 0, flame_range = 0, soundin = 'sound/magic/lightning.ogg')
+		for(L in range(area_of_effect, T)) //apply damage over time to mobs across target. Zap Zap!
+			L.apply_status_effect(/datum/status_effect/debuff/clickcd, 1 SECONDS)
+			L.electrocute_act(1, src, 1, SHOCK_NOSTUN)
+			L.apply_status_effect(/datum/status_effect/buff/lightningstruck, 6 SECONDS)
+			L.adjustFireLoss(30) //half damage

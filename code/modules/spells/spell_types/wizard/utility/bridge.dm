@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/bridge
 	name = "Bridge"
 	desc = "Lashes out a delayed line of dark magic, lowering the physical prowess of all in it's path."
-	cost = 3
+	cost = 2
 	releasedrain = 50
 	overlay_state = "wither" // just using the curse blob, it's placeholder.
 	chargedrain = 2
@@ -60,10 +60,9 @@
 	icon_state = "arcana"
 
 /turf/open/floor/rogue/twig/platform/arcane/Initialize()
-	addtimer(CALLBACK(src, PROC_REF(boom)), wait = 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(boom)), wait = 30 SECONDS)
 	. = ..()
 
 /turf/open/floor/rogue/twig/platform/arcane/proc/boom()
 	playsound(src, 'sound/magic/magic_nulled.ogg', 60)
-	destroy(src)
-	qdel()
+	turf_destruction()
