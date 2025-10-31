@@ -1,7 +1,7 @@
 /datum/advclass/wretch/plaguebearer
 	name = "Plaguebearer"
 	tutorial = "A disgraced physician forced into exile and years of hardship, you have turned to a private practice surrounding the only things you've ever known - poisons and plague. Revel in the spreading of blight, and unleash craven pestilence."
-	allowed_races = list(RACES_ALL_KINDS)
+	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/plaguebearer
 	cmode_music = 'sound/music/combat_physician.ogg'
 	category_tags = list(CTAG_WRETCH)

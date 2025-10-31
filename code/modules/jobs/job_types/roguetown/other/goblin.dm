@@ -9,17 +9,7 @@
 	max_pq = null
 
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = list(
-		"Humen",
-		"Rakshari",
-		"Elf",
-		"Half-Elf",
-		"Dwarf",
-		"Tiefling",
-		"Dark Elf",
-		"Aasimar",
-		"Half-Orc"
-	)
+	allowed_races = list(SPEC_ID_GOBLINP)
 	tutorial = ""
 
 	outfit = /datum/outfit/job/roguetown/npc/goblin

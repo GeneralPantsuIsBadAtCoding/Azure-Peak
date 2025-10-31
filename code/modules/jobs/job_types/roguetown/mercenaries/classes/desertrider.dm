@@ -2,7 +2,7 @@
 	name = "Desert Rider Janissary"
 	tutorial = "The Janissaries are the Empire's elite infantry units, wielding mace and shield. We do not break."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = list(RACES_ALL_KINDS)
+	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider
 	class_select_category = CLASS_CAT_RANESHENI
 	category_tags = list(CTAG_MERCENARY)
