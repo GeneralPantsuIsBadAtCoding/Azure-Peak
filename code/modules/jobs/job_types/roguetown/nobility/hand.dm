@@ -22,7 +22,6 @@
 	job_traits = list(TRAIT_NOBLE)
 	job_subclasses = list(
 		/datum/advclass/hand/blademaster,
-		/datum/advclass/hand/marshal,
 		/datum/advclass/hand/spymaster,
 		/datum/advclass/hand/advisor
 	)
@@ -55,17 +54,18 @@
 //CLASSES//
 ///////////
 
+//Blademaster Hand start
 /datum/advclass/hand/blademaster
 	name = "Blademaster"
-	tutorial = " You have played blademaster and strategist to the Noble-Family for so long that you are a master tactician, something you exploit with potent conviction. Let no man ever forget whose ear you whisper into. You've killed more men with swords than any spymaster could ever claim to."
-	outfit = /datum/outfit/job/roguetown/hand/handclassic
+	tutorial = "You have played blademaster and strategist to the Noble-Family for so long that you are a master tactician, something you exploit with potent conviction. Let no man ever forget whose ear you whisper into. You've killed more men with swords than any spymaster could ever claim to."
+	outfit = /datum/outfit/job/roguetown/hand/blademaster
 
 	category_tags = list(CTAG_HAND)
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_HEAVYARMOR)
 	subclass_stats = list(
 		STATKEY_PER = 3,
 		STATKEY_INT = 3,
-		STATKEY_SPD = 2, //You are using swift balanced weapons why are you getting strenght
+		STATKEY_STR = 2,
 		STATKEY_LCK = 1,
 	)
 	subclass_skills = list(
@@ -77,18 +77,17 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
 	)
 
-//Classical hand start - same as before, nothing changed. 
-/datum/outfit/job/roguetown/hand/handclassic/pre_equip(mob/living/carbon/human/H)
-	r_hand = /obj/item/rogueweapon/sword/rapier/dec
+/datum/outfit/job/roguetown/hand/blademaster/pre_equip(mob/living/carbon/human/H)
+	r_hand = /obj/item/rogueweapon/sword/long/oathkeeper //Ned Stark Larp
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/retinue/coat//Only one with armour on spawn
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	backpack_contents = list(
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
@@ -157,52 +156,6 @@
 		H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/misc/stealing, 6, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/misc/lockpicking, 6, TRUE)
-
-//Marshal start, mr mace guy with a fancy sword, Ned Stark larp I suppose
-/datum/outfit/job/roguetown/hand/marshal/pre_equip(mob/living/carbon/human/H)
-	r_hand = /obj/item/rogueweapon/sword/long/oathkeeper
-	beltl = /obj/item/rogueweapon/mace/cudgel/justice
-	beltr = /obj/item/rogueweapon/scabbard/sword
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	backpack_contents = list(
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/storage/keyring/hand = 1,
-	)
-	if(H.age == AGE_OLD)
-		H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
-		H.change_stat(STATKEY_LCK, 2)
-
-/datum/advclass/hand/marshal
-	name = "Marshal"
-	tutorial = "You've spent your daes in the courts and garrisons of the city. You've studied the law tome from back to front and enforce your word with the iron hand of justice, and the iron mace in your hands. More men have spent days rotting in the dungeon than that Knight Commander could ever have claimed, and every person in the realm respects your authority in matters of law and order."
-	outfit = /datum/outfit/job/roguetown/hand/marshal
-
-	category_tags = list(CTAG_HAND)
-	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_PERFECT_TRACKER)
-	subclass_stats = list(
-		STATKEY_INT = 2,
-		STATKEY_CON = 1,
-		STATKEY_WIL = 1,
-		STATKEY_SPD = 1,
-		STATKEY_STR = 2,
-		STATKEY_LCK = 1,
-	)//You are not exactly a knight but you sort of are
-	subclass_skills = list(
-		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
-	)
 
 //Advisor Start
 /datum/advclass/hand/advisor
