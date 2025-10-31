@@ -1,6 +1,7 @@
 #define GARRISON_SCOM_COLOR "#FF4242"
 #define NORMAL_SCOM_TRANSMISSION_DELAY 15 SECONDS
 #define NORMAL_SCOM_PER_MESSAGE_DELAY 15 SECONDS 
+#define CHEESE_QUIET_TIME 2 MINUTES // How long stuffing a slice of cheese in quieten the SCOM
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
@@ -28,6 +29,8 @@
 	var/receive_only = FALSE
 	var/spawned_rat = FALSE
 	var/garrisonline = FALSE
+	/// Track whether it was cheesed recently
+	var/last_cheese = 0
 
 /obj/structure/roguemachine/scomm/OnCrafted(dirin, mob/user)
 	. = ..()
@@ -66,9 +69,10 @@
 
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
-	. += "The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitation."
+	. += span_small("The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitation.")
+	. += span_smallnotice("You see some rats inside scurrying about! Maybe they'd like a slice of cheese?")
 	if(scom_number)
-		. += "Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""]."
+		. += span_smallnotice("Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""].")
 	. += "<a href='?src=[REF(src)];directory=1'>Directory</a>"
 	. += "<b>THE LAWS OF THE LAND:</b>"
 	if(!length(GLOB.laws_of_the_land))
@@ -134,6 +138,13 @@
 		if(listening)
 			loudmouth_listening = TRUE
 	update_icon()
+
+/obj/structure/roguemachine/scomm/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/cheddarslice))
+		to_chat(user, span_smallnotice("You stuffs a piece of cheese into the SCOM discreetly, quietening the rats for a while..."))
+		last_cheese = world.time
+		qdel(W)
 
 /obj/structure/roguemachine/scomm/attack_right(mob/user)
 	if(.)
@@ -255,7 +266,6 @@
 
 /obj/structure/roguemachine/scomm/Initialize()
 	. = ..()
-//	icon_state = "scomm[rand(1,2)]"
 	START_PROCESSING(SSroguemachine, src)
 	become_hearing_sensitive()
 	update_icon()
@@ -296,6 +306,9 @@
 /obj/structure/roguemachine/scomm/proc/repeat_message(message, atom/A, tcolor, message_language, list/tspans, broadcaster_tag)
 	if(A == src)
 		return
+	// The SCOM just do not work silently if cheesed 
+	if(last_cheese && (last_cheese + CHEESE_QUIET_TIME >= world.time))
+		return
 	if(tcolor)
 		voicecolor_override = tcolor
 	if(speaking && message)
@@ -312,6 +325,9 @@
 		return
 	if(receive_only)
 		to_chat(speaker, span_warning("This RCOM is receive only!"))
+		return
+	if(last_cheese && (last_cheese + CHEESE_QUIET_TIME >= world.time))
+		to_chat(speaker, span_warning("The rats seems to be busy nibbling on something!"))
 		return
 	if(world.time < last_message + NORMAL_SCOM_PER_MESSAGE_DELAY)
 		var/time_remaining = round((last_message + NORMAL_SCOM_PER_MESSAGE_DELAY - world.time) / 10)
