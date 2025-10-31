@@ -398,10 +398,10 @@ PREFERENCE_MAP_VOTING 0
 
 ## AUTOADMIN
 ## The default admin rank
-AUTOADMIN_RANK Host
+AUTOADMIN_RANK Game Master
 
 ## Uncomment to automatically give that admin rank to all players
-AUTOADMIN
+#AUTOADMIN
 
 
 ## Uncomment to automatically deadmin players when the game starts.
