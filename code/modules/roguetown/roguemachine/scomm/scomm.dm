@@ -66,7 +66,7 @@
 
 /obj/structure/roguemachine/scomm/examine(mob/user)
 	. = ..()
-	. += "The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitations."
+	. += "The normal line has a delay of [NORMAL_SCOM_TRANSMISSION_DELAY / 10] seconds. The premium garrison line does not suffer from this limitation."
 	if(scom_number)
 		. += "Its designation is #[scom_number][scom_tag ? ", labeled as [scom_tag]" : ""]."
 	. += "<a href='?src=[REF(src)];directory=1'>Directory</a>"
