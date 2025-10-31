@@ -6,7 +6,7 @@
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
-	chargetime = 10 SECONDS
+	chargetime = 5 SECONDS
 	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
@@ -29,7 +29,7 @@
 	var/user_skill = user.get_skill_level(associated_skill)
 	distance = 1+user_skill*2
 	effect_time = user_skill/2 MINUTES
-	for(var/mob/living/L in range(distance))
+	for(var/mob/living/L in range(distance, user))
 		if(HAS_TRAIT(L, TRAIT_COUNTERCOUNTERSPELL))
 			to_chat(user, "<span class='warning'>They've counterspelled my counterspell immediately! It's not going to work on them!</span>")
 			revert_cast()

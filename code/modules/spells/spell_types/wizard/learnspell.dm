@@ -7,11 +7,12 @@
 	overlay_state = "book1"
 	chargedrain = 0
 	chargetime = 0
+	var/additional_check = 0
+	var/scoollist = list()
+	var/secondaryscoollist = list()
 
 /obj/effect/proc_holder/spell/self/learnspell/cast(list/targets, mob/user = usr)
 	. = ..()
-	var/scoollist = null
-	var/additional_check = 0
 	if(!user.mind.magic_scool)
 		var/scool = list("Pyromancy","Cryomancy","Electromancy","Dark Magic")
 		var/scool_choice = input(user, "Choose your magic scool.", "IM LEARNED...") as anything in scool
@@ -23,7 +24,7 @@
 			if("Electromancy")
 				user.mind.magic_scool = "Electromancy"
 			if("Dark Magic")
-				user.mind.magic_scool = "Dark Magic"
+				user.mind.magic_scool = "Darkmagic"
 		return TRUE
 
 	scoolcheck() //primary scool
@@ -67,7 +68,7 @@
 		addtimer(CALLBACK(user.mind, TYPE_PROC_REF(/datum/mind, check_learnspell)), 2 SECONDS) //self remove if no points
 		return TRUE
 
-/obj/effect/proc_holder/spell/self/learnspell/scoolcheck(mob/user = usr)
+/obj/effect/proc_holder/spell/self/learnspell/proc/scoolcheck(mob/user = usr)
 	if(additional_check)
 		switch(user.mind.secondary_magic_scool)
 			if("Pyromancy")
@@ -76,7 +77,7 @@
 				secondaryscoollist = GLOB.Cryomancy_spells
 			if("Electromancy")
 				secondaryscoollist = GLOB.Electromancy_spells
-			if("Dark Magic")
+			if("Darkmagic")
 				secondaryscoollist = GLOB.Darkmagic_spells
 	else
 		switch(user.mind.magic_scool)
@@ -86,5 +87,5 @@
 				scoollist = GLOB.Cryomancy_spells
 			if("Electromancy")
 				scoollist = GLOB.Electromancy_spells
-			if("Dark Magic")
+			if("Darkmagic")
 				scoollist = GLOB.Darkmagic_spells

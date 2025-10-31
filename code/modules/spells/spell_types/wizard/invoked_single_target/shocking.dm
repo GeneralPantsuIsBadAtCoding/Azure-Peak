@@ -73,7 +73,7 @@
 						var/turf/front = get_step(U,U.dir)
 						S.set_up(1, 1, front)
 						S.start()
-						for(M in range(area_of_effect, T)) //apply damage over time to mobs across target. Zap Zap!
+						for(M in range(1, T)) //apply damage over time to mobs across target. Zap Zap!
 							M.adjustFireLoss(damage)
 							M.stamina_add(1 + greatshock/2)
 							M.electrocute_act(1, src, 1, SHOCK_NOSTUN)
@@ -87,13 +87,21 @@
 					U.visible_message(span_warning("Severs the firelink from [T]!"))
 					sbeam.End()
 					U.remove_filter("AURA")
-					new /obj/effect/temp_visual/explosion(get_turf(user))
+					if(i <= 10)
+						badcast()
+						return FALSE
 					return TRUE
-		user.adjustFireLoss(30)
-		user.adjust_fire_stacks(3)
-		user.ignite_mob()
-		new /obj/effect/temp_visual/explosion/fast(get_turf(user))
-		revert_cast()
+		badcast()
 		return FALSE
 	revert_cast()
 	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/shoking/proc/badcast(mob/living/user)
+	user.adjustFireLoss(30)
+	user.adjust_fire_stacks(3)
+	user.ignite_mob()
+	user.apply_status_effect(/datum/status_effect/debuff/clickcd, 1 SECONDS)
+	user.electrocute_act(1, src, 1, SHOCK_NOSTUN)
+	user.apply_status_effect(/datum/status_effect/buff/lightningstruck, 6 SECONDS)
+	new /obj/effect/temp_visual/kinetic_blast(get_turf(user))
+	revert_cast()

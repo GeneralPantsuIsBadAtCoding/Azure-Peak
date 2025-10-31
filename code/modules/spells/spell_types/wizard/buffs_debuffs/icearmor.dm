@@ -7,7 +7,7 @@
 	releasedrain = 60
 	chargedrain = 1
 	chargetime = 1 SECONDS
-	recharge_time = 30 SECONDS
+	recharge_time = 10 SECONDS
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 3
@@ -35,13 +35,11 @@
 
 	if(spelltarget.has_status_effect(/datum/status_effect/buff/frostbite/frostarmor) && spelltarget.has_status_effect(/datum/status_effect/buff/frostarmor))
 		spelltarget.remove_status_effect(/datum/status_effect/buff/frostarmor)
-		spelltarget.remove_status_effect(/datum/status_effect/buff/frostbite/frostarmor)
-		target.remove_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
+		spelltarget.remove_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	else
 		spelltarget.visible_message("[user] mutters an incantation and their skin hardens.")
 		spelltarget.apply_status_effect(/datum/status_effect/buff/frostarmor)
-		spelltarget.apply_status_effect(/datum/status_effect/buff/frostbite/frostarmor)
-		target.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
+		spelltarget.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 
 	return TRUE
 
@@ -56,24 +54,25 @@
 	var/outline_colour ="#2dade9ff"
 	id = "frostarmor"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostarmor
-	effectedstats = list(STATKEY_CON = 5, STATKEY_WIL = 3)
+	effectedstats = list(STATKEY_CON = 5, STATKEY_WIL = 3, STATKEY_SPD = -2)
 	duration = 30 MINUTES
 
 /datum/status_effect/buff/stoneskin/on_apply()
 	. = ..()
+	var/mob/living/target = owner
+	target.update_vision_cone()
 	var/filter = owner.get_filter(FROSTARMOR_FILTER)
 	if (!filter)
 		owner.add_filter(FROSTARMOR_FILTER, 1, list("type" = "outline", "color" = outline_colour, "alpha" = 50, "size" = 1))
+	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
+	target.stamina_add(25)
 	to_chat(owner, span_warning("My skin hardens like ice."))
 
 /datum/status_effect/buff/stoneskin/on_remove()
 	. = ..()
 	to_chat(owner, span_warning("The ice shell cracks away."))
 	owner.remove_filter(FROSTARMOR_FILTER)
+	target.update_vision_cone()
+	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
 
 #undef FROSTARMOR_FILTER
-
-/datum/status_effect/buff/frostbite/frostarmor
-	duration = 30 MINUTES
-
-/datum/status_effect/buff/frostbite/frostarmor/tick()

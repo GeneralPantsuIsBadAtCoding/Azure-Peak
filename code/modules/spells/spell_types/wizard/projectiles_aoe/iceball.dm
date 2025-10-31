@@ -59,9 +59,9 @@
 				return
 			else
 				if(M.has_status_effect(/datum/status_effect/buff/frost))
-					playsound(get_turf(target), 'sound/combat/fracture/fracturedry (1).ogg', 80, TRUE, soundping = TRUE)
+					playsound(T, 'sound/combat/fracture/fracturedry (1).ogg', 80, TRUE, soundping = TRUE)
 					M.remove_status_effect(/datum/status_effect/buff/frost)
-					L.apply_status_effect(/datum/status_effect/buff/frostbite)
+					M.apply_status_effect(/datum/status_effect/buff/frostbite)
 				else
 					M.apply_status_effect(/datum/status_effect/buff/frost)
 			M.stamina_add(damage)
@@ -82,7 +82,7 @@
 	desc = "A deep black rock glazed over with unnaturally cold ice."
 	randomdir = TRUE
 	duration = 20 SECONDS
-	layer = FLOOR_PLANE
+	layer = 1.1
 
 /obj/structure/roguerock/iceblast
 	name = "ice pillar"

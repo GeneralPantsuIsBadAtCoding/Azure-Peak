@@ -7,7 +7,7 @@
 	releasedrain = 60
 	chargedrain = 1
 	chargetime = 5 SECONDS
-	recharge_time = 2 MINUTES
+	recharge_time = 10 SECONDS
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 3

@@ -75,13 +75,18 @@
 					hbeam.End()
 					U.remove_filter("AURA")
 					REMOVE_TRAIT(U, TRAIT_NOFIRE, TRAIT_GENERIC)
-					new /obj/effect/temp_visual/explosion(get_turf(user))
+					if(i <= 10)
+						badcast()
+						return FALSE
 					return TRUE
-		user.adjustFireLoss(30)
-		user.adjust_fire_stacks(3)
-		user.ignite_mob()
-		new /obj/effect/temp_visual/explosion/fast(get_turf(user))
-		revert_cast()
+		badcast()
 		return FALSE
 	revert_cast()
 	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/melting/proc/badcast(mob/living/user)
+	user.adjustFireLoss(30)
+	user.adjust_fire_stacks(3)
+	user.ignite_mob()
+	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+	revert_cast()

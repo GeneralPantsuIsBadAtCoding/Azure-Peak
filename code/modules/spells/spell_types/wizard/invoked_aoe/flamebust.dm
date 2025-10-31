@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/flamebust
 	name = "Flame Bust"
 	desc = "Flame ground"
-	overlay_state = "lightning_sunder"
+	overlay_state = "justflame"
 	cost = 6
 	spell_tier = 3
 	releasedrain = 50
@@ -16,21 +16,20 @@
 	glow_intensity = GLOW_INTENSITY_HIGH
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	range = 2
+	range = 1
 
 /obj/effect/proc_holder/spell/invoked/flamebust/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
 	var/user_skill = user.get_skill_level(associated_skill)
 	if(user_skill == 6) //legend
-		range = 3
+		range = 2
 //	var/list/affected_turfs = list()
-	playsound(T,'sound/weather/rain/thunder_1.ogg', 80, TRUE)
+	playsound(T,'sound/misc/explode/incendiary (1).ogg', 80, TRUE)
 	T.visible_message(span_boldwarning("The air feels crackling and charged!"))
-	sleep(10)
-	create_lightning(T)
+	create_fire(T)
 
 //meteor storm and lightstorm.
-/obj/effect/proc_holder/spell/invoked/flamebust/proc/create_lightning(atom/target)
+/obj/effect/proc_holder/spell/invoked/flamebust/proc/create_fire(atom/target)
 	if(!target)
 		return
 	var/turf/targetturf = get_turf(target)
@@ -38,7 +37,6 @@
 		var/turf/T = t
 		if(!T)
 			continue
-		var/dist = get_dist(targetturf, T)
 		new /obj/effect/temp_visual/targetflame(T)
 
 /obj/effect/temp_visual/targetflame
@@ -47,7 +45,7 @@
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
 	light_outer_range = 2
-	duration = 15
+	duration = 20
 	var/explode_sound = list('sound/misc/explode/incendiary (1).ogg','sound/misc/explode/incendiary (2).ogg')
 
 /obj/effect/temp_visual/targetflame/Initialize(mapload, list/flame_hit)
@@ -57,7 +55,7 @@
 /obj/effect/temp_visual/targetflame/proc/fire(list/flame_hit)
 	var/turf/T = get_turf(src)
 	sleep(duration)
-	playsound(T,'sound/magic/lightning.ogg', 80, TRUE)
+	playsound(T,'sound/misc/explode/incendiary (2).ogg', 80, TRUE)
 	new /obj/effect/hotspot(T)
 
 	for(var/mob/living/L in T.contents)

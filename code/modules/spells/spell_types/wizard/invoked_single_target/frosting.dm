@@ -75,13 +75,19 @@
 					U.visible_message(span_warning("Severs the coldlink from [T]!"))
 					cbeam.End()
 					U.remove_filter("AURA")
-					new /obj/effect/temp_visual/kinetic_blast(get_turf(user))
+					if(i <= 10)
+						badcast()
+						return FALSE
 					return TRUE
-		user.adjustFireLoss(30)
-		user.apply_status_effect(/datum/status_effect/freon/freezing)
-		user.apply_status_effect(/datum/status_effect/buff/frostbite)
-		new /obj/effect/temp_visual/kinetic_blast(get_turf(user))
-		revert_cast()
+		badcast()
 		return FALSE
 	revert_cast()
 	return FALSE
+
+
+/obj/effect/proc_holder/spell/invoked/frosting/proc/badcast(mob/living/user)
+	user.adjustFireLoss(30)
+	user.apply_status_effect(/datum/status_effect/freon/freezing)
+	user.apply_status_effect(/datum/status_effect/buff/frostbite)
+	new /obj/effect/temp_visual/kinetic_blast(get_turf(user))
+	revert_cast()
