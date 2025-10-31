@@ -2491,6 +2491,7 @@
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\featherfall.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\fireaura.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\fireresist.dm"
+#include "code\modules\spells\spell_types\wizard\buffs_debuffs\firewalk.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\fortitude.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\giants_strength.dm"
 #include "code\modules\spells\spell_types\wizard\buffs_debuffs\guidance.dm"
