@@ -5,7 +5,7 @@
 	faction = "Station"
 	job_greet_text = FALSE // Migration gives them their own greetings
 
-	allowed_races = list(RACES_ALL_KINDS)
+	allowed_races = RACES_ALL_KINDS
 	outfit = null
 	outfit_female = null
 

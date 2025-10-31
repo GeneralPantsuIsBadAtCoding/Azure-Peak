@@ -5,7 +5,7 @@
 	tutorial = "A Grandmaster mason, you built castles and entire cities with your own hands. \
 	There is nothing in this world that you can't build, your creed and hardwork has revealed all the secrets of the stone."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = list(RACES_ALL_KINDS)
+	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/grandmastermason
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT, TRAIT_SMITHING_EXPERT)
 	category_tags = list(CTAG_TOWNER)

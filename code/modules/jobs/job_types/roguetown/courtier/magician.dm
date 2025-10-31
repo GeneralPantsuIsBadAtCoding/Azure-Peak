@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 
-	allowed_races = list(RACES_NO_CONSTRUCT)		//Nobility, no construct
+	allowed_races = RACES_NO_CONSTRUCT		//Nobility, no construct
 	allowed_sexes = list(MALE, FEMALE)
 	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	display_order = JDO_MAGICIAN
