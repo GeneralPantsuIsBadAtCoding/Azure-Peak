@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/pyro/invoked/rebuke 
+/obj/effect/proc_holder/spell/invoked/pyro/rebuke 
 	name = "Hellish Rebuke"
 	desc = "With a point of your finger, you shall cause a creechur in front of you to burst into flames, dealing damage over time. Able to cast whilst mouthgrabbed."
 	cost = 3

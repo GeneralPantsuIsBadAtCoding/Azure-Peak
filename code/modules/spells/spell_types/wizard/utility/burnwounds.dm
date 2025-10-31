@@ -39,7 +39,7 @@
 			to_chat(user, span_warning("We were interrupted!"))
 			return FALSE
 		var/foundwound = FALSE
-		if(!target.cmode)
+		if(target.cmode)
 			revert_cast()
 			to_chat(user, "<span class='warning'>[target] is alert. I can't help.</span>")
 			return FALSE
