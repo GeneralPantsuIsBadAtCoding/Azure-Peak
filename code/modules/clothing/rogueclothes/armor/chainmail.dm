@@ -93,7 +93,7 @@
 	desc = "For the daring, affording maille's protection with light weight."
 	icon_state = "chainkini"
 	item_state = "chainkini"
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(MALE, FEMALE)
 	allowed_race = CLOTHED_RACES_TYPES
 	body_parts_covered = CHEST|GROIN
 	armor_class = ARMOR_CLASS_LIGHT //placed in the medium category to keep it with its parent obj

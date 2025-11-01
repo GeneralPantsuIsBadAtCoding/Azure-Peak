@@ -248,6 +248,8 @@
 		if(item)
 			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
 
+	var/obscured = check_obscured_slots()
+	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 	if(HAS_TRAIT(user, TRAIT_ROYALSERVANT))
 		var/datum/job/our_job = SSjob.name_occupations[job]
 		if(length(culinary_preferences) && is_type_in_list(our_job, list(/datum/job/roguetown/lord, /datum/job/roguetown/lady, /datum/job/roguetown/exlady, /datum/job/roguetown/prince)))
@@ -293,9 +295,6 @@
 						. += shit
 		if(user.mind?.has_antag_datum(/datum/antagonist/vampire) || user.mind?.has_antag_datum(/datum/antagonist/vampire))
 			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [(mind && !clan) ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool]; Blood: [blood_volume]</a>")
-
-	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
 		if(!wear_armor)
@@ -906,6 +905,11 @@
 
 	for(var/line in lines)
 		. += span_info(line)
+
+	// Characters with the hunted flaw will freak out if they can't see someone's face.
+	if(!appears_dead)
+		if(skipface && user.has_flaw(/datum/charflaw/hunted) && user != src)
+			user.add_stress(/datum/stressevent/hunted)
 
 	var/trait_exam = common_trait_examine()
 	if(!isnull(trait_exam))

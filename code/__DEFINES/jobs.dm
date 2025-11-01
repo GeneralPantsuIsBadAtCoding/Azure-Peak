@@ -161,7 +161,7 @@
 #define PRISONERB	(1<<16)
 #define LUNATIC		(1<<17)
 #define MIGRANT		(1<<18)
-
+#define ASSASSIN	(1<<19)
 #define YOUNGFOLK	(1<<6)
 
 #define APPRENTICE	(1<<0)
@@ -291,6 +291,7 @@
 #define JDO_BANDIT 31.3
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
+#define JDO_ASSASSIN 30.5
 #define JDO_TRADER 30.5
 
 #define JDO_MERCENARY 31
