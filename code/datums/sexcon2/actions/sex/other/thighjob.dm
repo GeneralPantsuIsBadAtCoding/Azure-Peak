@@ -1,6 +1,5 @@
 /datum/sex_action/sex/other/thighjob
 	name = "Jerk them off with thighs"
-	requires_hole_storage = FALSE
 
 /datum/sex_action/sex/other/thighjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

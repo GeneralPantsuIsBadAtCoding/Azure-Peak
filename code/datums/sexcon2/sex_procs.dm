@@ -110,8 +110,6 @@
 /mob/living/carbon/human/Initialize()
 	. = ..()
 	AddComponent(/datum/component/arousal)
-	add_hole(ORGAN_SLOT_ANUS, /datum/component/storage/concrete/grid/hole/ass)
-	add_hole(ORGAN_SLOT_BREASTS, /datum/component/storage/concrete/grid/hole/mouth)
 
 /mob/living/proc/return_character_information()
 	var/list/data = list()

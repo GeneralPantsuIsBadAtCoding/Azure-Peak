@@ -1,7 +1,6 @@
 /datum/sex_action/sex/other/footjob
 	name = "Jerk them off with feet"
 	check_same_tile = FALSE
-	requires_hole_storage = FALSE
 
 /datum/sex_action/sex/other/footjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

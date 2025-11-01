@@ -17,12 +17,3 @@
 		return
 	to_chat(owner, span_love("I feel a surge of warmth in my belly, I’m definitely pregnant!"))
 	pregnant = TRUE
-
-/obj/item/organ/vagina/Insert(mob/living/carbon/M, special, drop_if_replaced)
-	. = ..()
-	M.add_hole(ORGAN_SLOT_VAGINA, /datum/component/storage/concrete/grid/hole/vagina)
-
-/obj/item/organ/vagina/Remove(mob/living/carbon/M, special, drop_if_replaced)
-	. = ..()
-	SEND_SIGNAL(M, COMSIG_HOLE_REMOVE_HOLE, ORGAN_SLOT_VAGINA)
-

@@ -1,10 +1,7 @@
 
 /datum/sex_action/blowjob
 	name = "Suck them off"
-	requires_hole_storage = TRUE
 	hole_id = BODY_ZONE_PRECISE_MOUTH
-	stored_item_type = /obj/item/organ/genitals/penis
-	stored_item_name = "receiving member"
 	require_grab = FALSE
 	check_same_tile = FALSE
 	target_priority = 100

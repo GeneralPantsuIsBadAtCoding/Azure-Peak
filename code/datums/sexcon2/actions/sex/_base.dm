@@ -1,7 +1,4 @@
 /datum/sex_action/sex
-	stored_item_type = /obj/item/organ/genitals/penis
-	stored_item_name = "penetrating member"
-	requires_hole_storage = TRUE
 	abstract_type = /datum/sex_action/sex
 	knot_on_finish = TRUE
 	can_knot = TRUE
