@@ -129,7 +129,7 @@
 	blade_dulling = DULLING_SHAFT_WOOD
 	associated_skill = /datum/skill/combat/unarmed
 	wlength = WLENGTH_NORMAL
-	wbalance = WBALANCE_HEAVY
+	wbalance = WBALANCE_NORMAL
 	w_class = WEIGHT_CLASS_NORMAL
 	can_parry = TRUE //I just think this is cool as fuck, sue me
 	sharpness = IS_BLUNT

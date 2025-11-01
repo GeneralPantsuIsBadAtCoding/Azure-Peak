@@ -58,7 +58,7 @@
 
 /datum/reagent/blood/on_mob_life(mob/living/carbon/H)//I hate you
 	..()
-	if(HAS_TRAIT(H, TRAIT_NASTY_EATER) && HAS_TRAIT(H, TRAIT_WILD_EATER))
+	if(HAS_TRAIT(H, TRAIT_NASTY_EATER) || HAS_TRAIT(H, TRAIT_WILD_EATER))
 		return
 	H.add_nausea(12) //Over 8 units will cause puking
 
@@ -67,7 +67,7 @@
 		..()
 /datum/reagent/blood/shitty/on_mob_life(mob/living/carbon/H)
 	..()
-	if(HAS_TRAIT(H, TRAIT_NASTY_EATER) && HAS_TRAIT(H, TRAIT_WILD_EATER))
+	if(HAS_TRAIT(H, TRAIT_NASTY_EATER) || HAS_TRAIT(H, TRAIT_WILD_EATER))
 		return
 	H.add_nausea(18) //Do not drink dirty blood!
 
@@ -125,7 +125,7 @@
 
 /datum/reagent/water/gross/on_mob_life(mob/living/carbon/M)
 	..()
-	if(HAS_TRAIT(M, TRAIT_NASTY_EATER) && HAS_TRAIT(M, TRAIT_WILD_EATER)) // lets orcs and goblins drink bogwater
+	if(HAS_TRAIT(M, TRAIT_NASTY_EATER) || HAS_TRAIT(M, TRAIT_WILD_EATER)) // lets orcs and goblins drink bogwater
 		return
 	M.adjustToxLoss(1)
 	M.add_nausea(12) //Over 8 units will cause puking
