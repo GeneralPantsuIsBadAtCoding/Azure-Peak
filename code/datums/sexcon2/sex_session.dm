@@ -174,8 +174,7 @@
 
 		action.on_perform(user, target)
 
-		if(user.has_kink(KINK_VISUAL_EFFECTS)) //Hearts played on action that can be turned off at will
-			action.show_sex_effects(user)
+		action.show_sex_effects(user)
 
 		if(action.is_finished(user, target))
 			break

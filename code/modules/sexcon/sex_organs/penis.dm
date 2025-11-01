@@ -74,7 +74,7 @@
 	. = ..()
 	insertion_timestamp = world.time
 
-/obj/item/penis_fake/proc/copy_properties_from(obj/item/organ/genitals/penis/source)
+/obj/item/penis_fake/proc/copy_properties_from(obj/item/organ/penis/source)
 	if(!source)
 		return
 	sheath_type = source.sheath_type
