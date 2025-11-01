@@ -215,21 +215,30 @@
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
-	desc = "A stubby little club for brigands or thieves. Attempting parries with this is a bad idea."
-	force = 25
+	desc = "A stubby little club for used by guards, brigands, and various criminals. Perfect to cripple someone on a budget."
+	force = 22
 	icon_state = "cudgel"
 	force_wielded = 25
-	possible_item_intents = list(/datum/intent/mace/strike)
-	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop, /datum/intent/mace/smash, /datum/intent/effect/daze)
 	smeltresult = /obj/item/ash
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
-	wbalance = WBALANCE_NORMAL
+	wbalance = WBALANCE_HEAVY
 	minstr = 7
 	wdefense = 1
 	resistance_flags = FLAMMABLE
 	grid_width = 32
 	grid_height = 96
+
+// Non-lethal mace-striking (Made for cudgel specifically. Don't put this on everything. Yeah, I mean you.)
+/datum/intent/mace/strike/wallop
+	name = "wallop"
+	blade_class = BCLASS_TWIST	//I know, it's weird, but this lets you dislocate limbs and works fine w/ -100 pen factor of blunt weapons.
+	attack_verb = list("twamps", "thwacks", "wallops")
+	damfactor = 1.3		// High damage mod to give high chance of dislocation against unarmored targets.
+	intent_intdamage_factor = 0.5	// Purposefully bad at damaging armor.
+	icon_state = "inbash"	// Wallop is too long for a button; placeholder.
 
 /obj/item/rogueweapon/mace/cudgel/psy
 	name = "psydonic handmace"

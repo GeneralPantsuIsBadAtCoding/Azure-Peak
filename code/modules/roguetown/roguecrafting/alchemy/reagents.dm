@@ -294,6 +294,29 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 			M.adjustToxLoss(4.5) // just enough so 5u will kill you dead with no help
 	return ..()
 
+/datum/reagent/bloodacid // Quietus Poison for Vampires
+	name = "Vitae Acid"
+	description = ""
+	reagent_state = LIQUID
+	color = "#ff3300"
+	taste_description = "burning"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	harmful = TRUE
+
+/datum/reagent/bloodacid/on_mob_life(mob/living/carbon/M)
+	if(volume > 0.09)
+		if(isdwarf(M))
+			M.add_nausea(5.5)
+			M.adjustToxLoss(7.5) 
+			to_chat(M, span_userdanger("MY HEART! I'VE BEEN POISONED."))
+			M.playsound_local('sound/magic/heartbeat.ogg', 50)
+		else
+			M.add_nausea(6.5) 
+			M.adjustToxLoss(8.5) 
+			to_chat(M, span_userdanger("MY HEART! I'VE BEEN POISONED."))
+			M.playsound_local('sound/magic/heartbeat.ogg', 50)
+	return ..()
+
 /datum/reagent/organpoison
 	name = "Organ Poison"
 	description = ""

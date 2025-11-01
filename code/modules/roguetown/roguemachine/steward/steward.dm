@@ -284,6 +284,8 @@
 			var/total_deposit = 0
 			for(var/bank_account in SStreasury.bank_accounts)
 				total_deposit += SStreasury.bank_accounts[bank_account]
+			if(total_deposit == 0)
+				total_deposit++ //Division by zero catch
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a>"
 			contents += " <a href='?src=\ref[src];compact=1'>\[Compact: [compact? "ENABLED" : "DISABLED"]\]</a><BR>"
 			contents += "<center>Bank<BR>"

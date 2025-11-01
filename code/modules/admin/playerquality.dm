@@ -1,3 +1,5 @@
+#define RCP_CONTRIBUTION_CAP 20 // How much RCP can contribute to PQ gain total.
+
 /proc/get_playerquality(key, text)
 	if(!key)
 		return
@@ -248,7 +250,7 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(json))
 
-	if(curcomm < 100 || get_playerquality(key) < 10)
+	if(curcomm < 100 || get_playerquality(key) < RCP_CONTRIBUTION_CAP)
 		adjust_playerquality(round(amt/10,0.1), ckey(key))
 
 /proc/get_roundpoints(key)

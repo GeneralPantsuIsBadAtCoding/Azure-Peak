@@ -16,7 +16,7 @@
 	/// Traits we apply to the owner
 	var/static/list/applied_traits = list(
 		TRAIT_INFINITE_STAMINA,
-		TRAIT_SCHIZO_AMBIENCE,
+		TRAIT_PSYCHOSIS,
 		TRAIT_SHOCKIMMUNE,
 	)
 
