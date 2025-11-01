@@ -357,7 +357,7 @@
 	btm.face_atom(top)
 
 /datum/component/knotting/proc/knot_movement_mods_remove_penis(mob/living/carbon/human/top, mob/living/carbon/human/btm)
-	var/obj/item/organ/genitals/penis/penor = top.getorganslot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/penis/penor = top.getorganslot(ORGAN_SLOT_PENIS)
 	if(!penor)
 		return FALSE
 

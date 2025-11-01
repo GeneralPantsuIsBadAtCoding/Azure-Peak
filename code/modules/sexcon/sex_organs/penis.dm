@@ -21,13 +21,13 @@
 	if(penis_type in list(PENIS_TYPE_KNOTTED, PENIS_TYPE_TAPERED_DOUBLE_KNOTTED, PENIS_TYPE_BARBED_KNOTTED))
 		M.AddComponent(/datum/component/knotting)
 
-/obj/item/organ/genitals/penis/Remove(mob/living/carbon/M, special, drop_if_replaced)
+/obj/item/organ/penis/Remove(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
 	UnregisterSignal(M, COMSIG_SEX_AROUSAL_CHANGED)
 	if(penis_type in list(PENIS_TYPE_KNOTTED, PENIS_TYPE_TAPERED_DOUBLE_KNOTTED, PENIS_TYPE_BARBED_KNOTTED))
 		qdel(M.GetComponent(/datum/component/knotting))
 
-/obj/item/organ/genitals/penis/proc/on_arousal_changed()
+/obj/item/organ/penis/proc/on_arousal_changed()
 	var/list/arousal_data = list()
 	SEND_SIGNAL(owner, COMSIG_SEX_GET_AROUSAL, arousal_data)
 
@@ -45,14 +45,14 @@
 			new_state = ERECT_STATE_HARD
 	update_erect_state(new_state)
 
-/obj/item/organ/genitals/penis/proc/update_erect_state(new_state = ERECT_STATE_NONE)
+/obj/item/organ/penis/proc/update_erect_state(new_state = ERECT_STATE_NONE)
 	var/oldstate = erect_state
 
 	erect_state = new_state
 	if(oldstate != erect_state && owner)
 		owner.update_body_parts(TRUE)
 
-/obj/item/organ/genitals/penis/proc/create_fake_variant(mob/living/carbon/human/user)
+/obj/item/organ/penis/proc/create_fake_variant(mob/living/carbon/human/user)
 	var/obj/item/penis_fake/fake = new()
 	fake.copy_properties_from(src)
 	fake.set_original_owner(user)
