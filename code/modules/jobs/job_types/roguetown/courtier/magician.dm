@@ -118,5 +118,6 @@
 		/obj/item/recipe_book/alchemy,
 		/obj/item/recipe_book/magic,
 		/obj/item/book/spellbook,
-		/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne
+		/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne,
+		/obj/item/book/granter/secondary_magic_scool
 	)

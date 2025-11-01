@@ -352,3 +352,42 @@
 /obj/item/book/granter/spell_points/voiddragon
 	name = "Arcyne Void Insight"
 	spellpoints = 6
+
+//scroll for giving the reader a secondary scool of magic
+/obj/item/book/granter/secondary_magic_scool
+	name = "Magic Scool Insight"
+	icon_state = "scrollscool"
+	icon = 'icons/roguetown/items/misc.dmi'
+	oneuse = TRUE
+	drop_sound = 'sound/foley/dropsound/paper_drop.ogg'
+	pickup_sound =  'sound/blank.ogg'
+	var/spellpoints = 3
+
+/obj/item/book/granter/secondary_magic_scool/on_reading_finished(mob/user)
+	var/arcaneskill = user.get_skill_level(/datum/skill/magic/arcane)
+	if(arcaneskill >= SKILL_LEVEL_EXPERT) //Required arcane skill of EXPERT or higher to use
+		var/list/first_scool = list(user.mind.magic_scool)
+		var/list/scoollist = list("Pyromancy","Cryomancy","Electromancy","Dark Magic")
+		scoollist -= first_scool
+		var/scool_choice = input(user, "Choose your secondary magic scool.", "IM LEARNED...") as anything in scoollist
+		switch(scool_choice)
+			if("Pyromancy")
+				user.mind.secondary_magic_scool = "Pyromancy"
+			if("Cryomancy")
+				user.mind.secondary_magic_scool = "Cryomancy"
+			if("Electromancy")
+				user.mind.secondary_magic_scool = "Electromancy"
+			if("Dark Magic")
+				user.mind.secondary_magic_scool = "Darkmagic"
+		to_chat(user, span_notice("I absorb the insights on the scroll, and feel more adept at spellcraft!"))
+		onlearned(user)
+	else
+		to_chat(user, span_notice("I don't know what to make of this."))
+
+/obj/item/book/granter/secondary_magic_scool/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		name = "siphoned scroll"
+		desc = "A scroll once inscribed with magical scripture. The surface is now barren of knowledge, siphoned by someone else. It's utterly useless."
+		icon_state = "scrollscool_empty"
+		user.visible_message(span_warning("[src] has had its magic ink ripped from the scroll!"))

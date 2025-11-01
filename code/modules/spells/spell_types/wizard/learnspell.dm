@@ -42,7 +42,7 @@
 		var/obj/effect/proc_holder/spell/spell_item = spell_choices[i]
 		if(spell_item.spell_tier > user_spell_tier)
 			continue
-		choices["[spell_item.name]: [spell_item.cost]"] = spell_item
+		choices["(Cost: [spell_item.cost]) [spell_item.name]"] = spell_item
 
 	choices = sortList(choices)
 
