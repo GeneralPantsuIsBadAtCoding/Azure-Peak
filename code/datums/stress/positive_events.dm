@@ -340,3 +340,13 @@
 	stressadd = -1
 	desc = span_green("That fermented crab was not the most pleasant dish ever, but youthful vigor in my body was worth the sacrifice!")
 	timer = 3 MINUTES
+
+/datum/stress_event/vampiric_nostalgia
+	desc = span_green("Astrata and her gaze may burn you now, but you distantly remember when it was pleasant to your skin.")
+	stress_add = -2
+	timer = 20 SECONDS
+
+/datum/stress_event/vampiric_reality
+	desc = span_green("The holy sun returns, it's only a matter of time until I turn to ash. I wish to be Mortal again.")
+	stress_add = 3
+	timer = 30 SECONDS

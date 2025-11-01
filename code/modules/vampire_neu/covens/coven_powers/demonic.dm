@@ -24,25 +24,16 @@
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.color = "#884200"
-	owner.add_stress(/datum/stress_event/astratan_nostalgia)
+	owner.add_stress(/datum/stress_event/vampiric_nostalgia)
 	playsound(owner,'sound/misc/carriage4.ogg', 30, TRUE)
 
 /datum/coven_power/demonic/deny_the_mother/deactivate()
 	. = ..()
 	owner.color = initial(owner.color)
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
-	owner.add_stress(/datum/stress_event/astratan_nostalgia_end)
+	owner.add_stress(/datum/stress_event/vampiric_reality)
 	playsound(owner,'sound/misc/carriage2.ogg', 30, TRUE)
 
-/datum/stress_event/astratan_nostalgia
-	desc = "Astrata and her gaze may burn you now, but you distantly remember when it was pleasant to your skin. "
-	stress_change = 2
-	timer = 20 SECONDS
-
-/datum/stress_event/astratan_nostalgia_end
-	desc = "The scorching sun returns, it's only a matter of time until I turn to ash. I wish to be Mortal again."
-	stress_change = -2
-	timer = 30 SECONDS
 
 /datum/coven_power/demonic/fear_of_the_void_below
 	name = "Fear of the Void"
