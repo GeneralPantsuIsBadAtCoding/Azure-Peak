@@ -656,7 +656,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						
 			else
 				energy_add(sleepy_mod * 10)
-				fallingas = FALSE
 		else if(fallingas)
 			fallingas = FALSE
 
