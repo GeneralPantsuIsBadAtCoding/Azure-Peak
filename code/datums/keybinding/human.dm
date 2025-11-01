@@ -62,7 +62,7 @@
 	return TRUE
 
 /datum/keybinding/human/bag_equip_beltl
-	hotkey_keys = list("AltQ")
+	hotkey_keys = list("CtrlQ")
 	name = "bag_equip_beltl"
 	full_name = "Belt Equip Left"
 	description = "Put held item in the left belt slot or take out the most recent item from the left belt slot"
@@ -76,7 +76,7 @@
 	return TRUE
 
 /datum/keybinding/human/bag_equip_beltr
-	hotkey_keys = list("AltE")
+	hotkey_keys = list("CtrlE")
 	name = "bag_equip_beltr"
 	full_name = "Belt Equip Right"
 	description = "Put held item in the right belt slot or take out the most recent item from the right belt slot"

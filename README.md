@@ -1,13 +1,17 @@
-# AZURE PEAK
+<p align="center">
+ <img width="450px" src="https://github.com/user-attachments/assets/6b803f1d-3262-4373-8531-8f8415a3d05f" align="center" alt="Twilight Fortress" />
+ <h1 align="center">Twilight Axis</h1>
+ <h2 align="center">Roleplay Medieval High-Fantasy | D&D-like Server</h2>
+</p>
+
+<div align="center">
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
-| Discord | [https://discord.gg/NCFXUAgCPT](https://discord.gg/NCFXUAgCPT)
-|
-| Code    | [https://github.com/GeneralPantsuIsBadAtCoding/Azure-Peak](https://github.com/GeneralPantsuIsBadAtCoding/Azure-Peak)    |
-| Wiki    | [https://azurepeak.miraheze.org/wiki/Main_Page](https://azurepeak.miraheze.org/wiki/Main_Page) |
+| Discord          | [https://discord.gg/6Sga5Uvdn6](https://discord.gg/6Sga5Uvdn6) |
+| Wiki Azure Peak                     | [Wiki](https://azurepeak.miraheze.org/wiki/Main_Page) |
 
-## LICENSE
+  ## LICENSE
 Original Fork Originates from [commit c28b351807bad950d2b323ada048190844bbda32](https://github.com/tgstation/tgstation/commit/c28b351807bad950d2b323ada048190844bbda32).
 
 All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
@@ -22,3 +26,7 @@ The TGS DMAPI is licensed as a subproject under the MIT license.
 See the footer of [code/__DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/modules/tgs/LICENSE](./code/modules/tgs/LICENSE) for the MIT license.
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
+
+</div>
+
+This is fork of Azure Peak. There's a discord link [Azure Peak](https://discord.gg/NCFXUAgCPT)

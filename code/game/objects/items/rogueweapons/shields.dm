@@ -93,6 +93,8 @@
 	hitsound = list('sound/combat/shieldbash_wood.ogg')
 	warnie = "shieldwarn"
 	item_d_type = "blunt"
+	charge_pointer = 'icons/effects/mousemice/charge/shield_charging.dmi'
+	charged_pointer = 'icons/effects/mousemice/charge/shield_charged.dmi'
 
 /datum/intent/shield/block/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')

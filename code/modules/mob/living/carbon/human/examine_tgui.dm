@@ -58,7 +58,6 @@
 		ooc_notes_nsfw += holder.erpprefs
 		char_name = holder.name
 		song_url = holder.ooc_extra
-		is_vet = holder.check_agevet()
 		if(!obscured)
 			headshot += holder.headshot_link
 			img_gallery = holder.img_gallery
@@ -76,7 +75,6 @@
 		img_gallery = pref.img_gallery
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
-		is_vet = viewing.check_agevet()
 		if(!headshot)
 			headshot = "headshot_red.png"
 	
