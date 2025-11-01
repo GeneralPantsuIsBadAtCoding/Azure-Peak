@@ -75,7 +75,7 @@
 //BLOODHEAL 3
 /datum/coven_power/bloodheal/three
 	name = "Quick Bloodheal"
-	desc = "Regenerate wounds with visible speed."
+	desc = "Regenerate wounds with visible speed, this violates the masquerade!"
 
 	level = 3
 	research_cost = 2
@@ -86,7 +86,7 @@
 //BLOODHEAL 4
 /datum/coven_power/bloodheal/four
 	name = "Major Bloodheal"
-	desc = "Rapidly regenerate even serious injuries."
+	desc = "Rapidly regenerate even serious injuries. This violates the masquerade!"
 
 	level = 4
 	research_cost = 3
@@ -97,7 +97,7 @@
 //BLOODHEAL 5
 /datum/coven_power/bloodheal/five
 	name = "Greater Bloodheal"
-	desc = "Regenerate injuries and restore damaged organs."
+	desc = "Regenerate injuries and restore damaged organs. This violates the masquerade!"
 
 	level = 5
 	research_cost = 4

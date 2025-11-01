@@ -1,6 +1,6 @@
 /datum/coven/presence
 	name = "Presence"
-	desc = "Makes targets in radius more vulnerable to damages."
+	desc = "Invade the mortal mynd, your words are far mightier than any sword. Subjugate them."
 	icon_state = "presence"
 	power_type = /datum/coven_power/presence
 

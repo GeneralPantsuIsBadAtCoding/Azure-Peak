@@ -25,14 +25,16 @@
 	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.color = "#884200"
 	owner.add_stress(/datum/stressevent/vampiric_nostalgia)
-	playsound(owner,'sound/misc/carriage4.ogg', 30, TRUE)
+	playsound(get_turf(owner), 'sound/misc/carriage4.ogg', 40, TRUE)
+
 
 /datum/coven_power/demonic/deny_the_mother/deactivate()
 	. = ..()
 	owner.color = initial(owner.color)
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.add_stress(/datum/stressevent/vampiric_reality)
-	playsound(owner,'sound/misc/carriage2.ogg', 30, TRUE)
+	playsound(get_turf(owner), 'sound/misc/carriage2.ogg', 40, TRUE)
+
 
 
 /datum/coven_power/demonic/fear_of_the_void_below
@@ -46,7 +48,7 @@
 	violates_masquerade = TRUE
 
 	cancelable = TRUE
-	duration_length = 15 SECONDS
+	duration_length = 30 SECONDS
 	cooldown_length = 1 MINUTES
 
 /datum/coven_power/demonic/fear_of_the_void_below/activate()
@@ -82,7 +84,8 @@
 	owner.put_in_l_hand(new /obj/item/rogueweapon/gangrel(owner))
 	owner.visible_message(
 		span_warning("[owner]'s hands contort, revealing vicious, supernatural claws!"))
-	playsound(owner,'sound/gore/flesh_eat_06.ogg', 30, TRUE)
+	playsound(get_turf(owner), 'sound/gore/flesh_eat_06.ogg', 40, TRUE)
+
 
 /datum/coven_power/demonic/conflagration/deactivate()
 	. = ..()
@@ -90,7 +93,8 @@
 		qdel(claws)
 	owner.visible_message(
 		span_warning("[owner]'s hands emit a vicious sound as they return to their normal form."))
-	playsound(owner,'sound/gore/flesh_eat_03.ogg', 30, TRUE)
+	playsound(get_turf(owner), 'sound/gore/flesh_eat_03.ogg', 40, TRUE)
+
 //PSYCHOMACHIA
 /datum/coven_power/demonic/psychomachia
 	name = "Psychomachia"
