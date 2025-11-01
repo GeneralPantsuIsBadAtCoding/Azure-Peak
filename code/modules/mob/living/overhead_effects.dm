@@ -63,6 +63,17 @@
 							var/turf/T = get_turf(src)
 							H.playsound_local(T, soundin, 100, FALSE) 
 
+///A simplified version of the proc that adds an overlay to the src and returns a reference to the appearance.
+///Has no offset adjustment for bodies / sprite size. Make sure to account for that if using it on carbons!
+/mob/living/proc/play_overhead_indicator_simple(icon_path, overlay_name, clear_time, overlay_layer, soundin = null, y_offset, x_offset)
+	var/mutable_appearance/appearance = mutable_appearance(icon_path, overlay_name, overlay_layer)
+	appearance.appearance_flags = RESET_COLOR
+	overlays_standing[OBJ_LAYER] = appearance
+	apply_overlay(OBJ_LAYER)
+	addtimer(CALLBACK(src, PROC_REF(clear_overhead_indicator), appearance), clear_time)
+	if(soundin)
+		playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
+
 /obj/effect/temp_visual/stress_event
 	icon = 'icons/mob/overhead_effects.dmi'
 	duration = 20
