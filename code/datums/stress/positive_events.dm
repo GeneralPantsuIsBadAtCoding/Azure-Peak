@@ -346,7 +346,3 @@
 	stress_add = -2
 	timer = 20 SECONDS
 
-/datum/stress_event/vampiric_reality
-	desc = span_green("The holy sun returns, it's only a matter of time until I turn to ash. I wish to be Mortal again.")
-	stress_add = 3
-	timer = 30 SECONDS
