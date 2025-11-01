@@ -5,6 +5,7 @@
 	layer = BELOW_OBJ_LAYER
 	plane = GAME_PLANE_LOWER
 	anchored = TRUE
+	plane = GAME_PLANE_LOWER
 	var/climb_time = 20
 	var/climb_stun = 0
 	var/climb_sound = 'sound/foley/woodclimb.ogg'

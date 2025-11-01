@@ -25,7 +25,7 @@
 #define GAME_PLANE_UPPER -3
 #define GAME_PLANE_HIGHEST -2
 #define WEATHER_EFFECT_PLANE -1
-#define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define BLACKNESS_PLANE 0
 
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
