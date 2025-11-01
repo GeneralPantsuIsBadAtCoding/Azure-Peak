@@ -780,6 +780,7 @@
 #include "code\datums\sexcon2\collective_message.dm"
 #include "code\datums\sexcon2\sex_procs.dm"
 #include "code\datums\sexcon2\sex_session.dm"
+#include "code\datums\sexcon2\sex_status.dm"
 #include "code\datums\sexcon2\sex_stress.dm"
 #include "code\datums\sexcon2\actions\__sex_action.dm"
 #include "code\datums\sexcon2\actions\_base_action.dm"

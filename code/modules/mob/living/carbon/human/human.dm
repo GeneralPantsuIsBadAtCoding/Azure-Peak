@@ -59,9 +59,6 @@
 #endif
 
 /mob/living/carbon/human/Initialize()
-#ifdef MATURESERVER
-	sexcon = new /datum/sex_controller(src)
-#endif
 	verbs += /mob/living/proc/lay_down
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
@@ -130,7 +127,6 @@
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
-	QDEL_NULL(sexcon)
 	STOP_PROCESSING(SShumannpc, src)
 	QDEL_NULL(physiology)
 	QDEL_NULL(sunder_light_obj)

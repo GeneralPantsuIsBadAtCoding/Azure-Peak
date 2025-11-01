@@ -260,7 +260,9 @@
 		pintle.functional = TRUE
 		had_disfunctional_pintle = TRUE
 
-	owner?.sexcon?.adjust_charge(SEX_MAX_CHARGE)
+	var/datum/component/arousal/arousal_comp = owner?.GetComponent(/datum/component/arousal)
+	if(arousal_comp)
+		arousal_comp.set_charge(SEX_MAX_CHARGE)  // Fully restore charge
 
 /datum/status_effect/buff/fermented_crab/on_remove()
 	. = ..()
