@@ -37,7 +37,7 @@
 		explosion(T, -1, 0, 0, 0, 0, flame_range = 2, soundin = 'sound/misc/explode/incendiary (1).ogg')
 	for(var/obj/machinery/light/rogue/O in T.contents)
 		O.fire_act()
-		sleep(1 SECONDS)
+		sleep(2 SECONDS)
 		explosion(T, -1, 0, 0, 0, 0, flame_range = 2, soundin = 'sound/misc/explode/incendiary (1).ogg')
 		sleep(10 SECONDS)
 		O.extinguish()
