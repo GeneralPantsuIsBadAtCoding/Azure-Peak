@@ -2,11 +2,11 @@
 	name = "Burn Wounds"
 	desc = "Cauterize the wounds on the target limb using the fire arcana powers."
 	overlay_state = "woundburn"
-	cost = 3
+	cost = 2
 	releasedrain = 35
 	chargedrain = 0
 	chargetime = 3
-	recharge_time = 2 MINUTES
+	recharge_time = 30 SECONDS
 	range = 1
 	ignore_los = FALSE
 	warnie = "spellwarning"
@@ -17,7 +17,7 @@
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_VERY_HIGH
 	associated_skill = /datum/skill/magic/arcane
-	spell_tier = 3
+	spell_tier = 2
 	antimagic_allowed = FALSE
 	miracle = FALSE
 	var/delay = 4.5 SECONDS	//Reduced to 1.5 seconds with Legendary

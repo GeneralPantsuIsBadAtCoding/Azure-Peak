@@ -80,7 +80,7 @@
 
 /datum/status_effect/buff/fireaurabad
 	id = "fireaurabad"
-	duration = 10 SECONDS
+	duration = -1
 	effectedstats = list(STATKEY_CON = -1)
 	alert_type = /atom/movable/screen/alert/status_effect/fireaurabad
 

@@ -61,12 +61,12 @@
 
 /datum/status_effect/buff/firewalker/tick()
 	var/mob/living/user = owner
+	var/turf/T = get_turf(user)
 	if(owner.stat == DEAD || owner.stat != CONSCIOUS)
 		owner.remove_status_effect(/datum/status_effect/buff/firewalker)
 		return FALSE
-	new /obj/effect/hotspot(get_turf(user))
-	sleep(0.4)
-	new /obj/effect/hotspot(get_turf(user))
+	for(var/turf/AT in range(1, T))
+		new /obj/effect/hotspot(get_turf(user))
 
 /datum/status_effect/buff/firewalker/on_remove()
 	. = ..()
