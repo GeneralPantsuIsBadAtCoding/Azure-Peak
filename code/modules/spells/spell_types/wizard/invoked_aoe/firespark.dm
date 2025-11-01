@@ -35,9 +35,12 @@
 		to_chat(span_warning("You can't cast this spell on a different z-level!"))
 		return FALSE
 	for(var/obj/effect/hotspot/H in T.contents)
+		new /obj/effect/temp_visual/firewave/spark(T)
+		sleep(1 SECONDS)
 		explosion(T, -1, 0, 0, 0, 0, flame_range = 2, soundin = 'sound/misc/explode/incendiary (1).ogg')
 	for(var/obj/machinery/light/rogue/O in T.contents)
 		O.fire_act()
+		new /obj/effect/temp_visual/firewave/spark(T)
 		sleep(2 SECONDS)
 		explosion(T, -1, 0, 0, 0, 0, flame_range = 2, soundin = 'sound/misc/explode/incendiary (1).ogg')
 		sleep(10 SECONDS)
@@ -50,11 +53,14 @@
 		if(L.fire_stacks != 0)
 			if(L.fire_stacks >= 10)
 				firemodificator = 0 //any*0 = 0
-			var/fire_stacks = L.fire_stacks*firemodificator
-			L.adjust_fire_stacks(round(fire_stacks))
+			var/firest = L.fire_stacks*firemodificator
+			new /obj/effect/temp_visual/firewave/spark(T)
+			sleep(1 SECONDS)
+			L.adjust_fire_stacks(round(firest))
 	if(istype(T, /turf/open/lava))
+		new /obj/effect/temp_visual/firewave/spark(T)
+		sleep(2 SECONDS)
 		explosion(T, -1, 0, 0, 0, 0, flame_range = 3, soundin = 'sound/misc/explode/incendiary (1).ogg')
-	new /obj/effect/temp_visual/firewave/spark(T)
 	return TRUE
 
 /obj/effect/temp_visual/firewave/spark

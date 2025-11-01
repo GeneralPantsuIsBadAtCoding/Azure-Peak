@@ -50,7 +50,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/firewalker
 	effectedstats = list(STATKEY_SPD = -2)
 	examine_text = "<font color='red'>Dancing in the fire!!"
-	duration = 30 SECONDS
+	duration = 10 SECONDS
 	var/outline_colour ="#f96d1bff"
 
 /datum/status_effect/buff/firewalker/on_apply()
@@ -65,8 +65,8 @@
 	if(owner.stat == DEAD || owner.stat != CONSCIOUS)
 		owner.remove_status_effect(/datum/status_effect/buff/firewalker)
 		return FALSE
-	for(var/turf/AT in range(1, T))
-		new /obj/effect/hotspot(get_turf(user))
+	for(var/turf/AT in view(1, T))
+		new /obj/effect/hotspot(get_turf(AT))
 
 /datum/status_effect/buff/firewalker/on_remove()
 	. = ..()
