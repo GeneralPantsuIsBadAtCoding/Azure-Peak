@@ -10,9 +10,9 @@
 	desc = "Demonic power description"
 
 //SENSE THE SIN
-/datum/coven_power/demonic/sense_the_sin
-	name = "Sense the Sin"
-	desc = "Become supernaturally resistant to fire."
+/datum/coven_power/demonic/deny_the_mother
+	name = "Deny the Mother"
+	desc = "Immunity to being set on fire for twenty seconds."
 
 	level = 1
 	research_cost = 0
@@ -20,15 +20,29 @@
 	duration_length = 20 SECONDS
 	cooldown_length = 10 SECONDS
 
-/datum/coven_power/demonic/sense_the_sin/activate()
+/datum/coven_power/demonic/deny_the_mother/activate()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.color = "#884200"
+	owner.add_stress(/datum/stress_event/astratan_nostalgia)
+	playsound(owner,'sound/misc/carriage4.ogg', 30, TRUE)
 
-/datum/coven_power/demonic/sense_the_sin/deactivate()
+/datum/coven_power/demonic/deny_the_mother/deactivate()
 	. = ..()
 	owner.color = initial(owner.color)
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
+	owner.add_stress(/datum/stress_event/astratan_nostalgia_end)
+	playsound(owner,'sound/misc/carriage2.ogg', 30, TRUE)
+
+/datum/stress_event/astratan_nostalgia
+	desc = "Astrata and her gaze may burn you now, but you distantly remember when it was pleasant to your skin. "
+	stress_change = 2
+	timer = 20 SECONDS
+
+/datum/stress_event/astratan_nostalgia_end
+	desc = "The scorching sun returns, it's only a matter of time until I turn to ash. I wish to be Mortal again."
+	stress_change = -2
+	timer = 30 SECONDS
 
 /datum/coven_power/demonic/fear_of_the_void_below
 	name = "Fear of the Void"
@@ -75,12 +89,17 @@
 	owner.drop_all_held_items()
 	owner.put_in_r_hand(new /obj/item/rogueweapon/gangrel(owner))
 	owner.put_in_l_hand(new /obj/item/rogueweapon/gangrel(owner))
+	owner.visible_message(
+		span_warning("[owner]'s hands contort, revealing vicious, supernatural claws!"))
+	playsound(owner,'sound/gore/flesh_eat_06.ogg', 30, TRUE)
 
 /datum/coven_power/demonic/conflagration/deactivate()
 	. = ..()
 	for(var/obj/item/rogueweapon/gangrel/claws in owner)
 		qdel(claws)
-
+	owner.visible_message(
+		span_warning("[owner]'s hands emit a vicious sound as they return to their normal form."))
+	playsound(owner,'sound/gore/flesh_eat_03.ogg', 30, TRUE)
 //PSYCHOMACHIA
 /datum/coven_power/demonic/psychomachia
 	name = "Psychomachia"
