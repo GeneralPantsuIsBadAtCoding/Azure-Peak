@@ -2510,6 +2510,7 @@
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\blade_burst.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\deadland.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\ensnare.dm"
+#include "code\modules\spells\spell_types\wizard\invoked_aoe\firespark.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\flamebust.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\flamewave.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\knock.dm"

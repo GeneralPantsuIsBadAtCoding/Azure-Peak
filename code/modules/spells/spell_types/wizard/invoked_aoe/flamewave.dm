@@ -7,7 +7,7 @@
 	overlay_state = "flamewave"
 	action_icon_state = "flamewave"
 	chargedrain = 2
-	chargetime = 3 SECONDS
+	chargetime = 2 SECONDS
 	recharge_time = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -17,7 +17,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3 // AOE
-	invocations = list("Arescentem!")
+	invocations = list("Flame Est!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_HIGH
@@ -26,7 +26,7 @@
 	. = ..()
 	var/turf/T = get_turf(targets[1])
 	var/user_skill = user.get_skill_level(associated_skill)
-	if(!do_after(user,1 SECONDS, user))
+	if(!do_after(user,0.5 SECONDS, user))
 		return
 	if(!T)
 		return
@@ -58,8 +58,17 @@
 					if(L == src)
 						continue
 					if (!L.mind && istype(L, /mob/living/simple_animal))
-						L.adjustFireLoss(30) //x2 VS mobs
-					L.adjustFireLoss(30)
+						L.adjustFireLoss(40) //x2 VS mobs
+					L.adjustFireLoss(40)
 				new /obj/effect/hotspot(T, dir_to_target)
+				new /obj/effect/temp_visual/firewave(T, dir_to_target)
 	visible_message(span_danger("[src] exhales a violent gust of wind!"))
 	playsound(src, 'sound/weather/rain/wind_6.ogg', 100, TRUE)
+
+/obj/effect/temp_visual/firewave
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "flame"
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE
+	light_outer_range = 2
+	duration = 3

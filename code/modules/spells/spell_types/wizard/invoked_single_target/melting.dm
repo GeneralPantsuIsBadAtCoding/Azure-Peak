@@ -15,7 +15,8 @@
 	warnie = "sydwarning"
 	movement_interrupt = TRUE
 	no_early_release = TRUE
-	invocation_type = "none"
+	invocations = list("Incineratio!!")
+	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = FALSE

@@ -13,8 +13,8 @@
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 3
-	invocations = list("Perstare Sicut Saxum.") // Endure like Stone
-	invocation_type = "whisper"
+	invocations = list("Ignis Scutum!")
+	invocation_type = "shout"
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_HIGH
 	no_early_release = TRUE

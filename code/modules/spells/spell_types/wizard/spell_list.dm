@@ -57,6 +57,7 @@ GLOBAL_LIST_INIT(Pyromancy_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/pyro/firewalk,
 		/obj/effect/proc_holder/spell/invoked/pyro/flamewave,
 		/obj/effect/proc_holder/spell/invoked/pyro/burn_wounds,
+		/obj/effect/proc_holder/spell/invoked/pyro/firespark,
 		)
 ))
 

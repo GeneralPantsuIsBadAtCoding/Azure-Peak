@@ -33,8 +33,7 @@
 		to_chat(span_warning("You can't cast this spell on a different z-level!"))
 		return FALSE
 
-	var/list/affected_turfs = getline(source_turf, T)
-	affected_turfs |= T
+	var/list/affected_turfs = getline(source_turf, T) + T
 
 	for(var/i = 1, i < affected_turfs.len, i++)
 		var/turf/affected_turf = affected_turfs[i]

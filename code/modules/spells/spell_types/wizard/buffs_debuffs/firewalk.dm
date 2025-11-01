@@ -14,7 +14,7 @@
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 3
-	invocations = list("Perstare Sicut Saxum.") // Endure like Stone
+	invocations = list("Ignis Saltatio.")
 	invocation_type = "whisper"
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_HIGH
@@ -64,6 +64,8 @@
 	if(owner.stat == DEAD || owner.stat != CONSCIOUS)
 		owner.remove_status_effect(/datum/status_effect/buff/firewalker)
 		return FALSE
+	new /obj/effect/hotspot(get_turf(user))
+	sleep(0.4)
 	new /obj/effect/hotspot(get_turf(user))
 
 /datum/status_effect/buff/firewalker/on_remove()
