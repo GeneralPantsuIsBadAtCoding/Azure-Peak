@@ -97,13 +97,6 @@
 	if(ishuman(owner))
 		SSdroning.play_area_sound(get_area(src), owner.client)
 		SSdroning.play_loop(get_area(src), owner.client)
-		to_chat(owner, span_blue("I start waking up."))
-		if(owner.eyesclosed)
-			owner.eyesclosed = FALSE
-			owner.cure_blind("eyelids")
-		if(owner.hud_used)
-			for(var/atom/movable/screen/eye_intent/eyet in owner.hud_used.static_inventory)
-				eyet.update_icon(owner)
 	. = ..()
 
 /datum/status_effect/incapacitating/sleeping/Destroy()
