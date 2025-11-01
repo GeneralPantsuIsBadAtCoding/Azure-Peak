@@ -1,6 +1,5 @@
 /datum/sex_action/sex/throat
 	name = "Fuck their throat"
-	hole_id = BODY_ZONE_PRECISE_MOUTH
 	stamina_cost = 1.0
 
 /datum/sex_action/sex/throat/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)

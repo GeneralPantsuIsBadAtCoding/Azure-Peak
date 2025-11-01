@@ -1,7 +1,6 @@
 
 /datum/sex_action/blowjob
 	name = "Suck them off"
-	hole_id = BODY_ZONE_PRECISE_MOUTH
 	require_grab = FALSE
 	check_same_tile = FALSE
 	target_priority = 100

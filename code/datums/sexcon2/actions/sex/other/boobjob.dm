@@ -1,6 +1,5 @@
 /datum/sex_action/sex/other/boobjob
 	name = "Give them a boob job"
-	hole_id = ORGAN_SLOT_BREASTS
 
 /datum/sex_action/sex/other/boobjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)

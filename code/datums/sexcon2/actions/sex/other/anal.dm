@@ -1,6 +1,5 @@
 /datum/sex_action/sex/other/anal
 	name = "Ride them anally"
-	hole_id = ORGAN_SLOT_ANUS
 	stamina_cost = 1.0
 	aggro_grab_instead_same_tile = FALSE
 	target_priority = 100

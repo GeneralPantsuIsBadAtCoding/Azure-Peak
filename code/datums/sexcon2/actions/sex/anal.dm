@@ -1,6 +1,5 @@
 /datum/sex_action/sex/anal
 	name = "Fuck their ass"
-	hole_id = ORGAN_SLOT_ANUS
 	stamina_cost = 1.0
 
 /datum/sex_action/sex/anal/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
