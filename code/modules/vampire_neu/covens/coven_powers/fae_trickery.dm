@@ -24,7 +24,7 @@
 
 /datum/coven_power/fae_trickery/darkling_trickery/activate(mob/living/target)
 	. = ..()
-	target.visible_message(span_suicide("[target] is disarmed!"), 
+	target.visible_message(span_suicide("[target] is disarmed!"),
 					span_boldwarning("I'm disarmed!"))	
 	playsound(get_turf(target), 'sound/magic/mockery.ogg', 40, FALSE)
 	var/turnangle = (prob(50) ? 270 : 90)
