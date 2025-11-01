@@ -1,7 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/pyro/firespark
 	name = "Fire Spark"
-	desc = "Emit a bolt of lightning that burns a target, preventing them from attacking and slowing them down for 6 seconds. \n\
-	Damage is increased by 100% versus simple-minded creechurs."
+	desc = "A spell by which a pyromancer magician can make any flame source burst into a bright, searing flash. \n\
+	Cast it on any light emit structure witch flame inside, for create 3x3 flame explosion. \n\
+	You can cast it on burning mobs, for doubles their firestacks."
 	clothes_req = FALSE
 	overlay_state = "justflame"
 	sound = 'sound/magic/whiteflame.ogg'
