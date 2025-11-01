@@ -65,14 +65,17 @@
 
 ///A simplified version of the proc that adds an overlay to the src and returns a reference to the appearance.
 ///Has no offset adjustment for bodies / sprite size. Make sure to account for that if using it on carbons!
-/mob/living/proc/play_overhead_indicator_simple(icon_path, overlay_name, clear_time, overlay_layer, soundin = null, y_offset, x_offset)
+/mob/living/proc/play_overhead_indicator_simple(icon_path, overlay_name, clear_time, overlay_layer = ABOVE_MOB_LAYER, soundin = null, y_offset = 0, x_offset = 0)
 	var/mutable_appearance/appearance = mutable_appearance(icon_path, overlay_name, overlay_layer)
+	appearance.pixel_x += x_offset
+	appearance.pixel_y += y_offset
 	appearance.appearance_flags = RESET_COLOR
-	overlays_standing[OBJ_LAYER] = appearance
-	apply_overlay(OBJ_LAYER)
-	addtimer(CALLBACK(src, PROC_REF(clear_overhead_indicator), appearance), clear_time)
+	overlays_standing[overlay_layer] = appearance
+	apply_overlay(overlay_layer)
+	addtimer(CALLBACK(src, PROC_REF(clear_overhead_indicator), appearance, overlay_layer), clear_time)
 	if(soundin)
 		playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
+	return appearance
 
 /obj/effect/temp_visual/stress_event
 	icon = 'icons/mob/overhead_effects.dmi'
@@ -93,8 +96,8 @@
 		I.pixel_y += (offsets[2]+y_offset)
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/onePerson, iname, I, seer)
 
-/mob/living/proc/clear_overhead_indicator(appearance)
-	remove_overlay(OBJ_LAYER)
+/mob/living/proc/clear_overhead_indicator(appearance, layer = OBJ_LAYER)
+	remove_overlay(layer)
 	cut_overlay(appearance, TRUE)
 	qdel(appearance)
 	update_icon()

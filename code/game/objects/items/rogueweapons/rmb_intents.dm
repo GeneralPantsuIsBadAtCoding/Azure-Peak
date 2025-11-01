@@ -152,6 +152,9 @@
 	user.apply_status_effect(/datum/status_effect/debuff/feintcd)
 	perc = CLAMP(perc, 0, 90)
 
+	if(user == target)
+		perc = 100
+
 	if(!prob(perc)) //feint intent increases the immobilize duration significantly
 		playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
 		if(user.client?.prefs.showrolls)
