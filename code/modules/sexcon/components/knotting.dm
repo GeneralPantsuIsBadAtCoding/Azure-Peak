@@ -413,7 +413,7 @@
 
 	// Add aftermath effects
 	var/turf/turf = get_turf(btm)
-	turf.add_liquid(/datum/reagent/consumable/milk, 5)
+	new /obj/effect/decal/cleanable/coom(turf)
 
 /datum/component/knotting/proc/knot_exit(keep_top_status = FALSE, keep_btm_status = FALSE)
 	var/mob/living/carbon/human/top = knotted_owner

@@ -126,7 +126,7 @@
 	if(!highest_priority)
 		mob.visible_message(span_love("[mob] makes a mess!"))
 		var/turf/turf = get_turf(parent)
-		turf.add_liquid(/datum/reagent/consumable/milk, 5)
+		new /obj/effect/decal/cleanable/coom(turf)
 		after_ejaculation(FALSE, parent)
 	else
 		var/datum/sex_action/action = SEX_ACTION(highest_priority.current_action)
@@ -134,7 +134,7 @@
 		if(!return_type)
 			mob.visible_message(span_love("[mob] makes a mess!"))
 			var/turf/turf = get_turf(parent)
-			turf.add_liquid(/datum/reagent/consumable/milk, 5)
+			new /obj/effect/decal/cleanable/coom(turf)
 			after_ejaculation(FALSE, parent)
 		else
 			handle_climax(return_type, highest_priority.user, highest_priority.target)
@@ -148,7 +148,7 @@
 			log_combat(user, target, "Came onto the target")
 			playsound(target, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
 			var/turf/turf = get_turf(target)
-			turf.add_liquid(/datum/reagent/consumable/milk, 5)
+			new /obj/effect/decal/cleanable/coom(turf)
 		if("into")
 			log_combat(user, target, "Came inside the target")
 			playsound(target, 'sound/misc/mat/endin.ogg', 50, TRUE, ignore_walls = FALSE)
@@ -157,7 +157,7 @@
 			user.visible_message(span_love("[user] makes a mess!"))
 			playsound(user, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
 			var/turf/turf = get_turf(target)
-			turf.add_liquid(/datum/reagent/consumable/milk, 5)
+			new /obj/effect/decal/cleanable/coom(turf)
 
 	after_ejaculation(climax_type == "into" || climax_type == "oral", user, target)
 
