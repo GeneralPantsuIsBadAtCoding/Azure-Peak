@@ -551,9 +551,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 */
 
 /mob/living/carbon/proc/handle_sleep()
-	var/datum/charflaw/sleepless/flaw = get_flaw()
-	if (flaw.name != "Sleepless")
-		flaw = null
+	var/datum/charflaw/sleepless/sleepless_flaw = get_flaw()
+	if(!istype(sleepless_flaw, /datum/charflaw/sleepless))
+		sleepless_flaw = null
 	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
 		if(!(mobility_flags & MOBILITY_STAND))
 			energy_add(5)
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
 			adjustToxLoss(-sleepy_mod)
-	else if(!IsSleeping())
+	else
 		// Resting on a bed or something
 		var/sleepy_mod = 1
 		var/sleep_threshold = 30
@@ -598,7 +598,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(buckled?.sleepy)
 			sleepy_mod = buckled.sleepy
 		if(isturf(loc) && !(mobility_flags & MOBILITY_STAND))
-			
 			var/obj/structure/bed/rogue/bed = locate() in loc
 			if(bed)
 				sleepy_mod = bed.sleepy
@@ -608,7 +607,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(branch)
 						sleepy_mod = 2 //Worse than a bedroll, better than nothing.
 			if(eyesclosed)
-				if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !flaw)
+				if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !sleepless_flaw)
 					message = "I am completely unable to sleep. I should just get up."
 					if(!fallingas)
 						to_chat(src, span_warning(message))
@@ -630,8 +629,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					else
 						sleep_threshold = 45 
 						message = "I'll fall asleep soon, although a proper bed would be more comfortable..."
-					if(flaw) 
-						if(!flaw.drugged_up)
+					if(sleepless_flaw) 
+						if(!sleepless_flaw.drugged_up)
 							message = "I am unable to sleep. I should just get up."
 							if(!fallingas)
 								to_chat(src, span_warning(message))
@@ -645,14 +644,19 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
 						fallingas += sleepy_mod
 					if(fallingas > sleep_threshold)
-						if(flaw) // If you're sleepless, you're going to the shadow realm every time. Cuz it's funny.
-							teleport_to_dream(src, forced = TRUE)
-							Sleeping(150)
+						fallingas = FALSE
+						to_chat(src, span_blue("I've fallen asleep."))
+						if(sleepless_flaw) // If you're sleepless, you have a higher chance of going to a nightmare. Every time you sleep, the chance gets higher for the rest of the round.
+							teleport_to_dream(src, 10000, sleepless_flaw.dream_prob, FALSE)
+							sleepless_flaw.dream_prob += 1000
+							Sleeping(250)
 						else 
 							teleport_to_dream(src, 10000, dream_prob)
 							Sleeping(300)
+						
 			else
 				energy_add(sleepy_mod * 10)
+				fallingas = FALSE
 		else if(fallingas)
 			fallingas = FALSE
 

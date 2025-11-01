@@ -442,6 +442,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	name = "Sleepless"
 	desc = "I do not sleep. I cannot sleep. I've tried everything."
 	var/drugged_up = FALSE
+	var/dream_prob = 2500
 
 /datum/charflaw/sleepless/on_mob_creation(mob/user)
 	ADD_TRAIT(user, TRAIT_NOSLEEP, TRAIT_GENERIC)

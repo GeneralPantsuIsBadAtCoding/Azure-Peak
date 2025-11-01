@@ -94,9 +94,13 @@
 			human_owner = owner
 
 /datum/status_effect/incapacitating/sleeping/on_remove()
-	if(human_owner && human_owner.client)
-		SSdroning.play_area_sound(get_area(src), human_owner.client)
-		SSdroning.play_loop(get_area(src), human_owner.client)
+	if(ishuman(owner))
+		// SSdroning.play_area_sound(get_area(src), human_owner.client)
+		// SSdroning.play_loop(get_area(src), human_owner.client)
+		to_chat(owner, span_blue("I start waking up."))
+		if(owner.eyesclosed)
+			owner.eyesclosed = FALSE
+			owner.cure_blind("eyelids")
 	. = ..()
 
 /datum/status_effect/incapacitating/sleeping/Destroy()
