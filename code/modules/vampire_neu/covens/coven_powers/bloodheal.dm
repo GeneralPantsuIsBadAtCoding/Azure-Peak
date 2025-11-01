@@ -46,12 +46,12 @@
 	owner.adjustToxLoss(-HEAL_MULTIPLIER * level, 0)
 	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -HEAL_MULTIPLIER * level)
 	owner.adjustCloneLoss(-HEAL_MULTIPLIER * level, 0)
+	owner.heal_wounds(level * 5)
 	if(level >= 3) // only affects masquearade breaching bloodheals
 		if(prob(15)) // 15% chance to proc
 			owner.visible_message(
 			span_warning("[owner]'s wounds disappear as if they were never there!")
 			)
-	owner.heal_wounds(level * 5)
 
 //BLOODHEAL 1
 /datum/coven_power/bloodheal/one
