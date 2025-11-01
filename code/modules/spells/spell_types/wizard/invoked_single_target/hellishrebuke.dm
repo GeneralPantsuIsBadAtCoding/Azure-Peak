@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/invoked/rebuke 
+/obj/effect/proc_holder/spell/invoked/pyro/rebuke 
 	name = "Hellish Rebuke"
 	desc = "With a point of your finger, you shall cause a creechur in front of you to burst into flames, dealing damage over time. Able to cast whilst mouthgrabbed."
 	cost = 3
@@ -24,7 +24,7 @@
 	ignore_los = FALSE
 
 
-/obj/effect/proc_holder/spell/invoked/rebuke/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/pyro/rebuke/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
 		target.adjustFireLoss(30) //damage

@@ -113,3 +113,6 @@
 		ready_projectile(P, target, user, i)
 		P.fire()
 	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/pyro
+	base_icon_state = "spellpyro"

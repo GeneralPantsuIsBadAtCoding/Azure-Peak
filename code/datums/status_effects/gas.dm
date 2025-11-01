@@ -15,6 +15,8 @@
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(owner_resist))
 	if(!owner.stat)
 		to_chat(owner, span_danger("I become frozen in a cube!"))
+	cube = icon('icons/effects/freeze.dmi', "ice_cube")
+	owner.status_flags += GODMODE
 	owner.add_overlay(cube)
 	owner.update_mobility()
 	return ..()
@@ -30,6 +32,7 @@
 		if(!QDELETED(src))
 			to_chat(owner, span_notice("I break out of the ice cube!"))
 			owner.remove_status_effect(/datum/status_effect/freon)
+			owner.status_flags -= GODMODE
 			owner.update_mobility()
 
 /datum/status_effect/freon/on_remove()
@@ -38,6 +41,7 @@
 	owner.cut_overlay(cube)
 	owner.adjust_bodytemperature(100)
 	owner.update_mobility()
+	owner.status_flags -= GODMODE
 	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
 
 /datum/status_effect/freon/watcher
@@ -45,5 +49,5 @@
 	can_melt = FALSE
 
 /datum/status_effect/freon/freezing
-	duration = 10 SECONDS
+	duration = 20 SECONDS //you take godmod trait and can break ice cub with resist spam
 	can_melt = FALSE

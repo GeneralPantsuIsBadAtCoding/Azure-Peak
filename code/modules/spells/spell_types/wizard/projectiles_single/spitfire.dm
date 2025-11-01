@@ -8,6 +8,7 @@
 	range = 8
 	projectile_type = /obj/projectile/magic/aoe/fireball/spitfire
 	overlay_state = "fireball_multi"
+	base_icon_state = "spellpyro"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
 	releasedrain = 30

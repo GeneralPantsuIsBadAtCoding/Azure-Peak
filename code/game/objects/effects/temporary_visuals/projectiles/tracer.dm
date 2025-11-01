@@ -51,6 +51,14 @@
 	name = "stun beam"
 	icon_state = "stun"
 
+/obj/effect/projectile/tracer/phazer
+	name = "stun beam"
+	icon_state = "lightning1"
+
+/obj/effect/projectile/tracer/phazer/Initialize()
+	.=..()
+	icon_state = "lightning[rand(1,12)]"
+
 /obj/effect/projectile/tracer/blood
 	name = "blood bolt"
 	icon_state = "cult"

@@ -22,8 +22,8 @@
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "ensnare"
 	var/area_of_effect = 1
-	var/duration = 5 SECONDS
-	var/delay = 0.8 SECONDS
+	var/duration = 10 SECONDS
+	var/delay = 1.3 SECONDS
 
 /obj/effect/proc_holder/spell/invoked/ensnare/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
@@ -52,7 +52,7 @@
 /obj/effect/temp_visual/ensnare
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "curseblob"
-	duration = 1 SECONDS
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/ensnare/long
-	duration = 3 SECONDS
+	duration = 10 SECONDS
