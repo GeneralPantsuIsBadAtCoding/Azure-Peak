@@ -1787,7 +1787,7 @@
 /mob/living/proc/swap_rmb_intent(type, num)
 	if(!possible_rmb_intents?.len)
 		return
-	if(!move_after(src, 0.4 SECONDS, FALSE, src))
+	if(!move_after(src, 0.5 SECONDS, FALSE, src))
 		return
 	if(type)
 		if(type in possible_rmb_intents)
