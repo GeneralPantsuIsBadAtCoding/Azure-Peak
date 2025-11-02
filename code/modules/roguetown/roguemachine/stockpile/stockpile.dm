@@ -93,7 +93,7 @@
 		withdraw_tab.licensed = TRUE
 	else
 		withdraw_tab.licensed = FALSE
-
+	
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	playsound(loc, 'sound/misc/keyboard_enter.ogg', 100, FALSE, -1)
 
@@ -111,8 +111,6 @@
 
 /obj/structure/roguemachine/stockpile/proc/attemptsell(obj/item/I, mob/H, message = TRUE, sound = TRUE)
 	for(var/datum/roguestock/R in SStreasury.stockpile_datums)
-		if(!HAS_TRAIT(H, TRAIT_LICENSED))
-			R.payout_price = ceil(R.payout_price / 2)
 		if(istype(I, /obj/item/natural/bundle))
 			var/obj/item/natural/bundle/B = I
 			if(B.stacktype == R.item_type)
@@ -128,6 +126,8 @@
 					say("Stockpile is full, no payment.")
 				else
 					var/amt = R.payout_price * B.amount
+					if(!HAS_TRAIT(H, TRAIT_LICENSED))
+						amt = ceil(R.payout_price * B.amount / 2)
 					SStreasury.economic_output += R.export_price * B.amount
 					if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 						say("No account found. Submit your fingers to a Meister for inspection.")
@@ -140,6 +140,8 @@
 				continue
 			var/amt = R.get_payout_price(I)
 			var/nopay = !R.mint_item && R.held_items[stockpile_index] >= R.stockpile_limit // Check whether it is overflowed BEFORE nopaying them
+			if(!HAS_TRAIT(H, TRAIT_LICENSED))
+				amt = ceil(R.get_payout_price(I) / 2)
 			if(!R.mint_item)
 				R.held_items[stockpile_index] += 1 //stacked logs need to check for multiple
 				qdel(I)
