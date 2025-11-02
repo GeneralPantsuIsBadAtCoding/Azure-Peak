@@ -50,19 +50,6 @@
 				if(hated_drink_name == name)
 					if(HM.add_stress(/datum/stressevent/hated_drink))
 						to_chat(HM, span_red("Yuck! My hated drink!"))
-
-		if (quality)
-			switch(quality)
-				if (DRINK_NICE)
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
-				if (DRINK_GOOD)
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_good)
-				if (DRINK_VERYGOOD)
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_verygood)
-				if (DRINK_FANTASTIC)
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_fantastic)
-				if (FOOD_AMAZING)
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_food", /datum/mood_event/amazingtaste)
 	return ..()
 
 /datum/reagent/consumable/nutriment

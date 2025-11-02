@@ -73,6 +73,10 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		dat += "Time To Start: SOON<br>"
 
 	dat += "Total players ready: [SSticker.totalPlayersReady]<br>"
+	if(src.ready)
+		dat += (span_good("Ready Bonus!") + "<a href='?src=[REF(src)];explainreadyupbonus=1'>(?)</a><br>")
+	else
+		dat += (span_highlight("No bonus! Ready up!") + "<a href='?src=[REF(src)];explainreadyupbonus=1'>(?)</a><br>")
 	dat += "<B>Classes:</B><br>"
 
 	dat += "</center>"

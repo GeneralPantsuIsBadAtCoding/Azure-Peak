@@ -252,8 +252,11 @@ And it also helps for the character set panel
 
 	UnregisterSignal(vampire, COMSIG_HUMAN_LIFE)
 
+	var/datum/action/clan_menu/clan_action = locate(/datum/action/clan_menu) in vampire.actions
+	QDEL_NULL(clan_action)
+
 	// Remove unique Clan feature traits
-	for (var/trait in clane_traits)
+	for(var/trait in clane_traits)
 		REMOVE_TRAIT(vampire, trait, "clan")
 
 	vampire.update_body()
@@ -267,6 +270,8 @@ And it also helps for the character set panel
 	if(disguise_comp)
 		qdel(disguise_comp)
 
+	vampire.verbs -= /mob/living/carbon/human/proc/disguise_verb
+
 	clan_members -= vampire
 
 	if(vampire.clan_position)
@@ -274,6 +279,10 @@ And it also helps for the character set panel
 
 	for(var/datum/coven/coven as anything in clane_covens)
 		vampire.remove_coven(coven)
+
+	// Bloodheal coven has snowflake behavior since it is added to all vampires. So - snowflake removal.
+	var/datum/coven/bloodheal/bloodheal = locate(/datum/coven/bloodheal) in vampire.covens
+	vampire.remove_coven(bloodheal)
 
 	var/list/spells_to_remove = list(
 		/datum/action/clan_menu,

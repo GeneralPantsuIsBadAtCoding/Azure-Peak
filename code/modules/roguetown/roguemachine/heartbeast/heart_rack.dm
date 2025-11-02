@@ -40,6 +40,10 @@
 			to_chat(user, span_warning("The canister needs to be filled first!"))
 			return TRUE
 
+		if(has_duplicate_aspect(canister.aspect_datum_ref))
+			to_chat(user, span_warning("A canister with that exact aspect is already in the rack!"))
+			return TRUE
+
 		// Determine what type of aspect this canister holds
 		var/canister_type
 		if(istype(canister.aspect_datum_ref, /datum/flesh_archetype))
@@ -73,6 +77,16 @@
 			return TRUE
 
 	return ..()
+
+/obj/structure/stone_rack/proc/has_duplicate_aspect(datum/aspect_datum)
+	// Checks if the given aspect datum is already present in a canister in the rack
+	if(!aspect_datum)
+		return FALSE
+
+	for(var/obj/item/heart_canister/canister in slots)
+		if(canister && canister.aspect_datum_ref == aspect_datum)
+			return TRUE
+	return FALSE
 
 /obj/structure/stone_rack/attack_hand(mob/user)
 	. = ..()

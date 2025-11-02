@@ -47,6 +47,10 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)
 		return FALSE //signal handled the dropping
+	
+	if(C.try_resist_critical())
+		C.visible_message(span_danger("Critical resistance! [C]'s [src.name] hangs on by a thread!</span>"))
+		return FALSE
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound)
@@ -60,7 +64,6 @@
 		C.emote("painscream")
 	if(!(NOBLOOD in C.dna?.species?.species_traits))
 		add_mob_blood(C)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
 	if(C.buckled)

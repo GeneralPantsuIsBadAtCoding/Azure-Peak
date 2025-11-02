@@ -9,11 +9,13 @@
 
 	. += integrity_check()
 
-	var/real_value = get_real_price()
-	if(real_value > 0)
-		if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
-			. += span_info("Value: [real_value] mammon")
-		else if(HAS_TRAIT(user, TRAIT_SEEPRICES_SHITTY))
+	if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
+		var/appraised_value = appraise_price()
+		if(appraised_value > 0)
+			. += span_info("Value: [appraised_value] mammon")
+	else if(HAS_TRAIT(user, TRAIT_SEEPRICES_SHITTY))
+		var/real_value = appraise_price()
+		if(real_value > 0)
 			//you can get up to 50% of the value if you have shitty see prices
 			var/static/fumbling_seed = text2num(GLOB.rogue_round_id)
 			var/fumbled_value = max(1, round(real_value + (real_value * clamp(noise_hash(real_value, fumbling_seed) - 0.25, -0.25, 0.25)), 1))

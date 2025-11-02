@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/voted = list()
 	var/list/voting = list()
 	var/list/generated_actions = list()
+	var/static/list/everyone_is_equal = list("custom")
 
 /datum/controller/subsystem/vote/fire()	//called by master_controller
 	if(mode)
@@ -180,6 +181,7 @@ SUBSYSTEM_DEF(vote)
 	return .
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
+	// Voting where vote power is equal for all
 	if(mode)
 //		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
 //			return 0
@@ -202,6 +204,8 @@ SUBSYSTEM_DEF(vote)
 								for(var/datum/antagonist/D in H.mind.antag_datums)
 									if(D.increase_votepwr)
 										vote_power += 3
+				if(mode in everyone_is_equal)
+					vote_power = 1
 				choices[choices[vote]] += vote_power //check this
 				return vote
 	return 0
