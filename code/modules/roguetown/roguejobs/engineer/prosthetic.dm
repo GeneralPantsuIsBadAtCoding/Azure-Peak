@@ -203,7 +203,7 @@
 	name = "bronze left arm"
 	desc = "A replacement left arm, engineered out of bronze."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "bparm"
+	icon_state = "bp_arm"
 	prosthetic_prefix = "prs"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
@@ -302,7 +302,7 @@
 	name = "bronze right arm"
 	desc = "A replacement right arm, engineered out of bronze."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "bparm"
+	icon_state = "bp_arm"
 	prosthetic_prefix = "prs"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
@@ -404,7 +404,7 @@
 	name = "bronze left leg"
 	desc = "A replacement left leg, engineered out of bronze."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "bpleg"
+	icon_state = "bp_leg"
 	prosthetic_prefix = "prs"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
@@ -500,7 +500,7 @@
 	name = "bronze right leg"
 	desc = "A replacement right leg, engineered out of bronze."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "bpleg"
+	icon_state = "bp_leg"
 	prosthetic_prefix = "prs"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT

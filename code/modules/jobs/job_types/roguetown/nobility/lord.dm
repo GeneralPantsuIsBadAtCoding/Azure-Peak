@@ -35,6 +35,9 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	cmode_music = 'sound/music/combat_noble.ogg'
 	same_job_respawn_delay = 30 MINUTES
 
+	// Can't use the Throat when you can't talk properly or.. at all for that matter.
+	vice_restrictions = list(/datum/charflaw/mute, /datum/charflaw/unintelligible)
+
 	job_subclasses = list(
 		/datum/advclass/lord/warrior,
 		/datum/advclass/lord/merchant,

@@ -55,13 +55,7 @@
 				remove_stress(/datum/stressevent/sleepytime)
 				if(mind)
 					mind.sleep_adv.advance_cycle()
-					allmig_reward++
-					adjust_triumphs(1)
-					var/static/list/towner_jobs
-					towner_jobs = GLOB.peasant_positions | GLOB.yeoman_positions | GLOB.youngfolk_positions
-					if(mind.assigned_role.title in towner_jobs) //If you play a towner-related role, you get triumphs.
-						adjust_triumphs(1)
-					to_chat(src, span_danger("Nights Survived: \Roman[allmig_reward]"))
+					handle_sleep_triumphs()
 	if(leprosy == 1)
 		adjustToxLoss(2)
 	else if(leprosy == 2)
@@ -209,7 +203,7 @@
 					 		'sound/items/confessormask10.ogg')
 			playsound(src, mask_sound, 90, FALSE, 4, 0)
 			return
-			 	
+
 
 
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)
