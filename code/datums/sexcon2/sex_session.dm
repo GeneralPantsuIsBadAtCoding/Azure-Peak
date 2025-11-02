@@ -151,8 +151,11 @@
 	action.on_start(user, target)
 
 	while(TRUE)
+		#ifndef LOCALTEST
+		// DO NOT allow NPC sex except on local, for testing
 		if(isnull(target.client))
 			break
+		#endif
 
 		var/stamina_cost = action.stamina_cost * get_stamina_cost_multiplier()
 		if(!user.stamina_add(stamina_cost))
