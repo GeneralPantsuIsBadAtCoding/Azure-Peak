@@ -211,7 +211,7 @@
 		)
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
-		if(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal)
+		if(/datum/faith/old_god)
 			cloak = /obj/item/clothing/cloak/psydontabard
 			if(H.mind)
 				var/helmets = list("Armet","Buckethelm")
