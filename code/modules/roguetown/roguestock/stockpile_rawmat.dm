@@ -132,7 +132,7 @@
 	desc = "Lengths of cloth for sewing and tailoring."
 	item_type = /obj/item/natural/cloth
 	held_items = list(0, 2)
-	payout_price = 3
+	payout_price = 2
 	withdraw_price = 3
 	transport_fee = 2
 	export_price = 5
