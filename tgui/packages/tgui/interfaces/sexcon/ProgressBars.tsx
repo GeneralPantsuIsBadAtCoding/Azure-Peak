@@ -1,51 +1,78 @@
-import { Box, ProgressBar, Section, Stack } from 'tgui-core/components';
+import { Box, Section, Stack } from 'tgui-core/components';
 
 interface ProgressBarsProps {
   arousal: number;
   pleasure: number;
-  pain: number;
 }
 
+interface CustomProgressBarProps {
+  label: string;
+  value: number;
+  gradient: string;
+}
+
+const CustomProgressBar = (props: CustomProgressBarProps) => {
+  const { label, value, gradient } = props;
+
+  return (
+    <Stack align="center">
+      <Stack.Item>
+        <Box bold mr={1} minWidth="70px">{label}:</Box>
+      </Stack.Item>
+      <Stack.Item grow>
+        <Box
+          style={{
+            height: '25px',
+            position: 'relative',
+            overflow: 'hidden',
+            border: '1px solid var(--color-border)',
+          }}
+        >
+          <Box
+            style={{
+              background: gradient,
+              height: '100%',
+              width: `${Math.min(100, Math.max(0, value))}%`,
+              transition: 'width 0.3s',
+            }}
+          />
+          <Box
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              fontWeight: 'bold',
+              textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+            }}
+          >
+            {value.toFixed(0)}%
+          </Box>
+        </Box>
+      </Stack.Item>
+    </Stack>
+  );
+};
+
 export const ProgressBars = (props: ProgressBarsProps) => {
-  const { arousal, pleasure, pain } = props;
+  const { arousal, pleasure } = props;
 
   return (
     <Section>
       <Stack vertical>
         <Stack.Item>
-          <Stack>
-            <Stack.Item basis="25%">
-              <Box bold>Pleasure:</Box>
-            </Stack.Item>
-            <Stack.Item grow>
-              <ProgressBar
-                value={pleasure / 100}
-                ranges={{
-                  good: [0.5, Infinity],
-                  average: [0.25, 0.5],
-                  bad: [-Infinity, 0.25],
-                }}
-              />
-            </Stack.Item>
-          </Stack>
+          <CustomProgressBar
+            label="Pleasure"
+            value={pleasure}
+            gradient="linear-gradient(90deg, #ff69b4, #ff1493)"
+          />
         </Stack.Item>
-
         <Stack.Item>
-          <Stack>
-            <Stack.Item basis="25%">
-              <Box bold>Arousal:</Box>
-            </Stack.Item>
-            <Stack.Item grow>
-              <ProgressBar
-                value={arousal / 100}
-                ranges={{
-                  good: [0.5, Infinity],
-                  average: [0.25, 0.5],
-                  bad: [-Infinity, 0.25],
-                }}
-              />
-            </Stack.Item>
-          </Stack>
+          <CustomProgressBar
+            label="Arousal"
+            value={arousal}
+            gradient="linear-gradient(90deg, #ff4444, #cc0000)"
+          />
         </Stack.Item>
       </Stack>
     </Section>

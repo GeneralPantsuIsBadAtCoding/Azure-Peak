@@ -378,8 +378,7 @@
 	var/max_arousal = MAX_AROUSAL
 	var/current_arousal = arousal_data["arousal"] || 0
 	data["arousal"] = min(100, (current_arousal / max_arousal) * 100)
-	data["pleasure"] = data["arousal"] // Simplified for now
-	data["pain"] = 0 // Not implemented yet
+	data["pleasure"] = data["arousal"]
 	data["frozen"] = arousal_data["frozen"] || FALSE
 
 	// Which actions can be performed

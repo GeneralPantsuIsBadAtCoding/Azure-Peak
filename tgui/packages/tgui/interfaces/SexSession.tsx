@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Divider, Input, Section, Stack } from 'tgui-core/components';
 
 import { ActionButton } from './sexcon/ActionButton';
 import { ProgressBars } from './sexcon/ProgressBars';
@@ -11,6 +11,10 @@ export const SexSession = () => {
   const { act, data } = useBackend<SexSessionData>();
   const [searchText, setSearchText] = useState('');
   const [arousalInput, setArousalInput] = useState('');
+
+  // Color mapping for speed and force (matching old sexcon)
+  const speedColors = ['#eac8de', '#e9a8d1', '#f05ee1', '#d146f5'];
+  const forceColors = ['#eac8de', '#e9a8d1', '#f05ee1', '#d146f5'];
 
   // Split actions into two columns
   const filteredActions = data.actions.filter((action) =>
@@ -39,7 +43,6 @@ export const SexSession = () => {
     <Window title="Sate Desires" width={500} height={600}>
       <Window.Content scrollable>
         <Stack vertical fill>
-          {/* Header */}
           <Stack.Item>
             <Box textAlign="center" bold fontSize="1.1em">
               {data.title}
@@ -51,20 +54,16 @@ export const SexSession = () => {
             )}
           </Stack.Item>
 
-          {/* Progress Bars */}
           <Stack.Item>
             <ProgressBars
               arousal={data.arousal}
               pleasure={data.pleasure}
-              pain={data.pain}
             />
           </Stack.Item>
-
-          {/* Controls - All in one compact section */}
+          <Divider />
           <Stack.Item>
             <Section>
               <Stack vertical>
-                {/* Speed and Force */}
                 <Stack.Item>
                   <Box textAlign="center">
                     <Button
@@ -75,7 +74,16 @@ export const SexSession = () => {
                       &lt;
                     </Button>
                     {' '}
-                    <Box as="span" bold>
+                    <Box
+                      as="span"
+                      bold
+                      style={{
+                        color: speedColors[data.speed - 1],
+                        display: 'inline-block',
+                        minWidth: '110px',
+                        textAlign: 'center',
+                      }}
+                    >
                       {data.speed_names[data.speed - 1]}
                     </Box>
                     {' '}
@@ -86,7 +94,7 @@ export const SexSession = () => {
                     >
                       &gt;
                     </Button>
-                    {' ~|~ '}
+                    {` -- | -- `}
                     <Button
                       inline
                       compact
@@ -95,7 +103,16 @@ export const SexSession = () => {
                       &lt;
                     </Button>
                     {' '}
-                    <Box as="span" bold>
+                    <Box
+                      as="span"
+                      bold
+                      style={{
+                        color: forceColors[data.force - 1],
+                        display: 'inline-block',
+                        minWidth: '90px',
+                        textAlign: 'center',
+                      }}
+                    >
                       {data.force_names[data.force - 1]}
                     </Box>
                     {' '}
@@ -112,67 +129,69 @@ export const SexSession = () => {
                 {/* Finish Condition */}
                 <Stack.Item>
                   <Box textAlign="center">
-                    |{' '}
                     <Button
                       inline
                       compact
-                      color={data.do_until_finished ? 'good' : 'default'}
+                      color="transparent"
                       onClick={() => act('toggle_finished')}
                     >
                       {data.do_until_finished ? "UNTIL I'M FINISHED" : 'UNTIL I STOP'}
                     </Button>
-                    {' '}|
                   </Box>
                 </Stack.Item>
 
                 {/* Arousal Controls */}
                 <Stack.Item>
-                  <Stack>
-                    <Stack.Item grow>
-                      <Input
-                        fluid
-                        placeholder="Set arousal..."
-                        value={arousalInput}
-                        onChange={setArousalInput}
-                        onEnter={() => {
-                          const amount = parseInt(arousalInput, 10);
-                          if (!isNaN(amount)) {
-                            act('set_arousal_value', { amount });
-                            setArousalInput('');
-                          }
-                        }}
-                      />
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button
-                        onClick={() => {
-                          const amount = parseInt(arousalInput, 10);
-                          if (!isNaN(amount)) {
-                            act('set_arousal_value', { amount });
-                            setArousalInput('');
-                          }
-                        }}
-                      >
-                        SET
-                      </Button>
-                    </Stack.Item>
-                    <Stack.Item>
-                      <Button onClick={() => act('freeze_arousal')}>
-                        {data.frozen ? 'UNFREEZE' : 'FREEZE'}
-                      </Button>
-                    </Stack.Item>
-                  </Stack>
-                </Stack.Item>
-                <Stack.Item>
-                  <Box textAlign="center" italic color="label">
-                    Doing unto {data.title.replace('Interacting with ', '').replace('...', '')}
+                  <Box textAlign="center">
+                    <Input
+                      placeholder="Set arousal..."
+                      value={arousalInput}
+                      onChange={setArousalInput}
+                      width="120px"
+                      onEnter={() => {
+                        const amount = parseInt(arousalInput, 10);
+                        if (!isNaN(amount)) {
+                          act('set_arousal_value', { amount });
+                          setArousalInput('');
+                        }
+                      }}
+                    />
+                    {' '}
+                    <Button
+                      inline
+                      compact
+                      color="transparent"
+                      onClick={() => {
+                        const amount = parseInt(arousalInput, 10);
+                        if (!isNaN(amount)) {
+                          act('set_arousal_value', { amount });
+                          setArousalInput('');
+                        }
+                      }}
+                    >
+                      SET
+                    </Button>
+                    {' | '}
+                    <Button
+                      inline
+                      compact
+                      color="transparent"
+                      onClick={() => act('freeze_arousal')}
+                    >
+                      {data.frozen ? 'UNFREEZE' : 'FREEZE'}
+                    </Button>
                   </Box>
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
-
+          <Divider />
           {/* Search */}
+          <Stack.Item>
+            <Box textAlign="center" italic color="label">
+              Doing unto {data.title.replace('Interacting with ', '').replace('...', '')}
+            </Box>
+          </Stack.Item>
           <Stack.Item>
             <Input
               fluid
