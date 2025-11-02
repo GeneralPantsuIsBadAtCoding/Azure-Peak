@@ -601,11 +601,6 @@
 	dat += get_session_tab_content()
 	dat += "</div>"
 
-	// Kinks Tab
-	dat += "<div class='tab-content [selected_tab == "kinks" ? "active" : ""]' id='kinks-tab'>"
-	dat += get_kinks_tab_content()
-	dat += "</div>"
-
 	// Notes Tab
 	dat += "<div class='tab-content [selected_tab == "notes" ? "active" : ""]' id='notes-tab'>"
 	dat += get_notes_tab_content()
@@ -751,7 +746,7 @@
 	var/collective_enabled = collective ? TRUE : FALSE
 
 	var/toggle_class = "collective-toggle"
-	if(collective_enabled && any_has_flag)
+	if(collective_enabled)
 		toggle_class += " enabled"
 
 	content += "<div class='[toggle_class]' onclick=\"window.location.href='?src=[REF(src)];task=toggle_subtle;tab=session'\">"
@@ -819,70 +814,6 @@
 		if("toggle_subtle")
 			collective.toggle_subtle()
 
-		if("submit_self_note")
-			var/note_title = url_decode(href_list["title"])
-			var/note_content = url_decode(href_list["content"])
-
-			if(!note_title || !note_content)
-				to_chat(user, "<span class='warning'>Both title and content are required.</span>")
-				show_ui(selected_tab)
-				return
-
-			var/character_slot = get_character_slot(user)
-
-			var/list/existing_notes = get_player_notes_about(user.ckey, user.ckey, character_slot)
-			if(existing_notes[note_title])
-				to_chat(user, "<span class='warning'>A note with that title already exists. Please choose a different title.</span>")
-				show_ui(selected_tab)
-				return
-
-			if(set_player_note_about(user.ckey, target.ckey, note_title, note_content, character_slot))
-				to_chat(user, "<span class='notice'>Note '[note_title]' saved successfully.</span>")
-			else
-				to_chat(user, "<span class='warning'>Failed to save note. Please try again.</span>")
-
-		if("edit_self_note")
-			var/note_title = url_decode(href_list["note_title"])
-			if(!note_title)
-				show_ui(selected_tab)
-				return
-
-			var/character_slot = get_character_slot(user)
-			var/list/notes = get_player_notes_about(user.ckey, user.ckey, character_slot)
-
-			if(!notes[note_title])
-				to_chat(user, "<span class='warning'>Note not found.</span>")
-				show_ui(selected_tab)
-				return
-
-			var/old_content = notes[note_title]["content"]
-			var/new_content = input(user, "Edit your self-note:", "Edit Note", old_content) as message|null
-
-			if(!new_content)
-				show_ui(selected_tab)
-				return
-
-			set_player_note_about(user.ckey, user.ckey, note_title, new_content, character_slot)
-			to_chat(user, "<span class='notice'>Self-note '[note_title]' updated.</span>")
-
-		if("remove_self_note")
-			var/note_title = url_decode(href_list["note_title"])
-			if(!note_title)
-				show_ui(selected_tab)
-				return
-
-			var/character_slot = get_character_slot(user)
-			var/datum/save_manager/SM = get_save_manager(user.ckey)
-			if(SM)
-				var/save_name = "character_[character_slot]_notes"
-				var/list/all_notes = SM.get_data(save_name, "partner_notes", list())
-				if(all_notes[ckey(user.ckey)] && all_notes[ckey(user.ckey)][note_title])
-					all_notes[ckey(user.ckey)] -= note_title
-					SM.set_data(save_name, "partner_notes", all_notes)
-					to_chat(user, "<span class='notice'>Self-note '[note_title]' removed.</span>")
-				else
-					to_chat(user, "<span class='warning'>Note not found.</span>")
-
 	show_ui(selected_tab)
 
 /datum/sex_session/proc/get_sex_session_header()
@@ -899,97 +830,6 @@
 	data += "</div>"
 	return data.Join("")
 
-/datum/sex_session/proc/get_notes_tab_content()
-	var/list/content = list()
-	var/character_slot = get_character_slot(user)
-
-	// Get your own self-notes and the target's self-notes (shared with you)
-	var/list/self_notes = get_player_notes_about(user.ckey, user.ckey, character_slot) // Your notes about yourself
-	var/target_character_slot = get_character_slot(target)
-	var/list/target_self_notes = get_player_notes_about(target.ckey, target.ckey, target_character_slot) // Target's notes about themselves
-
-	// Sub-tabs for notes
-	content += "<div class='notes-sub-tabs'>"
-	content += "<a href='javascript:void(0)' class='notes-sub-tab active' onclick='switchNotesTab(\"self\")' id='selfTab'>Your Notes (Shared)</a>"
-	content += "<a href='javascript:void(0)' class='notes-sub-tab' onclick='switchNotesTab(\"target\")' id='targetTab'>[target.name]'s Notes</a>"
-	content += "</div>"
-
-	// Self notes content (initially visible)
-	content += "<div class='notes-tab-content active' id='selfNotesContent'>"
-	content += "<div class='panel-header'>"
-	content += "<h3>Your Notes (Shared with [target.name])</h3>"
-	content += "<button onclick='toggleSelfNoteForm()' class='control-btn' id='addSelfNoteBtn'>Add Note About Yourself</button>"
-	content += "</div>"
-
-	// Hidden form for self notes
-	content += "<div id='selfNoteForm' class='note-form' style='display: none;'>"
-	content += "<h4>Add Note About Yourself</h4>"
-	content += "<input type='text' id='selfNoteTitle' placeholder='Note title...' class='note-input-title'>"
-	content += "<textarea id='selfNoteContent' placeholder='Write your note here...' class='note-input-content'></textarea>"
-	content += "<div class='note-form-buttons'>"
-	content += "<button onclick='submitSelfNote()' class='control-btn'>Save Note</button>"
-	content += "<button onclick='cancelSelfNote()' class='control-btn' style='background-color: #666666; margin-left: 5px;'>Cancel</button>"
-	content += "</div>"
-	content += "</div>"
-
-	// Display self notes
-	if(!length(self_notes))
-		content += "<div class='no-data'>"
-		content += "You haven't written any notes about yourself yet."
-		content += "</div>"
-	else
-		for(var/note_title in self_notes)
-			var/list/note_data = self_notes[note_title]
-			content += "<div class='note-item'>"
-			content += "<div class='note-header'>"
-			content += "<div class='note-title'>[note_title]</div>"
-			content += "<div class='note-buttons'>"
-			content += "<a href='?src=[REF(src)];task=edit_self_note;note_title=[url_encode(note_title)];tab=notes' class='note-btn' onclick='event.stopPropagation()'>Edit</a>"
-			content += "<a href='?src=[REF(src)];task=remove_self_note;note_title=[url_encode(note_title)];tab=notes' class='note-btn remove-btn' onclick='event.stopPropagation(); return confirm(\"Remove note: [note_title]?\")'>Remove</a>"
-			content += "</div>"
-			content += "</div>"
-			content += "<div class='note-content'>[note_data["content"]]</div>"
-			var/created_time = note_data["created"]
-			var/modified_time = note_data["last_modified"]
-			var/time_text = "Created: [time2text(created_time, "MM/DD/YY hh:mm")]"
-			if(modified_time != created_time)
-				time_text += " | Modified: [time2text(modified_time, "MM/DD/YY hh:mm")]"
-			content += "<div class='note-meta'>[time_text]</div>"
-			content += "</div>"
-
-	content += "</div>" // End self notes content
-
-	// Target's self-notes content (initially hidden)
-	content += "<div class='notes-tab-content' id='targetNotesContent'>"
-	content += "<div class='panel-header'>"
-	content += "<h3>[target.name]'s Notes (About Themselves)</h3>"
-	content += "</div>"
-
-	// Display target's self-notes (read-only)
-	if(!length(target_self_notes))
-		content += "<div class='no-data'>"
-		content += "[target.name] hasn't shared any notes about themselves yet."
-		content += "</div>"
-	else
-		for(var/note_title in target_self_notes)
-			var/list/note_data = target_self_notes[note_title]
-			content += "<div class='note-item''>"
-			content += "<div class='note-header'>"
-			content += "<div class='note-title'>[note_title]</div>"
-			content += "</div>"
-			content += "<div class='note-content'>[note_data["content"]]</div>"
-			var/created_time = note_data["created"]
-			var/modified_time = note_data["last_modified"]
-			var/time_text = "Created: [time2text(created_time, "MM/DD/YY hh:mm")]"
-			if(modified_time != created_time)
-				time_text += " | Modified: [time2text(modified_time, "MM/DD/YY hh:mm")]"
-			content += "<div class='note-meta'>[time_text]</div>"
-			content += "</div>"
-
-	content += "</div>" // End target notes content
-
-	return content.Join("")
-
 /datum/sex_session/proc/get_current_speed()
 	return speed || SEX_SPEED_LOW
 
@@ -1004,36 +844,3 @@
 
 /datum/sex_session/proc/get_character_slot(mob/target_mob)
 	return target_mob?.client?.prefs.current_slot || 1
-
-
-/proc/get_player_notes_about(viewer_ckey, target_ckey, character_slot = 1)
-	var/datum/save_manager/SM = get_save_manager(viewer_ckey)
-	if(!SM)
-		return list()
-
-	var/save_name = "character_[character_slot]_notes"
-	var/list/all_notes = SM.get_data(save_name, "partner_notes", list())
-
-	return all_notes[ckey(target_ckey)] || list()
-
-/proc/set_player_note_about(writer_ckey, target_ckey, note_title, note_content, character_slot = 1)
-	var/datum/save_manager/SM = get_save_manager(writer_ckey)
-	if(!SM)
-		return FALSE
-
-	var/save_name = "character_[character_slot]_notes"
-	var/list/all_notes = SM.get_data(save_name, "partner_notes", list())
-
-	if(!all_notes[ckey(target_ckey)])
-		all_notes[ckey(target_ckey)] = list()
-
-	all_notes[ckey(target_ckey)][note_title] = list(
-		"content" = note_content,
-		"created" = world.realtime,
-		"last_modified" = world.realtime
-	)
-
-	return SM.set_data(save_name, "partner_notes", all_notes)
-
-
-

@@ -824,6 +824,8 @@
 #include "code\datums\sexcon2\actions\sex\other\footjob.dm"
 #include "code\datums\sexcon2\actions\sex\other\thighjob.dm"
 #include "code\datums\sexcon2\actions\sex\other\vagina.dm"
+#include "code\datums\sexcon2\ui_hook\tracker.dm"
+#include "code\datums\sexcon2\ui_hook\updater.dm"
 #include "code\datums\skills\_skill.dm"
 #include "code\datums\skills\combat.dm"
 #include "code\datums\skills\craft.dm"
