@@ -215,6 +215,24 @@
 
 // End royal clothes
 
+
+//Is this terrible, yes, but at this point ehhhhhhhh.
+/obj/item/clothing/suit/roguetown/shirt/dress/royal/hand_m
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "gilded dress shirt"
+	desc = "A gold-embroidered dress shirt tailored for the right hand man."
+	icon_state = "prince"
+	boobed = TRUE
+	detail_color = CLOTHING_AZURE
+
+/obj/item/clothing/suit/roguetown/shirt/dress/royal/hand_f
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "pristine dress"
+	desc = "A flowy, intricate dress made by the finest tailors in the land for the right hand man."
+	icon_state = "princess"
+	boobed = TRUE
+	detail_color = CLOTHING_AZURE
+
 /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 	name = "silky dress"
 	desc = "Despite not actually being made of silk, the legendary expertise needed to sew this puts the quality on par."

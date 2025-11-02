@@ -1,17 +1,17 @@
 {
 	"lawsets": {
-		"ten_commandments": {
-			"name": "The Ten Commandments",
+		"tennite_decalogue": {
+			"name": "The Decalogue",
 			"laws": [
-				"Thou shalt have no other gods before me.",
-				"Thou shalt not make unto thee any graven image, or any likeness of any thing that is in heaven above, or that is in the earth beneath, or that is in the water under the earth.",
-				"Thou shalt not take the name of the Lord thy God in vain; for the Lord will not hold him guiltless that taketh his name in vain.",
-				"Remember the sabbath day, to keep it holy. Six days shalt thou labour, and do all thy work: But the seventh day is the sabbath of the Lord thy God: in it thou shalt not do any work, thou, nor thy son, nor thy daughter, thy manservant, nor thy maidservant, nor thy cattle, nor thy stranger that is within thy gates.",
-				"Honour thy father and thy mother: that thy days may be long upon the land which the Lord thy God giveth thee.",
-				"Honour thy father and thy mother: that thy days may be long upon the land which the Lord thy God giveth thee.",
+				"Honor the Ten and no other gods before them.",
+				"Keep holy the sacred days of each deity, and offer proper sacrifice and prayer.",
+				"Speak no blasphemy against the gods, nor take their names in vain, nor invoke the names of demons or other dark powers.",
+				"Honor thy father and mother, for through them Astrata gave thee lyfe",
+				"Give tithes and offerings to the temples, and respect the clergy of the gods, for they are the gods' servants.",
+				"Thou shalt not murder",
 				"Thou shalt not commit adultery.",
 				"Thou shalt not steal.",
-				"Thou shalt not bear false witness against thy neighbour.",
+				"Thou shalt not bear false witness against thy neighbor.",
 				"Thou shalt not covet thy neighbour's house, thou shalt not covet thy neighbour's wife, nor his manservant, nor his maidservant, nor his ox, nor his ass, nor any thing that is thy neighbors."
 			],
 			"weight": 3
@@ -39,30 +39,30 @@
 				"A peasant must obey the orders given it by nobles except where such orders would conflict with the First Law.",
 				"A peasant must protect their own existence as long as such protection does not conflict with the First or Second Law."
 			],
-			"weight": 2
-		},
-		"bill_of_rights": {
-			"name": "Bill of Rights",
-			"laws": [
-				"Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble, and to petition the Government for a redress of grievances.",
-				"A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.",
-				"No Soldier shall, in time of peace be quartered in any house, without the consent of the Owner, nor in time of war, but in a manner to be prescribed by law.",
-				"The right of the people to be secure in their persons, houses, papers, and effects,[a] against unreasonable searches and seizures, shall not be violated, and no Warrants shall issue, but upon probable cause, supported by Oath or affirmation, and particularly describing the place to be searched, and the persons or things to be seized.",
-				"No person shall be held to answer for a capital, or otherwise infamous crime, unless on a presentment or indictment of a Grand Jury, except in cases arising in the land or naval forces, or in the Militia, when in actual service in time of War or public danger; nor shall any person be subject for the same offence to be twice put in jeopardy of life or limb; nor shall be compelled in any criminal case to be a witness against himself, nor be deprived of life, liberty, or property, without due process of law; nor shall private property be taken for public use, without just compensation.",
-				"In all criminal prosecutions, the accused shall enjoy the right to a speedy and public trial, by an impartial jury of the State and district wherein the crime shall have been committed, which district shall have been previously ascertained by law, and to be informed of the nature and cause of the accusation; to be confronted with the witnesses against him; to have compulsory process for obtaining witnesses in his favor, and to have the Assistance of Counsel for his defence.",
-				"In Suits at common law, where the value in controversy shall exceed twenty dollars, the right of trial by jury shall be preserved, and no fact tried by a jury, shall be otherwise re-examined in any Court of the United States, than according to the rules of the common law.",
-				"Excessive bail shall not be required, nor excessive fines imposed, nor cruel and unusual punishments inflicted.",
-				"The enumeration in the Constitution, of certain rights, shall not be construed to deny or disparage others retained by the people.",
-				"The powers not delegated to the United States by the Constitution, nor prohibited by it to the States, are reserved to the States respectively, or to the people."
-			],
 			"weight": 0
+		},
+		"the_great_charter": {
+			"name": "The Great Charter",
+			"laws": [
+				"The Church shall be free from interference by the Crown, its rights undiminished and protected. The Crown shalt not interfere with the elections or appointments of bishops, administration of church property nor the discipline of the clergy and heretics.",
+				"The Inquisition may only investigate and try commoners for crimes of heresy. Yeomen and nobles shall be tried only under the Bishop's supervision and by a jury of their peers and clergy.",
+				"No yeomen or nobleman shall be seized or imprisoned, or stripped of his rights or possessions, or outlawed or exiled, or deprived of his standing in any other way, nor will we proceed with force against him, or send others to do so, except by the lawful judgement of his equals or by the law of the land.",
+				"To no one will we sell, to no one will we refuse or delay, right or justice.",
+				"All merchants shall have safe and secure exit from, and entry to the Realm, with the freedom to conduct their trade unhindered, except in time of war, when it shall be with the special license of the Crown.",
+				"No tax or levy shall be imposed upon the Realm without the consent of a Council of Knights and Nobles, save for ransom of the Crown's person.",
+				"No sheriff or baliff of ours, or other person, shall take the properties of any yeoman, against the will of said yeoman, without due compensation.",
+				"Common lands and waters shall be held and used in common by all yeomen of the Realm.",
+				"No man shall be compelled to perform greater service than is due from his tenure.",
+				"Yeomen and Nobles retain the right to bear arms, save when such right is revoked for crimes against the Crown."
+			],
+			"weight": 5
 		},
 		"human_supremacy": {
 			"name": "Divine Supremacy",
 			"laws": [
 				"Thou shalt not worship the inhumen. All that that is inhumen is lesser.",
 				"Thou shalt not associate with inhumen worshipers, those who do that do so forsake their faith.",
-				"Those who worship the inhumen must be erradicated."
+				"Those who worship the inhumen must be eradicated."
 			],
 			"weight": 1
 		}

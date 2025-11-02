@@ -326,7 +326,7 @@
 		return FALSE
 	if(!(src.mobility_flags & MOBILITY_STAND))
 		return TRUE
-	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
+	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH)
 	if(HAS_TRAIT(L, TRAIT_CIVILIZEDBARBARIAN))
 		acceptable.Add(BODY_ZONE_HEAD)
 	if( !(check_zone(L.zone_selected) in acceptable) )
@@ -526,7 +526,8 @@
 	if(M.buckled)
 		return //don't make them change direction or offset them if they're buckled into something.
 	if(M.dir != turn(get_dir(M,src), 180))
-		M.setDir(get_dir(M, src))
+		if(!((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE))
+			M.setDir(get_dir(M, src))
 	var/offset = 0
 	switch(grab_state)
 		if(GRAB_PASSIVE)
@@ -537,19 +538,34 @@
 			offset = GRAB_PIXEL_SHIFT_NECK
 		if(GRAB_KILL)
 			offset = GRAB_PIXEL_SHIFT_NECK
-	switch(get_dir(M, src))
-		if(NORTH)
-			M.set_mob_offsets("pulledby", 0, 0+offset)
-			M.layer = MOB_LAYER+0.05
-		if(SOUTH)
-			M.set_mob_offsets("pulledby", 0, 0-offset)
-			M.layer = MOB_LAYER-0.05
-		if(EAST)
-			M.set_mob_offsets("pulledby", 0+offset, 0)
-			M.layer = MOB_LAYER
-		if(WEST)
-			M.set_mob_offsets("pulledby", 0-offset, 0)
-			M.layer = MOB_LAYER
+	if((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE)
+		switch(get_dir(src, M))
+			if(NORTH)
+				set_mob_offsets("pulledby", 0, 0+offset)
+				layer = MOB_LAYER+0.05
+			if(SOUTH)
+				set_mob_offsets("pulledby", 0, 0-offset)
+				layer = MOB_LAYER-0.05
+			if(EAST)
+				set_mob_offsets("pulledby", 0+offset, 0)
+				layer = MOB_LAYER
+			if(WEST)
+				set_mob_offsets("pulledby", 0-offset, 0)
+				layer = MOB_LAYER
+	else
+		switch(get_dir(M, src))
+			if(NORTH)
+				M.set_mob_offsets("pulledby", 0, 0+offset)
+				M.layer = MOB_LAYER+0.05
+			if(SOUTH)
+				M.set_mob_offsets("pulledby", 0, 0-offset)
+				M.layer = MOB_LAYER-0.05
+			if(EAST)
+				M.set_mob_offsets("pulledby", 0+offset, 0)
+				M.layer = MOB_LAYER
+			if(WEST)
+				M.set_mob_offsets("pulledby", 0-offset, 0)
+				M.layer = MOB_LAYER
 
 /mob/living/proc/reset_pull_offsets(mob/living/M, override)
 	if(!override && M.buckled)
@@ -594,6 +610,8 @@
 	if(pulling)
 		if(ismob(pulling))
 			var/mob/living/M = pulling
+			if(pulledby && pulledby == pulling)
+				reset_offsets("pulledby")
 			M.reset_offsets("pulledby")
 			reset_pull_offsets(pulling)
 			if(HAS_TRAIT(M, TRAIT_GARROTED))
@@ -611,6 +629,8 @@
 				var/obj/item/grabbing/I = get_inactive_held_item()
 				if(I.grabbed == pulling)
 					dropItemToGround(I, silent = FALSE)
+	reset_offsets("pulledby")
+	reset_pull_offsets(src)
 
 	. = ..()
 
@@ -659,6 +679,10 @@
 		updatehealth()
 //		if(!whispered)
 //			to_chat(src, span_userdanger("I have given up life and succumbed to death."))
+
+		var/word_input = stripped_input(src, "Your parting words? Leave empty if you will.", "Last Words")
+		if(word_input)
+			say(word_input)
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
@@ -1230,6 +1254,11 @@
 		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
+
+	if(!L.compliance || !compliance)
+		if(badluck(7))
+			badluckmessage(src)
+			return
 
 	if(L.compliance)
 		resist_chance = 100

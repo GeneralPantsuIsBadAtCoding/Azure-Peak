@@ -15,7 +15,7 @@
 
 	level = 1
 	research_cost = 0
-	vitae_cost = 100
+	vitae_cost = 150
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_IMMOBILE | COVEN_CHECK_FREE_HAND | COVEN_CHECK_LYING
 	target_type = TARGET_MOB
 	range = 5

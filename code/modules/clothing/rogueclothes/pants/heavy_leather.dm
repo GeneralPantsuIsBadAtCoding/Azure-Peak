@@ -111,3 +111,15 @@
 	desc = "Form-fitting legwear. Almost too form-fitting."
 	icon_state = "shadowpants"
 	allowed_race = NON_DWARVEN_RACE_TYPES
+
+/obj/item/clothing/under/roguetown/heavy_leather_pants/bronzeskirt
+	name = "bronze chain skirt"
+	desc = "A knee-length maille skirt, made with hundreds of small bronze rings. It wards cuts against the thighs without slowing the feet."
+	icon_state = "chain_skirt"
+	item_state = "chain_skirt"
+	color = "#f9d690"
+	blocksound = CHAINHIT
+	resistance_flags = FIRE_PROOF
+	sewrepair = FALSE
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/bronze //Reskinned version of the Barbarian's heavy leather trousers. 1:1 functionality, but without the ability to sew-repair.

@@ -460,6 +460,10 @@
 /obj/machinery/light/rogue/cauldron,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors)
+"rb" = (
+/obj/structure/roguemachine/contractledger,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "rd" = (
 /obj/item/natural/worms/leech,
 /obj/item/natural/worms/leech{
@@ -516,6 +520,10 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/rogue/carpet/lord,
 /area/rogue/indoors)
+"sG" = (
+/obj/structure/dungeon_entry/center,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "sJ" = (
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/blocks/newstone/alt,
@@ -1423,6 +1431,10 @@
 /obj/machinery/light/rogue/oven/south,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
+"XN" = (
+/obj/structure/dungeon_entry/hamlet,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors)
 "XU" = (
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/effect/decal/cleanable/dirt/cobweb,
@@ -2902,7 +2914,7 @@ Va
 yK
 yK
 rT
-vq
+rb
 rT
 rT
 rT
@@ -2960,7 +2972,7 @@ rT
 rT
 rT
 rT
-rT
+XN
 rT
 rT
 rT
@@ -3168,7 +3180,7 @@ rT
 rT
 rT
 rT
-rT
+sG
 rT
 rT
 rT

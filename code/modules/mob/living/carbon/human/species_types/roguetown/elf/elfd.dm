@@ -142,7 +142,8 @@
 		"Yuethindrynn" = SKIN_COLOR_YUETHINDRYNN,
 		"Koredynn" = SKIN_COLOR_KOREDYNN,
 		"Aiseedrynn" = SKIN_COLOR_AISEEDRYNN,
-		"Grenduskra" = SKIN_COLOR_GRENDUSKRA
+		"Grenduskra" = SKIN_COLOR_GRENDUSKRA,
+		"Hun'sek" = SKIN_COLOR_HUNSEK
 	)
 
 /datum/species/elf/dark/get_hairc_list()

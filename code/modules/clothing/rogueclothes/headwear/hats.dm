@@ -142,6 +142,12 @@
 	color = "#1b1717ff"
 	detail_color = "#b68e37ff"
 
+/obj/item/clothing/head/roguetown/chaperon/noble/hand
+	name = "hand's chaperon"
+	desc = "A noble's chaperon made for the right hand man. \"Heavy is the head that bears the crown.\""
+	color = CLOTHING_AZURE
+	detail_color = CLOTHING_WHITE
+
 /obj/item/clothing/head/roguetown/chaperon/councillor
 	name = "chaperon hat"
 	desc = "A fancy hat worn by nobles."
@@ -248,6 +254,11 @@
 	blocksound = SOFTHIT
 	//dropshrink = 0.75
 	dynamic_hair_suffix = null
+
+/obj/item/clothing/head/roguetown/headband/monk/barbarian
+	name = "hunter's headband"
+	desc = "A winding length of cloth, meticulously lined with heavy leather strips. Errant impacts are thwarted, yet not a degree of vision is impaired; valuable traits, for those who have taken the mantle of confronting monsters with overwhelming strength. </br>'..All it takes for evil to triumph is for good men to do nothing.'"
+	max_integrity = ARMOR_INT_HELMET_LEATHER //Far less durable than the Monk's variant. Remember that the Barbarian retrieves solid weapon skills and armor, even as a pugilist.
 
 /obj/item/clothing/head/roguetown/inqhat
 	name = "inquisitorial hat"

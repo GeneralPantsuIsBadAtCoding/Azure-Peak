@@ -5,6 +5,8 @@
 	icon_state = "minecart"
 	base_icon_state = "minecart"
 	drag_slowdown = 2
+	mob_storage_capacity = 4 //give it more size than a hand cart, since its on rails
+	storage_capacity = 120 //matching it to a fully upgraded handcart
 	//open_sound = 'sound/machines/trapdoor/trapdoor_open.ogg'
 	//close_sound = 'sound/machines/trapdoor/trapdoor_shut.ogg'
 	buckle_lying = FALSE

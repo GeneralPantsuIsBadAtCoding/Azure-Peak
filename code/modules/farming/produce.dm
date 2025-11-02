@@ -363,7 +363,7 @@
 /*	..................   Sunflower   ................... */
 /obj/item/reagent_containers/food/snacks/grown/sunflower
 	name = "sunflower"
-	desc = "A large, bright yellow flower. Can be worn on the head. Can be roasted directly to make roasted sunflower seeds. Do not attempt to roast its actual seeds."
+	desc = "A large, bright yellow flower. Can be worn on the head."
 	icon_state = "sunflower"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
 	seed = /obj/item/seeds/sunflower
@@ -375,8 +375,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
 	dropshrink = 0.8
 	rotprocess = null
-	cooked_type = /obj/item/reagent_containers/food/snacks/roastseeds // Yeah..
-	fried_type = /obj/item/reagent_containers/food/snacks/roastseeds // Whatever I am not refactoring this yet
 
 //pyroclastic flowers - stonekeep port
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius

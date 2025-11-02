@@ -1,6 +1,6 @@
 /// Shows round end popup with all kind of statistics
 /client/proc/show_round_stats(featured_stat)
-	if(SSticker.current_state != GAME_STATE_FINISHED && !check_rights(R_ADMIN))
+	if(SSticker.current_state != GAME_STATE_FINISHED && !check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	var/list/data = list()
@@ -558,7 +558,8 @@
 			data += "<div style='margin-bottom: 4px;'><font color='#db9a59'>Trade Value Exported: </font>[GLOB.azure_round_stats[STATS_TRADE_VALUE_EXPORTED]]</div>"
 			data += "<div style='margin-bottom: 4px;'><font color='#dfbf57'>Trade Value Imported: </font>[GLOB.azure_round_stats[STATS_TRADE_VALUE_IMPORTED]]</div>"
 			data += "<div style='margin-bottom: 4px;'><font color='#c0b283'>GOLDFACE Imports: </font>[GLOB.azure_round_stats[STATS_GOLDFACE_VALUE_SPENT]]</div>"
-			data += "<div style='margin-bottom: 4px;'><font color='#c0b283'>SILVERFACE Imports: </font>[GLOB.azure_round_stats[STATS_SILVERFACE_VALUE_SPENT]]</div>"
+			data += "<div style='margin-bottom: 4px;'><font color='#c0c0c0'>SILVERFACE Imports: </font>[GLOB.azure_round_stats[STATS_SILVERFACE_VALUE_SPENT]]</div>"
+			data += "<div style='margin-bottom: 4px;'><font color='#b87333'>COPPERFACE Imports: </font>[GLOB.azure_round_stats[STATS_COPPERFACE_VALUE_SPENT]]</div>"
 			data += "<div style='margin-bottom: 4px;'><font color='#b5a642'>PURITY Imports: </font>[GLOB.azure_round_stats[STATS_PURITY_VALUE_SPENT]]</div>"
 			data += "<div><font color='#7495d3'>Peddler Revenue: </font>[GLOB.azure_round_stats[STATS_PEDDLER_REVENUE]]</div>"
 			data += "</div></div>"

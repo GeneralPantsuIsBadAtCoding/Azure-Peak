@@ -5,8 +5,8 @@
 	src << output('html/typing_indicator.html', "commandbar_spy")
 
 /client/proc/handle_commandbar_typing(href_list)
-	// Check if user has any text typed (argument_length > 0)
-	if(length(href_list["verb"]) < 1 || text2num(href_list["argument_length"]) < 1)
+	// Check if user has any text typed
+	if(length(href_list["verb"]) < 1)
 		if(commandbar_typing)
 			commandbar_typing = FALSE
 			stop_typing()

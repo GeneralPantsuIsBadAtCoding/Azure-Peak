@@ -41,7 +41,7 @@
 	to_chat(owner, span_warning("I feel sneakier than usual... Something about that music..."))
 	ADD_TRAIT(owner, TRAIT_LIGHT_STEP, id)
 
-/datum/status_effect/buff/furtive_fortissimo/on_remove()
+/datum/status_effect/buff/song/furtive_fortissimo/on_remove()
 	. = ..()
 	to_chat(owner, span_warning("I feel as sneaky as I normally am, now that the song is over..."))
 	REMOVE_TRAIT(owner, TRAIT_LIGHT_STEP, id)

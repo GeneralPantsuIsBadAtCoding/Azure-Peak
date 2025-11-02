@@ -76,8 +76,9 @@
 			var/mob/living/L = mymob
 			if(L.has_status_effect(/datum/status_effect/buff/druqks))
 				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
-
-
+			if(L.has_status_effect(/datum/status_effect/debuff/vampbite))
+				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
+				
 /atom/movable/screen/plane_master/lighting
 	name = "lighting plane master"
 	plane = LIGHTING_PLANE

@@ -230,6 +230,7 @@
 	/* #define HEARING_RADIO_FREQ 5
 	#define HEARING_SPANS 6
 	#define HEARING_MESSAGE_MODE 7 */
+#define COMSIG_HEART_BEAST_HEAR "heart_beast_hear"
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//Called when the movable's glide size is updated: (new_glide_size)
 
@@ -393,6 +394,12 @@
 #define COMSIG_SPECIES_LOSS "species_loss"						//from datum/species/on_species_loss(): (datum/species/lost_species)
 
 /*******Component Specific Signals*******/
+//Infestation miracle
+#define COMSIG_INFESTATION_CHARGE_ADD "infestation_charge_add"	//from /obj/effect/proc_holder/spell/invoked/infestation/cast(): (num/amount)
+#define COMSIG_INFESTATION_CHARGE_REMOVE "infestation_charge_remove"	//from /proc/remove_infestation_charges(mob/living/user, num/amount): (num/amount)
+
+#define COMSIG_DIVINE_REBIRTH_CAST "devine_rebirth_cast"				//from /obj/effect/proc_holder/spell/invoked/divine_rebirth/cast(): (mob/living/target)
+
 //Janitor
 #define COMSIG_TURF_IS_WET "check_turf_wet"							//(): Returns bitflags of wet values.
 #define COMSIG_TURF_MAKE_DRY "make_turf_try"						//(max_strength, immediate, duration_decrease = INFINITY): Returns bool.
@@ -406,11 +413,6 @@
 
 //Gibs
 #define COMSIG_GIBS_STREAK "gibs_streak"						// from base of /obj/effect/decal/cleanable/blood/gibs/streak(): (list/directions, list/diseases)
-
-//Mood
-#define COMSIG_ADD_MOOD_EVENT "add_mood" //Called when you send a mood event from anywhere in the code.
-#define COMSIG_ADD_MOOD_EVENT_RND "RND_add_mood" //Mood event that only RnD members listen for
-#define COMSIG_CLEAR_MOOD_EVENT "clear_mood" //Called when you clear a mood event from anywhere in the code.
 
 //NTnet
 #define COMSIG_COMPONENT_NTNET_RECEIVE "ntnet_receive"			//called on an object by its NTNET connection component on receive. (sending_id(number), sending_netname(text), data(datum/netdata))
@@ -486,3 +488,10 @@
 
 #define COMSIG_ITEM_ATTACK_EFFECT "item_attack_effect"
 #define COMSIG_ITEM_ATTACK_EFFECT_SELF "item_attack_effect_self"
+
+//S Smithing
+
+#define COMSIG_ITEM_PLACED_ON_ANVIL "item_placed_on_anvil"
+#define COMSIG_ITEM_REMOVED_FROM_ANVIL "item_removed_from_anvil" 
+#define COMSIG_ITEM_HAMMERED_ON_ANVIL "item_hammered_on_anvil"
+#define COMSIG_ITEM_ADDED_TO_FORGING "item_added_to_forging"
