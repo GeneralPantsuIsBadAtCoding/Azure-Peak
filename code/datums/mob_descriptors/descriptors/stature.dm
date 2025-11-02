@@ -159,3 +159,27 @@
 
 /datum/mob_descriptor/stature/plump
 	name = "Plump figure"
+
+/datum/mob_descriptor/stature/savant
+	name = "Savant"
+
+/datum/mob_descriptor/stature/wanderer
+	name = "Wanderer"
+
+/datum/mob_descriptor/stature/hustler
+	name = "Hustler"
+
+/datum/mob_descriptor/stature/samaritan
+	name = "Samaritan"
+
+/datum/mob_descriptor/stature/pupil
+	name = "Pupil"
+
+/datum/mob_descriptor/stature/soldier
+	name = "Soldier"
+
+/datum/mob_descriptor/stature/recluse
+	name = "Recluse"
+
+/datum/mob_descriptor/stature/socialite
+	name = "Socialite"

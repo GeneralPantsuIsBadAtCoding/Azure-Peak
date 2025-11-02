@@ -108,6 +108,7 @@
 	var/funeral = FALSE // Whether the body has received rites or not.
 
 	var/datum/devotion/devotion = null // Used for cleric_holder for priests
+	var/datum/inspiration/inspiration = null
 
 	var/headshot_link = null
 	var/flavortext = null
@@ -158,6 +159,7 @@
 	var/list/curses = list()
 	COOLDOWN_DECLARE(priest_announcement)
 	COOLDOWN_DECLARE(guildmaster_announcement) //This is not for priest but if you are looking for GUILDMASTER announcements it's here, more so convinence than anything.
+	COOLDOWN_DECLARE(crier_announcement)
 	COOLDOWN_DECLARE(priest_sermon)
 	COOLDOWN_DECLARE(priest_apostasy)
 	COOLDOWN_DECLARE(priest_excommunicate)

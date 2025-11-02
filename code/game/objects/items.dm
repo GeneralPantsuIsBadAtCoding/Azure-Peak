@@ -47,6 +47,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/pickup_sound = "rustle"
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	///Whether or not we use stealthy audio levels for this item's attack sounds
+	var/stealthy_audio = FALSE
 	//when being placed on a table play this instead
 	var/place_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	var/list/swingsound = PUNCHWOOSH
@@ -242,6 +244,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	/// Angle of the icon while wielded, these are used for attack animations. Generally it's flat, but not always.
 	var/icon_angle_wielded = 0
+
+	var/no_use_cd = FALSE //if true, no cooldown when interacting with it
 
 /obj/item/Initialize()
 	. = ..()
@@ -821,7 +825,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(altgripped || wielded)
 			ungrip(user, FALSE)
 	if(twohands_required)
-		if(slot == SLOT_HANDS)
+		if(slot == ITEM_SLOT_HANDS)
 			wield(user)
 		else
 			ungrip(user)
@@ -932,8 +936,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	else
 		M.take_bodypart_damage(7)
-
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "eye_stab", /datum/mood_event/eye_stab)
 
 	log_combat(user, M, "attacked", "[src.name]", "(INTENT: [uppertext(user.used_intent)])")
 

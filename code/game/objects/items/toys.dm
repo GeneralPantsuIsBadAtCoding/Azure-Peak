@@ -86,6 +86,7 @@
 /obj/item/toy/cards
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
+	no_use_cd = TRUE
 	var/parentdeck = null
 	var/deckstyle = "syndicate"
 	var/card_hitsound = null
@@ -115,6 +116,10 @@
 	var/list/cards = list()
 	grid_width = 32
 	grid_height = 32
+
+/obj/item/toy/cards/deck/examine()
+	. = ..()
+	. += span_smallnotice("Use the deck in your hand to shuffle the cards. Draw a card by clicking on it with an empty hand.")
 
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
@@ -167,9 +172,9 @@
 		icon_state = "deck_[deckstyle]_empty"
 
 /obj/item/toy/cards/deck/attack_self(mob/user)
-	if(cooldown < world.time - 50)
+	if(cooldown < world.time - 25)
 		cards = shuffle(cards)
-		playsound(src, 'sound/blank.ogg', 50, TRUE)
+		playsound(src, 'sound/items/cardshuffle.ogg', 100, TRUE)
 		user.visible_message("<span class='notice'>[user] shuffles the deck.</span>", "<span class='notice'>I shuffle the deck.</span>")
 		cooldown = world.time
 
@@ -292,7 +297,6 @@
 			src.currenthand += C.cardname
 			user.visible_message("<span class='notice'>[user] adds a card to [user.p_their()] hand.</span>", "<span class='notice'>I add the [C.cardname] to your hand.</span>")
 			qdel(C)
-			interact(user)
 			if(currenthand.len > 4)
 				src.icon_state = "[deckstyle]_hand5"
 			else if(currenthand.len > 3)

@@ -94,3 +94,6 @@ GLOBAL_LIST_EMPTY(all_abstract_markers)
 GLOBAL_LIST_EMPTY(fires_list)
 
 GLOBAL_LIST_EMPTY(streetlamp_list)
+
+/// List of all the maps that have been cached for /proc/load_map
+GLOBAL_LIST_EMPTY(cached_maps)

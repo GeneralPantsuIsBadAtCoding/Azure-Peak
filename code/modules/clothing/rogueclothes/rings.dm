@@ -445,7 +445,7 @@
 	name = "dragonstone ring"
 	icon_state = "dragonring"
 	desc = "A gilded blacksteel ring with a drake's head, sculpted from silver. Perched within its sockets is a blortz and saffira - each, crackling with the reflection of a raging fire."
-	smeltresult = /obj/item/riddleofsteel
+	smeltresult = /obj/item/ingot/draconic
 	sellprice = 666
 	var/active_item
 
@@ -464,7 +464,7 @@
 /obj/item/clothing/ring/dragon_ring/dropped(mob/living/user)
 	..()
 	if(active_item)
-		to_chat(user, span_suicide("A chilling sensation courses through my body, and the ring's heat remains oh-so-alluring.."))
+		to_chat(user, span_suicide("A chilling sensation courses through my body, and the ring's heat remains oh-so-alluring.. </br>..yet, one must wonder.. could such fiery strength withstand a forge's heat?"))
 		user.change_stat(STATKEY_STR, -2)
 		user.change_stat(STATKEY_CON, -2)
 		user.change_stat(STATKEY_WIL, -2)

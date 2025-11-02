@@ -1,6 +1,9 @@
 /datum/job
 	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
+	// Display title - If empty, uses the proper title instead
+	var/display_title
+	// Display only title for feminine character
 	var/f_title
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
@@ -168,6 +171,13 @@
 /datum/job/proc/special_job_check(mob/dead/new_player/player)
 	return TRUE
 
+/datum/job/proc/get_used_title(mob/player)
+	var/pronouns = player.pronouns
+	var/used_name = display_title || title
+	if((pronouns == SHE_HER || pronouns == THEY_THEM_F) && f_title)
+		used_name = f_title
+	return used_name
+
 /client/proc/job_greet(var/datum/job/greeting_job)
 	if(mob.job == greeting_job.title)
 		greeting_job.greet(mob)
@@ -177,7 +187,8 @@
 		return
 	if(!job_greet_text)
 		return
-	to_chat(player, span_notice("You are the <b>[title]</b>"))
+	var/used_title = get_used_title(player)
+	to_chat(player, span_notice("You are the <b>[used_title]</b>"))
 	if(tutorial)
 		to_chat(player, span_notice("*-----------------*"))
 		to_chat(player, span_notice(tutorial))
@@ -214,8 +225,19 @@
 				continue
 			H.mind.i_know_person(MF)
 
+	// Ready up bonus
+	if(!H.islatejoin)
+		H.adjust_triumphs(1)
+		H.apply_status_effect(/datum/status_effect/buff/foodbuff)
+		H.hydration = 1000 // Set higher hydration
+
+		if(H.mind)
+			H.mind?.special_items["Pouch of Coins"] = /obj/item/storage/belt/rogue/pouch/coins/readyuppouch
+
+		to_chat(M, span_notice("Rising early, you made sure to pack a pouch of coins in your stash and eat a hearty breakfast before starting your day. A true TRIUMPH!"))
+
 	if(H.islatejoin && announce_latejoin)
-		var/used_title = title
+		var/used_title = display_title || title
 		if((H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F) && f_title)
 			used_title = f_title
 		scom_announce("[H.real_name] the [used_title] arrives to Twilight Axis.")
@@ -367,10 +389,8 @@
 
 	return max(0, minimal_player_age - C.player_age)
 
+//Unused as of now
 /datum/job/proc/config_check()
-	return TRUE
-
-/datum/job/proc/map_check()
 	return TRUE
 
 /datum/outfit/job
@@ -446,7 +466,7 @@
 	if(mob.gender == FEMALE && f_title)
 		return f_title
 
-	return title
+	return display_title || title
 
 /datum/job/Topic(href, list/href_list)
 	if(href_list["explainjob"])

@@ -46,8 +46,9 @@
 	chargetime = 0
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 5
-	damfactor = 1.1
+	damfactor = NONBLUNT_BLUNT_DAMFACTOR // Not a real blunt weapon, so less damage.
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 //axe objs ฅ^•ﻌ•^ฅ
 
@@ -300,6 +301,21 @@
 	gripped_intents = null
 	wdefense = 2
 
+/obj/item/rogueweapon/stoneaxe/woodcut/bronze
+	name = "bronze axe"
+	icon_state = "saxe"
+	desc = "An antiquital handstaff, fitted with a bronze axhead. Such a tool once allowed humenity to carve civilization out of Psydonia's wildernesses; now, it's a rare sight beyond the Deadland's nomadic barbarian-tribes."
+	color = "#f9d690" //Stopgap until unique sprites can be provided. Should be ~98% on point with the current bronze palette.
+	force = 23 //Basic balance idea. Damage's between iron and steel, but with a sharper edge than steel. Probably not historically accurate, but we're here to have fun.
+	force_wielded = 27
+	max_blade_int = 550
+	smeltresult = /obj/item/ingot/bronze
+	wdefense = 2
+	armor_penetration = 22 //In-between a hurblat and hatchet. Far harder to reproduce.
+	throwforce = 32
+	throw_speed = 6
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
+
 /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	name = "steel axe"
 	icon_state = "saxe"
@@ -450,7 +466,7 @@
 /obj/item/rogueweapon/stoneaxe/battle/steppesman
 	name = "aavnic valaška"
 	desc = "A steel axe of Aavnic make that combines a deadly weapon with a walking stick - hence its pointed end. It has a flat head that fits the hand comfortably, and it's usable for chopping and smashing. You could probably stab someone if you tried really hard."
-	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/mace/smash/flataxe, /datum/intent/sword/peel)
+	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/mace/smash, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/axe/cut/battle ,/datum/intent/axe/chop/battle, /datum/intent/stab, /datum/intent/sword/peel)
 	force_wielded = 25	//No damage changes for wielded/unwielded
 	icon_state = "valaska"
@@ -523,6 +539,7 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
 	max_blade_int = 350
+	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 
 /obj/item/rogueweapon/greataxe/silver/ComponentInitialize()
@@ -547,6 +564,7 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
 	max_blade_int = 350
+	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed
 
 /obj/item/rogueweapon/greataxe/psy/ComponentInitialize()

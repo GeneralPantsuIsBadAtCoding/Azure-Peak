@@ -94,7 +94,7 @@
 
 	/// The text displayed on top of the screen the first time a player enter an area in a round
 	var/first_time_text = null
-	/// Detail text. When a player enter an area, a small message appears in chat with a href. Keep this to a single paragraph, and be informative. Only in areas where it makes sense should the writing be highly evocative / mysterious.
+	/// Detail text. When a player enter an area, a small message appears in chat with a href. see area_detail_txt.dm for style guidee
 	var/detail_text = null
 
 	var/list/firedoors
@@ -111,9 +111,9 @@
 
 	var/converted_type
 
-	var/threat_region = "" // Key used to look up threat region this area belongs to 
+	var/threat_region = "" // Key used to look up threat region this area belongs to
 	/// Message used for deathsight. Try to be deliberately obtuse but not too obtuse.
-	var/deathsight_message = "a locale wreathed in enigmatic fog" 
+	var/deathsight_message = "a locale wreathed in enigmatic fog"
 
 	var/coven_protected = FALSE
 

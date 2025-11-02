@@ -53,6 +53,10 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 #define PAIN_MINIMUM_FOR_DAMAGE PAIN_MED_EFFECT
 #define PAIN_DAMAGE_DIVISOR 50
 
+#define IMPREG_PROB_DEFAULT 25
+#define IMPREG_PROB_INCREMENT 10
+#define IMPREG_PROB_MAX 95
+
 #define SEX_CATEGORY_NULL 0
 #define SEX_CATEGORY_MISC (1<<0)
 #define SEX_CATEGORY_HANDS (1<<1)
@@ -63,6 +67,7 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 #define SEX_PART_CUNT (1<<1)
 #define SEX_PART_ANUS (1<<2)
 #define SEX_PART_JAWS (1<<3)
+#define SEX_PART_SLIT_SHEATH (1<<4)
 
 #define KNOTTED_NULL 0
 #define KNOTTED_AS_TOP 1

@@ -105,7 +105,7 @@
 /datum/inqports/supplies/lifebloodvials
 	name = "3 Vials of Strong Red"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/sredvials
-	maximum = 4
+	maximum = 1
 	marquescost = 10
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/sredvials/Initialize()
@@ -128,7 +128,7 @@
 /datum/inqports/supplies/strongbluevials
 	name = "3 Vials of Strong Blue"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/supplies/sbluevials
-	maximum = 4
+	maximum = 1
 	marquescost = 16
 
 /obj/structure/closet/crate/chest/inqcrate/supplies/sbluevials/Initialize()

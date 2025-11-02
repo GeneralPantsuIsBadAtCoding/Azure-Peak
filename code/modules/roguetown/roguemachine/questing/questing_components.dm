@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(quest_components)
 	var/list/user_scrolls = find_quest_scrolls(user)
 	for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
 		var/datum/quest/user_quest = scroll.assigned_quest
-		if(user_quest && (user_quest.quest_type in list(QUEST_KILL, QUEST_CLEAR_OUT, QUEST_OUTLAW)) && istype(parent, user_quest.target_mob_type))
+		if(user_quest && (user_quest.quest_type in list(QUEST_KILL_EASY, QUEST_CLEAR_OUT, QUEST_RAID, QUEST_OUTLAW)) && istype(parent, user_quest.target_mob_type))
 			examine_list += span_notice("This looks like the target of your quest: [user_quest.title]!")
 			if(Q.target_spawn_area != get_area(get_turf(src)))
 				examine_list += span_notice("It was last reported in the [Q.target_spawn_area] area, however.")
@@ -83,76 +83,20 @@ GLOBAL_LIST_EMPTY(quest_components)
 
 /datum/component/quest_object/proc/on_target_death(mob/living/dead_mob, gibbed)
 	SIGNAL_HANDLER
-	
+
 	var/datum/quest/Q = quest_ref.resolve()
 	if(!Q || Q.complete || !istype(dead_mob, Q.target_mob_type))
 		return
 
-	Q.target_amount--
 	dead_mob.remove_filter("quest_item_outline")
 
-	var/obj/item/paper/scroll/quest/scroll = Q.quest_scroll_ref?.resolve() || Q.quest_scroll
-	if(scroll)
-		scroll.update_quest_text()
-		if(Q.target_amount <= 0)
-			Q.complete = TRUE
-			scroll.update_quest_text()
+	// Notify quest of progress
+	Q.progress_current++
+	Q.on_progress_update()
 
 /datum/component/quest_object/proc/on_item_dropped(obj/item/dropped_item, mob/user)
 	SIGNAL_HANDLER
-
-	var/datum/quest/Q = quest_ref.resolve()
-	if(!Q || Q.complete)
-		return
-
-	var/turf/drop_turf = get_turf(dropped_item)
-	
-	// Handle fetch quests (dropping item on quest machine input)
-	if(Q.quest_type == QUEST_RETRIEVAL)
-		for(var/obj/structure/roguemachine/noticeboard/quest_machine in SSroguemachine.noticeboards)
-			if(get_turf(quest_machine.input_point) == drop_turf)
-				if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
-					Q.target_amount--
-					if(Q.target_amount <= 0)
-						Q.complete = TRUE
-						var/obj/item/paper/scroll/quest/scroll = Q.quest_scroll_ref?.resolve()
-						if(scroll)
-							scroll.update_quest_text()
-					do_sparks(3, TRUE, get_turf(dropped_item))
-					qdel(dropped_item)
-					return
-	
-	// Handle courier quests (dropping in target area)
-	if(Q.quest_type == QUEST_COURIER)
-		var/area/drop_area = get_area(drop_turf)
-		if(!istype(drop_area, Q.target_delivery_location))
-			return
-
-		// Handle parcel delivery
-		if(istype(dropped_item, /obj/item/parcel))
-			var/obj/item/parcel/parcel = dropped_item
-			if(parcel.contained_item && istype(parcel.contained_item, Q.target_delivery_item))
-				Q.target_amount--
-				if(Q.target_amount <= 0)
-					Q.complete = TRUE
-					parcel.remove_filter(outline_filter_id)
-					if(parcel.contained_item)
-						parcel.contained_item.remove_filter(outline_filter_id)
-					var/obj/item/paper/scroll/quest/scroll = Q.quest_scroll_ref?.resolve()
-					if(scroll)
-						scroll.update_quest_text()
-				return
-		
-		// Handle direct item delivery
-		else if(istype(dropped_item, Q.target_delivery_item))
-			Q.target_amount--
-			if(Q.target_amount <= 0)
-				Q.complete = TRUE
-				dropped_item.remove_filter(outline_filter_id)
-				var/obj/item/paper/scroll/quest/scroll = Q.quest_scroll_ref?.resolve()
-				if(scroll)
-					scroll.update_quest_text()
-			return
+	// Override in subtypes
 
 /datum/component/quest_object/proc/on_quest_deleted(datum/source)
 	SIGNAL_HANDLER
@@ -172,3 +116,80 @@ GLOBAL_LIST_EMPTY(quest_components)
 		if(Q && !Q.complete && ((Q.quest_type == QUEST_RETRIEVAL && istype(I, Q.target_item_type)) || (Q.quest_type == QUEST_COURIER && istype(I, Q.target_delivery_item))))
 			qdel(I)
 	qdel(src)
+
+// ==================== SPECIALIZED COMPONENT SUBTYPES ====================
+
+/// Component for kill/clearout/outlaw quests - handles mob death
+/datum/component/quest_object/kill
+
+/datum/component/quest_object/kill/Initialize(datum/quest/target_quest)
+	. = ..()
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+
+/// Component for retrieval quests - handles item collection
+/datum/component/quest_object/retrieval
+
+/datum/component/quest_object/retrieval/Initialize(datum/quest/target_quest)
+	. = ..()
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+
+/datum/component/quest_object/retrieval/on_item_dropped(obj/item/dropped_item, mob/user)
+	var/datum/quest/Q = quest_ref.resolve()
+	if(!Q || Q.complete)
+		return
+
+	var/turf/drop_turf = get_turf(dropped_item)
+
+	var/obj/effect/decal/marker_export/marker = locate() in drop_turf
+
+	if(marker)
+		if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
+			// Notify quest of progress
+			Q.progress_current++
+			Q.on_progress_update()
+			do_sparks(3, TRUE, get_turf(dropped_item))
+			qdel(dropped_item)
+			return
+
+/// Component for courier quests - handles delivery
+/datum/component/quest_object/courier
+
+/datum/component/quest_object/courier/Initialize(datum/quest/target_quest)
+	. = ..()
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+
+/datum/component/quest_object/courier/on_item_dropped(obj/item/dropped_item, mob/user)
+	var/datum/quest/Q = quest_ref.resolve()
+	if(!Q || Q.complete)
+		return
+
+	var/turf/drop_turf = get_turf(dropped_item)
+	var/area/drop_area = get_area(drop_turf)
+
+	if(!istype(drop_area, Q.target_delivery_location))
+		return
+
+	// Handle parcel delivery
+	if(istype(dropped_item, /obj/item/parcel))
+		var/obj/item/parcel/parcel = dropped_item
+		if(parcel.contained_item && istype(parcel.contained_item, Q.target_delivery_item))
+			parcel.remove_filter(outline_filter_id)
+			if(parcel.contained_item)
+				parcel.contained_item.remove_filter(outline_filter_id)
+
+			// Notify quest of progress
+			Q.progress_current++
+			Q.on_progress_update()
+			return
+
+	// Handle direct item delivery
+	else if(istype(dropped_item, Q.target_delivery_item))
+		dropped_item.remove_filter(outline_filter_id)
+
+		// Notify quest of progress
+		Q.progress_current++
+		Q.on_progress_update()
+		return

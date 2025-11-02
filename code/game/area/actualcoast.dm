@@ -33,3 +33,4 @@
 		new /datum/ambush_config/deepone_party = 20,
 	)
 	first_time_text = "SOUTHERN COAST"
+	detail_text = DETAIL_TEXT_CITY_COAST

@@ -71,7 +71,6 @@
 		C.set_blurriness(5)
 
 /datum/reagent/consumable/ethanol/beer/emberwine/addiction_act_stage3(mob/living/carbon/human/C)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name)
 	if(prob(20))
 		to_chat(C, span_danger("I have an intense craving for [name]."))
 		C.sexcon.adjust_arousal(5)
@@ -83,7 +82,6 @@
 
 /datum/reagent/consumable/ethanol/beer/emberwine/addiction_act_stage4(mob/living/carbon/human/C)
 	var/datum/sex_controller/S = C.sexcon
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, name) //Not critical because they'll already be getting blueballed.
 	if(!S.arousal_frozen)
 		S.arousal_frozen = TRUE
 	C.sexcon.arousal = 40

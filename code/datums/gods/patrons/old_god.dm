@@ -85,7 +85,7 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	var/obj/item/found_thing
-	if(H.get_stress_amount() > 0 && H.STALUC > 10)
+	if(H.get_stress_amount() < 0 && H.STALUC > 10)
 		found_thing = new /obj/item/roguecoin/gold
 	else if(H.STALUC == 10)
 		found_thing = new /obj/item/roguecoin/silver

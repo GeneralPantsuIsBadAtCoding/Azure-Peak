@@ -30,13 +30,6 @@
 /// Given to the vampire in case their victim refuses to be converted. Given only once per unique vamp victim.
 #define VITAE_PER_UNIQUE_CONVERSION_REJECT 500
 
-GLOBAL_LIST_INIT(vamp_generation_to_rpoints, list(
-	GENERATION_METHUSELAH = 50,
-	GENERATION_ANCILLAE = 15,
-	GENERATION_NEONATE = 8,
-	GENERATION_THINBLOOD = 4,
-))
-
 GLOBAL_LIST_INIT(vamp_generation_to_text, list(
 	"Thin Blood",
 	"Neonate",

@@ -77,9 +77,6 @@
 	icon_state = "cape"
 	item_state = "cape"
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
-	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/cloaks.dmi'
-	sleevetype = "shirt"
-	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	var/elven_colors = list("Blue Cloak", "Red Cloak", "Blue Furcloak", "Red Furcloak")
 	var/picked = FALSE
@@ -135,9 +132,6 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/cloaks.dmi'
 	icon_state = "scarf"
 	item_state = "scarf"
-	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/cloaks.dmi'
-	sleevetype = "shirt"
-	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	var/elven_colors = list("blue", "black", "green", "beige", "brown", "white")
 	var/picked = FALSE

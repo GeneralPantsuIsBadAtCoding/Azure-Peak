@@ -1,3 +1,6 @@
+/datum/preferences
+	var/current_loadout_category = "Всё"
+
 // Обрабатывает вещи в списке лодаута игрока и удаляет те, название которых было изменено или они были удалены.
 // Иначе лодаут будет ломаться. Мб это как то адекватнее можно починить, но я хз.
 /datum/preferences/proc/clean_loadout(mob/user)
@@ -64,11 +67,22 @@
 	content.Add("<th class='align-left'>Name</th>")
 	content.Add("</tr>")
 
-	for(var/key in GLOB.loadout_items_by_name)
+	var/list/sorted_keys = sortList(GLOB.loadout_items_by_name)
+
+	for(var/key in sorted_keys)
 		var/datum/loadout_item/item = GLOB.loadout_items_by_name[key]
 
 		if(item.donatitem && !check_patreon_lvl(user.ckey))
 			continue
+
+		if(current_loadout_category != "Всё")
+			var/matches = FALSE
+			if(islist(item.category))
+				matches = (current_loadout_category in item.category)
+			else
+				matches = (item.category == current_loadout_category)
+			if(!matches)
+				continue
 
 		var/taken = FALSE
 		for(var/selected_item in selected_loadout_items)
@@ -126,6 +140,40 @@
 	var/list/page_content = list()
 
 	page_content.Add(get_loadout_header(user))
+
+	var/list/categories = list()
+	var/has_donator = check_patreon_lvl(user.ckey)
+	for(var/item_name in GLOB.loadout_items_by_name)
+		var/datum/loadout_item/item = GLOB.loadout_items_by_name[item_name]
+		if(item.donatitem && !has_donator)
+			continue
+		if(item.category)
+			if(islist(item.category))
+				for(var/cat in item.category)
+					if(!has_donator && cat == "Донат")
+						continue
+					categories |= cat
+			else
+				if(!has_donator && item.category == "Донат")
+					continue
+				categories |= item.category
+	categories = sortList(categories)
+	categories.Insert(1, "Всё")
+
+	page_content.Add("<div style='margin-bottom: 10px;'>")
+	page_content.Add("<strong>Категории:</strong> ")
+	page_content.Add("<table style='display: inline-table; margin-left: 10px;'><tr>")
+	var/last_index = length(categories)
+	for(var/i in 1 to last_index)
+		var/cat = categories[i]
+		var/active_style = (current_loadout_category == cat) ? " font-weight: bold;" : "" 
+		page_content.Add("<td><a class='category-button' href='?_src_=prefs;preference=loadout_items;task=set_category;category=[cat]' style='[active_style]'>[cat]</a></td>")
+		if(i < last_index)
+			page_content.Add("<td style='padding: 0 5px;'>|</td>")
+	page_content.Add("</tr></table>")
+	page_content.Add("</div>")
+	page_content.Add("<hr style='width: 100%; border: 1px solid #7b5346;'>")
+
 	page_content.Add(get_loadout_items_table(user))
 
 	return page_content.Join()
@@ -137,8 +185,9 @@
 		user,
 		"Loadout",
 		"<div align='center'> Loadout </div>",
-		650,
-		700
+		800,
+		700,
+		FALSE
 	)
 
 	loadout_window.add_stylesheet("loadout_window", 'html/browser/loadout_window.css')
@@ -170,4 +219,3 @@
 
 /datum/config_entry/string/boostyurl
 	config_entry_value = ""
-

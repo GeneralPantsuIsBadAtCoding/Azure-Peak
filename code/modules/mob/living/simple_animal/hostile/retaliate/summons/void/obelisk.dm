@@ -94,6 +94,7 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "blunt"
+	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
 /mob/living/simple_animal/hostile/retaliate/rogue/voidstoneobelisk/death(gibbed)
 	..()

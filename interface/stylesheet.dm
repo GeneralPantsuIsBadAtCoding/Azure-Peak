@@ -132,8 +132,8 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Mookmania, TrueType;}
 
 .human					{font-family: "Honoka Mincho", Mookmania;}
 .elf					{font-family: "MarkScript-Regular", cursive, Mookmania;}
-.dwarf					{font-family: "MasonAlternate", Mookmania;}
-.sandspeak				{font-family: "Furqan", Mookmania;}
+.dwarf					{font-family: "Celtes SP", Mookmania;}
+.sandspeak				{font-family: "Kamelia", Mookmania;}
 .delf					{font-family: "MarkScript-Regular", Mookmania;}
 .hellspeak				{font-family: "Comforter Brush", Mookmania; font-size: 110%}
 .undead					{font-family: "FDMedian", Mookmania;}
@@ -141,12 +141,12 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Mookmania, TrueType;}
 .beast					{font-family: "VizaviTYGRA", Mookmania;}
 .reptile				{font-family: "Kautiva Cyrillic Black", Mookmania; font-size: 120%;}
 .grenzelhoftian			{font-family: "ALOT Gutenberg B Normal", Mookmania; font-size: 120%;}
-.kazengunese 			{font-family: "Yuji Boku", Mookmania;}
 .gyedzenese 			{font-family: "Sangha Kali", Mookmania;}
+.kazengunese 			{font-family: "Ganesha Type", Mookmania;}
 .otavan					{font-family: "Deutsch Gothic", "Mookmania";}
-.etruscan				{font-family: "Feronia", "Mookmania"; font-size: 100%;}
-.gronnic				{font-family: "Jorvik Informal", "Mookmania"; font-size: 100%;}
-.aavnic					{font-family: "Romeodn", "Mookmania"; font-size: 100%;}
+.etruscan				{font-family: "TolkienCyr", "Mookmania"; font-size: 100%;}
+.gronnic				{font-family: "RUSNeverwinter", "Mookmania"; font-size: 150%;}
+.aavnic					{font-family: "Arabic Cyr (kerning fixed)", "Mookmania"; font-size: 100%;}
 
 .torture				{color: #42ff20}
 
