@@ -434,9 +434,9 @@
 	animate(time = random_time2, pixel_w = random_pixel_w, easing = CIRCULAR_EASING, flags = ANIMATION_RELATIVE, loop = -1)
 
 /obj/effect/temp_visual/heart/sex_effects/red_heart
-	name = "red heart"
+	name = "angry"
 	icon = 'icons/effects/noctravfx.dmi'
-	icon_state = "redheart"
+	icon_state = "anger"
 
 /obj/effect/temp_visual/bleed
 	name = "bleed"
