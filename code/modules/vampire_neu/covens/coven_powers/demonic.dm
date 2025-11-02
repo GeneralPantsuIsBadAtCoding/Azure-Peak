@@ -46,7 +46,7 @@
 	research_cost = 1
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_CAPABLE | COVEN_CHECK_LYING | COVEN_CHECK_IMMOBILE
 	vitae_cost = 75
-	violates_masquerade = TRUE
+	violates_masquerade = FALSE
 
 	cancelable = TRUE
 	duration_length = 30 SECONDS
