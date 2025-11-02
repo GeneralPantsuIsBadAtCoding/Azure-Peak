@@ -88,19 +88,6 @@
 /mob/living/proc/mouth_is_free()
 	return !is_mouth_covered()
 
-/mob/living/proc/foot_is_free()
-	return is_barefoot()
-
-/mob/living/proc/is_barefoot()
-	for(var/item_slot in DEFAULT_SLOT_PRIORITY)
-		var/obj/item/clothing = get_item_by_slot(item_slot)
-		if(!clothing) // Don't have this slot or not wearing anything in it
-			continue
-		if(clothing.body_parts_covered & FEET)
-			return FALSE
-	// If didn't stop before, then we're barefoot
-	return TRUE
-
 /mob/living/carbon/human/has_mouth()
 	return get_bodypart(BODY_ZONE_HEAD)
 

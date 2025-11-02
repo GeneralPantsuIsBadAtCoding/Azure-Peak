@@ -51,7 +51,6 @@
 		collective.sessions -= src
 		// If this was the last session in the collective, remove the collective
 		if(!length(collective.sessions))
-			collective.unregister_collective_tab()
 			LAZYREMOVE(GLOB.sex_collectives, collective)
 			qdel(collective)
 
@@ -156,7 +155,7 @@
 			break
 
 		var/stamina_cost = action.stamina_cost * get_stamina_cost_multiplier()
-		if(!user.adjust_stamina(-stamina_cost))
+		if(!user.stamina_add(stamina_cost))
 			break
 
 		var/do_time = action.do_time / get_speed_multiplier()
@@ -601,11 +600,6 @@
 	dat += get_session_tab_content()
 	dat += "</div>"
 
-	// Notes Tab
-	dat += "<div class='tab-content [selected_tab == "notes" ? "active" : ""]' id='notes-tab'>"
-	dat += get_notes_tab_content()
-	dat += "</div>"
-
 	// JavaScript for search functionality and tab management
 	dat += "<script type=\"text/javascript\">"
 
@@ -742,20 +736,6 @@
 
 	content += "</div>"
 
-	// Collective messaging toggle
-	var/collective_enabled = collective ? TRUE : FALSE
-
-	var/toggle_class = "collective-toggle"
-	if(collective_enabled)
-		toggle_class += " enabled"
-
-	content += "<div class='[toggle_class]' onclick=\"window.location.href='?src=[REF(src)];task=toggle_subtle;tab=session'\">"
-	content += "<strong>Subtle Messaging:</strong> [collective_enabled && any_has_flag ? "ENABLED" : "DISABLED"]<br>"
-	content += "<small>Allows group chat between all session participants</small>"
-	content += "</div>"
-
-	content += "</div>"
-
 	return content.Join("")
 
 /datum/sex_session/Topic(href, href_list)
@@ -808,7 +788,6 @@
 			var/new_name = url_decode(href_list["name"])
 			if(new_name && collective)
 				collective.collective_display_name = new_name
-				collective.update_collective_tab()
 				to_chat(user, "<span class='notice'>Session name updated to '[new_name]'</span>")
 
 		if("toggle_subtle")
@@ -841,6 +820,3 @@
 
 /datum/sex_session/proc/set_current_force(new_force)
 	force = clamp(new_force, SEX_FORCE_MIN, SEX_FORCE_MAX)
-
-/datum/sex_session/proc/get_character_slot(mob/target_mob)
-	return target_mob?.client?.prefs.current_slot || 1
