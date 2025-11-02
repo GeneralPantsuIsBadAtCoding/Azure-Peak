@@ -34,13 +34,12 @@
 		return
 	var/datum/sex_session/old_session = get_sex_session(src, target)
 	if(old_session)
-		old_session.show_ui()
-		return
-
+		old_session.ui_interact(src)
+		return old_session
 
 	var/datum/sex_session/session = new /datum/sex_session(src, target)
 	LAZYADD(GLOB.sex_sessions, session)
-	session.show_ui()
+	session.ui_interact(src)
 	return session
 
 /mob/living/carbon/human/proc/make_sucking_noise()
