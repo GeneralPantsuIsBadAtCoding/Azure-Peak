@@ -37,7 +37,7 @@
 
 		if(ispath(private, /datum/patron))	//Patron signs. 
 			var/icon_plane = WEATHER_EFFECT_PLANE	//Will show up through the cone.
-			if(!ispath(private, /datum/patron/old_god)) //Should allow all Psydonic denominations to sign each other.
+			if(!ispath(private, /datum/patron/old_god))
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					var/pass = FALSE
 					if(H.patron?.type == private || private == /datum/patron/divine/xylix)	//Xylixians will always flash the observer's religion to them.
@@ -55,8 +55,6 @@
 			else
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					if(H.patron?.type == private)
-						if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT) && HAS_TRAIT(src, TRAIT_PSYDONIAN_GRIT))	//Bruteforced solution - should allow all practicing Psydonians to recognize each other.
-							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset, icon_plane)
 						if(HAS_TRAIT(H, TRAIT_INQUISITION) && HAS_TRAIT(src, TRAIT_INQUISITION))	//Inquisition members will show a fancier symbol to one another.
 							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset, icon_plane)
 						else 
