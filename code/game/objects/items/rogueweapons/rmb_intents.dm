@@ -109,7 +109,7 @@
 
 /datum/rmb_intent/special
 	name = "special"
-	desc = "(RMB WHILE DEFENSE IS ACTIVE) A special attack that depends on the type of weapon you are using."
+	desc = "A special attack that depends on the type of weapon you are using."
 	icon_state = "rmbspecial"
 
 /datum/rmb_intent/feint

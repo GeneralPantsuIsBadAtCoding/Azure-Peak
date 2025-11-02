@@ -244,8 +244,8 @@
 /datum/keybinding/carbon/rmb_intent_3
     hotkey_keys = list("Shift3")
     name = "rmb_intent_3"
-    full_name = "Select Strong Intent"
-    description = "Selects the Strong RMB intent."
+    full_name = "Select Defend Intent"
+    description = "Selects the Defend RMB intent."
     category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/rmb_intent_3/down(client/user)
@@ -258,8 +258,8 @@
 /datum/keybinding/carbon/rmb_intent_4
     hotkey_keys = list("Shift4")
     name = "rmb_intent_4"
-    full_name = "Select Swift Intent"
-    description = "Selects the Swift RMB intent."
+    full_name = "Select Special Intent"
+    description = "Selects the Special RMB intent."
     category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/rmb_intent_4/down(client/user)
@@ -272,8 +272,8 @@
 /datum/keybinding/carbon/rmb_intent_5
     hotkey_keys = list("Shift5")
     name = "rmb_intent_5"
-    full_name = "Select Defend Intent"
-    description = "Selects the Defend RMB intent."
+    full_name = "Select Strong Intent"
+    description = "Selects the Strong RMB intent."
     category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/rmb_intent_5/down(client/user)
@@ -286,8 +286,8 @@
 /datum/keybinding/carbon/rmb_intent_6
     hotkey_keys = list("Shift6")
     name = "rmb_intent_6"
-    full_name = "Select Weak Intent"
-    description = "Selects the Weak RMB intent."
+    full_name = "Select Swift Intent"
+    description = "Selects the Swift RMB intent."
     category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/rmb_intent_6/down(client/user)
@@ -295,6 +295,20 @@
         return FALSE
     var/mob/living/carbon/C = user.mob
     C.swap_rmb_intent(null, 6)
+    return TRUE
+
+/datum/keybinding/carbon/rmb_intent_7
+    hotkey_keys = list("Shift7")
+    name = "rmb_intent_7"
+    full_name = "Select Weak Intent"
+    description = "Selects the Weak RMB intent."
+    category = CATEGORY_CARBON
+
+/datum/keybinding/carbon/rmb_intent_7/down(client/user)
+    if (!iscarbon(user.mob))
+        return FALSE
+    var/mob/living/carbon/C = user.mob
+    C.swap_rmb_intent(null, 7)
     return TRUE
 
 /datum/keybinding/carbon/cycle_rmb_intent

@@ -1787,6 +1787,8 @@
 /mob/living/proc/swap_rmb_intent(type, num)
 	if(!possible_rmb_intents?.len)
 		return
+	if(!move_after(src, 0.8 SECONDS, FALSE, src))
+		return
 	if(type)
 		if(type in possible_rmb_intents)
 			rmb_intent = new type()
@@ -1802,6 +1804,8 @@
 			if(hud_used?.rmb_intent)
 				hud_used.rmb_intent.update_icon()
 				hud_used.rmb_intent.collapse_intents()
+	visible_message(span_warning("[src] switches to a [rmb_intent.name] stance."))
+	filtered_balloon_alert(TRAIT_COMBAT_AWARE, "[capitalize(rmb_intent.name)]...")
 
 /mob/living/proc/cycle_rmb_intent()
 	if(!possible_rmb_intents?.len)
