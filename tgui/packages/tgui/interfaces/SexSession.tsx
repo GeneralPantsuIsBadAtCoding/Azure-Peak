@@ -220,7 +220,6 @@ export const SexSession = () => {
                               isCurrentAction={isCurrentAction}
                               isAvailable={isAvailable}
                               onClick={() => onClickActionButton(action.type)}
-                              tooltipPosition="right"
                             />
                           </Box>
                         </Stack.Item>
