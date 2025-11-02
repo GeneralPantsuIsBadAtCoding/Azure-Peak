@@ -175,7 +175,7 @@
 	wdefense = 9
 	armor_penetration = 100
 	block_chance = 20
-	associated_skill = /datum/skill/combat/unarmed
+	associated_skill = /datum/skill/magic/blood
 	wlength = WLENGTH_NORMAL
 	wbalance = WBALANCE_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
