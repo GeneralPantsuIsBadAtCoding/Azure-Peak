@@ -3,6 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 
+import { ActionButton } from './sexcon/ActionButton';
 import { ProgressBars } from './sexcon/ProgressBars';
 import type { SexAction, SexSessionData } from './sexcon/types';
 
@@ -25,6 +26,14 @@ export const SexSession = () => {
       rightColumn.push(action);
     }
   });
+  
+  const onClickActionButton = (actionType: string) => {
+    if(data.current_action === actionType) {
+      act('stop_action');
+      return;
+    }
+    act('start_action', { action_type: actionType });
+  };
 
   return (
     <Window title="Sate Desires" width={500} height={600}>
@@ -154,23 +163,11 @@ export const SexSession = () => {
                     </Stack.Item>
                   </Stack>
                 </Stack.Item>
-
-                {/* Current Action / Stop */}
-                {data.current_action ? (
-                  <Stack.Item>
-                    <Box textAlign="center">
-                      <Button color="bad" onClick={() => act('stop_action')}>
-                        STOP
-                      </Button>
-                    </Box>
-                  </Stack.Item>
-                ) : (
-                  <Stack.Item>
-                    <Box textAlign="center" italic color="label">
-                      Doing unto {data.title.replace('Interacting with ', '').replace('...', '')}
-                    </Box>
-                  </Stack.Item>
-                )}
+                <Stack.Item>
+                  <Box textAlign="center" italic color="label">
+                    Doing unto {data.title.replace('Interacting with ', '').replace('...', '')}
+                  </Box>
+                </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
@@ -199,22 +196,13 @@ export const SexSession = () => {
                       return (
                         <Stack.Item key={action.type}>
                           <Box textAlign="center">
-                            <Button
-                              fluid
-                              color={
-                                isCurrentAction
-                                  ? 'good'
-                                  : isAvailable
-                                    ? 'default'
-                                    : 'disabled'
-                              }
-                              disabled={!isAvailable && !isCurrentAction}
-                              onClick={() => act('start_action', { action_type: action.type })}
-                              tooltip={action.description}
+                            <ActionButton
+                              action={action}
+                              isCurrentAction={isCurrentAction}
+                              isAvailable={isAvailable}
+                              onClick={() => onClickActionButton(action.type)}
                               tooltipPosition="right"
-                            >
-                              {action.name}
-                            </Button>
+                            />
                           </Box>
                         </Stack.Item>
                       );
@@ -232,22 +220,13 @@ export const SexSession = () => {
                       return (
                         <Stack.Item key={action.type}>
                           <Box textAlign="center">
-                            <Button
-                              fluid
-                              color={
-                                isCurrentAction
-                                  ? 'good'
-                                  : isAvailable
-                                    ? 'default'
-                                    : 'disabled'
-                              }
-                              disabled={!isAvailable && !isCurrentAction}
+                            <ActionButton
+                              action={action}
+                              isCurrentAction={isCurrentAction}
+                              isAvailable={isAvailable}
                               onClick={() => act('start_action', { action_type: action.type })}
-                              tooltip={action.description}
                               tooltipPosition="left"
-                            >
-                              {action.name}
-                            </Button>
+                            />
                           </Box>
                         </Stack.Item>
                       );

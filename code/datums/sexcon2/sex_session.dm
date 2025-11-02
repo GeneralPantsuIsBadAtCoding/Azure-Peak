@@ -417,7 +417,7 @@
 			try_start_action(text2path(params["action_type"]))
 			. = TRUE
 		if("stop_action")
-			try_stop_current_action()
+			stop_current_action()
 			. = TRUE
 		if("set_speed")
 			set_current_speed(params["value"])
