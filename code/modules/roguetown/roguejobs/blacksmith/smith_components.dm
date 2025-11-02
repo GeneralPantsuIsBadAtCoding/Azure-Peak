@@ -208,7 +208,7 @@
 	material_quality = floor(material_quality/current_recipe.num_of_materials)-4
 	skill_quality = floor((skill_quality/current_recipe.num_of_materials)/1500)+material_quality
 	skill_quality -= floor(numberofhits * 0.25)
-	
+
 	var/modifier
 	switch(skill_quality)
 		if(BLACKSMITH_LEVEL_MIN to BLACKSMITH_LEVEL_SPOIL)
@@ -257,6 +257,11 @@
 					I.AddComponent(/datum/component/metal_glint)
 
 		I.sellprice *= modifier
+		I.max_integrity *= modifier
+		I.obj_integrity = I.max_integrity
+		I.max_blade_int *= modifier
+		I.blade_int = I.max_blade_int
+		I.sharpness_mod = round(1 / modifier, 0.01) // 1.3 modifier gives 0.76 sharpness mod, 0.3 modifier gives 3.3 sharpness mod
 		if(istype(I, /obj/item/lockpick))
 			var/obj/item/lockpick/L = I
 			L.picklvl = modifier
