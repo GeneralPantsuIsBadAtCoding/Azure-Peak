@@ -1,4 +1,9 @@
 /datum/patron/old_god
+	name = null
+	associated_faith = /datum/faith/old_god
+	profane_words = list() //This is either going to fix everything, or cause everything to explode.
+
+/datum/patron/old_god/orthodox
 	name = "Orthodoxism"
 	domain = "Otava, the Holy Psydonic Inquisition, and most of Psydonia's innermost kingdoms."
 	worshippers = "Traditionalists, Commonfolk, Zealots, and the Dutiful."
@@ -40,7 +45,7 @@
 	name = "Fatalism"
 	domain = "Rockhill, the ."
 	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
-	worshippers = "Accelerationists, and the Struggler."
+	worshippers = "Accelerationists, Extremists, and the Struggler."
 	associated_faith = /datum/faith/old_god
 	mob_traits = list(TRAIT_PSYDONIAN_GRIT, TRAIT_PSYDONITE) //Both Psydonic traits are applied no matter what, instead of just one.
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_T4, // An experiment. Ideal for those who want a challenge, or to simply thug it out like it's Roguetown 1E.
@@ -56,7 +61,7 @@
 	)
 
 /datum/patron/old_god/hopeful
-	name = "Syonacism"
+	name = "Syonism" //I know this sounds a little too close to 'Zionism', but 'Syonicism' and 'Syonacism' feel way too clunky. Easy one-letter change if it feels too evil.
 	domain = "Azuria, the Order of the Silver Psycross, and those who hold hope all throughout Psydonia."
 	worshippers = "Virtuists, Paladins, Optimists, and the Goodhearted."
 	desc = "... </br>God. The manifestation of maximal good, and the father of all. </br>He, who created reality for His children to frollick within. </br>He, who breathed lyfe into the Pantheon to shepherd His virtues. </br>He, who sacrificed His strength to strike down the Archdevil with the Comet Syon. </br>He, who yet slumbers to this dae; and who may yet still return."
@@ -65,7 +70,6 @@
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/self/psydonpray				= CLERIC_T1,
-					/obj/effect/proc_holder/spell/targeted/psydondefy			= CLERIC_T1, //DO NOT PANIC. I'M TESTING THIS. REPEAT. DO NOT PANIC. DO NOT FUCKING PANIC!!!!!!!!!!!
 	)
 	traits_tier = list(TRAIT_PSYDONITE = CLERIC_T1)
 	confess_lines = list(
