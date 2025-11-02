@@ -9,7 +9,6 @@ interface ActionListProps {
   searchText: string;
   onSearchChange: (text: string) => void;
   onStartAction: (actionType: string) => void;
-  onStopAction: () => void;
 }
 
 export const ActionList = (props: ActionListProps) => {
@@ -20,7 +19,6 @@ export const ActionList = (props: ActionListProps) => {
     searchText,
     onSearchChange,
     onStartAction,
-    onStopAction,
   } = props;
 
   // Filter actions based on search text
@@ -40,20 +38,6 @@ export const ActionList = (props: ActionListProps) => {
             onChange={onSearchChange}
           />
         </Stack.Item>
-
-        {/* Stop Current Action Button */}
-        {currentAction && (
-          <Stack.Item>
-            <Button
-              fluid
-              color="bad"
-              icon="stop"
-              onClick={onStopAction}
-            >
-              STOP CURRENT ACTION
-            </Button>
-          </Stack.Item>
-        )}
 
         {/* Action List */}
         <Stack.Item grow>
