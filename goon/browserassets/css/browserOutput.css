@@ -86,6 +86,11 @@ body {
 	src: url("Ganesha Type.ttf");
 }
 
+@font-face {
+	font-family: "Sangha Kali";
+	src: url("gyedzai.otf");
+}
+
 @font-face { 
   font-family: "Deutsch Gothic"; 
   src: url("Deutsch Gothic.ttf");
@@ -852,6 +857,9 @@ h2.alert {
 }
 .kazengunese {
 	font-family: "Ganesha Type", "Mookmania";
+}
+.gyedzenese {
+	font-family: "Sangha Kali", Mookmania;
 }
 .orc {
 	font-family: "VizaviTYGRA", "Mookmania";

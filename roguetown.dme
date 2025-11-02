@@ -2942,6 +2942,7 @@
 #include "modular_twilight_axis\lore\code\gods\inhumen_pantheon.dm"
 #include "modular_twilight_axis\lore\code\gods\old_god.dm"
 #include "modular_twilight_axis\lore\code\jobs\job_descs.dm"
+#include "modular_twilight_axis\lore\code\language\gyedzenese.dm"
 #include "modular_twilight_axis\lore\code\objects\books.dm"
 #include "modular_twilight_axis\lore\code\objects\objects_desc.dm"
 #include "modular_twilight_axis\lore\code\objects\ritechalk.dm"

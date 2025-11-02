@@ -17,6 +17,7 @@
 		"FDMedian.ttf" = 'interface/fonts/languages/FDMedian.ttf', // андеад
 		"Kautiva Cyrillic Black.ttf" = 'interface/fonts/languages/Kautiva Cyrillic Black.ttf', // Ящерский
 		"ALOT Gutenberg B Normal.ttf" = 'interface/fonts/languages/ALOT Gutenberg B Normal.ttf', // Грензели
+		"gyedzai.otf" = 'interface/fonts/languages/gyedzai.otf', // Китай
 		"Ganesha Type.ttf" = 'interface/fonts/languages/Ganesha Type.ttf', // Казенгунский Не работает
 		"Deutsch Gothic.ttf" = 'interface/fonts/languages/Deutsch Gothic.ttf', // Отава
 		"TolkienCyr.ttf" = 'interface/fonts/languages/TolkienCyr.ttf', // Этрусский 

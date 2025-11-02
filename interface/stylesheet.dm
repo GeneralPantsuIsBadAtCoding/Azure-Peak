@@ -141,6 +141,7 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Mookmania, TrueType;}
 .beast					{font-family: "VizaviTYGRA", Mookmania;}
 .reptile				{font-family: "Kautiva Cyrillic Black", Mookmania; font-size: 120%;}
 .grenzelhoftian			{font-family: "ALOT Gutenberg B Normal", Mookmania; font-size: 120%;}
+.gyedzenese 			{font-family: "Sangha Kali", Mookmania;}
 .kazengunese 			{font-family: "Ganesha Type", Mookmania;}
 .otavan					{font-family: "Deutsch Gothic", "Mookmania";}
 .etruscan				{font-family: "TolkienCyr", "Mookmania"; font-size: 100%;}
