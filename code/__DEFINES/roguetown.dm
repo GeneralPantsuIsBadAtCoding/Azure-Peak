@@ -345,9 +345,9 @@ Balloon Alert / Floating Text defines
 
 #define ALL_INHUMEN_PATRONS list(/datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha)
 
-#define ALL_PSYDONIC_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal) //Technically, it's 'denominations' instead of 'patrons'. This should work, however.
+#define ALL_PSYDONIC_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/orthodox, /datum/patron/old_god/mystic, /datum/patron/old_god/hopeful, /datum/patron/old_god/fatal) //Technically, it's 'denominations' instead of 'patrons'. This should work, however.
 
-#define PSYDONIC_MAJORITY_PATRONS list(/datum/patron/old_god, /datum/patron/old_god/mystic, /datum/patron/old_god/fatal) //Restricts access to those with the 'Orthodoxism', 'Mysticism', and 'Fatalist' beliefs. Could be implemented for the Inquisition and Naledians.
+#define PSYDONIC_MAJORITY_PATRONS list(/datum/patron/old_god/orthodox, /datum/patron/old_god/mystic, /datum/patron/old_god/fatal) //Restricts access to those with the 'Orthodoxism', 'Mysticism', and 'Fatalist' beliefs. Could be implemented for the Inquisition and Naledians.
 
 #define PSYDONIC_MINORITY_PATRONS list(/datum/patron/old_god/hopeful) //Ditto, except reversed for the 'Syonacism' belief. Could prevent access into the Inquisition, but provides suitably interesting miracles in turn.
 
