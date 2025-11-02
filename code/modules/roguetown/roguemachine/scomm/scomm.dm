@@ -350,11 +350,11 @@
 			raw_message = "<small>[raw_message]</small>"
 
 		// Build message prefix with SCOM location.
-		var/message_prefix = ""
+		var/message_affix = ""
 		if(scom_number)
-			message_prefix = "#[scom_number] - [scom_tag ? "([scom_tag]) " : ""]"
-		if(message_prefix)
-			raw_message = "[message_prefix][raw_message]"
+			message_affix = "- [scom_tag ? "([scom_tag])" : ""]"
+		if(message_affix)
+			raw_message = "[raw_message][message_affix]"
 
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
