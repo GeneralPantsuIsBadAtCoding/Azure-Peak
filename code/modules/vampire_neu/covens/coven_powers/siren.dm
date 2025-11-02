@@ -74,7 +74,7 @@
 
 	level = 2
 	research_cost = 1
-	vitae_cost = 100
+	vitae_cost = 50
 	check_flags = COVEN_CHECK_CONSCIOUS | COVEN_CHECK_SPEAK
 
 	cooldown_length = 10 SECONDS
