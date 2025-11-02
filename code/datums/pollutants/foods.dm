@@ -151,3 +151,7 @@
 /datum/pollutant/food/fried_crab_cake
 	name = "fried crab cake"
 	scent = "fried crab cake"
+
+/datum/pollutant/food/roasted_seeds
+	name = "toasted seeds"
+	scent = "toasted seeds"

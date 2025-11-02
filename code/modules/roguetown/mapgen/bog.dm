@@ -61,6 +61,7 @@
 							/obj/structure/flora/roguegrass = 44,
 							/obj/structure/flora/roguegrass/maneater = 15,
 							/obj/structure/flora/roguegrass/maneater/real = 10,
+							/obj/structure/flora/roguegrass/pumpkin = 2,
 							/obj/item/natural/stone = 6,
 							/obj/item/natural/rock = 1,
 							/obj/item/grown/log/tree/stick = 3,

@@ -22,10 +22,8 @@
 	druggy = max(druggy+amount, 0)
 	if(druggy)
 		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-//		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "high", /datum/mood_event/high)
 	else
 		clear_fullscreen("high")
-//		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "high")
 //	update_body_parts_head_only()
 
 /mob/living/carbon/set_drugginess(amount)

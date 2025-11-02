@@ -311,6 +311,17 @@
 	produce_amount_min = 2
 	produce_amount_max = 3
 
+/datum/plant_def/pumpkin
+	name = "pumpkin plant"
+	icon_state = "pumpkin"
+	produce_type = /obj/item/natural/shellplant/pumpkin
+	produce_amount_min = 2
+	produce_amount_max = 4
+	uproot_loot = list(/obj/item/natural/fibers = 3)
+	maturation_nutrition = HUNGRINESS_DEMANDING
+	maturation_time = SLOW_GROWING
+	produce_time = 3 MINUTES
+
 #undef SLOW_GROWING
 #undef FAST_GROWING
 #undef VERY_FAST_GROWING

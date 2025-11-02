@@ -87,11 +87,14 @@
 	if(!(mobility_flags & MOBILITY_STAND))
 		return FALSE
 	if(user.badluck(4))
-		var/list/usedp = list("Critical miss!", "Damn! Critical miss!", "No! Critical miss!", "It can't be! Critical miss!", "Xylix laughs at me! Critical miss!", "Bad luck! Critical miss!", "Curse creation! Critical miss!", "What?! Critical miss!")
-		to_chat(user, span_boldwarning("[pick(usedp)]"))
-		flash_fullscreen("blackflash2")
-		user.aftermiss()
+		badluckmessage(user)
 		return TRUE
+
+/proc/badluckmessage(mob/living/user)
+	var/static/list/usedp = list("Critical miss!", "Damn! Critical miss!", "No! Critical miss!", "It can't be! Critical miss!", "Xylix laughs at me! Critical miss!", "Bad luck! Critical miss!", "Curse creation! Critical miss!", "What?! Critical miss!")
+	to_chat(user, span_boldwarning("[pick(usedp)]"))
+	user.flash_fullscreen("blackflash2")
+	user.aftermiss()
 
 /proc/ranged_zone_difficulty(zone)
 	switch(zone)
