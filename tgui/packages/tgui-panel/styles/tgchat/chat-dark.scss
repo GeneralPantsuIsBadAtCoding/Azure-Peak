@@ -206,7 +206,7 @@ body {
   overflow-y: scroll;
   color: #c9c1ba;
   font-size: 19px;
-  font-family: 'Pterra';
+  font-family: 'Mookmania';
   text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -221,13 +221,13 @@ h4,
 h5,
 h6 {
   color: #c9c1ba;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 
 em {
   font-style: normal;
   font-weight: bold;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 
 a:link {
@@ -237,7 +237,7 @@ a:link {
 
 .motd {
   color: #638500;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 .motd h1,
 .motd h2,
@@ -258,7 +258,7 @@ a:link {
 h1.alert,
 h2.alert {
   color: #c9c1ba;
-  font-family: Pterra, TrueType;
+  font-family: Mookmania, TrueType;
 }
 .italics {
   font-style: italic;
@@ -275,12 +275,12 @@ h2.alert {
 .ooc {
   color: #c5c5c5;
   font-weight: bold;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 .adminobserverooc {
   color: #cca300;
   font-weight: bold;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 .adminooc {
   color: #4972bc;
@@ -301,7 +301,7 @@ h2.alert {
 }
 
 .say {
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 .deadsay {
   color: #e2c1ff;
@@ -603,69 +603,67 @@ h2.alert {
 }
 
 .human {
-  font-family: 'Honoka Mincho', 'Pterra';
+  font-family: 'Honoka Mincho', 'Mookmania';
 }
 .elf {
-  font-family: 'Dauphin', cursive, 'Pterra';
+  font-family: 'MarkScript-Regular', cursive, 'Mookmania';
 }
 .dwarf {
-  font-family: 'MasonAlternate', 'Pterra';
+  font-family: 'Celtes SP', 'Mookmania';
 }
 .sandspeak {
-  font-family: 'Furqan', 'Pterra';
+  font-family: 'Kamelia', 'Mookmania';
 }
 .delf {
-  font-family: 'Dauphin', cursive, 'Pterra';
-  font-style: italic;
+  font-family: 'MarkScript-Regular', 'Mookmania';
 }
 .hellspeak {
-  font-family: 'Xaphan', 'Pterra';
+  font-family: 'Comforter Brush', 'Mookmania';
   font-size: 110%;
 }
 .undead {
-  font-family: 'FriskyVampire', 'Pterra';
+  font-family: 'FDMedian', 'Mookmania';
 }
 .orc {
-  font-family: 'Thief by The Riddler', Pterra;
+  font-family: 'VizaviTYGRA', Mookmania;
 }
 .beast {
-  font-family: 'Thief by The Riddler', Pterra;
+  font-family: 'VizaviTYGRA', Mookmania;
 }
 .reptile {
-  font-family: 'Kingthings Petrock', Pterra;
+  font-family: 'Kautiva Cyrillic Black', Mookmania;
   font-size: 120%;
 }
 .grenzelhoftian {
-  font-family: 'Emperialisme', 'Pterra';
+  font-family: 'ALOT Gutenberg B Normal', 'Mookmania';
   font-size: 120%;
 }
 .kazengunese {
-  font-family: 'Yuji Boku', Pterra;
+  font-family: 'Ganesha Type', Mookmania;
 }
 .orc {
-  font-family: 'Thief by The Riddler', 'Pterra';
+  font-family: 'VizaviTYGRA', 'Mookmania';
 }
 .beast {
-  font-family: 'Thief by The Riddler', 'Pterra';
+  font-family: 'VizaviTYGRA', 'Mookmania';
 }
 .reptile {
-  font-family: 'Kingthings Petrock', 'Pterra';
+  font-family: 'Kautiva Cyrillic Black', 'Mookmania';
   font-size: 120%;
 }
 .otavan {
-  font-family: 'Notredame', 'Pterra';
-  font-size: 200%;
+  font-family: 'Deutsch Gothic', 'Mookmania';
 }
 .etruscan {
-  font-family: 'Feronia', 'Pterra';
+  font-family: 'TolkienCyr', 'Mookmania';
   font-size: 100%;
 }
 .gronnic {
-  font-family: 'Jorvik Informal', 'Pterra';
+  font-family: 'RUSNeverwinter', 'Mookmania';
   font-size: 100%;
 }
 .aavnic {
-  font-family: 'Romeodn', 'Pterra';
+  font-family: 'Arabic Cyr (kerning fixed)', 'Mookmania';
   font-size: 100%;
 }
 
@@ -682,7 +680,7 @@ h2.alert {
 }
 .smallyell {
   font-size: 70%;
-  font-family: Pterra;
+  font-family: Mookmania;
 }
 .big {
   font-size: 120%;
@@ -805,6 +803,11 @@ h2.alert {
 .love_extreme {
   color: #d146f5;
   font-size: 75%;
+}
+
+.lovebold	{
+  color: #e7bed8;	
+  font-weight: bold;
 }
 
 @keyframes deathcolor {

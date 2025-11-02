@@ -1035,7 +1035,7 @@ $(function() {
 
 	$('#saveLog').click(function(e) {
 		var date = new Date();
-		var fname = 'Azure Peak Chat Log ' + 
+		var fname = 'Twilight Axis Chat Log ' + 
 					date.getFullYear() + '-' + 
 					(date.getMonth() + 1 < 10 ? '0' : '') + (date.getMonth() + 1) + '-' + 
 					(date.getDate() < 10 ? '0' : '') + date.getDate() + ' ' +
@@ -1049,7 +1049,7 @@ $(function() {
 			url: 'browserOutput_white.css',
 			success: function(styleData) {
 				var blob = new Blob([
-					'<head><title>Azure Peak Chat Log</title><style>',
+					'<head><title>Twilight Axis Chat Log</title><style>',
 					styleData,
 					'</style></head><body>',
 					$messages.html(),
@@ -1086,7 +1086,7 @@ $(function() {
 
 		var blob = new Blob([plainText], { type: 'text/plain' });
 	
-		var fname = 'Azure Peak Chat Log';
+		var fname = 'Twilight Axis Chat Log';
 		var date = new Date(), month = date.getMonth() + 1, day = date.getDate(), hours = date.getHours(), mins = date.getMinutes(), secs = date.getSeconds();
 		fname += ' ' + date.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
 		fname += ' ' + (hours < 10 ? '0' : '') + hours + (mins < 10 ? '0' : '') + mins + (secs < 10 ? '0' : '') + secs;

@@ -82,7 +82,7 @@
 	if(!rotation_network)
 		return
 	mouseover.maptext_height = 112
-	return {"<span style='font-size:8pt;font-family:"Pterra";color:#e6b120;text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>
+	return {"<span style='font-size:8pt;font-family:"Mookmania";color:#e6b120;text-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;' class='center maptext '>
 			RPM:[rotations_per_minute ? rotations_per_minute : "0"]
 			[rotation_network.total_stress ? "[rotation_network.overstressed ? "OVER:" : "STRESS:"][round(((rotation_network?.used_stress / max(1, rotation_network?.total_stress)) * 100), 1)]%" : "Stress: [rotation_network.used_stress]"]
 			DIR:[rotation_direction == 4 ? "CW" : rotation_direction == 8 ? "CCW" : ""]</span>"}

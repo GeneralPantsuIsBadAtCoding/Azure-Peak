@@ -4,9 +4,9 @@
 //		icon_state	= list("rain1"=5, "rain2"=6, "rain3"=5)
 		width 		= 928
 		height 		= 928
-		count 		= 400
-		spawning 	= 400
-		lifespan 	= 10
+		count 		= 200
+		spawning 	= 200
+		lifespan 	= 4
 		fade 		= 0
 //		fadein		= 0
 		position 	= generator("box", list(-928,-928,0), list(928,928,0))
