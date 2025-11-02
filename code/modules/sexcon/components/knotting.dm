@@ -202,9 +202,11 @@
 		knot_exit()
 		return FALSE
 
+	#ifndef LOCALTEST
 	if(isnull(top.client) || isnull(btm.client))
 		knot_remove()
 		return FALSE
+	#endif
 
 	return TRUE
 
