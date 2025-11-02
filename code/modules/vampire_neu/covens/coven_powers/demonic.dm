@@ -56,11 +56,13 @@
 	. = ..()
 	owner.add_movespeed_modifier(MOVESPEED_ID_FOTV, multiplicative_slowdown = -0.2)
 	owner.apply_status_effect(/datum/status_effect/buff/fotv)
+	playsound(owner,'sound/misc/portal_op.ogg', 40, TRUE)
 
 /datum/coven_power/demonic/fear_of_the_void_below/deactivate()
 	. = ..()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_FOTV)
 	owner.remove_status_effect(/datum/status_effect/buff/fotv)
+	playsound(owner,'sound/misc/portalactivate.ogg', 40, TRUE)
 
 //CONFLAGRATION
 /datum/coven_power/demonic/conflagration
