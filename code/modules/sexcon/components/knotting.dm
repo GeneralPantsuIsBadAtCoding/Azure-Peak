@@ -242,9 +242,6 @@
 		return FALSE
 
 	if(dist > 1)
-		if(dist > 10)
-			if(knot_movement_mods_remove_penis(top, btm))
-				return TRUE
 		knot_remove(forceful_removal = TRUE)
 		return TRUE
 
@@ -319,9 +316,6 @@
 
 	var/dist = get_dist(top, btm)
 	if(dist > 2)
-		if(dist > 10)
-			if(knot_movement_mods_remove_penis(top, btm))
-				return
 		knot_remove(forceful_removal = TRUE)
 		return
 
@@ -357,21 +351,6 @@
 	if(!ishuman(btm) || QDELETED(btm) || !ishuman(top) || QDELETED(top))
 		return
 	btm.face_atom(top)
-
-/datum/component/knotting/proc/knot_movement_mods_remove_penis(mob/living/carbon/human/top, mob/living/carbon/human/btm)
-	var/obj/item/organ/penis/penor = top.getorganslot(ORGAN_SLOT_PENIS)
-	if(!penor)
-		return FALSE
-
-	penor.Remove(top)
-	penor.forceMove(top.drop_location())
-	penor.add_mob_blood(top)
-	playsound(get_turf(top), 'sound/combat/dismemberment/dismem (5).ogg', 80, TRUE)
-	to_chat(top, span_userdanger("You feel a sharp pain as your knot is torn asunder!"))
-	to_chat(btm, span_userdanger("You feel their knot withdraw faster than you can process!"))
-	knot_remove(forceful_removal = TRUE, notify = FALSE)
-	log_combat(btm, top, "Top had their cock ripped off (knot tugged too far)")
-	return TRUE
 
 /datum/component/knotting/proc/knot_remove(forceful_removal = FALSE, notify = TRUE, keep_top_status = FALSE, keep_btm_status = FALSE)
 	var/mob/living/carbon/human/top = knotted_owner
