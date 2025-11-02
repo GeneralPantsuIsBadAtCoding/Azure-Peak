@@ -54,7 +54,10 @@
 
 /mob/living/carbon/human/MiddleMouseDrop_T(atom/movable/dragged, mob/living/user)
 	var/mob/living/carbon/human/target = src
+	var/mob/living/carbon/human/human_user = user
 
+	if(!istype(human_user))
+		return
 	if(user.mmb_intent)
 		return ..()
 	if(!istype(dragged))
@@ -62,7 +65,7 @@
 	// Need to drag yourself to the target.
 	if(dragged != user)
 		return
-	if(!user.can_do_sex())
+	if(!human_user.can_do_sex)
 		to_chat(user, "<span class='warning'>I can't do this.</span>")
 		return
 

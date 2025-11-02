@@ -172,5 +172,7 @@
 
 	// Boolean. Usually set only to TRUE for non-Eoran church roles.
 	var/virginity = FALSE
+	// Used to prevent certain antag from having sex
+	var/can_do_sex = TRUE
 
 	fovangle = FOV_DEFAULT
