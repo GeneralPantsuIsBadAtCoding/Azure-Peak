@@ -16,6 +16,7 @@ And it also helps for the character set panel
 	/// List of traits that are applied to members of this Clan
 	var/list/clane_traits = list(
 		TRAIT_STRONGBITE,
+		TRAIT_VAMPBITE,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_NOPAIN,
