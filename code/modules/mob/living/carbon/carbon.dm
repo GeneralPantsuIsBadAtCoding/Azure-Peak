@@ -908,6 +908,9 @@
 	protection *= INVERSE(target_zones.len)
 	return protection
 
+/mob/living
+	var/succumb_timer = 0
+
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
 
@@ -959,10 +962,14 @@
 			overlay_fullscreen("critvision", /atom/movable/screen/fullscreen/crit/vision, visionseverity)
 		else
 			clear_fullscreen("critvision")
+		if(!succumb_timer)
+			succumb_timer = world.time
 		overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit, severity)
 		overlay_fullscreen("DD", /atom/movable/screen/fullscreen/crit/death)
 		overlay_fullscreen("DDZ", /atom/movable/screen/fullscreen/crit/zeth)
 	else
+		if(succumb_timer)
+			succumb_timer = 0
 		clear_fullscreen("crit")
 		clear_fullscreen("critvision")
 		clear_fullscreen("DD")

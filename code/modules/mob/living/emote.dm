@@ -52,6 +52,9 @@
 	if(SEND_SIGNAL(follower, COMSIG_CARBON_PRAY, prayer) & CARBON_PRAY_CANCEL)
 		return
 
+	for(var/mob/living/LICKMYBALLS in hearers(2,src))	// Lickmyballs = person in crit.
+		LICKMYBALLS.succumb_timer = world.time			//..succumb timer does nothing rn btw..
+
 /datum/emote/living/meditate
 	key = "meditate"
 	key_third_person = "meditates"
