@@ -59,6 +59,13 @@
 		qdel(src)
 		return
 
+	if(mob_effect_icon)
+		if(!mob_effect_icon_state)
+			CRASH("[src] tried to apply a status mob effect without an icon state!")
+		if(!mob_effect_dur)
+			mob_effect_dur = (duration - 1)	//-1 tick juuust in case something goes wrong between status effect deletion and the callback of the appearance itself.
+		mob_effect = owner.play_overhead_indicator_simple(mob_effect_icon, mob_effect_icon_state, mob_effect_dur, mob_effect_layer, null, mob_effect_offset_y, mob_effect_offset_x)
+
 	if(duration != -1)
 		duration = world.time + duration
 
@@ -68,13 +75,6 @@
 		var/atom/movable/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
 		A?.attached_effect = src //so the alert can reference us, if it needs to
 		linked_alert = A //so we can reference the alert, if we need to
-
-	if(mob_effect_icon)
-		if(!mob_effect_icon_state)
-			CRASH("[src] tried to apply a status mob effect without an icon state!")
-		if(!mob_effect_dur)
-			mob_effect_dur = (duration - 1)	//-1 tick juuust in case something goes wrong between status effect deletion and the callback of the appearance itself.
-		mob_effect = owner.play_overhead_indicator_simple(mob_effect_icon, mob_effect_icon_state, mob_effect_dur, mob_effect_layer, null, mob_effect_offset_y, mob_effect_offset_x)
 
 	if(duration > world.time || tick_interval > world.time) // don't process if we don't care
 		START_PROCESSING(SSfastprocess, src)

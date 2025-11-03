@@ -101,6 +101,7 @@
 	cut_overlay(appearance, TRUE)
 	qdel(appearance)
 	update_icon()
+	update_overlays()
 	return
 
 /mob/living/proc/play_stress_indicator()

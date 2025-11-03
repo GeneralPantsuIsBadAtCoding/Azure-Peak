@@ -19,8 +19,9 @@
 
 /datum/rmb_intent/aimed
 	name = "aimed"
-	desc = "Your attacks are more precise but have a longer recovery time. Higher critrate with precise attacks.\n(RMB WHILE COMBAT MODE IS ACTIVE) Bait out your targeted limb to the enemy. If it matches where they're aiming, they will be thrown off balance."
+	desc = "Your attacks are more precise but have a longer recovery time. Higher critrate with precise attacks.\n(TIP HERE FOR AIMED RCLICK)."
 	icon_state = "rmbaimed"
+	adjacency = FALSE
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
 	if(!user)
@@ -29,9 +30,9 @@
 		return
 	if(!ishuman(user))
 		return
-	if(!ishuman(target))
-		return
-	if(user == target)
+	if(!user.get_active_held_item()) //Nothing in our hand to strike with.
+		return 
+	if(!user.cmode)
 		return
 	
 	var/mob/living/carbon/human/HT = target

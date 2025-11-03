@@ -1111,6 +1111,30 @@
 	var/dur
 	alert_type = /atom/movable/screen/alert/status_effect/buff/clash
 
+/datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
+	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
+	. = ..()
+
+/datum/status_effect/buff/clash/proc/process_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
+	var/bad_guard = FALSE
+	var/mob/living/U = user
+	//We have Guard / Clash active, and are hitting someone who doesn't. Cheesing a 'free' hit with a defensive buff is a no-no. You get punished.
+	if(U.has_status_effect(/datum/status_effect/buff/clash) && !target.has_status_effect(/datum/status_effect/buff/clash))
+		if(user == parent)
+			bad_guard = TRUE
+	if(target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item() && ishuman(target) && !bad_guard)
+		var/mob/living/carbon/human/HM = target
+		var/obj/item/IM = target.get_active_held_item()
+		var/obj/item/IU 
+		if(user.used_intent.masteritem)
+			IU = user.used_intent.masteritem
+		HM.process_clash(user, IM, IU)
+		return
+	if(bad_guard)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.bad_guard(span_suicide("I switched stances too quickly! It drains me!"), cheesy = TRUE)
+
 /datum/status_effect/buff/clash/on_apply()
 	. = ..()
 	if(!ishuman(owner))
