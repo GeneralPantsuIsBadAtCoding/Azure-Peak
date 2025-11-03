@@ -168,6 +168,8 @@
 	charge = max(0, charge - CHARGE_FOR_CLIMAX)
 
 	user.add_stress(/datum/stressevent/cumok)
+	if(user.has_flaw(/datum/charflaw/addiction/lovefiend))
+		user.sate_addiction()
 	user.emote("moan", forced = TRUE)
 	user.playsound_local(user, 'sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time
