@@ -180,6 +180,16 @@ export const SexSession = () => {
                     >
                       {data.frozen ? 'UNFREEZE' : 'FREEZE'}
                     </Button>
+                    {' | '}
+                    <Button
+                      inline
+                      compact
+                      color="transparent"
+                      disabled={!data.current_action}
+                      onClick={() => act('stop_action')}
+                    >
+                      STOP
+                    </Button>
                   </Box>
                 </Stack.Item>
               </Stack>
@@ -242,8 +252,7 @@ export const SexSession = () => {
                               action={action}
                               isCurrentAction={isCurrentAction}
                               isAvailable={isAvailable}
-                              onClick={() => act('start_action', { action_type: action.type })}
-                              tooltipPosition="left"
+                              onClick={() => onClickActionButton(action.type)}
                             />
                           </Box>
                         </Stack.Item>
