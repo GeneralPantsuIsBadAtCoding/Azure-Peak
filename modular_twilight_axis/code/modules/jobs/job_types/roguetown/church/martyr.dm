@@ -6,22 +6,33 @@
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_onfeet)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_laststand)
 
+/datum/status_effect/debuff/martyr_cooldown
+	id = "martyr_cooldown"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/martyr_cooldown
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/martyr_cooldown
+	name = "Dictat Issued"
+	desc = "I have recently issued a Dictat to my Templar. I must wait before I can issue another!"
+	icon_state = "debuff"
+
 /obj/effect/proc_holder/spell/invoked/order/martyr_guidance
 	name = "Dictat of Noc"
-	desc = "Command your Templar to aim for the weak spots. +1 Perception outside the Holy Ground, +3 Perception within Holy Ground."
+	desc = "Command your Templar to aim for the weak spots. +2 Perception outside the Holy Ground, +4 Perception within Holy Ground."
 	overlay_state = "takeaim"
+	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_guidance
 	id = "martyr_guidance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_guidance
-	effectedstats = list(STATKEY_PER = 1)
-	duration = 1 MINUTES
+	effectedstats = list(STATKEY_PER = 2)
+	duration = 15 SECONDS
 
 /datum/status_effect/buff/order/martyr_guidance/church
 	id = "martyr_guidance_church"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_guidance
-	effectedstats = list(STATKEY_PER = 3)
-	duration = 1 MINUTES
+	effectedstats = list(STATKEY_PER = 4)
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_guidance
 	name = "Dictat of Noc"
@@ -36,12 +47,16 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(!HAS_TRAIT(target, TRAIT_TEMPLAR))
+		if(!(target.job == "Templar"))
 			to_chat(user, span_alert("I cannot order one not of the Templar ranks!"))
 			revert_cast()
 			return	
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
+			return
+		if(user.has_status_effect(/datum/status_effect/debuff/martyr_cooldown))
+			to_chat(user, span_alert("I must wait before I can issue another Dictat!"))
 			revert_cast()
 			return
 		user.say("Храмовники, сосредоточьтесь на цели! Да направит Нок вашу руку!!")
@@ -50,8 +65,9 @@
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance/church)
+		user.apply_status_effect(/datum/status_effect/debuff/martyr_cooldown)
 		for (var/mob/living/carbon/human/H in view(7, target))
-			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
+			if(H.job == "Templar")
 				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_guidance)
 				else
@@ -62,20 +78,21 @@
 
 /obj/effect/proc_holder/spell/invoked/order/martyr_expedite
 	name = "Dictat of Xylix"
-	desc = "Command your Templar to advance quickly. +1 Speed outside the Holy Ground, +3 Speed within Holy Ground."
+	desc = "Command your Templar to advance quickly. +2 Speed outside the Holy Ground, +4 Speed within Holy Ground."
 	overlay_state = "movemovemove"
+	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_expedite
 	id = "martyr_expedite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_expedite
-	effectedstats = list(STATKEY_SPD = 1)
-	duration = 1 MINUTES
+	effectedstats = list(STATKEY_SPD = 2)
+	duration = 15 SECONDS
 
 /datum/status_effect/buff/order/martyr_expedite/church
 	id = "martyr_expedite_church"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_expedite
-	effectedstats = list(STATKEY_SPD = 3)
-	duration = 1 MINUTES
+	effectedstats = list(STATKEY_SPD = 4)
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_expedite
 	name = "Dictat of Xylix"
@@ -90,12 +107,16 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(!HAS_TRAIT(target, TRAIT_TEMPLAR))
+		if(!(target.job == "Templar"))
 			to_chat(user, span_alert("I cannot order one not of the Templar ranks!"))
 			revert_cast()
 			return	
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
+			return
+		if(user.has_status_effect(/datum/status_effect/debuff/martyr_cooldown))
+			to_chat(user, span_alert("I must wait before I can issue another Dictat!"))
 			revert_cast()
 			return
 		user.say("Вперёд, храмовники! Ксайликс направит нас к победе!!")
@@ -104,8 +125,9 @@
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite/church)
+		user.apply_status_effect(/datum/status_effect/debuff/martyr_cooldown)
 		for (var/mob/living/carbon/human/H in view(7, target))
-			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
+			if(H.job == "Templar")
 				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_expedite)
 				else
@@ -118,6 +140,7 @@
 	name = "Dictat of Ravox"
 	desc = "Command your Templar to hold fast. Forces them to stand up, enduring through the struggle. Grants resistance to pain within Holy Ground."
 	overlay_state = "onfeet"
+	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_onfeet
 	id = "martyr_onfeet"
@@ -127,7 +150,7 @@
 /datum/status_effect/buff/order/martyr_onfeet/church
 	id = "martyr_onfeet_church"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_onfeet
-	duration = 30 SECONDS
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_onfeet
 	name = "Dictat of Ravox"
@@ -150,12 +173,16 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(!HAS_TRAIT(target, TRAIT_TEMPLAR))
+		if(!(target.job == "Templar"))
 			to_chat(user, span_alert("I cannot order one not of the Templar ranks!"))
 			revert_cast()
 			return	
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
+			return
+		if(user.has_status_effect(/datum/status_effect/debuff/martyr_cooldown))
+			to_chat(user, span_alert("I must wait before I can issue another Dictat!"))
 			revert_cast()
 			return
 		user.say("Храмовники! Встаньте и сражайтесь! Равокс смотрит на вас!!")
@@ -172,8 +199,9 @@
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet/church)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_onfeet)
+		user.apply_status_effect(/datum/status_effect/debuff/martyr_cooldown)
 		for (var/mob/living/carbon/human/H in view(7, target))
-			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
+			if(H.job == "Templar")
 				if(!(target.mobility_flags & MOBILITY_STAND))
 					H.SetUnconscious(0)
 					H.SetSleeping(0)
@@ -192,20 +220,21 @@
 
 /obj/effect/proc_holder/spell/invoked/order/martyr_laststand
 	name = "Dictat of Malum"
-	desc = "Command your Templar to assume defense formation. +1 Willpower and Constitution outside the Holy Ground, +2 Willpower and Constitution within Holy Ground."
+	desc = "Command your Templar to assume defense formation. +2 Willpower and +1 Constitution outside the Holy Ground, +3 Willpower and +2 Constitution within Holy Ground."
 	overlay_state = "hold"
+	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_laststand
 	id = "martyr_laststand"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_laststand
-	effectedstats = list(STATKEY_WIL = 1, STATKEY_CON = 1)
-	duration = 40 SECONDS
+	effectedstats = list(STATKEY_WIL = 2, STATKEY_CON = 1)
+	duration = 15 SECONDS
 
 /datum/status_effect/buff/order/martyr_laststand/church
 	id = "martyr_laststand_church"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/order/martyr_laststand
-	effectedstats = list(STATKEY_WIL = 2, STATKEY_CON = 2)
-	duration = 40 SECONDS
+	effectedstats = list(STATKEY_WIL = 3, STATKEY_CON = 2)
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_laststand
 	name = "Dictat of Malum"
@@ -220,12 +249,16 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-		if(!HAS_TRAIT(target, TRAIT_TEMPLAR))
+		if(!(target.job == "Templar"))
 			to_chat(user, span_alert("I cannot order one not of the Templar ranks!"))
 			revert_cast()
 			return	
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
+			revert_cast()
+			return
+		if(user.has_status_effect(/datum/status_effect/debuff/martyr_cooldown))
+			to_chat(user, span_alert("I must wait before I can issue another Dictat!"))
 			revert_cast()
 			return
 		user.say("Ни шагу назад, храмовники! Малум укрепит нашу волю!!")
@@ -234,8 +267,9 @@
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand)
 		else
 			target.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand/church)
+		user.apply_status_effect(/datum/status_effect/debuff/martyr_cooldown)
 		for (var/mob/living/carbon/human/H in view(7, target))
-			if(HAS_TRAIT(H, TRAIT_TEMPLAR))
+			if(H.job == "Templar")
 				if(!(our_area.holy_area))
 					H.apply_status_effect(/datum/status_effect/buff/order/martyr_laststand)
 				else
