@@ -364,10 +364,8 @@
 
 	var/list/arousal_data = list()
 	SEND_SIGNAL(user, COMSIG_SEX_GET_AROUSAL, arousal_data)
-	var/max_arousal = MAX_AROUSAL
 	var/current_arousal = arousal_data["arousal"] || 0
-	data["arousal"] = min(100, (current_arousal / max_arousal) * 100)
-	data["pleasure"] = data["arousal"]
+	data["arousal"] = min(100, (current_arousal / ACTIVE_EJAC_THRESHOLD) * 100)
 	data["frozen"] = arousal_data["frozen"] || FALSE
 
 	// Which actions can be performed

@@ -2,7 +2,6 @@ import { Box, Section, Stack } from 'tgui-core/components';
 
 interface ProgressBarsProps {
   arousal: number;
-  pleasure: number;
 }
 
 interface CustomProgressBarProps {
@@ -55,18 +54,11 @@ const CustomProgressBar = (props: CustomProgressBarProps) => {
 };
 
 export const ProgressBars = (props: ProgressBarsProps) => {
-  const { arousal, pleasure } = props;
+  const { arousal } = props;
 
   return (
     <Section>
       <Stack vertical>
-        <Stack.Item>
-          <CustomProgressBar
-            label="Pleasure"
-            value={pleasure}
-            gradient="linear-gradient(90deg, #ff69b4, #ff1493)"
-          />
-        </Stack.Item>
         <Stack.Item>
           <CustomProgressBar
             label="Arousal"
