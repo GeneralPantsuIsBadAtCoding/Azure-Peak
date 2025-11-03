@@ -126,19 +126,23 @@
 	check_pq_menu(theykey)
 
 /proc/check_pq_menu(ckey)
-	if(!fexists("data/player_saves/[copytext(ckey,1,2)]/[ckey]/preferences.sav"))
+	var/canonical_ckey = replacetext(replacetext(replacetext(replacetext(lowertext(ckey), " ", ""), "_", ""), ".", ""), "-", "")
+	var/folder_prefix = copytext(canonical_ckey, 1, 2)
+	var/full_path = "data/player_saves/[folder_prefix]/[canonical_ckey]/preferences.sav"
+
+	if(!fexists(full_path))
 		to_chat(usr, span_boldwarning("User does not exist."))
 		return
-	var/popup_window_data = "<center>[ckey]</center>"
-	popup_window_data += "<center>PQ: [get_playerquality(ckey, TRUE, TRUE)] ([get_playerquality(ckey, FALSE, TRUE)])</center>"
+	var/popup_window_data = "<center>[canonical_ckey]</center>"
+	popup_window_data += "<center>PQ: [get_playerquality(canonical_ckey, TRUE, TRUE)] ([get_playerquality(canonical_ckey, FALSE, TRUE)])</center>"
 
 //	dat += "<table width=100%><tr><td width=33%><div style='text-align:left'><a href='?_src_=prefs;preference=playerquality;task=menu'><b>PQ:</b></a> [get_playerquality(user.ckey, text = TRUE)]</div></td><td width=34%><center><a href='?_src_=prefs;preference=triumphs;task=menu'><b>TRIUMPHS:</b></a> [user.get_triumphs() ? "\Roman [user.get_triumphs()]" : "None"]</center></td><td width=33%></td></tr></table>"
-	popup_window_data += "<center><a href='?_src_=holder;[HrefToken()];cursemenu=[ckey]'>CURSES</a></center>"
+	popup_window_data += "<center><a href='?_src_=holder;[HrefToken()];cursemenu=[canonical_ckey]'>CURSES</a></center>"
 	popup_window_data += "<table width=100%><tr><td width=33%><div style='text-align:left'>"
-	popup_window_data += "Commends: <a href='?_src_=holder;[HrefToken()];readcommends=[ckey]'>[get_commends(ckey)]</a></div></td>"
-	popup_window_data += "<td width=34%><center>Round Contributor Points: [get_roundpoints(ckey)]</center></td>"
-	popup_window_data += "<td width=33%><div style='text-align:right'>Rounds Survived: [get_roundsplayed(ckey)]</div></td></tr></table>"
-	var/list/listy = world.file2list("data/player_saves/[copytext(ckey,1,2)]/[ckey]/playerquality.txt")
+	popup_window_data += "Commends: <a href='?_src_=holder;[HrefToken()];readcommends=[canonical_ckey]'>[get_commends(canonical_ckey)]</a></div></td>"
+	popup_window_data += "<td width=34%><center>Round Contributor Points: [get_roundpoints(canonical_ckey)]</center></td>"
+	popup_window_data += "<td width=33%><div style='text-align:right'>Rounds Survived: [get_roundsplayed(canonical_ckey)]</div></td></tr></table>"
+	var/list/listy = world.file2list("data/player_saves/[folder_prefix]/[canonical_ckey]/playerquality.txt")
 	if(!listy.len)
 		popup_window_data += span_info("No data on record. Create some.")
 	else
@@ -184,7 +188,10 @@
 		if(!selection)
 			return
 		theykey = selection
-	if(!fexists("data/player_saves/[copytext(theykey,1,2)]/[theykey]/preferences.sav"))
+	var/canonical_ckey = replacetext(replacetext(replacetext(replacetext(lowertext(theykey), " ", ""), "_", ""), ".", ""), "-", "")
+	var/folder_prefix = copytext(canonical_ckey, 1, 2)
+	var/full_path = "data/player_saves/[folder_prefix]/[canonical_ckey]/preferences.sav"
+	if(!fexists(full_path))
 		to_chat(src, span_boldwarning("User does not exist."))
 		return
 	var/amt2change = input("How much to modify the PQ by? (20 to -20, or 0 to just add a note)") as null|num
@@ -193,9 +200,12 @@
 	var/raisin = stripped_input("State a short reason for this change", "Game Master", "", null)
 	if(!amt2change && !raisin)
 		return
-	adjust_playerquality(amt2change, theykey, src.ckey, raisin)
+	if(canonical_ckey == src.ckey)	
+		to_chat(src, span_boldwarning("Самому себе PQ менять нельзя."))
+		return
+	adjust_playerquality(amt2change, canonical_ckey, src.ckey, raisin)
 	for(var/client/C in GLOB.clients) // I hate this, but I'm not refactoring the cancer above this point.
-		if(lowertext(C.key) == lowertext(theykey))
+		if(lowertext(C.key) == canonical_ckey)
 			to_chat(C, "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">Your PQ has been adjusted by [amt2change] by [key] for reason: [raisin]</span></span>")
 			return
 

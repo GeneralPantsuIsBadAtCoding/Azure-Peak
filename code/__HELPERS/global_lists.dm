@@ -34,9 +34,6 @@
 
 	init_subtypes(/datum/stew_recipe, GLOB.stew_recipes)
 
-	for(var/i in 0 to 20)
-		GLOB.mouseicons_human += file("icons/effects/mousemice/swang/[i * 5].dmi")
-
 	// Faiths
 	for(var/path in subtypesof(/datum/faith))
 		var/datum/faith/faith = new path()
@@ -67,6 +64,7 @@
 	for (var/path in subtypesof(/datum/loadout_item))
 		var/datum/loadout_item/loadout_item = new path()
 		GLOB.loadout_items[path] = loadout_item
+		GLOB.loadout_items_by_name[loadout_item.name] = loadout_item // TW EDIT
 
 
 	// Combat Music Overrides

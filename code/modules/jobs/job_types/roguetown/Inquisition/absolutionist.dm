@@ -17,6 +17,7 @@
 	wanderer_examine = FALSE
 	advjob_examine = FALSE
 	give_bank_account = 15
+	same_job_respawn_delay = 30 MINUTES
 
 	job_traits = list(
 		TRAIT_NOPAINSTUN,
@@ -78,6 +79,7 @@
 
 /datum/outfit/job/roguetown/absolver/basic/pre_equip(mob/living/carbon/human/H)
 	..()
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 	H.adjust_blindness(-3)
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/psythorns
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves

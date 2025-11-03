@@ -2,7 +2,6 @@
 PROCESSING_SUBSYSTEM_DEF(mousecharge)
 	name = "mouse charging prog"
 	wait = 1
-	flags = SS_KEEP_TIMING
 	priority = FIRE_PRIORITY_MOUSECHARGE
 	stat_tag = "MOUSE"
 

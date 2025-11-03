@@ -13,6 +13,7 @@ export const FlavorTextPage = (props) => {
     ooc_notes,
     ooc_notes_nsfw,
     headshot,
+	nsfw_headshot,
     is_naked,
   } = data;
   const [oocNotesIndex, setOocNotesIndex] = useState('SFW');
@@ -157,6 +158,27 @@ export const ImageGalleryPage = (props) => {
                   </Section>
               </Stack.Item>
             ))}
+        </Stack>
+  );
+};
+
+export const NSFWHeadshotPage = (props) => {
+  const { data } = useBackend<ExaminePanelData>();
+  const {
+    nsfw_headshot,
+  } = data;
+  
+  return (
+        <Stack fill justify="space-evenly">
+            <Stack.Item grow>
+                <Section align="center">
+                <Image
+                  maxHeight="100%"
+                  maxWidth="100%"
+                  src={resolveAsset(nsfw_headshot)}
+                />
+                </Section>
+              </Stack.Item>
         </Stack>
   );
 };
