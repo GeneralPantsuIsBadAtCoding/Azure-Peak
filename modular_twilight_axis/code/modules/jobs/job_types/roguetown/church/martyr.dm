@@ -19,7 +19,7 @@
 /obj/effect/proc_holder/spell/invoked/order/martyr_guidance
 	name = "Dictat of Noc"
 	desc = "Command your Templar to aim for the weak spots. +2 Perception outside the Holy Ground, +4 Perception within Holy Ground."
-	overlay_state = "takeaim"
+	overlay_state = "noc_sight"
 	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_guidance
@@ -79,7 +79,7 @@
 /obj/effect/proc_holder/spell/invoked/order/martyr_expedite
 	name = "Dictat of Xylix"
 	desc = "Command your Templar to advance quickly. +2 Speed outside the Holy Ground, +4 Speed within Holy Ground."
-	overlay_state = "movemovemove"
+	overlay_state = "xylix_slip"
 	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_expedite
@@ -139,7 +139,7 @@
 /obj/effect/proc_holder/spell/invoked/order/martyr_onfeet
 	name = "Dictat of Ravox"
 	desc = "Command your Templar to hold fast. Forces them to stand up, enduring through the struggle. Grants resistance to pain within Holy Ground."
-	overlay_state = "onfeet"
+	overlay_state = "ravoxchallenge"
 	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_onfeet
@@ -221,7 +221,7 @@
 /obj/effect/proc_holder/spell/invoked/order/martyr_laststand
 	name = "Dictat of Malum"
 	desc = "Command your Templar to assume defense formation. +2 Willpower and +1 Constitution outside the Holy Ground, +3 Willpower and +2 Constitution within Holy Ground."
-	overlay_state = "hold"
+	overlay_state = "magicians_brick"
 	recharge_time = 30 SECONDS
 
 /datum/status_effect/buff/order/martyr_laststand
