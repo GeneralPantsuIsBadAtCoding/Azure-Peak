@@ -57,8 +57,15 @@
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
 
-/datum/browser/proc/set_window_options(nwindow_options)
-	window_options = nwindow_options
+/datum/browser/proc/set_window_options(
+	can_close = TRUE,
+	can_minimize = TRUE,
+	can_maximize = TRUE, //does this do anything?
+	can_resize = TRUE,
+	titlebar = TRUE,
+	border = 0
+)
+	window_options = list2params(args)
 
 /datum/browser/proc/set_title_image(ntitle_image)
 	title_image = ntitle_image

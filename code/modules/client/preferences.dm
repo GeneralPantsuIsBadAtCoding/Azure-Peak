@@ -291,10 +291,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	dat += "</center>"
 
-	var/used_title
+	//var/used_title
 	switch(current_tab)
 		if (0) // Character Settings#
-			used_title = "Character Sheet"
+		//	used_title = "Character Sheet"
 
 			// Top-level menu table
 			dat += "<table style='width: 100%; line-height: 20px;'>"
@@ -548,7 +548,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</table>"
 
 		if (1) // Game Preferences
-			used_title = "Options"
+			//used_title = "Options"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 //			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
@@ -667,7 +667,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td></tr></table>"
 
 		if(2) //OOC Preferences
-			used_title = "ooc"
+		//	used_title = "ooc"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
 			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
@@ -727,7 +727,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</tr></table>"
 
 		if(3) // Custom keybindings
-			used_title = "Keybinds"
+		//	used_title = "Keybinds"
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
 			for (var/key in key_bindings)
@@ -780,26 +780,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 	dat += "</td>"
 	dat += "<td width='33%' align='center'>"
-	var/mob/dead/new_player/N = user
-	if(istype(N))
+	//var/mob/dead/new_player/N = user
+	//if(istype(N))
 		//dat += "<a href='?_src_=prefs;preference=bespecial'><b>[next_special_trait ? "<font color='red'>SPECIAL</font>" : "Be Special"]</b></a><BR>"
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			switch(N.ready)
-				if(PLAYER_NOT_READY)
-					dat += "<b>UNREADY</b> <a href='byond://?src=[REF(N)];ready=[PLAYER_READY_TO_PLAY]'>READY</a>"
-				if(PLAYER_READY_TO_PLAY)
-					dat += "<a href='byond://?src=[REF(N)];ready=[PLAYER_NOT_READY]'>UNREADY</a> <b>READY</b>"
-					log_game("([user || "NO KEY"]) readied as ([real_name])")
-		else
-			if(!is_active_migrant())
-				dat += "<a href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
-			else
-				dat += "<a class='linkOff' href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
-			dat += " - <a href='?_src_=prefs;preference=migrants'>MIGRATION</a>"
-			dat += "<br><a href='?_src_=prefs;preference=manifest'>ACTORS</a>"
-			//dat += " - <a href='?_src_=prefs;preference=observe'>VOYEUR</a>"
-	else
-		dat += "<a href='?_src_=prefs;preference=finished'>DONE</a>"
+	dat += "<a href='?_src_=prefs;preference=finished'>DONE</a>"
+	dat += "</center>"
 
 	dat += "</td>"
 	dat += "<td width='33%' align='right'>"
@@ -818,12 +803,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	winshow(user, "preferencess_window", TRUE)
 	winset(user, "preferencess_window", "size=820x850")
 	winset(user, "preferencess_window", "pos=280,80")
-	var/datum/browser/noclose/popup = new(user, "preferences_browser", "<div align='center'>[used_title]</div>")
-	popup.set_window_options("can_close=0")
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Sheet</div>", 700, 600)
+	popup.set_window_options("can_close=1")
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	update_preview_icon()
-//	onclose(user, "preferencess_window", src)
+	onclose(user, "preferencess_window", src)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
@@ -1090,7 +1075,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Reset</a></center>"
 
 	var/datum/browser/noclose/popup = new(user, "mob_occupation", "<div align='center'>Class Selection</div>", width, height)
-	popup.set_window_options("can_close=0")
+	popup.set_window_options(can_close = TRUE)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 
