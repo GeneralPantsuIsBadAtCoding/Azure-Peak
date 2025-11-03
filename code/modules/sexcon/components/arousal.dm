@@ -40,11 +40,11 @@
 	UnregisterSignal(parent, COMSIG_SEX_GET_AROUSAL)
 	UnregisterSignal(parent, COMSIG_SEX_RECEIVE_ACTION)
 
-/datum/component/arousal/process()
-	handle_charge(1)
+/datum/component/arousal/process(dt)
+	handle_charge(dt * 1)
 	if(!can_lose_arousal())
 		return
-	adjust_arousal(parent, -1)
+	adjust_arousal(parent, dt * -1)
 
 /datum/component/arousal/proc/can_lose_arousal()
 	if(last_arousal_increase_time + AROUSAL_TIME_TO_UNHORNY > world.time)
