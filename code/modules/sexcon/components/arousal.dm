@@ -262,9 +262,9 @@
 	var/chosen_emote
 	switch(arousal_amt)
 		if(0 to 5)
-			chosen_emote = "moan"
+			chosen_emote = "sexmoanlight"
 		if(5 to INFINITY)
-			chosen_emote = "moan"
+			chosen_emote = "sexamoanhvy"
 
 	if(pain_amt >= PAIN_MILD_EFFECT)
 		if(giving)
@@ -282,7 +282,7 @@
 				chosen_emote = "painmoan"
 
 	last_moan = world.time
-	user.emote(chosen_emote, forced = TRUE)
+	user.emote(chosen_emote)
 
 /datum/component/arousal/proc/try_do_pain_effect(pain_amt, giving)
 	var/mob/user = parent

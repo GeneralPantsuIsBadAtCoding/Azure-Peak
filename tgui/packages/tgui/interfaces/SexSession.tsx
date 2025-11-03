@@ -57,7 +57,6 @@ export const SexSession = () => {
           <Stack.Item>
             <ProgressBars
               arousal={data.arousal}
-              pleasure={data.pleasure}
             />
           </Stack.Item>
           <Divider />
