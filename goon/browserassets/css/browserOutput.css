@@ -47,8 +47,8 @@ body {
   }
 
 @font-face {
-	font-family: "MasonAlternate";
-	src: url("dwarf.ttf");
+	font-family: "Celtes SP";
+	src: url("Celtes SP.otf");
 }
 
 @font-face { 
@@ -82,27 +82,33 @@ body {
 }
 
 @font-face {
-	font-family: "Yuji Boku";
-	src: url("kazengunese.ttf");
+	font-family: "Ganesha Type";
+	src: url("Ganesha Type.ttf");
+}
+
+@font-face {
+	font-family: "Sangha Kali";
+	src: url("gyedzai.otf");
 }
 
 @font-face { 
   font-family: "Deutsch Gothic"; 
+  src: url("Deutsch Gothic.ttf");
 }
 
 @font-face {
-	font-family: "Feronia";
-	src: url("etruscan.ttf");
+	font-family: "TolkienCyr";
+	src: url("TolkienCyr.ttf");
 }
 
 @font-face {
-	font-family: "Jorvik Informal";
-	src: url("gronnic.ttf");
+	font-family: "RUSNeverwinter";
+	src: url("RUSNeverwinter.ttf");
 }
 
 @font-face {
-	font-family: "Romeodn";
-	src: url("aavnic.ttf");
+	font-family: "Arabic Cyr (kerning fixed)";
+	src: url("Arabic Cyr (kerning fixed).ttf");
 }
 
 /* */
@@ -820,10 +826,10 @@ h2.alert {
 	font-family: "MarkScript-Regular", cursive, "Mookmania";
 }
 .dwarf {
-	font-family: "MasonAlternate", "Mookmania";
+	font-family: "Celtes SP", "Mookmania";
 }
 .sandspeak {
-	font-family: "Furqan", "Mookmania";
+	font-family: "Kamelia", "Mookmania";
 }
 .delf {
 	font-family: "MarkScript-Regular", "Mookmania";
@@ -836,13 +842,13 @@ h2.alert {
 	font-family: "FDMedian", "Mookmania";
 }
 .orc {
-	font-family: "VizaviTYGRA", Mookmania;
+	font-family: "VizaviTYGRA", "Mookmania";
 }
 .beast {
-	font-family: "VizaviTYGRA", Mookmania;
+	font-family: "VizaviTYGRA", "Mookmania";
 }
 .reptile {
-	font-family: "Kautiva Cyrillic Black", Mookmania;
+	font-family: "Kautiva Cyrillic Black", "Mookmania";
 	font-size: 120%;
 }
 .grenzelhoftian {
@@ -850,7 +856,10 @@ h2.alert {
 	font-size: 120%;
 }
 .kazengunese {
-	font-family: "Yuji Boku", Mookmania;
+	font-family: "Ganesha Type", "Mookmania";
+}
+.gyedzenese {
+	font-family: "Sangha Kali", Mookmania;
 }
 .orc {
 	font-family: "VizaviTYGRA", "Mookmania";
@@ -866,15 +875,15 @@ h2.alert {
 	font-family: "Deutsch Gothic", "Mookmania";
 }
 .etruscan {
-	font-family: "Feronia", "Mookmania";
+	font-family: "TolkienCyr", "Mookmania";
 	font-size: 100%;
 }
 .gronnic {
-	font-family: "Jorvik Informal", "Mookmania";
-	font-size: 100%;
+	font-family: "RUSNeverwinter", "Mookmania";
+	font-size: 150%;
 }
 .aavnic {
-	font-family: "Romeodn", "Mookmania";
+	font-family: "Arabic Cyr (kerning fixed)", "Mookmania";
 	font-size: 100%;
 }
 
@@ -891,7 +900,7 @@ h2.alert {
 }
 .smallyell {
 	font-size: 70%;
-	font-family: Mookmania;
+	font-family: "Mookmania";
 }
 .big {
 	font-size: 120%;

@@ -142,16 +142,16 @@ GLOBAL_LIST_EMPTY(quest_components)
 
 	var/turf/drop_turf = get_turf(dropped_item)
 
-	// Check if dropped on noticeboard input
-	for(var/obj/structure/roguemachine/noticeboard/quest_machine in SSroguemachine.noticeboards)
-		if(get_turf(quest_machine.input_point) == drop_turf)
-			if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
-				// Notify quest of progress
-				Q.progress_current++
-				Q.on_progress_update()
-				do_sparks(3, TRUE, get_turf(dropped_item))
-				qdel(dropped_item)
-				return
+	var/obj/effect/decal/marker_export/marker = locate() in drop_turf
+
+	if(marker)
+		if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
+			// Notify quest of progress
+			Q.progress_current++
+			Q.on_progress_update()
+			do_sparks(3, TRUE, get_turf(dropped_item))
+			qdel(dropped_item)
+			return
 
 /// Component for courier quests - handles delivery
 /datum/component/quest_object/courier

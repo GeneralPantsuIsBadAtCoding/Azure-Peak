@@ -25,7 +25,7 @@
 #define GAME_PLANE_UPPER -3
 #define GAME_PLANE_HIGHEST -2
 #define WEATHER_EFFECT_PLANE -1
-#define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define BLACKNESS_PLANE 0
 
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
@@ -162,3 +162,17 @@
 #define BALLOON_CHAT_PLANE 31
 
 #define FOV_EFFECTS_LAYER 10000
+
+#define LOBBY_MENU_PLANE 5000
+#define LOBBY_MENU_RENDER_TARGET "LOBBY_MENU_RENDER_TARGET"
+
+///Layer for lobby menu collapse button
+#define LOBBY_BELOW_MENU_LAYER 2
+/// Layer for background
+#define LOBBY_BACKGROUND_LAYER 3
+///Layer for main buttons (Join/Ready, Observe, Character Prefs)
+#define LOBBY_MENU_LAYER 4
+///Layer for lobby menu shutter, which covers up the menu to collapse/expand it
+#define LOBBY_SHUTTER_LAYER 5
+///Layer for lobby menu buttons that are hanging away from and lower than the main panel
+#define LOBBY_BOTTOM_BUTTON_LAYER 6

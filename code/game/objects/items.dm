@@ -47,6 +47,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/pickup_sound = "rustle"
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	///Whether or not we use stealthy audio levels for this item's attack sounds
+	var/stealthy_audio = FALSE
 	//when being placed on a table play this instead
 	var/place_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	var/list/swingsound = PUNCHWOOSH
@@ -73,7 +75,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 	var/body_parts_covered_dynamic = 0
 	var/body_parts_inherent	= 0 //bodypart coverage areas you cannot peel off because it wouldn't make any sense (peeling chest off of torso armor, hands off of gloves, head off of helmets, etc)
-	var/surgery_cover = TRUE // binary, whether this item is considered covering its bodyparts in respect to surgery. Tattoos, etc. are false. 
+	var/surgery_cover = TRUE // binary, whether this item is considered covering its bodyparts in respect to surgery. Tattoos, etc. are false.
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -152,18 +154,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/dropshrink = 0
 	/// Force value that is force or force_wielded, with any added bonuses from external sources. (Mainly components for enchantments)
 	var/force_dynamic = 0
-	/// Weapon's length. Indicates what limbs it can target without extra circumstances (like grabs / on a prone target). 
+	/// Weapon's length. Indicates what limbs it can target without extra circumstances (like grabs / on a prone target).
 	var/wlength = WLENGTH_NORMAL
 	/// Weapon's balance. Swift uses SPD difference between attacker and defender to increase hit%. Heavy increases parry stamina drain based on STR diff.
 	var/wbalance = WBALANCE_NORMAL
 	/// Weapon's defense. Multiplied by 10 and added to the defender's parry / dodge %-age.
-	var/wdefense = 0 
+	var/wdefense = 0
 	/// Weapon's defense bonus from wielding it. Added to wdefense upon wielding.
 	var/wdefense_wbonus = 0
 	/// Weapon's dynamic defense of the wbonus and wdefense added together. This var allows wdefense and the wbonus to be altered by other code / status effects etc.
 	var/wdefense_dynamic = 0
 	/// Minimum STR required to use the weapon. Will reduce damage by 70% if not met. Wielding halves the requirement.
-	var/minstr = 0 
+	var/minstr = 0
 	/// %-age of our raw damage that is dealt to armor or weapon on hit / parry / clip.
 	var/intdamage_factor = 1
 
@@ -255,7 +257,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		grid_width = (w_class * world.icon_size)
 	if(grid_height <= 0)
 		grid_height = (w_class * world.icon_size)
-	
+
 	if(body_parts_covered)
 		body_parts_covered_dynamic = body_parts_covered
 	update_transform()
@@ -342,7 +344,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				getmoboverlay(i,prop,behind=TRUE,mirrored=FALSE)
 				getmoboverlay(i,prop,behind=FALSE,mirrored=TRUE)
 				getmoboverlay(i,prop,behind=TRUE,mirrored=TRUE)
-	
+
 	wdefense_dynamic = wdefense
 	update_force_dynamic()
 
@@ -432,58 +434,92 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	. = ..()
 
 	if(href_list["explainshaft"])
-		to_chat(usr, span_info("Your weapon's shaft determines what kind of damage it is weak and strong against. Shafts other than Grand & Conjured Shaft can be swapped out.\n\
+		var/output = span_info("Your weapon's shaft determines what kind of damage it is weak and strong against. Shafts other than Grand & Conjured Shaft can be swapped out.\n\
 		<b>Metal Shaft</b>: [DULLFACTOR_COUNTERED_BY]x vs Blunt/Smash, [DULLFACTOR_COUNTERS] vs Cut/Chop. 1x Everything Else. \n\
 		<b>Reinforced Shaft</b>: [DULLFACTOR_COUNTERED_BY]x vs Stab/Pick, [DULLFACTOR_COUNTERS] vs Blunt/Smash. 1x Everything Else. \n\
 		<b>Wooden Shaft</b>: [DULLFACTOR_COUNTERED_BY]x vs Cut/Chop, [DULLFACTOR_COUNTERS] vs Blunt/Smash. 1x Everything Else. \n\
 		<b>Grand Shaft</b>: [DULLFACTOR_ANTAG]x vs Everything but Smash. 1x vs Smash. Only present on certain special weapons. \n\
 		<b>Conjured Shaft</b>: [DULLFACTOR_COUNTERED_BY]x vs Everything. Present on Conjured or Decrepit weapons. Also meant to represent crumbling weapons. \n\
-		"))
+		")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explaindef"])
-		to_chat(usr, span_info("Each point of defense adds 10% to your parry chance.\n\
+		var/output = span_info("Each point of defense adds 10% to your parry chance.\n\
 		Your parry chance is increased by 20% per skill level in the weapon, and reduced by 20% per skill level of your attacker.\n\
-		Defense is often increased when you wield a weapon two-handed."))
+		Defense is often increased when you wield a weapon two-handed.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explainlength"])
-		to_chat(usr, span_info("A short weapon gains +10% accuracy on hitting any bodypart and can only attack the legs from the ground.\n\
+		var/output = span_info("A short weapon gains +10% accuracy on hitting any bodypart and can only attack the legs from the ground.\n\
 		A long weapon can hit chest or below from the ground, and can hit the feet while standing.\n\
-		A great weapon can hit any bodypart from anywhere."))
+		A great weapon can hit any bodypart from anywhere.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explainbalance"])
-		to_chat(usr, span_info("A heavy weapon is easier to dodge, and inflicts 2 stamina damage per level of strength differences on a parrying defender. \n\
+		var/output = span_info("A heavy weapon is easier to dodge, and inflicts 2 stamina damage per level of strength differences on a parrying defender. \n\
 		A swift balance weapon reduce the enemy's parry chance by 10% per level of speed difference, by up to 30%, \n\
 		If the defender have higher perception however, the penalty is reduced by 10% per point of difference, down to none.\n\
-		Intelligence also reduces the penalty by 3% per point of difference, down to none."))
+		Intelligence also reduces the penalty by 3% per point of difference, down to none.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
+
 	var/additional_explanation = "This determines the damage dealt by this weapon. Force is increased / decrease by strength above / below 10 by 10% per point of differences,\n\
 	Each point of strength at 15 or above only applies an additional +3% damage, except on punches. Damage is also multiplied by damage factor on intents. \n\
 	Both multiplication are applied to the base number, and does not multiply each other. Reduced sharpness decrease the contribution of strength\n\
 	Force, combined with armor penetration on an intent determines whether an attack penetrate the target's armor. Armor penetrating attack deals less damage to the armor itself."
 	if(href_list["showforce"])
-		to_chat(usr, span_info("Actual Force: ([force]). [additional_explanation]"))
-	
+		var/output = span_info("Actual Force: ([force]). [additional_explanation]")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
+
 	if(href_list["showforcewield"])
-		to_chat(usr, span_info("Wielded Force: ([force_wielded]). [additional_explanation]"))
+		var/output = span_info("Wielded Force: ([force_wielded]). [additional_explanation]")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explainsharpness"])
-		to_chat(usr, span_info("Bladed weapons have sharpness. At [SHARPNESS_TIER1_THRESHOLD * 100]%, damage factor and strength damage starts to fall off gradually. \n\
+		var/output = span_info("Bladed weapons have sharpness. At [SHARPNESS_TIER1_THRESHOLD * 100]%, damage factor and strength damage starts to fall off gradually. \n\
 		At [SHARPNESS_TIER1_FLOOR * 100]%, strength and damage factor no longer applies. Below [SHARPNESS_TIER2_THRESHOLD * 100]%, the base damage value also starts to decline\n\
-		Sharpness declines by [SHARPNESS_ONHIT_DECAY] on parry for bladed weapon."))
+		Sharpness declines by [SHARPNESS_ONHIT_DECAY] on parry for bladed weapon.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explaindurability"])
-		to_chat(usr, span_info("How durable your item is. On weapons, [INTEG_PARRY_DECAY] is lost on parry on a main hand bladed weapon. \n\
+		var/output = span_info("How durable your item is. On weapons, [INTEG_PARRY_DECAY] is lost on parry on a main hand bladed weapon. \n\
 		Blunt weapon or off-hand weapon loses [INTEG_PARRY_DECAY_NOSHARP] per parry instead. \n\
-		On armor, the blunt rating of an armor multiplies its effective durability against blunt damage."))
+		On armor, the blunt rating of an armor multiplies its effective durability against blunt damage.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explainintdamage"])
-		to_chat(usr, span_info("Multiplies the damage done to armor on hit."))
+		var/output = span_info("Multiplies the damage done to armor on hit.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explaindemolitionmod"])
-		to_chat(usr, span_info("Multiplies the damage done to objects when hitting them."))
+		var/output = span_info("Multiplies the damage done to objects when hitting them.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["explainskill"])
-		to_chat(usr, span_info("The skill associated with this weapon. Each level gives +20% to your parry chance, -20% to your opponent's parry chance. \n\
-		The same is applied to dodge but with a +/-10% bonus. It also adds +8% chance to hit the body part you're aiming for."))
+		var/output = span_info("The skill associated with this weapon. Each level gives +20% to your parry chance, -20% to your opponent's parry chance. \n\
+		The same is applied to dodge but with a +/-10% bonus. It also adds +8% chance to hit the body part you're aiming for.")
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 	if(href_list["inspect"])
 		if(!usr.canUseTopic(src, be_close=TRUE))
@@ -491,7 +527,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/list/inspec = list(span_notice("Properties of [src.name]"))
 		if(minstr)
 			inspec += "\n<b>MIN.STR:</b> [minstr]"
-		
+
 		if(force)
 			inspec += "\n<b>FORCE:</b> [get_force_string(force)] <span class='info'><a href='?src=[REF(src)];showforce=1'>{?}</a></span>"
 		if(gripped_intents && !wielded)
@@ -540,7 +576,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name] <span class='info'><a href='?src=[REF(src)];explainskill=1'>{?}</a></span>"
-		
+
 		if(intdamage_factor != 1 && force >= 5)
 			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]% <span class='info'><a href='?src=[REF(src)];explainintdamage=1'>{?}</a></span>"
 
@@ -568,7 +604,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 						inspec += "<b>[capitalize(zonedyn)]</b> | "
 						if(zonedyn in zones)
 							zones.Remove(zonedyn)
-					for(var/zone in zones)			
+					for(var/zone in zones)
 						inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> | "
 				inspec += "<br>"
 			if(C.body_parts_inherent)
@@ -601,7 +637,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(force >= 5) // Durability is rather obvious for non-weapons
 				inspec += " <span class='info'><a href='?src=[REF(src)];explaindurability=1'>{?}</a></span>"
 
-		to_chat(usr, "[inspec.Join()]")
+		var/output = inspec.Join()
+		if(!usr.client.prefs.no_examine_blocks)
+			output = examine_block(output)
+		to_chat(usr, output)
 
 /obj/item
 	var/simpleton_price = FALSE
@@ -827,7 +866,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			wield(user)
 		else
 			ungrip(user)
-	
+
 	if (isliving(user) && slot != ITEM_SLOT_HANDS)
 		var/mob/living/living_user = user
 		living_user.rebuild_obscured_flags() // AZURE EDIT: cache our equipped items `flags_inv` values
@@ -1509,7 +1548,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/peel_goal = peel_threshold
 		if(divisor > peel_goal)
 			peel_goal = divisor
-			
+
 		var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 
 		if(peel_count < peel_goal)
@@ -1608,7 +1647,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return .
 	else
 		var/str = "This object can be repaired using "
-		if(anvilrepair)	
+		if(anvilrepair)
 			var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
 			str += "<b>[initial(S.name)]</b> and a hammer."
 		if(sewrepair)

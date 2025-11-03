@@ -13,6 +13,12 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'
 	icon_state = "eaststrawhat"
 	flags_inv = HIDEEARS
+	var/hides_ears = TRUE
+
+/obj/item/clothing/head/roguetown/eaststrawhat/MiddleClick(mob/user, params)
+	. = ..()
+	hides_ears = !hides_ears
+	flags_inv = hides_ears ? HIDEEARS : null
 
 /obj/item/clothing/head/roguetown/grenzelhofthat/decorated
 	armor = null

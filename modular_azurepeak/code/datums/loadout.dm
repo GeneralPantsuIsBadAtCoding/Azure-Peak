@@ -145,6 +145,14 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/papakha
 
+/datum/loadout_item/rosa_crown
+	name = "Rosa Crown"
+	path = /obj/item/flowercrown/rosa
+
+/datum/loadout_item/salvia_crown
+	name = "Salvia Crown"
+	path = /obj/item/flowercrown/salvia
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"
@@ -766,7 +774,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_eiren
-	name = "Donator Kit - Regret - Required: Zweihander"
+	name = "Donator Kit - Regret - Required: Any Zweihander"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/eiren
 	donatitem = TRUE
@@ -790,7 +798,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_inverserun
-	name = "Donator Kit - Votive Thorns - Required: Zweihander"
+	name = "Donator Kit - Votive Thorns - Required: Any Zweihander"
 	path = /obj/item/enchantingkit/inverserun
 	category = list("Разное", "Донат")
 	donatitem = TRUE
@@ -802,19 +810,19 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie
-	name = "Donator Kit - Aristocratic Boots - Required: Heavy Leather Boots"
+	name = "Donator Kit - Aristocratic Boots - Required: Heavy Leather Boots or Noble Boots"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_boots
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie2
-	name = "Donator Kit - Aristocratic Gloves - Required: Fingerless Leather Gloves"
+	name = "Donator Kit - Aristocratic Gloves - Required: Fingerless Leather Gloves or Heavy Leather Gloves"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_gloves
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie3
-	name = "Donator Kit - Aristocratic Shirt - Required: Gambeson(No Small Races)"
+	name = "Donator Kit - Aristocratic Shirt - Required: Gambeson or Padded Gambeson(No Small Races)"
 	category = list("Разное", "Донат")
 	path = /obj/item/enchantingkit/kumie_shirt
 	donatitem = TRUE

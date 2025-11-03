@@ -136,6 +136,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/masked_examine = FALSE
 	var/mute_animal_emotes = FALSE
 	var/autoconsume = FALSE
+	var/no_examine_blocks = FALSE
 
 	var/lastclass
 
@@ -157,7 +158,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/static/default_cmusic_type = /datum/combat_music/default
 	var/datum/combat_music/combat_music
 	var/combat_music_helptext_shown = FALSE
-	
+
 	var/family = FAMILY_NONE
 
 	var/crt = FALSE
@@ -169,6 +170,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/update_mutant_colors = TRUE
 
 	var/headshot_link
+	var/nsfw_headshot_link //Twilight Axis edit далее TA
 	var/chatheadshot = TRUE
 	var/ooc_extra
 	var/song_artist
@@ -192,7 +194,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/erpprefs
 
 	var/list/img_gallery = list()
-	
+
 	var/datum/familiar_prefs/familiar_prefs
 
 	var/taur_type = null
@@ -261,6 +263,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	random_character(gender, FALSE, FALSE)
 	accessory = "Nothing"
 
+	nsfw_headshot_link = null //TA edit
 
 	customizer_entries = list()
 	validate_customizer_entries()
@@ -293,10 +296,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	dat += "</center>"
 
-	var/used_title
+	//var/used_title
 	switch(current_tab)
 		if (0) // Character Settings#
-			used_title = "Character Sheet"
+		//	used_title = "Character Sheet"
 
 			// Top-level menu table
 			dat += "<table style='width: 100%; line-height: 20px;'>"
@@ -409,7 +412,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>Always Random Bodytype: [(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A>"
 					dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER_ANTAG]'>When Antagonist: [(randomise[RANDOM_GENDER_ANTAG]) ? "Yes" : "No"]</A>"
-			
+
 			if(LAZYLEN(pref_species.allowed_taur_types))
 				var/obj/item/bodypart/taur/T = taur_type
 				var/name = ispath(T) ? T::name : "None"
@@ -523,6 +526,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
 				dat += "<br><img src='[headshot_link]' width='100px' height='100px'>"
+			
+			dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>" //TA edit
+			if(nsfw_headshot_link != null) //TA edit
+				dat += "<br><img src='[nsfw_headshot_link]' width='125px' height='175px'>" //TA edit
 
 			dat += "<br><b>[(length(flavortext) < MINIMUM_FLAVOR_TEXT) ? "<font color = '#802929'>" : ""]Flavortext:[(length(flavortext) < MINIMUM_FLAVOR_TEXT) ? "</font>" : ""]</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=flavortext;task=input'>Change</a>"
 			dat += "<br><b>NSFW Flavortext:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=nsfwflavortext;task=input'>Change</a>"
@@ -546,7 +553,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</table>"
 
 		if (1) // Game Preferences
-			used_title = "Options"
+			//used_title = "Options"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 //			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
@@ -613,7 +620,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					dat += "High"
 			dat += "</a><br>"
 */
-//			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 //			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 //			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
 //				dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
@@ -666,7 +672,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td></tr></table>"
 
 		if(2) //OOC Preferences
-			used_title = "ooc"
+		//	used_title = "ooc"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
 			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
@@ -726,7 +732,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</tr></table>"
 
 		if(3) // Custom keybindings
-			used_title = "Keybinds"
+		//	used_title = "Keybinds"
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
 			for (var/key in key_bindings)
@@ -775,28 +781,15 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	// well.... one empty slot here for something I suppose lol
 	dat += "<table width='100%'>"
 	dat += "<tr>"
-	dat += "<td width='33%' align='left'></td>"
+	dat += "<td width='33%' align='left'>"
+	dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
+	dat += "</td>"
 	dat += "<td width='33%' align='center'>"
-	var/mob/dead/new_player/N = user
-	if(istype(N))
+	//var/mob/dead/new_player/N = user
+	//if(istype(N))
 		//dat += "<a href='?_src_=prefs;preference=bespecial'><b>[next_special_trait ? "<font color='red'>SPECIAL</font>" : "Be Special"]</b></a><BR>"
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			switch(N.ready)
-				if(PLAYER_NOT_READY)
-					dat += "<b>UNREADY</b> <a href='byond://?src=[REF(N)];ready=[PLAYER_READY_TO_PLAY]'>READY</a>"
-				if(PLAYER_READY_TO_PLAY)
-					dat += "<a href='byond://?src=[REF(N)];ready=[PLAYER_NOT_READY]'>UNREADY</a> <b>READY</b>"
-					log_game("([user || "NO KEY"]) readied as ([real_name])")
-		else
-			if(!is_active_migrant())
-				dat += "<a href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
-			else
-				dat += "<a class='linkOff' href='byond://?src=[REF(N)];late_join=1'>JOINLATE</a>"
-			dat += " - <a href='?_src_=prefs;preference=migrants'>MIGRATION</a>"
-			dat += "<br><a href='?_src_=prefs;preference=manifest'>ACTORS</a>"
-			//dat += " - <a href='?_src_=prefs;preference=observe'>VOYEUR</a>"
-	else
-		dat += "<a href='?_src_=prefs;preference=finished'>DONE</a>"
+	dat += "<a href='?_src_=prefs;preference=finished'>DONE</a>"
+	dat += "</center>"
 
 	dat += "</td>"
 	dat += "<td width='33%' align='right'>"
@@ -815,12 +808,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	winshow(user, "preferencess_window", TRUE)
 	winset(user, "preferencess_window", "size=820x850")
 	winset(user, "preferencess_window", "pos=280,80")
-	var/datum/browser/noclose/popup = new(user, "preferences_browser", "<div align='center'>[used_title]</div>")
-	popup.set_window_options("can_close=0")
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Sheet</div>", 700, 600)
+	popup.set_window_options("can_close=1")
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	update_preview_icon()
-//	onclose(user, "preferencess_window", src)
+	onclose(user, "preferencess_window", src)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
@@ -971,7 +964,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(!(job_unavailable in acceptable_unavailables))
 				HTML += "<font color=#a36c63>[used_name]</font></td> <td> </td></tr>"
 				continue
-			
+
 			var/job_display = used_name
 			//job_display += " <a href='?src=[REF(job)];explainjob=1'>{?}</a></span>"
 //			if((job_preferences[SSjob.overflow_role] == JP_LOW) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
@@ -1087,7 +1080,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>Reset</a></center>"
 
 	var/datum/browser/noclose/popup = new(user, "mob_occupation", "<div align='center'>Class Selection</div>", width, height)
-	popup.set_window_options("can_close=0")
+	popup.set_window_options(can_close = TRUE)
 	popup.set_content(HTML)
 	popup.open(FALSE)
 
@@ -1560,7 +1553,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 //						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("age")
-					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "YILS LIVED", pref_species.possible_ages) 
+					var/new_age = tgui_input_list(user, "Choose your character's age (18-[pref_species.max_age])", "YILS LIVED", pref_species.possible_ages)
 					if(new_age)
 						age = new_age
 						var/list/hairs
@@ -1617,7 +1610,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 				// LETHALSTONE EDIT: add voice type selection
 				if ("voicetype")
-					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "VOICE TYPE", GLOB.voice_types_list) 
+					var voicetype_input = tgui_input_list(user, "Choose your character's voice type", "VOICE TYPE", GLOB.voice_types_list)
 					if(voicetype_input)
 						voice_type = voicetype_input
 						to_chat(user, "<font color='red'>Your character will now vocalize with a [lowertext(voice_type)] affect.</font>")
@@ -1632,7 +1625,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/list/taur_selection = list("None")
 					for(var/obj/item/bodypart/taur/tt as anything in pref_species.get_taur_list())
 						taur_selection[tt::name] = tt
-					
+
 					var/new_taur_type = tgui_input_list(user, "Choose your character's taur body", "TAUR BODY", taur_selection)
 					if(!new_taur_type)
 						return
@@ -1652,7 +1645,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						if(!faith.name)
 							continue
 						faiths_named[faith.name] = faith
-					var/faith_input = tgui_input_list(user, "The world rots. Which truth you bear?", "FAITH", faiths_named) 
+					var/faith_input = tgui_input_list(user, "The world rots. Which truth you bear?", "FAITH", faiths_named)
 					if(faith_input)
 						var/datum/faith/faith = faiths_named[faith_input]
 						to_chat(user, "<font color='yellow'>Вера: [faith.translated_name]</font>") //	TA EDIT
@@ -1703,17 +1696,18 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, "<font color='red'>This voice color is too dark for mortals.</font>")
 							return
 						voice_color = sanitize_hexcolor(new_voice)
-				
+
 				if("extra_language")
 					var/static/list/selectable_languages = list(
 						/datum/language/elvish,
 						/datum/language/dwarvish,
-						/datum/language/orcish, 
+						/datum/language/orcish,
 						/datum/language/hellspeak,
 						/datum/language/draconic,
 						/datum/language/celestial,
 						/datum/language/grenzelhoftian,
 						/datum/language/kazengunese,
+						/datum/language/gyedzenese,
 						/datum/language/etruscan,
 						/datum/language/gronnic,
 						/datum/language/otavan,
@@ -1832,6 +1826,22 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					nsfwflavortext = new_nsfwflavortext
 					to_chat(user, "<span class='notice'>Successfully updated NSFW flavortext</span>")
 					log_game("[user] has set their NSFW flavortext'.")
+				if("nsfw_headshot")//TA edit
+					to_chat(user, "<span class='notice'>Finally a place to show it all.</span>")
+					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
+					if(new_nsfw_headshot_link == null)
+						return
+					if(new_nsfw_headshot_link == "")
+						nsfw_headshot_link = null
+						ShowChoices(user)
+						return
+					if(!valid_nsfw_headshot_link(user, new_nsfw_headshot_link))
+						nsfw_headshot_link = null
+						ShowChoices(user)
+						return
+					nsfw_headshot_link = new_nsfw_headshot_link
+					to_chat(user, "<span class='notice'>Successfully updated NSFW Headshot picture</span>")
+					log_game("[user] has set their NSFW Headshot image to '[nsfw_headshot_link]'.") //TA edit end
 				if("erpprefs")
 					to_chat(user, "<span class='notice'>["<span class='bold'>Erotic Roleplay preferences. If you put 'anything goes' or 'no limits' here, do not be surprised if people take you up on it.</span>"]</span>")
 					to_chat(user, "<font color = '#d6d6d6'>Leave blank to clear.</font>")
@@ -1858,7 +1868,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Keep in mind that all three images are displayed next to eachother and justified to fill a horizontal rectangle. As such, vertical images work best.</span>")
 					to_chat(user, "<span class='notice'>You can only have a maximum of ["<span class='bold'>THREE IMAGES</span>"] in your gallery at a time.</span>")
-					
+
 					var/new_galleryimg = tgui_input_text(user, "Input the image link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "Gallery Image",  encode = FALSE)
 
 					if(new_galleryimg == null)
@@ -2092,7 +2102,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 				if("charflaw")
 					var/selectedflaw
-					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "FLAWS", GLOB.character_flaws) 
+					selectedflaw = tgui_input_list(user, "Choose your character's flaw:", "FLAWS", GLOB.character_flaws)
 					if(selectedflaw)
 						charflaw = GLOB.character_flaws[selectedflaw]
 						charflaw = new charflaw()
@@ -2573,10 +2583,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.statpack = statpack
 
 	character.flavortext = flavortext
-	
+
 	character.ooc_notes = ooc_notes
 
 	character.nsfwflavortext = nsfwflavortext
+	
+	character.nsfw_headshot_link = nsfw_headshot_link //TA edit
 
 	character.erpprefs = erpprefs
 
@@ -2608,7 +2620,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	if(icon_updates)
 		character.update_body()
-		character.update_hair() 
+		character.update_hair()
 		character.update_body_parts(redraw = TRUE)
 
 	character.char_accent = char_accent

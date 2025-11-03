@@ -154,6 +154,7 @@
 		"Naledi" = SKIN_COLOR_NALEDI,
 		"Naledi South" = SKIN_COLOR_NALEDI_LIGHT,
 		"Kazengun" = SKIN_COLOR_KAZENGUN,
+		"Gyedzai" = SKIN_COLOR_KAZENGUN
 	)
 
 /datum/species/demihuman/on_species_gain(mob/living/carbon/C, datum/species/old_species)

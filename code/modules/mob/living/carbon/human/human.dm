@@ -859,6 +859,86 @@
 		return FALSE
 	return ..()
 
+/// copies the physical cosmetic features of another human mob.
+/mob/living/carbon/human/proc/copy_physical_features(mob/living/carbon/human/target)
+	if(!istype(target))
+		return
+
+	icon = target.icon
+
+	copy_bodyparts(target)
+
+	target.dna.transfer_identity(src)
+
+	updateappearance(mutcolor_update = TRUE)
+
+	job = target.job // NOT assigned_role
+	faction = target.faction
+	deathsound = target.deathsound
+	gender = target.gender
+	real_name = target.real_name
+	voice_color = target.voice_color
+	voice_pitch = target.voice_pitch
+	detail_color = target.detail_color
+	skin_tone = target.skin_tone
+	lip_style = target.lip_style
+	lip_color = target.lip_color
+	age = target.age
+	underwear = target.underwear
+	shavelevel = target.shavelevel
+	socks = target.socks
+	has_stubble = target.has_stubble
+	headshot_link = target.headshot_link
+	flavortext = target.flavortext
+
+	var/obj/item/bodypart/head/target_head = target.get_bodypart(BODY_ZONE_HEAD)
+	if(!isnull(target_head))
+		var/obj/item/bodypart/head/user_head = get_bodypart(BODY_ZONE_HEAD)
+		user_head.bodypart_features = target_head.bodypart_features
+
+	regenerate_icons()
+
+
+/mob/living/carbon/human/proc/copy_bodyparts(mob/living/carbon/human/target)
+	var/mob/living/carbon/human/self = src
+	var/list/target_missing = target.get_missing_limbs()
+	var/list/my_missing = self.get_missing_limbs()
+
+	// Store references to bodyparts
+	var/list/original_parts = list()
+	var/list/target_parts = list()
+
+	var/list/full = list(
+		BODY_ZONE_HEAD,
+		BODY_ZONE_CHEST,
+		BODY_ZONE_R_ARM,
+		BODY_ZONE_L_ARM,
+		BODY_ZONE_R_LEG,
+		BODY_ZONE_L_LEG,
+	)
+
+	for(var/zone in full)
+		original_parts[zone] = self.get_bodypart(zone)
+		target_parts[zone] = target.get_bodypart(zone)
+
+	bodyparts = list()
+
+	// Rebuild bodyparts list with typepaths
+	for(var/zone_2 in full)
+		var/obj/item/bodypart/target_part = target_parts[zone_2]
+		var/obj/item/bodypart/my_part = original_parts[zone_2]
+
+		if(zone_2 in my_missing)
+			continue
+		else if(zone_2 in target_missing)
+			if(my_part)
+				bodyparts += my_part.type
+		else
+			if(target_part)
+				bodyparts += target_part.type
+
+	create_bodyparts()
+
 /mob/living/carbon/human/species
 	var/race = null
 

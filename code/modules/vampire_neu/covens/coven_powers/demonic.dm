@@ -22,7 +22,6 @@
 
 /datum/coven_power/demonic/sense_the_sin/activate()
 	. = ..()
-	owner.physiology.burn_mod /= 100
 	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.color = "#884200"
 
@@ -30,7 +29,6 @@
 	. = ..()
 	owner.color = initial(owner.color)
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
-	owner.physiology.burn_mod *= 100
 
 /datum/coven_power/demonic/fear_of_the_void_below
 	name = "Fear of the Void"
@@ -158,7 +156,7 @@
 	icon_state = "claws"
 	max_blade_int = 900
 	max_integrity = 900
-	force = 6
+	force = 11
 	wdefense = 9
 	armor_penetration = 100
 	block_chance = 20
@@ -176,10 +174,3 @@
 	item_flags = DROPDEL
 	//masquerade_violating = TRUE
 
-/obj/item/rogueweapon/gangrel/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity)
-		return
-	if(isliving(target))
-		var/mob/living/L = target
-		L.apply_damage(30, BURN)
-	. = ..()

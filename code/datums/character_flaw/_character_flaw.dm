@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	"Sleepless"=/datum/charflaw/sleepless,
 	"Mute"=/datum/charflaw/mute,
 	"Critical Weakness"=/datum/charflaw/critweakness,
+	"Hunted"=/datum/charflaw/hunted,
 	"Random or No Flaw"=/datum/charflaw/randflaw,
 	"No Flaw (3 TRIUMPHS)"=/datum/charflaw/noflaw,
 	))
@@ -282,6 +283,22 @@ GLOBAL_LIST_INIT(character_flaws, list(
 /datum/charflaw/colorblind/on_mob_creation(mob/user)
 	..()
 	user.add_client_colour(/datum/client_colour/monochrome)
+
+/datum/charflaw/hunted
+	name = "Hunted"
+	desc = "Something in my past has made me a target. I'm always looking over my shoulder.	\
+	\nTHIS IS A DIFFICULT FLAW, YOU WILL BE HUNTED BY ASSASSINS AND HAVE ASSASINATION ATTEMPTS MADE AGAINST YOU WITHOUT ANY ESCALATION. \
+	EXPECT A MORE DIFFICULT EXPERIENCE. PLAY AT YOUR OWN RISK."
+	var/logged = FALSE
+
+/datum/charflaw/hunted/flaw_on_life(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(logged == FALSE)
+		if(H.name) // If you don't check this, the log entry wont have a name as flaw_on_life is checked at least once before the name is set.
+			log_hunted("[H.ckey] playing as [H.name] had the hunted flaw by vice.")
+			logged = TRUE
 
 /datum/charflaw/unintelligible
 	name = "Unintelligible"
