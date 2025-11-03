@@ -49,9 +49,10 @@ export const NowPlayingWidget = (props) => {
                     URL: {URL}
                   </Flex.Item>
                 )}
-                <Flex.Item grow={1} color="label">
-                  Duration: {duration}
-                </Flex.Item>
+                {duration !== 'Song Duration Hidden' && (
+                  <Flex.Item grow={1} color="label">
+                    Duration: {duration}
+                  </Flex.Item>)}
                 {Artist !== 'Song Artist Hidden' &&
                   Artist !== 'Unknown Artist' && (
                     <Flex.Item grow={1} color="label">

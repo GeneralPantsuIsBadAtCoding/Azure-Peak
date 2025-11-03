@@ -81,6 +81,10 @@
 	var/cached_mailedto
 	var/trapped
 
+/obj/item/paper/examine()
+	. = ..()
+	. += span_info("Use a feather to write on it. You can create a two-page manuscript that can be turned into a book by writing on it and applying it to another piece of paper that also have something written on it.")
+
 /obj/item/paper/get_real_price()
 	if(info)
 		return 0

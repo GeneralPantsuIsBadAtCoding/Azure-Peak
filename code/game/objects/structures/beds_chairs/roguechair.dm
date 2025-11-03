@@ -21,6 +21,8 @@
 
 /obj/structure/chair/bench/Initialize()
 	. = ..()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
 	handle_layer()
 
 /obj/structure/chair/bench/handle_layer()
@@ -34,13 +36,10 @@
 /obj/structure/chair/bench/post_buckle_mob(mob/living/M)
 	..()
 	density = TRUE
-//	M.pixel_y = 10
 
 /obj/structure/chair/bench/post_unbuckle_mob(mob/living/M)
 	..()
 	density = FALSE
-//	M.pixel_x = M.get_standard_pixel_x_offset(M.lying)
-//	M.pixel_y = M.get_standard_pixel_y_offset(M.lying)
 
 /obj/structure/chair/bench/CanAStarPass(ID, travel_dir, caller)
 	if(travel_dir == dir)
@@ -52,10 +51,13 @@
 		return 0
 	return !density
 
-/obj/structure/chair/bench/CheckExit(atom/movable/O, turf/target)
-	if(get_dir(target, O.loc) == dir)
-		return 0
-	return !density
+/obj/structure/chair/bench/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(istype(leaving, /obj/projectile))
+		return
+	if(get_dir(new_location, leaving.loc) == dir)
+		leaving.Bump(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/chair/bench/couch
 	icon_state = "redcouch"
@@ -115,6 +117,11 @@
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
 
+/obj/structure/chair/wood/rogue/Initialize()
+	. = ..()
+	var/static/list/loc_connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_exit))
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/structure/chair/wood/rogue/chair3
 	icon_state = "chair3"
 	icon = 'icons/roguetown/misc/structure.dmi'
@@ -159,6 +166,7 @@
 	throwforce = 25
 	wdefense = 1
 	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	max_integrity = 50
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
@@ -202,20 +210,20 @@
 		qdel(src)
 		return FALSE
 
-/obj/structure/chair/wood/rogue/CheckExit(atom/movable/O, turf/target)
-	if(isliving(O))
-		var/mob/living/M = O
-		if((M.mobility_flags & MOBILITY_STAND))
-			if(isturf(loc))
-				var/movefrom = get_dir(M.loc, target)
-				if(movefrom == turn(dir, 180) && item_chair != null)
-					playsound(loc, 'sound/foley/chairfall.ogg', 100, FALSE)
-					var/obj/item/I = new item_chair(loc)
-					item_chair = null
-					I.dir = dir
-					qdel(src)
-					return FALSE
-	return ..()
+/obj/structure/chair/wood/rogue/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+	if(!isliving(leaving))
+		return
+	var/mob/living/M = leaving
+	if(!(M.mobility_flags & MOBILITY_STAND))
+		return
+	if(get_dir(leaving.loc, new_location) == REVERSE_DIR(dir))
+		playsound(loc, 'sound/foley/chairfall.ogg', 100, FALSE)
+		var/obj/item/I = new item_chair(loc)
+		item_chair = null
+		I.dir = dir
+		qdel(src)
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/chair/wood/rogue/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	if(damage_amount > 5 && item_chair != null)
@@ -225,9 +233,7 @@
 		I.dir = dir
 		qdel(src)
 		return FALSE
-	else
-		..()
-
+	return ..()
 
 /obj/structure/chair/wood/rogue/fancy
 	icon_state = "chair1"
@@ -280,6 +286,7 @@
 	throwforce = 20
 	wdefense = 1
 	possible_item_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
+	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	max_integrity = 50
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'

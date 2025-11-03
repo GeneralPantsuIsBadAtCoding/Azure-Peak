@@ -9,7 +9,7 @@
 	var/list/types = list()
 	var/mob/current_reader
 	var/open
-	var/base_icon_state
+	base_icon_state
 	var/can_spawn = TRUE
 	resistance_flags = FLAMMABLE
 	var/list/categories = list("All") // Default categories
@@ -313,6 +313,15 @@
 					continue
 				if(!sub_path.name) // Also skip if there's no names
 					continue
+
+				if(ispath(sub_path, /datum/crafting_recipe))
+					var/datum/crafting_recipe/recipe = sub_path
+					if(initial(recipe.hides_from_books))
+						continue
+				if(ispath(sub_path, /datum/anvil_recipe))
+					var/datum/anvil_recipe/recipe = sub_path
+					if(initial(recipe.hides_from_books))
+						continue
 
 				var/recipe_name = initial(sub_path.name)
 

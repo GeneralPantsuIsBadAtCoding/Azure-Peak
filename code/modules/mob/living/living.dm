@@ -326,7 +326,7 @@
 		return FALSE
 	if(!(src.mobility_flags & MOBILITY_STAND))
 		return TRUE
-	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM)
+	var/list/acceptable = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH)
 	if(HAS_TRAIT(L, TRAIT_CIVILIZEDBARBARIAN))
 		acceptable.Add(BODY_ZONE_HEAD)
 	if( !(check_zone(L.zone_selected) in acceptable) )
@@ -526,7 +526,8 @@
 	if(M.buckled)
 		return //don't make them change direction or offset them if they're buckled into something.
 	if(M.dir != turn(get_dir(M,src), 180))
-		M.setDir(get_dir(M, src))
+		if(!((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE))
+			M.setDir(get_dir(M, src))
 	var/offset = 0
 	switch(grab_state)
 		if(GRAB_PASSIVE)
@@ -537,19 +538,34 @@
 			offset = GRAB_PIXEL_SHIFT_NECK
 		if(GRAB_KILL)
 			offset = GRAB_PIXEL_SHIFT_NECK
-	switch(get_dir(M, src))
-		if(NORTH)
-			M.set_mob_offsets("pulledby", 0, 0+offset)
-			M.layer = MOB_LAYER+0.05
-		if(SOUTH)
-			M.set_mob_offsets("pulledby", 0, 0-offset)
-			M.layer = MOB_LAYER-0.05
-		if(EAST)
-			M.set_mob_offsets("pulledby", 0+offset, 0)
-			M.layer = MOB_LAYER
-		if(WEST)
-			M.set_mob_offsets("pulledby", 0-offset, 0)
-			M.layer = MOB_LAYER
+	if((cmode || M.cmode) && M.grab_state < GRAB_AGGRESSIVE)
+		switch(get_dir(src, M))
+			if(NORTH)
+				set_mob_offsets("pulledby", 0, 0+offset)
+				layer = MOB_LAYER+0.05
+			if(SOUTH)
+				set_mob_offsets("pulledby", 0, 0-offset)
+				layer = MOB_LAYER-0.05
+			if(EAST)
+				set_mob_offsets("pulledby", 0+offset, 0)
+				layer = MOB_LAYER
+			if(WEST)
+				set_mob_offsets("pulledby", 0-offset, 0)
+				layer = MOB_LAYER
+	else
+		switch(get_dir(M, src))
+			if(NORTH)
+				M.set_mob_offsets("pulledby", 0, 0+offset)
+				M.layer = MOB_LAYER+0.05
+			if(SOUTH)
+				M.set_mob_offsets("pulledby", 0, 0-offset)
+				M.layer = MOB_LAYER-0.05
+			if(EAST)
+				M.set_mob_offsets("pulledby", 0+offset, 0)
+				M.layer = MOB_LAYER
+			if(WEST)
+				M.set_mob_offsets("pulledby", 0-offset, 0)
+				M.layer = MOB_LAYER
 
 /mob/living/proc/reset_pull_offsets(mob/living/M, override)
 	if(!override && M.buckled)
@@ -594,6 +610,8 @@
 	if(pulling)
 		if(ismob(pulling))
 			var/mob/living/M = pulling
+			if(pulledby && pulledby == pulling)
+				reset_offsets("pulledby")
 			M.reset_offsets("pulledby")
 			reset_pull_offsets(pulling)
 			if(HAS_TRAIT(M, TRAIT_GARROTED))
@@ -611,6 +629,8 @@
 				var/obj/item/grabbing/I = get_inactive_held_item()
 				if(I.grabbed == pulling)
 					dropItemToGround(I, silent = FALSE)
+	reset_offsets("pulledby")
+	reset_pull_offsets(src)
 
 	. = ..()
 
@@ -812,20 +832,35 @@
 /mob/living/proc/check_revive(mob/living/user)
 	if(src == user)
 		return FALSE
+	if(stat < DEAD)
+		to_chat(user, span_warning("Nothing happens."))
+		return FALSE
 	if(!mind)
 		return FALSE
 	if(!mind.active)
-		to_chat(user, span_warning("Astrata is not done with [src], yet."))
+		to_chat(user, span_warning("They are unresponsive to my attempts. For now."))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_DNR))
-		to_chat(user, span_danger("None of the Ten have them. Their only chance is spent. Where did they go?"))
+		to_chat(user, span_danger("None of the divine have them. Their only chance is spent. Where did they go?"))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_NECRAS_VOW))
 		to_chat(user, span_warning("This one has pledged themselves whole to Necra. They are Hers."))
 		return FALSE
-	if(stat < DEAD)
-		to_chat(user, span_warning("Nothing happens."))
+
+	var/obj/item/bodypart/head = get_bodypart("head")
+	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+
+	if(!head)
+		to_chat(user, span_warning("[src] is missing their head!"))
 		return FALSE
+	if(!brain)
+		to_chat(user, span_warning("[src] is missing their brain!"))
+		return FALSE
+	if(!heart)
+		to_chat(user, span_warning("[src] is missing their heart!"))
+		return FALSE
+
 	return TRUE
 
 //Proc used to resuscitate a mob, for full_heal see fully_heal()
@@ -1013,8 +1048,6 @@
 			update_vision_cone()
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
-	if(!has_gravity())
-		return
 	var/blood_exists = FALSE
 
 	for(var/obj/effect/decal/cleanable/trail_holder/C in start) //checks for blood splatter already on the floor
@@ -1209,8 +1242,12 @@
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			combat_modifier -= 0.3
 		else
+			if(!src.mind)
+				combat_modifier -= 0.3
 			if(HAS_TRAIT(L, TRAIT_BLACKBAGGER))
 				combat_modifier -= 0.3
+				if(HAS_TRAIT(src, TRAIT_BAGGED))
+					combat_modifier -= 0.3
 	for(var/obj/item/grabbing/G in grabbedby)
 		if(G.chokehold == TRUE)
 			combat_modifier -= 0.15
@@ -1222,6 +1259,11 @@
 		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
+
+	if(!L.compliance || !compliance)
+		if(badluck(7))
+			badluckmessage(src)
+			return
 
 	if(L.compliance)
 		resist_chance = 100
@@ -1239,7 +1281,10 @@
 			if(!gcord)
 				gcord = L.get_inactive_held_item()
 			to_chat(pulledby, span_warning("[src] struggles against the [gcord]!"))
-			gcord.take_damage(25)
+			if(!src.mind) // NPCs do less damage to the garrote
+				gcord.take_damage(10)
+			else
+				gcord.take_damage(25)
 		if(!HAS_TRAIT(src, TRAIT_GARROTED))
 			visible_message(span_warning("[src] struggles to break free from [L]'s grip!"), \
 						span_warning("I struggle against [L]'s grip![rchance]"), null, null, L)
@@ -1288,23 +1333,6 @@
 
 /mob/living/proc/get_visible_name()
 	return name
-
-/mob/living/update_gravity(has_gravity, override)
-	. = ..()
-	if(!SSticker.HasRoundStarted())
-		return
-	if(has_gravity)
-		if(has_gravity == 1)
-			clear_alert("gravity")
-		else
-			if(has_gravity >= GRAVITY_DAMAGE_TRESHOLD)
-				throw_alert("gravity", /atom/movable/screen/alert/veryhighgravity)
-			else
-				throw_alert("gravity", /atom/movable/screen/alert/highgravity)
-	else
-		throw_alert("gravity", /atom/movable/screen/alert/weightless)
-	if(!override && !is_flying())
-		float(!has_gravity)
 
 /mob/living/float(on)
 	if(throwing)
@@ -1357,12 +1385,18 @@
 	if(!who.Adjacent(src))
 		return
 
-	who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
-					span_danger("[src] tries to remove my [what.name]."), null, null, src)
+	if(!enhanced_strip)
+		who.visible_message(span_warning("[src] tries to remove [who]'s [what.name]."), \
+						span_danger("[src] tries to remove my [what.name]."), null, null, src)
+
 	to_chat(src, span_danger("I try to remove [who]'s [what.name]..."))
 	what.add_fingerprint(src)
-	if(do_mob(src, who, what.strip_delay * surrender_mod))
-		if(what && Adjacent(who))
+	var/strip_delayed = what.strip_delay
+	if(enhanced_strip)
+		strip_delayed = 0.1 SECONDS
+	if(do_after(src, strip_delayed * surrender_mod, who))
+		if(what && (Adjacent(who) || (enhanced_strip && (get_dist(src, who) <= 3))))
+			enhanced_strip = FALSE
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
@@ -1371,7 +1405,6 @@
 			if(what == who.get_item_by_slot(where))
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
-					who.update_fov_angles()
 
 	if(Adjacent(who)) //update inventory window
 		who.show_inv(src)

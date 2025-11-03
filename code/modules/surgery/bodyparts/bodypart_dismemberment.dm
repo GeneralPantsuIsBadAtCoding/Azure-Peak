@@ -35,7 +35,8 @@
 
 	if(body_zone != BODY_ZONE_HEAD)
 		var/mob/living/carbon/human/victim = owner
-		if(victim.run_armor_check(zone_precise, bclass, damage = damage))
+		var/d_type = "slash"
+		if(victim.run_armor_check(zone_precise, d_type, damage = damage))
 			to_chat(victim, span_warning("My armour just saved me from losing my [C.get_bodypart(body_zone).name]!"))
 			return FALSE
 
@@ -46,6 +47,10 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)
 		return FALSE //signal handled the dropping
+	
+	if(C.try_resist_critical())
+		C.visible_message(span_danger("Critical resistance! [C]'s [src.name] hangs on by a thread!</span>"))
+		return FALSE
 
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound)
@@ -59,7 +64,6 @@
 		C.emote("painscream")
 	if(!(NOBLOOD in C.dna?.species?.species_traits))
 		add_mob_blood(C)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	C.add_stress(/datum/stressevent/dismembered)
 	var/stress2give = /datum/stressevent/viewdismember
 	if(C.buckled)
@@ -177,6 +181,9 @@
 	if(held_index)
 		was_owner.dropItemToGround(owner.get_item_for_held_index(held_index), force = TRUE)
 		was_owner.hand_bodyparts[held_index] = null
+
+	if(organ_slowdown)
+		was_owner.remove_movespeed_modifier("[src.type]_slow", update = TRUE)
 	was_owner.bodyparts -= src
 	owner = null
 
@@ -396,6 +403,8 @@
 
 	update_bodypart_damage_state()
 
+	if(organ_slowdown)
+		C.add_movespeed_modifier("[src.type]_slow", update=TRUE, priority=100, flags=NONE, override=FALSE, multiplicative_slowdown=organ_slowdown, movetypes=GROUND, blacklisted_movetypes=NONE, conflict=FALSE)
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()

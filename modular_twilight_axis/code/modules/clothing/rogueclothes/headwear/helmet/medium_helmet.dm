@@ -10,7 +10,6 @@
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
 	block2add = FOV_BEHIND
 	smelt_bar_num = 2
-	armor = ARMOR_HEAD_HELMET_VISOR
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/grenzelhoft
 	name = "\improper Etruscan bascinet with Grenzelhoft hat"

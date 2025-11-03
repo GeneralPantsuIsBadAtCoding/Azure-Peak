@@ -11,6 +11,7 @@
 	converted_type = /area/rogue/under/lake
 	first_time_text = "CENTRAL COAST"
 	deathsight_message = "a windswept shore"
+	detail_text = DETAIL_TEXT_ACTUAL_COAST
 
 /area/rogue/outdoors/beach/north
 	name = "Northern Coast"
@@ -32,3 +33,4 @@
 		new /datum/ambush_config/deepone_party = 20,
 	)
 	first_time_text = "SOUTHERN COAST"
+	detail_text = DETAIL_TEXT_CITY_COAST

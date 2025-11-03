@@ -33,6 +33,7 @@
 	pooptype = null
 	simple_detect_bonus = 20
 	deaggroprob = 0
+	canparry = TRUE
 	defprob = 40
 	// del_on_deaggro = 44 SECONDS
 	retreat_health = 0.3
@@ -99,9 +100,6 @@
 		if(ranged) //We ranged? Shoot at em
 			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
 				OpenFire(target)
-		if(!Process_Spacemove()) //Drifting
-			walk(src,0)
-			return 1
 		if(world.time >= src.rock_cd + 200 && !client)//players get a spell)
 			quake(target)
 			src.rock_cd = world.time

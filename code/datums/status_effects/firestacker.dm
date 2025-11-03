@@ -3,6 +3,8 @@
 #define MOB_BIG_FIRE_STACK_THRESHOLD 10
 /// How fast fire stacks decay (more - faster)
 #define STACK_DECAY_MULTIPLIER 1
+#define STACK_DECAY_SCALE_FACTOR 4 // Multiply the decay rate by dividing the amount of firestacks by this value
+#define STACK_DECAY_PRONE_MULTIPLIER 3 // If the mob is prone, decay stacks faster
 /datum/status_effect/fire_handler
 	id = "abstract"
 	alert_type = null
@@ -156,7 +158,14 @@
 	if(!on_fire)
 		return TRUE
 
-	adjust_stacks(owner.fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * wait * 0.1)
+	if(owner.surrendering)
+		owner.resist_fire()
+
+	var/decay_multiplier = stacks / STACK_DECAY_SCALE_FACTOR
+	if(!(owner.mobility_flags & MOBILITY_STAND))
+		decay_multiplier *= STACK_DECAY_PRONE_MULTIPLIER
+
+	adjust_stacks(decay_multiplier * owner.fire_stack_decay_rate * STACK_DECAY_MULTIPLIER * wait * 0.1)
 
 	if(stacks <= 0)
 		qdel(src)
@@ -180,6 +189,7 @@
 
 	var/turf/location = get_turf(owner)
 	location?.hotspot_expose(700, 25 * wait * 0.1, TRUE)
+
 
 /**
  * Used to deal damage to humans and count their protection.
@@ -226,7 +236,6 @@
 /datum/status_effect/fire_handler/fire_stacks/proc/extinguish()
 	QDEL_NULL(moblight)
 	on_fire = FALSE
-	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 	SEND_SIGNAL(owner, COMSIG_LIVING_EXTINGUISHED, owner)
 	cache_stacks()
 

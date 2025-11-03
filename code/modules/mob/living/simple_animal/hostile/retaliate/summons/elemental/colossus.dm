@@ -36,7 +36,8 @@
 	ranged = TRUE
 	simple_detect_bonus = 20
 	deaggroprob = 0
-	defprob = 40
+	defprob = 50
+	canparry = TRUE
 	// defdrain = 10
 	// del_on_deaggro = 44 SECONDS
 	retreat_health = 0.3
@@ -71,9 +72,6 @@
 		if(ranged) //We ranged? Shoot at em
 			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
 				OpenFire(target)
-		if(!Process_Spacemove()) //Drifting
-			walk(src,0)
-			return 1
 		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
 				walk_away(src,target,retreat_distance,move_to_delay)

@@ -137,3 +137,78 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/landmark/map_load_mark/Initialize()
 	. = ..()
 	LAZYADD(SSmapping.map_load_marks,src)
+
+/obj/effect/mapping_helpers/access
+	name = "access helper parent"
+	layer = DOOR_HELPER_LAYER
+	late = TRUE
+
+/obj/effect/mapping_helpers/access/LateInitialize()
+	var/static/list/valid = list(
+		/obj/structure/mineral_door, \
+		/obj/structure/closet, \
+		/obj/structure/roguemachine/vendor, \
+	)
+
+	// Get the first thing we find starting with doors and closets
+	for(var/thing as anything in valid)
+		var/obj/found = locate(thing) in loc
+		if(found)
+			payload(found)
+			qdel(src)
+			return
+
+	log_mapping("[src] failed to find a target at [AREACOORD(src)]")
+	qdel(src)
+
+/obj/effect/mapping_helpers/access/proc/payload(obj/payload)
+	return
+
+/obj/effect/mapping_helpers/access/locker
+	name = "access lock helper"
+	icon_state = "door_locker"
+
+/obj/effect/mapping_helpers/access/locker/payload(obj/payload)
+	if(istype(payload, /obj/structure/mineral_door))
+		var/obj/structure/mineral_door/door = payload
+		door.lock_toggle()
+	else if(istype(payload, /obj/structure/closet))
+		var/obj/structure/closet/closet = payload
+		closet.locked = TRUE
+	else if(istype(payload, /obj/structure/roguemachine/vendor))
+		var/obj/structure/roguemachine/vendor/vendor = payload
+		vendor.locked = TRUE
+
+/obj/effect/mapping_helpers/secret_door_creator
+	name = "Secret door creator: Turns the given wall into a hidden door with a random password."
+	icon = 'icons/effects/hidden_door.dmi'
+	icon_state = "hidden_door"
+
+	var/redstone_id
+
+	var/obj/structure/mineral_door/secret/door_type = /obj/structure/mineral_door/secret
+	var/override_floor = TRUE //Will only use the below as the floor tile if true. Source turf have at least 1 baseturf to use false
+	var/turf/open/floor_turf = /turf/open/floor/rogue/blocks
+
+/obj/effect/mapping_helpers/secret_door_creator/Initialize()
+	if(!isclosedturf(get_turf(src)))
+		return ..()
+	var/turf/closed/source_turf = get_turf(src)
+	var/obj/structure/mineral_door/secret/new_door = new door_type(source_turf)
+
+	new_door.name = source_turf.name
+	new_door.desc = source_turf.desc
+	new_door.icon = source_turf.icon
+	new_door.icon_state = source_turf.icon_state
+
+	if(redstone_id)
+		new_door.redstone_id = redstone_id
+		GLOB.redstone_objs += new_door
+		new_door.LateInitialize()
+
+	if(override_floor || length(source_turf.baseturfs) < 1)
+		source_turf.ChangeTurf(floor_turf)
+	else
+		source_turf.ChangeTurf(source_turf.baseturfs[1])
+
+	. = ..()

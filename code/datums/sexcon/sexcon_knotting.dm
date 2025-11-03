@@ -2,8 +2,21 @@
 	var/obj/item/organ/penis/penis = user.getorganslot(ORGAN_SLOT_PENIS)
 	if(!penis)
 		return FALSE
+	if(!penis.functional)
+		return FALSE
 	switch(penis.penis_type)
 		if(PENIS_TYPE_KNOTTED,PENIS_TYPE_TAPERED_KNOTTED,PENIS_TYPE_TAPERED_DOUBLE_KNOTTED,PENIS_TYPE_BARBED_KNOTTED)
+			return TRUE
+	return FALSE
+
+/datum/sex_controller/proc/double_penis_type()
+	var/obj/item/organ/penis/penis = user.getorganslot(ORGAN_SLOT_PENIS)
+	if(!penis)
+		return FALSE
+	if(!penis.functional)
+		return FALSE
+	switch(penis.penis_type)
+		if(PENIS_TYPE_TAPERED_DOUBLE,PENIS_TYPE_TAPERED_DOUBLE_KNOTTED)
 			return TRUE
 	return FALSE
 
@@ -12,7 +25,8 @@
 		return
 	var/datum/sex_action/action = SEX_ACTION(action_path)
 	if(action.user_sex_part & user.sexcon.knotted_part) // check if the knot is not blocking these actions, and thus requires a forceful removal
-		user.sexcon.knot_remove()
+		var/forced_insertion = force >= SEX_FORCE_EXTREME && speed >= SEX_SPEED_EXTREME
+		user.sexcon.knot_remove(forceful_removal = forced_insertion)
 	if(action.target_sex_part & target.sexcon.knotted_part)
 		target.sexcon.knot_remove()
 
@@ -21,8 +35,6 @@
 		return
 	var/datum/sex_action/action = SEX_ACTION(user.sexcon.current_action)
 	if(!action.knot_on_finish) // the current action does not support knot climaxing, abort
-		return
-	if(!user.sexcon.can_use_penis())
 		return
 	if(!user.sexcon.knot_penis_type()) // don't have that dog in 'em
 		return
@@ -77,13 +89,15 @@
 		target.Stun(80) // stun for dramatic effect
 	user.visible_message(span_notice("[user] ties their knot inside of [target]!"), span_notice("I tie my knot inside of [target]."))
 	if(target.stat != DEAD)
-		switch(target.sexcon.knotted_part)
-			if(SEX_PART_CUNT,SEX_PART_ANUS,SEX_PART_JAWS)
+		switch(target.sexcon.knotted_part) // this is not a smart way to do this in hindsight, but it is fast at least
+			if(SEX_PART_CUNT,SEX_PART_ANUS,SEX_PART_JAWS,SEX_PART_SLIT_SHEATH)
 				to_chat(target, span_userdanger("You have been knotted!"))
-			if(SEX_PART_CUNT|SEX_PART_ANUS|SEX_PART_JAWS)
-				to_chat(target, span_userdanger("You have been triple-knotted!"))
-			else
+			if(SEX_PART_CUNT|SEX_PART_ANUS|SEX_PART_JAWS|SEX_PART_SLIT_SHEATH)
+				to_chat(target, span_userdanger("You have been quad-knotted!"))
+			if(SEX_PART_CUNT|SEX_PART_ANUS,SEX_PART_CUNT|SEX_PART_JAWS,SEX_PART_CUNT|SEX_PART_SLIT_SHEATH,SEX_PART_ANUS|SEX_PART_SLIT_SHEATH,SEX_PART_ANUS|SEX_PART_JAWS,SEX_PART_JAWS|SEX_PART_SLIT_SHEATH)
 				to_chat(target, span_userdanger("You have been double-knotted!"))
+			else
+				to_chat(target, span_userdanger("You have been triple-knotted!"))
 		if(we_got_baothad)
 			to_chat(target, span_userdanger("Baotha magick infuses within, you can't think straight!"))
 	if(!target.has_status_effect(/datum/status_effect/knot_tied)) // only apply status if we don't have it already
@@ -147,7 +161,7 @@
 			to_chat(top, span_love("I feel [btm] tightening over my knot."))
 			to_chat(btm, span_love("I feel [top] rubbing inside."))
 		return
-	if(btm.pulling == top || top.pulling == btm)
+	if(top.pulling == btm || btm.pulling == top)
 		return
 	if(top.sexcon.considered_limp())
 		knot_remove()
@@ -311,6 +325,18 @@
 			btm.emote("painmoan", forced = TRUE)
 			btm.sexcon.try_do_pain_effect(PAIN_MILD_EFFECT, FALSE)
 		add_cum_floor(get_turf(btm))
+		if(top.sexcon.knotted_part_partner&(SEX_PART_CUNT|SEX_PART_ANUS)) // use top's knotted_part_partner var to check what effect we need to apply, as bottom may be double knotted or more
+			var/datum/status_effect/facial/internal/creampie = btm.has_status_effect(/datum/status_effect/facial/internal)
+			if(!creampie)
+				btm.apply_status_effect(/datum/status_effect/facial/internal)
+			else
+				creampie.refresh_cum()
+		if(top.sexcon.knotted_part_partner&SEX_PART_JAWS)
+			var/datum/status_effect/facial/facial = btm.has_status_effect(/datum/status_effect/facial)
+			if(!facial)
+				btm.apply_status_effect(/datum/status_effect/facial)
+			else
+				facial.refresh_cum()
 	knot_exit(keep_top_status, keep_btm_status)
 
 /datum/sex_controller/proc/knot_exit(var/keep_top_status = FALSE, var/keep_btm_status = FALSE)
@@ -329,6 +355,7 @@
 	if(istype(btm) && btm.sexcon.knotted_status)
 		if(!keep_btm_status) // only keep the status if we're reapplying the knot
 			btm.remove_status_effect(/datum/status_effect/knot_tied)
+			btm.reset_pull_offsets(btm, GRAB_AGGRESSIVE)
 		UnregisterSignal(btm.sexcon.user, COMSIG_MOVABLE_MOVED)
 		btm.sexcon.knotted_owner = null
 		btm.sexcon.knotted_recipient = null
@@ -361,20 +388,20 @@
 	. = ..()
 	if(. && iscarbon(src))
 		var/mob/living/carbon/H = src
-		return !(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner & SEX_PART_JAWS)
+		return !(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner&SEX_PART_JAWS)
 	return .
 
 /datum/emote/is_emote_muffled(mob/living/carbon/H) // do not allow bottom to emote while knotted orally (at least until they're double knotted or it has been removed)
 	. = ..()
 	if(!.)
 		return FALSE
-	return !(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner & SEX_PART_JAWS)
+	return !(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner&SEX_PART_JAWS)
 
 /datum/emote/select_message_type(mob/user, intentional) // always use the muffled message while bottom is knotted orally (at least until they're double knotted or it has been removed)
 	. = ..()
 	if(message_muffled && iscarbon(user))
 		var/mob/living/carbon/H = user
-		if(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner & SEX_PART_JAWS)
+		if(H.sexcon.knotted_status == KNOTTED_AS_BTM && H.sexcon.knotted_part_partner&SEX_PART_JAWS)
 			. = message_muffled
 
 /datum/status_effect/knot_tied
@@ -385,6 +412,7 @@
 
 /atom/movable/screen/alert/status_effect/knot_tied
 	name = "Knotted"
+	icon_state = "knotted"
 
 /datum/status_effect/knot_fucked_stupid
 	id = "knot_fucked_stupid"
@@ -396,6 +424,8 @@
 /atom/movable/screen/alert/status_effect/knot_fucked_stupid
 	name = "Fucked Stupid"
 	desc = "Mmmph I can't think straight..."
+	icon = 'modular_twilight_axis/icons/mob/screen_alert.dmi'
+	icon_state = "knotted_stupid"
 
 /datum/status_effect/knot_gaped
 	id = "knot_gaped"
@@ -434,6 +464,8 @@
 /atom/movable/screen/alert/status_effect/knotted
 	name = "Knotted"
 	desc = "I have to be careful where I step..."
+	icon = 'modular_twilight_axis/icons/mob/screen_alert.dmi'
+	icon_state = "knotted"
 
 /atom/movable/screen/alert/status_effect/knotted/Click()
 	..()

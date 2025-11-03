@@ -1,6 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/bonechill
 	name = "Bone Chill"
-	overlay_state = "raiseskele"
+	desc = "Chill the target with necrotic energy. Severely reduces speed and weakens physical prowess."
+	cost = 3
+	overlay_state = "profane"
 	releasedrain = 30
 	chargetime = 5
 	range = 7
@@ -8,11 +10,14 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/magic/whiteflame.ogg'
+	spell_tier = 2
+	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE // Potential offensive use, need a target
 	antimagic_allowed = TRUE
 	recharge_time = 15 SECONDS
 	miracle = FALSE
+	zizo_spell = TRUE
 
 /obj/effect/proc_holder/spell/invoked/bonechill/cast(list/targets, mob/living/user)
 	..()
@@ -162,7 +167,7 @@
 	new /obj/effect/temp_visual/gib_animation(T, "gibbed-h")
 	var/mob/living/skeleton_new = new /mob/living/carbon/human/species/skeleton/npc/bogguard(T, user)
 	spawn(11) //Ashamed of this but I hate how after_creation() uses spawn too and I'm not making a timer for this. Proc needs a look-over. - Ryan
-		skeleton_new.faction = list("[user.mind.current.real_name]_faction")
+		skeleton_new.faction |= list("cabal", "[user.mind.current.real_name]_faction")
 	return TRUE
 
 
@@ -200,7 +205,7 @@
 		revert_cast()
 		return FALSE
 
-	target.faction = list("[user.mind.current.real_name]_faction") //only user faction
+	target.faction |= list("cabal", "[user.mind.current.real_name]_faction")
 	target.visible_message(span_notice("[target] turns its head to pay heed to [user]!"))
 	if(!target.ai_controller)
 		target.ai_controller = /datum/ai_controller/undead

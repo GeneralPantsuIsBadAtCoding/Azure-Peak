@@ -15,7 +15,7 @@
 		return FALSE
 	if(user != target)
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_CHEST, TRUE))
+	if(!check_location_accessible(user, target, BODY_ZONE_CHEST, TRUE))
 		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_BREASTS))
 		return FALSE

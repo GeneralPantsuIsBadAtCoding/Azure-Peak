@@ -117,6 +117,9 @@
 		if(!src.can_speak_vocal())
 			to_chat(src,span_warning("I can't speak!"))
 			return FALSE
+		if(!istype(get_area(src), /area/rogue/indoors/town/dwarfin))//Nuh uh
+			to_chat(src, span_warning("I can only speak from within the Guild."))
+			return FALSE
 		if (!COOLDOWN_FINISHED(src, guildmaster_announcement))
 			to_chat(src, span_warning("You must wait before speaking again."))
 			return FALSE

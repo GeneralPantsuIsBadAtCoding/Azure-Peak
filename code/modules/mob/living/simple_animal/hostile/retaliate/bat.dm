@@ -14,7 +14,6 @@
 	speak_chance = 0
 	maxHealth = 50
 	health = 50
-	spacewalk = TRUE
 	see_in_dark = 10
 	harm_intent_damage = 6
 	melee_damage_lower = 6
@@ -32,7 +31,10 @@
 	movement_type = FLYING
 	speak_emote = list("squeaks")
 	base_intents = list(/datum/intent/bite)
-	
+	sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF)
+	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 	var/fly_time = 5 //5 ticks because vampire bats are agile
 
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus

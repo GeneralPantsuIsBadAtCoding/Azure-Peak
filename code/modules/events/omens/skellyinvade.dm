@@ -1,5 +1,5 @@
 /datum/round_event_control/skellyinvade
-	name = "Skelelon Invasion"
+	name = "Skeleton Invasion"
 	track = EVENT_TRACK_OMENS
 	typepath = /datum/round_event/skellyinvade
 	weight = 10

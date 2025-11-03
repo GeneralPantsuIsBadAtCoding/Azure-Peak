@@ -94,6 +94,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 	var/list/notes = list() //RTD add notes button
 
+	var/active_quest = 0 //if you dont take any quest its 0. Max 2 quests for one player
+
 	var/lastrecipe
 
 	var/datum/sleep_adv/sleep_adv = null
@@ -464,6 +466,20 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	else if(all_objectives.len || memory || personal_objectives.len)
 		to_chat(recipient, "<i>[output]</i>")
 
+/// output current targets to the player
+/datum/mind/proc/recall_targets(mob/recipient, window=1)
+	var/output = "<B>[recipient.real_name]'s Hitlist:</B><br>"
+	for(var/mob/living/carbon in GLOB.mob_living_list) // Iterate through all mobs in the world
+		if((carbon.real_name != recipient.real_name) && ((carbon.has_flaw(/datum/charflaw/hunted)) && (!istype(carbon, /mob/living/carbon/human/dummy))))//To be on the list they must be hunted, not be the user and not be a dummy (There is a dummy that has all vices for some reason)
+			output += "<br>[carbon.real_name]"
+			output += "<br>[carbon.real_name]"
+			if (carbon.job)
+				output += " - [carbon.job]"
+	output += "<br>Your creed is blood, your faith is steel. You will not rest until these souls are yours. Use the profane dagger to trap their souls for Graggar."
+
+	if(window)
+		recipient << browse(output,"window=memory")
+
 // Graggar culling event - tells people where the other is.
 /datum/mind/proc/recall_culling(mob/recipient, window=1)
 	var/output = "<B>[recipient.real_name]'s Rival:</B><br>"
@@ -710,11 +726,13 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		add_antag_datum(/datum/antagonist/traitor)
 
 
-/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
+/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S, mob/living/user)
 	if(!S)
 		return
 	spell_list += S
 	S.action.Grant(current)
+	if(user)
+		S.on_gain(user)
 
 /datum/mind/proc/check_learnspell()
 	if(!has_spell(/obj/effect/proc_holder/spell/self/learnspell)) //are we missing the learning spell?
@@ -734,6 +752,18 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	for(var/obj/effect/proc_holder/spell as anything in spell_list)
 		if((specific && spell.type == spell_type) || istype(spell, spell_type))
 			return TRUE
+	return FALSE
+
+/datum/mind/proc/get_spell(spell_type, specific = FALSE)
+	var/spell_path = spell_type
+	if(istype(spell_type, /obj/effect/proc_holder))
+		var/obj/effect/proc_holder/instanced_spell = spell_type
+		spell_path = instanced_spell.type
+	for(var/obj/effect/proc_holder/spell as anything in spell_list)
+		if(specific && (spell.type == spell_path))
+			return spell
+		else if(!specific && istype(spell, spell_path))
+			return spell
 	return FALSE
 
 /datum/mind/proc/owns_soul()

@@ -129,7 +129,6 @@
 
 /mob/living/simple_animal/hostile/boss/lich/proc/blast(set_angle)
 	var/turf/target_turf = get_turf(target)
-	newtonian_move(get_dir(target_turf, src))
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
 		angle_to_target = set_angle
@@ -150,7 +149,6 @@
 
 /mob/living/simple_animal/hostile/boss/lich/proc/blaststrong(set_angle)
 	var/turf/target_turf = get_turf(target)
-	newtonian_move(get_dir(target_turf, src))
 	var/angle_to_target = Get_Angle(src, target_turf)
 	if(isnum(set_angle))
 		angle_to_target = set_angle

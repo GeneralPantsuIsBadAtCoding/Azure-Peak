@@ -162,6 +162,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
 	GLOB.character_list_log = "[GLOB.log_directory]/character_list.log"
+	GLOB.hunted_log = "[GLOB.log_directory]/hunted.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
@@ -405,6 +406,31 @@ GLOBAL_VAR(restart_counter)
 		hub_password = "kMZy3U5jJHSiBQjr"
 	else
 		hub_password = "SORRYNOPASSWORD"
+
+/**
+
+
+ * Handles incresing the world's maxx var and intializing the new turfs and assigning them to the global area.
+
+
+ * If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
+
+
+ * This is because maploading will handle the turfs it loads itself.
+
+
+ */
+
+
+/world/proc/increase_max_x(new_maxx, map_load_z_cutoff = maxz)
+	if(new_maxx <= maxx)
+		return
+	maxx = new_maxx
+
+/world/proc/increase_max_y(new_maxy, map_load_z_cutoff = maxz)
+	if(new_maxy <= maxy)
+		return
+	maxy = new_maxy
 
 /world/proc/incrementMaxZ()
 	maxz++

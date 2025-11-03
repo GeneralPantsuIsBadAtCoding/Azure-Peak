@@ -96,6 +96,10 @@
 	if (CONFIG_GET(flag/log_manifest))
 		WRITE_LOG(GLOB.world_manifest_log, "\[[logtime]] [ckey] \\ [body.real_name] \\ [mind.assigned_role] \\ [mind.special_role ? mind.special_role : "NONE"] \\ [latejoin ? "LATEJOIN":"ROUNDSTART"]")
 
+/proc/log_quest(ckey, datum/mind/mind, mob/body, text)
+	if (CONFIG_GET(flag/log_law))
+		WRITE_LOG(GLOB.world_game_log, "\[[logtime]] QUEST: [ckey] \\ [body.real_name] \\ [text]")
+
 /proc/log_bomber(atom/user, details, atom/bomb, additional_details, message_admins = TRUE)
 	var/bomb_message = "[details][bomb ? " [bomb.name] at [AREACOORD(bomb)]": ""][additional_details ? " [additional_details]" : ""]."
 
@@ -197,6 +201,9 @@
 
 /proc/log_character(text)
 	WRITE_LOG(GLOB.character_list_log, "\[[logtime]] [text]")
+
+/proc/log_hunted(text)
+	WRITE_LOG(GLOB.hunted_log, "\[[logtime]] [text]")
 
 /* ui logging */
 /**

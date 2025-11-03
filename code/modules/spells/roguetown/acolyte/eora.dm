@@ -8,7 +8,7 @@
 	icon_state = "peaceflower"
 	item_state = "peaceflower"
 	dropshrink = 0.9
-	slot_flags = ITEM_SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	body_parts_covered = NONE
 	dynamic_hair_suffix = ""
 	force = 0
@@ -1279,7 +1279,7 @@
 	desc = "Bestow a person with Eora's calm, if only for a little while."
 	sound = 'sound/magic/eora_bless.ogg'
 	devotion_cost = 80
-	recharge_time = 10 MINUTES
+	recharge_time = 5 MINUTES
 	miracle = TRUE
 	invocation_type = "shout"
 	invocations = list("Let the beauty of lyfe fill you whole.")

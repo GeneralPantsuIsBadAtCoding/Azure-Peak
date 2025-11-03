@@ -9,21 +9,23 @@
 
 	. += integrity_check()
 
-	if(istype(src, /mob/living))
-		var/mob/living/L = src
-		if(L.has_status_effect(/datum/status_effect/leash_pet))
-			. += "<A href='?src=[REF(src)];'><span class='warning'>A leash is hooked to a collar!</span></A>"
+	if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
+		var/appraised_value = appraise_price()
+		if(appraised_value > 0)
+			. += span_info("Value: [appraised_value] mammon")
+	else if(HAS_TRAIT(user, TRAIT_SEEPRICES_SHITTY))
+		var/real_value = appraise_price()
+		if(real_value > 0)
 
-	var/real_value = get_real_price()
-	if(real_value > 0)
-		if(HAS_TRAIT(user, TRAIT_SEEPRICES) || simpleton_price)
-			. += span_info("Value: [real_value] mammon")
-		else if(HAS_TRAIT(user, TRAIT_SEEPRICES_SHITTY))
 			//you can get up to 50% of the value if you have shitty see prices
 			var/static/fumbling_seed = text2num(GLOB.rogue_round_id)
 			var/fumbled_value = max(1, round(real_value + (real_value * clamp(noise_hash(real_value, fumbling_seed) - 0.25, -0.25, 0.25)), 1))
 			. += span_info("Value: [fumbled_value] mammon... <i>I think</i>")
 
+	if(istype(src, /mob/living))
+		var/mob/living/L = src
+		if(L.has_status_effect(/datum/status_effect/leash_pet))
+			. += "<A href='?src=[REF(src)];'><span class='warning'>A leash is hooked to a collar!</span></A>"
 	if(smeltresult)
 		var/obj/item/smelted = smeltresult
 		. += span_info("Smelts into [smelted.name].")

@@ -596,3 +596,76 @@
 	name = "Climbing..."
 	desc = "Guess what, you are climbing, buddy."
 	icon_state = "muscles"
+
+/datum/status_effect/debuff/mesmerised
+	id = "mesmerised"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/mesmerised
+	effectedstats = list(STATKEY_STR = -2, STATKEY_LCK = -2, STATKEY_PER = -2, STATKEY_SPD = -2)
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/debuff/mesmerised
+	name = "Mesmerised"
+	desc = span_warning("Their beauty is otherwordly..")
+	icon_state = "acid"
+
+/datum/status_effect/debuff/liver_failure
+	id = "liver_failure"
+	alert_type = null
+	tick_interval = -1
+	status_type = STATUS_EFFECT_UNIQUE
+
+/datum/status_effect/debuff/liver_failure/on_apply()
+	if(!iscarbon(owner))
+		return FALSE
+
+	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+	return ..()
+
+/datum/status_effect/debuff/liver_failure/on_remove()
+	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/status_effect/debuff/liver_failure/proc/on_life(mob/living/carbon/carbon, seconds, times_fired)
+	SIGNAL_HANDLER
+
+	INVOKE_ASYNC(carbon, TYPE_PROC_REF(/mob/living/carbon, liver_failure))
+
+/datum/status_effect/debuff/vampbite
+	id = "Vampire Bite"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/vampbite
+	duration = 30 SECONDS
+
+/datum/status_effect/debuff/vampbite/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_DRUQK, id)
+	owner.add_stress(/datum/stressevent/high)
+	to_chat(owner, span_love("Momentarily, you feel a sharp pain but it quickly shifts into a pleasant feeling washing over you..."))
+	owner.overlay_fullscreen("vampirebite", /atom/movable/screen/fullscreen/weedsm)
+	if(owner?.client)
+		if(owner.client.screen && owner.client.screen.len)
+			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_fov_hidden) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
+			PM.backdrop(owner)
+	
+/datum/status_effect/debuff/vampbite/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_DRUQK, id)
+	owner.remove_stress(/datum/stressevent/high)
+	owner.clear_fullscreen("vampirebite")
+	owner.visible_message("[owner]'s eyes appear to return to normal.")
+	if(owner?.client)
+		if(owner.client.screen && owner.client.screen.len)
+			var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_fov_hidden) in owner.client.screen
+			PM.backdrop(owner)
+			PM = locate(/atom/movable/screen/plane_master/game_world_above) in owner.client.screen
+			PM.backdrop(owner)
+
+/atom/movable/screen/alert/status_effect/debuff/vampbite
+	name = "Vampire biten"
+	desc = "You are feeling something... Interesting.."
+	icon_state = "acid"

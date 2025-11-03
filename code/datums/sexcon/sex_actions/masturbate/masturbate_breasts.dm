@@ -12,7 +12,7 @@
 /datum/sex_action/masturbate_breasts/can_perform(mob/living/user, mob/living/target)
 	if(user != target)
 		return FALSE
-	if(!get_location_accessible(user, BODY_ZONE_CHEST, TRUE))
+	if(!check_location_accessible(user, user, BODY_ZONE_CHEST, TRUE))
 		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_BREASTS))
 		return FALSE

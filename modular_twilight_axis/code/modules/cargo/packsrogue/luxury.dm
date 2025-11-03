@@ -43,3 +43,31 @@
 					/obj/item/clothing/cloak/twilight_elven/short,
 					/obj/item/clothing/cloak/twilight_elven/short,
 				)
+
+/datum/supply_pack/rogue/wardrobe/cloaks/elven_burkas
+	name = "Elven Burkas"
+	cost = 30
+	contains = list(
+					/obj/item/clothing/head/roguetown/twilight_elven_hat,
+					/obj/item/clothing/head/roguetown/twilight_elven_hat,
+				)
+
+/datum/supply_pack/rogue/armor_steel/cuirass_steel/twilight_elven
+	name = "Elven Rider Cuirass"
+	cost = 90
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/half/fencer/twilight_elven)
+
+/datum/supply_pack/rogue/armor_steel/bracers_plate/twilight_elven
+	name = "Elver Rider Bracers"
+	cost = 50
+	contains = list(/obj/item/clothing/wrists/roguetown/bracers/twilight_elven)
+
+/datum/supply_pack/rogue/armor_iron/boots_iron/twilight_elven
+	name = "Elver Rider Boots"
+	cost = 25
+	contains = list(/obj/item/clothing/shoes/roguetown/boots/armor/iron/twilight_elven)
+
+/datum/supply_pack/rogue/armor_iron/twilight_elven_gloves
+	name = "Elver Rider Gloves"
+	cost = 25
+	contains = list(/obj/item/clothing/gloves/roguetown/angle/twilight_elven)

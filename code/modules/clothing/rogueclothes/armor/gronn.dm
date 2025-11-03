@@ -44,6 +44,7 @@
 	item_state = "gronnleathergloves"
 	icon = 'icons/roguetown/clothing/special/gronn.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/gronn.dmi'
+	color = "#ffffff"
 
 /obj/item/clothing/gloves/roguetown/angle/gronnfur
 	name = "gronnic fur-lined bone gloves"
@@ -56,6 +57,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/gronn.dmi'
 	unarmed_bonus = 1.25
 	max_integrity = 250
+	color = "#ffffff"
 
 /obj/item/clothing/head/roguetown/helmet/leather/shaman_hood
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
@@ -67,7 +69,7 @@
 	icon_state = "gronnfurhood"
 	item_state = "gronnfurhood"
 	bloody_icon = 'icons/effects/blood64.dmi'
-	armor = ARMOR_HEAD_BAD
+	armor = ARMOR_LEATHER_GOOD
 	flags_inv = HIDEEARS|HIDEFACE
 	worn_x_dimension = 32
 	worn_y_dimension = 48

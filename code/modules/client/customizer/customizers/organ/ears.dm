@@ -140,6 +140,7 @@
 		/datum/sprite_accessory/ears/deer,
 		/datum/sprite_accessory/ears/eevee,
 		/datum/sprite_accessory/ears/elf,
+		/datum/sprite_accessory/ears/elfw,
 		/datum/sprite_accessory/ears/elephant,
 		/datum/sprite_accessory/ears/fennec,
 		/datum/sprite_accessory/ears/fish,
@@ -168,6 +169,7 @@
 		/datum/sprite_accessory/ears/big/acrador_short,
 		/datum/sprite_accessory/ears/big/sandfox_large,
 		/datum/sprite_accessory/ears/lynx,
+		/datum/sprite_accessory/ears/zorzor
 		)
 
 /datum/customizer/organ/ears/anthro
@@ -198,6 +200,7 @@
 		/datum/sprite_accessory/ears/deer,
 		/datum/sprite_accessory/ears/eevee,
 		/datum/sprite_accessory/ears/elf,
+		/datum/sprite_accessory/ears/elfw,
 		/datum/sprite_accessory/ears/elephant,
 		/datum/sprite_accessory/ears/fennec,
 		/datum/sprite_accessory/ears/fish,
@@ -233,6 +236,7 @@
 		/datum/sprite_accessory/ears/big/acrador_short,
 		/datum/sprite_accessory/ears/big/sandfox_large,
 		/datum/sprite_accessory/ears/lynx,
+		/datum/sprite_accessory/ears/zorzor
 		)
 
 /datum/customizer/organ/ears/lizard

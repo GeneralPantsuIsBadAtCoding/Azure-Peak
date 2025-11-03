@@ -158,7 +158,7 @@
 			var/turf/T = get_turf(src)
 			dropped = new ammo_type(T)
 
-/mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, blocked)
+/*/mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, blocked)
 	if(isliving(P.firer) && (istype(P.fired_from, /obj/item/gun/ballistic/twilight_firearm) || istype(P.fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock)))
 		var/mob/living/M = P.firer
 		var/obj/projectile/bullet/B = P
@@ -176,7 +176,7 @@
 					else
 						if(prob(90))
 							affecting.twilight_gunpowder_crit(P.woundclass, zone_precise = zone, silent = FALSE, crit_message = TRUE)
-	. = ..()
+	. = ..()*/
 
 /obj/projectile/bullet/twilight_cannonball/on_hit(atom/target, blocked = FALSE)
 	. = ..()

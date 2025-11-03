@@ -34,7 +34,7 @@
 		return
 	if(user.mind?.antag_datums)
 		for(var/datum/antagonist/D in user.mind?.antag_datums)
-			if(istype(D, /datum/antagonist/vampirelord) || istype(D, /datum/antagonist/werewolf) || istype(D, /datum/antagonist/skeleton) || istype(D, /datum/antagonist/zombie) || istype(D, /datum/antagonist/lich))
+			if(istype(D, /datum/antagonist/vampire/lord) || istype(D, /datum/antagonist/werewolf) || istype(D, /datum/antagonist/skeleton) || istype(D, /datum/antagonist/zombie) || istype(D, /datum/antagonist/lich))
 				return
 	var/mob/living/carbon/human/H = user
 	var/oldsated = sated
@@ -73,6 +73,15 @@
 	desc = "Drinking alcohol is my favorite thing."
 	time = 40 MINUTES
 	needsate_text = "Time for a drink."
+
+
+/// KLEPTOMANIAC
+
+/datum/charflaw/addiction/kleptomaniac
+	name = "Thief-borne"
+	desc = "As a child I had to rely on theft to survive. Whether that changed or not, I just can't get over it."
+	time = 30 MINUTES
+	needsate_text = "I need to STEAL something! I'll die if I don't!"
 
 
 /// JUNKIE

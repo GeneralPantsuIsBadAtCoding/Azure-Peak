@@ -1,5 +1,5 @@
 /datum/sex_action/masturbate_penis_other
-	name = "Вздрочнуть ему"
+	name = "Вздрочнуть хер"
 	check_same_tile = FALSE
 	target_sex_part = SEX_PART_COCK
 	category = SEX_CATEGORY_HANDS
@@ -14,7 +14,7 @@
 /datum/sex_action/masturbate_penis_other/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_location_accessible(target, BODY_ZONE_PRECISE_GROIN, TRUE))
+	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_GROIN, TRUE))
 		return FALSE
 	if(!target.getorganslot(ORGAN_SLOT_PENIS))
 		return FALSE

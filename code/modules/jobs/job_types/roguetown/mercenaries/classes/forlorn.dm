@@ -7,6 +7,7 @@
 	class_select_category = CLASS_CAT_RANESHENI
 	min_pq = 2
 	cmode_music = 'sound/music/combat_blackstar.ogg'
+	subclass_languages = list(/datum/language/celestial)
 	category_tags = list(CTAG_MERCENARY)
 	traits_applied = list(TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE) // We're going back to the original gimmick of Forlorn Hope, having Critical Resistance
 	// Since we demoted them to light armor, I think it is fair they have access to expert weapons as that is also the unarmed barbarian gimmick
@@ -64,9 +65,9 @@
 	. = ..()
 	var/weapons = list("Warhammer", // The OG
 	"Militia Steel Warpick", // Militia / Peasant weapons to slay the oppressors
-	"Maciejowski (Pair)", 
-	"Militia Spear", 
-	"Militia War Axe", 
+	"Maciejowski (Pair)",
+	"Militia Spear",
+	"Militia War Axe",
 	"Militia Thresher",
 	"Militia Goedendag (Pair)") // Any that scales off labor skill isn't included
 	var/weapon_choice = input(H, "Choose your weapon.", "ARMS TO SLAY THE OPPRESSORS") as anything in weapons

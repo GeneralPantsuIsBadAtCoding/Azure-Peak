@@ -54,6 +54,7 @@
 							/obj/structure/flora/roguetree/wise=1,
 							/obj/structure/flora/roguegrass/bush = 25,
 							/obj/structure/flora/roguegrass = 200,
+							/obj/structure/flora/roguegrass/pumpkin = 4,
 							/obj/structure/flora/roguegrass/herb/random = 7,
 							/obj/structure/flora/roguegrass/bush/westleach = 7,
 							/obj/structure/flora/roguegrass/maneater = 13,

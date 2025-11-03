@@ -12,6 +12,7 @@
 	desc = "A common garnament for Etruscan countryside, each of these suits is woven in adherence to tradition."
 	icon = 'modular_twilight_axis/icons/roguetown/clothing/shirts.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
 	icon_state = "suit"
 	item_state = "suit"
 	allowed_race = NON_DWARVEN_RACE_TYPES

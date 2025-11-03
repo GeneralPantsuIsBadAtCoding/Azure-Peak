@@ -3,12 +3,15 @@
  */
 
 /// Since duke/steward have different announcements
-/datum/taxsetter/var/announcement_text = "The Generous Lord Decrees"
+/datum/taxsetter/var/good_announcement_text = "The Generous Lord Decrees"
+/datum/taxsetter/var/bad_announcement_text = "The Tyrannical Lord Dictates"
 
-/datum/taxsetter/New(announcement_text = null)
+/datum/taxsetter/New(good_announcement_text = null, bad_announcement_text = null)
 	. = ..()
-	if(announcement_text)
-		src.announcement_text = announcement_text
+	if(good_announcement_text)
+		src.good_announcement_text = good_announcement_text
+	if(bad_announcement_text)
+		src.bad_announcement_text = bad_announcement_text
 
 /datum/taxsetter/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -35,7 +38,8 @@
 		if("set_taxes")
 			SStreasury.set_taxes(
 				params["taxationCats"],
-				announcement_text
+				good_announcement_text,
+				bad_announcement_text
 			)
 
 /datum/taxsetter/ui_state(mob/user)

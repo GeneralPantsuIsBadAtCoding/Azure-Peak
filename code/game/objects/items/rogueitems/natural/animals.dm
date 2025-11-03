@@ -78,6 +78,12 @@
 	icon_state = "wool2"
 	color = "#cecac4"
 
+/obj/item/natural/fur/raccoon	
+	desc = "from a raccoon."
+	icon_state = "pelt_raccoon"
+	color = null
+	sellprice = 12
+
 //RTD make this a storage item and make clickign on animals with things put it in storage
 /obj/item/natural/saddle
 	name = "saddle"

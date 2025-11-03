@@ -31,20 +31,10 @@
 		spawning = 0
 		return
 
-	var newWind = wind * severityMod * pick(-1,1) //Wind can go left OR right!
 	var newSpawning = max(minSpawning, maxSpawning * severityMod)
 
-	//gravity might be x, xy, or xyz
-	var/newGravity = gravity
-	if(length(newGravity))
-		newGravity[1] = newWind
-	else
-		newGravity = list(newWind)
-
 	//The higher the severity, the faster the change - elastic easing for flappy wind
-	gravity = newGravity
 	spawning = newSpawning
-	// animate(src, gravity=newGravity, spawning=newSpawning, time=1/severity * 10, easing=ELASTIC_EASING)
 
 /**
  * Shitty particle weather by Gomble
@@ -130,6 +120,7 @@
 
 	var/blend_type
 	var/filter_type
+	var/secondary_filter_type
 
 /datum/particle_weather/proc/severityMod()
 	return max(0.3, severity / maxSeverity)
@@ -163,7 +154,7 @@
 	addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration)
 
 	if(particleEffectType)
-		SSParticleWeather.SetparticleEffect(new particleEffectType, blend_type, filter_type, color);
+		SSParticleWeather.SetparticleEffect(new particleEffectType, blend_type, filter_type, color, secondary_filter_type)
 
 	//Always step severity to start
 	ChangeSeverity()

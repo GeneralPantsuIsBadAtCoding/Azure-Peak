@@ -63,9 +63,9 @@
 	desc = ""
 	icon_state = "loincloth"
 	item_state = "loincloth"
-//	adjustable = CAN_CADJUST
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
+	salvage_amount = 1
 
 /obj/item/clothing/under/roguetown/loincloth/brown
 	color = CLOTHING_BROWN

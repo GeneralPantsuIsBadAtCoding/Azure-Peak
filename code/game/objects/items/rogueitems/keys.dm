@@ -243,6 +243,18 @@
 	icon_state = "cheesekey"
 	lockid = "crier"
 
+/obj/item/roguekey/keeper
+	name = "beast sanctum key"
+	desc = "This key should open and close the heart beast's sanctum."
+	icon_state = "beastkey"
+	lockid = "keeper"
+
+/obj/item/roguekey/keeper_inner
+	name = "beast inner sanctum key"
+	desc = "This key should open and close the iron gates within the beast's sanctum."
+	icon_state = "beastkey2"
+	lockid = "keeper2"
+
 /obj/item/roguekey/tavern/village
 	lockid = "vtavern"
 
@@ -300,18 +312,11 @@
 	icon_state = "brownkey"
 	lockid = "roomvi"
 
-/obj/item/roguekey/roomvii
-	name = "room VII key"
-	desc = "The key to the seventh room."
+/obj/item/roguekey/roomhunt
+	name = "HUNT room key"
+	desc = "The key to the HUNT room, the penthouse suite of the local inn."
 	icon_state = "brownkey"
-	lockid = "roomvii"
-
-
-/obj/item/roguekey/roomviii
-	name = "room VIII key"
-	desc = "The key to the eight room."
-	icon_state = "brownkey"
-	lockid = "roomviii"
+	lockid = "roomhunt"
 
 /obj/item/roguekey/fancyroomi
 	name = "luxury room I key"

@@ -64,6 +64,7 @@
 			if(AGE_MIDDLEAGED)
 				change_stat(STATKEY_SPD, -1)
 				change_stat(STATKEY_WIL, 1)
+				change_stat(STATKEY_LCK, 1)
 			if(AGE_OLD)
 				change_stat(STATKEY_STR, -1)
 				change_stat(STATKEY_SPD, -2)
@@ -267,6 +268,22 @@
 				BUFLUC++
 			STALUC = newamt
 
+/// Calculates a luck value in the range [1, 400] (calculated as STALUC^2), then maps the result linearly to the given range
+/// min must be >= 0, max must be <= 100, and min must be <= max
+/// For giving 
+/mob/living/proc/get_scaled_sq_luck(min, max)
+	if (min < 0)
+		min = 0
+	if (max > 100)
+		max = 100
+	if (min > max)
+		var/temp = min
+		min = max
+		max = temp
+	var/adjusted_luck = (src.STALUC * src.STALUC) / 400
+
+	return LERP(min, max, adjusted_luck)
+
 /proc/generic_stat_comparison(userstat as num, targetstat as num)
 	var/difference = userstat - targetstat
 	if(difference > 1 || difference < -1)
@@ -274,8 +291,12 @@
 	else
 		return 0
 
-/mob/living/proc/badluck(multi = 3)
-	if(STALUC < 10)
+/mob/living/proc/badluck(multi = 3, ignore_effects = FALSE)
+	if(ignore_effects)
+		var/truefor = get_true_stat(STATKEY_LCK)
+		if(truefor < 10)
+			return prob((10 - truefor) * multi)
+	else if(STALUC < 10)
 		return prob((10 - STALUC) * multi)
 
 /mob/living/proc/goodluck(multi = 3)
@@ -298,3 +319,31 @@
 			return STASPD
 		if(STATKEY_LCK)
 			return STALUC
+
+///Effectively rolls a d20, with each point in the stat being a chance_per_point% chance to succeed per point in the stat. If no stat is provided, just returns 0.
+///dee_cee is a difficulty mod, a positive value makes the check harder, a negative value makes it easier.
+///invert_dc changes it from stat - dc to dc - stat, for inverted checks.
+///EG: A person with 10 luck and a dc of -10 effectively has a 100% chance of success. Or an inverted DC with 10 means 0% chance of success.
+/mob/living/proc/stat_roll(stat_key,chance_per_point = 5, dee_cee = null, invert_dc = FALSE)
+	if(!stat_key)
+		return FALSE
+	var/tocheck
+	switch(stat_key)
+		if(STATKEY_STR)
+			tocheck = STASTR
+		if(STATKEY_PER)
+			tocheck = STAPER
+		if(STATKEY_WIL)
+			tocheck = STAWIL
+		if(STATKEY_CON)
+			tocheck = STACON
+		if(STATKEY_INT)
+			tocheck = STAINT
+		if(STATKEY_SPD)
+			tocheck = STASPD
+		if(STATKEY_LCK)
+			tocheck = STALUC
+	if(invert_dc)
+		return isnull(dee_cee) ? prob(tocheck * chance_per_point) : prob(clamp((dee_cee - tocheck) * chance_per_point,0,100))
+	else
+		return isnull(dee_cee) ? prob(tocheck * chance_per_point) : prob(clamp((tocheck - dee_cee) * chance_per_point,0,100))

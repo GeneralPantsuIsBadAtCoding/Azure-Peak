@@ -158,6 +158,10 @@
 	if(to_grind)
 		to_chat(user, "<span class='warning'>[src] is full!</span>")
 		return
+	var/recipe = find_recipe(I)
+	if(recipe == null && I.grind_results == null && I.juice_results == null)
+		to_chat(user, "<span class='warning'>[I] can't be ground!!</span>")
+		return
 	if(!user.transferItemToLoc(I,src))
 		to_chat(user, "<span class='warning'>[I] is stuck to my hand!</span>")
 		return
@@ -166,13 +170,14 @@
 		to_grind = I
 		return
 	..()
+
 ///Looks through all the alch grind recipes to find what it should create, returns the correct one.
-/obj/item/reagent_containers/glass/mortar/proc/find_recipe()
+/obj/item/reagent_containers/glass/mortar/proc/find_recipe(obj/item/check_item = to_grind)
 	for(var/datum/alch_grind_recipe/grindRec in GLOB.alch_grind_recipes)
 		if(grindRec.picky)
-			if(to_grind.type == grindRec.valid_input)
+			if(check_item.type == grindRec.valid_input)
 				return grindRec
 		else
-			if(istype(to_grind,grindRec.valid_input))
+			if(istype(check_item,grindRec.valid_input))
 				return grindRec
 	return null

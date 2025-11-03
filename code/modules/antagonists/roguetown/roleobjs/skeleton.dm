@@ -3,10 +3,12 @@
 	name = "Skeleton"
 	increase_votepwr = FALSE
 
+/datum/antagonist/skeleton/get_antag_cap_weight()
+	return 0.5
+
 /datum/antagonist/skeleton/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
-	if(istype(examined_datum, /datum/antagonist/vampirelord))
-		var/datum/antagonist/vampirelord/V = examined_datum
-		if(!V.disguised)
+	if(istype(examined_datum, /datum/antagonist/vampire))
+		if(!SEND_SIGNAL(examined_datum.owner, COMSIG_DISGUISE_STATUS))
 			return span_boldnotice("Another deadite.")
 	if(istype(examined_datum, /datum/antagonist/zombie))
 		return span_boldnotice("Another deadite.")
