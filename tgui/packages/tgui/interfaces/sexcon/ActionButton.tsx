@@ -23,10 +23,10 @@ export const ActionButton = (props: ActionButtonProps) => {
   };
 
   const buttonStyle = isCurrentAction
-    ? { color: '#7b5353', borderColor: '#7b5353' }
+    ? { color: 'var(--color-label)', borderColor: 'var(--color-label)' }
     : !isAvailable
       ? { color: '#5e5959', opacity: 0.7, cursor: 'default' }
-      : { color: '#7b5353' };
+      : { color: 'var(--color-label)' };
 
   return (
     <Button
