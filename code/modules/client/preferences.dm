@@ -209,10 +209,14 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/race_bonus
 
+	var/datum/loadout_panel/loadoutpanel
+
 /datum/preferences/New(client/C)
 	parent = C
 	migrant  = new /datum/migrant_pref(src)
 	familiar_prefs = new /datum/familiar_prefs(src)
+
+	loadoutpanel = new(C.mob)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
@@ -1427,21 +1431,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				SetKeybinds(user)
 		return TRUE
 
-	else if(href_list["preference"] == "loadout_items")
-		var/item_name = href_list["item"]
-		switch(href_list["task"])
-			if("add")
-				if(selected_loadout_items.len >= get_loadout_size(user))
-					to_chat(user, "Лимит исчерпан!")
-					return
-				add_loadout_item(item_name)
-			if("remove")
-				remove_loadout_item(item_name)
-			if("set_category")
-				current_loadout_category = href_list["category"]
-		show_loadout_window(user)
-		return
-
 	switch(href_list["task"])
 		if("change_customizer")
 			handle_customizer_topic(user, href_list)
@@ -1973,8 +1962,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("loadout_item")
 					handle_loadout_size(user)
 					clean_loadout(user)
-					show_loadout_window(user)
-        
+
+					loadoutpanel.ui_interact(user)
+
 				if("species")
 					var/list/species = list()
 					for(var/A in GLOB.roundstart_races)

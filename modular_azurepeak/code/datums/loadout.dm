@@ -1,10 +1,11 @@
 GLOBAL_LIST_EMPTY(loadout_items)
 GLOBAL_LIST_EMPTY(loadout_items_by_name)
+GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item
 	var/name = "Parent loadout datum"
 	var/desc
-	var/path
+	var/atom/movable/path
 	var/donoritem			//autoset on new if null
 	var/donatitem = FALSE
 	var/list/ckeywhitelist
