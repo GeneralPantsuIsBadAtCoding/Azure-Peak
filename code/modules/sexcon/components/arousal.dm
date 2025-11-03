@@ -47,7 +47,7 @@
 	adjust_arousal(parent, -1)
 
 /datum/component/arousal/proc/can_lose_arousal()
-	if(last_arousal_increase_time + 2 MINUTES > world.time)
+	if(last_arousal_increase_time + AROUSAL_TIME_TO_UNHORNY > world.time)
 		return FALSE
 	return TRUE
 
@@ -210,9 +210,9 @@
 	if(is_spent())
 		if(arousal > 60)
 			to_chat(parent, span_warning("I'm too spent!"))
-			adjust_arousal(-20)
+			adjust_arousal(parent, -20)
 			return
-		adjust_arousal(-dt * SPENT_AROUSAL_RATE)
+		adjust_arousal(parent, -dt * SPENT_AROUSAL_RATE)
 
 /datum/component/arousal/proc/is_spent()
 	if(charge < CHARGE_FOR_CLIMAX)
