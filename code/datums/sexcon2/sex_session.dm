@@ -36,8 +36,6 @@
 	RegisterSignal(user, COMSIG_SEX_CLIMAX, PROC_REF(on_climax))
 	RegisterSignal(user, COMSIG_SEX_AROUSAL_CHANGED, PROC_REF(on_arousal_changed), TRUE)
 
-	addtimer(CALLBACK(src, PROC_REF(check_sex)), 60 SECONDS, flags = TIMER_LOOP)
-
 /datum/sex_session/Destroy(force, ...)
 	UnregisterSignal(user, list(COMSIG_SEX_CLIMAX, COMSIG_SEX_AROUSAL_CHANGED))
 	if(collective)
@@ -62,15 +60,6 @@
 	var/datum/collective_message/new_collective = new /datum/collective_message(src)
 	LAZYADD(GLOB.sex_collectives, new_collective)
 	collective = new_collective
-
-/datum/sex_session/proc/check_sex()
-	if(current_action)
-		return
-	inactivity++
-
-	if(inactivity < 3)
-		return
-	qdel(src)
 
 /datum/sex_session/proc/on_arousal_changed()
 	SStgui.update_uis(src)
