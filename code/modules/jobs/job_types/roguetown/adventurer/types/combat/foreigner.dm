@@ -68,13 +68,14 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/yoruku
 	subclass_languages = list(/datum/language/kazengunese)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_PER = 1,
 		STATKEY_WIL = 1,
 	)
 	subclass_skills = list(
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
@@ -176,7 +177,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/refugee
 	subclass_languages = list(/datum/language/celestial)
 	cmode_music = 'sound/music/warscholar.ogg'
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 1,
@@ -184,6 +185,7 @@
 		STATKEY_INT = 1,
 	)
 	subclass_skills = list(
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,

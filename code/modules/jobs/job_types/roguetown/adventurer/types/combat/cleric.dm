@@ -7,7 +7,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	class_select_category = CLASS_CAT_CLERIC
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_CIVILIZEDBARBARIAN)
+	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN)
 	subclass_stats = list(
 		STATKEY_STR = 2,
 		STATKEY_WIL = 2,
@@ -18,6 +18,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/staves = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
@@ -83,13 +84,13 @@
 			if("Quarterstaff")
 				H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with the new Quarterstaff-centric virtue. A monk can take said-virtue if they want the best of both worlds.
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE) //Balance idea's pretty simple. A dedicated staff user can use polearms too - as both weapon types are fundamentally similar, but it'd always be a skill level lower than the staff.
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_NONE, TRUE)
 				H.change_stat(STATKEY_PER, 1) //Compliments the quarterstaff's precision-based mechanics.
-				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 				l_hand = /obj/item/rogueweapon/scabbard/gwstrap
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 				gloves = /obj/item/clothing/gloves/roguetown/bandages
-	H.cmode_music = 'sound/music/combat_holy.ogg' // left in bc i feel like monk players want their darktide TRAIT_DODGEEXPERT
+	H.cmode_music = 'sound/music/combat_holy.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			cloak = /obj/item/clothing/cloak/psydontabard
@@ -366,7 +367,7 @@
 	name = "Cantor"
 	tutorial = "You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness."
 	outfit = /datum/outfit/job/roguetown/adventurer/cantor
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_EMPATH)
+	traits_applied = list(TRAIT_EMPATH)
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_WIL = 1,
@@ -378,6 +379,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,

@@ -205,7 +205,7 @@
 				pants = /obj/item/clothing/under/roguetown/trou/leather
 				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 				beltr = /obj/item/rogueweapon/huntingknife/idagger
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 			if("Medium Armor")
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 				pants = /obj/item/clothing/under/roguetown/chainlegs/iron

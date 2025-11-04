@@ -157,7 +157,6 @@
 	outfit = /datum/outfit/job/roguetown/squire/skirmisher
 
 	category_tags = list(CTAG_SQUIRE)
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 1,
@@ -171,6 +170,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,

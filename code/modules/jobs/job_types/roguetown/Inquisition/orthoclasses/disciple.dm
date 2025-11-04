@@ -82,9 +82,9 @@
 				id = /obj/item/clothing/ring/signet
 				l_hand = /obj/item/spellbook_unfinished/pre_arcyne
 				ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC) //Sojourners are magyck-inclined lightweights, relying on evasive maneuvers and unorthodox techniques - compared to the Disciple, who simply Kills People With Rocks.
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				REMOVE_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 				H.mind.adjust_spellpoints(6) //Messed this up. Should add spellpoints for use, now.
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) //Pre-set spell list. Same as before. 
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall) //Weak, destroyable forcewall.

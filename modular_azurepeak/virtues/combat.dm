@@ -9,7 +9,7 @@
 	if (!recipient.get_skill_level(/datum/skill/magic/arcane)) // we can do this because apply_to is always called first
 		if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation))
 			recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
+		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !recipient.get_skill_level(/datum/skill/misc/dodge) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
 			ADD_TRAIT(recipient, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
 			recipient.mind?.adjust_spellpoints(3)
 	else
@@ -29,7 +29,7 @@
 	if (!recipient.devotion)
 		// Only give non-devotionists orison... and T0 for some reason (Bad ideas are fun!)
 		var/datum/devotion/new_faith = new /datum/devotion(recipient, recipient.patron)
-		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
+		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !recipient.get_skill_level(/datum/skill/misc/dodge) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
 			new_faith.grant_miracles(recipient, cleric_tier = CLERIC_T0, passive_gain = CLERIC_REGEN_DEVOTEE, devotion_limit = (CLERIC_REQ_1 - 10)) // Passive devotion regen only for non-combat classes
 		else
 			new_faith.grant_miracles(recipient, cleric_tier = CLERIC_T0, passive_gain = FALSE, devotion_limit = (CLERIC_REQ_1 - 20))	//Capped to T0 miracles.
@@ -176,3 +176,20 @@
 
 /datum/virtue/combat/combat_aware/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.verbs += /mob/living/carbon/human/proc/togglecombatawareness
+
+/datum/virtue/combat/dodge
+	name = "Fleet of Foot"
+	desc = "Through hardship, instinct, or sheer experience, I have learned to move with swiftness when danger strikes. I know when to step aside rather than meet steel with flesh."
+	custom_text = "Guaranteed apprentice for dodging. Classes that have a combat trait (Medium / Heavy Armor Training, Dodge Expert, Critical Resistance or ARCYNE > T1) won't gain a skill level."
+
+/datum/virtue/combat/dodge/apply_to_human(mob/living/carbon/human/recipient)
+	if(HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) || \
+	   HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) || \
+	   HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE) || \
+	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T2) || \
+	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T3) || \
+	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T4))
+		return
+
+
+	recipient.adjust_skillrank_up_to(/datum/skill/misc/dodge, SKILL_LEVEL_APPRENTICE, silent = TRUE)

@@ -701,12 +701,10 @@
 					return FALSE
 	return TRUE
 
-/mob/living/proc/check_dodge_skill()
+/mob/living/proc/wearing_light_armor()
 	return TRUE
 
-/mob/living/carbon/human/check_dodge_skill()
-	if(!HAS_TRAIT(src, TRAIT_DODGEEXPERT))
-		return FALSE
+/mob/living/carbon/human/wearing_light_armor()
 	if(istype(src.wear_armor, /obj/item/clothing))
 		var/obj/item/clothing/CL = src.wear_armor
 		if(CL.armor_class == ARMOR_CLASS_HEAVY)

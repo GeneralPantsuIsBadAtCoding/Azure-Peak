@@ -16,6 +16,7 @@
 		src.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE) //May as well be magical
 		src.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 		src.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+		adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 
 		src.STASTR = 2
 		src.STACON = 2
@@ -38,7 +39,6 @@
 		TRAIT_NOFALLDAMAGE2, //Cats, what else can I say?
 		TRAIT_WILD_EATER,
 		TRAIT_HARDDISMEMBER, //Decapping wildshapes causes them to bug out, badly, and need admin intervention to fix. Bandaid fix.
-		TRAIT_DODGEEXPERT,
 		TRAIT_BRITTLE,
 		TRAIT_LEAPER,
 		TRAIT_ZJUMP //its a CAT. Cats can jump so high!
@@ -72,9 +72,13 @@
 	H.update_damage_overlays()
 	return TRUE
 
-/datum/species/shapecat/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+/datum/species/shapecat/on_species_gain(mob/living/carbon/human/human, datum/species/old_species)
 	. = ..()
-	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(human, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+
+/datum/species/shapecat/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+	UnregisterSignal(human, COMSIG_MOB_SAY)
 
 /datum/species/shapecat/update_damage_overlays(mob/living/carbon/human/H)
 	H.remove_overlay(DAMAGE_LAYER)

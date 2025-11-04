@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/bandit/sawbones
 	category_tags = list(CTAG_BANDIT)
 	cmode_music = 'sound/music/combat_physician.ogg'
-	traits_applied = list(TRAIT_MEDICINE_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH, TRAIT_DODGEEXPERT, TRAIT_DECEIVING_MEEKNESS, TRAIT_ALCHEMY_EXPERT)
+	traits_applied = list(TRAIT_MEDICINE_EXPERT, TRAIT_NOSTINK, TRAIT_EMPATH, TRAIT_DECEIVING_MEEKNESS, TRAIT_ALCHEMY_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 4,
 		STATKEY_SPD = 3,
@@ -19,6 +19,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/craft/carpentry = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/labor/lumberjacking = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN, //needed for getting into hideout

@@ -144,10 +144,10 @@
 				H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 				H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 				H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 				H.change_stat(STATKEY_PER, 3)
 				H.change_stat(STATKEY_WIL, 2)
 				H.change_stat(STATKEY_SPD, 2)
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			if("Kozak - Light Infantry")		//Tl;dr - Old Steppesman whip build, light armor, be the glass canon you always wanted to be. Live your life, king. 
 				H.set_blindness(0)
 				to_chat(H, span_warning("Being a Kozak is not a title one earns, nor is born with. It's a way of life. Known to be eccentric, living life on the edge - but living as free as possible. Skilled with whips, these madmen are the bane of civilized warriors."))
@@ -168,11 +168,11 @@
 				H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 				H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 				H.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 				H.change_stat(STATKEY_STR, 1)
 				H.change_stat(STATKEY_PER, 2)
 				H.change_stat(STATKEY_WIL, 1)
 				H.change_stat(STATKEY_SPD, 2)
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 				ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()		//Semi-crazed warrior vibe.
 		

@@ -26,6 +26,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,

@@ -203,7 +203,7 @@
 	tutorial = "Nimble of dagger and foot both, you are the shadowy herald of the cabal. They will not see you coming."
 	outfit = /datum/outfit/job/roguetown/wretch/hereticspy
 	maximum_possible_slots = 2 //Ppl dont like rogue antags.
-	traits_applied = list(TRAIT_RITUALIST, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_RITUALIST)
 	//Slower than outlaw, but a bit more PER and INT
 	subclass_stats = list(
 		STATKEY_PER = 2,
@@ -219,6 +219,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/climbing = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,

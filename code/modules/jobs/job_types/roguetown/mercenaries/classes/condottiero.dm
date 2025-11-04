@@ -8,7 +8,6 @@
 	category_tags = list(CTAG_MERCENARY)
 	subclass_languages = list(/datum/language/etruscan, /datum/language/thievescant)
 	cmode_music = 'sound/music/combat_condottiero.ogg'
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_PER = 2,
@@ -22,6 +21,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,

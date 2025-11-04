@@ -17,11 +17,11 @@
 	var/traits_assassin = list(
 		TRAIT_ASSASSIN,
 		TRAIT_NOSTINK,
-		TRAIT_DODGEEXPERT,
 		TRAIT_STEELHEARTED,
 	)
 
 /datum/antagonist/assassin/on_gain()
+	owner.current.adjust_experience(/datum/skill/misc/dodge, SKILL_EXP_MASTER, TRUE, FALSE)
 	owner.current.cmode_music = list('sound/music/cmode/antag/combat_assassin.ogg')
 	var/yea = /obj/item/rogueweapon/huntingknife/idagger/steel/profane
 	owner.special_items["Profane Dagger"] = yea // Assigned assassins can get their special dagger from right clicking certain objects.
@@ -36,6 +36,7 @@
 	mind.recall_targets(src)
 
 /datum/antagonist/assassin/on_removal()
+	owner.current.adjust_experience(/datum/skill/misc/dodge, -SKILL_EXP_MASTER, TRUE, FALSE)
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='danger'>The red fog in my mind is fading. I am no longer an [name]!</span>")
 	return ..()

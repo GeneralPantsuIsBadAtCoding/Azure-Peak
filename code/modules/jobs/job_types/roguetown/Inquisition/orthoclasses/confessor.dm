@@ -8,7 +8,6 @@
 	subclass_languages = list(/datum/language/otavan)
 	cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg'
 	traits_applied = list(
-		TRAIT_DODGEEXPERT,
 		TRAIT_BLACKBAGGER,
 		TRAIT_PERFECT_TRACKER,
 		TRAIT_PSYDONITE,
@@ -22,6 +21,7 @@
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN, //Should rely on the seizing garrote to properly subdue foes.
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, 
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
@@ -69,7 +69,7 @@
 				head = /obj/item/clothing/head/roguetown/headband/bloodied
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-				REMOVE_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_NONE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
 				H.change_stat(STATKEY_CON, 1)
 				H.change_stat(STATKEY_STR, 2)

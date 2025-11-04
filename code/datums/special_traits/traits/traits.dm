@@ -299,7 +299,7 @@
 	weight = 50
 
 /datum/special_trait/swift/on_apply(mob/living/carbon/human/character, silent)
-	ADD_TRAIT(character, TRAIT_DODGEEXPERT, "[type]")
+	character.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 	character.adjust_skillrank(/datum/skill/misc/athletics, 6, TRUE)
 	character.change_stat(STATKEY_SPD, 3)
 

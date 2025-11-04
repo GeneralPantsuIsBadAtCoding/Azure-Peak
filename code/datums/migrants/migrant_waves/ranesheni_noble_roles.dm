@@ -193,13 +193,14 @@
 	name = "Janissary"
 	outfit = /datum/outfit/job/roguetown/ranesheni/advisor
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
-	category_tags = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT, TRAIT_PERFECT_TRACKER)
+	category_tags = list(TRAIT_MEDIUMARMOR, TRAIT_PERFECT_TRACKER)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 2,
 		STATKEY_INT = 2,
 	)
 	subclass_skills = list(
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/tracking = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,

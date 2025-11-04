@@ -12,7 +12,7 @@
 	cmode_music = 'sound/music/combat_blackoak.ogg'
 	maximum_possible_slots = 1
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_AZURENATIVE, TRAIT_OUTDOORSMAN, TRAIT_RACISMISBAD, TRAIT_DODGEEXPERT, TRAIT_ARCYNE_T2)
+	traits_applied = list(TRAIT_AZURENATIVE, TRAIT_OUTDOORSMAN, TRAIT_RACISMISBAD, TRAIT_ARCYNE_T2)
 	//lower-than-avg stats for wretch but their traits are insanely good
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -27,6 +27,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,

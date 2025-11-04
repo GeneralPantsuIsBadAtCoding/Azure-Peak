@@ -108,7 +108,6 @@ Archer is basically a 'bounty-catcher' in function, less specialized at close-qu
 	outfit = /datum/outfit/job/roguetown/guardsman/archer
 
 	category_tags = list(CTAG_WATCH)
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 2,
@@ -125,6 +124,7 @@ Archer is basically a 'bounty-catcher' in function, less specialized at close-qu
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/shields = SKILL_LEVEL_NOVICE,		//Maybe take away? Leaving for now just as a fall-back for non-lethal ability.
 		/datum/skill/combat/swords = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,

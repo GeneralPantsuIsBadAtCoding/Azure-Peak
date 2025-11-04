@@ -132,7 +132,7 @@
 	name = "Armbrustschutze"
 	tutorial = "You're a proved marksman with a crossbow, and learned how to set up camp and defenses in the wild. The guild needs you."
 	outfit = /datum/outfit/job/roguetown/mercenary/grenzelhoft_crossbowman
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_STEELHEARTED)
+	traits_applied = list(TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_WIL = 2,
@@ -141,6 +141,7 @@
 		STATKEY_CON = -1
 	)
 	subclass_skills = list(
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,		// gotta get to a vantage point
 		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,

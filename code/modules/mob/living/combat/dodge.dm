@@ -120,10 +120,7 @@
 	if(L.stamina >= L.max_stamina)
 		return FALSE
 	if(L)
-		if(H?.check_dodge_skill())
-			prob2defend = prob2defend + (L.STASPD * 15)
-		else
-			prob2defend = prob2defend + (L.STASPD * 10)
+		prob2defend += L.STASPD * (10 + (H.wearing_light_armor() ? H.get_skill_level(/datum/skill/misc/dodge) : 0))
 	if(U)
 		prob2defend = prob2defend - (U.STASPD * 10)
 	if(I)

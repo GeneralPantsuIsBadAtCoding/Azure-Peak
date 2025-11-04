@@ -114,3 +114,9 @@
 		"... the blood may have gotten lost in the rain, but the wounded man's boots are as fresh as jackberries, perfectly marked in the sand. You raise your bow, nock an arrow, and carefully trace them towards a cave..."
 	)
 	expert_name = "Tracker"
+
+/datum/skill/misc/dodge
+	name = "Dodging"
+	desc = "Increases your chance to dodge attacks."
+	expert_name = "Dodger"
+	randomable_dream_xp = FALSE

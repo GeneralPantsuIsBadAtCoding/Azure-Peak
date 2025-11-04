@@ -2,7 +2,7 @@
 	name = "Psyaltrist"
 	tutorial = "You spent some time with cathedral choirs and psyaltrists. Now you spend your days applying the musical arts to the practical on behalf of His most Holy of Inquisitions."
 	outfit = /datum/outfit/job/roguetown/psyaltrist
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_EMPATH)
+	traits_applied = list(TRAIT_EMPATH)
 	category_tags = list(CTAG_INQUISITION)
 	subclass_languages = list(/datum/language/otavan)
 	subclass_stats = list(
@@ -16,6 +16,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,

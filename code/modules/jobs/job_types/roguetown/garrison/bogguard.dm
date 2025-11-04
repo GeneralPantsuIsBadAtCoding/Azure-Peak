@@ -46,7 +46,6 @@
 	tutorial = "You are a ranger, a hunter who volunteered to become a part of the wardens. You have experience using bows and daggers."
 	outfit = /datum/outfit/job/roguetown/bogguardsman/ranger
 	category_tags = list(CTAG_WARDEN)
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_PER = 2,//7 points weighted, same as MAA. They get temp buffs in the woods instead of in the city.
 		STATKEY_SPD = 2,
@@ -60,6 +59,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,

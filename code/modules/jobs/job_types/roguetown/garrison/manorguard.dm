@@ -212,7 +212,7 @@
 		switch(armor_choice)
 			if("Light Armor")
 				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 			if("Medium Armor")
 				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)

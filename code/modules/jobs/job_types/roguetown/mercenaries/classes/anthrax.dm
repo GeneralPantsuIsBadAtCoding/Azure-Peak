@@ -80,7 +80,7 @@
 /datum/advclass/mercenary/anthrax/assasin
 	name = "Anthrax Assasin"
 	outfit = /datum/outfit/job/roguetown/mercenary/anthrax/assasin
-	traits_applied = list(TRAIT_DARKVISION, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_DARKVISION)
 	subclass_stats = list(
 		STATKEY_WIL = 2,
 		STATKEY_PER = 2,
@@ -92,7 +92,8 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT, 
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN, 
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,

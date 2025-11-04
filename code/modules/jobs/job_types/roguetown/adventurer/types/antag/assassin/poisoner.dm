@@ -25,6 +25,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_MASTER,		// Zoo-wee mama; annoying stabber. Still shit at parrying I guess though.
 		/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN,		// Gets some bow skill just for anything pioson I guess. (Still gotta get it themselves)
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,

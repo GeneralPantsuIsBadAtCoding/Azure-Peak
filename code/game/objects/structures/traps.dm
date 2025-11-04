@@ -478,12 +478,21 @@
 
 	return FALSE
 
-/obj/structure/trap/bogtrap/proc/has_required_trigger_trait(mob/living/H)
-	if(!H) return FALSE
-	if(HAS_TRAIT(H, TRAIT_MEDIUMARMOR)) return TRUE
-	if(HAS_TRAIT(H, TRAIT_HEAVYARMOR))  return TRUE
-	if(HAS_TRAIT(H, TRAIT_DODGEEXPERT)) return TRUE
-	if(HAS_TRAIT(H, TRAIT_CRITICAL_RESISTANCE)) return TRUE
+/obj/structure/trap/bogtrap/proc/has_required_trigger_trait(mob/living/living)
+	if(!living)
+		return FALSE
+	
+	if(HAS_TRAIT(living, TRAIT_MEDIUMARMOR))
+		return TRUE
+	
+	if(HAS_TRAIT(living, TRAIT_HEAVYARMOR))
+		return TRUE
+
+	if(living.get_skill_level(/datum/skill/misc/dodge))
+		return TRUE
+
+	if(HAS_TRAIT(living, TRAIT_CRITICAL_RESISTANCE))
+		return TRUE
 
 	return FALSE
 

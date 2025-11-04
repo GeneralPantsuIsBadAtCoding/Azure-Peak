@@ -7,7 +7,7 @@
 	category_tags = list(CTAG_BANDIT)
 	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 	subclass_spellpoints = 21
-	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_DODGEEXPERT, TRAIT_ALCHEMY_EXPERT)
+	traits_applied = list(TRAIT_MAGEARMOR, TRAIT_ARCYNE_T3, TRAIT_ALCHEMY_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_WIL = 3,
@@ -28,6 +28,7 @@
 		/datum/skill/combat/bows = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN, //needs climbing to get into hideout
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE, // Standards for athletics is 3, give them 2

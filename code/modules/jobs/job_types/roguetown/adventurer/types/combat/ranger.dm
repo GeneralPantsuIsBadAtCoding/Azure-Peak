@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/ranger
 	class_select_category = CLASS_CAT_RANGER
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_OUTDOORSMAN)
+	traits_applied = list(TRAIT_OUTDOORSMAN)
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	subclass_stats = list(
 		STATKEY_PER = 3,
@@ -19,6 +19,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
@@ -72,7 +73,6 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/assassin
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander.ogg'
 	subclass_languages = list(/datum/language/thievescant)
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_PER = 2,
 		STATKEY_SPD = 2,
@@ -85,6 +85,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/traps = SKILL_LEVEL_JOURNEYMAN,
@@ -235,7 +236,7 @@
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 				H.change_stat(STATKEY_SPD, 1)
 			if("Medium Armor")
 				armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron

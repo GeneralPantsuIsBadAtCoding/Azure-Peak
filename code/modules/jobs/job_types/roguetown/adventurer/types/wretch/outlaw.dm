@@ -7,7 +7,6 @@
 	cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 	category_tags = list(CTAG_WRETCH)
 	subclass_languages = list(/datum/language/thievescant)
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_WIL = 2,
@@ -23,6 +22,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/climbing = SKILL_LEVEL_LEGENDARY,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,

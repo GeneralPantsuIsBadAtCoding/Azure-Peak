@@ -41,7 +41,6 @@
 	category_tags = list(CTAG_PURITAN)
 	traits_applied = list(
 		TRAIT_STEELHEARTED,
-		TRAIT_DODGEEXPERT,
 		TRAIT_MEDIUMARMOR,
 		TRAIT_BLACKBAGGER,
 		TRAIT_SILVER_BLESSED,
@@ -58,6 +57,7 @@
 		STATKEY_SPD = 1,
 	)
 	subclass_skills = list(
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/tracking = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_MASTER,

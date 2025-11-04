@@ -96,7 +96,7 @@
 	tutorial = "You are a Naledi Pontifex, a warrior trained into a hybridized style of movement-controlling magic and hand-to-hand combat. Though your abilities in magical fields are lacking, you are far more dangerous than other magi in a straight fight. You manifest your calm, practiced skill into a killing intent that takes the shape of an arcyne blade."
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar_pontifex
 	subclass_languages = list(/datum/language/celestial, /datum/language/thievescant)
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_CIVILIZEDBARBARIAN, TRAIT_ARCYNE_T1)
+	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_ARCYNE_T1)
 	subclass_stats = list(
 		STATKEY_STR = 3,
 		STATKEY_SPD = 2,
@@ -109,6 +109,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,

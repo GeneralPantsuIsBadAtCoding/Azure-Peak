@@ -371,7 +371,7 @@
 	tutorial = "Your skillset is abnormal for a knight. Your swift maneuvers and masterful technique impress both lords and ladies alike, and you have a preference for quicker, more elegant blades. While you are an effective fighting force in medium armor, your evasive skills will only truly shine if you don even lighter protection."
 	outfit = /datum/outfit/job/roguetown/knight/irregularknight
 
-	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
 	category_tags = list(CTAG_ROYALGUARD)
 	subclass_stats = list(
 		STATKEY_STR = 1,
@@ -391,6 +391,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,

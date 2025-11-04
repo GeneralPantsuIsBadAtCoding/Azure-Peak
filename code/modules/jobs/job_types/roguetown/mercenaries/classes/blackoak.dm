@@ -66,7 +66,7 @@
 	name = "Black Oak's Ranger"
 	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. Thankfully, you are not here today to shed the blood of the Duke's men — unless someone pays you to..."
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak_ranger
-	traits_applied = list(TRAIT_AZURENATIVE, TRAIT_OUTDOORSMAN, TRAIT_RACISMISBAD, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_AZURENATIVE, TRAIT_OUTDOORSMAN, TRAIT_RACISMISBAD)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_WIL = 2,
@@ -76,6 +76,7 @@
 	subclass_skills = list(
 		/datum/skill/combat/bows = SKILL_LEVEL_MASTER,
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,

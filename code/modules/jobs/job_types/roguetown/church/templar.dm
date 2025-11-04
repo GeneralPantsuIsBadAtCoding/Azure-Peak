@@ -144,15 +144,15 @@
 		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar(H), TRUE)
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 		if("Knuckledusters")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles(H), TRUE)
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 		if("Quarterstaff")
 			H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE) //Tested with Disciples, first. Should hopefully be not too busted - reduce to Journeyman, otherwise.
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
@@ -163,11 +163,11 @@
 		if("Close Caress")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/eora(H), TRUE)
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 		if("Barotrauma")
 			H.put_in_hands(new /obj/item/rogueweapon/katar/abyssor(H), TRUE)
 			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 
 	// -- Start of section for god specific bonuses --
 	if(H.patron?.type == /datum/patron/divine/undivided)

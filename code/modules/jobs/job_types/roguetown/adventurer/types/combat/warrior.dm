@@ -108,7 +108,7 @@
 	tutorial = "You are an esteemed swordsman who foregoes armor in exchange for a more nimble fighting style."
 	outfit = /datum/outfit/job/roguetown/adventurer/duelist
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT, TRAIT_DECEIVING_MEEKNESS)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DECEIVING_MEEKNESS)
 	subclass_stats = list(
 		STATKEY_INT = 2,
 		STATKEY_STR = 1,
@@ -119,6 +119,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
@@ -484,7 +485,7 @@
 					/obj/item/reagent_containers/glass/bottle/alchemical/lucpot,
 					)
 			if("Reformist - Dodge Expert + Haubergeon")
-				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) //'Puritan' archetype. Closer to the Roguetown-era Inquisitor in portrayal. No armor training, but overprepared with silver throwing daggers and excellent evasive maneuvers.
+				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 				H.change_stat(STATKEY_SPD, 1)
 				H.adjust_skillrank_up_to(/datum/skill/misc/sneaking, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				head = /obj/item/clothing/head/roguetown/puritan

@@ -88,7 +88,7 @@
 		if("Light Armor")
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
 		if("Medium Armor")
 			pants = /obj/item/clothing/under/roguetown/chainlegs
 			armor = /obj/item/clothing/suit/roguetown/armor/brigandine

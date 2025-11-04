@@ -31,7 +31,6 @@
 	// Base job traits, we give one-specialty trait per role.
 	job_traits = list(
 		TRAIT_ASSASSIN,
-		TRAIT_DODGEEXPERT,
 		TRAIT_STEELHEARTED,
 		TRAIT_HERESIARCH,	//Just so they can use the Zurch.
 		TRAIT_ANTISCRYING,

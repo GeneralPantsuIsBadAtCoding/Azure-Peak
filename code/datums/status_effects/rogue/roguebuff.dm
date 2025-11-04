@@ -173,7 +173,7 @@
 /datum/status_effect/buff/starsugar/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/starsugar)
-	ADD_TRAIT(owner, TRAIT_DODGEEXPERT, id)
+	owner.adjust_experience(/datum/skill/misc/dodge, SKILL_EXP_MASTER, TRUE, FALSE)
 	ADD_TRAIT(owner, TRAIT_DARKVISION, id)
 	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
 		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
@@ -182,7 +182,7 @@
 
 
 /datum/status_effect/buff/starsugar/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, id)
+	owner.adjust_experience(/datum/skill/misc/dodge, -SKILL_EXP_MASTER, TRUE, FALSE)
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, id)
 	owner.remove_stress(/datum/stressevent/starsugar)
 	owner.cmode_music = originalcmode
@@ -1160,7 +1160,7 @@
 	var/filter = owner.get_filter(BLOODRAGE_FILTER)
 	if(!filter)
 		owner.add_filter(BLOODRAGE_FILTER, 2, list("type" = "outline", "color" = outline_color, "alpha" = 60, "size" = 2))
-	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+	if(!owner.get_skill_level(/datum/skill/misc/dodge))
 		if(owner.STASTR < STRENGTH_SOFTCAP)
 			effectedstats = list(STATKEY_STR = (STRENGTH_SOFTCAP - owner.STASTR))
 			. = ..()

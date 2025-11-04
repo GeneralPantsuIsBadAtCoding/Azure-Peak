@@ -11,7 +11,7 @@
 		if(fakeint > 10)
 			var/bonus = round(((fakeint - 10) / 2)) * 10
 			if(bonus > 0)
-				if(HAS_TRAIT(src, TRAIT_HEAVYARMOR) || HAS_TRAIT(src, TRAIT_MEDIUMARMOR) || HAS_TRAIT(src, TRAIT_DODGEEXPERT) || HAS_TRAIT(src, TRAIT_CRITICAL_RESISTANCE))
+				if(HAS_TRAIT(src, TRAIT_HEAVYARMOR) || HAS_TRAIT(src, TRAIT_MEDIUMARMOR) || HAS_TRAIT(src, TRAIT_CRITICAL_RESISTANCE) || get_skill_level(/datum/skill/misc/dodge))
 					bonus = clamp(bonus, 0, 25)
 				else
 					bonus = clamp(bonus, 0, 50)//20-21 INT

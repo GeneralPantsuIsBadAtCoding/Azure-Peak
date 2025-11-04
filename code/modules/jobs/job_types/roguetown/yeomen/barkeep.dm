@@ -18,7 +18,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/towner/combat_retired.ogg'
 
-	job_traits = list(TRAIT_MEDIUMARMOR, TRAIT_TAVERN_FIGHTER, TRAIT_EMPATH, TRAIT_DODGEEXPERT, TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
+	job_traits = list(TRAIT_MEDIUMARMOR, TRAIT_TAVERN_FIGHTER, TRAIT_EMPATH, TRAIT_CICERONE, TRAIT_HOMESTEAD_EXPERT)
 
 	advclass_cat_rolls = list(CTAG_INNKEEPER = 2)
 	job_subclasses = list(
@@ -43,6 +43,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,

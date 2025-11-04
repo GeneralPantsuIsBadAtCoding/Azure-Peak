@@ -15,7 +15,8 @@
 		src.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		src.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 		src.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE)
-
+		adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_MASTER, TRUE)
+		
 		src.STASTR = 12
 		src.STACON = 6
 		src.STAWIL = 7
@@ -44,7 +45,6 @@
 		TRAIT_BREADY, //Ambusher
 		TRAIT_ORGAN_EATER,
 		TRAIT_PIERCEIMMUNE, //Prevents weapon dusting and caltrop effects when killed/stepping on shards, also 8 legs.
-		TRAIT_DODGEEXPERT,
 		TRAIT_LONGSTRIDER
 	)
 	inherent_biotypes = MOB_HUMANOID
@@ -79,9 +79,13 @@
 	H.update_damage_overlays()
 	return TRUE
 
-/datum/species/shapespider/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+/datum/species/shapespider/on_species_gain(mob/living/carbon/carbon, datum/species/old_species)
 	. = ..()
-	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(carbon, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+
+/datum/species/shapespider/on_species_loss(mob/living/carbon/human/human, datum/species/new_species, pref_load)
+	. = ..()
+	UnregisterSignal(human, COMSIG_MOB_SAY)
 
 /datum/species/shapespider/update_damage_overlays(mob/living/carbon/human/H)
 	H.remove_overlay(DAMAGE_LAYER)

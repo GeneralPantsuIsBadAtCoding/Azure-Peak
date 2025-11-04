@@ -80,7 +80,6 @@
 	name = "Desert Rider Zeybek"
 	tutorial = "Ranesheni 'Blade Dancers' are famed and feared the world over. Their expertise in blades both long and short is well known."
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider_zeybek
-	traits_applied = list(TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_WIL = 2,
@@ -96,6 +95,7 @@
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/shields = SKILL_LEVEL_NOVICE,
 		/datum/skill/combat/polearms = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/dodge = SKILL_LEVEL_MASTER,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
