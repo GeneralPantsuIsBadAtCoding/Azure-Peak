@@ -404,28 +404,28 @@
 
 	say(pick(list("Performing intra-cranial inspection...", "Analyzing skull structure...", "Commencing cephalic dissection...")))
 
-	sleep(1 SECONDS)
+	stoplag(1 SECONDS)
 
 	if(M.stat == DEAD)
 		reward_amount = reward_amount / 2
 		say("Subject is deceased. Rewarding half of posted bounty amount.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		sleep(1 SECONDS)
+		stoplag(1 SECONDS)
 
 	INVOKE_ASYNC(src, PROC_REF(giveup), M)
 	say("Assessing value of lyfe...")
-	sleep(10 SECONDS)
+	stoplag(10 SECONDS)
 
 	var/list/headcrush = list('sound/combat/fracture/headcrush (2).ogg', 'sound/combat/fracture/headcrush (3).ogg', 'sound/combat/fracture/headcrush (4).ogg')
 	playsound(src, pick_n_take(headcrush), 100, FALSE, -1)
 	M.emote("scream")
 	M.apply_damage(50, BRUTE, BODY_ZONE_HEAD, FALSE)
-	sleep(1 SECONDS)
+	stoplag(1 SECONDS)
 	playsound(src, pick(headcrush), 100, FALSE, -1)
 	M.emote("agony")
 	M.apply_damage(50, BRUTE, BODY_ZONE_HEAD, FALSE)
 
-	sleep(2 SECONDS)
+	stoplag(2 SECONDS)
 
 	if(correct_head)
 		say("A bounty has been sated.")

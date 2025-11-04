@@ -58,9 +58,9 @@
 	if(!activated)
 		activated = TRUE
 		playsound(src, 'sound/foley/smash_rock.ogg', 100)
-		sleep(15)
+		stoplag(1.5 SECONDS)
 		playsound(src, 'sound/foley/smash_rock.ogg', 70)
-		sleep(15)
+		stoplag(1.5 SECONDS)
 		playsound(src, 'sound/foley/smash_rock.ogg', 40)
 		visible_message("That sounded pretty loud...")
 
@@ -111,7 +111,7 @@
 	spawn()
 		while(src)
 			move_mobs()
-			sleep(15)
+			stoplag(1.5 SECONDS)
 
 /obj/structure/dungeontool/mover/proc/move_mobs()
 	var/turf/T = loc

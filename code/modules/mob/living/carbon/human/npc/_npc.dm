@@ -346,7 +346,7 @@
 		// Basically a catch-up step. Won't run every time.
 		if(npc_try_jump())
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Jumped, waiting 1ds!")
-			sleep(1)
+			stoplag(1)
 			continue
 		if(!validate_path())
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Path invalidated!")
@@ -362,7 +362,7 @@
 		var/movespeed = cached_multiplicative_slowdown // this is recalculated on Moved() so we don't need to do it ourselves
 		if(!(mobility_flags & MOBILITY_MOVE) || IsDeadOrIncap() || IsStandingStill() || is_move_blocked_by_grab())
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Waiting to move!")
-			sleep(1) // wait 1ds to see if we're finished/recovered
+			stoplag(1) // wait 1ds to see if we're finished/recovered
 			continue
 		// this is unnecessary, we don't re-call handle_ai until this is done
 /* 		if(world.time > (move_started + /datum/controller/subsystem/humannpc::wait))
@@ -379,12 +379,12 @@
 					pathing_frustration = 0
 					myPath -= myPath[1]
 					NPC_THINK("MOVEMENT TURN [movement_turn]: Z-jump succeeded, movement on cooldown for [movespeed/10] seconds!")
-					sleep(movespeed) // wait until next move
+					stoplag(movespeed) // wait until next move
 				else
 					var/time_to_wait = AmountOffBalanced() || (1 SECONDS)
 					NPC_THINK("MOVEMENT TURN [movement_turn]: Z-jump failed, trying again in [time_to_wait/10] seconds!")
 					pathing_frustration++
-					sleep(time_to_wait)
+					stoplag(time_to_wait)
 				continue
 			// if moving up, go in the direction of the stairs, else go the opposite direction
 			if(the_stairs)
@@ -411,12 +411,12 @@
 				myPath.Cut(1, 3)
 				pathing_frustration = 0
 				NPC_THINK("MOVEMENT TURN [movement_turn]: Movement on cooldown for [movespeed/10] seconds!")
-				sleep(movespeed) // wait until next move
+				stoplag(movespeed) // wait until next move
 			else
 				var/time_to_wait = AmountOffBalanced() || (1 SECONDS)
 				NPC_THINK("MOVEMENT TURN [movement_turn]: Jump failed, trying again in [time_to_wait/10] seconds!")
 				pathing_frustration++
-				sleep(time_to_wait)
+				stoplag(time_to_wait)
 			continue
 		else if(!step(src, move_dir, cached_multiplicative_slowdown)) // try to move onto or along our path
 			for(var/obj/structure/O in next_step)
@@ -427,13 +427,14 @@
 		if(loc != next_step) // movement failed and so did climb_structure
 			pathing_frustration++
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Move failed! Strike [pathing_frustration]!")
-			sleep(1)
+			stoplag(1)
 		else if(loc == myPath[1]) // if we made it to the right part of our path
 			.++
 			pathing_frustration = 0
 			myPath -= myPath[1]
 			NPC_THINK("MOVEMENT TURN [movement_turn]: Movement on cooldown for [movespeed/10] seconds!")
-			sleep(movespeed) // wait until next move	
+			stoplag(movespeed) // wait until next move	
+		
 // blocks, but only while path is being calculated
 /mob/living/carbon/human/proc/start_pathing_to(new_target)
 	if(!new_target)

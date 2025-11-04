@@ -102,7 +102,7 @@
 	new /obj/item/magic/voidstone(deathspot)
 	spill_embedded_objects()
 	update_icon()
-	sleep(1)
+	stoplag(1)
 	qdel(src)
 
 

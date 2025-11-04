@@ -189,11 +189,11 @@
 			qdel(brain)
 		trey_liam.SetSleeping(25 SECONDS)
 		trey_liam.add_stress(/datum/stressevent/maniac_woke_up)
-		sleep(1.5 SECONDS)
+		stoplag(1.5 SECONDS)
 		to_chat(trey_liam, span_deadsay("<span class='reallybig'>... WHERE AM I? ...</span>"))
-		sleep(1.5 SECONDS)
+		stoplag(1.5 SECONDS)
 		var/static/list/slop_lore = list(
-			span_deadsay("... Azure Peak? No ... It doesn't exist ..."),
+			span_deadsay("... Twilight Axis? No ... It doesn't exist ..."),
 			span_deadsay("... My name is Trey. Trey Liam, Liamtific Troverseer ..."),
 			span_deadsay("... I'm on NT Liam, a self Treystaining ship, used to Treyserve what Liamains of roguemanity ..."),
 			span_deadsay("... Launched into the Grim Darkness, Fart Grimness preserves their grimness ... Their edge ..."),
@@ -206,7 +206,7 @@
 			sleep(5 SECONDS)
 	else
 		INVOKE_ASYNC(src, PROC_REF(cant_wake_up), dreamer)
-	sleep(15 SECONDS)
+	stoplag(15 SECONDS)
 	to_chat(world, span_deadsay("<span class='reallybig'>The Maniac has TRIUMPHED!</span>"))
 	SSticker.declare_completion()
 

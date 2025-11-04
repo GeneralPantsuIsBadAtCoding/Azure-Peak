@@ -31,7 +31,6 @@
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/mad_touched_treasure_hunter)
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
@@ -86,8 +85,8 @@
 	//carbon ai is still pretty dumb so making them a threat to players requires pretty crazy looking stats. don't think too hard about it.
 	H.STASTR = 15
 	H.STASPD = 15
-	H.STACON = 15
-	H.STAWIL = 15
+	H.STACON = 8 //Reduced from 15. Extraordinarily high strength and speed, but'll takes wounds far more seriously. A glass cannon.
+	H.STAWIL = 8 //Ditto. Technically not accounted for, as the mob can't feel pain or fatigue. Looks nice on a sheet, though.
 	H.STAPER = 15
 	H.STAINT = 12
 	H.eye_color = "27becc"

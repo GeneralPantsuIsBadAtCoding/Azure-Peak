@@ -1,6 +1,6 @@
 body
 {
-	font-family: Pterra, TrueType;
+	font-family: Mookmania, TrueType;
 	padding: 0;
 	margin: 0;
 	background-color: #000000;
@@ -17,7 +17,7 @@ hr
 
 a, button, a:link, a:visited, a:active, .linkOn, .linkOff
 {
-	font-family: Pterra, TrueType;
+	font-family: Mookmania, TrueType;
 	color: #7b5353;
 	text-decoration: none;
 	background: #000000;
@@ -100,7 +100,7 @@ img, a img
 
 h1, h2, h3, h4, h5, h6
 {
-	font-family: Pterra, TrueType;
+	font-family: Mookmania, TrueType;
 	margin: 0;
 	padding: 16px 0 8px 0;
 	color: #ae3636;
@@ -155,7 +155,7 @@ h4
 {
 	clear: both;
 	padding: 8px;
-	font-family: Pterra, TrueType;
+	font-family: Mookmania, TrueType;
 }
 
 .good
