@@ -23,10 +23,10 @@
 	cost = 110
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/raneshen_scale)
 
-/datum/supply_pack/rogue/armor_exotic/raneshen_scale
+/datum/supply_pack/rogue/armor_exotic/raneshen_plated
 	name = "Raneshene plate armor"
 	cost = 380 //Взял цену флютированных лат, т.к. там +1 железо, а у меня +1 бронза, seems fair?
-	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/raneshen_full)
+	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/full/raneshen_plated)
 
 // Магазин мерка-бандитов.
 
