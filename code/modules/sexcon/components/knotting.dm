@@ -84,6 +84,7 @@
 		// Apply fucked stupid status if target was previously bottom
 		if(user_was_top && knotted_owner && !target.has_status_effect(/datum/status_effect/knot_fucked_stupid))
 			target.apply_status_effect(/datum/status_effect/knot_fucked_stupid)
+			to_chat(target, span_userdanger("You can't think straight!"))
 
 	var/mob/living/carbon/human/other_knotter = find_knotter_for_target(target)
 	if(other_knotter && other_knotter != user)
