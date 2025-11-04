@@ -100,6 +100,14 @@
 			return potential_knotter
 	return null
 
+/datum/component/knotting/proc/count_active_knots(mob/living/carbon/human/target)
+	var/count = 0
+	for(var/mob/living/carbon/human/potential_knotter in view(10, target))
+		var/datum/component/knotting/knot_comp = potential_knotter.GetComponent(/datum/component/knotting)
+		if(knot_comp?.knotted_recipient == target && knot_comp.knotted_status == KNOTTED_AS_TOP)
+			count++
+	return count
+
 /datum/component/knotting/proc/apply_knot(mob/living/carbon/human/user, mob/living/carbon/human/target, force_level)
 	knotted_owner = user
 	knotted_recipient = target
@@ -111,7 +119,18 @@
 		span_notice("I tie my knot inside of [target]."))
 
 	if(target.stat != DEAD)
-		to_chat(target, span_userdanger("You have been knotted!"))
+		var/knot_count = count_active_knots(target)
+		switch(knot_count)
+			if(1)
+				to_chat(target, span_userdanger("You have been knotted!"))
+			if(2)
+				to_chat(target, span_userdanger("You have been double-knotted!"))
+			if(3)
+				to_chat(target, span_userdanger("You have been triple-knotted!"))
+			if(4)
+				to_chat(target, span_userdanger("You have been quad-knotted!"))
+			else
+				to_chat(target, span_userdanger("You have been super-knotted!"))
 
 	apply_knot_status_effects(user, target)
 

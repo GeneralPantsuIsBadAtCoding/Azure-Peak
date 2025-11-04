@@ -106,6 +106,25 @@
 		return null
 	return user.getorganslot(ORGAN_SLOT_PENIS)
 
+/datum/sex_action/proc/has_double_penis(mob/living/carbon/human/user)
+	if(!user)
+		return FALSE
+	var/obj/item/organ/penis/penis = user.getorganslot(ORGAN_SLOT_PENIS)
+	if(!penis?.functional)
+		return FALSE
+	return penis.penis_type in list(
+		PENIS_TYPE_TAPERED_DOUBLE,
+		PENIS_TYPE_TAPERED_DOUBLE_KNOTTED
+	)
+
+/datum/sex_action/proc/has_slit_sheath(mob/living/carbon/human/target)
+	if(!target)
+		return FALSE
+	var/obj/item/organ/penis/penis = target.getorganslot(ORGAN_SLOT_PENIS)
+	if(!penis)
+		return FALSE
+	return penis.sheath_type == SHEATH_TYPE_SLIT
+
 /datum/sex_action/proc/find_original_owner_by_ckey(target_ckey)
 	if(!target_ckey)
 		return null
