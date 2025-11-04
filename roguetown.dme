@@ -2951,4 +2951,8 @@
 #include "modular_twilight_axis\lore\code\objects\ritechalk.dm"
 #include "modular_twilight_axis\lore\code\objects\ritualcircles.dm"
 #include "modular_twilight_axis\lore\code\tips\time.dm"
+#include "modular_twilight_axis\ranesheni_clothes\code\clothes\armor.dm"
+#include "modular_twilight_axis\ranesheni_clothes\code\clothes\helmets.dm"
+#include "modular_twilight_axis\ranesheni_clothes\code\craft\anvil_recipes.dm"
+#include "modular_twilight_axis\ranesheni_clothes\code\craft\trade_packs.dm"
 // END_INCLUDE
