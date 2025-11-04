@@ -48,6 +48,16 @@
 	else
 		playsound(src, pick('sound/misc/mat/guymouth (2).ogg','sound/misc/mat/guymouth (3).ogg','sound/misc/mat/guymouth (4).ogg','sound/misc/mat/guymouth (5).ogg'), 35, TRUE, ignore_walls = FALSE)
 
+/mob/living/carbon/human/proc/try_impregnate(mob/living/carbon/human/wife)
+	var/obj/item/organ/testicles/testes = getorganslot(ORGAN_SLOT_TESTICLES)
+	if(!testes)
+		return
+	var/obj/item/organ/vagina/vag = wife.getorganslot(ORGAN_SLOT_VAGINA)
+	if(!vag)
+		return
+	if(prob(25) && wife.is_fertile() && is_virile())
+		vag.be_impregnated(src)
+
 /mob/living/proc/can_do_sex()
 	return TRUE
 

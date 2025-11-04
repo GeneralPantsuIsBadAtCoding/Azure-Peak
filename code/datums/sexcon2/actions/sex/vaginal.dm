@@ -53,9 +53,9 @@
 
 /datum/sex_action/sex/vaginal/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_love("[user] cums into [target]'s pussy!"))
+	user.try_impregnate(target)
 	user.virginity = FALSE
 	return "into"
-
 
 /datum/sex_action/sex/vaginal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s pussy.")

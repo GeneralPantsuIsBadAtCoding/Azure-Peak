@@ -55,6 +55,7 @@
 	user.visible_message(span_love("[user] cums into [target]'s holes at the same time!"))
 	user.virginity = FALSE
 	target.virginity = FALSE
+	user.try_impregnate(target)
 	return "into"
 
 /datum/sex_action/sex/double_penetration/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
