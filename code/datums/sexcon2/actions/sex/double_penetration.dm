@@ -53,7 +53,6 @@
 
 /datum/sex_action/sex/double_penetration/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_love("[user] cums into [target]'s holes at the same time!"))
-	user.try_impregnate(target)
 	user.virginity = FALSE
 	target.virginity = FALSE
 	return "into"
