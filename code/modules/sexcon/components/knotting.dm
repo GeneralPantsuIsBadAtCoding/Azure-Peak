@@ -12,6 +12,8 @@
 	var/mob/living/carbon/knotted_owner = null
 	/// Who received the knot (the one being knotted)
 	var/mob/living/carbon/knotted_recipient = null
+	/// How many knots are active (1 for single, 2 for double penetration)
+	var/knot_count = 0
 
 /datum/component/knotting/Destroy(force)
 	if(knotted_status)
@@ -40,13 +42,13 @@
 			return TRUE
 	return FALSE
 
-/datum/component/knotting/proc/try_knot(datum/source, mob/living/carbon/human/target, force_level)
+/datum/component/knotting/proc/try_knot(datum/source, mob/living/carbon/human/target, force_level, knot_count_param = 1)
 	var/mob/living/carbon/human/user = parent
 
 	if(!can_knot(user, target))
 		return FALSE
 	handle_existing_knots(user, target)
-	apply_knot(user, target, force_level)
+	apply_knot(user, target, force_level, knot_count_param)
 	return TRUE
 
 /datum/component/knotting/proc/can_knot(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -101,17 +103,19 @@
 	for(var/mob/living/carbon/human/potential_knotter in view(10, target))
 		var/datum/component/knotting/knot_comp = potential_knotter.GetComponent(/datum/component/knotting)
 		if(knot_comp?.knotted_recipient == target && knot_comp.knotted_status == KNOTTED_AS_TOP)
-			count++
+			count += knot_comp.knot_count
 	return count
 
-/datum/component/knotting/proc/apply_knot(mob/living/carbon/human/user, mob/living/carbon/human/target, force_level)
+/datum/component/knotting/proc/apply_knot(mob/living/carbon/human/user, mob/living/carbon/human/target, force_level, knot_count_param = 1)
 	knotted_owner = user
 	knotted_recipient = target
 	knotted_status = KNOTTED_AS_TOP
 	tugging_knot_blocked = FALSE
+	knot_count = knot_count_param
 
 	handle_knot_force_effects(user, target, force_level)
-	user.visible_message(span_notice("[user] ties their knot inside of [target]!"),
+	var/knot_plural = knot_count > 1 ? "s" : ""
+	user.visible_message(span_notice("[user] ties their knot[knot_plural] inside of [target]!"),
 		span_notice("I tie my knot inside of [target]."))
 
 	if(target.stat != DEAD)
@@ -430,3 +434,4 @@
 	knotted_owner = null
 	knotted_recipient = null
 	knotted_status = KNOTTED_NULL
+	knot_count = 0

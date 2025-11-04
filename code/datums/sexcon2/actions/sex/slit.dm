@@ -59,6 +59,9 @@
 /datum/sex_action/sex/slit/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s slit.")
 
+/datum/sex_action/sex/slit/get_knot_count()
+	return 1
+
 // Double penis variant
 /datum/sex_action/sex/slit/double
 	name = "Fuck their slit with both cocks"
@@ -97,3 +100,6 @@
 
 /datum/sex_action/sex/slit/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s slit.")
+
+/datum/sex_action/sex/slit/double/get_knot_count()
+	return 2

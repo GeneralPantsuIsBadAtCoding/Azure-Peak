@@ -54,6 +54,9 @@
 /datum/sex_action/sex/throat/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s throat.")
 
+/datum/sex_action/sex/throat/get_knot_count()
+	return 1
+
 /datum/sex_action/sex/throat/double
 	name = "Fuck their throat with both cocks"
 
@@ -91,3 +94,6 @@
 
 /datum/sex_action/sex/throat/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s throat.")
+
+/datum/sex_action/sex/throat/double/get_knot_count()
+	return 2

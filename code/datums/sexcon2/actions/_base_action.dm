@@ -76,7 +76,10 @@
 	var/datum/sex_session/session = get_sex_session(user, target)
 	if(!session)
 		return FALSE
-	return SEND_SIGNAL(user, COMSIG_SEX_TRY_KNOT, target, session.force)
+	return SEND_SIGNAL(user, COMSIG_SEX_TRY_KNOT, target, session.force, get_knot_count())
+
+/datum/sex_action/proc/get_knot_count()
+	return 0
 
 /datum/sex_action/proc/check_location_accessible(mob/living/carbon/human/user, mob/living/carbon/human/target, location = BODY_ZONE_CHEST, grabs = FALSE, skipundies = TRUE)
 	var/obj/item/bodypart/bodypart = target.get_bodypart(location)

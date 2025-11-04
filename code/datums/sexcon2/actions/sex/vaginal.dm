@@ -60,6 +60,9 @@
 /datum/sex_action/sex/vaginal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s pussy.")
 
+/datum/sex_action/sex/vaginal/get_knot_count()
+	return 1
+
 /datum/sex_action/sex/vaginal/double
 	name = "Fuck their pussy with both cocks"
 
@@ -97,3 +100,6 @@
 
 /datum/sex_action/sex/vaginal/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s pussy.")
+
+/datum/sex_action/sex/vaginal/double/get_knot_count()
+	return 2

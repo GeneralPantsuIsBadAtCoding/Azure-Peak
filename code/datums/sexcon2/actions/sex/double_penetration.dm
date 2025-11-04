@@ -60,3 +60,6 @@
 
 /datum/sex_action/sex/double_penetration/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] twin cocks out of [target]'s holes.")
+
+/datum/sex_action/sex/double_penetration/get_knot_count()
+	return 2

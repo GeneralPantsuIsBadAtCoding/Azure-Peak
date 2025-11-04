@@ -56,6 +56,9 @@
 /datum/sex_action/sex/anal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s butt.")
 
+/datum/sex_action/sex/anal/get_knot_count()
+	return 1
+
 /datum/sex_action/sex/anal/double
 	name = "Fuck their ass with both cocks"
 
@@ -93,3 +96,6 @@
 
 /datum/sex_action/sex/anal/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s butt.")
+
+/datum/sex_action/sex/anal/double/get_knot_count()
+	return 2
