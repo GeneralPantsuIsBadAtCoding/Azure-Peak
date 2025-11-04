@@ -4,7 +4,7 @@
 	outfit = /datum/outfit/job/roguetown/adventurer/doomsayer
 	category_tags = list(CTAG_TRADER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	class_select_category = CLASS_CAT_TRADER
-	traits_applied = list(TRAIT_SCHIZO_AMBIENCE, TRAIT_HOMESTEAD_EXPERT)
+	traits_applied = list(TRAIT_PSYCHOSIS, TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
 		STATKEY_INT = 3,
 		STATKEY_PER = 1,

@@ -21,6 +21,7 @@
 		"embedded_pain_chance" = 0,
 		"embedded_fall_chance" = 0,
 		"embedded_bloodloss"= 0,
+		"embedded_ignore_throwspeed_threshold" = TRUE,
 	)
 	/// Consistent AKA no lore
 	var/consistent = FALSE

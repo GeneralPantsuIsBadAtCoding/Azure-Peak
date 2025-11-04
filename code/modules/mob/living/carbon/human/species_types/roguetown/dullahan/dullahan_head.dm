@@ -359,9 +359,9 @@
 		if(user.goodluck(2))
 			dam += 10
 	if((bclass in GLOB.dislocation_bclasses) && (total_dam >= max_damage))
-		used = round(damage_dividend * 20 + (dam / 3) - 10 * resistance, 1)
+		used = round(damage_dividend * 20 + (dam / 3))
 	if(bclass in GLOB.fracture_bclasses)
-		used = round(damage_dividend * 20 + (dam / 3) - 10 * resistance, 1)
+		used = round(damage_dividend * 20 + (dam / 3))
 		if(HAS_TRAIT(src, TRAIT_BRITTLE))
 			used += 20
 		if(user)
@@ -395,7 +395,7 @@
 				attempted_wounds += dislocation_type
 			attempted_wounds += fracture_type
 	if(bclass in GLOB.artery_bclasses)
-		used = round(damage_dividend * 20 + (dam / 3) - 10 * resistance, 1)
+		used = round(damage_dividend * 20 + (dam / 3))
 		if(user)
 			if(bclass == BCLASS_CHOP)
 				if(istype(user.rmb_intent, /datum/rmb_intent/strong))

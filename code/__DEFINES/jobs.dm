@@ -140,6 +140,7 @@
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
 #define CRIER		(1<<10)
+#define KEEPER		(1<<11)
 
 #define PEASANTS	(1<<5)
 
@@ -154,18 +155,13 @@
 #define NITEMASTER	(1<<9)
 #define WENCH		(1<<10)
 #define BEGGAR		(1<<11)
-#define ADVENTURER	(1<<12)
 #define PILGRIM		(1<<13)
 #define VILLAGER	(1<<14)
 #define PRISONERR	(1<<15)
 #define PRISONERB	(1<<16)
 #define LUNATIC		(1<<17)
 #define MIGRANT		(1<<18)
-#define BANDIT		(1<<19)
-#define COURTAGENT	(1<<20)
-#define WRETCH		(1<<21)
-#define TRADER		(1<<22)
-
+#define ASSASSIN	(1<<19)
 #define YOUNGFOLK	(1<<6)
 
 #define APPRENTICE	(1<<0)
@@ -178,13 +174,15 @@
 #define MAGEAPPRENTICE	(1<<7)
 #define APOTHECARY	(1<<8)
 
-#define MERCENARIES		(1<<7)
+#define WANDERERS		(1<<7)
 
 #define VETERAN			(1<<1)
-#define MERCENARY		(1<<2)
-#define DESERT_RIDER	(1<<3)	//Unused
-#define GRENZELHOFT		(1<<4)	//Unused
-
+#define WANDERER		(1<<2)
+#define ADVENTURER      (1<<3)
+#define BANDIT		    (1<<4)
+#define COURTAGENT	    (1<<5)
+#define WRETCH          (1<<6)
+#define TRADER			(1<<7)
 
 #define TRIBAL		(1<<8)
 
@@ -210,6 +208,7 @@
 #define ABSOLVER (1<<2)
 
 #define GUILDSMEN	(1<<11)
+
 #define GUILDMASTER (1<<1)
 #define GUILDSMAN  	(1<<2)
 #define TAILOR		(1<<3)
@@ -221,7 +220,7 @@
 #define JCOLOR_YEOMAN "#819e82"
 #define JCOLOR_GUILD "#6e6259"
 #define JCOLOR_PEASANT "#b09262"
-#define JCOLOR_MERCENARY "#c86e3a"
+#define JCOLOR_WANDERER  "#c86e3a"
 #define JCOLOR_INQUISITION "#FF0000"
 
 // job display orders //
@@ -263,6 +262,7 @@
 #define JDO_MONK 13
 #define JDO_DRUID 13.1
 #define JDO_CHURCHLING 14
+#define JDO_KEEPER 14.1
 #define JDO_GRAVEMAN 15
 
 #define JDO_MERCHANT 17
@@ -291,6 +291,7 @@
 #define JDO_BANDIT 31.3
 #define JDO_COURTAGENT 30.3
 #define JDO_WRETCH 30.4
+#define JDO_ASSASSIN 30.5
 #define JDO_TRADER 30.5
 
 #define JDO_MERCENARY 31
@@ -368,6 +369,7 @@
 	/datum/job/roguetown/prisonerr
 
 #define YEOMEN_ROLES \
+	/datum/job/roguetown/keeper,\
 	/datum/job/roguetown/crier,\
 	/datum/job/roguetown/niteman,\
 	/datum/job/roguetown/archivist,\

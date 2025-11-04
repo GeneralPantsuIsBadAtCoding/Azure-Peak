@@ -34,7 +34,6 @@
 "m" = (
 /obj/structure/fluff/walldeco/bigpainting,
 /obj/structure/table/vtable,
-/obj/item/reagent_containers/glass/cup/silver,
 /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /obj/item/rogueweapon/huntingknife/idagger/silver,

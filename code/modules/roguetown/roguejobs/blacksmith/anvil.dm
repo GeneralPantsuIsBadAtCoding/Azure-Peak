@@ -5,67 +5,64 @@
 	desc = "It's surface is marred by countless hammer strikes."
 	icon_state = "anvil"
 	var/hott = null
-	var/obj/item/hingot
+	var/obj/item/current_workpiece
 	max_integrity = 500
 	density = TRUE
 	damage_deflection = 25
 	climbable = TRUE
+	//interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 	var/previous_material_quality = 0
-	var/advance_multiplier = 1 //Lower for auto-striking
-	var/datum/anvil_recipe/currecipe
+	var/advance_multiplier = 1 // Lower for auto striking
 
 /obj/machinery/anvil/crafted
 	icon_state = "caveanvil"
 
 /obj/machinery/anvil/examine(mob/user)
 	. = ..()
-	if(hingot && hott)
-		. += span_warning("[hingot] is too hot to touch.")
-	if(currecipe)
-		. += span_info("Middle click anvil to clear the active recipe.")
+	if(current_workpiece && hott)
+		. += span_warning("[current_workpiece] is too hot to touch.")
 
 /obj/machinery/anvil/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/rogueweapon/tongs))
 		var/obj/item/rogueweapon/tongs/T = W
-		if(hingot)
-			// Only use tongs for ingots (which can be hot)
-			if(istype(hingot, /obj/item/ingot))
-				if(T.hingot)
-					if(currecipe && currecipe.needed_item && istype(T.hingot, currecipe.needed_item))
-						currecipe.item_added(user)
-						if(istype(T.hingot, /obj/item/ingot))
-							var/obj/item/ingot/I = T.hingot
-							currecipe.material_quality += I.quality
-							previous_material_quality = I.quality
-						else
-							currecipe.material_quality += previous_material_quality
-						currecipe.num_of_materials += 1
-						qdel(T.hingot)
-						T.hingot = null
-						T.update_icon()
-						update_icon()
-						return
-					return
+		if(current_workpiece)
+			// Handle adding items to forging with tongs
+			var/datum/component/forging/forging_comp = current_workpiece.GetComponent(/datum/component/forging)
+			if(forging_comp?.needed_item && T.hingot && istype(T.hingot, forging_comp.needed_item))
+				SEND_SIGNAL(current_workpiece, COMSIG_ITEM_ADDED_TO_FORGING, T.hingot, user)
+				if(istype(T.hingot, /obj/item/ingot))
+					var/obj/item/ingot/I = T.hingot
+					forging_comp.material_quality += I.quality
+					previous_material_quality = I.quality
 				else
-					// Pick up the ingot with tongs without clearing the recipe
-					hingot.forceMove(T)
-					T.hingot = hingot
-					T.hott = hott // Transfer heat state
-					hingot = null
-					hott = null
-					T.update_icon()
-					update_icon()
-					return
+					forging_comp.material_quality += previous_material_quality
+				forging_comp.current_recipe.num_of_materials += 1
+				qdel(T.hingot)
+				T.hingot = null
+				T.update_icon()
+				update_icon()
+				return
+
+			// Pick up ingot with tongs
+			if(istype(current_workpiece, /obj/item/ingot))
+				current_workpiece.forceMove(T)
+				T.hingot = current_workpiece
+				T.hott = hott // Transfer heat state
+				SEND_SIGNAL(current_workpiece, COMSIG_ITEM_REMOVED_FROM_ANVIL, src)
+				current_workpiece = null
+				hott = null
+				T.update_icon()
+				update_icon()
+				return
 		else
 			// Place ingot from tongs onto anvil
 			if(T.hingot && istype(T.hingot, /obj/item/ingot))
 				T.hingot.forceMove(src)
-				hingot = T.hingot
+				current_workpiece = T.hingot
 				hott = T.hott
+				SEND_SIGNAL(current_workpiece, COMSIG_ITEM_PLACED_ON_ANVIL, src)
 				T.hingot = null
 				T.hott = null
-				if(currecipe && !istype(hingot, currecipe.req_bar))
-					currecipe = null
 				if(hott)
 					START_PROCESSING(SSmachines, src)
 				T.update_icon()
@@ -74,11 +71,10 @@
 
 	// Allow both ingots and blades to be placed on the anvil by hand
 	if(istype(W, /obj/item/ingot) || istype(W, /obj/item/blade))
-		if(!hingot)
+		if(!current_workpiece)
 			W.forceMove(src)
-			hingot = W
-			// Clear recipe when new item is placed
-			currecipe = null
+			current_workpiece = W
+			SEND_SIGNAL(current_workpiece, COMSIG_ITEM_PLACED_ON_ANVIL, src)
 			// Only ingots can be hot, blades are always cold
 			if(istype(W, /obj/item/ingot))
 				hott = null
@@ -90,19 +86,23 @@
 	if(istype(W, /obj/item/rogueweapon/hammer))
 		user.changeNext_move(CLICK_CD_FAST)
 		var/obj/item/rogueweapon/hammer/hammer = W
-		if(!hingot)
+		if(!current_workpiece)
 			return
-		if(!currecipe)
+
+		var/datum/component/forging/forging_comp = current_workpiece.GetComponent(/datum/component/forging)
+		if(!forging_comp)
 			ui_interact(user)
 			return
+
 		advance_multiplier = 1
 		user.doing = FALSE
 		spawn(1)
-			while(hingot && currecipe)
+			while(current_workpiece && forging_comp?.forging_stage == FORGING_STAGE_ACTIVE)
 				// Blades don't need to be hot, only check for ingots
-				if(!hott && istype(hingot, /obj/item/ingot))
+				if(!hott && istype(current_workpiece, /obj/item/ingot))
 					to_chat(user, span_warning("It's too cold."))
 					return
+
 				var/used_str = user.STASTR
 				if(iscarbon(user))
 					var/mob/living/carbon/carbon_user = user
@@ -112,7 +112,8 @@
 						carbon_user.stamina_add(max(21 - (used_str * 3), 0)*advance_multiplier)
 					else
 						carbon_user.stamina_add(max(40 - (used_str * 3), 0)*advance_multiplier)
-				var/total_chance = 7 * user.get_skill_level(currecipe.appro_skill) * user.STAPER/10 * hammer.quality
+
+				var/total_chance = 7 * user.get_skill_level(forging_comp.current_recipe.appro_skill) * user.STAPER/10 * hammer.quality
 				var/breakthrough = 0
 				if(prob((1 + total_chance)*advance_multiplier))
 					user.flash_fullscreen("whiteflash")
@@ -121,12 +122,11 @@
 					S.set_up(1, 1, front)
 					S.start()
 					breakthrough = 1
-					currecipe.numberofbreakthroughs++
+					forging_comp.numberofbreakthroughs++
 
-				if(!currecipe.advance(user, breakthrough, advance_multiplier))
-					shake_camera(user, 1, 1)
-					playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
-					break
+				// Send hammer signal to the workpiece
+				SEND_SIGNAL(current_workpiece, COMSIG_ITEM_HAMMERED_ON_ANVIL, src, user, hammer, breakthrough)
+
 				playsound(src,pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
 				if(do_after(user, 20, target = src))
 					advance_multiplier = 0.50
@@ -134,18 +134,20 @@
 					break
 		return
 
-	// Handle adding materials to current recipe
-	if(hingot && currecipe && currecipe.needed_item && istype(W, currecipe.needed_item))
-		currecipe.item_added(user)
-		if(istype(W, /obj/item/ingot))
-			var/obj/item/ingot/I = W
-			currecipe.material_quality += I.quality
-			previous_material_quality = I.quality
-		else
-			currecipe.material_quality += previous_material_quality
-		currecipe.num_of_materials += 1
-		qdel(W)
-		return
+	// Handle adding materials to current forging
+	if(current_workpiece)
+		var/datum/component/forging/forging_comp = current_workpiece.GetComponent(/datum/component/forging)
+		if(forging_comp?.needed_item && istype(W, forging_comp.needed_item))
+			SEND_SIGNAL(current_workpiece, COMSIG_ITEM_ADDED_TO_FORGING, W, user)
+			if(istype(W, /obj/item/ingot))
+				var/obj/item/ingot/I = W
+				forging_comp.material_quality += I.quality
+				previous_material_quality = I.quality
+			else
+				forging_comp.material_quality += previous_material_quality
+			forging_comp.current_recipe.num_of_materials += 1
+			qdel(W)
+			return
 
 	if(W.anvilrepair)
 		user.visible_message(span_info("[user] places [W] on the anvil."))
@@ -166,23 +168,21 @@
 
 /obj/machinery/anvil/ui_data(mob/user)
 	var/list/data = ..()
-
-	data["hingot_type"] = hingot?.type
+	data["hingot_type"] = current_workpiece?.type
 	return data
 
 /obj/machinery/anvil/ui_static_data(mob/user)
 	var/list/data = ..()
-
 	var/list/recipes = list()
 	var/datum/asset/spritesheet/spritesheet = get_asset_datum(/datum/asset/spritesheet/anvil_recipes)
 
 	for(var/datum/anvil_recipe/R in GLOB.anvil_recipes)
 		var/valid_recipe = FALSE
 
-		if(hingot)
-			if((R.req_bar && istype(hingot, R.req_bar)) || (R.req_blade && istype(hingot, R.req_blade)))
+		if(current_workpiece)
+			if((R.req_bar && istype(current_workpiece, R.req_bar)) || (R.req_blade && istype(current_workpiece, R.req_blade)))
 				valid_recipe = TRUE
-		if(!hingot || valid_recipe || (!R.req_bar && !R.req_blade))
+		if(!current_workpiece || valid_recipe || (!R.req_bar && !R.req_blade))
 			UNTYPED_LIST_ADD(recipes, list(
 				"name" = R.name,
 				"category" = R.i_type,
@@ -207,14 +207,12 @@
 			if(!istype(recipe))
 				return TRUE
 			var/has_required_item = FALSE
-			var/using_blade = FALSE
 			
 			// Check both bar and blade requirements
-			if(recipe.req_bar && istype(hingot, recipe.req_bar))
+			if(recipe.req_bar && istype(current_workpiece, recipe.req_bar))
 				has_required_item = TRUE
-			if(recipe.req_blade && istype(hingot, recipe.req_blade))
+			if(recipe.req_blade && istype(current_workpiece, recipe.req_blade))
 				has_required_item = TRUE
-				using_blade = TRUE
 
 			if(!has_required_item)
 				return TRUE
@@ -228,34 +226,49 @@
 			if(!has_required_item)
 				return TRUE
 
-			// Create the recipe and assign it to the ANVIL
-			currecipe = new recipe.type(src, using_blade)
+			// Add forging component to the workpiece
+			var/datum/component/forging/existing_forging = current_workpiece.GetComponent(/datum/component/forging)
+			var/recipe_reset = FALSE
+			if(existing_forging)
+				if(alert(user, "This item already has an active recipe ([existing_forging.current_recipe.name]). Change to [recipe.name]?","CHANGE RECIPE?","CONFIRM","CANCEL") != "CONFIRM")
+					return TRUE
 
-			var/quality_value = 1
-			if(istype(hingot, /obj/item/ingot))
-				var/obj/item/ingot/ingot_ref = hingot
-				quality_value = ingot_ref.quality
-			else if(istype(hingot, /obj/item/blade))
-				var/obj/item/blade/blade_ref = hingot
-				quality_value = blade_ref.quality
+				// Remove existing forging component and any quenchable components
+				qdel(existing_forging)
+				var/datum/component/anvil_quenchable/existing_quench = current_workpiece.GetComponent(/datum/component/anvil_quenchable)
+				if(existing_quench)
+					qdel(existing_quench)
+				recipe_reset = TRUE
 
-			currecipe.bar_health = 50 * (quality_value + 1)
-			currecipe.max_progress = 100
-			currecipe.material_quality += quality_value
-			previous_material_quality = quality_value
+			// Add forging component to the workpiece
+			if(!existing_forging || recipe_reset)
+				var/datum/component/forging/forging_comp = current_workpiece.AddComponent(/datum/component/forging, recipe.type)
+
+				var/quality_value = 1
+				if(istype(current_workpiece, /obj/item/ingot))
+					var/obj/item/ingot/ingot_ref = current_workpiece
+					quality_value = ingot_ref.quality
+				else if(istype(current_workpiece, /obj/item/blade))
+					var/obj/item/blade/blade_ref = current_workpiece
+					quality_value = blade_ref.quality
+
+				forging_comp.bar_health = 50 * (quality_value + 1)
+				forging_comp.material_quality += quality_value
+				previous_material_quality = quality_value
 
 			ui.close()
 			return TRUE
 
 /obj/machinery/anvil/attack_hand(mob/user, params)
-	if(hingot)
+	if(current_workpiece)
 		// Blades are never hot, so only check hott for ingots
-		if(hott && istype(hingot, /obj/item/ingot))
+		if(hott && istype(current_workpiece, /obj/item/ingot))
 			to_chat(user, span_warning("It's too hot."))
 			return
 		else
-			var/obj/item/I = hingot
-			hingot = null
+			var/obj/item/I = current_workpiece
+			SEND_SIGNAL(current_workpiece, COMSIG_ITEM_REMOVED_FROM_ANVIL, src)
+			current_workpiece = null
 			hott = null
 			I.forceMove(user.loc)
 			user.put_in_active_hand(I)
@@ -263,7 +276,7 @@
 
 /obj/machinery/anvil/MiddleClick(mob/user, params)
 	. = ..()
-	currecipe = null
+	//currecipe = null
 
 /obj/machinery/anvil/process()
 	if(hott)
@@ -276,8 +289,8 @@
 
 /obj/machinery/anvil/update_icon()
 	cut_overlays()
-	if(hingot)
-		var/obj/item/I = hingot
+	if(current_workpiece)
+		var/obj/item/I = current_workpiece
 		I.pixel_x = 0
 		I.pixel_y = 0
 		var/mutable_appearance/M = new /mutable_appearance(I)

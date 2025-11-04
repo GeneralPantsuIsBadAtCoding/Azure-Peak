@@ -113,6 +113,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Papakha"
 	path = /obj/item/clothing/head/roguetown/papakha
 
+/datum/loadout_item/rosa_crown
+	name = "Rosa Crown"
+	path = /obj/item/flowercrown/rosa
+
+/datum/loadout_item/salvia_crown
+	name = "Salvia Crown"
+	path = /obj/item/flowercrown/salvia
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"
@@ -589,6 +597,12 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/donator_bigfoot
 	name = "Donator Kit - Gilded Knight Helm"
+	path = /obj/item/enchantingkit/bigfoot
+	ckeywhitelist = list("bigfoot02")
+
+/datum/loadout_item/donator_bigfoot_axe
+	name = "Donator kit - Gilded Greataxe"
+	path = /obj/item/enchantingkit/bigfoot_axe
 	ckeywhitelist = list("bigfoot02")
 
 /datum/loadout_item/donator_zydras
@@ -601,7 +615,27 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/enchantingkit/eiren
 	ckeywhitelist = list("eirenxiv")
 
+/datum/loadout_item/donator_eiren2
+	name = "Donator Kit - Lunae"
+	path = /obj/item/enchantingkit/eirensabre
+	ckeywhitelist = list("eirenxiv")
+
+/datum/loadout_item/donator_eiren3
+	name = "Donator Kit - Cinis"
+	path = /obj/item/enchantingkit/eirensabre2
+	ckeywhitelist = list("eirenxiv")
+
 /datum/loadout_item/donator_waff
 	name = "Donator Kit - Weeper's Lathe"
 	path = /obj/item/enchantingkit/waff
 	ckeywhitelist = list("waffai")
+
+/datum/loadout_item/donator_inverserun
+	name = "Donator Kit - Votive Thorns"
+	path = /obj/item/enchantingkit/inverserun
+	ckeywhitelist = list("inverserun")
+
+/datum/loadout_item/donator_zoe
+	name = "Donator Kit - Shroud of the Undermaiden"
+	path = /obj/item/enchantingkit/zoe
+	ckeywhitelist = list("zoetheorc")

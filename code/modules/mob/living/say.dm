@@ -596,6 +596,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(cultslurring)
 		message = cultslur(message)
 
+	if(HAS_TRAIT(src, TRAIT_SIMPLESPEECH))
+		message = simplespeech(message)
+
 	message = capitalize(message)
 
 	return message

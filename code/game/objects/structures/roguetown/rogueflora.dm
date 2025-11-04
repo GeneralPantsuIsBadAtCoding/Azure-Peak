@@ -687,6 +687,48 @@
 			if(!looty.len)
 				to_chat(user, "<span class='warning'>Picked clean... I should try later.</span>")
 
+/obj/structure/flora/roguegrass/pumpkin
+	name = "bunch of wild pumpkins"
+	desc = "Wild pumpkins overgrown with vines."
+	icon_state = "pumpkin1"
+	max_integrity = 1
+	climbable = FALSE
+	dir = SOUTH
+	debris = list(/obj/item/natural/fibers = 2)
+	var/list/looty = list(/obj/item/natural/shellplant/pumpkin, /obj/item/natural/fibers)
+
+/obj/structure/flora/roguegrass/pumpkin/Initialize()
+	. = ..()
+	icon_state = "pumpkin[rand(1,2)]"
+	if(prob(78))
+		looty += /obj/item/natural/shellplant/pumpkin
+	if(prob(32))
+		looty += /obj/item/natural/shellplant/pumpkin
+	if(prob(24))
+		looty += /obj/item/natural/fibers
+	if(prob(7))
+		looty += /obj/item/natural/shellplant/pumpkin
+	pixel_x += rand(-3,3)
+	pixel_y += rand(0,6)
+
+/obj/structure/flora/roguegrass/pumpkin/attack_hand(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		user.changeNext_move(CLICK_CD_INTENTCAP)
+		playsound(src.loc, "plantcross", 80, FALSE, -1)
+		if(do_after(L, SEARCHTIME, target = src))
+			if(looty.len && prob(75))
+				var/obj/item/B = pick_n_take(looty)
+				if(B)
+					B = new B(user.loc)
+					user.put_in_hands(B)
+					user.visible_message("<span class='notice'>[user] finds [B] in [src].</span>")
+					if(!looty.len)
+						to_chat(user, "<span class='warning'>There is nothing else to find.</span>")
+						qdel(src)
+					return
+			user.visible_message("<span class='warning'>[user] searches through [src].</span>")
+
 // cute underdark mushrooms from dreamkeep
 
 /obj/structure/flora/rogueshroom/happy

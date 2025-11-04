@@ -33,6 +33,7 @@
 		"Marshal",
 		"Bishop",
 		"Martyr",
+		"Keeper",
 		"Bandit",
 		"Prince",
 		"Princess",
