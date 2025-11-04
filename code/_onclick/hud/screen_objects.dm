@@ -1787,8 +1787,21 @@
 /mob/living/proc/swap_rmb_intent(type, num)
 	if(!possible_rmb_intents?.len)
 		return
-	if(!move_after(src, 0.5 SECONDS, FALSE, src))
-		return
+
+	//Wasteful code, but QoL for easier swapping of rmb intents when no one's in combat.
+	var/cmode_involved
+	if(!cmode)
+		var/list/candidates = get_hearers_in_LOS(5, src, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		for(var/mob/living/L in candidates)
+			if(L.cmode)
+				cmode_involved
+				break
+	else
+		cmode_involved = TRUE
+
+	if(cmode_involved)	//If no one's in combat around us, don't bother with a delay.
+		if(!move_after(src, 0.2 SECONDS, FALSE, src))
+			return
 	if(type)
 		if(type in possible_rmb_intents)
 			rmb_intent = new type()
@@ -1804,8 +1817,10 @@
 			if(hud_used?.rmb_intent)
 				hud_used.rmb_intent.update_icon()
 				hud_used.rmb_intent.collapse_intents()
-	visible_message(span_warning("[src] switches stance to <b>[capitalize(rmb_intent.name)]!</b>"))
-	filtered_balloon_alert(TRAIT_COMBAT_AWARE, "[capitalize(rmb_intent.name)]...")
+	
+	var/str = "[src] switches stance to <b>[capitalize(rmb_intent.name)]!</b>"
+	visible_message(cmode_involved ? span_warning(str) : span_info(str))
+	filtered_balloon_alert(TRAIT_COMBAT_AWARE, "[capitalize(rmb_intent.name)]...", rand(0, 8))
 
 /mob/living/proc/cycle_rmb_intent()
 	if(!possible_rmb_intents?.len)
