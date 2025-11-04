@@ -69,7 +69,7 @@
 				head = /obj/item/clothing/head/roguetown/headband/bloodied
 				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-				H.adjust_skillrank(/datum/skill/misc/dodge, SKILL_LEVEL_NONE, TRUE)
+				H.adjust_skillrank_down_to(/datum/skill/misc/dodge, SKILL_LEVEL_NONE, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 5, TRUE)
 				H.change_stat(STATKEY_CON, 1)
 				H.change_stat(STATKEY_STR, 2)
