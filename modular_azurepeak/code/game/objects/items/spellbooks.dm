@@ -11,7 +11,7 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	icon = 'icons/roguetown/items/books.dmi'
 	icon_state = "spellbookbrown_0"
 	slot_flags = ITEM_SLOT_HIP
-	var/base_icon_state = "spellbookbrown"
+	base_icon_state = "spellbookbrown"
 	unique = TRUE
 	firefuel = 2 MINUTES
 	dropshrink = 0.6

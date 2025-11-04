@@ -220,11 +220,11 @@
 
 	if(signedname)
 		info += "SIGNED,<br/>"
-		info += "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[signedname] the [signedjob] of Azure Peak</font>"
+		info += "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[signedname] the [signedjob] of Twilight Axis</font>"
 
 /obj/item/paper/inqslip
 	name = "inquisition slip"
-	var/base_icon_state = "slip"
+	base_icon_state = "slip"
 	dropshrink = 0.75		
 	icon_state = "slip"
 	obj_flags = CAN_BE_HIT

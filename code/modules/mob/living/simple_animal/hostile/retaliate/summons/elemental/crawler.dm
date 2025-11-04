@@ -60,5 +60,5 @@
 	new /obj/item/magic/elemental/mote(deathspot)
 	new /obj/item/magic/elemental/mote(deathspot)
 	update_icon()
-	sleep(1)
+	stoplag(1)
 	qdel(src)
