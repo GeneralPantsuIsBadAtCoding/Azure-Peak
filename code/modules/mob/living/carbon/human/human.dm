@@ -712,29 +712,47 @@
 /mob/living/carbon/human/MouseDrop_T(atom/dragged, mob/living/user)
 	if(istype(dragged, /mob/living))
 		var/mob/living/target = dragged
-		if(pulling == target && stat == CONSCIOUS)
-			//If they dragged themselves and we're currently aggressively grabbing them try to piggyback (not on cmode)
-			if(user == target && can_piggyback(target))
-				if(cmode)
-					to_chat(target, span_warning("[src] won't let you on!"))
-					return FALSE
-				piggyback(target)
+		if(stat == CONSCIOUS)
+			var/has_grab = FALSE
+			var/obj/item/grabbing/grab = get_active_held_item()
+			if(istype(grab) && grab.grabbed == target)
+				has_grab = TRUE
+			// If the target is grabbed and can be firemanned, we fireman carry them
+			if(has_grab && can_be_firemanned(target))
+				fireman_carry(target)
 				return TRUE
-			//If you dragged them to you and you're aggressively grabbing try to carry them
-			else if(user != target && can_be_firemanned(target))
-				var/obj/G = get_active_held_item()
-				if(G)
-					if(istype(G, /obj/item/grabbing))
-						fireman_carry(target)
-						return TRUE
 	else if(istype(dragged, /obj/item/bodypart/head/dullahan/))
 		var/obj/item/bodypart/head/dullahan/item_head = dragged
 		item_head.show_inv(user)
 	. = ..()
 
+/mob/living/carbon/human/RightMouseDrop_T(atom/dragged, mob/living/user)
+	var/atom/item_in_hand = user.get_active_held_item()
+	if(!item_in_hand && isliving(dragged))
+		var/mob/living/target = dragged
+		// If the target is not grabbed, we prompt them to ask if they want to be piggybacked
+		if(stat == CONSCIOUS && can_piggyback(target))
+			// if the user dragged themselves onto the person, prompt the person
+			if(user == target)
+				to_chat(user, span_notice("You request a piggyback ride from [src]..."))
+				var/response = tgui_alert(src, "[user.name] is requesting a piggyback ride.", "Piggyback Ride", list("Yes, let them on", "No"))
+				if(response == "No")
+					to_chat(user, span_warning("[src] has denied you a piggyback ride!"))
+					return TRUE
+			// if the person dragged the user onto themselves, prompt the user
+			else
+				to_chat(src, span_notice("You offer a piggyback ride to [target]..."))
+				var/response = tgui_alert(target, "[src.name] is offering to give you a piggyback ride.", "Piggyback Ride", list("Yes, get on", "No"))
+				if(response == "No")
+					to_chat(src, span_warning("[target] has denied your piggyback ride!"))
+					return TRUE
+			piggyback(target)
+			return TRUE
+	return ..()
+
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	return (istype(target) && target.stat == CONSCIOUS && !cmode && !target.cmode)
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
@@ -768,7 +786,13 @@
 				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
 					to_chat(target, span_warning("I can't piggyback ride [src]."))
 					return
-				buckle_mob(target, TRUE, TRUE, FALSE, 0, 0)
+				if(buckle_mob(target, TRUE, TRUE, FALSE, 0, 0) && HAS_TRAIT(src, TRAIT_MOUNTABLE))
+					var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
+					riding_datum.vehicle_move_delay = 4
+					if(target.mind)
+						var/riding_skill = target.get_skill_level(/datum/skill/misc/riding)
+						if(riding_skill)
+							riding_datum.vehicle_move_delay = max(1, 3 - (riding_skill * 0.2))
 	else
 		to_chat(target, span_warning("I can't piggyback ride [src]."))
 

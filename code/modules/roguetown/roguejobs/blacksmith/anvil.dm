@@ -45,6 +45,9 @@
 
 			// Pick up ingot with tongs
 			if(istype(current_workpiece, /obj/item/ingot))
+				if(T.hingot)
+					to_chat(user, span_warning("You're already holding something with your tongs!"))
+					return
 				current_workpiece.forceMove(T)
 				T.hingot = current_workpiece
 				T.hott = hott // Transfer heat state
@@ -207,7 +210,7 @@
 			if(!istype(recipe))
 				return TRUE
 			var/has_required_item = FALSE
-			
+
 			// Check both bar and blade requirements
 			if(recipe.req_bar && istype(current_workpiece, recipe.req_bar))
 				has_required_item = TRUE
@@ -257,6 +260,12 @@
 				previous_material_quality = quality_value
 
 			ui.close()
+
+			// if we have a hammer in our hand, start working immediately
+			var/obj/item/rogueweapon/hammer/hammer = usr.get_active_held_item()
+			if(istype(hammer))
+				attackby(hammer, user)
+
 			return TRUE
 
 /obj/machinery/anvil/attack_hand(mob/user, params)
@@ -280,7 +289,7 @@
 
 /obj/machinery/anvil/process()
 	if(hott)
-		if(world.time > hott + 10 SECONDS)
+		if(world.time > hott + 20 SECONDS)
 			hott = null
 			STOP_PROCESSING(SSmachines, src)
 	else

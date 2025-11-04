@@ -1140,6 +1140,10 @@
 			resist_fire() //stop, drop, and roll
 		else if(last_special <= world.time)
 			resist_restraints() //trying to remove cuffs.
+			var/datum/component/riding/human/riding_datum = GetComponent(/datum/component/riding/human)
+			if(riding_datum)
+				for(var/mob/M in buckled_mobs)
+					riding_datum.force_dismount(M)
 
 /mob/living/proc/submit(var/instant = FALSE)
 	set name = "Yield"
