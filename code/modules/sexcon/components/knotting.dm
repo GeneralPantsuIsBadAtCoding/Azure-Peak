@@ -129,8 +129,12 @@
 				to_chat(target, span_userdanger("You have been triple-knotted!"))
 			if(4)
 				to_chat(target, span_userdanger("You have been quad-knotted!"))
+			if(5)
+				// LЄДGЦЄ ФF LЄGЄЙDS ЯЄFЄЯЄЙCЄ
+				to_chat(target, span_userdanger("You have been penta-knotted!"))
 			else
-				to_chat(target, span_userdanger("You have been super-knotted!"))
+				// Six is the appropriate number for a joke message here
+				to_chat(target, span_userdanger("You have been ultra-knotted!"))
 
 	apply_knot_status_effects(user, target)
 
