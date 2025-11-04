@@ -1,3 +1,4 @@
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/raneshi_hmamluk
 	name = "masked mamluk helmet"
 	desc = "Helmet of a heavy rider from Empire with a face-shaped visor."
 	icon = 'modular_twilight_axis/ranesheni_clothes/icons/obj/helmets.dmi'
