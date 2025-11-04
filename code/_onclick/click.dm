@@ -666,8 +666,7 @@
 		user.client.statpanel = T.name
 
 /mob/proc/CtrlRightClickOn(atom/A, params)
-	linepoint(A, params)
-	return
+	pointed(A)
 
 /*
 	Misc helpers
@@ -891,7 +890,7 @@
 		eyet.update_icon(src)
 
 /mob/proc/ShiftRightClickOn(atom/A, params)
-//	linepoint(A, params)
+//	pointed(A, params)
 //	A.ShiftRightClick(src)
 	return
 

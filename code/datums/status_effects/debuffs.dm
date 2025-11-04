@@ -275,11 +275,6 @@
 /obj/effect/temp_visual/curse
 	icon_state = "curse"
 
-/obj/effect/temp_visual/curse/Initialize()
-	. = ..()
-	deltimer(timerid)
-
-
 /datum/status_effect/gonbolaPacify
 	id = "gonbolaPacify"
 	status_type = STATUS_EFFECT_MULTIPLE
@@ -863,7 +858,7 @@
 	my_stack++
 	if(!owner) // wtf
 		return TRUE
-	if(owner.stat) // Dead / Unconscious	
+	if(owner.stat) // Dead / Unconscious
 		return TRUE
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
