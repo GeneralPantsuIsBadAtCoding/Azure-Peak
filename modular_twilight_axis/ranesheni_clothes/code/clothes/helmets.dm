@@ -4,7 +4,7 @@
 	mob_overlay_icon = 'modular_twilight_axis/ranesheni_clothes/icons/mob/helmets.dmi'
 	icon_state = "face_helmet"
 	item_state = "face_helmet"
-	max_integrity = 420 //В стандартном шлеме юзается ARMOR_INT_HELMET_HEAVY_STEEL, дающий 400 очков ХП, но поскольку тут крафт 2 стали 1 бронза, то 20 интегрити сверху вряд-ли сильно повлияют на баланс.
+	max_integrity = ARMOR_INT_HELMET_HEAVY_STEEL + 20 //В стандартном шлеме юзается ARMOR_INT_HELMET_HEAVY_STEEL, дающий 400 очков ХП, но поскольку тут крафт 2 стали 1 бронза, то 20 интегрити сверху вряд-ли сильно повлияют на баланс.
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/raneshi_hmamluk/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)
@@ -46,7 +46,7 @@
 	item_state = "jar_helmet"
 	smeltresult = /obj/item/ingot/steel
 	body_parts_covered = HEAD|EARS|HAIR|NOSE
-	max_integrity = 330 //В стандартном шлеме юзается ARMOR_INT_HELMET_STEEL, дающий 300 очков ХП, но поскольку тут крафт 1 сталь 1 бронза, то 20 интегрити сверху так же вряд-ли сильно повлияют на баланс.
+	max_integrity = ARMOR_INT_HELMET_STEEL + 20 //В стандартном шлеме юзается ARMOR_INT_HELMET_STEEL, дающий 300 очков ХП, но поскольку тут крафт 1 сталь 1 бронза, то 20 интегрити сверху так же вряд-ли сильно повлияют на баланс.
 
 /obj/item/clothing/head/roguetown/helmet/raneshi_jarhelmet/attackby(obj/item/W, mob/living/user, params)
 	..()
