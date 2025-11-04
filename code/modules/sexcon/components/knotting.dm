@@ -1,9 +1,4 @@
 ///chief i'm gonna be real this is whats gonna get me barred from entering the pearly gates
-
-#define KNOTTED_NULL 0
-#define KNOTTED_AS_TOP 1
-#define KNOTTED_AS_BTM 2
-
 /datum/component/knotting
 	/// Current knotted state
 	var/knotted_status = KNOTTED_NULL
@@ -435,7 +430,3 @@
 	knotted_owner = null
 	knotted_recipient = null
 	knotted_status = KNOTTED_NULL
-
-#undef KNOTTED_NULL
-#undef KNOTTED_AS_TOP
-#undef KNOTTED_AS_BTM

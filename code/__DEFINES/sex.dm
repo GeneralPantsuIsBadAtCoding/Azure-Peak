@@ -212,3 +212,7 @@ GLOBAL_LIST_EMPTY(locked_sex_objects)
 	"sound/misc/mat/sex_clap/hard/SexSmack24.ogg",\
 	"sound/misc/mat/sex_clap/hard/SexSmack26.ogg",\
 	)
+
+#define KNOTTED_NULL 0
+#define KNOTTED_AS_TOP 1
+#define KNOTTED_AS_BTM 2

@@ -56,3 +56,18 @@
 	name = "Knotted"
 	desc = "I have to be careful where I step..."
 	icon_state = "knotted"
+
+/atom/movable/screen/alert/status_effect/knotted/Click()
+	..()
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return FALSE
+	var/datum/component/knotting/knot_comp = user.GetComponent(/datum/component/knotting)
+	if(!knot_comp)
+		return FALSE
+	if(knot_comp.knotted_status == KNOTTED_AS_TOP)
+		var/list/arousal_data = list()
+		SEND_SIGNAL(user, COMSIG_SEX_GET_AROUSAL, arousal_data)
+		var/do_forceful_removal = arousal_data["arousal"] > MAX_AROUSAL / 2
+		SEND_SIGNAL(user, COMSIG_SEX_REMOVE_KNOT, do_forceful_removal)
+	return FALSE
