@@ -396,7 +396,7 @@
 	chargetime = 0.5 SECONDS
 	invocations = list("By sacred fire, be cleansed!")
 	sound = 'sound/magic/fireball.ogg'
-	recharge_time = 600 SECONDS
+	recharge_time = 80 SECONDS
 	miracle = TRUE
 	devotion_cost = 60
 	associated_skill = /datum/skill/magic/holy
