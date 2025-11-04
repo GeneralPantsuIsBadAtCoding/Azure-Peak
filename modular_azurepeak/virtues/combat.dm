@@ -176,20 +176,3 @@
 
 /datum/virtue/combat/combat_aware/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.verbs += /mob/living/carbon/human/proc/togglecombatawareness
-
-/datum/virtue/combat/dodge
-	name = "Fleet of Foot"
-	desc = "Through hardship, instinct, or sheer experience, I have learned to move with swiftness when danger strikes. I know when to step aside rather than meet steel with flesh."
-	custom_text = "Novice for dodging. Classes that have a combat trait (Medium / Heavy Armor Training, Critical Resistance or ARCYNE > T1) won't gain the dodge skill."
-
-/datum/virtue/combat/dodge/apply_to_human(mob/living/carbon/human/recipient)
-	if(HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) || \
-	   HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) || \
-	   HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE) || \
-	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T2) || \
-	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T3) || \
-	   HAS_TRAIT(recipient, TRAIT_ARCYNE_T4))
-		return
-
-
-	recipient.adjust_skillrank_up_to(/datum/skill/misc/dodge, SKILL_LEVEL_NOVICE, silent = TRUE)
