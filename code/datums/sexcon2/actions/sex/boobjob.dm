@@ -28,9 +28,8 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/boobjob/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] grabs [target]'s tits and shoves [user.p_their()] cock inbetween!"))
+/datum/sex_action/sex/boobjob/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] grabs [target]'s tits and shoves [user.p_their()] cock inbetween!")
 
 /datum/sex_action/sex/boobjob/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -39,6 +38,5 @@
 
 	sex_session.perform_sex_action(user, 2, 4, TRUE)
 
-/datum/sex_action/sex/boobjob/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out from inbetween [target]'s tits."))
+/datum/sex_action/sex/boobjob/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cock out from inbetween [target]'s tits.")

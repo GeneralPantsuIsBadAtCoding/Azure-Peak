@@ -29,10 +29,11 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/vaginal/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] slides [user.p_their()] cock into [target]'s pussy!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/vaginal/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cock into [target]'s pussy!")
+
+/datum/sex_action/sex/vaginal/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/vaginal/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -56,27 +57,27 @@
 	return "into"
 
 
-/datum/sex_action/sex/vaginal/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s pussy."))
+/datum/sex_action/sex/vaginal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s pussy.")
 
-/datum/sex_action/sex/vaginal_double
+/datum/sex_action/sex/vaginal/double
 	name = "Fuck their pussy with both cocks"
 
-/datum/sex_action/sex/vaginal_double/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/sex/vaginal/double/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!has_double_penis(user))
 		return FALSE
 	return ..()
 
-/datum/sex_action/sex/vaginal_double/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/sex/vaginal/double/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!has_double_penis(user))
 		return FALSE
 	return ..()
 
-/datum/sex_action/sex/vaginal/double/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	lock_sex_object(user, target)
-	user.visible_message(span_warning("[user] slides [user.p_their()] cocks into [target]'s pussy!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/vaginal/double/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cocks into [target]'s pussy!")
+
+/datum/sex_action/sex/vaginal/double/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/vaginal/double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -94,6 +95,5 @@
 		sex_session.perform_sex_action(target, 2.4, 11, FALSE)
 	sex_session.handle_passive_ejaculation(target)
 
-/datum/sex_action/sex/vaginal/double/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	unlock_sex_object(user, target)
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cocks out of [target]'s pussy."))
+/datum/sex_action/sex/vaginal/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s pussy.")

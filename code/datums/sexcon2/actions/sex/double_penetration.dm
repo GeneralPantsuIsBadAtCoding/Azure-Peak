@@ -29,10 +29,11 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/double_penetration/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] slides [user.p_their()] cocks into [target]'s holes!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/double_penetration/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cocks into [target]'s holes!")
+
+/datum/sex_action/sex/double_penetration/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/double_penetration/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -57,6 +58,5 @@
 	target.virginity = FALSE
 	return "into"
 
-/datum/sex_action/sex/double_penetration/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] pulls [user.p_their()] twin cocks out of [target]'s holes."))
+/datum/sex_action/sex/double_penetration/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] twin cocks out of [target]'s holes.")

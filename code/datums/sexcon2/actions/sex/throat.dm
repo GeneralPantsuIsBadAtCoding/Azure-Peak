@@ -25,10 +25,11 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/throat/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] slides [user.p_their()] cock into [target]'s throat!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/throat/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cock into [target]'s throat!")
+
+/datum/sex_action/sex/throat/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/throat/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -50,9 +51,8 @@
 	return "into"
 
 
-/datum/sex_action/sex/throat/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s throat."))
+/datum/sex_action/sex/throat/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s throat.")
 
 /datum/sex_action/sex/throat/double
 	name = "Fuck their throat with both cocks"
@@ -67,10 +67,11 @@
 		return FALSE
 	return ..()
 
-/datum/sex_action/sex/throat/double/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	lock_sex_object(user, target)
-	user.visible_message(span_warning("[user] slides [user.p_their()] cocks into [target]'s throat!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/throat/double/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cocks into [target]'s throat!")
+
+/datum/sex_action/sex/throat/double/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/throat/double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -88,6 +89,5 @@
 		sex_session.perform_sex_action(target, 0, 7, FALSE)
 	sex_session.handle_passive_ejaculation()
 
-/datum/sex_action/sex/throat/double/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	unlock_sex_object(user, target)
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cocks out of [target]'s throat."))
+/datum/sex_action/sex/throat/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s throat.")

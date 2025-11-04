@@ -25,10 +25,11 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/anal/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] slides [user.p_their()] cock into [target]'s butt!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/anal/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cock into [target]'s butt!")
+
+/datum/sex_action/sex/anal/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/anal/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -52,29 +53,29 @@
 	return "into"
 
 
-/datum/sex_action/sex/anal/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s butt."))
+/datum/sex_action/sex/anal/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cock out of [target]'s butt.")
 
-/datum/sex_action/sex/anal_double
+/datum/sex_action/sex/anal/double
 	name = "Fuck their ass with both cocks"
 
-/datum/sex_action/sex/anal_double/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/sex/anal/double/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!has_double_penis(user))
 		return FALSE
 	return ..()
 
-/datum/sex_action/sex/anal_double/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/sex/anal/double/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!has_double_penis(user))
 		return FALSE
 	return ..()
 
-/datum/sex_action/sex/anal_double/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	lock_sex_object(user, target)
-	user.visible_message(span_warning("[user] slides [user.p_their()] cocks into [target]'s butt!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/anal/double/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] slides [user.p_their()] cocks into [target]'s butt!")
 
-/datum/sex_action/sex/anal_double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/sex/anal/double/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
+
+/datum/sex_action/sex/anal/double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
 	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] double-fucks [target]'s ass."))
 	playsound(target, sex_session.get_force_sound(), 50, TRUE, -2, ignore_walls = FALSE)
@@ -90,6 +91,5 @@
 		sex_session.perform_sex_action(target, 2.4, 14, FALSE)
 	sex_session.handle_passive_ejaculation(target)
 
-/datum/sex_action/sex/anal_double/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	unlock_sex_object(user, target)
-	user.visible_message(span_warning("[user] pulls [user.p_their()] cocks out of [target]'s butt."))
+/datum/sex_action/sex/anal/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] pulls [user.p_their()] cocks out of [target]'s butt.")

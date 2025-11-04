@@ -30,10 +30,11 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/other/vagina/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] gets on top of [target] and begins riding [target.p_them()] with [user.p_their()] cunt!"))
-	playsound(target, list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg'), 20, TRUE, ignore_walls = FALSE)
+/datum/sex_action/sex/other/vagina/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] gets on top of [target] and begins riding [target.p_them()] with [user.p_their()] cunt!")
+
+/datum/sex_action/sex/other/vagina/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return list('sound/misc/mat/insert (1).ogg','sound/misc/mat/insert (2).ogg')
 
 /datum/sex_action/sex/other/vagina/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -57,6 +58,5 @@
 	user.virginity = FALSE
 	return "into"
 
-/datum/sex_action/sex/other/vagina/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] gets off [target]."))
+/datum/sex_action/sex/other/vagina/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] gets off [target].")

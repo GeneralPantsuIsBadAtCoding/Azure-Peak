@@ -138,7 +138,22 @@
 /datum/sex_action/proc/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	SHOULD_CALL_PARENT(TRUE)
 	lock_sex_object(user, target)
+
+	var/message = get_start_message(user, target)
+	if(message)
+		user.visible_message(message)
+
+	var/sound = get_start_sound(user, target)
+	if(sound)
+		playsound(target, sound, 20, TRUE, ignore_walls = FALSE)
+
 	return TRUE
+
+/datum/sex_action/proc/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return null
+
+/datum/sex_action/proc/get_start_sound(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return null
 
 /datum/sex_action/proc/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return
@@ -146,7 +161,16 @@
 /datum/sex_action/proc/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	SHOULD_CALL_PARENT(TRUE)
 	unlock_sex_object(user, target)
+
+	var/message = get_finish_message(user, target)
+	if(message)
+		user.visible_message(message)
+
 	return
+
+/// Override this to provide the message shown when the action finishes (e.g., withdrawal message)
+/datum/sex_action/proc/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return null
 
 /datum/sex_action/proc/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)

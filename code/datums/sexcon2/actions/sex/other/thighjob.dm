@@ -22,9 +22,8 @@
 		return FALSE
 	return TRUE
 
-/datum/sex_action/sex/other/thighjob/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] moves [user.p_their()] thighs between [target]'s cock..."))
+/datum/sex_action/sex/other/thighjob/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] moves [user.p_their()] thighs between [target]'s cock...")
 
 /datum/sex_action/sex/other/thighjob/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
@@ -35,7 +34,6 @@
 	sex_session.perform_sex_action(target, 2, 4, TRUE)
 	sex_session.handle_passive_ejaculation(target)
 
-/datum/sex_action/sex/other/thighjob/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	. = ..()
-	user.visible_message(span_warning("[user] stops jerking [target] off with [user.p_their()] thighs..."))
+/datum/sex_action/sex/other/thighjob/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return span_warning("[user] stops jerking [target] off with [user.p_their()] thighs...")
 
