@@ -59,6 +59,7 @@
 	AdjustKnockdown(levels * 20)
 
 /mob/living/carbon/swap_hand(held_index)
+	SEND_SIGNAL(src, COMSIG_CARBON_SWAPHANDS)
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
 
@@ -88,10 +89,6 @@
 
 	givingto = null
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.has_status_effect(/datum/status_effect/buff/clash))
-			H.bad_guard(span_warning("I swapped away from the weapon!"))
 	return TRUE
 
 

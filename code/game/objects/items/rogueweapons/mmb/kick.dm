@@ -28,7 +28,7 @@
 		return FALSE
 	changeNext_move(mmb_intent.clickcd)
 	face_atom(A)
-
+	SEND_SIGNAL(src, COMSIG_MOB_ON_KICK)
 	playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
 	// play the attack animation even when kicking non-mobs
 	if(mmb_intent) // why this would be null and not INTENT_KICK i have no clue, but the check already existed
@@ -37,9 +37,6 @@
 	if(ismob(A) && mmb_intent)
 		var/mob/living/M = A
 		sleep(mmb_intent.swingdelay)
-		if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.bad_guard(span_warning("The kick throws my stance off!"))
 		if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
 			var/mob/living/carbon/human/HT = M
 			HT.bad_guard(span_warning("The kick throws my stance off!"))

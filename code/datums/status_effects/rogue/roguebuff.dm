@@ -1113,6 +1113,10 @@
 
 /datum/status_effect/buff/clash/on_creation(mob/living/new_owner, ...)
 	RegisterSignal(new_owner, COMSIG_MOB_ITEM_ATTACK, PROC_REF(process_attack))
+	RegisterSignal(new_owner, COMSIG_MOB_ON_KICK, PROC_REF(guard_disrupted))
+	RegisterSignal(new_owner, COMSIG_ITEM_GUN_PROCESS_FIRE, PROC_REF(guard_disrupted_cheesy))
+	RegisterSignal(new_owner, COMSIG_CARBON_SWAPHANDS, PROC_REF(guard_disrupted))
+	RegisterSignal(new_owner, COMSIG_MOVABLE_IMPACT_ZONE, PROC_REF(guard_disrupted))
 	. = ..()
 
 /datum/status_effect/buff/clash/proc/process_attack(mob/living/parent, mob/living/target, mob/user, obj/item/I)
@@ -1122,7 +1126,7 @@
 	if(U.has_status_effect(/datum/status_effect/buff/clash) && !target.has_status_effect(/datum/status_effect/buff/clash))
 		if(user == parent)
 			bad_guard = TRUE
-	if(target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item() && ishuman(target) && !bad_guard)
+	if(ishuman(target) && target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item()  && !bad_guard)
 		var/mob/living/carbon/human/HM = target
 		var/obj/item/IM = target.get_active_held_item()
 		var/obj/item/IU 
@@ -1134,6 +1138,18 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.bad_guard(span_suicide("I switched stances too quickly! It drains me!"), cheesy = TRUE)
+
+//Our guard was disrupted by normal means.
+/datum/status_effect/buff/clash/proc/guard_disrupted()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.bad_guard("My focus was disrupted!")
+
+//We tried to cheese it. Generally reserved for egregious things, like attacking / casting with its active.
+/datum/status_effect/buff/clash/proc/guard_disrupted_cheesy()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.bad_guard("My focus was <b>heavily</b> disrupted!")
 
 /datum/status_effect/buff/clash/on_apply()
 	. = ..()
@@ -1157,6 +1173,11 @@
 		H.bad_guard(span_warning("I held my focus for too long. It's left me drained."))
 	var/mutable_appearance/appearance = H.overlays_standing[OBJ_LAYER]
 	H.clear_overhead_indicator(appearance)
+	UnregisterSignal(owner, COMSIG_MOB_ITEM_ATTACK)
+	UnregisterSignal(owner, COMSIG_MOB_ON_KICK)
+	UnregisterSignal(owner, COMSIG_ITEM_GUN_PROCESS_FIRE)
+	UnregisterSignal(owner, COMSIG_CARBON_SWAPHANDS)
+	UnregisterSignal(owner, COMSIG_MOVABLE_IMPACT_ZONE)
 
 
 /atom/movable/screen/alert/status_effect/buff/clash
