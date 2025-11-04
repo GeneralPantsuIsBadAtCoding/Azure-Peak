@@ -2,7 +2,7 @@
 /datum/virtue/combat/magical_potential
 	name = "Arcyne Potential"
 	desc = "I am talented in the Arcyne arts, expanding my capacity for magic. I have become more intelligent from its studies. Other effects depends on what training I chose to focus on at a later age."
-	custom_text = "Classes that has a combat trait (Medium / Heavy Armor Training, Dodge Expert or Critical Resistance) get only prestidigitation. Everyone else get +3 spellpoints and T1 Arcyne Potential if they don't have any Arcyne."
+	custom_text = "Classes that has a combat trait (Medium / Heavy Armor Training, Dodge Skill or Critical Resistance) get only prestidigitation. Everyone else get +3 spellpoints and T1 Arcyne Potential if they don't have any Arcyne."
 	added_skills = list(list(/datum/skill/magic/arcane, 1, 6))
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
@@ -180,7 +180,7 @@
 /datum/virtue/combat/dodge
 	name = "Fleet of Foot"
 	desc = "Through hardship, instinct, or sheer experience, I have learned to move with swiftness when danger strikes. I know when to step aside rather than meet steel with flesh."
-	custom_text = "Guaranteed apprentice for dodging. Classes that have a combat trait (Medium / Heavy Armor Training, Dodge Expert, Critical Resistance or ARCYNE > T1) won't gain a skill level."
+	custom_text = "Guaranteed apprentice for dodging. Classes that have a combat trait (Medium / Heavy Armor Training, Critical Resistance or ARCYNE > T1) won't gain the dodge skill."
 
 /datum/virtue/combat/dodge/apply_to_human(mob/living/carbon/human/recipient)
 	if(HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) || \
