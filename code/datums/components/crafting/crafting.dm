@@ -503,6 +503,8 @@
 
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
+		if(R.required_tech_node && !R.tech_unlocked)
+			continue
 
 		craftability[R.name] = check_contents(R, surroundings)
 
@@ -521,6 +523,8 @@
 			continue
 
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+		if(R.required_tech_node && !R.tech_unlocked)
 			continue
 		var/category
 		if(R.skillcraft)
@@ -636,6 +640,8 @@
 	for(var/rec in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/R = rec
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+		if(R.required_tech_node && !R.tech_unlocked)
 			continue
 
 		if(check_contents(R, surroundings))

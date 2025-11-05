@@ -129,7 +129,7 @@
 					var/obj/effect/proc_holder/spell/newspell = new spell_type
 					if(!silent)
 						to_chat(holder, span_boldnotice("I have unlocked a new spell: [newspell]"))
-					holder.mind.AddSpell(newspell)
+					holder.mind.AddSpell(newspell, holder)
 					LAZYADD(granted_spells, newspell)
 		if(length(patron.traits_tier))
 			for(var/trait in patron.traits_tier)

@@ -107,6 +107,16 @@
 			if("onbelt")
 				return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/mace/bronze
+	force = 23
+	force_wielded = 29
+	name = "bronze mace"
+	color = "#f9d690"
+	desc = "An antiquital staff, crested with a studded sphere of bronze. Bludgeons were the first implements made for the explicit purpose of killing another; fittingly, this was the second."
+	wbalance = WBALANCE_HEAVY
+	smeltresult = /obj/item/ingot/bronze
+	max_integrity = 250
+	wdefense = 2
 
 /obj/item/rogueweapon/mace/alloy
 	name = "decrepit mace"
@@ -205,21 +215,30 @@
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
-	desc = "A stubby little club for brigands or thieves. Attempting parries with this is a bad idea."
-	force = 25
+	desc = "A stubby little club for used by guards, brigands, and various criminals. Perfect to cripple someone on a budget."
+	force = 22
 	icon_state = "cudgel"
 	force_wielded = 25
-	possible_item_intents = list(/datum/intent/mace/strike)
-	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop)
+	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/strike/wallop, /datum/intent/mace/smash, /datum/intent/effect/daze)
 	smeltresult = /obj/item/ash
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
-	wbalance = WBALANCE_NORMAL
+	wbalance = WBALANCE_HEAVY
 	minstr = 7
 	wdefense = 1
 	resistance_flags = FLAMMABLE
 	grid_width = 32
 	grid_height = 96
+
+// Non-lethal mace-striking (Made for cudgel specifically. Don't put this on everything. Yeah, I mean you.)
+/datum/intent/mace/strike/wallop
+	name = "wallop"
+	blade_class = BCLASS_TWIST	//I know, it's weird, but this lets you dislocate limbs and works fine w/ -100 pen factor of blunt weapons.
+	attack_verb = list("twamps", "thwacks", "wallops")
+	damfactor = 1.3		// High damage mod to give high chance of dislocation against unarmored targets.
+	intent_intdamage_factor = 0.5	// Purposefully bad at damaging armor.
+	icon_state = "inbash"	// Wallop is too long for a button; placeholder.
 
 /obj/item/rogueweapon/mace/cudgel/psy
 	name = "psydonic handmace"
@@ -388,7 +407,6 @@
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	dropshrink = 0.6
 	bigboy = TRUE
 	gripsprite = TRUE
 
@@ -467,7 +485,6 @@
 	minstr = 12
 	wdefense = 6
 	wbalance = WBALANCE_HEAVY
-	dropshrink = 0.75
 	smelt_bar_num = 2
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silverblessed

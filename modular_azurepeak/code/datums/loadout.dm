@@ -113,6 +113,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Papakha"
 	path = /obj/item/clothing/head/roguetown/papakha
 
+/datum/loadout_item/rosa_crown
+	name = "Rosa Crown"
+	path = /obj/item/flowercrown/rosa
+
+/datum/loadout_item/salvia_crown
+	name = "Salvia Crown"
+	path = /obj/item/flowercrown/salvia
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"
@@ -605,6 +613,16 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/donator_eiren
 	name = "Donator Kit - Regret"
 	path = /obj/item/enchantingkit/eiren
+	ckeywhitelist = list("eirenxiv")
+
+/datum/loadout_item/donator_eiren2
+	name = "Donator Kit - Lunae"
+	path = /obj/item/enchantingkit/eirensabre
+	ckeywhitelist = list("eirenxiv")
+
+/datum/loadout_item/donator_eiren3
+	name = "Donator Kit - Cinis"
+	path = /obj/item/enchantingkit/eirensabre2
 	ckeywhitelist = list("eirenxiv")
 
 /datum/loadout_item/donator_waff

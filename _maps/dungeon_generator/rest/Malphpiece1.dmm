@@ -88,7 +88,6 @@
 "fh" = (
 /obj/structure/table/vtable,
 /obj/item/paper/scroll,
-/obj/item/clothing/ring/gold,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "iS" = (
@@ -98,7 +97,7 @@
 /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
 /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
 /obj/item/reagent_containers/glass/cup/skull,
-/obj/item/reagent_containers/glass/cup/silver,
+/obj/effect/spawner/lootdrop/cheap_tableware_spawner,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)
 "lx" = (
@@ -116,7 +115,6 @@
 "vD" = (
 /obj/structure/table/wood,
 /obj/item/candle/skull/lit,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
 /obj/item/reagent_containers/glass/bottle/rogue/redwine,
 /obj/item/roguestatue/gold,
 /turf/open/floor/rogue/ruinedwood/chevron,
@@ -127,7 +125,6 @@
 /area/rogue/under/tomb/indoors)
 "HU" = (
 /obj/structure/table/vtable/v2,
-/obj/item/book/godofdreamsandnightmares,
 /obj/item/natural/feather,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors)

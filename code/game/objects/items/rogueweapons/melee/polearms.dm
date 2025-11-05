@@ -904,13 +904,17 @@
 	clickcd = CLICK_CD_HEAVY // Slightly longer since it has RANGE. Don't want to increase charge time more since it is unreliable.
 
 /obj/item/rogueweapon/spear/bronze
-	name = "Bronze Spear"
-	desc = "A spear forged of bronze. Much more durable than a regular spear."
+	name = "bronze spear"
+	desc = "An antiquital staff, adorned with a bronze spearhead. Ancient in both design and purpose, its lighter weight once complimented the towering shields of precivilizational legionnaires. While rarely seen beyond the Deadlands, nowadaes, its lightweight balance makes it perfect for one-handed thrusts and throws."
+	force = 25
+	force_wielded = 28
+	throwforce = 30
 	icon_state = "bronzespear"
-	max_blade_int = 200
 	smeltresult = /obj/item/ingot/bronze
-	smelt_bar_num = 2
-
+	armor_penetration = 22 //In-between a spear and javelin.
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
+	max_blade_int = 225
+	max_integrity = 155
 
 /obj/item/rogueweapon/greatsword
 	force = 12

@@ -36,6 +36,10 @@
 	W.cmode_music_override = cmode_music_override
 	W.cmode_music_override_name = cmode_music_override_name
 
+	for(var/datum/wound/old_wound in W.get_wounds())
+		var/obj/item/bodypart/bp = W.get_bodypart(old_wound.bodypart_owner.body_zone)
+		bp?.remove_wound(old_wound.type)
+
 	var/list/datum/wound/woundlist = get_wounds()
 	if(woundlist.len)
 		for(var/datum/wound/wound in woundlist)
@@ -47,6 +51,17 @@
 	W.adjustBruteLoss(getBruteLoss())
 	W.adjustFireLoss(getFireLoss())
 	W.adjustOxyLoss(getOxyLoss())
+
+	src.adjustBruteLoss(-src.getBruteLoss())
+	src.adjustFireLoss(-src.getFireLoss())
+	src.adjustOxyLoss(-src.getOxyLoss())
+
+	W.blood_volume = blood_volume
+	W.bleed_rate = bleed_rate
+	W.bleedsuppress = bleedsuppress
+
+	bleed_rate = 0
+	bleedsuppress = TRUE
 
 	mind.transfer_to(W)
 	skills?.known_skills = list()
@@ -80,6 +95,10 @@
 	if(dead)
 		W.death()
 
+	for(var/datum/wound/old_wound in W.get_wounds())
+		var/obj/item/bodypart/bp = W.get_bodypart(old_wound.bodypart_owner.body_zone)
+		bp?.remove_wound(old_wound.type)
+
 	var/list/datum/wound/woundlist = get_wounds()
 	if(woundlist.len)
 		for(var/datum/wound/wound in woundlist)
@@ -92,8 +111,15 @@
 	W.adjustFireLoss(getFireLoss())
 	W.adjustOxyLoss(getOxyLoss())
 
-	W.forceMove(get_turf(src))
+	src.adjustBruteLoss(-src.getBruteLoss())
+	src.adjustFireLoss(-src.getFireLoss())
+	src.adjustOxyLoss(-src.getOxyLoss())
 
+	W.blood_volume = blood_volume
+	W.bleed_rate = bleed_rate
+	W.bleedsuppress = bleedsuppress
+
+	W.forceMove(get_turf(src))
 	mind.transfer_to(W)
 
 	var/mob/living/carbon/human/species/wildshape/WA = src
@@ -108,7 +134,6 @@
 				W.RemoveSpell(wildspell)
 
 	W.regenerate_icons()
-
 	to_chat(W, span_userdanger("I return to my old form."))
 
 	qdel(src)

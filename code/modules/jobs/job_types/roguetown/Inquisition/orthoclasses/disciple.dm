@@ -33,7 +33,7 @@
 	extra_context = "This subclass can choose from multiple disciplines. The further your chosen discipline strays from unarmed combat, however, the greater your skills in fistfighting and wrestling will atrophy. Taking a Quarterstaff provides a minor bonus to Perception and Intelligence, but removes the 'Critical Resistance' trait."
 
 /datum/outfit/job/roguetown/disciple
-	job_bitflag = BITFLAG_CHURCH
+	job_bitflag = BITFLAG_HOLY_WARRIOR
 
 /obj/item/storage/belt/rogue/leather/rope/dark
 	color = "#505050"
@@ -87,8 +87,7 @@
 				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
 				H.mind.adjust_spellpoints(6) //Messed this up. Should add spellpoints for use, now.
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch) //Pre-set spell list. Same as before. 
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/sickness)
-				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/forcewall) //Weak, destroyable forcewall.
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
 				H.change_stat(STATKEY_CON, -3) 

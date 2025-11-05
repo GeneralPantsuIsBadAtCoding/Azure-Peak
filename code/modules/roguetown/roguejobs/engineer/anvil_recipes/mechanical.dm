@@ -6,10 +6,10 @@
 //--------- TIN RECIPES -----------
 
 /datum/anvil_recipe/engineering/nails
-	name = "3x nails"
+	name = "5x nails"
 	req_bar = /obj/item/ingot/tin
 	created_item = /obj/item/construction/nail
-	createditem_num = 3
+	createditem_num = 5
 	craftdiff = 1
 
 // --------- IRON RECIPES -----------
@@ -58,6 +58,22 @@
 	created_item = /obj/item/rope/chain
 	createditem_num = 1
 	craftdiff = 0
+
+/datum/anvil_recipe/engineering/ironscissors
+	name = "Iron Scissors (+1 cog)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/roguegear)
+	created_item = /obj/item/rogueweapon/huntingknife/scissors
+	i_type = "Tools"
+
+// --------- STEEL RECIPES -----------
+
+/datum/anvil_recipe/engineering/steelscissors
+	name = "steel Scissors (+1 cog)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/roguegear)
+	created_item = /obj/item/rogueweapon/huntingknife/scissors/steel
+	i_type = "Tools"
 
 
 // --------- BRONZE RECIPES -----------
@@ -127,10 +143,10 @@
 	craftdiff = 4
 
 /datum/anvil_recipe/engineering/bronze/smokebomb
-	name = "Smoke Bomb (x3) (+Cog, +Ash)"
+	name = "gas belcher shells (x3) (+Cog)"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/bomb/smoke
-	additional_items = list(/obj/item/roguegear, /obj/item/ash)
+	created_item = /obj/item/smokeshell
+	additional_items = list(/obj/item/roguegear)
 	createditem_num = 3
 	craftdiff = 3
 
@@ -155,65 +171,105 @@
 	additional_items = list(/obj/item/roguegear, /obj/item/storage/roguebag)
 	craftdiff = 3
 
+//contraptions and tools
+/datum/anvil_recipe/engineering/bronze/autoshears
+	name = "Auto Shears (+2 Bronze, +1 cog)"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/ingot/bronze, /obj/item/ingot/bronze, /obj/item/roguegear)
+	created_item = /obj/item/contraption/shears
+	craftdiff = 4
+
+/datum/anvil_recipe/engineering/bronze/metalizer
+	name = "Wood Metalizer (+2 cog)"
+	req_bar= /obj/item/ingot/bronze
+	additional_items = list( /obj/item/roguegear, /obj/item/roguegear)
+	created_item = /obj/item/contraption/wood_metalizer
+	craftdiff = 4
+
+/datum/anvil_recipe/engineering/bronze/lockimprover
+	name = "Lock Improver (1 bronze, +1 cog))"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/ingot/bronze, /obj/item/roguegear)
+	created_item = /obj/item/contraption/lock_imprinter
+	craftdiff = 4
+
 // ------------ PROSTHETICS ----------------
 
-/datum/anvil_recipe/engineering/bronze/prosthetic/bronzeleftarm
-	name = "Left Arm, Bronze (+2 Cogs)"
+/datum/anvil_recipe/engineering/bronze/prosthetic/bronzeprosthetic
+	name = "bronze prosthetic (+2 Cogs)"
 	req_bar = /obj/item/ingot/bronze
 	additional_items = list(/obj/item/roguegear, /obj/item/roguegear)
-	created_item = /obj/item/bodypart/l_arm/prosthetic/bronzeleft
+	created_item = /obj/item/contraption/bronzeprosthetic
 	craftdiff = 4
 
-/datum/anvil_recipe/engineering/bronze/prosthetic/bronzerightarm
-	name = "Right Arm, Bronze (+2 Cogs)"
-	req_bar = /obj/item/ingot/bronze
+/datum/anvil_recipe/engineering/bronze/prosthetic/ironprosthetic
+	name = "iron prosthetic (+2 cogs)"
+	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/roguegear, /obj/item/roguegear)
-	created_item = /obj/item/bodypart/r_arm/prosthetic/bronzeright
+	created_item = /obj/item/contraption/ironprosthetic
 	craftdiff = 4
 
-/datum/anvil_recipe/engineering/bronze/prosthetic/bronzeleftleg
-	name = "Left Leg, Bronze (+2 Cogs)"
-	req_bar = /obj/item/ingot/bronze
+/datum/anvil_recipe/engineering/bronze/prosthetic/steelprosthetic
+	name = "steel prosthetic (+2 cogs)"
+	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/roguegear, /obj/item/roguegear)
-	created_item = /obj/item/bodypart/l_leg/prosthetic/bronzeleft
+	created_item = /obj/item/contraption/steelprosthetic
 	craftdiff = 4
 
-/datum/anvil_recipe/engineering/bronze/prosthetic/bronzerightleg
-	name = "Right Leg, Bronze (+2 Cogs)"
-	req_bar = /obj/item/ingot/bronze
+/datum/anvil_recipe/engineering/bronze/prosthetic/goldprosthetic
+	name = "gold prosthetic (+2 Cogs)"
+	req_bar = /obj/item/ingot/gold
 	additional_items = list(/obj/item/roguegear, /obj/item/roguegear)
-	created_item = /obj/item/bodypart/r_leg/prosthetic/bronzeright
+	created_item = /obj/item/contraption/goldprosthetic
 	craftdiff = 4
 
 // ------------ Rings ----------------
 /datum/anvil_recipe/engineering/serfstone
-	name = "Serf Stone (+1 cog, +1 Topar)"
+	name = "Serf Stone (+1 amethyst, +1 Topar)"
 	req_bar = /obj/item/ingot/steel
-	additional_items = list(/obj/item/roguegear, /obj/item/roguegem/yellow) //using topar since the description calls it a "dull gem"
+	additional_items = list(/obj/item/roguegem/amethyst, /obj/item/roguegem/yellow) //using topar since the description calls it a "dull gem"
 	created_item = /obj/item/scomstone/bad
 	craftdiff = 5
 
-/*	For future updates, if people like the serfstones
 /datum/anvil_recipe/engineering/houndstone
-	name = "Houndstone (+1 cog, +1 Topar)"
-	req_bar = /obj/item/ingot/Steel
-	additional_items = list(/obj/item/roguegear, /obj/item/roguegem/yellow)
+	name = "Houndstone (+1 amethyst, +1 topar)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/roguegem/amethyst, /obj/item/roguegem/yellow)
 	created_item = /obj/item/scomstone/bad/garrison
 	craftdiff = 5
 
 /datum/anvil_recipe/engineering/scomstone
-	name = "SCOM Stone (+1 cog, +1 Gemerald, Arcyne)"
-	req_bar = /obj/item/ingot/Gold
-	additional_items = list(/obj/item/roguegear, /obj/item/roguegem/green)
+	name = "SCOM Stone (+1 amethyst, +1 gemerald)"
+	req_bar = /obj/item/ingot/gold
+	additional_items = list(/obj/item/roguegem/amethyst, /obj/item/roguegem/green)
 	created_item = /obj/item/scomstone
-	skillcraft = /datum/skill/magic/arcane
 	craftdiff = 5
 
 /datum/anvil_recipe/engineering/emeraldchoker
-	name = "emerald choker (+1 cog, +Gold, +1 Gemerald, Arcyne)"
-	req_bar = /obj/item/ingot/Gold
-	additional_items = list(/obj/item/roguegear, /obj/item/ingot/Gold, /obj/item/roguegem/green)
+	name = "emerald choker (+1 amethyst +Gold, +1 Gemerald)"
+	req_bar = /obj/item/ingot/gold
+	additional_items = list(/obj/item/roguegem/amethyst, /obj/item/ingot/gold, /obj/item/roguegem/green)
 	created_item = /obj/item/listenstone
-	skillcraft = /datum/skill/magic/arcane
 	craftdiff = 5
-	*/
+
+//combat gear
+/datum/anvil_recipe/engineering/artificerarmor
+	name = "Artificer armor (+3 ancient alloy ingot)(+2 Bronze gear)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy, /obj/item/ingot/purifiedaalloy, /obj/item/roguegear, /obj/item/roguegear)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/paalloy/artificer
+	craftdiff = 4
+
+/datum/anvil_recipe/engineering/volticgauntlet
+	name = "Voltic Gauntlet (+1 Tin ingot)(+2 Bronze gear)(+1 cinnabar ore)"
+	req_bar = /obj/item/ingot/bronze
+	additional_items = list(/obj/item/roguegear, /obj/item/roguegear, /obj/item/ingot/tin, /obj/item/rogueore/cinnabar)
+	created_item = /obj/item/clothing/gloves/roguetown/contraption/voltic
+	craftdiff = 4
+
+/datum/anvil_recipe/engineering/steamshield
+	name = "Steam Shield (+1 wood plank)(+2 Bronze gear)(+2 bronze ingot)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/roguegear, /obj/item/roguegear, /obj/item/natural/wood/plank, /obj/item/ingot/bronze, /obj/item/ingot/bronze)
+	created_item = /obj/item/rogueweapon/shield/steam
+	craftdiff = 3
