@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/head/roguetown/veiled
 
 /datum/loadout_item/archercap
-	name = "Archer cap"
+	name = "Archer's cap"
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/archercap
 
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/head/roguetown/bucklehat
 
 /datum/loadout_item/duelist_hatc
-	name = "Duelist Hat"
+	name = "Duelist's Hat"
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/duelhat
 
@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/cloak/eastcloak2
 
 /datum/loadout_item/thief_cloakc
-	name = "Rapscallion Shawl"
+	name = "Rapscallion's Shawl"
 	category = "Плащи"
 	path = /obj/item/clothing/cloak/thief_cloak
 
@@ -307,12 +307,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
 
 /datum/loadout_item/phys_robe
-	name = "Physicker Robe"
+	name = "Physicker's Robe"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/phys
 
 /datum/loadout_item/feld_robe
-	name = "Feldsher Robe"
+	name = "Feldsher's Robe"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/feld
 
@@ -535,7 +535,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/mask/rogue/exoticsilkmask
 
 /datum/loadout_item/duelmaskc
-	name = "Duelist Mask"
+	name = "Duelist's Mask"
 	category = "Аксессуары"
 	path = /obj/item/clothing/mask/rogue/duelmask
 
@@ -690,22 +690,22 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
     path = /obj/item/clothing/head/roguetown/chaperon/greyscale
 
 /datum/loadout_item/chaperon/burgherc
-    name = "Noble Chaperon"
+    name = "Noble's Chaperon"
     category = "Головные уборы"
     path = /obj/item/clothing/head/roguetown/chaperon/noble
 
 /datum/loadout_item/jesterhatc
-    name = "Jester Hat"
+    name = "Jester's Hat"
     category = "Головные уборы"
     path = /obj/item/clothing/head/roguetown/jester
 
 /datum/loadout_item/jestertunickc
-    name = "Jester Tunick"
+    name = "Jester's Tunick"
     category = "Одежда"
     path = /obj/item/clothing/suit/roguetown/shirt/jester
 
 /datum/loadout_item/jestershoess
-    name = "Jester Shoes"
+    name = "Jester's Shoes"
     category = "Обувь"
     path = /obj/item/clothing/shoes/roguetown/jester
 
