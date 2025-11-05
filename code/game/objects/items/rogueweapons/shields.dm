@@ -2,8 +2,8 @@
 #define SHIELD_BLOCK		/datum/intent/shield/block
 #define SHIELD_BASH_METAL 	/datum/intent/shield/bash/metal
 #define SHIELD_BLOCK_METAL 	/datum/intent/shield/block/metal
-#define SHIELD_SMASH 		/datum/intent/shield/smash
-#define SHIELD_SMASH_METAL 	/datum/intent/shield/smash/metal
+#define SHIELD_SMASH 		/datum/intent/mace/smash/shield
+#define SHIELD_SMASH_METAL 	/datum/intent/mace/smash/shield/metal
 #define SHIELD_BANG_COOLDOWN (3 SECONDS)
 
 /obj/item/rogueweapon/shield
@@ -99,17 +99,10 @@
 /datum/intent/shield/block/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
 
-/datum/intent/shield/smash
-	name = "smash"
-	blade_class = BCLASS_SMASH
-	attack_verb = list("smashes")
-	icon_state = "insmash"
+/datum/intent/mace/smash/shield
 	hitsound = list('sound/combat/shieldbash_wood.ogg')
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.5
-	swingdelay = 10
 
-/datum/intent/shield/smash/metal
+/datum/intent/mace/smash/shield/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
 
 /obj/item/rogueweapon/shield/wood

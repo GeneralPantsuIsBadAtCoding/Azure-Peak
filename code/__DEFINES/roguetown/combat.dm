@@ -20,9 +20,9 @@ Medical defines
 /*
 	Critical Resistance Defines 
 */
-// Normal classes are guaranteed 4 resists, NPC 2, noblood / revenant 1
+// Normal classes are guaranteed 4 resists, NPC 1, noblood / revenant 1
 #define CRIT_RESISTANCE_STACKS_PLAYER 4
-#define CRIT_RESISTANCE_STACKS_NPC 2
+#define CRIT_RESISTANCE_STACKS_NPC 1
 #define CRIT_RESISTANCE_STACKS_OP 1 // Noblood / Revenant etc.
 #define CRIT_RESISTANCE_EFFECTIVE_BLEEDRATE 0.5 // How much CR reduce bleedrate by
 #define CRIT_RESISTANCE_TIMER_CD 30 SECONDS // Cooldown between guaranteed CR procs. DOES NOT APPLY TO DISMEMBERMENT.
