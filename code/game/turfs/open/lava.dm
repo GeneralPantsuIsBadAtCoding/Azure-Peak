@@ -255,3 +255,81 @@
 			C.flash_fullscreen("redflash3")
 			C.emote("agony", forced = TRUE)
 			C.gib() //YOU. LITERALLY. DESERVE THIS.
+
+/turf/open/lava/mana
+	name = "unstable mana"
+	icon_state = "mana"
+	desc = "A mimicry of the world's leylines flows nearby. Crude. Artificial. Dangerous. "
+	light_outer_range =  4
+	light_power = 1
+	light_color = "#7b60f3"
+
+
+/turf/open/lava/mana/burn_stuff(AM)
+	. = 0
+
+	if(is_safe())
+		return FALSE
+
+	var/thing_to_check = src
+	if (AM)
+		thing_to_check = list(AM)
+	for(var/thing in thing_to_check)
+		if(isobj(thing))
+			var/obj/O = thing
+			if((O.resistance_flags & (ACID_PROOF|INDESTRUCTIBLE)) || O.throwing || istype(O, /obj/structure/bars) || istype(O, /obj/structure/roguewindow) || istype(O, /obj/structure/fluff/railing/border))
+				continue
+			O.obj_integrity -= O.max_integrity * 0.1
+			if(O.obj_integrity <= 0)
+				qdel(O)	
+			. = 1
+
+		else if (isliving(thing))
+			. = 1
+			var/mob/living/L = thing
+			if(L.movement_type & FLYING)
+				continue	//YOU'RE FLYING OVER IT
+			var/buckle_check = L.buckling
+			if(!buckle_check)
+				buckle_check = L.buckled
+			if(isobj(buckle_check))
+				var/obj/O = buckle_check
+				if(O.resistance_flags & ACID_PROOF)
+					continue
+			else if(isliving(buckle_check))
+				var/mob/living/live = buckle_check
+				if("lava" in live.weather_immunities)
+					continue
+			for(var/obj/item/clothing/C in L.contents)
+				if(C.resistance_flags & (ACID_PROOF|INDESTRUCTIBLE))
+					continue
+				C.obj_integrity -= C.max_integrity * 0.1
+				if(C.obj_integrity <= 0)
+					to_chat(L, span_danger("Your [C.name] is undone by the mana!"))
+					qdel(C)	
+
+			L.adjustFireLoss(100)
+			to_chat(L, span_userdanger("THE MANA BURNS!"))
+
+/turf/open/lava/mana/onbite(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(L.stat != CONSCIOUS)
+			return
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			if(C.is_mouth_covered())
+				return
+		playsound(user, ('sound/misc/lava_death.ogg'), 100, FALSE)
+		user.visible_message(span_info("[user] is about to consume [src]. Do they know?"))
+		if(do_after(L, 200, target = src))
+			var/mob/living/carbon/C = user
+			to_chat(C, span_userdanger("For a moment, I taste power itself! For an eternity afterwards, I taste..."))
+			C.flash_fullscreen("redflash3")
+			C.emote("agony", forced = TRUE)
+			sleep(30)
+			explosion(C, light_impact_range = 5,  smoke = TRUE,)
+			var/obj/item/bodypart/head = C.get_bodypart(BODY_ZONE_HEAD)
+			head.drop_limb()
+			qdel(head)
+///			C.gib() 	You would've deserved this.

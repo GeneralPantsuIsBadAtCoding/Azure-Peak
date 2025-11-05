@@ -26,8 +26,10 @@ import {
   setWindowKey,
 } from '../drag';
 import { createLogger } from '../logging';
+import { Decor } from './Decor';
 import { Layout } from './Layout';
 import { TitleBar } from './TitleBar';
+
 
 const logger = createLogger('Window');
 const DEFAULT_SIZE: [number, number] = [400, 600];
@@ -103,6 +105,8 @@ export const Window = (props: Props) => {
 
   const dispatch = globalStore.dispatch;
   const fancy = config.window?.fancy;
+  const currentTheme = theme || config.window?.theme;
+  const useTreatyDecor = currentTheme === 'azure_treaty';
 
   // Determine when to show dimmer
   const showDimmer =
@@ -111,7 +115,7 @@ export const Window = (props: Props) => {
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE);
   return suspended ? null : (
-    <Layout className="Window" theme={config.window?.theme || theme}>
+    <Layout className="Window" theme={currentTheme}>
       <TitleBar
         title={title || decodeHtmlEntities(config.title)}
         status={config.status}
@@ -129,6 +133,7 @@ export const Window = (props: Props) => {
         {!suspended && children}
         {showDimmer && <div className="Window__dimmer" />}
       </div>
+      {useTreatyDecor && <Decor />}
       {fancy && (
         <>
           <div

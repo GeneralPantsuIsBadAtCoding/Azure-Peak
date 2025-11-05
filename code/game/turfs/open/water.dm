@@ -201,6 +201,12 @@
 					if(AM.loc == src)
 						water_overlay.layer = ABOVE_MOB_LAYER
 						water_overlay.plane = GAME_PLANE_HIGHEST
+		if(istype(L, /mob/living/carbon/human/species/human/northern/grunt))
+			var/mob/living/carbon/human/species/human/northern/grunt/grunt_npc = AM
+			if(istype(src, /turf/open/water/ocean))
+				grunt_npc.drownevent()
+				return	
+			return
 		if(!istype(L, /mob/living/carbon/human/species/skeleton))
 			return
 		if(!istype(src, /turf/open/water/sewer))

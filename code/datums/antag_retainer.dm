@@ -7,6 +7,7 @@
 	var/list/liches = list()
 	var/list/bandits = list()
 	var/list/dreamwalkers = list()
+	var/list/warlords = list()
 
 	//Minor antag types
 	var/list/wretches = list()

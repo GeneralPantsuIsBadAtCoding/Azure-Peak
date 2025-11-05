@@ -1,0 +1,328 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/newbranch/leafless,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"b" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"c" = (
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"f" = (
+/obj/structure/flora/newbranch/leafless,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"g" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"h" = (
+/obj/structure/flora/newbranch/leafless{
+	dir = 4
+	},
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"i" = (
+/turf/open/water/cleanshallow,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"j" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"m" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"q" = (
+/obj/structure/flora/newbranch/leafless{
+	dir = 4
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"r" = (
+/obj/structure/flora/hotspring_rocks/grassy,
+/turf/open/water/cleanshallow,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"s" = (
+/obj/structure/flora/newbranch/leafless{
+	dir = 8
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"t" = (
+/obj/structure/flora/newtree,
+/obj/effect/baseturf_helper,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"w" = (
+/obj/structure/flora/hotspring_rocks/small,
+/turf/open/water/cleanshallow,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"x" = (
+/obj/structure/flora/newbranch/connector{
+	dir = 8
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"y" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"B" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"C" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"E" = (
+/obj/structure/fluff/railing/wood/west,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"F" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"G" = (
+/obj/structure/flora/hotspring_rocks/small/two,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"I" = (
+/obj/structure/flora/newbranch/leafless{
+	dir = 1
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"N" = (
+/obj/machinery/light/rogue/firebowl/stump,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"O" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"P" = (
+/obj/structure/flora/hotspring_rocks/small/three,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"R" = (
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"U" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"W" = (
+/obj/structure/flora/roguegrass/water,
+/turf/open/water/cleanshallow,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"X" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"Y" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+"Z" = (
+/obj/structure/fluff/railing/wood/east,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/warcamp/outskirts/standard)
+
+(1,1,1) = {"
+t
+U
+U
+f
+m
+U
+i
+i
+i
+U
+C
+X
+X
+"}
+(2,1,1) = {"
+U
+f
+G
+i
+i
+q
+W
+i
+U
+U
+g
+c
+X
+"}
+(3,1,1) = {"
+X
+i
+i
+r
+W
+i
+m
+m
+m
+h
+c
+y
+O
+"}
+(4,1,1) = {"
+i
+i
+W
+W
+w
+m
+c
+c
+R
+R
+R
+O
+j
+"}
+(5,1,1) = {"
+i
+W
+i
+i
+P
+R
+R
+B
+Y
+R
+y
+O
+j
+"}
+(6,1,1) = {"
+i
+i
+m
+m
+R
+y
+c
+R
+R
+y
+O
+O
+j
+"}
+(7,1,1) = {"
+m
+m
+R
+R
+y
+Y
+c
+c
+R
+y
+O
+O
+O
+"}
+(8,1,1) = {"
+X
+y
+Y
+R
+Z
+Z
+Z
+R
+O
+O
+O
+O
+N
+"}
+(9,1,1) = {"
+X
+c
+c
+O
+O
+O
+O
+O
+O
+O
+O
+R
+X
+"}
+(10,1,1) = {"
+b
+O
+O
+O
+O
+O
+O
+O
+c
+c
+y
+R
+X
+"}
+(11,1,1) = {"
+b
+O
+O
+O
+O
+O
+s
+I
+F
+c
+c
+F
+X
+"}
+(12,1,1) = {"
+b
+O
+N
+E
+E
+c
+x
+B
+F
+F
+a
+h
+F
+"}
+(13,1,1) = {"
+b
+Y
+X
+X
+X
+F
+F
+R
+X
+X
+Y
+B
+F
+"}

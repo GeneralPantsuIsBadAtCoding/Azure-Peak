@@ -21,6 +21,7 @@
 @include meta.load-css('./themes/azure_lane.scss');
 @include meta.load-css('./themes/azure_purple.scss');
 @include meta.load-css('./themes/trey_liam.scss');
+@include meta.load-css('./themes/azure_treaty.scss');
 
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');
@@ -57,7 +58,6 @@
 @include meta.load-css('./layouts/NtosWindow.scss');
 @include meta.load-css('./layouts/TitleBar.scss');
 @include meta.load-css('./layouts/Window.scss');
-
 @include meta.load-css('highlight.js/scss/github-dark.scss');
 
 // NT Theme

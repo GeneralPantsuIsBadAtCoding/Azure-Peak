@@ -133,7 +133,8 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/fluff/traveltile/proc/perform_travel(obj/structure/fluff/traveltile/T, mob/living/L)
+/obj/structure/fluff/traveltile/proc/perform_travel(obj/structure/fluff/traveltile/T, mob/living/carbon/human/L)
+	var/list/friends_to_teleport = list()
 	if(!L.restrained(ignore_grab = TRUE)) // heavy-handedly prevents using prisoners to metagame camp locations. pulledby would stop this but prisoners can also be kicked/thrown into the tile repeatedly
 		for(var/mob/living/carbon/human/H in hearers(6,src))
 			if(!HAS_TRAIT(H, required_trait) && !HAS_TRAIT(H, TRAIT_BLIND))
@@ -141,6 +142,8 @@
 				if(!(H.m_intent == MOVE_INTENT_SNEAK))
 					to_chat(L, "<b>[H.name ? H : "Someone"] watches me pass through the entrance.</b>")
 				ADD_TRAIT(H, required_trait, TRAIT_GENERIC)
+			if(H in L.friends)
+				friends_to_teleport += H
 
 	var/atom/movable/pullingg = L.pulling
 
@@ -153,6 +156,11 @@
 
 	if(pullingg)
 		L.start_pulling(pullingg, supress_message = TRUE)
+
+	for(var/mob/living/carbon/human/npc in friends_to_teleport)
+		if(npc.stat != DEAD)
+			npc.forceMove(T.loc)
+
 
 	return
 
@@ -190,3 +198,56 @@
 	opacity = FALSE
 
 /obj/structure/fluff/traveltile/eventarea
+
+/obj/structure/fluff/traveltile/warband
+	name = "travel"
+	var/warband_ID = 0
+	var/atom/movable/screen/warband/manager/linked_warband
+
+/obj/structure/fluff/traveltile/warband/Initialize()
+	..()
+	SSwarbands.warband_machines += src
+	src.color = null	// different colors in the editor for visual clarity, but they should appear normal in game
+
+/obj/structure/fluff/traveltile/warband/azure_to_intermission
+
+/obj/structure/fluff/traveltile/warband/intermission_to_azure
+	color = "#a32121"
+
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts
+	color = "#ff8b2c"
+
+
+/obj/structure/fluff/traveltile/warband/outskirts_to_intermission
+	color = "#28d2d8"
+
+/obj/structure/fluff/traveltile/warband/outskirts_to_camp
+	color = "#6135ff"
+
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts
+	color = "#ff35f5"
+	var/locked = TRUE
+	var/obj/effect/landmark/chosen_landmark
+
+
+
+
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts/attack_hand(mob/user)
+	. = ..()
+	if(linked_warband.outskirts_established)
+		return
+	else
+		if(user.mind.special_role == "Warlord's Envoy")
+			var/readycheck = input(user, "The road ahead could be dangerous, and I won't be able to return immediately. I should recall any essentials in my MEMORIES.") in list("I am ready", "Cancel")
+			if(readycheck == "I am ready")
+				if(chosen_landmark)
+					to_chat(user, span_warning("The Rot prevented a simple walk down Azuria's main road. This is the safest route from my Warcamp."))
+					to_chat(user, span_warning("Before I decide to return, I should SCOUT A PATH."))
+					user.loc = src.chosen_landmark.loc
+					user.visible_message(span_bold("[user] emerges from a hidden path!"))
+					return
+		if(user.mind.warband_ID != src.warband_ID) // if they don't match the warband ID, we assume they rebelled VERY early into the round (for some reason) and just let them leave
+			if(chosen_landmark)
+				user.loc = src.chosen_landmark.loc
+				return
+

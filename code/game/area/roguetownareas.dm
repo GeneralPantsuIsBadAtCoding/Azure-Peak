@@ -21,6 +21,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	var/holy_area = FALSE
 	var/cell_area = FALSE
 	var/ceiling_protected = FALSE //Prevents tunneling into these from above
+	var/no_structure_craft = FALSE
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
 	. = ..()
@@ -339,6 +340,189 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound = 'sound/music/area/dwarf.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+
+////////////////
+////////////////
+//////////////// WARBAND
+//////////////// AREAS
+////////////////
+////////////////
+	
+/area/rogue/outdoors/warcamp
+	name = "the Countryside"
+	icon_state = "woods"
+	soundenv = 15
+	warden_area = TRUE
+	plane = INDOOR_PLANE
+	first_time_text = "THE COUNTRYSIDE"
+	converted_type = /area/rogue/indoors/warcamp
+	no_structure_craft = TRUE
+
+/area/rogue/indoors/warcamp
+	name = "warcamp indoors"
+	icon_state = "indoors"
+	soundenv = 2
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp
+	no_structure_craft = TRUE
+
+/area/rogue/indoors/warcamp/fort
+	name = "an Old Fort"
+	icon_state = "indoors"
+	soundenv = 2
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp
+	droning_sound = list('sound/music/area/manor.ogg', 'sound/music/area/manor2.ogg')
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+/area/rogue/indoors/warcamp/wizard
+	name = "the Wandering Tower"
+	icon_state = "indoors"
+	soundenv = 8
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp
+	first_time_text = "THE WANDERING TOWER"
+
+////////////////
+////////////////
+
+/area/rogue/indoors/warcamp/outskirts/coast
+	name = "the Far Coast"
+	icon_state = "indoors"
+	soundenv = 8
+	converted_type = /area/rogue/outdoors/warcamp/outskirts/coast
+
+/area/rogue/outdoors/warcamp/outskirts/coast
+	name = "the Far Coast"
+	icon_state = "beach"
+	soundenv = 8
+	warden_area = TRUE
+	converted_type = /area/rogue/indoors/warcamp/outskirts/coast
+	first_time_text = "THE FAR COAST"
+	ambientsounds = AMB_BEACH
+	ambientnight = AMB_BEACH
+	droning_sound = 'sound/music/area/townstreets.ogg'
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = 'sound/music/area/sleeping.ogg'
+
+////////////////
+////////////////
+
+/area/rogue/indoors/warcamp/outskirts/cave
+	name = "a roughly-hewn tunnel"
+	icon_state = "indoors"
+	soundenv = 18
+	converted_type = /area/rogue/outdoors/warcamp/outskirts/cave	
+	first_time_text = "A TUNNEL BELOW"
+	ambientsounds = AMB_CAVEWATER
+	ambientnight = AMB_CAVEWATER
+	spookysounds = SPOOKY_CAVE
+	spookynight = SPOOKY_CAVE
+	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+/area/rogue/outdoors/warcamp/outskirts/cave
+	name = "a gap in the tunnel"
+	icon_state = "cave"
+	soundenv = 15
+	warden_area = TRUE
+	converted_type = /area/rogue/indoors/warcamp/outskirts/cave
+
+////////////////
+////////////////
+
+/area/rogue/indoors/warcamp/outskirts/decap
+	name = "a shelter from the cold"
+	icon_state = "indoors"
+	soundenv = 8
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp/outskirts/decap
+
+/area/rogue/outdoors/warcamp/outskirts/decap
+	name = "the Foothills"
+	icon_state = "decap"
+	soundenv = 15
+	warden_area = TRUE
+	converted_type = /area/rogue/indoors/warcamp/outskirts/decap
+	ambientsounds = AMB_CAVELAVA
+	ambientnight = AMB_CAVELAVA
+	spookysounds = SPOOKY_CAVE
+	spookynight = SPOOKY_CAVE
+	droning_sound = 'sound/music/area/decap.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+////////////////
+////////////////
+
+/area/rogue/indoors/warcamp/outskirts/standard
+	name = "a shelter"
+	icon_state = "indoors"
+	soundenv = 8
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp/outskirts/standard
+
+
+
+/area/rogue/outdoors/warcamp/outskirts/standard
+	name = "the Outer Valleys"
+	icon_state = "woods"
+	soundenv = 8
+	converted_type = /area/rogue/indoors/warcamp/outskirts/standard
+	first_time_text = "THE OUTER VALLEYS"
+	warden_area = TRUE
+	ambientsounds = AMB_FORESTDAY
+	ambientnight = AMB_FORESTNIGHT
+	spookysounds = SPOOKY_CROWS
+	spookynight = SPOOKY_FOREST
+	droning_sound = 'sound/music/area/forest.ogg'
+	droning_sound_dusk = 'sound/music/area/septimus.ogg'
+	droning_sound_night = 'sound/music/area/sleeping.ogg'
+
+////////////////
+////////////////
+
+/area/rogue/indoors/warcamp/outskirts/terrorbog
+	name = "the Outskirts of the Terrorbog"
+	icon_state = "indoors"
+	soundenv = 8
+	plane = INDOOR_PLANE
+	converted_type = /area/rogue/outdoors/warcamp/outskirts/terrorbog
+
+
+/area/rogue/outdoors/warcamp/outskirts/terrorbog
+	name = "the Outskirts of the Terrorbog"
+	icon_state = "bog"
+	soundenv = 8
+	converted_type = /area/rogue/indoors/warcamp/outskirts/terrorbog
+	first_time_text = "THE BOG"
+	warden_area = TRUE
+	ambientsounds = AMB_BOGDAY
+	ambientnight = AMB_BOGNIGHT
+	spookysounds = SPOOKY_FROG
+	spookynight = SPOOKY_GEN
+	droning_sound = 'sound/music/area/bog.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+
+////////////////
+////////////////
+
+
+////////////////
+////////////////
+
+////////////////
+////////////////
+//////////////// WARBAND
+//////////////// AREAS
+////////////////
+////////////////
+
+
 
 // underworld
 /area/rogue/underworld

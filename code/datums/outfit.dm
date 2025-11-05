@@ -255,6 +255,9 @@
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
+					if(H.mind && H.mind.warband_ID > 0 && path == /obj/item/roguekey/mercenary)	// warband characters won't get a mercenary key
+						continue
+
 					var/obj/item/new_item = new path(H)
 					var/obj/item/item = H.get_item_by_slot(SLOT_BACK_L)
 					if(!item)

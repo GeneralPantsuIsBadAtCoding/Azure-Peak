@@ -1,0 +1,6124 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"am" = (
+/obj/structure/roguewindow,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"aw" = (
+/obj/effect/decal/cleanable/debris/stony,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"aU" = (
+/obj/structure/chair/wood/rogue/fancy,
+/obj/structure/fluff/wallclock,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"ba" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"bg" = (
+/obj/structure/bed/rogue/inn/double,
+/obj/item/bedsheet/rogue/fabric_double,
+/turf/open/floor/carpet/stellar,
+/area/rogue/indoors/warcamp/wizard)
+"bi" = (
+/obj/structure/bars/pipe{
+	pixel_x = 16
+	},
+/obj/structure/bars/pipe{
+	pixel_x = 32
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/wizard)
+"bk" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"bn" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/structure/fluff/railing/corner,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"bu" = (
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"bD" = (
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/north,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana{
+	light_outer_range = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"bN" = (
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"bR" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"bU" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/rogueore/cinnabar,
+/obj/item/rogueore/cinnabar,
+/obj/item/rogueore/cinnabar,
+/obj/item/rogueore/cinnabar,
+/obj/item/rogueore/cinnabar,
+/obj/item/rogueore/cinnabar,
+/obj/item/reagent_containers/glass/bottle/mercury{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/glass/bottle/mercury{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/glass/bottle/mercury{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/glass/bottle/mercury{
+	pixel_x = 9
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cb" = (
+/obj/structure/chair/bench{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cg" = (
+/obj/structure/fluff/railing/corner,
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ci" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cj" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"cq" = (
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"cr" = (
+/obj/machinery/light/rogue/cauldron,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"ct" = (
+/obj/item/magic/obsidian,
+/obj/item/magic/obsidian,
+/obj/item/magic/obsidian,
+/obj/item/magic/obsidian,
+/obj/item/magic/obsidian,
+/obj/item/ash,
+/obj/item/ash,
+/obj/item/ash,
+/obj/item/ash,
+/obj/item/ash,
+/obj/structure/closet/crate/chest/neu_fancy,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/ash,
+/obj/item/magic/infernal/core,
+/obj/item/magic/infernal/core,
+/obj/item/magic/infernal/core,
+/obj/item/magic/infernal/fang,
+/obj/item/magic/infernal/fang,
+/obj/item/magic/infernal/fang,
+/obj/item/magic/infernal/fang,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cv" = (
+/obj/structure/fluff/statue/gargoyle,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cy" = (
+/obj/structure/fluff/walldeco/mageguild2,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"cz" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460"
+	},
+/turf/open/floor/rogue/tile/harem{
+	color = #A6A6A6
+	},
+/area/rogue/indoors/warcamp/wizard)
+"cG" = (
+/obj/machinery/light/rogue/wallfire{
+	pixel_y = 33
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"cN" = (
+/obj/structure/chair/wood/rogue/fancy{
+	icon_state = "chair1";
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n";
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"cO" = (
+/obj/item/rope/chain/bindingshackles/t3,
+/obj/item/rope/chain/bindingshackles/t3,
+/obj/structure/closet/crate/chest/neu_iron,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"de" = (
+/obj/structure/bars/pipe{
+	dir = 9;
+	pixel_x = 19
+	},
+/obj/structure/bars/pipe{
+	dir = 10;
+	pixel_x = 19
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"dh" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"dq" = (
+/obj/structure/table/wood,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"dD" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"dG" = (
+/obj/effect/decal/cobbleedge,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"dK" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 2
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"dN" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"dZ" = (
+/obj/structure/chair/bench{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"eA" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = 7;
+	pixel_x = -7
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"eU" = (
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"eW" = (
+/obj/structure/chair/wood/rogue{
+	dir = 8
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"fd" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"fe" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"fg" = (
+/obj/structure/mineral_door/wood/fancywood,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"fh" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"fm" = (
+/obj/structure/table/wood,
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"fo" = (
+/obj/structure/bookcase/random{
+	pixel_y = -4
+	},
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"fs" = (
+/obj/structure/roguewindow,
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460";
+	open = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"fD" = (
+/obj/structure/table/wood,
+/obj/item/rogueweapon/surgery/hemostat/first,
+/obj/item/rogueweapon/surgery/hemostat/second,
+/obj/item/natural/bundle/cloth,
+/obj/item/needle,
+/obj/item/needle,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"fG" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"fI" = (
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border/east,
+/obj/structure/fluff/railing/border,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"fL" = (
+/obj/structure/fluff/statue/knight/r,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"fO" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/effect/decal/cleanable/debris/glassy,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"fU" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460"
+	},
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"gf" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 2
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"gn" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"gp" = (
+/obj/structure/bars/pipe{
+	pixel_x = 16
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"gw" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"gy" = (
+/obj/structure/chair/bench{
+	dir = 4
+	},
+/obj/structure/fluff/railing/border/west,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"gL" = (
+/obj/effect/decal/cleanable/debris/stony,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"gW" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"gY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"hp" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"hL" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"hM" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"hN" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"ih" = (
+/obj/structure/roguemachine/scomm,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"im" = (
+/obj/structure/fluff/railing/border,
+/obj/item/roguebin/water/gross,
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 11;
+	pixel_y = -2
+	},
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"iq" = (
+/obj/structure/fluff/railing/border{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/fermentation_keg/water,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"iu" = (
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"iA" = (
+/obj/structure/table/wood,
+/obj/item/millstone{
+	pixel_y = 12
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"iJ" = (
+/obj/structure/closet/crate/roguecloset,
+/obj/item/reagent_containers/glass/bowl/gold,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/cup,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/reagent_containers/glass/bowl/iron,
+/obj/item/clothing/head/roguetown/chef,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"iQ" = (
+/obj/structure/roguewindow,
+/turf/closed/wall/mineral/rogue/stonebrick{
+	max_integrity = 4500;
+	name = "twice-warded wall"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"iW" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/closed/wall/mineral/rogue/pipe,
+/area/rogue/indoors/warcamp/wizard)
+"jd" = (
+/obj/structure/bed/rogue,
+/obj/item/bedsheet/rogue/fabric,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"je" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"jh" = (
+/obj/structure/closet/crate/roguecloset,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"jo" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana{
+	light_outer_range = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"jq" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"jx" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"jA" = (
+/obj/structure/table/wood{
+	dir = 4;
+	icon_state = "longtable"
+	},
+/obj/item/book/rogue/blackmountain,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"jL" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kc" = (
+/obj/structure/table/wood,
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"kx" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ky" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kJ" = (
+/obj/structure/fluff/statue/gargoyle,
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"kM" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/fluff/railing/corner,
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kO" = (
+/obj/structure/fluff/railing/corner/south_west,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kQ" = (
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"kR" = (
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
+/obj/item/rogueweapon/huntingknife/idagger/navaja,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"kV" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"kW" = (
+/obj/structure/fluff/walldeco/bigpainting{
+	pixel_x = -1
+	},
+/turf/open/floor/carpet/stellar,
+/area/rogue/indoors/warcamp/wizard)
+"lg" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"lr" = (
+/obj/structure/bars/pipe{
+	pixel_x = 32
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/wizard)
+"lt" = (
+/obj/structure/chair/wood/rogue{
+	dir = 1
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"lB" = (
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"lI" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"lM" = (
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"lO" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"mi" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"mn" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"mx" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"my" = (
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"mA" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"mK" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"mR" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"mW" = (
+/turf/open/floor/carpet/stellar,
+/area/rogue/indoors/warcamp/wizard)
+"mX" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"mY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ni" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l{
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"nm" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"nt" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"nz" = (
+/obj/structure/bars/pipe{
+	pixel_y = 17
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"nF" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"nI" = (
+/obj/structure/table/wood,
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"nK" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"nT" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"nU" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"nY" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"ob" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"od" = (
+/obj/structure/fluff/railing/border,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"oj" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"ol" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"oD" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"oI" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"oR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ph" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"pi" = (
+/turf/closed/wall/mineral/rogue/stonebrick{
+	max_integrity = 4500;
+	name = "twice-warded wall"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"po" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"pp" = (
+/obj/structure/stairs/fancy/c{
+	dir = 8
+	},
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"px" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"py" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"pG" = (
+/obj/structure/table/wood,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"pK" = (
+/obj/structure/table/wood,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"pO" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"qi" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"qp" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/peppermill,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/fork/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/kitchen/spoon/silver,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/reagent_containers/glass/bowl/silver,
+/obj/item/rogueweapon/huntingknife/cleaver,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"qx" = (
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana{
+	light_outer_range = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"qD" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"qR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = -8;
+	pixel_x = -22
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"qT" = (
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border/west,
+/obj/structure/fluff/railing/border,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"ra" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 4
+	},
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"rb" = (
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = 7;
+	pixel_x = -7
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"rl" = (
+/obj/structure/table/wood{
+	dir = 8;
+	icon_state = "longtable"
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"ro" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"rq" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/ingot/gold,
+/obj/item/ingot/gold,
+/obj/item/ingot/gold,
+/obj/item/ingot/gold,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ru" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460";
+	open = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"rC" = (
+/obj/structure/table/wood,
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"rD" = (
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"rH" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/obj/item/reagent_containers/glass/bottle/rogue/strongmanapot,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"rI" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/wizard)
+"rN" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"rX" = (
+/obj/structure/table/wood,
+/obj/item/candle/skull/blue/lit,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"sa" = (
+/obj/structure/bookcase/random{
+	pixel_x = -4
+	},
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/wizard)
+"sd" = (
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"sl" = (
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"sp" = (
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/magic/manacrystal,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/item/reagent_containers/food/snacks/grown/manabloom,
+/obj/structure/closet/crate/chest/neu_iron,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/item/magic/leyline,
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"st" = (
+/obj/structure/table/wood,
+/obj/structure/fluff/walldeco/bigpainting/lake{
+	pixel_x = 0
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/turned,
+/area/rogue/indoors/warcamp/wizard)
+"sB" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"sD" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"sG" = (
+/obj/structure/table/wood,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"sH" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"sJ" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"sP" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-sread"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"sR" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/obj/structure/bars/pipe{
+	dir = 10;
+	pixel_x = 19
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"sU" = (
+/obj/machinery/tanningrack,
+/obj/effect/decal/cobbleedge{
+	dir = 5;
+	pixel_x = -10
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"tj" = (
+/obj/structure/bookcase/random,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"ts" = (
+/obj/structure/bookcase/random{
+	pixel_x = 4
+	},
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/wizard)
+"tu" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ty" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"tL" = (
+/obj/item/roguebin/water/gross,
+/obj/item/reagent_containers/glass/bucket{
+	pixel_x = 11;
+	pixel_y = -2
+	},
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/obj/item/natural/cloth,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"tQ" = (
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cleanable/debris/glassy,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"tT" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"up" = (
+/obj/effect/decal/cleanable/dirt/cobweb,
+/turf/closed/wall/mineral/rogue/stone{
+	icon = 'icons/roguetown/misc/doors.dmi';
+	icon_state = "fancy_wood";
+	name = "door";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/wizard)
+"us" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ux" = (
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"uz" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 2
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"uA" = (
+/obj/structure/chair/bench{
+	dir = 4
+	},
+/obj/structure/fluff/railing/corner,
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"uB" = (
+/obj/structure/fluff/railing/corner/south_west,
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"uE" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/north,
+/obj/structure/curtain/black{
+	color = "#4B5460";
+	open = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"uI" = (
+/obj/structure/roguewindow,
+/obj/structure/curtain/black{
+	color = "#4B5460"
+	},
+/turf/open/floor/rogue/ruinedwood/chevron,
+/area/rogue/indoors/warcamp/wizard)
+"uJ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-n";
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"uL" = (
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"uM" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"uZ" = (
+/obj/structure/closet/crate/chest{
+	storage_capacity = 60;
+	name = "onager supplies"
+	},
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/handsaw,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/bundle/plank{
+	amount = 10
+	},
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/ingot/steel,
+/obj/item/ingot/steel,
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"va" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"vb" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"vc" = (
+/obj/structure/closet/crate/roguecloset,
+/obj/structure/fluff/railing/border,
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"vd" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/fluff/railing/corner,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"vv" = (
+/obj/structure/fluff/railing/corner/south_east,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"vC" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 4
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"vN" = (
+/obj/structure/fermentation_keg/water,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"vZ" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"wj" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"wo" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 4
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"wt" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"wu" = (
+/obj/structure/bookcase/random,
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/wizard)
+"wI" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"wJ" = (
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t2,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"wM" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"wN" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"wT" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 5;
+	pixel_y = 17
+	},
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 5;
+	pixel_y = 32
+	},
+/obj/structure/bars/pipe{
+	dir = 4;
+	pixel_y = 32
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"wZ" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable"
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"xc" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"xf" = (
+/obj/structure/chair/wood/rogue{
+	dir = 1
+	},
+/obj/effect/decal/carpet/kover_darkred{
+	pixel_x = 16
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"xn" = (
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"xr" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 2
+	},
+/obj/effect/decal/carpet/kover_darkred{
+	pixel_x = 16
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"xt" = (
+/obj/structure/table/wood{
+	dir = 2;
+	icon_state = "longtable_mid"
+	},
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"xx" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"xD" = (
+/obj/structure/fermentation_keg/hagwoodbitter,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"xJ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"xO" = (
+/obj/machinery/light/rogue/hearth,
+/obj/item/cooking/pan{
+	pixel_x = 5
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"xP" = (
+/obj/structure/table/optable,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"xU" = (
+/obj/structure/bed/rogue{
+	dir = 8
+	},
+/obj/item/bedsheet/rogue/pelt{
+	dir = 1
+	},
+/obj/structure/fluff/walldeco/rpainting/forest{
+	pixel_x = -32
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ya" = (
+/obj/structure/chair/bench/couchablack,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yb" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"yf" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"yr" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"yu" = (
+/obj/structure/table/wood,
+/obj/item/rogueweapon/stoneaxe/handaxe/copper,
+/obj/item/reagent_containers/glass/bottle/mercury,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"yy" = (
+/obj/structure/mineral_door/wood/fancywood,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yC" = (
+/obj/structure/chair/bench/couchablack/r,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yE" = (
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yJ" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l{
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"yM" = (
+/obj/structure/bed/rogue{
+	dir = 8
+	},
+/obj/item/bedsheet/rogue/wool{
+	dir = 8
+	},
+/obj/structure/fluff/walldeco/rpainting/crown{
+	pixel_x = -32
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yR" = (
+/obj/structure/closet/crate/chest{
+	storage_capacity = 60;
+	name = "onager supplies"
+	},
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/handsaw,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/bundle/plank{
+	amount = 10
+	},
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/ingot/iron,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/roguegear,
+/obj/item/ingot/steel,
+/obj/item/ingot/steel,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"yU" = (
+/obj/effect/baseturf_helper,
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/wizard)
+"yV" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/rogue/toastcrumbs,
+/obj/item/reagent_containers/food/snacks/rogue/biscuit,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"yW" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"yY" = (
+/obj/structure/table/wood,
+/obj/item/book/rogue/naledi1,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"zg" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"zC" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"zJ" = (
+/obj/effect/decal/cleanable/debris/stony,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"zT" = (
+/turf/closed/wall/mineral/rogue/pipe,
+/area/rogue/indoors/warcamp/wizard)
+"zU" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Am" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ao" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Ap" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ay" = (
+/obj/structure/fluff/statue/knight/r,
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"AE" = (
+/turf/closed/wall/mineral/rogue/stone{
+	icon = 'icons/roguetown/misc/doors.dmi';
+	icon_state = "fancy_wood";
+	name = "door";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/wizard)
+"AO" = (
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"AP" = (
+/obj/structure/table/wood,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = -32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"AT" = (
+/obj/structure/table/wood,
+/obj/item/organ/heart,
+/obj/item/reagent_containers/glass/bottle/alchemical/rogue/rotcure,
+/obj/item/reagent_containers/lux,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"AU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bucket/pot/teapot,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/obj/item/reagent_containers/glass/cup/ceramic/fancy,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"AZ" = (
+/obj/structure/mineral_door/wood/fancywood,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Bh" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Bj" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Bk" = (
+/obj/structure/table/wood,
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"BE" = (
+/obj/structure/gate/bars/preopen{
+	gid = summongate;
+	redstone_id = peasantgate
+	},
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"BJ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"BN" = (
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"BO" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"BQ" = (
+/obj/structure/chair/wood/rogue,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"BS" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/structure/fluff/railing/corner/south_west,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"BW" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/wizard)
+"Ca" = (
+/obj/structure/bed/rogue{
+	dir = 8
+	},
+/obj/item/bedsheet/rogue/wool{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Cc" = (
+/obj/structure/chair/wood/rogue/throne,
+/obj/effect/landmark/start/warlordlate,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ck" = (
+/obj/structure/bed/rogue,
+/obj/item/bedsheet/rogue/pelt,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Cm" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Cu" = (
+/obj/structure/fluff/railing/border,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"CO" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"CR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = -8;
+	pixel_x = 10
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"CV" = (
+/turf/open/lava/mana{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/wizard)
+"CX" = (
+/obj/structure/curtain/black{
+	color = "#4B5460";
+	open = 0
+	},
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Dd" = (
+/obj/structure/closet/crate/chest/wicker,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Dw" = (
+/obj/item/rope/chain/bindingshackles/t2,
+/obj/item/rope/chain/bindingshackles/t2,
+/obj/item/rope/chain/bindingshackles/t2,
+/obj/structure/closet/crate/chest/neu_iron,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Dx" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t1,
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t2,
+/obj/item/magic/melded/t3,
+/obj/item/magic/melded/t3,
+/obj/item/magic/melded/t3,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"DA" = (
+/obj/structure/fluff/statue/knight,
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"DD" = (
+/obj/structure/chair/bench{
+	dir = 4
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"DF" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cleanable/debris/glassy,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"DP" = (
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"DZ" = (
+/obj/structure/fluff/warband/warband_recruit,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Eb" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Eu" = (
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"Ew" = (
+/obj/structure/table/wood,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Ex" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bowl/silver,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"EF" = (
+/obj/structure/fluff/warband/shortcut,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"EJ" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"EP" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5;
+	pixel_x = -10
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"ER" = (
+/obj/structure/fluff/railing/corner,
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"EW" = (
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"EX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/fluff/railing/corner,
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"EZ" = (
+/obj/structure/table/wood,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Fa" = (
+/obj/structure/table/wood,
+/obj/structure/fluff/wallclock,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = 0;
+	pixel_x = 32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"Fi" = (
+/obj/structure/chair/wood/rogue/fancy{
+	icon_state = "chair1";
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Fj" = (
+/obj/structure/stairs/d,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Fl" = (
+/obj/structure/chair/wood/rogue{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Ft" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Fw" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"FA" = (
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"FB" = (
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"FL" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"FN" = (
+/obj/effect/decal/cleanable/debris/woody,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"FP" = (
+/obj/structure/fluff/railing/border/west,
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"FT" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/winch{
+	dir = 2;
+	gid = summongate;
+	redstone_id = summongate
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"FU" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Gh" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Gn" = (
+/obj/structure/bars/pipe{
+	dir = 10;
+	pixel_x = 19
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"GB" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"GE" = (
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"GN" = (
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"GP" = (
+/obj/structure/bars/pipe{
+	dir = 10;
+	pixel_x = 19
+	},
+/obj/structure/bars/pipe{
+	pixel_x = 49
+	},
+/turf/open/lava/mana{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/wizard)
+"GQ" = (
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"GR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"GZ" = (
+/obj/structure/fluff/statue/knight,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ha" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 4
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Hd" = (
+/obj/structure/table/wood{
+	icon_state = "longtable"
+	},
+/obj/structure/fluff/railing/border,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle/claybottle{
+	pixel_x = 11
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Hp" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Hs" = (
+/obj/structure/fluff/railing/border/west,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"HI" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"HL" = (
+/obj/machinery/gear_painter,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"HS" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/obj/structure/table/wood{
+	icon_state = "longtable";
+	dir = 1;
+	pixel_x = 2
+	},
+/obj/structure/table/wood{
+	icon_state = "longtable";
+	pixel_x = -2
+	},
+/obj/item/reagent_containers/glass/mortar,
+/obj/item/pestle,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"HT" = (
+/obj/structure/bookcase/random{
+	pixel_x = -4
+	},
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"HX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Id" = (
+/obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
+/turf/closed/wall/mineral/rogue/stone{
+	icon = 'icons/roguetown/misc/doors.dmi';
+	icon_state = "fancy_wood";
+	name = "door";
+	desc = null
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Ig" = (
+/obj/structure/chair/wood/rogue{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Iz" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"IE" = (
+/obj/structure/closet/crate/chest/crate{
+	storage_capacity = 60
+	},
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/tealeaves_dry,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/rogue/meat/poultry,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/rogue/honey,
+/obj/item/reagent_containers/food/snacks/rogue/honey,
+/obj/item/reagent_containers/food/snacks/butter,
+/obj/item/reagent_containers/food/snacks/butter,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"IH" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = 0;
+	light_outer_range = 8;
+	pixel_x = 32
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"IP" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"Je" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Jm" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"Jq" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/fluff/railing/corner/south_east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Jv" = (
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/obj/structure/bars/pipe{
+	dir = 5;
+	pixel_x = -13;
+	pixel_y = -17
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"JH" = (
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"JI" = (
+/obj/structure/fluff/railing/corner,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"JJ" = (
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"JT" = (
+/obj/structure/fluff/railing/corner/south_west,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"JX" = (
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/open/lava/mana{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Kw" = (
+/obj/structure/mineral_door/wood/fancywood{
+	lockid = "manor"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ky" = (
+/turf/closed/wall/mineral/rogue/stone,
+/area/rogue/indoors/warcamp/wizard)
+"KJ" = (
+/obj/structure/bookcase/random{
+	pixel_x = 4
+	},
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"KK" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cleanable/debris/woody,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"KL" = (
+/obj/structure/fluff/walldeco/bigpainting/lake{
+	pixel_y = -30
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"KU" = (
+/obj/structure/table/wood,
+/obj/item/rogueweapon/surgery/scalpel,
+/obj/item/rogueweapon/surgery/saw,
+/obj/item/rogueweapon/surgery/retractor,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Lf" = (
+/obj/structure/fluff/railing/border/west,
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Li" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Ll" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Ln" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Lo" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 8
+	},
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Lt" = (
+/obj/structure/fluff/railing/border,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Lw" = (
+/obj/structure/bookcase/random{
+	pixel_y = 31;
+	density = 0
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"LD" = (
+/obj/structure/table/wood{
+	dir = 2;
+	icon_state = "longtable_mid"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"LO" = (
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"LQ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"LR" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"LT" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"LX" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Md" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ml" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Mm" = (
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"MH" = (
+/obj/item/rope/chain/bindingshackles/t5,
+/obj/structure/closet/crate/chest/neu_fancy,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"MJ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = 16;
+	pixel_x = 2
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"ML" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"MV" = (
+/obj/structure/fluff/alch,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Nf" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Nh" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Nt" = (
+/obj/structure/bookcase/random/archive,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"NR" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"NV" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5;
+	pixel_x = -10
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Oe" = (
+/obj/item/magic/fairydust,
+/obj/item/magic/fairydust,
+/obj/item/magic/fairydust,
+/obj/item/magic/fairydust,
+/obj/item/magic/fairydust,
+/obj/item/magic/fairydust,
+/obj/item/magic/heartwoodcore,
+/obj/item/magic/heartwoodcore,
+/obj/item/magic/iridescentscale,
+/obj/item/magic/iridescentscale,
+/obj/structure/closet/crate/chest/neu_fancy,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ok" = (
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ov" = (
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/west,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Oy" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace,
+/obj/item/rogueweapon/mace/steel/morningstar,
+/obj/item/rogueweapon/mace/steel/morningstar,
+/obj/item/rogueweapon/mace/steel/morningstar,
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"OA" = (
+/obj/structure/chair/bench/couchablack/r,
+/obj/structure/fluff/railing/border/east,
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"OI" = (
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/structure/table/wood,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"OL" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = -9;
+	pixel_x = -10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Ph" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Po" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l{
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Py" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"PB" = (
+/obj/structure/fluff/walldeco/med3,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"PC" = (
+/obj/structure/chair/wood/rogue{
+	dir = 1
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"PL" = (
+/obj/structure/table/wood,
+/obj/structure/bookcase/random{
+	pixel_y = 31;
+	density = 0
+	},
+/obj/structure/fluff/walldeco/rpainting{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/dirt/cobweb,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"PM" = (
+/obj/structure/shisha/hookah,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"PN" = (
+/obj/structure/bars/pipe{
+	pixel_y = 17
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"PT" = (
+/turf/open/lava/mana{
+	light_outer_range = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"PY" = (
+/obj/effect/decal/cleanable/roguerune/arcyne/summoning/max,
+/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/warcamp/wizard)
+"Qb" = (
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"Qd" = (
+/obj/structure/roguemachine/scomm{
+	pixel_y = -32
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Qe" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable"
+	},
+/obj/structure/fluff/railing/border,
+/obj/item/reagent_containers/powder/herozium,
+/obj/item/reagent_containers/powder/ozium,
+/obj/item/reagent_containers/powder/salt,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Qf" = (
+/obj/effect/decal/cobbleedge{
+	dir = 5;
+	pixel_x = -10
+	},
+/obj/structure/flora/roguegrass,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Qi" = (
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"Qk" = (
+/obj/structure/fluff/statue{
+	pixel_y = 23
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Qm" = (
+/obj/structure/bars/pipe{
+	dir = 6;
+	pixel_x = -14;
+	pixel_y = -15
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 5;
+	pixel_y = 17
+	},
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"Qo" = (
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Qq" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/l{
+	light_outer_range = 8
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Qr" = (
+/obj/structure/roguewindow{
+	name = "thrice-warded window";
+	max_integrity = 3000
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Qw" = (
+/obj/structure/fluff/walldeco/bigpainting/lake{
+	pixel_x = 0
+	},
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"QM" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/obj/structure/bookcase/random{
+	pixel_y = 31;
+	density = 0
+	},
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = 0;
+	pixel_x = -63
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"QZ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Rs" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"Rv" = (
+/obj/structure/fluff/railing/border/east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"RC" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"RJ" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 19;
+	pixel_y = 0
+	},
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"RL" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"RV" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Sc" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/fluff/railing/corner/south_west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Sg" = (
+/obj/structure/mineral_door/bars{
+	locked = 1;
+	lockid = "warbandstandard"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Sl" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/obj/structure/fluff/railing/border,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Sn" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"So" = (
+/obj/item/alch/coaldust,
+/obj/item/alch/calendula,
+/obj/item/alch/calendula,
+/obj/item/alch/calendula,
+/obj/item/alch/firedust,
+/obj/item/alch/horn,
+/obj/item/alch/magicdust,
+/obj/item/alch/matricaria,
+/obj/item/alch/matricaria,
+/obj/item/alch/matricaria,
+/obj/item/alch/mentha,
+/obj/item/alch/mentha,
+/obj/item/alch/mentha,
+/obj/item/alch/ozium,
+/obj/item/alch/paris,
+/obj/item/alch/paris,
+/obj/item/alch/paris,
+/obj/item/alch/salvia,
+/obj/item/alch/salvia,
+/obj/item/alch/salvia,
+/obj/item/alch/swampdust,
+/obj/item/alch/swampdust,
+/obj/item/alch/symphitum,
+/obj/item/alch/symphitum,
+/obj/item/alch/symphitum,
+/obj/item/alch/taraxacum,
+/obj/item/alch/taraxacum,
+/obj/item/alch/taraxacum,
+/obj/item/alch/urtica,
+/obj/item/alch/urtica,
+/obj/item/alch/urtica,
+/obj/item/alch/valeriana,
+/obj/item/alch/valeriana,
+/obj/item/alch/valeriana,
+/obj/item/alch/viscera,
+/obj/item/alch/viscera,
+/obj/item/alch/viscera,
+/obj/item/alch/waterdust,
+/obj/item/alch/waterdust,
+/obj/item/alch/waterdust,
+/obj/item/alch/berrypowder,
+/obj/item/alch/berrypowder,
+/obj/item/alch/berrypowder,
+/obj/item/alch/bone,
+/obj/item/alch/bone,
+/obj/item/alch/bone,
+/obj/item/alch/irondust,
+/obj/item/alch/irondust,
+/obj/item/alch/benedictus,
+/obj/item/alch/benedictus,
+/obj/item/alch/benedictus,
+/obj/item/alch/atropa,
+/obj/item/alch/atropa,
+/obj/item/alch/atropa,
+/obj/item/alch/artemisia,
+/obj/item/alch/artemisia,
+/obj/item/alch/artemisia,
+/obj/item/alch/bonemeal,
+/obj/item/alch/bonemeal,
+/obj/item/alch/bonemeal,
+/obj/structure/closet/crate/chest/gold{
+	storage_capacity = 60
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Sz" = (
+/obj/structure/stairs/d,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"SO" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"SR" = (
+/obj/structure/fluff/statue{
+	pixel_y = 23
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"SX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Tc" = (
+/obj/structure/table/wood{
+	icon_state = "longtable";
+	pixel_x = -5
+	},
+/obj/effect/decal/carpet/kover_darkred{
+	pixel_x = 1
+	},
+/obj/item/scrying{
+	pixel_y = 10;
+	pixel_x = 22
+	},
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable";
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/beer/hagwoodbitter{
+	pixel_y = 5;
+	pixel_x = 23
+	},
+/obj/structure/fluff/warband/campaign_planner{
+	pixel_y = 6
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Ti" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Tj" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Tn" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/rogueweapon/mace/goden,
+/obj/item/rogueweapon/mace/goden,
+/obj/item/rogueweapon/mace/goden,
+/obj/item/rogueweapon/mace/goden/steel,
+/obj/item/rogueweapon/mace/goden/steel,
+/obj/item/rogueweapon/mace/goden/steel,
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Tw" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 4
+	},
+/turf/open/floor/rogue/tile/harem{
+	color = #A6A6A6
+	},
+/area/rogue/indoors/warcamp/wizard)
+"TH" = (
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"TK" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"TM" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/obj/item/reagent_containers/food/snacks/rogue/meat/coppiette,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"TT" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"Ua" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/structure/fluff/railing/corner,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Ub" = (
+/obj/item/magic/melded/t3,
+/obj/item/magic/melded/t3,
+/obj/item/magic/melded/t3,
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Uk" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/structure/flora/roguegrass/herb/paris{
+	pixel_y = 11;
+	pixel_x = 10
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Um" = (
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Ut" = (
+/obj/structure/fluff/railing/border,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Uy" = (
+/obj/structure/chair/bench{
+	dir = 8
+	},
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/fluff/railing/corner/south_east,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Uz" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"UL" = (
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"UN" = (
+/obj/structure/fluff/statue{
+	pixel_y = 23
+	},
+/obj/structure/fluff/railing/corner/north_east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"UP" = (
+/obj/structure/fluff/railing/border/east,
+/obj/structure/fluff/traveltile/warband/camp_to_outskirts,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"UR" = (
+/obj/structure/bed/rogue/shit,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"US" = (
+/obj/structure/fluff/railing/border/north,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"UT" = (
+/obj/structure/fluff/railing/corner/south_east,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"UZ" = (
+/obj/structure/table/wood{
+	icon_state = "longtable"
+	},
+/obj/structure/fluff/railing/border,
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"Ve" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"Vh" = (
+/obj/structure/rack/rogue/shelf/big{
+	icon_state = "shelf_biggest";
+	pixel_y = 0
+	},
+/obj/item/broom,
+/obj/item/broom,
+/obj/item/broom,
+/obj/item/broom,
+/obj/item/natural/feather,
+/obj/item/natural/feather,
+/obj/item/natural/feather,
+/obj/item/natural/feather,
+/obj/item/natural/feather,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/book_crafting_kit,
+/obj/item/book_crafting_kit,
+/obj/item/book_crafting_kit,
+/obj/item/book_crafting_kit,
+/obj/item/book_crafting_kit,
+/obj/item/book_crafting_kit,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Vi" = (
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/warcamp/wizard)
+"Vn" = (
+/obj/structure/table/wood,
+/obj/item/candle/skull/blue/lit,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Vs" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/obj/structure/fluff/statue{
+	pixel_y = 23
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"VC" = (
+/obj/effect/decal/cleanable/roguerune/arcyne/enchantment/greater,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"VO" = (
+/obj/structure/mineral_door/wood/fancywood,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"VT" = (
+/obj/structure/curtain/black{
+	color = "#4B5460";
+	open = 0
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"VU" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 5;
+	pixel_y = 17
+	},
+/obj/structure/bars/pipe{
+	dir = 4
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"VV" = (
+/obj/structure/fluff/walldeco/med5,
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/indoors/warcamp/wizard)
+"Wd" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Wn" = (
+/obj/structure/mineral_door/wood/fancywood,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Wt" = (
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"Ww" = (
+/obj/item/rope/chain/bindingshackles,
+/obj/item/rope/chain/bindingshackles,
+/obj/item/rope/chain/bindingshackles,
+/obj/item/rope/chain/bindingshackles,
+/obj/item/rope/chain/bindingshackles,
+/obj/structure/closet/crate/chest/neu_iron,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Wy" = (
+/obj/structure/table/wood,
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = 0;
+	pixel_x = 32;
+	light_outer_range = 8
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"WF" = (
+/obj/structure/chair/bench/couchablack,
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"WK" = (
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/warcamp/wizard)
+"WL" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "cobbleedge-n"
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"WY" = (
+/obj/effect/decal/cleanable/dirt/cobweb,
+/obj/item/broom,
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Xg" = (
+/obj/structure/bed/rogue,
+/obj/item/bedsheet/rogue/wool,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"Xr" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"Xt" = (
+/obj/structure/fluff/railing/corner,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"XA" = (
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"XE" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"XF" = (
+/obj/machinery/light/rogue/oven/south,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"XG" = (
+/obj/structure/stairs/d{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"XH" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/fluff/railing/border/east,
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"XK" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	pixel_x = 6;
+	pixel_y = 15
+	},
+/turf/open/lava/mana,
+/area/rogue/indoors/warcamp/wizard)
+"XQ" = (
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/floor/rogue/blocks/bluestone,
+/area/rogue/indoors/warcamp/wizard)
+"XU" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"XV" = (
+/obj/structure/chair/wood/rogue{
+	icon_state = "chair2";
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 2;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"XX" = (
+/obj/effect/decal/cleanable/debris/glassy,
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"XZ" = (
+/obj/structure/table/wood,
+/obj/item/rogueweapon/huntingknife/chefknife,
+/obj/item/rogueweapon/huntingknife/cleaver,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Yb" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/obj/structure/fluff/railing/border{
+	dir = 5;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/warcamp/wizard)
+"Yh" = (
+/turf/open/lava/mana{
+	dir = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Yi" = (
+/obj/structure/closet/crate/roguecloset/dark,
+/obj/item/book/rogue/tales3,
+/obj/item/book_crafting_kit,
+/obj/item/magic/voidstone,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/tile/harem1,
+/area/rogue/indoors/warcamp/wizard)
+"Yo" = (
+/obj/structure/table/wood{
+	dir = 2;
+	icon_state = "longtable_mid"
+	},
+/obj/machinery/light/rogue/wallfire/candle/blue{
+	pixel_y = 0;
+	light_outer_range = 8;
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/stellar{
+	color = "#A2A2A2"
+	},
+/area/rogue/indoors/warcamp/wizard)
+"Yr" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"Yv" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/warcamp/wizard)
+"Yx" = (
+/obj/structure/fluff/railing/corner/south_east,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"YQ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-e"
+	},
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"Zu" = (
+/obj/structure/bars/pipe{
+	dir = 5
+	},
+/turf/open/lava/mana{
+	dir = 4
+	},
+/area/rogue/indoors/warcamp/wizard)
+"ZC" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/obj/effect/decal/cleanable/debris/stony,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+"ZF" = (
+/obj/item/rope/chain/bindingshackles/t4,
+/obj/structure/closet/crate/chest/neu_iron,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ZN" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/warcamp/wizard)
+"ZT" = (
+/obj/structure/fluff/railing/border/north,
+/obj/structure/fluff/railing/border,
+/obj/structure/fluff/railing/border/east,
+/obj/structure/fluff/railing/border/west,
+/obj/structure/bars{
+	max_integrity = 2000;
+	name = "reinforced bars"
+	},
+/turf/open/lava/mana{
+	light_outer_range = 8
+	},
+/area/rogue/indoors/warcamp/wizard)
+"ZW" = (
+/obj/machinery/light/rogue/hearth,
+/obj/item/reagent_containers/glass/bucket/pot,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/warcamp/wizard)
+"ZX" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/warcamp/wizard)
+
+(1,1,1) = {"
+yU
+BW
+BW
+BW
+zT
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+zT
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+"}
+(2,1,1) = {"
+BW
+BW
+BW
+BW
+zT
+JJ
+FL
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+sU
+JJ
+zT
+zT
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+zT
+pi
+JJ
+JJ
+JJ
+JJ
+AE
+JJ
+JJ
+JJ
+JJ
+AE
+JJ
+JJ
+zT
+"}
+(3,1,1) = {"
+BW
+BW
+BW
+BW
+zT
+JJ
+Dd
+WK
+WK
+WK
+WK
+JJ
+JJ
+VO
+JJ
+JJ
+JJ
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+pi
+Yr
+LT
+Yr
+Yr
+FU
+Yr
+Yr
+yJ
+Yr
+FU
+Yr
+JJ
+zT
+"}
+(4,1,1) = {"
+BW
+BW
+BW
+BW
+zT
+JJ
+Dd
+WK
+WK
+WK
+WK
+JJ
+iq
+ux
+xO
+ZW
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+zT
+iQ
+XX
+Jm
+EP
+cj
+FN
+Nf
+KK
+Nf
+lB
+HI
+ux
+JJ
+zT
+"}
+(5,1,1) = {"
+zT
+zT
+zT
+zT
+zT
+JJ
+qp
+WK
+xD
+vN
+vN
+JJ
+iJ
+ux
+ux
+ux
+BJ
+gw
+gw
+Um
+qi
+JJ
+WY
+im
+yM
+dq
+xU
+rC
+Ca
+JJ
+zT
+pi
+tQ
+DF
+xJ
+zg
+zg
+zg
+zg
+OL
+sl
+Nf
+jq
+JJ
+zT
+"}
+(6,1,1) = {"
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+XZ
+ux
+ux
+ux
+GR
+Ex
+kU
+Fl
+je
+JJ
+sl
+Um
+Um
+Um
+Um
+Um
+EF
+fg
+zT
+up
+FP
+wt
+EJ
+Tj
+IP
+dZ
+ZN
+Tj
+sl
+oI
+ux
+JJ
+zT
+"}
+(7,1,1) = {"
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+XF
+ux
+dG
+AU
+Ex
+Fl
+Qo
+Kw
+sl
+Um
+Um
+Um
+Um
+Um
+EF
+fg
+zT
+AE
+Eu
+lM
+mn
+Jm
+od
+bD
+sd
+sl
+sl
+GB
+ux
+tj
+zT
+"}
+(8,1,1) = {"
+JJ
+JJ
+rD
+sH
+rD
+rD
+rD
+sH
+rD
+Qr
+Ub
+sl
+sp
+JJ
+XF
+ux
+fh
+Ft
+TM
+Fl
+je
+JJ
+jh
+vc
+Ck
+dq
+Xg
+dq
+jd
+JJ
+zT
+pi
+Qw
+lM
+mn
+GB
+Je
+bD
+sd
+sl
+Jm
+GB
+ux
+tj
+zT
+"}
+(9,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+vb
+pi
+wJ
+sl
+ct
+JJ
+IE
+iA
+GR
+eW
+eW
+Um
+RL
+JJ
+JJ
+JJ
+cz
+cz
+JJ
+cz
+cz
+JJ
+JJ
+pi
+lM
+lM
+mn
+Eb
+Je
+bD
+sd
+sl
+GB
+oI
+ux
+JJ
+BW
+"}
+(10,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+pi
+my
+sl
+Oe
+JJ
+st
+Ig
+vd
+Tj
+oR
+Tj
+Qd
+JJ
+JJ
+Qi
+PT
+PT
+Qi
+Qi
+PT
+Qi
+JJ
+AE
+Eu
+lM
+mn
+uJ
+Cu
+bD
+sd
+sl
+LQ
+ZX
+NV
+BW
+BW
+"}
+(11,1,1) = {"
+JJ
+JJ
+DP
+rD
+rD
+rD
+rD
+rD
+rD
+Qr
+Py
+sl
+sl
+JJ
+dq
+lt
+sl
+sl
+sl
+sl
+Ap
+JJ
+JJ
+JJ
+cz
+cz
+JJ
+cz
+cz
+JJ
+JJ
+AE
+UP
+Vi
+XG
+zg
+JT
+gy
+Ua
+zg
+ux
+ux
+nm
+cq
+cq
+"}
+(12,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+BE
+sB
+sl
+sl
+JJ
+WF
+Um
+sl
+sl
+sl
+sl
+HL
+JJ
+JJ
+mR
+jA
+xt
+Yo
+LD
+rl
+jx
+JJ
+pi
+Ov
+aa
+JI
+Tj
+LO
+MJ
+ux
+lg
+ux
+ux
+ux
+cq
+BW
+"}
+(13,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+PY
+rD
+rD
+rD
+rD
+RC
+sl
+AO
+JJ
+OA
+mX
+ba
+sl
+ba
+SX
+Sn
+JJ
+fo
+Eb
+yW
+yW
+yW
+yW
+yW
+sl
+tj
+am
+fO
+Vi
+Rs
+nU
+nY
+Vi
+Vi
+Vi
+xx
+ux
+jq
+JJ
+zT
+"}
+(14,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+nT
+sl
+MH
+JJ
+Tn
+va
+sl
+sl
+sl
+sl
+kV
+JJ
+fo
+va
+sl
+mY
+va
+sl
+sl
+sP
+tj
+JJ
+JJ
+NR
+NR
+NR
+bR
+NR
+NR
+NR
+sd
+Qf
+ux
+JJ
+zT
+"}
+(15,1,1) = {"
+JJ
+JJ
+DP
+rD
+rD
+rD
+rD
+rD
+rD
+Qr
+FT
+sl
+ZF
+JJ
+rq
+sl
+sl
+sl
+sl
+sl
+rH
+JJ
+fo
+va
+sl
+sl
+sl
+sl
+sl
+sP
+tj
+JJ
+JJ
+sG
+xf
+xn
+xn
+xn
+xr
+nI
+sd
+LO
+ux
+wu
+zT
+"}
+(16,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+rD
+pi
+Py
+sl
+cO
+JJ
+uZ
+sl
+sl
+VC
+sl
+sl
+yR
+JJ
+JJ
+IH
+SO
+XE
+Tw
+fe
+SO
+hp
+JJ
+JJ
+JJ
+Fa
+PC
+xn
+xn
+xn
+uz
+Wy
+nt
+oI
+ux
+wu
+zT
+"}
+(17,1,1) = {"
+JJ
+JJ
+rD
+rD
+rD
+rD
+rD
+rD
+vb
+pi
+zU
+sl
+Dw
+JJ
+Dx
+sl
+sl
+sl
+sl
+sl
+bU
+JJ
+JJ
+JJ
+fU
+fU
+AZ
+fU
+fU
+JJ
+KJ
+KJ
+JJ
+JJ
+JJ
+sa
+sa
+sa
+JJ
+JJ
+bn
+oI
+ux
+wu
+zT
+"}
+(18,1,1) = {"
+JJ
+JJ
+rD
+wI
+rD
+rD
+rD
+wI
+rD
+Qr
+Py
+sl
+Ww
+JJ
+Oy
+Eb
+sl
+sl
+sl
+sl
+hL
+JJ
+JJ
+JJ
+gW
+gW
+gW
+gW
+gW
+Po
+gW
+gW
+KJ
+KJ
+KJ
+KJ
+JJ
+JJ
+JJ
+JJ
+Vs
+oI
+ux
+JJ
+zT
+"}
+(19,1,1) = {"
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+tu
+Kw
+tu
+JJ
+JJ
+JJ
+kx
+sl
+hM
+JJ
+JJ
+JJ
+fo
+OI
+Hp
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+gf
+fG
+fU
+Qi
+fU
+Py
+GB
+ux
+JJ
+zT
+"}
+(20,1,1) = {"
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+JJ
+ty
+sl
+uL
+JJ
+JJ
+JJ
+tu
+Kw
+tu
+JJ
+JJ
+JJ
+fo
+ya
+Yx
+cb
+Jq
+Wd
+Wd
+HX
+pp
+wM
+Wd
+Wd
+yr
+dK
+oD
+fU
+Qi
+fU
+Py
+Ao
+ux
+wu
+zT
+"}
+(21,1,1) = {"
+JJ
+PM
+Qo
+CX
+sl
+JJ
+ky
+zC
+sl
+GZ
+sl
+sl
+sl
+DA
+va
+LX
+sl
+sl
+uL
+JJ
+JJ
+JJ
+fo
+yC
+CO
+ZT
+kM
+Bj
+ML
+Fl
+xn
+BQ
+ML
+nK
+US
+sD
+JJ
+JJ
+JJ
+JJ
+Qk
+Ll
+ux
+wu
+zT
+"}
+(22,1,1) = {"
+JJ
+cG
+Qo
+uE
+sl
+ru
+sl
+yb
+yb
+yb
+yb
+yb
+yb
+yb
+yb
+yb
+yb
+sl
+sl
+JJ
+JJ
+JJ
+fo
+Bk
+uB
+DD
+cg
+Ti
+fm
+Fl
+xn
+BQ
+ML
+fd
+GE
+Uk
+CR
+ro
+tu
+LR
+nF
+oI
+ux
+wu
+zT
+"}
+(23,1,1) = {"
+JJ
+Qo
+Qo
+uE
+sl
+ru
+sl
+Yx
+nT
+ux
+cN
+Fi
+Fi
+Fi
+sl
+Fj
+vZ
+sl
+sl
+Qo
+bu
+JJ
+JJ
+kJ
+qi
+sl
+Je
+yW
+pO
+Um
+xn
+Um
+yW
+sJ
+RV
+sl
+mY
+va
+JJ
+EZ
+TK
+qR
+ux
+JJ
+zT
+"}
+(24,1,1) = {"
+Nt
+kW
+mW
+uE
+sl
+yy
+sl
+UZ
+Ml
+Tj
+ML
+ML
+ML
+ML
+sl
+XA
+iu
+sl
+sl
+Qo
+Qo
+cy
+Qo
+Qo
+Qo
+Qo
+FA
+Bh
+Bh
+wj
+Ha
+yf
+Bh
+Bh
+Xt
+Um
+Um
+Um
+tu
+mK
+Um
+Um
+Um
+JJ
+zT
+"}
+(25,1,1) = {"
+JJ
+bg
+mW
+uE
+sl
+ru
+Cc
+dN
+px
+LQ
+Um
+Um
+Um
+Um
+LQ
+jL
+GN
+LQ
+dD
+Qo
+Qo
+Wn
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Um
+Um
+Um
+yy
+mn
+Um
+Um
+Um
+wu
+zT
+"}
+(26,1,1) = {"
+JJ
+VT
+VT
+uE
+sl
+yy
+us
+wZ
+ph
+ob
+ML
+pK
+ML
+kc
+ob
+BO
+GN
+Tj
+us
+Qo
+Qo
+cy
+Qo
+Qo
+Qo
+Qo
+vv
+Wd
+Wd
+HX
+pp
+wM
+Wd
+Wd
+Ln
+Um
+Um
+Um
+tu
+XU
+Um
+Um
+Um
+wu
+zT
+"}
+(27,1,1) = {"
+JJ
+ih
+JH
+Xt
+sl
+ru
+sl
+kR
+sB
+sl
+FB
+FB
+FB
+FB
+sl
+Sz
+yE
+LQ
+sl
+Qo
+bu
+JJ
+JJ
+kJ
+Qo
+sl
+Je
+uM
+gw
+Um
+xn
+Um
+gw
+XV
+UL
+eU
+LQ
+tT
+JJ
+rX
+py
+oI
+ux
+wu
+zT
+"}
+(28,1,1) = {"
+JJ
+aU
+Tc
+Qo
+sl
+fs
+sl
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+JH
+Lf
+WL
+va
+JJ
+JJ
+JJ
+JJ
+sl
+Yx
+cb
+Uz
+Ti
+ML
+Fl
+xn
+BQ
+yY
+nK
+GE
+Tj
+lg
+lg
+tu
+Nh
+Am
+oI
+ux
+JJ
+zT
+"}
+(29,1,1) = {"
+JJ
+Yi
+Qo
+Qo
+sl
+JJ
+DZ
+Cm
+sl
+Ay
+sl
+sl
+sl
+fL
+sl
+Cm
+Tj
+sl
+uL
+JJ
+PL
+JJ
+JJ
+zg
+BS
+ZT
+kM
+Ti
+kc
+Fl
+xn
+BQ
+ML
+fd
+EW
+ci
+JJ
+JJ
+JJ
+JJ
+SR
+GB
+Ll
+JJ
+zT
+"}
+(30,1,1) = {"
+JJ
+JJ
+ru
+JJ
+Nt
+JJ
+AE
+JJ
+JJ
+JJ
+tu
+Kw
+tu
+JJ
+JJ
+JJ
+tu
+Kw
+tu
+JJ
+QM
+JJ
+JJ
+us
+kO
+DD
+ER
+Bh
+Bh
+wj
+Ha
+yf
+Bh
+Bh
+Xt
+qi
+tj
+JJ
+JJ
+fo
+Yx
+Uy
+Fw
+wu
+zT
+"}
+(31,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+JJ
+JJ
+JJ
+JJ
+JJ
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+JJ
+Lw
+yy
+va
+sl
+sl
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+Qo
+RL
+dh
+tj
+JJ
+JJ
+fo
+Je
+jo
+Ph
+wu
+zT
+"}
+(32,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+JJ
+vN
+WK
+bk
+WK
+WK
+KU
+yu
+fD
+WK
+WK
+WK
+JJ
+Vh
+JJ
+Eb
+sl
+sl
+ux
+JJ
+HT
+HT
+Qo
+Qo
+Qo
+HT
+HT
+HT
+HT
+JJ
+JJ
+JJ
+fo
+kR
+uA
+Mm
+wu
+zT
+"}
+(33,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+PB
+WK
+WK
+gY
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+vC
+JJ
+JJ
+JJ
+cv
+sl
+sl
+Iz
+JJ
+JJ
+JJ
+uI
+Wn
+uI
+Ky
+KJ
+KJ
+JJ
+JJ
+ts
+ts
+JJ
+UN
+oI
+Yv
+JJ
+zT
+"}
+(34,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+MV
+WK
+Hd
+gn
+qT
+Qo
+Qo
+Qo
+Qo
+qT
+BN
+sd
+yy
+sl
+RC
+zg
+zg
+zJ
+AP
+JJ
+JJ
+Qq
+hN
+Li
+mA
+ni
+xn
+xn
+ni
+ni
+Yb
+xn
+xn
+sd
+oI
+ux
+JJ
+zT
+"}
+(35,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+HS
+WK
+Sl
+gn
+qx
+Qo
+AT
+xP
+Qo
+qx
+BN
+sd
+yy
+sl
+RC
+Tj
+Tj
+Tj
+gL
+Gh
+JJ
+ux
+eA
+YQ
+Lt
+xc
+Xr
+ra
+Xr
+Xr
+wo
+Xr
+xc
+sd
+Jm
+KL
+JJ
+zT
+"}
+(36,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+cr
+WK
+Qe
+gn
+fI
+Qo
+Qo
+Qo
+Qo
+fI
+BN
+sd
+yy
+mx
+RC
+sl
+sl
+sl
+sl
+Vn
+JJ
+Um
+Um
+Um
+bN
+Md
+Md
+EX
+Hs
+Md
+Sc
+Md
+Md
+QZ
+Ve
+ux
+JJ
+zT
+"}
+(37,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+VV
+WK
+WK
+gY
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+lI
+JJ
+rN
+Rv
+rb
+Ok
+UT
+mx
+XH
+JJ
+BQ
+kc
+yV
+Fl
+ux
+ux
+ux
+wN
+ux
+ux
+ux
+ux
+ux
+ux
+ux
+JJ
+zT
+"}
+(38,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+JJ
+So
+WK
+bk
+WK
+WK
+Ew
+Wt
+pG
+WK
+WK
+WK
+JJ
+Ut
+ol
+NR
+Lo
+mi
+lO
+NR
+JJ
+oj
+JJ
+JJ
+oj
+JJ
+JJ
+JJ
+JJ
+oj
+JJ
+JJ
+oj
+JJ
+JJ
+oj
+JJ
+zT
+"}
+(39,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+JJ
+JJ
+JJ
+XQ
+Sg
+XQ
+JJ
+XQ
+Sg
+XQ
+JJ
+JJ
+JJ
+BW
+aw
+GQ
+xn
+GQ
+xn
+RJ
+kQ
+kQ
+kQ
+de
+Gn
+JJ
+CV
+Qi
+Qi
+PN
+Qi
+Qi
+Qi
+Qi
+Qi
+CV
+zT
+"}
+(40,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+CV
+Qi
+Qi
+Qi
+XQ
+WK
+WK
+WK
+WK
+UR
+WK
+WK
+XQ
+CV
+BW
+BW
+cq
+xn
+xn
+xn
+xn
+oj
+Qi
+Qi
+Qi
+Qi
+Qi
+JJ
+JJ
+Qi
+Qi
+PN
+Qi
+CV
+Qi
+Qi
+CV
+Qi
+zT
+"}
+(41,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+Yh
+CV
+Qi
+Qi
+XQ
+UR
+WK
+WK
+WK
+WK
+WK
+WK
+XQ
+Qi
+BW
+aw
+ZC
+qD
+qD
+TT
+tL
+JJ
+wT
+VU
+Qm
+Jv
+Jv
+TH
+Qb
+JX
+po
+nz
+po
+sR
+XK
+XK
+XK
+iW
+rI
+"}
+(42,1,1) = {"
+zT
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Yh
+Qi
+Qi
+JJ
+XQ
+XQ
+JJ
+JJ
+JJ
+XQ
+XQ
+JJ
+BW
+BW
+JJ
+JJ
+Id
+AE
+JJ
+JJ
+JJ
+Qi
+JJ
+JJ
+Qi
+JJ
+JJ
+JJ
+Qi
+Qi
+PN
+Qi
+gp
+Qi
+CV
+Qi
+BW
+BW
+"}
+(43,1,1) = {"
+zT
+Qi
+Qi
+CV
+Qi
+CV
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+BW
+BW
+Qi
+JJ
+JJ
+JJ
+JJ
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Zu
+GP
+gp
+CV
+BW
+BW
+BW
+BW
+"}
+(44,1,1) = {"
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+Qi
+Qi
+Qi
+CV
+Qi
+CV
+Qi
+Yh
+Qi
+BW
+BW
+BW
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+Qi
+zT
+Qi
+lr
+bi
+BW
+BW
+BW
+BW
+BW
+"}
+(45,1,1) = {"
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+BW
+BW
+BW
+BW
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+zT
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+BW
+"}

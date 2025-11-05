@@ -1,0 +1,248 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"c" = (
+/obj/structure/flora/roguetree/pine,
+/turf/open/floor/rogue/snow,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"d" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"f" = (
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"i" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"A" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"F" = (
+/obj/effect/baseturf_helper,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"I" = (
+/obj/structure/flora/roguetree/pine,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"O" = (
+/obj/structure/fluff/railing/wood/west,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"P" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/rogue/snow,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"R" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"T" = (
+/obj/structure/fluff/railing/wood/east,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"V" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+"W" = (
+/turf/open/floor/rogue/snow,
+/area/rogue/outdoors/warcamp/outskirts/decap)
+
+(1,1,1) = {"
+c
+W
+P
+W
+i
+i
+i
+W
+W
+i
+i
+i
+i
+"}
+(2,1,1) = {"
+i
+W
+W
+W
+a
+T
+T
+T
+a
+a
+f
+f
+A
+"}
+(3,1,1) = {"
+i
+W
+W
+I
+a
+d
+d
+f
+f
+f
+f
+f
+A
+"}
+(4,1,1) = {"
+i
+W
+P
+a
+d
+f
+f
+f
+f
+f
+f
+f
+i
+"}
+(5,1,1) = {"
+i
+c
+a
+a
+d
+f
+a
+a
+a
+f
+f
+a
+i
+"}
+(6,1,1) = {"
+i
+i
+a
+d
+f
+a
+W
+P
+a
+f
+f
+a
+i
+"}
+(7,1,1) = {"
+i
+i
+R
+f
+a
+W
+c
+a
+a
+f
+d
+a
+W
+"}
+(8,1,1) = {"
+i
+a
+f
+f
+R
+a
+a
+a
+f
+f
+d
+a
+W
+"}
+(9,1,1) = {"
+T
+f
+f
+f
+f
+a
+f
+f
+f
+d
+a
+a
+P
+"}
+(10,1,1) = {"
+V
+f
+f
+f
+f
+f
+f
+a
+a
+a
+a
+W
+W
+"}
+(11,1,1) = {"
+V
+f
+f
+f
+f
+f
+a
+a
+W
+W
+W
+W
+c
+"}
+(12,1,1) = {"
+V
+f
+R
+O
+O
+a
+R
+W
+W
+W
+W
+W
+i
+"}
+(13,1,1) = {"
+F
+a
+i
+i
+P
+i
+i
+W
+c
+W
+P
+i
+i
+"}

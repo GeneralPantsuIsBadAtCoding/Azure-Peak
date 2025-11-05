@@ -231,6 +231,11 @@
 		for(var/obj/structure/fluff/traveltile/TT in range(7, user))
 			to_chat(user, span_warning("I can't craft here."))
 			return
+	if(get_area(user.loc))
+		var/area/rogue/zone = get_area(user.loc)
+		if(zone.no_structure_craft)
+			to_chat(user, span_warning("I can't craft here."))
+			return
 		for(var/obj/structure/S in T)
 			if(R.buildsame && istype(S, R.result))
 				if(user.dir == S.dir)

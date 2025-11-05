@@ -489,3 +489,10 @@
 		var/starting_rand  = rand(100, 50)
 		prices[path] = list("[starting_rand]", "[round(starting_rand * 0.5, 1)]")
 	sell_prices = prices
+
+
+
+/obj/item/paper/import_writ
+	var/value = 0	// value given to the writ
+	var/ready = FALSE 
+

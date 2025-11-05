@@ -1,0 +1,266 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/water/ocean,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"b" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/AzureSand,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"e" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"h" = (
+/obj/structure/flora/roguegrass{
+	name = "tangled seaweed"
+	},
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"k" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"n" = (
+/obj/structure/flora/roguegrass,
+/turf/open/floor/rogue/AzureSand,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"o" = (
+/turf/open/water/ocean/deep,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"w" = (
+/obj/structure/flora/roguegrass{
+	name = "tangled seaweed"
+	},
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"A" = (
+/turf/open/floor/rogue/twig,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"C" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/twig,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"D" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/AzureSand,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"F" = (
+/turf/open/floor/rogue/AzureSand,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"J" = (
+/obj/machinery/light/rogue/firebowl/stump,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"L" = (
+/obj/effect/baseturf_helper,
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"O" = (
+/obj/structure/flora/roguegrass{
+	name = "tangled seaweed"
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+"W" = (
+/obj/structure/flora/roguegrass{
+	name = "tangled seaweed"
+	},
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/warcamp/outskirts/coast)
+
+(1,1,1) = {"
+L
+k
+k
+k
+k
+w
+O
+O
+O
+h
+O
+k
+k
+"}
+(2,1,1) = {"
+k
+k
+k
+k
+W
+O
+e
+e
+e
+e
+e
+O
+k
+"}
+(3,1,1) = {"
+k
+k
+k
+O
+O
+e
+F
+F
+F
+n
+F
+e
+O
+"}
+(4,1,1) = {"
+k
+k
+k
+O
+e
+n
+F
+F
+F
+F
+F
+F
+J
+"}
+(5,1,1) = {"
+k
+k
+O
+e
+n
+F
+F
+F
+F
+F
+F
+n
+e
+"}
+(6,1,1) = {"
+k
+k
+O
+e
+F
+n
+F
+F
+F
+A
+A
+F
+b
+"}
+(7,1,1) = {"
+k
+O
+e
+F
+F
+F
+F
+A
+n
+F
+F
+A
+b
+"}
+(8,1,1) = {"
+J
+e
+F
+F
+F
+A
+F
+F
+F
+F
+F
+A
+C
+"}
+(9,1,1) = {"
+D
+F
+A
+F
+F
+F
+F
+F
+F
+F
+F
+n
+b
+"}
+(10,1,1) = {"
+D
+F
+F
+F
+F
+a
+a
+a
+a
+a
+F
+F
+b
+"}
+(11,1,1) = {"
+O
+n
+F
+a
+a
+a
+o
+o
+o
+a
+a
+a
+F
+"}
+(12,1,1) = {"
+k
+O
+F
+n
+a
+o
+o
+o
+o
+o
+o
+o
+a
+"}
+(13,1,1) = {"
+k
+k
+W
+F
+a
+o
+o
+o
+o
+o
+o
+o
+a
+"}

@@ -28,6 +28,8 @@
 	if(ranged_ability)
 		ranged_ability.deactivate()
 	
+	if(mind.warbandsetup)
+		mind.warband_manager.create_HUD_instance(mind.current)
 	set_ssd_indicator(FALSE)
 
 /mob/living/proc/login_fade()

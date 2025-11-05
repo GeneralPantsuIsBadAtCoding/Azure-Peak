@@ -1,0 +1,250 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"o" = (
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"t" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"u" = (
+/obj/effect/baseturf_helper,
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"v" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"x" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"H" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"L" = (
+/obj/machinery/light/rogue/torchholder,
+/turf/closed/wall/mineral/rogue/wooddark,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"R" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_azure,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"U" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"V" = (
+/obj/structure/fluff/traveltile/warband/intermission_to_outskirts,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"X" = (
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/warcamp/outskirts/cave)
+"Y" = (
+/turf/open/water/pond,
+/area/rogue/indoors/warcamp/outskirts/cave)
+
+(1,1,1) = {"
+u
+U
+Y
+Y
+U
+U
+U
+U
+X
+X
+X
+X
+U
+"}
+(2,1,1) = {"
+U
+Y
+Y
+X
+X
+U
+U
+U
+U
+X
+o
+o
+X
+"}
+(3,1,1) = {"
+Y
+Y
+X
+X
+o
+X
+U
+U
+U
+X
+o
+o
+H
+"}
+(4,1,1) = {"
+X
+X
+X
+o
+o
+o
+o
+U
+U
+o
+o
+o
+H
+"}
+(5,1,1) = {"
+U
+o
+o
+o
+o
+o
+o
+o
+o
+o
+a
+o
+H
+"}
+(6,1,1) = {"
+L
+v
+o
+a
+a
+o
+o
+a
+a
+o
+a
+o
+H
+"}
+(7,1,1) = {"
+U
+o
+o
+o
+o
+a
+o
+a
+o
+o
+o
+o
+R
+"}
+(8,1,1) = {"
+V
+a
+o
+o
+o
+o
+t
+o
+a
+o
+o
+o
+H
+"}
+(9,1,1) = {"
+x
+o
+a
+o
+U
+U
+L
+v
+o
+o
+o
+o
+H
+"}
+(10,1,1) = {"
+V
+o
+U
+U
+U
+U
+U
+o
+o
+o
+o
+X
+U
+"}
+(11,1,1) = {"
+o
+U
+U
+U
+X
+X
+U
+U
+o
+o
+o
+X
+U
+"}
+(12,1,1) = {"
+U
+U
+U
+X
+X
+o
+o
+o
+o
+o
+X
+U
+U
+"}
+(13,1,1) = {"
+U
+U
+X
+X
+X
+X
+X
+X
+X
+X
+U
+U
+U
+"}
