@@ -156,7 +156,7 @@
 
 // Pots13 donation item
 /obj/item/clothing/under/roguetown/tights/pots
-	name = "Artificer's 'waddlers' size 48 crinkler diaper"
+	name = "Artificer's 'waddlers' size 38 crinkler diaper"
 	desc = "Extra crinkly, extra padded, and of the finest make. It's the modern dae and every aspiring nobleman needs the right protection. Without it, you're no more civilized than a cabbit in the woods."
 	icon_state = "potsdiaper"
 	item_state = "potsdiaper"
