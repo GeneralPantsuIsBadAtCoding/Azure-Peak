@@ -21,6 +21,8 @@
 	var/datum/collective_message/collective = null
 	///have we just climaxed?
 	var/just_climaxed = FALSE
+	/// Whether to use knot when fucking (for knotted penis types)
+	var/do_knot_action = FALSE
 
 	var/static/sex_id = 0
 	var/our_sex_id = 0 //this is so we can have more then 1 sex id open at once
@@ -345,6 +347,15 @@
 	data["force_names"] = list("GENTLE", "FIRM", "ROUGH", "BRUTAL")
 	data["has_penis"] = user.getorganslot(ORGAN_SLOT_PENIS) ? TRUE : FALSE
 
+	// Check if user has knotted penis
+	var/has_knotted_penis = FALSE
+	var/obj/item/organ/penis/penis = user.getorganslot(ORGAN_SLOT_PENIS)
+	if(penis)
+		switch(penis.penis_type)
+			if(PENIS_TYPE_KNOTTED, PENIS_TYPE_TAPERED_DOUBLE_KNOTTED, PENIS_TYPE_BARBED_KNOTTED)
+				has_knotted_penis = TRUE
+	data["has_knotted_penis"] = has_knotted_penis
+
 	return data
 
 /datum/sex_session/ui_data(mob/user)
@@ -361,6 +372,7 @@
 	data["force"] = get_current_force()
 	data["manual_arousal"] = manual_arousal || SEX_MANUAL_AROUSAL_DEFAULT
 	data["do_until_finished"] = do_until_finished
+	data["do_knot_action"] = do_knot_action
 
 	var/list/arousal_data = list()
 	SEND_SIGNAL(user, COMSIG_SEX_GET_AROUSAL, arousal_data)
@@ -416,6 +428,9 @@
 			. = TRUE
 		if("toggle_finished")
 			do_until_finished = !do_until_finished
+			. = TRUE
+		if("toggle_knot")
+			do_knot_action = !do_knot_action
 			. = TRUE
 		if("set_arousal_value")
 			SEND_SIGNAL(user, COMSIG_SEX_SET_AROUSAL, params["amount"])

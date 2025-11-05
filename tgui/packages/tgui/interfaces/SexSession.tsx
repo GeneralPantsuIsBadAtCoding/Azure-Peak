@@ -136,6 +136,25 @@ export const SexSession = () => {
                     >
                       {data.do_until_finished ? "UNTIL I'M FINISHED" : 'UNTIL I STOP'}
                     </Button>
+                    {!!data.has_knotted_penis && (
+                      <>
+                        {' | '}
+                        <Button
+                          inline
+                          compact
+                          color="transparent"
+                          onClick={() => act('toggle_knot')}
+                        >
+                          <Box
+                            as="span"
+                            bold
+                            style={{ color: data.do_knot_action ? '#d146f5' : '#eac8de' }}
+                          >
+                            {data.do_knot_action ? 'USING KNOT' : 'TOGGLE KNOT'}
+                          </Box>
+                        </Button>
+                      </>
+                    )}
                   </Box>
                 </Stack.Item>
 

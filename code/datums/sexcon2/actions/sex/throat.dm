@@ -33,7 +33,8 @@
 
 /datum/sex_action/sex/throat/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] fucks [target]'s throat."))
+	var/is_knotting = sex_session.do_knot_action
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "knot-fucks" : "fucks"] [target]'s throat."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
@@ -42,7 +43,8 @@
 	if(sex_session.considered_limp(user))
 		sex_session.perform_sex_action(target, 0, 2, FALSE)
 	else
-		sex_session.perform_sex_action(target, 0, 7, FALSE)
+		var/target_pleasure = is_knotting ? 11 : 7
+		sex_session.perform_sex_action(target, 0, target_pleasure, FALSE)
 	sex_session.handle_passive_ejaculation()
 
 /datum/sex_action/sex/throat/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -78,7 +80,8 @@
 
 /datum/sex_action/sex/throat/double/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] double-fucks [target]'s throat."))
+	var/is_knotting = sex_session.do_knot_action
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "double-knots" : "double-fucks"] [target]'s throat."))
 	playsound(target, 'sound/misc/mat/segso.ogg', 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
@@ -89,7 +92,8 @@
 	if(sex_session.considered_limp(user))
 		sex_session.perform_sex_action(target, 0, 2, FALSE)
 	else
-		sex_session.perform_sex_action(target, 0, 7, FALSE)
+		var/target_pleasure = is_knotting ? 11 : 7
+		sex_session.perform_sex_action(target, 0, target_pleasure, FALSE)
 	sex_session.handle_passive_ejaculation()
 
 /datum/sex_action/sex/throat/double/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)

@@ -37,7 +37,8 @@
 
 /datum/sex_action/sex/double_penetration/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] fucks [target]'s holes together."))
+	var/is_knotting = sex_session.do_knot_action
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] [is_knotting ? "knot-fucks" : "fucks"] [target]'s holes together."))
 	playsound(target, sex_session.get_force_sound(), 50, TRUE, -2, ignore_walls = FALSE)
 	do_thrust_animate(user, target)
 
@@ -48,7 +49,8 @@
 	if(sex_session.considered_limp(user))
 		sex_session.perform_sex_action(target, 1.4, 4, FALSE)
 	else
-		sex_session.perform_sex_action(target, 2.7, 14, FALSE)
+		var/target_pleasure = is_knotting ? 18 : 14
+		sex_session.perform_sex_action(target, 2.7, target_pleasure, FALSE)
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/double_penetration/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)

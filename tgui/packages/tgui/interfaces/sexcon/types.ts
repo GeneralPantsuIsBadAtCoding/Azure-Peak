@@ -16,6 +16,7 @@ export interface SexSessionData {
   speed_names: string[];
   force_names: string[];
   has_penis: boolean;
+  has_knotted_penis: boolean;
 
   // Dynamic data
   title: string;
@@ -25,6 +26,7 @@ export interface SexSessionData {
   force: number;
   manual_arousal: number;
   do_until_finished: boolean;
+  do_knot_action: boolean;
 
   // Arousal tracking
   arousal: number;
