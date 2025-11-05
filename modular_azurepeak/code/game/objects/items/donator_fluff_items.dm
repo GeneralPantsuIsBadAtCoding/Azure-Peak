@@ -164,3 +164,7 @@
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
 	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi'
+
+/obj/item/clothing/under/roguetown/tights/pots/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_POTS_STEP)
