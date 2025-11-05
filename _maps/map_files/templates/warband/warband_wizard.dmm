@@ -198,7 +198,7 @@
 	color = "#4B5460"
 	},
 /turf/open/floor/rogue/tile/harem{
-	color = #A6A6A6
+	color = "#A6A6A6"
 	},
 /area/rogue/indoors/warcamp/wizard)
 "cG" = (
@@ -3475,7 +3475,7 @@
 	dir = 4
 	},
 /turf/open/floor/rogue/tile/harem{
-	color = #A6A6A6
+	color = "#A6A6A6"
 	},
 /area/rogue/indoors/warcamp/wizard)
 "TH" = (
