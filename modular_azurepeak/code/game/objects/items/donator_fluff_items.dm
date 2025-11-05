@@ -152,3 +152,15 @@
 	block2add = FOV_BEHIND
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+
+
+// Pots13 donation item
+/obj/item/clothing/under/roguetown/tights/pots
+	name = "Artificer's 'waddlers' size 48 crinkler diaper"
+	desc = "Extra crinkly, extra padded, and of the finest make. It's the modern dae and every aspiring nobleman needs the right protection. Without it, you're no more civilized than a cabbit in the woods."
+	icon_state = "potsdiaper"
+	item_state = "potsdiaper"
+	sleevetype = "potsdiaper"
+	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
+	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi'

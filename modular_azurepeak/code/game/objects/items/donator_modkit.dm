@@ -113,3 +113,9 @@
 	name = "'Shroud of the Undermaiden' morphing elixir"
 	target_items = list(/obj/item/clothing/cloak/darkcloak/bear)
 	result_item = /obj/item/clothing/cloak/raincloak/feather_cloak
+
+//Poots13 - The Wretched Diaper
+/obj/item/enchantingkit/poots13
+	name = "Artificer's 'waddlers' size 48 crinkler diaper"
+	target_items = list(/obj/item/clothing/under/roguetown/tights)
+	result_item = /obj/item/clothing/under/roguetown/tights/pots

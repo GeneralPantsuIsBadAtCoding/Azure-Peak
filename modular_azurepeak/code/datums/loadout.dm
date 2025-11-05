@@ -631,3 +631,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Donator Kit - Shroud of the Undermaiden"
 	path = /obj/item/enchantingkit/zoe
 	ckeywhitelist = list("zoetheorc")
+
+/datum/loadout_item/poots13
+	name = "Donator Kit - Diaper of the Ages"
+	path = /obj/item/enchantingkit/poots13
+	ckeywhitelist = list("poots13")
