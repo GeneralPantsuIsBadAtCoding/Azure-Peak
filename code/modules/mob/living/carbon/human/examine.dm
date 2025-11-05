@@ -905,17 +905,8 @@
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
 
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
-			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
-
-	if(!obscure_name || client?.prefs.masked_examine)
-		if((user.client?.prefs.chatheadshot) && headshot_link)
-			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
-		if(flavortext || headshot_link || ooc_notes)
-			. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
+	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
+		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
 	if(lip_style)
 		switch(lip_color)
@@ -934,9 +925,28 @@
 		lines = build_cool_description_unknown(get_mob_descriptors_unknown(obscure_name, user), src)
 	else
 		lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
+	
+	var/app_str
+	if(!(user.client?.prefs?.full_examine))
+		app_str = "<details><summary>[span_info("Details")]</summary>"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+			app_str += span_info("<a href='?src=[REF(src)];task=assess;'>Assess</a><br>")
 
 	for(var/line in lines)
-		. += span_info(line)
+		var/index = 1
+		app_str += span_info(line)
+		index++
+		if(index != length(lines))
+			app_str += "<br>"
+
+	if(!(user.client?.prefs?.full_examine))
+		if(length(lines))
+			app_str += "</details>"
+
+	. += app_str
 
 	// Characters with the hunted flaw will freak out if they can't see someone's face.
 	if(!appears_dead)
